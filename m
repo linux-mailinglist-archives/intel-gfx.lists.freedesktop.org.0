@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2360C886A48
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 11:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E8A886A49
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 11:30:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D816C10E89B;
-	Fri, 22 Mar 2024 10:30:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F398310EF69;
+	Fri, 22 Mar 2024 10:30:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BEugwNAh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bokcf26R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F82D10E89B
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 10:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1797D10EF58
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 10:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711103420; x=1742639420;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ec/vxemfn44CAqJ11D0ci0P/PvrMMWPTa7Z9RN84DKs=;
- b=BEugwNAhpA4jSJXVXpCuM41E/0H88AgA10lcthINBy5G+Y2Be1ub/o5K
- 42RRa20iW81TxOhgWSh1kVSqtMtgzOmiDrrYvFyVrttzWcK3C7WaQV0q4
- P7eJn2plZA1F40kG2FE1NiFFjumfJqm1Ekypr6jKFS+HyFjNs1+R+ytlS
- HgmHQ5f2S92PE2z7fo0BGnpEXsTcQeugmK18nxobQSJ1pTbQKuhlyaw9T
- c1kjUKbrUy29rVkq4KZiHRID27XdOD7FvYyz0684D9SyRAlOtI1kaCOjw
- KuXwj1lkdd2dxVb6jP9IWsRbkuO4KhsfoaAy4NlKIErvJpUwoP11hHMOP w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17292849"
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="17292849"
+ t=1711103422; x=1742639422;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=o1BzrB2N6iY6QhVjl343kr5/vPeUkVzz3hhdTr9e15A=;
+ b=bokcf26R2jbDECdJcmuhQAWtofaeiUWIWYKe6BbgFGIQt2OXNN/uf2jL
+ OKnrvMPN3f+9ICHrKeFC0Q4DMeblBb+7pkIHGBx/ZsK2rfEaL4Uo/qYWH
+ Py/M4RaHbw1GvBzAsXQpNwE3xYw0HDExWK7+wErcqYfJlL1BIOyUUQ36h
+ Ss8kQgjKAMrUPLPlRbzP7oBnBnfm5rlhUxPaGuFljFygDkb9XnmEY+rl8
+ NcdJjbnhtQTls6G0aC73FwZZ44Oq5RdnquedZApI585norPqzHkoUwsNq
+ FYHQ+PZP//tTqwKhAafdQSWW2elKtzA5b12YiVGWkioJfVkL3zvb7Xc4v w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17292851"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="17292851"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 03:30:20 -0700
+ 22 Mar 2024 03:30:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="19559318"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="19559322"
 Received: from opopa-mobl1.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.37.152])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 03:30:18 -0700
+ 22 Mar 2024 03:30:20 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Animesh Manna <animesh.manna@intel.com>,
  Arun R Murthy <arun.r.murthy@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v5 0/5] ALPM AUX-Less
-Date: Fri, 22 Mar 2024 12:29:55 +0200
-Message-Id: <20240322103000.103332-1-jouni.hogander@intel.com>
+Subject: [PATCH v5 1/5] drm/i915/psr: Add missing ALPM AUX-Less register
+ definitions
+Date: Fri, 22 Mar 2024 12:29:56 +0200
+Message-Id: <20240322103000.103332-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240322103000.103332-1-jouni.hogander@intel.com>
+References: <20240322103000.103332-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -67,44 +70,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch set is implementing calculation of ALPM AUX-Less parameters
-for Intel HW and writing them in case of AUX-Less is enabled. It is
-also enabling ALPM AUX-Less for eDP Panel Replay. Current code is not
-allowing Panel Replay on eDP. Patches for this are coming later.
+Couple of ALPM AUX-Less related fields are missing from ALPM register
+definitions. Add these and remove some duplicate definitions.
 
-This implementation is only for Panel Replay usage. LOBF (Link Off
-Between Active Frames) usage needs more work.
+Bspec: 70294
 
-v5:
-  - mention AUX Less enable is only on source side in commit message
-v4:
-  - drop patch adding AUX LESS dpcd defines
-  - re-use fast_wake_lines to store aux_less_wake_lines
-  - add comment explaining why AUX less is enabled on eDP panel replay
-    without any extra checks
-v3:
-  - use definitions instead of numbers for max values
-  - do not use alpm_ctl as uninitialized variable
-v2:
-  - use variables instead of values directly
-  - fix several max values
-  - move converting port clock to Mhz into _lnl_compute_*
-  - do not set AUX-Wake related bits for AUX-Less case
-  - do not write ALPM configuration for DP2.0 Panel Replay or PSR1
+V2: add Bspec reference
 
-Jouni Högander (5):
-  drm/i915/psr: Add missing ALPM AUX-Less register definitions
-  drm/i915/psr: Calculate aux less wake time
-  drm/i915/psr: Silence period and lfps half cycle
-  drm/i915/psr: Enable ALPM on source side for eDP Panel replay
-  drm/i915/psr: Do not write ALPM configuration for PSR1 or DP2.0 Panel
-    Replay
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
- .../drm/i915/display/intel_display_types.h    |   2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 188 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_psr_regs.h |  12 +-
- 3 files changed, 193 insertions(+), 9 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 8427a736f639..b004672d1deb 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -348,9 +348,13 @@
+ #define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(tran, _PORT_ALPM_LFPS_CTL_A)
+ #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
+ #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
+-#define  ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES		5
+-#define  ALPM_CTL_EXTENDED_FAST_WAKE_TIME(lines)	REG_FIELD_PREP(ALPM_CTL_EXTENDED_FAST_WAKE_TIME_MASK, (lines) - ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES)
+-#define  ALPM_CTL_AUX_LESS_WAKE_TIME_MASK		REG_GENMASK(5, 0)
+-#define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
++#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
++#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(val)		REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
++#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(20, 16)
++#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(12, 8)
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(4, 0)
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+ 
+ #endif /* __INTEL_PSR_REGS_H__ */
 -- 
 2.34.1
 
