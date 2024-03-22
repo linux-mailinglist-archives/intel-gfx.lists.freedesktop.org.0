@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8183F886562
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 04:18:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC07886565
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 04:18:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE18D11207D;
-	Fri, 22 Mar 2024 03:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBD911217D;
+	Fri, 22 Mar 2024 03:18:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHZqbUIn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfYpc3Pl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB6E911207D
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 03:18:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EEE1112081
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 03:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711077515; x=1742613515;
+ t=1711077517; x=1742613517;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wAxrkB8hhnoinNWbz0l+c8pj9+fxwiOX146EIbp3dVs=;
- b=bHZqbUIn48ENTtPBs1f9p3M5A4Yv55KcRH6mcAwZBXmewdlEQKyVVVLq
- 5tyLQMx3GAib9fynCVudxxoo2bCzyUP3KHaTOBNYQ5UvCGwV409fxTOKz
- 7QbFhtiiv48Afpdq55JuD8lFyti+RPO+bzz0DmQRb56+MYzehC303nxYd
- qjHMmVrm5S881662PP9T8m7A/K5MDuZ6ALmOdKTQM0C3DXkmREfW3pUFn
- YzbTo/sH6qM4RCtba1kUaT6JqCh9mST87purzOt8Wb6QM9E74MmEb6txH
- XYrNQ7dVREmA50e9woSsnyeV1t7BnaBgiwUdiWYvCOERpxx8BVQr5ali/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6235034"
+ bh=yk3wdjfPINviH89YFg4WvgHMQFkR5ryhHJHS5wVUPJo=;
+ b=lfYpc3PlKDcoyQfY8tF59SwH1Xm/J+vinuMv90k2Eq5ocy2e+4PHhCz1
+ Y8rOQKfVnu7MrbHB9ow+aBopP8ZfLkMW6Xv1PxhnWDBYQVbW8/sNwk9+K
+ XgrPnf1Gs0LHEeHCgcuqpsuvMwowqupPoeT4bGQGAbvo+dAT2rgorgoWr
+ zko1UiJUs3CzX6NJewQScw5FGDPQfxCRQ9RrCsXJ3nYGRJN0tzzbnV2ld
+ hMllDhCkwAwyqVQ1oL/dhHzBV/k+NOaKfBu+SY+vPPiZvANWopMLQ0jAG
+ YqtTYnVIAnFo6Nz5fWvrV/nOACTzcyUdMSXxA61PJqWPyrMcKiL76UCcB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="6235035"
 X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; 
-   d="scan'208";a="6235034"
+   d="scan'208";a="6235035"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2024 20:18:35 -0700
+ 21 Mar 2024 20:18:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="37874649"
+X-IronPort-AV: E=Sophos;i="6.07,144,1708416000"; d="scan'208";a="37874652"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa002.fm.intel.com with ESMTP; 21 Mar 2024 20:18:33 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 21 Mar 2024 20:18:35 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v18 5/9] drm/i915/dp: Add wrapper function to check AS SDP
-Date: Fri, 22 Mar 2024 08:41:53 +0530
-Message-Id: <20240322031157.3823909-6-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v18 6/9] drm/i915/display: Compute AS SDP parameters
+Date: Fri, 22 Mar 2024 08:41:54 +0530
+Message-Id: <20240322031157.3823909-7-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240322031157.3823909-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20240322031157.3823909-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -64,50 +64,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a wrapper function to check if both the source and
-sink support Adaptive Sync SDP.
+Add necessary function definitions to compute AS SDP data.
+The new intel_dp_compute_as_sdp function computes AS SDP
+values based on the display configuration, ensuring proper
+handling of Variable Refresh Rate (VRR).
 
---v1:
-Just use drm/i915/dp in subject line.
+--v2:
+- Added DP_SDP_ADAPTIVE_SYNC to infoframe_type_to_idx(). [Ankit]
+- Separated patch for intel_read/write_dp_sdp. [Ankit]
+- _HSW_VIDEO_DIP_ASYNC_DATA_A should be from ADL onward. [Ankit]
+- Fixed indentation issues. [Ankit]
+
+--v3:
+- Added VIDEO_DIP_ENABLE_AS_HSW flag to intel_dp_set_infoframes.
+
+--v4:
+- Added HAS_VRR check before writing AS SDP.
+
+--v5:
+Added missed HAS_VRR check before reading AS SDP.
+
+--v6:
+- Used Adaptive Sync sink status as a check for read/write SDP. (Ankit)
+
+--v7:
+- Remove as_sdp_enable from crtc_state.
+- Add a comment mentioning current support of
+  DP_AS_SDP_AVT_FIXED_VTOTAL.
+- Add state checker for AS_SDP infoframe enable.
+
+--v8:
+- Drop conn_state from intel_dp_compute_as_sdp, as not used.
+- Remove fullstop in subject line.
+
+--v9:
+- Add vrr.enable instead of is_in_vrr_range.
+
+--v10:
+- remove vrefresh and connector, as they are no  longer required.
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_dp.h | 1 +
- 2 files changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 92fe90df6e37..f8a478501f4a 100644
+index f8a478501f4a..ce00ccd87d58 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -123,6 +123,14 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- 	return dig_port->base.type == INTEL_OUTPUT_EDP;
+@@ -2617,6 +2617,29 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
+ 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
  }
  
-+bool intel_dp_as_sdp_supported(struct intel_dp *intel_dp)
++static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
++				    struct intel_crtc_state *crtc_state)
 +{
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct drm_dp_as_sdp *as_sdp = &crtc_state->infoframes.as_sdp;
++	const struct drm_display_mode *adjusted_mode =
++		&crtc_state->hw.adjusted_mode;
 +
-+	return HAS_AS_SDP(i915) &&
-+		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
++	if (!crtc_state->vrr.enable ||
++	    !intel_dp_as_sdp_supported(intel_dp))
++		return;
++
++	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
++
++	/* Currently only DP_AS_SDP_AVT_FIXED_VTOTAL mode supported */
++	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
++	as_sdp->length = 0x9;
++	as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
++	as_sdp->vtotal = adjusted_mode->vtotal;
++	as_sdp->target_rr = 0;
++	as_sdp->duration_incr_ms = 0;
++	as_sdp->duration_incr_ms = 0;
 +}
 +
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
+ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
+ 				     struct intel_crtc_state *crtc_state,
+ 				     const struct drm_connector_state *conn_state)
+@@ -2968,6 +2991,7 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 		g4x_dp_set_clock(encoder, pipe_config);
  
- /* Is link rate UHBR and thus 128b/132b? */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index c540d3a73fe7..9f880d7865d1 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -88,6 +88,7 @@ void intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 				   struct drm_connector_state *conn_state);
- bool intel_dp_has_hdmi_sink(struct intel_dp *intel_dp);
- bool intel_dp_is_edp(struct intel_dp *intel_dp);
-+bool intel_dp_as_sdp_supported(struct intel_dp *intel_dp);
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state);
- int intel_dp_link_symbol_size(int rate);
- int intel_dp_link_symbol_clock(int rate);
+ 	intel_vrr_compute_config(pipe_config, conn_state);
++	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+ 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
+ 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
 -- 
 2.25.1
 
