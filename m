@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4E8A886A49
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 11:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 803BB886A4B
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Mar 2024 11:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F398310EF69;
-	Fri, 22 Mar 2024 10:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A71110F33F;
+	Fri, 22 Mar 2024 10:30:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bokcf26R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IE5fovj5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1797D10EF58
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 10:30:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11CDB10EF58
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Mar 2024 10:30:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711103422; x=1742639422;
+ t=1711103424; x=1742639424;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=o1BzrB2N6iY6QhVjl343kr5/vPeUkVzz3hhdTr9e15A=;
- b=bokcf26R2jbDECdJcmuhQAWtofaeiUWIWYKe6BbgFGIQt2OXNN/uf2jL
- OKnrvMPN3f+9ICHrKeFC0Q4DMeblBb+7pkIHGBx/ZsK2rfEaL4Uo/qYWH
- Py/M4RaHbw1GvBzAsXQpNwE3xYw0HDExWK7+wErcqYfJlL1BIOyUUQ36h
- Ss8kQgjKAMrUPLPlRbzP7oBnBnfm5rlhUxPaGuFljFygDkb9XnmEY+rl8
- NcdJjbnhtQTls6G0aC73FwZZ44Oq5RdnquedZApI585norPqzHkoUwsNq
- FYHQ+PZP//tTqwKhAafdQSWW2elKtzA5b12YiVGWkioJfVkL3zvb7Xc4v w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17292851"
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="17292851"
+ bh=CtA0sOUUf0JmtvLUzUMPosdmV4oE0W18/nEKUpkrEG0=;
+ b=IE5fovj5LYSu38NhPzO3w68Hg64XzOuLpwIw+U3P57MTwcv1DbRvY+ba
+ 9/+nzUifxNfI/Z0VqNEOgsXDgVZDFoF4QKjxHIDGpskVGQUcEgFJ0dcZq
+ daz0gUt2Lz4RtovLuQoGIncIHHtMz6yItgpVM2H8pynEjTgUOn8rLWw1j
+ bo9F0qw3LBr1TRt66JvKzG5F10pAGrfi4HMcf7KKXtlSDc4woriTlRsSE
+ tIrp3EG1L3COS3Bpzm7UZdv0Vh/HgLiiOjwZkvuW58gIfJd/wHKSMQM7r
+ UYY4dK2cuES+AzEr7oylAbVdChAxzRNq36/gRd4n/Lu4r0Y++5ueottzC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11020"; a="17292852"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="17292852"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 03:30:22 -0700
+ 22 Mar 2024 03:30:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="19559322"
+X-IronPort-AV: E=Sophos;i="6.07,145,1708416000"; d="scan'208";a="19559326"
 Received: from opopa-mobl1.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.37.152])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2024 03:30:20 -0700
+ 22 Mar 2024 03:30:22 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Animesh Manna <animesh.manna@intel.com>,
  Arun R Murthy <arun.r.murthy@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v5 1/5] drm/i915/psr: Add missing ALPM AUX-Less register
- definitions
-Date: Fri, 22 Mar 2024 12:29:56 +0200
-Message-Id: <20240322103000.103332-2-jouni.hogander@intel.com>
+Subject: [PATCH v5 2/5] drm/i915/psr: Calculate aux less wake time
+Date: Fri, 22 Mar 2024 12:29:57 +0200
+Message-Id: <20240322103000.103332-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240322103000.103332-1-jouni.hogander@intel.com>
 References: <20240322103000.103332-1-jouni.hogander@intel.com>
@@ -70,41 +69,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Couple of ALPM AUX-Less related fields are missing from ALPM register
-definitions. Add these and remove some duplicate definitions.
+Calculate aux less wake time and store it into alpm_params struct
 
-Bspec: 70294
+Bspec: 71477
 
-V2: add Bspec reference
+v4:
+  - re-use fast_wake_lines to store aux_less_wake_lines
+v3:
+  - use ALPM_CTL_AUX_LESS_WAKE_TIME_MASK instead of value 63
+v2:
+  - use variables instead of values directly
+  - fix max value
+  - move converting port clock to Mhz into _lnl_compute_aux_less_wake_time
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 60 ++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 8427a736f639..b004672d1deb 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -348,9 +348,13 @@
- #define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(tran, _PORT_ALPM_LFPS_CTL_A)
- #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
--#define  ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES		5
--#define  ALPM_CTL_EXTENDED_FAST_WAKE_TIME(lines)	REG_FIELD_PREP(ALPM_CTL_EXTENDED_FAST_WAKE_TIME_MASK, (lines) - ALPM_CTL_EXTENDED_FAST_WAKE_MIN_LINES)
--#define  ALPM_CTL_AUX_LESS_WAKE_TIME_MASK		REG_GENMASK(5, 0)
--#define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
-+#define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(val)		REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(20, 16)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(12, 8)
-+#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(4, 0)
-+#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 3f35572354ba..bfe320bcefef 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1126,6 +1126,63 @@ static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_dp *intel_d
+ 	return true;
+ }
  
- #endif /* __INTEL_PSR_REGS_H__ */
++/*
++ * AUX-Less Wake Time = CEILING( ((PHY P2 to P0) + tLFPS_Period, Max+
++ * tSilence, Max+ tPHY Establishment + tCDS) / tline)
++ * For the "PHY P2 to P0" latency see the PHY Power Control page
++ * (PHY P2 to P0) : https://gfxspecs.intel.com/Predator/Home/Index/68965
++ * : 12 us
++ * The tLFPS_Period, Max term is 800ns
++ * The tSilence, Max term is 180ns
++ * The tPHY Establishment (a.k.a. t1) term is 50us
++ * The tCDS term is 1 or 2 times t2
++ * t2 = Number ML_PHY_LOCK * tML_PHY_LOCK
++ * Number ML_PHY_LOCK = ( 7 + CEILING( 6.5us / tML_PHY_LOCK ) + 1)
++ * Rounding up the 6.5us padding to the next ML_PHY_LOCK boundary and
++ * adding the "+ 1" term ensures all ML_PHY_LOCK sequences that start
++ * within the CDS period complete within the CDS period regardless of
++ * entry into the period
++ * tML_PHY_LOCK = TPS4 Length * ( 10 / (Link Rate in MHz) )
++ * TPS4 Length = 252 Symbols
++ */
++static int _lnl_compute_aux_less_wake_time(int port_clock)
++{
++	int tphy2_p2_to_p0 = 12 * 1000;
++	int tlfps_period_max = 800;
++	int tsilence_max = 180;
++	int t1 = 50 * 1000;
++	int tps4 = 252;
++	int tml_phy_lock = 1000 * 1000 * tps4 * 10 / port_clock;
++	int num_ml_phy_lock = 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
++	int t2 = num_ml_phy_lock * tml_phy_lock;
++	int tcds = 1 * t2;
++
++	return DIV_ROUND_UP(tphy2_p2_to_p0 + tlfps_period_max + tsilence_max +
++			    t1 + tcds, 1000);
++}
++
++static int _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
++					     struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	int aux_less_wake_time, aux_less_wake_lines;
++
++	aux_less_wake_time =
++		_lnl_compute_aux_less_wake_time(crtc_state->port_clock);
++	aux_less_wake_lines = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
++						       aux_less_wake_time);
++
++	if (aux_less_wake_lines > ALPM_CTL_AUX_LESS_WAKE_TIME_MASK)
++		return false;
++
++	if (i915->display.params.psr_safest_params)
++		aux_less_wake_lines = ALPM_CTL_AUX_LESS_WAKE_TIME_MASK;
++
++	intel_dp->psr.alpm_parameters.fast_wake_lines = aux_less_wake_lines;
++
++	return true;
++}
++
+ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
+ 				     struct intel_crtc_state *crtc_state)
+ {
+@@ -1142,6 +1199,9 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
+ 	if (check_entry_lines > 15)
+ 		return false;
+ 
++	if (!_lnl_compute_aux_less_alpm_params(intel_dp, crtc_state))
++		return false;
++
+ 	if (i915->display.params.psr_safest_params)
+ 		check_entry_lines = 15;
+ 
 -- 
 2.34.1
 
