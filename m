@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18D388A5AD
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 16:03:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E8588A5C5
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 16:06:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AECF10E078;
-	Mon, 25 Mar 2024 15:03:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOfJQwsw";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5423710E96E;
+	Mon, 25 Mar 2024 15:06:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A4A810E078
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 15:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711378989; x=1742914989;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Nec/IiQcjm0eO5K8VFry8cfhuubixGSM6w04gm4PT0I=;
- b=IOfJQwswqjt8sSfo4QnGS46BFT0c5nbAwbVTtuvVIXKztlubKTLVoquH
- XwkbrztuBr83jaiu2Uj6loDvdUyCov78CE9lBioEokTcSfIKHfRcKwE0y
- h7ZcYKz+rJxRxoWI6hkeK6O1nTkxz+GHuXEaL8cGPwZujhJlT3PxjgYdJ
- ahHJdzjN6i2qUcBKIgsnJtIDoR+U2g45qrDO9SA7/ZvhLdJOrEU2fVGJm
- unpfmClm7UR7lrN7pnfbq3fEpRP0kMMC8AUKJl1YtH/uFfsvBKWYYoFKd
- jLYxhMbg8szZafwAeJwPMKndoH6HuhxA3f4G+RRQy1KKPhNSLgH9vsrXk Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="6245375"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
-   d="scan'208";a="6245375"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 08:03:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="827784716"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784716"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 08:03:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 25 Mar 2024 17:03:04 +0200
-Date: Mon, 25 Mar 2024 17:03:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, stanislav.lisovskiy@intel.com,
- ville.syrjala@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH v8 4/4] drm/i915/display: handle systems with duplicate
- qgv/psf gv points
-Message-ID: <ZgGSKCaoUUieIja5@intel.com>
-References: <20240325130156.205726-1-vinod.govindapillai@intel.com>
- <20240325130156.205726-5-vinod.govindapillai@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEDE10E96E;
+ Mon, 25 Mar 2024 15:06:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240325130156.205726-5-vinod.govindapillai@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable_fastset_for_m?=
+ =?utf-8?q?bus=5Fjoin_state_change_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 25 Mar 2024 15:06:05 -0000
+Message-ID: <171137916512.1035680.10392525420742444214@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240325112329.7922-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20240325112329.7922-1-stanislav.lisovskiy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,66 +37,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 25, 2024 at 03:01:56PM +0200, Vinod Govindapillai wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> 
-> There could be multiple qgv and psf gv points with similar values
-> In case if we need to set one such QGV or psf gv  point where there
-> could be duplicate entries, we would have to select all those
-> points. Otherwise pcode might reject the GV configuration. We do
-> handle this when we set appropriate qgv and psf gv as part of
-> intel_bw_atomic_check calls. But during the bw_init force disable
-> QGV points phase, we need to select all those points corresponding
-> to the maximum bw as well.
-> 
-> v1: - use the same treatment to qgv points as well (Vinod)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 844d2d9efeb4..20c67474154e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -847,6 +847,8 @@ static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
->  		if (max_data_rate > max_bw) {
->  			max_bw_point_mask = BIT(i);
->  			max_bw = max_data_rate;
-> +		} else if (max_data_rate == max_bw) {
-> +			max_bw_point_mask |= BIT(i);
->  		}
->  	}
->  
-> @@ -866,6 +868,8 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
->  		if (max_data_rate > max_bw) {
->  			max_bw_point_mask = BIT(i);
->  			max_bw = max_data_rate;
-> +		} else if (max_data_rate == max_bw) {
-> +			max_bw_point_mask |= BIT(i);
+== Series Details ==
 
-This doesn't seem entirely safe. What happens if we somehow
-have two qgv points with the same bandwidth but different
-uderlying clock/gear ratio/etc.?
+Series: Enable fastset for mbus_join state change (rev4)
+URL   : https://patchwork.freedesktop.org/series/130480/
+State : warning
 
-While such behaviour may not seem entirely sensible, given
-that we need to do this stuff at all, I don't think we can
-assume any kind of sensible behaviour from pcode here.
+== Summary ==
 
-So I think we will need to check that the qgv points
-being used here are in fact 100% identical.
+Error: dim checkpatch failed
+bfc7f71c18ac drm/i915: Update mbus in intel_dbuf_mbus_update and do it properly
+-:12: WARNING:TYPO_SPELLING: 'swithing' may be misspelled - perhaps 'switching'?
+#12: 
+or disabling mbus joining(typical scenario is swithing between
+                                              ^^^^^^^^
 
->  		}
->  	}
->  
-> -- 
-> 2.34.1
+total: 0 errors, 1 warnings, 0 checks, 85 lines checked
+3e60b23144b5 drm/i915: Use old mbus_join value when increasing CDCLK
+2d8a015d22f3 drm/i915: Loop over all active pipes in intel_mbus_dbox_update
+fc12aac791b6 drm/i915: Implement vblank synchronized MBUS join changes
+-:87: ERROR:CODE_INDENT: code indent should use tabs where possible
+#87: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:3592:
++^I^I^I^I        const struct intel_dbuf_state *dbuf_state)$
 
--- 
-Ville Syrjälä
-Intel
+-:87: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#87: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:3592:
++static enum pipe intel_mbus_joined_pipe(struct intel_atomic_state *state,
++				        const struct intel_dbuf_state *dbuf_state)
+
+total: 1 errors, 0 warnings, 1 checks, 210 lines checked
+
+
