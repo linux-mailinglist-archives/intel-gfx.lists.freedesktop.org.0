@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C60088A5EB
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 16:11:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84CE88A623
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 16:18:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AC9610E984;
-	Mon, 25 Mar 2024 15:11:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4E210E977;
+	Mon, 25 Mar 2024 15:18:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P83NXhFO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZN85B1ek";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D57E10E98A;
- Mon, 25 Mar 2024 15:11:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDCBB10E97B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 15:18:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711379484; x=1742915484;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=uo6EW6o1ThMIneFfstinf+Enjdx0oToIU38SIGgjgSw=;
- b=P83NXhFOCsmZhhLgMQtfBlor4rYGnr4pZlcKCPnGULtJSII7ORss298i
- p2ayzJB2zuyQ4P0IPuznE78Fl2nIrL9jnw/llatrHuYh0lGxk3lIErCA+
- h8Fhb6lSl+BoiJuzQ8P7LptwqLFUXbm9ZmASot/OpSFGkemWp7argn9P6
- DzmjimQlIIK68lFvXnKSuenE/g/lNI0xE+SnqRGHlttFhs1XUItT6f0Yp
- wogaGNSa9uxzgmLdCGdF7HKKaMU7jvzhrw1xsXhPTNUSmN8Kqzl6n5Z9E
- ELU7ScKwSZCid35N5MMAmfK4BDfbHWcUWWXJ8VqNed0QLRmJBET25Gkfu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="6246634"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
-   d="scan'208";a="6246634"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 08:11:24 -0700
+ t=1711379882; x=1742915882;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=s3rkPLzmfunpTJ57nX47RW2oYF3OurMGtIIiu/n+FCU=;
+ b=ZN85B1ekfPw43YGWthfZIkMl+1FXhnEMnwZ3XxHzbzfOYbqaniQQWeVo
+ dYVAxoe1khnmmz8ItZNAgayvZw3EwYCZdrd7D1vwenFIa4N9peHeoRw7M
+ 0XNUP8J9RUROdQH0Zgi+Up90m+SJG6ScoCODVW2eoWL9+n5yRzcT8iH+/
+ YrL+nxsjpqvCiY3wQeBeJyiTeL/nobpG2Gt5xxI8LchaMqEvbHksHF5b7
+ Dw1ky9ccKs0tBYaro5Mfnq3kRN9MtcsLlZ6SsT/G+i3gVfNKHZDqSvjXq
+ MZvYEs4ckyQTKf3GJoeOIA8umBeA6ULoWYqASYuvnnNjH1Bxhoul7HoX3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="17121989"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="17121989"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 08:17:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="20374360"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="15519036"
 Received: from idirlea-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.171])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 08:11:21 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 08:17:53 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Lucas De Marchi
- <lucas.demarchi@intel.com>, Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [PATCH] drm/i915: Delete stray .rej file
-In-Reply-To: <20240325144728.537855-1-lucas.demarchi@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/lspcon: Separate function to set expected
+ mode
+In-Reply-To: <20240322121832.4170061-2-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240325144728.537855-1-lucas.demarchi@intel.com>
-Date: Mon, 25 Mar 2024 17:11:18 +0200
-Message-ID: <87edbyibxl.fsf@intel.com>
+References: <20240322121832.4170061-1-ankit.k.nautiyal@intel.com>
+ <20240322121832.4170061-2-ankit.k.nautiyal@intel.com>
+Date: Mon, 25 Mar 2024 17:17:49 +0200
+Message-ID: <87bk72ibmq.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,46 +65,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 25 Mar 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> drivers/gpu/drm/i915/gt/intel_workarounds.c.rej was incorrectly added to
-> the tree after solving a conflict. Remove it.
+On Fri, 22 Mar 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> LSPCON can be configured to LS or PCON mode.
+> Separate the function to set the expected mode from the lspcon probe
+> function during lspcon init.
 >
-> Fixes: 326e30e4624c ("drm/i915: Drop dead code for pvc")
-> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> Closes: https://lore.kernel.org/r/20240325083435.4f970eec@canb.auug.org.au
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  .../gpu/drm/i915/gt/intel_workarounds.c.rej    | 18 ------------------
->  1 file changed, 18 deletions(-)
->  delete mode 100644 drivers/gpu/drm/i915/gt/intel_workarounds.c.rej
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 47 ++++++++++++++-------
+>  1 file changed, 31 insertions(+), 16 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c.rej b/drivers/gpu/drm/i915/gt/intel_workarounds.c.rej
-> deleted file mode 100644
-> index 91463b1d684a..000000000000
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c.rej
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -diff a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c	(rejected hunks)
-> -@@ -2844,14 +2767,13 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
-> - 
-> - 	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
-> - 	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
-> --	    IS_PONTEVECCHIO(i915) ||
-> - 	    IS_DG2(i915)) {
-> - 		/* Wa_22014226127 */
-> - 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
-> - 	}
-> - 
-> --	if (IS_PONTEVECCHIO(i915) || IS_DG2(i915))
-> --		/* Wa_14015227452:dg2,pvc */
-> -+	if (IS_DG2(i915))
-> -+		/* Wa_14015227452 */
-> - 		wa_mcr_masked_en(wal, GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE);
-> - 
-> - 	if (IS_DG2(i915)) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> index 1d048fa98561..62159d3ead56 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -240,18 +240,40 @@ static bool lspcon_wake_native_aux_ch(struct intel_lspcon *lspcon)
+>  	return true;
+>  }
+>  
+> -static bool lspcon_probe(struct intel_lspcon *lspcon)
+> +static bool lspcon_set_expected_mode(struct intel_lspcon *lspcon)
+>  {
+> -	int retry;
+> -	enum drm_dp_dual_mode_type adaptor_type;
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
+>  	enum drm_lspcon_mode expected_mode;
+>  
+>  	expected_mode = lspcon_wake_native_aux_ch(lspcon) ?
+>  			DRM_LSPCON_MODE_PCON : DRM_LSPCON_MODE_LS;
+
+You always need to consider the functional changes when aiming to make
+non-functional refactoring. This postpones lspcon_wake_native_aux_ch()
+until after the probe. But the name has "wake" in it, and you're no
+longer waking up as the first thing. Smells fishy.
+
+Git blame leads to f2b667b658f9 ("drm/i915/lspcon: Ensure AUX CH is
+awake while in DP Sleep state"). You should read the commit message.
+
+BR,
+Jani.
+
+
+>  
+> +	lspcon->mode = lspcon_wait_mode(lspcon, expected_mode);
+> +
+> +	/*
+> +	 * In the SW state machine, lets Put LSPCON in PCON mode only.
+> +	 * In this way, it will work with both HDMI 1.4 sinks as well as HDMI
+> +	 * 2.0 sinks.
+> +	 */
+> +	if (lspcon->mode != DRM_LSPCON_MODE_PCON) {
+> +		if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON) < 0) {
+> +			drm_err(&i915->drm, "LSPCON mode change to PCON failed\n");
+> +			return false;
+> +		}
+> +	}
+> +
+> +	return true;
+> +}
+> +
+> +static bool lspcon_probe(struct intel_lspcon *lspcon)
+> +{
+> +	int retry;
+> +	enum drm_dp_dual_mode_type adaptor_type;
+> +	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
+> +
+>  	/* Lets probe the adaptor and check its type */
+>  	for (retry = 0; retry < 6; retry++) {
+>  		if (retry)
+> @@ -270,19 +292,7 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  
+>  	/* Yay ... got a LSPCON device */
+>  	drm_dbg_kms(&i915->drm, "LSPCON detected\n");
+> -	lspcon->mode = lspcon_wait_mode(lspcon, expected_mode);
+>  
+> -	/*
+> -	 * In the SW state machine, lets Put LSPCON in PCON mode only.
+> -	 * In this way, it will work with both HDMI 1.4 sinks as well as HDMI
+> -	 * 2.0 sinks.
+> -	 */
+> -	if (lspcon->mode != DRM_LSPCON_MODE_PCON) {
+> -		if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON) < 0) {
+> -			drm_err(&i915->drm, "LSPCON mode change to PCON failed\n");
+> -			return false;
+> -		}
+> -	}
+>  	return true;
+>  }
+>  
+> @@ -671,6 +681,11 @@ bool lspcon_init(struct intel_digital_port *dig_port)
+>  		return false;
+>  	}
+>  
+> +	if (!lspcon_set_expected_mode(lspcon)) {
+> +		drm_err(&i915->drm, "LSPCON Set expected Mode failed\n");
+> +		return false;
+> +	}
+> +
+>  	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0) {
+>  		drm_err(&i915->drm, "LSPCON DPCD read failed\n");
+>  		return false;
 
 -- 
 Jani Nikula, Intel
