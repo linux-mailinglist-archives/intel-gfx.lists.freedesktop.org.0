@@ -2,102 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AFDF88A027
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 13:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4EE8896D8
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 10:00:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B543F10E825;
-	Mon, 25 Mar 2024 12:47:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 257A210E6B8;
+	Mon, 25 Mar 2024 09:00:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="se46aAkv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DYLlYyjm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2056.outbound.protection.outlook.com [40.107.102.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 736DB10E4F7;
- Mon, 25 Mar 2024 07:45:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JaQqrrWKv6jMhDNKgiaqjIAI3/0t/l7Q21hC9RyaJ2aDxxsAUbKhdTiU8ooM+vZCMqTqNjZFKBq06Nu652Br7QEVSsf1V3Rc5zvpsW1eImL72XokC3L7poipTz8u1ASLaO2hynNaeHF15y9WbY63VugZbUG9L4Cv60sq5EfIppZcfnfNkRluKC0EenNzSWpbLhqcZtH+YDYsnrAdogGdCHMAcfu0RojbIdKvfCGuc8WUa0ujwX38VdGnSFalbZeteEUcyovZRg5X2pQzyVTP2HM0DyEOp/Srfy8ZHkrygfxVMqwf7hNhHlv6u3rI3MfmbYJR8l757jcC2QS/oJZ71A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ylr3GqeiuxXsC2VL0ECVYcJBRyFMuQubbJv+NwKx2b8=;
- b=Mn2hdkDXSVNuXud2WhmMCRew22l0RqD9L1fhDUuYs/2FJYkxHhMdFnt1R7yM5kjpv5lcqAtSoQCVfceUcD3+oJUaEn8gNsDxqDo3Mn8VVBV7MYXQs5xU+Zc45XbdPMQP4O9EgcLIC7g1WoBhN0DKtq3JtJlDO76RgzTRyr4yCFhtjCpgz8re6kfgH/0hVsVh/GTcwXP7Gmvr0othsC/Rv/a81LSvIhog3ZUrnGx45MUmlB8lfTziyafnHfkgASah5deFVv2CxtjNkxsACfs5k3P0PcyE7FJI2MUgUdJ0ZvebnJStB62uCXbgQIF+ZFnkpt6D+ONEsBCp0VDejFCG/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ylr3GqeiuxXsC2VL0ECVYcJBRyFMuQubbJv+NwKx2b8=;
- b=se46aAkvTolbFZ5/mPoj5ru0nunqchXmX1aIsPMg/c1SmyZRkv7vnt+c2prcaNQwNP3/CAPbnNbprbaFMY/L1nn9PIl99pdnD67PPrRAUc5ErwkLmqaoj26AMtX0akwlNrEdt/UFiAiUkYgEnSXQtl7JV0eIMGltRikNDUy5q+Y=
-Received: from CH2PR18CA0052.namprd18.prod.outlook.com (2603:10b6:610:55::32)
- by SA1PR12MB9003.namprd12.prod.outlook.com (2603:10b6:806:389::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Mon, 25 Mar
- 2024 07:45:55 +0000
-Received: from CH1PEPF0000A34A.namprd04.prod.outlook.com
- (2603:10b6:610:55:cafe::87) by CH2PR18CA0052.outlook.office365.com
- (2603:10b6:610:55::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13 via Frontend
- Transport; Mon, 25 Mar 2024 07:45:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CH1PEPF0000A34A.mail.protection.outlook.com (10.167.244.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7409.10 via Frontend Transport; Mon, 25 Mar 2024 07:45:54 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 25 Mar
- 2024 02:45:52 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 25 Mar
- 2024 02:45:52 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 25 Mar 2024 02:45:45 -0500
-From: Jesse Zhang <jesse.zhang@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>, Christian Koenig
- <christian.koenig@amd.com>, Jesse Zhang <jesse.zhang@amd.com>, Jesse Zhang
- <Jesse.Zhang@amd.com>
-Subject: [PATCH] drm/ttm: remove unused paramter
-Date: Mon, 25 Mar 2024 15:45:40 +0800
-Message-ID: <20240325074540.2426476-1-jesse.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 118E810E6B5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 09:00:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711357208; x=1742893208;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4YBBKrTlRs2/RyE8mI5u9/w7kpIZXViqre/8mBOx2eU=;
+ b=DYLlYyjmDCeUXVN3SEzg2Z5+EDFHIwzyMeU6d4mi8JoOAIGWO8A254o1
+ WP4nEDXv3y3YfDOuRRVuUEgsZ1QV7JE2Zk80DDpP7IB2bM9HfPkrlruqV
+ 3u2mFagxfvjwMbbibNSshY+vUgabtu11DaCm21mSoLnRcFou5puLdqKjL
+ eRuyEgIJvO3km2DAlyiUTeA6Vsg1diZ10TjBvStiNxzBdoNbJgPcszEYx
+ n+4KtcUpkHBM/ycfCGXSWQmnLfDu5yT7brwgy/pUzEQCc3vPyU0E3twK1
+ mYV37X29jOjRSa5NbtQJaEVBKXcsAWQdjPKLRt7gS6EkkDs1kPr/wwKQL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="6278832"
+X-IronPort-AV: E=Sophos;i="6.07,152,1708416000"; 
+   d="scan'208";a="6278832"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 02:00:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,152,1708416000"; d="scan'208";a="15952310"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 02:00:07 -0700
+Date: Mon, 25 Mar 2024 10:59:58 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
+Subject: Re: [PATCH 5/5] drm/i915: Implement vblank synchronized MBUS join
+ changes
+Message-ID: <ZgE9DocKK/uUg64p@intel.com>
+References: <20240322114046.24930-1-stanislav.lisovskiy@intel.com>
+ <20240322114046.24930-6-stanislav.lisovskiy@intel.com>
+ <Zf3ItsPx0uDo8hqk@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34A:EE_|SA1PR12MB9003:EE_
-X-MS-Office365-Filtering-Correlation-Id: 65e6cf5a-7fca-4f33-41cb-08dc4c9f9a04
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9id76sDrQVai8acDqYsGlc8e+Hxfr6ZgohQEXmuHxyLcmbVBsgbZ6nSeVHRG+TyDZ5yeV9tXT8MHs3SFkQKz65nNMXAyDKD2j4iy4v6G3IjfrWwPAUQuAAcZ5MJQ1wklkS2lSXahp7lB4UpjIbOzYH/VxZuL/F4zyU6Q7MQHt5jt/rbONAJEdf9lkjlOS1X3Ez8hKcG3WF0jbLivIL9Wsxv/3Ue4EWAtAqQurZQUPGFIElYc5kGY6coytGn8BEtlh5bFSHJ91N0QKCG3gI8vFm5jfHQqB89WBT6PWLydopHSrnBibj6DwRp7dUHRk2ZA7sk7M+PD0r/vq6OqWBiRcH5rXPYVlE7LoTW8rgnsjWIzcB5J2Vsix2b78A+Uc+H50n0RPkG1+yyWtOixJuVwHnuQUgB0woqk4wwVoqoo1X3ZRJ49TjJOjCYcw3AgENgt/4eSmaGL8fmNBKa2pBdLoe2u08zkspvLJ5anriE2pp/EvB8mSKkDr0wPDInx2wS3A78Ve8u4/OWzHuRXX/G1gPAhvbzT1RtJbleoRyTS1w7g8OO17mIdyI1t+898HdMhV76ZI5v88pg/6CNe2OBNb9l32RnKB8t74J1c3QActYD91SIC/hxgKztPgeXRRfSU1dHOnwv9Ff5m8FdVBAF0cZm/AY7PX5i+EWtALeEmG+RO7X85REQLrL5uaUqXcs3SjwNDy2MpynYbYBd3ko38NnM/S5K83TGtqZ4afMVoiZQ9RDH2z7cg2Bzig/MyFqxt
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(36860700004)(82310400014)(376005)(1800799015); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2024 07:45:54.6624 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65e6cf5a-7fca-4f33-41cb-08dc4c9f9a04
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34A.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9003
-X-Mailman-Approved-At: Mon, 25 Mar 2024 12:47:44 +0000
+In-Reply-To: <Zf3ItsPx0uDo8hqk@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,70 +68,294 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-remove the unsed the paramter in the function
-ttm_bo_bounce_temp_buffer and ttm_bo_add_move_fence.
+On Fri, Mar 22, 2024 at 08:06:46PM +0200, Ville Syrjälä wrote:
+> On Fri, Mar 22, 2024 at 01:40:46PM +0200, Stanislav Lisovskiy wrote:
+> > Currently we can't change MBUS join status without doing a modeset,
+> > because we are lacking mechanism to synchronize those with vblank.
+> > However then this means that we can't do a fastset, if there is a need
+> > to change MBUS join state. Fix that by implementing such change.
+> > We already call correspondent check and update at pre_plane dbuf update,
+> > so the only thing left is to have a non-modeset version of that.
+> > If active pipes stay the same then fastset is possible and only MBUS
+> > join state/ddb allocation updates would be committed.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c |   6 +-
+> >  drivers/gpu/drm/i915/display/skl_watermark.c | 108 +++++++++++++++----
+> >  drivers/gpu/drm/i915/display/skl_watermark.h |   2 +
+> >  3 files changed, 94 insertions(+), 22 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index b88f214e111ae..d5351f6fa2eb4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -6895,6 +6895,8 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+> >  		intel_pre_update_crtc(state, crtc);
+> >  	}
+> >  
+> > +	intel_dbuf_mbus_pre_ddb_update(state);
+> > +
+> >  	while (update_pipes) {
+> >  		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> >  						    new_crtc_state, i) {
+> > @@ -6925,6 +6927,8 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+> >  		}
+> >  	}
+> >  
+> > +	intel_dbuf_mbus_post_ddb_update(state);
+> > +
+> >  	update_pipes = modeset_pipes;
+> >  
+> >  	/*
+> > @@ -7169,9 +7173,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> >  	}
+> >  
+> >  	intel_encoders_update_prepare(state);
+> > -
+> >  	intel_dbuf_pre_plane_update(state);
+> > -	intel_mbus_dbox_update(state);
+> >  
+> >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> >  		if (new_crtc_state->do_async_flip)
+> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > index 7eb78e0c8c8e3..eee13b57d4830 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > @@ -4,6 +4,7 @@
+> >   */
+> >  
+> >  #include <drm/drm_blend.h>
+> > +#include <drm/drm_print.h>
+> >  
+> >  #include "i915_drv.h"
+> >  #include "i915_fixed.h"
+> > @@ -2636,13 +2637,6 @@ skl_compute_ddb(struct intel_atomic_state *state)
+> >  		if (ret)
+> >  			return ret;
+> >  
+> > -		if (old_dbuf_state->joined_mbus != new_dbuf_state->joined_mbus) {
+> > -			/* TODO: Implement vblank synchronized MBUS joining changes */
+> > -			ret = intel_modeset_all_pipes_late(state, "MBUS joining change");
+> > -			if (ret)
+> > -				return ret;
+> > -		}
+> > -
+> >  		drm_dbg_kms(&i915->drm,
+> >  			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus joined? %s->%s\n",
+> >  			    old_dbuf_state->enabled_slices,
+> > @@ -3594,30 +3588,57 @@ static void intel_dbuf_mdclk_min_tracker_update(struct intel_atomic_state *state
+> >  					    new_dbuf_state->joined_mbus);
+> >  }
+> >  
+> > +static enum pipe intel_mbus_joined_pipe(struct intel_atomic_state *state,
+> > +				        const struct intel_dbuf_state *dbuf_state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	enum pipe sync_pipe = ffs(dbuf_state->active_pipes) - 1;
+> > +	struct intel_crtc_state *new_crtc_state;
+> 
+> const
+> 
+> > +	struct intel_crtc *crtc;
+> > +
+> > +	drm_WARN_ON(&i915->drm, !dbuf_state->joined_mbus);
+> > +	drm_WARN_ON(&i915->drm, !is_power_of_2(dbuf_state->active_pipes));
+> > +
+> > +	crtc = intel_crtc_for_pipe(i915, sync_pipe);
+> > +	new_crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+> > +
+> > +	if (new_crtc_state && !intel_crtc_needs_modeset(new_crtc_state))
+> > +		return sync_pipe;
+> > +	else
+> > +		return INVALID_PIPE;
+> > +}
+> > +
+> >  /*
+> >   * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
+> >   * update the request state of all DBUS slices.
+> >   */
+> > -static void intel_dbuf_mbus_join_update(struct intel_atomic_state *state)
+> > +static void intel_dbuf_mbus_ctl_update(struct intel_atomic_state *state,
+> > +				       enum pipe sync_pipe)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> >  	u32 mbus_ctl;
+> >  	const struct intel_dbuf_state *new_dbuf_state =
+> >  		intel_atomic_get_new_dbuf_state(state);
+> > +	u32 pipe_select;
+> >  
+> >  	if (!HAS_MBUS_JOINING(i915))
+> >  		return;
+> >  
+> > +	if (sync_pipe != INVALID_PIPE)
+> > +		pipe_select = MBUS_JOIN_PIPE_SELECT(sync_pipe);
+> > +	else
+> > +		pipe_select = MBUS_JOIN_PIPE_SELECT_NONE;
+> > +
+> >  	/*
+> >  	 * TODO: Implement vblank synchronized MBUS joining changes.
+> >  	 * Must be properly coordinated with dbuf reprogramming.
+> >  	 */
+> >  	if (new_dbuf_state->joined_mbus)
+> >  		mbus_ctl = MBUS_HASHING_MODE_1x4 | MBUS_JOIN |
+> > -			MBUS_JOIN_PIPE_SELECT_NONE;
+> > +			pipe_select;
+> >  	else
+> >  		mbus_ctl = MBUS_HASHING_MODE_2x2 |
+> > -			MBUS_JOIN_PIPE_SELECT_NONE;
+> > +			pipe_select;
+> 
+> The 'pipe_select' variable looks completely redundant.
+> You can just do
+> if (sync_pipe != INVALID_PIPE)
+> 	mbus_ctl |= ...
+> else
+> 	mbus_ctl |= ...
+> directly here.
+> 
+> >  
+> >  	intel_de_rmw(i915, MBUS_CTL,
+> >  		     MBUS_HASHING_MODE_MASK | MBUS_JOIN |
+> > @@ -3632,6 +3653,42 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+> >  	const struct intel_dbuf_state *old_dbuf_state =
+> >  		intel_atomic_get_old_dbuf_state(state);
+> >  
+> > +	if (!new_dbuf_state ||
+> > +	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices))
+> 
+> redundant parens.
+> 
+> > +		return;
+> > +
+> > +	WARN_ON(!new_dbuf_state->base.changed);
+> > +
+> > +	gen9_dbuf_slices_update(i915,
+> > +				old_dbuf_state->enabled_slices |
+> > +				new_dbuf_state->enabled_slices);
+> > +}
+> > +
+> > +void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > +	const struct intel_dbuf_state *new_dbuf_state =
+> > +		intel_atomic_get_new_dbuf_state(state);
+> > +	const struct intel_dbuf_state *old_dbuf_state =
+> > +		intel_atomic_get_old_dbuf_state(state);
+> > +
+> > +	if (!new_dbuf_state ||
+> > +	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices))
+> 
+> ditto
+> 
+> > +		return;
+> > +
+> > +	WARN_ON(!new_dbuf_state->base.changed);
+> > +
+> > +	gen9_dbuf_slices_update(i915,
+> > +				new_dbuf_state->enabled_slices);
+> > +}
+> > +
+> > +void intel_dbuf_mbus_pre_ddb_update(struct intel_atomic_state *state)
+> > +{
+> > +	const struct intel_dbuf_state *new_dbuf_state =
+> > +		intel_atomic_get_new_dbuf_state(state);
+> > +	const struct intel_dbuf_state *old_dbuf_state =
+> > +		intel_atomic_get_old_dbuf_state(state);
+> > +
+> >  	if (!new_dbuf_state ||
+> >  	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices &&
+> >  	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus))
+> > @@ -3640,16 +3697,15 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+> >  	WARN_ON(!new_dbuf_state->base.changed);
+> >  
+> >  	if (!old_dbuf_state->joined_mbus && new_dbuf_state->joined_mbus) {
+> > -		intel_dbuf_mbus_join_update(state);
+> > +		enum pipe sync_pipe = intel_mbus_joined_pipe(state, new_dbuf_state);
+> > +
+> > +		intel_dbuf_mbus_ctl_update(state, sync_pipe);
+> > +		intel_mbus_dbox_update(state);
+> >  		intel_dbuf_mdclk_min_tracker_update(state);
+> >  	}
+> > -
+> > -	gen9_dbuf_slices_update(i915,
+> > -				old_dbuf_state->enabled_slices |
+> > -				new_dbuf_state->enabled_slices);
+> >  }
+> >  
+> > -void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+> > +void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> >  	const struct intel_dbuf_state *new_dbuf_state =
+> > @@ -3657,6 +3713,12 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+> >  	const struct intel_dbuf_state *old_dbuf_state =
+> >  		intel_atomic_get_old_dbuf_state(state);
+> >  
+> > +	if (new_dbuf_state && old_dbuf_state &&
+> > +	    new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus) {
+> > +		intel_dbuf_mdclk_min_tracker_update(state);
+> > +		intel_mbus_dbox_update(state);
+> > +	}
+> 
+> I still think should go into one of the new ddb hooks.
+> I think we want to program these before the new planes
+> get enabled. So I'd probably stuff this into the post ddb
+> hook.
 
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+I almost got confused myself, because I was really sure I've done this.
+Checked the code - it is exactly in intel_dbuf_mbus_post_ddb_update.
+If you check above you will see 
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index edf10618fe2b..7f08787687a7 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -402,7 +402,6 @@ void ttm_bo_put(struct ttm_buffer_object *bo)
- EXPORT_SYMBOL(ttm_bo_put);
- 
- static int ttm_bo_bounce_temp_buffer(struct ttm_buffer_object *bo,
--				     struct ttm_resource **mem,
- 				     struct ttm_operation_ctx *ctx,
- 				     struct ttm_place *hop)
- {
-@@ -470,7 +469,7 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
- 		if (ret != -EMULTIHOP)
- 			break;
- 
--		ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
-+		ret = ttm_bo_bounce_temp_buffer(bo, ctx, &hop);
- 	} while (!ret);
- 
- 	if (ret) {
-@@ -699,7 +698,6 @@ EXPORT_SYMBOL(ttm_bo_unpin);
-  */
- static int ttm_bo_add_move_fence(struct ttm_buffer_object *bo,
- 				 struct ttm_resource_manager *man,
--				 struct ttm_resource *mem,
- 				 bool no_wait_gpu)
- {
- 	struct dma_fence *fence;
-@@ -753,7 +751,7 @@ static int ttm_bo_mem_force_space(struct ttm_buffer_object *bo,
- 			return ret;
- 	} while (1);
- 
--	return ttm_bo_add_move_fence(bo, man, *mem, ctx->no_wait_gpu);
-+	return ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
- }
- 
- /**
-@@ -802,7 +800,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
- 		if (unlikely(ret))
- 			goto error;
- 
--		ret = ttm_bo_add_move_fence(bo, man, *mem, ctx->no_wait_gpu);
-+		ret = ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
- 		if (unlikely(ret)) {
- 			ttm_resource_free(bo, mem);
- 			if (ret == -EBUSY)
-@@ -866,7 +864,7 @@ static int ttm_bo_move_buffer(struct ttm_buffer_object *bo,
- bounce:
- 	ret = ttm_bo_handle_move_mem(bo, mem, false, ctx, &hop);
- 	if (ret == -EMULTIHOP) {
--		ret = ttm_bo_bounce_temp_buffer(bo, &mem, ctx, &hop);
-+		ret = ttm_bo_bounce_temp_buffer(bo, ctx, &hop);
- 		if (ret)
- 			goto out;
- 		/* try and move to final place now. */
--- 
-2.25.1
+> > -void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+> > +void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state)
 
+But was good one, already thought I messed up the commit or smth.
+
+> 
+> > +
+> >  	if (!new_dbuf_state ||
+> >  	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices &&
+> >  	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus))
+> > @@ -3665,12 +3727,18 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+> >  	WARN_ON(!new_dbuf_state->base.changed);
+> >  
+> >  	if (old_dbuf_state->joined_mbus && !new_dbuf_state->joined_mbus) {
+> > -		intel_dbuf_mbus_join_update(state);
+> > +		enum pipe sync_pipe = intel_mbus_joined_pipe(state, old_dbuf_state);
+> > +
+> >  		intel_dbuf_mdclk_min_tracker_update(state);
+> > -	}
+> > +		intel_mbus_dbox_update(state);
+> > +		intel_dbuf_mbus_ctl_update(state, sync_pipe);
+> >  
+> > -	gen9_dbuf_slices_update(i915,
+> > -				new_dbuf_state->enabled_slices);
+> > +		if (sync_pipe != INVALID_PIPE) {
+> > +			struct intel_crtc *crtc = intel_crtc_for_pipe(i915, sync_pipe);
+> > +
+> > +			intel_crtc_wait_for_next_vblank(crtc);
+> > +		}
+> > +	}
+> >  }
+> >  
+> >  static bool xelpdp_is_only_pipe_per_dbuf_bank(enum pipe pipe, u8 active_pipes)
+> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
+> > index 3a90741cab06a..f6d38b41e3a6c 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.h
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+> > @@ -77,6 +77,8 @@ int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state, u8
+> >  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state);
+> >  void intel_dbuf_post_plane_update(struct intel_atomic_state *state);
+> >  void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915, u8 ratio, bool joined_mbus);
+> > +void intel_dbuf_mbus_pre_ddb_update(struct intel_atomic_state *state);
+> > +void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state);
+> >  void intel_mbus_dbox_update(struct intel_atomic_state *state);
+> >  
+> >  #endif /* __SKL_WATERMARK_H__ */
+> > -- 
+> > 2.37.3
+> 
+> -- 
+> Ville Syrjälä
+> Intel
