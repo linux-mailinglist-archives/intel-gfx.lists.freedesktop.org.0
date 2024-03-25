@@ -2,61 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33BF288B520
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 00:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDB388B54E
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 00:29:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D85510EB51;
-	Mon, 25 Mar 2024 23:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF8A810EB8E;
+	Mon, 25 Mar 2024 23:29:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EuwPzfPy";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="Q+Y/qNGA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5E5410E7BE;
- Mon, 25 Mar 2024 23:19:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711408781; x=1742944781;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8EXnVGZn/65+csQvKIPUHp4gpRdPtEdf9IGbzpEcRM8=;
- b=EuwPzfPySgafMknpUvQQMwopESlHIlnw6qXXB0SEwizUe8dXEBdGW6zn
- 85UvzGnw4h0QtAXHnm0DX3eZ17shLxBVvM31vQHVbITbhEzK3zmhw6QWn
- SVr0AWTz0aIlGjJd3RNTVBjgu1LJK+6Rk+Zd+bfhKyU1H2Rklbr15cfZi
- onuSD7bC5bE+QJO4i3oIMSKmI7mRK6e9NvCD4MmA1gAFRlIS6RLcYklD0
- /tYqYJX4SkOq0k4sa92SwCmgjOgGXW57a2WbjVa4NnWnB4jmsbsfnRH/+
- KtewkwNREuBKUDv7+84cOv2pfMVPOXxwdjYnGTJmKotEauUC/z/sgUv2T g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6302492"
-X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; 
-   d="scan'208";a="6302492"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 16:19:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,154,1708416000"; d="scan'208";a="15668491"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.52.33])
- ([10.246.52.33])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 16:19:36 -0700
-Message-ID: <db2627fa-b1da-4a27-8c87-bebe0407d8a7@linux.intel.com>
-Date: Tue, 26 Mar 2024 00:19:34 +0100
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1634710EB8A;
+ Mon, 25 Mar 2024 23:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1711409382;
+ bh=EyfkhQ8hNpU8Py0szI+iEm/kcSgQWUtzoWYlXfx3z5M=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Q+Y/qNGA4dgLEp4LQBlGdIoq7IB2iCmfzOflMloGXhWdVis97mhpmriHxO12EKH27
+ nKvmn6TuUgESumudC5rK64EKoiC0v3Nj9RvNHwqIjzs//WfE4h2EC5j1SKahuFrg3T
+ IWBTh0tHnu2k9GfZOXagxDhR8Upfm6qZN7/ESdThnjVA1zHQMD+KcgoLdUhAZVnG/0
+ CZrA8FeyQ3GGvQ1kVwB8uu6Xg1iVGCaUlrZbGWblMsNI3MjI412sHITqGxZ501A5YE
+ 3xFiSxYhij1y3DMC6skZlxC+48IQuWdsqeY8P3LY7mBD9Z6MNNmDi6GtgKG+NczwBk
+ oxNnUDMmoEI+Q==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4V3Tfs3N8Bz4wcv;
+ Tue, 26 Mar 2024 10:29:40 +1100 (AEDT)
+Date: Tue, 26 Mar 2024 10:29:40 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, Andrew Davis <afd@ti.com>, Linux Kernel
+ Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, Tony
+ Lindgren <tony@atomide.com>
+Subject: linux-next: manual merge of the drm-misc tree with Linus' tree
+Message-ID: <20240326102940.3aae34c2@canb.auug.org.au>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gem: Calculate object page offset for partial
- memory mapping
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-References: <20240325134033.287913-1-andi.shyti@linux.intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240325134033.287913-1-andi.shyti@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/ygbA2ZuS_IQ2QzuvIJgCwXy";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,126 +59,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+--Sig_/ygbA2ZuS_IQ2QzuvIJgCwXy
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-I have too many questions :) I think the patch makes sense but need more 
-context, see below:
+Hi all,
 
-On 3/25/2024 2:40 PM, Andi Shyti wrote:
-> To enable partial memory mapping of GPU virtual memory, it's
-> necessary to introduce an offset to the object's memory
-> (obj->mm.pages) scatterlist. This adjustment compensates for
-> instances when userspace mappings do not start from the beginning
-> of the object.
->
-> Based on a patch by Chris Wilson
-> <chris.p.wilson@linux.intel.com>.
->
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_mman.c |  8 +++++---
->   drivers/gpu/drm/i915/i915_mm.c           | 12 +++++++++++-
->   drivers/gpu/drm/i915/i915_mm.h           |  3 ++-
->   3 files changed, 18 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index a2195e28b625..57a2dda2c3cc 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -276,7 +276,7 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
->   	/* PTEs are revoked in obj->ops->put_pages() */
->   	err = remap_io_sg(area,
->   			  area->vm_start, area->vm_end - area->vm_start,
-> -			  obj->mm.pages->sgl, iomap);
-> +			  obj->mm.pages->sgl, 0, iomap);
+Today's linux-next merge of the drm-misc tree got a conflict in:
 
-Why don't we need partial mmap for CPU but only for GTT ?
+  MAINTAINERS
 
-Sounds like this also need to be cover by a IGT tests.  Don't we need 
-"Fixes" tag for this?
+between commits:
 
-Regards,
+  35df039b26ac ("dt-bindings: gpu: Rename img,powervr to img,powervr-rogue")
+  796da8ca7e05 ("dt-bindings: gpu: Add PowerVR Series5 SGX GPUs")
 
-Nirmoy
+from Linus' tree and commit:
 
->   
->   	if (area->vm_flags & VM_WRITE) {
->   		GEM_BUG_ON(!i915_gem_object_has_pinned_pages(obj));
-> @@ -302,14 +302,16 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
->   	bool write = area->vm_flags & VM_WRITE;
->   	struct i915_gem_ww_ctx ww;
-> +	unsigned long obj_offset;
->   	intel_wakeref_t wakeref;
->   	struct i915_vma *vma;
->   	pgoff_t page_offset;
->   	int srcu;
->   	int ret;
->   
-> -	/* We don't use vmf->pgoff since that has the fake offset */
-> +	obj_offset = area->vm_pgoff - drm_vma_node_start(&mmo->vma_node);
->   	page_offset = (vmf->address - area->vm_start) >> PAGE_SHIFT;
-> +	page_offset += obj_offset;
->   
->   	trace_i915_gem_object_fault(obj, page_offset, true, write);
->   
-> @@ -404,7 +406,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
->   
->   	/* Finally, remap it using the new GTT offset */
->   	ret = remap_io_mapping(area,
-> -			       area->vm_start + (vma->gtt_view.partial.offset << PAGE_SHIFT),
-> +			       area->vm_start + ((vma->gtt_view.partial.offset - obj_offset) << PAGE_SHIFT),
->   			       (ggtt->gmadr.start + i915_ggtt_offset(vma)) >> PAGE_SHIFT,
->   			       min_t(u64, vma->size, area->vm_end - area->vm_start),
->   			       &ggtt->iomap);
-> diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
-> index 7998bc74ab49..f5c97a620962 100644
-> --- a/drivers/gpu/drm/i915/i915_mm.c
-> +++ b/drivers/gpu/drm/i915/i915_mm.c
-> @@ -122,13 +122,15 @@ int remap_io_mapping(struct vm_area_struct *vma,
->    * @addr: target user address to start at
->    * @size: size of map area
->    * @sgl: Start sg entry
-> + * @offset: offset from the start of the page
->    * @iobase: Use stored dma address offset by this address or pfn if -1
->    *
->    *  Note: this is only safe if the mm semaphore is held when called.
->    */
->   int remap_io_sg(struct vm_area_struct *vma,
->   		unsigned long addr, unsigned long size,
-> -		struct scatterlist *sgl, resource_size_t iobase)
-> +		struct scatterlist *sgl, unsigned long offset,
-> +		resource_size_t iobase)
->   {
->   	struct remap_pfn r = {
->   		.mm = vma->vm_mm,
-> @@ -141,6 +143,14 @@ int remap_io_sg(struct vm_area_struct *vma,
->   	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
->   	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
->   
-> +	while (offset >= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT) {
-> +		offset -= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT;
-> +		r.sgt = __sgt_iter(__sg_next(r.sgt.sgp), use_dma(iobase));
-> +		if (!r.sgt.sgp)
-> +			return -EINVAL;
-> +	}
-> +	r.sgt.curr = offset << PAGE_SHIFT;
-> +
->   	if (!use_dma(iobase))
->   		flush_cache_range(vma, addr, size);
->   
-> diff --git a/drivers/gpu/drm/i915/i915_mm.h b/drivers/gpu/drm/i915/i915_mm.h
-> index 04c8974d822b..69f9351b1a1c 100644
-> --- a/drivers/gpu/drm/i915/i915_mm.h
-> +++ b/drivers/gpu/drm/i915/i915_mm.h
-> @@ -30,6 +30,7 @@ int remap_io_mapping(struct vm_area_struct *vma,
->   
->   int remap_io_sg(struct vm_area_struct *vma,
->   		unsigned long addr, unsigned long size,
-> -		struct scatterlist *sgl, resource_size_t iobase);
-> +		struct scatterlist *sgl, unsigned long offset,
-> +		resource_size_t iobase);
->   
->   #endif /* __I915_MM_H__ */
+  3f9ba0c01125 ("MAINTAINERS: Update drm-misc.git URL")
+
+from the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc MAINTAINERS
+index ae2121b7a176,13a69b4731c7..000000000000
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@@ -10600,9 -10496,8 +10611,9 @@@ IMGTEC POWERVR DRM DRIVE
+  M:	Frank Binns <frank.binns@imgtec.com>
+  M:	Matt Coster <matt.coster@imgtec.com>
+  S:	Supported
+- T:	git git://anongit.freedesktop.org/drm/drm-misc
++ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+ -F:	Documentation/devicetree/bindings/gpu/img,powervr.yaml
+ +F:	Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
+ +F:	Documentation/devicetree/bindings/gpu/img,powervr-sgx.yaml
+  F:	Documentation/gpu/imagination/
+  F:	drivers/gpu/drm/imagination/
+  F:	include/uapi/drm/pvr_drm.h
+
+--Sig_/ygbA2ZuS_IQ2QzuvIJgCwXy
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmYCCOQACgkQAVBC80lX
+0Gwgagf7BA4hihMhFpCtpV24mjfDLfCaPGm2okIpJePxiVKz9qc1C6OLGdbmCIvL
+dR0onDmE0/o41TgtNR9p9IixltOH+ushqw1+FLE0Bv/k4PIKaKFYYjPgaLCRHE0B
+uXvZP34rSmaluBCQJaT01nLLmJwU8CUXIvSOCHxoUDrM19otfbOIHlzA0AJCOnsi
+CRjOYLtwpF+u9CvB0W5ulLXsPZBwjiXwj3XoND4h3r3ojy0mrXTR4AORli/v8FnR
+H0bgn1zpTV1158VQ9TbCXYU+l1ricB1zjdLq9DS2bsbJPOznF8E3SMjgOrR1k1FE
+mITvlcp+OZPpqF34W1mFuWXrQIBBiA==
+=t2YV
+-----END PGP SIGNATURE-----
+
+--Sig_/ygbA2ZuS_IQ2QzuvIJgCwXy--
