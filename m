@@ -2,64 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C51C88A8BA
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 17:17:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7179188A975
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 17:34:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1095210E168;
-	Mon, 25 Mar 2024 16:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F25EC10E14E;
+	Mon, 25 Mar 2024 16:34:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kk34k+iH";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="X+JgVXgo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC6F10E168
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 16:17:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711383442; x=1742919442;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Gx3K3Cs3C81ma+IrLcWq7vcsCsbIYTUnBaTz9s8uaXE=;
- b=Kk34k+iH8e+qsCFlDxcnSlg7aglivuPxck3EGXDde/MroVFjSOo0wu2E
- 11Tqr6RZimTRcTmRyNCzixoZDk9STiaIv+BJyh0qhLA0rp9OMKj9hvbko
- ZISAl5HMk+NhCxoDqIpEFBc8y6/wkTUU7rlOdY9QoTU+KnVm6MtxK9jEd
- 8CR388eyddBs7PfoiJWwB/YpLlCuDugHZm4MpdGYt0b8ps2fdJQHLqM5n
- dxXDO1jX0cETrjzxoWmyAHY7BEgCUTFUlqAR548Li6c0dcqpUiBUP81oB
- m854JPySSGifK6BfZqlU7hGVIrL+QEafQk3T7y13irsm7FquR1HB+bnmP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6524501"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
-   d="scan'208";a="6524501"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 09:17:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="827784740"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784740"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 09:17:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 25 Mar 2024 18:17:17 +0200
-Date: Mon, 25 Mar 2024 18:17:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Cc: "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Syrjala, Ville" <ville.syrjala@intel.com>
-Subject: Re: [PATCH v8 4/4] drm/i915/display: handle systems with duplicate
- qgv/psf gv points
-Message-ID: <ZgGjjenPT1WGF4Ev@intel.com>
-References: <20240325130156.205726-1-vinod.govindapillai@intel.com>
- <20240325130156.205726-5-vinod.govindapillai@intel.com>
- <ZgGSKCaoUUieIja5@intel.com>
- <e5cf6ed3867e04c645bc1103b9ce1f4a0e65db68.camel@intel.com>
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42FE510E9A9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 16:34:03 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id C08B540E02A5; 
+ Mon, 25 Mar 2024 16:34:00 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id wiJf6WFNVAJy; Mon, 25 Mar 2024 16:33:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1711384437; bh=HXMuRH0/0L3hy88yC35JI4AqWxDy4+d9cctRzhY/F6k=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=X+JgVXgoZM+fjCWf+TsjCGUjfdlLy/98Zjui34Pao8XB3Mw/uNWb41KhZNGT4PsOJ
+ PM/v0mhvtefmc6RHemcOG99qgnJo1TaebZEmpG73Wm0uGXHRzt60N85JHNsPCF4bsf
+ kwliCdlLmEEOl0lx22SHEl5kLbbfmpalq6zaLYMoChTOsIu+nyrsw4r7YbEtELdhur
+ p356DfAEh6DxSmQbqq1eAHwgITAWXcrcScxNWp06E2PRxPzVccsijzIEDB5XKplg59
+ AMvRQiIDMBiKdCiSCjgofq+ZTeWl5UxFsXPATttRR93uX52EBFi+pWVf+A9aXkj+1h
+ Vs5XlDBMgWSbJzEw82wAgslVIVUywSE8v/yJLJNHlG+oPDauSzwKeo+cJ94KXfavwz
+ TFgaEvzt9U0GVGGSSHqHbk7+gshzQIEiE6p8fJ5AtF8TQhXB3uC2/zACOAiV8eRaUA
+ aIPgcRuVWTa6S2rRovdtxc2nr3/8z8exAdDTcz7VNwpZBduj57qf635jeZexOGK+9y
+ +5GqVBQIcr51R7E07GNA5/uil8z5nM4bRLxEKUXto9bhSxZXiAe6Pw2v11sMJ6bAan
+ Xx01R+9LQqc7paA4KnzJdy1X7wc1D2oqLtoS33oWje/2S+d0NonTBmuNUxQkPQBqoM
+ TZvEEnLvaG5g2PEbha0bWjV8=
+Received: from zn.tnic (p5de8ecf7.dip0.t-ipconnect.de [93.232.236.247])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 1407540E02A2;
+ Mon, 25 Mar 2024 16:33:48 +0000 (UTC)
+Date: Mon, 25 Mar 2024 17:33:42 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ lkml <linux-kernel@vger.kernel.org>
+Subject: Re: BUG: sleeping function called from invalid context at
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c:526
+Message-ID: <20240325163342.GEZgGnZpROSN4euuLb@fat_crate.local>
+References: <20240227100342.GAZd2zfmYcPS_SndtO@fat_crate.local>
+ <87jzmqjir5.fsf@intel.com>
+ <20240227105356.GBZd2_RL9hjC_LupZB@fat_crate.local>
+ <87h6hujhrz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e5cf6ed3867e04c645bc1103b9ce1f4a0e65db68.camel@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <87h6hujhrz.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,88 +79,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 25, 2024 at 04:11:27PM +0000, Govindapillai, Vinod wrote:
-> Hi Ville,
-> 
-> On Mon, 2024-03-25 at 17:03 +0200, Ville Syrjälä wrote:
-> > On Mon, Mar 25, 2024 at 03:01:56PM +0200, Vinod Govindapillai wrote:
-> > > From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > 
-> > > There could be multiple qgv and psf gv points with similar values
-> > > In case if we need to set one such QGV or psf gv  point where there
-> > > could be duplicate entries, we would have to select all those
-> > > points. Otherwise pcode might reject the GV configuration. We do
-> > > handle this when we set appropriate qgv and psf gv as part of
-> > > intel_bw_atomic_check calls. But during the bw_init force disable
-> > > QGV points phase, we need to select all those points corresponding
-> > > to the maximum bw as well.
-> > > 
-> > > v1: - use the same treatment to qgv points as well (Vinod)
-> > > 
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_bw.c | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > index 844d2d9efeb4..20c67474154e 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > @@ -847,6 +847,8 @@ static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
-> > >                 if (max_data_rate > max_bw) {
-> > >                         max_bw_point_mask = BIT(i);
-> > >                         max_bw = max_data_rate;
-> > > +               } else if (max_data_rate == max_bw) {
-> > > +                       max_bw_point_mask |= BIT(i);
-> > >                 }
-> > >         }
-> > >  
-> > > @@ -866,6 +868,8 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private
-> > > *i915)
-> > >                 if (max_data_rate > max_bw) {
-> > >                         max_bw_point_mask = BIT(i);
-> > >                         max_bw = max_data_rate;
-> > > +               } else if (max_data_rate == max_bw) {
-> > > +                       max_bw_point_mask |= BIT(i);
-> > 
-> > This doesn't seem entirely safe. What happens if we somehow
-> > have two qgv points with the same bandwidth but different
-> > uderlying clock/gear ratio/etc.?
-> > 
-> > While such behaviour may not seem entirely sensible, given
-> > that we need to do this stuff at all, I don't think we can
-> > assume any kind of sensible behaviour from pcode here.
-> > 
-> > So I think we will need to check that the qgv points
-> > being used here are in fact 100% identical.
-> 
-> Main thing is we need to match the comparison what pcode is doing.. right? 
-> We compare the deratedbw of different QGV points calculated using the rest of the information
-> provided as part of qgv info. I assume pcode is also going to do the same kind of comparison or that
-> is what I understood from one of the email conversation.
-> 
-> Do you want this clarified from pcode team?
+On Tue, Feb 27, 2024 at 12:58:08PM +0200, Jani Nikula wrote:
+> Let's see what Ville says, but in the end bisection might be the
+> quickest way to find the regression. Though I understand it can be
+> tedious for you personally.
 
-If pcode is only checking the bandwidth then it might be
-technically broken as then we can't be 100% sure we can
-actually disable sagv. The only way that can work is if
-pcode then never ever switches between two qgv points
-that have provide the same bandwidth.
+That still fires with 6.-9-rc1. Does Ville have any suggestions or
+should I bisect?
 
-> 
-> BR
-> vinod
-> 
-> > 
-> > >                 }
-> > >         }
-> > >  
-> > > -- 
-> > > 2.34.1
-> > 
-> 
+Thx.
 
 -- 
-Ville Syrjälä
-Intel
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
