@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06EBE88A55C
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 15:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E18D388A5AD
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 16:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6009F10E95B;
-	Mon, 25 Mar 2024 14:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AECF10E078;
+	Mon, 25 Mar 2024 15:03:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQuBc0Oz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOfJQwsw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8822210E95B
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 14:55:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A4A810E078
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 15:03:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711378525; x=1742914525;
+ t=1711378989; x=1742914989;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=asSGMOh+FLO6rfoe6ZV4CmvlWC/YWRo+THgJI+LtSq4=;
- b=EQuBc0Oza1ChIdV+fiTJ02Vl2OpzymJaBVhEpD0Rbcbvax97Ra+Fh8v5
- NipO+meCjioG/DBhUPimgM7QCazvjwBlJ2pwOFNMHUPwVM0/q56F9Xyr/
- R7f23/yehVCi/Ub+8rnuGruNhXHQGiFufz4bfgydj/IY3QCELfn9/tKyS
- 27k8PgDdXMp0Xt/io9zMz1T7TJQOzx6sVpfRPvBJvpor6l4MAwODLOeBI
- BgvMxhgdOeP4mxcIFda05sf83h+d155XX4Lt4Qi+5fE05tS/zFMkRz/YE
- EnpFtUp3JzBbjXyr7WyQQf9uHOEDsDznxIHSyPvhR0E4x8L8wP2SafP+X Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="17778653"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="17778653"
+ bh=Nec/IiQcjm0eO5K8VFry8cfhuubixGSM6w04gm4PT0I=;
+ b=IOfJQwswqjt8sSfo4QnGS46BFT0c5nbAwbVTtuvVIXKztlubKTLVoquH
+ XwkbrztuBr83jaiu2Uj6loDvdUyCov78CE9lBioEokTcSfIKHfRcKwE0y
+ h7ZcYKz+rJxRxoWI6hkeK6O1nTkxz+GHuXEaL8cGPwZujhJlT3PxjgYdJ
+ ahHJdzjN6i2qUcBKIgsnJtIDoR+U2g45qrDO9SA7/ZvhLdJOrEU2fVGJm
+ unpfmClm7UR7lrN7pnfbq3fEpRP0kMMC8AUKJl1YtH/uFfsvBKWYYoFKd
+ jLYxhMbg8szZafwAeJwPMKndoH6HuhxA3f4G+RRQy1KKPhNSLgH9vsrXk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="6245375"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
+   d="scan'208";a="6245375"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 07:55:24 -0700
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 08:03:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="827784712"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784712"
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="827784716"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784716"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 07:55:20 -0700
+ by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 08:03:05 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 25 Mar 2024 16:55:20 +0200
-Date: Mon, 25 Mar 2024 16:55:20 +0200
+ Mon, 25 Mar 2024 17:03:04 +0200
+Date: Mon, 25 Mar 2024 17:03:04 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
-Subject: Re: [PATCH 3/5] drm/i915: Use old mbus_join value when increasing
- CDCLK
-Message-ID: <ZgGQWE-jo7cLdhFJ@intel.com>
-References: <20240322114046.24930-1-stanislav.lisovskiy@intel.com>
- <20240322114046.24930-4-stanislav.lisovskiy@intel.com>
- <Zf3DuTTsvjXfdOQE@intel.com>
- <171137789980.56348.2594261820316637553@gjsousa-mobl2>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, stanislav.lisovskiy@intel.com,
+ ville.syrjala@intel.com, jani.saarinen@intel.com
+Subject: Re: [PATCH v8 4/4] drm/i915/display: handle systems with duplicate
+ qgv/psf gv points
+Message-ID: <ZgGSKCaoUUieIja5@intel.com>
+References: <20240325130156.205726-1-vinod.govindapillai@intel.com>
+ <20240325130156.205726-5-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <171137789980.56348.2594261820316637553@gjsousa-mobl2>
+In-Reply-To: <20240325130156.205726-5-vinod.govindapillai@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,73 +71,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 25, 2024 at 11:44:59AM -0300, Gustavo Sousa wrote:
-> Quoting Ville Syrjälä (2024-03-22 14:45:29-03:00)
-> >On Fri, Mar 22, 2024 at 01:40:44PM +0200, Stanislav Lisovskiy wrote:
-> >> In order to make sure we are not breaking the proper sequence
-> >> lets to updates step by step and don't change MBUS join value
-> >> during MDCLK/CDCLK programming stage.
-> >> MBUS join programming would be taken care by pre/post ddb hooks.
-> >> 
-> >> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_cdclk.c | 12 +++++++++++-
-> >>  1 file changed, 11 insertions(+), 1 deletion(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> index 31aaa9780dfcf..43a9616c78260 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> >> @@ -2611,9 +2611,19 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
-> >>  
-> >>          if (pipe == INVALID_PIPE ||
-> >>              old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
-> >> +                struct intel_cdclk_config cdclk_config;
-> >> +
-> >>                  drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
-> >>  
-> >> -                intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
-> >> +                /*
-> >> +                 * By this hack we want to prevent mbus_join to be programmed
-> >> +                 * beforehand - we will take care of this later in pre ddb
-> >> +                 * programming hook.
-> >> +                 */
-> >
-> >We're not doing anything to prevent mbus joining to be
-> >programmed here. It will simply not be programmed here,
-> >which is why we need to use the old mbus_join based ratio.
+On Mon, Mar 25, 2024 at 03:01:56PM +0200, Vinod Govindapillai wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > 
-> Hey, guys.
+> There could be multiple qgv and psf gv points with similar values
+> In case if we need to set one such QGV or psf gv  point where there
+> could be duplicate entries, we would have to select all those
+> points. Otherwise pcode might reject the GV configuration. We do
+> handle this when we set appropriate qgv and psf gv as part of
+> intel_bw_atomic_check calls. But during the bw_init force disable
+> QGV points phase, we need to select all those points corresponding
+> to the maximum bw as well.
 > 
-> Just so I understand this better. What I understood from the
-> recent discussion was:
+> v1: - use the same treatment to qgv points as well (Vinod)
 > 
->   CDCLK programming should only care about the current MBus joining
->   state and not consider the new one in the current hardware commit,
->   which must actually be handled later in the sequence by the proper
->   "entity".
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Is my understanding correct? If so, sorry for the confusion introduced
-> by my patches.
-> 
-> My previous understanding was that that the CDCLK change sequence would
-> need to consider the new MBus joining state in case we were in a modeset
-> where mbus joining changed, so I added that odd-looking condition in
-> update_mbus_pre_enable() (not moved into
-> intel_dbuf_mdclk_min_tracker_update()), thinking that the update should
-> be handled by the cdclk sequence.
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 844d2d9efeb4..20c67474154e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -847,6 +847,8 @@ static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
+>  		if (max_data_rate > max_bw) {
+>  			max_bw_point_mask = BIT(i);
+>  			max_bw = max_data_rate;
+> +		} else if (max_data_rate == max_bw) {
+> +			max_bw_point_mask |= BIT(i);
+>  		}
+>  	}
+>  
+> @@ -866,6 +868,8 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
+>  		if (max_data_rate > max_bw) {
+>  			max_bw_point_mask = BIT(i);
+>  			max_bw = max_data_rate;
+> +		} else if (max_data_rate == max_bw) {
+> +			max_bw_point_mask |= BIT(i);
 
-I don't think we can handle it from the cdclk code as
-that can't handle the proper ordering between plane
-ddb updates vs. mbus_join changes.
+This doesn't seem entirely safe. What happens if we somehow
+have two qgv points with the same bandwidth but different
+uderlying clock/gear ratio/etc.?
 
-It's rather infuriating that we need to update the ratio
-from both places. I'm not sure how careful we actually
-have to be between programming the ratio vs. actually
-changing mbus_join+mdclk/cdclk. I guess we should ask
-the hardware folks for more details and if the sequence
-doesn't have to super accurate then maybe think about
-a simpler way to do things...
+While such behaviour may not seem entirely sensible, given
+that we need to do this stuff at all, I don't think we can
+assume any kind of sensible behaviour from pcode here.
+
+So I think we will need to check that the qgv points
+being used here are in fact 100% identical.
+
+>  		}
+>  	}
+>  
+> -- 
+> 2.34.1
 
 -- 
 Ville Syrjälä
