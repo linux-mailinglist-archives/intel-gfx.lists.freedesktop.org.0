@@ -2,65 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F7088AAF9
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 18:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1C488ABAD
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 18:30:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B66810E9F3;
-	Mon, 25 Mar 2024 17:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8FC10E5C1;
+	Mon, 25 Mar 2024 17:30:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCdNJUE7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cFwwCDXV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E937E10E115;
- Mon, 25 Mar 2024 17:12:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E28810E5C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 17:30:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711386767; x=1742922767;
+ t=1711387812; x=1742923812;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=MYGdXmoq7N0tcHPe/mlApUipsJg6yXUGnJbBGz0dpDg=;
- b=fCdNJUE7ED6vLlPVu5Hc32H8NjFllpmuy7zV/wkeLIrDvY1PLpIiLjsm
- ia2HRwxKZ/fQn3jy4xBtszUYP3cLSbSBDlAqZoAX0L5GK5677dnUHz/tb
- QUlLO+tdRB1tY3kiZNELG0pdvvYjgw7qxLUegYL6nAIQ5xWDqZa2eakI7
- 5MKxneD/w3mEV7BipJnYmkYsPN8lB2qO4zpDzs9wWBo1txER47pOAELs1
- heGAJiQmuY+imd7NsQOja9Ly/9bS9X/Fxy39dt1odhTs7cxLt0ieCWi40
- SVvksbLBryGmxg9yZp7Ga2P93tH8WuylnO+jUGkgEZKzTCWFuzmyFkI01 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6512307"
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
-   d="scan'208";a="6512307"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 10:12:46 -0700
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=C1gj64oqzU8K3xQSmB11kUUJwdYaoF7IoZAlc1H4pL8=;
+ b=cFwwCDXVaNtQwM9g9pXBH+3NZKKRiK+jqZppk4lnYbFLEJgkXHz897uY
+ SJfYw1iryBpeiHii+kziZY8AGbgdJUKcs0Iw3KG6ksORRxgVzb0sD95c6
+ agwhUscXuaG694zhcCIx3FMZB+sgpttyMNWRAiEaOXO5mWGaiWHCDkgDs
+ ykKN7PyJz8XCqd6rjZpzxKkg23qIoyQWzZ7dLXsrQ4C+YTEvXhN665z3R
+ WtWJoLXbspr5lcRPOvZRNDDgvb+GUHMkOP9lfnTDpKxewrRdtVp+DSIyu
+ DjUQDBagXtuw7aw7E0vOKHDvJ3WDoj4NaLhvyCHNdYW5ZuVw6q0o5kcpD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="10200885"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="10200885"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 10:30:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="38796740"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmviesa002-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2024 10:12:44 -0700
-Date: Mon, 25 Mar 2024 18:12:42 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t v3 5/5] lib/kunit: Minimize code duplication
-Message-ID: <20240325171242.yze6pcimo2awa4iu@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20240318103534.701693-7-janusz.krzysztofik@linux.intel.com>
- <20240318103534.701693-12-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="827784775"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784775"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 10:30:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 25 Mar 2024 19:30:06 +0200
+Date: Mon, 25 Mar 2024 19:30:06 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Borislav Petkov <bp@alien8.de>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ lkml <linux-kernel@vger.kernel.org>
+Subject: Re: BUG: sleeping function called from invalid context at
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c:526
+Message-ID: <ZgG0niB5wBxkWBkR@intel.com>
+References: <20240227100342.GAZd2zfmYcPS_SndtO@fat_crate.local>
+ <87jzmqjir5.fsf@intel.com>
+ <20240227105356.GBZd2_RL9hjC_LupZB@fat_crate.local>
+ <87h6hujhrz.fsf@intel.com>
+ <20240325163342.GEZgGnZpROSN4euuLb@fat_crate.local>
+ <ZgGsVBnpme-syWCG@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240318103534.701693-12-janusz.krzysztofik@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZgGsVBnpme-syWCG@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,56 +78,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2024-03-18 at 11:13:31 +0100, Janusz Krzysztofik wrote:
-> A new helper has been introduced recently, used for fetching KTAP results
-> of a single test case.  Since that helper is called for that purpose
-> only after the test module is loaded with all other test cases filtered
-> out, its actual implementation is as simple as collecting all results from
-> a single KTAP report, no matter how many test suites and test cases it
-> covers.  Then, it's a good candidate for reuse in other scenarios when a
-> single KTAP report is handled, e.g., when we collect a list of test cases
-> from a single test suite or test module.  Go for it.
+On Mon, Mar 25, 2024 at 06:54:44PM +0200, Ville Syrjälä wrote:
+> On Mon, Mar 25, 2024 at 05:33:42PM +0100, Borislav Petkov wrote:
+> > On Tue, Feb 27, 2024 at 12:58:08PM +0200, Jani Nikula wrote:
+> > > Let's see what Ville says, but in the end bisection might be the
+> > > quickest way to find the regression. Though I understand it can be
+> > > tedious for you personally.
+> > 
+> > That still fires with 6.-9-rc1. Does Ville have any suggestions or
+> > should I bisect?
 > 
-> v3: Rebased on top of changes to struct igt_ktap_results pointer handling.
-> v2: Rebased on invalid test suite name workaround.
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Sorry, completely missed this. The culprit is going to be
+> commit 1de63528e728 ("drm/i915: Perform vblank evasion around legacy
+> cursor updates")
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Hmm. Actually should be commit 0225a90981c8 ("drm/i915: Make
+cursor plane registers unlocked") already.
 
-> ---
->  lib/igt_kmod.c | 9 +--------
->  1 file changed, 1 insertion(+), 8 deletions(-)
-> 
-> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> index c495d11b16..8979a5928b 100644
-> --- a/lib/igt_kmod.c
-> +++ b/lib/igt_kmod.c
-> @@ -1262,21 +1262,14 @@ static bool kunit_get_tests(struct igt_list_head *tests,
->  	igt_skip_on(modprobe(tst->kmod, opts));
->  	igt_skip_on(igt_kernel_tainted(&taints));
->  
-> -	*ktap = igt_ktap_alloc(tests);
-> -	igt_require(*ktap);
-> -
->  	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
->  	alarm(10);
->  
-> -	do
-> -		err = kunit_kmsg_result_get(tests, NULL, tst->kmsg, *ktap);
-> -	while (err == -EINPROGRESS);
-> +	err = kunit_get_results(tests, tst->kmsg, ktap);
->  
->  	alarm(0);
->  	igt_debug_on(sigaction(SIGALRM, saved, NULL));
->  
-> -	igt_ktap_free(ktap);
-> -
->  	igt_skip_on_f(err,
->  		      "KTAP parser failed while getting a list of test cases\n");
->  
-> -- 
-> 2.43.0
-> 
+Apprently I had CONFIG_DEBUG_ATOMIC_SLEEP=n in my config
+for most of my old machines.
+
+-- 
+Ville Syrjälä
+Intel
