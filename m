@@ -2,87 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BD788A3ED
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 15:15:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6C588A484
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 15:30:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8F3710E90D;
-	Mon, 25 Mar 2024 14:15:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BD4D10E821;
+	Mon, 25 Mar 2024 14:30:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="enDOKQbu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJvIECfj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
- [209.85.222.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEB5C10E90C
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 14:15:10 +0000 (UTC)
-Received: by mail-qk1-f181.google.com with SMTP id
- af79cd13be357-789e83637e0so282685585a.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 07:15:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1711376109; x=1711980909;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=COUKaK9QwWldaIvCztGeS1zsFehu8RXDmIJB95LB/cQ=;
- b=enDOKQbuVwsdJkgyR82aZj86XoI/qPpGsFUMVYLAMPUWTLtUyVraoHur/Ajr43YmMx
- 1dLqhGva3D0SC5tj6gs60c8ax8wE2YDZXnuu6F4ptKA+19rf5UWPN2MTCqJQr3FVj0Wl
- rVNerKrd2N62H+54ya5GWjitKDPjDQd/43tdo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711376109; x=1711980909;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=COUKaK9QwWldaIvCztGeS1zsFehu8RXDmIJB95LB/cQ=;
- b=mmiOtidcPNYpa0HdnialtC11R06tgIIU+h9RegDlIJtHm5DpcmoKixLRnr9ALN1WXe
- KNapPGNXvN8+i9JPa06zc97vj7siIcnza8fy5I7RhXZiWvgkA2nWtwfK+s7TaaeaSWJY
- itVJwUmOgoUjpbi4ABFAGPMXEBcO/qfWs3JnlNuNT3fNLBEq43JAApDAG6WUmHnAGMc6
- iUBQ8zbfQPCBBd5PUd/MnKCXpIx8HR6mPMFD9Wn7iCEavMHfSz1a+K7km5985+DknwCL
- S0IupjwzjpEG4ftlxS/xtSX3msP3RkWyR5y1jwcfpgRBaSuRsUd3mweMVbRy44+/MTRx
- Z20g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWlNWBsvZh/knqM09vSX18K8GWet5DmQYFXw4AKww9W6U5XurLfL+MEpLH+YCDHWeVBeISwFkZ8ENHkip9iWiB8cNa3SJemfvW26z8pBV8S
-X-Gm-Message-State: AOJu0YxVC1+XnA7r8M2DmS1UigBbq2fiBADw8mLrAoHcU72m+JjpkPaL
- vU4Yjf29fEDLRgMQWj2nmQb4dlNWkW3I2IdaBVsOu+Nh6cJmHuDjDVU32qCJGntDYGbO7Fofz6k
- =
-X-Google-Smtp-Source: AGHT+IH15XLgVJX8HB1AmdJfWHEoaC8LLy01/vaK6R8ypuwC54UVzxhY4stL2nUCH66A3t4ciyx1pw==
-X-Received: by 2002:a05:6214:1cc1:b0:690:d4e9:fc5b with SMTP id
- g1-20020a0562141cc100b00690d4e9fc5bmr7142494qvd.27.1711376108734; 
- Mon, 25 Mar 2024 07:15:08 -0700 (PDT)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com.
- [209.85.160.169]) by smtp.gmail.com with ESMTPSA id
- iw9-20020a0562140f2900b006968de8fca8sm1155335qvb.5.2024.03.25.07.15.07
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Mar 2024 07:15:07 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id
- d75a77b69052e-428405a0205so485791cf.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 07:15:07 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVd0L2rmyFG37vDnULh2sdLjvExj5lLH3jNCylHA2jlCRNsSJ1rlZJK/Pb9nYZVT0gY4raPo8rJ8tvI8HEakThUAFk//HWlycQblV1DwRU2
-X-Received: by 2002:a05:622a:2444:b0:431:4e0b:d675 with SMTP id
- bl4-20020a05622a244400b004314e0bd675mr354653qtb.18.1711376106720; Mon, 25 Mar
- 2024 07:15:06 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B659E10E910
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 14:30:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711377019; x=1742913019;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=onmSKknosloqRKow2yJROQeatmDCkeXdWfb1oQMm+VE=;
+ b=hJvIECfjcQIunmJGVYgX8vu6P9syy/FbDG1NU1c9nMTFN79dgIlrEqgt
+ kP4DlFwDBzk8cyCifLGU+UGxW1FvRIhakVZ+1Wv9DqpIXw1WKiGYqCdpn
+ PUTrUIILHMaV1E77at8jyLM56+kbaCg7RmR39IXZx8ScmOhHY8iJKag1i
+ v8bWk4alAyJIFG/emqvRR804vMIh0++aNKy8PZOzNgtLb7rk1X/nFTpQT
+ MLhQ2RVxnxui6aIeW+nB/urJuOYxoLqtt07FSo+so/+JG2W/Is0aFrE67
+ CKIloL+IctzWvka1t/gp9+6CMUtTQFal18lCCmkEwzHR0lksGLT6PQ7i5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="17776126"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="17776126"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 07:30:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11023"; a="827784694"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784694"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 07:30:15 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 25 Mar 2024 16:30:14 +0200
+Date: Mon, 25 Mar 2024 16:30:14 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
+Subject: Re: [PATCH 2/4] drm/i915: Use old mbus_join value when increasing
+ CDCLK
+Message-ID: <ZgGKdnlh5Kw5mY_V@intel.com>
+References: <20240325112329.7922-1-stanislav.lisovskiy@intel.com>
+ <20240325112329.7922-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-References: <202403240115.1lAo588s-lkp@intel.com>
-In-Reply-To: <202403240115.1lAo588s-lkp@intel.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 25 Mar 2024 07:14:50 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V91x_Vf=rkT_Q29eTsa13XDKZHXYYgX1of3JsE2OgxHQ@mail.gmail.com>
-Message-ID: <CAD=FV=V91x_Vf=rkT_Q29eTsa13XDKZHXYYgX1of3JsE2OgxHQ@mail.gmail.com>
-Subject: Re: [drm-tip:drm-tip 4/11]
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:105:73:
- error: '.bin' directive output may be truncated writing 4 bytes into a region
- of size between 2 and 31
-To: kernel test robot <lkp@intel.com>,
- Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>, 
- Veerabadhran Gopalakrishnan <Veerabadhran.Gopalakrishnan@amd.com>,
- Leo Liu <leo.liu@amd.com>
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240325112329.7922-3-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,107 +69,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Mon, Mar 25, 2024 at 01:23:27PM +0200, Stanislav Lisovskiy wrote:
+> In order to make sure we are not breaking the proper sequence
+> lets to updates step by step and don't change MBUS join value
+> during MDCLK/CDCLK programming stage.
+> MBUS join programming would be taken care by pre/post ddb hooks.
+> 
+> v2: - Reworded comment about using old mbus_join value in
+>       intel_set_cdclk(Ville Syrjälä)
+> 
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 31aaa9780dfcf..c7813d433c424 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2611,9 +2611,19 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+>  
+>  	if (pipe == INVALID_PIPE ||
+>  	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
+> +		struct intel_cdclk_config cdclk_config;
+> +
+>  		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+>  
+> -		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
+> +		/*
+> +		 * By this hack we want to prevent mbus_join to be changed
+> +		 * beforehand
 
-On Sat, Mar 23, 2024 at 10:15=E2=80=AFAM kernel test robot <lkp@intel.com> =
-wrote:
->
-> tree:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-> head:   657dd8fcd2f1d1205c6f98fdb8b60915228991d1
-> commit: 0885186926a13c697d78f5af03f32445414b6ad5 [4/11] Merge remote-trac=
-king branch 'drm-misc/drm-misc-next' into drm-tip
-> config: microblaze-allmodconfig (https://download.01.org/0day-ci/archive/=
-20240324/202403240115.1lAo588s-lkp@intel.com/config)
-> compiler: microblaze-linux-gcc (GCC) 13.2.0
-> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archi=
-ve/20240324/202403240115.1lAo588s-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
-ion of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202403240115.1lAo588s-lkp=
-@intel.com/
->
-> All errors (new ones prefixed by >>):
->
->    drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c: In function 'amdgpu_vcn_early=
-_init':
->    drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:102:66: error: 'snprintf' outp=
-ut may be truncated before the last format character [-Werror=3Dformat-trun=
-cation=3D]
->      102 |                 snprintf(fw_name, sizeof(fw_name), "amdgpu/%s.=
-bin", ucode_prefix);
->          |                                                               =
-   ^
->    drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:102:17: note: 'snprintf' outpu=
-t between 12 and 41 bytes into a destination of size 40
->      102 |                 snprintf(fw_name, sizeof(fw_name), "amdgpu/%s.=
-bin", ucode_prefix);
->          |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~~~~~~~~~~~~~~~~~~
-> >> drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:105:73: error: '.bin' directiv=
-e output may be truncated writing 4 bytes into a region of size between 2 a=
-nd 31 [-Werror=3Dformat-truncation=3D]
->      105 |                         snprintf(fw_name, sizeof(fw_name), "am=
-dgpu/%s_%d.bin", ucode_prefix, i);
->          |                                                               =
-          ^~~~
->    drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c:105:25: note: 'snprintf' outpu=
-t between 14 and 43 bytes into a destination of size 40
->      105 |                         snprintf(fw_name, sizeof(fw_name), "am=
-dgpu/%s_%d.bin", ucode_prefix, i);
->          |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    cc1: all warnings being treated as errors
->
->
-> vim +105 drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
->
-> 95d0906f850655 Leo Liu            2016-12-21   93
-> 69939009bde70c Mario Limonciello  2022-12-28   94  int amdgpu_vcn_early_i=
-nit(struct amdgpu_device *adev)
-> 69939009bde70c Mario Limonciello  2022-12-28   95  {
-> 69939009bde70c Mario Limonciello  2022-12-28   96       char ucode_prefix=
-[30];
-> 69939009bde70c Mario Limonciello  2022-12-28   97       char fw_name[40];
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06   98       int r, i;
-> 69939009bde70c Mario Limonciello  2022-12-28   99
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  100       for (i =3D 0; i <=
- adev->vcn.num_vcn_inst; i++) {
-> 69939009bde70c Mario Limonciello  2022-12-28  101               amdgpu_uc=
-ode_ip_version_decode(adev, UVD_HWIP, ucode_prefix, sizeof(ucode_prefix));
-> 69939009bde70c Mario Limonciello  2022-12-28 @102               snprintf(=
-fw_name, sizeof(fw_name), "amdgpu/%s.bin", ucode_prefix);
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  103               if (amdgp=
-u_ip_version(adev, UVD_HWIP, 0) =3D=3D  IP_VERSION(4, 0, 6) &&
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  104                       i=
- =3D=3D 1) {
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06 @105                       s=
-nprintf(fw_name, sizeof(fw_name), "amdgpu/%s_%d.bin", ucode_prefix, i);
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  106               }
-> 69939009bde70c Mario Limonciello  2022-12-28  107
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  108               r =3D amd=
-gpu_ucode_request(adev, &adev->vcn.fw[i], fw_name);
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  109               if (r) {
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  110                       a=
-mdgpu_ucode_release(&adev->vcn.fw[i]);
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  111                       r=
-eturn r;
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  112               }
-> 6a7cbbc267c0ca Saleemkhan Jamadar 2024-03-06  113       }
-> 69939009bde70c Mario Limonciello  2022-12-28  114       return r;
-> 69939009bde70c Mario Limonciello  2022-12-28  115  }
-> 69939009bde70c Mario Limonciello  2022-12-28  116
->
-> :::::: The code at line 105 was first introduced by commit
-> :::::: 6a7cbbc267c0cafa2b027983a40276deb673c066 drm/amdgpu/vcn: enable vc=
-n1 fw load for VCN 4_0_6
->
-> :::::: TO: Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>
-> :::::: CC: Alex Deucher <alexander.deucher@amd.com>
+That sentence is still confusing.
 
-Not quite sure why this came to me and not the people involved with
-that commit. Adding them here.
+> - we will take care of this later in
+> +		 * intel_dbuf_mbus_post_ddb_update
+> +		 */
+> +		cdclk_config = new_cdclk_state->actual;
+> +		cdclk_config.joined_mbus = old_cdclk_state->actual.joined_mbus;
+> +
+> +		intel_set_cdclk(i915, &cdclk_config, pipe);
+>  	}
+>  }
+>  
+> -- 
+> 2.37.3
 
--Doug
+-- 
+Ville Syrjälä
+Intel
