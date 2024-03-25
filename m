@@ -2,65 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7498F88AAA6
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 18:04:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E5D88AAE9
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Mar 2024 18:11:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7851410E9ED;
-	Mon, 25 Mar 2024 17:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E80C10E9E5;
+	Mon, 25 Mar 2024 17:11:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B+XbTOLt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZWg1Bjt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21BB510E9E5;
- Mon, 25 Mar 2024 17:04:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A90C10E9F2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Mar 2024 17:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711386265; x=1742922265;
+ t=1711386686; x=1742922686;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kuKXSUsEoEwCGHB5pata/CMFLLcLy+XW2BMPv5c8554=;
- b=B+XbTOLtM7EPbeKSrr+Y2qobRCiqqDEdxuU1GlAv5KGJnZ4vJLzNzp2w
- oJd9t1cphYg7q8J8R0vDbvaQPbeNKlvUnZ8/xKwVZa0G/YoIxK4QtDc1O
- 4FnwsgHWxesJr6uNMQdyWo9/qrQiLeXNnyo2NWQmrBCdsiZPFEqP5z6AF
- G0JpqZifyTvw4kq7kIkx7VnhfxWFSFZvLCKy0VyyYpBQWMVSZlZewMYkZ
- byqZjJxW3meE0LFnl7sDOU2t84Fd5WDSdRSg+hJqFNJU0QzKTShMwjoDP
- 4dfM1WMV6uvshfFZSxabLeDGN5H59AcvTkDXDM9KgmVjiY+sUdA2cuqt5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="9366754"
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1tgoGRCtbcR625PBb+cU7oPz07i8BhalTSijMru6a9s=;
+ b=VZWg1BjtPQiKRQZs3KI4fqpihTWavyxoLuPTtc/vGCKoXUDeGN8NilQZ
+ IOI8DD5RS1wxBwO2AOWiF8lsNaUK3RAzib9lLwNbO7cEp3v6pSjP9tcLQ
+ iNACuqwB6T9te8cNoHFhQZLbms8+IYkbV5NClBpq4Y+baLVEf42c4aj+k
+ hIthrtQMTD5cmzibi40yudrLpy4AV3qnltO5E/uNugTYDnComv9xXWH5N
+ +EtcivjzXi2yZtVO9IwKGW0AlnpoSNQZac5TbB73CIAA+9K7DTjkHJiuG
+ Q9mI0/S5kbSmK3U+BF2gNw0A7KXJ9yibdYsqm4OVe0Ng2f2czZhSUGtmT A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6613691"
 X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; 
-   d="scan'208";a="9366754"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 10:04:24 -0700
+   d="scan'208";a="6613691"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 10:11:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="20363003"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by ORVIESA003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Mar 2024 10:04:22 -0700
-Date: Mon, 25 Mar 2024 18:04:03 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t v3 4/5] lib/kunit: Execute test cases synchronously
-Message-ID: <20240325170403.3zeccnh55kw434jh@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20240318103534.701693-7-janusz.krzysztofik@linux.intel.com>
- <20240318103534.701693-11-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="827784770"
+X-IronPort-AV: E=Sophos;i="6.07,153,1708416000"; d="scan'208";a="827784770"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 25 Mar 2024 10:11:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 25 Mar 2024 19:11:21 +0200
+Date: Mon, 25 Mar 2024 19:11:21 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
+Subject: Re: [PATCH 1/4] drm/i915: Update mbus in intel_dbuf_mbus_update and
+ do it properly
+Message-ID: <ZgGwOSEQIrp8auff@intel.com>
+References: <20240325112329.7922-1-stanislav.lisovskiy@intel.com>
+ <20240325112329.7922-2-stanislav.lisovskiy@intel.com>
+ <ZgGOHR8gOPUQNdMS@intel.com> <ZgGtz/jg1AK2Af6G@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240318103534.701693-11-janusz.krzysztofik@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZgGtz/jg1AK2Af6G@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,272 +71,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2024-03-18 at 11:13:30 +0100, Janusz Krzysztofik wrote:
-> Up to now we were loading a KUnit test module in test execution mode only
-> once per subtest, in background, and then, in parallel with execution of
-> test cases while the module was loading, we were looking through dmesg for
-> KTAP results from each expected test case.  As a consequence, our IGT
-> messages were more or less delayed, never in full sync with kernel
-> messages.  Moreover, parsing of KTAP results from already completed test
-> cases could be abandoned on a failure from loading the test module or
-> kernel taint caused by a subsequent test case.  Also, parsing of KTAP
-> results from all subsequent test cases could be abandoned on a failure of
-> the parser caused by any test case.  Other than that, if a user requested
-> a single dynamic sub-subtest, all test cases were executed anyway while
-> results from only one of them that corresponded to the selected dynamic
-> sub-subtest were reported.  That way, kernel messages from unrelated test
-> cases, not only the selected one, could contribute to dmesg-fail or dmesg-
-> warn CI results from that sub-subtest.
+On Mon, Mar 25, 2024 at 07:01:03PM +0200, Lisovskiy, Stanislav wrote:
+> On Mon, Mar 25, 2024 at 04:45:49PM +0200, Ville Syrjälä wrote:
+> > On Mon, Mar 25, 2024 at 01:23:26PM +0200, Stanislav Lisovskiy wrote:
+> > > According to BSpec we need to do correspondent MBUS updates before
+> > > or after DBUF reallocation, depending on whether we are enabling
+> > > or disabling mbus joining(typical scenario is swithing between
+> > > multiple and single displays).
+> > > 
+> > > Also we need to be able to update dbuf min tracker and mdclk ratio
+> > > separately if mbus_join state didn't change, so lets add one
+> > > degree of freedom and make it possible.
+> > > 
+> > > Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/skl_watermark.c | 54 +++++++++++++-------
+> > >  1 file changed, 35 insertions(+), 19 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > index bc341abcab2fe..2b947870527fc 100644
+> > > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > > @@ -3570,16 +3570,38 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915, u8 ratio
+> > >  			     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
+> > >  }
+> > >  
+> > > +static void intel_dbuf_mdclk_min_tracker_update(struct intel_atomic_state *state)
+> > > +{
+> > > +	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > > +	const struct intel_dbuf_state *old_dbuf_state =
+> > > +		intel_atomic_get_old_dbuf_state(state);
+> > > +	const struct intel_dbuf_state *new_dbuf_state =
+> > > +		intel_atomic_get_new_dbuf_state(state);
+> > > +
+> > > +	if (DISPLAY_VER(i915) >= 20 &&
+> > > +	    old_dbuf_state->mdclk_cdclk_ratio != new_dbuf_state->mdclk_cdclk_ratio) {
+> > > +		/*
+> > > +		 * For Xe2LPD and beyond, when there is a change in the ratio
+> > > +		 * between MDCLK and CDCLK, updates to related registers need to
+> > > +		 * happen at a specific point in the CDCLK change sequence. In
+> > > +		 * that case, we defer to the call to
+> > > +		 * intel_dbuf_mdclk_cdclk_ratio_update() to the CDCLK logic.
+> > > +		 */
+> > > +		return;
+> > > +	}
+> > 
+> > That still needs to be removed or else we'll not update the ratio at
+> > all during the mbus_join changes. I don't think I saw any removal
+> > in subsequent patches.
+> > 
+> > > +
+> > > +	intel_dbuf_mdclk_cdclk_ratio_update(i915, new_dbuf_state->mdclk_cdclk_ratio,
 > 
-> Since recent KUnit implementation is capable of executing only those test
-> cases that match a user filter, stop executing all of them asynchronously
-> and parsing their KTAP results as they appear.  Instead, reload the test
-> module once per each dynamic sub-subtest with a filter that selects a
-> specific test case and wait for its completion.  If successful and no
-> kernel taint has occurred then parse the whole KTAP report from a single
-> test case it has produced and translate it to IGT result of that single
-> corresponding sub-subtest.
+> I don't get what is happening here.
 > 
-> With that in place, we no longer need to skip the whole subtest on a
-> failure from module loading or KTAP reading or parsing.  Since such event
-> is now local to execution of an individual test case, only fail its
-> corresponding dynamic sub-subtests and continue with subsequent ones.
-> However, still omit execution of subsequent test cases once the kernel
-> gets tainted.
+> "That whole condition I think needs to go. We want to update the ratio
+> also when changing mbus joining. But that behavioural change doesn't
+> really belong in this patch, so this is
 > 
-> v3: Refresh on top of changes to struct igt_ktap_results pointer handling,
->   - use "for(;;) {}" instead of "do {} while();" when processing results
->     from parametrized test cases (Kamil).
-> v2: Refresh on top of changes to KUnit filters handling,
->   - include the code of a new helper from a previously separate patch,
->   - actually limit the scope of the helper to fetching a KTAP report from
->     a file descriptor, and let the caller decide on how other steps, like
->     setting up filters or loading a test module, and errors they return
->     are handled,
->   - similar to kernel taint handling, just omit any remaining dynamic sub-
->     subtests if unloading the test module fails,
->   - update commit description with a more detailed justification of why we
->     need these changes.
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>"
 > 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> Now it again needs to be changed or changed in other patch(in this series or which one), 
+> I don't follow.
+> Should it be the patch changing MBUS join value?
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Yeah, probably should be in the last patch. Perhaps we
+could change it before that, but that would need some
+extra brain power to make sure it doesn't temporarily
+break something. So probably not worth the hassle
+to do as a separate patch.
 
-> ---
->  lib/igt_kmod.c | 156 +++++++++++++++++--------------------------------
->  1 file changed, 54 insertions(+), 102 deletions(-)
 > 
-> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> index f0e4d5ec76..c495d11b16 100644
-> --- a/lib/igt_kmod.c
-> +++ b/lib/igt_kmod.c
-> @@ -1070,6 +1070,25 @@ static void kunit_results_free(struct igt_list_head *results,
->  	free(*suite_name);
->  }
->  
-> +static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
-> +			     struct igt_ktap_results **ktap)
-> +{
-> +	int err;
-> +
-> +	*ktap = igt_ktap_alloc(results);
-> +	if (igt_debug_on(!*ktap))
-> +		return -ENOMEM;
-> +
-> +	do
-> +		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
-> +			      err && err != -EINPROGRESS));
-> +	while (err == -EINPROGRESS);
-> +
-> +	igt_ktap_free(ktap);
-> +
-> +	return err;
-> +}
-> +
->  static void __igt_kunit_legacy(struct igt_ktest *tst,
->  			       const char *subtest,
->  			       const char *opts)
-> @@ -1277,82 +1296,52 @@ static void __igt_kunit(struct igt_ktest *tst,
->  			struct igt_list_head *tests,
->  			struct igt_ktap_results **ktap)
->  {
-> -	struct modprobe_data modprobe = { tst->kmod, opts, 0, pthread_self(), };
-> -	char *suite_name = NULL, *case_name = NULL;
-> -	struct igt_ktap_result *t, *r = NULL;
-> -	pthread_mutexattr_t attr;
-> -	IGT_LIST_HEAD(results);
-> -	int ret = -EINPROGRESS;
-> -	unsigned long taints;
-> -
-> -	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
-> -
-> -	*ktap = igt_ktap_alloc(&results);
-> -	igt_require(*ktap);
-> +	struct igt_ktap_result *t;
->  
->  	igt_list_for_each_entry(t, tests, link) {
-> +		char *suite_name = NULL, *case_name = NULL;
-> +		IGT_LIST_HEAD(results);
-> +		unsigned long taints;
-> +
->  		igt_dynamic_f("%s%s%s",
->  			      strcmp(t->suite_name, subtest) ?  t->suite_name : "",
->  			      strcmp(t->suite_name, subtest) ? "-" : "",
->  			      t->case_name) {
-> +			struct igt_ktap_result *r = NULL;
-> +			char glob[1024];
-> +			int i;
->  
-> -			if (!modprobe.thread) {
-> -				igt_require(kunit_set_filtering(suite, NULL, NULL));
-> +			igt_skip_on(igt_kernel_tainted(&taints));
->  
-> -				igt_assert_eq(pthread_mutexattr_init(&attr), 0);
-> -				igt_assert_eq(pthread_mutexattr_setrobust(&attr,
-> -							  PTHREAD_MUTEX_ROBUST),
-> -					      0);
-> -				igt_assert_eq(pthread_mutex_init(&modprobe.lock,
-> -								 &attr), 0);
-> +			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
->  
-> -				modprobe.err = pthread_create(&modprobe.thread,
-> -							      NULL,
-> -							      modprobe_task,
-> -							      &modprobe);
-> -				igt_assert_eq(modprobe.err, 0);
-> +			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
-> +					       t->suite_name, t->case_name),
-> +				      sizeof(glob));
-> +			igt_assert(kunit_set_filtering(glob, NULL, NULL));
->  
-> -				igt_assert(igt_list_empty(&results));
-> -				igt_assert_eq(ret, -EINPROGRESS);
-> -				ret = kunit_kmsg_result_get(&results, &modprobe,
-> -							    tst->kmsg, *ktap);
-> +			igt_assert_eq(modprobe(tst->kmod, opts), 0);
-> +			igt_assert_eq(igt_kernel_tainted(&taints), 0);
-> +
-> +			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
-> +
-> +			for (i = 0; i < 2; i++) {
-> +				kunit_result_free(&r, &suite_name, &case_name);
->  				igt_fail_on(igt_list_empty(&results));
->  
->  				r = igt_list_first_entry(&results, r, link);
-> -			}
->  
-> -			while (igt_debug_on_f(strcmp(r->suite_name, t->suite_name),
-> +				igt_fail_on_f(strcmp(r->suite_name, t->suite_name),
->  					      "suite_name expected: %s, got: %s\n",
-> -					      t->suite_name, r->suite_name) ||
-> -			       igt_debug_on_f(strcmp(r->case_name, t->case_name),
-> +					      t->suite_name, r->suite_name);
-> +				igt_fail_on_f(strcmp(r->case_name, t->case_name),
->  					      "case_name expected: %s, got: %s\n",
-> -					      t->case_name, r->case_name) ||
-> -			       r->code == IGT_EXIT_INVALID) {
-> +					      t->case_name, r->case_name);
->  
-> -				int code = r->code;
-> -
-> -				kunit_result_free(&r, &suite_name, &case_name);
-> -				if (igt_list_empty(&results)) {
-> -					igt_assert_eq(ret, -EINPROGRESS);
-> -					ret = kunit_kmsg_result_get(&results,
-> -								    &modprobe,
-> -								    tst->kmsg,
-> -								    *ktap);
-> -					igt_fail_on(igt_list_empty(&results));
-> -				}
-> -
-> -				r = igt_list_first_entry(&results, r, link);
-> -
-> -				if (code != IGT_EXIT_INVALID)
-> -					continue;
-> +				if (r->code != IGT_EXIT_INVALID)
-> +					break;
->  
->  				/* result from parametrized test case */
-> -				igt_fail_on_f(strcmp(r->suite_name, suite_name),
-> -					      "suite_name expected: %s, got: %s\n",
-> -					      suite_name, r->suite_name);
-> -				igt_fail_on_f(strcmp(r->case_name, case_name),
-> -					      "case_name expected: %s, got: %s\n",
-> -					      case_name, r->case_name);
->  			}
->  
->  			igt_assert_neq(r->code, IGT_EXIT_INVALID);
-> @@ -1371,58 +1360,21 @@ static void __igt_kunit(struct igt_ktest *tst,
->  					igt_fail(r->code);
->  			}
->  			igt_assert_eq(r->code, IGT_EXIT_SUCCESS);
-> -
-> -			switch (pthread_mutex_lock(&modprobe.lock)) {
-> -			case 0:
-> -				igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> -				break;
-> -			case EOWNERDEAD:
-> -				/* leave the mutex unrecoverable */
-> -				igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> -				__attribute__ ((fallthrough));
-> -			case ENOTRECOVERABLE:
-> -				igt_assert_eq(modprobe.err, 0);
-> -				break;
-> -			default:
-> -				igt_debug("pthread_mutex_lock() failed\n");
-> -				break;
-> -			}
-> -
-> -			igt_assert_eq(igt_kernel_tainted(&taints), 0);
->  		}
->  
-> -		if (igt_debug_on(ret != -EINPROGRESS))
-> -			break;
-> -	}
-> -
-> -	kunit_results_free(&results, &suite_name, &case_name);
-> +		kunit_results_free(&results, &suite_name, &case_name);
->  
-> -	if (modprobe.thread) {
-> -		switch (pthread_mutex_lock(&modprobe.lock)) {
-> -		case 0:
-> -			igt_debug_on(pthread_cancel(modprobe.thread));
-> -			igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> -			igt_debug_on(pthread_join(modprobe.thread, NULL));
-> -			break;
-> -		case EOWNERDEAD:
-> -			/* leave the mutex unrecoverable */
-> -			igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
-> +		if (igt_debug_on(igt_kernel_tainted(&taints))) {
-> +			igt_info("Kernel tainted, not executing more selftests.\n");
->  			break;
-> -		case ENOTRECOVERABLE:
-> -			break;
-> -		default:
-> -			igt_debug("pthread_mutex_lock() failed\n");
-> -			igt_debug_on(pthread_join(modprobe.thread, NULL));
-> +		}
-> +
-> +		if (igt_debug_on(kmod_module_remove_module(tst->kmod,
-> +							   KMOD_REMOVE_FORCE))) {
-> +			igt_info("Unloading test module failed, not executing more selftests.\n");
->  			break;
->  		}
->  	}
-> -
-> -	igt_ktap_free(ktap);
-> -
-> -	igt_skip_on(modprobe.err);
-> -	igt_skip_on(igt_kernel_tainted(&taints));
-> -	if (ret != -EINPROGRESS)
-> -		igt_skip_on_f(ret, "KTAP parser failed\n");
->  }
->  
->  /**
-> -- 
-> 2.43.0
+> Stan
 > 
+> > 
+> > And it just occurred to me that this thing will in fact be wrong
+> > during the pre/post ddb hooks *and* cdclk is getting decreased
+> > from the post plane update hook.
+> > 
+> > I can't immediately think of a super nice way to handle this.
+> > 
+> > Perhaps the most stragithforward idea is to just get the mdclk/cdclk
+> > ratio from i915->display.cdclk.hw during the pre/post ddb hooks.
+> > cdclk serialization should guard against parallel updates from
+> > two both places and thus isplay.cdclk.hw should be safe to use.
+> > 
+> > The other option would be to determine if a cdclk decrease
+> > is going to happen or not, and depending on that use the
+> > old vs. new dbuf_state when updating the ratio in the
+> > pre/post ddb hooks.
+> > 
+> > > +					    new_dbuf_state->joined_mbus);
+> > > +}
+> > > +
+> > >  /*
+> > >   * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
+> > >   * update the request state of all DBUS slices.
+> > >   */
+> > > -static void update_mbus_pre_enable(struct intel_atomic_state *state)
+> > > +static void intel_dbuf_mbus_join_update(struct intel_atomic_state *state)
+> > >  {
+> > >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+> > >  	u32 mbus_ctl;
+> > > -	const struct intel_dbuf_state *old_dbuf_state =
+> > > -		intel_atomic_get_old_dbuf_state(state);
+> > >  	const struct intel_dbuf_state *new_dbuf_state =
+> > >  		intel_atomic_get_new_dbuf_state(state);
+> > >  
+> > > @@ -3600,21 +3622,6 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
+> > >  	intel_de_rmw(i915, MBUS_CTL,
+> > >  		     MBUS_HASHING_MODE_MASK | MBUS_JOIN |
+> > >  		     MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
+> > > -
+> > > -	if (DISPLAY_VER(i915) >= 20 &&
+> > > -	    old_dbuf_state->mdclk_cdclk_ratio != new_dbuf_state->mdclk_cdclk_ratio) {
+> > > -		/*
+> > > -		 * For Xe2LPD and beyond, when there is a change in the ratio
+> > > -		 * between MDCLK and CDCLK, updates to related registers need to
+> > > -		 * happen at a specific point in the CDCLK change sequence. In
+> > > -		 * that case, we defer to the call to
+> > > -		 * intel_dbuf_mdclk_cdclk_ratio_update() to the CDCLK logic.
+> > > -		 */
+> > > -		return;
+> > > -	}
+> > > -
+> > > -	intel_dbuf_mdclk_cdclk_ratio_update(i915, new_dbuf_state->mdclk_cdclk_ratio,
+> > > -					    new_dbuf_state->joined_mbus);
+> > >  }
+> > >  
+> > >  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+> > > @@ -3632,7 +3639,11 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+> > >  
+> > >  	WARN_ON(!new_dbuf_state->base.changed);
+> > >  
+> > > -	update_mbus_pre_enable(state);
+> > > +	if (!old_dbuf_state->joined_mbus && new_dbuf_state->joined_mbus) {
+> > 
+> > I think you squashed that stuff into the wrong patch.
+> > This one should have a pure refactoring patch.
+> > 
+> > > +		intel_dbuf_mbus_join_update(state);
+> > > +		intel_dbuf_mdclk_min_tracker_update(state);
+> > > +	}
+> > > +
+> > >  	gen9_dbuf_slices_update(i915,
+> > >  				old_dbuf_state->enabled_slices |
+> > >  				new_dbuf_state->enabled_slices);
+> > > @@ -3653,6 +3664,11 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+> > >  
+> > >  	WARN_ON(!new_dbuf_state->base.changed);
+> > >  
+> > > +	if (old_dbuf_state->joined_mbus && !new_dbuf_state->joined_mbus) {
+> > > +		intel_dbuf_mbus_join_update(state);
+> > > +		intel_dbuf_mdclk_min_tracker_update(state);
+> > > +	}
+> > > +
+> > >  	gen9_dbuf_slices_update(i915,
+> > >  				new_dbuf_state->enabled_slices);
+> > >  }
+> > > -- 
+> > > 2.37.3
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
+
+-- 
+Ville Syrjälä
+Intel
