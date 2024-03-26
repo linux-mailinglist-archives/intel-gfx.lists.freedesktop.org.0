@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62C688C04D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 12:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6868588C05F
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 12:15:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3235C10E5C3;
-	Tue, 26 Mar 2024 11:13:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DFC710EE99;
+	Tue, 26 Mar 2024 11:15:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sq6EnA89";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mwk4jhOJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41C3B10E5C3;
- Tue, 26 Mar 2024 11:13:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22CAD10EE8D;
+ Tue, 26 Mar 2024 11:15:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711451584; x=1742987584;
+ t=1711451747; x=1742987747;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=ztdD8hxV7A8w331pYP1sRssLHFjECtUWZdXEhlZZxWk=;
- b=Sq6EnA895ETWTWFGv8Bw7Sk9QLvEEef9kMsQy7TRFQHvHMwr10rzzfsN
- OoGaa8S9cVP0w2Nmn7MiVD8aaPAyp1RXphcCOJk9Qf8FO4IPJON6QitnR
- Uf0PPf9xYIkzPeLN3B7d1VssCmk79IZK9o+tBMT+6AdBdDSQf5eIPCviv
- jRkgCHn1lDI1v9UBYpZOUWUAk4ZfHKgoMGfkijHPpVmwGY0iTOqbHyjyf
- FNcw3KUnKXEUAjgplIKm9UF8Y220Ck9IJhT5nSwXh0ekDyZMypnI0cEyk
- yzBeoQeNXh5PlhrGcB9iIforLArs0A/3c8h7w3urmKKM+hWaXoXXSeQf8 A==;
-X-CSE-ConnectionGUID: xbqrUE/8RaaI1hPtZVUJMA==
-X-CSE-MsgGUID: 8nv7QvL3TrGKFc76p41C3w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="10291536"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="10291536"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 04:13:03 -0700
+ bh=t3RQyFwpbhBMxoKmMWSRVceEBvSc/h9Voe108r0hYjg=;
+ b=mwk4jhOJW158u/88pnKqqEzi84xsH9a/gBAqE6NKEujbWHBx3Wbi8qLS
+ gCIct83G86aoHJrRO+6gEwwxkV5iFmeIWdWo3e8RCjkitmDkmgtSmK1Zq
+ C6ywF5r2QjA7EnISfcyiR5J36b7OaL8iEQUPtItZRcLc17SLBqyVp0w1g
+ IB+Nxpk2XE5fyGUgRarYt7jamInIh4vv564GMbm0ZB8ITSZMn2rvJPLv1
+ XZ/L86ZiOU4DZmd/iONEZmazgXx0XOqUFjjvZaVAG8aodlfr/jXK+i02k
+ ZhNhBcoc7M3qoYiAOjNVW1Nd07Z49QS0lVfZtK2piDmi8j6wQSBv9Qcw+ Q==;
+X-CSE-ConnectionGUID: kU0LRA2iS/eHGS9HPNLRuQ==
+X-CSE-MsgGUID: V1EhYQ3ITMKauflKlX3MnA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17884774"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="17884774"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 04:15:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="16005558"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="16363304"
 Received: from unknown (HELO intel.com) ([10.247.118.204])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 04:12:58 -0700
-Date: Tue, 26 Mar 2024 12:12:53 +0100
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 04:15:38 -0700
+Date: Tue, 26 Mar 2024 12:15:32 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nirmoy Das <nirmoy.das@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Andi Shyti <andi.shyti@kernel.org>,
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
  Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: Re: [PATCH] drm/i915/gem: Calculate object page offset for partial
- memory mapping
-Message-ID: <ZgKttR-loIoAZoOE@ashyti-mobl2.lan>
-References: <20240325134033.287913-1-andi.shyti@linux.intel.com>
- <db2627fa-b1da-4a27-8c87-bebe0407d8a7@linux.intel.com>
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH] drm/i915/gt: Reset queue_priority_hint on parking
+Message-ID: <ZgKuVOTdvSvu43mT@ashyti-mobl2.lan>
+References: <20240318135906.716055-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <db2627fa-b1da-4a27-8c87-bebe0407d8a7@linux.intel.com>
+In-Reply-To: <20240318135906.716055-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,39 +73,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nirmoy,
+Hi Janusz and Chris,
 
-...
+> Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/10154
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v5.4+
 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > index a2195e28b625..57a2dda2c3cc 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> > @@ -276,7 +276,7 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
-> >   	/* PTEs are revoked in obj->ops->put_pages() */
-> >   	err = remap_io_sg(area,
-> >   			  area->vm_start, area->vm_end - area->vm_start,
-> > -			  obj->mm.pages->sgl, iomap);
-> > +			  obj->mm.pages->sgl, 0, iomap);
-> 
-> Why don't we need partial mmap for CPU but only for GTT ?
-
-As far as I understood we don't. I have a version with the CPU
-offset as well in trybot[*]
-
-But without support for segmented buffer objects, I don't know
-how much this has any effect.
-
-> Sounds like this also need to be cover by a IGT tests.
-
-Yes, I it does need some igt work, working on it.
-
-> Don't we need "Fixes" tag for this?
-
-Why should we? I'm not fixing anything here, I'm just
-recalculating the mapping not starting from the beginning of the
-scatter page.
+with the tags rearranged a bit, pushed to drm-intel-gt-next.
 
 Andi
-
-[*] https://patchwork.freedesktop.org/patch/584474/?series=131539&rev=2
