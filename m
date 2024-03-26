@@ -2,64 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F89E88D241
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 23:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 833F288D29E
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 00:10:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39EEA10F482;
-	Tue, 26 Mar 2024 22:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BFC510F494;
+	Tue, 26 Mar 2024 23:10:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="knur54c4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CFRgSdgL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFAEE10F47B;
- Tue, 26 Mar 2024 22:56:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id C691FCE19AE;
- Tue, 26 Mar 2024 22:56:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A308FC433C7;
- Tue, 26 Mar 2024 22:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1711493814;
- bh=uMrfzN4xjKjod6GbAc1xRQd4HusxFp38FVyEvv2mIkA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=knur54c4eVgsNUNQfgkHX+FMHtB4w0y37mRCWkmBDyM1xKXZ8MEnDqG3oeYUBuu5o
- ZJSsNnndctin55unNbYnFqDuPY4yxaB9fjSaUFtd6aJvxVkabOL6FjKAOY3kc0ldkD
- B7Cc+0gwSEiGtr8Rpeh8CAVGPnsM6LVJ6JfU+8iihJKDUdPiNL2sGhCNvNQ94Hajhn
- gMoUEyyaIlTyQilt1rew3rAhVOyzX+QKEQ22d8dDg2L8shl2SJQZ61jNbsP+q4KV5l
- YWTODMdkdknK/m/AgVZgJWtg0IvDbXsFrLKonIZleuQzP46MtfjcU2o29F2cHA3JJc
- OaxpvvvnTDRhg==
-Date: Tue, 26 Mar 2024 15:56:50 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Sui Jingfeng <sui.jingfeng@linux.dev>, linux-kbuild@vger.kernel.org,
- llvm@lists.linux.dev
-Subject: Re: [RESEND v3 2/2] drm: Add CONFIG_DRM_WERROR
-Message-ID: <20240326225650.GA2784736@dev-arch.thelio-3990X>
-References: <cover.1709629403.git.jani.nikula@intel.com>
- <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B011910F494
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 23:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711494656; x=1743030656;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lDZhs9fatkSKxU3hcUtsBx32umjsNUfqT65g74LQ6z8=;
+ b=CFRgSdgLc1yd/KAywFKbsFnw9jcJl3gi0NFzwLM3y8FgXnoQuI0CSz+7
+ 63woZXiL/5KOqX6u4n6lGTxiS9971b9vmVaj+eYGWk+O/ntCfvJMi0h3N
+ hd3gKS8LxWwjkdCCeBFuoDKvJhVUgnapIKn5ThqrGxA9kAt36Ts9awofa
+ BfUHgLHFUGPL0YoIOzOGakAPX96nQaczlJi/HIa9b1GCgBr/g9t5QprSK
+ WuwwIHJuLKSv7FfZpdoAFIz9bN4chn6fP6o1ovJaK6Ffc4a/YaHjZ7JmW
+ ykdFiNsyF+saqXv3Zuqk4e7+YQ6pQcWmOrwKl+gcxMzJ1JwK7GlxN6ctQ A==;
+X-CSE-ConnectionGUID: q4dq5bbWS5ilF2pHOl86yQ==
+X-CSE-MsgGUID: nxs3g/KVROixiwGZmDr34g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6702995"
+X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; 
+   d="scan'208";a="6702995"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 16:10:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="16101231"
+Received: from dfantini-mobl.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.249.33.69])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 16:10:48 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, stanislav.lisovskiy@intel.com,
+ ville.syrjala@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v9 0/6] QGV/SAGV related fixes
+Date: Wed, 27 Mar 2024 01:10:15 +0200
+Message-Id: <20240326231021.281780-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,100 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 05, 2024 at 11:07:36AM +0200, Jani Nikula wrote:
-> Add kconfig to enable -Werror subsystem wide. This is useful for
-> development and CI to keep the subsystem warning free, while avoiding
-> issues outside of the subsystem that kernel wide CONFIG_WERROR=y might
-> hit.
-> 
-> v2: Don't depend on COMPILE_TEST
-> 
-> Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com> # v1
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/Kconfig  | 13 +++++++++++++
->  drivers/gpu/drm/Makefile |  3 +++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 6e853acf15da..c08e18108c2a 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -416,3 +416,16 @@ config DRM_LIB_RANDOM
->  config DRM_PRIVACY_SCREEN
->  	bool
->  	default n
-> +
-> +config DRM_WERROR
-> +	bool "Compile the drm subsystem with warnings as errors"
-> +	depends on EXPERT
-> +	default n
-> +	help
-> +	  A kernel build should not cause any compiler warnings, and this
-> +	  enables the '-Werror' flag to enforce that rule in the drm subsystem.
-> +
-> +	  The drm subsystem enables more warnings than the kernel default, so
-> +	  this config option is disabled by default.
-> +
-> +	  If in doubt, say N.
+We have couple of customer issues, related to SAGV/QGV point
+calculation. Those patches contain fixes plus some additional
+debugs for those issues.
 
-While I understand the desire for an easy switch that maintainers and
-developers can use to ensure that their changes are warning free for the
-drm subsystem specifically, I think subsystem specific configuration
-options like this are actively detrimental to developers and continuous
-integration systems that build test the entire kernel. For example, we
-turned off CONFIG_WERROR for our Hexagon builds because of warnings that
-appear with -Wextra that are legitimate but require treewide changes to
-resolve in a manner sufficient for Linus:
+Stanislav Lisovskiy (4):
+  drm/i915/display: Add meaningful traces for QGV point info error
+    handling
+  drm/i915/display: Extract code required to calculate max qgv/psf gv
+    point
+  drm/i915/display: Disable SAGV on bw init, to force QGV point
+    recalculation
+  drm/i915/display: handle systems with duplicate qgv/psf gv points
 
-https://github.com/ClangBuiltLinux/linux/issues/1285
-https://lore.kernel.org/all/CAHk-=wg80je=K7madF4e7WrRNp37e3qh6y10Svhdc7O8SZ_-8g@mail.gmail.com/
-https://lore.kernel.org/all/20230522105049.1467313-1-schnelle@linux.ibm.com/
+Vinod Govindapillai (2):
+  drm/i915/display: extract code to prepare qgv points mask
+  drm/i915/display: force qgv check after the hw state readout
 
-But now, due to CONFIG_DRM_WERROR getting enabled by all{mod,yes}config
-and -Wextra being unconditionally enabled for DRM, those warnings hard
-break the build despite CONFIG_WERROR=n...
+ drivers/gpu/drm/i915/display/intel_bw.c      | 162 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_bw.h      |   6 +
+ drivers/gpu/drm/i915/display/skl_watermark.c |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
+ drivers/gpu/drm/i915/soc/intel_dram.c        |   2 +
+ 5 files changed, 131 insertions(+), 42 deletions(-)
 
-https://storage.tuxsuite.com/public/clangbuiltlinux/continuous-integration2/builds/2eEBDGEqfmMZjGg3ZvDx2af2pde/build.log
+-- 
+2.34.1
 
-Same thing with PowerPC allmodconfig because we see -Wframe-larger-than
-that appears because allmodconfig enables CONFIG_KASAN or CONFIG_KCSAN
-usually:
-
-https://storage.tuxsuite.com/public/clangbuiltlinux/continuous-integration2/builds/2eE2HDsODudQGqkMKAPQnId7pRd/build.log
-
-I don't know what the solution for this conflict is through. I guess it
-is just the nature of the kernel being a federation of independent
-subsystems that want to have their own policies. I suppose we can just
-set CONFIG_DRM_WERROR=n and be done with it but I would like to avoid
-this issue from spreading to other subsystems because it does not scale
-for folks like us who do many builds across many trees.
-
-It would be nice if there was something like CONFIG_WERROR_DIRS or
-something that could take a set of directories that should have -Werror
-enabled so that you could do something like
-
-  CONFIG_WERROR_DIRS="drivers/gpu/drm"
-
-and have -Werror automatically added to all commands within that
-directory like subdir-ccflags-y but it is explicitly opt in on the part
-of the developer/tester, rather than just happening to get enabled due
-to all{mod,yes}config. No idea if that is feasible or not though.
-
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index ea456f057e8a..a73c04d2d7a3 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -30,6 +30,9 @@ subdir-ccflags-y += -Wno-sign-compare
->  endif
->  # --- end copy-paste
->  
-> +# Enable -Werror in CI and development
-> +subdir-ccflags-$(CONFIG_DRM_WERROR) += -Werror
-> +
->  drm-y := \
->  	drm_aperture.o \
->  	drm_atomic.o \
-> -- 
-> 2.39.2
-> 
