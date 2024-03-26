@@ -2,59 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1A488D2A6
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 00:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4317088D2BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 00:16:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2FC510F4A8;
-	Tue, 26 Mar 2024 23:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66DCE10F4C2;
+	Tue, 26 Mar 2024 23:16:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Av8CtCiH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dzs43hVL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 157AB10F4A8
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 23:11:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8BA10F4C0;
+ Tue, 26 Mar 2024 23:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711494669; x=1743030669;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fd5RgPwiKof32Y+wHI2Xb9gbyniHPPp03YcxhRp/Bl8=;
- b=Av8CtCiHQMRJdMGYFmWRBzen+D3+9TzswcLh4InJ4aMh+KvopnrkLvmN
- x0PPRI72EkboifvduHQ6dKUqMyicUgbTT6veyM+TVO5ZFoLniWBn66g37
- HCJ68zEsgGvDnTIAA8Ciiw8UDL+4KTnE46a93edhyOrQKnbKWwl8u1KFv
- 805pQIKq7RpbALzohlkIG3U6E4+78qltklS5zM12HTENUIPsYl2xFrKTf
- CxmNE+aHnsFcGWWyfE9fXOpZc9zgyMuIDNRS4z/CZQROmrjwvL+C/yKf7
- tup2nyTg0pXwaYy3orRPb9anpmytpn7sbBvHR2cDCOexRUxOAJBP/sefz A==;
-X-CSE-ConnectionGUID: N2PEyFxWTw6kNbk9ELqO0A==
-X-CSE-MsgGUID: pnTW6wrnTEqpih/mK/TP1Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6703022"
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; 
-   d="scan'208";a="6703022"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 16:11:08 -0700
+ t=1711494983; x=1743030983;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=xSeQZGWNTgZFAsZBhQPy/UL/WO1JBSkDZmSypsvOpqU=;
+ b=Dzs43hVL2BKium6wkVfg3VO6NizE/efMOBxm9fS6HBtgk421bh/YsHXo
+ lANN09wK9UvYkraQykdh2ogX+fdDF6JjgAgVEEG92Ow/8lCAQ4ZbuSZs/
+ 45/Qy2cfTCcCLxOnWDnsPCLTPzSG6+xJ2riiI5D+fzFgYVxMN/t7flqn8
+ k1jEV73MotjosHfLKSp8zsKDB/O6zqBPiV6DS6YgVDq3d+csx5GNnJefz
+ xFEvbjeHC8la9M9pszmoOYTN4aovVQgS1vvfnjBLOQikOYVTQKIMeCvwc
+ ZwR0Bb9MktoxT8TX02PO+abA31GrcazuyeeMDkV3mIC58+2/Bzjf0RK6G g==;
+X-CSE-ConnectionGUID: ZDvi2QKST/q9QXqNlqxHEg==
+X-CSE-MsgGUID: D7zQmVglRayDT0vgVkiaKg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="17304195"
+X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="17304195"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 16:16:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="16101400"
-Received: from dfantini-mobl.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.249.33.69])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 16:11:06 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, stanislav.lisovskiy@intel.com,
- ville.syrjala@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v9 6/6] drm/i915/display: force qgv check after the hw state
- readout
-Date: Wed, 27 Mar 2024 01:10:21 +0200
-Message-Id: <20240326231021.281780-7-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240326231021.281780-1-vinod.govindapillai@intel.com>
-References: <20240326231021.281780-1-vinod.govindapillai@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="47291647"
+Received: from unknown (HELO intel.com) ([10.247.118.210])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 16:16:16 -0700
+Date: Wed, 27 Mar 2024 00:16:09 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ John Harrison <John.C.Harrison@intel.com>, stable@vger.kernel.org,
+ Andi Shyti <andi.shyti@kernel.org>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH v6 2/3] drm/i915/gt: Do not generate the command streamer
+ for all the CCS
+Message-ID: <ZgNXOfBm5RK4oG9r@ashyti-mobl2.lan>
+References: <20240313201955.95716-1-andi.shyti@linux.intel.com>
+ <20240313201955.95716-3-andi.shyti@linux.intel.com>
+ <20240326160310.GC718896@mdroper-desk1.amr.corp.intel.com>
+ <ZgMXGlfsGSOhbC0b@ashyti-mobl2.lan>
+ <20240326213033.GA1332995@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240326213033.GA1332995@mdroper-desk1.amr.corp.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,68 +76,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The current intel_bw_atomic_check do not check the possbility
-of a sagv configuration change after the hw state readout.
-Hence cannot update the sagv configuration until some other
-relevant changes like data rates, number of planes etc. happen.
-Introduce a flag to force qgv check in such cases.
+Hi Matt,
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 8 ++++++--
- drivers/gpu/drm/i915/display/intel_bw.h | 6 ++++++
- 2 files changed, 12 insertions(+), 2 deletions(-)
+On Tue, Mar 26, 2024 at 02:30:33PM -0700, Matt Roper wrote:
+> On Tue, Mar 26, 2024 at 07:42:34PM +0100, Andi Shyti wrote:
+> > On Tue, Mar 26, 2024 at 09:03:10AM -0700, Matt Roper wrote:
+> > > On Wed, Mar 13, 2024 at 09:19:50PM +0100, Andi Shyti wrote:
+> > > > +			/*
+> > > > +			 * Do not create the command streamer for CCS slices
+> > > > +			 * beyond the first. All the workload submitted to the
+> > > > +			 * first engine will be shared among all the slices.
+> > > > +			 *
+> > > > +			 * Once the user will be allowed to customize the CCS
+> > > > +			 * mode, then this check needs to be removed.
+> > > > +			 */
+> > > > +			if (IS_DG2(i915) &&
+> > > > +			    class == COMPUTE_CLASS &&
+> > > > +			    ccs_instance++)
+> > > > +				continue;
+> > > 
+> > > Wouldn't it be more intuitive to drop the non-lowest CCS engines in
+> > > init_engine_mask() since that's the function that's dedicated to
+> > > building the list of engines we'll use?  Then we don't need to kill the
+> > > assertion farther down either.
+> > 
+> > Because we don't check the result of init_engine_mask() while
+> > creating the engine's structure. We check it only after and
+> > indeed I removed the drm_WARN_ON() check.
+> > 
+> > I think the whole process of creating the engine's structure in
+> > the intel_engines_init_mmio() can be simplified, but this goes
+> > beyong the scope of the series.
+> > 
+> > Or am I missing something?
+> 
+> The important part of init_engine_mask isn't the return value, but
+> rather that it's what sets up gt->info.engine_mask.  The HAS_ENGINE()
+> check that intel_engines_init_mmio() uses is based on the value stored
+> there, so updating that function will also ensure that we skip the
+> engines we don't want in the loop.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index f6690d545d95..ecb9600cb69a 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -755,6 +755,7 @@ void intel_bw_crtc_update(struct intel_bw_state *bw_state,
- 		intel_bw_crtc_data_rate(crtc_state);
- 	bw_state->num_active_planes[crtc->pipe] =
- 		intel_bw_crtc_num_active_planes(crtc_state);
-+	bw_state->force_check_qgv = true;
- 
- 	drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes %u\n",
- 		    pipe_name(crtc->pipe),
-@@ -1341,8 +1342,9 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	new_bw_state = intel_atomic_get_new_bw_state(state);
- 
- 	if (new_bw_state &&
--	    intel_can_enable_sagv(i915, old_bw_state) !=
--	    intel_can_enable_sagv(i915, new_bw_state))
-+	    (intel_can_enable_sagv(i915, old_bw_state) !=
-+	     intel_can_enable_sagv(i915, new_bw_state) ||
-+	     new_bw_state->force_check_qgv))
- 		changed = true;
- 
- 	/*
-@@ -1356,6 +1358,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
-+	new_bw_state->force_check_qgv = false;
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index fa1e924ec961..161813cca473 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -47,6 +47,12 @@ struct intel_bw_state {
- 	 */
- 	u16 qgv_points_mask;
- 
-+	/*
-+	 * Flag to force the QGV comparison in atomic check right after the
-+	 * hw state readout
-+	 */
-+	bool force_check_qgv;
-+
- 	int min_cdclk[I915_MAX_PIPES];
- 	unsigned int data_rate[I915_MAX_PIPES];
- 	u8 num_active_planes[I915_MAX_PIPES];
--- 
-2.34.1
+Yes, can do like this, as well. After all this is done I'm going
+to do some cleanup here, as well.
 
+Thanks,
+Andi
