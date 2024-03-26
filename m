@@ -2,152 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5247288B950
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 05:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FA588B96D
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 05:27:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50C8910E167;
-	Tue, 26 Mar 2024 04:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB8610EA10;
+	Tue, 26 Mar 2024 04:27:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ejOy+Ev+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RbCamvdi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93E7310E167
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 04:12:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEA810EA10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 04:27:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711426346; x=1742962346;
+ t=1711427227; x=1742963227;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=Kx0zCp6GjCYkgllBDlbmDuW2u4cgiQ78wyiUB2WIv+A=;
- b=ejOy+Ev+qwOm8NrarM1uHmkrQlgiG2g+NKC02V7X/5RYA6ZmRcJkCULU
- hM/eZJKpSNOeeQHMskgoq+TPUvVhaeHVqaHc18QScCTM4bDiJyLj4VumN
- HRUNT5gnrhLml+7nUUQUoOpY830gDg+faQFaHugzPzzEUcgZWd27494+D
- D7W1kS/eGHMndAZI8kjwTtaeQqkO9mJa6c61kFhrXI5Cf7sDmEiMzCYIj
- WGpLR9kPBQ5QOd8GBPnFcGm23AcBo0KJ4A/pXkAeQSBCGk8u0pU9WAj3f
- OTHE+JyVbflWhl3KdCfGcgfXL0PGTdzbxrczwSczupDsW8SiBca74lx6B w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="7058460"
+ bh=yl886tTE9QINyCyGitcpkkmapqJoY1BGh1IH8B+gJfU=;
+ b=RbCamvdiDaszSZOAmsbkfOBuzp6XB3OC79G0aZhyTcFaB+U1x4UE/0JC
+ YyDzp46y7WCNm4PMfxrmtvXhXqrI5Gr5XAqbo2Kg+Ml6+uZgbG78bSK8M
+ WPh+bXeXRF0dnkikgEe5BXwhJK9xm9BNhBHywKnAvePeXORPhE8O5oHF0
+ AAQ4qaloJeuMOIQjsVf5RJSESOOsvsAsVag3Ma1Hs/zlImSstZHr8iRIH
+ XF3pZhLp3AJLq9Jn7VrhRhCkJWnwdt8qsvy9E+e3Wnupsdrer4LCE1xTx
+ l7QgBXNHsDi8x2ftm2Ahfmvz6rNBQpt9hD1jc83TJ3tuAUL3wr+PEE3Gm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6324237"
 X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; 
-   d="scan'208";a="7058460"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2024 21:12:25 -0700
+   d="scan'208";a="6324237"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 21:27:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="38961222"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Mar 2024 21:12:25 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="15706286"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Mar 2024 21:27:05 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 25 Mar 2024 21:12:24 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 25 Mar 2024 21:27:05 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 25 Mar 2024 21:12:23 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 25 Mar 2024 21:12:23 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 25 Mar 2024 21:27:05 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 25 Mar 2024 21:12:23 -0700
+ 15.1.2507.35; Mon, 25 Mar 2024 21:27:05 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XZmBJEQ9Ip4dx6Z4Et9SDbtEGFwKi/IiEfnY0cTYbG9de+6+s1I4EJPxIozv1STDIziQ7BXj5G05RFe03W5zr1Jp0yqNB/JSZZ+JFMK/ZXDma8ra68YOs8Ss/fl1Mhs23yrOSYU+/BKg3VXIH5xWgsCaSBo8+RioA3vYo603co7b9b7yvQT65rmmFAQbhcTgRG2XLDvmTr1uWDvIKN5aiHOwrY8OAmLlxTTNf8UfYQCzuiVVh5V1ygDf5QGO8rbsNrfjjHIKHsif23jez5h+lxrJtAtrtwa9/eyPvtRXRqhyF2hMRkk12u2sDIjevMRyg4vQBxC1tdwiPeBP/QDWyQ==
+ b=AYcY52QH5SJAgVCi7dFTenK5ZSyyeImxS/5y0eWfh3A+ouPmOV8jjXRSgUqzGgQitLxeACbpxwrJ03bQuVkbPh0YrtewTxd0aBTx01hZaCQELaSeKsKE44KnKA1qFNqO+5pjp3zm5x3G/liYel04s5mpIKra3BQUW2Sdu6TNf8/cdaqYTdfOQ9FMqklY378zmH1DNsbzY0Hnxz/hfdKaXoblVcxHuSCgBuSaleJdK8KzteUZf/ySbegglfbpl3dQrfmpiUVDDmFBBtNkabxZR2KC1BWVcxZ44kWMTuidXLRoxwYiuXeHGFtr6i1BLWHsT/afDvnrMxmTX0s2W2s+dA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=12lF0amX1AvGu1ayQC9xZNtZMJ4AxpxMTecRmHAxqlA=;
- b=WZ3c2jq9Gs0ilfx6KPggBzC3OFgSki7ilfVJsTweW9uIUDQ0pbspdp5QeyunfNvk1HL6a/oWvJwLkcFnI4VZ32/q9OeTLAM2A3igjqF/spD+RoR2i1M+mETkD+yy48JHRz25JWc86VBjFP+S2N0+nGWASxuR01oZ5uC6oHY98k5YqdAi4wWS6GERawHWuxfH0XMIj9G01PjHbO8PcQqXHd9CfiqK4KGAXmoDLZrsqbn4HQfjT5yxN+2IwP3eCOyGA/YzGl+mr1Ro0ifGQUno0qcXZIOr1z9q15YkdKU6sClPDEWRHN/Q7I7bnIOFTHZ/aRxBtBHwaHM4VCbXwKqylw==
+ bh=BJtQH7L+SyMQb9diL3+kx9tNQEczknjSrFjAEfJY4vs=;
+ b=KgbQU/tdkVJ9JwmIe4a8WDz3L1Z05NsrNlBpm61tjzwc9tM9z1+RFz3/wj5xMNjftrqhdXVEzguK6k+gIzwG4L5fWeXxnOqGqSiKxDT21zpS4IKVrVRrZB6jWIQiJ4iNJrISgQQYGUMr22Bj4SJsEP61Dr5aF9Q8lOSM0Fuu6mdJ8Zjh/Q75aOxKn42Lc0u4BRLZFXGpuQHC1rPXRfvMzKTE/nQr4xeWijlxyL5alYyMl0ELSuZB1A1BCnCmUf4qSAOAbJYieIzxgOBU9yDJL5p9NiygEQzIszAnb8EuW5ETC3XOOlSmEhFDRMXeSHQbx31jHSwovY40coxe6uaAMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by BL1PR11MB5954.namprd11.prod.outlook.com (2603:10b6:208:385::16) with
+ by DS0PR11MB7802.namprd11.prod.outlook.com (2603:10b6:8:de::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Tue, 26 Mar
- 2024 04:12:21 +0000
+ 2024 04:26:59 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::31a1:93ed:8501:f2c9]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::31a1:93ed:8501:f2c9%3]) with mapi id 15.20.7409.031; Tue, 26 Mar 2024
- 04:12:21 +0000
-Message-ID: <0661d2c9-844b-4056-8bf3-7ad24fb3582b@intel.com>
-Date: Tue, 26 Mar 2024 09:42:14 +0530
+ 04:26:59 +0000
+Message-ID: <92326ddd-a55e-4bc7-a869-3a09bb32c889@intel.com>
+Date: Tue, 26 Mar 2024 09:56:52 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/i915/lspcon: Separate function to set expected
- mode
+Subject: Re: [PATCH 2/2] drm/i915/lspcon: Separate lspcon probe and lspcon init
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  <intel-gfx@lists.freedesktop.org>
 References: <20240322121832.4170061-1-ankit.k.nautiyal@intel.com>
- <20240322121832.4170061-2-ankit.k.nautiyal@intel.com>
- <87bk72ibmq.fsf@intel.com>
+ <20240322121832.4170061-3-ankit.k.nautiyal@intel.com>
+ <878r26ibkw.fsf@intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <87bk72ibmq.fsf@intel.com>
+In-Reply-To: <878r26ibkw.fsf@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0186.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:be::7) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: BMXP287CA0024.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:b00:2c::30) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|BL1PR11MB5954:EE_
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS0PR11MB7802:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6Aqvzyh0kTWVl+fxZTCoNrJZz81V/p2K+qw2OiME19cFNdeAmOEqalfGkMTcSxQjCNNSK3dz1UeKuO/rOViEjFzqsJskEluRxpKsQ4KhwQCrZKtdhkCgeGJi40fpt3KxTK7KG3zHoEK4JC6v1mq07e5kP+kJjVlBPD/ub5faVj+19FbHNJ5OQM+fLgIL81i5xXxLyC5Y4y0cKIkTNJ9gEqu0/iqCF0VqRQQIdDdGPvxFM5Iij6X5czo4AUJifIzi5IfsnUfHQhdXTu0sE22FrTl8n5blTlABT6uRMr5Otk1PKp5sbwM18KtkSaqLapV8HmGrLBRpVg8zzjMHeWP2A6YrGO6aFwWTwDRmTpzZTRd+QyTd98wgDzpMZs59Jkwv+8YiCZAMHkDf0/GxpOPSCsl7zjThQW4/wspQgDBv+v3teKJ7T5E3SdhQU603ZcDC/wbfwLF2uwFIoMHPm81SerJ4WE6sXsuISX5Gb9dvPxIb1MZfdGZcHz70u2DGNRC4Ct6/yu9h27eNqNlbn2KTD0fQuF0bC0+4883kOd158frfHFHKA+MaC56eVaSzCJ94hesjZE3rNqfLiR+mgezGCM7qb/v5oiMIZg9tYmuBswN286Yy8BCDRb7+6alanhblRkNQE8CkWT5IFqGUKIvRWT4K2/vyZKLYHeclC3Eu0Dg=
+X-Microsoft-Antispam-Message-Info: tj6mBZbijwi4Lptnx1UXc3qmQQVzOycyHg8qK/NOBR/M7IhAcACKfnclSBEq0mQ66wj+X2SktveYlsCpI7bYAck9t4mZbsvCy/KFGQvS4IpsgvIMhdFFG0QURngv6Dp7QLaVsfLgh1aIFU/SxsapRSj9Qi+tT3AC77qbS4/Mb6em2tzNsgJ+bvF6eW3qWr6YSP9ldDUzfj++2BVjm/BFjqT1xBerHAWZTj4bvpgaKUiPJX3HqybV4Oe8v2VrKI+Vz4gq8gMRqHiWbYWLP0b7bLLsuvfOMsRJwSLuhtD+lGdHHCGQCE4/bI08AginLpcRniuNMaVplle4ZFeydGnbDgUnWd3MvRJVqsUdwQtHgQJl1E4rGrYInM1P/ymEj3/a8ts+0RwNPw9LO+v8W1ZLjP8Y0Ny9Bx3iXinTuVenQK0t5ty8dUH959rEm51WsNbw0VpMKvFitikZ5abwzTlBYtEpR/Xzl62EqE0lYNjmxqiq3BFIINdwAoPyciWu8CpO46a/z2uWf+um8bvBLQqx2YH587ADyZ5soYX5eHvRqQGtjkkXhPGCEqnVG+EKKm/9MXogAoSxxdCGk4qRVt7cKrKK5h5+SC1u4s0gpdQrZkRBxPHiYejBrSTQ2o2UxeCulU/gh96eUZAnvMJ//w9BBN1fM8EbvW0eBcz+sl/QeF4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1102; 
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aGUrQ2E3Nlh3YmVpQnFsa0ZKTTJrS2NLbDZWOTg1cFQ1MWRPdnVBRGQveFBC?=
- =?utf-8?B?b2FFbmZmQitsbk5EeGFRT1U0c2NwNzhxQXBNRzNjSmtQY3IvYUE0WmxpV0NR?=
- =?utf-8?B?eG5wZ1h4YTB1SElPZ1lLcWE3bVlsRXkrb2drcTd3cys4Z1FaSGNTWHV1bmRa?=
- =?utf-8?B?eHZsOVdUYjRtbFVqWlpqaU5oTnIzNS9LN3U2bTMrQlNCNjlkR1VRak1pbjVJ?=
- =?utf-8?B?cnFJenhjZ0I1eVQwamFoNzlicDVQamZoSUpZQVcrQ1V4emp1ZUxUYXdlcFow?=
- =?utf-8?B?VE1CMG5KNWxWSlU0VktCSlVkYVNqVmxEMGdQa3NmYVA4WU51cnBnVHNpVE96?=
- =?utf-8?B?RlgwN1FCVFZDZDRlRGlHUHhVQmJWK3VJZTRmRFhQeDh3MEN0em9YR0ZiUVJ6?=
- =?utf-8?B?TXppQXJHQ2hBNG82cEFpdmtqTkZoZWtQek4xQlRINUlpV0MvWDlKRUM1RG43?=
- =?utf-8?B?bFYrRENXTXFJT2Q4TllxNG1EMWdiQkNLZWpGSkwvRG5QVG9QdWxYaW9EWUdP?=
- =?utf-8?B?cGgyZGQ4aGplQkI2TzBGUXhKazg5Mk5vaEhTOWlXOW9IVE5OKzIyQ1lWVHow?=
- =?utf-8?B?aUs5ME00dW1XRXB5SFpRYXNvSXJCdUR4dU9yanJXT0FmUWYraFUvQ21wcHdq?=
- =?utf-8?B?a3dLbVBKUkU1dXdTME1Md0ZMWmFPMzlCUGxqamZzUmVFQmdDWnowM0VmM1Uv?=
- =?utf-8?B?QVRSRVByaTZudlFPTVV6VWRzT3hsemlnVnl2L2dTQm84SWRuenk4aERGeDEx?=
- =?utf-8?B?RkVQeU1Yb2JFNGQ3M1prWHp0QUNTKzBIYnMxWFd3dUtPU2JpMUNqNVZPS29X?=
- =?utf-8?B?MnQ0a0VwUk9vZG5hK1llYXo1d1huZ0oxSUM0TThZL0ZRR2dtdWVXUnR0Rk4w?=
- =?utf-8?B?aWhnbFNOQnVHOERLNWhJNjBCQXZyY0REcURVRnJJODVTZVFVYnF2OVdmUysz?=
- =?utf-8?B?WVJ5UHFtTHlyK3BnOVNDZmh0WHEyeldBckV2UWpYK3RxRk9tZkhGWVh5OFkr?=
- =?utf-8?B?WjU2UER5KzhnUWt4c3VnUGxZei9CMkc3d2hlNk9QcFVPMm5mY3RBcGR3V1Bn?=
- =?utf-8?B?bEdpQmU0UTFwUU05ME1oSDZ2QnhzMW5ZTmRxSUEzYmttSWxSbHIxWlhYSzhr?=
- =?utf-8?B?UnB1UCtJMnpFa1VoUFhUL0hWZmdXWExBaHJxdnpvYys1SEJ0YUFPT1MzZ0w3?=
- =?utf-8?B?ZW95c0VKdHhqSENFM0E5WkYxTmVRVHVrSFY3bXE0bjRoZ2UvTjEwTlhrSW1o?=
- =?utf-8?B?aHcvd0hhZVJSb1VVZUh3QkVIbzFUaURtc3ZkSFZXOHNmVGc5NC9vQWpnVW9Y?=
- =?utf-8?B?MVhiTTBlUmU4M05zR2NKT0drMFM1alZDd1RYTEEvdC9NTHhhc1NadmxDbTdz?=
- =?utf-8?B?VGdPZk9hdHl6QWk4R0R1MkRpSWZFdkt5VDU1VGRDb2ZkU3p1MlBqWStuc3RL?=
- =?utf-8?B?UUNMSmhoeUhqZWVpUmZ6SzRoUnplWDRaUk1oMXNsRXpiaENDTGZHR2h3QVBL?=
- =?utf-8?B?ZkkrZ2NXOTBwZ1Vob2J4bWdQS1dLWnFzZkp3TWlHL0tGd0UxMGZwWmwwSXlu?=
- =?utf-8?B?czBndW5BbncrVlo1RlhteEdZWkgydmFSK1l2Rk0vMUdFcXpVOUhvQmw5MUVK?=
- =?utf-8?B?b0Y0R09JTjBPa25ER01yZDRjQ2p4M1NHSGgxWjRXaTFSalRvbXZsMkVsWi9i?=
- =?utf-8?B?YnlSUHdGZkRPbENTL0lpTmJoYTBHQ2R2dys5NDZ2bVRkbFVVekRVTjMvbHZG?=
- =?utf-8?B?eUg0UU9ZbTFydWFqajRXQW1hZDZMRFhkZ3NMK2NHNDMrYnhwVjJDRTQxcm8w?=
- =?utf-8?B?bVp5TXdZWmZmeE9lNVhneUJhYS9tRjJtSkJLOXRuTTlUVS81TUdXeTN3cjZq?=
- =?utf-8?B?enpHT2dkaHI4Ym5PVUUyWFduVnBqZzFacHgwR1plUGtYMmxyZytod0p2R2R5?=
- =?utf-8?B?N0pxMDVkNW9KblM2RDA2UkZEMWxoaFhmWGZseE5FREV5ZDEvVWlKMHkwNXBr?=
- =?utf-8?B?Q0Q5QjdLNVF3NWlZbUQyVG1McUZxd3dMWDdrWHUxK3ZLYUlhYkNPTVE2TDBn?=
- =?utf-8?B?SFdaL25qazVmVDJpT0wwUFRySWEyQ3VMamxOOUJzM3BrRmdEVDBHOGNZem5s?=
- =?utf-8?B?OFM0b00xM3JISTYwbU0wWUlidGpIQ01iTWZIcytnWFJoRjFLejF6NG9hRnU4?=
- =?utf-8?B?Tnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5ffd2e4-edb8-4283-cc4f-08dc4d4aeef2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dzV5U0JVeHJRNHFEWE04dWNjTnV0WDZKWVV1azBDcjdWWml3QktON0FyRDJN?=
+ =?utf-8?B?SFJMaW0rMzkwUXBHMm0rdERXM0wydHRTMVlzTWZzcWFCR3JvZnBiNWtDYlN2?=
+ =?utf-8?B?SWovY280MHJtWlVvcUNydUVxRVRiS1dhL0VSbkhWZWNVcjZtZzJjdnZ2TmZk?=
+ =?utf-8?B?MStNa3k3RFAwalYyYmlhTG9GOWNFbHdvZnI3ajlQVU0reVFZb0ZIYzhrNGpB?=
+ =?utf-8?B?YzB3RkdXKzZoTWpmbzM1SzhsR1NFRTNyNytxcmpkRWkvOHltK1R3MEZzdUhG?=
+ =?utf-8?B?aEg0dHNtZlFrYWRtRDkwN1BWTGNjNWx2UVI5RnBZNGxtQ2hka2tXTndWemZ4?=
+ =?utf-8?B?QjB0OGVQUUdZRG04WlhUZ0YrQW1rM2NLMnliVElaYnNLMlljV1VzaGRrbHky?=
+ =?utf-8?B?U3BxRUxCR3dhSm04UVRxMVZaTmRKdUZtU2lzR2NSdHZGQTROZjY1eGUrSHJZ?=
+ =?utf-8?B?Z2ZWZ1p4UEMwYlAwU3FSWXZLcG4ybUgvbzltdTJ2WHJ4azhvRGhXU1k0bmNa?=
+ =?utf-8?B?cmZxOFltQkVpZkxxRmN6OUc0S0RLcmZmZlBNcDdJTm1pR1ppajIrYlY1RUV6?=
+ =?utf-8?B?bWxYaGROS01LV3JWRHNYWUtGVUVpc3RPY2FEcUViN0xJalc1Y25YME82M0E3?=
+ =?utf-8?B?UGlGUHdkSGdBczBXVHZDUkY4VVFrK292WmtENUpMTUlhQ2FTNWJZeHdrK3Bn?=
+ =?utf-8?B?eFc1bFZOenR1YW1iR0pKQ29HMDhUNUhlenNBc0lJc2tCNFFRWHErNHJNUWJB?=
+ =?utf-8?B?YXp4WGI1Z2JMZUNEV3FQY0JydHNyUkh3elk4bnZvMlVFOU1FRm5nQ2Jza0Nm?=
+ =?utf-8?B?YmN1c2d0ZDVVU0lySUEwRlRXeEVPc0R0dHo2ZFF2QkNmWFRjU0thMmNyNFlo?=
+ =?utf-8?B?UlFpVFh4RFMzZ3lFNjF0R2FFZXI2bFF0ZHZhVzBqcmswYlJ4SHVHMUY3Z2Nx?=
+ =?utf-8?B?VmZ1OU93QmdGRnNSdmRWTmhsMHFITjI2ZG1ZR1BxeVRxdExONjk1cVlveU12?=
+ =?utf-8?B?YVA5bnlqdFJHMGRBbDd3eHNGNlpFaWYvd2llcDhaT0tuUy82UUZJYndPMlo1?=
+ =?utf-8?B?UnNyNmpDWHdSR0Q3RlJ3MkZhYTNsQ2t3NW5qOGl2OWhhZ2lKM2NETEVMc0E3?=
+ =?utf-8?B?NC9MeG5RY2h2bVpRdlptSVNmcEdrTTFxUEJQeEhVTDBzb2YvV0JjUzNESDZR?=
+ =?utf-8?B?dTBOaDlkL00xT3QyUWIvU01XY3pzc3Y4SCtpVVZKZFNYT21NcGxWNHpNWjgv?=
+ =?utf-8?B?elpSN0huSDN6d1J3YUg5enc1aWphUHF1MlJ4RzFTblBVRjJhVWlwK3RJaG52?=
+ =?utf-8?B?SVRPYnVnSzJqRkZkR3pteVlWMnZkZkZ0RGU2YmxMY3NHR3AxcEJDSlJNTnBt?=
+ =?utf-8?B?TXVOUVk5RlhlcW5Yb3hXdWs0Wm9IdjN0ckhMOVhiS1licGhlSnJPaGVHNkZu?=
+ =?utf-8?B?a2wybHBlbmYvcXd4NjRjeVhHWUE5amptYm0vMHgwY2ZqVGtZalk1eHJGNGJi?=
+ =?utf-8?B?MWYvZG1oa05hNjNUaDhXVnZoemNhOUJoRnRFRFpkbmd2YkdPYmlMK2UwUHRH?=
+ =?utf-8?B?cXZ1WmZPWmNYTFU1TnBhUlhWUm9IRzRqOXlGemU2UkdPT1ZSZ09ib2lTZ2k4?=
+ =?utf-8?B?TnF0N0lqdVZORGp6UmMyNyt1ZXlSOEIrTzlYZ3h4OWhvMVpJaDFnTnR6b3cz?=
+ =?utf-8?B?T1FoeEJHNEhxb0VpZUxOQTlSUTVzbndnclNNcUtGMkozR1liWkxzejdBNVpi?=
+ =?utf-8?B?Z2ViTlJRbGp0aHQ4YkUwa1dHZWxRcWl1dDllN0JwM3hGYm1EU0x5WWNVZk1M?=
+ =?utf-8?B?U0xTamdhN29Ec1BadnR1TEh5WUVZOFAvN2FhM3grTmJGMWVISC9UTWJKN1RJ?=
+ =?utf-8?B?SmpCQnFUdWhNcDFuVkdpU1dwZStsY3ZWMnhUamttRzJKTFBuKzNMS29ZUUdn?=
+ =?utf-8?B?WVFlaWZieGtkMXE5ZmYweFdGNHVNQnNhVU9VUHFTRm9GT2dZMEpzZFR2ZU9t?=
+ =?utf-8?B?Z0UzZmlsVmJiTzE5dXFKVUMzRUxyY0FlNGR4STlDYVdCditWVVpDRm5EdlRp?=
+ =?utf-8?B?ZFY0RHZZLy9jcjIxMGsyUml2cGl4SElXMnU1NERMZzFHejlYK3NjY0tBaWdL?=
+ =?utf-8?B?OUR5cGJ5bDY5cDFnTWxjdWdscEpxYUlSWTNoM3c2UGN0RVEvVlI1Y3ZZc3hn?=
+ =?utf-8?B?RXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f12de4d-1221-485c-044a-08dc4d4cf9f7
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 04:12:21.5112 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 04:26:58.9727 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1wmoLEP9T2qpcokXJAz59UFhkyM8XnHxpWMVXzc4OgZMq79M90OJ+/LV/vuBN2dE4BR7spoalapL3NEgRQ2+W6JMCNh16VuuDkKi1b1Tv90=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5954
+X-MS-Exchange-CrossTenant-UserPrincipalName: LF66db87ELl2rVA95cixD/b28lRhwkASB37IQkaEKHsw/nZY/rYwDj4gGWQjq8JBpQqT7UvqWszBWI+ChSbErjk7LNqSUKUUgYjoPYNKuds=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7802
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,117 +160,140 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 3/25/2024 8:47 PM, Jani Nikula wrote:
+On 3/25/2024 8:48 PM, Jani Nikula wrote:
 > On Fri, 22 Mar 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->> LSPCON can be configured to LS or PCON mode.
->> Separate the function to set the expected mode from the lspcon probe
->> function during lspcon init.
+>> Currently we probe for lspcon, inside lspcon init. Which does 2 things:
+>> probe the lspcon and set the expected LS/PCON mode.
+>>
+>> If there is no lspcon connected, the probe expectedly fails and
+>> results in error message. This inturn gets propogated to
+>> lspcon init and we get again error message for lspcon init
+>> failure.
+>>
+>> Separate the probe function and avoid displaying error if probe fails.
+>> If probe succeeds, only then start lspcon init and set the expected
+>> LS/PCON mode as first step.
+>>
+>> While at it move the drm_err message in lspcon init, instead of the
+>> caller.
 >>
 >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_lspcon.c | 47 ++++++++++++++-------
->>   1 file changed, 31 insertions(+), 16 deletions(-)
+>>   drivers/gpu/drm/i915/display/intel_dp.c     |  3 +++
+>>   drivers/gpu/drm/i915/display/intel_lspcon.c | 27 +++++++++++----------
+>>   drivers/gpu/drm/i915/display/intel_lspcon.h |  1 +
+>>   3 files changed, 18 insertions(+), 13 deletions(-)
 >>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 94fa34f77cf0..ea8d3e70127e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -5882,6 +5882,9 @@ intel_dp_connector_register(struct drm_connector *connector)
+>>   	 * ToDo: Clean this up to handle lspcon init and resume more
+>>   	 * efficiently and streamlined.
+>>   	 */
+>> +	if (!lspcon_probe(lspcon))
+>> +		return ret;
+>> +
+>>   	if (lspcon_init(dig_port)) {
+>>   		lspcon_detect_hdr_capability(lspcon);
+>>   		if (lspcon->hdr_supported)
 >> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
->> index 1d048fa98561..62159d3ead56 100644
+>> index 62159d3ead56..570fde848d00 100644
 >> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
->> @@ -240,18 +240,40 @@ static bool lspcon_wake_native_aux_ch(struct intel_lspcon *lspcon)
+>> @@ -266,7 +266,7 @@ static bool lspcon_set_expected_mode(struct intel_lspcon *lspcon)
 >>   	return true;
 >>   }
 >>   
 >> -static bool lspcon_probe(struct intel_lspcon *lspcon)
->> +static bool lspcon_set_expected_mode(struct intel_lspcon *lspcon)
+>> +bool lspcon_probe(struct intel_lspcon *lspcon)
 >>   {
->> -	int retry;
->> -	enum drm_dp_dual_mode_type adaptor_type;
->>   	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
->>   	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> -	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
->>   	enum drm_lspcon_mode expected_mode;
+>>   	int retry;
+>>   	enum drm_dp_dual_mode_type adaptor_type;
+>> @@ -676,30 +676,31 @@ bool lspcon_init(struct intel_digital_port *dig_port)
+>>   	lspcon->active = false;
+>>   	lspcon->mode = DRM_LSPCON_MODE_INVALID;
 >>   
->>   	expected_mode = lspcon_wake_native_aux_ch(lspcon) ?
->>   			DRM_LSPCON_MODE_PCON : DRM_LSPCON_MODE_LS;
-> You always need to consider the functional changes when aiming to make
-> non-functional refactoring. This postpones lspcon_wake_native_aux_ch()
-> until after the probe. But the name has "wake" in it, and you're no
-> longer waking up as the first thing. Smells fishy.
->
-> Git blame leads to f2b667b658f9 ("drm/i915/lspcon: Ensure AUX CH is
-> awake while in DP Sleep state"). You should read the commit message.
+>> -	if (!lspcon_probe(lspcon)) {
+>> -		drm_err(&i915->drm, "Failed to probe lspcon\n");
+>> -		return false;
+>> -	}
+>> -
+>>   	if (!lspcon_set_expected_mode(lspcon)) {
+>>   		drm_err(&i915->drm, "LSPCON Set expected Mode failed\n");
+>> -		return false;
+>> +		goto lspcon_init_failed;
+>>   	}
+>>   
+>>   	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0) {
+>>   		drm_err(&i915->drm, "LSPCON DPCD read failed\n");
+>> -		return false;
+>> +		goto lspcon_init_failed;
+>>   	}
+>>   
+>>   	if (!lspcon_detect_vendor(lspcon)) {
+>>   		drm_err(&i915->drm, "LSPCON vendor detection failed\n");
+>> -		return false;
+>> +		goto lspcon_init_failed;
+>>   	}
+>>   
+>>   	connector->ycbcr_420_allowed = true;
+>>   	lspcon->active = true;
+>>   	drm_dbg_kms(&i915->drm, "Success: LSPCON init\n");
+>>   	return true;
+>> +
+>> +lspcon_init_failed:
+>> +	drm_err(&i915->drm, "LSPCON init failed on port %c\n",
+>> +		port_name(dig_port->base.port));
+> I guess the idea is to reduce dmesg errors, but in this function the
+> error messages are multiplied.
 
-You are right I indeed missed this part. The lspcon_wake_native_aux_ch 
-was there for a reason, which I completely overlooked.
+Earlier we used to get the drm_error for init failure, even if the 
+LSPCON was not detected, which is printed as a debug print.
 
-Thanks for pointing this out. Will take care of this in next version.
+Now we'll get the dmesg errors only if we detect lspcon and lspcon init 
+indeed fails.
 
-Thanks & Regards,
+Regards,
 
 Ankit
+
 
 >
 > BR,
 > Jani.
 >
->
->>   
->> +	lspcon->mode = lspcon_wait_mode(lspcon, expected_mode);
 >> +
->> +	/*
->> +	 * In the SW state machine, lets Put LSPCON in PCON mode only.
->> +	 * In this way, it will work with both HDMI 1.4 sinks as well as HDMI
->> +	 * 2.0 sinks.
->> +	 */
->> +	if (lspcon->mode != DRM_LSPCON_MODE_PCON) {
->> +		if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON) < 0) {
->> +			drm_err(&i915->drm, "LSPCON mode change to PCON failed\n");
->> +			return false;
->> +		}
->> +	}
->> +
->> +	return true;
->> +}
->> +
->> +static bool lspcon_probe(struct intel_lspcon *lspcon)
->> +{
->> +	int retry;
->> +	enum drm_dp_dual_mode_type adaptor_type;
->> +	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
->> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> +	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
->> +
->>   	/* Lets probe the adaptor and check its type */
->>   	for (retry = 0; retry < 6; retry++) {
->>   		if (retry)
->> @@ -270,19 +292,7 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
->>   
->>   	/* Yay ... got a LSPCON device */
->>   	drm_dbg_kms(&i915->drm, "LSPCON detected\n");
->> -	lspcon->mode = lspcon_wait_mode(lspcon, expected_mode);
->>   
->> -	/*
->> -	 * In the SW state machine, lets Put LSPCON in PCON mode only.
->> -	 * In this way, it will work with both HDMI 1.4 sinks as well as HDMI
->> -	 * 2.0 sinks.
->> -	 */
->> -	if (lspcon->mode != DRM_LSPCON_MODE_PCON) {
->> -		if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON) < 0) {
->> -			drm_err(&i915->drm, "LSPCON mode change to PCON failed\n");
->> -			return false;
->> -		}
->> -	}
->>   	return true;
+>> +	return false;
 >>   }
 >>   
->> @@ -671,6 +681,11 @@ bool lspcon_init(struct intel_digital_port *dig_port)
->>   		return false;
+>>   u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
+>> @@ -721,11 +722,11 @@ void lspcon_resume(struct intel_digital_port *dig_port)
+>>   		return;
+>>   
+>>   	if (!lspcon->active) {
+>> -		if (!lspcon_init(dig_port)) {
+>> -			drm_err(&i915->drm, "LSPCON init failed on port %c\n",
+>> -				port_name(dig_port->base.port));
+>> +		if (!lspcon_probe(lspcon))
+>> +			return;
+>> +
+>> +		if (!lspcon_init(dig_port))
+>>   			return;
+>> -		}
 >>   	}
 >>   
->> +	if (!lspcon_set_expected_mode(lspcon)) {
->> +		drm_err(&i915->drm, "LSPCON Set expected Mode failed\n");
->> +		return false;
->> +	}
->> +
->>   	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0) {
->>   		drm_err(&i915->drm, "LSPCON DPCD read failed\n");
->>   		return false;
+>>   	if (lspcon_wake_native_aux_ch(lspcon)) {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
+>> index e19e10492b05..b156cc6b3a23 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
+>> @@ -16,6 +16,7 @@ struct intel_encoder;
+>>   struct intel_lspcon;
+>>   
+>>   bool lspcon_init(struct intel_digital_port *dig_port);
+>> +bool lspcon_probe(struct intel_lspcon *lspcon);
+>>   void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon);
+>>   void lspcon_resume(struct intel_digital_port *dig_port);
+>>   void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
