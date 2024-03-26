@@ -2,48 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B93488B9B1
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 06:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1B588B9B9
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 06:17:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D302910EC90;
-	Tue, 26 Mar 2024 05:12:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86B2B10ECA0;
+	Tue, 26 Mar 2024 05:17:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="WIZW2SzY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mJa4e7mW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 209D410EC8E;
- Tue, 26 Mar 2024 05:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1711429936;
- bh=lny3jrbC6XgEZG/JZJCH6Kp32eh40iJEAplAlnsOcwI=;
- h=Date:From:To:Cc:Subject:From;
- b=WIZW2SzYZqzbWZv7fEcxPH8qWJXx7mc/C8sWnGKA13Jvjl7QqoQN2Au8riyfKpDh6
- oICxoP0VJpHKPlCt2y/u7ky5i50VLsBfqpTEvIcpfMWw8NaX3ScpSqeg1++sAd+7cv
- YYKLKe0QhOIx1TNc/n+DdTOvzsFfoZ8ReLxE6IICRVVeLmzitmRxKcUUduKfVd5vjO
- SZa79K4UUFULrJpCM0UQU23+1DmL/DUpHlTjtRu8Ril76mMp8A4NUp5eJmMg+/Kb8A
- HLHiSHn5lj78YNxzr7qT6O0dehPBsKZALeaHju/kI+kz+6c2XI3nC2/kjWlwsMT9A6
- yCfnu8PrFSU2w==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4V3dG828hKz4wnr;
- Tue, 26 Mar 2024 16:12:16 +1100 (AEDT)
-Date: Tue, 26 Mar 2024 16:12:15 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>, Steven Price
- <steven.price@arm.com>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build warnings after merge of the drm-misc tree
-Message-ID: <20240326161215.559b6366@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2A210ECA0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 05:17:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711430270; x=1742966270;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JKC98BRl3dw998x9hCTsOj0E3Sf+8jzw70lNSYU+bGI=;
+ b=mJa4e7mWE17jB2J9TEMh735y72oi165HgcOEX8ZVWWS62J8adbo7zXQ/
+ KajpEQDgCcquWGls8qg8RAjtEUDl1539N8KFOo1G4Be2qTHu9fw4nFYd/
+ GLI7vcs7V6gJe9x/Gjm7KelI/L1VlVPyGuW9xBxdoVx/3TVHIfroqG7T0
+ ohaXN6lhS2ujc/+gh4NSifqOux9p6JbGp3VUOJUC60CBV/0fK8qHDZG6p
+ e3Oq265oyXvgBn5GdC9S53nFS9gOjzmJELKTgxmy6plO2joNWqDiUTDuV
+ 1k7cDngAT8DjtZqjcXkC0b9Y/ovsxfnKnEinlVLQYdipWKKw+dGwjGVHC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6399239"
+X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; 
+   d="scan'208";a="6399239"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2024 22:17:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,155,1708416000"; d="scan'208";a="20327555"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmviesa005.fm.intel.com with ESMTP; 25 Mar 2024 22:17:48 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/display: Initalizalize capability variables
+Date: Tue, 26 Mar 2024 10:44:55 +0530
+Message-ID: <20240326051454.193181-2-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/hM/ZIU5C/yDn0fCAy.94Q2E";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,42 +62,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/hM/ZIU5C/yDn0fCAy.94Q2E
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Initialize HDCP capability variables to false to avoid UBSAN
+warning in boolean value.
 
-Hi all,
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced these warnings:
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index b99c024b0934..95d14dab089e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -191,7 +191,7 @@ static void intel_hdcp_info(struct seq_file *m,
+ 			    struct intel_connector *intel_connector,
+ 			    bool remote_req)
+ {
+-	bool hdcp_cap, hdcp2_cap;
++	bool hdcp_cap = false, hdcp2_cap = false;
+ 
+ 	if (!intel_connector->hdcp.shim) {
+ 		seq_puts(m, "No Connector Support");
+-- 
+2.43.2
 
-include/uapi/drm/panthor_drm.h:344: warning: Function parameter or struct m=
-ember 'core_features' not described in 'drm_panthor_gpu_info'
-include/uapi/drm/panthor_drm.h:344: warning: Function parameter or struct m=
-ember 'pad' not described in 'drm_panthor_gpu_info'
-
-Introduced by commit
-
-  0f25e493a246 ("drm/panthor: Add uAPI")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/hM/ZIU5C/yDn0fCAy.94Q2E
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmYCWS8ACgkQAVBC80lX
-0Gx5WQf/WGVsdA3jyo4FbiK5FGKYIu7rgYqw8P3qqHNT1yxhFgFcser8YyTdhidh
-8mQ3uOF/XllXbp/gWZzsbvE5wW3joR3sqAUJduI1wiAqKbO+9cSnGiRidivk9vG/
-5woi791Ww+prKJAOzdubZ6lUbBlvPvHq9LC9ZgD8R9m19f6I4euqm9eeS7/Zu2KG
-skDC3WWWTdIwgqioPKZsheaPPGEal+Q6jCDWKxMNvnUDns+2h9m+ufEg0GmYeOUr
-ZW2fbyX8hydGF1/62taU1g+YociNyzCwfwbVJL6G0OGyhG1IxXnJlwX84Yrd8Ky2
-aQNIuw52mOyEDs1f9faf4FN/HsMasg==
-=6rk9
------END PGP SIGNATURE-----
-
---Sig_/hM/ZIU5C/yDn0fCAy.94Q2E--
