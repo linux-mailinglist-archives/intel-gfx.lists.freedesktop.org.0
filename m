@@ -2,62 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BCF88C0F4
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 12:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC3788C18D
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 13:06:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0693010EEBE;
-	Tue, 26 Mar 2024 11:40:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8938E10E915;
+	Tue, 26 Mar 2024 12:06:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bem+I1TV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEj5cTLQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB00210EEBE
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 11:40:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C03610E36E;
+ Tue, 26 Mar 2024 12:06:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711453222; x=1742989222;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=HSrcWmxETJ8E8spBRNHk4NS3co0WzT5Z4jEDA/qhCp8=;
- b=bem+I1TVCs+JwS6LazdssXKKTEr7HNzgNUBfM86+TA3UIGTw6PN1khtp
- z+KG87ZxKRFWh8cYUptE/+r+SGizAIgd9xinwZ9zEzhtGdC4xmadcsHlu
- yP4Ph/HU/+ci2mxIDQMFJYfqQi4GAa9q+LywbgA5wjJ7ezLTDQSvM76DU
- oaa+9k2Iq3o5u7+FdyP21IAeqoCMRi9kNykjHx3Bf3+sE8osuPSR2aXYL
- IDFgiGPDoeukTWGO20gyk2dvf7z7WQnjporN7ZLkzFH1M+P3Rm9RApPJS
- LtJ3p0gwPbBd4DsAj1CTzZAmEopJCffLeHdK45yiWR1Q/x3yXYRQync/B g==;
-X-CSE-ConnectionGUID: 97Pk1BChQSiz4MNZ8KWFTw==
-X-CSE-MsgGUID: VPI004taSpuE0UkgcD9Vnw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="28978976"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="28978976"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 04:40:22 -0700
+ t=1711454779; x=1742990779;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=VMOQQWQ8zlA4KMRdap0GxAhv5vGKeo6xRzJmQ3DuzK4=;
+ b=OEj5cTLQptpqtSoWiY+ht8s2R+4CdeLMBv7/7o+yxlsF35pR9IVDxg+Q
+ AxOuiLjqXMqtgiWNVWXKTq67XPTFY/3JdMfcWL8WSlj6aV9ExvHEkI/ry
+ s0QgYIJi/KYhui/6p+I/b2ujsPWg0GixDwbIQIZwLwC8Tevwdkcf+FD0e
+ KwMnITD7ljBUlzkXXItvDmDa8BTLteopJzfrkh2EKmN3V54NnGer2h22d
+ AZmAgch8y0CHyY2ptG9s97wYFYOrqCaj1zpT1U2L58lIG7QnVPD/kCNAQ
+ QTQQfCy+eCHrodDArEqZtMoQs+MeLJOmDH6s9OOZGmIQKUwZ8gjmbxDkt g==;
+X-CSE-ConnectionGUID: qKm1MrcGRmukf9VrL1958w==
+X-CSE-MsgGUID: wNBV4AUTQNmDFedrOoC+nQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17229270"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="17229270"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 05:05:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="827785181"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="827785181"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 26 Mar 2024 04:40:19 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Mar 2024 13:40:19 +0200
-Date: Tue, 26 Mar 2024 13:40:19 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- Borislav Petkov <bp@alien8.de>
-Subject: Re: [PATCH] drm/i915: Pre-populate the cursor physical dma address
-Message-ID: <ZgK0IxB3I81KdFsh@intel.com>
-References: <20240325175738.3440-1-ville.syrjala@linux.intel.com>
- <SJ1PR11MB612907EA0F41B6CD6ECC9B1AB9352@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <ZgKzPZWovqa-hm30@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="15928553"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.52.33])
+ ([10.246.52.33])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 05:05:39 -0700
+Message-ID: <49e4ab49-e928-475a-bbaf-19c9009fdd1f@linux.intel.com>
+Date: Tue, 26 Mar 2024 13:05:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/gem: Calculate object page offset for partial
+ memory mapping
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Andi Shyti <andi.shyti@kernel.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+References: <20240325134033.287913-1-andi.shyti@linux.intel.com>
+ <db2627fa-b1da-4a27-8c87-bebe0407d8a7@linux.intel.com>
+ <ZgKttR-loIoAZoOE@ashyti-mobl2.lan>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <ZgKttR-loIoAZoOE@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZgKzPZWovqa-hm30@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,124 +75,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 26, 2024 at 01:36:29PM +0200, Ville Syrjälä wrote:
-> On Tue, Mar 26, 2024 at 04:57:57AM +0000, Borah, Chaitanya Kumar wrote:
-> > > -----Original Message-----
-> > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > > Syrjala
-> > > Sent: Monday, March 25, 2024 11:28 PM
-> > > To: intel-gfx@lists.freedesktop.org
-> > > Cc: stable@vger.kernel.org; Borislav Petkov <bp@alien8.de>
-> > > Subject: [PATCH] drm/i915: Pre-populate the cursor physical dma address
-> > > 
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > 
-> > > Calling i915_gem_object_get_dma_address() from the vblank evade critical
-> > > section triggers might_sleep().
-> > > 
-> > > While we know that we've already pinned the framebuffer and thus
-> > > i915_gem_object_get_dma_address() will in fact not sleep in this case, it
-> > > seems reasonable to keep the unconditional might_sleep() for maximum
-> > > coverage.
-> > > 
-> > > So let's instead pre-populate the dma address during fb pinning, which all
-> > > happens before we enter the vblank evade critical section.
-> > > 
-> > > We can use u32 for the dma address as this class of hardware doesn't
-> > > support >32bit addresses.
-> > > 
-> > > Cc: stable@vger.kernel.org
-> > > Fixes: 0225a90981c8 ("drm/i915: Make cursor plane registers unlocked")
-> > > Link: https://lore.kernel.org/intel-
-> > > gfx/20240227100342.GAZd2zfmYcPS_SndtO@fat_crate.local/
-> > 
-> > Nit. This could be changed to Closes and moved after Reported-by to keep checkpatch happy but otherwise, LGTM.
-> 
-> It's not a gitlab link, so Closes doesn't seem appropriate.
+Hi Andi,
 
-Hmm. Seems people have started to used Closes: for non-gitlab stuff
-as well. I suppose it's OK then.
+On 3/26/2024 12:12 PM, Andi Shyti wrote:
+> Hi Nirmoy,
+>
+> ...
+>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>> index a2195e28b625..57a2dda2c3cc 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+>>> @@ -276,7 +276,7 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
+>>>    	/* PTEs are revoked in obj->ops->put_pages() */
+>>>    	err = remap_io_sg(area,
+>>>    			  area->vm_start, area->vm_end - area->vm_start,
+>>> -			  obj->mm.pages->sgl, iomap);
+>>> +			  obj->mm.pages->sgl, 0, iomap);
+>> Why don't we need partial mmap for CPU but only for GTT ?
+> As far as I understood we don't. I have a version with the CPU
+> offset as well in trybot[*]
+>
+> But without support for segmented buffer objects, I don't know
+> how much this has any effect.
 
-> 
-> > 
-> > Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> 
-> Thanks.
-> 
-> > 
-> > > Reported-by: Borislav Petkov <bp@alien8.de>
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_cursor.c        |  4 +---
-> > >  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_fb_pin.c        | 10 ++++++++++
-> > >  3 files changed, 12 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > index f8b33999d43f..0d3da55e1c24 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> > > @@ -36,12 +36,10 @@ static u32 intel_cursor_base(const struct
-> > > intel_plane_state *plane_state)  {
-> > >  	struct drm_i915_private *dev_priv =
-> > >  		to_i915(plane_state->uapi.plane->dev);
-> > > -	const struct drm_framebuffer *fb = plane_state->hw.fb;
-> > > -	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-> > >  	u32 base;
-> > > 
-> > >  	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
-> > > -		base = i915_gem_object_get_dma_address(obj, 0);
-> > > +		base = plane_state->phys_dma_addr;
-> > >  	else
-> > >  		base = intel_plane_ggtt_offset(plane_state);
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index 8a35fb6b2ade..68f26a33870b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -728,6 +728,7 @@ struct intel_plane_state {  #define PLANE_HAS_FENCE
-> > > BIT(0)
-> > > 
-> > >  	struct intel_fb_view view;
-> > > +	u32 phys_dma_addr; /* for cursor_needs_physical */
-> > > 
-> > >  	/* Plane pxp decryption state */
-> > >  	bool decrypt;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > > b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > > index 7b42aef37d2f..b6df9baf481b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > > @@ -255,6 +255,16 @@ int intel_plane_pin_fb(struct intel_plane_state
-> > > *plane_state)
-> > >  			return PTR_ERR(vma);
-> > > 
-> > >  		plane_state->ggtt_vma = vma;
-> > > +
-> > > +		/*
-> > > +		 * Pre-populate the dma address before we enter the vblank
-> > > +		 * evade critical section as
-> > > i915_gem_object_get_dma_address()
-> > > +		 * will trigger might_sleep() even if it won't actually sleep,
-> > > +		 * which is the case when the fb has already been pinned.
-> > > +		 */
-> > > +		if (phys_cursor)
-> > > +			plane_state->phys_dma_addr =
-> > > +
-> > > 	i915_gem_object_get_dma_address(intel_fb_obj(fb), 0);
-> > >  	} else {
-> > >  		struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
-> > > 
-> > > --
-> > > 2.43.2
-> > 
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+You confused me more :) Why segmented buffer object is needed for 
+partial CPU mmap but not for GTTÂ  ?
 
--- 
-Ville Syrjälä
-Intel
+ From high level,Â  GTT and CPU both should support partial mmap unless I 
+missing something here.
+
+>
+>> Sounds like this also need to be cover by a IGT tests.
+> Yes, I it does need some igt work, working on it.
+>
+>> Don't we need "Fixes" tag for this?
+> Why should we? I'm not fixing anything here,
+
+If userspaceÂ  expects partial mmap to work then this is a bug/gap in 
+i915 so we need to
+
+backport this as far as possible. Need some information about the 
+requirement aboutÂ  why we need this patch suddenly?
+
+
+Regards,
+
+Nirmoy
+
+>   I'm just
+> recalculating the mapping not starting from the beginning of the
+> scatter page.
+>
+> Andi
+>
+> [*] https://patchwork.freedesktop.org/patch/584474/?series=131539&rev=2
