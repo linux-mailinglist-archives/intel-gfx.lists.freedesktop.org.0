@@ -2,64 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC3788C18D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 13:06:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D53A88C1A8
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 13:10:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8938E10E915;
-	Tue, 26 Mar 2024 12:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3810110E7CF;
+	Tue, 26 Mar 2024 12:10:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEj5cTLQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kTv5z/gS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C03610E36E;
- Tue, 26 Mar 2024 12:06:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50D7010E7CF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 12:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711454779; x=1742990779;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=VMOQQWQ8zlA4KMRdap0GxAhv5vGKeo6xRzJmQ3DuzK4=;
- b=OEj5cTLQptpqtSoWiY+ht8s2R+4CdeLMBv7/7o+yxlsF35pR9IVDxg+Q
- AxOuiLjqXMqtgiWNVWXKTq67XPTFY/3JdMfcWL8WSlj6aV9ExvHEkI/ry
- s0QgYIJi/KYhui/6p+I/b2ujsPWg0GixDwbIQIZwLwC8Tevwdkcf+FD0e
- KwMnITD7ljBUlzkXXItvDmDa8BTLteopJzfrkh2EKmN3V54NnGer2h22d
- AZmAgch8y0CHyY2ptG9s97wYFYOrqCaj1zpT1U2L58lIG7QnVPD/kCNAQ
- QTQQfCy+eCHrodDArEqZtMoQs+MeLJOmDH6s9OOZGmIQKUwZ8gjmbxDkt g==;
-X-CSE-ConnectionGUID: qKm1MrcGRmukf9VrL1958w==
-X-CSE-MsgGUID: wNBV4AUTQNmDFedrOoC+nQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17229270"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="17229270"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 05:05:41 -0700
+ t=1711455047; x=1742991047;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=Rcm63eeKU+vVYya6u2qw/VN8bkgJALeiVBKbiy2pGRo=;
+ b=kTv5z/gShhPAnkFV2JYbbjZ+XhYuHphTnS9HK2PvWRIv5fXMd3z6qL7N
+ QXaD05uYw5WR5mTiKH/svDGKmoXpo1kOYajWWVG2Oioa1qiyc5Web8fhY
+ +pBlzm6XnKd3QSL+PzxHvCN/0PYDzmArbGM+kBWJeh2Mys0icgQRUtSsg
+ OVJxsGsBnXjkKhXAAaneAYmdQilC+0tS3zxFPkwKCvSQPiIYF5pazisps
+ SSrzZ7l1HRBBaot+TV7TO7jCkIj9kqRUo4m40Pl3rDezmXZotL/7DS+OU
+ pps2CwL5GPGGnY6aGOEkTUjtYb6JC60AdgvPlK95+d0KLbm8jKODCc3+V g==;
+X-CSE-ConnectionGUID: BiN7CMPVR1WDLxAMtV0tyQ==
+X-CSE-MsgGUID: JOaXtx3rTAeWksDWfqm/YQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="6396010"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; 
+   d="scan'208";a="6396010"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 05:10:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="15928553"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.52.33])
- ([10.246.52.33])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 05:05:39 -0700
-Message-ID: <49e4ab49-e928-475a-bbaf-19c9009fdd1f@linux.intel.com>
-Date: Tue, 26 Mar 2024 13:05:37 +0100
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="16026174"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 05:10:43 -0700
+Date: Tue, 26 Mar 2024 14:11:13 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 05/11] drm/i915/dp_mst: Account with the DSC DPT bpp
+ limit on MTL
+Message-ID: <ZgK7YZnmwJBGcKsF@ideak-desk.fi.intel.com>
+References: <20240320201152.3487892-1-imre.deak@intel.com>
+ <20240320201152.3487892-6-imre.deak@intel.com>
+ <32c89f1b-852b-4d49-8439-45fddc80c5db@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gem: Calculate object page offset for partial
- memory mapping
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Andi Shyti <andi.shyti@kernel.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-References: <20240325134033.287913-1-andi.shyti@linux.intel.com>
- <db2627fa-b1da-4a27-8c87-bebe0407d8a7@linux.intel.com>
- <ZgKttR-loIoAZoOE@ashyti-mobl2.lan>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <ZgKttR-loIoAZoOE@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <32c89f1b-852b-4d49-8439-45fddc80c5db@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,61 +66,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+On Tue, Mar 26, 2024 at 03:47:05PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 3/21/2024 1:41 AM, Imre Deak wrote:
+> > The DPT/DSC bpp limit should be accounted for on MTL platforms as well,
+> > do so.
+> > 
+> > Bspec: 49259
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_dp_mst.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 79f34be5c89da..40660dc5edb45 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -56,7 +56,7 @@ static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp
+> >   					  struct intel_crtc_state *crtc_state,
+> >   					  bool dsc)
+> >   {
+> > -	if (intel_dp_is_uhbr(crtc_state) && DISPLAY_VER(i915) < 14 && dsc) {
+> 
+> Should this be DISPLAY_VER() <= 14 to include MTL?
 
-On 3/26/2024 12:12 PM, Andi Shyti wrote:
-> Hi Nirmoy,
->
-> ...
->
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->>> index a2195e28b625..57a2dda2c3cc 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->>> @@ -276,7 +276,7 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
->>>    	/* PTEs are revoked in obj->ops->put_pages() */
->>>    	err = remap_io_sg(area,
->>>    			  area->vm_start, area->vm_end - area->vm_start,
->>> -			  obj->mm.pages->sgl, iomap);
->>> +			  obj->mm.pages->sgl, 0, iomap);
->> Why don't we need partial mmap for CPU but only for GTT ?
-> As far as I understood we don't. I have a version with the CPU
-> offset as well in trybot[*]
->
-> But without support for segmented buffer objects, I don't know
-> how much this has any effect.
+The actual change is the DISPLAY_VER() < 20 below, which is the usual
+way in the driver (AFAIU) to check for an upper bound.
 
-You confused me more :) Why segmented buffer object is needed for 
-partial CPU mmap but not for GTT  ?
+> For DISPLAY_VER 20, is there another check?
+> 
+> in Bspec:68912 it mentions output bpp * pixel clock < DDICLK * 144 bits
 
- From high level,  GTT and CPU both should support partial mmap unless I 
-missing something here.
+Yes LNL is different, but there this DPT limit should never be a
+bottleneck. Ville has an idea to abstract this more, but this patchset
+keeps things as-is, skipping the check on LNL+.
 
->
->> Sounds like this also need to be cover by a IGT tests.
-> Yes, I it does need some igt work, working on it.
->
->> Don't we need "Fixes" tag for this?
-> Why should we? I'm not fixing anything here,
-
-If userspace  expects partial mmap to work then this is a bug/gap in 
-i915 so we need to
-
-backport this as far as possible. Need some information about the 
-requirement about  why we need this patch suddenly?
-
-
-Regards,
-
-Nirmoy
-
->   I'm just
-> recalculating the mapping not starting from the beginning of the
-> scatter page.
->
-> Andi
->
-> [*] https://patchwork.freedesktop.org/patch/584474/?series=131539&rev=2
+> Regards,
+> 
+> Ankit
+> 
+> > +	if (intel_dp_is_uhbr(crtc_state) && DISPLAY_VER(i915) < 20 && dsc) {
+> >   		int output_bpp = bpp;
+> >   		int symbol_clock = intel_dp_link_symbol_clock(crtc_state->port_clock);
+> >   		int available_bw = mul_u32_u32(symbol_clock * 72,
