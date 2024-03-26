@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 416F688CED1
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 21:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C27C88CED2
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 21:31:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8981D10F2BF;
-	Tue, 26 Mar 2024 20:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9714B10F2C1;
+	Tue, 26 Mar 2024 20:31:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mgbS5hay";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TUuoUpqj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1CA10F2C1
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 20:31:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698EB10F2BA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 20:31:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711485094; x=1743021094;
+ t=1711485097; x=1743021097;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=CqQvkLydSRKj8y5yNvTzocHbXOHOCSEvSiN9fNEFVv0=;
- b=mgbS5hay1Iyg8CDDAOFaWUKleNY3rHdd2cLw1VtEWvmnzrXAFOPUMrjh
- n/xkF5oB58IbCCv65L2vM/L8wRLsEy+b8VU4Wz3askF1ZACfG7PBSiIEc
- LTsn5HzQq2WwMIyCLmHenoZ2z39f4RBLzE1uTWgzJpCk0D3KtT3ItYXYM
- 96gJkXRIZNWADzlmEraTol0JDOoJZf8rAYuK5vQb3JmidEUyNVuHlYqug
- OvzQZ83JxrBKjAWj5mQsbuJFHOG91ZCeuP/AkVlCVxwPVNlmAB1od2RUQ
- 1qvoKuaUpQFfL7HeH7i5v+yI8V6eNYkJ+4dpNaw01YOw0dTS32DkWUmgK w==;
-X-CSE-ConnectionGUID: 0B83bEmfQo2P8ANTf4qMOw==
-X-CSE-MsgGUID: 53CgUc8dSOWBLPy2U3QRJw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6453416"
+ bh=xtlGg3Q3GfsyDXWDCDT9sePiZ129zmtDUKYoxhfFxME=;
+ b=TUuoUpqjSMR2NUddbwRyxwzcH7I0SiQ7753CrcO1v/6rvX3Mk3IH3RfG
+ 6BjR4/1vJhObc/W+MyDvvgOiZPijG0ncow0qyXJuonE9Wi0xwlofOo+os
+ VyBb/sDW6bu1HvePl8HNgd7+3OH2pShRTObrECcdEBRrlCUqxP9t0Nxoy
+ xTBG5W9cs3nE03ZVkfXdxnkYfmnF3AcmOjFrZCm6gaoRX/XFbQ8+t6bo1
+ S9Fw4WnhLlT1+OrL8uGfkoUMQmpf1ZEurmPD7y3DQvgV7Zj5QiqZYW/du
+ LW7dhBymUwxu7r+aM7nvcDpRw+2JGXbTHX4WCwlwre68y8ZND17EpgPln Q==;
+X-CSE-ConnectionGUID: /Y/1MDjsT52hJ5MifyB+HQ==
+X-CSE-MsgGUID: XgiSWMOARG6Ezv1YXgmPHw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6453425"
 X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; 
-   d="scan'208";a="6453416"
+   d="scan'208";a="6453425"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 13:31:34 -0700
+ 26 Mar 2024 13:31:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="827785430"
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="827785430"
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="827785431"
+X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="827785431"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 26 Mar 2024 13:31:32 -0700
+ by orsmga001.jf.intel.com with SMTP; 26 Mar 2024 13:31:35 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 26 Mar 2024 22:31:31 +0200
+ Tue, 26 Mar 2024 22:31:34 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/i915/cdclk: Fix CDCLK programming order when pipes
- are active
-Date: Tue, 26 Mar 2024 22:31:26 +0200
-Message-ID: <20240326203128.10259-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/3] drm/i915/cdclk: Fix voltage_level programming edge case
+Date: Tue, 26 Mar 2024 22:31:27 +0200
+Message-ID: <20240326203128.10259-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240326203128.10259-1-ville.syrjala@linux.intel.com>
 References: <20240326203128.10259-1-ville.syrjala@linux.intel.com>
@@ -71,88 +70,86 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we always reprogram CDCLK from the
-intel_set_cdclk_post_plane_update() when using squahs/crawl.
-The code only works correctly for the cd2x update or full
-modeset cases, and it was simply never updated to deal with
-squash/crawl.
+Currently we only consider the relationship of the
+old and new CDCLK frequencies when determining whether
+to do the repgramming from intel_set_cdclk_pre_plane_update()
+or intel_set_cdclk_post_plane_update().
 
-If the CDCLK frequency is increasing we must reprogram it
-before we do anything else that might depend on the new
-higher frequency, and conversely we must not decrease
-the frequency until everything that might still depend
-on the old higher frequency has been dealt with.
+It is technically possible to have a situation where the
+CDCLK frequency is decreasing, but the voltage_level is
+increasing due a DDI port. In this case we should bump
+the voltage level already in intel_set_cdclk_pre_plane_update()
+(so that the voltage_level will have been increased by the
+time the port gets enabled), while leaving the CDCLK frequency
+unchanged (as active planes/etc. may still depend on it).
+We can then reduce the CDCLK frequency to its final value
+from intel_set_cdclk_post_plane_update().
 
-So let us only consider the relationship of the old and
-new CDCLK frequencies when determining where to do
-the reprogramming, regarless of whether all pipes might
-be off or not at the time.
+In order to handle that correctly we shall construct a
+suitable amalgam of the old and new cdclk states in
+intel_set_cdclk_pre_plane_update().
 
-If the CDCLK freqiency remains unchanges we may still have to
-do the reprogramming to change the voltage_level. Currently
-we do that from intel_set_cdclk_pre_plane_update() which
-probably is the right choice most of the time. The only
-counterexample is when the voltage_level needs to increase
-due to a DDI port, but the CDCLK frequency is decreasing.
-The current approach will not bump the voltage level up until
-after the port has already been enabled, which is too late.
-But we'll take care of that case separately.
+And we can simply call intel_set_cdclk() unconditionally
+in both places as it will not do anything if nothing actually
+changes vs. the current hw state.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 25 +++++++++++++---------
+ 1 file changed, 15 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 31aaa9780dfc..49e2f09a796a 100644
+index 49e2f09a796a..ce60d10666a2 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2600,7 +2600,6 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+@@ -2600,6 +2600,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
  		intel_atomic_get_old_cdclk_state(state);
  	const struct intel_cdclk_state *new_cdclk_state =
  		intel_atomic_get_new_cdclk_state(state);
--	enum pipe pipe = new_cdclk_state->pipe;
++	struct intel_cdclk_config cdclk_config;
  
  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
  				 &new_cdclk_state->actual))
-@@ -2609,11 +2608,11 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+@@ -2608,12 +2609,19 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
  	if (IS_DG2(i915))
  		intel_cdclk_pcode_pre_notify(state);
  
--	if (pipe == INVALID_PIPE ||
--	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
-+	if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
- 		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+-	if (old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
+-		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
++	if (new_cdclk_state->actual.cdclk >= old_cdclk_state->actual.cdclk)
++		cdclk_config = new_cdclk_state->actual;
++	else
++		cdclk_config = old_cdclk_state->actual;
  
--		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
-+		intel_set_cdclk(i915, &new_cdclk_state->actual,
-+				new_cdclk_state->pipe);
- 	}
+-		intel_set_cdclk(i915, &new_cdclk_state->actual,
+-				new_cdclk_state->pipe);
+-	}
++	cdclk_config.voltage_level = max(new_cdclk_state->actual.voltage_level,
++					 old_cdclk_state->actual.voltage_level);
++
++	cdclk_config.joined_mbus = new_cdclk_state->actual.joined_mbus;
++
++	drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
++
++	intel_set_cdclk(i915, &cdclk_config, new_cdclk_state->pipe);
  }
  
-@@ -2632,7 +2631,6 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
- 		intel_atomic_get_old_cdclk_state(state);
- 	const struct intel_cdclk_state *new_cdclk_state =
- 		intel_atomic_get_new_cdclk_state(state);
--	enum pipe pipe = new_cdclk_state->pipe;
- 
- 	if (!intel_cdclk_changed(&old_cdclk_state->actual,
- 				 &new_cdclk_state->actual))
-@@ -2641,11 +2639,11 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+ /**
+@@ -2639,12 +2647,9 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
  	if (IS_DG2(i915))
  		intel_cdclk_pcode_post_notify(state);
  
--	if (pipe != INVALID_PIPE &&
--	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
-+	if (old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
- 		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
+-	if (old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
+-		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
++	drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
  
--		intel_set_cdclk(i915, &new_cdclk_state->actual, pipe);
-+		intel_set_cdclk(i915, &new_cdclk_state->actual,
-+				new_cdclk_state->pipe);
- 	}
+-		intel_set_cdclk(i915, &new_cdclk_state->actual,
+-				new_cdclk_state->pipe);
+-	}
++	intel_set_cdclk(i915, &new_cdclk_state->actual, new_cdclk_state->pipe);
  }
  
+ static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
 -- 
 2.43.2
 
