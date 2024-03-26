@@ -2,57 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F13A88D08A
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 23:10:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F89E88D241
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 23:57:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1C4C10F3D6;
-	Tue, 26 Mar 2024 22:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39EEA10F482;
+	Tue, 26 Mar 2024 22:56:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgGxg/fn";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="knur54c4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF4810F3D5
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 22:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711491049; x=1743027049;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=zOwOYKuDMzUIMdKVsvsDSKaktA+9UCtp+ahP8p6XSPU=;
- b=WgGxg/fnnpVxZMTZMjY/zrXlkA9Hu+e/+tbd9yPAI1yHxiJB912Hcjfz
- qD6leV8tvDYrl6T+q8/1HCOWnhYXl4oBX0JTv5lM/neAMIXtx9hKq9Hzt
- 4ukQ2KgFnhSjw/9jRH5f15a/UXMQjmgzWiEyM2TXrZz9ggvOYWHzvkgLi
- vz8CtfklROzSMVRXJoSGg/kowJ3A+j5u2thjYqBE5KRkRlIeB7L4evBsB
- fc/IEGaFdeqY1p1bWTikkc6U2atTx8R/ZIiv2EHohx1s8QuSAd7pkwnC3
- q8zRvO0gCqd/if7gl5fCBPDowN3srwV0S0ED5qyJNuzTnpukmmMQpR88W w==;
-X-CSE-ConnectionGUID: UJwoNo74QKCSzCkDWboR7g==
-X-CSE-MsgGUID: Z4MOHlQURe21WOY6ncxG2A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="6759640"
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; 
-   d="scan'208";a="6759640"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 15:10:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="827785466"
-X-IronPort-AV: E=Sophos;i="6.07,157,1708416000"; d="scan'208";a="827785466"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 26 Mar 2024 15:10:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Mar 2024 00:10:45 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 2/3] drm/i915/cdclk: Fix voltage_level programming edge case
-Date: Wed, 27 Mar 2024 00:10:45 +0200
-Message-ID: <20240326221045.9047-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240326203128.10259-3-ville.syrjala@linux.intel.com>
-References: <20240326203128.10259-3-ville.syrjala@linux.intel.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFAEE10F47B;
+ Tue, 26 Mar 2024 22:56:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id C691FCE19AE;
+ Tue, 26 Mar 2024 22:56:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A308FC433C7;
+ Tue, 26 Mar 2024 22:56:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1711493814;
+ bh=uMrfzN4xjKjod6GbAc1xRQd4HusxFp38FVyEvv2mIkA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=knur54c4eVgsNUNQfgkHX+FMHtB4w0y37mRCWkmBDyM1xKXZ8MEnDqG3oeYUBuu5o
+ ZJSsNnndctin55unNbYnFqDuPY4yxaB9fjSaUFtd6aJvxVkabOL6FjKAOY3kc0ldkD
+ B7Cc+0gwSEiGtr8Rpeh8CAVGPnsM6LVJ6JfU+8iihJKDUdPiNL2sGhCNvNQ94Hajhn
+ gMoUEyyaIlTyQilt1rew3rAhVOyzX+QKEQ22d8dDg2L8shl2SJQZ61jNbsP+q4KV5l
+ YWTODMdkdknK/m/AgVZgJWtg0IvDbXsFrLKonIZleuQzP46MtfjcU2o29F2cHA3JJc
+ OaxpvvvnTDRhg==
+Date: Tue, 26 Mar 2024 15:56:50 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Sui Jingfeng <sui.jingfeng@linux.dev>, linux-kbuild@vger.kernel.org,
+ llvm@lists.linux.dev
+Subject: Re: [RESEND v3 2/2] drm: Add CONFIG_DRM_WERROR
+Message-ID: <20240326225650.GA2784736@dev-arch.thelio-3990X>
+References: <cover.1709629403.git.jani.nikula@intel.com>
+ <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <afe5ed943414f7ec3044c1547503b9941686a867.1709629403.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,93 +75,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Tue, Mar 05, 2024 at 11:07:36AM +0200, Jani Nikula wrote:
+> Add kconfig to enable -Werror subsystem wide. This is useful for
+> development and CI to keep the subsystem warning free, while avoiding
+> issues outside of the subsystem that kernel wide CONFIG_WERROR=y might
+> hit.
+> 
+> v2: Don't depend on COMPILE_TEST
+> 
+> Reviewed-by: Hamza Mahfooz <hamza.mahfooz@amd.com> # v1
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/Kconfig  | 13 +++++++++++++
+>  drivers/gpu/drm/Makefile |  3 +++
+>  2 files changed, 16 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 6e853acf15da..c08e18108c2a 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -416,3 +416,16 @@ config DRM_LIB_RANDOM
+>  config DRM_PRIVACY_SCREEN
+>  	bool
+>  	default n
+> +
+> +config DRM_WERROR
+> +	bool "Compile the drm subsystem with warnings as errors"
+> +	depends on EXPERT
+> +	default n
+> +	help
+> +	  A kernel build should not cause any compiler warnings, and this
+> +	  enables the '-Werror' flag to enforce that rule in the drm subsystem.
+> +
+> +	  The drm subsystem enables more warnings than the kernel default, so
+> +	  this config option is disabled by default.
+> +
+> +	  If in doubt, say N.
 
-Currently we only consider the relationship of the
-old and new CDCLK frequencies when determining whether
-to do the repgramming from intel_set_cdclk_pre_plane_update()
-or intel_set_cdclk_post_plane_update().
+While I understand the desire for an easy switch that maintainers and
+developers can use to ensure that their changes are warning free for the
+drm subsystem specifically, I think subsystem specific configuration
+options like this are actively detrimental to developers and continuous
+integration systems that build test the entire kernel. For example, we
+turned off CONFIG_WERROR for our Hexagon builds because of warnings that
+appear with -Wextra that are legitimate but require treewide changes to
+resolve in a manner sufficient for Linus:
 
-It is technically possible to have a situation where the
-CDCLK frequency is decreasing, but the voltage_level is
-increasing due a DDI port. In this case we should bump
-the voltage level already in intel_set_cdclk_pre_plane_update()
-(so that the voltage_level will have been increased by the
-time the port gets enabled), while leaving the CDCLK frequency
-unchanged (as active planes/etc. may still depend on it).
-We can then reduce the CDCLK frequency to its final value
-from intel_set_cdclk_post_plane_update().
+https://github.com/ClangBuiltLinux/linux/issues/1285
+https://lore.kernel.org/all/CAHk-=wg80je=K7madF4e7WrRNp37e3qh6y10Svhdc7O8SZ_-8g@mail.gmail.com/
+https://lore.kernel.org/all/20230522105049.1467313-1-schnelle@linux.ibm.com/
 
-In order to handle that correctly we shall construct a
-suitable amalgam of the old and new cdclk states in
-intel_set_cdclk_pre_plane_update().
+But now, due to CONFIG_DRM_WERROR getting enabled by all{mod,yes}config
+and -Wextra being unconditionally enabled for DRM, those warnings hard
+break the build despite CONFIG_WERROR=n...
 
-And we can simply call intel_set_cdclk() unconditionally
-in both places as it will not do anything if nothing actually
-changes vs. the current hw state.
+https://storage.tuxsuite.com/public/clangbuiltlinux/continuous-integration2/builds/2eEBDGEqfmMZjGg3ZvDx2af2pde/build.log
 
-v2: Handle cdclk_state->disable_pipes
+Same thing with PowerPC allmodconfig because we see -Wframe-larger-than
+that appears because allmodconfig enables CONFIG_KASAN or CONFIG_KCSAN
+usually:
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 27 +++++++++++++---------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+https://storage.tuxsuite.com/public/clangbuiltlinux/continuous-integration2/builds/2eE2HDsODudQGqkMKAPQnId7pRd/build.log
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 619529dba095..504c5cbbcfff 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2600,6 +2600,7 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
- 		intel_atomic_get_old_cdclk_state(state);
- 	const struct intel_cdclk_state *new_cdclk_state =
- 		intel_atomic_get_new_cdclk_state(state);
-+	struct intel_cdclk_config cdclk_config;
- 
- 	if (!intel_cdclk_changed(&old_cdclk_state->actual,
- 				 &new_cdclk_state->actual))
-@@ -2608,13 +2609,21 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
- 	if (IS_DG2(i915))
- 		intel_cdclk_pcode_pre_notify(state);
- 
--	if (new_cdclk_state->disable_pipes ||
--	    old_cdclk_state->actual.cdclk <= new_cdclk_state->actual.cdclk) {
--		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
-+	if (new_cdclk_state->disable_pipes) {
-+		cdclk_config = new_cdclk_state->actual;
-+	} else {
-+		if (new_cdclk_state->actual.cdclk >= old_cdclk_state->actual.cdclk)
-+			cdclk_config = new_cdclk_state->actual;
-+		else
-+			cdclk_config = old_cdclk_state->actual;
- 
--		intel_set_cdclk(i915, &new_cdclk_state->actual,
--				new_cdclk_state->pipe);
-+		cdclk_config.voltage_level = max(new_cdclk_state->actual.voltage_level,
-+						 old_cdclk_state->actual.voltage_level);
- 	}
-+
-+	drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
-+
-+	intel_set_cdclk(i915, &cdclk_config, new_cdclk_state->pipe);
- }
- 
- /**
-@@ -2640,13 +2649,9 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
- 	if (IS_DG2(i915))
- 		intel_cdclk_pcode_post_notify(state);
- 
--	if (!new_cdclk_state->disable_pipes &&
--	    old_cdclk_state->actual.cdclk > new_cdclk_state->actual.cdclk) {
--		drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
-+	drm_WARN_ON(&i915->drm, !new_cdclk_state->base.changed);
- 
--		intel_set_cdclk(i915, &new_cdclk_state->actual,
--				new_cdclk_state->pipe);
--	}
-+	intel_set_cdclk(i915, &new_cdclk_state->actual, new_cdclk_state->pipe);
- }
- 
- static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
--- 
-2.43.2
+I don't know what the solution for this conflict is through. I guess it
+is just the nature of the kernel being a federation of independent
+subsystems that want to have their own policies. I suppose we can just
+set CONFIG_DRM_WERROR=n and be done with it but I would like to avoid
+this issue from spreading to other subsystems because it does not scale
+for folks like us who do many builds across many trees.
 
+It would be nice if there was something like CONFIG_WERROR_DIRS or
+something that could take a set of directories that should have -Werror
+enabled so that you could do something like
+
+  CONFIG_WERROR_DIRS="drivers/gpu/drm"
+
+and have -Werror automatically added to all commands within that
+directory like subdir-ccflags-y but it is explicitly opt in on the part
+of the developer/tester, rather than just happening to get enabled due
+to all{mod,yes}config. No idea if that is feasible or not though.
+
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index ea456f057e8a..a73c04d2d7a3 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -30,6 +30,9 @@ subdir-ccflags-y += -Wno-sign-compare
+>  endif
+>  # --- end copy-paste
+>  
+> +# Enable -Werror in CI and development
+> +subdir-ccflags-$(CONFIG_DRM_WERROR) += -Werror
+> +
+>  drm-y := \
+>  	drm_aperture.o \
+>  	drm_atomic.o \
+> -- 
+> 2.39.2
+> 
