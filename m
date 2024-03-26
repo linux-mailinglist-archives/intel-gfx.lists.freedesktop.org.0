@@ -2,54 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FD388C22C
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 13:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8248188C2A0
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Mar 2024 13:53:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEE410E7C2;
-	Tue, 26 Mar 2024 12:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58A6710E8D3;
+	Tue, 26 Mar 2024 12:52:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b2gplSbW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IUx4yDf4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E466910E7C2
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Mar 2024 12:34:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37F4710E8A0;
+ Tue, 26 Mar 2024 12:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711456478; x=1742992478;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jHYXzZpWxhW5++2O7+R0fMRkARj5fCc5IWtS+XtdTRY=;
- b=b2gplSbWhTjAidkrnk8rCBXrxexjLY0syTszfFqgySdcjilaD6u5xBWB
- o1fEKY86obUUQBYyoZ5oeXzyjDkV9uAMNMBwYXfky3XuHsqJn68V1dYfX
- ZQ/BdZkexbnsmoB44fBQZ8e8TAX28O/2U2NEctncBCSla6au91Ar8VHpH
- D6uJsZ2xU7dS6sj543vY0GdKO7zTx3SudfU5XYK3Wgdc8KC37AK4pElTs
- pr9JOwsf5jUFONfefkL86MP1WhKBvhHvH/o8OB3ngHsGKeZ48sSe+/0K1
- eo0X20/xR2YQYEKzOOIXAK+6qC397kkGbwuZVigjFjaQLEG3pwBoRFVmW w==;
-X-CSE-ConnectionGUID: wjQBOBJTQ6+WldAKR0RKBA==
-X-CSE-MsgGUID: CXHq1mNvRbGsgTaMkY02uw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17136593"
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="17136593"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 05:34:38 -0700
+ t=1711457575; x=1742993575;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=TCsdmQjSHu99LvWlKPVm8BflvtpgLcsi8/8JZ/y/XP8=;
+ b=IUx4yDf4uZ09qfPtLtD1k12Ag1DMiOPsRQPjbxT4dHs55PPz6JSeqyWd
+ BVDma7ic71DafrxJLB3xJIylgTC0Dj+FDhzm7+JTXzvFVI8RqCv1b5UIm
+ n1hDcSChAOEtOkpZOmpuJdQ8ZRsq2O+vv52Ri4rPz6POL6VB8i9v+IHwY
+ XbdGfPTeciqe049ly2qwANIJz/3YkgClEbcrowfQ7H9COgnbwf+MFVBo0
+ uQL64StQoVYOPVJ/m01JB/vKdoF2WLHm9QFq1WWEWSsExt5LhtfC5ryJD
+ IAQKwRkt04QuvozLbVWEA+dVU7rIZakbi0ar50+SbWKRcYIgcme3/ePKW A==;
+X-CSE-ConnectionGUID: rjAzsJDkQkOrMpvw70sIqw==
+X-CSE-MsgGUID: UR/E9k8/Q0WN/ApuQNo0PA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11024"; a="17232928"
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="17232928"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2024 05:52:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="16001131"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2024 05:34:36 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ashutosh.dixit@intel.com, anshuman.gupta@intel.com,
- janusz.krzysztofik@intel.com
-Subject: [PATCH] drm/i915/hwmon: Remove i915_hwmon_unregister() during driver
- unbind
-Date: Tue, 26 Mar 2024 18:18:38 +0530
-Message-Id: <20240326124838.3049215-1-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.07,156,1708416000"; d="scan'208";a="39061082"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Mar 2024 05:52:56 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 26 Mar 2024 05:52:53 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 26 Mar 2024 05:52:53 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 26 Mar 2024 05:52:53 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 26 Mar 2024 05:52:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dq6qA+j3LHtr3pqGaqRFKIdmnCYu5ONtfUoAR35NENqEeeYMockOkzUOJrDVv6szfL5gvRYQ6oYoeaDlS/ruNyKu8KP1GcIpQLwZndCLEdWcY76VfrscZ+qYe20EXdw+11bFzJyHWB5ACWFWKwmRtQOyIcoMyuCDPMu/I7KiDbyINPCIQaidTJgFUCh5vUf+FMR4DczEn0x/SztDZ0QLldJ+ErJfAHyCOwQ4uaRzuH9f3eGyQr0+PfcLlheU6eXE0iqlIqbNGCFg2kn/qRgalabSUqldSeLv90s2Ci0kpvDSJ8e0opcaL5XzNOFaTrjAjEUO4a7DZmpQDdc821OtkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QKE6hhRDzc4WxlhrQ12oDot790m2gkDfSfaKQVUPGxc=;
+ b=BU5behLIb+iX7L7x9d0UjDTa4lfUjOWFVThuLAPLlSBriBwV0uAKwwglWgb/95KL0mpClWUcqJba1ScNWWvpsVaURoGpnZvJfxeGKSsdhoV88dnRyyJAya3+2B4OMX0zuOc62pK9D7Ud23ho2WJQF2qJlQF1Ul1Gku+Fyajfkt8eEO8R0GFyS/mSFE11yXMzGhUZscNWrM2ORpfvoOSKVTrLr8mT0MqVVKGjkB4iufKG2CHz9oKpigKbnVrIXY1hQqLzRhVkH1l11QP4BAc+Wai0FXePgt/CavpmiVgu7EJP6wT3NOsL3hOOpnWrC2zJgvoX9ZE3axtPNPTuCuJjlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH0PR11MB5951.namprd11.prod.outlook.com (2603:10b6:510:145::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.11; Tue, 26 Mar
+ 2024 12:52:51 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::31a1:93ed:8501:f2c9]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::31a1:93ed:8501:f2c9%3]) with mapi id 15.20.7409.031; Tue, 26 Mar 2024
+ 12:52:51 +0000
+Message-ID: <6efc94fa-585d-4e2b-8bde-6e54182ad649@intel.com>
+Date: Tue, 26 Mar 2024 18:22:45 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/11] drm/dp_mst: Factor out drm_dp_mst_port_is_logical()
+To: Imre Deak <imre.deak@intel.com>, <intel-gfx@lists.freedesktop.org>
+CC: Lyude Paul <lyude@redhat.com>, <dri-devel@lists.freedesktop.org>
+References: <20240320201152.3487892-1-imre.deak@intel.com>
+ <20240320201152.3487892-9-imre.deak@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240320201152.3487892-9-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0048.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:98::23) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB5951:EE_
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OsJWPjqkXeukLm6BbdX+EwXG5KGsvSnpwFuzGuLvgNZiv19edjT5/y15ks4OVtikV26eNw+Uz4ObXUOHdYW4NEejKtk6ljVIYeqW61OvvIeo8C00n3MJmJNrRhkPhCKp5RUAEvJHaxiNrHPm/71Srw+Lxop87/xurT1cgB5V0rQ4Iy/sa3sHmSc8gHI0leXBfqx18wCaKNF2HqKsUdayS98PqEmLLhl59wShyLVX94MdXBSTSbm/4Opo79RtQWGZ+5x4yjNmMl1j9DjzKdEcDr8hWuZCqQghkC7pPHnDBISUxeGj+EDErp94FtgiRrA+Acr44udlQlrLicC139myWW2fHLzwXQb31h0oNjGlJseu8/Paakx/TmEog4YZjghkhqTl81S7H1Fq89vnkFA6A+14GZM2G7aOGnz8N3c8OLl8UXHvR/YpO1F+YzZef8jXO3jvYXbKglFO8iJixIN5oT3JUwRJCX1m4N2s1TR6EoLwtW+ncrnFCJ4i7X3Sm5qlb4X4gp5ZgR26RdWWDs2ObAJGrqVusJbBywxpUZJSfiflWpFNnWuKvcGxZ9xtSwR0lo4rCaQLr1SKxhg/cy5Z8wQ0R+cZTspYCzg2MmpJtkPXJiuEmDm0w7PRjgSb89/+lDWx+p994Zgul18gDdu/lKr8+fXCB3CCdU3d0yQ7FmI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QkNieVBuNjZsM1lMOUlaRWpFbHlmSzJlTjFUUGpJQjFUeVlYaGFxSlFyWlhl?=
+ =?utf-8?B?YXgzcXZJNjk2ZXhPRjBKNXVqSWJvaXRMUUYzanBHV25DSTJUOUhUNlByRHd5?=
+ =?utf-8?B?eFhBWVFvYXBmOXFyQUZWeHNYb0tIUFJGNWlJKzhSTWh5cGY3bE5YK3dUV0dL?=
+ =?utf-8?B?UFFpTEU2TkFBajdmbUVDOTk3aE9FeWZQMDhGQ0gvNjF5MkNYUGt3UERxbjVZ?=
+ =?utf-8?B?N1dTTFJEcEpabExGZUdqaXlwSmNzQXYyOGQ5Vngva1VBeFh0b095Qk1ib3Ur?=
+ =?utf-8?B?VVlxUzQvOWhKRmtvT01hdDlUK0lKc0wwMDRDLzhRS2ZxMUZNMWR6ZG5zcld5?=
+ =?utf-8?B?aTZOek1Ba3NBWVdFTzAwenl5c0lhc1BIZEMxUmpkeGQvSlhPQjZWS2V6Qzcz?=
+ =?utf-8?B?YVQ2ZndyQlMvY0pHTkM5RjNOTU1ETnVmeDJLaWRINExwTldQV1VtZDFscUVx?=
+ =?utf-8?B?NUlZTFozM00rTEtzTVBJb3M0c3I1WSsxNGRWSXZlcTJDWE1VYmFzYmU0cHpl?=
+ =?utf-8?B?OGZwaW81K00xUFlEd0sza3JhWWcyS1dOYjN4QXdiSnIwUzJtWkludVoveURE?=
+ =?utf-8?B?SDVEdzc1d1dqdHozVGljbDNxc3RKQUFGOFNNTnQyWCswdzZVa2RNZEFhbEV6?=
+ =?utf-8?B?Q21PYThhekZjTGp6R1k1WG9scTJUQlJ3M0lhRm9WSjNlcTV4aG5mOWovWnpV?=
+ =?utf-8?B?WitnazY5SGJveFk5QzFPYWRvazR6NW9LcXh5SXkydEt3eGhJY09NVjczNUNN?=
+ =?utf-8?B?QXJFZVFqelFSUUhnZEhlYWpaYXgvZWRIaVRSMDFFS2hnNk93Q2FwQWZXWkJD?=
+ =?utf-8?B?d2VleWxSRjhkT0thb3FqRFJqWCtCVStKWW5HY3AzYlUrZjg3d0pMN3FCSnIy?=
+ =?utf-8?B?em92MXZmOExwOEVNK05vZTdVM0Fra3lxUTFWaEZFaitlR0pGZXMrVGRtWHdP?=
+ =?utf-8?B?UjdQT3VRQ25WVkhwaWxXVk9aNjFjMFN5OGlQRTZhMzlzeFVvakFWNXYvd0M1?=
+ =?utf-8?B?eEdXakhrMEhqYzZVTDRLY0V4N3FKTmxvNVkxd1NrTDIwTGM3OTMzaC90Qm8y?=
+ =?utf-8?B?Rlp0M3FXWkhxcVhnMEo4RmZuUCtwNE5UUmFVbzN2WmQ1cW9oNnI3aUk5TnpY?=
+ =?utf-8?B?d3VqK3hUTFV3V053anJRVlNsQmZaVUMzelU2Tzh6aVdMdmErRzB3V3U3MEQw?=
+ =?utf-8?B?UENUZUxKbndjekQyS0xBUWNrUHpWRFRGRURiYTVCaThGWnJWcFB4T3dEUTFV?=
+ =?utf-8?B?OFRkRlhPSFE4eFd2VjFlTVh3aGxNdXM1MVpveVJxSlRMTmd3SGRFVytid29x?=
+ =?utf-8?B?VU44bWlhaGZnTWtNdWdGN3NzenRHKzVMdC96bWFlYzd1bzFvUlROT0FvSlEw?=
+ =?utf-8?B?dEEwUGZLMWlvK1BBRGQ0dDZBdlZwVnJIUkRMWWtVTmE0MFJpWmkzclpJZTJJ?=
+ =?utf-8?B?U1FVSWYzeFovWjVrNE1mRTNLV2c3M1BxMVdjWGVpcjJtUHI1Z0VabS81WHdW?=
+ =?utf-8?B?NiswSFZ5QlpJTkFUS0tjV1AvR25UQnJ5RldqZjM3a2EwNWlxL3JYYnNkc2c3?=
+ =?utf-8?B?SVFsZmFHZ2pDcHdKY3VKejVSRVN5Wmw3clJKaE9EWElRUkVDcHIwY2duMTc4?=
+ =?utf-8?B?Wnlyd2RORXFmZkZ4czErOGQrNVRNdGJlaW5RSTJyMVFuSmRtS1lza1ZiWXJ6?=
+ =?utf-8?B?RHQrSUJnMWxycFRnbmNXR29EYmU0bDduYndEYmROOExJL0dNY2FUVUwzMXRK?=
+ =?utf-8?B?b001UnpUZHdYdkkvUlpKTFBYZ05HMk5GRWVBU0w0a1dHYm9zWmpXdkE0Q1JY?=
+ =?utf-8?B?djlvY3NWQ2ZSeDFqWEx6SzBacDR2OUloOEpuZVBZc3B3MU1aVkQvK3RORzFJ?=
+ =?utf-8?B?ejU4dkxHZ1hhSkhqYkpGcy9WVGtWbEp5RitBYklLaTlra2NYOGxvVExrbDYv?=
+ =?utf-8?B?VWV1RlRXNEVEQXAveEhOcG4zOWltK2RVZnlkN2lVK2c0bVNhb0FTRDk2Vktx?=
+ =?utf-8?B?bEUyeEkxaDNhUGIxOUpiUWV5dWdlczJrT1RsUTdNWEQvRlg3L2oza0NTeThQ?=
+ =?utf-8?B?VzVINnRDRThkcjJJUDgvWDVKbHJFQ2lzRk1XbWhxNGRCOE5kZTYvbHhoaXNl?=
+ =?utf-8?B?TUUrS1AyaEgyazhzeThuNTF2ZkhQOFRRQlNMOERUZlFSL3V2bE9tOS9yelJ0?=
+ =?utf-8?B?TFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 713ed852-b995-4fc9-4376-08dc4d93a557
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2024 12:52:51.2684 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Oq2zjEMkRKkWxuD/miJqfOAZGHPWMq2MlJTNhHUj4ugGZxxuD6POH6pUr1Z/Bt5kRSZOLtUtu/RuF5SIEkVhyIsbcVymsBTcqbwfETT1Zk0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5951
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,76 +164,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_hwmon and its resources are managed resources of i915 dev.
-During i915 driver unregister flow the function i915_hwmon_unregister()
-explicitly makes i915_hwmon resource NULL. This happen before
-hwmon is actually unregistered. Doing so may cause UAF if hwmon
-sysfs is being accessed:
 
-<7> [518.386591] i915 0000:03:00.0: [drm] intel_gt_set_wedged called from intel_gt_set_wedged_on_fini+0xd/0x30 [i915]
-<7> [518.471128] i915 0000:03:00.0: [drm:drm_client_release] drm_fb_helper
-<4> [518.501476] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6dbf: 0000 [#1] PREEMPT SMP NOPTI
-<4> [518.512264] CPU: 6 PID: 679 Comm: prometheus-node Tainted: G     U             6.9.0-rc1-CI_DRM_14482-g4a8fabcf2f1a+ #1
-<4> [518.522951] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.4221.A00.2305271351 05/27/2023
-<4> [518.536217] RIP: 0010:hwm_energy+0x2b/0x100 [i915]
-<4> [518.541159] Code: 48 89 e5 41 57 41 56 41 55 41 54 53 48 89 fb 48 83 e4 f0 48 83 ec 10 4c 8b 77 08 4c 8b 2f 8b 7f 34 48 89 74 24 08 85 ff 78 2b <45> 8b bd 54 02 00 00 49 8b 7e 18 e8 35 e4 ea ff 49 89 c4 48 85 c0
-<4> [518.559746] RSP: 0018:ffffc900077efd00 EFLAGS: 00010202
-<4> [518.564943] RAX: 0000000000000000 RBX: ffff8881e3078428 RCX: 0000000000000000
-<4> [518.572025] RDX: 0000000000000001 RSI: ffffc900077efda0 RDI: 000000006b6b6b6b
-<4> [518.579107] RBP: ffffc900077efd40 R08: ffffc900077efda0 R09: 0000000000000001
-<4> [518.586186] R10: 0000000000000001 R11: ffff88810c19aa00 R12: ffff888243e1a010
-<4> [518.593264] R13: 6b6b6b6b6b6b6b6b R14: 6b6b6b6b6b6b6b6b R15: ffff8881e3078428
-<4> [518.600343] FS:  00007f9def400700(0000) GS:ffff88888d100000(0000) knlGS:0000000000000000
-<4> [518.608373] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [518.614077] CR2: 0000564f19bff288 CR3: 0000000119f94000 CR4: 0000000000f50ef0
-<4> [518.621158] PKRU: 55555554
-<4> [518.623858] Call Trace:
-<4> [518.626303]  <TASK>
-<4> [518.628400]  ? __die_body+0x1a/0x60
-<4> [518.631881]  ? die_addr+0x38/0x60
-<4> [518.635182]  ? exc_general_protection+0x1a1/0x400
-<4> [518.639862]  ? asm_exc_general_protection+0x26/0x30
-<4> [518.644710]  ? hwm_energy+0x2b/0x100 [i915]
-<4> [518.649007]  hwm_read+0x9a/0x310 [i915]
-<4> [518.652953]  hwmon_attr_show+0x36/0x140
-<4> [518.656775]  dev_attr_show+0x15/0x60
+On 3/21/2024 1:41 AM, Imre Deak wrote:
+> Factor out a function to check if an MST port is logical, used by a
+> follow-up i915 patch in the patchset.
+>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>   drivers/gpu/drm/display/drm_dp_mst_topology.c | 6 +++---
+>   include/drm/display/drm_dp_mst_helper.h       | 7 +++++++
+>   2 files changed, 10 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> index 03d5282094262..6bd471a2266ce 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -2274,7 +2274,7 @@ drm_dp_mst_port_add_connector(struct drm_dp_mst_branch *mstb,
+>   
+>   	if (port->pdt != DP_PEER_DEVICE_NONE &&
+>   	    drm_dp_mst_is_end_device(port->pdt, port->mcs) &&
+> -	    port->port_num >= DP_MST_LOGICAL_PORT_0)
+> +	    drm_dp_mst_port_is_logical(port))
+>   		port->cached_edid = drm_edid_read_ddc(port->connector,
+>   						      &port->aux.ddc);
+>   
+> @@ -4213,7 +4213,7 @@ drm_dp_mst_detect_port(struct drm_connector *connector,
+>   	case DP_PEER_DEVICE_SST_SINK:
+>   		ret = connector_status_connected;
+>   		/* for logical ports - cache the EDID */
+> -		if (port->port_num >= DP_MST_LOGICAL_PORT_0 && !port->cached_edid)
+> +		if (drm_dp_mst_port_is_logical(port) && !port->cached_edid)
+>   			port->cached_edid = drm_edid_read_ddc(connector, &port->aux.ddc);
+>   		break;
+>   	case DP_PEER_DEVICE_DP_LEGACY_CONV:
+> @@ -5977,7 +5977,7 @@ static bool drm_dp_mst_is_virtual_dpcd(struct drm_dp_mst_port *port)
+>   		return false;
+>   
+>   	/* Virtual DP Sink (Internal Display Panel) */
+> -	if (port->port_num >= 8)
+> +	if (drm_dp_mst_port_is_logical(port))
+>   		return true;
+>   
+>   	/* DP-to-HDMI Protocol Converter */
+> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+> index 3ae88a383a41f..c12f18b744d01 100644
+> --- a/include/drm/display/drm_dp_mst_helper.h
+> +++ b/include/drm/display/drm_dp_mst_helper.h
+> @@ -927,6 +927,13 @@ int __must_check drm_dp_mst_root_conn_atomic_check(struct drm_connector_state *n
+>   void drm_dp_mst_get_port_malloc(struct drm_dp_mst_port *port);
+>   void drm_dp_mst_put_port_malloc(struct drm_dp_mst_port *port);
+>   
+> +static inline
+> +bool drm_dp_mst_port_is_logical(struct drm_dp_mst_port *port)
+> +{
+> +	return port->port_num >= DP_MST_LOGICAL_PORT_0;
+> +}
+> +
+> +struct drm_dp_aux *drm_dp_mst_aux_for_parent(struct drm_dp_mst_port *port);
 
-Fixes: b3b088e28183 ("drm/i915/hwmon: Add HWMON infrastructure")
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/10366
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 2 --
- drivers/gpu/drm/i915/i915_hwmon.c  | 5 -----
- 2 files changed, 7 deletions(-)
+This line should be part of next patch, where this helper is defined.
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 4b9233c07a22..a95b455964b7 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -660,8 +660,6 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
- 	for_each_gt(gt, dev_priv, i)
- 		intel_gt_driver_unregister(gt);
- 
--	i915_hwmon_unregister(dev_priv);
--
- 	i915_perf_unregister(dev_priv);
- 	i915_pmu_unregister(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index c9169e56b9a1..91f171752d34 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -841,8 +841,3 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 			ddat_gt->hwmon_dev = hwmon_dev;
- 	}
- }
--
--void i915_hwmon_unregister(struct drm_i915_private *i915)
--{
--	fetch_and_zero(&i915->hwmon);
--}
--- 
-2.25.1
+Otherwise LGTM.
 
+With the above line removed, this is:
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+Regards,
+
+Ankit
+
+>   struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port);
+>   
+>   static inline struct drm_dp_mst_topology_state *
