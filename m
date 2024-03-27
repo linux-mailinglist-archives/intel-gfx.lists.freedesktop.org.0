@@ -2,70 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383F088DC83
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 12:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3059088DD15
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:06:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51C1B10FA31;
-	Wed, 27 Mar 2024 11:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C18F110FA5E;
+	Wed, 27 Mar 2024 12:06:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="FQ60FFdj";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XF8POmwU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7D3810FA30;
- Wed, 27 Mar 2024 11:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4yqcVS9tS0F+Iulfwdo+fmCleD7lL6bAvnduFniubqA=; b=FQ60FFdj24vArt0Y1vJ1Nud6aF
- SYWXEOJc2C7d9M3XQygfO7ozy2Z/vnOm8tz6WvBCUj6Nt/yKFbYYbxgbpJHRdv4q2X1HP7mM5ZOwU
- XRAaPPwfP32+YqIG2O/l8Vq838cP7r0lTUR8qv+2uKtsBLyMO/gZdM+F/qapTi90MoKhnO/pDDDwV
- bDf/973zcDf+hMxEGkEShiPYTULdw9WvxFNrwswjtqZKKeq0LwcKsLdAW1AaB3PlDfKAtNxZTW76G
- 0XwAt/eBDK1LIQz4uHntQ7Yv7PAg/tju4tPE9u/6WUbnLv+klJwytU4eqoV6S1e0afUFISewIrd1k
- aWAZqong==;
-Received: from [194.136.85.206] (port=37818 helo=eldfell)
- by whm50.louhi.net with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
- (envelope-from <pekka.paalanen@haloniitty.fi>) id 1rpRTB-0001Iy-22;
- Wed, 27 Mar 2024 13:29:25 +0200
-Date: Wed, 27 Mar 2024 13:29:16 +0200
-From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-To: "Garg, Nemesa" <nemesa.garg@intel.com>
-Cc: Simon Ser <contact@emersion.fr>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "G M, Adarsh" <adarsh.g.m@intel.com>
-Subject: Re: [RFC 0/5]  Introduce drm sharpening property
-Message-ID: <20240327132916.43f83069@eldfell>
-In-Reply-To: <IA1PR11MB646705FED711C1F129E5C5E3E3342@IA1PR11MB6467.namprd11.prod.outlook.com>
-References: <20240214112457.3734871-1-nemesa.garg@intel.com>
- <8Ma-GlU3bFAuSPpFhGbYYuXQ8OeeDjMK9WiWO6KP-4pPO41fLnLrgABkRfhjHY6XlIh5u67vcEbD8ejDq7-zo5BXf-too0Pt7oTDhWCOPlU=@emersion.fr>
- <IA1PR11MB6467A91412978DE0FFCAB50FE34C2@IA1PR11MB6467.namprd11.prod.outlook.com>
- <20240216103620.33deabb1@eldfell>
- <IA1PR11MB6467F801FFB564769E357EA9E3232@IA1PR11MB6467.namprd11.prod.outlook.com>
- <uL84QKNtst1cp9uG3HqNAqEpJS2pT07qxwufONZx8Zq3t665BwY15fHRm3cZxMtiecQlPlNTs9srrmlIzRKmRYItWUv6cQbDEkms8eUT84Y=@emersion.fr>
- <IA1PR11MB6467C642ABBD54BD82DF46B9E32B2@IA1PR11MB6467.namprd11.prod.outlook.com>
- <20240312162600.7358e146@eldfell> <20240313113638.3ff61e4f@eldfell>
- <IA1PR11MB646705FED711C1F129E5C5E3E3342@IA1PR11MB6467.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A883910FA5E;
+ Wed, 27 Mar 2024 12:06:37 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id F310661517;
+ Wed, 27 Mar 2024 12:06:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB6D7C433C7;
+ Wed, 27 Mar 2024 12:06:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1711541196;
+ bh=NMfeuhQtTuBIpESwyx6LXMqLV6w/0x6X4FMHC/nihcE=;
+ h=From:To:Cc:Subject:Date:From;
+ b=XF8POmwUWgXcFe4Zc7W888tI0nEQviFJu7Vh0v3eBcqPl6kijvterqtbWFwQYZxmX
+ aLmm5lr1Umx/AFyLNUeliM/pExQIsY/e/XPQUWAeBg61BPRENaqSSdPyoLIp7JDm13
+ aflnAF5tggeJMPcj+nPq9auenf259ixypalKRkGAAhWbVUZJmH7tOZJrIIqQVv5qGB
+ rpDR4TKGvIW6/eVVc6i8z+jMczl5t5Azf/p2iVWz9lYcGp6kdStNvA8uektWLam9gz
+ Ls7AjaAg3qerzj7OklLOMN7Y3+NJP5taioDjrzTcqE1WLl0GjUwPnSUI1nOhErYf7d
+ E4mPqCC/btkhA==
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org,
+	ville.syrjala@linux.intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: FAILED: Patch "Revert "drm/i915/dsi: Do display on sequence later on
+ icl+"" failed to apply to 6.8-stable tree
+Date: Wed, 27 Mar 2024 08:06:33 -0400
+Message-ID: <20240327120635.2824591-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/z6jMLYSlrTMOJ3Gjd3=7liM";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - whm50.louhi.net
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - haloniitty.fi
-X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
- pekka.paalanen@haloniitty.fi
-X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-Patchwork-Hint: ignore
+X-stable: review
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,154 +61,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/z6jMLYSlrTMOJ3Gjd3=7liM
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, 27 Mar 2024 07:11:48 +0000
-"Garg, Nemesa" <nemesa.garg@intel.com> wrote:
-
-> > -----Original Message-----
-> > From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-> > Sent: Wednesday, March 13, 2024 3:07 PM
-> > To: Garg, Nemesa <nemesa.garg@intel.com>
-> > Cc: Simon Ser <contact@emersion.fr>; intel-gfx@lists.freedesktop.org; d=
-ri-
-> > devel@lists.freedesktop.org; G M, Adarsh <adarsh.g.m@intel.com>
-> > Subject: Re: [RFC 0/5] Introduce drm sharpening property
-> >=20
-> > On Tue, 12 Mar 2024 16:26:00 +0200
-> > Pekka Paalanen <pekka.paalanen@haloniitty.fi> wrote:
-> >  =20
-> > > On Tue, 12 Mar 2024 08:30:34 +0000
-> > > "Garg, Nemesa" <nemesa.garg@intel.com> wrote:
-> > > =20
-> > > > This  KMS property is not implementing any formula =20
-> > >
-> > > Sure it is. Maybe Intel just does not want to tell what the algorithm
-> > > is, or maybe it's even patented.
-> > > =20
-> > > > and the values
-> > > > that are being used are based on empirical analysis and certain
-> > > > experiments done on the hardware. These values are fixed and is not
-> > > > expected to change and this can change from vendor to vendor. The
-> > > > client can choose any sharpness value on the scale and on the basis
-> > > > of it the sharpness will be set. The sharpness effect can be changed
-> > > > from content to content and from display to display so user needs to
-> > > > adjust the optimum intensity value so as to get good experience on
-> > > > the screen.
-> > > > =20
-> > >
-> > > IOW, it's an opaque box operation, and there is no way to reproduce
-> > > its results without the specific Intel hardware. Definitely no way to
-> > > reproduce its results in free open source software alone.
-> > >
-> > > Such opaque box operations can only occur after KMS blending, at the
-> > > CRTC or later stage. They cannot appear before blending, not in the
-> > > new KMS color pipeline design at least. The reason is that the modern
-> > > way to use KMS planes is opportunistic composition off-loading.
-> > > Opportunistic means that userspace decides from time to time whether
-> > > it composes the final picture using KMS or some other rendering method
-> > > (usually GPU and shaders). Since userspace will arbitrarily switch
-> > > between KMS and render composition, both must result in the exact same
-> > > image, or end users will observe unwanted flicker.
-> > >
-> > > Such opaque box operations are fine after blending, because there they
-> > > can be configured once and remain on forever. No switching, no flicke=
-r. =20
-> >=20
-> > If you want to see how sharpness property would apply in Wayland design=
-, it
-> > would be in step 5 "Adjust (settings UI)" of
-> > https://gitlab.freedesktop.org/pq/color-and-hdr/-/blob/main/doc/color-
-> > management-model.md#compositor-color-management-model
-> >=20
-> > To relate that diagram to KMS color processing, you can identify step 3=
- "Compose"
-> > as the KMS blending step. Everything before step 3 happens in KMS plane=
- color
-> > processing, and steps 4-5 happen in KMS CRTC color processing.
-> >=20
-> > Sharpening would essentially be a "compositor color effect", it just ha=
-ppens to be
-> > implementable only by specific Intel hardware.
-> >=20
-> > If a color effect is dynamic or content-dependant, it will preclude col=
-orimetric
-> > monitor calibration.
-> >=20
-> >=20
-> > Thanks,
-> > pq
-> >=20
-> >  =20
-> > > Where does "sharpeness" operation occur in the Intel color processing
-> > > chain? Is it before or after blending?
-> > >  =20
-> Thank you for detail explanation and link.
-> Sharpness operation occur post blending in CRTC ie on the final=20
-> composed output after blending . Yes Pekka you are right as per the=20
-> diagram it is done at step 5  "Adjust (settings UI)").  I  will also docu=
-ment this thing=20
-> along with documentation change.
->=20
-> > > What kind of transfer characteristics does it expect from the image,
-> > > and can those be realized with KMS CRTC properties if KMS is
-> > > configured such that the blending happens using some other characteri=
-stics =20
-> > (e.g. =20
-> > > blending in optical space)?
-> > > =20
-> The filter values are not dependent/calculated on the inputs of=20
->  image but depending on the blending space and other inputs the=20
-> blended output gets changed and the sharpness is applied post=20
-> blending so according to the content user needs to adjust the=20
-> strength value to get the better visual effect. So tuning of sharpness st=
-rength=20
-> may be needed by user based on  the input contents and blending policy
-> to get the desired experience.
->=20
-> > > What about SDR vs. HDR imagery?
-> > > =20
-> The interface can be used for both HDR and SDR. The effect is more promin=
-ent for SDR use cases.
-> For HDR filter values and tap value may change.
-
-Who will be providing these values?
-
-The kernel driver cannot know if it is dealing with SDR or HDR or which
-transfer function is in effect at that point of the post-blending color
-pipeline.
-
-If the UAPI is one "strength" value, then how can it work?
-
-Maybe the UAPI needs more controls, if not providing all "filter and
-tap" values directly. Maybe all the filter and tap values should be
-provided by userspace?
-
+The patch below does not apply to the 6.8-stable tree.
+If someone wants it applied there, or to any other stable or longterm
+tree, then please email the backport, including the original git commit
+id to <stable@vger.kernel.org>.
 
 Thanks,
-pq
+Sasha
 
---Sig_/z6jMLYSlrTMOJ3Gjd3=7liM
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+------------------ original commit in Linus's tree ------------------
 
------BEGIN PGP SIGNATURE-----
+From dc524d05974f615b145404191fcf91b478950499 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Tue, 16 Jan 2024 23:08:21 +0200
+Subject: [PATCH] Revert "drm/i915/dsi: Do display on sequence later on icl+"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmYEAwwACgkQI1/ltBGq
-qqcoCg/9F7rUs1SNU1cehYWcs7ZjnrbUPFcR6zF6wI1uKryRcv2WPn7HFX1nPKfv
-yeIsit0cqibCs/FhD/DEUUsYo3u9qIzJA4wRZABUdUojwsMpy8bK0vhRFs6iKtZM
-GKkJbZtvSmcRp2Fm0c/sO5EZiqquOXHab/obJxwrUQ6t6wrqGOXMOPaSQnmpbtkY
-D/9R5We8q5JGyJ4YqMpfkyMpeTeF5Yzp6x8vrcIKHEk9WpJopPyKMH3MXV5zyVIP
-LW3ZG+0XbmEfW3fHuzboAf2JcJzbHsK5wYWrMkAPVBRB+PoZGCTOH5s+mx0uD1Yg
-Ow+PNtltwq7n15WoWDsiGbuiIqn4GEKmAi7vNbiDqz1QYGpx617aeO04cg1enGEX
-XWNlH7TPEvhv5Thz7dt78OjuY6/SGKkfCheOQhfHadRtEf/+D3bBo62UK2YilaZD
-/24m+2tDPLdnfTos1I9ROV6cxoFRZmfujy2sCbOgkjEI7dG28w0hnObjYK0oo5bJ
-42H+bubpX6amjmNi1co4hD3TVpUNt2LLzzzmYH76h64vaapf4TKYap2GYtxgoFtp
-RzPXI28Unlj/WJhUZA1RAK0cT1EBQJsX31ai1Kvz02HviGPtS3/7ZYhIIaI9D8aN
-8wHy+45U9IYzwWTLGO1JjIFb9Cuje8Ft4SYYKRCnL9OdbVhmoAk=
-=3q9E
------END PGP SIGNATURE-----
+This reverts commit 88b065943cb583e890324d618e8d4b23460d51a3.
 
---Sig_/z6jMLYSlrTMOJ3Gjd3=7liM--
+Lenovo 82TQ is unhappy if we do the display on sequence this
+late. The display output shows severe corruption.
+
+It's unclear if this is a failure on our part (perhaps
+something to do with sending commands in LP mode after HS
+/video mode transmission has been started? Though the backlight
+on command at least seems to work) or simply that there are
+some commands in the sequence that are needed to be done
+earlier (eg. could be some DSC init stuff?). If the latter
+then I don't think the current Windows code would work
+either, but maybe this was originally tested with an older
+driver, who knows.
+
+Root causing this fully would likely require a lot of
+experimentation which isn't really feasible without direct
+access to the machine, so let's just accept failure and
+go back to the original sequence.
+
+Cc: stable@vger.kernel.org
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10071
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240116210821.30194-1-ville.syrjala@linux.intel.com
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ac456a2275dba..eda4a8b885904 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1155,6 +1155,7 @@ static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+ 	}
+ 
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
++	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
+ 
+ 	/* ensure all panel commands dispatched before enabling transcoder */
+ 	wait_for_cmds_dispatched_to_panel(encoder);
+@@ -1255,8 +1256,6 @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
+ 	/* step6d: enable dsi transcoder */
+ 	gen11_dsi_enable_transcoder(encoder);
+ 
+-	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_DISPLAY_ON);
+-
+ 	/* step7: enable backlight */
+ 	intel_backlight_enable(crtc_state, conn_state);
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_ON);
+-- 
+2.43.0
+
+
+
+
