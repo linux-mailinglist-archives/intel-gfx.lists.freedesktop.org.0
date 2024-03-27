@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B8D688DB5B
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 11:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA81488DCAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 12:37:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6A9C10E918;
-	Wed, 27 Mar 2024 10:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E1F10FA3B;
+	Wed, 27 Mar 2024 11:37:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y8qkbDxc";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5340D10E918;
- Wed, 27 Mar 2024 10:38:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4298254917625245774=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93FA710F370;
+ Wed, 27 Mar 2024 11:37:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1711539441; x=1743075441;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tXPg1wx0hHbOdVWYVgxYf0U/71+Nxa+MABHZJymVtxM=;
+ b=Y8qkbDxc7uMwV8K2S37/rS7bwnBsc6wswfjD81NAqJM7dt3B7JvbmCLG
+ OyK5x1txCu1T/I9lFjOGgHDhK6NwmSwizrMKRANSZgIj0wBzsqQlTIyss
+ Bv/v1rvetNNqk/lU5hA1MtgL+tzf+/h4mGNQspzIA1QlMp0paFAzZezCx
+ W2uJ564D0bz8Ta0Vi2DUk1TwushhSTKBGYqfLHi72sE5OBjfk+GkrjhbW
+ TUPGyKse6PxVx1VU0CXieijoX/158z48QLMpgKUcvT0GVUEL7ybLBYwPw
+ 3cAsCIOXzFjTw66Qh/mrPJlsLyCPXkx8uvx7i+YobUilNI/pveGlqpzuJ Q==;
+X-CSE-ConnectionGUID: kdHj7BzMRLOwqkkov4GUWg==
+X-CSE-MsgGUID: njVowQXdTkObfypTekPBdA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11025"; a="17363539"
+X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="17363539"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 04:37:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,158,1708416000"; d="scan'208";a="16325224"
+Received: from jsteczyn-mobl1.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.ger.corp.intel.com) ([10.213.16.241])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 04:37:18 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t] lib/kunit: Read results from debugfs
+Date: Wed, 27 Mar 2024 12:22:54 +0100
+Message-ID: <20240327113700.7123-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/gt=3A_Report_full_?=
- =?utf-8?q?vm_address_range_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Mar 2024 10:38:19 -0000
-Message-ID: <171153589934.1055670.16649888814988906657@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240321151726.207866-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240321151726.207866-1-andi.shyti@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,232 +66,284 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4298254917625245774==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+KUnit can provide KTAP reports from test modules via debugfs files, one
+per test suite.  Using that source of test results instead of extracting
+them from dmesg, where they may be interleaved with other kernel messages,
+seems more easy to handle and less error prone.  Switch to it.
 
-== Series Details ==
+If KUnit debugfs support is found not configured then fall back to legacy
+processing path.
 
-Series: drm/i915/gt: Report full vm address range (rev5)
-URL   : https://patchwork.freedesktop.org/series/131095/
-State : failure
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/igt_kmod.c | 143 ++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 105 insertions(+), 38 deletions(-)
 
-== Summary ==
+diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+index 1ec9c8a602..a5b170ca9c 100644
+--- a/lib/igt_kmod.c
++++ b/lib/igt_kmod.c
+@@ -28,6 +28,7 @@
+ #include <limits.h>
+ #include <pthread.h>
+ #include <signal.h>
++#include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/stat.h>
+@@ -39,6 +40,7 @@
+ 
+ #include "igt_aux.h"
+ #include "igt_core.h"
++#include "igt_debugfs.h"
+ #include "igt_kmod.h"
+ #include "igt_ktap.h"
+ #include "igt_sysfs.h"
+@@ -864,6 +866,31 @@ static int open_parameters(const char *module_name)
+ 	return open(path, O_RDONLY);
+ }
+ 
++static DIR *kunit_debugfs_open(void)
++{
++	const char *debugfs_path = igt_debugfs_mount();
++	int debugfs_fd, kunit_fd;
++	DIR *kunit_dir;
++
++	if (igt_debug_on(!debugfs_path))
++		return NULL;
++
++	debugfs_fd = open(debugfs_path, O_DIRECTORY);
++	if (igt_debug_on(debugfs_fd < 0))
++		return NULL;
++
++	kunit_fd = openat(debugfs_fd, "kunit", O_DIRECTORY);
++	close(debugfs_fd);
++	if (igt_debug_on(kunit_fd < 0))
++		return NULL;
++
++	kunit_dir = fdopendir(kunit_fd);
++	if (igt_debug_on(!kunit_dir))
++		close(kunit_fd);
++
++	return kunit_dir;
++}
++
+ static bool kunit_set_filtering(const char *filter_glob, const char *filter,
+ 				const char *filter_action)
+ {
+@@ -1071,23 +1098,48 @@ static void kunit_results_free(struct igt_list_head *results,
+ 	free(*suite_name);
+ }
+ 
+-static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
+-			     struct igt_ktap_results **ktap)
++static int kunit_get_results(struct igt_list_head *results, int debugfs_fd,
++			     const char *suite, struct igt_ktap_results **ktap)
+ {
+-	int err;
++	FILE *results_stream;
++	int ret, results_fd;
++	char *buf = NULL;
++	size_t size = 0;
++	ssize_t len;
++
++	if (igt_debug_on((ret = openat(debugfs_fd, suite, O_DIRECTORY), ret < 0)))
++		return ret;
++
++	results_fd = openat(ret, "results", O_RDONLY);
++	close(ret);
++	if (igt_debug_on(results_fd < 0))
++		return results_fd;
++
++	results_stream = fdopen(results_fd, "r");
++	if (igt_debug_on(!results_stream)) {
++		close(results_fd);
++		return -errno;
++	}
+ 
+ 	*ktap = igt_ktap_alloc(results);
+-	if (igt_debug_on(!*ktap))
+-		return -ENOMEM;
++	if (igt_debug_on(!*ktap)) {
++		ret = -ENOMEM;
++		goto out_fclose;
++	}
++
++	while (len = getline(&buf, &size, results_stream), len > 0) {
++		ret = igt_ktap_parse(buf, *ktap);
++		if (ret != -EINPROGRESS)
++			break;
++	}
+ 
+-	do
+-		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
+-			      err && err != -EINPROGRESS));
+-	while (err == -EINPROGRESS);
++	free(buf);
+ 
+ 	igt_ktap_free(ktap);
++out_fclose:
++	fclose(results_stream);
+ 
+-	return err;
++	return ret;
+ }
+ 
+ static void __igt_kunit_legacy(struct igt_ktest *tst,
+@@ -1101,7 +1153,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+ 	pthread_mutexattr_t attr;
+ 	IGT_LIST_HEAD(results);
+ 	unsigned long taints;
+-	int ret;
++	int flags, ret;
++
++	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
++
++	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
++	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
++		      "Could not set /dev/kmsg to blocking mode\n");
+ 
+ 	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+ 
+@@ -1224,30 +1282,20 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+ 	igt_skip_on_f(ret, "KTAP parser failed\n");
+ }
+ 
+-static void kunit_get_tests_timeout(int signal)
+-{
+-	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
+-}
+-
+ static bool kunit_get_tests(struct igt_list_head *tests,
+ 			    struct igt_ktest *tst,
+ 			    const char *suite,
+ 			    const char *opts,
++			    DIR *debugfs_dir,
+ 			    struct igt_ktap_results **ktap)
+ {
+-	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
+-			 *saved;
+ 	struct igt_ktap_result *r, *rn;
++	struct dirent *subdir;
+ 	unsigned long taints;
+-	int flags, err;
+-
+-	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
++	int debugfs_fd;
+ 
+-	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
+-	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
+-		      "Could not set /dev/kmsg to blocking mode\n");
+-
+-	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
++	if (igt_debug_on(!debugfs_dir))
++		return false;
+ 
+ 	/*
+ 	 * To get a list of test cases provided by a kunit test module, ask the
+@@ -1260,19 +1308,32 @@ static bool kunit_get_tests(struct igt_list_head *tests,
+ 	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
+ 		return false;
+ 
++	if (!suite) {
++		seekdir(debugfs_dir, 2);	/* directory itself and its parent */
++		errno = 0;
++		igt_skip_on_f(readdir(debugfs_dir) || errno,
++			      "Require empty KUnit debugfs directory\n");
++		rewinddir(debugfs_dir);
++	}
++
+ 	igt_skip_on(modprobe(tst->kmod, opts));
+ 	igt_skip_on(igt_kernel_tainted(&taints));
+ 
+-	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
+-	alarm(10);
++	debugfs_fd = dirfd(debugfs_dir);
++	if (suite) {
++		igt_skip_on(kunit_get_results(tests, debugfs_fd, suite, ktap));
+ 
+-	err = kunit_get_results(tests, tst->kmsg, ktap);
++	} else while (subdir = readdir(debugfs_dir), subdir) {
++		if (!(subdir->d_type & DT_DIR))
++			continue;
+ 
+-	alarm(0);
+-	igt_debug_on(sigaction(SIGALRM, saved, NULL));
++		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
++			continue;
+ 
+-	igt_skip_on_f(err,
+-		      "KTAP parser failed while getting a list of test cases\n");
++		igt_warn_on_f(kunit_get_results(tests, debugfs_fd, subdir->d_name, ktap),
++			      "parsing KTAP report from test suite \"%s\" failed\n",
++			      subdir->d_name);
++	}
+ 
+ 	igt_list_for_each_entry_safe(r, rn, tests, link)
+ 		igt_require_f(r->code == IGT_EXIT_SKIP,
+@@ -1287,6 +1348,7 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 			const char *subtest,
+ 			const char *suite,
+ 			const char *opts,
++			int debugfs_fd,
+ 			struct igt_list_head *tests,
+ 			struct igt_ktap_results **ktap)
+ {
+@@ -1307,8 +1369,6 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 
+ 			igt_skip_on(igt_kernel_tainted(&taints));
+ 
+-			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
+-
+ 			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
+ 					       t->suite_name, t->case_name),
+ 				      sizeof(glob));
+@@ -1317,7 +1377,8 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 			igt_assert_eq(modprobe(tst->kmod, opts), 0);
+ 			igt_assert_eq(igt_kernel_tainted(&taints), 0);
+ 
+-			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
++			igt_assert_eq(kunit_get_results(&results, debugfs_fd,
++							t->suite_name, ktap), 0);
+ 
+ 			for (i = 0; i < 2; i++) {
+ 				kunit_result_free(&r, &suite_name, &case_name);
+@@ -1388,6 +1449,7 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+ 	struct igt_ktest tst = { .kmsg = -1, };
+ 	struct igt_ktap_results *ktap = NULL;
+ 	const char *subtest = suite;
++	DIR *debugfs_dir = NULL;
+ 	IGT_LIST_HEAD(tests);
+ 
+ 	/*
+@@ -1435,10 +1497,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+ 		 *	 LTS kernels not capable of using KUnit filters for
+ 		 *	 listing test cases in KTAP format, with igt_require.
+ 		 */
+-		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
++		debugfs_dir = kunit_debugfs_open();
++		if (!kunit_get_tests(&tests, &tst, suite, opts, debugfs_dir, &ktap))
+ 			__igt_kunit_legacy(&tst, subtest, opts);
+ 		else
+-			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
++			__igt_kunit(&tst, subtest, suite, opts,
++				    dirfd(debugfs_dir), &tests, &ktap);
+ 	}
+ 
+ 	igt_fixture {
+@@ -1448,6 +1512,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+ 
+ 		kunit_results_free(&tests, &suite_name, &case_name);
+ 
++		if (debugfs_dir)
++			closedir(debugfs_dir);
++
+ 		igt_ktest_end(&tst);
+ 	}
+ 
+-- 
+2.44.0
 
-CI Bug Log - changes from CI_DRM_14489 -> Patchwork_131095v5
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_131095v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_131095v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Additional (1): fi-blb-e6850 
-  Missing    (4): bat-arls-4 bat-kbl-2 fi-bsw-nick fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_131095v5:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_busy@busy@all-engines:
-    - fi-blb-e6850:       NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-blb-e6850/igt@gem_busy@busy@all-engines.html
-    - fi-pnv-d510:        [PASS][2] -> [ABORT][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-pnv-d510/igt@gem_busy@busy@all-engines.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-pnv-d510/igt@gem_busy@busy@all-engines.html
-    - fi-ivb-3770:        [PASS][4] -> [ABORT][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-ivb-3770/igt@gem_busy@busy@all-engines.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-ivb-3770/igt@gem_busy@busy@all-engines.html
-    - fi-elk-e7500:       [PASS][6] -> [ABORT][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-elk-e7500/igt@gem_busy@busy@all-engines.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-elk-e7500/igt@gem_busy@busy@all-engines.html
-    - fi-ilk-650:         [PASS][8] -> [ABORT][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-ilk-650/igt@gem_busy@busy@all-engines.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-ilk-650/igt@gem_busy@busy@all-engines.html
-
-  * igt@gem_softpin@allocator-basic:
-    - bat-dg2-14:         [PASS][10] -> [FAIL][11] +3 other tests fail
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-14/igt@gem_softpin@allocator-basic.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-14/igt@gem_softpin@allocator-basic.html
-
-  * igt@gem_softpin@allocator-basic-reserve:
-    - bat-atsm-1:         [PASS][12] -> [FAIL][13] +2 other tests fail
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html
-    - bat-dg2-9:          [PASS][14] -> [FAIL][15] +2 other tests fail
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html
-    - bat-dg2-8:          [PASS][16] -> [FAIL][17] +2 other tests fail
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_131095v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-blb-e6850:       NOTRUN -> [SKIP][18]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-blb-e6850/igt@debugfs_test@basic-hwmon.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@ring_submission:
-    - bat-dg2-14:         [ABORT][19] ([i915#10366]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-14/igt@i915_selftest@live@ring_submission.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-14/igt@i915_selftest@live@ring_submission.html
-
-  
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14489 -> Patchwork_131095v5
-
-  CI-20190529: 20190529
-  CI_DRM_14489: f9c56f1a03b5c35488671e4ffe61e28b12ffe163 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7785: 7785
-  Patchwork_131095v5: f9c56f1a03b5c35488671e4ffe61e28b12ffe163 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-65268abd84f6 drm/i915/gt: Report full vm address range
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/index.html
-
---===============4298254917625245774==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Report full vm address range (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131095/">https://patchwork.freedesktop.org/series/131095/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14489 -&gt; Patchwork_131095v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_131095v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_131095v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Additional (1): fi-blb-e6850 <br />
-  Missing    (4): bat-arls-4 bat-kbl-2 fi-bsw-nick fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_131095v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_busy@busy@all-engines:</p>
-<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-blb-e6850/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-pnv-d510/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-pnv-d510/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-ivb-3770/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-ivb-3770/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-elk-e7500/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-elk-e7500/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/fi-ilk-650/igt@gem_busy@busy@all-engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-ilk-650/igt@gem_busy@busy@all-engines.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@allocator-basic:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-14/igt@gem_softpin@allocator-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-14/igt@gem_softpin@allocator-basic.html">FAIL</a> +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@allocator-basic-reserve:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-atsm-1/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a> +2 other tests fail</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-9/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a> +2 other tests fail</li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-8/igt@gem_softpin@allocator-basic-reserve.html">FAIL</a> +2 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_131095v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@debugfs_test@basic-hwmon:<ul>
-<li>fi-blb-e6850:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/fi-blb-e6850/igt@debugfs_test@basic-hwmon.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@ring_submission:<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-14/igt@i915_selftest@live@ring_submission.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131095v5/bat-dg2-14/igt@i915_selftest@live@ring_submission.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14489 -&gt; Patchwork_131095v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14489: f9c56f1a03b5c35488671e4ffe61e28b12ffe163 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7785: 7785<br />
-  Patchwork_131095v5: f9c56f1a03b5c35488671e4ffe61e28b12ffe163 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>65268abd84f6 drm/i915/gt: Report full vm address range</p>
-
-</body>
-</html>
-
---===============4298254917625245774==--
