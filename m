@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8502C88DD8E
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:09:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3FF188DDA2
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:10:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4D5210FACA;
-	Wed, 27 Mar 2024 12:09:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD5010FAD3;
+	Wed, 27 Mar 2024 12:10:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ch5m27B2";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Mha8lhqi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE60F10FAC9;
- Wed, 27 Mar 2024 12:09:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36A2A10FABE;
+ Wed, 27 Mar 2024 12:10:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 1663DCE169E;
- Wed, 27 Mar 2024 12:09:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 945B8C43390;
- Wed, 27 Mar 2024 12:09:31 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 66CC4CE16C2;
+ Wed, 27 Mar 2024 12:10:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0BA7C433C7;
+ Wed, 27 Mar 2024 12:10:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1711541372;
- bh=r8CjedoAGOnsR5731C64zxM8vQnk7uyMIQsl69lVsig=;
+ s=k20201202; t=1711541404;
+ bh=RWEIZ255bmbgDlx7jX6+2xTRGrPjXnnv6wh8EEn9Vt0=;
  h=From:To:Cc:Subject:Date:From;
- b=ch5m27B2+5tUvH0Vy4apYSI9xNMI5LFPhNouCo98Xw9emKJBggC+HJRsHqTyaKSRV
- vkPU4BExp5l/ED+ujWMTBAoN3LDKn2e1wqAd62RZLhTWkQd9zBd2CfxYezTUNfyWtg
- YzLMssUQx5vx8ntayQIDMCy1ns/RXyJrkG4Oo5KYfCrY6toCl0n9aNbZBgw3M/LlhE
- bnDKO7VgSbaObhBLnalGXuxOkUg19pxTRciypieagJ7W1n+REtMhjBTrdSgwT+418S
- SmpOV9nlN7watBRx5dLLddFwGCgdupt1TADgqF0O8YIvAs1LNJ+/7K0pxZdudQurIj
- zETx6OwsmrhQg==
+ b=Mha8lhqiBPZaR7/fWt0cpTHXOJ5/f2LFA6j3eIjl57RPbLuhp2YVXZ1wPtwNrv76t
+ RPNotuhf3Je2wzlzmsHknn5n7gFfKBK7qer72dT6hZcf/c9mP2AfBHYkSYSLKbwXQt
+ 6NM2RITspTFlF7JxViRTbKam4uNSlbg9RZ4IcTm6MybQXNQqKAskt3Ebi8idZIc/e0
+ mFGrfrqAz1XzWvVad1sQNoKcQaSnKmyHUGl5Z5nVMgPLicvEblhDyT2Hb9LNeSAezM
+ nNCLsF7v5lcAUmd5RYN4P6bwLNPtPJICUzt2nhGKFVACyL9egpiKQHzht68a1Jr5Mh
+ QTr/P4ycfVNMg==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
-	nirmoy.das@intel.com
-Cc: Andi Shyti <andi.shyti@linux.intel.com>, Shawn Lee <shawn.c.lee@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: FAILED: Patch "drm/i915: Check before removing mm notifier" failed to
- apply to 6.6-stable tree
-Date: Wed, 27 Mar 2024 08:09:30 -0400
-Message-ID: <20240327120930.2827120-1-sashal@kernel.org>
+	ville.syrjala@linux.intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: FAILED: Patch "drm/i915/dp: Limit SST link rate to <=8.1Gbps" failed
+ to apply to 6.6-stable tree
+Date: Wed, 27 Mar 2024 08:10:02 -0400
+Message-ID: <20240327121002.2827540-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
 X-stable: review
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,41 +71,40 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From db7bbd13f08774cde0332c705f042e327fe21e73 Mon Sep 17 00:00:00 2001
-From: Nirmoy Das <nirmoy.das@intel.com>
-Date: Mon, 19 Feb 2024 13:50:47 +0100
-Subject: [PATCH] drm/i915: Check before removing mm notifier
+From 6061811d72e14f41f71b6a025510920b187bfcca Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Date: Thu, 8 Feb 2024 17:45:52 +0200
+Subject: [PATCH] drm/i915/dp: Limit SST link rate to <=8.1Gbps
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Error in mmu_interval_notifier_insert() can leave a NULL
-notifier.mm pointer. Catch that and return early.
+Limit the link rate to HBR3 or below (<=8.1Gbps) in SST mode.
+UHBR (10Gbps+) link rates require 128b/132b channel encoding
+which we have not yet hooked up into the SST/no-sideband codepaths.
 
-Fixes: ed29c2691188 ("drm/i915: Fix userptr so we do not have to worry about obj->mm.lock, v7.")
-Cc: <stable@vger.kernel.org> # v5.13+
-[tursulin: Added Fixes and cc stable.]
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Shawn Lee <shawn.c.lee@intel.com>
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240219125047.28906-1-nirmoy.das@intel.com
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240208154552.14545-1-ville.syrjala@linux.intel.com
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 +++
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 0e21ce9d3e5ac..61abfb505766d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -349,6 +349,9 @@ i915_gem_userptr_release(struct drm_i915_gem_object *obj)
- {
- 	GEM_WARN_ON(obj->userptr.page_ref);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index ab415f41924d7..5045c34a16be1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2356,6 +2356,9 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 	limits->min_rate = intel_dp_common_rate(intel_dp, 0);
+ 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
  
-+	if (!obj->userptr.notifier.mm)
-+		return;
++	/* FIXME 128b/132b SST support missing */
++	limits->max_rate = min(limits->max_rate, 810000);
 +
- 	mmu_interval_notifier_remove(&obj->userptr.notifier);
- 	obj->userptr.notifier.mm = NULL;
- }
+ 	limits->min_lane_count = 1;
+ 	limits->max_lane_count = intel_dp_max_lane_count(intel_dp);
+ 
 -- 
 2.43.0
 
