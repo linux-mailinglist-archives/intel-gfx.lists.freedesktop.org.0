@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EA8988DD2A
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:07:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 058F688DD36
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:07:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADE7810FA74;
-	Wed, 27 Mar 2024 12:07:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8E6C10FA72;
+	Wed, 27 Mar 2024 12:07:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UufXcIIu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YDFtaLfq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8660A10FA71;
- Wed, 27 Mar 2024 12:07:07 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F92210FA7E;
+ Wed, 27 Mar 2024 12:07:20 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id DDEBB614CD;
- Wed, 27 Mar 2024 12:07:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A80DEC43390;
- Wed, 27 Mar 2024 12:07:05 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 85F47CE2632;
+ Wed, 27 Mar 2024 12:07:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADC78C433C7;
+ Wed, 27 Mar 2024 12:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1711541226;
- bh=/43Y8blBbhBXwpL1ANH55PCjO3D5pu5+GO6xkE7RQCg=;
+ s=k20201202; t=1711541237;
+ bh=JbUMZ/roR+rmiGA2vkSGBmEv9Ry9nL3yPJ8PrddJmIw=;
  h=From:To:Cc:Subject:Date:From;
- b=UufXcIIu9iW05K0HELPQIwXkuZQclTaZRnl3AS40n1FylnXo23l7aBNHvLl6ZeBgy
- VvBcrnl/ljxwLjnpCPFIJzA1ha6V8LG05mtmzyN1rzN7cdiQrIsHm8NPddOwzwaAOn
- 5nczZRW7cedx7JLJ+efviH9aavcaHCSVkLR/C3v/w+i5F2gNN+zdWJF8clKeBpDM1i
- Kue3ifLZ0PN1F0dS1fT6QYXp6vuMAO+h9J3z31iwz9LVf+mc5skNuWWWKio8TDJWnz
- NsXqEAekJvKYyt4Fh0QgFLDIF2CcQZrjqqbbnwUAa7Za7C6lMpPOcMum4LBMkGRVaS
- xRP4jidbvG9Ag==
+ b=YDFtaLfqL2QQaSup61o+EKiWw0g3s60ziTocvqycKYQK6C71EcZwVu4CNKjCiq+mj
+ gaG9SezctvL0y9jcqqq3TKllGTRvYxuSF81kLrvduJEoYPhJOMCtKmo01WgoqErpO8
+ +zwkfIpgWHrdc8m75AegsHXODiFlkYKmBaqRAJN/mEhSMj3Y9XTIQDV44l/uc/OYbv
+ 39qpyksgZdrf6EshRi8DyJz0/dyi5v1ZdijvJA6H+PSs+itOsW3AAns9HmcTXfDCoD
+ Sg7t99zLWN+Q1CZM/5F5Z47E6WBj6GQakGZYS7iOK8jWHoGymhY6u25A0vSAyT81dg
+ BdXejQsiEUSag==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	ville.syrjala@linux.intel.com
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: FAILED: Patch "drm/i915/dp: Limit SST link rate to <=8.1Gbps" failed
- to apply to 6.8-stable tree
-Date: Wed, 27 Mar 2024 08:07:04 -0400
-Message-ID: <20240327120704.2825093-1-sashal@kernel.org>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: FAILED: Patch "drm/i915/psr: Only allow PSR in LPSP mode on HSW
+ non-ULT" failed to apply to 6.8-stable tree
+Date: Wed, 27 Mar 2024 08:07:15 -0400
+Message-ID: <20240327120715.2825271-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
@@ -71,40 +71,69 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From 6061811d72e14f41f71b6a025510920b187bfcca Mon Sep 17 00:00:00 2001
+From 94501c3ca6400e463ff6cc0c9cf4a2feb6a9205d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Thu, 8 Feb 2024 17:45:52 +0200
-Subject: [PATCH] drm/i915/dp: Limit SST link rate to <=8.1Gbps
+Date: Thu, 18 Jan 2024 23:21:31 +0200
+Subject: [PATCH] drm/i915/psr: Only allow PSR in LPSP mode on HSW non-ULT
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Limit the link rate to HBR3 or below (<=8.1Gbps) in SST mode.
-UHBR (10Gbps+) link rates require 128b/132b channel encoding
-which we have not yet hooked up into the SST/no-sideband codepaths.
+On HSW non-ULT (or at least on Dell Latitude E6540) external displays
+start to flicker when we enable PSR on the eDP. We observe a much higher
+SR and PC6 residency than should be possible with an external display,
+and indeen much higher than what we observe with eDP disabled and
+only the external display enabled. Looks like the hardware is somehow
+ignoring the fact that the external display is active during PSR.
+
+I wasn't able to redproduce this on my HSW ULT machine, or BDW.
+So either there's something specific about this particular laptop
+(eg. some unknown firmware thing) or the issue is limited to just
+non-ULT HSW systems. All known registers that could affect this
+look perfectly reasonable on the affected machine.
+
+As a workaround let's unmask the LPSP event to prevent PSR entry
+except while in LPSP mode (only pipe A + eDP active). This
+will prevent PSR entry entirely when multiple pipes are active.
+The one slight downside is that we now also prevent PSR entry
+when driving eDP with pipe B or C, but I think that's a reasonable
+tradeoff to avoid having to implement a more complex workaround.
 
 Cc: stable@vger.kernel.org
+Fixes: 783d8b80871f ("drm/i915/psr: Re-enable PSR1 on hsw/bdw")
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10092
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240208154552.14545-1-ville.syrjala@linux.intel.com
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240118212131.31868-1-ville.syrjala@linux.intel.com
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ab415f41924d7..5045c34a16be1 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2356,6 +2356,9 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 	limits->min_rate = intel_dp_common_rate(intel_dp, 0);
- 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
- 
-+	/* FIXME 128b/132b SST support missing */
-+	limits->max_rate = min(limits->max_rate, 810000);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 696d5d32ca9db..1010b8c405df2 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1544,8 +1544,18 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 	 * can rely on frontbuffer tracking.
+ 	 */
+ 	mask = EDP_PSR_DEBUG_MASK_MEMUP |
+-	       EDP_PSR_DEBUG_MASK_HPD |
+-	       EDP_PSR_DEBUG_MASK_LPSP;
++	       EDP_PSR_DEBUG_MASK_HPD;
 +
- 	limits->min_lane_count = 1;
- 	limits->max_lane_count = intel_dp_max_lane_count(intel_dp);
++	/*
++	 * For some unknown reason on HSW non-ULT (or at least on
++	 * Dell Latitude E6540) external displays start to flicker
++	 * when PSR is enabled on the eDP. SR/PC6 residency is much
++	 * higher than should be possible with an external display.
++	 * As a workaround leave LPSP unmasked to prevent PSR entry
++	 * when external displays are active.
++	 */
++	if (DISPLAY_VER(dev_priv) >= 8 || IS_HASWELL_ULT(dev_priv))
++		mask |= EDP_PSR_DEBUG_MASK_LPSP;
  
+ 	if (DISPLAY_VER(dev_priv) < 20)
+ 		mask |= EDP_PSR_DEBUG_MASK_MAX_SLEEP;
 -- 
 2.43.0
 
