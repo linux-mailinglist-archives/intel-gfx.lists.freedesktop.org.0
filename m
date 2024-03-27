@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ACB388DD6C
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8502C88DD8E
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 13:09:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B634210FAAC;
-	Wed, 27 Mar 2024 12:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D5210FACA;
+	Wed, 27 Mar 2024 12:09:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="K38slKvI";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ch5m27B2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 845C710FAAA;
- Wed, 27 Mar 2024 12:08:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE60F10FAC9;
+ Wed, 27 Mar 2024 12:09:34 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id A01ECCE2614;
- Wed, 27 Mar 2024 12:08:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64A2C433C7;
- Wed, 27 Mar 2024 12:08:29 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 1663DCE169E;
+ Wed, 27 Mar 2024 12:09:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 945B8C43390;
+ Wed, 27 Mar 2024 12:09:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1711541310;
- bh=+6Y/rySNhxC1EF9/6EjIu3gQHaidUbRWc6Err1nFeCY=;
+ s=k20201202; t=1711541372;
+ bh=r8CjedoAGOnsR5731C64zxM8vQnk7uyMIQsl69lVsig=;
  h=From:To:Cc:Subject:Date:From;
- b=K38slKvIngki1eEm0687YuzwgNCrtEOEyZmS/h48jGWt9hM3YRxWokbxxt697UrWv
- aV3v7fkPuqwz00vdPI/9k7FwKZu7K/2WYcv6vxmw3C87TxcceYTwUwpwdXPPKOIF9U
- uRt2bzoL0pnpdXND7NcaWhpbMn5/H/Flo0qInBottDs/zcM+f15obWyEKIkYHKBuZ9
- voJW2/o+dZwz+PcEx6dwTPl5gJFBy1r/Udo9GDmvgCbl65xwoCQKkTnb2c3wP6/FY7
- qJAf/ZJbbPt4SFFuLrxC/QqnS31luz3NejuucjbpXcYBtVuZ1AldPRpl7VRxooZymK
- E8ZXIOxSw4o+g==
+ b=ch5m27B2+5tUvH0Vy4apYSI9xNMI5LFPhNouCo98Xw9emKJBggC+HJRsHqTyaKSRV
+ vkPU4BExp5l/ED+ujWMTBAoN3LDKn2e1wqAd62RZLhTWkQd9zBd2CfxYezTUNfyWtg
+ YzLMssUQx5vx8ntayQIDMCy1ns/RXyJrkG4Oo5KYfCrY6toCl0n9aNbZBgw3M/LlhE
+ bnDKO7VgSbaObhBLnalGXuxOkUg19pxTRciypieagJ7W1n+REtMhjBTrdSgwT+418S
+ SmpOV9nlN7watBRx5dLLddFwGCgdupt1TADgqF0O8YIvAs1LNJ+/7K0pxZdudQurIj
+ zETx6OwsmrhQg==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	nirmoy.das@intel.com
@@ -38,9 +38,9 @@ Cc: Andi Shyti <andi.shyti@linux.intel.com>, Shawn Lee <shawn.c.lee@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Subject: FAILED: Patch "drm/i915: Check before removing mm notifier" failed to
- apply to 6.7-stable tree
-Date: Wed, 27 Mar 2024 08:08:28 -0400
-Message-ID: <20240327120828.2826214-1-sashal@kernel.org>
+ apply to 6.6-stable tree
+Date: Wed, 27 Mar 2024 08:09:30 -0400
+Message-ID: <20240327120930.2827120-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
@@ -61,7 +61,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The patch below does not apply to the 6.7-stable tree.
+The patch below does not apply to the 6.6-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
