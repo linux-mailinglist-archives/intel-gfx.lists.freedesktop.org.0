@@ -2,61 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF9888EFD4
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 21:06:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66BDD88F03C
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 21:36:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E9110FFB2;
-	Wed, 27 Mar 2024 20:06:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD2E10FFEA;
+	Wed, 27 Mar 2024 20:36:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LXVMkoZL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VnoSf6zH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DB4110FFB1;
- Wed, 27 Mar 2024 20:06:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC3B10FFEA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:36:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711569976; x=1743105976;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1711571779; x=1743107779;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=am2mj8+T6SMuackNPS20P6/aicAB83dsYfqBlgU/oRc=;
- b=LXVMkoZL+0l3t7nvzWvXep2kvOA2Fsuyc4I2Pu6lqtIimJDbdL6bO+/p
- ZCxNgy92HSh7Ci/EiNO6w8izk113DM3nkt6f8dzmceU7NlF+GIK0tjumq
- +NmXb9IE/62ech/53SZdQ1vqbSiDLOupQ5nwVDHti+Lwv2k5IohU1IxhQ
- Tty+GVHEmapoqAC0frbY86zQxBIbZos/9lzqxQcH0aokklBrsRZQeFqFO
- p9WArJfWy2HBdj/U4yO4nzBPaVV6NY2oCykPo+QPttITADvzSiRTS5pQB
- YxamzHuMphFJY+CCN4riBIBTCkD5WesiScC3kToea1EpDeE2V4sp0D55H A==;
-X-CSE-ConnectionGUID: YgM83BlqQBKDHuQctz5rCA==
-X-CSE-MsgGUID: P2SsMx3sSH6P/+HmzQ9W1A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6526135"
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; 
-   d="scan'208";a="6526135"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 13:06:15 -0700
+ bh=Lz4wkTRHqS0h6ta/1E8fmyaHvWE5AdLNRw9K9Oh8VtA=;
+ b=VnoSf6zH6Iqpju/tidDpJO1zM6c47s5+dPlHpP+pQmeZJv8a5K6KNfor
+ W1ZmVZMYuqDPE4l7+dWBdz2UfwGhdUuzJPR7hFNd312Oi33Deg6nABGZ8
+ qLYN3lqO1heEV0nH/U/n3yAr78VBQX3m6J+V/QVApoP+bXaYOHz2Z6pCB
+ TTYFoPYQxlGg7Jna2jMyhaY/Qc/FJTigkDM+lciOzqnfDSqlguDVIOrKP
+ rchyg/qYPkGCSyxOSTlwtM5ZRivvBX9lvuz0EOEPJshdUp4erI53EF/Zt
+ HCEILYvI9CTYjAYodGmTCTc7vamUVM2O90sI7j1NWPeUsZaiJtHcmeaAf w==;
+X-CSE-ConnectionGUID: F/AdUi6zRCmRNmBOMQwyrw==
+X-CSE-MsgGUID: mhqp922bQQKIQijYG3HXvQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="29181654"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="29181654"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 13:36:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="21126588"
-Received: from unknown (HELO intel.com) ([10.247.118.215])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 13:06:07 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Michal Mrozek <michal.mrozek@intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- mateusz.jablonski@intel.com, Andi Shyti <andi.shyti@kernel.org>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Subject: [PATCH] drm/i915/gt: Limit the reserved VM space to only the
- platforms that need it
-Date: Wed, 27 Mar 2024 21:05:46 +0100
-Message-ID: <20240327200546.640108-1-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="827785972"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="827785972"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 27 Mar 2024 13:36:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 27 Mar 2024 22:36:16 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/2] drm/i915: A few bigjoiner fixes
+Date: Wed, 27 Mar 2024 22:36:14 +0200
+Message-ID: <20240327203616.20502-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,83 +65,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 9bb66c179f50 ("drm/i915: Reserve some kernel space per
-vm") reduces the available VM space of one page in order to apply
-Wa_16018031267 and Wa_16018063123.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-This page was reserved indiscrimitely in all platforms even when
-not needed. Limit it to DG2 onwards.
+Refuse bigjoiner+port sync as it's completely broken,
+and also fix a potential state mismatch once we do
+get MST/port sync + bigjoiner support.
 
-Fixes: 9bb66c179f50 ("drm/i915: Reserve some kernel space per vm")
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 3 +++
- drivers/gpu/drm/i915/gt/intel_gt.c   | 6 ++++++
- drivers/gpu/drm/i915/gt/intel_gt.h   | 9 +++++----
- 3 files changed, 14 insertions(+), 4 deletions(-)
+Ville Syrjälä (2):
+  drm/i915: Disable port sync when bigjoiner is used
+  drm/i915: Fix intel_modeset_pipe_config_late() for bigjoiner
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 1bd0e041e15c..398d60a66410 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -961,6 +961,9 @@ static int gen8_init_rsvd(struct i915_address_space *vm)
- 	struct i915_vma *vma;
- 	int ret;
- 
-+	if (!intel_gt_needs_wa_16018031267(vm->gt))
-+		return 0;
-+
- 	/* The memory will be used only by GPU. */
- 	obj = i915_gem_object_create_lmem(i915, PAGE_SIZE,
- 					  I915_BO_ALLOC_VOLATILE |
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 2c6d31b8fc1a..580b5141ce1e 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -1024,6 +1024,12 @@ enum i915_map_type intel_gt_coherent_map_type(struct intel_gt *gt,
- 		return I915_MAP_WC;
- }
- 
-+bool intel_gt_needs_wa_16018031267(struct intel_gt *gt)
-+{
-+	/* Wa_16018031267, Wa_16018063123 */
-+	return IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 55), IP_VER(12, 71));
-+}
-+
- bool intel_gt_needs_wa_22016122933(struct intel_gt *gt)
- {
- 	return MEDIA_VER_FULL(gt->i915) == IP_VER(13, 0) && gt->type == GT_MEDIA;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 6e7cab60834c..b5e114d284ad 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -82,17 +82,18 @@ struct drm_printer;
- 		  ##__VA_ARGS__);					\
- } while (0)
- 
--#define NEEDS_FASTCOLOR_BLT_WABB(engine) ( \
--	IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 55), IP_VER(12, 71)) && \
--	engine->class == COPY_ENGINE_CLASS && engine->instance == 0)
--
- static inline bool gt_is_root(struct intel_gt *gt)
- {
- 	return !gt->info.id;
- }
- 
-+bool intel_gt_needs_wa_16018031267(struct intel_gt *gt);
- bool intel_gt_needs_wa_22016122933(struct intel_gt *gt);
- 
-+#define NEEDS_FASTCOLOR_BLT_WABB(engine) ( \
-+	intel_gt_needs_wa_16018031267(engine->gt) && \
-+	engine->class == COPY_ENGINE_CLASS && engine->instance == 0)
-+
- static inline struct intel_gt *uc_to_gt(struct intel_uc *uc)
- {
- 	return container_of(uc, struct intel_gt, uc);
+ drivers/gpu/drm/i915/display/intel_ddi.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c | 46 ++++++++++++++------
+ 2 files changed, 33 insertions(+), 14 deletions(-)
+
 -- 
-2.43.0
+2.43.2
 
