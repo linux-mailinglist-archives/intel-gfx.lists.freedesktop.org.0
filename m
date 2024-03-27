@@ -2,66 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CE588EC9F
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 18:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C076B88ECC5
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 18:38:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70CF510FE8A;
-	Wed, 27 Mar 2024 17:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61CD110FEAA;
+	Wed, 27 Mar 2024 17:38:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gvVHKITT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VKXmnE+j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C833610EF51;
- Wed, 27 Mar 2024 17:27:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13FBE10FE84
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 17:38:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711560476; x=1743096476;
+ t=1711561127; x=1743097127;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/Z8Hy5QHAyB1RzU7/9bPurJZFIDMHK/R/Y9zCGuIkuE=;
- b=gvVHKITTvAc4JZ6GKuq58MGaChV9GcMHlGDi1Sk+x/gxJfMBMoedNXQ6
- +XGqapKj3KFXXxjtuOSlhqU87PyNo+00t/sB42Mq7R319X8NzoK2DAnqz
- EcCEVuLYiMYaOvUIWqT62/z04jLnEci2eqmU0Lh0GzOMzp+qEWmI5SfkJ
- GUyXelQXRt8p94hWtXUGr7OJrqIpYkTe1XZ29Jhlk0SG1eUTi6lNhX93h
- pOIrap3s0GwaPx9pWj8c6HPQ/JQBp+RzJFM7awf26QfEuXk3xG9qAHFb8
- YXFO0/bqcg0L/LTkfl0d/nbr/YgjeOhv9fxCmQbRi61lYKx4q1baEwCgO g==;
-X-CSE-ConnectionGUID: kV1ny3H6SMaxWb9tpSD/Cg==
-X-CSE-MsgGUID: 9+uYqvc5S4SUnzlbMPRLVQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="7283711"
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; 
-   d="scan'208";a="7283711"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 10:27:55 -0700
+ in-reply-to:mime-version;
+ bh=JoPGR8caNoJZ9leZuk56QRkRUdozDv5k+ofo8wVncOc=;
+ b=VKXmnE+j2xZksCiZ+6riC/zhojjadgt1cSYiYJeAodslRhItvauz5efS
+ DVu60xoeRm4iMMH3DfybHcfV373wgSHj7wIg7dAcYQHKc4q8+GKvyL1T3
+ 1Tpzi22mDd+2NCsKKoToh5repInmJscCae1Gk/ZGpGDtH05HRNhMoKxJ6
+ UpNpC6xIOOXzUQ1s+arFGkncT1AfqZ9/6ETlRCJAf0z3MSOAiLV9kSNFz
+ MvoKlOVQz0FGlo6238fEUCWj8XBet3jR2g1gneBCLAv6Q4zgifMUX1kjE
+ uWcHbPmt1W7yInta3AC6gAZImxUdUB1LGSx0rqk7sDSj9RuYr2RjIfISM A==;
+X-CSE-ConnectionGUID: FG0j376JTuydSj2sbQjGGg==
+X-CSE-MsgGUID: LcOdkq2CSYOaz8chGt/hoA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="17232338"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="17232338"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 10:38:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="20847636"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmviesa005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2024 10:27:53 -0700
-Date: Wed, 27 Mar 2024 18:27:50 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: Re: [PATCH i-g-t] lib/kunit: Read results from debugfs
-Message-ID: <20240327172750.dckajao4pfvjy763@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20240327113700.7123-2-janusz.krzysztofik@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="16769251"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Mar 2024 10:38:47 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 27 Mar 2024 10:38:45 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 27 Mar 2024 10:38:45 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 27 Mar 2024 10:38:45 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 27 Mar 2024 10:38:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iRMfbpSL4rWnmDgFp/BXAf+2hplYgT72oJ58G/bp0h3AkVhqel+pBbQMeX8r7jqi8S+97u3NowAYjMVc1dBKZ2Yw9Cf6O0qTc79COP64W+6mpLfJMi7BEAQjkRZy0AUtzcB8E/IAQ/XESl0EkEzmvSvdJZb81eJRXRJAejznB0EcmQzk+mgLxHEQ57P9l1dUcx7n9OIn502RHGzeAF265FDZBrH850bAFAGGE8UaeOZ3VMHHr+zWciTnrNRlHcJH40ePfx8dwIHZ2WiRySvmxzDAWzCD2mW9keKXiRJ5m3d0+Oosfu/iGizZImDyjpfGeyL9DeinpjhmvRaPXiJ1pQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=agbA7pN4lD/XtM+qEG8ZgzOvC5hqOoyEhWw/IzuzQMA=;
+ b=ETDHBeV2X/yLcGm5cDk5V6Vohu/PHrvnclSogEZJeEhnRF02K6AaIUuNl138btBegglnriMWR3eA0sQXW2bRo3VBCxWGmR/JAjD2Y+ORx8iGWSr3KvZaz+9Vg34Ew/hES9Gksqofjwf2dzTQoW4nQLzpDwCVexoJkhSkLoI+vlbf/BO2bIok3xuStdg0EZ3D+SC7pR6wE0rKJ+TOO0Tcmeiwr3PTMUqJEohzbrxAODSSchN0Y0ZBzGEiapIy5WYjfHLiVX7NaoNKN2QSFau5fCHmdgV+qyDhpd8DPapVEhe1w91X+e0ssT8lEiuysO73HKX1Jc24Zh9nPDS7THiq4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by MW3PR11MB4604.namprd11.prod.outlook.com (2603:10b6:303:2f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Wed, 27 Mar
+ 2024 17:38:41 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::45cf:261e:c084:9493]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::45cf:261e:c084:9493%6]) with mapi id 15.20.7409.028; Wed, 27 Mar 2024
+ 17:38:41 +0000
+Date: Wed, 27 Mar 2024 10:38:34 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+CC: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Subject: Re: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVy?= =?utf-8?Q?e?= for
+ drm/i915: Add new PCI IDs to DG2 platform in driver
+Message-ID: <20240327173834.GB1332995@mdroper-desk1.amr.corp.intel.com>
+References: <20240326103241.3832494-1-ravi.kumar.vodapalli@intel.com>
+ <171150076931.1054669.14779813636782793236@8e613ede5ea5>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240327113700.7123-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <171150076931.1054669.14779813636782793236@8e613ede5ea5>
+X-ClientProxiedBy: SJ0PR03CA0113.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::28) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MW3PR11MB4604:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0032cc6-261c-4851-c8bd-08dc4e84be50
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cxLfKWKVm/bzGdGeeinyKmi+7k+dw2cSUY6gMTbtdOPmnGYPVQatwvMJ2Ox+rwIi6YU2FY2K7zISQiIYMhlHBirukqYq/lvaqpVFhgHcsqcy0qC3DQMSgextaOU4JAiN25Vbd7Idx8NtBt4YRqY1Ah2cgKGqmzFKWkmHZz+MvuLJL4uv2qUo34hLvK/+N6zxGbzjhmb6P0OXCmJ5qYk5/6a+AClr5dWKWSvKG6iCUcXxQtSFuRtA/8SLU+loaEbEO3gxR2+P+nsuaws1M9b2ApZHKKTqwLCaFzQbXt9S/NnDMNdrLF5qgR5nadHSjIwYDKb6ULMU6jt7r7U5uE7JrFLb9T1B3PhkzvIIk8GCRrj7Em6WMFD+1G3vjBHjQzEWRkgw7glPc7vDaK49+7lqjkxo2WTE/x3+PXUOfWo7ht6tGPyNAIbiZZNXwGOpKWWv6uGD9FKoVTrJSwub7777Iv4EShiVz4s9Cv6kdLU33VkGKCudmrLuLardjyuh12h31Xm3F3DA394VNRiyMG6lxR+S6+HMzNdfbL2SNJb3Dne2JAKSxMLb5vhleP8tn/kqa7AsslH2TNefQHUxdWLWNVHlkXKjRHW8x+Oa9uirwQ0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?l98Y4v7THE6vf8SUMJMhj2tgcScE3ht0hu2f/DMtinxyiWgY2FLuITvDT4TF?=
+ =?us-ascii?Q?+6uNT9U19k+MrRFdMY+aWaavk9uSCEp/HmUV0q6IbmPg9y/T3uLco9oKtNcl?=
+ =?us-ascii?Q?EPafMzbbKNSuyzZTDL03sEqMtYrJ4y5Pdsd+PlXxJ/IQGax/dLkqplniTS0L?=
+ =?us-ascii?Q?9FJTIVQwN5aGXWemYuhAfRZdYpqGqEgmHNW6WuODGvNrnapYf2+c5GahM5nW?=
+ =?us-ascii?Q?KkuA3MPzv3mrlpo2y+Wvdc1yyqzIrIW/7Las3YgjmES7UzI3mP1oQf1nwiKw?=
+ =?us-ascii?Q?d3uTcZNHJtnUKry1IPiiWzDGptX2bXH9MygzNzz0ilHOSqamfyBF/gn93pco?=
+ =?us-ascii?Q?dUMzsovJ53ZJ+KUU2kY+i+0AiTrPMx3/x7TPegNq+eqBi7AeZIdTqFagyTvp?=
+ =?us-ascii?Q?ZTUR6ijQugp2ugR4tvEcvEMh9nuwnaiT/CQTF8h4JIzpuJxtLU/oYvWuaRC8?=
+ =?us-ascii?Q?GSRLU5uOiRx8y0+9gK353IrqILnYuZ62+p6nW8acxptOews9AE+Pa50r42gT?=
+ =?us-ascii?Q?c41yvoWrELhI8NjQAv0cMDH2xbxT/ZylbEdPgeBeCf4QW+7nSMNDLA8sO18T?=
+ =?us-ascii?Q?olEfTpILwR8BuIQc3lSFjKmZpkfqZPx5+N6C8Xbks632Q5oC/4lEKzc/NfED?=
+ =?us-ascii?Q?UvD6yESspKksb5y5d0TWNtTV7ESLz+5YeNbBVqSXzdIJxyPZ37PvGENgWnCR?=
+ =?us-ascii?Q?uAdGC/i8fLO7/xTm7ZH/K9QSLBLTrh42Mv/siqjUaDlgjoWcJsZdGESPV1Sy?=
+ =?us-ascii?Q?ULaHki70c6ahGEuA1Hy9pcV5eGW3SKTGp9hv11NYhFWIIiP1oq2wcXEh9d7p?=
+ =?us-ascii?Q?NoNWPcQyL6ZF2DrC8c+O9nspCVm84pA2XRoLnOgOIkMMFQZPY1ZB+Lg2CyIB?=
+ =?us-ascii?Q?tN98WlG7w91Q9BoWTC6Ebad3Gmc5MmxZZykvee1WdkPjBsMj9Gu4WlhF+cKg?=
+ =?us-ascii?Q?aMg3Fr+nK1TjMPL7EW7PtM2ZYjdQvvpT41nUTrhq6XmeUv2etVL9jGqSJFOF?=
+ =?us-ascii?Q?A5NZpErW47zNdGKIY0GsBxmmX7h3qecFPARHsWtSfsIoZ6K0211C59smEL70?=
+ =?us-ascii?Q?Nw0YttxCowvWyEJ7ZFMp5L6zyYSY5xDVmTScE5mrH28BsBzW9piXwuhGdi2k?=
+ =?us-ascii?Q?80lHwkALSGtV2Qm/7N351eFsMXw6Ti37wxOekp2Fd8yng8Hy+VXpT9YaFWGi?=
+ =?us-ascii?Q?XFiM0w0mDVxEGOsIWxd1+QD/Px6mYL9Ndcj+/Iz+30Sug1Igl8Bi14aSgL5b?=
+ =?us-ascii?Q?u0/79Vgdk4theVsFh5INvcbBvqz5MJHN1Cjz07tkcbyX13vm/kQoO8FaFI7N?=
+ =?us-ascii?Q?BVMDpXxXDIT35cvl66acsReuoEExAfMHIXebFyZ6p1VOM/WZpvzQjuww9gB+?=
+ =?us-ascii?Q?JYj1lSQno+6d8ZWGHuB3KZk5i3DdIeH05ycssd2gC7umkEUlOM53Vd0UgUYa?=
+ =?us-ascii?Q?yhlihrPhwIdIrPs7iSXfTZrj9mtLG0TqsC/a/LGfPJ3B4027L1/SqxgRrUfv?=
+ =?us-ascii?Q?T3W1lYVt+CGuawYYOB6PjlL2w68i5yvhEPJC0f8GRe60yWXbms+WP7k9WVXx?=
+ =?us-ascii?Q?0+AjafUrm766uq5d37CZoLQeyy3+cFEoAkGwXyetJgtPLXdkDwjrGM5PjRZr?=
+ =?us-ascii?Q?vw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0032cc6-261c-4851-c8bd-08dc4e84be50
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2024 17:38:41.7496 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yGxkUwUvWcFugbXIYSy5W8pIiqylgNDNaFzreCYr9wZ89EFHb/tRjzGPVwOm0IzZVPmYGu9IzKaztyyT7gtnJ/FCaYfcffP6eQ3EaLqwo60=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4604
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,298 +156,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2024-03-27 at 12:22:54 +0100, Janusz Krzysztofik wrote:
-> KUnit can provide KTAP reports from test modules via debugfs files, one
-> per test suite.  Using that source of test results instead of extracting
-> them from dmesg, where they may be interleaved with other kernel messages,
-> seems more easy to handle and less error prone.  Switch to it.
+On Wed, Mar 27, 2024 at 12:52:49AM -0000, Patchwork wrote:
+> == Series Details ==
 > 
-> If KUnit debugfs support is found not configured then fall back to legacy
-> processing path.
+> Series: drm/i915: Add new PCI IDs to DG2 platform in driver
+> URL   : https://patchwork.freedesktop.org/series/131625/
+> State : failure
 > 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> ---
->  lib/igt_kmod.c | 143 ++++++++++++++++++++++++++++++++++++-------------
->  1 file changed, 105 insertions(+), 38 deletions(-)
+> == Summary ==
 > 
-> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-> index 1ec9c8a602..a5b170ca9c 100644
-> --- a/lib/igt_kmod.c
-> +++ b/lib/igt_kmod.c
-> @@ -28,6 +28,7 @@
->  #include <limits.h>
->  #include <pthread.h>
->  #include <signal.h>
-> +#include <stdio.h>
->  #include <stdlib.h>
->  #include <string.h>
->  #include <sys/stat.h>
-> @@ -39,6 +40,7 @@
->  
->  #include "igt_aux.h"
->  #include "igt_core.h"
-> +#include "igt_debugfs.h"
->  #include "igt_kmod.h"
->  #include "igt_ktap.h"
->  #include "igt_sysfs.h"
-> @@ -864,6 +866,31 @@ static int open_parameters(const char *module_name)
->  	return open(path, O_RDONLY);
->  }
->  
-> +static DIR *kunit_debugfs_open(void)
-> +{
-> +	const char *debugfs_path = igt_debugfs_mount();
-> +	int debugfs_fd, kunit_fd;
-> +	DIR *kunit_dir;
-> +
-> +	if (igt_debug_on(!debugfs_path))
-> +		return NULL;
-> +
-> +	debugfs_fd = open(debugfs_path, O_DIRECTORY);
-> +	if (igt_debug_on(debugfs_fd < 0))
-> +		return NULL;
-> +
-> +	kunit_fd = openat(debugfs_fd, "kunit", O_DIRECTORY);
-> +	close(debugfs_fd);
-> +	if (igt_debug_on(kunit_fd < 0))
-> +		return NULL;
-> +
-> +	kunit_dir = fdopendir(kunit_fd);
-> +	if (igt_debug_on(!kunit_dir))
-> +		close(kunit_fd);
-
-imho here:
-	close(kunit_fd);
-    igt_debug_on(!kunit_dir);
-
-> +
-> +	return kunit_dir;
-> +}
-> +
->  static bool kunit_set_filtering(const char *filter_glob, const char *filter,
->  				const char *filter_action)
->  {
-> @@ -1071,23 +1098,48 @@ static void kunit_results_free(struct igt_list_head *results,
->  	free(*suite_name);
->  }
->  
-> -static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
-> -			     struct igt_ktap_results **ktap)
-> +static int kunit_get_results(struct igt_list_head *results, int debugfs_fd,
-> +			     const char *suite, struct igt_ktap_results **ktap)
->  {
-> -	int err;
-> +	FILE *results_stream;
-> +	int ret, results_fd;
-> +	char *buf = NULL;
-> +	size_t size = 0;
-> +	ssize_t len;
-> +
-> +	if (igt_debug_on((ret = openat(debugfs_fd, suite, O_DIRECTORY), ret < 0)))
-> +		return ret;
-> +
-> +	results_fd = openat(ret, "results", O_RDONLY);
-> +	close(ret);
-> +	if (igt_debug_on(results_fd < 0))
-> +		return results_fd;
-> +
-> +	results_stream = fdopen(results_fd, "r");
-> +	if (igt_debug_on(!results_stream)) {
-> +		close(results_fd);
-> +		return -errno;
-> +	}
->  
->  	*ktap = igt_ktap_alloc(results);
-> -	if (igt_debug_on(!*ktap))
-> -		return -ENOMEM;
-> +	if (igt_debug_on(!*ktap)) {
-> +		ret = -ENOMEM;
-> +		goto out_fclose;
-> +	}
-> +
-> +	while (len = getline(&buf, &size, results_stream), len > 0) {
-> +		ret = igt_ktap_parse(buf, *ktap);
-> +		if (ret != -EINPROGRESS)
-> +			break;
-> +	}
->  
-> -	do
-> -		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
-> -			      err && err != -EINPROGRESS));
-> -	while (err == -EINPROGRESS);
-> +	free(buf);
->  
->  	igt_ktap_free(ktap);
-> +out_fclose:
-> +	fclose(results_stream);
->  
-> -	return err;
-> +	return ret;
->  }
->  
->  static void __igt_kunit_legacy(struct igt_ktest *tst,
-> @@ -1101,7 +1153,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
->  	pthread_mutexattr_t attr;
->  	IGT_LIST_HEAD(results);
->  	unsigned long taints;
-> -	int ret;
-> +	int flags, ret;
-> +
-> +	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-> +
-> +	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
-> +	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
-> +		      "Could not set /dev/kmsg to blocking mode\n");
->  
->  	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
->  
-> @@ -1224,30 +1282,20 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
->  	igt_skip_on_f(ret, "KTAP parser failed\n");
->  }
->  
-> -static void kunit_get_tests_timeout(int signal)
-> -{
-> -	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
-> -}
-> -
->  static bool kunit_get_tests(struct igt_list_head *tests,
->  			    struct igt_ktest *tst,
->  			    const char *suite,
->  			    const char *opts,
-> +			    DIR *debugfs_dir,
->  			    struct igt_ktap_results **ktap)
->  {
-> -	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
-> -			 *saved;
->  	struct igt_ktap_result *r, *rn;
-> +	struct dirent *subdir;
->  	unsigned long taints;
-> -	int flags, err;
-> -
-> -	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-> +	int debugfs_fd;
->  
-> -	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
-> -	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
-> -		      "Could not set /dev/kmsg to blocking mode\n");
-> -
-> -	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
-> +	if (igt_debug_on(!debugfs_dir))
-> +		return false;
-
-imho this should be before you set blocking mode or before you
-call this function.
-
->  
->  	/*
->  	 * To get a list of test cases provided by a kunit test module, ask the
-> @@ -1260,19 +1308,32 @@ static bool kunit_get_tests(struct igt_list_head *tests,
->  	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
->  		return false;
->  
-> +	if (!suite) {
-> +		seekdir(debugfs_dir, 2);	/* directory itself and its parent */
-> +		errno = 0;
-> +		igt_skip_on_f(readdir(debugfs_dir) || errno,
-> +			      "Require empty KUnit debugfs directory\n");
-> +		rewinddir(debugfs_dir);
-> +	}
-> +
->  	igt_skip_on(modprobe(tst->kmod, opts));
->  	igt_skip_on(igt_kernel_tainted(&taints));
->  
-> -	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
-> -	alarm(10);
-
-Why you removed alarm(10)?
-
-Regards,
-Kamil
-
-> +	debugfs_fd = dirfd(debugfs_dir);
-> +	if (suite) {
-> +		igt_skip_on(kunit_get_results(tests, debugfs_fd, suite, ktap));
->  
-> -	err = kunit_get_results(tests, tst->kmsg, ktap);
-> +	} else while (subdir = readdir(debugfs_dir), subdir) {
-> +		if (!(subdir->d_type & DT_DIR))
-> +			continue;
->  
-> -	alarm(0);
-> -	igt_debug_on(sigaction(SIGALRM, saved, NULL));
-> +		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
-> +			continue;
->  
-> -	igt_skip_on_f(err,
-> -		      "KTAP parser failed while getting a list of test cases\n");
-> +		igt_warn_on_f(kunit_get_results(tests, debugfs_fd, subdir->d_name, ktap),
-> +			      "parsing KTAP report from test suite \"%s\" failed\n",
-> +			      subdir->d_name);
-> +	}
->  
->  	igt_list_for_each_entry_safe(r, rn, tests, link)
->  		igt_require_f(r->code == IGT_EXIT_SKIP,
-> @@ -1287,6 +1348,7 @@ static void __igt_kunit(struct igt_ktest *tst,
->  			const char *subtest,
->  			const char *suite,
->  			const char *opts,
-> +			int debugfs_fd,
->  			struct igt_list_head *tests,
->  			struct igt_ktap_results **ktap)
->  {
-> @@ -1307,8 +1369,6 @@ static void __igt_kunit(struct igt_ktest *tst,
->  
->  			igt_skip_on(igt_kernel_tainted(&taints));
->  
-> -			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
-> -
->  			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
->  					       t->suite_name, t->case_name),
->  				      sizeof(glob));
-> @@ -1317,7 +1377,8 @@ static void __igt_kunit(struct igt_ktest *tst,
->  			igt_assert_eq(modprobe(tst->kmod, opts), 0);
->  			igt_assert_eq(igt_kernel_tainted(&taints), 0);
->  
-> -			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
-> +			igt_assert_eq(kunit_get_results(&results, debugfs_fd,
-> +							t->suite_name, ktap), 0);
->  
->  			for (i = 0; i < 2; i++) {
->  				kunit_result_free(&r, &suite_name, &case_name);
-> @@ -1388,6 +1449,7 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
->  	struct igt_ktest tst = { .kmsg = -1, };
->  	struct igt_ktap_results *ktap = NULL;
->  	const char *subtest = suite;
-> +	DIR *debugfs_dir = NULL;
->  	IGT_LIST_HEAD(tests);
->  
->  	/*
-> @@ -1435,10 +1497,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
->  		 *	 LTS kernels not capable of using KUnit filters for
->  		 *	 listing test cases in KTAP format, with igt_require.
->  		 */
-> -		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
-> +		debugfs_dir = kunit_debugfs_open();
-> +		if (!kunit_get_tests(&tests, &tst, suite, opts, debugfs_dir, &ktap))
->  			__igt_kunit_legacy(&tst, subtest, opts);
->  		else
-> -			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
-> +			__igt_kunit(&tst, subtest, suite, opts,
-> +				    dirfd(debugfs_dir), &tests, &ktap);
->  	}
->  
->  	igt_fixture {
-> @@ -1448,6 +1512,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
->  
->  		kunit_results_free(&tests, &suite_name, &case_name);
->  
-> +		if (debugfs_dir)
-> +			closedir(debugfs_dir);
-> +
->  		igt_ktest_end(&tst);
->  	}
->  
-> -- 
-> 2.44.0
+> CI Bug Log - changes from CI_DRM_14489 -> Patchwork_131625v1
+> ====================================================
 > 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_131625v1 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_131625v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/index.html
+> 
+> Participating hosts (38 -> 36)
+> ------------------------------
+> 
+>   Additional (2): bat-dg1-7 fi-kbl-8809g 
+>   Missing    (4): bat-mtlp-8 fi-glk-j4005 fi-bsw-nick fi-snb-2520m 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_131625v1:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@kms_pm_rpm@basic-rte:
+>     - bat-jsl-3:          [PASS][1] -> [FAIL][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-jsl-3/igt@kms_pm_rpm@basic-rte.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-jsl-3/igt@kms_pm_rpm@basic-rte.html
+
+Jasper Lake failing to enter runtime suspend state isn't related to the
+DG2 PCI IDs being added here.
+
+Applied to drm-intel-next.  Thanks for the patch.
+
+
+Matt
+
+> 
+>   
+> #### Suppressed ####
+> 
+>   The following results come from untrusted machines, tests, or statuses.
+>   They do not affect the overall result.
+> 
+>   * igt@i915_selftest@live@active:
+>     - {bat-arls-4}:       [PASS][3] -> [DMESG-WARN][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-arls-4/igt@i915_selftest@live@active.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-arls-4/igt@i915_selftest@live@active.html
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_131625v1 that come from known issues:
+> 
+> ### CI changes ###
+> 
+> #### Issues hit ####
+> 
+>   * boot:
+>     - bat-arls-3:         [PASS][5] -> [FAIL][6] ([i915#10234])
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-arls-3/boot.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-arls-3/boot.html
+>     - bat-jsl-1:          [PASS][7] -> [FAIL][8] ([i915#8293])
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-jsl-1/boot.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-jsl-1/boot.html
+>     - fi-kbl-8809g:       NOTRUN -> [FAIL][9] ([i915#8293])
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/fi-kbl-8809g/boot.html
+> 
+>   
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@gem_mmap@basic:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][10] ([i915#4083])
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@gem_mmap@basic.html
+> 
+>   * igt@gem_tiled_fence_blits@basic:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][11] ([i915#4077]) +2 other tests skip
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@gem_tiled_fence_blits@basic.html
+> 
+>   * igt@gem_tiled_pread_basic:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][12] ([i915#4079]) +1 other test skip
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@gem_tiled_pread_basic.html
+> 
+>   * igt@i915_pm_rps@basic-api:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][13] ([i915#6621])
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@i915_pm_rps@basic-api.html
+> 
+>   * igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][14] ([i915#4212]) +7 other tests skip
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html
+> 
+>   * igt@kms_addfb_basic@basic-y-tiled-legacy:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][15] ([i915#4215])
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+> 
+>   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][16] ([i915#4103] / [i915#4213]) +1 other test skip
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> 
+>   * igt@kms_dsc@dsc-basic:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][17] ([i915#3555] / [i915#3840])
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_dsc@dsc-basic.html
+> 
+>   * igt@kms_force_connector_basic@force-load-detect:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][18]
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_force_connector_basic@force-load-detect.html
+> 
+>   * igt@kms_hdmi_inject@inject-audio:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][19] ([i915#433])
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_hdmi_inject@inject-audio.html
+> 
+>   * igt@kms_pm_backlight@basic-brightness:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][20] ([i915#5354])
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_pm_backlight@basic-brightness.html
+> 
+>   * igt@kms_psr@psr-primary-page-flip:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][21] ([i915#1072] / [i915#9732]) +3 other tests skip
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_psr@psr-primary-page-flip.html
+> 
+>   * igt@kms_setmode@basic-clone-single-crtc:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][22] ([i915#3555])
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html
+> 
+>   * igt@prime_vgem@basic-fence-flip:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][23] ([i915#3708]) +3 other tests skip
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@prime_vgem@basic-fence-flip.html
+> 
+>   * igt@prime_vgem@basic-fence-mmap:
+>     - bat-dg1-7:          NOTRUN -> [SKIP][24] ([i915#3708] / [i915#4077]) +1 other test skip
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg1-7/igt@prime_vgem@basic-fence-mmap.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@i915_selftest@live@ring_submission:
+>     - bat-dg2-14:         [ABORT][25] ([i915#10366]) -> [PASS][26]
+>    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14489/bat-dg2-14/igt@i915_selftest@live@ring_submission.html
+>    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/bat-dg2-14/igt@i915_selftest@live@ring_submission.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [i915#10234]: https://gitlab.freedesktop.org/drm/intel/issues/10234
+>   [i915#10262]: https://gitlab.freedesktop.org/drm/intel/issues/10262
+>   [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
+>   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+>   [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+>   [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+>   [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+>   [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+>   [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+>   [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+>   [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+>   [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+>   [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+>   [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+>   [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
+>   [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+>   [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+>   [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+>   [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_14489 -> Patchwork_131625v1
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_14489: f9c56f1a03b5c35488671e4ffe61e28b12ffe163 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_7785: 7785
+>   Patchwork_131625v1: f9c56f1a03b5c35488671e4ffe61e28b12ffe163 @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> ### Linux commits
+> 
+> a50860ce8e96 drm/i915: Add new PCI IDs to DG2 platform in driver
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131625v1/index.html
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
