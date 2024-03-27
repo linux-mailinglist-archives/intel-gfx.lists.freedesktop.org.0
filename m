@@ -2,57 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F2888F03E
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 21:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC29F88F03F
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Mar 2024 21:37:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A3410FFEE;
-	Wed, 27 Mar 2024 20:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18F4C10E18A;
+	Wed, 27 Mar 2024 20:37:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNKeqVBU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bA27qrmb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E012E10FFED
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:36:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44ED810FFF0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Mar 2024 20:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711571784; x=1743107784;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=+E268fMXp+jAiHRmVd1IlR5iLUdOf6B0bRsazHVn8lc=;
- b=FNKeqVBUe55wzxx4mjz4bK58NQJwDHicWEEs1Uy/8scDLNGT9QoB7uuB
- o7KgEcY4mWCYz/sqBKk3EuWWVp+W7OKLCWHVUXj1pe5xbeOkyOn06jTFM
- /IRLxrGutIaWGkCLuWK9RPBP1rBxwBYDGanZalgW13mLiOoyVShdk4QZs
- tBIw9vPeSLlJ/LrwyvNq/zTQ592UF2xuh192mt8zln5CaLACmNm4t+1A9
- X4PoAcZVlor8kAESxF8dAoWXBkn6pQc2ww0HuT8sQOPNRtbTkDJ6/PI+n
- 8oEvxeiw0xxGJhnmp4wDfPjLPyBt+WFPiH21Dr44nNu0tLBz+FUPaKak0 A==;
-X-CSE-ConnectionGUID: zmF59y4zRpGjM1IgavrEZw==
-X-CSE-MsgGUID: VfMt3qRjTBaxxx23Gh5ixg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="29181661"
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="29181661"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2024 13:36:24 -0700
+ t=1711571841; x=1743107841;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=pl4LQSvxJdeR/8pByjaoLRbo39A2PL+HqbmJnsIxzGg=;
+ b=bA27qrmb/OdvA5LS3vgKkPuV+gYeGQk31r0WHo2XC2sy+bqAnCaMTjju
+ wq6k+IxzjYWsnEM37qHvhjkGNWiaQuUzYcCBZEsstnQNVOyzlf3L5K1uA
+ lRqH7/80Ds1WRQtdo4L+s+fh+mG4Yxf/8QGOgIlG8xKxdngB+sVRBlhG5
+ nY9PgDYjtPTBuxtPzo943vvcxSJMobSZpWjRQVmvWkQre5EyGkBsOzKrf
+ nWIo1g5JV0Ird4cxeGjmjm923lBclv92S7Esk2OxeWt4+18v7J+rEQLg+
+ FbXrXoaIGw8P4+6TNyck+Q1Hy+plNevhbgffgzj1LFCRHdnxwPSRkelbA g==;
+X-CSE-ConnectionGUID: ySDN2HRZTeKKvYA4ssaCyg==
+X-CSE-MsgGUID: 2r1DN54nTNycSnBe4Su99g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6817491"
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; 
+   d="scan'208";a="6817491"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 13:37:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="827785974"
-X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="827785974"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 27 Mar 2024 13:36:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Mar 2024 22:36:22 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/i915: Fix intel_modeset_pipe_config_late() for
- bigjoiner
-Date: Wed, 27 Mar 2024 22:36:16 +0200
-Message-ID: <20240327203616.20502-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240327203616.20502-1-ville.syrjala@linux.intel.com>
-References: <20240327203616.20502-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.07,159,1708416000"; d="scan'208";a="16439322"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.138])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2024 13:37:20 -0700
+Date: Wed, 27 Mar 2024 13:37:19 -0700
+Message-ID: <85frwb5s3k.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Krzysztofik, Janusz" <janusz.krzysztofik@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nilawar, Badal" <badal.nilawar@intel.com>, "Gupta,
+ Anshuman" <anshuman.gupta@intel.com>, 
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Roper,\
+ Matthew D" <matthew.d.roper@intel.com>
+Subject: Re: [PATCH] drm/i915/hwmon: Remove i915_hwmon_unregister() during
+ driver unbind
+In-Reply-To: <5934737.MhkbZ0Pkbq@jkrzyszt-mobl2.ger.corp.intel.com>
+References: <20240326124838.3049215-1-badal.nilawar@intel.com>	<3291198.aeNJFYEL58@jkrzyszt-mobl2.ger.corp.intel.com>	<b132ded3-bf0c-48b1-a4ef-29e22c9ca81f@intel.com>	<5934737.MhkbZ0Pkbq@jkrzyszt-mobl2.ger.corp.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,125 +74,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Wed, 27 Mar 2024 02:15:27 -0700, Krzysztofik, Janusz wrote:
+>
 
-Currently intel_modeset_pipe_config_late() is called after the
-bigjoiner state copy, and it will actually not do anything for
-bigjoiner slaves. This can lead to a mismatched state between
-the master and slave.
+Hi Janusz,
 
-The two things that we do in the encoder .compute_config_late()
-hook are mst master transcoder and port sync master transcoder
-elections. So if either of either MST or port sync is combined
-with bigjoiner then we can see the mismatch.
+> For me, that still doesn't explain why you think that i915->hwmon reset to
+> NULL on i915 driver unregister can be the root cause of the reported UAF in
+> hwmon sysfs and this patch is going to fix that UAF issue.  I can see no
+> references to i915->hwmon in that code, and even then, that's not NULL what is
+> reported here as non-canonical address.  The code is using a no longer valid
+> pointer to an already freed (and poisoned) memory.
 
-Currently this problem is more or less theoretical; MST+bigjoiner
-has not been implemented yet, and port sync+bigjoiner would
-require a tiled display with >5k tiles (or a very high
-dotclock per tile). Although we do have kms_tiled_display in
-igt which can fake a tiled display, and we can now force bigjoiner
-via debugfs, so it is possible to trigger this if you try hard
-enough.
+Correct, I said basically the same thing in my reply to the patch. That the
+patch doesn't explain that ddat seems to have been freed and poisoned.
 
-Reorder the code such that intel_modeset_pipe_config_late()
-will be called before the bigjoiner state copy happens so
-that both pipes will end up with the same state.
+> > > I think that instead of dropping i915_hwmon_unregister() we have to actually
+> > > unregister hwmon in the body of that function, which is called from
+> > > i915_driver_unregister() intended for closing user interfaces, then called
+> > > relatively early during driver unbind, so hwmon sysfs entries disappear before
+> > > i915 structures, especially uncore used by hwmon code, are freed.
+> >
+> > You mean uncore are freed before hwmon get unregistered, I don't think
+> > so. uncore is also drm device managed resource so in sequence I think it
+> > should be freed after i915 dev managed resources freed.
+>
+> If both uncore and hwmon are managed resources of i915 device then how can you
+> predict which of them is released first?
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 46 ++++++++++++++------
- 1 file changed, 32 insertions(+), 14 deletions(-)
+Look at __hwmon_device_register. Here we see:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4d6668a5f1ab..e22326362ccb 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4762,8 +4762,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 	struct drm_connector *connector;
- 	int i;
- 
--	intel_bigjoiner_adjust_pipe_src(crtc_state);
--
- 	for_each_new_connector_in_state(&state->base, connector,
- 					conn_state, i) {
- 		struct intel_encoder *encoder =
-@@ -6257,27 +6255,37 @@ static int intel_atomic_check_config(struct intel_atomic_state *state,
- 			continue;
- 		}
- 
--		if (intel_crtc_is_bigjoiner_slave(new_crtc_state)) {
--			drm_WARN_ON(&i915->drm, new_crtc_state->uapi.enable);
-+		if (drm_WARN_ON(&i915->drm, intel_crtc_is_bigjoiner_slave(new_crtc_state)))
- 			continue;
--		}
- 
- 		ret = intel_crtc_prepare_cleared_state(state, crtc);
- 		if (ret)
--			break;
-+			goto fail;
- 
- 		if (!new_crtc_state->hw.enable)
- 			continue;
- 
- 		ret = intel_modeset_pipe_config(state, crtc, limits);
- 		if (ret)
--			break;
-+			goto fail;
-+	}
- 
--		ret = intel_atomic_check_bigjoiner(state, crtc);
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
-+		if (drm_WARN_ON(&i915->drm, intel_crtc_is_bigjoiner_slave(new_crtc_state)))
-+			continue;
-+
-+		if (!new_crtc_state->hw.enable)
-+			continue;
-+
-+		ret = intel_modeset_pipe_config_late(state, crtc);
- 		if (ret)
--			break;
-+			goto fail;
- 	}
- 
-+fail:
- 	if (ret)
- 		*failed_pipe = crtc->pipe;
- 
-@@ -6373,16 +6381,26 @@ int intel_atomic_check(struct drm_device *dev,
- 	if (ret)
- 		goto fail;
- 
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
-+		if (intel_crtc_is_bigjoiner_slave(new_crtc_state)) {
-+			drm_WARN_ON(&dev_priv->drm, new_crtc_state->uapi.enable);
-+			continue;
-+		}
-+
-+		ret = intel_atomic_check_bigjoiner(state, crtc);
-+		if (ret)
-+			goto fail;
-+	}
-+
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
- 		if (!intel_crtc_needs_modeset(new_crtc_state))
- 			continue;
- 
--		if (new_crtc_state->hw.enable) {
--			ret = intel_modeset_pipe_config_late(state, crtc);
--			if (ret)
--				goto fail;
--		}
-+		intel_bigjoiner_adjust_pipe_src(new_crtc_state);
- 
- 		intel_crtc_check_fastset(old_crtc_state, new_crtc_state);
- 	}
--- 
-2.43.2
+	hdev->parent = dev
 
+So the hwmon device is a child device of the drm device (against which ddat
+is devm_kzalloc'd). Since a child device holds a reference against the
+parent (device_add() has get_device(dev->parent)), I would expect the hwmon
+device to disappear before the parent drm device. And I am assuming hwmon
+sysfs is linked to the hwmon device, so sysfs should disappear before ddat
+getting freed. But apparently this is not what is happening, so there's
+still something we are missing.
+
+Thanks.
+--
+Ashutosh
