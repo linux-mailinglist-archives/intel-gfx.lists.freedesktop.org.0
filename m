@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 353D388FEFC
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 13:27:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 321B088FF0D
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 13:32:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8247811240C;
-	Thu, 28 Mar 2024 12:26:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87D26112417;
+	Thu, 28 Mar 2024 12:32:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjqiITPx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gb7FrCnz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5537311240A
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 12:26:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 437F0112419
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 12:32:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711628816; x=1743164816;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1X2jKXaU7KqqY3UOoP2nFe4T9o7++CVXSfqero4maXQ=;
- b=VjqiITPxbVQS5A2xYBY35Txx6R5AzmpF/GJJkAH8Ur4/tELkotnQvHP2
- H9V1M5Fu7suOt3KdKk8uAII3TUcepg0LRvnjaOItKqNPJNP18osK8Agvb
- ADkckmeLpJ2M2v0fViaJkRkQy5LfC0q44pN3dD0eomATosoMNQ3bx563r
- npoYXVtgj+QllTWtKWVGrrwG7qiBJjz6aO7dUPIte83QkftvGu+NiPxm+
- WUrf6Gp4FmVfiEk/0zN6lTZYn3ITdP4P/K5KggOhSEoJD7AyULsN4VD1h
- YeaUCfODgWn8yGQfs2YNTooyS/btnrMfOZ38h7sogYX2Z6ooB0WIOHGJ/ g==;
-X-CSE-ConnectionGUID: XptZF5P9TqyMwrFcJy3EaA==
-X-CSE-MsgGUID: lKM8jR94SXCCHj92MP1VUg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="17505541"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="17505541"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 05:26:56 -0700
+ t=1711629138; x=1743165138;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=uLzns8WVy9M6vpXOzHXDRpDqoQvOZH2iDOGRd4pB2sE=;
+ b=Gb7FrCnzX59kZ/n+k6HgcZVki98I5+DAgtGzIxWRVTxFQj4SMqnFYsQT
+ KmmrjaJPvbkBHtwBrFswZ3FaAyJpgHkTTk8vc9rPEKkw3PquyNYmGEE78
+ oKD0DaKw9nUFJ1jpGZOJrHqQGx/DJVr5lZxk2DRPD8S1PmtV/ftbL5raq
+ HYpu5B8MXJIGa1KQjRTVYNJTNp+5/VjBiEjx0f+zT8NTGcrXQ3sW9LyDf
+ IkwfQQx9d6GHxlHnColTMPrzUtcnq0zuuq/QKhU5CWzJcje/gi/dadG0I
+ kYwG4ANLJB9fHPabKf46QIN5SWoXJILjHuPE2U7VtJQmn8lDS+lo2LQmY w==;
+X-CSE-ConnectionGUID: Oa+a4BATSbiPt6f61Jj68Q==
+X-CSE-MsgGUID: i/MYItZVQSm3Q9+PIRW1iA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6666819"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
+   d="scan'208";a="6666819"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 05:32:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16657605"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 05:26:53 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, linux-mtd@lists.infradead.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH 13/13] drm/xe/spi: add support for access mode
-Date: Thu, 28 Mar 2024 14:22:36 +0200
-Message-Id: <20240328122236.1718111-14-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240328122236.1718111-1-alexander.usyskin@intel.com>
-References: <20240328122236.1718111-1-alexander.usyskin@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="827786272"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="827786272"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 28 Mar 2024 05:32:15 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 28 Mar 2024 14:32:14 +0200
+Date: Thu, 28 Mar 2024 14:32:14 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 01/13] drm/i915/cdclk: Fix CDCLK programming order when
+ pipes are active
+Message-ID: <ZgVjTh6r1PcKbq0g@intel.com>
+References: <20240327174544.983-1-ville.syrjala@linux.intel.com>
+ <20240327174544.983-2-ville.syrjala@linux.intel.com>
+ <IA0PR11MB73070772669115D9CF4BA368BA3B2@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <IA0PR11MB73070772669115D9CF4BA368BA3B2@IA0PR11MB7307.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,109 +73,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check SPI access mode from GSC FW status registers
-and overwrite access status read from SPI descriptor, if needed.
+On Thu, Mar 28, 2024 at 09:16:06AM +0000, Murthy, Arun R wrote:
+> 
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Wednesday, March 27, 2024 11:16 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: [PATCH 01/13] drm/i915/cdclk: Fix CDCLK programming order when
+> > pipes are active
+> > 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Currently we always reprogram CDCLK from the
+> > intel_set_cdclk_pre_plane_update() when using squahs/crawl.
+> Typo squashs->squash
+> 
+> > The code only works correctly for the cd2x update or full modeset cases, and it
+> > was simply never updated to deal with squash/crawl.
+> > 
+> > If the CDCLK frequency is increasing we must reprogram it before we do
+> > anything else that might depend on the new higher frequency, and conversely
+> > we must not decrease the frequency until everything that might still depend on
+> > the old higher frequency has been dealt with.
+> > 
+> > Since cdclk_state->pipe is only relevant when doing a cd2x update we can't use
+> > it to determine the correct sequence during squash/crawl. To that end
+> > introduce cdclk_state->disable_pipes which simply indicates that we must
+> > perform the update while the pipes are disable (ie. during
+> > intel_set_cdclk_pre_plane_update()). Otherwise we use the same old vs. new
+> > CDCLK frequency comparsiong as for cd2x updates.
+> > 
+> > The only remaining problem case is when the voltage_level needs to increase
+> > due to a DDI port, but the CDCLK frequency is decreasing (and not all pipes are
+> > being disabled). The current approach will not bump the voltage level up until
+> > after the port has already been enabled, which is too late.
+> > But we'll take care of that case separately.
+> > 
+> > v2: Don't break the "must disable pipes case"
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 15 +++++++++------
+> > drivers/gpu/drm/i915/display/intel_cdclk.h |  3 +++
+> >  2 files changed, 12 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index 31aaa9780dfc..619529dba095 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -2600,7 +2600,6 @@ intel_set_cdclk_pre_plane_update(struct
+> > intel_atomic_state *state)
+> >  		intel_atomic_get_old_cdclk_state(state);
+> >  	const struct intel_cdclk_state *new_cdclk_state =
+> >  		intel_atomic_get_new_cdclk_state(state);
+> > -	enum pipe pipe = new_cdclk_state->pipe;
+> Looks like this cdclk_state->pipe is not more used in the driver and can it be removed?
 
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gsc_regs.h |  5 +++++
- drivers/gpu/drm/xe/xe_heci_gsc.c      |  5 +----
- drivers/gpu/drm/xe/xe_spi.c           | 31 ++++++++++++++++++++++++++-
- 3 files changed, 36 insertions(+), 5 deletions(-)
+It is still used for its primary purpose (cd2x update pipe select).
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-index 9886ec9cb08e..ef04fab3a4b0 100644
---- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-@@ -16,6 +16,11 @@
- #define MTL_GSC_HECI1_BASE	0x00116000
- #define MTL_GSC_HECI2_BASE	0x00117000
- 
-+#define DG1_GSC_HECI2_BASE	0x00259000
-+#define PVC_GSC_HECI2_BASE	0x00285000
-+#define DG2_GSC_HECI2_BASE	0x00374000
-+
-+
- #define HECI_H_CSR(base)	XE_REG((base) + 0x4)
- #define   HECI_H_CSR_IE		REG_BIT(0)
- #define   HECI_H_CSR_IS		REG_BIT(1)
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index bfdd33b9b23b..f240a3fbb507 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -11,14 +11,11 @@
- #include "xe_device_types.h"
- #include "xe_drv.h"
- #include "xe_heci_gsc.h"
-+#include "regs/xe_gsc_regs.h"
- #include "xe_platform_types.h"
- 
- #define GSC_BAR_LENGTH  0x00000FFC
- 
--#define DG1_GSC_HECI2_BASE			0x259000
--#define PVC_GSC_HECI2_BASE			0x285000
--#define DG2_GSC_HECI2_BASE			0x374000
--
- static void heci_gsc_irq_mask(struct irq_data *d)
- {
- 	/* generic irq handling */
-diff --git a/drivers/gpu/drm/xe/xe_spi.c b/drivers/gpu/drm/xe/xe_spi.c
-index 3dde2ec9c389..91632d68db8a 100644
---- a/drivers/gpu/drm/xe/xe_spi.c
-+++ b/drivers/gpu/drm/xe/xe_spi.c
-@@ -5,7 +5,10 @@
- 
- #include <linux/intel_dg_spi_aux.h>
- #include <linux/pci.h>
-+#include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_mmio.h"
-+#include "regs/xe_gsc_regs.h"
- #include "xe_spi.h"
- 
- #define GEN12_GUNIT_SPI_BASE 0x00102040
-@@ -23,6 +26,32 @@ static void xe_spi_release_dev(struct device *dev)
- {
- }
- 
-+static bool xe_spi_writeable_override(struct xe_device *xe)
-+{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	resource_size_t base;
-+	bool writeable_override;
-+
-+	if (xe->info.platform == XE_PVC) {
-+		base = PVC_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_DG2) {
-+		base = DG2_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_DG1) {
-+		base = DG1_GSC_HECI2_BASE;
-+	} else {
-+		dev_err(&pdev->dev, "Unknown platform\n");
-+		return true;
-+	}
-+
-+	writeable_override =
-+		!(xe_mmio_read32(gt, HECI_H_GS1(base)) &
-+		  HECI_FW_STATUS_2_SPI_ACCESS_MODE);
-+	if (writeable_override)
-+		dev_info(&pdev->dev, "SPI access overridden by jumper\n");
-+	return writeable_override;
-+}
-+
- void xe_spi_init(struct xe_device *xe)
- {
- 	struct intel_dg_spi_dev *spi = &xe->spi;
-@@ -34,7 +63,7 @@ void xe_spi_init(struct xe_device *xe)
- 	if (!IS_DGFX(xe))
- 		return;
- 
--	spi->writeable_override = false;
-+	spi->writeable_override = xe_spi_writeable_override(xe);
- 	spi->bar.parent = &pdev->resource[0];
- 	spi->bar.start = GEN12_GUNIT_SPI_BASE + pdev->resource[0].start;
- 	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
+The only thing changing here is that we no longer use it as a
+canary to indicate whether we need to do the cdclk programming
+with pipes off or not.
+
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
