@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA6C88FEF5
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 13:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC28988FEF6
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 13:26:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9E61123F3;
-	Thu, 28 Mar 2024 12:26:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB3A0112408;
+	Thu, 28 Mar 2024 12:26:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OJFvRcOA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+YX1MTf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E84C1123F1
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 12:26:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAC161123F3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 12:26:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711628799; x=1743164799;
+ t=1711628802; x=1743164802;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TTNglUoU3P4xxWN7812xljNT7OKCq4Mc5IyMvR6rlqQ=;
- b=OJFvRcOAEchC/30gRUPbEFNny5R45vY/rFTLYscWJFWvFjGLT4cs1gSX
- BcQR5rXqLmM3OWsBebuU+bzXNb5znK7Al6A0tUxhuFjFKs8dYB7PZoTln
- L7nkIwM/jKM5wZ9cMdeXDQeD3doiMX8Y8ZukTHBDHLLEceYCeXi7H8bre
- 7Lg80eUH9SCSS4g0Tg2ZFe97sh0bfnNKBYzDno4co5WAp9/NShZunqHQz
- +lKVQHMSaATrnV8HZ1wOo2BXlk/w6TCy6XZ6nK5/hVLsKd5b6Loi34rj7
- zn/eGW6zCTRtpUP9Yjk5lf/e4IUEU8hqfFdxf6rFpStMS8M7aBXSYOzny g==;
-X-CSE-ConnectionGUID: 6IFyh2H9TV2yGazPazVklA==
-X-CSE-MsgGUID: 8r6vJ+/uSHas9vuqweMWRw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="17505499"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="17505499"
+ bh=WoC2oGN8k+4H1nreDjicQA+yn4EgSeAYHyo+tSpJhEE=;
+ b=U+YX1MTferMMJAC9QVVa1v28dP/zKil+uOmS9pnZVB0/Hx8/rX+S8iCM
+ 3kZaqe97fVbvkpYf5079bBVka4TwJAD/HYH5dYBIz77tKEIZkkKfOHZcV
+ inWkAKY0E+kd+6bmiNx96a7lQ6Hbm1nWgTDQJHzup3i/qo+F347cg3qfo
+ VUL5x4HSMVwy4WmWsRI+8G2q1Dnhasr+p2zmHGCzmutzcFxiUVxonjWwO
+ A0Bkz2m5e8KV6ZSE30lQDDFaraBPJWf7EQuSiB/oXuPKXFzaAjulz4XAi
+ Qt7iEnTjwmoEu+A1djbd3UuWxkbK9jzb9/5QdqRvmyRn0jdKOnBWBL1cT w==;
+X-CSE-ConnectionGUID: np1PjJlTT6Kt0JENkLiktw==
+X-CSE-MsgGUID: w3OawXLsT2Gd1yr+lIPKkQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="17505506"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="17505506"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 05:26:39 -0700
+ 28 Mar 2024 05:26:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16657583"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16657586"
 Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 05:26:35 -0700
+ 28 Mar 2024 05:26:38 -0700
 From: Alexander Usyskin <alexander.usyskin@intel.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
@@ -50,9 +50,9 @@ Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
  intel-gfx@lists.freedesktop.org,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Tomas Winkler <tomas.winkler@intel.com>
-Subject: [PATCH 07/13] spi: intel-dg: implement spi access functions
-Date: Thu, 28 Mar 2024 14:22:30 +0200
-Message-Id: <20240328122236.1718111-8-alexander.usyskin@intel.com>
+Subject: [PATCH 08/13] spi: intel-dg: spi register with mtd
+Date: Thu, 28 Mar 2024 14:22:31 +0200
+Message-Id: <20240328122236.1718111-9-alexander.usyskin@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240328122236.1718111-1-alexander.usyskin@intel.com>
 References: <20240328122236.1718111-1-alexander.usyskin@intel.com>
@@ -73,248 +73,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Implement spi_read(), spi_erase() and spi_write() functions.
+Register the on-die spi device with the mtd subsystem.
+Refcount spi object on _get and _put mtd callbacks.
 
-CC: Lucas De Marchi <lucas.demarchi@intel.com>
 CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 ---
- drivers/spi/spi-intel-dg.c | 199 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 199 insertions(+)
+ drivers/spi/spi-intel-dg.c | 111 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
 
 diff --git a/drivers/spi/spi-intel-dg.c b/drivers/spi/spi-intel-dg.c
-index 8ef9dccc9062..af65101456a4 100644
+index af65101456a4..4af8a2314fc7 100644
 --- a/drivers/spi/spi-intel-dg.c
 +++ b/drivers/spi/spi-intel-dg.c
-@@ -3,13 +3,16 @@
-  * Copyright(c) 2019-2024, Intel Corporation. All rights reserved.
-  */
- 
-+#include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/intel_dg_spi_aux.h>
- #include <linux/io.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
+@@ -10,6 +10,8 @@
+ #include <linux/io-64-nonatomic-lo-hi.h>
  #include <linux/kernel.h>
  #include <linux/module.h>
++#include <linux/mtd/mtd.h>
++#include <linux/mtd/partitions.h>
  #include <linux/string.h>
  #include <linux/slab.h>
-+#include <linux/sizes.h>
- #include <linux/types.h>
+ #include <linux/sizes.h>
+@@ -17,6 +19,8 @@
  
  struct intel_dg_spi {
-@@ -84,6 +87,33 @@ static inline u32 spi_read32(struct intel_dg_spi *spi, u32 address)
- 	return ioread32(base + SPI_TRIGGER_REG);
+ 	struct kref refcnt;
++	struct mtd_info mtd;
++	struct mutex lock; /* region access lock */
+ 	void __iomem *base;
+ 	size_t size;
+ 	unsigned int nregions;
+@@ -407,6 +411,23 @@ static int intel_dg_spi_init(struct intel_dg_spi *spi, struct device *device)
+ 	return n;
  }
  
-+static inline u64 spi_read64(struct intel_dg_spi *spi, u32 address)
++static int intel_dg_spi_erase(struct mtd_info *mtd, struct erase_info *info)
 +{
-+	void __iomem *base = spi->base;
-+
-+	iowrite32(address, base + SPI_ADDRESS_REG);
-+
-+	return readq(base + SPI_TRIGGER_REG);
++	return 0;
 +}
 +
-+static void spi_write32(struct intel_dg_spi *spi, u32 address, u32 data)
++static int intel_dg_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
++			     size_t *retlen, u_char *buf)
 +{
-+	void __iomem *base = spi->base;
-+
-+	iowrite32(address, base + SPI_ADDRESS_REG);
-+
-+	iowrite32(data, base + SPI_TRIGGER_REG);
++	return 0;
 +}
 +
-+static void spi_write64(struct intel_dg_spi *spi, u32 address, u64 data)
++static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
++			      size_t *retlen, const u_char *buf)
 +{
-+	void __iomem *base = spi->base;
-+
-+	iowrite32(address, base + SPI_ADDRESS_REG);
-+
-+	writeq(data, base + SPI_TRIGGER_REG);
++	return 0;
 +}
 +
- static int spi_get_access_map(struct intel_dg_spi *spi)
+ static void intel_dg_spi_release(struct kref *kref)
  {
- 	u32 flmap1;
-@@ -140,6 +170,175 @@ static int intel_dg_spi_is_valid(struct intel_dg_spi *spi)
- 	return 0;
+ 	struct intel_dg_spi *spi = container_of(kref, struct intel_dg_spi, refcnt);
+@@ -415,9 +436,90 @@ static void intel_dg_spi_release(struct kref *kref)
+ 	pr_debug("freeing spi memory\n");
+ 	for (i = 0; i < spi->nregions; i++)
+ 		kfree(spi->regions[i].name);
++	mutex_destroy(&spi->lock);
+ 	kfree(spi);
  }
  
-+__maybe_unused
-+static unsigned int spi_get_region(const struct intel_dg_spi *spi, loff_t from)
++static int intel_dg_spi_get_device(struct mtd_info *mtd)
++{
++	struct mtd_info *master;
++	struct intel_dg_spi *spi;
++
++	if (!mtd)
++		return -ENODEV;
++
++	master = mtd_get_master(mtd);
++	spi = master->priv;
++	if (WARN_ON(!spi))
++		return -EINVAL;
++	pr_debug("get spi %s %d\n", mtd->name, kref_read(&spi->refcnt));
++	kref_get(&spi->refcnt);
++
++	return 0;
++}
++
++static void intel_dg_spi_put_device(struct mtd_info *mtd)
++{
++	struct mtd_info *master;
++	struct intel_dg_spi *spi;
++
++	if (!mtd)
++		return;
++
++	master = mtd_get_master(mtd);
++	spi = master->priv;
++	if (WARN_ON(!spi))
++		return;
++	pr_debug("put spi %s %d\n", mtd->name, kref_read(&spi->refcnt));
++	kref_put(&spi->refcnt, intel_dg_spi_release);
++}
++
++static int intel_dg_spi_init_mtd(struct intel_dg_spi *spi, struct device *device,
++			     unsigned int nparts, bool writeable_override)
 +{
 +	unsigned int i;
++	unsigned int n;
++	struct mtd_partition *parts = NULL;
++	int ret;
 +
-+	for (i = 0; i < spi->nregions; i++) {
-+		if ((spi->regions[i].offset + spi->regions[i].size - 1) > from &&
-+		    spi->regions[i].offset <= from &&
-+		    spi->regions[i].size != 0)
-+			break;
++	dev_dbg(device, "registering with mtd\n");
++
++	spi->mtd.owner = THIS_MODULE;
++	spi->mtd.dev.parent = device;
++	spi->mtd.flags = MTD_CAP_NORFLASH | MTD_WRITEABLE;
++	spi->mtd.type = MTD_DATAFLASH;
++	spi->mtd.priv = spi;
++	spi->mtd._write = intel_dg_spi_write;
++	spi->mtd._read = intel_dg_spi_read;
++	spi->mtd._erase = intel_dg_spi_erase;
++	spi->mtd._get_device = intel_dg_spi_get_device;
++	spi->mtd._put_device = intel_dg_spi_put_device;
++	spi->mtd.writesize = SZ_1; /* 1 byte granularity */
++	spi->mtd.erasesize = SZ_4K; /* 4K bytes granularity */
++	spi->mtd.size = spi->size;
++
++	parts = kcalloc(spi->nregions, sizeof(*parts), GFP_KERNEL);
++	if (!parts)
++		return -ENOMEM;
++
++	for (i = 0, n = 0; i < spi->nregions && n < nparts; i++) {
++		if (!spi->regions[i].is_readable)
++			continue;
++		parts[n].name = spi->regions[i].name;
++		parts[n].offset  = spi->regions[i].offset;
++		parts[n].size = spi->regions[i].size;
++		if (!spi->regions[i].is_writable && !writeable_override)
++			parts[n].mask_flags = MTD_WRITEABLE;
++		n++;
 +	}
 +
-+	return i;
++	ret = mtd_device_register(&spi->mtd, parts, n);
++
++	kfree(parts);
++
++	return ret;
 +}
 +
-+static ssize_t spi_rewrite_partial(struct intel_dg_spi *spi, loff_t to,
-+			       loff_t offset, size_t len, const u32 *newdata)
-+{
-+	u32 data = spi_read32(spi, to);
-+
-+	if (spi_error(spi))
-+		return -EIO;
-+
-+	memcpy((u8 *)&data + offset, newdata, len);
-+
-+	spi_write32(spi, to, data);
-+	if (spi_error(spi))
-+		return -EIO;
-+
-+	return len;
-+}
-+
-+__maybe_unused
-+static ssize_t spi_write(struct intel_dg_spi *spi, u8 region,
-+			 loff_t to, size_t len, const unsigned char *buf)
-+{
-+	size_t i;
-+	size_t len8;
-+	size_t len4;
-+	size_t to4;
-+	size_t to_shift;
-+	size_t len_s = len;
-+	ssize_t ret;
-+
-+	spi_set_region_id(spi, region);
-+
-+	to4 = ALIGN_DOWN(to, sizeof(u32));
-+	to_shift = min(sizeof(u32) - ((size_t)to - to4), len);
-+	if (to - to4) {
-+		ret = spi_rewrite_partial(spi, to4, to - to4, to_shift,
-+					  (uint32_t *)&buf[0]);
-+		if (ret < 0)
-+			return ret;
-+
-+		buf += to_shift;
-+		to += to_shift;
-+		len_s -= to_shift;
-+	}
-+
-+	len8 = ALIGN_DOWN(len_s, sizeof(u64));
-+	for (i = 0; i < len8; i += sizeof(u64)) {
-+		u64 data;
-+
-+		memcpy(&data, &buf[i], sizeof(u64));
-+		spi_write64(spi, to + i, data);
-+		if (spi_error(spi))
-+			return -EIO;
-+	}
-+
-+	len4 = len_s - len8;
-+	if (len4 >= sizeof(u32)) {
-+		u32 data;
-+
-+		memcpy(&data, &buf[i], sizeof(u32));
-+		spi_write32(spi, to + i, data);
-+		if (spi_error(spi))
-+			return -EIO;
-+		i += sizeof(u32);
-+		len4 -= sizeof(u32);
-+	}
-+
-+	if (len4 > 0) {
-+		ret = spi_rewrite_partial(spi, to + i, 0, len4,
-+					  (uint32_t *)&buf[i]);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return len;
-+}
-+
-+__maybe_unused
-+static ssize_t spi_read(struct intel_dg_spi *spi, u8 region,
-+			loff_t from, size_t len, unsigned char *buf)
-+{
-+	size_t i;
-+	size_t len8;
-+	size_t len4;
-+	size_t from4;
-+	size_t from_shift;
-+	size_t len_s = len;
-+
-+	spi_set_region_id(spi, region);
-+
-+	from4 = ALIGN_DOWN(from, sizeof(u32));
-+	from_shift = min(sizeof(u32) - ((size_t)from - from4), len);
-+
-+	if (from - from4) {
-+		u32 data = spi_read32(spi, from4);
-+
-+		if (spi_error(spi))
-+			return -EIO;
-+		memcpy(&buf[0], (u8 *)&data + (from - from4), from_shift);
-+		len_s -= from_shift;
-+		buf += from_shift;
-+		from += from_shift;
-+	}
-+
-+	len8 = ALIGN_DOWN(len_s, sizeof(u64));
-+	for (i = 0; i < len8; i += sizeof(u64)) {
-+		u64 data = spi_read64(spi, from + i);
-+
-+		if (spi_error(spi))
-+			return -EIO;
-+
-+		memcpy(&buf[i], &data, sizeof(data));
-+	}
-+
-+	len4 = len_s - len8;
-+	if (len4 >= sizeof(u32)) {
-+		u32 data = spi_read32(spi, from + i);
-+
-+		if (spi_error(spi))
-+			return -EIO;
-+		memcpy(&buf[i], &data, sizeof(data));
-+		i += sizeof(u32);
-+		len4 -= sizeof(u32);
-+	}
-+
-+	if (len4 > 0) {
-+		u32 data = spi_read32(spi, from + i);
-+
-+		if (spi_error(spi))
-+			return -EIO;
-+		memcpy(&buf[i], &data, len4);
-+	}
-+
-+	return len;
-+}
-+
-+__maybe_unused
-+static ssize_t
-+spi_erase(struct intel_dg_spi *spi, u8 region, loff_t from, u64 len, u64 *fail_addr)
-+{
-+	u64 i;
-+	const u32 block = 0x10;
-+	void __iomem *base = spi->base;
-+
-+	for (i = 0; i < len; i += SZ_4K) {
-+		iowrite32(from + i, base + SPI_ADDRESS_REG);
-+		iowrite32(region << 24 | block, base + SPI_ERASE_REG);
-+		/* Since the writes are via sguint
-+		 * we cannot do back to back erases.
-+		 */
-+		msleep(50);
-+	}
-+	return len;
-+}
-+
- static int intel_dg_spi_init(struct intel_dg_spi *spi, struct device *device)
+ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
+ 			  const struct auxiliary_device_id *aux_dev_id)
  {
- 	int ret;
+@@ -449,6 +551,7 @@ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
+ 	if (!spi)
+ 		return -ENOMEM;
+ 
++	mutex_init(&spi->lock);
+ 	kref_init(&spi->refcnt);
+ 
+ 	spi->nregions = nregions;
+@@ -481,6 +584,12 @@ static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
+ 		goto err;
+ 	}
+ 
++	ret = intel_dg_spi_init_mtd(spi, device, ret, ispi->writeable_override);
++	if (ret) {
++		dev_err(device, "failed init mtd %d\n", ret);
++		goto err;
++	}
++
+ 	dev_set_drvdata(&aux_dev->dev, spi);
+ 
+ 	dev_dbg(device, "bound\n");
+@@ -499,6 +608,8 @@ static void intel_dg_spi_remove(struct auxiliary_device *aux_dev)
+ 	if (!spi)
+ 		return;
+ 
++	mtd_device_unregister(&spi->mtd);
++
+ 	dev_set_drvdata(&aux_dev->dev, NULL);
+ 
+ 	kref_put(&spi->refcnt, intel_dg_spi_release);
 -- 
 2.34.1
 
