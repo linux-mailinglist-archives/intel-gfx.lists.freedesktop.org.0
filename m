@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C246F88FD51
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 11:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C6A88FD56
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 11:46:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E83D810E526;
-	Thu, 28 Mar 2024 10:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20F8210F10D;
+	Thu, 28 Mar 2024 10:46:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hOaQ4eNg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqxzbPPj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 850D410E53D;
- Thu, 28 Mar 2024 10:45:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3814110E53D;
+ Thu, 28 Mar 2024 10:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711622754; x=1743158754;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=f25yB72Mh0U8dF9ga+leqWjJU7uB75I9nZ4R9nQuPd8=;
- b=hOaQ4eNgTqwohPc21a69YBz/Dkhe7JNhqXNw68IAnnsyRP4o9h3my/Zq
- IlElt1RbnbfmcRvCmeDNEbXWgWyWSFhzS2DJ2wnnFcfvnDxM/yOtrOKMX
- 0KkY8yneP/BpNmKkiU84K9I3fjTLcTm1xmKbhpjAsMInj5o397m6oAQ1T
- 4Y5thJ24hmCSEXQpF3qhbqMyvu+NcvixRoA0wTGZ8jdRyznWmINqT0IK/
- VybLiI+S+1hh26MbEltrMTbVZlTRtTUUFHKb7m6kZXvylbPFnGphboiC8
- XoUh5X++ZAEYFNKBDqwqSoKq6u+sqlZVyN4H4w04sYbLoVK8q+SSZtn3m Q==;
-X-CSE-ConnectionGUID: Z3kIbvL3RDaoO87wK28eWA==
-X-CSE-MsgGUID: fNLDxuLARGq+uHg+96fIDA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="24215573"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="24215573"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:45:54 -0700
+ t=1711622807; x=1743158807;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=6y7kQCHPSn/ytHJreLVPJDGNY/mFAL5kJwlXVofXPbs=;
+ b=GqxzbPPj7nfRZVwi5wfTyx2V9VzYwNMESjNOV5iiaDZe8sJ5Ojb8b3mn
+ IKMWvpB4/8zuZyAU/yivBiY++g4LyoXy50r1zn83XBBtjawvR61B7Hds3
+ i2+C5KfDN7dSVUzCgaSk8Fp3/Hc+4UkxKRkRLWLZctsOJE65JWTuxmnOR
+ vtBlLQ3/wKM6n2VSADPmOgy+Ay/Z4rnPLz7OSvPNQ7W6XnRAuVeuqqIjV
+ 8vFx9xOwMtWbqBXnTPlCSenMzHgSv9nnPL01tLnI+BpOUPM+gApGLUeOf
+ 4P04FvZq2w2Mf0DANUwQGsB126EWlxH49ts8euAjuPIWhz+IETFAjmDEK Q==;
+X-CSE-ConnectionGUID: P2G2fgDCRgKTlYo4YxqU6A==
+X-CSE-MsgGUID: /1/aG/N6RB6AsCu88CqnqQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6628933"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
+   d="scan'208";a="6628933"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 03:46:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="16635666"
-Received: from unknown (HELO intel.com) ([10.247.118.221])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:45:50 -0700
-Date: Thu, 28 Mar 2024 11:45:44 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCHv2] drm/xe/display: check for error on drmm_mutex_init
-Message-ID: <ZgVKWBQqEat-3iR3@ashyti-mobl2.lan>
-References: <20240328080005.410961-1-arun.r.murthy@intel.com>
- <ZgUq47D313cr2VYp@ashyti-mobl2.lan> <87r0fufxy2.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21333164"
+Received: from abdulqaf-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.252.57.138])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 03:46:45 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH] drm/i915: use fine grained -Woverride-init disable
+In-Reply-To: <b9138bc4-61e4-476a-9aa5-8842235bce2e@app.fastmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240328102455.944131-1-jani.nikula@intel.com>
+ <b9138bc4-61e4-476a-9aa5-8842235bce2e@app.fastmail.com>
+Date: Thu, 28 Mar 2024 12:46:42 +0200
+Message-ID: <87o7ayfxbh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87r0fufxy2.fsf@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,63 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Thu, 28 Mar 2024, "Arnd Bergmann" <arnd@arndb.de> wrote:
+> On Thu, Mar 28, 2024, at 11:24, Jani Nikula wrote:
+>> Use localized __diag_push(), __diag_ignore_all() with rationale, and
+>> __diag_pop() for specific initializations instead of blanket disabling
+>> of -Woverride-init across several files.
+>>
+>> Note that we've tried this before with commit 88e9664434c9 ("drm/i915:
+>> use localized __diag_ignore_all() instead of per file") and reverted in
+>> commit 290d16104575 ("Revert "drm/i915: use localized
+>> __diag_ignore_all() instead of per file""). The issue turned out to be
+>> in __diag_ignore_all() and it was fixed by commit 689b097a06ba
+>> ("compiler-gcc: Suppress -Wmissing-prototypes warning for all supported
+>> GCC"). So we should be able to pull this off now.
+>>
+>> Cc: "Arnd Bergmann" <arnd@arndb.de>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Looks good to me,
+>
+> Acked-by: Arnd Bergmann <arnd@arndb.de>
 
-On Thu, Mar 28, 2024 at 12:33:09PM +0200, Jani Nikula wrote:
-> On Thu, 28 Mar 2024, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> >> -	drmm_mutex_init(&xe->drm, &xe->sb_lock);
-> >> -	drmm_mutex_init(&xe->drm, &xe->display.backlight.lock);
-> >> -	drmm_mutex_init(&xe->drm, &xe->display.audio.mutex);
-> >> -	drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex);
-> >> -	drmm_mutex_init(&xe->drm, &xe->display.pps.mutex);
-> >> -	drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex);
-> >> +	if (drmm_mutex_init(&xe->drm, &xe->sb_lock) ||
-> >> +	    drmm_mutex_init(&xe->drm, &xe->display.backlight.lock) ||
-> >> +	    drmm_mutex_init(&xe->drm, &xe->display.audio.mutex) ||
-> >> +	    drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex) ||
-> >> +	    drmm_mutex_init(&xe->drm, &xe->display.pps.mutex) ||
-> >> +	    drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex))
-> >> +		return -ENOMEM;
-> >
-> > why not extract the value from drmm_mutex_init()? it would make
-> > the code a bit more complex, but better than forcing a -ENOMEM
-> > return.
-> >
-> > 	err = drmm_mutex_init(...)
-> > 	if (err)
-> > 		return err;
-> >
-> > 	err = drmm_mutex_init(...)
-> > 	if (err)
-> > 		return err;
-> >
-> > 	err = drmm_mutex_init(...)
-> > 	if (err)
-> > 		return err;
-> > 	
-> > 	...
-> >
-> > On the other hand drmm_mutex_init(), as of now returns only
-> > -ENOMEM, but it's a bad practice to assume it will always do. I'd
-> > rather prefer not to check the error value at all.
-> 
-> And round and round we go. This is exactly what v1 was [1], but it's not
-> clear because the patch doesn't have a changelog.
+Thanks! I'll take this via drm-intel-next for v6.10. Up to you what to
+do with your patch [1], either drop the i915 and xe changes, or we can
+handle the trivial conflict too if keeping the changes helps you
+somehow.
 
-ha! funny! I missed v1.
+BR,
+Jani.
 
-> This is all utterly ridiculous compared to *why* we even have or use
-> drmm_mutex_init(). Managed initialization causes more trouble here than
-> it gains us. Gah.
 
-As I wrote here:
+[1] https://lore.kernel.org/all/20240326144741.3094687-2-arnd@kernel.org/
 
-> > I'd rather prefer not to check the error value at all.
-
-we could rather drop this patch. Checking the error value is
-always good, but checking implausible errors with this price is
-not really worth it.
-
-At the end drmm_mutex_init() should make our life easier.
-
-Andi
+-- 
+Jani Nikula, Intel
