@@ -2,150 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1101A88FC55
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 11:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A05F288FC61
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 11:05:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC5A410F4CF;
-	Thu, 28 Mar 2024 10:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D3610FC9A;
+	Thu, 28 Mar 2024 10:05:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fyB6f87B";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="PsWkm28t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC7D10E651;
- Thu, 28 Mar 2024 10:01:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711620093; x=1743156093;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=7ygww6fxO0O5cjOfFNVtJlj6SInsP4JFgHxQOdt8rg0=;
- b=fyB6f87B+clQK431G7Agd8zK/VhsQ+PkD2xUCItSBH+KEEj9z43+Pw6T
- sSbi2qnISZL3KYzWuU132PZk27aKHsl6rNdgjUuZqc1HeUYfno62hRDOA
- VRTiY58FOiCqs/WMrjCKs20U/lDlxchXGIvqnCrTXfIW28FIbmo4ySMZi
- QVmZku0TIKz3EyVJdqSbf6obUH7T3c2W6+ls7QLclBb8/YeeKcfnlweSw
- qAz/OfZX9v6cc0CG+M3puajD+XBFjh7OZ9p36Xr0y5Qa1ppd2wJFSsZkc
- HvxZFrjMSu6fvbs/OF8Pg6nUfGVq+S3RE7NFXRLo7YsM/ATzw6OaI+PQu g==;
-X-CSE-ConnectionGUID: a/Xsaf9bSh6lk9ixk2t6pA==
-X-CSE-MsgGUID: A4hdkcm6Q7SDE+hmq4Su5w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6653961"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
-   d="scan'208";a="6653961"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 03:01:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21284647"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Mar 2024 03:01:21 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Mar 2024 03:01:20 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 28 Mar 2024 03:01:20 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 28 Mar 2024 03:00:47 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OxCwxpSx/XYx5fxtEzeD2N+WrjjozhT5WKA87j1Xh5q4jcQ7NPptV4p3g9Tn6zg4Tn1M4nA3nJb65G035JVfwr8MhPg0q9GqyxLWnL5buggxH/kZ0eLZx0JAJwtLAJbTv1/FN9IVAIqL3eMLUZ/IE8a1n4rde8L3W+OOrV4nGW9KnMUrj0GS/vo/X/ZV7w7QXjT3hmkeDbCZEg8jhIXeuIgdY5xMfQ5pmnZ05GkMUN5sq7qH4BEMNdjDpBTotSIXGDGwlEsLcyIeNqZNtqQF7dF765iIiCThfNXDDf1s2bM6pb1n4UBcIpKOEoPxn5JITGm0peM7GXsMijTEM8eaiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7ygww6fxO0O5cjOfFNVtJlj6SInsP4JFgHxQOdt8rg0=;
- b=Bxn8NTFAZjj7LMEd3tm0Rku4gcFAoPR39AJ4S+luzWJKyhdGtkGCLKWumJvTOTE6w+DorTPR9y4qx5EU50aWb/GIqkRipwYAwjc4afwR3DQ6ztXLl2xBThOkYyHqu2bZFy4wW5Rfq8LVkrB3MSHSg6n9VxF7FwqknDWE8VIRZvY7mDCfltvv1Jdfp6VI9EiK9BoADoBw+EJz55vv40116rggq2X+/MQbga7ueW8BRh3kocgwK0ZJSKcoxUwOzYc6BIq7UGBQEojVYdKe6C/aGnHdEx+W1dCwnZqipjIcM/5e1zgK/TsSb120xu6NvXctzFASmJBOVjmSyFgj2sgblQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5275.namprd11.prod.outlook.com (2603:10b6:408:134::24)
- by DM4PR11MB7758.namprd11.prod.outlook.com (2603:10b6:8:101::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Thu, 28 Mar
- 2024 10:00:35 +0000
-Received: from BN9PR11MB5275.namprd11.prod.outlook.com
- ([fe80::46dd:6e91:5461:35a]) by BN9PR11MB5275.namprd11.prod.outlook.com
- ([fe80::46dd:6e91:5461:35a%7]) with mapi id 15.20.7409.031; Thu, 28 Mar 2024
- 10:00:35 +0000
-From: "Mrozek, Michal" <michal.mrozek@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel
- <dri-devel@lists.freedesktop.org>
-CC: "Landwerlin, Lionel G" <lionel.g.landwerlin@intel.com>, "Jablonski,
- Mateusz" <mateusz.jablonski@intel.com>, Andi Shyti <andi.shyti@kernel.org>,
- "Hajda, Andrzej" <andrzej.hajda@intel.com>, Chris Wilson
- <chris.p.wilson@linux.intel.com>, "Cavitt, Jonathan"
- <jonathan.cavitt@intel.com>, "Das, Nirmoy" <nirmoy.das@intel.com>
-Subject: RE: [PATCH] drm/i915/gt: Limit the reserved VM space to only the
- platforms that need it
-Thread-Topic: [PATCH] drm/i915/gt: Limit the reserved VM space to only the
- platforms that need it
-Thread-Index: AQHagIJBWgKv+CDMNkCT2nSszshCrLFM7FHA
-Date: Thu, 28 Mar 2024 10:00:35 +0000
-Message-ID: <BN9PR11MB5275CF6AA1248DD2DD23F3F0E73B2@BN9PR11MB5275.namprd11.prod.outlook.com>
-References: <20240327200546.640108-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240327200546.640108-1-andi.shyti@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5275:EE_|DM4PR11MB7758:EE_
-x-ms-office365-filtering-correlation-id: 22a19cf8-4bc2-4908-f987-08dc4f0de9ec
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YCOsS4spOX2n2IimZAWNnybgBgQeAoMTJzLMW5W4uZlIpNNASjIJL8GkGyCPBOx/twE13wCbHyiJNqOZbhk2ioVqg1TLvpziEmm7/v8468OMFgd+XygMrxp5wdF/D5sEErGhl2l32wwUfgWB31353BeMbl+l1mlmgQYm8KM5VeWOU6zgHtG3SOv6gBlWmPlyGiWRhFawV718wFT0797W/F5X4qRwqvwz0Mmh6UyCIti9ef5v88qWfSibrneqVoALrjP7WRVA0ula8i1mr3KLKApYcdHtE1F5aMMvkrEJQllG9iFMXN+UXTT52EYwRaeIzSFeHj0XediOCo8InHJwcyW6ruVONZ1/DrcyRFGinjzpCiXTvFgz1BTIMnm7kSUlusVaTBgNwI2mfq9Mw0orAak8mNjzBRrxVAt7YFB+BLiRNunGAKOJkadzCmDOn4Wpgv+8R22jUEcfRFoXiqNxyWxBkWYE0mGi+tCjjk93mOzdOfO7txjVjFrjGF/Z9l/9+lSssdAsMI4HDzLL8LUi+TTUJ+JeykAQkMp4MMqaO24IGpejhobs1KxQz97C5Ckm0lh4j30ScFKRh1I6LI0yDZIi9wIVNTi7rT/wcr4M4vWUa6mudmPtvyfG7HyhaibyGmtplD0MhQCcEuCvXWDig/Me1e4J5vrlYsSgltMze6Iji6JTKv0UYURBib0OFcqOQDT2V7e2vgqxfz7GeWsRXEyFWSWviG7wDxqmyp2Dpc0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5275.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1QCOSYNq3D//AQrVFj2zjhbWckwxJK4V18MS9BVpP9XlwLavkcCsX8liXpeQ?=
- =?us-ascii?Q?y1IGDOnsZPr3Y2y8gB2sCv0bNXTGYZwKHtlujAFQCe20cxWZfPGlGfIJ/Vhn?=
- =?us-ascii?Q?2TpVyrrl/2IUqCOUYuPoos3O6fCKdFLknQyRXFhQTwlyQFd/4fxh8fUUgRbp?=
- =?us-ascii?Q?Kbw8v87evN2Iib2utIrZKJSw14OdUhH5XIZHonQ2/BJfAWwvq3xWcSjetKmV?=
- =?us-ascii?Q?X76YXQxFVcfv4WNyNiXxj75WLFDsnbLlcjD97wt6j2N2rPooBRgGfRkCLJdN?=
- =?us-ascii?Q?F+ohImQb45P3AtzzzK1hfp+sIb11X7vPLqleZRL9szwFD3r1y8O0n7yciUHU?=
- =?us-ascii?Q?rFYxNW4zDucRNrchfeYnLUwJiYdshhDEU65BgxwsCXxpcFxvtwB8ZWTz+BkY?=
- =?us-ascii?Q?ALiRBu8FNnTNHyquXgaaU3USeWQCsVl1EMvqX3E237UsTP3b+ZykO55ylHTi?=
- =?us-ascii?Q?7dcKDQXgcKZUYGWSucTqNW/N6sqYHGc6pjzqEo1lc0dHmZIPC60oHw1rd4Vb?=
- =?us-ascii?Q?lYWFO85yQtHenyeMccir+FuSfv6FCJLMtNzt5ab1j7L0kLXzycY0q4rgv1MB?=
- =?us-ascii?Q?cr4simMp9iMpQMOA0+iurTdXIpXNO2Tv/Go7AIDYYJ4dZ1t2yZp/VbBbTo5L?=
- =?us-ascii?Q?ALCtyIOy4+DKsZPPJIHUsAHQ6SrVBcOQdghxVBtVAvbiuo0PyJh0PPtPauVI?=
- =?us-ascii?Q?Onkf6iz9qi2jhKsR3XN6CNrHBe+QGWj+jotbPed86wPZI+mFBSVmKh+ZMS1O?=
- =?us-ascii?Q?RsMkUXARqAAPP2jNixQvXOaIFkArjlctaihv5pdOUYcCOcj+HjC8bq7QbhOj?=
- =?us-ascii?Q?PzLc4jSCyMotXA0yTuk5dZ17tqqWhC0EdVCpwPvJH6O07RBoR8f44n0imoqc?=
- =?us-ascii?Q?jk2GdsrtzRV18Y1Y7QyjthlhtfQGPMWxecaudHPXO9+3b5VyaSagVafpDIxH?=
- =?us-ascii?Q?R8JBcnwEY1LU7G99U5qiAZFBLC8ECV69ED5M7PzGjCgxgbU4aUXHt9D4EvJ0?=
- =?us-ascii?Q?0acTnjMC6iq9FWP6yJOt8S1t2MVdMgvsZRNB+G6PULYwAT347OFJNNuvTZ7E?=
- =?us-ascii?Q?lXI8qQRbf8hhKgYsjVdR2z390tHP0L3DR1kVKocJdJQVWayxtScxuyKq4a6K?=
- =?us-ascii?Q?iEWndrRJ2p/d++bZZv2ZgJIJfacI8x/oLkfke63Jn6I7zMexDWv0Bohn+K+R?=
- =?us-ascii?Q?qPSvx9JNh4o3ke/YutoAm1/d/EQffo1OIHpz2ZcjrQJmIUMorPgU45ZuOk59?=
- =?us-ascii?Q?UCjajocZ805gGp1l6dVidayN4bgMYPH8KfEMZqOpCYziaD9vaKnCdq/19Osg?=
- =?us-ascii?Q?pOMaWgVL0NbLoILmzYX0orhJBmCSDLc/4IjKQ7kBKwOmpb/eNxeslfELXrvM?=
- =?us-ascii?Q?vraLD7Uu1aoDN8kjlyE+kNkk6B//wC83lbTSPKOHATxJFjrb6HjPBO42JIkM?=
- =?us-ascii?Q?zEp79rzUFu3e2Mmma3Q6Gtq1E54gAUBhPbGe/EkXt2C5817EXxi+r1TZ/3ho?=
- =?us-ascii?Q?22MZvCu8mLJvuTVgbZJ+JUhs2zZDqskEWZ7xjf7ohhAP+ZFKphO7EN7o42uh?=
- =?us-ascii?Q?v2Oo6omCW59e0NTn6RyZcZ84JrpJi4lM4FV4PHel?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D812710F4EE;
+ Thu, 28 Mar 2024 10:04:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=OFj88XgxZ0sWsCzaBI/ywTEqrSVOFXScu8fHL5rQIHU=; b=PsWkm28tOBcyd0LDUAzgfWAhp0
+ uTxnZrpw3oJRX+N5G1SxfIdoTS7H8fC8sdfpcC9tTG09iJTHW96J3Qv96jYeiNgZv09C0NCa3uycj
+ 8OB0gsSzLUCJJkP8faZ9mF/UgTZCPbArhUWVseXtV2/ASwhZm5sRPlE3rHkcbcI7n7z/zs8FqhaqV
+ c5Z7So+schT77J2p0Sdcg9ZWDHCtUkGipZCely+vk1ghw6e6aezXJMKfcM0KEGm6xk9EU5tRBWrna
+ Y3rxs+KpQ27gaJWvCydajS8CpToRdsZ4ERmowy9Hcr6QNu17lSLLaDcxpLR9P2LovzJe+C1Qikruh
+ eyfrCTvw==;
+Received: from [194.136.85.206] (port=57710 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1rpmcz-0002oH-0J;
+ Thu, 28 Mar 2024 12:04:57 +0200
+Date: Thu, 28 Mar 2024 12:04:56 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: "Garg, Nemesa" <nemesa.garg@intel.com>
+Cc: Simon Ser <contact@emersion.fr>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "G M, Adarsh" <adarsh.g.m@intel.com>
+Subject: Re: [RFC 0/5]  Introduce drm sharpening property
+Message-ID: <20240328120456.1447f2a6@eldfell>
+In-Reply-To: <20240327132916.43f83069@eldfell>
+References: <20240214112457.3734871-1-nemesa.garg@intel.com>
+ <8Ma-GlU3bFAuSPpFhGbYYuXQ8OeeDjMK9WiWO6KP-4pPO41fLnLrgABkRfhjHY6XlIh5u67vcEbD8ejDq7-zo5BXf-too0Pt7oTDhWCOPlU=@emersion.fr>
+ <IA1PR11MB6467A91412978DE0FFCAB50FE34C2@IA1PR11MB6467.namprd11.prod.outlook.com>
+ <20240216103620.33deabb1@eldfell>
+ <IA1PR11MB6467F801FFB564769E357EA9E3232@IA1PR11MB6467.namprd11.prod.outlook.com>
+ <uL84QKNtst1cp9uG3HqNAqEpJS2pT07qxwufONZx8Zq3t665BwY15fHRm3cZxMtiecQlPlNTs9srrmlIzRKmRYItWUv6cQbDEkms8eUT84Y=@emersion.fr>
+ <IA1PR11MB6467C642ABBD54BD82DF46B9E32B2@IA1PR11MB6467.namprd11.prod.outlook.com>
+ <20240312162600.7358e146@eldfell> <20240313113638.3ff61e4f@eldfell>
+ <IA1PR11MB646705FED711C1F129E5C5E3E3342@IA1PR11MB6467.namprd11.prod.outlook.com>
+ <20240327132916.43f83069@eldfell>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5275.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22a19cf8-4bc2-4908-f987-08dc4f0de9ec
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2024 10:00:35.7360 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: da5b/EYkB8kMi+VXkvPSBYtMosn5pEfuSNaSFOIn1UvyNdeXxpAu93ig7GnC9JtUwWCNM7l0ySDd9NAt5je1kw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7758
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; boundary="Sig_/qvsk6kGyEzapSusOKI3/utd";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,18 +82,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 9bb66c179f50 ("drm/i915: Reserve some kernel space per
-vm") reduces the available VM space of one page in order to apply
-Wa_16018031267 and Wa_16018063123.
+--Sig_/qvsk6kGyEzapSusOKI3/utd
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-This page was reserved indiscrimitely in all platforms even when not needed=
-. Limit it to DG2 onwards.
+On Wed, 27 Mar 2024 13:29:16 +0200
+Pekka Paalanen <pekka.paalanen@haloniitty.fi> wrote:
 
-Fixes: 9bb66c179f50 ("drm/i915: Reserve some kernel space per vm")
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+> On Wed, 27 Mar 2024 07:11:48 +0000
+> "Garg, Nemesa" <nemesa.garg@intel.com> wrote:
+>=20
+> > > -----Original Message-----
+> > > From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+> > > Sent: Wednesday, March 13, 2024 3:07 PM
+> > > To: Garg, Nemesa <nemesa.garg@intel.com>
+> > > Cc: Simon Ser <contact@emersion.fr>; intel-gfx@lists.freedesktop.org;=
+ dri-
+> > > devel@lists.freedesktop.org; G M, Adarsh <adarsh.g.m@intel.com>
+> > > Subject: Re: [RFC 0/5] Introduce drm sharpening property
+> > >=20
+> > > On Tue, 12 Mar 2024 16:26:00 +0200
+> > > Pekka Paalanen <pekka.paalanen@haloniitty.fi> wrote:
+> > >    =20
+> > > > On Tue, 12 Mar 2024 08:30:34 +0000
+> > > > "Garg, Nemesa" <nemesa.garg@intel.com> wrote:
+> > > >   =20
+> > > > > This  KMS property is not implementing any formula   =20
+> > > >
+> > > > Sure it is. Maybe Intel just does not want to tell what the algorit=
+hm
+> > > > is, or maybe it's even patented.
+> > > >   =20
+> > > > > and the values
+> > > > > that are being used are based on empirical analysis and certain
+> > > > > experiments done on the hardware. These values are fixed and is n=
+ot
+> > > > > expected to change and this can change from vendor to vendor. The
+> > > > > client can choose any sharpness value on the scale and on the bas=
+is
+> > > > > of it the sharpness will be set. The sharpness effect can be chan=
+ged
+> > > > > from content to content and from display to display so user needs=
+ to
+> > > > > adjust the optimum intensity value so as to get good experience on
+> > > > > the screen.
+> > > > >   =20
+> > > >
+> > > > IOW, it's an opaque box operation, and there is no way to reproduce
+> > > > its results without the specific Intel hardware. Definitely no way =
+to
+> > > > reproduce its results in free open source software alone.
+> > > >
+> > > > Such opaque box operations can only occur after KMS blending, at the
+> > > > CRTC or later stage. They cannot appear before blending, not in the
+> > > > new KMS color pipeline design at least. The reason is that the mode=
+rn
+> > > > way to use KMS planes is opportunistic composition off-loading.
+> > > > Opportunistic means that userspace decides from time to time whether
+> > > > it composes the final picture using KMS or some other rendering met=
+hod
+> > > > (usually GPU and shaders). Since userspace will arbitrarily switch
+> > > > between KMS and render composition, both must result in the exact s=
+ame
+> > > > image, or end users will observe unwanted flicker.
+> > > >
+> > > > Such opaque box operations are fine after blending, because there t=
+hey
+> > > > can be configured once and remain on forever. No switching, no flic=
+ker.   =20
+> > >=20
+> > > If you want to see how sharpness property would apply in Wayland desi=
+gn, it
+> > > would be in step 5 "Adjust (settings UI)" of
+> > > https://gitlab.freedesktop.org/pq/color-and-hdr/-/blob/main/doc/color-
+> > > management-model.md#compositor-color-management-model
+> > >=20
+> > > To relate that diagram to KMS color processing, you can identify step=
+ 3 "Compose"
+> > > as the KMS blending step. Everything before step 3 happens in KMS pla=
+ne color
+> > > processing, and steps 4-5 happen in KMS CRTC color processing.
+> > >=20
+> > > Sharpening would essentially be a "compositor color effect", it just =
+happens to be
+> > > implementable only by specific Intel hardware.
+> > >=20
+> > > If a color effect is dynamic or content-dependant, it will preclude c=
+olorimetric
+> > > monitor calibration.
+> > >=20
+> > >=20
+> > > Thanks,
+> > > pq
+> > >=20
+> > >    =20
+> > > > Where does "sharpeness" operation occur in the Intel color processi=
+ng
+> > > > chain? Is it before or after blending?
+> > > >    =20
+> > Thank you for detail explanation and link.
+> > Sharpness operation occur post blending in CRTC ie on the final=20
+> > composed output after blending . Yes Pekka you are right as per the=20
+> > diagram it is done at step 5  "Adjust (settings UI)").  I  will also do=
+cument this thing=20
+> > along with documentation change.
+> >  =20
+> > > > What kind of transfer characteristics does it expect from the image,
+> > > > and can those be realized with KMS CRTC properties if KMS is
+> > > > configured such that the blending happens using some other characte=
+ristics   =20
+> > > (e.g.   =20
+> > > > blending in optical space)?
+> > > >   =20
+> > The filter values are not dependent/calculated on the inputs of=20
+> >  image but depending on the blending space and other inputs the=20
+> > blended output gets changed and the sharpness is applied post=20
+> > blending so according to the content user needs to adjust the=20
+> > strength value to get the better visual effect. So tuning of sharpness =
+strength=20
+> > may be needed by user based on  the input contents and blending policy
+> > to get the desired experience.
+> >  =20
+> > > > What about SDR vs. HDR imagery?
+> > > >   =20
+> > The interface can be used for both HDR and SDR. The effect is more prom=
+inent for SDR use cases.
+> > For HDR filter values and tap value may change. =20
+>=20
+> Who will be providing these values?
+>=20
+> The kernel driver cannot know if it is dealing with SDR or HDR or which
+> transfer function is in effect at that point of the post-blending color
+> pipeline.
+>=20
+> If the UAPI is one "strength" value, then how can it work?
+>=20
+> Maybe the UAPI needs more controls, if not providing all "filter and
+> tap" values directly. Maybe all the filter and tap values should be
+> provided by userspace?
 
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
+Actually, is the hardware just doing a convolution with a filter
+defined by the driver?
+
+Convolution algorithm (it is a formula!) is pretty standard stuff I
+believe. If the hardware is actually doing convolution, then the driver
+really should be exposing the convolution operation. Then people can
+choose to use it for sharpening with the Intel developed kernels, or
+for custom effects with custom kernels. Everyone would win. Convolution
+is also something that other hardware vendors could implement.
+
+A convolution filter would fit very well in the new KMS color pipeline
+design for post-compositing operations, too.
+
+Is the sharpening element doing something similar to the unsharp
+masking?
+
+I suppose users might want different strength based on what kind of
+content is the majority on the screen. That makes it something that a
+Wayland compositor would adjust automatically based on Wayland content
+type (similar to HDMI content type), for example.
+
+
+Thanks,
+pq
+
+--Sig_/qvsk6kGyEzapSusOKI3/utd
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmYFQMgACgkQI1/ltBGq
+qqehcg//aVO4wTWGRyqns+eeTS4cCMkr2WxrtPqzBP9TEfhG+Ts4fsx/lcgjduU/
+xgWF0KlXARK+d1U+XdylwJ266wYcttc8gyOxj6rVAZMedtigTOJ29K4hb1H09sfU
+oBmU66k52kC7L667nIEjmmwwHdrcFlgMQKxLl1tr4RsMZgjFyCFCy3w1XVU7mFPl
+dvc+3Mn++cmXUWMMfxXLTUe28WAzsbIAMBdb9CbB7sqIbI21xR3sVVJDgZS/Aarz
+WnLjSjCt6A1vPDlqtIDxfqciUDiF3+/j5zTktFbpJ96FjZoiIZGAfFwiaZM5ZbIC
+HgRdVJp5rwfRsx53e0qZ55C5OR7DXjLonlJMy9h2s/dMxsLkgBQrvQ02Mf1FPdWB
+10cOru9kEGIVR7zqv6hx86pz0SWDIgj+fbRpX7wjjsDSW2BiUJL7+ShNR2q6Nnlu
+CFF2ASTMVg1DWjAEp9gatZe7M6gJmB9Vc/eOyfPycqM0kiN2G40N7sy+V0/N13nT
+Va1izQ76mNIjmRRyJ0Ljv23XbGfq2OEHZU2D9FqJq/yoCh66h8Q9LHFUJ59Lpipf
+XtXCcLtZgsqF7EV8hQHYZS4IaxFECTsTPBdupX4VQMnCHtFLA05afHW7faaAqdVy
+fxYU5Q96TAnm7QQaoSVGDNX//2y3WfDQdiFGTWi2i8Q4CuFtmYM=
+=mWXb
+-----END PGP SIGNATURE-----
+
+--Sig_/qvsk6kGyEzapSusOKI3/utd--
