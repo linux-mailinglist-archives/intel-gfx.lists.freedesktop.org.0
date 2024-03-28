@@ -2,54 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0FA7890190
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 15:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F1E890182
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 15:19:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 368A211224F;
-	Thu, 28 Mar 2024 14:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4702510ED1A;
+	Thu, 28 Mar 2024 14:19:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CINaFONJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WWqzdRax";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C5BD112252
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 14:20:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46EA7112146
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 14:19:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711635641; x=1743171641;
+ t=1711635585; x=1743171585;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=d5y96cdk6n9s5NQV6xpUbJrhjyNfo5eG28+Hf/NUq7E=;
- b=CINaFONJsirU1FoqnZ7+UQyHIEC1w4X8F+Zbz5E1dCAI3SKz5oeNxRdP
- WmV1yDLq9o6k4W1sjRMJn/sEvu8C5DDD6VytUrroCDzBYSEDbyzdRanE0
- QJxibsUV/uC+r6zqsMgHb01Fq2LoPLP4d9raSRor+dhoG4Uz2/LNKyZKU
- 2hxclFC9oPLwDK7Lx+s6JyeQKHvta79At5M0zHtBodFip6Bh8A1VhAk/A
- UIUbI7FLWNkWtgY17fov+LvRi5AahWjNE5d7eZTxHKLclG0fxszS26YB1
- KPG5erYJbYF1FgqNodQ/ncBQFB6A6FoHnoyhVxBq9qCrBAI5/m1JFw98k A==;
-X-CSE-ConnectionGUID: XaLwZBH5QiWd17eRBZ5u2w==
-X-CSE-MsgGUID: P6j2r4DgQgKfq17NIujkmw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6623553"
+ bh=W9RYyRZxfPBfsSLN/xxFOTpVgJLerngpnRuBUCU4qho=;
+ b=WWqzdRax7d9OE+f4/jPIoeGplMp5T/iGGcFvH/MS/l+fMv9V5b0pU1qv
+ CFJDHto5p9lmcEjhI0Z7WTLbatTdfijHOQOQyMggmeUyZBsY6k7cuK64y
+ zcJHhpIqehB3WDvjEilr/T5226G+0+am/Ch2i91c4j7gViFpUgEbcyrdr
+ eaYzz3oXax0UgFTIRhMkuhpVmY2UU4FqrGYe0gO0zlYhKjgqgS3ywBnMN
+ T2G6hxt2Q/lH2D2sW5BjguzUvLfbvZVG9x4eYveTXSMjrGerKtx18AJrB
+ nzurUiFQZ3ORfZcaZh73iL1ZNoREzWa3GhV1vA47XpFnSkE1kqC/xrIhB Q==;
+X-CSE-ConnectionGUID: n7a6QWRbRWSTKni6tUvRmQ==
+X-CSE-MsgGUID: 8jtVFCKxRA2S1sFKiFjSOw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="7390993"
 X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; 
-   d="scan'208";a="6623553"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 07:20:38 -0700
+   d="scan'208";a="7390993"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 07:19:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="21314478"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 07:20:37 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="47851998"
+Received: from comms.fi.intel.com (HELO jhogande-mobl1.fi.intel.com)
+ ([10.237.72.67])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 07:19:43 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com,
-	kunal1.joshi@intel.com
-Subject: [PATCH] drm/i915/display_debugfs: Remove check for crtc in force
- bigjoiner
-Date: Thu, 28 Mar 2024 19:44:21 +0530
-Message-Id: <20240328141421.609982-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.40.1
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Animesh Manna <animesh.manna@intel.com>,
+ Arun R Murthy <arun.r.murthy@intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v6 0/5] ALPM AUX-Less
+Date: Thu, 28 Mar 2024 16:19:23 +0200
+Message-Id: <20240328141928.1311284-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,47 +70,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At the moment, we allow force joiner debugs to work only for connector
-with status connected and a crtc attached to it.
-This creates a problem when we force bigjoiner and then pipe gets reset
-before the force bigjoiner is disabled.
-Relax the condition to check for crtc while exposing the debugfs.
+This patch set is implementing calculation of ALPM AUX-Less parameters
+for Intel HW and writing them in case of AUX-Less is enabled. It is
+also enabling ALPM AUX-Less for eDP Panel Replay. Current code is not
+allowing Panel Replay on eDP. Patches for this are coming later.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+This implementation is only for Panel Replay usage. LOBF (Link Off
+Between Active Frames) usage needs more work.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index b99c024b0934..94bc9e0d30fe 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1405,10 +1405,8 @@ out:	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
- static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
- {
- 	struct intel_connector *connector = m->private;
--	struct drm_crtc *crtc;
- 
--	crtc = connector->base.state->crtc;
--	if (connector->base.status != connector_status_connected || !crtc)
-+	if (connector->base.status != connector_status_connected)
- 		return -ENODEV;
- 
- 	seq_printf(m, "Bigjoiner enable: %d\n", connector->force_bigjoiner_enable);
-@@ -1443,12 +1441,10 @@ static ssize_t i915_bigjoiner_enable_write(struct file *file,
- {
- 	struct seq_file *m = file->private_data;
- 	struct intel_connector *connector = m->private;
--	struct drm_crtc *crtc;
- 	bool bigjoiner_en = 0;
- 	int ret;
- 
--	crtc = connector->base.state->crtc;
--	if (connector->base.status != connector_status_connected || !crtc)
-+	if (connector->base.status != connector_status_connected)
- 		return -ENODEV;
- 
- 	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
+v6:
+  - rebase
+v5:
+  - mention AUX Less enable is only on source side in commit message
+v4:
+  - drop patch adding AUX LESS dpcd defines
+  - re-use fast_wake_lines to store aux_less_wake_lines
+  - add comment explaining why AUX less is enabled on eDP panel replay
+    without any extra checks
+v3:
+  - use definitions instead of numbers for max values
+  - do not use alpm_ctl as uninitialized variable
+v2:
+  - use variables instead of values directly
+  - fix several max values
+  - move converting port clock to Mhz into _lnl_compute_*
+  - do not set AUX-Wake related bits for AUX-Less case
+  - do not write ALPM configuration for DP2.0 Panel Replay or PSR1
+
+Jouni Högander (5):
+  drm/i915/psr: Add missing ALPM AUX-Less register definitions
+  drm/i915/psr: Calculate aux less wake time
+  drm/i915/psr: Silence period and lfps half cycle
+  drm/i915/psr: Enable ALPM on source side for eDP Panel replay
+  drm/i915/psr: Do not write ALPM configuration for PSR1 or DP2.0 Panel
+    Replay
+
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 188 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  12 +-
+ 3 files changed, 193 insertions(+), 9 deletions(-)
+
 -- 
-2.40.1
+2.34.1
 
