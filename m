@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F53890729
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 18:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B3689077F
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 18:48:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7B8210E4C4;
-	Thu, 28 Mar 2024 17:28:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZfTl7fkn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7E3710EB60;
+	Thu, 28 Mar 2024 17:48:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6C510E4C4
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 17:28:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711646907; x=1743182907;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/udpTSBicQj7e/090N5hNpQAf5HOoSXi+JWZthdGbzA=;
- b=ZfTl7fknPvwA6PLGBD4JV8tt5gE2VwOsIrZsl5hz7UfaBw56NUo0Vmj9
- 0AOFwApQ715CTHJHxkTEtKwvL7FrrNI8mYAjMgYGDqeV3p+YktxjC/ku+
- 8mECMJo95mJGOvN2XvWicXLizHO3wn47oWOzGBBTQP6Ir4AIi/wiCIU6+
- HZRXLbPu1Np8q97P56633H+99OYx7GGEkpMft7nGnd9//pj9+cWbOV7i1
- zVsB6seN7sAx+s5ZPg8gEKaLdkNpgUY+0MHSDK61XpCVN9JB4CUKC90oo
- KgFHggiuwpQKvrXbQeNSvTQd0gDW14P4MwCViDU/zkx9uTmq3W9+owrED A==;
-X-CSE-ConnectionGUID: T3pEaxa5S7OwoCtuJJo95g==
-X-CSE-MsgGUID: LKEYXWAnREWvenW/QIT9Hg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="17370644"
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="17370644"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 10:28:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="827786424"
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="827786424"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 28 Mar 2024 10:28:23 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 28 Mar 2024 19:28:22 +0200
-Date: Thu, 28 Mar 2024 19:28:22 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, kunal1.joshi@intel.com
-Subject: Re: [PATCH] drm/i915/display_debugfs: Remove check for crtc in force
- bigjoiner
-Message-ID: <ZgWotuBs3a4EG8R9@intel.com>
-References: <20240328141421.609982-1-ankit.k.nautiyal@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 519C510F0B6;
+ Thu, 28 Mar 2024 17:48:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6125083459243730612=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240328141421.609982-1-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EIGT=3A_success_for_drm/xe/display=3A_check_for?=
+ =?utf-8?q?_error_on_drmm=5Fmutex=5Finit_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 Mar 2024 17:48:14 -0000
+Message-ID: <171164809433.1064396.14607205848313900342@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240328080005.410961-1-arun.r.murthy@intel.com>
+In-Reply-To: <20240328080005.410961-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,57 +37,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 28, 2024 at 07:44:21PM +0530, Ankit Nautiyal wrote:
-> At the moment, we allow force joiner debugs to work only for connector
-> with status connected and a crtc attached to it.
-> This creates a problem when we force bigjoiner and then pipe gets reset
-> before the force bigjoiner is disabled.
-> Relax the condition to check for crtc while exposing the debugfs.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index b99c024b0934..94bc9e0d30fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -1405,10 +1405,8 @@ out:	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
->  static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
->  {
->  	struct intel_connector *connector = m->private;
-> -	struct drm_crtc *crtc;
->  
-> -	crtc = connector->base.state->crtc;
-> -	if (connector->base.status != connector_status_connected || !crtc)
-> +	if (connector->base.status != connector_status_connected)
+--===============6125083459243730612==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Just remove all of it. It serves no purpose.
+== Series Details ==
 
->  		return -ENODEV;
->  
->  	seq_printf(m, "Bigjoiner enable: %d\n", connector->force_bigjoiner_enable);
-> @@ -1443,12 +1441,10 @@ static ssize_t i915_bigjoiner_enable_write(struct file *file,
->  {
->  	struct seq_file *m = file->private_data;
->  	struct intel_connector *connector = m->private;
-> -	struct drm_crtc *crtc;
->  	bool bigjoiner_en = 0;
->  	int ret;
->  
-> -	crtc = connector->base.state->crtc;
-> -	if (connector->base.status != connector_status_connected || !crtc)
-> +	if (connector->base.status != connector_status_connected)
->  		return -ENODEV;
->  
->  	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
-> -- 
-> 2.40.1
+Series: drm/xe/display: check for error on drmm_mutex_init (rev3)
+URL   : https://patchwork.freedesktop.org/series/131301/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14496_full -> Patchwork_131301v3_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 7)
+------------------------------
+
+  Missing    (3): shard-snb shard-dg2 shard-glk 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_14496 -> Patchwork_131301v3
+  * Piglit: None -> piglit_4509
+
+  CI-20190529: 20190529
+  CI_DRM_14496: 8d398ffc40ac37d1589214c28b69c651c1a20792 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_131301v3: 8d398ffc40ac37d1589214c28b69c651c1a20792 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v3/index.html
+
+--===============6125083459243730612==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: check for error on drmm_mutex_init (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131301/">https://patchwork.freedesktop.org/series/131301/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14496_full -&gt; Patchwork_131301v3_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 7)</h2>
+<p>Missing    (3): shard-snb shard-dg2 shard-glk </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>CI: CI-20190529 -&gt; None</li>
+<li>Linux: CI_DRM_14496 -&gt; Patchwork_131301v3</li>
+<li>Piglit: None -&gt; piglit_4509</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14496: 8d398ffc40ac37d1589214c28b69c651c1a20792 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7786: 1e4a3cd0a4bb3419fb70ed3e01259485b056dcfd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_131301v3: 8d398ffc40ac37d1589214c28b69c651c1a20792 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============6125083459243730612==--
