@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 321B088FF0D
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 13:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AD1488FF97
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 13:51:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87D26112417;
-	Thu, 28 Mar 2024 12:32:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC4C10F59D;
+	Thu, 28 Mar 2024 12:51:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gb7FrCnz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="egtsZYi7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 437F0112419
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 12:32:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6758B10F59D;
+ Thu, 28 Mar 2024 12:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711629138; x=1743165138;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=uLzns8WVy9M6vpXOzHXDRpDqoQvOZH2iDOGRd4pB2sE=;
- b=Gb7FrCnzX59kZ/n+k6HgcZVki98I5+DAgtGzIxWRVTxFQj4SMqnFYsQT
- KmmrjaJPvbkBHtwBrFswZ3FaAyJpgHkTTk8vc9rPEKkw3PquyNYmGEE78
- oKD0DaKw9nUFJ1jpGZOJrHqQGx/DJVr5lZxk2DRPD8S1PmtV/ftbL5raq
- HYpu5B8MXJIGa1KQjRTVYNJTNp+5/VjBiEjx0f+zT8NTGcrXQ3sW9LyDf
- IkwfQQx9d6GHxlHnColTMPrzUtcnq0zuuq/QKhU5CWzJcje/gi/dadG0I
- kYwG4ANLJB9fHPabKf46QIN5SWoXJILjHuPE2U7VtJQmn8lDS+lo2LQmY w==;
-X-CSE-ConnectionGUID: Oa+a4BATSbiPt6f61Jj68Q==
-X-CSE-MsgGUID: i/MYItZVQSm3Q9+PIRW1iA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6666819"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
-   d="scan'208";a="6666819"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 05:32:18 -0700
+ t=1711630285; x=1743166285;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+Y85YPZDb4/37CnUc7GCOgmjUlN35Fb3b+ypPc4B/HY=;
+ b=egtsZYi7xHh+NrTvl0HvxW7BO5EmT2khTi6Zhoh3nG9m83WnxjH4mEUA
+ V9Q7YlXQ3Q6dECU61yFWmCFu0z3rlgoE51jd2wtF4U7w9R9PM5hEYiUZn
+ BVHgoz89VoqaO/aZiiXig96JMCKehb+2UagcBGfIsXN44Z8ERvQdsZSYi
+ HQDelsDI0PjxsmBLsp4usDPR3gAV3XjFRYzVg7avM9zUpA9ZTOpbPK37P
+ sWLrltelGZ825M4OavQso4UoMHOldySHVVOB61WuYpfvzC/jQfY/FI4kc
+ 4NNQV5LUSpviOqJMJIp9raRtusxIRZ7HeRW48PlMMPY+gxTLx4oQSEhek A==;
+X-CSE-ConnectionGUID: MZsu+lqLS7yg9NjC/+g8Zw==
+X-CSE-MsgGUID: hNpZKY9yRj+OLfqlB246wQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="17408810"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="17408810"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 05:51:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="827786272"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="827786272"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 28 Mar 2024 05:32:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 28 Mar 2024 14:32:14 +0200
-Date: Thu, 28 Mar 2024 14:32:14 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 01/13] drm/i915/cdclk: Fix CDCLK programming order when
- pipes are active
-Message-ID: <ZgVjTh6r1PcKbq0g@intel.com>
-References: <20240327174544.983-1-ville.syrjala@linux.intel.com>
- <20240327174544.983-2-ville.syrjala@linux.intel.com>
- <IA0PR11MB73070772669115D9CF4BA368BA3B2@IA0PR11MB7307.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21357942"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.16.240])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 05:51:22 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH i-g-t] lib/kunit: Read results from debugfs
+Date: Thu, 28 Mar 2024 13:51:18 +0100
+Message-ID: <2854291.88bMQJbFj6@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <2598806.Lt9SDvczpP@jkrzyszt-mobl2.ger.corp.intel.com>
+References: <20240327113700.7123-2-janusz.krzysztofik@linux.intel.com>
+ <leokqgcgm67t54fvdv4od2z3wbhef6r6ejygn7wklpmzykk5ks@tp2xec36zeg4>
+ <2598806.Lt9SDvczpP@jkrzyszt-mobl2.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <IA0PR11MB73070772669115D9CF4BA368BA3B2@IA0PR11MB7307.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,70 +73,356 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 28, 2024 at 09:16:06AM +0000, Murthy, Arun R wrote:
+On Wednesday, 27 March 2024 22:54:53 CET Janusz Krzysztofik wrote:
+> On Wednesday, 27 March 2024 17:03:01 CET Lucas De Marchi wrote:
+> > On Wed, Mar 27, 2024 at 12:22:54PM +0100, Janusz Krzysztofik wrote:
+> > >KUnit can provide KTAP reports from test modules via debugfs files, one
+> > >per test suite.  Using that source of test results instead of extracting
+> > >them from dmesg, where they may be interleaved with other kernel messages,
+> > >seems more easy to handle and less error prone.  Switch to it.
+> > >
+> > >If KUnit debugfs support is found not configured then fall back to legacy
+> > >processing path.
+> > >
+> > >Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > >---
+> > > lib/igt_kmod.c | 143 ++++++++++++++++++++++++++++++++++++-------------
+> > > 1 file changed, 105 insertions(+), 38 deletions(-)
+> > >
+> > >diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> > >index 1ec9c8a602..a5b170ca9c 100644
+> > >--- a/lib/igt_kmod.c
+> > >+++ b/lib/igt_kmod.c
+> > >@@ -28,6 +28,7 @@
+> > > #include <limits.h>
+> > > #include <pthread.h>
+> > > #include <signal.h>
+> > >+#include <stdio.h>
+> > > #include <stdlib.h>
+> > > #include <string.h>
+> > > #include <sys/stat.h>
+> > >@@ -39,6 +40,7 @@
+> > >
+> > > #include "igt_aux.h"
+> > > #include "igt_core.h"
+> > >+#include "igt_debugfs.h"
+> > > #include "igt_kmod.h"
+> > > #include "igt_ktap.h"
+> > > #include "igt_sysfs.h"
+> > >@@ -864,6 +866,31 @@ static int open_parameters(const char *module_name)
+> > > 	return open(path, O_RDONLY);
+> > > }
+> > >
+> > >+static DIR *kunit_debugfs_open(void)
+> > >+{
+> > >+	const char *debugfs_path = igt_debugfs_mount();
+> > >+	int debugfs_fd, kunit_fd;
+> > >+	DIR *kunit_dir;
+> > >+
+> > >+	if (igt_debug_on(!debugfs_path))
+> > >+		return NULL;
+> > >+
+> > >+	debugfs_fd = open(debugfs_path, O_DIRECTORY);
+> > >+	if (igt_debug_on(debugfs_fd < 0))
+> > >+		return NULL;
+> > >+
+> > >+	kunit_fd = openat(debugfs_fd, "kunit", O_DIRECTORY);
+> > >+	close(debugfs_fd);
+> > >+	if (igt_debug_on(kunit_fd < 0))
+> > >+		return NULL;
+> > >+
+> > >+	kunit_dir = fdopendir(kunit_fd);
+> > >+	if (igt_debug_on(!kunit_dir))
+> > >+		close(kunit_fd);
+> > >+
+> > >+	return kunit_dir;
+> > 
+> > 
+> > any reason not to use strcat() + return fopen()
 > 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Wednesday, March 27, 2024 11:16 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 01/13] drm/i915/cdclk: Fix CDCLK programming order when
-> > pipes are active
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Currently we always reprogram CDCLK from the
-> > intel_set_cdclk_pre_plane_update() when using squahs/crawl.
-> Typo squashs->squash
+> To me the code looked simpler than if I copied and concatenated strings to a 
+> local buffer of fixed size with potential truncation handling.  I guess 
+> you prefer your pattern over mine, but you haven't explained why.  Would you 
+> like to convince me?
 > 
-> > The code only works correctly for the cd2x update or full modeset cases, and it
-> > was simply never updated to deal with squash/crawl.
 > > 
-> > If the CDCLK frequency is increasing we must reprogram it before we do
-> > anything else that might depend on the new higher frequency, and conversely
-> > we must not decrease the frequency until everything that might still depend on
-> > the old higher frequency has been dealt with.
+> > >+}
+> > >+
+> > > static bool kunit_set_filtering(const char *filter_glob, const char *filter,
+> > > 				const char *filter_action)
+> > > {
+> > >@@ -1071,23 +1098,48 @@ static void kunit_results_free(struct igt_list_head *results,
+> > > 	free(*suite_name);
+> > > }
+> > >
+> > >-static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
+> > >-			     struct igt_ktap_results **ktap)
+> > >+static int kunit_get_results(struct igt_list_head *results, int debugfs_fd,
+> > >+			     const char *suite, struct igt_ktap_results **ktap)
+> > > {
+> > >-	int err;
+> > >+	FILE *results_stream;
+> > >+	int ret, results_fd;
+> > >+	char *buf = NULL;
+> > >+	size_t size = 0;
+> > >+	ssize_t len;
+> > >+
+> > >+	if (igt_debug_on((ret = openat(debugfs_fd, suite, O_DIRECTORY), ret < 0)))
 > > 
-> > Since cdclk_state->pipe is only relevant when doing a cd2x update we can't use
-> > it to determine the correct sequence during squash/crawl. To that end
-> > introduce cdclk_state->disable_pipes which simply indicates that we must
-> > perform the update while the pipes are disable (ie. during
-> > intel_set_cdclk_pre_plane_update()). Otherwise we use the same old vs. new
-> > CDCLK frequency comparsiong as for cd2x updates.
-> > 
-> > The only remaining problem case is when the voltage_level needs to increase
-> > due to a DDI port, but the CDCLK frequency is decreasing (and not all pipes are
-> > being disabled). The current approach will not bump the voltage level up until
-> > after the port has already been enabled, which is too late.
-> > But we'll take care of that case separately.
-> > 
-> > v2: Don't break the "must disable pipes case"
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 15 +++++++++------
-> > drivers/gpu/drm/i915/display/intel_cdclk.h |  3 +++
-> >  2 files changed, 12 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > index 31aaa9780dfc..619529dba095 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -2600,7 +2600,6 @@ intel_set_cdclk_pre_plane_update(struct
-> > intel_atomic_state *state)
-> >  		intel_atomic_get_old_cdclk_state(state);
-> >  	const struct intel_cdclk_state *new_cdclk_state =
-> >  		intel_atomic_get_new_cdclk_state(state);
-> > -	enum pipe pipe = new_cdclk_state->pipe;
-> Looks like this cdclk_state->pipe is not more used in the driver and can it be removed?
+> > a little odd to return on any value != 0, but log on < 0. did you mean
+> > to compare < 0 in the first arg?.
+> 
+> I'm not able to recall what I could mean, but anyway, you are right, 
+> 	if (igt_debug_on((ret = openat(...)) < 0))
+> will be more correct.
 
-It is still used for its primary purpose (cd2x update pipe select).
+At a second glance, my
 
-The only thing changing here is that we no longer use it as a
-canary to indicate whether we need to do the cdclk programming
-with pipes off or not.
+	if (igt_debug_on((ret = openat(...), ret < 0)))
 
--- 
-Ville Syrjälä
-Intel
+was equally correct (both log and return on ret < 0), and now I recall what I 
+meant: I tried to work around checkpatch rule of not using assignment 
+expressions in if conditions -- with no success.  Let me refactor that line to 
+make checkpatch happy.
+
+Thanks,
+Janusz
+
+> 
+> > 
+> > >+		return ret;
+> > >+
+> > >+	results_fd = openat(ret, "results", O_RDONLY);
+> > >+	close(ret);
+> > >+	if (igt_debug_on(results_fd < 0))
+> > >+		return results_fd;
+> > >+
+> > >+	results_stream = fdopen(results_fd, "r");
+> > >+	if (igt_debug_on(!results_stream)) {
+> > >+		close(results_fd);
+> > >+		return -errno;
+> > >+	}
+> > >
+> > > 	*ktap = igt_ktap_alloc(results);
+> > >-	if (igt_debug_on(!*ktap))
+> > >-		return -ENOMEM;
+> > >+	if (igt_debug_on(!*ktap)) {
+> > >+		ret = -ENOMEM;
+> > >+		goto out_fclose;
+> > >+	}
+> > >+
+> > >+	while (len = getline(&buf, &size, results_stream), len > 0) {
+> > >+		ret = igt_ktap_parse(buf, *ktap);
+> > >+		if (ret != -EINPROGRESS)
+> > >+			break;
+> > >+	}
+> > >
+> > >-	do
+> > >-		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
+> > >-			      err && err != -EINPROGRESS));
+> > >-	while (err == -EINPROGRESS);
+> > >+	free(buf);
+> > >
+> > > 	igt_ktap_free(ktap);
+> > >+out_fclose:
+> > >+	fclose(results_stream);
+> > >
+> > >-	return err;
+> > >+	return ret;
+> > > }
+> > >
+> > > static void __igt_kunit_legacy(struct igt_ktest *tst,
+> > >@@ -1101,7 +1153,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+> > > 	pthread_mutexattr_t attr;
+> > > 	IGT_LIST_HEAD(results);
+> > > 	unsigned long taints;
+> > >-	int ret;
+> > >+	int flags, ret;
+> > >+
+> > >+	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
+> > >+
+> > >+	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
+> > >+	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
+> > >+		      "Could not set /dev/kmsg to blocking mode\n");
+> > >
+> > > 	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+> > >
+> > >@@ -1224,30 +1282,20 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+> > > 	igt_skip_on_f(ret, "KTAP parser failed\n");
+> > > }
+> > >
+> > >-static void kunit_get_tests_timeout(int signal)
+> > >-{
+> > >-	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
+> > >-}
+> > >-
+> > > static bool kunit_get_tests(struct igt_list_head *tests,
+> > > 			    struct igt_ktest *tst,
+> > > 			    const char *suite,
+> > > 			    const char *opts,
+> > >+			    DIR *debugfs_dir,
+> > > 			    struct igt_ktap_results **ktap)
+> > > {
+> > >-	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
+> > >-			 *saved;
+> > > 	struct igt_ktap_result *r, *rn;
+> > >+	struct dirent *subdir;
+> > > 	unsigned long taints;
+> > >-	int flags, err;
+> > >-
+> > >-	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
+> > >+	int debugfs_fd;
+> > >
+> > >-	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
+> > >-	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
+> > >-		      "Could not set /dev/kmsg to blocking mode\n");
+> > >-
+> > >-	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+> > >+	if (igt_debug_on(!debugfs_dir))
+> > >+		return false;
+> > >
+> > > 	/*
+> > > 	 * To get a list of test cases provided by a kunit test module, ask the
+> > >@@ -1260,19 +1308,32 @@ static bool kunit_get_tests(struct igt_list_head *tests,
+> > > 	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
+> > > 		return false;
+> > >
+> > >+	if (!suite) {
+> > >+		seekdir(debugfs_dir, 2);	/* directory itself and its parent */
+> > >+		errno = 0;
+> > >+		igt_skip_on_f(readdir(debugfs_dir) || errno,
+> > >+			      "Require empty KUnit debugfs directory\n");
+> > >+		rewinddir(debugfs_dir);
+> > >+	}
+> > >+
+> > > 	igt_skip_on(modprobe(tst->kmod, opts));
+> > > 	igt_skip_on(igt_kernel_tainted(&taints));
+> > >
+> > >-	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
+> > >-	alarm(10);
+> > >+	debugfs_fd = dirfd(debugfs_dir);
+> > >+	if (suite) {
+> > >+		igt_skip_on(kunit_get_results(tests, debugfs_fd, suite, ktap));
+> > 
+> > instead of skipping, do we need to treat it specially if this returns
+> > -EINPROGRESS? That would probably be bug in our ktap parser or a format
+> > change or something like that so we may want to start failing rather
+> > than skipping.
+> 
+> Unfortunately we are not allowed to fail here because kunit_get_tests() is 
+> called from inside a body of igt_subtest_with_dynamic() but outside of any 
+> igt_dynamic(), where fails are allowed again.  We may use a verbose variant of 
+> igt_skip() to provide additional information on that skip.  We may also 
+> precede that skip with igt_warn(), but I'm not sure how that will by reported 
+> by upper layers (igt_runner, CI).
+
+For symmetry with the below case of NULL suite argument, I'd rather use 
+igt_warn_on() here and let the subtest skip automatically if the list of KUnit 
+test cases occurs empty and no IGT dynamic sub-subtests are executed.  Or 
+maybe still better, drop that if section preceding the while section below and 
+handle the non-NULL suite case inside the while loop.
+
+Thanks,
+Janusz
+
+> 
+> > 
+> > anyway, consider the comments above as just nits. This seems like a
+> > great improvement.
+> > 
+> > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> Thank you,
+> Janusz
+> 
+> > 
+> > thanks
+> > Lucas De Marchi
+> > 
+> > >
+> > >-	err = kunit_get_results(tests, tst->kmsg, ktap);
+> > >+	} else while (subdir = readdir(debugfs_dir), subdir) {
+> > >+		if (!(subdir->d_type & DT_DIR))
+> > >+			continue;
+> > >
+> > >-	alarm(0);
+> > >-	igt_debug_on(sigaction(SIGALRM, saved, NULL));
+> > >+		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
+> > >+			continue;
+> > >
+> > >-	igt_skip_on_f(err,
+> > >-		      "KTAP parser failed while getting a list of test cases\n");
+> > >+		igt_warn_on_f(kunit_get_results(tests, debugfs_fd, subdir->d_name, ktap),
+> > >+			      "parsing KTAP report from test suite \"%s\" failed\n",
+> > >+			      subdir->d_name);
+> > >+	}
+> > >
+> > > 	igt_list_for_each_entry_safe(r, rn, tests, link)
+> > > 		igt_require_f(r->code == IGT_EXIT_SKIP,
+> > >@@ -1287,6 +1348,7 @@ static void __igt_kunit(struct igt_ktest *tst,
+> > > 			const char *subtest,
+> > > 			const char *suite,
+> > > 			const char *opts,
+> > >+			int debugfs_fd,
+> > > 			struct igt_list_head *tests,
+> > > 			struct igt_ktap_results **ktap)
+> > > {
+> > >@@ -1307,8 +1369,6 @@ static void __igt_kunit(struct igt_ktest *tst,
+> > >
+> > > 			igt_skip_on(igt_kernel_tainted(&taints));
+> > >
+> > >-			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
+> > >-
+> > > 			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
+> > > 					       t->suite_name, t->case_name),
+> > > 				      sizeof(glob));
+> > >@@ -1317,7 +1377,8 @@ static void __igt_kunit(struct igt_ktest *tst,
+> > > 			igt_assert_eq(modprobe(tst->kmod, opts), 0);
+> > > 			igt_assert_eq(igt_kernel_tainted(&taints), 0);
+> > >
+> > >-			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
+> > >+			igt_assert_eq(kunit_get_results(&results, debugfs_fd,
+> > >+							t->suite_name, ktap), 0);
+> > >
+> > > 			for (i = 0; i < 2; i++) {
+> > > 				kunit_result_free(&r, &suite_name, &case_name);
+> > >@@ -1388,6 +1449,7 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+> > > 	struct igt_ktest tst = { .kmsg = -1, };
+> > > 	struct igt_ktap_results *ktap = NULL;
+> > > 	const char *subtest = suite;
+> > >+	DIR *debugfs_dir = NULL;
+> > > 	IGT_LIST_HEAD(tests);
+> > >
+> > > 	/*
+> > >@@ -1435,10 +1497,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+> > > 		 *	 LTS kernels not capable of using KUnit filters for
+> > > 		 *	 listing test cases in KTAP format, with igt_require.
+> > > 		 */
+> > >-		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
+> > >+		debugfs_dir = kunit_debugfs_open();
+> > >+		if (!kunit_get_tests(&tests, &tst, suite, opts, debugfs_dir, &ktap))
+> > > 			__igt_kunit_legacy(&tst, subtest, opts);
+> > > 		else
+> > >-			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
+> > >+			__igt_kunit(&tst, subtest, suite, opts,
+> > >+				    dirfd(debugfs_dir), &tests, &ktap);
+> > > 	}
+> > >
+> > > 	igt_fixture {
+> > >@@ -1448,6 +1512,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+> > >
+> > > 		kunit_results_free(&tests, &suite_name, &case_name);
+> > >
+> > >+		if (debugfs_dir)
+> > >+			closedir(debugfs_dir);
+> > >+
+> > > 		igt_ktest_end(&tst);
+> > > 	}
+> > >
+> > 
+> 
+> 
+
+
+
+
