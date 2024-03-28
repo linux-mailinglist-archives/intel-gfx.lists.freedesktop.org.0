@@ -2,54 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F46188FA06
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 09:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D049A88FA12
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Mar 2024 09:37:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC22112367;
-	Thu, 28 Mar 2024 08:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02BC71120B2;
+	Thu, 28 Mar 2024 08:37:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D0+XEbln";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCfGI2Pg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2701112367;
- Thu, 28 Mar 2024 08:31:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1732310F0F6;
+ Thu, 28 Mar 2024 08:37:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711614701; x=1743150701;
+ t=1711615048; x=1743151048;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=9o3xCITAzaBnDrWo+ehKIbor2QrpkreavRUsBFZh5/A=;
- b=D0+XEblniQmAQlcsTfE2lQL+zGpypl1VlPvr6oSvS28GANpbh744azOv
- HviFn9hnLoS9wUp2UnBnIgUWPYooh6v48clDiSmOTolDvjwqbp64CArFX
- QYHkhh6V2352pn6rFco3z6UqwogA6OLse1lqxwWWszcG8X+926hwsyihZ
- 7ZBWvPQYjxDV3dR2Uy904xqioTbGyO7+cixwpRyRzESTJp3DsJ9F05u7c
- jMHsMZ7IQwqH5bQrR5qMS+cPAoWrACSCcGVDdvhSAYsXRPdnAxD9OfQgC
- NHBfCjQaFn1hSTQwOw0AEDLprYnpFHXOpBkHExYn1QZjYU76NzVmCImAY A==;
-X-CSE-ConnectionGUID: h4OOozrmTOy9d7VwjNDnWw==
-X-CSE-MsgGUID: pmUmMFETQd+R3wUyG3zz9w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="10549916"
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="10549916"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 01:31:41 -0700
+ bh=SxnGgfMHWB6/HE8+c6vXXWQ3E3UGk2dAFUzMB4wSJG0=;
+ b=DCfGI2Pg8Lpla/1CoFOzIpToFgXP1XvclVOM+dIAVNgHw3s25Oe9l+85
+ SVuS2vsZMK+7ixPM1OF+PHknVE8APNxjkRLvcYygBsTPXWZCTpoLc3lB/
+ zFuQ07rLNyBZDG9lGhvI+c08Tr9EHaazW+GGkIAv9UI9Yq9zDF+3I81Ez
+ QWXcRiFFpaBoEnsdLvm8a5sdO3fy7rolRsKNAg4GqeLx8X5rrM3/ECziD
+ 5J35735tMdMtxxlwGOIOvGsddPNoowyaFj+X9UsI3V133Hqvrh+/XbSHt
+ ijLJ1sHX0gra1AHBPYxW7763L86U2seVEztmc2J8Pr3wT6pFymwu1ic1c w==;
+X-CSE-ConnectionGUID: yIdgPghtTV2831rJoMKNxg==
+X-CSE-MsgGUID: tuZXRkxCSbSkJmxGD7+esA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11026"; a="6867686"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; 
+   d="scan'208";a="6867686"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 01:37:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="47774372"
+X-IronPort-AV: E=Sophos;i="6.07,161,1708416000"; d="scan'208";a="21262539"
 Received: from unknown (HELO intel.com) ([10.247.118.221])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 01:31:37 -0700
-Date: Thu, 28 Mar 2024 09:31:31 +0100
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2024 01:37:22 -0700
+Date: Thu, 28 Mar 2024 09:37:15 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCHv2] drm/xe/display: check for error on drmm_mutex_init
-Message-ID: <ZgUq47D313cr2VYp@ashyti-mobl2.lan>
-References: <20240328080005.410961-1-arun.r.murthy@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] drm/i915/gem: Replace dev_priv with i915
+Message-ID: <ZgUsO9OTrHO7HaPC@ashyti-mobl2.lan>
+References: <20240328071833.664001-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240328080005.410961-1-arun.r.murthy@intel.com>
+In-Reply-To: <20240328071833.664001-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,50 +72,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Arun,
+Hi,
 
-...
+On Thu, Mar 28, 2024 at 08:18:33AM +0100, Andi Shyti wrote:
+> Anyone using 'dev_priv' instead of 'i915' in a cleaned-up area
+> should be fined and required to do community service for a few
+> days.
 
-> -	drmm_mutex_init(&xe->drm, &xe->sb_lock);
-> -	drmm_mutex_init(&xe->drm, &xe->display.backlight.lock);
-> -	drmm_mutex_init(&xe->drm, &xe->display.audio.mutex);
-> -	drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex);
-> -	drmm_mutex_init(&xe->drm, &xe->display.pps.mutex);
-> -	drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex);
-> +	if (drmm_mutex_init(&xe->drm, &xe->sb_lock) ||
-> +	    drmm_mutex_init(&xe->drm, &xe->display.backlight.lock) ||
-> +	    drmm_mutex_init(&xe->drm, &xe->display.audio.mutex) ||
-> +	    drmm_mutex_init(&xe->drm, &xe->display.wm.wm_mutex) ||
-> +	    drmm_mutex_init(&xe->drm, &xe->display.pps.mutex) ||
-> +	    drmm_mutex_init(&xe->drm, &xe->display.hdcp.hdcp_mutex))
-> +		return -ENOMEM;
+Not to scare people off, I would add another sentence in between:
 
-why not extract the value from drmm_mutex_init()? it would make
-the code a bit more complex, but better than forcing a -ENOMEM
-return.
+"Using 'i915' instead of 'dev_priv' has been the preferred
+practice over the past years and some effort has been spent to
+replace 'dev_priv' with 'i915'. Therefore, 'dev_priv' should
+almost never be used (unless it breaks some defines which are
+dependent on the naming)."
 
-	err = drmm_mutex_init(...)
-	if (err)
-		return err;
+> I thought I had cleaned up the 'gem/' directory in the past, but
+> still, old aficionados of the 'dev_priv' name keep sneaking it
+> in.
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
 
-	err = drmm_mutex_init(...)
-	if (err)
-		return err;
-
-	err = drmm_mutex_init(...)
-	if (err)
-		return err;
-	
-	...
-
-On the other hand drmm_mutex_init(), as of now returns only
--ENOMEM, but it's a bad practice to assume it will always do. I'd
-rather prefer not to check the error value at all.
-
+Thanks,
 Andi
-
->  	xe->enabled_irq_mask = ~0;
->  
->  	err = drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
-> -- 
-> 2.25.1
