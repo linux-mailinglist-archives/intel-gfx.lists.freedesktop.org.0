@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9A88911DA
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 04:12:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC3689120F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 04:35:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D4E710F8ED;
-	Fri, 29 Mar 2024 03:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDE410E6FB;
+	Fri, 29 Mar 2024 03:34:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B1B110F8ED;
- Fri, 29 Mar 2024 03:12:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5442098791969706823=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAD510E6FB;
+ Fri, 29 Mar 2024 03:34:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=5Fdebugfs?=
- =?utf-8?q?=3A_Remove_check_for_crtc_in_force_bigjoiner?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Disable_automatic_lo?=
+ =?utf-8?q?ad_CCS_load_balancing_=28rev14=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Mar 2024 03:12:52 -0000
-Message-ID: <171168197256.1064930.5390456321546190030@8e613ede5ea5>
+Date: Fri, 29 Mar 2024 03:34:42 -0000
+Message-ID: <171168328254.1066178.2979358467501708041@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240328141421.609982-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20240328141421.609982-1-ankit.k.nautiyal@intel.com>
+References: <20240328073409.674098-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240328073409.674098-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,170 +41,38 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5442098791969706823==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display_debugfs: Remove check for crtc in force bigjoiner
-URL   : https://patchwork.freedesktop.org/series/131770/
-State : success
+Series: Disable automatic load CCS load balancing (rev14)
+URL   : https://patchwork.freedesktop.org/series/129951/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14506 -> Patchwork_131770v1
-====================================================
+Error: dim checkpatch failed
+9e5c201ff6d6 drm/i915/gt: Disable HW load balancing for CCS
+165039e14345 drm/i915/gt: Do not generate the command streamer for all the CCS
+2c4979792953 drm/i915/gt: Enable only one CCS for compute workload
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:37: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#37: 
+new file mode 100644
 
-Summary
--------
+-:111: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'cslice' may be better as '(cslice)' to avoid precedence issues
+#111: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1433:
++#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
 
-  **SUCCESS**
+-:111: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ccs' may be better as '(ccs)' to avoid precedence issues
+#111: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:1433:
++#define   XEHP_CCS_MODE_CSLICE(cslice, ccs)	(ccs << (cslice * XEHP_CCS_MODE_CSLICE_WIDTH))
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/index.html
-
-Participating hosts (37 -> 37)
-------------------------------
-
-  Additional (2): fi-bsw-nick fi-kbl-8809g 
-  Missing    (2): bat-kbl-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_131770v1 that come from known issues:
-
-### CI changes ###
-
-#### Issues hit ####
-
-  * boot:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][1] ([i915#8293])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/fi-kbl-8809g/boot.html
-
-  
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] +19 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - {bat-mtlp-9}:       [DMESG-WARN][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14506/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#8293]: https://gitlab.freedesktop.org/drm/intel/issues/8293
+total: 0 errors, 1 warnings, 2 checks, 89 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_14506 -> Patchwork_131770v1
-
-  CI-20190529: 20190529
-  CI_DRM_14506: 98f893b726e1ba5db2680da3f9f53ab2af9780be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7790: 5ec1ff6da3535cf80fd4e1844867d75c481ef86a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_131770v1: 98f893b726e1ba5db2680da3f9f53ab2af9780be @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-edc198699d31 drm/i915/display_debugfs: Remove check for crtc in force bigjoiner
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/index.html
-
---===============5442098791969706823==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display_debugfs: Remove check for crtc in force bigjoiner</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131770/">https://patchwork.freedesktop.org/series/131770/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14506 -&gt; Patchwork_131770v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (2): fi-bsw-nick fi-kbl-8809g <br />
-  Missing    (2): bat-kbl-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_131770v1 that come from known issues:</p>
-<h3>CI changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>boot:<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/fi-kbl-8809g/boot.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8293">i915#8293</a>)</li>
-</ul>
-</li>
-</ul>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@parallel-random-engines:<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +19 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14506/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131770v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14506 -&gt; Patchwork_131770v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14506: 98f893b726e1ba5db2680da3f9f53ab2af9780be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7790: 5ec1ff6da3535cf80fd4e1844867d75c481ef86a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_131770v1: 98f893b726e1ba5db2680da3f9f53ab2af9780be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>edc198699d31 drm/i915/display_debugfs: Remove check for crtc in force bigjoiner</p>
-
-</body>
-</html>
-
---===============5442098791969706823==--
