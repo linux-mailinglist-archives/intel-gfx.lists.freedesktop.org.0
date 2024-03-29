@@ -2,154 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C85A6893011
-	for <lists+intel-gfx@lfdr.de>; Sun, 31 Mar 2024 10:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CFC892FF3
+	for <lists+intel-gfx@lfdr.de>; Sun, 31 Mar 2024 10:50:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17DCA10EA35;
-	Sun, 31 Mar 2024 08:51:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0EDE10EA20;
+	Sun, 31 Mar 2024 08:50:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=zeiss.com header.i=@zeiss.com header.b="es+NbV4w";
-	dkim=pass (2048-bit key) header.d=zeiss.com header.i=@zeiss.com header.b="es+NbV4w";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="s/NFcY4W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com
- (mail-db3eur04on2048.outbound.protection.outlook.com [40.107.6.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB51112338
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 06:29:51 +0000 (UTC)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=CLkPIOZ2sNAdP+wM1kX+b4KwOvCojHkWl0q3VYWjlqnsAdVRgbmX3yQqWjyDpms5HSMBKM5FIR6IZ4npxctuMl1D9mnM2qqhyTb1TzC9XM/P5ms1p8tnd/j8bNTZFTQNd5C7b8KKS/IB5uwjaDkhwKyhz+RoamOEn2Xw+ScCsDqKsOV25At/9Ij1paOEtCIUKMF8BYojPCd61yxvzKOdywYGJw0esBnHTXWQHeRMUsPxegq8D7X2gvkzdwwtlgGD80qWW4TRbyP9ciJmbLbdSQm1dloDVtsxpUPKK6rMQcIjP8xrHH7BE/G2o+/zMmX+3e2zipqRPi80X8ybA9Pqvg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lu01/AV3y71AJnNgNnORLFJGbe9zPTd2C7xK5K1H0B8=;
- b=DB1nm498YS7Y294ACcCo3yqMJTJEYWEUCHc42JbZXOH0dFq4JIeC1eCdxgSvrFegH0sdjxML+Nu+arquHCG0zFKcodPUGt+fsvXyhelVeRvQC7cd8Bbk1nayQN4Ueot7rYXVjzEvDmIGiMeENTSnuSRDXlT8K4zQsMwT0DirUtsGvsDsLUkKb8QrnjH3basdzlJm/pTeS14ODc2VCs1IUnoaMrwOxQBvg7W2dGmTLXXwVeWAKiB+mRnqR+kVfX1lMWC32zNow8V47FnGpt3W45OZSmsq+wxTf4McVdjnk+R5SvlHMz++e+HGSW7mfa6Vv6ksEX4xxvd6RrN9mlFlQQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=fail (sender ip is
- 18.192.202.217) smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=zeiss.com; dmarc=pass (p=quarantine sp=quarantine pct=100)
- action=none header.from=zeiss.com; dkim=pass (signature was verified)
- header.d=zeiss.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=zeiss.com] dkim=[1,1,header.d=zeiss.com]
- dmarc=[1,1,header.from=zeiss.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zeiss.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lu01/AV3y71AJnNgNnORLFJGbe9zPTd2C7xK5K1H0B8=;
- b=es+NbV4wWLoweChDhaNvDyJefu01zq6Sm9iSQMVdJMdAOtZk+Kl1SknAFkAZgKm/eO3ZGYq9UMTGWiKKGwTlaV7sCYaXgKYtdivuwWu+WmmwRRYdmU+UXBlC5TYGV5KstUhSHqBLwB5egRgY5y1hFhJWQTDMPjdCTNE7l2ygIirdeY61Rlf+gAOGXGcCuy4TFvChz8j8P9Uvk1cjeUsioXO9RxPLkskryB6AkURpCD5JO5PfNHeSLB6PUr3PlTZisJOzDDpZYKXZWE03xhSTcXFQR8qKhZRVM3XW1I0Ru1C2LfW0yP1jaNGJ/Wgl6sJroL/W7uZayP6U/+ndSbCx6w==
-Received: from AM6P191CA0040.EURP191.PROD.OUTLOOK.COM (2603:10a6:209:7f::17)
- by GVXP190MB1872.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Thu, 28 Mar
- 2024 06:29:48 +0000
-Received: from AM2PEPF0001C70F.eurprd05.prod.outlook.com
- (2603:10a6:209:7f:cafe::7c) by AM6P191CA0040.outlook.office365.com
- (2603:10a6:209:7f::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.13 via Frontend
- Transport; Thu, 28 Mar 2024 06:29:48 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 18.192.202.217)
- smtp.mailfrom=zeiss.com; dkim=pass (signature was verified)
- header.d=zeiss.com;dmarc=pass action=none header.from=zeiss.com;
-Received-SPF: Fail (protection.outlook.com: domain of zeiss.com does not
- designate 18.192.202.217 as permitted sender)
- receiver=protection.outlook.com; client-ip=18.192.202.217;
- helo=jegw1.zeiss.com;
-Received: from jegw1.zeiss.com (18.192.202.217) by
- AM2PEPF0001C70F.mail.protection.outlook.com (10.167.16.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7409.10 via Frontend Transport; Thu, 28 Mar 2024 06:29:48 +0000
-Received: from ip-10-25-10-14 (localhost [127.0.0.1])
- by jegw1.zeiss.com (Postfix) with UTF8SMTP id BA5841B6F7A
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 07:29:47 +0100 (CET)
-Received: from kag06088vm016.zeiss.com (kag06088vm016 [10.25.10.115])
- by kag06088vm011.zeiss.org (Postfix) with UTF8SMTPS id A852A1B6F73
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 07:29:47 +0100 (CET)
-Received: from ip-10-25-10-115 (localhost [127.0.0.1])
- by kag06088vm016.zeiss.com (Postfix) with UTF8SMTP id A59F31B6602
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 07:29:47 +0100 (CET)
-Received: from kag06088vm013.zeiss.com (kag06088vm013.zeiss.com [10.25.10.9])
- by kag06088vm016.zeiss.com (Postfix) with ESMTPS id 985F31B6118
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 07:29:47 +0100 (CET)
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com
- (mail-ve1eur01lp2050.outbound.protection.outlook.com [104.47.1.50])
- by kag06088vm013.zeiss.com (Postfix) with ESMTPS id 8DAA9BBABD
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Mar 2024 07:29:47 +0100 (CET)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=exnXb3/6TK/EHFPxmqwtQwY0caUL6m1MatE9VmHvq+nI5OWnJdZnyqpJ7iuJoevGeXTCvK4XzQD8Y3+RlAuTVONMCmIAWfGsbVSkY606Ds2pglNPwbKr7C5eG7udS5B9pNGnUnX4IsTLwVY3WxpRZSsKa6PmydQalIyVvUX89LDQq1ihCKjmkpDfb6YIe0+0KgiD6f9zHHZileJZB0YmXmB60o9ezTHM09LXbyVd+FGfHnm8ioI68/q6RJgO0Wamo5tRt9ovdRRTk+H087TtigI4E3wcczSwJBBJbzikn4ZY5unsgEH7sGK1NbhLiGGyVLYSHl16EN3zB3h7M5EJlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lu01/AV3y71AJnNgNnORLFJGbe9zPTd2C7xK5K1H0B8=;
- b=b0ZHrHHiBsAK2+HrFFQW7h5ftpWI4y64y4ZN2dSsaoUaOytMqeuAEWA1MFFn2avtBqwhLm062EIwPn1TGxVjt41dqljtmbl3+R/mGXnIwkI9pHpBF7AnkmFTrJQvY3dE4Y3hwdhIY5g8y543xO9mmyz5V9mlMchOc47o6TD9zMHfVNYJLOw3yflC+g2cYpdfXVuYuthk1XhCSpLquc67E4FP1DJqGI1sT33tb8kyy2SpF/ItO2cJ+sgayQb29btj2ts3IUVICcVwnAIeioLod2rqvSG/VxYQ+PcH1qJpOHcsexd3Dws8b2MOs17QSos0xxscpGzGvtL/Wo2o5uTYlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=zeiss.com; dmarc=pass action=none header.from=zeiss.com;
- dkim=pass header.d=zeiss.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zeiss.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lu01/AV3y71AJnNgNnORLFJGbe9zPTd2C7xK5K1H0B8=;
- b=es+NbV4wWLoweChDhaNvDyJefu01zq6Sm9iSQMVdJMdAOtZk+Kl1SknAFkAZgKm/eO3ZGYq9UMTGWiKKGwTlaV7sCYaXgKYtdivuwWu+WmmwRRYdmU+UXBlC5TYGV5KstUhSHqBLwB5egRgY5y1hFhJWQTDMPjdCTNE7l2ygIirdeY61Rlf+gAOGXGcCuy4TFvChz8j8P9Uvk1cjeUsioXO9RxPLkskryB6AkURpCD5JO5PfNHeSLB6PUr3PlTZisJOzDDpZYKXZWE03xhSTcXFQR8qKhZRVM3XW1I0Ru1C2LfW0yP1jaNGJ/Wgl6sJroL/W7uZayP6U/+ndSbCx6w==
-Received: from AS1P190MB1822.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:4a4::7)
- by AS8P190MB1352.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2e9::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.24; Thu, 28 Mar
- 2024 06:29:46 +0000
-Received: from AS1P190MB1822.EURP190.PROD.OUTLOOK.COM
- ([fe80::eb70:f989:726d:2055]) by AS1P190MB1822.EURP190.PROD.OUTLOOK.COM
- ([fe80::eb70:f989:726d:2055%6]) with mapi id 15.20.7409.028; Thu, 28 Mar 2024
- 06:29:46 +0000
-From: "Suesens, Sebastian" <sebastian.suesens@zeiss.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: How to fix Linux CMA on x86 with internal graphic card i915/hda_intel
- ioremap error?
-Thread-Topic: How to fix Linux CMA on x86 with internal graphic card
- i915/hda_intel ioremap error?
-Thread-Index: AdqA2RkNJlVGUKf8TPmCoqX9+2TPjQ==
-Date: Thu, 28 Mar 2024 06:29:46 +0000
-Message-ID: <AS1P190MB1822E12B130B87D1A768637AF13B2@AS1P190MB1822.EURP190.PROD.OUTLOOK.COM>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=zeiss.com;
-x-ms-traffictypediagnostic: AS1P190MB1822:EE_|AS8P190MB1352:EE_|AM2PEPF0001C70F:EE_|GVXP190MB1872:EE_
-X-MS-Office365-Filtering-Correlation-Id: c4170b25-5ae9-4510-4e31-08dc4ef0775b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: /yyseYCivX8QCJUTDh+nWqVRwuhSDFPNgEg9jmbAg/bRnUkiNO8zpyoW9c9uiiXTPOngT7lH0C5BiCoJfUDHUT/Pj84s/y5E496Ch6UroZUFjDp90gNPdBqBm5GTkpjQjNfL0302C8OU+eR72Up16tl9FxoBhs7KVIvtvcqDBNbh0eXI4wmfr9JOnR2C9bHHfRld8jP/EMmSq4LMvJpZCg6SNZ0QIyeVidqHfN73UJTmITXwLChzMrcjrsZaCHbXLLWkw8ttEwCVQKlHDlsxTGXbJfP5qCWmbuxmrNRwD1rycUrT7wJct+Qwy8J1dIvpZpliivZHQINCMwOPLiAWknyPRORNBMKTqmy9iW8jiFFfB7ax4s1AWv0qMP68/b62OgstbI68YFJOqu3x5vQCAim7Yjr4SikPCyVB1EQJHA02Gh1+J0HcBPc5irCRO/WU38PKxZBW/bWHP16wJMA52ZgkYlP0AzsrISUJsKltQ6BrNV1U/T+KDS+J5CQ5IM/WCzkej/rhhOMxKgRbwJqIcVAZio1YMrVI8Kzkp/9ijKIBcpXrsjYb+TADb1Tbrw2kfX5WD+HdTwjkmrfY+kaN4BqOJvYTDdrvsZOSDrir/hxagxZMFfgogY7amL5fJ8mB2s/LbMuxkKXYK7KHg01LoJGallEmE7b0SJslDHYSuvudw54c0TbjFDmZPhvPyQLy3pzZddlfKqegeV5jAtaYc9rcYuZfJzFqC4Hu+PoU2Mk=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255; CTRY:; LANG:en;
- SCL:1; SRV:; IPV:NLI; SFV:NSPM; H:AS1P190MB1822.EURP190.PROD.OUTLOOK.COM; PTR:;
- CAT:NONE; SFS:(13230031)(1800799015)(366007)(376005)(38070700009); DIR:OUT;
- SFP:1101; 
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9217710E16A;
+ Fri, 29 Mar 2024 17:00:55 +0000 (UTC)
+Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 2915720E6F3E;
+ Fri, 29 Mar 2024 10:00:51 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2915720E6F3E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1711731651;
+ bh=R1kI4fSdjXgmDTBK4gwdz/7qy7m6HdXCoh75MR5W1fU=;
+ h=From:To:Cc:Subject:Date:From;
+ b=s/NFcY4WhBBLC6P0yXaPdWjdSd1KLEhzt5QlU8HUQPolmdd//5jDkAXQu4mn4SjCo
+ bn4fbp4Ho3VTBmf5gX48VajFN/A7PdTHE1O7evCm9ovfbS/jyxuny9FcLln7MTu1me
+ /f8k2ymXnbN/1Rh3AQVd0O93PYUn/pPgQtCm+y+U=
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+To: 
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list),
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
+ linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+Subject: [PATCH v0 00/14] Make I2C terminology more inclusive for I2C Algobit
+ and consumers
+Date: Fri, 29 Mar 2024 17:00:24 +0000
+Message-Id: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1352
-X-EOPAttributedMessage: 0
-X-MS-Exchange-SkipListedInternetSender: ip=[18.192.202.217];
- domain=jegw1.zeiss.com
-X-MS-Exchange-ExternalOriginalInternetSender: ip=[18.192.202.217];
- domain=jegw1.zeiss.com
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM2PEPF0001C70F.eurprd05.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: c2cb2177-3ead-46c8-e9f5-08dc4ef0768a
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hyqkQhjXqFM4lVI9dG73DIkYEzCqwObHAdItXALwmz0cZft6WJkEunGyJvA4xBb6GYsls0MHu7HrHIXkCT0W4Ls/sWrheU0XuobBWeQ7ghDYcOu17BVVR0E9k9qR32XOfAieYCcZNDU5Y43XmZwEzTRiQkZ6kxCZ/yxp0MDUR2LOMCYC/aTE2RhWeuaXh6u/Eon7SR3b3BX+/YS01adDHAJ6jdbdZrybj97m4qiPq0BO1OcaI3bux2UZtOUif41uabMCbj+ea3COO9OvSRbU1OwWqs9KZSyDsVl9fP+scPxfljH6nNieueMyjvQu3K+ymx3SikaZOZGBL/wbuzIZoklcySt40rq+eP9DVGty2b/TZ8oP20h1YNAHpUF6wIWOgttEhjytCk9v4LEuEVBn4Ms2NtOxtOABgA0ZqnqNtKnP5fifahwyr1Apbv56svYdmFvlDI8mQZDwVU+Jmv8NwyjdACHiTa0H0ODbmBPQMKqVBnY/C8P63+7NeekB8vdGrCC9IvmS7MQcA0BKYd2VyqDT7zTPR9XC8Y94U6LQZZdI+61m+8tZyK8pn3kvidYRlwFA5XC9e7dRBxqBmyZcaWYR3CrlQYVkqiESldeIKhDIsr0W6gxO099YLnEWfAp7Mm5KK6AhjpEUsyxNq1OU8AHG9g83d/1WgsaQZLHzGOVLRY12cGqS5apev5SeqaqXlb0n7unB7uFSAZiIBHMT8gdNBzcleVMlxSM0xAMeRL4u8SIwYAro2a2DHErvmVk6QJIctqbiU7vYkfJaw8s22eCKAdg0nyrAnZOdB4Q4NKiq5LSHmszuAuE/lJu9kXbQYsnR9tgLujPwV5rjJqsI0Q==
-X-Forefront-Antispam-Report: CIP:18.192.202.217; CTRY:DE; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:jegw1.zeiss.com;
- PTR:ec2-18-192-202-217.eu-central-1.compute.amazonaws.com; CAT:NONE;
- SFS:(13230031)(36860700004)(1800799015)(376005)(82310400014); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: zeiss.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2024 06:29:48.0889 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4170b25-5ae9-4510-4e31-08dc4ef0775b
-X-MS-Exchange-CrossTenant-Id: 28042244-bb51-4cd6-8034-7776fa3703e8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=28042244-bb51-4cd6-8034-7776fa3703e8; Ip=[18.192.202.217];
- Helo=[jegw1.zeiss.com]
-X-MS-Exchange-CrossTenant-AuthSource: AM2PEPF0001C70F.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXP190MB1872
-X-Mailman-Approved-At: Sun, 31 Mar 2024 08:51:26 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sun, 31 Mar 2024 08:50:08 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,22 +64,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+with more appropriate terms. Inspired by and following on to Wolfram's
+series to fix drivers/i2c/[1], fix the terminology for users of the
+I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+in the specification.
 
-I enabled the CMA (CONFIG_CMA=3Dy) for an x86 machine on Linux kernel v5.10=
- and v5.15 When I boot the system the CMA reserved memory, but when the gra=
-phic card driver i915 or hda_intel is loaded the system crashed.=20
-I see that ioremap on RAM at 0x0000000000000000 - 0x00000000d0000000 get fa=
-il. When I blacklist the i915 and hda_intel module the system boots fine wi=
-th cma memory reserved.
+Compile tested, no functionality changes intended
 
-I think this has something to do with the shared memory which this driver u=
-se.
-=20
-Does anyone know if a kernel config or something else prevents this crash?=
-=20
+The last patch updating the .master_xfer method to .xfer depends on
+patch 1 of Wolfram's series below, but the series is otherwise
+independent. It may make sense for the last patch to go in with
+Wolfram's patch series via the I2C tree. Please chime in with your
+opinions and suggestions.
 
-Please answer me in CC.
+This series is based on v6.9-rc1.
 
-Regards Sebastian
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+
+Easwar Hariharan (14):
+  IB/hfi1, IB/qib: Make I2C terminology more inclusive
+  drm/amdgpu,drm/radeon: Make I2C terminology more inclusive
+  drm/gma500,drm/i915: Make I2C terminology more inclusive
+  media: au0828: Make I2C terminology more inclusive
+  media: cobalt: Make I2C terminology more inclusive
+  media: cx18: Make I2C terminology more inclusive
+  media: cx25821: Make I2C terminology more inclusive
+  media: ivtv: Make I2C terminology more inclusive
+  media: cx23885: Make I2C terminology more inclusive
+  sfc: falcon: Make I2C terminology more inclusive
+  fbdev/smscufx: Make I2C terminology more inclusive
+  fbdev/viafb: Make I2C terminology more inclusive
+  drm/nouveau: Make I2C terminology more inclusive
+  i2c and treewide: Make I2C terminology more inclusive
+
+ .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       | 12 +++----
+ drivers/gpu/drm/amd/amdgpu/atombios_i2c.c     |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    | 18 +++++-----
+ .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 +-
+ .../drm/amd/display/dc/bios/bios_parser2.c    |  2 +-
+ .../drm/amd/display/dc/core/dc_link_exports.c |  4 +--
+ drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_i2c.c  |  4 +--
+ .../display/include/grph_object_ctrl_defs.h   |  2 +-
+ drivers/gpu/drm/amd/include/atombios.h        |  2 +-
+ drivers/gpu/drm/amd/include/atomfirmware.h    | 26 +++++++-------
+ .../powerplay/hwmgr/vega20_processpptables.c  |  4 +--
+ .../amd/pm/powerplay/inc/smu11_driver_if.h    |  2 +-
+ .../inc/pmfw_if/smu11_driver_if_arcturus.h    |  2 +-
+ .../inc/pmfw_if/smu11_driver_if_navi10.h      |  2 +-
+ .../pmfw_if/smu11_driver_if_sienna_cichlid.h  |  2 +-
+ .../inc/pmfw_if/smu13_driver_if_aldebaran.h   |  2 +-
+ .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  2 +-
+ .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  2 +-
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  4 +--
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  8 ++---
+ drivers/gpu/drm/gma500/cdv_intel_dp.c         |  2 +-
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  2 +-
+ drivers/gpu/drm/gma500/intel_bios.c           | 22 ++++++------
+ drivers/gpu/drm/gma500/intel_bios.h           |  4 +--
+ drivers/gpu/drm/gma500/intel_gmbus.c          |  6 ++--
+ drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c    |  2 +-
+ drivers/gpu/drm/gma500/psb_drv.h              |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_drv.h        |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c       |  4 +--
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c       | 28 +++++++--------
+ drivers/gpu/drm/i915/display/dvo_ch7017.c     | 14 ++++----
+ drivers/gpu/drm/i915/display/dvo_ch7xxx.c     | 18 +++++-----
+ drivers/gpu/drm/i915/display/dvo_ivch.c       | 16 ++++-----
+ drivers/gpu/drm/i915/display/dvo_ns2501.c     | 18 +++++-----
+ drivers/gpu/drm/i915/display/dvo_sil164.c     | 18 +++++-----
+ drivers/gpu/drm/i915/display/dvo_tfp410.c     | 18 +++++-----
+ drivers/gpu/drm/i915/display/intel_bios.c     | 22 ++++++------
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+ .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi.h      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 18 +++++-----
+ drivers/gpu/drm/i915/display/intel_dvo.c      | 14 ++++----
+ drivers/gpu/drm/i915/display/intel_dvo_dev.h  |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  8 ++---
+ drivers/gpu/drm/i915/display/intel_sdvo.c     | 34 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |  4 +--
+ drivers/gpu/drm/i915/gvt/edid.c               | 28 +++++++--------
+ drivers/gpu/drm/i915/gvt/edid.h               |  4 +--
+ drivers/gpu/drm/i915/gvt/opregion.c           |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c        | 14 ++++----
+ .../nouveau/include/nvkm/subdev/bios/dcb.h    |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bios.c        |  4 +--
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c |  2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c |  2 +-
+ drivers/gpu/drm/radeon/atombios.h             |  2 +-
+ drivers/gpu/drm/radeon/atombios_i2c.c         |  4 +--
+ drivers/gpu/drm/radeon/radeon_combios.c       | 28 +++++++--------
+ drivers/gpu/drm/radeon/radeon_i2c.c           | 14 ++++----
+ drivers/gpu/drm/radeon/radeon_mode.h          |  6 ++--
+ drivers/i2c/algos/i2c-algo-bit.c              | 12 +++----
+ drivers/infiniband/hw/hfi1/chip.c             |  6 ++--
+ drivers/infiniband/hw/hfi1/chip.h             |  2 +-
+ drivers/infiniband/hw/hfi1/chip_registers.h   |  2 +-
+ drivers/infiniband/hw/hfi1/file_ops.c         |  2 +-
+ drivers/infiniband/hw/hfi1/firmware.c         | 22 ++++++------
+ drivers/infiniband/hw/hfi1/pcie.c             |  2 +-
+ drivers/infiniband/hw/hfi1/qsfp.c             | 36 +++++++++----------
+ drivers/infiniband/hw/hfi1/user_exp_rcv.c     |  2 +-
+ drivers/infiniband/hw/qib/qib_twsi.c          |  6 ++--
+ drivers/media/pci/bt8xx/bttv-i2c.c            |  2 +-
+ drivers/media/pci/cobalt/cobalt-i2c.c         |  8 ++---
+ drivers/media/pci/cx18/cx18-av-firmware.c     |  8 ++---
+ drivers/media/pci/cx18/cx18-cards.c           |  6 ++--
+ drivers/media/pci/cx18/cx18-cards.h           |  4 +--
+ drivers/media/pci/cx18/cx18-gpio.c            |  6 ++--
+ drivers/media/pci/cx23885/cx23885-f300.c      |  8 ++---
+ drivers/media/pci/cx23885/cx23885-i2c.c       |  8 ++---
+ drivers/media/pci/cx25821/cx25821-i2c.c       |  8 ++---
+ drivers/media/pci/dm1105/dm1105.c             |  2 +-
+ drivers/media/pci/ivtv/ivtv-i2c.c             | 18 +++++-----
+ drivers/media/pci/saa7164/saa7164-i2c.c       |  2 +-
+ drivers/media/usb/au0828/au0828-i2c.c         |  6 ++--
+ drivers/media/usb/au0828/au0828-input.c       |  2 +-
+ drivers/net/ethernet/sfc/falcon/falcon.c      |  2 +-
+ drivers/video/fbdev/mb862xx/mb862xx-i2c.c     |  2 +-
+ drivers/video/fbdev/smscufx.c                 |  4 +--
+ drivers/video/fbdev/via/chip.h                |  8 ++---
+ drivers/video/fbdev/via/dvi.c                 | 24 ++++++-------
+ drivers/video/fbdev/via/lcd.c                 |  6 ++--
+ drivers/video/fbdev/via/via_aux.h             |  2 +-
+ drivers/video/fbdev/via/via_i2c.c             | 12 +++----
+ drivers/video/fbdev/via/vt1636.c              |  6 ++--
+ 94 files changed, 381 insertions(+), 381 deletions(-)
+
+-- 
+2.34.1
 
