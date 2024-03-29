@@ -2,67 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F8C892382
+	by mail.lfdr.de (Postfix) with ESMTPS id 6960D892383
 	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 19:42:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 853921120C7;
-	Fri, 29 Mar 2024 18:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7372E10F1C1;
+	Fri, 29 Mar 2024 18:33:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8PYCnKy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilFenPPQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0576911200E
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 18:31:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC2E511282F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 18:33:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711737088; x=1743273088;
+ t=1711737182; x=1743273182;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:to:date:message-id:mime-version;
- bh=jcrrI4rsS4MWIeMU7vT3yA4RpyMl8OsSArRRA/dQVjo=;
- b=h8PYCnKygA+IcFTI8i95oE9vRpu/mkl/gSgGO8gYRulom2vVsMsyAVoO
- sB5TVXQHGKiMamyMQ1jHJykG9zzaSUv314tF8DMGvIov6Mq5jkgPuquHY
- 14aAV0HCbFS9rrgrDUplFwcTUwCBNbdXrfda8SqiwSq3prPo8wMLIj+aP
- 5iSFCWMoZyy3Fcj8Q9kgMXbpBCNaomIF4qgAjOSYqD2AUhVZBSVIWbwYi
- dJ86HsLn8ME08TcsNgp1ygImMNw4zW5QHaBynvKvd0qCTDmec/dU3n4pG
- Wnui8tNnSlDE1qh6lkhiGdsGUvmJd5796/FLsMrUOz2D3T83j1ZQrTq5m w==;
-X-CSE-ConnectionGUID: xYIu6OMuT3CY+z0CALnHoA==
-X-CSE-MsgGUID: KrIclUeiQiC4jiuCL2Lt9g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="6788622"
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; 
-   d="scan'208";a="6788622"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2024 11:31:27 -0700
+ bh=2EmwgVhyKyp3aF+P2oEEeSWicDrcLKfDvI4p9XYJz5Q=;
+ b=ilFenPPQQ3vuBWR/R8ep8fbGURS/YmY2cBxD3IvqRzeqYvi/XSAmvKfr
+ KqimJcLdH/F+BAa794AV79VsZjmCvhHWFdetjVRWwNf6tYNF8fiBMWR7S
+ NgvYJTSAtHTN/N8TWQmRbkCFI7eeVZKS5usjqqzsuB7e5LKUOK77OdA8t
+ 6GTUBcyuLpNOXowcPWA42UctwYvT5TkS4evW1rYfrBC/fprjGaM3PGsFI
+ m+8FN2tx7R7ihQH53ZdhI4z3hAkg9dwIsnKZd+lCDKz/z66eZeGlwEhTE
+ EzsVhwW8eYYx7cGdS3KcMkZsl7Kqx3z6oLe4ddecCiLJHQDj5zol+4pWX A==;
+X-CSE-ConnectionGUID: 421t73JYQdqjD171D7gdQA==
+X-CSE-MsgGUID: hnI0ipWIRGmanbg08yZ0qw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11028"; a="18375964"
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="18375964"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2024 11:33:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="21505034"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Mar 2024 11:31:27 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,165,1708416000"; d="scan'208";a="21756105"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Mar 2024 11:33:02 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 29 Mar 2024 11:31:26 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 29 Mar 2024 11:33:01 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 29 Mar 2024 11:31:26 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 29 Mar 2024 11:33:00 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 29 Mar 2024 11:31:26 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 29 Mar 2024 11:33:00 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 29 Mar 2024 11:31:26 -0700
+ 15.1.2507.35; Fri, 29 Mar 2024 11:32:59 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eKYIJb41IChVv6ZJ8UclSAwGBHYsK+zaMVZDxjSG5Q5VR7ELI1eS+vRP+ReIDETRa/m36a21Wf0Zw1MjZJc4IBPFu7ftF93+Mr1Fp0ixyomGcyxZdVf6/AJ9Vc2seRMa9enm//iy1VKUcM5MUys/CueN3qWqEiIXwBS34ynu9gr0McjWrYFV59PKUzYuRaRJSFa7DC08Dq/6mLyXM1bAiLyg1x6erf1LaPJKMa0Z5GCzGt5bl58w9T+e/C1xLxOta/0vgfg5GSJzCy8rKDDJmwouqco/Bm1U/FcidcUbXofqp0QaaTxosLNMTADtyURGBsaUP2GMkPEXPzyL9NZENw==
+ b=StAS1wekxkv+lO5djsztgqm0XQHHWAdw1p1KvKqYmQI7HsMJSCKN/eLLeD9rppjEJehllKYNDnFkJB1LmSD7wn4XjVhefQOibTNTBtomnEoGmYqHQFyZD1XYT71yPrKfTM6DLfp/GK/q6TtFYmQWiDJ3zDGqXHqggJ5fH0qMI2ucmyjoJjnZnR0dImjIbpO8A+0fYh8NqmqZgRC+EuPPjd2/qBcCMSX6ysQaDgxMFpDf1fu0sdGojsyWTlVXHUKW7e64Ov/klFz72SS0/gPxKcGomcrSFHHw17Hb0sYiW/L8/QFFsnrrLXdk9JhOHW3MPLtS4KaOlRFPYZVKzTWKXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k9fLeyjxab4vb+UIHtavv0XaItaRtI7eTuimkUGjamE=;
- b=oUx+K69hV0fhn7E+eHeGnjlTC+yR3FWsjj0/KBUkDZ57xhpB5vKGaJjAiJgW5IGEXqVp+qusRN9oN6m2OlvO+yj7lD2eEYY+DDBQ90w+gI6m3hlkCLx4ad4+k7zQPxsy56gUaLh3IXcnjtYXQAJk+QDiCGu94hMhvXqxT3+myjlJHdqrfOMULV2K+/jGQ+1wx+tCWfv9ftzaBhcXuhrvyXcxak4xRbxBMu5HRBvVyjCoebRWStwVH8Lk5keCjx2WCoHZmjgY+BjAfJYi07MU+xd9hWlyAgwWqDeemRqy/vcat+ZHqo4xij/U4kL3Rvg8oitJXSoCL/xS08dP6g7cjg==
+ bh=T2Bc4jwQ70fxWPhvI2dsve09WK8ZuYrh5C+BwsVxDIc=;
+ b=gw7iWkAShDnUQDkjGaBpjaDaHfAKOHfG1yUefkidYEbzfTHXD9daVDOoEcLUCYyJbQEAlRn2ZwRi0evKKjKMFW/qtJeIuFBuyWNru5ByzyS1HABuvOWIZ6sZtm5sBAheKsfzi2VhTRroNIibt05IXe63BJOse86PzMJJatIAn9OvvI9ECqJBNpPimBjDhGtN77fxx1vYTsE9KFHDNFGfWImEuRZDt+cdfBkG1DvJSRwm87alNu3w8y7U8MOCgCJect2Pnu/p6p5QQS6KU2n92/SqPmjcqIvmrDg8vh+TRH9heBpiBOoatL7161P5oBB1wMnoHnb0N2rutdX1UefDPQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -70,26 +69,26 @@ Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
  by SA1PR11MB6734.namprd11.prod.outlook.com (2603:10b6:806:25d::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Fri, 29 Mar
- 2024 18:31:24 +0000
+ 2024 18:32:57 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::3191:4863:ad54:bdb1]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::3191:4863:ad54:bdb1%4]) with mapi id 15.20.7409.028; Fri, 29 Mar 2024
- 18:31:24 +0000
+ 18:32:57 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240327174544.983-9-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240327174544.983-10-ville.syrjala@linux.intel.com>
 References: <20240327174544.983-1-ville.syrjala@linux.intel.com>
- <20240327174544.983-9-ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 08/13] drm/i915: Extract
- intel_dbuf_mdclk_min_tracker_update()
+ <20240327174544.983-10-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 09/13] drm/i915: Add debugs for mbus joining and dbuf
+ ratio programming
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  <intel-gfx@lists.freedesktop.org>
-Date: Fri, 29 Mar 2024 15:31:19 -0300
-Message-ID: <171173707971.2604.4900162353767797183@gjsousa-mobl2>
+Date: Fri, 29 Mar 2024 15:32:53 -0300
+Message-ID: <171173717384.2604.7493201514806708071@gjsousa-mobl2>
 User-Agent: alot/0.10
-X-ClientProxiedBy: BYAPR11CA0082.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::23) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0280.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::15) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
@@ -97,56 +96,56 @@ X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA1PR11MB6734:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xjSq2Ka43uLdLtrB9yghpb2TE1gS/098lwqXsJBxLE9zZimA15VGPmDsh43qu9u60x+lrh+tqxpaprQTHoHm5g+F5GtifrVlwFJHaZKQYlerIM69+OBrZf1hfNkU+vtTtHxILgHBZorppO5NHzS7TnZcG4VH7haySUC4Kx9PFHNrphQmfn9XB2dqKcYzcuYUTw1VZPCnjwW0YEe30OVFfCEBbcyWlXK61Xixn7kC2pcvo0JcUvy61XRPVW55RPCDTqqMw0FZMQ/Rn4r05zTt2fFH1oZGJOVmdZMV1GGij3fWJkSmFOYjhqTaMKjcdAOiiXLLq+K3G+GNOZRNnpKsNhhK+++vLlCO9GaP6Ry3ws9T0btQTXio8BbsW5addCPZNyVgoknYk846FER/N1yPgPJWlqzaJS+xq0F2J0GKzeHXi+SYaZ5f/1XIGRuhTn/XecgMXGfH3fGlsE3cSqC0+CCy7eUsVBOoLJmSstXlQJQBcCt71hiotXogwULVtnYCRZKy9YPvRWDEctBpI0WH93GletgD2H+qhxmZqPzXqReQsmHDebsi8RzlJMzNACd4F1FhHFYUjKLzaqCv/2Q9prEs1trwKPii5tOzzQ7/3WEAChoqdBoBNegttoLQZ3oIzYym3iQ7CmEZEVHP1Ah93c8N9v10iM/CWwk/Ord/K3s=
+X-Microsoft-Antispam-Message-Info: pnPMMBKkA2pTmPnYmxRkE4edkZPckxlCEvWkHpWF9AGXSVz2EtcifBRbkQTTvgDxDv+gGvAZpfVEmXeQElsMTksvOFE9JVPEharQUn5foV5lDHM9h86BhUMJmm5CIWWCIeE2qGL93imno6O5ha6IvcD4NY7RNHO+DTuNWjIH6t2mrI/k5bRY+YCDTiHJZGNab5/R28higD2nlc6GQ4ma6j2BMq1TVpmxBf3MefPg5qMeOHI973SpGNlh/lN816rzZksgiC3Gn2Id1WbtA4fbMjs5/HhpV8XAAmG8JVgun9cdiql0RaKzgznzBjtONws73MV24ISsgP9wmes4MOBmc1dizgACcVIJL7Q123h0Xmf5ziTh3VPc/2dSqmjx0M3/7n0d+3nVrxig/Uk4R4HGOQDVngXPR9Ncxm6nsPv5v/9TpoU/SamqhIzUSiiXfhW6AkvzDnnWhcFf3BIkxPHDtUhOYS+9VSSxsbp3gYBbfM3MMIIrrk37UeUwInOBXT+jL6f9f5lTi7m+bOOZ+xC6qxuzWVWyfOrxqetCRLQXUE/iMkfIq13T0O67fgoq157csQlHGtMUQdtBzh/Q5LU48+tZt+9KaYevBFvRsIY0yHg5sy5DEUGszgUvM6j/SDgSm8U+OTmQ291dlMMoGgzlxUgq4+XYWkcpStVZOQG4KSw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QTNTbGdYb3NOTng1eTk0dEJlWEFXdmNWSVpES1gzTWw1L1ZTUUIrWGwyMEV4?=
- =?utf-8?B?RGpQcjBQazZvL2xmWlBIbzRhZjFtQ1cyQW1OVzF6WUFxY3paZUtHUTNSZG1t?=
- =?utf-8?B?L0lIcm94MG1mL2JmVk9wSFJrQkN4dWdteU1aR2JoWmZIcGYzVEFHUjY2V3hJ?=
- =?utf-8?B?NFpRZ3U4V0NhcHRnRnVNeC95YnZOV2tCdzFRdE50d2VuVU9UZmRyMXdDZGVE?=
- =?utf-8?B?TlU4Tjg4TWY4K1BzV01vWVNrOEFZck1YcEpuYmY0V3BqU2RoeTdxN1dkWHox?=
- =?utf-8?B?UTRycGFaQVZ0WjM3Qy9kNGVlaVA4T25CSXNqM09JUmhpU0F5aU9nb2hjNFpJ?=
- =?utf-8?B?azQzSHpiZHpwUDNTa09MWFBJOXhoa3FIeVpheVZuTVRsR20weEhWeHhTQlpZ?=
- =?utf-8?B?L0NLSDhvT3A0MmVXVXllaE5KSEI4U1g1cWlKZkdNb0RwbnEzRDhINXEyMHhv?=
- =?utf-8?B?VnFCZGtEdHZ4azU4a0c5T01GdXR1ZnBRZFVhNERESzhWT0J4SGRsRndqQTJK?=
- =?utf-8?B?TmZKUTh5blBEZG1LZjhTc3BJWlQ3Z2ZtUmdydFdXSStLTmU0TXBZZmVWVDNU?=
- =?utf-8?B?ZWM5TGNRMU5zV3JTZ1VNUWo0ZS9GZnBjL1hFSmV3QVREdHYvQTQzRTU4bXND?=
- =?utf-8?B?UmVzb3BxSFgzeTNQSjA2S1hQVytBVi90Y296NnRBVm82ODNvMXhzL0x2NkhB?=
- =?utf-8?B?NDFmeE1Zb0dLRXgveEJtMVN5L215RTIyMFRtenFnbTlLc2JqYmU5RzU4ZzZO?=
- =?utf-8?B?ajRHZWZROUVhcDVkY0RxSzlybVU5eWFWN1hxVVFvY2NJbk1QSmU1UHgxa054?=
- =?utf-8?B?QjNlYk5sempFNmpkL2NRRFVGMG5JT2lQUDlDOFpvWWFxcXBheW1YLzdtNWta?=
- =?utf-8?B?Sk1yNG1adEFCeW1pU0oyN3d2bFNFVExJeldVb0ZrSHpPUlJRRExwcmN5S2hj?=
- =?utf-8?B?b25tTHpXRXMzQnA4QmdBZ0pUU3dDNjRDdHIxQnE3SVFxbjE1SHZoTUROWUd5?=
- =?utf-8?B?a3prbEw2MCtDNEhETkkrVXYrOFgyY2ROSlNnNlZjWGQ2UjhUdjMwM0Npa1l3?=
- =?utf-8?B?OGl5T3VaVTVzazRnR2hNRUZuWm5jaXZBSTVZalhPSHN1aGh6RGpBVEV3RjVv?=
- =?utf-8?B?Y1F2cDJlb29JVll5bUJVSXJoeGl6dFVnZVB5Y01wLy9RWEd2dWxERkYweWs0?=
- =?utf-8?B?c1BFL1VXUzJzL29sV3NpSGFGVDRhc1hPN0lGeXowV1p6RDNKNlVQSVZmNWVm?=
- =?utf-8?B?UjZlVEFnNkl4aTVaUnFjd2dpbmVDdGFQVC9hckI3TVFlcTV6MFoyRnZpYlNG?=
- =?utf-8?B?V3lSbkZCYjFjOWU5WUI3QjhwYjE1ZHFqSmRYZEN6dnJlRDFnWEJJblY3ZXAr?=
- =?utf-8?B?ZjE4ck1UWW5IZVh0cUREUU9ySnhhMkdCV1EvY2tlWjg0NXFzd21tbXhKdmJi?=
- =?utf-8?B?OHQ0cmI2aUdLMTd5WUFob3FoMUpKdHBYTlkzRVRoS3NZQlcwK1VYWWFQSGl1?=
- =?utf-8?B?K0pFYytWUWhxcTZGWEEwKzhFSTlLazM0TEFxM2cxUS9SNEUreEZsYi9Mb0ph?=
- =?utf-8?B?VHZNRkVHbEdJb3BKQ3k5WUplTFplNHFWZEZJRmFGYnpiS0dIMExYaks3dVhO?=
- =?utf-8?B?dlArVFpjd2FsR3RYNFI2WHpBWlIrVXdCSFY2cTBxRXNFaFdLUnk4elppN1hV?=
- =?utf-8?B?WHRzN1FXVjNIeUk4N0pqdWxDbEtZL0hKT2VLNURJYUMxNHJtRTh0b2JjVzhS?=
- =?utf-8?B?c1RQNEpLQys1VEZpS2tjT2pZRDFxNjR5Ujd0TFZydjBVWG0zR2VVMDR2Zjky?=
- =?utf-8?B?NUx3KytxdzJXTTJGWDNHOWxkRlNkOEovZkMxdGVwNE9TbGV6MnFtR3dXRXNG?=
- =?utf-8?B?bUEvQlc2OG1LMWpqOEJPUjBlbWNGUHBzWWJrbmorSXF4YTVWbVMwdW00dm15?=
- =?utf-8?B?MUo1UElJYnNDR3ZmcTRlb3JzSnRsbUFaZDRjamJ6WXd1VzhSaWdEbEp3OG16?=
- =?utf-8?B?MmJvUUN4cXA3R0pGUnBRZzVqbkxIcU00bm80c0FFSy9YeEJGWGU2dDdDdWFa?=
- =?utf-8?B?UElpTE0raDhTVTBvK3BsMXFVZEl2Zk84SHVXbGlDMFMrai9lK2J4eFNpRTI4?=
- =?utf-8?B?UnVGdUFQYzVvbjVRMW52eWhkSDVkTDdKOXF5RTB3S3FTRzV2RnhnVXZQVlNh?=
- =?utf-8?B?eXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80579c67-c52d-46d4-0b33-08dc501e6fff
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SG5CQ1ViVkRKYkFwTFZ0azVkWmxobUpQS1Vjd1R5YzRaNUo4WTJBdmZUalQy?=
+ =?utf-8?B?a1pHdUxzK2NFczBkSTVLMjJTY2YwWjhSUUN4bFNSZVZ6azA1a29TOEZqbjBJ?=
+ =?utf-8?B?dXFvU3g5S3FpaVRjYmZOZWgrVCtsRHByVlFGY0NEY1kvYzdoZmJIeTJkUTR0?=
+ =?utf-8?B?Z2VEMGJFT1AyTEtMM3FieXJuc1Q2T2U0UXB0bElvZEhXZDJybHVIeVczL1Zu?=
+ =?utf-8?B?bHpDSUNBNHZRb2I2eSt6V1pDOU04NTJpVm04cG81Z2lJbU9NRXJCZUZndkFJ?=
+ =?utf-8?B?cThFcnVoTDVvZDlwU1VrZ1E2U2pjdGNOcmg2cG1ZT1FpOUxIMkVKd1RkZklW?=
+ =?utf-8?B?UExOR2MyMnI3ZlphbkxPSHh3RURnS3dKSm9qTGYvU0VCa3B6aVQvTnMwd0xM?=
+ =?utf-8?B?MHRIdEJWVVRRMVg2OUxUWDRhQjN2cnR1d3FmWWFka3haUzRyaENVMko3Uzkw?=
+ =?utf-8?B?NEZBNldOYmphTDRnTSs2aHhiQzdFYTIzcUErVTc3Uit0SCtzNnR3VTRvNkZu?=
+ =?utf-8?B?UVRiZjZvV2xVMndGTHdYMUd4L28yNGI2cDBIUGpobkpLSCtMbXUzK1I1UkYw?=
+ =?utf-8?B?RFhRYXpmNFhrNkNwUTBKWTNNYXFXMVV1WHNicG0ydGV0a2s1bEFnSUVmc1BY?=
+ =?utf-8?B?ZDQ5Tk45ckc3OXhEUUZ6elhEK2JhQy9UU1Y5dHpRUWpsRnRmYzYxVmRxTGRJ?=
+ =?utf-8?B?UG9qUEEvNlJYQ1Z0OElyYjRWckliZFJKcGd0dVVLVWxYYVVGc1NabHhzLzNu?=
+ =?utf-8?B?cU9kRG8rNVBDZm5wdWxYNEM1QTBPU2NXYStlY29ISDBINC9CcDVLaEQzT0w1?=
+ =?utf-8?B?VWFCaHpJcStPQjJyWkVzUFdRU09QMXRhSzZWeE00SzNaOWVGSHBmMGNxcmNI?=
+ =?utf-8?B?Qis4c29tYUwza1N0RkFSN3NxREhWYkJnUGVqQnZ1NFhBaG1DMlJicXpLbDdq?=
+ =?utf-8?B?TjhRTWlBRnAyM09HMkFOeFo0aUhsQnBwaGZhbDJUY0VZbFV5RW0zT1pMSllv?=
+ =?utf-8?B?VGRBODV1aUhXdVZtUmdjMWdqQ0xzR3VacTlBaGZUV09SenVDZlc3RmdFb05S?=
+ =?utf-8?B?d1Z5b1ZuTWcyWjJVbW93bjdIbGJObE1ONWFXbjh5TVg3SXJ1MUc5TnU1ZDdC?=
+ =?utf-8?B?TEw4aE9DeGd2Mmt1TE1VbmJPZDRHaVNwWFRJY2dlYmJFenlqcFdKeXYwUWd6?=
+ =?utf-8?B?bC95WlB3NUxtcGVwQXY2T0FkQ2gzM2N4Q0w1N1BEaFJzRUJwQ2xwcXJuSkR0?=
+ =?utf-8?B?RWN5NnZnVkVTK2VQR3EwNXlzWU1ncGJCZU1MaS8yT09ZTURmNjl4TGVuUHcz?=
+ =?utf-8?B?RXVJMWtDbFU5WTFjYnlmTUFKUHdWeWlmSjRXdkoxRVlJb3orNzVDbkM1VjZE?=
+ =?utf-8?B?VjdzRlFCMlorZkJlUXk2MDdyRkFNUXB0OENtT1N4eGs2ekNEYi9wNGZoZXRi?=
+ =?utf-8?B?RFlRQ2YxQ05pVjV4Ni90VVpnUlptUEl0YUZ1TnQxMzhNUmpRQTFKcHROOW4z?=
+ =?utf-8?B?N1FzSzU3RlcrSlIyQ2RyRndTcWhkVDBwSEN2WnJvNnpvSTR2bnQ4QUEvTDFp?=
+ =?utf-8?B?VTM1djNlU3p5dngvNE9VcTFiYXpQVnY1L1dYVlQrbGxhbWk1OUZ6dE5YYnJO?=
+ =?utf-8?B?Sm5iQ1ZzWUcxMFdSa2V6QXViQnJRK3ptNHZkOGswZm1nYlJBa1RpZzlNNXpw?=
+ =?utf-8?B?OFFxNmowVkVwWTFSeDJJS0RzclNFRSszL2lPTFVxaXlDa2R2MnM1c3dadWpF?=
+ =?utf-8?B?OU01TUlmM0tPOVpMK3BDUStYdXhraTJSSnpHUW9IVVUvejM1N1VmdUF3Y2pQ?=
+ =?utf-8?B?NUFVSDB2QkpBbFlpS0x6bGZERkdyL2JiMkR6MGQyelJhM3JUU2luV1VBLzEx?=
+ =?utf-8?B?bWFVRUVZa2g2Y2N0M0NPTGp6M1c3ODZRVTJDQmFvQ1VuZEt6cUZsWVUySkU3?=
+ =?utf-8?B?WU5mQlFJaE5yelVFdmtsQ3RJb2JpVHFNRFJ5UFdmSWxOUkhBQWFRSEJiaXM1?=
+ =?utf-8?B?aXNUWmwwU2ZOOWZBMzVycTBMcWhFc0gwa3pZUEw2VHE2QWlZQWtIcjBocUVX?=
+ =?utf-8?B?SUJQN002ZjR0Y1ZpU1BDVHg4Z1BiUWkzVEJoeFZtTExIZ1d5eDYxay8zSE5r?=
+ =?utf-8?B?Z05oeHpMVE05cHJNZlFMT0h3S2FQcU84UTYwWmRRWXBGZWxEdGZQTnpCTHgr?=
+ =?utf-8?B?ZFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25f4e72a-f6b6-4a6b-c9e1-08dc501ea7ee
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 18:31:24.0879 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 18:32:57.8763 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iHDxieztIXt4ohtzejOOe36l4/ynrflipGobR/EW2vbX8Mo/+WzwyiuAkwBKthQRm5WEeDHrRO3OWwYMdfWVmQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: STcP7CPycuHLsEL+TyFhkX7ckkBtLnRb2bENozgMBNQph2EBKwf95T8UIh6tuJ8kLaLosF4VD2KynaRRfnEJSQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6734
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -164,106 +163,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ville Syrjala (2024-03-27 14:45:39-03:00)
+Quoting Ville Syrjala (2024-03-27 14:45:40-03:00)
 >From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
->Extact the stuff that writes the dbuf/mbus ration stuff
->into its own function. Will help with correctly sequencing
->the operations done during mbus programming.
+>Add some debugs so that we can actually observe what is
+>actually happening during the mbus/dbuf programming steps.
+>We can just shove them into fairly low level functions as
+>none of them are called during any critical sections/etc.
 >
 >Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
 >---
-> drivers/gpu/drm/i915/display/skl_watermark.c | 43 ++++++++++++--------
-> 1 file changed, 25 insertions(+), 18 deletions(-)
+> drivers/gpu/drm/i915/display/skl_watermark.c | 9 +++++++++
+> 1 file changed, 9 insertions(+)
 >
 >diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/dr=
 m/i915/display/skl_watermark.c
->index f7e03078bd43..7767c5eada36 100644
+>index 7767c5eada36..a118ecf9e532 100644
 >--- a/drivers/gpu/drm/i915/display/skl_watermark.c
 >+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->@@ -3653,6 +3653,30 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct drm=
-_i915_private *i915, u8 ratio
->                              DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
-> }
+>@@ -3647,6 +3647,9 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_=
+i915_private *i915, u8 ratio
+>         if (joined_mbus)
+>                 ratio *=3D 2;
 >=20
->+static void intel_dbuf_mdclk_min_tracker_update(struct intel_atomic_state=
- *state)
->+{
->+        struct drm_i915_private *i915 =3D to_i915(state->base.dev);
->+        const struct intel_dbuf_state *old_dbuf_state =3D
->+                intel_atomic_get_old_dbuf_state(state);
->+        const struct intel_dbuf_state *new_dbuf_state =3D
->+                intel_atomic_get_new_dbuf_state(state);
+>+        drm_dbg_kms(&i915->drm, "Updating dbuf ratio to %d (mbus joined: =
+%s)\n",
+>+                    ratio, str_yes_no(joined_mbus));
 >+
->+        if (DISPLAY_VER(i915) >=3D 20 &&
->+            old_dbuf_state->mdclk_cdclk_ratio !=3D new_dbuf_state->mdclk_=
-cdclk_ratio) {
->+                /*
->+                 * For Xe2LPD and beyond, when there is a change in the r=
-atio
->+                 * between MDCLK and CDCLK, updates to related registers =
-need to
->+                 * happen at a specific point in the CDCLK change sequenc=
-e. In
->+                 * that case, we defer to the call to
->+                 * intel_dbuf_mdclk_cdclk_ratio_update() to the CDCLK log=
-ic.
->+                 */
->+                return;
->+        }
->+
->+        intel_dbuf_mdclk_cdclk_ratio_update(i915, new_dbuf_state->mdclk_c=
-dclk_ratio,
->+                                            new_dbuf_state->joined_mbus);
->+}
->+
+>         for_each_dbuf_slice(i915, slice)
+>                 intel_de_rmw(i915, DBUF_CTL_S(slice),
+>                              DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
+>@@ -3680,10 +3683,16 @@ static void intel_dbuf_mdclk_min_tracker_update(st=
+ruct intel_atomic_state *state
 > static void intel_dbuf_mbus_join_update(struct intel_atomic_state *state)
 > {
 >         struct drm_i915_private *i915 =3D to_i915(state->base.dev);
->@@ -3683,10 +3707,6 @@ static void intel_dbuf_mbus_join_update(struct inte=
-l_atomic_state *state)
-> static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> {
->         struct drm_i915_private *i915 =3D to_i915(state->base.dev);
->-        const struct intel_dbuf_state *old_dbuf_state =3D
->-                intel_atomic_get_old_dbuf_state(state);
->-        const struct intel_dbuf_state *new_dbuf_state =3D
->-                intel_atomic_get_new_dbuf_state(state);
+>+        const struct intel_dbuf_state *old_dbuf_state =3D
+>+                intel_atomic_get_old_dbuf_state(state);
+>         const struct intel_dbuf_state *new_dbuf_state =3D
+>                 intel_atomic_get_new_dbuf_state(state);
+>         u32 mbus_ctl;
 >=20
->         if (!HAS_MBUS_JOINING(i915))
->                 return;
->@@ -3697,20 +3717,7 @@ static void update_mbus_pre_enable(struct intel_ato=
-mic_state *state)
->          */
->         intel_dbuf_mbus_join_update(state);
->=20
->-        if (DISPLAY_VER(i915) >=3D 20 &&
->-            old_dbuf_state->mdclk_cdclk_ratio !=3D new_dbuf_state->mdclk_=
-cdclk_ratio) {
->-                /*
->-                 * For Xe2LPD and beyond, when there is a change in the r=
-atio
->-                 * between MDCLK and CDCLK, updates to related registers =
-need to
->-                 * happen at a specific point in the CDCLK change sequenc=
-e. In
->-                 * that case, we defer to the call to
->-                 * intel_dbuf_mdclk_cdclk_ratio_update() to the CDCLK log=
-ic.
->-                 */
->-                return;
->-        }
->-
->-        intel_dbuf_mdclk_cdclk_ratio_update(i915, new_dbuf_state->mdclk_c=
-dclk_ratio,
->-                                            new_dbuf_state->joined_mbus);
->+        intel_dbuf_mdclk_min_tracker_update(state);
-> }
->=20
-> void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+>+        drm_dbg_kms(&i915->drm, "Changing mbus joined: %s -> %s\n",
+>+                    str_yes_no(old_dbuf_state->joined_mbus),
+>+                    str_yes_no(new_dbuf_state->joined_mbus));
+>+
+>         /*
+>          * TODO: Implement vblank synchronized MBUS joining changes.
+>          * Must be properly coordinated with dbuf reprogramming.
 >--=20
 >2.43.2
 >
