@@ -2,150 +2,116 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 087678916B5
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 11:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F65F89176D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 12:10:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A4BA112636;
-	Fri, 29 Mar 2024 10:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6114910F824;
+	Fri, 29 Mar 2024 11:10:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VyFe3Z04";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fX+4fFAQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A759C112636;
- Fri, 29 Mar 2024 10:24:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711707845; x=1743243845;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=2K9Aa/cNLqfpGllX/rl1Q4NWSBiDl8oOH2P8V2hP2PQ=;
- b=VyFe3Z04+0IhZgKi4lsMU+bsoqPT4VCva90qdiw07CEfEB0MXO8vs2gv
- V7uSak2eFSNa57zXirYaV+71pYTn/obKDJGue+8HKZ8pl5DPq2stj5JD3
- RG+Ht7nVbo9VhVaKzsa+XZud9X87HBZF9yjZkbR/ROmcYspLnm8hsEfv+
- 0lM6XyJyrEleibL936H4BQFceBNbbcpJ3w2kZd0ENmu/3IRycks24fIkc
- +I1Dlt7/m8cfOBGCbBofDcW7NO7FwUma5CdEhiBosAv47kkoBWtd2+btq
- 6U4xQdaVTGBSri86a+m0wGc4ifFb9VFEH8vBeNSNRYWbqvcnbWv7bJHaF w==;
-X-CSE-ConnectionGUID: QkpjjS02SnmiMGvnmYAGfA==
-X-CSE-MsgGUID: g1VhZjgLRvyRxN3P58afUQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="32296721"
-X-IronPort-AV: E=Sophos;i="6.07,164,1708416000"; d="scan'208";a="32296721"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2024 03:24:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,164,1708416000"; d="scan'208";a="16824600"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Mar 2024 03:24:01 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 29 Mar 2024 03:23:59 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 29 Mar 2024 03:23:59 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 29 Mar 2024 03:23:59 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2090.outbound.protection.outlook.com [40.107.243.90])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12DAC112655;
+ Fri, 29 Mar 2024 11:10:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c0T6k1prpB+Vd30Yenw6eiCQ18gINsD2zMMH2GMy5d/K14iyeo4sJRVFhtF/5Cyw3RLF3Q2drb6G4S4VUGGRM44TaeJOYQOK5YJ8j7mt7WfwusdyUHOjYxfheuoiU5DG8hrXpvK6T/jtscu3YSHT6slQubSPrpV0Dt6G0BEA54gztsSrNX6Mqs/93ErxaoG67d8G8Js3ik8A4cRJZ4vvp1e23HKqR4W02ivTX04mFwZtQ42/2QtvnuPly2f1nlq7yEjHOba9hhyL5Run7D1um5DXhhOkomSmEkO+SQ8H/TXGdLf/yzI+7AC4a93sILaufCXbwIphmTeP+FDvS+1AzA==
+ b=LNMnKSW247RD+QiW7Bp2O9cj3o+4o+UxVPR50GbHm5SanuGOhMTblFIEwYqkaa3LgbGjlujSdlwkP1jw/nEo9AwNvuQfOHx3Wll5n1OIaapc9lIV1Bm4ttEMhfSvrAT2kDI8JMvXwwLM0Q9kU74c7gdp+R0UKxyNZ+VFZUkCiyq0roZV6p8iZVVjyeiPI2sgU0+U+cbFvnfOVtibUnNWANBkaxPztxI6soIV1Xd95jF6NYavHVxTrcTf0+NMx9WqCXjxQAkoYmWMxM+tkyrVDYajPT6w5kdaUfYvEDXQwsu5HEsJSyR1HYifXRqZ1jOp19nfgJtiuGJpztJoAQ+Ewg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PI1ASefyUOJKn85IBsNDxzoPHF3RA7ZzKbyPNd5orTg=;
- b=W5MBzQoyWk/RRgVIR7u6tghQLFMrP5cPUuG4C/cOJGwO6qpwvo9DcAvEx6dzc9NvoXIdPwe69pvjSossEfnmZnJT4eaxHg04T4rZK5jgJt2iIGnOXy42LLPHaqQdvh41OjFNWN9DaVFclTQTYSt6rRIroDwiYL+JIfG57l7oiYLvTP5lWTh+m22UhTyX3gv1QSob/3FMnvlD3F2tvTRN9T9K+zwBEQ3bHyUT0exQw1g+glGcKPwzhl59UYwnSyC0Zbx8YrNrgEzmihuxKqRzNk/9wt+kGfwjs061wXaLSJjCGbqMfGHgupFw5l6rUCpmrLH6ntnuTsuwdBq3mUU+Ag==
+ bh=xNKq/8gNjEI+3jsSJH8lFsJ7jvaKAucIhnG7CDw7P7k=;
+ b=KmoIwr/LOabN0lOLOHRcDiEFCOWrczpDdbI1ThosJelnx6KgnwnZCKd0hB2FQ6Fk0qsENhRWRgHhuzZVE+iBi5imGp0phJjaahgT2+4eLXdTeIlt5e+CvJzUeswxVWWrjBVSjODEuTpafBDM8E51uTEm2xPHQvDKOsmy4XdT0smpA3q9EG2Ou/h+l/vGOOxN7IvFWz44Rt4HwJrxdYvSZfmuT4v8wjlsWY9OHXl4naEt+4YmCIv7qrcadmaTqOM39kbQ7nLJ8FPJDFwpfXnLzyYBJ9QGWbKH/gMvQay7fp6pnZyKzHHzMS6Ztm8xofQ4mEDnfxscQV1Mx1XWPkmmVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB7073.namprd11.prod.outlook.com (2603:10b6:510:20c::5)
- by DS0PR11MB7578.namprd11.prod.outlook.com (2603:10b6:8:141::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.31; Fri, 29 Mar
- 2024 10:23:54 +0000
-Received: from PH7PR11MB7073.namprd11.prod.outlook.com
- ([fe80::6424:214a:9ed9:864a]) by PH7PR11MB7073.namprd11.prod.outlook.com
- ([fe80::6424:214a:9ed9:864a%3]) with mapi id 15.20.7409.031; Fri, 29 Mar 2024
- 10:23:54 +0000
-From: "Musial, Ewelina" <ewelina.musial@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, Dave Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, =?iso-8859-1?Q?Thomas_Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "dim-tools@lists.freedesktop.org"
- <dim-tools@lists.freedesktop.org>
-Subject: RE: [PULL] drm-intel-fixes
-Thread-Topic: [PULL] drm-intel-fixes
-Thread-Index: AQHagXkcrDge+umMhE6wurxD6jnO6bFOgvGw
-Date: Fri, 29 Mar 2024 10:23:54 +0000
-Message-ID: <PH7PR11MB70739AF793C80F58596F6C39933A2@PH7PR11MB7073.namprd11.prod.outlook.com>
-References: <ZgYaIVgjIs30mIvS@intel.com>
-In-Reply-To: <ZgYaIVgjIs30mIvS@intel.com>
-Accept-Language: en-US
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xNKq/8gNjEI+3jsSJH8lFsJ7jvaKAucIhnG7CDw7P7k=;
+ b=fX+4fFAQO6nuCR8IDkJw4HM/u+LmfbOLXjqpvRUfWF67QY1ETDH1OI1W34THaU5UlZqBMp5DfnTaf5YbWu5b4vmRU7D/eHs+vRTe4zo+94L+Q+RA1QJ+jsw+J4duSObx/MW4lYykzZEbkGVF91XtZHJ0Y8S2+FFwHfFVjL6teEs=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SJ2PR12MB8832.namprd12.prod.outlook.com (2603:10b6:a03:4d0::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.41; Fri, 29 Mar
+ 2024 11:10:09 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::f2b6:1034:76e8:f15a%6]) with mapi id 15.20.7409.031; Fri, 29 Mar 2024
+ 11:10:09 +0000
+Message-ID: <f497b2d6-171a-46ec-84a7-cc148b39b992@amd.com>
+Date: Fri, 29 Mar 2024 12:10:04 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: remove unused paramter
+To: Jesse Zhang <jesse.zhang@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>
+References: <20240325074540.2426476-1-jesse.zhang@amd.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB7073:EE_|DS0PR11MB7578:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JIiatAQTODhg3+Q3pRz/L6EFLIUMQvknw4ZdQu5qo7aAA3xfNyU0Ma6FCFK3XuLcp6aI0swJncKHS6ItiHNED2hlDmZ4+0lo/IbfawFRNAMwTTKo8E08jckCBw8BnoIG3Pz8Vss4p6ZwYfA9K24bRb+CjKp/Q2MmvnnWOLmwmx1/rC31cbqGkDdXATOwy93Ylhi3esyox0gn+QiLRVo2rL5JlHKmysmRmlejND4WF0LJVVSfCEkHg1aFDTS8AVSlXMa0MxQlSvcVB5M6qXN04tf/pOjFHBaN0S1yV8OCXjnyNlZHh3h3CBVlJ4DjgojuIifKvLqtzv7nvxJGiGAcec28GYlD5+2FfxNr+SLV2MGdRHG13pot5fsoguUerF/ghdkxjPjbB6hn7ueCa7y/KXNocka6ZhDBMWnUyjmdnM8a9Jv405OE63Q5SIZtrUUQaxwiOK+gIM3OgsJkhKNTSJg65etSGXX+lRUW6omMs33tWwX8Xd76ehlRz4dR3vmG++zr/uC2MZArQP1i2tIkeZKRO9qR8DruCVgZ7g48aQkn29CV6ABxOqA77yZ05DojiE3Ab1HVodwgxsf2mH9EJVEWx9spBiiX/afnnNQm8NFjOL+gOIFIG6dD1nNP6OFt
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7073.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(7416005)(366007); DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?XKo8b2G6CLpiedkzWK0fp9Cf8/Mc3Q+h15aqNNM7sWKgArGsVoX15ZuhZK?=
- =?iso-8859-1?Q?nvkSLSKdrxd7kjy0G5ht3A67DeLSImKHzq92AvLG2ZbgwX3i2B62eoR7Xz?=
- =?iso-8859-1?Q?F9zM4VftodUEzV/o8JKLqh/GOnMV0NKF88i/gqIlxVvmYyFlr14Q/VoeR/?=
- =?iso-8859-1?Q?NMUzbUtRvW2/UqnnfZKbD8BWVQaVImAKTPt8Ueo51Nngz9ud4p0hwmehet?=
- =?iso-8859-1?Q?A7Orh9hC6VDa29YQxqLZvw+LB/r2WgWGCJSy3M2m3u2GMWjDOC2VjsGVQT?=
- =?iso-8859-1?Q?0A2QAFUUuyn0+YsKNDzJUXFOrnSh3E/AzQ65Vt54sj8u55cl/Alr+bsubk?=
- =?iso-8859-1?Q?0nZoY51odv7DBAW++GfZEQYPhyVqUW06MhxZxOZOYOIn6NmPdaSQA3nz4T?=
- =?iso-8859-1?Q?8nUZZ3FhojyYVKCk+s0rRf3EzL6apeEqeDYR+poOaoARiWweeuPWkk6k1W?=
- =?iso-8859-1?Q?1aF5xkajIBO66T+4PSvtAvFVGUdMbKdflxmjzaQQYDKxZgp2268VHuYZzv?=
- =?iso-8859-1?Q?3JDQII7yOOXOFFVWEjW8osah17NzUm79WuHKoyQu84VQuOk8XggcLM/VRV?=
- =?iso-8859-1?Q?C4bTWxV6ndrM6pAsZD3dXsRcpYjAjEVkF9c/CagXg34M3NJUzchHejAQmE?=
- =?iso-8859-1?Q?hHgIKQFzqjY3E5w7NGmKk0iDkHrM5d2yXMVSUVTLY85yEKRBd8gEbH95v2?=
- =?iso-8859-1?Q?nG4Tp9jEG+1xHdLtN0l3QBI8kfetOjxx/Bu6CK5LoE6KqIVk9eLfZfMHne?=
- =?iso-8859-1?Q?nf83KzUkH5+4TTGUpICnQ/94zHOcp6ibyb8Kh+fWaKdfPvSJX4ngvgmPCA?=
- =?iso-8859-1?Q?w0BnQGRE1hpJbTQuwd3E2mB2LVRUxh8IGA+1QKHB4kWddTCDs4GFmT765x?=
- =?iso-8859-1?Q?RZq8cuJUjRKnF8HKWXsMs0EiEWtDsKkvVKK5RRf71n5ov+T5jJa6L0eoAs?=
- =?iso-8859-1?Q?z7q/8Cj90iPZHXQDyANLSOZu3z7yTqE9tuyHvSnc+EWTn62WqFElGVcZzw?=
- =?iso-8859-1?Q?uMRdlQN7FV0Ux+MjydG3GnkeD++Ai1VsYeRGOI6E+k0fgrdr1szPgf4JG5?=
- =?iso-8859-1?Q?AfQRoVnYB7g/Yw4om1mTsHwdL9R0d9Su4/0zyYFuuaCI8bj/CgllgseGfp?=
- =?iso-8859-1?Q?OxOUrTnYAt8Ncj2dCeSaXC8UQ7F5ys/bHBqOCYVC7RHmF49S5ERm/dhHGK?=
- =?iso-8859-1?Q?cwd9SKtk1KDzPPQbA/nQgZ4liOUEw669i22nBIj21S2Sb8+4atmgaLxLJR?=
- =?iso-8859-1?Q?q4H65RW2ZpE4jwjRLP/z78/sC45YFuEUU2qv8NriZPIY/fVs5B68M/NU1q?=
- =?iso-8859-1?Q?GGAN39ERHDs23XtNjh2+cZOBankil/n0jzoGtJw/If1hYaPiVG3Ol+tr2S?=
- =?iso-8859-1?Q?bhVxysWfo3iYSZMK3XQtSUo/fhGy1yM66kzFzyD5d1G4z7JV92nIfOOY8c?=
- =?iso-8859-1?Q?OutNrXA3T5drZ5tGzLA8PRQf82dNwDcrv6yWF2E9VXUmptyq3okd/XdqJl?=
- =?iso-8859-1?Q?I2zZjrbDxisFSpXYmvyE3rDeHBEZCaJqOoSvte4rQDGZSngtTq4BxuXahu?=
- =?iso-8859-1?Q?trHOOBdk3JOZkNS/+SLSOlaeiY0s3tUhbAcptpgd0dba7+Jdv9XWSE1J7i?=
- =?iso-8859-1?Q?b33PgHQTnWSEJ1D01Ytgzd9VcbU7Hc4PbN?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240325074540.2426476-1-jesse.zhang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0159.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ba::10) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ2PR12MB8832:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: twwTvCa+zJNMtfEFIdvjCaIBspp2wpwcMfoTDlNzxpZbUaYslyQDER721Cd2w4MjY76/KCX5eCq3kAAgKwv1xtioIlFDfnB376tG8p3RHHCNt0xtDQnxIQIsNnuPmRMd24gxmFeaSf/10GVJucsJO57dDfFJQqiKzWv+eX4uH7ZMh6ga/deaDCYz0X5xsRWOG/IsEpGr3uKnZ184p/yvmZ4Vr5TYoMfZKcvBJzU4LHKKJz5PsDI0mlTo2hlZAur3y/8loB6xpjBj3ePFVyxyhUNm9mpquXT2e3se2ozf/XxCjwzPPEFWGqUoAXOo3ctlb2h4THXmZi6RZbq6qFugL5dsiV3JH7r4F22/Dn6TC58sA9o06md0v5KlXSEOQJn3S8YE38Yxwz3HmW9sGZPe3FnMs1IxY6cK39tRLCp2yDtcmDXQRVwo1yQU2J66OdpKACIZZF3Kn8fcBa1KbXydBOD8QvZVDuAjN4sqAEVug0XMmlehu1zYAfL7sjRszSCFUeTkeC6rxvJdt9FmDeOTM+2kY6qkbifBaeomx+2wti0860wSnhCch2IF4I942MEiLrARNWl5H9Ip3O9frHqX8MU8EIGDDkTWatLzCDCYzH+FrT8IvvI3BbSc8bwgF5Vja65comMG0Q5cFCq2zpMJUsGGAd4CVwBB5LA562EOTkY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFNpUlMyeTdPd2xMQTY3dWUwL0ZSY3U3K1ZEdk9zSHE1VjRqa0FVdVBvcjlO?=
+ =?utf-8?B?V3pFSzhLUmJncUo0MGNuS3ZuTGVZMlVERDBYUG1XZmpaalFLWURuczhubTVx?=
+ =?utf-8?B?RTRuSmhtSjdZL3hkVFJqMjExeFFJUmd6RUE5N1JvRWZqRUtsMGR4bXR0TWh4?=
+ =?utf-8?B?d01qWVVvL3VNc3dJaE00dmpUQStPQTNzVXFIWU03SVM3L3hyTXdxcFpOcHZ2?=
+ =?utf-8?B?QkdMMmFYWmE0dzMzTTVhUERScmN2TU1VS2NOY1RIT2VReWZsaEtGaWdlS2lV?=
+ =?utf-8?B?QnVKVEtSbzNpa0tjSWhmUWVEbUoyTHF0UUNhbDRqWFVQc2dYNHYyREVJeExh?=
+ =?utf-8?B?ajFndDVaZTNqYWVjZFk2UHorMTJJRitTUDlnUEhEK25aN0w0TlRzbHgyTmZj?=
+ =?utf-8?B?QjVla1JrR3JsOHZ1bVVzaVpPcmV6NTZCa1VTNEk4MysyQ2xuOXVhdEpoYkMv?=
+ =?utf-8?B?WVVETFg1VGNhYUkxNStjYngrdGEza0ZsT2t2QWduellzNnYxSktXdjkrdXhk?=
+ =?utf-8?B?Y0Y1SWp6czRsMmRqQ2x3MUEwcTdVUEE1ZFh1QVFUOExteDAwZDVQQm9iYWIy?=
+ =?utf-8?B?SlZDcmxXTER5Q0cyVkg2R1hXaUNZUnZ6dC9QMG9TV3Q4cXVHRGNqaERLd25s?=
+ =?utf-8?B?MGpyZksxcGU3NG9GYzFQUlp4R0x0c1hTeG5Hc2Q4SDR5azRGanluOHdCY1gv?=
+ =?utf-8?B?dEF2dHd2QXN5ellDa3kvbDFRK0pEZWxvWW14dmVRMnZBd3NPdTRibkZhazNj?=
+ =?utf-8?B?Z3o0Ui84Q2luVCt4Mnd5L1JxVDVyaHUyVDhNay9DOUViOTFhVEhTeGo3M2hJ?=
+ =?utf-8?B?OXZGNDVxUG9vSjlWTW9yYmlUVXV1dHNPQXlpVjhvMXkrcnA3WDcyTU5uN1Nh?=
+ =?utf-8?B?TXpGeUVDMHI5NC9GQzBTV2dvTENzWFlseWdtQkhXQnVtZkRYUmFGZ2dCcU5W?=
+ =?utf-8?B?ZExMM3YxT3E5d3c2bGZ2M1QyWmtLVXp2dGdZYm5iZXpZYmZpRFI4b2tRa1BC?=
+ =?utf-8?B?ekdObndXd0tPYUtoZTFXWmxIOXRHYXFpRVdmbW81Rm9wRC95aDdYRzZ2bmNo?=
+ =?utf-8?B?NG1uRVNXUFZJVjhsa1RBbVd0MEJ1SGFjQzlyY002TVFFVCs1ejB4Sk0zMnE0?=
+ =?utf-8?B?cmlnTXRNUGFidktVdWR0OFBDeEpiSkE2cWtqSUlUd1VZclJxeDdrMTFaeGkv?=
+ =?utf-8?B?S3lic25pbmhycmFHOWI0My9YdFFsOGVUWXAzRjY5S2JFaWJYVFNoMVpieCtT?=
+ =?utf-8?B?SlpKN3hkb25JZlVZa1REditaak1rM3Z4dVhidDlWSHhQYnRBRUdvS0hkS0Ur?=
+ =?utf-8?B?VGpUYmF5RTVGMFFsSC9TdEtEZmowNnVOOTYxdVgzSXh5MDZvT1NaQ00rS0ZO?=
+ =?utf-8?B?OWNnWUlhbWVHYmY0TC8vajc4Z1hQU0NZcjliQjFOVXMyV09yb3d0SDFQd2VH?=
+ =?utf-8?B?Z0UzVlZ4N1RwZUI5Q0VzV0VJZStaSGNheUI3N2RhenRZd2V3dW94VkhnYlFi?=
+ =?utf-8?B?eGJqT2VzNXV2cm1pQktyUDJBWG1kNDNGanpWNnd6TDVBd2NlQkwyRjZPZ2NB?=
+ =?utf-8?B?Y1A3dFU0Rjdmc3FTTFpWYVZ3aU43SVVMUXN4VG9vZGlXUStIcUdOY3lVSkJH?=
+ =?utf-8?B?SnhBM1dKZ1pjM0hnVFEyWm5vbWhjeEo3bnhMNmNndXQ0bmpIaWFYZlNmRGZ5?=
+ =?utf-8?B?V2JyU0UxdzVHWnp5dUxlTFZvaTVValBNS0NjUzd5L2dhVlBZVXk0b09lQnZw?=
+ =?utf-8?B?UjVvM1lnRzJkUjRNaVFrT0p2d0xYNVNUM1NqbElVYTJBZDB4cWgxVStHd2hC?=
+ =?utf-8?B?L0h1RjZMczkxRk9oKy82WXNpaDhvK2JMdzdvWWlndVdmTkZWRktJZUVjZ2E4?=
+ =?utf-8?B?Uk00UGc1dEJrTDBWSVIwM0FFOVEyNFZabEgyR3Bmb2kwT3pFa0R4R1JMdnph?=
+ =?utf-8?B?ZGVnZmJacFNXNWdnSmFBUTNZekQyOGpMOWE2UkR3UEF6ajBzOFNmY2xydjAz?=
+ =?utf-8?B?T083SGw4M1VjSkVOMjNBaW01UDgxVkVNSzZVTVE1V2c5Q3l5VWU0dTBnbmJK?=
+ =?utf-8?B?QTFmU2lPK1F5ck5BMW9yOUZyU0tnUFpub3B5ZEJmUHdDeGsrUnZXTVg1QTk3?=
+ =?utf-8?Q?AJS7ptbOZZH7PXsEXRRKWPz8j?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22c2c895-22b6-4c18-9fd9-08dc4fe0cb8d
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7073.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c03d44c-6680-4dfc-8833-08dc4fda562f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Mar 2024 10:23:54.7064 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z1H0QJ0spdEujII3kaNXWNg/SaSvS3tW5Fh4E+5cshDbon3B8JUI3Mdv487OGQ8lfNC0NDv4SH81yeyV8cdXVNIqrBkw5Vdn16cCnUyzUeU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7578
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2024 11:10:08.9221 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: E8R20yh7pk5GlpKKjckBNQmG3/ztfnn172O7j/Q8GD+cPFkVa5aQzLKVrFrdeOCx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8832
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,165 +127,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+Am 25.03.24 um 08:45 schrieb Jesse Zhang:
+> remove the unsed the paramter in the function
+> ttm_bo_bounce_temp_buffer and ttm_bo_add_move_fence.
+>
+> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
 
-When I opened dashboard early morning all results were available, so I don'=
-t think there was any issue during night.
-It could be long reporting queue - reporting through AWS takes ages but thi=
-s is not an issue with reporting, this is how AWS works.
+Good catch, Reviewed-by: Christian König <christian.koenig@amd.com>
 
 Regards,
-Ewelina
+Christian.
 
------Original Message-----
-From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Rodr=
-igo Vivi
-Sent: Friday, March 29, 2024 2:32 AM
-To: Dave Airlie <airlied@gmail.com>; Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>; Joonas Lahtinen <joonas.laht=
-inen@linux.intel.com>; Tvrtko Ursulin <tursulin@ursulin.net>; Vivi, Rodrigo=
- <rodrigo.vivi@intel.com>; Thomas Zimmermann <tzimmermann@suse.de>; Maarten=
- Lankhorst <maarten.lankhorst@linux.intel.com>; Maxime Ripard <mripard@kern=
-el.org>; Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>; Oded Gabbay=
- <ogabbay@kernel.org>; De Marchi, Lucas <lucas.demarchi@intel.com>; dri-dev=
-el@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; intel-xe@lists.f=
-reedesktop.org; dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 10 ++++------
+>   1 file changed, 4 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index edf10618fe2b..7f08787687a7 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -402,7 +402,6 @@ void ttm_bo_put(struct ttm_buffer_object *bo)
+>   EXPORT_SYMBOL(ttm_bo_put);
+>   
+>   static int ttm_bo_bounce_temp_buffer(struct ttm_buffer_object *bo,
+> -				     struct ttm_resource **mem,
+>   				     struct ttm_operation_ctx *ctx,
+>   				     struct ttm_place *hop)
+>   {
+> @@ -470,7 +469,7 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+>   		if (ret != -EMULTIHOP)
+>   			break;
+>   
+> -		ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
+> +		ret = ttm_bo_bounce_temp_buffer(bo, ctx, &hop);
+>   	} while (!ret);
+>   
+>   	if (ret) {
+> @@ -699,7 +698,6 @@ EXPORT_SYMBOL(ttm_bo_unpin);
+>    */
+>   static int ttm_bo_add_move_fence(struct ttm_buffer_object *bo,
+>   				 struct ttm_resource_manager *man,
+> -				 struct ttm_resource *mem,
+>   				 bool no_wait_gpu)
+>   {
+>   	struct dma_fence *fence;
+> @@ -753,7 +751,7 @@ static int ttm_bo_mem_force_space(struct ttm_buffer_object *bo,
+>   			return ret;
+>   	} while (1);
+>   
+> -	return ttm_bo_add_move_fence(bo, man, *mem, ctx->no_wait_gpu);
+> +	return ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
+>   }
+>   
+>   /**
+> @@ -802,7 +800,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
+>   		if (unlikely(ret))
+>   			goto error;
+>   
+> -		ret = ttm_bo_add_move_fence(bo, man, *mem, ctx->no_wait_gpu);
+> +		ret = ttm_bo_add_move_fence(bo, man, ctx->no_wait_gpu);
+>   		if (unlikely(ret)) {
+>   			ttm_resource_free(bo, mem);
+>   			if (ret == -EBUSY)
+> @@ -866,7 +864,7 @@ static int ttm_bo_move_buffer(struct ttm_buffer_object *bo,
+>   bounce:
+>   	ret = ttm_bo_handle_move_mem(bo, mem, false, ctx, &hop);
+>   	if (ret == -EMULTIHOP) {
+> -		ret = ttm_bo_bounce_temp_buffer(bo, &mem, ctx, &hop);
+> +		ret = ttm_bo_bounce_temp_buffer(bo, ctx, &hop);
+>   		if (ret)
+>   			goto out;
+>   		/* try and move to final place now. */
 
-Hi Dave and Sima,
-
-Here goes our first PR of this round.
-
-Our CI is not working as I would expect:
-https://intel-gfx-ci.01.org/tree/drm-intel-fixes/index.html?
-
-Well, at least it caught some build failures on runds 832 and 833.
-But after I fixed those, the 834 (with v6.9-rc1) and the 835 (with all thes=
-e patches here) didn't show up yet. So I have run manual validation on my D=
-G2+ADL here.
-
-Everything looking good here, and it is yet -rc1. I'm confident that we can=
- move ahead with those while we work to get CI back.
-
-Thanks,
-Rodrigo
-
-drm-intel-fixes-2024-03-28:
-
-Core/GT Fixes:
-- Fix for BUG_ON/BUILD_BUG_ON IN I915_memcpy.c (Joonas)
-- Update a MTL workaround (Tejas)
-- Fix locking inversion in hwmon's sysfs (Janusz)
-- Remove a bogus error message around PXP (Jose)
-- Fix UAF on VMA (Janusz)
-- Reset queue_priority_hint on parking (Chris)
-
-Display Fixes:
-- Remove duplicated audio enable/disable on SDVO and DP (Ville)
-- Disable AuxCCS for Xe driver (Juha-Pekka)
-- Revert init order of MIPI DSI (Ville)
-- DRRS debugfs fix with an extra refactor patch (Bhanuprakash)
-- VRR related fixes (Ville)
-- Fix a JSL eDP corruption (Jonathon)
-- Fix the cursor physical dma address (Ville)
-- BIOS VBT related fix (Ville)
-
-Thanks,
-Rodrigo.
-
-The following changes since commit 4cece764965020c22cff7665b18a012006359095=
-:
-
-  Linux 6.9-rc1 (2024-03-24 14:10:05 -0700)
-
-are available in the Git repository at:
-
-  https://anongit.freedesktop.org/git/drm/drm-intel tags/drm-intel-fixes-20=
-24-03-28
-
-for you to fetch changes up to 32e39bab59934bfd3f37097d4dd85ac5eb0fd549:
-
-  drm/i915/bios: Tolerate devdata=3D=3DNULL in intel_bios_encoder_supports_=
-dp_dual_mode() (2024-03-28 12:16:17 -0400)
-
-----------------------------------------------------------------
-Core/GT Fixes:
-- Fix for BUG_ON/BUILD_BUG_ON IN I915_memcpy.c (Joonas)
-- Update a MTL workaround (Tejas)
-- Fix locking inversion in hwmon's sysfs (Janusz)
-- Remove a bogus error message around PXP (Jose)
-- Fix UAF on VMA (Janusz)
-- Reset queue_priority_hint on parking (Chris)
-
-Display Fixes:
-- Remove duplicated audio enable/disable on SDVO and DP (Ville)
-- Disable AuxCCS for Xe driver (Juha-Pekka)
-- Revert init order of MIPI DSI (Ville)
-- DRRS debugfs fix with an extra refactor patch (Bhanuprakash)
-- VRR related fixes (Ville)
-- Fix a JSL eDP corruption (Jonathon)
-- Fix the cursor physical dma address (Ville)
-- BIOS VBT related fix (Ville)
-
-----------------------------------------------------------------
-Bhanuprakash Modem (2):
-      drm/i915/drrs: Refactor CPU transcoder DRRS check
-      drm/i915/display/debugfs: Fix duplicate checks in i915_drrs_status
-
-Chris Wilson (1):
-      drm/i915/gt: Reset queue_priority_hint on parking
-
-Janusz Krzysztofik (2):
-      drm/i915/hwmon: Fix locking inversion in sysfs getter
-      drm/i915/vma: Fix UAF on destroy against retire race
-
-Jonathon Hall (1):
-      drm/i915: Do not match JSL in ehl_combo_pll_div_frac_wa_needed()
-
-Joonas Lahtinen (1):
-      drm/i915: Add includes for BUG_ON/BUILD_BUG_ON in i915_memcpy.c
-
-Jos=E9 Roberto de Souza (1):
-      drm/i915: Do not print 'pxp init failed with 0' when it succeed
-
-Juha-Pekka Heikkila (1):
-      drm/i915/display: Disable AuxCCS framebuffers if built for Xe
-
-Tejas Upadhyay (1):
-      drm/i915/mtl: Update workaround 14018575942
-
-Ville Syrj=E4l=E4 (6):
-      drm/i915: Stop doing double audio enable/disable on SDVO and g4x+ DP
-      drm/i915/dsi: Go back to the previous INIT_OTP/DISPLAY_ON order, most=
-ly
-      drm/i915/vrr: Generate VRR "safe window" for DSB
-      drm/i915/dsb: Fix DSB vblank waits when using VRR
-      drm/i915: Pre-populate the cursor physical dma address
-      drm/i915/bios: Tolerate devdata=3D=3DNULL in intel_bios_encoder_suppo=
-rts_dp_dual_mode()
-
- drivers/gpu/drm/i915/display/g4x_dp.c              |  2 -
- drivers/gpu/drm/i915/display/icl_dsi.c             |  3 +-
- drivers/gpu/drm/i915/display/intel_bios.c          | 46 +++++++++++++++++-=
---
- drivers/gpu/drm/i915/display/intel_cursor.c        |  4 +-
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c            | 12 +-----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_drrs.c          | 14 ++++--
- drivers/gpu/drm/i915/display/intel_drrs.h          |  3 ++
- drivers/gpu/drm/i915/display/intel_dsb.c           | 14 ++++++
- drivers/gpu/drm/i915/display/intel_fb_pin.c        | 10 +++++
- drivers/gpu/drm/i915/display/intel_sdvo.c          |  4 --
- drivers/gpu/drm/i915/display/intel_vrr.c           |  7 +--
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  3 ++
- drivers/gpu/drm/i915/gt/intel_engine_pm.c          |  3 --
- .../gpu/drm/i915/gt/intel_execlists_submission.c   |  3 ++
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |  1 +
- drivers/gpu/drm/i915/i915_driver.c                 |  2 +-
- drivers/gpu/drm/i915/i915_hwmon.c                  | 37 ++++++++--------
- drivers/gpu/drm/i915/i915_memcpy.c                 |  2 +
- drivers/gpu/drm/i915/i915_reg.h                    |  2 +-
- drivers/gpu/drm/i915/i915_vma.c                    | 50 ++++++++++++++++++=
-+---
- 22 files changed, 162 insertions(+), 63 deletions(-)
