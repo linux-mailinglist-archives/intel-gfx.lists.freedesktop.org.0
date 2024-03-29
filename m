@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D9C891033
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 02:13:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E817891034
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Mar 2024 02:13:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C456E10E888;
-	Fri, 29 Mar 2024 01:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB72610E539;
+	Fri, 29 Mar 2024 01:13:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKTgWhrF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hoeqrbUR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D102310E7F1
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 01:13:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE7BB10E539
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Mar 2024 01:13:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1711674801; x=1743210801;
+ t=1711674804; x=1743210804;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=H7ZUV3oDD0mCSQBJGKDildnkHUwWHcNw7qc5iTHYHqc=;
- b=PKTgWhrFcRoMuQpRC6hkSvhGOwOj38CTwwOpSNMYstI/Ndc66CRQVPRN
- x7/1pl6P3mTWEYjiir45rg80TCsrZO41vnhvW0VFZSHDJpNqtroHb5vGB
- OHU5+FHoPy5mPwK1Y2TU0PdmG0uP7FpoO5Jcurs98wTLW6I5rT1JpszjQ
- iEINVi7Zdo0tZFwy5CXyIEcngq3n0xI7IX6d4JneX67JUAUQBPnTgreVm
- yBK9+tqtSri7zmStj+gbNiQO0iyg4GFJUSThcPZamsVlw6rHhm337JZMY
- snyhguU8FCK65HORr9AU3COSoakOv3FXNpnK9kBamtsYm5XDUZEl+fvFB w==;
-X-CSE-ConnectionGUID: LUFvLfbeRaaEgcW8+UKEtw==
-X-CSE-MsgGUID: nrvPx4OnTLyr7t4iUcbGng==
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="6756308"
+ bh=a3ntKU7QX+gSyhd9Gy6nzKjyfvZK33kkEsO2+4FSriA=;
+ b=hoeqrbURTrufVaAK6KlPxrcf3C7+DX5ICYlVXDIiOhtn6TwvATemasna
+ CDRkrixvnQ3en46AHyTo9Ui4fVSdYSzuVSnoHKWmXcKiDGuXfbQEURCgI
+ rGJhzl6ePuph14e7vrdJLQKTkit5Qvt1ck4+qTrMRn0DG12BxZFLgcyBE
+ z7IhzDTLMyD42ZSIDdTCkavQH655wp9RdC5a3LKYv9lh8upZhptCGhR8S
+ k82wZsfN1LA10hcGA0cJFrlGPIKSwbRv5CKYrVkKLlP9CYFr7CpoeFk1L
+ gHHdIOa1wH9tnr9mZGR88yDroJrr94F5pdWR8w+uZDlyM38k9kzHzTZLy A==;
+X-CSE-ConnectionGUID: ve2p1qpNSTSliZ5N+uLi3A==
+X-CSE-MsgGUID: SsVKig/BR1Oy9CBSRSpddA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="6756311"
 X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; 
-   d="scan'208";a="6756308"
+   d="scan'208";a="6756311"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2024 18:13:21 -0700
+ 28 Mar 2024 18:13:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="827786772"
-X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="827786772"
+X-IronPort-AV: E=McAfee;i="6600,9927,11027"; a="827786773"
+X-IronPort-AV: E=Sophos;i="6.07,162,1708416000"; d="scan'208";a="827786773"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 28 Mar 2024 18:13:18 -0700
+ by orsmga001.jf.intel.com with SMTP; 28 Mar 2024 18:13:21 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 29 Mar 2024 03:13:18 +0200
+ Fri, 29 Mar 2024 03:13:20 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 08/22] drm/i915: Extract glk_need_scaler_clock_gating_wa()
-Date: Fri, 29 Mar 2024 03:12:40 +0200
-Message-ID: <20240329011254.24160-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/22] drm/i915:
+ s/intel_dp_can_bigjoiner()/intel_dp_can_bigjoiner()/
+Date: Fri, 29 Mar 2024 03:12:41 +0200
+Message-ID: <20240329011254.24160-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240329011254.24160-1-ville.syrjala@linux.intel.com>
 References: <20240329011254.24160-1-ville.syrjala@linux.intel.com>
@@ -70,62 +71,50 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Simplify our life by extracting the "do we need the glk scaler
-clock gating w/a?" check into a small helper.
+Rename intel_dp_can_bigjoiner() to intel_dp_has_bigjoiner()
+to better reflect its function.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_dp.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 83474fcf4131..6197b62dac55 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1551,6 +1551,14 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
- 	intel_set_pch_fifo_underrun_reporting(dev_priv, pipe, true);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 2490ce32da50..402b3b8f6382 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -425,7 +425,7 @@ int intel_dp_max_link_data_rate(struct intel_dp *intel_dp,
+ 	return max_rate;
  }
  
-+/* Display WA #1180: WaDisableScalarClockGating: glk */
-+static bool glk_need_scaler_clock_gating_wa(const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+
-+	return DISPLAY_VER(i915) == 10 && crtc_state->pch_pfit.enabled;
-+}
-+
- static void glk_pipe_scaler_clock_gating_wa(struct intel_crtc *crtc, bool enable)
+-bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
++bool intel_dp_has_bigjoiner(struct intel_dp *intel_dp)
  {
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-@@ -1635,7 +1643,6 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
- 	enum pipe hsw_workaround_pipe;
--	bool psl_clkgate_wa;
+ 	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
+ 	struct intel_encoder *encoder = &intel_dig_port->base;
+@@ -1199,7 +1199,7 @@ bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	struct intel_connector *connector = intel_dp->attached_connector;
  
- 	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
- 		return;
-@@ -1668,10 +1675,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+-	if (!intel_dp_can_bigjoiner(intel_dp))
++	if (!intel_dp_has_bigjoiner(intel_dp))
+ 		return false;
  
- 	crtc->active = true;
- 
--	/* Display WA #1180: WaDisableScalarClockGating: glk */
--	psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
--		new_crtc_state->pch_pfit.enabled;
--	if (psl_clkgate_wa)
-+	if (glk_need_scaler_clock_gating_wa(new_crtc_state))
- 		glk_pipe_scaler_clock_gating_wa(crtc, true);
- 
- 	if (DISPLAY_VER(dev_priv) >= 9)
-@@ -1702,7 +1706,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	intel_encoders_enable(state, crtc);
- 
--	if (psl_clkgate_wa) {
-+	if (glk_need_scaler_clock_gating_wa(new_crtc_state)) {
- 		intel_crtc_wait_for_next_vblank(crtc);
- 		glk_pipe_scaler_clock_gating_wa(crtc, false);
- 	}
+ 	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index c540d3a73fe7..4a4b39f2748b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -119,7 +119,7 @@ int intel_dp_effective_data_rate(int pixel_clock, int bpp_x16,
+ 				 int bw_overhead);
+ int intel_dp_max_link_data_rate(struct intel_dp *intel_dp,
+ 				int max_dprx_rate, int max_dprx_lanes);
+-bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp);
++bool intel_dp_has_bigjoiner(struct intel_dp *intel_dp);
+ bool intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+ 			    const struct drm_connector_state *conn_state);
+ void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
 -- 
 2.43.2
 
