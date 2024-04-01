@@ -2,50 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB25C8937A5
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Apr 2024 05:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D038937A6
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Apr 2024 05:03:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22B1410E03F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D007E10EE02;
 	Mon,  1 Apr 2024 03:03:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="adslGdbJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EbVf+U5M";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D10E310E03F
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Apr 2024 03:03:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3475D10EE02
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Apr 2024 03:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1711940611; x=1743476611;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PWYir4YcyofpxSiIt87SgSg9vuVptTrMlSBgcPQmB/k=;
- b=adslGdbJBhCxhkWebBhPMmOrEkfgdYpBnT4r4eUuAyxMFl0lJcafappO
- C25XTsW5ZeOz/BhLiFmiVl9xJEK5xAuOYQey2Q+CrPqsEw9/vEAX3VTJl
- RtsWzImgM3I0BDmO5OL0OoDeTNJxEqo/ctnzSZMvaNXPu7E/TOEK+jIRh
- j9XOlbZUjJi7btii1OfUwFCeTusz76tr1vvybwBNZC6H9IH6Angpb/rXN
- oIVhTHGySq4YJJT6ODR1UlmgadkKixfOp0edNZzWqvB16/bDT7WROw+Sz
- AWUAeiDklybG41RsvOj+A+YDbmhyebnPs1PX9YEEgLsP0l+ZuSljhNAfo g==;
-X-CSE-ConnectionGUID: c+n13Ti6TGGcOYCAHzMsNw==
-X-CSE-MsgGUID: C9yjHkSVRBmw5kHoIbPJ0w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11030"; a="10843524"
-X-IronPort-AV: E=Sophos;i="6.07,171,1708416000"; d="scan'208";a="10843524"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0XWejXVMNTO7GmksLhs52FQAEeAFhVrViQyfkUOgZB8=;
+ b=EbVf+U5Mns/AaTmnqo2YURM4C7BAb4cTTORUEqA/MGkB0wWLcvyKW6Md
+ xoFEc6dKiMTjXxyQ0DKgVm2B94RQLkC1bAWChlPh6Xqn3MQ7gmIKIAKp6
+ FD7orSnm9McZADyBVN+j6wXpvYS+ZqH2BDpX0oKBNYlzq2uuW9ARGdsNE
+ FDCY/M4qeE0iywDpyXxUTtbslEcQ4COq3j8aJhZc/LXRF/4kYt3lMj+XN
+ DCbcrE15X7KTYkxRsYtrq/5Fj9c8lLtXyZ0Ps5Gfpur0phBORsVz19WOz
+ 4BdsPTRt1+RUmktAw4rB3Trb42E4778z9HhzkoJJRCeeMBM3ivLM3CXg2 Q==;
+X-CSE-ConnectionGUID: wLlNOVMGQzSPQ38/slGLgQ==
+X-CSE-MsgGUID: YnNBIUPYQ/+VrmICcuq1XQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11030"; a="10843528"
+X-IronPort-AV: E=Sophos;i="6.07,171,1708416000"; d="scan'208";a="10843528"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2024 20:03:29 -0700
+ 31 Mar 2024 20:03:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,171,1708416000"; d="scan'208";a="17972357"
+X-IronPort-AV: E=Sophos;i="6.07,171,1708416000"; d="scan'208";a="17972364"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa007.jf.intel.com with ESMTP; 31 Mar 2024 20:03:29 -0700
+ by orviesa007.jf.intel.com with ESMTP; 31 Mar 2024 20:03:30 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: chaitanya.kumar.borah@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 0/2] Fix UBSAN warning in hdcp_info
-Date: Mon,  1 Apr 2024 08:31:04 +0530
-Message-ID: <20240401030106.274787-1-suraj.kandpal@intel.com>
+Subject: [PATCH 1/2] drm/i915/display: Initialize capability variables
+Date: Mon,  1 Apr 2024 08:31:05 +0530
+Message-ID: <20240401030106.274787-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240401030106.274787-1-suraj.kandpal@intel.com>
+References: <20240401030106.274787-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -63,20 +65,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch series fixes the UBSAN warning which gets called
-when hdcp_info is invoked accompanied by some other logical fixes
-required in the hdcp capability function.
+Initialize HDCP capability variables to false to avoid UBSAN
+warning in boolean value as some functions invoking this could
+return without filling the two capability values.
+
+--v2
+-Fix Typo [Chaitanya]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-Suraj Kandpal (2):
-  drm/i915/display: Initialize capability variables
-  drm/i915/hdcp: Fix get remote hdcp capability function
-
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 +-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c         | 5 ++++-
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index b99c024b0934..95d14dab089e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -191,7 +191,7 @@ static void intel_hdcp_info(struct seq_file *m,
+ 			    struct intel_connector *intel_connector,
+ 			    bool remote_req)
+ {
+-	bool hdcp_cap, hdcp2_cap;
++	bool hdcp_cap = false, hdcp2_cap = false;
+ 
+ 	if (!intel_connector->hdcp.shim) {
+ 		seq_puts(m, "No Connector Support");
 -- 
 2.43.2
 
