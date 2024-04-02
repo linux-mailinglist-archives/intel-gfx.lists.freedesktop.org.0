@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F259A895AA4
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 19:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9EB895AA7
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 19:27:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52A9210FED2;
-	Tue,  2 Apr 2024 17:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C44310FED6;
+	Tue,  2 Apr 2024 17:27:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="KMAF1Shd";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0826C10FED1;
- Tue,  2 Apr 2024 17:26:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2738555176737001409=="
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E9910FED6
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 17:27:05 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-a4e40fad4fdso435336866b.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 02 Apr 2024 10:27:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1712078823; x=1712683623;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CisjK78L/ggkWWTzIqDLO48olCEiKRuBwHgCPhobU9E=;
+ b=KMAF1ShdDnqh/Gv4dljx8DSWMzxq2Q4lwzbqwepGsDbY8vwsQNqCY8fcplUhUdbv6k
+ 9yDmqtr7UFrFY7o4th7Mf4Vrrw1gar5zBv1xUsqisXQqC2+VbG8wGFGg4bAgAg8E0aWP
+ +zbCHFoENb61n9Cj5lZVq5NL00aXfKBNd+fGg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712078823; x=1712683623;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=CisjK78L/ggkWWTzIqDLO48olCEiKRuBwHgCPhobU9E=;
+ b=GCWQYuCuOJA6XGtYUQ5QjXgMmIJwRXQ8q509jrIgJHNlybxngkeMUL83X+uHjLt4t+
+ XBXzL/Uy2cYT+rjkw0jW9b+v/q4qz5QAfhPVUhjjxERViye50EY1znQtccIP50emOQA4
+ I8CJt9vx3ucTfl8g1rDurni/IM8sSDQ8J1e0qmONBsfkxmFDIiIaD5UrTFPlJEzGcHiF
+ pF3N69ggyFv8cGUzgijXJwR/414rlginyZIKQQRFj3lJkzscVcPnMx4ju1P4Dw8T3QA8
+ xmQgfHDsJBRbPryhIUX8nobgEf8z4qx4JjJGNqSfKc9pl59n5h2mto6EcslTogvamiUA
+ RX5w==
+X-Gm-Message-State: AOJu0YzcZ98z5jd1zxttfVbMmz2WLpO7KzuUh3AQspg0JXq6H0Bw1CZS
+ +f/kVGFy468A2vQbbAVQkAris8v+XhVx2q0/KSQdYOjkghee8eRZON9+DHmN0gugpBGTmenpupy
+ RW6LmnrTV3TSMqI47HhdEXYzYNBie1IB0TZ7b
+X-Google-Smtp-Source: AGHT+IEo17bsb8XbB5How+dzM9aDPTUGZWEEqOjY62N4T9tdOV4siVeXplgI13HouBLar42R8pRkeIqWRv+lYxVOks8=
+X-Received: by 2002:a17:906:c42:b0:a47:3526:2e0f with SMTP id
+ t2-20020a1709060c4200b00a4735262e0fmr7946369ejf.75.1712078823481; Tue, 02 Apr
+ 2024 10:27:03 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm=3A_ensure_drm_headers_a?=
- =?utf-8?q?re_self-contained_and_pass_kernel-doc?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 02 Apr 2024 17:26:05 -0000
-Message-ID: <171207876503.1155666.18348208122200969449@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240402140136.1722533-1-jani.nikula@intel.com>
-In-Reply-To: <20240402140136.1722533-1-jani.nikula@intel.com>
+References: <20240301074923.485807-1-charlton.lin@intel.com>
+In-Reply-To: <20240301074923.485807-1-charlton.lin@intel.com>
+From: Manasi Navare <navaremanasi@chromium.org>
+Date: Tue, 2 Apr 2024 10:26:52 -0700
+Message-ID: <CAE72mNkSDL9S8TMEyZ3dH126S05dNmGLCW2VH66cG+5UHY2Y5g@mail.gmail.com>
+Subject: Re: [RFC] drm/i915/dp: Log message when limiting SST link rate
+ MIME-Version: 1.0 Content-Type: text/plain;
+ charset=UTF-8 Content-Transfer-Encoding: 8bit
+To: Charlton Lin <charlton.lin@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ Sean Paul <seanpaul@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,178 +76,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2738555176737001409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thanks Charlton for the patch.
+I think in general it is a good idea to log this when the max rate is
+dropped to HBR3 for SST case.
 
-== Series Details ==
-
-Series: drm: ensure drm headers are self-contained and pass kernel-doc
-URL   : https://patchwork.freedesktop.org/series/131944/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14516 -> Patchwork_131944v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/index.html
-
-Participating hosts (37 -> 35)
-------------------------------
-
-  Additional (1): fi-cfl-8109u 
-  Missing    (3): bat-dg1-7 fi-bsw-nick fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_131944v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][3] -> [DMESG-FAIL][4] ([i915#9500])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14516/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pm_rpm@basic-rte:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][5] +14 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/fi-cfl-8109u/igt@kms_pm_rpm@basic-rte.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10435]: https://gitlab.freedesktop.org/drm/intel/issues/10435
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#9157]: https://gitlab.freedesktop.org/drm/intel/issues/9157
-  [i915#9500]: https://gitlab.freedesktop.org/drm/intel/issues/9500
+Please find my comments below,
 
 
-Build changes
--------------
+On Thu, Feb 29, 2024 at 11:49=E2=80=AFPM Charlton Lin <charlton.lin@intel.c=
+om> wrote:
+>
+> Driver currently limits link rate up to HBR3 in SST mode. Log a
+> message with monitor vendor, product id, and MSTM_CAP to
+> help understand what monitors are being downgraded by this limit.
+>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Signed-off-by: Charlton Lin <charlton.lin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 6ece2c563c7a..0b2d6d88fd37 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2437,6 +2437,25 @@ intel_dp_compute_link_config(struct intel_encoder =
+*encoder,
+>                                                      false,
+>                                                      &limits);
+>
+> +       if (intel_dp_max_common_rate(intel_dp) > limits.max_rate) {
+> +               u8 mstm_cap;
+> +               u32 panel_id =3D drm_edid_get_panel_id(&intel_dp->aux.ddc=
+);
+> +               char vend[4];
+> +               u16 product_id;
+> +
+> +               drm_dbg_kms(&i915->drm,
+> +                           "Limiting LR from max common rate %d to %d\n"=
+,
 
-  * Linux: CI_DRM_14516 -> Patchwork_131944v1
+We dont use LR acronym anywhere in the kernel for link rate, just say
+link rate here.
+Also I think would be good to log the reason why we are dropping this
+to HBR3 or add a comment with a Todo
+for this
 
-  CI-20190529: 20190529
-  CI_DRM_14516: 5100fcc57dc5d45b246a0aeb068f4f8062d29b09 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7796: 2cfed18f6aa776c1593d7cc328d23225dd61bdf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_131944v1: 5100fcc57dc5d45b246a0aeb068f4f8062d29b09 @ git://anongit.freedesktop.org/gfx-ci/linux
+Manasi
 
-
-### Linux commits
-
-126cd9eac05a drm: ensure drm headers are self-contained and pass kernel-doc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/index.html
-
---===============2738555176737001409==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: ensure drm headers are self-contained and pass kernel-doc</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131944/">https://patchwork.freedesktop.org/series/131944/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14516 -&gt; Patchwork_131944v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 35)</h2>
-<p>Additional (1): fi-cfl-8109u <br />
-  Missing    (3): bat-dg1-7 fi-bsw-nick fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_131944v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14516/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9500">i915#9500</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-rte:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131944v1/fi-cfl-8109u/igt@kms_pm_rpm@basic-rte.html">SKIP</a> +14 other tests skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14516 -&gt; Patchwork_131944v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14516: 5100fcc57dc5d45b246a0aeb068f4f8062d29b09 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7796: 2cfed18f6aa776c1593d7cc328d23225dd61bdf9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_131944v1: 5100fcc57dc5d45b246a0aeb068f4f8062d29b09 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>126cd9eac05a drm: ensure drm headers are self-contained and pass kernel-doc</p>
-
-</body>
-</html>
-
---===============2738555176737001409==--
+> +                           intel_dp_max_common_rate(intel_dp), limits.ma=
+x_rate);
+> +
+> +               drm_edid_decode_panel_id(panel_id, vend, &product_id);
+> +
+> +               if (intel_dp->dpcd[DP_DPCD_REV] >=3D DP_DPCD_REV_12 &&
+> +                   drm_dp_dpcd_readb(&intel_dp->aux, DP_MSTM_CAP, &mstm_=
+cap) =3D=3D 1)
+> +                       drm_dbg_kms(&i915->drm,
+> +                                   "Manufacturer=3D%s Model=3D%x Sink MS=
+TM_CAP=3D%x\n",
+> +                                   vend, product_id, mstm_cap);
+> +       }
+> +
+>         if (!dsc_needed) {
+>                 /*
+>                  * Optimize for slow and wide for everything, because the=
+re are some
+> --
+> 2.25.1
+>
