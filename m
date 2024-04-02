@@ -2,57 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773BF8955CD
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 15:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A0D895605
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 16:02:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34D810FD45;
-	Tue,  2 Apr 2024 13:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16EA810FD58;
+	Tue,  2 Apr 2024 14:02:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YaLnKuyj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RHuuwFs1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6994C10FD45
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 13:52:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6425810FD55;
+ Tue,  2 Apr 2024 14:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712065933; x=1743601933;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dcAK+8Uw+oZn+guOh0X5eI1Hcnj4myAqLWnNqAFyAtY=;
- b=YaLnKuyjzuf0HO2b6hMafwx1qgZFTR90vjWeqKgaMgiZVz8v9C/U6GUx
- Riu0XU6vSzvEtlhd69tRmneE5dVotOqWPTKMEY7JswhkcEjsQvNS26uWO
- 8p7sV1++GbbjdSWSAiimuV/+ldtdNXGdT0+l78SQcRkkLH+tO8BZCCCRK
- iMDtymIlctz4EYkBzn+1tNBghURuuTsmcs4NnK+Opg5pd8tfliMSgu8jN
- AFgoIVnXj4kfnV56K+oJvNl9p0DsqtFu9wwdeUAIBJ8IS99fVOgycI1ok
- QgcjbETlE/dUCxA23lnRdSwIJuhq7jeVmSNN4uQJr0MCWmDY0C+nYJg6E g==;
-X-CSE-ConnectionGUID: 7R0cSrZdTEC6WXE9eJLT+Q==
-X-CSE-MsgGUID: zeMkc+yBT+OVyDqc/B0CFw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17804674"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17804674"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 06:52:13 -0700
+ t=1712066521; x=1743602521;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MnbKETqqvlRt+Iy6DkMGMtHlisuIC0nQBpZ9iTeinyw=;
+ b=RHuuwFs1RbUotaiF3Ioyo8SALmkz7My2LhjxL6lJ/VL67rv1X+pTkcG5
+ /yFFsR0aTX0eQqGa+VpLAbKfSJy3prgi7NdLd0hGrjbq5iT7xEX0qHFpj
+ TYr7Em7xqPkx7UZj/wnY2EAdV2PJ1557TbpuQkCupneaS5soEnEUuV1A7
+ o2VKrIL7WMZw96OSPDaNlieoooc+y2+yy7BfQ76FwzxPAsNy0zFmkXxcC
+ qgvrUYCVNxnI6pIaoQrd4PGmgL1XBAitLhJOsfMQqOaQJPZlXTIS7xl7m
+ QMNjmZ9q3q3nEy34hZ7i9eRTkfItbRzChWTY5j+stOcQuI5//RPDqPeWP Q==;
+X-CSE-ConnectionGUID: 1nYx+0w7ToSS+0q8YzRGFA==
+X-CSE-MsgGUID: cH0tJNY3QAy5i/Llue7gDg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7090235"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
+   d="scan'208";a="7090235"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 07:02:00 -0700
+X-CSE-ConnectionGUID: uNwqPLJ4TjGy4wfV8QLNiA==
+X-CSE-MsgGUID: 3bYASW+EQwmBK4dYaX9Duw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789403"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789403"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 06:52:11 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 Apr 2024 16:52:10 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 7/7] drm/i915: Use debugfs_create_bool() for
- "i915_bigjoiner_force_enable"
-Date: Tue,  2 Apr 2024 16:51:48 +0300
-Message-ID: <20240402135148.23011-8-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
-References: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="18149661"
+Received: from pramona-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.57.179])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 07:01:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Masahiro Yamada <masahiroy@kernel.org>
+Subject: [PATCH v2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+Date: Tue,  2 Apr 2024 17:01:36 +0300
+Message-Id: <20240402140136.1722533-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,93 +75,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Ensure drm headers build, are self-contained, have header guards, and
+have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=y.
 
-There is no reason to make this debugfs file for a simple
-boolean so complicated. Just use debugfs_create_bool().
+The mechanism follows similar patters used in i915, xe, and usr/include.
 
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+To cover include/drm, we need to recurse there using the top level
+Kbuild and the new include/Kbuild files.
+
+v2: make DRM_HEADER_TEST depend on DRM
+
+Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 44 +------------------
- 1 file changed, 2 insertions(+), 42 deletions(-)
+ Kbuild                   |  1 +
+ drivers/gpu/drm/Kconfig  | 11 +++++++++++
+ drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
+ include/Kbuild           |  1 +
+ include/drm/Makefile     | 18 ++++++++++++++++++
+ 5 files changed, 49 insertions(+)
+ create mode 100644 include/Kbuild
+ create mode 100644 include/drm/Makefile
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index b99c024b0934..3e364891dcd0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1402,20 +1402,6 @@ out:	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
- 	return ret;
- }
+diff --git a/Kbuild b/Kbuild
+index 464b34a08f51..f327ca86990c 100644
+--- a/Kbuild
++++ b/Kbuild
+@@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES)	+= samples/
+ obj-$(CONFIG_NET)	+= net/
+ obj-y			+= virt/
+ obj-y			+= $(ARCH_DRIVERS)
++obj-$(CONFIG_DRM_HEADER_TEST)	+= include/
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 3914aaf443a8..a388c4fda984 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -431,3 +431,14 @@ config DRM_WERROR
+ 	  this config option is disabled by default.
  
--static int i915_bigjoiner_enable_show(struct seq_file *m, void *data)
--{
--	struct intel_connector *connector = m->private;
--	struct drm_crtc *crtc;
--
--	crtc = connector->base.state->crtc;
--	if (connector->base.status != connector_status_connected || !crtc)
--		return -ENODEV;
--
--	seq_printf(m, "Bigjoiner enable: %d\n", connector->force_bigjoiner_enable);
--
--	return 0;
--}
--
- static ssize_t i915_dsc_output_format_write(struct file *file,
- 					    const char __user *ubuf,
- 					    size_t len, loff_t *offp)
-@@ -1437,30 +1423,6 @@ static ssize_t i915_dsc_output_format_write(struct file *file,
- 	return len;
- }
- 
--static ssize_t i915_bigjoiner_enable_write(struct file *file,
--					   const char __user *ubuf,
--					   size_t len, loff_t *offp)
--{
--	struct seq_file *m = file->private_data;
--	struct intel_connector *connector = m->private;
--	struct drm_crtc *crtc;
--	bool bigjoiner_en = 0;
--	int ret;
--
--	crtc = connector->base.state->crtc;
--	if (connector->base.status != connector_status_connected || !crtc)
--		return -ENODEV;
--
--	ret = kstrtobool_from_user(ubuf, len, &bigjoiner_en);
--	if (ret < 0)
--		return ret;
--
--	connector->force_bigjoiner_enable = bigjoiner_en;
--	*offp += len;
--
--	return len;
--}
--
- static int i915_dsc_output_format_open(struct inode *inode,
- 				       struct file *file)
- {
-@@ -1554,8 +1516,6 @@ static const struct file_operations i915_dsc_fractional_bpp_fops = {
- 	.write = i915_dsc_fractional_bpp_write
- };
- 
--DEFINE_SHOW_STORE_ATTRIBUTE(i915_bigjoiner_enable);
--
- /*
-  * Returns the Current CRTC's bpc.
-  * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
-@@ -1640,8 +1600,8 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
- 	if (DISPLAY_VER(i915) >= 11 &&
- 	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
- 	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
--		debugfs_create_file("i915_bigjoiner_force_enable", 0644, root,
--				    connector, &i915_bigjoiner_enable_fops);
-+		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
-+				    &connector->force_bigjoiner_enable);
- 	}
- 
- 	if (connector_type == DRM_MODE_CONNECTOR_DSI ||
+ 	  If in doubt, say N.
++
++config DRM_HEADER_TEST
++	bool "Ensure DRM headers are self-contained and pass kernel-doc"
++	depends on DRM && EXPERT
++	default n
++	help
++	  Ensure the DRM subsystem headers both under drivers/gpu/drm and
++	  include/drm compile, are self-contained, have header guards, and have
++	  no kernel-doc warnings.
++
++	  If in doubt, say N.
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index a73c04d2d7a3..6605d5686d01 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -218,3 +218,21 @@ obj-y			+= solomon/
+ obj-$(CONFIG_DRM_SPRD) += sprd/
+ obj-$(CONFIG_DRM_LOONGSON) += loongson/
+ obj-$(CONFIG_DRM_POWERVR) += imagination/
++
++# Ensure drm headers are self-contained and pass kernel-doc
++hdrtest-files := \
++	$(shell cd $(srctree)/$(src) && find . -maxdepth 1 -name 'drm_*.h') \
++	$(shell cd $(srctree)/$(src) && find display lib -name '*.h')
++
++always-$(CONFIG_DRM_HEADER_TEST) += \
++	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
++
++# Include the header twice to detect missing include guard.
++quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
++      cmd_hdrtest = \
++		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
++		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WERROR),-Werror) $<; \
++		touch $@
++
++$(obj)/%.hdrtest: $(src)/%.h FORCE
++	$(call if_changed_dep,hdrtest)
+diff --git a/include/Kbuild b/include/Kbuild
+new file mode 100644
+index 000000000000..5e76a599e2dd
+--- /dev/null
++++ b/include/Kbuild
+@@ -0,0 +1 @@
++obj-$(CONFIG_DRM_HEADER_TEST)	+= drm/
+diff --git a/include/drm/Makefile b/include/drm/Makefile
+new file mode 100644
+index 000000000000..b9f391d7aadd
+--- /dev/null
++++ b/include/drm/Makefile
+@@ -0,0 +1,18 @@
++# SPDX-License-Identifier: GPL-2.0
++
++# Ensure drm headers are self-contained and pass kernel-doc
++hdrtest-files := \
++	$(shell cd $(srctree)/$(src) && find * -name '*.h' 2>/dev/null)
++
++always-$(CONFIG_DRM_HEADER_TEST) += \
++	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
++
++# Include the header twice to detect missing include guard.
++quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
++      cmd_hdrtest = \
++		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
++		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WERROR),-Werror) $<; \
++		touch $@
++
++$(obj)/%.hdrtest: $(src)/%.h FORCE
++	$(call if_changed_dep,hdrtest)
 -- 
-2.43.2
+2.39.2
 
