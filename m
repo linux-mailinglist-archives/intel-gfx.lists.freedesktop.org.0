@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FBEF894DD4
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 10:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE53894DE1
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 10:47:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 192E210FB66;
-	Tue,  2 Apr 2024 08:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFC210FB6C;
+	Tue,  2 Apr 2024 08:47:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="QY7wOFYA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUWIK8zr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA6510FB66;
- Tue,  2 Apr 2024 08:46:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- In-Reply-To:References; bh=UOKR97xWJsCzeiNSwUpoZzyukhRCG3SAXSValTgdpjo=;
- t=1712047577; x=1712479577; b=QY7wOFYAEl2GbwxwqcV/x+Qs+5aMVDCyol9VzQ4Rwy6jwKk
- D4Nd5rhawfwDSSPOWDNEsgdzXz3dGpSx/Heo9SGrXWl4cR5GScuz61OpHbi97rbO9uBNjHM95DlEt
- hBQr1FvxTT92S5BBn9DhZZyz4GFM3srK+rtmmzVH+4AOrp4I1bNPYzz2CQRNMuwjdMJYLWZVhuJP8
- OGfHSrlGVZWQKVxx8hAYLUvbTRfBNTX3/3ZmLXRuV92ua6rE7rhhcJL1rAN5qU2WGc5lw0tZbnJGr
- OfVVnEiYXxVDwV/FYgWK2LRH4sHY6NGW8940fz3VFnKjpb7g+l1I9fwK4UfLWdYg==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1rrZmW-0000jW-Qi; Tue, 02 Apr 2024 10:46:12 +0200
-Message-ID: <ecc8bd98-0dac-4f17-abb3-ebc8b10fd0f7@leemhuis.info>
-Date: Tue, 2 Apr 2024 10:46:11 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD2D710E6D5;
+ Tue,  2 Apr 2024 08:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712047659; x=1743583659;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Tyre6rYcvP3Eq9HFC41TrPn55TD3AouDxJQWhBEpHDA=;
+ b=AUWIK8zr6WYaJmbfw1yljWiWRmxKQ+GBs/YfVyQI6RV44tfxxHQRcftF
+ rcD1r6p0ILYkyE/xGi6pDuHowrYNa6lBxXCnHKRG2FQ06TpVAgqB0DRkj
+ HNEgulr37a5Vr6hJYvt2DutsEnwxs3J1XtXT3FdU1iBNkUT0kgEy9V8gc
+ AzoTpZCza8lu3On3qqS1Ebj2Dck3d02xoH8u34i8YGuJh0mkYTL4/a3WF
+ OByoizj0EbEtjkgXFfG9nsqmotEheT3zs/egGbMoasGzuPbZlx4/zVW5t
+ 9XCIVh/RfhlTajtk/8FWkwOZZFlmOLunUfPj1IEL3gtW7e3Y6VpT4GX25 g==;
+X-CSE-ConnectionGUID: 98+13VzYRlKYYlxpgC6CFA==
+X-CSE-MsgGUID: Wn7ZqyizSUCAh/1lAwpbjQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="18653542"
+X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="18653542"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 01:47:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="49223235"
+Received: from zkatz1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.111])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 01:47:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Gustavo
+ Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH] drm/i915/display: move dmc_firmware_path to display params
+In-Reply-To: <3bvm45xgjhlwuwc2hhenysknzm2reaj5yn6anvyzmerpi44vgb@jjnbrf2ejnk5>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240321161856.3517856-1-jani.nikula@intel.com>
+ <87y1ablfo6.fsf@intel.com>
+ <64loxwpkjgu2nf4up554hfuqd6oi2quguozom2p2gowem26rbj@rszc3ubdda6u>
+ <87v85elkic.fsf@intel.com>
+ <b7o4x73ht2wv6t52h44dofzu36oic3bfazfilt2o4oxuj3zxzg@rzwm4a7cro7p>
+ <3bvm45xgjhlwuwc2hhenysknzm2reaj5yn6anvyzmerpi44vgb@jjnbrf2ejnk5>
+Date: Tue, 02 Apr 2024 11:47:08 +0300
+Message-ID: <8734s4f8xf.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] external monitor+Dell dock in 6.8
-To: Imre Deak <imre.deak@intel.com>
-Cc: regressions@lists.linux.dev, Andrei Gaponenko <beamflash@quaintcat.com>,
- LKML <linux-kernel@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-References: <22aa3878-62c7-9a2c-cfcc-303f373871f6@quaintcat.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-In-Reply-To: <22aa3878-62c7-9a2c-cfcc-303f373871f6@quaintcat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1712047577;
- d6aa77ea; 
-X-HE-SMSGID: 1rrZmW-0000jW-Qi
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,76 +69,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[Adding a few folks and list while dropping the stable list, as this is
-unrelated to it]
+On Fri, 22 Mar 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> oh, now I understand. You mean that xe module doesn't have the param
+> because it's only declared in drivers/gpu/drm/i915/i915_params.c.
+>
+> Could you extend the commit message with something like this?
+>
+> 	The dmc_firmware_path parameter is clearly a display parameter. Move it
+> 	there so it's available to both i915 and xe modules ....
+>
+> thanks
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-On 31.03.24 07:59, Andrei Gaponenko wrote:
-> 
-> I noticed a regression with the mailine kernel pre-compiled by EPEL.
-> I have just tried linux-6.9-rc1.tar.gz from kernel.org, and it still
-> misbehaves.
-> 
-> The default setup: a laptop is connected to a dock, Dell WD22TB4, via
-> a USB-C cable.  The dock is connected to an external monitor via a
-> Display Port cable.  With a "good" kernel everything works.  With a
-> "broken" kernel, the external monitor is still correctly identified by
-> the system, and is shown as enabled in plasma systemsettings. The
-> system also behaves like the monitor is working, for example, one can
-> move the mouse pointer off the laptop screen.  However the external
-> monitor screen stays black, and it eventually goes to sleep.
+Thanks for the review, pushed to drm-intel-next with an amended commit
+message.
 
-Just a quick heads up to ensure people are aware of it:
+BR,
+Jani.
 
-Imre Deak, turns out this is caused by a patch of yours: 55eaef16417448
-("drm/i915/dp_mst: Handle the Synaptics HBlank expansion quirk"). Andrei
-Gaponenko meanwhile filed a ticket about it here:
 
-https://gitlab.freedesktop.org/drm/intel/-/issues/10637
-
-Ciao, Thorsten
-
-> Everything worked with EPEL mainline kernels up to and including
-> kernel-ml-6.7.9-1.el9.elrepo.x86_64
-> 
-> The breakage is observed in
-> 
-> kernel-ml-6.8.1-1.el9.elrepo.x86_64
-> kernel-ml-6.8.2-1.el9.elrepo.x86_64
-> linux-6.9-rc1.tar.gz from kernel.org (with olddefconfig)
-> 
-> Other tests: using an HDMI cable instead of the Display Port cable
-> between the monitor and the dock does not change things, black screen
-> with the newer kernels.
-> 
-> Using a small HDMI-to-USB-C adapter instead of the dock results in a
-> working system, even with the newer kernels.  So the breakage appears
-> to be specific to the Dell WD22TB4 dock.
-> 
-> Operating System: AlmaLinux 9.3 (Shamrock Pampas Cat)
-> 
-> uname -mi: x86_64 x86_64
-> 
-> Laptop: Dell Precision 5470/02RK6V
-> 
-> lsusb |grep dock
-> Bus 003 Device 007: ID 413c:b06e Dell Computer Corp. Dell dock
-> Bus 003 Device 008: ID 413c:b06f Dell Computer Corp. Dell dock
-> Bus 003 Device 006: ID 0bda:5413 Realtek Semiconductor Corp. Dell dock
-> Bus 003 Device 005: ID 0bda:5487 Realtek Semiconductor Corp. Dell dock
-> Bus 002 Device 004: ID 0bda:0413 Realtek Semiconductor Corp. Dell dock
-> Bus 002 Device 003: ID 0bda:0487 Realtek Semiconductor Corp. Dell dock
-> 
-> dmesg and kernel config are attached to 
-> https://bugzilla.kernel.org/show_bug.cgi?id=218663
-> 
-> #regzbot introduced: v6.7.9..v6.8.1
-
-P.S.:
-
-#regzbot duplicate: https://bugzilla.kernel.org/show_bug.cgi?id=218663
-#regzbot duplicate: https://gitlab.freedesktop.org/drm/intel/-/issues/10637
-#regzbot title: drm/i915/dp_mst: external monitor on Dell dock broke
+-- 
+Jani Nikula, Intel
