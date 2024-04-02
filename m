@@ -2,63 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5EF895A1C
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 18:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C03895A31
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 18:53:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCB2B10FEF8;
-	Tue,  2 Apr 2024 16:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 545F610F641;
+	Tue,  2 Apr 2024 16:53:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KfAUNKON";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ikVnJcs1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE89610FEF8;
- Tue,  2 Apr 2024 16:50:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5550D10EA31;
+ Tue,  2 Apr 2024 16:53:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712076610; x=1743612610;
+ t=1712076790; x=1743612790;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=iyx5l7Dqvk4wQTgwuntjrzy0lxMhu/ZL5F5b1gIiFBs=;
- b=KfAUNKONMez2LrD5h/82/+AShJT5U1PK7zPdZ87owt9vankGOuZSHyRi
- N4XGakzaFaXbZFEHGGEmjqFpqRLOyQSNTTnusDEZfBf7FV7V0vnIuWA1T
- zXnGNc8RHcF1jvcnaAwTLvgdfemC4n10qLGJ2wkoAvERqDbL5miG8hFmy
- nKcxZtrY3QhhMV11S/X7H5xFhIf6cgHRs5yzZBg5qNJqIxlADdc+WO7vg
- yj2u2DCRFc6bv7RqugMNaDNjop2pAqhPmPkAhVkB2uKyLwV2TcN9EBvFq
- noZ4la22Vm8lizrUZ+ql+ZO6i1oyHsXIX02zcLYTcZO2jgekm4VF6pCU7 Q==;
-X-CSE-ConnectionGUID: oAlqEZffQFSjb3BX1YbKdw==
-X-CSE-MsgGUID: aF669gFVTtKk2+dkqRIQzQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7132490"
+ message-id:mime-version;
+ bh=+OIETa7FqtPMYZEyetZK7bSBPqtgACHlQcapBmBrB1s=;
+ b=ikVnJcs1tBJ8SnyaglXPhvUo5AgyJftd5ri8/MnztMYAx31SxS0STVBQ
+ 0cu5l+Qi26fpOPAPoFfrKZjHELnkM/PgXuXUkuGgx1eOlcXDE0w5vnrAG
+ 2nZo31yC2/SoJ5VX+cY9ufoIhvmc7W6hIzw7PHsQlgO20iVT0P5H843bo
+ RxtLzXwoyIZ/TYiFUbTktKC7LbpTPwPkNiZKQvB/iXb2UbisnZjQR41W7
+ lckCSiEVZR0JIefE/idwClETC6ULLzIRH4TRiTMoPYVRBhdSp+k+oDvTr
+ NkbRZtUrA/mSVimMTwvc5rXkvjZhxKCPqxFiFlnyFVYrQLshZgoPsm8hh g==;
+X-CSE-ConnectionGUID: cDsqCvVMQw6aCcavFp65gw==
+X-CSE-MsgGUID: uNt6LdDwSQuHifHcQaiE1Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7107284"
 X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; 
-   d="scan'208";a="7132490"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 09:50:09 -0700
-X-CSE-ConnectionGUID: KREIV6u/RmeU45kJTGnl+g==
-X-CSE-MsgGUID: rqeLoqYhSmKpw0rZRj8z8A==
+   d="scan'208";a="7107284"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 09:53:08 -0700
+X-CSE-ConnectionGUID: ffg8/aPXSdikW95Gpql1bg==
+X-CSE-MsgGUID: UqZyC5N1Sx2Vz2k/GRMH4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="22841071"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="18552508"
 Received: from pramona-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.57.179])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 09:50:06 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Jouni
- =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/display: fix display param dup for NULL char *
- params
-In-Reply-To: <wujbboih3iscmkadgre3xpur26nt37xeo3grryjgpsefmxwe2t@ovdcfpfe5cbo>
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 09:53:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>, Patrik Jakobsson
+ <patrik.r.jakobsson@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
+ <zhi.wang.linux@gmail.com>, dri-devel@lists.freedesktop.org, open list
+ <linux-kernel@vger.kernel.org>, "open list:INTEL DRM DISPLAY FOR XE AND
+ I915 DRIVERS" <intel-gfx@lists.freedesktop.org>, "open list:INTEL DRM
+ DISPLAY FOR XE AND I915 DRIVERS" <intel-xe@lists.freedesktop.org>, "open
+ list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, "open list:RADEON and
+ AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, "open list:DRM DRIVER
+ FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, "open
+ list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>, "open
+ list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>, "open
+ list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v0 03/14] drm/gma500,drm/i915: Make I2C terminology more
+ inclusive
+In-Reply-To: <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240402155534.1788466-1-jani.nikula@intel.com>
- <wujbboih3iscmkadgre3xpur26nt37xeo3grryjgpsefmxwe2t@ovdcfpfe5cbo>
-Date: Tue, 02 Apr 2024 19:49:51 +0300
-Message-ID: <87r0fnemkw.fsf@intel.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-4-eahariha@linux.microsoft.com>
+ <87a5mcfbms.fsf@intel.com>
+ <7d5e6ed0-ffe9-46c2-b3b4-a4a47c09532e@linux.microsoft.com>
+ <87ttkjesx8.fsf@intel.com>
+ <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
+Date: Tue, 02 Apr 2024 19:52:48 +0300
+Message-ID: <87o7aremfz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,82 +92,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Apr 02, 2024 at 06:55:34PM +0300, Jani Nikula wrote:
->>The display param duplication deviates from the original param
->>duplication in that it converts NULL params to to allocated empty
->>strings. This works for the vbt_firmware parameter, but not for
->>dmc_firmware_path, the user of which interprets NULL and the empty
->>string as distinct values. Specifically, the empty dmc_firmware_path
->>leads to DMC and PM being disabled.
->>
->>Just remove the NULL check and pass it to kstrdup(), which safely
->>returns NULL for NULL input.
->>
->>Fixes: 8015bee0bfec ("drm/i915/display: Add framework to add parameters s=
-pecific to display")
->>Fixes: 0d82a0d6f556 ("drm/i915/display: move dmc_firmware_path to display=
- params")
->>Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->>Cc: Luca Coelho <luciano.coelho@intel.com>
->>Cc: <stable@vger.kernel.org> # v6.8+
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+> On 4/2/2024 7:32 AM, Jani Nikula wrote:
+>> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+>>> On 4/2/2024 12:48 AM, Jani Nikula wrote:
+>>>> On Fri, 29 Mar 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+>>>>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+>>>>> with more appropriate terms. Inspired by and following on to Wolfram's
+>>>>> series to fix drivers/i2c/[1], fix the terminology for users of
+>>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>>>>> in the specification.
+>>>>
+>>>> gma500 and i915 changes should be split. See MAINTAINERS.
+>>>>
+>>>> Might also split the i915 changes to smaller pieces, it's kind of
+>>>> random. And the changes here are not strictly related to I2C AFAICT, so
+>>>> the commit message should be updated.
+>>>>
+>>>> BR,
+>>>> Jani.
+>>>>
+>>>>
+>>>
+>>> <snip>
+>>>
+>>> I will split gma500 and i915 into their respective patches if possible in v2.
+>>>
+>>> Can you say more about the changes being "not strictly related to I2C"? My
+>>> heuristic was to grep for master/slave, and look in the surrounding context for
+>>> i2c-related terminology (i2c_pin, 7-bit address, struct i2c_adapter, i2c_bus, etc)
+>>> to confirm that they are i2c-related, then following the references around to
+>>> make the compiler happy. For e.g., I did not change the many references to bigjoiner
+>>> master and slave because I understood from context they were not i2c references.
+>>>
+>>> A couple examples would help me restrict the changes to I2C, since as mentioned in the
+>>> discussion on Wolfram's thread, there are places where migrating away from master/slave
+>>> terms in the code would conflict with the original technical manuals and reduce correlation
+>>> and understanding of the code.
+>> 
+>> I guess I was looking at the VBT changes in intel_bios.c. Granted, they
+>> do end up being used as i2c addresses. No big deal.
+>> 
+>> I think I'd expect the treewide i2c adapter changes to land first, via
+>> i2c, and subsequent cleanups to happen next, via individual driver
+>> trees. There's quite a bit of conflict potential merging this outside of
+>> drm-intel-next, and there's really no need for that.
+>> 
+>> BR,
+>> Jani.
+>> 
 >
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Great! Just so I'm clear, do you still want the i915 changes split up more, along with them being
+> split off from gma500?
 
-Thanks!
-
-> ... but what's the purpose of the duplication?  How one is supposed to
-> use the dmc_firmware with e.g. LNL + BMG? Setting it later via debugfs
-> doesn=C2=B4t change the behavior. AFAIR this was done to support multiple
-> devices, but I don't think it achieves its purpose or I'm missing
-> something.
->
-> By leaving a param writable and not duplicate it at all, we are at
-> least be allowed to:
->
-> 1) disable autoprobe
-> 2) load module
-> 3) bind do LNL
-> 4) set dmc_firmware param
-> 5) bind to BMG
->
-> Yeah, it's manual and not intuitive, but should only be used by
-> developers with targeted debug.  How would we do something like that
-> with the current code?
->
-> I know that for params via sysfs, it's impossible to get them back to
-> NULL, so I think we should make sure NULL and empty is handled the same
-> way. Getting it back to empty is hard enough but at least possible (see
-> https://lore.kernel.org/igt-dev/20240228223134.3908035-4-lucas.demarchi@i=
-ntel.com/),
-> but I think this is not the case for debugfs.
-
-There are a lot of angles to this. :)
-
-First of all, I think when we do copy the params, they should be
-preserved as they were, instead of changed. This patch fixes this part,
-and the bug that currently disables DMC altogether.
-
-We do copies for a few reasons. From module params to device params, and
-from device params to error capture.
-
-I agree that making a distinction between an unset parameter and a
-parameter set to NULL is probably a mistake, because as you mention it's
-not feasible to go back to NULL. In this case, NULL means default and ""
-means disabled. No way to go back to default.
-
-For params that only make sense at probe, we should perhaps leave the
-module parameter writable, and the device parameter read only. Even in
-this case, the duplication is a feature and makes sense: you can modify
-the module parameter, but it only makes a difference to devices bound
-after the change. For devices already bound, you can look up the value
-that was used from debugfs.
+If we can merge the i915 changes via drm-intel-next, it's probably fine
+as a big i915 patch. Just the gma500 separated. (The struct
+i2c_algorithm change etc. necessarily has to go via I2C tree of course.)
 
 BR,
 Jani.
 
 
 
---=20
+>
+> Thanks,
+> Easwar
+
+-- 
 Jani Nikula, Intel
