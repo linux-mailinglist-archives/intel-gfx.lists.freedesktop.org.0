@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C2B8955C9
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 15:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 662788955CA
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 15:52:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED77310FD43;
-	Tue,  2 Apr 2024 13:52:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA56F10FD44;
+	Tue,  2 Apr 2024 13:52:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VsfD+HnA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKN1I7RD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E054E10FD43
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 13:52:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F80F10FD44
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 13:52:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712065924; x=1743601924;
+ t=1712065927; x=1743601927;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kxpIC3G2ni12Yh9flkhC9o69FWe96ISTAA64oOTZXqA=;
- b=VsfD+HnAAzNA0PwqHuSCNiG8+5POniu1fYlFc9KQknN5JH7H/GAen1AM
- c7yECcg+g4xascHg6ldjfZU7XqLBh4Ap26U1bnCkTJqmsoADvJqXXJLpd
- 1geJK+7ERlF3hFHdYcBAigQgiIZ7zHl0yej0DRsX506EjqMdJWhAE4BRX
- PN+xGbNq1i0Gr0aaG9gEpcp+lGAi2qv8VK6phbWiUsAXWeog919WVoawz
- NbM3XljQraElr3J0SXMJyokSHtkDe2Wg35NQDwtf/GG7MdIQQKb9Itcxe
- iClFFID/tV751NIX24IkCLroE3fp3HEilBrEgo7vIfv/Js1eBqZ0IWkls Q==;
-X-CSE-ConnectionGUID: iQYugD5FSvG2cH3euKVAvg==
-X-CSE-MsgGUID: gzVEdbecQVi0ihTRMMhhNg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17804654"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17804654"
+ bh=x95UAUf+AYChtid+8rgSdpZmyKaWyWfe4x1j70qAnuY=;
+ b=PKN1I7RDU0yS0DwBbMc8sobQ44wYUJsM6VXQYJ69gNmNX8qBk71jS1Y2
+ 2u/9qdIo/GZFEuQ+trf9mBM23S4oThsfQbBGdEpRaBrJXHe+RsXQt1QEY
+ fJkt8A6A6yJ89THFY/cPzi64Z1vbcfDxFFaEJBMZWasPwfAe+PlfyOkj8
+ AEF9DGN12EyX0mTYUb7fvoIGX5A0FTUaHggv4iXAWadogMpEId+LlyFhy
+ vzXkN118sNcPCTL5XUb8J4qzNWjYQEl70Vi5pBzvSA7BHGdNg8qyq5iTP
+ HOK9FPu/qqm7Dz5hi/VtvyRB2DcqXfJhwP7OUBorAU2pU2epePz6BHVVE Q==;
+X-CSE-ConnectionGUID: fYjRTqi8TPmj1KqUCaNJVA==
+X-CSE-MsgGUID: D2ffH4QKRcSALYOzihq5UQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17804662"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17804662"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 06:52:03 -0700
+ 02 Apr 2024 06:52:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789394"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789394"
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789397"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789397"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 06:52:01 -0700
+ by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 06:52:04 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 Apr 2024 16:52:01 +0300
+ Tue, 02 Apr 2024 16:52:04 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Subject: [PATCH 4/7] drm/i915: Extract glk_need_scaler_clock_gating_wa()
-Date: Tue,  2 Apr 2024 16:51:45 +0300
-Message-ID: <20240402135148.23011-5-ville.syrjala@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH 5/7] drm/i915/mst: Limit MST+DSC to TGL+
+Date: Tue,  2 Apr 2024 16:51:46 +0300
+Message-ID: <20240402135148.23011-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
 References: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
@@ -70,63 +70,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Simplify our life by extracting the "do we need the glk scaler
-clock gating w/a?" check into a small helper.
+The MST code currently assumes that glk+ already supports MST+DSC,
+which is incorrect. We need to check for TGL+ actually. ICL does
+support SST+DSC, but supposedly it can't do MST+FEC which will
+also rule MST+DSC.
 
-Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Note that a straight TGL+ check doesn't work here because DSC
+support can get fused out, so we do need to also check 'has_dsc'.
+
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c         | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8f9d1a9caba2..02c377f61ed5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1551,6 +1551,14 @@ static void ilk_crtc_enable(struct intel_atomic_state *state,
- 	intel_set_pch_fifo_underrun_reporting(dev_priv, pipe, true);
- }
- 
-+/* Display WA #1180: WaDisableScalarClockGating: glk */
-+static bool glk_need_scaler_clock_gating_wa(const struct intel_crtc_state *crtc_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+
-+	return DISPLAY_VER(i915) == 10 && crtc_state->pch_pfit.enabled;
-+}
-+
- static void glk_pipe_scaler_clock_gating_wa(struct intel_crtc *crtc, bool enable)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-@@ -1635,7 +1643,6 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
- 	enum pipe hsw_workaround_pipe;
--	bool psl_clkgate_wa;
- 
- 	if (drm_WARN_ON(&dev_priv->drm, crtc->active))
- 		return;
-@@ -1668,10 +1675,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	crtc->active = true;
- 
--	/* Display WA #1180: WaDisableScalarClockGating: glk */
--	psl_clkgate_wa = DISPLAY_VER(dev_priv) == 10 &&
--		new_crtc_state->pch_pfit.enabled;
--	if (psl_clkgate_wa)
-+	if (glk_need_scaler_clock_gating_wa(new_crtc_state))
- 		glk_pipe_scaler_clock_gating_wa(crtc, true);
- 
- 	if (DISPLAY_VER(dev_priv) >= 9)
-@@ -1702,7 +1706,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	intel_encoders_enable(state, crtc);
- 
--	if (psl_clkgate_wa) {
-+	if (glk_need_scaler_clock_gating_wa(new_crtc_state)) {
- 		intel_crtc_wait_for_next_vblank(crtc);
- 		glk_pipe_scaler_clock_gating_wa(crtc, false);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index fe4268813786..9b1bce2624b9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -47,6 +47,7 @@ struct drm_printer;
+ #define HAS_DPT(i915)			(DISPLAY_VER(i915) >= 13)
+ #define HAS_DSB(i915)			(DISPLAY_INFO(i915)->has_dsb)
+ #define HAS_DSC(__i915)			(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
++#define HAS_DSC_MST(__i915)		(DISPLAY_VER(__i915) >= 12 && HAS_DSC(__i915))
+ #define HAS_FBC(i915)			(DISPLAY_RUNTIME_INFO(i915)->fbc_mask != 0)
+ #define HAS_FPGA_DBG_UNCLAIMED(i915)	(DISPLAY_INFO(i915)->has_fpga_dbg)
+ #define HAS_FW_BLC(i915)		(DISPLAY_VER(i915) >= 3)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 1405ab5e3acc..6497542e3e65 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1349,7 +1349,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+ 		return 0;
  	}
+ 
+-	if (DISPLAY_VER(dev_priv) >= 10 &&
++	if (HAS_DSC_MST(dev_priv) &&
+ 	    drm_dp_sink_supports_dsc(intel_connector->dp.dsc_dpcd)) {
+ 		/*
+ 		 * TBD pass the connector BPC,
 -- 
 2.43.2
 
