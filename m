@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DE53894DE1
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 10:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C804F894DE9
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 10:49:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFC210FB6C;
-	Tue,  2 Apr 2024 08:47:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 390A610FB71;
+	Tue,  2 Apr 2024 08:49:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUWIK8zr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MJITJYSV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD2D710E6D5;
- Tue,  2 Apr 2024 08:47:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7CD910FB70;
+ Tue,  2 Apr 2024 08:49:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712047659; x=1743583659;
+ t=1712047757; x=1743583757;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Tyre6rYcvP3Eq9HFC41TrPn55TD3AouDxJQWhBEpHDA=;
- b=AUWIK8zr6WYaJmbfw1yljWiWRmxKQ+GBs/YfVyQI6RV44tfxxHQRcftF
- rcD1r6p0ILYkyE/xGi6pDuHowrYNa6lBxXCnHKRG2FQ06TpVAgqB0DRkj
- HNEgulr37a5Vr6hJYvt2DutsEnwxs3J1XtXT3FdU1iBNkUT0kgEy9V8gc
- AzoTpZCza8lu3On3qqS1Ebj2Dck3d02xoH8u34i8YGuJh0mkYTL4/a3WF
- OByoizj0EbEtjkgXFfG9nsqmotEheT3zs/egGbMoasGzuPbZlx4/zVW5t
- 9XCIVh/RfhlTajtk/8FWkwOZZFlmOLunUfPj1IEL3gtW7e3Y6VpT4GX25 g==;
-X-CSE-ConnectionGUID: 98+13VzYRlKYYlxpgC6CFA==
-X-CSE-MsgGUID: Wn7ZqyizSUCAh/1lAwpbjQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="18653542"
-X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="18653542"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 01:47:23 -0700
+ bh=dfoiwse3oa5e6gddCIwtXK3HtQFEaxoSIBUcdnNM9VQ=;
+ b=MJITJYSVKFdXgb0gt3rgHfVZ7paQm949ONgMBpabxWfKwAz6SG1WDPhw
+ InDpWMoRswoSHsuerhEgIEqaklX3ZXERp1Q2LT+f6vDWbzAWNcJb9fOlI
+ L4nOMpJ1KJQfyIniD+m2US9N+u10S02XwqrNBXMS9HB9RmrlAUcHpJrLF
+ 9VevAAnDryyVeEDMKgNacW+Z2Ao8aL2Wykl4Ws5EWITarZk9YWGwnPA/w
+ VhfNYCuf80OMYq8wcDE+1hh1TqdLkgui3CFl5DpQdRZ1+jov3bmCFol7m
+ F3DEPDsFj+bOZ5D6sldn3k5DjOogeqS45MJsBzvOJn+9ZqurA6NNJCbxZ Q==;
+X-CSE-ConnectionGUID: jV1rZEaCRaW2ALerZkmJOA==
+X-CSE-MsgGUID: S2cth9l/T/OXYe+hy4VmoQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="7044608"
+X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; 
+   d="scan'208";a="7044608"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 01:49:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="49223235"
+X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="49005123"
 Received: from zkatz1-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.41.111])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 01:47:21 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 01:49:14 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Gustavo
- Sousa <gustavo.sousa@intel.com>
-Subject: Re: [PATCH] drm/i915/display: move dmc_firmware_path to display params
-In-Reply-To: <3bvm45xgjhlwuwc2hhenysknzm2reaj5yn6anvyzmerpi44vgb@jjnbrf2ejnk5>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Ville Syrjala
+ <ville.syrjala@linux.intel.com>, Melissa Wen <mwen@igalia.com>
+Subject: Re: [PATCH 0/4] drm/edid & drm/i915: vendor and product id logging
+ improvements
+In-Reply-To: <cover.1711015462.git.jani.nikula@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240321161856.3517856-1-jani.nikula@intel.com>
- <87y1ablfo6.fsf@intel.com>
- <64loxwpkjgu2nf4up554hfuqd6oi2quguozom2p2gowem26rbj@rszc3ubdda6u>
- <87v85elkic.fsf@intel.com>
- <b7o4x73ht2wv6t52h44dofzu36oic3bfazfilt2o4oxuj3zxzg@rzwm4a7cro7p>
- <3bvm45xgjhlwuwc2hhenysknzm2reaj5yn6anvyzmerpi44vgb@jjnbrf2ejnk5>
-Date: Tue, 02 Apr 2024 11:47:08 +0300
-Message-ID: <8734s4f8xf.fsf@intel.com>
+References: <cover.1711015462.git.jani.nikula@intel.com>
+Date: Tue, 02 Apr 2024 11:49:00 +0300
+Message-ID: <87zfucdu9v.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,24 +69,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Mar 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> oh, now I understand. You mean that xe module doesn't have the param
-> because it's only declared in drivers/gpu/drm/i915/i915_params.c.
->
-> Could you extend the commit message with something like this?
->
-> 	The dmc_firmware_path parameter is clearly a display parameter. Move it
-> 	there so it's available to both i915 and xe modules ....
->
-> thanks
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+On Thu, 21 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Jani Nikula (4):
+>   drm/edid: add drm_edid_get_product_id()
+>   drm/edid: add drm_edid_print_product_id()
+>   drm/i915/bios: switch to struct drm_edid and struct
+>     drm_edid_product_id
+>   drm/i915/bios: return drm_edid_product_id from get_lvds_pnp_id()
 
-Thanks for the review, pushed to drm-intel-next with an amended commit
-message.
+Ping for reviews please? This should be helpful in eradicating one class
+of drm_edid_raw() uses.
 
 BR,
 Jani.
 
+
+>
+>  drivers/gpu/drm/drm_edid.c                | 50 +++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_bios.c | 49 ++++++++++------------
+>  include/drm/drm_edid.h                    | 28 ++++++++++---
+>  3 files changed, 94 insertions(+), 33 deletions(-)
 
 -- 
 Jani Nikula, Intel
