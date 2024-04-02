@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662788955CA
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 15:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D582B8955CC
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 15:52:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA56F10FD44;
-	Tue,  2 Apr 2024 13:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B3810FD48;
+	Tue,  2 Apr 2024 13:52:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKN1I7RD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IfkErna5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F80F10FD44
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 13:52:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8BC10FD47
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 13:52:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712065927; x=1743601927;
+ t=1712065930; x=1743601930;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=x95UAUf+AYChtid+8rgSdpZmyKaWyWfe4x1j70qAnuY=;
- b=PKN1I7RDU0yS0DwBbMc8sobQ44wYUJsM6VXQYJ69gNmNX8qBk71jS1Y2
- 2u/9qdIo/GZFEuQ+trf9mBM23S4oThsfQbBGdEpRaBrJXHe+RsXQt1QEY
- fJkt8A6A6yJ89THFY/cPzi64Z1vbcfDxFFaEJBMZWasPwfAe+PlfyOkj8
- AEF9DGN12EyX0mTYUb7fvoIGX5A0FTUaHggv4iXAWadogMpEId+LlyFhy
- vzXkN118sNcPCTL5XUb8J4qzNWjYQEl70Vi5pBzvSA7BHGdNg8qyq5iTP
- HOK9FPu/qqm7Dz5hi/VtvyRB2DcqXfJhwP7OUBorAU2pU2epePz6BHVVE Q==;
-X-CSE-ConnectionGUID: fYjRTqi8TPmj1KqUCaNJVA==
-X-CSE-MsgGUID: D2ffH4QKRcSALYOzihq5UQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17804662"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17804662"
+ bh=6y94Au0dKoiD+Lzob3pMYSPvdFeKWhSKorw4wVvHPtI=;
+ b=IfkErna52OGwHBZ57qNbZxN2b1HHEBpjHY7F7ur4wt1VRZ3kfvXn9tzr
+ anxz82OX+yHDh7NsVE5tcFQSXB4IM7s0cJiU2lobdNgb+eXpKnb9Oma7c
+ 1w+SOmcJzK2Y+TEqZqJNMEnpQRcIL132i2/Kjvuuxm6yZpz+hlXcq2B0F
+ zPk7Da+ersCBlQkGEc9HnNtCWWkYpHySLu6fWUgJMEgEOS+8NKszkdl0y
+ a4pUxw89aRjVW5VKTV+NEOkbsqP4wKH62wg4+ihljMVtfdxGwid7O8YCF
+ l+vJItyF5wOlnN0/LlIWehYYPpkaCta6siYw4IjtxW9WFjQtJB46DiA9Y g==;
+X-CSE-ConnectionGUID: oKJd7QSUSDyMnovaLOofqQ==
+X-CSE-MsgGUID: pB0hAZwoSAu8txrX3k2vDg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17804670"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17804670"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 06:52:07 -0700
+ 02 Apr 2024 06:52:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789397"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789397"
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789400"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789400"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 06:52:04 -0700
+ by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 06:52:07 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 Apr 2024 16:52:04 +0300
+ Tue, 02 Apr 2024 16:52:07 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 5/7] drm/i915/mst: Limit MST+DSC to TGL+
-Date: Tue,  2 Apr 2024 16:51:46 +0300
-Message-ID: <20240402135148.23011-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 6/7] drm/i915/mst: Reject FEC+MST on ICL
+Date: Tue,  2 Apr 2024 16:51:47 +0300
+Message-ID: <20240402135148.23011-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
 References: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
@@ -70,46 +70,28 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The MST code currently assumes that glk+ already supports MST+DSC,
-which is incorrect. We need to check for TGL+ actually. ICL does
-support SST+DSC, but supposedly it can't do MST+FEC which will
-also rule MST+DSC.
-
-Note that a straight TGL+ check doesn't work here because DSC
-support can get fused out, so we do need to also check 'has_dsc'.
+ICL supposedly doesn't support FEC on MST. Reject it.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c         | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index fe4268813786..9b1bce2624b9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -47,6 +47,7 @@ struct drm_printer;
- #define HAS_DPT(i915)			(DISPLAY_VER(i915) >= 13)
- #define HAS_DSB(i915)			(DISPLAY_INFO(i915)->has_dsb)
- #define HAS_DSC(__i915)			(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
-+#define HAS_DSC_MST(__i915)		(DISPLAY_VER(__i915) >= 12 && HAS_DSC(__i915))
- #define HAS_FBC(i915)			(DISPLAY_RUNTIME_INFO(i915)->fbc_mask != 0)
- #define HAS_FPGA_DBG_UNCLAIMED(i915)	(DISPLAY_INFO(i915)->has_fpga_dbg)
- #define HAS_FW_BLC(i915)		(DISPLAY_VER(i915) >= 3)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 1405ab5e3acc..6497542e3e65 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1349,7 +1349,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 		return 0;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 819f3234de03..a11bc4fd3d65 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1418,7 +1418,8 @@ static bool intel_dp_source_supports_fec(struct intel_dp *intel_dp,
+ 	if (DISPLAY_VER(dev_priv) >= 12)
+ 		return true;
  
--	if (DISPLAY_VER(dev_priv) >= 10 &&
-+	if (HAS_DSC_MST(dev_priv) &&
- 	    drm_dp_sink_supports_dsc(intel_connector->dp.dsc_dpcd)) {
- 		/*
- 		 * TBD pass the connector BPC,
+-	if (DISPLAY_VER(dev_priv) == 11 && encoder->port != PORT_A)
++	if (DISPLAY_VER(dev_priv) == 11 && encoder->port != PORT_A &&
++	    !intel_crtc_has_type(pipe_config, INTEL_OUTPUT_DP_MST))
+ 		return true;
+ 
+ 	return false;
 -- 
 2.43.2
 
