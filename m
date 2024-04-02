@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB4B8958C0
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 17:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B8E8958C2
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 17:50:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF4A110FE12;
-	Tue,  2 Apr 2024 15:50:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAFB310FE14;
+	Tue,  2 Apr 2024 15:50:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2ASfo2q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jqG2fJ4r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE3BF10FE12
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 15:50:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32FE210FE13
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 15:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712073039; x=1743609039;
+ t=1712073042; x=1743609042;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y91i1UfaKnsGRL7qk20f97qitLYdXqaAjfzrFQE6arM=;
- b=d2ASfo2qlqoThCK9CQGVm5pUtUXCnAR8OQNnTCmfqmwPm1H7Ju6xqAmT
- eNyNn0S4JhFUE4dxkC65k+VmCB4ExyFPyPf/RV/HPC6zz6gWv8oiFX915
- einjEqeAYDLr8rG+yCcu55kpJWwIm8ui7hs4aZr+8bXdVZv1ctCIjfV3y
- mKHzVFG6rM18qvzBtpYs4NRY8aWvb3e3amia0nJAHcOFHSr1BsdEcmRqO
- NHKMuJile/z8iz3A0cfYT1zIeCN06FnmCkkwM7jj/llYTzzZ0Vih8BGKE
- ZJQcwc8bVnJy9m6Z1OymBmiLZv2tJ06Ut24d0MsJhsrHjm718MFh3GF2g g==;
-X-CSE-ConnectionGUID: 7KiMVQWmT5iANzkAcpssvA==
-X-CSE-MsgGUID: uAW1F/z9QECtWicDtMwA0g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17980838"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17980838"
+ bh=QssuWbspnk5imGmb9evLxkuhU3dQwb3qUoXhC31uFxE=;
+ b=jqG2fJ4rYSiyO+BVfHUJX6eLScIUxS7GolpLTaizXFVJQJ4lluiMHKVL
+ 45OKmpq/JSRyJq4wfZBfF7DtjpSoAwXK1L6lnuTxfOpI2XuC1GeWtVqGR
+ Pgv1jhomsKCq2WMzNn2bBpBY91/DWCaghntbmDZB0I+mpQHmCJ7RVzXi2
+ WyvahjCM/yEOrYjjOijXF+Sg3+8qG3FPLzS83EBMD+0TyZ0R/rcKIgHfR
+ c3jU4SLP7Z1O7+znK1aSg2GdErgVm+oRVTiom3gShgCejcL/bYLwE50x7
+ ynt9jra/ej88e3nhjJLeA6bZQkogcND0HImWuPEZpEhS5ZGxm0fF3RSt2 w==;
+X-CSE-ConnectionGUID: m3ju7uFTT7a7bXJfufqETw==
+X-CSE-MsgGUID: Lihl7SNuR4SV2v+U9SEDtQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17980842"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17980842"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 08:50:38 -0700
+ 02 Apr 2024 08:50:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789474"
-X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789474"
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789477"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789477"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 08:50:36 -0700
+ by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 08:50:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 Apr 2024 18:50:35 +0300
+ Tue, 02 Apr 2024 18:50:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Uma Shankar <uma.shankar@intel.com>,
  Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v2 06/14] drm/i915: Relocate intel_mbus_dbox_update()
-Date: Tue,  2 Apr 2024 18:50:08 +0300
-Message-ID: <20240402155016.13733-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 07/14] drm/i915: Extract intel_dbuf_mbus_join_update()
+Date: Tue,  2 Apr 2024 18:50:09 +0300
+Message-ID: <20240402155016.13733-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240402155016.13733-1-ville.syrjala@linux.intel.com>
 References: <20240402155016.13733-1-ville.syrjala@linux.intel.com>
@@ -71,201 +71,75 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_mbus_dbox_update() will become static soon. Relocate it
-into a place that avoids having to add a forward declaration
-for it.
+Extact the stuff that writes the joining bits in MBUS_CTL
+into its own function. Will help with correctly sequencing
+the operations done during mbus programming.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 166 +++++++++----------
- 1 file changed, 83 insertions(+), 83 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 37 +++++++++++++-------
+ 1 file changed, 25 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index f582992592c1..6bd3fec0aa56 100644
+index 6bd3fec0aa56..f7e03078bd43 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3540,6 +3540,89 @@ int intel_dbuf_init(struct drm_i915_private *i915)
- 	return 0;
+@@ -3653,21 +3653,12 @@ void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915, u8 ratio
+ 			     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
  }
  
-+static bool xelpdp_is_only_pipe_per_dbuf_bank(enum pipe pipe, u8 active_pipes)
-+{
-+	switch (pipe) {
-+	case PIPE_A:
-+		return !(active_pipes & BIT(PIPE_D));
-+	case PIPE_D:
-+		return !(active_pipes & BIT(PIPE_A));
-+	case PIPE_B:
-+		return !(active_pipes & BIT(PIPE_C));
-+	case PIPE_C:
-+		return !(active_pipes & BIT(PIPE_B));
-+	default: /* to suppress compiler warning */
-+		MISSING_CASE(pipe);
-+		break;
-+	}
-+
-+	return false;
+-/*
+- * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
+- * update the request state of all DBUS slices.
+- */
+-static void update_mbus_pre_enable(struct intel_atomic_state *state)
++static void intel_dbuf_mbus_join_update(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
++	const struct intel_dbuf_state *new_dbuf_state =
++		intel_atomic_get_new_dbuf_state(state);
+ 	u32 mbus_ctl;
+-	const struct intel_dbuf_state *old_dbuf_state =
+-		intel_atomic_get_old_dbuf_state(state);
+-	const struct intel_dbuf_state *new_dbuf_state =
+-		intel_atomic_get_new_dbuf_state(state);
+-
+-	if (!HAS_MBUS_JOINING(i915))
+-		return;
+ 
+ 	/*
+ 	 * TODO: Implement vblank synchronized MBUS joining changes.
+@@ -3683,6 +3674,28 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
+ 	intel_de_rmw(i915, MBUS_CTL,
+ 		     MBUS_HASHING_MODE_MASK | MBUS_JOIN |
+ 		     MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
 +}
 +
-+void intel_mbus_dbox_update(struct intel_atomic_state *state)
++/*
++ * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
++ * update the request state of all DBUS slices.
++ */
++static void update_mbus_pre_enable(struct intel_atomic_state *state)
 +{
 +	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
-+	const struct intel_crtc *crtc;
-+	u32 val = 0;
++	const struct intel_dbuf_state *old_dbuf_state =
++		intel_atomic_get_old_dbuf_state(state);
++	const struct intel_dbuf_state *new_dbuf_state =
++		intel_atomic_get_new_dbuf_state(state);
 +
-+	if (DISPLAY_VER(i915) < 11)
++	if (!HAS_MBUS_JOINING(i915))
 +		return;
 +
-+	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
-+	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
-+	if (!new_dbuf_state ||
-+	    (new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
-+	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
-+		return;
-+
-+	if (DISPLAY_VER(i915) >= 14)
-+		val |= MBUS_DBOX_I_CREDIT(2);
-+
-+	if (DISPLAY_VER(i915) >= 12) {
-+		val |= MBUS_DBOX_B2B_TRANSACTIONS_MAX(16);
-+		val |= MBUS_DBOX_B2B_TRANSACTIONS_DELAY(1);
-+		val |= MBUS_DBOX_REGULATE_B2B_TRANSACTIONS_EN;
-+	}
-+
-+	if (DISPLAY_VER(i915) >= 14)
-+		val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(12) :
-+						     MBUS_DBOX_A_CREDIT(8);
-+	else if (IS_ALDERLAKE_P(i915))
-+		/* Wa_22010947358:adl-p */
-+		val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(6) :
-+						     MBUS_DBOX_A_CREDIT(4);
-+	else
-+		val |= MBUS_DBOX_A_CREDIT(2);
-+
-+	if (DISPLAY_VER(i915) >= 14) {
-+		val |= MBUS_DBOX_B_CREDIT(0xA);
-+	} else if (IS_ALDERLAKE_P(i915)) {
-+		val |= MBUS_DBOX_BW_CREDIT(2);
-+		val |= MBUS_DBOX_B_CREDIT(8);
-+	} else if (DISPLAY_VER(i915) >= 12) {
-+		val |= MBUS_DBOX_BW_CREDIT(2);
-+		val |= MBUS_DBOX_B_CREDIT(12);
-+	} else {
-+		val |= MBUS_DBOX_BW_CREDIT(1);
-+		val |= MBUS_DBOX_B_CREDIT(8);
-+	}
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
-+		u32 pipe_val = val;
-+
-+		if (DISPLAY_VER(i915) >= 14) {
-+			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
-+							      new_dbuf_state->active_pipes))
-+				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
-+			else
-+				pipe_val |= MBUS_DBOX_BW_4CREDITS_MTL;
-+		}
-+
-+		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), pipe_val);
-+	}
-+}
-+
- int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state, u8 ratio)
- {
- 	struct intel_dbuf_state *dbuf_state;
-@@ -3657,89 +3740,6 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
- 				new_dbuf_state->enabled_slices);
- }
++	/*
++	 * TODO: Implement vblank synchronized MBUS joining changes.
++	 * Must be properly coordinated with dbuf reprogramming.
++	 */
++	intel_dbuf_mbus_join_update(state);
  
--static bool xelpdp_is_only_pipe_per_dbuf_bank(enum pipe pipe, u8 active_pipes)
--{
--	switch (pipe) {
--	case PIPE_A:
--		return !(active_pipes & BIT(PIPE_D));
--	case PIPE_D:
--		return !(active_pipes & BIT(PIPE_A));
--	case PIPE_B:
--		return !(active_pipes & BIT(PIPE_C));
--	case PIPE_C:
--		return !(active_pipes & BIT(PIPE_B));
--	default: /* to suppress compiler warning */
--		MISSING_CASE(pipe);
--		break;
--	}
--
--	return false;
--}
--
--void intel_mbus_dbox_update(struct intel_atomic_state *state)
--{
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
--	const struct intel_crtc *crtc;
--	u32 val = 0;
--
--	if (DISPLAY_VER(i915) < 11)
--		return;
--
--	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
--	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
--	if (!new_dbuf_state ||
--	    (new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
--	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
--		return;
--
--	if (DISPLAY_VER(i915) >= 14)
--		val |= MBUS_DBOX_I_CREDIT(2);
--
--	if (DISPLAY_VER(i915) >= 12) {
--		val |= MBUS_DBOX_B2B_TRANSACTIONS_MAX(16);
--		val |= MBUS_DBOX_B2B_TRANSACTIONS_DELAY(1);
--		val |= MBUS_DBOX_REGULATE_B2B_TRANSACTIONS_EN;
--	}
--
--	if (DISPLAY_VER(i915) >= 14)
--		val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(12) :
--						     MBUS_DBOX_A_CREDIT(8);
--	else if (IS_ALDERLAKE_P(i915))
--		/* Wa_22010947358:adl-p */
--		val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(6) :
--						     MBUS_DBOX_A_CREDIT(4);
--	else
--		val |= MBUS_DBOX_A_CREDIT(2);
--
--	if (DISPLAY_VER(i915) >= 14) {
--		val |= MBUS_DBOX_B_CREDIT(0xA);
--	} else if (IS_ALDERLAKE_P(i915)) {
--		val |= MBUS_DBOX_BW_CREDIT(2);
--		val |= MBUS_DBOX_B_CREDIT(8);
--	} else if (DISPLAY_VER(i915) >= 12) {
--		val |= MBUS_DBOX_BW_CREDIT(2);
--		val |= MBUS_DBOX_B_CREDIT(12);
--	} else {
--		val |= MBUS_DBOX_BW_CREDIT(1);
--		val |= MBUS_DBOX_B_CREDIT(8);
--	}
--
--	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
--		u32 pipe_val = val;
--
--		if (DISPLAY_VER(i915) >= 14) {
--			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
--							      new_dbuf_state->active_pipes))
--				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
--			else
--				pipe_val |= MBUS_DBOX_BW_4CREDITS_MTL;
--		}
--
--		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), pipe_val);
--	}
--}
--
- static int skl_watermark_ipc_status_show(struct seq_file *m, void *data)
- {
- 	struct drm_i915_private *i915 = m->private;
+ 	if (DISPLAY_VER(i915) >= 20 &&
+ 	    old_dbuf_state->mdclk_cdclk_ratio != new_dbuf_state->mdclk_cdclk_ratio) {
 -- 
 2.43.2
 
