@@ -2,64 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 221408952BC
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 14:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2998955C5
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Apr 2024 15:51:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE5BB10E2A0;
-	Tue,  2 Apr 2024 12:17:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 588EF10FD40;
+	Tue,  2 Apr 2024 13:51:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ISq90M2e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aL+8Ak3f";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BACEF10E2A0
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 12:17:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13E1E10FD40
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Apr 2024 13:51:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712060257; x=1743596257;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=c7MXbiOJTYQFyQ0POvr9mmc8fwI7hx6Bk64GQ+JFJr4=;
- b=ISq90M2eADwHMQ04xBeEjnV9xvSuQlbVWNpp/fJFh20gHIWBb1t0EzdO
- aaD33eVU39EcOwjT+8UfifvJtrJl6CLZ15m5ZEptzZV/Ne3ZPsnscWsOB
- Oli1DAklhxSsELrNe1LP/zBWS2fZyJmh1ILgk2Giqn5Oq04AiVTC9g15Z
- xyqbH6kRjZoHTiGr/NwibYEWdf09XAZhUjPEx7S/JQnoP3u+y/o9lKSSm
- 7C8JpWT2FkT1i+hu1FcdUH1wqLq7lR01UKCKv4f1071M/kbAAC9B4KFm3
- P0D9g3zQGp971HyPpdLoHrCjuSS45ibos8dltf2MCLWHr6yo6EIWGZev+ Q==;
-X-CSE-ConnectionGUID: 1lLhbi/tTu68/LpCcqeT6w==
-X-CSE-MsgGUID: +TRZztbZQ2WMw/s3U2uVSg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11031"; a="17843735"
-X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="17843735"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 05:17:36 -0700
-X-CSE-ConnectionGUID: kdmbZkDSTpWmCOrEZXhVnw==
-X-CSE-MsgGUID: oXwBGH5fS0WdAxuqsNP6yA==
+ t=1712065912; x=1743601912;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/446t1oQQPj6AOXEYvjpWqZrG2pFWnxYq1ltbTSL5Lc=;
+ b=aL+8Ak3fsSXHc/o8Z71GzClqDBcBdgOAFNouCl48X6ZaQavQoTHFF3Sb
+ L/KuGah0NI6O2vZbomLEDGldlfAfA3KXEz37EQRtxindNQNtz/KgJp1Bm
+ vINJJYbP4bj36QiQ+SELMlpcDtLH/IrjPXiMbLjy0+8z94fBNfvF6g2Y1
+ BdqP8cd/c5U/M9bhX3xTbo8tNKPyoC64gKeIDWf2vVTP8NeX1KF7w2yfY
+ k4PuB9PJ1P9/qfJd9M4ZtrdRcRFUI3EvC23/uHPWAURDBjersupv+GxS7
+ UrKavPzK065/V2N0coWmnp3457gtp+fZlKsnkfma4YrzSfHAQOOw6tKN4 g==;
+X-CSE-ConnectionGUID: hkAFj2G5RTWdqh9Z49mIpQ==
+X-CSE-MsgGUID: GSwHfMS9SVKCcJixo9S/9g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="17804629"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="17804629"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2024 06:51:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,174,1708416000"; d="scan'208";a="18137248"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2024 05:17:35 -0700
-Date: Tue, 2 Apr 2024 15:18:05 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Manasi Navare <navaremanasi@chromium.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 05/11] drm/i915/dp_mst: Account with the DSC DPT bpp
- limit on MTL
-Message-ID: <Zgv3IdFcw4pCLomx@ideak-desk.fi.intel.com>
-References: <20240320201152.3487892-1-imre.deak@intel.com>
- <20240320201152.3487892-6-imre.deak@intel.com>
- <32c89f1b-852b-4d49-8439-45fddc80c5db@intel.com>
- <ZgK7YZnmwJBGcKsF@ideak-desk.fi.intel.com>
- <9b4dc2d9-f110-4585-8968-87eb8d605af4@intel.com>
- <CAE72mNmnKc84dCZtNJWEoQXMq4j+m-0ohOdfiBZea4aqb9kWWA@mail.gmail.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="827789380"
+X-IronPort-AV: E=Sophos;i="6.07,175,1708416000"; d="scan'208";a="827789380"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 02 Apr 2024 06:51:49 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 02 Apr 2024 16:51:48 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/7] drm/i915: Bigjoiner prep work
+Date: Tue,  2 Apr 2024 16:51:41 +0300
+Message-ID: <20240402135148.23011-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE72mNmnKc84dCZtNJWEoQXMq4j+m-0ohOdfiBZea4aqb9kWWA@mail.gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,82 +62,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 29, 2024 at 11:39:39AM -0700, Manasi Navare wrote:
-> Hi Imre,
-> 
-> While we are adding these checks here for DSC for MST, I see that in
-> intel_dp_mst_mode_valid_ctx() we still check against DISPLAY_VER() >
-> 10 for checking for DSC where as in all other places we rely on
-> runtime has_dsc and check for HAS_DSC(), can we fix that and use
-> HAS_DSC() in this function as well as part of this series that in
-> general fixes some DSC issues?
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The check in intel_dp_mst_check_constraints() this patch changes is not
-about whether a platform supports DSC or not, rather if the platform has
-a DSC/DPT interface limit that needs to be checked. The caller has
-already determined that DSC is supported by the platform and it's needed
-for the given mode being computed (dsc==true).
+An extract of the large bigjoiner series, containing:
+- the pure refactoring patches not directly related to bigjoiner
+- Reject MST+DSC/FEC on ICL
+- tweak the debugfs i915_bigjoiner_force_enable file
+  (needs corresponding IGT changes).
 
-> 
-> Manasi
-> 
-> On Tue, Mar 26, 2024 at 5:59 AM Nautiyal, Ankit K
-> <ankit.k.nautiyal@intel.com> wrote:
-> >
-> >
-> > On 3/26/2024 5:41 PM, Imre Deak wrote:
-> > > On Tue, Mar 26, 2024 at 03:47:05PM +0530, Nautiyal, Ankit K wrote:
-> > >> On 3/21/2024 1:41 AM, Imre Deak wrote:
-> > >>> The DPT/DSC bpp limit should be accounted for on MTL platforms as well,
-> > >>> do so.
-> > >>>
-> > >>> Bspec: 49259
-> > >>>
-> > >>> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > >>> ---
-> > >>>    drivers/gpu/drm/i915/display/intel_dp_mst.c | 2 +-
-> > >>>    1 file changed, 1 insertion(+), 1 deletion(-)
-> > >>>
-> > >>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >>> index 79f34be5c89da..40660dc5edb45 100644
-> > >>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > >>> @@ -56,7 +56,7 @@ static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp
-> > >>>                                       struct intel_crtc_state *crtc_state,
-> > >>>                                       bool dsc)
-> > >>>    {
-> > >>> -   if (intel_dp_is_uhbr(crtc_state) && DISPLAY_VER(i915) < 14 && dsc) {
-> > >> Should this be DISPLAY_VER() <= 14 to include MTL?
-> > > The actual change is the DISPLAY_VER() < 20 below, which is the usual
-> > > way in the driver (AFAIU) to check for an upper bound.
-> >
-> > Makes sense.
-> >
-> > >
-> > >> For DISPLAY_VER 20, is there another check?
-> > >>
-> > >> in Bspec:68912 it mentions output bpp * pixel clock < DDICLK * 144 bits
-> > > Yes LNL is different, but there this DPT limit should never be a
-> > > bottleneck. Ville has an idea to abstract this more, but this patchset
-> > > keeps things as-is, skipping the check on LNL+.
-> >
-> > Agreed. Bspec indeed mentions the same thing, and its mentioned
-> > appropriately in the next patch.
-> >
-> > Regards,
-> >
-> > Ankit
-> >
-> > >
-> > >> Regards,
-> > >>
-> > >> Ankit
-> > >>
-> > >>> +   if (intel_dp_is_uhbr(crtc_state) && DISPLAY_VER(i915) < 20 && dsc) {
-> > >>>             int output_bpp = bpp;
-> > >>>             int symbol_clock = intel_dp_link_symbol_clock(crtc_state->port_clock);
-> > >>>             int available_bw = mul_u32_u32(symbol_clock * 72,
+Test-with: 20240402054231.1499492-1-kunal1.joshi@intel.com
+
+Ville Syrjälä (7):
+  drm/i915: Remove DRM_MODE_FLAG_DBLSCAN checks from .mode_valid() hooks
+  drm/i915: Shuffle DP .mode_valid() checks
+  drm/i915: Clean up glk_pipe_scaler_clock_gating_wa()
+  drm/i915: Extract glk_need_scaler_clock_gating_wa()
+  drm/i915/mst: Limit MST+DSC to TGL+
+  drm/i915/mst: Reject FEC+MST on ICL
+  drm/i915: Use debugfs_create_bool() for "i915_bigjoiner_force_enable"
+
+ drivers/gpu/drm/i915/display/intel_crt.c      |  3 --
+ drivers/gpu/drm/i915/display/intel_display.c  | 35 +++++++--------
+ .../drm/i915/display/intel_display_debugfs.c  | 44 +------------------
+ .../drm/i915/display/intel_display_device.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  9 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 22 ++++------
+ drivers/gpu/drm/i915/display/intel_dsi.c      |  3 --
+ drivers/gpu/drm/i915/display/intel_dvo.c      |  3 --
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  3 --
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  3 --
+ drivers/gpu/drm/i915/display/intel_tv.c       |  3 --
+ 11 files changed, 33 insertions(+), 96 deletions(-)
+
+-- 
+2.43.2
+
