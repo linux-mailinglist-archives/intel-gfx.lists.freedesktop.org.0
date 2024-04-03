@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810FA896E1F
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9062896E20
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:23:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3F7112A23;
-	Wed,  3 Apr 2024 11:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D763112A28;
+	Wed,  3 Apr 2024 11:23:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aHGu5ale";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iMAjGn7p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48DD9112A28;
- Wed,  3 Apr 2024 11:23:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5B59112A0F;
+ Wed,  3 Apr 2024 11:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712143416; x=1743679416;
+ t=1712143418; x=1743679418;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=16hMndU3f7cgmqlWW160e2/ZvbO6vsyI1ZbGPYrwMsg=;
- b=aHGu5aleiDiJhNw8RqJhUT4Nrs8QqiZkOQsf06Y4VL9t4NZa3tmxYTri
- uYudmJeHFu7OR/PhW3VH8FYnid+pBCdUtakw+b+6tMavRuf3TfnIPimnW
- yAJfErWXJ41XJ9Tz2EmoqGkdL7w3N8Aih7+VICVBU0vrk4OV3rC0uKj9z
- JVOrXxXYwnu1bK01AbW5xwMUMmS6qplko2EEUFXZLBcUblB6a3oPP2ttX
- TViU5CVoqGna9d/QgZOdQmIcoAeuA4xupXItott8aiuYSgpFM4GcYkRNN
- 4HPyroaKh+8yOUhn194nkxwufjcjQQ/YXdMzWbvPJ4kBsZUf+pg3WiHAD g==;
-X-CSE-ConnectionGUID: dyrTQUJNRy2T1nk3mThKsA==
-X-CSE-MsgGUID: iHP32rOLSLuNCClP7OJyDQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24824161"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24824161"
+ bh=8XSbMrwSo2yIpEiTkyTs+DAck5PZ7WZSRJbHFvUd4Nc=;
+ b=iMAjGn7pwIGTr1rU804xjSmZ0i3FkUxo7vVRjRi2fn8yLHFqLRsEZcsK
+ xaSd75tD/M4n9MSOR1BPk/d4y41E5Ysors3n2gIelHRWY0GZcji5c5np+
+ uyhNAoZTLHtVVS3aYiPx1VbXSjmrp9luw48Ek40nwR24dmSoRJcDBxn9J
+ nfO9PxrHQTedO1uNtGjYyC/gZmVk10ewtdmik0+3rLkUAWhYrrxzxSPeN
+ wFumf0bd6Bx1E2zZcet+LNxOb+Foa6TVsPvio9/FUgpu1fSgJhNcTW/uo
+ 0IaFha9mGpBmv1ZP0k901OFIYMy+N9VB7T0NvxFg4COLih96xY/FauG6L A==;
+X-CSE-ConnectionGUID: ThPgZj1dQpG4ArikZLgqJQ==
+X-CSE-MsgGUID: u4SruYMySY6brYjj/rmSeg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24824169"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24824169"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:23:36 -0700
-X-CSE-ConnectionGUID: zoEqUNCUTHyMzRsvfgi1MA==
-X-CSE-MsgGUID: ew8Iub/XTDm2eTXVoqXV0g==
+ 03 Apr 2024 04:23:38 -0700
+X-CSE-ConnectionGUID: t0lH08nYQ/CNzrIFX7rKXQ==
+X-CSE-MsgGUID: 10oseVLDSX2jM5NjqDs3xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358588"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358602"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:23:34 -0700
+ 03 Apr 2024 04:23:36 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Matthew Auld <matthew.auld@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 22/25] drm/xe/gt_print: add xe_gt_err_once()
-Date: Wed,  3 Apr 2024 16:52:50 +0530
-Message-Id: <20240403112253.1432390-23-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 23/25] drm/xe/device: implement transient flush
+Date: Wed,  3 Apr 2024 16:52:51 +0530
+Message-Id: <20240403112253.1432390-24-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
 References: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
@@ -71,31 +71,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+From: Nirmoy Das <nirmoy.das@intel.com>
 
-Needed in an upcoming patch, where we want GT level print, but only
-which to trigger once to avoid flooding dmesg.
+Display surfaces can be tagged as transient by mapping it using one of
+the various L3:XD PAT index modes on Xe2. The expectation is that KMD
+needs to request transient data flush at the start of flip sequence to
+ensure all transient data in L3 cache is flushed to memory. Add a
+routine for this which we can then call from the display code.
 
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+Co-developed-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_printk.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 ++
+ drivers/gpu/drm/xe/xe_device.c       | 52 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.h       |  2 ++
+ 3 files changed, 57 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-index c2b004d3f48e..d6228baaff1e 100644
---- a/drivers/gpu/drm/xe/xe_gt_printk.h
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -13,6 +13,9 @@
- #define xe_gt_printk(_gt, _level, _fmt, ...) \
- 	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 6617c86a096b..7afe810b3441 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -306,6 +306,9 @@
  
-+#define xe_gt_err_once(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), err_once, _fmt, ##__VA_ARGS__)
+ #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
+ 
++#define XE2_TDF_CTRL				XE_REG(0xb418)
++#define   TRANSIENT_FLUSH_REQUEST		REG_BIT(0)
 +
- #define xe_gt_err(_gt, _fmt, ...) \
- 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
+ #define XEHP_MERT_MOD_CTRL			XE_REG_MCR(0xcf28)
+ #define RENDER_MOD_CTRL				XE_REG_MCR(0xcf2c)
+ #define COMP_MOD_CTRL				XE_REG_MCR(0xcf30)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 01bd5ccf05ca..0c9769fe04f6 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -641,6 +641,58 @@ void xe_device_wmb(struct xe_device *xe)
+ 		xe_mmio_write32(gt, SOFTWARE_FLAGS_SPR33, 0);
+ }
  
++/**
++ * xe_device_td_flush() - Flush transient L3 cache entries
++ * @xe: The device
++ *
++ * Display engine has direct access to memory and is never coherent with L3/L4
++ * caches (or CPU caches), however KMD is responsible for specifically flushing
++ * transient L3 GPU cache entries prior to the flip sequence to ensure scanout
++ * can happen from such a surface without seeing corruption.
++ *
++ * Display surfaces can be tagged as transient by mapping it using one of the
++ * various L3:XD PAT index modes on Xe2.
++ *
++ * Note: On non-discrete xe2 platforms, like LNL, the entire L3 cache is flushed
++ * at the end of each submission via PIPE_CONTROL for compute/render, since SA
++ * Media is not coherent with L3 and we want to support render-vs-media
++ * usescases. For other engines like copy/blt the HW internally forces uncached
++ * behaviour, hence why we can skip the TDF on such platforms.
++ */
++void xe_device_td_flush(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	int err;
++	u8 id;
++
++	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
++		return;
++
++	for_each_gt(gt, xe, id) {
++		if (xe_gt_is_media_type(gt))
++			continue;
++
++		err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++		if (err)
++			return;
++
++		xe_mmio_write32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST);
++		/*
++		 * FIXME: We can likely do better here with our choice of
++		 * timeout.  Currently we just assume the worst case, but really
++		 * we should make this dependent on how much actual L3 there is
++		 * for this system. Recomendation is to allow ~64us in the worst
++		 * case for 8M of L3 (assumes all entries are transient and need
++		 * to be flushed).
++		 */
++		if (xe_mmio_wait32(gt, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
++				   150, NULL, false))
++			xe_gt_err_once(gt, "TD flush timeout\n");
++
++		xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++	}
++}
++
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ {
+ 	return xe_device_has_flat_ccs(xe) ?
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index d413bc2c6be5..d3430f4b820a 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -176,4 +176,6 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+ u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
+ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
+ 
++void xe_device_td_flush(struct xe_device *xe);
++
+ #endif
 -- 
 2.25.1
 
