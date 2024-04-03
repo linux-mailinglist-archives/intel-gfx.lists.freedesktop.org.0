@@ -2,63 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30008969D7
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 11:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D00A896A64
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 11:21:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 635DF1128F3;
-	Wed,  3 Apr 2024 09:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76D38112906;
+	Wed,  3 Apr 2024 09:21:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGMRiRk9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O9wUuDRN";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 833A31128F1
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 09:00:54 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98F19112904;
+ Wed,  3 Apr 2024 09:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712134855; x=1743670855;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fKlS1yOgdpGRFsk9wsnL93KYNxTR1szrtIbAM6IuFAY=;
- b=EGMRiRk9wrQYip5hFb72YPwkdzRWOPvFPhqZ3aEh8od35F5yy1iV9ddh
- rCKmFTvbob3JUJXb8pdjxUTMdoK7qhZK4OrK+96Ds+Q3IMV7YH3vrqo0L
- xpVmx94f8BT5KYyp5qKlh9SYz1PgqHLOy/cp9FIv56cTakvJgX8i495IG
- 55UGwlqVe3LnYJ/TR6xsPGLlKUsvnjzAt2YjMq2SkL1fhE2M76E6uzFBw
- cCZyQWYyMvOg+SitjEQrtWcaGfLUdkLSv5JSEgLTcmCSF70rx+tbVPLEV
- veIf8G2rsCfwCSmHblkimNl+nN+f3ZP/TaYkBzWKvCZze8Wj/eoiwVqG6 Q==;
-X-CSE-ConnectionGUID: elSM6rl8TEyXRkN2LPqUuQ==
-X-CSE-MsgGUID: DXoBMElbTbGx7XS6VKUpVg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7472568"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7472568"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 02:00:53 -0700
-X-CSE-ConnectionGUID: pUES+0YHT3+7YUfMtK5GtA==
-X-CSE-MsgGUID: M8wwlvJ2S4uS5x+6Er7VCQ==
+ t=1712136112; x=1743672112;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=kygdojvdzQ5BfPQWPd6z8AfTEG+/K4u54bi39JjQMFM=;
+ b=O9wUuDRNsPLZOQt0Q/B/aLRmeIPJm5RpXxMdQGk6m98xtYci/RyLnmPj
+ CWcn45HYKsLDEocDmt8Bf/Y8ohstEZQaPCdk0Fgl21sjBZ2CnVmTdEHVC
+ l6Twp1UA5LSnGCTBWC1G5N0kx96pGfWXyN0v387jQPKGMGef39SnQj0CZ
+ m0eSGLXhMtF7QCX9CtnXAPgLC4kT64gQwmqA+FbPGVItwKcY0Q9OYRWMJ
+ Wchjkr8zEckbu7Ttgo6kZH2XBEPHjZ2dBi6LuygMtre+ZDTcCluo5KDUZ
+ kyiVNsLSpxx20bryY2RYbOQoDuJB0sRjv1C6RYMTDsH1Ke25VKqDUO77w A==;
+X-CSE-ConnectionGUID: 4We+/xW1SZ2NFwZgFsMpLw==
+X-CSE-MsgGUID: r52DZSsqQy60I1p4moCYjA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="29836212"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="29836212"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 02:21:51 -0700
+X-CSE-ConnectionGUID: rY1j/9jFSRqRSXp47hpwkg==
+X-CSE-MsgGUID: 1DHb+WYUQLedlaq1995Lxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18453307"
-Received: from esavax-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
- ([10.249.35.175])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 02:00:52 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Kunal Joshi <kunal1.joshi@intel.com>
-Subject: [PATCH v5 19/19] drm/i915/psr: Add panel replay sel update support to
- debugfs interface
-Date: Wed,  3 Apr 2024 12:00:13 +0300
-Message-Id: <20240403090013.54296-20-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240403090013.54296-1-jouni.hogander@intel.com>
-References: <20240403090013.54296-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="49351114"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.36.15])
+ ([10.246.36.15])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 02:21:47 -0700
+Message-ID: <8bdf3840-f248-4134-992f-d529cdbae510@linux.intel.com>
+Date: Wed, 3 Apr 2024 11:21:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/guc: Fix the fix for reset lock confusion
+To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
+Cc: DRI-Devel@Lists.FreeDesktop.Org, Zhanjun Dong <zhanjun.dong@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Madhumitha Tolakanahalli Pradeep
+ <madhumitha.tolakanahalli.pradeep@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+References: <20240329235306.1559639-1-John.C.Harrison@Intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240329235306.1559639-1-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,53 +85,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add panel replay selective update support to debugfs status interface. In
-case of sink supporting panel replay we will print out:
 
-Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
+On 3/30/2024 12:53 AM, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+>
+> The previous fix for the circlular lock splat about the busyness
+> worker wasn't quite complete. Even though the reset-in-progress flag
+> is cleared at the start of intel_uc_reset_finish, the entire function
+> is still inside the reset mutex lock. Not sure why the patch appeared
+> to fix the issue both locally and in CI. However, it is now back
+> again.
+>
+> There is a further complication the wedge code path within
+> intel_gt_reset() jumps around so much it results in nested
+> reset_prepare/_finish calls. That is, the call sequence is:
+>    intel_gt_reset
+>    | reset_prepare
+>    | __intel_gt_set_wedged
+>    | | reset_prepare
+>    | | reset_finish
+>    | reset_finish
+>
+> The nested finish means that even if the clear of the in-progress flag
+> was moved to the end of _finish, it would still be clear for the
+> entire second call. Surprisingly, this does not seem to be causing any
+> other problems at present.
+>
+> As an aside, a wedge on fini does not call the finish functions at
+> all. The reset_in_progress flag is left set (twice).
+>
+> So instead of trying to cancel the worker anywhere at all in the reset
+> path, just add a cancel to intel_guc_submission_fini instead. Note
+> that it is not a problem if the worker is still active during a reset.
+> Either it will run before the reset path starts locking things and
+> will simply block the reset code for a tiny amount of time. Or it will
+> run after the locks have been acquired and will early exit due to the
+> try-lock.
+>
+> Also, do not use the reset-in-progress flag to decide whether a
+> synchronous cancel is safe (from a lockdep perspective) or not.
+> Instead, use the actual reset mutex state (both the genuine one and
+> the custom rolled BACKOFF one).
+>
+> Fixes: 0e00a8814eec ("drm/i915/guc: Avoid circular locking issue on busyness flush")
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Cc: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli.pradeep@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-and PSR mode will look like this if printing out enabled panel replay
-selective update:
+Thanks for the details, looks good to me:
 
-PSR mode: Panel Replay Selective Update Enabled
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-Current PSR and panel replay printouts remain same.
-
-Cc: Kunal Joshi <kunal1.joshi@intel.com>
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 50bb3739d197..3d564276273d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3564,7 +3564,9 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 
- 	if (psr->sink_support)
- 		seq_printf(m, " [0x%02x]", intel_dp->psr_dpcd[0]);
--	seq_printf(m, ", Panel Replay = %s\n", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay Selective Update = %s\n",
-+		   str_yes_no(psr->sink_panel_replay_su_support));
- 
- 	if (!(psr->sink_support || psr->sink_panel_replay_support))
- 		return 0;
-@@ -3573,9 +3575,10 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 	mutex_lock(&psr->lock);
- 
- 	if (psr->panel_replay_enabled)
--		status = "Panel Replay Enabled";
-+		status = psr->sel_update_enabled ? "Panel Replay Selective Update Enabled" :
-+			"Panel Replay Enabled";
- 	else if (psr->enabled)
--		status = psr->sel_update_enabled ? "PSR2 enabled" : "PSR1 enabled";
-+		status = psr->sel_update_enabled ? "PSR2" : "PSR1";
- 	else
- 		status = "disabled";
- 	seq_printf(m, "PSR mode: %s\n", status);
--- 
-2.34.1
-
+> ---
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 23 ++++++++-----------
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  4 ++++
+>   2 files changed, 13 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 16640d6dd0589..00757d6333e88 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -1403,14 +1403,17 @@ static void guc_cancel_busyness_worker(struct intel_guc *guc)
+>   	 * Trying to pass a 'need_sync' or 'in_reset' flag all the way down through
+>   	 * every possible call stack is unfeasible. It would be too intrusive to many
+>   	 * areas that really don't care about the GuC backend. However, there is the
+> -	 * 'reset_in_progress' flag available, so just use that.
+> +	 * I915_RESET_BACKOFF flag and the gt->reset.mutex can be tested for is_locked.
+> +	 * So just use those. Note that testing both is required due to the hideously
+> +	 * complex nature of the i915 driver's reset code paths.
+>   	 *
+>   	 * And note that in the case of a reset occurring during driver unload
+> -	 * (wedge_on_fini), skipping the cancel in _prepare (when the reset flag is set
+> -	 * is fine because there is another cancel in _finish (when the reset flag is
+> -	 * not).
+> +	 * (wedged_on_fini), skipping the cancel in reset_prepare/reset_fini (when the
+> +	 * reset flag/mutex are set) is fine because there is another explicit cancel in
+> +	 * intel_guc_submission_fini (when the reset flag/mutex are not).
+>   	 */
+> -	if (guc_to_gt(guc)->uc.reset_in_progress)
+> +	if (mutex_is_locked(&guc_to_gt(guc)->reset.mutex) ||
+> +	    test_bit(I915_RESET_BACKOFF, &guc_to_gt(guc)->reset.flags))
+>   		cancel_delayed_work(&guc->timestamp.work);
+>   	else
+>   		cancel_delayed_work_sync(&guc->timestamp.work);
+> @@ -1424,8 +1427,6 @@ static void __reset_guc_busyness_stats(struct intel_guc *guc)
+>   	unsigned long flags;
+>   	ktime_t unused;
+>   
+> -	guc_cancel_busyness_worker(guc);
+> -
+>   	spin_lock_irqsave(&guc->timestamp.lock, flags);
+>   
+>   	guc_update_pm_timestamp(guc, &unused);
+> @@ -2004,13 +2005,6 @@ void intel_guc_submission_cancel_requests(struct intel_guc *guc)
+>   
+>   void intel_guc_submission_reset_finish(struct intel_guc *guc)
+>   {
+> -	/*
+> -	 * Ensure the busyness worker gets cancelled even on a fatal wedge.
+> -	 * Note that reset_prepare is not allowed to because it confuses lockdep.
+> -	 */
+> -	if (guc_submission_initialized(guc))
+> -		guc_cancel_busyness_worker(guc);
+> -
+>   	/* Reset called during driver load or during wedge? */
+>   	if (unlikely(!guc_submission_initialized(guc) ||
+>   		     !intel_guc_is_fw_running(guc) ||
+> @@ -2136,6 +2130,7 @@ void intel_guc_submission_fini(struct intel_guc *guc)
+>   	if (!guc->submission_initialized)
+>   		return;
+>   
+> +	guc_fini_engine_stats(guc);
+>   	guc_flush_destroyed_contexts(guc);
+>   	guc_lrc_desc_pool_destroy_v69(guc);
+>   	i915_sched_engine_put(guc->sched_engine);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index b47051ddf17f2..7a63abf8f644c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -633,6 +633,10 @@ void intel_uc_reset_finish(struct intel_uc *uc)
+>   {
+>   	struct intel_guc *guc = &uc->guc;
+>   
+> +	/*
+> +	 * NB: The wedge code path results in prepare -> prepare -> finish -> finish.
+> +	 * So this function is sometimes called with the in-progress flag not set.
+> +	 */
+>   	uc->reset_in_progress = false;
+>   
+>   	/* Firmware expected to be running when this function is called */
