@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB02A89746C
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 17:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E30CC897479
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 17:51:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67582112BE0;
-	Wed,  3 Apr 2024 15:50:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30DB6112BEB;
+	Wed,  3 Apr 2024 15:51:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqvKEp2e";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67030112748;
- Wed,  3 Apr 2024 15:49:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8171457729171396848=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/xe/display=3A_check_for?=
- =?utf-8?q?_error_on_drmm=5Fmutex=5Finit_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1552112BEB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 15:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712159469; x=1743695469;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JgzBwMQlSfaNi1qQZuwJDBAqd7X+Ex5JCvbgLAJTER0=;
+ b=IqvKEp2eDJdsLknuIfDmE2pcc73Tcxvv7B8rlEJh+uX1L+DcmG7BTSJT
+ IZxeY+kVHgJV3F5D5zsbnMyNZBvtTYfUK7+rRqrIYQ//swkfCeJTARNQQ
+ DW/Npk6yV+AQUvnd/fgjvbwop4uefd9MJhO43tibWkjd8SkrwLH+cjJkp
+ 9x8rN9UKbueO/OUIOkwNK2q/bsN50T0luIyQNGttQ0p2icHbV9vSi0QB3
+ ezP8ePCOdbJNGd6AoMCjQeNPyx2Zv+Qjn7RWCRi6ZYhvSB6e/YjLY7ixh
+ 6ugKXyv8LM/V9Q3UTwyU0wwnhwpZxb7GvxAq38+zkVwoOeBEUMkxWqNe7 Q==;
+X-CSE-ConnectionGUID: 7VF+s5XIRAKowsXdAc2iwQ==
+X-CSE-MsgGUID: EJb6DgaPRMqWRqjNMsi+2Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7567738"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
+   d="scan'208";a="7567738"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 08:51:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="827789981"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="827789981"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 03 Apr 2024 08:51:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Apr 2024 18:51:05 +0300
+Date: Wed, 3 Apr 2024 18:51:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 03 Apr 2024 15:49:59 -0000
-Message-ID: <171215939941.1172471.4562557821546935000@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240403140105.1306622-1-arun.r.murthy@intel.com>
-In-Reply-To: <20240403140105.1306622-1-arun.r.murthy@intel.com>
+Subject: Re: [PATCH 01/13] drm/i915/cdclk: Fix CDCLK programming order when
+ pipes are active
+Message-ID: <Zg166cwOvRo18mzP@intel.com>
+References: <20240327174544.983-1-ville.syrjala@linux.intel.com>
+ <20240327174544.983-2-ville.syrjala@linux.intel.com>
+ <171172614955.2604.11177523422567223748@gjsousa-mobl2>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <171172614955.2604.11177523422567223748@gjsousa-mobl2>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,143 +70,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8171457729171396848==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 29, 2024 at 12:29:09PM -0300, Gustavo Sousa wrote:
+> Quoting Ville Syrjala (2024-03-27 14:45:32-03:00)
+> >From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> >Currently we always reprogram CDCLK from the
+> >intel_set_cdclk_pre_plane_update() when using squahs/crawl.
+> >The code only works correctly for the cd2x update or full
+> >modeset cases, and it was simply never updated to deal with
+> >squash/crawl.
+> >
+> >If the CDCLK frequency is increasing we must reprogram it
+> >before we do anything else that might depend on the new
+> >higher frequency, and conversely we must not decrease
+> >the frequency until everything that might still depend
+> >on the old higher frequency has been dealt with.
+> >
+> >Since cdclk_state->pipe is only relevant when doing a cd2x
+> >update we can't use it to determine the correct sequence
+> >during squash/crawl. To that end introduce cdclk_state->disable_pipes
+> >which simply indicates that we must perform the update
+> >while the pipes are disable (ie. during
+> >intel_set_cdclk_pre_plane_update()). Otherwise we use the
+> >same old vs. new CDCLK frequency comparsiong as for cd2x
+> >updates.
+> >
+> >The only remaining problem case is when the voltage_level
+> >needs to increase due to a DDI port, but the CDCLK frequency
+> >is decreasing (and not all pipes are being disabled). The
+> >current approach will not bump the voltage level up until
+> >after the port has already been enabled, which is too late.
+> >But we'll take care of that case separately.
+> 
+> Yep. Maybe that's another reason to have that logic detached from the
+> cdclk sequence in the future?
 
-== Series Details ==
+Perhaps.
 
-Series: drm/xe/display: check for error on drmm_mutex_init (rev4)
-URL   : https://patchwork.freedesktop.org/series/131301/
-State : failure
+The cdclk sequence is typically specified as
+1. request max voltage
+2. change cdclk
+3. request final voltage
+ 
+We don't actually know whether step 1 has any other side effects
+beyond changing the voltage. Eg. it might also do some other magic
+to prepare the hardware/firmware for the cdclk change, and so we
+might not be able to decouple it from the cdclk sequence 100%.
+One solution could be to bump the voltage to the max in the pre
+plane voltage hook whenever cdclk is also changing.
 
-== Summary ==
+We would definitely end up spreading the voltage requests further
+out from the actual cdclk programming (they'd have to be the
+outermost pre/post plane hooks), which may or may not have some
+other side effects as well.
 
-CI Bug Log - changes from CI_DRM_14521 -> Patchwork_131301v4
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_131301v4 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_131301v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/index.html
-
-Participating hosts (35 -> 31)
-------------------------------
-
-  Missing    (4): fi-glk-j4005 fi-cfl-8109u fi-bsw-nick fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_131301v4:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-1:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14521/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14521 -> Patchwork_131301v4
-
-  CI-20190529: 20190529
-  CI_DRM_14521: c8dc2a19ae7157e065d5f0c78bc4d3f83165fdef @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7797: e88ebc17ec12b503aab380b08c1213af9cc7a97c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_131301v4: c8dc2a19ae7157e065d5f0c78bc4d3f83165fdef @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-d1643168a57e drm/xe/display: check for error on drmm_mutex_init
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/index.html
-
---===============8171457729171396848==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/display: check for error on drmm_mutex_init (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131301/">https://patchwork.freedesktop.org/series/131301/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14521 -&gt; Patchwork_131301v4</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_131301v4 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_131301v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/index.html</p>
-<h2>Participating hosts (35 -&gt; 31)</h2>
-<p>Missing    (4): fi-glk-j4005 fi-cfl-8109u fi-bsw-nick fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_131301v4:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14521/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131301v4/bat-arls-1/igt@i915_selftest@live@hangcheck.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14521 -&gt; Patchwork_131301v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14521: c8dc2a19ae7157e065d5f0c78bc4d3f83165fdef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7797: e88ebc17ec12b503aab380b08c1213af9cc7a97c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_131301v4: c8dc2a19ae7157e065d5f0c78bc4d3f83165fdef @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>d1643168a57e drm/xe/display: check for error on drmm_mutex_init</p>
-
-</body>
-</html>
-
---===============8171457729171396848==--
+-- 
+Ville Syrjälä
+Intel
