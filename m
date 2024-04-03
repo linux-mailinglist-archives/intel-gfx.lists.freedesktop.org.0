@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1473896D32
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 12:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8607896D34
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 12:51:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 904AA112826;
-	Wed,  3 Apr 2024 10:51:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 435121129CB;
+	Wed,  3 Apr 2024 10:51:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1oMpelH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QCSLAXwe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F37DA11263F;
- Wed,  3 Apr 2024 10:51:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7547B11263F;
+ Wed,  3 Apr 2024 10:51:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141507; x=1743677507;
+ t=1712141508; x=1743677508;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gdyAvl2ku3TYX1gG2FKpS39C3vPWe9URIlYDj2KKYoE=;
- b=j1oMpelHeQ1SM9rh4QMWsOFmUM6qez879nZm+YLt555w4UO05Y5CUdHO
- CTUK4SBK6cKF9QxZomMIzt01BlvwcIF5RxwZzkfxAqvOVv5EWM1RkQPsg
- khP6Z+67+6jNBoUjwzPu7DamXdiOZrGQ3ZpD/lAbNZXhsqRIqRvu7u1Fs
- RMUAa8UEDwPeCloi0hDZ8xOLfP+r2uRkFmXkkTtQAHCyhKWCmTQ92qrPi
- pLxd9nuaFRUFm66RaM/xaMqNKYJZoladNlo+wXZ9jexPAu7fsTj2RK6pG
- 9CAiPGslImm5EL1aVvuhv9D33Od/NOdy2XFxXtfRxtlKh374MoGdn4oal A==;
-X-CSE-ConnectionGUID: pGPWIKGgS8SxagZjSGEPxw==
-X-CSE-MsgGUID: hcLRfgl4S+CqwQZ0/8RoYg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212119"
+ bh=E+/qmvmu7vA275hhKi/pscf3kXISOjYilu4tx04vdpY=;
+ b=QCSLAXweS8YJ7T/6kX2rFU3Xako9IvxdMnHad8gxMFI6yjNlyIeU4ScW
+ Lmk00pSpTSvpGYvdOHQZ9erQ3zkX0C1LGIT8pZapsKkc1+Dh8O9SbFky2
+ TU/Chbqtwi4z5So08Ua7OZaXVa/uANfbIEn6e9Mz9CCv8i+RU4JZQHsG6
+ XFu4v7P8CwerkH7qAN3XGQmtPvT+cQa2mV32UMyWuX45emFFEaZVJ0bag
+ 607b9ZBCrPHeX2EiADqexKiywNF/cfy3gr7ZrOGE/x9kRVQ7cAy5CvcRY
+ 2qNMNheFQtSMxNNyLmSAaXjiZg+Ksn/LORFDGgWTl33hOVG9eQVstYJ1f A==;
+X-CSE-ConnectionGUID: T5aRc566RnC6rmW6/I+NOQ==
+X-CSE-MsgGUID: kCTSgvKaR7G13BeGEZvirg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212123"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7212119"
+   d="scan'208";a="7212123"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:20 -0700
-X-CSE-ConnectionGUID: qb3yywd8RqKIb9iKHNAERw==
-X-CSE-MsgGUID: +BZkcxcbRQKZLd0N2/uQbw==
+ 03 Apr 2024 03:51:22 -0700
+X-CSE-ConnectionGUID: zu2l6m98QpGK16mpg0yL+Q==
+X-CSE-MsgGUID: 1FYFA3w/SvuLxZ+v2boqAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493338"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493342"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:18 -0700
+ 03 Apr 2024 03:51:20 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH 04/25] drm/i915/bmg: Define IS_BATTLEMAGE macro
-Date: Wed,  3 Apr 2024 16:21:02 +0530
-Message-Id: <20240403105123.1327669-5-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 05/25] drm/i915/xe2: Skip CCS modifiers for Xe2 platforms
+Date: Wed,  3 Apr 2024 16:21:03 +0530
+Message-Id: <20240403105123.1327669-6-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
@@ -71,42 +71,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display code uses IS_BATTLEMAGE macro but the platform support doesn't
-still exist in i915. So fake IS_BATTLEMAGE macro defined to enable
-building i915 code.  We should make sure the macro parameter is used in
-the always-false expression so that we don't run into "unused variable"
-warnings from i915 builds if the IS_BATTLEMAGE() check is the only place
-the i915 pointer gets used in a function.
-
-While we're at it, also update the IS_LUNARLAKE macro to include the
-parameter in the false expression for consistency.
+Xe2 platforms doesn't support Aux CCS and the Flat CCS is enabled
+through PAT. No CCS modifiers required for Xe2 platforms.
 
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index cf52d4adaa20..b41a414079f4 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -546,7 +546,15 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
- #define IS_ALDERLAKE_P(i915) IS_PLATFORM(i915, INTEL_ALDERLAKE_P)
- #define IS_DG2(i915)	IS_PLATFORM(i915, INTEL_DG2)
- #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
--#define IS_LUNARLAKE(i915) 0
-+/*
-+ * Display code shared by i915 and Xe relies on macros like IS_LUNARLAKE,
-+ * so we need to define these even on platforms that the i915 base driver
-+ * doesn't support.  Ensure the parameter is used in the definition to
-+ * avoid 'unused variable' warnings when compiling the shared display code
-+ * for i915.
-+ */
-+#define IS_LUNARLAKE(i915) (0 && i915)
-+#define IS_BATTLEMAGE(i915)  (0 && i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 3ea6470d6d92..923e97c3aa6c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -431,9 +431,17 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
+ 	 * Separate AuxCCS and Flat CCS modifiers to be run only on platforms
+ 	 * where supported.
+ 	 */
+-	if (intel_fb_is_ccs_modifier(md->modifier) &&
+-	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
+-		return false;
++	if (intel_fb_is_ccs_modifier(md->modifier)) {
++		/*
++		 * No CCS modifiers available on Xe2 platforms as they don't
++		 * support Aux CCS and the Flat CCS is enabled via PAT
++		 */
++		if ((DISPLAY_VER(i915) >= 20) || IS_BATTLEMAGE(i915))
++			return false;
++
++		if (HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
++			return false;
++	}
  
- #define IS_DG2_G10(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+ 	return true;
+ }
 -- 
 2.25.1
 
