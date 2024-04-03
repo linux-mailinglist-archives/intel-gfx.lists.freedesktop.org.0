@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5E1896E08
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28960896E09
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:22:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF9B11265D;
-	Wed,  3 Apr 2024 11:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8356B112A0B;
+	Wed,  3 Apr 2024 11:22:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XbW+e8BN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RKyE3tfz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C43610EF3B;
- Wed,  3 Apr 2024 11:22:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF6C110EF3B;
+ Wed,  3 Apr 2024 11:22:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712143368; x=1743679368;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+slylTHDJXX01Qg+DwDmynh35MlgFUMp6O3VCS7VzC8=;
- b=XbW+e8BNQcn36jvapYiintOfVJGLfgqamlCEN60KS1+x8gtgL54Zr2vk
- pHBZXlID3u5U4aqUtvQqu0zoPxifbKk0z16VghDaW2o3gcR9viWJDQDod
- K/rR7hURhKyhniBHX+ODFCsWvMWinWPW65L+PanwUaBgzFcVYpQn4ClVW
- Y798lz9YN5vPgouWvb21xJcHYjcfIvB+/An/pzh/d9qrlly1yp4rtT/dK
- 2HYARWFMuKQn6R1AMhoDXC3KQLQKXHA8acCCkRKUCzFhBDQCh8/NT1ENq
- bixUB1jMEEw1WrgNXnLCVecXctuNILU0dno7za06KpgSulXJrlWYikTOU w==;
-X-CSE-ConnectionGUID: N1yxjGNdR7iX0DZmsMdsmQ==
-X-CSE-MsgGUID: pjXAWEeZTEyhosuLoOwR4g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24823976"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24823976"
+ t=1712143369; x=1743679369;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=CboQQp1pv9ZFmZrda2W5aIS+LzDpsqCiBn7sdOpM8tc=;
+ b=RKyE3tfzF7vzu8VUfNx32/2Mv8T28RzOMVGoag6qyzFDvz+6/DFh8m+c
+ 0oPXxPcCif3KhYemLYF0BBEPJzMaMhjvJv0juALxtgzKbDGR2PUKcG/7Q
+ cVG/yOdzZe4wGND2pgbR89GBXrl+ysBPA3cXu5U9eZoSRHgsvSqDC/MMy
+ 1ZYZ4L8EAyXmkBZKiQBMsKUhcUbs6RD2DR38LJrfiwQppO2qp6WjL1lS0
+ 3NvdaWnemHwXI1IrMzrryuWvYeZ9DyMaTll4Y4n1Ha0kZqQO+7MUoa3U0
+ IkqpYO8xHeWs7/2ImyMoRUx2onCriv2e3yxMX+se2K1tzTPqKcFZus3VD w==;
+X-CSE-ConnectionGUID: C6SQZ3hLTS2gs3u46xIQ4g==
+X-CSE-MsgGUID: m+9WRWppTLOKOaNGWjYpRA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24823978"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24823978"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:22:47 -0700
-X-CSE-ConnectionGUID: JTlzke1aSZCqgMrY0ibszw==
-X-CSE-MsgGUID: Ytt8zP+gRp+N6aeXPTc79g==
+ 03 Apr 2024 04:22:49 -0700
+X-CSE-ConnectionGUID: W/+QsBjoQiSag7XgFqYnEg==
+X-CSE-MsgGUID: zjBzS+hJSrCufwfrQEBq0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358482"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358486"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:22:45 -0700
+ 03 Apr 2024 04:22:47 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 00/25] Enable dislay support for Battlemage
-Date: Wed,  3 Apr 2024 16:52:28 +0530
-Message-Id: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Clint Taylor <Clinton.A.Taylor@intel.com>
+Subject: [PATCH v2 01/25] drm/i915/display: Prepare to handle new C20 PLL
+ register address
+Date: Wed,  3 Apr 2024 16:52:29 +0530
+Message-Id: <20240403112253.1432390-2-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
+References: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,95 +72,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adds display support for Battlemage.
-Reuses the patch "drm/xe/bmg: Add BMG platform definition" from the
-patch series <link> to help build this series. So that review on this
-series can continue without blocking on <link>.
+New platforms have different addresses for C20 PLL registers. This patch
+prepares the driver to work with different register addresses.
+New structure `struct intel_c20pll_reg` is created to hold the register
+addresses for each platform with different register address.
 
-v2: Rebased on latest drm-tip
+CC: Clint Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 53 +++++++++++++------
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 36 ++++++++++---
+ 2 files changed, 65 insertions(+), 24 deletions(-)
 
-Ankit Nautiyal (1):
-  Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
-
-Anusha Srivatsa (1):
-  drm/i915/xe2hpd: Add missing chicken bit register programming
-
-Balasubramani Vivekanandan (9):
-  drm/i915/display: Prepare to handle new C20 PLL register address
-  drm/xe/bmg: Define IS_BATTLEMAGE macro
-  drm/i915/bmg: Define IS_BATTLEMAGE macro
-  drm/i915/xe2: Skip CCS modifiers for Xe2 platforms
-  drm/i915/xe2hpd: Add new C20 PLL register address
-  drm/i915/xe2hpd: Add support for eDP PLL configuration
-  drm/xe/xe2hpd: Define a new DRAM type INTEL_DRAM_GDDR
-  drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
-  drm/xe/bmg: Enable the display support
-
-Clint Taylor (2):
-  drm/i915/xe2hpd: Initial cdclk table
-  drm/xe/display: Lane reversal requires writes to both context lanes
-
-José Roberto de Souza (2):
-  drm/i915/xe2hpd: Properly disable power in port A
-  drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
-
-Lucas De Marchi (1):
-  drm/i915/xe2hpd: Add display info
-
-Matt Roper (3):
-  drm/xe/bmg: Add BMG platform definition
-  drm/i915/xe2hpd: Add max memory bandwidth algorithm
-  drm/i915/bmg: BMG should re-use MTL's south display logic
-
-Matthew Auld (2):
-  drm/xe/gt_print: add xe_gt_err_once()
-  drm/i915/display: perform transient flush
-
-Mitul Golani (1):
-  drm/i915/display: Enable RM timeout detection
-
-Nirmoy Das (1):
-  drm/xe/device: implement transient flush
-
-Radhakrishna Sripada (1):
-  drm/i915/bmg: Extend DG2 tc check to future
-
-Ravi Kumar Vodapalli (1):
-  drm/i915/xe2hpd: update pll values in sync with Bspec
-
- drivers/gpu/drm/i915/display/intel_bios.c     |   5 +-
- drivers/gpu/drm/i915/display/intel_bw.c       |  65 +++-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  11 +
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 297 ++++++++++++++++--
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  45 ++-
- drivers/gpu/drm/i915/display/intel_display.c  |  10 +-
- .../drm/i915/display/intel_display_device.c   |  16 +
- .../gpu/drm/i915/display/intel_display_irq.c  |  10 +
- .../drm/i915/display/intel_display_power.c    |   4 +
- drivers/gpu/drm/i915/display/intel_dp.c       |   3 +
- drivers/gpu/drm/i915/display/intel_fb.c       |  14 +-
- .../gpu/drm/i915/display/intel_frontbuffer.c  |   2 +
- drivers/gpu/drm/i915/display/intel_tdf.h      |  25 ++
- drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
- drivers/gpu/drm/i915/i915_drv.h               |  11 +-
- drivers/gpu/drm/i915/i915_reg.h               |   4 +
- drivers/gpu/drm/i915/soc/intel_dram.c         |   4 +
- drivers/gpu/drm/i915/soc/intel_pch.c          |   4 +-
- drivers/gpu/drm/xe/Makefile                   |   3 +-
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 +
- drivers/gpu/drm/xe/display/xe_tdf.c           |  13 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   3 +
- drivers/gpu/drm/xe/xe_device.c                |  52 +++
- drivers/gpu/drm/xe/xe_device.h                |   2 +
- drivers/gpu/drm/xe/xe_device_types.h          |   1 +
- drivers/gpu/drm/xe/xe_gt_printk.h             |   3 +
- drivers/gpu/drm/xe/xe_pci.c                   |   8 +
- drivers/gpu/drm/xe/xe_platform_types.h        |   1 +
- include/drm/xe_pciids.h                       |   7 +
- 29 files changed, 574 insertions(+), 52 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index a2c4bf33155f..13a2e3db2812 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -759,6 +759,17 @@ static const struct intel_c10pll_state * const mtl_c10_edp_tables[] = {
+ 	NULL,
+ };
+ 
++static struct intel_c20pll_reg mtl_c20_reg = {
++	.tx_cnt_a = MTL_C20_A_TX_CNTX_CFG_ADDR,
++	.tx_cnt_b = MTL_C20_B_TX_CNTX_CFG_ADDR,
++	.cmn_cnt_a = MTL_C20_A_CMN_CNTX_CFG_ADDR,
++	.cmn_cnt_b = MTL_C20_B_CMN_CNTX_CFG_ADDR,
++	.mplla_a = MTL_C20_A_MPLLA_CFG_ADDR,
++	.mplla_b = MTL_C20_B_MPLLA_CFG_ADDR,
++	.mpllb_a = MTL_C20_A_MPLLB_CFG_ADDR,
++	.mpllb_b = MTL_C20_B_MPLLB_CFG_ADDR
++};
++
+ /* C20 basic DP 1.4 tables */
+ static const struct intel_c20pll_state mtl_c20_dp_rbr = {
+ 	.clock = 162000,
+@@ -2161,6 +2172,7 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 	bool cntx;
+ 	intel_wakeref_t wakeref;
+ 	int i;
++	struct intel_c20pll_reg *pll_reg = &mtl_c20_reg;
+ 
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+@@ -2171,20 +2183,20 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
+ 		if (cntx)
+ 			pll_state->tx[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-							       PHY_C20_B_TX_CNTX_CFG(i));
++							       PHY_C20_B_TX_CNTX_CFG(pll_reg, i));
+ 		else
+ 			pll_state->tx[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-							       PHY_C20_A_TX_CNTX_CFG(i));
++							       PHY_C20_A_TX_CNTX_CFG(pll_reg, i));
+ 	}
+ 
+ 	/* Read common configuration */
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->cmn); i++) {
+ 		if (cntx)
+ 			pll_state->cmn[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-								PHY_C20_B_CMN_CNTX_CFG(i));
++								PHY_C20_B_CMN_CNTX_CFG(pll_reg, i));
+ 		else
+ 			pll_state->cmn[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-								PHY_C20_A_CMN_CNTX_CFG(i));
++								PHY_C20_A_CMN_CNTX_CFG(pll_reg, i));
+ 	}
+ 
+ 	if (intel_c20phy_use_mpllb(pll_state)) {
+@@ -2192,20 +2204,20 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
+ 			if (cntx)
+ 				pll_state->mpllb[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-									  PHY_C20_B_MPLLB_CNTX_CFG(i));
++									  PHY_C20_B_MPLLB_CNTX_CFG(pll_reg, i));
+ 			else
+ 				pll_state->mpllb[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-									  PHY_C20_A_MPLLB_CNTX_CFG(i));
++									  PHY_C20_A_MPLLB_CNTX_CFG(pll_reg, i));
+ 		}
+ 	} else {
+ 		/* MPLLA configuration */
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mplla); i++) {
+ 			if (cntx)
+ 				pll_state->mplla[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-									  PHY_C20_B_MPLLA_CNTX_CFG(i));
++									  PHY_C20_B_MPLLA_CNTX_CFG(pll_reg, i));
+ 			else
+ 				pll_state->mplla[i] = intel_c20_sram_read(encoder, INTEL_CX0_LANE0,
+-									  PHY_C20_A_MPLLA_CNTX_CFG(i));
++									  PHY_C20_A_MPLLA_CNTX_CFG(pll_reg, i));
+ 		}
+ 	}
+ 
+@@ -2341,6 +2353,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	u32 clock = crtc_state->port_clock;
+ 	bool cntx;
+ 	int i;
++	const struct intel_c20pll_reg *pll_reg = &mtl_c20_reg;
+ 
+ 	if (intel_crtc_has_dp_encoder(crtc_state))
+ 		dp = true;
+@@ -2363,17 +2376,25 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	/* 3.1 Tx configuration */
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
+ 		if (cntx)
+-			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_A_TX_CNTX_CFG(i), pll_state->tx[i]);
++			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
++					     PHY_C20_A_TX_CNTX_CFG(pll_reg, i),
++					     pll_state->tx[i]);
+ 		else
+-			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_B_TX_CNTX_CFG(i), pll_state->tx[i]);
++			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
++					     PHY_C20_B_TX_CNTX_CFG(pll_reg, i),
++					     pll_state->tx[i]);
+ 	}
+ 
+ 	/* 3.2 common configuration */
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->cmn); i++) {
+ 		if (cntx)
+-			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_A_CMN_CNTX_CFG(i), pll_state->cmn[i]);
++			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
++					     PHY_C20_A_CMN_CNTX_CFG(pll_reg, i),
++					     pll_state->cmn[i]);
+ 		else
+-			intel_c20_sram_write(encoder, INTEL_CX0_LANE0, PHY_C20_B_CMN_CNTX_CFG(i), pll_state->cmn[i]);
++			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
++					     PHY_C20_B_CMN_CNTX_CFG(pll_reg, i),
++					     pll_state->cmn[i]);
+ 	}
+ 
+ 	/* 3.3 mpllb or mplla configuration */
+@@ -2381,22 +2402,22 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
+ 			if (cntx)
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_A_MPLLB_CNTX_CFG(i),
++						     PHY_C20_A_MPLLB_CNTX_CFG(pll_reg, i),
+ 						     pll_state->mpllb[i]);
+ 			else
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_B_MPLLB_CNTX_CFG(i),
++						     PHY_C20_B_MPLLB_CNTX_CFG(pll_reg, i),
+ 						     pll_state->mpllb[i]);
+ 		}
+ 	} else {
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mplla); i++) {
+ 			if (cntx)
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_A_MPLLA_CNTX_CFG(i),
++						     PHY_C20_A_MPLLA_CNTX_CFG(pll_reg, i),
+ 						     pll_state->mplla[i]);
+ 			else
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_B_MPLLA_CNTX_CFG(i),
++						     PHY_C20_B_MPLLA_CNTX_CFG(pll_reg, i),
+ 						     pll_state->mplla[i]);
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index bdd0c8c4ef97..882b98dc347b 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -254,24 +254,44 @@
+ #define PHY_C20_VDR_CUSTOM_WIDTH	0xD02
+ #define   PHY_C20_CUSTOM_WIDTH_MASK	REG_GENMASK(1, 0)
+ #define   PHY_C20_CUSTOM_WIDTH(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_WIDTH_MASK, val)
+-#define PHY_C20_A_TX_CNTX_CFG(idx)	(0xCF2E - (idx))
+-#define PHY_C20_B_TX_CNTX_CFG(idx)	(0xCF2A - (idx))
++#define PHY_C20_A_TX_CNTX_CFG(reg, idx)		((reg)->tx_cnt_a - (idx))
++#define PHY_C20_B_TX_CNTX_CFG(reg, idx)		((reg)->tx_cnt_b - (idx))
+ #define   C20_PHY_TX_RATE		REG_GENMASK(2, 0)
+-#define PHY_C20_A_CMN_CNTX_CFG(idx)	(0xCDAA - (idx))
+-#define PHY_C20_B_CMN_CNTX_CFG(idx)	(0xCDA5 - (idx))
+-#define PHY_C20_A_MPLLA_CNTX_CFG(idx)	(0xCCF0 - (idx))
+-#define PHY_C20_B_MPLLA_CNTX_CFG(idx)	(0xCCE5 - (idx))
++#define PHY_C20_A_CMN_CNTX_CFG(reg, idx)	((reg)->cmn_cnt_a - (idx))
++#define PHY_C20_B_CMN_CNTX_CFG(reg, idx)	((reg)->cmn_cnt_b - (idx))
++#define PHY_C20_A_MPLLA_CNTX_CFG(reg, idx)	((reg)->mplla_a - (idx))
++#define PHY_C20_B_MPLLA_CNTX_CFG(reg, idx)	((reg)->mplla_b - (idx))
+ #define   C20_MPLLA_FRACEN		REG_BIT(14)
+ #define   C20_FB_CLK_DIV4_EN		REG_BIT(13)
+ #define   C20_MPLLA_TX_CLK_DIV_MASK	REG_GENMASK(10, 8)
+-#define PHY_C20_A_MPLLB_CNTX_CFG(idx)	(0xCB5A - (idx))
+-#define PHY_C20_B_MPLLB_CNTX_CFG(idx)	(0xCB4E - (idx))
++#define PHY_C20_A_MPLLB_CNTX_CFG(reg, idx)	((reg)->mpllb_a - (idx))
++#define PHY_C20_B_MPLLB_CNTX_CFG(reg, idx)	((reg)->mpllb_b - (idx))
+ #define   C20_MPLLB_TX_CLK_DIV_MASK	REG_GENMASK(15, 13)
+ #define   C20_MPLLB_FRACEN		REG_BIT(13)
+ #define   C20_REF_CLK_MPLLB_DIV_MASK	REG_GENMASK(12, 10)
+ #define   C20_MULTIPLIER_MASK		REG_GENMASK(11, 0)
+ #define   C20_PHY_USE_MPLLB		REG_BIT(7)
+ 
++struct intel_c20pll_reg {
++	u16 tx_cnt_a;
++	u16 tx_cnt_b;
++	u16 cmn_cnt_a;
++	u16 cmn_cnt_b;
++	u16 mplla_a;
++	u16 mplla_b;
++	u16 mpllb_a;
++	u16 mpllb_b;
++};
++
++#define MTL_C20_A_TX_CNTX_CFG_ADDR	0xCF2E
++#define MTL_C20_B_TX_CNTX_CFG_ADDR	0xCF2A
++#define MTL_C20_A_CMN_CNTX_CFG_ADDR	0xCDAA
++#define MTL_C20_B_CMN_CNTX_CFG_ADDR	0xCDA5
++#define MTL_C20_A_MPLLA_CFG_ADDR	0xCCF0
++#define MTL_C20_B_MPLLA_CFG_ADDR	0xCCE5
++#define MTL_C20_A_MPLLB_CFG_ADDR	0xCB5A
++#define MTL_C20_B_MPLLB_CFG_ADDR	0xCB4E
++
+ /* C20 Phy VSwing Masks */
+ #define C20_PHY_VSWING_PREEMPH_MASK	REG_GENMASK8(5, 0)
+ #define C20_PHY_VSWING_PREEMPH(val)	REG_FIELD_PREP8(C20_PHY_VSWING_PREEMPH_MASK, val)
 -- 
 2.25.1
 
