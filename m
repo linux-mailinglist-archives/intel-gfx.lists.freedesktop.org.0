@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9103B896E1D
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E107F896E1E
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:23:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0332F112A10;
-	Wed,  3 Apr 2024 11:23:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A815112A2A;
+	Wed,  3 Apr 2024 11:23:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZjAZYDdM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibjU1RlD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0B6A112A0D;
- Wed,  3 Apr 2024 11:23:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3391112A28;
+ Wed,  3 Apr 2024 11:23:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712143411; x=1743679411;
+ t=1712143413; x=1743679413;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eIgqYGq4fLCpTqOPXETspxhbgXdmYP4yn2mIRzbzD4U=;
- b=ZjAZYDdMeg8AhoqU4T4It+g71dvquvZCxgBFhzbMmeCs8ImoMBUbks/d
- GGTK+uFstIW75e06p2RTdf3oy05Uq4oIp+cOEgxrBEYX3BdUhjmZfIMqc
- sBlr0WJqXETj4oeZDGRl2Lwg+eppcwMWMDtbkCYfceWf0n70YMg/PlhY7
- woiqdgwJWS4cGqsAAjpEDgwMhhyc9BBWCg+kvHBJQ1sYR1L2EhN2pui5C
- 6KLgBRFlVSrc/R6r0+Y6LYPT40MHYP+kg2JKYbAj7dgAu0iiPQMQi98za
- vl3yjTEFOMBGvVtMztNAGy05oFZKavG3u8aJYBAvHnJARlmJTeONSCR4g Q==;
-X-CSE-ConnectionGUID: WUpZz1rHTQ+0Vrs5qZnw/g==
-X-CSE-MsgGUID: rX9TpA8SQUKBEQFw71X6pw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24824151"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24824151"
+ bh=FSXs20PJBJyOLgqakwjPbhb+TaNU4Tq3YC8JVaxUI0A=;
+ b=ibjU1RlDXj6ga8HbO+lkbrvv+XWm6rzUB2psVwIsla2O0LTF2xS4nRLB
+ /WuqJeo6zStRy+rUyK5Z04KC6OwbWuSOF/Ruq6GgkfAMA902JpdWf+WJB
+ sdk33TCwid6zlq5tvZrA3lcd1rfqlFigTcZC6XjVq4+TApf3iS/PMaK2x
+ XJ9U++8qcUN7Z1fBWjX6gSmRbG9tLOHasGjRCjgwSU62TxlCTFjhMydp4
+ 1TWMDu95CghEVpa7Ge2NXrh4bYuaUg5qwa2vNxhDlVPK2bvWjnLlh+S7O
+ JQwlgOUxRXWgQTWfUip/Tym50tpAt6taiUuDnNoXS/SVw/Got1G0NLBJX Q==;
+X-CSE-ConnectionGUID: ZUqxXn2fQgiIK0PGW2Xlng==
+X-CSE-MsgGUID: P53NNWHJQTSHzwuMzufgTg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24824155"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24824155"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:23:31 -0700
-X-CSE-ConnectionGUID: CF3f0NkHToqJccqdvXAzIQ==
-X-CSE-MsgGUID: XNZvrs/YRpyiAvY3bkSs4Q==
+ 03 Apr 2024 04:23:33 -0700
+X-CSE-ConnectionGUID: tn0s3VilQuKBwcVEiRkQOQ==
+X-CSE-MsgGUID: ls596PRQRWGJ/TDYy+PT+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358559"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358564"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:23:29 -0700
+ 03 Apr 2024 04:23:31 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 20/25] drm/i915/bmg: BMG should re-use MTL's south display
- logic
-Date: Wed,  3 Apr 2024 16:52:48 +0530
-Message-Id: <20240403112253.1432390-21-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v2 21/25] drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+Date: Wed,  3 Apr 2024 16:52:49 +0530
+Message-Id: <20240403112253.1432390-22-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
 References: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
@@ -71,34 +70,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+Max supported speed by xe2hpd is UHBR13.5. Limit the max DP source rate
+to it.
 
-Battlemage's south display is the same as Meteor Lake's, including the
-need to invert the HPD pins, which Lunar Lake does not need.
+Bspec: 67066
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/soc/intel_pch.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index 3cad6dac06b0..542eea50093c 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -218,10 +218,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 	if (DISPLAY_VER(dev_priv) >= 20) {
- 		dev_priv->pch_type = PCH_LNL;
- 		return;
--	} else if (IS_METEORLAKE(dev_priv)) {
-+	} else if (IS_BATTLEMAGE(dev_priv) || IS_METEORLAKE(dev_priv)) {
- 		/*
- 		 * Both north display and south display are on the SoC die.
--		 * The real PCH is uninvolved in display.
-+		 * The real PCH (if it even exists) is uninvolved in display.
- 		 */
- 		dev_priv->pch_type = PCH_MTL;
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b393ddbb7b35..d9d37f4971dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -466,6 +466,9 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
+ 	if (intel_encoder_is_c10phy(encoder))
+ 		return 810000;
+ 
++	if (DISPLAY_VER_FULL(to_i915(encoder->base.dev)) == IP_VER(14, 1))
++		return 1350000;
++
+ 	return 2000000;
+ }
+ 
 -- 
 2.25.1
 
