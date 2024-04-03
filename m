@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92CAA8969D5
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 11:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52BFB8969D8
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 11:00:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAF061128E7;
-	Wed,  3 Apr 2024 09:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 903431128F8;
+	Wed,  3 Apr 2024 09:00:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SlnJyXxb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QYgJoIGF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC9B81128DA
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 09:00:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 354381128DA
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Apr 2024 09:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712134852; x=1743670852;
+ t=1712134853; x=1743670853;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8hdePUZwnT3Asu9OKWdonulLgzaUP4JAyX2Vobsh2s4=;
- b=SlnJyXxbX1alVFJxr9hdhbPK0z1rm7bMVcw8zCTvbLcOraVTLCqeo5+i
- hTOG16EOKICuBop9bOlrfk+MuwseTbjFRE/R11/+cJFgZ2Pw3OvbYI4sw
- QzMaiifba/COrwdTKuLuj1soUxItrrY6D7DnXB8BsDIzN2VTBhuqCe62u
- q+QnA3U2kx2lJFutWFkHlC1UuVTpiRFTc40p3jHJdpX6bx4Gav/58BMBn
- YPQDh3QF+lE8pl84Na44t8bfQOlYN1DGJJqEXOPGfw6qTojB3Wwph+u2M
- LKdnGsUw0icLFSCbmK3/9otv14xh/LUQmL06sOAkHX0ntjX52Us910ccM Q==;
-X-CSE-ConnectionGUID: lE2+vlTET5aiaVcBt9vyng==
-X-CSE-MsgGUID: 5bzd9WuKRVelyWdgvXU/3g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7472540"
+ bh=a4k/wuR1TlMBwm75zNBzSk5SGi5ygoKs6hh7X5/Ls6A=;
+ b=QYgJoIGF52TwJsDc+Q0ESCJ1CNVBShJuPYMWO3iYKpS4Sf4qZMguQyT3
+ U6T1yUQcnNINJ9VI1/J33PpoHjUlGw/6NW8rDLMudRIQJy0AARHhGcMYd
+ TNGvZZEqxBAvUW3VMSbLjJ4180zHtx0+lvLwuUozSOOTeUCkRuz0SXSOG
+ ctgkTi0NGjfsixIalmFcnU88d36CyLofP/km0n/r8dgWoUxodZYi1XMzU
+ 7vOCXIPk++rsd22gFZGNmJvawAz4fp2OGxN+sEnlZM1hA+rezDMd3EoYY
+ wSn6IVxVqkE97rfC41a1Ohb6Ce1QdKE2gDmL5WhXV+osJPos+yonmfyER w==;
+X-CSE-ConnectionGUID: SJjk8TRET++trDxyiyBJUg==
+X-CSE-MsgGUID: RvU/sfzqRgCmruidTERqYg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7472550"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7472540"
+   d="scan'208";a="7472550"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 02:00:49 -0700
-X-CSE-ConnectionGUID: lXSlhMakRVaF4A5at8ec4Q==
-X-CSE-MsgGUID: hnChUNeWSLaKgxtfE54xmA==
+ 03 Apr 2024 02:00:50 -0700
+X-CSE-ConnectionGUID: DudWZ+K7Qx6ojaI5oEsdlQ==
+X-CSE-MsgGUID: Dsnu1HfkS1y/62OukrdxJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18453259"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18453274"
 Received: from esavax-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.249.35.175])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 02:00:48 -0700
+ 03 Apr 2024 02:00:49 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Animesh Manna <animesh.manna@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v5 16/19] drm/i915/psr: Do not apply workarounds in case of
- panel replay
-Date: Wed,  3 Apr 2024 12:00:10 +0300
-Message-Id: <20240403090013.54296-17-jouni.hogander@intel.com>
+Subject: [PATCH v5 17/19] drm/i915/psr: Update PSR module parameter
+ descriptions
+Date: Wed,  3 Apr 2024 12:00:11 +0300
+Message-Id: <20240403090013.54296-18-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240403090013.54296-1-jouni.hogander@intel.com>
 References: <20240403090013.54296-1-jouni.hogander@intel.com>
@@ -73,99 +73,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are some workarounds that are not applicable for panel replay. Do not
-apply these if panel replay is used.
+We are re-using PSR module parameters for panel replay. Update module
+parameter descriptions with panel replay information:
 
-Bspec: 66624, 50422
+enable_psr:
+
+-1 (default) == follow what is in VBT
+0 == disable PSR/PR
+1 == Allow PSR1 and PR full frame update
+2 == allow PSR1/PSR2 and PR Selective Update
+
+enable_psr2_sel_fetch
+
+0 == disable selective fetch for PSR and PR
+1 (default) == allow selective fetch for PSR PR
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c  |  5 +++--
- drivers/gpu/drm/i915/display/intel_hdmi.c |  3 ++-
- drivers/gpu/drm/i915/display/intel_psr.c  | 16 ++++++++++------
- 3 files changed, 15 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_params.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 5bfce36fb892..555058c0a1dc 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1250,7 +1250,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * Recommendation is to keep this combination disabled
- 	 * Bspec: 50422 HSD: 14010260002
- 	 */
--	if (IS_DISPLAY_VER(i915, 12, 14) && crtc_state->has_sel_update) {
-+	if (IS_DISPLAY_VER(i915, 12, 14) && crtc_state->has_sel_update &&
-+	    !crtc_state->has_panel_replay) {
- 		plane_state->no_fbc_reason = "PSR2 enabled";
- 		return 0;
- 	}
-@@ -1258,7 +1259,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	/* Wa_14016291713 */
- 	if ((IS_DISPLAY_VER(i915, 12, 13) ||
- 	     IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0)) &&
--	    crtc_state->has_psr) {
-+	    crtc_state->has_psr && !crtc_state->has_panel_replay) {
- 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
- 		return 0;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index a32cb4d25bc7..0bfd352d9f14 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -524,7 +524,8 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
- 			       0);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
+index 11e03cfb774d..1c5e20ec7f1d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_params.c
++++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+@@ -102,7 +102,8 @@ intel_display_param_named_unsafe(enable_fbc, int, 0400,
  
- 	/* Wa_14013475917 */
--	if (!(IS_DISPLAY_VER(dev_priv, 13, 14) && crtc_state->has_psr && type == DP_SDP_VSC))
-+	if (!(IS_DISPLAY_VER(dev_priv, 13, 14) && crtc_state->has_psr &&
-+	      !crtc_state->has_panel_replay && type == DP_SDP_VSC))
- 		val |= hsw_infoframe_enable(type);
+ intel_display_param_named_unsafe(enable_psr, int, 0400,
+ 	"Enable PSR "
+-	"(0=disabled, 1=enable up to PSR1, 2=enable up to PSR2) "
++	"(0=disabled, 1=enable up to PSR1 and Panel Replay full frame update, "
++	"2=enable up to PSR2 and Panel Replay Selective Update) "
+ 	"Default: -1 (use per-chip default)");
  
- 	if (type == DP_SDP_VSC)
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 9e6625470ced..3ef0ad984175 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1948,13 +1948,15 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 		 * All supported adlp panels have 1-based X granularity, this may
- 		 * cause issues if non-supported panels are used.
- 		 */
--		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
--		    IS_ALDERLAKE_P(dev_priv))
-+		if (!intel_dp->psr.panel_replay_enabled &&
-+		    (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
-+		     IS_ALDERLAKE_P(dev_priv)))
- 			intel_de_rmw(dev_priv, hsw_chicken_trans_reg(dev_priv, cpu_transcoder),
- 				     0, ADLP_1_BASED_X_GRANULARITY);
+ intel_display_param_named(psr_safest_params, bool, 0400,
+@@ -112,7 +113,7 @@ intel_display_param_named(psr_safest_params, bool, 0400,
+ 	"Default: 0");
  
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
--		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
-+		if (!intel_dp->psr.panel_replay_enabled &&
-+		    IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv,
- 				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder), 0,
- 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
-@@ -2130,7 +2132,8 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 
- 	if (intel_dp->psr.sel_update_enabled) {
- 		/* Wa_16012604467:adlp,mtl[a0,b0] */
--		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
-+		if (!intel_dp->psr.panel_replay_enabled &&
-+		    IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
- 			intel_de_rmw(dev_priv,
- 				     MTL_CLKGATE_DIS_TRANS(cpu_transcoder),
- 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
-@@ -2616,8 +2619,9 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 		goto skip_sel_fetch_set_loop;
- 
- 	/* Wa_14014971492 */
--	if ((IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
--	     IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
-+	if (!crtc_state->has_panel_replay &&
-+	    ((IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
-+	      IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv))) &&
- 	    crtc_state->splitter.enable)
- 		crtc_state->psr2_su_area.y1 = 0;
+ intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
+-	"Enable PSR2 selective fetch "
++	"Enable PSR2 and Panel Replay selective fetch "
+ 	"(0=disabled, 1=enabled) "
+ 	"Default: 1");
  
 -- 
 2.34.1
