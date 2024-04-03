@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C3F8896E11
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88615896E12
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 13:23:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5EC8112A11;
-	Wed,  3 Apr 2024 11:23:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA0C1112A18;
+	Wed,  3 Apr 2024 11:23:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m3MUrSYI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHB1tvw+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F678112A0A;
- Wed,  3 Apr 2024 11:23:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A59A3112A10;
+ Wed,  3 Apr 2024 11:23:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712143387; x=1743679387;
+ t=1712143389; x=1743679389;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZpNhdF8hP0Do7nHVqLGF8VqIUEPkpt0sLzH8f7HJXng=;
- b=m3MUrSYIrQu1O315Xe0OkP4xwia+xyoezu0h3sj0QGvGMNGBNmqYrJjB
- wm8sPiZiP417mP2qAQ3d7GIhy7YCNnViSK1/456rF7/tYy2CnQzxWX89a
- XOkf1bux3EtM+XXac19MxUeNveNFXpDUXoM4P/Y0bCuP9f9OgsIMzoJOm
- 5dF/z7ahenL6RPOzd0GConEXtWJbT4dcAgZE7rFUy59V6rzGwCRvKKpkE
- 4j/EN4ZtN9n3evHjb37dDf4zkH3xZvm+VndJJPj6L1DFl0QDadtL29HLJ
- ITkTRb+PSbZyYIuvwWEGtGQs7VJyFfmtsy91NLFUmT3bpA6vvBaSRas3W g==;
-X-CSE-ConnectionGUID: MvjzNikJQLyWUfEO8KdjBQ==
-X-CSE-MsgGUID: gNeSoQzeQVCndGm0vYP7QQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24824070"
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24824070"
+ bh=6R0fMystsVo5T+jMvskHwueBz3Hm2C+9jMDX3tPEKYc=;
+ b=QHB1tvw+rrGVDqi+UK1/BVgNYVpTRYxaSutfujGHeK4+cVlSUF8ncnDb
+ GdZojD23FzA3SEjuF3Hg1d/F13mj2SsHPUHYJczY+STWkeEQkeZr8LziM
+ QVpep+664SEJGABWdYxZ0gREVeyHBbrFS1YYQHlcK81r39vLmlRS1YYjP
+ UNbWf1P751Aj+ysyn7Hbg6x1lQzFFhjWNmNh5av6wtdjJ/AvO1pUdHzz/
+ NcxmanP91ltKt8mLPG4PY8st54zPdyijGeGqwNFDEgJC12PITJcpWKWXL
+ VO0NoNMeVQqeGwlYo1i8mdVaSajDWJOfPl0demp4X2qfIW/P1W86UVlGg Q==;
+X-CSE-ConnectionGUID: Tdm8iQwzQTCY1tTmOZaXcg==
+X-CSE-MsgGUID: 3gpWRPHPRquhaAv5mUoCVQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="24824085"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="24824085"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:23:07 -0700
-X-CSE-ConnectionGUID: vzNaJ0wPSuS9dDU3Vc4OPw==
-X-CSE-MsgGUID: SlFY3NZzT7umLz7gVQ6lkg==
+ 03 Apr 2024 04:23:09 -0700
+X-CSE-ConnectionGUID: sKjtL8gUTXaEguVT4gXfrg==
+X-CSE-MsgGUID: 69LLrOT3RE2YOKWgDTBOHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358515"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18358519"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 04:23:05 -0700
+ 03 Apr 2024 04:23:07 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v2 09/25] drm/i915/xe2hpd: Properly disable power in port A
-Date: Wed,  3 Apr 2024 16:52:37 +0530
-Message-Id: <20240403112253.1432390-10-balasubramani.vivekanandan@intel.com>
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Clint Taylor <Clinton.A.Taylor@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v2 10/25] drm/i915/xe2hpd: Add new C20 PLL register address
+Date: Wed,  3 Apr 2024 16:52:38 +0530
+Message-Id: <20240403112253.1432390-11-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
 References: <20240403112253.1432390-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,54 +72,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: José Roberto de Souza <jose.souza@intel.com>
+Xe2_HPD has different address for C20 PLL registers. Enable the support
+to use the right PLL register address based on display version.
 
-Xe2_HPD has a different value to power down port A.
+Note that Xe2_LPD uses the same C20 SRAM offsets used by Xe_LPDP (i.e.
+MTL's display). According to the BSpec, currently, only Xe2_HPD has
+different offsets, so make sure it is the only display using them in the
+driver.
 
-BSpec: 65450
-CC: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Bspec: 67610
+Cc: Clint Taylor <Clinton.A.Taylor@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 27 +++++++++++++++++--
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  9 +++++++
+ 2 files changed, 34 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 13a2e3db2812..caaae5d3758e 100644
+index caaae5d3758e..6e4647859fc6 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2921,17 +2921,28 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
- 		intel_cx0pll_enable(encoder, crtc_state);
+@@ -770,6 +770,17 @@ static struct intel_c20pll_reg mtl_c20_reg = {
+ 	.mpllb_b = MTL_C20_B_MPLLB_CFG_ADDR
+ };
+ 
++static struct intel_c20pll_reg xe2hpd_c20_reg = {
++	.tx_cnt_a = XE2HPD_C20_A_TX_CNTX_CFG_ADDR,
++	.tx_cnt_b = XE2HPD_C20_B_TX_CNTX_CFG_ADDR,
++	.cmn_cnt_a = XE2HPD_C20_A_CMN_CNTX_CFG_ADDR,
++	.cmn_cnt_b = XE2HPD_C20_B_CMN_CNTX_CFG_ADDR,
++	.mplla_a = XE2HPD_C20_A_MPLLA_CFG_ADDR,
++	.mplla_b = XE2HPD_C20_B_MPLLA_CFG_ADDR,
++	.mpllb_a = XE2HPD_C20_A_MPLLB_CFG_ADDR,
++	.mpllb_b = XE2HPD_C20_B_MPLLB_CFG_ADDR,
++};
++
+ /* C20 basic DP 1.4 tables */
+ static const struct intel_c20pll_state mtl_c20_dp_rbr = {
+ 	.clock = 162000,
+@@ -2166,19 +2177,29 @@ static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+ 	return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
  }
  
-+static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
++static struct intel_c20pll_reg *intel_c20_get_pll_reg(struct drm_i915_private *i915)
 +{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+
-+	if (intel_encoder_is_c10phy(encoder))
-+		return CX0_P2PG_STATE_DISABLE;
-+
-+	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-+		return CX0_P2PG_STATE_DISABLE;
-+
-+	return CX0_P4PG_STATE_DISABLE;
++	if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++		return &xe2hpd_c20_reg;
++	else
++		return &mtl_c20_reg;
 +}
 +
- static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 					  struct intel_c20pll_state *pll_state)
  {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	enum phy phy = intel_encoder_to_phy(encoder);
--	bool is_c10 = intel_encoder_is_c10phy(encoder);
- 	intel_wakeref_t wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 	bool cntx;
+ 	intel_wakeref_t wakeref;
+ 	int i;
+-	struct intel_c20pll_reg *pll_reg = &mtl_c20_reg;
++	struct intel_c20pll_reg *pll_reg;
  
- 	/* 1. Change owned PHY lane power to Disable state. */
- 	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
--					    is_c10 ? CX0_P2PG_STATE_DISABLE :
--					    CX0_P4PG_STATE_DISABLE);
-+					    cx0_power_control_disable_val(encoder));
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
  
- 	/*
- 	 * 2. Follow the Display Voltage Frequency Switching Sequence Before
+ 	/* 1. Read current context selection */
+ 	cntx = intel_cx0_read(encoder, INTEL_CX0_LANE0, PHY_C20_VDR_CUSTOM_SERDES_RATE) & PHY_C20_CONTEXT_TOGGLE;
+ 
++	pll_reg = intel_c20_get_pll_reg(to_i915(encoder->base.dev));
++
+ 	/* Read Tx configuration */
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
+ 		if (cntx)
+@@ -2353,7 +2374,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	u32 clock = crtc_state->port_clock;
+ 	bool cntx;
+ 	int i;
+-	const struct intel_c20pll_reg *pll_reg = &mtl_c20_reg;
++	const struct intel_c20pll_reg *pll_reg;
+ 
+ 	if (intel_crtc_has_dp_encoder(crtc_state))
+ 		dp = true;
+@@ -2372,6 +2393,8 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 		usleep_range(4000, 4100);
+ 	}
+ 
++	pll_reg = intel_c20_get_pll_reg(i915);
++
+ 	/* 3. Write SRAM configuration context. If A in use, write configuration to B context */
+ 	/* 3.1 Tx configuration */
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 882b98dc347b..8e5fd605b99e 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -292,6 +292,15 @@ struct intel_c20pll_reg {
+ #define MTL_C20_A_MPLLB_CFG_ADDR	0xCB5A
+ #define MTL_C20_B_MPLLB_CFG_ADDR	0xCB4E
+ 
++#define XE2HPD_C20_A_TX_CNTX_CFG_ADDR	0xCF5E
++#define XE2HPD_C20_B_TX_CNTX_CFG_ADDR	0xCF5A
++#define XE2HPD_C20_A_CMN_CNTX_CFG_ADDR	0xCE8E
++#define XE2HPD_C20_B_CMN_CNTX_CFG_ADDR	0xCE89
++#define XE2HPD_C20_A_MPLLA_CFG_ADDR	0xCE58
++#define XE2HPD_C20_B_MPLLA_CFG_ADDR	0xCE4D
++#define XE2HPD_C20_A_MPLLB_CFG_ADDR	0xCCC2
++#define XE2HPD_C20_B_MPLLB_CFG_ADDR	0xCCB6
++
+ /* C20 Phy VSwing Masks */
+ #define C20_PHY_VSWING_PREEMPH_MASK	REG_GENMASK8(5, 0)
+ #define C20_PHY_VSWING_PREEMPH(val)	REG_FIELD_PREP8(C20_PHY_VSWING_PREEMPH_MASK, val)
 -- 
 2.25.1
 
