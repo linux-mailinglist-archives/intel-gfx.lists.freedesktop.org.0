@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30D789677A
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 10:03:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79AF18968A5
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 10:30:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25F8411252E;
-	Wed,  3 Apr 2024 08:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9571211258E;
+	Wed,  3 Apr 2024 08:30:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pt/rYm9C";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LkxXj4AB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE5A1112504;
- Wed,  3 Apr 2024 08:03:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712131424; x=1743667424;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=jnnGmbacFrUny111x1uye6GLcfZ1b/AdN0Kt5gGriMM=;
- b=Pt/rYm9C9B2HtMhcY0dX9fT0SbkmWXUUPDa+RS8RseWoCErrQaFcDeV3
- SiVxASrxFXVr6b3dkA0F5V/Q4vvvAUXGxOavNNvjVAT16ajyzVoPcFOPl
- nkyVDPDPSCzmt3OAMGP5KfLuiffo5dDa8V/gti5jtAR7VfZ1SJerklwEd
- FMuJHCEuPzXFf/tZ02pv2Rit+njKCVSxoMovc2fEkG+FN3vieKVbTGVU2
- 9aANs58TQaEqCqvtIeJbl134NmsWX4cc32z2OuFVY4oEQBfrXMRZkOEGp
- nH6DgU7+PITP0tikL93yz5hTkEY29IJ4443WRx/VIJDLUZ0yvC/Xp4Uh7 A==;
-X-CSE-ConnectionGUID: GquZedbfSR+9PSjzXooxmw==
-X-CSE-MsgGUID: bZNtFTL6SBu+eH8sj+b0CA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="11121344"
-X-IronPort-AV: E=Sophos;i="6.07,176,1708416000"; d="scan'208";a="11121344"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 01:03:43 -0700
-X-CSE-ConnectionGUID: TMHrLnGITqq9huQCgKWdMQ==
-X-CSE-MsgGUID: seHLOkkKQcuWIk81DTxxxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,176,1708416000"; d="scan'208";a="18177741"
-Received: from melsaid-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.41.235])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 01:03:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/i915/display: fix display param dup for NULL char *
- params
-In-Reply-To: <20240402155534.1788466-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240402155534.1788466-1-jani.nikula@intel.com>
-Date: Wed, 03 Apr 2024 11:03:38 +0300
-Message-ID: <87h6gieuud.fsf@intel.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4A71122A0;
+ Wed,  3 Apr 2024 08:30:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 6D76CCE0B41;
+ Wed,  3 Apr 2024 08:30:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1885CC433C7;
+ Wed,  3 Apr 2024 08:30:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1712133029;
+ bh=kjqVQ6E3LGz0GgJpNmzzq9iKyJa7oFl6VehmuIK/HtE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=LkxXj4AB3ybXO0LR+NGpVlBB+kDGFlRF72bGs9vkfP4HGGLZxEwOxD9U6F28cjqOY
+ RiNKp8BDBjQ80n8XEuYG8q3O7C2IZQT44SBdGWl7KrE4bHgFPIGdbLCoVW86m9sO0P
+ aVnl3aDbCsex5TWqud/xBjGBs966IxfgtVsKL3dWTjv1btjykFVjr2jAZsg4dDw16x
+ GNver1nnlp/7OTsB0ipqRWidTs4Jsz6NDxVRRwiRdygxd+zVARug5B617RefpVbP0t
+ 6IWSRkPdykyYh1lCk6yjDLqNOO7DV8b42TYN0QHcuCWv2lzbNovY9qkZrh/zfAr8kV
+ s6scXTdj8lqAw==
+Date: Wed, 3 Apr 2024 11:30:25 +0300
+From: Leon Romanovsky <leon@kernel.org>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>,
+ "open list:HFI1 DRIVER" <linux-rdma@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v0 01/14] IB/hfi1, IB/qib: Make I2C terminology more
+ inclusive
+Message-ID: <20240403083025.GT11187@unreal>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-2-eahariha@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240329170038.3863998-2-eahariha@linux.microsoft.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,64 +73,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> The display param duplication deviates from the original param
-> duplication in that it converts NULL params to to allocated empty
-> strings. This works for the vbt_firmware parameter, but not for
-> dmc_firmware_path, the user of which interprets NULL and the empty
-> string as distinct values. Specifically, the empty dmc_firmware_path
-> leads to DMC and PM being disabled.
->
-> Just remove the NULL check and pass it to kstrdup(), which safely
-> returns NULL for NULL input.
-
-Turns out this fails miserably as well. The debugfs for display params
-oopses for NULL value while the i915 core debugfs doesn't. I obviously
-didn't realize how the param handling was subtly different between the
-two.
-
-Since the quick fix didn't cut it, I've opted to revert 0d82a0d6f556
-("drm/i915/display: move dmc_firmware_path to display params") with
-Rodrigo's and Lucas' acks. Back to the drawing board.
-
-We probably want to first address the issue with NULL and "" being
-distinct values for firmware path params and the fact that you can't set
-them back to NULL via debugfs or module param sysfs.
-
-BR,
-Jani.
-
-
-> Fixes: 8015bee0bfec ("drm/i915/display: Add framework to add parameters s=
-pecific to display")
-> Fixes: 0d82a0d6f556 ("drm/i915/display: move dmc_firmware_path to display=
- params")
-> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> Cc: Luca Coelho <luciano.coelho@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.8+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, Mar 29, 2024 at 05:00:25PM +0000, Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by and following on to Wolfram's series
+> to fix drivers/i2c[1], fix the terminology where I had a role to play, now that
+> the approved verbiage exists in the specification.
+> 
+> Compile tested, no functionality changes intended
+> 
+> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+> 
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
-s/gpu/drm/i915/display/intel_display_params.c
-> index c8e3d6892e23..49c6b42077dc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> @@ -176,9 +176,9 @@ void intel_display_params_dump(struct drm_i915_privat=
-e *i915, struct drm_printer
->  #undef PRINT
->  }
->=20=20
-> -__maybe_unused static void _param_dup_charp(char **valp)
-> +static void _param_dup_charp(char **valp)
->  {
-> -	*valp =3D kstrdup(*valp ? *valp : "", GFP_ATOMIC);
-> +	*valp =3D kstrdup(*valp, GFP_ATOMIC);
->  }
->=20=20
->  __maybe_unused static void _param_nop(void *valp)
+>  drivers/infiniband/hw/hfi1/chip.c           |  6 ++--
+>  drivers/infiniband/hw/hfi1/chip.h           |  2 +-
+>  drivers/infiniband/hw/hfi1/chip_registers.h |  2 +-
+>  drivers/infiniband/hw/hfi1/file_ops.c       |  2 +-
+>  drivers/infiniband/hw/hfi1/firmware.c       | 22 ++++++-------
+>  drivers/infiniband/hw/hfi1/pcie.c           |  2 +-
+>  drivers/infiniband/hw/hfi1/qsfp.c           | 36 ++++++++++-----------
+>  drivers/infiniband/hw/hfi1/user_exp_rcv.c   |  2 +-
+>  drivers/infiniband/hw/qib/qib_twsi.c        |  6 ++--
+>  9 files changed, 40 insertions(+), 40 deletions(-)
 
---=20
-Jani Nikula, Intel
+hfi1 and qib work perfectly fine with the current terminology. There is
+no need to change old code just for the sake of change.
+
+Let's drop this patch.
+
+Thanks
