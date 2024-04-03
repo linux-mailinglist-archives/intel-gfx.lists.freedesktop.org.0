@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169DF896D41
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 12:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E19CB896D42
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 12:52:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97F2D10E073;
-	Wed,  3 Apr 2024 10:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 364CB11263E;
+	Wed,  3 Apr 2024 10:52:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibcmbRZw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dM21xqRg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C00F10E121;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5B5A10E121;
  Wed,  3 Apr 2024 10:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141543; x=1743677543;
+ t=1712141544; x=1743677544;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aXwO+YyrDlXCOTfVyyvxISMPpqPvIKOZ+rBZD0M63z8=;
- b=ibcmbRZwi9MMOIrt9xjDm0UOiypqt/pgscdWGZ0u9iCLtP2xHdmiFQGz
- inb42mWvgIRUvaYXPcBYbtY0VCzBPoKFgB6hjdPAlM06H8AkoYz8K6pea
- ayce8omouUD6VJsI5g2xNaBxJqhOjmJksWUL7DDWi0HmJRJnYbLbvIK9E
- 477cgbHXwk9601u8bwGnX4FXP9i0tsX/JX7RL+xxRMTWkVVwiP8rDiz5k
- QaI3yNVKDwAWVhviMqI5iy/139If0hy6cXloIYOA+Iff/tbZI/Pxxw3Qv
- 8Bn9U8BqiAhVA4HmBsgFuPAQlyZj8Yu2QCWzeRBFu86HLd6pNm2bZxuLA g==;
-X-CSE-ConnectionGUID: jA4WZtDvSvCMm6KEDOO6bw==
-X-CSE-MsgGUID: itHWar0CTryiHp6lO5Cg1A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212235"
+ bh=eIgqYGq4fLCpTqOPXETspxhbgXdmYP4yn2mIRzbzD4U=;
+ b=dM21xqRgMVwJ70nIremnZYf7uR+Lg6X+0yEQ2d/nJ8FBPfhPHt8e+LEg
+ t6U1J3xWUcaNGMFX85+pV5W0+nNzHmNsHgKrJ8o5VclskEALZUg6QDAA2
+ TQOyU5MMBuSz9uYZ0vlEfOL4Av99xJE8Fav5ZngQaysjgmODdJf0D0JG5
+ MPvmDn1dhrPKUoetREaP+CN/eIgBOqz5xH8LP4YW6wGISC9k415Kjj4LE
+ XXU9IjF7dCZyEF99q745f8B//6jbDwGT8G3b4AWP+h67QAI0QFyXn9y0C
+ dC1S2ygnOvqGUxvWrTX5Ta30NxMuvjO8+uh+y4JQKaIXWNHbH1oGs1M78 w==;
+X-CSE-ConnectionGUID: ydK5Fq/CQ/qaJe+F2E5gmw==
+X-CSE-MsgGUID: vLM7GSzCTiCuUQUb6YptVA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212249"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7212235"
+   d="scan'208";a="7212249"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:53 -0700
-X-CSE-ConnectionGUID: w/flNFAuS1GlBDL8pVahMg==
-X-CSE-MsgGUID: UcO1fm8zSEWgKA7hXP+SrQ==
+ 03 Apr 2024 03:51:56 -0700
+X-CSE-ConnectionGUID: Jx9mlBBDSVy17s/8gM8uvw==
+X-CSE-MsgGUID: fdXL6rWjRjqOI3Oj6j/zyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493413"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493416"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:51 -0700
+ 03 Apr 2024 03:51:53 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH 19/25] drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
-Date: Wed,  3 Apr 2024 16:21:17 +0530
-Message-Id: <20240403105123.1327669-20-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 20/25] drm/i915/bmg: BMG should re-use MTL's south display
+ logic
+Date: Wed,  3 Apr 2024 16:21:18 +0530
+Message-Id: <20240403105123.1327669-21-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,31 +72,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: José Roberto de Souza <jose.souza@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Xe2_HPD doesn't have DBOX BW credits, so here programing it with
-zero.
+Battlemage's south display is the same as Meteor Lake's, including the
+need to invert the HPD pins, which Lunar Lake does not need.
 
-BSpec: 49213
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/soc/intel_pch.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index bc341abcab2f..22ae782e89f4 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3733,7 +3733,7 @@ void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 		if (!new_crtc_state->hw.active)
- 			continue;
- 
--		if (DISPLAY_VER(i915) >= 14) {
-+		if (DISPLAY_VER(i915) >= 14 && !IS_BATTLEMAGE(i915)) {
- 			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
- 							      new_dbuf_state->active_pipes))
- 				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
+index 3cad6dac06b0..542eea50093c 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.c
++++ b/drivers/gpu/drm/i915/soc/intel_pch.c
+@@ -218,10 +218,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 	if (DISPLAY_VER(dev_priv) >= 20) {
+ 		dev_priv->pch_type = PCH_LNL;
+ 		return;
+-	} else if (IS_METEORLAKE(dev_priv)) {
++	} else if (IS_BATTLEMAGE(dev_priv) || IS_METEORLAKE(dev_priv)) {
+ 		/*
+ 		 * Both north display and south display are on the SoC die.
+-		 * The real PCH is uninvolved in display.
++		 * The real PCH (if it even exists) is uninvolved in display.
+ 		 */
+ 		dev_priv->pch_type = PCH_MTL;
+ 		return;
 -- 
 2.25.1
 
