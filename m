@@ -2,72 +2,101 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0912289C6F8
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D997489C6FB
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E885C112664;
-	Mon,  8 Apr 2024 14:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A347E11265F;
+	Mon,  8 Apr 2024 14:24:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="DWioxHIz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Re8F0gky";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id C70C610FF50;
- Tue,  2 Apr 2024 18:19:05 +0000 (UTC)
-Received: from [100.64.232.220] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id 44D9220E8BDC;
- Tue,  2 Apr 2024 11:19:04 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 44D9220E8BDC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1712081945;
- bh=6CxfCTy2hvljG0KtnNfE1+yaCZUecQ3XXshhsgNm9Uw=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=DWioxHIzgS3pFY1uvHRovezlPv1RdDLcO2IT9/uxBMLrPIYLmaifrAV+YozRfQao5
- rn7ZeC4782fWxJ68W1tiLG19p3MAqbIzFdJeAEkZWoLgMwgJMeelbVPX1Afg8R8m6u
- UVRz1yN/74Ux892MYhIq1XY0LntOnyafVlWsWEQ4=
-Message-ID: <75428d6c-c40a-43d8-84e3-f9ed161c37e2@linux.microsoft.com>
-Date: Tue, 2 Apr 2024 11:19:03 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 03/14] drm/gma500,drm/i915: Make I2C terminology more
- inclusive
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Zhenyu Wang
- <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- dri-devel@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
- <intel-gvt-dev@lists.freedesktop.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB2E112AA4;
+ Wed,  3 Apr 2024 12:37:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712147822; x=1743683822;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Gz4IMh43tlqJQMtkQNAmSURtoItRp7LuOPT/d9igbhs=;
+ b=Re8F0gkyxNMG91bQSCmM+sumsuhc/4ehQlP89bNusxXv2SWnXzgjJPFK
+ CLz9kMrGiZewa9C3EdKrNDfRcCrYpPbsat1ytgRlBd62M2VDY1LD+Ppia
+ NDTPfLXiUyQLLgXOSSqOQNJyk3X5i0ksIV9GXnhbegDabHOVxRjkAl+L9
+ 1ZUb0wesnfVDgV3xE0Vkh7pPrQZ9rTHY/OMJpRIVlgvpfqVym6UYOocSe
+ 3WRhKo6d+rlL8wZsHZRVd2l+HJsOaVAjR7TIu82r0UCES6uFWFbRoobwk
+ thIu8GRCft8GFjQQxP3XI20hTDJmOw5HsiI8BC9C8GmiaPYY0NQsXtZx4 w==;
+X-CSE-ConnectionGUID: 9buRWh2zSkumz/QaT0a9MQ==
+X-CSE-MsgGUID: 3jpF2ZTeT7mDQpkXQ84gEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="32764450"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="32764450"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 05:36:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="827789899"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="827789899"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 03 Apr 2024 05:36:43 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Apr 2024 15:36:43 +0300
+Date: Wed, 3 Apr 2024 15:36:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Easwar Hariharan <eahariha@linux.microsoft.com>,
+	Alex Deucher <alexander.deucher@amd.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	"Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+	Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+	Evan Quan <evan.quan@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+	Candice Li <candice.li@amd.com>, Ran Sun <sunran001@208suo.com>,
+	Alexander Richards <electrodeyt@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Hamza Mahfooz <hamza.mahfooz@amd.com>,
+	Ruan Jinjie <ruanjinjie@huawei.com>, Alan Liu <haoping.liu@amd.com>,
+	Aurabindo Pillai <aurabindo.pillai@amd.com>,
+	Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
+	Alvin Lee <alvin.lee2@amd.com>, Charlene Liu <charlene.liu@amd.com>,
+	Sohaib Nadeem <sohaib.nadeem@amd.com>,
+	Lewis Huang <lewis.huang@amd.com>,
+	Tom Chung <chiahsuan.chung@amd.com>,
+	Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+	Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+	George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+	Jun Lei <jun.lei@amd.com>,
+	Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+	Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
+	Dillon Varone <dillon.varone@amd.com>, Le Ma <Le.Ma@amd.com>,
+	Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>,
+	Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+	Mario Limonciello <mario.limonciello@amd.com>,
+	Yang Wang <kevinyang.wang@amd.com>,
+	Darren Powell <darren.powell@amd.com>,
+	Yifan Zhang <yifan1.zhang@amd.com>,
+	"open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+	open list <linux-kernel@vger.kernel.org>, Wolfram@freedesktop.org,
+	"Sang <wsa+renesas"@sang-engineering
+Subject: Re: [PATCH v0 02/14] drm/amdgpu,drm/radeon: Make I2C terminology
+ more inclusive
+Message-ID: <Zg1NW0jqwFn4lvEP@intel.com>
 References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <20240329170038.3863998-4-eahariha@linux.microsoft.com>
- <87a5mcfbms.fsf@intel.com>
- <7d5e6ed0-ffe9-46c2-b3b4-a4a47c09532e@linux.microsoft.com>
- <87ttkjesx8.fsf@intel.com>
- <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
- <87o7aremfz.fsf@intel.com>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <87o7aremfz.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:14 +0000
+ <20240329170038.3863998-3-eahariha@linux.microsoft.com>
+ <Zgb3VYsgLjhJ2HKs@ashyti-mobl2.lan>
+ <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
+ <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
+X-Patchwork-Hint: comment
+X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:15 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,70 +112,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/2/2024 9:52 AM, Jani Nikula wrote:
-> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->> On 4/2/2024 7:32 AM, Jani Nikula wrote:
->>> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->>>> On 4/2/2024 12:48 AM, Jani Nikula wrote:
->>>>> On Fri, 29 Mar 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->>>>>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->>>>>> with more appropriate terms. Inspired by and following on to Wolfram's
->>>>>> series to fix drivers/i2c/[1], fix the terminology for users of
->>>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->>>>>> in the specification.
->>>>>
->>>>> gma500 and i915 changes should be split. See MAINTAINERS.
->>>>>
->>>>> Might also split the i915 changes to smaller pieces, it's kind of
->>>>> random. And the changes here are not strictly related to I2C AFAICT, so
->>>>> the commit message should be updated.
->>>>>
->>>>> BR,
->>>>> Jani.
->>>>>
->>>>>
->>>>
->>>> <snip>
->>>>
->>>> I will split gma500 and i915 into their respective patches if possible in v2.
->>>>
->>>> Can you say more about the changes being "not strictly related to I2C"? My
->>>> heuristic was to grep for master/slave, and look in the surrounding context for
->>>> i2c-related terminology (i2c_pin, 7-bit address, struct i2c_adapter, i2c_bus, etc)
->>>> to confirm that they are i2c-related, then following the references around to
->>>> make the compiler happy. For e.g., I did not change the many references to bigjoiner
->>>> master and slave because I understood from context they were not i2c references.
->>>>
->>>> A couple examples would help me restrict the changes to I2C, since as mentioned in the
->>>> discussion on Wolfram's thread, there are places where migrating away from master/slave
->>>> terms in the code would conflict with the original technical manuals and reduce correlation
->>>> and understanding of the code.
->>>
->>> I guess I was looking at the VBT changes in intel_bios.c. Granted, they
->>> do end up being used as i2c addresses. No big deal.
->>>
->>> I think I'd expect the treewide i2c adapter changes to land first, via
->>> i2c, and subsequent cleanups to happen next, via individual driver
->>> trees. There's quite a bit of conflict potential merging this outside of
->>> drm-intel-next, and there's really no need for that.
->>>
->>> BR,
->>> Jani.
->>>
->>
->> Great! Just so I'm clear, do you still want the i915 changes split up more, along with them being
->> split off from gma500?
+On Fri, Mar 29, 2024 at 06:38:10PM +0100, Andi Shyti wrote:
+> Hi,
 > 
-> If we can merge the i915 changes via drm-intel-next, it's probably fine
-> as a big i915 patch. Just the gma500 separated. (The struct
-> i2c_algorithm change etc. necessarily has to go via I2C tree of course.)
+> On Fri, Mar 29, 2024 at 10:28:14AM -0700, Easwar Hariharan wrote:
+> > On 3/29/2024 10:16 AM, Andi Shyti wrote:
+> > > Hi Easwar,
+> > > 
+> > > On Fri, Mar 29, 2024 at 05:00:26PM +0000, Easwar Hariharan wrote:
+> > >> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> > > 
+> > > I don't understand why we forget that i3c is 1.1.1 :-)
+> > 
+> > That's because it's a copy-paste error from Wolfram's cover letter. :) I'll update
+> > next go-around.
 > 
-> BR,
-> Jani.
+> not a binding comment, though. Just for completeness, because we
+> are giving the version to the i2c and smbus, but not i3c.
 > 
+> > >> with more appropriate terms. Inspired by and following on to Wolfram's
+> > >> series to fix drivers/i2c/[1], fix the terminology for users of
+> > >> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> > >> in the specification.
+> > > 
+> > > The specification talks about:
+> > > 
+> > >  - master -> controller
+> > >  - slave -> target (and not client)
+> > > 
+> > > But both you and Wolfram have used client. I'd like to reach
+> > > some more consistency here.
+> > 
+> > I had the impression that remote targets (i.e external to the device) were to be called clients,
+> > e.g. the QSFP FRUs in drivers/infiniband, and internal ones targets.
+> > I chose the terminology according to that understanding, but now I can't find where I got that
+> > information.
+> 
+> The word "client" does not even appear in the documentation (only
+> one instance in the i3c document), so that the change is not
+> related to the document as stated in the commit log. Unless, of
+> course, I am missing something.
+> 
+> I'm OK with choosing a "customized" naming, but we need to reach
+> an agreement.
+> 
+> I raised the same question to Wolfram.
 
-Got it. I'll send the split out in v1 (not v2 as mentioned earlier) since this is v0.
+I don't know where that discussion happened, but my opinion
+is NAK to "client". Life is already confusing enough with
+these renames, so let's not make it even more confusing by
+inventing new names nowhere to be found in the spec.
 
-Thanks,
-Easwar
+And let's especially not invent names that don't even fit
+the purpose. "Client" makes me think of "client/server" or
+some real world analogy. Neither of which seem to have any
+resemblence to how the term would be used for i2c.
 
+-- 
+Ville Syrjälä
+Intel
