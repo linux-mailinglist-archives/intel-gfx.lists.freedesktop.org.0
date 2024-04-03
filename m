@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B3B896D3C
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 12:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B69896D40
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Apr 2024 12:52:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0622112642;
-	Wed,  3 Apr 2024 10:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 800511129C6;
+	Wed,  3 Apr 2024 10:52:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DQn0ZsgY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2GVx6XN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3CAD1129DA;
- Wed,  3 Apr 2024 10:52:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78C121129CF;
+ Wed,  3 Apr 2024 10:52:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712141527; x=1743677527;
+ t=1712141534; x=1743677534;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=95rIAOk23JgjKHgGzwFjF7V4BcAHOjBvOInSOjzO5G0=;
- b=DQn0ZsgYK4jOe2P435vrSP50hYb3j53FO4BGMav8YCeZ9KxWu9hg8g3D
- PxA0cfzqraKrzLFEiJtoqK/kFOJN8rDYUb0OSg8Nc2D5shIQNo8kv7E4m
- wT19TcLeh6gr0I6PYJlCiui5GFBt7oFuDGn+q4dfZ62gMjP/X+J5PWkNf
- mcBz9EP20yxZervecsLXGdGzP8sm63DgPCwENOhC76Av7HfgrVxfU1+nq
- MsI5nRs2EACcKte5SPHVcLfdGrssveh0VEQnGUQuhiNQL+VPcKpIYe2WI
- 0bptK7y0P7XmdLEvIgaXftDLrf1QBtK9ECSexCVl0kwMVR4hRyaZn7/46 A==;
-X-CSE-ConnectionGUID: rNoVIdQySHaJune2aBJ5fg==
-X-CSE-MsgGUID: +h5gwRaCSo2B8Ah8g8r6/A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212182"
+ bh=pxE8liYJG+J5mArgQujDXsDDoZ4dIiDF9zL6jv08cCM=;
+ b=m2GVx6XNsh49lIsNxoJAc0rFkl78eP/HTEG2JkYUuibcYSjEOO6NXR19
+ Mbu9t4VnVB/yVySJepcG0Qk0uscppGaP7/pe/pY2JItAK2GxbUz7x3TJ2
+ 7XrIR8nag+W+nYUyFEd3MzpOXDxPqadbGhHfO6VaVqBb6qB44f0hfG44y
+ f0NA9fwLGdSb2NH/lOBxvadGtHhXqx6PzPU0mWQqL+3nW4wUOWtHQI2e1
+ LhDHU9xqbNsPy05M+dH0woBmSJ2bKGn06fMjmj6zETcqEIIX45udHMz4X
+ 9RvNj3GrzJtJoqCxXAK7WHzD5zvrvamPvMNt/u8YOd8uicML8Ufl+Qb30 A==;
+X-CSE-ConnectionGUID: efmPJ6rCRxy5qVlytqnwJg==
+X-CSE-MsgGUID: 3kcYrEQRTmqZqx4vyWNn1Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11032"; a="7212191"
 X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; 
-   d="scan'208";a="7212182"
+   d="scan'208";a="7212191"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:42 -0700
-X-CSE-ConnectionGUID: Hh01OFgURLCwLxL6VYf/dw==
-X-CSE-MsgGUID: P3cGyPbmQ+O9d3d1+PXQhw==
+ 03 Apr 2024 03:51:45 -0700
+X-CSE-ConnectionGUID: 1u+q5sHNSFeasvv2++n44A==
+X-CSE-MsgGUID: fQSrcmCdTkSg94pdKJXtBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493391"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="18493394"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2024 03:51:40 -0700
+ 03 Apr 2024 03:51:42 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ Clint Taylor <clinton.a.taylor@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH 14/25] drm/i915/xe2hpd: Add missing chicken bit register
- programming
-Date: Wed,  3 Apr 2024 16:21:12 +0530
-Message-Id: <20240403105123.1327669-15-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 15/25] drm/xe/display: Lane reversal requires writes to both
+ context lanes
+Date: Wed,  3 Apr 2024 16:21:13 +0530
+Message-Id: <20240403105123.1327669-16-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
 References: <20240403105123.1327669-1-balasubramani.vivekanandan@intel.com>
@@ -73,45 +73,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-Add step 9 from initialize display sequence.
+Write both CX0 Lanes for Context Toggle for all except TC pin assignment D.
 
-Bpsec: 49189
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+BSPEC: 64539
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 4 ++++
- drivers/gpu/drm/i915/i915_reg.h                    | 1 +
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 6fd4fa52253a..bf9685acf75a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1694,6 +1694,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 	if (IS_DG2(dev_priv))
- 		intel_snps_phy_wait_for_calibration(dev_priv);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 20035be015c3..cbcb6651dfed 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2558,7 +2558,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ {
+ 	const struct intel_c20pll_state *pll_state = &crtc_state->cx0pll_state.c20;
+ 	bool dp = false;
+-	int lane = crtc_state->lane_count > 2 ? INTEL_CX0_BOTH_LANES : INTEL_CX0_LANE0;
++	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
+ 	u32 clock = crtc_state->port_clock;
+ 	bool cntx;
+ 	int i;
+@@ -2634,19 +2634,19 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	}
  
-+	/* 9. XE2_HPD: Program CHICKEN_MISC_2 before any cursor or planes are enabled */
-+	if (DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 1))
-+		intel_de_rmw(dev_priv, CHICKEN_MISC_2, BMG_DARB_HALF_BLK_END_BURST, 1);
-+
- 	if (resume)
- 		intel_dmc_load_program(dev_priv);
+ 	/* 4. Program custom width to match the link protocol */
+-	intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_WIDTH,
++	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_WIDTH,
+ 		      PHY_C20_CUSTOM_WIDTH_MASK,
+ 		      PHY_C20_CUSTOM_WIDTH(intel_get_c20_custom_width(clock, dp)),
+ 		      MB_WRITE_COMMITTED);
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 58f3e4bfe254..875d76fb8cd0 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4548,6 +4548,7 @@
+ 	/* 5. For DP or 6. For HDMI */
+ 	if (dp) {
+-		intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_SERDES_RATE,
++		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+ 			      BIT(6) | PHY_C20_CUSTOM_SERDES_MASK,
+ 			      BIT(6) | PHY_C20_CUSTOM_SERDES(intel_c20_get_dp_rate(clock)),
+ 			      MB_WRITE_COMMITTED);
+ 	} else {
+-		intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_SERDES_RATE,
++		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+ 			      BIT(7) | PHY_C20_CUSTOM_SERDES_MASK,
+ 			      is_hdmi_frl(clock) ? BIT(7) : 0,
+ 			      MB_WRITE_COMMITTED);
+@@ -2660,7 +2660,7 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	 * 7. Write Vendor specific registers to toggle context setting to load
+ 	 * the updated programming toggle context bit
+ 	 */
+-	intel_cx0_rmw(encoder, lane, PHY_C20_VDR_CUSTOM_SERDES_RATE,
++	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+ 		      BIT(0), cntx ? 0 : 1, MB_WRITE_COMMITTED);
+ }
  
- #define CHICKEN_MISC_2		_MMIO(0x42084)
- #define   CHICKEN_MISC_DISABLE_DPT	REG_BIT(30) /* adl,dg2 */
-+#define   BMG_DARB_HALF_BLK_END_BURST	REG_BIT(27)
- #define   KBL_ARB_FILL_SPARE_14		REG_BIT(14)
- #define   KBL_ARB_FILL_SPARE_13		REG_BIT(13)
- #define   GLK_CL2_PWR_DOWN		REG_BIT(12)
 -- 
 2.25.1
 
