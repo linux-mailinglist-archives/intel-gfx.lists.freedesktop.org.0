@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7F5B899076
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 23:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D73899077
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 23:35:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D12731125D4;
-	Thu,  4 Apr 2024 21:34:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57440113571;
+	Thu,  4 Apr 2024 21:35:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XquGR/wX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g0ErZnm4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C15F1125D4
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Apr 2024 21:34:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D78DD11356B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Apr 2024 21:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712266494; x=1743802494;
+ t=1712266498; x=1743802498;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GKgiKVXCj7iVpkrr1i/ojOxjLq+5yj2zHNyZjJKEkTE=;
- b=XquGR/wX5ELcf+AuWNQHlJakdpx9n+3GG8CsbX6AwNQEnV1c5Bc6kQXV
- CcERfAa/JqZNE2nZ75W8tjCp2i+/G5J5s+wNPMujNx4h/xzJ0g47gM2uf
- Zzkbz8DAYgZjdxRj+YMF7W5VAtxLgxJCa7k206ytwP7JuOmHLM3or7BY8
- svcYKZfBx1U05BIfMyydCpTzqxO0IXrE5NAq3ArulfZGJZztQq6ouz2ly
- yYL4bOZUJPMy27HBEGUp48e9TlbfrJ7LjrH/6eWOkHaa6l4MRe9gAjHQZ
- m5pz7iTxxPc9btgUyST9k5IqH+gpX3Pv1cY7+humTon7x10gdrem6IMhe g==;
-X-CSE-ConnectionGUID: nnCj5+2TRFCPwbYIlAnGHQ==
-X-CSE-MsgGUID: /hgRnF8hTheyHUDwjaTMXg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7710793"
+ bh=06xw9sd4291wnGmKdt+InDVaSkk9GiTKwHlCPkz0GNo=;
+ b=g0ErZnm4Yy3pFES2CrslZrEXcl+JRFgz+3Agf1OhCkQsO+Z5yFUyS55W
+ NBF1dvjDF/hlEKzlFvCRAK1Dq96GyyhBkVFoj8HpAs+FckDnaBUQIEoA9
+ O7k3eY6hi7O3mxQ3veR4be9PTBJpDtj+94ek0bcpiX7k6uYqv9o+wD732
+ IAxIRGS3keeOD07UBtaoR9v+OsPKYqwKmcmsCHjuWNZdHW2M+SsrAEvC1
+ v6cQtVeyRdUlRv5Mo9KOYacKsj9LbOQIAxKVjVM5RLjdn9V/JYh06rV83
+ 3uFLVtxLEMK2gY4/o4WAgkT6EijhnchCi9DeZDdoBGEDMREKuBDD875qH A==;
+X-CSE-ConnectionGUID: RsyIfLKQQrKje/nkLsuHIA==
+X-CSE-MsgGUID: UbrHLIkcTLaQQawddVTH5g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7710797"
 X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
-   d="scan'208";a="7710793"
+   d="scan'208";a="7710797"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 14:34:54 -0700
+ 04 Apr 2024 14:34:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="827790606"
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="827790606"
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="827790609"
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="827790609"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 04 Apr 2024 14:34:51 -0700
+ by orsmga001.jf.intel.com with SMTP; 04 Apr 2024 14:34:55 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Apr 2024 00:34:51 +0300
+ Fri, 05 Apr 2024 00:34:54 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Vidya Srinivas <vidya.srinivas@intel.com>,
- Vandita Kulkarni <vandita.kulkarni@intel.com>
-Subject: [PATCH v2 03/17] drm/i915: Disable port sync when bigjoiner is used
-Date: Fri,  5 Apr 2024 00:34:27 +0300
-Message-ID: <20240404213441.17637-4-ville.syrjala@linux.intel.com>
+ Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v2 04/17] drm/i915: Disable live M/N updates when using
+ bigjoiner
+Date: Fri,  5 Apr 2024 00:34:28 +0300
+Message-ID: <20240404213441.17637-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
 References: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
@@ -72,36 +73,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The current modeset sequence can't handle port sync and bigjoiner
-at the same time. Refuse port sync when bigjoiner is needed,
-at least until we fix the modeset sequence.
-
-v2: Add a FIXME (Vandite)
+All joined pipes share the same transcoder/timing generator.
+Currently we just do the commits per-pipe, which doesn't really
+work if we need to change the timings at the same time. For
+now just disable live M/N updates when bigjoiner is needed.
 
 Tested-by: Vidya Srinivas <vidya.srinivas@intel.com>
-Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 0654e989f45f..909c0102c865 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4244,7 +4244,12 @@ static bool m_n_equal(const struct intel_link_m_n *m_n_1,
- static bool crtcs_port_sync_compatible(const struct intel_crtc_state *crtc_state1,
- 				       const struct intel_crtc_state *crtc_state2)
- {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 8b67cd62f188..4552005caae2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2752,7 +2752,11 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
+ 		intel_panel_downclock_mode(connector, &pipe_config->hw.adjusted_mode);
+ 	int pixel_clock;
+ 
+-	if (has_seamless_m_n(connector))
 +	/*
-+	 * FIXME the modeset sequence is currently wrong and
-+	 * can't deal with bigjoiner + port sync at the same time.
++	 * FIXME all joined pipes share the same transcoder.
++	 * Need to account for that when updating M/N live.
 +	 */
- 	return crtc_state1->hw.active && crtc_state2->hw.active &&
-+		!crtc_state1->bigjoiner_pipes && !crtc_state2->bigjoiner_pipes &&
- 		crtc_state1->output_types == crtc_state2->output_types &&
- 		crtc_state1->output_format == crtc_state2->output_format &&
- 		crtc_state1->lane_count == crtc_state2->lane_count &&
++	if (has_seamless_m_n(connector) && !pipe_config->bigjoiner_pipes)
+ 		pipe_config->update_m_n = true;
+ 
+ 	if (!can_enable_drrs(connector, pipe_config, downclock_mode)) {
 -- 
 2.43.2
 
