@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516FC8988AF
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 15:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C66898901
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 15:44:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 798FD112FC8;
-	Thu,  4 Apr 2024 13:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0419910F1EB;
+	Thu,  4 Apr 2024 13:44:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K645YQTx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lv5uARAX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92B791130C1
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Apr 2024 13:21:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD67610F1EB;
+ Thu,  4 Apr 2024 13:44:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712236878; x=1743772878;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=4PUhyoISLeRoAYYJKZujF03ETSo0DBJSH2yMFDaA3MI=;
- b=K645YQTxYX4JS1Fec85cHWGgC6Hn6KdvTw+xZ6FMLpd6Ys5Iu7TDbDX8
- 4KBZabmLilGhgoL4371wNFT9BNFVEhaYx+u1092v7jBS/91WV0WJXy2oB
- pDSScoqPqxMa6i6UeS8H7dIzkV0xQs8UMsvSFnT2Axl4o4/exk7h9FPg/
- hLW5fghOlCD5OJMEzkpEs7jL5lhUUgtWdmnmFbX8L3RyK6ypUVt7iaTae
- D2qo4TVQG8/VLoFwqBHk8JEbmjFnaNlkPwzayD/aO/SQPbhMxV+qXgr8p
- PlVI12e7NVCeGvjQAEgsiAZDoXYCxMTsR8/Ah5/HrYUlYXQD6cnXjawa8 w==;
-X-CSE-ConnectionGUID: yD1gzUK3RWK3iL/N5Pxlvg==
-X-CSE-MsgGUID: K8ENNqPnQ5OKtJs7/PDMWg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7622587"
-X-IronPort-AV: E=Sophos;i="6.07,178,1708416000"; 
-   d="scan'208";a="7622587"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 02:04:20 -0700
-X-CSE-ConnectionGUID: kB2GS8thR7Cj+Il3j4cJGw==
-X-CSE-MsgGUID: DSm5racETdWlrOqf8iQVkg==
+ t=1712238280; x=1743774280;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=G92tJRI/jB4WFYtbh8R7r60OpqM+OEvxkFbn83KXKFI=;
+ b=Lv5uARAXeP6D3cwDqvsKkxp6OVhYmFzwwJWUMK37xIpl5/59f713NpF6
+ KRQ43AXJyRcH9P5X/FrD2K8XXJSGkrps24VVoC1vV+EeRrv5T8fpIqFML
+ 8crgl1NwPutlINKxJkJu/6Z2m1XkJrljuha1nuEMWpo5h1E00biVzBsJ1
+ DqFvmPjUKBCQlN8Dk9NC5eqU4g5nPnpUxAJTVZ9J6Nz//+2tmzG+xrZeM
+ lieeFUWT/9uBdaoUHNxLivwEr3OulnbfNeBzmS1rDVwuylpluUB9b05yH
+ oG6hY65o8UiEa8UQ1A7zNbF7zRhFiTutBPvt140IAAWtv1DQC8BXHSQDV A==;
+X-CSE-ConnectionGUID: eCLKG7aYRtifZqEgwBZExg==
+X-CSE-MsgGUID: JL1YvO09ROWRi+9aFcgk9Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="11320219"
+X-IronPort-AV: E=Sophos;i="6.07,178,1708416000"; d="scan'208";a="11320219"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2024 02:16:59 -0700
+X-CSE-ConnectionGUID: +x8xqlKNSuuBh8gE5i5S4w==
+X-CSE-MsgGUID: SP4M9B0pQueX6Ns2efdX0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="18561764"
-Received: from imateric-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.57.206])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 02:04:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- ville.syrjala@intel.com, naveen1.kumar@intel.com,
- sebastian.wick@redhat.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 7/7] drm/i915/dp: Limit brightness level to 20
-In-Reply-To: <20240404032931.380887-9-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240404032931.380887-2-suraj.kandpal@intel.com>
- <20240404032931.380887-9-suraj.kandpal@intel.com>
-Date: Thu, 04 Apr 2024 12:04:14 +0300
-Message-ID: <87jzldcxdd.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="23207157"
+Received: from tsonono-mobl.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
+ ([10.252.41.97])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2024 02:16:57 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ jani.nikula@intel.com, gustavo.sousa@intel.com, james.ausmus@intel.com
+Subject: [PATCH v5] drm/i915: limit eDP MSO pipe only for display version 20
+ and below
+Date: Thu,  4 Apr 2024 12:16:46 +0300
+Message-Id: <20240404091646.165309-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,32 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Apr 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Limit minimum brightness to 20 when using aux based brightness
-> control to avoid letting the screen going completely blank.
+The pipes that can be used for eDP MSO are limited to pipe A (and
+sometimes also pipe B) only for display version 20 and below.
 
-Why "20"? What does it mean? Why don't we have this in the VBT like for
-PWM backlight?
+Modify the function that returns the pipe mask for eDP MSO so that
+these limitations only apply to version 20 and below, enabling all
+pipes otherwise.
 
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 20dd5a6a0f3f..b54ea7e46954 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -211,6 +211,9 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
->  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
->  	u8 buf[4] = {};
->  
-> +	if (level < 20)
-> +		level = 20;
-> +
->  	buf[0] = level & 0xFF;
->  	buf[1] = (level & 0xFF00) >> 8;
+Bspec: 68923
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: James Ausmus <james.ausmus@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
 
+In v5:
+   * fixed Ville's name's wrong charset, which prevented patchwork
+     from picking this up.
+
+In v4:
+   * actually go back to unrestricting only for > 20.  I sent the
+     wrong patch version in v3.
+
+In v3:
+   * go back to unrestricing only for > 20, since the change for
+     versions 14 to 20 should be tested separately;
+   * simplify the if blocks [Ville].
+
+In v2:
+   * allow pipes A and B from ver 14 to 20 [Gustavo]
+
+ drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index a3d3d4942eb1..5d2863c43296 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2336,10 +2336,15 @@ static void intel_ddi_power_up_lanes(struct intel_encoder *encoder,
+ 	}
+ }
+ 
+-/* Splitter enable for eDP MSO is limited to certain pipes. */
++/*
++ * Splitter enable for eDP MSO is limited to certain pipes, on certain
++ * platforms.
++ */
+ static u8 intel_ddi_splitter_pipe_mask(struct drm_i915_private *i915)
+ {
+-	if (IS_ALDERLAKE_P(i915))
++	if (DISPLAY_VER(i915) > 20)
++		return ~0;
++	else if (IS_ALDERLAKE_P(i915))
+ 		return BIT(PIPE_A) | BIT(PIPE_B);
+ 	else
+ 		return BIT(PIPE_A);
 -- 
-Jani Nikula, Intel
+2.39.2
+
