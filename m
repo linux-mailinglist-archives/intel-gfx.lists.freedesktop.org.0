@@ -2,63 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C043F89C6F4
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7440189C6F0
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3033F10E33D;
-	Mon,  8 Apr 2024 14:24:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="enc6td2/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A01010F72E;
+	Mon,  8 Apr 2024 14:24:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6B8EB112D4B;
- Wed,  3 Apr 2024 16:44:26 +0000 (UTC)
-Received: from [100.64.216.231] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id DEC6420E8CB1;
- Wed,  3 Apr 2024 09:44:25 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com DEC6420E8CB1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1712162666;
- bh=JXwsd2AxoIuTbqYYBsm2eaH2T3RMwYhW+EuWf51ajaI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=enc6td2/9wYk/5AJ75GJ+d2KStC4HCCxos5X3NVTZDD2/oIurKS5e5aSfxG20NTAn
- i6QoaGybHsOcc9F8ukHIPO521Uu8BoKDrrjEMr1X1WvCtk0DqcVkd5bYcJVQCFeQeI
- efLmLz3IHfJYxowLOTc8KrIggtvkr42zcNpYJ/Ys=
-Message-ID: <2d2a22a5-25cf-4b15-904e-7928a92d6ff5@linux.microsoft.com>
-Date: Wed, 3 Apr 2024 09:44:24 -0700
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 977AB112DAF;
+ Thu,  4 Apr 2024 15:16:37 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4011CFEC;
+ Thu,  4 Apr 2024 08:17:07 -0700 (PDT)
+Received: from [10.57.17.51] (unknown [10.57.17.51])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C047D3F64C;
+ Thu,  4 Apr 2024 08:16:35 -0700 (PDT)
+Message-ID: <2ac758ce-a196-4e89-a397-488ba31014c4@arm.com>
+Date: Thu, 4 Apr 2024 16:16:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 01/14] IB/hfi1, IB/qib: Make I2C terminology more
- inclusive
-To: Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- Leon Romanovsky <leon@kernel.org>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>,
- "open list:HFI1 DRIVER" <linux-rdma@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <20240329170038.3863998-2-eahariha@linux.microsoft.com>
- <20240403083025.GT11187@unreal>
- <0214214a-73c4-46b4-a099-189036954aa1@cornelisnetworks.com>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <0214214a-73c4-46b4-a099-189036954aa1@cornelisnetworks.com>
+Subject: Re: [PATCH 0/6] drm: enable W=1 warnings by default across the
+ subsystem
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Mark Brown <broonie@kernel.org>,
+ dri-devel@lists.freedesktop.org
+References: <cover.1704908087.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Aishwarya TCV <aishwarya.tcv@arm.com>
+In-Reply-To: <cover.1704908087.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:14 +0000
+X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:15 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,40 +49,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/3/2024 8:54 AM, Dennis Dalessandro wrote:
-> 
-> On 4/3/24 4:30 AM, Leon Romanovsky wrote:
->> On Fri, Mar 29, 2024 at 05:00:25PM +0000, Easwar Hariharan wrote:
->>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->>> with more appropriate terms. Inspired by and following on to Wolfram's series
->>> to fix drivers/i2c[1], fix the terminology where I had a role to play, now that
->>> the approved verbiage exists in the specification.
->>>
->>> Compile tested, no functionality changes intended
->>>
->>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
->>>
->>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
->>> ---
->>>  drivers/infiniband/hw/hfi1/chip.c           |  6 ++--
->>>  drivers/infiniband/hw/hfi1/chip.h           |  2 +-
->>>  drivers/infiniband/hw/hfi1/chip_registers.h |  2 +-
->>>  drivers/infiniband/hw/hfi1/file_ops.c       |  2 +-
->>>  drivers/infiniband/hw/hfi1/firmware.c       | 22 ++++++-------
->>>  drivers/infiniband/hw/hfi1/pcie.c           |  2 +-
->>>  drivers/infiniband/hw/hfi1/qsfp.c           | 36 ++++++++++-----------
->>>  drivers/infiniband/hw/hfi1/user_exp_rcv.c   |  2 +-
->>>  drivers/infiniband/hw/qib/qib_twsi.c        |  6 ++--
->>>  9 files changed, 40 insertions(+), 40 deletions(-)
->>
->> hfi1 and qib work perfectly fine with the current terminology. There is
->> no need to change old code just for the sake of change.
->>
->> Let's drop this patch.
-> 
-> Agreed.
 
-Will drop in v1.
+
+On 10/01/2024 17:39, Jani Nikula wrote:
+> This is v2 of [1] to enable most W=1 warnings across the drm
+> subsystem. Some fixes first, and a CONFIG_DRM_WERROR on top.
+> 
+> I build tested this for x86 (both gcc and clang), arm and arm64.
+> 
+> BR,
+> Jani.
+> 
+> 
+> [1] https://lore.kernel.org/r/20231129181219.1237887-1-jani.nikula@intel.com
+> 
+> 
+> 
+> 
+> Jani Nikula (6):
+>   drm/nouveau/acr/ga102: remove unused but set variable
+>   drm/nouveau/svm: remove unused but set variables
+>   drm/amdgpu: prefer snprintf over sprintf
+>   drm/imx: prefer snprintf over sprintf
+>   drm: enable (most) W=1 warnings by default across the subsystem
+>   drm: Add CONFIG_DRM_WERROR
+> 
+>  drivers/gpu/drm/Kconfig                       | 18 +++++++++++
+>  drivers/gpu/drm/Makefile                      | 30 +++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c       |  3 +-
+>  drivers/gpu/drm/imx/ipuv3/imx-ldb.c           |  2 +-
+>  drivers/gpu/drm/nouveau/nouveau_svm.c         | 10 ++-----
+>  .../gpu/drm/nouveau/nvkm/subdev/acr/lsfw.c    |  3 +-
+>  6 files changed, 55 insertions(+), 11 deletions(-)
+> 
+
+Hi Jani,
+
+Observed warning "include/drm/drm_print.h:536:35: warning: '%4.4s'
+directive argument is null [-Wformat-overflow=]" when building the
+modules with "defconfig+kselftest-ftrace"(
+https://github.com/torvalds/linux/blob/master/tools/testing/selftests/ftrace/config
+) against next-master(next-20240404) kernel with Arm64 in our CI.
+
+A bisect identified a61ddb4393ad1be61d2ffd92576d42707b05be17 as the
+first bad commit. Bisected it on the tag "next-20240326" at repo
+"https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git".
+
+I understand that you are turning on the warning here, thought worth
+mentioning about the observation.
+
+Build log:
+---------------
+In file included from ../include/drm/drm_mm.h:51,
+                 from ../include/drm/drm_vma_manager.h:26,
+                 from ../include/drm/drm_gem.h:42,
+                 from ../drivers/gpu/drm/msm/msm_drv.h:34,
+                 from ../drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c:20:
+In function '_dpu_plane_set_qos_lut',
+    inlined from 'dpu_plane_sspp_update_pipe' at
+../drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c:1078:2:
+../include/drm/drm_print.h:536:35: warning: '%4.4s' directive argument
+is null [-Wformat-overflow=]
+  536 | #define __drm_dbg(cat, fmt, ...)  ___drm_dbg(NULL, cat, fmt,
+##__VA_ARGS__)
+      |
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../include/drm/drm_print.h:594:2: note: in expansion of macro '__drm_dbg'
+  594 |  __drm_dbg(DRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~
+../drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c:30:39: note: in expansion
+of macro 'DRM_DEBUG_ATOMIC'
+   30 | #define DPU_DEBUG_PLANE(pl, fmt, ...) DRM_DEBUG_ATOMIC("plane%d
+" fmt,\
+      |                                       ^~~~~~~~~~~~~~~~
+../drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c:290:2: note: in expansion
+of macro 'DPU_DEBUG_PLANE'
+  290 |  DPU_DEBUG_PLANE(pdpu, "pnum:%d fmt: %4.4s rt:%d fl:%u
+lut:0x%llx\n",
+      |  ^~~~~~~~~~~~~~~
+  CC [M]  drivers/net/can/spi/mcp251xfd/mcp251xfd-ethtool.o
+
+
+
+Bisect log:
+------------
+git bisect start
+# good: [4cece764965020c22cff7665b18a012006359095] Linux 6.9-rc1
+git bisect good 4cece764965020c22cff7665b18a012006359095
+# bad: [084c8e315db34b59d38d06e684b1a0dd07d30287] Add linux-next
+specific files for 20240326
+git bisect bad 084c8e315db34b59d38d06e684b1a0dd07d30287
+# good: [1cc931629f2b3de04b7608b8d26692c6f6a52aeb] Merge branch
+'nand/next' of git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git
+git bisect good 1cc931629f2b3de04b7608b8d26692c6f6a52aeb
+# bad: [4f5a3415aaf8fdf945e4cb67b847254ddda2f583] Merge branch
+'drm-xe-next' of https://gitlab.freedesktop.org/drm/xe/kernel
+git bisect bad 4f5a3415aaf8fdf945e4cb67b847254ddda2f583
+# bad: [a13305486485d0657fbf09cee72fca9553d7d6cd] Merge branch
+'drm-next' of https://gitlab.freedesktop.org/agd5f/linux
+git bisect bad a13305486485d0657fbf09cee72fca9553d7d6cd
+# good: [417f78a2a1c8c2d517db8b2e04785c1c94a563b4] drm/amdkfd: Cleanup
+workqueue during module unload
+git bisect good 417f78a2a1c8c2d517db8b2e04785c1c94a563b4
+# bad: [57a4e3a94caee6cfda41700da877bee77eab939c] Revert "drm/panthor:
+Fix undefined panthor_device_suspend/resume symbol issue"
+git bisect bad 57a4e3a94caee6cfda41700da877bee77eab939c
+# bad: [2cddf770be0cebb663af3d72c049b9e24928f335] drm/kunit: fix
+drm_kunit_helpers.h kernel-doc
+git bisect bad 2cddf770be0cebb663af3d72c049b9e24928f335
+# good: [d72f049087d4f973f6332b599c92177e718107de] drm/panthor: Allow
+driver compilation
+git bisect good d72f049087d4f973f6332b599c92177e718107de
+# good: [e18aeeda0b6905c333df5a0566b99f5c84426098] drm/bridge: Fix
+improper bridge init order with pre_enable_prev_first
+git bisect good e18aeeda0b6905c333df5a0566b99f5c84426098
+# bad: [f89632a9e5fa6c4787c14458cd42a9ef42025434] drm: Add CONFIG_DRM_WERROR
+git bisect bad f89632a9e5fa6c4787c14458cd42a9ef42025434
+# good: [460be1d527a8e296d85301e8b14923299508d4fc] drm/nouveau: move
+more missing UAPI bits
+git bisect good 460be1d527a8e296d85301e8b14923299508d4fc
+# bad: [a61ddb4393ad1be61d2ffd92576d42707b05be17] drm: enable (most) W=1
+warnings by default across the subsystem
+git bisect bad a61ddb4393ad1be61d2ffd92576d42707b05be17
+# first bad commit: [a61ddb4393ad1be61d2ffd92576d42707b05be17] drm:
+enable (most) W=1 warnings by default across the subsystem
 
 Thanks,
-Easwar
+Aishwarya
