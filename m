@@ -2,85 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4DCC89855E
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 12:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F9D89855D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 12:48:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D90D011B3CE;
-	Thu,  4 Apr 2024 10:48:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Jk6J5UUQ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ITfNdB4G";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C157111B3CB;
+	Thu,  4 Apr 2024 10:48:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F0411B3CE;
- Thu,  4 Apr 2024 10:48:16 +0000 (UTC)
-Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id E46AC37ABE;
- Thu,  4 Apr 2024 10:48:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1712227694; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ifyVFdgsGutaFbG6us/talgSokPtLGYvOTFyqsTEK9A=;
- b=Jk6J5UUQD98vkrCn1Y9tSF1SuoMN4nUKRtn0W+Q0ExbuOIOzkgckn1eVW3lRr+y60Nt0zi
- uTx9kLrtAhVYw5c/bHqemR/9qA7MnUndXwxIuGduUTHV6dkT5rBYqCLavz62mx06J7/ATo
- rWRy1o9MvZnL97giH1wKC/6eyqBz600=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1712227694;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ifyVFdgsGutaFbG6us/talgSokPtLGYvOTFyqsTEK9A=;
- b=ITfNdB4G2uQm/UG2h1CUc8qNHLTCktdfGDCQVLR/zqHNCCgMH5LTksQHxkQZcUDUOORAOw
- E97Tm42+5NTetLAw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 6F675139E8;
- Thu,  4 Apr 2024 10:48:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap2.dmz-prg2.suse.org with ESMTPSA id peC4GW6FDmahPwAAn2gu4w
- (envelope-from <tzimmermann@suse.de>); Thu, 04 Apr 2024 10:48:14 +0000
-Date: Thu, 4 Apr 2024 12:48:13 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240404104813.GA27376@localhost.localdomain>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7E1F10E6A5;
+ Thu,  4 Apr 2024 10:48:07 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [rebase 3/3] drm/i915: Use the same vblank worker for atomic unpin
+Date: Thu,  4 Apr 2024 12:48:13 +0200
+Message-ID: <20240404104813.150030-3-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
+References: <20240404104813.150030-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Score: -4.30
-X-Spamd-Result: default: False [-4.30 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
- NEURAL_HAM_LONG(-1.00)[-1.000]; RCVD_COUNT_THREE(0.00)[3];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.988]; RCPT_COUNT_TWELVE(0.00)[16];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
- BAYES_HAM(-3.00)[100.00%]
-X-Spam-Level: 
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,83 +39,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+In case of legacy cursor update, the cursor VMA needs to be unpinned
+only after vblank. This exceeds the lifetime of the whole atomic commit.
 
-here's the drm-misc-fixes PR for this week.
+Any trick I attempted to keep the atomic commit alive didn't work, as
+drm_atomic_helper_setup_commit() force throttles on any old commit that
+wasn't cleaned up.
 
-Best regards
-Thomas
+The only option remaining is to remove the plane from the atomic commit,
+and use the same path as the legacy cursor update to clean the state
+after vblank.
 
-drm-misc-fixes-2024-04-04:
-Short summary of fixes pull:
+Changes since previous version:
+- Call the memset for plane state immediately when scheduling vblank,
+  this prevents a use-after-free in cursor cleanup.
 
-display:
-- fix typos in kerneldoc
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 13 +++++++-
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 31 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.h   |  3 ++
+ 5 files changed, 49 insertions(+), 2 deletions(-)
 
-nouveau:
-- uvmm: fix remap address calculation
-- minor cleanups
-
-panfrost:
-- fix power-transition timeouts
-
-prime:
-- unbreak dma-buf export for virt-gpu
-The following changes since commit aba2a144c0bf1ecdcbc520525712fb661392e509:
-
-  drm/qxl: remove unused variable from `qxl_process_single_command()` (2024-03-28 11:15:48 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-04-04
-
-for you to fetch changes up to fddf09273807bf6e51537823aaae896e05f147f9:
-
-  drm/display: fix typo (2024-04-01 22:35:16 +0300)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-display:
-- fix typos in kerneldoc
-
-nouveau:
-- uvmm: fix remap address calculation
-- minor cleanups
-
-panfrost:
-- fix power-transition timeouts
-
-prime:
-- unbreak dma-buf export for virt-gpu
-
-----------------------------------------------------------------
-Christian Hewitt (1):
-      drm/panfrost: fix power transition timeout warnings
-
-Colin Ian King (1):
-      drm/nouveau/gr/gf100: Remove second semicolon
-
-Dave Airlie (1):
-      nouveau/uvmm: fix addr/range calcs for remap operations
-
-Oleksandr Natalenko (1):
-      drm/display: fix typo
-
-Rob Clark (1):
-      drm/prime: Unbreak virtgpu dma-buf export
-
- drivers/gpu/drm/display/drm_dp_dual_mode_helper.c | 4 ++--
- drivers/gpu/drm/drm_prime.c                       | 7 ++++++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c            | 6 +++---
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c    | 2 +-
- drivers/gpu/drm/panfrost/panfrost_gpu.c           | 6 +++---
- 5 files changed, 15 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 76d77d5a0409..ab01c2d15afd 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -42,6 +42,7 @@
+ #include "i915_reg.h"
+ #include "intel_atomic_plane.h"
+ #include "intel_cdclk.h"
++#include "intel_cursor.h"
+ #include "intel_display_rps.h"
+ #include "intel_display_trace.h"
+ #include "intel_display_types.h"
+@@ -1163,7 +1164,6 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+ 
+ 	intel_display_rps_mark_interactive(dev_priv, state, false);
+ 
+-	/* Should only be called after a successful intel_prepare_plane_fb()! */
+ 	intel_plane_unpin_fb(old_plane_state);
+ }
+ 
+@@ -1176,3 +1176,14 @@ void intel_plane_helper_add(struct intel_plane *plane)
+ {
+ 	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
+ }
++
++void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
++					 struct intel_plane_state *new_plane_state)
++{
++	if (!old_plane_state->ggtt_vma ||
++	    old_plane_state->ggtt_vma == new_plane_state->ggtt_vma)
++		return;
++
++	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
++			     intel_cursor_unpin_work);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index 191dad0efc8e..5a897cf6fa02 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -66,5 +66,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
+ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 			       struct intel_plane_state *plane_state);
+ void intel_plane_helper_add(struct intel_plane *plane);
++void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
++					 struct intel_plane_state *new_plane_state);
+ 
+ #endif /* __INTEL_ATOMIC_PLANE_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 22b80004574f..558e9b7404b5 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -500,6 +500,19 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	if (intel_crtc_needs_vblank_work(new_crtc_state))
+ 		intel_crtc_vblank_work_init(new_crtc_state);
+ 
++	if (state->base.legacy_cursor_update) {
++		struct intel_plane *plane;
++		struct intel_plane_state *old_plane_state, *new_plane_state;
++		int i;
++
++		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
++						     new_plane_state, i) {
++			if (old_plane_state->uapi.crtc == &crtc->base)
++				intel_plane_init_cursor_vblank_work(old_plane_state,
++								    new_plane_state);
++		}
++	}
++
+ 	intel_vblank_evade_init(old_crtc_state, new_crtc_state, &evade);
+ 
+ 	if (drm_WARN_ON(&dev_priv->drm, drm_crtc_vblank_get(&crtc->base)))
+@@ -618,6 +631,24 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 		new_crtc_state->uapi.event = NULL;
+ 	}
+ 
++	if (state->base.legacy_cursor_update) {
++		struct intel_plane *plane;
++		struct intel_plane_state *old_plane_state;
++		int i;
++
++		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
++			if (old_plane_state->uapi.crtc == &crtc->base &&
++			    old_plane_state->unpin_work.vblank) {
++				drm_vblank_work_schedule(&old_plane_state->unpin_work,
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
++							 false);
++
++				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
++				memset(&state->base.planes[i], 0, sizeof(state->base.planes[i]));
++			}
++		}
++	}
++
+ 	/*
+ 	 * Send VRR Push to terminate Vblank. If we are already in vblank
+ 	 * this has to be done _after_ sampling the frame counter, as
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index f2d18695c21d..e999ee8e9d94 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -674,7 +674,7 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+ 	return format == DRM_FORMAT_ARGB8888;
+ }
+ 
+-static void intel_cursor_unpin_work(struct kthread_work *base)
++void intel_cursor_unpin_work(struct kthread_work *base)
+ {
+ 	struct drm_vblank_work *work = to_drm_vblank_work(base);
+ 	struct intel_plane_state *plane_state =
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.h b/drivers/gpu/drm/i915/display/intel_cursor.h
+index ce333bf4c2d5..e2d9ec710a86 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.h
++++ b/drivers/gpu/drm/i915/display/intel_cursor.h
+@@ -9,9 +9,12 @@
+ enum pipe;
+ struct drm_i915_private;
+ struct intel_plane;
++struct kthread_work;
+ 
+ struct intel_plane *
+ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+ 			  enum pipe pipe);
+ 
++void intel_cursor_unpin_work(struct kthread_work *base);
++
+ #endif
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.43.0
+
