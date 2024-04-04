@@ -2,22 +2,22 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1262A898481
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 11:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A6A1898496
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 12:03:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3941311B287;
-	Thu,  4 Apr 2024 09:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 330A811B2DC;
+	Thu,  4 Apr 2024 10:03:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682DA11B27F;
- Thu,  4 Apr 2024 09:59:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9848511B2DB;
+ Thu,  4 Apr 2024 10:03:42 +0000 (UTC)
 Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1rsJsM-000000001UT-1blm; Thu, 04 Apr 2024 12:59:19 +0300
-Message-ID: <3de0b7e2984d026bdd6e1fc163e175937bfb95b4.camel@coelho.fi>
+ id 1rsJwY-000000001V4-1D5s; Thu, 04 Apr 2024 13:03:39 +0300
+Message-ID: <dbf82d805f03907fe671d7a2bd804b200fec76b1.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
  <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
@@ -25,11 +25,11 @@ To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
 Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
  "ville.syrjala@linux.intel.com"
  <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-Date: Thu, 04 Apr 2024 12:59:17 +0300
-In-Reply-To: <DM4PR11MB636090731640EEAB0E201D6DF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
+Date: Thu, 04 Apr 2024 13:03:37 +0300
+In-Reply-To: <DM4PR11MB6360E99717265C75BB27BA20F4322@DM4PR11MB6360.namprd11.prod.outlook.com>
 References: <20240318133757.1479189-1-luciano.coelho@intel.com>
- <20240318133757.1479189-4-luciano.coelho@intel.com>
- <DM4PR11MB636090731640EEAB0E201D6DF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <20240318133757.1479189-5-luciano.coelho@intel.com>
+ <DM4PR11MB6360E99717265C75BB27BA20F4322@DM4PR11MB6360.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -40,8 +40,8 @@ X-Spam-Level:
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
  TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
  version=4.0.1-pre1
-Subject: Re: [PATCH v3 3/4] drm/i915/display: add module parameter to enable
- DMC wakelock
+Subject: Re: [PATCH v3 4/4] drm/i915/display: tie DMC wakelock to DC5/6
+ state transitions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,7 +57,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2024-03-21 at 08:08 +0000, Shankar, Uma wrote:
+On Thu, 2024-03-21 at 08:22 +0000, Shankar, Uma wrote:
 >=20
 > > -----Original Message-----
 > > From: Coelho, Luciano <luciano.coelho@intel.com>
@@ -66,77 +66,50 @@ On Thu, 2024-03-21 at 08:08 +0000, Shankar, Uma wrote:
 > > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com=
 >;
 > > ville.syrjala@linux.intel.com; Nikula, Jani <jani.nikula@intel.com>
-> > Subject: [PATCH v3 3/4] drm/i915/display: add module parameter to enabl=
-e DMC
-> > wakelock
+> > Subject: [PATCH v3 4/4] drm/i915/display: tie DMC wakelock to DC5/6 sta=
+te
+> > transitions
 > >=20
-> > This feature should be disabled by default until properly tested and ma=
-ture.  Add
-> > a module parameter to enable the feature for testing, while keeping it =
-disabled by
-> > default for now.
-> >=20
+> > We only need DMC wakelocks when we allow DC5 and DC6 states.  Add the c=
+alls
+> > to enable and disable DMC wakelock accordingly.
+>=20
 > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display_params.c |  5 +++++
-> > drivers/gpu/drm/i915/display/intel_display_params.h |  1 +
-> >  drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 12 ++++++++----
-> >  3 files changed, 14 insertions(+), 4 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_display_power_well.c | 7 +++++++
+> >  drivers/gpu/drm/i915/display/intel_dmc.c                | 4 ++++
+> >  2 files changed, 11 insertions(+)
 > >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c
-> > b/drivers/gpu/drm/i915/display/intel_display_params.c
-> > index 11e03cfb774d..f40b223cc8a1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> > @@ -116,6 +116,11 @@
-> > intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
-> >  	"(0=3Ddisabled, 1=3Denabled) "
-> >  	"Default: 1");
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > index 217f82f1da84..367464f5c5cd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > @@ -17,6 +17,7 @@
+> >  #include "intel_dkl_phy.h"
+> >  #include "intel_dkl_phy_regs.h"
+> >  #include "intel_dmc.h"
+> > +#include "intel_dmc_wl.h"
+> >  #include "intel_dp_aux_regs.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_dpll.h"
+> > @@ -821,6 +822,8 @@ void gen9_enable_dc5(struct drm_i915_private
+> > *dev_priv)
+> >  		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
+> >  			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
 > >=20
-> > +intel_display_param_named_unsafe(enable_dmc_wl, bool, 0400,
-> > +	"Enable DMC wakelock "
-> > +	"(0=3Ddisabled, 1=3Denabled) "
-> > +	"Default: 0");
-> > +
-> >  __maybe_unused
-> >  static void _param_print_bool(struct drm_printer *p, const char *drive=
-r_name,
-> >  			      const char *name, bool val)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h
-> > b/drivers/gpu/drm/i915/display/intel_display_params.h
-> > index 6206cc51df04..bf8dbbdb20a1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> > @@ -46,6 +46,7 @@ struct drm_i915_private;
-> >  	param(int, enable_psr, -1, 0600) \
-> >  	param(bool, psr_safest_params, false, 0400) \
-> >  	param(bool, enable_psr2_sel_fetch, true, 0400) \
-> > +	param(bool, enable_dmc_wl, false, 0400) \
-> >=20
-> >  #define MEMBER(T, member, ...) T member;  struct intel_display_params =
-{ diff --
-> > git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > index 7c991e22c616..84d054bcb2c1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> > @@ -120,7 +120,8 @@ void intel_dmc_wl_enable(struct drm_i915_private
-> > *i915)
-> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
-> >  	unsigned long flags;
-> >=20
-> > -	if (DISPLAY_VER(i915) < 20)
-> > +	if (!i915->display.params.enable_dmc_wl ||
-> > +	    DISPLAY_VER(i915) < 20)
+> > +	intel_dmc_wl_enable(dev_priv);
 >=20
-> Extend this check to init as well. Else it looks ok to protect under a mo=
-dule parameter.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> We can have platform checks here and call only when its supported.
+> No strong objection but doing it here seems better than calling for all
+> and then checking for platform inside.
 
-Done.  I now added the module param check to the supported() helper
-function, so it will be checked everywhere.
+I prefer not to check for wakelock specifics outside the wakelock code
+itself.  So if we need to change it, we change it in a single place.=20
+The compiler will probably inline some of these checks anyway, if it
+deems the function call to be too inefficient.
 
-Thanks for the r-b.
+Is it okay for you?
 
 --
 Cheers,
