@@ -2,62 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60AE78983A8
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 10:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 971F3898400
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 11:30:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9211911A2B9;
-	Thu,  4 Apr 2024 08:59:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eRsmaCla";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D433E11AB74;
+	Thu,  4 Apr 2024 09:30:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B57D11A2B9
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Apr 2024 08:59:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712221168; x=1743757168;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/ElHvCLNFl5wKNid0YbpHyKoPNDe6cfwyEzdeQs6K4U=;
- b=eRsmaClaeW0k0iLw96dMkFnWaKUbUk4h1zKxcUVGRc7mjLRs4phXGHMu
- IrwCsmMRa7m3EMrSmvJKtKKlInL3QloWwX8QgIeTidu3yiIQesI5i7gNn
- gDOiH+yS+9OSoUl+NmSKoSBw1Xtp11wCysD+19811RuE7ElJBXlEkUJaa
- oZMcw3zcWjO/B92gK9VC/mm2Gl1qpB09Vs1HcQXtgiiBEeJR4eIYdIK8R
- RggJ/SDVBYhehDw6HIMQJRmZwJGAfBM1VxK2b4sav8RYDaNOJwGo+w1Sc
- B1IRH9mOrGlPMaYsqcH5FtzACNrfdXYrwHdHOjuZSwwY5NgGODesos21s g==;
-X-CSE-ConnectionGUID: sG5SPIiwT6iAzFq8HT1NQA==
-X-CSE-MsgGUID: xs+IBkLURy2kP3iJ+GTpvA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="7675712"
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; 
-   d="scan'208";a="7675712"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 01:59:27 -0700
-X-CSE-ConnectionGUID: iA9lTWFSQtWXmHHMOAOnHg==
-X-CSE-MsgGUID: shdKRhOcRDm+Fhnnf9+l7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,179,1708416000"; d="scan'208";a="19173285"
-Received: from imateric-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.57.206])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 01:59:23 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- ville.syrjala@intel.com, naveen1.kumar@intel.com,
- sebastian.wick@redhat.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 5/7] drm/i915/dp: Enable AUX based backlight for HDR
-In-Reply-To: <20240404032931.380887-7-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240404032931.380887-2-suraj.kandpal@intel.com>
- <20240404032931.380887-7-suraj.kandpal@intel.com>
-Date: Thu, 04 Apr 2024 11:59:20 +0300
-Message-ID: <87msq9cxlj.fsf@intel.com>
+Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2DE811AB72;
+ Thu,  4 Apr 2024 09:30:33 +0000 (UTC)
+Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1rsJQP-000000001SA-2eQW; Thu, 04 Apr 2024 12:30:26 +0300
+Message-ID: <48c451ecb46e5a17bd945da376103da39c8e6671.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
+ <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
+Date: Thu, 04 Apr 2024 12:30:23 +0300
+In-Reply-To: <DM4PR11MB6360EA16928F7A0DC285E81EF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20240318133757.1479189-1-luciano.coelho@intel.com>
+ <20240318133757.1479189-3-luciano.coelho@intel.com>
+ <DM4PR11MB6360EA16928F7A0DC285E81EF4322@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH v3 2/4] drm/i915/display: don't allow DMC wakelock on
+ older hardware
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,240 +57,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Apr 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> As of now whenerver HDR is switched on we use the PWM to change the
-> backlight as opposed to AUX based backlight changes in terms of nits.
-> This patch writes to the appropriate DPCD registers to enable aux
-> based backlight using values in nits.
->
-> --v2
-> -Fix max_cll and max_fall assignment [Jani]
-> -Fix the size sent in drm_dpcd_write [Jani]
->
-> --v3
-> -Content Luminance needs to be sent only for pre-ICL after that
-> it is directly picked up from hdr metadata [Ville]
->
-> --v4
-> -Add checks for HDR TCON cap bits [Ville]
-> -Check eotf of hdr_output_data and sets bits base of that value.
->
-> --v5
-> -Fix capability check bits.
-> -Check colorspace before setting BT2020
->
-> --v6
-> -Use intel_dp_has_gamut_dip to check if we have capability
-> to send sdp [Ville]
-> -Seprate filling of all hdr tcon related bits into it's
-> own function.
-> -Check eotf data to make sure we are in HDR mode [Sebastian]
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../drm/i915/display/intel_dp_aux_backlight.c | 105 ++++++++++++++++--
->  1 file changed, 94 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 2d50a4734823..7af876e2d210 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -40,11 +40,6 @@
->  #include "intel_dp.h"
->  #include "intel_dp_aux_backlight.h"
->  
-> -/* TODO:
-> - * Implement HDR, right now we just implement the bare minimum to bring us back into SDR mode so we
-> - * can make people's backlights work in the mean time
-> - */
-> -
->  /*
->   * DP AUX registers for Intel's proprietary HDR backlight interface. We define
->   * them here since we'll likely be the only driver to ever use these.
-> @@ -127,9 +122,6 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
->  	if (ret != sizeof(tcon_cap))
->  		return false;
->  
-> -	if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> -		return false;
-> -
->  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Detected %s HDR backlight interface version %d\n",
->  		    connector->base.base.id, connector->base.name,
->  		    is_intel_tcon_cap(tcon_cap) ? "Intel" : "unsupported", tcon_cap[0]);
-> @@ -137,6 +129,9 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
->  	if (!is_intel_tcon_cap(tcon_cap))
->  		return false;
->  
-> +	if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> +		return false;
-> +
->  	/*
->  	 * If we don't have HDR static metadata there is no way to
->  	 * runtime detect used range for nits based control. For now
-> @@ -225,13 +220,27 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
->  			connector->base.base.id, connector->base.name);
->  }
->  
-> +static bool
-> +intel_dp_aux_in_hdr_mode(const struct drm_connector_state *conn_state)
+On Thu, 2024-03-21 at 08:02 +0000, Shankar, Uma wrote:
+>=20
+> > -----Original Message-----
+> > From: Coelho, Luciano <luciano.coelho@intel.com>
+> > Sent: Monday, March 18, 2024 7:08 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com=
+>;
+> > ville.syrjala@linux.intel.com; Nikula, Jani <jani.nikula@intel.com>
+> > Subject: [PATCH v3 2/4] drm/i915/display: don't allow DMC wakelock on o=
+lder
+> > hardware
+> >=20
+> > Only allow running DMC wakelock code if the display version is 20 or gr=
+eater.
+>=20
+> One for previous one, don't do intel_dmc_wl_init unconditionally but prot=
+ect it with
+> Platform check.
 
-The naming of this file and the symbols in this file isn't all that
-great to begin with, but at least all the current intel_dp_aux_*
-functions have "backlight" somewhere in them, to indicate this is about
-"aux backlight".
-
-"intel_dp_aux_in_hdr_mode" literally says *aux* is in hdr mode, which is
-misleading and surprising to someone who doesn't know what it's
-about. And we have enough things that are misleading and surprising! ;)
-
-Please let's try to be more specific. (But also, let more review come in
-before just rolling another version with renames.)
-
-BR,
-Jani.
+Good point.  I have removed the call to intel_dmc_wl_init() completely
+from the previous patch, like with intel_dmc_wl_enable(), so the call
+to init will be in this patch and protected by the platform version as
+well.
 
 
+> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > index 5c3d8204ae7e..7c991e22c616 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > @@ -120,6 +120,9 @@ void intel_dmc_wl_enable(struct drm_i915_private
+> > *i915)
+> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
+> >  	unsigned long flags;
+> >=20
+> > +	if (DISPLAY_VER(i915) < 20)
+> > +		return;
+> > +
+> >  	spin_lock_irqsave(&wl->lock, flags);
+> >=20
+> >  	if (wl->enabled)
+> > @@ -143,6 +146,9 @@ void intel_dmc_wl_disable(struct drm_i915_private
+> > *i915)
+> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
+> >  	unsigned long flags;
+> >=20
+> > +	if (DISPLAY_VER(i915) < 20)
+> > +		return;
+>=20
+> There can be case where DMC is not loaded, address that as well.
+> We should not do wakelock in that case.
 
-> +{
-> +	struct hdr_output_metadata *hdr_metadata;
-> +
-> +	if (!conn_state->hdr_output_metadata)
-> +		return false;
-> +
-> +	hdr_metadata = conn_state->hdr_output_metadata->data;
-> +
-> +	return hdr_metadata->hdmi_metadata_type1.eotf != HDMI_EOTF_TRADITIONAL_GAMMA_SDR;
-> +}
-> +
->  static void
->  intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
->  {
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct intel_panel *panel = &connector->panel;
->  
-> -	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +	if (intel_dp_aux_in_hdr_mode(conn_state) ||
-> +	    panel->backlight.edp.intel.sdr_uses_aux) {
->  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
->  	} else {
->  		const u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-> @@ -240,6 +249,70 @@ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32
->  	}
->  }
->  
-> +static void
-> +intel_dp_aux_write_content_luminance(struct intel_connector *connector,
-> +				     struct hdr_output_metadata *hdr_metadata)
-> +{
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	int ret;
-> +	u8 buf[4];
-> +
-> +	if (!intel_dp_has_gamut_metadata_dip(connector->encoder))
-> +		return;
-> +
-> +	buf[0] = hdr_metadata->hdmi_metadata_type1.max_cll & 0xFF;
-> +	buf[1] = (hdr_metadata->hdmi_metadata_type1.max_cll & 0xFF00) >> 8;
-> +	buf[2] = hdr_metadata->hdmi_metadata_type1.max_fall & 0xFF;
-> +	buf[3] = (hdr_metadata->hdmi_metadata_type1.max_fall & 0xFF00) >> 8;
-> +
-> +	ret = drm_dp_dpcd_write(&intel_dp->aux,
-> +				INTEL_EDP_HDR_CONTENT_LUMINANCE,
-> +				buf, sizeof(buf));
-> +	if (ret < 0)
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Content Luminance DPCD reg write failed, err:-%d\n",
-> +			    ret);
-> +}
-> +
-> +static void
-> +intel_dp_aux_fill_hdr_tcon_params(const struct drm_connector_state *conn_state, u8 *ctrl)
-> +{
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> +	struct intel_panel *panel = &connector->panel;
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct hdr_output_metadata *hdr_metadata = conn_state->hdr_output_metadata->data;
-> +
-> +	/* According to spec segmented backlight needs to be set whenever panel is in
-> +	 * HDR mode.
-> +	 */
-> +	*ctrl |= INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
-> +
-> +	/* 2084 decode needs to set if eotf suggests so or in case of pre-ICL we disable
-> +	 * tone mapping and set 2084 decode.
-> +	 */
-> +	if (hdr_metadata->hdmi_metadata_type1.eotf ==
-> +	    HDMI_EOTF_SMPTE_ST2084 || DISPLAY_VER(i915) < 11) {
-> +		*ctrl |= INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
-> +		*ctrl &= ~INTEL_EDP_HDR_TCON_TONE_MAPPING_ENABLE;
-> +	} else {
-> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] TCON: Cannot decode requested EOTF\n",
-> +			    connector->base.base.id, connector->base.name);
-> +	}
-> +
-> +	if (panel->backlight.edp.intel.supports_2020_gamut &&
-> +	    (conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_RGB ||
-> +	     conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_YCC ||
-> +	     conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_CYCC))
-> +		*ctrl |= INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
-> +
-> +	if (panel->backlight.edp.intel.supports_sdp_colorimetry &&
-> +	    intel_dp_has_gamut_metadata_dip(connector->encoder))
-> +		*ctrl |= INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX;
-> +	else
-> +		*ctrl &= ~INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX;
-> +}
-> +
->  static void
->  intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  				  const struct drm_connector_state *conn_state, u32 level)
-> @@ -248,6 +321,7 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  	struct intel_panel *panel = &connector->panel;
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	struct hdr_output_metadata *hdr_metadata;
->  	int ret;
->  	u8 old_ctrl, ctrl;
->  
-> @@ -261,8 +335,10 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  	}
->  
->  	ctrl = old_ctrl;
-> -	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +	if (intel_dp_aux_in_hdr_mode(conn_state) ||
-> +	    panel->backlight.edp.intel.sdr_uses_aux) {
->  		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-> +
->  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
->  	} else {
->  		u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-> @@ -272,10 +348,18 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  		ctrl &= ~INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
->  	}
->  
-> +	if (intel_dp_aux_in_hdr_mode(conn_state))
-> +		intel_dp_aux_fill_hdr_tcon_params(conn_state, &ctrl);
-> +
->  	if (ctrl != old_ctrl &&
->  	    drm_dp_dpcd_writeb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS, ctrl) != 1)
->  		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to configure DPCD brightness controls\n",
->  			connector->base.base.id, connector->base.name);
-> +
-> +	if (intel_dp_aux_in_hdr_mode(conn_state)) {
-> +		hdr_metadata = conn_state->hdr_output_metadata->data;
-> +		intel_dp_aux_write_content_luminance(connector, hdr_metadata);
-> +	}
->  }
->  
->  static void
-> @@ -332,7 +416,6 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
->  		    connector->base.base.id, connector->base.name,
->  		    panel->backlight.min, panel->backlight.max);
->  
-> -
->  	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
->  	panel->backlight.enabled = panel->backlight.level != 0;
+Right.  I have added a helper function, intel_dmc_wl_supported(), to
+keep all this checks in one place.
 
--- 
-Jani Nikula, Intel
+
+> >  	flush_delayed_work(&wl->work);
+> >=20
+> >  	spin_lock_irqsave(&wl->lock, flags);
+> > @@ -171,6 +177,9 @@ void intel_dmc_wl_get(struct drm_i915_private *i915=
+,
+> > i915_reg_t reg)
+> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
+> >  	unsigned long flags;
+> >=20
+> > +	if (DISPLAY_VER(i915) < 20)
+> > +		return;
+> > +
+> >  	if (!intel_dmc_wl_check_range(reg.reg))
+> >  		return;
+> >=20
+> > @@ -203,6 +212,9 @@ void intel_dmc_wl_put(struct drm_i915_private *i915=
+,
+> > i915_reg_t reg)
+> >  	struct intel_dmc_wl *wl =3D &i915->display.wl;
+> >  	unsigned long flags;
+> >=20
+> > +	if (DISPLAY_VER(i915) < 20)
+> > +		return;
+> > +
+> >  	if (!intel_dmc_wl_check_range(reg.reg))
+> >  		return;
+> >=20
+> > --
+> > 2.39.2
+>=20
+
+--
+Cheers,
+Luca.
