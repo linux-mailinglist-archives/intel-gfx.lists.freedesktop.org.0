@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C84B899079
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 23:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C6389907A
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Apr 2024 23:35:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86B31113573;
-	Thu,  4 Apr 2024 21:35:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9026211356C;
+	Thu,  4 Apr 2024 21:35:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NjWgvoB3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LY9DyxXC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60828113572
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Apr 2024 21:35:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE94E113575
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Apr 2024 21:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712266506; x=1743802506;
+ t=1712266509; x=1743802509;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=utpi2ckM1ViqzGDrz6Uqk+cQisS+SSLQJgD/Nic+vSY=;
- b=NjWgvoB3EAIyAAe+CRlJGyapIxPgQN2mG5YSEY7OfN967SGBtNQ25cfT
- JhpJe4LknZ16RhIcdeDWs/GjTv/3x3TletIA5B6D1mKwYJJWLtPtWm+Rp
- mDiGIRtDfnrdwUiBaFZPppUisJtHJc50tmX+LHvLgfGTKf8U4qXeQ9uR3
- SYTiN/tOkLLpUqSC9NzNtr9wJv2wRjIDPGxCg1xnCKZgIuIHXRezqQsLB
- uuHX6zjz49DRxD7PAL+KPNCtHIDg1F5MKj1/cU5vVETx6qGOkfuo8P8Jz
- a1xHBKvURPt6K77uRrN1CMnOKlkuU4II7aesFH6YOOh6L38xF0EFGjXI+ A==;
-X-CSE-ConnectionGUID: N/KmTitLRPSAWRhwI9bMLg==
-X-CSE-MsgGUID: AFO/U3iBRfqUStJ/f9btpw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7710803"
+ bh=rkcCSoi7j/W6DHSgx8msGjXd3EROo0JnnmocxL3TMgU=;
+ b=LY9DyxXCnUpDC8a5Sp9pemX9PHWn5g2TU4b8leW8nXdUCuxMYeXgqDZh
+ XNS5bEzQHXk2QbsCGIP6B74Kck84q0OuZIujAeMMdMPfhjNSAEXtVV+5V
+ RhQiiIX4V7fu9hYCnnO8E54BLj9HzhjZz1DLPj5YNcEaDw+7jQsFfBrNf
+ mCYurMKuEoybYrtpxoiBgfG9Gha/uWHWpXd/S7M7nM8XvpSuiQeDkI9kt
+ 1SDeyAICOLe3tuCHYVrMnsfp5rrDbVNpn0R3Ym+7UuRRnsCAzdOLhQxOJ
+ 0eNFxmmO0b+y6oTQGnnv2XpIjHLDo45FfCDMnaE6V3ikCmZ69i1EUOV36 g==;
+X-CSE-ConnectionGUID: +SWwEUoFR0SSn6sGFZ44og==
+X-CSE-MsgGUID: /DGKSZnqRXurATrZdB2G5A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7710811"
 X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
-   d="scan'208";a="7710803"
+   d="scan'208";a="7710811"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2024 14:35:05 -0700
+ 04 Apr 2024 14:35:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="827790615"
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="827790615"
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="827790618"
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="827790618"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 04 Apr 2024 14:35:02 -0700
+ by orsmga001.jf.intel.com with SMTP; 04 Apr 2024 14:35:06 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Apr 2024 00:35:01 +0300
+ Fri, 05 Apr 2024 00:35:05 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Vidya Srinivas <vidya.srinivas@intel.com>,
  Vandita Kulkarni <vandita.kulkarni@intel.com>
-Subject: [PATCH v2 06/17] drm/i915: Fix intel_modeset_pipe_config_late() for
- bigjoiner
-Date: Fri,  5 Apr 2024 00:34:30 +0300
-Message-ID: <20240404213441.17637-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 07/17] drm/i915:
+ s/intel_dp_can_bigjoiner()/intel_dp_has_bigjoiner()/
+Date: Fri,  5 Apr 2024 00:34:31 +0300
+Message-ID: <20240404213441.17637-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
 References: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
@@ -73,125 +73,52 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently intel_modeset_pipe_config_late() is called after the
-bigjoiner state copy, and it will actually not do anything for
-bigjoiner slaves. This can lead to a mismatched state between
-the master and slave.
-
-The two things that we do in the encoder .compute_config_late()
-hook are mst master transcoder and port sync master transcoder
-elections. So if either of either MST or port sync is combined
-with bigjoiner then we can see the mismatch.
-
-Currently this problem is more or less theoretical; MST+bigjoiner
-has not been implemented yet, and port sync+bigjoiner would
-require a tiled display with >5k tiles (or a very high
-dotclock per tile). Although we do have kms_tiled_display in
-igt which can fake a tiled display, and we can now force bigjoiner
-via debugfs, so it is possible to trigger this if you try hard
-enough.
-
-Reorder the code such that intel_modeset_pipe_config_late()
-will be called before the bigjoiner state copy happens so
-that both pipes will end up with the same state.
+Rename intel_dp_can_bigjoiner() to intel_dp_has_bigjoiner()
+to better reflect its function.
 
 Tested-by: Vidya Srinivas <vidya.srinivas@intel.com>
 Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 46 ++++++++++++++------
- 1 file changed, 32 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_dp.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0086a7422e86..449dd8667685 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4752,8 +4752,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 	struct drm_connector *connector;
- 	int i;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4552005caae2..4553c0c41bc6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -433,7 +433,7 @@ int intel_dp_max_link_data_rate(struct intel_dp *intel_dp,
+ 	return max_rate;
+ }
  
--	intel_bigjoiner_adjust_pipe_src(crtc_state);
--
- 	for_each_new_connector_in_state(&state->base, connector,
- 					conn_state, i) {
- 		struct intel_encoder *encoder =
-@@ -6295,27 +6293,37 @@ static int intel_atomic_check_config(struct intel_atomic_state *state,
- 			continue;
- 		}
+-bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
++bool intel_dp_has_bigjoiner(struct intel_dp *intel_dp)
+ {
+ 	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
+ 	struct intel_encoder *encoder = &intel_dig_port->base;
+@@ -1207,7 +1207,7 @@ bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	struct intel_connector *connector = intel_dp->attached_connector;
  
--		if (intel_crtc_is_bigjoiner_slave(new_crtc_state)) {
--			drm_WARN_ON(&i915->drm, new_crtc_state->uapi.enable);
-+		if (drm_WARN_ON(&i915->drm, intel_crtc_is_bigjoiner_slave(new_crtc_state)))
- 			continue;
--		}
+-	if (!intel_dp_can_bigjoiner(intel_dp))
++	if (!intel_dp_has_bigjoiner(intel_dp))
+ 		return false;
  
- 		ret = intel_crtc_prepare_cleared_state(state, crtc);
- 		if (ret)
--			break;
-+			goto fail;
- 
- 		if (!new_crtc_state->hw.enable)
- 			continue;
- 
- 		ret = intel_modeset_pipe_config(state, crtc, limits);
- 		if (ret)
--			break;
-+			goto fail;
-+	}
- 
--		ret = intel_atomic_check_bigjoiner(state, crtc);
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
-+		if (drm_WARN_ON(&i915->drm, intel_crtc_is_bigjoiner_slave(new_crtc_state)))
-+			continue;
-+
-+		if (!new_crtc_state->hw.enable)
-+			continue;
-+
-+		ret = intel_modeset_pipe_config_late(state, crtc);
- 		if (ret)
--			break;
-+			goto fail;
- 	}
- 
-+fail:
- 	if (ret)
- 		*failed_pipe = crtc->pipe;
- 
-@@ -6411,16 +6419,26 @@ int intel_atomic_check(struct drm_device *dev,
- 	if (ret)
- 		goto fail;
- 
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		if (!intel_crtc_needs_modeset(new_crtc_state))
-+			continue;
-+
-+		if (intel_crtc_is_bigjoiner_slave(new_crtc_state)) {
-+			drm_WARN_ON(&dev_priv->drm, new_crtc_state->uapi.enable);
-+			continue;
-+		}
-+
-+		ret = intel_atomic_check_bigjoiner(state, crtc);
-+		if (ret)
-+			goto fail;
-+	}
-+
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
- 		if (!intel_crtc_needs_modeset(new_crtc_state))
- 			continue;
- 
--		if (new_crtc_state->hw.enable) {
--			ret = intel_modeset_pipe_config_late(state, crtc);
--			if (ret)
--				goto fail;
--		}
-+		intel_bigjoiner_adjust_pipe_src(new_crtc_state);
- 
- 		intel_crtc_check_fastset(old_crtc_state, new_crtc_state);
- 	}
+ 	return clock > i915->max_dotclk_freq || hdisplay > 5120 ||
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 9f880d7865d1..8d1c3ca28159 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -120,7 +120,7 @@ int intel_dp_effective_data_rate(int pixel_clock, int bpp_x16,
+ 				 int bw_overhead);
+ int intel_dp_max_link_data_rate(struct intel_dp *intel_dp,
+ 				int max_dprx_rate, int max_dprx_lanes);
+-bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp);
++bool intel_dp_has_bigjoiner(struct intel_dp *intel_dp);
+ bool intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+ 			    const struct drm_connector_state *conn_state);
+ void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
 -- 
 2.43.2
 
