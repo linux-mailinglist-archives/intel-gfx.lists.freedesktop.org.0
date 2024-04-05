@@ -2,68 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A4F89C6F1
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE76589C6F9
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 991D310FE2C;
-	Mon,  8 Apr 2024 14:24:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0090811266A;
+	Mon,  8 Apr 2024 14:24:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YHvGCW8V";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="DvATwmVZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0B4B10E9C6
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 13:58:45 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-415523d9824so22440855e9.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 06:58:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1712325524; x=1712930324; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:to:from:date:from:to:cc:subject:date:message-id
- :reply-to; bh=HJrUbQT5Hw4+7pS+U2AF4YkErSdro5FnoqDalj6wnaE=;
- b=YHvGCW8V6hYO7akb8dEeqWtklIpgINoNW1j+Z9gE0pMeM0g+35kFD6sKj0SByMah+b
- EhlXICXFfN+comBIIxjUvJomIKWvyK7I7vGJ35AvqQ7tcopg0zhqhBC4PYVNa7pM0eZM
- 1ZAipF6yCUccPLEEbj3OCWFpxmaWFnKkhNBGBNCbxHuF4c4fN/vdbDCPgUvCDEiK0DPG
- KVOyGXZxqn9x1ZBNIxLikc28l8wVb/mLuppc8Xt8Z5D1tV1VQYwkHsSE3jBR/ptO1cfq
- ug39+WUrcwdwTw/Cy+Lrba7KOlmaYxQXNtXpCQR5StNZzK0Z+ZNGf2hjfzn+alC+cLmX
- H6Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712325524; x=1712930324;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=HJrUbQT5Hw4+7pS+U2AF4YkErSdro5FnoqDalj6wnaE=;
- b=mju7tvGrW/VQehadww8F94iupejiy/97DAtjSdYWJFlC/erwp/BSpq4i42NO6eoNOC
- B7XnRhqxPxvW0cUD9BP73rItMM21vcxBjS/hyQooIo94gwyopQX1B0cs4h/2Cz3yVO4R
- LG0Xn97C2PW1lkgpbmgyXPJUOFC+L4huBB+l6Bv8S4K07w8eTH/w1o/OCZ03Vbp8Z7k+
- FILKOdRyHGm5Ejbwo+Ojpy0g8pyLD9lsRYTu4phzcbDQA6K8Eb8zzPOfQfFAHXZCr4ve
- I7/pWfrB2CN6zRuknWNJK+QcRxIzNd0OCNpQjyj2+/QviFZKPzXpoNBN8eVxEwLZJL8F
- BHRw==
-X-Gm-Message-State: AOJu0YzxCp/DHn4JT7qqu4KMADoaYrqK6QP1A0g7+iPLYlijTkEg/bJ2
- YS88dZxQZBbkXBPAiV70Kedfl2NHdDxraLdon5Ae6qm7p1uJpp0xjDdroPkK
-X-Google-Smtp-Source: AGHT+IHAuoqQKQgv2M7rxfLiMVQ/Uhz3GeVokNvq4IzoqiroUC59fbs4Y7LjifoAC1KBbKgH55lw2g==
-X-Received: by 2002:a7b:c44e:0:b0:415:6860:eafb with SMTP id
- l14-20020a7bc44e000000b004156860eafbmr1674084wmi.15.1712325524001; 
- Fri, 05 Apr 2024 06:58:44 -0700 (PDT)
-Received: from aquecedor-3-0.lan ([2001:818:e81c:ce00:7193:3bd:90d8:9d8])
- by smtp.gmail.com with ESMTPSA id
- f14-20020a05600c154e00b0041552dbc539sm3114824wmg.11.2024.04.05.06.58.42
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Apr 2024 06:58:43 -0700 (PDT)
-Date: Fri, 5 Apr 2024 14:58:41 +0100
-From: =?iso-8859-1?Q?Jos=E9?= Relvas <josemonsantorelvas@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [REQUEST] Add support for Intel DPST (Display Power Saving Technology)
-Message-ID: <ZhADkdyItNEuoxKN@aquecedor-3-0.lan>
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7EBB410E782;
+ Fri,  5 Apr 2024 16:30:15 +0000 (UTC)
+Received: from [100.64.217.16] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 6099820E98B9;
+ Fri,  5 Apr 2024 09:30:14 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6099820E98B9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1712334614;
+ bh=w130JaeBPpS+L9M4QU8ZQXXwRcANcq5ZUO69X1bKRmU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=DvATwmVZCnu2mWeOkHNjSOn3NP+uGroDac1iSpu2wd+v3d//PQw85B2Bdx0Po6Lvd
+ ZjMGVuaZ73P4XTz+rG7byN35W0KUrpl5gZ3alXfZ8frHGqOGX4PxPO84VA9eudZIJk
+ 732o/mFjv1LuWV0m4a0o7Gs9Fy/VV5ERgAzWEo3E=
+Message-ID: <e6b04b76-c695-47b4-9432-f2316e174585@linux.microsoft.com>
+Date: Fri, 5 Apr 2024 09:30:13 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v0 13/14] drm/nouveau: Make I2C terminology more inclusive
+To: Danilo Krummrich <dakr@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <dri-devel@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-14-eahariha@linux.microsoft.com>
+ <4dc6fb16-3d85-4a7f-85f9-ed249da0df1a@redhat.com>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <4dc6fb16-3d85-4a7f-85f9-ed249da0df1a@redhat.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:15 +0000
+X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:14 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,53 +71,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey folks,
+On 4/5/2024 9:15 AM, Danilo Krummrich wrote:
+> Hi Easwar,
+> 
+> On 3/29/24 18:00, Easwar Hariharan wrote:
+>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by and following on to Wolfram's
+>> series to fix drivers/i2c/[1], fix the terminology for users of
+>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>> in the specification.
+>>
+>> Compile tested, no functionality changes intended
+>>
+>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>
+>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+>> ---
+>>   drivers/gpu/drm/nouveau/dispnv04/dfp.c             | 14 +++++++-------
+>>   .../gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h |  2 +-
+>>   drivers/gpu/drm/nouveau/nouveau_bios.c             |  4 ++--
+>>   3 files changed, 10 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/dispnv04/dfp.c b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+>> index d5b129dc623b..65b791006b19 100644
+>> --- a/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+>> +++ b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+>> @@ -149,7 +149,7 @@ void nv04_dfp_update_fp_control(struct drm_encoder *encoder, int mode)
+>>       }
+>>   }
+>>   -static struct drm_encoder *get_tmds_slave(struct drm_encoder *encoder)
+>> +static struct drm_encoder *get_tmds_client(struct drm_encoder *encoder)
+>>   {
+>>       struct drm_device *dev = encoder->dev;
+>>       struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+>> @@ -172,7 +172,7 @@ static struct drm_encoder *get_tmds_slave(struct drm_encoder *encoder)
+>>           struct dcb_output *slave_dcb = nouveau_encoder(slave)->dcb;
+>>             if (slave_dcb->type == DCB_OUTPUT_TMDS && get_slave_funcs(slave) &&
+>> -            slave_dcb->tmdsconf.slave_addr == dcb->tmdsconf.slave_addr)
+>> +            slave_dcb->tmdsconf.client_addr == dcb->tmdsconf.client_addr)
+>>               return slave;
+> 
+> While, personally, I think master/slave was well suiting for the device relationship
+> on those busses, I think that if we change it up to conform with the change in
+> specification, we should make sure to update drivers consistently.
+> 
+> We should make sure to also change the names of the sourrounding structures and variable
+> names, otherwise we just make this code harder to read.
+> 
+> - Danilo
+> 
 
-I've noticed that power-profiles-daemon recently added support for AMD's panel power saving technology with this MR:
-https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/merge_requests/137
+Thanks for the review, and for the appetite to go further! So we are on the same page, you would prefer
+renaming to controller/target like the feedback on other drm drivers (i915, gma500, radeon)?
 
-It appears to be controlled via a panel_power_saving SYSFS property.
+Thanks,
+Easwar
 
-This reminded that Intel has a similar technology. RPL's datasheets confirm this:
-https://edc.intel.com/content/www/us/en/design/products/platforms/details/raptor-lake-s/13th-generation-core-processors-datasheet-volume-1-of-2/display-power-savings-technologies/
-
-> The Intel� DPST technique achieves back-light power savings while maintaining
-> a good visual experience. This is accomplished by adaptively enhancing the
-> displayed image while decreasing the back-light brightness simultaneously. 
-> The goal of this technique is to provide equivalent end-user-perceived 
-> image quality at a decreased back-light power level. 
-
-> Intel� OPST solution uses same HW infrastructure as Intel� DPST. Frames are 
-> processed using frame change threshold based interrupt mechanism similar
-> to Intel� DPST. Intel� OPST SW algorithm determines which pixels in the 
-> frame should be dimmed to save power keeping visual quality (such as contrast, color) 
-> impact to acceptable level. Since there is no backlight for OLED panels,
-> the power savings come solely from pixel dimming. 
-
-However, it doesn't seem like i915 has any support for this. Searching online was
-ineffective too:
-
-- I found mentions of /sys/class/drm/card0/power/i915_dpst, but it doesn't seem to exist,
-at least not anymore.
-
-- A i915.dpst parameter was also brought up, but it doesn't seem to exist either.
-
-Interestingly, all mentions of dpst on Linux were referring to Android, so maybe
-this was a downstream thing with Android?
-
-In any case, I found this email in the archive which confirms
-that DPST was not supported (at least in 2012):
-https://lore.kernel.org/intel-gfx/50ADFFB3.8030907@linux.intel.com/
-
-Since AMD's equivalent to DPST is now supported by their driver and being used by userspace,
-it seems like a sensible idea to implement this for i915. I've confirmed that this feature
-has existed since (at least) Haswell (released over a decade ago!) so implementing it
-would likely net a few energy consumption improvements for a large chunk of Intel laptops.
-
-The best approach here would probably be to expose a similar attribute to amdgpu's 
-"panel_power_savings", with a scale that controls the feature's aggressiveness,
-then update userspace tools, including power-profiles-daemon, to set the value
-based on the intended energy scheme.
-
-Thanks for reading,
-Jos� Relvas
