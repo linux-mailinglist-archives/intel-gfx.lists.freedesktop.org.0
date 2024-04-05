@@ -2,58 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3ED89A24A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 18:17:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4D8389A251
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 18:20:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9BEC10E359;
-	Fri,  5 Apr 2024 16:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13E0210E67F;
+	Fri,  5 Apr 2024 16:20:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Fc7nDKnu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C/HZKJyO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF5F910E359
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 16:17:39 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 3D87DCE23E9
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 16:17:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70DC2C433F1
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 16:17:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1712333856;
- bh=DdqN1+75+M1zDGqGhcEWpBeqFamQsjC0GLCJ5dl5Vi4=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=Fc7nDKnuupTJGery08+0qj9Um45twnAafD3j2ufouL0Q7FhqkTKgSMmmtuP/BGSoL
- HGz7iOg6yZ7PCthmreCxykBO1GCi9uKqOzAmNNNgLnb2r5Nw+S6e4EiYsfVF0C1JIP
- /+0WaGDWLL3I7+IcL5XV9bYkYs7yuHRwWy06RQK7Gi1gi0opyowfGLAz61o1p5S2Qp
- TH64WfOWRHf9/MEzxqXJ3LS8dgfeT9+BONhyu/95mN1ktswNcU+fwc1A4ZLre9ZLZQ
- dUgzOEl7ROmnFvHFwVD//O9o8budJ/GXau/NOdA+0VbvE1CoTytKh1RQHEomD4+w34
- ZseYUcabDmBwg==
-Received: by mail-yb1-f169.google.com with SMTP id
- 3f1490d57ef6-dd14d8e7026so2310287276.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 09:17:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUg4nnzq1Y28EmAj97C01oeH2E8ZtznqXSsYOWTKyUiwwjS08S0ux9QxeBo9OQl709Bel0lLc2bZFN4O6ShNmvwI0+KZUDTO2e+YXbYwv1R
-X-Gm-Message-State: AOJu0YzWChPvq7qhGQMk2l+F1018GXa2GgRmeuawbn2Xu8VhA16g2IiD
- iIy2Up3pTGfQ0xNd+c3yCq0+sefQa91tJEHAFEQTLiwNlo/0qm/pBCONX85IHsG8JGjfHM4+GFM
- iZkBEkTOOr2FFUFc66HdIa8YBXno=
-X-Google-Smtp-Source: AGHT+IEkVyTUVtr6OFCqWCmhArGL18PStJD0ASTAlHbghyWThmxZX1vdIgH4fspB748nKR14Qto+TYN/3Em+NkfFmPo=
-X-Received: by 2002:a25:900b:0:b0:dcc:d196:a573 with SMTP id
- s11-20020a25900b000000b00dccd196a573mr1816048ybl.36.1712333855709; Fri, 05
- Apr 2024 09:17:35 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B54A4113CB0;
+ Fri,  5 Apr 2024 16:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712334022; x=1743870022;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=STODT/c3z6ypoEyUkP1OAtZ6EfyLMQK08sm/bPAw1AU=;
+ b=C/HZKJyOXQsAnQLLdmXcHCDA1Oj9zUYbkZJI3PKPtdR14MbisCDrDaB2
+ r5e0RsjB6CgPAD5n2FAuURvNDJscUSlVjKokVsRNBfzkvdkx/VLPo9jfr
+ wcHaxJyEPoE4BNO5SbRekOeDN5GSNg05N0VwD/Ng42ZTgkYG35vq4jCPu
+ welg7W7cuKNTu+rsVkPVQ5ccEpLGhuJtyfJuzysb5SzSEBfAMujObO0Q3
+ y/sW3at4rgzjODiCno7yi00nesMOHXwWrH9DI22WB5RTSxtst9rA0vBuT
+ OhlrFWlej/VLezTiY2N7B719jUixuNzr9T9FCWGZH1ExFDb2FLOrYaz0t w==;
+X-CSE-ConnectionGUID: 8sPQek0vSRG1zxAToXDGgw==
+X-CSE-MsgGUID: nVOVq2RfTx+PHCXY3dwHDw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="11462796"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="11462796"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 09:20:21 -0700
+X-CSE-ConnectionGUID: EGOUsw1jS4iffZcF7In7vA==
+X-CSE-MsgGUID: OzVkpaElRkSa/fAWFgBa3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19141333"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.245.80.70])
+ ([10.245.80.70])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 09:20:15 -0700
+Message-ID: <340d23fc-7abf-4ad0-bd95-f1760b9ac458@intel.com>
+Date: Fri, 5 Apr 2024 18:20:11 +0200
 MIME-Version: 1.0
-References: <20240401185015.624402-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20240401185015.624402-1-daniele.ceraolospurio@intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Fri, 5 Apr 2024 12:17:25 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA76cR43jPCZmewp-sHtwufxMchM_TWoLJQXLE8HPQQeLw@mail.gmail.com>
-Message-ID: <CA+5PVA76cR43jPCZmewp-sHtwufxMchM_TWoLJQXLE8HPQQeLw@mail.gmail.com>
-Subject: Re: [PR] i915: Add DG2 HuC to 7.10.15
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: linux-firmware@kernel.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Intel-gfx] [PATCH v5 0/7] Introduce __xchg, non-atomic xchg
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>
+Cc: Mark Rutland <mark.rutland@arm.com>, linux-ia64@vger.kernel.org,
+ linux-sh@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, linux-xtensa@linux-xtensa.org,
+ Arnd Bergmann <arnd@arndb.de>, Boqun Feng <boqun.feng@gmail.com>,
+ linux-m68k@lists.linux-m68k.org, openrisc@lists.librecores.org,
+ loongarch@lists.linux.dev, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-parisc@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-alpha@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linuxppc-dev@lists.ozlabs.org
+References: <20230118153529.57695-1-andrzej.hajda@intel.com>
+ <Y/ZLH5F8LA3H10aL@hirez.programming.kicks-ass.net>
+ <17f40b7c-f98d-789d-fa19-12ec077b756a@intel.com>
+ <Y/y0/VoPAVCXGKp3@hirez.programming.kicks-ass.net> <87r0fjc1cz.fsf@intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <87r0fjc1cz.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +88,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 1, 2024 at 2:50=E2=80=AFPM Daniele Ceraolo Spurio
-<daniele.ceraolospurio@intel.com> wrote:
->
-> The following changes since commit 93f329774542b9b7d57abb18ea8b6542f2d8fe=
-ac:
->
->   Merge branch 'robot/pr-0-1709214990' into 'main' (2024-02-29 14:10:53 +=
-0000)
->
-> are available in the Git repository at:
->
->   git@gitlab.freedesktop.org:drm/firmware.git tags/intel-2024-04-01
 
-Merged and pushed out.
 
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/188
+On 05.04.2024 16:47, Jani Nikula wrote:
+> On Mon, 27 Feb 2023, Peter Zijlstra <peterz@infradead.org> wrote:
+>> On Thu, Feb 23, 2023 at 10:24:19PM +0100, Andrzej Hajda wrote:
+>>> On 22.02.2023 18:04, Peter Zijlstra wrote:
+>>>> On Wed, Jan 18, 2023 at 04:35:22PM +0100, Andrzej Hajda wrote:
+>>>>
+>>>>> Andrzej Hajda (7):
+>>>>>     arch: rename all internal names __xchg to __arch_xchg
+>>>>>     linux/include: add non-atomic version of xchg
+>>>>>     arch/*/uprobes: simplify arch_uretprobe_hijack_return_addr
+>>>>>     llist: simplify __llist_del_all
+>>>>>     io_uring: use __xchg if possible
+>>>>>     qed: use __xchg if possible
+>>>>>     drm/i915/gt: use __xchg instead of internal helper
+>>>> Nothing crazy in here I suppose, I somewhat wonder why you went through
+>>>> the trouble, but meh.
+>>> If you are asking why I have proposed this patchset, then the answer is
+>>> simple, 1st I've tried to find a way to move internal i915 helper to core
+>>> (see patch 7).
+>>> Then I was looking for possible other users of this helper. And apparently
+>>> there are many of them, patches 3-7 shows some.
+>>>
+>>>
+>>>> You want me to take this through te locking tree (for the next cycle,
+>>>> not this one) where I normally take atomic things or does someone else
+>>>> want this?
+>>> If you could take it I will be happy.
+>> OK, I'll go queue it in tip/locking/core after -rc1. Thanks!
+> Is this where the series fell between the cracks, or was there some
+> follow-up that I missed?
+>
+> I think this would still be useful. Andrzej, would you mind rebasing and
+> resending if there are no objections?
 
-josh
+The patchset was rejected/dropped by Linus at the pull-request stage.
+He didn't like many things, but the most __xchg name. However he was 
+quite positive about i915 name fetch_and_zero.
+I can try to revive patchset with fetch_and_zero, and maybe 
+fetch_and_set, instead of __xchg.
+
+Regards
+Andrzej
 
 >
-> for you to fetch changes up to ab144168469a77f54ad539ac98dede7ce4c6a75d:
+> BR,
+> Jani.
 >
->   i915: Add DG2 HuC 7.10.15 (2024-03-28 13:45:41 -0700)
 >
-> ----------------------------------------------------------------
-> Daniele Ceraolo Spurio (1):
->       i915: Add DG2 HuC 7.10.15
->
->  WHENCE               |   2 +-
->  i915/dg2_huc_gsc.bin | Bin 622592 -> 630784 bytes
->  2 files changed, 1 insertion(+), 1 deletion(-)
->  mode change 100755 =3D> 100644 i915/dg2_huc_gsc.bin
+
