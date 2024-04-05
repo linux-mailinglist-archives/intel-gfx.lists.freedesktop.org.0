@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108F08997BB
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 10:25:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A4B8997C3
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 10:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B960113A50;
-	Fri,  5 Apr 2024 08:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F58E113A58;
+	Fri,  5 Apr 2024 08:27:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bh9/DsXj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MI4QinSg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2201A113A50;
- Fri,  5 Apr 2024 08:25:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA82113A58;
+ Fri,  5 Apr 2024 08:26:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712305556; x=1743841556;
+ t=1712305619; x=1743841619;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=Bg3i9gUs2KNmsiaeURC3hc68fGURAjloO3OwHQh+kow=;
- b=Bh9/DsXju9FKawzDyZjZ+L0AU67U86iis5crCWF77gTCnGD8d7KNMD6Z
- gDhF1lS7KlDEPkJB8vEbeWep4DSPW0ZWCUMvtRCvhDQkayhCJYMKPaGKw
- knEgRA0kQRp29ax6bbUunGWM1RPlCAE/EmpsY/WqS3GuCAdQuxJSXWibw
- b1kLXr2M3QngLpaAaEzhrqnweNYw/nqv2jFIFzi+MC7pvcFB0fb9UJ6kM
- JF400mFA7fDVVg0gr7AHMo5jjpEOqylvAWIq07iWPraN64sl5j9mH9awM
- BjauqR877SJqufvUl3m2spxGNUBuXK3Kkd04ltvjPBUniP0Tras/6u0sw w==;
-X-CSE-ConnectionGUID: YTIwZRv+QeO8SQ5S5JuaZw==
-X-CSE-MsgGUID: ofEALIiOQ0ah3qa/zkVYFw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="11440539"
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="11440539"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 01:25:54 -0700
-X-CSE-ConnectionGUID: 9neCS/knTeGC5q9PT9OiZQ==
-X-CSE-MsgGUID: GGnTn7CiRYyZUcnNLLKIXQ==
+ bh=wMScudArYXBxbhNnw6t/ypNfdIQOnR8G5F+GW7oAYBM=;
+ b=MI4QinSg/CFbV5Qg050F3mWxhtH7oiTQZYY9Y197YgjdlImjnuTSt92h
+ 6dvFLli65Gv4bvC6PFAYsfXCCcxDNODsE/JN7g7UUyH2Q2KcLEjJki9lx
+ 00KeOFiQTC1iJwIVLmb2qZTQn5GRn4yjOH/MFRP4R5giW1E5PsDWaHXkZ
+ NngTP5tQ7wIi5PqyqOvppeup+KzlwBUzWe95sQhRiTPndlkXhmc24C846
+ UGPl3KvyQQi2ISFf5XpJyIPN9kNzZSpmq6kd+8s5DTvFa8pV7OimdorNj
+ hYkf/F1fjrAHGkoT1Ed5G5WR0NAJ1VnEkZsYHd6p5jA2PWK8ha7/Je0Ig A==;
+X-CSE-ConnectionGUID: /8Xc1dGGRDuN7lCETX5t/Q==
+X-CSE-MsgGUID: iBnhTawtTridc2KawI6sBg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7752577"
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
+   d="scan'208";a="7752577"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 01:26:58 -0700
+X-CSE-ConnectionGUID: e5EmnS3iT+iYPGCyqffw1w==
+X-CSE-MsgGUID: PQPEg2zhTJ+DrNu/Gmw8AQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="19648678"
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="19092710"
 Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.41.202])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 01:25:53 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 01:26:56 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 12/12] drm/probe-helper: Switch to per-device debugs
-In-Reply-To: <20240404203336.10454-13-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 08/12] drm/client: Extract drm_connector_first_mode()
+In-Reply-To: <20240404203336.10454-9-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240404203336.10454-1-ville.syrjala@linux.intel.com>
- <20240404203336.10454-13-ville.syrjala@linux.intel.com>
-Date: Fri, 05 Apr 2024 11:25:49 +0300
-Message-ID: <877chccj1u.fsf@intel.com>
+ <20240404203336.10454-9-ville.syrjala@linux.intel.com>
+Date: Fri, 05 Apr 2024 11:26:53 +0300
+Message-ID: <874jcgcj02.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,105 +75,65 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 04 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Switch to per-device debugs so that we know which
-> device we're dealing with.
+> Use a consistent method for picking the first mode from the
+> connnector's mode list.
 
-Again see the first handful of patches in the series [1]. It cleans up
-the mode printing as well.
+Patches 1-8 inclusive are
 
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/cover.1709843865.git.jani.nikula@intel.com
-
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/drm_probe_helper.c | 35 ++++++++++++++----------------
->  1 file changed, 16 insertions(+), 19 deletions(-)
+>  drivers/gpu/drm/drm_client_modeset.c | 17 ++++++++++-------
+>  1 file changed, 10 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_pro=
-be_helper.c
-> index 968a3ee66b1e..0860f7367511 100644
-> --- a/drivers/gpu/drm/drm_probe_helper.c
-> +++ b/drivers/gpu/drm/drm_probe_helper.c
-> @@ -567,8 +567,8 @@ int drm_helper_probe_single_connector_modes(struct dr=
-m_connector *connector,
+> diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_c=
+lient_modeset.c
+> index 08fc896885dd..1fba6cd8d761 100644
+> --- a/drivers/gpu/drm/drm_client_modeset.c
+> +++ b/drivers/gpu/drm/drm_client_modeset.c
+> @@ -159,6 +159,13 @@ drm_connector_preferred_mode(struct drm_connector *c=
+onnector, int width, int hei
+>  	return NULL;
+>  }
 >=20=20
->  	drm_modeset_acquire_init(&ctx, 0);
->=20=20
-> -	DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n", connector->base.id,
-> -			connector->name);
-> +	drm_dbg_kms(dev, "[CONNECTOR:%d:%s]\n",
-> +		    connector->base.id, connector->name);
->=20=20
->  retry:
->  	ret =3D drm_modeset_lock(&dev->mode_config.connection_mutex, &ctx);
-> @@ -611,11 +611,10 @@ int drm_helper_probe_single_connector_modes(struct =
-drm_connector *connector,
->  	 * check here, and if anything changed start the hotplug code.
->  	 */
->  	if (old_status !=3D connector->status) {
-> -		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] status updated from %s to %s\n",
-> -			      connector->base.id,
-> -			      connector->name,
-> -			      drm_get_connector_status_name(old_status),
-> -			      drm_get_connector_status_name(connector->status));
-> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] status updated from %s to %s\n",
-> +			    connector->base.id, connector->name,
-> +			    drm_get_connector_status_name(old_status),
-> +			    drm_get_connector_status_name(connector->status));
->=20=20
->  		/*
->  		 * The hotplug event code might call into the fb
-> @@ -638,8 +637,8 @@ int drm_helper_probe_single_connector_modes(struct dr=
-m_connector *connector,
->  		drm_kms_helper_poll_enable(dev);
->=20=20
->  	if (connector->status =3D=3D connector_status_disconnected) {
-> -		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] disconnected\n",
-> -			connector->base.id, connector->name);
-> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] disconnected\n",
-> +			    connector->base.id, connector->name);
->  		drm_connector_update_edid_property(connector, NULL);
->  		drm_mode_prune_invalid(dev, &connector->modes, false);
->  		goto exit;
-> @@ -697,8 +696,8 @@ int drm_helper_probe_single_connector_modes(struct dr=
-m_connector *connector,
->=20=20
->  	drm_mode_sort(&connector->modes);
->=20=20
-> -	DRM_DEBUG_KMS("[CONNECTOR:%d:%s] probed modes :\n", connector->base.id,
-> -			connector->name);
-> +	drm_dbg_kms(dev, "[CONNECTOR:%d:%s] probed modes :\n",
-> +		    connector->base.id, connector->name);
->  	list_for_each_entry(mode, &connector->modes, head) {
->  		drm_mode_set_crtcinfo(mode, CRTC_INTERLACE_HALVE_V);
->  		drm_mode_debug_printmodeline(mode);
-> @@ -834,14 +833,12 @@ static void output_poll_execute(struct work_struct =
-*work)
->  			old =3D drm_get_connector_status_name(old_status);
->  			new =3D drm_get_connector_status_name(connector->status);
->=20=20
-> -			DRM_DEBUG_KMS("[CONNECTOR:%d:%s] "
-> -				      "status updated from %s to %s\n",
-> -				      connector->base.id,
-> -				      connector->name,
-> -				      old, new);
-> -			DRM_DEBUG_KMS("[CONNECTOR:%d:%s] epoch counter %llu -> %llu\n",
-> -				      connector->base.id, connector->name,
-> -				      old_epoch_counter, connector->epoch_counter);
-> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] status updated from %s to %s\n",
-> +				    connector->base.id, connector->name,
-> +				    old, new);
-> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] epoch counter %llu -> %llu\n",
-> +				    connector->base.id, connector->name,
-> +				    old_epoch_counter, connector->epoch_counter);
->=20=20
->  			changed =3D true;
+> +static const struct drm_display_mode *
+> +drm_connector_first_mode(struct drm_connector *connector)
+> +{
+> +	return list_first_entry_or_null(&connector->modes,
+> +					struct drm_display_mode, head);
+> +}
+> +
+>  static const struct drm_display_mode *
+>  drm_connector_pick_cmdline_mode(struct drm_connector *connector)
+>  {
+> @@ -439,10 +446,8 @@ static bool drm_client_target_preferred(struct drm_c=
+onnector *connectors[],
+>  			modes[i] =3D drm_connector_preferred_mode(connector, width, height);
 >  		}
+>  		/* No preferred modes, pick one off the list */
+> -		if (!modes[i] && !list_empty(&connector->modes)) {
+> -			list_for_each_entry(modes[i], &connector->modes, head)
+> -				break;
+> -		}
+> +		if (!modes[i])
+> +			modes[i] =3D drm_connector_first_mode(connector);
+>  		/*
+>  		 * In case of tiled mode if all tiles not present fallback to
+>  		 * first available non tiled mode.
+> @@ -684,9 +689,7 @@ static bool drm_client_firmware_config(struct drm_cli=
+ent_dev *client,
+>  		if (!modes[i] && !list_empty(&connector->modes)) {
+>  			DRM_DEBUG_KMS("using first mode listed on connector %s\n",
+>  				      connector->name);
+> -			modes[i] =3D list_first_entry(&connector->modes,
+> -						    struct drm_display_mode,
+> -						    head);
+> +			modes[i] =3D drm_connector_first_mode(connector);
+>  		}
+>=20=20
+>  		/* last resort: use current mode */
 
 --=20
 Jani Nikula, Intel
