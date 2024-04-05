@@ -2,67 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E40899D20
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 14:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 021B2899D33
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 14:40:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9618A113BB0;
-	Fri,  5 Apr 2024 12:36:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lfpVLEZd";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4628F113BBB;
+	Fri,  5 Apr 2024 12:40:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E98F3113BAE;
- Fri,  5 Apr 2024 12:36:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712320582; x=1743856582;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=Wj2ayH1gXwiwnbEewC8gc/flNEJ4suafKnHA5yHB1O0=;
- b=lfpVLEZdJ/weP+EHJXuEPmA2YzQ5DEmNKlzX9E3tM0dhTxBToHAc1E2f
- u2ztUAIshYL11xlK1eT0JlkACt0mA18oINbxGcjnptBOZ3lrwbD9PDSmr
- ouk3/w5TTGP6zvrTnQVXLMCx8YcueeH1dXKkuiUmovluDVinEF2bXPJ8b
- OgtD1bXg5np3joysdIAx4b/TblXtDuAoUyD72DY8yjiPbWxfWrLusjfMn
- VXkD39EmJSU7ObXrLllZPQXiKw4DdgN/mWJpEwUPtDr4ANaP5KDqlMRTc
- 2H36SVGvNcbJIWwt0BV7JCNZ+iKaXm3n6xK+CNINAI1DFaV4RM8beNfnB A==;
-X-CSE-ConnectionGUID: fmCfjNPaSFu0XYo8v5E0+Q==
-X-CSE-MsgGUID: F2iy940jTRq/qYnI+s8J7Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="11439454"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="11439454"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 05:36:21 -0700
-X-CSE-ConnectionGUID: M8v7V3OlQm+hSaL1ZdVMjg==
-X-CSE-MsgGUID: jOHhIdRSQcK/CwKSmJDJ7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19712021"
-Received: from vdesserx-mobl1.ger.corp.intel.com (HELO [10.251.214.130])
- ([10.251.214.130])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 05:36:17 -0700
-Message-ID: <2ad89d5a-4096-4cc5-badb-4ad61ff1df7d@linux.intel.com>
-Date: Fri, 5 Apr 2024 14:36:30 +0200
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2116113BBA;
+ Fri,  5 Apr 2024 12:40:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7638306388160845478=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_QGV/SAGV_related_fixes_=28r?=
+ =?utf-8?q?ev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 05 Apr 2024 12:40:19 -0000
+Message-ID: <171232081998.1229455.7101314997013125118@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240405113533.338553-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20240405113533.338553-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,316 +37,417 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+--===============7638306388160845478==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Everyone seems to be out on vacation, so the pull request is pretty empty.
+== Series Details ==
 
-Cheers,
-~Maarten
+Series: QGV/SAGV related fixes (rev10)
+URL   : https://patchwork.freedesktop.org/series/126962/
+State : failure
 
-drm-misc-next-2024-04-05:
-drm-misc-next for v6.10:
+== Summary ==
 
-Core Changes:
-- Fix DRM_DISPLAY_DP_HELPER dependencies.
+CI Bug Log - changes from CI_DRM_14533 -> Patchwork_126962v10
+====================================================
 
-Driver Changes:
-- i2c and polling fixes to ast.
-- Small fixes to panthor.
-- Allow IRQ to share GPIO pins in bridge/adv7511.
-The following changes since commit 39cd87c4eb2b893354f3b850f916353f2658ae6f:
+Summary
+-------
 
-   Linux 6.9-rc2 (2024-03-31 14:32:39 -0700)
+  **FAILURE**
 
-are available in the Git repository at:
+  Serious unknown changes coming with Patchwork_126962v10 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_126962v10, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-next-2024-04-05
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/index.html
 
-for you to fetch changes up to d1ef8fc18be6adbbffdee06fbb5b33699e2852be:
+Participating hosts (38 -> 38)
+------------------------------
 
-   drm: fix DRM_DISPLAY_DP_HELPER dependencies (2024-04-04 16:20:57 +0200)
+  Additional (3): bat-dg1-7 fi-glk-j4005 fi-elk-e7500 
+  Missing    (3): bat-mtlp-8 bat-dg2-11 fi-snb-2520m 
 
-----------------------------------------------------------------
-drm-misc-next for v6.10:
+Possible new issues
+-------------------
 
-Core Changes:
-- Fix DRM_DISPLAY_DP_HELPER dependencies.
+  Here are the unknown changes that may have been introduced in Patchwork_126962v10:
 
-Driver Changes:
-- i2c and polling fixes to ast.
-- Small fixes to panthor.
-- Allow IRQ to share GPIO pins in bridge/adv7511.
+### IGT changes ###
 
-----------------------------------------------------------------
-Adam Ford (1):
-       drm/bridge: adv7511: Allow IRQ to share GPIO pins
+#### Possible regressions ####
 
-Adrián Larumbe (1):
-       ABI: sysfs-driver-panfrost-profiling: fix indentation problem
+  * igt@gem_exec_parallel@engines@fds:
+    - bat-arls-2:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14533/bat-arls-2/igt@gem_exec_parallel@engines@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-arls-2/igt@gem_exec_parallel@engines@fds.html
 
-Arnd Bergmann (1):
-       drm: fix DRM_DISPLAY_DP_HELPER dependencies
+  
+Known issues
+------------
 
-Boris Brezillon (3):
-       drm/panthor: Fix IO-page mmap() for 32-bit userspace on 64-bit kernel
-       drm/panthor: Fix ordering in _irq_suspend()
-       drm/panthor: Drop the dev_enter/exit() sections in 
-_irq_suspend/resume()
+  Here are the changes found in Patchwork_126962v10 that come from known issues:
 
-Chris Morgan (3):
-       dt-bindings: vendor-prefix: Add prefix for GameForce
-       dt-bindings: display: Add GameForce Chi Panel
-       drm/panel: st7703: Add GameForce Chi Panel Support
+### IGT changes ###
 
-Christian Hewitt (1):
-       drm/meson: vclk: fix calculation of 59.94 fractional rates
+#### Issues hit ####
 
-Dan Carpenter (3):
-       drm/panthor: Fix a couple -ENOMEM error codes
-       drm/panthor: Fix error code in panthor_gpu_init()
-       drm/panthor: Fix off by one in panthor_fw_get_cs_iface()
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
 
-Harshit Mogalapalli (2):
-       drm/panthor: Fix NULL vs IS_ERR() bug in panthor_probe()
-       drm/panthor: Don't return NULL from panthor_vm_get_heap_pool()
+  * igt@gem_lmem_swapping@basic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-glk-j4005/igt@gem_lmem_swapping@basic.html
 
-Ian Forbes (1):
-       drm/vmwgfx: Remove unused code
+  * igt@gem_mmap@basic:
+    - bat-dg1-7:          NOTRUN -> [SKIP][5] ([i915#4083])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@gem_mmap@basic.html
 
-Liviu Dudau (2):
-       drm/panthor: Cleanup unused variable 'cookie'
-       drm/panthor: Fix some kerneldoc warnings
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-dg1-7:          NOTRUN -> [SKIP][6] ([i915#4077]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@gem_tiled_fence_blits@basic.html
 
-Nathan Chancellor (1):
-       drm/panthor: Fix clang -Wunused-but-set-variable in tick_ctx_apply()
+  * igt@gem_tiled_pread_basic:
+    - bat-dg1-7:          NOTRUN -> [SKIP][7] ([i915#4079]) +1 other test skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@gem_tiled_pread_basic.html
 
-Thomas Zimmermann (14):
-       Merge drm/drm-next into drm-misc-next
-       drm/ast: Include <linux/of.h> where necessary
-       drm/ast: Fail probing if DDC channel could not be initialized
-       drm/ast: Remove struct ast_{vga,sil165}_connector
-       drm/ast: Allocate instance of struct ast_i2c_chan with managed 
-helpers
-       drm/ast: Move DDC code to ast_ddc.{c,h}
-       drm/ast: Rename struct ast_i2c_chan to struct ast_ddc
-       drm/ast: Pass AST device to ast_ddc_create()
-       drm/ast: Store AST device in struct ast_ddc
-       drm/ast: Rename struct i2c_algo_bit_data callbacks and their 
-parameters
-       drm/ast: Acquire I/O-register lock in DDC code
-       drm/ast: Use drm_connector_helper_get_modes()
-       drm/ast: Implement polling for VGA and SIL164 connectors
-       drm/ast: Automatically clean up poll helper
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg1-7:          NOTRUN -> [SKIP][8] ([i915#6621])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@i915_pm_rps@basic-api.html
 
-  .../ABI/testing/sysfs-driver-panfrost-profiling    |   10 +
-  .../bindings/display/bridge/lvds-codec.yaml        |    1 +
-  .../bindings/display/panel/ilitek,ili9881c.yaml    |    1 +
-  .../bindings/display/panel/novatek,nt35950.yaml    |    3 +-
-  .../bindings/display/panel/novatek,nt36523.yaml    |   25 +-
-  .../bindings/display/panel/panel-common-dual.yaml  |   47 +
-  .../bindings/display/panel/panel-simple-dsi.yaml   |    2 +
-  .../bindings/display/panel/panel-simple.yaml       |    4 +
-  .../display/panel/rocktech,jh057n00900.yaml        |    2 +
-  .../bindings/display/panel/sony,td4353-jdi.yaml    |    2 +
-  .../bindings/gpu/arm,mali-valhall-csf.yaml         |  147 +
-  .../devicetree/bindings/vendor-prefixes.yaml       |    4 +
-  Documentation/gpu/driver-uapi.rst                  |    5 +
-  Documentation/gpu/panfrost.rst                     |    9 +
-  MAINTAINERS                                        |  183 +-
-  arch/m68k/include/asm/pgtable.h                    |    2 +
-  arch/parisc/configs/generic-32bit_defconfig        |    2 +-
-  drivers/gpu/drm/Kconfig                            |   23 +-
-  drivers/gpu/drm/Makefile                           |   29 +
-  drivers/gpu/drm/amd/amdgpu/Kconfig                 |   12 +-
-  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c         |    6 +
-  drivers/gpu/drm/ast/Makefile                       |   10 +-
-  drivers/gpu/drm/ast/{ast_i2c.c => ast_ddc.c}       |  120 +-
-  drivers/gpu/drm/ast/ast_ddc.h                      |   20 +
-  drivers/gpu/drm/ast/ast_drv.c                      |    1 +
-  drivers/gpu/drm/ast/ast_drv.h                      |   39 +-
-  drivers/gpu/drm/ast/ast_main.c                     |    1 +
-  drivers/gpu/drm/ast/ast_mode.c                     |  147 +-
-  drivers/gpu/drm/bridge/Kconfig                     |   29 +-
-  drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |    8 +-
-  drivers/gpu/drm/bridge/analogix/Kconfig            |   16 +-
-  drivers/gpu/drm/bridge/cadence/Kconfig             |    8 +-
-  drivers/gpu/drm/bridge/imx/Kconfig                 |    4 +-
-  drivers/gpu/drm/bridge/ite-it66121.c               |   25 +-
-  drivers/gpu/drm/bridge/synopsys/Kconfig            |    4 +-
-  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   31 +-
-  drivers/gpu/drm/bridge/thc63lvd1024.c              |   21 +-
-  drivers/gpu/drm/ci/test.yml                        |    6 +-
-  drivers/gpu/drm/display/Kconfig                    |   71 +-
-  drivers/gpu/drm/display/Makefile                   |    6 +-
-  drivers/gpu/drm/display/drm_dp_helper.c            |    2 +-
-  drivers/gpu/drm/display/drm_dp_helper_internal.h   |    2 +-
-  .../gpu/drm/display/drm_dp_mst_topology_internal.h |    4 +-
-  drivers/gpu/drm/display/drm_dp_tunnel.c            |   10 +-
-  drivers/gpu/drm/drm_bridge.c                       |   24 +-
-  drivers/gpu/drm/drm_client.c                       |   92 +-
-  drivers/gpu/drm/drm_crtc_helper_internal.h         |   15 +-
-  drivers/gpu/drm/drm_crtc_internal.h                |    7 +
-  drivers/gpu/drm/drm_edid.c                         |  147 +-
-  drivers/gpu/drm/drm_fbdev_generic.c                |    4 +-
-  drivers/gpu/drm/drm_gem.c                          |   34 +-
-  drivers/gpu/drm/drm_gem_shmem_helper.c             |    7 +-
-  drivers/gpu/drm/drm_gem_vram_helper.c              |  101 +-
-  drivers/gpu/drm/drm_internal.h                     |    7 +
-  drivers/gpu/drm/drm_probe_helper.c                 |   56 +
-  drivers/gpu/drm/exynos/Kconfig                     |    4 +-
-  drivers/gpu/drm/gma500/oaktrail_lvds.c             |    2 -
-  drivers/gpu/drm/i915/Kconfig                       |    8 +-
-  drivers/gpu/drm/i915/Kconfig.debug                 |    4 +-
-  drivers/gpu/drm/imagination/pvr_vm_mips.c          |    4 +-
-  drivers/gpu/drm/imx/ipuv3/Kconfig                  |    5 +-
-  drivers/gpu/drm/ingenic/Kconfig                    |    2 +-
-  drivers/gpu/drm/loongson/lsdc_gem.c                |   13 +-
-  drivers/gpu/drm/mediatek/Kconfig                   |    6 +-
-  drivers/gpu/drm/meson/Kconfig                      |    2 +-
-  drivers/gpu/drm/meson/meson_vclk.c                 |    6 +-
-  drivers/gpu/drm/msm/Kconfig                        |    8 +-
-  drivers/gpu/drm/msm/msm_gem.c                      |   20 +-
-  drivers/gpu/drm/msm/msm_gem.h                      |    4 +-
-  drivers/gpu/drm/msm/msm_gem_prime.c                |   20 +-
-  drivers/gpu/drm/mxsfb/lcdif_drv.c                  |    6 +-
-  drivers/gpu/drm/nouveau/Kconfig                    |   10 +-
-  drivers/gpu/drm/nouveau/nouveau_abi16.c            |   20 +-
-  drivers/gpu/drm/nouveau/nouveau_abi16.h            |   12 -
-  drivers/gpu/drm/nouveau/nouveau_bo.c               |   43 +-
-  drivers/gpu/drm/nouveau/nouveau_bo.h               |    2 +
-  drivers/gpu/drm/nouveau/nouveau_prime.c            |    8 +-
-  drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c    |    2 +-
-  drivers/gpu/drm/omapdrm/Kconfig                    |    2 +-
-  drivers/gpu/drm/omapdrm/omap_fbdev.c               |   40 +-
-  drivers/gpu/drm/panel/Kconfig                      |   41 +-
-  drivers/gpu/drm/panel/Makefile                     |    1 +
-  drivers/gpu/drm/panel/panel-edp.c                  |   85 +-
-  drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      |  228 +-
-  drivers/gpu/drm/panel/panel-leadtek-ltk050h3146w.c |    5 +-
-  drivers/gpu/drm/panel/panel-samsung-atna33xc20.c   |   22 +-
-  drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c      |  285 ++
-  drivers/gpu/drm/panel/panel-simple.c               |   58 +
-  drivers/gpu/drm/panel/panel-sitronix-st7703.c      |   87 +
-  drivers/gpu/drm/panfrost/Makefile                  |    2 -
-  drivers/gpu/drm/panfrost/panfrost_debugfs.c        |   21 -
-  drivers/gpu/drm/panfrost/panfrost_debugfs.h        |   14 -
-  drivers/gpu/drm/panfrost/panfrost_device.h         |    2 +-
-  drivers/gpu/drm/panfrost/panfrost_drv.c            |   50 +-
-  drivers/gpu/drm/panfrost/panfrost_job.c            |    2 +-
-  drivers/gpu/drm/panthor/Kconfig                    |   23 +
-  drivers/gpu/drm/panthor/Makefile                   |   14 +
-  drivers/gpu/drm/panthor/panthor_devfreq.c          |  283 ++
-  drivers/gpu/drm/panthor/panthor_devfreq.h          |   21 +
-  drivers/gpu/drm/panthor/panthor_device.c           |  561 ++++
-  drivers/gpu/drm/panthor/panthor_device.h           |  357 ++
-  drivers/gpu/drm/panthor/panthor_drv.c              | 1488 +++++++++
-  drivers/gpu/drm/panthor/panthor_fw.c               | 1362 ++++++++
-  drivers/gpu/drm/panthor/panthor_fw.h               |  503 +++
-  drivers/gpu/drm/panthor/panthor_gem.c              |  230 ++
-  drivers/gpu/drm/panthor/panthor_gem.h              |  142 +
-  drivers/gpu/drm/panthor/panthor_gpu.c              |  482 +++
-  drivers/gpu/drm/panthor/panthor_gpu.h              |   52 +
-  drivers/gpu/drm/panthor/panthor_heap.c             |  597 ++++
-  drivers/gpu/drm/panthor/panthor_heap.h             |   39 +
-  drivers/gpu/drm/panthor/panthor_mmu.c              | 2774 ++++++++++++++++
-  drivers/gpu/drm/panthor/panthor_mmu.h              |  102 +
-  drivers/gpu/drm/panthor/panthor_regs.h             |  239 ++
-  drivers/gpu/drm/panthor/panthor_sched.c            | 3499 
-++++++++++++++++++++
-  drivers/gpu/drm/panthor/panthor_sched.h            |   50 +
-  drivers/gpu/drm/qxl/qxl_object.c                   |   26 +-
-  drivers/gpu/drm/qxl/qxl_object.h                   |    2 +
-  drivers/gpu/drm/qxl/qxl_prime.c                    |    4 +-
-  drivers/gpu/drm/radeon/Kconfig                     |    8 +-
-  drivers/gpu/drm/radeon/radeon_prime.c              |   11 -
-  drivers/gpu/drm/renesas/rcar-du/Kconfig            |    2 +-
-  drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c       |    3 -
-  drivers/gpu/drm/rockchip/Kconfig                   |   10 +-
-  drivers/gpu/drm/sun4i/Kconfig                      |    2 +-
-  drivers/gpu/drm/tegra/Kconfig                      |    8 +-
-  drivers/gpu/drm/tidss/tidss_kms.c                  |    3 +-
-  drivers/gpu/drm/ttm/ttm_bo.c                       |  231 +-
-  drivers/gpu/drm/ttm/ttm_resource.c                 |   17 +-
-  drivers/gpu/drm/vc4/Kconfig                        |   10 +-
-  drivers/gpu/drm/vmwgfx/ttm_object.c                |    4 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |   27 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |   25 +-
-  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   12 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |   16 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |    3 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c           |  110 -
-  drivers/gpu/drm/vmwgfx/vmwgfx_validation.c         |   19 +-
-  drivers/gpu/drm/vmwgfx/vmwgfx_validation.h         |    7 -
-  drivers/gpu/drm/xe/Kconfig                         |   13 +-
-  drivers/gpu/drm/xlnx/Kconfig                       |    8 +-
-  drivers/gpu/drm/xlnx/zynqmp_dp.c                   |    4 +
-  drivers/video/fbdev/core/Kconfig                   |    6 +
-  include/drm/amd_asic_type.h                        |    3 +
-  include/drm/bridge/samsung-dsim.h                  |    4 +-
-  include/drm/display/drm_dp_helper.h                |   15 +-
-  include/drm/display/drm_dp_mst_helper.h            |    1 -
-  include/drm/drm_client.h                           |   10 +
-  include/drm/drm_debugfs_crc.h                      |    8 +-
-  include/drm/drm_edid.h                             |   12 +-
-  include/drm/drm_encoder_slave.h                    |   91 +-
-  include/drm/drm_format_helper.h                    |    1 +
-  include/drm/drm_gem.h                              |    3 +
-  include/drm/drm_gem_shmem_helper.h                 |    7 +-
-  include/drm/drm_gem_vram_helper.h                  |    1 -
-  include/drm/drm_kunit_helpers.h                    |    2 +-
-  include/drm/drm_lease.h                            |    2 +
-  include/drm/drm_of.h                               |    1 +
-  include/drm/drm_probe_helper.h                     |    6 +
-  include/drm/drm_suballoc.h                         |    2 +-
-  include/drm/i2c/ch7006.h                           |    1 +
-  include/drm/i2c/sil164.h                           |    1 +
-  include/drm/i915_gsc_proxy_mei_interface.h         |    4 +-
-  include/drm/i915_hdcp_interface.h                  |   18 +-
-  include/drm/i915_pxp_tee_interface.h               |   27 +-
-  include/drm/ttm/ttm_bo.h                           |   17 +-
-  include/drm/ttm/ttm_caching.h                      |    2 +
-  include/drm/ttm/ttm_execbuf_util.h                 |    7 +-
-  include/drm/ttm/ttm_kmap_iter.h                    |    4 +-
-  include/drm/ttm/ttm_pool.h                         |    5 +-
-  include/drm/ttm/ttm_resource.h                     |    6 +-
-  include/linux/fb.h                                 |    4 +
-  include/uapi/drm/nouveau_drm.h                     |   22 +
-  include/uapi/drm/panthor_drm.h                     |  945 ++++++
-  173 files changed, 16184 insertions(+), 1211 deletions(-)
-  create mode 100644 
-Documentation/ABI/testing/sysfs-driver-panfrost-profiling
-  create mode 100644 
-Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
-  create mode 100644 
-Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-  rename drivers/gpu/drm/ast/{ast_i2c.c => ast_ddc.c} (54%)
-  create mode 100644 drivers/gpu/drm/ast/ast_ddc.h
-  create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
-  delete mode 100644 drivers/gpu/drm/panfrost/panfrost_debugfs.c
-  delete mode 100644 drivers/gpu/drm/panfrost/panfrost_debugfs.h
-  create mode 100644 drivers/gpu/drm/panthor/Kconfig
-  create mode 100644 drivers/gpu/drm/panthor/Makefile
-  create mode 100644 drivers/gpu/drm/panthor/panthor_devfreq.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_devfreq.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_device.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_device.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_drv.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_fw.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_fw.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gem.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gem.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gpu.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_gpu.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_heap.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_heap.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_mmu.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_mmu.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_regs.h
-  create mode 100644 drivers/gpu/drm/panthor/panthor_sched.c
-  create mode 100644 drivers/gpu/drm/panthor/panthor_sched.h
-  delete mode 100644 drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
-  create mode 100644 include/uapi/drm/panthor_drm.h
+  * igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:
+    - bat-dg1-7:          NOTRUN -> [SKIP][9] ([i915#4212]) +7 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html
+
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-dg1-7:          NOTRUN -> [SKIP][10] ([i915#4215])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][11] +10 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-dg1-7:          NOTRUN -> [SKIP][12] ([i915#4103] / [i915#4213]) +1 other test skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg1-7:          NOTRUN -> [SKIP][13] ([i915#3555] / [i915#3840])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-dg1-7:          NOTRUN -> [SKIP][14]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-dg1-7:          NOTRUN -> [SKIP][15] ([i915#433])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - bat-dg1-7:          NOTRUN -> [SKIP][16] ([i915#5354])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_pm_backlight@basic-brightness.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][17] +24 other tests skip
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-dg1-7:          NOTRUN -> [SKIP][18] ([i915#1072] / [i915#9732]) +3 other tests skip
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-dg1-7:          NOTRUN -> [SKIP][19] ([i915#3555])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-dg1-7:          NOTRUN -> [SKIP][20] ([i915#3708]) +3 other tests skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@prime_vgem@basic-fence-flip.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-dg1-7:          NOTRUN -> [SKIP][21] ([i915#3708] / [i915#4077]) +1 other test skip
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@prime_vgem@basic-fence-mmap.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@slpc:
+    - bat-dg2-8:          [ABORT][22] ([i915#10366]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14533/bat-dg2-8/igt@i915_selftest@live@slpc.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg2-8/igt@i915_selftest@live@slpc.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][24] ([i915#10689] / [i915#10695]) -> [FAIL][25] ([i915#10689])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14533/fi-kbl-8809g/igt@runner@aborted.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
+  [i915#10436]: https://gitlab.freedesktop.org/drm/intel/issues/10436
+  [i915#10689]: https://gitlab.freedesktop.org/drm/intel/issues/10689
+  [i915#10695]: https://gitlab.freedesktop.org/drm/intel/issues/10695
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14533 -> Patchwork_126962v10
+
+  CI-20190529: 20190529
+  CI_DRM_14533: 019010dd870216d30458836f988b4461674a051a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7800: 7800
+  Patchwork_126962v10: 019010dd870216d30458836f988b4461674a051a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+abe9e686e0d2 drm/i915/display: force qgv check after the hw state readout
+0965edd484f9 drm/i915/display: handle systems with duplicate psf gv points
+95260d990762 drm/i915/display: Disable SAGV on bw init, to force QGV point recalculation
+891533e81acf drm/i915/display: extract code to prepare qgv points mask
+4aae8b51bc5d drm/i915/display: Extract code required to calculate max qgv/psf gv point
+528b54be07b7 drm/i915/display: Add meaningful traces for QGV point info error handling
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/index.html
+
+--===============7638306388160845478==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>QGV/SAGV related fixes (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126962/">https://patchwork.freedesktop.org/series/126962/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14533 -&gt; Patchwork_126962v10</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_126962v10 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_126962v10, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/index.html</p>
+<h2>Participating hosts (38 -&gt; 38)</h2>
+<p>Additional (3): bat-dg1-7 fi-glk-j4005 fi-elk-e7500 <br />
+  Missing    (3): bat-mtlp-8 bat-dg2-11 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_126962v10:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_exec_parallel@engines@fds:<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14533/bat-arls-2/igt@gem_exec_parallel@engines@fds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-arls-2/igt@gem_exec_parallel@engines@fds.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_126962v10 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-glk-j4005/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/433">i915#433</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9732">i915#9732</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg1-7/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@slpc:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14533/bat-dg2-8/igt@i915_selftest@live@slpc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/bat-dg2-8/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14533/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10689">i915#10689</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10695">i915#10695</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126962v10/fi-kbl-8809g/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10689">i915#10689</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14533 -&gt; Patchwork_126962v10</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14533: 019010dd870216d30458836f988b4461674a051a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7800: 7800<br />
+  Patchwork_126962v10: 019010dd870216d30458836f988b4461674a051a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>abe9e686e0d2 drm/i915/display: force qgv check after the hw state readout<br />
+0965edd484f9 drm/i915/display: handle systems with duplicate psf gv points<br />
+95260d990762 drm/i915/display: Disable SAGV on bw init, to force QGV point recalculation<br />
+891533e81acf drm/i915/display: extract code to prepare qgv points mask<br />
+4aae8b51bc5d drm/i915/display: Extract code required to calculate max qgv/psf gv point<br />
+528b54be07b7 drm/i915/display: Add meaningful traces for QGV point info error handling</p>
+
+</body>
+</html>
+
+--===============7638306388160845478==--
