@@ -2,45 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596A489941D
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 06:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 065D689960B
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 08:58:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53847113888;
-	Fri,  5 Apr 2024 04:29:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3133610E258;
+	Fri,  5 Apr 2024 06:58:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="0st0y7iI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UsH/gmfw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1EA113888
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 04:29:53 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 6B068CE359C;
- Fri,  5 Apr 2024 04:29:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B496C433F1;
- Fri,  5 Apr 2024 04:29:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1712291389;
- bh=dnzJr1njtimP/ttE0yuQEACvsEmhII7RV6ev0GeA3z4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=0st0y7iI0ag76C8m7e7e9SqTzq+CHpEo2PxcpmmMvArR31U85F995bBNRb/cFNw7N
- YbT5776URTlsClfvTfm+CCmWq9IM0fa9qvLcEMoko2qgH0LPB0eOSbHHQtSTu/wrJZ
- jAcvSCYOOf9iq8YHGUWtQX3ylUL7CBmcV1kKNwY8=
-Date: Fri, 5 Apr 2024 06:29:47 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>, stable@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: v6.8 stable backport request for drm/i915
-Message-ID: <2024040536-creature-starlet-9967@gregkh>
-References: <Zg6rIG0idN3NSTbP@ideak-desk.fi.intel.com>
- <Zg6ww+JomUKR//nh@ideak-desk.fi.intel.com>
- <Zg8aye1ee7T4dNJD@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FDE810E258;
+ Fri,  5 Apr 2024 06:58:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712300298; x=1743836298;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5raj5C+ysIqUQ5UhYYvhR/JwBtOXhu9ThhurMWUw26k=;
+ b=UsH/gmfwTLjoUsEwPFSWi4o9FHVEEXx9T7KFYxRgKmEa8dFMRPnc42rt
+ wg1u6Ha+6O3XfCrxC97jYqnTBs64+xyvvDIuYZTCQjPcSXqH9vuJzMBLD
+ rZQ3+mJP6PM2fc0urZD2hjpCzuS8M0QzqFV6D4RSP3IeYC/c0syMSMHn8
+ H0fmF1vvRpi1Lxf/4OqnS2HqwxZzzKqv6SejDfktv14opZTr2ACp1iugL
+ nuqycCXLR/RsNRjOKX25lFFse7tvZ3aLJ8LTlOpBsTMaoIbkS0j0biGv4
+ kdyvTHIRDZsRg1aGYZnoXElBW+RFGbYBEV8Xlo6KgmyFM1+224wIzjFsu g==;
+X-CSE-ConnectionGUID: PIxt4YMHSYi1KDDXNm6ZFg==
+X-CSE-MsgGUID: IUfBavRlTGOSnZTBaSOYJg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="8198822"
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; 
+   d="scan'208";a="8198822"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2024 23:58:18 -0700
+X-CSE-ConnectionGUID: NVycHH/BTt2T7dfejkl8Bw==
+X-CSE-MsgGUID: ZBCpg4tfSU6uK3teRBxF7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,180,1708416000"; d="scan'208";a="19018215"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa009.jf.intel.com with ESMTP; 04 Apr 2024 23:58:16 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	jani.nikula@intel.com,
+	sfr@canb.auug.org.au
+Subject: [PATCH] drm/dp: correct struct member name in documentation
+Date: Fri,  5 Apr 2024 12:21:59 +0530
+Message-Id: <20240405065159.439145-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zg8aye1ee7T4dNJD@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,30 +68,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 04, 2024 at 05:25:29PM -0400, Rodrigo Vivi wrote:
-> On Thu, Apr 04, 2024 at 04:53:07PM +0300, Imre Deak wrote:
-> > On Thu, Apr 04, 2024 at 04:29:04PM +0300, Imre Deak wrote:
-> > > Stable team, please backport the following upstream commit to 6.8:
-> > > 
-> > > commit 7a51a2aa2384 ("drm/i915/dp: Fix DSC state HW readout for SST connectors")
-> > 
-> > Just noticed that the above commit is not yet upstream, still only
-> > queued in drm-intel-next. I presumed patches will be cherry-picked from
-> > drm-intel-next to drm-intel-fixes based on the Fixes: tag, so I only
-> > pushed the above patch to drm-intel-next; maybe the cherry picking
-> > doesn't (always) happen automatically.
-> 
-> This patch was cherry-picked this week and sent with the drm-intel-fixes
-> pull request targeting v6.9-rc3
-> 
-> Since it has the proper 'Fixes:' tag, it will likely get propagated to
-> the stable branches 'automagically' in some near future.
+Correct struct member name to 'mode' instead of 'operation mode'
+in 'drm_dp_as_sdp' structure description.
 
-<formletter>
+Fixes: 0bbb8f594e33 ("drm/dp: Add Adaptive Sync SDP logging")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ include/drm/display/drm_dp_helper.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This is not the correct way to submit patches for inclusion in the
-stable kernel tree.  Please read:
-    https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
-for how to do this properly.
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index baf9949ff96f..6799f57d635c 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -112,7 +112,7 @@ struct drm_dp_vsc_sdp {
+  * @target_rr: Target Refresh
+  * @duration_incr_ms: Successive frame duration increase
+  * @duration_decr_ms: Successive frame duration decrease
+- * @operation_mode: Adaptive Sync Operation Mode
++ * @mode: Adaptive Sync Operation Mode
+  */
+ struct drm_dp_as_sdp {
+ 	unsigned char sdp_type;
+-- 
+2.25.1
 
-</formletter>
