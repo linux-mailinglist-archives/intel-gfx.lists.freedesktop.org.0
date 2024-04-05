@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA62E89A51A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 21:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3480D89A51D
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 21:40:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA4010E848;
-	Fri,  5 Apr 2024 19:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06DA6113078;
+	Fri,  5 Apr 2024 19:40:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bfjbCEsW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ny81nfVM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EC6A113068;
- Fri,  5 Apr 2024 19:38:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 546A3113078;
+ Fri,  5 Apr 2024 19:40:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712345900; x=1743881900;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LOhKLbWSDDt1edgvouANJq1uzGMJF0dBEHvSiSCAlMo=;
- b=bfjbCEsW0GNX7FmboR8ax41szpCr2gU9vft7FrZJo3sDAXBuZSmAh5Hm
- KH7/IThNzm21z/BYVJb6Nmy9JBnmdHl6YAx8SFlNu+sXl52r0OC29R7fX
- 661d8MKqge3vZp5ZBanD3/D+EG2hTFBz1DTJousGG5Tx6voPARzmU/meB
- Xve81lMT94qcSwB0gp1AJ6kOI5JeTK61nQjmYuj9e7I5UXxAB23oK277d
- mFH917msr1G9CZBgIWAJ91MQSpaAYxCMy8JJ8lu+VaQvjTkpuxRdVfIW0
- SKnxDhADLX2DFjeCF+F+92YxblooeV34Ofeu50GP4FYntSpad/s9KVW3i g==;
-X-CSE-ConnectionGUID: hj54BcAeT6SzUqTAkzXA1g==
-X-CSE-MsgGUID: 8qRWa7SbSK6zah/d8yvl1Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7877858"
+ t=1712346005; x=1743882005;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=/6SaPwyMz2jwJR6RD6GRRVMBjygb+c8fXj5Ye7NLX+k=;
+ b=ny81nfVM9snsHq/dHeXPIMkmFFKI/hDaYVuawkL5lDJNBM5llIOfD6lU
+ juYE+mFdHoJEQlOy4XuPCPX4+0kRwIPzjz1q8a/+S9RnlMvM5q6n7Hp/l
+ l1DPbxf8Z6jJFPwmIdpJz/XIW73vqA1olBmskc+UrXw72uEncvebRhaMS
+ m5VZeGGxvskDVrP+A6/PiGoCWIMguYZsFF/W+BBAsSIRoEVrFbZbHBgxq
+ etPGpKzzt0uvLOKHBEJ0ISm5DDTBksZKWGXQlUauQCTuF7EDtfDp3pEoz
+ RB+cTjUwrufyHrrdDU4oGbmwI9RqmBKH1zCiTucpv/p923p6tLfTgzQZa Q==;
+X-CSE-ConnectionGUID: 2o9Qv+DBT2ugYFsEVHGopw==
+X-CSE-MsgGUID: xabmM4AJRbSTJRO/O5yiTA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7550768"
 X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7877858"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 12:38:19 -0700
-X-CSE-ConnectionGUID: k7WI2wb+R6GaMDMoy3ekYQ==
-X-CSE-MsgGUID: DFMXNRpXQzK+pn0Gg0ay5A==
+   d="scan'208";a="7550768"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 12:40:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19107826"
-Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.41.202])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 12:38:17 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	lucas.demarchi@intel.com
-Subject: [PATCH 6/6] drm/xe/display: clean up compat i915_vgpu.h
-Date: Fri,  5 Apr 2024 22:37:43 +0300
-Message-Id: <e583679c00aae8fec78f988fa857cfc724a9fa2d.1712345787.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1712345787.git.jani.nikula@intel.com>
-References: <cover.1712345787.git.jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="827791000"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="827791000"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 05 Apr 2024 12:40:02 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Apr 2024 22:40:01 +0300
+Date: Fri, 5 Apr 2024 22:40:01 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 04/12] drm/client: Add a FIXME around crtc->mode usage
+Message-ID: <ZhBTkaIc3SEW7SbQ@intel.com>
+References: <20240404203336.10454-1-ville.syrjala@linux.intel.com>
+ <20240404203336.10454-5-ville.syrjala@linux.intel.com>
+ <7ksd67gkxalnslnssqsrc75lqbxks35zsuc5lvqpqmb2nbyf3j@lgf3svop3mbx>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <7ksd67gkxalnslnssqsrc75lqbxks35zsuc5lvqpqmb2nbyf3j@lgf3svop3mbx>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,55 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There's a bunch of unnecessary stuff not needed by display code. Remove.
+On Fri, Apr 05, 2024 at 06:32:46AM +0300, Dmitry Baryshkov wrote:
+> On Thu, Apr 04, 2024 at 11:33:28PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > crtc->mode is legacy junk and shouldn't really be used with
+> > atomic drivers.
+> > 
+> > Most (all?) atomic drivers do end up still calling
+> > drm_atomic_helper_update_legacy_modeset_state() at some
+> > point, so crtc->mode does still get populated, and this
+> > does work for now. But eventually would be nice to eliminate
+> > all the legacy stuff from atomic drivers.
+> > 
+> > Switching to crtc->state->mode would require some bigger
+> > changes however, as we currently drop the crtc->mutex
+> > before we're done using the mode. So leave the junk in
+> > for now and just add a FIXME to remind us that this
+> > needs fixing.
+> 
+> 
+> What about using allocated duplicate modes to fill modes[] array? This
+> requires additional allocations, but it will solve most if not all modes
+> lifetime issues.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/xe/compat-i915-headers/i915_vgpu.h    | 26 -------------------
- 1 file changed, 26 deletions(-)
+I think there are two obvious solutions:
+1. drm_mode_duplicate() as you suggest
+   upside: existing 'modes[i] != NULL' checks work as is
+   downside: introduces more error paths due to potential kmalloc() fails
+2. Make modes[] and array of structs rather than pointers
+   up/downsides: the opposite of option 1
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-index 80b024d435dc..4931c7198f13 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-@@ -9,36 +9,10 @@
- #include <linux/types.h>
- 
- struct drm_i915_private;
--struct i915_ggtt;
- 
--static inline void intel_vgpu_detect(struct drm_i915_private *i915)
--{
--}
- static inline bool intel_vgpu_active(struct drm_i915_private *i915)
- {
- 	return false;
- }
--static inline void intel_vgpu_register(struct drm_i915_private *i915)
--{
--}
--static inline bool intel_vgpu_has_full_ppgtt(struct drm_i915_private *i915)
--{
--	return false;
--}
--static inline bool intel_vgpu_has_hwsp_emulation(struct drm_i915_private *i915)
--{
--	return false;
--}
--static inline bool intel_vgpu_has_huge_gtt(struct drm_i915_private *i915)
--{
--	return false;
--}
--static inline int intel_vgt_balloon(struct i915_ggtt *ggtt)
--{
--	return 0;
--}
--static inline void intel_vgt_deballoon(struct i915_ggtt *ggtt)
--{
--}
- 
- #endif /* _I915_VGPU_H_ */
+So neither is a trivial search and replace job.
+
+> 
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_client_modeset.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+> > index 2b7d0be04911..8ef03608b424 100644
+> > --- a/drivers/gpu/drm/drm_client_modeset.c
+> > +++ b/drivers/gpu/drm/drm_client_modeset.c
+> > @@ -699,6 +699,10 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+> >  			 *
+> >  			 * This is crtc->mode and not crtc->state->mode for the
+> >  			 * fastboot check to work correctly.
+> > +			 *
+> > +			 * FIXME using legacy crtc->mode with atomic drivers
+> > +			 * is dodgy. Switch to crtc->state->mode, after taking
+> > +			 * care of the resulting locking/lifetime issues.
+> >  			 */
+> >  			DRM_DEBUG_KMS("looking for current mode on connector %s\n",
+> >  				      connector->name);
+> > -- 
+> > 2.43.2
+> > 
+> 
+> -- 
+> With best wishes
+> Dmitry
+
 -- 
-2.39.2
-
+Ville Syrjälä
+Intel
