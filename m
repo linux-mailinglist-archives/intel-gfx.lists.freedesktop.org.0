@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6306189A508
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 21:34:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 041F689A513
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 21:37:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 373AD10E4D1;
-	Fri,  5 Apr 2024 19:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F15B113CB8;
+	Fri,  5 Apr 2024 19:37:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MeWsxvto";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YvHkwre0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E5B210E4D1
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 19:34:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B57B10E813;
+ Fri,  5 Apr 2024 19:37:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712345690; x=1743881690;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Igy7Gk24VApt5AcugxrqoFtyftzogyjkPV3NamgxA1M=;
- b=MeWsxvtoxKu9s/1Dxb2wvUqfVaZQUzIsXD0MHp61hW40ik+JEeQo4AAY
- 6exInsVsVD9hEQbBF47ujDY/lZrSBLn60jt7QaSOK2oIfZrrwu02euy61
- OVxCYliZ7PDXxjHkUVz8XOTv5jbaRRnMY5lREuf5GrdeLtMFyHqR22TfD
- gwAjAZmwZGosvgsWi4WNYDSfgWRtI6GZPvQApQ6yLwShzTQxwoKgxq15x
- R9eLGCMnkn+RJc2IdVEIpnX6q3VN/XIYmLGb0s/ngYAffX06DFmt9qyuV
- zBDIIQSZnSTQFQ+zJu3S68PJN4cTg49d8zAnWPqPsk4W4Ldm4LMG+ankG A==;
-X-CSE-ConnectionGUID: GdmDCPEoQcmYdckN2FzujQ==
-X-CSE-MsgGUID: ZmihFjRFQFCmY3mEH46k1A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7550375"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7550375"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 12:34:49 -0700
+ t=1712345871; x=1743881871;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=h/P1H+MG27GlN69wspdFApT2EApSLLGceOqoe2NkHLM=;
+ b=YvHkwre0M56a8d+NiqyweBR10X78vFKoU4T8H02a7TwOp+C7jMMPKn7S
+ VkfFE95rWhukscCvLgSrEXDTLIUZ+fnMrRFdxtCv3YeHgZNSafw0LTO2+
+ yglHhW2MTYISJ2lsPLHQoZNktxFI+zyDWs95t6UBh7VaIwml8YVjLaH40
+ KsNP3aZbSh8d+99tOei35ltX+uwYubHi6sp3Ck8Y6fytWXNCcW0BFgCMT
+ YfbhYsZ3+dZpPQQKTkE05MUfh+JFIUeHvYZDd7YAj8Pltwq3vUsFSAtNP
+ Ow44cUJtI5or0JkbxRqBEM0BJRBEyNlfGXo/M5ck1Gk+/rhhXrj4SuWNM A==;
+X-CSE-ConnectionGUID: eLv8Bgg1TEaF+raeY6APog==
+X-CSE-MsgGUID: RrnKPWqmTmmWs4z6LFbOdA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="19124064"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19124064"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 12:37:49 -0700
+X-CSE-ConnectionGUID: CiPiNGABSk+BOrrFg+dJ+A==
+X-CSE-MsgGUID: LhZI6lf6TdmF5iHvna//wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="827790999"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="827790999"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 05 Apr 2024 12:34:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Apr 2024 22:34:46 +0300
-Date: Fri, 5 Apr 2024 22:34:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2 02/17] drm/i915/psr: Disable PSR when bigjoiner is used
-Message-ID: <ZhBSVl16DEa0aczC@intel.com>
-References: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
- <20240404213441.17637-3-ville.syrjala@linux.intel.com>
- <2a410df93d112ec9881419820baaf4d3ffd4ee7d.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="23755930"
+Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.41.202])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 12:37:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	lucas.demarchi@intel.com
+Subject: [PATCH 0/6] drm/i915 and drm/xe display integration cleanups
+Date: Fri,  5 Apr 2024 22:37:37 +0300
+Message-Id: <cover.1712345787.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a410df93d112ec9881419820baaf4d3ffd4ee7d.camel@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,50 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 06:58:44AM +0000, Hogander, Jouni wrote:
-> On Fri, 2024-04-05 at 00:34 +0300, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Bigjoiner seem to be causing all kinds of grief to the PSR
-> > code currently. I don't believe there is any hardware issue
-> > but the code simply not handling this correctly. For now
-> > just disable PSR when bigjoiner is needed.
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_psr.c | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index eef62983e9db..a3ff916b53f9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -1584,6 +1584,17 @@ void intel_psr_compute_config(struct intel_dp
-> > *intel_dp,
-> >                 return;
-> >         }
-> >  
-> > +       /*
-> > +        * FIXME figure out what is wrong with PSR+bigjoiner and
-> > +        * fix it. Presumably something related to the fact that
-> > +        * PSR is a transcoder level feature.
-> > +        */
-> > +       if (crtc_state->bigjoiner_pipes) {
-> > +               drm_dbg_kms(&dev_priv->drm,
-> > +                           "PSR disabled due to bigjoiner\n");
-> > +               return;
-> > +       }
-> > +
-> 
-> Are these problems with both PSR1 and PSR2?
+Some cleanups on i915 side, and subsequent cleanups on xe side. I'd like
+to merge all of these via drm-intel-next.
 
-I didn't look at he logs in that much detail.
+BR,
+Jani.
 
-It's now happening in CI because the bigjoiner force knob is
-getting leaked to all kinds of tests. Eg. this might be one:
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14519/re-mtlp-1/igt@kms_busy@basic.html
+Jani Nikula (6):
+  drm/i915: use IS_JASPERLAKE()/IS_ELKHARTLAKE() instead of
+    IS_PLATFORM()
+  drm/i915/dmc: define firmware URL locally
+  drm/i915: move i915_fixed.h to display/intel_fixed.h
+  drm/xe/display: clean up a lot of cruft from compat i915_drv.h
+  drm/xe/display: remove compat i915_gem.h
+  drm/xe/display: clean up compat i915_vgpu.h
+
+ .../drm/i915/display/intel_ddi_buf_trans.c    |  4 +--
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  4 ++-
+ .../{i915_fixed.h => display/intel_fixed.h}   |  0
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h | 34 -------------------
+ .../drm/xe/compat-i915-headers/i915_fixed.h   |  6 ----
+ .../gpu/drm/xe/compat-i915-headers/i915_gem.h |  9 -----
+ .../drm/xe/compat-i915-headers/i915_vgpu.h    | 26 --------------
+ .../drm/xe/compat-i915-headers/intel_uc_fw.h  | 11 ------
+ 9 files changed, 6 insertions(+), 90 deletions(-)
+ rename drivers/gpu/drm/i915/{i915_fixed.h => display/intel_fixed.h} (100%)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
 
 -- 
-Ville Syrjälä
-Intel
+2.39.2
+
