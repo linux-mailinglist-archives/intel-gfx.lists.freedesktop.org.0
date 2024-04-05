@@ -2,58 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D5F899819
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 10:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B49DD899854
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 10:45:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9072810E6A3;
-	Fri,  5 Apr 2024 08:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26CB0113A8F;
+	Fri,  5 Apr 2024 08:45:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="malsuEaq";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="pIf8PJyD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ViLzAIzH";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="eiNjit+J";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="zHVqn4vB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA4EE10E6A3
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 08:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712306398; x=1743842398;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Nvd66UejkvTx7BLWJUIcWsHFaDYZfLgMRf5nMTJbDDY=;
- b=malsuEaqjjU8E0AxJ4R3IO1VsCtfV3YKdNO6GUBgv2FkXUOqOKkcp3nr
- gkqKza/E1hYv9CP17kTzMFMLHZ6cAYw5CDAa6qDwkpbVqv12wXmzI3Fz9
- og4PKVtXsEAHYSS5INczKIHP7GU60fZLbF06nxyNn3vKZUaU2ao6zdhV4
- /QgsoXYmNLZmFQHKmij5VXromZJQkvc+7foVbuPgU7PeDhuABJgDGv72o
- nMS2Lssn8FI4tCZjjrqJjrewAFjfzfjTbVfluHVRe0+6IO1D+KGIbhb8r
- hmJpBbTEV4xlH+HbC83qrNBdp+y2xZwQJD0OTcVAywnuyISpFhsLg483I w==;
-X-CSE-ConnectionGUID: BsTIG84XRFGLzo0YQYZz0Q==
-X-CSE-MsgGUID: r0v2qLpiSr+uQLofPIqXJw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11034"; a="7783587"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7783587"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 01:39:57 -0700
-X-CSE-ConnectionGUID: Ef4NtwplRf+7NC76JQRL/Q==
-X-CSE-MsgGUID: M+UdjGuRTyWjoQBMlh7yBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19035340"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa009.jf.intel.com with ESMTP; 05 Apr 2024 01:39:55 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, jani.nikula@intel.com,
- naveen1.kumar@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 7/7] drm/i915/dp: Limit brightness level to vbt min brightness
-Date: Fri,  5 Apr 2024 14:07:05 +0530
-Message-ID: <20240405083704.393996-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240404032931.380887-9-suraj.kandpal@intel.com>
-References: <20240404032931.380887-9-suraj.kandpal@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8409B113A8D;
+ Fri,  5 Apr 2024 08:45:46 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:98])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 75BF721A25;
+ Fri,  5 Apr 2024 08:45:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1712306744; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=j0jXni3Dq+ad3DjytwVl/Imiu86mUDIL3zU7bJOwOF8=;
+ b=pIf8PJyDcJ+yPzsOpvnoQHWhvKGoKbFRIM4MKRxpPkO46Wzf/AYpmPF4kEfbNgbgKikoUK
+ uFi2jiedTISfaIXEFRdLbMrV/vTG6E8betPyGuqCxjsgnOjz8nej4a9AqSpKfvxHt9CBiV
+ EbypyNasmvybupTtys0b14zNykWAhus=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1712306744;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=j0jXni3Dq+ad3DjytwVl/Imiu86mUDIL3zU7bJOwOF8=;
+ b=ViLzAIzHc1+xc4t9a3RY97Q9m/9iaRCSVVJQgE6yhjkC9521ofgoFUiW7CNMrJfCdM5/Yz
+ 6ECbJeixXvDjjFCA==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=eiNjit+J;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=zHVqn4vB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1712306743; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=j0jXni3Dq+ad3DjytwVl/Imiu86mUDIL3zU7bJOwOF8=;
+ b=eiNjit+JvTxBnF7kv0D3qfbUcqmoWaIBujjdWOM7/JMiKsAXbyDfTezhiVYc6+/V/6zSxK
+ yCxwj4z7UesJj2vCrIl1A6K2umEUwFIHdVC8jY8KC7lHDANI9wo20L2HPHx7tAVrZlNnty
+ yczWd/9C1dfcdzBvVTXRSJ5UnUxTp6o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1712306743;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=j0jXni3Dq+ad3DjytwVl/Imiu86mUDIL3zU7bJOwOF8=;
+ b=zHVqn4vB1S3G5Bg/bANkFEvQ6E0xTXhhziS0cKm2vTKriPX25ksobZ1C7kpEz1QRvhNICq
+ QQ7Y5AB4cEGAAuAw==
+Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 49121139E8;
+ Fri,  5 Apr 2024 08:45:43 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap2.dmz-prg2.suse.org with ESMTPSA id +nFMEDe6D2ZBSQAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Fri, 05 Apr 2024 08:45:43 +0000
+Message-ID: <375332cc-5d12-4afb-b00f-a9ef08209038@suse.de>
+Date: Fri, 5 Apr 2024 10:45:42 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/modes: add drm_mode_print() to dump mode in
+ drm_printer
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <cover.1709843865.git.jani.nikula@intel.com>
+ <54199d36993bfb00e29cc059ab9a215495405a99.1709843865.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <54199d36993bfb00e29cc059ab9a215495405a99.1709843865.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ XM_UA_NO_VERSION(0.01)[]; MX_GOOD(-0.01)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:98:from];
+ TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_THREE(0.00)[4]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,imap2.dmz-prg2.suse.org:helo,imap2.dmz-prg2.suse.org:rdns,intel.com:email];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 75BF721A25
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Score: -4.50
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,52 +150,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Limit minimum brightness to vbt min brightness when using aux
-based brightness control to avoid letting the screen
-from going completely blank.
-Sometimes vbt can have some bogus values hence clamping the value
-for sanity in case of corner case.
+Hi
 
---v2
--Use something same mechanism to limit minimum brightness
-that PWM method uses [Jani]
+Am 07.03.24 um 21:39 schrieb Jani Nikula:
+> Add a printer based function for dumping the modeline, so it's not
+> limited to KMS debug.
+>
+> Note: The printed output intentionally does not have the "Modeline"
+> prefix. Prefix, if any, is for the caller to decide when initializing
+> drm_printer.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/drm_modes.c | 13 +++++++++++++
+>   include/drm/drm_modes.h     |  2 ++
+>   2 files changed, 15 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> index c4f88c3a93b7..711750ab57c7 100644
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -49,6 +49,19 @@
+>   
+>   #include "drm_crtc_internal.h"
+>   
+> +/**
+> + * drm_mode_print - print a mode to drm printer
+> + * @p: drm printer
+> + * @mode: mode to print
+> + *
+> + * Write @mode description to struct drm_printer @p.
+> + */
+> +void drm_mode_print(struct drm_printer *p, const struct drm_display_mode *mode)
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+Could this be a printf function with a trailing format string as final 
+argument? The printed mode could then be part of another string instead 
+of just at the end of it.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 20dd5a6a0f3f..eb2a7225dfaa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -411,6 +411,8 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- 	struct intel_panel *panel = &connector->panel;
- 	struct drm_luminance_range_info *luminance_range =
- 		&connector->base.display_info.luminance_range;
-+	u32 min_level = clamp_t(u32,
-+				connector->panel.vbt.backlight.min_brightness, 0, 64);
- 	int ret;
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is controlled through %s\n",
-@@ -427,14 +429,12 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- 		}
- 	}
- 
--	if (luminance_range->max_luminance) {
-+	if (luminance_range->max_luminance)
- 		panel->backlight.max = luminance_range->max_luminance;
--		panel->backlight.min = luminance_range->min_luminance;
--	} else {
-+	else
- 		panel->backlight.max = 512;
--		panel->backlight.min = 0;
--	}
- 
-+	panel->backlight.min = min_level;
- 	intel_dp_aux_write_panel_luminance_override(connector);
- 
- 	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR interface for backlight control (range %d..%d)\n",
+Best regards
+Thomas
+
+> +{
+> +	drm_printf(p, DRM_MODE_FMT "\n", DRM_MODE_ARG(mode));
+> +}
+> +EXPORT_SYMBOL(drm_mode_print);
+> +
+>   /**
+>    * drm_mode_debug_printmodeline - print a mode to dmesg
+>    * @mode: mode to print
+> diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
+> index b9bb92e4b029..10c45014fbff 100644
+> --- a/include/drm/drm_modes.h
+> +++ b/include/drm/drm_modes.h
+> @@ -32,6 +32,7 @@
+>   #include <drm/drm_mode_object.h>
+>   #include <drm/drm_connector.h>
+>   
+> +struct drm_printer;
+>   struct videomode;
+>   
+>   /*
+> @@ -460,6 +461,7 @@ int drm_mode_convert_umode(struct drm_device *dev,
+>   			   struct drm_display_mode *out,
+>   			   const struct drm_mode_modeinfo *in);
+>   void drm_mode_probed_add(struct drm_connector *connector, struct drm_display_mode *mode);
+> +void drm_mode_print(struct drm_printer *p, const struct drm_display_mode *mode);
+>   void drm_mode_debug_printmodeline(const struct drm_display_mode *mode);
+>   bool drm_mode_is_420_only(const struct drm_display_info *display,
+>   			  const struct drm_display_mode *mode);
+
 -- 
-2.43.2
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
