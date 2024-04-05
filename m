@@ -2,151 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A394189A3A9
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 19:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F40F89A3C2
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 19:56:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF57A10E9BA;
-	Fri,  5 Apr 2024 17:45:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDCC112597;
+	Fri,  5 Apr 2024 17:56:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BAqQA5Cq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kw5lyOE8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4E8910E9BA
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 17:45:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEE9110ED7F;
+ Fri,  5 Apr 2024 17:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712339110; x=1743875110;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=XzI804RcVt0OP6XRWukQBsyDowJLtxAgheBy0ec+ghQ=;
- b=BAqQA5CqAgKBdJYNwi8DFRTOCYZ2AeByov+3S8Rn+6sivqilzU7eDMRj
- g2L14oxR3raoCmtbBQKoGrw8pr48AcF0nn7pUov/TJ2BvNnwfJBixz32V
- xxkxTskYISJedaZWFAwx86Ow9VvUM41AJxQdqQ71jT03IlVilSOzjKwmt
- dZ2KZLH6Rg6ZLISXZKQUqnjkdQq9bui5Qh56PEYFL8WHqlNDoTUrUXZ5n
- loi38o+Vs804la/7EMsYVomC8ECpk87VEzh2iJrdlmFDvhwbGOegjG0p5
- XY6Lz30LHfZHO+HH2LCFXrA9ojma/RSrnAcJME6ZeDBMOrvPjuPb9FIZa Q==;
-X-CSE-ConnectionGUID: ZJX35arGQvOimWstEZ8IIw==
-X-CSE-MsgGUID: 5LsytuBcTVyfBtY2Qj7DNg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7543461"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7543461"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 10:45:09 -0700
-X-CSE-ConnectionGUID: aiKsrRC4Tb2VvvuohN8l/Q==
-X-CSE-MsgGUID: DkftCcenQtGvdHThVu6lFw==
+ t=1712339786; x=1743875786;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/Pq2znYZpOya2WwCnqfkjcIcNaEmpEaAxGe1Vj3wPBg=;
+ b=Kw5lyOE84rk161g+bMYmVHs82eACh+qGXiJg4FExJFwZNNA9LweK01st
+ 0Frf/diRyhks/oSTPdmHASyOB0CM6wBEjxeR5LIsG8XfFAqVBIInjaIS8
+ cUkduz/9lvp6uY+jq74xKlcd5YshHTY0n/FSyLYhFcO4zqwDdswEV7x4r
+ PnshkXX/T6JE4hLO+5Am10r0Ccw03gI9BSW34hOHdLZPn22VC/CNcnzh4
+ AlzZG/EPQ9S5vZ/oZvOPpy51cS8shXAKLrzI8fesN9ziOYBCYyFBLiXOD
+ ziBrw7qIsMr81HiKZNfgPXjB5luwBD6fpLoNf3B9+7bGTdvjNZjEnE356 g==;
+X-CSE-ConnectionGUID: s38LU/mvQuCF7Q/j/16gnA==
+X-CSE-MsgGUID: ZK3dJo50RIaoy66ICcdkKw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="11475285"
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="11475285"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 10:56:26 -0700
+X-CSE-ConnectionGUID: RH9u11y2QgaDgCS6lKGB1A==
+X-CSE-MsgGUID: FDvIYcIXSDaq2+iPyIt5mA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="50191633"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Apr 2024 10:45:08 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 5 Apr 2024 10:45:07 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 5 Apr 2024 10:45:07 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 5 Apr 2024 10:45:07 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 5 Apr 2024 10:45:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GkT4SKCDK8f48z2HyaP/ZUN0V3h2iBNPvDTq2sYsxmkv5GRRfqjsIhHpvDOTSbPVTSB/8PzzTz8ls9wPsWbL01kba/ASKnRGSd8diY5ASXoicREb+kim4i+46gpW9rUClGa7UBMYC16EesNRSEUgxTQXU7QauBHbnIHQNLY1L+I5ktOG7/B0K97DoUqFN8K3Y8rYnrsCqupYYyo6DTLDBZH8cHuaS0YPr2NqvHUnrGo9chWHrWTg6gR22puzNAKewCe5GTvDSOh1oAL8w5u3nHrsiRW9mUYFr+JIqIZ7GGtHvcmXUvzwpeHkpJGfcPEVKIx38H+x7dWV4mV03jRKyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rAoFs//womJLxkJ0PWtXRK6hACReywWO5H0H3NGNANM=;
- b=iwlanMXbnq46WnyV7l6czJmKaxCUjebqLBj8WUEAa28pFwIznbbITXvdW/CPVnJ9Xk7HQ5ABo8Nw2XsYg7R6FU5Z/m8F3WmG02CDM41/2hN0Dpn4rW0VYm7qaRuIEN6DaUOgXdPXi0ugCXm3IGLdE3hm8zCeUyeUtIEn71tO1/J0F6oY6JZmQjwyWFPsSPUMmx9xh1GRh7fQssbmbVTYlbAGXCX+LRb4nq5a6kcXj9haQg5jCTPkr/3y2BqkGWkq0dylgIiuytkHgotHEpi7UAd04ZmD89kgWBhPHyrRdQ83UD5mSj3PZPNbuspCA03b7tPbeXTUh3/tHvbQWb74ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by SN7PR11MB7540.namprd11.prod.outlook.com (2603:10b6:806:340::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7409.33; Fri, 5 Apr
- 2024 17:45:02 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::4b13:ba21:57e8:6da8]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::4b13:ba21:57e8:6da8%5]) with mapi id 15.20.7409.028; Fri, 5 Apr 2024
- 17:45:01 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Sebastian Wick <sebastian.wick@redhat.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, "Shankar, Uma"
- <uma.shankar@intel.com>, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>, "Syrjala, Ville"
- <ville.syrjala@intel.com>, "Kumar, Naveen1" <naveen1.kumar@intel.com>
-Subject: RE: [4/7] drm/i915/dp: Fix comments on EDP HDR DPCD registers
-Thread-Topic: [4/7] drm/i915/dp: Fix comments on EDP HDR DPCD registers
-Thread-Index: AQHah340L6rITwu5DEW8/ySD6SL6OrFZ8rPw
-Date: Fri, 5 Apr 2024 17:45:01 +0000
-Message-ID: <SN7PR11MB6750BA7EAB9B63F0DFC23A8CE3032@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20240404032931.380887-6-suraj.kandpal@intel.com>
- <20240405172449.GA931901@toolbox>
-In-Reply-To: <20240405172449.GA931901@toolbox>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SN7PR11MB7540:EE_
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6YgWVf1jYBlzZnDr4Fpw5O9pa7zaKlXd5tLB9ebL0AO6Wg8att79rw5lxRyBw+Y+GqWgd9IktTA4UkC+BGGPSww1rtBy9SBIK2I4K9ZIWEOUCGcaTBqvSdI34RgH0asspyIRnDJXQ5H0D2ZCzQrZQz/2GXlc6biNqXFxhckNFr2y7mzzcqEK7AGpgO20swfb34ht3A2GtK4DXyO7bBOZSg2h9S9N+wAoJSyoSqSemi4xECMf4CuyYibNWDIdRrHCmWKHBjsYai1Rlai+AxMN4n95PpkbmkA+uZ1xNbA79jC0JFZ+alguZqx0pUXpGdSAkd7xtMr0VJY62qz8uwo6dmP+OuF50N4CGqhPniNxX0EI+P90ZZDAIi96W8BLd4Ct0WNz8CHlHXrurPAP83VDSm0P97BwURdd/WHHAa4mHYTl+njHjICYu2+Oym1HWzV2mWoJSMQU5zZT/mGkGPsVHR4bYgzrVWMLvw1A9EYV7J+FhQm3pL4J541pWsBVcNQeIFFk4OvfW2PDN53YG9i6vJV+aiJ1PGNxrdsLricW8pOqeKuPge6IxWS+yfUDBhw79YWferdARzrdPY0Yh5RNOjQmm9NFE3mHBXHxun5QvUon9IXGpB2XQ2bPIDr6A+9d3GrmuI0GExy4J/GCKn2bx2D5nGMa/qU/QtBJzGxBSsE=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?g6MFZwtipdtJ7nDdT3ZWc6iA4LEztOqaCsmzBWB62Rea1nN9Gd1l3ci9gv8H?=
- =?us-ascii?Q?yp4GjRsz6tcVuxrEos1tAZJEw5I1GpwWB6luIIRNvorOwAULkM4InhWPXEnf?=
- =?us-ascii?Q?Y67XBLxcrWGT0IZ8UdDiqgI0i3QnMeohxGZt9hgJHbOFXsYc+xy4C6bTzWZo?=
- =?us-ascii?Q?d0REwO9JoC3fMEphHw5jCuMWwK4UXCYDTnmfMP49kYBJFm3QbB9EncoxzR5f?=
- =?us-ascii?Q?AdiO+wJqNV4yMPTE3IRrhpGBbR3MxeAv5ihLClsEZZTuH/JH3oEhmj9nr/JY?=
- =?us-ascii?Q?L0yxVUaiYx9EqwSw55peCIiMQwKWUNdlE6L96wCYmBUMsPslhpk7gYGKFLEw?=
- =?us-ascii?Q?5dFx98VELWM3njeG9npq2PGi6rUMcRzXGx7YO3neG6H3+4cgTZYwbsb63upt?=
- =?us-ascii?Q?aVsGcV6ejRCSAyTMjkuf0qz9mLGNXVZbaFh9BmhteGBK40C4T04Bny+aZO0p?=
- =?us-ascii?Q?TsTwg0jV4hAive7Cv81JHX3wREtwh4ONDJStIpEAWHJHZhK81rYMfvFsmvzl?=
- =?us-ascii?Q?fbTI+sCOwFkcmnheyNjzRgeJYSA73n8zpwBm1Gt/jycZxqf1gx+utqRkZJTP?=
- =?us-ascii?Q?/mY2BbaqcGLTOLxAO388W1T7MLwUepGwGFU5moxW26piDWIsZxgTpEKRS8LV?=
- =?us-ascii?Q?IwvrsS4rr9vhWgi7RAo/zomHicW2CQmqVVlIyONWPebsb6HFcr0G1u7B6khe?=
- =?us-ascii?Q?bOTaABCi4XtBpMO8wVLQafmg6vDzGyk4kSucoRdMeZHJGUlBdXgYZD/0y+lj?=
- =?us-ascii?Q?MNKmNih4zMJmHo1gjv8U1x6IcWOs8UrRiw9dCPLRLu/auhSAsOMy5CcSXVj+?=
- =?us-ascii?Q?VfPq8+7BveKemdPK31E1vutny9fFmTmouDXplKk8E6n8JRQKmeldIaZOhpN+?=
- =?us-ascii?Q?3tvuySu0iu1AUnVLnwvnFOyFgYJSrRHMY+iJ2A+YTfvXHnCv02Dr3wc7ZnlE?=
- =?us-ascii?Q?Z70pWC9sabR3R5lnways+z7kl8EcoH2jC6FcT/8G8MnqyflrmGgQf425oaoT?=
- =?us-ascii?Q?R00EJmwGbvvJenYKWCL6g1r3M6m9uBhGhrrP4GVCct31fenyPFGZyla2A7d0?=
- =?us-ascii?Q?2AKK8ltJplG92PKIy1BeJxl5rLLhQTE3xiOp9SXxTDlGCgu2C4qCKyvE4OQh?=
- =?us-ascii?Q?ADJSst9m89GlQZ6VCAUNQUa6bxNy48dfXum+PKbsgya/FLuDEcFIRbWNbBcC?=
- =?us-ascii?Q?J3BtIU+nzKZJfJhC8doBifqdgqgLsZE+qlsUrqzu88PYN5nyNEp/0DLAC1kt?=
- =?us-ascii?Q?ajh3VeFajMylo7R1GabxB7iCvmJmwiLY37DnhXI/a9SxjCgefXlOrI9d46og?=
- =?us-ascii?Q?zgpzKcqFUJjsseig0PR4yEcXwdcILrtAzaV00vVN9AzgqxjkC4fSK6t7tMwL?=
- =?us-ascii?Q?06s9k1NYrPqAamV+xklcmWEyah5v2LscbvOc1VtgX5eR7nYNti4T/a1JDOZa?=
- =?us-ascii?Q?o0bxOZLmECltv9jbBxC99OJ1rr8VDCmlXYzOIu2Y6x9NwHyUJh/Buu5ZvnUQ?=
- =?us-ascii?Q?fNgG4JbxUpgBcBXBtNWWF6t3Eef4/WA3zSWSe0bX14OUs3Xo4oMk/HDvC+uV?=
- =?us-ascii?Q?D9nWgWgkehHqzJ59Fj2SxYCilKkEl2c0eApQpscs?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19668302"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.17.221])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 10:56:23 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2] lib/kunit: Read results from debugfs
+Date: Fri,  5 Apr 2024 19:54:53 +0200
+Message-ID: <20240405175544.6047-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77b97367-e7e0-4b38-344e-08dc55981ebd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2024 17:45:01.8735 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rzDbBJIoW8IvakKJMMolTs80zz4lk+P6J8RRYtQ/0a51A3oDlOAi2U0ob20lNSEo+UYkKn7peUl0F2bSSx/DGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7540
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,73 +70,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+KUnit can provide KTAP reports from test modules via debugfs files, one
+per test suite.  Using that source of test results instead of extracting
+them from dmesg, where they may be interleaved with other kernel messages,
+seems more easy to handle and less error prone.  Switch to it.
 
+If KUnit debugfs support is found not configured then fall back to legacy
+processing path.
 
-> -----Original Message-----
-> From: Sebastian Wick <sebastian.wick@redhat.com>
-> Sent: Friday, April 5, 2024 10:55 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Borah, Chaitanya Kumar
-> <chaitanya.kumar.borah@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>;
-> Murthy, Arun R <arun.r.murthy@intel.com>; Syrjala, Ville
-> <ville.syrjala@intel.com>; Kumar, Naveen1 <naveen1.kumar@intel.com>
-> Subject: Re: [4/7] drm/i915/dp: Fix comments on EDP HDR DPCD registers
->=20
-> On Thu, Apr 04, 2024 at 08:59:28AM +0530, Suraj Kandpal wrote:
-> > Change comments from Pre-TGL+ to Pre-ICL as mentioned in specs
-> >
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > index 3d9723714c96..2d50a4734823 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > @@ -69,14 +69,14 @@
-> >  #define INTEL_EDP_HDR_GETSET_CTRL_PARAMS                              =
- 0x344
-> >  # define INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE
-> BIT(0)
-> >  # define INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE
-> BIT(1)
-> > -# define INTEL_EDP_HDR_TCON_TONE_MAPPING_ENABLE
-> BIT(2) /* Pre-TGL+ */
-> > +# define INTEL_EDP_HDR_TCON_TONE_MAPPING_ENABLE
-> BIT(2) /* Pre-ICL */
->=20
-> Technically that's also true for 2084_DECODE_ENABLE and
-> 2020_GAMUT_ENABLE. Maybe just drop the comment? What is enabled
-> when should become clear from the code.
+v2: Check validity of debugfs argument before calling kunit_get_tests()
+    (Kamil),
+  - replace multiple openat() + fdopen/fdopendir(), each followed by an
+    error check, with less expensive fopen/opendir() of file/dir pathname
+    components concatentated to a local buffer, protected from buffer
+    overflow or truncation with a single check for enough buffer space
+    (Lucas),
+  - avoid confusing 'if' statement condition (Lucas).
 
-Sure will drop the comments altogether.
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ lib/igt_kmod.c | 131 +++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 94 insertions(+), 37 deletions(-)
 
-Regards,
-Suraj Kandpal
->=20
-> >  # define INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE
-> BIT(3)
-> >  # define INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE
-> BIT(4)
-> >  # define INTEL_EDP_HDR_TCON_SRGB_TO_PANEL_GAMUT_ENABLE
-> BIT(5)
-> >  /* Bit 6 is reserved */
-> >  # define INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX
-> 	      BIT(7)
-> >
-> > -#define INTEL_EDP_HDR_CONTENT_LUMINANCE                               =
- 0x346
-> /* Pre-TGL+ */
-> > +#define INTEL_EDP_HDR_CONTENT_LUMINANCE                               =
- 0x346
-> /* Pre-ICL */
-> >  #define INTEL_EDP_HDR_PANEL_LUMINANCE_OVERRIDE
-> 0x34A
-> >  #define INTEL_EDP_SDR_LUMINANCE_LEVEL                                 =
- 0x352
-> >  #define INTEL_EDP_BRIGHTNESS_NITS_LSB                                 =
- 0x354
+diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+index 1ec9c8a602..243785873d 100644
+--- a/lib/igt_kmod.c
++++ b/lib/igt_kmod.c
+@@ -28,6 +28,7 @@
+ #include <limits.h>
+ #include <pthread.h>
+ #include <signal.h>
++#include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/stat.h>
+@@ -39,6 +40,7 @@
+ 
+ #include "igt_aux.h"
+ #include "igt_core.h"
++#include "igt_debugfs.h"
+ #include "igt_kmod.h"
+ #include "igt_ktap.h"
+ #include "igt_sysfs.h"
+@@ -864,6 +866,19 @@ static int open_parameters(const char *module_name)
+ 	return open(path, O_RDONLY);
+ }
+ 
++static void kunit_debugfs_path(char *kunit_path)
++{
++	const char *debugfs_path = igt_debugfs_mount();
++
++	if (igt_debug_on(!debugfs_path))
++		return;
++
++	if (igt_debug_on(strlen(debugfs_path) + strlen("/kunit/") >= PATH_MAX))
++		return;
++
++	strcpy(stpcpy(kunit_path, debugfs_path), "/kunit/");
++}
++
+ static bool kunit_set_filtering(const char *filter_glob, const char *filter,
+ 				const char *filter_action)
+ {
+@@ -1071,21 +1086,41 @@ static void kunit_results_free(struct igt_list_head *results,
+ 	free(*suite_name);
+ }
+ 
+-static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
+-			     struct igt_ktap_results **ktap)
++static int kunit_get_results(struct igt_list_head *results, const char *debugfs_path,
++			     const char *suite, struct igt_ktap_results **ktap)
+ {
++	char results_path[PATH_MAX];
++	FILE *results_stream;
++	char *buf = NULL;
++	size_t size = 0;
++	ssize_t len;
+ 	int err;
+ 
++	if (igt_debug_on(strlen(debugfs_path) + strlen(suite) + strlen("/results") >= PATH_MAX))
++		return -ENOSPC;
++
++	strcpy(stpcpy(stpcpy(results_path, debugfs_path), suite), "/results");
++	results_stream = fopen(results_path, "r");
++	if (igt_debug_on(!results_stream))
++		return -errno;
++
+ 	*ktap = igt_ktap_alloc(results);
+-	if (igt_debug_on(!*ktap))
+-		return -ENOMEM;
++	if (igt_debug_on(!*ktap)) {
++		err = -ENOMEM;
++		goto out_fclose;
++	}
+ 
+-	do
+-		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
+-			      err && err != -EINPROGRESS));
+-	while (err == -EINPROGRESS);
++	while (len = getline(&buf, &size, results_stream), len > 0) {
++		err = igt_ktap_parse(buf, *ktap);
++		if (err != -EINPROGRESS)
++			break;
++	}
++
++	free(buf);
+ 
+ 	igt_ktap_free(ktap);
++out_fclose:
++	fclose(results_stream);
+ 
+ 	return err;
+ }
+@@ -1101,7 +1136,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+ 	pthread_mutexattr_t attr;
+ 	IGT_LIST_HEAD(results);
+ 	unsigned long taints;
+-	int ret;
++	int flags, ret;
++
++	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
++
++	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
++	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
++		      "Could not set /dev/kmsg to blocking mode\n");
+ 
+ 	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+ 
+@@ -1224,30 +1265,17 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
+ 	igt_skip_on_f(ret, "KTAP parser failed\n");
+ }
+ 
+-static void kunit_get_tests_timeout(int signal)
+-{
+-	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
+-}
+-
+ static bool kunit_get_tests(struct igt_list_head *tests,
+ 			    struct igt_ktest *tst,
+ 			    const char *suite,
+ 			    const char *opts,
++			    const char *debugfs_path,
++			    DIR **debugfs_dir,
+ 			    struct igt_ktap_results **ktap)
+ {
+-	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
+-			 *saved;
+ 	struct igt_ktap_result *r, *rn;
++	struct dirent *subdir;
+ 	unsigned long taints;
+-	int flags, err;
+-
+-	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
+-
+-	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
+-	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
+-		      "Could not set /dev/kmsg to blocking mode\n");
+-
+-	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+ 
+ 	/*
+ 	 * To get a list of test cases provided by a kunit test module, ask the
+@@ -1260,19 +1288,41 @@ static bool kunit_get_tests(struct igt_list_head *tests,
+ 	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
+ 		return false;
+ 
++	*debugfs_dir = opendir(debugfs_path);
++	if (!*debugfs_dir)
++		return false;
++
++	if (!suite) {
++		seekdir(*debugfs_dir, 2);	/* directory itself and its parent */
++		errno = 0;
++		igt_skip_on_f(readdir(*debugfs_dir) || errno,
++			      "Require empty KUnit debugfs directory\n");
++		rewinddir(*debugfs_dir);
++	}
++
+ 	igt_skip_on(modprobe(tst->kmod, opts));
+ 	igt_skip_on(igt_kernel_tainted(&taints));
+ 
+-	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
+-	alarm(10);
++	while (subdir = readdir(*debugfs_dir), subdir) {
++		if (!(subdir->d_type & DT_DIR))
++			continue;
+ 
+-	err = kunit_get_results(tests, tst->kmsg, ktap);
++		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
++			continue;
+ 
+-	alarm(0);
+-	igt_debug_on(sigaction(SIGALRM, saved, NULL));
++		if (suite && strcmp(subdir->d_name, suite))
++			continue;
+ 
+-	igt_skip_on_f(err,
+-		      "KTAP parser failed while getting a list of test cases\n");
++		igt_warn_on_f(kunit_get_results(tests, debugfs_path, subdir->d_name, ktap),
++			      "parsing KTAP report from test suite \"%s\" failed\n",
++			      subdir->d_name);
++
++		if (suite)
++			break;
++	}
++
++	closedir(*debugfs_dir);
++	*debugfs_dir = NULL;
+ 
+ 	igt_list_for_each_entry_safe(r, rn, tests, link)
+ 		igt_require_f(r->code == IGT_EXIT_SKIP,
+@@ -1287,6 +1337,7 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 			const char *subtest,
+ 			const char *suite,
+ 			const char *opts,
++			const char *debugfs_path,
+ 			struct igt_list_head *tests,
+ 			struct igt_ktap_results **ktap)
+ {
+@@ -1307,8 +1358,6 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 
+ 			igt_skip_on(igt_kernel_tainted(&taints));
+ 
+-			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
+-
+ 			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
+ 					       t->suite_name, t->case_name),
+ 				      sizeof(glob));
+@@ -1317,7 +1366,8 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 			igt_assert_eq(modprobe(tst->kmod, opts), 0);
+ 			igt_assert_eq(igt_kernel_tainted(&taints), 0);
+ 
+-			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
++			igt_assert_eq(kunit_get_results(&results, debugfs_path,
++							t->suite_name, ktap), 0);
+ 
+ 			for (i = 0; i < 2; i++) {
+ 				kunit_result_free(&r, &suite_name, &case_name);
+@@ -1385,9 +1435,11 @@ static void __igt_kunit(struct igt_ktest *tst,
+  */
+ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+ {
++	char debugfs_path[PATH_MAX] = { '\0', };
+ 	struct igt_ktest tst = { .kmsg = -1, };
+ 	struct igt_ktap_results *ktap = NULL;
+ 	const char *subtest = suite;
++	DIR *debugfs_dir = NULL;
+ 	IGT_LIST_HEAD(tests);
+ 
+ 	/*
+@@ -1435,10 +1487,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+ 		 *	 LTS kernels not capable of using KUnit filters for
+ 		 *	 listing test cases in KTAP format, with igt_require.
+ 		 */
+-		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
++		kunit_debugfs_path(debugfs_path);
++		if (!*debugfs_path ||
++		    !kunit_get_tests(&tests, &tst, suite, opts, debugfs_path, &debugfs_dir, &ktap))
+ 			__igt_kunit_legacy(&tst, subtest, opts);
+ 		else
+-			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
++			__igt_kunit(&tst, subtest, suite, opts, debugfs_path, &tests, &ktap);
+ 	}
+ 
+ 	igt_fixture {
+@@ -1448,6 +1502,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+ 
+ 		kunit_results_free(&tests, &suite_name, &case_name);
+ 
++		if (debugfs_dir)
++			closedir(debugfs_dir);
++
+ 		igt_ktest_end(&tst);
+ 	}
+ 
+-- 
+2.44.0
 
