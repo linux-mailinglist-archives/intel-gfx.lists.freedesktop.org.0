@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7172C89A522
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 21:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EAE789A54E
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 21:58:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF45A10E83A;
-	Fri,  5 Apr 2024 19:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0FD6113754;
+	Fri,  5 Apr 2024 19:58:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pje+ulKh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aZSDJ6g3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61E0C10E83A
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 19:45:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CA6510EEDD;
+ Fri,  5 Apr 2024 19:58:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712346334; x=1743882334;
+ t=1712347136; x=1743883136;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=1m4RpCI6cMDz/C3JYdm/UwnupQThvRLngkobWVHLb/s=;
- b=Pje+ulKhMuUQBuQLEUUZUqCTqvhGT0pLrkhzMUb95HsuYICmV/loqFnf
- xi+TP82C6hN/glnbABEk0B/vKkhYK69uPT1zxgj22bBRwFXe65i+rMeSC
- OT9Hmnt1kH3u19MioM80Seh42TyPbV1rbKm7X2AiiQSjcjyCBbJ6y6Ctk
- JoNRvdLgi9v1yvaegw5xt9V7py3uTWo54vxMKtgqdjIVh7OqJjBbUUZWF
- IE/tNyND5NcbGycdZVO0G+Hk3jlb8vvyBIbKTsLhutL+rc73r3K3e+GLJ
- 25OFRbfX7p8qxhFYtadayl7a0xXUTnYH4qKVbFhac+t47DNxg8Y35Nw7C w==;
-X-CSE-ConnectionGUID: dZJLUbLjRdmXvViCQC3Ibg==
-X-CSE-MsgGUID: /yuQhtnzQVu7VAJB5pRL/g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7551100"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; 
-   d="scan'208";a="7551100"
+ bh=XY4RJy/2ZwbHoIKNRxA+0RLw9JjMriizQ5W5+WL/w8o=;
+ b=aZSDJ6g32lQ8+9M1miKg4rpNg7tH3fsjUsxiviCLNyyGUQDCv8h1SwA3
+ 4tX+59EXk8xPpkQvbFj6O51yRuDeQNBseQzX4svYrpKEE52Rf6qrngdEd
+ O77KlLDkAicgcGdXnpEIDhliYynW7dvkQlJ2qGx+OXmYk9Y7fSn/dPDZu
+ efyqZaueACJtK5TGzbuz9pdD5emkmy7Ia02QmjYj7wqfTL8ZkY0yUDj+W
+ 00fhjGMqBdwnS6yLxtJrLs5IsMCUIybvTFXD6AKDCgpSDhNlrycR1pPMe
+ ThV/URCQw41i9YJMTr2mpYnXamA016QiC3yZmXsnaAYlQzHY9biycsL/M Q==;
+X-CSE-ConnectionGUID: 9UmB/NlsSaObfj8+gVGQJQ==
+X-CSE-MsgGUID: VZk6DaLKSJepXX+7kDF1+w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="7543361"
+X-IronPort-AV: E=Sophos;i="6.07,182,1708416000"; 
+   d="scan'208";a="7543361"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 12:45:32 -0700
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2024 12:58:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="827791003"
-X-IronPort-AV: E=Sophos;i="6.07,182,1708416000"; d="scan'208";a="827791003"
+X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="827791004"
+X-IronPort-AV: E=Sophos;i="6.07,182,1708416000"; d="scan'208";a="827791004"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 05 Apr 2024 12:45:29 -0700
+ by orsmga001.jf.intel.com with SMTP; 05 Apr 2024 12:58:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Apr 2024 22:45:29 +0300
-Date: Fri, 5 Apr 2024 22:45:29 +0300
+ Fri, 05 Apr 2024 22:58:51 +0300
+Date: Fri, 5 Apr 2024 22:58:51 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2 01/17] drm/i915: Update pipes in reverse order for
- bigjoiner
-Message-ID: <ZhBU2aPQSelporZX@intel.com>
-References: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
- <20240404213441.17637-2-ville.syrjala@linux.intel.com>
- <SJ0PR11MB678987E66265BC27DDB3D0EB8D032@SJ0PR11MB6789.namprd11.prod.outlook.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 11/12] drm/client: Streamline mode selection debugs
+Message-ID: <ZhBX-2FDEJH98IrR@intel.com>
+References: <20240404203336.10454-1-ville.syrjala@linux.intel.com>
+ <20240404203336.10454-12-ville.syrjala@linux.intel.com>
+ <9f689077-529f-431b-9506-e92f8a1d8003@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <SJ0PR11MB678987E66265BC27DDB3D0EB8D032@SJ0PR11MB6789.namprd11.prod.outlook.com>
+In-Reply-To: <9f689077-529f-431b-9506-e92f8a1d8003@suse.de>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,60 +72,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 01:42:49PM +0000, Kulkarni, Vandita wrote:
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Friday, April 5, 2024 3:04 AM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH v2 01/17] drm/i915: Update pipes in reverse order for
-> > bigjoiner
-> > 
+On Fri, Apr 05, 2024 at 09:57:07AM +0200, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 04.04.24 um 22:33 schrieb Ville Syrjala:
 > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > With bigjoiner the master crtc is the one that will send out the uapi
-> > event/etc. We want that to happen after all the slaves are done, so let's try
-> > to do the commits in reverse order so that the master comes last.
-> > 
-> > Even worse, the modeset helper will simply complete the commit on the
-> > slave pipe immediately as it consider the crtc to be inactive (it can't see our
-> > crtc_state->hw.active/etc.).
-> > 
-> > With regular sync updates this generally doesn't matter all that much as the
-> > slave pipe should typically finish its work during the same frame as the
-> > master pipe. However in case the slave pipe's commit slips into the next
-> > frame we end up in a bit of trouble. This is most visible with either async flips
-> > (currently disabled with bigjoiner exactly for this reason), and DSB gamma
-> > updates. With DSB the problem happens because the DSB itself will wait until
-> > the next start vblank before starting to execute. So if the master pipe already
-> > finished its commit and the DSB on the slave pipe is still waiting for the next
-> > vblank we will assume the DSB as gotten stuck and terminate it.
-> > 
-> > Reversing the commit order should ameliarate this for the most part as the
-> > master pipe is guaranteed to start its commit after the slave pipe started. The
-> > one thing that can still screw us over is the fact that we aren't necessarily
-> > going to commit the pipes in the reverse order as the actual order is dictated
-> > by the DDB overlap avoidance.
-> > But that can only happen while other pipes are being enabled/disabled, and
-> > so in the normal steady state we should be safe.
-> > 
-> > The full fix will involve making the commit machinery aware of the slave
-> > pipes and not finish their commits prematurely. But that will involve a bit
-> > more work than this. And this commit order reversal will still be beneficial to
-> > avoid userspace getting an -EBUSY from the following page flip if the second
-> > pipe's commit does stretch into the next frame.
-> > 
+> >
+> > Get rid of all the redundant debugs and just wait until the end
+> > to print which mode (and of which type) we picked.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/drm_client_modeset.c | 65 +++++++++++++---------------
+> >   1 file changed, 31 insertions(+), 34 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+> > index 415d1799337b..ad88c11037d8 100644
+> > --- a/drivers/gpu/drm/drm_client_modeset.c
+> > +++ b/drivers/gpu/drm/drm_client_modeset.c
+> > @@ -408,6 +408,8 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+> >   
+> >   retry:
+> >   	for (i = 0; i < connector_count; i++) {
+> > +		const char *mode_type;
+> > +
+> >   		connector = connectors[i];
+> >   
+> >   		if (conn_configured & BIT_ULL(i))
+> > @@ -440,20 +442,20 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+> >   			drm_client_get_tile_offsets(dev, connectors, connector_count, modes, offsets, i,
+> >   						    connector->tile_h_loc, connector->tile_v_loc);
+> >   		}
+> > -		drm_dbg_kms(dev, "looking for cmdline mode on [CONNECTOR:%d:%s]\n",
+> > -			    connector->base.id, connector->name);
+> >   
+> > -		/* got for command line mode first */
+> > +		mode_type = "cmdline";
+> >   		modes[i] = drm_connector_pick_cmdline_mode(connector);
+> > +
+> >   		if (!modes[i]) {
+> > -			drm_dbg_kms(dev, "looking for preferred mode on [CONNECTOR:%d:%s] (tile group: %d)\n",
+> > -				    connector->base.id, connector->name,
+> > -				    connector->tile_group ? connector->tile_group->id : 0);
+> > +			mode_type = "preferred";
+> >   			modes[i] = drm_connector_preferred_mode(connector, width, height);
+> >   		}
+> > -		/* No preferred modes, pick one off the list */
+> > -		if (!modes[i])
+> > +
+> > +		if (!modes[i]) {
+> > +			mode_type = "first";
+> >   			modes[i] = drm_connector_first_mode(connector);
+> > +		}
+> > +
+> >   		/*
+> >   		 * In case of tiled mode if all tiles not present fallback to
+> >   		 * first available non tiled mode.
+> > @@ -468,16 +470,20 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+> >   			    (connector->tile_h_loc == 0 &&
+> >   			     connector->tile_v_loc == 0 &&
+> >   			     !drm_connector_get_tiled_mode(connector))) {
+> > -				drm_dbg_kms(dev, "Falling back to non tiled mode on [CONNECTOR:%d:%s]\n",
+> > -					    connector->base.id, connector->name);
+> > +				mode_type = "non tiled";
+> >   				modes[i] = drm_connector_fallback_non_tiled_mode(connector);
+> >   			} else {
+> > +				mode_type = "tiled";
+> >   				modes[i] = drm_connector_get_tiled_mode(connector);
+> >   			}
+> >   		}
+> >   
+> > -		drm_dbg_kms(dev, "found mode %s\n",
+> > -			    modes[i] ? modes[i]->name : "none");
+> > +		if (!modes[i])
+> > +			mode_type = "no";
+> > +
+> > +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found %s mode: %s\n",
+> > +			    connector->base.id, connector->name,
+> > +			    mode_type, modes[i] ? modes[i]->name : "none");
 > 
-> LGTM.
-> Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Instead of tracking the whole mode_type thing, maybe just do
 > 
-> I had just one query though,
-> Will there be a case where we can get vblank between slave update and master update,
-> if so do you think there will be any problem due to that?
+> if (!modes[i])
+>      drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found mode: " DRM_MODE_FMT, 
+> DRM_MODE_ARG(modes[i]) );
+> 
+> to print the full mode.
 
-It can happen, in which case you may observe a vertical tear.
-Since we've disabled all the fancy transcoder level stuff 
-(vrr/lrr/etc.) that should be the worst of it.
+The point of the mode_type is to indicate how we derived 
+that mode. Printing the full modeline doesn't help with that.
 
 -- 
 Ville Syrjälä
