@@ -2,80 +2,109 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C327189A418
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 20:20:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFDF89A443
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 20:37:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9DF10E68E;
-	Fri,  5 Apr 2024 18:20:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B7CA113CAF;
+	Fri,  5 Apr 2024 18:37:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="QvCPtlV3";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bkmLIHuX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDA0910E68E
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 18:20:32 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C9B810E775
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 18:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1712341231;
+ s=mimecast20190719; t=1712342218;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=bO5tGPdIThGAHP1dCmNTDrQ7a3/NQfNevy8egofPhNg=;
- b=QvCPtlV3HpvWSY1AkBqkpaNwUKD6HfWzscgCcP+ehBdzI0usWGmQInkySzl9/2m9drO0wb
- iRsTPPZF21OPnslndNmYqNU8Is7Qw7oNL+UgK0AX+WsDsJJaYG7rqRmahmsQfbGx+b8UiB
- EA0q/mzPsfb74v1sJ2gyN6xTNixf9pE=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=qvKsrMsm5amCXrkHqNf0dwZRvuZponfYbk9G0oYCwa0=;
+ b=bkmLIHuXHWylDHV3WzY3VGR5Ih99VfMb+b8oggnFECST0sWagWeL3urNqjAQnlyCm3vXDX
+ ZoBeOGp94qADvpKVLLeifSWsvCVUerTo2AgPjTob6VX+GN24b+LkzUOJdLXyRJZjmpVloP
+ eov2PjZSdAnpLKnFLcb1Sup67WKkt2E=
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
+ [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-18-4eo5Y2SgPn-RdxS4qMatzg-1; Fri, 05 Apr 2024 14:20:30 -0400
-X-MC-Unique: 4eo5Y2SgPn-RdxS4qMatzg-1
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-343d6732721so705620f8f.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 11:20:30 -0700 (PDT)
+ us-mta-393-EutxaP-xN6y2eLS6EpVcuQ-1; Fri, 05 Apr 2024 14:36:57 -0400
+X-MC-Unique: EutxaP-xN6y2eLS6EpVcuQ-1
+Received: by mail-ot1-f70.google.com with SMTP id
+ 46e09a7af769-6e8ad7f1224so2761720a34.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 11:36:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712341228; x=1712946028;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=bO5tGPdIThGAHP1dCmNTDrQ7a3/NQfNevy8egofPhNg=;
- b=dyEwOVnEv1TXtAU6vK1eKrklUYewLATxr1TsERJTjMURBKIyfZTbDVa1fva4MRAX6r
- h7qBwt32fSAFoF4Y3cQmXSab7kLfF9HPuOfk1GfkEC4+KtsmDSxVrnr9dnH905GYrKSB
- jnUGQrngKZ1BCRuts/Ii4atkKsCy79LoJbIo3BRftOWuSs0Cc+zCLHRNB/EgMaU+fJSF
- vYRKysWSY56EnrNjJgxwISbIRNu8mxCz4Hv1wCgyBTEAq+ym3TWHMlKANdCjMGyyUCB6
- O/y5Pz/UDtoViU6UH9jRO1dP33yLcM7jVCggUXJSKCBzweGLshRvEQQJiVIMpjYOqRC/
- IEkg==
-X-Gm-Message-State: AOJu0Yw84A6fFMO8IZ7DvJYW7Q/5HvcGz5/nDQa9lqduUV0cePATcRiD
- CxH6xg8jtHn8sLPGiwx0c8ipiy1rR53KgUPLFpmgdkpRUflZwE7RsL0phyDaCdiZiuvig/qOBAM
- 7y7y/e+yBoQoJ5TpYJlEKxQzTgaDHUzAAkPz4AslDDhVfpFsv6lai8wlwtCocgrjCErC9KzP3TA
- ==
-X-Received: by 2002:a5d:4a90:0:b0:33e:8b93:87c6 with SMTP id
- o16-20020a5d4a90000000b0033e8b9387c6mr2043521wrq.42.1712341228650; 
- Fri, 05 Apr 2024 11:20:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFShQpAtjx2NZuV+DKyDbzT9pMJW52/BaLvReaz0/wtSA+tb47RCpgEvJRy8x2xRDKw6s+jkw==
-X-Received: by 2002:a5d:4a90:0:b0:33e:8b93:87c6 with SMTP id
- o16-20020a5d4a90000000b0033e8b9387c6mr2043512wrq.42.1712341228276; 
- Fri, 05 Apr 2024 11:20:28 -0700 (PDT)
-Received: from toolbox ([2001:9e8:899a:a100:d85f:7bed:a911:4675])
+ d=1e100.net; s=20230601; t=1712342216; x=1712947016;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :autocrypt:references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=qvKsrMsm5amCXrkHqNf0dwZRvuZponfYbk9G0oYCwa0=;
+ b=MBraSDX/GwABCaJz/2e/7NM0uGDQcWtuEddF75CJEUmsIuXMwLkmYqOaftzcO7TWlJ
+ kvtpDW31LXDDCAk6XWSRXw05XwRyNQAP3QmbXlSc53n/hZCx3DCmEdGNEYxn73al72EY
+ kpXSks/zPfn7QJYmkKSlhqvnSH/jqoDorOsXQmGxdi4pJc0ryQ31DHbQyw4yWbw5J4EA
+ qsmLu5ccbTqdUJ1TxrG5oGIy52N4mCrVfMU0X6WTpsvLg6cKs3RqEdZ1i3scz006m5RZ
+ 2MSbzJuuzDQtn8/TS/4C/+QrJbpoHp664v8QQXZdiht2bfvII1gpF2B1EW0ME6gMmY6Y
+ woVA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWVsEYQyKXArnymebYm2GD9LnP/ZLkQEd87C3wUAxb31NTk9n355ydnq2Zeula6aEYoBsTPECyvtxNPRyoaSNW35qSbzK7S6mWZHsuuWSYC
+X-Gm-Message-State: AOJu0Ywdsx7puwHkooW+hPeZU0/0/o7736WJO5yrh6EdGNiNwNPGQVz6
+ qa3qEFcclDvZQH+zVVcosUVEF8Tp83vk2eVlZXYxVBHWy87zD1GnM3cjKXscNMyEzURcrRdbHVL
+ NHDCkA44/b8Pom8gceVJI1E/uaA6qGZoQR+ef7wyPXe0l2Q+AbJGcgjYmkNafFDzlAA==
+X-Received: by 2002:a9d:6755:0:b0:6e9:e829:2c77 with SMTP id
+ w21-20020a9d6755000000b006e9e8292c77mr2188588otm.27.1712342216549; 
+ Fri, 05 Apr 2024 11:36:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFt+D771XMHHFySTD83Ks6yYhCqZ6qH+nHPbjpQmLbCiVM6E3jPPssFvgzLpd4PouzY8zRNoQ==
+X-Received: by 2002:a9d:6755:0:b0:6e9:e829:2c77 with SMTP id
+ w21-20020a9d6755000000b006e9e8292c77mr2188569otm.27.1712342216298; 
+ Fri, 05 Apr 2024 11:36:56 -0700 (PDT)
+Received: from ?IPv6:2600:4040:5c6c:a300::789? ([2600:4040:5c6c:a300::789])
  by smtp.gmail.com with ESMTPSA id
- j11-20020adff54b000000b003433bf6651dsm1756127wrp.75.2024.04.05.11.20.27
+ qr2-20020a05620a390200b00789e2805f85sm854603qkn.21.2024.04.05.11.36.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Apr 2024 11:20:27 -0700 (PDT)
-Date: Fri, 5 Apr 2024 20:20:26 +0200
-From: Sebastian Wick <sebastian.wick@redhat.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
- uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
- arun.r.murthy@intel.com, ville.syrjala@intel.com, naveen1.kumar@intel.com
-Subject: Re: [5/7] drm/i915/dp: Enable AUX based backlight for HDR
-Message-ID: <20240405182026.GA935433@toolbox>
-References: <20240404032931.380887-7-suraj.kandpal@intel.com>
+ Fri, 05 Apr 2024 11:36:55 -0700 (PDT)
+Message-ID: <190fda6f12aa77170631fb12e505779ce33d1c64.camel@redhat.com>
+Subject: Re: [PATCH v0 13/14] drm/nouveau: Make I2C terminology more inclusive
+From: Lyude Paul <lyude@redhat.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>, Danilo Krummrich
+ <dakr@redhat.com>, Karol Herbst <kherbst@redhat.com>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER
+ FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, "open
+ list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, "open list:RADEON and
+ AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, "open list:INTEL DRM
+ DISPLAY FOR XE AND I915 DRIVERS" <intel-gfx@lists.freedesktop.org>, "open
+ list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, "open list:I2C SUBSYSTEM HOST DRIVERS"
+ <linux-i2c@vger.kernel.org>, "open list:BTTV VIDEO4LINUX DRIVER"
+ <linux-media@vger.kernel.org>, "open list:FRAMEBUFFER LAYER"
+ <linux-fbdev@vger.kernel.org>
+Date: Fri, 05 Apr 2024 14:36:54 -0400
+In-Reply-To: <e6b04b76-c695-47b4-9432-f2316e174585@linux.microsoft.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-14-eahariha@linux.microsoft.com>
+ <4dc6fb16-3d85-4a7f-85f9-ed249da0df1a@redhat.com>
+ <e6b04b76-c695-47b4-9432-f2316e174585@linux.microsoft.com>
+Autocrypt: addr=lyude@redhat.com; prefer-encrypt=mutual;
+ keydata=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
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39)
 MIME-Version: 1.0
-In-Reply-To: <20240404032931.380887-7-suraj.kandpal@intel.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,246 +120,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 04, 2024 at 08:59:29AM +0530, Suraj Kandpal wrote:
-> As of now whenerver HDR is switched on we use the PWM to change the
-> backlight as opposed to AUX based backlight changes in terms of nits.
-> This patch writes to the appropriate DPCD registers to enable aux
-> based backlight using values in nits.
-> 
-> --v2
-> -Fix max_cll and max_fall assignment [Jani]
-> -Fix the size sent in drm_dpcd_write [Jani]
-> 
-> --v3
-> -Content Luminance needs to be sent only for pre-ICL after that
-> it is directly picked up from hdr metadata [Ville]
-> 
-> --v4
-> -Add checks for HDR TCON cap bits [Ville]
-> -Check eotf of hdr_output_data and sets bits base of that value.
-> 
-> --v5
-> -Fix capability check bits.
-> -Check colorspace before setting BT2020
-> 
-> --v6
-> -Use intel_dp_has_gamut_dip to check if we have capability
-> to send sdp [Ville]
-> -Seprate filling of all hdr tcon related bits into it's
-> own function.
-> -Check eotf data to make sure we are in HDR mode [Sebastian]
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../drm/i915/display/intel_dp_aux_backlight.c | 105 ++++++++++++++++--
->  1 file changed, 94 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 2d50a4734823..7af876e2d210 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -40,11 +40,6 @@
->  #include "intel_dp.h"
->  #include "intel_dp_aux_backlight.h"
->  
-> -/* TODO:
-> - * Implement HDR, right now we just implement the bare minimum to bring us back into SDR mode so we
-> - * can make people's backlights work in the mean time
-> - */
-> -
->  /*
->   * DP AUX registers for Intel's proprietary HDR backlight interface. We define
->   * them here since we'll likely be the only driver to ever use these.
-> @@ -127,9 +122,6 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
->  	if (ret != sizeof(tcon_cap))
->  		return false;
->  
-> -	if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> -		return false;
-> -
->  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Detected %s HDR backlight interface version %d\n",
->  		    connector->base.base.id, connector->base.name,
->  		    is_intel_tcon_cap(tcon_cap) ? "Intel" : "unsupported", tcon_cap[0]);
-> @@ -137,6 +129,9 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
->  	if (!is_intel_tcon_cap(tcon_cap))
->  		return false;
->  
-> +	if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> +		return false;
-> +
->  	/*
->  	 * If we don't have HDR static metadata there is no way to
->  	 * runtime detect used range for nits based control. For now
-> @@ -225,13 +220,27 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
->  			connector->base.base.id, connector->base.name);
->  }
->  
-> +static bool
-> +intel_dp_aux_in_hdr_mode(const struct drm_connector_state *conn_state)
-> +{
-> +	struct hdr_output_metadata *hdr_metadata;
-> +
-> +	if (!conn_state->hdr_output_metadata)
-> +		return false;
-> +
-> +	hdr_metadata = conn_state->hdr_output_metadata->data;
-> +
-> +	return hdr_metadata->hdmi_metadata_type1.eotf != HDMI_EOTF_TRADITIONAL_GAMMA_SDR;
+On Fri, 2024-04-05 at 09:30 -0700, Easwar Hariharan wrote:
+>=20
+> Thanks for the review, and for the appetite to go further! So we are
+> on the same page, you would prefer
+> renaming to controller/target like the feedback on other drm drivers
+> (i915, gma500, radeon)?
 
-This line worries me a bit. The TCON only supports PQ HDR mode so when
-the metadata request HLG or traditional gamma HDR then only the
-segmented backlight is enable in intel_dp_aux_fill_hdr_tcon_params but
-it uses HDR backlight.
+FWIW I'm in support of this as well! As long as we make sure it gets
+renamed everywhere :)
 
-Did you test that this doesn't result in a black screen? Maybe change
-this to `eotf == HDMI_EOTF_SMPTE_ST2084` instead?
+>=20
+> Thanks,
+> Easwar
+>=20
 
-> +}
-> +
->  static void
->  intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
->  {
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct intel_panel *panel = &connector->panel;
->  
-> -	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +	if (intel_dp_aux_in_hdr_mode(conn_state) ||
-> +	    panel->backlight.edp.intel.sdr_uses_aux) {
->  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
->  	} else {
->  		const u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-> @@ -240,6 +249,70 @@ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32
->  	}
->  }
->  
-> +static void
-> +intel_dp_aux_write_content_luminance(struct intel_connector *connector,
-> +				     struct hdr_output_metadata *hdr_metadata)
-> +{
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	int ret;
-> +	u8 buf[4];
-> +
-> +	if (!intel_dp_has_gamut_metadata_dip(connector->encoder))
-> +		return;
-
-I don't entirely understand intel_dp_has_gamut_metadata_dip, but I
-assume it is true when the SDP HDR stuff can be send?
-
-Either way, you only enable the HDR_OUTPUT_METADATA property if
-intel_dp_has_gamut_metadata_dip returns true, so you will only ever have
-intel_dp_aux_in_hdr_mode return true if the dip exists. So, this doesn't
-do anything.
-
-I think what you need is
-
-* attach the HDR_OUTPUT_METADATA property if you can send the SDP thing
-  and the TCON supports the SDP override (>ICL) OR you can control HDR
-  via AUX (>=ICL).
-* always set the content luminance via AUX
-
-> +
-> +	buf[0] = hdr_metadata->hdmi_metadata_type1.max_cll & 0xFF;
-> +	buf[1] = (hdr_metadata->hdmi_metadata_type1.max_cll & 0xFF00) >> 8;
-> +	buf[2] = hdr_metadata->hdmi_metadata_type1.max_fall & 0xFF;
-> +	buf[3] = (hdr_metadata->hdmi_metadata_type1.max_fall & 0xFF00) >> 8;
-> +
-> +	ret = drm_dp_dpcd_write(&intel_dp->aux,
-> +				INTEL_EDP_HDR_CONTENT_LUMINANCE,
-> +				buf, sizeof(buf));
-> +	if (ret < 0)
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Content Luminance DPCD reg write failed, err:-%d\n",
-> +			    ret);
-> +}
-> +
-> +static void
-> +intel_dp_aux_fill_hdr_tcon_params(const struct drm_connector_state *conn_state, u8 *ctrl)
-> +{
-> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> +	struct intel_panel *panel = &connector->panel;
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct hdr_output_metadata *hdr_metadata = conn_state->hdr_output_metadata->data;
-> +
-> +	/* According to spec segmented backlight needs to be set whenever panel is in
-> +	 * HDR mode.
-> +	 */
-> +	*ctrl |= INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
-> +
-> +	/* 2084 decode needs to set if eotf suggests so or in case of pre-ICL we disable
-> +	 * tone mapping and set 2084 decode.
-> +	 */
-> +	if (hdr_metadata->hdmi_metadata_type1.eotf ==
-> +	    HDMI_EOTF_SMPTE_ST2084 || DISPLAY_VER(i915) < 11) {
-> +		*ctrl |= INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
-> +		*ctrl &= ~INTEL_EDP_HDR_TCON_TONE_MAPPING_ENABLE;
-> +	} else {
-> +		drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] TCON: Cannot decode requested EOTF\n",
-> +			    connector->base.base.id, connector->base.name);
-> +	}
-> +
-> +	if (panel->backlight.edp.intel.supports_2020_gamut &&
-> +	    (conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_RGB ||
-> +	     conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_YCC ||
-> +	     conn_state->colorspace == DRM_MODE_COLORIMETRY_BT2020_CYCC))
-> +		*ctrl |= INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
-> +
-> +	if (panel->backlight.edp.intel.supports_sdp_colorimetry &&
-> +	    intel_dp_has_gamut_metadata_dip(connector->encoder))
-> +		*ctrl |= INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX;
-> +	else
-> +		*ctrl &= ~INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX;
-> +}
-> +
->  static void
->  intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  				  const struct drm_connector_state *conn_state, u32 level)
-> @@ -248,6 +321,7 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  	struct intel_panel *panel = &connector->panel;
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
-> +	struct hdr_output_metadata *hdr_metadata;
->  	int ret;
->  	u8 old_ctrl, ctrl;
->  
-> @@ -261,8 +335,10 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  	}
->  
->  	ctrl = old_ctrl;
-> -	if (panel->backlight.edp.intel.sdr_uses_aux) {
-> +	if (intel_dp_aux_in_hdr_mode(conn_state) ||
-> +	    panel->backlight.edp.intel.sdr_uses_aux) {
->  		ctrl |= INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-> +
->  		intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
->  	} else {
->  		u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
-> @@ -272,10 +348,18 @@ intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crtc_state,
->  		ctrl &= ~INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
->  	}
->  
-> +	if (intel_dp_aux_in_hdr_mode(conn_state))
-> +		intel_dp_aux_fill_hdr_tcon_params(conn_state, &ctrl);
-> +
->  	if (ctrl != old_ctrl &&
->  	    drm_dp_dpcd_writeb(&intel_dp->aux, INTEL_EDP_HDR_GETSET_CTRL_PARAMS, ctrl) != 1)
->  		drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to configure DPCD brightness controls\n",
->  			connector->base.base.id, connector->base.name);
-> +
-> +	if (intel_dp_aux_in_hdr_mode(conn_state)) {
-> +		hdr_metadata = conn_state->hdr_output_metadata->data;
-> +		intel_dp_aux_write_content_luminance(connector, hdr_metadata);
-> +	}
->  }
->  
->  static void
-> @@ -332,7 +416,6 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
->  		    connector->base.base.id, connector->base.name,
->  		    panel->backlight.min, panel->backlight.max);
->  
-> -
->  	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
->  	panel->backlight.enabled = panel->backlight.level != 0;
->  
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
