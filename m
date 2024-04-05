@@ -2,59 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F40F89A3C2
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 19:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7C6789A3C1
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Apr 2024 19:55:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDCC112597;
-	Fri,  5 Apr 2024 17:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284D810E5B0;
+	Fri,  5 Apr 2024 17:55:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kw5lyOE8";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="L13qukAa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEE9110ED7F;
- Fri,  5 Apr 2024 17:56:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712339786; x=1743875786;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/Pq2znYZpOya2WwCnqfkjcIcNaEmpEaAxGe1Vj3wPBg=;
- b=Kw5lyOE84rk161g+bMYmVHs82eACh+qGXiJg4FExJFwZNNA9LweK01st
- 0Frf/diRyhks/oSTPdmHASyOB0CM6wBEjxeR5LIsG8XfFAqVBIInjaIS8
- cUkduz/9lvp6uY+jq74xKlcd5YshHTY0n/FSyLYhFcO4zqwDdswEV7x4r
- PnshkXX/T6JE4hLO+5Am10r0Ccw03gI9BSW34hOHdLZPn22VC/CNcnzh4
- AlzZG/EPQ9S5vZ/oZvOPpy51cS8shXAKLrzI8fesN9ziOYBCYyFBLiXOD
- ziBrw7qIsMr81HiKZNfgPXjB5luwBD6fpLoNf3B9+7bGTdvjNZjEnE356 g==;
-X-CSE-ConnectionGUID: s38LU/mvQuCF7Q/j/16gnA==
-X-CSE-MsgGUID: ZK3dJo50RIaoy66ICcdkKw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11035"; a="11475285"
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="11475285"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 10:56:26 -0700
-X-CSE-ConnectionGUID: RH9u11y2QgaDgCS6lKGB1A==
-X-CSE-MsgGUID: FDvIYcIXSDaq2+iPyIt5mA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,181,1708416000"; d="scan'208";a="19668302"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.intranet) ([10.213.17.221])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2024 10:56:23 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v2] lib/kunit: Read results from debugfs
-Date: Fri,  5 Apr 2024 19:54:53 +0200
-Message-ID: <20240405175544.6047-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.44.0
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 731AC10E5B0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Apr 2024 17:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1712339751;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=FTv/7Tk+v3zaLetYd31tUApCUGM3b2lQtJGelHnQ+iY=;
+ b=L13qukAaDKPgDuPOtnYMG8edeIwyODJjyGJ2lxaUOKI5evka9/C3IoGOVcGFp6cSIS/mP0
+ EH4AdtxkVkHDUeTxZqYf4hE8tdF0FUAkDRItwmEODJUHvv6eD3TpzOnt6Lfdh51szdXvsO
+ bGQ1aVgbSjR8zxm/khIw+5xUwUP7ieY=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-546-D1lA96SgPMuCpULEwUIbSA-1; Fri, 05 Apr 2024 13:55:50 -0400
+X-MC-Unique: D1lA96SgPMuCpULEwUIbSA-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-343e74dcf0bso392922f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Apr 2024 10:55:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712339749; x=1712944549;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FTv/7Tk+v3zaLetYd31tUApCUGM3b2lQtJGelHnQ+iY=;
+ b=G3ljpadO2WViwr1XkEsCQBU1MYueVdORM87BUqevHqoRAFS8MqKkE3tJyJwaDT8Wof
+ bnva9KfO73GQ4WY6eegdOvnDsddFZkBuX6ac+KAb9izpfku/ERB4ge3+wYEXA+CttQ+V
+ /FcxGJqCC20cOZWHGBASkH6GZwdWyhd67seFnuxc3JcjMGunqeX3jM1OPNF/HJIiFld5
+ dGN6k9NTy6uFk81X4xx1b3v+xvmuxEqzNuUBt11SToJyc646nndL7qxRtDVq3LcCA+7y
+ jLL1dITAjnVcalupCrrekjfV/32OQg7ynkFInxBOM1NHk9lZ0knU6I+UA3qYOpKrwBEl
+ nsqg==
+X-Gm-Message-State: AOJu0YzzWHUQBC+HTcfBPVe+2g4dAj3Ho1iwsCLY9voJT9V+glCkZ6P1
+ E0u0QjCqsUwMJfEh+X+HDcGG9C7rxddqilBUO3Vj6tVKyUeZmByrk/GDmGL77IBqEgfJC2hsCe0
+ VCJKbccZ4XLdm9ciq0S3zd5loIRIyBdCdc0J+9hS+vwEabwmEdGrme2eSRJAHcA+8+w==
+X-Received: by 2002:adf:fe89:0:b0:343:d35d:71d with SMTP id
+ l9-20020adffe89000000b00343d35d071dmr1572495wrr.8.1712339748857; 
+ Fri, 05 Apr 2024 10:55:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGBHgk1zCn0k1zYtsY9tfcAYh3j+Z+CC//lM9xiKUfBYsYxry/190OVKvHcxxfcCvnuuymLVg==
+X-Received: by 2002:adf:fe89:0:b0:343:d35d:71d with SMTP id
+ l9-20020adffe89000000b00343d35d071dmr1572483wrr.8.1712339748486; 
+ Fri, 05 Apr 2024 10:55:48 -0700 (PDT)
+Received: from toolbox ([2001:9e8:899a:a100:d85f:7bed:a911:4675])
+ by smtp.gmail.com with ESMTPSA id
+ d14-20020adfe84e000000b00343bd6716b3sm2507813wrn.99.2024.04.05.10.55.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Apr 2024 10:55:48 -0700 (PDT)
+Date: Fri, 5 Apr 2024 19:55:46 +0200
+From: Sebastian Wick <sebastian.wick@redhat.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
+ uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
+ arun.r.murthy@intel.com, jani.nikula@intel.com, naveen1.kumar@intel.com
+Subject: Re: [7/7] drm/i915/dp: Limit brightness level to vbt min brightness
+Message-ID: <20240405175546.GA934147@toolbox>
+References: <20240405083704.393996-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240405083704.393996-2-suraj.kandpal@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,282 +90,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-KUnit can provide KTAP reports from test modules via debugfs files, one
-per test suite.  Using that source of test results instead of extracting
-them from dmesg, where they may be interleaved with other kernel messages,
-seems more easy to handle and less error prone.  Switch to it.
+On Fri, Apr 05, 2024 at 02:07:05PM +0530, Suraj Kandpal wrote:
+> Limit minimum brightness to vbt min brightness when using aux
+> based brightness control to avoid letting the screen
+> from going completely blank.
+> Sometimes vbt can have some bogus values hence clamping the value
+> for sanity in case of corner case.
 
-If KUnit debugfs support is found not configured then fall back to legacy
-processing path.
+So, you're completely ignoring the value from the EDID now instead?
 
-v2: Check validity of debugfs argument before calling kunit_get_tests()
-    (Kamil),
-  - replace multiple openat() + fdopen/fdopendir(), each followed by an
-    error check, with less expensive fopen/opendir() of file/dir pathname
-    components concatentated to a local buffer, protected from buffer
-    overflow or truncation with a single check for enough buffer space
-    (Lucas),
-  - avoid confusing 'if' statement condition (Lucas).
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
----
- lib/igt_kmod.c | 131 +++++++++++++++++++++++++++++++++++--------------
- 1 file changed, 94 insertions(+), 37 deletions(-)
-
-diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 1ec9c8a602..243785873d 100644
---- a/lib/igt_kmod.c
-+++ b/lib/igt_kmod.c
-@@ -28,6 +28,7 @@
- #include <limits.h>
- #include <pthread.h>
- #include <signal.h>
-+#include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
- #include <sys/stat.h>
-@@ -39,6 +40,7 @@
- 
- #include "igt_aux.h"
- #include "igt_core.h"
-+#include "igt_debugfs.h"
- #include "igt_kmod.h"
- #include "igt_ktap.h"
- #include "igt_sysfs.h"
-@@ -864,6 +866,19 @@ static int open_parameters(const char *module_name)
- 	return open(path, O_RDONLY);
- }
- 
-+static void kunit_debugfs_path(char *kunit_path)
-+{
-+	const char *debugfs_path = igt_debugfs_mount();
-+
-+	if (igt_debug_on(!debugfs_path))
-+		return;
-+
-+	if (igt_debug_on(strlen(debugfs_path) + strlen("/kunit/") >= PATH_MAX))
-+		return;
-+
-+	strcpy(stpcpy(kunit_path, debugfs_path), "/kunit/");
-+}
-+
- static bool kunit_set_filtering(const char *filter_glob, const char *filter,
- 				const char *filter_action)
- {
-@@ -1071,21 +1086,41 @@ static void kunit_results_free(struct igt_list_head *results,
- 	free(*suite_name);
- }
- 
--static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
--			     struct igt_ktap_results **ktap)
-+static int kunit_get_results(struct igt_list_head *results, const char *debugfs_path,
-+			     const char *suite, struct igt_ktap_results **ktap)
- {
-+	char results_path[PATH_MAX];
-+	FILE *results_stream;
-+	char *buf = NULL;
-+	size_t size = 0;
-+	ssize_t len;
- 	int err;
- 
-+	if (igt_debug_on(strlen(debugfs_path) + strlen(suite) + strlen("/results") >= PATH_MAX))
-+		return -ENOSPC;
-+
-+	strcpy(stpcpy(stpcpy(results_path, debugfs_path), suite), "/results");
-+	results_stream = fopen(results_path, "r");
-+	if (igt_debug_on(!results_stream))
-+		return -errno;
-+
- 	*ktap = igt_ktap_alloc(results);
--	if (igt_debug_on(!*ktap))
--		return -ENOMEM;
-+	if (igt_debug_on(!*ktap)) {
-+		err = -ENOMEM;
-+		goto out_fclose;
-+	}
- 
--	do
--		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
--			      err && err != -EINPROGRESS));
--	while (err == -EINPROGRESS);
-+	while (len = getline(&buf, &size, results_stream), len > 0) {
-+		err = igt_ktap_parse(buf, *ktap);
-+		if (err != -EINPROGRESS)
-+			break;
-+	}
-+
-+	free(buf);
- 
- 	igt_ktap_free(ktap);
-+out_fclose:
-+	fclose(results_stream);
- 
- 	return err;
- }
-@@ -1101,7 +1136,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
- 	pthread_mutexattr_t attr;
- 	IGT_LIST_HEAD(results);
- 	unsigned long taints;
--	int ret;
-+	int flags, ret;
-+
-+	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-+
-+	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
-+	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
-+		      "Could not set /dev/kmsg to blocking mode\n");
- 
- 	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
- 
-@@ -1224,30 +1265,17 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
- 	igt_skip_on_f(ret, "KTAP parser failed\n");
- }
- 
--static void kunit_get_tests_timeout(int signal)
--{
--	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
--}
--
- static bool kunit_get_tests(struct igt_list_head *tests,
- 			    struct igt_ktest *tst,
- 			    const char *suite,
- 			    const char *opts,
-+			    const char *debugfs_path,
-+			    DIR **debugfs_dir,
- 			    struct igt_ktap_results **ktap)
- {
--	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
--			 *saved;
- 	struct igt_ktap_result *r, *rn;
-+	struct dirent *subdir;
- 	unsigned long taints;
--	int flags, err;
--
--	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
--
--	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
--	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
--		      "Could not set /dev/kmsg to blocking mode\n");
--
--	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
- 
- 	/*
- 	 * To get a list of test cases provided by a kunit test module, ask the
-@@ -1260,19 +1288,41 @@ static bool kunit_get_tests(struct igt_list_head *tests,
- 	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
- 		return false;
- 
-+	*debugfs_dir = opendir(debugfs_path);
-+	if (!*debugfs_dir)
-+		return false;
-+
-+	if (!suite) {
-+		seekdir(*debugfs_dir, 2);	/* directory itself and its parent */
-+		errno = 0;
-+		igt_skip_on_f(readdir(*debugfs_dir) || errno,
-+			      "Require empty KUnit debugfs directory\n");
-+		rewinddir(*debugfs_dir);
-+	}
-+
- 	igt_skip_on(modprobe(tst->kmod, opts));
- 	igt_skip_on(igt_kernel_tainted(&taints));
- 
--	igt_skip_on(sigaction(SIGALRM, &sigalrm, saved));
--	alarm(10);
-+	while (subdir = readdir(*debugfs_dir), subdir) {
-+		if (!(subdir->d_type & DT_DIR))
-+			continue;
- 
--	err = kunit_get_results(tests, tst->kmsg, ktap);
-+		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
-+			continue;
- 
--	alarm(0);
--	igt_debug_on(sigaction(SIGALRM, saved, NULL));
-+		if (suite && strcmp(subdir->d_name, suite))
-+			continue;
- 
--	igt_skip_on_f(err,
--		      "KTAP parser failed while getting a list of test cases\n");
-+		igt_warn_on_f(kunit_get_results(tests, debugfs_path, subdir->d_name, ktap),
-+			      "parsing KTAP report from test suite \"%s\" failed\n",
-+			      subdir->d_name);
-+
-+		if (suite)
-+			break;
-+	}
-+
-+	closedir(*debugfs_dir);
-+	*debugfs_dir = NULL;
- 
- 	igt_list_for_each_entry_safe(r, rn, tests, link)
- 		igt_require_f(r->code == IGT_EXIT_SKIP,
-@@ -1287,6 +1337,7 @@ static void __igt_kunit(struct igt_ktest *tst,
- 			const char *subtest,
- 			const char *suite,
- 			const char *opts,
-+			const char *debugfs_path,
- 			struct igt_list_head *tests,
- 			struct igt_ktap_results **ktap)
- {
-@@ -1307,8 +1358,6 @@ static void __igt_kunit(struct igt_ktest *tst,
- 
- 			igt_skip_on(igt_kernel_tainted(&taints));
- 
--			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
--
- 			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
- 					       t->suite_name, t->case_name),
- 				      sizeof(glob));
-@@ -1317,7 +1366,8 @@ static void __igt_kunit(struct igt_ktest *tst,
- 			igt_assert_eq(modprobe(tst->kmod, opts), 0);
- 			igt_assert_eq(igt_kernel_tainted(&taints), 0);
- 
--			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
-+			igt_assert_eq(kunit_get_results(&results, debugfs_path,
-+							t->suite_name, ktap), 0);
- 
- 			for (i = 0; i < 2; i++) {
- 				kunit_result_free(&r, &suite_name, &case_name);
-@@ -1385,9 +1435,11 @@ static void __igt_kunit(struct igt_ktest *tst,
-  */
- void igt_kunit(const char *module_name, const char *suite, const char *opts)
- {
-+	char debugfs_path[PATH_MAX] = { '\0', };
- 	struct igt_ktest tst = { .kmsg = -1, };
- 	struct igt_ktap_results *ktap = NULL;
- 	const char *subtest = suite;
-+	DIR *debugfs_dir = NULL;
- 	IGT_LIST_HEAD(tests);
- 
- 	/*
-@@ -1435,10 +1487,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
- 		 *	 LTS kernels not capable of using KUnit filters for
- 		 *	 listing test cases in KTAP format, with igt_require.
- 		 */
--		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
-+		kunit_debugfs_path(debugfs_path);
-+		if (!*debugfs_path ||
-+		    !kunit_get_tests(&tests, &tst, suite, opts, debugfs_path, &debugfs_dir, &ktap))
- 			__igt_kunit_legacy(&tst, subtest, opts);
- 		else
--			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
-+			__igt_kunit(&tst, subtest, suite, opts, debugfs_path, &tests, &ktap);
- 	}
- 
- 	igt_fixture {
-@@ -1448,6 +1502,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
- 
- 		kunit_results_free(&tests, &suite_name, &case_name);
- 
-+		if (debugfs_dir)
-+			closedir(debugfs_dir);
-+
- 		igt_ktest_end(&tst);
- 	}
- 
--- 
-2.44.0
+> 
+> --v2
+> -Use something same mechanism to limit minimum brightness
+> that PWM method uses [Jani]
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 20dd5a6a0f3f..eb2a7225dfaa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -411,6 +411,8 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
+>  	struct intel_panel *panel = &connector->panel;
+>  	struct drm_luminance_range_info *luminance_range =
+>  		&connector->base.display_info.luminance_range;
+> +	u32 min_level = clamp_t(u32,
+> +				connector->panel.vbt.backlight.min_brightness, 0, 64);
+>  	int ret;
+>  
+>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] SDR backlight is controlled through %s\n",
+> @@ -427,14 +429,12 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
+>  		}
+>  	}
+>  
+> -	if (luminance_range->max_luminance) {
+> +	if (luminance_range->max_luminance)
+>  		panel->backlight.max = luminance_range->max_luminance;
+> -		panel->backlight.min = luminance_range->min_luminance;
+> -	} else {
+> +	else
+>  		panel->backlight.max = 512;
+> -		panel->backlight.min = 0;
+> -	}
+>  
+> +	panel->backlight.min = min_level;
+>  	intel_dp_aux_write_panel_luminance_override(connector);
+>  
+>  	drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Using AUX HDR interface for backlight control (range %d..%d)\n",
 
