@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C32F89AA32
-	for <lists+intel-gfx@lfdr.de>; Sat,  6 Apr 2024 11:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9A789AA33
+	for <lists+intel-gfx@lfdr.de>; Sat,  6 Apr 2024 11:32:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE8110EFBF;
-	Sat,  6 Apr 2024 09:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3742310EFC5;
+	Sat,  6 Apr 2024 09:32:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ACFD10EFC2;
- Sat,  6 Apr 2024 09:32:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB5F10EFC5;
+ Sat,  6 Apr 2024 09:32:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/guc=3A_Upda?=
- =?utf-8?q?te_w/a_14019159160_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/guc=3A_Update_w?=
+ =?utf-8?q?/a_14019159160_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "John Harrison" <john.c.harrison@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 06 Apr 2024 09:32:00 -0000
-Message-ID: <171239592050.1255282.11625575307867704893@8e613ede5ea5>
+Date: Sat, 06 Apr 2024 09:32:03 -0000
+Message-ID: <171239592345.1255282.9091903613537160847@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240308020129.728799-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20240308020129.728799-1-John.C.Harrison@Intel.com>
@@ -49,20 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-dce5a13e42cb drm/i915/guc: Update w/a 14019159160
--:20: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
-#20: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h:108:
-+	GUC_WORKAROUND_KLV_SERIALIZED_RA_MODE				= 0x9001,	/* Wa_14019159160 */
-
--:21: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
-#21: FILE: drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h:109:
-+	GUC_WORKAROUND_KLV_AVOID_GFX_CLEAR_WHILE_ACTIVE			= 0x9006,	/* Wa_14019159160 */
-
--:62: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#62: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c:829:
-+	GEM_BUG_ON(*remain < size);
-
-total: 0 errors, 3 warnings, 0 checks, 62 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
