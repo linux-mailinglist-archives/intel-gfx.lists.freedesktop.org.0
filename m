@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B9489CC20
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:59:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 662FF89CC32
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 21:06:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5089810E5E5;
-	Mon,  8 Apr 2024 18:59:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA9310E3C0;
+	Mon,  8 Apr 2024 19:06:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fnql5Eai";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6A7110E5E5;
- Mon,  8 Apr 2024 18:59:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4015719021540613029=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm=3A_debug_logging_improv?=
- =?utf-8?q?ements_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5A910E3C0;
+ Mon,  8 Apr 2024 19:06:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712603175; x=1744139175;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6oxQGlJkE+CXeO+rhKhtZGpFtiv72GzyHbm2W/e1SoM=;
+ b=Fnql5EaiCJpNBoCbMk+wHgjIfVarX2ZCa92rWaGeF4bznNDHPWC5tKp+
+ n0HbZRvZhWiEpQ7jbvnoci5Yd0LO4d3WHRsSAd7vRZIip1A1l4btt1Zlk
+ fcnrVkPtVnH9tj0n14pOsLzs6ZkIlDCVu7wvMSTXDx2P+2mU6ixyYyHkR
+ SRcnHkWTLq08ijAd/b61x4sQ4kA1vZ1jPzuSptWNr1cgdBeiLcqWIXMGx
+ 6UTq5FlqzJIYSmt80KPno1kfiOhWyjKDw3evzhOub0s66omTM3dDzlRqI
+ 9Heb41A5BOvJHMgGAVoJFHP+EDqvA9p22WS9PZHhEXlO32hV0pelWs4G7 Q==;
+X-CSE-ConnectionGUID: h4YfdpPKTuq74sZQ29vv9w==
+X-CSE-MsgGUID: 6rWhsqrNR7KTxKSyCgogGQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19278627"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19278627"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 12:06:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792376"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="827792376"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 12:06:11 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 08 Apr 2024 22:06:11 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 08 Apr 2024 18:59:50 -0000
-Message-ID: <171260279074.1286971.12312854398151926720@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1712568037.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1712568037.git.jani.nikula@intel.com>
+Subject: [PATCH 1/5] drm/vblank: Introduce drm_crtc_vblank_crtc()
+Date: Mon,  8 Apr 2024 22:06:07 +0300
+Message-ID: <20240408190611.24914-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,219 +63,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4015719021540613029==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Make life easier by providing a function that hands
+out the the correct drm_vblank_crtc for a given a drm_crtc.
 
-Series: drm: debug logging improvements (rev2)
-URL   : https://patchwork.freedesktop.org/series/130881/
-State : failure
+Also abstract the lower level internals of the vblank
+code in a similar fashion.
 
-== Summary ==
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_vblank.c      | 58 ++++++++++++++++++-------------
+ drivers/gpu/drm/drm_vblank_work.c |  2 +-
+ include/drm/drm_vblank.h          |  1 +
+ 3 files changed, 36 insertions(+), 25 deletions(-)
 
-CI Bug Log - changes from CI_DRM_14543 -> Patchwork_130881v2
-====================================================
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 702a12bc93bd..cc3571e25a9a 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -166,11 +166,24 @@ module_param_named(timestamp_precision_usec, drm_timestamp_precision, int, 0600)
+ MODULE_PARM_DESC(vblankoffdelay, "Delay until vblank irq auto-disable [msecs] (0: never disable, <0: disable immediately)");
+ MODULE_PARM_DESC(timestamp_precision_usec, "Max. error on timestamps [usecs]");
+ 
++static struct drm_vblank_crtc *
++drm_vblank_crtc(struct drm_device *dev, unsigned int pipe)
++{
++	return &dev->vblank[pipe];
++}
++
++struct drm_vblank_crtc *
++drm_crtc_vblank_crtc(struct drm_crtc *crtc)
++{
++	return drm_vblank_crtc(crtc->dev, drm_crtc_index(crtc));
++}
++EXPORT_SYMBOL(drm_crtc_vblank_crtc);
++
+ static void store_vblank(struct drm_device *dev, unsigned int pipe,
+ 			 u32 vblank_count_inc,
+ 			 ktime_t t_vblank, u32 last)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 
+ 	assert_spin_locked(&dev->vblank_time_lock);
+ 
+@@ -184,7 +197,7 @@ static void store_vblank(struct drm_device *dev, unsigned int pipe,
+ 
+ static u32 drm_max_vblank_count(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 
+ 	return vblank->max_vblank_count ?: dev->max_vblank_count;
+ }
+@@ -273,7 +286,7 @@ static void drm_reset_vblank_timestamp(struct drm_device *dev, unsigned int pipe
+ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
+ 				    bool in_vblank_irq)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	u32 cur_vblank, diff;
+ 	bool rc;
+ 	ktime_t t_vblank;
+@@ -364,7 +377,7 @@ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
+ 
+ u64 drm_vblank_count(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	u64 count;
+ 
+ 	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+@@ -438,7 +451,7 @@ static void __disable_vblank(struct drm_device *dev, unsigned int pipe)
+  */
+ void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	unsigned long irqflags;
+ 
+ 	assert_spin_locked(&dev->vbl_lock);
+@@ -600,7 +613,7 @@ void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+ {
+ 	struct drm_device *dev = crtc->dev;
+ 	unsigned int pipe = drm_crtc_index(crtc);
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+ 	int linedur_ns = 0, framedur_ns = 0;
+ 	int dotclock = mode->crtc_clock;
+ 
+@@ -930,7 +943,7 @@ EXPORT_SYMBOL(drm_crtc_vblank_count);
+ static u64 drm_vblank_count_and_time(struct drm_device *dev, unsigned int pipe,
+ 				     ktime_t *vblanktime)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	u64 vblank_count;
+ 	unsigned int seq;
+ 
+@@ -985,7 +998,6 @@ EXPORT_SYMBOL(drm_crtc_vblank_count_and_time);
+  */
+ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime)
+ {
+-	unsigned int pipe = drm_crtc_index(crtc);
+ 	struct drm_vblank_crtc *vblank;
+ 	struct drm_display_mode *mode;
+ 	u64 vblank_start;
+@@ -993,7 +1005,7 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime)
+ 	if (!drm_dev_has_vblank(crtc->dev))
+ 		return -EINVAL;
+ 
+-	vblank = &crtc->dev->vblank[pipe];
++	vblank = drm_crtc_vblank_crtc(crtc);
+ 	mode = &vblank->hwmode;
+ 
+ 	if (!vblank->framedur_ns || !vblank->linedur_ns)
+@@ -1147,7 +1159,7 @@ static int __enable_vblank(struct drm_device *dev, unsigned int pipe)
+ 
+ static int drm_vblank_enable(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	int ret = 0;
+ 
+ 	assert_spin_locked(&dev->vbl_lock);
+@@ -1185,7 +1197,7 @@ static int drm_vblank_enable(struct drm_device *dev, unsigned int pipe)
+ 
+ int drm_vblank_get(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	unsigned long irqflags;
+ 	int ret = 0;
+ 
+@@ -1228,7 +1240,7 @@ EXPORT_SYMBOL(drm_crtc_vblank_get);
+ 
+ void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 
+ 	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+ 		return;
+@@ -1274,7 +1286,7 @@ EXPORT_SYMBOL(drm_crtc_vblank_put);
+  */
+ void drm_wait_one_vblank(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	int ret;
+ 	u64 last;
+ 
+@@ -1327,7 +1339,7 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->dev;
+ 	unsigned int pipe = drm_crtc_index(crtc);
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+ 	struct drm_pending_vblank_event *e, *t;
+ 	ktime_t now;
+ 	u64 seq;
+@@ -1405,8 +1417,7 @@ EXPORT_SYMBOL(drm_crtc_vblank_off);
+ void drm_crtc_vblank_reset(struct drm_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->dev;
+-	unsigned int pipe = drm_crtc_index(crtc);
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+ 
+ 	spin_lock_irq(&dev->vbl_lock);
+ 	/*
+@@ -1445,8 +1456,7 @@ void drm_crtc_set_max_vblank_count(struct drm_crtc *crtc,
+ 				   u32 max_vblank_count)
+ {
+ 	struct drm_device *dev = crtc->dev;
+-	unsigned int pipe = drm_crtc_index(crtc);
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+ 
+ 	drm_WARN_ON(dev, dev->max_vblank_count);
+ 	drm_WARN_ON(dev, !READ_ONCE(vblank->inmodeset));
+@@ -1469,7 +1479,7 @@ void drm_crtc_vblank_on(struct drm_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->dev;
+ 	unsigned int pipe = drm_crtc_index(crtc);
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+ 
+ 	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+ 		return;
+@@ -1512,7 +1522,7 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
+ 	assert_spin_locked(&dev->vbl_lock);
+ 	assert_spin_locked(&dev->vblank_time_lock);
+ 
+-	vblank = &dev->vblank[pipe];
++	vblank = drm_vblank_crtc(dev, pipe);
+ 	drm_WARN_ONCE(dev,
+ 		      drm_debug_enabled(DRM_UT_VBL) && !vblank->framedur_ns,
+ 		      "Cannot compute missed vblanks without frame duration\n");
+@@ -1564,7 +1574,7 @@ static int drm_queue_vblank_event(struct drm_device *dev, unsigned int pipe,
+ 				  union drm_wait_vblank *vblwait,
+ 				  struct drm_file *file_priv)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	struct drm_pending_vblank_event *e;
+ 	ktime_t now;
+ 	u64 seq;
+@@ -1872,7 +1882,7 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
+  */
+ bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe)
+ {
+-	struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
++	struct drm_vblank_crtc *vblank = drm_vblank_crtc(dev, pipe);
+ 	unsigned long irqflags;
+ 	bool disable_irq;
+ 
+@@ -1981,7 +1991,7 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *dev, void *data,
+ 
+ 	pipe = drm_crtc_index(crtc);
+ 
+-	vblank = &dev->vblank[pipe];
++	vblank = drm_crtc_vblank_crtc(crtc);
+ 	vblank_enabled = dev->vblank_disable_immediate && READ_ONCE(vblank->enabled);
+ 
+ 	if (!vblank_enabled) {
+@@ -2046,7 +2056,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *dev, void *data,
+ 
+ 	pipe = drm_crtc_index(crtc);
+ 
+-	vblank = &dev->vblank[pipe];
++	vblank = drm_crtc_vblank_crtc(crtc);
+ 
+ 	e = kzalloc(sizeof(*e), GFP_KERNEL);
+ 	if (e == NULL)
+diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+index 43cd5c0f4f6f..4fe9b1d3b00f 100644
+--- a/drivers/gpu/drm/drm_vblank_work.c
++++ b/drivers/gpu/drm/drm_vblank_work.c
+@@ -245,7 +245,7 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
+ {
+ 	kthread_init_work(&work->base, func);
+ 	INIT_LIST_HEAD(&work->node);
+-	work->vblank = &crtc->dev->vblank[drm_crtc_index(crtc)];
++	work->vblank = drm_crtc_vblank_crtc(crtc);
+ }
+ EXPORT_SYMBOL(drm_vblank_work_init);
+ 
+diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
+index 7f3957943dd1..c8f829b4307c 100644
+--- a/include/drm/drm_vblank.h
++++ b/include/drm/drm_vblank.h
+@@ -225,6 +225,7 @@ struct drm_vblank_crtc {
+ 	wait_queue_head_t work_wait_queue;
+ };
+ 
++struct drm_vblank_crtc *drm_crtc_vblank_crtc(struct drm_crtc *crtc);
+ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs);
+ bool drm_dev_has_vblank(const struct drm_device *dev);
+ u64 drm_crtc_vblank_count(struct drm_crtc *crtc);
+-- 
+2.43.2
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_130881v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_130881v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/index.html
-
-Participating hosts (41 -> 37)
-------------------------------
-
-  Missing    (4): fi-glk-j4005 fi-cfl-8109u fi-apl-guc fi-kbl-8809g 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_130881v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-adlp-11:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-adlp-11/igt@i915_selftest@live@gt_mocs.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-adlp-11/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@objects:
-    - bat-arls-2:         [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-arls-2/igt@i915_selftest@live@objects.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-arls-2/igt@i915_selftest@live@objects.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@gt_mocs:
-    - {bat-arls-4}:       [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-arls-4/igt@i915_selftest@live@gt_mocs.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-arls-4/igt@i915_selftest@live@gt_mocs.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_130881v2 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp6:
-    - {bat-mtlp-9}:       [DMESG-WARN][7] ([i915#10435]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10435]: https://gitlab.freedesktop.org/drm/intel/issues/10435
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14543 -> Patchwork_130881v2
-
-  CI-20190529: 20190529
-  CI_DRM_14543: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7801: 7801
-  Patchwork_130881v2: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-fd8df2b8a798 drm: prefer DRM_MODE_FMT/ARG over drm_mode_debug_printmodeline()
-adc78f76eb2b drm/crtc-helper: switch to drm device based logging and warns
-a83408378298 drm/crtc: switch to drm device based logging
-bfd64144ecbc drm/client: switch to drm device based logging, and more
-ac3c8a489c1f drm/sysfs: switch to drm device based logging
-eddb4a71e3c1 drm/modes: switch to drm device based error logging
-7830c15dc1f6 drm/probe-helper: switch to drm device based logging
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/index.html
-
---===============4015719021540613029==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: debug logging improvements (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/130881/">https://patchwork.freedesktop.org/series/130881/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14543 -&gt; Patchwork_130881v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_130881v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_130881v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 37)</h2>
-<p>Missing    (4): fi-glk-j4005 fi-cfl-8109u fi-apl-guc fi-kbl-8809g </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_130881v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-adlp-11/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-adlp-11/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@objects:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-arls-2/igt@i915_selftest@live@objects.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-arls-2/igt@i915_selftest@live@objects.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_selftest@live@gt_mocs:<ul>
-<li>{bat-arls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-arls-4/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-arls-4/igt@i915_selftest@live@gt_mocs.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_130881v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@a-dp6:<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_130881v2/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14543 -&gt; Patchwork_130881v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14543: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7801: 7801<br />
-  Patchwork_130881v2: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>fd8df2b8a798 drm: prefer DRM_MODE_FMT/ARG over drm_mode_debug_printmodeline()<br />
-adc78f76eb2b drm/crtc-helper: switch to drm device based logging and warns<br />
-a83408378298 drm/crtc: switch to drm device based logging<br />
-bfd64144ecbc drm/client: switch to drm device based logging, and more<br />
-ac3c8a489c1f drm/sysfs: switch to drm device based logging<br />
-eddb4a71e3c1 drm/modes: switch to drm device based error logging<br />
-7830c15dc1f6 drm/probe-helper: switch to drm device based logging</p>
-
-</body>
-</html>
-
---===============4015719021540613029==--
