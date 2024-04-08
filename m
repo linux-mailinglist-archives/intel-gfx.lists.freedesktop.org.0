@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771C389BBA4
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 11:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DC989BC29
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 11:44:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D20C811235A;
-	Mon,  8 Apr 2024 09:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE98611238B;
+	Mon,  8 Apr 2024 09:44:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ig+Uas/U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2xi4COe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88562112356;
- Mon,  8 Apr 2024 09:26:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A12C11238B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 09:44:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712568373; x=1744104373;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=DjmA4pwOW5nrvcnms0nJQ8CUScq1u0/xrtZ+kmbQe7U=;
- b=Ig+Uas/Ul6H/NB014jCThKwQ82+nsUEeRapp9TabHsFvhvkRd0gQduv6
- PMLor0Id1A2bayS4g+ipmqKCSBBDASB6YqV1cNExp69wH08rRD3uc163B
- 2ELnne192GIwzo3FEaCtO0x810OeiQNni76Zb48dIee2uIjkvwjh4R+/w
- 9O3K/UktRN+zLtrYEeC0q458L9E0OOt6gfxgvOy4FsEOiwWTTawYLhBT/
- Q3gylcFbbNvpS3uT9nYoNM0NVcOnsrJY+9s0plkZB/9IpaRZ2M/wkPDvL
- OCoiowQuJQDND4g6SmEcpRH+SViIPTMZIb2y+y+RLgE+SKDhHp3u955XG Q==;
-X-CSE-ConnectionGUID: iQ//YW7YTVq/67N9BbQH5A==
-X-CSE-MsgGUID: HINCG7z/RNqBUdjxJzSr0g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="18450603"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18450603"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 02:26:12 -0700
-X-CSE-ConnectionGUID: Oc2ykOJ8TE2EQMEwxCg1gw==
-X-CSE-MsgGUID: mrEUrC8sT8yTxrdQsyifLA==
+ t=1712569444; x=1744105444;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VaG5FKHEhL2b9xKaXGAugWPHzGoEKNW2ToGb11L7scM=;
+ b=i2xi4COeqzV0+SKWaNCuLfHsU3EOG7w+6fPXnmZdVbj9vfF0Mq6S19n7
+ 8y1HcombY5b3eYyZKCYqgfHRHm5hNSMbnmcLH/CpfVmnf+7cvrQjlXHc1
+ I/jLYq1nhIYzfSzutaU440V4O5MxTvDHUqvMbrciYnswXPojTa3FUEPIQ
+ 47+0b3fwp/dXapjjD/eoQM+2QbT2iGsArUqFt1PtGNxRGdJpqTlLjgRoO
+ PlkL3X7aEoudlS43fs4bz0ZI9M+GjAB6UhE5TSsHK4DWonozRnjzkpH+6
+ tZE4NQGS4zmQpMjVxqU75uftodpFDSqk8+HzSN4DsAMgeb/Pkw6DEMaVW w==;
+X-CSE-ConnectionGUID: kxDSCKnnQ7K5ua5tJnCn0w==
+X-CSE-MsgGUID: krv+trNwTieXoIhN0DtBNA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="18980379"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18980379"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 02:44:03 -0700
+X-CSE-ConnectionGUID: 7nJe2DtmS6eXeY5TyokmNg==
+X-CSE-MsgGUID: UalTgGD4RU6qD8LQDSFluA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="20260947"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="19864817"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 02:26:10 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 02:44:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/6] drm: debug logging improvements
-In-Reply-To: <62365cd0-fadf-47da-b8bf-d33e11f6dec7@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1709843865.git.jani.nikula@intel.com>
- <62365cd0-fadf-47da-b8bf-d33e11f6dec7@suse.de>
-Date: Mon, 08 Apr 2024 12:26:07 +0300
-Message-ID: <874jccb3yo.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/pps: move pps debugfs file to intel_pps.c
+Date: Mon,  8 Apr 2024 12:43:57 +0300
+Message-Id: <20240408094357.3085319-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,44 +67,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 05 Apr 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Hi,
->
-> with your Oops on [5/6] fixed and my comment on [1/6] considered:
->
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Continue with placing debugfs next to the implementation.
 
-Thanks! I ended up dropping a couple of patches based on Ville's comment
-about mode logging, and added a few more in v2. I tried to preserve your
-R-b where I think I didn't change much or nothing at all.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../drm/i915/display/intel_display_debugfs.c  | 27 ++--------------
+ drivers/gpu/drm/i915/display/intel_pps.c      | 32 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_pps.h      |  2 ++
+ 3 files changed, 36 insertions(+), 25 deletions(-)
 
-BR,
-Jani.
-
->
-> Best regards
-> Thomas
->
->
-> Am 07.03.24 um 21:39 schrieb Jani Nikula:
->> Switch a handful of places over to drm device based logging and WARNs,
->> unify connector and crtc logging, etc.
->>
->> Jani Nikula (6):
->>    drm/modes: add drm_mode_print() to dump mode in drm_printer
->>    drm/probe-helper: switch to drm device based logging
->>    drm/modes: switch drm_mode_prune_invalid() to use struct drm_printer
->>    drm/modes: switch to drm device based error logging
->>    drm/sysfs: switch to drm device based logging
->>    drm/client: switch to drm device based logging, and more
->>
->>   drivers/gpu/drm/drm_client_modeset.c | 129 +++++++++++++++------------
->>   drivers/gpu/drm/drm_modes.c          |  51 +++++++----
->>   drivers/gpu/drm/drm_probe_helper.c   |  41 ++++-----
->>   drivers/gpu/drm/drm_sysfs.c          |  21 +++--
->>   include/drm/drm_modes.h              |   2 +
->>   5 files changed, 137 insertions(+), 107 deletions(-)
->>
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 5235f8758ef1..0feffe8d4e45 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -31,6 +31,7 @@
+ #include "intel_hdmi.h"
+ #include "intel_hotplug.h"
+ #include "intel_panel.h"
++#include "intel_pps.h"
+ #include "intel_psr.h"
+ #include "intel_psr_regs.h"
+ #include "intel_wm.h"
+@@ -1095,27 +1096,6 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
+ 	intel_display_debugfs_params(i915);
+ }
+ 
+-static int i915_panel_show(struct seq_file *m, void *data)
+-{
+-	struct intel_connector *connector = m->private;
+-	struct intel_dp *intel_dp = intel_attached_dp(connector);
+-
+-	if (connector->base.status != connector_status_connected)
+-		return -ENODEV;
+-
+-	seq_printf(m, "Panel power up delay: %d\n",
+-		   intel_dp->pps.panel_power_up_delay);
+-	seq_printf(m, "Panel power down delay: %d\n",
+-		   intel_dp->pps.panel_power_down_delay);
+-	seq_printf(m, "Backlight on delay: %d\n",
+-		   intel_dp->pps.backlight_on_delay);
+-	seq_printf(m, "Backlight off delay: %d\n",
+-		   intel_dp->pps.backlight_off_delay);
+-
+-	return 0;
+-}
+-DEFINE_SHOW_ATTRIBUTE(i915_panel);
+-
+ static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
+ {
+ 	struct intel_connector *connector = m->private;
+@@ -1560,12 +1540,9 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+ 		return;
+ 
+ 	intel_drrs_connector_debugfs_add(connector);
++	intel_pps_connector_debugfs_add(connector);
+ 	intel_psr_connector_debugfs_add(connector);
+ 
+-	if (connector_type == DRM_MODE_CONNECTOR_eDP)
+-		debugfs_create_file("i915_panel_timings", 0444, root,
+-				    connector, &i915_panel_fops);
+-
+ 	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+ 	    connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+ 	    connector_type == DRM_MODE_CONNECTOR_HDMIB) {
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index b5d9920f8341..88a44d93f82b 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -1670,6 +1670,38 @@ void intel_pps_setup(struct drm_i915_private *i915)
+ 		i915->display.pps.mmio_base = PPS_BASE;
+ }
+ 
++static int intel_pps_show(struct seq_file *m, void *data)
++{
++	struct intel_connector *connector = m->private;
++	struct intel_dp *intel_dp = intel_attached_dp(connector);
++
++	if (connector->base.status != connector_status_connected)
++		return -ENODEV;
++
++	seq_printf(m, "Panel power up delay: %d\n",
++		   intel_dp->pps.panel_power_up_delay);
++	seq_printf(m, "Panel power down delay: %d\n",
++		   intel_dp->pps.panel_power_down_delay);
++	seq_printf(m, "Backlight on delay: %d\n",
++		   intel_dp->pps.backlight_on_delay);
++	seq_printf(m, "Backlight off delay: %d\n",
++		   intel_dp->pps.backlight_off_delay);
++
++	return 0;
++}
++DEFINE_SHOW_ATTRIBUTE(intel_pps);
++
++void intel_pps_connector_debugfs_add(struct intel_connector *connector)
++{
++	struct dentry *root = connector->base.debugfs_entry;
++	int connector_type = connector->base.connector_type;
++
++	if (connector_type == DRM_MODE_CONNECTOR_eDP)
++		debugfs_create_file("i915_panel_timings", 0444, root,
++				    connector, &intel_pps_fops);
++
++}
++
+ void assert_pps_unlocked(struct drm_i915_private *dev_priv, enum pipe pipe)
+ {
+ 	i915_reg_t pp_reg;
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
+index a2c2467e3c22..07ef96ca8da2 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.h
++++ b/drivers/gpu/drm/i915/display/intel_pps.h
+@@ -51,6 +51,8 @@ void vlv_pps_init(struct intel_encoder *encoder,
+ void intel_pps_unlock_regs_wa(struct drm_i915_private *i915);
+ void intel_pps_setup(struct drm_i915_private *i915);
+ 
++void intel_pps_connector_debugfs_add(struct intel_connector *connector);
++
+ void assert_pps_unlocked(struct drm_i915_private *i915, enum pipe pipe);
+ 
+ #endif /* __INTEL_PPS_H__ */
 -- 
-Jani Nikula, Intel
+2.39.2
+
