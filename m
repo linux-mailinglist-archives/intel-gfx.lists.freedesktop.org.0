@@ -2,62 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A853389BA1B
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 10:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE62A89BA43
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 10:30:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8A211227C;
-	Mon,  8 Apr 2024 08:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FC5611228B;
+	Mon,  8 Apr 2024 08:30:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0wKY6bS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qv0w0elZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7037112279
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 08:22:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36B8511228A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 08:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712564571; x=1744100571;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fKlS1yOgdpGRFsk9wsnL93KYNxTR1szrtIbAM6IuFAY=;
- b=l0wKY6bSmQ1DKStt+/1VZ89IPksCQqhNFAj9UvCymnF2tWhAVnl/G+mJ
- Ag0hS/xUOvgl8YzJcejD0o+sSvd8wkJkd0cHyL6Gv86kV35IKTopeNpJD
- v9x6o3bnl5Y35ZADBZ4V2X6dQQ/HakDE5q40pT/NNcxbOFzExcsRcn+W0
- iJotRaNbnB3vv2LrYWMUbCQMwoZE4iN885zc3v0gEmHtQDjVlAF16AXp7
- GWCEwkEZ5xe72C8d80QL2OrpC42RlasDyvngqsicQf6jtBMSWT7ljum5z
- qEXGhvPSh5k2WE23NzFMD7eKPT8Opnpx+CVMvcAtncTiw90p5KcGSo2kO w==;
-X-CSE-ConnectionGUID: 4/UqxA1/R3ef5qi+SKcgEg==
-X-CSE-MsgGUID: IMWg1yTkT+CcYOWpKXuq0g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="25275798"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="25275798"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:22:51 -0700
-X-CSE-ConnectionGUID: g/+uBqCKRhGPOEoMc6P/CQ==
-X-CSE-MsgGUID: SMqxb4G0SJKkQ+pB9RuEfA==
+ t=1712565009; x=1744101009;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=KqNmtUmOdnw4ogYsq1qTo4HEqUXJsKGevSVROXvzJnI=;
+ b=Qv0w0elZZuQcG69qgHiLopARzPqBQFEfJqnPbMMIF7MRV0koX0jM3pue
+ fuVf7ftBdACgGC9KPkFFFwQJ0cTQo2ILJ6zL96RNvxXxdO7JToQsc/9I5
+ K4rzFjZ3K/N6jcIzt32YGuXYVjILwqp+U+esB9BHmoWphUhFASR97o1Ng
+ goRm/FuB9RYxatUiJmjdAvo0ZvnihgiO1S3j3d74awN/Kx5ktzMeGdKYI
+ FcXGLh7KwLgonKxd5LxLn/GqM0vt47px4MQjyv5TVCxT2/2nhxw/wtOXb
+ ahADf5o1H6OBi94pN9VNI/kEc4SQSplz+ZAr3r81aJEr6n0zV1L8WXYhK g==;
+X-CSE-ConnectionGUID: rnXXoFcGT7+Es5YgvhkJwg==
+X-CSE-MsgGUID: Sxw0WsXiQL23S/Ydm3mPeg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="10802222"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="10802222"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 01:30:08 -0700
+X-CSE-ConnectionGUID: owqmnJimTRG7F0J6NSmWGw==
+X-CSE-MsgGUID: SLT4e2hpRsaMmme/PJyrZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="24444644"
-Received: from rkhristx-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.251.214.154])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:22:49 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Kunal Joshi <kunal1.joshi@intel.com>
-Subject: [PATCH v6 10/10] drm/i915/psr: Add panel replay sel update support to
- debugfs interface
-Date: Mon,  8 Apr 2024 11:22:12 +0300
-Message-Id: <20240408082212.3429193-11-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240408082212.3429193-1-jouni.hogander@intel.com>
-References: <20240408082212.3429193-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="42982989"
+Received: from unknown (HELO intel.com) ([10.237.72.65])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 01:30:07 -0700
+Date: Mon, 8 Apr 2024 11:29:59 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com,
+ jani.saarinen@intel.com
+Subject: Re: [PATCH v10 5/6] drm/i915/display: handle systems with duplicate
+ psf gv points
+Message-ID: <ZhOrBzpTWJ0xKysl@intel.com>
+References: <20240405113533.338553-1-vinod.govindapillai@intel.com>
+ <20240405113533.338553-6-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240405113533.338553-6-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,53 +70,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add panel replay selective update support to debugfs status interface. In
-case of sink supporting panel replay we will print out:
+On Fri, Apr 05, 2024 at 02:35:32PM +0300, Vinod Govindapillai wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> 
+> There could be multiple qgv and psf gv points with similar values.
+> Apparently pcode's handling og psf and qgv points are different. For
+> qgv case, pcode sets whatever is asked by the driver. But in case
+> of psf gv points, it compares the bw from points before setting the
+> mask. This can cause problems in scenarios where we have to disable
+> sagv by setting the highest bw point and there could be multiple
+> points with highest bw. So to set the maximum psf gv point, find
+> out all the points with the highest bw and set all together.
+> 
+> v1: - use the same treatment to qgv points as well (Vinod)
+> 
+> v2: - pcode confirms that for qgv points, it sets whatever the
+>       driver sets (Vinod)
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 5f4f93524bef..6fb228a1a28f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -874,6 +874,8 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
+>  		if (max_data_rate > max_bw) {
+>  			max_bw_point_mask = BIT(i);
+>  			max_bw = max_data_rate;
+> +		} else if (max_data_rate == max_bw) {
+> +			max_bw_point_mask |= BIT(i);
 
-Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
+So we just came back to where we started. Wondering still, why it even bothers to expose
+two equal PSF GV points. Not only having duplicate points doesn't make much sense for 
+the driver(since the BW they provide is the same), but also requires some additional
+logic on top to handle those.
 
-and PSR mode will look like this if printing out enabled panel replay
-selective update:
+Stan
 
-PSR mode: Panel Replay Selective Update Enabled
-
-Current PSR and panel replay printouts remain same.
-
-Cc: Kunal Joshi <kunal1.joshi@intel.com>
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 50bb3739d197..3d564276273d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3564,7 +3564,9 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 
- 	if (psr->sink_support)
- 		seq_printf(m, " [0x%02x]", intel_dp->psr_dpcd[0]);
--	seq_printf(m, ", Panel Replay = %s\n", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay Selective Update = %s\n",
-+		   str_yes_no(psr->sink_panel_replay_su_support));
- 
- 	if (!(psr->sink_support || psr->sink_panel_replay_support))
- 		return 0;
-@@ -3573,9 +3575,10 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 	mutex_lock(&psr->lock);
- 
- 	if (psr->panel_replay_enabled)
--		status = "Panel Replay Enabled";
-+		status = psr->sel_update_enabled ? "Panel Replay Selective Update Enabled" :
-+			"Panel Replay Enabled";
- 	else if (psr->enabled)
--		status = psr->sel_update_enabled ? "PSR2 enabled" : "PSR1 enabled";
-+		status = psr->sel_update_enabled ? "PSR2" : "PSR1";
- 	else
- 		status = "disabled";
- 	seq_printf(m, "PSR mode: %s\n", status);
--- 
-2.34.1
-
+>  		}
+>  	}
+>  
+> -- 
+> 2.34.1
+> 
