@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6386489CB7E
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E1389CB7F
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:09:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B9A011256C;
-	Mon,  8 Apr 2024 18:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2141127F9;
+	Mon,  8 Apr 2024 18:09:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+8IaOp1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nsBG/N9x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB11111292B;
- Mon,  8 Apr 2024 18:09:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1733F11292A;
+ Mon,  8 Apr 2024 18:09:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712599767; x=1744135767;
+ t=1712599772; x=1744135772;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1ZIAlQzCbPYLRLb17dR3tOWHWgGd6Pm+ZJ1kfXS0AxI=;
- b=D+8IaOp1w7307GvVTFVCROLfJxziqB3OZ0Qh+tZHx6TbtijJP7pvdHz1
- tyF7IFlmROXHh65lUf7EG7Pk3k/lX/0KtqJt07QiDYXNwtUdrcL5H9OHQ
- 9oJnBoNgMlUeaBRdUxVeRaEUPWkeRq8l31/TOEZy6jLzxcLtOfuvExBBq
- luIR1OUgX7ZA54nycttTbRnVsMl7dTRgdBxCqqU+K/srAerXnG3CJPG/j
- gcSEg8GlgdHusRezTVWD+54sgnpcdpFS5eIGUf8pRL2RGoPVtaJrxqwLV
- QHK19uca0LBxqW0xi6rn/QXcJ0ilfn7PiRCn2/hSNajOWlsJY67HdvqPe g==;
-X-CSE-ConnectionGUID: 14OHlFh9QfCku3V1quU/iQ==
-X-CSE-MsgGUID: Jelz1wG+QHiKkrxSECoW4g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11730241"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11730241"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ bh=0DCzZLT3sobPAGaYtFNQ6HrbO2asFP+p8bGJwr4lkeA=;
+ b=nsBG/N9xGoBWLR/2aJVDANi2VecCXe3B9Te/1KBr9sXBmyT+o7x0rvFP
+ J43DYNKDM2i4dPtEMMRVydrcXAUz4T8ldxbyFaiEzVQ75WE1XVodhRvbF
+ GK1nuOzeFGKLvXxHgCK/LeXZvksR8ZmxN/2dFl8nQX/Yt7hHhkb5NyYBX
+ EkjELEq92AIDSyJUnntzHYcb1Rn+L4pLathqbsH62JBaU67iEbKisQK9O
+ CueVjunaMym8KwbY1y9pszBnHW/U7FuGEuw7CxRGPTVhYL8ATB87IYjcf
+ 2xJGkgg04WH6jhtb2yqhWDTtUjZd5kpFHPBJu9EEDrccujssRgMt2wnjD w==;
+X-CSE-ConnectionGUID: IVGUJ8chRC+2HNL+sx0UCg==
+X-CSE-MsgGUID: VRYT+EfxTcGbVMyMTtTBEQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11730243"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11730243"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:09:26 -0700
-X-CSE-ConnectionGUID: gwM0UHigT6Smf+eUilaDGQ==
-X-CSE-MsgGUID: hzxi0+N/Rc2AqxuoWEqGDA==
+ 08 Apr 2024 11:09:32 -0700
+X-CSE-ConnectionGUID: rBrV2cpUTiGrxGsJh8Fj7Q==
+X-CSE-MsgGUID: Rnz/u5yPR4O5PM4T2pl4Ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19915292"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="20022179"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:09:25 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 11:09:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	lucas.demarchi@intel.com
-Subject: [PATCH 7/8] drm/i915: move pipestat_irq_mask to display substruct
-Date: Mon,  8 Apr 2024 21:08:42 +0300
-Message-Id: <2e2f1c9576126927ea63a54639077c01d44ad5b6.1712599670.git.jani.nikula@intel.com>
+Subject: [PATCH 8/8] drm/xe/display: remove unused xe->enabled_irq_mask
+Date: Mon,  8 Apr 2024 21:08:43 +0300
+Message-Id: <104f4ac786b7c7eb2ed575670568b96ffb2d2f78.1712599671.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1712599670.git.jani.nikula@intel.com>
 References: <cover.1712599670.git.jani.nikula@intel.com>
@@ -71,110 +71,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The info is related to display, and should be placed under
-i915->display.
+The xe->enabled_irq_mask member has never been used for anything.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_core.h |  1 +
- drivers/gpu/drm/i915/display/intel_display_irq.c  | 14 +++++++-------
- drivers/gpu/drm/i915/i915_drv.h                   |  1 -
- drivers/gpu/drm/xe/xe_device_types.h              |  1 -
- 4 files changed, 8 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 1 -
+ drivers/gpu/drm/xe/xe_device_types.h    | 2 --
+ 2 files changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 7a70b162b015..db9b6492758e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -454,6 +454,7 @@ struct intel_display {
- 		u8 vblank_enabled;
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 6ec375c1c4b6..32a8242e1ef4 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -108,7 +108,6 @@ int xe_display_create(struct xe_device *xe)
+ 	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
  
- 		u32 de_irq_mask[I915_MAX_PIPES];
-+		u32 pipestat_irq_mask[I915_MAX_PIPES];
- 	} irq;
+ 	drmm_mutex_init(&xe->drm, &xe->sb_lock);
+-	xe->enabled_irq_mask = ~0;
  
- 	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 9b9548ae9797..c337e0597541 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -180,7 +180,7 @@ void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits)
- u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
- 			      enum pipe pipe)
- {
--	u32 status_mask = dev_priv->pipestat_irq_mask[pipe];
-+	u32 status_mask = dev_priv->display.irq.pipestat_irq_mask[pipe];
- 	u32 enable_mask = status_mask << 16;
- 
- 	lockdep_assert_held(&dev_priv->irq_lock);
-@@ -234,10 +234,10 @@ void i915_enable_pipestat(struct drm_i915_private *dev_priv,
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 	drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv));
- 
--	if ((dev_priv->pipestat_irq_mask[pipe] & status_mask) == status_mask)
-+	if ((dev_priv->display.irq.pipestat_irq_mask[pipe] & status_mask) == status_mask)
- 		return;
- 
--	dev_priv->pipestat_irq_mask[pipe] |= status_mask;
-+	dev_priv->display.irq.pipestat_irq_mask[pipe] |= status_mask;
- 	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
- 
- 	intel_uncore_write(&dev_priv->uncore, reg, enable_mask | status_mask);
-@@ -257,10 +257,10 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 	drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv));
- 
--	if ((dev_priv->pipestat_irq_mask[pipe] & status_mask) == 0)
-+	if ((dev_priv->display.irq.pipestat_irq_mask[pipe] & status_mask) == 0)
- 		return;
- 
--	dev_priv->pipestat_irq_mask[pipe] &= ~status_mask;
-+	dev_priv->display.irq.pipestat_irq_mask[pipe] &= ~status_mask;
- 	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
- 
- 	intel_uncore_write(&dev_priv->uncore, reg, enable_mask | status_mask);
-@@ -402,7 +402,7 @@ void i9xx_pipestat_irq_reset(struct drm_i915_private *dev_priv)
- 				   PIPESTAT_INT_STATUS_MASK |
- 				   PIPE_FIFO_UNDERRUN_STATUS);
- 
--		dev_priv->pipestat_irq_mask[pipe] = 0;
-+		dev_priv->display.irq.pipestat_irq_mask[pipe] = 0;
- 	}
- }
- 
-@@ -446,7 +446,7 @@ void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
- 			break;
- 		}
- 		if (iir & iir_bit)
--			status_mask |= dev_priv->pipestat_irq_mask[pipe];
-+			status_mask |= dev_priv->display.irq.pipestat_irq_mask[pipe];
- 
- 		if (!status_mask)
- 			continue;
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 41add82ca369..ee0d7d5f135d 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -241,7 +241,6 @@ struct drm_i915_private {
- 
- 	/** Cached value of IMR to avoid reads in updating the bitfield */
- 	u32 irq_mask;
--	u32 pipestat_irq_mask[I915_MAX_PIPES];
- 
- 	bool preserve_bios_swizzle;
- 
+ 	err = drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+ 	if (err)
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 359c912359fa..faa32407efa5 100644
+index faa32407efa5..536cb8a44ea4 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -502,7 +502,6 @@ struct xe_device {
- 
+@@ -503,8 +503,6 @@ struct xe_device {
  	/* only to allow build, not used functionally */
  	u32 irq_mask;
--	u32 pipestat_irq_mask[I915_MAX_PIPES];
  
- 	u32 enabled_irq_mask;
- 
+-	u32 enabled_irq_mask;
+-
+ 	struct intel_uncore {
+ 		spinlock_t lock;
+ 	} uncore;
 -- 
 2.39.2
 
