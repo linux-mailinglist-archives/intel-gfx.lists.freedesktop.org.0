@@ -2,58 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA67489CAB1
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071F389CAB7
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:26:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C051128E7;
-	Mon,  8 Apr 2024 17:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA4C1128FA;
+	Mon,  8 Apr 2024 17:26:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jcc76JcI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VB/Q30IA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 535831128DA
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 17:23:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74DCE1128FA;
+ Mon,  8 Apr 2024 17:26:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712597006; x=1744133006;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9myFEi9+1hbvDipkWzf+o5TvXS3aBQTjqsbf+3s9mJc=;
- b=Jcc76JcI0RMashac3t2Xvx9kAKj/HOaospT1B6cNoEBnhrc2o/eESzua
- kZyGpaNRgAZQ1lAEjPxuofgI4iLv+hGR9uwJm2MM1TzM7G7e+/NsnMKap
- UC/8oFFKRz+MUTBvST3djRl704Jf1ap401L/h4B9yuWHfKZMMoCJp0880
- gQSorYR9ljMxrme9w7r5T6b6GDGdkWnIqyYdTCYnFfuLbnBdEQA/ZA61Y
- 5J/A6sL+pYx4aJZNCnwk89ctQjy25ansAX0vEZeAVdzP/SHLDjDoXOI/V
- Wc5INvpkiLl38KDHZwCILBgxamiYUpCaWbEBX+lgHLub+b2TfOw+9MV8V Q==;
-X-CSE-ConnectionGUID: XPAvXsjcS0ixMoMpk6+18Q==
-X-CSE-MsgGUID: dOi8cnAbR2GMaTLnYl06dA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19032178"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19032178"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:23:26 -0700
-X-CSE-ConnectionGUID: FItzR4HkSsulyQFIR5gaQQ==
-X-CSE-MsgGUID: kIRy68GkQy6B+nLr/Zfm1g==
+ t=1712597176; x=1744133176;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=iE5SxEOcIDrXPM1wB9J8/QClBe1NcQE7JAThZZbyKCM=;
+ b=VB/Q30IAAZFZinaANPvQdxZUrRTJ2O+SesMtru5ScCK7ZVIwD86N4sRB
+ 1uNH1IuAC85mGKIr9IXI0PAFwzcTHsCznCleEnpRZ73K1+JKRVCulYnwP
+ Mt6XwC50hmHGL3LHMqwL6lMxYbYJFH+jhrWqzNg7YrRm4O+vEOQTap7fl
+ cbBGrR73bpFvqyEJ7qjNILjcuEPn/1ixItInt8zLbEUkjpdxZGcIVXG+V
+ KkBMQTMVHVKiZbbrwKB2qpR/BLeG9lyD23Cz901dAqiY/0gXIsg2IDgTb
+ i4rfWYs9EtdfjxoOswfIto51+NMQfRsSXtw0zRrJQ0mm01yYP4MRyPwhs A==;
+X-CSE-ConnectionGUID: vlMrwuL/SvGEk7evSsyM8Q==
+X-CSE-MsgGUID: S2wYZxLBRSWTV9pGceW0TA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7795152"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
+   d="scan'208";a="7795152"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 10:26:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24434185"
-Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.42.71])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:23:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/i915: move rawclk from runtime to display runtime info
-Date: Mon,  8 Apr 2024 20:23:15 +0300
-Message-Id: <20240408172315.3418692-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240408172315.3418692-1-jani.nikula@intel.com>
-References: <20240408172315.3418692-1-jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792350"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="827792350"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 10:26:13 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 08 Apr 2024 20:26:12 +0300
+Date: Mon, 8 Apr 2024 20:26:12 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 11/12] drm/client: Streamline mode selection debugs
+Message-ID: <ZhQotN--J99J1Ayk@intel.com>
+References: <20240404203336.10454-1-ville.syrjala@linux.intel.com>
+ <20240404203336.10454-12-ville.syrjala@linux.intel.com>
+ <9f689077-529f-431b-9506-e92f8a1d8003@suse.de>
+ <ZhBX-2FDEJH98IrR@intel.com>
+ <752f5073-20b3-4671-bf12-1cf0756313a6@suse.de>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <752f5073-20b3-4671-bf12-1cf0756313a6@suse.de>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,199 +74,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's mostly about display, so move it under display.
+On Mon, Apr 08, 2024 at 09:46:44AM +0200, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 05.04.24 um 21:58 schrieb Ville Syrjälä:
+> > On Fri, Apr 05, 2024 at 09:57:07AM +0200, Thomas Zimmermann wrote:
+> >> Hi
+> >>
+> >> Am 04.04.24 um 22:33 schrieb Ville Syrjala:
+> >>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >>>
+> >>> Get rid of all the redundant debugs and just wait until the end
+> >>> to print which mode (and of which type) we picked.
+> >>>
+> >>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >>> ---
+> >>>    drivers/gpu/drm/drm_client_modeset.c | 65 +++++++++++++---------------
+> >>>    1 file changed, 31 insertions(+), 34 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+> >>> index 415d1799337b..ad88c11037d8 100644
+> >>> --- a/drivers/gpu/drm/drm_client_modeset.c
+> >>> +++ b/drivers/gpu/drm/drm_client_modeset.c
+> >>> @@ -408,6 +408,8 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+> >>>    
+> >>>    retry:
+> >>>    	for (i = 0; i < connector_count; i++) {
+> >>> +		const char *mode_type;
+> >>> +
+> >>>    		connector = connectors[i];
+> >>>    
+> >>>    		if (conn_configured & BIT_ULL(i))
+> >>> @@ -440,20 +442,20 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+> >>>    			drm_client_get_tile_offsets(dev, connectors, connector_count, modes, offsets, i,
+> >>>    						    connector->tile_h_loc, connector->tile_v_loc);
+> >>>    		}
+> >>> -		drm_dbg_kms(dev, "looking for cmdline mode on [CONNECTOR:%d:%s]\n",
+> >>> -			    connector->base.id, connector->name);
+> >>>    
+> >>> -		/* got for command line mode first */
+> >>> +		mode_type = "cmdline";
+> >>>    		modes[i] = drm_connector_pick_cmdline_mode(connector);
+> >>> +
+> >>>    		if (!modes[i]) {
+> >>> -			drm_dbg_kms(dev, "looking for preferred mode on [CONNECTOR:%d:%s] (tile group: %d)\n",
+> >>> -				    connector->base.id, connector->name,
+> >>> -				    connector->tile_group ? connector->tile_group->id : 0);
+> >>> +			mode_type = "preferred";
+> >>>    			modes[i] = drm_connector_preferred_mode(connector, width, height);
+> >>>    		}
+> >>> -		/* No preferred modes, pick one off the list */
+> >>> -		if (!modes[i])
+> >>> +
+> >>> +		if (!modes[i]) {
+> >>> +			mode_type = "first";
+> >>>    			modes[i] = drm_connector_first_mode(connector);
+> >>> +		}
+> >>> +
+> >>>    		/*
+> >>>    		 * In case of tiled mode if all tiles not present fallback to
+> >>>    		 * first available non tiled mode.
+> >>> @@ -468,16 +470,20 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+> >>>    			    (connector->tile_h_loc == 0 &&
+> >>>    			     connector->tile_v_loc == 0 &&
+> >>>    			     !drm_connector_get_tiled_mode(connector))) {
+> >>> -				drm_dbg_kms(dev, "Falling back to non tiled mode on [CONNECTOR:%d:%s]\n",
+> >>> -					    connector->base.id, connector->name);
+> >>> +				mode_type = "non tiled";
+> >>>    				modes[i] = drm_connector_fallback_non_tiled_mode(connector);
+> >>>    			} else {
+> >>> +				mode_type = "tiled";
+> >>>    				modes[i] = drm_connector_get_tiled_mode(connector);
+> >>>    			}
+> >>>    		}
+> >>>    
+> >>> -		drm_dbg_kms(dev, "found mode %s\n",
+> >>> -			    modes[i] ? modes[i]->name : "none");
+> >>> +		if (!modes[i])
+> >>> +			mode_type = "no";
+> >>> +
+> >>> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found %s mode: %s\n",
+> >>> +			    connector->base.id, connector->name,
+> >>> +			    mode_type, modes[i] ? modes[i]->name : "none");
+> >> Instead of tracking the whole mode_type thing, maybe just do
+> >>
+> >> if (!modes[i])
+> >>       drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found mode: " DRM_MODE_FMT,
+> >> DRM_MODE_ARG(modes[i]) );
+> >>
+> >> to print the full mode.
+> > The point of the mode_type is to indicate how we derived
+> > that mode. Printing the full modeline doesn't help with that.
+> 
+> But do we care where the mode comes from? At least from my experience, 
+> it's much more important to know which modes had been available.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_backlight.c         | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_cdclk.c             |  2 +-
- drivers/gpu/drm/i915/display/intel_display_device.c    |  2 ++
- drivers/gpu/drm/i915/display/intel_display_device.h    |  2 ++
- .../gpu/drm/i915/display/intel_display_power_well.c    |  4 ++--
- drivers/gpu/drm/i915/display/intel_dp_aux.c            |  4 ++--
- drivers/gpu/drm/i915/display/intel_pps.c               |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c         |  2 +-
- drivers/gpu/drm/i915/intel_device_info.c               |  1 -
- drivers/gpu/drm/i915/intel_device_info.h               |  2 --
- 10 files changed, 16 insertions(+), 15 deletions(-)
+The tiled vs. not-tiled at least could be quite interesting.
+We know there are actual bugs in this code where some tiled 
+connectors seem to incorrectly think they aren't tiled
+while others correctly think they are tiled. Seeing that
+spelled out more clearly in the logs might help with triage.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 4d4330410b4d..bbc1da3305be 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -1011,7 +1011,7 @@ static u32 cnp_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 
--	return DIV_ROUND_CLOSEST(KHz(RUNTIME_INFO(i915)->rawclk_freq),
-+	return DIV_ROUND_CLOSEST(KHz(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq),
- 				 pwm_freq_hz);
- }
- 
-@@ -1073,7 +1073,7 @@ static u32 pch_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 
--	return DIV_ROUND_CLOSEST(KHz(RUNTIME_INFO(i915)->rawclk_freq),
-+	return DIV_ROUND_CLOSEST(KHz(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq),
- 				 pwm_freq_hz * 128);
- }
- 
-@@ -1091,7 +1091,7 @@ static u32 i9xx_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
- 	int clock;
- 
- 	if (IS_PINEVIEW(i915))
--		clock = KHz(RUNTIME_INFO(i915)->rawclk_freq);
-+		clock = KHz(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq);
- 	else
- 		clock = KHz(i915->display.cdclk.hw.cdclk);
- 
-@@ -1109,7 +1109,7 @@ static u32 i965_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
- 	int clock;
- 
- 	if (IS_G4X(i915))
--		clock = KHz(RUNTIME_INFO(i915)->rawclk_freq);
-+		clock = KHz(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq);
- 	else
- 		clock = KHz(i915->display.cdclk.hw.cdclk);
- 
-@@ -1133,7 +1133,7 @@ static u32 vlv_hz_to_pwm(struct intel_connector *connector, u32 pwm_freq_hz)
- 			clock = MHz(25);
- 		mul = 16;
- 	} else {
--		clock = KHz(RUNTIME_INFO(i915)->rawclk_freq);
-+		clock = KHz(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq);
- 		mul = 128;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 64a1cf4ed45c..74515f6bb64e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3608,7 +3608,7 @@ static void intel_rawclk_init(struct drm_i915_private *dev_priv)
- 	else if (DISPLAY_VER(dev_priv) >= 3)
- 		freq = i9xx_hrawclk(dev_priv);
- 
--	RUNTIME_INFO(dev_priv)->rawclk_freq = freq;
-+	DISPLAY_RUNTIME_INFO(dev_priv)->rawclk_freq = freq;
- 	drm_dbg_kms(&dev_priv->drm, "rawclk rate: %d kHz\n", freq);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index b8903bd0e82a..6fefdd90c600 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1142,6 +1142,8 @@ void intel_display_device_info_print(const struct intel_display_device_info *inf
- 	drm_printf(p, "has_hdcp: %s\n", str_yes_no(runtime->has_hdcp));
- 	drm_printf(p, "has_dmc: %s\n", str_yes_no(runtime->has_dmc));
- 	drm_printf(p, "has_dsc: %s\n", str_yes_no(runtime->has_dsc));
-+
-+	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 66b51de86e38..969ad95a3e7c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -110,6 +110,8 @@ struct drm_printer;
- 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
- 
- struct intel_display_runtime_info {
-+	u32 rawclk_freq;
-+
- 	struct {
- 		u16 ver;
- 		u16 rel;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index e4de40228997..ee18b88dabfd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1168,9 +1168,9 @@ static void vlv_init_display_clock_gating(struct drm_i915_private *dev_priv)
- 		       MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE);
- 	intel_de_write(dev_priv, CBR1_VLV, 0);
- 
--	drm_WARN_ON(&dev_priv->drm, RUNTIME_INFO(dev_priv)->rawclk_freq == 0);
-+	drm_WARN_ON(&dev_priv->drm, DISPLAY_RUNTIME_INFO(dev_priv)->rawclk_freq == 0);
- 	intel_de_write(dev_priv, RAWCLK_FREQ_VLV,
--		       DIV_ROUND_CLOSEST(RUNTIME_INFO(dev_priv)->rawclk_freq,
-+		       DIV_ROUND_CLOSEST(DISPLAY_RUNTIME_INFO(dev_priv)->rawclk_freq,
- 					 1000));
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index b8a53bb174da..cbc817bb0cc3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -83,7 +83,7 @@ static u32 g4x_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- 	 * The clock divider is based off the hrawclk, and would like to run at
- 	 * 2MHz.  So, take the hrawclk value and divide by 2000 and use that
- 	 */
--	return DIV_ROUND_CLOSEST(RUNTIME_INFO(i915)->rawclk_freq, 2000);
-+	return DIV_ROUND_CLOSEST(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq, 2000);
- }
- 
- static u32 ilk_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
-@@ -103,7 +103,7 @@ static u32 ilk_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- 	if (dig_port->aux_ch == AUX_CH_A)
- 		freq = i915->display.cdclk.hw.cdclk;
- 	else
--		freq = RUNTIME_INFO(i915)->rawclk_freq;
-+		freq = DISPLAY_RUNTIME_INFO(i915)->rawclk_freq;
- 	return DIV_ROUND_CLOSEST(freq, 2000);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index b5d9920f8341..d02d83d625b0 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1468,7 +1468,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	u32 pp_on, pp_off, port_sel = 0;
--	int div = RUNTIME_INFO(dev_priv)->rawclk_freq / 1000;
-+	int div = DISPLAY_RUNTIME_INFO(dev_priv)->rawclk_freq / 1000;
- 	struct pps_registers regs;
- 	enum port port = dp_to_dig_port(intel_dp)->base.port;
- 	const struct edp_power_seq *seq = &intel_dp->pps.pps_delays;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-index 7c9be4fd1c8c..df784603beac 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-@@ -151,7 +151,7 @@ static u32 gen4_read_clock_frequency(struct intel_uncore *uncore)
- 	 *
- 	 * Testing on actual hardware has shown there is no /16.
- 	 */
--	return RUNTIME_INFO(uncore->i915)->rawclk_freq * 1000;
-+	return DISPLAY_RUNTIME_INFO(uncore->i915)->rawclk_freq * 1000;
- }
- 
- static u32 read_clock_frequency(struct intel_uncore *uncore)
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 48f0957392f9..d159eb1847ce 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -124,7 +124,6 @@ void intel_device_info_print(const struct intel_device_info *info,
- #undef PRINT_FLAG
- 
- 	drm_printf(p, "has_pooled_eu: %s\n", str_yes_no(runtime->has_pooled_eu));
--	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
- }
- 
- #undef INTEL_VGA_DEVICE
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index d1a2abc7e513..fb8a08623eb0 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -204,8 +204,6 @@ struct intel_runtime_info {
- 
- 	u16 device_id;
- 
--	u32 rawclk_freq;
--
- 	struct intel_step_info step;
- 
- 	unsigned int page_sizes; /* page sizes supported by the HW */
+> 
+> If the source of the mode is really important, the old messages seem 
+> preferable to me.
+
+The old debugs were somewhat crap. They basically just said
+"looking for mode via <method X>", and then the last one of those
+you saw in the log you assumed was the method used in the end.
+But not all methods even had that debug print. So basically you
+could never be sure what method was used in the end.
+
+> Debugging code should be trivial and not add logic or 
+> flow control to a function IMHO.
+
+It doesn't add anything of the sort. The control flow
+is 100% based on mode==NULL.
+
 -- 
-2.39.2
-
+Ville Syrjälä
+Intel
