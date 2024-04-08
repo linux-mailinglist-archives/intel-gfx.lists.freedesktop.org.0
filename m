@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6795789CAA8
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC78A89CAB0
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:23:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6CEB1128F4;
-	Mon,  8 Apr 2024 17:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F1710E184;
+	Mon,  8 Apr 2024 17:23:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4JIOZpz";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE8621128F2;
- Mon,  8 Apr 2024 17:22:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3879647320240794674=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78EB810E184
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 17:23:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712597003; x=1744133003;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JTXkdKNloIkoEMTkxFCOay6eP88kumXmQyiCyXKfC5Y=;
+ b=Q4JIOZpzscsTu8wBN3KCNtJ/jlr9vtsculvkpy+KmSXtx7zIZtxDDko3
+ dmpZYdgSn60Fo+FQetfB3/rn1wsUkqQavfs2e7CPKRs7BXIQ5cGOkns8S
+ iPtLqykRq/11465dt5UI/DxWeDWirZguLCvQGZuxXQl7L9Ry7lT3MlwgT
+ QMTSgkErRwVwHC4NcJigI9nXkvfepW28ePApDUhB8eDJEbAgtbmjxlutT
+ IW2mzmAoiiayxEhDXyTF5Dtfp8gAuneW0H7mhKvjA6CwOkTFgTLLeV5oU
+ RBNJEFboZNpsci7zbZnJjfioQzJkxX0q+6mXyj7sR2zrNLJLGpB9VE6/7 w==;
+X-CSE-ConnectionGUID: 7UR0H+6hT16wN4mSX0tz3Q==
+X-CSE-MsgGUID: iwM+71olTLe99hkFVXKuCQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19032170"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19032170"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 10:23:22 -0700
+X-CSE-ConnectionGUID: RP1Ll1lZQXGT1CJ2bRw38g==
+X-CSE-MsgGUID: UvQ/MKs4S9ersizd2P2Gow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="24434174"
+Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.71])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 10:23:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/2] drm/i915: move rawclk init to intel_cdclk_init()
+Date: Mon,  8 Apr 2024 20:23:14 +0300
+Message-Id: <20240408172315.3418692-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_use_check=5Fadd?=
- =?utf-8?q?=5Foverflow=28=29_and_drop_local_variants_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 08 Apr 2024 17:22:20 -0000
-Message-ID: <171259694097.1286010.3940231288523365495@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240405202625.2525671-1-jani.nikula@intel.com>
-In-Reply-To: <20240405202625.2525671-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,183 +64,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3879647320240794674==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The rawclk initialization is a bit out of place in
+intel_device_info_runtime_init(). Move it to intel_cdclk_init(), with a
+bit of refactoring on intel_read_rawclk().
 
-== Series Details ==
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 23 +++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_cdclk.h |  1 -
+ drivers/gpu/drm/i915/intel_device_info.c   |  4 ----
+ 3 files changed, 11 insertions(+), 17 deletions(-)
 
-Series: drm/i915: use check_add_overflow() and drop local variants (rev2)
-URL   : https://patchwork.freedesktop.org/series/132104/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index d61aa5b7cbdb..64a1cf4ed45c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -3210,6 +3210,8 @@ int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joi
+ 	return intel_atomic_lock_global_state(&cdclk_state->base);
+ }
+ 
++static void intel_rawclk_init(struct drm_i915_private *dev_priv);
++
+ int intel_cdclk_init(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_cdclk_state *cdclk_state;
+@@ -3221,6 +3223,8 @@ int intel_cdclk_init(struct drm_i915_private *dev_priv)
+ 	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.cdclk.obj,
+ 				     &cdclk_state->base, &intel_cdclk_funcs);
+ 
++	intel_rawclk_init(dev_priv);
++
+ 	return 0;
+ }
+ 
+@@ -3578,16 +3582,13 @@ static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
+ 	}
+ }
+ 
+-/**
+- * intel_read_rawclk - Determine the current RAWCLK frequency
+- * @dev_priv: i915 device
+- *
+- * Determine the current RAWCLK frequency. RAWCLK is a fixed
+- * frequency clock so this needs to done only once.
++/*
++ * Initialize the current RAWCLK frequency. RAWCLK is a fixed frequency clock so
++ * this needs to done only once.
+  */
+-u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
++static void intel_rawclk_init(struct drm_i915_private *dev_priv)
+ {
+-	u32 freq;
++	u32 freq = 0;
+ 
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_MTL)
+ 		/*
+@@ -3606,11 +3607,9 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+ 		freq = vlv_hrawclk(dev_priv);
+ 	else if (DISPLAY_VER(dev_priv) >= 3)
+ 		freq = i9xx_hrawclk(dev_priv);
+-	else
+-		/* no rawclk on other platforms, or no need to know it */
+-		return 0;
+ 
+-	return freq;
++	RUNTIME_INFO(dev_priv)->rawclk_freq = freq;
++	drm_dbg_kms(&dev_priv->drm, "rawclk rate: %d kHz\n", freq);
+ }
+ 
+ static int i915_cdclk_info_show(struct seq_file *m, void *unused)
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index cfdcdec07a4d..a3f950d5a366 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -64,7 +64,6 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915);
+ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv);
+ void intel_update_max_cdclk(struct drm_i915_private *dev_priv);
+ void intel_update_cdclk(struct drm_i915_private *dev_priv);
+-u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
+ bool intel_cdclk_clock_changed(const struct intel_cdclk_config *a,
+ 			       const struct intel_cdclk_config *b);
+ int intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index a0a43ea07f11..48f0957392f9 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -370,10 +370,6 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 			 "Disabling ppGTT for VT-d support\n");
+ 		runtime->ppgtt_type = INTEL_PPGTT_NONE;
+ 	}
+-
+-	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
+-	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
+-
+ }
+ 
+ /*
+-- 
+2.39.2
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14543 -> Patchwork_132104v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Additional (1): fi-kbl-7567u 
-  Missing    (2): bat-dg1-7 bat-mtlp-9 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_132104v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - bat-dg2-14:         [PASS][3] -> [ABORT][4] ([i915#10366] / [i915#10677])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-dg2-14/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/bat-dg2-14/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][5] +11 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@runner@aborted:
-    - bat-arls-2:         NOTRUN -> [FAIL][6] ([i915#10690])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/bat-arls-2/igt@runner@aborted.html
-
-  
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-  [i915#10677]: https://gitlab.freedesktop.org/drm/intel/issues/10677
-  [i915#10690]: https://gitlab.freedesktop.org/drm/intel/issues/10690
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14543 -> Patchwork_132104v2
-
-  CI-20190529: 20190529
-  CI_DRM_14543: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7801: 7801
-  Patchwork_132104v2: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-c1b23ced5610 drm/i915: use check_add_overflow() and drop local variants
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/index.html
-
---===============3879647320240794674==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: use check_add_overflow() and drop local variants (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132104/">https://patchwork.freedesktop.org/series/132104/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14543 -&gt; Patchwork_132104v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (1): fi-kbl-7567u <br />
-  Missing    (2): bat-dg1-7 bat-mtlp-9 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132104v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-dg2-14/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/bat-dg2-14/igt@i915_selftest@live@gt_heartbeat.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10677">i915#10677</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132104v2/bat-arls-2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10690">i915#10690</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14543 -&gt; Patchwork_132104v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14543: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7801: 7801<br />
-  Patchwork_132104v2: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>c1b23ced5610 drm/i915: use check_add_overflow() and drop local variants</p>
-
-</body>
-</html>
-
---===============3879647320240794674==--
