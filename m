@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F398589BF55
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 14:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8797F89BF77
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 14:51:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1632112552;
-	Mon,  8 Apr 2024 12:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96B9D112558;
+	Mon,  8 Apr 2024 12:51:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y3N4IpdW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="itSKLIkj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5DA1112553
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 12:46:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41227112556;
+ Mon,  8 Apr 2024 12:51:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712580380; x=1744116380;
+ t=1712580704; x=1744116704;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=6raYpUWIG9JNGW2bbyuod5HTHwaKQhwjhwZyMgcXwnQ=;
- b=Y3N4IpdWgF60OMQVhwzzZQBncMWgFVAnCQ91DmYkTX7RdsX18zmwx7W0
- 73K7sAKKDrnPMVSD07CV4f4Vd3IIkSOmam+P0jGOvGznhm3g0HISziQEw
- +535Ix5CqKAnRgGSyCug7tFWDqkU1ASRqPB+Y+JVUSuSloTPA/roMA2nd
- YBZtLoEGPRV+ESY3eNCDcX25M+us3H1dhg42elIqtMLHEs8W05SNwPjYM
- U6QZ9/nxSnp3aTErQbjszD4zaxCg/gyDaOPtcqfxvfqyNFSZukIuac3VD
- AjKN/sardcZSlyByDPfFYfVdN3Mb9QoVc8Vw4zNNby4FU8YU+QCpcyN+O A==;
-X-CSE-ConnectionGUID: eYDsfh5jSNGY9B4MUZvwDQ==
-X-CSE-MsgGUID: ChvtWGH3TC6rWyxLOvofwQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="33251697"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="33251697"
+ bh=gbv+Wvg5dd7WPdDlDRXmFPd6E5AwOV3OIz+mA5OwJxg=;
+ b=itSKLIkjCc0qNcRaNIH7Osyq0r1D5rQrYHOT+LaLuM7PpisAVf4AbFeF
+ k/ZHk+hjO/c6IOWodRmg3kOvgnq34NZKTBRVYctaEq7yJEsYXhxaqzZmH
+ M86v29leC3guqVcdqkissE8VhXJ/k6TgioJvGd9fNRTQX9ZvasOTF+uNh
+ v6Ax4u7OCh2t4TMJgEXcmzXNKFNk0lYxEkAGWXn5FLxfUJWaUFAw/6A5c
+ 4Ldk0uSb0VrhBRO5hYNA6YUeQxEEev+BayIT0H3JHvziGrvlqTkFv7MwR
+ AX2+gToGLpnbOUnIZmlgnSs9TmPKQzAX729vBxSDOhfGh0V3//YFYWbgT g==;
+X-CSE-ConnectionGUID: NUMVAjvCRbG23moS4eqpqg==
+X-CSE-MsgGUID: r6YViW62Sd2dUrHhV7aeGA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="33252068"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="33252068"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 05:46:04 -0700
+ 08 Apr 2024 05:51:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="827792240"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="827792240"
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="827792248"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="827792248"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 05:46:01 -0700
+ by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 05:51:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 08 Apr 2024 15:46:00 +0300
-Date: Mon, 8 Apr 2024 15:46:00 +0300
+ Mon, 08 Apr 2024 15:51:38 +0300
+Date: Mon, 8 Apr 2024 15:51:38 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2 01/17] drm/i915: Update pipes in reverse order for
- bigjoiner
-Message-ID: <ZhPnCGiglWA8x2_I@intel.com>
-References: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
- <20240404213441.17637-2-ville.syrjala@linux.intel.com>
- <IA0PR11MB7307EF4E4263D22864B078D2BA032@IA0PR11MB7307.namprd11.prod.outlook.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 7/7] drm: prefer DRM_MODE_FMT/ARG over
+ drm_mode_debug_printmodeline()
+Message-ID: <ZhPoWiXybrTxGte2@intel.com>
+References: <cover.1712568037.git.jani.nikula@intel.com>
+ <6df18588dfa17c5d0a1501f5af9ff21f25a1981b.1712568037.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <IA0PR11MB7307EF4E4263D22864B078D2BA032@IA0PR11MB7307.namprd11.prod.outlook.com>
+In-Reply-To: <6df18588dfa17c5d0a1501f5af9ff21f25a1981b.1712568037.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,134 +72,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 12:56:52PM +0000, Murthy, Arun R wrote:
+On Mon, Apr 08, 2024 at 12:24:02PM +0300, Jani Nikula wrote:
+> We have DRM_MODE_FMT and DRM_MODE_ARG() macros to allow unified debug
+> printing of modes in any printk-formatted logging. Prefer them over
+> drm_mode_debug_printmodeline().
 > 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Friday, April 5, 2024 3:04 AM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH v2 01/17] drm/i915: Update pipes in reverse order for bigjoiner
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > With bigjoiner the master crtc is the one that will send out the uapi event/etc.
-> > We want that to happen after all the slaves are done, so let's try to do the
-> > commits in reverse order so that the master comes last.
-> > 
-> > Even worse, the modeset helper will simply complete the commit on the slave
-> > pipe immediately as it consider the crtc to be inactive (it can't see our
-> > crtc_state->hw.active/etc.).
-> > 
-> > With regular sync updates this generally doesn't matter all that much as the
-> > slave pipe should typically finish its work during the same frame as the master
-> > pipe. However in case the slave pipe's commit slips into the next frame we end
-> > up in a bit of trouble. This is most visible with either async flips (currently
-> > disabled with bigjoiner exactly for this reason), and DSB gamma updates. With
-> > DSB the problem happens because the DSB itself will wait until the next start
-> > vblank before starting to execute. So if the master pipe already finished its
-> > commit and the DSB on the slave pipe is still waiting for the next vblank we will
-> > assume the DSB as gotten stuck and terminate it.
-> > 
-> > Reversing the commit order should ameliarate this for the most part as the
-> > master pipe is guaranteed to start its commit after the slave pipe started. The
-> > one thing that can still screw us over is the fact that we aren't necessarily going
-> > to commit the pipes in the reverse order as the actual order is dictated by the
-> > DDB overlap avoidance.
-> > But that can only happen while other pipes are being enabled/disabled, and so
-> > in the normal steady state we should be safe.
-> > 
-> > The full fix will involve making the commit machinery aware of the slave pipes
-> > and not finish their commits prematurely. But that will involve a bit more work
-> > than this. And this commit order reversal will still be beneficial to avoid
-> > userspace getting an -EBUSY from the following page flip if the second pipe's
-> > commit does stretch into the next frame.
-> Can there be a possibility of seeing a flicker/corruption in that case?
-> Also should this be added a TODO in the driver so that it will not be missed out?
-
-I have something typed up for this already. Just waiting for better
-testing coverage to actually exercise it properly.
-
+> This allows drm device specific logging of modes, in the right drm debug
+> category, and inline with the rest of the logging instead of split to
+> multiple lines.
 > 
-> Above comment is for clarification and if a TODO is required, can be taken up while merging the patch. Remaining logic looks good to me.
-> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Thanks. I've pushed patches 1-6.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/drm_atomic_uapi.c  |  6 +++---
+>  drivers/gpu/drm/drm_crtc.c         |  6 +++---
+>  drivers/gpu/drm/drm_crtc_helper.c  |  9 ++++-----
+>  drivers/gpu/drm/drm_modes.c        | 13 +++++--------
+>  drivers/gpu/drm/drm_probe_helper.c |  3 ++-
+>  5 files changed, 17 insertions(+), 20 deletions(-)
 > 
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 14 +++++++++++---
-> > drivers/gpu/drm/i915/display/intel_display.h |  8 ++++++++
-> >  2 files changed, 19 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index a481c9218138..0086a7422e86 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -6956,8 +6956,12 @@ static void skl_commit_modeset_enables(struct
-> > intel_atomic_state *state)
-> >  	intel_dbuf_mbus_pre_ddb_update(state);
-> > 
-> >  	while (update_pipes) {
-> > -		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> > -						    new_crtc_state, i) {
-> > +		/*
-> > +		 * Commit in reverse order to make bigjoiner master
-> > +		 * send the uapi events after slaves are done.
-> > +		 */
-> > +		for_each_oldnew_intel_crtc_in_state_reverse(state, crtc,
-> > old_crtc_state,
-> > +							    new_crtc_state, i) {
-> >  			enum pipe pipe = crtc->pipe;
-> > 
-> >  			if ((update_pipes & BIT(pipe)) == 0) @@ -7036,7
-> > +7040,11 @@ static void skl_commit_modeset_enables(struct
-> > intel_atomic_state *state)
-> >  		intel_pre_update_crtc(state, crtc);
-> >  	}
-> > 
-> > -	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> > +	/*
-> > +	 * Commit in reverse order to make bigjoiner master
-> > +	 * send the uapi events after slaves are done.
-> > +	 */
-> > +	for_each_new_intel_crtc_in_state_reverse(state, crtc, new_crtc_state,
-> > +i) {
-> >  		enum pipe pipe = crtc->pipe;
-> > 
-> >  		if ((update_pipes & BIT(pipe)) == 0)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
-> > b/drivers/gpu/drm/i915/display/intel_display.h
-> > index 986ec77490de..423074d6947a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -344,6 +344,14 @@ enum phy_fia {
-> >  	     (__i)++) \
-> >  		for_each_if(crtc)
-> > 
-> > +#define for_each_new_intel_crtc_in_state_reverse(__state, crtc,
-> > new_crtc_state, __i) \
-> > +	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
-> > +	     (__i) >= 0  && \
-> > +	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
-> > +	      (new_crtc_state) = to_intel_crtc_state((__state)-
-> > >base.crtcs[__i].new_state), 1); \
-> > +	     (__i)--) \
-> > +		for_each_if(crtc)
-> > +
-> >  #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_state,
-> > new_plane_state, __i) \
-> >  	for ((__i) = 0; \
-> >  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-> > --
-> > 2.43.2
-> 
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index 29d4940188d4..fc16fddee5c5 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -145,10 +145,10 @@ int drm_atomic_set_mode_prop_for_crtc(struct drm_crtc_state *state,
+>  					     &state->mode, blob->data);
+>  		if (ret) {
+>  			drm_dbg_atomic(crtc->dev,
+> -				       "[CRTC:%d:%s] invalid mode (ret=%d, status=%s):\n",
+> +				       "[CRTC:%d:%s] invalid mode (%s, %pe): " DRM_MODE_FMT "\n",
+>  				       crtc->base.id, crtc->name,
+> -				       ret, drm_get_mode_status_name(state->mode.status));
+> -			drm_mode_debug_printmodeline(&state->mode);
+> +				       drm_get_mode_status_name(state->mode.status),
+> +				       ERR_PTR(ret), DRM_MODE_ARG(&state->mode));
+>  			return -EINVAL;
+>  		}
+>  
+> diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
+> index b0a0e27e83eb..483969b84a30 100644
+> --- a/drivers/gpu/drm/drm_crtc.c
+> +++ b/drivers/gpu/drm/drm_crtc.c
+> @@ -775,9 +775,9 @@ int drm_mode_setcrtc(struct drm_device *dev, void *data,
+>  
+>  		ret = drm_mode_convert_umode(dev, mode, &crtc_req->mode);
+>  		if (ret) {
+> -			drm_dbg_kms(dev, "Invalid mode (ret=%d, status=%s)\n",
+> -				    ret, drm_get_mode_status_name(mode->status));
+> -			drm_mode_debug_printmodeline(mode);
+> +			drm_dbg_kms(dev, "Invalid mode (%s, %pe): " DRM_MODE_FMT "\n",
+> +				    drm_get_mode_status_name(mode->status),
+> +				    ERR_PTR(ret), DRM_MODE_ARG(mode));
+>  			goto out;
+>  		}
+>  
+> diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
+> index af7ac9d9192a..0955f1c385dd 100644
+> --- a/drivers/gpu/drm/drm_crtc_helper.c
+> +++ b/drivers/gpu/drm/drm_crtc_helper.c
+> @@ -657,8 +657,8 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
+>  	if (!drm_mode_equal(set->mode, &set->crtc->mode)) {
+>  		drm_dbg_kms(dev, "[CRTC:%d:%s] modes are different, full mode set:\n",
+>  			    set->crtc->base.id, set->crtc->name);
+> -		drm_mode_debug_printmodeline(&set->crtc->mode);
+> -		drm_mode_debug_printmodeline(set->mode);
+> +		drm_dbg_kms(dev, DRM_MODE_FMT "\n", DRM_MODE_ARG(&set->crtc->mode));
+> +		drm_dbg_kms(dev, DRM_MODE_FMT "\n", DRM_MODE_ARG(set->mode));
+>  		mode_changed = true;
+>  	}
+>  
+> @@ -766,9 +766,8 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
+>  
+>  	if (mode_changed) {
+>  		if (drm_helper_crtc_in_use(set->crtc)) {
+> -			drm_dbg_kms(dev, "[CRTC:%d:%s] attempting to set mode from userspace\n",
+> -				    set->crtc->base.id, set->crtc->name);
+> -			drm_mode_debug_printmodeline(set->mode);
+> +			drm_dbg_kms(dev, "[CRTC:%d:%s] attempting to set mode from userspace: " DRM_MODE_FMT "\n",
+> +				    set->crtc->base.id, set->crtc->name, DRM_MODE_ARG(set->mode));
+>  			set->crtc->primary->fb = set->fb;
+>  			if (!drm_crtc_helper_set_mode(set->crtc, set->mode,
+>  						      set->x, set->y,
+> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> index 408ee1b5e44d..2d8b0371619d 100644
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -1201,9 +1201,8 @@ int of_get_drm_display_mode(struct device_node *np,
+>  	if (bus_flags)
+>  		drm_bus_flags_from_videomode(&vm, bus_flags);
+>  
+> -	pr_debug("%pOF: got %dx%d display mode\n",
+> -		np, vm.hactive, vm.vactive);
+> -	drm_mode_debug_printmodeline(dmode);
+> +	pr_debug("%pOF: got %dx%d display mode: " DRM_MODE_FMT "\n",
+> +		 np, vm.hactive, vm.vactive, DRM_MODE_ARG(dmode));
+>  
+>  	return 0;
+>  }
+> @@ -1251,7 +1250,7 @@ int of_get_drm_panel_display_mode(struct device_node *np,
+>  	dmode->width_mm = width_mm;
+>  	dmode->height_mm = height_mm;
+>  
+> -	drm_mode_debug_printmodeline(dmode);
+> +	pr_debug(DRM_MODE_FMT "\n", DRM_MODE_ARG(dmode));
+>  
+>  	return 0;
+>  }
+> @@ -1813,10 +1812,8 @@ void drm_mode_prune_invalid(struct drm_device *dev,
+>  					 DRM_MODE_FMT "\n", DRM_MODE_ARG(mode));
+>  			}
+>  			if (verbose) {
+> -				drm_mode_debug_printmodeline(mode);
+> -				drm_dbg_kms(dev, "Not using %s mode: %s\n",
+> -					    mode->name,
+> -					    drm_get_mode_status_name(mode->status));
+> +				drm_dbg_kms(dev, "Rejected mode: " DRM_MODE_FMT " (%s)\n",
+> +					    DRM_MODE_ARG(mode), drm_get_mode_status_name(mode->status));
+>  			}
+>  			drm_mode_destroy(dev, mode);
+>  		}
+> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+> index 19bf5d298257..4f75a1cfd820 100644
+> --- a/drivers/gpu/drm/drm_probe_helper.c
+> +++ b/drivers/gpu/drm/drm_probe_helper.c
+> @@ -701,7 +701,8 @@ int drm_helper_probe_single_connector_modes(struct drm_connector *connector,
+>  
+>  	list_for_each_entry(mode, &connector->modes, head) {
+>  		drm_mode_set_crtcinfo(mode, CRTC_INTERLACE_HALVE_V);
+> -		drm_mode_debug_printmodeline(mode);
+> +		drm_dbg_kms(dev, "Probed mode: " DRM_MODE_FMT "\n",
+> +			    DRM_MODE_ARG(mode));
+>  	}
+>  
+>  	return count;
+> -- 
+> 2.39.2
 
 -- 
 Ville Syrjälä
