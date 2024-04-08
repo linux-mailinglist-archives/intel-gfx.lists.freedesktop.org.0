@@ -2,59 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B202889BEB1
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 14:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DACE89BEED
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 14:27:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE86310E332;
-	Mon,  8 Apr 2024 12:13:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1E12112525;
+	Mon,  8 Apr 2024 12:27:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pgs89ogm";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ZwgrJosM";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2ChFfdKR";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ZwgrJosM";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2ChFfdKR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 730B610E332
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 12:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712578438; x=1744114438;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=zsu7uI2Sc12zx6gqPiM8S3Gj5wDL5IQshWrs2YJPWkk=;
- b=Pgs89ogmN35iDOSGbmeEze7nJyXj4/35b9+jqsizs8dEQ9m6KCuKVz8U
- p23rNUaYA+0T3MzU5aJmgSybU5IvuCPtFaxz6nEjFtmJXpsQ4nmRi3Qsg
- ln92taB7JelYDOapEK2W36pnNHhCLbIe/bNjO+R4oziWnSsjrBJXI6VzF
- 2Y+06ksbNxZyffZCZJuupnfX6iEzgtrwyG0QQZKcWjRuiPuzx1xGTRSvu
- uxGxQ7Difk8pYcookn9tO90MuV0kWU6lDaIy27QRrlbxJkmZSYS6ihEfM
- BaRrK81ylyeqF+hH9Sye2YTH7Pz5CcmPeletxAgOd6Ty2tdQhZBaFWegf A==;
-X-CSE-ConnectionGUID: qDTzmtG4QBakYu5jzmlq0g==
-X-CSE-MsgGUID: UKrh+JbQRMeIuWVBLBAj7A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="8075930"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
-   d="scan'208";a="8075930"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 05:13:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="827792219"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="827792219"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 05:13:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 08 Apr 2024 15:13:54 +0300
-Date: Mon, 8 Apr 2024 15:13:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/pps: move pps debugfs file to intel_pps.c
-Message-ID: <ZhPfgmnCtHql8VXL@intel.com>
-References: <20240408094357.3085319-1-jani.nikula@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A24CB112520;
+ Mon,  8 Apr 2024 12:27:14 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 047D822892;
+ Mon,  8 Apr 2024 12:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1712579233; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=3O3JDZy2qytYDsBKiOxCJTFH0hPHB+qHdU3D6o8Trqc=;
+ b=ZwgrJosMJLBZsriQGf92Aymw3lD7h9zzjFUUYrfhKeEYH+u3zbSK+b6a2CanBmCTbrRxLv
+ z6Wc+ma2ZM/agQB8tRcydsjhgM/Ly5hYW1HnFSCEvPILsFKn1x7fjp6eICctevtVBsojMT
+ VBgLY/D2Xy74Qv/rQ6g8z21by7hvhNs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1712579233;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=3O3JDZy2qytYDsBKiOxCJTFH0hPHB+qHdU3D6o8Trqc=;
+ b=2ChFfdKR3L49oaBPsdy4ws6waC5rwNKyC4c2fXPnVSRvg3jcKQStCU8LyGeGMbvSnWHPXt
+ k67OPrYX0NAgGDBg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1712579233; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=3O3JDZy2qytYDsBKiOxCJTFH0hPHB+qHdU3D6o8Trqc=;
+ b=ZwgrJosMJLBZsriQGf92Aymw3lD7h9zzjFUUYrfhKeEYH+u3zbSK+b6a2CanBmCTbrRxLv
+ z6Wc+ma2ZM/agQB8tRcydsjhgM/Ly5hYW1HnFSCEvPILsFKn1x7fjp6eICctevtVBsojMT
+ VBgLY/D2Xy74Qv/rQ6g8z21by7hvhNs=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1712579233;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=3O3JDZy2qytYDsBKiOxCJTFH0hPHB+qHdU3D6o8Trqc=;
+ b=2ChFfdKR3L49oaBPsdy4ws6waC5rwNKyC4c2fXPnVSRvg3jcKQStCU8LyGeGMbvSnWHPXt
+ k67OPrYX0NAgGDBg==
+Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 8B0F01332F;
+ Mon,  8 Apr 2024 12:27:12 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap2.dmz-prg2.suse.org with ESMTPSA id 5SidIKDiE2YMVAAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Mon, 08 Apr 2024 12:27:12 +0000
+Message-ID: <eef5130b-c2fe-4934-aeb4-5790d6c745a8@suse.de>
+Date: Mon, 8 Apr 2024 14:27:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 6/6] drm/i915: Implement fbdev emulation as in-kernel
+ client
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "ogabbay@kernel.org" <ogabbay@kernel.org>,
+ "javierm@redhat.com" <javierm@redhat.com>,
+ "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
+ "Deak, Imre" <imre.deak@intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20240301134448.31289-1-tzimmermann@suse.de>
+ <20240301134448.31289-7-tzimmermann@suse.de>
+ <56b919497a8030839d8e4a2f946d4338b64b043d.camel@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <56b919497a8030839d8e4a2f946d4338b64b043d.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240408094357.3085319-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+X-Spam-Flag: NO
+X-Spam-Score: -4.29
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ XM_UA_NO_VERSION(0.01)[]; RCPT_COUNT_TWELVE(0.00)[17];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[intel.com,linux.intel.com,kernel.org,redhat.com,gmail.com,ffwll.ch];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ TO_DN_EQ_ADDR_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap2.dmz-prg2.suse.org:helo,
+ imap2.dmz-prg2.suse.org:rdns]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,140 +158,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 08, 2024 at 12:43:57PM +0300, Jani Nikula wrote:
-> Continue with placing debugfs next to the implementation.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 27 ++--------------
->  drivers/gpu/drm/i915/display/intel_pps.c      | 32 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_pps.h      |  2 ++
->  3 files changed, 36 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 5235f8758ef1..0feffe8d4e45 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -31,6 +31,7 @@
->  #include "intel_hdmi.h"
->  #include "intel_hotplug.h"
->  #include "intel_panel.h"
-> +#include "intel_pps.h"
->  #include "intel_psr.h"
->  #include "intel_psr_regs.h"
->  #include "intel_wm.h"
-> @@ -1095,27 +1096,6 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
->  	intel_display_debugfs_params(i915);
->  }
->  
-> -static int i915_panel_show(struct seq_file *m, void *data)
-> -{
-> -	struct intel_connector *connector = m->private;
-> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> -
-> -	if (connector->base.status != connector_status_connected)
-> -		return -ENODEV;
-> -
-> -	seq_printf(m, "Panel power up delay: %d\n",
-> -		   intel_dp->pps.panel_power_up_delay);
-> -	seq_printf(m, "Panel power down delay: %d\n",
-> -		   intel_dp->pps.panel_power_down_delay);
-> -	seq_printf(m, "Backlight on delay: %d\n",
-> -		   intel_dp->pps.backlight_on_delay);
-> -	seq_printf(m, "Backlight off delay: %d\n",
-> -		   intel_dp->pps.backlight_off_delay);
-> -
-> -	return 0;
-> -}
-> -DEFINE_SHOW_ATTRIBUTE(i915_panel);
-> -
->  static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
->  {
->  	struct intel_connector *connector = m->private;
-> @@ -1560,12 +1540,9 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
->  		return;
->  
->  	intel_drrs_connector_debugfs_add(connector);
-> +	intel_pps_connector_debugfs_add(connector);
->  	intel_psr_connector_debugfs_add(connector);
->  
-> -	if (connector_type == DRM_MODE_CONNECTOR_eDP)
-> -		debugfs_create_file("i915_panel_timings", 0444, root,
-> -				    connector, &i915_panel_fops);
-> -
->  	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
->  	    connector_type == DRM_MODE_CONNECTOR_HDMIA ||
->  	    connector_type == DRM_MODE_CONNECTOR_HDMIB) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index b5d9920f8341..88a44d93f82b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -1670,6 +1670,38 @@ void intel_pps_setup(struct drm_i915_private *i915)
->  		i915->display.pps.mmio_base = PPS_BASE;
->  }
->  
-> +static int intel_pps_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_connector *connector = m->private;
-> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> +
-> +	if (connector->base.status != connector_status_connected)
-> +		return -ENODEV;
+Hi
 
-That check seems completely pointless. Could be removed as a
-followup.
+Am 05.04.24 um 10:34 schrieb Hogander, Jouni:
+[...]
+>>   
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c
+>> b/drivers/gpu/drm/i915/i915_driver.c
+>> index e0f13c62a1832..69178b73845e1 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -816,6 +816,8 @@ int i915_driver_probe(struct pci_dev *pdev, const
+>> struct pci_device_id *ent)
+>>   
+>>          i915->do_release = true;
+>>   
+>> +       intel_fbdev_setup(i915);
+>> +
+> This doesn't work for Xe. I propose you move it to
+> drivers/gpu/drm/i915/display/intel_display_dirver.c:intel_display_drive
+> r_probe? Otherwise patch looks ok to me.
 
-Hmm. The other question that comes to mind is whether anyone has
-ever used this file? I for sure have not. So I'm wondering if we
-could just nuke the whole thing?
+The client setup needs to run after the DRM device has been registered, 
+so _probe is too early. intel_display_driver_register() looks like a 
+possible place to put this. That would be symmetric to unregistering in 
+intel_display_driver_unregister().
 
-Anyways
-Reviewed-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+Best regards
+Thomas
 
-> +
-> +	seq_printf(m, "Panel power up delay: %d\n",
-> +		   intel_dp->pps.panel_power_up_delay);
-> +	seq_printf(m, "Panel power down delay: %d\n",
-> +		   intel_dp->pps.panel_power_down_delay);
-> +	seq_printf(m, "Backlight on delay: %d\n",
-> +		   intel_dp->pps.backlight_on_delay);
-> +	seq_printf(m, "Backlight off delay: %d\n",
-> +		   intel_dp->pps.backlight_off_delay);
-> +
-> +	return 0;
-> +}
-> +DEFINE_SHOW_ATTRIBUTE(intel_pps);
-> +
-> +void intel_pps_connector_debugfs_add(struct intel_connector *connector)
-> +{
-> +	struct dentry *root = connector->base.debugfs_entry;
-> +	int connector_type = connector->base.connector_type;
-> +
-> +	if (connector_type == DRM_MODE_CONNECTOR_eDP)
-> +		debugfs_create_file("i915_panel_timings", 0444, root,
-> +				    connector, &intel_pps_fops);
-> +
-> +}
-> +
->  void assert_pps_unlocked(struct drm_i915_private *dev_priv, enum pipe pipe)
->  {
->  	i915_reg_t pp_reg;
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-> index a2c2467e3c22..07ef96ca8da2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.h
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-> @@ -51,6 +51,8 @@ void vlv_pps_init(struct intel_encoder *encoder,
->  void intel_pps_unlock_regs_wa(struct drm_i915_private *i915);
->  void intel_pps_setup(struct drm_i915_private *i915);
->  
-> +void intel_pps_connector_debugfs_add(struct intel_connector *connector);
-> +
->  void assert_pps_unlocked(struct drm_i915_private *i915, enum pipe pipe);
->  
->  #endif /* __INTEL_PPS_H__ */
-> -- 
-> 2.39.2
+>
+> BR,
+>
+> Jouni Högander
+>
+>
+>>          return 0;
+>>   
+>>   out_cleanup_gem:
+>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c
+>> b/drivers/gpu/drm/xe/display/xe_display.c
+>> index cdbc3f04c80a7..ca5cbe1d8a03b 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> @@ -214,9 +214,7 @@ void xe_display_fini(struct xe_device *xe)
+>>          if (!xe->info.enable_display)
+>>                  return;
+>>   
+>> -       /* poll work can call into fbdev, hence clean that up
+>> afterwards */
+>>          intel_hpd_poll_fini(xe);
+>> -       intel_fbdev_fini(xe);
+>>   
+>>          intel_hdcp_component_fini(xe);
+>>          intel_audio_deinit(xe);
 
 -- 
-Ville Syrj�l�
-Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
