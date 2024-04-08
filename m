@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB5589BF16
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 14:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F398589BF55
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 14:46:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C68D112543;
-	Mon,  8 Apr 2024 12:38:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1632112552;
+	Mon,  8 Apr 2024 12:46:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hU7oNxaO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y3N4IpdW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D249B112547;
- Mon,  8 Apr 2024 12:38:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5DA1112553
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 12:46:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712579918; x=1744115918;
+ t=1712580380; x=1744116380;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=WOEm6HFw54R0NXXexcvhKxwim1VHPfuqD6+L8tYyy5o=;
- b=hU7oNxaO25cZee5ZL/do1UU0m8vE1Kw33rvbvNSdkRtRZw+kydOAfES7
- lPqb76hOURFh1aV0mdnQszWEgGUae3mrVmzyvZB2u/XJIhrjDan4bBDF/
- yf8K8XrKzr7B1dsb3p6YRPZZqgdK2dMADmxNedjF6sLl+EThooO+fNPCg
- X1kvMs1uzmd5Tiol/GIpN0Nw0NqQ3n+drBmbfzqH8gihhCgM2wyNpBr3H
- vTnIz/ZPSS4b/HW5bitCStcUCvrrp3FdtHTnEiPkx3F/Z8PCnXTiaYt/3
- SFON5j6RUXkZGwd5fHwJP8g5TN0oDX6qHMHTohxcdD29N/mp82YIe+3Wo g==;
-X-CSE-ConnectionGUID: ipFw3CnISyeBjVO3OrnZfQ==
-X-CSE-MsgGUID: F29Bd4rMQs2TH5c2r6P37w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="8078068"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
-   d="scan'208";a="8078068"
+ bh=6raYpUWIG9JNGW2bbyuod5HTHwaKQhwjhwZyMgcXwnQ=;
+ b=Y3N4IpdWgF60OMQVhwzzZQBncMWgFVAnCQ91DmYkTX7RdsX18zmwx7W0
+ 73K7sAKKDrnPMVSD07CV4f4Vd3IIkSOmam+P0jGOvGznhm3g0HISziQEw
+ +535Ix5CqKAnRgGSyCug7tFWDqkU1ASRqPB+Y+JVUSuSloTPA/roMA2nd
+ YBZtLoEGPRV+ESY3eNCDcX25M+us3H1dhg42elIqtMLHEs8W05SNwPjYM
+ U6QZ9/nxSnp3aTErQbjszD4zaxCg/gyDaOPtcqfxvfqyNFSZukIuac3VD
+ AjKN/sardcZSlyByDPfFYfVdN3Mb9QoVc8Vw4zNNby4FU8YU+QCpcyN+O A==;
+X-CSE-ConnectionGUID: eYDsfh5jSNGY9B4MUZvwDQ==
+X-CSE-MsgGUID: ChvtWGH3TC6rWyxLOvofwQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="33251697"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="33251697"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 05:38:37 -0700
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 05:46:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="827792227"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="827792227"
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="827792240"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="827792240"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 05:38:34 -0700
+ by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 05:46:01 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 08 Apr 2024 15:38:33 +0300
-Date: Mon, 8 Apr 2024 15:38:33 +0300
+ Mon, 08 Apr 2024 15:46:00 +0300
+Date: Mon, 8 Apr 2024 15:46:00 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v2 6/7] drm/crtc-helper: switch to drm device based
- logging and warns
-Message-ID: <ZhPlSRmxq6HgYdbg@intel.com>
-References: <cover.1712568037.git.jani.nikula@intel.com>
- <b8557c4b2db0e5c931a6d82b5cc8ac5f3a3e1a77.1712568037.git.jani.nikula@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2 01/17] drm/i915: Update pipes in reverse order for
+ bigjoiner
+Message-ID: <ZhPnCGiglWA8x2_I@intel.com>
+References: <20240404213441.17637-1-ville.syrjala@linux.intel.com>
+ <20240404213441.17637-2-ville.syrjala@linux.intel.com>
+ <IA0PR11MB7307EF4E4263D22864B078D2BA032@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b8557c4b2db0e5c931a6d82b5cc8ac5f3a3e1a77.1712568037.git.jani.nikula@intel.com>
+In-Reply-To: <IA0PR11MB7307EF4E4263D22864B078D2BA032@IA0PR11MB7307.namprd11.prod.outlook.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,305 +72,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 08, 2024 at 12:24:01PM +0300, Jani Nikula wrote:
-> Prefer drm device based drm_dbg_kms(), drm_err(), drm_WARN_ON() over
-> DRM_DEBUG_KMS(), DRM_ERROR(), and WARN_ON(). Also update encoder,
-> connector, and crtc logging to include the object id and name, where
-> possible.
+On Fri, Apr 05, 2024 at 12:56:52PM +0000, Murthy, Arun R wrote:
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/drm_crtc_helper.c | 95 +++++++++++++++++--------------
->  1 file changed, 52 insertions(+), 43 deletions(-)
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Friday, April 5, 2024 3:04 AM
+> > To: intel-gfx@lists.freedesktop.org
+> > Subject: [PATCH v2 01/17] drm/i915: Update pipes in reverse order for bigjoiner
+> > 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > With bigjoiner the master crtc is the one that will send out the uapi event/etc.
+> > We want that to happen after all the slaves are done, so let's try to do the
+> > commits in reverse order so that the master comes last.
+> > 
+> > Even worse, the modeset helper will simply complete the commit on the slave
+> > pipe immediately as it consider the crtc to be inactive (it can't see our
+> > crtc_state->hw.active/etc.).
+> > 
+> > With regular sync updates this generally doesn't matter all that much as the
+> > slave pipe should typically finish its work during the same frame as the master
+> > pipe. However in case the slave pipe's commit slips into the next frame we end
+> > up in a bit of trouble. This is most visible with either async flips (currently
+> > disabled with bigjoiner exactly for this reason), and DSB gamma updates. With
+> > DSB the problem happens because the DSB itself will wait until the next start
+> > vblank before starting to execute. So if the master pipe already finished its
+> > commit and the DSB on the slave pipe is still waiting for the next vblank we will
+> > assume the DSB as gotten stuck and terminate it.
+> > 
+> > Reversing the commit order should ameliarate this for the most part as the
+> > master pipe is guaranteed to start its commit after the slave pipe started. The
+> > one thing that can still screw us over is the fact that we aren't necessarily going
+> > to commit the pipes in the reverse order as the actual order is dictated by the
+> > DDB overlap avoidance.
+> > But that can only happen while other pipes are being enabled/disabled, and so
+> > in the normal steady state we should be safe.
+> > 
+> > The full fix will involve making the commit machinery aware of the slave pipes
+> > and not finish their commits prematurely. But that will involve a bit more work
+> > than this. And this commit order reversal will still be beneficial to avoid
+> > userspace getting an -EBUSY from the following page flip if the second pipe's
+> > commit does stretch into the next frame.
+> Can there be a possibility of seeing a flicker/corruption in that case?
+> Also should this be added a TODO in the driver so that it will not be missed out?
+
+I have something typed up for this already. Just waiting for better
+testing coverage to actually exercise it properly.
+
 > 
-> diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
-> index 2dafc39a27cb..af7ac9d9192a 100644
-> --- a/drivers/gpu/drm/drm_crtc_helper.c
-> +++ b/drivers/gpu/drm/drm_crtc_helper.c
-> @@ -110,15 +110,15 @@ bool drm_helper_encoder_in_use(struct drm_encoder *encoder)
->  	struct drm_connector_list_iter conn_iter;
->  	struct drm_device *dev = encoder->dev;
->  
-> -	WARN_ON(drm_drv_uses_atomic_modeset(dev));
-> +	drm_WARN_ON(dev, drm_drv_uses_atomic_modeset(dev));
->  
->  	/*
->  	 * We can expect this mutex to be locked if we are not panicking.
->  	 * Locking is currently fubar in the panic handler.
->  	 */
->  	if (!oops_in_progress) {
-> -		WARN_ON(!mutex_is_locked(&dev->mode_config.mutex));
-> -		WARN_ON(!drm_modeset_is_locked(&dev->mode_config.connection_mutex));
-> +		drm_WARN_ON(dev, !mutex_is_locked(&dev->mode_config.mutex));
-> +		drm_WARN_ON(dev, !drm_modeset_is_locked(&dev->mode_config.connection_mutex));
+> Above comment is for clarification and if a TODO is required, can be taken up while merging the patch. Remaining logic looks good to me.
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-Someone could do a followup to convert this stuff over to
-lockdep_assert_held().
+Thanks. I've pushed patches 1-6.
 
->  	}
->  
->  
-> @@ -150,14 +150,14 @@ bool drm_helper_crtc_in_use(struct drm_crtc *crtc)
->  	struct drm_encoder *encoder;
->  	struct drm_device *dev = crtc->dev;
->  
-> -	WARN_ON(drm_drv_uses_atomic_modeset(dev));
-> +	drm_WARN_ON(dev, drm_drv_uses_atomic_modeset(dev));
->  
->  	/*
->  	 * We can expect this mutex to be locked if we are not panicking.
->  	 * Locking is currently fubar in the panic handler.
->  	 */
->  	if (!oops_in_progress)
-> -		WARN_ON(!mutex_is_locked(&dev->mode_config.mutex));
-> +		drm_WARN_ON(dev, !mutex_is_locked(&dev->mode_config.mutex));
->  
->  	drm_for_each_encoder(encoder, dev)
->  		if (encoder->crtc == crtc && drm_helper_encoder_in_use(encoder))
-> @@ -230,7 +230,7 @@ static void __drm_helper_disable_unused_functions(struct drm_device *dev)
->   */
->  void drm_helper_disable_unused_functions(struct drm_device *dev)
->  {
-> -	WARN_ON(drm_drv_uses_atomic_modeset(dev));
-> +	drm_WARN_ON(dev, drm_drv_uses_atomic_modeset(dev));
->  
->  	drm_modeset_lock_all(dev);
->  	__drm_helper_disable_unused_functions(dev);
-> @@ -294,7 +294,7 @@ bool drm_crtc_helper_set_mode(struct drm_crtc *crtc,
->  	struct drm_encoder *encoder;
->  	bool ret = true;
->  
-> -	WARN_ON(drm_drv_uses_atomic_modeset(dev));
-> +	drm_WARN_ON(dev, drm_drv_uses_atomic_modeset(dev));
->  
->  	drm_warn_on_modeset_not_all_locked(dev);
->  
-> @@ -338,7 +338,8 @@ bool drm_crtc_helper_set_mode(struct drm_crtc *crtc,
->  		if (encoder_funcs->mode_fixup) {
->  			if (!(ret = encoder_funcs->mode_fixup(encoder, mode,
->  							      adjusted_mode))) {
-> -				DRM_DEBUG_KMS("Encoder fixup failed\n");
-> +				drm_dbg_kms(dev, "[ENCODER:%d:%s] mode fixup failed\n",
-> +					    encoder->base.id, encoder->name);
->  				goto done;
->  			}
->  		}
-> @@ -347,11 +348,12 @@ bool drm_crtc_helper_set_mode(struct drm_crtc *crtc,
->  	if (crtc_funcs->mode_fixup) {
->  		if (!(ret = crtc_funcs->mode_fixup(crtc, mode,
->  						adjusted_mode))) {
-> -			DRM_DEBUG_KMS("CRTC fixup failed\n");
-> +			drm_dbg_kms(dev, "[CRTC:%d:%s] mode fixup failed\n",
-> +				    crtc->base.id, crtc->name);
->  			goto done;
->  		}
->  	}
-> -	DRM_DEBUG_KMS("[CRTC:%d:%s]\n", crtc->base.id, crtc->name);
-> +	drm_dbg_kms(dev, "[CRTC:%d:%s]\n", crtc->base.id, crtc->name);
->  
->  	drm_mode_copy(&crtc->hwmode, adjusted_mode);
->  
-> @@ -390,8 +392,8 @@ bool drm_crtc_helper_set_mode(struct drm_crtc *crtc,
->  		if (!encoder_funcs)
->  			continue;
->  
-> -		DRM_DEBUG_KMS("[ENCODER:%d:%s] set [MODE:%s]\n",
-> -			encoder->base.id, encoder->name, mode->name);
-> +		drm_dbg_kms(dev, "[ENCODER:%d:%s] set [MODE:%s]\n",
-> +			    encoder->base.id, encoder->name, mode->name);
->  		if (encoder_funcs->mode_set)
->  			encoder_funcs->mode_set(encoder, mode, adjusted_mode);
->  	}
-> @@ -503,7 +505,7 @@ drm_connector_get_single_encoder(struct drm_connector *connector)
->  {
->  	struct drm_encoder *encoder;
->  
-> -	WARN_ON(hweight32(connector->possible_encoders) > 1);
-> +	drm_WARN_ON(connector->dev, hweight32(connector->possible_encoders) > 1);
->  	drm_connector_for_each_possible_encoder(connector, encoder)
->  		return encoder;
->  
-> @@ -564,8 +566,6 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  	int ret;
->  	int i;
->  
-> -	DRM_DEBUG_KMS("\n");
-> -
->  	BUG_ON(!set);
->  	BUG_ON(!set->crtc);
->  	BUG_ON(!set->crtc->helper_private);
-> @@ -577,19 +577,22 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  	crtc_funcs = set->crtc->helper_private;
->  
->  	dev = set->crtc->dev;
-> -	WARN_ON(drm_drv_uses_atomic_modeset(dev));
-> +
-> +	drm_dbg_kms(dev, "\n");
-
-That looks rather redundant as we print something below anyway.
-Could drop this as a followup I guess.
-
-This patch looks fine regardless
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> +
-> +	drm_WARN_ON(dev, drm_drv_uses_atomic_modeset(dev));
->  
->  	if (!set->mode)
->  		set->fb = NULL;
->  
->  	if (set->fb) {
-> -		DRM_DEBUG_KMS("[CRTC:%d:%s] [FB:%d] #connectors=%d (x y) (%i %i)\n",
-> -			      set->crtc->base.id, set->crtc->name,
-> -			      set->fb->base.id,
-> -			      (int)set->num_connectors, set->x, set->y);
-> +		drm_dbg_kms(dev, "[CRTC:%d:%s] [FB:%d] #connectors=%d (x y) (%i %i)\n",
-> +			    set->crtc->base.id, set->crtc->name,
-> +			    set->fb->base.id,
-> +			    (int)set->num_connectors, set->x, set->y);
->  	} else {
-> -		DRM_DEBUG_KMS("[CRTC:%d:%s] [NOFB]\n",
-> -			      set->crtc->base.id, set->crtc->name);
-> +		drm_dbg_kms(dev, "[CRTC:%d:%s] [NOFB]\n",
-> +			    set->crtc->base.id, set->crtc->name);
->  		drm_crtc_helper_disable(set->crtc);
->  		return 0;
->  	}
-> @@ -639,7 +642,8 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  	if (set->crtc->primary->fb != set->fb) {
->  		/* If we have no fb then treat it as a full mode set */
->  		if (set->crtc->primary->fb == NULL) {
-> -			DRM_DEBUG_KMS("crtc has no fb, full mode set\n");
-> +			drm_dbg_kms(dev, "[CRTC:%d:%s] no fb, full mode set\n",
-> +				    set->crtc->base.id, set->crtc->name);
->  			mode_changed = true;
->  		} else if (set->fb->format != set->crtc->primary->fb->format) {
->  			mode_changed = true;
-> @@ -651,7 +655,8 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  		fb_changed = true;
->  
->  	if (!drm_mode_equal(set->mode, &set->crtc->mode)) {
-> -		DRM_DEBUG_KMS("modes are different, full mode set\n");
-> +		drm_dbg_kms(dev, "[CRTC:%d:%s] modes are different, full mode set:\n",
-> +			    set->crtc->base.id, set->crtc->name);
->  		drm_mode_debug_printmodeline(&set->crtc->mode);
->  		drm_mode_debug_printmodeline(set->mode);
->  		mode_changed = true;
-> @@ -687,7 +692,8 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  					fail = 1;
->  
->  				if (connector->dpms != DRM_MODE_DPMS_ON) {
-> -					DRM_DEBUG_KMS("connector dpms not on, full mode switch\n");
-> +					drm_dbg_kms(dev, "[CONNECTOR:%d:%s] DPMS not on, full mode switch\n",
-> +						    connector->base.id, connector->name);
->  					mode_changed = true;
->  				}
->  
-> @@ -696,7 +702,8 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  		}
->  
->  		if (new_encoder != connector->encoder) {
-> -			DRM_DEBUG_KMS("encoder changed, full mode switch\n");
-> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] encoder changed, full mode switch\n",
-> +				    connector->base.id, connector->name);
->  			mode_changed = true;
->  			/* If the encoder is reused for another connector, then
->  			 * the appropriate crtc will be set later.
-> @@ -737,17 +744,18 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  			goto fail;
->  		}
->  		if (new_crtc != connector->encoder->crtc) {
-> -			DRM_DEBUG_KMS("crtc changed, full mode switch\n");
-> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] CRTC changed, full mode switch\n",
-> +				    connector->base.id, connector->name);
->  			mode_changed = true;
->  			connector->encoder->crtc = new_crtc;
->  		}
->  		if (new_crtc) {
-> -			DRM_DEBUG_KMS("[CONNECTOR:%d:%s] to [CRTC:%d:%s]\n",
-> -				      connector->base.id, connector->name,
-> -				      new_crtc->base.id, new_crtc->name);
-> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] to [CRTC:%d:%s]\n",
-> +				    connector->base.id, connector->name,
-> +				    new_crtc->base.id, new_crtc->name);
->  		} else {
-> -			DRM_DEBUG_KMS("[CONNECTOR:%d:%s] to [NOCRTC]\n",
-> -				      connector->base.id, connector->name);
-> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] to [NOCRTC]\n",
-> +				    connector->base.id, connector->name);
->  		}
->  	}
->  	drm_connector_list_iter_end(&conn_iter);
-> @@ -758,23 +766,24 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  
->  	if (mode_changed) {
->  		if (drm_helper_crtc_in_use(set->crtc)) {
-> -			DRM_DEBUG_KMS("attempting to set mode from"
-> -					" userspace\n");
-> +			drm_dbg_kms(dev, "[CRTC:%d:%s] attempting to set mode from userspace\n",
-> +				    set->crtc->base.id, set->crtc->name);
->  			drm_mode_debug_printmodeline(set->mode);
->  			set->crtc->primary->fb = set->fb;
->  			if (!drm_crtc_helper_set_mode(set->crtc, set->mode,
->  						      set->x, set->y,
->  						      save_set.fb)) {
-> -				DRM_ERROR("failed to set mode on [CRTC:%d:%s]\n",
-> -					  set->crtc->base.id, set->crtc->name);
-> +				drm_err(dev, "[CRTC:%d:%s] failed to set mode\n",
-> +					set->crtc->base.id, set->crtc->name);
->  				set->crtc->primary->fb = save_set.fb;
->  				ret = -EINVAL;
->  				goto fail;
->  			}
-> -			DRM_DEBUG_KMS("Setting connector DPMS state to on\n");
-> +			drm_dbg_kms(dev, "[CRTC:%d:%s] Setting connector DPMS state to on\n",
-> +				    set->crtc->base.id, set->crtc->name);
->  			for (i = 0; i < set->num_connectors; i++) {
-> -				DRM_DEBUG_KMS("\t[CONNECTOR:%d:%s] set DPMS on\n", set->connectors[i]->base.id,
-> -					      set->connectors[i]->name);
-> +				drm_dbg_kms(dev, "\t[CONNECTOR:%d:%s] set DPMS on\n", set->connectors[i]->base.id,
-> +					    set->connectors[i]->name);
->  				set->connectors[i]->funcs->dpms(set->connectors[i], DRM_MODE_DPMS_ON);
->  			}
->  		}
-> @@ -823,7 +832,7 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
->  	if (mode_changed &&
->  	    !drm_crtc_helper_set_mode(save_set.crtc, save_set.mode, save_set.x,
->  				      save_set.y, save_set.fb))
-> -		DRM_ERROR("failed to restore config after modeset failure\n");
-> +		drm_err(dev, "failed to restore config after modeset failure\n");
->  
->  	kfree(save_connector_encoders);
->  	kfree(save_encoder_crtcs);
-> @@ -905,7 +914,7 @@ int drm_helper_connector_dpms(struct drm_connector *connector, int mode)
->  	struct drm_crtc *crtc = encoder ? encoder->crtc : NULL;
->  	int old_dpms, encoder_dpms = DRM_MODE_DPMS_OFF;
->  
-> -	WARN_ON(drm_drv_uses_atomic_modeset(connector->dev));
-> +	drm_WARN_ON(connector->dev, drm_drv_uses_atomic_modeset(connector->dev));
->  
->  	if (mode == connector->dpms)
->  		return 0;
-> @@ -980,7 +989,7 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
->  	int encoder_dpms;
->  	bool ret;
->  
-> -	WARN_ON(drm_drv_uses_atomic_modeset(dev));
-> +	drm_WARN_ON(dev, drm_drv_uses_atomic_modeset(dev));
->  
->  	drm_modeset_lock_all(dev);
->  	drm_for_each_crtc(crtc, dev) {
-> @@ -993,7 +1002,7 @@ void drm_helper_resume_force_mode(struct drm_device *dev)
->  
->  		/* Restoring the old config should never fail! */
->  		if (ret == false)
-> -			DRM_ERROR("failed to set mode on crtc %p\n", crtc);
-> +			drm_err(dev, "failed to set mode on crtc %p\n", crtc);
->  
->  		/* Turn off outputs that were already powered off */
->  		if (drm_helper_choose_crtc_dpms(crtc)) {
-> -- 
-> 2.39.2
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 14 +++++++++++---
+> > drivers/gpu/drm/i915/display/intel_display.h |  8 ++++++++
+> >  2 files changed, 19 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index a481c9218138..0086a7422e86 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -6956,8 +6956,12 @@ static void skl_commit_modeset_enables(struct
+> > intel_atomic_state *state)
+> >  	intel_dbuf_mbus_pre_ddb_update(state);
+> > 
+> >  	while (update_pipes) {
+> > -		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > -						    new_crtc_state, i) {
+> > +		/*
+> > +		 * Commit in reverse order to make bigjoiner master
+> > +		 * send the uapi events after slaves are done.
+> > +		 */
+> > +		for_each_oldnew_intel_crtc_in_state_reverse(state, crtc,
+> > old_crtc_state,
+> > +							    new_crtc_state, i) {
+> >  			enum pipe pipe = crtc->pipe;
+> > 
+> >  			if ((update_pipes & BIT(pipe)) == 0) @@ -7036,7
+> > +7040,11 @@ static void skl_commit_modeset_enables(struct
+> > intel_atomic_state *state)
+> >  		intel_pre_update_crtc(state, crtc);
+> >  	}
+> > 
+> > -	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > +	/*
+> > +	 * Commit in reverse order to make bigjoiner master
+> > +	 * send the uapi events after slaves are done.
+> > +	 */
+> > +	for_each_new_intel_crtc_in_state_reverse(state, crtc, new_crtc_state,
+> > +i) {
+> >  		enum pipe pipe = crtc->pipe;
+> > 
+> >  		if ((update_pipes & BIT(pipe)) == 0)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+> > b/drivers/gpu/drm/i915/display/intel_display.h
+> > index 986ec77490de..423074d6947a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -344,6 +344,14 @@ enum phy_fia {
+> >  	     (__i)++) \
+> >  		for_each_if(crtc)
+> > 
+> > +#define for_each_new_intel_crtc_in_state_reverse(__state, crtc,
+> > new_crtc_state, __i) \
+> > +	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
+> > +	     (__i) >= 0  && \
+> > +	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
+> > +	      (new_crtc_state) = to_intel_crtc_state((__state)-
+> > >base.crtcs[__i].new_state), 1); \
+> > +	     (__i)--) \
+> > +		for_each_if(crtc)
+> > +
+> >  #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_state,
+> > new_plane_state, __i) \
+> >  	for ((__i) = 0; \
+> >  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
+> > --
+> > 2.43.2
+> 
 
 -- 
 Ville Syrjälä
