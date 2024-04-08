@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD8989CB2D
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:52:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEA8F89CB6E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:05:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 963D1112928;
-	Mon,  8 Apr 2024 17:52:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E87D910F049;
+	Mon,  8 Apr 2024 18:05:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UxFZUgFx";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10141112928;
- Mon,  8 Apr 2024 17:52:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8504938766343767574=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8C3D10EA83;
+ Mon,  8 Apr 2024 18:05:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712599526; x=1744135526;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OZu+Zu9h3smjwzoCCSagP6Utyt0FPhaH+P/3YyGL3V0=;
+ b=UxFZUgFxVNxdZEojS802rbwdVNpPgVQBZgj0y1krfKuOWAPy9KzzeIkx
+ +DtZC3UBo24P1DqORp1TmfZeu6q69WsSaRoBerfH3tK+YNixpAZRkcu88
+ GkAgPW54f82eDLzwbDjGWOZxail4X48GRGryvPy7IxXukHahWI9EK3QH2
+ JgWMufgltpXmrjcMGfzukbYGiaH/MYrsdaH3yheBZE4F53copR7I8bg8z
+ mtBsRb014Sr7QW2E4YIsx9LpPLBoMO07hguQ5oCftnGGRmtqxa63YbLre
+ 0gqyDV0r0ZuL31dkzLc5piqTIw4vmgtUZOzH6wUMd3NSYXK44JFigqa49 w==;
+X-CSE-ConnectionGUID: 1SUprTUVTcyXIbepdY0lSQ==
+X-CSE-MsgGUID: 8h3ab5q4Sr+6B9nGgsNnBQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="10867366"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="10867366"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 11:05:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792364"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="827792364"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 11:05:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 08 Apr 2024 21:05:22 +0300
+Date: Mon, 8 Apr 2024 21:05:22 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] drm/edid: add drm_edid_print_product_id()
+Message-ID: <ZhQx4gWk_4whJqrD@intel.com>
+References: <cover.1711015462.git.jani.nikula@intel.com>
+ <dcefe0474d74f818e250677982b32c767b466110.1711015462.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Panel_replay_selective_upda?=
- =?utf-8?q?te_support_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 08 Apr 2024 17:52:10 -0000
-Message-ID: <171259873006.1286010.2775028370774651537@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240408082212.3429193-1-jouni.hogander@intel.com>
-In-Reply-To: <20240408082212.3429193-1-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dcefe0474d74f818e250677982b32c767b466110.1711015462.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,201 +67,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8504938766343767574==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Mar 21, 2024 at 12:05:10PM +0200, Jani Nikula wrote:
+> Add a function to print a decoded EDID vendor and product id to a drm
+> printer, optinally with the raw data.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid.c | 35 +++++++++++++++++++++++++++++++++++
+>  include/drm/drm_edid.h     |  3 +++
+>  2 files changed, 38 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 626a0e24e66a..198986f0eb8b 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -29,6 +29,7 @@
+>   */
+>  
+>  #include <linux/bitfield.h>
+> +#include <linux/byteorder/generic.h>
+>  #include <linux/cec.h>
+>  #include <linux/hdmi.h>
+>  #include <linux/i2c.h>
+> @@ -2771,6 +2772,40 @@ void drm_edid_get_product_id(const struct drm_edid *drm_edid,
+>  }
+>  EXPORT_SYMBOL(drm_edid_get_product_id);
+>  
+> +/**
+> + * drm_edid_print_product_id - Print decoded product id to printer
+> + * @p: drm printer
+> + * @id: EDID product id
+> + * @raw: If true, also print the raw hex
+> + */
+> +void drm_edid_print_product_id(struct drm_printer *p,
+> +			       const struct drm_edid_product_id *id, bool raw)
+> +{
+> +	u16 mfg_id = id->manufacturer_name[0] << 8 | id->manufacturer_name[1];
+> +	char *date;
+> +	char vend[4];
+> +
+> +	drm_edid_decode_mfg_id(mfg_id, vend);
+> +
+> +	if (id->week_of_manufacture == 0xff)
 
-== Series Details ==
+Didn't realize this had a loaded meaning. Maybe we should also
+skip the week printout if week==0? Otherwise people might think
+week==0 means the first week.
 
-Series: Panel replay selective update support (rev6)
-URL   : https://patchwork.freedesktop.org/series/128193/
-State : success
+> +		date = kasprintf(GFP_KERNEL, "model year: %d",
+> +				 id->year_of_manufacture + 1990);
+> +	else
+> +		date = kasprintf(GFP_KERNEL, "week: %d, year of manufacture: %d",
 
-== Summary ==
+The "week: %d" part feels a bit left out here. Maybe this should be
+formatted as "week/year of manufacture: %d/%d"? 
 
-CI Bug Log - changes from CI_DRM_14543 -> Patchwork_128193v6
-====================================================
+Not sure I like the kasprintf(). Maybe use an on-stack buffer?
 
-Summary
--------
+> +				 id->week_of_manufacture,
+> +				 id->year_of_manufacture + 1990);
+> +
+> +	drm_printf(p, "manufacturer name: %s, product code: %u, serial number: %u, %s\n",
+> +		   vend, le16_to_cpu(id->product_code),
+> +		   le32_to_cpu(id->serial_number), date ?: "");
+> +
+> +	if (raw)
+> +		drm_printf(p, "raw product id: %*ph\n", (int)sizeof(*id), id);
+> +
+> +	kfree(date);
+> +}
+> +EXPORT_SYMBOL(drm_edid_print_product_id);
+> +
+>  /**
+>   * drm_edid_get_panel_id - Get a panel's ID from EDID
+>   * @drm_edid: EDID that contains panel ID.
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 7911a2f8a672..c763ba1a0bbd 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -30,6 +30,7 @@ struct drm_connector;
+>  struct drm_device;
+>  struct drm_display_mode;
+>  struct drm_edid;
+> +struct drm_printer;
+>  struct hdmi_avi_infoframe;
+>  struct hdmi_vendor_infoframe;
+>  struct i2c_adapter;
+> @@ -481,6 +482,8 @@ int drm_edid_connector_add_modes(struct drm_connector *connector);
+>  bool drm_edid_is_digital(const struct drm_edid *drm_edid);
+>  void drm_edid_get_product_id(const struct drm_edid *drm_edid,
+>  			     struct drm_edid_product_id *id);
+> +void drm_edid_print_product_id(struct drm_printer *p,
+> +			       const struct drm_edid_product_id *id, bool raw);
+>  
+>  const u8 *drm_find_edid_extension(const struct drm_edid *drm_edid,
+>  				  int ext_id, int *ext_index);
+> -- 
+> 2.39.2
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/index.html
-
-Participating hosts (41 -> 35)
-------------------------------
-
-  Additional (1): fi-kbl-7567u 
-  Missing    (7): bat-dg1-7 bat-mtlp-9 fi-bsw-n3050 fi-glk-j4005 fi-elk-e7500 bat-jsl-1 bat-arls-3 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_128193v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-8:          [PASS][3] -> [FAIL][4] ([i915#10378])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg2-9:          [PASS][5] -> [ABORT][6] ([i915#10366])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-dg2-9/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/bat-dg2-9/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][7] +11 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14543 -> Patchwork_128193v6
-
-  CI-20190529: 20190529
-  CI_DRM_14543: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7801: 7801
-  Patchwork_128193v6: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-96345b40b4d3 drm/i915/psr: Add panel replay sel update support to debugfs interface
-062904b52d99 drm/i915/psr: Split intel_psr2_config_valid for panel replay
-199db55732e5 drm/i915/psr: Update PSR module parameter descriptions
-e260f99c4e8f drm/i915/psr: Do not apply workarounds in case of panel replay
-e05125c223b1 drm/i915/psr: Panel replay uses SRD_STATUS to track it's status
-6f7247d50d00 drm/i915/psr: Modify intel_dp_get_su_granularity to support panel replay
-5781f289e483 drm/i915/psr: Detect panel replay selective update support
-e4a6e60ce39d drm/panelreplay: dpcd register definition for panelreplay SU
-0e5a4bb7994f drm/i915/psr: Rename psr2_enabled as sel_update_enabled
-621ed5043528 drm/i915/psr: Rename has_psr2 as has_sel_update
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/index.html
-
---===============8504938766343767574==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Panel replay selective update support (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/128193/">https://patchwork.freedesktop.org/series/128193/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14543 -&gt; Patchwork_128193v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/index.html</p>
-<h2>Participating hosts (41 -&gt; 35)</h2>
-<p>Additional (1): fi-kbl-7567u <br />
-  Missing    (7): bat-dg1-7 bat-mtlp-9 fi-bsw-n3050 fi-glk-j4005 fi-elk-e7500 bat-jsl-1 bat-arls-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_128193v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14543/bat-dg2-9/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/bat-dg2-9/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_128193v6/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +11 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14543 -&gt; Patchwork_128193v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14543: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7801: 7801<br />
-  Patchwork_128193v6: a533b51ca017728c1228432e8e1e9aba4fd65b02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>96345b40b4d3 drm/i915/psr: Add panel replay sel update support to debugfs interface<br />
-062904b52d99 drm/i915/psr: Split intel_psr2_config_valid for panel replay<br />
-199db55732e5 drm/i915/psr: Update PSR module parameter descriptions<br />
-e260f99c4e8f drm/i915/psr: Do not apply workarounds in case of panel replay<br />
-e05125c223b1 drm/i915/psr: Panel replay uses SRD_STATUS to track it's status<br />
-6f7247d50d00 drm/i915/psr: Modify intel_dp_get_su_granularity to support panel replay<br />
-5781f289e483 drm/i915/psr: Detect panel replay selective update support<br />
-e4a6e60ce39d drm/panelreplay: dpcd register definition for panelreplay SU<br />
-0e5a4bb7994f drm/i915/psr: Rename psr2_enabled as sel_update_enabled<br />
-621ed5043528 drm/i915/psr: Rename has_psr2 as has_sel_update</p>
-
-</body>
-</html>
-
---===============8504938766343767574==--
+-- 
+Ville Syrjälä
+Intel
