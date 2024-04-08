@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071F389CAB7
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36CA889CACF
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 19:28:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA4C1128FA;
-	Mon,  8 Apr 2024 17:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6343610F638;
+	Mon,  8 Apr 2024 17:28:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VB/Q30IA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e87tX4Lr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74DCE1128FA;
- Mon,  8 Apr 2024 17:26:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0BA10F638
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 17:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712597176; x=1744133176;
+ t=1712597310; x=1744133310;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=iE5SxEOcIDrXPM1wB9J8/QClBe1NcQE7JAThZZbyKCM=;
- b=VB/Q30IAAZFZinaANPvQdxZUrRTJ2O+SesMtru5ScCK7ZVIwD86N4sRB
- 1uNH1IuAC85mGKIr9IXI0PAFwzcTHsCznCleEnpRZ73K1+JKRVCulYnwP
- Mt6XwC50hmHGL3LHMqwL6lMxYbYJFH+jhrWqzNg7YrRm4O+vEOQTap7fl
- cbBGrR73bpFvqyEJ7qjNILjcuEPn/1ixItInt8zLbEUkjpdxZGcIVXG+V
- KkBMQTMVHVKiZbbrwKB2qpR/BLeG9lyD23Cz901dAqiY/0gXIsg2IDgTb
- i4rfWYs9EtdfjxoOswfIto51+NMQfRsSXtw0zRrJQ0mm01yYP4MRyPwhs A==;
-X-CSE-ConnectionGUID: vlMrwuL/SvGEk7evSsyM8Q==
-X-CSE-MsgGUID: S2wYZxLBRSWTV9pGceW0TA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7795152"
+ bh=lkZ1n8YlZNsjzsPixZ9stfhEQNUXwEAzsjtmguv3YkA=;
+ b=e87tX4LrUEyrbcKvXRTL1qCCYlRsXc1vGM1tPI9eED+S7CzwY0+HtOEv
+ seY6D1XpZx3QFxoq4GGwNkPR1CBzmphPNZ95VrjLkLJQxUcdvcWGIHBme
+ P4l4GgmtLJaRGp9rnW38ryHsW0eYFGLGLPu27YuvAzKNtWiGTnqH1QD8Y
+ XXvoQOPq30pZNEjzmYFPkvxIfpRHN/+ZFngaW15NkcjSvKQwpDm+kN3nk
+ JF+jQq2SWJPWhbCfv6rWvYajbGClv3qQy3pnznb+c+TVRQoOd7wFnSE4e
+ eIlKwKcJ5VFtvyt9d6fp2dU61LnHnz1JweB9Btm5Xs6S86/kOyGjWho0B g==;
+X-CSE-ConnectionGUID: sqRK8vvsQG+9PAkZyRSDcw==
+X-CSE-MsgGUID: VoJuwH0NQmKTDFS2dDQO3w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7795327"
 X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; 
-   d="scan'208";a="7795152"
+   d="scan'208";a="7795327"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 10:26:15 -0700
+ 08 Apr 2024 10:28:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792350"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="827792350"
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="827792353"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="827792353"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 10:26:13 -0700
+ by orsmga001.jf.intel.com with SMTP; 08 Apr 2024 10:28:27 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 08 Apr 2024 20:26:12 +0300
-Date: Mon, 8 Apr 2024 20:26:12 +0300
+ Mon, 08 Apr 2024 20:28:27 +0300
+Date: Mon, 8 Apr 2024 20:28:27 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 11/12] drm/client: Streamline mode selection debugs
-Message-ID: <ZhQotN--J99J1Ayk@intel.com>
-References: <20240404203336.10454-1-ville.syrjala@linux.intel.com>
- <20240404203336.10454-12-ville.syrjala@linux.intel.com>
- <9f689077-529f-431b-9506-e92f8a1d8003@suse.de>
- <ZhBX-2FDEJH98IrR@intel.com>
- <752f5073-20b3-4671-bf12-1cf0756313a6@suse.de>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915: move rawclk init to intel_cdclk_init()
+Message-ID: <ZhQpO3lJz9TB7c-4@intel.com>
+References: <20240408172315.3418692-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <752f5073-20b3-4671-bf12-1cf0756313a6@suse.de>
+In-Reply-To: <20240408172315.3418692-1-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,122 +70,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 08, 2024 at 09:46:44AM +0200, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 05.04.24 um 21:58 schrieb Ville Syrjälä:
-> > On Fri, Apr 05, 2024 at 09:57:07AM +0200, Thomas Zimmermann wrote:
-> >> Hi
-> >>
-> >> Am 04.04.24 um 22:33 schrieb Ville Syrjala:
-> >>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>>
-> >>> Get rid of all the redundant debugs and just wait until the end
-> >>> to print which mode (and of which type) we picked.
-> >>>
-> >>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>> ---
-> >>>    drivers/gpu/drm/drm_client_modeset.c | 65 +++++++++++++---------------
-> >>>    1 file changed, 31 insertions(+), 34 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-> >>> index 415d1799337b..ad88c11037d8 100644
-> >>> --- a/drivers/gpu/drm/drm_client_modeset.c
-> >>> +++ b/drivers/gpu/drm/drm_client_modeset.c
-> >>> @@ -408,6 +408,8 @@ static bool drm_client_target_preferred(struct drm_device *dev,
-> >>>    
-> >>>    retry:
-> >>>    	for (i = 0; i < connector_count; i++) {
-> >>> +		const char *mode_type;
-> >>> +
-> >>>    		connector = connectors[i];
-> >>>    
-> >>>    		if (conn_configured & BIT_ULL(i))
-> >>> @@ -440,20 +442,20 @@ static bool drm_client_target_preferred(struct drm_device *dev,
-> >>>    			drm_client_get_tile_offsets(dev, connectors, connector_count, modes, offsets, i,
-> >>>    						    connector->tile_h_loc, connector->tile_v_loc);
-> >>>    		}
-> >>> -		drm_dbg_kms(dev, "looking for cmdline mode on [CONNECTOR:%d:%s]\n",
-> >>> -			    connector->base.id, connector->name);
-> >>>    
-> >>> -		/* got for command line mode first */
-> >>> +		mode_type = "cmdline";
-> >>>    		modes[i] = drm_connector_pick_cmdline_mode(connector);
-> >>> +
-> >>>    		if (!modes[i]) {
-> >>> -			drm_dbg_kms(dev, "looking for preferred mode on [CONNECTOR:%d:%s] (tile group: %d)\n",
-> >>> -				    connector->base.id, connector->name,
-> >>> -				    connector->tile_group ? connector->tile_group->id : 0);
-> >>> +			mode_type = "preferred";
-> >>>    			modes[i] = drm_connector_preferred_mode(connector, width, height);
-> >>>    		}
-> >>> -		/* No preferred modes, pick one off the list */
-> >>> -		if (!modes[i])
-> >>> +
-> >>> +		if (!modes[i]) {
-> >>> +			mode_type = "first";
-> >>>    			modes[i] = drm_connector_first_mode(connector);
-> >>> +		}
-> >>> +
-> >>>    		/*
-> >>>    		 * In case of tiled mode if all tiles not present fallback to
-> >>>    		 * first available non tiled mode.
-> >>> @@ -468,16 +470,20 @@ static bool drm_client_target_preferred(struct drm_device *dev,
-> >>>    			    (connector->tile_h_loc == 0 &&
-> >>>    			     connector->tile_v_loc == 0 &&
-> >>>    			     !drm_connector_get_tiled_mode(connector))) {
-> >>> -				drm_dbg_kms(dev, "Falling back to non tiled mode on [CONNECTOR:%d:%s]\n",
-> >>> -					    connector->base.id, connector->name);
-> >>> +				mode_type = "non tiled";
-> >>>    				modes[i] = drm_connector_fallback_non_tiled_mode(connector);
-> >>>    			} else {
-> >>> +				mode_type = "tiled";
-> >>>    				modes[i] = drm_connector_get_tiled_mode(connector);
-> >>>    			}
-> >>>    		}
-> >>>    
-> >>> -		drm_dbg_kms(dev, "found mode %s\n",
-> >>> -			    modes[i] ? modes[i]->name : "none");
-> >>> +		if (!modes[i])
-> >>> +			mode_type = "no";
-> >>> +
-> >>> +		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found %s mode: %s\n",
-> >>> +			    connector->base.id, connector->name,
-> >>> +			    mode_type, modes[i] ? modes[i]->name : "none");
-> >> Instead of tracking the whole mode_type thing, maybe just do
-> >>
-> >> if (!modes[i])
-> >>       drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found mode: " DRM_MODE_FMT,
-> >> DRM_MODE_ARG(modes[i]) );
-> >>
-> >> to print the full mode.
-> > The point of the mode_type is to indicate how we derived
-> > that mode. Printing the full modeline doesn't help with that.
-> 
-> But do we care where the mode comes from? At least from my experience, 
-> it's much more important to know which modes had been available.
+On Mon, Apr 08, 2024 at 08:23:14PM +0300, Jani Nikula wrote:
+> The rawclk initialization is a bit out of place in
+> intel_device_info_runtime_init(). Move it to intel_cdclk_init(), with a
+> bit of refactoring on intel_read_rawclk().
 
-The tiled vs. not-tiled at least could be quite interesting.
-We know there are actual bugs in this code where some tiled 
-connectors seem to incorrectly think they aren't tiled
-while others correctly think they are tiled. Seeing that
-spelled out more clearly in the logs might help with triage.
+rawclk is used outside of display.
 
 > 
-> If the source of the mode is really important, the old messages seem 
-> preferable to me.
-
-The old debugs were somewhat crap. They basically just said
-"looking for mode via <method X>", and then the last one of those
-you saw in the log you assumed was the method used in the end.
-But not all methods even had that debug print. So basically you
-could never be sure what method was used in the end.
-
-> Debugging code should be trivial and not add logic or 
-> flow control to a function IMHO.
-
-It doesn't add anything of the sort. The control flow
-is 100% based on mode==NULL.
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 +++++++++++-----------
+>  drivers/gpu/drm/i915/display/intel_cdclk.h |  1 -
+>  drivers/gpu/drm/i915/intel_device_info.c   |  4 ----
+>  3 files changed, 11 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index d61aa5b7cbdb..64a1cf4ed45c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -3210,6 +3210,8 @@ int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joi
+>  	return intel_atomic_lock_global_state(&cdclk_state->base);
+>  }
+>  
+> +static void intel_rawclk_init(struct drm_i915_private *dev_priv);
+> +
+>  int intel_cdclk_init(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_cdclk_state *cdclk_state;
+> @@ -3221,6 +3223,8 @@ int intel_cdclk_init(struct drm_i915_private *dev_priv)
+>  	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.cdclk.obj,
+>  				     &cdclk_state->base, &intel_cdclk_funcs);
+>  
+> +	intel_rawclk_init(dev_priv);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -3578,16 +3582,13 @@ static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
+>  	}
+>  }
+>  
+> -/**
+> - * intel_read_rawclk - Determine the current RAWCLK frequency
+> - * @dev_priv: i915 device
+> - *
+> - * Determine the current RAWCLK frequency. RAWCLK is a fixed
+> - * frequency clock so this needs to done only once.
+> +/*
+> + * Initialize the current RAWCLK frequency. RAWCLK is a fixed frequency clock so
+> + * this needs to done only once.
+>   */
+> -u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+> +static void intel_rawclk_init(struct drm_i915_private *dev_priv)
+>  {
+> -	u32 freq;
+> +	u32 freq = 0;
+>  
+>  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_MTL)
+>  		/*
+> @@ -3606,11 +3607,9 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+>  		freq = vlv_hrawclk(dev_priv);
+>  	else if (DISPLAY_VER(dev_priv) >= 3)
+>  		freq = i9xx_hrawclk(dev_priv);
+> -	else
+> -		/* no rawclk on other platforms, or no need to know it */
+> -		return 0;
+>  
+> -	return freq;
+> +	RUNTIME_INFO(dev_priv)->rawclk_freq = freq;
+> +	drm_dbg_kms(&dev_priv->drm, "rawclk rate: %d kHz\n", freq);
+>  }
+>  
+>  static int i915_cdclk_info_show(struct seq_file *m, void *unused)
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> index cfdcdec07a4d..a3f950d5a366 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> @@ -64,7 +64,6 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915);
+>  void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv);
+>  void intel_update_max_cdclk(struct drm_i915_private *dev_priv);
+>  void intel_update_cdclk(struct drm_i915_private *dev_priv);
+> -u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
+>  bool intel_cdclk_clock_changed(const struct intel_cdclk_config *a,
+>  			       const struct intel_cdclk_config *b);
+>  int intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index a0a43ea07f11..48f0957392f9 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -370,10 +370,6 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+>  			 "Disabling ppGTT for VT-d support\n");
+>  		runtime->ppgtt_type = INTEL_PPGTT_NONE;
+>  	}
+> -
+> -	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
+> -	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
+> -
+>  }
+>  
+>  /*
+> -- 
+> 2.39.2
 
 -- 
 Ville Syrjälä
