@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C4C989CB7D
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6386489CB7E
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFFA01127F7;
-	Mon,  8 Apr 2024 18:09:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B9A011256C;
+	Mon,  8 Apr 2024 18:09:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HRGlvv9F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+8IaOp1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 807201127F3;
- Mon,  8 Apr 2024 18:09:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB11111292B;
+ Mon,  8 Apr 2024 18:09:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712599762; x=1744135762;
+ t=1712599767; x=1744135767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uuchuP1FGDJu77ocjZD3I05keeUwbn6mcs8NW+Dvh+Q=;
- b=HRGlvv9FonycGgMGtam3YbUt/PK1qO7IN9lYsS41LK8NA2OqEOJtIBLT
- Ynu35+T8oJrhWjK4G+kb+ohFOMndNIilEHu/VIbiLzMhOYwXteQoCQIaY
- 3rbrlpU3xWz65fAoMvvcPOtKEpbTZLOJ+QDU8zcrDkmKrzPa5327hHy3X
- Q3pKGB+x6bM2PKH0haBXXcxBjEw9pPU1dE9vTsVEV//lclM9OSe2CiDmU
- ATOoQCBkvMxatSNuaOL53M4ftRE6dih7TP4EDdtT8kfdBgn9MYsIM+scu
- YwLTlHul2q59wSKTWzR+hVPP+G0NfXko7Av0hTfxnjARryFKtbJJuwdlD g==;
-X-CSE-ConnectionGUID: +JFXpmyhRkOwuFFZqP3SOg==
-X-CSE-MsgGUID: j7axvTBxQQ2ycQFmuIz/Tw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11730236"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11730236"
+ bh=1ZIAlQzCbPYLRLb17dR3tOWHWgGd6Pm+ZJ1kfXS0AxI=;
+ b=D+8IaOp1w7307GvVTFVCROLfJxziqB3OZ0Qh+tZHx6TbtijJP7pvdHz1
+ tyF7IFlmROXHh65lUf7EG7Pk3k/lX/0KtqJt07QiDYXNwtUdrcL5H9OHQ
+ 9oJnBoNgMlUeaBRdUxVeRaEUPWkeRq8l31/TOEZy6jLzxcLtOfuvExBBq
+ luIR1OUgX7ZA54nycttTbRnVsMl7dTRgdBxCqqU+K/srAerXnG3CJPG/j
+ gcSEg8GlgdHusRezTVWD+54sgnpcdpFS5eIGUf8pRL2RGoPVtaJrxqwLV
+ QHK19uca0LBxqW0xi6rn/QXcJ0ilfn7PiRCn2/hSNajOWlsJY67HdvqPe g==;
+X-CSE-ConnectionGUID: 14OHlFh9QfCku3V1quU/iQ==
+X-CSE-MsgGUID: Jelz1wG+QHiKkrxSECoW4g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11730241"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="11730241"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:09:22 -0700
-X-CSE-ConnectionGUID: 5hHS3PVnSUGXD7vXAQKVww==
-X-CSE-MsgGUID: ciBiL7tYS9OwIjXPS5KMow==
+ 08 Apr 2024 11:09:26 -0700
+X-CSE-ConnectionGUID: gwM0UHigT6Smf+eUilaDGQ==
+X-CSE-MsgGUID: hzxi0+N/Rc2AqxuoWEqGDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19915284"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19915292"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:09:20 -0700
+ 08 Apr 2024 11:09:25 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	lucas.demarchi@intel.com
-Subject: [PATCH 6/8] drm/i915: move de_irq_mask to display substruct
-Date: Mon,  8 Apr 2024 21:08:41 +0300
-Message-Id: <733fc96df9153c6af8979d9b23d3aa3734937b56.1712599670.git.jani.nikula@intel.com>
+Subject: [PATCH 7/8] drm/i915: move pipestat_irq_mask to display substruct
+Date: Mon,  8 Apr 2024 21:08:42 +0300
+Message-Id: <2e2f1c9576126927ea63a54639077c01d44ad5b6.1712599670.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1712599670.git.jani.nikula@intel.com>
 References: <cover.1712599670.git.jani.nikula@intel.com>
@@ -76,108 +76,105 @@ i915->display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h   |  2 ++
- .../gpu/drm/i915/display/intel_display_irq.c    | 17 +++++++++--------
- drivers/gpu/drm/i915/i915_drv.h                 |  5 +----
- drivers/gpu/drm/xe/xe_device_types.h            |  7 ++-----
- 4 files changed, 14 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_core.h |  1 +
+ drivers/gpu/drm/i915/display/intel_display_irq.c  | 14 +++++++-------
+ drivers/gpu/drm/i915/i915_drv.h                   |  1 -
+ drivers/gpu/drm/xe/xe_device_types.h              |  1 -
+ 4 files changed, 8 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 68aee44b4822..7a70b162b015 100644
+index 7a70b162b015..db9b6492758e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -452,6 +452,8 @@ struct intel_display {
- 
- 		/* For i915gm/i945gm vblank irq workaround */
+@@ -454,6 +454,7 @@ struct intel_display {
  		u8 vblank_enabled;
-+
-+		u32 de_irq_mask[I915_MAX_PIPES];
+ 
+ 		u32 de_irq_mask[I915_MAX_PIPES];
++		u32 pipestat_irq_mask[I915_MAX_PIPES];
  	} irq;
  
  	struct {
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index e9fcdac90efd..9b9548ae9797 100644
+index 9b9548ae9797..c337e0597541 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -117,13 +117,14 @@ static void bdw_update_pipe_irq(struct drm_i915_private *dev_priv,
- 	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
+@@ -180,7 +180,7 @@ void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits)
+ u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
+ 			      enum pipe pipe)
+ {
+-	u32 status_mask = dev_priv->pipestat_irq_mask[pipe];
++	u32 status_mask = dev_priv->display.irq.pipestat_irq_mask[pipe];
+ 	u32 enable_mask = status_mask << 16;
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+@@ -234,10 +234,10 @@ void i915_enable_pipestat(struct drm_i915_private *dev_priv,
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 	drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv));
+ 
+-	if ((dev_priv->pipestat_irq_mask[pipe] & status_mask) == status_mask)
++	if ((dev_priv->display.irq.pipestat_irq_mask[pipe] & status_mask) == status_mask)
  		return;
  
--	new_val = dev_priv->de_irq_mask[pipe];
-+	new_val = dev_priv->display.irq.de_irq_mask[pipe];
- 	new_val &= ~interrupt_mask;
- 	new_val |= (~enabled_irq_mask & interrupt_mask);
+-	dev_priv->pipestat_irq_mask[pipe] |= status_mask;
++	dev_priv->display.irq.pipestat_irq_mask[pipe] |= status_mask;
+ 	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
  
--	if (new_val != dev_priv->de_irq_mask[pipe]) {
--		dev_priv->de_irq_mask[pipe] = new_val;
--		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
-+	if (new_val != dev_priv->display.irq.de_irq_mask[pipe]) {
-+		dev_priv->display.irq.de_irq_mask[pipe] = new_val;
-+		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe),
-+				   dev_priv->display.irq.de_irq_mask[pipe]);
- 		intel_uncore_posting_read(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe));
+ 	intel_uncore_write(&dev_priv->uncore, reg, enable_mask | status_mask);
+@@ -257,10 +257,10 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 	drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv));
+ 
+-	if ((dev_priv->pipestat_irq_mask[pipe] & status_mask) == 0)
++	if ((dev_priv->display.irq.pipestat_irq_mask[pipe] & status_mask) == 0)
+ 		return;
+ 
+-	dev_priv->pipestat_irq_mask[pipe] &= ~status_mask;
++	dev_priv->display.irq.pipestat_irq_mask[pipe] &= ~status_mask;
+ 	enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
+ 
+ 	intel_uncore_write(&dev_priv->uncore, reg, enable_mask | status_mask);
+@@ -402,7 +402,7 @@ void i9xx_pipestat_irq_reset(struct drm_i915_private *dev_priv)
+ 				   PIPESTAT_INT_STATUS_MASK |
+ 				   PIPE_FIFO_UNDERRUN_STATUS);
+ 
+-		dev_priv->pipestat_irq_mask[pipe] = 0;
++		dev_priv->display.irq.pipestat_irq_mask[pipe] = 0;
  	}
  }
-@@ -1497,8 +1498,8 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
  
- 	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
- 		GEN8_IRQ_INIT_NDX(uncore, DE_PIPE, pipe,
--				  dev_priv->de_irq_mask[pipe],
--				  ~dev_priv->de_irq_mask[pipe] | extra_ier);
-+				  dev_priv->display.irq.de_irq_mask[pipe],
-+				  ~dev_priv->display.irq.de_irq_mask[pipe] | extra_ier);
+@@ -446,7 +446,7 @@ void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
+ 			break;
+ 		}
+ 		if (iir & iir_bit)
+-			status_mask |= dev_priv->pipestat_irq_mask[pipe];
++			status_mask |= dev_priv->display.irq.pipestat_irq_mask[pipe];
  
- 	spin_unlock_irq(&dev_priv->irq_lock);
- }
-@@ -1694,12 +1695,12 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 	}
- 
- 	for_each_pipe(dev_priv, pipe) {
--		dev_priv->de_irq_mask[pipe] = ~de_pipe_masked;
-+		dev_priv->display.irq.de_irq_mask[pipe] = ~de_pipe_masked;
- 
- 		if (intel_display_power_is_enabled(dev_priv,
- 						   POWER_DOMAIN_PIPE(pipe)))
- 			GEN8_IRQ_INIT_NDX(uncore, DE_PIPE, pipe,
--					  dev_priv->de_irq_mask[pipe],
-+					  dev_priv->display.irq.de_irq_mask[pipe],
- 					  de_pipe_enables);
- 	}
- 
+ 		if (!status_mask)
+ 			continue;
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index b3daca57f32c..41add82ca369 100644
+index 41add82ca369..ee0d7d5f135d 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -240,10 +240,7 @@ struct drm_i915_private {
- 	struct pm_qos_request sb_qos;
+@@ -241,7 +241,6 @@ struct drm_i915_private {
  
  	/** Cached value of IMR to avoid reads in updating the bitfield */
--	union {
--		u32 irq_mask;
--		u32 de_irq_mask[I915_MAX_PIPES];
--	};
-+	u32 irq_mask;
- 	u32 pipestat_irq_mask[I915_MAX_PIPES];
+ 	u32 irq_mask;
+-	u32 pipestat_irq_mask[I915_MAX_PIPES];
  
  	bool preserve_bios_swizzle;
+ 
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 956a5f5289bb..359c912359fa 100644
+index 359c912359fa..faa32407efa5 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -500,11 +500,8 @@ struct xe_device {
- 	/* For pcode */
- 	struct mutex sb_lock;
+@@ -502,7 +502,6 @@ struct xe_device {
  
--	union {
--		/* only to allow build, not used functionally */
--		u32 irq_mask;
--		u32 de_irq_mask[I915_MAX_PIPES];
--	};
-+	/* only to allow build, not used functionally */
-+	u32 irq_mask;
- 	u32 pipestat_irq_mask[I915_MAX_PIPES];
+ 	/* only to allow build, not used functionally */
+ 	u32 irq_mask;
+-	u32 pipestat_irq_mask[I915_MAX_PIPES];
  
  	u32 enabled_irq_mask;
+ 
 -- 
 2.39.2
 
