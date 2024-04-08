@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E01389BB11
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 10:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D24189BB8C
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 11:24:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE246112307;
-	Mon,  8 Apr 2024 08:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66CEB10EFAA;
+	Mon,  8 Apr 2024 09:24:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cnx5OdB7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KrdvHZ91";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 586F4112304;
- Mon,  8 Apr 2024 08:59:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A113110E934;
+ Mon,  8 Apr 2024 09:24:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712566782; x=1744102782;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yLSt3N3zCxpBjoNR1+jfTFma+k9yAAC1XvsGPb2aAcU=;
- b=Cnx5OdB7Lo12p3LljCfBjeSYqn+5Kwyjvxl5WksGeisbxMzUUAYb2Cfx
- ve0yLEQe1wBK+izd1zXEz7H4S0vjpk3dqkqtau6rQ2/K3s/AWLdH1M9JY
- Vtl1+0tgJ27OeNYFbZ1+uiUIXzhT1YXxHn+nk44WtHc63rgpdbVoiwg8F
- xYqH/bz+YZg4JbVXRolIALJlpUB/oKfWl1JZ1LQRzprXnaPVyl5P5/EZw
- /FmsKdp2Hd5UU15esu6iSjMpwM2K64KH5XL6dRgWDcAETTVo7famhDXWt
- D0ZnZ15BHylSCccPKi78Vm652OIZt9ttzBnGlrqWPV8u6grXvtdqrRVcL A==;
-X-CSE-ConnectionGUID: kCg6a/RCSwKj1Uvm2JoTTA==
-X-CSE-MsgGUID: BcwnFARDQaK2LB2r2xJAHg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="7698542"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
-   d="scan'208";a="7698542"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:59:41 -0700
-X-CSE-ConnectionGUID: OIbCVeNhTDyLDiCpvUwiIA==
-X-CSE-MsgGUID: r4q7WBPmSWOIKic6i5jiBg==
+ t=1712568250; x=1744104250;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LFR8GlupVXiLon0PLE0kijIsYGNKmo2QsGp+bUXc9Qs=;
+ b=KrdvHZ910TfVtZ/NW3+6mDrPltRO476AL01TPJUyuywbbIauQkxAXrtT
+ LqpQ7x1Ify6tXXTZVUG5eN9IHpf2mQ37PqTVRA0lM/7RIEBdPLZv4M9vc
+ OClRBxk6Y99b+6EJeznnJCxsdNMHTp7lWlNxPtoBfMfDOkuSfq9pecVOS
+ /MD1UY4ZgD7fGq8TQ4368vEnZ3jMcuOKrmtdvf24LVmq5W0ACXDxWyg0h
+ Nh4QGQ6kWtp7BWx+Pcj1a2LDbFd6oZSUEVpoD/V9AkDowi4E57ApYO7w3
+ lnbs86nQIkdtYcnGfmEeyeXc2eq5C/wnjxJHt3WtqZIjsUY/EFtcPi9kR g==;
+X-CSE-ConnectionGUID: 2oqM7wa+TPaNQMiBlikTSw==
+X-CSE-MsgGUID: Kf0XuTk0SYKct9/HvhULFg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="18557813"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="18557813"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 02:24:09 -0700
+X-CSE-ConnectionGUID: 9ClmFyJ5RniBbtck3r6fpw==
+X-CSE-MsgGUID: aa3eWWTGTAm9FmQSU54HTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="50804552"
+X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="20261164"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:59:40 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 02:24:06 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 0/3] drm/edid & drm/display header spring cleaning
-In-Reply-To: <cover.1711014272.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1711014272.git.jani.nikula@intel.com>
-Date: Mon, 08 Apr 2024 11:59:36 +0300
-Message-ID: <87cyr0b56v.fsf@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, ville.syrjala@linux.intel.com,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 0/7] drm: debug logging improvements
+Date: Mon,  8 Apr 2024 12:23:55 +0300
+Message-Id: <cover.1712568037.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,24 +70,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> Jani Nikula (3):
->   drm/displayid: move drm_displayid.h to drm_displayd_internal.h
->   drm/edid: move all internal declarations to drm_crtc_internal.h
->   drm/edid: group struct drm_edid based declarations together
+v2 of [1], dropping drm_mode_print() stuff altogether, and switching to
+DRM_MODE_FMT/DRM_MODE_ARG() in a separate patch. Also add a few more drm
+device based logging conversion patches, so the last patch makes more sense.
 
-Resent as part of https://patchwork.freedesktop.org/series/132142/
+BR,
+Jani.
 
->
->  drivers/gpu/drm/drm_crtc_internal.h                   |  6 ++++++
->  drivers/gpu/drm/drm_displayid.c                       |  4 +++-
->  .../gpu/drm/drm_displayid_internal.h                  |  5 +++--
->  drivers/gpu/drm/drm_edid.c                            |  2 +-
->  drivers/gpu/drm/drm_eld.c                             |  4 +++-
->  drivers/gpu/drm/drm_internal.h                        |  5 -----
->  include/drm/drm_edid.h                                | 11 ++++-------
->  7 files changed, 20 insertions(+), 17 deletions(-)
->  rename include/drm/drm_displayid.h => drivers/gpu/drm/drm_displayid_internal.h (98%)
+[1] https://patchwork.freedesktop.org/series/130881/
+
+Jani Nikula (7):
+  drm/probe-helper: switch to drm device based logging
+  drm/modes: switch to drm device based error logging
+  drm/sysfs: switch to drm device based logging
+  drm/client: switch to drm device based logging, and more
+  drm/crtc: switch to drm device based logging
+  drm/crtc-helper: switch to drm device based logging and warns
+  drm: prefer DRM_MODE_FMT/ARG over drm_mode_debug_printmodeline()
+
+ drivers/gpu/drm/drm_atomic_uapi.c    |   6 +-
+ drivers/gpu/drm/drm_client_modeset.c | 129 +++++++++++++++------------
+ drivers/gpu/drm/drm_crtc.c           |  38 ++++----
+ drivers/gpu/drm/drm_crtc_helper.c    | 100 +++++++++++----------
+ drivers/gpu/drm/drm_modes.c          |  40 ++++-----
+ drivers/gpu/drm/drm_probe_helper.c   |  39 ++++----
+ drivers/gpu/drm/drm_sysfs.c          |  20 ++---
+ 7 files changed, 193 insertions(+), 179 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
