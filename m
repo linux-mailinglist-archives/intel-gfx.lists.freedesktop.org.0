@@ -2,61 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4483689BA5D
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 10:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8464289C6FE
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 16:24:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6E7112293;
-	Mon,  8 Apr 2024 08:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8AD911266D;
+	Mon,  8 Apr 2024 14:24:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eSWpajQX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I7g+Hq4j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB4AA112293
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Apr 2024 08:32:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712565167; x=1744101167;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=F7ne7eeRvEoe6RsMDUQm8Pdjont7lmFr0YtrWWnzxTo=;
- b=eSWpajQXCNVQUfLKgha7jBJbOyjGlrSbTTq/b642I3mfwYhp9xBO6v10
- E20GQ+6eSas0R2uY8blpnj7usRoHDIH5y6uQJmhjickEmMHQTwaeUcBt7
- nbmgPEJmMpaTy2Mod9eJinh0QxIurPK9mUNa8mp5C88wpOwk/04vRSryT
- PDDrZEtKLYowAssGStMdNK9XHIYZdctPHAvpgCvcqOd4hRfSaIOasE53g
- szrfcLzc/ABuPvN3lb0QijUiPr/cra0q9qMg5VdBPCF6fJk0Nl+5DKjs3
- yxCIBQgMjnfnNe1L3kL8O4vApH9B2VVClyqR3dsWQW0i8xRgmkY2Ra2xk g==;
-X-CSE-ConnectionGUID: mOT4QOMPQk+Aqa/aHejwAg==
-X-CSE-MsgGUID: 3e0Csc5zQgWeBB2Nj7D1Ug==
-X-IronPort-AV: E=McAfee;i="6600,9927,11037"; a="8409093"
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; 
-   d="scan'208";a="8409093"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:32:46 -0700
-X-CSE-ConnectionGUID: hx1rSAUhQYqrnlvCT/q0Vg==
-X-CSE-MsgGUID: s3ieop/qQa651CiBwofYMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,186,1708416000"; d="scan'208";a="19936921"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 01:32:45 -0700
-Date: Mon, 8 Apr 2024 11:32:42 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com,
- jani.saarinen@intel.com
-Subject: Re: [PATCH v10 2/6] drm/i915/display: Extract code required to
- calculate max qgv/psf gv point
-Message-ID: <ZhOrqmTYMDbupExy@intel.com>
-References: <20240405113533.338553-1-vinod.govindapillai@intel.com>
- <20240405113533.338553-3-vinod.govindapillai@intel.com>
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE71112298;
+ Mon,  8 Apr 2024 08:35:26 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-41673509e8eso4476755e9.3; 
+ Mon, 08 Apr 2024 01:35:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1712565325; x=1713170125; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uYeAXyuKGODULO+FbNEaQzDLowkIhH9uCziDxOY+3pM=;
+ b=I7g+Hq4j88PUIh8k+YMVjBTi8sHVgzKAX2XlQUaftSC/eMMQL0tD/zwdFE+UPDSg3o
+ VutdjDmVOCKYGPZ8cU4UG8xR0kjJBT+Fdv/tb1Q+JeeXS0qJen1ggnQkTKKhk04JfkYT
+ igT2qrhe364bSVrdpMdtiESpraXE/u0nLYqa9EpTvipP+H75F6qFNEcCqfzcXab7Ss8u
+ qqn42N+6J5Bvn1G9SGuY6fdj753QG52yXG8rhnl3F4Ay7WZV/9OSj2sfoldOuCf/tfns
+ B6iBpU6616j3L98kvUqF0Ofsa///AjsrVJgcc3hcBiBwvNqZl+AfMtzwhq6WgJGiPh4H
+ W4/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712565325; x=1713170125;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=uYeAXyuKGODULO+FbNEaQzDLowkIhH9uCziDxOY+3pM=;
+ b=M6KIBh32Xyc75UOgjFXeu3XEMHSAXh5qlFCovdBQeokZ5BA7/HMyYNfjqvTKmAO/Gh
+ /GUCjwGZZa+WNjLYriP377d11/J9uv5QXKH4j3RHplPm4KPj6RRTimw4RS1RI7BxwIKz
+ E9aezXcpcEZ+HoBAYrt5cHvpyDemsVdi6ADZ0znliuLKixV5VhfJPlh2VbYykveLVcPO
+ Rs9e0tRjWo00vEQILECf2MX+WrWJth9Z3sNIkbHmQz4X3wsGuqf5c7MXjE7623mnFpWv
+ weYpZXoBn38yANmqJb3oWg90SlBJbxX2EZKPj+BXRTZLncRCR3BcePpk2tjs8NqtVFZa
+ bJRQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU1F+0IfJRU1ixjth72LzrRjdA7FO3c9Kv/Q8daAqNS1V/eR6hpmFXKUX3ReT9ws4s5690ycDcTIiwKquTqJAFMciMzO2woZrdWuXoc9TIKIq2X9neOHOTwIP1kV+tFXmOOlaIxLCvWUoWGKW7PMEuzGOrJgQTeTUJkFb2PQMffE+vK1mMtAFdOxeHTTcxLYcJj1nyUCGU1o7EVoEQwxxjkyF5jyHqxqz4Gq+R0hC6O68Hag1CPtEknO6wK2WspmUO+3qBlUXa41VTLdya6UA==
+X-Gm-Message-State: AOJu0YylXKRLXHzpT2pzRFTUB/g2OBgSD7TgdAufaEuGEnmfd+pGPl0r
+ iC6piY1kh9I17tnGDEFmxCV+nvN4kkaonMyZs0vWOA6e5JI8WV1X
+X-Google-Smtp-Source: AGHT+IHU5k1SefaWsJ4Dm8FLb/xA0Oa19OOVbWsUeKtS2E4eDYDTEpvWcL36P791FhCHmqL0tKsDyA==
+X-Received: by 2002:a05:600c:468b:b0:415:6dae:7759 with SMTP id
+ p11-20020a05600c468b00b004156dae7759mr5328190wmo.19.1712565324886; 
+ Mon, 08 Apr 2024 01:35:24 -0700 (PDT)
+Received: from localhost ([185.57.101.252]) by smtp.gmail.com with ESMTPSA id
+ be9-20020a05600c1e8900b004163ee3922csm7570545wmb.38.2024.04.08.01.35.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Apr 2024 01:35:24 -0700 (PDT)
+Date: Mon, 8 Apr 2024 09:35:23 +0100
+From: Martin Habets <habetsm.xilinx@gmail.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Edward Cree <ecree.xilinx@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "open list:SFC NETWORK DRIVER" <netdev@vger.kernel.org>,
+ "open list:SFC NETWORK DRIVER" <linux-net-drivers@amd.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v0 10/14] sfc: falcon: Make I2C terminology more inclusive
+Message-ID: <20240408083523.GA5341@gmail.com>
+Mail-Followup-To: Easwar Hariharan <eahariha@linux.microsoft.com>,
+ Edward Cree <ecree.xilinx@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ "open list:SFC NETWORK DRIVER" <netdev@vger.kernel.org>,
+ "open list:SFC NETWORK DRIVER" <linux-net-drivers@amd.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-11-eahariha@linux.microsoft.com>
+ <20240402090028.GA1759653@gmail.com>
+ <0c6ff90d-0709-4fc5-951e-1b0f0b1273dc@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240405113533.338553-3-vinod.govindapillai@intel.com>
+In-Reply-To: <0c6ff90d-0709-4fc5-951e-1b0f0b1273dc@linux.microsoft.com>
+X-Mailman-Approved-At: Mon, 08 Apr 2024 14:24:15 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,157 +123,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 05, 2024 at 02:35:29PM +0300, Vinod Govindapillai wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On Thu, Apr 04, 2024 at 12:18:06PM -0700, Easwar Hariharan wrote:
+> On 4/2/2024 2:00 AM, Martin Habets wrote:
+> > On Fri, Mar 29, 2024 at 05:00:34PM +0000, Easwar Hariharan wrote:
+> >> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> >> with more appropriate terms. Inspired by and following on to Wolfram's
+> >> series to fix drivers/i2c/[1], fix the terminology for users of
+> >> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> >> in the specification.
+> >>
+> >> Compile tested, no functionality changes intended
+> >>
+> >> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+> >>
+> >> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> > 
+> > Reviewed-by: Martin Habets <habetsm.xilinx@gmail.com>
+> > 
 > 
-> We need that in order to force disable SAGV in next patch.
-> Also it is beneficial to separate that code, as in majority cases,
-> when SAGV is enabled, we don't even need those calculations.
-> Also we probably need to determine max PSF GV point as well, however
-> currently we don't do that when we disable SAGV, which might be
-> actually causing some issues in that case.
-> 
-> v2: - Introduce helper adl_qgv_bw(counterpart to adl_psf_bw)
->       (Ville Syrjälä)
->     - Don't restrict psf gv points for SAGV disable case
->       (Ville Syrjälä)
-> v3: - Update icl_max_bw_qgv_point_mask to return max qgv point
->       mask (Vinod)
-> v4: - Minor changes in icl_find_qgv_points (Vinod)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 80 +++++++++++++++----------
->  1 file changed, 50 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 77886cc21211..c00094e5f11c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -661,6 +661,22 @@ static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
->  	return bi->psf_bw[psf_gv_point];
->  }
->  
-> +static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
-> +			       int num_active_planes, int qgv_point)
-> +{
-> +	unsigned int idx;
-> +
-> +	if (DISPLAY_VER(i915) >= 12)
-> +		idx = tgl_max_bw_index(i915, num_active_planes, qgv_point);
-> +	else
-> +		idx = icl_max_bw_index(i915, num_active_planes, qgv_point);
-> +
-> +	if (idx >= ARRAY_SIZE(i915->display.bw.max))
-> +		return 0;
-> +
-> +	return i915->display.bw.max[idx].deratedbw[qgv_point];
-> +}
-> +
->  void intel_bw_init_hw(struct drm_i915_private *dev_priv)
->  {
->  	if (!HAS_DISPLAY(dev_priv))
-> @@ -806,6 +822,35 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
->  	return to_intel_bw_state(bw_state);
->  }
->  
-> +static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
-> +					      int num_active_planes)
-> +{
-> +	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> +	unsigned int max_bw_point_mask = 0;
-> +	unsigned int max_bw = 0;
-> +	int i;
-> +
-> +	for (i = 0; i < num_qgv_points; i++) {
-> +		unsigned int max_data_rate =
-> +			icl_qgv_bw(i915, num_active_planes, i);
-> +
-> +		/*
-> +		 * We need to know which qgv point gives us
-> +		 * maximum bandwidth in order to disable SAGV
-> +		 * if we find that we exceed SAGV block time
-> +		 * with watermarks. By that moment we already
-> +		 * have those, as it is calculated earlier in
-> +		 * intel_atomic_check,
-> +		 */
-> +		if (max_data_rate > max_bw) {
-> +			max_bw_point_mask = BIT(i);
-> +			max_bw = max_data_rate;
-> +		}
-> +	}
-> +
-> +	return max_bw_point_mask;
-> +}
-> +
+> Thank you, Martin, for reviewing. I believe that we are settling on controller/target
+> terminology from feedback on the other drivers in this series. Would you want to re-review
+> v1 with that change, or should I add your R-B in v1 despite the change?
 
-Wondering, why we just don't call it "max_bw_point", of course "mask"
-could be applied to single point as well, however in most cases it still
-kind of implies that there are few of those, however we always find
-a single one here.
+You can add in my Reviewed-by.
 
-Stan
+Martin
 
->  static int mtl_find_qgv_points(struct drm_i915_private *i915,
->  			       unsigned int data_rate,
->  			       unsigned int num_active_planes,
-> @@ -883,8 +928,6 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  			       const struct intel_bw_state *old_bw_state,
->  			       struct intel_bw_state *new_bw_state)
->  {
-> -	unsigned int max_bw_point = 0;
-> -	unsigned int max_bw = 0;
->  	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
->  	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
->  	u16 psf_points = 0;
-> @@ -897,31 +940,8 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  		return ret;
->  
->  	for (i = 0; i < num_qgv_points; i++) {
-> -		unsigned int idx;
-> -		unsigned int max_data_rate;
-> -
-> -		if (DISPLAY_VER(i915) >= 12)
-> -			idx = tgl_max_bw_index(i915, num_active_planes, i);
-> -		else
-> -			idx = icl_max_bw_index(i915, num_active_planes, i);
-> -
-> -		if (idx >= ARRAY_SIZE(i915->display.bw.max))
-> -			continue;
-> -
-> -		max_data_rate = i915->display.bw.max[idx].deratedbw[i];
-> -
-> -		/*
-> -		 * We need to know which qgv point gives us
-> -		 * maximum bandwidth in order to disable SAGV
-> -		 * if we find that we exceed SAGV block time
-> -		 * with watermarks. By that moment we already
-> -		 * have those, as it is calculated earlier in
-> -		 * intel_atomic_check,
-> -		 */
-> -		if (max_data_rate > max_bw) {
-> -			max_bw_point = i;
-> -			max_bw = max_data_rate;
-> -		}
-> +		unsigned int max_data_rate = icl_qgv_bw(i915,
-> +							num_active_planes, i);
->  		if (max_data_rate >= data_rate)
->  			qgv_points |= BIT(i);
->  
-> @@ -965,9 +985,9 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  	 * cause.
->  	 */
->  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
-> -		qgv_points = BIT(max_bw_point);
-> -		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point %d\n",
-> -			    max_bw_point);
-> +		qgv_points = icl_max_bw_qgv_point_mask(i915, num_active_planes);
-> +		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point mask 0x%x\n",
-> +			    qgv_points);
->  	}
->  
->  	/*
-> -- 
-> 2.34.1
+> Thanks,
+> Easwar
 > 
