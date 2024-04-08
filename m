@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E0B89CB78
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 805ED89CB7C
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Apr 2024 20:09:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB571127DB;
-	Mon,  8 Apr 2024 18:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7B31127F2;
+	Mon,  8 Apr 2024 18:09:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsRPb+kZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0w3jmCI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE15611256C;
- Mon,  8 Apr 2024 18:08:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC2611256C;
+ Mon,  8 Apr 2024 18:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712599734; x=1744135734;
+ t=1712599758; x=1744135758;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8c1q5UkTt5s9w3/mz5cNUBo1nt0YNvhHOhM3lFRFsaE=;
- b=FsRPb+kZvAKMLnS6lg/tTxxIvoOJgGW3p2dBGWIobVcyT6Pz37393x6y
- fSqmWW+oap2eNvpGkKAYPGH7Y0gLU1wjaxEKmwE2XvvWH5Td3VdzILnQk
- 3IUYDhGzaeFIe3E9gS904m0whzgkpbl4EQzaRAKdCk4X9bp5Xy6x1JmOX
- 4Od5MMWZ9KYIiLN6dG1VIEZtypoQll6WNABIFKyoyFYrLrq7sdswme4EQ
- pGXfmlziF5Pe1Zv6TqKjZfIUp9C70pr8zdYuYsFfoGaXP1r+PLO+pTCzL
- dJOZrqIuyufTUSmdNUlg2maXINUag5B3cueuVBo6odGpx5bIsS2tmLNZ1 Q==;
-X-CSE-ConnectionGUID: vyxHwQ2tSi2zi7fGsKFAyA==
-X-CSE-MsgGUID: 2Lf5kn44SwCIaXtqbbMQdQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19038618"
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19038618"
+ bh=KEA9uqiToitVRSv996cq6D7shQMXlywPHqyASt2ySQw=;
+ b=b0w3jmCIjVnLSIJJi51klah9sECllyjABgcMV9b6sGhuvRqIUFq/mKic
+ 6YVeRiaShjEG31K5lQoCW4NuSvHv1/JRtJfiKlQ2gO/XoK00Qx8HLFFVa
+ KtXzxKzRm4FOsdTEZf+bEUUTylWpqSknhmW388fFI0318ixelO/NSBw6M
+ UIaqLeNT/wP3iATJ9T1bPDQmwow+ll6C+lXrSXQSmMKbcrwG3PAoWZnkm
+ O+8FhgZsZY9t55dKMkP6Mn/r22e0O6j1muzvzm7V4PQzzzb53RNQI+9IG
+ yne9TP6HgvQ9Ykr7LQxz7yzuhK3JX+qgUQHV98LbPXXKSy+INgEa2arfD w==;
+X-CSE-ConnectionGUID: 0JLV4LitR7iWF1ppf3nYDg==
+X-CSE-MsgGUID: GDM0yLdYQCOIo5uTz54IeQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="19038680"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="19038680"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:08:54 -0700
-X-CSE-ConnectionGUID: ez/yf6E3QVaFw8yLKpxLFw==
-X-CSE-MsgGUID: up5M6FKgROug0+Eyn0ZGOQ==
+ 08 Apr 2024 11:09:18 -0700
+X-CSE-ConnectionGUID: L99tCtN4T8+p3b/Tkpalhg==
+X-CSE-MsgGUID: OJmRLjMhSESbV5CiK0W7FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="43145069"
+X-IronPort-AV: E=Sophos;i="6.07,187,1708416000"; d="scan'208";a="43145283"
 Received: from bauinger-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.42.71])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2024 11:08:52 -0700
+ 08 Apr 2024 11:08:57 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	lucas.demarchi@intel.com
-Subject: [PATCH 1/8] drm/i915/gt: drop display clock info from gt debugfs
-Date: Mon,  8 Apr 2024 21:08:36 +0300
-Message-Id: <50461f13ab09b162de25d3f3587890548f4db499.1712599670.git.jani.nikula@intel.com>
+Subject: [PATCH 2/8] drm/i915: move skl_preferred_vco_freq to display substruct
+Date: Mon,  8 Apr 2024 21:08:37 +0300
+Message-Id: <4e9877d1641bce905cc9dd5eabe40df51ddbe9b5.1712599670.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1712599670.git.jani.nikula@intel.com>
 References: <cover.1712599670.git.jani.nikula@intel.com>
@@ -71,28 +71,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The same info is available in i915_cdclk_info.
+The info is related to display, and should be placed under
+i915->display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c      | 17 ++++++++---------
+ .../gpu/drm/i915/display/intel_display_core.h   |  1 +
+ drivers/gpu/drm/i915/i915_drv.h                 |  1 -
+ drivers/gpu/drm/xe/xe_device_types.h            |  2 +-
+ 4 files changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-index 37e8d50c99ed..4fcba42cfe34 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-@@ -392,10 +392,6 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
- 		drm_puts(p, "no P-state info available\n");
- 	}
- 
--	drm_printf(p, "Current CD clock frequency: %d kHz\n", i915->display.cdclk.hw.cdclk);
--	drm_printf(p, "Max CD clock frequency: %d kHz\n", i915->display.cdclk.max_cdclk_freq);
--	drm_printf(p, "Max pixel clock frequency: %d kHz\n", i915->max_dotclk_freq);
--
- 	intel_runtime_pm_put(uncore->rpm, wakeref);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index d61aa5b7cbdb..950942dc3d60 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1021,15 +1021,14 @@ static int skl_cdclk_decimal(int cdclk)
+ 	return DIV_ROUND_CLOSEST(cdclk - 1000, 500);
  }
  
+-static void skl_set_preferred_cdclk_vco(struct drm_i915_private *dev_priv,
+-					int vco)
++static void skl_set_preferred_cdclk_vco(struct drm_i915_private *i915, int vco)
+ {
+-	bool changed = dev_priv->skl_preferred_vco_freq != vco;
++	bool changed = i915->display.cdclk.skl_preferred_vco_freq != vco;
+ 
+-	dev_priv->skl_preferred_vco_freq = vco;
++	i915->display.cdclk.skl_preferred_vco_freq = vco;
+ 
+ 	if (changed)
+-		intel_update_max_cdclk(dev_priv);
++		intel_update_max_cdclk(i915);
+ }
+ 
+ static u32 skl_dpll0_link_rate(struct drm_i915_private *dev_priv, int vco)
+@@ -1233,7 +1232,7 @@ static void skl_cdclk_init_hw(struct drm_i915_private *dev_priv)
+ 		 * Use the current vco as our initial
+ 		 * guess as to what the preferred vco is.
+ 		 */
+-		if (dev_priv->skl_preferred_vco_freq == 0)
++		if (dev_priv->display.cdclk.skl_preferred_vco_freq == 0)
+ 			skl_set_preferred_cdclk_vco(dev_priv,
+ 						    dev_priv->display.cdclk.hw.vco);
+ 		return;
+@@ -1241,7 +1240,7 @@ static void skl_cdclk_init_hw(struct drm_i915_private *dev_priv)
+ 
+ 	cdclk_config = dev_priv->display.cdclk.hw;
+ 
+-	cdclk_config.vco = dev_priv->skl_preferred_vco_freq;
++	cdclk_config.vco = dev_priv->display.cdclk.skl_preferred_vco_freq;
+ 	if (cdclk_config.vco == 0)
+ 		cdclk_config.vco = 8100000;
+ 	cdclk_config.cdclk = skl_calc_cdclk(0, cdclk_config.vco);
+@@ -3011,7 +3010,7 @@ static int skl_dpll0_vco(struct intel_cdclk_state *cdclk_state)
+ 
+ 	vco = cdclk_state->logical.vco;
+ 	if (!vco)
+-		vco = dev_priv->skl_preferred_vco_freq;
++		vco = dev_priv->display.cdclk.skl_preferred_vco_freq;
+ 
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+ 		if (!crtc_state->hw.enable)
+@@ -3397,7 +3396,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+ 		u32 limit = intel_de_read(dev_priv, SKL_DFSM) & SKL_DFSM_CDCLK_LIMIT_MASK;
+ 		int max_cdclk, vco;
+ 
+-		vco = dev_priv->skl_preferred_vco_freq;
++		vco = dev_priv->display.cdclk.skl_preferred_vco_freq;
+ 		drm_WARN_ON(&dev_priv->drm, vco != 8100000 && vco != 8640000);
+ 
+ 		/*
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 2167dbee5eea..b577429ee6e9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -345,6 +345,7 @@ struct intel_display {
+ 		struct intel_global_obj obj;
+ 
+ 		unsigned int max_cdclk_freq;
++		unsigned int skl_preferred_vco_freq;
+ 	} cdclk;
+ 
+ 	struct {
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index cf52d4adaa20..ba3c27c969f2 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -251,7 +251,6 @@ struct drm_i915_private {
+ 	bool preserve_bios_swizzle;
+ 
+ 	unsigned int fsb_freq, mem_freq, is_ddr3;
+-	unsigned int skl_preferred_vco_freq;
+ 
+ 	unsigned int max_dotclk_freq;
+ 	unsigned int hpll_freq;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c710cec835a7..6f46234d1241 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -501,7 +501,7 @@ struct xe_device {
+ 	struct mutex sb_lock;
+ 
+ 	/* Should be in struct intel_display */
+-	u32 skl_preferred_vco_freq, max_dotclk_freq;
++	u32 max_dotclk_freq;
+ 
+ 	union {
+ 		/* only to allow build, not used functionally */
 -- 
 2.39.2
 
