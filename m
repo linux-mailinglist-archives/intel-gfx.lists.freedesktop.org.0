@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB1ED89D4F8
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 10:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B9C89D5AE
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 11:37:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04E0F112430;
-	Tue,  9 Apr 2024 08:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E681112C0B;
+	Tue,  9 Apr 2024 09:37:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IxphiOgO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z8MY0qLK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF57112430
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Apr 2024 08:58:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3A43112C0B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Apr 2024 09:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712653103; x=1744189103;
+ t=1712655420; x=1744191420;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Ch84/zYptcQYAKf7ZYx3IBK3x37CZrTvWvXcoAqUHf0=;
- b=IxphiOgO7puq4Ur71bXzyGtVpiW+FaHRl2NaP5zt2KZLA3153jsSYxgk
- pYyE55M14haf+6qHqzBimuFEJ+alpx5S/wTCTmx7LAhuOUCE0vn+Tz3Sd
- YO2/ujyjlvl1XmM1TRhmgglCFUfauExLXYrspcCe6ohe3VieOwChsd3aB
- LKDTT7Qy2A/MUPepwFVd/Mr4Rg4usuJesy7R9NTeHVaCdYteUPtRTaXOs
- ejKNNFMYtdPYHr1gFkYJSn+xaRFcDYw6GlPovP7D0bg5PVdMHJ29keumT
- Nh+9FcmfgkOzUX3qgwvRznYPb23TjD7gf9CQzdKNvj7+Khp/pIhTRBMD6 w==;
-X-CSE-ConnectionGUID: fsF5NTLOTXWuDQnCkjH0dA==
-X-CSE-MsgGUID: ZZuoPCNTQJWk7L+3cw0Tww==
-X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="7823116"
+ bh=f1Lm7aHpSa8s37pb91D1Z0prA9DyKJbQTq5/BxAdZrs=;
+ b=Z8MY0qLKdSP57MvZHdzZdf8+fjFLx3KNS0nz+CHOhtI3yQuMrCtDIoto
+ 14UPAskfiLoM7SCBxM8Lfz4DgiVYRo/+a+6rLlQQA2bYUqr47LUnZa7ua
+ SNYTdr2K7NotmT+CHOmdyQTzJ0Kyxa57FiT9/dsF2PNgz0+tnBABQnH8w
+ qgrCIJpc4a3GuBLZotJNYOyjx/BWBL13ORJwi3FvCM2Gc0BDn7bziPM08
+ 3pyGLobdyBLpMyMV50IM6oCByPXOOcwL3CwYXtc3HyhhVddekWnnPtIbt
+ 2XN68LuCELkjrU2jzjd84fEm9Z27HPqRYzNQu2n2RRYCxro6I7spTjlej w==;
+X-CSE-ConnectionGUID: pvdOne7iSk6fjNwIPpp9LA==
+X-CSE-MsgGUID: a1m7jxttQweZYTuNUBXDLQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="8085583"
 X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; 
-   d="scan'208";a="7823116"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 01:58:22 -0700
-X-CSE-ConnectionGUID: Bhx4g2ccQJ+mc/sXHhnGzg==
-X-CSE-MsgGUID: bgJSJtIARwGF2eD71vpSwg==
+   d="scan'208";a="8085583"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2024 02:36:59 -0700
+X-CSE-ConnectionGUID: BH06TbI0Sv+VOHgUPdlnEg==
+X-CSE-MsgGUID: rON0nflURI+yaNL5XGicAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="57624761"
-Received: from vgoldenb-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.58.239])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2024 01:58:21 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="24908018"
+Received: from mzizka-mobl1.ger.corp.intel.com (HELO vgovind2-mobl3.intel.com)
+ ([10.249.37.25])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2024 02:36:57 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/psr: Use crtc_state->port_clock instead of
- intel_dp->link_rate
-Date: Tue,  9 Apr 2024 11:57:59 +0300
-Message-Id: <20240409085759.178235-1-jouni.hogander@intel.com>
+Cc: baolu.lu@intel.com, vinod.govindapillai@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v1 0/1] iommu/vt-d: Fix WARN_ON in iommu probe path
+Date: Tue,  9 Apr 2024 12:36:44 +0300
+Message-Id: <20240409093645.456004-1-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,28 +68,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Intel_dp->link_rate is not yet set at this point. Instead use
-crtc_state->port_clock.
+This has already been sent to try bot
+https://patchwork.freedesktop.org/series/132132/
 
-Fixes: 0dd21f836983 ("drm/i915/psr: Silence period and lfps half cycle")
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Lu Baolu (1):
+  iommu/vt-d: Fix WARN_ON in iommu probe path
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 7af974bb41ca..f5b33335a9ae 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1276,7 +1276,7 @@ static int _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
- 	aux_less_wake_lines = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
- 						       aux_less_wake_time);
- 
--	if (!_lnl_get_silence_period_and_lfps_half_cycle(intel_dp->link_rate,
-+	if (!_lnl_get_silence_period_and_lfps_half_cycle(crtc_state->port_clock,
- 							 &silence_period,
- 							 &lfps_half_cycle))
- 		return false;
+ drivers/iommu/intel/iommu.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
 -- 
 2.34.1
 
