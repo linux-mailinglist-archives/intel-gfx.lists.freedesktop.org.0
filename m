@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4130789D6F4
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 12:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 621C789D700
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 12:30:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9E3112A8E;
-	Tue,  9 Apr 2024 10:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF886112C91;
+	Tue,  9 Apr 2024 10:30:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R2h5aAdj";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3DFF112A8E;
- Tue,  9 Apr 2024 10:28:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78509112C91
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Apr 2024 10:30:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712658627; x=1744194627;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=uDjfKerI8/MUJYJhIDXisXaJ2gyTjWiliIprs6Zpa70=;
+ b=R2h5aAdjiuP3pL629+16Oza2JkwC1UEO5CDYip7fA7stf+/RUFYoNspH
+ pr2vbH4Zo5dmTPNo+Y2OyMOZyoTR/z1UaCMS2AHKgxB/UmBB6dfJ6OK3t
+ Yc0UISPjVhPDjeyssa6AB0x+M75oIPQlTrghkmB2/tb4X2MuGl5/t5J9V
+ qdoVKyVV7++kMcaITLvW2WXjO+e6Iu0Zc029c5KKzqWIdXsdI1vTWxUzQ
+ UxncBhUjZPb5JMs7pXWrjN+oulKZlr8NSzUGkvS/+Nehus60M+msM0zWL
+ U2J9pFuv1FLceBBZV+HADkq1W42yYhtQ4fVDBqA0ZhHiIPPyn6gAp/tsD w==;
+X-CSE-ConnectionGUID: HB5WLdUuRlqmGLK+mLDcNg==
+X-CSE-MsgGUID: C2Lfu3z0QlKUYIqvREg7oQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="11742631"
+X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="11742631"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2024 03:30:26 -0700
+X-CSE-ConnectionGUID: 23jRXm99SumaKs4NFWNroA==
+X-CSE-MsgGUID: 9uG1p9w8RzKBPQNJiq3/Ug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,189,1708416000"; d="scan'208";a="20626736"
+Received: from mserban-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.59.228])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2024 03:30:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Brent Lu <brent.lu@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Brent Lu <brent.lu@intel.com>
+Subject: Re: [PATCH] drm/i915/audio: 'scheduling while atomic' during system
+ resume
+In-Reply-To: <20240409130113.3081587-1-brent.lu@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240409130113.3081587-1-brent.lu@intel.com>
+Date: Tue, 09 Apr 2024 13:30:20 +0300
+Message-ID: <87jzl696bn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/=7Bi915=2Cxe=7D=3A_C?=
- =?utf-8?q?onvert_fbdev_to_DRM_client?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Apr 2024 10:28:11 -0000
-Message-ID: <171265849179.1300821.14733537767867272724@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240409081029.17843-1-tzimmermann@suse.de>
-In-Reply-To: <20240409081029.17843-1-tzimmermann@suse.de>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,105 +66,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 09 Apr 2024, Brent Lu <brent.lu@intel.com> wrote:
+> The i915_audio_component_codec_wake_override() function will be called
+> during resume process so replace usleep_range() function calls with
+> udelay() to avoid the 'scheduling while atomic' error.
 
-Series: drm/{i915,xe}: Convert fbdev to DRM client
-URL   : https://patchwork.freedesktop.org/series/132192/
-State : warning
+That explanation does not hold water.
 
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+./arch/x86/include/asm/bitops.h:116:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:147:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:149:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:153:26: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:173:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:175:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:179:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:185:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:187:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:191:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:236:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:238:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
+For example, what about the mutexes on the same paths?
 
 
+BR,
+Jani.
+
+
+>
+> [22138.069052] BUG: scheduling while atomic: cras/2682/0x00000000
+> [22138.069359] Call Trace:
+> [22138.069369]  <TASK>
+> [22138.069380]  dump_stack_lvl+0x69/0x97
+> [22138.069407]  __schedule_bug+0x87/0x9a
+> [22138.069422]  __schedule+0x4f9/0xf88
+> [22138.069450]  schedule+0x4e/0xd0
+> [22138.069462]  schedule_hrtimeout_range_clock+0xab/0x11b
+> [22138.069488]  usleep_range_state+0x63/0x8c
+> [22138.069502]  i915_audio_component_codec_wake_override+0x8e/0xf2
+> [22138.069518]  snd_hdac_set_codec_wakeup+0x39/0x44 [snd_hda_core (HASH:381b 97)]
+> [22138.069541]  hda_dsp_ctrl_init_chip+0x45/0x414 [snd_sof_intel_hda_common (HASH:ff4d 98)]
+> [22138.069578]  hda_resume+0x4c/0xf2 [snd_sof_intel_hda_common (HASH:ff4d 98)]
+> [22138.069598]  hda_dsp_runtime_resume+0x32/0x9f [snd_sof_intel_hda_common (HASH:ff4d 98)]
+> [22138.069618]  sof_resume+0x67/0x234 [snd_sof (HASH:ad31 99)]
+> [22138.069655]  __rpm_callback+0x87/0x130
+> [22138.069680]  rpm_callback+0x22/0x77
+> [22138.069691]  rpm_resume+0x3bb/0x508
+>
+> Signed-off-by: Brent Lu <brent.lu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index 07e0c73204f3..9a85e6da63bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -1120,12 +1120,12 @@ static void i915_audio_component_codec_wake_override(struct device *kdev,
+>  	 */
+>  	intel_de_rmw(i915, HSW_AUD_CHICKENBIT,
+>  		     SKL_AUD_CODEC_WAKE_SIGNAL, 0);
+> -	usleep_range(1000, 1500);
+> +	udelay(1000);
+>  
+>  	if (enable) {
+>  		intel_de_rmw(i915, HSW_AUD_CHICKENBIT,
+>  			     0, SKL_AUD_CODEC_WAKE_SIGNAL);
+> -		usleep_range(1000, 1500);
+> +		udelay(1000);
+>  	}
+>  
+>  	i915_audio_component_put_power(kdev, cookie);
+
+-- 
+Jani Nikula, Intel
