@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E731089DEE7
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 17:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A6089DF68
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 17:40:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE0C010E845;
-	Tue,  9 Apr 2024 15:23:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 745FD10E882;
+	Tue,  9 Apr 2024 15:40:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1240510E845;
- Tue,  9 Apr 2024 15:23:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7463653096956439240=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D487E10E886;
+ Tue,  9 Apr 2024 15:40:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Add_support_for_partial_map?=
- =?utf-8?q?ping_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_better_h?=
+ =?utf-8?q?igh_level_abstraction_for_display_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Apr 2024 15:23:38 -0000
-Message-ID: <171267621807.1300821.16265390318820577057@8e613ede5ea5>
+Date: Tue, 09 Apr 2024 15:40:20 -0000
+Message-ID: <171267722086.1300821.16304709363682091430@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240329163959.791865-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240329163959.791865-1-andi.shyti@linux.intel.com>
+References: <cover.1712665176.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1712665176.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,468 +41,320 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7463653096956439240==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add support for partial mapping (rev2)
-URL   : https://patchwork.freedesktop.org/series/131817/
-State : failure
+Series: drm/i915: better high level abstraction for display (rev2)
+URL   : https://patchwork.freedesktop.org/series/130805/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14549 -> Patchwork_131817v2
-====================================================
+Error: dim checkpatch failed
+dac86e84fa8c drm/i915/display: add intel_display -> drm_device backpointer
+40e8d033ff3c drm/i915/display: add generic to_intel_display() macro
+-:53: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#53: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2223:
++	struct type: __##type##_to_intel_display((struct type *)(p))
+ 	           ^
 
-Summary
--------
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2226:
++#define to_intel_display(p)				\
++	_Generic(*p,					\
++		 __assoc(drm_device, p),		\
++		 __assoc(intel_connector, p),		\
++		 __assoc(intel_crtc, p),		\
++		 __assoc(intel_crtc_state, p),		\
++		 __assoc(intel_digital_port, p),	\
++		 __assoc(intel_dp, p),			\
++		 __assoc(intel_encoder, p),		\
++		 __assoc(intel_hdmi, p))
 
-  **FAILURE**
+-:56: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'p' may be better as '(p)' to avoid precedence issues
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2226:
++#define to_intel_display(p)				\
++	_Generic(*p,					\
++		 __assoc(drm_device, p),		\
++		 __assoc(intel_connector, p),		\
++		 __assoc(intel_crtc, p),		\
++		 __assoc(intel_crtc_state, p),		\
++		 __assoc(intel_digital_port, p),	\
++		 __assoc(intel_dp, p),			\
++		 __assoc(intel_encoder, p),		\
++		 __assoc(intel_hdmi, p))
 
-  Serious unknown changes coming with Patchwork_131817v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_131817v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:57: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#57: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2227:
++	_Generic(*p,					\
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/index.html
+total: 1 errors, 0 warnings, 3 checks, 41 lines checked
+13c270690677 drm/i915: add generic __to_intel_display()
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/i915_drv.h:364:
++#define __to_intel_display(p)						\
++	_Generic(p,							\
++		 const struct drm_i915_private *: (&((const struct drm_i915_private *)(p))->display), \
++		 struct drm_i915_private *: (&((struct drm_i915_private *)(p))->display), \
++		 const struct intel_display *: (p),			\
++		 struct intel_display *: (p))
 
-Participating hosts (35 -> 36)
-------------------------------
+-:26: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#26: FILE: drivers/gpu/drm/i915/i915_drv.h:365:
++	_Generic(p,							\
 
-  Additional (4): fi-kbl-7567u bat-dg1-7 bat-atsm-1 fi-elk-e7500 
-  Missing    (3): bat-kbl-2 bat-dg2-11 fi-apl-guc 
+-:27: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#27: FILE: drivers/gpu/drm/i915/i915_drv.h:366:
++		 const struct drm_i915_private *: (&((const struct drm_i915_private *)(p))->display), \
 
-Possible new issues
--------------------
+-:27: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#27: FILE: drivers/gpu/drm/i915/i915_drv.h:366:
++		 const struct drm_i915_private *: (&((const struct drm_i915_private *)(p))->display), \
+ 		                               ^
 
-  Here are the unknown changes that may have been introduced in Patchwork_131817v2:
+-:27: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#27: FILE: drivers/gpu/drm/i915/i915_drv.h:366:
++		 const struct drm_i915_private *: (&((const struct drm_i915_private *)(p))->display), \
+ 		                                ^
 
-### IGT changes ###
+-:28: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#28: FILE: drivers/gpu/drm/i915/i915_drv.h:367:
++		 struct drm_i915_private *: (&((struct drm_i915_private *)(p))->display), \
+ 		                         ^
 
-#### Possible regressions ####
+-:28: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#28: FILE: drivers/gpu/drm/i915/i915_drv.h:367:
++		 struct drm_i915_private *: (&((struct drm_i915_private *)(p))->display), \
+ 		                          ^
 
-  * igt@gem_exec_gttfill@basic:
-    - bat-arls-2:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14549/bat-arls-2/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-arls-2/igt@gem_exec_gttfill@basic.html
+-:29: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#29: FILE: drivers/gpu/drm/i915/i915_drv.h:368:
++		 const struct intel_display *: (p),			\
+ 		                            ^
 
-  
-Known issues
-------------
+-:29: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#29: FILE: drivers/gpu/drm/i915/i915_drv.h:368:
++		 const struct intel_display *: (p),			\
+ 		                             ^
 
-  Here are the changes found in Patchwork_131817v2 that come from known issues:
+-:30: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#30: FILE: drivers/gpu/drm/i915/i915_drv.h:369:
++		 struct intel_display *: (p))
+ 		                      ^
 
-### IGT changes ###
+-:30: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#30: FILE: drivers/gpu/drm/i915/i915_drv.h:369:
++		 struct intel_display *: (p))
+ 		                       ^
 
-#### Issues hit ####
+total: 4 errors, 1 warnings, 6 checks, 17 lines checked
+ef7f7db6eac3 drm/xe/display: add generic __to_intel_display()
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#25: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:36:
++#define __to_intel_display(p)						\
++	_Generic(p,							\
++		 const struct xe_device *: (&((const struct xe_device *)(p))->display), \
++		 struct xe_device *: (&((struct xe_device *)(p))->display), \
++		 const struct intel_display *: (p),			\
++		 struct intel_display *: (p))
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html
-    - bat-atsm-1:         NOTRUN -> [FAIL][4] ([i915#10563])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@gem_huc_copy@huc-copy.html
+-:26: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
+#26: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:37:
++	_Generic(p,							\
 
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html
+-:27: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#27: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:38:
++		 const struct xe_device *: (&((const struct xe_device *)(p))->display), \
+ 		                        ^
 
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-9:          [PASS][6] -> [FAIL][7] ([i915#10378])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14549/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+-:27: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#27: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:38:
++		 const struct xe_device *: (&((const struct xe_device *)(p))->display), \
+ 		                         ^
 
-  * igt@gem_mmap@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][8] ([i915#4083])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@gem_mmap@basic.html
-    - bat-dg1-7:          NOTRUN -> [SKIP][9] ([i915#4083])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@gem_mmap@basic.html
+-:28: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#28: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:39:
++		 struct xe_device *: (&((struct xe_device *)(p))->display), \
+ 		                  ^
 
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg1-7:          NOTRUN -> [SKIP][10] ([i915#4077]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@gem_tiled_fence_blits@basic.html
+-:28: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#28: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:39:
++		 struct xe_device *: (&((struct xe_device *)(p))->display), \
+ 		                   ^
 
-  * igt@gem_tiled_pread_basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][11] ([i915#4079]) +1 other test skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@gem_tiled_pread_basic.html
-    - bat-dg1-7:          NOTRUN -> [SKIP][12] ([i915#4079]) +1 other test skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@gem_tiled_pread_basic.html
+-:29: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#29: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:40:
++		 const struct intel_display *: (p),			\
+ 		                            ^
 
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg1-7:          NOTRUN -> [SKIP][13] ([i915#6621])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@i915_pm_rps@basic-api.html
-    - bat-atsm-1:         NOTRUN -> [SKIP][14] ([i915#6621])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@i915_pm_rps@basic-api.html
+-:29: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#29: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:40:
++		 const struct intel_display *: (p),			\
+ 		                             ^
 
-  * igt@i915_selftest@live@gem:
-    - bat-atsm-1:         NOTRUN -> [ABORT][15] ([i915#10182] / [i915#10564])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@i915_selftest@live@gem.html
+-:30: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
+#30: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:41:
++		 struct intel_display *: (p))
+ 		                      ^
 
-  * igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:
-    - bat-dg1-7:          NOTRUN -> [SKIP][16] ([i915#4212]) +7 other tests skip
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html
+-:30: ERROR:SPACING: spaces required around that ':' (ctx:OxW)
+#30: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:41:
++		 struct intel_display *: (p))
+ 		                       ^
 
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg1-7:          NOTRUN -> [SKIP][17] ([i915#4215])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+total: 4 errors, 0 warnings, 6 checks, 17 lines checked
+b92cebd0bd5d drm/i915/display: accept either i915 or display for feature tests
+c9ce81cc4783 drm/i915/de: allow intel_display and drm_i915_private for de functions
+-:33: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#33: FILE: drivers/gpu/drm/i915/display/intel_de.h:23:
+ }
++#define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_addfb_basic@size-max:
-    - bat-atsm-1:         NOTRUN -> [SKIP][18] ([i915#6077]) +37 other tests skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_addfb_basic@size-max.html
+-:33: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#33: FILE: drivers/gpu/drm/i915/display/intel_de.h:23:
++#define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
+                        ^
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg1-7:          NOTRUN -> [SKIP][19] ([i915#4103] / [i915#4213]) +1 other test skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+-:42: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#42: FILE: drivers/gpu/drm/i915/display/intel_de.h:30:
+ }
++#define intel_de_read8(p,...) __intel_de_read8(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][20] ([i915#6078]) +22 other tests skip
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+-:42: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#42: FILE: drivers/gpu/drm/i915/display/intel_de.h:30:
++#define intel_de_read8(p,...) __intel_de_read8(__to_intel_display(p), __VA_ARGS__)
+                         ^
 
-  * igt@kms_dsc@dsc-basic:
-    - bat-dg1-7:          NOTRUN -> [SKIP][21] ([i915#3555] / [i915#3840])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_dsc@dsc-basic.html
+-:54: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#54: FILE: drivers/gpu/drm/i915/display/intel_de.h:39:
+ }
++#define intel_de_read64_2x32(p,...) __intel_de_read64_2x32(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][22] +11 other tests skip
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-dg1-7:          NOTRUN -> [SKIP][23]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_force_connector_basic@force-load-detect.html
+-:54: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#54: FILE: drivers/gpu/drm/i915/display/intel_de.h:39:
++#define intel_de_read64_2x32(p,...) __intel_de_read64_2x32(__to_intel_display(p), __VA_ARGS__)
+                               ^
 
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-atsm-1:         NOTRUN -> [SKIP][24] ([i915#6093]) +4 other tests skip
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html
+-:63: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#63: FILE: drivers/gpu/drm/i915/display/intel_de.h:46:
+ }
++#define intel_de_posting_read(p,...) __intel_de_posting_read(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-dg1-7:          NOTRUN -> [SKIP][25] ([i915#433])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_hdmi_inject@inject-audio.html
+-:63: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#63: FILE: drivers/gpu/drm/i915/display/intel_de.h:46:
++#define intel_de_posting_read(p,...) __intel_de_posting_read(__to_intel_display(p), __VA_ARGS__)
+                                ^
 
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-atsm-1:         NOTRUN -> [SKIP][26] ([i915#1836]) +6 other tests skip
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+-:72: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#72: FILE: drivers/gpu/drm/i915/display/intel_de.h:53:
+ }
++#define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_pm_backlight@basic-brightness:
-    - bat-dg1-7:          NOTRUN -> [SKIP][27] ([i915#5354])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_pm_backlight@basic-brightness.html
+-:72: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#72: FILE: drivers/gpu/drm/i915/display/intel_de.h:53:
++#define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
+                         ^
 
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-elk-e7500:       NOTRUN -> [SKIP][28] +24 other tests skip
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
+-:82: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#82: FILE: drivers/gpu/drm/i915/display/intel_de.h:61:
+ }
++#define intel_de_rmw(p,...) __intel_de_rmw(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][29] ([i915#7357])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_prop_blob@basic.html
+-:82: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#82: FILE: drivers/gpu/drm/i915/display/intel_de.h:61:
++#define intel_de_rmw(p,...) __intel_de_rmw(__to_intel_display(p), __VA_ARGS__)
+                       ^
 
-  * igt@kms_psr@psr-primary-page-flip:
-    - bat-dg1-7:          NOTRUN -> [SKIP][30] ([i915#1072] / [i915#9732]) +3 other tests skip
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_psr@psr-primary-page-flip.html
+-:94: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#94: FILE: drivers/gpu/drm/i915/display/intel_de.h:70:
+ }
++#define intel_de_wait(p,...) __intel_de_wait(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-atsm-1:         NOTRUN -> [SKIP][31] ([i915#6094])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-dg1-7:          NOTRUN -> [SKIP][32] ([i915#3555])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html
+-:94: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#94: FILE: drivers/gpu/drm/i915/display/intel_de.h:70:
++#define intel_de_wait(p,...) __intel_de_wait(__to_intel_display(p), __VA_ARGS__)
+                        ^
 
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-dg1-7:          NOTRUN -> [SKIP][33] ([i915#3708]) +3 other tests skip
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@prime_vgem@basic-fence-flip.html
+-:106: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#106: FILE: drivers/gpu/drm/i915/display/intel_de.h:79:
+ }
++#define intel_de_wait_fw(p,...) __intel_de_wait_fw(__to_intel_display(p), __VA_ARGS__)
 
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-atsm-1:         NOTRUN -> [SKIP][34] ([i915#4077]) +4 other tests skip
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html
-    - bat-dg1-7:          NOTRUN -> [SKIP][35] ([i915#3708] / [i915#4077]) +1 other test skip
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@prime_vgem@basic-fence-mmap.html
+-:106: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#106: FILE: drivers/gpu/drm/i915/display/intel_de.h:79:
++#define intel_de_wait_fw(p,...) __intel_de_wait_fw(__to_intel_display(p), __VA_ARGS__)
+                           ^
 
-  * igt@prime_vgem@basic-write:
-    - bat-atsm-1:         NOTRUN -> [SKIP][36] +2 other tests skip
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@prime_vgem@basic-write.html
+-:123: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#123: FILE: drivers/gpu/drm/i915/display/intel_de.h:91:
+ }
++#define intel_de_wait_custom(p,...) __intel_de_wait_custom(__to_intel_display(p), __VA_ARGS__)
 
-  
-  [i915#10182]: https://gitlab.freedesktop.org/drm/intel/issues/10182
-  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
-  [i915#10563]: https://gitlab.freedesktop.org/drm/intel/issues/10563
-  [i915#10564]: https://gitlab.freedesktop.org/drm/intel/issues/10564
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#433]: https://gitlab.freedesktop.org/drm/intel/issues/433
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-  [i915#6078]: https://gitlab.freedesktop.org/drm/intel/issues/6078
-  [i915#6093]: https://gitlab.freedesktop.org/drm/intel/issues/6093
-  [i915#6094]: https://gitlab.freedesktop.org/drm/intel/issues/6094
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#7357]: https://gitlab.freedesktop.org/drm/intel/issues/7357
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
+-:123: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#123: FILE: drivers/gpu/drm/i915/display/intel_de.h:91:
++#define intel_de_wait_custom(p,...) __intel_de_wait_custom(__to_intel_display(p), __VA_ARGS__)
+                               ^
 
+-:134: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#134: FILE: drivers/gpu/drm/i915/display/intel_de.h:99:
+ }
++#define intel_de_wait_for_set(p,...) __intel_de_wait_for_set(__to_intel_display(p), __VA_ARGS__)
 
-Build changes
--------------
+-:134: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/i915/display/intel_de.h:99:
++#define intel_de_wait_for_set(p,...) __intel_de_wait_for_set(__to_intel_display(p), __VA_ARGS__)
+                                ^
 
-  * Linux: CI_DRM_14549 -> Patchwork_131817v2
+-:145: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#145: FILE: drivers/gpu/drm/i915/display/intel_de.h:107:
+ }
++#define intel_de_wait_for_clear(p,...) __intel_de_wait_for_clear(__to_intel_display(p), __VA_ARGS__)
 
-  CI-20190529: 20190529
-  CI_DRM_14549: 0fe728577b3313bce01b5d00c6b4c4075a80b5b3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7802: 7802
-  Patchwork_131817v2: 0fe728577b3313bce01b5d00c6b4c4075a80b5b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+-:145: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#145: FILE: drivers/gpu/drm/i915/display/intel_de.h:107:
++#define intel_de_wait_for_clear(p,...) __intel_de_wait_for_clear(__to_intel_display(p), __VA_ARGS__)
+                                  ^
 
+-:164: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#164: FILE: drivers/gpu/drm/i915/display/intel_de.h:127:
+ }
++#define intel_de_read_fw(p,...) __intel_de_read_fw(__to_intel_display(p), __VA_ARGS__)
 
-### Linux commits
+-:164: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#164: FILE: drivers/gpu/drm/i915/display/intel_de.h:127:
++#define intel_de_read_fw(p,...) __intel_de_read_fw(__to_intel_display(p), __VA_ARGS__)
+                           ^
 
-9b3037baaa14 drm/i915/gem: Calculate object page offset for partial memory mapping
-2e5209a60c25 drm/i915/gem: Increment vma offset when mapping fb objects
+-:174: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#174: FILE: drivers/gpu/drm/i915/display/intel_de.h:135:
+ }
++#define intel_de_write_fw(p,...) __intel_de_write_fw(__to_intel_display(p), __VA_ARGS__)
 
-== Logs ==
+-:174: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#174: FILE: drivers/gpu/drm/i915/display/intel_de.h:135:
++#define intel_de_write_fw(p,...) __intel_de_write_fw(__to_intel_display(p), __VA_ARGS__)
+                            ^
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/index.html
+-:183: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#183: FILE: drivers/gpu/drm/i915/display/intel_de.h:142:
+ }
++#define intel_de_read_notrace(p,...) __intel_de_read_notrace(__to_intel_display(p), __VA_ARGS__)
 
---===============7463653096956439240==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:183: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#183: FILE: drivers/gpu/drm/i915/display/intel_de.h:142:
++#define intel_de_read_notrace(p,...) __intel_de_read_notrace(__to_intel_display(p), __VA_ARGS__)
+                                ^
 
+-:193: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#193: FILE: drivers/gpu/drm/i915/display/intel_de.h:150:
+ }
++#define intel_de_write_notrace(p,...) __intel_de_write_notrace(__to_intel_display(p), __VA_ARGS__)
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:193: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#193: FILE: drivers/gpu/drm/i915/display/intel_de.h:150:
++#define intel_de_write_notrace(p,...) __intel_de_write_notrace(__to_intel_display(p), __VA_ARGS__)
+                                 ^
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for partial mapping (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/131817/">https://patchwork.freedesktop.org/series/131817/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/index.html</a></td></tr>
-
-</table>
+total: 15 errors, 0 warnings, 15 checks, 177 lines checked
+b80637579560 drm/i915/quirks: convert struct drm_i915_private to struct intel_display
 
 
-    <h1>CI Bug Log - changes from CI_DRM_14549 -&gt; Patchwork_131817v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_131817v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_131817v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/index.html</p>
-<h2>Participating hosts (35 -&gt; 36)</h2>
-<p>Additional (4): fi-kbl-7567u bat-dg1-7 bat-atsm-1 fi-elk-e7500 <br />
-  Missing    (3): bat-kbl-2 bat-dg2-11 fi-apl-guc </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_131817v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14549/bat-arls-2/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-arls-2/igt@gem_exec_gttfill@basic.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_131817v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@gem_huc_copy@huc-copy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10563">i915#10563</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14549/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@i915_selftest@live@gem.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10182">i915#10182</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10564">i915#10564</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@size-max:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_addfb_basic@size-max.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6077">i915#6077</a>) +37 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6078">i915#6078</a>) +22 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +11 other tests skip</li>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6093">i915#6093</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/433">i915#433</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/7357">i915#7357</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9732">i915#9732</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6094">i915#6094</a>)</li>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +4 other tests skip</li>
-<li>bat-dg1-7:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-dg1-7/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_131817v2/bat-atsm-1/igt@prime_vgem@basic-write.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14549 -&gt; Patchwork_131817v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14549: 0fe728577b3313bce01b5d00c6b4c4075a80b5b3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7802: 7802<br />
-  Patchwork_131817v2: 0fe728577b3313bce01b5d00c6b4c4075a80b5b3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>9b3037baaa14 drm/i915/gem: Calculate object page offset for partial memory mapping<br />
-2e5209a60c25 drm/i915/gem: Increment vma offset when mapping fb objects</p>
-
-</body>
-</html>
-
---===============7463653096956439240==--
