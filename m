@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB9789D961
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 14:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C3889D1DB
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Apr 2024 07:15:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B517910F483;
-	Tue,  9 Apr 2024 12:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69DAE1128F5;
+	Tue,  9 Apr 2024 05:15:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jBCIeh2u";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2901112D75;
- Tue,  9 Apr 2024 12:47:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1715302017094633665=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80F58112B25
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Apr 2024 05:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712639723; x=1744175723;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=taKEsIROgwak5vLWz6hFRs0YIQFrSjQIwFNpPg3Sf54=;
+ b=jBCIeh2upbTUAQxFAzIzm8RNOVOT4tKGfMC9cdtDv1yJNXbaFpPKIRNz
+ uRGqJS5cPg0Fu8B1IguZB6q1B2wJq2XCdX31TtM7YNnem7MDqH3+rbSCY
+ /yluPhbaCnlVM6WhNgJwbhY/NZE6oGNlhtGm2sn6U1dJ8ZoewDvTCP9qV
+ Uf2+sI9pZ/7JpMP3xGF7wXU0XMo8PnYV5jXvGalqwWutGasr4zwrIXQb5
+ SaDyNKDJW66wTVpcfG5FQOvhHNMeJ2MokTvwEPEZPQwckBGWNY+eqphD+
+ lyvYEsdIGe8+3iJQoUaPujJQMwuntCoyRrFd6XHVWyRlTOjwavfBWBz9C w==;
+X-CSE-ConnectionGUID: Pi+qS5eKTFmzgS7giOtpVQ==
+X-CSE-MsgGUID: 6FNkcQYSRiex1Eos4ZA3dQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11038"; a="30432497"
+X-IronPort-AV: E=Sophos;i="6.07,188,1708416000"; d="scan'208";a="30432497"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2024 22:15:15 -0700
+X-CSE-ConnectionGUID: 4JAxCArXSEexxl2BB61jsg==
+X-CSE-MsgGUID: LQiWflrVT120U4KYTEg8BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,188,1708416000"; d="scan'208";a="19989437"
+Received: from brentlu-desktop.itwn.intel.com ([10.225.64.203])
+ by orviesa010.jf.intel.com with ESMTP; 08 Apr 2024 22:15:13 -0700
+From: Brent Lu <brent.lu@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Brent Lu <brent.lu@intel.com>
+Subject: [PATCH] drm/i915/audio: 'scheduling while atomic' during system resume
+Date: Tue,  9 Apr 2024 21:01:13 +0800
+Message-Id: <20240409130113.3081587-1-brent.lu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_iommu/vt-d=3A_Fix_WARN=5FON?=
- =?utf-8?q?_in_iommu_probe_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Apr 2024 12:47:56 -0000
-Message-ID: <171266687680.1300821.2177374084222604153@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240409093645.456004-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20240409093645.456004-1-vinod.govindapillai@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,169 +61,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1715302017094633665==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The i915_audio_component_codec_wake_override() function will be called
+during resume process so replace usleep_range() function calls with
+udelay() to avoid the 'scheduling while atomic' error.
 
-== Series Details ==
+[22138.069052] BUG: scheduling while atomic: cras/2682/0x00000000
+[22138.069359] Call Trace:
+[22138.069369]  <TASK>
+[22138.069380]  dump_stack_lvl+0x69/0x97
+[22138.069407]  __schedule_bug+0x87/0x9a
+[22138.069422]  __schedule+0x4f9/0xf88
+[22138.069450]  schedule+0x4e/0xd0
+[22138.069462]  schedule_hrtimeout_range_clock+0xab/0x11b
+[22138.069488]  usleep_range_state+0x63/0x8c
+[22138.069502]  i915_audio_component_codec_wake_override+0x8e/0xf2
+[22138.069518]  snd_hdac_set_codec_wakeup+0x39/0x44 [snd_hda_core (HASH:381b 97)]
+[22138.069541]  hda_dsp_ctrl_init_chip+0x45/0x414 [snd_sof_intel_hda_common (HASH:ff4d 98)]
+[22138.069578]  hda_resume+0x4c/0xf2 [snd_sof_intel_hda_common (HASH:ff4d 98)]
+[22138.069598]  hda_dsp_runtime_resume+0x32/0x9f [snd_sof_intel_hda_common (HASH:ff4d 98)]
+[22138.069618]  sof_resume+0x67/0x234 [snd_sof (HASH:ad31 99)]
+[22138.069655]  __rpm_callback+0x87/0x130
+[22138.069680]  rpm_callback+0x22/0x77
+[22138.069691]  rpm_resume+0x3bb/0x508
 
-Series: iommu/vt-d: Fix WARN_ON in iommu probe path
-URL   : https://patchwork.freedesktop.org/series/132199/
-State : failure
+Signed-off-by: Brent Lu <brent.lu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 07e0c73204f3..9a85e6da63bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -1120,12 +1120,12 @@ static void i915_audio_component_codec_wake_override(struct device *kdev,
+ 	 */
+ 	intel_de_rmw(i915, HSW_AUD_CHICKENBIT,
+ 		     SKL_AUD_CODEC_WAKE_SIGNAL, 0);
+-	usleep_range(1000, 1500);
++	udelay(1000);
+ 
+ 	if (enable) {
+ 		intel_de_rmw(i915, HSW_AUD_CHICKENBIT,
+ 			     0, SKL_AUD_CODEC_WAKE_SIGNAL);
+-		usleep_range(1000, 1500);
++		udelay(1000);
+ 	}
+ 
+ 	i915_audio_component_put_power(kdev, cookie);
+-- 
+2.34.1
 
-CI Bug Log - changes from CI_DRM_14548 -> Patchwork_132199v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_132199v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_132199v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/index.html
-
-Participating hosts (39 -> 35)
-------------------------------
-
-  Missing    (4): fi-blb-e6850 fi-glk-j4005 bat-dg1-7 fi-apl-guc 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_132199v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_timelines:
-    - bat-arls-2:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14548/bat-arls-2/igt@i915_selftest@live@gt_timelines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/bat-arls-2/igt@i915_selftest@live@gt_timelines.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_132199v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@perf:
-    - bat-dg2-9:          [ABORT][3] ([i915#10366]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14548/bat-dg2-9/igt@i915_selftest@live@perf.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/bat-dg2-9/igt@i915_selftest@live@perf.html
-
-  
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14548 -> Patchwork_132199v1
-
-  CI-20190529: 20190529
-  CI_DRM_14548: d2e6568486674a4a3a4455df449d80a038f11e10 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7802: 7802
-  Patchwork_132199v1: d2e6568486674a4a3a4455df449d80a038f11e10 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-9aa4557bf2e3 iommu/vt-d: Fix WARN_ON in iommu probe path
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/index.html
-
---===============1715302017094633665==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>iommu/vt-d: Fix WARN_ON in iommu probe path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132199/">https://patchwork.freedesktop.org/series/132199/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14548 -&gt; Patchwork_132199v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_132199v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_132199v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Missing    (4): fi-blb-e6850 fi-glk-j4005 bat-dg1-7 fi-apl-guc </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_132199v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_timelines:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14548/bat-arls-2/igt@i915_selftest@live@gt_timelines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/bat-arls-2/igt@i915_selftest@live@gt_timelines.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132199v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@perf:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14548/bat-dg2-9/igt@i915_selftest@live@perf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132199v1/bat-dg2-9/igt@i915_selftest@live@perf.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14548 -&gt; Patchwork_132199v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14548: d2e6568486674a4a3a4455df449d80a038f11e10 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7802: 7802<br />
-  Patchwork_132199v1: d2e6568486674a4a3a4455df449d80a038f11e10 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>9aa4557bf2e3 iommu/vt-d: Fix WARN_ON in iommu probe path</p>
-
-</body>
-</html>
-
---===============1715302017094633665==--
