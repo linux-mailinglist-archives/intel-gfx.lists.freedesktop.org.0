@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B3989F10D
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 13:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E51EA89F14E
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 13:50:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5623210E20E;
-	Wed, 10 Apr 2024 11:42:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60A02112418;
+	Wed, 10 Apr 2024 11:50:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fy3iPf0A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IsWYh4JK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72DEA10E4C2
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 11:42:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB461120D4;
+ Wed, 10 Apr 2024 11:50:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712749369; x=1744285369;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mdsadKPCXcYzJ2KKB5/r1gEYa7n8lOp/1y7dKeQ1/wI=;
- b=Fy3iPf0AzmgRA9QEnPYrtLFrVXL8JnSdFKTBQ+AK+KqaWFUUAwBXlDFy
- uCK4mJ/pmfbdVmXI5RJWwq4uhExyaDNnzocT/CRXVWev/ve/PczXJ7Hy4
- HoMyqxQvbb+WeAzQ9kAlnT5sw8eKlgiJKCdwkusnH3s6p9gLTIGO2hVn2
- SnMGJqZFVXLpoUnxUBsmoJaoVa9xBSW4/RPtgFMaPXsS6n0vFpCRfYH8A
- BnwKjo2Ip/anrz1C1erGDkJ1pVmCuNkaHk+s4uhiDX/z7QXbJu3SlmaKJ
- gK7kHV9tuCRY2yQLU1/dDhHntPFkl49NpF21q/KhheJ2KLLU2LtEbAh3I g==;
-X-CSE-ConnectionGUID: gJjkb2ujSvGh2kEQ9zOE/A==
-X-CSE-MsgGUID: TOKP0O6IRhKhqPtsAP4eBg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="18669759"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="18669759"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 04:42:49 -0700
+ t=1712749819; x=1744285819;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=48JgxszmgwzSdEYjlQoIe3fDz23+3fpwfQ7RcJKta4c=;
+ b=IsWYh4JKJrYWrxW3fYTfB5vD9Ubvkz14KNABfoq5hN2joPTXO0rWtDxf
+ F3nbWtNWUCV2QyPvYA3Cs+nAgDZf4nnBs40cvP59K6J1YTD7mhnLA5gVj
+ DsyxqActKFRqSSTKSTgZZIjEsfcz5LdtKo78tCtiUL72H1waScWQmVoxu
+ 4+b5SiRRnv0yfDspNwo4fNOBvO1cuw4C2mknq9akYl2hQOwGmJvcSCpCj
+ P7UxJnlfgfL2cimqWjIDwq89WKyrOwPkaaX5lmNQ44FHqSZ6Xiel3Mh6C
+ +ehdl5YOypLFyZH8ECYv8jKn674AcasJve4cg8vJSZ9xgwSP6Gi682zYo w==;
+X-CSE-ConnectionGUID: LhpNe97hTfactw6YWyQJHQ==
+X-CSE-MsgGUID: gm2meCjTQzeL89+8O1I8mA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8208150"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="8208150"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 04:50:18 -0700
+X-CSE-ConnectionGUID: zZV8hHBLQ3esCVySK89uXA==
+X-CSE-MsgGUID: 3PgKakM8S9qvX8DgywkVhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="827793020"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="827793020"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga001.jf.intel.com with SMTP; 10 Apr 2024 04:42:46 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 10 Apr 2024 14:42:46 +0300
-Date: Wed, 10 Apr 2024 14:42:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
-	Badal Nilawar <badal.nilawar@intel.com>
-Subject: Re: [PATCH] drm/i915: Don't enable hwmon for selftests
-Message-ID: <ZhZ7NsyBtQjnE8HE@intel.com>
-References: <20240410042855.130262-1-ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25158425"
+Received: from oakasatk-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.60.54])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 04:50:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Daniel
+ Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Masahiro
+ Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+In-Reply-To: <20240402140136.1722533-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240402140136.1722533-1-jani.nikula@intel.com>
+Date: Wed, 10 Apr 2024 14:50:11 +0300
+Message-ID: <87ttk977yk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240410042855.130262-1-ashutosh.dixit@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,70 +74,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 09, 2024 at 09:28:55PM -0700, Ashutosh Dixit wrote:
-> There are no hwmon selftests so there is no need to enable hwmon for
-> selftests. So enable hwmon only for real driver load.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+On Tue, 02 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Ensure drm headers build, are self-contained, have header guards, and
+> have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=y.
+>
+> The mechanism follows similar patters used in i915, xe, and usr/include.
+>
+> To cover include/drm, we need to recurse there using the top level
+> Kbuild and the new include/Kbuild files.
 
-Why are we adding duct tape instead of fixing it properly?
+Masahiro, any input? Ack?
 
+BR,
+Jani.
+
+>
+> v2: make DRM_HEADER_TEST depend on DRM
+>
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_driver.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 9ee902d5b72c..6fa6d2c8109f 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -94,6 +94,7 @@
->  #include "i915_memcpy.h"
->  #include "i915_perf.h"
->  #include "i915_query.h"
-> +#include "i915_selftest.h"
->  #include "i915_suspend.h"
->  #include "i915_switcheroo.h"
->  #include "i915_sysfs.h"
-> @@ -589,6 +590,15 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
->  		pci_disable_msi(pdev);
->  }
+>  Kbuild                   |  1 +
+>  drivers/gpu/drm/Kconfig  | 11 +++++++++++
+>  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
+>  include/Kbuild           |  1 +
+>  include/drm/Makefile     | 18 ++++++++++++++++++
+>  5 files changed, 49 insertions(+)
+>  create mode 100644 include/Kbuild
+>  create mode 100644 include/drm/Makefile
+>
+> diff --git a/Kbuild b/Kbuild
+> index 464b34a08f51..f327ca86990c 100644
+> --- a/Kbuild
+> +++ b/Kbuild
+> @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES)	+= samples/
+>  obj-$(CONFIG_NET)	+= net/
+>  obj-y			+= virt/
+>  obj-y			+= $(ARCH_DRIVERS)
+> +obj-$(CONFIG_DRM_HEADER_TEST)	+= include/
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 3914aaf443a8..a388c4fda984 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -431,3 +431,14 @@ config DRM_WERROR
+>  	  this config option is disabled by default.
 >  
-> +static bool is_selftest(void)
-> +{
-> +#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> +	return i915_selftest.live || i915_selftest.perf || i915_selftest.mock;
-> +#else
-> +	return false;
-> +#endif
-> +}
+>  	  If in doubt, say N.
 > +
->  /**
->   * i915_driver_register - register the driver with the rest of the system
->   * @dev_priv: device private
-> @@ -624,7 +634,8 @@ static void i915_driver_register(struct drm_i915_private *dev_priv)
->  
->  	intel_pxp_debugfs_register(dev_priv->pxp);
->  
-> -	i915_hwmon_register(dev_priv);
-> +	if (!is_selftest())
-> +		i915_hwmon_register(dev_priv);
->  
->  	intel_display_driver_register(dev_priv);
->  
-> @@ -660,7 +671,8 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
->  	for_each_gt(gt, dev_priv, i)
->  		intel_gt_driver_unregister(gt);
->  
-> -	i915_hwmon_unregister(dev_priv);
-> +	if (!is_selftest())
-> +		i915_hwmon_unregister(dev_priv);
->  
->  	i915_perf_unregister(dev_priv);
->  	i915_pmu_unregister(dev_priv);
-> -- 
-> 2.41.0
+> +config DRM_HEADER_TEST
+> +	bool "Ensure DRM headers are self-contained and pass kernel-doc"
+> +	depends on DRM && EXPERT
+> +	default n
+> +	help
+> +	  Ensure the DRM subsystem headers both under drivers/gpu/drm and
+> +	  include/drm compile, are self-contained, have header guards, and have
+> +	  no kernel-doc warnings.
+> +
+> +	  If in doubt, say N.
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index a73c04d2d7a3..6605d5686d01 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -218,3 +218,21 @@ obj-y			+= solomon/
+>  obj-$(CONFIG_DRM_SPRD) += sprd/
+>  obj-$(CONFIG_DRM_LOONGSON) += loongson/
+>  obj-$(CONFIG_DRM_POWERVR) += imagination/
+> +
+> +# Ensure drm headers are self-contained and pass kernel-doc
+> +hdrtest-files := \
+> +	$(shell cd $(srctree)/$(src) && find . -maxdepth 1 -name 'drm_*.h') \
+> +	$(shell cd $(srctree)/$(src) && find display lib -name '*.h')
+> +
+> +always-$(CONFIG_DRM_HEADER_TEST) += \
+> +	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> +
+> +# Include the header twice to detect missing include guard.
+> +quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> +      cmd_hdrtest = \
+> +		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> +		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		touch $@
+> +
+> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> +	$(call if_changed_dep,hdrtest)
+> diff --git a/include/Kbuild b/include/Kbuild
+> new file mode 100644
+> index 000000000000..5e76a599e2dd
+> --- /dev/null
+> +++ b/include/Kbuild
+> @@ -0,0 +1 @@
+> +obj-$(CONFIG_DRM_HEADER_TEST)	+= drm/
+> diff --git a/include/drm/Makefile b/include/drm/Makefile
+> new file mode 100644
+> index 000000000000..b9f391d7aadd
+> --- /dev/null
+> +++ b/include/drm/Makefile
+> @@ -0,0 +1,18 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +# Ensure drm headers are self-contained and pass kernel-doc
+> +hdrtest-files := \
+> +	$(shell cd $(srctree)/$(src) && find * -name '*.h' 2>/dev/null)
+> +
+> +always-$(CONFIG_DRM_HEADER_TEST) += \
+> +	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> +
+> +# Include the header twice to detect missing include guard.
+> +quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> +      cmd_hdrtest = \
+> +		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> +		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		touch $@
+> +
+> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> +	$(call if_changed_dep,hdrtest)
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
