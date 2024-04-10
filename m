@@ -2,58 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF44389F978
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 16:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBD989F957
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 16:06:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADF7C113388;
-	Wed, 10 Apr 2024 14:09:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6UeiAuC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41E5711332E;
+	Wed, 10 Apr 2024 14:06:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D03B10FF25;
- Wed, 10 Apr 2024 14:09:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712758146; x=1744294146;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KgQTJUyXjYeoG6WlEkT6Hvk3sthSjdbGKQj/2LcgW6I=;
- b=V6UeiAuCG3r2sT6FoitR6sxi72Q7eEOCg9USkGSSIyhnNATg+YYtaa9/
- gliLjKM1gy3TFVcHZzEelqmuWB7cZZe5fhmg8MasWCybR2hNHp3fMgkfh
- Xoa7/MtEenONlPI4y2YUnjPU+6sqyY8Uh4vTvM4WleWcIetpvYyZjvHFv
- B4DZGrjz87TtrTlQDrIQBcFb/eiPXuT4GxCAuVGg0SXOYMOuZlQ/K2K5p
- Y+60fbe7DBWrp5WE3fhQZHgwi+v2TSyEqnGWcv43q8gEf5iP/dtQcIBGC
- b4OZy54GKMpg5r0GsORFWhC68umrYs2TzDuxQKloU/JYDyCrb8gpyYw9j Q==;
-X-CSE-ConnectionGUID: NB/bTg6BQIGYFq3xsj6SWA==
-X-CSE-MsgGUID: LpDeed6zRKG2tcQ5Lr8wjA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="11900756"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="11900756"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 07:06:19 -0700
-X-CSE-ConnectionGUID: TA56WqCGScq9x5d5PpoTVg==
-X-CSE-MsgGUID: UI6Di26GR7SJEar4pqRrEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25089577"
-Received: from unknown (HELO intel.com) ([10.247.118.254])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 07:06:15 -0700
-Date: Wed, 10 Apr 2024 16:06:08 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 01/10] drm/i915: use system include for drm headers
-Message-ID: <Zhac0Ax1EF9JKJoE@ashyti-mobl2.lan>
-References: <cover.1712743191.git.jani.nikula@intel.com>
- <ed02b81fcbbc0d27be4af460c521aefbfdc76375.1712743191.git.jani.nikula@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6782F10FF96;
+ Wed, 10 Apr 2024 14:06:34 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 7F99C61BE9;
+ Wed, 10 Apr 2024 14:06:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38980C433C7;
+ Wed, 10 Apr 2024 14:06:32 +0000 (UTC)
+Date: Wed, 10 Apr 2024 10:09:08 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH 05/10] drm/i915: skip DRM_I915_LOW_LEVEL_TRACEPOINTS
+ with NOTRACE
+Message-ID: <20240410100908.7d13393c@gandalf.local.home>
+In-Reply-To: <20240410110857.BBV2fQYP@linutronix.de>
+References: <20240405142737.920626-1-bigeasy@linutronix.de>
+ <20240405142737.920626-6-bigeasy@linutronix.de>
+ <20240408130650.6f9c1e1c@rorschach.local.home>
+ <20240409110601.FWFqmGjM@linutronix.de>
+ <20240409115533.7c84b283@gandalf.local.home>
+ <20240410110857.BBV2fQYP@linutronix.de>
+X-Mailer: Claws Mail 3.19.1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ed02b81fcbbc0d27be4af460c521aefbfdc76375.1712743191.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,15 +53,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Wed, 10 Apr 2024 13:08:57 +0200
+Sebastian Andrzej Siewior <bigeasy@linutronix.de> wrote:
 
-On Wed, Apr 10, 2024 at 01:05:08PM +0300, Jani Nikula wrote:
-> Use <> instead of "" for including headers from include/, even if the
-> file is in the same directory.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> On 2024-04-09 11:55:33 [-0400], Steven Rostedt wrote:
+> > I believe you need to do it in the .c file:
+> >=20
+> > Can you try something like this?
+> >  =20
+> =E2=80=A6
+> >  ? =20
+>=20
+> I tried and nothing changed because the lowlevel config option isn't the
+> problem. What about I drop this and replace 4/10 from this series with
+> the patch below? After enabling all tracing I don't see any events in
+> events/i915.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+I don't see anything wrong with this approach.
 
-Thanks,
-Andi
+>=20
+> Sebastian
+>=20
+> --------------------->8---------------------------- =20
+>=20
+> From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> Date: Thu, 6 Dec 2018 09:52:20 +0100
+> Subject: [PATCH] drm/i915: Disable tracing points on PREEMPT_RT
+>=20
+> Luca Abeni reported this:
+> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
+> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
+> | Call Trace:
+> |  rt_spin_lock+0x3f/0x50
+> |  gen6_read32+0x45/0x1d0 [i915]
+> |  g4x_get_vblank_counter+0x36/0x40 [i915]
+> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
+>=20
+> The tracing events use trace_i915_pipe_update_start() among other events
+> use functions acquire spinlock_t locks which are transformed into
+> sleeping locks on PREEMPT_RT. A few trace points use
+> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
+> might acquire a sleeping locks on PREEMPT_RT.
+> At the time the arguments are evaluated within trace point, preemption
+> is disabled and so the locks must not be acquired on PREEMPT_RT.
+>=20
+> Based on this I don't see any other way than disable trace points on
+> PREMPT_RT.
+>=20
+> Reported-by: Luca Abeni <lucabe72@gmail.com>
+> Cc: Steven Rostedt <rostedt@goodmis.org>
+> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
+>  drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
+>  2 files changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers=
+/gpu/drm/i915/display/intel_display_trace.h
+> index 7862e7cefe027..e4608d855bfba 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+> @@ -9,6 +9,10 @@
+>  #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_RE=
+AD)
+>  #define __INTEL_DISPLAY_TRACE_H__
+> =20
+> +#ifdef CONFIG_PREEMPT_RT
+
+Hmm, should these be:
+
+ #if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
+
+?
+
+because it's not protected due to the TRACE_HEADER_MULTI_READ.
+
+-- Steve
+
+
+> +#define NOTRACE
+> +#endif
+> +
+>  #include <linux/string_helpers.h>
+>  #include <linux/types.h>
+>  #include <linux/tracepoint.h>
+> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i91=
+5_trace.h
+> index ce1cbee1b39dd..c54653cf72c95 100644
+> --- a/drivers/gpu/drm/i915/i915_trace.h
+> +++ b/drivers/gpu/drm/i915/i915_trace.h
+> @@ -6,6 +6,10 @@
+>  #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+>  #define _I915_TRACE_H_
+> =20
+> +#ifdef CONFIG_PREEMPT_RT
+> +#define NOTRACE
+> +#endif
+> +
+>  #include <linux/stringify.h>
+>  #include <linux/types.h>
+>  #include <linux/tracepoint.h>
+
