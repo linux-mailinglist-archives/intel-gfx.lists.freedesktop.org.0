@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5850489FD69
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 18:51:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EFE689FD6E
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 18:52:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82D8A10E6D6;
-	Wed, 10 Apr 2024 16:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CDA110E8A7;
+	Wed, 10 Apr 2024 16:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VQS36lO/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZM4UgA2G";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B50E010E67F
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 16:50:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4516910E8A7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Apr 2024 16:52:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712767860; x=1744303860;
+ t=1712767940; x=1744303940;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=kq5tQRO2p/GFoH1BAv4iy+DWbk4AlaPNWVSBdi02bBA=;
- b=VQS36lO/XIA4nqadwM7J62nfGr3cKqI2Ee7FTxHNFrpY08rdaEzeL2Jo
- RXYlrILnmXXtomxvZ314ZBmJsVY80CkdfWpvRVpUzZK4h8w8k4M+I1bBM
- pChPGc0uq9wA5S5+RBPlh22SyhuObrIZo+dgPmELVB78D9qLEzGzzbqEz
- 5w7KI/EnWZvmqHZezUBTCAXPICrlJqy9rtWAuGvkS3nyhnXZzwwroYc1m
- XgOK2RyxqRMaOdWeRs6Nd/OBdgsy//3HOshQmvgbOjSl/35GtipiulbLf
- 9o0RHLCcf07vj0ecRfuaDCzPtHUgnzQyd9PhZowNw/3n2KWTSXTfj1z/W Q==;
-X-CSE-ConnectionGUID: 6clHCGDVSlCq74FtF0QzCw==
-X-CSE-MsgGUID: mE7h6jUfR/O3opLEC4j5VA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="25658458"
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="25658458"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 09:50:59 -0700
-X-CSE-ConnectionGUID: mBfL1SHbTWmU1E/hZccueg==
-X-CSE-MsgGUID: u4MWXT3RRwur4TXDm7ynBA==
+ bh=J8ph4DjQfIlVQIDGbA5Ik8AB3cf4uL7ssc+kNcoaBqQ=;
+ b=ZM4UgA2G+IaEA/o87MovwK5y4KOX6POtD8A+VvCM6f0vuF/OUQZc1Yuy
+ jZyAVNQ1i4kQiz4sn/gj314nBpTHTgKKhgmaiJGfb4UqHMtyJNhUoblUW
+ Gy9lnBeFq8HnQso5dDkIgMw/HhR7gNdbfMmxEoNnw3EQJXFYKWwwrxAg2
+ OCuDUzH6pLCYOv77geTlVyweZ2/QZGskho8JISoI0rnVLNsrb2wsJpkbe
+ WcmN5GIaBIpii32P6Ov85FTKF6dfFhQVLBuj+oC+r0ClleuqZF13XdQAx
+ CG5BvU8OeFinJiSYpL/b+hmacj/jAYdl3rUDbmHPvLepC9wh1k0EsnK8M g==;
+X-CSE-ConnectionGUID: vUFCmmmdQ468SfLxE3Phmw==
+X-CSE-MsgGUID: vYkMVOWCQzme9Mh8ycAoKA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8057540"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; 
+   d="scan'208";a="8057540"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 09:52:20 -0700
+X-CSE-ConnectionGUID: F8yTOiUSSBq4pvWo81cU7A==
+X-CSE-MsgGUID: kfH1mMagSnOqIktStjCcMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="58044287"
+X-IronPort-AV: E=Sophos;i="6.07,190,1708416000"; d="scan'208";a="20509340"
 Received: from oakasatk-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.60.54])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 09:50:57 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 09:52:19 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
 Subject: [PATCH] drm/i915/pps: pass display to PPS register macros
-Date: Wed, 10 Apr 2024 19:50:52 +0300
-Message-Id: <20240410165052.234695-1-jani.nikula@intel.com>
+Date: Wed, 10 Apr 2024 19:52:15 +0300
+Message-Id: <20240410165215.234938-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -75,7 +76,9 @@ Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
 
 Mostly see how this feels. Might be better to wait for [1] to land so we
-could more easily pass display pointer everywhere.
+could more easily pass display pointer everywhere. I don't really want
+to promote &i915->display usage all that much. Would be better to get it
+via to_intel_display(some_object) instead.
 
 [1] https://lore.kernel.org/r/cover.1712665176.git.jani.nikula@intel.com
 ---
