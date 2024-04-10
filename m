@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957648A0016
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 20:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBCF88A00DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Apr 2024 21:49:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF62710E35D;
-	Wed, 10 Apr 2024 18:53:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 241F6112CA0;
+	Wed, 10 Apr 2024 19:49:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59ED910E35D;
- Wed, 10 Apr 2024 18:53:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0568262514176869499=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF173112CA0;
+ Wed, 10 Apr 2024 19:49:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dsi=3A_stop_relyin?=
- =?utf-8?q?g_on_implicit_dev=5Fpriv_variable?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/pps=3A_pass?=
+ =?utf-8?q?_display_to_PPS_register_macros_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Apr 2024 18:53:45 -0000
-Message-ID: <171277522536.1338744.16547539318427715697@8e613ede5ea5>
+Date: Wed, 10 Apr 2024 19:49:38 -0000
+Message-ID: <171277857891.1338936.3681918529762294527@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <cover.1712766927.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1712766927.git.jani.nikula@intel.com>
+References: <20240410165215.234938-1-jani.nikula@intel.com>
+In-Reply-To: <20240410165215.234938-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,181 +41,32 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0568262514176869499==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dsi: stop relying on implicit dev_priv variable
-URL   : https://patchwork.freedesktop.org/series/132285/
-State : success
+Series: drm/i915/pps: pass display to PPS register macros (rev2)
+URL   : https://patchwork.freedesktop.org/series/132286/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14559 -> Patchwork_132285v1
-====================================================
+Error: dim checkpatch failed
+760f2ae26bc9 drm/i915/pps: pass display to PPS register macros
+-:57: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_lvds.c:165:
++	pps->powerdown_on_reset = intel_de_read(dev_priv, PP_CONTROL(display, 0)) & PANEL_POWER_RESET;
 
-Summary
--------
+-:142: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#142: FILE: drivers/gpu/drm/i915/display/intel_lvds.c:386:
++	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(&dev_priv->display, 0), PP_CYCLE_DELAY_ACTIVE, 5000))
 
-  **SUCCESS**
+-:238: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#238: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1720:
++		port_sel = intel_de_read(dev_priv, PP_ON_DELAYS(display, 0)) & PANEL_PORT_SELECT_MASK;
 
-  No regressions found.
+-:255: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#255: FILE: drivers/gpu/drm/i915/display/intel_pps.c:1747:
++		port_sel = intel_de_read(dev_priv, PP_ON_DELAYS(display, 0)) & PANEL_PORT_SELECT_MASK;
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/index.html
-
-Participating hosts (39 -> 36)
-------------------------------
-
-  Missing    (3): fi-kbl-7567u fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_132285v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#10378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - {bat-mtlp-9}:       [WARN][3] ([i915#10436]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gtt:
-    - bat-arls-2:         [ABORT][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-arls-2/igt@i915_selftest@live@gtt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-arls-2/igt@i915_selftest@live@gtt.html
-
-  * igt@i915_selftest@live@uncore:
-    - bat-dg2-14:         [ABORT][7] ([i915#10366]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-dg2-14/igt@i915_selftest@live@uncore.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-dg2-14/igt@i915_selftest@live@uncore.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
-  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
-  [i915#10436]: https://gitlab.freedesktop.org/drm/intel/issues/10436
+total: 0 errors, 4 warnings, 0 checks, 262 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_14559 -> Patchwork_132285v1
-
-  CI-20190529: 20190529
-  CI_DRM_14559: 3658e2ec471a1d67baa30a554583bcdd4be55857 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7804: 7804
-  Patchwork_132285v1: 3658e2ec471a1d67baa30a554583bcdd4be55857 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-a456ef6d0d79 drm/i915/dsi: pass i915 to register macros instead of implicit variable
-9024f5184152 drm/i915/dsi: add VLV_ prefix to VLV only register macros
-bcea19177b09 drm/i915/dsi: remove unused _MIPIA_AUTOPWG register definition
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/index.html
-
---===============0568262514176869499==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dsi: stop relying on implicit dev_priv variable</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132285/">https://patchwork.freedesktop.org/series/132285/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14559 -&gt; Patchwork_132285v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 36)</h2>
-<p>Missing    (3): fi-kbl-7567u fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132285v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10436">i915#10436</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gtt:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-arls-2/igt@i915_selftest@live@gtt.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-arls-2/igt@i915_selftest@live@gtt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@uncore:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14559/bat-dg2-14/igt@i915_selftest@live@uncore.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v1/bat-dg2-14/igt@i915_selftest@live@uncore.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14559 -&gt; Patchwork_132285v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14559: 3658e2ec471a1d67baa30a554583bcdd4be55857 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7804: 7804<br />
-  Patchwork_132285v1: 3658e2ec471a1d67baa30a554583bcdd4be55857 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>a456ef6d0d79 drm/i915/dsi: pass i915 to register macros instead of implicit variable<br />
-9024f5184152 drm/i915/dsi: add VLV_ prefix to VLV only register macros<br />
-bcea19177b09 drm/i915/dsi: remove unused _MIPIA_AUTOPWG register definition</p>
-
-</body>
-</html>
-
---===============0568262514176869499==--
