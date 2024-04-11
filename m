@@ -2,62 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A6708A188D
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Apr 2024 17:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE89E8A1890
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Apr 2024 17:25:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB59D10F185;
-	Thu, 11 Apr 2024 15:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B22B10F18F;
+	Thu, 11 Apr 2024 15:25:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ag2IJrVq";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="xo9altXM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4900B10F189;
- Thu, 11 Apr 2024 15:25:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712849138; x=1744385138;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=a81Df6w9Zvh1CHKFLbu5a03nMo/xzhwiat+oKvGw7P0=;
- b=Ag2IJrVqR6ntfERXBjK75IW4ujXwDh5hju/CjOJE4u/f68/btVWxr47j
- JlcMMshmOpEp7krDF47vpZd5g0cPDIoSw40Pd0Gd6IY9QHdle7/kgC7tZ
- ZsnAyB8qPKPvU9JZcmUtrqezrtJFn7P5QWHREs5WO8DnY/xT9rYZIVJUE
- 76XgvtjnB7K5PaflRfQmOkbydQaPNnQGJmOAbeEbkiO36ehv6vAuuMWRH
- FE4B1GFTUu7i22XVF8nvq5DuoJLDy42XKgndmi5Grd5hzmXGy3hUYq5UD
- hLdTzYU94ssU1lx84vxlLxgf4jT497JY/FGxXNhBqXzBcxEX2jbYK0Ssq g==;
-X-CSE-ConnectionGUID: eEiIGbZ9T1CesR3Hj5NkUg==
-X-CSE-MsgGUID: GmX/l4yRTl+J48ahdw0cFg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="8141796"
-X-IronPort-AV: E=Sophos;i="6.07,193,1708416000"; 
-   d="scan'208";a="8141796"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2024 08:25:31 -0700
-X-CSE-ConnectionGUID: GKc4nwOKSXuMhAWqHzBUnQ==
-X-CSE-MsgGUID: gBerfbMmSJKGnOb5Fwes5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,193,1708416000"; d="scan'208";a="25582616"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2024 08:25:27 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Dave
- Airlie <airlied@gmail.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: Re: [PATCH 05/10] drm: move intel_lpe_audio.h under include/drm/intel
-In-Reply-To: <Zhfxb2TWL_Cdh5sW@ashyti-mobl2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1712743191.git.jani.nikula@intel.com>
- <bf584e79e13001b962370a26e3b93c1c57ac6a1e.1712743191.git.jani.nikula@intel.com>
- <Zhfxb2TWL_Cdh5sW@ashyti-mobl2.lan>
-Date: Thu, 11 Apr 2024 18:25:23 +0300
-Message-ID: <877ch36hwc.fsf@intel.com>
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
+ [209.85.208.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 903DD10F18D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 15:25:39 +0000 (UTC)
+Received: by mail-ed1-f49.google.com with SMTP id
+ 4fb4d7f45d1cf-56e2ac1c16aso8414200a12.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 08:25:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1712849138; x=1713453938; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=CABfqMACNUngHNLxS+WM0hHJ1yaxWLelGbJxYjHioD0=;
+ b=xo9altXMP0tNJ9ScwNa+s0TWBO/V6elCReALXrxHUMmha7/tsBzNVdq2WVLT8MN+8z
+ 6g63mH27M9VeNyAdzXsUsdTFBd90fSeDcDC/aWwke4B2+INWkxQa3FYcrEacPHWh0cPo
+ RGhyrqz2dUPDJjp+2VHtH1gBcCxMEBFx6lea6skYTuxEIqNkOM8PmZ48igCnV9ZVLX7R
+ KDDx2ioiezyjbtBBYd3eoaE8O4aMsiXhgA8thaTC0QR9NWnBaPn5WVVzQhG8jbbMapNb
+ SCQv2g6ijN4ETQQjpwfq6+IVAMtm2GssoY6TCS6OEqprlLfylpe5rKVj04ikuPi9vLxo
+ 7eVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712849138; x=1713453938;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CABfqMACNUngHNLxS+WM0hHJ1yaxWLelGbJxYjHioD0=;
+ b=HT4Kb7F3oAaksyvj060m3BGf4Xyk3BbZSo0c0nVOn6EHhkWieRi9u0tlBBOCsj5wUD
+ Z4Dad9pjsAztf/6eF3jxVur9eYjNkpqwPqUOuiLZOzUfyacRhjjOx5XLPuvxSw44qFJ3
+ nDl+9+H/rj3I8ffAlzAe3N+rU3MD7SUO7vMoBFi63PZB/BU/q+NFUtdvwSj56q2oQsa8
+ /Qmk/fdUVlA6H/vg5R1gIOhwC8KQTQtR/s5BlXcE2V1cFWtd/8c/a6tnp0HTmzu8g+Ai
+ 182emUC5BxsT7WoANW/YRVencbtxQn0C19Oe8D8W3F+P6LxqkfeZJZaEVc30I4jufiMM
+ Nx9w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYlZBZYUGGKNNjd6Mp1Y6qdHZEx5uOB3a7zjlDWGBICdYdLJ+OGyOMrO6pLKSwP/pD2UR7bnw+v8t52gqY8QtvJkw0tFOiDDCWExZnl5Tf
+X-Gm-Message-State: AOJu0YwCE1PmE3DkYmIgW4yyTqpQ1/PKOrNaCNd42LnEB3R+CqKmTRjp
+ 2ffpVq4n2taKUUZ1Sk5vJY7ve+srmRrtMUvdoBDj0d1RJf7EUazSLxQxj7smwtw=
+X-Google-Smtp-Source: AGHT+IEEewk7llSPmgrxe/7mA2rySV/OUDonUpYE2d0l2M0z39pI2HKiyjdOd8AbAw/PCbmxmW//Bg==
+X-Received: by 2002:a17:906:4f06:b0:a52:3d1:6769 with SMTP id
+ t6-20020a1709064f0600b00a5203d16769mr44591eju.14.1712849137563; 
+ Thu, 11 Apr 2024 08:25:37 -0700 (PDT)
+Received: from localhost ([102.222.70.76]) by smtp.gmail.com with ESMTPSA id
+ r3-20020a170906350300b00a522c69f28asm225076eja.216.2024.04.11.08.25.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Apr 2024 08:25:36 -0700 (PDT)
+Date: Thu, 11 Apr 2024 18:25:32 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Thorsten Blum <thorsten.blum@toblux.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-s390@vger.kernel.org,
+ speakup@linux-speakup.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-wireless@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-afs@lists.infradead.org, ecryptfs@vger.kernel.org,
+ netfs@lists.linux.dev, linux-fsdevel@vger.kernel.org,
+ linux-unionfs@vger.kernel.org, linux-arch@vger.kernel.org,
+ io-uring@vger.kernel.org, cocci@inria.fr, linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH] treewide: Fix common grammar mistake "the the"
+Message-ID: <0bd7ccc2-4d8c-455b-a6c2-972ebe1fcb08@moroto.mountain>
+References: <20240411150437.496153-4-thorsten.blum@toblux.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240411150437.496153-4-thorsten.blum@toblux.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,46 +89,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 11 Apr 2024, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> Hi Jani,
->
-> On Wed, Apr 10, 2024 at 01:05:12PM +0300, Jani Nikula wrote:
->> Clean up the top level include/drm directory by grouping all the Intel
->> specific files under a common subdirectory.
->> 
->> Cc: Daniel Vetter <daniel@ffwll.ch>
->> Cc: Dave Airlie <airlied@gmail.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Jaroslav Kysela <perex@perex.cz>
->> Cc: Takashi Iwai <tiwai@suse.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdmi.c      | 2 +-
->>  drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
->>  include/drm/{ => intel}/intel_lpe_audio.h      | 0
->
-> strange thing here is that we have two different
-> intel_lpe_audio.h. Can't they be merged?
+On Thu, Apr 11, 2024 at 05:04:40PM +0200, Thorsten Blum wrote:
+> Use `find . -type f -exec sed -i 's/\<the the\>/the/g' {} +` to find all
+> occurrences of "the the" and replace them with a single "the".
+> 
+> Changes only comments and documentation - no code changes.
+> 
+> Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
+> ---
 
-Not so strange. The one in i915 is internal to i915, and the one in
-include/drm is shared with sound/x86/intel_hdmi_audio.c.
+It's tricky to know which tree a patch like this would go through.  We
+used to have a trivial tree for this stuff but I guess that didn't work.
+It's possible that it could go through linux-doc, but probably it has to
+go as a set of patches through each of the trees in the CC list.
 
-> And, perhaps, we could also think of dropping the intel_ prefix
-> for the files inside drm/intel/.
+regards,
+dan carpenter
 
-This series was scripted, so I didn't go into manual stuff like that
-(yet). :)
-
-BR,
-Jani.
-
->
-> In any case,
->
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->
-> Thanks,
-> Andi
-
--- 
-Jani Nikula, Intel
