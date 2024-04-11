@@ -2,61 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55D88A0768
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Apr 2024 06:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 128C88A0774
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Apr 2024 07:09:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D04510EB4D;
-	Thu, 11 Apr 2024 04:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82ADF10EDF5;
+	Thu, 11 Apr 2024 05:09:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RhAujH8z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S4Mp/neu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DED710EB4D
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 04:59:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8B7D10EDF5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 05:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712811549; x=1744347549;
+ t=1712812173; x=1744348173;
  h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=wmLChK7rsRvxb4kBZ6XCQbDtMCdvJ1Rh4iRGbxey81w=;
- b=RhAujH8zRtYJhscHxdUwy+YXeuUSRcWNPc67NB2YyUrY08bQK3yALZJf
- xnw6jgvHgOQPwCVB0W6hbeWsbevqpFHqsGbLQxK10QPfjchxbxisWccIT
- GTSlOIPn9pvfrlfV0kptsot4mgSpLCrDR/MTN5qwH6e9jIZPKPrDwOfEY
- 95RzB8fiu4InTCZ6/lDnL5iQCAdqEL5GcP7tLZsytlzdmmjDB2Qm9gHPd
- x+pFQdYCLgtn/yrfca1sGkaCmb6MkXl5KO1ilW2N3wia4At/+BcRZ2GO9
- bG55/pJu75GP+PmhptaVNt6Zm+JY08X7CxVRnBcqrhhkdtFqDxNXX1T4S g==;
-X-CSE-ConnectionGUID: 5Yjcr+WsTX2A2saFTgdZVA==
-X-CSE-MsgGUID: mWeoVVZJRba2XBr85I6vwg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8424769"
+ references:mime-version:content-transfer-encoding;
+ bh=CV9/Xms0bcalKCGfC4a44YUDC2TSwNaRr1u5jM6tWIE=;
+ b=S4Mp/neuonUhCSTeYNaMGfLeB9I8Edi6WntjHSWpJCZ5Yf5kASdg3EFi
+ 5rFDO4lJ2m39IqlDr5fwoeZjkOv8YTEkueCylkvHOFe3JUj+RKTSB6APy
+ kkGEi18MwZtm8kgHjBzdb8CDpJrNE5LcQIWHxW8K5+ipFi+4pliG9+Edt
+ zJB7+aLOpoMDOVg10WAQZI796comlb8Bek3ehtVqMAmKi1+bQtNsOnGPk
+ D0CDS1R+h6iN0TKwIbg+g0hJFYZ95WYhaPkDpI/J2KZ7mSNMPoWYdX7gx
+ 1SbE4I1zI4l84y44g1gbTvFtkmZdDCkVsHvuWtJv2D5Woc/hM51PUx/TD w==;
+X-CSE-ConnectionGUID: WpfwW9HOT5KXulEPoSNfUw==
+X-CSE-MsgGUID: pd94dWv/RMSw/t8AD7HAcQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8061603"
 X-IronPort-AV: E=Sophos;i="6.07,192,1708416000"; 
-   d="scan'208";a="8424769"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 21:59:08 -0700
-X-CSE-ConnectionGUID: 4/IOa6EISQ6tTgU6n6qmzw==
-X-CSE-MsgGUID: no75e7X0S0K0eh8KxnRKng==
+   d="scan'208";a="8061603"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 22:09:33 -0700
+X-CSE-ConnectionGUID: JWtAKpW1RR2GaQe4kHx6+A==
+X-CSE-MsgGUID: S3xaO3HMSFqlgjkUV5U8BQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,192,1708416000"; d="scan'208";a="25560441"
+X-IronPort-AV: E=Sophos;i="6.07,192,1708416000"; d="scan'208";a="20842876"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.138])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 21:59:07 -0700
-Date: Wed, 10 Apr 2024 21:59:07 -0700
-Message-ID: <85r0fcjy04.wl-ashutosh.dixit@intel.com>
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2024 22:09:32 -0700
+Date: Wed, 10 Apr 2024 22:09:32 -0700
+Message-ID: <85pluwjxir.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: <intel-gfx@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: <intel-gfx@lists.freedesktop.org>,
+ Badal Nilawar <badal.nilawar@intel.com>, Andi Shyti <andi.shyti@intel.com>
 Subject: Re: [PATCH] drm/i915: Don't enable hwmon for selftests
-In-Reply-To: <ZhaZy5MQtDaP10My@ashyti-mobl2.lan>
-References: <20240410060549.201177-1-ashutosh.dixit@intel.com>
- <ZhaZy5MQtDaP10My@ashyti-mobl2.lan>
+In-Reply-To: <ZhZ7NsyBtQjnE8HE@intel.com>
+References: <20240410042855.130262-1-ashutosh.dixit@intel.com>
+ <ZhZ7NsyBtQjnE8HE@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,63 +74,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 10 Apr 2024 06:53:15 -0700, Andi Shyti wrote:
+On Wed, 10 Apr 2024 04:42:46 -0700, Ville Syrj=E4l=E4 wrote:
 >
-
-Hi Andi,
-
-> please use "git format-patch -v 3 ..." which generates subject
-> [PATCH v3] ...". Otherwise it gets confusing to see the patch
-> that needs to be reviewed.
-
-Sure, sorry!
-
->
-> On Tue, Apr 09, 2024 at 11:05:49PM -0700, Ashutosh Dixit wrote:
+> On Tue, Apr 09, 2024 at 09:28:55PM -0700, Ashutosh Dixit wrote:
 > > There are no hwmon selftests so there is no need to enable hwmon for
 > > selftests. So enable hwmon only for real driver load.
 > >
-> > v2: Move the logic inside i915_hwmon.c
-> > v3: Move is_i915_selftest definition to i915_selftest.h (Badal)
-> >
 > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
 > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_hwmon.c    |  3 ++-
-> >  drivers/gpu/drm/i915/i915_selftest.h | 10 ++++++++++
-> >  2 files changed, 12 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-> > index 8c3f443c8347..cf1689333ebf 100644
-> > --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> > @@ -10,6 +10,7 @@
-> >  #include "i915_drv.h"
-> >  #include "i915_hwmon.h"
-> >  #include "i915_reg.h"
-> > +#include "i915_selftest.h"
-> >  #include "intel_mchbar_regs.h"
-> >  #include "intel_pcode.h"
-> >  #include "gt/intel_gt.h"
-> > @@ -789,7 +790,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
-> >	int i;
-> >
-> >	/* hwmon is available only for dGfx */
-> > -	if (!IS_DGFX(i915))
-> > +	if (!IS_DGFX(i915) || is_i915_selftest())
-> >		return;
 >
-> I wonder if this is the right place to put it or rather place it
-> in i915_driver.c and avoid calling i915_hwmon_register() at all.
+> Why are we adding duct tape instead of fixing it properly?
 
-I thought it was better put it here rather than clutter up common code in
-i915_driver.c.
+Yeah pretty much what I said here myself:
 
->
-> In any case, it's good:
->
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+https://patchwork.freedesktop.org/patch/588585/?series=3D132243&rev=3D1#com=
+ment_1071014
+
+The issue has been difficult to root-cause. My last effort can be seen here:
+
+https://patchwork.freedesktop.org/patch/584859/?series=3D131630&rev=3D1#com=
+ment_1067888
+
+Though Badal went further and saw that occasionaly the memory would get
+freed first and hwmon would get unregistered as much as 2 seconds later,
+which will cause the crash if anyone touched hwmon sysfs in those final 2
+seconds. So not sure what is causing that 2 second delay.
+
+I am not sure if it is worth root-causing further. I am pretty sure if we
+get rid of the devm_ stuff, that will fix the issue too. So if this patch
+is not acceptable, we could just go that route (get rid of devm_ in hwmon).
 
 Thanks.
 --
 Ashutosh
+
+> > ---
+> >  drivers/gpu/drm/i915/i915_driver.c | 16 ++++++++++++++--
+> >  1 file changed, 14 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/=
+i915_driver.c
+> > index 9ee902d5b72c..6fa6d2c8109f 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -94,6 +94,7 @@
+> >  #include "i915_memcpy.h"
+> >  #include "i915_perf.h"
+> >  #include "i915_query.h"
+> > +#include "i915_selftest.h"
+> >  #include "i915_suspend.h"
+> >  #include "i915_switcheroo.h"
+> >  #include "i915_sysfs.h"
+> > @@ -589,6 +590,15 @@ static void i915_driver_hw_remove(struct drm_i915_=
+private *dev_priv)
+> >		pci_disable_msi(pdev);
+> >  }
+> >
+> > +static bool is_selftest(void)
+> > +{
+> > +#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> > +	return i915_selftest.live || i915_selftest.perf || i915_selftest.mock;
+> > +#else
+> > +	return false;
+> > +#endif
+> > +}
+> > +
+> >  /**
+> >   * i915_driver_register - register the driver with the rest of the sys=
+tem
+> >   * @dev_priv: device private
+> > @@ -624,7 +634,8 @@ static void i915_driver_register(struct drm_i915_pr=
+ivate *dev_priv)
+> >
+> >	intel_pxp_debugfs_register(dev_priv->pxp);
+> >
+> > -	i915_hwmon_register(dev_priv);
+> > +	if (!is_selftest())
+> > +		i915_hwmon_register(dev_priv);
+> >
+> >	intel_display_driver_register(dev_priv);
+> >
+> > @@ -660,7 +671,8 @@ static void i915_driver_unregister(struct drm_i915_=
+private *dev_priv)
+> >	for_each_gt(gt, dev_priv, i)
+> >		intel_gt_driver_unregister(gt);
+> >
+> > -	i915_hwmon_unregister(dev_priv);
+> > +	if (!is_selftest())
+> > +		i915_hwmon_unregister(dev_priv);
+> >
+> >	i915_perf_unregister(dev_priv);
+> >	i915_pmu_unregister(dev_priv);
+> > --
+> > 2.41.0
+>
+> --
+> Ville Syrj=E4l=E4
+> Intel
