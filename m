@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7272F8A081F
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Apr 2024 08:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A86EA8A0820
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Apr 2024 08:12:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABA3B10EE48;
-	Thu, 11 Apr 2024 06:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04D1E10EE4F;
+	Thu, 11 Apr 2024 06:12:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R8b81nq6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RJ1KPYp+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ED2E10EE48
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 06:12:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFBF610EE4A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Apr 2024 06:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712815921; x=1744351921;
+ t=1712815924; x=1744351924;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n+B1KasmAlbvZSmsySH4ZXdaHY63QuLyqj8JiLQz4DA=;
- b=R8b81nq6FDgo8M8r+3bBBiRXt3mZk2XOEIVY3wusEBGZ3yFMVg/3xVfz
- PTUUSu8LhnVTf4tUz6StsGr7NDefJ5l6eABYFqEi6SNP7GY4GgRoQg1R6
- 5m2GlEikRRkdupvgHmkP/rhn9WONggIKx88jtXiV+lzNhYuVXihzdtk0M
- awIgD5wbeqdDDRV7yBwgGg0cdkhvjDCWTr8TlzIrWdr/ixbjE2zrcK6Ua
- 30PpwVIvbTm9w1didtR3Sh3kZ9VAkj+DYgQM69qeZgPKWVRRBF3gksovd
- XX6EHpnbovSL5Qa5o53x2hyEGD3QNKx0tcHLIEe8aeiPVc+2ADNgwD+1n g==;
-X-CSE-ConnectionGUID: DcTLHX+/Q2+NM7c+5Bkkrg==
-X-CSE-MsgGUID: Fn6PH9iQSmaeNto9aWpG8w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8384961"
+ bh=JWr5/vPq6qGItOXPc/KvhNc5+jKLhJUtW0fvWobrQdU=;
+ b=RJ1KPYp+nKgEyNgQAgkTeNse7PYwrjjq5Jwdl4JyGXD1loPj6RqW2U0K
+ e5TLxnK08WUzJkxSICHObXEtKM9lB5TLrG7OTR7crAzDt4GKk5ZMXH3uW
+ 73ELDaqVijn6N9Bbf2b/acgqDNIYcScttVUaSieUJ51Hne6bnb9WStOlL
+ EmOGkv47KDwcnGNv/2mQwCXQDmSyfrZPcRID/y3CdfKjE3g3922wN9+D+
+ D2EuWlyP02E/EWrfzI7B5kkEIbJs9kwOKpXd+KCmrOxIyEY6i6Vq1luom
+ r7/4etkrD6jr7M8FQLN0TfQsherk46hsbSLCpk6CT2T3pff7qDBAXFgiV g==;
+X-CSE-ConnectionGUID: 6tihoHDoQfC7fqXZJ6KLLg==
+X-CSE-MsgGUID: qHF3FacgRXWEV4qgHnq1Vg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11039"; a="8384984"
 X-IronPort-AV: E=Sophos;i="6.07,192,1708416000"; 
-   d="scan'208";a="8384961"
+   d="scan'208";a="8384984"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2024 23:12:01 -0700
-X-CSE-ConnectionGUID: 3iECuSvdSWu0Af4OvRe5IQ==
-X-CSE-MsgGUID: zrjdThMDRTK/C3Ql9WmEyQ==
+ 10 Apr 2024 23:12:03 -0700
+X-CSE-ConnectionGUID: IX8J4raiRNSNBgcoFCOc+w==
+X-CSE-MsgGUID: nrQDRRi2QsWe1OjTWLIEQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,192,1708416000"; d="scan'208";a="58226424"
+X-IronPort-AV: E=Sophos;i="6.07,192,1708416000"; d="scan'208";a="58226437"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa001.jf.intel.com with ESMTP; 10 Apr 2024 23:11:58 -0700
+ by orviesa001.jf.intel.com with ESMTP; 10 Apr 2024 23:12:01 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
  ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, jani.nikula@intel.com,
  naveen1.kumar@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/6] drm/i915/dp: Add TCON HDR capability checks
-Date: Thu, 11 Apr 2024 11:39:21 +0530
-Message-ID: <20240411060925.475456-3-suraj.kandpal@intel.com>
+Subject: [PATCH 3/6] drm/i915/dp: Fix Register bit naming
+Date: Thu, 11 Apr 2024 11:39:22 +0530
+Message-ID: <20240411060925.475456-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240411060925.475456-1-suraj.kandpal@intel.com>
 References: <20240411060925.475456-1-suraj.kandpal@intel.com>
@@ -69,51 +69,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add checks to see the HDR capability of TCON panel.
+Change INTEL_EDP_HDR_TCON_SDP_COLORIMETRY enable to
+INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX as this bit is tells TCON to
+ignore DPCD colorimetry values and take the one's sent through
+SDP.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h    |  5 +++++
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 10 ++++++++++
- 2 files changed, 15 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 0f4bd5710796..ef28eee05ec6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -401,6 +401,11 @@ struct intel_panel {
- 			} vesa;
- 			struct {
- 				bool sdr_uses_aux;
-+				bool supports_2084_decode;
-+				bool supports_2020_gamut;
-+				bool supports_segmented_backlight;
-+				bool supports_sdp_colorimetry;
-+				bool supports_tone_mapping;
- 			} intel;
- 		} edp;
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 4f58efdc688a..94edf982eff8 100644
+index 94edf982eff8..3d9723714c96 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -158,6 +158,16 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+@@ -74,7 +74,7 @@
+ # define INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE                     BIT(4)
+ # define INTEL_EDP_HDR_TCON_SRGB_TO_PANEL_GAMUT_ENABLE                BIT(5)
+ /* Bit 6 is reserved */
+-# define INTEL_EDP_HDR_TCON_SDP_COLORIMETRY_ENABLE                    BIT(7)
++# define INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX			      BIT(7)
  
- 	panel->backlight.edp.intel.sdr_uses_aux =
- 		tcon_cap[2] & INTEL_EDP_SDR_TCON_BRIGHTNESS_AUX_CAP;
-+	panel->backlight.edp.intel.supports_2084_decode =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_2084_DECODE_CAP;
-+	panel->backlight.edp.intel.supports_2020_gamut =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_2020_GAMUT_CAP;
-+	panel->backlight.edp.intel.supports_segmented_backlight =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_CAP;
-+	panel->backlight.edp.intel.supports_sdp_colorimetry =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_SDP_COLORIMETRY_CAP;
-+	panel->backlight.edp.intel.supports_tone_mapping =
-+		tcon_cap[1] & INTEL_EDP_HDR_TCON_TONE_MAPPING_CAP;
- 
- 	return true;
- }
+ #define INTEL_EDP_HDR_CONTENT_LUMINANCE                                0x346 /* Pre-TGL+ */
+ #define INTEL_EDP_HDR_PANEL_LUMINANCE_OVERRIDE                         0x34A
 -- 
 2.43.2
 
