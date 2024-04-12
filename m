@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5258A3194
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C46D78A3195
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9E2310F6AF;
-	Fri, 12 Apr 2024 14:53:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA4AD10F6B2;
+	Fri, 12 Apr 2024 14:53:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OKMC+zlW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oG+wr2ti";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 597EA10F69C;
- Fri, 12 Apr 2024 14:53:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBFA10F6B0;
+ Fri, 12 Apr 2024 14:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712933611; x=1744469611;
+ t=1712933616; x=1744469616;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fqvPJ5uqB+lSF5iKcMJyYpRR/R0KKaur/QTdnFQFbds=;
- b=OKMC+zlW1/ZNjXBUiHTtoorxvNwk54Ncl1Pon3fEI8U/MFGdnA8HKyb5
- bAhxvyV33BmzW8mhLAH8KWOibphgeOQQuSC7CJmrBaLfgnqtqzosLNahT
- vRVL4H1G0D7wbGsSsTvaf5G+2DNW58QbChy4rgnfIFlBvVKhxiw4iCYJF
- nNr33B1PAhB+Biv8/iq7a2PPk5PcYqRmfDvBUWOW22Wwj8N8KSu4We2iN
- kB2eSWZcYLlyg4KPb0rbi6Vbt3iOznq0XGal4W+QWtSS667Wr25mykO1S
- Umku68cakZ0Rr6DlqvnUo8mJ0iWecJ9gCB8sIGUFZjcgdJbc3u73vszD4 Q==;
-X-CSE-ConnectionGUID: gWnrMlTxSM26AIcX2YeCtQ==
-X-CSE-MsgGUID: xd+1Oh75RqKLJpNhe6Ihsg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8246583"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
-   d="scan'208";a="8246583"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:31 -0700
-X-CSE-ConnectionGUID: AZWjIvQEQKaqStah5BV3xg==
-X-CSE-MsgGUID: wMF9MEPXQY2rKIoOF5cssA==
+ bh=XlK66y3OCv0TwVLX624N97fZY1SaUAJggLO+Q5vaHq4=;
+ b=oG+wr2tiKdevGMXEpukEY7UJeHrumzajJCI8TFL/lPLVA+3Q6UidNk/5
+ ZZZLQzSqJ4OirW9pl8HwfxMULwziMkm2cHh9lU1oWpO8/hhUcAp4fy37J
+ XOOXNHqdqTS9eZ6cLj7b1wDZdXZXDCo6RIK1Dt3kUD3SoDhOcQdgE06Nu
+ N6tow2HAUJd4yZwP+FlXXzFJsllJd+zoL/YtzO3tbL1EtBEkV05M1ZIZA
+ Jh3D9aQ1VfW7Vmz+QLHHjYeir1AWcdzV6DOkS4ZdvgdjYN5TZ9yVY4G7k
+ aQmqD9T+wA35EjcXkx6xQ/Qcsc+DAjC63EwW99VixTGyYM6aer8WwY15j g==;
+X-CSE-ConnectionGUID: 43axT/O6RTe2sbMmF0a45w==
+X-CSE-MsgGUID: 0RM4MchQQSi5hI8MzUURoA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19810933"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19810933"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:36 -0700
+X-CSE-ConnectionGUID: sdh9mjfgRPCS3pSnibn7mQ==
+X-CSE-MsgGUID: F+9kce2BTOyxaZR6vzV7MQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21162263"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21677595"
 Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
  ([10.252.61.65])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:29 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:34 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 5/6] drm/i915/display: split out intel_dpio_regs.h from
- i915_reg.h
-Date: Fri, 12 Apr 2024 17:52:57 +0300
-Message-Id: <29df02935f8c53f96bfa871300a669722d9ab8c4.1712933479.git.jani.nikula@intel.com>
+Subject: [PATCH 6/6] drm/i915/display: split out bxt_phy_regs.h from i915_reg.h
+Date: Fri, 12 Apr 2024 17:52:58 +0300
+Message-Id: <87fd81f523c3a5517ddecdb88d9c688336f65b87.1712933479.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
 References: <cover.1712933479.git.jani.nikula@intel.com>
@@ -77,762 +75,707 @@ Clean up i915_reg.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../i915/display/intel_display_power_well.c   |   1 +
+ drivers/gpu/drm/i915/display/bxt_phy_regs.h   | 292 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   1 +
  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   1 +
- drivers/gpu/drm/i915/display/intel_dpll.c     |   1 +
- drivers/gpu/drm/i915/display/vlv_dpio_regs.h  | 352 ++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h               | 343 -----------------
- 5 files changed, 355 insertions(+), 343 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/vlv_dpio_regs.h
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 +
+ drivers/gpu/drm/i915/gvt/display.c            |   1 +
+ drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
+ drivers/gpu/drm/i915/gvt/mmio.c               |   1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 283 -----------------
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
+ 10 files changed, 300 insertions(+), 283 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/bxt_phy_regs.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index e4de40228997..0b356ff0e319 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -26,6 +26,7 @@
- #include "intel_tc.h"
- #include "intel_vga.h"
- #include "skl_watermark.h"
-+#include "vlv_dpio_regs.h"
- #include "vlv_sideband.h"
- #include "vlv_sideband_reg.h"
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index 2d7a71c8c69c..8d99e00ea326 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -29,6 +29,7 @@
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_dpio_phy.h"
-+#include "vlv_dpio_regs.h"
- #include "vlv_sideband.h"
- 
- /**
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 3038655377ea..5c14bbd6ca82 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -20,6 +20,7 @@
- #include "intel_panel.h"
- #include "intel_pps.h"
- #include "intel_snps_phy.h"
-+#include "vlv_dpio_regs.h"
- #include "vlv_sideband.h"
- 
- struct intel_dpll_funcs {
-diff --git a/drivers/gpu/drm/i915/display/vlv_dpio_regs.h b/drivers/gpu/drm/i915/display/vlv_dpio_regs.h
+diff --git a/drivers/gpu/drm/i915/display/bxt_phy_regs.h b/drivers/gpu/drm/i915/display/bxt_phy_regs.h
 new file mode 100644
-index 000000000000..0982682c269f
+index 000000000000..73a3e545f5b6
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/display/vlv_dpio_regs.h
-@@ -0,0 +1,352 @@
++++ b/drivers/gpu/drm/i915/display/bxt_phy_regs.h
+@@ -0,0 +1,292 @@
 +/* SPDX-License-Identifier: MIT */
 +/* Copyright © 2024 Intel Corporation */
 +
-+#ifndef __VLV_DPIO_REGS_H__
-+#define __VLV_DPIO_REGS_H__
++#ifndef __BXT_PHY_REGS__
++#define __BXT_PHY_REGS__
 +
 +#include "intel_display_reg_defs.h"
 +
-+/*
-+ * Per pipe/PLL DPIO regs
++/* BXT PHY registers */
++#define _BXT_PHY0_BASE			0x6C000
++#define _BXT_PHY1_BASE			0x162000
++#define _BXT_PHY2_BASE			0x163000
++#define BXT_PHY_BASE(phy)							\
++	 _PICK_EVEN_2RANGES(phy, 1,						\
++			    _BXT_PHY0_BASE, _BXT_PHY0_BASE,			\
++			    _BXT_PHY1_BASE, _BXT_PHY2_BASE)
++
++#define _BXT_PHY(phy, reg)						\
++	_MMIO(BXT_PHY_BASE(phy) - _BXT_PHY0_BASE + (reg))
++
++#define _BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
++	(BXT_PHY_BASE(phy) + _PIPE((ch), (reg_ch0) - _BXT_PHY0_BASE,	\
++					 (reg_ch1) - _BXT_PHY0_BASE))
++#define _MMIO_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
++	_MMIO(_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1))
++
++#define BXT_P_CR_GT_DISP_PWRON		_MMIO(0x138090)
++#define  MIPIO_RST_CTRL				(1 << 2)
++
++#define _BXT_PHY_CTL_DDI_A		0x64C00
++#define _BXT_PHY_CTL_DDI_B		0x64C10
++#define _BXT_PHY_CTL_DDI_C		0x64C20
++#define   BXT_PHY_CMNLANE_POWERDOWN_ACK	(1 << 10)
++#define   BXT_PHY_LANE_POWERDOWN_ACK	(1 << 9)
++#define   BXT_PHY_LANE_ENABLED		(1 << 8)
++#define BXT_PHY_CTL(port)		_MMIO_PORT(port, _BXT_PHY_CTL_DDI_A, \
++							 _BXT_PHY_CTL_DDI_B)
++
++#define _PHY_CTL_FAMILY_DDI		0x64C90
++#define _PHY_CTL_FAMILY_EDP		0x64C80
++#define _PHY_CTL_FAMILY_DDI_C		0x64CA0
++#define   COMMON_RESET_DIS		(1 << 31)
++#define BXT_PHY_CTL_FAMILY(phy)							\
++	 _MMIO(_PICK_EVEN_2RANGES(phy, 1,					\
++				  _PHY_CTL_FAMILY_DDI, _PHY_CTL_FAMILY_DDI,	\
++				  _PHY_CTL_FAMILY_EDP, _PHY_CTL_FAMILY_DDI_C))
++
++/* BXT PHY PLL registers */
++#define _PORT_PLL_A			0x46074
++#define _PORT_PLL_B			0x46078
++#define _PORT_PLL_C			0x4607c
++#define   PORT_PLL_ENABLE		REG_BIT(31)
++#define   PORT_PLL_LOCK			REG_BIT(30)
++#define   PORT_PLL_REF_SEL		REG_BIT(27)
++#define   PORT_PLL_POWER_ENABLE		REG_BIT(26)
++#define   PORT_PLL_POWER_STATE		REG_BIT(25)
++#define BXT_PORT_PLL_ENABLE(port)	_MMIO_PORT(port, _PORT_PLL_A, _PORT_PLL_B)
++
++#define _PORT_PLL_EBB_0_A		0x162034
++#define _PORT_PLL_EBB_0_B		0x6C034
++#define _PORT_PLL_EBB_0_C		0x6C340
++#define   PORT_PLL_P1_MASK		REG_GENMASK(15, 13)
++#define   PORT_PLL_P1(p1)		REG_FIELD_PREP(PORT_PLL_P1_MASK, (p1))
++#define   PORT_PLL_P2_MASK		REG_GENMASK(12, 8)
++#define   PORT_PLL_P2(p2)		REG_FIELD_PREP(PORT_PLL_P2_MASK, (p2))
++#define BXT_PORT_PLL_EBB_0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PLL_EBB_0_B, \
++							 _PORT_PLL_EBB_0_C)
++
++#define _PORT_PLL_EBB_4_A		0x162038
++#define _PORT_PLL_EBB_4_B		0x6C038
++#define _PORT_PLL_EBB_4_C		0x6C344
++#define   PORT_PLL_RECALIBRATE		REG_BIT(14)
++#define   PORT_PLL_10BIT_CLK_ENABLE	REG_BIT(13)
++#define BXT_PORT_PLL_EBB_4(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PLL_EBB_4_B, \
++							 _PORT_PLL_EBB_4_C)
++
++#define _PORT_PLL_0_A			0x162100
++#define _PORT_PLL_0_B			0x6C100
++#define _PORT_PLL_0_C			0x6C380
++/* PORT_PLL_0_A */
++#define   PORT_PLL_M2_INT_MASK		REG_GENMASK(7, 0)
++#define   PORT_PLL_M2_INT(m2_int)	REG_FIELD_PREP(PORT_PLL_M2_INT_MASK, (m2_int))
++/* PORT_PLL_1_A */
++#define   PORT_PLL_N_MASK		REG_GENMASK(11, 8)
++#define   PORT_PLL_N(n)			REG_FIELD_PREP(PORT_PLL_N_MASK, (n))
++/* PORT_PLL_2_A */
++#define   PORT_PLL_M2_FRAC_MASK		REG_GENMASK(21, 0)
++#define   PORT_PLL_M2_FRAC(m2_frac)	REG_FIELD_PREP(PORT_PLL_M2_FRAC_MASK, (m2_frac))
++/* PORT_PLL_3_A */
++#define   PORT_PLL_M2_FRAC_ENABLE	REG_BIT(16)
++/* PORT_PLL_6_A */
++#define   PORT_PLL_GAIN_CTL_MASK	REG_GENMASK(18, 16)
++#define   PORT_PLL_GAIN_CTL(x)		REG_FIELD_PREP(PORT_PLL_GAIN_CTL_MASK, (x))
++#define   PORT_PLL_INT_COEFF_MASK	REG_GENMASK(12, 8)
++#define   PORT_PLL_INT_COEFF(x)		REG_FIELD_PREP(PORT_PLL_INT_COEFF_MASK, (x))
++#define   PORT_PLL_PROP_COEFF_MASK	REG_GENMASK(3, 0)
++#define   PORT_PLL_PROP_COEFF(x)	REG_FIELD_PREP(PORT_PLL_PROP_COEFF_MASK, (x))
++/* PORT_PLL_8_A */
++#define   PORT_PLL_TARGET_CNT_MASK	REG_GENMASK(9, 0)
++#define   PORT_PLL_TARGET_CNT(x)	REG_FIELD_PREP(PORT_PLL_TARGET_CNT_MASK, (x))
++/* PORT_PLL_9_A */
++#define  PORT_PLL_LOCK_THRESHOLD_MASK	REG_GENMASK(3, 1)
++#define  PORT_PLL_LOCK_THRESHOLD(x)	REG_FIELD_PREP(PORT_PLL_LOCK_THRESHOLD_MASK, (x))
++/* PORT_PLL_10_A */
++#define  PORT_PLL_DCO_AMP_OVR_EN_H	REG_BIT(27)
++#define  PORT_PLL_DCO_AMP_MASK		REG_GENMASK(13, 10)
++#define  PORT_PLL_DCO_AMP(x)		REG_FIELD_PREP(PORT_PLL_DCO_AMP_MASK, (x))
++#define _PORT_PLL_BASE(phy, ch)		_BXT_PHY_CH(phy, ch, \
++						    _PORT_PLL_0_B, \
++						    _PORT_PLL_0_C)
++#define BXT_PORT_PLL(phy, ch, idx)	_MMIO(_PORT_PLL_BASE(phy, ch) + \
++					      (idx) * 4)
++
++/* BXT PHY common lane registers */
++#define _PORT_CL1CM_DW0_A		0x162000
++#define _PORT_CL1CM_DW0_BC		0x6C000
++#define   PHY_POWER_GOOD		(1 << 16)
++#define   PHY_RESERVED			(1 << 7)
++#define BXT_PORT_CL1CM_DW0(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW0_BC)
++
++#define _PORT_CL1CM_DW9_A		0x162024
++#define _PORT_CL1CM_DW9_BC		0x6C024
++#define   IREF0RC_OFFSET_SHIFT		8
++#define   IREF0RC_OFFSET_MASK		(0xFF << IREF0RC_OFFSET_SHIFT)
++#define BXT_PORT_CL1CM_DW9(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW9_BC)
++
++#define _PORT_CL1CM_DW10_A		0x162028
++#define _PORT_CL1CM_DW10_BC		0x6C028
++#define   IREF1RC_OFFSET_SHIFT		8
++#define   IREF1RC_OFFSET_MASK		(0xFF << IREF1RC_OFFSET_SHIFT)
++#define BXT_PORT_CL1CM_DW10(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW10_BC)
++
++#define _PORT_CL1CM_DW28_A		0x162070
++#define _PORT_CL1CM_DW28_BC		0x6C070
++#define   OCL1_POWER_DOWN_EN		(1 << 23)
++#define   DW28_OLDO_DYN_PWR_DOWN_EN	(1 << 22)
++#define   SUS_CLK_CONFIG		0x3
++#define BXT_PORT_CL1CM_DW28(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW28_BC)
++
++#define _PORT_CL1CM_DW30_A		0x162078
++#define _PORT_CL1CM_DW30_BC		0x6C078
++#define   OCL2_LDOFUSE_PWR_DIS		(1 << 6)
++#define BXT_PORT_CL1CM_DW30(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW30_BC)
++
++/* The spec defines this only for BXT PHY0, but lets assume that this
++ * would exist for PHY1 too if it had a second channel.
 + */
-+#define _VLV_PLL_DW3_CH0		0x800c
-+#define   DPIO_POST_DIV_SHIFT		(28) /* 3 bits */
-+#define   DPIO_POST_DIV_DAC		0
-+#define   DPIO_POST_DIV_HDMIDP		1 /* DAC 225-400M rate */
-+#define   DPIO_POST_DIV_LVDS1		2
-+#define   DPIO_POST_DIV_LVDS2		3
-+#define   DPIO_K_SHIFT			(24) /* 4 bits */
-+#define   DPIO_P1_SHIFT			(21) /* 3 bits */
-+#define   DPIO_P2_SHIFT			(16) /* 5 bits */
-+#define   DPIO_N_SHIFT			(12) /* 4 bits */
-+#define   DPIO_ENABLE_CALIBRATION	(1 << 11)
-+#define   DPIO_M1DIV_SHIFT		(8) /* 3 bits */
-+#define   DPIO_M2DIV_MASK		0xff
-+#define _VLV_PLL_DW3_CH1		0x802c
-+#define VLV_PLL_DW3(ch) _PIPE(ch, _VLV_PLL_DW3_CH0, _VLV_PLL_DW3_CH1)
++#define _PORT_CL2CM_DW6_A		0x162358
++#define _PORT_CL2CM_DW6_BC		0x6C358
++#define BXT_PORT_CL2CM_DW6(phy)		_BXT_PHY((phy), _PORT_CL2CM_DW6_BC)
++#define   DW6_OLDO_DYN_PWR_DOWN_EN	(1 << 28)
 +
-+#define _VLV_PLL_DW5_CH0		0x8014
-+#define   DPIO_REFSEL_OVERRIDE		27
-+#define   DPIO_PLL_MODESEL_SHIFT	24 /* 3 bits */
-+#define   DPIO_BIAS_CURRENT_CTL_SHIFT	21 /* 3 bits, always 0x7 */
-+#define   DPIO_PLL_REFCLK_SEL_SHIFT	16 /* 2 bits */
-+#define   DPIO_PLL_REFCLK_SEL_MASK	3
-+#define   DPIO_DRIVER_CTL_SHIFT		12 /* always set to 0x8 */
-+#define   DPIO_CLK_BIAS_CTL_SHIFT	8 /* always set to 0x5 */
-+#define _VLV_PLL_DW5_CH1		0x8034
-+#define VLV_PLL_DW5(ch) _PIPE(ch, _VLV_PLL_DW5_CH0, _VLV_PLL_DW5_CH1)
++/* BXT PHY Ref registers */
++#define _PORT_REF_DW3_A			0x16218C
++#define _PORT_REF_DW3_BC		0x6C18C
++#define   GRC_DONE			(1 << 22)
++#define BXT_PORT_REF_DW3(phy)		_BXT_PHY((phy), _PORT_REF_DW3_BC)
 +
-+#define _VLV_PLL_DW7_CH0		0x801c
-+#define _VLV_PLL_DW7_CH1		0x803c
-+#define VLV_PLL_DW7(ch) _PIPE(ch, _VLV_PLL_DW7_CH0, _VLV_PLL_DW7_CH1)
++#define _PORT_REF_DW6_A			0x162198
++#define _PORT_REF_DW6_BC		0x6C198
++#define   GRC_CODE_SHIFT		24
++#define   GRC_CODE_MASK			(0xFF << GRC_CODE_SHIFT)
++#define   GRC_CODE_FAST_SHIFT		16
++#define   GRC_CODE_FAST_MASK		(0xFF << GRC_CODE_FAST_SHIFT)
++#define   GRC_CODE_SLOW_SHIFT		8
++#define   GRC_CODE_SLOW_MASK		(0xFF << GRC_CODE_SLOW_SHIFT)
++#define   GRC_CODE_NOM_MASK		0xFF
++#define BXT_PORT_REF_DW6(phy)		_BXT_PHY((phy), _PORT_REF_DW6_BC)
 +
-+#define _VLV_PLL_DW8_CH0		0x8040
-+#define _VLV_PLL_DW8_CH1		0x8060
-+#define VLV_PLL_DW8(ch) _PIPE(ch, _VLV_PLL_DW8_CH0, _VLV_PLL_DW8_CH1)
++#define _PORT_REF_DW8_A			0x1621A0
++#define _PORT_REF_DW8_BC		0x6C1A0
++#define   GRC_DIS			(1 << 15)
++#define   GRC_RDY_OVRD			(1 << 1)
++#define BXT_PORT_REF_DW8(phy)		_BXT_PHY((phy), _PORT_REF_DW8_BC)
 +
-+#define VLV_PLL_DW9_BCAST		0xc044
-+#define _VLV_PLL_DW9_CH0		0x8044
-+#define _VLV_PLL_DW9_CH1		0x8064
-+#define VLV_PLL_DW9(ch) _PIPE(ch, _VLV_PLL_DW9_CH0, _VLV_PLL_DW9_CH1)
++/* BXT PHY PCS registers */
++#define _PORT_PCS_DW10_LN01_A		0x162428
++#define _PORT_PCS_DW10_LN01_B		0x6C428
++#define _PORT_PCS_DW10_LN01_C		0x6C828
++#define _PORT_PCS_DW10_GRP_A		0x162C28
++#define _PORT_PCS_DW10_GRP_B		0x6CC28
++#define _PORT_PCS_DW10_GRP_C		0x6CE28
++#define BXT_PORT_PCS_DW10_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PCS_DW10_LN01_B, \
++							 _PORT_PCS_DW10_LN01_C)
++#define BXT_PORT_PCS_DW10_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PCS_DW10_GRP_B, \
++							 _PORT_PCS_DW10_GRP_C)
 +
-+#define _VLV_PLL_DW10_CH0		0x8048
-+#define _VLV_PLL_DW10_CH1		0x8068
-+#define VLV_PLL_DW10(ch) _PIPE(ch, _VLV_PLL_DW10_CH0, _VLV_PLL_DW10_CH1)
++#define   TX2_SWING_CALC_INIT		(1 << 31)
++#define   TX1_SWING_CALC_INIT		(1 << 30)
 +
-+#define _VLV_PLL_DW11_CH0		0x804c
-+#define _VLV_PLL_DW11_CH1		0x806c
-+#define VLV_PLL_DW11(ch) _PIPE(ch, _VLV_PLL_DW11_CH0, _VLV_PLL_DW11_CH1)
++#define _PORT_PCS_DW12_LN01_A		0x162430
++#define _PORT_PCS_DW12_LN01_B		0x6C430
++#define _PORT_PCS_DW12_LN01_C		0x6C830
++#define _PORT_PCS_DW12_LN23_A		0x162630
++#define _PORT_PCS_DW12_LN23_B		0x6C630
++#define _PORT_PCS_DW12_LN23_C		0x6CA30
++#define _PORT_PCS_DW12_GRP_A		0x162c30
++#define _PORT_PCS_DW12_GRP_B		0x6CC30
++#define _PORT_PCS_DW12_GRP_C		0x6CE30
++#define   LANESTAGGER_STRAP_OVRD	(1 << 6)
++#define   LANE_STAGGER_MASK		0x1F
++#define BXT_PORT_PCS_DW12_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PCS_DW12_LN01_B, \
++							 _PORT_PCS_DW12_LN01_C)
++#define BXT_PORT_PCS_DW12_LN23(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PCS_DW12_LN23_B, \
++							 _PORT_PCS_DW12_LN23_C)
++#define BXT_PORT_PCS_DW12_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_PCS_DW12_GRP_B, \
++							 _PORT_PCS_DW12_GRP_C)
 +
-+/* Spec for ref block start counts at DW10 */
-+#define VLV_REF_DW13			0x80ac
++/* BXT PHY TX registers */
++#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
++					  ((lane) & 1) * 0x80)
 +
-+#define VLV_CMN_DW0			0x8100
++#define _PORT_TX_DW2_LN0_A		0x162508
++#define _PORT_TX_DW2_LN0_B		0x6C508
++#define _PORT_TX_DW2_LN0_C		0x6C908
++#define _PORT_TX_DW2_GRP_A		0x162D08
++#define _PORT_TX_DW2_GRP_B		0x6CD08
++#define _PORT_TX_DW2_GRP_C		0x6CF08
++#define BXT_PORT_TX_DW2_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW2_LN0_B, \
++							 _PORT_TX_DW2_LN0_C)
++#define BXT_PORT_TX_DW2_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW2_GRP_B, \
++							 _PORT_TX_DW2_GRP_C)
++#define   MARGIN_000_SHIFT		16
++#define   MARGIN_000			(0xFF << MARGIN_000_SHIFT)
++#define   UNIQ_TRANS_SCALE_SHIFT	8
++#define   UNIQ_TRANS_SCALE		(0xFF << UNIQ_TRANS_SCALE_SHIFT)
 +
-+/*
-+ * Per DDI channel DPIO regs
-+ */
++#define _PORT_TX_DW3_LN0_A		0x16250C
++#define _PORT_TX_DW3_LN0_B		0x6C50C
++#define _PORT_TX_DW3_LN0_C		0x6C90C
++#define _PORT_TX_DW3_GRP_A		0x162D0C
++#define _PORT_TX_DW3_GRP_B		0x6CD0C
++#define _PORT_TX_DW3_GRP_C		0x6CF0C
++#define BXT_PORT_TX_DW3_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW3_LN0_B, \
++							 _PORT_TX_DW3_LN0_C)
++#define BXT_PORT_TX_DW3_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW3_GRP_B, \
++							 _PORT_TX_DW3_GRP_C)
++#define   SCALE_DCOMP_METHOD		(1 << 26)
++#define   UNIQUE_TRANGE_EN_METHOD	(1 << 27)
 +
-+#define _VLV_PCS_DW0_CH0		0x8200
-+#define _VLV_PCS_DW0_CH1		0x8400
-+#define   DPIO_PCS_TX_LANE2_RESET	(1 << 16)
-+#define   DPIO_PCS_TX_LANE1_RESET	(1 << 7)
-+#define   DPIO_LEFT_TXFIFO_RST_MASTER2	(1 << 4)
-+#define   DPIO_RIGHT_TXFIFO_RST_MASTER2	(1 << 3)
-+#define VLV_PCS_DW0(ch) _PORT(ch, _VLV_PCS_DW0_CH0, _VLV_PCS_DW0_CH1)
++#define _PORT_TX_DW4_LN0_A		0x162510
++#define _PORT_TX_DW4_LN0_B		0x6C510
++#define _PORT_TX_DW4_LN0_C		0x6C910
++#define _PORT_TX_DW4_GRP_A		0x162D10
++#define _PORT_TX_DW4_GRP_B		0x6CD10
++#define _PORT_TX_DW4_GRP_C		0x6CF10
++#define BXT_PORT_TX_DW4_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW4_LN0_B, \
++							 _PORT_TX_DW4_LN0_C)
++#define BXT_PORT_TX_DW4_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW4_GRP_B, \
++							 _PORT_TX_DW4_GRP_C)
++#define   DEEMPH_SHIFT			24
++#define   DE_EMPHASIS			(0xFF << DEEMPH_SHIFT)
 +
-+#define _VLV_PCS01_DW0_CH0		0x200
-+#define _VLV_PCS23_DW0_CH0		0x400
-+#define _VLV_PCS01_DW0_CH1		0x2600
-+#define _VLV_PCS23_DW0_CH1		0x2800
-+#define VLV_PCS01_DW0(ch) _PORT(ch, _VLV_PCS01_DW0_CH0, _VLV_PCS01_DW0_CH1)
-+#define VLV_PCS23_DW0(ch) _PORT(ch, _VLV_PCS23_DW0_CH0, _VLV_PCS23_DW0_CH1)
++#define _PORT_TX_DW5_LN0_A		0x162514
++#define _PORT_TX_DW5_LN0_B		0x6C514
++#define _PORT_TX_DW5_LN0_C		0x6C914
++#define _PORT_TX_DW5_GRP_A		0x162D14
++#define _PORT_TX_DW5_GRP_B		0x6CD14
++#define _PORT_TX_DW5_GRP_C		0x6CF14
++#define BXT_PORT_TX_DW5_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW5_LN0_B, \
++							 _PORT_TX_DW5_LN0_C)
++#define BXT_PORT_TX_DW5_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
++							 _PORT_TX_DW5_GRP_B, \
++							 _PORT_TX_DW5_GRP_C)
++#define   DCC_DELAY_RANGE_1		(1 << 9)
++#define   DCC_DELAY_RANGE_2		(1 << 8)
 +
-+#define _VLV_PCS_DW1_CH0		0x8204
-+#define _VLV_PCS_DW1_CH1		0x8404
-+#define   CHV_PCS_REQ_SOFTRESET_EN	(1 << 23)
-+#define   DPIO_PCS_CLK_CRI_RXEB_EIOS_EN	(1 << 22)
-+#define   DPIO_PCS_CLK_CRI_RXDIGFILTSG_EN (1 << 21)
-+#define   DPIO_PCS_CLK_DATAWIDTH_SHIFT	(6)
-+#define   DPIO_PCS_CLK_SOFT_RESET	(1 << 5)
-+#define VLV_PCS_DW1(ch) _PORT(ch, _VLV_PCS_DW1_CH0, _VLV_PCS_DW1_CH1)
++#define _PORT_TX_DW14_LN0_A		0x162538
++#define _PORT_TX_DW14_LN0_B		0x6C538
++#define _PORT_TX_DW14_LN0_C		0x6C938
++#define   LATENCY_OPTIM_SHIFT		30
++#define   LATENCY_OPTIM			(1 << LATENCY_OPTIM_SHIFT)
++#define BXT_PORT_TX_DW14_LN(phy, ch, lane)				\
++	_MMIO(_BXT_PHY_CH(phy, ch, _PORT_TX_DW14_LN0_B,			\
++				   _PORT_TX_DW14_LN0_C) +		\
++	      _BXT_LANE_OFFSET(lane))
 +
-+#define _VLV_PCS01_DW1_CH0		0x204
-+#define _VLV_PCS23_DW1_CH0		0x404
-+#define _VLV_PCS01_DW1_CH1		0x2604
-+#define _VLV_PCS23_DW1_CH1		0x2804
-+#define VLV_PCS01_DW1(ch) _PORT(ch, _VLV_PCS01_DW1_CH0, _VLV_PCS01_DW1_CH1)
-+#define VLV_PCS23_DW1(ch) _PORT(ch, _VLV_PCS23_DW1_CH0, _VLV_PCS23_DW1_CH1)
-+
-+#define _VLV_PCS_DW8_CH0		0x8220
-+#define _VLV_PCS_DW8_CH1		0x8420
-+#define   CHV_PCS_USEDCLKCHANNEL_OVRRIDE	(1 << 20)
-+#define   CHV_PCS_USEDCLKCHANNEL		(1 << 21)
-+#define VLV_PCS_DW8(ch) _PORT(ch, _VLV_PCS_DW8_CH0, _VLV_PCS_DW8_CH1)
-+
-+#define _VLV_PCS01_DW8_CH0		0x0220
-+#define _VLV_PCS23_DW8_CH0		0x0420
-+#define _VLV_PCS01_DW8_CH1		0x2620
-+#define _VLV_PCS23_DW8_CH1		0x2820
-+#define VLV_PCS01_DW8(port) _PORT(port, _VLV_PCS01_DW8_CH0, _VLV_PCS01_DW8_CH1)
-+#define VLV_PCS23_DW8(port) _PORT(port, _VLV_PCS23_DW8_CH0, _VLV_PCS23_DW8_CH1)
-+
-+#define _VLV_PCS_DW9_CH0		0x8224
-+#define _VLV_PCS_DW9_CH1		0x8424
-+#define   DPIO_PCS_TX2MARGIN_MASK	(0x7 << 13)
-+#define   DPIO_PCS_TX2MARGIN_000	(0 << 13)
-+#define   DPIO_PCS_TX2MARGIN_101	(1 << 13)
-+#define   DPIO_PCS_TX1MARGIN_MASK	(0x7 << 10)
-+#define   DPIO_PCS_TX1MARGIN_000	(0 << 10)
-+#define   DPIO_PCS_TX1MARGIN_101	(1 << 10)
-+#define	VLV_PCS_DW9(ch) _PORT(ch, _VLV_PCS_DW9_CH0, _VLV_PCS_DW9_CH1)
-+
-+#define _VLV_PCS01_DW9_CH0		0x224
-+#define _VLV_PCS23_DW9_CH0		0x424
-+#define _VLV_PCS01_DW9_CH1		0x2624
-+#define _VLV_PCS23_DW9_CH1		0x2824
-+#define VLV_PCS01_DW9(ch) _PORT(ch, _VLV_PCS01_DW9_CH0, _VLV_PCS01_DW9_CH1)
-+#define VLV_PCS23_DW9(ch) _PORT(ch, _VLV_PCS23_DW9_CH0, _VLV_PCS23_DW9_CH1)
-+
-+#define _CHV_PCS_DW10_CH0		0x8228
-+#define _CHV_PCS_DW10_CH1		0x8428
-+#define   DPIO_PCS_SWING_CALC_TX0_TX2	(1 << 30)
-+#define   DPIO_PCS_SWING_CALC_TX1_TX3	(1 << 31)
-+#define   DPIO_PCS_TX2DEEMP_MASK	(0xf << 24)
-+#define   DPIO_PCS_TX2DEEMP_9P5		(0 << 24)
-+#define   DPIO_PCS_TX2DEEMP_6P0		(2 << 24)
-+#define   DPIO_PCS_TX1DEEMP_MASK	(0xf << 16)
-+#define   DPIO_PCS_TX1DEEMP_9P5		(0 << 16)
-+#define   DPIO_PCS_TX1DEEMP_6P0		(2 << 16)
-+#define CHV_PCS_DW10(ch) _PORT(ch, _CHV_PCS_DW10_CH0, _CHV_PCS_DW10_CH1)
-+
-+#define _VLV_PCS01_DW10_CH0		0x0228
-+#define _VLV_PCS23_DW10_CH0		0x0428
-+#define _VLV_PCS01_DW10_CH1		0x2628
-+#define _VLV_PCS23_DW10_CH1		0x2828
-+#define VLV_PCS01_DW10(port) _PORT(port, _VLV_PCS01_DW10_CH0, _VLV_PCS01_DW10_CH1)
-+#define VLV_PCS23_DW10(port) _PORT(port, _VLV_PCS23_DW10_CH0, _VLV_PCS23_DW10_CH1)
-+
-+#define _VLV_PCS_DW11_CH0		0x822c
-+#define _VLV_PCS_DW11_CH1		0x842c
-+#define   DPIO_TX2_STAGGER_MASK(x)	((x) << 24)
-+#define   DPIO_LANEDESKEW_STRAP_OVRD	(1 << 3)
-+#define   DPIO_LEFT_TXFIFO_RST_MASTER	(1 << 1)
-+#define   DPIO_RIGHT_TXFIFO_RST_MASTER	(1 << 0)
-+#define VLV_PCS_DW11(ch) _PORT(ch, _VLV_PCS_DW11_CH0, _VLV_PCS_DW11_CH1)
-+
-+#define _VLV_PCS01_DW11_CH0		0x022c
-+#define _VLV_PCS23_DW11_CH0		0x042c
-+#define _VLV_PCS01_DW11_CH1		0x262c
-+#define _VLV_PCS23_DW11_CH1		0x282c
-+#define VLV_PCS01_DW11(ch) _PORT(ch, _VLV_PCS01_DW11_CH0, _VLV_PCS01_DW11_CH1)
-+#define VLV_PCS23_DW11(ch) _PORT(ch, _VLV_PCS23_DW11_CH0, _VLV_PCS23_DW11_CH1)
-+
-+#define _VLV_PCS01_DW12_CH0		0x0230
-+#define _VLV_PCS23_DW12_CH0		0x0430
-+#define _VLV_PCS01_DW12_CH1		0x2630
-+#define _VLV_PCS23_DW12_CH1		0x2830
-+#define VLV_PCS01_DW12(ch) _PORT(ch, _VLV_PCS01_DW12_CH0, _VLV_PCS01_DW12_CH1)
-+#define VLV_PCS23_DW12(ch) _PORT(ch, _VLV_PCS23_DW12_CH0, _VLV_PCS23_DW12_CH1)
-+
-+#define _VLV_PCS_DW12_CH0		0x8230
-+#define _VLV_PCS_DW12_CH1		0x8430
-+#define   DPIO_TX2_STAGGER_MULT(x)	((x) << 20)
-+#define   DPIO_TX1_STAGGER_MULT(x)	((x) << 16)
-+#define   DPIO_TX1_STAGGER_MASK(x)	((x) << 8)
-+#define   DPIO_LANESTAGGER_STRAP_OVRD	(1 << 6)
-+#define   DPIO_LANESTAGGER_STRAP(x)	((x) << 0)
-+#define VLV_PCS_DW12(ch) _PORT(ch, _VLV_PCS_DW12_CH0, _VLV_PCS_DW12_CH1)
-+
-+#define _VLV_PCS_DW14_CH0		0x8238
-+#define _VLV_PCS_DW14_CH1		0x8438
-+#define	VLV_PCS_DW14(ch) _PORT(ch, _VLV_PCS_DW14_CH0, _VLV_PCS_DW14_CH1)
-+
-+#define _VLV_PCS_DW23_CH0		0x825c
-+#define _VLV_PCS_DW23_CH1		0x845c
-+#define VLV_PCS_DW23(ch) _PORT(ch, _VLV_PCS_DW23_CH0, _VLV_PCS_DW23_CH1)
-+
-+#define _VLV_TX_DW2_CH0			0x8288
-+#define _VLV_TX_DW2_CH1			0x8488
-+#define   DPIO_SWING_MARGIN000_SHIFT	16
-+#define   DPIO_SWING_MARGIN000_MASK	(0xff << DPIO_SWING_MARGIN000_SHIFT)
-+#define   DPIO_UNIQ_TRANS_SCALE_SHIFT	8
-+#define VLV_TX_DW2(ch) _PORT(ch, _VLV_TX_DW2_CH0, _VLV_TX_DW2_CH1)
-+
-+#define _VLV_TX_DW3_CH0			0x828c
-+#define _VLV_TX_DW3_CH1			0x848c
-+/* The following bit for CHV phy */
-+#define   DPIO_TX_UNIQ_TRANS_SCALE_EN	(1 << 27)
-+#define   DPIO_SWING_MARGIN101_SHIFT	16
-+#define   DPIO_SWING_MARGIN101_MASK	(0xff << DPIO_SWING_MARGIN101_SHIFT)
-+#define VLV_TX_DW3(ch) _PORT(ch, _VLV_TX_DW3_CH0, _VLV_TX_DW3_CH1)
-+
-+#define _VLV_TX_DW4_CH0			0x8290
-+#define _VLV_TX_DW4_CH1			0x8490
-+#define   DPIO_SWING_DEEMPH9P5_SHIFT	24
-+#define   DPIO_SWING_DEEMPH9P5_MASK	(0xff << DPIO_SWING_DEEMPH9P5_SHIFT)
-+#define   DPIO_SWING_DEEMPH6P0_SHIFT	16
-+#define   DPIO_SWING_DEEMPH6P0_MASK	(0xff << DPIO_SWING_DEEMPH6P0_SHIFT)
-+#define VLV_TX_DW4(ch) _PORT(ch, _VLV_TX_DW4_CH0, _VLV_TX_DW4_CH1)
-+
-+#define _VLV_TX3_DW4_CH0		0x690
-+#define _VLV_TX3_DW4_CH1		0x2a90
-+#define VLV_TX3_DW4(ch) _PORT(ch, _VLV_TX3_DW4_CH0, _VLV_TX3_DW4_CH1)
-+
-+#define _VLV_TX_DW5_CH0			0x8294
-+#define _VLV_TX_DW5_CH1			0x8494
-+#define   DPIO_TX_OCALINIT_EN		(1 << 31)
-+#define VLV_TX_DW5(ch) _PORT(ch, _VLV_TX_DW5_CH0, _VLV_TX_DW5_CH1)
-+
-+#define _VLV_TX_DW11_CH0		0x82ac
-+#define _VLV_TX_DW11_CH1		0x84ac
-+#define VLV_TX_DW11(ch) _PORT(ch, _VLV_TX_DW11_CH0, _VLV_TX_DW11_CH1)
-+
-+#define _VLV_TX_DW14_CH0		0x82b8
-+#define _VLV_TX_DW14_CH1		0x84b8
-+#define VLV_TX_DW14(ch) _PORT(ch, _VLV_TX_DW14_CH0, _VLV_TX_DW14_CH1)
-+
-+/* CHV dpPhy registers */
-+#define _CHV_PLL_DW0_CH0		0x8000
-+#define _CHV_PLL_DW0_CH1		0x8180
-+#define CHV_PLL_DW0(ch) _PIPE(ch, _CHV_PLL_DW0_CH0, _CHV_PLL_DW0_CH1)
-+
-+#define _CHV_PLL_DW1_CH0		0x8004
-+#define _CHV_PLL_DW1_CH1		0x8184
-+#define   DPIO_CHV_N_DIV_SHIFT		8
-+#define   DPIO_CHV_M1_DIV_BY_2		(0 << 0)
-+#define CHV_PLL_DW1(ch) _PIPE(ch, _CHV_PLL_DW1_CH0, _CHV_PLL_DW1_CH1)
-+
-+#define _CHV_PLL_DW2_CH0		0x8008
-+#define _CHV_PLL_DW2_CH1		0x8188
-+#define CHV_PLL_DW2(ch) _PIPE(ch, _CHV_PLL_DW2_CH0, _CHV_PLL_DW2_CH1)
-+
-+#define _CHV_PLL_DW3_CH0		0x800c
-+#define _CHV_PLL_DW3_CH1		0x818c
-+#define  DPIO_CHV_FRAC_DIV_EN		(1 << 16)
-+#define  DPIO_CHV_FIRST_MOD		(0 << 8)
-+#define  DPIO_CHV_SECOND_MOD		(1 << 8)
-+#define  DPIO_CHV_FEEDFWD_GAIN_SHIFT	0
-+#define  DPIO_CHV_FEEDFWD_GAIN_MASK		(0xF << 0)
-+#define CHV_PLL_DW3(ch) _PIPE(ch, _CHV_PLL_DW3_CH0, _CHV_PLL_DW3_CH1)
-+
-+#define _CHV_PLL_DW6_CH0		0x8018
-+#define _CHV_PLL_DW6_CH1		0x8198
-+#define   DPIO_CHV_GAIN_CTRL_SHIFT	16
-+#define	  DPIO_CHV_INT_COEFF_SHIFT	8
-+#define   DPIO_CHV_PROP_COEFF_SHIFT	0
-+#define CHV_PLL_DW6(ch) _PIPE(ch, _CHV_PLL_DW6_CH0, _CHV_PLL_DW6_CH1)
-+
-+#define _CHV_PLL_DW8_CH0		0x8020
-+#define _CHV_PLL_DW8_CH1		0x81A0
-+#define   DPIO_CHV_TDC_TARGET_CNT_SHIFT 0
-+#define   DPIO_CHV_TDC_TARGET_CNT_MASK  (0x3FF << 0)
-+#define CHV_PLL_DW8(ch) _PIPE(ch, _CHV_PLL_DW8_CH0, _CHV_PLL_DW8_CH1)
-+
-+#define _CHV_PLL_DW9_CH0		0x8024
-+#define _CHV_PLL_DW9_CH1		0x81A4
-+#define  DPIO_CHV_INT_LOCK_THRESHOLD_SHIFT		1 /* 3 bits */
-+#define  DPIO_CHV_INT_LOCK_THRESHOLD_MASK		(7 << 1)
-+#define  DPIO_CHV_INT_LOCK_THRESHOLD_SEL_COARSE	1 /* 1: coarse & 0 : fine  */
-+#define CHV_PLL_DW9(ch) _PIPE(ch, _CHV_PLL_DW9_CH0, _CHV_PLL_DW9_CH1)
-+
-+#define _CHV_CMN_DW0_CH0               0x8100
-+#define   DPIO_ALLDL_POWERDOWN_SHIFT_CH0	19
-+#define   DPIO_ANYDL_POWERDOWN_SHIFT_CH0	18
-+#define   DPIO_ALLDL_POWERDOWN			(1 << 1)
-+#define   DPIO_ANYDL_POWERDOWN			(1 << 0)
-+
-+#define _CHV_CMN_DW5_CH0               0x8114
-+#define   CHV_BUFRIGHTENA1_DISABLE	(0 << 20)
-+#define   CHV_BUFRIGHTENA1_NORMAL	(1 << 20)
-+#define   CHV_BUFRIGHTENA1_FORCE	(3 << 20)
-+#define   CHV_BUFRIGHTENA1_MASK		(3 << 20)
-+#define   CHV_BUFLEFTENA1_DISABLE	(0 << 22)
-+#define   CHV_BUFLEFTENA1_NORMAL	(1 << 22)
-+#define   CHV_BUFLEFTENA1_FORCE		(3 << 22)
-+#define   CHV_BUFLEFTENA1_MASK		(3 << 22)
-+
-+#define _CHV_CMN_DW13_CH0		0x8134
-+#define _CHV_CMN_DW0_CH1		0x8080
-+#define   DPIO_CHV_S1_DIV_SHIFT		21
-+#define   DPIO_CHV_P1_DIV_SHIFT		13 /* 3 bits */
-+#define   DPIO_CHV_P2_DIV_SHIFT		8  /* 5 bits */
-+#define   DPIO_CHV_K_DIV_SHIFT		4
-+#define   DPIO_PLL_FREQLOCK		(1 << 1)
-+#define   DPIO_PLL_LOCK			(1 << 0)
-+#define CHV_CMN_DW13(ch) _PIPE(ch, _CHV_CMN_DW13_CH0, _CHV_CMN_DW0_CH1)
-+
-+#define _CHV_CMN_DW14_CH0		0x8138
-+#define _CHV_CMN_DW1_CH1		0x8084
-+#define   DPIO_AFC_RECAL		(1 << 14)
-+#define   DPIO_DCLKP_EN			(1 << 13)
-+#define   CHV_BUFLEFTENA2_DISABLE	(0 << 17) /* CL2 DW1 only */
-+#define   CHV_BUFLEFTENA2_NORMAL	(1 << 17) /* CL2 DW1 only */
-+#define   CHV_BUFLEFTENA2_FORCE		(3 << 17) /* CL2 DW1 only */
-+#define   CHV_BUFLEFTENA2_MASK		(3 << 17) /* CL2 DW1 only */
-+#define   CHV_BUFRIGHTENA2_DISABLE	(0 << 19) /* CL2 DW1 only */
-+#define   CHV_BUFRIGHTENA2_NORMAL	(1 << 19) /* CL2 DW1 only */
-+#define   CHV_BUFRIGHTENA2_FORCE	(3 << 19) /* CL2 DW1 only */
-+#define   CHV_BUFRIGHTENA2_MASK		(3 << 19) /* CL2 DW1 only */
-+#define CHV_CMN_DW14(ch) _PIPE(ch, _CHV_CMN_DW14_CH0, _CHV_CMN_DW1_CH1)
-+
-+#define _CHV_CMN_DW19_CH0		0x814c
-+#define _CHV_CMN_DW6_CH1		0x8098
-+#define   DPIO_ALLDL_POWERDOWN_SHIFT_CH1	30 /* CL2 DW6 only */
-+#define   DPIO_ANYDL_POWERDOWN_SHIFT_CH1	29 /* CL2 DW6 only */
-+#define   DPIO_DYNPWRDOWNEN_CH1		(1 << 28) /* CL2 DW6 only */
-+#define   CHV_CMN_USEDCLKCHANNEL	(1 << 13)
-+
-+#define CHV_CMN_DW19(ch) _PIPE(ch, _CHV_CMN_DW19_CH0, _CHV_CMN_DW6_CH1)
-+
-+#define CHV_CMN_DW28			0x8170
-+#define   DPIO_CL1POWERDOWNEN		(1 << 23)
-+#define   DPIO_DYNPWRDOWNEN_CH0		(1 << 22)
-+#define   DPIO_SUS_CLK_CONFIG_ON		(0 << 0)
-+#define   DPIO_SUS_CLK_CONFIG_CLKREQ		(1 << 0)
-+#define   DPIO_SUS_CLK_CONFIG_GATE		(2 << 0)
-+#define   DPIO_SUS_CLK_CONFIG_GATE_CLKREQ	(3 << 0)
-+
-+#define CHV_CMN_DW30			0x8178
-+#define   DPIO_CL2_LDOFUSE_PWRENB	(1 << 6)
-+#define   DPIO_LRC_BYPASS		(1 << 3)
-+
-+#define _TXLANE(ch, lane, offset) ((ch ? 0x2400 : 0) + \
-+					(lane) * 0x200 + (offset))
-+
-+#define CHV_TX_DW0(ch, lane) _TXLANE(ch, lane, 0x80)
-+#define CHV_TX_DW1(ch, lane) _TXLANE(ch, lane, 0x84)
-+#define CHV_TX_DW2(ch, lane) _TXLANE(ch, lane, 0x88)
-+#define CHV_TX_DW3(ch, lane) _TXLANE(ch, lane, 0x8c)
-+#define CHV_TX_DW4(ch, lane) _TXLANE(ch, lane, 0x90)
-+#define CHV_TX_DW5(ch, lane) _TXLANE(ch, lane, 0x94)
-+#define CHV_TX_DW6(ch, lane) _TXLANE(ch, lane, 0x98)
-+#define CHV_TX_DW7(ch, lane) _TXLANE(ch, lane, 0x9c)
-+#define CHV_TX_DW8(ch, lane) _TXLANE(ch, lane, 0xa0)
-+#define CHV_TX_DW9(ch, lane) _TXLANE(ch, lane, 0xa4)
-+#define CHV_TX_DW10(ch, lane) _TXLANE(ch, lane, 0xa8)
-+#define CHV_TX_DW11(ch, lane) _TXLANE(ch, lane, 0xac)
-+#define   DPIO_FRC_LATENCY_SHFIT	8
-+#define CHV_TX_DW14(ch, lane) _TXLANE(ch, lane, 0xb8)
-+#define   DPIO_UPAR_SHIFT		30
-+
-+#endif
++#endif /* __BXT_PHY_REGS__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 3255d4e375af..2ad6e221cf67 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -31,6 +31,7 @@
+ #include <drm/display/drm_scdc_helper.h>
+ #include <drm/drm_privacy_screen_consumer.h>
+ 
++#include "bxt_phy_regs.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "icl_dsi.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+index 8d99e00ea326..bf1897bec9ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+@@ -21,6 +21,7 @@
+  * DEALINGS IN THE SOFTWARE.
+  */
+ 
++#include "bxt_phy_regs.h"
+ #include "i915_reg.h"
+ #include "intel_ddi.h"
+ #include "intel_ddi_buf_trans.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 9ff6c4cc2e4b..c0255b0b3279 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -24,6 +24,7 @@
+ #include <linux/math.h>
+ #include <linux/string_helpers.h>
+ 
++#include "bxt_phy_regs.h"
+ #include "i915_reg.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 63f4af601d15..27d9d15852fc 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -31,6 +31,7 @@
+ #include <drm/drm_edid.h>
+ #include <drm/drm_mipi_dsi.h>
+ 
++#include "bxt_phy_regs.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_atomic.h"
+diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
+index 498698482d59..c8ee15f4ea34 100644
+--- a/drivers/gpu/drm/i915/gvt/display.c
++++ b/drivers/gpu/drm/i915/gvt/display.c
+@@ -36,6 +36,7 @@
+ #include "i915_reg.h"
+ #include "gvt.h"
+ 
++#include "display/bxt_phy_regs.h"
+ #include "display/intel_display.h"
+ #include "display/intel_dpio_phy.h"
+ #include "display/intel_sprite_regs.h"
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index 7d749995c7a7..daa83f0c1d5f 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -41,6 +41,7 @@
+ #include "gvt.h"
+ #include "i915_pvinfo.h"
+ #include "intel_mchbar_regs.h"
++#include "display/bxt_phy_regs.h"
+ #include "display/intel_display_types.h"
+ #include "display/intel_dmc_regs.h"
+ #include "display/intel_dp_aux_regs.h"
+diff --git a/drivers/gpu/drm/i915/gvt/mmio.c b/drivers/gpu/drm/i915/gvt/mmio.c
+index 5b5def6ddef7..1b75eda56c02 100644
+--- a/drivers/gpu/drm/i915/gvt/mmio.c
++++ b/drivers/gpu/drm/i915/gvt/mmio.c
+@@ -37,6 +37,7 @@
+ #include "i915_reg.h"
+ #include "gvt.h"
+ 
++#include "display/bxt_phy_regs.h"
+ #include "display/intel_dpio_phy.h"
+ #include "gt/intel_gt_regs.h"
+ 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index bb63c7214e12..86700c6caa27 100644
+index 86700c6caa27..f456153335c5 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -195,349 +195,6 @@
+@@ -195,289 +195,6 @@
  #define  DPIO_SFR_BYPASS		(1 << 1)
  #define  DPIO_CMNRST			(1 << 0)
  
--/*
-- * Per pipe/PLL DPIO regs
+-/* BXT PHY registers */
+-#define _BXT_PHY0_BASE			0x6C000
+-#define _BXT_PHY1_BASE			0x162000
+-#define _BXT_PHY2_BASE			0x163000
+-#define BXT_PHY_BASE(phy)							\
+-	 _PICK_EVEN_2RANGES(phy, 1,						\
+-			    _BXT_PHY0_BASE, _BXT_PHY0_BASE,			\
+-			    _BXT_PHY1_BASE, _BXT_PHY2_BASE)
+-
+-#define _BXT_PHY(phy, reg)						\
+-	_MMIO(BXT_PHY_BASE(phy) - _BXT_PHY0_BASE + (reg))
+-
+-#define _BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
+-	(BXT_PHY_BASE(phy) + _PIPE((ch), (reg_ch0) - _BXT_PHY0_BASE,	\
+-					 (reg_ch1) - _BXT_PHY0_BASE))
+-#define _MMIO_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
+-	_MMIO(_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1))
+-
+-#define BXT_P_CR_GT_DISP_PWRON		_MMIO(0x138090)
+-#define  MIPIO_RST_CTRL				(1 << 2)
+-
+-#define _BXT_PHY_CTL_DDI_A		0x64C00
+-#define _BXT_PHY_CTL_DDI_B		0x64C10
+-#define _BXT_PHY_CTL_DDI_C		0x64C20
+-#define   BXT_PHY_CMNLANE_POWERDOWN_ACK	(1 << 10)
+-#define   BXT_PHY_LANE_POWERDOWN_ACK	(1 << 9)
+-#define   BXT_PHY_LANE_ENABLED		(1 << 8)
+-#define BXT_PHY_CTL(port)		_MMIO_PORT(port, _BXT_PHY_CTL_DDI_A, \
+-							 _BXT_PHY_CTL_DDI_B)
+-
+-#define _PHY_CTL_FAMILY_DDI		0x64C90
+-#define _PHY_CTL_FAMILY_EDP		0x64C80
+-#define _PHY_CTL_FAMILY_DDI_C		0x64CA0
+-#define   COMMON_RESET_DIS		(1 << 31)
+-#define BXT_PHY_CTL_FAMILY(phy)							\
+-	 _MMIO(_PICK_EVEN_2RANGES(phy, 1,					\
+-				  _PHY_CTL_FAMILY_DDI, _PHY_CTL_FAMILY_DDI,	\
+-				  _PHY_CTL_FAMILY_EDP, _PHY_CTL_FAMILY_DDI_C))
+-
+-/* BXT PHY PLL registers */
+-#define _PORT_PLL_A			0x46074
+-#define _PORT_PLL_B			0x46078
+-#define _PORT_PLL_C			0x4607c
+-#define   PORT_PLL_ENABLE		REG_BIT(31)
+-#define   PORT_PLL_LOCK			REG_BIT(30)
+-#define   PORT_PLL_REF_SEL		REG_BIT(27)
+-#define   PORT_PLL_POWER_ENABLE		REG_BIT(26)
+-#define   PORT_PLL_POWER_STATE		REG_BIT(25)
+-#define BXT_PORT_PLL_ENABLE(port)	_MMIO_PORT(port, _PORT_PLL_A, _PORT_PLL_B)
+-
+-#define _PORT_PLL_EBB_0_A		0x162034
+-#define _PORT_PLL_EBB_0_B		0x6C034
+-#define _PORT_PLL_EBB_0_C		0x6C340
+-#define   PORT_PLL_P1_MASK		REG_GENMASK(15, 13)
+-#define   PORT_PLL_P1(p1)		REG_FIELD_PREP(PORT_PLL_P1_MASK, (p1))
+-#define   PORT_PLL_P2_MASK		REG_GENMASK(12, 8)
+-#define   PORT_PLL_P2(p2)		REG_FIELD_PREP(PORT_PLL_P2_MASK, (p2))
+-#define BXT_PORT_PLL_EBB_0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PLL_EBB_0_B, \
+-							 _PORT_PLL_EBB_0_C)
+-
+-#define _PORT_PLL_EBB_4_A		0x162038
+-#define _PORT_PLL_EBB_4_B		0x6C038
+-#define _PORT_PLL_EBB_4_C		0x6C344
+-#define   PORT_PLL_RECALIBRATE		REG_BIT(14)
+-#define   PORT_PLL_10BIT_CLK_ENABLE	REG_BIT(13)
+-#define BXT_PORT_PLL_EBB_4(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PLL_EBB_4_B, \
+-							 _PORT_PLL_EBB_4_C)
+-
+-#define _PORT_PLL_0_A			0x162100
+-#define _PORT_PLL_0_B			0x6C100
+-#define _PORT_PLL_0_C			0x6C380
+-/* PORT_PLL_0_A */
+-#define   PORT_PLL_M2_INT_MASK		REG_GENMASK(7, 0)
+-#define   PORT_PLL_M2_INT(m2_int)	REG_FIELD_PREP(PORT_PLL_M2_INT_MASK, (m2_int))
+-/* PORT_PLL_1_A */
+-#define   PORT_PLL_N_MASK		REG_GENMASK(11, 8)
+-#define   PORT_PLL_N(n)			REG_FIELD_PREP(PORT_PLL_N_MASK, (n))
+-/* PORT_PLL_2_A */
+-#define   PORT_PLL_M2_FRAC_MASK		REG_GENMASK(21, 0)
+-#define   PORT_PLL_M2_FRAC(m2_frac)	REG_FIELD_PREP(PORT_PLL_M2_FRAC_MASK, (m2_frac))
+-/* PORT_PLL_3_A */
+-#define   PORT_PLL_M2_FRAC_ENABLE	REG_BIT(16)
+-/* PORT_PLL_6_A */
+-#define   PORT_PLL_GAIN_CTL_MASK	REG_GENMASK(18, 16)
+-#define   PORT_PLL_GAIN_CTL(x)		REG_FIELD_PREP(PORT_PLL_GAIN_CTL_MASK, (x))
+-#define   PORT_PLL_INT_COEFF_MASK	REG_GENMASK(12, 8)
+-#define   PORT_PLL_INT_COEFF(x)		REG_FIELD_PREP(PORT_PLL_INT_COEFF_MASK, (x))
+-#define   PORT_PLL_PROP_COEFF_MASK	REG_GENMASK(3, 0)
+-#define   PORT_PLL_PROP_COEFF(x)	REG_FIELD_PREP(PORT_PLL_PROP_COEFF_MASK, (x))
+-/* PORT_PLL_8_A */
+-#define   PORT_PLL_TARGET_CNT_MASK	REG_GENMASK(9, 0)
+-#define   PORT_PLL_TARGET_CNT(x)	REG_FIELD_PREP(PORT_PLL_TARGET_CNT_MASK, (x))
+-/* PORT_PLL_9_A */
+-#define  PORT_PLL_LOCK_THRESHOLD_MASK	REG_GENMASK(3, 1)
+-#define  PORT_PLL_LOCK_THRESHOLD(x)	REG_FIELD_PREP(PORT_PLL_LOCK_THRESHOLD_MASK, (x))
+-/* PORT_PLL_10_A */
+-#define  PORT_PLL_DCO_AMP_OVR_EN_H	REG_BIT(27)
+-#define  PORT_PLL_DCO_AMP_MASK		REG_GENMASK(13, 10)
+-#define  PORT_PLL_DCO_AMP(x)		REG_FIELD_PREP(PORT_PLL_DCO_AMP_MASK, (x))
+-#define _PORT_PLL_BASE(phy, ch)		_BXT_PHY_CH(phy, ch, \
+-						    _PORT_PLL_0_B, \
+-						    _PORT_PLL_0_C)
+-#define BXT_PORT_PLL(phy, ch, idx)	_MMIO(_PORT_PLL_BASE(phy, ch) + \
+-					      (idx) * 4)
+-
+-/* BXT PHY common lane registers */
+-#define _PORT_CL1CM_DW0_A		0x162000
+-#define _PORT_CL1CM_DW0_BC		0x6C000
+-#define   PHY_POWER_GOOD		(1 << 16)
+-#define   PHY_RESERVED			(1 << 7)
+-#define BXT_PORT_CL1CM_DW0(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW0_BC)
+-
+-#define _PORT_CL1CM_DW9_A		0x162024
+-#define _PORT_CL1CM_DW9_BC		0x6C024
+-#define   IREF0RC_OFFSET_SHIFT		8
+-#define   IREF0RC_OFFSET_MASK		(0xFF << IREF0RC_OFFSET_SHIFT)
+-#define BXT_PORT_CL1CM_DW9(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW9_BC)
+-
+-#define _PORT_CL1CM_DW10_A		0x162028
+-#define _PORT_CL1CM_DW10_BC		0x6C028
+-#define   IREF1RC_OFFSET_SHIFT		8
+-#define   IREF1RC_OFFSET_MASK		(0xFF << IREF1RC_OFFSET_SHIFT)
+-#define BXT_PORT_CL1CM_DW10(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW10_BC)
+-
+-#define _PORT_CL1CM_DW28_A		0x162070
+-#define _PORT_CL1CM_DW28_BC		0x6C070
+-#define   OCL1_POWER_DOWN_EN		(1 << 23)
+-#define   DW28_OLDO_DYN_PWR_DOWN_EN	(1 << 22)
+-#define   SUS_CLK_CONFIG		0x3
+-#define BXT_PORT_CL1CM_DW28(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW28_BC)
+-
+-#define _PORT_CL1CM_DW30_A		0x162078
+-#define _PORT_CL1CM_DW30_BC		0x6C078
+-#define   OCL2_LDOFUSE_PWR_DIS		(1 << 6)
+-#define BXT_PORT_CL1CM_DW30(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW30_BC)
+-
+-/* The spec defines this only for BXT PHY0, but lets assume that this
+- * would exist for PHY1 too if it had a second channel.
 - */
--#define _VLV_PLL_DW3_CH0		0x800c
--#define   DPIO_POST_DIV_SHIFT		(28) /* 3 bits */
--#define   DPIO_POST_DIV_DAC		0
--#define   DPIO_POST_DIV_HDMIDP		1 /* DAC 225-400M rate */
--#define   DPIO_POST_DIV_LVDS1		2
--#define   DPIO_POST_DIV_LVDS2		3
--#define   DPIO_K_SHIFT			(24) /* 4 bits */
--#define   DPIO_P1_SHIFT			(21) /* 3 bits */
--#define   DPIO_P2_SHIFT			(16) /* 5 bits */
--#define   DPIO_N_SHIFT			(12) /* 4 bits */
--#define   DPIO_ENABLE_CALIBRATION	(1 << 11)
--#define   DPIO_M1DIV_SHIFT		(8) /* 3 bits */
--#define   DPIO_M2DIV_MASK		0xff
--#define _VLV_PLL_DW3_CH1		0x802c
--#define VLV_PLL_DW3(ch) _PIPE(ch, _VLV_PLL_DW3_CH0, _VLV_PLL_DW3_CH1)
+-#define _PORT_CL2CM_DW6_A		0x162358
+-#define _PORT_CL2CM_DW6_BC		0x6C358
+-#define BXT_PORT_CL2CM_DW6(phy)		_BXT_PHY((phy), _PORT_CL2CM_DW6_BC)
+-#define   DW6_OLDO_DYN_PWR_DOWN_EN	(1 << 28)
 -
--#define _VLV_PLL_DW5_CH0		0x8014
--#define   DPIO_REFSEL_OVERRIDE		27
--#define   DPIO_PLL_MODESEL_SHIFT	24 /* 3 bits */
--#define   DPIO_BIAS_CURRENT_CTL_SHIFT	21 /* 3 bits, always 0x7 */
--#define   DPIO_PLL_REFCLK_SEL_SHIFT	16 /* 2 bits */
--#define   DPIO_PLL_REFCLK_SEL_MASK	3
--#define   DPIO_DRIVER_CTL_SHIFT		12 /* always set to 0x8 */
--#define   DPIO_CLK_BIAS_CTL_SHIFT	8 /* always set to 0x5 */
--#define _VLV_PLL_DW5_CH1		0x8034
--#define VLV_PLL_DW5(ch) _PIPE(ch, _VLV_PLL_DW5_CH0, _VLV_PLL_DW5_CH1)
+-/* BXT PHY Ref registers */
+-#define _PORT_REF_DW3_A			0x16218C
+-#define _PORT_REF_DW3_BC		0x6C18C
+-#define   GRC_DONE			(1 << 22)
+-#define BXT_PORT_REF_DW3(phy)		_BXT_PHY((phy), _PORT_REF_DW3_BC)
 -
--#define _VLV_PLL_DW7_CH0		0x801c
--#define _VLV_PLL_DW7_CH1		0x803c
--#define VLV_PLL_DW7(ch) _PIPE(ch, _VLV_PLL_DW7_CH0, _VLV_PLL_DW7_CH1)
+-#define _PORT_REF_DW6_A			0x162198
+-#define _PORT_REF_DW6_BC		0x6C198
+-#define   GRC_CODE_SHIFT		24
+-#define   GRC_CODE_MASK			(0xFF << GRC_CODE_SHIFT)
+-#define   GRC_CODE_FAST_SHIFT		16
+-#define   GRC_CODE_FAST_MASK		(0xFF << GRC_CODE_FAST_SHIFT)
+-#define   GRC_CODE_SLOW_SHIFT		8
+-#define   GRC_CODE_SLOW_MASK		(0xFF << GRC_CODE_SLOW_SHIFT)
+-#define   GRC_CODE_NOM_MASK		0xFF
+-#define BXT_PORT_REF_DW6(phy)		_BXT_PHY((phy), _PORT_REF_DW6_BC)
 -
--#define _VLV_PLL_DW8_CH0		0x8040
--#define _VLV_PLL_DW8_CH1		0x8060
--#define VLV_PLL_DW8(ch) _PIPE(ch, _VLV_PLL_DW8_CH0, _VLV_PLL_DW8_CH1)
+-#define _PORT_REF_DW8_A			0x1621A0
+-#define _PORT_REF_DW8_BC		0x6C1A0
+-#define   GRC_DIS			(1 << 15)
+-#define   GRC_RDY_OVRD			(1 << 1)
+-#define BXT_PORT_REF_DW8(phy)		_BXT_PHY((phy), _PORT_REF_DW8_BC)
 -
--#define VLV_PLL_DW9_BCAST		0xc044
--#define _VLV_PLL_DW9_CH0		0x8044
--#define _VLV_PLL_DW9_CH1		0x8064
--#define VLV_PLL_DW9(ch) _PIPE(ch, _VLV_PLL_DW9_CH0, _VLV_PLL_DW9_CH1)
+-/* BXT PHY PCS registers */
+-#define _PORT_PCS_DW10_LN01_A		0x162428
+-#define _PORT_PCS_DW10_LN01_B		0x6C428
+-#define _PORT_PCS_DW10_LN01_C		0x6C828
+-#define _PORT_PCS_DW10_GRP_A		0x162C28
+-#define _PORT_PCS_DW10_GRP_B		0x6CC28
+-#define _PORT_PCS_DW10_GRP_C		0x6CE28
+-#define BXT_PORT_PCS_DW10_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PCS_DW10_LN01_B, \
+-							 _PORT_PCS_DW10_LN01_C)
+-#define BXT_PORT_PCS_DW10_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PCS_DW10_GRP_B, \
+-							 _PORT_PCS_DW10_GRP_C)
 -
--#define _VLV_PLL_DW10_CH0		0x8048
--#define _VLV_PLL_DW10_CH1		0x8068
--#define VLV_PLL_DW10(ch) _PIPE(ch, _VLV_PLL_DW10_CH0, _VLV_PLL_DW10_CH1)
+-#define   TX2_SWING_CALC_INIT		(1 << 31)
+-#define   TX1_SWING_CALC_INIT		(1 << 30)
 -
--#define _VLV_PLL_DW11_CH0		0x804c
--#define _VLV_PLL_DW11_CH1		0x806c
--#define VLV_PLL_DW11(ch) _PIPE(ch, _VLV_PLL_DW11_CH0, _VLV_PLL_DW11_CH1)
+-#define _PORT_PCS_DW12_LN01_A		0x162430
+-#define _PORT_PCS_DW12_LN01_B		0x6C430
+-#define _PORT_PCS_DW12_LN01_C		0x6C830
+-#define _PORT_PCS_DW12_LN23_A		0x162630
+-#define _PORT_PCS_DW12_LN23_B		0x6C630
+-#define _PORT_PCS_DW12_LN23_C		0x6CA30
+-#define _PORT_PCS_DW12_GRP_A		0x162c30
+-#define _PORT_PCS_DW12_GRP_B		0x6CC30
+-#define _PORT_PCS_DW12_GRP_C		0x6CE30
+-#define   LANESTAGGER_STRAP_OVRD	(1 << 6)
+-#define   LANE_STAGGER_MASK		0x1F
+-#define BXT_PORT_PCS_DW12_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PCS_DW12_LN01_B, \
+-							 _PORT_PCS_DW12_LN01_C)
+-#define BXT_PORT_PCS_DW12_LN23(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PCS_DW12_LN23_B, \
+-							 _PORT_PCS_DW12_LN23_C)
+-#define BXT_PORT_PCS_DW12_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_PCS_DW12_GRP_B, \
+-							 _PORT_PCS_DW12_GRP_C)
 -
--/* Spec for ref block start counts at DW10 */
--#define VLV_REF_DW13			0x80ac
+-/* BXT PHY TX registers */
+-#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
+-					  ((lane) & 1) * 0x80)
 -
--#define VLV_CMN_DW0			0x8100
+-#define _PORT_TX_DW2_LN0_A		0x162508
+-#define _PORT_TX_DW2_LN0_B		0x6C508
+-#define _PORT_TX_DW2_LN0_C		0x6C908
+-#define _PORT_TX_DW2_GRP_A		0x162D08
+-#define _PORT_TX_DW2_GRP_B		0x6CD08
+-#define _PORT_TX_DW2_GRP_C		0x6CF08
+-#define BXT_PORT_TX_DW2_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW2_LN0_B, \
+-							 _PORT_TX_DW2_LN0_C)
+-#define BXT_PORT_TX_DW2_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW2_GRP_B, \
+-							 _PORT_TX_DW2_GRP_C)
+-#define   MARGIN_000_SHIFT		16
+-#define   MARGIN_000			(0xFF << MARGIN_000_SHIFT)
+-#define   UNIQ_TRANS_SCALE_SHIFT	8
+-#define   UNIQ_TRANS_SCALE		(0xFF << UNIQ_TRANS_SCALE_SHIFT)
 -
--/*
-- * Per DDI channel DPIO regs
-- */
+-#define _PORT_TX_DW3_LN0_A		0x16250C
+-#define _PORT_TX_DW3_LN0_B		0x6C50C
+-#define _PORT_TX_DW3_LN0_C		0x6C90C
+-#define _PORT_TX_DW3_GRP_A		0x162D0C
+-#define _PORT_TX_DW3_GRP_B		0x6CD0C
+-#define _PORT_TX_DW3_GRP_C		0x6CF0C
+-#define BXT_PORT_TX_DW3_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW3_LN0_B, \
+-							 _PORT_TX_DW3_LN0_C)
+-#define BXT_PORT_TX_DW3_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW3_GRP_B, \
+-							 _PORT_TX_DW3_GRP_C)
+-#define   SCALE_DCOMP_METHOD		(1 << 26)
+-#define   UNIQUE_TRANGE_EN_METHOD	(1 << 27)
 -
--#define _VLV_PCS_DW0_CH0		0x8200
--#define _VLV_PCS_DW0_CH1		0x8400
--#define   DPIO_PCS_TX_LANE2_RESET	(1 << 16)
--#define   DPIO_PCS_TX_LANE1_RESET	(1 << 7)
--#define   DPIO_LEFT_TXFIFO_RST_MASTER2	(1 << 4)
--#define   DPIO_RIGHT_TXFIFO_RST_MASTER2	(1 << 3)
--#define VLV_PCS_DW0(ch) _PORT(ch, _VLV_PCS_DW0_CH0, _VLV_PCS_DW0_CH1)
+-#define _PORT_TX_DW4_LN0_A		0x162510
+-#define _PORT_TX_DW4_LN0_B		0x6C510
+-#define _PORT_TX_DW4_LN0_C		0x6C910
+-#define _PORT_TX_DW4_GRP_A		0x162D10
+-#define _PORT_TX_DW4_GRP_B		0x6CD10
+-#define _PORT_TX_DW4_GRP_C		0x6CF10
+-#define BXT_PORT_TX_DW4_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW4_LN0_B, \
+-							 _PORT_TX_DW4_LN0_C)
+-#define BXT_PORT_TX_DW4_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW4_GRP_B, \
+-							 _PORT_TX_DW4_GRP_C)
+-#define   DEEMPH_SHIFT			24
+-#define   DE_EMPHASIS			(0xFF << DEEMPH_SHIFT)
 -
--#define _VLV_PCS01_DW0_CH0		0x200
--#define _VLV_PCS23_DW0_CH0		0x400
--#define _VLV_PCS01_DW0_CH1		0x2600
--#define _VLV_PCS23_DW0_CH1		0x2800
--#define VLV_PCS01_DW0(ch) _PORT(ch, _VLV_PCS01_DW0_CH0, _VLV_PCS01_DW0_CH1)
--#define VLV_PCS23_DW0(ch) _PORT(ch, _VLV_PCS23_DW0_CH0, _VLV_PCS23_DW0_CH1)
+-#define _PORT_TX_DW5_LN0_A		0x162514
+-#define _PORT_TX_DW5_LN0_B		0x6C514
+-#define _PORT_TX_DW5_LN0_C		0x6C914
+-#define _PORT_TX_DW5_GRP_A		0x162D14
+-#define _PORT_TX_DW5_GRP_B		0x6CD14
+-#define _PORT_TX_DW5_GRP_C		0x6CF14
+-#define BXT_PORT_TX_DW5_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW5_LN0_B, \
+-							 _PORT_TX_DW5_LN0_C)
+-#define BXT_PORT_TX_DW5_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW5_GRP_B, \
+-							 _PORT_TX_DW5_GRP_C)
+-#define   DCC_DELAY_RANGE_1		(1 << 9)
+-#define   DCC_DELAY_RANGE_2		(1 << 8)
 -
--#define _VLV_PCS_DW1_CH0		0x8204
--#define _VLV_PCS_DW1_CH1		0x8404
--#define   CHV_PCS_REQ_SOFTRESET_EN	(1 << 23)
--#define   DPIO_PCS_CLK_CRI_RXEB_EIOS_EN	(1 << 22)
--#define   DPIO_PCS_CLK_CRI_RXDIGFILTSG_EN (1 << 21)
--#define   DPIO_PCS_CLK_DATAWIDTH_SHIFT	(6)
--#define   DPIO_PCS_CLK_SOFT_RESET	(1 << 5)
--#define VLV_PCS_DW1(ch) _PORT(ch, _VLV_PCS_DW1_CH0, _VLV_PCS_DW1_CH1)
+-#define _PORT_TX_DW14_LN0_A		0x162538
+-#define _PORT_TX_DW14_LN0_B		0x6C538
+-#define _PORT_TX_DW14_LN0_C		0x6C938
+-#define   LATENCY_OPTIM_SHIFT		30
+-#define   LATENCY_OPTIM			(1 << LATENCY_OPTIM_SHIFT)
+-#define BXT_PORT_TX_DW14_LN(phy, ch, lane)				\
+-	_MMIO(_BXT_PHY_CH(phy, ch, _PORT_TX_DW14_LN0_B,			\
+-				   _PORT_TX_DW14_LN0_C) +		\
+-	      _BXT_LANE_OFFSET(lane))
 -
--#define _VLV_PCS01_DW1_CH0		0x204
--#define _VLV_PCS23_DW1_CH0		0x404
--#define _VLV_PCS01_DW1_CH1		0x2604
--#define _VLV_PCS23_DW1_CH1		0x2804
--#define VLV_PCS01_DW1(ch) _PORT(ch, _VLV_PCS01_DW1_CH0, _VLV_PCS01_DW1_CH1)
--#define VLV_PCS23_DW1(ch) _PORT(ch, _VLV_PCS23_DW1_CH0, _VLV_PCS23_DW1_CH1)
--
--#define _VLV_PCS_DW8_CH0		0x8220
--#define _VLV_PCS_DW8_CH1		0x8420
--#define   CHV_PCS_USEDCLKCHANNEL_OVRRIDE	(1 << 20)
--#define   CHV_PCS_USEDCLKCHANNEL		(1 << 21)
--#define VLV_PCS_DW8(ch) _PORT(ch, _VLV_PCS_DW8_CH0, _VLV_PCS_DW8_CH1)
--
--#define _VLV_PCS01_DW8_CH0		0x0220
--#define _VLV_PCS23_DW8_CH0		0x0420
--#define _VLV_PCS01_DW8_CH1		0x2620
--#define _VLV_PCS23_DW8_CH1		0x2820
--#define VLV_PCS01_DW8(port) _PORT(port, _VLV_PCS01_DW8_CH0, _VLV_PCS01_DW8_CH1)
--#define VLV_PCS23_DW8(port) _PORT(port, _VLV_PCS23_DW8_CH0, _VLV_PCS23_DW8_CH1)
--
--#define _VLV_PCS_DW9_CH0		0x8224
--#define _VLV_PCS_DW9_CH1		0x8424
--#define   DPIO_PCS_TX2MARGIN_MASK	(0x7 << 13)
--#define   DPIO_PCS_TX2MARGIN_000	(0 << 13)
--#define   DPIO_PCS_TX2MARGIN_101	(1 << 13)
--#define   DPIO_PCS_TX1MARGIN_MASK	(0x7 << 10)
--#define   DPIO_PCS_TX1MARGIN_000	(0 << 10)
--#define   DPIO_PCS_TX1MARGIN_101	(1 << 10)
--#define	VLV_PCS_DW9(ch) _PORT(ch, _VLV_PCS_DW9_CH0, _VLV_PCS_DW9_CH1)
--
--#define _VLV_PCS01_DW9_CH0		0x224
--#define _VLV_PCS23_DW9_CH0		0x424
--#define _VLV_PCS01_DW9_CH1		0x2624
--#define _VLV_PCS23_DW9_CH1		0x2824
--#define VLV_PCS01_DW9(ch) _PORT(ch, _VLV_PCS01_DW9_CH0, _VLV_PCS01_DW9_CH1)
--#define VLV_PCS23_DW9(ch) _PORT(ch, _VLV_PCS23_DW9_CH0, _VLV_PCS23_DW9_CH1)
--
--#define _CHV_PCS_DW10_CH0		0x8228
--#define _CHV_PCS_DW10_CH1		0x8428
--#define   DPIO_PCS_SWING_CALC_TX0_TX2	(1 << 30)
--#define   DPIO_PCS_SWING_CALC_TX1_TX3	(1 << 31)
--#define   DPIO_PCS_TX2DEEMP_MASK	(0xf << 24)
--#define   DPIO_PCS_TX2DEEMP_9P5		(0 << 24)
--#define   DPIO_PCS_TX2DEEMP_6P0		(2 << 24)
--#define   DPIO_PCS_TX1DEEMP_MASK	(0xf << 16)
--#define   DPIO_PCS_TX1DEEMP_9P5		(0 << 16)
--#define   DPIO_PCS_TX1DEEMP_6P0		(2 << 16)
--#define CHV_PCS_DW10(ch) _PORT(ch, _CHV_PCS_DW10_CH0, _CHV_PCS_DW10_CH1)
--
--#define _VLV_PCS01_DW10_CH0		0x0228
--#define _VLV_PCS23_DW10_CH0		0x0428
--#define _VLV_PCS01_DW10_CH1		0x2628
--#define _VLV_PCS23_DW10_CH1		0x2828
--#define VLV_PCS01_DW10(port) _PORT(port, _VLV_PCS01_DW10_CH0, _VLV_PCS01_DW10_CH1)
--#define VLV_PCS23_DW10(port) _PORT(port, _VLV_PCS23_DW10_CH0, _VLV_PCS23_DW10_CH1)
--
--#define _VLV_PCS_DW11_CH0		0x822c
--#define _VLV_PCS_DW11_CH1		0x842c
--#define   DPIO_TX2_STAGGER_MASK(x)	((x) << 24)
--#define   DPIO_LANEDESKEW_STRAP_OVRD	(1 << 3)
--#define   DPIO_LEFT_TXFIFO_RST_MASTER	(1 << 1)
--#define   DPIO_RIGHT_TXFIFO_RST_MASTER	(1 << 0)
--#define VLV_PCS_DW11(ch) _PORT(ch, _VLV_PCS_DW11_CH0, _VLV_PCS_DW11_CH1)
--
--#define _VLV_PCS01_DW11_CH0		0x022c
--#define _VLV_PCS23_DW11_CH0		0x042c
--#define _VLV_PCS01_DW11_CH1		0x262c
--#define _VLV_PCS23_DW11_CH1		0x282c
--#define VLV_PCS01_DW11(ch) _PORT(ch, _VLV_PCS01_DW11_CH0, _VLV_PCS01_DW11_CH1)
--#define VLV_PCS23_DW11(ch) _PORT(ch, _VLV_PCS23_DW11_CH0, _VLV_PCS23_DW11_CH1)
--
--#define _VLV_PCS01_DW12_CH0		0x0230
--#define _VLV_PCS23_DW12_CH0		0x0430
--#define _VLV_PCS01_DW12_CH1		0x2630
--#define _VLV_PCS23_DW12_CH1		0x2830
--#define VLV_PCS01_DW12(ch) _PORT(ch, _VLV_PCS01_DW12_CH0, _VLV_PCS01_DW12_CH1)
--#define VLV_PCS23_DW12(ch) _PORT(ch, _VLV_PCS23_DW12_CH0, _VLV_PCS23_DW12_CH1)
--
--#define _VLV_PCS_DW12_CH0		0x8230
--#define _VLV_PCS_DW12_CH1		0x8430
--#define   DPIO_TX2_STAGGER_MULT(x)	((x) << 20)
--#define   DPIO_TX1_STAGGER_MULT(x)	((x) << 16)
--#define   DPIO_TX1_STAGGER_MASK(x)	((x) << 8)
--#define   DPIO_LANESTAGGER_STRAP_OVRD	(1 << 6)
--#define   DPIO_LANESTAGGER_STRAP(x)	((x) << 0)
--#define VLV_PCS_DW12(ch) _PORT(ch, _VLV_PCS_DW12_CH0, _VLV_PCS_DW12_CH1)
--
--#define _VLV_PCS_DW14_CH0		0x8238
--#define _VLV_PCS_DW14_CH1		0x8438
--#define	VLV_PCS_DW14(ch) _PORT(ch, _VLV_PCS_DW14_CH0, _VLV_PCS_DW14_CH1)
--
--#define _VLV_PCS_DW23_CH0		0x825c
--#define _VLV_PCS_DW23_CH1		0x845c
--#define VLV_PCS_DW23(ch) _PORT(ch, _VLV_PCS_DW23_CH0, _VLV_PCS_DW23_CH1)
--
--#define _VLV_TX_DW2_CH0			0x8288
--#define _VLV_TX_DW2_CH1			0x8488
--#define   DPIO_SWING_MARGIN000_SHIFT	16
--#define   DPIO_SWING_MARGIN000_MASK	(0xff << DPIO_SWING_MARGIN000_SHIFT)
--#define   DPIO_UNIQ_TRANS_SCALE_SHIFT	8
--#define VLV_TX_DW2(ch) _PORT(ch, _VLV_TX_DW2_CH0, _VLV_TX_DW2_CH1)
--
--#define _VLV_TX_DW3_CH0			0x828c
--#define _VLV_TX_DW3_CH1			0x848c
--/* The following bit for CHV phy */
--#define   DPIO_TX_UNIQ_TRANS_SCALE_EN	(1 << 27)
--#define   DPIO_SWING_MARGIN101_SHIFT	16
--#define   DPIO_SWING_MARGIN101_MASK	(0xff << DPIO_SWING_MARGIN101_SHIFT)
--#define VLV_TX_DW3(ch) _PORT(ch, _VLV_TX_DW3_CH0, _VLV_TX_DW3_CH1)
--
--#define _VLV_TX_DW4_CH0			0x8290
--#define _VLV_TX_DW4_CH1			0x8490
--#define   DPIO_SWING_DEEMPH9P5_SHIFT	24
--#define   DPIO_SWING_DEEMPH9P5_MASK	(0xff << DPIO_SWING_DEEMPH9P5_SHIFT)
--#define   DPIO_SWING_DEEMPH6P0_SHIFT	16
--#define   DPIO_SWING_DEEMPH6P0_MASK	(0xff << DPIO_SWING_DEEMPH6P0_SHIFT)
--#define VLV_TX_DW4(ch) _PORT(ch, _VLV_TX_DW4_CH0, _VLV_TX_DW4_CH1)
--
--#define _VLV_TX3_DW4_CH0		0x690
--#define _VLV_TX3_DW4_CH1		0x2a90
--#define VLV_TX3_DW4(ch) _PORT(ch, _VLV_TX3_DW4_CH0, _VLV_TX3_DW4_CH1)
--
--#define _VLV_TX_DW5_CH0			0x8294
--#define _VLV_TX_DW5_CH1			0x8494
--#define   DPIO_TX_OCALINIT_EN		(1 << 31)
--#define VLV_TX_DW5(ch) _PORT(ch, _VLV_TX_DW5_CH0, _VLV_TX_DW5_CH1)
--
--#define _VLV_TX_DW11_CH0		0x82ac
--#define _VLV_TX_DW11_CH1		0x84ac
--#define VLV_TX_DW11(ch) _PORT(ch, _VLV_TX_DW11_CH0, _VLV_TX_DW11_CH1)
--
--#define _VLV_TX_DW14_CH0		0x82b8
--#define _VLV_TX_DW14_CH1		0x84b8
--#define VLV_TX_DW14(ch) _PORT(ch, _VLV_TX_DW14_CH0, _VLV_TX_DW14_CH1)
--
--/* CHV dpPhy registers */
--#define _CHV_PLL_DW0_CH0		0x8000
--#define _CHV_PLL_DW0_CH1		0x8180
--#define CHV_PLL_DW0(ch) _PIPE(ch, _CHV_PLL_DW0_CH0, _CHV_PLL_DW0_CH1)
--
--#define _CHV_PLL_DW1_CH0		0x8004
--#define _CHV_PLL_DW1_CH1		0x8184
--#define   DPIO_CHV_N_DIV_SHIFT		8
--#define   DPIO_CHV_M1_DIV_BY_2		(0 << 0)
--#define CHV_PLL_DW1(ch) _PIPE(ch, _CHV_PLL_DW1_CH0, _CHV_PLL_DW1_CH1)
--
--#define _CHV_PLL_DW2_CH0		0x8008
--#define _CHV_PLL_DW2_CH1		0x8188
--#define CHV_PLL_DW2(ch) _PIPE(ch, _CHV_PLL_DW2_CH0, _CHV_PLL_DW2_CH1)
--
--#define _CHV_PLL_DW3_CH0		0x800c
--#define _CHV_PLL_DW3_CH1		0x818c
--#define  DPIO_CHV_FRAC_DIV_EN		(1 << 16)
--#define  DPIO_CHV_FIRST_MOD		(0 << 8)
--#define  DPIO_CHV_SECOND_MOD		(1 << 8)
--#define  DPIO_CHV_FEEDFWD_GAIN_SHIFT	0
--#define  DPIO_CHV_FEEDFWD_GAIN_MASK		(0xF << 0)
--#define CHV_PLL_DW3(ch) _PIPE(ch, _CHV_PLL_DW3_CH0, _CHV_PLL_DW3_CH1)
--
--#define _CHV_PLL_DW6_CH0		0x8018
--#define _CHV_PLL_DW6_CH1		0x8198
--#define   DPIO_CHV_GAIN_CTRL_SHIFT	16
--#define	  DPIO_CHV_INT_COEFF_SHIFT	8
--#define   DPIO_CHV_PROP_COEFF_SHIFT	0
--#define CHV_PLL_DW6(ch) _PIPE(ch, _CHV_PLL_DW6_CH0, _CHV_PLL_DW6_CH1)
--
--#define _CHV_PLL_DW8_CH0		0x8020
--#define _CHV_PLL_DW8_CH1		0x81A0
--#define   DPIO_CHV_TDC_TARGET_CNT_SHIFT 0
--#define   DPIO_CHV_TDC_TARGET_CNT_MASK  (0x3FF << 0)
--#define CHV_PLL_DW8(ch) _PIPE(ch, _CHV_PLL_DW8_CH0, _CHV_PLL_DW8_CH1)
--
--#define _CHV_PLL_DW9_CH0		0x8024
--#define _CHV_PLL_DW9_CH1		0x81A4
--#define  DPIO_CHV_INT_LOCK_THRESHOLD_SHIFT		1 /* 3 bits */
--#define  DPIO_CHV_INT_LOCK_THRESHOLD_MASK		(7 << 1)
--#define  DPIO_CHV_INT_LOCK_THRESHOLD_SEL_COARSE	1 /* 1: coarse & 0 : fine  */
--#define CHV_PLL_DW9(ch) _PIPE(ch, _CHV_PLL_DW9_CH0, _CHV_PLL_DW9_CH1)
--
--#define _CHV_CMN_DW0_CH0               0x8100
--#define   DPIO_ALLDL_POWERDOWN_SHIFT_CH0	19
--#define   DPIO_ANYDL_POWERDOWN_SHIFT_CH0	18
--#define   DPIO_ALLDL_POWERDOWN			(1 << 1)
--#define   DPIO_ANYDL_POWERDOWN			(1 << 0)
--
--#define _CHV_CMN_DW5_CH0               0x8114
--#define   CHV_BUFRIGHTENA1_DISABLE	(0 << 20)
--#define   CHV_BUFRIGHTENA1_NORMAL	(1 << 20)
--#define   CHV_BUFRIGHTENA1_FORCE	(3 << 20)
--#define   CHV_BUFRIGHTENA1_MASK		(3 << 20)
--#define   CHV_BUFLEFTENA1_DISABLE	(0 << 22)
--#define   CHV_BUFLEFTENA1_NORMAL	(1 << 22)
--#define   CHV_BUFLEFTENA1_FORCE		(3 << 22)
--#define   CHV_BUFLEFTENA1_MASK		(3 << 22)
--
--#define _CHV_CMN_DW13_CH0		0x8134
--#define _CHV_CMN_DW0_CH1		0x8080
--#define   DPIO_CHV_S1_DIV_SHIFT		21
--#define   DPIO_CHV_P1_DIV_SHIFT		13 /* 3 bits */
--#define   DPIO_CHV_P2_DIV_SHIFT		8  /* 5 bits */
--#define   DPIO_CHV_K_DIV_SHIFT		4
--#define   DPIO_PLL_FREQLOCK		(1 << 1)
--#define   DPIO_PLL_LOCK			(1 << 0)
--#define CHV_CMN_DW13(ch) _PIPE(ch, _CHV_CMN_DW13_CH0, _CHV_CMN_DW0_CH1)
--
--#define _CHV_CMN_DW14_CH0		0x8138
--#define _CHV_CMN_DW1_CH1		0x8084
--#define   DPIO_AFC_RECAL		(1 << 14)
--#define   DPIO_DCLKP_EN			(1 << 13)
--#define   CHV_BUFLEFTENA2_DISABLE	(0 << 17) /* CL2 DW1 only */
--#define   CHV_BUFLEFTENA2_NORMAL	(1 << 17) /* CL2 DW1 only */
--#define   CHV_BUFLEFTENA2_FORCE		(3 << 17) /* CL2 DW1 only */
--#define   CHV_BUFLEFTENA2_MASK		(3 << 17) /* CL2 DW1 only */
--#define   CHV_BUFRIGHTENA2_DISABLE	(0 << 19) /* CL2 DW1 only */
--#define   CHV_BUFRIGHTENA2_NORMAL	(1 << 19) /* CL2 DW1 only */
--#define   CHV_BUFRIGHTENA2_FORCE	(3 << 19) /* CL2 DW1 only */
--#define   CHV_BUFRIGHTENA2_MASK		(3 << 19) /* CL2 DW1 only */
--#define CHV_CMN_DW14(ch) _PIPE(ch, _CHV_CMN_DW14_CH0, _CHV_CMN_DW1_CH1)
--
--#define _CHV_CMN_DW19_CH0		0x814c
--#define _CHV_CMN_DW6_CH1		0x8098
--#define   DPIO_ALLDL_POWERDOWN_SHIFT_CH1	30 /* CL2 DW6 only */
--#define   DPIO_ANYDL_POWERDOWN_SHIFT_CH1	29 /* CL2 DW6 only */
--#define   DPIO_DYNPWRDOWNEN_CH1		(1 << 28) /* CL2 DW6 only */
--#define   CHV_CMN_USEDCLKCHANNEL	(1 << 13)
--
--#define CHV_CMN_DW19(ch) _PIPE(ch, _CHV_CMN_DW19_CH0, _CHV_CMN_DW6_CH1)
--
--#define CHV_CMN_DW28			0x8170
--#define   DPIO_CL1POWERDOWNEN		(1 << 23)
--#define   DPIO_DYNPWRDOWNEN_CH0		(1 << 22)
--#define   DPIO_SUS_CLK_CONFIG_ON		(0 << 0)
--#define   DPIO_SUS_CLK_CONFIG_CLKREQ		(1 << 0)
--#define   DPIO_SUS_CLK_CONFIG_GATE		(2 << 0)
--#define   DPIO_SUS_CLK_CONFIG_GATE_CLKREQ	(3 << 0)
--
--#define CHV_CMN_DW30			0x8178
--#define   DPIO_CL2_LDOFUSE_PWRENB	(1 << 6)
--#define   DPIO_LRC_BYPASS		(1 << 3)
--
--#define _TXLANE(ch, lane, offset) ((ch ? 0x2400 : 0) + \
--					(lane) * 0x200 + (offset))
--
--#define CHV_TX_DW0(ch, lane) _TXLANE(ch, lane, 0x80)
--#define CHV_TX_DW1(ch, lane) _TXLANE(ch, lane, 0x84)
--#define CHV_TX_DW2(ch, lane) _TXLANE(ch, lane, 0x88)
--#define CHV_TX_DW3(ch, lane) _TXLANE(ch, lane, 0x8c)
--#define CHV_TX_DW4(ch, lane) _TXLANE(ch, lane, 0x90)
--#define CHV_TX_DW5(ch, lane) _TXLANE(ch, lane, 0x94)
--#define CHV_TX_DW6(ch, lane) _TXLANE(ch, lane, 0x98)
--#define CHV_TX_DW7(ch, lane) _TXLANE(ch, lane, 0x9c)
--#define CHV_TX_DW8(ch, lane) _TXLANE(ch, lane, 0xa0)
--#define CHV_TX_DW9(ch, lane) _TXLANE(ch, lane, 0xa4)
--#define CHV_TX_DW10(ch, lane) _TXLANE(ch, lane, 0xa8)
--#define CHV_TX_DW11(ch, lane) _TXLANE(ch, lane, 0xac)
--#define   DPIO_FRC_LATENCY_SHFIT	8
--#define CHV_TX_DW14(ch, lane) _TXLANE(ch, lane, 0xb8)
--#define   DPIO_UPAR_SHIFT		30
--
- /* BXT PHY registers */
- #define _BXT_PHY0_BASE			0x6C000
- #define _BXT_PHY1_BASE			0x162000
+ /* UAIMI scratch pad register 1 */
+ #define UAIMI_SPR1			_MMIO(0x4F074)
+ /* SKL VccIO mask */
+diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+index 442ffc0c79fe..80e7a5aa584b 100644
+--- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
++++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2020 Intel Corporation
+  */
+ 
++#include "display/bxt_phy_regs.h"
+ #include "display/intel_audio_regs.h"
+ #include "display/intel_backlight_regs.h"
+ #include "display/intel_color_regs.h"
 -- 
 2.39.2
 
