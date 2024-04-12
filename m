@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5B88A35A6
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FF938A35A4
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:27:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4729510F7A0;
-	Fri, 12 Apr 2024 18:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7520C10F7AB;
+	Fri, 12 Apr 2024 18:27:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RELw/Jzr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VFs4nevw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D07110F7A8
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 804EE10F7A0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712946450; x=1744482450;
+ t=1712946454; x=1744482454;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=HujrwIvdedwXCxz/CbCv+6yslRLAPlK8L1qC65FXU/c=;
- b=RELw/Jzrw1TCfOrQIZLTe09T8l6akAJxO+ixAl+XagRk6n1yQwZQZ8Ze
- BM2QljZc9r5tZzSX2H0HMh9CHP+p089gIJSZyCu1x+PgDd69Aq3rQfosZ
- 57/BhXWiEoCJahLEt1SuqKIlhbTO3StDuGONJMZ53sKCtVVMZqxST7DOI
- leCWdhkILXAD4vVj7xp+y6JiQoEdYs6Y44iQb5iZYvZiAgr2nXFMisrJe
- 6Bq24XpVTn7kcIFVGYgP2V0kWKtff+vSpoBKUjz2q8aJEL43SZ2qsHWMN
- LJzVFk2Pr1zMtYkx1z19Hot3e1mg0FsYi0rh/VapRWmDXgbC446NBlu08 Q==;
-X-CSE-ConnectionGUID: OhkCyItcRbiCAUAhvvwT5g==
-X-CSE-MsgGUID: LVtTxvKgRxiSremq5duxlg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560540"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560540"
+ bh=O2qAgS7LQqrn/ReMf4dMXIE/39h7iN2BSplC1TVqcDU=;
+ b=VFs4nevwVampJqNih1bVhMccLfr+uCvivPAHUNo8ixbp2nMuDisQravA
+ 7TIDPSQ/o7N32itp6lbaMrYbOdB8muMEdsf5G9+BT49ek1bcDY+3t/O5x
+ /V4YEQpO/A9FWmlURjJk16vz6m0g9MUFeVg6kV8DYBt2ObllFbxMrPNBq
+ i4KyWhlSqhYSa847gtc4aB6k64J8yoYsfbMN9YL0ruXhMzkX/b2FykI3V
+ aykQN6CO33bx/SPmYE/St1kJP4h47oExscaekQNdjwzKbcDotpdeTZP9f
+ xzBJ3kAFe0VPS7daG+t83JzTgsI3tX6wc9RjSlXemG3LLLrYRFX5Bqu1A Q==;
+X-CSE-ConnectionGUID: m3vlkL9yQlyJgH1YGgk7DQ==
+X-CSE-MsgGUID: MtD6O81mS4uU7kZ44ZHKEA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560549"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560549"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 11:27:29 -0700
-X-CSE-ConnectionGUID: IZH9jwl6R0OPHcxs87RkMg==
-X-CSE-MsgGUID: uSaRIUH2Rq6BmaZf6qBzng==
+ 12 Apr 2024 11:27:33 -0700
+X-CSE-ConnectionGUID: aoSoJgbNQZ2YzMv30RZp1Q==
+X-CSE-MsgGUID: +7KgZdQIQT2dmFeyK1QACg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394608"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394627"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:27 -0700
+ by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:30 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 21:27:26 +0300
+ Fri, 12 Apr 2024 21:27:29 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 08/18] drm/i915: Pass the PLL hw_state to pll->enable()
-Date: Fri, 12 Apr 2024 21:26:53 +0300
-Message-ID: <20240412182703.19916-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/18] drm/i915: Extract i965_dpll_md()
+Date: Fri, 12 Apr 2024 21:26:54 +0300
+Message-ID: <20240412182703.19916-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
 References: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
@@ -70,228 +70,64 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Stop rummaging around inside pll->state directly in the low
-level pll->enable() functions, and instead let the higher level
-code figure out where the correct state is stored and pass it in.
+We have three copies of the DPLL_MD value computation.
+Share it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 69 ++++++++++---------
- 1 file changed, 37 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 51a7d8df0ca3..1a78093e41f5 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -64,7 +64,8 @@ struct intel_shared_dpll_funcs {
- 	 * the pll is not already enabled.
- 	 */
- 	void (*enable)(struct drm_i915_private *i915,
--		       struct intel_shared_dpll *pll);
-+		       struct intel_shared_dpll *pll,
-+		       const struct intel_dpll_hw_state *dpll_hw_state);
- 
- 	/*
- 	 * Hook for disabling the pll, called from intel_disable_shared_dpll()
-@@ -227,7 +228,7 @@ static void _intel_enable_shared_dpll(struct drm_i915_private *i915,
- 	if (pll->info->power_domain)
- 		pll->wakeref = intel_display_power_get(i915, pll->info->power_domain);
- 
--	pll->info->funcs->enable(i915, pll);
-+	pll->info->funcs->enable(i915, pll, &pll->state.hw_state);
- 	pll->on = true;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 693e22f06aee..9e1f94a2ce92 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1008,6 +1008,11 @@ static void i9xx_update_pll_dividers(struct intel_crtc_state *crtc_state,
+ 	crtc_state->dpll_hw_state.fp1 = fp2;
  }
  
-@@ -553,9 +554,9 @@ static void ibx_assert_pch_refclk_enabled(struct drm_i915_private *i915)
++static u32 i965_dpll_md(const struct intel_crtc_state *crtc_state)
++{
++	return (crtc_state->pixel_multiplier - 1) << DPLL_MD_UDI_MULTIPLIER_SHIFT;
++}
++
+ static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
+ 			      const struct dpll *clock,
+ 			      const struct dpll *reduced_clock)
+@@ -1080,11 +1085,8 @@ static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
+ 	dpll |= DPLL_VCO_ENABLE;
+ 	crtc_state->dpll_hw_state.dpll = dpll;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 4) {
+-		u32 dpll_md = (crtc_state->pixel_multiplier - 1)
+-			<< DPLL_MD_UDI_MULTIPLIER_SHIFT;
+-		crtc_state->dpll_hw_state.dpll_md = dpll_md;
+-	}
++	if (DISPLAY_VER(dev_priv) >= 4)
++		crtc_state->dpll_hw_state.dpll_md = i965_dpll_md(crtc_state);
  }
  
- static void ibx_pch_dpll_enable(struct drm_i915_private *i915,
--				struct intel_shared_dpll *pll)
-+				struct intel_shared_dpll *pll,
-+				const struct intel_dpll_hw_state *hw_state)
- {
--	const struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const enum intel_dpll_id id = pll->info->id;
+ static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
+@@ -1425,8 +1427,7 @@ void vlv_compute_dpll(struct intel_crtc_state *crtc_state)
+ 		crtc_state->dpll_hw_state.dpll |= DPLL_VCO_ENABLE |
+ 			DPLL_EXT_BUFFER_ENABLE_VLV;
  
- 	/* PCH refclock must be enabled first */
-@@ -677,9 +678,9 @@ static const struct intel_dpll_mgr pch_pll_mgr = {
- };
- 
- static void hsw_ddi_wrpll_enable(struct drm_i915_private *i915,
--				 struct intel_shared_dpll *pll)
-+				 struct intel_shared_dpll *pll,
-+				 const struct intel_dpll_hw_state *hw_state)
- {
--	const struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const enum intel_dpll_id id = pll->info->id;
- 
- 	intel_de_write(i915, WRPLL_CTL(id), hw_state->wrpll);
-@@ -688,10 +689,9 @@ static void hsw_ddi_wrpll_enable(struct drm_i915_private *i915,
+-	crtc_state->dpll_hw_state.dpll_md =
+-		(crtc_state->pixel_multiplier - 1) << DPLL_MD_UDI_MULTIPLIER_SHIFT;
++	crtc_state->dpll_hw_state.dpll_md = i965_dpll_md(crtc_state);
  }
  
- static void hsw_ddi_spll_enable(struct drm_i915_private *i915,
--				struct intel_shared_dpll *pll)
-+				struct intel_shared_dpll *pll,
-+				const struct intel_dpll_hw_state *hw_state)
- {
--	const struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
--
- 	intel_de_write(i915, SPLL_CTL, hw_state->spll);
- 	intel_de_posting_read(i915, SPLL_CTL);
- 	udelay(20);
-@@ -1259,7 +1259,8 @@ static const struct intel_shared_dpll_funcs hsw_ddi_spll_funcs = {
- };
+ void chv_compute_dpll(struct intel_crtc_state *crtc_state)
+@@ -1442,8 +1443,7 @@ void chv_compute_dpll(struct intel_crtc_state *crtc_state)
+ 	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+ 		crtc_state->dpll_hw_state.dpll |= DPLL_VCO_ENABLE;
  
- static void hsw_ddi_lcpll_enable(struct drm_i915_private *i915,
--				 struct intel_shared_dpll *pll)
-+				 struct intel_shared_dpll *pll,
-+				 const struct intel_dpll_hw_state *hw_state)
- {
+-	crtc_state->dpll_hw_state.dpll_md =
+-		(crtc_state->pixel_multiplier - 1) << DPLL_MD_UDI_MULTIPLIER_SHIFT;
++	crtc_state->dpll_hw_state.dpll_md = i965_dpll_md(crtc_state);
  }
  
-@@ -1337,9 +1338,9 @@ static const struct skl_dpll_regs skl_dpll_regs[4] = {
- };
- 
- static void skl_ddi_pll_write_ctrl1(struct drm_i915_private *i915,
--				    struct intel_shared_dpll *pll)
-+				    struct intel_shared_dpll *pll,
-+				    const struct intel_dpll_hw_state *hw_state)
- {
--	const struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const enum intel_dpll_id id = pll->info->id;
- 
- 	intel_de_rmw(i915, DPLL_CTRL1,
-@@ -1351,13 +1352,13 @@ static void skl_ddi_pll_write_ctrl1(struct drm_i915_private *i915,
- }
- 
- static void skl_ddi_pll_enable(struct drm_i915_private *i915,
--			       struct intel_shared_dpll *pll)
-+			       struct intel_shared_dpll *pll,
-+			       const struct intel_dpll_hw_state *hw_state)
- {
--	const struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const struct skl_dpll_regs *regs = skl_dpll_regs;
- 	const enum intel_dpll_id id = pll->info->id;
- 
--	skl_ddi_pll_write_ctrl1(i915, pll);
-+	skl_ddi_pll_write_ctrl1(i915, pll, hw_state);
- 
- 	intel_de_write(i915, regs[id].cfgcr1, hw_state->cfgcr1);
- 	intel_de_write(i915, regs[id].cfgcr2, hw_state->cfgcr2);
-@@ -1372,9 +1373,10 @@ static void skl_ddi_pll_enable(struct drm_i915_private *i915,
- }
- 
- static void skl_ddi_dpll0_enable(struct drm_i915_private *i915,
--				 struct intel_shared_dpll *pll)
-+				 struct intel_shared_dpll *pll,
-+				 const struct intel_dpll_hw_state *hw_state)
- {
--	skl_ddi_pll_write_ctrl1(i915, pll);
-+	skl_ddi_pll_write_ctrl1(i915, pll, hw_state);
- }
- 
- static void skl_ddi_pll_disable(struct drm_i915_private *i915,
-@@ -1996,9 +1998,9 @@ static const struct intel_dpll_mgr skl_pll_mgr = {
- };
- 
- static void bxt_ddi_pll_enable(struct drm_i915_private *i915,
--			       struct intel_shared_dpll *pll)
-+			       struct intel_shared_dpll *pll,
-+			       const struct intel_dpll_hw_state *hw_state)
- {
--	const struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
- 	enum dpio_phy phy;
- 	enum dpio_channel ch;
-@@ -3697,9 +3699,9 @@ static bool tbt_pll_get_hw_state(struct drm_i915_private *i915,
- }
- 
- static void icl_dpll_write(struct drm_i915_private *i915,
--			   struct intel_shared_dpll *pll)
-+			   struct intel_shared_dpll *pll,
-+			   const struct intel_dpll_hw_state *hw_state)
- {
--	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	const enum intel_dpll_id id = pll->info->id;
- 	i915_reg_t cfgcr0_reg, cfgcr1_reg, div0_reg = INVALID_MMIO_REG;
- 
-@@ -3739,9 +3741,9 @@ static void icl_dpll_write(struct drm_i915_private *i915,
- }
- 
- static void icl_mg_pll_write(struct drm_i915_private *i915,
--			     struct intel_shared_dpll *pll)
-+			     struct intel_shared_dpll *pll,
-+			     const struct intel_dpll_hw_state *hw_state)
- {
--	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	enum tc_port tc_port = icl_pll_id_to_tc_port(pll->info->id);
- 
- 	/*
-@@ -3782,9 +3784,9 @@ static void icl_mg_pll_write(struct drm_i915_private *i915,
- }
- 
- static void dkl_pll_write(struct drm_i915_private *i915,
--			  struct intel_shared_dpll *pll)
-+			  struct intel_shared_dpll *pll,
-+			  const struct intel_dpll_hw_state *hw_state)
- {
--	struct intel_dpll_hw_state *hw_state = &pll->state.hw_state;
- 	enum tc_port tc_port = icl_pll_id_to_tc_port(pll->info->id);
- 	u32 val;
- 
-@@ -3897,13 +3899,14 @@ static void adlp_cmtg_clock_gating_wa(struct drm_i915_private *i915, struct inte
- }
- 
- static void combo_pll_enable(struct drm_i915_private *i915,
--			     struct intel_shared_dpll *pll)
-+			     struct intel_shared_dpll *pll,
-+			     const struct intel_dpll_hw_state *hw_state)
- {
- 	i915_reg_t enable_reg = intel_combo_pll_enable_reg(i915, pll);
- 
- 	icl_pll_power_enable(i915, pll, enable_reg);
- 
--	icl_dpll_write(i915, pll);
-+	icl_dpll_write(i915, pll, hw_state);
- 
- 	/*
- 	 * DVFS pre sequence would be here, but in our driver the cdclk code
-@@ -3919,11 +3922,12 @@ static void combo_pll_enable(struct drm_i915_private *i915,
- }
- 
- static void tbt_pll_enable(struct drm_i915_private *i915,
--			   struct intel_shared_dpll *pll)
-+			   struct intel_shared_dpll *pll,
-+			   const struct intel_dpll_hw_state *hw_state)
- {
- 	icl_pll_power_enable(i915, pll, TBT_PLL_ENABLE);
- 
--	icl_dpll_write(i915, pll);
-+	icl_dpll_write(i915, pll, hw_state);
- 
- 	/*
- 	 * DVFS pre sequence would be here, but in our driver the cdclk code
-@@ -3937,16 +3941,17 @@ static void tbt_pll_enable(struct drm_i915_private *i915,
- }
- 
- static void mg_pll_enable(struct drm_i915_private *i915,
--			  struct intel_shared_dpll *pll)
-+			  struct intel_shared_dpll *pll,
-+			  const struct intel_dpll_hw_state *hw_state)
- {
- 	i915_reg_t enable_reg = intel_tc_pll_enable_reg(i915, pll);
- 
- 	icl_pll_power_enable(i915, pll, enable_reg);
- 
- 	if (DISPLAY_VER(i915) >= 12)
--		dkl_pll_write(i915, pll);
-+		dkl_pll_write(i915, pll, hw_state);
- 	else
--		icl_mg_pll_write(i915, pll);
-+		icl_mg_pll_write(i915, pll, hw_state);
- 
- 	/*
- 	 * DVFS pre sequence would be here, but in our driver the cdclk code
+ static int chv_crtc_compute_clock(struct intel_atomic_state *state,
 -- 
 2.43.2
 
