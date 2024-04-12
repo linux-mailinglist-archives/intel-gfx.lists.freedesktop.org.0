@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7238A3190
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B258A3191
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFA2410E8B5;
-	Fri, 12 Apr 2024 14:53:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA9D10F6A4;
+	Fri, 12 Apr 2024 14:53:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j8kj+Gys";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bSsW0G7F";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC8010F6A3;
- Fri, 12 Apr 2024 14:53:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139E310F6A4;
+ Fri, 12 Apr 2024 14:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712933592; x=1744469592;
+ t=1712933597; x=1744469597;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KUUEuyKXqepX2T46KqDA2ADt+mw+6PNx7IyACnU66e0=;
- b=j8kj+GysipQFrSywueOLWzMWw2XTmNSkDjT+ll5V3jMkpNUTT+E6BcTf
- PhDcK3zelzOG1iHJdlo00Tn9dprbYrqDi6MtSSOItd3+Rc/fjMyKiAe+k
- mEPRcW6VGDJwu+mXK4eQ1C5ZfSljY3YV2qEP8aEG1Oh6OpI+GBS+trRmS
- LhMjJSezRk/MLVvH0V0sLBd1pLPEYu4jPcJI3OfLGFkIv1l1rzAHR1R0r
- pqRzB7MzmE2fOyRoML4mTrveVv53tn6boI/GH/Q7agkJT3tXZ96e9CFIg
- k+j1oxWEcLWxffDhHG5DitH5lJdaKM/1tN5URqJmNmrm9ZVy7THMEkmwd g==;
-X-CSE-ConnectionGUID: CvF/KiK0SAOdYxHOGQdTGA==
-X-CSE-MsgGUID: P1JG0/VqToWLnLXjdpZBpQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19810873"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19810873"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:12 -0700
-X-CSE-ConnectionGUID: VYlAtR5rRlyb27IEmKGsmQ==
-X-CSE-MsgGUID: Z8yF1MPvSY2Wk047F2bDaA==
+ bh=eKAivPNKuqhziSytJT5Ju7E43J+22EtsFhb2tVdyYIs=;
+ b=bSsW0G7FVvHM/4oKmMd54yd3AlEj7PwtVgbRuBgRP/DSX6HXX+nBTnT2
+ WloJI13rUjr6cunP6ZCffHBDDpQYZOMb3rjAVwzkcj0lETL7mIGHfR+lC
+ Yhsd0In3QOR2SBobZNkB+X28Va6oQV65n+pYR6/EtxqFzlolal93hTPsB
+ 6NX+Dda/gTESp7dw/R7XM6isaVMkZUwoan9AMxfzRwsNeRkalI+sfUQKZ
+ Zz6XnNrIsfjTShjGrEmjHr7TlR3peK8LG5V6qjvwYj7qlkz4iEkb9fAID
+ ImNWdbU68KRxbDCKOJYsInMKb2nzN5L65zWlJ3lRp/TW9cNGEskM2mGXH w==;
+X-CSE-ConnectionGUID: Q/1CgqUZRZa07WZvjBO5Mw==
+X-CSE-MsgGUID: Zu03ilkWT9iQrXa1yOSC+g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8246544"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
+   d="scan'208";a="8246544"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:17 -0700
+X-CSE-ConnectionGUID: cnFoDqqXR4OkoFI3EYb/ow==
+X-CSE-MsgGUID: MFKz96tfScGHCRlej3l6ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21677393"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21162209"
 Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
  ([10.252.61.65])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:11 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:15 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 1/6] drm/i915/audio: move LPE audio regs to intel_audio_regs.h
-Date: Fri, 12 Apr 2024 17:52:53 +0300
-Message-Id: <4fbcf9e020bb6fa315581c86c9729a665917ed75.1712933479.git.jani.nikula@intel.com>
+Subject: [PATCH 2/6] drm/i915/color: move palette registers to
+ intel_color_regs.h
+Date: Fri, 12 Apr 2024 17:52:54 +0300
+Message-Id: <e82ca633fbe0c39d3d72379866737b509c05ece4.1712933479.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
 References: <cover.1712933479.git.jani.nikula@intel.com>
@@ -70,81 +72,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are too few registers to warrant a dedicated file for LPE audio
-regs, but the audio reg file is better than i915_reg.h.
+For some reason the paletter registers were missed when adding
+intel_color_regs.h. Finish the job.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio_regs.h | 16 ++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lpe_audio.c  |  2 +-
- drivers/gpu/drm/i915/i915_reg.h                 | 16 ----------------
- 3 files changed, 17 insertions(+), 17 deletions(-)
+ .../gpu/drm/i915/display/intel_color_regs.h   | 30 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               | 30 -------------------
+ 2 files changed, 30 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-index 616e7b1275c4..7a6d919481fc 100644
---- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-@@ -148,4 +148,20 @@
- #define HBLANK_START_COUNT_96	4
- #define HBLANK_START_COUNT_128	5
+diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/gpu/drm/i915/display/intel_color_regs.h
+index 9f4ae58f3e7e..969745821172 100644
+--- a/drivers/gpu/drm/i915/display/intel_color_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
+@@ -8,6 +8,36 @@
  
-+/* LPE Audio */
-+#define I915_HDMI_LPE_AUDIO_BASE	(VLV_DISPLAY_BASE + 0x65000)
-+#define I915_HDMI_LPE_AUDIO_SIZE	0x1000
-+
-+#define VLV_AUD_CHICKEN_BIT_REG		_MMIO(VLV_DISPLAY_BASE + 0x62f38)
-+#define   VLV_CHICKEN_BIT_DBG_ENABLE	REG_BIT(0)
-+
-+#define _VLV_AUD_PORT_EN_B_DBG		(VLV_DISPLAY_BASE + 0x62f20)
-+#define _VLV_AUD_PORT_EN_C_DBG		(VLV_DISPLAY_BASE + 0x62f30)
-+#define _VLV_AUD_PORT_EN_D_DBG		(VLV_DISPLAY_BASE + 0x62f34)
-+#define VLV_AUD_PORT_EN_DBG(port)	_MMIO_PORT3((port) - PORT_B,	\
-+						    _VLV_AUD_PORT_EN_B_DBG, \
-+						    _VLV_AUD_PORT_EN_C_DBG, \
-+						    _VLV_AUD_PORT_EN_D_DBG)
-+#define   VLV_AMP_MUTE			REG_BIT(1)
-+
- #endif /* __INTEL_AUDIO_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 5863763de530..93e6cac9a4ed 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -72,7 +72,7 @@
+ #include "intel_display_reg_defs.h"
  
- #include "i915_drv.h"
- #include "i915_irq.h"
--#include "i915_reg.h"
-+#include "intel_audio_regs.h"
- #include "intel_de.h"
- #include "intel_lpe_audio.h"
- #include "intel_pci_config.h"
++/*
++ * Palette regs
++ */
++#define _PALETTE_A		0xa000
++#define _PALETTE_B		0xa800
++#define _CHV_PALETTE_C		0xc000
++/* 8bit mode / i965+ 10.6 interpolated mode ldw/udw */
++#define   PALETTE_RED_MASK		REG_GENMASK(23, 16)
++#define   PALETTE_GREEN_MASK		REG_GENMASK(15, 8)
++#define   PALETTE_BLUE_MASK		REG_GENMASK(7, 0)
++/* pre-i965 10bit interpolated mode ldw */
++#define   PALETTE_10BIT_RED_LDW_MASK	REG_GENMASK(23, 16)
++#define   PALETTE_10BIT_GREEN_LDW_MASK	REG_GENMASK(15, 8)
++#define   PALETTE_10BIT_BLUE_LDW_MASK	REG_GENMASK(7, 0)
++/* pre-i965 10bit interpolated mode udw */
++#define   PALETTE_10BIT_RED_EXP_MASK	REG_GENMASK(23, 22)
++#define   PALETTE_10BIT_RED_MANT_MASK	REG_GENMASK(21, 18)
++#define   PALETTE_10BIT_RED_UDW_MASK	REG_GENMASK(17, 16)
++#define   PALETTE_10BIT_GREEN_EXP_MASK	REG_GENMASK(15, 14)
++#define   PALETTE_10BIT_GREEN_MANT_MASK	REG_GENMASK(13, 10)
++#define   PALETTE_10BIT_GREEN_UDW_MASK	REG_GENMASK(9, 8)
++#define   PALETTE_10BIT_BLUE_EXP_MASK	REG_GENMASK(7, 6)
++#define   PALETTE_10BIT_BLUE_MANT_MASK	REG_GENMASK(5, 2)
++#define   PALETTE_10BIT_BLUE_UDW_MASK	REG_GENMASK(1, 0)
++#define PALETTE(pipe, i) _MMIO(DISPLAY_MMIO_BASE(dev_priv) +			\
++			       _PICK_EVEN_2RANGES(pipe, 2,			\
++						  _PALETTE_A, _PALETTE_B,	\
++						  _CHV_PALETTE_C, _CHV_PALETTE_C) + \
++						  (i) * 4)
++
+ /* legacy palette */
+ #define _LGC_PALETTE_A           0x4a000
+ #define _LGC_PALETTE_B           0x4a800
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 3f34efcd7d6c..c689bc7e2867 100644
+index c689bc7e2867..b74965383a56 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1228,22 +1228,6 @@
- #define I915_ASLE_INTERRUPT				(1 << 0)
- #define I915_BSD_USER_INTERRUPT				(1 << 25)
+@@ -1700,36 +1700,6 @@
  
--#define I915_HDMI_LPE_AUDIO_BASE	(VLV_DISPLAY_BASE + 0x65000)
--#define I915_HDMI_LPE_AUDIO_SIZE	0x1000
--
--/* DisplayPort Audio w/ LPE */
--#define VLV_AUD_CHICKEN_BIT_REG		_MMIO(VLV_DISPLAY_BASE + 0x62F38)
--#define VLV_CHICKEN_BIT_DBG_ENABLE	(1 << 0)
--
--#define _VLV_AUD_PORT_EN_B_DBG		(VLV_DISPLAY_BASE + 0x62F20)
--#define _VLV_AUD_PORT_EN_C_DBG		(VLV_DISPLAY_BASE + 0x62F30)
--#define _VLV_AUD_PORT_EN_D_DBG		(VLV_DISPLAY_BASE + 0x62F34)
--#define VLV_AUD_PORT_EN_DBG(port)	_MMIO_PORT3((port) - PORT_B,	   \
--						    _VLV_AUD_PORT_EN_B_DBG, \
--						    _VLV_AUD_PORT_EN_C_DBG, \
--						    _VLV_AUD_PORT_EN_D_DBG)
--#define VLV_AMP_MUTE		        (1 << 1)
--
- #define GEN6_BSD_RNCID			_MMIO(0x12198)
+ #define GMBUSFREQ_VLV		_MMIO(VLV_DISPLAY_BASE + 0x6510)
  
- #define GEN7_FF_THREAD_MODE		_MMIO(0x20a0)
+-/*
+- * Palette regs
+- */
+-#define _PALETTE_A		0xa000
+-#define _PALETTE_B		0xa800
+-#define _CHV_PALETTE_C		0xc000
+-/* 8bit mode / i965+ 10.6 interpolated mode ldw/udw */
+-#define   PALETTE_RED_MASK		REG_GENMASK(23, 16)
+-#define   PALETTE_GREEN_MASK		REG_GENMASK(15, 8)
+-#define   PALETTE_BLUE_MASK		REG_GENMASK(7, 0)
+-/* pre-i965 10bit interpolated mode ldw */
+-#define   PALETTE_10BIT_RED_LDW_MASK	REG_GENMASK(23, 16)
+-#define   PALETTE_10BIT_GREEN_LDW_MASK	REG_GENMASK(15, 8)
+-#define   PALETTE_10BIT_BLUE_LDW_MASK	REG_GENMASK(7, 0)
+-/* pre-i965 10bit interpolated mode udw */
+-#define   PALETTE_10BIT_RED_EXP_MASK	REG_GENMASK(23, 22)
+-#define   PALETTE_10BIT_RED_MANT_MASK	REG_GENMASK(21, 18)
+-#define   PALETTE_10BIT_RED_UDW_MASK	REG_GENMASK(17, 16)
+-#define   PALETTE_10BIT_GREEN_EXP_MASK	REG_GENMASK(15, 14)
+-#define   PALETTE_10BIT_GREEN_MANT_MASK	REG_GENMASK(13, 10)
+-#define   PALETTE_10BIT_GREEN_UDW_MASK	REG_GENMASK(9, 8)
+-#define   PALETTE_10BIT_BLUE_EXP_MASK	REG_GENMASK(7, 6)
+-#define   PALETTE_10BIT_BLUE_MANT_MASK	REG_GENMASK(5, 2)
+-#define   PALETTE_10BIT_BLUE_UDW_MASK	REG_GENMASK(1, 0)
+-#define PALETTE(pipe, i) _MMIO(DISPLAY_MMIO_BASE(dev_priv) +			\
+-			       _PICK_EVEN_2RANGES(pipe, 2,			\
+-						  _PALETTE_A, _PALETTE_B,	\
+-						  _CHV_PALETTE_C, _CHV_PALETTE_C) + \
+-						  (i) * 4)
+-
+ #define PEG_BAND_GAP_DATA	_MMIO(0x14d68)
+ 
+ #define BXT_RP_STATE_CAP        _MMIO(0x138170)
 -- 
 2.39.2
 
