@@ -2,22 +2,22 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 811AE8A2EEF
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 15:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDFF8A2EEC
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 15:09:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9614910F635;
-	Fri, 12 Apr 2024 13:09:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0362B10F621;
+	Fri, 12 Apr 2024 13:09:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F245410F621;
- Fri, 12 Apr 2024 13:09:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F33C610F627;
+ Fri, 12 Apr 2024 13:09:34 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 3/8] drm/i915: Use the same vblank worker for atomic unpin
-Date: Fri, 12 Apr 2024 15:09:39 +0200
-Message-ID: <20240412130946.13148-3-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 4/8] drm/xe/display: Preparations for preallocating dpt bo
+Date: Fri, 12 Apr 2024 15:09:40 +0200
+Message-ID: <20240412130946.13148-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
@@ -38,156 +38,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In case of legacy cursor update, the cursor VMA needs to be unpinned
-only after vblank. This exceeds the lifetime of the whole atomic commit.
-
-Any trick I attempted to keep the atomic commit alive didn't work, as
-drm_atomic_helper_setup_commit() force throttles on any old commit that
-wasn't cleaned up.
-
-The only option remaining is to remove the plane from the atomic commit,
-and use the same path as the legacy cursor update to clean the state
-after vblank.
-
-Changes since previous version:
-- Call the memset for plane state immediately when scheduling vblank,
-  this prevents a use-after-free in cursor cleanup.
+The DPT bo should not be allocated when pinning, but in advance when
+creating the framebuffer. Split allocation from bo pinning and GGTT
+insertion.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c | 13 +++++++-
- .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
- drivers/gpu/drm/i915/display/intel_crtc.c     | 31 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.h   |  3 ++
- 5 files changed, 49 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 159 +++++++++++++++++++------
+ 1 file changed, 123 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 76d77d5a0409..ab01c2d15afd 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -42,6 +42,7 @@
- #include "i915_reg.h"
- #include "intel_atomic_plane.h"
- #include "intel_cdclk.h"
-+#include "intel_cursor.h"
- #include "intel_display_rps.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
-@@ -1163,7 +1164,6 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
- 
- 	intel_display_rps_mark_interactive(dev_priv, state, false);
- 
--	/* Should only be called after a successful intel_prepare_plane_fb()! */
- 	intel_plane_unpin_fb(old_plane_state);
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 3a584bc3a0a3..d967d00bbf9d 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -76,47 +76,130 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
-@@ -1176,3 +1176,14 @@ void intel_plane_helper_add(struct intel_plane *plane)
+-static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+-			       const struct i915_gtt_view *view,
+-			       struct i915_vma *vma)
++static struct xe_bo *xe_fb_dpt_alloc(struct intel_framebuffer *fb)
  {
- 	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
- }
+ 	struct xe_device *xe = to_xe_device(fb->base.dev);
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+-	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+ 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
+ 	u32 dpt_size, size = bo->ttm.base.size;
+ 
+-	if (view->type == I915_GTT_VIEW_NORMAL)
++	if (!intel_fb_needs_pot_stride_remap(fb))
+ 		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+-	else if (view->type == I915_GTT_VIEW_REMAPPED)
+-		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
+-				 XE_PAGE_SIZE);
+ 	else
+-		/* display uses 4K tiles instead of bytes here, convert to entries.. */
+-		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
++		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
+ 				 XE_PAGE_SIZE);
+ 
+ 	if (IS_DGFX(xe))
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_FLAG_VRAM0 |
+-					   XE_BO_FLAG_GGTT |
+-					   XE_BO_FLAG_PAGETABLE);
+-	else
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_FLAG_STOLEN |
+-					   XE_BO_FLAG_GGTT |
+-					   XE_BO_FLAG_PAGETABLE);
++		return xe_bo_create(xe, tile0, NULL, dpt_size,
++				    ttm_bo_type_kernel,
++				    XE_BO_FLAG_NEEDS_CPU_ACCESS |
++				    XE_BO_FLAG_VRAM0 |
++				    XE_BO_FLAG_PAGETABLE);
 +
-+void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-+					 struct intel_plane_state *new_plane_state)
-+{
-+	if (!old_plane_state->ggtt_vma ||
-+	    old_plane_state->ggtt_vma == new_plane_state->ggtt_vma)
-+		return;
++	dpt = xe_bo_create(xe, tile0, NULL, dpt_size,
++			   ttm_bo_type_kernel,
++			   XE_BO_FLAG_NEEDS_CPU_ACCESS |
++			   XE_BO_FLAG_STOLEN |
++			   XE_BO_FLAG_PAGETABLE);
+ 	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_FLAG_SYSTEM |
+-					   XE_BO_FLAG_GGTT |
+-					   XE_BO_FLAG_PAGETABLE);
++		dpt = xe_bo_create(xe, tile0, NULL, dpt_size,
++				   ttm_bo_type_kernel,
++				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
++				   XE_BO_FLAG_SYSTEM |
++				   XE_BO_FLAG_PAGETABLE);
 +
-+	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
-+			     intel_cursor_unpin_work);
++	return dpt;
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-index 191dad0efc8e..5a897cf6fa02 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-@@ -66,5 +66,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
- void intel_plane_helper_add(struct intel_plane *plane);
-+void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-+					 struct intel_plane_state *new_plane_state);
- 
- #endif /* __INTEL_ATOMIC_PLANE_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 22b80004574f..558e9b7404b5 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -500,6 +500,19 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	if (intel_crtc_needs_vblank_work(new_crtc_state))
- 		intel_crtc_vblank_work_init(new_crtc_state);
- 
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_plane *plane;
-+		struct intel_plane_state *old_plane_state, *new_plane_state;
-+		int i;
 +
-+		for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
-+						     new_plane_state, i) {
-+			if (old_plane_state->uapi.crtc == &crtc->base)
-+				intel_plane_init_cursor_vblank_work(old_plane_state,
-+								    new_plane_state);
-+		}
++static void xe_fb_dpt_free(struct i915_vma *vma)
++{
++	xe_bo_put(vma->dpt);
++	vma->dpt = NULL;
++}
++
++static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
++{
++	struct xe_device *xe = xe_bo_device(dpt);
++	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
++	struct xe_ggtt *ggtt = tile0->mem.ggtt;
++	u64 start = 0, end = U64_MAX;
++	u64 alignment = XE_PAGE_SIZE;
++	int err;
++
++	if (dpt->flags & XE_BO_FLAG_INTERNAL_64K)
++		alignment = SZ_64K;
++
++	if (XE_WARN_ON(dpt->ggtt_node.size))
++		return -EINVAL;
++
++	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
++	err = mutex_lock_interruptible(&ggtt->lock);
++	if (err)
++		goto out_put;
++
++	err = drm_mm_insert_node_in_range(&ggtt->mm, &dpt->ggtt_node, dpt->size,
++					  alignment, 0, start, end, 0);
++	if (!err)
++		xe_ggtt_map_bo(ggtt, dpt);
++	mutex_unlock(&ggtt->lock);
++
++out_put:
++	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
++	return err;
++}
++
++static int
++xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
++{
++	struct xe_bo *dpt;
++	int err;
++
++	dpt = xe_fb_dpt_alloc(fb);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
+ 
++	vma->dpt = dpt;
++
++	err = ttm_bo_reserve(&dpt->ttm, true, false, NULL);
++	if (!err) {
++		err = xe_bo_validate(dpt, NULL, true);
++		if (!err)
++			err = xe_bo_vmap(dpt);
++		if (!err)
++			ttm_bo_pin(&dpt->ttm);
++		ttm_bo_unreserve(&dpt->ttm);
 +	}
++	if (err)
++		xe_fb_dpt_free(vma);
++	return err;
++}
 +
- 	intel_vblank_evade_init(old_crtc_state, new_crtc_state, &evade);
++static void xe_fb_dpt_unpin_free(struct i915_vma *vma)
++{
++	ttm_bo_reserve(&vma->dpt->ttm, false, false, NULL);
++	ttm_bo_unpin(&vma->dpt->ttm);
++	ttm_bo_unreserve(&vma->dpt->ttm);
++
++	xe_fb_dpt_free(vma);
++}
++
++static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
++			       const struct i915_gtt_view *view,
++			       struct i915_vma *vma)
++{
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
++	struct xe_ggtt *ggtt = tile0->mem.ggtt;
++	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
++	u32 size = bo->ttm.base.size;
++	int ret;
++
++	ret = xe_fb_dpt_alloc_pinned(vma, fb);
++	if (ret)
++		return ret;
++	dpt = vma->dpt;
++
++	/* Create GGTT mapping.. */
+ 	if (view->type == I915_GTT_VIEW_NORMAL) {
+ 		u32 x;
  
- 	if (drm_WARN_ON(&dev_priv->drm, drm_crtc_vblank_get(&crtc->base)))
-@@ -618,6 +631,24 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 		new_crtc_state->uapi.event = NULL;
+@@ -151,9 +234,10 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 					  rot_info->plane[i].dst_stride);
  	}
  
-+	if (state->base.legacy_cursor_update) {
-+		struct intel_plane *plane;
-+		struct intel_plane_state *old_plane_state;
-+		int i;
-+
-+		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
-+			if (old_plane_state->uapi.crtc == &crtc->base &&
-+			    old_plane_state->unpin_work.vblank) {
-+				drm_vblank_work_schedule(&old_plane_state->unpin_work,
-+							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+							 false);
-+
-+				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
-+				memset(&state->base.planes[i], 0, sizeof(state->base.planes[i]));
-+			}
-+		}
-+	}
-+
- 	/*
- 	 * Send VRR Push to terminate Vblank. If we are already in vblank
- 	 * this has to be done _after_ sampling the frame counter, as
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 3cebeaa6e8b4..f08fce0de713 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -674,7 +674,7 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
- 	return format == DRM_FORMAT_ARGB8888;
+-	vma->dpt = dpt;
+-	vma->node = dpt->ggtt_node;
+-	return 0;
++	ret = xe_fb_dpt_map_ggtt(dpt);
++	if (ret)
++		xe_fb_dpt_unpin_free(vma);
++	return ret;
  }
  
--static void intel_cursor_unpin_work(struct kthread_work *base)
-+void intel_cursor_unpin_work(struct kthread_work *base)
- {
- 	struct drm_vblank_work *work = to_drm_vblank_work(base);
- 	struct intel_plane_state *plane_state =
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.h b/drivers/gpu/drm/i915/display/intel_cursor.h
-index ce333bf4c2d5..e2d9ec710a86 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.h
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.h
-@@ -9,9 +9,12 @@
- enum pipe;
- struct drm_i915_private;
- struct intel_plane;
-+struct kthread_work;
+ static void
+@@ -258,7 +342,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	int ret;
  
- struct intel_plane *
- intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 			  enum pipe pipe);
+ 	if (!vma)
+-		return ERR_PTR(-ENODEV);
++		return ERR_PTR(-ENOMEM);
  
-+void intel_cursor_unpin_work(struct kthread_work *base);
-+
- #endif
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+@@ -281,7 +365,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
+ 	 * assumptions are incorrect for framebuffers
+ 	 */
+-	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
++	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
+ 	if (ret)
+ 		goto err;
+ 
+@@ -319,11 +403,14 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+ 
+-	if (vma->dpt)
+-		xe_bo_unpin_map_no_vm(vma->dpt);
+-	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+-		 vma->bo->ggtt_node.start != vma->node.start)
+-		xe_ggtt_remove_node(ggtt, &vma->node, false);
++	if (vma->dpt) {
++		xe_ggtt_remove_bo(ggtt, vma->dpt);
++		xe_fb_dpt_unpin_free(vma);
++	} else {
++		if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
++		    vma->bo->ggtt_node.start != vma->node.start)
++			xe_ggtt_remove_node(ggtt, &vma->node, false);
++	}
+ 
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+ 	ttm_bo_unpin(&vma->bo->ttm);
 -- 
 2.43.0
 
