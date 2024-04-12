@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08DD08A318F
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7238A3190
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEA510F6A2;
-	Fri, 12 Apr 2024 14:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA2410E8B5;
+	Fri, 12 Apr 2024 14:53:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nrT37ynW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j8kj+Gys";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06DAF10F6AD;
- Fri, 12 Apr 2024 14:53:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC8010F6A3;
+ Fri, 12 Apr 2024 14:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712933588; x=1744469588;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ox+FVc0yRS0XmO+OAmznu+ZJebfI23/XHrPqXGmTkMc=;
- b=nrT37ynWfm8d5L6K01cEmygy+mfauviXrovgvJisQak+CMYE6W2I0olh
- wx/27Gm2NfTGFZ/HC0cqv/vxuKueU28Z5bSliHke/rnG9ED/v2YM6Sawq
- L3QLXt3ApAYoPF8RA06ZiqmrYfMqvBpyydJI7BLfHrQPBAfatT4hDnk80
- dfKrKaEvD4YNEwyIbvxuIENF2aVGMkVCv3yLrYrIseFGOUWDvsO7kZ+EC
- BAVI6ZbNjifH0MpcEN5/HWgNOC6Pu9DsmxI1XEHLP/wHvoxgi2VGreTQk
- XEYNSxqriPJi8KLOUbHk91U5+Zelv5UNvU1NIdtHsuZ7YkZKLj9GlZQuX A==;
-X-CSE-ConnectionGUID: QWsC2UuhTF+6wqQbL17s2A==
-X-CSE-MsgGUID: V4+RfcNoTwKgJMYamovVoA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8246537"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
-   d="scan'208";a="8246537"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:08 -0700
-X-CSE-ConnectionGUID: XDZgub5wSXuMHu+en6EbJA==
-X-CSE-MsgGUID: Mj58zgNZTPaDnyqc10ccqQ==
+ t=1712933592; x=1744469592;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KUUEuyKXqepX2T46KqDA2ADt+mw+6PNx7IyACnU66e0=;
+ b=j8kj+GysipQFrSywueOLWzMWw2XTmNSkDjT+ll5V3jMkpNUTT+E6BcTf
+ PhDcK3zelzOG1iHJdlo00Tn9dprbYrqDi6MtSSOItd3+Rc/fjMyKiAe+k
+ mEPRcW6VGDJwu+mXK4eQ1C5ZfSljY3YV2qEP8aEG1Oh6OpI+GBS+trRmS
+ LhMjJSezRk/MLVvH0V0sLBd1pLPEYu4jPcJI3OfLGFkIv1l1rzAHR1R0r
+ pqRzB7MzmE2fOyRoML4mTrveVv53tn6boI/GH/Q7agkJT3tXZ96e9CFIg
+ k+j1oxWEcLWxffDhHG5DitH5lJdaKM/1tN5URqJmNmrm9ZVy7THMEkmwd g==;
+X-CSE-ConnectionGUID: CvF/KiK0SAOdYxHOGQdTGA==
+X-CSE-MsgGUID: P1JG0/VqToWLnLXjdpZBpQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19810873"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19810873"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:12 -0700
+X-CSE-ConnectionGUID: VYlAtR5rRlyb27IEmKGsmQ==
+X-CSE-MsgGUID: Z8yF1MPvSY2Wk047F2bDaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21162183"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21677393"
 Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
  ([10.252.61.65])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:06 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 07:53:11 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 0/6] drm/i915: i915_reg.h cleanups
-Date: Fri, 12 Apr 2024 17:52:52 +0300
-Message-Id: <cover.1712933479.git.jani.nikula@intel.com>
+Subject: [PATCH 1/6] drm/i915/audio: move LPE audio regs to intel_audio_regs.h
+Date: Fri, 12 Apr 2024 17:52:53 +0300
+Message-Id: <4fbcf9e020bb6fa315581c86c9729a665917ed75.1712933479.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
+References: <cover.1712933479.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -69,47 +70,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Continue the cleanup of i915_reg.h. Remove 1k lines from it this time
-around.
+There are too few registers to warrant a dedicated file for LPE audio
+regs, but the audio reg file is better than i915_reg.h.
 
-Jani Nikula (6):
-  drm/i915/audio: move LPE audio regs to intel_audio_regs.h
-  drm/i915/color: move palette registers to intel_color_regs.h
-  drm/i915/display: split out intel_fbc_regs.h from i915_reg.h
-  drm/i915/display: split out intel_sprite_regs.h from i915_reg.h
-  drm/i915/display: split out intel_dpio_regs.h from i915_reg.h
-  drm/i915/display: split out bxt_phy_regs.h from i915_reg.h
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio_regs.h | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c  |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h                 | 16 ----------------
+ 3 files changed, 17 insertions(+), 17 deletions(-)
 
- drivers/gpu/drm/i915/display/bxt_phy_regs.h   |  292 +++++
- .../gpu/drm/i915/display/intel_audio_regs.h   |   16 +
- .../gpu/drm/i915/display/intel_color_regs.h   |   30 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |    1 +
- .../i915/display/intel_display_power_well.c   |    1 +
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |    2 +
- drivers/gpu/drm/i915/display/intel_dpll.c     |    1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |    1 +
- drivers/gpu/drm/i915/display/intel_fbc.c      |    1 +
- drivers/gpu/drm/i915/display/intel_fbc_regs.h |  152 +++
- .../gpu/drm/i915/display/intel_lpe_audio.c    |    2 +-
- drivers/gpu/drm/i915/display/intel_sprite.c   |    1 +
- .../gpu/drm/i915/display/intel_sprite_regs.h  |  349 +++++
- drivers/gpu/drm/i915/display/vlv_dpio_regs.h  |  352 +++++
- drivers/gpu/drm/i915/display/vlv_dsi.c        |    1 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c   |    2 +
- drivers/gpu/drm/i915/gvt/cmd_parser.c         |    1 +
- drivers/gpu/drm/i915/gvt/display.c            |    2 +
- drivers/gpu/drm/i915/gvt/fb_decoder.c         |    5 +-
- drivers/gpu/drm/i915/gvt/handlers.c           |    2 +
- drivers/gpu/drm/i915/gvt/mmio.c               |    1 +
- drivers/gpu/drm/i915/i915_reg.h               | 1154 -----------------
- drivers/gpu/drm/i915/intel_clock_gating.c     |    1 +
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |    3 +
- 24 files changed, 1217 insertions(+), 1156 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/bxt_phy_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_fbc_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_sprite_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/vlv_dpio_regs.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+index 616e7b1275c4..7a6d919481fc 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+@@ -148,4 +148,20 @@
+ #define HBLANK_START_COUNT_96	4
+ #define HBLANK_START_COUNT_128	5
+ 
++/* LPE Audio */
++#define I915_HDMI_LPE_AUDIO_BASE	(VLV_DISPLAY_BASE + 0x65000)
++#define I915_HDMI_LPE_AUDIO_SIZE	0x1000
++
++#define VLV_AUD_CHICKEN_BIT_REG		_MMIO(VLV_DISPLAY_BASE + 0x62f38)
++#define   VLV_CHICKEN_BIT_DBG_ENABLE	REG_BIT(0)
++
++#define _VLV_AUD_PORT_EN_B_DBG		(VLV_DISPLAY_BASE + 0x62f20)
++#define _VLV_AUD_PORT_EN_C_DBG		(VLV_DISPLAY_BASE + 0x62f30)
++#define _VLV_AUD_PORT_EN_D_DBG		(VLV_DISPLAY_BASE + 0x62f34)
++#define VLV_AUD_PORT_EN_DBG(port)	_MMIO_PORT3((port) - PORT_B,	\
++						    _VLV_AUD_PORT_EN_B_DBG, \
++						    _VLV_AUD_PORT_EN_C_DBG, \
++						    _VLV_AUD_PORT_EN_D_DBG)
++#define   VLV_AMP_MUTE			REG_BIT(1)
++
+ #endif /* __INTEL_AUDIO_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 5863763de530..93e6cac9a4ed 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -72,7 +72,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+-#include "i915_reg.h"
++#include "intel_audio_regs.h"
+ #include "intel_de.h"
+ #include "intel_lpe_audio.h"
+ #include "intel_pci_config.h"
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 3f34efcd7d6c..c689bc7e2867 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1228,22 +1228,6 @@
+ #define I915_ASLE_INTERRUPT				(1 << 0)
+ #define I915_BSD_USER_INTERRUPT				(1 << 25)
+ 
+-#define I915_HDMI_LPE_AUDIO_BASE	(VLV_DISPLAY_BASE + 0x65000)
+-#define I915_HDMI_LPE_AUDIO_SIZE	0x1000
+-
+-/* DisplayPort Audio w/ LPE */
+-#define VLV_AUD_CHICKEN_BIT_REG		_MMIO(VLV_DISPLAY_BASE + 0x62F38)
+-#define VLV_CHICKEN_BIT_DBG_ENABLE	(1 << 0)
+-
+-#define _VLV_AUD_PORT_EN_B_DBG		(VLV_DISPLAY_BASE + 0x62F20)
+-#define _VLV_AUD_PORT_EN_C_DBG		(VLV_DISPLAY_BASE + 0x62F30)
+-#define _VLV_AUD_PORT_EN_D_DBG		(VLV_DISPLAY_BASE + 0x62F34)
+-#define VLV_AUD_PORT_EN_DBG(port)	_MMIO_PORT3((port) - PORT_B,	   \
+-						    _VLV_AUD_PORT_EN_B_DBG, \
+-						    _VLV_AUD_PORT_EN_C_DBG, \
+-						    _VLV_AUD_PORT_EN_D_DBG)
+-#define VLV_AMP_MUTE		        (1 << 1)
+-
+ #define GEN6_BSD_RNCID			_MMIO(0x12198)
+ 
+ #define GEN7_FF_THREAD_MODE		_MMIO(0x20a0)
 -- 
 2.39.2
 
