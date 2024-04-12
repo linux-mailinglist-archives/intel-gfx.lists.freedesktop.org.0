@@ -2,59 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 976818A2B68
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 11:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 721398A2BBD
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 12:01:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A75D10F569;
-	Fri, 12 Apr 2024 09:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81A0410F55B;
+	Fri, 12 Apr 2024 10:01:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F3OQv/aq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KH6DsjiM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1211D10F55A;
- Fri, 12 Apr 2024 09:42:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E05B310ECD1;
+ Fri, 12 Apr 2024 10:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712914929; x=1744450929;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qj2jlYCw8omUq1nSaqr0E43ESbm40kk8GpkFmN9V6Rk=;
- b=F3OQv/aqHGovPtGcYMJenKs8TJgg+4Laq8c8APx1QGYGvCqwJO8txWY+
- w5DL6Dv+8tZFuuDJHn+uK95WmNfV/yKps2SSu2IpyE2mbrbYyjBNfXvw4
- 8f7wi9KYOm5n3oExXQwPxm39t7uO8W0nuPRhCK6/NN/jGY2lbvTNPIkOT
- Rzr9J+q8Ed0s8+dsNJ7ijkJM0VOHdRZwmw3GvlALo/XwH32mpck2GBvzO
- 2Jwnq3YXL9wDBQhV25l9btC60NvyqFW4vfywuc7QSQwY39/dqa+UDDePe
- ePHGuDh/h2QVFYzr2kkVpbWWccygoDDg8taW2HMQYu5AhmR6Z+T3nG7+F Q==;
-X-CSE-ConnectionGUID: 7V3E9Rm+ShCg/Be9075L+Q==
-X-CSE-MsgGUID: 1FjLm1JdR1+ut2FyRBAMNw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="12156401"
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="12156401"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:42:09 -0700
-X-CSE-ConnectionGUID: mlcuLZEgSmia0acVCEcmVw==
-X-CSE-MsgGUID: t8XeVIfARgSKVsIlbCg4Qg==
+ t=1712916106; x=1744452106;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=n5UIGDnGAnQhmspgpvLN1L4/vpZPbUm9S+DnELtT/rA=;
+ b=KH6DsjiMrGmanF1OoByJTDKT61PMa5qxffTyR6gH/B0DLxz0TKzLNGS0
+ O8zrBOvNe1t90f5U3aWpTwR1Uo6+lD3N5t3YQk3CtkUJEmRDrsAGvNmIT
+ g4cvPl1qFx+F4xZJdr1LzjE8+5p7n9nuvbW53ar2DsLBZTDDi1WP6TPj2
+ Tk79pX7yv+SIPAQTORxUAOBC2JKTwxKq6vhqNQ8u22wot+JDcfDiciS9r
+ G9DPYCrh7Sr05D6dkL43s9ivzdCc7ZsaAoKgvLYIhimOKFjvoyAkIbh1O
+ 4R9cDxQ7ZatFkeNulnlgQ3Twfq3SoIodGyixRmoHfdrevOd+Na8dOdzcX g==;
+X-CSE-ConnectionGUID: h6h0vO2kS963cbKBqzBuug==
+X-CSE-MsgGUID: YoHgOWY+RmeHkJtr2P8cmQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="18922743"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="18922743"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 03:01:45 -0700
+X-CSE-ConnectionGUID: IlXeGO8KSAa7B1wu4RcR3g==
+X-CSE-MsgGUID: gqWz5/k8RZ2rNOlwnX4DQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="25841388"
-Received: from swilyman-mobl1.ger.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.251.215.209])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 02:42:07 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [PATCH v5 4/4] drm/i915/display: tie DMC wakelock to DC5/6 state
- transitions
-Date: Fri, 12 Apr 2024 12:41:48 +0300
-Message-Id: <20240412094148.808179-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240412094148.808179-1-luciano.coelho@intel.com>
-References: <20240412094148.808179-1-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="52161505"
+Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
+ ([10.252.61.65])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 03:01:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Steven Price <steven.price@arm.com>, Andrew Morton
+ <akpm@linux-foundation.org>, David Laight <David.Laight@ACULAB.COM>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, David Gow
+ <davidgow@google.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>
+Subject: Re: [PATCH 0/4] log2: make is_power_of_2() more generic
+In-Reply-To: <8905800b-a977-e821-01ea-a43333f46904@arm.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230330104243.2120761-1-jani.nikula@intel.com>
+ <20230330125041.83b0f39fa3a4ec1a42dfd95f@linux-foundation.org>
+ <549987e4967d45159573901d330c96a0@AcuMS.aculab.com>
+ <20230330151846.fdbc8edbfbaa6eaddb056dc7@linux-foundation.org>
+ <87edp52ufk.fsf@intel.com> <8905800b-a977-e821-01ea-a43333f46904@arm.com>
+Date: Fri, 12 Apr 2024 13:01:36 +0300
+Message-ID: <87jzl2527z.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,77 +77,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We only need DMC wakelocks when we allow DC5 and DC6 states.  Add the
-calls to enable and disable DMC wakelock accordingly.
+On Wed, 05 Apr 2023, Steven Price <steven.price@arm.com> wrote:
+> On 31/03/2023 09:31, Jani Nikula wrote:
+>> On Thu, 30 Mar 2023, Andrew Morton <akpm@linux-foundation.org> wrote:
+>>> On Thu, 30 Mar 2023 21:53:03 +0000 David Laight <David.Laight@ACULAB.COM> wrote:
+>>>
+>>>>> But wouldn't all these issues be addressed by simply doing
+>>>>>
+>>>>> #define is_power_of_2(n) (n != 0 && ((n & (n - 1)) == 0))
+>>>>>
+>>>>> ?
+>>>>>
+>>>>> (With suitable tweaks to avoid evaluating `n' more than once)
+>>>>
+>>>> I think you need to use the 'horrid tricks' from min() to get
+>>>> a constant expression from constant inputs.
+>>>
+>>> This
+>>>
+>>> --- a/include/linux/log2.h~a
+>>> +++ a/include/linux/log2.h
+>>> @@ -41,11 +41,11 @@ int __ilog2_u64(u64 n)
+>>>   * *not* considered a power of two.
+>>>   * Return: true if @n is a power of 2, otherwise false.
+>>>   */
+>>> -static inline __attribute__((const))
+>>> -bool is_power_of_2(unsigned long n)
+>>> -{
+>>> -	return (n != 0 && ((n & (n - 1)) == 0));
+>>> -}
+>>> +#define is_power_of_2(_n)				\
+>>> +	({						\
+>>> +		typeof(_n) n = (_n);			\
+>>> +		n != 0 && ((n & (n - 1)) == 0);		\
+>>> +	})
+>>>  
+>>>  /**
+>>>   * __roundup_pow_of_two() - round up to nearest power of two
+>>> _
+>>>
+>>> worked for me in a simple test.
+>>>
+>>> --- a/fs/open.c~b
+>>> +++ a/fs/open.c
+>>> @@ -1564,3 +1564,10 @@ int stream_open(struct inode *inode, str
+>>>  }
+>>>  
+>>>  EXPORT_SYMBOL(stream_open);
+>>> +
+>>> +#include <linux/log2.h>
+>>> +
+>>> +int foo(void)
+>>> +{
+>>> +	return is_power_of_2(43);
+>>> +}
+>>> _
+>>>
+>>>
+>>> foo:
+>>> # fs/open.c:1573: }
+>>> 	xorl	%eax, %eax	#
+>>> 	ret	
+>>>
+>>>
+>>> Is there some more tricky situation where it breaks?
+>> 
+>> It doesn't work with BUILD_BUG_ON_ZERO().
+>
+> Like most programming problems, you just need another layer of
+> indirection! The below works for me in all the cases I could think of
+> (including __uint128_t).
+>
+>
+> #define __IS_POWER_OF_2(n) (n != 0 && ((n & (n - 1)) == 0))
+>
+> #define _IS_POWER_OF_2(n, unique_n)				\
+> 	({							\
+> 		typeof(n) unique_n = (n);			\
+> 		__IS_POWER_OF_2(unique_n);			\
+> 	})
+>
+> #define is_power_of_2(n)					\
+> 	__builtin_choose_expr(__is_constexpr((n)),		\
+> 			      __IS_POWER_OF_2((n)),		\
+> 			      _IS_POWER_OF_2(n, __UNIQUE_ID(_n)))
+>
+>
+> Although Jani's original might be easier to understand.
 
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_dmc.c                | 4 ++++
- 2 files changed, 11 insertions(+)
+I dropped the ball since I couldn't make heads or tails what I should be
+doing. And a year has passed. I'll note that the kernel has a number of
+helpers for "is power of 2" for u64 and for constant expressions,
+outside of log2.h.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index e4de40228997..7f4b7602cf02 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -17,6 +17,7 @@
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- #include "intel_dmc.h"
-+#include "intel_dmc_wl.h"
- #include "intel_dp_aux_regs.h"
- #include "intel_dpio_phy.h"
- #include "intel_dpll.h"
-@@ -821,6 +822,8 @@ void gen9_enable_dc5(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
-+	intel_dmc_wl_enable(dev_priv);
-+
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
- }
- 
-@@ -850,6 +853,8 @@ void skl_enable_dc6(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
-+	intel_dmc_wl_enable(dev_priv);
-+
- 	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
- }
- 
-@@ -970,6 +975,8 @@ void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
-+	intel_dmc_wl_disable(dev_priv);
-+
- 	intel_cdclk_get_cdclk(dev_priv, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(&dev_priv->drm,
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index e61e9c1b8947..a34ff3383fd3 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -552,6 +552,8 @@ void intel_dmc_disable_program(struct drm_i915_private *i915)
- 	pipedmc_clock_gating_wa(i915, true);
- 	disable_all_event_handlers(i915);
- 	pipedmc_clock_gating_wa(i915, false);
-+
-+	intel_dmc_wl_disable(i915);
- }
- 
- void assert_dmc_loaded(struct drm_i915_private *i915)
-@@ -1081,6 +1083,8 @@ void intel_dmc_suspend(struct drm_i915_private *i915)
- 	if (dmc)
- 		flush_work(&dmc->work);
- 
-+	intel_dmc_wl_disable(i915);
-+
- 	/* Drop the reference held in case DMC isn't loaded. */
- 	if (!intel_dmc_has_payload(i915))
- 		intel_dmc_runtime_pm_put(i915);
+I tried to make is_power_of_2() work for all the cases. Would it be more
+palatable if I just added all the variants separately to log2.h?
+
+- Leave is_power_of_2() as is
+- Add is_power_of_2_u64() for 32-bit build compatible 64-bit checks
+- Add IS_POWER_OF_2() macro for constant expressions
+
+Please just tell me what to do and I'll do it.
+
+BR,
+Jani.
+
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
