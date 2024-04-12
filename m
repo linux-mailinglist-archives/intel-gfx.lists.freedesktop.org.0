@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38EF28A3536
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 19:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A6C8A3537
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 19:58:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9555510F6C4;
-	Fri, 12 Apr 2024 17:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7195A10F77D;
+	Fri, 12 Apr 2024 17:58:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aHoUIeKw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YlcTm0dc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E248010F641
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 17:58:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7B9110F698
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 17:58:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712944704; x=1744480704;
+ t=1712944706; x=1744480706;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=cCzMLCkwJztAR2Z17ogVh+5dlJqfGAB4Ko6gh4b4pt4=;
- b=aHoUIeKwjSOmzNcRovxeUbBVJCcYckBeFvnF/U8nWz8Pwzr6biRda/Fk
- nDmLR4hHe6I5p6Y9euEQ+tBA58XiOrv7jC90RegxDqptGGZSmhIFzHTxX
- q5PkbSb2+2gHdZ+LNwSxojPm4fibAIHO1u68pepRGubkP19P2u69Z5Fgm
- lhcwcIHFmhJ6wLV2OeFFOt7EVnIOZm7F9qVys+b0bc7psj6QrBPpr/xlF
- OC5xGGVwjNkx/Wx+KE8/uKMI5RiO1B8sbe0/dYtan5Mj9yfVjRgHvrPZq
- lzbCCqokvM9ia7zGOrF3ri4G+Ixy8ML7Uuc1+LlZd5WTFRiHHGvVwXUPz A==;
-X-CSE-ConnectionGUID: 3Pfq2KL6RxuMluYsQRZTIw==
-X-CSE-MsgGUID: JNpWLOUhRlmKp7O4rIaXTg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8586946"
+ bh=XP+dJqhk9h4YYuZjWQbvZMKq+/5dYCn1lXLrW5jl+ew=;
+ b=YlcTm0dc4iAe7l2C/eQndLhEpyZ/L5yr6/OP+YHhCJgXd1eXkdiqkF80
+ qJOt5l3sMJHThLlQ3wmBPXhg2FzuVSQSy9cEZZY6FwPJk+6ZEny2aNFWQ
+ Drxp09fL1WOnVZCD0XC0Y7f+9EWyzZa0ORxWwWAfQF+chY6GOajl5rtgD
+ vpsWlWnaIy8/aEVk/r3zPquOqi6cJRGo4ijFVumlN3ktxA1wA1iIH6OMC
+ hIBKqOIJizoCEyu5YIrtjMGXKvZ72UJRAx8KB+xsisWKJzIJSE8bmxoGE
+ DBnx6X+pIi+fN2nXqBO9abe8LeeTE4A4zUpkLXoQ2xysLP93vzz+XP7Lk w==;
+X-CSE-ConnectionGUID: o7J4z96FQP2r2cVBgt0LJQ==
+X-CSE-MsgGUID: PJPrN2jhSJCj5jOBJ85Aig==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8586949"
 X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
-   d="scan'208";a="8586946"
+   d="scan'208";a="8586949"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 10:58:23 -0700
-X-CSE-ConnectionGUID: Ud7AkkKCTf6JaCfx6LGopw==
-X-CSE-MsgGUID: TxV+IhYkS2m+P72M39RLgw==
+ 12 Apr 2024 10:58:26 -0700
+X-CSE-ConnectionGUID: Ya9lVdlQTQCGeRyX4QJBqA==
+X-CSE-MsgGUID: qg/qStY7R3CCZJXeNrV+4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21383015"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21383026"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 10:58:22 -0700
+ by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 10:58:25 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 20:58:21 +0300
+ Fri, 12 Apr 2024 20:58:23 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/8] drm/i915/dpio: Clean up bxt/glk PHY registers
-Date: Fri, 12 Apr 2024 20:58:11 +0300
-Message-ID: <20240412175818.29217-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/8] drm/i915/dpio: Add per-lane PHY TX register definitons
+ for bxt/glk
+Date: Fri, 12 Apr 2024 20:58:12 +0300
+Message-ID: <20240412175818.29217-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240412175818.29217-1-ville.syrjala@linux.intel.com>
 References: <20240412175818.29217-1-ville.syrjala@linux.intel.com>
@@ -71,290 +72,150 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Use REG_BIT() & co. for the bxt/glk PHY register definitons.
+Add consistent definitions for the per-lane PHY TX registers
+on bxt/glk. The current situation is a slight mess with some
+registers having a LN0 define, while others have a parametrized
+per-lane definition.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpio_phy.c | 44 +++++------
- drivers/gpu/drm/i915/i915_reg.h               | 74 +++++++++----------
- 2 files changed, 59 insertions(+), 59 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  6 +--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h               | 38 +++++++++----------
+ 3 files changed, 23 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index 2d7a71c8c69c..d14e80ece8aa 100644
+index d14e80ece8aa..50d6b412d652 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -295,9 +295,9 @@ void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+@@ -294,13 +294,13 @@ void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+ 	val &= ~(TX2_SWING_CALC_INIT | TX1_SWING_CALC_INIT);
  	intel_de_write(dev_priv, BXT_PORT_PCS_DW10_GRP(phy, ch), val);
  
- 	val = intel_de_read(dev_priv, BXT_PORT_TX_DW2_LN0(phy, ch));
--	val &= ~(MARGIN_000 | UNIQ_TRANS_SCALE);
--	val |= trans->entries[level].bxt.margin << MARGIN_000_SHIFT |
--		trans->entries[level].bxt.scale << UNIQ_TRANS_SCALE_SHIFT;
-+	val &= ~(MARGIN_000_MASK | UNIQ_TRANS_SCALE_MASK);
-+	val |= MARGIN_000(trans->entries[level].bxt.margin) |
-+		UNIQ_TRANS_SCALE(trans->entries[level].bxt.scale);
+-	val = intel_de_read(dev_priv, BXT_PORT_TX_DW2_LN0(phy, ch));
++	val = intel_de_read(dev_priv, BXT_PORT_TX_DW2_LN(phy, ch, 0));
+ 	val &= ~(MARGIN_000_MASK | UNIQ_TRANS_SCALE_MASK);
+ 	val |= MARGIN_000(trans->entries[level].bxt.margin) |
+ 		UNIQ_TRANS_SCALE(trans->entries[level].bxt.scale);
  	intel_de_write(dev_priv, BXT_PORT_TX_DW2_GRP(phy, ch), val);
  
- 	val = intel_de_read(dev_priv, BXT_PORT_TX_DW3_LN0(phy, ch));
-@@ -312,8 +312,8 @@ void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+-	val = intel_de_read(dev_priv, BXT_PORT_TX_DW3_LN0(phy, ch));
++	val = intel_de_read(dev_priv, BXT_PORT_TX_DW3_LN(phy, ch, 0));
+ 	val &= ~SCALE_DCOMP_METHOD;
+ 	if (trans->entries[level].bxt.enable)
+ 		val |= SCALE_DCOMP_METHOD;
+@@ -311,7 +311,7 @@ void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
+ 
  	intel_de_write(dev_priv, BXT_PORT_TX_DW3_GRP(phy, ch), val);
  
- 	val = intel_de_read(dev_priv, BXT_PORT_TX_DW4_LN0(phy, ch));
--	val &= ~DE_EMPHASIS;
--	val |= trans->entries[level].bxt.deemphasis << DEEMPH_SHIFT;
-+	val &= ~DE_EMPHASIS_MASK;
-+	val |= DE_EMPHASIS(trans->entries[level].bxt.deemphasis);
+-	val = intel_de_read(dev_priv, BXT_PORT_TX_DW4_LN0(phy, ch));
++	val = intel_de_read(dev_priv, BXT_PORT_TX_DW4_LN(phy, ch, 0));
+ 	val &= ~DE_EMPHASIS_MASK;
+ 	val |= DE_EMPHASIS(trans->entries[level].bxt.deemphasis);
  	intel_de_write(dev_priv, BXT_PORT_TX_DW4_GRP(phy, ch), val);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 9ff6c4cc2e4b..cc3acdafdbf8 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -2071,7 +2071,7 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *i915,
+ 		drm_err(&i915->drm, "PLL %d not locked\n", port);
  
- 	val = intel_de_read(dev_priv, BXT_PORT_PCS_DW10_LN01(phy, ch));
-@@ -353,7 +353,7 @@ static u32 bxt_get_grc(struct drm_i915_private *dev_priv, enum dpio_phy phy)
- {
- 	u32 val = intel_de_read(dev_priv, BXT_PORT_REF_DW6(phy));
- 
--	return (val & GRC_CODE_MASK) >> GRC_CODE_SHIFT;
-+	return REG_FIELD_GET(GRC_CODE_MASK, val);
- }
- 
- static void bxt_phy_wait_grc_done(struct drm_i915_private *dev_priv,
-@@ -405,11 +405,11 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
- 			phy);
- 
- 	/* Program PLL Rcomp code offset */
--	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW9(phy), IREF0RC_OFFSET_MASK,
--		     0xE4 << IREF0RC_OFFSET_SHIFT);
-+	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW9(phy),
-+		     IREF0RC_OFFSET_MASK, IREF0RC_OFFSET(0xE4));
- 
--	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW10(phy), IREF1RC_OFFSET_MASK,
--		     0xE4 << IREF1RC_OFFSET_SHIFT);
-+	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW10(phy),
-+		     IREF1RC_OFFSET_MASK, IREF1RC_OFFSET(0xE4));
- 
- 	/* Program power gating */
- 	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW28(phy), 0,
-@@ -432,9 +432,9 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
- 		val = bxt_get_grc(dev_priv, phy_info->rcomp_phy);
- 		dev_priv->display.state.bxt_phy_grc = val;
- 
--		grc_code = val << GRC_CODE_FAST_SHIFT |
--			   val << GRC_CODE_SLOW_SHIFT |
--			   val;
-+		grc_code = GRC_CODE_FAST(val) |
-+			GRC_CODE_SLOW(val) |
-+			GRC_CODE_NOM(val);
- 		intel_de_write(dev_priv, BXT_PORT_REF_DW6(phy), grc_code);
- 		intel_de_rmw(dev_priv, BXT_PORT_REF_DW8(phy),
- 			     0, GRC_DIS | GRC_RDY_OVRD);
-@@ -530,16 +530,16 @@ bool bxt_ddi_phy_verify_state(struct drm_i915_private *dev_priv,
- 
- 	/* PLL Rcomp code offset */
- 	ok &= _CHK(BXT_PORT_CL1CM_DW9(phy),
--		    IREF0RC_OFFSET_MASK, 0xe4 << IREF0RC_OFFSET_SHIFT,
--		    "BXT_PORT_CL1CM_DW9(%d)", phy);
-+		   IREF0RC_OFFSET_MASK, IREF0RC_OFFSET(0xe4),
-+		   "BXT_PORT_CL1CM_DW9(%d)", phy);
- 	ok &= _CHK(BXT_PORT_CL1CM_DW10(phy),
--		    IREF1RC_OFFSET_MASK, 0xe4 << IREF1RC_OFFSET_SHIFT,
--		    "BXT_PORT_CL1CM_DW10(%d)", phy);
-+		   IREF1RC_OFFSET_MASK, IREF1RC_OFFSET(0xe4),
-+		   "BXT_PORT_CL1CM_DW10(%d)", phy);
- 
- 	/* Power gating */
- 	mask = OCL1_POWER_DOWN_EN | DW28_OLDO_DYN_PWR_DOWN_EN | SUS_CLK_CONFIG;
- 	ok &= _CHK(BXT_PORT_CL1CM_DW28(phy), mask, mask,
--		    "BXT_PORT_CL1CM_DW28(%d)", phy);
-+		   "BXT_PORT_CL1CM_DW28(%d)", phy);
- 
- 	if (phy_info->dual_channel)
- 		ok &= _CHK(BXT_PORT_CL2CM_DW6(phy),
-@@ -549,9 +549,9 @@ bool bxt_ddi_phy_verify_state(struct drm_i915_private *dev_priv,
- 	if (phy_info->rcomp_phy != -1) {
- 		u32 grc_code = dev_priv->display.state.bxt_phy_grc;
- 
--		grc_code = grc_code << GRC_CODE_FAST_SHIFT |
--			   grc_code << GRC_CODE_SLOW_SHIFT |
--			   grc_code;
-+		grc_code = GRC_CODE_FAST(grc_code) |
-+			GRC_CODE_SLOW(grc_code) |
-+			GRC_CODE_NOM(grc_code);
- 		mask = GRC_CODE_FAST_MASK | GRC_CODE_SLOW_MASK |
- 		       GRC_CODE_NOM_MASK;
- 		ok &= _CHK(BXT_PORT_REF_DW6(phy), mask, grc_code,
-@@ -559,7 +559,7 @@ bool bxt_ddi_phy_verify_state(struct drm_i915_private *dev_priv,
- 
- 		mask = GRC_DIS | GRC_RDY_OVRD;
- 		ok &= _CHK(BXT_PORT_REF_DW8(phy), mask, mask,
--			    "BXT_PORT_REF_DW8(%d)", phy);
-+			   "BXT_PORT_REF_DW8(%d)", phy);
+ 	if (IS_GEMINILAKE(i915)) {
+-		temp = intel_de_read(i915, BXT_PORT_TX_DW5_LN0(phy, ch));
++		temp = intel_de_read(i915, BXT_PORT_TX_DW5_LN(phy, ch, 0));
+ 		temp |= DCC_DELAY_RANGE_2;
+ 		intel_de_write(i915, BXT_PORT_TX_DW5_GRP(phy, ch), temp);
  	}
- 
- 	return ok;
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 3f34efcd7d6c..9701aad57e3a 100644
+index 9701aad57e3a..261b520da399 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -648,32 +648,32 @@
- /* BXT PHY common lane registers */
- #define _PORT_CL1CM_DW0_A		0x162000
- #define _PORT_CL1CM_DW0_BC		0x6C000
--#define   PHY_POWER_GOOD		(1 << 16)
--#define   PHY_RESERVED			(1 << 7)
-+#define   PHY_POWER_GOOD		REG_BIT(16)
-+#define   PHY_RESERVED			REG_BIT(7)
- #define BXT_PORT_CL1CM_DW0(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW0_BC)
+@@ -555,6 +555,10 @@
+ 					 (reg_ch1) - _BXT_PHY0_BASE))
+ #define _MMIO_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
+ 	_MMIO(_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1))
++#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 + \
++					  ((lane) & 1) * 0x80)
++#define _MMIO_BXT_PHY_CH_LN(phy, ch, lane, reg_ch0, reg_ch1) \
++	_MMIO(_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1) + _BXT_LANE_OFFSET(lane))
  
- #define _PORT_CL1CM_DW9_A		0x162024
- #define _PORT_CL1CM_DW9_BC		0x6C024
--#define   IREF0RC_OFFSET_SHIFT		8
--#define   IREF0RC_OFFSET_MASK		(0xFF << IREF0RC_OFFSET_SHIFT)
-+#define   IREF0RC_OFFSET_MASK		REG_GENMASK(15, 8)
-+#define   IREF0RC_OFFSET(x)		REG_FIELD_PREP(IREF0RC_OFFSET_MASK, (x))
- #define BXT_PORT_CL1CM_DW9(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW9_BC)
+ #define BXT_P_CR_GT_DISP_PWRON		_MMIO(0x138090)
+ #define  MIPIO_RST_CTRL				(1 << 2)
+@@ -747,18 +751,15 @@
+ 							 _PORT_PCS_DW12_GRP_C)
  
- #define _PORT_CL1CM_DW10_A		0x162028
- #define _PORT_CL1CM_DW10_BC		0x6C028
--#define   IREF1RC_OFFSET_SHIFT		8
--#define   IREF1RC_OFFSET_MASK		(0xFF << IREF1RC_OFFSET_SHIFT)
-+#define   IREF1RC_OFFSET_MASK		REG_GENMASK(15, 8)
-+#define   IREF1RC_OFFSET(x)		REG_FIELD_PREP(IREF1RC_OFFSET_MASK, (x))
- #define BXT_PORT_CL1CM_DW10(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW10_BC)
- 
- #define _PORT_CL1CM_DW28_A		0x162070
- #define _PORT_CL1CM_DW28_BC		0x6C070
--#define   OCL1_POWER_DOWN_EN		(1 << 23)
--#define   DW28_OLDO_DYN_PWR_DOWN_EN	(1 << 22)
--#define   SUS_CLK_CONFIG		0x3
-+#define   OCL1_POWER_DOWN_EN		REG_BIT(23)
-+#define   DW28_OLDO_DYN_PWR_DOWN_EN	REG_BIT(22)
-+#define   SUS_CLK_CONFIG		REG_GENMASK(1, 0)
- #define BXT_PORT_CL1CM_DW28(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW28_BC)
- 
- #define _PORT_CL1CM_DW30_A		0x162078
- #define _PORT_CL1CM_DW30_BC		0x6C078
--#define   OCL2_LDOFUSE_PWR_DIS		(1 << 6)
-+#define   OCL2_LDOFUSE_PWR_DIS		REG_BIT(6)
- #define BXT_PORT_CL1CM_DW30(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW30_BC)
- 
- /* The spec defines this only for BXT PHY0, but lets assume that this
-@@ -682,29 +682,30 @@
- #define _PORT_CL2CM_DW6_A		0x162358
- #define _PORT_CL2CM_DW6_BC		0x6C358
- #define BXT_PORT_CL2CM_DW6(phy)		_BXT_PHY((phy), _PORT_CL2CM_DW6_BC)
--#define   DW6_OLDO_DYN_PWR_DOWN_EN	(1 << 28)
-+#define   DW6_OLDO_DYN_PWR_DOWN_EN	REG_BIT(28)
- 
- /* BXT PHY Ref registers */
- #define _PORT_REF_DW3_A			0x16218C
- #define _PORT_REF_DW3_BC		0x6C18C
--#define   GRC_DONE			(1 << 22)
-+#define   GRC_DONE			REG_BIT(22)
- #define BXT_PORT_REF_DW3(phy)		_BXT_PHY((phy), _PORT_REF_DW3_BC)
- 
- #define _PORT_REF_DW6_A			0x162198
- #define _PORT_REF_DW6_BC		0x6C198
--#define   GRC_CODE_SHIFT		24
--#define   GRC_CODE_MASK			(0xFF << GRC_CODE_SHIFT)
--#define   GRC_CODE_FAST_SHIFT		16
--#define   GRC_CODE_FAST_MASK		(0xFF << GRC_CODE_FAST_SHIFT)
--#define   GRC_CODE_SLOW_SHIFT		8
--#define   GRC_CODE_SLOW_MASK		(0xFF << GRC_CODE_SLOW_SHIFT)
--#define   GRC_CODE_NOM_MASK		0xFF
-+#define   GRC_CODE_MASK			REG_GENMASK(31, 24)
-+#define   GRC_CODE(x)			REG_FIELD_PREP(GRC_CODE_MASK, (x))
-+#define   GRC_CODE_FAST_MASK		REG_GENMASK(23, 16)
-+#define   GRC_CODE_FAST(x)		REG_FIELD_PREP(GRC_CODE_FAST_MASK, (x))
-+#define   GRC_CODE_SLOW_MASK		REG_GENMASK(15, 8)
-+#define   GRC_CODE_SLOW(x)		REG_FIELD_PREP(GRC_CODE_SLOW_MASK, (x))
-+#define   GRC_CODE_NOM_MASK		REG_GENMASK(7, 0)
-+#define   GRC_CODE_NOM(x)		REG_FIELD_PREP(GRC_CODE_NOM_MASK, (x))
- #define BXT_PORT_REF_DW6(phy)		_BXT_PHY((phy), _PORT_REF_DW6_BC)
- 
- #define _PORT_REF_DW8_A			0x1621A0
- #define _PORT_REF_DW8_BC		0x6C1A0
--#define   GRC_DIS			(1 << 15)
--#define   GRC_RDY_OVRD			(1 << 1)
-+#define   GRC_DIS			REG_BIT(15)
-+#define   GRC_RDY_OVRD			REG_BIT(1)
- #define BXT_PORT_REF_DW8(phy)		_BXT_PHY((phy), _PORT_REF_DW8_BC)
- 
- /* BXT PHY PCS registers */
-@@ -721,8 +722,8 @@
- 							 _PORT_PCS_DW10_GRP_B, \
- 							 _PORT_PCS_DW10_GRP_C)
- 
--#define   TX2_SWING_CALC_INIT		(1 << 31)
--#define   TX1_SWING_CALC_INIT		(1 << 30)
-+#define   TX2_SWING_CALC_INIT		REG_BIT(31)
-+#define   TX1_SWING_CALC_INIT		REG_BIT(30)
- 
- #define _PORT_PCS_DW12_LN01_A		0x162430
- #define _PORT_PCS_DW12_LN01_B		0x6C430
-@@ -733,8 +734,8 @@
- #define _PORT_PCS_DW12_GRP_A		0x162c30
- #define _PORT_PCS_DW12_GRP_B		0x6CC30
- #define _PORT_PCS_DW12_GRP_C		0x6CE30
--#define   LANESTAGGER_STRAP_OVRD	(1 << 6)
--#define   LANE_STAGGER_MASK		0x1F
-+#define   LANESTAGGER_STRAP_OVRD	REG_BIT(6)
-+#define   LANE_STAGGER_MASK		REG_GENMASK(4, 0)
- #define BXT_PORT_PCS_DW12_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
- 							 _PORT_PCS_DW12_LN01_B, \
- 							 _PORT_PCS_DW12_LN01_C)
-@@ -761,10 +762,10 @@
+ /* BXT PHY TX registers */
+-#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
+-					  ((lane) & 1) * 0x80)
+-
+ #define _PORT_TX_DW2_LN0_A		0x162508
+ #define _PORT_TX_DW2_LN0_B		0x6C508
+ #define _PORT_TX_DW2_LN0_C		0x6C908
+ #define _PORT_TX_DW2_GRP_A		0x162D08
+ #define _PORT_TX_DW2_GRP_B		0x6CD08
+ #define _PORT_TX_DW2_GRP_C		0x6CF08
+-#define BXT_PORT_TX_DW2_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW2_LN0_B, \
+-							 _PORT_TX_DW2_LN0_C)
++#define BXT_PORT_TX_DW2_LN(phy, ch, lane)	_MMIO_BXT_PHY_CH_LN(phy, ch, lane, \
++								    _PORT_TX_DW2_LN0_B,	\
++								    _PORT_TX_DW2_LN0_C)
  #define BXT_PORT_TX_DW2_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
  							 _PORT_TX_DW2_GRP_B, \
  							 _PORT_TX_DW2_GRP_C)
--#define   MARGIN_000_SHIFT		16
--#define   MARGIN_000			(0xFF << MARGIN_000_SHIFT)
--#define   UNIQ_TRANS_SCALE_SHIFT	8
--#define   UNIQ_TRANS_SCALE		(0xFF << UNIQ_TRANS_SCALE_SHIFT)
-+#define   MARGIN_000_MASK		REG_GENMASK(23, 16)
-+#define   MARGIN_000(x)			REG_FIELD_PREP(MARGIN_000_MASK, (x))
-+#define   UNIQ_TRANS_SCALE_MASK		REG_GENMASK(15, 8)
-+#define   UNIQ_TRANS_SCALE(x)		REG_FIELD_PREP(UNIQ_TRANS_SCALE_MASK, (x))
- 
- #define _PORT_TX_DW3_LN0_A		0x16250C
- #define _PORT_TX_DW3_LN0_B		0x6C50C
-@@ -778,8 +779,8 @@
+@@ -773,9 +774,9 @@
+ #define _PORT_TX_DW3_GRP_A		0x162D0C
+ #define _PORT_TX_DW3_GRP_B		0x6CD0C
+ #define _PORT_TX_DW3_GRP_C		0x6CF0C
+-#define BXT_PORT_TX_DW3_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW3_LN0_B, \
+-							 _PORT_TX_DW3_LN0_C)
++#define BXT_PORT_TX_DW3_LN(phy, ch, lane)	_MMIO_BXT_PHY_CH_LN(phy, ch, lane, \
++								    _PORT_TX_DW3_LN0_B, \
++								    _PORT_TX_DW3_LN0_C)
  #define BXT_PORT_TX_DW3_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
  							 _PORT_TX_DW3_GRP_B, \
  							 _PORT_TX_DW3_GRP_C)
--#define   SCALE_DCOMP_METHOD		(1 << 26)
--#define   UNIQUE_TRANGE_EN_METHOD	(1 << 27)
-+#define   SCALE_DCOMP_METHOD		REG_BIT(26)
-+#define   UNIQUE_TRANGE_EN_METHOD	REG_BIT(27)
- 
- #define _PORT_TX_DW4_LN0_A		0x162510
- #define _PORT_TX_DW4_LN0_B		0x6C510
-@@ -793,8 +794,8 @@
+@@ -788,9 +789,9 @@
+ #define _PORT_TX_DW4_GRP_A		0x162D10
+ #define _PORT_TX_DW4_GRP_B		0x6CD10
+ #define _PORT_TX_DW4_GRP_C		0x6CF10
+-#define BXT_PORT_TX_DW4_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW4_LN0_B, \
+-							 _PORT_TX_DW4_LN0_C)
++#define BXT_PORT_TX_DW4_LN(phy, ch, lane)	_MMIO_BXT_PHY_CH_LN(phy, ch, lane, \
++								    _PORT_TX_DW4_LN0_B, \
++								    _PORT_TX_DW4_LN0_C)
  #define BXT_PORT_TX_DW4_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
  							 _PORT_TX_DW4_GRP_B, \
  							 _PORT_TX_DW4_GRP_C)
--#define   DEEMPH_SHIFT			24
--#define   DE_EMPHASIS			(0xFF << DEEMPH_SHIFT)
-+#define   DE_EMPHASIS_MASK		REG_GENMASK(31, 24)
-+#define   DE_EMPHASIS(x)		REG_FIELD_PREP(DE_EMPHASIS_MASK, (x))
- 
- #define _PORT_TX_DW5_LN0_A		0x162514
- #define _PORT_TX_DW5_LN0_B		0x6C514
-@@ -808,14 +809,13 @@
+@@ -803,9 +804,9 @@
+ #define _PORT_TX_DW5_GRP_A		0x162D14
+ #define _PORT_TX_DW5_GRP_B		0x6CD14
+ #define _PORT_TX_DW5_GRP_C		0x6CF14
+-#define BXT_PORT_TX_DW5_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
+-							 _PORT_TX_DW5_LN0_B, \
+-							 _PORT_TX_DW5_LN0_C)
++#define BXT_PORT_TX_DW5_LN(phy, ch, lane)	_MMIO_BXT_PHY_CH_LN(phy, ch, lane, \
++								    _PORT_TX_DW5_LN0_B, \
++								    _PORT_TX_DW5_LN0_C)
  #define BXT_PORT_TX_DW5_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
  							 _PORT_TX_DW5_GRP_B, \
  							 _PORT_TX_DW5_GRP_C)
--#define   DCC_DELAY_RANGE_1		(1 << 9)
--#define   DCC_DELAY_RANGE_2		(1 << 8)
-+#define   DCC_DELAY_RANGE_1		REG_BIT(9)
-+#define   DCC_DELAY_RANGE_2		REG_BIT(8)
- 
- #define _PORT_TX_DW14_LN0_A		0x162538
+@@ -816,10 +817,9 @@
  #define _PORT_TX_DW14_LN0_B		0x6C538
  #define _PORT_TX_DW14_LN0_C		0x6C938
--#define   LATENCY_OPTIM_SHIFT		30
--#define   LATENCY_OPTIM			(1 << LATENCY_OPTIM_SHIFT)
-+#define   LATENCY_OPTIM			REG_BIT(30)
- #define BXT_PORT_TX_DW14_LN(phy, ch, lane)				\
- 	_MMIO(_BXT_PHY_CH(phy, ch, _PORT_TX_DW14_LN0_B,			\
- 				   _PORT_TX_DW14_LN0_C) +		\
+ #define   LATENCY_OPTIM			REG_BIT(30)
+-#define BXT_PORT_TX_DW14_LN(phy, ch, lane)				\
+-	_MMIO(_BXT_PHY_CH(phy, ch, _PORT_TX_DW14_LN0_B,			\
+-				   _PORT_TX_DW14_LN0_C) +		\
+-	      _BXT_LANE_OFFSET(lane))
++#define BXT_PORT_TX_DW14_LN(phy, ch, lane)	_MMIO_BXT_PHY_CH_LN(phy, ch, lane, \
++								    _PORT_TX_DW14_LN0_B, \
++								    _PORT_TX_DW14_LN0_C)
+ 
+ /* UAIMI scratch pad register 1 */
+ #define UAIMI_SPR1			_MMIO(0x4F074)
 -- 
 2.43.2
 
