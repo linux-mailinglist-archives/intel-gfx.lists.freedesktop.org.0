@@ -2,23 +2,22 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C9C8A2EEB
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 15:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEDE68A2EEE
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 15:09:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB4910F632;
-	Fri, 12 Apr 2024 13:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE9A10F630;
+	Fri, 12 Apr 2024 13:09:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C45B10F629;
- Fri, 12 Apr 2024 13:09:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE6910EF11;
+ Fri, 12 Apr 2024 13:09:36 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [CI-only 5/8] drm/xe: Remove safety check from
- __xe_ttm_stolen_io_mem_reserve_stolen
-Date: Fri, 12 Apr 2024 15:09:41 +0200
-Message-ID: <20240412130946.13148-5-maarten.lankhorst@linux.intel.com>
+Subject: [CI-only 6/8] drm/xe: Use simple xchg to cache DPT
+Date: Fri, 12 Apr 2024 15:09:42 +0200
+Message-ID: <20240412130946.13148-6-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
@@ -39,28 +38,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is invalid with display code when reworking DPT.
-
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 33 +++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 6ffecf9f23d1..dce742f5bdc0 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -302,10 +302,6 @@ static int __xe_ttm_stolen_io_mem_reserve_stolen(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d967d00bbf9d..16a287cbebc5 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -111,9 +111,11 @@ static struct xe_bo *xe_fb_dpt_alloc(struct intel_framebuffer *fb)
+ 	return dpt;
+ }
  
- 	XE_WARN_ON(IS_DGFX(xe));
+-static void xe_fb_dpt_free(struct i915_vma *vma)
++static void xe_fb_dpt_free(struct i915_vma *vma, struct intel_framebuffer *fb)
+ {
+-	xe_bo_put(vma->dpt);
++	if (!fb || cmpxchg((struct xe_bo **)&fb->dpt_vm, NULL, vma->dpt))
++		xe_bo_put(vma->dpt);
++
+ 	vma->dpt = NULL;
+ }
  
--	/* XXX: Require BO to be mapped to GGTT? */
--	if (drm_WARN_ON(&xe->drm, !(bo->flags & XE_BO_FLAG_GGTT)))
--		return -EIO;
--
- 	/* GGTT is always contiguously mapped */
- 	mem->bus.offset = xe_bo_ggtt_addr(bo) + mgr->io_base;
+@@ -151,10 +153,11 @@ static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
+ static int
+ xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
+ {
+-	struct xe_bo *dpt;
++	struct xe_bo *dpt = (struct xe_bo *)xchg(&fb->dpt_vm, NULL);
+ 	int err;
  
+-	dpt = xe_fb_dpt_alloc(fb);
++	if (!dpt)
++		dpt = xe_fb_dpt_alloc(fb);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
+ 
+@@ -170,17 +173,17 @@ xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
+ 		ttm_bo_unreserve(&dpt->ttm);
+ 	}
+ 	if (err)
+-		xe_fb_dpt_free(vma);
++		xe_fb_dpt_free(vma, fb);
+ 	return err;
+ }
+ 
+-static void xe_fb_dpt_unpin_free(struct i915_vma *vma)
++static void xe_fb_dpt_unpin_free(struct i915_vma *vma, struct intel_framebuffer *fb)
+ {
+ 	ttm_bo_reserve(&vma->dpt->ttm, false, false, NULL);
+ 	ttm_bo_unpin(&vma->dpt->ttm);
+ 	ttm_bo_unreserve(&vma->dpt->ttm);
+ 
+-	xe_fb_dpt_free(vma);
++	xe_fb_dpt_free(vma, fb);
+ }
+ 
+ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+@@ -236,7 +239,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 
+ 	ret = xe_fb_dpt_map_ggtt(dpt);
+ 	if (ret)
+-		xe_fb_dpt_unpin_free(vma);
++		xe_fb_dpt_unpin_free(vma, fb);
+ 	return ret;
+ }
+ 
+@@ -398,14 +401,14 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	return ERR_PTR(ret);
+ }
+ 
+-static void __xe_unpin_fb_vma(struct i915_vma *vma)
++static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb)
+ {
+ 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+ 
+ 	if (vma->dpt) {
+ 		xe_ggtt_remove_bo(ggtt, vma->dpt);
+-		xe_fb_dpt_unpin_free(vma);
++		xe_fb_dpt_unpin_free(vma, fb);
+ 	} else {
+ 		if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+ 		    vma->bo->ggtt_node.start != vma->node.start)
+@@ -432,7 +435,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+ 
+ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+ {
+-	__xe_unpin_fb_vma(vma);
++	__xe_unpin_fb_vma(vma, NULL);
+ }
+ 
+ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+@@ -454,7 +457,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+ 
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ {
+-	__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
++	__xe_unpin_fb_vma(old_plane_state->ggtt_vma, to_intel_framebuffer(old_plane_state->hw.fb));
+ 	old_plane_state->ggtt_vma = NULL;
+ }
+ 
+@@ -464,10 +467,12 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+  */
+ struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
+ {
+-	return NULL;
++	return (struct i915_address_space *)xe_fb_dpt_alloc(fb);
+ }
+ 
+ void intel_dpt_destroy(struct i915_address_space *vm)
+ {
+-	return;
++	struct xe_bo *bo = (struct xe_bo *)vm;
++
++	xe_bo_put(bo);
+ }
 -- 
 2.43.0
 
