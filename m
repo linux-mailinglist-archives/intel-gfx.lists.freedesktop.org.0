@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F248A359D
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 677C98A359E
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:27:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17F8A10F79E;
-	Fri, 12 Apr 2024 18:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C4510F79F;
+	Fri, 12 Apr 2024 18:27:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hqK/idC1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L+GL2SXh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91A8910F79E
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7EF10F79F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712946430; x=1744482430;
+ t=1712946432; x=1744482432;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=YEWfazbBkYu/ihHIL+YETQlXq/R7mghOt5ElgiFE/7U=;
- b=hqK/idC1H4RI9kzQaAox4nKWlrdk/w5xziqrUr8QBzBWX8wt7M776XJg
- oGGR9qjgPGdcab7E2l51Xui+1O92C4CdOaCjy9J6BStiWvB/P2PcSSQlF
- beK+Ox0sBkL+Hm6b6pli5H2yCv0pdSM3qyGd+ROTCvtl3RDBiYd9GgtHc
- M/enDeQYe9NjDYp74nLJx1HrWRtOjYqkNv59lwjKUfKnRTihhH+ipVc0p
- XTDmlLGSXsAYeQ7RnTcnD3FrRDYKSUJ3V54GYMexZ1fZWKUvIePSvZnFU
- Z3uX39F9nl1ZcOyRftK6be4iTzNeQiVI0qEAEIVeWLZ35veqQS4TuVDqo g==;
-X-CSE-ConnectionGUID: aSyJIB0SRjafR51ZRysCQA==
-X-CSE-MsgGUID: FXBtdo21R+CN2lGt/uNxEA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560500"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560500"
+ bh=Jn+dm1M1wRdLqEKfqUU40u3o3K2ZZb1mSdVCrfg0Eo0=;
+ b=L+GL2SXhnE66HrLrmiugojMOo4jdn01Wd/64YcdIGpn+d48L4bFAE6Hz
+ wn0MdhUMGG9qmzuCRSyp1ASjvIek/PSwJn4Ww9caQi+zdztdvTMCnWo/a
+ xQOh3A37Hum3aTG5D5oHdIfzfat145PDiD2eHgQW9X/hY3XS+KA9PK5u4
+ 5qQcHbE1Nmk3qIgMkLI/eQbcII+wGEMIhbPWFSQZTgREj8z49f5PtgGIU
+ NV3aDRuKwpWM0+ndv8NbhRIXAIh1uCn1uD8uUMxwDE7Nppvnns1zEy/RM
+ ouSdia0lO68SkO9XKPLdfgW+zTD6iBqO78b4+4c7UJqAo6C+msXCVN35u A==;
+X-CSE-ConnectionGUID: L+nAwgT1RdCGlHdGOZ6VyA==
+X-CSE-MsgGUID: GjLb0eisSjmqIsdLy2zHWg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560503"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560503"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 11:27:09 -0700
-X-CSE-ConnectionGUID: 4FUan7r4Qkuu/c0QjZ3soQ==
-X-CSE-MsgGUID: vyslgwQdRyC+idMXqhe3Cw==
+ 12 Apr 2024 11:27:12 -0700
+X-CSE-ConnectionGUID: SybJ493FT+qbH224AeXrUA==
+X-CSE-MsgGUID: BWkQmLizS5uGApexL4G7Nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394385"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394513"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:07 -0700
+ by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:10 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 21:27:06 +0300
+ Fri, 12 Apr 2024 21:27:09 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 01/18] drm/i915: Replace hand rolled PLL state dump with
- intel_dpll_dump_hw_state()
-Date: Fri, 12 Apr 2024 21:26:46 +0300
-Message-ID: <20240412182703.19916-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 02/18] drm/i915: Use printer for the rest of PLL debugfs dump
+Date: Fri, 12 Apr 2024 21:26:47 +0300
+Message-ID: <20240412182703.19916-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
 References: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
@@ -71,62 +70,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Just use intel_dpll_dump_hw_state() instead of hand rolling it.
+Since we now have the printer around for intel_dpll_dump_hw_state()
+use it for all the other PLL prints as well. Just to make the thing
+looks less crazy.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 31 ++-----------------
- 1 file changed, 2 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 0feffe8d4e45..73be72bf3f5c 100644
+index 73be72bf3f5c..35f9f86ef70f 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -638,6 +638,7 @@ static int i915_display_capabilities(struct seq_file *m, void *unused)
- static int i915_shared_dplls_info(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-+	struct drm_printer p = drm_seq_file_printer(m);
- 	struct intel_shared_dpll *pll;
- 	int i;
+@@ -644,17 +644,17 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
  
-@@ -654,35 +655,7 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
+ 	drm_modeset_lock_all(&dev_priv->drm);
+ 
+-	seq_printf(m, "PLL refclks: non-SSC: %d kHz, SSC: %d kHz\n",
++	drm_printf(&p, "PLL refclks: non-SSC: %d kHz, SSC: %d kHz\n",
+ 		   dev_priv->display.dpll.ref_clks.nssc,
+ 		   dev_priv->display.dpll.ref_clks.ssc);
+ 
+ 	for_each_shared_dpll(dev_priv, pll, i) {
+-		seq_printf(m, "DPLL%i: %s, id: %i\n", pll->index,
++		drm_printf(&p, "DPLL%i: %s, id: %i\n", pll->index,
+ 			   pll->info->name, pll->info->id);
+-		seq_printf(m, " pipe_mask: 0x%x, active: 0x%x, on: %s\n",
++		drm_printf(&p, " pipe_mask: 0x%x, active: 0x%x, on: %s\n",
  			   pll->state.pipe_mask, pll->active_mask,
  			   str_yes_no(pll->on));
- 		seq_printf(m, " tracked hardware state:\n");
--		seq_printf(m, " dpll:    0x%08x\n", pll->state.hw_state.dpll);
--		seq_printf(m, " dpll_md: 0x%08x\n",
--			   pll->state.hw_state.dpll_md);
--		seq_printf(m, " fp0:     0x%08x\n", pll->state.hw_state.fp0);
--		seq_printf(m, " fp1:     0x%08x\n", pll->state.hw_state.fp1);
--		seq_printf(m, " wrpll:   0x%08x\n", pll->state.hw_state.wrpll);
--		seq_printf(m, " cfgcr0:  0x%08x\n", pll->state.hw_state.cfgcr0);
--		seq_printf(m, " cfgcr1:  0x%08x\n", pll->state.hw_state.cfgcr1);
--		seq_printf(m, " div0:    0x%08x\n", pll->state.hw_state.div0);
--		seq_printf(m, " mg_refclkin_ctl:        0x%08x\n",
--			   pll->state.hw_state.mg_refclkin_ctl);
--		seq_printf(m, " mg_clktop2_coreclkctl1: 0x%08x\n",
--			   pll->state.hw_state.mg_clktop2_coreclkctl1);
--		seq_printf(m, " mg_clktop2_hsclkctl:    0x%08x\n",
--			   pll->state.hw_state.mg_clktop2_hsclkctl);
--		seq_printf(m, " mg_pll_div0:  0x%08x\n",
--			   pll->state.hw_state.mg_pll_div0);
--		seq_printf(m, " mg_pll_div1:  0x%08x\n",
--			   pll->state.hw_state.mg_pll_div1);
--		seq_printf(m, " mg_pll_lf:    0x%08x\n",
--			   pll->state.hw_state.mg_pll_lf);
--		seq_printf(m, " mg_pll_frac_lock: 0x%08x\n",
--			   pll->state.hw_state.mg_pll_frac_lock);
--		seq_printf(m, " mg_pll_ssc:   0x%08x\n",
--			   pll->state.hw_state.mg_pll_ssc);
--		seq_printf(m, " mg_pll_bias:  0x%08x\n",
--			   pll->state.hw_state.mg_pll_bias);
--		seq_printf(m, " mg_pll_tdc_coldst_bias: 0x%08x\n",
--			   pll->state.hw_state.mg_pll_tdc_coldst_bias);
-+		intel_dpll_dump_hw_state(dev_priv, &p, &pll->state.hw_state);
+-		seq_printf(m, " tracked hardware state:\n");
++		drm_printf(&p, " tracked hardware state:\n");
+ 		intel_dpll_dump_hw_state(dev_priv, &p, &pll->state.hw_state);
  	}
  	drm_modeset_unlock_all(&dev_priv->drm);
- 
 -- 
 2.43.2
 
