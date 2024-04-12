@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46D78A3195
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 16:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 708828A31F1
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 17:14:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA4AD10F6B2;
-	Fri, 12 Apr 2024 14:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3E010F6C7;
+	Fri, 12 Apr 2024 15:14:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oG+wr2ti";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L4Sz9gKm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBFA10F6B0;
- Fri, 12 Apr 2024 14:53:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40F2210F6C7;
+ Fri, 12 Apr 2024 15:14:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712933616; x=1744469616;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XlK66y3OCv0TwVLX624N97fZY1SaUAJggLO+Q5vaHq4=;
- b=oG+wr2tiKdevGMXEpukEY7UJeHrumzajJCI8TFL/lPLVA+3Q6UidNk/5
- ZZZLQzSqJ4OirW9pl8HwfxMULwziMkm2cHh9lU1oWpO8/hhUcAp4fy37J
- XOOXNHqdqTS9eZ6cLj7b1wDZdXZXDCo6RIK1Dt3kUD3SoDhOcQdgE06Nu
- N6tow2HAUJd4yZwP+FlXXzFJsllJd+zoL/YtzO3tbL1EtBEkV05M1ZIZA
- Jh3D9aQ1VfW7Vmz+QLHHjYeir1AWcdzV6DOkS4ZdvgdjYN5TZ9yVY4G7k
- aQmqD9T+wA35EjcXkx6xQ/Qcsc+DAjC63EwW99VixTGyYM6aer8WwY15j g==;
-X-CSE-ConnectionGUID: 43axT/O6RTe2sbMmF0a45w==
-X-CSE-MsgGUID: 0RM4MchQQSi5hI8MzUURoA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19810933"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19810933"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:36 -0700
-X-CSE-ConnectionGUID: sdh9mjfgRPCS3pSnibn7mQ==
-X-CSE-MsgGUID: F+9kce2BTOyxaZR6vzV7MQ==
+ t=1712934889; x=1744470889;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dmLhoLwG+60Qek9XMYcaFMqhxTA7Xzq2hipnCN30I2A=;
+ b=L4Sz9gKmJb+8P9B4FKABmzqrVTCR36YtzwNMXU9U5qyMZZY7ja903nIj
+ LlbTFeuGbMU2W/kghQJb9qLFr0qoin9JYPU2CkRoxZyP8FKCEXq0sf6gD
+ /CNlB42RTP0ArrjxNxjBfvTAHLk1TqZ4m5bQzHrSHaiiFopne7N5iVdtt
+ /aASUwpEmmawRS1cydv2VwyRsLjJA120zXs4dq+uYBz10+tKEAqWhnIgR
+ nMajGry+ERq3TEum/tmc0QbOTpt6sYbDx00n482t4JpuAGuu7PFFQtifR
+ vhHFczNyIJIxHa62A3r6fwJ/p5rH0z+RGkrF8xX10vrSC9HvDo7Fov0ZE A==;
+X-CSE-ConnectionGUID: 46OyNrh/RKePwuph8HJMqw==
+X-CSE-MsgGUID: QTQI9NfSQI63d6kUWWhBFw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19541549"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19541549"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 08:14:48 -0700
+X-CSE-ConnectionGUID: CwJsI4HpSReF2rkzjg4D2A==
+X-CSE-MsgGUID: 7lxK9/dITjqXMSBPR/+yGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21677595"
-Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
- ([10.252.61.65])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 07:53:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 6/6] drm/i915/display: split out bxt_phy_regs.h from i915_reg.h
-Date: Fri, 12 Apr 2024 17:52:58 +0300
-Message-Id: <87fd81f523c3a5517ddecdb88d9c688336f65b87.1712933479.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21345298"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 08:14:45 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 12 Apr 2024 18:14:45 +0300
+Date: Fri, 12 Apr 2024 18:14:45 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 3/6] drm/i915/display: split out intel_fbc_regs.h from
+ i915_reg.h
+Message-ID: <ZhlO_c62Tdlx_ck8@intel.com>
 References: <cover.1712933479.git.jani.nikula@intel.com>
+ <eaf07dab79ff057547501892056dd06afec4f213.1712933479.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <eaf07dab79ff057547501892056dd06afec4f213.1712933479.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,711 +72,406 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clean up i915_reg.h.
+On Fri, Apr 12, 2024 at 05:52:55PM +0300, Jani Nikula wrote:
+> Clean up i915_reg.h.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |   1 +
+>  drivers/gpu/drm/i915/display/intel_fbc_regs.h | 152 ++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   2 +
+>  drivers/gpu/drm/i915/i915_reg.h               | 142 ----------------
+>  drivers/gpu/drm/i915/intel_clock_gating.c     |   1 +
+>  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
+>  6 files changed, 157 insertions(+), 142 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 7c4d2b2bf20b..151dcd0c45b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -54,6 +54,7 @@
+>  #include "intel_display_trace.h"
+>  #include "intel_display_types.h"
+>  #include "intel_fbc.h"
+> +#include "intel_fbc_regs.h"
+>  #include "intel_frontbuffer.h"
+>  
+>  #define for_each_fbc_id(__dev_priv, __fbc_id) \
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> new file mode 100644
+> index 000000000000..d454d599a22c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> @@ -0,0 +1,152 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/* Copyright © 2024 Intel Corporation */
+> +
+> +#ifndef __INTEL_FBC_REGS__
+> +#define __INTEL_FBC_REGS__
+> +
+> +#include "intel_display_reg_defs.h"
+> +
+> +/*
+> + * Framebuffer compression (915+ only)
+> + */
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/bxt_phy_regs.h   | 292 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_ddi.c      |   1 +
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |   1 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   1 +
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 +
- drivers/gpu/drm/i915/gvt/display.c            |   1 +
- drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
- drivers/gpu/drm/i915/gvt/mmio.c               |   1 +
- drivers/gpu/drm/i915/i915_reg.h               | 283 -----------------
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
- 10 files changed, 300 insertions(+), 283 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/bxt_phy_regs.h
+Outdated comment. Looks like pretty much all the comments
+in this file are misleading/outdated. Maybe just nuke them
+all while at it.
 
-diff --git a/drivers/gpu/drm/i915/display/bxt_phy_regs.h b/drivers/gpu/drm/i915/display/bxt_phy_regs.h
-new file mode 100644
-index 000000000000..73a3e545f5b6
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/bxt_phy_regs.h
-@@ -0,0 +1,292 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright Â© 2024 Intel Corporation */
-+
-+#ifndef __BXT_PHY_REGS__
-+#define __BXT_PHY_REGS__
-+
-+#include "intel_display_reg_defs.h"
-+
-+/* BXT PHY registers */
-+#define _BXT_PHY0_BASE			0x6C000
-+#define _BXT_PHY1_BASE			0x162000
-+#define _BXT_PHY2_BASE			0x163000
-+#define BXT_PHY_BASE(phy)							\
-+	 _PICK_EVEN_2RANGES(phy, 1,						\
-+			    _BXT_PHY0_BASE, _BXT_PHY0_BASE,			\
-+			    _BXT_PHY1_BASE, _BXT_PHY2_BASE)
-+
-+#define _BXT_PHY(phy, reg)						\
-+	_MMIO(BXT_PHY_BASE(phy) - _BXT_PHY0_BASE + (reg))
-+
-+#define _BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
-+	(BXT_PHY_BASE(phy) + _PIPE((ch), (reg_ch0) - _BXT_PHY0_BASE,	\
-+					 (reg_ch1) - _BXT_PHY0_BASE))
-+#define _MMIO_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
-+	_MMIO(_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1))
-+
-+#define BXT_P_CR_GT_DISP_PWRON		_MMIO(0x138090)
-+#define  MIPIO_RST_CTRL				(1 << 2)
-+
-+#define _BXT_PHY_CTL_DDI_A		0x64C00
-+#define _BXT_PHY_CTL_DDI_B		0x64C10
-+#define _BXT_PHY_CTL_DDI_C		0x64C20
-+#define   BXT_PHY_CMNLANE_POWERDOWN_ACK	(1 << 10)
-+#define   BXT_PHY_LANE_POWERDOWN_ACK	(1 << 9)
-+#define   BXT_PHY_LANE_ENABLED		(1 << 8)
-+#define BXT_PHY_CTL(port)		_MMIO_PORT(port, _BXT_PHY_CTL_DDI_A, \
-+							 _BXT_PHY_CTL_DDI_B)
-+
-+#define _PHY_CTL_FAMILY_DDI		0x64C90
-+#define _PHY_CTL_FAMILY_EDP		0x64C80
-+#define _PHY_CTL_FAMILY_DDI_C		0x64CA0
-+#define   COMMON_RESET_DIS		(1 << 31)
-+#define BXT_PHY_CTL_FAMILY(phy)							\
-+	 _MMIO(_PICK_EVEN_2RANGES(phy, 1,					\
-+				  _PHY_CTL_FAMILY_DDI, _PHY_CTL_FAMILY_DDI,	\
-+				  _PHY_CTL_FAMILY_EDP, _PHY_CTL_FAMILY_DDI_C))
-+
-+/* BXT PHY PLL registers */
-+#define _PORT_PLL_A			0x46074
-+#define _PORT_PLL_B			0x46078
-+#define _PORT_PLL_C			0x4607c
-+#define   PORT_PLL_ENABLE		REG_BIT(31)
-+#define   PORT_PLL_LOCK			REG_BIT(30)
-+#define   PORT_PLL_REF_SEL		REG_BIT(27)
-+#define   PORT_PLL_POWER_ENABLE		REG_BIT(26)
-+#define   PORT_PLL_POWER_STATE		REG_BIT(25)
-+#define BXT_PORT_PLL_ENABLE(port)	_MMIO_PORT(port, _PORT_PLL_A, _PORT_PLL_B)
-+
-+#define _PORT_PLL_EBB_0_A		0x162034
-+#define _PORT_PLL_EBB_0_B		0x6C034
-+#define _PORT_PLL_EBB_0_C		0x6C340
-+#define   PORT_PLL_P1_MASK		REG_GENMASK(15, 13)
-+#define   PORT_PLL_P1(p1)		REG_FIELD_PREP(PORT_PLL_P1_MASK, (p1))
-+#define   PORT_PLL_P2_MASK		REG_GENMASK(12, 8)
-+#define   PORT_PLL_P2(p2)		REG_FIELD_PREP(PORT_PLL_P2_MASK, (p2))
-+#define BXT_PORT_PLL_EBB_0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PLL_EBB_0_B, \
-+							 _PORT_PLL_EBB_0_C)
-+
-+#define _PORT_PLL_EBB_4_A		0x162038
-+#define _PORT_PLL_EBB_4_B		0x6C038
-+#define _PORT_PLL_EBB_4_C		0x6C344
-+#define   PORT_PLL_RECALIBRATE		REG_BIT(14)
-+#define   PORT_PLL_10BIT_CLK_ENABLE	REG_BIT(13)
-+#define BXT_PORT_PLL_EBB_4(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PLL_EBB_4_B, \
-+							 _PORT_PLL_EBB_4_C)
-+
-+#define _PORT_PLL_0_A			0x162100
-+#define _PORT_PLL_0_B			0x6C100
-+#define _PORT_PLL_0_C			0x6C380
-+/* PORT_PLL_0_A */
-+#define   PORT_PLL_M2_INT_MASK		REG_GENMASK(7, 0)
-+#define   PORT_PLL_M2_INT(m2_int)	REG_FIELD_PREP(PORT_PLL_M2_INT_MASK, (m2_int))
-+/* PORT_PLL_1_A */
-+#define   PORT_PLL_N_MASK		REG_GENMASK(11, 8)
-+#define   PORT_PLL_N(n)			REG_FIELD_PREP(PORT_PLL_N_MASK, (n))
-+/* PORT_PLL_2_A */
-+#define   PORT_PLL_M2_FRAC_MASK		REG_GENMASK(21, 0)
-+#define   PORT_PLL_M2_FRAC(m2_frac)	REG_FIELD_PREP(PORT_PLL_M2_FRAC_MASK, (m2_frac))
-+/* PORT_PLL_3_A */
-+#define   PORT_PLL_M2_FRAC_ENABLE	REG_BIT(16)
-+/* PORT_PLL_6_A */
-+#define   PORT_PLL_GAIN_CTL_MASK	REG_GENMASK(18, 16)
-+#define   PORT_PLL_GAIN_CTL(x)		REG_FIELD_PREP(PORT_PLL_GAIN_CTL_MASK, (x))
-+#define   PORT_PLL_INT_COEFF_MASK	REG_GENMASK(12, 8)
-+#define   PORT_PLL_INT_COEFF(x)		REG_FIELD_PREP(PORT_PLL_INT_COEFF_MASK, (x))
-+#define   PORT_PLL_PROP_COEFF_MASK	REG_GENMASK(3, 0)
-+#define   PORT_PLL_PROP_COEFF(x)	REG_FIELD_PREP(PORT_PLL_PROP_COEFF_MASK, (x))
-+/* PORT_PLL_8_A */
-+#define   PORT_PLL_TARGET_CNT_MASK	REG_GENMASK(9, 0)
-+#define   PORT_PLL_TARGET_CNT(x)	REG_FIELD_PREP(PORT_PLL_TARGET_CNT_MASK, (x))
-+/* PORT_PLL_9_A */
-+#define  PORT_PLL_LOCK_THRESHOLD_MASK	REG_GENMASK(3, 1)
-+#define  PORT_PLL_LOCK_THRESHOLD(x)	REG_FIELD_PREP(PORT_PLL_LOCK_THRESHOLD_MASK, (x))
-+/* PORT_PLL_10_A */
-+#define  PORT_PLL_DCO_AMP_OVR_EN_H	REG_BIT(27)
-+#define  PORT_PLL_DCO_AMP_MASK		REG_GENMASK(13, 10)
-+#define  PORT_PLL_DCO_AMP(x)		REG_FIELD_PREP(PORT_PLL_DCO_AMP_MASK, (x))
-+#define _PORT_PLL_BASE(phy, ch)		_BXT_PHY_CH(phy, ch, \
-+						    _PORT_PLL_0_B, \
-+						    _PORT_PLL_0_C)
-+#define BXT_PORT_PLL(phy, ch, idx)	_MMIO(_PORT_PLL_BASE(phy, ch) + \
-+					      (idx) * 4)
-+
-+/* BXT PHY common lane registers */
-+#define _PORT_CL1CM_DW0_A		0x162000
-+#define _PORT_CL1CM_DW0_BC		0x6C000
-+#define   PHY_POWER_GOOD		(1 << 16)
-+#define   PHY_RESERVED			(1 << 7)
-+#define BXT_PORT_CL1CM_DW0(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW0_BC)
-+
-+#define _PORT_CL1CM_DW9_A		0x162024
-+#define _PORT_CL1CM_DW9_BC		0x6C024
-+#define   IREF0RC_OFFSET_SHIFT		8
-+#define   IREF0RC_OFFSET_MASK		(0xFF << IREF0RC_OFFSET_SHIFT)
-+#define BXT_PORT_CL1CM_DW9(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW9_BC)
-+
-+#define _PORT_CL1CM_DW10_A		0x162028
-+#define _PORT_CL1CM_DW10_BC		0x6C028
-+#define   IREF1RC_OFFSET_SHIFT		8
-+#define   IREF1RC_OFFSET_MASK		(0xFF << IREF1RC_OFFSET_SHIFT)
-+#define BXT_PORT_CL1CM_DW10(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW10_BC)
-+
-+#define _PORT_CL1CM_DW28_A		0x162070
-+#define _PORT_CL1CM_DW28_BC		0x6C070
-+#define   OCL1_POWER_DOWN_EN		(1 << 23)
-+#define   DW28_OLDO_DYN_PWR_DOWN_EN	(1 << 22)
-+#define   SUS_CLK_CONFIG		0x3
-+#define BXT_PORT_CL1CM_DW28(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW28_BC)
-+
-+#define _PORT_CL1CM_DW30_A		0x162078
-+#define _PORT_CL1CM_DW30_BC		0x6C078
-+#define   OCL2_LDOFUSE_PWR_DIS		(1 << 6)
-+#define BXT_PORT_CL1CM_DW30(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW30_BC)
-+
-+/* The spec defines this only for BXT PHY0, but lets assume that this
-+ * would exist for PHY1 too if it had a second channel.
-+ */
-+#define _PORT_CL2CM_DW6_A		0x162358
-+#define _PORT_CL2CM_DW6_BC		0x6C358
-+#define BXT_PORT_CL2CM_DW6(phy)		_BXT_PHY((phy), _PORT_CL2CM_DW6_BC)
-+#define   DW6_OLDO_DYN_PWR_DOWN_EN	(1 << 28)
-+
-+/* BXT PHY Ref registers */
-+#define _PORT_REF_DW3_A			0x16218C
-+#define _PORT_REF_DW3_BC		0x6C18C
-+#define   GRC_DONE			(1 << 22)
-+#define BXT_PORT_REF_DW3(phy)		_BXT_PHY((phy), _PORT_REF_DW3_BC)
-+
-+#define _PORT_REF_DW6_A			0x162198
-+#define _PORT_REF_DW6_BC		0x6C198
-+#define   GRC_CODE_SHIFT		24
-+#define   GRC_CODE_MASK			(0xFF << GRC_CODE_SHIFT)
-+#define   GRC_CODE_FAST_SHIFT		16
-+#define   GRC_CODE_FAST_MASK		(0xFF << GRC_CODE_FAST_SHIFT)
-+#define   GRC_CODE_SLOW_SHIFT		8
-+#define   GRC_CODE_SLOW_MASK		(0xFF << GRC_CODE_SLOW_SHIFT)
-+#define   GRC_CODE_NOM_MASK		0xFF
-+#define BXT_PORT_REF_DW6(phy)		_BXT_PHY((phy), _PORT_REF_DW6_BC)
-+
-+#define _PORT_REF_DW8_A			0x1621A0
-+#define _PORT_REF_DW8_BC		0x6C1A0
-+#define   GRC_DIS			(1 << 15)
-+#define   GRC_RDY_OVRD			(1 << 1)
-+#define BXT_PORT_REF_DW8(phy)		_BXT_PHY((phy), _PORT_REF_DW8_BC)
-+
-+/* BXT PHY PCS registers */
-+#define _PORT_PCS_DW10_LN01_A		0x162428
-+#define _PORT_PCS_DW10_LN01_B		0x6C428
-+#define _PORT_PCS_DW10_LN01_C		0x6C828
-+#define _PORT_PCS_DW10_GRP_A		0x162C28
-+#define _PORT_PCS_DW10_GRP_B		0x6CC28
-+#define _PORT_PCS_DW10_GRP_C		0x6CE28
-+#define BXT_PORT_PCS_DW10_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PCS_DW10_LN01_B, \
-+							 _PORT_PCS_DW10_LN01_C)
-+#define BXT_PORT_PCS_DW10_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PCS_DW10_GRP_B, \
-+							 _PORT_PCS_DW10_GRP_C)
-+
-+#define   TX2_SWING_CALC_INIT		(1 << 31)
-+#define   TX1_SWING_CALC_INIT		(1 << 30)
-+
-+#define _PORT_PCS_DW12_LN01_A		0x162430
-+#define _PORT_PCS_DW12_LN01_B		0x6C430
-+#define _PORT_PCS_DW12_LN01_C		0x6C830
-+#define _PORT_PCS_DW12_LN23_A		0x162630
-+#define _PORT_PCS_DW12_LN23_B		0x6C630
-+#define _PORT_PCS_DW12_LN23_C		0x6CA30
-+#define _PORT_PCS_DW12_GRP_A		0x162c30
-+#define _PORT_PCS_DW12_GRP_B		0x6CC30
-+#define _PORT_PCS_DW12_GRP_C		0x6CE30
-+#define   LANESTAGGER_STRAP_OVRD	(1 << 6)
-+#define   LANE_STAGGER_MASK		0x1F
-+#define BXT_PORT_PCS_DW12_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PCS_DW12_LN01_B, \
-+							 _PORT_PCS_DW12_LN01_C)
-+#define BXT_PORT_PCS_DW12_LN23(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PCS_DW12_LN23_B, \
-+							 _PORT_PCS_DW12_LN23_C)
-+#define BXT_PORT_PCS_DW12_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_PCS_DW12_GRP_B, \
-+							 _PORT_PCS_DW12_GRP_C)
-+
-+/* BXT PHY TX registers */
-+#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
-+					  ((lane) & 1) * 0x80)
-+
-+#define _PORT_TX_DW2_LN0_A		0x162508
-+#define _PORT_TX_DW2_LN0_B		0x6C508
-+#define _PORT_TX_DW2_LN0_C		0x6C908
-+#define _PORT_TX_DW2_GRP_A		0x162D08
-+#define _PORT_TX_DW2_GRP_B		0x6CD08
-+#define _PORT_TX_DW2_GRP_C		0x6CF08
-+#define BXT_PORT_TX_DW2_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW2_LN0_B, \
-+							 _PORT_TX_DW2_LN0_C)
-+#define BXT_PORT_TX_DW2_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW2_GRP_B, \
-+							 _PORT_TX_DW2_GRP_C)
-+#define   MARGIN_000_SHIFT		16
-+#define   MARGIN_000			(0xFF << MARGIN_000_SHIFT)
-+#define   UNIQ_TRANS_SCALE_SHIFT	8
-+#define   UNIQ_TRANS_SCALE		(0xFF << UNIQ_TRANS_SCALE_SHIFT)
-+
-+#define _PORT_TX_DW3_LN0_A		0x16250C
-+#define _PORT_TX_DW3_LN0_B		0x6C50C
-+#define _PORT_TX_DW3_LN0_C		0x6C90C
-+#define _PORT_TX_DW3_GRP_A		0x162D0C
-+#define _PORT_TX_DW3_GRP_B		0x6CD0C
-+#define _PORT_TX_DW3_GRP_C		0x6CF0C
-+#define BXT_PORT_TX_DW3_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW3_LN0_B, \
-+							 _PORT_TX_DW3_LN0_C)
-+#define BXT_PORT_TX_DW3_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW3_GRP_B, \
-+							 _PORT_TX_DW3_GRP_C)
-+#define   SCALE_DCOMP_METHOD		(1 << 26)
-+#define   UNIQUE_TRANGE_EN_METHOD	(1 << 27)
-+
-+#define _PORT_TX_DW4_LN0_A		0x162510
-+#define _PORT_TX_DW4_LN0_B		0x6C510
-+#define _PORT_TX_DW4_LN0_C		0x6C910
-+#define _PORT_TX_DW4_GRP_A		0x162D10
-+#define _PORT_TX_DW4_GRP_B		0x6CD10
-+#define _PORT_TX_DW4_GRP_C		0x6CF10
-+#define BXT_PORT_TX_DW4_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW4_LN0_B, \
-+							 _PORT_TX_DW4_LN0_C)
-+#define BXT_PORT_TX_DW4_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW4_GRP_B, \
-+							 _PORT_TX_DW4_GRP_C)
-+#define   DEEMPH_SHIFT			24
-+#define   DE_EMPHASIS			(0xFF << DEEMPH_SHIFT)
-+
-+#define _PORT_TX_DW5_LN0_A		0x162514
-+#define _PORT_TX_DW5_LN0_B		0x6C514
-+#define _PORT_TX_DW5_LN0_C		0x6C914
-+#define _PORT_TX_DW5_GRP_A		0x162D14
-+#define _PORT_TX_DW5_GRP_B		0x6CD14
-+#define _PORT_TX_DW5_GRP_C		0x6CF14
-+#define BXT_PORT_TX_DW5_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW5_LN0_B, \
-+							 _PORT_TX_DW5_LN0_C)
-+#define BXT_PORT_TX_DW5_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
-+							 _PORT_TX_DW5_GRP_B, \
-+							 _PORT_TX_DW5_GRP_C)
-+#define   DCC_DELAY_RANGE_1		(1 << 9)
-+#define   DCC_DELAY_RANGE_2		(1 << 8)
-+
-+#define _PORT_TX_DW14_LN0_A		0x162538
-+#define _PORT_TX_DW14_LN0_B		0x6C538
-+#define _PORT_TX_DW14_LN0_C		0x6C938
-+#define   LATENCY_OPTIM_SHIFT		30
-+#define   LATENCY_OPTIM			(1 << LATENCY_OPTIM_SHIFT)
-+#define BXT_PORT_TX_DW14_LN(phy, ch, lane)				\
-+	_MMIO(_BXT_PHY_CH(phy, ch, _PORT_TX_DW14_LN0_B,			\
-+				   _PORT_TX_DW14_LN0_C) +		\
-+	      _BXT_LANE_OFFSET(lane))
-+
-+#endif /* __BXT_PHY_REGS__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 3255d4e375af..2ad6e221cf67 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -31,6 +31,7 @@
- #include <drm/display/drm_scdc_helper.h>
- #include <drm/drm_privacy_screen_consumer.h>
- 
-+#include "bxt_phy_regs.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "icl_dsi.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index 8d99e00ea326..bf1897bec9ac 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -21,6 +21,7 @@
-  * DEALINGS IN THE SOFTWARE.
-  */
- 
-+#include "bxt_phy_regs.h"
- #include "i915_reg.h"
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 9ff6c4cc2e4b..c0255b0b3279 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -24,6 +24,7 @@
- #include <linux/math.h>
- #include <linux/string_helpers.h>
- 
-+#include "bxt_phy_regs.h"
- #include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 63f4af601d15..27d9d15852fc 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -31,6 +31,7 @@
- #include <drm/drm_edid.h>
- #include <drm/drm_mipi_dsi.h>
- 
-+#include "bxt_phy_regs.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_atomic.h"
-diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-index 498698482d59..c8ee15f4ea34 100644
---- a/drivers/gpu/drm/i915/gvt/display.c
-+++ b/drivers/gpu/drm/i915/gvt/display.c
-@@ -36,6 +36,7 @@
- #include "i915_reg.h"
- #include "gvt.h"
- 
-+#include "display/bxt_phy_regs.h"
- #include "display/intel_display.h"
- #include "display/intel_dpio_phy.h"
- #include "display/intel_sprite_regs.h"
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 7d749995c7a7..daa83f0c1d5f 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -41,6 +41,7 @@
- #include "gvt.h"
- #include "i915_pvinfo.h"
- #include "intel_mchbar_regs.h"
-+#include "display/bxt_phy_regs.h"
- #include "display/intel_display_types.h"
- #include "display/intel_dmc_regs.h"
- #include "display/intel_dp_aux_regs.h"
-diff --git a/drivers/gpu/drm/i915/gvt/mmio.c b/drivers/gpu/drm/i915/gvt/mmio.c
-index 5b5def6ddef7..1b75eda56c02 100644
---- a/drivers/gpu/drm/i915/gvt/mmio.c
-+++ b/drivers/gpu/drm/i915/gvt/mmio.c
-@@ -37,6 +37,7 @@
- #include "i915_reg.h"
- #include "gvt.h"
- 
-+#include "display/bxt_phy_regs.h"
- #include "display/intel_dpio_phy.h"
- #include "gt/intel_gt_regs.h"
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 86700c6caa27..f456153335c5 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -195,289 +195,6 @@
- #define  DPIO_SFR_BYPASS		(1 << 1)
- #define  DPIO_CMNRST			(1 << 0)
- 
--/* BXT PHY registers */
--#define _BXT_PHY0_BASE			0x6C000
--#define _BXT_PHY1_BASE			0x162000
--#define _BXT_PHY2_BASE			0x163000
--#define BXT_PHY_BASE(phy)							\
--	 _PICK_EVEN_2RANGES(phy, 1,						\
--			    _BXT_PHY0_BASE, _BXT_PHY0_BASE,			\
--			    _BXT_PHY1_BASE, _BXT_PHY2_BASE)
--
--#define _BXT_PHY(phy, reg)						\
--	_MMIO(BXT_PHY_BASE(phy) - _BXT_PHY0_BASE + (reg))
--
--#define _BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
--	(BXT_PHY_BASE(phy) + _PIPE((ch), (reg_ch0) - _BXT_PHY0_BASE,	\
--					 (reg_ch1) - _BXT_PHY0_BASE))
--#define _MMIO_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1)		\
--	_MMIO(_BXT_PHY_CH(phy, ch, reg_ch0, reg_ch1))
--
--#define BXT_P_CR_GT_DISP_PWRON		_MMIO(0x138090)
--#define  MIPIO_RST_CTRL				(1 << 2)
--
--#define _BXT_PHY_CTL_DDI_A		0x64C00
--#define _BXT_PHY_CTL_DDI_B		0x64C10
--#define _BXT_PHY_CTL_DDI_C		0x64C20
--#define   BXT_PHY_CMNLANE_POWERDOWN_ACK	(1 << 10)
--#define   BXT_PHY_LANE_POWERDOWN_ACK	(1 << 9)
--#define   BXT_PHY_LANE_ENABLED		(1 << 8)
--#define BXT_PHY_CTL(port)		_MMIO_PORT(port, _BXT_PHY_CTL_DDI_A, \
--							 _BXT_PHY_CTL_DDI_B)
--
--#define _PHY_CTL_FAMILY_DDI		0x64C90
--#define _PHY_CTL_FAMILY_EDP		0x64C80
--#define _PHY_CTL_FAMILY_DDI_C		0x64CA0
--#define   COMMON_RESET_DIS		(1 << 31)
--#define BXT_PHY_CTL_FAMILY(phy)							\
--	 _MMIO(_PICK_EVEN_2RANGES(phy, 1,					\
--				  _PHY_CTL_FAMILY_DDI, _PHY_CTL_FAMILY_DDI,	\
--				  _PHY_CTL_FAMILY_EDP, _PHY_CTL_FAMILY_DDI_C))
--
--/* BXT PHY PLL registers */
--#define _PORT_PLL_A			0x46074
--#define _PORT_PLL_B			0x46078
--#define _PORT_PLL_C			0x4607c
--#define   PORT_PLL_ENABLE		REG_BIT(31)
--#define   PORT_PLL_LOCK			REG_BIT(30)
--#define   PORT_PLL_REF_SEL		REG_BIT(27)
--#define   PORT_PLL_POWER_ENABLE		REG_BIT(26)
--#define   PORT_PLL_POWER_STATE		REG_BIT(25)
--#define BXT_PORT_PLL_ENABLE(port)	_MMIO_PORT(port, _PORT_PLL_A, _PORT_PLL_B)
--
--#define _PORT_PLL_EBB_0_A		0x162034
--#define _PORT_PLL_EBB_0_B		0x6C034
--#define _PORT_PLL_EBB_0_C		0x6C340
--#define   PORT_PLL_P1_MASK		REG_GENMASK(15, 13)
--#define   PORT_PLL_P1(p1)		REG_FIELD_PREP(PORT_PLL_P1_MASK, (p1))
--#define   PORT_PLL_P2_MASK		REG_GENMASK(12, 8)
--#define   PORT_PLL_P2(p2)		REG_FIELD_PREP(PORT_PLL_P2_MASK, (p2))
--#define BXT_PORT_PLL_EBB_0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PLL_EBB_0_B, \
--							 _PORT_PLL_EBB_0_C)
--
--#define _PORT_PLL_EBB_4_A		0x162038
--#define _PORT_PLL_EBB_4_B		0x6C038
--#define _PORT_PLL_EBB_4_C		0x6C344
--#define   PORT_PLL_RECALIBRATE		REG_BIT(14)
--#define   PORT_PLL_10BIT_CLK_ENABLE	REG_BIT(13)
--#define BXT_PORT_PLL_EBB_4(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PLL_EBB_4_B, \
--							 _PORT_PLL_EBB_4_C)
--
--#define _PORT_PLL_0_A			0x162100
--#define _PORT_PLL_0_B			0x6C100
--#define _PORT_PLL_0_C			0x6C380
--/* PORT_PLL_0_A */
--#define   PORT_PLL_M2_INT_MASK		REG_GENMASK(7, 0)
--#define   PORT_PLL_M2_INT(m2_int)	REG_FIELD_PREP(PORT_PLL_M2_INT_MASK, (m2_int))
--/* PORT_PLL_1_A */
--#define   PORT_PLL_N_MASK		REG_GENMASK(11, 8)
--#define   PORT_PLL_N(n)			REG_FIELD_PREP(PORT_PLL_N_MASK, (n))
--/* PORT_PLL_2_A */
--#define   PORT_PLL_M2_FRAC_MASK		REG_GENMASK(21, 0)
--#define   PORT_PLL_M2_FRAC(m2_frac)	REG_FIELD_PREP(PORT_PLL_M2_FRAC_MASK, (m2_frac))
--/* PORT_PLL_3_A */
--#define   PORT_PLL_M2_FRAC_ENABLE	REG_BIT(16)
--/* PORT_PLL_6_A */
--#define   PORT_PLL_GAIN_CTL_MASK	REG_GENMASK(18, 16)
--#define   PORT_PLL_GAIN_CTL(x)		REG_FIELD_PREP(PORT_PLL_GAIN_CTL_MASK, (x))
--#define   PORT_PLL_INT_COEFF_MASK	REG_GENMASK(12, 8)
--#define   PORT_PLL_INT_COEFF(x)		REG_FIELD_PREP(PORT_PLL_INT_COEFF_MASK, (x))
--#define   PORT_PLL_PROP_COEFF_MASK	REG_GENMASK(3, 0)
--#define   PORT_PLL_PROP_COEFF(x)	REG_FIELD_PREP(PORT_PLL_PROP_COEFF_MASK, (x))
--/* PORT_PLL_8_A */
--#define   PORT_PLL_TARGET_CNT_MASK	REG_GENMASK(9, 0)
--#define   PORT_PLL_TARGET_CNT(x)	REG_FIELD_PREP(PORT_PLL_TARGET_CNT_MASK, (x))
--/* PORT_PLL_9_A */
--#define  PORT_PLL_LOCK_THRESHOLD_MASK	REG_GENMASK(3, 1)
--#define  PORT_PLL_LOCK_THRESHOLD(x)	REG_FIELD_PREP(PORT_PLL_LOCK_THRESHOLD_MASK, (x))
--/* PORT_PLL_10_A */
--#define  PORT_PLL_DCO_AMP_OVR_EN_H	REG_BIT(27)
--#define  PORT_PLL_DCO_AMP_MASK		REG_GENMASK(13, 10)
--#define  PORT_PLL_DCO_AMP(x)		REG_FIELD_PREP(PORT_PLL_DCO_AMP_MASK, (x))
--#define _PORT_PLL_BASE(phy, ch)		_BXT_PHY_CH(phy, ch, \
--						    _PORT_PLL_0_B, \
--						    _PORT_PLL_0_C)
--#define BXT_PORT_PLL(phy, ch, idx)	_MMIO(_PORT_PLL_BASE(phy, ch) + \
--					      (idx) * 4)
--
--/* BXT PHY common lane registers */
--#define _PORT_CL1CM_DW0_A		0x162000
--#define _PORT_CL1CM_DW0_BC		0x6C000
--#define   PHY_POWER_GOOD		(1 << 16)
--#define   PHY_RESERVED			(1 << 7)
--#define BXT_PORT_CL1CM_DW0(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW0_BC)
--
--#define _PORT_CL1CM_DW9_A		0x162024
--#define _PORT_CL1CM_DW9_BC		0x6C024
--#define   IREF0RC_OFFSET_SHIFT		8
--#define   IREF0RC_OFFSET_MASK		(0xFF << IREF0RC_OFFSET_SHIFT)
--#define BXT_PORT_CL1CM_DW9(phy)		_BXT_PHY((phy), _PORT_CL1CM_DW9_BC)
--
--#define _PORT_CL1CM_DW10_A		0x162028
--#define _PORT_CL1CM_DW10_BC		0x6C028
--#define   IREF1RC_OFFSET_SHIFT		8
--#define   IREF1RC_OFFSET_MASK		(0xFF << IREF1RC_OFFSET_SHIFT)
--#define BXT_PORT_CL1CM_DW10(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW10_BC)
--
--#define _PORT_CL1CM_DW28_A		0x162070
--#define _PORT_CL1CM_DW28_BC		0x6C070
--#define   OCL1_POWER_DOWN_EN		(1 << 23)
--#define   DW28_OLDO_DYN_PWR_DOWN_EN	(1 << 22)
--#define   SUS_CLK_CONFIG		0x3
--#define BXT_PORT_CL1CM_DW28(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW28_BC)
--
--#define _PORT_CL1CM_DW30_A		0x162078
--#define _PORT_CL1CM_DW30_BC		0x6C078
--#define   OCL2_LDOFUSE_PWR_DIS		(1 << 6)
--#define BXT_PORT_CL1CM_DW30(phy)	_BXT_PHY((phy), _PORT_CL1CM_DW30_BC)
--
--/* The spec defines this only for BXT PHY0, but lets assume that this
-- * would exist for PHY1 too if it had a second channel.
-- */
--#define _PORT_CL2CM_DW6_A		0x162358
--#define _PORT_CL2CM_DW6_BC		0x6C358
--#define BXT_PORT_CL2CM_DW6(phy)		_BXT_PHY((phy), _PORT_CL2CM_DW6_BC)
--#define   DW6_OLDO_DYN_PWR_DOWN_EN	(1 << 28)
--
--/* BXT PHY Ref registers */
--#define _PORT_REF_DW3_A			0x16218C
--#define _PORT_REF_DW3_BC		0x6C18C
--#define   GRC_DONE			(1 << 22)
--#define BXT_PORT_REF_DW3(phy)		_BXT_PHY((phy), _PORT_REF_DW3_BC)
--
--#define _PORT_REF_DW6_A			0x162198
--#define _PORT_REF_DW6_BC		0x6C198
--#define   GRC_CODE_SHIFT		24
--#define   GRC_CODE_MASK			(0xFF << GRC_CODE_SHIFT)
--#define   GRC_CODE_FAST_SHIFT		16
--#define   GRC_CODE_FAST_MASK		(0xFF << GRC_CODE_FAST_SHIFT)
--#define   GRC_CODE_SLOW_SHIFT		8
--#define   GRC_CODE_SLOW_MASK		(0xFF << GRC_CODE_SLOW_SHIFT)
--#define   GRC_CODE_NOM_MASK		0xFF
--#define BXT_PORT_REF_DW6(phy)		_BXT_PHY((phy), _PORT_REF_DW6_BC)
--
--#define _PORT_REF_DW8_A			0x1621A0
--#define _PORT_REF_DW8_BC		0x6C1A0
--#define   GRC_DIS			(1 << 15)
--#define   GRC_RDY_OVRD			(1 << 1)
--#define BXT_PORT_REF_DW8(phy)		_BXT_PHY((phy), _PORT_REF_DW8_BC)
--
--/* BXT PHY PCS registers */
--#define _PORT_PCS_DW10_LN01_A		0x162428
--#define _PORT_PCS_DW10_LN01_B		0x6C428
--#define _PORT_PCS_DW10_LN01_C		0x6C828
--#define _PORT_PCS_DW10_GRP_A		0x162C28
--#define _PORT_PCS_DW10_GRP_B		0x6CC28
--#define _PORT_PCS_DW10_GRP_C		0x6CE28
--#define BXT_PORT_PCS_DW10_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PCS_DW10_LN01_B, \
--							 _PORT_PCS_DW10_LN01_C)
--#define BXT_PORT_PCS_DW10_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PCS_DW10_GRP_B, \
--							 _PORT_PCS_DW10_GRP_C)
--
--#define   TX2_SWING_CALC_INIT		(1 << 31)
--#define   TX1_SWING_CALC_INIT		(1 << 30)
--
--#define _PORT_PCS_DW12_LN01_A		0x162430
--#define _PORT_PCS_DW12_LN01_B		0x6C430
--#define _PORT_PCS_DW12_LN01_C		0x6C830
--#define _PORT_PCS_DW12_LN23_A		0x162630
--#define _PORT_PCS_DW12_LN23_B		0x6C630
--#define _PORT_PCS_DW12_LN23_C		0x6CA30
--#define _PORT_PCS_DW12_GRP_A		0x162c30
--#define _PORT_PCS_DW12_GRP_B		0x6CC30
--#define _PORT_PCS_DW12_GRP_C		0x6CE30
--#define   LANESTAGGER_STRAP_OVRD	(1 << 6)
--#define   LANE_STAGGER_MASK		0x1F
--#define BXT_PORT_PCS_DW12_LN01(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PCS_DW12_LN01_B, \
--							 _PORT_PCS_DW12_LN01_C)
--#define BXT_PORT_PCS_DW12_LN23(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PCS_DW12_LN23_B, \
--							 _PORT_PCS_DW12_LN23_C)
--#define BXT_PORT_PCS_DW12_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_PCS_DW12_GRP_B, \
--							 _PORT_PCS_DW12_GRP_C)
--
--/* BXT PHY TX registers */
--#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
--					  ((lane) & 1) * 0x80)
--
--#define _PORT_TX_DW2_LN0_A		0x162508
--#define _PORT_TX_DW2_LN0_B		0x6C508
--#define _PORT_TX_DW2_LN0_C		0x6C908
--#define _PORT_TX_DW2_GRP_A		0x162D08
--#define _PORT_TX_DW2_GRP_B		0x6CD08
--#define _PORT_TX_DW2_GRP_C		0x6CF08
--#define BXT_PORT_TX_DW2_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW2_LN0_B, \
--							 _PORT_TX_DW2_LN0_C)
--#define BXT_PORT_TX_DW2_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW2_GRP_B, \
--							 _PORT_TX_DW2_GRP_C)
--#define   MARGIN_000_SHIFT		16
--#define   MARGIN_000			(0xFF << MARGIN_000_SHIFT)
--#define   UNIQ_TRANS_SCALE_SHIFT	8
--#define   UNIQ_TRANS_SCALE		(0xFF << UNIQ_TRANS_SCALE_SHIFT)
--
--#define _PORT_TX_DW3_LN0_A		0x16250C
--#define _PORT_TX_DW3_LN0_B		0x6C50C
--#define _PORT_TX_DW3_LN0_C		0x6C90C
--#define _PORT_TX_DW3_GRP_A		0x162D0C
--#define _PORT_TX_DW3_GRP_B		0x6CD0C
--#define _PORT_TX_DW3_GRP_C		0x6CF0C
--#define BXT_PORT_TX_DW3_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW3_LN0_B, \
--							 _PORT_TX_DW3_LN0_C)
--#define BXT_PORT_TX_DW3_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW3_GRP_B, \
--							 _PORT_TX_DW3_GRP_C)
--#define   SCALE_DCOMP_METHOD		(1 << 26)
--#define   UNIQUE_TRANGE_EN_METHOD	(1 << 27)
--
--#define _PORT_TX_DW4_LN0_A		0x162510
--#define _PORT_TX_DW4_LN0_B		0x6C510
--#define _PORT_TX_DW4_LN0_C		0x6C910
--#define _PORT_TX_DW4_GRP_A		0x162D10
--#define _PORT_TX_DW4_GRP_B		0x6CD10
--#define _PORT_TX_DW4_GRP_C		0x6CF10
--#define BXT_PORT_TX_DW4_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW4_LN0_B, \
--							 _PORT_TX_DW4_LN0_C)
--#define BXT_PORT_TX_DW4_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW4_GRP_B, \
--							 _PORT_TX_DW4_GRP_C)
--#define   DEEMPH_SHIFT			24
--#define   DE_EMPHASIS			(0xFF << DEEMPH_SHIFT)
--
--#define _PORT_TX_DW5_LN0_A		0x162514
--#define _PORT_TX_DW5_LN0_B		0x6C514
--#define _PORT_TX_DW5_LN0_C		0x6C914
--#define _PORT_TX_DW5_GRP_A		0x162D14
--#define _PORT_TX_DW5_GRP_B		0x6CD14
--#define _PORT_TX_DW5_GRP_C		0x6CF14
--#define BXT_PORT_TX_DW5_LN0(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW5_LN0_B, \
--							 _PORT_TX_DW5_LN0_C)
--#define BXT_PORT_TX_DW5_GRP(phy, ch)	_MMIO_BXT_PHY_CH(phy, ch, \
--							 _PORT_TX_DW5_GRP_B, \
--							 _PORT_TX_DW5_GRP_C)
--#define   DCC_DELAY_RANGE_1		(1 << 9)
--#define   DCC_DELAY_RANGE_2		(1 << 8)
--
--#define _PORT_TX_DW14_LN0_A		0x162538
--#define _PORT_TX_DW14_LN0_B		0x6C538
--#define _PORT_TX_DW14_LN0_C		0x6C938
--#define   LATENCY_OPTIM_SHIFT		30
--#define   LATENCY_OPTIM			(1 << LATENCY_OPTIM_SHIFT)
--#define BXT_PORT_TX_DW14_LN(phy, ch, lane)				\
--	_MMIO(_BXT_PHY_CH(phy, ch, _PORT_TX_DW14_LN0_B,			\
--				   _PORT_TX_DW14_LN0_C) +		\
--	      _BXT_LANE_OFFSET(lane))
--
- /* UAIMI scratch pad register 1 */
- #define UAIMI_SPR1			_MMIO(0x4F074)
- /* SKL VccIO mask */
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 442ffc0c79fe..80e7a5aa584b 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -3,6 +3,7 @@
-  * Copyright Â© 2020 Intel Corporation
-  */
- 
-+#include "display/bxt_phy_regs.h"
- #include "display/intel_audio_regs.h"
- #include "display/intel_backlight_regs.h"
- #include "display/intel_color_regs.h"
+> +
+> +#define FBC_CFB_BASE		_MMIO(0x3200) /* 4k page aligned */
+> +#define FBC_LL_BASE		_MMIO(0x3204) /* 4k page aligned */
+> +#define FBC_CONTROL		_MMIO(0x3208)
+> +#define   FBC_CTL_EN			REG_BIT(31)
+> +#define   FBC_CTL_PERIODIC		REG_BIT(30)
+> +#define   FBC_CTL_INTERVAL_MASK		REG_GENMASK(29, 16)
+> +#define   FBC_CTL_INTERVAL(x)		REG_FIELD_PREP(FBC_CTL_INTERVAL_MASK, (x))
+> +#define   FBC_CTL_STOP_ON_MOD		REG_BIT(15)
+> +#define   FBC_CTL_UNCOMPRESSIBLE	REG_BIT(14) /* i915+ */
+> +#define   FBC_CTL_C3_IDLE		REG_BIT(13) /* i945gm only */
+> +#define   FBC_CTL_STRIDE_MASK		REG_GENMASK(12, 5)
+> +#define   FBC_CTL_STRIDE(x)		REG_FIELD_PREP(FBC_CTL_STRIDE_MASK, (x))
+> +#define   FBC_CTL_FENCENO_MASK		REG_GENMASK(3, 0)
+> +#define   FBC_CTL_FENCENO(x)		REG_FIELD_PREP(FBC_CTL_FENCENO_MASK, (x))
+> +#define FBC_COMMAND		_MMIO(0x320c)
+> +#define   FBC_CMD_COMPRESS		REG_BIT(0)
+> +#define FBC_STATUS		_MMIO(0x3210)
+> +#define   FBC_STAT_COMPRESSING		REG_BIT(31)
+> +#define   FBC_STAT_COMPRESSED		REG_BIT(30)
+> +#define   FBC_STAT_MODIFIED		REG_BIT(29)
+> +#define   FBC_STAT_CURRENT_LINE_MASK	REG_GENMASK(10, 0)
+> +#define FBC_CONTROL2		_MMIO(0x3214) /* i965gm only */
+> +#define   FBC_CTL_FENCE_DBL		REG_BIT(4)
+> +#define   FBC_CTL_IDLE_MASK		REG_GENMASK(3, 2)
+> +#define   FBC_CTL_IDLE_IMM		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 0)
+> +#define   FBC_CTL_IDLE_FULL		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 1)
+> +#define   FBC_CTL_IDLE_LINE		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 2)
+> +#define   FBC_CTL_IDLE_DEBUG		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 3)
+> +#define   FBC_CTL_CPU_FENCE_EN		REG_BIT(1)
+> +#define   FBC_CTL_PLANE_MASK		REG_GENMASK(1, 0)
+> +#define   FBC_CTL_PLANE(i9xx_plane)	REG_FIELD_PREP(FBC_CTL_PLANE_MASK, (i9xx_plane))
+> +#define FBC_FENCE_OFF		_MMIO(0x3218)  /* i965gm only, BSpec typo has 321Bh */
+> +#define FBC_MOD_NUM		_MMIO(0x3220)  /* i965gm only */
+> +#define   FBC_MOD_NUM_MASK		REG_GENMASK(31, 1)
+> +#define   FBC_MOD_NUM_VALID		REG_BIT(0)
+> +#define FBC_TAG(i)		_MMIO(0x3300 + (i) * 4) /* 49 reisters */
+> +#define   FBC_TAG_MASK			REG_GENMASK(1, 0) /* 16 tags per register */
+> +#define   FBC_TAG_MODIFIED		REG_FIELD_PREP(FBC_TAG_MASK, 0)
+> +#define   FBC_TAG_UNCOMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 1)
+> +#define   FBC_TAG_UNCOMPRESSIBLE	REG_FIELD_PREP(FBC_TAG_MASK, 2)
+> +#define   FBC_TAG_COMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 3)
+> +
+> +#define FBC_LL_SIZE		(1536)
+> +
+> +/* Framebuffer compression for GM45+ */
+> +#define DPFC_CB_BASE			_MMIO(0x3200)
+> +#define ILK_DPFC_CB_BASE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43200, 0x43240)
+> +#define DPFC_CONTROL			_MMIO(0x3208)
+> +#define ILK_DPFC_CONTROL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43208, 0x43248)
+> +#define   DPFC_CTL_EN				REG_BIT(31)
+> +#define   DPFC_CTL_PLANE_MASK_G4X		REG_BIT(30) /* g4x-snb */
+> +#define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_G4X, (i9xx_plane))
+> +#define   DPFC_CTL_FENCE_EN_G4X			REG_BIT(29) /* g4x-snb */
+> +#define   DPFC_CTL_PLANE_MASK_IVB		REG_GENMASK(30, 29) /* ivb only */
+> +#define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
+> +#define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
+> +#define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
+> +#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* lnl+ */
+> +#define   DPFC_CTL_PLANE_BINDING(plane_id)	REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, (plane_id))
+> +#define   DPFC_CTL_FALSE_COLOR			REG_BIT(10) /* ivb+ */
+> +#define   DPFC_CTL_SR_EN			REG_BIT(10) /* g4x only */
+> +#define   DPFC_CTL_SR_EXIT_DIS			REG_BIT(9) /* g4x only */
+> +#define   DPFC_CTL_LIMIT_MASK			REG_GENMASK(7, 6)
+> +#define   DPFC_CTL_LIMIT_1X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 0)
+> +#define   DPFC_CTL_LIMIT_2X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 1)
+> +#define   DPFC_CTL_LIMIT_4X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 2)
+> +#define   DPFC_CTL_FENCENO_MASK			REG_GENMASK(3, 0)
+> +#define   DPFC_CTL_FENCENO(fence)		REG_FIELD_PREP(DPFC_CTL_FENCENO_MASK, (fence))
+> +#define DPFC_RECOMP_CTL			_MMIO(0x320c)
+> +#define ILK_DPFC_RECOMP_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x4320c, 0x4324c)
+> +#define   DPFC_RECOMP_STALL_EN			REG_BIT(27)
+> +#define   DPFC_RECOMP_STALL_WM_MASK		REG_GENMASK(26, 16)
+> +#define   DPFC_RECOMP_TIMER_COUNT_MASK		REG_GENMASK(5, 0)
+> +#define DPFC_STATUS			_MMIO(0x3210)
+> +#define ILK_DPFC_STATUS(fbc_id)		_MMIO_PIPE((fbc_id), 0x43210, 0x43250)
+> +#define   DPFC_INVAL_SEG_MASK			REG_GENMASK(26, 16)
+> +#define   DPFC_COMP_SEG_MASK			REG_GENMASK(10, 0)
+> +#define DPFC_STATUS2			_MMIO(0x3214)
+> +#define ILK_DPFC_STATUS2(fbc_id)	_MMIO_PIPE((fbc_id), 0x43214, 0x43254)
+> +#define   DPFC_COMP_SEG_MASK_IVB		REG_GENMASK(11, 0)
+> +#define DPFC_FENCE_YOFF			_MMIO(0x3218)
+> +#define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
+> +#define DPFC_CHICKEN			_MMIO(0x3224)
+> +#define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
+> +#define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
+> +#define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
+> +#define   DPFC_CHICKEN_COMP_DUMMY_PIXEL		REG_BIT(14) /* glk+ */
+> +#define   DPFC_CHICKEN_FORCE_SLB_INVALIDATION	REG_BIT(13) /* icl+ */
+> +#define   DPFC_DISABLE_DUMMY0			REG_BIT(8) /* ivb+ */
+> +
+> +#define GLK_FBC_STRIDE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43228, 0x43268)
+> +#define   FBC_STRIDE_OVERRIDE	REG_BIT(15)
+> +#define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
+> +#define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
+> +
+> +#define ILK_FBC_RT_BASE		_MMIO(0x2128)
+> +#define   ILK_FBC_RT_VALID	REG_BIT(0)
+> +#define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
+> +
+> +#define ILK_DISPLAY_CHICKEN1	_MMIO(0x42000)
+
+Not an FBC register.
+
+> +#define   ILK_FBCQ_DIS			REG_BIT(22)
+> +#define   ILK_PABSTRETCH_DIS		REG_BIT(21)
+> +#define   ILK_SABSTRETCH_DIS		REG_BIT(20)
+> +#define   IVB_PRI_STRETCH_MAX_MASK	REG_GENMASK(21, 20)
+> +#define   IVB_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 0)
+> +#define   IVB_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 1)
+> +#define   IVB_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 2)
+> +#define   IVB_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 3)
+> +#define   IVB_SPR_STRETCH_MAX_MASK	REG_GENMASK(19, 18)
+> +#define   IVB_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 0)
+> +#define   IVB_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 1)
+> +#define   IVB_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 2)
+> +#define   IVB_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 3)
+> +
+> +
+> +/*
+> + * Framebuffer compression for Sandybridge
+> + *
+> + * The following two registers are of type GTTMMADR
+> + */
+> +#define SNB_DPFC_CTL_SA		_MMIO(0x100100)
+> +#define   SNB_DPFC_FENCE_EN		REG_BIT(29)
+> +#define   SNB_DPFC_FENCENO_MASK		REG_GENMASK(4, 0)
+> +#define   SNB_DPFC_FENCENO(fence)	REG_FIELD_PREP(SNB_DPFC_FENCENO_MASK, (fence))
+> +#define SNB_DPFC_CPU_FENCE_OFFSET	_MMIO(0x100104)
+> +
+> +/* Framebuffer compression for Ivybridge */
+> +#define IVB_FBC_RT_BASE			_MMIO(0x7020)
+> +#define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
+> +
+> +#define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
+> +#define   FBC_REND_NUKE			REG_BIT(2)
+> +#define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
+> +
+> +#define CHICKEN_MISC_4		_MMIO(0x4208c)
+
+Also not an FBC register.
+
+> +#define   CHICKEN_FBC_STRIDE_OVERRIDE	REG_BIT(13)
+> +#define   CHICKEN_FBC_STRIDE_MASK	REG_GENMASK(12, 0)
+> +#define   CHICKEN_FBC_STRIDE(x)		REG_FIELD_PREP(CHICKEN_FBC_STRIDE_MASK, (x))
+> +
+> +#endif /* __INTEL_FBC_REGS__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 68b6aa11bcf7..40e79f0dc257 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -17,6 +17,8 @@
+>  #include "intel_ring.h"
+>  #include "intel_workarounds.h"
+>  
+> +#include "display/intel_fbc_regs.h"
+> +
+>  /**
+>   * DOC: Hardware workarounds
+>   *
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index b74965383a56..8c44a21977a4 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1248,148 +1248,11 @@
+>  #define   GEN7_FF_DS_SCHED_LOAD_BALANCE	(0x1 << 4)  /* Default */
+>  #define   GEN7_FF_DS_SCHED_HW		(0x0 << 4)
+>  
+> -/*
+> - * Framebuffer compression (915+ only)
+> - */
+> -
+> -#define FBC_CFB_BASE		_MMIO(0x3200) /* 4k page aligned */
+> -#define FBC_LL_BASE		_MMIO(0x3204) /* 4k page aligned */
+> -#define FBC_CONTROL		_MMIO(0x3208)
+> -#define   FBC_CTL_EN			REG_BIT(31)
+> -#define   FBC_CTL_PERIODIC		REG_BIT(30)
+> -#define   FBC_CTL_INTERVAL_MASK		REG_GENMASK(29, 16)
+> -#define   FBC_CTL_INTERVAL(x)		REG_FIELD_PREP(FBC_CTL_INTERVAL_MASK, (x))
+> -#define   FBC_CTL_STOP_ON_MOD		REG_BIT(15)
+> -#define   FBC_CTL_UNCOMPRESSIBLE	REG_BIT(14) /* i915+ */
+> -#define   FBC_CTL_C3_IDLE		REG_BIT(13) /* i945gm only */
+> -#define   FBC_CTL_STRIDE_MASK		REG_GENMASK(12, 5)
+> -#define   FBC_CTL_STRIDE(x)		REG_FIELD_PREP(FBC_CTL_STRIDE_MASK, (x))
+> -#define   FBC_CTL_FENCENO_MASK		REG_GENMASK(3, 0)
+> -#define   FBC_CTL_FENCENO(x)		REG_FIELD_PREP(FBC_CTL_FENCENO_MASK, (x))
+> -#define FBC_COMMAND		_MMIO(0x320c)
+> -#define   FBC_CMD_COMPRESS		REG_BIT(0)
+> -#define FBC_STATUS		_MMIO(0x3210)
+> -#define   FBC_STAT_COMPRESSING		REG_BIT(31)
+> -#define   FBC_STAT_COMPRESSED		REG_BIT(30)
+> -#define   FBC_STAT_MODIFIED		REG_BIT(29)
+> -#define   FBC_STAT_CURRENT_LINE_MASK	REG_GENMASK(10, 0)
+> -#define FBC_CONTROL2		_MMIO(0x3214) /* i965gm only */
+> -#define   FBC_CTL_FENCE_DBL		REG_BIT(4)
+> -#define   FBC_CTL_IDLE_MASK		REG_GENMASK(3, 2)
+> -#define   FBC_CTL_IDLE_IMM		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 0)
+> -#define   FBC_CTL_IDLE_FULL		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 1)
+> -#define   FBC_CTL_IDLE_LINE		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 2)
+> -#define   FBC_CTL_IDLE_DEBUG		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 3)
+> -#define   FBC_CTL_CPU_FENCE_EN		REG_BIT(1)
+> -#define   FBC_CTL_PLANE_MASK		REG_GENMASK(1, 0)
+> -#define   FBC_CTL_PLANE(i9xx_plane)	REG_FIELD_PREP(FBC_CTL_PLANE_MASK, (i9xx_plane))
+> -#define FBC_FENCE_OFF		_MMIO(0x3218)  /* i965gm only, BSpec typo has 321Bh */
+> -#define FBC_MOD_NUM		_MMIO(0x3220)  /* i965gm only */
+> -#define   FBC_MOD_NUM_MASK		REG_GENMASK(31, 1)
+> -#define   FBC_MOD_NUM_VALID		REG_BIT(0)
+> -#define FBC_TAG(i)		_MMIO(0x3300 + (i) * 4) /* 49 reisters */
+> -#define   FBC_TAG_MASK			REG_GENMASK(1, 0) /* 16 tags per register */
+> -#define   FBC_TAG_MODIFIED		REG_FIELD_PREP(FBC_TAG_MASK, 0)
+> -#define   FBC_TAG_UNCOMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 1)
+> -#define   FBC_TAG_UNCOMPRESSIBLE	REG_FIELD_PREP(FBC_TAG_MASK, 2)
+> -#define   FBC_TAG_COMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 3)
+> -
+> -#define FBC_LL_SIZE		(1536)
+> -
+> -/* Framebuffer compression for GM45+ */
+> -#define DPFC_CB_BASE			_MMIO(0x3200)
+> -#define ILK_DPFC_CB_BASE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43200, 0x43240)
+> -#define DPFC_CONTROL			_MMIO(0x3208)
+> -#define ILK_DPFC_CONTROL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43208, 0x43248)
+> -#define   DPFC_CTL_EN				REG_BIT(31)
+> -#define   DPFC_CTL_PLANE_MASK_G4X		REG_BIT(30) /* g4x-snb */
+> -#define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_G4X, (i9xx_plane))
+> -#define   DPFC_CTL_FENCE_EN_G4X			REG_BIT(29) /* g4x-snb */
+> -#define   DPFC_CTL_PLANE_MASK_IVB		REG_GENMASK(30, 29) /* ivb only */
+> -#define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
+> -#define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
+> -#define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
+> -#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* lnl+ */
+> -#define   DPFC_CTL_PLANE_BINDING(plane_id)	REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, (plane_id))
+> -#define   DPFC_CTL_FALSE_COLOR			REG_BIT(10) /* ivb+ */
+> -#define   DPFC_CTL_SR_EN			REG_BIT(10) /* g4x only */
+> -#define   DPFC_CTL_SR_EXIT_DIS			REG_BIT(9) /* g4x only */
+> -#define   DPFC_CTL_LIMIT_MASK			REG_GENMASK(7, 6)
+> -#define   DPFC_CTL_LIMIT_1X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 0)
+> -#define   DPFC_CTL_LIMIT_2X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 1)
+> -#define   DPFC_CTL_LIMIT_4X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 2)
+> -#define   DPFC_CTL_FENCENO_MASK			REG_GENMASK(3, 0)
+> -#define   DPFC_CTL_FENCENO(fence)		REG_FIELD_PREP(DPFC_CTL_FENCENO_MASK, (fence))
+> -#define DPFC_RECOMP_CTL			_MMIO(0x320c)
+> -#define ILK_DPFC_RECOMP_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x4320c, 0x4324c)
+> -#define   DPFC_RECOMP_STALL_EN			REG_BIT(27)
+> -#define   DPFC_RECOMP_STALL_WM_MASK		REG_GENMASK(26, 16)
+> -#define   DPFC_RECOMP_TIMER_COUNT_MASK		REG_GENMASK(5, 0)
+> -#define DPFC_STATUS			_MMIO(0x3210)
+> -#define ILK_DPFC_STATUS(fbc_id)		_MMIO_PIPE((fbc_id), 0x43210, 0x43250)
+> -#define   DPFC_INVAL_SEG_MASK			REG_GENMASK(26, 16)
+> -#define   DPFC_COMP_SEG_MASK			REG_GENMASK(10, 0)
+> -#define DPFC_STATUS2			_MMIO(0x3214)
+> -#define ILK_DPFC_STATUS2(fbc_id)	_MMIO_PIPE((fbc_id), 0x43214, 0x43254)
+> -#define   DPFC_COMP_SEG_MASK_IVB		REG_GENMASK(11, 0)
+> -#define DPFC_FENCE_YOFF			_MMIO(0x3218)
+> -#define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
+> -#define DPFC_CHICKEN			_MMIO(0x3224)
+> -#define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
+> -#define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
+> -#define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
+> -#define   DPFC_CHICKEN_COMP_DUMMY_PIXEL		REG_BIT(14) /* glk+ */
+> -#define   DPFC_CHICKEN_FORCE_SLB_INVALIDATION	REG_BIT(13) /* icl+ */
+> -#define   DPFC_DISABLE_DUMMY0			REG_BIT(8) /* ivb+ */
+> -
+> -#define GLK_FBC_STRIDE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43228, 0x43268)
+> -#define   FBC_STRIDE_OVERRIDE	REG_BIT(15)
+> -#define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
+> -#define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
+> -
+> -#define ILK_FBC_RT_BASE		_MMIO(0x2128)
+> -#define   ILK_FBC_RT_VALID	REG_BIT(0)
+> -#define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
+> -
+> -#define ILK_DISPLAY_CHICKEN1	_MMIO(0x42000)
+> -#define   ILK_FBCQ_DIS			REG_BIT(22)
+> -#define   ILK_PABSTRETCH_DIS		REG_BIT(21)
+> -#define   ILK_SABSTRETCH_DIS		REG_BIT(20)
+> -#define   IVB_PRI_STRETCH_MAX_MASK	REG_GENMASK(21, 20)
+> -#define   IVB_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 0)
+> -#define   IVB_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 1)
+> -#define   IVB_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 2)
+> -#define   IVB_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_PRI_STRETCH_MAX_MASK, 3)
+> -#define   IVB_SPR_STRETCH_MAX_MASK	REG_GENMASK(19, 18)
+> -#define   IVB_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 0)
+> -#define   IVB_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 1)
+> -#define   IVB_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 2)
+> -#define   IVB_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 3)
+> -
+> -
+> -/*
+> - * Framebuffer compression for Sandybridge
+> - *
+> - * The following two registers are of type GTTMMADR
+> - */
+> -#define SNB_DPFC_CTL_SA		_MMIO(0x100100)
+> -#define   SNB_DPFC_FENCE_EN		REG_BIT(29)
+> -#define   SNB_DPFC_FENCENO_MASK		REG_GENMASK(4, 0)
+> -#define   SNB_DPFC_FENCENO(fence)	REG_FIELD_PREP(SNB_DPFC_FENCENO_MASK, (fence))
+> -#define SNB_DPFC_CPU_FENCE_OFFSET	_MMIO(0x100104)
+> -
+> -/* Framebuffer compression for Ivybridge */
+> -#define IVB_FBC_RT_BASE			_MMIO(0x7020)
+> -#define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
+>  
+>  #define IPS_CTL		_MMIO(0x43408)
+>  #define   IPS_ENABLE		REG_BIT(31)
+>  #define   IPS_FALSE_COLOR	REG_BIT(4)
+>  
+> -#define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
+> -#define   FBC_REND_NUKE			REG_BIT(2)
+> -#define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
+> -
+>  /*
+>   * Clock control & power management
+>   */
+> @@ -4526,11 +4389,6 @@
+>  #define   DP_MST_SHORT_HBLANK_WA(trans)		REG_BIT(5 + (trans) - TRANSCODER_A)
+>  #define   DP_MST_FEC_BS_JITTER_WA(trans)	REG_BIT(0 + (trans) - TRANSCODER_A)
+>  
+> -#define CHICKEN_MISC_4		_MMIO(0x4208c)
+> -#define   CHICKEN_FBC_STRIDE_OVERRIDE	REG_BIT(13)
+> -#define   CHICKEN_FBC_STRIDE_MASK	REG_GENMASK(12, 0)
+> -#define   CHICKEN_FBC_STRIDE(x)		REG_FIELD_PREP(CHICKEN_FBC_STRIDE_MASK, (x))
+> -
+>  #define _CHICKEN_PIPESL_1_A	0x420b0
+>  #define _CHICKEN_PIPESL_1_B	0x420b4
+>  #define CHICKEN_PIPESL_1(pipe)	_MMIO_PIPE(pipe, _CHICKEN_PIPESL_1_A, _CHICKEN_PIPESL_1_B)
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+> index 7e70ee4fbd84..1dc5281b2ade 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> @@ -28,6 +28,7 @@
+>  #include "display/intel_de.h"
+>  #include "display/intel_display.h"
+>  #include "display/intel_display_trace.h"
+> +#include "display/intel_fbc_regs.h"
+>  #include "display/skl_watermark.h"
+>  
+>  #include "gt/intel_engine_regs.h"
+> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> index 87ecc5104fd9..70d661bffcc2 100644
+> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> @@ -10,6 +10,7 @@
+>  #include "display/intel_dmc_regs.h"
+>  #include "display/intel_dp_aux_regs.h"
+>  #include "display/intel_dpio_phy.h"
+> +#include "display/intel_fbc_regs.h"
+>  #include "display/intel_fdi_regs.h"
+>  #include "display/intel_lvds_regs.h"
+>  #include "display/intel_psr_regs.h"
+> -- 
+> 2.39.2
+
 -- 
-2.39.2
-
+Ville Syrjälä
+Intel
