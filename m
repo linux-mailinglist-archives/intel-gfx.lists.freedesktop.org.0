@@ -2,62 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BAF8A2946
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 10:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3918A2B65
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 11:42:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3269310F4ED;
-	Fri, 12 Apr 2024 08:26:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2695E10F545;
+	Fri, 12 Apr 2024 09:42:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bWVe/pVY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NZxcE7Zx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F04CA10F4ED;
- Fri, 12 Apr 2024 08:26:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A13EA10F545;
+ Fri, 12 Apr 2024 09:42:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712910366; x=1744446366;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ulV0hDNZ1+YjugVVo9qryca5gjrsSvECiwW95TvIRWY=;
- b=bWVe/pVYKi9x7TnAgNnpPzl3sIpnILttWcqLoI4uLQPQjYVgBCMWLnBM
- 5XaVMv/dSoBvuLzIhkFzBzY+xo18zsJ8Bdx9UnOT9QJ1ZqX6bWwdbgId1
- dkDQI1aheoD67ineY7QUrCncyB1bMd5SoNjrimf4N0jYpHpfAZtZzpepd
- eq07KC5eOcIWS9aEoeUxjpemR5ota5V7JIaPppyyvqk9tBp6g8DbpQjz7
- 1+GzCorRuUoIPQRg9FrNOzhgz9Ef0ofN10Ro5M97MhR/j2xML0ZY42Wx/
- clFsY43nLpKKQFnkSFA1mY4i73z0JIC+yygvn4pHLrMroE4OojwsqU51+ Q==;
-X-CSE-ConnectionGUID: qqGWk+vaS5aRMtvrVMyD8A==
-X-CSE-MsgGUID: rfUifepmTaqAGacamef9Ew==
-X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="8527691"
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; 
-   d="scan'208";a="8527691"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 01:26:05 -0700
-X-CSE-ConnectionGUID: JxcwGHgmTumVgXAsfsY8Fg==
-X-CSE-MsgGUID: NAu4R6L6QvKbBtHjs5Hqmw==
+ t=1712914922; x=1744450922;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZFeaDPTGwOZhqQ4Uzst2bdt2gu91F5F1OTdesQZVgEM=;
+ b=NZxcE7ZxT0yj0X3VWPRt5WTmBsVGIEM/YtgbqwAfD9k3GdLd2uDJn4Ls
+ wE0rDYW9LdfuQsITnBEuxBscCDkDOFc1b7GYsN4FzXzIKfHBSQCrdD+Gv
+ SYc085bDqhSQLgzopWkOICgBAO37JZm6I3Bt2cDAsDx3x9tc96BxKxr71
+ 6gn65kaXRiV5be+1c9rdrkN6zKoCqfjzd/fkj8lIDWKQ3CVgVrZ54W4fn
+ 0PPuXkI7GF2FXZwFpjRU90sVN/ijiprX/mlSc+/+h6OwvEtnJXlF77i7l
+ 19gQzIbM5/rkuBBjtjlaNCMijLHJ4qnP89ro8aJuHmtP8CmNfLTB+COPz w==;
+X-CSE-ConnectionGUID: IOhJOcYISLi+eJa5/Az0tA==
+X-CSE-MsgGUID: D8IkI+kzQIK6v7yauclY5w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11041"; a="12156395"
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="12156395"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 02:42:02 -0700
+X-CSE-ConnectionGUID: L8xmN5yNTwWI/N1IbvDkkQ==
+X-CSE-MsgGUID: gtITOFemTWqlqgt55vqcnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="21259506"
-Received: from mohdaris-mobl1.gar.corp.intel.com (HELO localhost)
- ([10.252.61.65])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 01:26:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Dmitry Osipenko
- <dmitry.osipenko@collabora.com>
-Subject: Re: [PATCH] drm/edid: Parse topology block for all DispID structure
- v1.x
-In-Reply-To: <20240410180139.21352-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240410180139.21352-1-ville.syrjala@linux.intel.com>
-Date: Fri, 12 Apr 2024 11:25:57 +0300
-Message-ID: <87pluv3s2y.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,195,1708416000"; d="scan'208";a="25841355"
+Received: from swilyman-mobl1.ger.corp.intel.com (HELO
+ hazy.ger.corp.intel.com) ([10.251.215.209])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 02:41:59 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
+ ville.syrjala@linux.intel.com, jani.nikula@intel.com
+Subject: [PATCH v5 0/4] drm/i915/display: DMC wakelock implementation
+Date: Fri, 12 Apr 2024 12:41:44 +0300
+Message-Id: <20240412094148.808179-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,125 +67,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 10 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> DisplayID spec v1.3 revision history notes do claim that
-> the toplogy block was added in v1.3 so requiring structure
-> v1.2 would seem correct, but there is at least one EDID in
-> edid.tv with a topology block and structure v1.0. And
-> there are also EDIDs with DisplayID structure v1.3 which
-> seems to be totally incorrect as DisplayID spec v1.3 lists
-> structure v1.2 as the only legal value.
->
-> Unfortunately I couldn't find copies of DisplayID spec
-> v1.0-v1.2 anywhere (even on vesa.org), so I'll have to
-> go on empirical evidence alone.
->
-> We used to parse the topology block on all v1.x
-> structures until the check for structure v2.0 was added.
-> Let's go back to doing that as the evidence does suggest
-> that there are DisplayIDs in the wild that would miss
-> out on the topology stuff otherwise.
->
-> Also toss out DISPLAY_ID_STRUCTURE_VER_12 entirely as
-> it doesn't appear we can really use it for anything.
->
-> I *think* we could technically skip all the structure
-> version checks as the block tags shouldn't conflict
-> between v2.0 and v1.x. But no harm in having a bit of
-> extra sanity checks I guess.
+Hi,
 
-Our checks for the data block tags is pretty haphazard, and we should
-clean this up across the board. For some things we check only the tag
-for one version or the other, for some things we check both tags but
-without the version check, and for some things (like this one here) we
-do check version and tag. The CTA checks rely on the fact that
-DATA_BLOCK_CTA =3D=3D DATA_BLOCK_2_CTA_DISPLAY_ID.
+This is the seventh version of my series, the fifth as a proper
+patchset.
 
-It's a mess.
+These are the changes:
 
-I've thought about adding a helper that would check version & 0xf0 when
-checking block tags, and where you could check for one or the other or
-both versions.
+In v5:
+   * add DOC to i915.rst;
+   * Removed duplicate paragraph in main DOC section;
+   * Fixed comment-style in intel_dmc_wl_get().
 
-Like, quickly drafting,
+In v4:
+   * removed the call to init from the first patch (gets added later);
+   * added a flag to check if the wakelock is taken in DMC, so we
+     don't try to take it again if get() is called while the work is
+     queued;
+   * changed the copyright year to 2024;
+   * added __intel_dmc_wl_supported() to make checks easier;
+   * check if supported also on init;
+   * check if DMC is loaded before enabling;
+   * removed a couple of stray debugging messages.
 
-#define NOPE -1
+In v3:
+   * Fixed some checkpatch issues.
 
-bool is_block(int tag_to_check, int ver, int tag_v1, int tag_v2)
-{
-	if ((ver & 0xf0) =3D=3D 1 && tag_v1 !=3D NOPE && tag_v1 =3D=3D tag_to_chec=
-k)
-		return true;
-	if ((ver & 0xf0) =3D=3D 2 && tag_v2 !=3D NOPE && tag_v2 =3D=3D tag_to_chec=
-k)
-		return true;
-        return false;
-}
+In v2:
+  * Enable/disable the wakelocks on DC5-6 entry and exit instead of on
+    DMC load and unload;
+  * Added bspec link to the commit message;
+  * A bunch of other small changes;
+  * For the complete list of changes and discussions, please look at
+    the patchset in patchwork:
+    https://patchwork.freedesktop.org/series/128628/
 
-And then something like:
+Please review.
 
-	if (is_block(tag, version, DATA_BLOCK_FOO, DATA_BLOCK_2_FOO))
-		...
-
-or
-
-	if (is_block(tag, version, NOPE, DATA_BLOCK_2_FOO))
-		...
-
-Or just pass iter and block like for displayid_is_tiled_block().
-
-IDK if that becomes unwieldy at the call sites. Maybe we'll need
-additional specific helpers like displayid_is_tiled_block() on top.
-
-Anyway, on the patch at hand,
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Cheers,
+Luca.
 
 
->
-> So far I'm not aware of any user reported regressions
-> from overly strict check, but I do know that it broke
-> igt/kms_tiled_display's fake DisplayID as that one
-> gets generated with structure v1.0.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-> Fixes: c5a486af9df7 ("drm/edid: parse Tiled Display Topology Data Block f=
-or DisplayID 2.0")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/drm_edid.c  | 2 +-
->  include/drm/drm_displayid.h | 1 -
->  2 files changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index ea77577a3786..f0948ab214b3 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -7405,7 +7405,7 @@ static void drm_parse_tiled_block(struct drm_connec=
-tor *connector,
->  static bool displayid_is_tiled_block(const struct displayid_iter *iter,
->  				     const struct displayid_block *block)
->  {
-> -	return (displayid_version(iter) =3D=3D DISPLAY_ID_STRUCTURE_VER_12 &&
-> +	return (displayid_version(iter) < DISPLAY_ID_STRUCTURE_VER_20 &&
->  		block->tag =3D=3D DATA_BLOCK_TILED_DISPLAY) ||
->  		(displayid_version(iter) =3D=3D DISPLAY_ID_STRUCTURE_VER_20 &&
->  		 block->tag =3D=3D DATA_BLOCK_2_TILED_DISPLAY_TOPOLOGY);
-> diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
-> index 566497eeb3b8..bc1f6b378195 100644
-> --- a/include/drm/drm_displayid.h
-> +++ b/include/drm/drm_displayid.h
-> @@ -30,7 +30,6 @@ struct drm_edid;
->  #define VESA_IEEE_OUI				0x3a0292
->=20=20
->  /* DisplayID Structure versions */
-> -#define DISPLAY_ID_STRUCTURE_VER_12		0x12
->  #define DISPLAY_ID_STRUCTURE_VER_20		0x20
->=20=20
->  /* DisplayID Structure v1r2 Data Blocks */
+Luca Coelho (4):
+  drm/i915/display: add support for DMC wakelocks
+  drm/i915/display: don't allow DMC wakelock on older hardware
+  drm/i915/display: add module parameter to enable DMC wakelock
+  drm/i915/display: tie DMC wakelock to DC5/6 state transitions
 
---=20
-Jani Nikula, Intel
+ Documentation/gpu/i915.rst                    |   9 +
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_de.h       |  97 ++++++-
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +
+ .../drm/i915/display/intel_display_driver.c   |   1 +
+ .../drm/i915/display/intel_display_params.c   |   5 +
+ .../drm/i915/display/intel_display_params.h   |   1 +
+ .../i915/display/intel_display_power_well.c   |   7 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |   4 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |   6 +
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   | 262 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc_wl.h   |  31 +++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 13 files changed, 419 insertions(+), 8 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl.h
+
+-- 
+2.39.2
+
