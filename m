@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 471E08A35AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D643D8A35AD
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:28:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A554E10F7B0;
-	Fri, 12 Apr 2024 18:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CFC310E4C4;
+	Fri, 12 Apr 2024 18:28:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQQQ7+2k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVqFclp8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A14BF10F7B2
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B730D10F7B9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712946468; x=1744482468;
+ t=1712946474; x=1744482474;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=31zuSeLZmgie3X/SCcJ/SW/Jzrk9LW4S0eDTTAAUYE0=;
- b=bQQQ7+2ky3I3gmVN3/tTMLwqTcdJZ3sey6x/Wwj5lIXooo8iI8viYlAZ
- EB4lgTHq7aMwiqaIQDQR47dbsW4MZh5TTmsyxbTCYQqDAvbMHSp5pL7if
- cWtdqiqRsSA/DV2zgdhQlku3lMlYVQCVqd/BgZhcq4LYm7a937SJNni7r
- OHg8h0o4Z679kDJVVjXAMn3INLQOdV97Ov/ReOKr4sbu9CgkUkGyMC106
- zy37XsD/a7HZJTm1DIHXlGR5tTmvPhr9q1QTwjOt2Agaqx5foTnv3MPvW
- VCONh1ikEux2/aFnMROr6D68CIrekHwOKLMPldegL6L1BNV2+jCV+6gB7 g==;
-X-CSE-ConnectionGUID: JsrAZZd9T2u/EK1nOFKwKQ==
-X-CSE-MsgGUID: +6Fd8xafQzmuBx9xBmvq4Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560590"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560590"
+ bh=Qv7hI2H+eQLj6VtdpPW9nnoGpeffX4AdVdhVv4LDqB4=;
+ b=cVqFclp8J7zwtJz3vMMskn9HIn3sS0efZw78GB4F1/F1KHo2pvmLZouE
+ /BPHncbmWD6PJYqHDhqazeuNqJ0nPVKC+qsOGXcpeo7PjL3iuuX+8zJgr
+ MU5a/S2sph9FvWLcShEV6g2lJnZ2x1kw6Dc1CrSkHjs+2uRUNFSMb+3hh
+ F2OP0KlHAmApTZmnwlekOPS3jWdEFw2VILEcqKvnjt2qNMOD24dvE3F0x
+ vK/EUYQvgX/Qp6GnF48GBcMunmJakabMvJ3moA1TpOQOzHYvk1Ka3670t
+ mVDEJ1d/m2bV7Kli1yQHTV84IrbH8b4k7Iyn6x+isfp/lPNiu6UonJ+6g A==;
+X-CSE-ConnectionGUID: f8ebN1FeS1ap6g70LOzvLQ==
+X-CSE-MsgGUID: WyHbILg+S3eFY4wgPIeHsw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560596"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560596"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 11:27:47 -0700
-X-CSE-ConnectionGUID: wkVLOvaOQsWe121gsuuD8A==
-X-CSE-MsgGUID: DxajimlmRNqznbMQIH76XA==
+ 12 Apr 2024 11:27:50 -0700
+X-CSE-ConnectionGUID: f40Tnl8oRVu8D+FtuH99+w==
+X-CSE-MsgGUID: gTev1E71RAmK0QvPlBaYYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394870"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394893"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:45 -0700
+ by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:48 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 21:27:44 +0300
+ Fri, 12 Apr 2024 21:27:47 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 14/18] drm/i915: s/pipe_config/crtc_state/ in legacy PLL code
-Date: Fri, 12 Apr 2024 21:26:59 +0300
-Message-ID: <20240412182703.19916-15-ville.syrjala@linux.intel.com>
+Subject: [PATCH 15/18] drm/i915: Add local DPLL 'hw_state' variables
+Date: Fri, 12 Apr 2024 21:27:00 +0300
+Message-ID: <20240412182703.19916-16-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
 References: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
@@ -70,122 +70,309 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Rename all the ye olde 'pipe_config's to the modern
-'crtc_state' name in the legacy DPLL code.
+Add some local 'hw_state' variables to the old DPLL code.
+Will help with unionizing the dpll_hw_state later.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll.c | 30 +++++++++++------------
- drivers/gpu/drm/i915/display/intel_dpll.h |  6 ++---
- 2 files changed, 18 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll.c | 98 +++++++++++++----------
+ 1 file changed, 54 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 9d57262ac577..4df40a14d0f1 100644
+index 4df40a14d0f1..b6fbc481c9e5 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -415,20 +415,20 @@ void i9xx_dpll_get_hw_state(struct intel_crtc *crtc,
- }
- 
- /* Returns the clock of the currently programmed mode of the given pipe. */
--void i9xx_crtc_clock_get(struct intel_crtc_state *pipe_config)
-+void i9xx_crtc_clock_get(struct intel_crtc_state *crtc_state)
+@@ -372,9 +372,9 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
+ static int i9xx_pll_refclk(const struct intel_crtc_state *crtc_state)
  {
--	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+-	u32 dpll = crtc_state->dpll_hw_state.dpll;
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 
+-	if ((dpll & PLL_REF_INPUT_MASK) == PLLB_REF_INPUT_SPREADSPECTRUMIN)
++	if ((hw_state->dpll & PLL_REF_INPUT_MASK) == PLLB_REF_INPUT_SPREADSPECTRUMIN)
+ 		return i915->display.vbt.lvds_ssc_freq;
+ 	else if (HAS_PCH_SPLIT(i915))
+ 		return 120000;
+@@ -419,7 +419,8 @@ void i9xx_crtc_clock_get(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	u32 dpll = pipe_config->dpll_hw_state.dpll;
-+	u32 dpll = crtc_state->dpll_hw_state.dpll;
+-	u32 dpll = crtc_state->dpll_hw_state.dpll;
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
++	u32 dpll = hw_state->dpll;
  	u32 fp;
  	struct dpll clock;
  	int port_clock;
--	int refclk = i9xx_pll_refclk(pipe_config);
-+	int refclk = i9xx_pll_refclk(crtc_state);
- 
- 	if ((dpll & DISPLAY_RATE_SELECT_FPA1) == 0)
--		fp = pipe_config->dpll_hw_state.fp0;
-+		fp = crtc_state->dpll_hw_state.fp0;
- 	else
--		fp = pipe_config->dpll_hw_state.fp1;
-+		fp = crtc_state->dpll_hw_state.fp1;
- 
- 	clock.m1 = (fp & FP_M1_DIV_MASK) >> FP_M1_DIV_SHIFT;
- 	if (IS_PINEVIEW(dev_priv)) {
-@@ -503,12 +503,12 @@ void i9xx_crtc_clock_get(struct intel_crtc_state *pipe_config)
- 	 * port_clock to compute adjusted_mode.crtc_clock in the
- 	 * encoder's get_config() function.
- 	 */
--	pipe_config->port_clock = port_clock;
-+	crtc_state->port_clock = port_clock;
- }
- 
--void vlv_crtc_clock_get(struct intel_crtc_state *pipe_config)
-+void vlv_crtc_clock_get(struct intel_crtc_state *crtc_state)
- {
--	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -511,12 +512,13 @@ void vlv_crtc_clock_get(struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
  	enum dpio_phy phy = vlv_pipe_to_phy(crtc->pipe);
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
  	struct dpll clock;
-@@ -516,7 +516,7 @@ void vlv_crtc_clock_get(struct intel_crtc_state *pipe_config)
+ 	u32 mdiv;
  	int refclk = 100000;
  
  	/* In case of DSI, DPLL will not be used */
--	if ((pipe_config->dpll_hw_state.dpll & DPLL_VCO_ENABLE) == 0)
-+	if ((crtc_state->dpll_hw_state.dpll & DPLL_VCO_ENABLE) == 0)
+-	if ((crtc_state->dpll_hw_state.dpll & DPLL_VCO_ENABLE) == 0)
++	if ((hw_state->dpll & DPLL_VCO_ENABLE) == 0)
  		return;
  
  	vlv_dpio_get(dev_priv);
-@@ -529,12 +529,12 @@ void vlv_crtc_clock_get(struct intel_crtc_state *pipe_config)
- 	clock.p1 = (mdiv >> DPIO_P1_SHIFT) & 7;
- 	clock.p2 = (mdiv >> DPIO_P2_SHIFT) & 0x1f;
- 
--	pipe_config->port_clock = vlv_calc_dpll_params(refclk, &clock);
-+	crtc_state->port_clock = vlv_calc_dpll_params(refclk, &clock);
- }
- 
--void chv_crtc_clock_get(struct intel_crtc_state *pipe_config)
-+void chv_crtc_clock_get(struct intel_crtc_state *crtc_state)
- {
--	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -538,12 +540,13 @@ void chv_crtc_clock_get(struct intel_crtc_state *crtc_state)
  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
  	enum dpio_channel port = vlv_pipe_to_channel(crtc->pipe);
  	enum dpio_phy phy = vlv_pipe_to_phy(crtc->pipe);
-@@ -543,7 +543,7 @@ void chv_crtc_clock_get(struct intel_crtc_state *pipe_config)
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	struct dpll clock;
+ 	u32 cmn_dw13, pll_dw0, pll_dw1, pll_dw2, pll_dw3;
  	int refclk = 100000;
  
  	/* In case of DSI, DPLL will not be used */
--	if ((pipe_config->dpll_hw_state.dpll & DPLL_VCO_ENABLE) == 0)
-+	if ((crtc_state->dpll_hw_state.dpll & DPLL_VCO_ENABLE) == 0)
+-	if ((crtc_state->dpll_hw_state.dpll & DPLL_VCO_ENABLE) == 0)
++	if ((hw_state->dpll & DPLL_VCO_ENABLE) == 0)
  		return;
  
  	vlv_dpio_get(dev_priv);
-@@ -562,7 +562,7 @@ void chv_crtc_clock_get(struct intel_crtc_state *pipe_config)
- 	clock.p1 = (cmn_dw13 >> DPIO_CHV_P1_DIV_SHIFT) & 0x7;
- 	clock.p2 = (cmn_dw13 >> DPIO_CHV_P2_DIV_SHIFT) & 0x1f;
+@@ -1065,19 +1068,20 @@ static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
  
--	pipe_config->port_clock = chv_calc_dpll_params(refclk, &clock);
-+	crtc_state->port_clock = chv_calc_dpll_params(refclk, &clock);
+ 	if (IS_PINEVIEW(dev_priv)) {
+-		crtc_state->dpll_hw_state.fp0 = pnv_dpll_compute_fp(clock);
+-		crtc_state->dpll_hw_state.fp1 = pnv_dpll_compute_fp(reduced_clock);
++		hw_state->fp0 = pnv_dpll_compute_fp(clock);
++		hw_state->fp1 = pnv_dpll_compute_fp(reduced_clock);
+ 	} else {
+-		crtc_state->dpll_hw_state.fp0 = i9xx_dpll_compute_fp(clock);
+-		crtc_state->dpll_hw_state.fp1 = i9xx_dpll_compute_fp(reduced_clock);
++		hw_state->fp0 = i9xx_dpll_compute_fp(clock);
++		hw_state->fp1 = i9xx_dpll_compute_fp(reduced_clock);
+ 	}
+ 
+-	crtc_state->dpll_hw_state.dpll = i9xx_dpll(crtc_state, clock, reduced_clock);
++	hw_state->dpll = i9xx_dpll(crtc_state, clock, reduced_clock);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 4)
+-		crtc_state->dpll_hw_state.dpll_md = i965_dpll_md(crtc_state);
++		hw_state->dpll_md = i965_dpll_md(crtc_state);
  }
  
- /*
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.h b/drivers/gpu/drm/i915/display/intel_dpll.h
-index dc47affba2ba..49591bda7f8b 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.h
-@@ -42,9 +42,9 @@ bool bxt_find_best_dpll(struct intel_crtc_state *crtc_state,
- 			struct dpll *best_clock);
- int chv_calc_dpll_params(int refclk, struct dpll *pll_clock);
+ static u32 i8xx_dpll(const struct intel_crtc_state *crtc_state,
+@@ -1132,10 +1136,12 @@ static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
+ 			      const struct dpll *clock,
+ 			      const struct dpll *reduced_clock)
+ {
+-	crtc_state->dpll_hw_state.fp0 = i9xx_dpll_compute_fp(clock);
+-	crtc_state->dpll_hw_state.fp1 = i9xx_dpll_compute_fp(reduced_clock);
++	struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
  
--void i9xx_crtc_clock_get(struct intel_crtc_state *pipe_config);
--void vlv_crtc_clock_get(struct intel_crtc_state *pipe_config);
--void chv_crtc_clock_get(struct intel_crtc_state *pipe_config);
-+void i9xx_crtc_clock_get(struct intel_crtc_state *crtc_state);
-+void vlv_crtc_clock_get(struct intel_crtc_state *crtc_state);
-+void chv_crtc_clock_get(struct intel_crtc_state *crtc_state);
+-	crtc_state->dpll_hw_state.dpll = i8xx_dpll(crtc_state, clock, reduced_clock);
++	hw_state->fp0 = i9xx_dpll_compute_fp(clock);
++	hw_state->fp1 = i9xx_dpll_compute_fp(reduced_clock);
++
++	hw_state->dpll = i8xx_dpll(crtc_state, clock, reduced_clock);
+ }
  
- void assert_pll_enabled(struct drm_i915_private *i915, enum pipe pipe);
- void assert_pll_disabled(struct drm_i915_private *i915, enum pipe pipe);
+ static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
+@@ -1331,12 +1337,13 @@ static void ilk_compute_dpll(struct intel_crtc_state *crtc_state,
+ 			     const struct dpll *clock,
+ 			     const struct dpll *reduced_clock)
+ {
++	struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	int factor = ilk_fb_cb_factor(crtc_state);
+ 
+-	crtc_state->dpll_hw_state.fp0 = ilk_dpll_compute_fp(clock, factor);
+-	crtc_state->dpll_hw_state.fp1 = ilk_dpll_compute_fp(reduced_clock, factor);
++	hw_state->fp0 = ilk_dpll_compute_fp(clock, factor);
++	hw_state->fp1 = ilk_dpll_compute_fp(reduced_clock, factor);
+ 
+-	crtc_state->dpll_hw_state.dpll = ilk_dpll(crtc_state, clock, reduced_clock);
++	hw_state->dpll = ilk_dpll(crtc_state, clock, reduced_clock);
+ }
+ 
+ static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
+@@ -1429,8 +1436,10 @@ static u32 vlv_dpll(const struct intel_crtc_state *crtc_state)
+ 
+ void vlv_compute_dpll(struct intel_crtc_state *crtc_state)
+ {
+-	crtc_state->dpll_hw_state.dpll = vlv_dpll(crtc_state);
+-	crtc_state->dpll_hw_state.dpll_md = i965_dpll_md(crtc_state);
++	struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
++
++	hw_state->dpll = vlv_dpll(crtc_state);
++	hw_state->dpll_md = i965_dpll_md(crtc_state);
+ }
+ 
+ static u32 chv_dpll(const struct intel_crtc_state *crtc_state)
+@@ -1453,8 +1462,10 @@ static u32 chv_dpll(const struct intel_crtc_state *crtc_state)
+ 
+ void chv_compute_dpll(struct intel_crtc_state *crtc_state)
+ {
+-	crtc_state->dpll_hw_state.dpll = chv_dpll(crtc_state);
+-	crtc_state->dpll_hw_state.dpll_md = i965_dpll_md(crtc_state);
++	struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
++
++	hw_state->dpll = chv_dpll(crtc_state);
++	hw_state->dpll_md = i965_dpll_md(crtc_state);
+ }
+ 
+ static int chv_crtc_compute_clock(struct intel_atomic_state *state,
+@@ -1810,7 +1821,7 @@ void i9xx_enable_pll(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	u32 dpll = crtc_state->dpll_hw_state.dpll;
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	enum pipe pipe = crtc->pipe;
+ 	int i;
+ 
+@@ -1820,36 +1831,35 @@ void i9xx_enable_pll(const struct intel_crtc_state *crtc_state)
+ 	if (i9xx_has_pps(dev_priv))
+ 		assert_pps_unlocked(dev_priv, pipe);
+ 
+-	intel_de_write(dev_priv, FP0(pipe), crtc_state->dpll_hw_state.fp0);
+-	intel_de_write(dev_priv, FP1(pipe), crtc_state->dpll_hw_state.fp1);
++	intel_de_write(dev_priv, FP0(pipe), hw_state->fp0);
++	intel_de_write(dev_priv, FP1(pipe), hw_state->fp1);
+ 
+ 	/*
+ 	 * Apparently we need to have VGA mode enabled prior to changing
+ 	 * the P1/P2 dividers. Otherwise the DPLL will keep using the old
+ 	 * dividers, even though the register value does change.
+ 	 */
+-	intel_de_write(dev_priv, DPLL(pipe), dpll & ~DPLL_VGA_MODE_DIS);
+-	intel_de_write(dev_priv, DPLL(pipe), dpll);
++	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll & ~DPLL_VGA_MODE_DIS);
++	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+ 
+ 	/* Wait for the clocks to stabilize. */
+ 	intel_de_posting_read(dev_priv, DPLL(pipe));
+ 	udelay(150);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 4) {
+-		intel_de_write(dev_priv, DPLL_MD(pipe),
+-			       crtc_state->dpll_hw_state.dpll_md);
++		intel_de_write(dev_priv, DPLL_MD(pipe), hw_state->dpll_md);
+ 	} else {
+ 		/* The pixel multiplier can only be updated once the
+ 		 * DPLL is enabled and the clocks are stable.
+ 		 *
+ 		 * So write it again.
+ 		 */
+-		intel_de_write(dev_priv, DPLL(pipe), dpll);
++		intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+ 	}
+ 
+ 	/* We do this three times for luck */
+ 	for (i = 0; i < 3; i++) {
+-		intel_de_write(dev_priv, DPLL(pipe), dpll);
++		intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+ 		intel_de_posting_read(dev_priv, DPLL(pipe));
+ 		udelay(150); /* wait for warmup */
+ 	}
+@@ -1979,9 +1989,10 @@ static void _vlv_enable_pll(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	enum pipe pipe = crtc->pipe;
+ 
+-	intel_de_write(dev_priv, DPLL(pipe), crtc_state->dpll_hw_state.dpll);
++	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+ 	intel_de_posting_read(dev_priv, DPLL(pipe));
+ 	udelay(150);
+ 
+@@ -1993,6 +2004,7 @@ void vlv_enable_pll(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+@@ -2002,16 +2014,14 @@ void vlv_enable_pll(const struct intel_crtc_state *crtc_state)
+ 
+ 	/* Enable Refclk */
+ 	intel_de_write(dev_priv, DPLL(pipe),
+-		       crtc_state->dpll_hw_state.dpll &
+-		       ~(DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV));
++		       hw_state->dpll & ~(DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV));
+ 
+-	if (crtc_state->dpll_hw_state.dpll & DPLL_VCO_ENABLE) {
++	if (hw_state->dpll & DPLL_VCO_ENABLE) {
+ 		vlv_prepare_pll(crtc_state);
+ 		_vlv_enable_pll(crtc_state);
+ 	}
+ 
+-	intel_de_write(dev_priv, DPLL_MD(pipe),
+-		       crtc_state->dpll_hw_state.dpll_md);
++	intel_de_write(dev_priv, DPLL_MD(pipe), hw_state->dpll_md);
+ 	intel_de_posting_read(dev_priv, DPLL_MD(pipe));
+ }
+ 
+@@ -2114,6 +2124,7 @@ static void _chv_enable_pll(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	enum pipe pipe = crtc->pipe;
+ 	enum dpio_channel port = vlv_pipe_to_channel(pipe);
+ 	enum dpio_phy phy = vlv_pipe_to_phy(crtc->pipe);
+@@ -2134,7 +2145,7 @@ static void _chv_enable_pll(const struct intel_crtc_state *crtc_state)
+ 	udelay(1);
+ 
+ 	/* Enable PLL */
+-	intel_de_write(dev_priv, DPLL(pipe), crtc_state->dpll_hw_state.dpll);
++	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+ 
+ 	/* Check PLL is locked */
+ 	if (intel_de_wait_for_set(dev_priv, DPLL(pipe), DPLL_LOCK_VLV, 1))
+@@ -2145,6 +2156,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	const struct intel_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state;
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+@@ -2154,9 +2166,9 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+ 
+ 	/* Enable Refclk and SSC */
+ 	intel_de_write(dev_priv, DPLL(pipe),
+-		       crtc_state->dpll_hw_state.dpll & ~DPLL_VCO_ENABLE);
++		       hw_state->dpll & ~DPLL_VCO_ENABLE);
+ 
+-	if (crtc_state->dpll_hw_state.dpll & DPLL_VCO_ENABLE) {
++	if (hw_state->dpll & DPLL_VCO_ENABLE) {
+ 		chv_prepare_pll(crtc_state);
+ 		_chv_enable_pll(crtc_state);
+ 	}
+@@ -2169,10 +2181,9 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+ 		 * the value from DPLLBMD to either pipe B or C.
+ 		 */
+ 		intel_de_write(dev_priv, CBR4_VLV, CBR_DPLLBMD_PIPE(pipe));
+-		intel_de_write(dev_priv, DPLL_MD(PIPE_B),
+-			       crtc_state->dpll_hw_state.dpll_md);
++		intel_de_write(dev_priv, DPLL_MD(PIPE_B), hw_state->dpll_md);
+ 		intel_de_write(dev_priv, CBR4_VLV, 0);
+-		dev_priv->display.state.chv_dpll_md[pipe] = crtc_state->dpll_hw_state.dpll_md;
++		dev_priv->display.state.chv_dpll_md[pipe] = hw_state->dpll_md;
+ 
+ 		/*
+ 		 * DPLLB VGA mode also seems to cause problems.
+@@ -2182,8 +2193,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+ 			    (intel_de_read(dev_priv, DPLL(PIPE_B)) &
+ 			     DPLL_VGA_MODE_DIS) == 0);
+ 	} else {
+-		intel_de_write(dev_priv, DPLL_MD(pipe),
+-			       crtc_state->dpll_hw_state.dpll_md);
++		intel_de_write(dev_priv, DPLL_MD(pipe), hw_state->dpll_md);
+ 		intel_de_posting_read(dev_priv, DPLL_MD(pipe));
+ 	}
+ }
 -- 
 2.43.2
 
