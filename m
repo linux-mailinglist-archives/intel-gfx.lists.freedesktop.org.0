@@ -2,61 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 654808A3243
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 17:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5928A3251
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 17:24:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1D5D10F6DC;
-	Fri, 12 Apr 2024 15:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D60A510F6DF;
+	Fri, 12 Apr 2024 15:24:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a8TOm9+2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTIDfJNR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F098B10F6DC;
- Fri, 12 Apr 2024 15:22:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88E4B10F6DA;
+ Fri, 12 Apr 2024 15:24:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712935360; x=1744471360;
+ t=1712935451; x=1744471451;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=05ujJmEbph0JbaBHqg0TtJhSJ9RZni7D3zovPPElkLk=;
- b=a8TOm9+2ic+39P6JvIPVYpZE8txC1v4Tp44h0s8wJtxzt+IjhMu/6JPQ
- hon1vc6A7guIFnNEXS1U7GN3bBpi4fKehwFeDdPvzY7im5FKTImGw6W0x
- B+1W5BSHhjyT9Bd4aKt9Toj0a3kztWQhhhCMGreYc02RoYrQnaseM+OJu
- hPIiCGoA4fPubw301dQ2LyMkFPnoeuS2RwUYmcP3DBO5rgIuUCj/ZsygU
- U5RwRnhNfABtgSII2DCGVw3675W2aCk50VmDIv/nzGUC50g/6CkttjAtf
- YeIXdcgy72xUxON9MuR7rHF7F3X2M8NARJExAvYH3CN7wAlu+ezpLQ604 g==;
-X-CSE-ConnectionGUID: YmgYw27RRDiq9Cp2TH549A==
-X-CSE-MsgGUID: DOwTmxajS9eHCukMlVVgbw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19542936"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19542936"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 08:22:40 -0700
-X-CSE-ConnectionGUID: 9aQaGolpT5aOianY9N9Yrw==
-X-CSE-MsgGUID: 7eiCpL8nT2ydnJYCZ2V6Cg==
+ in-reply-to:mime-version;
+ bh=T4g2ft4VuixfDY9s0o1FcOEJt60+XLTncxLlmljXBSc=;
+ b=XTIDfJNRfdcfLFvilmlJamta81HSx5h5AOl702fq2irAFvfXzaw0IGBk
+ +6HfPaKgiO7xRVPrE0pPG/6o14hdz49EhnXGNj5PwIEDp6rvVxY2iJiuJ
+ jrZincv0UAqwOUItS7hD9JcpKhFDADxDr7n3zsFKYvq/EpDzibS4wj1Ln
+ Tb6I3QhCgiRPlgKGPJyqR39lKoMQtiFKcC+hfVOGCWoMMo3wY/QNi2j/+
+ k7ZwA9Y/khYt7WomsA1k2oJr4pmSNbqvs7uH2+n2nYtv53Y5FxdinKmtp
+ CWfYXzFrGuhjjxzMMJT6ZEQ6JCZnNAQ4Tq+qJA5kFB8qiy6+7x23YIb/M g==;
+X-CSE-ConnectionGUID: uZNPxF4PSpGu1HxenGA6bA==
+X-CSE-MsgGUID: 8frzJAjqQUu3wpeCEEseHQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8240542"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
+   d="scan'208";a="8240542"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 08:24:11 -0700
+X-CSE-ConnectionGUID: +xMOaVS8TtiynxjvaBcH/w==
+X-CSE-MsgGUID: 4kGx/krKRtOu0LvBahQY3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21346127"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 08:22:37 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 18:22:36 +0300
-Date: Fri, 12 Apr 2024 18:22:36 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/6] drm/i915/display: split out intel_sprite_regs.h from
- i915_reg.h
-Message-ID: <ZhlRvOxcAY6p_lsK@intel.com>
-References: <cover.1712933479.git.jani.nikula@intel.com>
- <31c5e1ee1a7c83c37e5507c52803b0c048420b1c.1712933479.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="26066121"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Apr 2024 08:24:11 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 12 Apr 2024 08:24:10 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 12 Apr 2024 08:24:10 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 12 Apr 2024 08:24:10 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 12 Apr 2024 08:24:10 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KCZb+J8rQIe28x+VGjHlFE8czQAUaHffw1DU11/27gF1M5H6+s2W3OWi5nyTnQBES5IFqf9myFOSaE29gYSIC91BgFwpV6jnlXlvUHU6y53YE4TT6NHh673udkwKd6DrZHs5MtuLNFdvu4y7nv4EDN6jVX42xCNMgKA8uflAtMH6hIE62mf9v3mRWrymIhNXpv3RYVBw65Y9u9CUaSQsIFy57qBymDe7ut0t7a9kavJX0hduaNfk2QlpEZON0iHjoq414QKOmX7ZgNyCl7hbom7e/HcRIQ0VCSNa8PjP/BU+bU7vngs17HhtkcBkZnxrXiKk4pq4Jy3dl1AOTIFidA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b/aZX6/l0lRswoRz2Rdte6sYhZHWDE0UetLPew8EY48=;
+ b=EppofDPsOvEPBy09EPzgrrppbtCux20WVoPpgdEx/XEvQ982cR3aUcTD0GO+HEJlPfgeNJTQhTTOQh7ueCzwn/dsId0Iusow0y38X/0JZo059VTf58R2qNu9F4c2CVJtNhvLgxwMBkmO9GWyIeF6aEKXXHkNbsZxP5GE1trYJZoXptPMv1UqI9XcCLcG4h6/rEVdRVVu2wzT4rs+L8qqHVdIn7P9bbEZdHh4tcDvnIT2H/iGuYGzgAueELgMTDZ8EZKqDa4tKVbEDifIgHHwj85JREuE9nHjxo/e3fAl0ezpKZDx127gToS/l1CVKr6R/Y7lIjPWmkQZ9J8yhvC2cw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by DS0PR11MB7733.namprd11.prod.outlook.com (2603:10b6:8:dc::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.26; Fri, 12 Apr
+ 2024 15:24:05 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%5]) with mapi id 15.20.7430.045; Fri, 12 Apr 2024
+ 15:24:05 +0000
+Date: Fri, 12 Apr 2024 08:24:03 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Borah,
+ Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "Balasubramani
+ Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Subject: Re: [v2] drm/i915: Implement Audio WA_14020863754
+Message-ID: <20240412152403.GG958162@mdroper-desk1.amr.corp.intel.com>
+References: <20240410135046.933254-1-uma.shankar@intel.com>
+ <20240411223635.GE6571@mdroper-desk1.amr.corp.intel.com>
+ <DM4PR11MB6360A0C3ADA45F47E088D0AEF4042@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <31c5e1ee1a7c83c37e5507c52803b0c048420b1c.1712933479.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <DM4PR11MB6360A0C3ADA45F47E088D0AEF4042@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BYAPR02CA0040.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::17) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DS0PR11MB7733:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80954238-157d-47ce-fb37-08dc5b049743
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wtBsIQ9CllLebOPMHpg4EJQCN9ZSyJHu/5EFxg4sERyfG03DwyptrWNNXeebEeUabNctMFtkqbzKPDP1Wl26PNAVYJCPSkmTBaxb9OavvJqLRGmUXM5RhuE8qCzfYUgc0jM978vpQH7FlMfyGe3teFBv3pPg4aB/DhN7/hewV/2LqqivHYy8VWZxbPwY6TUzAQB9D1FugdS8OKItsPphTwE2AUgq3Bk/n6TNnYLm/6NZRD7kDyds22h9eLWBQN/BMKguPYxNbxgTDoZUqn/xwIcjBJevqdpfvDXyA/T/E8Yy/2LC6KxiRVKegBmuLjY0cdQGyEFu7u2jbdXVjkP506wtG3vCYZZQnUY2I8Z6DjCAPzA2zYqSSAC8bLshUgBb6zFBBNzi+S66jL3wnx7B68m/IOgt1Sgy46dQAjtU/jI7PP2a9vZWlYWUeVXHuGmUbj1xdjnMka9JDoROVRVmW0e67H+6J4epkkGcK0TXfv1H6U5tucTn9YgdDirgBKNLtNk7ojc8q8BLBUavLMmD4wCE02S3zcgWzl1VFdxtwcXVGOW0RKoJv/7thAlkM2/FLLQ9+UeeD/Q06ewqE9p3nB6ppBKU6Dp0Wk9A/d3hmnMQBpoY71BGjrlXm3HsMY87nLqcpSAKSm2QUMb9c+A+yy83I0cb1xUyJ2xWBHq2QKs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kPoNn0tEkhCAdMZQz82QOXI2i/tplkulOV0UPR4N65mAYjWxs++3VckV3K1z?=
+ =?us-ascii?Q?uDZqpYO88yL3w6tkkVX0saexgwXmq8YnBHgGHIiLjZngaLXzO6wrruE9PL6Q?=
+ =?us-ascii?Q?xrGQgJ3f1d02a7/Ali7uYaPwNBFz7wJslnYUeFbBILOkmtgZM6OWlOB1GHw2?=
+ =?us-ascii?Q?VPQb4sZWBKWEEdgeAJ+5FpTl0orcg+9ppgYdgZ74bdJmeYrhhE90fUpZnbbU?=
+ =?us-ascii?Q?3t6pHUlZQcUiZBRut62JVC5trx9cXBR954Jmmx+QCRT46G3vLUR2Er7TfxBb?=
+ =?us-ascii?Q?zx5vUd6L92LmRRR17Nm+6nA4XS/72FsaOdA4uj+aL/c5xD0KTHDFa8jO0Tsm?=
+ =?us-ascii?Q?yc+lS+furVm2ePBS2JLRl20uYCCagbA2RclhY02VRwio7TcgBfKYWF8MpL4R?=
+ =?us-ascii?Q?d2HMEe9NIMySUHatGRraqfq/vsonsmL9x5fBGHx8Zqg/5vvET0Ti14x1UzDn?=
+ =?us-ascii?Q?HdosY1410FtSQnkKAuUiXOY6+UmYqhMfq7ujLoYgXy9XTqoNzeP2wLeyP1V/?=
+ =?us-ascii?Q?JjSI3IA0jPy3OjdJGJbl9/QNQTchfcqihv6A+GXSwEV9vAZxS6zp8Fwn//wR?=
+ =?us-ascii?Q?ifqDst57CjPtrKHZ90ZhuJNKt3LXIBZt4DY8VOAdA9B6fY+SUAjUSetybVCq?=
+ =?us-ascii?Q?J02HG6asGnwci6bV2cZ2Bd20wwcbL9e5D5tR+GaLyfjNocvXsOEUyc1aRxit?=
+ =?us-ascii?Q?ZbDnzi1vUeDGbu5JJsTqsvLuNk812GFBZDYdIpaFwqsiSpWEK5isQMSujGye?=
+ =?us-ascii?Q?DnitkQoYg4LlSDVFlWfj8r6IbyvZhtOWiHoEHCPmiRW3LWWISZxlHlL9J/ED?=
+ =?us-ascii?Q?8ds7BchtEVSOVo3hh/ui4AyH3AuMpv1BxQzAClNwdKdkFaI4b/Nn9yt4pKvV?=
+ =?us-ascii?Q?1kx+edKWAKhb/mDHmuchXAW5uP0IYMsj1sSUhAlx4G4erEiS21fzQujjzEwp?=
+ =?us-ascii?Q?T69gDxMxtglxx2vvSBT1rzZi5xzvt7ENXQZu/37DHuzPcMSoAAQVgB9Psz2e?=
+ =?us-ascii?Q?TwSoOmB4HNfhpBZZy4yKRFsvUyS4zevYPmB7NglAj0UcFiFdCegt5htLMaUw?=
+ =?us-ascii?Q?fi+suTqJNMnHg0Uk+cITmtxrYsdnU8I9G07wlST7CK5c78o0OG+uJKK3T27K?=
+ =?us-ascii?Q?A7/HmbU/NoN3PyJA3MhbSm4NbnWfgJOuRJE0wIDHRIw6HsvRGQ1APNm5O39A?=
+ =?us-ascii?Q?ZPf+aDsAeoEbf4FZ2Xe8r21GMUL9cNvSi2pY8zHwSiYQILIY1LgoM3fCImpz?=
+ =?us-ascii?Q?UTu87ceFNpItghtIylbaNBYi28ab2CzkmpmQHWhmNUOGSe7hmNUHkPrE/f6O?=
+ =?us-ascii?Q?2w1VfXrrsaRHUKApmpfcNXfUntEMacvlZSXDbkWYVqiBmCmyOJaaBTYAU5F/?=
+ =?us-ascii?Q?z4WNWznmn4qEgJnvrX+hwMKsFHJRLyl6hES6YRalm2aUYqNPcmsvBpemIBLL?=
+ =?us-ascii?Q?xRD4Lf3odwbdOWxVquzd+XACjlocuAxe+NzrZbHp2BvN94A3s+TZYRyYypwt?=
+ =?us-ascii?Q?tBvExcIzFFEHWKXavx3/om9w1QdYH88uHhfkWNK7HCFFfbIY80s5UsL58glk?=
+ =?us-ascii?Q?D9g1UkdMDqpymJH8lH58l+TYFrMDV9TSGYCtsWhd57Mf/JAlLEj4jFvAgMXj?=
+ =?us-ascii?Q?wA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80954238-157d-47ce-fb37-08dc5b049743
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Apr 2024 15:24:05.7008 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ddZOCSFsRso7YDlHQqZV7n+I+gFc/B87dzisfVTIR7tBIqCTuk62rxVmxIdPEqK5e+6f5Or/Rn3n2OzAq3+2ysiJjQcWqrmCc7XD/J0x2Wc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7733
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,822 +163,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 12, 2024 at 05:52:56PM +0300, Jani Nikula wrote:
-> Clean up i915_reg.h.
+On Fri, Apr 12, 2024 at 03:25:23AM -0700, Shankar, Uma wrote:
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_sprite.c   |   1 +
->  .../gpu/drm/i915/display/intel_sprite_regs.h  | 349 ++++++++++++++++++
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   1 +
->  drivers/gpu/drm/i915/gvt/display.c            |   1 +
->  drivers/gpu/drm/i915/gvt/fb_decoder.c         |   5 +-
->  drivers/gpu/drm/i915/gvt/handlers.c           |   1 +
->  drivers/gpu/drm/i915/i915_reg.h               | 340 -----------------
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
->  8 files changed, 358 insertions(+), 341 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_sprite_regs.h
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index d7b440c8caef..36a253a19c74 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -47,6 +47,7 @@
->  #include "intel_fb.h"
->  #include "intel_frontbuffer.h"
->  #include "intel_sprite.h"
-> +#include "intel_sprite_regs.h"
->  
->  static char sprite_name(struct drm_i915_private *i915, enum pipe pipe, int sprite)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite_regs.h b/drivers/gpu/drm/i915/display/intel_sprite_regs.h
-> new file mode 100644
-> index 000000000000..caf4b58e9a27
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite_regs.h
-> @@ -0,0 +1,349 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/* Copyright © 2024 Intel Corporation */
-> +
-> +#ifndef __INTEL_SPRITE_REGS__
-> +#define __INTEL_SPRITE_REGS__
-> +
-> +#include "intel_display_reg_defs.h"
-> +
-> +/* Sprite A control */
+> > -----Original Message-----
+> > From: Roper, Matthew D <matthew.d.roper@intel.com>
+> > Sent: Friday, April 12, 2024 4:07 AM
+> > To: Shankar, Uma <uma.shankar@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Borah,
+> > Chaitanya Kumar <chaitanya.kumar.borah@intel.com>;
+> > jani.nikula@linux.intel.com
+> > Subject: Re: [v2] drm/i915: Implement Audio WA_14020863754
+> > 
+> > On Wed, Apr 10, 2024 at 07:20:46PM +0530, Uma Shankar wrote:
+> > > WA_14020863754: Corner case with Min Hblank Fix can cause audio hang
+> > >
+> > > Issue: Previously a fix was made to avoid issues with extremely small
+> > > hblanks, called the "Min Hblank Fix". However, this can potentially
+> > > cause an audio hang.
+> > >
+> > > Workaround :
+> > > During "Audio Programming Sequence" Audio Enabling - When DP mode is
+> > > enabled Set mmio offset 0x65F1C bit 18 = 1b, before step #1 "Enable
+> > > audio Presence Detect"
+> > >
+> > > During "Audio Programming Sequence" Audio Disabling - When DP mode is
+> > > enabled Clear mmio offset 0x65F1C bit 18 = 0b, after step #6 "Disable
+> > > Audio PD (Presence Detect)"
+> > > If not clearing PD bit, must also not clear 0x65F1C bit 18 (leave =
+> > > 1b)
+> > >
+> > > v2: Update the platform checks (Jani Nikula)
+> > >
+> > > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_audio.c      | 14 ++++++++++++++
+> > >  drivers/gpu/drm/i915/display/intel_audio_regs.h |  3 +++
+> > >  2 files changed, 17 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
+> > > b/drivers/gpu/drm/i915/display/intel_audio.c
+> > > index 07e0c73204f3..61df5115c970 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> > > @@ -512,6 +512,13 @@ static void hsw_audio_codec_disable(struct
+> > intel_encoder *encoder,
+> > >  	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+> > >  		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
+> > >
+> > > +	/*
+> > > +	 * WA_14020863754: Implement Audio Workaround
+> > > +	 * Corner case with Min Hblank Fix can cause audio hang
+> > > +	 */
+> > > +	if (DISPLAY_VER(i915) >= 20)
+> > 
+> > The workaround is currently listed as applying to both Xe2_LPD (20.00) and
+> > Xe2_HPD (14.01).  So we should match on those precise IP versions for now.
+> > Future platforms and/or refreshes may or may not need this workaround and we
+> > don't want to just assume the workaround will carry forward forever, so the
+> > condition may get updated further as new platforms/IP versions are added to the
+> > driver.
+> 
+> Hi Matt,
+> Yes, agree to limit till platforms where we have visibility.
+> 
+> Should I just keep it for LNL and add BMG later once the PE changes get merged and the
+> macros become available?
 
-Redundant comment.
+You should probably sync with Bala on that and see what he thinks.  I
+suspect that changes here won't conflict with anything else in the BMG
+enablement series, so it's probably okay to include 14.01 in the
+condition right away, even before that series lands, but Bala would know
+best.
 
-Otherwise
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We should perhaps indicate which sprite registers are for
-which platforms, but doesn't look like we have any
-comments like that. So probably material for a potential
-followup.
+Matt
 
-> +#define _DVSACNTR		0x72180
-> +#define   DVS_ENABLE			REG_BIT(31)
-> +#define   DVS_PIPE_GAMMA_ENABLE		REG_BIT(30)
-> +#define   DVS_YUV_RANGE_CORRECTION_DISABLE	REG_BIT(27)
-> +#define   DVS_FORMAT_MASK		REG_GENMASK(26, 25)
-> +#define   DVS_FORMAT_YUV422		REG_FIELD_PREP(DVS_FORMAT_MASK, 0)
-> +#define   DVS_FORMAT_RGBX101010		REG_FIELD_PREP(DVS_FORMAT_MASK, 1)
-> +#define   DVS_FORMAT_RGBX888		REG_FIELD_PREP(DVS_FORMAT_MASK, 2)
-> +#define   DVS_FORMAT_RGBX161616		REG_FIELD_PREP(DVS_FORMAT_MASK, 3)
-> +#define   DVS_PIPE_CSC_ENABLE		REG_BIT(24)
-> +#define   DVS_SOURCE_KEY		REG_BIT(22)
-> +#define   DVS_RGB_ORDER_XBGR		REG_BIT(20)
-> +#define   DVS_YUV_FORMAT_BT709		REG_BIT(18)
-> +#define   DVS_YUV_ORDER_MASK		REG_GENMASK(17, 16)
-> +#define   DVS_YUV_ORDER_YUYV		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 0)
-> +#define   DVS_YUV_ORDER_UYVY		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 1)
-> +#define   DVS_YUV_ORDER_YVYU		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 2)
-> +#define   DVS_YUV_ORDER_VYUY		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 3)
-> +#define   DVS_ROTATE_180		REG_BIT(15)
-> +#define   DVS_TRICKLE_FEED_DISABLE	REG_BIT(14)
-> +#define   DVS_TILED			REG_BIT(10)
-> +#define   DVS_DEST_KEY			REG_BIT(2)
-> +#define _DVSALINOFF		0x72184
-> +#define _DVSASTRIDE		0x72188
-> +#define _DVSAPOS		0x7218c
-> +#define   DVS_POS_Y_MASK		REG_GENMASK(31, 16)
-> +#define   DVS_POS_Y(y)			REG_FIELD_PREP(DVS_POS_Y_MASK, (y))
-> +#define   DVS_POS_X_MASK		REG_GENMASK(15, 0)
-> +#define   DVS_POS_X(x)			REG_FIELD_PREP(DVS_POS_X_MASK, (x))
-> +#define _DVSASIZE		0x72190
-> +#define   DVS_HEIGHT_MASK		REG_GENMASK(31, 16)
-> +#define   DVS_HEIGHT(h)			REG_FIELD_PREP(DVS_HEIGHT_MASK, (h))
-> +#define   DVS_WIDTH_MASK		REG_GENMASK(15, 0)
-> +#define   DVS_WIDTH(w)			REG_FIELD_PREP(DVS_WIDTH_MASK, (w))
-> +#define _DVSAKEYVAL		0x72194
-> +#define _DVSAKEYMSK		0x72198
-> +#define _DVSASURF		0x7219c
-> +#define   DVS_ADDR_MASK			REG_GENMASK(31, 12)
-> +#define _DVSAKEYMAXVAL		0x721a0
-> +#define _DVSATILEOFF		0x721a4
-> +#define   DVS_OFFSET_Y_MASK		REG_GENMASK(31, 16)
-> +#define   DVS_OFFSET_Y(y)		REG_FIELD_PREP(DVS_OFFSET_Y_MASK, (y))
-> +#define   DVS_OFFSET_X_MASK		REG_GENMASK(15, 0)
-> +#define   DVS_OFFSET_X(x)		REG_FIELD_PREP(DVS_OFFSET_X_MASK, (x))
-> +#define _DVSASURFLIVE		0x721ac
-> +#define _DVSAGAMC_G4X		0x721e0 /* g4x */
-> +#define _DVSASCALE		0x72204
-> +#define   DVS_SCALE_ENABLE		REG_BIT(31)
-> +#define   DVS_FILTER_MASK		REG_GENMASK(30, 29)
-> +#define   DVS_FILTER_MEDIUM		REG_FIELD_PREP(DVS_FILTER_MASK, 0)
-> +#define   DVS_FILTER_ENHANCING		REG_FIELD_PREP(DVS_FILTER_MASK, 1)
-> +#define   DVS_FILTER_SOFTENING		REG_FIELD_PREP(DVS_FILTER_MASK, 2)
-> +#define   DVS_VERTICAL_OFFSET_HALF	REG_BIT(28) /* must be enabled below */
-> +#define   DVS_VERTICAL_OFFSET_ENABLE	REG_BIT(27)
-> +#define   DVS_SRC_WIDTH_MASK		REG_GENMASK(26, 16)
-> +#define   DVS_SRC_WIDTH(w)		REG_FIELD_PREP(DVS_SRC_WIDTH_MASK, (w))
-> +#define   DVS_SRC_HEIGHT_MASK		REG_GENMASK(10, 0)
-> +#define   DVS_SRC_HEIGHT(h)		REG_FIELD_PREP(DVS_SRC_HEIGHT_MASK, (h))
-> +#define _DVSAGAMC_ILK		0x72300 /* ilk/snb */
-> +#define _DVSAGAMCMAX_ILK	0x72340 /* ilk/snb */
-> +
-> +#define _DVSBCNTR		0x73180
-> +#define _DVSBLINOFF		0x73184
-> +#define _DVSBSTRIDE		0x73188
-> +#define _DVSBPOS		0x7318c
-> +#define _DVSBSIZE		0x73190
-> +#define _DVSBKEYVAL		0x73194
-> +#define _DVSBKEYMSK		0x73198
-> +#define _DVSBSURF		0x7319c
-> +#define _DVSBKEYMAXVAL		0x731a0
-> +#define _DVSBTILEOFF		0x731a4
-> +#define _DVSBSURFLIVE		0x731ac
-> +#define _DVSBGAMC_G4X		0x731e0 /* g4x */
-> +#define _DVSBSCALE		0x73204
-> +#define _DVSBGAMC_ILK		0x73300 /* ilk/snb */
-> +#define _DVSBGAMCMAX_ILK	0x73340 /* ilk/snb */
-> +
-> +#define DVSCNTR(pipe) _MMIO_PIPE(pipe, _DVSACNTR, _DVSBCNTR)
-> +#define DVSLINOFF(pipe) _MMIO_PIPE(pipe, _DVSALINOFF, _DVSBLINOFF)
-> +#define DVSSTRIDE(pipe) _MMIO_PIPE(pipe, _DVSASTRIDE, _DVSBSTRIDE)
-> +#define DVSPOS(pipe) _MMIO_PIPE(pipe, _DVSAPOS, _DVSBPOS)
-> +#define DVSSURF(pipe) _MMIO_PIPE(pipe, _DVSASURF, _DVSBSURF)
-> +#define DVSKEYMAX(pipe) _MMIO_PIPE(pipe, _DVSAKEYMAXVAL, _DVSBKEYMAXVAL)
-> +#define DVSSIZE(pipe) _MMIO_PIPE(pipe, _DVSASIZE, _DVSBSIZE)
-> +#define DVSSCALE(pipe) _MMIO_PIPE(pipe, _DVSASCALE, _DVSBSCALE)
-> +#define DVSTILEOFF(pipe) _MMIO_PIPE(pipe, _DVSATILEOFF, _DVSBTILEOFF)
-> +#define DVSKEYVAL(pipe) _MMIO_PIPE(pipe, _DVSAKEYVAL, _DVSBKEYVAL)
-> +#define DVSKEYMSK(pipe) _MMIO_PIPE(pipe, _DVSAKEYMSK, _DVSBKEYMSK)
-> +#define DVSSURFLIVE(pipe) _MMIO_PIPE(pipe, _DVSASURFLIVE, _DVSBSURFLIVE)
-> +#define DVSGAMC_G4X(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_G4X, _DVSBGAMC_G4X) + (5 - (i)) * 4) /* 6 x u0.8 */
-> +#define DVSGAMC_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_ILK, _DVSBGAMC_ILK) + (i) * 4) /* 16 x u0.10 */
-> +#define DVSGAMCMAX_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMCMAX_ILK, _DVSBGAMCMAX_ILK) + (i) * 4) /* 3 x u1.10 */
-> +
-> +#define _SPRA_CTL		0x70280
-> +#define   SPRITE_ENABLE				REG_BIT(31)
-> +#define   SPRITE_PIPE_GAMMA_ENABLE		REG_BIT(30)
-> +#define   SPRITE_YUV_RANGE_CORRECTION_DISABLE	REG_BIT(28)
-> +#define   SPRITE_FORMAT_MASK			REG_GENMASK(27, 25)
-> +#define   SPRITE_FORMAT_YUV422			REG_FIELD_PREP(SPRITE_FORMAT_MASK, 0)
-> +#define   SPRITE_FORMAT_RGBX101010		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 1)
-> +#define   SPRITE_FORMAT_RGBX888			REG_FIELD_PREP(SPRITE_FORMAT_MASK, 2)
-> +#define   SPRITE_FORMAT_RGBX161616		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 3)
-> +#define   SPRITE_FORMAT_YUV444			REG_FIELD_PREP(SPRITE_FORMAT_MASK, 4)
-> +#define   SPRITE_FORMAT_XR_BGR101010		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 5) /* Extended range */
-> +#define   SPRITE_PIPE_CSC_ENABLE		REG_BIT(24)
-> +#define   SPRITE_SOURCE_KEY			REG_BIT(22)
-> +#define   SPRITE_RGB_ORDER_RGBX			REG_BIT(20) /* only for 888 and 161616 */
-> +#define   SPRITE_YUV_TO_RGB_CSC_DISABLE		REG_BIT(19)
-> +#define   SPRITE_YUV_TO_RGB_CSC_FORMAT_BT709	REG_BIT(18) /* 0 is BT601 */
-> +#define   SPRITE_YUV_ORDER_MASK			REG_GENMASK(17, 16)
-> +#define   SPRITE_YUV_ORDER_YUYV			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 0)
-> +#define   SPRITE_YUV_ORDER_UYVY			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 1)
-> +#define   SPRITE_YUV_ORDER_YVYU			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 2)
-> +#define   SPRITE_YUV_ORDER_VYUY			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 3)
-> +#define   SPRITE_ROTATE_180			REG_BIT(15)
-> +#define   SPRITE_TRICKLE_FEED_DISABLE		REG_BIT(14)
-> +#define   SPRITE_PLANE_GAMMA_DISABLE		REG_BIT(13)
-> +#define   SPRITE_TILED				REG_BIT(10)
-> +#define   SPRITE_DEST_KEY			REG_BIT(2)
-> +#define _SPRA_LINOFF		0x70284
-> +#define _SPRA_STRIDE		0x70288
-> +#define _SPRA_POS		0x7028c
-> +#define   SPRITE_POS_Y_MASK	REG_GENMASK(31, 16)
-> +#define   SPRITE_POS_Y(y)	REG_FIELD_PREP(SPRITE_POS_Y_MASK, (y))
-> +#define   SPRITE_POS_X_MASK	REG_GENMASK(15, 0)
-> +#define   SPRITE_POS_X(x)	REG_FIELD_PREP(SPRITE_POS_X_MASK, (x))
-> +#define _SPRA_SIZE		0x70290
-> +#define   SPRITE_HEIGHT_MASK	REG_GENMASK(31, 16)
-> +#define   SPRITE_HEIGHT(h)	REG_FIELD_PREP(SPRITE_HEIGHT_MASK, (h))
-> +#define   SPRITE_WIDTH_MASK	REG_GENMASK(15, 0)
-> +#define   SPRITE_WIDTH(w)	REG_FIELD_PREP(SPRITE_WIDTH_MASK, (w))
-> +#define _SPRA_KEYVAL		0x70294
-> +#define _SPRA_KEYMSK		0x70298
-> +#define _SPRA_SURF		0x7029c
-> +#define   SPRITE_ADDR_MASK	REG_GENMASK(31, 12)
-> +#define _SPRA_KEYMAX		0x702a0
-> +#define _SPRA_TILEOFF		0x702a4
-> +#define   SPRITE_OFFSET_Y_MASK	REG_GENMASK(31, 16)
-> +#define   SPRITE_OFFSET_Y(y)	REG_FIELD_PREP(SPRITE_OFFSET_Y_MASK, (y))
-> +#define   SPRITE_OFFSET_X_MASK	REG_GENMASK(15, 0)
-> +#define   SPRITE_OFFSET_X(x)	REG_FIELD_PREP(SPRITE_OFFSET_X_MASK, (x))
-> +#define _SPRA_OFFSET		0x702a4
-> +#define _SPRA_SURFLIVE		0x702ac
-> +#define _SPRA_SCALE		0x70304
-> +#define   SPRITE_SCALE_ENABLE			REG_BIT(31)
-> +#define   SPRITE_FILTER_MASK			REG_GENMASK(30, 29)
-> +#define   SPRITE_FILTER_MEDIUM			REG_FIELD_PREP(SPRITE_FILTER_MASK, 0)
-> +#define   SPRITE_FILTER_ENHANCING		REG_FIELD_PREP(SPRITE_FILTER_MASK, 1)
-> +#define   SPRITE_FILTER_SOFTENING		REG_FIELD_PREP(SPRITE_FILTER_MASK, 2)
-> +#define   SPRITE_VERTICAL_OFFSET_HALF		REG_BIT(28) /* must be enabled below */
-> +#define   SPRITE_VERTICAL_OFFSET_ENABLE		REG_BIT(27)
-> +#define   SPRITE_SRC_WIDTH_MASK			REG_GENMASK(26, 16)
-> +#define   SPRITE_SRC_WIDTH(w)			REG_FIELD_PREP(SPRITE_SRC_WIDTH_MASK, (w))
-> +#define   SPRITE_SRC_HEIGHT_MASK		REG_GENMASK(10, 0)
-> +#define   SPRITE_SRC_HEIGHT(h)			REG_FIELD_PREP(SPRITE_SRC_HEIGHT_MASK, (h))
-> +#define _SPRA_GAMC		0x70400
-> +#define _SPRA_GAMC16		0x70440
-> +#define _SPRA_GAMC17		0x7044c
-> +
-> +#define _SPRB_CTL		0x71280
-> +#define _SPRB_LINOFF		0x71284
-> +#define _SPRB_STRIDE		0x71288
-> +#define _SPRB_POS		0x7128c
-> +#define _SPRB_SIZE		0x71290
-> +#define _SPRB_KEYVAL		0x71294
-> +#define _SPRB_KEYMSK		0x71298
-> +#define _SPRB_SURF		0x7129c
-> +#define _SPRB_KEYMAX		0x712a0
-> +#define _SPRB_TILEOFF		0x712a4
-> +#define _SPRB_OFFSET		0x712a4
-> +#define _SPRB_SURFLIVE		0x712ac
-> +#define _SPRB_SCALE		0x71304
-> +#define _SPRB_GAMC		0x71400
-> +#define _SPRB_GAMC16		0x71440
-> +#define _SPRB_GAMC17		0x7144c
-> +
-> +#define SPRCTL(pipe) _MMIO_PIPE(pipe, _SPRA_CTL, _SPRB_CTL)
-> +#define SPRLINOFF(pipe) _MMIO_PIPE(pipe, _SPRA_LINOFF, _SPRB_LINOFF)
-> +#define SPRSTRIDE(pipe) _MMIO_PIPE(pipe, _SPRA_STRIDE, _SPRB_STRIDE)
-> +#define SPRPOS(pipe) _MMIO_PIPE(pipe, _SPRA_POS, _SPRB_POS)
-> +#define SPRSIZE(pipe) _MMIO_PIPE(pipe, _SPRA_SIZE, _SPRB_SIZE)
-> +#define SPRKEYVAL(pipe) _MMIO_PIPE(pipe, _SPRA_KEYVAL, _SPRB_KEYVAL)
-> +#define SPRKEYMSK(pipe) _MMIO_PIPE(pipe, _SPRA_KEYMSK, _SPRB_KEYMSK)
-> +#define SPRSURF(pipe) _MMIO_PIPE(pipe, _SPRA_SURF, _SPRB_SURF)
-> +#define SPRKEYMAX(pipe) _MMIO_PIPE(pipe, _SPRA_KEYMAX, _SPRB_KEYMAX)
-> +#define SPRTILEOFF(pipe) _MMIO_PIPE(pipe, _SPRA_TILEOFF, _SPRB_TILEOFF)
-> +#define SPROFFSET(pipe) _MMIO_PIPE(pipe, _SPRA_OFFSET, _SPRB_OFFSET)
-> +#define SPRSCALE(pipe) _MMIO_PIPE(pipe, _SPRA_SCALE, _SPRB_SCALE)
-> +#define SPRGAMC(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC, _SPRB_GAMC) + (i) * 4) /* 16 x u0.10 */
-> +#define SPRGAMC16(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC16, _SPRB_GAMC16) + (i) * 4) /* 3 x u1.10 */
-> +#define SPRGAMC17(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC17, _SPRB_GAMC17) + (i) * 4) /* 3 x u2.10 */
-> +#define SPRSURFLIVE(pipe) _MMIO_PIPE(pipe, _SPRA_SURFLIVE, _SPRB_SURFLIVE)
-> +
-> +#define _SPACNTR		(VLV_DISPLAY_BASE + 0x72180)
-> +#define   SP_ENABLE			REG_BIT(31)
-> +#define   SP_PIPE_GAMMA_ENABLE		REG_BIT(30)
-> +#define   SP_FORMAT_MASK		REG_GENMASK(29, 26)
-> +#define   SP_FORMAT_YUV422		REG_FIELD_PREP(SP_FORMAT_MASK, 0)
-> +#define   SP_FORMAT_8BPP		REG_FIELD_PREP(SP_FORMAT_MASK, 2)
-> +#define   SP_FORMAT_BGR565		REG_FIELD_PREP(SP_FORMAT_MASK, 5)
-> +#define   SP_FORMAT_BGRX8888		REG_FIELD_PREP(SP_FORMAT_MASK, 6)
-> +#define   SP_FORMAT_BGRA8888		REG_FIELD_PREP(SP_FORMAT_MASK, 7)
-> +#define   SP_FORMAT_RGBX1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 8)
-> +#define   SP_FORMAT_RGBA1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 9)
-> +#define   SP_FORMAT_BGRX1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 10) /* CHV pipe B */
-> +#define   SP_FORMAT_BGRA1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 11) /* CHV pipe B */
-> +#define   SP_FORMAT_RGBX8888		REG_FIELD_PREP(SP_FORMAT_MASK, 14)
-> +#define   SP_FORMAT_RGBA8888		REG_FIELD_PREP(SP_FORMAT_MASK, 15)
-> +#define   SP_ALPHA_PREMULTIPLY		REG_BIT(23) /* CHV pipe B */
-> +#define   SP_SOURCE_KEY			REG_BIT(22)
-> +#define   SP_YUV_FORMAT_BT709		REG_BIT(18)
-> +#define   SP_YUV_ORDER_MASK		REG_GENMASK(17, 16)
-> +#define   SP_YUV_ORDER_YUYV		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 0)
-> +#define   SP_YUV_ORDER_UYVY		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 1)
-> +#define   SP_YUV_ORDER_YVYU		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 2)
-> +#define   SP_YUV_ORDER_VYUY		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 3)
-> +#define   SP_ROTATE_180			REG_BIT(15)
-> +#define   SP_TILED			REG_BIT(10)
-> +#define   SP_MIRROR			REG_BIT(8) /* CHV pipe B */
-> +#define _SPALINOFF		(VLV_DISPLAY_BASE + 0x72184)
-> +#define _SPASTRIDE		(VLV_DISPLAY_BASE + 0x72188)
-> +#define _SPAPOS			(VLV_DISPLAY_BASE + 0x7218c)
-> +#define   SP_POS_Y_MASK			REG_GENMASK(31, 16)
-> +#define   SP_POS_Y(y)			REG_FIELD_PREP(SP_POS_Y_MASK, (y))
-> +#define   SP_POS_X_MASK			REG_GENMASK(15, 0)
-> +#define   SP_POS_X(x)			REG_FIELD_PREP(SP_POS_X_MASK, (x))
-> +#define _SPASIZE		(VLV_DISPLAY_BASE + 0x72190)
-> +#define   SP_HEIGHT_MASK		REG_GENMASK(31, 16)
-> +#define   SP_HEIGHT(h)			REG_FIELD_PREP(SP_HEIGHT_MASK, (h))
-> +#define   SP_WIDTH_MASK			REG_GENMASK(15, 0)
-> +#define   SP_WIDTH(w)			REG_FIELD_PREP(SP_WIDTH_MASK, (w))
-> +#define _SPAKEYMINVAL		(VLV_DISPLAY_BASE + 0x72194)
-> +#define _SPAKEYMSK		(VLV_DISPLAY_BASE + 0x72198)
-> +#define _SPASURF		(VLV_DISPLAY_BASE + 0x7219c)
-> +#define   SP_ADDR_MASK			REG_GENMASK(31, 12)
-> +#define _SPAKEYMAXVAL		(VLV_DISPLAY_BASE + 0x721a0)
-> +#define _SPATILEOFF		(VLV_DISPLAY_BASE + 0x721a4)
-> +#define   SP_OFFSET_Y_MASK		REG_GENMASK(31, 16)
-> +#define   SP_OFFSET_Y(y)		REG_FIELD_PREP(SP_OFFSET_Y_MASK, (y))
-> +#define   SP_OFFSET_X_MASK		REG_GENMASK(15, 0)
-> +#define   SP_OFFSET_X(x)		REG_FIELD_PREP(SP_OFFSET_X_MASK, (x))
-> +#define _SPACONSTALPHA		(VLV_DISPLAY_BASE + 0x721a8)
-> +#define   SP_CONST_ALPHA_ENABLE		REG_BIT(31)
-> +#define   SP_CONST_ALPHA_MASK		REG_GENMASK(7, 0)
-> +#define   SP_CONST_ALPHA(alpha)		REG_FIELD_PREP(SP_CONST_ALPHA_MASK, (alpha))
-> +#define _SPASURFLIVE		(VLV_DISPLAY_BASE + 0x721ac)
-> +#define _SPACLRC0		(VLV_DISPLAY_BASE + 0x721d0)
-> +#define   SP_CONTRAST_MASK		REG_GENMASK(26, 18)
-> +#define   SP_CONTRAST(x)		REG_FIELD_PREP(SP_CONTRAST_MASK, (x)) /* u3.6 */
-> +#define   SP_BRIGHTNESS_MASK		REG_GENMASK(7, 0)
-> +#define   SP_BRIGHTNESS(x)		REG_FIELD_PREP(SP_BRIGHTNESS_MASK, (x)) /* s8 */
-> +#define _SPACLRC1		(VLV_DISPLAY_BASE + 0x721d4)
-> +#define   SP_SH_SIN_MASK		REG_GENMASK(26, 16)
-> +#define   SP_SH_SIN(x)			REG_FIELD_PREP(SP_SH_SIN_MASK, (x)) /* s4.7 */
-> +#define   SP_SH_COS_MASK		REG_GENMASK(9, 0)
-> +#define   SP_SH_COS(x)			REG_FIELD_PREP(SP_SH_COS_MASK, (x)) /* u3.7 */
-> +#define _SPAGAMC		(VLV_DISPLAY_BASE + 0x721e0)
-> +
-> +#define _SPBCNTR		(VLV_DISPLAY_BASE + 0x72280)
-> +#define _SPBLINOFF		(VLV_DISPLAY_BASE + 0x72284)
-> +#define _SPBSTRIDE		(VLV_DISPLAY_BASE + 0x72288)
-> +#define _SPBPOS			(VLV_DISPLAY_BASE + 0x7228c)
-> +#define _SPBSIZE		(VLV_DISPLAY_BASE + 0x72290)
-> +#define _SPBKEYMINVAL		(VLV_DISPLAY_BASE + 0x72294)
-> +#define _SPBKEYMSK		(VLV_DISPLAY_BASE + 0x72298)
-> +#define _SPBSURF		(VLV_DISPLAY_BASE + 0x7229c)
-> +#define _SPBKEYMAXVAL		(VLV_DISPLAY_BASE + 0x722a0)
-> +#define _SPBTILEOFF		(VLV_DISPLAY_BASE + 0x722a4)
-> +#define _SPBCONSTALPHA		(VLV_DISPLAY_BASE + 0x722a8)
-> +#define _SPBSURFLIVE		(VLV_DISPLAY_BASE + 0x722ac)
-> +#define _SPBCLRC0		(VLV_DISPLAY_BASE + 0x722d0)
-> +#define _SPBCLRC1		(VLV_DISPLAY_BASE + 0x722d4)
-> +#define _SPBGAMC		(VLV_DISPLAY_BASE + 0x722e0)
-> +
-> +#define _VLV_SPR(pipe, plane_id, reg_a, reg_b) \
-> +	_PIPE((pipe) * 2 + (plane_id) - PLANE_SPRITE0, (reg_a), (reg_b))
-> +#define _MMIO_VLV_SPR(pipe, plane_id, reg_a, reg_b) \
-> +	_MMIO(_VLV_SPR((pipe), (plane_id), (reg_a), (reg_b)))
-> +
-> +#define SPCNTR(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPACNTR, _SPBCNTR)
-> +#define SPLINOFF(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPALINOFF, _SPBLINOFF)
-> +#define SPSTRIDE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASTRIDE, _SPBSTRIDE)
-> +#define SPPOS(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPAPOS, _SPBPOS)
-> +#define SPSIZE(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPASIZE, _SPBSIZE)
-> +#define SPKEYMINVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMINVAL, _SPBKEYMINVAL)
-> +#define SPKEYMSK(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMSK, _SPBKEYMSK)
-> +#define SPSURF(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPASURF, _SPBSURF)
-> +#define SPKEYMAXVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMAXVAL, _SPBKEYMAXVAL)
-> +#define SPTILEOFF(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPATILEOFF, _SPBTILEOFF)
-> +#define SPCONSTALPHA(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPACONSTALPHA, _SPBCONSTALPHA)
-> +#define SPSURFLIVE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
-> +#define SPCLRC0(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPACLRC0, _SPBCLRC0)
-> +#define SPCLRC1(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPACLRC1, _SPBCLRC1)
-> +#define SPGAMC(pipe, plane_id, i)	_MMIO(_VLV_SPR((pipe), (plane_id), _SPAGAMC, _SPBGAMC) + (5 - (i)) * 4) /* 6 x u0.10 */
-> +
-> +/*
-> + * CHV pipe B sprite CSC
-> + *
-> + * |cr|   |c0 c1 c2|   |cr + cr_ioff|   |cr_ooff|
-> + * |yg| = |c3 c4 c5| x |yg + yg_ioff| + |yg_ooff|
-> + * |cb|   |c6 c7 c8|   |cb + cr_ioff|   |cb_ooff|
-> + */
-> +#define _MMIO_CHV_SPCSC(plane_id, reg) \
-> +	_MMIO(VLV_DISPLAY_BASE + ((plane_id) - PLANE_SPRITE0) * 0x1000 + (reg))
-> +
-> +#define SPCSCYGOFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d900)
-> +#define SPCSCCBOFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d904)
-> +#define SPCSCCROFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d908)
-> +#define  SPCSC_OOFF_MASK	REG_GENMASK(26, 16)
-> +#define  SPCSC_OOFF(x)		REG_FIELD_PREP(SPCSC_OOFF_MASK, (x) & 0x7ff) /* s11 */
-> +#define  SPCSC_IOFF_MASK	REG_GENMASK(10, 0)
-> +#define  SPCSC_IOFF(x)		REG_FIELD_PREP(SPCSC_IOFF_MASK, (x) & 0x7ff) /* s11 */
-> +
-> +#define SPCSCC01(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d90c)
-> +#define SPCSCC23(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d910)
-> +#define SPCSCC45(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d914)
-> +#define SPCSCC67(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d918)
-> +#define SPCSCC8(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d91c)
-> +#define  SPCSC_C1_MASK		REG_GENMASK(30, 16)
-> +#define  SPCSC_C1(x)		REG_FIELD_PREP(SPCSC_C1_MASK, (x) & 0x7fff) /* s3.12 */
-> +#define  SPCSC_C0_MASK		REG_GENMASK(14, 0)
-> +#define  SPCSC_C0(x)		REG_FIELD_PREP(SPCSC_C0_MASK, (x) & 0x7fff) /* s3.12 */
-> +
-> +#define SPCSCYGICLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d920)
-> +#define SPCSCCBICLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d924)
-> +#define SPCSCCRICLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d928)
-> +#define  SPCSC_IMAX_MASK	REG_GENMASK(26, 16)
-> +#define  SPCSC_IMAX(x)		REG_FIELD_PREP(SPCSC_IMAX_MASK, (x) & 0x7ff) /* s11 */
-> +#define  SPCSC_IMIN_MASK	REG_GENMASK(10, 0)
-> +#define  SPCSC_IMIN(x)		REG_FIELD_PREP(SPCSC_IMIN_MASK, (x) & 0x7ff) /* s11 */
-> +
-> +#define SPCSCYGOCLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d92c)
-> +#define SPCSCCBOCLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d930)
-> +#define SPCSCCROCLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d934)
-> +#define  SPCSC_OMAX_MASK	REG_GENMASK(25, 16)
-> +#define  SPCSC_OMAX(x)		REG_FIELD_PREP(SPCSC_OMAX_MASK, (x)) /* u10 */
-> +#define  SPCSC_OMIN_MASK	REG_GENMASK(9, 0)
-> +#define  SPCSC_OMIN(x)		REG_FIELD_PREP(SPCSC_OMIN_MASK, (x)) /* u10 */
-> +
-> +#endif /* __INTEL_SPRITE_REGS__ */
-> diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> index d4a3f3e093b0..4be8cb65fb7e 100644
-> --- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> +++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-> @@ -50,6 +50,7 @@
->  #include "trace.h"
->  
->  #include "display/intel_display.h"
-> +#include "display/intel_sprite_regs.h"
->  #include "gem/i915_gem_context.h"
->  #include "gem/i915_gem_pm.h"
->  #include "gt/intel_context.h"
-> diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-> index e0c5dfb788eb..498698482d59 100644
-> --- a/drivers/gpu/drm/i915/gvt/display.c
-> +++ b/drivers/gpu/drm/i915/gvt/display.c
-> @@ -38,6 +38,7 @@
->  
->  #include "display/intel_display.h"
->  #include "display/intel_dpio_phy.h"
-> +#include "display/intel_sprite_regs.h"
->  
->  static int get_edp_pipe(struct intel_vgpu *vgpu)
->  {
-> diff --git a/drivers/gpu/drm/i915/gvt/fb_decoder.c b/drivers/gpu/drm/i915/gvt/fb_decoder.c
-> index 313efdabee57..4140da68aabb 100644
-> --- a/drivers/gpu/drm/i915/gvt/fb_decoder.c
-> +++ b/drivers/gpu/drm/i915/gvt/fb_decoder.c
-> @@ -34,11 +34,14 @@
->   */
->  
->  #include <uapi/drm/drm_fourcc.h>
-> -#include "i915_drv.h"
-> +
->  #include "gvt.h"
-> +#include "i915_drv.h"
->  #include "i915_pvinfo.h"
->  #include "i915_reg.h"
->  
-> +#include "display/intel_sprite_regs.h"
-> +
->  #define PRIMARY_FORMAT_NUM	16
->  struct pixel_format {
->  	int drm_format;	/* Pixel format in DRM definition */
-> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-> index efcb00472be2..7d749995c7a7 100644
-> --- a/drivers/gpu/drm/i915/gvt/handlers.c
-> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@ -49,6 +49,7 @@
->  #include "display/intel_fdi_regs.h"
->  #include "display/intel_pps_regs.h"
->  #include "display/intel_psr_regs.h"
-> +#include "display/intel_sprite_regs.h"
->  #include "display/skl_watermark_regs.h"
->  #include "display/vlv_dsi_pll_regs.h"
->  #include "gt/intel_gt_regs.h"
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 8c44a21977a4..bb63c7214e12 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3070,346 +3070,6 @@
->  #define _PIPEDSI0CONF		0x7b008
->  #define _PIPEDSI1CONF		0x7b808
->  
-> -/* Sprite A control */
-> -#define _DVSACNTR		0x72180
-> -#define   DVS_ENABLE			REG_BIT(31)
-> -#define   DVS_PIPE_GAMMA_ENABLE		REG_BIT(30)
-> -#define   DVS_YUV_RANGE_CORRECTION_DISABLE	REG_BIT(27)
-> -#define   DVS_FORMAT_MASK		REG_GENMASK(26, 25)
-> -#define   DVS_FORMAT_YUV422		REG_FIELD_PREP(DVS_FORMAT_MASK, 0)
-> -#define   DVS_FORMAT_RGBX101010		REG_FIELD_PREP(DVS_FORMAT_MASK, 1)
-> -#define   DVS_FORMAT_RGBX888		REG_FIELD_PREP(DVS_FORMAT_MASK, 2)
-> -#define   DVS_FORMAT_RGBX161616		REG_FIELD_PREP(DVS_FORMAT_MASK, 3)
-> -#define   DVS_PIPE_CSC_ENABLE		REG_BIT(24)
-> -#define   DVS_SOURCE_KEY		REG_BIT(22)
-> -#define   DVS_RGB_ORDER_XBGR		REG_BIT(20)
-> -#define   DVS_YUV_FORMAT_BT709		REG_BIT(18)
-> -#define   DVS_YUV_ORDER_MASK		REG_GENMASK(17, 16)
-> -#define   DVS_YUV_ORDER_YUYV		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 0)
-> -#define   DVS_YUV_ORDER_UYVY		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 1)
-> -#define   DVS_YUV_ORDER_YVYU		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 2)
-> -#define   DVS_YUV_ORDER_VYUY		REG_FIELD_PREP(DVS_YUV_ORDER_MASK, 3)
-> -#define   DVS_ROTATE_180		REG_BIT(15)
-> -#define   DVS_TRICKLE_FEED_DISABLE	REG_BIT(14)
-> -#define   DVS_TILED			REG_BIT(10)
-> -#define   DVS_DEST_KEY			REG_BIT(2)
-> -#define _DVSALINOFF		0x72184
-> -#define _DVSASTRIDE		0x72188
-> -#define _DVSAPOS		0x7218c
-> -#define   DVS_POS_Y_MASK		REG_GENMASK(31, 16)
-> -#define   DVS_POS_Y(y)			REG_FIELD_PREP(DVS_POS_Y_MASK, (y))
-> -#define   DVS_POS_X_MASK		REG_GENMASK(15, 0)
-> -#define   DVS_POS_X(x)			REG_FIELD_PREP(DVS_POS_X_MASK, (x))
-> -#define _DVSASIZE		0x72190
-> -#define   DVS_HEIGHT_MASK		REG_GENMASK(31, 16)
-> -#define   DVS_HEIGHT(h)			REG_FIELD_PREP(DVS_HEIGHT_MASK, (h))
-> -#define   DVS_WIDTH_MASK		REG_GENMASK(15, 0)
-> -#define   DVS_WIDTH(w)			REG_FIELD_PREP(DVS_WIDTH_MASK, (w))
-> -#define _DVSAKEYVAL		0x72194
-> -#define _DVSAKEYMSK		0x72198
-> -#define _DVSASURF		0x7219c
-> -#define   DVS_ADDR_MASK			REG_GENMASK(31, 12)
-> -#define _DVSAKEYMAXVAL		0x721a0
-> -#define _DVSATILEOFF		0x721a4
-> -#define   DVS_OFFSET_Y_MASK		REG_GENMASK(31, 16)
-> -#define   DVS_OFFSET_Y(y)		REG_FIELD_PREP(DVS_OFFSET_Y_MASK, (y))
-> -#define   DVS_OFFSET_X_MASK		REG_GENMASK(15, 0)
-> -#define   DVS_OFFSET_X(x)		REG_FIELD_PREP(DVS_OFFSET_X_MASK, (x))
-> -#define _DVSASURFLIVE		0x721ac
-> -#define _DVSAGAMC_G4X		0x721e0 /* g4x */
-> -#define _DVSASCALE		0x72204
-> -#define   DVS_SCALE_ENABLE		REG_BIT(31)
-> -#define   DVS_FILTER_MASK		REG_GENMASK(30, 29)
-> -#define   DVS_FILTER_MEDIUM		REG_FIELD_PREP(DVS_FILTER_MASK, 0)
-> -#define   DVS_FILTER_ENHANCING		REG_FIELD_PREP(DVS_FILTER_MASK, 1)
-> -#define   DVS_FILTER_SOFTENING		REG_FIELD_PREP(DVS_FILTER_MASK, 2)
-> -#define   DVS_VERTICAL_OFFSET_HALF	REG_BIT(28) /* must be enabled below */
-> -#define   DVS_VERTICAL_OFFSET_ENABLE	REG_BIT(27)
-> -#define   DVS_SRC_WIDTH_MASK		REG_GENMASK(26, 16)
-> -#define   DVS_SRC_WIDTH(w)		REG_FIELD_PREP(DVS_SRC_WIDTH_MASK, (w))
-> -#define   DVS_SRC_HEIGHT_MASK		REG_GENMASK(10, 0)
-> -#define   DVS_SRC_HEIGHT(h)		REG_FIELD_PREP(DVS_SRC_HEIGHT_MASK, (h))
-> -#define _DVSAGAMC_ILK		0x72300 /* ilk/snb */
-> -#define _DVSAGAMCMAX_ILK	0x72340 /* ilk/snb */
-> -
-> -#define _DVSBCNTR		0x73180
-> -#define _DVSBLINOFF		0x73184
-> -#define _DVSBSTRIDE		0x73188
-> -#define _DVSBPOS		0x7318c
-> -#define _DVSBSIZE		0x73190
-> -#define _DVSBKEYVAL		0x73194
-> -#define _DVSBKEYMSK		0x73198
-> -#define _DVSBSURF		0x7319c
-> -#define _DVSBKEYMAXVAL		0x731a0
-> -#define _DVSBTILEOFF		0x731a4
-> -#define _DVSBSURFLIVE		0x731ac
-> -#define _DVSBGAMC_G4X		0x731e0 /* g4x */
-> -#define _DVSBSCALE		0x73204
-> -#define _DVSBGAMC_ILK		0x73300 /* ilk/snb */
-> -#define _DVSBGAMCMAX_ILK	0x73340 /* ilk/snb */
-> -
-> -#define DVSCNTR(pipe) _MMIO_PIPE(pipe, _DVSACNTR, _DVSBCNTR)
-> -#define DVSLINOFF(pipe) _MMIO_PIPE(pipe, _DVSALINOFF, _DVSBLINOFF)
-> -#define DVSSTRIDE(pipe) _MMIO_PIPE(pipe, _DVSASTRIDE, _DVSBSTRIDE)
-> -#define DVSPOS(pipe) _MMIO_PIPE(pipe, _DVSAPOS, _DVSBPOS)
-> -#define DVSSURF(pipe) _MMIO_PIPE(pipe, _DVSASURF, _DVSBSURF)
-> -#define DVSKEYMAX(pipe) _MMIO_PIPE(pipe, _DVSAKEYMAXVAL, _DVSBKEYMAXVAL)
-> -#define DVSSIZE(pipe) _MMIO_PIPE(pipe, _DVSASIZE, _DVSBSIZE)
-> -#define DVSSCALE(pipe) _MMIO_PIPE(pipe, _DVSASCALE, _DVSBSCALE)
-> -#define DVSTILEOFF(pipe) _MMIO_PIPE(pipe, _DVSATILEOFF, _DVSBTILEOFF)
-> -#define DVSKEYVAL(pipe) _MMIO_PIPE(pipe, _DVSAKEYVAL, _DVSBKEYVAL)
-> -#define DVSKEYMSK(pipe) _MMIO_PIPE(pipe, _DVSAKEYMSK, _DVSBKEYMSK)
-> -#define DVSSURFLIVE(pipe) _MMIO_PIPE(pipe, _DVSASURFLIVE, _DVSBSURFLIVE)
-> -#define DVSGAMC_G4X(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_G4X, _DVSBGAMC_G4X) + (5 - (i)) * 4) /* 6 x u0.8 */
-> -#define DVSGAMC_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_ILK, _DVSBGAMC_ILK) + (i) * 4) /* 16 x u0.10 */
-> -#define DVSGAMCMAX_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMCMAX_ILK, _DVSBGAMCMAX_ILK) + (i) * 4) /* 3 x u1.10 */
-> -
-> -#define _SPRA_CTL		0x70280
-> -#define   SPRITE_ENABLE				REG_BIT(31)
-> -#define   SPRITE_PIPE_GAMMA_ENABLE		REG_BIT(30)
-> -#define   SPRITE_YUV_RANGE_CORRECTION_DISABLE	REG_BIT(28)
-> -#define   SPRITE_FORMAT_MASK			REG_GENMASK(27, 25)
-> -#define   SPRITE_FORMAT_YUV422			REG_FIELD_PREP(SPRITE_FORMAT_MASK, 0)
-> -#define   SPRITE_FORMAT_RGBX101010		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 1)
-> -#define   SPRITE_FORMAT_RGBX888			REG_FIELD_PREP(SPRITE_FORMAT_MASK, 2)
-> -#define   SPRITE_FORMAT_RGBX161616		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 3)
-> -#define   SPRITE_FORMAT_YUV444			REG_FIELD_PREP(SPRITE_FORMAT_MASK, 4)
-> -#define   SPRITE_FORMAT_XR_BGR101010		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 5) /* Extended range */
-> -#define   SPRITE_PIPE_CSC_ENABLE		REG_BIT(24)
-> -#define   SPRITE_SOURCE_KEY			REG_BIT(22)
-> -#define   SPRITE_RGB_ORDER_RGBX			REG_BIT(20) /* only for 888 and 161616 */
-> -#define   SPRITE_YUV_TO_RGB_CSC_DISABLE		REG_BIT(19)
-> -#define   SPRITE_YUV_TO_RGB_CSC_FORMAT_BT709	REG_BIT(18) /* 0 is BT601 */
-> -#define   SPRITE_YUV_ORDER_MASK			REG_GENMASK(17, 16)
-> -#define   SPRITE_YUV_ORDER_YUYV			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 0)
-> -#define   SPRITE_YUV_ORDER_UYVY			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 1)
-> -#define   SPRITE_YUV_ORDER_YVYU			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 2)
-> -#define   SPRITE_YUV_ORDER_VYUY			REG_FIELD_PREP(SPRITE_YUV_ORDER_MASK, 3)
-> -#define   SPRITE_ROTATE_180			REG_BIT(15)
-> -#define   SPRITE_TRICKLE_FEED_DISABLE		REG_BIT(14)
-> -#define   SPRITE_PLANE_GAMMA_DISABLE		REG_BIT(13)
-> -#define   SPRITE_TILED				REG_BIT(10)
-> -#define   SPRITE_DEST_KEY			REG_BIT(2)
-> -#define _SPRA_LINOFF		0x70284
-> -#define _SPRA_STRIDE		0x70288
-> -#define _SPRA_POS		0x7028c
-> -#define   SPRITE_POS_Y_MASK	REG_GENMASK(31, 16)
-> -#define   SPRITE_POS_Y(y)	REG_FIELD_PREP(SPRITE_POS_Y_MASK, (y))
-> -#define   SPRITE_POS_X_MASK	REG_GENMASK(15, 0)
-> -#define   SPRITE_POS_X(x)	REG_FIELD_PREP(SPRITE_POS_X_MASK, (x))
-> -#define _SPRA_SIZE		0x70290
-> -#define   SPRITE_HEIGHT_MASK	REG_GENMASK(31, 16)
-> -#define   SPRITE_HEIGHT(h)	REG_FIELD_PREP(SPRITE_HEIGHT_MASK, (h))
-> -#define   SPRITE_WIDTH_MASK	REG_GENMASK(15, 0)
-> -#define   SPRITE_WIDTH(w)	REG_FIELD_PREP(SPRITE_WIDTH_MASK, (w))
-> -#define _SPRA_KEYVAL		0x70294
-> -#define _SPRA_KEYMSK		0x70298
-> -#define _SPRA_SURF		0x7029c
-> -#define   SPRITE_ADDR_MASK	REG_GENMASK(31, 12)
-> -#define _SPRA_KEYMAX		0x702a0
-> -#define _SPRA_TILEOFF		0x702a4
-> -#define   SPRITE_OFFSET_Y_MASK	REG_GENMASK(31, 16)
-> -#define   SPRITE_OFFSET_Y(y)	REG_FIELD_PREP(SPRITE_OFFSET_Y_MASK, (y))
-> -#define   SPRITE_OFFSET_X_MASK	REG_GENMASK(15, 0)
-> -#define   SPRITE_OFFSET_X(x)	REG_FIELD_PREP(SPRITE_OFFSET_X_MASK, (x))
-> -#define _SPRA_OFFSET		0x702a4
-> -#define _SPRA_SURFLIVE		0x702ac
-> -#define _SPRA_SCALE		0x70304
-> -#define   SPRITE_SCALE_ENABLE			REG_BIT(31)
-> -#define   SPRITE_FILTER_MASK			REG_GENMASK(30, 29)
-> -#define   SPRITE_FILTER_MEDIUM			REG_FIELD_PREP(SPRITE_FILTER_MASK, 0)
-> -#define   SPRITE_FILTER_ENHANCING		REG_FIELD_PREP(SPRITE_FILTER_MASK, 1)
-> -#define   SPRITE_FILTER_SOFTENING		REG_FIELD_PREP(SPRITE_FILTER_MASK, 2)
-> -#define   SPRITE_VERTICAL_OFFSET_HALF		REG_BIT(28) /* must be enabled below */
-> -#define   SPRITE_VERTICAL_OFFSET_ENABLE		REG_BIT(27)
-> -#define   SPRITE_SRC_WIDTH_MASK			REG_GENMASK(26, 16)
-> -#define   SPRITE_SRC_WIDTH(w)			REG_FIELD_PREP(SPRITE_SRC_WIDTH_MASK, (w))
-> -#define   SPRITE_SRC_HEIGHT_MASK		REG_GENMASK(10, 0)
-> -#define   SPRITE_SRC_HEIGHT(h)			REG_FIELD_PREP(SPRITE_SRC_HEIGHT_MASK, (h))
-> -#define _SPRA_GAMC		0x70400
-> -#define _SPRA_GAMC16		0x70440
-> -#define _SPRA_GAMC17		0x7044c
-> -
-> -#define _SPRB_CTL		0x71280
-> -#define _SPRB_LINOFF		0x71284
-> -#define _SPRB_STRIDE		0x71288
-> -#define _SPRB_POS		0x7128c
-> -#define _SPRB_SIZE		0x71290
-> -#define _SPRB_KEYVAL		0x71294
-> -#define _SPRB_KEYMSK		0x71298
-> -#define _SPRB_SURF		0x7129c
-> -#define _SPRB_KEYMAX		0x712a0
-> -#define _SPRB_TILEOFF		0x712a4
-> -#define _SPRB_OFFSET		0x712a4
-> -#define _SPRB_SURFLIVE		0x712ac
-> -#define _SPRB_SCALE		0x71304
-> -#define _SPRB_GAMC		0x71400
-> -#define _SPRB_GAMC16		0x71440
-> -#define _SPRB_GAMC17		0x7144c
-> -
-> -#define SPRCTL(pipe) _MMIO_PIPE(pipe, _SPRA_CTL, _SPRB_CTL)
-> -#define SPRLINOFF(pipe) _MMIO_PIPE(pipe, _SPRA_LINOFF, _SPRB_LINOFF)
-> -#define SPRSTRIDE(pipe) _MMIO_PIPE(pipe, _SPRA_STRIDE, _SPRB_STRIDE)
-> -#define SPRPOS(pipe) _MMIO_PIPE(pipe, _SPRA_POS, _SPRB_POS)
-> -#define SPRSIZE(pipe) _MMIO_PIPE(pipe, _SPRA_SIZE, _SPRB_SIZE)
-> -#define SPRKEYVAL(pipe) _MMIO_PIPE(pipe, _SPRA_KEYVAL, _SPRB_KEYVAL)
-> -#define SPRKEYMSK(pipe) _MMIO_PIPE(pipe, _SPRA_KEYMSK, _SPRB_KEYMSK)
-> -#define SPRSURF(pipe) _MMIO_PIPE(pipe, _SPRA_SURF, _SPRB_SURF)
-> -#define SPRKEYMAX(pipe) _MMIO_PIPE(pipe, _SPRA_KEYMAX, _SPRB_KEYMAX)
-> -#define SPRTILEOFF(pipe) _MMIO_PIPE(pipe, _SPRA_TILEOFF, _SPRB_TILEOFF)
-> -#define SPROFFSET(pipe) _MMIO_PIPE(pipe, _SPRA_OFFSET, _SPRB_OFFSET)
-> -#define SPRSCALE(pipe) _MMIO_PIPE(pipe, _SPRA_SCALE, _SPRB_SCALE)
-> -#define SPRGAMC(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC, _SPRB_GAMC) + (i) * 4) /* 16 x u0.10 */
-> -#define SPRGAMC16(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC16, _SPRB_GAMC16) + (i) * 4) /* 3 x u1.10 */
-> -#define SPRGAMC17(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC17, _SPRB_GAMC17) + (i) * 4) /* 3 x u2.10 */
-> -#define SPRSURFLIVE(pipe) _MMIO_PIPE(pipe, _SPRA_SURFLIVE, _SPRB_SURFLIVE)
-> -
-> -#define _SPACNTR		(VLV_DISPLAY_BASE + 0x72180)
-> -#define   SP_ENABLE			REG_BIT(31)
-> -#define   SP_PIPE_GAMMA_ENABLE		REG_BIT(30)
-> -#define   SP_FORMAT_MASK		REG_GENMASK(29, 26)
-> -#define   SP_FORMAT_YUV422		REG_FIELD_PREP(SP_FORMAT_MASK, 0)
-> -#define   SP_FORMAT_8BPP		REG_FIELD_PREP(SP_FORMAT_MASK, 2)
-> -#define   SP_FORMAT_BGR565		REG_FIELD_PREP(SP_FORMAT_MASK, 5)
-> -#define   SP_FORMAT_BGRX8888		REG_FIELD_PREP(SP_FORMAT_MASK, 6)
-> -#define   SP_FORMAT_BGRA8888		REG_FIELD_PREP(SP_FORMAT_MASK, 7)
-> -#define   SP_FORMAT_RGBX1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 8)
-> -#define   SP_FORMAT_RGBA1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 9)
-> -#define   SP_FORMAT_BGRX1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 10) /* CHV pipe B */
-> -#define   SP_FORMAT_BGRA1010102		REG_FIELD_PREP(SP_FORMAT_MASK, 11) /* CHV pipe B */
-> -#define   SP_FORMAT_RGBX8888		REG_FIELD_PREP(SP_FORMAT_MASK, 14)
-> -#define   SP_FORMAT_RGBA8888		REG_FIELD_PREP(SP_FORMAT_MASK, 15)
-> -#define   SP_ALPHA_PREMULTIPLY		REG_BIT(23) /* CHV pipe B */
-> -#define   SP_SOURCE_KEY			REG_BIT(22)
-> -#define   SP_YUV_FORMAT_BT709		REG_BIT(18)
-> -#define   SP_YUV_ORDER_MASK		REG_GENMASK(17, 16)
-> -#define   SP_YUV_ORDER_YUYV		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 0)
-> -#define   SP_YUV_ORDER_UYVY		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 1)
-> -#define   SP_YUV_ORDER_YVYU		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 2)
-> -#define   SP_YUV_ORDER_VYUY		REG_FIELD_PREP(SP_YUV_ORDER_MASK, 3)
-> -#define   SP_ROTATE_180			REG_BIT(15)
-> -#define   SP_TILED			REG_BIT(10)
-> -#define   SP_MIRROR			REG_BIT(8) /* CHV pipe B */
-> -#define _SPALINOFF		(VLV_DISPLAY_BASE + 0x72184)
-> -#define _SPASTRIDE		(VLV_DISPLAY_BASE + 0x72188)
-> -#define _SPAPOS			(VLV_DISPLAY_BASE + 0x7218c)
-> -#define   SP_POS_Y_MASK			REG_GENMASK(31, 16)
-> -#define   SP_POS_Y(y)			REG_FIELD_PREP(SP_POS_Y_MASK, (y))
-> -#define   SP_POS_X_MASK			REG_GENMASK(15, 0)
-> -#define   SP_POS_X(x)			REG_FIELD_PREP(SP_POS_X_MASK, (x))
-> -#define _SPASIZE		(VLV_DISPLAY_BASE + 0x72190)
-> -#define   SP_HEIGHT_MASK		REG_GENMASK(31, 16)
-> -#define   SP_HEIGHT(h)			REG_FIELD_PREP(SP_HEIGHT_MASK, (h))
-> -#define   SP_WIDTH_MASK			REG_GENMASK(15, 0)
-> -#define   SP_WIDTH(w)			REG_FIELD_PREP(SP_WIDTH_MASK, (w))
-> -#define _SPAKEYMINVAL		(VLV_DISPLAY_BASE + 0x72194)
-> -#define _SPAKEYMSK		(VLV_DISPLAY_BASE + 0x72198)
-> -#define _SPASURF		(VLV_DISPLAY_BASE + 0x7219c)
-> -#define   SP_ADDR_MASK			REG_GENMASK(31, 12)
-> -#define _SPAKEYMAXVAL		(VLV_DISPLAY_BASE + 0x721a0)
-> -#define _SPATILEOFF		(VLV_DISPLAY_BASE + 0x721a4)
-> -#define   SP_OFFSET_Y_MASK		REG_GENMASK(31, 16)
-> -#define   SP_OFFSET_Y(y)		REG_FIELD_PREP(SP_OFFSET_Y_MASK, (y))
-> -#define   SP_OFFSET_X_MASK		REG_GENMASK(15, 0)
-> -#define   SP_OFFSET_X(x)		REG_FIELD_PREP(SP_OFFSET_X_MASK, (x))
-> -#define _SPACONSTALPHA		(VLV_DISPLAY_BASE + 0x721a8)
-> -#define   SP_CONST_ALPHA_ENABLE		REG_BIT(31)
-> -#define   SP_CONST_ALPHA_MASK		REG_GENMASK(7, 0)
-> -#define   SP_CONST_ALPHA(alpha)		REG_FIELD_PREP(SP_CONST_ALPHA_MASK, (alpha))
-> -#define _SPASURFLIVE		(VLV_DISPLAY_BASE + 0x721ac)
-> -#define _SPACLRC0		(VLV_DISPLAY_BASE + 0x721d0)
-> -#define   SP_CONTRAST_MASK		REG_GENMASK(26, 18)
-> -#define   SP_CONTRAST(x)		REG_FIELD_PREP(SP_CONTRAST_MASK, (x)) /* u3.6 */
-> -#define   SP_BRIGHTNESS_MASK		REG_GENMASK(7, 0)
-> -#define   SP_BRIGHTNESS(x)		REG_FIELD_PREP(SP_BRIGHTNESS_MASK, (x)) /* s8 */
-> -#define _SPACLRC1		(VLV_DISPLAY_BASE + 0x721d4)
-> -#define   SP_SH_SIN_MASK		REG_GENMASK(26, 16)
-> -#define   SP_SH_SIN(x)			REG_FIELD_PREP(SP_SH_SIN_MASK, (x)) /* s4.7 */
-> -#define   SP_SH_COS_MASK		REG_GENMASK(9, 0)
-> -#define   SP_SH_COS(x)			REG_FIELD_PREP(SP_SH_COS_MASK, (x)) /* u3.7 */
-> -#define _SPAGAMC		(VLV_DISPLAY_BASE + 0x721e0)
-> -
-> -#define _SPBCNTR		(VLV_DISPLAY_BASE + 0x72280)
-> -#define _SPBLINOFF		(VLV_DISPLAY_BASE + 0x72284)
-> -#define _SPBSTRIDE		(VLV_DISPLAY_BASE + 0x72288)
-> -#define _SPBPOS			(VLV_DISPLAY_BASE + 0x7228c)
-> -#define _SPBSIZE		(VLV_DISPLAY_BASE + 0x72290)
-> -#define _SPBKEYMINVAL		(VLV_DISPLAY_BASE + 0x72294)
-> -#define _SPBKEYMSK		(VLV_DISPLAY_BASE + 0x72298)
-> -#define _SPBSURF		(VLV_DISPLAY_BASE + 0x7229c)
-> -#define _SPBKEYMAXVAL		(VLV_DISPLAY_BASE + 0x722a0)
-> -#define _SPBTILEOFF		(VLV_DISPLAY_BASE + 0x722a4)
-> -#define _SPBCONSTALPHA		(VLV_DISPLAY_BASE + 0x722a8)
-> -#define _SPBSURFLIVE		(VLV_DISPLAY_BASE + 0x722ac)
-> -#define _SPBCLRC0		(VLV_DISPLAY_BASE + 0x722d0)
-> -#define _SPBCLRC1		(VLV_DISPLAY_BASE + 0x722d4)
-> -#define _SPBGAMC		(VLV_DISPLAY_BASE + 0x722e0)
-> -
-> -#define _VLV_SPR(pipe, plane_id, reg_a, reg_b) \
-> -	_PIPE((pipe) * 2 + (plane_id) - PLANE_SPRITE0, (reg_a), (reg_b))
-> -#define _MMIO_VLV_SPR(pipe, plane_id, reg_a, reg_b) \
-> -	_MMIO(_VLV_SPR((pipe), (plane_id), (reg_a), (reg_b)))
-> -
-> -#define SPCNTR(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPACNTR, _SPBCNTR)
-> -#define SPLINOFF(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPALINOFF, _SPBLINOFF)
-> -#define SPSTRIDE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASTRIDE, _SPBSTRIDE)
-> -#define SPPOS(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPAPOS, _SPBPOS)
-> -#define SPSIZE(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPASIZE, _SPBSIZE)
-> -#define SPKEYMINVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMINVAL, _SPBKEYMINVAL)
-> -#define SPKEYMSK(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMSK, _SPBKEYMSK)
-> -#define SPSURF(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPASURF, _SPBSURF)
-> -#define SPKEYMAXVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMAXVAL, _SPBKEYMAXVAL)
-> -#define SPTILEOFF(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPATILEOFF, _SPBTILEOFF)
-> -#define SPCONSTALPHA(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPACONSTALPHA, _SPBCONSTALPHA)
-> -#define SPSURFLIVE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
-> -#define SPCLRC0(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPACLRC0, _SPBCLRC0)
-> -#define SPCLRC1(pipe, plane_id)		_MMIO_VLV_SPR((pipe), (plane_id), _SPACLRC1, _SPBCLRC1)
-> -#define SPGAMC(pipe, plane_id, i)	_MMIO(_VLV_SPR((pipe), (plane_id), _SPAGAMC, _SPBGAMC) + (5 - (i)) * 4) /* 6 x u0.10 */
-> -
-> -/*
-> - * CHV pipe B sprite CSC
-> - *
-> - * |cr|   |c0 c1 c2|   |cr + cr_ioff|   |cr_ooff|
-> - * |yg| = |c3 c4 c5| x |yg + yg_ioff| + |yg_ooff|
-> - * |cb|   |c6 c7 c8|   |cb + cr_ioff|   |cb_ooff|
-> - */
-> -#define _MMIO_CHV_SPCSC(plane_id, reg) \
-> -	_MMIO(VLV_DISPLAY_BASE + ((plane_id) - PLANE_SPRITE0) * 0x1000 + (reg))
-> -
-> -#define SPCSCYGOFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d900)
-> -#define SPCSCCBOFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d904)
-> -#define SPCSCCROFF(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d908)
-> -#define  SPCSC_OOFF_MASK	REG_GENMASK(26, 16)
-> -#define  SPCSC_OOFF(x)		REG_FIELD_PREP(SPCSC_OOFF_MASK, (x) & 0x7ff) /* s11 */
-> -#define  SPCSC_IOFF_MASK	REG_GENMASK(10, 0)
-> -#define  SPCSC_IOFF(x)		REG_FIELD_PREP(SPCSC_IOFF_MASK, (x) & 0x7ff) /* s11 */
-> -
-> -#define SPCSCC01(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d90c)
-> -#define SPCSCC23(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d910)
-> -#define SPCSCC45(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d914)
-> -#define SPCSCC67(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d918)
-> -#define SPCSCC8(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d91c)
-> -#define  SPCSC_C1_MASK		REG_GENMASK(30, 16)
-> -#define  SPCSC_C1(x)		REG_FIELD_PREP(SPCSC_C1_MASK, (x) & 0x7fff) /* s3.12 */
-> -#define  SPCSC_C0_MASK		REG_GENMASK(14, 0)
-> -#define  SPCSC_C0(x)		REG_FIELD_PREP(SPCSC_C0_MASK, (x) & 0x7fff) /* s3.12 */
-> -
-> -#define SPCSCYGICLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d920)
-> -#define SPCSCCBICLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d924)
-> -#define SPCSCCRICLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d928)
-> -#define  SPCSC_IMAX_MASK	REG_GENMASK(26, 16)
-> -#define  SPCSC_IMAX(x)		REG_FIELD_PREP(SPCSC_IMAX_MASK, (x) & 0x7ff) /* s11 */
-> -#define  SPCSC_IMIN_MASK	REG_GENMASK(10, 0)
-> -#define  SPCSC_IMIN(x)		REG_FIELD_PREP(SPCSC_IMIN_MASK, (x) & 0x7ff) /* s11 */
-> -
-> -#define SPCSCYGOCLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d92c)
-> -#define SPCSCCBOCLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d930)
-> -#define SPCSCCROCLAMP(plane_id)	_MMIO_CHV_SPCSC(plane_id, 0x6d934)
-> -#define  SPCSC_OMAX_MASK	REG_GENMASK(25, 16)
-> -#define  SPCSC_OMAX(x)		REG_FIELD_PREP(SPCSC_OMAX_MASK, (x)) /* u10 */
-> -#define  SPCSC_OMIN_MASK	REG_GENMASK(9, 0)
-> -#define  SPCSC_OMIN(x)		REG_FIELD_PREP(SPCSC_OMIN_MASK, (x)) /* u10 */
-> -
->  /* Skylake plane registers */
->  
->  #define _PLANE_CTL_1_A				0x70180
-> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> index 70d661bffcc2..442ffc0c79fe 100644
-> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -14,6 +14,7 @@
->  #include "display/intel_fdi_regs.h"
->  #include "display/intel_lvds_regs.h"
->  #include "display/intel_psr_regs.h"
-> +#include "display/intel_sprite_regs.h"
->  #include "display/skl_watermark_regs.h"
->  #include "display/vlv_dsi_pll_regs.h"
->  #include "gt/intel_engine_regs.h"
-> -- 
-> 2.39.2
+
+> Also, will add the helper as you suggested.
+> 
+> Regards,
+> Uma Shankar
+> 
+> > 
+> > Matt
+> > 
+> > > +		intel_de_rmw(i915, AUD_CHICKENBIT_REG3,
+> > CHICKEN3_SPARE18, 0);
+> > > +
+> > >  	mutex_unlock(&i915->display.audio.mutex);
+> > >  }
+> > >
+> > > @@ -637,6 +644,13 @@ static void hsw_audio_codec_enable(struct
+> > intel_encoder *encoder,
+> > >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
+> > >  		enable_audio_dsc_wa(encoder, crtc_state);
+> > >
+> > > +	/*
+> > > +	 * WA_14020863754: Implement Audio Workaround
+> > > +	 * Corner case with Min Hblank Fix can cause audio hang
+> > > +	 */
+> > > +	if (DISPLAY_VER(i915) >= 20)
+> > > +		intel_de_rmw(i915, AUD_CHICKENBIT_REG3, 0,
+> > CHICKEN3_SPARE18);
+> > > +
+> > >  	/* Enable audio presence detect */
+> > >  	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+> > >  		     0, AUDIO_OUTPUT_ENABLE(cpu_transcoder));
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h
+> > > b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+> > > index 616e7b1275c4..6f8d33299ecd 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+> > > @@ -148,4 +148,7 @@
+> > >  #define HBLANK_START_COUNT_96	4
+> > >  #define HBLANK_START_COUNT_128	5
+> > >
+> > > +#define AUD_CHICKENBIT_REG3		_MMIO(0x65F1C)
+> > > +#define  CHICKEN3_SPARE18		REG_BIT(18)
+> > > +
+> > >  #endif /* __INTEL_AUDIO_REGS_H__ */
+> > > --
+> > > 2.42.0
+> > >
+> > 
+> > --
+> > Matt Roper
+> > Graphics Software Engineer
+> > Linux GPU Platform Enablement
+> > Intel Corporation
 
 -- 
-Ville Syrjälä
-Intel
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
