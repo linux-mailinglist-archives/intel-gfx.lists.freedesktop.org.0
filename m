@@ -2,62 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D834C8A33C8
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 18:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1FD8A34E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 19:38:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49BDE10E3F0;
-	Fri, 12 Apr 2024 16:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB90610E00F;
+	Fri, 12 Apr 2024 17:38:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N8pWUJuu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ACJ4tgae";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 976B910E3F0;
- Fri, 12 Apr 2024 16:26:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2515E10E00F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 17:38:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712939205; x=1744475205;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=CoAvhTMt+ClKYJyx9fkeMjn4e9bz8hoVk80daUywBS8=;
- b=N8pWUJuuJYU5j90Gwz/SHogocrEPsQOz84qksTSG87BSAosECvcxUaBb
- E2+rQJYzYvLKoEPa6UeZ2rSuflgNH+S4MvkJRPkKHpyeZEc79JIH2fwFQ
- Ug4KAf/vWwfj17nQ3Pi322g5xSyO72FsPaGcicIEJNf6MEtY3NEEqgc1H
- YUIZhHME6k2Wh316pRcC2Em251zH0VQzqpZVEx5s+BsZoUEKDb7VPiDxV
- CuRQ2mQFk5CTuVQ7ZsG7Lrlqc3oGCo79x0FWNj5DUMwbmr1ciB/YUHeV/
- HLWe8vIwF4CR3oKU/4I+T3ZvnUZgRwZCoSswnpWabNmyNy9QCCPuFudC2 Q==;
-X-CSE-ConnectionGUID: 2AzUKGSSQ8WpzBSlzqwDrQ==
-X-CSE-MsgGUID: Q5ovyFeFQkuUMhqWVwBXpg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19549558"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19549558"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 09:26:44 -0700
-X-CSE-ConnectionGUID: n5FwUVExRJy+fMF3HNUbyg==
-X-CSE-MsgGUID: VzQi4Jv1TIm87yvipc87CQ==
+ t=1712943486; x=1744479486;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tKsAUmzj9Kha3GQssJhGZIYEOSarSUiZ4DGxQHFFzUM=;
+ b=ACJ4tgae/FgZPzKIFyG9gomgOlt3EbdJQNIWdpbDFWLmDnkhldCLuCYS
+ 25Z18RYxhfk9AwAhl+6/tcyIityLY831GS1+DqaHv5lK3rr1Tm/CCDKP8
+ f2q8zKpliSmbH1BUWs+eoMPRRwPmCKM/DazqTWIytR3vrMNz/UupdK/oW
+ brg2wdiVTVU/r2PIieITsStIpRd+yBiVffSvWC/0xzlX9/4I92uFx22sg
+ /amsAO0+ltoVr+OxoUo0FuCMsf6VPJuudY9JEZlwQeQSnk/xL7sEXxh+X
+ zWZDF25j5K5H1io1oiUOfR8WrpLYYkh6sgky1n36kl9Rme+0ARG8JKqVx w==;
+X-CSE-ConnectionGUID: +5T1eLccRCSf6JinCELbeg==
+X-CSE-MsgGUID: EHh2Y0FWRMq+1l8zoKw+SQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8513848"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; 
+   d="scan'208";a="8513848"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 10:38:06 -0700
+X-CSE-ConnectionGUID: gjYl/ipWQ8GTFJjGYsu2nw==
+X-CSE-MsgGUID: jaHqO7bbSMeZkQlCzspkqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21361963"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 09:26:41 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 19:26:40 +0300
-Date: Fri, 12 Apr 2024 19:26:40 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/6] drm/i915/display: split out intel_fbc_regs.h from
- i915_reg.h
-Message-ID: <ZhlgwJSSemaZjEC5@intel.com>
-References: <cover.1712933479.git.jani.nikula@intel.com>
- <eaf07dab79ff057547501892056dd06afec4f213.1712933479.git.jani.nikula@intel.com>
- <ZhlO_c62Tdlx_ck8@intel.com> <87bk6e4m1q.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21366069"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa007.fm.intel.com with ESMTP; 12 Apr 2024 10:38:05 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/3] Implement CMRR Support
+Date: Fri, 12 Apr 2024 23:01:50 +0530
+Message-Id: <20240412173153.722804-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87bk6e4m1q.fsf@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,55 +64,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 12, 2024 at 06:50:57PM +0300, Jani Nikula wrote:
-> On Fri, 12 Apr 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Fri, Apr 12, 2024 at 05:52:55PM +0300, Jani Nikula wrote:
-> >> +/*
-> >> + * Framebuffer compression (915+ only)
-> >> + */
-> >
-> > Outdated comment. Looks like pretty much all the comments
-> > in this file are misleading/outdated. Maybe just nuke them
-> > all while at it.
-> 
-> Ack.
-> 
-> >> +#define ILK_DISPLAY_CHICKEN1	_MMIO(0x42000)
-> >
-> > Not an FBC register.
-> 
-> Whoops, this one was an accident.
-> 
-> >> +#define CHICKEN_MISC_4		_MMIO(0x4208c)
-> >
-> > Also not an FBC register.
-> 
-> However this one was intentional. So the register isn't "an fbc
-> register", but the contents are all about fbc,
+CMRR is a display feature that uses adaptive sync
+framework to vary Vtotal slightly to match the
+content rate exactly without frame drops. This
+feature is a variation of VRR where it varies Vtotal
+slightly (between additional 0 and 1 Vtotal scanlines)
+to match content rate exactly without frame drops
+using the adaptive sync framework.
 
-Only the bits we have thus far defined. There's other stuff
-in there that we haven't bothered to name.
+enable this feature by programing new registers for
+CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
+CMRR_M/CMRR_N ratio represents the fractional part
+in (actual refresh rate/target refresh rate) * origVTotal.
 
-> and it's only used in
-> intel_fbc.c.
+--v6:
+- CMRR handling in co-existatnce of LRR and DRRS
+- Correct vtotal paramas accuracy and add 2 digit precision.
 
-I don't think we should place chicken register/etc definitons based
-purely on where it might be currently used. That may change at any
-point when we discover a new chicken bit that needs to be flipped.
-At that point the defintion would have to be moved again, or what
-seems rather likely to happen, people will overlook the existing
-definiton and add a duplicate elsewhere.
+--v7:
+- Rebased patches in-accordance to AS SDP merge.
+- Add neccessary gaurd to prevent crtc_state mismatch
+during intel_vrr_get_config.
 
-> 
-> I guess after all reasonable topical things have been split out from
-> i915_reg.h, whatever display stuff is left will need to be put to a new
-> intel_display_regs.h or something. Things like this would then end up
-> there. Better or worse that way, I don't know.
+Mitul Golani (3):
+  drm/i915: Define and compute Transcoder CMRR registers
+  drm/i915: Add Enable/Disable for CMRR based on VRR state
+  drm/i915: Compute CMRR and calculate vtotal
 
-Yeah, there are a bunch of "these don't really belong anywhere"
-registers. Though maybe this kind of non-specific chicken registers
-could even live in the intel_chicken_regs.h file. Shrug.
+ drivers/gpu/drm/i915/display/intel_display.c  |  61 ++++++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 153 +++++++++++++++---
+ drivers/gpu/drm/i915/i915_reg.h               |  10 ++
+ 5 files changed, 201 insertions(+), 30 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
