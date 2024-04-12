@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60048A35A7
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 683508A35A8
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Apr 2024 20:28:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1962710F7AE;
-	Fri, 12 Apr 2024 18:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8831D10F7B5;
+	Fri, 12 Apr 2024 18:27:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tk8NFX19";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F3mN9Jtl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 506A010F7A8
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14A8A10F7AD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Apr 2024 18:27:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712946459; x=1744482459;
+ t=1712946463; x=1744482463;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=2lgFwamJO//za18il4LO8YNsUpP/LBP+byiFMW1+h+0=;
- b=Tk8NFX19ZFXEvW2JxNZv0rSvf2WHVfqsJ3of5lDELZJZq83aHeKSX0sx
- Muhwk2XXPj/GBfsRPiUn3isUmToSTNw+VZ8/r1BNnTeAaeRkMegrR0uS/
- LYvLXlkpG51TOLP5uJTa7kCwL9oNh2jdfT85FIkMAdcDyX7XaumPg5yn9
- ki9fp2v/5E/gAZmqLnt8rdmWxEJYxAlq8q6pU3VV/LNfn7oYapuJwoQCx
- 7GnmZa0u/EgOhELDxONEFBpoevRTcR+YP6trQ6x9WCe0iH7R/Oj26DbaR
- tYnJWmn+q0qSVMHfQxsmBynQ/kpOlWLmIeg9bA+PIOgmsDOdZEOvmZwKv g==;
-X-CSE-ConnectionGUID: F9hVuRo1T3+tDJID1uYirQ==
-X-CSE-MsgGUID: t0rNx+r4SEGO2ZWXg/xyNg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560565"
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560565"
+ bh=8S6BGCfgdvCib1c1lNIzjimmMs5eoZNu3ePxA6Ek+Ss=;
+ b=F3mN9JtldTaxF6shGP4iyP3AcrEdEGNXKXkDE/q0QA4tBfCsIL5nWyAJ
+ X2Ef2fy0RMWZPpXAYcikpI9wME0oZeSKtSz9CrVXjAVG7tTAcvCoHkUrY
+ L/W/uiLk2R40CPynckNkEollCxOXDhsLoYWa8ynWtnpuUPc2p7z7mxZH5
+ o8+tSRz5xbI43YGcmUON06wZXfxZtQrWro7sic/6k7oT+Ephmuq5ZF7Qb
+ qRHkhM3tGaisSZ1PeWvFT9VVuto/eAy1vXD8EN9/4lLwwYlXIy/I4kBaW
+ 4tmK/U0FO76cRPOtPiSbl4bzgvTEP2yk/2EkEwTBdU3iO4PIiA6GM1Brk w==;
+X-CSE-ConnectionGUID: 9NO0h38/TzqJ2nNdUslZ+Q==
+X-CSE-MsgGUID: Al2B4wLvSOOoR1IAb76gJA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="19560577"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="19560577"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 11:27:39 -0700
-X-CSE-ConnectionGUID: JMfpmIfkRnOpfRkNkzkWYg==
-X-CSE-MsgGUID: +qRDGIwWQFGd8tsGisQWHg==
+ 12 Apr 2024 11:27:42 -0700
+X-CSE-ConnectionGUID: gx3lNfkpSzav0oA0Qp65Tg==
+X-CSE-MsgGUID: XdblvmDCQMOEfrd2DXH6oA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394772"
+X-IronPort-AV: E=Sophos;i="6.07,196,1708416000"; d="scan'208";a="21394800"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:36 -0700
+ by fmviesa008.fm.intel.com with SMTP; 12 Apr 2024 11:27:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Apr 2024 21:27:35 +0300
+ Fri, 12 Apr 2024 21:27:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 11/18] drm/i915: Inline {i9xx,ilk}_update_pll_dividers()
-Date: Fri, 12 Apr 2024 21:26:56 +0300
-Message-ID: <20240412182703.19916-12-ville.syrjala@linux.intel.com>
+Subject: [PATCH 12/18] drm/i915: Modernize i9xx_pll_refclk()
+Date: Fri, 12 Apr 2024 21:26:57 +0300
+Message-ID: <20240412182703.19916-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
 References: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
@@ -70,100 +70,51 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Now that *_compute_dpll() are no longer a mess
-{i9xx,ilk}_update_pll_dividers() don't serve any real
-purpose anymore. Just inline them into the callers.
+Drop the redundant 'dev' argument from i9xx_pll_refclk()
+and rename its variables to conform to modern standards.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll.c | 46 +++++++----------------
- 1 file changed, 13 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 0625b9c436c2..43d36ea56798 100644
+index 43d36ea56798..5246b8a8d461 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -988,26 +988,6 @@ static u32 pnv_dpll_compute_fp(const struct dpll *dpll)
- 	return (1 << dpll->n) << 16 | dpll->m2;
+@@ -369,17 +369,16 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
+ 	return clock->dot;
  }
  
--static void i9xx_update_pll_dividers(struct intel_crtc_state *crtc_state,
--				     const struct dpll *clock,
--				     const struct dpll *reduced_clock)
--{
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	u32 fp, fp2;
--
--	if (IS_PINEVIEW(dev_priv)) {
--		fp = pnv_dpll_compute_fp(clock);
--		fp2 = pnv_dpll_compute_fp(reduced_clock);
--	} else {
--		fp = i9xx_dpll_compute_fp(clock);
--		fp2 = i9xx_dpll_compute_fp(reduced_clock);
--	}
--
--	crtc_state->dpll_hw_state.fp0 = fp;
--	crtc_state->dpll_hw_state.fp1 = fp2;
--}
--
- static u32 i965_dpll_md(const struct intel_crtc_state *crtc_state)
+-static int i9xx_pll_refclk(struct drm_device *dev,
+-			   const struct intel_crtc_state *pipe_config)
++static int i9xx_pll_refclk(const struct intel_crtc_state *crtc_state)
  {
- 	return (crtc_state->pixel_multiplier - 1) << DPLL_MD_UDI_MULTIPLIER_SHIFT;
-@@ -1090,7 +1070,13 @@ static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	u32 dpll = pipe_config->dpll_hw_state.dpll;
++	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
++	u32 dpll = crtc_state->dpll_hw_state.dpll;
  
--	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
-+	if (IS_PINEVIEW(dev_priv)) {
-+		crtc_state->dpll_hw_state.fp0 = pnv_dpll_compute_fp(clock);
-+		crtc_state->dpll_hw_state.fp1 = pnv_dpll_compute_fp(reduced_clock);
-+	} else {
-+		crtc_state->dpll_hw_state.fp0 = i9xx_dpll_compute_fp(clock);
-+		crtc_state->dpll_hw_state.fp1 = i9xx_dpll_compute_fp(reduced_clock);
-+	}
+ 	if ((dpll & PLL_REF_INPUT_MASK) == PLLB_REF_INPUT_SPREADSPECTRUMIN)
+-		return dev_priv->display.vbt.lvds_ssc_freq;
+-	else if (HAS_PCH_SPLIT(dev_priv))
++		return i915->display.vbt.lvds_ssc_freq;
++	else if (HAS_PCH_SPLIT(i915))
+ 		return 120000;
+-	else if (DISPLAY_VER(dev_priv) != 2)
++	else if (DISPLAY_VER(i915) != 2)
+ 		return 96000;
+ 	else
+ 		return 48000;
+@@ -425,7 +424,7 @@ void i9xx_crtc_clock_get(struct intel_crtc *crtc,
+ 	u32 fp;
+ 	struct dpll clock;
+ 	int port_clock;
+-	int refclk = i9xx_pll_refclk(dev, pipe_config);
++	int refclk = i9xx_pll_refclk(pipe_config);
  
- 	crtc_state->dpll_hw_state.dpll = i9xx_dpll(crtc_state, clock, reduced_clock);
- 
-@@ -1150,7 +1136,8 @@ static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
- 			      const struct dpll *clock,
- 			      const struct dpll *reduced_clock)
- {
--	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
-+	crtc_state->dpll_hw_state.fp0 = i9xx_dpll_compute_fp(clock);
-+	crtc_state->dpll_hw_state.fp1 = i9xx_dpll_compute_fp(reduced_clock);
- 
- 	crtc_state->dpll_hw_state.dpll = i8xx_dpll(crtc_state, clock, reduced_clock);
- }
-@@ -1271,16 +1258,6 @@ static u32 ilk_dpll_compute_fp(const struct dpll *clock, int factor)
- 	return fp;
- }
- 
--static void ilk_update_pll_dividers(struct intel_crtc_state *crtc_state,
--				    const struct dpll *clock,
--				    const struct dpll *reduced_clock)
--{
--	int factor = ilk_fb_cb_factor(crtc_state);
--
--	crtc_state->dpll_hw_state.fp0 = ilk_dpll_compute_fp(clock, factor);
--	crtc_state->dpll_hw_state.fp1 = ilk_dpll_compute_fp(reduced_clock, factor);
--}
--
- static u32 ilk_dpll(const struct intel_crtc_state *crtc_state,
- 		    const struct dpll *clock,
- 		    const struct dpll *reduced_clock)
-@@ -1358,7 +1335,10 @@ static void ilk_compute_dpll(struct intel_crtc_state *crtc_state,
- 			     const struct dpll *clock,
- 			     const struct dpll *reduced_clock)
- {
--	ilk_update_pll_dividers(crtc_state, clock, reduced_clock);
-+	int factor = ilk_fb_cb_factor(crtc_state);
-+
-+	crtc_state->dpll_hw_state.fp0 = ilk_dpll_compute_fp(clock, factor);
-+	crtc_state->dpll_hw_state.fp1 = ilk_dpll_compute_fp(reduced_clock, factor);
- 
- 	crtc_state->dpll_hw_state.dpll = ilk_dpll(crtc_state, clock, reduced_clock);
- }
+ 	if ((dpll & DISPLAY_RATE_SELECT_FPA1) == 0)
+ 		fp = pipe_config->dpll_hw_state.fp0;
 -- 
 2.43.2
 
