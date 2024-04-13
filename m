@@ -2,57 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA288A390C
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Apr 2024 02:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9906B8A3962
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Apr 2024 02:35:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E88C10F992;
-	Sat, 13 Apr 2024 00:10:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55F410F328;
+	Sat, 13 Apr 2024 00:35:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cng+ZCd3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RhitWNGb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2EB510F992
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 Apr 2024 00:10:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F2AD10F328
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Apr 2024 00:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1712967039; x=1744503039;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/XVR1cyycdWrwpz1/5ODkkkY2iGN03jrtii3lMbNI8A=;
- b=cng+ZCd30I7eNtpwm7OExyFfaDozwgeJnsK41D/JyTxUPvlRkFkj38OY
- /MDMJqizY05/TJEmVLVi0Eo0LAMZCdvK0HN4PinZfM302CID4VMHljWqT
- xo3Du7plT1GE5VYzimzNxrxIvJ1dIbAQy81YiQZZ9aUxOTm5G6lg1mQgb
- 3IeSUo/6Zmi7cFepV+4F1DYLQjGJU/AxxphuxVhb00KjZTQhbAru39hlK
- w0hScB7CkujYKbXWxBohF/XUC2QmUI9/0dgQ3qNNT4Dv4kSDNGIvyQC8i
- ah9CC0SU0An7cm/Dn0OATs3ixbLUzFKjPCk0gebJ+TjaZQGxhW0vJVDQo A==;
-X-CSE-ConnectionGUID: Uromby/aTJqG0a2tObC04w==
-X-CSE-MsgGUID: fi6TBmLAScGFTu6udkoUXw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8308913"
+ t=1712968521; x=1744504521;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Hr3jWi73Wqu8xZvrUBcRiTAukjCTjyz09hrvYbuDmRU=;
+ b=RhitWNGbcx86+2dT1/wUHfnyxeUtRLxatsxzzHdSmMmgeVK3EIxlF5re
+ OI7f2WYhezbqYJp60vNzLtnRzdTPQpPvEaaMLGjqjdNlSexn8DYkerZvE
+ W7gqlYD93FU6rHB4pqyZve9ZQmTtTQWTkMFSyPEA9tAjKiFETjatnc7pA
+ SZBmfxHDnzG4gokwwIms1NxjRIP7FnZ9d5korXz9G7dCCflIJ8KaTwGqp
+ LKsjMKvCBvtN3EaFGrKHoGzjsw7WY7xHLIpgbYQ9j1YlZu5KFRjXQIhkM
+ qsjw05nm8k6r/yOF1RTp7jWts49TcF6EWd994y+Ro6mPf0O7eiB2x73If w==;
+X-CSE-ConnectionGUID: npodDIpYS7iy7RPnBn3/ag==
+X-CSE-MsgGUID: vsGygVOYRvuAVBVBZBtsTQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11042"; a="8659594"
 X-IronPort-AV: E=Sophos;i="6.07,197,1708416000"; 
-   d="scan'208";a="8308913"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 17:10:39 -0700
-X-CSE-ConnectionGUID: 43LY9+AYT1G+N8UnCqwScQ==
-X-CSE-MsgGUID: FInGVoASQjqBD7J4ByOedg==
+   d="scan'208";a="8659594"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 17:35:16 -0700
+X-CSE-ConnectionGUID: WtWKLmy9TOW9IJHr+nNVdQ==
+X-CSE-MsgGUID: Jpb7+d2bQyyJrdSVa1ZieQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,197,1708416000"; d="scan'208";a="21356826"
-Received: from orsosgc001.jf.intel.com ([10.165.21.138])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2024 17:10:38 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Badal Nilawar <badal.nilawar@intel.com>, Andi Shyti <andi.shyti@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- linux-hwmon@vger.kernel.org
-Subject: [PATCH] drm/i915/hwmon: Get rid of devm
-Date: Fri, 12 Apr 2024 17:10:31 -0700
-Message-ID: <20240413001031.481961-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.41.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.07,197,1708416000"; d="scan'208";a="21308737"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.138])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2024 17:35:16 -0700
+Date: Fri, 12 Apr 2024 17:35:15 -0700
+Message-ID: <85frvqt7zw.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: <intel-gfx@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>,
+ Andi Shyti <andi.shyti@intel.com>
+Subject: Re: [PATCH] drm/i915: Don't enable hwmon for selftests
+In-Reply-To: <Zhe_sRPLB7Dn7-tO@intel.com>
+References: <20240410042855.130262-1-ashutosh.dixit@intel.com>	<ZhZ7NsyBtQjnE8HE@intel.com>	<85pluwjxir.wl-ashutosh.dixit@intel.com>	<Zhe_sRPLB7Dn7-tO@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,98 +73,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When both hwmon and hwmon drvdata (on which hwmon depends) are device
-managed resources, the expectation, on device unbind, is that hwmon will be
-released before the drvdata. However, it appears devres does not do this
-consistently, so that we occasionally see drvdata being released before
-hwmon itself. This results in a uaf if hwmon sysfs is accessed during
-device unbind.
+On Thu, 11 Apr 2024 03:47:13 -0700, Ville Syrj=E4l=E4 wrote:
+>
+> On Wed, Apr 10, 2024 at 10:09:32PM -0700, Dixit, Ashutosh wrote:
+> > On Wed, 10 Apr 2024 04:42:46 -0700, Ville Syrj=E4l=E4 wrote:
+> > >
+> > > On Tue, Apr 09, 2024 at 09:28:55PM -0700, Ashutosh Dixit wrote:
+> > > > There are no hwmon selftests so there is no need to enable hwmon for
+> > > > selftests. So enable hwmon only for real driver load.
+> > > >
+> > > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
+> > > > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > >
+> > > Why are we adding duct tape instead of fixing it properly?
+> >
+> > Yeah pretty much what I said here myself:
+> >
+> > https://patchwork.freedesktop.org/patch/588585/?series=3D132243&rev=3D1=
+#comment_1071014
+> >
+> > The issue has been difficult to root-cause. My last effort can be seen =
+here:
+> >
+> > https://patchwork.freedesktop.org/patch/584859/?series=3D131630&rev=3D1=
+#comment_1067888
+> >
+> > Though Badal went further and saw that occasionaly the memory would get
+> > freed first and hwmon would get unregistered as much as 2 seconds later,
+> > which will cause the crash if anyone touched hwmon sysfs in those final=
+ 2
+> > seconds. So not sure what is causing that 2 second delay.
+>
+> Sounds like someone holding a sysfs file/etc. open. Should be trivial
+> to do that by hand and see what happens.
 
-The only way out of this seems to be do get rid of devm_ and release/free
-everything explicitly during device unbind.
+I checked this out. We see the memory being released before hwmon even when
+we don't access the sysfs, so it has norhing to do with holding a sysfs
+file open. Holding a sysfs file open also takes a reference on the module
+which will prevent the module from being unloaded, which is also what we
+don't see.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_hwmon.c | 46 ++++++++++++++++++++++++-------
- 1 file changed, 36 insertions(+), 10 deletions(-)
+So the reordering seems to be happening in devres itself occasionally for
+some reason.
 
-diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
-index 8c3f443c8347..5f6022b148d7 100644
---- a/drivers/gpu/drm/i915/i915_hwmon.c
-+++ b/drivers/gpu/drm/i915/i915_hwmon.c
-@@ -792,7 +792,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 	if (!IS_DGFX(i915))
- 		return;
- 
--	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
-+	hwmon = kzalloc(sizeof(*hwmon), GFP_KERNEL);
- 	if (!hwmon)
- 		return;
- 
-@@ -818,10 +818,10 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 	hwm_get_preregistration_info(i915);
- 
- 	/*  hwmon_dev points to device hwmon<i> */
--	hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat->name,
--							 ddat,
--							 &hwm_chip_info,
--							 hwm_groups);
-+	hwmon_dev = hwmon_device_register_with_info(dev, ddat->name,
-+						    ddat,
-+						    &hwm_chip_info,
-+						    hwm_groups);
- 	if (IS_ERR(hwmon_dev)) {
- 		i915->hwmon = NULL;
- 		return;
-@@ -838,10 +838,10 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
- 			continue;
- 
--		hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat_gt->name,
--								 ddat_gt,
--								 &hwm_gt_chip_info,
--								 NULL);
-+		hwmon_dev = hwmon_device_register_with_info(dev, ddat_gt->name,
-+							    ddat_gt,
-+							    &hwm_gt_chip_info,
-+							    NULL);
- 		if (!IS_ERR(hwmon_dev))
- 			ddat_gt->hwmon_dev = hwmon_dev;
- 	}
-@@ -849,5 +849,31 @@ void i915_hwmon_register(struct drm_i915_private *i915)
- 
- void i915_hwmon_unregister(struct drm_i915_private *i915)
- {
--	fetch_and_zero(&i915->hwmon);
-+	struct i915_hwmon *hwmon;
-+	struct hwm_drvdata *ddat;
-+	struct intel_gt *gt;
-+	int i;
-+
-+	hwmon = fetch_and_zero(&i915->hwmon);
-+	if (!hwmon)
-+		return;
-+
-+	ddat = &hwmon->ddat;
-+
-+	for_each_gt(gt, i915, i) {
-+		struct hwm_drvdata *ddat_gt;
-+
-+		ddat_gt = hwmon->ddat_gt + i;
-+
-+		if (ddat_gt->hwmon_dev) {
-+			hwmon_device_unregister(ddat_gt->hwmon_dev);
-+			ddat_gt->hwmon_dev = NULL;
-+		}
-+	}
-+
-+	if (ddat->hwmon_dev)
-+		hwmon_device_unregister(ddat->hwmon_dev);
-+
-+	mutex_destroy(&hwmon->hwmon_lock);
-+	kfree(hwmon);
- }
--- 
-2.41.0
+So anyway, I have submitted a new patch getting rid of devm and freeing
+everything explicitly and verified that that fixes the issue:
 
+https://patchwork.freedesktop.org/series/132400/
+
+I have also update https://patchwork.freedesktop.org/series/132400/ with
+more details.
+
+Regards,
+Ashutosh
+
+>
+> >
+> > I am not sure if it is worth root-causing further. I am pretty sure if =
+we
+> > get rid of the devm_ stuff, that will fix the issue too. So if this pat=
+ch
+> > is not acceptable, we could just go that route (get rid of devm_ in hwm=
+on).
+> >
+> >
+> > > > ---
+> > > >  drivers/gpu/drm/i915/i915_driver.c | 16 ++++++++++++++--
+> > > >  1 file changed, 14 insertions(+), 2 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i=
+915/i915_driver.c
+> > > > index 9ee902d5b72c..6fa6d2c8109f 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > > > @@ -94,6 +94,7 @@
+> > > >  #include "i915_memcpy.h"
+> > > >  #include "i915_perf.h"
+> > > >  #include "i915_query.h"
+> > > > +#include "i915_selftest.h"
+> > > >  #include "i915_suspend.h"
+> > > >  #include "i915_switcheroo.h"
+> > > >  #include "i915_sysfs.h"
+> > > > @@ -589,6 +590,15 @@ static void i915_driver_hw_remove(struct drm_i=
+915_private *dev_priv)
+> > > >		pci_disable_msi(pdev);
+> > > >  }
+> > > >
+> > > > +static bool is_selftest(void)
+> > > > +{
+> > > > +#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> > > > +	return i915_selftest.live || i915_selftest.perf || i915_selftest.=
+mock;
+> > > > +#else
+> > > > +	return false;
+> > > > +#endif
+> > > > +}
+> > > > +
+> > > >  /**
+> > > >   * i915_driver_register - register the driver with the rest of the=
+ system
+> > > >   * @dev_priv: device private
+> > > > @@ -624,7 +634,8 @@ static void i915_driver_register(struct drm_i91=
+5_private *dev_priv)
+> > > >
+> > > >	intel_pxp_debugfs_register(dev_priv->pxp);
+> > > >
+> > > > -	i915_hwmon_register(dev_priv);
+> > > > +	if (!is_selftest())
+> > > > +		i915_hwmon_register(dev_priv);
+> > > >
+> > > >	intel_display_driver_register(dev_priv);
+> > > >
+> > > > @@ -660,7 +671,8 @@ static void i915_driver_unregister(struct drm_i=
+915_private *dev_priv)
+> > > >	for_each_gt(gt, dev_priv, i)
+> > > >		intel_gt_driver_unregister(gt);
+> > > >
+> > > > -	i915_hwmon_unregister(dev_priv);
+> > > > +	if (!is_selftest())
+> > > > +		i915_hwmon_unregister(dev_priv);
+> > > >
+> > > >	i915_perf_unregister(dev_priv);
+> > > >	i915_pmu_unregister(dev_priv);
+> > > > --
+> > > > 2.41.0
+> > >
+> > > --
+> > > Ville Syrj=E4l=E4
+> > > Intel
+>
+> --
+> Ville Syrj=E4l=E4
+> Intel
