@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D318A4132
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 Apr 2024 10:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1B28A4629
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 01:23:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2AC110E4BC;
-	Sun, 14 Apr 2024 08:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B46011201F;
+	Sun, 14 Apr 2024 23:23:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="tjhxku4a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g099EBGR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from msa.smtpout.orange.fr (smtp-78.smtpout.orange.fr [80.12.242.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84DC610E49A;
- Sun, 14 Apr 2024 08:26:41 +0000 (UTC)
-Received: from [192.168.1.18] ([86.243.17.157]) by smtp.orange.fr with ESMTPA
- id vvC8ry1nx2EKwvvC8r61FO; Sun, 14 Apr 2024 10:26:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1713083199;
- bh=N6kt4K4X39o6KWEFDhgyAlxfWwd6wjsL+csvpVS017g=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=tjhxku4aCpQd8TAr+IdcjNdqD4iVTDQ/Q8lB+Jy8XNu/oMLoUMZk0TNWubY5O1ypz
- KRj9vhTckLtq2u/Ve7a1zHMaGoAD0dazRl/5oTk6k/Me04gStigPK+uN85ASj9mwjC
- PyYHr36ZAh+YuVGgVkD2j+rjhDNqJAmbuBWhRPQD79XykVrZCGM+aCZHEbjoye5DxY
- /LtRtP4ooYOiuZrnQ/rXqrlQc7v5xcGdJ+Oa4cxAN3lkzsH6YjXEqPrZYGb0HYjmGN
- Sd1oRdvBaUMPbb0XbDWWAb+6AyPk4EvN0nY5GSUZeWaD5hj7ofTI+ZNop9Qb6052bK
- nZ6yMFbai/DLg==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 14 Apr 2024 10:26:39 +0200
-X-ME-IP: 86.243.17.157
-Message-ID: <a788ee2e-ee51-476f-8aee-aa344f221f9c@wanadoo.fr>
-Date: Sun, 14 Apr 2024 10:26:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/guc: Remove usage of the deprecated
- ida_simple_xx() API
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <7108c1871c6cb08d403c4fa6534bc7e6de4cb23d.1705245316.git.christophe.jaillet@wanadoo.fr>
- <ZbGlqD6zyyp4DsmH@DUT025-TGLU.fm.intel.com>
-Content-Language: en-MW
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <ZbGlqD6zyyp4DsmH@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A79211201F
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 Apr 2024 23:23:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713137035; x=1744673035;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=m8igsyuCj+BEZxsNlKY9VUyc9V2pK+X+p2LLBtKZVoU=;
+ b=g099EBGRYW2ewMcX6msEr50WD+hd4AmTnK+qwUc1FwNdJcPmLJyGm+//
+ mv+SLZALCg2CxO0201RWCZDPo5bphWEvpPz9hxDl5tpe237aP1IVv5c86
+ +c9apXd03WIFiJrb0aFX1NtOiWMCizxgi+fCJ1PCyJHAfdBE3rTB2Koeu
+ +fLTCzJGAd3LfCEkdHu8JeDMNLzTvW3ECBnzJ+DWlDFhc+MUbEoexa5JC
+ FsAlus6ttAfiYxe4Q+DGw1KAIKGIhuO6ENuAS/27ldEN3UxkyJU42NFbG
+ pFpK/Hs2U5CRXvhjcN5uVAFtqu56uJEUy/EEDsYhiWp1WD/eoMlKruO7o A==;
+X-CSE-ConnectionGUID: w+c1CXS3QIazsvhMrXTqHQ==
+X-CSE-MsgGUID: 2GfnwywCTD6s33DsOPSKQw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="8637320"
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
+   d="scan'208";a="8637320"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2024 16:23:54 -0700
+X-CSE-ConnectionGUID: O9n+fkWZR/igkV2E/zWp2g==
+X-CSE-MsgGUID: gygYXM4iTFi7ES2U8kKQZg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26550470"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.138])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2024 16:23:54 -0700
+Date: Sun, 14 Apr 2024 16:23:53 -0700
+Message-ID: <85cyqrtto6.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Badal Nilawar <badal.nilawar@intel.com>, Andi Shyti
+ <andi.shyti@intel.com>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?=
+ <ville.syrjala@linux.intel.com>, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/hwmon: Get rid of devm
+In-Reply-To: <20240413001031.481961-1-ashutosh.dixit@intel.com>
+References: <20240413001031.481961-1-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +73,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Le 25/01/2024 à 01:04, Matthew Brost a écrit :
-> On Sun, Jan 14, 2024 at 04:15:34PM +0100, Christophe JAILLET wrote:
->> ida_alloc() and ida_free() should be preferred to the deprecated
->> ida_simple_get() and ida_simple_remove().
->>
->> Note that the upper limit of ida_simple_get() is exclusive, but the one of
->> ida_alloc_range() is inclusive. So a -1 has been added when needed.
->>
->> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> 
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+On Fri, 12 Apr 2024 17:10:31 -0700, Ashutosh Dixit wrote:
+>
+> When both hwmon and hwmon drvdata (on which hwmon depends) are device
+> managed resources, the expectation, on device unbind, is that hwmon will be
+> released before the drvdata. However, it appears devres does not do this
+> consistently, so that we occasionally see drvdata being released before
+> hwmon itself. This results in a uaf if hwmon sysfs is accessed during
+> device unbind.
+>
+> The only way out of this seems to be do get rid of devm_ and release/free
+> everything explicitly during device unbind.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-Hi,
-
-polite reminder ;-)
-
-CJ
-
-> 
->> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 13 ++++++-------
->>   1 file changed, 6 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> index a259f1118c5a..73ce21ddf682 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
->> @@ -2156,11 +2156,10 @@ static int new_guc_id(struct intel_guc *guc, struct intel_context *ce)
->>   					      order_base_2(ce->parallel.number_children
->>   							   + 1));
->>   	else
->> -		ret = ida_simple_get(&guc->submission_state.guc_ids,
->> -				     NUMBER_MULTI_LRC_GUC_ID(guc),
->> -				     guc->submission_state.num_guc_ids,
->> -				     GFP_KERNEL | __GFP_RETRY_MAYFAIL |
->> -				     __GFP_NOWARN);
->> +		ret = ida_alloc_range(&guc->submission_state.guc_ids,
->> +				      NUMBER_MULTI_LRC_GUC_ID(guc),
->> +				      guc->submission_state.num_guc_ids - 1,
->> +				      GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
->>   	if (unlikely(ret < 0))
->>   		return ret;
->>   
->> @@ -2183,8 +2182,8 @@ static void __release_guc_id(struct intel_guc *guc, struct intel_context *ce)
->>   							   + 1));
->>   		} else {
->>   			--guc->submission_state.guc_ids_in_use;
->> -			ida_simple_remove(&guc->submission_state.guc_ids,
->> -					  ce->guc_id.id);
->> +			ida_free(&guc->submission_state.guc_ids,
->> +				 ce->guc_id.id);
->>   		}
->>   		clr_ctx_id_mapping(guc, ce->guc_id.id);
->>   		set_context_guc_id_invalid(ce);
->> -- 
->> 2.43.0
->>
-> 
-> 
-
+Please don't review this patch yet, I will send a v2 tomorrow. Please
+review the v2. Thanks.
