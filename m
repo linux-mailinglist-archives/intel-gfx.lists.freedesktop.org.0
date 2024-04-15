@@ -2,60 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086BC8A4E22
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 13:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A03C58A4E3E
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 13:59:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97E631124CB;
-	Mon, 15 Apr 2024 11:53:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mNwvyHO6";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E22C1124D6;
+	Mon, 15 Apr 2024 11:59:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5398B1124CB;
- Mon, 15 Apr 2024 11:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713181996; x=1744717996;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=GoClg5dm8zQo3lW3Gj59HBt5MYgBwRz4kg3WnAuhv80=;
- b=mNwvyHO6LA355SdcUx8zKnydKsqQ4xyZIoCCYTJtyMbx0zcCS1+XsgZD
- OnumWC0G5xncuX99L9+lp7QrnyuXN8DknY0a8SCOyS93uG9RAJKIx8Fod
- SD5Hgrz+adzcWACOiQ8lo1oZcHUC+rDiCAYDByPFBz8eRviw7Kn0pPE43
- GQl/spFZO6gRLIe0vgSvjHx9ozU5PJBu8SYaMyvjt6W+rRYyHh/WJ8qtP
- XJDEN7PKrRRXcEPJ22hVJdnTeEgNV6WUpCJ/gRY8rV3V6fHGnf4ec+W4M
- 4EMZt1gcAHqLOg71N3dlSCp+0ZQ39MC8PEAY2ErDzV74VlwbSmJPJnMqt Q==;
-X-CSE-ConnectionGUID: L8D+/9xmQXi4+NRbZfP9Kw==
-X-CSE-MsgGUID: WtwXGU77QQS7LE/B5ToZWg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="8689530"
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; 
-   d="scan'208";a="8689530"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 04:53:15 -0700
-X-CSE-ConnectionGUID: /Sz0s3ZuQ9ahymif187fjQ==
-X-CSE-MsgGUID: AtFSPDvsTzyKTpVI98l+GA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="53095346"
-Received: from lcariou-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.121])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 04:53:12 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
- arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: Re: [PATCH v2 6/6] drm/i915/alpm: Add debugfs for LOBF
-In-Reply-To: <20240412155243.2891996-7-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240412155243.2891996-1-animesh.manna@intel.com>
- <20240412155243.2891996-7-animesh.manna@intel.com>
-Date: Mon, 15 Apr 2024 14:53:02 +0300
-Message-ID: <87sezm3krl.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2731124D6;
+ Mon, 15 Apr 2024 11:59:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6117505416369902693=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2VyaWVzIHN0YXJ0aW5nIHdpdGgg?=
+ =?utf-8?b?W0NJLW9ubHksMS84XSBkcm06IEFkZCBkcm1fdmJsYW5rX3dvcmtfZmx1c2hfYWxs?=
+ =?utf-8?b?KCku?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 11:59:25 -0000
+Message-ID: <171318236577.1404431.16974475708899573066@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240412130946.13148-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,130 +38,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 Apr 2024, Animesh Manna <animesh.manna@intel.com> wrote:
-> For validation purpose add debugfs for LOBF.
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c     | 47 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_alpm.h     |  2 +
->  .../drm/i915/display/intel_display_debugfs.c  |  2 +
->  3 files changed, 51 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index ae894c85233c..21dfc06952d7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -339,3 +339,50 @@ void intel_alpm_configure(struct intel_dp *intel_dp)
->  {
->  	lnl_alpm_configure(intel_dp);
->  }
-> +
-> +static int i915_edp_lobf_support_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_connector *connector = m->private;
-> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> +
-> +	seq_printf(m, "LOBF support: = %s",
-> +		   str_yes_no(intel_dp->lobf_supported));
+--===============6117505416369902693==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If you have individual debugfs files, where the name tells you what it's
-about, what's the point in printing "LOBF support" here?
+== Series Details ==
 
-Moreover, please be more careful, this now prints "LOBF support: =
-yes". And you'll want the \n in the end.
+Series: series starting with [CI-only,1/8] drm: Add drm_vblank_work_flush_all().
+URL   : https://patchwork.freedesktop.org/series/132374/
+State : success
 
-> +
-> +	return 0;
-> +}
-> +
-> +DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_support);
-> +
-> +static int i915_edp_lobf_status_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_connector *connector = m->private;
-> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> +	const char *status;
-> +
-> +	if (intel_dp->lobf_enabled)
-> +		status = "enabled";
-> +	else
-> +		status = "disabled";
-> +
-> +	seq_printf(m, "LOBF: %s\n", status);
+== Summary ==
 
-Ditto. But there's also str_enabled_disabled().
+CI Bug Log - changes from CI_DRM_14572 -> Patchwork_132374v1
+====================================================
 
-I mean you could have a read-only info file which prints all of this
-info with the prefixes. But if it's one attribute per file, why have the
-extra prints? Maybe it should be just alpm info? Idk.
+Summary
+-------
 
-BR,
-Jani.
+  **SUCCESS**
 
-> +
-> +	return 0;
-> +}
-> +
-> +DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_status);
-> +
-> +void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct dentry *root = connector->base.debugfs_entry;
-> +
-> +	if (DISPLAY_VER(i915) >= 20 &&
-> +	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
-> +		return;
-> +
-> +	debugfs_create_file("i915_edp_lobf_supported", 0444, root,
-> +			    connector, &i915_edp_lobf_support_fops);
-> +
-> +	debugfs_create_file("i915_edp_lobf_status", 0444, root,
-> +			    connector, &i915_edp_lobf_status_fops);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-> index c341d2c2b7f7..66e81ed8b2fb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> @@ -11,6 +11,7 @@
->  struct intel_dp;
->  struct intel_crtc_state;
->  struct drm_connector_state;
-> +struct intel_connector;
->  
->  bool intel_dp_get_aux_less_alpm_status(struct intel_dp *intel_dp);
->  bool intel_alpm_compute_params(struct intel_dp *intel_dp,
-> @@ -19,5 +20,6 @@ void intel_alpm_compute_lobf_config(struct intel_dp *intel_dp,
->  				    struct intel_crtc_state *crtc_state,
->  				    struct drm_connector_state *conn_state);
->  void intel_alpm_configure(struct intel_dp *intel_dp);
-> +void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 0feffe8d4e45..ba1530149836 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -13,6 +13,7 @@
->  #include "i915_debugfs.h"
->  #include "i915_irq.h"
->  #include "i915_reg.h"
-> +#include "intel_alpm.h"
->  #include "intel_crtc.h"
->  #include "intel_de.h"
->  #include "intel_crtc_state_dump.h"
-> @@ -1542,6 +1543,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
->  	intel_drrs_connector_debugfs_add(connector);
->  	intel_pps_connector_debugfs_add(connector);
->  	intel_psr_connector_debugfs_add(connector);
-> +	intel_alpm_lobf_debugfs_add(connector);
->  
->  	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
->  	    connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+  No regressions found.
 
--- 
-Jani Nikula, Intel
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/index.html
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Additional (1): bat-kbl-2 
+  Missing    (4): bat-dg1-7 bat-jsl-1 fi-snb-2520m fi-kbl-8809g 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_132374v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-mtlp-9}:       [PASS][1] -> [CRASH][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14572/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_132374v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@info:
+    - bat-kbl-2:          NOTRUN -> [SKIP][3] ([i915#1849])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-kbl-2/igt@fbdev@info.html
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [PASS][4] -> [FAIL][5] ([i915#10378])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14572/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-kbl-2:          NOTRUN -> [SKIP][6] +39 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-11:         [FAIL][7] ([i915#10378]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14572/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14572 -> Patchwork_132374v1
+
+  CI-20190529: 20190529
+  CI_DRM_14572: 85eef611f85be84edeabab83debdbb1fabeba066 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_132374v1: 85eef611f85be84edeabab83debdbb1fabeba066 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+### Linux commits
+
+ddc2e6d6bb78 drm/xe/display: Re-use display vmas when possible
+4e1c60b4cd5d drm/xe/display: Prevent overwriting original GGTT when taking over initial FB.
+42189385ffb2 drm/xe: Use simple xchg to cache DPT
+5e72b72e7993 drm/xe: Remove safety check from __xe_ttm_stolen_io_mem_reserve_stolen
+e77a8f80d84a drm/xe/display: Preparations for preallocating dpt bo
+feae1a339505 drm/i915: Use the same vblank worker for atomic unpin
+93433864266a drm/i915: Use vblank worker to unpin old legacy cursor fb safely
+cff4a8948463 drm: Add drm_vblank_work_flush_all().
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/index.html
+
+--===============6117505416369902693==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI-only,1/8] drm: Add drm_vblank_work_flush_all().</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132374/">https://patchwork.freedesktop.org/series/132374/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14572 -&gt; Patchwork_132374v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 37)</h2>
+<p>Additional (1): bat-kbl-2 <br />
+  Missing    (4): bat-dg1-7 bat-jsl-1 fi-snb-2520m fi-kbl-8809g </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_132374v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14572/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">CRASH</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132374v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14572/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14572/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132374v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14572 -&gt; Patchwork_132374v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14572: 85eef611f85be84edeabab83debdbb1fabeba066 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_132374v1: 85eef611f85be84edeabab83debdbb1fabeba066 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<h3>Linux commits</h3>
+<p>ddc2e6d6bb78 drm/xe/display: Re-use display vmas when possible<br />
+4e1c60b4cd5d drm/xe/display: Prevent overwriting original GGTT when taking over initial FB.<br />
+42189385ffb2 drm/xe: Use simple xchg to cache DPT<br />
+5e72b72e7993 drm/xe: Remove safety check from __xe_ttm_stolen_io_mem_reserve_stolen<br />
+e77a8f80d84a drm/xe/display: Preparations for preallocating dpt bo<br />
+feae1a339505 drm/i915: Use the same vblank worker for atomic unpin<br />
+93433864266a drm/i915: Use vblank worker to unpin old legacy cursor fb safely<br />
+cff4a8948463 drm: Add drm_vblank_work_flush_all().</p>
+
+</body>
+</html>
+
+--===============6117505416369902693==--
