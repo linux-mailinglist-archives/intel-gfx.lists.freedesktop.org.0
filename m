@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CCE18A4A0A
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 10:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF6BE8A4A0B
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 10:14:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90ADB1122EB;
-	Mon, 15 Apr 2024 08:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1631122F0;
+	Mon, 15 Apr 2024 08:14:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DAxLL51G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AVRighUA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4421122EA;
- Mon, 15 Apr 2024 08:14:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06F611122EF;
+ Mon, 15 Apr 2024 08:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713168861; x=1744704861;
+ t=1713168864; x=1744704864;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=O0SYlZlopd2X/6KcVED6FwsrEuc6roUqkha6Ao5noAU=;
- b=DAxLL51GCFiGptHF/KOIphRbLv2nwptNCQU5XUozpvKSR/trItAh9vZC
- KnX7ZSqlws1zcVbaIcilN+udIO2KuSaN3OdnH+IEsEHtNne1Fz5pDP2gi
- LOfedgpQmmMmwHfjoK+cuA8grLILLfxjzewII07gj6ku6+FZQIXIQpShq
- vAFwPFYcvIiIsIzUnGmF8qcmBY22FL0Jo/NB8aV0KRPoNr6YN4eUz7XSO
- pUaraxUVEWou9uOhPvVHyvNM+DMeqrWcyTF7aJ/JXD/551P0aRqhSuU4w
- jbJsmZOoUXpcx5282Gne6UjeISuKRf4JkRT8E8ozf9tk0PwRZjAFp3Dyq w==;
-X-CSE-ConnectionGUID: kW1muP/qQcCCLbSMw4JNIg==
-X-CSE-MsgGUID: neUhCVQ4Q8CSPMWBeUPk3Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096411"
+ bh=T7FqWulHX70ak5Rikkwu5zhH9wwBv9S9vORYnU/u3+w=;
+ b=AVRighUA6utr4S82SCFWti8PXFRn7NLmXi4BdyzmKz1yYVTyy267XW0W
+ T5YmlDvZJajRKLkkoe+zM040USs6ZuxWatWn6px0PhJ1CANc9Cs6l47kB
+ i7Ez1FynOPhS+g6EeW5TgN3RNCi0kUeXEiZwlrhfvJ3CuZXqtCwBkB94B
+ +CS3Vq1iJsQx2wIs73XA6gm2IVd+xlT3xHkVWfrzchERtM4ju2bZLtc57
+ AZnkWrvjCf1wYMBT4o3SgvkPSfSNFOr2UaQM/0xzMUez1gZv89smY0bJT
+ HM4nj1RlfRAdWlBx19YyWKAh5+WSsfWMaSURfrj04C21FefJ7eN7CFsYE Q==;
+X-CSE-ConnectionGUID: lwRkupooTNOEO9FCohRH1w==
+X-CSE-MsgGUID: KFr3v17JRwST5RN9ngNBdg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096423"
 X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
-   d="scan'208";a="9096411"
+   d="scan'208";a="9096423"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:21 -0700
-X-CSE-ConnectionGUID: jIyFS6YRRxuX0qF+p2l3wA==
-X-CSE-MsgGUID: 2gASZP0OQv+IWVBauBMjIg==
+ 15 Apr 2024 01:14:24 -0700
+X-CSE-ConnectionGUID: 5r8b60nDTYOcJ5lAelukPA==
+X-CSE-MsgGUID: /u6IU+URTHuOykBpXqzVvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400353"
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400386"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:20 -0700
+ 15 Apr 2024 01:14:22 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
+ Anusha Srivatsa <anusha.srivatsa@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH v3 11/21] drm/i915/xe2hpd: Add display info
-Date: Mon, 15 Apr 2024 13:44:13 +0530
-Message-Id: <20240415081423.495834-12-balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v3 12/21] drm/i915/xe2hpd: Configure CHICKEN_MISC_2 before
+ enabling planes
+Date: Mon, 15 Apr 2024 13:44:14 +0530
+Message-Id: <20240415081423.495834-13-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
 References: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
@@ -71,46 +73,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-Add initial display info for xe2hpd. It is similar to xelpdp, but with no
-PORT_B.
+Add step 9 from initialize display sequence.
 
-v2: Inherit from XE_LPDP_FEATURES instead of XE_LPD_FEATURES
+v2: Commit subject improved
 
-Bspec: 67066
-CC: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Bpsec: 49189
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 4 ++++
+ drivers/gpu/drm/i915/i915_reg.h                    | 1 +
+ 2 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index b8903bd0e82a..2740ccaeb086 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -771,6 +771,12 @@ static const struct intel_display_device_info xe2_lpd_display = {
- 		BIT(INTEL_FBC_C) | BIT(INTEL_FBC_D),
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 6fd4fa52253a..bf9685acf75a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1694,6 +1694,10 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 	if (IS_DG2(dev_priv))
+ 		intel_snps_phy_wait_for_calibration(dev_priv);
  
-+static const struct intel_display_device_info xe2_hpd_display = {
-+	XE_LPDP_FEATURES,
-+	.__runtime_defaults.port_mask = BIT(PORT_A) |
-+		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
-+};
++	/* 9. XE2_HPD: Program CHICKEN_MISC_2 before any cursor or planes are enabled */
++	if (DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 1))
++		intel_de_rmw(dev_priv, CHICKEN_MISC_2, BMG_DARB_HALF_BLK_END_BURST, 1);
 +
- __diag_pop();
+ 	if (resume)
+ 		intel_dmc_load_program(dev_priv);
  
- /*
-@@ -852,6 +858,7 @@ static const struct {
- 	const struct intel_display_device_info *display;
- } gmdid_display_map[] = {
- 	{ 14,  0, &xe_lpdp_display },
-+	{ 14,  1, &xe2_hpd_display },
- 	{ 20,  0, &xe2_lpd_display },
- };
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index a8cdabd07b04..8f8f757eb8be 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4564,6 +4564,7 @@
  
+ #define CHICKEN_MISC_2		_MMIO(0x42084)
+ #define   CHICKEN_MISC_DISABLE_DPT	REG_BIT(30) /* adl,dg2 */
++#define   BMG_DARB_HALF_BLK_END_BURST	REG_BIT(27)
+ #define   KBL_ARB_FILL_SPARE_14		REG_BIT(14)
+ #define   KBL_ARB_FILL_SPARE_13		REG_BIT(13)
+ #define   GLK_CL2_PWR_DOWN		REG_BIT(12)
 -- 
 2.25.1
 
