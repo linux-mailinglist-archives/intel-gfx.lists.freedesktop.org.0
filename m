@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90AE8A4EEA
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 14:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAD2B8A4F19
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 14:34:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E98810E36A;
-	Mon, 15 Apr 2024 12:23:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31FD210E772;
+	Mon, 15 Apr 2024 12:34:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AtXuvHz+";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65AE610E36A;
- Mon, 15 Apr 2024 12:23:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD63A11250E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Apr 2024 12:34:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713184485; x=1744720485;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=HDWcnE4Kl4vimhOyN6anJw2zZsG742BH9MXDNKjB1+4=;
+ b=AtXuvHz+QyxmL9SAajJ15ABf5m+FvJvpl2ZDQgG02qR8GWWFNeFe/Poj
+ gDJl7dXgnyQ2YXQ3TtsIIjmbpOJ8zcfPsxna1cKzDkh3nDab4/qIu9hBF
+ NxjK1uBEoL0zGHQ9gPsvLsHgZPjK9SkZ+829qP/aybu8ODX61ls7SpZR0
+ KKfBe45D/AtLxAn//rVsX0Eat5KwPCLR1pyVZMtpwW8+5Kme5BBW3ulVg
+ ZmGo0Y0dPtEZHIVrelzgSfauQwaq7c/bSfDYVhQQHOhEe1K1bE8+OVlFX
+ byMlV+6aq4jDqhZYbA+TCCV3c4X7paI3fsld9OaASmKMniHb2Ubo2f5rf Q==;
+X-CSE-ConnectionGUID: Oj9mdTXfTIOOLs8iUC3AHQ==
+X-CSE-MsgGUID: 0GSkGJUVRCuRZLjHXJ4Hvg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="33956627"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="33956627"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 05:34:44 -0700
+X-CSE-ConnectionGUID: KnP6eeiPTli4y0Qm2P9rKw==
+X-CSE-MsgGUID: V0fxpNWfRHOl6emeuAAGIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="45195410"
+Received: from lcariou-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.121])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 05:34:43 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 0/8] drm/i915: BXT/GLK per-lane vswing and PHY reg cleanup
+In-Reply-To: <20240412175818.29217-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240412175818.29217-1-ville.syrjala@linux.intel.com>
+Date: Mon, 15 Apr 2024 15:34:32 +0300
+Message-ID: <87pluq3iuf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_i915=5Fr?=
- =?utf-8?q?eg=2Eh_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 12:23:24 -0000
-Message-ID: <171318380441.1404431.362208830117722115@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1712933479.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,118 +66,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 12 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Start off with a bit of cleanup around the BXT/GLK DPIO
+> PHY registers, and finish off with per-lane vswing
+> programming.
 
-Series: drm/i915: i915_reg.h cleanups
-URL   : https://patchwork.freedesktop.org/series/132381/
-State : warning
+The series is
 
-== Summary ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Error: dim checkpatch failed
-19e68395cec8 drm/i915/audio: move LPE audio regs to intel_audio_regs.h
-dfbe99d107b3 drm/i915/color: move palette registers to intel_color_regs.h
-abfc95490d07 drm/i915/display: split out intel_fbc_regs.h from i915_reg.h
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:23: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#23: 
-new file mode 100644
+but I'll add some notes inline.
 
--:91: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#91: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:64:
-+#define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_G4X, (i9xx_plane))
+>
+> Ville Syrj=C3=A4l=C3=A4 (8):
+>   drm/i915/dpio: Clean up bxt/glk PHY registers
+>   drm/i915/dpio: Add per-lane PHY TX register definitons for bxt/glk
+>   drm/i915/dpio: Extract bxt_dpio_phy_regs.h
+>   drm/i915/dpio: Introdude bxt_ddi_phy_rmw_grp()
+>   drm/i915/dpio: Use intel_de_rmw() for BXT DPIO latency optim setup
+>   drm/i915/dpio: s/ddi/dpio/ for bxt/glk PHY stuff
+>   drm/i915/dpio: Program bxt/glk PHY TX registers per-lane
+>   drm/i915: Enable per-lane DP drive settings for bxt/glk
+>
+>  .../gpu/drm/i915/display/bxt_dpio_phy_regs.h  | 273 ++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  10 +-
+>  .../i915/display/intel_display_power_well.c   |  18 +-
+>  .../drm/i915/display/intel_dp_link_training.c |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c | 213 ++++++++------
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.h |  48 +--
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   3 +-
+>  drivers/gpu/drm/i915/i915_reg.h               | 262 -----------------
+>  9 files changed, 432 insertions(+), 399 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/bxt_dpio_phy_regs.h
 
--:94: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#94: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:67:
-+#define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
-
--:98: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#98: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:71:
-+#define   DPFC_CTL_PLANE_BINDING(plane_id)	REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, (plane_id))
-
--:154: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#154: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:127:
-+
-+
-
-total: 0 errors, 4 warnings, 1 checks, 340 lines checked
-3a0f5dc85170 drm/i915/display: split out intel_sprite_regs.h from i915_reg.h
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#28: 
-new file mode 100644
-
--:131: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
-#131: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:99:
-+#define DVSGAMC_G4X(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_G4X, _DVSBGAMC_G4X) + (5 - (i)) * 4) /* 6 x u0.8 */
-
--:132: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
-#132: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:100:
-+#define DVSGAMC_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_ILK, _DVSBGAMC_ILK) + (i) * 4) /* 16 x u0.10 */
-
--:133: WARNING:LONG_LINE_COMMENT: line length of 112 exceeds 100 columns
-#133: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:101:
-+#define DVSGAMCMAX_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMCMAX_ILK, _DVSBGAMCMAX_ILK) + (i) * 4) /* 3 x u1.10 */
-
--:145: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
-#145: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:113:
-+#define   SPRITE_FORMAT_XR_BGR101010		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 5) /* Extended range */
-
--:326: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#326: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:294:
-+#define SPKEYMINVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMINVAL, _SPBKEYMINVAL)
-
--:329: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#329: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:297:
-+#define SPKEYMAXVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMAXVAL, _SPBKEYMAXVAL)
-
--:331: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#331: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:299:
-+#define SPCONSTALPHA(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPACONSTALPHA, _SPBCONSTALPHA)
-
--:332: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#332: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:300:
-+#define SPSURFLIVE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
-
--:335: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
-#335: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:303:
-+#define SPGAMC(pipe, plane_id, i)	_MMIO(_VLV_SPR((pipe), (plane_id), _SPAGAMC, _SPBGAMC) + (5 - (i)) * 4) /* 6 x u0.10 */
-
-total: 0 errors, 10 warnings, 0 checks, 745 lines checked
-08ff131d6a15 drm/i915/display: split out intel_dpio_regs.h from i915_reg.h
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#47: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 722 lines checked
-566b3d7419f6 drm/i915/display: split out bxt_phy_regs.h from i915_reg.h
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:11: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#11: 
-new file mode 100644
-
--:232: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lane' - possible side-effects?
-#232: FILE: drivers/gpu/drm/i915/display/bxt_phy_regs.h:217:
-+#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
-+					  ((lane) & 1) * 0x80)
-
-total: 0 errors, 1 warnings, 1 checks, 637 lines checked
-
-
+--=20
+Jani Nikula, Intel
