@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6818A4A19
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 10:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5DB28A4B52
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 11:19:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A67541122F8;
-	Mon, 15 Apr 2024 08:14:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ivHf2tdb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6D5D1123DB;
+	Mon, 15 Apr 2024 09:19:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 955951122D3;
- Mon, 15 Apr 2024 08:14:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713168884; x=1744704884;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uqhOJvVoznXMAtZ+uI9/2zb6M5pwqi02HkXEsg7rDNg=;
- b=ivHf2tdbUBXtsH/bcha87pLzQeqlcW3aa/knm9BKN2dlR4YSZea5QCFC
- RWElJHM4C9485AuGOe0NhpRU5BLv+CqsR+Ssrf9mDBYUUo15ez/+NKkBb
- K3rlhyFYmqQiQNIKO1EF6v2lc9RBhQQvGN0SfIzEQVEUGBSrEOjHmdSDS
- guf06u2bwW05v45LmH7QAMPS1azXKR7JF8jF2ZJO+5Xitlx6O9X5fxHvg
- pe0aK3lWQbmkF8+j22tweiO41Kv4rmCKR7x2D5ow5ZW6ENv0EqKtaQ4ZT
- BVMxXiZhPqn6jWW32eTcgFpPpFdb031JH8hxQxArvoKAFTDgArcTfuTOo g==;
-X-CSE-ConnectionGUID: CL4hCZ+ISdO0p4kJrKE36A==
-X-CSE-MsgGUID: MwdQ2dxDTZarRs31kaeMXw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096444"
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
-   d="scan'208";a="9096444"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:44 -0700
-X-CSE-ConnectionGUID: QrYZJbiNTXiOXm3839+RqA==
-X-CSE-MsgGUID: 6m0xkbXsSEmWdqnSZ31bNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400533"
-Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:43 -0700
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>
-Subject: [PATCH v3 21/21] drm/xe/bmg: Enable the display support
-Date: Mon, 15 Apr 2024 13:44:23 +0530
-Message-Id: <20240415081423.495834-22-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
-References: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60F291123DB;
+ Mon, 15 Apr 2024 09:19:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Add_support_for_part?=
+ =?utf-8?q?ial_mapping_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 09:19:53 -0000
+Message-ID: <171317279339.1404431.6428965621494070102@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240412004808.288130-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240412004808.288130-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,29 +37,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable the display support for Battlemage
+== Series Details ==
 
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: Add support for partial mapping (rev5)
+URL   : https://patchwork.freedesktop.org/series/131817/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3b30353dbc09..5289cc651c8b 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -340,6 +340,7 @@ static const struct xe_device_desc lnl_desc = {
- static const struct xe_device_desc bmg_desc __maybe_unused = {
- 	DGFX_FEATURES,
- 	PLATFORM(XE_BATTLEMAGE),
-+	.has_display = true,
- 	.require_force_probe = true,
- };
- 
--- 
-2.25.1
+== Summary ==
+
+Error: dim checkpatch failed
+d62ad73d2c22 drm/i915/gem: Increment vma offset when mapping fb objects
+2f4dc2b29d03 drm/i915/gem: Do not look for the exact address in node
+f922a4fc2000 drm/i915/gem: Calculate object page offset for partial memory mapping
+-:67: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#67: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:411:
++			       area->vm_start + ((vma->gtt_view.partial.offset - obj_offset) << PAGE_SHIFT),
+
+total: 0 errors, 1 warnings, 0 checks, 82 lines checked
+
 
