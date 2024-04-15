@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 933868A5DE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 00:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C2B8A5E0F
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 01:13:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BC6410EA56;
-	Mon, 15 Apr 2024 22:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48EA910EAB1;
+	Mon, 15 Apr 2024 23:13:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IvgmytOn";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC6D10EA56;
- Mon, 15 Apr 2024 22:53:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3386936842954517017=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F91710EAB1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Apr 2024 23:13:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713222786; x=1744758786;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=7yFm75ZNdhlSi1m6XAhq6XsRYe+I6DI1dTsIVRCDAJU=;
+ b=IvgmytOnKA3fXA41+ePgMYNRpW4UmVLOBflbB0q2uF4XUQCGywmqFjmQ
+ aTZ6poNGtYlXi/b3q7/O6ZjlDpUkqg3ULJhNYWfg93fPxy69Ivz7yHOXV
+ Km1/4wXjBs2PeSkRbi+ix2NbkRiet94D1T6MuptL3EZ+0RI3Z2JNXx8U5
+ LINngD+uRYr9TRq0ud/e6d+UJCI56LD+yZnx6X8flbMW6lCLISbRa4Lq9
+ mQoEL5PBbs7oSbBMrwACTj3aAx51rpxmsmT04/VM2UBs9pnThaC0n+9q9
+ 0AvRQvqtEBsGavaT/wKW+1Ny5FA8A86ZzICz8vyMTnOn4flXulIWXoVyz g==;
+X-CSE-ConnectionGUID: rmjYxWMaQAe84YyN2oMC3w==
+X-CSE-MsgGUID: dPxz+DfsRXOt0DiPZvMdwQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="8744915"
+X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; 
+   d="scan'208";a="8744915"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 16:13:06 -0700
+X-CSE-ConnectionGUID: x67h2WigTVGF5AgAiA2z2g==
+X-CSE-MsgGUID: m1UC8QT8TjGWx37hNZbKUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="22650144"
+Received: from unknown (HELO 23c141fc0fd8) ([10.239.97.151])
+ by orviesa008.jf.intel.com with ESMTP; 15 Apr 2024 16:13:03 -0700
+Received: from kbuild by 23c141fc0fd8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rwVVU-0004hu-2w;
+ Mon, 15 Apr 2024 23:13:00 +0000
+Date: Tue, 16 Apr 2024 07:12:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/8] drm/i915/dpio: Add per-lane PHY TX register
+ definitons for bxt/glk
+Message-ID: <202404160629.idrGs4do-lkp@intel.com>
+References: <20240412175818.29217-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/guc=3A_Fix_UB_due_?=
- =?utf-8?q?to_signed_int_overflow?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitrii Bundin" <dmitrii.bundin.a@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 22:53:06 -0000
-Message-ID: <171322158631.1424052.17710146402108670582@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
-In-Reply-To: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240412175818.29217-3-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,631 +69,454 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3386936842954517017==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/guc: Fix UB due to signed int overflow
-URL   : https://patchwork.freedesktop.org/series/132446/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14582 -> Patchwork_132446v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_132446v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_132446v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/index.html
-
-Participating hosts (38 -> 38)
-------------------------------
-
-  Additional (5): fi-kbl-7567u bat-mtlp-8 fi-kbl-8809g bat-dg2-11 bat-jsl-1 
-  Missing    (5): fi-bsw-n3050 fi-snb-2520m bat-atsm-1 fi-elk-e7500 bat-arls-3 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_132446v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@reset:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2] +31 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14582/fi-apl-guc/igt@i915_selftest@live@reset.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-apl-guc/igt@i915_selftest@live@reset.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_132446v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][3] ([i915#10462])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][4] ([i915#9318])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#9318])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@info:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][6] ([i915#1849])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][7] ([i915#2190])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][8] ([i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][9] ([i915#2190])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][10] ([i915#4613]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][11] ([i915#4613]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-11:         NOTRUN -> [FAIL][12] ([i915#10378])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][13] ([i915#4613]) +3 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_lmem_swapping@verify-random.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][14] ([i915#4613]) +3 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@gem_mmap@basic:
-    - bat-dg2-11:         NOTRUN -> [SKIP][15] ([i915#4083])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_mmap@basic.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][16] ([i915#4083])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_mmap@basic.html
-
-  * igt@gem_mmap_gtt@basic:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][17] ([i915#4077]) +2 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_mmap_gtt@basic.html
-
-  * igt@gem_render_tiled_blits@basic:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][18] ([i915#4079]) +1 other test skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - bat-dg2-11:         NOTRUN -> [SKIP][19] ([i915#4077]) +2 other tests skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-dg2-11:         NOTRUN -> [SKIP][20] ([i915#4079]) +1 other test skip
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-apl-guc:         [PASS][21] -> [DMESG-WARN][22] ([i915#8585])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14582/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-apl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-11:         NOTRUN -> [SKIP][23] ([i915#6621])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][24] ([i915#6621])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:
-    - bat-dg2-11:         NOTRUN -> [SKIP][25] ([i915#4212]) +7 other tests skip
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][26] ([i915#5190])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-    - bat-dg2-11:         NOTRUN -> [SKIP][27] ([i915#5190])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@bad-pitch-65536:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][28] ([i915#10457]) +1 other test fail
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_addfb_basic@bad-pitch-65536.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][29] ([i915#4212]) +8 other tests skip
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-    - bat-dg2-11:         NOTRUN -> [SKIP][30] ([i915#4215] / [i915#5190])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@too-high:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][31] ([i915#10455])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - bat-dg2-11:         NOTRUN -> [SKIP][32] ([i915#4103] / [i915#4213]) +1 other test skip
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][33] ([i915#4213]) +1 other test skip
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][34] ([i915#4103]) +1 other test skip
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-dg2-11:         NOTRUN -> [SKIP][35] ([i915#3555] / [i915#3840])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_dsc@dsc-basic.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][36] ([i915#3555] / [i915#3840] / [i915#9159])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_dsc@dsc-basic.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][37] ([i915#3555] / [i915#9886])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-FAIL][38] ([i915#10454])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-7567u:       NOTRUN -> [SKIP][39] +11 other tests skip
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][40]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][41]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-    - bat-dg2-11:         NOTRUN -> [SKIP][42]
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-11:         NOTRUN -> [SKIP][43] ([i915#5274])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_force_connector_basic@prune-stale-modes.html
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][44] ([i915#10454]) +1 other test dmesg-warn
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_force_connector_basic@prune-stale-modes.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][45] ([i915#5274])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][46] ([IGT#3])
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][47] +58 other tests skip
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - bat-dg2-11:         NOTRUN -> [SKIP][48] ([i915#5354])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_psr@psr-primary-mmap-gtt@edp-1:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][49] ([i915#4077] / [i915#9688])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-dg2-11:         NOTRUN -> [SKIP][50] ([i915#1072] / [i915#9732]) +3 other tests skip
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg2-11:         NOTRUN -> [SKIP][51] ([i915#3555])
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][52] ([i915#3555] / [i915#8809])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html
-    - bat-jsl-1:          NOTRUN -> [SKIP][53] ([i915#3555])
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-dg2-11:         NOTRUN -> [SKIP][54] ([i915#3708])
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-dg2-11:         NOTRUN -> [SKIP][55] ([i915#3708] / [i915#4077]) +1 other test skip
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@prime_vgem@basic-fence-mmap.html
-    - bat-mtlp-8:         NOTRUN -> [SKIP][56] ([i915#3708] / [i915#4077]) +1 other test skip
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][57] ([i915#3708]) +1 other test skip
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html
-
-  * igt@prime_vgem@basic-read:
-    - bat-dg2-11:         NOTRUN -> [SKIP][58] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@prime_vgem@basic-read.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-mtlp-8:         NOTRUN -> [SKIP][59] ([i915#10216] / [i915#3708])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - bat-adls-6:         [TIMEOUT][60] ([i915#10795]) -> [PASS][61]
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14582/bat-adls-6/igt@i915_selftest@live@execlists.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-adls-6/igt@i915_selftest@live@execlists.html
-
-  
-  [IGT#3]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3
-  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
-  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
-  [i915#10454]: https://gitlab.freedesktop.org/drm/intel/issues/10454
-  [i915#10455]: https://gitlab.freedesktop.org/drm/intel/issues/10455
-  [i915#10457]: https://gitlab.freedesktop.org/drm/intel/issues/10457
-  [i915#10462]: https://gitlab.freedesktop.org/drm/intel/issues/10462
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#10795]: https://gitlab.freedesktop.org/drm/intel/issues/10795
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
-  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
-  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
-  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
-  [i915#8585]: https://gitlab.freedesktop.org/drm/intel/issues/8585
-  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
-  [i915#9159]: https://gitlab.freedesktop.org/drm/intel/issues/9159
-  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
-  [i915#9688]: https://gitlab.freedesktop.org/drm/intel/issues/9688
-  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
-  [i915#9886]: https://gitlab.freedesktop.org/drm/intel/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14582 -> Patchwork_132446v1
-
-  CI-20190529: 20190529
-  CI_DRM_14582: 7bc330055f5c2924b42e389887691fea3f401a45 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_132446v1: 7bc330055f5c2924b42e389887691fea3f401a45 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-04f74c163abb drm/i915/guc: Fix UB due to signed int overflow
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/index.html
-
---===============3386936842954517017==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Fix UB due to signed int overflow</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132446/">https://patchwork.freedesktop.org/series/132446/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14582 -&gt; Patchwork_132446v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_132446v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_132446v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 38)</h2>
-<p>Additional (5): fi-kbl-7567u bat-mtlp-8 fi-kbl-8809g bat-dg2-11 bat-jsl-1 <br />
-  Missing    (5): fi-bsw-n3050 fi-snb-2520m bat-atsm-1 fi-elk-e7500 bat-arls-3 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_132446v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@reset:<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14582/fi-apl-guc/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-apl-guc/igt@i915_selftest@live@reset.html">DMESG-WARN</a> +31 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132446v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10462">i915#10462</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14582/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-apl-guc/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8585">i915#8585</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@bad-pitch-65536:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_addfb_basic@bad-pitch-65536.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10457">i915#10457</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +8 other tests skip</li>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-high:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10455">i915#10455</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9159">i915#9159</a>)</li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10454">i915#10454</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +11 other tests skip</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_force_connector_basic@prune-stale-modes.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10454">i915#10454</a>) +1 other test dmesg-warn</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/3">IGT#3</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/fi-kbl-8809g/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html">SKIP</a> +58 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-mmap-gtt@edp-1:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9688">i915#9688</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9732">i915#9732</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a>)</li>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-dg2-11/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-mtlp-8/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10216">i915#10216</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14582/bat-adls-6/igt@i915_selftest@live@execlists.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10795">i915#10795</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v1/bat-adls-6/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14582 -&gt; Patchwork_132446v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14582: 7bc330055f5c2924b42e389887691fea3f401a45 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7806: 849cd963ce7e8222dcf17cc872d355181fd2c2a2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_132446v1: 7bc330055f5c2924b42e389887691fea3f401a45 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>04f74c163abb drm/i915/guc: Fix UB due to signed int overflow</p>
-
-</body>
-</html>
-
---===============3386936842954517017==--
+Hi Ville,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on drm-intel/for-linux-next]
+[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.9-rc4 next-20240415]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-i915-dpio-Clean-up-bxt-glk-PHY-registers/20240415-095059
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240412175818.29217-3-ville.syrjala%40linux.intel.com
+patch subject: [PATCH 2/8] drm/i915/dpio: Add per-lane PHY TX register definitons for bxt/glk
+config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20240416/202404160629.idrGs4do-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240416/202404160629.idrGs4do-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202404160629.idrGs4do-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1158:9: error: call to undeclared function 'BXT_PORT_TX_DW2_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1158 |         MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH0));
+         |                ^
+>> drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1158:2: error: member reference base type 'int' is not a structure or union
+    1158 |         MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH0));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:31: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                   ~~~^~~~
+>> drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1158:2: error: member reference base type 'int' is not a structure or union
+    1158 |         MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH0));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:56: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                                            ~~~^~~~
+>> drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1158:9: error: controlling expression type 'int' not compatible with any generic association type
+    1158 |         MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH0));
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:28: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                            ^~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:56: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                                               ^~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:12: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                   ^
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1160:9: error: call to undeclared function 'BXT_PORT_TX_DW3_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1160 |         MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0));
+         |                ^
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1160:2: error: member reference base type 'int' is not a structure or union
+    1160 |         MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:31: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                   ~~~^~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1160:2: error: member reference base type 'int' is not a structure or union
+    1160 |         MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:56: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                                            ~~~^~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1160:9: error: controlling expression type 'int' not compatible with any generic association type
+    1160 |         MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0));
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:28: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                            ^~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:56: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                                               ^~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:12: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                   ^
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1162:9: error: call to undeclared function 'BXT_PORT_TX_DW4_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1162 |         MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY0, DPIO_CH0));
+         |                ^
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1162:2: error: member reference base type 'int' is not a structure or union
+    1162 |         MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY0, DPIO_CH0));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:31: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                   ~~~^~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1162:2: error: member reference base type 'int' is not a structure or union
+    1162 |         MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY0, DPIO_CH0));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:56: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                                            ~~~^~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1162:9: error: controlling expression type 'int' not compatible with any generic association type
+    1162 |         MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY0, DPIO_CH0));
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:28: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                            ^~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:56: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+         |                                                               ^~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:12: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                   ^
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1183:9: error: call to undeclared function 'BXT_PORT_TX_DW2_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1183 |         MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH1));
+         |                ^
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:1183:2: error: member reference base type 'int' is not a structure or union
+    1183 |         MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH1));
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:35:21: note: expanded from macro 'MMIO_D'
+      35 | #define MMIO_D(reg) MMIO_F(reg, 4)
+         |                     ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/intel_gvt_mmio_table.c:30:35: note: expanded from macro 'MMIO_F'
+      30 |         ret = iter->handle_mmio_cb(iter, i915_mmio_reg_offset(reg), s); \
+--
+   drivers/gpu/drm/i915/gvt/handlers.c:2766:10: error: call to undeclared function 'BXT_PORT_TX_DW3_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2766 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0), D_BXT,
+         |                 ^
+>> drivers/gpu/drm/i915/gvt/handlers.c:2766:2: error: member reference base type 'int' is not a structure or union
+    2766 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0), D_BXT,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    2767 |                 bxt_port_tx_dw3_read, NULL);
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:2: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:29: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:31: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                   ~~~^~~~
+>> drivers/gpu/drm/i915/gvt/handlers.c:2766:2: error: member reference base type 'int' is not a structure or union
+    2766 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0), D_BXT,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    2767 |                 bxt_port_tx_dw3_read, NULL);
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:2: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:29: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:56: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                                            ~~~^~~~
+>> drivers/gpu/drm/i915/gvt/handlers.c:2766:10: error: controlling expression type 'int' not compatible with any generic association type
+    2766 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0), D_BXT,
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:9: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |                ^~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:50: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                                         ^~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:12: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                   ^
+   drivers/gpu/drm/i915/gvt/handlers.c:2770:10: error: call to undeclared function 'BXT_PORT_TX_DW3_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2770 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH1), D_BXT,
+         |                 ^
+   drivers/gpu/drm/i915/gvt/handlers.c:2770:2: error: member reference base type 'int' is not a structure or union
+    2770 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH1), D_BXT,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    2771 |                 bxt_port_tx_dw3_read, NULL);
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:2: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:29: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:31: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                   ~~~^~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2770:2: error: member reference base type 'int' is not a structure or union
+    2770 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH1), D_BXT,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    2771 |                 bxt_port_tx_dw3_read, NULL);
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:2: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:29: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:56: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                                            ~~~^~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2770:10: error: controlling expression type 'int' not compatible with any generic association type
+    2770 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH1), D_BXT,
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:9: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |                ^~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:50: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                                         ^~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:12: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                   ^
+   drivers/gpu/drm/i915/gvt/handlers.c:2774:10: error: call to undeclared function 'BXT_PORT_TX_DW3_LN0'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2774 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY1, DPIO_CH0), D_BXT,
+         |                 ^
+   drivers/gpu/drm/i915/gvt/handlers.c:2774:2: error: member reference base type 'int' is not a structure or union
+    2774 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY1, DPIO_CH0), D_BXT,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    2775 |                 bxt_port_tx_dw3_read, NULL);
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:2: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:29: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:31: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                   ~~~^~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2774:2: error: member reference base type 'int' is not a structure or union
+    2774 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY1, DPIO_CH0), D_BXT,
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    2775 |                 bxt_port_tx_dw3_read, NULL);
+         |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:2: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:29: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:56: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                                                            ~~~^~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2774:10: error: controlling expression type 'int' not compatible with any generic association type
+    2774 |         MMIO_DH(BXT_PORT_TX_DW3_LN0(DPIO_PHY1, DPIO_CH0), D_BXT,
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2144:9: note: expanded from macro 'MMIO_DH'
+    2144 |         MMIO_F(reg, 4, 0, 0, 0, d, r, w)
+         |                ^~~
+   drivers/gpu/drm/i915/gvt/handlers.c:2137:50: note: expanded from macro 'MMIO_F'
+    2137 |         ret = setup_mmio_info(gvt, i915_mmio_reg_offset(reg), \
+         |                                                         ^~~
+   drivers/gpu/drm/i915/i915_reg_defs.h:283:12: note: expanded from macro 'i915_mmio_reg_offset'
+     283 |         _Generic((r), i915_reg_t: (r).reg, i915_mcr_reg_t: (r).reg)
+         |                   ^
+   12 errors generated.
+
+
+vim +/int +1158 drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+
+e0f74ed4634d6d Zhi Wang 2022-04-07  1097  
+e0f74ed4634d6d Zhi Wang 2022-04-07  1098  static int iterate_bxt_mmio(struct intel_gvt_mmio_table_iter *iter)
+e0f74ed4634d6d Zhi Wang 2022-04-07  1099  {
+e0f74ed4634d6d Zhi Wang 2022-04-07  1100  	struct drm_i915_private *dev_priv = iter->i915;
+e0f74ed4634d6d Zhi Wang 2022-04-07  1101  
+e0f74ed4634d6d Zhi Wang 2022-04-07  1102  	MMIO_F(_MMIO(0x80000), 0x3000);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1103  	MMIO_D(GEN7_SAMPLER_INSTDONE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1104  	MMIO_D(GEN7_ROW_INSTDONE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1105  	MMIO_D(GEN8_FAULT_TLB_DATA0);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1106  	MMIO_D(GEN8_FAULT_TLB_DATA1);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1107  	MMIO_D(ERROR_GEN6);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1108  	MMIO_D(DONE_REG);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1109  	MMIO_D(EIR);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1110  	MMIO_D(PGTBL_ER);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1111  	MMIO_D(_MMIO(0x4194));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1112  	MMIO_D(_MMIO(0x4294));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1113  	MMIO_D(_MMIO(0x4494));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1114  	MMIO_RING_D(RING_PSMI_CTL);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1115  	MMIO_RING_D(RING_DMA_FADD);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1116  	MMIO_RING_D(RING_DMA_FADD_UDW);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1117  	MMIO_RING_D(RING_IPEHR);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1118  	MMIO_RING_D(RING_INSTPS);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1119  	MMIO_RING_D(RING_BBADDR_UDW);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1120  	MMIO_RING_D(RING_BBSTATE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1121  	MMIO_RING_D(RING_IPEIR);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1122  	MMIO_F(SOFT_SCRATCH(0), 16 * 4);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1123  	MMIO_D(BXT_P_CR_GT_DISP_PWRON);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1124  	MMIO_D(BXT_RP_STATE_CAP);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1125  	MMIO_D(BXT_PHY_CTL_FAMILY(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1126  	MMIO_D(BXT_PHY_CTL_FAMILY(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1127  	MMIO_D(BXT_PHY_CTL(PORT_A));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1128  	MMIO_D(BXT_PHY_CTL(PORT_B));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1129  	MMIO_D(BXT_PHY_CTL(PORT_C));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1130  	MMIO_D(BXT_PORT_PLL_ENABLE(PORT_A));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1131  	MMIO_D(BXT_PORT_PLL_ENABLE(PORT_B));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1132  	MMIO_D(BXT_PORT_PLL_ENABLE(PORT_C));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1133  	MMIO_D(BXT_PORT_CL1CM_DW0(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1134  	MMIO_D(BXT_PORT_CL1CM_DW9(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1135  	MMIO_D(BXT_PORT_CL1CM_DW10(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1136  	MMIO_D(BXT_PORT_CL1CM_DW28(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1137  	MMIO_D(BXT_PORT_CL1CM_DW30(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1138  	MMIO_D(BXT_PORT_CL2CM_DW6(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1139  	MMIO_D(BXT_PORT_REF_DW3(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1140  	MMIO_D(BXT_PORT_REF_DW6(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1141  	MMIO_D(BXT_PORT_REF_DW8(DPIO_PHY0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1142  	MMIO_D(BXT_PORT_CL1CM_DW0(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1143  	MMIO_D(BXT_PORT_CL1CM_DW9(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1144  	MMIO_D(BXT_PORT_CL1CM_DW10(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1145  	MMIO_D(BXT_PORT_CL1CM_DW28(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1146  	MMIO_D(BXT_PORT_CL1CM_DW30(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1147  	MMIO_D(BXT_PORT_CL2CM_DW6(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1148  	MMIO_D(BXT_PORT_REF_DW3(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1149  	MMIO_D(BXT_PORT_REF_DW6(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1150  	MMIO_D(BXT_PORT_REF_DW8(DPIO_PHY1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1151  	MMIO_D(BXT_PORT_PLL_EBB_0(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1152  	MMIO_D(BXT_PORT_PLL_EBB_4(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1153  	MMIO_D(BXT_PORT_PCS_DW10_LN01(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1154  	MMIO_D(BXT_PORT_PCS_DW10_GRP(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1155  	MMIO_D(BXT_PORT_PCS_DW12_LN01(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1156  	MMIO_D(BXT_PORT_PCS_DW12_LN23(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1157  	MMIO_D(BXT_PORT_PCS_DW12_GRP(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07 @1158  	MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1159  	MMIO_D(BXT_PORT_TX_DW2_GRP(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1160  	MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1161  	MMIO_D(BXT_PORT_TX_DW3_GRP(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1162  	MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1163  	MMIO_D(BXT_PORT_TX_DW4_GRP(DPIO_PHY0, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1164  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH0, 0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1165  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH0, 1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1166  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH0, 2));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1167  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH0, 3));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1168  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1169  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1170  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 2));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1171  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 3));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1172  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 6));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1173  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 8));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1174  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 9));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1175  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH0, 10));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1176  	MMIO_D(BXT_PORT_PLL_EBB_0(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1177  	MMIO_D(BXT_PORT_PLL_EBB_4(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1178  	MMIO_D(BXT_PORT_PCS_DW10_LN01(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1179  	MMIO_D(BXT_PORT_PCS_DW10_GRP(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1180  	MMIO_D(BXT_PORT_PCS_DW12_LN01(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1181  	MMIO_D(BXT_PORT_PCS_DW12_LN23(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1182  	MMIO_D(BXT_PORT_PCS_DW12_GRP(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1183  	MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1184  	MMIO_D(BXT_PORT_TX_DW2_GRP(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1185  	MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1186  	MMIO_D(BXT_PORT_TX_DW3_GRP(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1187  	MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1188  	MMIO_D(BXT_PORT_TX_DW4_GRP(DPIO_PHY0, DPIO_CH1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1189  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH1, 0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1190  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH1, 1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1191  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH1, 2));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1192  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY0, DPIO_CH1, 3));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1193  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1194  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1195  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 2));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1196  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 3));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1197  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 6));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1198  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 8));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1199  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 9));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1200  	MMIO_D(BXT_PORT_PLL(DPIO_PHY0, DPIO_CH1, 10));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1201  	MMIO_D(BXT_PORT_PLL_EBB_0(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1202  	MMIO_D(BXT_PORT_PLL_EBB_4(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1203  	MMIO_D(BXT_PORT_PCS_DW10_LN01(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1204  	MMIO_D(BXT_PORT_PCS_DW10_GRP(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1205  	MMIO_D(BXT_PORT_PCS_DW12_LN01(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1206  	MMIO_D(BXT_PORT_PCS_DW12_LN23(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1207  	MMIO_D(BXT_PORT_PCS_DW12_GRP(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1208  	MMIO_D(BXT_PORT_TX_DW2_LN0(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1209  	MMIO_D(BXT_PORT_TX_DW2_GRP(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1210  	MMIO_D(BXT_PORT_TX_DW3_LN0(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1211  	MMIO_D(BXT_PORT_TX_DW3_GRP(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1212  	MMIO_D(BXT_PORT_TX_DW4_LN0(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1213  	MMIO_D(BXT_PORT_TX_DW4_GRP(DPIO_PHY1, DPIO_CH0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1214  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY1, DPIO_CH0, 0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1215  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY1, DPIO_CH0, 1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1216  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY1, DPIO_CH0, 2));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1217  	MMIO_D(BXT_PORT_TX_DW14_LN(DPIO_PHY1, DPIO_CH0, 3));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1218  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 0));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1219  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 1));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1220  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 2));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1221  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 3));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1222  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 6));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1223  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 8));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1224  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 9));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1225  	MMIO_D(BXT_PORT_PLL(DPIO_PHY1, DPIO_CH0, 10));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1226  	MMIO_D(BXT_DE_PLL_CTL);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1227  	MMIO_D(BXT_DE_PLL_ENABLE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1228  	MMIO_D(BXT_DSI_PLL_CTL);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1229  	MMIO_D(BXT_DSI_PLL_ENABLE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1230  	MMIO_D(GEN9_CLKGATE_DIS_0);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1231  	MMIO_D(GEN9_CLKGATE_DIS_4);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1232  	MMIO_D(HSW_TVIDEO_DIP_GCP(TRANSCODER_A));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1233  	MMIO_D(HSW_TVIDEO_DIP_GCP(TRANSCODER_B));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1234  	MMIO_D(HSW_TVIDEO_DIP_GCP(TRANSCODER_C));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1235  	MMIO_D(RC6_CTX_BASE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1236  	MMIO_D(GEN8_PUSHBUS_CONTROL);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1237  	MMIO_D(GEN8_PUSHBUS_ENABLE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1238  	MMIO_D(GEN8_PUSHBUS_SHIFT);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1239  	MMIO_D(GEN6_GFXPAUSE);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1240  	MMIO_D(GEN8_L3SQCREG1);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1241  	MMIO_D(GEN8_L3CNTLREG);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1242  	MMIO_D(_MMIO(0x20D8));
+e0f74ed4634d6d Zhi Wang 2022-04-07  1243  	MMIO_F(GEN8_RING_CS_GPR(RENDER_RING_BASE, 0), 0x40);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1244  	MMIO_F(GEN8_RING_CS_GPR(GEN6_BSD_RING_BASE, 0), 0x40);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1245  	MMIO_F(GEN8_RING_CS_GPR(BLT_RING_BASE, 0), 0x40);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1246  	MMIO_F(GEN8_RING_CS_GPR(VEBOX_RING_BASE, 0), 0x40);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1247  	MMIO_D(GEN9_CTX_PREEMPT_REG);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1248  	MMIO_D(GEN8_PRIVATE_PAT_LO);
+e0f74ed4634d6d Zhi Wang 2022-04-07  1249  
+e0f74ed4634d6d Zhi Wang 2022-04-07  1250  	return 0;
+e0f74ed4634d6d Zhi Wang 2022-04-07  1251  }
+e0f74ed4634d6d Zhi Wang 2022-04-07  1252  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
