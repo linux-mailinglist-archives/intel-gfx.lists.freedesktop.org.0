@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5D48A5E83
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 01:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD91D8A5E84
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 01:40:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845971128DF;
-	Mon, 15 Apr 2024 23:40:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BAE61128DE;
+	Mon, 15 Apr 2024 23:40:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7431128D6;
- Mon, 15 Apr 2024 23:40:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D85621128D9;
+ Mon, 15 Apr 2024 23:40:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Don=27t_?=
- =?utf-8?q?reset_GuC_before_engine_reset_on_full_GT_reset?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_Don=27t_rese?=
+ =?utf-8?q?t_GuC_before_engine_reset_on_full_GT_reset?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 23:40:14 -0000
-Message-ID: <171322441405.1424088.10594033821963876805@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 23:40:16 -0000
+Message-ID: <171322441688.1424052.202207861766792986@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240415164441.5684-1-nirmoy.das@intel.com>
 In-Reply-To: <20240415164441.5684-1-nirmoy.das@intel.com>
@@ -49,18 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-de0c87c308af drm/i915: Don't reset GuC before engine reset on full GT reset
--:112: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#112: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.c:634:
-+}
-+/**
-
--:124: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#124: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.c:646:
-+
-+
-
-total: 0 errors, 0 warnings, 2 checks, 97 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
