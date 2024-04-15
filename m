@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4138A4A00
+	by mail.lfdr.de (Postfix) with ESMTPS id A4C8F8A49FF
 	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 10:14:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF111122D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44A21122D0;
 	Mon, 15 Apr 2024 08:14:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lATR5XyI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KmuYooMe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB081122C8;
- Mon, 15 Apr 2024 08:14:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BECDD1122CF;
+ Mon, 15 Apr 2024 08:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713168845; x=1744704845;
+ t=1713168847; x=1744704847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SZmdw2ZUsBWfkWBMjLIHEj6kauwj7FMKusl3auO5nC8=;
- b=lATR5XyI9q8nLvfNHbOGuOmtFZEcbFoM09tsnT3fX9DIqVS9UEhz96Oa
- vUBidT2tTV0FCxQ4BGPDj85D3uKMM9YsQW34S8gE93F+GPdyvLlt4epEl
- TJHIM+/KxwAVCyoyGVULx/jtCgjP4uB3R1MQ5JeVcwRsQFGhnhK6TAP2y
- 0wNrMZEJvi3c15OAIcD0mECrbB3r70sOP3yIBAEDDpt/u9MhB9TSGXc56
- Mbuv2nNz+64OoYNRhQacsT72F64JjN94VgazgMLOtpV3YyM0wwBagPC6e
- C9ut4XffW7F/lpbMDEPnF7yaPlfqQ7lb16Js/sPPH8bftpf9tnM6/+WKN Q==;
-X-CSE-ConnectionGUID: NSyBh8VlTkWhX64Z4OQggQ==
-X-CSE-MsgGUID: E7k4HHEhS8WEDbUUHRFXiQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096352"
+ bh=EFSPbUcX5XGSRoOptBP3MO0sG+hRGJOFyYVLcTqcCSc=;
+ b=KmuYooMedLgpodQUmp7aKun8BtmoSJtNp/5bVtRlPERI+B0GaHmoVHCo
+ NV2Fg2f5CkWa3lItXxxBwyq16He8YGrI9YWGJFUrwrkISSSwe2beE7TuX
+ /miq8DZcD9omjbG/aogYHkfhb+7wE5nSod9Qip4gDS2GjiIcX5b0n/FF/
+ cuiN4sYkozyBvFIcQKCsgIIU9s+N+YS1cp0y2AbtWTdCAfFuM2zVIxWlU
+ Bcmb7lifXzqiobdItJU/7wkGQAQzLG3OyZrLqwg3Gw/nqQQUInrT/gcUx
+ oE03CSXiUxhr/jA+uD5QLMqT90knrIJui6qV4+HHyZcVxw4gfvVYJkxhC Q==;
+X-CSE-ConnectionGUID: qAPNoY5jRx2UDZ2QFOC3zg==
+X-CSE-MsgGUID: Xih/6GCjRAOYjdc60aEKgw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096363"
 X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
-   d="scan'208";a="9096352"
+   d="scan'208";a="9096363"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:05 -0700
-X-CSE-ConnectionGUID: RIg38gb6RfqvQjgvYJr/0A==
-X-CSE-MsgGUID: +slfVgCIS0qcuGKtVcWYhw==
+ 15 Apr 2024 01:14:07 -0700
+X-CSE-ConnectionGUID: 9MTEPJ3EQb201KmkpXAoVg==
+X-CSE-MsgGUID: EorrphvhT3Kg0azTQOjAIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400212"
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400239"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 01:14:03 -0700
+ 15 Apr 2024 01:14:06 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
-Subject: [PATCH v3 04/21] drm/i915/xe2hpd: Skip CCS modifiers
-Date: Mon, 15 Apr 2024 13:44:06 +0530
-Message-Id: <20240415081423.495834-5-balasubramani.vivekanandan@intel.com>
+ Clint Taylor <clinton.a.taylor@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v3 05/21] drm/i915/xe2hpd: Initial cdclk table
+Date: Mon, 15 Apr 2024 13:44:07 +0530
+Message-Id: <20240415081423.495834-6-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
 References: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,56 +72,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Framebuffer format modifiers are used to indicate the existence of
-auxillary surface in the plane, containing the CCS data.  But on
-Xe2_HPD, the CCS data is stored in a fixed reserved memory area and not
-part of the plane. It contains no auxillary surface.
-Also in Xe2, the compression is configured via PAT settings in the
-pagetable mappings. Decompression is enabled by default in the
-PLANE_CTL. Based on whether valid CCS data exists for the plane, display
-hardware decides whether compression is necessary or not.
-So there is no need for format modifiers to indicate if compression is
-enabled or not.
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-v2:
-* Improved the commit description with more details
-* Removed the redundant display IP version check for 20. Display version
-  check for each modifier above would take care of it.
+Add Xe2_HPD specific CDCLK table and use MTL Funcs.
 
-CC: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
-CC: Matt Roper <matthew.d.roper@intel.com>
+Bspec: 65243
+CC: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 86b443433e8b..7234ce36b6a4 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -431,9 +431,19 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
- 	 * Separate AuxCCS and Flat CCS modifiers to be run only on platforms
- 	 * where supported.
- 	 */
--	if (intel_fb_is_ccs_modifier(md->modifier) &&
--	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
--		return false;
-+	if (intel_fb_is_ccs_modifier(md->modifier)) {
-+
-+		/*
-+		 * There is no need for CCS format modifiers for Xe2_HPD, as
-+		 * there is no support of AuxCCS and the FlatCCS is configured
-+		 * usign PAT index in the page table mappings
-+		 */
-+		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-+			return false;
-+
-+		if (HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
-+			return false;
-+	}
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 7a833b5f2de2..b78154c82a71 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1443,6 +1443,14 @@ static const struct intel_cdclk_vals xe2lpd_cdclk_table[] = {
+ 	{}
+ };
  
- 	return true;
- }
++/*
++ * Xe2_HPD always uses the minimal cdclk table from Wa_15015413771
++ */
++static const struct intel_cdclk_vals xe2hpd_cdclk_table[] = {
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
++	{}
++};
++
+ static const int cdclk_squash_len = 16;
+ 
+ static int cdclk_squash_divider(u16 waveform)
+@@ -3778,6 +3786,9 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ 	if (DISPLAY_VER(dev_priv) >= 20) {
+ 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
+ 		dev_priv->display.cdclk.table = xe2lpd_cdclk_table;
++	} else if (DISPLAY_VER_FULL(dev_priv) >= IP_VER(14, 1)) {
++		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
++		dev_priv->display.cdclk.table = xe2hpd_cdclk_table;
+ 	} else if (DISPLAY_VER(dev_priv) >= 14) {
+ 		dev_priv->display.funcs.cdclk = &rplu_cdclk_funcs;
+ 		dev_priv->display.cdclk.table = mtl_cdclk_table;
 -- 
 2.25.1
 
