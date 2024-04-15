@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76508A592B
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 19:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F5F98A5992
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 20:07:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA11810ED42;
-	Mon, 15 Apr 2024 17:34:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40E4111275E;
+	Mon, 15 Apr 2024 18:07:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/zvXRIk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OEQAvVeD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAE410EC04;
- Mon, 15 Apr 2024 17:34:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 757A510F5C1;
+ Mon, 15 Apr 2024 18:07:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713202472; x=1744738472;
+ t=1713204457; x=1744740457;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Zk6ZlYw9dq587//0jeR6BGcXcv5csdrTw4LOVGq7oW0=;
- b=U/zvXRIknHkJGdBo1SUvQkQ7b28HaznDpWtiWPwyBQmvEPYiKMzwdIYx
- KzIPlkFd59Q+YBPspfJeqFEXpqtj2bvw5cLJBt6KuA1eUFgiK86zAf0+k
- hso2q/VKjkRR78TPS3eWsaQJGCU0HYM5hVT+CmTVjed6yOr2NxOWznXAb
- oURLVHutPqsgtF/7XKiNQX0DzzKl3t2ZnHeUHVW/5CCjbBwkOsEFg5W4T
- rBb+aFqBPNkWeOX3vUQMjbtN90ZykOiLUCJHz46o41MEtuh3y51Rf3seB
- xV+muQpKEHUPAAGUf+ZasgRlD22RE45j+huoSJgtfyccVG6Y0fs7kGvq/ A==;
-X-CSE-ConnectionGUID: QXP7mzlFT32w26ixIW58eQ==
-X-CSE-MsgGUID: Owe6wocgQ12nuvy+ZgKe3w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="8441015"
+ bh=6O/g0SOedASe2vVnLJOXU5OvPE75QS5/W2Ou0WWgdGU=;
+ b=OEQAvVeDLLO1DAl+lkTRCTJ0KlExuwLcgsBsT95IVNrLqhwVcWyTcaMP
+ Jq3ABgHEx0AgtHC7qWJkTYAWEEhEO9k7N3Kj5t7Rstf6SpFF/bD/sgAaE
+ 6kFCV3K2wXMwyp8db1BNe19IoDPa9EagPqtOwtfs2XbnhqltPkzvb8NzY
+ MkymzCexf75yPBa2DCwthNvrBYhs/2iweUfuXoCHOGpx/vvrcA+nOCaSV
+ YxSqjVBspTA0JeN33VpvldHXsbhz9JKbHeCK+kfruoEFI1TZ6GuiEkfWy
+ 7gh2Nh+7QMmqfOLO+izPCtXmIJrycaQUhHlrYV7DlwibvnZHPX5SJTBZy A==;
+X-CSE-ConnectionGUID: BZITppB2RYOvx0WYuk9EzQ==
+X-CSE-MsgGUID: rqeTI7dMT767JJte4TVVeA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="8830381"
 X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; 
-   d="scan'208";a="8441015"
+   d="scan'208";a="8830381"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 10:34:32 -0700
-X-CSE-ConnectionGUID: GOMl+B+uTPiUG0WYsettVw==
-X-CSE-MsgGUID: Qys7xMwhQiSonQKVMAiATg==
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 11:07:36 -0700
+X-CSE-ConnectionGUID: i6cwPYh/T+O1G190X6Ohrg==
+X-CSE-MsgGUID: ZYx8WDVxQ+ejkQKwoYw8QA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="59426650"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="59435074"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.20.116])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 10:34:29 -0700
+ 15 Apr 2024 11:07:33 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v3] lib/kunit: Read results from debugfs
-Date: Mon, 15 Apr 2024 19:31:59 +0200
-Message-ID: <20240415173405.120137-2-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH v2] drm/i915/vma: Fix UAF on reopen vs destroy race
+Date: Mon, 15 Apr 2024 20:02:18 +0200
+Message-ID: <20240415180302.121298-2-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -71,287 +75,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-KUnit can provide KTAP reports from test modules via debugfs files, one
-per test suite.  Using that source of test results instead of extracting
-them from dmesg, where they may be interleaved with other kernel messages,
-seems more easy to handle and less error prone.  Switch to it.
+We defer actually closing, unbinding and destroying a VMA until next idle
+point, or until the object is freed in the meantime.  By postponing the
+unbind, we allow for the VMA to be reopened by the client, avoiding the
+work required to rebind the VMA.
 
-If KUnit debugfs support is found not configured then fall back to legacy
-processing path.
+It was assumed that as long as a GT is held idle, no VMA would be reopened
+while we destroy them.  That assumption is no longer true in multi-GT
+configurations, where a VMA we reopen may be handled by a GT different
+from the one that we already keep active via its engine while we set up
+an execbuf request.
 
-v3: Try to open KUnit debugfs directory before applying KUnit filters we
-    use for test case listing, otherwise those skip-all filters applied
-    can break legacy path we may enter on missing KUnit debugfs support
-    (detected by Kamil).
-v2: Check validity of debugfs argument before calling kunit_get_tests()
-    (Kamil),
-  - replace multiple openat() + fdopen/fdopendir(), each followed by an
-    error check, with less expensive fopen/opendir() of file/dir pathname
-    components concatenated to a local buffer, protected from buffer
-    overflow or truncation with a single check for enough buffer space
-    (Lucas),
-  - avoid confusing 'if' statement condition (Lucas).
+<4> [260.290809] ------------[ cut here ]------------
+<4> [260.290988] list_del corruption. prev->next should be ffff888118c5d990, but was ffff888118c5a510. (prev=ffff888118c5a510)
+<4> [260.291004] WARNING: CPU: 2 PID: 1143 at lib/list_debug.c:62 __list_del_entry_valid_or_report+0xb7/0xe0
+..
+<4> [260.291055] CPU: 2 PID: 1143 Comm: kms_plane Not tainted 6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
+<4> [260.291058] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+<4> [260.291060] RIP: 0010:__list_del_entry_valid_or_report+0xb7/0xe0
+...
+<4> [260.291087] Call Trace:
+<4> [260.291089]  <TASK>
+<4> [260.291124]  i915_vma_reopen+0x43/0x80 [i915]
+<4> [260.291298]  eb_lookup_vmas+0x9cb/0xcc0 [i915]
+<4> [260.291579]  i915_gem_do_execbuffer+0xc9a/0x26d0 [i915]
+<4> [260.291883]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
+...
+<4> [260.292301]  </TASK>
+...
+<4> [260.292506] ---[ end trace 0000000000000000 ]---
+<4> [260.292782] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6ca3: 0000 [#1] PREEMPT SMP NOPTI
+<4> [260.303575] CPU: 2 PID: 1143 Comm: kms_plane Tainted: G        W          6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
+<4> [260.313851] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+<4> [260.326359] RIP: 0010:eb_validate_vmas+0x114/0xd80 [i915]
+...
+<4> [260.428756] Call Trace:
+<4> [260.431192]  <TASK>
+<4> [639.283393]  i915_gem_do_execbuffer+0xd05/0x26d0 [i915]
+<4> [639.305245]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
+...
+<4> [639.411134]  </TASK>
+...
+<4> [639.449979] ---[ end trace 0000000000000000 ]---
 
+As soon as we start unbinding and destroying a VMA, marked it as parked,
+and also keep it marked as closed for the rest of its life.  When a VMA
+to be opened occurs closed, reopen it only if not yet parked.
+
+v2: Since we no longer re-init the VMA closed list link on VMA park so it
+    looks like still on a list, don't try to delete it from the list again
+    after the VMA has been marked as parked.
+
+Fixes: b0647a5e79b1 ("drm/i915: Avoid live-lock with i915_vma_parked()")
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10608
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: stable@vger.kernel.org # v6.0+
 ---
-@Lucas: I've assumed your R-b still applies, I hope you don't mind.
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++++--
+ drivers/gpu/drm/i915/i915_vma.c               | 32 +++++++++++++++----
+ drivers/gpu/drm/i915/i915_vma.h               |  2 +-
+ drivers/gpu/drm/i915/i915_vma_types.h         |  3 ++
+ 4 files changed, 37 insertions(+), 10 deletions(-)
 
- lib/igt_kmod.c | 129 +++++++++++++++++++++++++++++++++++--------------
- 1 file changed, 93 insertions(+), 36 deletions(-)
-
-diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 6659c27eba..33f059199f 100644
---- a/lib/igt_kmod.c
-+++ b/lib/igt_kmod.c
-@@ -28,6 +28,7 @@
- #include <limits.h>
- #include <pthread.h>
- #include <signal.h>
-+#include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
- #include <sys/stat.h>
-@@ -39,6 +40,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 42619fc05de48..97e014f94002e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -847,9 +847,12 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 	if (unlikely(!lut))
+ 		return -ENOMEM;
  
- #include "igt_aux.h"
- #include "igt_core.h"
-+#include "igt_debugfs.h"
- #include "igt_kmod.h"
- #include "igt_ktap.h"
- #include "igt_sysfs.h"
-@@ -864,6 +866,19 @@ static int open_parameters(const char *module_name)
- 	return open(path, O_RDONLY);
- }
- 
-+static void kunit_debugfs_path(char *kunit_path)
-+{
-+	const char *debugfs_path = igt_debugfs_mount();
-+
-+	if (igt_debug_on(!debugfs_path))
-+		return;
-+
-+	if (igt_debug_on(strlen(debugfs_path) + strlen("/kunit/") >= PATH_MAX))
-+		return;
-+
-+	strcpy(stpcpy(kunit_path, debugfs_path), "/kunit/");
-+}
-+
- static bool kunit_set_filtering(const char *filter_glob, const char *filter,
- 				const char *filter_action)
- {
-@@ -1071,21 +1086,41 @@ static void kunit_results_free(struct igt_list_head *results,
- 	free(*suite_name);
- }
- 
--static int kunit_get_results(struct igt_list_head *results, int kmsg_fd,
--			     struct igt_ktap_results **ktap)
-+static int kunit_get_results(struct igt_list_head *results, const char *debugfs_path,
-+			     const char *suite, struct igt_ktap_results **ktap)
- {
-+	char results_path[PATH_MAX];
-+	FILE *results_stream;
-+	char *buf = NULL;
-+	size_t size = 0;
-+	ssize_t len;
- 	int err;
- 
-+	if (igt_debug_on(strlen(debugfs_path) + strlen(suite) + strlen("/results") >= PATH_MAX))
-+		return -ENOSPC;
-+
-+	strcpy(stpcpy(stpcpy(results_path, debugfs_path), suite), "/results");
-+	results_stream = fopen(results_path, "r");
-+	if (igt_debug_on(!results_stream))
-+		return -errno;
-+
- 	*ktap = igt_ktap_alloc(results);
--	if (igt_debug_on(!*ktap))
--		return -ENOMEM;
-+	if (igt_debug_on(!*ktap)) {
-+		err = -ENOMEM;
-+		goto out_fclose;
-+	}
- 
--	do
--		igt_debug_on((err = kunit_kmsg_result_get(results, NULL, kmsg_fd, *ktap),
--			      err && err != -EINPROGRESS));
--	while (err == -EINPROGRESS);
-+	while (len = getline(&buf, &size, results_stream), len > 0) {
-+		err = igt_ktap_parse(buf, *ktap);
-+		if (err != -EINPROGRESS)
-+			break;
++	if (!i915_vma_open(vma)) {
++		err = -EEXIST;	/* let eb_vma_lookup() retry */
++		goto err_lut_free;
 +	}
 +
-+	free(buf);
+ 	i915_vma_get(vma);
+-	if (!atomic_fetch_inc(&vma->open_count))
+-		i915_vma_reopen(vma);
+ 	lut->handle = handle;
+ 	lut->ctx = ctx;
  
- 	igt_ktap_free(ktap);
-+out_fclose:
-+	fclose(results_stream);
+@@ -880,8 +883,9 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
+ 	return 0;
  
+ err:
+-	i915_vma_close(vma);
+ 	i915_vma_put(vma);
++	i915_vma_close(vma);
++err_lut_free:
+ 	i915_lut_handle_free(lut);
  	return err;
  }
-@@ -1101,7 +1136,13 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
- 	pthread_mutexattr_t attr;
- 	IGT_LIST_HEAD(results);
- 	unsigned long taints;
--	int ret;
-+	int flags, ret;
-+
-+	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
-+
-+	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
-+	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
-+		      "Could not set /dev/kmsg to blocking mode\n");
- 
- 	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
- 
-@@ -1224,30 +1265,21 @@ static void __igt_kunit_legacy(struct igt_ktest *tst,
- 	igt_skip_on_f(ret, "KTAP parser failed\n");
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index d2f064d2525cc..072c2c02edc22 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1735,14 +1735,33 @@ static void __i915_vma_remove_closed(struct i915_vma *vma)
+ 	list_del_init(&vma->closed_link);
  }
  
--static void kunit_get_tests_timeout(int signal)
--{
--	igt_skip("Timed out while trying to extract a list of KUnit test cases from /dev/kmsg\n");
--}
--
- static bool kunit_get_tests(struct igt_list_head *tests,
- 			    struct igt_ktest *tst,
- 			    const char *suite,
- 			    const char *opts,
-+			    const char *debugfs_path,
-+			    DIR **debugfs_dir,
- 			    struct igt_ktap_results **ktap)
+-void i915_vma_reopen(struct i915_vma *vma)
++static struct i915_vma *i915_vma_reopen(struct i915_vma *vma)
++{
++	if (atomic_read(&vma->flags) & I915_VMA_PARKED)
++		return NULL;
++
++	__i915_vma_remove_closed(vma);
++	return vma;
++}
++
++struct i915_vma *i915_vma_open(struct i915_vma *vma)
  {
--	struct sigaction sigalrm = { .sa_handler = kunit_get_tests_timeout, },
--			 saved;
- 	struct igt_ktap_result *r, *rn;
-+	struct dirent *subdir;
- 	unsigned long taints;
--	int flags, err;
+ 	struct intel_gt *gt = vma->vm->gt;
  
--	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
--
--	igt_skip_on((flags = fcntl(tst->kmsg, F_GETFL, 0), flags < 0));
--	igt_skip_on_f(fcntl(tst->kmsg, F_SETFL, flags & ~O_NONBLOCK) == -1,
--		      "Could not set /dev/kmsg to blocking mode\n");
--
--	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
-+	*debugfs_dir = opendir(debugfs_path);
-+	if (igt_debug_on(!*debugfs_dir))
-+		return false;
- 
- 	/*
- 	 * To get a list of test cases provided by a kunit test module, ask the
-@@ -1260,19 +1292,37 @@ static bool kunit_get_tests(struct igt_list_head *tests,
- 	if (igt_debug_on(!kunit_set_filtering(suite, "module=none", "skip")))
- 		return false;
- 
-+	if (!suite) {
-+		seekdir(*debugfs_dir, 2);	/* directory itself and its parent */
-+		errno = 0;
-+		igt_skip_on_f(readdir(*debugfs_dir) || errno,
-+			      "Require empty KUnit debugfs directory\n");
-+		rewinddir(*debugfs_dir);
++	if (atomic_inc_not_zero(&vma->open_count))
++		return vma;
++
+ 	spin_lock_irq(&gt->closed_lock);
+-	if (i915_vma_is_closed(vma))
+-		__i915_vma_remove_closed(vma);
++	if (!atomic_inc_not_zero(&vma->open_count)) {
++		if (i915_vma_is_closed(vma))
++			vma = i915_vma_reopen(vma);
++
++		if (vma)
++			atomic_inc(&vma->open_count);
 +	}
+ 	spin_unlock_irq(&gt->closed_lock);
 +
- 	igt_skip_on(modprobe(tst->kmod, opts));
- 	igt_skip_on(igt_kernel_tainted(&taints));
++	return vma;
+ }
  
--	igt_skip_on(sigaction(SIGALRM, &sigalrm, &saved));
--	alarm(10);
-+	while (subdir = readdir(*debugfs_dir), subdir) {
-+		if (!(subdir->d_type & DT_DIR))
-+			continue;
+ static void force_unbind(struct i915_vma *vma)
+@@ -1770,7 +1789,8 @@ static void release_references(struct i915_vma *vma, struct intel_gt *gt,
+ 	spin_unlock(&obj->vma.lock);
  
--	err = kunit_get_results(tests, tst->kmsg, ktap);
-+		if (!strcmp(subdir->d_name, ".") || !strcmp(subdir->d_name, ".."))
-+			continue;
+ 	spin_lock_irq(&gt->closed_lock);
+-	__i915_vma_remove_closed(vma);
++	if (!(atomic_read(&vma->flags & I915_VMA_PARKED)))
++		__i915_vma_remove_closed(vma);
+ 	spin_unlock_irq(&gt->closed_lock);
  
--	alarm(0);
--	igt_debug_on(sigaction(SIGALRM, &saved, NULL));
-+		if (suite && strcmp(subdir->d_name, suite))
-+			continue;
+ 	if (vm_ddestroy)
+@@ -1854,22 +1874,22 @@ void i915_vma_parked(struct intel_gt *gt)
+ 		}
  
--	igt_skip_on_f(err,
--		      "KTAP parser failed while getting a list of test cases\n");
-+		igt_warn_on_f(kunit_get_results(tests, debugfs_path, subdir->d_name, ktap),
-+			      "parsing KTAP report from test suite \"%s\" failed\n",
-+			      subdir->d_name);
-+
-+		if (suite)
-+			break;
-+	}
-+
-+	closedir(*debugfs_dir);
-+	*debugfs_dir = NULL;
- 
- 	igt_list_for_each_entry_safe(r, rn, tests, link)
- 		igt_require_f(r->code == IGT_EXIT_SKIP,
-@@ -1287,6 +1337,7 @@ static void __igt_kunit(struct igt_ktest *tst,
- 			const char *subtest,
- 			const char *suite,
- 			const char *opts,
-+			const char *debugfs_path,
- 			struct igt_list_head *tests,
- 			struct igt_ktap_results **ktap)
- {
-@@ -1307,8 +1358,6 @@ static void __igt_kunit(struct igt_ktest *tst,
- 
- 			igt_skip_on(igt_kernel_tainted(&taints));
- 
--			igt_fail_on(lseek(tst->kmsg, 0, SEEK_END) == -1 && errno);
--
- 			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
- 					       t->suite_name, t->case_name),
- 				      sizeof(glob));
-@@ -1317,7 +1366,8 @@ static void __igt_kunit(struct igt_ktest *tst,
- 			igt_assert_eq(modprobe(tst->kmod, opts), 0);
- 			igt_assert_eq(igt_kernel_tainted(&taints), 0);
- 
--			igt_assert_eq(kunit_get_results(&results, tst->kmsg, ktap), 0);
-+			igt_assert_eq(kunit_get_results(&results, debugfs_path,
-+							t->suite_name, ktap), 0);
- 
- 			for (i = 0; i < 2; i++) {
- 				kunit_result_free(&r, &suite_name, &case_name);
-@@ -1385,9 +1435,11 @@ static void __igt_kunit(struct igt_ktest *tst,
-  */
- void igt_kunit(const char *module_name, const char *suite, const char *opts)
- {
-+	char debugfs_path[PATH_MAX] = { '\0', };
- 	struct igt_ktest tst = { .kmsg = -1, };
- 	struct igt_ktap_results *ktap = NULL;
- 	const char *subtest = suite;
-+	DIR *debugfs_dir = NULL;
- 	IGT_LIST_HEAD(tests);
- 
- 	/*
-@@ -1435,10 +1487,12 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
- 		 *	 LTS kernels not capable of using KUnit filters for
- 		 *	 listing test cases in KTAP format, with igt_require.
- 		 */
--		if (!kunit_get_tests(&tests, &tst, suite, opts, &ktap))
-+		kunit_debugfs_path(debugfs_path);
-+		if (igt_debug_on(!*debugfs_path) ||
-+		    !kunit_get_tests(&tests, &tst, suite, opts, debugfs_path, &debugfs_dir, &ktap))
- 			__igt_kunit_legacy(&tst, subtest, opts);
- 		else
--			__igt_kunit(&tst, subtest, suite, opts, &tests, &ktap);
-+			__igt_kunit(&tst, subtest, suite, opts, debugfs_path, &tests, &ktap);
+ 		list_move(&vma->closed_link, &closed);
++		atomic_or(I915_VMA_PARKED, &vma->flags);
  	}
+ 	spin_unlock_irq(&gt->closed_lock);
  
- 	igt_fixture {
-@@ -1448,6 +1502,9 @@ void igt_kunit(const char *module_name, const char *suite, const char *opts)
+-	/* As the GT is held idle, no vma can be reopened as we destroy them */
+ 	list_for_each_entry_safe(vma, next, &closed, closed_link) {
+ 		struct drm_i915_gem_object *obj = vma->obj;
+ 		struct i915_address_space *vm = vma->vm;
  
- 		kunit_results_free(&tests, &suite_name, &case_name);
+ 		if (i915_gem_object_trylock(obj, NULL)) {
+-			INIT_LIST_HEAD(&vma->closed_link);
+ 			i915_vma_destroy(vma);
+ 			i915_gem_object_unlock(obj);
+ 		} else {
+ 			/* back you go.. */
+ 			spin_lock_irq(&gt->closed_lock);
+ 			list_add(&vma->closed_link, &gt->closed_vma);
++			atomic_andnot(I915_VMA_PARKED, &vma->flags);
+ 			spin_unlock_irq(&gt->closed_lock);
+ 		}
  
-+		if (debugfs_dir)
-+			closedir(debugfs_dir);
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index e356dfb883d34..331d19672c764 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -268,7 +268,7 @@ int __must_check i915_vma_unbind_async(struct i915_vma *vma, bool trylock_vm);
+ int __must_check i915_vma_unbind_unlocked(struct i915_vma *vma);
+ void i915_vma_unlink_ctx(struct i915_vma *vma);
+ void i915_vma_close(struct i915_vma *vma);
+-void i915_vma_reopen(struct i915_vma *vma);
++struct i915_vma *i915_vma_open(struct i915_vma *vma);
+ 
+ void i915_vma_destroy_locked(struct i915_vma *vma);
+ void i915_vma_destroy(struct i915_vma *vma);
+diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+index 559de74d0b114..41784c3025349 100644
+--- a/drivers/gpu/drm/i915/i915_vma_types.h
++++ b/drivers/gpu/drm/i915/i915_vma_types.h
+@@ -263,6 +263,9 @@ struct i915_vma {
+ #define I915_VMA_SCANOUT_BIT	17
+ #define I915_VMA_SCANOUT	((int)BIT(I915_VMA_SCANOUT_BIT))
+ 
++#define I915_VMA_PARKED_BIT	18
++#define I915_VMA_PARKED		((int)BIT(I915_VMA_PARKED_BIT))
 +
- 		igt_ktest_end(&tst);
- 	}
+ 	struct i915_active active;
  
+ #define I915_VMA_PAGES_BIAS 24
 -- 
 2.44.0
 
