@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B688B8A5297
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 16:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EEE98A52AA
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 16:06:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8310F1125DB;
-	Mon, 15 Apr 2024 14:02:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 086501125E2;
+	Mon, 15 Apr 2024 14:06:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bRSc7hqe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fJ4fJA2q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 907591125CE;
- Mon, 15 Apr 2024 14:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:Date:To:
- From:Subject:Message-ID:Sender:Reply-To:Cc:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Ljnuyj309g/2itlVZDdfjNXk+f84QxRXjXC1RNVY8PM=; b=bRSc7hqeT0ebFpgrrSRZNaA0ed
- n26TriUpOtx6cBBF7bzXraz8VFiuGSKVsp1XgcYwVWQ0a3BOeMr0/eod102P2JrkffzA2BcWeiZdZ
- pQujN2ME4bMFMFbeh+uunhSmtPXnLWFqy0JcWJPltB7qDXryWoUP8AnQWZCaJduGLHT992QFBLOHo
- 8xlH8pXfNkDdKxSPhlTaXrn7uzE5TTuY1eSusvZW7p3jsBQLgtPeGp9PWCcf9DGRorXoP0JwRZjzQ
- /d97iImCel8NWXWwL8cpmVztZmwaVQR7+eO3g4wKHyk6hs9780yHc2JaZ44+LX53GYs9N645H0WkN
- fShSpcDQ==;
-Received: from 30.red-83-52-1.dynamicip.rima-tde.net ([83.52.1.30]
- helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1rwMux-004mu0-Ni; Mon, 15 Apr 2024 16:02:43 +0200
-Message-ID: <2309afcf8a6d4e67f589e80a92916e6a73058084.camel@igalia.com>
-Subject: 2024 X.Org Foundation Election Results
-From: Ricardo Garcia <rgarcia@igalia.com>
-To: events@lists.x.org, xorg-devel@lists.x.org, 
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org, xorg
- <xorg@lists.freedesktop.org>
-Date: Mon, 15 Apr 2024 16:02:42 +0200
-Autocrypt: addr=rgarcia@igalia.com; prefer-encrypt=mutual;
- keydata=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
- p0ZW9AkVq7C3F0YSY0Tq5bKR94O8=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCCE51125E2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Apr 2024 14:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713189988; x=1744725988;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=MObdouP5rW28tJG66ymRI0SGmsG98ZV8u0LkuziEIBk=;
+ b=fJ4fJA2qZjWcmoQIwwhOcuVFrIY0VtvS9cBFJtbmI/lNtZJwJnBszNxO
+ 0mpGkw+zurScJq7xKpoO+Mx8KwuXE7qF/iXrDICydqPjsyi2DogkYlEnZ
+ rNL3HwXn4uYRFgaQMzMJUwarGW2f8Vdc912pevPUV91UDNekvCXA3tLsA
+ 0pioYcDiDRGvJYtILts/fqFYZo3Pyao3MJvVQblkzxHCgRpzosXMaoQX5
+ 5RW3tD7lQfmQri8olFTsubngSFqc3JWmwSY47/yrLcv4wQFvjNA7MyVQX
+ 7rutnODGI3QIba5DBdnjHnVl4LjoQ1X5jAT80+rOec1qJ5KXd9fim0E+b g==;
+X-CSE-ConnectionGUID: zNV2txL3Q72Nbvf0WzOC1Q==
+X-CSE-MsgGUID: +VECAZyTQGS/L6Zu+/nPWg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19973783"
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="19973783"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 07:06:27 -0700
+X-CSE-ConnectionGUID: NCxFQpq/QACRTFFOpNpBDw==
+X-CSE-MsgGUID: X7ioKn5aQBG6Zj9YBo91Tg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="26715984"
+Received: from lcariou-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.121])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 07:06:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 10/18] drm/i915: Extract {i9xx,i8xx,ilk}_dpll()
+In-Reply-To: <20240412182703.19916-11-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
+ <20240412182703.19916-11-ville.syrjala@linux.intel.com>
+Date: Mon, 15 Apr 2024 17:06:15 +0300
+Message-ID: <871q763elk.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,34 +70,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Board of Directors election concluded on 08 April 2024. There were
-81 Members of the X.Org Foundation eligible to vote, and 61 Members cast
-votes. This is a 75.3% turn out.
+On Fri, 12 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The *_compute_dpll() functions generally contain
+> two things:
+> - huge pile of inline code to calculate the DPLL
+>   register value
+> - a few calls to helpers to calculate the
+>   DPLL_MD and FP register values
+>
+> Pull the DPLL register value calculations into a helpers
+> as well, so that *_compute_dpll() can focus on higher
+> level tasks.
 
-In the election of the Directors to the Board of the X.Org Foundation,
-the results were that=C2=A0Erik Faye-Lund, Simon Ser, Mark Filion and Neal
-Gompa were elected for two-year terms.
+In addition to what the subject says, this touches vlv/chv paths.
 
-The old full board is:
+BR,
+Jani.
 
-* Emma Anholt
-* Mark Filion
-* Ricardo Garcia
-* Arkadiusz Hiler
-* Christopher Michael
-* Lyude Paul
-* Alyssa Rosenzweig
-* Sima Vetter
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dpll.c | 115 ++++++++++++++--------
+>  1 file changed, 75 insertions(+), 40 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
+i915/display/intel_dpll.c
+> index 9e1f94a2ce92..0625b9c436c2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -1013,17 +1013,15 @@ static u32 i965_dpll_md(const struct intel_crtc_s=
+tate *crtc_state)
+>  	return (crtc_state->pixel_multiplier - 1) << DPLL_MD_UDI_MULTIPLIER_SHI=
+FT;
+>  }
+>=20=20
+> -static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
+> -			      const struct dpll *clock,
+> -			      const struct dpll *reduced_clock)
+> +static u32 i9xx_dpll(const struct intel_crtc_state *crtc_state,
+> +		     const struct dpll *clock,
+> +		     const struct dpll *reduced_clock)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	u32 dpll;
+>=20=20
+> -	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
+> -
+> -	dpll =3D DPLL_VGA_MODE_DIS;
+> +	dpll =3D DPLL_VCO_ENABLE | DPLL_VGA_MODE_DIS;
+>=20=20
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_LVDS))
+>  		dpll |=3D DPLLB_MODE_LVDS;
+> @@ -1082,24 +1080,33 @@ static void i9xx_compute_dpll(struct intel_crtc_s=
+tate *crtc_state,
+>  	else
+>  		dpll |=3D PLL_REF_INPUT_DREFCLK;
+>=20=20
+> -	dpll |=3D DPLL_VCO_ENABLE;
+> -	crtc_state->dpll_hw_state.dpll =3D dpll;
+> +	return dpll;
+> +}
+> +
+> +static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
+> +			      const struct dpll *clock,
+> +			      const struct dpll *reduced_clock)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +
+> +	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
+> +
+> +	crtc_state->dpll_hw_state.dpll =3D i9xx_dpll(crtc_state, clock, reduced=
+_clock);
+>=20=20
+>  	if (DISPLAY_VER(dev_priv) >=3D 4)
+>  		crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
+>  }
+>=20=20
+> -static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
+> -			      const struct dpll *clock,
+> -			      const struct dpll *reduced_clock)
+> +static u32 i8xx_dpll(const struct intel_crtc_state *crtc_state,
+> +		     const struct dpll *clock,
+> +		     const struct dpll *reduced_clock)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	u32 dpll;
+>=20=20
+> -	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
+> -
+> -	dpll =3D DPLL_VGA_MODE_DIS;
+> +	dpll =3D DPLL_VCO_ENABLE | DPLL_VGA_MODE_DIS;
+>=20=20
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_LVDS)) {
+>  		dpll |=3D (1 << (clock->p1 - 1)) << DPLL_FPA01_P1_POST_DIV_SHIFT;
+> @@ -1136,8 +1143,16 @@ static void i8xx_compute_dpll(struct intel_crtc_st=
+ate *crtc_state,
+>  	else
+>  		dpll |=3D PLL_REF_INPUT_DREFCLK;
+>=20=20
+> -	dpll |=3D DPLL_VCO_ENABLE;
+> -	crtc_state->dpll_hw_state.dpll =3D dpll;
+> +	return dpll;
+> +}
+> +
+> +static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
+> +			      const struct dpll *clock,
+> +			      const struct dpll *reduced_clock)
+> +{
+> +	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
+> +
+> +	crtc_state->dpll_hw_state.dpll =3D i8xx_dpll(crtc_state, clock, reduced=
+_clock);
+>  }
+>=20=20
+>  static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
+> @@ -1266,17 +1281,15 @@ static void ilk_update_pll_dividers(struct intel_=
+crtc_state *crtc_state,
+>  	crtc_state->dpll_hw_state.fp1 =3D ilk_dpll_compute_fp(reduced_clock, fa=
+ctor);
+>  }
+>=20=20
+> -static void ilk_compute_dpll(struct intel_crtc_state *crtc_state,
+> -			     const struct dpll *clock,
+> -			     const struct dpll *reduced_clock)
+> +static u32 ilk_dpll(const struct intel_crtc_state *crtc_state,
+> +		    const struct dpll *clock,
+> +		    const struct dpll *reduced_clock)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	u32 dpll;
+>=20=20
+> -	ilk_update_pll_dividers(crtc_state, clock, reduced_clock);
+> -
+> -	dpll =3D 0;
+> +	dpll =3D DPLL_VCO_ENABLE;
+>=20=20
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_LVDS))
+>  		dpll |=3D DPLLB_MODE_LVDS;
+> @@ -1338,9 +1351,16 @@ static void ilk_compute_dpll(struct intel_crtc_sta=
+te *crtc_state,
+>  	else
+>  		dpll |=3D PLL_REF_INPUT_DREFCLK;
+>=20=20
+> -	dpll |=3D DPLL_VCO_ENABLE;
+> +	return dpll;
+> +}
+>=20=20
+> -	crtc_state->dpll_hw_state.dpll =3D dpll;
+> +static void ilk_compute_dpll(struct intel_crtc_state *crtc_state,
+> +			     const struct dpll *clock,
+> +			     const struct dpll *reduced_clock)
+> +{
+> +	ilk_update_pll_dividers(crtc_state, clock, reduced_clock);
+> +
+> +	crtc_state->dpll_hw_state.dpll =3D ilk_dpll(crtc_state, clock, reduced_=
+clock);
+>  }
+>=20=20
+>  static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
+> @@ -1413,36 +1433,51 @@ static int ilk_crtc_get_shared_dpll(struct intel_=
+atomic_state *state,
+>  	return intel_reserve_shared_dplls(state, crtc, NULL);
+>  }
+>=20=20
+> +static u32 vlv_dpll(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	u32 dpll;
+> +
+> +	dpll =3D DPLL_INTEGRATED_REF_CLK_VLV |
+> +		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+> +
+> +	if (crtc->pipe !=3D PIPE_A)
+> +		dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
+> +
+> +	/* DPLL not used with DSI, but still need the rest set up */
+> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+> +		dpll |=3D DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV;
+> +
+> +	return dpll;
+> +}
+> +
+>  void vlv_compute_dpll(struct intel_crtc_state *crtc_state)
+> +{
+> +	crtc_state->dpll_hw_state.dpll =3D vlv_dpll(crtc_state);
+> +	crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
+> +}
+> +
+> +static u32 chv_dpll(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	u32 dpll;
+>=20=20
+> -	crtc_state->dpll_hw_state.dpll =3D DPLL_INTEGRATED_REF_CLK_VLV |
+> +	dpll =3D DPLL_SSC_REF_CLK_CHV |
+>  		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+> +
+>  	if (crtc->pipe !=3D PIPE_A)
+> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
+> +		dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
+>=20=20
+>  	/* DPLL not used with DSI, but still need the rest set up */
+>  	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_VCO_ENABLE |
+> -			DPLL_EXT_BUFFER_ENABLE_VLV;
+> +		dpll |=3D DPLL_VCO_ENABLE;
+>=20=20
+> -	crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
+> +	return dpll;
+>  }
+>=20=20
+>  void chv_compute_dpll(struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> -
+> -	crtc_state->dpll_hw_state.dpll =3D DPLL_SSC_REF_CLK_CHV |
+> -		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+> -	if (crtc->pipe !=3D PIPE_A)
+> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
+> -
+> -	/* DPLL not used with DSI, but still need the rest set up */
+> -	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_VCO_ENABLE;
+> -
+> +	crtc_state->dpll_hw_state.dpll =3D chv_dpll(crtc_state);
+>  	crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
+>  }
 
-The new full board is:
-
-* Erik Faye-Lund
-* Mark Filion
-* Neal Gompa
-* Arkadiusz Hiler
-* Christopher Michael
-* Lyude Paul
-* Simon Ser
-* Sima Vetter
-
--Ricardo Garcia, on behalf of the X.Org elections committee
+--=20
+Jani Nikula, Intel
