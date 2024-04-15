@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68238A5C83
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 22:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2605C8A5C84
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 22:58:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E18910F093;
-	Mon, 15 Apr 2024 20:55:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3SxWUcE";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7F3D10E7EB;
+	Mon, 15 Apr 2024 20:58:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F29110E7EB;
- Mon, 15 Apr 2024 20:55:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713214547; x=1744750547;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=HFmgSNjBJMyti366m79Xd2zBJDRMsYKSWxtWxuAs3Wg=;
- b=J3SxWUcED3weSpcOdjEUc6TeEeSapsrN3S4+U1NxEioWB6KUIT5IF2Oe
- Gif/0+h1ODo6bb15FC+yUa1EE8HVrCF/zBu4b1CbMBlrIVCLAAosWQ5EO
- V3otRglIeiPUumglgS6xkXOiTm5GRb5SdXGWjudCURaqMfKTrXI7nGVuP
- 0yhvgkM9EAJNV9fKe3HMjKBe9yltUrABoOH0zbSeDkSlX7fH1XF6CAnus
- IVIxuPYpmL2WL4YjvX1IsvTpBnoC12M8rAlznRheU9JBnPuYrWLkEUFhq
- s6NU4hNR/AhRUV10Qyq1uGUVboH1wIyMeLGnU6IDOGJ6pDLXJEFutZa9I g==;
-X-CSE-ConnectionGUID: Qk/Edj6yTX+DTjbNxmMzjQ==
-X-CSE-MsgGUID: zeeEBtFASE6/Eecn03imdg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="12473304"
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="12473304"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 13:55:47 -0700
-X-CSE-ConnectionGUID: oBwLSg0hSf65TdrkXtvXmQ==
-X-CSE-MsgGUID: KjO1rzdYTCCccXFxnZjDkg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="22116429"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.32.232])
- ([10.246.32.232])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 13:55:44 -0700
-Message-ID: <88555360-d1c4-4527-85d5-4b920a18445b@linux.intel.com>
-Date: Mon, 15 Apr 2024 22:55:42 +0200
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB88810E7EB;
+ Mon, 15 Apr 2024 20:58:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 20/21] drm/i915/display: perform transient flush
-To: Matt Roper <matthew.d.roper@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable_display_suppo?=
+ =?utf-8?q?rt_for_Battlemage?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 20:58:34 -0000
+Message-ID: <171321471470.1423804.232901772396668431@8e613ede5ea5>
+X-Patchwork-Hint: ignore
 References: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
- <20240415081423.495834-21-balasubramani.vivekanandan@intel.com>
- <20240415170732.GJ6571@mdroper-desk1.amr.corp.intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20240415170732.GJ6571@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,158 +37,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+== Series Details ==
 
-On 4/15/2024 7:07 PM, Matt Roper wrote:
-> On Mon, Apr 15, 2024 at 01:44:22PM +0530, Balasubramani Vivekanandan wrote:
->> From: Matthew Auld <matthew.auld@intel.com>
->>
->> Perform manual transient cache flush prior to flip and at the end of
->> frontbuffer_flush. This is needed to ensure display engine doesn't see
->> garbage if the surface is L3:XD dirty.
->>
->> Testcase: igt@xe-pat@display-vs-wb-transient
-> Has the IGT patch for this been sent yet?
+Series: Enable display support for Battlemage
+URL   : https://patchwork.freedesktop.org/series/132429/
+State : warning
 
-Yes, the test seems to be available 
-https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/blob/master/tests/intel/xe_pat.c#L728 
+== Summary ==
+
+Error: dim checkpatch failed
+7b481503a16a drm/xe/display: Lane reversal requires writes to both context lanes
+9846f194e976 drm/i915/display: Enable RM timeout detection
+d2d6861c4a95 drm/i915/bmg: Define IS_BATTLEMAGE macro
+-:35: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#35: FILE: drivers/gpu/drm/i915/i915_drv.h:545:
++#define IS_LUNARLAKE(i915) (0 && i915)
+
+-:36: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#36: FILE: drivers/gpu/drm/i915/i915_drv.h:546:
++#define IS_BATTLEMAGE(i915)  (0 && i915)
+
+total: 0 errors, 0 warnings, 2 checks, 16 lines checked
+f21722e5a1a3 drm/i915/xe2hpd: Skip CCS modifiers
+-:10: WARNING:TYPO_SPELLING: 'auxillary' may be misspelled - perhaps 'auxiliary'?
+#10: 
+auxillary surface in the plane, containing the CCS data.  But on
+^^^^^^^^^
+
+-:12: WARNING:TYPO_SPELLING: 'auxillary' may be misspelled - perhaps 'auxiliary'?
+#12: 
+part of the plane. It contains no auxillary surface.
+                                  ^^^^^^^^^
+
+-:41: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#41: FILE: drivers/gpu/drm/i915/display/intel_fb.c:435:
++	if (intel_fb_is_ccs_modifier(md->modifier)) {
++
+
+total: 0 errors, 2 warnings, 1 checks, 22 lines checked
+ddb2038eff98 drm/i915/xe2hpd: Initial cdclk table
+5f7384cf9619 drm/i915/bmg: Extend DG2 tc check to future
+996917ef9a77 drm/i915/xe2hpd: Properly disable power in port A
+9670370a984c drm/i915/xe2hpd: Add new C20 PHY SRAM address
+-:78: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#78: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2201:
++									  PHY_C20_B_MPLLB_CNTX_CFG(i915, i));
+
+-:84: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#84: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2205:
++									  PHY_C20_A_MPLLB_CNTX_CFG(i915, i));
+
+-:94: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2213:
++									  PHY_C20_B_MPLLA_CNTX_CFG(i915, i));
+
+-:100: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#100: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2217:
++									  PHY_C20_A_MPLLA_CNTX_CFG(i915, i));
+
+total: 0 errors, 4 warnings, 0 checks, 203 lines checked
+cc9949785238 drm/i915/xe2hpd: Add support for eDP PLL configuration
+907b8baf0534 drm/i915/xe2hpd: update pll values in sync with Bspec
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matt Roper <matthew.d.roper@intel.com'
+#13: 
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com
+
+total: 1 errors, 0 warnings, 0 checks, 63 lines checked
+4a77891392e1 drm/i915/xe2hpd: Add display info
+679e3e1fe907 drm/i915/xe2hpd: Configure CHICKEN_MISC_2 before enabling planes
+65f214fabdb1 drm/i915/xe2hpd: Add max memory bandwidth algorithm
+588ecac64872 drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
+9ab2a09e8c47 drm/i915/bmg: BMG should re-use MTL's south display logic
+db96fdf0fd8e Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
+8b55113d20b9 drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+ff9b3247174f drm/xe/gt_print: add xe_gt_err_once()
+fa62a2f06462 drm/xe/device: implement transient flush
+e3f4d7dd775d drm/i915/display: perform transient flush
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+f50365fa323c drm/xe/bmg: Enable the display support
 
 
-
-Regards,
-
-Nirmoy
-
->    If not, we should probably
-> make sure that happens soon, and then use the CI Test-with: thing if
-> there winds up being another revision of this series so that this will
-> be included in the CI results.
->
-> Anyway, the changes here look good to me,
->
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_display.c  |  3 +++
->>   .../gpu/drm/i915/display/intel_frontbuffer.c  |  2 ++
->>   drivers/gpu/drm/i915/display/intel_tdf.h      | 25 +++++++++++++++++++
->>   drivers/gpu/drm/xe/Makefile                   |  3 ++-
->>   drivers/gpu/drm/xe/display/xe_tdf.c           | 13 ++++++++++
->>   5 files changed, 45 insertions(+), 1 deletion(-)
->>   create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
->>   create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 67697d9a559c..4fc46edcb4ad 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -110,6 +110,7 @@
->>   #include "intel_sdvo.h"
->>   #include "intel_snps_phy.h"
->>   #include "intel_tc.h"
->> +#include "intel_tdf.h"
->>   #include "intel_tv.h"
->>   #include "intel_vblank.h"
->>   #include "intel_vdsc.h"
->> @@ -7242,6 +7243,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
->>   
->>   	intel_atomic_commit_fence_wait(state);
->>   
->> +	intel_td_flush(dev_priv);
->> +
->>   	drm_atomic_helper_wait_for_dependencies(&state->base);
->>   	drm_dp_mst_atomic_wait_for_dependencies(&state->base);
->>   	intel_atomic_global_state_wait_for_dependencies(state);
->> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> index 2ea37c0414a9..4923c340a0b6 100644
->> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
->> @@ -65,6 +65,7 @@
->>   #include "intel_fbc.h"
->>   #include "intel_frontbuffer.h"
->>   #include "intel_psr.h"
->> +#include "intel_tdf.h"
->>   
->>   /**
->>    * frontbuffer_flush - flush frontbuffer
->> @@ -93,6 +94,7 @@ static void frontbuffer_flush(struct drm_i915_private *i915,
->>   	trace_intel_frontbuffer_flush(i915, frontbuffer_bits, origin);
->>   
->>   	might_sleep();
->> +	intel_td_flush(i915);
->>   	intel_drrs_flush(i915, frontbuffer_bits);
->>   	intel_psr_flush(i915, frontbuffer_bits, origin);
->>   	intel_fbc_flush(i915, frontbuffer_bits, origin);
->> diff --git a/drivers/gpu/drm/i915/display/intel_tdf.h b/drivers/gpu/drm/i915/display/intel_tdf.h
->> new file mode 100644
->> index 000000000000..353cde21f6c2
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_tdf.h
->> @@ -0,0 +1,25 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#ifndef __INTEL_TDF_H__
->> +#define __INTEL_TDF_H__
->> +
->> +/*
->> + * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD caching can
->> + * be enabled through various PAT index modes. Idea is to use this caching mode
->> + * when for example rendering onto the display surface, with the promise that
->> + * KMD will ensure transient cache entries are always flushed by the time we do
->> + * the display flip, since display engine is never coherent with CPU/GPU caches.
->> + */
->> +
->> +struct drm_i915_private;
->> +
->> +#ifdef I915
->> +static inline void intel_td_flush(struct drm_i915_private *i915) {}
->> +#else
->> +void intel_td_flush(struct drm_i915_private *i915);
->> +#endif
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index 6015c9e41f24..97a8674cdd76 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -198,7 +198,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->>   	display/xe_dsb_buffer.o \
->>   	display/xe_fb_pin.o \
->>   	display/xe_hdcp_gsc.o \
->> -	display/xe_plane_initial.o
->> +	display/xe_plane_initial.o \
->> +	display/xe_tdf.o
->>   
->>   # SOC code shared with i915
->>   xe-$(CONFIG_DRM_XE_DISPLAY) += \
->> diff --git a/drivers/gpu/drm/xe/display/xe_tdf.c b/drivers/gpu/drm/xe/display/xe_tdf.c
->> new file mode 100644
->> index 000000000000..2c0d4e144e09
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/display/xe_tdf.c
->> @@ -0,0 +1,13 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2024 Intel Corporation
->> + */
->> +
->> +#include "xe_device.h"
->> +#include "intel_display_types.h"
->> +#include "intel_tdf.h"
->> +
->> +void intel_td_flush(struct drm_i915_private *i915)
->> +{
->> +	xe_device_td_flush(i915);
->> +}
->> -- 
->> 2.25.1
->>
