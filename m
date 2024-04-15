@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEE98A52AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 16:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7033B8A5306
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 16:24:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 086501125E2;
-	Mon, 15 Apr 2024 14:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8D01125EA;
+	Mon, 15 Apr 2024 14:24:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fJ4fJA2q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mm+QMVSj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCCE51125E2
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Apr 2024 14:06:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713189988; x=1744725988;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=MObdouP5rW28tJG66ymRI0SGmsG98ZV8u0LkuziEIBk=;
- b=fJ4fJA2qZjWcmoQIwwhOcuVFrIY0VtvS9cBFJtbmI/lNtZJwJnBszNxO
- 0mpGkw+zurScJq7xKpoO+Mx8KwuXE7qF/iXrDICydqPjsyi2DogkYlEnZ
- rNL3HwXn4uYRFgaQMzMJUwarGW2f8Vdc912pevPUV91UDNekvCXA3tLsA
- 0pioYcDiDRGvJYtILts/fqFYZo3Pyao3MJvVQblkzxHCgRpzosXMaoQX5
- 5RW3tD7lQfmQri8olFTsubngSFqc3JWmwSY47/yrLcv4wQFvjNA7MyVQX
- 7rutnODGI3QIba5DBdnjHnVl4LjoQ1X5jAT80+rOec1qJ5KXd9fim0E+b g==;
-X-CSE-ConnectionGUID: zNV2txL3Q72Nbvf0WzOC1Q==
-X-CSE-MsgGUID: +VECAZyTQGS/L6Zu+/nPWg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19973783"
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="19973783"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 07:06:27 -0700
-X-CSE-ConnectionGUID: NCxFQpq/QACRTFFOpNpBDw==
-X-CSE-MsgGUID: X7ioKn5aQBG6Zj9YBo91Tg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,203,1708416000"; d="scan'208";a="26715984"
-Received: from lcariou-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.61.121])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 07:06:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 10/18] drm/i915: Extract {i9xx,i8xx,ilk}_dpll()
-In-Reply-To: <20240412182703.19916-11-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240412182703.19916-1-ville.syrjala@linux.intel.com>
- <20240412182703.19916-11-ville.syrjala@linux.intel.com>
-Date: Mon, 15 Apr 2024 17:06:15 +0300
-Message-ID: <871q763elk.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4779410F8B1;
+ Mon, 15 Apr 2024 14:24:06 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id D73EFCE0E01;
+ Mon, 15 Apr 2024 14:24:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1DCEC3277B;
+ Mon, 15 Apr 2024 14:24:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1713191042;
+ bh=wM44Mb5X99jQyNH+X8BXp++TNUNY8/+5fKzpsl6KLD8=;
+ h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
+ b=mm+QMVSjBO17w3UOqliEQBXEfwBRh9NChcMkC2CdXl00C9UNcY2J/iwTLyUcPFP+9
+ iQ4MXLD1X4dFtW1YC3Sf2Qjg5iw5eopMUnbiuuz0a6HaKP5vhsGOJdZy5xWi36Ve8J
+ rpQXc1blDpl8zX62czvE+aHiBhbCej15rC5qkgG6pUSn0vvfU2bmH1G0pschRz9h3B
+ a34+zpTy+Su6BONocM/vXKUxktT6kVkLo7ZR4tPmt4niqSJFqOyT74osIegUw/s3Aa
+ mWB7ZHZLbjl1FK3m8WnSKp1Mk03+0UDew0pmDLH/6HaLDpxeSgaj4GX4FbptAa70JY
+ V4m/Qfd011MgQ==
+Message-ID: <f9ef8b9bced6f4656907d4a14355e970@kernel.org>
+Date: Mon, 15 Apr 2024 14:23:59 +0000
+From: "Maxime Ripard" <mripard@kernel.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Subject: Re: Re: [PATCH 1/2] drm/print: drop include debugfs.h and include
+ where needed
+In-Reply-To: <878r1e3h8d.fsf@intel.com>
+References: <878r1e3h8d.fsf@intel.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, "Alex
+ Deucher" <alexander.deucher@amd.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ =?utf-8?b?Q2hyaXN0aWFuS8O2bmln?= <christian.koenig@amd.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>, "Danilo
+ Krummrich" <dakr@redhat.com>, "David Airlie" <airlied@gmail.com>, "Huang
+ Rui" <ray.huang@amd.com>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Jonas
+ Karlman" <jonas@kwiboo.se>, "Karol Herbst" <kherbst@redhat.com>, "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Lyude Paul" <lyude@redhat.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>, "Neil
+ Armstrong" <neil.armstrong@linaro.org>, =?utf-8?b?IlwiUGFuLCBYaW5odWlc?=
+ =?utf-8?b?IiI=?= <Xinhui.Pan@amd.com>, "Robert Foss" <rfoss@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,238 +69,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> The *_compute_dpll() functions generally contain
-> two things:
-> - huge pile of inline code to calculate the DPLL
->   register value
-> - a few calls to helpers to calculate the
->   DPLL_MD and FP register values
->
-> Pull the DPLL register value calculations into a helpers
-> as well, so that *_compute_dpll() can focus on higher
-> level tasks.
+On Mon, 15 Apr 2024 16:09:22 +0300, Jani Nikula wrote:
+> On Wed, 10 Apr 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> > Surprisingly many places depend on debugfs.h to be included via
+> > drm_print.h. Fix them.
+> 
+> While all of this is trivial, merely adding some includes, please
+> 
+> [ ... ]
 
-In addition to what the subject says, this touches vlv/chv paths.
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-BR,
-Jani.
-
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll.c | 115 ++++++++++++++--------
->  1 file changed, 75 insertions(+), 40 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
-i915/display/intel_dpll.c
-> index 9e1f94a2ce92..0625b9c436c2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> @@ -1013,17 +1013,15 @@ static u32 i965_dpll_md(const struct intel_crtc_s=
-tate *crtc_state)
->  	return (crtc_state->pixel_multiplier - 1) << DPLL_MD_UDI_MULTIPLIER_SHI=
-FT;
->  }
->=20=20
-> -static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
-> -			      const struct dpll *clock,
-> -			      const struct dpll *reduced_clock)
-> +static u32 i9xx_dpll(const struct intel_crtc_state *crtc_state,
-> +		     const struct dpll *clock,
-> +		     const struct dpll *reduced_clock)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	u32 dpll;
->=20=20
-> -	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
-> -
-> -	dpll =3D DPLL_VGA_MODE_DIS;
-> +	dpll =3D DPLL_VCO_ENABLE | DPLL_VGA_MODE_DIS;
->=20=20
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_LVDS))
->  		dpll |=3D DPLLB_MODE_LVDS;
-> @@ -1082,24 +1080,33 @@ static void i9xx_compute_dpll(struct intel_crtc_s=
-tate *crtc_state,
->  	else
->  		dpll |=3D PLL_REF_INPUT_DREFCLK;
->=20=20
-> -	dpll |=3D DPLL_VCO_ENABLE;
-> -	crtc_state->dpll_hw_state.dpll =3D dpll;
-> +	return dpll;
-> +}
-> +
-> +static void i9xx_compute_dpll(struct intel_crtc_state *crtc_state,
-> +			      const struct dpll *clock,
-> +			      const struct dpll *reduced_clock)
-> +{
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> +
-> +	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
-> +
-> +	crtc_state->dpll_hw_state.dpll =3D i9xx_dpll(crtc_state, clock, reduced=
-_clock);
->=20=20
->  	if (DISPLAY_VER(dev_priv) >=3D 4)
->  		crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
->  }
->=20=20
-> -static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
-> -			      const struct dpll *clock,
-> -			      const struct dpll *reduced_clock)
-> +static u32 i8xx_dpll(const struct intel_crtc_state *crtc_state,
-> +		     const struct dpll *clock,
-> +		     const struct dpll *reduced_clock)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	u32 dpll;
->=20=20
-> -	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
-> -
-> -	dpll =3D DPLL_VGA_MODE_DIS;
-> +	dpll =3D DPLL_VCO_ENABLE | DPLL_VGA_MODE_DIS;
->=20=20
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_LVDS)) {
->  		dpll |=3D (1 << (clock->p1 - 1)) << DPLL_FPA01_P1_POST_DIV_SHIFT;
-> @@ -1136,8 +1143,16 @@ static void i8xx_compute_dpll(struct intel_crtc_st=
-ate *crtc_state,
->  	else
->  		dpll |=3D PLL_REF_INPUT_DREFCLK;
->=20=20
-> -	dpll |=3D DPLL_VCO_ENABLE;
-> -	crtc_state->dpll_hw_state.dpll =3D dpll;
-> +	return dpll;
-> +}
-> +
-> +static void i8xx_compute_dpll(struct intel_crtc_state *crtc_state,
-> +			      const struct dpll *clock,
-> +			      const struct dpll *reduced_clock)
-> +{
-> +	i9xx_update_pll_dividers(crtc_state, clock, reduced_clock);
-> +
-> +	crtc_state->dpll_hw_state.dpll =3D i8xx_dpll(crtc_state, clock, reduced=
-_clock);
->  }
->=20=20
->  static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
-> @@ -1266,17 +1281,15 @@ static void ilk_update_pll_dividers(struct intel_=
-crtc_state *crtc_state,
->  	crtc_state->dpll_hw_state.fp1 =3D ilk_dpll_compute_fp(reduced_clock, fa=
-ctor);
->  }
->=20=20
-> -static void ilk_compute_dpll(struct intel_crtc_state *crtc_state,
-> -			     const struct dpll *clock,
-> -			     const struct dpll *reduced_clock)
-> +static u32 ilk_dpll(const struct intel_crtc_state *crtc_state,
-> +		    const struct dpll *clock,
-> +		    const struct dpll *reduced_clock)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	u32 dpll;
->=20=20
-> -	ilk_update_pll_dividers(crtc_state, clock, reduced_clock);
-> -
-> -	dpll =3D 0;
-> +	dpll =3D DPLL_VCO_ENABLE;
->=20=20
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_LVDS))
->  		dpll |=3D DPLLB_MODE_LVDS;
-> @@ -1338,9 +1351,16 @@ static void ilk_compute_dpll(struct intel_crtc_sta=
-te *crtc_state,
->  	else
->  		dpll |=3D PLL_REF_INPUT_DREFCLK;
->=20=20
-> -	dpll |=3D DPLL_VCO_ENABLE;
-> +	return dpll;
-> +}
->=20=20
-> -	crtc_state->dpll_hw_state.dpll =3D dpll;
-> +static void ilk_compute_dpll(struct intel_crtc_state *crtc_state,
-> +			     const struct dpll *clock,
-> +			     const struct dpll *reduced_clock)
-> +{
-> +	ilk_update_pll_dividers(crtc_state, clock, reduced_clock);
-> +
-> +	crtc_state->dpll_hw_state.dpll =3D ilk_dpll(crtc_state, clock, reduced_=
-clock);
->  }
->=20=20
->  static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
-> @@ -1413,36 +1433,51 @@ static int ilk_crtc_get_shared_dpll(struct intel_=
-atomic_state *state,
->  	return intel_reserve_shared_dplls(state, crtc, NULL);
->  }
->=20=20
-> +static u32 vlv_dpll(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	u32 dpll;
-> +
-> +	dpll =3D DPLL_INTEGRATED_REF_CLK_VLV |
-> +		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
-> +
-> +	if (crtc->pipe !=3D PIPE_A)
-> +		dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
-> +
-> +	/* DPLL not used with DSI, but still need the rest set up */
-> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> +		dpll |=3D DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV;
-> +
-> +	return dpll;
-> +}
-> +
->  void vlv_compute_dpll(struct intel_crtc_state *crtc_state)
-> +{
-> +	crtc_state->dpll_hw_state.dpll =3D vlv_dpll(crtc_state);
-> +	crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
-> +}
-> +
-> +static u32 chv_dpll(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	u32 dpll;
->=20=20
-> -	crtc_state->dpll_hw_state.dpll =3D DPLL_INTEGRATED_REF_CLK_VLV |
-> +	dpll =3D DPLL_SSC_REF_CLK_CHV |
->  		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
-> +
->  	if (crtc->pipe !=3D PIPE_A)
-> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
-> +		dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
->=20=20
->  	/* DPLL not used with DSI, but still need the rest set up */
->  	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_VCO_ENABLE |
-> -			DPLL_EXT_BUFFER_ENABLE_VLV;
-> +		dpll |=3D DPLL_VCO_ENABLE;
->=20=20
-> -	crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
-> +	return dpll;
->  }
->=20=20
->  void chv_compute_dpll(struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> -
-> -	crtc_state->dpll_hw_state.dpll =3D DPLL_SSC_REF_CLK_CHV |
-> -		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
-> -	if (crtc->pipe !=3D PIPE_A)
-> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_INTEGRATED_CRI_CLK_VLV;
-> -
-> -	/* DPLL not used with DSI, but still need the rest set up */
-> -	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> -		crtc_state->dpll_hw_state.dpll |=3D DPLL_VCO_ENABLE;
-> -
-> +	crtc_state->dpll_hw_state.dpll =3D chv_dpll(crtc_state);
->  	crtc_state->dpll_hw_state.dpll_md =3D i965_dpll_md(crtc_state);
->  }
-
---=20
-Jani Nikula, Intel
+Thanks!
+Maxime
