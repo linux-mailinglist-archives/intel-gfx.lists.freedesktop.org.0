@@ -2,68 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69EDA8A5011
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 15:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B90AE8A4EEA
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 14:23:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D62810FCD3;
-	Mon, 15 Apr 2024 13:00:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="HtyX+VaO";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E98810E36A;
+	Mon, 15 Apr 2024 12:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3457110E326
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 Apr 2024 14:49:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1713019755; x=1713624555; i=w_armin@gmx.de;
- bh=okYUqaoqD8t5ZTf7MMRnKc8ZwAGpmdU73/pbDYl1/xY=;
- h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
- In-Reply-To;
- b=HtyX+VaO1RRE1oAAahygR7RNGE4xBZDrr3dXWrkz3lcakYfEq8vYFuQyqMane6+k
- kzkndHME69XYSXKpIZglvKSnGH/y1098YsU+0LZodffhM9tmZRfQZJfIoLdfb+3/X
- dSuhOIsAsc8ddYufZ9Yeovm2zKXn8oDRirUyE4Reb20HFR8r3Llcb/rOoLG942G2z
- QTY5x7hKssTrd8z4Cpk1ioDDArKMq/kJn8JkzDH2K56HECB+HLYTU33M7/IZA9LJJ
- cyCtsDds374038wRZkKoTLQBtu7cTi6jsJMPM5bKU1YE4+f0BSQGgLbFuaF3rPvLP
- yFfRnTns+d7A2RjvJg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [141.30.226.129] ([141.30.226.129]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MdNcG-1sUiNM32y8-00ZP3o; Sat, 13
- Apr 2024 16:43:52 +0200
-Message-ID: <55e00433-71a6-4b41-a65b-0a8871398cdc@gmx.de>
-Date: Sat, 13 Apr 2024 16:43:50 +0200
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65AE610E36A;
+ Mon, 15 Apr 2024 12:23:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/hwmon: Get rid of devm
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Badal Nilawar <badal.nilawar@intel.com>, Andi Shyti
- <andi.shyti@intel.com>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, linux-hwmon@vger.kernel.org
-References: <20240413001031.481961-1-ashutosh.dixit@intel.com>
-Content-Language: en-US
-From: Armin Wolf <W_Armin@gmx.de>
-In-Reply-To: <20240413001031.481961-1-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:guEmR/kHCCyycEzCbg+VHqKgqbUY5IEchqBoHzYTn8vACoeRB7z
- O1fANTuetCdumrhy+h3bkcVP3nbf8TaU7bJhCk7FQs8kiQ25Bonyg/5Pscz4FUBqgx6S40f
- 0qBu8TY8AqlON5vY/CzxxWJEKhaf7xmH57ikMX3+JpuGt2ihBvZ99q3hwXhA7Q8b+gR3DGw
- kzo1p5jjXj0V5GNmig5zw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:GQYPh5WDgbs=;IOuGhEZ457QeObvZG+XarZ3a3oQ
- p1M25Pd1vgFMAm7Qt0xPhpXiIZ0pTSEk7N5/ghNeE/z7P4IJD3DCn7hh2rYkG7e9K27tmB5XZ
- WGLVa4NUPVXRYtQqlpPisTpRVMwPcKUrp4rEw9xdoNnO9ua7sYJWNR35pG/glQx4TPR0IE6gk
- T1fFPkPm1k4PSuFwPpJ0mSKb1D5J8w8peI9g2vXhcb0puKwXPfLjqoHaKgNz8KvFHA6H62Nnk
- C+LaKCV4vwoiXEbsfNPmee47eFRkxond0qw/xp1K4sUkiE0HZ+wCZI10hDjV2xFNFtSTfzocs
- RaWdagMn+hFMIeOWYBU9HU0ISmopkyl1w7dg6kin9BneuhWlHySBMzXN99sRuxGJAHE89wC4o
- MkWwBicxEXZe3yQ3G+Qw8LLVgeSIMiwRIDjm10jAKRp4UcwP+p7MmXLu1VNjKcsDbYJGWJHHc
- EbO7qtK4EaZcySmNAvsLzmnkSU2alDNuYMG8m14WzZf6YzJQDz2ynhe234BkC/XZWCjZ7wOTu
- 5rrT9JGFzF7aPp5hYSqh1lWF0nTVcXnZwGtgjUyGlVlmD4vIoRkSa8G6H7WFYoCdo/lwTRj9v
- qU0hUduV1clLcduRtVGWird+LEqnCn4arf6HOZXWYBc70M1gTHK8XG4ewonmRzoPzR146v4in
- zdiDyzMUHJ/WIY3odUgOLyP0V3DP/K1FYDIv8BlesDcgiedf1vcmir6o8g4XPYl4wqMHxts1r
- NGXADG7BbVkT3uNHxndA7TxLq0uHYucYqC53F9GwYOLJtu52ouWRZ3puDG8GXGyhbObE4n+2g
- 0bTdp8hD0CY1VHbeaqS3FQVAIUduYf+PIv5rMT/c/BCxc=
-X-Mailman-Approved-At: Mon, 15 Apr 2024 13:00:19 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_i915=5Fr?=
+ =?utf-8?q?eg=2Eh_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Apr 2024 12:23:24 -0000
+Message-ID: <171318380441.1404431.362208830117722115@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1712933479.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1712933479.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,131 +37,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 13.04.24 um 02:10 schrieb Ashutosh Dixit:
+== Series Details ==
 
-> When both hwmon and hwmon drvdata (on which hwmon depends) are device
-> managed resources, the expectation, on device unbind, is that hwmon will=
- be
-> released before the drvdata. However, it appears devres does not do this
-> consistently, so that we occasionally see drvdata being released before
-> hwmon itself. This results in a uaf if hwmon sysfs is accessed during
-> device unbind.
->
-> The only way out of this seems to be do get rid of devm_ and release/fre=
-e
-> everything explicitly during device unbind.
+Series: drm/i915: i915_reg.h cleanups
+URL   : https://patchwork.freedesktop.org/series/132381/
+State : warning
 
-Hi,
+== Summary ==
 
-could it be that the underlying cause for this is the fact that you are us=
-ing
-devres on a DRM device?
+Error: dim checkpatch failed
+19e68395cec8 drm/i915/audio: move LPE audio regs to intel_audio_regs.h
+dfbe99d107b3 drm/i915/color: move palette registers to intel_color_regs.h
+abfc95490d07 drm/i915/display: split out intel_fbc_regs.h from i915_reg.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:23: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#23: 
+new file mode 100644
 
-The documentation states that:
+-:91: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#91: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:64:
++#define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_G4X, (i9xx_plane))
 
-	devres managed resources like devm_kmalloc() can only be used for resourc=
-es
-	directly related to the underlying hardware device, and only used in code
-	paths fully protected by drm_dev_enter() and drm_dev_exit().
+-:94: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:67:
++#define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
 
-That said, since the i915 driver is already removing the hwmon device manu=
-ally
-with i915_hwmon_unregister(), i agree that not using devres in this case s=
-eems
-to be the solution.
+-:98: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:71:
++#define   DPFC_CTL_PLANE_BINDING(plane_id)	REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, (plane_id))
 
-Thanks,
-Armin Wolf
+-:154: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#154: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:127:
++
++
 
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_hwmon.c | 46 ++++++++++++++++++++++++-------
->   1 file changed, 36 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i9=
-15_hwmon.c
-> index 8c3f443c8347..5f6022b148d7 100644
-> --- a/drivers/gpu/drm/i915/i915_hwmon.c
-> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
-> @@ -792,7 +792,7 @@ void i915_hwmon_register(struct drm_i915_private *i9=
-15)
->   	if (!IS_DGFX(i915))
->   		return;
->
-> -	hwmon =3D devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
-> +	hwmon =3D kzalloc(sizeof(*hwmon), GFP_KERNEL);
->   	if (!hwmon)
->   		return;
->
-> @@ -818,10 +818,10 @@ void i915_hwmon_register(struct drm_i915_private *=
-i915)
->   	hwm_get_preregistration_info(i915);
->
->   	/*  hwmon_dev points to device hwmon<i> */
-> -	hwmon_dev =3D devm_hwmon_device_register_with_info(dev, ddat->name,
-> -							 ddat,
-> -							 &hwm_chip_info,
-> -							 hwm_groups);
-> +	hwmon_dev =3D hwmon_device_register_with_info(dev, ddat->name,
-> +						    ddat,
-> +						    &hwm_chip_info,
-> +						    hwm_groups);
->   	if (IS_ERR(hwmon_dev)) {
->   		i915->hwmon =3D NULL;
->   		return;
-> @@ -838,10 +838,10 @@ void i915_hwmon_register(struct drm_i915_private *=
-i915)
->   		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0)=
-)
->   			continue;
->
-> -		hwmon_dev =3D devm_hwmon_device_register_with_info(dev, ddat_gt->name=
-,
-> -								 ddat_gt,
-> -								 &hwm_gt_chip_info,
-> -								 NULL);
-> +		hwmon_dev =3D hwmon_device_register_with_info(dev, ddat_gt->name,
-> +							    ddat_gt,
-> +							    &hwm_gt_chip_info,
-> +							    NULL);
->   		if (!IS_ERR(hwmon_dev))
->   			ddat_gt->hwmon_dev =3D hwmon_dev;
->   	}
-> @@ -849,5 +849,31 @@ void i915_hwmon_register(struct drm_i915_private *i=
-915)
->
->   void i915_hwmon_unregister(struct drm_i915_private *i915)
->   {
-> -	fetch_and_zero(&i915->hwmon);
-> +	struct i915_hwmon *hwmon;
-> +	struct hwm_drvdata *ddat;
-> +	struct intel_gt *gt;
-> +	int i;
-> +
-> +	hwmon =3D fetch_and_zero(&i915->hwmon);
-> +	if (!hwmon)
-> +		return;
-> +
-> +	ddat =3D &hwmon->ddat;
-> +
-> +	for_each_gt(gt, i915, i) {
-> +		struct hwm_drvdata *ddat_gt;
-> +
-> +		ddat_gt =3D hwmon->ddat_gt + i;
-> +
-> +		if (ddat_gt->hwmon_dev) {
-> +			hwmon_device_unregister(ddat_gt->hwmon_dev);
-> +			ddat_gt->hwmon_dev =3D NULL;
-> +		}
-> +	}
-> +
-> +	if (ddat->hwmon_dev)
-> +		hwmon_device_unregister(ddat->hwmon_dev);
-> +
-> +	mutex_destroy(&hwmon->hwmon_lock);
-> +	kfree(hwmon);
->   }
+total: 0 errors, 4 warnings, 1 checks, 340 lines checked
+3a0f5dc85170 drm/i915/display: split out intel_sprite_regs.h from i915_reg.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#28: 
+new file mode 100644
+
+-:131: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#131: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:99:
++#define DVSGAMC_G4X(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_G4X, _DVSBGAMC_G4X) + (5 - (i)) * 4) /* 6 x u0.8 */
+
+-:132: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
+#132: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:100:
++#define DVSGAMC_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_ILK, _DVSBGAMC_ILK) + (i) * 4) /* 16 x u0.10 */
+
+-:133: WARNING:LONG_LINE_COMMENT: line length of 112 exceeds 100 columns
+#133: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:101:
++#define DVSGAMCMAX_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMCMAX_ILK, _DVSBGAMCMAX_ILK) + (i) * 4) /* 3 x u1.10 */
+
+-:145: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
+#145: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:113:
++#define   SPRITE_FORMAT_XR_BGR101010		REG_FIELD_PREP(SPRITE_FORMAT_MASK, 5) /* Extended range */
+
+-:326: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#326: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:294:
++#define SPKEYMINVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMINVAL, _SPBKEYMINVAL)
+
+-:329: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#329: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:297:
++#define SPKEYMAXVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMAXVAL, _SPBKEYMAXVAL)
+
+-:331: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#331: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:299:
++#define SPCONSTALPHA(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPACONSTALPHA, _SPBCONSTALPHA)
+
+-:332: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#332: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:300:
++#define SPSURFLIVE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
+
+-:335: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
+#335: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:303:
++#define SPGAMC(pipe, plane_id, i)	_MMIO(_VLV_SPR((pipe), (plane_id), _SPAGAMC, _SPBGAMC) + (5 - (i)) * 4) /* 6 x u0.10 */
+
+total: 0 errors, 10 warnings, 0 checks, 745 lines checked
+08ff131d6a15 drm/i915/display: split out intel_dpio_regs.h from i915_reg.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#47: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 722 lines checked
+566b3d7419f6 drm/i915/display: split out bxt_phy_regs.h from i915_reg.h
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:11: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#11: 
+new file mode 100644
+
+-:232: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'lane' - possible side-effects?
+#232: FILE: drivers/gpu/drm/i915/display/bxt_phy_regs.h:217:
++#define _BXT_LANE_OFFSET(lane)           (((lane) >> 1) * 0x200 +	\
++					  ((lane) & 1) * 0x80)
+
+total: 0 errors, 1 warnings, 1 checks, 637 lines checked
+
+
