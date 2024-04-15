@@ -2,47 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7588A48A6
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 09:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ACC78A49F8
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 10:13:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4472A112238;
-	Mon, 15 Apr 2024 07:05:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20E1510E778;
+	Mon, 15 Apr 2024 08:13:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PP1gk5rB";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6EFC112236;
- Mon, 15 Apr 2024 07:05:26 +0000 (UTC)
-Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1rwGP2-00000000Hg3-2n1K; Mon, 15 Apr 2024 10:05:22 +0300
-Message-ID: <2fe5226a281ad1db416d26969e5edf07b60dd349.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "Coelho, Luciano"
- <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-Date: Mon, 15 Apr 2024 10:05:19 +0300
-In-Reply-To: <DM4PR11MB6360FFEA82155778AD9B9778F4092@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20240412094148.808179-1-luciano.coelho@intel.com>
- <20240412094148.808179-2-luciano.coelho@intel.com>
- <DM4PR11MB63600F7F0EE905B24FED01B2F4042@DM4PR11MB6360.namprd11.prod.outlook.com>
- <7c2a11df009a90646d39783c01f722b96717966c.camel@coelho.fi>
- <DM4PR11MB6360FFEA82155778AD9B9778F4092@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE5610E778;
+ Mon, 15 Apr 2024 08:13:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713168836; x=1744704836;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7SxbZ0L2Ix9jsCUA08H4tQCnNcNjF80OG+GJf4ibvIM=;
+ b=PP1gk5rB8CIeKCTcnuhhozIuA3+sbfZNDzYnbxqi37oQkYv+HiotfaNi
+ 0y8+C14NAnSH4ejPfZfTgRIbYvbTYosBgIZqqy2yC331yTS65jJ6Q31AM
+ 4E+XJGhR4HDw9uIwan70bUDAMf3Alv4OuySGoh2svmEVmD9sa4uYzfP0W
+ qa1ugab4UHMqy5EtJWqOpg/NkmhGcbPd2Kc8iW5mOZNqFK+zHQVX51MLp
+ VX61NFdgyL4XqzAY3Oo+0qqQsBY0Q2/+NiyDKJXvsTOcHzGtrEZ0Zto1m
+ 0MC8NeG8oHfSV2OK9AQw02uK+YaLlNiKjzcTB39VcIfBSqf5n4BJh9Byi g==;
+X-CSE-ConnectionGUID: ly/Io2hdTpO7woOwjUcwpw==
+X-CSE-MsgGUID: m62melrGSeCikAWJsGb21g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11044"; a="9096293"
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; 
+   d="scan'208";a="9096293"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 01:13:55 -0700
+X-CSE-ConnectionGUID: l6eMfJluRACh68iPpp1WpA==
+X-CSE-MsgGUID: E/wSCUhfR8GH3llGWS/w4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,202,1708416000"; d="scan'208";a="26400078"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 01:13:54 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v3 00/21] Enable display support for Battlemage
+Date: Mon, 15 Apr 2024 13:44:02 +0530
+Message-Id: <20240415081423.495834-1-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH v5 1/4] drm/i915/display: add support for DMC wakelocks
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,103 +70,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2024-04-15 at 05:05 +0000, Shankar, Uma wrote:
->=20
-> > -----Original Message-----
-> > From: Luca Coelho <luca@coelho.fi>
-> > Sent: Friday, April 12, 2024 5:57 PM
-> > To: Shankar, Uma <uma.shankar@intel.com>; Coelho, Luciano
-> > <luciano.coelho@intel.com>; intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org; ville.syrjala@linux.intel.com; Niku=
-la, Jani
-> > <jani.nikula@intel.com>
-> > Subject: Re: [PATCH v5 1/4] drm/i915/display: add support for DMC wakel=
-ocks
-> >=20
-> > On Fri, 2024-04-12 at 10:30 +0000, Shankar, Uma wrote:
-> > >=20
-> > > > -----Original Message-----
-> > > > From: Coelho, Luciano <luciano.coelho@intel.com>
-> > > > Sent: Friday, April 12, 2024 3:12 PM
-> > > > To: intel-gfx@lists.freedesktop.org
-> > > > Cc: intel-xe@lists.freedesktop.org; Shankar, Uma
-> > > > <uma.shankar@intel.com>; ville.syrjala@linux.intel.com; Nikula, Jan=
-i
-> > > > <jani.nikula@intel.com>
-> > > > Subject: [PATCH v5 1/4] drm/i915/display: add support for DMC
-> > > > wakelocks
-> > > >=20
-> > > > In order to reduce the DC5->DC2 restore time, wakelocks have been
-> > > > introduced in DMC so the driver can tell it when registers and othe=
-r
-> > > > memory areas are going to be accessed and keep their respective blo=
-cks
-> > awake.
-> > > >=20
-> > > > Implement this in the driver by adding the concept of DMC wakelocks=
-.
-> > > > When the driver needs to access memory which lies inside pre-define=
-d
-> > > > ranges, it will tell DMC to set the wakelock, access the memory,
-> > > > then wait for a while and clear the wakelock.
-> > > >=20
-> > > > The wakelock state is protected in the driver with spinlocks to
-> > > > prevent concurrency issues.
-> > >=20
-> > > Hi Luca,
-> > > Seems you missed to add the version history.
-> >=20
-> > I've been sending the version history in the cover letter, because I do=
-n't think it
-> > adds any information after it gets to the mainline kernel.  The history=
- is lost
-> > anyway, so the mailing list is a better place to store it (it's unique =
-and meaningful
-> > there).
->=20
-> Its matter of preference, but being part of the patch's commit message it=
- stays with it
-> and can be checked with a git show. Cover letter details gets lost though=
- as it doesn't
-> end up in the tree.
+Adds display support for Battlemage.
 
-Yes, but the change history in the commit message doesn't tell the full
-story.  If I write, for instance, "In v2: refactor intel_foo_bar()",
-there's no way to know what it looked like before.  That's why I think
-that, if we want to keep the version history accessible from the git
-tree, we should have a link to the mailing list discussions, as
-apparently we do in most cases anyway.
+v3:
+* use s/XE_LPDP_FEATURES/XE_LPD_FEATURE as base for BMG display info
+  structure
+* Limit "BW Credits" programming only to xelpdp
+* Removed UHBR20 support
+* Commit description improved for patch - "Skip CCS modifiers for Xe2 platforms"
+* Still retained the patch "Enable RM timeout detection" in this series
+  hoping there are no further comments and could be merged with this
+  series.
+* Removed the check where RM timeout interrupt was enabled only for
+  xe2hpd
+* Redesigned how the right C20 PHY offsets are selected for different
+  display IP versions
 
+v2: Rebased on latest drm-tip
 
-> > Bur as I said to someone else before, I can add it to the commit messag=
-e if you
-> > think that it's needed.
->=20
-> Not needed Luca, it was a simple nitpick =F0=9F=98=8A. You can skip that.
+Ankit Nautiyal (1):
+  Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
 
-Thanks for pointing out, anyway! =F0=9F=98=89 I don't want to keep flaming =
-about
-this, so I'll just try to remember to add it next time, so it doesn't
-come up again.
+Anusha Srivatsa (1):
+  drm/i915/xe2hpd: Configure CHICKEN_MISC_2 before enabling planes
 
+Balasubramani Vivekanandan (6):
+  drm/i915/bmg: Define IS_BATTLEMAGE macro
+  drm/i915/xe2hpd: Skip CCS modifiers
+  drm/i915/xe2hpd: Add new C20 PHY SRAM address
+  drm/i915/xe2hpd: Add support for eDP PLL configuration
+  drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+  drm/xe/bmg: Enable the display support
 
-> > >=20
-> > > Anyways, changes look good to me.
-> > > Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> >=20
-> > Thanks a lot!
-> >=20
-> > Though you didn't review patch 3/4, the one about the module parameter.
-> > Was that intentional or did you just miss it?
->=20
-> I think I have reviewed and RB'ed it. The entire series is RB'ed now.
+Clint Taylor (2):
+  drm/xe/display: Lane reversal requires writes to both context lanes
+  drm/i915/xe2hpd: Initial cdclk table
 
-Oh, right.  "Someone" was not paying attention.  I even already had the
-r-b in the commit message itself.  Silly me.
+José Roberto de Souza (2):
+  drm/i915/xe2hpd: Properly disable power in port A
+  drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
 
-Thanks a lot for your reviews! Now I just need to get someone to merge
-this series, since I don't have commit rights to the repo yet.
+Lucas De Marchi (1):
+  drm/i915/xe2hpd: Add display info
 
---
-Cheers,
-Luca.
+Matt Roper (2):
+  drm/i915/xe2hpd: Add max memory bandwidth algorithm
+  drm/i915/bmg: BMG should re-use MTL's south display logic
+
+Matthew Auld (2):
+  drm/xe/gt_print: add xe_gt_err_once()
+  drm/i915/display: perform transient flush
+
+Mitul Golani (1):
+  drm/i915/display: Enable RM timeout detection
+
+Nirmoy Das (1):
+  drm/xe/device: implement transient flush
+
+Radhakrishna Sripada (1):
+  drm/i915/bmg: Extend DG2 tc check to future
+
+Ravi Kumar Vodapalli (1):
+  drm/i915/xe2hpd: update pll values in sync with Bspec
+
+ drivers/gpu/drm/i915/display/intel_bios.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  65 +++-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  11 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 285 +++++++++++++++---
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  59 +++-
+ drivers/gpu/drm/i915/display/intel_display.c  |  10 +-
+ .../drm/i915/display/intel_display_device.c   |   7 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  10 +
+ .../drm/i915/display/intel_display_power.c    |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 +
+ drivers/gpu/drm/i915/display/intel_fb.c       |  16 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   2 +
+ drivers/gpu/drm/i915/display/intel_tdf.h      |  25 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/soc/intel_dram.c         |   4 +
+ drivers/gpu/drm/i915/soc/intel_pch.c          |   4 +-
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ drivers/gpu/drm/xe/display/xe_tdf.c           |  13 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  49 +++
+ drivers/gpu/drm/xe/xe_device.h                |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   1 +
+ drivers/gpu/drm/xe/xe_gt_printk.h             |   3 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   1 +
+ 26 files changed, 542 insertions(+), 60 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
+
+-- 
+2.25.1
+
