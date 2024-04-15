@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E4A28A4D09
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 12:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D158A4D0A
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Apr 2024 12:56:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2123D112468;
-	Mon, 15 Apr 2024 10:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23742112469;
+	Mon, 15 Apr 2024 10:56:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A759F112468;
- Mon, 15 Apr 2024 10:55:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 504B3112466;
+ Mon, 15 Apr 2024 10:56:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/vma=3A_Fix_?=
- =?utf-8?q?UAF_on_reopen_vs_destroy_race?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/vma=3A_Fix_UAF_?=
+ =?utf-8?q?on_reopen_vs_destroy_race?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Apr 2024 10:55:57 -0000
-Message-ID: <171317855768.1404405.6238655322348796319@8e613ede5ea5>
+Date: Mon, 15 Apr 2024 10:56:00 -0000
+Message-ID: <171317856033.1404431.6576902174333659090@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240412101840.329836-2-janusz.krzysztofik@linux.intel.com>
 In-Reply-To: <20240412101840.329836-2-janusz.krzysztofik@linux.intel.com>
@@ -49,12 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-3c06e0966968 drm/i915/vma: Fix UAF on reopen vs destroy race
--:18: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#18: 
-<4> [260.290988] list_del corruption. prev->next should be ffff888118c5d990, but was ffff888118c5a510. (prev=ffff888118c5a510)
-
-total: 0 errors, 1 warnings, 0 checks, 101 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
