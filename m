@@ -2,57 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46A48A6515
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 09:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D329F8A6523
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 09:31:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE98E112130;
-	Tue, 16 Apr 2024 07:30:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E831210EEE2;
+	Tue, 16 Apr 2024 07:31:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e4sEgSzu";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="fLbbpvtq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46AF810EEFB
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 07:30:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713252606; x=1744788606;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Kfq9McMiNcifzrqF7Rh9VAWVBViqm2nY1593+EMMrQk=;
- b=e4sEgSzuW73L7ynKNKQ1eELIgPoBhVIcPdsns7cSuuu7/r+b6V+3xiJ5
- q2bTl0rDUvjuSU0cObGSbS2IYT+b85VUap+aP78WsW94d26kH9tnMsZtS
- r2+OcIVIpxNKYLh9Sef0khve5r24cuDHMKxvgLRYRjOueDboPx5Rj+nj6
- FJTumYKgq3ShIp4vLs6qTPOzOlnkja1a1bSRU8g/gPsgCBd6fI3CfZ1cI
- neTQE+Z/+5Bkytg6sy+uJIycmbbFiEwJYEnxHA55oMCPC9ehQyCRxYVO+
- XQP1BAgbC7SvHSbYPBvVpuaEFl0qpwRFWowb1DG0JYhv/a/su4eM9fZv5 Q==;
-X-CSE-ConnectionGUID: 1Ezc/OPwRcq891sT5MQ58Q==
-X-CSE-MsgGUID: /wbTzeLlTR27b66XIeS7yQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="34063841"
-X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="34063841"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 00:30:06 -0700
-X-CSE-ConnectionGUID: 8uc7kbtXR82vuvBAt9XSTg==
-X-CSE-MsgGUID: dBk4JYOaTOusBQMfyQYuPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="22206653"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa010.fm.intel.com with ESMTP; 16 Apr 2024 00:30:04 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com, dnyaneshwar.bhadane@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/pps: Disable DPLS_GATING around pps sequence
-Date: Tue, 16 Apr 2024 12:57:34 +0530
-Message-ID: <20240416072733.624048-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240416072733.624048-2-suraj.kandpal@intel.com>
-References: <20240416072733.624048-2-suraj.kandpal@intel.com>
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABA4310EEFB;
+ Tue, 16 Apr 2024 07:31:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1713252675;
+ bh=eOK/bCV7IyfygWV9u4shyKXmqc9QPsYNWN/ruKFTjn0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=fLbbpvtqB5ohUbohD+5h0tTJFVqVyLEOJdJziboW0356r5MKQEkZqAbhfp1clFcey
+ +LFSNWb/hV47tZfyzxiREouTRd8su67dnHBgW0YXkQp+6EQIRAImVZHmcSYOXOy6Sy
+ XY1P4Oah3eKDhVuyBtMAD7Z4vNJIOReRqUCfFddPv2tFC29c1RjnZZBPJKbydbUUw7
+ dIA4aYJTpwDvp6VwKYJgau6N4GkEOtNrqv3njMgYDwG4+AlfBn+zDp7VrZ93GoFNKa
+ VHsbVO+3AHpfc4t+3/DDIzDEompn2pt96XO+efd7SziDDnB3lbNp4MyEe/CXJ/m3CL
+ gpdwArMAPLmDA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4VJbLp6YNdz4wnv;
+ Tue, 16 Apr 2024 17:31:14 +1000 (AEST)
+Date: Tue, 16 Apr 2024 17:31:12 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jocelyn Falempe <jfalempe@redhat.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: build warnings after merge of the drm-misc tree
+Message-ID: <20240416173112.04579e40@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/jKM7rW28KcV_xG8kmBaV5Jf";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +58,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable bit 29 of SCLKGATE_DIS register around pps sequence
-when we turn panel power on.
-WA: 16023567976
-Bspec: 49304
+--Sig_/jKM7rW28KcV_xG8kmBaV5Jf
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_pps.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Hi all,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 3078dfac7817..a912e712ca63 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -919,6 +919,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	u32 pp;
- 	i915_reg_t pp_ctrl_reg;
-+	int dis_ver = DISPLAY_VER(dev_priv);
- 
- 	lockdep_assert_held(&dev_priv->display.pps.mutex);
- 
-@@ -948,6 +949,13 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 		intel_de_posting_read(dev_priv, pp_ctrl_reg);
- 	}
- 
-+	/* WA: 16023567976
-+	 * Disable DPLS gating around power sequence.
-+	 */
-+	if (dis_ver >= 12 && dis_ver <= 14)
-+		intel_de_rmw(dev_priv, SCLKGATE_DIS,
-+			     DPLS_GATING_DISABLE, 1);
-+
- 	pp |= PANEL_POWER_ON;
- 	if (!IS_IRONLAKE(dev_priv))
- 		pp |= PANEL_POWER_RESET;
-@@ -958,6 +966,10 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 	wait_panel_on(intel_dp);
- 	intel_dp->pps.last_power_on = jiffies;
- 
-+	if (dis_ver >= 12 && dis_ver <= 14)
-+		intel_de_rmw(dev_priv, SCLKGATE_DIS,
-+			     DPLS_GATING_DISABLE, 0);
-+
- 	if (IS_IRONLAKE(dev_priv)) {
- 		pp |= PANEL_POWER_RESET; /* restore panel reset bit */
- 		intel_de_write(dev_priv, pp_ctrl_reg, pp);
--- 
-2.43.2
+After merging the drm-misc tree, today's linux-next build (htmldocs)
+produced these warnings:
 
+drivers/gpu/drm/drm_fb_dma_helper.c:166: warning: Excess function parameter=
+ 'drm_scanout_buffer' description in 'drm_fb_dma_get_scanout_buffer'
+drivers/gpu/drm/drm_fb_dma_helper.c:166: warning: Function parameter or str=
+uct member 'sb' not described in 'drm_fb_dma_get_scanout_buffer'
+drivers/gpu/drm/drm_fb_dma_helper.c:166: warning: Excess function parameter=
+ 'drm_scanout_buffer' description in 'drm_fb_dma_get_scanout_buffer'
+
+Introduced by commit
+
+  879b3b6511fe ("drm/fb_dma: Add generic get_scanout_buffer() for drm_panic=
+")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/jKM7rW28KcV_xG8kmBaV5Jf
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmYeKUAACgkQAVBC80lX
+0Gw/Ugf9GCtTwfsqYN6Q9KQJP18BmL2JZH5PKYqdWlunZ5miF5JWklZFbmtc/c+y
+3OSqOq9JJEQYZjENLc8JuaiRfljIzOWXa8rDPY5ozXTIRaJYaWcEJcBeoQtkgUvM
+fyfM6hxh6NvtxZ+m4p5UxPt+rJloNc/I2QADH91xkLzD2SaXBR7Cby35sSj37K3S
+SVx52L7Kia/A3DCb6QRzYEBPvY+waP2geLe+UJk8e049itVjYFvzV9bZjT0phRj1
+dMZ+KraFIktK8AhJsi5Z9HdKi8liTgfxMMMMGgioR6OZ+ZxMPU/IdfFLuY6xDKap
+sIzKNEQ3ExRB1BpsOZoRKA/EXx0FTg==
+=NNr4
+-----END PGP SIGNATURE-----
+
+--Sig_/jKM7rW28KcV_xG8kmBaV5Jf--
