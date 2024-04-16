@@ -2,131 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C9258A6B6A
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 14:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401EC8A6B84
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 14:54:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB15C10EAFB;
-	Tue, 16 Apr 2024 12:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9306112C43;
+	Tue, 16 Apr 2024 12:54:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="HcKlq9y3";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2x480T2y";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="HcKlq9y3";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2x480T2y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5HyOt3M";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D9EC10E51D;
- Tue, 16 Apr 2024 12:47:55 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 8CEE15C55C;
- Tue, 16 Apr 2024 12:47:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1713271673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mwOpfvroSLSJUpafQsHUVGkMr6yTCk/Lo66NhVBx8II=;
- b=HcKlq9y3A7L6yAJNodcI39b3MN6z/ILCKWXNP9R02gliqLzFD0qtMOBDDTP1pTuBliwyve
- 7NecV/QZbh2IsG3+8jdWsnw/Yc7p/MNuOPTdOyseGgClohoGuER+6khOYL80Vyzms+RikR
- iess1gXkezFgH02/9yzWjzrVKKpFKmE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1713271673;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mwOpfvroSLSJUpafQsHUVGkMr6yTCk/Lo66NhVBx8II=;
- b=2x480T2yaMxIhOC5lG3VPohIlK9n0pLQJc6QgS5qQlWPojfTG07DTKDmbSfFEW9UJvc9lZ
- lRWUqevFXgst6oBA==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1713271673; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mwOpfvroSLSJUpafQsHUVGkMr6yTCk/Lo66NhVBx8II=;
- b=HcKlq9y3A7L6yAJNodcI39b3MN6z/ILCKWXNP9R02gliqLzFD0qtMOBDDTP1pTuBliwyve
- 7NecV/QZbh2IsG3+8jdWsnw/Yc7p/MNuOPTdOyseGgClohoGuER+6khOYL80Vyzms+RikR
- iess1gXkezFgH02/9yzWjzrVKKpFKmE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1713271673;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=mwOpfvroSLSJUpafQsHUVGkMr6yTCk/Lo66NhVBx8II=;
- b=2x480T2yaMxIhOC5lG3VPohIlK9n0pLQJc6QgS5qQlWPojfTG07DTKDmbSfFEW9UJvc9lZ
- lRWUqevFXgst6oBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5C1CA13432;
- Tue, 16 Apr 2024 12:47:53 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
- by imap1.dmz-prg2.suse.org with ESMTPSA id frr0FHlzHmYfSQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 16 Apr 2024 12:47:53 +0000
-Message-ID: <deb7918d-03dd-49f4-8a5d-3470ed05800e@suse.de>
-Date: Tue, 16 Apr 2024 14:47:52 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B077112C43
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 12:54:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713272088; x=1744808088;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=cmPx3ueFAeNv84t5iadSRzIA3frRPSqK7pFf2FKYvtM=;
+ b=K5HyOt3MMUcKsjCsJsY6zhEsC8dZo8wLCi4ax9zsfvkPvTq6b+ymGoEA
+ uX397heqkaYFqHb1Ob7G+X3LEzC/oc2dv2y9xf08U+1VQsQGh5ZQJmJ2h
+ DFg6tqMnklzcKePRvEFvvtZ8OLCBfVN4u+Rl1V2nbJ52q0m6FpzQ2k41J
+ qpwI3gEMK81CTCBOwiz3Lf3XvmwtwdnM/PDtrYIvW8dasihQdmI6NLdrL
+ YEZlHz5C49LHgbSvs0Djt3aVZ+CSkJvJo20Pfkt4A4HBEAeuXnxYLBTNY
+ MlMJ4tA9Fe14MYgUtYVWbispucLP3Pn7/w+0uYmy29+YTRq57I4PORrwW Q==;
+X-CSE-ConnectionGUID: 84N/gA2PTq+SD5XUXrcFzQ==
+X-CSE-MsgGUID: t7gx/xfgT32LteW2B6cJUQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8871115"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; 
+   d="scan'208";a="8871115"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 05:54:47 -0700
+X-CSE-ConnectionGUID: A68y6q6xQsSgI9fn9hPfEg==
+X-CSE-MsgGUID: tTLHd53+QLGplaixqjQFQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="22319222"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 16 Apr 2024 05:54:45 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 16 Apr 2024 15:54:44 +0300
+Date: Tue, 16 Apr 2024 15:54:44 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
+ uma.shankar@intel.com, ankit.k.nautiyal@intel.com,
+ dnyaneshwar.bhadane@intel.com
+Subject: Re: [PATCH 1/2] drm/i915: Add SCLKGATE_DIS register definition
+Message-ID: <Zh51FEfyQbl0mIbY@intel.com>
+References: <20240416072733.624048-2-suraj.kandpal@intel.com>
+ <20240416072733.624048-3-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REBASE 7/7] drm/edid: make drm_edid_are_equal() more convenient
- for its single user
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <cover.1713259151.git.jani.nikula@intel.com>
- <1011a285d30babce3aabd8218abb7ece7dcf58a2.1713259151.git.jani.nikula@intel.com>
- <a2e36f83-0e5c-4a57-bf31-37665f8ece71@suse.de> <87h6g1ze42.fsf@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <87h6g1ze42.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- XM_UA_NO_VERSION(0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; ARC_NA(0.00)[];
- RCVD_TLS_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_THREE(0.00)[4]; FROM_EQ_ENVFROM(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.de:email]
-X-Spam-Score: -4.29
-X-Spam-Flag: NO
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240416072733.624048-3-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,116 +74,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+On Tue, Apr 16, 2024 at 12:57:33PM +0530, Suraj Kandpal wrote:
+> Add SCLKGATE_DIS register and it's register definition which
+> will be used the next patch.
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 3f34efcd7d6c..beec91a2f493 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -6250,6 +6250,10 @@ enum skl_power_gate {
+>  #define  SFUSE_STRAP_DDIC_DETECTED	(1 << 1)
+>  #define  SFUSE_STRAP_DDID_DETECTED	(1 << 0)
+>  
+> +/* SCLKGATE_DIS */
+> +#define SCLKGATE_DIS			_MMIO(0xc2014)
 
-Am 16.04.24 um 14:27 schrieb Jani Nikula:
-> On Tue, 16 Apr 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Hi
->>
->> Am 16.04.24 um 11:20 schrieb Jani Nikula:
->>> Repurpose drm_edid_are_equal() to be more helpful for its single user,
->>> and rename drm_edid_eq(). Functionally deduce the length from the blob
->>> size, not the blob data, making it more robust against any errors.
->> Could be squashed into patch 6.
-> Ack.
->
-> Thanks for the review. I'll hold of on resending these until there are
-> some R-b's... I've send them a few times already with no comments. :(
+That address is SFUSE_STRAP
 
-Feel free to add
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-to the series.
-
-Best regards
-Thomas
-
->
-> BR,
-> Jani.
->
->> Best regards
->> Thomas
->>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> ---
->>>    drivers/gpu/drm/drm_edid.c | 41 ++++++++++++++------------------------
->>>    1 file changed, 15 insertions(+), 26 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
->>> index 463fbad85d90..513590931cc5 100644
->>> --- a/drivers/gpu/drm/drm_edid.c
->>> +++ b/drivers/gpu/drm/drm_edid.c
->>> @@ -1820,30 +1820,20 @@ static bool edid_block_is_zero(const void *edid)
->>>    	return !memchr_inv(edid, 0, EDID_LENGTH);
->>>    }
->>>    
->>> -/**
->>> - * drm_edid_are_equal - compare two edid blobs.
->>> - * @edid1: pointer to first blob
->>> - * @edid2: pointer to second blob
->>> - * This helper can be used during probing to determine if
->>> - * edid had changed.
->>> - */
->>> -static bool drm_edid_are_equal(const struct edid *edid1, const struct edid *edid2)
->>> +static bool drm_edid_eq(const struct drm_edid *drm_edid,
->>> +			const void *raw_edid, size_t raw_edid_size)
->>>    {
->>> -	int edid1_len, edid2_len;
->>> -	bool edid1_present = edid1 != NULL;
->>> -	bool edid2_present = edid2 != NULL;
->>> +	bool edid1_present = drm_edid && drm_edid->edid && drm_edid->size;
->>> +	bool edid2_present = raw_edid && raw_edid_size;
->>>    
->>>    	if (edid1_present != edid2_present)
->>>    		return false;
->>>    
->>> -	if (edid1) {
->>> -		edid1_len = edid_size(edid1);
->>> -		edid2_len = edid_size(edid2);
->>> -
->>> -		if (edid1_len != edid2_len)
->>> +	if (edid1_present) {
->>> +		if (drm_edid->size != raw_edid_size)
->>>    			return false;
->>>    
->>> -		if (memcmp(edid1, edid2, edid1_len))
->>> +		if (memcmp(drm_edid->edid, raw_edid, drm_edid->size))
->>>    			return false;
->>>    	}
->>>    
->>> @@ -6936,15 +6926,14 @@ static int _drm_edid_connector_property_update(struct drm_connector *connector,
->>>    	int ret;
->>>    
->>>    	if (connector->edid_blob_ptr) {
->>> -		const struct edid *old_edid = connector->edid_blob_ptr->data;
->>> -
->>> -		if (old_edid) {
->>> -			if (!drm_edid_are_equal(drm_edid ? drm_edid->edid : NULL, old_edid)) {
->>> -				connector->epoch_counter++;
->>> -				drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
->>> -					    connector->base.id, connector->name,
->>> -					    connector->epoch_counter);
->>> -			}
->>> +		const void *old_edid = connector->edid_blob_ptr->data;
->>> +		size_t old_edid_size = connector->edid_blob_ptr->length;
->>> +
->>> +		if (old_edid && !drm_edid_eq(drm_edid, old_edid, old_edid_size)) {
->>> +			connector->epoch_counter++;
->>> +			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] EDID changed, epoch counter %llu\n",
->>> +				    connector->base.id, connector->name,
->>> +				    connector->epoch_counter);
->>>    		}
->>>    	}
->>>    
+> +#define  DPLS_GATING_DISABLE		REG_BIT(29)
+> +
+>  #define WM_MISC				_MMIO(0x45260)
+>  #define  WM_MISC_DATA_PARTITION_5_6	(1 << 0)
+>  
+> -- 
+> 2.43.2
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+Ville Syrjälä
+Intel
