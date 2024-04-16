@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110FD8A777C
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 00:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE1F8A777F
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 00:09:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FBE8112EAC;
-	Tue, 16 Apr 2024 22:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4054112EB5;
+	Tue, 16 Apr 2024 22:09:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQ/iUDYF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nv5U2P6a";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 081C8112EB5
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 22:09:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3493112EB3;
+ Tue, 16 Apr 2024 22:09:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713305385; x=1744841385;
+ t=1713305387; x=1744841387;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aBwVfX1mckjY59oRtOdVb7Hfh5NAVXnUyM1dO5/zLB0=;
- b=XQ/iUDYFKMNoN6xCUvupodihz+B/zxmJv2N+mC+iQnhj2Qqap652dvoa
- WFdFvyqa4XLf68d7DEHC6VahRU1TO0HxFh7Pd0MXDuGAs5dPIxETUrkVv
- Qovl9YLUxbiBxOTgNP/cLxE/K6JwAVvvgBbdM8wzOKQR8jF0+aNpan1WG
- 1Tqm0K5IHqtylsLcfpNAvrKT6Zd32aVZnnU3TsqNqhQxpaDet6VgFVX/B
- 2HqIfcTpxAfLH+YpX5BG09J1xH5ZPdv2T2jSVhDBRXu3Ytd4ufS0eXAVd
- CG+E5Pqp+A0EWjU/yFqWia5eXl9M4wJj7S/OsYljjGbC6cv15GV4SUYj7 g==;
-X-CSE-ConnectionGUID: 2D//sUHUSgaplqelh1TJpg==
-X-CSE-MsgGUID: zWOj9jqYTvik7vP54LBYfQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="20165162"
-X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="20165162"
+ bh=CehbAt/+gn4naKc4KR36grWFyIic0bmBXgkYinHvbDs=;
+ b=nv5U2P6aefyvt6s18dGJjULO0ef0dufcg7u1eijYVJsHHRfzsuNRpD1S
+ FTvMFSvWiSUmkn+EXE+8yQk6UxncazYSXjaa9CrwcKq108iCShzj2fYq9
+ GSjyNbmWF1QeQWh+5saAeZ6JPiveb9wml+4N8wUzldHrEqVZnkW1REi2w
+ t0f1vIJPtyAhBoXB6Kz3kkN6HjsfAvt75VGBy1NHUiL9RoTO8Z8X2ZGNE
+ b9GSkeKBLWvCoU5JJwEqbDcWtDu0TKcCVZ2dCSZVH7QOaBfNugqwi5LoR
+ RcMFH/e7oTd8cAoe3Ok9BnemQNrWG5n1C6nOrVWMPpqPWihStlC5FwBTP w==;
+X-CSE-ConnectionGUID: 9cpUnJeuQAeS7UGBDdEqgg==
+X-CSE-MsgGUID: jXGuvSUwTYGrLbGpg/PK6w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="20165169"
+X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="20165169"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 15:09:45 -0700
-X-CSE-ConnectionGUID: EQgKtswWS/ysT+b4DuTdBA==
-X-CSE-MsgGUID: Ggt7/d2HR6yYy+ihikDodQ==
+ 16 Apr 2024 15:09:46 -0700
+X-CSE-ConnectionGUID: MKzvqEisTsqUWp2eVwjefQ==
+X-CSE-MsgGUID: q7uWgtFxT2WCzrXAccB5rw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="26965491"
+X-IronPort-AV: E=Sophos;i="6.07,207,1708416000"; d="scan'208";a="26965497"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 15:09:44 -0700
+ 16 Apr 2024 15:09:45 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 06/11] drm/i915/dp_mst: Sanitize calculating the DSC DPT
- bpp limit
-Date: Wed, 17 Apr 2024 01:10:05 +0300
-Message-ID: <20240416221010.376865-7-imre.deak@intel.com>
+Cc: dri-devel@lists.freedesktop.org,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Manasi Navare <navaremanasi@chromium.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 07/11] drm/dp: Add drm_dp_uhbr_channel_coding_supported()
+Date: Wed, 17 Apr 2024 01:10:06 +0300
+Message-ID: <20240416221010.376865-8-imre.deak@intel.com>
 X-Mailer: git-send-email 2.43.3
 In-Reply-To: <20240416221010.376865-1-imre.deak@intel.com>
 References: <20240416221010.376865-1-imre.deak@intel.com>
@@ -68,131 +70,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of checking each compressed bpp value against the maximum
-DSC/DPT bpp, simplify things by calculating the maximum bpp upfront and
-limiting the range of bpps looped over using this maximum.
+Factor out a function to check for UHBR channel coding support used by a
+follow-up patch in the patchset.
 
-While at it add a comment about the origin of the DSC/DPT bpp limit.
-
-Bspec: 49259, 68912
-
+Cc: dri-devel@lists.freedesktop.org
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 76 ++++++++++-----------
- 1 file changed, 38 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ include/drm/display/drm_dp_helper.h     | 6 ++++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 847e264e5bb8b..89ee80a357140 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -51,43 +51,39 @@
- #include "intel_vdsc.h"
- #include "skl_scaler.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 23808e9d41d5d..41127069b55e4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -225,7 +225,7 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
+ 	 * Sink rates for 128b/132b. If set, sink should support all 8b/10b
+ 	 * rates and 10 Gbps.
+ 	 */
+-	if (intel_dp->dpcd[DP_MAIN_LINK_CHANNEL_CODING] & DP_CAP_ANSI_128B132B) {
++	if (drm_dp_uhbr_channel_coding_supported(intel_dp->dpcd)) {
+ 		u8 uhbr_rates = 0;
  
--static int intel_dp_mst_check_constraints(struct drm_i915_private *i915, int bpp,
--					  const struct drm_display_mode *adjusted_mode,
--					  struct intel_crtc_state *crtc_state,
--					  bool dsc)
-+static int intel_dp_mst_max_dpt_bpp(const struct intel_crtc_state *crtc_state,
-+				    bool dsc)
- {
--	if (intel_dp_is_uhbr(crtc_state) && DISPLAY_VER(i915) < 20 && dsc) {
--		int output_bpp = bpp;
--		int symbol_clock = intel_dp_link_symbol_clock(crtc_state->port_clock);
--		/*
--		 * Bspec/49259 suggests that the FEC overhead needs to be
--		 * applied here, though HW people claim that neither this FEC
--		 * or any other overhead is applicable here (that is the actual
--		 * available_bw is just symbol_clock * 72). However based on
--		 * testing on MTL-P the
--		 * - DELL U3224KBA display
--		 * - Unigraf UCD-500 CTS test sink
--		 * devices the
--		 * - 5120x2880/995.59Mhz
--		 * - 6016x3384/1357.23Mhz
--		 * - 6144x3456/1413.39Mhz
--		 * modes (all which had a DPT limit on the above devices),
--		 * both the channel coding efficiency and an additional 3%
--		 * overhead needs to be accounted for.
--		 */
--		int available_bw = mul_u32_u32(symbol_clock * 72,
--					       drm_dp_bw_channel_coding_efficiency(true)) /
--				   1030000;
-+	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
- 
--		if (output_bpp * adjusted_mode->crtc_clock >
--		    available_bw) {
--			drm_dbg_kms(&i915->drm, "UHBR check failed(required bw %d available %d)\n",
--				    output_bpp * adjusted_mode->crtc_clock, available_bw);
--			return -EINVAL;
--		}
--	}
-+	if (!intel_dp_is_uhbr(crtc_state) || DISPLAY_VER(i915) >= 20 || !dsc)
-+		return INT_MAX;
- 
--	return 0;
-+	/*
-+	 * DSC->DPT interface width:
-+	 *   ICL-MTL: 72 bits (each branch has 72 bits, only left branch is used)
-+	 *   LNL+:    144 bits (not a bottleneck in any config)
-+	 *
-+	 * Bspec/49259 suggests that the FEC overhead needs to be
-+	 * applied here, though HW people claim that neither this FEC
-+	 * or any other overhead is applicable here (that is the actual
-+	 * available_bw is just symbol_clock * 72). However based on
-+	 * testing on MTL-P the
-+	 * - DELL U3224KBA display
-+	 * - Unigraf UCD-500 CTS test sink
-+	 * devices the
-+	 * - 5120x2880/995.59Mhz
-+	 * - 6016x3384/1357.23Mhz
-+	 * - 6144x3456/1413.39Mhz
-+	 * modes (all which had a DPT limit on the above devices),
-+	 * both the channel coding efficiency and an additional 3%
-+	 * overhead needs to be accounted for.
-+	 */
-+	return div64_u64(mul_u32_u32(intel_dp_link_symbol_clock(crtc_state->port_clock) * 72,
-+				     drm_dp_bw_channel_coding_efficiency(true)),
-+			 mul_u32_u32(adjusted_mode->crtc_clock, 1030000));
+ 		BUILD_BUG_ON(ARRAY_SIZE(intel_dp->sink_rates) < ARRAY_SIZE(dp_rates) + 3);
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index baf9949ff96fc..8a64fe8d97af2 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -251,6 +251,12 @@ drm_dp_channel_coding_supported(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+ 	return dpcd[DP_MAIN_LINK_CHANNEL_CODING] & DP_CAP_ANSI_8B10B;
  }
  
- static int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
-@@ -175,6 +171,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 	int bpp, slots = -EINVAL;
-+	int max_dpt_bpp;
- 	int ret = 0;
- 
- 	mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
-@@ -195,6 +192,13 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
- 						      crtc_state->port_clock,
- 						      crtc_state->lane_count);
- 
-+	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
-+	if (max_bpp > max_dpt_bpp) {
-+		drm_dbg_kms(&i915->drm, "Limiting bpp to max DPT bpp (%d -> %d)\n",
-+			    max_bpp, max_dpt_bpp);
-+		max_bpp = max_dpt_bpp;
-+	}
++static inline bool
++drm_dp_uhbr_channel_coding_supported(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
++{
++	return dpcd[DP_MAIN_LINK_CHANNEL_CODING] & DP_CAP_ANSI_128B132B;
++}
 +
- 	drm_dbg_kms(&i915->drm, "Looking for slots in range min bpp %d max bpp %d\n",
- 		    min_bpp, max_bpp);
- 
-@@ -206,10 +210,6 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
- 
- 		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
- 
--		ret = intel_dp_mst_check_constraints(i915, bpp, adjusted_mode, crtc_state, dsc);
--		if (ret)
--			continue;
--
- 		link_bpp_x16 = to_bpp_x16(dsc ? bpp :
- 					  intel_dp_output_bpp(crtc_state->output_format, bpp));
- 
+ static inline bool
+ drm_dp_alternate_scrambler_reset_cap(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+ {
 -- 
 2.43.3
 
