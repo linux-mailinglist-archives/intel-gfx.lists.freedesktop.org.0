@@ -2,152 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 393C38A718F
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 18:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9EE8A73E9
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 20:55:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD790112D61;
-	Tue, 16 Apr 2024 16:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48ABA10F2A2;
+	Tue, 16 Apr 2024 18:55:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWWJCCLh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eBoEIs89";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76EA0112D61;
- Tue, 16 Apr 2024 16:40:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB8CD10F2A2;
+ Tue, 16 Apr 2024 18:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713285628; x=1744821628;
+ t=1713293730; x=1744829730;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=/Pw7QMFR0cN7+zNIewyHpMAeOwf03Otjmfzl6mF1Kik=;
- b=NWWJCCLhBmzZlwGk/X4kUKri3Ox5dk4X8fvs42qysZfElpidEZajHJ+s
- Y9J3uDZ/4rwzAdKIuoVdvaHAYBYbsVLT+xqPktnkduP9qnbu6wc1AeNL4
- bPQXcJp9kSBFI6ATV9jqt6VaBmk3sIVgJLrycnqVBvgeLjfGW/RUox7np
- tFpnEYGcxZgZPoS9qHR2gNwtAlM1iAr1KymZ77PZtIvi87DwvZaWWl85n
- SHtFovKC6fokhSt+nmZ9hgTahjTySDFGxmh9xFfAGKqQkPN++8xWHQJAU
- 4RDM7tRnCS+8Ytg10kXjmwuHTdBFTwr8doOXkgZ18w/52iJjPELOkKUsX g==;
-X-CSE-ConnectionGUID: eS23Y2luSXa7lkgFhHHqKQ==
-X-CSE-MsgGUID: z777kVYHQDGdxbArF0GQmQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="12515824"
-X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="12515824"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 09:40:27 -0700
-X-CSE-ConnectionGUID: cyLBWdypQNuygcXGUI6XBg==
-X-CSE-MsgGUID: D8Wa8P0aSxG7q12hIz+qJg==
+ bh=ajM2nchp0RQpL1p/crk5WDGyLwKhplfwv6hIl9nDOCI=;
+ b=eBoEIs89K96CG3Z7pAz60KR/BT/a8BV4tf6w7LEO35+LFvyhjjpJ2YYh
+ aH57YJlAywI5iBtpDkMZGXJVFNNZZSXYW8YT87HYaJzvXQxnuK9b3TJkK
+ wF0HbkhdScAZSWw1eKmPBCdmdix/Xczd6w2LClz0zppTDRXolSbvoFG8+
+ FGYFq+qnEqBttifxBRP81Cn9t44WywuWG9W6DGFD6o4MY94Ix3fsroaoe
+ THQuq2QeQh0CbwQ+7Z1n6URV2Ydy4JMFhxWgVGz+MjpvhFBY/f3mc0nOc
+ p0jMYXX2rD/QfrYegylmF3QmEgsVsEaxuv5UfDhuY4xGjH+W/K61+aHQB w==;
+X-CSE-ConnectionGUID: il6kN50tTvmxCdL4oB/f3A==
+X-CSE-MsgGUID: BG1qMM2TTriVpNW30wbpBA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8917401"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; 
+   d="scan'208";a="8917401"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 11:55:29 -0700
+X-CSE-ConnectionGUID: pEoU3Jd0SPWn4znTXPFAWg==
+X-CSE-MsgGUID: bHZNjTQWT4CkOOZevETSKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="22381124"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="22943779"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Apr 2024 09:40:27 -0700
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Apr 2024 11:55:29 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 09:40:26 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ 15.1.2507.35; Tue, 16 Apr 2024 11:55:28 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 09:40:25 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 16 Apr 2024 11:55:28 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 09:40:25 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 11:55:28 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 16 Apr 2024 09:40:24 -0700
+ 15.1.2507.35; Tue, 16 Apr 2024 11:55:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i64/s0ykGgrYf2YuSm6HCrB0n+H1MDrxfx3BkvZSAGpNC/3gIfLiVRpCB+i+4Bxu51lEBWLVaZFakvfRInm0ak99PMfdL6YCqva2Y+OWv3FEFIrbBalx5Gm9fqO07dAIfRgfIKjM4ELS3zoMfar/+ukE/+3pVb5XnOSEu6VAXIDUA0snYNHx+1QuCOQkfxy8yu8T4LD6XReBwqMQ7lvArSiZ9pmIQT5G+EhklTATiLz7T0laLxPxLhTkXnhiWVQhz7FJl1Eh14PCAZpXDTxw17fBY2LYkawB95R+LCSX3z+CGHj+2P48VG8UQJnU3hxrb6Ksdq6TUR4+26vVZr4R4w==
+ b=IcubsP84ER7hFFQppbxO5vK6ia51NE5kmrAzGElD0ND885dxVt94Z1ROVAm3xR4MKPoCFlHyjnLIvCoD4WoPk3q4KLN9TN7Q7snLAHxV6vOHt2TOCyaK+CnJa+Q+IMZ9+2x9w3pjOmTS4fiBERKwIJPfB4NUa+FkB5G99sqWxJN7JL5z07WJ4p4pB2sJzPE2/YnFe48BT/xoZnjkx3vh3KnRpU3Bd86Hi7Prtea+zv93R8F/RQIcmnQ4hLCeGQ2pW0subG+bC6nMOqfxHcrQL8r+V+CRvtYv5pl+ofu2nhOuQwFHUX8hfgb7rLOSmY7M6rXqcgUkU3MTYlCe9Fk56g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f1Mt6m8rm1gaCx0hVDka0VKcNI+PXxx9zeiQXsZY4Bk=;
- b=dnrjyWlV1zlqwOuMy3qynfP7wVNFgawTjeCuXQ359hRkOwggPNNtn8oaRPOOu5iWehFgwYUWlcihoLOKhSMpdf75f5iWv51leLZv8RUGMyyE0uSiLj/X25EOz78UhbdULzJiK8z+iy4dNzqUQ+kcyVMt5UH5nPfwqMfsFUzfWEAhJTjVbJ9GeMlO3Mh1IFsTb8mvjs5b/L8GOfEGtprYuTEYnlm4UMZ3nRGUbvjd9N9GvrdNQRDTtxpijb8B9AnZsRQGawCcGWvbdPI7E9CJ8k+xbwP+17oGaB+9wyIKaHAS2PBX+u/SeuOGQYJO90GeXnxNEVfZiI+0ZWa8oPejmg==
+ bh=7yi9RT581W1zPWm6sDHHMCcnE5WFuWBLifJa/g2rLys=;
+ b=G+289xhci0KYCAN16cnbDt5k+KHUcSWOu3MPS/ONlhdYOtPtxgyBZmmc1vUKgJexkcssOyZtyvz8COUiKhVIEVvcGAYsr7KU5Go1FrZFc1L6lubSSwpcw3e67vDD8HOUZNhz4Hjn7Iy/HAYgVa/uucBfdEOTePg570/ZLD3+ik0GC9ieZASmO9AFDOMk5NaU33gWqBVs6s+pFw/Muhgza0kJyt3h9v0P1v8j47obc1kPC1byBSScmecQHtKJsBMm5OB/uPsNj7IdL4NXjwA8Z5ciyYwQRG1+jRS711fI0xpERtu1exTdB5f0FHa/ORp2gGu5M+viibuUklSMxcpXAQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6053.namprd11.prod.outlook.com (2603:10b6:510:1d1::8)
- by MW5PR11MB5811.namprd11.prod.outlook.com (2603:10b6:303:198::18)
+ by SA2PR11MB4811.namprd11.prod.outlook.com (2603:10b6:806:11d::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.28; Tue, 16 Apr
- 2024 16:40:22 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7430.46; Tue, 16 Apr
+ 2024 18:55:26 +0000
 Received: from PH7PR11MB6053.namprd11.prod.outlook.com
  ([fe80::9461:3f2e:134a:9506]) by PH7PR11MB6053.namprd11.prod.outlook.com
  ([fe80::9461:3f2e:134a:9506%7]) with mapi id 15.20.7472.025; Tue, 16 Apr 2024
- 16:40:22 +0000
-Date: Tue, 16 Apr 2024 12:40:12 -0400
+ 18:55:26 +0000
+Date: Tue, 16 Apr 2024 14:55:20 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- <thomas.hellstrom@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Andi Shyti <andi.shyti@linux.intel.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Nirmoy Das <nirmoy.das@intel.com>, Jonathan Cavitt
- <jonathan.cavitt@intel.com>, Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH v3] drm/i915/vma: Fix UAF on reopen vs destroy race
-Message-ID: <Zh6p7M9QoMTowh2F@intel.com>
-References: <20240415195310.165934-2-janusz.krzysztofik@linux.intel.com>
- <Zh3Rb15jVJeg1nex@intel.com>
- <13491837.dW097sEU6C@jkrzyszt-mobl2.ger.corp.intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, Badal Nilawar
+ <badal.nilawar@intel.com>, Andi Shyti <andi.shyti@intel.com>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ <linux-hwmon@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v2] drm/i915/hwmon: Get rid of devm
+Message-ID: <Zh7JmPQ8XRJwMQnQ@intel.com>
+References: <20240415223612.738535-1-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <13491837.dW097sEU6C@jkrzyszt-mobl2.ger.corp.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0104.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::19) To PH7PR11MB6053.namprd11.prod.outlook.com
+In-Reply-To: <20240415223612.738535-1-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BYAPR07CA0102.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::43) To PH7PR11MB6053.namprd11.prod.outlook.com
  (2603:10b6:510:1d1::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6053:EE_|MW5PR11MB5811:EE_
-X-MS-Office365-Filtering-Correlation-Id: 483f7a8a-57dd-48cb-51fd-08dc5e33e86c
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6053:EE_|SA2PR11MB4811:EE_
+X-MS-Office365-Filtering-Correlation-Id: bfde97b4-bb3c-4398-98a8-08dc5e46c6ca
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: v0DTxZSy0xTprPSaHjh/CZmuDRj56/dsCv7N/4C/jBh7ID7swf/4/7mD68WIedSwfgnL0yPp8E70ZYHVug9d8HZz6js8s2DqhaaXbkYTfAkBjKTnzef+muE09nMU2NnANzYFy1P8pnl2hzoATHijFTMt23ygKQ4u80YxeSnCxj5b/seTUaJnikpRftyHhbw5ov8Z2oODrWj91bRrl9s4yRivvX7td6D2tZt5hGtTitytpvIdTnI/9wcusK0SYAVkKGt7GvUyih36rSLkk1hrVKaDGXICYWBmofFTwq0/jaGtEyoJ7S8e5fDzJWTBkwL6ehdaaK5oegzY3qsSkjsuLa7x/1yHs6ZLYajkkvlckKM0nG2AWf6tjhi/icG4wdZEsllocuBaKWL0YITHkndvlLCmwaBKIFluazgPVZ6PGjf4KuMZgUYNuR4uGj8A/we4lQmJvO9Mh1r2LkN98VgLfMIyA0AmNWMRXo1ogH7/32KCxqSAgvWSfaUKhqbHYc+zfHLCOW0LLQYTZu0ZCZQ8wmqqTzepqitRFelvGtW9dnZC31gFSLhY/JQJ1yi/FcboCqcFbpqu+oCwAz13IF+eGUlfQrFnFqjf3gOtbDuXXjI=
+X-Microsoft-Antispam-Message-Info: evFEhkFu/pPlNXK55HXUtOUJXhzf6qXGM8O9PzGf2oLQrfppYw9BuNT4v8Nnksx8sjVI1kAQGokF5QtAu0y7N+4t3SEfqvYKjX46CRBom5mIEpCRQ0c3X18Srr1AKwwK0QwXWCZzw3ciCGK/Bzkgmoe3Sh/ZIqMMyCcWhZz6AKkUnDLGvgQANwt6iZtl0ZOqSVh8XLLJT3SwNfh2t67Mws9BjS6KYj+m0Zk37P6k0GHLGIo4ltRlOmAIk6dmHuc1DbHqqDCfrTVML/94b/46TrExvM4NJ+6kH+NsXQCiHJlZCWA6nnq7bDcdRC3PbYyv59u8NzHciw19ONZhHSWUQi+ACZgls/1E5Uji543ZFBXaIojdZyXBeGXqEvEk4jOrYTnX4OeHoGmC9Ovoy/ejCYO0ojM5GT90O8BIP2tBo0ZFf1gAtvQCp1unxN35+sMOe4gUFSxo2opdL7F7fQuWnvuUVF7FYdFbLK4pVYZke0PysLqC/0RFiujheq46EAT5C6DRwLSctyUoOPeH2WO3k/PDuLpqhB7DUCMIlJfUu+MEyHRneMsrwbfNVhit56AhaiduFjlOfOw1GhVkAXdS1r63HsHdoyfWTtQf3FlKBiU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6053.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uAYjk0fZ74GOI8oIUWjk8XT8O7uKL6NCY9qA5S4NFwQlVJiGf6qUj/69ciTn?=
- =?us-ascii?Q?GOTzKMlQrn1OUpqJfQsTyYoD+VAiO3vJ5Nf7YywKgxQvidNRMysaodnAgLmN?=
- =?us-ascii?Q?R8LoFyNujzbajIbAi8FabbEJbrxib8Zn6BpWmZwbFKA86PWjpc8zj+WaHAg9?=
- =?us-ascii?Q?dD5T7vXqGbfU9aJYey4BEusDxt9v/Fqa/WBgu7gWj75e//ooi9e+QDZes49f?=
- =?us-ascii?Q?fnzZbzwkudKuST8u+YEpj+Un3A2o0DcY1PGUOh3kObCs4Q/KkiFE5UpgVR3o?=
- =?us-ascii?Q?I81RiGCZCwoEXw+yRedumT5LSLpyCUnuXlZlZtB1TrRqF5N5abvBtLBBROsF?=
- =?us-ascii?Q?pjufdvVkWwh6f294+l0jr0I3kpeauv/I3SBiLRtkNQvLkrtWxcRhQKtggZmb?=
- =?us-ascii?Q?/K/dPTFR7B6e9aqQlBKAg4WiRV2hkylyZbOKmv2jvH93mcZwPgBw1WUgVqtS?=
- =?us-ascii?Q?VX1DaXqdUbq3D/KVRQ8EcSfVnrb4CPwxZUpEstH7b8K1mjTv8blkBtkGZVw4?=
- =?us-ascii?Q?IMAHy1e5B3IKtRDoJVe+3VYIhcnQQHIS0ZFy9xDX/oJFDY3z8ytjcK6Ak8uX?=
- =?us-ascii?Q?qdi8ZsqrPrZGeYWc0KZWAgbIqpEmvoD7MS1gSy/TOgv+/m9XfYYqo++Cexit?=
- =?us-ascii?Q?aQqCJFRMP4F6/nr4+E2iblDBT//6GRQziun+mNGFu9EVC0LFpdE1715t05b0?=
- =?us-ascii?Q?kY4tuw+Ry1Z1vO2RUzh78/Aejqgldpm2ryOPWCz47YSQXNDVGGA2GMS3c70D?=
- =?us-ascii?Q?1lNa9vzKEQlNybDw2f50n4QxY5YVYbHlgnwoMm0ux/Jk9hvsKWBCyQZBJrZJ?=
- =?us-ascii?Q?Tapcx1Kctf4lVHGc79X19gmL9XIJ/vkXikqslTlxg28Tv+iw2Bf+Lcc49jeq?=
- =?us-ascii?Q?qvBJz3mzkmWlsG+SpORB8s/26faIEqi68QQn3s0Tdkc5LWlLpHvO5W/lMbkk?=
- =?us-ascii?Q?MUO0ggM7iPGZpcRZnkwB9bVsJdTXrc6mXLtYHEzypvroUFhTDUdLeedrJJZ+?=
- =?us-ascii?Q?9lvdXz3CFl6YYz5vKGyT5B039jLjQSy+Ov6kOJ9jhXlacZhqkMdyuF8paCya?=
- =?us-ascii?Q?YY5e7FN3P/10/JKayEQEpwU0rJp1x6naXzJKUtw47ItQbSpZaTUs0x/fgbVJ?=
- =?us-ascii?Q?IcEkjNanLZ/1ffGxdtEyj0gBIMEOYBbsPGfugxyaBUaLrdo09KENsYgmiPY7?=
- =?us-ascii?Q?2qYVenB7SqSUn8QbTlIrhADKV4Mt6PxmsZzzvenSE4uQ1vT7S9dnbtEpWXOv?=
- =?us-ascii?Q?vP7F5yLsEjQgltR22gDwSbaGPfsielldWVwikRm5TJuPxM2z4zn98Tqf2R3U?=
- =?us-ascii?Q?ppDml7vc5VLv5gkL3vlh4gdT6DTD7GTZubvaJnroQvW8o0CMO7HwmI//J5+d?=
- =?us-ascii?Q?LZpUvhmJbOMFddhnmHDy5fC2QYVJovRQJfOtZQJdAevj5bLFUWaO+lQt7ksO?=
- =?us-ascii?Q?WL5I6nNpHId+HePC+NlQ96QobN7C4ZlHY54YvdTZox8fafzzJudXDShi2XLN?=
- =?us-ascii?Q?kbVC7VXBxYtv02AbRPBqPkuEg/DGIxgd4tdA6jgVfTFBhIalTSVI401t6lsU?=
- =?us-ascii?Q?rHVmhTbDKH+lNWX66eIkfUXM4/nwD1ZoxkTy2cfnLvkKCCqydzStBX6kTlzx?=
- =?us-ascii?Q?0g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 483f7a8a-57dd-48cb-51fd-08dc5e33e86c
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aThMjupp1UOd6SFM92OhwUdGxVAghJCs7bkSBdN4YAdPjtlHGxnE8EPY3dax?=
+ =?us-ascii?Q?g9Sb9dueDrMNMT6VXTiVEG4JSq/CdPeO4By/OheQlnW7DNOCUh4IO5TGo0id?=
+ =?us-ascii?Q?MwuaJ+ySEuNCG6K6lwhhJzNScihf384zughDi6DqsfCFmx6FE+KqLPCdk8gY?=
+ =?us-ascii?Q?ZxhPI0hpzk9k0AOTBFq0duNY17WGcxH8GBLVgRsGgBHMdt2DK9kp2zHOPlyk?=
+ =?us-ascii?Q?jHpI+eQhM+FQDtulLXFGKvIg6GER7kvbQLTKXgc+lSNR2C30zhJzJwAmWjvj?=
+ =?us-ascii?Q?/SDrnEFLixiYlW4kE2sJLhPKVvGL3tq9R05zSmWQR2/8CmG0lpwGb42D2LB9?=
+ =?us-ascii?Q?9I8u5OHz5u3JHgy9wnGG432g8YcsDhNedQzr/Rv+5SVCHunjYBmpBLE2ngNn?=
+ =?us-ascii?Q?uTHKH3s7vq/g3JXsMC1W0HbHRC4MixaQiOPGjFSHvrj59tSvNvSAdr7BboS1?=
+ =?us-ascii?Q?X30Hsyke1B28J1/Yp2LyUiy5XQFXVV6Fr4o8cLoS/NmFHq7ruopNqRCckWeh?=
+ =?us-ascii?Q?A32UoxXvt/vwgN4YZAT+QzKwit/fATU9/fyPB9Mp+FKrMFENakkS+gJwgr+v?=
+ =?us-ascii?Q?QzcS1icvuEhk7+GX62cT4au0wKWQOzRMcTNuL57Xvff4H/TSe1iuWingjE60?=
+ =?us-ascii?Q?2/F77b/qM5AfVLABF1o42zSnckRsqX99lVz2RsfN8xXqpNP3v+V0g3FNtiKC?=
+ =?us-ascii?Q?jmS91zcWyDoS2pRGbKI/27IPsTE58KsbzbseDcxeMi8iBAizcC3wEJe/CDQ1?=
+ =?us-ascii?Q?HBb0f82IQ3bEVXiCuvcL7DLcksD7wVbBwhR+lsyRxyMAR3b1waDYRULeAP8y?=
+ =?us-ascii?Q?BtdIayu/G/q0FnF1h7vW3JGDVAAbQxxgis2ZhX2Bs26SqJDIdakbhG3FcS1e?=
+ =?us-ascii?Q?3AgOnrFhYi98pk2dvgVYuWfcAPg5hSNKglSLC07oQhkYDOP5oQ1vFt51TmS2?=
+ =?us-ascii?Q?w7k5qAlHGld2lRXA0UqV7qq+brgUbcarBkO4+/dX9wKSy8J27hvQ2XR2GGnK?=
+ =?us-ascii?Q?2HZTRGdotS0O1Naeq3PGzP588iudFmPNP4KqkHBIGAUxJCn/DBK7/tbjNSBy?=
+ =?us-ascii?Q?gtbSg6Jg7PW7QjnHccR2eA2BtRLKaWAFctfbP7Tr3IiXff818WDHXh9ZOKGs?=
+ =?us-ascii?Q?VueuE6mWStMuZgJdz89ekc679onJVzaU1cBO74+yuvStjeH3XFwvbdMVOD83?=
+ =?us-ascii?Q?Y2ImMer6lf141ba2ygOX4vVs2q4wygF5d8K0/Cjlw8zxNNCKdt9XzWZBcX3B?=
+ =?us-ascii?Q?PpUIFcQGxE6lcmbII8EV68Wf+rBCAzky+GEszOAm6xhRhL8k4erwnTcuD5RI?=
+ =?us-ascii?Q?7bCfkNnN91A9MCN8gTiB7dG+JayZsMYNFFHJbg+95Pu9O0p9XP4D/Zcq8qw7?=
+ =?us-ascii?Q?SkKtzJrxm+kweZHyNwC7FbtMb4YoK7plbsuJKyhjs37oHoHJvzlnW6H1eJW8?=
+ =?us-ascii?Q?ngPsDhSUQb3av0JZe3zm/FPS4OKpUvmRZTsgNV+lLcziQqVPYyFA3J8Hn94g?=
+ =?us-ascii?Q?PVGKupNQkKsK/KPQrUArPNsE59nx6Ay/cjR8BDFLwmzTwrZp7Wb3Mg+wSOmy?=
+ =?us-ascii?Q?/x6GW4w698TIxhVkKNvVkl7L7IvkqtCrSm83ZKlm?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfde97b4-bb3c-4398-98a8-08dc5e46c6ca
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6053.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 16:40:22.1306 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 18:55:26.0394 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XBwcnXZzYxAgFavYDrM6WKVWvfFN3Mt3OBYkzCsSoakWGJo7e4oJ+8hNxwLlngZo4NlAxRJw0D3dtW7QSVT/6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5811
+X-MS-Exchange-CrossTenant-UserPrincipalName: GnRgs3nRqSQcvdj5jUC6zQuyzzFj4yqThhewTvBvEFUFqc2cJp+w24kQ6J6INu/SwZm8hNXRgthOZ7cuIAAL/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4811
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,273 +159,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 16, 2024 at 10:09:46AM +0200, Janusz Krzysztofik wrote:
-> Hi Rodrigo,
+On Mon, Apr 15, 2024 at 03:36:12PM -0700, Ashutosh Dixit wrote:
+> When both hwmon and hwmon drvdata (on which hwmon depends) are device
+> managed resources, the expectation, on device unbind, is that hwmon will be
+> released before drvdata. However, in i915 there are two separate code
+> paths, which both release either drvdata or hwmon and either can be
+> released before the other. These code paths (for device unbind) are as
+> follows (see also the bug referenced below):
 > 
-> On Tuesday, 16 April 2024 03:16:31 CEST Rodrigo Vivi wrote:
-> > On Mon, Apr 15, 2024 at 09:53:09PM +0200, Janusz Krzysztofik wrote:
-> > > We defer actually closing, unbinding and destroying a VMA until next idle
-> > > point, or until the object is freed in the meantime.  By postponing the
-> > > unbind, we allow for the VMA to be reopened by the client, avoiding the
-> > > work required to rebind the VMA.
-> > > 
-> > > It was assumed that as long as a GT is held idle, no VMA would be reopened
-> > > while we destroy them.  That assumption is no longer true in multi-GT
-> > > configurations, where a VMA we reopen may be handled by a GT different
-> > > from the one that we already keep active via its engine while we set up
-> > > an execbuf request.
-> > > 
-> > > <4> [260.290809] ------------[ cut here ]------------
-> > > <4> [260.290988] list_del corruption. prev->next should be ffff888118c5d990, but was ffff888118c5a510. (prev=ffff888118c5a510)
-> > > <4> [260.291004] WARNING: CPU: 2 PID: 1143 at lib/list_debug.c:62 __list_del_entry_valid_or_report+0xb7/0xe0
-> > > ..
-> > > <4> [260.291055] CPU: 2 PID: 1143 Comm: kms_plane Not tainted 6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
-> > > <4> [260.291058] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
-> > > <4> [260.291060] RIP: 0010:__list_del_entry_valid_or_report+0xb7/0xe0
-> > > ...
-> > > <4> [260.291087] Call Trace:
-> > > <4> [260.291089]  <TASK>
-> > > <4> [260.291124]  i915_vma_reopen+0x43/0x80 [i915]
-> > > <4> [260.291298]  eb_lookup_vmas+0x9cb/0xcc0 [i915]
-> > > <4> [260.291579]  i915_gem_do_execbuffer+0xc9a/0x26d0 [i915]
-> > > <4> [260.291883]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
-> > > ...
-> > > <4> [260.292301]  </TASK>
-> > > ...
-> > > <4> [260.292506] ---[ end trace 0000000000000000 ]---
-> > > <4> [260.292782] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6ca3: 0000 [#1] PREEMPT SMP NOPTI
-> > > <4> [260.303575] CPU: 2 PID: 1143 Comm: kms_plane Tainted: G        W          6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
-> > > <4> [260.313851] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
-> > > <4> [260.326359] RIP: 0010:eb_validate_vmas+0x114/0xd80 [i915]
-> > > ...
-> > > <4> [260.428756] Call Trace:
-> > > <4> [260.431192]  <TASK>
-> > > <4> [639.283393]  i915_gem_do_execbuffer+0xd05/0x26d0 [i915]
-> > > <4> [639.305245]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
-> > > ...
-> > > <4> [639.411134]  </TASK>
-> > > ...
-> > > <4> [639.449979] ---[ end trace 0000000000000000 ]---
-> > > 
-> > > As soon as we start unbinding and destroying a VMA, marked it as parked,
-> > > and also keep it marked as closed for the rest of its life.  When a VMA
-> > > to be opened occurs closed, reopen it only if not yet parked.
-> > > 
-> > > v3: Fix misplaced brackets.
-> > > v2: Since we no longer re-init the VMA closed list link on VMA park so it
-> > >     looks like still on a list, don't try to delete it from the list again
-> > >     after the VMA has been marked as parked.
-> > > 
-> > > Fixes: b0647a5e79b1 ("drm/i915: Avoid live-lock with i915_vma_parked()")
-> > 
-> > what about reverting that?
+> Call Trace:
+> release_nodes+0x11/0x70
+> devres_release_group+0xb2/0x110
+> component_unbind_all+0x8d/0xa0
+> component_del+0xa5/0x140
+> intel_pxp_tee_component_fini+0x29/0x40 [i915]
+> intel_pxp_fini+0x33/0x80 [i915]
+> i915_driver_remove+0x4c/0x120 [i915]
+> i915_pci_remove+0x19/0x30 [i915]
+> pci_device_remove+0x32/0xa0
+> device_release_driver_internal+0x19c/0x200
+> unbind_store+0x9c/0xb0
 > 
-> I didn't think of that.  Why you think that might be a better approach?
-
-well, I thought of that mainly because...
-
+> and
 > 
-> Anyway, that's a 4 years old patch and a few things have changed since then, 
-> so simple revert won't work.  Moreover, I've just checked that patch was 
-> supposed to fix another patch, 77853186e547 ("drm/i915: Claim vma while under 
-> closed_lock in i915_vma_parked()"), which in turn was supposed to fix 
-> aa5e4453dc05 ("drm/i915/gem: Try to flush pending unbind events"), and that 
-> one also referenced still another, cb6c3d45f948 ("drm/i915/gem: Avoid parking 
-> the vma as we unbind") from December 2019, which finally wasn't a fix but an 
-> improvement.
-
-... because of histories like that ^ and I was afraid of this patch here now
-just put us into a different corner case.
-
-I have a feeling that without locks there we might just hit another
-race soon with the the park and only using the atomic checks.
-
-> Then, we would have to consider new fixes alternative to at least 
-> some of those three, I guess. 
-
-Indeed.. I didn't think that deep on that...
-
-> I'd rather not dig that deep, unless we invest 
-> in a completely new solution (e.g. backport VMA handling from xe if more 
-> effective while compatible to some extent?).  Even then, we need a fix for 
-> now.
-
-yeap, not sure if that would help. was also not designed to
-the park unpark.
-
+> Call Trace:
+> release_nodes+0x11/0x70
+> devres_release_all+0x8a/0xc0
+> device_unbind_cleanup+0x9/0x70
+> device_release_driver_internal+0x1c1/0x200
+> unbind_store+0x9c/0xb0
 > 
-> Alternatively, we can try to revert my 1f33dc0c1189 ("drm/i915: Remove extra 
-> multi-gt pm-references") which was a manual revert of f56fe3e91787 ("drm/i915: 
-> Fix a VMA UAF for multi-gt platform") -- a workaround that was supposed to 
-> address some multi-GT related VMA issues.  While it didn't really resolve 
-> those issues it was addressing, I think it may help with this one, which 
-> started appearing after I reverted that workaround.  However, its 
-> effectiveness is limited to MTL topology.
-
-perhaps the safer path for this case indeed. something that could be really
-limited to a single platform would be better.
-
-But I confess that I don't have other better suggestions.
-If we need to go with this patch as a quick solution, it is apparently
-better than leaving the bug there as is.
-
-+Thomas. any good thoughts there or advices?
-
-Thanks,
-Rodrigo.
-
+> This means that in i915, if use devm, we cannot gurantee that hwmon will
+> always be released before drvdata. Which means that we have a uaf if hwmon
+> sysfs is accessed when drvdata has been released but hwmon hasn't.
 > 
-> Thanks,
-> Janusz
+> The only way out of this seems to be do get rid of devm_ and release/free
+> everything explicitly during device unbind.
 > 
-> > 
-> > > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10608
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Cc: stable@vger.kernel.org # v6.0+
-> > > ---
-> > >  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 10 ++++--
-> > >  drivers/gpu/drm/i915/i915_vma.c               | 32 +++++++++++++++----
-> > >  drivers/gpu/drm/i915/i915_vma.h               |  2 +-
-> > >  drivers/gpu/drm/i915/i915_vma_types.h         |  3 ++
-> > >  4 files changed, 37 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > index 42619fc05de48..97e014f94002e 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > > @@ -847,9 +847,12 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
-> > >  	if (unlikely(!lut))
-> > >  		return -ENOMEM;
-> > >  
-> > > +	if (!i915_vma_open(vma)) {
-> > > +		err = -EEXIST;	/* let eb_vma_lookup() retry */
-> > > +		goto err_lut_free;
-> > > +	}
-> > > +
-> > >  	i915_vma_get(vma);
-> > > -	if (!atomic_fetch_inc(&vma->open_count))
-> > > -		i915_vma_reopen(vma);
-> > >  	lut->handle = handle;
-> > >  	lut->ctx = ctx;
-> > >  
-> > > @@ -880,8 +883,9 @@ static int __eb_add_lut(struct i915_execbuffer *eb,
-> > >  	return 0;
-> > >  
-> > >  err:
-> > > -	i915_vma_close(vma);
-> > >  	i915_vma_put(vma);
-> > > +	i915_vma_close(vma);
-> > > +err_lut_free:
-> > >  	i915_lut_handle_free(lut);
-> > >  	return err;
-> > >  }
-> > > diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> > > index d2f064d2525cc..4435c76f28c8c 100644
-> > > --- a/drivers/gpu/drm/i915/i915_vma.c
-> > > +++ b/drivers/gpu/drm/i915/i915_vma.c
-> > > @@ -1735,14 +1735,33 @@ static void __i915_vma_remove_closed(struct i915_vma *vma)
-> > >  	list_del_init(&vma->closed_link);
-> > >  }
-> > >  
-> > > -void i915_vma_reopen(struct i915_vma *vma)
-> > > +static struct i915_vma *i915_vma_reopen(struct i915_vma *vma)
-> > > +{
-> > > +	if (atomic_read(&vma->flags) & I915_VMA_PARKED)
-> > > +		return NULL;
-> > > +
-> > > +	__i915_vma_remove_closed(vma);
-> > > +	return vma;
-> > > +}
-> > > +
-> > > +struct i915_vma *i915_vma_open(struct i915_vma *vma)
-> > >  {
-> > >  	struct intel_gt *gt = vma->vm->gt;
-> > >  
-> > > +	if (atomic_inc_not_zero(&vma->open_count))
-> > > +		return vma;
-> > > +
-> > >  	spin_lock_irq(&gt->closed_lock);
-> > > -	if (i915_vma_is_closed(vma))
-> > > -		__i915_vma_remove_closed(vma);
-> > > +	if (!atomic_inc_not_zero(&vma->open_count)) {
-> > > +		if (i915_vma_is_closed(vma))
-> > > +			vma = i915_vma_reopen(vma);
-> > > +
-> > > +		if (vma)
-> > > +			atomic_inc(&vma->open_count);
-> > > +	}
-> > >  	spin_unlock_irq(&gt->closed_lock);
-> > > +
-> > > +	return vma;
-> > >  }
-> > >  
-> > >  static void force_unbind(struct i915_vma *vma)
-> > > @@ -1770,7 +1789,8 @@ static void release_references(struct i915_vma *vma, struct intel_gt *gt,
-> > >  	spin_unlock(&obj->vma.lock);
-> > >  
-> > >  	spin_lock_irq(&gt->closed_lock);
-> > > -	__i915_vma_remove_closed(vma);
-> > > +	if (!(atomic_read(&vma->flags) & I915_VMA_PARKED))
-> > > +		__i915_vma_remove_closed(vma);
-> > >  	spin_unlock_irq(&gt->closed_lock);
-> > >  
-> > >  	if (vm_ddestroy)
-> > > @@ -1854,22 +1874,22 @@ void i915_vma_parked(struct intel_gt *gt)
-> > >  		}
-> > >  
-> > >  		list_move(&vma->closed_link, &closed);
-> > > +		atomic_or(I915_VMA_PARKED, &vma->flags);
-> > >  	}
-> > >  	spin_unlock_irq(&gt->closed_lock);
-> > >  
-> > > -	/* As the GT is held idle, no vma can be reopened as we destroy them */
-> > >  	list_for_each_entry_safe(vma, next, &closed, closed_link) {
-> > >  		struct drm_i915_gem_object *obj = vma->obj;
-> > >  		struct i915_address_space *vm = vma->vm;
-> > >  
-> > >  		if (i915_gem_object_trylock(obj, NULL)) {
-> > > -			INIT_LIST_HEAD(&vma->closed_link);
-> > >  			i915_vma_destroy(vma);
-> > >  			i915_gem_object_unlock(obj);
-> > >  		} else {
-> > >  			/* back you go.. */
-> > >  			spin_lock_irq(&gt->closed_lock);
-> > >  			list_add(&vma->closed_link, &gt->closed_vma);
-> > > +			atomic_andnot(I915_VMA_PARKED, &vma->flags);
-> > >  			spin_unlock_irq(&gt->closed_lock);
-> > >  		}
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> > > index e356dfb883d34..331d19672c764 100644
-> > > --- a/drivers/gpu/drm/i915/i915_vma.h
-> > > +++ b/drivers/gpu/drm/i915/i915_vma.h
-> > > @@ -268,7 +268,7 @@ int __must_check i915_vma_unbind_async(struct i915_vma *vma, bool trylock_vm);
-> > >  int __must_check i915_vma_unbind_unlocked(struct i915_vma *vma);
-> > >  void i915_vma_unlink_ctx(struct i915_vma *vma);
-> > >  void i915_vma_close(struct i915_vma *vma);
-> > > -void i915_vma_reopen(struct i915_vma *vma);
-> > > +struct i915_vma *i915_vma_open(struct i915_vma *vma);
-> > >  
-> > >  void i915_vma_destroy_locked(struct i915_vma *vma);
-> > >  void i915_vma_destroy(struct i915_vma *vma);
-> > > diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-> > > index 559de74d0b114..41784c3025349 100644
-> > > --- a/drivers/gpu/drm/i915/i915_vma_types.h
-> > > +++ b/drivers/gpu/drm/i915/i915_vma_types.h
-> > > @@ -263,6 +263,9 @@ struct i915_vma {
-> > >  #define I915_VMA_SCANOUT_BIT	17
-> > >  #define I915_VMA_SCANOUT	((int)BIT(I915_VMA_SCANOUT_BIT))
-> > >  
-> > > +#define I915_VMA_PARKED_BIT	18
-> > > +#define I915_VMA_PARKED		((int)BIT(I915_VMA_PARKED_BIT))
-> > > +
-> > >  	struct i915_active active;
-> > >  
-> > >  #define I915_VMA_PAGES_BIAS 24
-> > 
+> v2: Change commit message and other minor code changes
 > 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_hwmon.c | 41 +++++++++++++++++++++++--------
+>  1 file changed, 31 insertions(+), 10 deletions(-)
 > 
-> 
+> diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> index 8c3f443c8347..46c24b1ee6df 100644
+> --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> @@ -792,7 +792,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>  	if (!IS_DGFX(i915))
+>  		return;
+>  
+> -	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
+> +	hwmon = kzalloc(sizeof(*hwmon), GFP_KERNEL);
+>  	if (!hwmon)
+>  		return;
+>  
+> @@ -818,10 +818,10 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>  	hwm_get_preregistration_info(i915);
+>  
+>  	/*  hwmon_dev points to device hwmon<i> */
+> -	hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat->name,
+> -							 ddat,
+> -							 &hwm_chip_info,
+> -							 hwm_groups);
+> +	hwmon_dev = hwmon_device_register_with_info(dev, ddat->name,
+> +						    ddat,
+> +						    &hwm_chip_info,
+> +						    hwm_groups);
+>  	if (IS_ERR(hwmon_dev)) {
+>  		i915->hwmon = NULL;
+>  		return;
+> @@ -838,10 +838,10 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>  		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
+>  			continue;
+>  
+> -		hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat_gt->name,
+> -								 ddat_gt,
+> -								 &hwm_gt_chip_info,
+> -								 NULL);
+> +		hwmon_dev = hwmon_device_register_with_info(dev, ddat_gt->name,
+> +							    ddat_gt,
+> +							    &hwm_gt_chip_info,
+> +							    NULL);
+>  		if (!IS_ERR(hwmon_dev))
+>  			ddat_gt->hwmon_dev = hwmon_dev;
+>  	}
+> @@ -849,5 +849,26 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+>  
+>  void i915_hwmon_unregister(struct drm_i915_private *i915)
+>  {
+> -	fetch_and_zero(&i915->hwmon);
+> +	struct i915_hwmon *hwmon = fetch_and_zero(&i915->hwmon);
+> +	struct hwm_drvdata *ddat = &hwmon->ddat;
+> +	struct intel_gt *gt;
+> +	int i;
+> +
+> +	if (!hwmon)
+> +		return;
+
+"that's too late", we are going to hear from static analyzer tools.
+
+beter to move ddat = &hwmon->ddat; after this return.
+
+with that,
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+> +
+> +	for_each_gt(gt, i915, i) {
+> +		struct hwm_drvdata *ddat_gt = hwmon->ddat_gt + i;
+> +
+> +		if (ddat_gt->hwmon_dev) {
+> +			hwmon_device_unregister(ddat_gt->hwmon_dev);
+> +			ddat_gt->hwmon_dev = NULL;
+> +		}
+> +	}
+> +
+> +	if (ddat->hwmon_dev)
+> +		hwmon_device_unregister(ddat->hwmon_dev);
+> +
+> +	mutex_destroy(&hwmon->hwmon_lock);
+> +	kfree(hwmon);
+>  }
+> -- 
+> 2.41.0
 > 
