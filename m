@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D358A61C7
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 05:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3078A61E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 05:55:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD3541129C3;
-	Tue, 16 Apr 2024 03:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4C201129D1;
+	Tue, 16 Apr 2024 03:55:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g7X3NXXI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SaYbIhxS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDE2F1129C3
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 03:45:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11E7A1129C2;
+ Tue, 16 Apr 2024 03:55:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713239114; x=1744775114;
+ t=1713239709; x=1744775709;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=5orGI8dM/L+Fl1PQ1lOq86JrkYHy2eWcCRi+6B+krf4=;
- b=g7X3NXXI5QziPgcs05iOVeCQ00+l74cOCS5CpIUtiTsAJgyzvGBHa8g5
- A6sFWV67wKB4f2vjByvv/+dWExhx2Em6jHajzM8fE/m5knopwk4h+qSZA
- iELkc69sDi9gg1Yxa5NmviKS8uOt24nAUSU3naua5t5iEy0mki/G6gcAs
- XOXZLxty4Z2WWKW02ZZv3nGYVmtW25fHTIHokSBsXGVW4yT1CZG2HDN1Z
- GfcjoVv4xNrltCQ+RtxgNpt0s8fQWCE/+tb2zaarBA7pVNS1aicHrlRZn
- YbCVMl9ptGWH3pDymgWH5TRKPH7cReD9TCDNa9iC7ZJ1YQGitRzBaCVbU g==;
-X-CSE-ConnectionGUID: JLIRNQ+uQuOThh6Wpy+QBw==
-X-CSE-MsgGUID: /fhKjJUGQWapwryp3BPVUw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19259679"
-X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="19259679"
+ bh=mn0gisJNrsD7GRbKuZiSaG2WypB8+MdvqgCCZc6EMbs=;
+ b=SaYbIhxSSogN6EVbu98tcTcnG2qi+RgQAfYcyYG8LIKPAMK9Wjwi8d/e
+ jQPwuCwlVDiDaEOXhOG4/iJ0y8u024EnNtoJthAI++rW/zqopF20ecifx
+ 7zKb7ri9FOjKwrad0Lz92G0gMKJayvSvTuQAMA4ezqeByRhhUsmf1ig6l
+ GVz90MMl0lMZ2lZqlRPzfhKX82nl5rPnBzFB0c4rhcxe6km1gO0AkVxY+
+ E89kcaGzXTCyfs2RP9VoLiDTztEC5qNrmBmMf6Xydp/d1W3r6fHElh///
+ dqzcGcEU2OGbGsrF/rnwq7nyZhOliFQSvwIYy27RNaFfdzPSK3LC9k2bl g==;
+X-CSE-ConnectionGUID: tFOlcROnRGmVGvnX53/3Lg==
+X-CSE-MsgGUID: rjvdu+AjS6e+mH9OY6r1kA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19260319"
+X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="19260319"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2024 20:45:13 -0700
-X-CSE-ConnectionGUID: skxFpXXnTraJs9MPVad+gQ==
-X-CSE-MsgGUID: Txs5FIN3T/yVqbS0X7gTAw==
+ 15 Apr 2024 20:55:08 -0700
+X-CSE-ConnectionGUID: tMW3Qk2KRWmjrlIyQCAXjw==
+X-CSE-MsgGUID: 4CMleALOTWyOBrpC+HkLGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="26915381"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa005.jf.intel.com with ESMTP; 15 Apr 2024 20:45:11 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,204,1708416000"; d="scan'208";a="26917438"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2024 20:55:08 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
- ankit.k.nautiyal@intel.com, dnyaneshwar.bhadane@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2 on HDMI
-Date: Tue, 16 Apr 2024 09:09:19 +0530
-Message-ID: <20240416033918.567386-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
+Cc: Badal Nilawar <badal.nilawar@intel.com>, Andi Shyti <andi.shyti@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ linux-hwmon@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/i915/hwmon: Get rid of devm
+Date: Mon, 15 Apr 2024 20:55:01 -0700
+Message-ID: <20240416035501.755728-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,64 +67,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable HDCP Line Rekeying when HDCP ver > 1.4 and when we are
-on HDMI TMDS operation for DISPLAY_VEY >= 14.
-WA: 16022217614
-Bspec: 49273
-Bspec: 69964
+When both hwmon and hwmon drvdata (on which hwmon depends) are device
+managed resources, the expectation, on device unbind, is that hwmon will be
+released before drvdata. However, in i915 there are two separate code
+paths, which both release either drvdata or hwmon and either can be
+released before the other. These code paths (for device unbind) are as
+follows (see also the bug referenced below):
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Call Trace:
+release_nodes+0x11/0x70
+devres_release_group+0xb2/0x110
+component_unbind_all+0x8d/0xa0
+component_del+0xa5/0x140
+intel_pxp_tee_component_fini+0x29/0x40 [i915]
+intel_pxp_fini+0x33/0x80 [i915]
+i915_driver_remove+0x4c/0x120 [i915]
+i915_pci_remove+0x19/0x30 [i915]
+pci_device_remove+0x32/0xa0
+device_release_driver_internal+0x19c/0x200
+unbind_store+0x9c/0xb0
+
+and
+
+Call Trace:
+release_nodes+0x11/0x70
+devres_release_all+0x8a/0xc0
+device_unbind_cleanup+0x9/0x70
+device_release_driver_internal+0x1c1/0x200
+unbind_store+0x9c/0xb0
+
+This means that in i915, if use devm, we cannot gurantee that hwmon will
+always be released before drvdata. Which means that we have a uaf if hwmon
+sysfs is accessed when drvdata has been released but hwmon hasn't.
+
+The only way out of this seems to be do get rid of devm_ and release/free
+everything explicitly during device unbind.
+
+v2: Change commit message and other minor code changes
+v3: Cleanup from i915_hwmon_register on error (Armin Wolf)
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 16 ++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h           |  1 +
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/i915/i915_hwmon.c | 54 ++++++++++++++++++++++---------
+ 1 file changed, 38 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index d5ed4c7dfbc0..15af6e184ef8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -30,6 +30,20 @@
- #define KEY_LOAD_TRIES	5
- #define HDCP2_LC_RETRY_CNT			3
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index b758fd110c20..8cebf6f5b101 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -793,7 +793,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 	if (!IS_DGFX(i915))
+ 		return;
  
-+static void
-+intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
-+				      struct intel_hdcp *hdcp)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
++	hwmon = kzalloc(sizeof(*hwmon), GFP_KERNEL);
+ 	if (!hwmon)
+ 		return;
+ 
+@@ -819,14 +819,12 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 	hwm_get_preregistration_info(i915);
+ 
+ 	/*  hwmon_dev points to device hwmon<i> */
+-	hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat->name,
+-							 ddat,
+-							 &hwm_chip_info,
+-							 hwm_groups);
+-	if (IS_ERR(hwmon_dev)) {
+-		i915->hwmon = NULL;
+-		return;
+-	}
++	hwmon_dev = hwmon_device_register_with_info(dev, ddat->name,
++						    ddat,
++						    &hwm_chip_info,
++						    hwm_groups);
++	if (IS_ERR(hwmon_dev))
++		goto err;
+ 
+ 	ddat->hwmon_dev = hwmon_dev;
+ 
+@@ -839,16 +837,40 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
+ 			continue;
+ 
+-		hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat_gt->name,
+-								 ddat_gt,
+-								 &hwm_gt_chip_info,
+-								 NULL);
+-		if (!IS_ERR(hwmon_dev))
+-			ddat_gt->hwmon_dev = hwmon_dev;
++		hwmon_dev = hwmon_device_register_with_info(dev, ddat_gt->name,
++							    ddat_gt,
++							    &hwm_gt_chip_info,
++							    NULL);
++		if (IS_ERR(hwmon_dev))
++			goto err;
 +
-+	if (encoder->type != INTEL_OUTPUT_HDMI)
++		ddat_gt->hwmon_dev = hwmon_dev;
+ 	}
++	return;
++err:
++	i915_hwmon_unregister(i915);
+ }
+ 
+ void i915_hwmon_unregister(struct drm_i915_private *i915)
+ {
+-	fetch_and_zero(&i915->hwmon);
++	struct i915_hwmon *hwmon = fetch_and_zero(&i915->hwmon);
++	struct hwm_drvdata *ddat = &hwmon->ddat;
++	struct intel_gt *gt;
++	int i;
++
++	if (!hwmon)
 +		return;
 +
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(hdcp->cpu_transcoder),
-+			     TRANS_DDI_HDCP_LINE_REKEY_DISABLE, 1);
-+}
++	for_each_gt(gt, i915, i) {
++		struct hwm_drvdata *ddat_gt = hwmon->ddat_gt + i;
 +
- static int intel_conn_to_vcpi(struct intel_atomic_state *state,
- 			      struct intel_connector *connector)
- {
-@@ -2005,6 +2019,8 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
- 		    connector->base.base.id, connector->base.name,
- 		    hdcp->content_type);
- 
-+	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
++		if (ddat_gt->hwmon_dev)
++			hwmon_device_unregister(ddat_gt->hwmon_dev);
++	}
 +
- 	ret = hdcp2_authenticate_and_encrypt(state, connector);
- 	if (ret) {
- 		drm_dbg_kms(&i915->drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 3f34efcd7d6c..fbf4623cd536 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5630,6 +5630,7 @@ enum skl_power_gate {
- #define  TRANS_DDI_EDP_INPUT_B_ONOFF	(5 << 12)
- #define  TRANS_DDI_EDP_INPUT_C_ONOFF	(6 << 12)
- #define  TRANS_DDI_EDP_INPUT_D_ONOFF	(7 << 12)
-+#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(12)
- #define  TRANS_DDI_MST_TRANSPORT_SELECT_MASK	REG_GENMASK(11, 10)
- #define  TRANS_DDI_MST_TRANSPORT_SELECT(trans)	\
- 	REG_FIELD_PREP(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, trans)
++	if (ddat->hwmon_dev)
++		hwmon_device_unregister(ddat->hwmon_dev);
++
++	mutex_destroy(&hwmon->hwmon_lock);
++	kfree(hwmon);
+ }
 -- 
-2.43.2
+2.41.0
 
