@@ -2,47 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D329F8A6523
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 09:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB0EA8A653D
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 09:38:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E831210EEE2;
-	Tue, 16 Apr 2024 07:31:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B055610E273;
+	Tue, 16 Apr 2024 07:38:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="fLbbpvtq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZeOQrx8r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABA4310EEFB;
- Tue, 16 Apr 2024 07:31:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1713252675;
- bh=eOK/bCV7IyfygWV9u4shyKXmqc9QPsYNWN/ruKFTjn0=;
- h=Date:From:To:Cc:Subject:From;
- b=fLbbpvtqB5ohUbohD+5h0tTJFVqVyLEOJdJziboW0356r5MKQEkZqAbhfp1clFcey
- +LFSNWb/hV47tZfyzxiREouTRd8su67dnHBgW0YXkQp+6EQIRAImVZHmcSYOXOy6Sy
- XY1P4Oah3eKDhVuyBtMAD7Z4vNJIOReRqUCfFddPv2tFC29c1RjnZZBPJKbydbUUw7
- dIA4aYJTpwDvp6VwKYJgau6N4GkEOtNrqv3njMgYDwG4+AlfBn+zDp7VrZ93GoFNKa
- VHsbVO+3AHpfc4t+3/DDIzDEompn2pt96XO+efd7SziDDnB3lbNp4MyEe/CXJ/m3CL
- gpdwArMAPLmDA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4VJbLp6YNdz4wnv;
- Tue, 16 Apr 2024 17:31:14 +1000 (AEST)
-Date: Tue, 16 Apr 2024 17:31:12 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build warnings after merge of the drm-misc tree
-Message-ID: <20240416173112.04579e40@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31141112366
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Apr 2024 07:38:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713253089; x=1744789089;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=4daM9EMYk++sU3jA+FWId9+TDjCnxqyERDcrTbOYgI4=;
+ b=ZeOQrx8rPBUhsfjQvMKJ9QNvXB8KzMgwCMTG3fyR5tml9AgJ1ftZOHMp
+ ORXfMv9Row6A5v42CWG5mVLq+0VNG3vKrbb3p+Ef1XxIl/EC7gQN+Ichj
+ 1VGR9H2ry9s383s7PVxWu+K82nLeGrjW13+f/sIR8vgZBpm7ZTOuNeqAT
+ PIh6LyM/FtDlR/rW3MArAIjzm1azksNKM2Kquh23SXVB3q/jEWQESm6J8
+ oP1WeonMFtJFw3BIgr9bPswenBBlg8oGA/aqGg0kTptLVERQ5UQpFTedQ
+ mUOIZ4fE127qUziaMrQdV/QrSv4r6WaIP2fH6b0Ip/J3p1Sv6U/YffDE+ Q==;
+X-CSE-ConnectionGUID: gVUPUS4aQyW1CA7bgSCYCA==
+X-CSE-MsgGUID: MoYNVzuDQGmYiuTB8vRJbQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11045"; a="19383327"
+X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="19383327"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 00:38:08 -0700
+X-CSE-ConnectionGUID: UtAiqt2mQNmRi8rPKXgmfA==
+X-CSE-MsgGUID: 6r1D8AeVQiuNa2Lz24nDYQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,205,1708416000"; d="scan'208";a="22583070"
+Received: from martakit-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.44.100])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 00:38:06 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
+ ankit.k.nautiyal@intel.com, dnyaneshwar.bhadane@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915: Add SCLKGATE_DIS register definition
+In-Reply-To: <20240416072733.624048-3-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240416072733.624048-2-suraj.kandpal@intel.com>
+ <20240416072733.624048-3-suraj.kandpal@intel.com>
+Date: Tue, 16 Apr 2024 10:38:03 +0300
+Message-ID: <8734rl21wk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/jKM7rW28KcV_xG8kmBaV5Jf";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,45 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/jKM7rW28KcV_xG8kmBaV5Jf
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, 16 Apr 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Add SCLKGATE_DIS register and it's register definition which
+> will be used the next patch.
 
-Hi all,
+Please just squash this into the next patch.
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced these warnings:
+(And please don't reference "the next patch" in commit messages, because
+it's meaningless once this becomes a commit in the history.)
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 3f34efcd7d6c..beec91a2f493 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -6250,6 +6250,10 @@ enum skl_power_gate {
+>  #define  SFUSE_STRAP_DDIC_DETECTED	(1 << 1)
+>  #define  SFUSE_STRAP_DDID_DETECTED	(1 << 0)
+>  
+> +/* SCLKGATE_DIS */
 
-drivers/gpu/drm/drm_fb_dma_helper.c:166: warning: Excess function parameter=
- 'drm_scanout_buffer' description in 'drm_fb_dma_get_scanout_buffer'
-drivers/gpu/drm/drm_fb_dma_helper.c:166: warning: Function parameter or str=
-uct member 'sb' not described in 'drm_fb_dma_get_scanout_buffer'
-drivers/gpu/drm/drm_fb_dma_helper.c:166: warning: Excess function parameter=
- 'drm_scanout_buffer' description in 'drm_fb_dma_get_scanout_buffer'
+The comment is useless.
 
-Introduced by commit
+BR,
+Jani.
 
-  879b3b6511fe ("drm/fb_dma: Add generic get_scanout_buffer() for drm_panic=
-")
+> +#define SCLKGATE_DIS			_MMIO(0xc2014)
+> +#define  DPLS_GATING_DISABLE		REG_BIT(29)
+> +
+>  #define WM_MISC				_MMIO(0x45260)
+>  #define  WM_MISC_DATA_PARTITION_5_6	(1 << 0)
 
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/jKM7rW28KcV_xG8kmBaV5Jf
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmYeKUAACgkQAVBC80lX
-0Gw/Ugf9GCtTwfsqYN6Q9KQJP18BmL2JZH5PKYqdWlunZ5miF5JWklZFbmtc/c+y
-3OSqOq9JJEQYZjENLc8JuaiRfljIzOWXa8rDPY5ozXTIRaJYaWcEJcBeoQtkgUvM
-fyfM6hxh6NvtxZ+m4p5UxPt+rJloNc/I2QADH91xkLzD2SaXBR7Cby35sSj37K3S
-SVx52L7Kia/A3DCb6QRzYEBPvY+waP2geLe+UJk8e049itVjYFvzV9bZjT0phRj1
-dMZ+KraFIktK8AhJsi5Z9HdKi8liTgfxMMMMGgioR6OZ+ZxMPU/IdfFLuY6xDKap
-sIzKNEQ3ExRB1BpsOZoRKA/EXx0FTg==
-=NNr4
------END PGP SIGNATURE-----
-
---Sig_/jKM7rW28KcV_xG8kmBaV5Jf--
+-- 
+Jani Nikula, Intel
