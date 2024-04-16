@@ -2,68 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DAF08A7110
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 18:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 668C08A7114
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Apr 2024 18:17:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 239B2112D49;
-	Tue, 16 Apr 2024 16:16:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA65710F174;
+	Tue, 16 Apr 2024 16:17:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YUZ8Rsf3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jhva4c8U";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F182112D46;
- Tue, 16 Apr 2024 16:16:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3FCD10F1C4;
+ Tue, 16 Apr 2024 16:17:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713284215; x=1744820215;
+ t=1713284274; x=1744820274;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=ZKcDoXpgbXxdvNRNrgACc4Mshf8JUl6SWFnLDqOc6GQ=;
- b=YUZ8Rsf39lLOkRNuX31gzAOrhLjt6d93g6EMmAAX0veOZbhzf6GBALWF
- yX9Tvd/rLW/fcMc5AJ0HwBpxmxgZIqC1VKDwY8EIofGlP3w4LPSc2T5QI
- yi5SmEf0nqrH499+K2qcCQ1cpQbWHL5TbsRQxacsErpMjPDWlqIkCxq5K
- FlYxkfy9ehZPKT+j6vke6KO4Jvtfd4h12fI3sfWIGRGXnpSIee5Bpw9m7
- PTgr6ZTCBzBG/Hv76+7mWXQzxJAqki8XahyyKoL3O6IcyK2d8+M6P/QlN
- 79ZbDQW9FxNiCJIY7ROrQEGG/YE1aoawVns7WET0koaH//9QAxkgZOVCU w==;
-X-CSE-ConnectionGUID: lPoshXnmTnyab3h8XoQ4Xg==
-X-CSE-MsgGUID: uCIIfrgrQuSj9rEmMs0EfA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="26245204"
-X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="26245204"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 09:16:53 -0700
-X-CSE-ConnectionGUID: XQZexpBsTw+xICJlKzgOdA==
-X-CSE-MsgGUID: gnXOICk5RhSEsOlp7oFrkw==
+ bh=Af4b4aKEFU/ur1EGEv1xjcs35ynXu5MrTFGM/cU6NF4=;
+ b=jhva4c8UI/c/2bWZTsZNqIn8CbWJOY/mwYpdGpTK4UqqYThDEDfWy0Mx
+ Gx/3KB40XKeZAhCPhggeiuYELgIo2zjA6jZWa818VfYy2LKBetyLEEM4q
+ 4qZJgF5EztUiHW+Z9eUF4aLIDDrA3bTv+ohE64xJ048zg/vh2rXMePI44
+ RyuTJX5mmwMfAC9oYnyUls2MvsD1I0mcULjfmgdqRq0DT4ofrbD0lS7gZ
+ IIgswD3m7KJvze6xEo25k7uBaESP3sCQ743t5dYKkkpJpnPn8DmsakkPT
+ Zlod42Ki1OxBiZO6QwaKhC2a8BVkm0Jzkg06RzsAoEPJd9BDzKG2+Nvgi Q==;
+X-CSE-ConnectionGUID: L5ATuUJhQp+RihbfLucsDQ==
+X-CSE-MsgGUID: rXyZAadfSmCjRTlxvbKu0A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8567251"
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; 
+   d="scan'208";a="8567251"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 09:17:53 -0700
+X-CSE-ConnectionGUID: njJuZUNTQ/CJyQeZwrYLNQ==
+X-CSE-MsgGUID: iiMvF3uOTfC5ihPY0LlZ7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="27107009"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Apr 2024 09:16:49 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 09:16:45 -0700
+X-IronPort-AV: E=Sophos;i="6.07,206,1708416000"; d="scan'208";a="27103249"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Apr 2024 09:17:53 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 09:16:44 -0700
+ 15.1.2507.35; Tue, 16 Apr 2024 09:17:52 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 16 Apr 2024 09:17:52 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 09:16:44 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 09:17:51 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
  by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 16 Apr 2024 09:16:44 -0700
+ 15.1.2507.35; Tue, 16 Apr 2024 09:17:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JrrVnGBo348UUpnK4U4EWnQEN4hEv2z9WJ70EMunGACIfFtunZwnDt2FmQJtuzzLNLYOIENeURuaV+zPB8qroMcECSb5Bwo0S2ve6MXNLG1iGvLOXb9vz27e7U33Qd4MvRSjeClM9Mslh6mHCaWj90zeVpQG+aGAWsaa5BWg7W9BWLAq69Add7JPpfPbLdIiy/Ad4BARe/8Fcv4NcaTYcgaEJYoAFZXFbfjSFFyrbqgkKrEL15d/GnO7YRaOE5FH5Khqf0UQyvRTwkyrPtjEjromGMXd1GodQGU6CBB8D+8zjdvxlHtalGduhfuGcY+ePdnyOYEgK8VlMrtP+47UuQ==
+ b=PbJx+Q8JA+hZcSyteBJNmgK6vLaCoThJzNFitlLKzAf8Ji86YDZ+2mKAgR068cH4cP0xmJe+zgoUWGvcimEeFtwWLZL/2exJ0LIp1WyHlxfq9eJ4kyjbFhwmKVmDT5zb1bU49UWcygZ4IsNwAzLwg5UtH2qyCuGF8zM+KVvbsRP4V/pbmPOiImCWEPaOH86MQQwlBQvAI9rzUoxHsZGbS4u0GSl0UHgQMa/svUpuWsufZ1VIGjYBbMVdepCj8yxjWgXRo4E8MtCPyzagtW2A1OMfAIhKXvH6Njk/+a0Cbw9BMhNjIyfIgAkAOfpUHNmZbnUTVi6nuwwWKlbWuJviJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iUJWVS4M4gtXp1gXYOvJTB4PskDrkooTPeERVcYkHNA=;
- b=EOEa58mulJoOo+I1OdARS9gOtKM7FQvZXY4UlN3p5RfXPyNWHW3eSupmLmHHuAbD+eBTwC+s6c0HtuzcXFsasp8EXefhy28SYP/wI1n61aGExQ7wksDECjY4rhSym3dEWWQcidNNJNM4Cq2EXjjv27BEzjR73ZEmY8Wi/GoVv2hz7tBsmVOPmLu4Qyl2/XGoGrU9JF81gOKR8yn4/yDkzyDjxnPUSvq6spYbmhXDoaMWU09/aLztHeJcOqevUwe7W7jxgzlGMgMRq3NZJP+NeLvOpXZElgWkKhBBl//fibiSg8JCD7MfLrgSfWStWzFgoIoEVBYgYwIg3kNrfB+QtQ==
+ bh=gVpikR1hoP+Gp/Wz8kS8Q5CFs0ZMS5eAIHnqMSkMiQ0=;
+ b=KTbSBg/FoUXuEZn9oVCYbeFxjPiRvoZHhBaGWeKR6J4F5Xde4quy/jQ3ko5T/4AgUHXSHRe+G4sQ97eYL1f54odzBheJMh7g8BwLQqxCiQ5/TIJCjAiGDR635AKmXY3zrvCJbpJIurldqa0wmJyP3BFhhC9/8O7JvT2QJz7lCZV7WGk9Vp1QdLdwsm44w/ah7wLwdH9mN6hrOcONWqT2T3kXwU1AAzP2BTxrzwNuLn1GELvpNUyEEtxw6jrSre7Jv8ZPmtotp3eko4xn5xMg39SPOJhgabuf14sWq/1xwZ/Lz7xZ7VpPBZHFOB2aGhQ95pKcXU23oo+P91b1aXEYVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,77 +74,77 @@ Received: from PH7PR11MB6053.namprd11.prod.outlook.com (2603:10b6:510:1d1::8)
  by CY8PR11MB7170.namprd11.prod.outlook.com (2603:10b6:930:91::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.26; Tue, 16 Apr
- 2024 16:16:42 +0000
+ 2024 16:17:49 +0000
 Received: from PH7PR11MB6053.namprd11.prod.outlook.com
  ([fe80::9461:3f2e:134a:9506]) by PH7PR11MB6053.namprd11.prod.outlook.com
  ([fe80::9461:3f2e:134a:9506%7]) with mapi id 15.20.7472.025; Tue, 16 Apr 2024
- 16:16:42 +0000
-Date: Tue, 16 Apr 2024 12:16:32 -0400
+ 16:17:49 +0000
+Date: Tue, 16 Apr 2024 12:17:37 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
  <lucas.demarchi@intel.com>, <ville.syrjala@linux.intel.com>,
  <joonas.lahtinen@linux.intel.com>, <tursulin@ursulin.net>
-Subject: Re: [PATCH v3 6/7] drm/i915/de: allow intel_display and
- drm_i915_private for de functions
-Message-ID: <Zh6kMTfGuSqVjNIV@intel.com>
+Subject: Re: [PATCH v3 7/7] drm/i915/quirks: convert struct drm_i915_private
+ to struct intel_display
+Message-ID: <Zh6koRhjPyRedD0W@intel.com>
 References: <cover.1712665176.git.jani.nikula@intel.com>
- <0b48d6bebfe90aa2f901a05be8279ed887d99d7a.1712665176.git.jani.nikula@intel.com>
+ <e6c5776a5ace759539b19debadeb150a02498d54.1712665176.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <0b48d6bebfe90aa2f901a05be8279ed887d99d7a.1712665176.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BYAPR01CA0043.prod.exchangelabs.com (2603:10b6:a03:94::20)
- To PH7PR11MB6053.namprd11.prod.outlook.com
+In-Reply-To: <e6c5776a5ace759539b19debadeb150a02498d54.1712665176.git.jani.nikula@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0014.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::19) To PH7PR11MB6053.namprd11.prod.outlook.com
  (2603:10b6:510:1d1::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6053:EE_|CY8PR11MB7170:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36318b31-d11a-414e-9614-08dc5e3099f8
+X-MS-Office365-Filtering-Correlation-Id: 966d80e3-e1fe-4d63-8eb7-08dc5e30c204
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1XGPHXYSTHQozCjO2l8itOvHFax9La5H1+Ls2MNG6ds3c1+XztK+tTmY6p+CrcZ31LrqYgPv5yAGkpY3Z32KFHQ2FnK+vG3I2KqNMKUu9nepGz3kbjUFB0z95DR18jk1JGtoEE0OzwkyznrNyk7/iYbmDsujLqqauTq12ZSf5hfI2Mw3g+jtnOxt8WLQUiP9LAmZDhc7lc8ZWGKxUJDV2RZW1MN+LbL/ezYZF1ML4rdSZ5+W0j+i6GoTtk8uO9BGN2ukz4WCM5dS2A+Ybw+A7qFPEfDeAiTsdOH2Gd187RrNPhl9n0f/OjiEpq1k5boBRs7/rdEJKjp5dmSN4aRJOxLhTJdqF7tDqOkXlC05n7RyJvbq0rJOlC+UgaFOETPGU96OjsQsm91Jry/Es0Rc932ihUGxQlJNJgmrwPoVl2Rqp0nQmkfIQl7+jO+vyVfRy3cEpzz0mqH0NDCMtZbnTJHoT9JX1fi5qHyT4pi04d2lFiNcirGYC0xJ+awww8TBM2PraQTZj0nPcDTLMnelag99n5CWWZF+RV6KXdxM/KHXaGWpBIhtAJmWBZnQWiYMQAt0Tpv6u8e978g4knqcRfKYPO8PUKfLH1ltl9dwup3EZaeo5EFFTEOn70SjZLflkumXRNDI67Ql4O+Ow4jcdtbbiL1IFuIwJU1HYU6mmh4=
+X-Microsoft-Antispam-Message-Info: p65kGTITjD7icsxtbSkUSGAk/7j7qovxleXjkHxJekEVU08soxqEVHiHNUfHXqlqVvgPNgsdZOLVMrTsuMZ3H7bSjVnAydYW92HcHL88BAe2uDpyATzxVVZlNlxAubtFEXi+mO2E3cCSxKccXoG9iMCRIN0UeXIMl/+GZdt1Nb/AA9jFydhET9hdFfzKIhDOySBURNDB8GP8c3oqhoyC+P2gF63zD1o09Od1ndXLvIdVH0k27j91ysh9whFh7S1YpEECWWK02bL7h01VHYSdYU4yeUlcSj1npFHsNK/unD1zqBLAdavwG5d3XEY/eQRgWI/qiox96VxRds6pULUBHtXhmEjxCFVDNf4AlFAxtbNdA8Jka8GZkhmXemyk9Gtur0iTZE/J74kEmk084pwJi5X9Yf0vEhfa/7ppxzg/n5xHNsOz4gohxvu1spNIgti9zcfGlv/fmUsXmv+yFoYFMuZY49X+TgpNYiS9UH2fWgFSRNwZKrWXmVKT206sOhTDB6bf/wOh2oounpQzXKltSPmzABS1zv14OsKWyZKjjKmAe/QZcboo1VckmYLFbzYxd49ydQK9A88bq5bIiCOgOGRynr2J3whcYTt3mJrgBcUbXVicfzSSXldWiCVB3PZcjrzjF+O8TpM+a1B61zPyB7T8oRZprBcNAr+/urPsPgg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6053.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fW49i4xyV9N+LCN5KByNhgbZ5FJBJcKV9F2X2JUbaza4/PUKw27BS6oytdZS?=
- =?us-ascii?Q?TnWNesErLSqw/e79hrpcNOQMgQhtFyiXnUsRl9LRRbBEN2OgjMCNHP3UbluK?=
- =?us-ascii?Q?HYmnOHPxo9dAAbEPFd01B4eGZgwC8jrRgw0CtblZROobrP2lkvEPUXOsU6Jt?=
- =?us-ascii?Q?aFYQkdXYJf7MsO3KWxZGnNgQ1I5Q4ELsM2om9FPi7CbJb4kSRDYUipwLhTQ+?=
- =?us-ascii?Q?fC9wVorNq5xzlGiAFhp05uFATjRnPDBAcEJAhoxhK0/mvVkQo+mOVEdf456i?=
- =?us-ascii?Q?Ygc5WJ2z2ABYVjjwSCJY2ZzHSFeywcXKz0rdVaaDjQb/y7y2q+S0et7PA0Oh?=
- =?us-ascii?Q?kQZDgmbMoEhaKZ691Rc5rpv2++ePOjkWt94g4NMJvegxHD6OXIutvfp0kDmO?=
- =?us-ascii?Q?1oBj+2hmOR/xdUyeHcww9cBXtRHndyY1q7YcxLLd2wYv1RaBWErnpe8EjCvW?=
- =?us-ascii?Q?tgDNur6QudNTd3HwDxJFy2mlML2zSwTTQhm0qiUlAvRpdQfwutDUUbWyjM/u?=
- =?us-ascii?Q?gd4bw8BY0jxy8cHs1u5T7WoSvYGDaowvia0Ei4HKC7kEX0NQVLKgYSl5luFr?=
- =?us-ascii?Q?d9kbrGfucGx/6eBAQ8uIwHlSapCX8ZHndcgdYJVyQ6tFiJGiNf0NISlEGJlX?=
- =?us-ascii?Q?nNlyCwS/Y8icSHskN08GMqH0oVtTfdf9BSHtDuCmBMMIdLNsTX8qHOiMUGav?=
- =?us-ascii?Q?cfe1m3nKJA7PXMscWneAr7MEiIawVocwmVyQ2zSAyuq9fQpjM39iuKA8Vi3K?=
- =?us-ascii?Q?V9s8swWqUFgd+QpoQzBN9kytfEhIEen//5OxsWndqP3sQZfwDKo48Wvx0fvr?=
- =?us-ascii?Q?hS7iSOg+WEIafnBdXG125ACwZxo1PZ2/qXlj+iLAgD+oyf4WCmDbZA5DbdFI?=
- =?us-ascii?Q?Z4ovOhBo8o6EOm7/iuscdNPCZ3txqHU0N/shEtAXoNmc9tdouJR5VkIuz9CO?=
- =?us-ascii?Q?MBVJrENXNaUV9nEgOgTi9sL1EIkR84Qu5UEGRRMNzJh7JTVR44NG/c74MS2O?=
- =?us-ascii?Q?26ykBIvL1HeOdv1I/pElM5FrlMu8UwjJ6XVOrQnnTPWOjJeg4uEnahMQHiFd?=
- =?us-ascii?Q?Dk6FArv2Gd6ux+Tf7mSs0N0wwVrzgz+79ogSSJm/6i/pBs3spyQrtV7hIhno?=
- =?us-ascii?Q?nLQhfQZBXJbSCXxmOgusoHuViAUM9PviFKAB/wYmQPNMi/LQ5W4kavy/HvNC?=
- =?us-ascii?Q?kSl/tZlnCocV7reZenB9tFs4Q0YReYAZ7lVOrrPTGkvA6655sy0T0MSKv1YI?=
- =?us-ascii?Q?+KPnuiiytwwvdf8UFsRtdzx92fnbt42QGo/A90oifFN2yBq37cXpBIbJxWM5?=
- =?us-ascii?Q?gtTbhPNn3mJjlzyaWEggq20mrVHvQOPZREZKXevx0jV23EinFVHIBhkE8+4B?=
- =?us-ascii?Q?AkSUWSumFc2YPpFdaYzAWw8i986IUqSPzAQwJ8138AAGqevceT+sda06J6t5?=
- =?us-ascii?Q?wyZngwHbjRwZTSxJ8E2419tS+NWHCSu2KEXxUxR+8c+rtUTBR6EhdaWH51uF?=
- =?us-ascii?Q?Antg4Xv+EOuCgfUjPMBrCJQeRfYMapK6zaTYb/gQrGZujU8jP+BXKDwk1Ycv?=
- =?us-ascii?Q?zk0I6hUTK5Fc7sX/pY5Kw/8JH/BBMwqqE5j5acyDs2fBg8V7LYKmQjwHUqI5?=
- =?us-ascii?Q?Uw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36318b31-d11a-414e-9614-08dc5e3099f8
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8rpr6ybiL9k/Y9t3DxEf/BBm+lXByhLlgo1T9vNWwWR2RuKj73yNMDsoPvbI?=
+ =?us-ascii?Q?YlP/PQjd7NEHFi03A4o2gC8YFV0d/XFrNdpIuEVHYJ9pKJ2Znq20ufo05azD?=
+ =?us-ascii?Q?rFji+AqB5ERYCIJmzS6xJuq0fp7PRRJEv7gjN30qO/jhBzaBMps2OSqoXqvw?=
+ =?us-ascii?Q?wFGjmWRA55PQjgcpAVjxyrxGCrAfRuplk38402mY3l4H5bNK0NFrlQoiii08?=
+ =?us-ascii?Q?lUiNVFh0MSRoiFtkIySXyj3GLrr0sRo6Sw9zM1C/G6a+yNLpa1JBWF3zFmrK?=
+ =?us-ascii?Q?YkEoA5qN/M5zhssNlml2rAkNdZ3q2aKGBOWp0KsB2QYIyNVcmeoHbWX02Tia?=
+ =?us-ascii?Q?xjAnhvA/ALgtsrC7gxpWIhCQ5z4f+LFPwJH9Hk/gmRPxkn87t9EDboCxyN3p?=
+ =?us-ascii?Q?Ze0WB2lxsKUVJ0sJoCo1W9r0QYdKBQDgKn0F/FHnBNs7b4aP/mkY5nEbJFfk?=
+ =?us-ascii?Q?PkMBsaBFPGyP+4fmp4jlqojueyanHii+QXPsZXUgUGDa7DlsD7SYgXu05XKj?=
+ =?us-ascii?Q?8/CGXQFvRG+PThMumH+NrvndZgozASQLuzK221PZQGGrg71NA8Z2JSfru4MP?=
+ =?us-ascii?Q?jCivvNS9dMEK70D8BOmNajW1ZMM3Ga3ualenS60t9DDisbsh5p+WO9dayiQn?=
+ =?us-ascii?Q?JYsMkQ/DilFJDddmtQ+/bjIG23vB5YuW+ChO+Y3zNcpj3EZ/Bp/dr+68l69A?=
+ =?us-ascii?Q?A3HXDcIilkQ0VDXo1mGZks9yq9JtHxcKfHA4HbNovlH+7d7VSAt5zZMP+OC3?=
+ =?us-ascii?Q?cJ7ZD8NUaeCA/wz8y/sGSwrq17+IFC3bLQw/YZbs2Xwsexok7CAM1vYW3B0g?=
+ =?us-ascii?Q?tYnIzbEIQRsoV7AbkQp0oG5CTiCLFclSc8WylTry/Px5TDkmwwdDjWfBYAbP?=
+ =?us-ascii?Q?98qCSTt2UzQ0T8GzX8rMFC9kskAaj/ShqMd1Ibnde0IYgR78nddU5uLCTuFL?=
+ =?us-ascii?Q?4K7u+agGLpI1vdvbTdmCTqfz6uLnRSEm0+X/2uXqsDEGLruBh03FCZyrj62+?=
+ =?us-ascii?Q?p2ibFFNmafwY+AD+QLBjbXcB0qLB7Bch90cTHSYmHOra4YXTxXNuhBRFkiQD?=
+ =?us-ascii?Q?to2sT1ECJCJ38NZV11AF+VXf0oYYMqZTmxYoxbHvPzC4KkwN9kvDj6NnudL4?=
+ =?us-ascii?Q?TezLHDLf7ws2zP8wYb3xuQDhQMUMst+knxbFa/tRN/jToZcaWyDY7BONGAk5?=
+ =?us-ascii?Q?vZxv2mbaynGFUdh8n1YFjTNdynhEanHxzHGH0Xn0XpKEOqLWmQgeHIvQm3Ap?=
+ =?us-ascii?Q?aIBWBtEUo6e4eHQ8LUKDLZIj7S4WKOcWBsX7kqtYUWfSGn4XZOjWyoBzFhxo?=
+ =?us-ascii?Q?64FtuUdZfDwwU9WVKnUwfZJYoAlLbeCDsNoXuMYTmslNEAjBlGNlN6tzgI23?=
+ =?us-ascii?Q?7LlhOAblq1wqljOgxaSpN5xwAOQdzYI3Vzq470Qk8fownCcw2WjNN4UxRWpz?=
+ =?us-ascii?Q?dw8nXeOBfcqhsB9R70asObdQ8sl8WykxlZSkXECVc3dLxJ7MY+jx//Fo2k75?=
+ =?us-ascii?Q?+1iGQqHAB2eJVCG4TZ/vA3oIr3apEqkBMykUi9oOMUA9iUOcVNcW/BrAKqNA?=
+ =?us-ascii?Q?r+NW0DCYlPk1mdyhBQeyUNmld8na6vgtUHXYkP/0u9AO5zciIC0vu9WU2DqF?=
+ =?us-ascii?Q?sw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 966d80e3-e1fe-4d63-8eb7-08dc5e30c204
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6053.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 16:16:41.9689 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 16:17:49.3371 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O0urF1rP0hW16trXwvt6axnX1mTlJg4JeSiankp9sSXb/VZnD+99e+TyF/s3faeNG4mCC5rERH0UkN5IBFqaaw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: lJeaopThY7UophOfer4ARoGH3RdCzD6u7hWGecQuLx0vEIodgnvTeChSHRzXEpzA1Lv0BJ0x9YkuzYaqxHBAoQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7170
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -161,211 +162,378 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 09, 2024 at 03:26:48PM +0300, Jani Nikula wrote:
-> It would be too much noise to convert the intel_de_* functions from
-> using struct drm_i915_private to struct intel_display all at once. Add
-> generic wrappers using __to_intel_display() to accept both.
+On Tue, Apr 09, 2024 at 03:26:49PM +0300, Jani Nikula wrote:
+> Use struct intel_display instead of struct drm_i915_private for
+> quirks. Also do drive-by conversions in call sites of intel_has_quirk().
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> ---
-> 
-> This was done using a cocci + shell script combo.
-
-the conversion below seems sane.
-would you mind sharing the scripts in the commit message,
-so scripts could be used when porting this patch to other
-trees?
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_de.h | 102 +++++++++++++++---------
->  1 file changed, 64 insertions(+), 38 deletions(-)
+>  .../gpu/drm/i915/display/intel_backlight.c    | 40 ++++++-------
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  6 +-
+>  .../drm/i915/display/intel_display_driver.c   |  3 +-
+>  drivers/gpu/drm/i915/display/intel_panel.c    | 10 ++--
+>  drivers/gpu/drm/i915/display/intel_pps.c      |  6 +-
+>  drivers/gpu/drm/i915/display/intel_quirks.c   | 56 +++++++++----------
+>  drivers/gpu/drm/i915/display/intel_quirks.h   |  6 +-
+>  7 files changed, 65 insertions(+), 62 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-> index ba7a1c6ebc2a..a08f8ef630f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -10,80 +10,101 @@
->  #include "i915_trace.h"
->  #include "intel_uncore.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index 4d4330410b4d..071668bfe5d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -83,16 +83,16 @@ static u32 scale_hw_to_user(struct intel_connector *connector,
 >  
-> +static inline struct intel_uncore *__to_uncore(struct intel_display *display)
-> +{
-> +	return &to_i915(display->drm)->uncore;
-> +}
+>  u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 val)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_display *display = to_intel_display(connector);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	drm_WARN_ON(&i915->drm, panel->backlight.pwm_level_max == 0);
+> +	drm_WARN_ON(display->drm, panel->backlight.pwm_level_max == 0);
+>  
+> -	if (i915->display.params.invert_brightness < 0)
+> +	if (display->params.invert_brightness < 0)
+>  		return val;
+>  
+> -	if (i915->display.params.invert_brightness > 0 ||
+> -	    intel_has_quirk(i915, QUIRK_INVERT_BRIGHTNESS)) {
+> +	if (display->params.invert_brightness > 0 ||
+> +	    intel_has_quirk(display, QUIRK_INVERT_BRIGHTNESS)) {
+>  		return panel->backlight.pwm_level_max - val + panel->backlight.pwm_level_min;
+>  	}
+>  
+> @@ -126,15 +126,15 @@ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 val)
+>  
+>  u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_display *display = to_intel_display(connector);
+>  	struct intel_panel *panel = &connector->panel;
+>  
+> -	drm_WARN_ON_ONCE(&i915->drm,
+> +	drm_WARN_ON_ONCE(display->drm,
+>  			 panel->backlight.max == 0 || panel->backlight.pwm_level_max == 0);
+>  
+> -	if (i915->display.params.invert_brightness > 0 ||
+> -	    (i915->display.params.invert_brightness == 0 &&
+> -	     intel_has_quirk(i915, QUIRK_INVERT_BRIGHTNESS)))
+> +	if (display->params.invert_brightness > 0 ||
+> +	    (display->params.invert_brightness == 0 &&
+> +	     intel_has_quirk(display, QUIRK_INVERT_BRIGHTNESS)))
+>  		val = panel->backlight.pwm_level_max - (val - panel->backlight.pwm_level_min);
+>  
+>  	return scale(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max,
+> @@ -1642,17 +1642,17 @@ void intel_backlight_update(struct intel_atomic_state *state,
+>  
+>  int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_display *display = to_intel_display(connector);
+>  	struct intel_panel *panel = &connector->panel;
+>  	int ret;
+>  
+>  	if (!connector->panel.vbt.backlight.present) {
+> -		if (intel_has_quirk(i915, QUIRK_BACKLIGHT_PRESENT)) {
+> -			drm_dbg_kms(&i915->drm,
+> +		if (intel_has_quirk(display, QUIRK_BACKLIGHT_PRESENT)) {
+> +			drm_dbg_kms(display->drm,
+>  				    "[CONNECTOR:%d:%s] no backlight present per VBT, but present per quirk\n",
+>  				    connector->base.base.id, connector->base.name);
+>  		} else {
+> -			drm_dbg_kms(&i915->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "[CONNECTOR:%d:%s] no backlight present per VBT\n",
+>  				    connector->base.base.id, connector->base.name);
+>  			return 0;
+> @@ -1660,16 +1660,16 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+>  	}
+>  
+>  	/* ensure intel_panel has been initialized first */
+> -	if (drm_WARN_ON(&i915->drm, !panel->backlight.funcs))
+> +	if (drm_WARN_ON(display->drm, !panel->backlight.funcs))
+>  		return -ENODEV;
+>  
+>  	/* set level and max in panel struct */
+> -	mutex_lock(&i915->display.backlight.lock);
+> +	mutex_lock(&display->backlight.lock);
+>  	ret = panel->backlight.funcs->setup(connector, pipe);
+> -	mutex_unlock(&i915->display.backlight.lock);
+> +	mutex_unlock(&display->backlight.lock);
+>  
+>  	if (ret) {
+> -		drm_dbg_kms(&i915->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "[CONNECTOR:%d:%s] failed to setup backlight\n",
+>  			    connector->base.base.id, connector->base.name);
+>  		return ret;
+> @@ -1677,7 +1677,7 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+>  
+>  	panel->backlight.present = true;
+>  
+> -	drm_dbg_kms(&i915->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "[CONNECTOR:%d:%s] backlight initialized, %s, brightness %u/%u\n",
+>  		    connector->base.base.id, connector->base.name,
+>  		    str_enabled_disabled(panel->backlight.enabled),
+> @@ -1821,7 +1821,7 @@ void intel_backlight_init_funcs(struct intel_panel *panel)
+>  		if (intel_dp_aux_init_backlight_funcs(connector) == 0)
+>  			return;
+>  
+> -		if (!intel_has_quirk(i915, QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
+> +		if (!intel_has_quirk(&i915->display, QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK))
+>  			connector->panel.backlight.power = intel_pps_backlight_power;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 793ef3e387c6..49d947f4ccde 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -631,6 +631,7 @@ intel_ddi_config_transcoder_func(struct intel_encoder *encoder,
+>  
+>  void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> @@ -661,10 +662,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+>  
+>  	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
+>  
+> -	if (intel_has_quirk(dev_priv, QUIRK_INCREASE_DDI_DISABLED_TIME) &&
+> +	if (intel_has_quirk(display, QUIRK_INCREASE_DDI_DISABLED_TIME) &&
+>  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> -			    "Quirk Increase DDI disabled time\n");
+> +		drm_dbg_kms(display->drm, "Quirk Increase DDI disabled time\n");
+>  		/* Quirk time at 100ms for reliable operation */
+>  		msleep(100);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 87dd07e0d138..0b05c3b732e9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -203,6 +203,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+>  /* part #1: call before irq install */
+>  int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	int ret;
+>  
+>  	if (i915_inject_probe_failure(i915))
+> @@ -261,7 +262,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+>  	if (ret)
+>  		goto cleanup_vga_client_pw_domain_dmc;
+>  
+> -	intel_init_quirks(i915);
+> +	intel_init_quirks(display);
+>  
+>  	intel_fbc_init(i915);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 073ea3166c36..6f4ff6a89c32 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -47,10 +47,12 @@
+>  
+>  bool intel_panel_use_ssc(struct drm_i915_private *i915)
+>  {
+> -	if (i915->display.params.panel_use_ssc >= 0)
+> -		return i915->display.params.panel_use_ssc != 0;
+> -	return i915->display.vbt.lvds_use_ssc &&
+> -		!intel_has_quirk(i915, QUIRK_LVDS_SSC_DISABLE);
+> +	struct intel_display *display = &i915->display;
 > +
->  static inline u32
-> -intel_de_read(struct drm_i915_private *i915, i915_reg_t reg)
-> +__intel_de_read(struct intel_display *display, i915_reg_t reg)
->  {
-> -	return intel_uncore_read(&i915->uncore, reg);
-> +	return intel_uncore_read(__to_uncore(display), reg);
+> +	if (display->params.panel_use_ssc >= 0)
+> +		return display->params.panel_use_ssc != 0;
+> +	return display->vbt.lvds_use_ssc &&
+> +		!intel_has_quirk(display, QUIRK_LVDS_SSC_DISABLE);
 >  }
-> +#define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
 >  
->  static inline u8
-> -intel_de_read8(struct drm_i915_private *i915, i915_reg_t reg)
-> +__intel_de_read8(struct intel_display *display, i915_reg_t reg)
+>  const struct drm_display_mode *
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index b5d9920f8341..052f4ee406b5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -1350,7 +1350,7 @@ static void pps_init_delays_bios(struct intel_dp *intel_dp,
+>  static void pps_init_delays_vbt(struct intel_dp *intel_dp,
+>  				struct edp_power_seq *vbt)
 >  {
-> -	return intel_uncore_read8(&i915->uncore, reg);
-> +	return intel_uncore_read8(__to_uncore(display), reg);
->  }
-> +#define intel_de_read8(p,...) __intel_de_read8(__to_intel_display(p), __VA_ARGS__)
+> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct intel_connector *connector = intel_dp->attached_connector;
 >  
->  static inline u64
-> -intel_de_read64_2x32(struct drm_i915_private *i915,
-> -		     i915_reg_t lower_reg, i915_reg_t upper_reg)
-> +__intel_de_read64_2x32(struct intel_display *display,
-> +		       i915_reg_t lower_reg, i915_reg_t upper_reg)
->  {
-> -	return intel_uncore_read64_2x32(&i915->uncore, lower_reg, upper_reg);
-> +	return intel_uncore_read64_2x32(__to_uncore(display), lower_reg,
-> +					upper_reg);
->  }
-> +#define intel_de_read64_2x32(p,...) __intel_de_read64_2x32(__to_intel_display(p), __VA_ARGS__)
+>  	*vbt = connector->panel.vbt.edp.pps;
+> @@ -1363,9 +1363,9 @@ static void pps_init_delays_vbt(struct intel_dp *intel_dp,
+>  	 * just fails to power back on. Increasing the delay to 800ms
+>  	 * seems sufficient to avoid this problem.
+>  	 */
+> -	if (intel_has_quirk(dev_priv, QUIRK_INCREASE_T12_DELAY)) {
+> +	if (intel_has_quirk(display, QUIRK_INCREASE_T12_DELAY)) {
+>  		vbt->t11_t12 = max_t(u16, vbt->t11_t12, 1300 * 10);
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "Increasing T12 panel delay as per the quirk to %d\n",
+>  			    vbt->t11_t12);
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index a280448df771..14d5fefc9c5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -9,72 +9,72 @@
+>  #include "intel_display_types.h"
+>  #include "intel_quirks.h"
 >  
->  static inline void
-> -intel_de_posting_read(struct drm_i915_private *i915, i915_reg_t reg)
-> +__intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
+> -static void intel_set_quirk(struct drm_i915_private *i915, enum intel_quirk_id quirk)
+> +static void intel_set_quirk(struct intel_display *display, enum intel_quirk_id quirk)
 >  {
-> -	intel_uncore_posting_read(&i915->uncore, reg);
-> +	intel_uncore_posting_read(__to_uncore(display), reg);
+> -	i915->display.quirks.mask |= BIT(quirk);
+> +	display->quirks.mask |= BIT(quirk);
 >  }
-> +#define intel_de_posting_read(p,...) __intel_de_posting_read(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline void
-> -intel_de_write(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
-> +__intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
->  {
-> -	intel_uncore_write(&i915->uncore, reg, val);
-> +	intel_uncore_write(__to_uncore(display), reg, val);
->  }
-> +#define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline u32
-> -intel_de_rmw(struct drm_i915_private *i915, i915_reg_t reg, u32 clear, u32 set)
-> +__intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear,
-> +	       u32 set)
->  {
-> -	return intel_uncore_rmw(&i915->uncore, reg, clear, set);
-> +	return intel_uncore_rmw(__to_uncore(display), reg, clear, set);
->  }
-> +#define intel_de_rmw(p,...) __intel_de_rmw(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline int
-> -intel_de_wait(struct drm_i915_private *i915, i915_reg_t reg,
-> -	      u32 mask, u32 value, unsigned int timeout)
-> +__intel_de_wait(struct intel_display *display, i915_reg_t reg,
-> +		u32 mask, u32 value, unsigned int timeout)
->  {
-> -	return intel_wait_for_register(&i915->uncore, reg, mask, value, timeout);
-> +	return intel_wait_for_register(__to_uncore(display), reg, mask, value,
-> +				       timeout);
->  }
-> +#define intel_de_wait(p,...) __intel_de_wait(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline int
-> -intel_de_wait_fw(struct drm_i915_private *i915, i915_reg_t reg,
-> -		 u32 mask, u32 value, unsigned int timeout)
-> +__intel_de_wait_fw(struct intel_display *display, i915_reg_t reg,
-> +		   u32 mask, u32 value, unsigned int timeout)
->  {
-> -	return intel_wait_for_register_fw(&i915->uncore, reg, mask, value, timeout);
-> +	return intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> +					  value, timeout);
->  }
-> +#define intel_de_wait_fw(p,...) __intel_de_wait_fw(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline int
-> -intel_de_wait_custom(struct drm_i915_private *i915, i915_reg_t reg,
-> -		     u32 mask, u32 value,
-> -		     unsigned int fast_timeout_us,
-> -		     unsigned int slow_timeout_ms, u32 *out_value)
-> +__intel_de_wait_custom(struct intel_display *display, i915_reg_t reg,
-> +		       u32 mask, u32 value,
-> +		       unsigned int fast_timeout_us,
-> +		       unsigned int slow_timeout_ms, u32 *out_value)
->  {
-> -	return __intel_wait_for_register(&i915->uncore, reg, mask, value,
-> +	return __intel_wait_for_register(__to_uncore(display), reg, mask,
-> +					 value,
->  					 fast_timeout_us, slow_timeout_ms, out_value);
->  }
-> +#define intel_de_wait_custom(p,...) __intel_de_wait_custom(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline int
-> -intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
-> -		      u32 mask, unsigned int timeout)
-> +__intel_de_wait_for_set(struct intel_display *display, i915_reg_t reg,
-> +			u32 mask, unsigned int timeout)
->  {
-> -	return intel_de_wait(i915, reg, mask, mask, timeout);
-> +	return intel_de_wait(display, reg, mask, mask, timeout);
->  }
-> +#define intel_de_wait_for_set(p,...) __intel_de_wait_for_set(__to_intel_display(p), __VA_ARGS__)
->  
->  static inline int
-> -intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
-> -			u32 mask, unsigned int timeout)
-> +__intel_de_wait_for_clear(struct intel_display *display, i915_reg_t reg,
-> +			  u32 mask, unsigned int timeout)
->  {
-> -	return intel_de_wait(i915, reg, mask, 0, timeout);
-> +	return intel_de_wait(display, reg, mask, 0, timeout);
->  }
-> +#define intel_de_wait_for_clear(p,...) __intel_de_wait_for_clear(__to_intel_display(p), __VA_ARGS__)
 >  
 >  /*
->   * Unlocked mmio-accessors, think carefully before using these.
-> @@ -94,33 +115,38 @@ intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
->   * a more localised lock guarding all access to that bank of registers.
+>   * Some machines (Lenovo U160) do not work with SSC on LVDS for some reason
 >   */
->  static inline u32
-> -intel_de_read_fw(struct drm_i915_private *i915, i915_reg_t reg)
-> +__intel_de_read_fw(struct intel_display *display, i915_reg_t reg)
+> -static void quirk_ssc_force_disable(struct drm_i915_private *i915)
+> +static void quirk_ssc_force_disable(struct intel_display *display)
 >  {
->  	u32 val;
->  
-> -	val = intel_uncore_read_fw(&i915->uncore, reg);
-> +	val = intel_uncore_read_fw(__to_uncore(display), reg);
->  	trace_i915_reg_rw(false, reg, val, sizeof(val), true);
->  
->  	return val;
+> -	intel_set_quirk(i915, QUIRK_LVDS_SSC_DISABLE);
+> -	drm_info(&i915->drm, "applying lvds SSC disable quirk\n");
+> +	intel_set_quirk(display, QUIRK_LVDS_SSC_DISABLE);
+> +	drm_info(display->drm, "applying lvds SSC disable quirk\n");
 >  }
-> +#define intel_de_read_fw(p,...) __intel_de_read_fw(__to_intel_display(p), __VA_ARGS__)
 >  
->  static inline void
-> -intel_de_write_fw(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
-> +__intel_de_write_fw(struct intel_display *display, i915_reg_t reg, u32 val)
+>  /*
+>   * A machine (e.g. Acer Aspire 5734Z) may need to invert the panel backlight
+>   * brightness value
+>   */
+> -static void quirk_invert_brightness(struct drm_i915_private *i915)
+> +static void quirk_invert_brightness(struct intel_display *display)
 >  {
->  	trace_i915_reg_rw(true, reg, val, sizeof(val), true);
-> -	intel_uncore_write_fw(&i915->uncore, reg, val);
-> +	intel_uncore_write_fw(__to_uncore(display), reg, val);
+> -	intel_set_quirk(i915, QUIRK_INVERT_BRIGHTNESS);
+> -	drm_info(&i915->drm, "applying inverted panel brightness quirk\n");
+> +	intel_set_quirk(display, QUIRK_INVERT_BRIGHTNESS);
+> +	drm_info(display->drm, "applying inverted panel brightness quirk\n");
 >  }
-> +#define intel_de_write_fw(p,...) __intel_de_write_fw(__to_intel_display(p), __VA_ARGS__)
 >  
->  static inline u32
-> -intel_de_read_notrace(struct drm_i915_private *i915, i915_reg_t reg)
-> +__intel_de_read_notrace(struct intel_display *display, i915_reg_t reg)
+>  /* Some VBT's incorrectly indicate no backlight is present */
+> -static void quirk_backlight_present(struct drm_i915_private *i915)
+> +static void quirk_backlight_present(struct intel_display *display)
 >  {
-> -	return intel_uncore_read_notrace(&i915->uncore, reg);
-> +	return intel_uncore_read_notrace(__to_uncore(display), reg);
+> -	intel_set_quirk(i915, QUIRK_BACKLIGHT_PRESENT);
+> -	drm_info(&i915->drm, "applying backlight present quirk\n");
+> +	intel_set_quirk(display, QUIRK_BACKLIGHT_PRESENT);
+> +	drm_info(display->drm, "applying backlight present quirk\n");
 >  }
-> +#define intel_de_read_notrace(p,...) __intel_de_read_notrace(__to_intel_display(p), __VA_ARGS__)
 >  
->  static inline void
-> -intel_de_write_notrace(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
-> +__intel_de_write_notrace(struct intel_display *display, i915_reg_t reg,
-> +			 u32 val)
+>  /* Toshiba Satellite P50-C-18C requires T12 delay to be min 800ms
+>   * which is 300 ms greater than eDP spec T12 min.
+>   */
+> -static void quirk_increase_t12_delay(struct drm_i915_private *i915)
+> +static void quirk_increase_t12_delay(struct intel_display *display)
 >  {
-> -	intel_uncore_write_notrace(&i915->uncore, reg, val);
-> +	intel_uncore_write_notrace(__to_uncore(display), reg, val);
+> -	intel_set_quirk(i915, QUIRK_INCREASE_T12_DELAY);
+> -	drm_info(&i915->drm, "Applying T12 delay quirk\n");
+> +	intel_set_quirk(display, QUIRK_INCREASE_T12_DELAY);
+> +	drm_info(display->drm, "Applying T12 delay quirk\n");
 >  }
-> +#define intel_de_write_notrace(p,...) __intel_de_write_notrace(__to_intel_display(p), __VA_ARGS__)
 >  
->  #endif /* __INTEL_DE_H__ */
+>  /*
+>   * GeminiLake NUC HDMI outputs require additional off time
+>   * this allows the onboard retimer to correctly sync to signal
+>   */
+> -static void quirk_increase_ddi_disabled_time(struct drm_i915_private *i915)
+> +static void quirk_increase_ddi_disabled_time(struct intel_display *display)
+>  {
+> -	intel_set_quirk(i915, QUIRK_INCREASE_DDI_DISABLED_TIME);
+> -	drm_info(&i915->drm, "Applying Increase DDI Disabled quirk\n");
+> +	intel_set_quirk(display, QUIRK_INCREASE_DDI_DISABLED_TIME);
+> +	drm_info(display->drm, "Applying Increase DDI Disabled quirk\n");
+>  }
+>  
+> -static void quirk_no_pps_backlight_power_hook(struct drm_i915_private *i915)
+> +static void quirk_no_pps_backlight_power_hook(struct intel_display *display)
+>  {
+> -	intel_set_quirk(i915, QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK);
+> -	drm_info(&i915->drm, "Applying no pps backlight power quirk\n");
+> +	intel_set_quirk(display, QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK);
+> +	drm_info(display->drm, "Applying no pps backlight power quirk\n");
+>  }
+>  
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+>  	int subsystem_device;
+> -	void (*hook)(struct drm_i915_private *i915);
+> +	void (*hook)(struct intel_display *display);
+>  };
+>  
+>  /* For systems that don't have a meaningful PCI subdevice/subvendor ID */
+>  struct intel_dmi_quirk {
+> -	void (*hook)(struct drm_i915_private *i915);
+> +	void (*hook)(struct intel_display *display);
+>  	const struct dmi_system_id (*dmi_id_list)[];
+>  };
+>  
+> @@ -203,9 +203,9 @@ static struct intel_quirk intel_quirks[] = {
+>  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
+>  };
+>  
+> -void intel_init_quirks(struct drm_i915_private *i915)
+> +void intel_init_quirks(struct intel_display *display)
+>  {
+> -	struct pci_dev *d = to_pci_dev(i915->drm.dev);
+> +	struct pci_dev *d = to_pci_dev(display->drm->dev);
+>  	int i;
+>  
+>  	for (i = 0; i < ARRAY_SIZE(intel_quirks); i++) {
+> @@ -216,15 +216,15 @@ void intel_init_quirks(struct drm_i915_private *i915)
+>  		     q->subsystem_vendor == PCI_ANY_ID) &&
+>  		    (d->subsystem_device == q->subsystem_device ||
+>  		     q->subsystem_device == PCI_ANY_ID))
+> -			q->hook(i915);
+> +			q->hook(display);
+>  	}
+>  	for (i = 0; i < ARRAY_SIZE(intel_dmi_quirks); i++) {
+>  		if (dmi_check_system(*intel_dmi_quirks[i].dmi_id_list) != 0)
+> -			intel_dmi_quirks[i].hook(i915);
+> +			intel_dmi_quirks[i].hook(display);
+>  	}
+>  }
+>  
+> -bool intel_has_quirk(struct drm_i915_private *i915, enum intel_quirk_id quirk)
+> +bool intel_has_quirk(struct intel_display *display, enum intel_quirk_id quirk)
+>  {
+> -	return i915->display.quirks.mask & BIT(quirk);
+> +	return display->quirks.mask & BIT(quirk);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+> index 10a4d163149f..151c8f4ae576 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+> @@ -8,7 +8,7 @@
+>  
+>  #include <linux/types.h>
+>  
+> -struct drm_i915_private;
+> +struct intel_display;
+>  
+>  enum intel_quirk_id {
+>  	QUIRK_BACKLIGHT_PRESENT,
+> @@ -19,7 +19,7 @@ enum intel_quirk_id {
+>  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>  };
+>  
+> -void intel_init_quirks(struct drm_i915_private *i915);
+> -bool intel_has_quirk(struct drm_i915_private *i915, enum intel_quirk_id quirk);
+> +void intel_init_quirks(struct intel_display *display);
+> +bool intel_has_quirk(struct intel_display *display, enum intel_quirk_id quirk);
+>  
+>  #endif /* __INTEL_QUIRKS_H__ */
 > -- 
 > 2.39.2
 > 
