@@ -2,60 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8103A8A8027
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 11:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 315058A8035
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 11:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C906D11335C;
-	Wed, 17 Apr 2024 09:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD1710E970;
+	Wed, 17 Apr 2024 09:58:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmGDcEGB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WMWbtvk6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B191C11335C;
- Wed, 17 Apr 2024 09:54:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2F7410E970
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Apr 2024 09:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713347646; x=1744883646;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jQL9rLPW8AxP/n5YLr3iMBDOCIw1ESXtIkCaKIx0YrU=;
- b=XmGDcEGBMeIc/tAXkFDmt4WCrTHsfvFUKWmNFK6nfxHZUDmwmEvyiO+j
- oiqdHRL/4keGJCo7Vu9J0wS66qVClgtdDbZAFs/fxWzNqMiVOPc9g6hsL
- zek/E3e3ZfIEZrKfmkLTgtc+goHgCvsvG0+ImxE4jpsWCf7gpMaPpXNbD
- bCzczdSj4LUNs1clYt5Mwzxeooyankm8Oq4X5QFoXAw9FcEUtgxfsILxg
- SGGvU0rYGBb/6m2tIqd/N7To9J8PDPWwyc/uEMQwzJBPktYUPpEPlb43L
- zIwCBqVCwV0jUkVmFLDJCvMpGd8uyY8lNA8XmiOMiWSaEFdJRUL45flpO Q==;
-X-CSE-ConnectionGUID: vuYKpih/Qj+ZjAiZqOjmSw==
-X-CSE-MsgGUID: 988P7YhgRbOB5jsfos+HYA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="26292258"
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="26292258"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 02:54:05 -0700
-X-CSE-ConnectionGUID: AfMa0KQITzeIdlOX1FjIjQ==
-X-CSE-MsgGUID: pmkHU82LRyCGL4aBH+N1ig==
+ t=1713347896; x=1744883896;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=aobiEIvc+dYvX8ae3d3P2bSv+P2W/lX5FvV/pVporkE=;
+ b=WMWbtvk6XMImJvkbduZKDt8TTA38mvD5mEcq2mSDuubBYHtla+n36s6r
+ 7slHbWHwOHw0iIFPnBrG2uUp0Ma7t05eIjglFlUNPEB64MwolCKM5JqvS
+ swpEdFtzJ1cT8mfHyS9YHSxjeaJRd2HkvL+E5Ee+kgBoB4V97KeWDo6bg
+ OUz4X44NBgREw8xWD2MsjkCUkV3Zjata4Du3oV1kME2rtsjrjU7kuzPLt
+ OPEtvEN5t6P7Wm7bLFBv7ZblGKpMbVDGAovYm8whlXSgOFOkvt7Wu34zI
+ nuhPidlV7aO5b9XfE4Hi6+gTWEjWlZ3SKir4sz/IYzFYAe9len68UJ7hx w==;
+X-CSE-ConnectionGUID: Q8jcwxEfQF2NoEJnb1wseg==
+X-CSE-MsgGUID: Jyxy5+4MS+ixRIJbSyWKWA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="34216062"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="34216062"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 02:58:16 -0700
+X-CSE-ConnectionGUID: oIN7jAZBR+WveoZ3yKZZzg==
+X-CSE-MsgGUID: VYkB76DJSjmrN3QJuNBaxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="27357476"
-Received: from vpus-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.45.164])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 02:54:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lucas.demarchi@intel.com, ville.syrjala@linux.intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net
-Subject: Re: [PATCH v3 4/7] drm/xe/display: add generic __to_intel_display()
-In-Reply-To: <Zh6jBLVEU5jmxuHI@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1712665176.git.jani.nikula@intel.com>
- <503fea3fc545bebe6aa303d33cb5e816f7738343.1712665176.git.jani.nikula@intel.com>
- <Zh6jBLVEU5jmxuHI@intel.com>
-Date: Wed, 17 Apr 2024 12:53:59 +0300
-Message-ID: <87sezkxqko.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="27214079"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmviesa004.fm.intel.com with ESMTP; 17 Apr 2024 02:58:14 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
+ ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2 on HDMI
+Date: Wed, 17 Apr 2024 15:25:37 +0530
+Message-ID: <20240417095537.632977-2-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240416080917.625155-2-suraj.kandpal@intel.com>
+References: <20240416080917.625155-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,62 +68,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Apr 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Apr 09, 2024 at 03:26:46PM +0300, Jani Nikula wrote:
->> Add generic __to_intel_display() macro that accepts either struct
->> xe_device * or struct intel_display *. This is to be used for
->> transitional stuff that eventually needs to be converted to use struct
->> intel_display *, and therefore is not part of to_intel_display().
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->> 
->> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->> index 2792a497257e..4448eda8b2a4 100644
->> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->> @@ -29,6 +29,17 @@
->>  #include "intel_runtime_pm.h"
->>  #include <linux/pm_runtime.h>
->>  
->> +/*
->> + * Transitional macro to optionally convert struct xe_device * to struct
->> + * intel_display *, also accepting the latter.
->> + */
->> +#define __to_intel_display(p)						\
->> +	_Generic(p,							\
->> +		 const struct xe_device *: (&((const struct xe_device *)(p))->display), \
->> +		 struct xe_device *: (&((struct xe_device *)(p))->display), \
->> +		 const struct intel_display *: (p),			\
->> +		 struct intel_display *: (p))
->
-> hmmm... I thought that with our make magic we didn't need this.
-> but well, at least more awareness and trying to get rid of the make magic
-> earlier?
+Disable HDCP Line Rekeying when HDCP ver > 1.4 and when we are
+on HDMI TMDS operation for DISPLAY_VER >= 14.
 
-It's needed because in i915 I wanted to put this in i915_drv.h to not
-create a extra dependency to/from i915_drv.h. I tried, it gets tricky.
-So weed another copy xe side.
+--v2
+-Wa to be mentioned in comments not in commit message [Jani]
+-Remove blankline [Jani]
 
-The make magic does convert all struct drm_i915_private to struct
-xe_device, so this could have struct drm_i915_private, but the other
-copy is not available here.
+--v3
+-No need to write what is being done in comments when code
+is self explanatory [Jani]
 
-BR,
-Jani.
+Bspec: 49273
+Bspec: 69964
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h           |  1 +
+ 2 files changed, 18 insertions(+)
 
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
->> +
->>  static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
->>  {
->>  	return container_of(dev, struct drm_i915_private, drm);
->> -- 
->> 2.39.2
->> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index d5ed4c7dfbc0..78b20f23a2e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -30,6 +30,21 @@
+ #define KEY_LOAD_TRIES	5
+ #define HDCP2_LC_RETRY_CNT			3
+ 
++/* WA: 16022217614 */
++static void
++intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
++				      struct intel_hdcp *hdcp)
++{
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++
++	if (encoder->type != INTEL_OUTPUT_HDMI)
++		return;
++
++	if (DISPLAY_VER(dev_priv) >= 14)
++		intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(hdcp->cpu_transcoder),
++			     TRANS_DDI_HDCP_LINE_REKEY_DISABLE, 1);
++}
++
+ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+ 			      struct intel_connector *connector)
+ {
+@@ -2005,6 +2020,8 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
+ 		    connector->base.base.id, connector->base.name,
+ 		    hdcp->content_type);
+ 
++	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
++
+ 	ret = hdcp2_authenticate_and_encrypt(state, connector);
+ 	if (ret) {
+ 		drm_dbg_kms(&i915->drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 3f34efcd7d6c..fbf4623cd536 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -5630,6 +5630,7 @@ enum skl_power_gate {
+ #define  TRANS_DDI_EDP_INPUT_B_ONOFF	(5 << 12)
+ #define  TRANS_DDI_EDP_INPUT_C_ONOFF	(6 << 12)
+ #define  TRANS_DDI_EDP_INPUT_D_ONOFF	(7 << 12)
++#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(12)
+ #define  TRANS_DDI_MST_TRANSPORT_SELECT_MASK	REG_GENMASK(11, 10)
+ #define  TRANS_DDI_MST_TRANSPORT_SELECT(trans)	\
+ 	REG_FIELD_PREP(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, trans)
 -- 
-Jani Nikula, Intel
+2.43.2
+
