@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218328A83C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 15:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1A68A83DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 15:10:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6816F1134D6;
-	Wed, 17 Apr 2024 13:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72209113015;
+	Wed, 17 Apr 2024 13:10:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOUiPbFq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UO8sSYHV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 320C31134DE;
- Wed, 17 Apr 2024 13:05:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A969113015;
+ Wed, 17 Apr 2024 13:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713359145; x=1744895145;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=o9rlsX97mmQhuQqKaaHGPsqJ6PCdTbhlTj6KIgYT7bM=;
- b=QOUiPbFqG/oT4dGfcKvQGEKpnzbuItEtSXNuRT+idS0U/oqVcxBel3iz
- PyPvJfKdWo1H3MNQoUqzOwbVt/jQQuOQHTjE5kV5lJ6eP6qVFFTB5dkz1
- khOA7Ls2hbiGHI8PHGleEdXzXpKQaCPbdIMIQnDyttwU6BScNU+VvABfJ
- OVltnbCK8F7Kjg3BlWWbXWrSutSnSdl+F9kXHlhFOyGfoS516Aqa3Ncbs
- gZ+QZHvjopJSw/MiuxLAgt8hTqTFMRkIn6QsIYSd0la97/Qc49SGVDIi7
- Pr4q8tB4UgtFzmKDm9EW/W9OMJ3bA4m9rMlo3r6wDwDPhzoXJqYEDfK0j Q==;
-X-CSE-ConnectionGUID: 9XXL7QK4ToeUaribd1bGOw==
-X-CSE-MsgGUID: 6c6mP6V2Q0+7UsntNcxduA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="19406821"
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="19406821"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ t=1713359431; x=1744895431;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=cTAInaZANfzoFWVDLbqgQg6Fmj442BT84k9ETPReAj4=;
+ b=UO8sSYHVh54KOpLkz2kyx7L/6ETlaw2M/iEwCmb0J+BRjIKifHk6h/yq
+ TSuu7IuVdO74xFpYwKmjJAHKwE/AlzA/A8ItGuSndVnqvalqbCw49kVOm
+ DsampU9cLL9RRQJpDSEjs71JeiU2OZGzRkqaa3fdbyoWwQJwWl+l1n5Fw
+ 4AZy9l47Ax/Z2seoS16QAmwdyI0oqYpph8iQwx5eH+X/xEHHmaVY8w0mk
+ 64H6SM+MJe+D9kpDgSAN8coJhYggm4ZW40Gs8nUxzqoKBovYz27+8/9IY
+ If4sPZb19RJ3H5S70LKdzSPOgtz7tnja/oH2e4akqAXybXwm0QYqBhWmn A==;
+X-CSE-ConnectionGUID: 8COOXvSUSpeZ7qicON5kGg==
+X-CSE-MsgGUID: 8+PdGsGmQ4+f3tfbz+457g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="19407486"
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="19407486"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 06:05:45 -0700
-X-CSE-ConnectionGUID: pIGmw5JNQnyP2Zg+TsF1hQ==
-X-CSE-MsgGUID: l4JTxNybSWiPaFcFuaTN2g==
+ 17 Apr 2024 06:10:31 -0700
+X-CSE-ConnectionGUID: 3bh5wj1FSd6/q8plAlcBoQ==
+X-CSE-MsgGUID: 5+6jKOEZRSqVAEY2vQ0iQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="53829951"
-Received: from vpus-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.45.164])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 06:05:40 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lucas.demarchi@intel.com, ville.syrjala@linux.intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net
-Subject: Re: [PATCH v3 6/7] drm/i915/de: allow intel_display and
- drm_i915_private for de functions
-In-Reply-To: <Zh6kMTfGuSqVjNIV@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1712665176.git.jani.nikula@intel.com>
- <0b48d6bebfe90aa2f901a05be8279ed887d99d7a.1712665176.git.jani.nikula@intel.com>
- <Zh6kMTfGuSqVjNIV@intel.com>
-Date: Wed, 17 Apr 2024 16:05:37 +0300
-Message-ID: <87cyqoxhpa.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="27260186"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.250.221])
+ ([10.94.250.221])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 06:10:29 -0700
+Message-ID: <49f9ac97-8b83-4495-840c-6c042b24aa14@linux.intel.com>
+Date: Wed, 17 Apr 2024 15:10:27 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH i-g-t] i915/gem_mmap_offset: Partial mmap and munmap
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ igt-dev <igt-dev@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+References: <20240412004255.288046-1-andi.shyti@linux.intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240412004255.288046-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,218 +73,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Apr 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Apr 09, 2024 at 03:26:48PM +0300, Jani Nikula wrote:
->> It would be too much noise to convert the intel_de_* functions from
->> using struct drm_i915_private to struct intel_display all at once. Add
->> generic wrappers using __to_intel_display() to accept both.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> ---
->> 
->> This was done using a cocci + shell script combo.
->
-> the conversion below seems sane.
-> would you mind sharing the scripts in the commit message,
-> so scripts could be used when porting this patch to other
-> trees?
 
-Done in v4.
-
+On 4/12/2024 2:42 AM, Andi Shyti wrote:
+> From: Chris Wilson <chris.p.wilson@linux.intel.com>
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Based on a test case developed by Lionel Landwerlin, this exercises
+> creation of partial mmaps using both direct methods of a partial mmap()
+> (where the mmap() only covers a portion of the object) and
+> munmap() to do the same.
 >
->> ---
->>  drivers/gpu/drm/i915/display/intel_de.h | 102 +++++++++++++++---------
->>  1 file changed, 64 insertions(+), 38 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
->> index ba7a1c6ebc2a..a08f8ef630f3 100644
->> --- a/drivers/gpu/drm/i915/display/intel_de.h
->> +++ b/drivers/gpu/drm/i915/display/intel_de.h
->> @@ -10,80 +10,101 @@
->>  #include "i915_trace.h"
->>  #include "intel_uncore.h"
->>  
->> +static inline struct intel_uncore *__to_uncore(struct intel_display *display)
->> +{
->> +	return &to_i915(display->drm)->uncore;
->> +}
->> +
->>  static inline u32
->> -intel_de_read(struct drm_i915_private *i915, i915_reg_t reg)
->> +__intel_de_read(struct intel_display *display, i915_reg_t reg)
->>  {
->> -	return intel_uncore_read(&i915->uncore, reg);
->> +	return intel_uncore_read(__to_uncore(display), reg);
->>  }
->> +#define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline u8
->> -intel_de_read8(struct drm_i915_private *i915, i915_reg_t reg)
->> +__intel_de_read8(struct intel_display *display, i915_reg_t reg)
->>  {
->> -	return intel_uncore_read8(&i915->uncore, reg);
->> +	return intel_uncore_read8(__to_uncore(display), reg);
->>  }
->> +#define intel_de_read8(p,...) __intel_de_read8(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline u64
->> -intel_de_read64_2x32(struct drm_i915_private *i915,
->> -		     i915_reg_t lower_reg, i915_reg_t upper_reg)
->> +__intel_de_read64_2x32(struct intel_display *display,
->> +		       i915_reg_t lower_reg, i915_reg_t upper_reg)
->>  {
->> -	return intel_uncore_read64_2x32(&i915->uncore, lower_reg, upper_reg);
->> +	return intel_uncore_read64_2x32(__to_uncore(display), lower_reg,
->> +					upper_reg);
->>  }
->> +#define intel_de_read64_2x32(p,...) __intel_de_read64_2x32(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline void
->> -intel_de_posting_read(struct drm_i915_private *i915, i915_reg_t reg)
->> +__intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
->>  {
->> -	intel_uncore_posting_read(&i915->uncore, reg);
->> +	intel_uncore_posting_read(__to_uncore(display), reg);
->>  }
->> +#define intel_de_posting_read(p,...) __intel_de_posting_read(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline void
->> -intel_de_write(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
->> +__intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
->>  {
->> -	intel_uncore_write(&i915->uncore, reg, val);
->> +	intel_uncore_write(__to_uncore(display), reg, val);
->>  }
->> +#define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline u32
->> -intel_de_rmw(struct drm_i915_private *i915, i915_reg_t reg, u32 clear, u32 set)
->> +__intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear,
->> +	       u32 set)
->>  {
->> -	return intel_uncore_rmw(&i915->uncore, reg, clear, set);
->> +	return intel_uncore_rmw(__to_uncore(display), reg, clear, set);
->>  }
->> +#define intel_de_rmw(p,...) __intel_de_rmw(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline int
->> -intel_de_wait(struct drm_i915_private *i915, i915_reg_t reg,
->> -	      u32 mask, u32 value, unsigned int timeout)
->> +__intel_de_wait(struct intel_display *display, i915_reg_t reg,
->> +		u32 mask, u32 value, unsigned int timeout)
->>  {
->> -	return intel_wait_for_register(&i915->uncore, reg, mask, value, timeout);
->> +	return intel_wait_for_register(__to_uncore(display), reg, mask, value,
->> +				       timeout);
->>  }
->> +#define intel_de_wait(p,...) __intel_de_wait(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline int
->> -intel_de_wait_fw(struct drm_i915_private *i915, i915_reg_t reg,
->> -		 u32 mask, u32 value, unsigned int timeout)
->> +__intel_de_wait_fw(struct intel_display *display, i915_reg_t reg,
->> +		   u32 mask, u32 value, unsigned int timeout)
->>  {
->> -	return intel_wait_for_register_fw(&i915->uncore, reg, mask, value, timeout);
->> +	return intel_wait_for_register_fw(__to_uncore(display), reg, mask,
->> +					  value, timeout);
->>  }
->> +#define intel_de_wait_fw(p,...) __intel_de_wait_fw(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline int
->> -intel_de_wait_custom(struct drm_i915_private *i915, i915_reg_t reg,
->> -		     u32 mask, u32 value,
->> -		     unsigned int fast_timeout_us,
->> -		     unsigned int slow_timeout_ms, u32 *out_value)
->> +__intel_de_wait_custom(struct intel_display *display, i915_reg_t reg,
->> +		       u32 mask, u32 value,
->> +		       unsigned int fast_timeout_us,
->> +		       unsigned int slow_timeout_ms, u32 *out_value)
->>  {
->> -	return __intel_wait_for_register(&i915->uncore, reg, mask, value,
->> +	return __intel_wait_for_register(__to_uncore(display), reg, mask,
->> +					 value,
->>  					 fast_timeout_us, slow_timeout_ms, out_value);
->>  }
->> +#define intel_de_wait_custom(p,...) __intel_de_wait_custom(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline int
->> -intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
->> -		      u32 mask, unsigned int timeout)
->> +__intel_de_wait_for_set(struct intel_display *display, i915_reg_t reg,
->> +			u32 mask, unsigned int timeout)
->>  {
->> -	return intel_de_wait(i915, reg, mask, mask, timeout);
->> +	return intel_de_wait(display, reg, mask, mask, timeout);
->>  }
->> +#define intel_de_wait_for_set(p,...) __intel_de_wait_for_set(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline int
->> -intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
->> -			u32 mask, unsigned int timeout)
->> +__intel_de_wait_for_clear(struct intel_display *display, i915_reg_t reg,
->> +			  u32 mask, unsigned int timeout)
->>  {
->> -	return intel_de_wait(i915, reg, mask, 0, timeout);
->> +	return intel_de_wait(display, reg, mask, 0, timeout);
->>  }
->> +#define intel_de_wait_for_clear(p,...) __intel_de_wait_for_clear(__to_intel_display(p), __VA_ARGS__)
->>  
->>  /*
->>   * Unlocked mmio-accessors, think carefully before using these.
->> @@ -94,33 +115,38 @@ intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
->>   * a more localised lock guarding all access to that bank of registers.
->>   */
->>  static inline u32
->> -intel_de_read_fw(struct drm_i915_private *i915, i915_reg_t reg)
->> +__intel_de_read_fw(struct intel_display *display, i915_reg_t reg)
->>  {
->>  	u32 val;
->>  
->> -	val = intel_uncore_read_fw(&i915->uncore, reg);
->> +	val = intel_uncore_read_fw(__to_uncore(display), reg);
->>  	trace_i915_reg_rw(false, reg, val, sizeof(val), true);
->>  
->>  	return val;
->>  }
->> +#define intel_de_read_fw(p,...) __intel_de_read_fw(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline void
->> -intel_de_write_fw(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
->> +__intel_de_write_fw(struct intel_display *display, i915_reg_t reg, u32 val)
->>  {
->>  	trace_i915_reg_rw(true, reg, val, sizeof(val), true);
->> -	intel_uncore_write_fw(&i915->uncore, reg, val);
->> +	intel_uncore_write_fw(__to_uncore(display), reg, val);
->>  }
->> +#define intel_de_write_fw(p,...) __intel_de_write_fw(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline u32
->> -intel_de_read_notrace(struct drm_i915_private *i915, i915_reg_t reg)
->> +__intel_de_read_notrace(struct intel_display *display, i915_reg_t reg)
->>  {
->> -	return intel_uncore_read_notrace(&i915->uncore, reg);
->> +	return intel_uncore_read_notrace(__to_uncore(display), reg);
->>  }
->> +#define intel_de_read_notrace(p,...) __intel_de_read_notrace(__to_intel_display(p), __VA_ARGS__)
->>  
->>  static inline void
->> -intel_de_write_notrace(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
->> +__intel_de_write_notrace(struct intel_display *display, i915_reg_t reg,
->> +			 u32 val)
->>  {
->> -	intel_uncore_write_notrace(&i915->uncore, reg, val);
->> +	intel_uncore_write_notrace(__to_uncore(display), reg, val);
->>  }
->> +#define intel_de_write_notrace(p,...) __intel_de_write_notrace(__to_intel_display(p), __VA_ARGS__)
->>  
->>  #endif /* __INTEL_DE_H__ */
->> -- 
->> 2.39.2
->> 
+> Signed-off-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+>   tests/intel/gem_mmap_offset.c | 84 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 84 insertions(+)
+>
+> diff --git a/tests/intel/gem_mmap_offset.c b/tests/intel/gem_mmap_offset.c
+> index 95d2158ca88f..0ba2f9591f85 100644
+> --- a/tests/intel/gem_mmap_offset.c
+> +++ b/tests/intel/gem_mmap_offset.c
+> @@ -56,6 +56,8 @@
+>    * SUBTEST: isolation
+>    * SUBTEST: oob-read
+>    * SUBTEST: open-flood
+> + * SUBTEST: partial-mmap
+> + * SUBTEST: partial-unmap
+>    * SUBTEST: perf
+>    * SUBTEST: pf-nonblock
+>    * SUBTEST: ptrace
+> @@ -874,6 +876,83 @@ static void blt_coherency(int i915)
+>   	igt_assert_f(compare_ok, "Problem with coherency, flush is too late\n");
+>   }
+>   
+> +static void partial_mmap(int i915)
+> +{
+> +	uint32_t handle;
+> +
+> +	handle = gem_create(i915, SZ_2M);
+> +
+> +	for_each_mmap_offset_type(i915, t) {
+> +		struct drm_i915_gem_mmap_offset arg = {
+> +			.handle = handle,
+> +			.flags = t->type,
+> +		};
+> +		uint32_t *ptr;
+> +
+> +		if (mmap_offset_ioctl(i915, &arg))
+> +			continue;
+> +
+> +		ptr = mmap(0, SZ_4K, PROT_WRITE, MAP_SHARED, i915, arg.offset);
+> +		if (ptr == MAP_FAILED)
+> +			continue;
+> +
+> +		memset(ptr, 0xcc, SZ_4K);
+> +		munmap(ptr, SZ_4K);
+> +
+> +		ptr = mmap(0, SZ_4K, PROT_READ, MAP_SHARED, i915, arg.offset + SZ_2M - SZ_4K);
+> +		igt_assert(ptr != MAP_FAILED);
+> +
+> +		for (uint32_t i = 0; i < SZ_4K / sizeof(uint32_t); i++)
+> +			igt_assert_eq_u32(ptr[i], 0);
+> +
+> +		munmap(ptr, SZ_4K);
+> +	}
+> +
+> +	gem_close(i915, handle);
+> +}
+> +
+> +static void partial_unmap(int i915)
+> +{
+> +	uint32_t handle;
+> +
+> +	handle = gem_create(i915, SZ_2M);
+> +
+> +	for_each_mmap_offset_type(i915, t) {
+> +		uint8_t *ptr_a, *ptr_b;
+> +
+> +		/* mmap the same GEM BO twice */
+> +		ptr_a = __mmap_offset(i915, handle, 0, SZ_2M,
+> +				PROT_READ | PROT_WRITE,
+> +				t->type);
+> +		if (!ptr_a)
+> +			continue;
+> +
+> +		ptr_b = __mmap_offset(i915, handle, 0, SZ_2M,
+> +				PROT_READ | PROT_WRITE,
+> +				t->type);
+> +		if (!ptr_b)
+> +			continue;
+> +
+> +		/* unmap the first mapping but the last 4k */
+> +		munmap(ptr_a, SZ_2M - SZ_4K);
+> +
+> +		/* memset that remaining 4k with 0xcc */
+> +		memset(ptr_a + SZ_2M - SZ_4K, 0xcc, SZ_4K);
+> +
+> +		/* memset the first page of the 2Mb with 0xdd */
+> +		memset(ptr_b, 0xdd, SZ_4K);
+> +
+> +		for (uint32_t i = 0; i < SZ_4K; i++)
+> +			igt_assert_eq_u32(ptr_a[SZ_2M - SZ_4K + i], 0xcc);
+> +
+> +		munmap(ptr_a + SZ_2M - SZ_4K, SZ_4K);
+> +		memset(ptr_b, 0, SZ_2M);
 
--- 
-Jani Nikula, Intel
+Do we need this extra memset() ? Otherwise
+
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+
+
+> +		munmap(ptr_b, SZ_2M);
+> +	}
+> +
+> +	gem_close(i915, handle);
+> +}
+> +
+>   static int mmap_gtt_version(int i915)
+>   {
+>   	int gtt_version = -1;
+> @@ -931,6 +1010,11 @@ igt_main
+>   	igt_subtest_f("open-flood")
+>   		open_flood(i915, 20);
+>   
+> +	igt_subtest_f("partial-mmap")
+> +		partial_mmap(i915);
+> +	igt_subtest_f("partial-unmap")
+> +		partial_unmap(i915);
+> +
+>   	igt_subtest_with_dynamic("clear") {
+>   		for_each_memory_region(r, i915) {
+>   			igt_dynamic_f("%s", r->name)
