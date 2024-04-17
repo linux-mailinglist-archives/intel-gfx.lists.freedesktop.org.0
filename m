@@ -2,48 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043898A8010
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 11:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8103A8A8027
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 11:54:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3D7113347;
-	Wed, 17 Apr 2024 09:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C906D11335C;
+	Wed, 17 Apr 2024 09:54:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmGDcEGB";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6625113347;
- Wed, 17 Apr 2024 09:46:10 +0000 (UTC)
-Received: from 91-156-7-239.elisa-laajakaista.fi ([91.156.7.239]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1rx1ri-00000000LAZ-0isP; Wed, 17 Apr 2024 12:46:07 +0300
-Message-ID: <17dc38b91bfddf564f12cdd1ed1ed8615d000e13.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@intel.com>, "Shankar, Uma"
- <uma.shankar@intel.com>,  "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Date: Wed, 17 Apr 2024 12:46:04 +0300
-In-Reply-To: <87v84gxr3j.fsf@intel.com>
-References: <20240412094148.808179-1-luciano.coelho@intel.com>
- <20240412094148.808179-2-luciano.coelho@intel.com>
- <DM4PR11MB63600F7F0EE905B24FED01B2F4042@DM4PR11MB6360.namprd11.prod.outlook.com>
- <7c2a11df009a90646d39783c01f722b96717966c.camel@coelho.fi>
- <DM4PR11MB6360FFEA82155778AD9B9778F4092@DM4PR11MB6360.namprd11.prod.outlook.com>
- <2fe5226a281ad1db416d26969e5edf07b60dd349.camel@coelho.fi>
- <87v84gxr3j.fsf@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B191C11335C;
+ Wed, 17 Apr 2024 09:54:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713347646; x=1744883646;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=jQL9rLPW8AxP/n5YLr3iMBDOCIw1ESXtIkCaKIx0YrU=;
+ b=XmGDcEGBMeIc/tAXkFDmt4WCrTHsfvFUKWmNFK6nfxHZUDmwmEvyiO+j
+ oiqdHRL/4keGJCo7Vu9J0wS66qVClgtdDbZAFs/fxWzNqMiVOPc9g6hsL
+ zek/E3e3ZfIEZrKfmkLTgtc+goHgCvsvG0+ImxE4jpsWCf7gpMaPpXNbD
+ bCzczdSj4LUNs1clYt5Mwzxeooyankm8Oq4X5QFoXAw9FcEUtgxfsILxg
+ SGGvU0rYGBb/6m2tIqd/N7To9J8PDPWwyc/uEMQwzJBPktYUPpEPlb43L
+ zIwCBqVCwV0jUkVmFLDJCvMpGd8uyY8lNA8XmiOMiWSaEFdJRUL45flpO Q==;
+X-CSE-ConnectionGUID: vuYKpih/Qj+ZjAiZqOjmSw==
+X-CSE-MsgGUID: 988P7YhgRbOB5jsfos+HYA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="26292258"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="26292258"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 02:54:05 -0700
+X-CSE-ConnectionGUID: AfMa0KQITzeIdlOX1FjIjQ==
+X-CSE-MsgGUID: pmkHU82LRyCGL4aBH+N1ig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="27357476"
+Received: from vpus-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.45.164])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2024 02:54:02 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ lucas.demarchi@intel.com, ville.syrjala@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net
+Subject: Re: [PATCH v3 4/7] drm/xe/display: add generic __to_intel_display()
+In-Reply-To: <Zh6jBLVEU5jmxuHI@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1712665176.git.jani.nikula@intel.com>
+ <503fea3fc545bebe6aa303d33cb5e816f7738343.1712665176.git.jani.nikula@intel.com>
+ <Zh6jBLVEU5jmxuHI@intel.com>
+Date: Wed, 17 Apr 2024 12:53:59 +0300
+Message-ID: <87sezkxqko.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH v5 1/4] drm/i915/display: add support for DMC wakelocks
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,26 +71,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2024-04-17 at 12:42 +0300, Jani Nikula wrote:
-> On Mon, 15 Apr 2024, Luca Coelho <luca@coelho.fi> wrote:
-> > Thanks a lot for your reviews! Now I just need to get someone to merge
-> > this series, since I don't have commit rights to the repo yet.
->=20
-> Thanks for the patches and review, merged to drm-intel-next with a
-> slightly heavy heart because it sets me back with [1] in a pretty
-> annoying way. Oh well.
->=20
-> BR,
-> Jani.
->=20
-> [1] https://lore.kernel.org/r/0b48d6bebfe90aa2f901a05be8279ed887d99d7a.17=
-12665176.git.jani.nikula@intel.com
+On Tue, 16 Apr 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Tue, Apr 09, 2024 at 03:26:46PM +0300, Jani Nikula wrote:
+>> Add generic __to_intel_display() macro that accepts either struct
+>> xe_device * or struct intel_display *. This is to be used for
+>> transitional stuff that eventually needs to be converted to use struct
+>> intel_display *, and therefore is not part of to_intel_display().
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 11 +++++++++++
+>>  1 file changed, 11 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+>> index 2792a497257e..4448eda8b2a4 100644
+>> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+>> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+>> @@ -29,6 +29,17 @@
+>>  #include "intel_runtime_pm.h"
+>>  #include <linux/pm_runtime.h>
+>>  
+>> +/*
+>> + * Transitional macro to optionally convert struct xe_device * to struct
+>> + * intel_display *, also accepting the latter.
+>> + */
+>> +#define __to_intel_display(p)						\
+>> +	_Generic(p,							\
+>> +		 const struct xe_device *: (&((const struct xe_device *)(p))->display), \
+>> +		 struct xe_device *: (&((struct xe_device *)(p))->display), \
+>> +		 const struct intel_display *: (p),			\
+>> +		 struct intel_display *: (p))
+>
+> hmmm... I thought that with our make magic we didn't need this.
+> but well, at least more awareness and trying to get rid of the make magic
+> earlier?
 
-Oh, no! But you do have cocci and scripts, so it should be easy? Let me
-know if I can help you rebase your change.
+It's needed because in i915 I wanted to put this in i915_drv.h to not
+create a extra dependency to/from i915_drv.h. I tried, it gets tricky.
+So weed another copy xe side.
 
-In any case, thanks for merging my patches!
+The make magic does convert all struct drm_i915_private to struct
+xe_device, so this could have struct drm_i915_private, but the other
+copy is not available here.
 
---
-Cheers,
-Luca.
+BR,
+Jani.
+
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>
+>> +
+>>  static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+>>  {
+>>  	return container_of(dev, struct drm_i915_private, drm);
+>> -- 
+>> 2.39.2
+>> 
+
+-- 
+Jani Nikula, Intel
