@@ -2,150 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D77FE8A7BA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 07:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1FA08A7BBD
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 07:16:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF77113129;
-	Wed, 17 Apr 2024 05:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A0E113155;
+	Wed, 17 Apr 2024 05:16:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4ZYUwNV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsjCIBSV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 506AC11312B
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Apr 2024 05:00:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAC4113155;
+ Wed, 17 Apr 2024 05:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713330051; x=1744866051;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=+BeutqZ/XJbnJL4q7QUsW1jw+eYYpy7Jxe9wrryjnSY=;
- b=j4ZYUwNVty0caPR1fFtpJKvUGEQoRi+ci6aP6SMh8NBLCvEjW76TmPxQ
- 1aGjiE0nJ0JK8oZNnK9XOmUs5G+CQLeeu37un/K2SK8vTz1su1DNQJ01Z
- 5CeiSHTSmB8YfA0ESJ5mJhrk1UqFL6NZSXhdo05R+Rma8WcDi0W0MxHdO
- eS8nvW4KphCGJbXbvga6pQZjD0twp266llX68WZQHk6ulgzLXE3n2a/wy
- U5IyN+Cm5bb7dAQc0TTP/a4gtudIE5oHwbRSOiMZcX/cCDG8NBK5mkl1g
- dKly44C6rywqdeiP3kGyQiQvwa2pQE682eOeVRnCaobFddOLonGZaa6zH A==;
-X-CSE-ConnectionGUID: 9l9pEqPOSQuLdZkLPL36PQ==
-X-CSE-MsgGUID: cbzo2kFxQLy65Cog5ZL3Kg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="8663049"
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; 
-   d="scan'208";a="8663049"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2024 22:00:44 -0700
-X-CSE-ConnectionGUID: kDn/9U3USPyAroJRcA1DoA==
-X-CSE-MsgGUID: TlOMJkVGQWa4GIfT1T7mNg==
+ t=1713331009; x=1744867009;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jtOytK7oWiptXH7Uo5vykc9AUFCufqIq7p1qkcmyN6c=;
+ b=bsjCIBSVKV77MrjHHSnyfLtYuBOuvLM5uiZEGGFATCmnYcf0y05Ma9ld
+ 5h63t20W1M3W1Q9X0VS79YFb61qd3FLividfj3boehL9Z9u1odIfkfw8R
+ 0FigHu6bsqmKxGtYMONLFPC3PiU7x8YjwoY9t+DM24qtgzgMWDiqJ+CPx
+ 8iLdjo2FFQ3pBg3JjN+knbZl1C4u0Ec7pJPzDQvWpOJ1x03QrntkbIZIH
+ 6DPyM6XGuIrwHLrNZjEgmAlmRc4N8d97AkC12IHVEQe6vnG3sBBvjOKNV
+ hePm3NoQwdn9BteH5C9ENkkKdp9Dj32qWdkeBXkp5i/nS2X1Zf2hwkfog g==;
+X-CSE-ConnectionGUID: jxGNjvJ8TNS2GSuGuL/u5Q==
+X-CSE-MsgGUID: hgG/4A12TUKKbgNQVMuLYQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="31286423"
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="31286423"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 22:16:48 -0700
+X-CSE-ConnectionGUID: T8V37fKZRQaWYVN0MzdbKw==
+X-CSE-MsgGUID: 5h5+VWK+TjOfEYLKoAh/Xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="27293671"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Apr 2024 22:00:43 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Apr 2024 22:00:43 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 16 Apr 2024 22:00:43 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 16 Apr 2024 22:00:43 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ftgcL5A+0mZR3BX7lSh5ZYRHnQIvqbMSevCgM1H3wPgFO8lsCNsYIeLbtoMChmG9h9G7gZYfQdeokNZ00c9BkMAImEnSpjmUmBvnQC+YuuqQeoyeuejYbRnSfK+0HZGzH9jUh1Q5/osRc3eFOEe+KCG5Wizh96hGWZqCikOZ0Aqr9F8o7hr5ebB8Q5aP7kGeTW8HlIZ/73vyYAjcobELJoyQZxD8FMd6HXhiDnVgeAWdKw6rpYjQkA3gG6Eg9PqUDxAhJu2G8+zPeVmSKEaRMsfuenbfBaGPdnkaunLegqtDNS2lvu3n/ACbRTolvTuaSodqTuliEUpeaBirvQSj8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8CgaemJ24TMCAmQHqAcDtflL8K9X4hdiWUa4JZRp0qA=;
- b=V+jMm8GiFNSidPZ/8ox3ZnWm/sMIPTYXXv5x1NbNkY4STYJcXJbh7FOfuj287gIJN/JfJqIOP6qflV11Yn3Pmctb3F1OH+JMQd8+HMmWiLns0e4BHPPCtKCnCIg46dEBEZvTZ7d/fULvldhKA1MHqtgu6B8sUm1XJPkDJAwMip6JHci3CC9gm2JuZJAuEnRmIqX7VbE8Ir6mXVbv6dHZ7EDaISuXJCemVTfEKwyRu3/VQGoqrVFrfYNOD4q0dgwSepwUpPNclr2SGPBMznds10/UpBvdMFOm7TUsHHNk2rDFgPUhPiIbOiPjOPH8JpbmYISTlSON/xLwHJW8P/txnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by PH0PR11MB7166.namprd11.prod.outlook.com (2603:10b6:510:1e9::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.28; Wed, 17 Apr
- 2024 05:00:36 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::4b13:ba21:57e8:6da8]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::4b13:ba21:57e8:6da8%5]) with mapi id 15.20.7409.028; Wed, 17 Apr 2024
- 05:00:36 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, "Shankar, Uma"
- <uma.shankar@intel.com>, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-Subject: RE: [PATCH 1/2] drm/i915: Add SCLKGATE_DIS register definition
-Thread-Topic: [PATCH 1/2] drm/i915: Add SCLKGATE_DIS register definition
-Thread-Index: AQHaj8/tm1CRic5mOkm72FCaa91yUbFq2uIAgAENKgA=
-Date: Wed, 17 Apr 2024 05:00:36 +0000
-Message-ID: <SN7PR11MB6750220E8EEA2F5768D9ACAAE30F2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20240416072733.624048-2-suraj.kandpal@intel.com>
- <20240416072733.624048-3-suraj.kandpal@intel.com>
- <Zh51FEfyQbl0mIbY@intel.com>
-In-Reply-To: <Zh51FEfyQbl0mIbY@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|PH0PR11MB7166:EE_
-x-ms-office365-filtering-correlation-id: dc42faeb-225f-44a0-a7af-08dc5e9b51ac
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: pL3n8drFngAffjUah1wCXbKbududrbzvtVqBFbXFdyDHbuf+uEZl7/CA7s2EMTyo1MWmgLoYMxDg+NuFTf0yDsocekyeTHp6mghGIwnChYPeZ9v0tTMNRAnZrqIYpPDz0S9Oy3VroRl2QlAWAoIObpGv442/YivFl713dzQzK9uZm/wKvPFckgJ9xkEbbnQebOyQsXomVuRxypEQO9/kxJHmAmY8REi1S1Ls/HfaQNohxi8KbU2Sx9f9ixHVr9NkZfMWMRVDmz//8Xr1CPfG1wy9BVLZpqTR6OEaTaAKK62D1/pM3sz6Hhl+nHlSx3jLxH6vjdlU9XDEoBhOiiNrgdrU0TIWhmtb+uKHYNTKyDEjEklRWbjssgnf4nS3Y+33ARHA8hOtR36g0aX4nVkxA2n6tLszwc6FqFWAlc+uMFJSD0EXCHS4urH9fE2kZQIY//pDtbUgR9Z2pZhcYMo6dh4kKlwY19aX03pAy8sIwEFC4sLArLnoPQVOYHpB9vg9hsPPs7yn6/jc5mZVjmILBfp3bM0nLb3N281KrhcszKpna4YT+lP+xBAiqGXoMnL9D2DNqCGggmhX59PQoRJJOBnutoLjbMuqlGZbkikNSJXZ1Y9S1AJV/xPvgoGSTSJwRsA0F7fFGolyJmdXzEna6Wl5rHj494kbjZF2ssJkjfc=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?KtFwws1Bq65HuI71PVhT+5gcmToUYA79Il1prubf/l+n4czsThh01TnUp9?=
- =?iso-8859-1?Q?VPQwfc6Li2sE6uLw9wCF0OLec280rzPC4i1W9G2OdjDFEYd88lZu+rMYdj?=
- =?iso-8859-1?Q?sWhrcAfeeboed1BZuz9c8OqehPYI6RfER9fb4mVdCgsgvi/vArZSWSGrr4?=
- =?iso-8859-1?Q?rrfWvmqSPTt5/Mv/rYEJxBUWHLikVxjRbx6nCFhtil0K4X7n2FeqNX/NRb?=
- =?iso-8859-1?Q?YWJwUr8NIZP0NYzshppBZ2WtMRWZ1fC3jfgNJI9oXjLVBVH69UwYWslwue?=
- =?iso-8859-1?Q?P5v8/BPRk+uRdi+YRn66mGBiEB8uZ1QtmrAZLawxcay05zo8xRxLm26z+S?=
- =?iso-8859-1?Q?d9rNwapR2S2e35qkZLy7uRklyEPqoJfbN/+3GxEtBmftVA/JKp5uRdM5vt?=
- =?iso-8859-1?Q?nl5drIzAQ4WT1dpdxiwMsdXvyAhWxMcEjMGK+W7UCFKTTOnzWt5LXM9qlS?=
- =?iso-8859-1?Q?tyZLfb+P5oINo1yzj378mpvvO9gmWUu1oG9kscjeizRXwOgper8AD+dRPf?=
- =?iso-8859-1?Q?ltj+gY6lbu3g0ljkAJ+cJ/E3HgJDpRlHaqvY0Vx5ock9fWWsU8WwLlIPOr?=
- =?iso-8859-1?Q?kXzFSoZ+PngS1qDTD1cw1X5HhwZqKjhZdg7IAmPuPv7JKJfIcNdQ+4cizl?=
- =?iso-8859-1?Q?4zD/sssv7LaeuekrvhulgkFvbboCZfGPEiKnRV6PvpXm1oL89o6rBNe/NO?=
- =?iso-8859-1?Q?iqhF3FN64DjePq+DNOHUumOShR46Y1fNrVoeQ6Q/XK0UqohkRbWJln5ByW?=
- =?iso-8859-1?Q?jdEIXjmsVsUkllABQft6mUL4eUleMagxOtY79QZzbUbknpBXvRyAJcwW9o?=
- =?iso-8859-1?Q?B+pKYpDTy3Fz2N9/o6BXnCfU6bx4Uhc8FzIUFC3rUi9y4wDvYIRqu4kojO?=
- =?iso-8859-1?Q?1LNIisPMDU35Dgtq50WVZhI9WqcvggAw7YkyroWPVG4jsegWiJZLwlu398?=
- =?iso-8859-1?Q?geCm05xteDvqY+7Gne0mrCpYXpQR5aRO2UPcZADK3MBn3lw8i0Jb7shwBW?=
- =?iso-8859-1?Q?dHtiAPbFXwRHnh2yDXVG951EzqnEWT/Uz4b7OB7Fujr382o9K1Zg9/7gVo?=
- =?iso-8859-1?Q?xea3s7uD/todz4UVAOhoecfwM4bmZcVZkwCsqsyUxzJ22pjN7jvw0Hkrpz?=
- =?iso-8859-1?Q?UZbXIgC+gV05iCXizVEMtpAJD3bWxysqFMJdhCJFGQcP6lZo4JpSNLg86k?=
- =?iso-8859-1?Q?34m41oTAVkZKzB9C74ebmcbrPMJFz5vdnMEgUXElWcELfqhdN1vFZQUslt?=
- =?iso-8859-1?Q?WqMfQDH2dB5uLmVcNR67u+hllXcyaQ8zCrmmBNMlptYGYeiwEhw2ibZlLj?=
- =?iso-8859-1?Q?/xFIeWIAjPQ1Ywd2AGHKj7uz1EZADJ5G0akWScp5V6v1FFNYz3pmpt4n6V?=
- =?iso-8859-1?Q?1QU1RyA01mxTdiVCFs5RebW+Uq3NueqE5Ef38qpA74Nsz4AIkyomWDQDyx?=
- =?iso-8859-1?Q?BhNY1fN2+8bfZHZs2cIis0SAJh4/CqdTH3qZjQoPDAebYQlt3hOxCGm7r8?=
- =?iso-8859-1?Q?H/dGnHUQ/ZbG02nJ7HfVSJ7F6rJGia4ET/dCEilxsc1QLO6MJFTBy5g42W?=
- =?iso-8859-1?Q?r2HVpCRrO+F37etz6FhGo5+N6Q5yhFSs7bzygbin2C32ZvtGf8CJb2QXoU?=
- =?iso-8859-1?Q?Oyt4FidfbeS24YYeqLmv3PLj4YHNbYSrjV?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.07,208,1708416000"; d="scan'208";a="22570339"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2024 22:16:47 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Badal Nilawar <badal.nilawar@intel.com>, Andi Shyti <andi.shyti@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, linux-hwmon@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v4] drm/i915/hwmon: Get rid of devm
+Date: Tue, 16 Apr 2024 22:16:42 -0700
+Message-ID: <20240417051642.788740-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc42faeb-225f-44a0-a7af-08dc5e9b51ac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2024 05:00:36.2413 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RKBSvtaokVzjuHnvilEdx6HtlGomXHjcsIThQP6uaqqDle1lCwr3ocR1Pc+2F3LdGTkqR/Gtfb9AjIMZSlnU5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7166
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,54 +69,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+When both hwmon and hwmon drvdata (on which hwmon depends) are device
+managed resources, the expectation, on device unbind, is that hwmon will be
+released before drvdata. However, in i915 there are two separate code
+paths, which both release either drvdata or hwmon and either can be
+released before the other. These code paths (for device unbind) are as
+follows (see also the bug referenced below):
 
+Call Trace:
+release_nodes+0x11/0x70
+devres_release_group+0xb2/0x110
+component_unbind_all+0x8d/0xa0
+component_del+0xa5/0x140
+intel_pxp_tee_component_fini+0x29/0x40 [i915]
+intel_pxp_fini+0x33/0x80 [i915]
+i915_driver_remove+0x4c/0x120 [i915]
+i915_pci_remove+0x19/0x30 [i915]
+pci_device_remove+0x32/0xa0
+device_release_driver_internal+0x19c/0x200
+unbind_store+0x9c/0xb0
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Tuesday, April 16, 2024 6:25 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Borah, Chaitanya Kumar
-> <chaitanya.kumar.borah@intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>;
-> Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> Subject: Re: [PATCH 1/2] drm/i915: Add SCLKGATE_DIS register definition
->=20
-> On Tue, Apr 16, 2024 at 12:57:33PM +0530, Suraj Kandpal wrote:
-> > Add SCLKGATE_DIS register and it's register definition which will be
-> > used the next patch.
-> >
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_reg.h | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > b/drivers/gpu/drm/i915/i915_reg.h index 3f34efcd7d6c..beec91a2f493
-> > 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -6250,6 +6250,10 @@ enum skl_power_gate {
-> >  #define  SFUSE_STRAP_DDIC_DETECTED	(1 << 1)
-> >  #define  SFUSE_STRAP_DDID_DETECTED	(1 << 0)
-> >
-> > +/* SCLKGATE_DIS */
-> > +#define SCLKGATE_DIS			_MMIO(0xc2014)
->=20
-> That address is SFUSE_STRAP
->=20
-Hi Ville had noticed that fixed it along with Jani's other comments
-https://patchwork.freedesktop.org/series/132495/
+and
 
-Regards,
-Suraj Kandpal
-> > +#define  DPLS_GATING_DISABLE		REG_BIT(29)
-> > +
-> >  #define WM_MISC				_MMIO(0x45260)
-> >  #define  WM_MISC_DATA_PARTITION_5_6	(1 << 0)
-> >
-> > --
-> > 2.43.2
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+Call Trace:
+release_nodes+0x11/0x70
+devres_release_all+0x8a/0xc0
+device_unbind_cleanup+0x9/0x70
+device_release_driver_internal+0x1c1/0x200
+unbind_store+0x9c/0xb0
+
+This means that in i915, if use devm, we cannot gurantee that hwmon will
+always be released before drvdata. Which means that we have a uaf if hwmon
+sysfs is accessed when drvdata has been released but hwmon hasn't.
+
+The only way out of this seems to be do get rid of devm_ and release/free
+everything explicitly during device unbind.
+
+v2: Change commit message and other minor code changes
+v3: Cleanup from i915_hwmon_register on error (Armin Wolf)
+v4: Eliminate potential static analyzer warning (Rodrigo)
+    Eliminate fetch_and_zero (Jani)
+
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10366
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_hwmon.c | 52 +++++++++++++++++++++----------
+ 1 file changed, 36 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index b758fd110c20..1551a40a675e 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -793,7 +793,7 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 	if (!IS_DGFX(i915))
+ 		return;
+ 
+-	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
++	hwmon = kzalloc(sizeof(*hwmon), GFP_KERNEL);
+ 	if (!hwmon)
+ 		return;
+ 
+@@ -819,14 +819,12 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 	hwm_get_preregistration_info(i915);
+ 
+ 	/*  hwmon_dev points to device hwmon<i> */
+-	hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat->name,
+-							 ddat,
+-							 &hwm_chip_info,
+-							 hwm_groups);
+-	if (IS_ERR(hwmon_dev)) {
+-		i915->hwmon = NULL;
+-		return;
+-	}
++	hwmon_dev = hwmon_device_register_with_info(dev, ddat->name,
++						    ddat,
++						    &hwm_chip_info,
++						    hwm_groups);
++	if (IS_ERR(hwmon_dev))
++		goto err;
+ 
+ 	ddat->hwmon_dev = hwmon_dev;
+ 
+@@ -839,16 +837,38 @@ void i915_hwmon_register(struct drm_i915_private *i915)
+ 		if (!hwm_gt_is_visible(ddat_gt, hwmon_energy, hwmon_energy_input, 0))
+ 			continue;
+ 
+-		hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat_gt->name,
+-								 ddat_gt,
+-								 &hwm_gt_chip_info,
+-								 NULL);
+-		if (!IS_ERR(hwmon_dev))
+-			ddat_gt->hwmon_dev = hwmon_dev;
++		hwmon_dev = hwmon_device_register_with_info(dev, ddat_gt->name,
++							    ddat_gt,
++							    &hwm_gt_chip_info,
++							    NULL);
++		if (IS_ERR(hwmon_dev))
++			goto err;
++
++		ddat_gt->hwmon_dev = hwmon_dev;
+ 	}
++	return;
++err:
++	i915_hwmon_unregister(i915);
+ }
+ 
+ void i915_hwmon_unregister(struct drm_i915_private *i915)
+ {
+-	fetch_and_zero(&i915->hwmon);
++	struct i915_hwmon *hwmon = i915->hwmon;
++	struct intel_gt *gt;
++	int i;
++
++	if (!hwmon)
++		return;
++
++	for_each_gt(gt, i915, i)
++		if (hwmon->ddat_gt[i].hwmon_dev)
++			hwmon_device_unregister(hwmon->ddat_gt[i].hwmon_dev);
++
++	if (hwmon->ddat.hwmon_dev)
++		hwmon_device_unregister(hwmon->ddat.hwmon_dev);
++
++	mutex_destroy(&hwmon->hwmon_lock);
++
++	kfree(i915->hwmon);
++	i915->hwmon = NULL;
+ }
+-- 
+2.41.0
+
