@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70EB88A8252
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 13:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE87E8A8257
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Apr 2024 13:49:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D00210F440;
-	Wed, 17 Apr 2024 11:47:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SvGoOKn9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 488E411342D;
+	Wed, 17 Apr 2024 11:49:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A25610F440;
- Wed, 17 Apr 2024 11:47:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713354462; x=1744890462;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=5O/UY6KKSSFkCoHiliCdx69CPIb+bCc6pWrtePdxBu8=;
- b=SvGoOKn9UCDawvapaVObs5aETu2UwUN4ql8e8myVha1n7y0R1PHrDd0U
- PTzwsmr4odwrqZW2cJLs32cFsxMBuowe658POQWIbHdPV3r7cG70JDnDA
- 1qJj2ER5O+K2fZ6eNLC4p6vCpVKJI1jYcssCeBOe4M6TFfK27/nRV0hKZ
- ZR542ofLKd0rdgPmIcQ9GSuEMRbSkqzEwSgJgBy3pa6rsAYdFd4ZzmhDH
- sFYPd4mirDXssufOdzlceYmj9mkkVMjlkAfmWjZq4slLimvQiiJ+5On69
- tI6Z8OEqF7lqgxeSdoREw8KDAhSpvjFb7wznKRfB2a2YblZJzi7wmVtYm g==;
-X-CSE-ConnectionGUID: ELh/h6NaRdCaOeOSHRRsdw==
-X-CSE-MsgGUID: So8et1cCRjCWJJ00TQ3tKA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11046"; a="12679736"
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="12679736"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 04:47:41 -0700
-X-CSE-ConnectionGUID: Ku2L2GNQRfqHzQ665pN3YQ==
-X-CSE-MsgGUID: Q6h4EmPXRJO/RefYOaRfLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,209,1708416000"; d="scan'208";a="23193554"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2024 04:46:23 -0700
-Date: Wed, 17 Apr 2024 14:46:56 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Khaled Almahallawy <khaled.almahallawy@intel.com>
-Subject: Re: [PATCH v2 11/11] drm/i915/dp_mst: Enable HBLANK expansion quirk
- for UHBR rates
-Message-ID: <Zh+2sLqFQ//J8m3W@ideak-desk.fi.intel.com>
-References: <20240416221010.376865-1-imre.deak@intel.com>
- <20240416221010.376865-12-imre.deak@intel.com>
- <87y19cxr8j.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E72411342D;
+ Wed, 17 Apr 2024 11:49:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4165877088476310308=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87y19cxr8j.fsf@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/hdcp=3A_Disable_HD?=
+ =?utf-8?q?CP_Line_Rekeying_for_HDCP2=2E2_on_HDMI_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Apr 2024 11:49:36 -0000
+Message-ID: <171335457618.1465041.15265409038380855800@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240416033918.567386-2-suraj.kandpal@intel.com>
+In-Reply-To: <20240416033918.567386-2-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,141 +37,260 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 17, 2024 at 12:39:40PM +0300, Jani Nikula wrote:
-> On Wed, 17 Apr 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > Enabling the 5k@60Hz uncompressed mode on the MediaTek/Dell U3224KBA
-> > monitor results in a blank screen, at least on MTL platforms on UHBR
-> > link rates with some (<30) uncompressed bpp values. Enabling compression
-> > fixes the problem, so do that for now. Windows enables DSC always if the
-> > sink supports it and forcing it to enable the mode without compression
-> > leads to the same problem above (which suggests a panel issue with
-> > uncompressed mode).
-> >
-> > The same 5k mode on non-UHBR link rates is not affected and lower
-> > resolution modes are not affected either. The problem is similar to the
-> > one fixed by the HBLANK expansion quirk on Synaptics hubs, with the
-> > difference that the problematic mode has a longer HBLANK duration. Also
-> > the monitor doesn't report supporting HBLANK expansion; either its
-> > internal MST hub does the expansion internally - similarly to the
-> > Synaptics hub - or the issue has another root cause, but still related
-> > to the mode's short HBLANK duration. Enable the quirk for the monitor
-> > adjusting the detection for the above differences.
-> >
-> > Cc: dri-devel@lists.freedesktop.org
-> > Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/display/drm_dp_helper.c     |  2 ++
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 22 +++++++++++++++++----
-> >  2 files changed, 20 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> > index 023907da98581..79a615667aab1 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> > @@ -2281,6 +2281,8 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
-> >  	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
-> >  	/* Synaptics DP1.4 MST hubs require DSC for some modes on which it applies HBLANK expansion. */
-> >  	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC) },
-> > +	/* MediaTek panels (at least in U3224KBA) require DSC for modes with a short HBLANK on UHBR links. */
-> > +	{ OUI(0x00, 0x0C, 0xE7), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC) },
-> >  	/* Apple MacBookPro 2017 15 inch eDP Retina panel reports too low DP_MAX_LINK_RATE */
-> >  	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID(101, 68, 21, 101, 98, 97), false, BIT(DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS) },
-> >  };
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index fb5e167c3c659..71b01f7631919 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -421,15 +421,22 @@ static int mode_hblank_period_ns(const struct drm_display_mode *mode)
-> >  
-> >  static bool
-> >  hblank_expansion_quirk_needs_dsc(const struct intel_connector *connector,
-> > -				 const struct intel_crtc_state *crtc_state)
-> > +				 const struct intel_crtc_state *crtc_state,
-> > +				 const struct link_config_limits *limits)
-> >  {
-> >  	const struct drm_display_mode *adjusted_mode =
-> >  		&crtc_state->hw.adjusted_mode;
-> > +	bool is_uhbr_sink = connector->mst_port &&
-> > +			    drm_dp_uhbr_channel_coding_supported(connector->mst_port->dpcd);
-> 
-> Why do you combine connector->mst_port to "is uhbr sink"? I think it's
-> confusing.
+--===============4165877088476310308==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It is a way to get the DPCD of the root port, to determine if it
-supports UHBR.
+== Series Details ==
 
-> > +	int hblank_limit = is_uhbr_sink ? 500 : 300;
-> >  
-> >  	if (!connector->dp.dsc_hblank_expansion_quirk)
-> >  		return false;
-> >  
-> > -	if (mode_hblank_period_ns(adjusted_mode) > 300)
-> > +	if (is_uhbr_sink && !drm_dp_is_uhbr_rate(limits->max_rate))
-> 
-> I'm not saying that's not correct, but I find that condition a bit
-> surprising. "This does not apply to sinks capable of 128b/132b, but not
-> running at UHBR."
-> 
-> IOW, this applies to sinks not capable of 128b/132b, and sinks capable
-> of 128b/132b and running at UHBR.
+Series: drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2 on HDMI (rev3)
+URL   : https://patchwork.freedesktop.org/series/132479/
+State : success
 
-Yes, on the particular monitor I tested and enabled the quirk for - DELL
-U3224KBA - all the modes work fine in decompressed mode on non-UHBR link
-rates, so it remains possible to enable those modes without DSC on non-UHBR
-link rates.
+== Summary ==
 
-> A head scratcher.
-> 
-> > +		return false;
-> > +
-> > +	if (mode_hblank_period_ns(adjusted_mode) > hblank_limit)
-> >  		return false;
-> >  
-> >  	return true;
-> > @@ -445,7 +452,7 @@ adjust_limits_for_dsc_hblank_expansion_quirk(const struct intel_connector *conne
-> >  	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >  	int min_bpp_x16 = limits->link.min_bpp_x16;
-> >  
-> > -	if (!hblank_expansion_quirk_needs_dsc(connector, crtc_state))
-> > +	if (!hblank_expansion_quirk_needs_dsc(connector, crtc_state, limits))
-> >  		return true;
-> >  
-> >  	if (!dsc) {
-> > @@ -1604,7 +1611,14 @@ static bool detect_dsc_hblank_expansion_quirk(const struct intel_connector *conn
-> >  			      DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC))
-> >  		return false;
-> >  
-> > -	if (!(dpcd[DP_RECEIVE_PORT_0_CAP_0] & DP_HBLANK_EXPANSION_CAPABLE))
-> > +	/*
-> > +	 * UHBR (MST sink) devices requiring this quirk doesn't advertise the
-> 
-> What are you trying to say with "UHBR (MST sink)"? We've (read: I) have
-> been confused by this in the past, and casually equating UHBR and MST
-> isn't helping.
+CI Bug Log - changes from CI_DRM_14593 -> Patchwork_132479v3
+====================================================
 
-"MST sink" above is a distinction vs. the MST hubs the quirk is also
-enabled for, the latter ones setting the HBLANK expansion cap flag,
-while the former one doesn't.
+Summary
+-------
 
-> BR,
-> Jani.
-> 
-> 
-> > +	 * HBLANK expansion support. Presuming that they perform HBLANK
-> > +	 * expansion internally, or are affected by this issue on modes with a
-> > +	 * short HBLANK for other reasons.
-> > +	 */
-> > +	if (!drm_dp_uhbr_channel_coding_supported(dpcd) &&
-> > +	    !(dpcd[DP_RECEIVE_PORT_0_CAP_0] & DP_HBLANK_EXPANSION_CAPABLE))
-> >  		return false;
-> >  
-> >  	drm_dbg_kms(&i915->drm,
-> 
-> -- 
-> Jani Nikula, Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/index.html
+
+Participating hosts (38 -> 36)
+------------------------------
+
+  Additional (3): fi-kbl-7567u fi-elk-e7500 fi-bsw-n3050 
+  Missing    (5): bat-dg1-7 bat-arls-3 fi-snb-2520m fi-kbl-8809g bat-mtlp-6 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_132479v3:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@debugfs_test@read_all_entries:
+    - {bat-mtlp-9}:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-mtlp-9/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-mtlp-9/igt@debugfs_test@read_all_entries.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_132479v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-7567u:       NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-7567u:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][5] +19 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       NOTRUN -> [ABORT][6] ([i915#10594])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-7567u:       NOTRUN -> [SKIP][7] +11 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][8] +24 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - bat-arls-2:         [TIMEOUT][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-arls-2/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-arls-2/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-adls-6:         [DMESG-WARN][11] ([i915#5591]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-adls-6/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-adls-6/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@perf:
+    - bat-dg2-14:         [ABORT][13] ([i915#10366] / [i915#10461]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-dg2-14/igt@i915_selftest@live@perf.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-dg2-14/igt@i915_selftest@live@perf.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10366]: https://gitlab.freedesktop.org/drm/intel/issues/10366
+  [i915#10461]: https://gitlab.freedesktop.org/drm/intel/issues/10461
+  [i915#10594]: https://gitlab.freedesktop.org/drm/intel/issues/10594
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5591]: https://gitlab.freedesktop.org/drm/intel/issues/5591
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14593 -> Patchwork_132479v3
+
+  CI-20190529: 20190529
+  CI_DRM_14593: 75418ec1fe7737396419e6447005b10e666aeaec @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7810: 189483744e9ff56ea573e07a049c5365404c7ecb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_132479v3: 75418ec1fe7737396419e6447005b10e666aeaec @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/index.html
+
+--===============4165877088476310308==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2 on HDMI (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132479/">https://patchwork.freedesktop.org/series/132479/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14593 -&gt; Patchwork_132479v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/index.html</p>
+<h2>Participating hosts (38 -&gt; 36)</h2>
+<p>Additional (3): fi-kbl-7567u fi-elk-e7500 fi-bsw-n3050 <br />
+  Missing    (5): bat-dg1-7 bat-arls-3 fi-snb-2520m fi-kbl-8809g bat-mtlp-6 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_132479v3:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@debugfs_test@read_all_entries:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-mtlp-9/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-mtlp-9/igt@debugfs_test@read_all_entries.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132479v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10594">i915#10594</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-arls-2/igt@i915_selftest@live@gem_contexts.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-arls-2/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-adls-6/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5591">i915#5591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-adls-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@perf:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14593/bat-dg2-14/igt@i915_selftest@live@perf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10366">i915#10366</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/10461">i915#10461</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132479v3/bat-dg2-14/igt@i915_selftest@live@perf.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14593 -&gt; Patchwork_132479v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14593: 75418ec1fe7737396419e6447005b10e666aeaec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7810: 189483744e9ff56ea573e07a049c5365404c7ecb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_132479v3: 75418ec1fe7737396419e6447005b10e666aeaec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4165877088476310308==--
