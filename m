@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2A068AAD83
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 13:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FFD8AAE5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 14:23:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED2610F635;
-	Fri, 19 Apr 2024 11:17:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E74DD10FEA2;
+	Fri, 19 Apr 2024 12:23:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iYZQKBRf";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29D0C10F635;
- Fri, 19 Apr 2024 11:17:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3C3F10FE96;
+ Fri, 19 Apr 2024 12:23:44 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 2B1B861997;
+ Fri, 19 Apr 2024 12:23:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7415EC072AA;
+ Fri, 19 Apr 2024 12:23:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1713529423;
+ bh=ZCuR0hCdw7usB7UJdssbldvEaDtdNOrfZF2hneMEmi0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=iYZQKBRfj8cxz0gXb8itwdJ5p77zImwhrch1rdAHA5r0QZqNhzH22hbJo+Vm/pra1
+ Cko/F2N5ST+QDX/JRRvuK0qk/2SaLpaCrxWIeR393FcVsbTnwv79OiSIarVUlNyiYk
+ aaBXasmq3z/uidG2Yl3amH6FoqUIfh771SzjGb+2qU8RRr8JGG2K3xAsBPQMeCbcyV
+ nkl5ecNv+P8w4FtRnzyx4qeDZe/rmn8H7YKjLr7l2fRIlcimFAqHBbdTsV3PzSVoeP
+ jnOIUMc6j6Oj2fevkJKHr82zRQH5tIJv1OLBlXcqHP1KEn6KTvj0pcboSKvfaM5ptO
+ 6AzsEkuotkfAw==
+Date: Wed, 17 Apr 2024 16:05:27 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-intel-next
+Message-ID: <20240417-curly-boobook-of-health-d243b4@penduick>
+References: <Zh_Q72gYKMMbge9A@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/dp=3A_Use_always?=
- =?utf-8?q?_vsc_revision_0x6_for_Panel_Replay?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Apr 2024 11:17:02 -0000
-Message-ID: <171352542217.1519312.5027391813856739061@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240419110453.2618728-1-jouni.hogander@intel.com>
-In-Reply-To: <20240419110453.2618728-1-jouni.hogander@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="gwjnbgvni7ag3trl"
+Content-Disposition: inline
+In-Reply-To: <Zh_Q72gYKMMbge9A@intel.com>
+X-TUID: juxlMduY+QJY
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,27 +65,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/dp: Use always vsc revision 0x6 for Panel Replay
-URL   : https://patchwork.freedesktop.org/series/132639/
-State : failure
+--gwjnbgvni7ag3trl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-== Summary ==
+Hi,
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/132639/revisions/1/mbox/ not applied
-Applying: drm/i915/dp: Use always vsc revision 0x6 for Panel Replay
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_dp.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/dp: Use always vsc revision 0x6 for Panel Replay
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+On Wed, Apr 17, 2024 at 09:38:55AM -0400, Rodrigo Vivi wrote:
+> Another thing that it is important to highlight is that we have 3 drm level
+> patches in this pull request where I didn't see any explicit recorded
+> ack from you (drm maintainers) nor from drm-misc maintainers.
+> The patches looks good to me and shouldn't cause conflict, so I hope it
+> is okay to continue with them here instead of a big removal at this
+> point.
 
+Sigh...
 
+I guess it's a good occasion to test
+https://gitlab.freedesktop.org/drm/maintainer-tools/-/merge_requests/40
+
+And merge it if it works.
+
+Maxime
+
+--gwjnbgvni7ag3trl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZh/XJwAKCRAnX84Zoj2+
+djkHAX9CreiHGCmBEsXUfIIPxwBL5K6HuB9EDUwhNWihNMZWAF/dIaXV+LiRvLcX
+wt7pv0MBfR99leGy88Q8p94gw3EP3ZhVB3sNa8a79dw5aHrfEE7f/4+HaMdRaJe4
+Nkf1dV5NlA==
+=ANa0
+-----END PGP SIGNATURE-----
+
+--gwjnbgvni7ag3trl--
