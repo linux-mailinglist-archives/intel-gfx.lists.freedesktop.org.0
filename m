@@ -2,109 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0DB8A93EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 09:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A587F8A96A0
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 11:49:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BD4510F5E7;
-	Thu, 18 Apr 2024 07:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B65FC113B26;
+	Thu, 18 Apr 2024 09:49:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="KC8pprqa";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mnAvlcNm";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="KC8pprqa";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mnAvlcNm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jzBAZmuy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46E8F10F5E7;
- Thu, 18 Apr 2024 07:22:33 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 1376A5C5BC;
- Thu, 18 Apr 2024 07:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1713424951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2m0LDKh5j6ZeXWaIZyy0/3+5aPcg6P/dgbYhl/SJAz4=;
- b=KC8pprqacNGoA+p4XL/7VaKi20MLlmTD0ZbMRHfEXLKPHl5+wMf3Or3hnriXDKCRW3836t
- 2T/M8aoJ3wkpcg1g4n+4w1AQnjd7WDVxO6FubZChxSCkhtcswlKkjUue74bIODeBgHXwXU
- JEu6sjMeMBHsyGmigr6fstk7RzCPseM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1713424951;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2m0LDKh5j6ZeXWaIZyy0/3+5aPcg6P/dgbYhl/SJAz4=;
- b=mnAvlcNmFNagkRqqk4yaJKJGCmjah1aFynCDJS31HgvSfH9LunZQFjzGY43uUWUjF9Uk0e
- V2+x3n1KsMlmgHDw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1713424951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2m0LDKh5j6ZeXWaIZyy0/3+5aPcg6P/dgbYhl/SJAz4=;
- b=KC8pprqacNGoA+p4XL/7VaKi20MLlmTD0ZbMRHfEXLKPHl5+wMf3Or3hnriXDKCRW3836t
- 2T/M8aoJ3wkpcg1g4n+4w1AQnjd7WDVxO6FubZChxSCkhtcswlKkjUue74bIODeBgHXwXU
- JEu6sjMeMBHsyGmigr6fstk7RzCPseM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1713424951;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=2m0LDKh5j6ZeXWaIZyy0/3+5aPcg6P/dgbYhl/SJAz4=;
- b=mnAvlcNmFNagkRqqk4yaJKJGCmjah1aFynCDJS31HgvSfH9LunZQFjzGY43uUWUjF9Uk0e
- V2+x3n1KsMlmgHDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A85981384C;
- Thu, 18 Apr 2024 07:22:30 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id sYOrJzbKIGahBwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 18 Apr 2024 07:22:30 +0000
-Date: Thu, 18 Apr 2024 09:22:29 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240418072229.GA8983@localhost.localdomain>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30573113B26;
+ Thu, 18 Apr 2024 09:49:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713433745; x=1744969745;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=9h/nl2I5hUDIh5/kmrpuAsVTrszz1RN0lMOW83V4OGA=;
+ b=jzBAZmuylWEB3lGDbbR1YAa971I316Shc1tNCALwJOlXQGpCA6nQS+L0
+ VvgN+7k0xRA6fEfNaVTdx21WNEnmfrrDRvDpJJRTSdLdlzaHpcGrskBD3
+ RV58pTmVaC7MSICvYXuba8+l7/8LPwCT49QX/QvX1f1AcYvoOGE5Tblz5
+ ceHRAQxbmCbSGsFuuSSOvSMyUotuJjfCOEOOE9fhv1Uk6yscZlp8MPzug
+ nSkB/fqa5HpwpHOK3VVLbCtZHnakv4jIL5ZtoSU68EOn+XBGKP/4KizCX
+ rgYMlR8mPy5MGEeoSYQJO3ib8EaQdQIQmLfQQEP79JUfWJvE9UT0he0yq A==;
+X-CSE-ConnectionGUID: 5EOiFAe4R5K3+Ml5g5YryQ==
+X-CSE-MsgGUID: 8+9zZOjGSn2cJMQrvUKUlQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="9520000"
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; 
+   d="scan'208";a="9520000"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 02:49:05 -0700
+X-CSE-ConnectionGUID: 2Gk78ae7Srq9A9XXJe3qUw==
+X-CSE-MsgGUID: D1iNdwnRSWaQoJhGlNO4Mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,211,1708416000"; d="scan'208";a="23011815"
+Received: from oelagadx-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.45.188])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 02:49:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/display: remove small micro-optimizations
+ in irq handling
+In-Reply-To: <lh5rutbeu54tjlp2o477nb4xuqyblgjh7nemgecizqrceidabc@hcuihs4fxh6n>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240408125445.3227678-1-jani.nikula@intel.com>
+ <lh5rutbeu54tjlp2o477nb4xuqyblgjh7nemgecizqrceidabc@hcuihs4fxh6n>
+Date: Thu, 18 Apr 2024 12:49:00 +0300
+Message-ID: <875xwfxapf.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns]
-X-Spam-Score: -4.30
-X-Spam-Flag: NO
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,119 +71,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Wed, 17 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Mon, Apr 08, 2024 at 03:54:44PM GMT, Jani Nikula wrote:
+>>The raw register reads/writes are there as micro-optimizations to avoid
+>>multiple pointer indirections on uncore->regs. Presumably this is useful
+>>when there are plenty of register reads/writes in the same
+>>function. However, the display irq handling only has a few raw
+>>reads/writes. Remove them for simplification.
+>
+> I think that comment didn't age well. Not to say there's something wrong
+> with this commit, but just to make sure we are aware of the additional
+> stuff going on and we if we are ok with that.
+>
+> using intel_de_read() in place of raw_reg_read() will do (for newer
+> platforms):
+>
+> 	1) Read FPGA_DBG to detect unclaimed access before the actual read
+> 	2) Find the relevant forcewake for that register, acquire and wait for ack
+> 	3) readl(reg)
+> 	4) Read FPGA_DBG to detect unclaimed access after the actual read
+> 	5) Trace reg rw
+>
+> That's much more than a pointer indirection. Are we ok with that in the
+> irq?  Also, I don't know why but we have variants to skip tracing (step
+> 5 above), but on my books a disabled tracepoint is order of magnitudes
+> less overhead than 1, 2 and 4.
 
-this is the PR for drm-misc-fixes for this week.
+Honestly, I don't really know.
 
-Best regards
-Thomas
+The thing is, we have these ad hoc optimizations all over the place. Why
+do we have the raw access in two places, but not everywhere in irq
+handling? The pointer indirection thing really only makes sense if you
+have a lot of access in a function, but that's not the case. You do have
+a point about everything else.
 
-drm-misc-fixes-2024-04-18:
-Short summary of fixes pull:
+What would the interface be like if display were its own module? We
+couldn't just wrap it all in a bunch of macros and static inlines. Is
+the end result that display irq handling needs to call functions via
+pointers in another module? Or do we need to move the register level irq
+handling to xe and i915 cores, and handle the display parts at a higher
+abstraction level?
 
-nouveau:
-- dp: Don't probe DP ports twice
-- nv04: Fix OOB access
-- nv50: Disable AUX bus for disconnected DP ports
-- nvkm: Fix race condition
+BR,
+Jani.
 
-panel:
-- Don't unregister DSI devices in several drivers
 
-ttm:
-- Stop pooling cached NUMA pages
-
-v3d:
-- Fix enabled_ns increment
-
-vmwgfx:
-- Fix PRIME import/export
-- Fix CRTC's atomic check for primary planes
-- Sort plane formats by preference
-The following changes since commit 4c08f01934ab67d1d283d5cbaa52b923abcfe4cd:
-
-  drm/vmwgfx: Enable DMA mappings with SEV (2024-04-09 13:36:05 -0400)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-04-18
-
-for you to fetch changes up to 941c0bdbc176df825adf77052263b2d63db6fef7:
-
-  drm/panel: novatek-nt36682e: don't unregister DSI device (2024-04-16 23:17:59 +0300)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-nouveau:
-- dp: Don't probe DP ports twice
-- nv04: Fix OOB access
-- nv50: Disable AUX bus for disconnected DP ports
-- nvkm: Fix race condition
-
-panel:
-- Don't unregister DSI devices in several drivers
-
-ttm:
-- Stop pooling cached NUMA pages
-
-v3d:
-- Fix enabled_ns increment
-
-vmwgfx:
-- Fix PRIME import/export
-- Fix CRTC's atomic check for primary planes
-- Sort plane formats by preference
-
-----------------------------------------------------------------
-Christian König (1):
-      drm/ttm: stop pooling cached NUMA pages v2
-
-Dave Airlie (1):
-      nouveau: fix instmem race condition around ptr stores
-
-Dmitry Baryshkov (2):
-      drm/panel: visionox-rm69299: don't unregister DSI device
-      drm/panel: novatek-nt36682e: don't unregister DSI device
-
-Lyude Paul (2):
-      drm/nouveau/kms/nv50-: Disable AUX bus for disconnected DP ports
-      drm/nouveau/dp: Don't probe eDP ports twice harder
-
-Maíra Canal (1):
-      drm/v3d: Don't increment `enabled_ns` twice
-
-Mikhail Kobuk (1):
-      drm: nv04: Fix out of bounds access
-
-Zack Rusin (3):
-      drm/vmwgfx: Fix prime import/export
-      drm/vmwgfx: Fix crtc's atomic check conditional
-      drm/vmwgfx: Sort primary plane formats by order of preference
-
- drivers/gpu/drm/nouveau/nouveau_bios.c             | 13 ++++---
- drivers/gpu/drm/nouveau/nouveau_dp.c               | 23 ++++++++---
- drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c |  7 +++-
- drivers/gpu/drm/panel/panel-novatek-nt36672e.c     |  2 -
- drivers/gpu/drm/panel/panel-visionox-rm69299.c     |  2 -
- drivers/gpu/drm/ttm/ttm_pool.c                     | 38 ++++++++++++++-----
- drivers/gpu/drm/v3d/v3d_irq.c                      |  4 --
- drivers/gpu/drm/vmwgfx/vmwgfx_blit.c               | 35 +++++++++++++++--
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |  7 ++--
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.h                 |  2 +
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |  1 +
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |  3 ++
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                | 32 ++++++++++++++++
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                | 11 ++++--
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |  4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_prime.c              | 15 +++++++-
- drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c         | 44 +++++++++++++++-------
- 17 files changed, 186 insertions(+), 57 deletions(-)
+>
+> btw, if we drop the raw accesses, then we can probably drop (1) above.
+>
+> Lucas De Marchi
+>
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>---
+>> drivers/gpu/drm/i915/display/intel_display_irq.c | 15 +++++++--------
+>> 1 file changed, 7 insertions(+), 8 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>>index f846c5b108b5..d4ae9139be39 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>>@@ -1148,15 +1148,14 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>>
+>> u32 gen11_gu_misc_irq_ack(struct drm_i915_private *i915, const u32 master_ctl)
+>> {
+>>-	void __iomem * const regs = intel_uncore_regs(&i915->uncore);
+>> 	u32 iir;
+>>
+>> 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
+>> 		return 0;
+>>
+>>-	iir = raw_reg_read(regs, GEN11_GU_MISC_IIR);
+>>+	iir = intel_de_read(i915, GEN11_GU_MISC_IIR);
+>> 	if (likely(iir))
+>>-		raw_reg_write(regs, GEN11_GU_MISC_IIR, iir);
+>>+		intel_de_write(i915, GEN11_GU_MISC_IIR, iir);
+>>
+>> 	return iir;
+>> }
+>>@@ -1169,18 +1168,18 @@ void gen11_gu_misc_irq_handler(struct drm_i915_private *i915, const u32 iir)
+>>
+>> void gen11_display_irq_handler(struct drm_i915_private *i915)
+>> {
+>>-	void __iomem * const regs = intel_uncore_regs(&i915->uncore);
+>>-	const u32 disp_ctl = raw_reg_read(regs, GEN11_DISPLAY_INT_CTL);
+>>+	u32 disp_ctl;
+>>
+>> 	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+>> 	/*
+>> 	 * GEN11_DISPLAY_INT_CTL has same format as GEN8_MASTER_IRQ
+>> 	 * for the display related bits.
+>> 	 */
+>>-	raw_reg_write(regs, GEN11_DISPLAY_INT_CTL, 0x0);
+>>+	disp_ctl = intel_de_read(i915, GEN11_DISPLAY_INT_CTL);
+>>+
+>>+	intel_de_write(i915, GEN11_DISPLAY_INT_CTL, 0);
+>> 	gen8_de_irq_handler(i915, disp_ctl);
+>>-	raw_reg_write(regs, GEN11_DISPLAY_INT_CTL,
+>>-		      GEN11_DISPLAY_IRQ_ENABLE);
+>>+	intel_de_write(i915, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+>>
+>> 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>> }
+>>-- 
+>>2.39.2
+>>
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Jani Nikula, Intel
