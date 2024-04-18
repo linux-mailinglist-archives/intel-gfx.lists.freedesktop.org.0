@@ -2,153 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791538AA5EE
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 01:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0738AA60D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 01:59:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D619611A0B9;
-	Thu, 18 Apr 2024 23:39:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7602510F551;
+	Thu, 18 Apr 2024 23:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCBYaN28";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OH2ErEE8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A163911A0B9;
- Thu, 18 Apr 2024 23:39:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4DF10F50B;
+ Thu, 18 Apr 2024 23:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713483550; x=1745019550;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=eq4nDR5sUhp7jveX7Ax65y1yt40eu/w/7EOYeW+iIbE=;
- b=HCBYaN28qWS6B2t/0p1v7pTdwXxa2vxduIup4cJLtIjBGH/RaUfnvfb0
- WjVv48H3O9k0/J5I0FrOZov9NP0dXnofIQIU0tCCqXqlGN20xTfQhOcRO
- 4wPXtQEvJlLBJYM9hkn3NqZd1XMgN9SwbG6i/2pnauubQLGiwcAcQqccu
- jm/lkwUUmVQaboDbkMTSblJw04oZPHa3C26U7X2EGN0sX7ex8ubq0Ecsr
- D3mZraEXm3oOu/LT8LGHZJCEj+b9LEqZDmicChm/n9rRNX0yTsS6gt+Bw
- zQWcpVSr5m2m2kxIl4ZXKiNAkCS3hD76N1iCSchAYvXtzdJKmKQIIsjtL g==;
-X-CSE-ConnectionGUID: PenRELq8Q8618rVAALv0CQ==
-X-CSE-MsgGUID: rJp52m0NRim8woRhDL7xpg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="26578646"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="26578646"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 16:39:10 -0700
-X-CSE-ConnectionGUID: V9dtnDNGQCe+bIRJOnJLEw==
-X-CSE-MsgGUID: cy4xFEdYTqqYbnq7m5BFPw==
+ t=1713484742; x=1745020742;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=CTUXZhxN5YsOzAtHPYlkdgnWVxX/HniA+MSDeIo+vt8=;
+ b=OH2ErEE8OD0LCGbEXpi5RaLfISGsKptANPCAKHMiTV5eh6Xzbf79Z+n/
+ TueCCevFIuatln6QfGRZmGYi7BGic1JuVqhFz3qV3vx50sp8bD9ZYfPYw
+ KWmzd1MSvUYWr5xgmTMi1UiGDAOozlmWfRH7CBL+N97ArRxlZLprChRw+
+ 5J5pykj5+m943CqY7M4HXXxpifQginwhWKcaDA2vKLvdXlo4esxrZPyI6
+ IHPxadkDeA1CsttomNJfoZalisl/mZaq7/7Wj6ZxfGLJg6CM00ndI39HB
+ c7rgee4DuQ65EoTd9B+VW45uYhj9L0J8fUYRIYjU4ZhzLye4fLUsq2+wk g==;
+X-CSE-ConnectionGUID: q0X1dW5nTGKxbowvih/owQ==
+X-CSE-MsgGUID: O1PFa4urSyC57aJG3z0IRg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="12849422"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="12849422"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 16:59:01 -0700
+X-CSE-ConnectionGUID: kKx8PaTAT4qrH2VVecafIA==
+X-CSE-MsgGUID: e5L56knKSnqS7b2QHv1kyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="46438275"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Apr 2024 16:39:10 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Apr 2024 16:39:09 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 18 Apr 2024 16:39:09 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 18 Apr 2024 16:39:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KsBn2VddazAyTAF90oenJG1f3E7l8MaottXs4QgrBTMjHf9cCYOI/AMDpbSfZ8rMjMp45W3IfHcewPLwJmM6p5E5NaM60euFTnkoVDoZwb+BP26kfxaSVtXr5BVSvP/y3YB95EtErxQtG0DeOBh0Wv3RSqjj+0Au505S6fkzEy9SEYKa0S9jzZdUeXWc+tOrR+3Tv1l7GWx8nMzw5hv/YBZAydZVACRxgoXUZDK0z0FCc9sz/XmyqsgJeH9NA8VcGWEfyvww1EXjUvoUHluz3ieR8GFBYRnYZC+4gR6mzhKYbcbmJTzmKUYA0dc+1nOVX6U1Oj1QkS0QVv98BOgOWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VyBF3hYAoSdsew3mLfGGtYj0zXDkTiTySy8l/rml2x8=;
- b=lJn415OHwPzUUSrJYW3cjgCcpzgUBLU5FQ2ZNN2hdLwlb9dgdtP8v2/7uEqtAJRSeivDwTf0jrWT1I1YKh2WH9Kr++xY5fHB/+kHXTrgZhAyS81ZJi1XhUymLnIWIPdnxvYoVttQbDLJbqc2ekJ0e6bN3wH3CgJHqAg18Id5OLrczzUA6vlKO55sRO3p+YniDdjMJ6pgX7XmYFMAJfeBIkdcl4qnBaJQ+Qv1tYM0cYMXQJtlk5WQ8CxGjbxuFVbQm6NMvlppCUKpkIkB39Cj6fEoj8/oxMPRBSnRFV9jk3VDkDkmWfEVKF41sw4V74CWrtwyl9+trOuFlQ6VNltuAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by IA0PR11MB7354.namprd11.prod.outlook.com (2603:10b6:208:434::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.37; Thu, 18 Apr
- 2024 23:39:07 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::71ea:e0ea:808d:793b]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::71ea:e0ea:808d:793b%4]) with mapi id 15.20.7519.014; Thu, 18 Apr 2024
- 23:39:07 +0000
-Message-ID: <13043328-20e9-4e6f-bf52-8e275af4015f@intel.com>
-Date: Thu, 18 Apr 2024 16:38:56 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/i915: Fix gt reset with GuC submission disabled
-To: Nirmoy Das <nirmoy.das@intel.com>, <intel-gfx@lists.freedesktop.org>
-CC: <dri-devel@lists.freedesktop.org>
-References: <20240418171055.31371-1-nirmoy.das@intel.com>
- <20240418171055.31371-3-nirmoy.das@intel.com>
-Content-Language: en-GB
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20240418171055.31371-3-nirmoy.das@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR16CA0014.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::27) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="60587077"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 16:59:00 -0700
+Date: Fri, 19 Apr 2024 02:58:56 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Francois Dugast <francois.dugast@intel.com>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH] drm/i915: Convert intel_runtime_pm_get_noresume towards
+ raw wakeref
+Message-ID: <ZiGzwL7Rq6OzWCbb@ideak-desk.fi.intel.com>
+References: <ZiGe/Tqo94YbxOnm@ideak-desk.fi.intel.com>
+ <20240418223756.68427-1-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|IA0PR11MB7354:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0872168-facb-4b2d-f113-08dc6000ba1e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bfEqcy0kDe3FbNMc6mWZ02OkiZ9u4LnuBNgt6Rbjhuy55Kgo6YULBFHLBMtfZsA+Ug4cbTzvACSUmrhFznUW8KQGZZ0exDHnluoSP69Rfwl1ErgVQ5MoLLRRT+k296qRRK6YYmbel5D1BMF9ZFijv5/ZqSAL8j5O4EBSyajSGxflxCnsCgg7z7YAaN8TzOo/jyal004xaa+VdmUhowBcOrGLPyorXRImLtY8cz2apWm9P7lzXIisFZPlSne230+oc4wY6kBPGBDIUtEvMgWVavlY25NOyUs+EXewA6jutOhHBn/6Gp5kU71ExkEfwt1zmKAQABThbpiWqzxiXkfvJk4sUxvy33agf1CTAzdZILn5nVUsw40I7p4stRc5H3C08l6Ecy+zzdjMSN/0mHsSUmZrBMpCq9Zs5R6u5xTDgVP6WsOfYYxzGUMBerU/Q7pA0Vu174AVk4hl7wlhBYUxY30HmIvjm46j2TRdRMev3h0fOrM0+QqXlZGicvf+UbDwf8uhe2zQ4KAPd13svMT9qajlvz3tmAn5Ueq1uRHoI4HxAPvQFfxFwi8wyKxlo2rJalWbiF6w1w3sPT6n0zA/u7+gTFMWVbIe4naXo1Rc0v6b4X/Jekaha9s3Ae+Kl98A/6w1HWyxmB5sh5eH8NLmiGlngx2pMxw+wZOyX74txe4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WEZ4NjdJZWJaMm9BcktORm5RUkV4dFZvUHRVWlZ2SG5xRGxQT1g1a2RDeEhT?=
- =?utf-8?B?L2kwZU1SVHhLTzU1aXp4Tm9jZU9FYytsOWZuVVE4SjVjVTBhRE1OcFFxL29J?=
- =?utf-8?B?aWFZbWd6dWtQTGxobE5INUh6azF3ZGxMVG41WHFZTWVXRVVPMmdxTTFKQVVk?=
- =?utf-8?B?RnN6T294bXpnZmtHUHBWMW10bnZCdTBJNDlRd3c0c0ZYZDRHWktJQkFTVG5Q?=
- =?utf-8?B?dFdGWGtlclBRd2JveU5RK2NMS2p6TzNiYWpTMlBrZ05qTC95Nnlranp1U1Zi?=
- =?utf-8?B?ZTR6K1hVK3g3WisrU2FHNUl5NFZteWlFUExzQ1NYeVlseDRSRk1qMzc1aHZU?=
- =?utf-8?B?a1hNZ2tEUTF2OTV2WXdObHFuKy81Q3R4UmxEM0cyY0FqNGlMeENRNWZINlp4?=
- =?utf-8?B?Uy8rNFFWWVJtdEtBbmtzZmhrNG1DVGd3QVlDZ1B4VTYwVnVyclRua0U4MitD?=
- =?utf-8?B?SElRSVMvTHhONDE1TFpRcEt0VjgxcmNvRVlLZm0zQ1pKOXRRVmNyM2N0aHpK?=
- =?utf-8?B?NmxyaXFnTlBCWGZsbExHYnNrYjYzUUI2dDk4amZZZFdMbS9jekIxd3dyaTAy?=
- =?utf-8?B?L3pCbWxDZ1lMZVFZbWhQNkN0MnJLQ0pqQXM5QlVjYkhWUjI2cDlQQjM3VEVV?=
- =?utf-8?B?SXJ2R3JKaW1HU0hYWkpKWEQxaUpGZTBwV3ZOMEppTWU3UUx6U05XOC96OHN0?=
- =?utf-8?B?QUFZVlFlYWdQQnMwQzdWVXNhQTUxd1VsRTZodnNFc3E2WmRzUVNxc2ZtMXBt?=
- =?utf-8?B?WUdRYTZtaStBZ3QvTWRHdG1HaUx2M1pONWtodmhLZmVsWDJUUlhyZVJmOHZu?=
- =?utf-8?B?TEVCdXA5TS9iSEtJTS93dzYrWktWcUxDakIzNHFBRVpQRzdKdmN5bXJ1ZmY4?=
- =?utf-8?B?a3E0LzdEcVFNSStWanBjNVFST3A2Zk5ZdWlZNzlSUlpZSURBWExFTjBjaE82?=
- =?utf-8?B?KzNpbTZWQWwwc0FhNG5qaTF0T0J4ZDR1V1dGTzh3czhQbmJjWG12WWxJK1Er?=
- =?utf-8?B?RmFBTVN1c0hQMjQzcnpnTVNYelAwYU9jWmxBWXVWNzhOaTU5Qzd3VlJlc0p3?=
- =?utf-8?B?QVNNejFBVjc0eTdNMFZGUUYvNWhocEFrditPTGNIN3FqNUpHRGY5WTNPRHRD?=
- =?utf-8?B?eW1nekp6d0d6L2VyZHNCaFI3eDVhZWVkOGxTVENuYkZvc01xb0E4UzJRaC9r?=
- =?utf-8?B?RlZRQ3hnQXAwY2tOYUpqSDFNZGxSWDYwVHpWY1BxbVpwcXZUZDlSeW1XSmc0?=
- =?utf-8?B?TVFqY0trT2t1SHZsRTNtcVBTcW9LcTFUdGFidHVoSkFYeHNMSEQ1Qitoc0lH?=
- =?utf-8?B?WmdIR2ZjdlhvWTZ6R1FEZkx1WHYwaVp5NVJSdHRodG9jUVp4ZHQzU2dNNlJF?=
- =?utf-8?B?UGxFRkxDOVF4T3lUNVlZdFo5aUM1a3dvYzh0Slpqc2lQRjZXcWVnVVl5eVFC?=
- =?utf-8?B?VHlLd01Gc0FZZ3lSK3dDc1ZPL20yOTVoYUYvSHNMamtMek5pVWdWVFpnZWNp?=
- =?utf-8?B?RDlZZ3JyelRGZkZLMXV3b2I2ZnczRno2cVJFM0ZUS29VS1RvZU9QNkduSzht?=
- =?utf-8?B?OFpHd245WWd4dHB6MVI4dXRzajduVUMzSHFYSFp3OUV6d01IWTBmbTJrUFN1?=
- =?utf-8?B?d1VLQXY0cXZuVVJQSjFPenRnb2pjaTVkUy92ZmVPMkxQVkFMSkgrOGxUNnVR?=
- =?utf-8?B?dmVIRkhqRFI0M240bWhQRUJ5aXZjWkpzSjJUZWJGZ2tESEFHK2t1b2FoQU5X?=
- =?utf-8?B?ZlVyTDVjRmhzeUJOeXlTY01Lamx4MUhwQ1NQMm5lMzNMYmljNTJab2dYaWhv?=
- =?utf-8?B?MzArVGozN1Fic0toalRjZGt6KzJvV2gxVHI3WVFGK1B2VjJqNFdVNGhsYWlZ?=
- =?utf-8?B?ZUdLSnNEaS8zSFlkaGVMYVVmczlQUEdsNVZVQVVwNm9ERlhLNkZ3VVhEMmRU?=
- =?utf-8?B?UVovZHRUM0gyQ0VpNnd0VHhsMmFQbVZpL2UxTCtwL1hoWUtNN3BCZUhsYUFa?=
- =?utf-8?B?NW95bm04NEhSREJhL0l1Y0x3ai84RmpubHVKb1ROM0dDdGgxeFplRWtrUzFR?=
- =?utf-8?B?NEVrVHZ4NHoyTHcwS1NDeTM0Ui9NcjBtSWNENTZEQU9LZ0s1ZllxZmFlY2F3?=
- =?utf-8?B?QSs3QUttQ05pUXNpdHI4UGpBY1YzQkFlaDhrRThFbUt5bENnalpHYS9CelNp?=
- =?utf-8?B?cVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0872168-facb-4b2d-f113-08dc6000ba1e
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 23:39:06.3226 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +N7mrwJpiUFSZBvMiVQ0tBYvFnF9YN/qs+tI+QKfJIHq9es90O8aWIpfjww3sDSDHgNj3wGmCi1WjDsP3qhSTKvqC6k48nHHy+bcRP4Fe6M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7354
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240418223756.68427-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,83 +69,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/18/2024 10:10, Nirmoy Das wrote:
-> Currently intel_gt_reset() happens as follows:
->
-> reset_prepare() ---> Sends GDRST to GuC, GuC is in GS_MIA_IN_RESET
-> do_reset()
->    intel_gt_reset_all_engines()
->      *_engine_reset_prepare() -->RESET_CTL expects running GuC
-Not technically correct. There is no direct connection between RESET_CTL 
-and GuC.
+On Thu, Apr 18, 2024 at 06:37:56PM -0400, Rodrigo Vivi wrote:
+> In the past, the noresume function was used by the GEM code to ensure
+> wakelocks were held and bump its usage. This is no longer the case
+> and this function was totally unused until it started to be used again
+> by display with commit 77e619a82fc3 ("drm/i915/display: convert inner
+> wakeref get towards get_if_in_use")
+> 
+> However, on the display code, most of the callers are using the
+> raw wakeref, rather then the wakelock version. What caused a
+> major regression caught by CI.
+> 
+> Another option to this patch is to go with the original plan and
+> use the get_if_in_use variant in the display code, what is enough
+> to fulfil our needs. Then, an extra patch to delete the unused
+> _noresume variant.
+> 
+> v2: Keep grabbing wakelock but only assert for wakeref. (Imre)
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Francois Dugast <francois.dugast@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Fixes: 77e619a82fc3 ("drm/i915/display: convert inner wakeref get towards get_if_in_use")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10875
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
->      *_reset_engines()
-> intel_gt_init_hw() --> GuC comes out of GS_MIA_IN_RESET with FW loaded.
->
-> Fix the issue by sanitizing the GuC only after resetting requested
-> engines and before intel_gt_init_hw().
-You never actually state what the issue is.
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-The problem is that there is a dedicated CSB FIFO going to GuC (and 
-nothing else has access to it). If that FIFO fills up, the hardware will 
-block on the next context switch until there is space. If no-one (i.e. 
-GuC) is draining it, that means the system is effectively hung. If an 
-engine is reset whilst actively executing a context, a CSB entry will be 
-sent to say that the context has gone idle. Thus if you reset a very 
-busy system and start with killing GuC before killing the engines and 
-only then re-enabling GuC, you run the risk of generating more CSB 
-entries than will fit in the FIFO and deadlocking. Whereas, if the 
-system is idle then you can reset the engines as much as you like while 
-GuC is dead and it won't be a problem.
-
->
-> Note intel_uc_reset_finish() and intel_uc_reset() are nop when
-> guc submission is disabled.
->
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_reset.c | 16 ++++++++++++++--
->   1 file changed, 14 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 6504e8ba9c58..bd166f5aca4b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -907,8 +907,17 @@ static intel_engine_mask_t reset_prepare(struct intel_gt *gt)
->   	intel_engine_mask_t awake = 0;
->   	enum intel_engine_id id;
->   
-> -	/* For GuC mode, ensure submission is disabled before stopping ring */
-> -	intel_uc_reset_prepare(&gt->uc);
-> +	/**
-> +	 * For GuC mode with submission enabled, ensure submission
-> +	 * is disabled before stopping ring.
-> +	 *
-> +	 * For GuC mode with submission disabled, ensure that GuC is not
-> +	 * sanitized, do that at the end in reset_finish(). reset_prepare()
-> +	 * is followed by engine reset which in this mode requires GuC to
-> +	 * be functional to process engine reset events.
--> to process any CSB FIFO entries generated by the resets.
-
-John.
-
-> +	 */
-> +	if (intel_uc_uses_guc_submission(&gt->uc))
-> +		intel_uc_reset_prepare(&gt->uc);
->   
->   	for_each_engine(engine, gt, id) {
->   		if (intel_engine_pm_get_if_awake(engine))
-> @@ -1255,6 +1264,9 @@ void intel_gt_reset(struct intel_gt *gt,
->   
->   	intel_overlay_reset(gt->i915);
->   
-> +	/* sanitize uC after engine reset */
-> +	if (!intel_uc_uses_guc_submission(&gt->uc))
-> +		intel_uc_reset_prepare(&gt->uc);
->   	/*
->   	 * Next we need to restore the context, but we don't use those
->   	 * yet either...
-
+>  drivers/gpu/drm/i915/display/intel_display_power.c |  6 ------
+>  drivers/gpu/drm/i915/intel_runtime_pm.c            | 14 +++++---------
+>  2 files changed, 5 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 048943d0a881..03dc7edcc443 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -640,12 +640,6 @@ release_async_put_domains(struct i915_power_domains *power_domains,
+>  	enum intel_display_power_domain domain;
+>  	intel_wakeref_t wakeref;
+>  
+> -	/*
+> -	 * The caller must hold already raw wakeref, upgrade that to a proper
+> -	 * wakeref to make the state checker happy about the HW access during
+> -	 * power well disabling.
+> -	 */
+> -	assert_rpm_raw_wakeref_held(rpm);
+>  	wakeref = intel_runtime_pm_get_noresume(rpm);
+>  
+>  	for_each_power_domain(domain, mask) {
+> diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> index d4e844128826..2d0647aca964 100644
+> --- a/drivers/gpu/drm/i915/intel_runtime_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+> @@ -272,15 +272,11 @@ intel_wakeref_t intel_runtime_pm_get_if_active(struct intel_runtime_pm *rpm)
+>   * intel_runtime_pm_get_noresume - grab a runtime pm reference
+>   * @rpm: the intel_runtime_pm structure
+>   *
+> - * This function grabs a device-level runtime pm reference (mostly used for GEM
+> - * code to ensure the GTT or GT is on).
+> + * This function grabs a device-level runtime pm reference.
+>   *
+> - * It will _not_ power up the device but instead only check that it's powered
+> - * on.  Therefore it is only valid to call this functions from contexts where
+> - * the device is known to be powered up and where trying to power it up would
+> - * result in hilarity and deadlocks. That pretty much means only the system
+> - * suspend/resume code where this is used to grab runtime pm references for
+> - * delayed setup down in work items.
+> + * It will _not_ resume the device but instead only get an extra wakeref.
+> + * Therefore it is only valid to call this functions from contexts where
+> + * the device is known to be active and with another wakeref previously hold.
+>   *
+>   * Any runtime pm reference obtained by this function must have a symmetric
+>   * call to intel_runtime_pm_put() to release the reference again.
+> @@ -289,7 +285,7 @@ intel_wakeref_t intel_runtime_pm_get_if_active(struct intel_runtime_pm *rpm)
+>   */
+>  intel_wakeref_t intel_runtime_pm_get_noresume(struct intel_runtime_pm *rpm)
+>  {
+> -	assert_rpm_wakelock_held(rpm);
+> +	assert_rpm_raw_wakeref_held(rpm);
+>  	pm_runtime_get_noresume(rpm->kdev);
+>  
+>  	intel_runtime_pm_acquire(rpm, true);
+> -- 
+> 2.44.0
+> 
