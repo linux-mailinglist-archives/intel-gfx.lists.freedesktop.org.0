@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6810B8A9F32
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 17:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 264CB8A9F33
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 17:55:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5FE0113D77;
-	Thu, 18 Apr 2024 15:55:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8036C113D76;
+	Thu, 18 Apr 2024 15:55:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ED01113D79;
- Thu, 18 Apr 2024 15:55:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 523C2113D74;
+ Thu, 18 Apr 2024 15:55:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dmc=3A_firm?=
- =?utf-8?q?ware_path_handling_changes?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/dmc=3A_firmware?=
+ =?utf-8?q?_path_handling_changes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Apr 2024 15:55:13 -0000
-Message-ID: <171345571351.1501117.18005808390518220018@8e613ede5ea5>
+Date: Thu, 18 Apr 2024 15:55:16 -0000
+Message-ID: <171345571633.1501117.18171278956667440755@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1713450693.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1713450693.git.jani.nikula@intel.com>
@@ -49,17 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-11a5475a5872 drm/i915/dmc: handle request_firmware() errors separately
-2a996e8e9e0b drm/i915/dmc: improve firmware parse failure propagation
-6d62c1714485 drm/i915/dmc: split out per-platform firmware path selection
-5056359d9123 drm/i915/dmc: change meaning of dmc_firmware_path="" module param
-08e1827e711e drm/i915/display: move dmc_firmware_path to display params
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:31:
-+intel_display_param_named_unsafe(dmc_firmware_path, charp, 0400,
-+	"DMC firmware path to use instead of the default one. "
-
-total: 0 errors, 0 warnings, 1 checks, 51 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
