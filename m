@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0AB8A9D51
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 16:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A98D8A9D6B
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 16:45:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AADF1113D16;
-	Thu, 18 Apr 2024 14:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E547B113D1D;
+	Thu, 18 Apr 2024 14:45:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRq43nw7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HtEvXq0Q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB3DB113D11;
- Thu, 18 Apr 2024 14:40:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F35A3113D1D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Apr 2024 14:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713451228; x=1744987228;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KBrUB1Pd0XDgBedOsrTwaAUGgzO3ahtSPf3rsnQ2rgE=;
- b=jRq43nw7gwVIiYeLBLFkoVK33wKkIdiz/DdwAebWFOJTqvwDmLQ8F5Er
- Uk+wrx5fiv5LueT9LcXD7r64bm10y1Uk0fTDBpIaAgQqbNd7f1VlxPtMb
- GIPe6HYolvBELryGu4e8HzFhe7FIHH/wOv+//7HW3nzjrNlnd27FsLyh1
- Rzux1G8gUr5TtNLKGIrrR9RhrVTLg7Yxn67/d4fm9BzWHuTpnkav1fSVV
- TslhoQyMTcidT3e9z5+xrYfjjzxgd0rVvxrCJ7kQcolLWTQS/dxcqalg8
- sLghkATQm9MdjCNV8Bs0WPgT5Ho+xXMrdSCbs6Lle035+U1Je0KbLVbz/ w==;
-X-CSE-ConnectionGUID: z3wWr1DfT56I6xDwMAnqZA==
-X-CSE-MsgGUID: j2w9uho7RnC6U9ex1GQ7bA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="9225101"
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; 
-   d="scan'208";a="9225101"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 07:40:27 -0700
-X-CSE-ConnectionGUID: ED0z0/SeTaWGomD4MWV8Vw==
-X-CSE-MsgGUID: nb+94C2TQ/qxT/aX3iLLAg==
+ t=1713451522; x=1744987522;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DtEejGV12xdfY0YJqU5ks0Bh/Cksbha+KU+LcLCX09w=;
+ b=HtEvXq0QI0+h7JQYu56CmfbGFgRrwPjbU9CXYVuOhPIIOLwVgYK2LH3i
+ 9wg8hkI2Ou1kS3LUnhyM9gYxaqpc+P/HyKMBazm/UsvXoufWrTdYCM85I
+ 2/reP2oEd9hQL4CS4HqBZ0hZmd1DT9HeJdwuV1XFnt/i7+fhqLga+wp4n
+ rN4XOucKorkTyFzO/xxHs9j4CEm5zsw86d82CXp5yHFlpErz2cOiph4td
+ lQuZMT9ApwStk59eOHbql3NKv6EAE6WxAwZxR3TeoxMy5BP2j8kN5PitU
+ 0y4n2Jis21+gvLq5osE7DjKExYGJSzA65lmMzqrqVCppY7/6uUeYq8rMG A==;
+X-CSE-ConnectionGUID: DlJ7BXmHTwafBNDHDEKsDg==
+X-CSE-MsgGUID: 3cfa3kS/RseEaVEvi3E35g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20147396"
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="20147396"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 07:45:22 -0700
+X-CSE-ConnectionGUID: zK4XScsMSjCXT9UQRlRAIw==
+X-CSE-MsgGUID: xXxY6C6RSsWzWWQE+aAtLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="27584755"
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="23086888"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 07:40:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	lucas.demarchi@intel.com,
-	rodrigo.vivi@intel.com
-Subject: [PATCH 5/5] drm/i915/display: move dmc_firmware_path to display params
-Date: Thu, 18 Apr 2024 17:39:54 +0300
-Message-Id: <f34afbeed83f7ab4b6e9bbeff27b1fc9ab9c92c2.1713450693.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1713450693.git.jani.nikula@intel.com>
-References: <cover.1713450693.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 07:45:19 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: kai.vehmanen@intel.com, jani.saarinen@intel.com,
+ ville.syrjala@linux.intel.com, libin.yang@linux.intel.com
+Subject: Re: [PATCH] drm/i915/audio: Fix audio time stamp programming for DP
+In-Reply-To: <20240418132915.4157957-1-chaitanya.kumar.borah@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20240418132915.4157957-1-chaitanya.kumar.borah@intel.com>
+Date: Thu, 18 Apr 2024 17:45:16 +0300
+Message-ID: <87wmouwwzn.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,105 +69,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The dmc_firmware_path parameter is clearly a display parameter. Move it
-there so it's available to both i915 and xe modules. This also cleans up
-the ugly member in struct xe_device.
+On Thu, 18 Apr 2024, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Intel hardware is capable of programming the Maud/Naud SDPs on its
+> own based on real-time clocks. While doing so, it takes care
+> of any deviations from the theoretical values. Programming the registers
+> explicitly with static values can interfere with this logic. Therefore,
+> let the HW decide the Maud and Naud SDPs on it's own.
 
-v2:
-- New try with the NULL/"" param value issue resolved
+Hmm. I thought this was added due to some platforms *not* being able to
+do this for some DP link or audio rates.
 
-Link: https://patchwork.freedesktop.org/patch/msgid/20240321161856.3517856-1-jani.nikula@intel.com
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++++
- drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
- drivers/gpu/drm/i915/display/intel_dmc.c            | 2 +-
- drivers/gpu/drm/i915/i915_params.c                  | 4 ----
- drivers/gpu/drm/i915/i915_params.h                  | 1 -
- drivers/gpu/drm/xe/xe_device_types.h                | 3 ---
- 6 files changed, 6 insertions(+), 9 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index f40b223cc8a1..ddce5a2c53d9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -27,6 +27,10 @@ static struct intel_display_params intel_display_modparams __read_mostly = {
-  * debugfs mode to 0.
-  */
- 
-+intel_display_param_named_unsafe(dmc_firmware_path, charp, 0400,
-+	"DMC firmware path to use instead of the default one. "
-+	"Use non-existent file to disable DMC and runtime PM.");
-+
- intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
- 	"Load VBT from specified file under /lib/firmware");
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index bf8dbbdb20a1..1208a62c16d2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -24,6 +24,7 @@ struct drm_i915_private;
-  *       debugfs file
-  */
- #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
-+	param(char *, dmc_firmware_path, NULL, 0400) \
- 	param(char *, vbt_firmware, NULL, 0400) \
- 	param(int, lvds_channel_mode, 0, 0400) \
- 	param(int, panel_use_ssc, -1, 0600) \
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 3e510c2be1eb..175669f7d61d 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -75,7 +75,7 @@ static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
- 
- static const char *dmc_firmware_param(struct drm_i915_private *i915)
- {
--	const char *p = i915->params.dmc_firmware_path;
-+	const char *p = i915->display.params.dmc_firmware_path;
- 
- 	return p && *p ? p : NULL;
- }
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 9e7f2a9f6287..8c00169e3ab7 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -108,10 +108,6 @@ i915_param_named_unsafe(guc_firmware_path, charp, 0400,
- i915_param_named_unsafe(huc_firmware_path, charp, 0400,
- 	"HuC firmware path to use instead of the default one");
- 
--i915_param_named_unsafe(dmc_firmware_path, charp, 0400,
--	"DMC firmware path to use instead of the default one. "
--	"Use non-existent file to disable DMC and runtime PM.");
--
- i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
- 	"GSC firmware path to use instead of the default one");
- 
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 1315d7fac850..2eb3f2115ff2 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -51,7 +51,6 @@ struct drm_printer;
- 	param(int, guc_log_level, -1, 0400) \
- 	param(char *, guc_firmware_path, NULL, 0400) \
- 	param(char *, huc_firmware_path, NULL, 0400) \
--	param(char *, dmc_firmware_path, NULL, 0400) \
- 	param(char *, gsc_firmware_path, NULL, 0400) \
- 	param(bool, memtest, false, 0400) \
- 	param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0600) \
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 60ced5f90c2b..c70047762222 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -519,9 +519,6 @@ struct xe_device {
- 		unsigned int czclk_freq;
- 		unsigned int fsb_freq, mem_freq, is_ddr3;
- 	};
--	struct {
--		const char *dmc_firmware_path;
--	} params;
- 
- 	void *pxp;
- #endif
+>
+> Fixes: 6014ac122ed0 ("drm/i915/audio: set proper N/M in modeset")
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/8097
+> Co-developed-by: Kai Vehmanen <kai.vehmanen@intel.com>
+> Signed-off-by: Kai Vehmanen <kai.vehmanen@intel.com>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 113 ++-------------------
+>  1 file changed, 8 insertions(+), 105 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index 07e0c73204f3..ed81e1466c4b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -76,19 +76,6 @@ struct intel_audio_funcs {
+>  				       struct intel_crtc_state *crtc_state);
+>  };
+>  
+> -/* DP N/M table */
+> -#define LC_810M	810000
+> -#define LC_540M	540000
+> -#define LC_270M	270000
+> -#define LC_162M	162000
+> -
+> -struct dp_aud_n_m {
+> -	int sample_rate;
+> -	int clock;
+> -	u16 m;
+> -	u16 n;
+> -};
+> -
+>  struct hdmi_aud_ncts {
+>  	int sample_rate;
+>  	int clock;
+> @@ -96,60 +83,6 @@ struct hdmi_aud_ncts {
+>  	int cts;
+>  };
+>  
+> -/* Values according to DP 1.4 Table 2-104 */
+> -static const struct dp_aud_n_m dp_aud_n_m[] = {
+> -	{ 32000, LC_162M, 1024, 10125 },
+> -	{ 44100, LC_162M, 784, 5625 },
+> -	{ 48000, LC_162M, 512, 3375 },
+> -	{ 64000, LC_162M, 2048, 10125 },
+> -	{ 88200, LC_162M, 1568, 5625 },
+> -	{ 96000, LC_162M, 1024, 3375 },
+> -	{ 128000, LC_162M, 4096, 10125 },
+> -	{ 176400, LC_162M, 3136, 5625 },
+> -	{ 192000, LC_162M, 2048, 3375 },
+> -	{ 32000, LC_270M, 1024, 16875 },
+> -	{ 44100, LC_270M, 784, 9375 },
+> -	{ 48000, LC_270M, 512, 5625 },
+> -	{ 64000, LC_270M, 2048, 16875 },
+> -	{ 88200, LC_270M, 1568, 9375 },
+> -	{ 96000, LC_270M, 1024, 5625 },
+> -	{ 128000, LC_270M, 4096, 16875 },
+> -	{ 176400, LC_270M, 3136, 9375 },
+> -	{ 192000, LC_270M, 2048, 5625 },
+> -	{ 32000, LC_540M, 1024, 33750 },
+> -	{ 44100, LC_540M, 784, 18750 },
+> -	{ 48000, LC_540M, 512, 11250 },
+> -	{ 64000, LC_540M, 2048, 33750 },
+> -	{ 88200, LC_540M, 1568, 18750 },
+> -	{ 96000, LC_540M, 1024, 11250 },
+> -	{ 128000, LC_540M, 4096, 33750 },
+> -	{ 176400, LC_540M, 3136, 18750 },
+> -	{ 192000, LC_540M, 2048, 11250 },
+> -	{ 32000, LC_810M, 1024, 50625 },
+> -	{ 44100, LC_810M, 784, 28125 },
+> -	{ 48000, LC_810M, 512, 16875 },
+> -	{ 64000, LC_810M, 2048, 50625 },
+> -	{ 88200, LC_810M, 1568, 28125 },
+> -	{ 96000, LC_810M, 1024, 16875 },
+> -	{ 128000, LC_810M, 4096, 50625 },
+> -	{ 176400, LC_810M, 3136, 28125 },
+> -	{ 192000, LC_810M, 2048, 16875 },
+> -};
+> -
+> -static const struct dp_aud_n_m *
+> -audio_config_dp_get_n_m(const struct intel_crtc_state *crtc_state, int rate)
+> -{
+> -	int i;
+> -
+> -	for (i = 0; i < ARRAY_SIZE(dp_aud_n_m); i++) {
+> -		if (rate == dp_aud_n_m[i].sample_rate &&
+> -		    crtc_state->port_clock == dp_aud_n_m[i].clock)
+> -			return &dp_aud_n_m[i];
+> -	}
+> -
+> -	return NULL;
+> -}
+> -
+>  static const struct {
+>  	int clock;
+>  	u32 config;
+> @@ -387,47 +320,17 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
+>  			   const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -	struct i915_audio_component *acomp = i915->display.audio.component;
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> -	enum port port = encoder->port;
+> -	const struct dp_aud_n_m *nm;
+> -	int rate;
+> -	u32 tmp;
+> -
+> -	rate = acomp ? acomp->aud_sample_rate[port] : 0;
+> -	nm = audio_config_dp_get_n_m(crtc_state, rate);
+> -	if (nm)
+> -		drm_dbg_kms(&i915->drm, "using Maud %u, Naud %u\n", nm->m,
+> -			    nm->n);
+> -	else
+> -		drm_dbg_kms(&i915->drm, "using automatic Maud, Naud\n");
+> -
+> -	tmp = intel_de_read(i915, HSW_AUD_CFG(cpu_transcoder));
+> -	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+> -	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+> -	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
+> -	tmp |= AUD_CONFIG_N_VALUE_INDEX;
+>  
+> -	if (nm) {
+> -		tmp &= ~AUD_CONFIG_N_MASK;
+> -		tmp |= AUD_CONFIG_N(nm->n);
+> -		tmp |= AUD_CONFIG_N_PROG_ENABLE;
+> -	}
+> -
+> -	intel_de_write(i915, HSW_AUD_CFG(cpu_transcoder), tmp);
+> -
+> -	tmp = intel_de_read(i915, HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
+> -	tmp &= ~AUD_CONFIG_M_MASK;
+> -	tmp &= ~AUD_M_CTS_M_VALUE_INDEX;
+> -	tmp &= ~AUD_M_CTS_M_PROG_ENABLE;
+> -
+> -	if (nm) {
+> -		tmp |= nm->m;
+> -		tmp |= AUD_M_CTS_M_VALUE_INDEX;
+> -		tmp |= AUD_M_CTS_M_PROG_ENABLE;
+> -	}
+> +	/* Enable time stamps. Let HW calculate Maud/Naud values */
+> +	intel_de_rmw(i915, HSW_AUD_CFG(cpu_transcoder),
+> +		     AUD_CONFIG_N_VALUE_INDEX |
+> +		     AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK |
+> +		     AUD_CONFIG_UPPER_N_MASK |
+> +		     AUD_CONFIG_LOWER_N_MASK |
+> +		     AUD_CONFIG_N_PROG_ENABLE,
+> +		     AUD_CONFIG_N_VALUE_INDEX);
+>  
+> -	intel_de_write(i915, HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
+>  }
+>  
+>  static void
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
