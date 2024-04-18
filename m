@@ -2,27 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C128AA074
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 18:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1988AA101
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 19:25:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAF6E113E06;
-	Thu, 18 Apr 2024 16:55:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCC7113E49;
+	Thu, 18 Apr 2024 17:24:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dIbg1GZm";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7301113E07;
- Thu, 18 Apr 2024 16:55:14 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 5/5] drm/xe/display: Re-use display vmas when possible
-Date: Thu, 18 Apr 2024 18:55:19 +0200
-Message-ID: <20240418165520.88961-6-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240418165520.88961-1-maarten.lankhorst@linux.intel.com>
-References: <20240418165520.88961-1-maarten.lankhorst@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 334EE113E49;
+ Thu, 18 Apr 2024 17:24:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713461098; x=1744997098;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NzulTEbpYhzMpFTXlJcvih1nCohXnoYCUt+j0mfdPsM=;
+ b=dIbg1GZmmUi+VDvzeKTu+jAcwmbS5qPsHpCNFehtdlX/J/7JaxbVTMuk
+ 01KEQSQkEwmZwgtI/WPqSdpDWAh8zde7BLdN8MaYQSzDKrAW23Cug7BfO
+ 0G0It5bk/OifZKIfyf1mjGhUKai2+yGlybMqZIU6ucNRQ5LZAVI82vyPd
+ B/2oRRUKgdFVxpWpf7z6a4dmTbTDM2yM93fDmhSCzyawj2TWp0w7WNFSo
+ CXzKNVI0x6uFl0/KVZjsqir0lgH0yb/S041pERut+kSPPWusH7oG2fk0l
+ VIt53KIc9dqL4xl5UAk7LoPNw48srCO54+jEL9xOr1YjYHccz0s2Qizkk w==;
+X-CSE-ConnectionGUID: lBDWLPUwSQCvGdFvzoZ6WQ==
+X-CSE-MsgGUID: Knq+D79/QKSPvBMvzvW5NA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="34424184"
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="34424184"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 10:24:57 -0700
+X-CSE-ConnectionGUID: 0Ca4RiXNSV2T+TsxGQbyvA==
+X-CSE-MsgGUID: DEZlZcehQX+jSMK6N/lIyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,212,1708416000"; d="scan'208";a="27881192"
+Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 10:24:56 -0700
+From: Nirmoy Das <nirmoy.das@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, John.C.Harrison@Intel.com,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH 1/3] drm/i915: Refactor confusing __intel_gt_reset()
+Date: Thu, 18 Apr 2024 19:10:53 +0200
+Message-ID: <20240418171055.31371-1-nirmoy.das@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
+Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
+ 85579 Neubiberg, Germany,
+ Commercial Register: Amtsgericht Muenchen HRB 186928 
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -39,232 +69,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915 has this really nice, infrastructure where everything becomes
-complicated, GGTT needs eviction, etc..
+__intel_gt_reset() is really for resetting engines though
+the name might suggest something else. So add two helper functions
+to remove confusions with no functional changes.
 
-Lets not do that, and make the dumbest possible interface instead.
-Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
-fb.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  9 ++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
- 8 files changed, 65 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         | 43 ++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_reset.h         |  3 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  2 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  2 +-
+ 8 files changed, 41 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 76d77d5a0409..24ba55531e8d 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1106,7 +1106,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	if (!obj)
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 8c44af1c3451..5c8e9ee3b008 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -678,7 +678,7 @@ void intel_engines_release(struct intel_gt *gt)
+ 	 */
+ 	GEM_BUG_ON(intel_gt_pm_is_awake(gt));
+ 	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+-		__intel_gt_reset(gt, ALL_ENGINES);
++		intel_gt_reset_all_engines(gt);
  
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		return ret;
+ 	/* Decouple the backend; but keep the layout for late GPU resets */
+ 	for_each_engine(engine, gt, id) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 355aab5b38ba..21829439e686 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2898,7 +2898,7 @@ static void enable_error_interrupt(struct intel_engine_cs *engine)
+ 		drm_err(&engine->i915->drm,
+ 			"engine '%s' resumed still in error: %08x\n",
+ 			engine->name, status);
+-		__intel_gt_reset(engine->gt, engine->mask);
++		intel_gt_reset_engine(engine);
+ 	}
  
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 23a122ee20c9..3d3b8e37c0f2 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -761,7 +761,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (ret)
- 		goto out_free;
+ 	/*
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 580b5141ce1e..626b166e67ef 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -832,7 +832,7 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
  
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		goto out_free;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index b6df9baf481b..7b8a1825ccfc 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -236,7 +236,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	i915_vma_put(vma);
+ 	/* Scrub all HW state upon release */
+ 	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+-		__intel_gt_reset(gt, ALL_ENGINES);
++		intel_gt_reset_all_engines(gt);
  }
  
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-+		       const struct intel_plane_state *old_plane_state)
+ void intel_gt_driver_release(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 220ac4f92edf..c08fdb65cc69 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -159,7 +159,7 @@ static bool reset_engines(struct intel_gt *gt)
+ 	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+ 		return false;
+ 
+-	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
++	return intel_gt_reset_all_engines(gt) == 0;
+ }
+ 
+ static void gt_sanitize(struct intel_gt *gt, bool force)
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index c8e9aa41fdea..b825daace58e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -764,7 +764,7 @@ wa_14015076503_end(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+ 			 HECI_H_GS1_ER_PREP, 0);
+ }
+ 
+-int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask)
++static int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask)
  {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index de0efaa25905..48675e6233f0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state);
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 43855c6c3509..a010b7a8a468 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -668,3 +668,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- 
- 	return to_intel_framebuffer(fbdev->helper.fb);
+ 	const int retries = engine_mask == ALL_ENGINES ? RESET_MAX_RETRIES : 1;
+ 	reset_func reset;
+@@ -795,6 +795,34 @@ int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+ 	return ret;
  }
-+
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
+ 
++/**
++ * intel_gt_reset_all_engines() - Reset all engines in the given gt.
++ * @gt: the GT to reset all engines for.
++ *
++ * This function resets all engines within the given gt.
++ *
++ * Returns:
++ * Zero on success, negative error code on failure.
++ */
++int intel_gt_reset_all_engines(struct intel_gt *gt)
 +{
-+	return fbdev ? fbdev->vma : NULL;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 04fd523a5023..fa6c0c1ae936 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -22,6 +22,8 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- void intel_fbdev_output_poll_changed(struct drm_device *dev);
- void intel_fbdev_restore_mode(struct drm_i915_private *dev_priv);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
-+
- #else
- static inline int intel_fbdev_init(struct drm_device *dev)
- {
-@@ -51,10 +53,17 @@ static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
- static inline void intel_fbdev_restore_mode(struct drm_i915_private *i915)
- {
- }
-+
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- {
- 	return NULL;
- }
-+
-+static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
++	return __intel_gt_reset(gt, ALL_ENGINES);
 +}
 +
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index a20d2638ea7a..193382f97823 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -9,6 +9,8 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
- 
-+#include <linux/refcount.h>
-+
- /* We don't want these from i915_drm.h in case of Xe */
- #undef I915_TILING_X
- #undef I915_TILING_Y
-@@ -18,6 +20,7 @@
- struct xe_bo;
- 
- struct i915_vma {
-+	refcount_t ref;
- 	struct xe_bo *bo, *dpt;
- 	struct drm_mm_node node;
- };
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index dd7a1c4a9430..10114c575e5a 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -8,6 +8,7 @@
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "intel_fbdev.h"
- #include "xe_fb_pin.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-@@ -350,6 +351,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (!vma)
- 		return ERR_PTR(-ENOMEM);
- 
-+	refcount_set(&vma->ref, 1);
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
- 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
-@@ -409,6 +411,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 
-+	if (!refcount_dec_and_test(&vma->ref))
-+		return;
-+
- 	if (vma->dpt) {
- 		xe_ggtt_remove_bo(ggtt, vma->dpt);
- 		xe_fb_dpt_unpin_free(vma, fb);
-@@ -450,20 +455,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	__xe_unpin_fb_vma(vma, NULL);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+static bool reuse_vma(struct intel_plane_state *new_plane_state,
-+		      const struct intel_plane_state *old_plane_state)
- {
--	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
-+	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct i915_vma *vma;
-+
-+	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
-+	    !memcmp(&old_plane_state->view.gtt,
-+		    &new_plane_state->view.gtt,
-+	            sizeof(new_plane_state->view.gtt))) {
-+		vma = old_plane_state->ggtt_vma;
-+		goto found;
-+	}
-+
-+	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
-+		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-+		if (vma)
-+			goto found;
-+	}
-+
-+	return false;
-+
-+found:
-+	refcount_inc(&vma->ref);
-+	new_plane_state->ggtt_vma = vma;
-+	return true;
++/**
++ * intel_gt_reset_engine() - Reset a specific engine within a gt.
++ * @engine: engine to be reset.
++ *
++ * This function resets the specified engine within a gt.
++ *
++ * Returns:
++ * Zero on success, negative error code on failure.
++ */
++int intel_gt_reset_engine(struct intel_engine_cs *engine)
++{
++	return __intel_gt_reset(engine->gt, engine->mask);
 +}
 +
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state)
-+{
-+	struct drm_framebuffer *fb = new_plane_state->hw.fb;
- 	struct xe_bo *bo = intel_fb_obj(fb);
- 	struct i915_vma *vma;
+ bool intel_has_gpu_reset(const struct intel_gt *gt)
+ {
+ 	if (!gt->i915->params.reset)
+@@ -978,7 +1006,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
  
-+	if (reuse_vma(new_plane_state, old_plane_state))
-+		return 0;
-+
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 	/* Even if the GPU reset fails, it should still stop the engines */
+ 	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+-		__intel_gt_reset(gt, ALL_ENGINES);
++		intel_gt_reset_all_engines(gt);
  
--	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt, 0);
-+	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt, 0);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
+ 	for_each_engine(engine, gt, id)
+ 		engine->submit_request = nop_submit_request;
+@@ -1089,7 +1117,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 	/* We must reset pending GPU events before restoring our submission */
+ 	ok = !HAS_EXECLISTS(gt->i915); /* XXX better agnosticism desired */
+ 	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+-		ok = __intel_gt_reset(gt, ALL_ENGINES) == 0;
++		ok = intel_gt_reset_all_engines(gt) == 0;
+ 	if (!ok) {
+ 		/*
+ 		 * Warn CI about the unrecoverable wedged condition.
+@@ -1133,10 +1161,10 @@ static int do_reset(struct intel_gt *gt, intel_engine_mask_t stalled_mask)
+ {
+ 	int err, i;
  
--	plane_state->ggtt_vma = vma;
-+	new_plane_state->ggtt_vma = vma;
- 	return 0;
+-	err = __intel_gt_reset(gt, ALL_ENGINES);
++	err = intel_gt_reset_all_engines(gt);
+ 	for (i = 0; err && i < RESET_MAX_RETRIES; i++) {
+ 		msleep(10 * (i + 1));
+-		err = __intel_gt_reset(gt, ALL_ENGINES);
++		err = intel_gt_reset_all_engines(gt);
+ 	}
+ 	if (err)
+ 		return err;
+@@ -1270,11 +1298,6 @@ void intel_gt_reset(struct intel_gt *gt,
+ 	goto finish;
+ }
+ 
+-static int intel_gt_reset_engine(struct intel_engine_cs *engine)
+-{
+-	return __intel_gt_reset(engine->gt, engine->mask);
+-}
+-
+ int __intel_engine_reset_bh(struct intel_engine_cs *engine, const char *msg)
+ {
+ 	struct intel_gt *gt = engine->gt;
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
+index f615b30b81c5..c00de353075c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.h
++++ b/drivers/gpu/drm/i915/gt/intel_reset.h
+@@ -54,7 +54,8 @@ int intel_gt_terminally_wedged(struct intel_gt *gt);
+ void intel_gt_set_wedged_on_init(struct intel_gt *gt);
+ void intel_gt_set_wedged_on_fini(struct intel_gt *gt);
+ 
+-int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask);
++int intel_gt_reset_engine(struct intel_engine_cs *engine);
++int intel_gt_reset_all_engines(struct intel_gt *gt);
+ 
+ int intel_reset_guc(struct intel_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c b/drivers/gpu/drm/i915/gt/selftest_reset.c
+index f40de408cd3a..2cfc23c58e90 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_reset.c
++++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
+@@ -281,7 +281,7 @@ static int igt_atomic_reset(void *arg)
+ 		awake = reset_prepare(gt);
+ 		p->critical_section_begin();
+ 
+-		err = __intel_gt_reset(gt, ALL_ENGINES);
++		err = intel_gt_reset_all_engines(gt);
+ 
+ 		p->critical_section_end();
+ 		reset_finish(gt, awake);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 4b9233c07a22..622a24305bc2 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -202,7 +202,7 @@ static void sanitize_gpu(struct drm_i915_private *i915)
+ 		unsigned int i;
+ 
+ 		for_each_gt(gt, i915, i)
+-			__intel_gt_reset(gt, ALL_ENGINES);
++			intel_gt_reset_all_engines(gt);
+ 	}
  }
  
 -- 
-2.43.0
+2.42.0
 
