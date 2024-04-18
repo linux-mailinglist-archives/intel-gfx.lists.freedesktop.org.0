@@ -2,157 +2,122 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D83E8AA30C
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 21:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A128AA314
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Apr 2024 21:44:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7DED113F66;
-	Thu, 18 Apr 2024 19:43:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E2B113F6A;
+	Thu, 18 Apr 2024 19:43:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQPAMZha";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qEYkmnur";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A01011139DE;
- Thu, 18 Apr 2024 19:43:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713469395; x=1745005395;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=MVwLsOfbOt7+MtTpIqsqGOCHP414eP9G20SRLQdyasc=;
- b=MQPAMZham5lOMuxJIaSsrM7ZzOSajHcMiLP1jSoNQz4u6j4c3M4jd9kw
- p91PwmTT8gMFWE00HATvUmuVzLsj3xewMk1omcf8zgJKRAnoh7YXBRaR+
- oQKNSF+1Lwu0KA8L5SPKyV3hECHIpAMBje60prVIThtjRu0Psg0YerN4u
- lPpe59Zd+qTs44cA3MPBfQ9Ua/zmxg5nzjhCVLpWb+PcQqaeww0DNFWGg
- 38xLTdbWXj0vg0GqY8qwTooPuRTVbOU1WtBfodvdRJR0bGTzfqEru5IRQ
- VJjTRAX+fQbtxbQqFGQwVCcAxH0YmpaItdVbgMcYGDeiwX2uROU+XlHHU g==;
-X-CSE-ConnectionGUID: s8LFkiLYSD6v29RMpwGQYw==
-X-CSE-MsgGUID: INGV3rAgSAaa0GwSzsamsg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="8912837"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
-   d="scan'208";a="8912837"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 12:43:14 -0700
-X-CSE-ConnectionGUID: G0q4PAOcQ+mcsJlm7BJ9Gg==
-X-CSE-MsgGUID: Ggdx2WfkRr6SmTPWeEduEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="27717301"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 18 Apr 2024 12:43:14 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 18 Apr 2024 12:43:13 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Thu, 18 Apr 2024 12:43:13 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Thu, 18 Apr 2024 12:43:13 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2044.outbound.protection.outlook.com [40.107.243.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90D61113F68;
+ Thu, 18 Apr 2024 19:43:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gz77opFSMelLez6GaHoLVyTRjn7TO2YJWeocjJaO/k0iI6b3JIM2s4TBfh1UTZNYWwk6zvkTd3p/vAgS4LKcMl4bdDnmN9jcitCIDcCSv+8BFaDhQy+pZwRXT597WOxop2QEsRwfJx2eqSVJNDHI4Z4YJ8GNePvEMPiTA0VZ41pFOfJQcRtEa08AI7uDI3pCEIono0Pxd/hUikKE+voOvUAiYsQNJ8d4GW7rrR1e3qT5PuffftaVM7gYIHutmx7ROSAUooA5rbXDMYhtSlos6WKpLiwFbtoqQsNA+vQezqBN9fppi3Qza9Wy4UY2ngT61ub5cUfG9Fk2c1q3c8/WLw==
+ b=EG3TCRqjdwF+PY5hRI9+vLpN6XA6/L/CgGJmmBkKEu8gSTOK4hfrjduYjEAVAFUZcKdBQUAxaV+MRHm/PkX1Ob/sEM3yCmnpLTy4iv2p3iR6OueYIojJ3CyAt0ybclRrjqCxFm1MIM+jTAwgnmgBhtDZDCmj5OSajCBHqD6ET910zdTUsYtt8LcRh64TZdqTMrTtFLFBZa4cNPynZaAhl3s51cA2oHOskict2YlBMylBzFf48VkvwG4NNStpUd2Q9nWdKwRN1hEnmJqeJcECo+VGf3W+oKlIeLkqtYE4GpLpfqv+wJvObPYgdld4LOwKSxkcg5JXXeu+JrBYZxIpLA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TXciiz7Jj21fg1lZ+kk+pidHcGVYS8A7az7BxJ/bXCw=;
- b=PpD5XCrz9I3yQk0SVfhsxSQVG4CJ6L1kPX6YGwnxB4CJn8o+j+7YAEXZpfgG+f8RKWaC5h8qlEpo+r83T7EOx1m07BiCnprHrryVW2VkgXp1cyh0luSB5TSIYqWaQvdCCIyF26j5h492sf56ozfc+hR2i8QbgnG8gawPLxqBgobBxdnpbNoYRrnQ7aEYsnRvWB5PQU3GVs9nHgqKjoELqYISYvvd69fatXQcw1gU1lJUYd46g4rS5EGMhtMPirUscKACxeEEQg9hdfHfNnCeUGdg1UtEvDR/QyhM/G4+8LXPDjgZhDEqnN00wwRYWbDhTKzHKoPN3IJDNhvcJAM/1A==
+ bh=M3dU7MV7NIAPioE9LeDvqOQCDHJyG5Y9hSOHMXkoH+4=;
+ b=HmeeG4uSHN3fU0H1lcVbvxSMzAK5Rwsb9y0bN3FmAVrlfCPesc3jutJLawNL8t03IOqUoYAF4UX2QYcragTcpR1Zo0GjoOgA8JomDlIfGVzt3II+fxuf/DvFWXyyVmHI+ZYWdSBnwzKzI7Rnrfu/zEaXFzTSLqL5uJFTzt7fXeh8uq4i6hfuVE6OcMPJfTCiMU1vz2KmRyLBgFN5LbzwXFB9YFCqUuWMG2X5LDHg6S+THDIxxx9qjRIK345bHgK2ck6ImdtUW2WHm95RGL+md4rNJlqbHWAshwiDHY1pISc3ge7ZpSqQFcBmz+Yids3sJMnY2+e2+vBprIprJviHMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M3dU7MV7NIAPioE9LeDvqOQCDHJyG5Y9hSOHMXkoH+4=;
+ b=qEYkmnurs59tooEzp2FH6DYWb5dwCZOPW6mkZuz52g50uJakeSZSNvUM1dKWqHVmWUhIF9jLBMMC7yD7MoZDJqN3MOSKDR+QcarEInPLHMyfizvmXgvzQdKdR03BLwkuz6osOSFSQTjo5kd7WsJpF7TSlaeHxTmI0If1JAPjCwA=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by DS0PR11MB8083.namprd11.prod.outlook.com (2603:10b6:8:15e::22) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by DM4PR12MB5940.namprd12.prod.outlook.com (2603:10b6:8:6b::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.11; Thu, 18 Apr
- 2024 19:43:11 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::3191:4863:ad54:bdb1]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::3191:4863:ad54:bdb1%4]) with mapi id 15.20.7519.010; Thu, 18 Apr 2024
- 19:43:10 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <f34afbeed83f7ab4b6e9bbeff27b1fc9ab9c92c2.1713450693.git.jani.nikula@intel.com>
-References: <cover.1713450693.git.jani.nikula@intel.com>
- <f34afbeed83f7ab4b6e9bbeff27b1fc9ab9c92c2.1713450693.git.jani.nikula@intel.com>
-Subject: Re: [PATCH 5/5] drm/i915/display: move dmc_firmware_path to display
- params
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <jani.nikula@intel.com>, <lucas.demarchi@intel.com>,
- <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Date: Thu, 18 Apr 2024 16:43:00 -0300
-Message-ID: <171346938053.2007.15929125572274587264@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR13CA0139.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::24) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.39; Thu, 18 Apr
+ 2024 19:43:54 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::1c2f:5c82:2d9c:6062]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::1c2f:5c82:2d9c:6062%5]) with mapi id 15.20.7452.049; Thu, 18 Apr 2024
+ 19:43:54 +0000
+Message-ID: <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
+Date: Thu, 18 Apr 2024 15:43:50 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
+ drm_dp_add_payload_part2
+To: Wayne Lin <Wayne.Lin@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: lyude@redhat.com, imre.deak@intel.com,
+ =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>,
+ stable@vger.kernel.org, regressions@lists.linux.dev
+References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20240307062957.2323620-1-Wayne.Lin@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQZPR01CA0024.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:85::21) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|DS0PR11MB8083:EE_
-X-MS-Office365-Filtering-Correlation-Id: efbf7f0a-b9f4-426c-2a1b-08dc5fdfc71d
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|DM4PR12MB5940:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ca3cebe-8704-4504-0f7a-08dc5fdfe199
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
-X-Microsoft-Antispam-Message-Info: pzDQ3M11wkHID5a+cxTE6O008MBQRyby61CE6NQK6Ybi/nubuJw44IF1hhBdyXgvqsIFxVG5kBiYidMmIg9bmZMLw/NxVuOY5i7OKgeaippjcug2JcWAMi8O81aTN2kwD+8YBABojuCWiRDWbPqdY9km/GA0NYve9fOwy0MYr5v/7VLeOJ6xPRjherwYF9Z/qNzp28qb6CUDgB1cIWe7bRxavrI3Ik4PAcvF53GEx7eKaacAwkbD01IR0p/Im9bi0XlwtgWtcyC80eEdinrO+hzs9eunJLihgewoHYAcQ4Bv+/Nc+Lcb8bn07E33BlddNpoXpAgAj47ZmEnSiCC+dAHRfkug7O4HGP6htloJ161gOo5VBT0DnSxcHqoa9vmPAcKSI0xITURQKnGaavMjZPzHcKkAZB2+X0OB9/Bqu7qTj08jEvQEwwaomSpNw4Cfi1hhIEm2ZOHN0ORNi6DslvUKH/XN8z9JEZTrh7FwS7XRCBPePyKakbUzsGEKxmBKBDEpHyxoxb0PCokxphvKUvMn7rDCWNY490k9IcopivVNO/FLGIxKjU9CelN5oOIoXaGr5KulYNtCK9R7OufQ2gysC0DDrEBtrZJXiIcQ0do=
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KnBAlGFELnMU//Nx9vnChoRNaplOi3q/dhCmIcUyW5Gr/Y6V4mGaEabLTQQ5HkX5C53dUrv5xYNulrxWxrEMs+gaKn8ZMtiJgEqZWQZqVRopLa8nIOm0aaV3xw1aZtfUaIqEWKy1ciGa33Wf5Z1LD3CnWo6gI1Vp8FGRZWMdIaj072YM8gPjvnT2/Jcux6r5KnfyMfwywm4bwriqZ/+KDXNNYR6zV1DuuqBfcjYJQs+xO+ggQ8CML0Ruim2wYd2r1fpWXKa+s0CShLNr0tFgNlS1v7aD/qmaS6Ud3zJDXbEfZ9it/dIwQJn9jLFjcuhAIOTXyrj+vPUyA0C/meIyeJ8KHA4jgrE7qxzVJQkpg8KlD/ia8BWJxxtvLbIw4IQCRp1XvH4XQXnF19dB51ufjgE3xHckEVCFE0tNBKdQf+gt9v2aSAC3tbYxp/rnO7kv6s1upfgvfHd5yoWnyydUHBN43ThkUC6nYd7CKmagQKslmpul9UF3lnhEXwgGUxEOU6BaO4bUC6eQUi4nF6dIA739z+dQoVVQ5R9Q6ePhhTBXHVygLUjf3KVWMUnc7jpuvmcbuYLTNqz8o9CbSwu69KZD6tRASB/hgkzqQu3SxBrv+//RcGwCqTEPC6gJ7THJdGvmake5ERr5lLb+i9A2Sm4kjKT/R5DUXKbHhiXE0cU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?THJPaXZ4eHhOTmo1a0VRL3BvdTFKQmhwN1lncWI1MjRnY2ZHcHFqOVpKNHhN?=
- =?utf-8?B?YmhyZ3VidEsxMm9NTkdTdXpxenVHM3ZuN0EzMkRmaGcyS3dRc3JZa1VaSGhJ?=
- =?utf-8?B?dnBrNTV6UmRJenZFbytqWGJMdFB5NkVWYU03bEVaWTdGRDh4U3NOY1g1UHpR?=
- =?utf-8?B?Qkk1ODJFMFdzcVczaXZCYjNqbnhtTDRCejIrb0htT0lqcXN4djUrNFFVOTN5?=
- =?utf-8?B?VnR3RlhtdmY3a2xnVno3Y2hxckFRd3dDS0lPY1JPRlJmeVVSOGZTeEdvMXk5?=
- =?utf-8?B?bmdjWG84NmNQK3NVSHJBcWUxK2VaaFMyOGpkcVh4emlWblRDcnB4S3JZN0N5?=
- =?utf-8?B?Q0NubVJCc01oUFdzcXVrdlBmZWxEcGVRQ3l4TXVraE1ZWCtmT213REN0bVVQ?=
- =?utf-8?B?ZW5ZVDVDY1RkeWIzckJEUUl0U0w0djJFREg1bGFBaEZUb1BWS3hoWm5NdytF?=
- =?utf-8?B?VVRveEJqQ0tvSk50QStONno4ZUtIZW5pR0xrR2FZd1JUcHlXWFRTNCt3bEFu?=
- =?utf-8?B?YWppdndKWWFnWE1lQWdhNEtWSHljOHozNXhzQVh0cmFzY2xkQ2hlamt0YndP?=
- =?utf-8?B?TnJwYm9vcndxSUxWOXEwZ21DWm51Vmhzakc5eGtzdjdFQXdGL2hXbmo0OEhs?=
- =?utf-8?B?d2c3ajFWSiswOHgvdWZtdDF6UWZiTllvdERlTXBoZnMxZC9TWUlqQWZJVkp2?=
- =?utf-8?B?UTh2bi9lVzJ0b2U3WVhxUGRaRjQ4SUVsRzZ6QTNNTFhLbUF3UHUwNnVZcFpX?=
- =?utf-8?B?c1BJR1VSY3IwK1NxdkhxVnlGRGF5OUpVNjFvK2wwUHV5OXNWNXpjNFovNjF2?=
- =?utf-8?B?UHJ3RmJCRFh0MFNFK0hNVUpMcDZiTW1FbVRYdzJ6RVJQSEZURkFhQnI2QjBR?=
- =?utf-8?B?MDR6N0lZd3pEaVF1VDdLaFJESVI4bWNycWpLWlFPYmVqaEhFejh3MS9QZGdm?=
- =?utf-8?B?MENtTjhBY1pVRTdyTkdhdk1QdzZuRE45TUNOZmFZWnF2OUNIZkpkTlFIc1lI?=
- =?utf-8?B?bzUrc1M3TFhkUnBRcDRGTEhhc3NId2dLQjBsOFYwVlEyUURoZ2h0dVczMzlX?=
- =?utf-8?B?aVNNaERsdmZxWUpkQ25YV3pjcWk2WkdqUk41RkJ0dUR6RmowMEdqd1JOWFZS?=
- =?utf-8?B?aFVOVER0cnJ4L255a0lTYTZpQ2s5WWlpd1Zvb3VDbHFBYy9Bcm1CWmswVHda?=
- =?utf-8?B?bkZuN293ZkVBbS9JaDlkRlViZkpOek5zYU1semptYW91dndmTlVIUFlaVC9G?=
- =?utf-8?B?MGtEaXJCREFXYzlEN2NqS1VKMUNBSU1rVEZJZ0xwMVN3ZllUVDQ5M1VLcm9w?=
- =?utf-8?B?U3hJYWNTaFo4dmthcnRLTEtNMEtFbmlpUllyNHZlc20rcVViZHZkaldEZVV1?=
- =?utf-8?B?OGd6U1oxVEN3VFo4M0pDb0pHSVFoaURxd09KTWNVUWZYNGRaNEppYUpSZEVZ?=
- =?utf-8?B?T016WWFzUnlwNkM4ZlJGc0Y5Y2ZzZE8rRUgvSXh3RExPS0dubExabVdyMGox?=
- =?utf-8?B?cmNjZEV1am5WMFVIM1pRbUdXV3kxVWZOenpJNFlOd25LUzRBQTRyRlVoNFNp?=
- =?utf-8?B?c2RtZG1tK2pPTHJCSFdFNVFVNytXMTRqbzRkbE9aYjlnRE9ac3pyVWFmSUJj?=
- =?utf-8?B?VGFmQkZNR1FEbVR6MW9hT0I2dlhjalRvYW1kODFjZnIwYzBaNFZ1bzhMY2RC?=
- =?utf-8?B?amswR1NrVVcrWU80ZTQzUVhmeEV6b3VjTG4yUmxFTG1kY09EOU16a0dRU29Q?=
- =?utf-8?B?dXc5Z1NBNkZXY3ZwRWp4Vk0zVTBFVzBRNGtoUjdHWUpiRWpoRTgyS1ViSnRw?=
- =?utf-8?B?YWduQ3djM1pXT2pTUXp4dUx3WGxWbyszMkZlQmEzeUdaeEY1RnlZSlg1Qnp1?=
- =?utf-8?B?Q1Z2TS80MXpoRWZPcHp4UkpTcUJTazlEaG8zQm1iU1V2aFhRUndyQTJld2ds?=
- =?utf-8?B?SmlQRU5BN2psN1dKTjRlMUNlZVRRSzRxVXVmUnFadm1MOUFwM1Z5M0tuS2JV?=
- =?utf-8?B?N2dSQ0VoOWRYYUREdW5MMjUxRUJXZisvbmNvUXRRN0Z2RlRoaXZoalNrOEtQ?=
- =?utf-8?B?eGlSY3Y0bndBamt6YnVqUnRMZXJPbCtqZ211Wk1TajNuOW5JZ1BEK1EwTHZD?=
- =?utf-8?B?YlFpT2FPa0E5OTNmSEFMUmVzUE11U3QwZW9vNzFSWXEzUzJaUjhtakNISTJY?=
- =?utf-8?B?V1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: efbf7f0a-b9f4-426c-2a1b-08dc5fdfc71d
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzlrcnJnQXIvSW8rVVByN1pFQ0ppTlFWK2xuZUVUVFVmOVZ2YXA5MDFjNHRE?=
+ =?utf-8?B?OTNLd2ZmVFAxcHpaNy9rYU5xWkRBRjBwTlZacGorTWtycU9BQ0hPUTRRa0Q2?=
+ =?utf-8?B?NU8vZWtNOEZYWWJhQ0lUS3Z2VEEvcTBzSTVINkFva2p4aDJHUm94WEpHbTZO?=
+ =?utf-8?B?RHBTUnAwZnF0R2p4NDMxN2toWXZrMWFHWkQwc2d2VjBFNlZ0dE9LSXNoL3pn?=
+ =?utf-8?B?RFZJaEpxMzE5am9teXVHTVUwL1J1aUNSOEJ4QXBhSUMxZlNpWWlNNTh3VDQ0?=
+ =?utf-8?B?Mk9XSFB5VmczU1NnVldjU1NDUlR0SDNrTEJCN1VjYlR1ckhQMzk0cW51a2hD?=
+ =?utf-8?B?NkhHYTNzWDRBeWpIa0pIZHNHZ1AralU0ekpzTVVPK0hZc2NzUWNxY3h3Szk2?=
+ =?utf-8?B?dmdMTk5zalVzZGJiSDlRTmxnUkVoa3pUcEV2TFFXckZpR1lxcUZCci9ZVnhK?=
+ =?utf-8?B?cmhDUkxXc3ZCZGdDSXFZdmhCa0NwcHpPd2ViVU9YMXhoeFNCbklhYkVPSzN6?=
+ =?utf-8?B?ZEdXZmVNWGlLYWVCRWRob2I5ejd2QXRTNnJZcU1LTDlFRGJWVC9wcnlHTmFJ?=
+ =?utf-8?B?YmhzaUlsQXdFdW1XdnBsQU5aMSsvbFgwbW42aDl4SEFtaVJoQkEwOG9nVGZH?=
+ =?utf-8?B?b3c3a3FycnpWWXMzaXZjQkwra1pQR00vTyswWU8wZ2RmQXhIOU9JYlRKL0Fn?=
+ =?utf-8?B?Q0t2TUxLRG1hRWNjUjcwYVY3SXdxU2xpcURiQlVJT3BMTnNxL04zTW9Md2Zi?=
+ =?utf-8?B?b0ZqTXlUczBsbjM3OGNMK3g2S1lNUWprSDQ5bkFCR1dwaGpLeW1PMkVTZm1O?=
+ =?utf-8?B?T1pvS0ZGQXpzZTdIdkJFMEFmL1Y0eTVUSTMxbmFzV0d6MGZRQ0lIZE10aXR1?=
+ =?utf-8?B?RDRENUVZbVZpQVFUWkF4c1QvL0s0Z1FKeFgwZmppdVFFT2RIamlod3hOWHph?=
+ =?utf-8?B?ZDIySEVoUk53SnBlRGtWcEY2NTY1RW9rczh6RTNHNmQyUnJkbk5CbFNEa2kr?=
+ =?utf-8?B?N1ZQQ1lYdllwVGRLVjZpeTljZmk1NXpvdVBNOXFSZzVZa21VRWZneDJNZFZs?=
+ =?utf-8?B?QSs0T3FDRlZieHNuMXRycnppTXg0dE1zRGJPOGlod2FiNzB2QldNTXAxbXhv?=
+ =?utf-8?B?emRVL0hDamQvZk5ZT3lnaUxRenpCdWsrdjRabXc4SXRZd1ZSTTR0d2pObHU4?=
+ =?utf-8?B?Sk1ENTZ4MzJ1VWtiZGl0VVVrRStUYW1wd2hYdHZTNnRXTXo5UnNEVW1XUnRm?=
+ =?utf-8?B?a2cwVlVrSkhUNE5vTUhWaTBlTkRmYUNyOW45OWZnVm1UTXdvdG9wNXdFcXo3?=
+ =?utf-8?B?MzQrQ3FZOEZ3Z3RCdVdpb3ZYM3EwMmdxZSs5MHVSWVJWZDE1UHZRQmpxeXNi?=
+ =?utf-8?B?RlZwOGVwWmlWWkU3SHEvUE9RQVdoQ3J5TGVUV1o2MThYSjdHay93aFdkbzUz?=
+ =?utf-8?B?d01mU3JoWVVnOHFXajZBRW52WC91bUp4dDQzbUV2YXB6OEo5aFVGWUpROC84?=
+ =?utf-8?B?Z3VLOVZjZi9oajFSUTI2T3lMb2EyT3dDSVBhdmVid0tlTlNqQXhIcWRyWnIv?=
+ =?utf-8?B?Nlc3bTFJTnVBT2NqWnVYOFBUOEZITEdCcGgzcDhrUU5jaFJkVEhaV25aT3Nu?=
+ =?utf-8?B?MGdwWTVCV3ZtbjFjQllWK3c4UjZudXJRanhwN3pMTzNlMUxsY2dCOEhDbjEz?=
+ =?utf-8?B?MXk3QUQ0T3ZDM1VXSnpkYkR6bjUwYnhydTRFRmdzV1dlMnF3NTh6T3NIM3dm?=
+ =?utf-8?B?YlF5T1lZOWIrR08yZndZb1BtUjZBUll0S2w3b2ZGY092MFlzRDZMamtXVTZZ?=
+ =?utf-8?B?dHNtN3lKZ3ZlbnlMZk0yc0xOaEx5QlZpemFLTncwdDJoZmx3NlNyYndoNUtx?=
+ =?utf-8?B?T0NodzlxWjlESFdNaGFLbDVEUE54SmRUUEJ3WEhjeVY4OHBTdTY1RUNUanFk?=
+ =?utf-8?B?OTZwdmkyNEV3YUlrQkFNR014d0wyWWxZNHNHSEkzeEhYdFM0WWVoUGxmWTBW?=
+ =?utf-8?B?Y1Y2QmlOeFBIWEt1MkFlekNjc25DRGRGL3diSmVwNUR1bi9RNndyd0ZKMTJw?=
+ =?utf-8?B?M01ibk54dXI3RmNEdmFwUkJmdzlUT1FNTU83TEd5dmd3c1hNcWtiZnY4eExP?=
+ =?utf-8?Q?f3AW1w1EyJ/9AyHO7zzMqRfsV?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ca3cebe-8704-4504-0f7a-08dc5fdfe199
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 19:43:10.5524 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Apr 2024 19:43:54.8198 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iItDa1i//X/K1jwjW5Ori2F8Skc2WF7i/FVLVx+ER/A5DdemcvGCB/TsWOKoBQRm4gMqLP9ELdmFPesTJwsvIQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8083
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: GCt2HhIEenntXKoCH8ofhM3/D4af0d6cs0ctlX9gFD8Yoedmu84tVI8ZchlPd8AYQxXq+EsunvQwsAxvudz3Qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5940
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,120 +133,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2024-04-18 11:39:54-03:00)
->The dmc_firmware_path parameter is clearly a display parameter. Move it
->there so it's available to both i915 and xe modules. This also cleans up
->the ugly member in struct xe_device.
->
->v2:
->- New try with the NULL/"" param value issue resolved
->
->Link: https://patchwork.freedesktop.org/patch/msgid/20240321161856.3517856=
--1-jani.nikula@intel.com
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
->---
-> drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++++
-> drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
-> drivers/gpu/drm/i915/display/intel_dmc.c            | 2 +-
-> drivers/gpu/drm/i915/i915_params.c                  | 4 ----
-> drivers/gpu/drm/i915/i915_params.h                  | 1 -
-> drivers/gpu/drm/xe/xe_device_types.h                | 3 ---
-> 6 files changed, 6 insertions(+), 9 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers=
-/gpu/drm/i915/display/intel_display_params.c
->index f40b223cc8a1..ddce5a2c53d9 100644
->--- a/drivers/gpu/drm/i915/display/intel_display_params.c
->+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->@@ -27,6 +27,10 @@ static struct intel_display_params intel_display_modpar=
-ams __read_mostly =3D {
->  * debugfs mode to 0.
->  */
->=20
->+intel_display_param_named_unsafe(dmc_firmware_path, charp, 0400,
->+        "DMC firmware path to use instead of the default one. "
->+        "Use non-existent file to disable DMC and runtime PM.");
->+
-> intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
->         "Load VBT from specified file under /lib/firmware");
->=20
->diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers=
-/gpu/drm/i915/display/intel_display_params.h
->index bf8dbbdb20a1..1208a62c16d2 100644
->--- a/drivers/gpu/drm/i915/display/intel_display_params.h
->+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->@@ -24,6 +24,7 @@ struct drm_i915_private;
->  *       debugfs file
->  */
-> #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
->+        param(char *, dmc_firmware_path, NULL, 0400) \
->         param(char *, vbt_firmware, NULL, 0400) \
->         param(int, lvds_channel_mode, 0, 0400) \
->         param(int, panel_use_ssc, -1, 0600) \
->diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i9=
-15/display/intel_dmc.c
->index 3e510c2be1eb..175669f7d61d 100644
->--- a/drivers/gpu/drm/i915/display/intel_dmc.c
->+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->@@ -75,7 +75,7 @@ static struct intel_dmc *i915_to_dmc(struct drm_i915_pri=
-vate *i915)
->=20
-> static const char *dmc_firmware_param(struct drm_i915_private *i915)
-> {
->-        const char *p =3D i915->params.dmc_firmware_path;
->+        const char *p =3D i915->display.params.dmc_firmware_path;
->=20
->         return p && *p ? p : NULL;
-> }
->diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i91=
-5_params.c
->index 9e7f2a9f6287..8c00169e3ab7 100644
->--- a/drivers/gpu/drm/i915/i915_params.c
->+++ b/drivers/gpu/drm/i915/i915_params.c
->@@ -108,10 +108,6 @@ i915_param_named_unsafe(guc_firmware_path, charp, 040=
-0,
-> i915_param_named_unsafe(huc_firmware_path, charp, 0400,
->         "HuC firmware path to use instead of the default one");
->=20
->-i915_param_named_unsafe(dmc_firmware_path, charp, 0400,
->-        "DMC firmware path to use instead of the default one. "
->-        "Use non-existent file to disable DMC and runtime PM.");
->-
-> i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
->         "GSC firmware path to use instead of the default one");
->=20
->diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i91=
-5_params.h
->index 1315d7fac850..2eb3f2115ff2 100644
->--- a/drivers/gpu/drm/i915/i915_params.h
->+++ b/drivers/gpu/drm/i915/i915_params.h
->@@ -51,7 +51,6 @@ struct drm_printer;
->         param(int, guc_log_level, -1, 0400) \
->         param(char *, guc_firmware_path, NULL, 0400) \
->         param(char *, huc_firmware_path, NULL, 0400) \
->-        param(char *, dmc_firmware_path, NULL, 0400) \
->         param(char *, gsc_firmware_path, NULL, 0400) \
->         param(bool, memtest, false, 0400) \
->         param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0=
-600) \
->diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_=
-device_types.h
->index 60ced5f90c2b..c70047762222 100644
->--- a/drivers/gpu/drm/xe/xe_device_types.h
->+++ b/drivers/gpu/drm/xe/xe_device_types.h
->@@ -519,9 +519,6 @@ struct xe_device {
->                 unsigned int czclk_freq;
->                 unsigned int fsb_freq, mem_freq, is_ddr3;
->         };
->-        struct {
->-                const char *dmc_firmware_path;
->-        } params;
->=20
->         void *pxp;
-> #endif
->--=20
->2.39.2
->
+On 2024-03-07 01:29, Wayne Lin wrote:
+> [Why]
+> Commit:
+> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload allocation/removement")
+> accidently overwrite the commit
+> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in drm_dp_add_payload_part2")
+> which cause regression.
+> 
+> [How]
+> Recover the original NULL fix and remove the unnecessary input parameter 'state' for
+> drm_dp_add_payload_part2().
+> 
+> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload allocation/removement")
+> Reported-by: Leon Weiß <leon.weiss@ruhr-uni-bochum.de>
+> Link: https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371cc8.camel@ruhr-uni-bochum.de/
+> Cc: lyude@redhat.com
+> Cc: imre.deak@intel.com
+> Cc: stable@vger.kernel.org
+> Cc: regressions@lists.linux.dev
+> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
+
+I haven't been deep in MST code in a while but this all looks
+pretty straightforward and good.
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+
+Harry
+
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 2 +-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c             | 4 +---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c               | 2 +-
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c                   | 2 +-
+>  include/drm/display/drm_dp_mst_helper.h                   | 1 -
+>  5 files changed, 4 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> index c27063305a13..2c36f3d00ca2 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> @@ -363,7 +363,7 @@ void dm_helpers_dp_mst_send_payload_allocation(
+>  	mst_state = to_drm_dp_mst_topology_state(mst_mgr->base.state);
+>  	new_payload = drm_atomic_get_mst_payload_state(mst_state, aconnector->mst_output_port);
+>  
+> -	ret = drm_dp_add_payload_part2(mst_mgr, mst_state->base.state, new_payload);
+> +	ret = drm_dp_add_payload_part2(mst_mgr, new_payload);
+>  
+>  	if (ret) {
+>  		amdgpu_dm_set_mst_status(&aconnector->mst_status,
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> index 03d528209426..95fd18f24e94 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -3421,7 +3421,6 @@ EXPORT_SYMBOL(drm_dp_remove_payload_part2);
+>  /**
+>   * drm_dp_add_payload_part2() - Execute payload update part 2
+>   * @mgr: Manager to use.
+> - * @state: The global atomic state
+>   * @payload: The payload to update
+>   *
+>   * If @payload was successfully assigned a starting time slot by drm_dp_add_payload_part1(), this
+> @@ -3430,14 +3429,13 @@ EXPORT_SYMBOL(drm_dp_remove_payload_part2);
+>   * Returns: 0 on success, negative error code on failure.
+>   */
+>  int drm_dp_add_payload_part2(struct drm_dp_mst_topology_mgr *mgr,
+> -			     struct drm_atomic_state *state,
+>  			     struct drm_dp_mst_atomic_payload *payload)
+>  {
+>  	int ret = 0;
+>  
+>  	/* Skip failed payloads */
+>  	if (payload->payload_allocation_status != DRM_DP_MST_PAYLOAD_ALLOCATION_DFP) {
+> -		drm_dbg_kms(state->dev, "Part 1 of payload creation for %s failed, skipping part 2\n",
+> +		drm_dbg_kms(mgr->dev, "Part 1 of payload creation for %s failed, skipping part 2\n",
+>  			    payload->port->connector->name);
+>  		return -EIO;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 53aec023ce92..2fba66aec038 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -1160,7 +1160,7 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>  	if (first_mst_stream)
+>  		intel_ddi_wait_for_fec_status(encoder, pipe_config, true);
+>  
+> -	drm_dp_add_payload_part2(&intel_dp->mst_mgr, &state->base,
+> +	drm_dp_add_payload_part2(&intel_dp->mst_mgr,
+>  				 drm_atomic_get_mst_payload_state(mst_state, connector->port));
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 12)
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index 0c3d88ad0b0e..88728a0b2c25 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -915,7 +915,7 @@ nv50_msto_cleanup(struct drm_atomic_state *state,
+>  		msto->disabled = false;
+>  		drm_dp_remove_payload_part2(mgr, new_mst_state, old_payload, new_payload);
+>  	} else if (msto->enabled) {
+> -		drm_dp_add_payload_part2(mgr, state, new_payload);
+> +		drm_dp_add_payload_part2(mgr, new_payload);
+>  		msto->enabled = false;
+>  	}
+>  }
+> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+> index 9b19d8bd520a..6c9145abc7e2 100644
+> --- a/include/drm/display/drm_dp_mst_helper.h
+> +++ b/include/drm/display/drm_dp_mst_helper.h
+> @@ -851,7 +851,6 @@ int drm_dp_add_payload_part1(struct drm_dp_mst_topology_mgr *mgr,
+>  			     struct drm_dp_mst_topology_state *mst_state,
+>  			     struct drm_dp_mst_atomic_payload *payload);
+>  int drm_dp_add_payload_part2(struct drm_dp_mst_topology_mgr *mgr,
+> -			     struct drm_atomic_state *state,
+>  			     struct drm_dp_mst_atomic_payload *payload);
+>  void drm_dp_remove_payload_part1(struct drm_dp_mst_topology_mgr *mgr,
+>  				 struct drm_dp_mst_topology_state *mst_state,
+
