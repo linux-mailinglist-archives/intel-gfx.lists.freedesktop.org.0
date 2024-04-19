@@ -2,62 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC0C8AB2D9
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 18:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C92378AB2DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 18:08:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5186A10E8D5;
-	Fri, 19 Apr 2024 16:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DD6710F5ED;
+	Fri, 19 Apr 2024 16:08:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TMmnwGXl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hCY5ydb+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAAAD10E2CB
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Apr 2024 16:08:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0D9B10E2CB;
+ Fri, 19 Apr 2024 16:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713542893; x=1745078893;
+ t=1713542907; x=1745078907;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=uDLTqkflj0j1hrF5WyoNYsfSkNFOhfSxH/osdX6u51k=;
- b=TMmnwGXlMoGd7MiAX5m6BxSQSayyjhFK0TLb3o5YR0OMDbJHFpJf+udd
- 5/VzoTvb3fRze56MeUGxeRQzyAX69oln2FtfCvef51NuR9U6ZBHKZL5y7
- YiRe7phkOl3Y8pSbm8LJk04FDusDhFK0eekag2W2eybL1txOOr8uxcuDL
- K0Ra3SbkmVLm9qorALLebOQZ5ZrZpIpyeel8YgzuCREQslKEgSwNKPjfh
- qrVbvH5XrwJnDycRtxXeasQTxjYy4UjTTZZEBG6qVYQndjiNg+N+fbOsW
- TrUarByalN0Q1oHKYFlhCdUrEabGh/ZNu+FCdn61lT4mrjtbWmT06AtpE A==;
-X-CSE-ConnectionGUID: swxSEGDMQJKYwG6FcOk5hA==
-X-CSE-MsgGUID: iymX+cCLSv6AKKh4cgldeg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11049"; a="20573302"
-X-IronPort-AV: E=Sophos;i="6.07,214,1708416000"; d="scan'208";a="20573302"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 09:08:12 -0700
-X-CSE-ConnectionGUID: 3wwI9dj3Tg2jPZH4uQfOag==
-X-CSE-MsgGUID: 8dGrhdFHSX6pnNn8Z23Ecg==
+ in-reply-to:mime-version;
+ bh=zT0n04qp4WxdQVlyYHikTeSL0YbLgUg8TvrgYiVOs80=;
+ b=hCY5ydb+yyuFIBBjc2edIxkN+PWcjomwQXvMOLdLW1q8NOevFqCDR39c
+ tBZtESLNHP/kTRFGxRQg/v+uN7dlqVxioMe0B85ljF1d9qTVVSMQdvpRH
+ 2D5sEmeJ7ymyiApgaW2E6Eo3iU33FZjQvhYwPNzp5OgswEh3NFmFmXuMk
+ OazB4QekShu94Ou2ZqS71pRNqL0MLobhZCQ+v/R9sE3wUC0g8HwfMCSit
+ llVjRqLNs+gmk776vQHokPfsTGrXqRfOPwcz6j0k7zIG0GgeU7GKra7Q1
+ bbR9Mx1+5hr2ASj+kEdm9iCjFKlSDQO+l8cmK6z0JRWXexZ+X4rG8eS2s A==;
+X-CSE-ConnectionGUID: fzjRy4nnQdqzhLSa1RMe3Q==
+X-CSE-MsgGUID: KwzY7pEvTVKpz0Am1lLIeg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11049"; a="12988021"
+X-IronPort-AV: E=Sophos;i="6.07,214,1708416000"; d="scan'208";a="12988021"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 09:08:27 -0700
+X-CSE-ConnectionGUID: jZcvYzlSSi+jSzfqhCg9lA==
+X-CSE-MsgGUID: Ky0NgfxPTdqadwB1cY0EEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,214,1708416000"; d="scan'208";a="23440729"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 19 Apr 2024 09:08:10 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 19 Apr 2024 19:08:09 +0300
-Date: Fri, 19 Apr 2024 19:08:09 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 1/6] drm/i915: Align PLANE_SURF to 16k on ADL for async
- flips
-Message-ID: <ZiKW6YK6mVf9rHIW@intel.com>
-References: <20240320160424.700-1-ville.syrjala@linux.intel.com>
- <20240320160424.700-2-ville.syrjala@linux.intel.com>
- <IA0PR11MB7307385AC116A560D0E6466FBA0D2@IA0PR11MB7307.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-IronPort-AV: E=Sophos;i="6.07,214,1708416000"; d="scan'208";a="23987243"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Apr 2024 09:08:27 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 19 Apr 2024 09:08:26 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 19 Apr 2024 09:08:26 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 19 Apr 2024 09:08:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JTJhgFHHy4ZgrBvg6FL6RHbLQNZG2zzIS7VAUV+vTrA3LZ5BXPjFI50cpWuU0VkkDDcEWW716mfclljbv/C+vCJtu1uagxCUb0NU18ykRLXIOjFuyu14uy7p6DWmKj/IFJfNIACYj6MLFTrtSNzLBEEujBaCgHli/G2qGCdtFqB+lca9p0AnfgG1C2kH7mfz3nepBLILznc3fG49hbBDpBggRh/MvaQrrJb8hDfNZY2kvm96lOy6aqHvZCeHQaomeOsKettyzyxwiba4XUOl8iwbqWbTweS5RuXibJVDGEmv9vBhPjFlt9Y7TXCPQyYFATlhUDfQssYAoD1npw1/uQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=el23IBw7DgkEbiu9nHDYh2Z1xRIMbzFTNvjTkVLV4C0=;
+ b=O0UOw4xBhntdJtFCX28jtoq99Hu/DdelsgHFGqMOocjPsRoi1NqWcX23UWlajEKhpRSvRyV1V9AYz8TUQQ5N81JRKm6ts+5FL6vUoGzi5E+JpYEsJFSP0Vp864PGGp3ouIw5KBaxE94rApkld+/d1SGoXRNEAVeYEsUomuq0U1uob64P7+7WiADJ06J5gXRfJt5mmnugxw8v5ZFyFdumU7MD926q+7XEUhX76rmgVkUSZy5raAE+YVYmr0B5FTnH6IrgeICoKNrCfCki+2y1URbopq33tshYPrLZz1lB5+9KQZul3gcF5EmIXVZVn8+EiuDb3pjhWN302iN/5ls5xQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA3PR11MB7609.namprd11.prod.outlook.com (2603:10b6:806:319::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.37; Fri, 19 Apr
+ 2024 16:08:24 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::e9dd:320:976f:e257%4]) with mapi id 15.20.7519.010; Fri, 19 Apr 2024
+ 16:08:24 +0000
+Date: Fri, 19 Apr 2024 11:08:22 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH v2 0/5] drm/i915/dmc: firmware path handling changes
+Message-ID: <xa6zj5rxk725th4em7knyei2745fpps5bplqsdft7ua3one7oo@ufm4kw24rj3i>
+References: <cover.1713519628.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <IA0PR11MB7307385AC116A560D0E6466FBA0D2@IA0PR11MB7307.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <cover.1713519628.git.jani.nikula@intel.com>
+X-ClientProxiedBy: BYAPR06CA0036.namprd06.prod.outlook.com
+ (2603:10b6:a03:d4::49) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA3PR11MB7609:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e3ab0a9-9575-4412-1752-08dc608af0d6
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oQCMaeopYy3YvnrkwNyZ6+XTcIo3mecBbmKUO2F1CIKTke0iB/DgI6rO4y0o?=
+ =?us-ascii?Q?LySUMor0K3JltdQCdlB7pXQ4sn7PJEm7KlQ4+YDNyXvuh9PlR9I3Uzbv3Qvx?=
+ =?us-ascii?Q?/FGRO301xFKeQjiFgaWsRaDfDt/Zj8GFeD6fEx9MN+iWb75Hl0iY+XLXNR6y?=
+ =?us-ascii?Q?DfshWrVcW6a8KDoxYvuDNDZ7lSWpGUZs524DuM/OWlOP9V50rN/EJgCsRkyJ?=
+ =?us-ascii?Q?5TReXFJyBxpEmfQoEPkK6/NqgupVrqKstpXhENxQ7ak9KKjcV1RSm9ZtV4UZ?=
+ =?us-ascii?Q?VTgwy/+n76RThzdI/M9hlnbDraTovz+DA2+iWOW3LfBJeycpVhG3UJdicbSf?=
+ =?us-ascii?Q?eLQkYEX0RcBNrCEj+Zatz2aQ6tlItMy6HIN9V0h8hB9AKfEBY9ytL+GGPtoP?=
+ =?us-ascii?Q?0LvMWtBFvNqN+uxs5uFdf1QUekLbJpRzodL7hC5LHpProRs1Sgj/U8lCOcKq?=
+ =?us-ascii?Q?5XB9yVHzeUvgPCDyfFeiIg1oJrnWWhrjps/T2xS3oOpHHS49vPdbDMpD1w0b?=
+ =?us-ascii?Q?FhNjEw0b8aPPz2Vw7hSRAxIWKSm4rmCX7+OnEfCMj6deLp5ZgPETZEZhYC51?=
+ =?us-ascii?Q?bUEAY3aheIBtGkfdYnfBW6lenVtZ1t+PNrNeYwqZxLbBCCxwTuyw34KVbRYD?=
+ =?us-ascii?Q?8iheRX3y2QO77Xov5m/sUgxsUjbUpRomDBFwH6kHrsOQI/WZc/PRO8ukSJvw?=
+ =?us-ascii?Q?3KPxzo1rLII5mxr2TwGBltD1sl91oQhXDWFVUSy/rllmPhfjBoxJ+jVWlAY1?=
+ =?us-ascii?Q?qpKjtIDA8SXEwrpjs80R893mDXHJvyO6T6rnFfpBm+qY+SLRHpFE99OFZAjr?=
+ =?us-ascii?Q?ABvZ6IcrwcPjfPT/Hvu7vvfE393mRQ0I/JEUcpiJneuYvZ72lcixJs9SKhdE?=
+ =?us-ascii?Q?t2XTgf6MinDU0195XT6EJ63oO9unhLF52qHpeFIv1Z83mcD4GvBKjwgVF6w/?=
+ =?us-ascii?Q?o8xQmqzIc+PMVd17jqVzkKF7oyC1RhBivCGVeY8CqZGupIQSVkYr1d4oSw8s?=
+ =?us-ascii?Q?dG6jqzer2MgH1gZmsoA74PkRZngExiPUXxa3F3X3SS/hC50A0E/7c8Adswdv?=
+ =?us-ascii?Q?USVJmpv5TfnSiPBUPeLIfGpQWnA8UNml9pZRPB23H8fg4hto1AHBKW60G8HD?=
+ =?us-ascii?Q?WDv6Q9ww+V+xXx5MgkwZxXC7Xx5zx7sdLB88eKm59I4S2vEO2dxA3+niRpp5?=
+ =?us-ascii?Q?00nMNf8NqtG5Wa4s1Vsu/0E0vOW88yukzo9ut/LyJ8YkmZ22cooo2Uiiacxb?=
+ =?us-ascii?Q?WI3fzZwEIrH6y6zPMqTrQcOwr9SoecaEzExc3bPTdQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sDgirEtRFOeDX9cdNfXvu9gxVOt0vzLLhMhHMOQeHBSE6Pf00+Y/2rtAX4ZL?=
+ =?us-ascii?Q?R1IppwbikTiE/SgnFEhOcl8uf0qdkeCKSRjSoVyt8iQza+3MizzyMf/9ReTH?=
+ =?us-ascii?Q?+nLj4pswMMAlHttyyNq3SkXOsP5SBONKq9TxHsqdmR83/hMlTIs0Nf1eKoz5?=
+ =?us-ascii?Q?VNU9ojDavBTOjbTBgIW/F0CICy9VGvOsrEoAtjHGOQ0dsEZ9ARy9clggi1Dp?=
+ =?us-ascii?Q?nIzBkgjDgchwPQJiQ0jkJOw3IGQDkk46ty5P2f0LsWN5jpN/VI367p781d2p?=
+ =?us-ascii?Q?bkfg1ffcslZUvr3PxCjMZoDEpu2aBR+nd3sfCDMev5cuSNu+rdQMO4jgxg0K?=
+ =?us-ascii?Q?3/fxtAkmLv1RsMYYASky3dgFCSA7U8sVbzpjkgxDIOLc+lCa8+ZtnaN7ZWYA?=
+ =?us-ascii?Q?BPKkJjH4tElRT6k8sdfHoWVdTe7Y27OjklR/wTgaML94HVPIBDoHlXw94LbA?=
+ =?us-ascii?Q?rJLSRNASyxJMqJNwtZzosm5cP+476bFyhONPle3hdrOq1eCuOdtN3NYRbJds?=
+ =?us-ascii?Q?QJMvVR/YfzUnuYYv13FO0slnQmZyYUkWSFL9tSQpEDCvbrGDfSZEgO19ySbl?=
+ =?us-ascii?Q?241vTuV7ET3IAu+s/Hwrgos8si2mFh/t4ThPCqqKU93aBGIFJR4QdA1nqcF8?=
+ =?us-ascii?Q?RvILi3B3FSG38EcPzZDDeY3UawM0tJSkyFHk8ttLTdpH3D2jTGRbE0nrjcPL?=
+ =?us-ascii?Q?IdPidnq9hFT0VL25+PT+MjVWPNZNn+TgB0cCoRzL/uCQYTo4tSK2Vd7ypkX5?=
+ =?us-ascii?Q?LaPjXuyaiFdJQddvkPWEBa9FV9gXmkYDZXGavprTUKZx9bSXfy/B3uCVdLfJ?=
+ =?us-ascii?Q?iz4++dWcJhI/TjrwdqlCxgoLbEAoBL0KNsa+jJRql3AJc19AWZ2qMzbf+7Ah?=
+ =?us-ascii?Q?K1a7B+sDSuSH9Pb+YmjSdv9istY7ngVfx8OvHTmTG5UcEUlNk7DJ3sTrH6Vi?=
+ =?us-ascii?Q?8XUi5gaLLdLQNXJBONP7FnOMQiDoFbaZH/O/KOXm6lRPl66AnM0yNGurA1Cl?=
+ =?us-ascii?Q?gJyXJ0egfvK5lAZP6rIxAP1yhHofafpnlpb12VSxffV5PwhKmusealmFsRJJ?=
+ =?us-ascii?Q?WiAy3+J2ESVazIydzuAAeMxFePr9ZLBFfG5bzdkkEvV/3ANezHaIC4lYuTfy?=
+ =?us-ascii?Q?bWYcwZYQzcKhvf0Rot2DMHVeaq0YzJRZ6sfkRHIeDRyls2emrLgDtfQRatao?=
+ =?us-ascii?Q?dSk/DjcebseLWjXmX7rVcyfLylErXfSkcsRh/9LmsY4OPnB87ibNSVp3K7iN?=
+ =?us-ascii?Q?zzw53RGKo2fldPQd2NmkJ5M7wXsQw1G1G5Q26GZGsOi4+QWbWxFhrbj9y1D/?=
+ =?us-ascii?Q?nhBnOB/4JiNHcetUCOg5Wwhv+FlFRlm4AaINBkWjJBMJImXg6IcT7g37BEpv?=
+ =?us-ascii?Q?YLuDvnQlL25IE6IN4mYB9QlUVQ5aES5VrfET3udp/J29MrM7ndi3Ny0Jt1Ii?=
+ =?us-ascii?Q?nY8R4gqg5wCjur5Y7K0XiysoPZW+eBqqGEVrhpIMTEcfVq1D7/e4LbBm/a4f?=
+ =?us-ascii?Q?FttfBS5b0tbFq5/ZN2YP5GljP22LvnYRd1COOyFKpypbe6DDxaPYun3QP+/9?=
+ =?us-ascii?Q?6fa0SQbfZcLi2TK3QZJ2QdIy4NYWGXwP8k17nMZCbsybfYXmTOQfeQszrCSC?=
+ =?us-ascii?Q?YA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e3ab0a9-9575-4412-1752-08dc608af0d6
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2024 16:08:24.3872 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /leSJU/8LYyfOs9ov5klx/Q08lJWdHCMMNOHfT2VfdJnUmPmj/Zl59hG4mJMKjjrcJ+1wUnIKGkPvzTBqhcMgAPETr7LhZ8kl5926h84yvU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7609
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,169 +175,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 19, 2024 at 04:20:40AM +0000, Murthy, Arun R wrote:
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Wednesday, March 20, 2024 9:34 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 1/6] drm/i915: Align PLANE_SURF to 16k on ADL for async flips
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > On ADL async flips apparently generate DMAR and GGTT faults (with
-> > accompanying visual glitches) unless PLANE_SURF is aligned to at least 16k.
-> > Bump up the alignment to 16k.
-> 
-> I don’t find any such restriction in the spec. Can you please add link to the spec?
+On Fri, Apr 19, 2024 at 12:41:53PM GMT, Jani Nikula wrote:
+>v2 of https://lore.kernel.org/r/cover.1713450693.git.jani.nikula@intel.com
+>
+>Jani Nikula (5):
+>  drm/i915/dmc: handle request_firmware() errors separately
+>  drm/i915/dmc: improve firmware parse failure propagation
+>  drm/i915/dmc: split out per-platform firmware path selection
+>  drm/i915/dmc: change how to disable DMC firmware using module param
+>  drm/i915/display: move dmc_firmware_path to display params
+>
+> .../drm/i915/display/intel_display_params.c   |   4 +
+> .../drm/i915/display/intel_display_params.h   |   1 +
+> drivers/gpu/drm/i915/display/intel_dmc.c      | 175 +++++++++++-------
+> drivers/gpu/drm/i915/i915_params.c            |   3 -
+> drivers/gpu/drm/i915/i915_params.h            |   1 -
+> drivers/gpu/drm/xe/xe_device_types.h          |   3 -
 
-I don't think it's documented, hence the FIXME.
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> > 
-> > TODO: analyze things better to figure out what is really
-> >       going on here
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dpt.c    |  7 ++++---
-> >  drivers/gpu/drm/i915/display/intel_dpt.h    |  3 ++-
-> >  drivers/gpu/drm/i915/display/intel_fb.c     | 17 ++++++++++++++++-
-> >  drivers/gpu/drm/i915/display/intel_fb_pin.c | 10 +++++-----
-> >  4 files changed, 27 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c
-> > b/drivers/gpu/drm/i915/display/intel_dpt.c
-> > index b29bceff73f2..786d3f2e94c7 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpt.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-> > @@ -121,7 +121,8 @@ static void dpt_cleanup(struct i915_address_space
-> > *vm)
-> >  	i915_gem_object_put(dpt->obj);
-> >  }
-> > 
-> > -struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
-> > +struct i915_vma *intel_dpt_pin(struct i915_address_space *vm,
-> > +			       unsigned int alignment)
-> >  {
-> >  	struct drm_i915_private *i915 = vm->i915;
-> >  	struct i915_dpt *dpt = i915_vm_to_dpt(vm); @@ -143,8 +144,8 @@
-> > struct i915_vma *intel_dpt_pin(struct i915_address_space *vm)
-> >  		if (err)
-> >  			continue;
-> > 
-> > -		vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0,
-> > 4096,
-> > -						  pin_flags);
-> > +		vma = i915_gem_object_ggtt_pin_ww(dpt->obj, &ww, NULL, 0,
-> > +						  alignment, pin_flags);
-> >  		if (IS_ERR(vma)) {
-> >  			err = PTR_ERR(vma);
-> >  			continue;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpt.h
-> > b/drivers/gpu/drm/i915/display/intel_dpt.h
-> > index e18a9f767b11..f467578a4950 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpt.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpt.h
-> > @@ -13,7 +13,8 @@ struct i915_vma;
-> >  struct intel_framebuffer;
-> > 
-> >  void intel_dpt_destroy(struct i915_address_space *vm); -struct i915_vma
-> > *intel_dpt_pin(struct i915_address_space *vm);
-> > +struct i915_vma *intel_dpt_pin(struct i915_address_space *vm,
-> > +			       unsigned int alignment);
-> >  void intel_dpt_unpin(struct i915_address_space *vm);  void
-> > intel_dpt_suspend(struct drm_i915_private *i915);  void
-> > intel_dpt_resume(struct drm_i915_private *i915); diff --git
-> > a/drivers/gpu/drm/i915/display/intel_fb.c
-> > b/drivers/gpu/drm/i915/display/intel_fb.c
-> > index 3ea6470d6d92..58ead05fba6f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -805,8 +805,23 @@ unsigned int intel_surf_alignment(const struct
-> > drm_framebuffer *fb,  {
-> >  	struct drm_i915_private *dev_priv = to_i915(fb->dev);
-> > 
-> > -	if (intel_fb_uses_dpt(fb))
-> > +	if (intel_fb_uses_dpt(fb)) {
-> > +		/* AUX_DIST needs only 4K alignment */
-> > +		if (intel_fb_is_ccs_aux_plane(fb, color_plane))
-> > +			return 512 * 4096;
-> > +
-> > +		/*
-> > +		 * FIXME ADL sees GGTT/DMAR faults with async
-> > +		 * flips unless we align to 16k at least.
-> > +		 * Figure out what's going on here...
-> > +		 */
-> > +		if (IS_ALDERLAKE_P(dev_priv) &&
-> > +		    !intel_fb_is_ccs_modifier(fb->modifier) &&
-> > +		    HAS_ASYNC_FLIPS(dev_priv))
-> > +			return 512 * 16 * 1024;
-> > +
-> >  		return 512 * 4096;
-> > +	}
-> > 
-> >  	/* AUX_DIST needs only 4K alignment */
-> >  	if (intel_fb_is_ccs_aux_plane(fb, color_plane)) diff --git
-> > a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > index 7b42aef37d2f..c28ae99ebe6a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> > @@ -19,6 +19,7 @@
-> >  static struct i915_vma *
-> >  intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
-> >  		     const struct i915_gtt_view *view,
-> > +		     unsigned int alignment,
-> >  		     bool uses_fence,
-> >  		     unsigned long *out_flags,
-> >  		     struct i915_address_space *vm)
-> > @@ -28,7 +29,6 @@ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
-> >  	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-> >  	struct i915_gem_ww_ctx ww;
-> >  	struct i915_vma *vma;
-> > -	u32 alignment;
-> >  	int ret;
-> > 
-> >  	/*
-> > @@ -41,8 +41,6 @@ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
-> >  	if (WARN_ON(!i915_gem_object_is_framebuffer(obj)))
-> >  		return ERR_PTR(-EINVAL);
-> > 
-> > -	alignment = 4096 * 512;
-> > -
-> >  	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
-> > 
-> >  	for_i915_gem_ww(&ww, ret, true) {
-> > @@ -257,14 +255,16 @@ int intel_plane_pin_fb(struct intel_plane_state
-> > *plane_state)
-> >  		plane_state->ggtt_vma = vma;
-> >  	} else {
-> >  		struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
-> > +		unsigned int alignment = intel_surf_alignment(fb, 0);
-> > 
-> > -		vma = intel_dpt_pin(intel_fb->dpt_vm);
-> > +		vma = intel_dpt_pin(intel_fb->dpt_vm, alignment / 512);
-> >  		if (IS_ERR(vma))
-> >  			return PTR_ERR(vma);
-> > 
-> >  		plane_state->ggtt_vma = vma;
-> > 
-> > -		vma = intel_pin_fb_obj_dpt(fb, &plane_state->view.gtt, false,
-> > +		vma = intel_pin_fb_obj_dpt(fb, &plane_state->view.gtt,
-> > +					   alignment, false,
-> >  					   &plane_state->flags, intel_fb-
-> > >dpt_vm);
-> >  		if (IS_ERR(vma)) {
-> >  			intel_dpt_unpin(intel_fb->dpt_vm);
-> > --
-> > 2.43.2
-> 
+thanks
+Lucas De Marchi
 
--- 
-Ville Syrjälä
-Intel
+> 6 files changed, 112 insertions(+), 75 deletions(-)
+>
+>-- 
+>2.39.2
+>
