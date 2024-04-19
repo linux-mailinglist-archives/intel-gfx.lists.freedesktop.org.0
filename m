@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C2B8AABA1
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 11:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B57C38AABA4
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 11:42:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB44E10E8B3;
-	Fri, 19 Apr 2024 09:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24D5710E8CA;
+	Fri, 19 Apr 2024 09:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jctdZksY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OHtoUh8c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF5DF10E8B3;
- Fri, 19 Apr 2024 09:42:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1130910E8B4;
+ Fri, 19 Apr 2024 09:42:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713519733; x=1745055733;
+ t=1713519739; x=1745055739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xQIF7FvBMpBqLdkYwWcr71rbPvlg+36UEp0/CifGUlo=;
- b=jctdZksYTYNVRlaAcbR4z9FF6imrLcs3SWSOICzzdp3CaWBaEagBIZe9
- YAHsvM1U2aE7QYjDOjvjRqoZSZaLbzjWynzHG7ioSKxCsRSm5GoxN4fgt
- pF2yU83qsI8j13xRueE677/qh9qS1CqR8HY+BJZdfOtM4BleculdDfb3I
- yOsNSi0t9Yc4TsIqqfF99BiMuXPo5K7diQVGgScn5UmOKREFqiV8JFLvr
- AoIPQiRhGWMcSoLcZHACspWBd/e8AO01eCazFT11KttXKdzDP1N2jJHW/
- rk4Z3eDNlgKzoGgaR+SfyDyAxObHcxdJLXSm3aScIfqNcCBfVGZclL3Bv A==;
-X-CSE-ConnectionGUID: rkP3PUCnTtCJVFKm5A44tg==
-X-CSE-MsgGUID: qKsA14UTRhKuL+QJOGKQzQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20503833"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="20503833"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 02:42:13 -0700
-X-CSE-ConnectionGUID: 3LSMBaSgTDCXcJiFli28BQ==
-X-CSE-MsgGUID: goq2Om02QWS60c8XJ84c4Q==
+ bh=VrZbzsOXysKCqrowhyQ4qUV6OCW5B7Jl+6zGc97d8iE=;
+ b=OHtoUh8cxkSQtGaiPy+gUViV5JYRQEUhgGKlckXcxvIzVVU3EgKabUOB
+ xGLLuS2h1Nr+5DvpWG+VP4HP85SGghwrb0Y1e3rX8HaOOqgQ/kraIyupZ
+ IB7bZcbXZJL0xYgb+jIFDOfwmrtGQ6YI2xWFwnnGS7ToUYi3kftWwC9xh
+ +Wv3+IoAf8j1+zZU7swzfuJg9Lw60d1+23tUhYSkgSdiF7peFmAXrZXq7
+ 3VmfBBZ2BrXmrN0g98lP9GAZUZ6V8DS+lsRnH/mMvbwcgo0PfcNrfZ1G9
+ aPmjYedNtXrkPtFEB3NPyutkHxLly1W4dnwsh6TQyQvPcTnPNhHOCwzLG w==;
+X-CSE-ConnectionGUID: sB58yTsVRQGJaLqttsmohA==
+X-CSE-MsgGUID: f1/DKAtQRAW+A8otVw7hQw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="19809306"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="19809306"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 02:42:18 -0700
+X-CSE-ConnectionGUID: OE8mBs/6QFmN/t4hMe3XQw==
+X-CSE-MsgGUID: 4e6T05iWTveZpN8FyYjqBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="28117117"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="23785869"
 Received: from agherasi-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.46.119])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 02:42:10 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 02:42:16 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
  jani.nikula@intel.com
-Subject: [PATCH v2 1/5] drm/i915/dmc: handle request_firmware() errors
- separately
-Date: Fri, 19 Apr 2024 12:41:54 +0300
-Message-Id: <0654bb3480f8d2103225d26f665badead5495532.1713519628.git.jani.nikula@intel.com>
+Subject: [PATCH v2 2/5] drm/i915/dmc: improve firmware parse failure
+ propagation
+Date: Fri, 19 Apr 2024 12:41:55 +0300
+Message-Id: <18833681978ec3ac779cce943221cc5b532c7c45.1713519628.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1713519628.git.jani.nikula@intel.com>
 References: <cover.1713519628.git.jani.nikula@intel.com>
@@ -72,50 +72,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clarify request_firmware() error handling. Don't proceed to trying to
-parse non-existent firmware or check for payload when request_firmware()
-failed to begin with. There's no reason to release_firmware() either
-when request_firmware() failed.
+Return failures from parse_dmc_fw() instead of relying on
+intel_dmc_has_payload(). Handle and error report them slightly better,
+including a new error message for when the firmware does not contain the
+main program.
 
-Also move the message about DMC firmware homepage here, as in other
-cases the user probably has some firmware, although its parsing fails
-for some reason.
+v2: Print specific error message for payload not found (Gustavo)
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 41 ++++++++++++++----------
+ 1 file changed, 24 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 3697a02b51b6..8f2a0afe48ba 100644
+index 8f2a0afe48ba..2e06a39579df 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -942,6 +942,15 @@ static void dmc_load_work_fn(struct work_struct *work)
- 		}
- 	}
+@@ -853,7 +853,7 @@ static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
+ 	return sizeof(struct intel_css_header);
+ }
  
-+	if (err) {
-+		drm_notice(&i915->drm,
-+			   "Failed to load DMC firmware %s (%pe). Disabling runtime power management.\n",
-+			   dmc->fw_path, ERR_PTR(err));
-+		drm_notice(&i915->drm, "DMC firmware homepage: %s",
-+			   INTEL_DMC_FIRMWARE_URL);
-+		return;
+-static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
++static int parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ {
+ 	struct drm_i915_private *i915 = dmc->i915;
+ 	struct intel_css_header *css_header;
+@@ -866,13 +866,13 @@ static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ 	u32 r, offset;
+ 
+ 	if (!fw)
+-		return;
++		return -EINVAL;
+ 
+ 	/* Extract CSS Header information */
+ 	css_header = (struct intel_css_header *)fw->data;
+ 	r = parse_dmc_fw_css(dmc, css_header, fw->size);
+ 	if (!r)
+-		return;
++		return -EINVAL;
+ 
+ 	readcount += r;
+ 
+@@ -880,7 +880,7 @@ static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ 	package_header = (struct intel_package_header *)&fw->data[readcount];
+ 	r = parse_dmc_fw_package(dmc, package_header, si, fw->size - readcount);
+ 	if (!r)
+-		return;
++		return -EINVAL;
+ 
+ 	readcount += r;
+ 
+@@ -897,6 +897,13 @@ static void parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ 		dmc_header = (struct intel_dmc_header_base *)&fw->data[offset];
+ 		parse_dmc_fw_header(dmc, dmc_header, fw->size - offset, dmc_id);
+ 	}
++
++	if (!intel_dmc_has_payload(i915)) {
++		drm_err(&i915->drm, "DMC firmware main program not found\n");
++		return -ENOENT;
 +	}
 +
- 	parse_dmc_fw(dmc, fw);
++	return 0;
+ }
  
- 	if (intel_dmc_has_payload(i915)) {
-@@ -956,8 +965,6 @@ static void dmc_load_work_fn(struct work_struct *work)
- 			   "Failed to load DMC firmware %s."
- 			   " Disabling runtime power management.\n",
- 			   dmc->fw_path);
--		drm_notice(&i915->drm, "DMC firmware homepage: %s",
--			   INTEL_DMC_FIRMWARE_URL);
+ static void intel_dmc_runtime_pm_get(struct drm_i915_private *i915)
+@@ -951,22 +958,22 @@ static void dmc_load_work_fn(struct work_struct *work)
+ 		return;
  	}
  
+-	parse_dmc_fw(dmc, fw);
+-
+-	if (intel_dmc_has_payload(i915)) {
+-		intel_dmc_load_program(i915);
+-		intel_dmc_runtime_pm_put(i915);
+-
+-		drm_info(&i915->drm, "Finished loading DMC firmware %s (v%u.%u)\n",
+-			 dmc->fw_path, DMC_VERSION_MAJOR(dmc->version),
+-			 DMC_VERSION_MINOR(dmc->version));
+-	} else {
++	err = parse_dmc_fw(dmc, fw);
++	if (err) {
+ 		drm_notice(&i915->drm,
+-			   "Failed to load DMC firmware %s."
+-			   " Disabling runtime power management.\n",
+-			   dmc->fw_path);
++			   "Failed to parse DMC firmware %s (%pe). Disabling runtime power management.\n",
++			   dmc->fw_path, ERR_PTR(err));
++		goto out;
+ 	}
+ 
++	intel_dmc_load_program(i915);
++	intel_dmc_runtime_pm_put(i915);
++
++	drm_info(&i915->drm, "Finished loading DMC firmware %s (v%u.%u)\n",
++		 dmc->fw_path, DMC_VERSION_MAJOR(dmc->version),
++		 DMC_VERSION_MINOR(dmc->version));
++
++out:
  	release_firmware(fw);
+ }
+ 
 -- 
 2.39.2
 
