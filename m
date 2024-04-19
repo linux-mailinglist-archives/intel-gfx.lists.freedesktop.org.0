@@ -2,152 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C9A8AAAC4
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 10:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B04098AAADC
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 10:48:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C6710E436;
-	Fri, 19 Apr 2024 08:45:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EA1A10E3EE;
+	Fri, 19 Apr 2024 08:48:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZqMwKJq0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ekf+ZWih";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B65510E436;
- Fri, 19 Apr 2024 08:45:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65C1810E3EE;
+ Fri, 19 Apr 2024 08:48:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713516311; x=1745052311;
+ t=1713516509; x=1745052509;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=b8ZbRFcxxAFRytJYsk4HUacXdCYtiKhI6hff8qAR25I=;
- b=ZqMwKJq0JQnKgTxfWvkng7Zvw4USMGOCfx/L9Blsw1InQcYXytlaQyIt
- IquTGJleKA67LJHHhJ8rIKhXpzYR8pLCMH3mTtOAVwsnuiO6sOf5YbO6F
- 8vnitu5KURmsLT51VzR2X2MOefcUFRnJn7khh3tqEn72w2gMUE2mywbZ4
- E1QulUc3vo7KmaDwgD/VA9mxLfKQlAUadln9zz75kVjqwzh+2uhBqoZnl
- bRHS2olbCbC4NMFQ3ndfJqY8mGdZYILvKK8omna8FEDQDiagwfbxpRGOz
- St8pR8IWeQPeB+t5B+OXXo1Hk8DbrsExm2n2kzYfM1rFBuDVZtv8QLBdD g==;
-X-CSE-ConnectionGUID: EZWBmWcsQbuCv/gXet2TVg==
-X-CSE-MsgGUID: /Ah9lTihRhauAy/ojR17CA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20533000"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="20533000"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 01:45:10 -0700
-X-CSE-ConnectionGUID: lD5xzterTqGiVUDSsgEctg==
-X-CSE-MsgGUID: heGxBgWbSPOiDsqLj7VQtw==
+ bh=lkwI3W5aQ+7K2euVy5UGWpCGxGqA8d67aRps624YJC8=;
+ b=Ekf+ZWihoSQ236VxvJDpkTLKWLFnjeOFeyPwtNkekKlur12c/zalzTom
+ WuLfxVEnm56u+GTyuMw8GGWhZOttA+TRA9o8HuPxAyYTiT60rF+grvNG2
+ yb9d8VejRIB2cj8F1NLm1QbUTn8sMAaZN3b1JrWHALa66+qTEboZNdRbd
+ ywHZT9YFNuM/K3a7NUbDIugHaFW8EPq4TWPdQrcm9uc5e7poDky6JVrCx
+ j04476NoM7/KmFgijDL6U6h7ypErCfXqbi/uIO9iApb5eZ+SFfgz7MtwV
+ lpQgOZkSWGcwZPYllgwRxbVFSSMk/1s5yUFqgMYBHIAmGKbZFXhWSiD3y Q==;
+X-CSE-ConnectionGUID: TKxXthtATKygjq0x01CNnQ==
+X-CSE-MsgGUID: B8/JRzB7TI6ZJ/gpv/AEMw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="19804482"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="19804482"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 01:48:29 -0700
+X-CSE-ConnectionGUID: 7RJ4/OyfT8uTz5lJGcyJyQ==
+X-CSE-MsgGUID: 4xoCOaBTS0qPxfCGzDcUrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="27726313"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Apr 2024 01:45:10 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="23249268"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Apr 2024 01:48:29 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 19 Apr 2024 01:45:10 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.35; Fri, 19 Apr 2024 01:48:28 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 19 Apr 2024 01:45:10 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Fri, 19 Apr 2024 01:48:28 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 19 Apr 2024 01:45:09 -0700
+ 15.1.2507.35; Fri, 19 Apr 2024 01:48:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=An+m6XOL796+zyrO7llKONlN8SBb8M/Jo40CWiDKpM1QT2K6GqYG0+0WQeyrfKkTAFls6Z7SfuCBr6Pd7nGmllXTFYPRzYOqGrnT8hHPFVPDNF5wiAEL4ftDcislXjRD/btfTQ8D9klnq8+xz89YvZlKJu+XMabOCIzdiOx5q4IHu3zFGOC12QcdTcmGdpCf9d6VgUnnMQJ9lzTcjyIYSL7w6c5mi7thtfXR65tZDCtqKAgNg8BeDCVEKZRKIW/OKSYcBgc4Ekn4e8SgHgs6xZu+oI7WLbBL6Yk3NtnM4EQy5VylhNM5FZ8fmEhJ8pY6CIdCpDyz2bR1svtaNFfE8A==
+ b=fRicF6B0Gb2mGR6SlKcl7L+sEXZ+UxM9cEjI0sQZUM+TXlQlwYxQrCQ+GAtL1g+E4HTqLdwywIZ2rChk73yTrCCVOhESjLN81i0Z4eW+PBTIr2afnpEjuQVjW+f5DvrQCVlpzG66x1O08vPkGYjxoJWpoP9bsFcIgdHdZs9IYRBji9y8H3qsiOYC33PPl0IbjMN6vE1QzSV5+hrG5CW2NCuj2wYaW6n+yYhfz9nJSeULd2usAQWjMTiexggKNyLmcfRtAU6ftOY7GhJChwNooE7MX9lNAilxh2U7yiMSVu5qvHl6MRHbSJeWUv34/AYLIiVpeEzhUaEwyanagM7uyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AHFrYmITKvCa98e5SAw1Nlwk5PeCtYT90qO9z8oEli0=;
- b=ftm7tKJTQDvTVWBq3sMlV4F/MOnaiQ9/qxUh5Z27HROx7HVO+ruNi1e+VC1X3MiZdz+isrMiVAAAViD6dh6R37O+C42TYsBTNXNkUOO8P3+azn9ue9T3j5y0U0QgbOo7qo/ULA8wUrQIUHqijqyFIrlf+15xpvdKhTP8B/HvCYg3Z6aA/wVYKCHNVR3FybQ9uxThjSbwe+Zt4cpVriNMgktTDzdSHPjgkOJD5yt/MoMFfHaYZONIIMcpgRedWqWqie5lkzqt9pZlAZ1QIfQOkWM2B6ewq1szhO/RII60hzXJMuFgpPSz0R5HpvEWzMyRp53QLU3qgKVP9eakczTfFQ==
+ bh=n343YkJ70ljcdI/xckEvQzBKitdM8MpOIT0V9dRkLzc=;
+ b=KQKyOa1gYxbMBcBgyqpX/VKwV2fW+rIUdLlTt1c93uBHjh9zokvDTkNFdf15h7Rirmgztat/hqN8yRS6qDg8bDb5yNTVY6ihZ3wonaFOzJVkddqgHkU90X5e4UL19pOe/rE/533LahiBVlU+n96qgg4bP45SUm21aNrgERAveP6x0v3HnjFlj0dip5+s+aC562IdpAngbM2pVVdEw/tyfyz9d6oBV++tVt98sKDgwPM7uNcXn+ZKj3PwCSQTzGVmuq6JLebIz7hyK/GBPPpKW94qPE6hQ5qgZkN2P7gQn5zs7p/hHmdw5cg71xEDimU8frCL8SrlAWebnth5VyFR5g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
- SN7PR11MB7042.namprd11.prod.outlook.com (2603:10b6:806:299::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7472.37; Fri, 19 Apr 2024 08:45:03 +0000
+ MW4PR11MB7030.namprd11.prod.outlook.com (2603:10b6:303:22f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.11; Fri, 19 Apr
+ 2024 08:48:25 +0000
 Received: from DS0PR11MB6541.namprd11.prod.outlook.com
  ([fe80::d616:a889:aeb0:3724]) by DS0PR11MB6541.namprd11.prod.outlook.com
  ([fe80::d616:a889:aeb0:3724%7]) with mapi id 15.20.7472.037; Fri, 19 Apr 2024
- 08:45:03 +0000
-Message-ID: <c734e80c-ec34-453d-aaf4-954668ad03cf@intel.com>
-Date: Fri, 19 Apr 2024 10:44:58 +0200
+ 08:48:25 +0000
+Message-ID: <081c3d53-9ef2-4d1f-9a6c-d22c36bdbe8f@intel.com>
+Date: Fri, 19 Apr 2024 10:48:21 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/i915: Refactor confusing __intel_gt_reset()
+Subject: Re: [PATCH 2/3] drm/i915 Rename intel_engine_reset to
+ intel_gt_engine_recover
 To: John Harrison <john.c.harrison@intel.com>,
  <intel-gfx@lists.freedesktop.org>
 CC: <dri-devel@lists.freedesktop.org>
 References: <20240418171055.31371-1-nirmoy.das@intel.com>
- <df2b36db-5f16-4e93-9ba1-23f3720d24ad@intel.com>
+ <20240418171055.31371-2-nirmoy.das@intel.com>
+ <c76fc94d-7759-4908-bbff-9845931234b8@intel.com>
 Content-Language: en-US
 From: Nirmoy Das <nirmoy.das@intel.com>
-In-Reply-To: <df2b36db-5f16-4e93-9ba1-23f3720d24ad@intel.com>
+In-Reply-To: <c76fc94d-7759-4908-bbff-9845931234b8@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ZR2P278CA0007.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:50::13) To DS0PR11MB6541.namprd11.prod.outlook.com
+X-ClientProxiedBy: ZR0P278CA0048.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:1d::17) To DS0PR11MB6541.namprd11.prod.outlook.com
  (2603:10b6:8:d3::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|SN7PR11MB7042:EE_
-X-MS-Office365-Filtering-Correlation-Id: df6606d7-4308-4b8b-99ba-08dc604d00f7
+X-MS-TrafficTypeDiagnostic: DS0PR11MB6541:EE_|MW4PR11MB7030:EE_
+X-MS-Office365-Filtering-Correlation-Id: f75907e0-7c4f-4411-d91f-08dc604d79c6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cyVIjdYePH+k4mtNUVjM39RHCaz/YMlLPU6ariRPMGgpwWxI4JWx/kS6INre8jP1PAvsyC2LzYc55OmhWvK3ZHaMABXiz6QinSuiF5oxEDhxQOXmB1cTI8xaaLog+s7mdiCro+/QxZnY9dFaSWfWT4NDrgwMsaWRgzMbQj9g6m7zNvy2lABAZs0w1tCSs88VK2hpST2vDiYHDgXfsnvjtF1NAvS3QKZ4TjjbNoCpvfnVZya+bmaBL0/5+Dh2S6DKSCmAz/4bJOcNCRQON7GiduJueNW8juuSmxFD6Du0DmMkOfNNaZjdEEIOTHNByrmx6gv2o5HJc8TP5CdD3yqwQ9tXaFe5VztMiKOSc+55+c3OCb24f6hmdvcpjq3Nyq18/XE4F6IDf7SdwR3U21rG7N1yC8GFi60qcmCiCRDoDUBjjsIkoxpUoIZbxdZJwzMTFPz14fERQw1wm99q7OqEQc8Ifwcl1c2I72NR0fgghiJ3ZSstWbMeku02RawuUM4mn73yaru6AxzCYFDwJxiNaKzu7PhMiTqGbbZQFP0d+PvPQKFcPPEvQmpVVAZc7kTyyK57YLOVW9QqJkSU8UBd7/jLZFeONNHOYMrElWrGib8ANpDF/rVn2qFtvm6WDi/wnBgrX4AgYQFg6nSLyH3lXNNNhjVJ0RKedBCSmf3P1bw=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
+X-Microsoft-Antispam-Message-Info: 8W1zEZXigekAvLqhCO5OIAcqC0PXfby9C/8ngSWvhlHjvPKyJH8GKM8x2vLVbvFMbzQN7GLmC8YZ6SpLuhxZdxwEwHkAQpZapZiQfxdDyAFEluuLt9HMkcrKXyZzWWSNpzXfESuuig2DQ4npS9fgZI1tYndU3xpQDezPsKhc/GJUqcyNMVKmqvzAEf1qjhSs6+BWGei1QgHk5gjVRi2moYRXP5QYE1Trk5fHZYz/m7qnQibVCbn2BxH7XLgpeZlqzzFwfkx2ilZeVccxd59yxmwWlc/Rv2uDQdv6jhO/MolMPsy47KbzoYeMhhSRvqKsz9QrjFRoHxu3F7v36CNzo3ayuefQFYM7nK7ynVDlyKE8PepO8VGIXnwNdc0FYkdoat1/AxlMiTS9lOlMO+iDHQ2vwHmrX7KwdPUXBycVEo2D+So2OuiZki/dxnM16X+4SArPGN4RPqSP0fJUZNiePXD147hjQAd5GoEE4l0coB0s4//FrxwPTuJD0BTO5eRUDL981zmme1wKelDtYpejA+Utz30btuqICREt+kNjcNhB5XDoBg0AjZARFNpzpPDvJifcqDS0+Z5CrcSFVwmDr0lyxxq/T8kX7Z28V7qVb7s8aSSC4wkv2s3U/FTUA2L26jkeHcvYBsn1xFeGKEZUN/igR4Jb7Js0UZf2Qgm37XI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dStRallIUkdQNjV0VnEyK016M2tVYWptcnNwa3Z0Q2JGZHc0eXNEYVF6TVFP?=
- =?utf-8?B?UTlBcE1QVEpoZXpOaEZzdy9CRVRrN0xhT3plYldDSXI1VG45Tk5kc01odEpK?=
- =?utf-8?B?RnU4bWxyWnV6OFE1NEQ5V1oydmUyeGU5U3Q3WG1VNnVGRjNmenZGdDNCRWFs?=
- =?utf-8?B?LzhmOUFJVXZGUEZ3OFJDY0d1RmJ3N01hRVlhTHpNQVkxMDBHZUVaTG1iaWF0?=
- =?utf-8?B?enVKOHl5QkVleG5aY2ZlQ296a3hmZ0ZYbjJ5QldrdmFpeVdsR2NMYWJIZ3JZ?=
- =?utf-8?B?MlFRb2tkUVdGUzJQRHp4ZkR1aHhleGFmVUoxMTFqbUZqUnpJbWRqTlo1NTVm?=
- =?utf-8?B?cHpLSmh1U0pMWXhQUjIvcXJBWFJxejI3blF3MFRwbEptZjZQMExFdWwwWi9K?=
- =?utf-8?B?WjBlSmcwR2tYNWJJVE5JaHN3YVZPaWgvbzhTN0IxS0duTXRGWktyOEJVTzZp?=
- =?utf-8?B?NlVJQXY3OXFmSDlwbGhLUUhTaGxxN1B2YWxYTi9pVDBvTk9UWTFpYUJxNWt0?=
- =?utf-8?B?YjBjZkhtQXY3VDVmckc0eVJhK1FBMHNuWXpub0JHc3llejNkQnZtdy8xVU11?=
- =?utf-8?B?dExWMG5oSEIzcHdTTXdLYmdpY3lKRHlNUDdReTNMajBRQ3ZPcS8zZ1kwRFU5?=
- =?utf-8?B?elB5cjlsRFFVR1hsRGptckgyeGxpcGhmTzZOYzNzTCthT2pMV1VlcWxSeGp6?=
- =?utf-8?B?cFRwWWlzTzVVZStld1lKTXVjN3M5ZVJCZUZXSE9uVDFqRHRGNlNvWXlqSTNE?=
- =?utf-8?B?STZublFYOXhwc0lpdDhmelVyZjVDYloyYUx3UitjUjJVUENZME5McXYySFdG?=
- =?utf-8?B?WkFLZzZFbXY4Sjg1dUIvUDU4RXdWS3BjbW0ydDc4a01ZWWFjUUlqMUJWbVBL?=
- =?utf-8?B?RXVnYTEyQjV2TlEzVkdnSGFVM0x0RVlIbUdFQ0tGM1d6RjdLL0Z5ZmFqN2NH?=
- =?utf-8?B?SUlUL20yWVM2NGdoUmlRamdYNlFZSkVmRlZPRlNuUVl6SnZFTUd0MUJ3QzJM?=
- =?utf-8?B?QkhOV292RUovM2QwdHFhQUZDbzJkKzRCSUk1eUNUOXZabFRReGlGZGN4T2Jy?=
- =?utf-8?B?NzFkeUs2RmhqU1BiRGpGSVp2QVEvWUEwT3YrY0NoUmw5dUIzWEpuaE9CMk9P?=
- =?utf-8?B?dUJzREJrQ1ZPMHRBUTlqZVUwSDNNTTB5VllYK2o3Qk1TWHRKZVpla2h2c2hK?=
- =?utf-8?B?SXJTcW9VME1RNEdUZ000YUZPMDdIdGR0RWhCakNTaDJ5ZmJWQVBQKzEvdVVs?=
- =?utf-8?B?UDl3MXl5eXBOQVpwSU1hekQ3bElDaTBXYkV1U1ZqU0NsNzVQSUdMK2lzQjBZ?=
- =?utf-8?B?K0lYLzZFOXQzblE4MzdHMUI3anAxcmhSL2FDaE5Pd2VKUEJnMTBQVUtNQXdN?=
- =?utf-8?B?aEt6bTh3UE5xc2RybHptQkFaMGxrMXRtSHYxK2hkMVY0Mkl1NVMrVTI0bkhm?=
- =?utf-8?B?TkVMSzNMa2t2Qy9BN2pRdmNZZENzaWUyN2hWTGQ2NGs4ZTBremMvbG9xYWlz?=
- =?utf-8?B?bWlSeU9vQ1puUWliUUt2YWFOdHBjOEo3T1NSZnloclk5M214ZFd4K3pLUUlC?=
- =?utf-8?B?WDNSZWhiYXN1U1JqUEE3ZlQ4WDNpYVUyUnVCTm9JSTFrVEMvOEhDM3pFOGFx?=
- =?utf-8?B?ZEJhQk94Mm01UVZNTGh2Q3cwbTZSaEVURTJHdjBtWHNGdzB6NjZMTVVCNFU4?=
- =?utf-8?B?d1R5alRXNUg2WUJsNy9leUR0S1d4N0tIek5nV2lWczNMSFdxWWU4cEc2OGZM?=
- =?utf-8?B?ek9Bby8xUkFsZDFWVGkwNFMzc254SDVyZU1aUS9kZDI0T1JLWGRGVzUzcTRj?=
- =?utf-8?B?aGQ5UnpJRUFQT1Y3WXZEVjlOYTNhQnJHS2ptdCtkN3ZENEJEcVVDSk5BcUNz?=
- =?utf-8?B?WEs4RWN1Qm5Ob0tSUnVEam9qbFJSeTRocDBab21qWmR1L3d5Ly9sYzNha0Zh?=
- =?utf-8?B?SVkvUWF3V0ZkSzE2OTE1NGZLc2V2UUZxRlpEbjBIU2FvMTJ5RzFRbnFhbVpj?=
- =?utf-8?B?Wk9xVjdrell6enBZMHpiKzZKdVBJbmUxdmQwQXZDRnlwSDd3VGVFZW1PbXZR?=
- =?utf-8?B?YlZVVG10Q1B2UGdsYmo2M2xkMHFCMTFtdG53SVhUVXA3bjFpMU1udVhzVE42?=
- =?utf-8?Q?N0NVnO+wafSYdSMCefcS+NhLo?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: df6606d7-4308-4b8b-99ba-08dc604d00f7
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WjVOc1IrMFNZemUrb05Md2ZncjJURFh5WU5tclRpN1JwUDQxekw4NU9lSitU?=
+ =?utf-8?B?SlVlY1gzVTJhdmRjdnNPa1lHb1FOa0FCa3JCbEtoLzRMakJXWWZ3QWsySWNI?=
+ =?utf-8?B?eHBSNThkT0hLRXpqK0JWc1N2eXJrS0dJYVZMYXVlcWJUd0ZYWkg4eXRwdUZy?=
+ =?utf-8?B?RGpuUjJwWUM1T3JHRHpBNkRBNTQ5Zk5CREJ0RmtXMUQ5VzJZNGFoenZTMDQw?=
+ =?utf-8?B?RUE1L25iaTRLVFUxYUdpYTI5VGdGNWxHWFV6QjBaUkFuR25ITGgxdndhbHZH?=
+ =?utf-8?B?T2pSbUNRY2JOV0k4ZkRQSjRVUGFBNFhUUTZBUnJlQ3N3TzNsY1I5NktYZ2lG?=
+ =?utf-8?B?a1BCUStBcnlTeFkwVGkvWUlaS08xdHZXdEFxejFOTjFYNTh1RFV3N0RiRkJR?=
+ =?utf-8?B?Zkg3cHhvM3RVOXFoUkxMOUF2ZE1rSC84SHAwbEFlNW5zS0tpTEFMQ3g1M1JZ?=
+ =?utf-8?B?Y0JWNmtaNGNQT2MzWktlSmNOVjlXa01KSHE4eFhUa1dMWE5PdUhjOUVsNUxw?=
+ =?utf-8?B?V2hKdFRhSDNsMXlUdkRBWVo1WWM4SWkvN1hzWThpMjRmQ3VLS3Jzc2FzMG1Y?=
+ =?utf-8?B?KzFES3o1M1dlVVdjWmI3eEFnanNTQ0xPam5TMzJXUWhGSWlIRXNvUmVVcFNZ?=
+ =?utf-8?B?TTRXME44YklnMVZFUmdQUldFMTNFOXNMMnZ1UnRhZXZ6SGhqNGF0SG1hK3RJ?=
+ =?utf-8?B?WC9SRmtzWTRHVDdUcTAwM3hMSml2ZE5WMUFrSEpabDFyWUtXWUI2eXN0WSs3?=
+ =?utf-8?B?azI4am5kNFNyTDdiRyszaXI4MTJyeTNROVR6ZjNsdjZzcndkaGw0bXRBTUM5?=
+ =?utf-8?B?ZzZnR1ZUM29vZE9qeEZNNW5GNXhGL3VzM1ZTYWtMRzNwaUdnSEk0MlRkV2Ns?=
+ =?utf-8?B?by9kL25Dd200ay83MldEak1FeUxQT2FmNU9kY1BZR3Bvc2kvU2g0V1I2VmJI?=
+ =?utf-8?B?WXdwQjhMRC9ob1hCc0IrZVlsWVFmUFB1c1pjbllpYVNjYS9QbTlMNG9ON1VL?=
+ =?utf-8?B?QkhiWTA5MXp5SkZCWWswRzVMdDhWN3JWWkVnU3pIMXk3ZTVzSUdLdjNsRVpW?=
+ =?utf-8?B?OE5DWkZ6V1A3TURDSVl5dTQ0VU5ZRkd6UVJwLy8wMS9JYTlsRC9NM2dzSUJp?=
+ =?utf-8?B?YXk2bXNOZGRuaGpxdkxnOXJ2Z3ZsaEdPL3RLZVpsU0ROMW5XbkxFYlZWazQ0?=
+ =?utf-8?B?eVVjemZMY0o3SjczZEVsMkI2djNJS2N6VE1yYlRYdERsOEUzTytja211NU5J?=
+ =?utf-8?B?TSs4RGpUZmZDV0JtNEVLdFFXMCt3OFZuMTY4eXFRemFyNWhRcE43REhFYXdx?=
+ =?utf-8?B?eStLTVkwTmFzOXU1U0pBME51UDNlWHJJRGNFa05QNm9saDMvR0hoNGFvN0VG?=
+ =?utf-8?B?d0dKZ2JWZHdzeU5uQTJHNWwvU3lvQ1pGdTRFamlpTEZYNW1oTXBwZXpwQkgr?=
+ =?utf-8?B?S0p1RUNYQXFDZ2VhQUNqWWowcE1TZHNZM2FDeXVDTTR6b2JsZzBtRklXVHpG?=
+ =?utf-8?B?a21xQkZaR3hxTlpYNHdTalJ3eXZrVVVyeGUyVzYzeGZ5ZGNvdXRYMnBCdHl5?=
+ =?utf-8?B?aXJZMXhhRnFsRU1ROEJCSndpVjRERXB5Y2dReVg3MzJQdVBGWmliMFRGOFd6?=
+ =?utf-8?B?L0xsRjY2YWRTcEVUSmhaWnFLTHFpYStCOXFycHh1NGRoTzNLbWtac3B2REN0?=
+ =?utf-8?B?OWVNeEsxdk1penNIelBzSmpHQUhFY3pYZkk4UEtNN1YvRnNobTh6eEsvQkIw?=
+ =?utf-8?B?MXQ0eFEySDY4N2pGbkZ4djVNNWU4cHF1NkhxVTkzcXptUEZuR2FrbWorMHNJ?=
+ =?utf-8?B?ZzBRMUVpTnZlZGpPcjFmaTBGeE9IanpRZWQ4WS9DS1FYRFFCMjNOTDVhRndB?=
+ =?utf-8?B?VUtPTEFwMXY4ZUxJK0ovbGxrNGdWT1cwQnY3THhNS2Q4VFpXUXdLZlVma1ph?=
+ =?utf-8?B?TWkxeFVOTnM1bm5XWGI5dXFzTUxsQjNwWjRiT3BHZzRUS0dWVlRuMnB1aFQy?=
+ =?utf-8?B?Ti9oLzRESTIrS2wvUFFYTGRhWjV3SkdmZlk1Y2h4K1hJZVlKektpYmZxUkVu?=
+ =?utf-8?B?T3YzQ1FScFBkWW81YjVaNHcwN2grZmVCeEVnNXpSMEZDSVE5cWM2bW9HbkRG?=
+ =?utf-8?Q?gxcVZ5P1BkdCsyrDHGytGS1Xz?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f75907e0-7c4f-4411-d91f-08dc604d79c6
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2024 08:45:02.6911 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2024 08:48:25.3763 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q0FBGNS7AZ0G+kEoVMjolMar61nU7BhGbiArETdrDZ0I961r4O53RCHxUGd91rCaAHkqgtfxIkQG72IfC/s3CQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7042
+X-MS-Exchange-CrossTenant-UserPrincipalName: jJOrAJrmiV2SQ825bQ64HBoeqf2UHjdBCL/RS2greZkboLjdJX/oXs6HLOHR+eCI1rqgZmXUsPmbVOKr+Q1MtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7030
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,142 +166,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi John.
+Hi John,
 
 On 4/19/2024 1:27 AM, John Harrison wrote:
 > On 4/18/2024 10:10, Nirmoy Das wrote:
->> __intel_gt_reset() is really for resetting engines though
->> the name might suggest something else. So add two helper functions
->> to remove confusions with no functional changes.
-> Technically you only added one and just moved the other :). It already 
-> existed, it just wasn't being used everywhere that it could be!
-
-I did have one more helper functions but I removed it in favor of 
-intel_gt_reset_engine() but didn't change the commit message :/
-
-Thanks for catching it. I will fix it.
-
+>> intel_engine_reset() not only reset a engine but also
+>> tries to recover it so give it a proper name without
+>> any functional changes.
+> Not seeing what the difference is. If this was a super low level 
+> function (with an __ prefix for example) then one might expect it to 
+> literally just poke the reset register and leave the engine in a dead 
+> state. But as a high level function, I think it is reasonable to 
+> expect a reset function to 'recover' the entity being reset.
 >
->>
->> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
->>   .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
->>   drivers/gpu/drm/i915/gt/intel_gt.c            |  2 +-
->>   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  2 +-
->>   drivers/gpu/drm/i915/gt/intel_reset.c         | 43 ++++++++++++++-----
->>   drivers/gpu/drm/i915/gt/intel_reset.h         |  3 +-
->>   drivers/gpu/drm/i915/gt/selftest_reset.c      |  2 +-
->>   drivers/gpu/drm/i915/i915_driver.c            |  2 +-
->>   8 files changed, 41 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c 
->> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> index 8c44af1c3451..5c8e9ee3b008 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->> @@ -678,7 +678,7 @@ void intel_engines_release(struct intel_gt *gt)
->>        */
->>       GEM_BUG_ON(intel_gt_pm_is_awake(gt));
->>       if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
->> -        __intel_gt_reset(gt, ALL_ENGINES);
->> +        intel_gt_reset_all_engines(gt);
->>         /* Decouple the backend; but keep the layout for late GPU 
->> resets */
->>       for_each_engine(engine, gt, id) {
->> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
->> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> index 355aab5b38ba..21829439e686 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> @@ -2898,7 +2898,7 @@ static void enable_error_interrupt(struct 
->> intel_engine_cs *engine)
->>           drm_err(&engine->i915->drm,
->>               "engine '%s' resumed still in error: %08x\n",
->>               engine->name, status);
->> -        __intel_gt_reset(engine->gt, engine->mask);
->> +        intel_gt_reset_engine(engine);
->>       }
->>         /*
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c 
->> b/drivers/gpu/drm/i915/gt/intel_gt.c
->> index 580b5141ce1e..626b166e67ef 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
->> @@ -832,7 +832,7 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
->>         /* Scrub all HW state upon release */
->>       with_intel_runtime_pm(gt->uncore->rpm, wakeref)
->> -        __intel_gt_reset(gt, ALL_ENGINES);
->> +        intel_gt_reset_all_engines(gt);
->>   }
->>     void intel_gt_driver_release(struct intel_gt *gt)
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c 
->> b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
->> index 220ac4f92edf..c08fdb65cc69 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
->> @@ -159,7 +159,7 @@ static bool reset_engines(struct intel_gt *gt)
->>       if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
->>           return false;
->>   -    return __intel_gt_reset(gt, ALL_ENGINES) == 0;
->> +    return intel_gt_reset_all_engines(gt) == 0;
->>   }
->>     static void gt_sanitize(struct intel_gt *gt, bool force)
->> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
->> b/drivers/gpu/drm/i915/gt/intel_reset.c
->> index c8e9aa41fdea..b825daace58e 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
->> @@ -764,7 +764,7 @@ wa_14015076503_end(struct intel_gt *gt, 
->> intel_engine_mask_t engine_mask)
->>                HECI_H_GS1_ER_PREP, 0);
->>   }
->>   -int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t 
->> engine_mask)
->> +static int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t 
->> engine_mask)
->>   {
->>       const int retries = engine_mask == ALL_ENGINES ? 
->> RESET_MAX_RETRIES : 1;
->>       reset_func reset;
->> @@ -795,6 +795,34 @@ int __intel_gt_reset(struct intel_gt *gt, 
->> intel_engine_mask_t engine_mask)
->>       return ret;
->>   }
->>   +/**
->> + * intel_gt_reset_all_engines() - Reset all engines in the given gt.
->> + * @gt: the GT to reset all engines for.
->> + *
->> + * This function resets all engines within the given gt.
->> + *
->> + * Returns:
->> + * Zero on success, negative error code on failure.
->> + */
->> +int intel_gt_reset_all_engines(struct intel_gt *gt)
->> +{
->> +    return __intel_gt_reset(gt, ALL_ENGINES);
->> +}
->> +
->> +/**
->> + * intel_gt_reset_engine() - Reset a specific engine within a gt.
->> + * @engine: engine to be reset.
->> + *
->> + * This function resets the specified engine within a gt.
->> + *
->> + * Returns:
->> + * Zero on success, negative error code on failure.
->> + */
->> +int intel_gt_reset_engine(struct intel_engine_cs *engine)
->> +{
->> +    return __intel_gt_reset(engine->gt, engine->mask);
->> +}
->> +
-> You could have just dropped the 'static' from the existing copy of 
-> this function and added the new version next to it. That would make 
-> the diff simpler and therefore clearer. Unless you think there is a 
-> good reason to move the code up here?
+> Also, many of the callers are tests that are explicitly testing reset. 
+> So now the tests all talk about attempting resets, resets failing, 
+> etc. but around a call to 'recover' instead of 'reset', which seems 
+> confusing.
 
-Yes, make sense, I will do that.
+
+Didn't think about it, I will drop it.
 
 
 Thanks,
@@ -309,91 +195,224 @@ Nirmoy
 >
 > John.
 >
->>   bool intel_has_gpu_reset(const struct intel_gt *gt)
->>   {
->>       if (!gt->i915->params.reset)
->> @@ -978,7 +1006,7 @@ static void __intel_gt_set_wedged(struct 
->> intel_gt *gt)
->>         /* Even if the GPU reset fails, it should still stop the 
->> engines */
->>       if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
->> -        __intel_gt_reset(gt, ALL_ENGINES);
->> +        intel_gt_reset_all_engines(gt);
->>         for_each_engine(engine, gt, id)
->>           engine->submit_request = nop_submit_request;
->> @@ -1089,7 +1117,7 @@ static bool __intel_gt_unset_wedged(struct 
->> intel_gt *gt)
->>       /* We must reset pending GPU events before restoring our 
->> submission */
->>       ok = !HAS_EXECLISTS(gt->i915); /* XXX better agnosticism 
->> desired */
->>       if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
->> -        ok = __intel_gt_reset(gt, ALL_ENGINES) == 0;
->> +        ok = intel_gt_reset_all_engines(gt) == 0;
->>       if (!ok) {
->>           /*
->>            * Warn CI about the unrecoverable wedged condition.
->> @@ -1133,10 +1161,10 @@ static int do_reset(struct intel_gt *gt, 
->> intel_engine_mask_t stalled_mask)
->>   {
->>       int err, i;
->>   -    err = __intel_gt_reset(gt, ALL_ENGINES);
->> +    err = intel_gt_reset_all_engines(gt);
->>       for (i = 0; err && i < RESET_MAX_RETRIES; i++) {
->>           msleep(10 * (i + 1));
->> -        err = __intel_gt_reset(gt, ALL_ENGINES);
->> +        err = intel_gt_reset_all_engines(gt);
+>>
+>> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+>> ---
+>>   .../drm/i915/gem/selftests/i915_gem_context.c |  2 +-
+>>   .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
+>>   drivers/gpu/drm/i915/gt/intel_reset.c         |  4 ++--
+>>   drivers/gpu/drm/i915/gt/intel_reset.h         |  4 ++--
+>>   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  | 20 +++++++++----------
+>>   drivers/gpu/drm/i915/gt/selftest_mocs.c       |  4 ++--
+>>   drivers/gpu/drm/i915/gt/selftest_reset.c      |  2 +-
+>>   .../gpu/drm/i915/gt/selftest_workarounds.c    |  6 +++---
+>>   8 files changed, 22 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c 
+>> b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+>> index 89d4dc8b60c6..4f4cde55f621 100644
+>> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+>> @@ -1171,7 +1171,7 @@ __sseu_finish(const char *name,
+>>       int ret = 0;
+>>         if (flags & TEST_RESET) {
+>> -        ret = intel_engine_reset(ce->engine, "sseu");
+>> +        ret = intel_gt_engine_recover(ce->engine, "sseu");
+>>           if (ret)
+>>               goto out;
 >>       }
->>       if (err)
->>           return err;
->> @@ -1270,11 +1298,6 @@ void intel_gt_reset(struct intel_gt *gt,
->>       goto finish;
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
+>> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> index 21829439e686..9485a622a704 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> @@ -2404,7 +2404,7 @@ static void execlists_reset(struct 
+>> intel_engine_cs *engine, const char *msg)
+>>         ring_set_paused(engine, 1); /* Freeze the current request in 
+>> place */
+>>       execlists_capture(engine);
+>> -    intel_engine_reset(engine, msg);
+>> +    intel_gt_engine_recover(engine, msg);
+>> tasklet_enable(&engine->sched_engine->tasklet);
+>>       clear_and_wake_up_bit(bit, lock);
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c 
+>> b/drivers/gpu/drm/i915/gt/intel_reset.c
+>> index b825daace58e..6504e8ba9c58 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+>> @@ -1348,7 +1348,7 @@ int __intel_engine_reset_bh(struct 
+>> intel_engine_cs *engine, const char *msg)
 >>   }
->>   -static int intel_gt_reset_engine(struct intel_engine_cs *engine)
->> -{
->> -    return __intel_gt_reset(engine->gt, engine->mask);
->> -}
->> -
->>   int __intel_engine_reset_bh(struct intel_engine_cs *engine, const 
+>>     /**
+>> - * intel_engine_reset - reset GPU engine to recover from a hang
+>> + * intel_gt_engine_recover - reset GPU engine to recover from a hang
+>>    * @engine: engine to reset
+>>    * @msg: reason for GPU reset; or NULL for no drm_notice()
+>>    *
+>> @@ -1360,7 +1360,7 @@ int __intel_engine_reset_bh(struct 
+>> intel_engine_cs *engine, const char *msg)
+>>    *  - reset engine (which will force the engine to idle)
+>>    *  - re-init/configure engine
+>>    */
+>> -int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+>> +int intel_gt_engine_recover(struct intel_engine_cs *engine, const 
 >> char *msg)
 >>   {
->>       struct intel_gt *gt = engine->gt;
->> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h 
+>>       int err;
+>>   diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h 
 >> b/drivers/gpu/drm/i915/gt/intel_reset.h
->> index f615b30b81c5..c00de353075c 100644
+>> index c00de353075c..be984357bf27 100644
 >> --- a/drivers/gpu/drm/i915/gt/intel_reset.h
 >> +++ b/drivers/gpu/drm/i915/gt/intel_reset.h
->> @@ -54,7 +54,8 @@ int intel_gt_terminally_wedged(struct intel_gt *gt);
->>   void intel_gt_set_wedged_on_init(struct intel_gt *gt);
->>   void intel_gt_set_wedged_on_fini(struct intel_gt *gt);
->>   -int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t 
->> engine_mask);
->> +int intel_gt_reset_engine(struct intel_engine_cs *engine);
->> +int intel_gt_reset_all_engines(struct intel_gt *gt);
->>     int intel_reset_guc(struct intel_gt *gt);
+>> @@ -31,8 +31,8 @@ void intel_gt_handle_error(struct intel_gt *gt,
+>>   void intel_gt_reset(struct intel_gt *gt,
+>>               intel_engine_mask_t stalled_mask,
+>>               const char *reason);
+>> -int intel_engine_reset(struct intel_engine_cs *engine,
+>> -               const char *reason);
+>> +int intel_gt_engine_recover(struct intel_engine_cs *engine,
+>> +                const char *reason);
+>>   int __intel_engine_reset_bh(struct intel_engine_cs *engine,
+>>                   const char *reason);
+>>   diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c 
+>> b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>> index 9ce8ff1c04fe..9bfda3f2bd24 100644
+>> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>> @@ -495,9 +495,9 @@ static int igt_reset_nop_engine(void *arg)
+>>                     i915_request_add(rq);
+>>               }
+>> -            err = intel_engine_reset(engine, NULL);
+>> +            err = intel_gt_engine_recover(engine, NULL);
+>>               if (err) {
+>> -                pr_err("intel_engine_reset(%s) failed, err:%d\n",
+>> +                pr_err("intel_gt_engine_recover(%s) failed, err:%d\n",
+>>                          engine->name, err);
+>>                   break;
+>>               }
+>> @@ -574,7 +574,7 @@ static int igt_reset_fail_engine(void *arg)
+>>                           &gt->reset.flags));
+>>             force_reset_timeout(engine);
+>> -        err = intel_engine_reset(engine, NULL);
+>> +        err = intel_gt_engine_recover(engine, NULL);
+>>           cancel_reset_timeout(engine);
+>>           if (err == 0) /* timeouts only generated on gen8+ */
+>>               goto skip;
+>> @@ -623,9 +623,9 @@ static int igt_reset_fail_engine(void *arg)
+>>               }
+>>                 if (count & 1) {
+>> -                err = intel_engine_reset(engine, NULL);
+>> +                err = intel_gt_engine_recover(engine, NULL);
+>>                   if (err) {
+>> -                    GEM_TRACE_ERR("intel_engine_reset(%s) failed, 
+>> err:%d\n",
+>> +                    GEM_TRACE_ERR("intel_gt_engine_recover(%s) 
+>> failed, err:%d\n",
+>>                                 engine->name, err);
+>>                       GEM_TRACE_DUMP();
+>>                       i915_request_put(last);
+>> @@ -633,10 +633,10 @@ static int igt_reset_fail_engine(void *arg)
+>>                   }
+>>               } else {
+>>                   force_reset_timeout(engine);
+>> -                err = intel_engine_reset(engine, NULL);
+>> +                err = intel_gt_engine_recover(engine, NULL);
+>>                   cancel_reset_timeout(engine);
+>>                   if (err != -ETIMEDOUT) {
+>> -                    pr_err("intel_engine_reset(%s) did not fail, 
+>> err:%d\n",
+>> +                    pr_err("intel_gt_engine_recover(%s) did not 
+>> fail, err:%d\n",
+>>                              engine->name, err);
+>>                       i915_request_put(last);
+>>                       break;
+>> @@ -765,9 +765,9 @@ static int __igt_reset_engine(struct intel_gt 
+>> *gt, bool active)
+>>               }
+>>                 if (!using_guc) {
+>> -                err = intel_engine_reset(engine, NULL);
+>> +                err = intel_gt_engine_recover(engine, NULL);
+>>                   if (err) {
+>> -                    pr_err("intel_engine_reset(%s) failed, err:%d\n",
+>> +                    pr_err("intel_gt_engine_recover(%s) failed, 
+>> err:%d\n",
+>>                              engine->name, err);
+>>                       goto skip;
+>>                   }
+>> @@ -1085,7 +1085,7 @@ static int __igt_reset_engines(struct intel_gt 
+>> *gt,
+>>               }
+>>                 if (!using_guc) {
+>> -                err = intel_engine_reset(engine, NULL);
+>> +                err = intel_gt_engine_recover(engine, NULL);
+>>                   if (err) {
+>>                       pr_err("i915_reset_engine(%s:%s): failed, 
+>> err=%d\n",
+>>                              engine->name, test_name, err);
+>> diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c 
+>> b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+>> index d73e438fb85f..b7b15dd3163f 100644
+>> --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
+>> +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+>> @@ -336,7 +336,7 @@ static int active_engine_reset(struct 
+>> intel_context *ce,
+>>         err = request_add_spin(rq, &spin);
+>>       if (err == 0 && !using_guc)
+>> -        err = intel_engine_reset(ce->engine, reason);
+>> +        err = intel_gt_engine_recover(ce->engine, reason);
+>>         /* Ensure the reset happens and kills the engine */
+>>       if (err == 0)
+>> @@ -356,7 +356,7 @@ static int __live_mocs_reset(struct live_mocs *mocs,
+>>         if (intel_has_reset_engine(gt)) {
+>>           if (!using_guc) {
+>> -            err = intel_engine_reset(ce->engine, "mocs");
+>> +            err = intel_gt_engine_recover(ce->engine, "mocs");
+>>               if (err)
+>>                   return err;
 >>   diff --git a/drivers/gpu/drm/i915/gt/selftest_reset.c 
 >> b/drivers/gpu/drm/i915/gt/selftest_reset.c
->> index f40de408cd3a..2cfc23c58e90 100644
+>> index 2cfc23c58e90..9eaa1aed9f58 100644
 >> --- a/drivers/gpu/drm/i915/gt/selftest_reset.c
 >> +++ b/drivers/gpu/drm/i915/gt/selftest_reset.c
->> @@ -281,7 +281,7 @@ static int igt_atomic_reset(void *arg)
->>           awake = reset_prepare(gt);
->>           p->critical_section_begin();
->>   -        err = __intel_gt_reset(gt, ALL_ENGINES);
->> +        err = intel_gt_reset_all_engines(gt);
->>             p->critical_section_end();
->>           reset_finish(gt, awake);
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c 
->> b/drivers/gpu/drm/i915/i915_driver.c
->> index 4b9233c07a22..622a24305bc2 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -202,7 +202,7 @@ static void sanitize_gpu(struct drm_i915_private 
->> *i915)
->>           unsigned int i;
->>             for_each_gt(gt, i915, i)
->> -            __intel_gt_reset(gt, ALL_ENGINES);
->> +            intel_gt_reset_all_engines(gt);
+>> @@ -115,7 +115,7 @@ __igt_reset_stolen(struct intel_gt *gt,
+>>       } else {
+>>           for_each_engine(engine, gt, id) {
+>>               if (mask & engine->mask)
+>> -                intel_engine_reset(engine, NULL);
+>> +                intel_gt_engine_recover(engine, NULL);
+>>           }
 >>       }
+>>   diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c 
+>> b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+>> index 14a8b25b6204..eb7516c7cb56 100644
+>> --- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
+>> @@ -256,7 +256,7 @@ static int do_device_reset(struct intel_engine_cs 
+>> *engine)
+>>     static int do_engine_reset(struct intel_engine_cs *engine)
+>>   {
+>> -    return intel_engine_reset(engine, "live_workarounds");
+>> +    return intel_gt_engine_recover(engine, "live_workarounds");
 >>   }
+>>     static int do_guc_reset(struct intel_engine_cs *engine)
+>> @@ -1282,7 +1282,7 @@ live_engine_reset_workarounds(void *arg)
+>>                   goto err;
+>>               }
+>>   -            ret = intel_engine_reset(engine, 
+>> "live_workarounds:idle");
+>> +            ret = intel_gt_engine_recover(engine, 
+>> "live_workarounds:idle");
+>>               if (ret) {
+>>                   pr_err("%s: Reset failed while idle\n", engine->name);
+>>                   goto err;
+>> @@ -1320,7 +1320,7 @@ live_engine_reset_workarounds(void *arg)
+>>           }
+>>             if (!using_guc) {
+>> -            ret = intel_engine_reset(engine, 
+>> "live_workarounds:active");
+>> +            ret = intel_gt_engine_recover(engine, 
+>> "live_workarounds:active");
+>>               if (ret) {
+>>                   pr_err("%s: Reset failed on an active spinner\n",
+>>                          engine->name);
 >
