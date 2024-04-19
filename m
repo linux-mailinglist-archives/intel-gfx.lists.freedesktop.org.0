@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02DCF8AABA6
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 11:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D5C8AABA7
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 11:42:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF1C10E8DE;
-	Fri, 19 Apr 2024 09:42:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6809E10E950;
+	Fri, 19 Apr 2024 09:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i24sM64P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c7HJLtWq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33E0D10E809;
- Fri, 19 Apr 2024 09:42:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5F410E86E;
+ Fri, 19 Apr 2024 09:42:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713519744; x=1745055744;
+ t=1713519750; x=1745055750;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dqHxg++oZdGqKeLgQ1sLPtturKZfyaic7w5NRmTCb4k=;
- b=i24sM64PAVLo2kp+t71OuDAtsNf6TaDdj/fLQHPiYvUK1hIfeSR7WEwG
- gqbglHa1usO4mXwRLzJxvrhEsFSKrZmy1EeeHh7zEe6WYqqmQKoiUF0X0
- v9796quF7W32EDFA9wLV9zLcmfY1fQTLV0ENnNtsjwCdH1axDaXrA+45P
- JLjp65ZS9ObBhNGw+5rPbIEu872Ofap5jy0F+fKy8NMM1FwslAFX9rvnr
- f5IMwHnwhKsV0ljT4iwlwfe72ziWiBD7k+lRbz73w2NcL1AIDRdYNKl2y
- S6YjsSLNWu91giERoKO+VNhAur8qnMwZAXjLv6ZiZ9oKa6CdwL9zKA2Cs w==;
-X-CSE-ConnectionGUID: OQ5++JElRu2yPqYDGS0rRg==
-X-CSE-MsgGUID: WSIZVdSxSdqy6Z5LWtjHYA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20503850"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="20503850"
+ bh=VjV/S5u6AnSNeBCUOx1m6tKnOP0//hYGKq+opxrdaQg=;
+ b=c7HJLtWq8V/Rx264zbH9aF6CgO6jAajkSqcJil0GsAwr1l5yLsvh5tLD
+ cVZoNJABOYnpuJmK9i8ejljmSvnLsfBLeEfoXIMbCSzoqfDPxjv999ID6
+ frNh+tNPhK5lnnu0ARvtHqXnTnSOmfT1ezxPeyXtVKAJ4FoqYgc6ng6Px
+ TqR4oGX/8uxtrQJBQ6CVkYjuc10Fqh95s3OMS9NHRSoa+hwrCcCBLhkAj
+ mU15vgOvHq6k6UVAxjzYQK/d0X9YlSrY3acLk8p2lz2sRhJWQIFfmRlCH
+ CM2PRuA053Xd/KbyFI/ZusLnfn/3FBttjjuUtD+ebjgn13j7YwtzxtVPX g==;
+X-CSE-ConnectionGUID: LbaK2G1SRHS02pVMh67QtQ==
+X-CSE-MsgGUID: PTC/GCu8QdSS5MA8gVOCvA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20503858"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="20503858"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 02:42:24 -0700
-X-CSE-ConnectionGUID: N9OD/Kg/RoOCtVpUnh6yFQ==
-X-CSE-MsgGUID: WnIybaLaQNebgdQKHQccRw==
+ 19 Apr 2024 02:42:29 -0700
+X-CSE-ConnectionGUID: c7NW1ABsS8mnuFKcauvdmQ==
+X-CSE-MsgGUID: vvyTgipvQ2m9/fnej2ScfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="28117165"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="28117188"
 Received: from agherasi-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.46.119])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 02:42:21 -0700
+ 19 Apr 2024 02:42:26 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
  jani.nikula@intel.com
-Subject: [PATCH v2 3/5] drm/i915/dmc: split out per-platform firmware path
- selection
-Date: Fri, 19 Apr 2024 12:41:56 +0300
-Message-Id: <fe3d7b2b18c317a2f924f2023271d38afee3b18a.1713519628.git.jani.nikula@intel.com>
+Subject: [PATCH v2 4/5] drm/i915/dmc: change how to disable DMC firmware using
+ module param
+Date: Fri, 19 Apr 2024 12:41:57 +0300
+Message-Id: <8695aca8a6643e36bb680bc2dcab97c637e70b00.1713519628.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1713519628.git.jani.nikula@intel.com>
 References: <cover.1713519628.git.jani.nikula@intel.com>
@@ -72,129 +72,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The big if ladder clutters intel_dmc_init(). Split it out to a separate
-function.
+The distinction between the dmc_firmware_path module param being NULL
+and the empty string "" is problematic. It's not possible to set the
+parameter back to NULL via sysfs or debugfs. Remove the distinction, and
+consider NULL and the empty string to be the same thing, and use the
+platform default for them.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+This removes the possibility to disable DMC (and runtime PM) via
+i915.dmc_firmware_path="". Instead, use "/dev/null" as the magic
+firmware path to skip DMC firmware loading and disable runtime PM.
+
+v2: Add support for i915.dmc_firmware_path="/dev/null" (Gustavo)
+
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 96 +++++++++++++-----------
- 1 file changed, 54 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 31 +++++++++++++++++-------
+ drivers/gpu/drm/i915/i915_params.c       |  3 ++-
+ 2 files changed, 24 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 2e06a39579df..a2027c6cf4f1 100644
+index a2027c6cf4f1..7dabfaa636e4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -142,6 +142,59 @@ MODULE_FIRMWARE(SKL_DMC_PATH);
- #define BXT_DMC_MAX_FW_SIZE		0x3000
- MODULE_FIRMWARE(BXT_DMC_PATH);
+@@ -73,6 +73,21 @@ static struct intel_dmc *i915_to_dmc(struct drm_i915_private *i915)
+ 	return i915->display.dmc.dmc;
+ }
  
-+static const char *dmc_firmware_default(struct drm_i915_private *i915, u32 *size)
++static const char *dmc_firmware_param(struct drm_i915_private *i915)
 +{
-+	const char *fw_path = NULL;
-+	u32 max_fw_size = 0;
++	const char *p = i915->params.dmc_firmware_path;
 +
-+	if (DISPLAY_VER_FULL(i915) == IP_VER(20, 0)) {
-+		fw_path = XE2LPD_DMC_PATH;
-+		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
-+	} else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
-+		fw_path = MTL_DMC_PATH;
-+		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
-+	} else if (IS_DG2(i915)) {
-+		fw_path = DG2_DMC_PATH;
-+		max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-+	} else if (IS_ALDERLAKE_P(i915)) {
-+		fw_path = ADLP_DMC_PATH;
-+		max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
-+	} else if (IS_ALDERLAKE_S(i915)) {
-+		fw_path = ADLS_DMC_PATH;
-+		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-+	} else if (IS_DG1(i915)) {
-+		fw_path = DG1_DMC_PATH;
-+		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-+	} else if (IS_ROCKETLAKE(i915)) {
-+		fw_path = RKL_DMC_PATH;
-+		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-+	} else if (IS_TIGERLAKE(i915)) {
-+		fw_path = TGL_DMC_PATH;
-+		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
-+	} else if (DISPLAY_VER(i915) == 11) {
-+		fw_path = ICL_DMC_PATH;
-+		max_fw_size = ICL_DMC_MAX_FW_SIZE;
-+	} else if (IS_GEMINILAKE(i915)) {
-+		fw_path = GLK_DMC_PATH;
-+		max_fw_size = GLK_DMC_MAX_FW_SIZE;
-+	} else if (IS_KABYLAKE(i915) ||
-+		   IS_COFFEELAKE(i915) ||
-+		   IS_COMETLAKE(i915)) {
-+		fw_path = KBL_DMC_PATH;
-+		max_fw_size = KBL_DMC_MAX_FW_SIZE;
-+	} else if (IS_SKYLAKE(i915)) {
-+		fw_path = SKL_DMC_PATH;
-+		max_fw_size = SKL_DMC_MAX_FW_SIZE;
-+	} else if (IS_BROXTON(i915)) {
-+		fw_path = BXT_DMC_PATH;
-+		max_fw_size = BXT_DMC_MAX_FW_SIZE;
-+	}
-+
-+	*size = max_fw_size;
-+
-+	return fw_path;
++	return p && *p ? p : NULL;
 +}
 +
- #define DMC_DEFAULT_FW_OFFSET		0xFFFFFFFF
- #define PACKAGE_MAX_FW_INFO_ENTRIES	20
- #define PACKAGE_V2_MAX_FW_INFO_ENTRIES	32
-@@ -1009,48 +1062,7 @@ void intel_dmc_init(struct drm_i915_private *i915)
++static bool dmc_firmware_param_disabled(struct drm_i915_private *i915)
++{
++	const char *p = dmc_firmware_param(i915);
++
++	/* Magic path to indicate disabled */
++	return p && !strcmp(p, "/dev/null");
++}
++
+ #define DMC_VERSION(major, minor)	((major) << 16 | (minor))
+ #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+ #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+@@ -991,7 +1006,7 @@ static void dmc_load_work_fn(struct work_struct *work)
  
- 	INIT_WORK(&dmc->work, dmc_load_work_fn);
+ 	err = request_firmware(&fw, dmc->fw_path, i915->drm.dev);
  
--	if (DISPLAY_VER_FULL(i915) == IP_VER(20, 0)) {
--		dmc->fw_path = XE2LPD_DMC_PATH;
--		dmc->max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
--	} else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 0)) {
--		dmc->fw_path = MTL_DMC_PATH;
--		dmc->max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
--	} else if (IS_DG2(i915)) {
--		dmc->fw_path = DG2_DMC_PATH;
--		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
--	} else if (IS_ALDERLAKE_P(i915)) {
--		dmc->fw_path = ADLP_DMC_PATH;
--		dmc->max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
--	} else if (IS_ALDERLAKE_S(i915)) {
--		dmc->fw_path = ADLS_DMC_PATH;
--		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_DG1(i915)) {
--		dmc->fw_path = DG1_DMC_PATH;
--		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_ROCKETLAKE(i915)) {
--		dmc->fw_path = RKL_DMC_PATH;
--		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_TIGERLAKE(i915)) {
--		dmc->fw_path = TGL_DMC_PATH;
--		dmc->max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (DISPLAY_VER(i915) == 11) {
--		dmc->fw_path = ICL_DMC_PATH;
--		dmc->max_fw_size = ICL_DMC_MAX_FW_SIZE;
--	} else if (IS_GEMINILAKE(i915)) {
--		dmc->fw_path = GLK_DMC_PATH;
--		dmc->max_fw_size = GLK_DMC_MAX_FW_SIZE;
--	} else if (IS_KABYLAKE(i915) ||
--		   IS_COFFEELAKE(i915) ||
--		   IS_COMETLAKE(i915)) {
--		dmc->fw_path = KBL_DMC_PATH;
--		dmc->max_fw_size = KBL_DMC_MAX_FW_SIZE;
--	} else if (IS_SKYLAKE(i915)) {
--		dmc->fw_path = SKL_DMC_PATH;
--		dmc->max_fw_size = SKL_DMC_MAX_FW_SIZE;
--	} else if (IS_BROXTON(i915)) {
--		dmc->fw_path = BXT_DMC_PATH;
--		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
--	}
-+	dmc->fw_path = dmc_firmware_default(i915, &dmc->max_fw_size);
+-	if (err == -ENOENT && !i915->params.dmc_firmware_path) {
++	if (err == -ENOENT && !dmc_firmware_param(i915)) {
+ 		fallback_path = dmc_fallback_path(i915);
+ 		if (fallback_path) {
+ 			drm_dbg_kms(&i915->drm, "%s not found, falling back to %s\n",
+@@ -1064,16 +1079,14 @@ void intel_dmc_init(struct drm_i915_private *i915)
  
- 	if (i915->params.dmc_firmware_path) {
- 		if (strlen(i915->params.dmc_firmware_path) == 0) {
+ 	dmc->fw_path = dmc_firmware_default(i915, &dmc->max_fw_size);
+ 
+-	if (i915->params.dmc_firmware_path) {
+-		if (strlen(i915->params.dmc_firmware_path) == 0) {
+-			drm_info(&i915->drm,
+-				 "Disabling DMC firmware and runtime PM\n");
+-			goto out;
+-		}
+-
+-		dmc->fw_path = i915->params.dmc_firmware_path;
++	if (dmc_firmware_param_disabled(i915)) {
++		drm_info(&i915->drm, "Disabling DMC firmware and runtime PM\n");
++		goto out;
+ 	}
+ 
++	if (dmc_firmware_param(i915))
++		dmc->fw_path = dmc_firmware_param(i915);
++
+ 	if (!dmc->fw_path) {
+ 		drm_dbg_kms(&i915->drm,
+ 			    "No known DMC firmware for platform, disabling runtime PM\n");
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index de43048543e8..edfd1f54a882 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -109,7 +109,8 @@ i915_param_named_unsafe(huc_firmware_path, charp, 0400,
+ 	"HuC firmware path to use instead of the default one");
+ 
+ i915_param_named_unsafe(dmc_firmware_path, charp, 0400,
+-	"DMC firmware path to use instead of the default one");
++	"DMC firmware path to use instead of the default one. "
++	"Use /dev/null to disable DMC and runtime PM.");
+ 
+ i915_param_named_unsafe(gsc_firmware_path, charp, 0400,
+ 	"GSC firmware path to use instead of the default one");
 -- 
 2.39.2
 
