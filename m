@@ -2,55 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7FD08AA665
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 02:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A00D8AA66A
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 03:05:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EEEF10E1C5;
-	Fri, 19 Apr 2024 00:58:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28ED11A0E7;
+	Fri, 19 Apr 2024 01:05:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oIwjMxe4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="asG3HBlf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0771C10E1C5
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Apr 2024 00:58:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1679111338E;
+ Fri, 19 Apr 2024 01:05:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713488328; x=1745024328;
- h=date:message-id:from:to:subject:in-reply-to:references:
- mime-version; bh=ZgmHQ9ceXgk4zmyZdOOUQR3EBRgOBJk1vryZ+iekcGU=;
- b=oIwjMxe4X4UTN1Rs/lY7jN+HKLFawheyjCWsiIXWySulp9VNIpiFT4/Y
- Gdx3BPDYUCJfneuekn+gHcaofQDHd9C8OjoHaMLxrqdfZvWTcj7bO2v4p
- Z4HkfdHyNmFnCewmOwgCd1XTZ9+e9tr++tbBY2e/NMTyjAbboxUN5H6K2
- fZVo3Zc7kWKddJH5OATL0qPAcnW7NQKJV4mogWoc3IUDZKEGzROd6fhuM
- 4++EcLSyBKYCTDfhfni/3wwIJevEu3MauBtV48wiLfTnIX9v8ul8GUyA1
- tZCz3vEcjW7Uydox8fTSqzrIY/3vjBaCl1mQW47i3sfLkPoY54SqH/FW5 g==;
-X-CSE-ConnectionGUID: Kv80dBTCSO2lQtQtOIuBbg==
-X-CSE-MsgGUID: csuUnrxtQr6NM7r9XRYg0w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="9617613"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
-   d="scan'208";a="9617613"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 17:58:47 -0700
-X-CSE-ConnectionGUID: ALAZSJRxQ/esH0PWxGR3MA==
-X-CSE-MsgGUID: xUK8oY3xShagjFKi4Xo3XQ==
+ t=1713488730; x=1745024730;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=zmJIOTVSXHNG/1LS4rD4f4JmQ99V51giJdVFbZDMLj8=;
+ b=asG3HBlfcM2IyKtaTlcAZOWFEk6GVta6OD1mpfW6N5/hryLe1tl/8zwD
+ HgJ7G9q6LSzfP+5v1MtlJ1R5IU0MnPcWN3DXaYlmiVVMTEB+jI9ZPSoIZ
+ 0ihnaOZc7xH76kBSOFP0jWgwtP3/MMocZ7DnxASPVQokpBz5WLI2cCHCs
+ YE5NFTA+YghdDgsdvkLvANpXqi8/vCv20FEcNScXxfmQ+6rPyws7sTxZq
+ aV2drmNfIcdiY9GUEaQdnUspDf3RPRK474kuEVQACIGL8jDS5Zq0SC/eb
+ PHDuYFM/CMfC6d/n/XyDqgwkY4x2KsZg4naRXARzzNzRebv6f/2wkbHh4 g==;
+X-CSE-ConnectionGUID: QIX4JUk3RJS3TJJK9+ApCw==
+X-CSE-MsgGUID: ApMgry/CReKEm3XH7ao2cw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="12907672"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="12907672"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 18:05:29 -0700
+X-CSE-ConnectionGUID: UHzZUvgxQsugT+iRKiDQiA==
+X-CSE-MsgGUID: IWrBIqJCTrGaQrH8u7FkEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="28009443"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="23787894"
 Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
  ([10.165.21.138])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Apr 2024 17:58:47 -0700
-Date: Thu, 18 Apr 2024 17:58:46 -0700
-Message-ID: <858r1acgmx.wl-ashutosh.dixit@intel.com>
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2024 18:05:30 -0700
+Date: Thu, 18 Apr 2024 18:05:29 -0700
+Message-ID: <857cgucgbq.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Subject: Re: =?UTF-8?B?4pyX?= Fi.CI.IGT: failure for drm/i915/hwmon: Get rid
- of devm (rev6)
-In-Reply-To: <171348106995.1502081.10166035943896461816@8e613ede5ea5>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: <intel-gfx@lists.freedesktop.org>,	Badal Nilawar
+ <badal.nilawar@intel.com>,	Ville =?ISO-8859-1?Q?Syrj=E4l=E4?=
+ <ville.syrjala@linux.intel.com>,	Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ "Jani\ Nikula" <jani.nikula@linux.intel.com>,<linux-hwmon@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/hwmon: Get rid of devm
+In-Reply-To: <ZiGXKrheNEJlk56X@ashyti-mobl2.lan>
 References: <20240417145646.793223-1-ashutosh.dixit@intel.com>
- <171348106995.1502081.10166035943896461816@8e613ede5ea5>
+ <ZiGXKrheNEJlk56X@ashyti-mobl2.lan>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -71,56 +75,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Apr 2024 15:57:49 -0700, Patchwork wrote:
+On Thu, 18 Apr 2024 14:56:58 -0700, Andi Shyti wrote:
 >
-> Project List - Patchwork
+> > v2: Change commit message and other minor code changes
+> > v3: Cleanup from i915_hwmon_register on error (Armin Wolf)
+> > v4: Eliminate potential static analyzer warning (Rodrigo)
+> >     Eliminate fetch_and_zero (Jani)
+> > v5: Restore previous logic for ddat_gt->hwmon_dev error return (Andi)
 >
->  Patch Details
+> Thanks!
 >
->  Series:  drm/i915/hwmon: Get rid of devm (rev6)
->  URL:  https://patchwork.freedesktop.org/series/132400/
->  State:  failure
->  Details:  https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132400v6/index.html
->
-> CI Bug Log - changes from CI_DRM_14596_full -> Patchwork_132400v6_full
->
-> Summary
->
-> FAILURE
->
-> Serious unknown changes coming with Patchwork_132400v6_full absolutely need to be
-> verified manually.
->
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_132400v6_full, please notify your bug team ("I915-ci-infra@lists.freedesktop.org") to allow them
-> to document this new failure mode, which will reduce false positives in CI.
->
-> External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132400v6/index.html
->
-> Participating hosts (9 -> 9)
->
-> No changes in participating hosts
->
-> Possible new issues
->
-> Here are the unknown changes that may have been introduced in Patchwork_132400v6_full:
->
-> IGT changes
->
-> Possible regressions
->
-> * igt@kms_flip@flip-vs-suspend@a-hdmi-a1:
->
->  * shard-snb: PASS -> DMESG-WARN
->
-> * igt@perf@polling-parameterized:
->
->  * shard-glk: PASS -> INCOMPLETE
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-These failures are unrelated this patch. The patch can only affect i915
-hwmon and at worst module load/unload, which is not what these failing
-tests are doing.
+Thanks a lot Andi, merged!
 
-Thanks.
---
 Ashutosh
