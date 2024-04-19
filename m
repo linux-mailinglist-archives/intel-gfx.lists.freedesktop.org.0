@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C998AAC5E
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 12:04:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C128AAC61
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 12:04:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0461D10EA14;
-	Fri, 19 Apr 2024 10:04:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B23D410EC5C;
+	Fri, 19 Apr 2024 10:04:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQLVAp7y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aek3rbEY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEF710EA14
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Apr 2024 10:04:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AE8210EC5C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Apr 2024 10:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713521054; x=1745057054;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KrUv/ceiLQ4+LQ5nzk8HYA+SigXjOUwU6Jdz9N5m7oc=;
- b=WQLVAp7y/d6A3XTcEGG03jhllHYr2PikBseZrpzuqmGpvDocx7v+wvCt
- 4ZPkd7JD1D3gQgomwQip4T5ydeiDSpcuphlrhaGNw8FbbBKN6GR9cW5k5
- GkDWQYXAgSukedP1bS7Qkp3GzPvcELYnvbYWjY1jZXL4xZHqBtStrrNr/
- FkIsXRPLcv1M0hs41Cvcm0/U7xDSJjbKKyn8rMf1lvS0esekpUAFoEXIn
- xi5IEDIk65QEWffYW24yUKM7KS6H28rXJoc3Q7s+v2JojqqdhUy3tDo4k
- Tj0mB/dArrVzysR+Sdl7/wpJBValYupSCrj5RJxr0ukFkoms8TLFJ4N16 g==;
-X-CSE-ConnectionGUID: +Zpx8r2/SnW4yc/QLgCtpQ==
-X-CSE-MsgGUID: 198PSA3hRzaF5zd9lmAwaQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="20256631"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="20256631"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 03:04:13 -0700
-X-CSE-ConnectionGUID: tPWGcWcKRN2vC7d8UokqGQ==
-X-CSE-MsgGUID: VsrCcYk8RyKPuZ1+4BdapA==
+ t=1713521059; x=1745057059;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cSb1qQeVGZBRem6f7+0CezJa0uer6NmrxACKbZaVAMw=;
+ b=aek3rbEYraf8oYeU8yKxsn76TYFAfr5n3dv6emuuGO4pTUVKJ5hrWqdQ
+ 4TcBJDyaZ7VpG0OjG0dP5S8V2kyuCeYPQsEfYfASOZ+dvDyX1T+YKJZHt
+ gfhVkOSvtrAGIR0buD6or6lSUKclpGfaXvuQAGQP586I+7ctcbB8Mh8wY
+ WGTV1R7lyOeblJYL+a1/2HfnMQw+IMKfmIvURfvTW7wajKuzzeB62QHAN
+ X8+6QRyU+ZvrQwP0JM9P+vKzmYGyIKtX3rZ8AsQKvMiyqDuBIhC4Y/eRZ
+ pfN7/FdipVr2jUiHEOsvu1ahxwe0FKJOyZj64hE/eUXO+4WivP8/lOtSq A==;
+X-CSE-ConnectionGUID: p6PGaX1MRsSGpbS6bJ7Uow==
+X-CSE-MsgGUID: gIH9cXo8Qx6V596G0iFEXA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11047"; a="8975146"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; 
+   d="scan'208";a="8975146"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 03:04:17 -0700
+X-CSE-ConnectionGUID: lEzsrpVpRQGdPacllBzIRg==
+X-CSE-MsgGUID: vvAqO+4QRna5uN4BpuzBFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="23316257"
+X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="23787987"
 Received: from agherasi-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.46.119])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 03:04:12 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2024 03:04:16 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 0/4] drm/i915/dsi: stop relying on implicit dev_priv
- variable
-Date: Fri, 19 Apr 2024 13:04:02 +0300
-Message-Id: <cover.1713520813.git.jani.nikula@intel.com>
+Subject: [PATCH v2 1/4] drm/i915/dsi: remove unused _MIPIA_AUTOPWG register
+ definition
+Date: Fri, 19 Apr 2024 13:04:03 +0300
+Message-Id: <57afda02856a68f78fe4d30384d4f7b352b9a812.1713520813.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1713520813.git.jani.nikula@intel.com>
+References: <cover.1713520813.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,27 +71,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v2 of [1], using struct intel_display * rather than struct
-drm_i915_private *.
+There are other unused registers, but this is also unusable and
+inadequate. Remove.
 
-BR,
-Jani.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/vlv_dsi_regs.h | 3 ---
+ 1 file changed, 3 deletions(-)
 
-[1] https://lore.kernel.org/r/cover.1712766927.git.jani.nikula@intel.com
-
-Jani Nikula (4):
-  drm/i915/dsi: remove unused _MIPIA_AUTOPWG register definition
-  drm/i915/dsi: add VLV_ prefix to VLV only register macros
-  drm/i915/dsi: unify connector/encoder type and name usage
-  drm/i915/dsi: pass display to register macros instead of implicit
-    variable
-
- drivers/gpu/drm/i915/display/intel_display.c |   8 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c       | 467 +++++++++----------
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c   |  22 +-
- drivers/gpu/drm/i915/display/vlv_dsi_regs.h  | 327 +++++++------
- 4 files changed, 407 insertions(+), 417 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_regs.h b/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
+index abbe427e462e..b0cdaad7db9c 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
+@@ -93,9 +93,6 @@
+ #define  TEARING_EFFECT_DELAY_SHIFT			0
+ #define  TEARING_EFFECT_DELAY_MASK			(0xffff << 0)
+ 
+-/* XXX: all bits reserved */
+-#define _MIPIA_AUTOPWG			(VLV_DISPLAY_BASE + 0x611a0)
+-
+ /* MIPI DSI Controller and D-PHY registers */
+ 
+ #define _MIPIA_DEVICE_READY		(_MIPI_MMIO_BASE(dev_priv) + 0xb000)
 -- 
 2.39.2
 
