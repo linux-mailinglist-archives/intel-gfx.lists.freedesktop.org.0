@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FED8AAD0C
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 12:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89ABC8AAD1A
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 12:53:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A225210F607;
-	Fri, 19 Apr 2024 10:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC5FF10F786;
+	Fri, 19 Apr 2024 10:53:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2642810F607;
- Fri, 19 Apr 2024 10:46:42 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C24D210F6C5;
+ Fri, 19 Apr 2024 10:53:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4152323096870968380=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dsi=3A_stop?=
- =?utf-8?q?_relying_on_implicit_dev=5Fpriv_variable_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/dsi=3A_stop_relyin?=
+ =?utf-8?q?g_on_implicit_dev=5Fpriv_variable_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Apr 2024 10:46:42 -0000
-Message-ID: <171352360215.1520059.17840410572793483205@8e613ede5ea5>
+Date: Fri, 19 Apr 2024 10:53:42 -0000
+Message-ID: <171352402278.1520059.10980206345371832882@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1713520813.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1713520813.git.jani.nikula@intel.com>
@@ -41,237 +41,609 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4152323096870968380==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915/dsi: stop relying on implicit dev_priv variable (rev2)
 URL   : https://patchwork.freedesktop.org/series/132285/
-State : warning
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-aa3c68d4f30e drm/i915/dsi: remove unused _MIPIA_AUTOPWG register definition
-0ba6f1a20ef1 drm/i915/dsi: add VLV_ prefix to VLV only register macros
--:61: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#61: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:92:
-+#define VLV_MIPI_TEARING_CTRL(port)		_MMIO_MIPI(port, _MIPIA_TEARING_CTRL, _MIPIC_TEARING_CTRL)
+CI Bug Log - changes from CI_DRM_14611 -> Patchwork_132285v2
+====================================================
 
-total: 0 errors, 1 warnings, 0 checks, 40 lines checked
-5b3d3c36152a drm/i915/dsi: unify connector/encoder type and name usage
--:255: CHECK:CAMELCASE: Avoid CamelCase: <SubPixelHorizontalRGB>
-#255: FILE: drivers/gpu/drm/i915/display/vlv_dsi.c:1991:
-+	connector->base.display_info.subpixel_order = SubPixelHorizontalRGB; /*XXX*/
+Summary
+-------
 
-total: 0 errors, 0 warnings, 1 checks, 264 lines checked
-7367bc42c786 drm/i915/dsi: pass display to register macros instead of implicit variable
--:1107: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
-#1107: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:22:
-+#define  BXT_MIPI_TRANS_HACTIVE(tc)		_MMIO_MIPI(BXT_MIPI_BASE, tc, _BXT_MIPIA_TRANS_HACTIVE, _BXT_MIPIC_TRANS_HACTIVE)
+  **FAILURE**
 
--:1115: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
-#1115: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:26:
-+#define  BXT_MIPI_TRANS_VACTIVE(tc)		_MMIO_MIPI(BXT_MIPI_BASE, tc, _BXT_MIPIA_TRANS_VACTIVE, _BXT_MIPIC_TRANS_VACTIVE)
+  Serious unknown changes coming with Patchwork_132285v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_132285v2, please notify your bug team (&quot;I915-ci-infra@lists.freedesktop.org&quot;) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
--:1123: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
-#1123: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:30:
-+#define  BXT_MIPI_TRANS_VTOTAL(tc)		_MMIO_MIPI(BXT_MIPI_BASE, tc, _BXT_MIPIA_TRANS_VTOTAL, _BXT_MIPIC_TRANS_VTOTAL)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/index.html
 
--:1136: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
-#1136: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:40:
-+#define VLV_MIPI_PORT_CTRL(port)		_MMIO_MIPI(VLV_MIPI_BASE, port, _MIPIA_PORT_CTRL, _MIPIC_PORT_CTRL)
+Participating hosts (34 -> 33)
+------------------------------
 
--:1144: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
-#1144: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:45:
-+#define BXT_MIPI_PORT_CTRL(tc)			_MMIO_MIPI(BXT_MIPI_BASE, tc, _BXT_MIPIA_PORT_CTRL, _BXT_MIPIC_PORT_CTRL)
+  Additional (4): fi-glk-j4005 bat-dg2-11 bat-mtlp-6 fi-elk-e7500 
+  Missing    (5): fi-kbl-7567u bat-dg1-7 fi-apl-guc fi-kbl-8809g bat-jsl-1 
 
--:1157: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
-#1157: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:89:
-+#define VLV_MIPI_TEARING_CTRL(port)			_MMIO_MIPI(VLV_MIPI_BASE, port, _MIPIA_TEARING_CTRL, _MIPIC_TEARING_CTRL)
+Possible new issues
+-------------------
 
--:1168: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#1168: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:97:
-+#define MIPI_DEVICE_READY(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DEVICE_READY, _MIPIC_DEVICE_READY)
+  Here are the unknown changes that may have been introduced in Patchwork_132285v2:
 
--:1184: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#1184: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:107:
-+#define MIPI_INTR_STAT(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_INTR_STAT, _MIPIC_INTR_STAT)
+### IGT changes ###
 
--:1187: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#1187: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:110:
-+#define MIPI_INTR_EN(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_INTR_EN, _MIPIC_INTR_EN)
+#### Possible regressions ####
 
--:1200: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#1200: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:146:
-+#define MIPI_DSI_FUNC_PRG(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DSI_FUNC_PRG, _MIPIC_DSI_FUNC_PRG)
+  * igt@core_auth@basic-auth:
+    - bat-arls-2:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-arls-2/igt@core_auth@basic-auth.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-arls-2/igt@core_auth@basic-auth.html
 
--:1213: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
-#1213: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:169:
-+#define MIPI_HS_TX_TIMEOUT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HS_TX_TIMEOUT, _MIPIC_HS_TX_TIMEOUT)
+  * igt@i915_selftest@live@active:
+    - fi-glk-j4005:       NOTRUN -> [DMESG-FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@i915_selftest@live@active.html
 
--:1221: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
-#1221: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:174:
-+#define MIPI_LP_RX_TIMEOUT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_LP_RX_TIMEOUT, _MIPIC_LP_RX_TIMEOUT)
+  * igt@i915_selftest@live@gt_engines:
+    - bat-arls-1:         [PASS][4] -> [DMESG-WARN][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-arls-1/igt@i915_selftest@live@gt_engines.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-arls-1/igt@i915_selftest@live@gt_engines.html
 
--:1229: WARNING:LONG_LINE: line length of 146 exceeds 100 columns
-#1229: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:179:
-+#define MIPI_TURN_AROUND_TIMEOUT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_TURN_AROUND_TIMEOUT, _MIPIC_TURN_AROUND_TIMEOUT)
+  
+#### Suppressed ####
 
--:1237: WARNING:LONG_LINE: line length of 144 exceeds 100 columns
-#1237: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:184:
-+#define MIPI_DEVICE_RESET_TIMER(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DEVICE_RESET_TIMER, _MIPIC_DEVICE_RESET_TIMER)
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
--:1245: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
-#1245: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:189:
-+#define MIPI_DPI_RESOLUTION(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DPI_RESOLUTION, _MIPIC_DPI_RESOLUTION)
+  * igt@debugfs_test@read_all_entries:
+    - {bat-mtlp-9}:       [PASS][6] -> [ABORT][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-mtlp-9/igt@debugfs_test@read_all_entries.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-9/igt@debugfs_test@read_all_entries.html
 
--:1256: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
-#1256: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:197:
-+#define MIPI_DBI_FIFO_THROTTLE(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DBI_FIFO_THROTTLE, _MIPIC_DBI_FIFO_THROTTLE)
+  
+Known issues
+------------
 
--:1267: WARNING:LONG_LINE: line length of 146 exceeds 100 columns
-#1267: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:205:
-+#define MIPI_HSYNC_PADDING_COUNT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HSYNC_PADDING_COUNT, _MIPIC_HSYNC_PADDING_COUNT)
+  Here are the changes found in Patchwork_132285v2 that come from known issues:
 
--:1274: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#1274: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:209:
-+#define MIPI_HBP_COUNT(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HBP_COUNT, _MIPIC_HBP_COUNT)
+### IGT changes ###
 
--:1281: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#1281: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:213:
-+#define MIPI_HFP_COUNT(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HFP_COUNT, _MIPIC_HFP_COUNT)
+#### Issues hit ####
 
--:1288: WARNING:LONG_LINE: line length of 144 exceeds 100 columns
-#1288: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:217:
-+#define MIPI_HACTIVE_AREA_COUNT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HACTIVE_AREA_COUNT, _MIPIC_HACTIVE_AREA_COUNT)
+  * igt@debugfs_test@basic-hwmon:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][8] ([i915#9318])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@debugfs_test@basic-hwmon.html
 
--:1295: WARNING:LONG_LINE: line length of 146 exceeds 100 columns
-#1295: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:221:
-+#define MIPI_VSYNC_PADDING_COUNT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_VSYNC_PADDING_COUNT, _MIPIC_VSYNC_PADDING_COUNT)
+  * igt@fbdev@info:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][9] ([i915#1849] / [i915#2582])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@fbdev@info.html
 
--:1302: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#1302: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:225:
-+#define MIPI_VBP_COUNT(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_VBP_COUNT, _MIPIC_VBP_COUNT)
+  * igt@fbdev@write:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][10] ([i915#2582]) +3 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@fbdev@write.html
 
--:1309: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
-#1309: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:229:
-+#define MIPI_VFP_COUNT(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_VFP_COUNT, _MIPIC_VFP_COUNT)
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][11] ([i915#2190])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
 
--:1316: WARNING:LONG_LINE: line length of 163 exceeds 100 columns
-#1316: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:233:
-+#define MIPI_HIGH_LOW_SWITCH_COUNT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port,	_MIPIA_HIGH_LOW_SWITCH_COUNT, _MIPIC_HIGH_LOW_SWITCH_COUNT)
+  * igt@gem_lmem_swapping@basic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][12] ([i915#4613]) +3 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@gem_lmem_swapping@basic.html
 
--:1323: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1323: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:237:
-+#define MIPI_DPI_CONTROL(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DPI_CONTROL, _MIPIC_DPI_CONTROL)
+  * igt@gem_lmem_swapping@verify-random:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][13] ([i915#4613]) +3 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_lmem_swapping@verify-random.html
 
--:1336: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#1336: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:248:
-+#define MIPI_DPI_DATA(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DPI_DATA, _MIPIC_DPI_DATA)
+  * igt@gem_mmap@basic:
+    - bat-dg2-11:         NOTRUN -> [SKIP][14] ([i915#4083])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@gem_mmap@basic.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][15] ([i915#4083])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_mmap@basic.html
 
--:1345: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
-#1345: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:254:
-+#define MIPI_INIT_COUNT(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_INIT_COUNT, _MIPIC_INIT_COUNT)
+  * igt@gem_tiled_blits@basic:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][16] ([i915#4077]) +2 other tests skip
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_tiled_blits@basic.html
 
--:1355: WARNING:LONG_LINE: line length of 146 exceeds 100 columns
-#1355: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:260:
-+#define MIPI_MAX_RETURN_PKT_SIZE(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_MAX_RETURN_PKT_SIZE, _MIPIC_MAX_RETURN_PKT_SIZE)
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-dg2-11:         NOTRUN -> [SKIP][17] ([i915#4077]) +2 other tests skip
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@gem_tiled_fence_blits@basic.html
 
--:1364: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
-#1364: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:266:
-+#define MIPI_VIDEO_MODE_FORMAT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_VIDEO_MODE_FORMAT, _MIPIC_VIDEO_MODE_FORMAT)
+  * igt@gem_tiled_pread_basic:
+    - bat-dg2-11:         NOTRUN -> [SKIP][18] ([i915#4079]) +1 other test skip
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@gem_tiled_pread_basic.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][19] ([i915#4079]) +1 other test skip
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_tiled_pread_basic.html
 
--:1377: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1377: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:276:
-+#define MIPI_EOT_DISABLE(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_EOT_DISABLE, _MIPIC_EOT_DISABLE)
+  * igt@i915_pm_rps@basic-api:
+    - bat-dg2-11:         NOTRUN -> [SKIP][20] ([i915#6621])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][21] ([i915#6621])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@i915_pm_rps@basic-api.html
 
--:1390: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
-#1390: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:290:
-+#define MIPI_LP_BYTECLK(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_LP_BYTECLK, _MIPIC_LP_BYTECLK)
+  * igt@i915_selftest@live@objects:
+    - bat-arls-1:         [PASS][22] -> [DMESG-FAIL][23] ([i915#10262]) +32 other tests dmesg-fail
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-arls-1/igt@i915_selftest@live@objects.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-arls-1/igt@i915_selftest@live@objects.html
 
--:1399: WARNING:LONG_LINE: line length of 139 exceeds 100 columns
-#1399: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:296:
-+#define MIPI_TLPX_TIME_COUNT(display, port)	 _MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_TLPX_TIME_COUNT, _MIPIC_TLPX_TIME_COUNT)
+  * igt@i915_selftest@live@workarounds:
+    - bat-adlp-6:         [PASS][24] -> [INCOMPLETE][25] ([i915#9413])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-adlp-6/igt@i915_selftest@live@workarounds.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-adlp-6/igt@i915_selftest@live@workarounds.html
 
--:1406: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
-#1406: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:300:
-+#define MIPI_CLK_LANE_TIMING(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_CLK_LANE_TIMING, _MIPIC_CLK_LANE_TIMING)
+  * igt@kms_addfb_basic@addfb25-x-tiled-legacy:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][26] ([i915#4212] / [i915#9792]) +8 other tests skip
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html
 
--:1414: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1414: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:305:
-+#define MIPI_LP_GEN_DATA(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_LP_GEN_DATA, _MIPIC_LP_GEN_DATA)
+  * igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:
+    - bat-dg2-11:         NOTRUN -> [SKIP][27] ([i915#4212]) +7 other tests skip
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html
 
--:1429: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1429: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:310:
-+#define MIPI_HS_GEN_DATA(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HS_GEN_DATA, _MIPIC_HS_GEN_DATA)
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][28] ([i915#5190] / [i915#9792])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+    - bat-dg2-11:         NOTRUN -> [SKIP][29] ([i915#5190])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
 
--:1433: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1433: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:314:
-+#define MIPI_LP_GEN_CTRL(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_LP_GEN_CTRL, _MIPIC_LP_GEN_CTRL)
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-dg2-11:         NOTRUN -> [SKIP][30] ([i915#4215] / [i915#5190])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_addfb_basic@basic-y-tiled-legacy.html
 
--:1436: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1436: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:317:
-+#define MIPI_HS_GEN_CTRL(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HS_GEN_CTRL, _MIPIC_HS_GEN_CTRL)
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][31] +10 other tests skip
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+    - bat-dg2-11:         NOTRUN -> [SKIP][32] ([i915#4103] / [i915#4213]) +1 other test skip
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
 
--:1449: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
-#1449: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:330:
-+#define MIPI_GEN_FIFO_STAT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_GEN_FIFO_STAT, _MIPIC_GEN_FIFO_STAT)
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][33] ([i915#9792]) +17 other tests skip
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
 
--:1462: WARNING:LONG_LINE: line length of 140 exceeds 100 columns
-#1462: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:348:
-+#define MIPI_HS_LP_DBI_ENABLE(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_HS_LS_DBI_ENABLE, _MIPIC_HS_LS_DBI_ENABLE)
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg2-11:         NOTRUN -> [SKIP][34] ([i915#3555] / [i915#3840])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_dsc@dsc-basic.html
 
--:1472: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
-#1472: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:355:
-+#define MIPI_DPHY_PARAM(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DPHY_PARAM, _MIPIC_DPHY_PARAM)
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][35] ([i915#3637] / [i915#9792]) +3 other tests skip
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_flip@basic-flip-vs-dpms.html
 
--:1485: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1485: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:367:
-+#define MIPI_DBI_BW_CTRL(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DBI_BW_CTRL, _MIPIC_DBI_BW_CTRL)
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-dg2-11:         NOTRUN -> [SKIP][36]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_force_connector_basic@force-load-detect.html
 
--:1492: WARNING:LONG_LINE: line length of 164 exceeds 100 columns
-#1492: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:371:
-+#define MIPI_CLK_LANE_SWITCH_TIME_CNT(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_CLK_LANE_SWITCH_TIME_CNT, _MIPIC_CLK_LANE_SWITCH_TIME_CNT)
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-dg2-11:         NOTRUN -> [SKIP][37] ([i915#5274])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_force_connector_basic@prune-stale-modes.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][38] ([i915#5274] / [i915#9792])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_force_connector_basic@prune-stale-modes.html
 
--:1503: WARNING:LONG_LINE: line length of 140 exceeds 100 columns
-#1503: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:379:
-+#define MIPI_STOP_STATE_STALL(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_STOP_STATE_STALL, _MIPIC_STOP_STATE_STALL)
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][39] ([i915#4342] / [i915#5354] / [i915#9792])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_frontbuffer_tracking@basic.html
 
--:1515: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
-#1515: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:385:
-+#define MIPI_INTR_STAT_REG_1(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_INTR_STAT_REG_1, _MIPIC_INTR_STAT_REG_1)
+  * igt@kms_pm_backlight@basic-brightness:
+    - bat-dg2-11:         NOTRUN -> [SKIP][40] ([i915#5354])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_pm_backlight@basic-brightness.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][41] ([i915#5354] / [i915#9792])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_pm_backlight@basic-brightness.html
 
--:1518: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
-#1518: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:388:
-+#define MIPI_INTR_EN_REG_1(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_INTR_EN_REG_1, _MIPIC_INTR_EN_REG_1)
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][42] +24 other tests skip
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
 
--:1536: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#1536: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:407:
-+#define MIPI_CTRL(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_CTRL, _MIPIC_CTRL)
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][43] ([i915#1072] / [i915#9673] / [i915#9732] / [i915#9792]) +3 other tests skip
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_psr@psr-cursor-plane-move.html
 
--:1549: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#1549: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:440:
-+#define MIPI_DATA_ADDRESS(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DATA_ADDRESS, _MIPIC_DATA_ADDRESS)
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-dg2-11:         NOTRUN -> [SKIP][44] ([i915#1072] / [i915#9732]) +3 other tests skip
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_psr@psr-sprite-plane-onoff.html
 
--:1559: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1559: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:447:
-+#define MIPI_DATA_LENGTH(display, port)		_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_DATA_LENGTH, _MIPIC_DATA_LENGTH)
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-dg2-11:         NOTRUN -> [SKIP][45] ([i915#3555])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_setmode@basic-clone-single-crtc.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][46] ([i915#3555] / [i915#8809] / [i915#9792])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html
 
--:1568: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
-#1568: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:453:
-+#define MIPI_COMMAND_ADDRESS(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_COMMAND_ADDRESS, _MIPIC_COMMAND_ADDRESS)
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-dg2-11:         NOTRUN -> [SKIP][47] ([i915#3708])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@prime_vgem@basic-fence-flip.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][48] ([i915#3708] / [i915#9792])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-fence-flip.html
 
--:1580: WARNING:LONG_LINE: line length of 136 exceeds 100 columns
-#1580: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:462:
-+#define MIPI_COMMAND_LENGTH(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_COMMAND_LENGTH, _MIPIC_COMMAND_LENGTH)
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-dg2-11:         NOTRUN -> [SKIP][49] ([i915#3708] / [i915#4077]) +1 other test skip
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@prime_vgem@basic-fence-mmap.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][50] ([i915#3708] / [i915#4077]) +1 other test skip
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-fence-mmap.html
 
--:1589: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
-#1589: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:468:
-+#define MIPI_READ_DATA_RETURN(display, port, n)	_MMIO_MIPI(_MIPI_MMIO_BASE(display) + 4 * (n), port, _MIPIA_READ_DATA_RETURN0, _MIPIC_READ_DATA_RETURN0) /* n: 0...7 */
+  * igt@prime_vgem@basic-read:
+    - bat-dg2-11:         NOTRUN -> [SKIP][51] ([i915#3291] / [i915#3708]) +2 other tests skip
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@prime_vgem@basic-read.html
+    - bat-mtlp-6:         NOTRUN -> [SKIP][52] ([i915#3708]) +1 other test skip
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-read.html
 
--:1596: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
-#1596: FILE: drivers/gpu/drm/i915/display/vlv_dsi_regs.h:472:
-+#define MIPI_READ_DATA_VALID(display, port)	_MMIO_MIPI(_MIPI_MMIO_BASE(display), port, _MIPIA_READ_DATA_VALID, _MIPIC_READ_DATA_VALID)
+  * igt@prime_vgem@basic-write:
+    - bat-mtlp-6:         NOTRUN -> [SKIP][53] ([i915#10216] / [i915#3708])
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-write.html
 
-total: 0 errors, 52 warnings, 0 checks, 1502 lines checked
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [FAIL][54] ([i915#10378]) -> [PASS][55]
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10216]: https://gitlab.freedesktop.org/drm/intel/issues/10216
+  [i915#10262]: https://gitlab.freedesktop.org/drm/intel/issues/10262
+  [i915#10378]: https://gitlab.freedesktop.org/drm/intel/issues/10378
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
+  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/intel/issues/3555
+  [i915#3637]: https://gitlab.freedesktop.org/drm/intel/issues/3637
+  [i915#3708]: https://gitlab.freedesktop.org/drm/intel/issues/3708
+  [i915#3840]: https://gitlab.freedesktop.org/drm/intel/issues/3840
+  [i915#4077]: https://gitlab.freedesktop.org/drm/intel/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/intel/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/intel/issues/4083
+  [i915#4103]: https://gitlab.freedesktop.org/drm/intel/issues/4103
+  [i915#4212]: https://gitlab.freedesktop.org/drm/intel/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/intel/issues/4213
+  [i915#4215]: https://gitlab.freedesktop.org/drm/intel/issues/4215
+  [i915#4342]: https://gitlab.freedesktop.org/drm/intel/issues/4342
+  [i915#4613]: https://gitlab.freedesktop.org/drm/intel/issues/4613
+  [i915#5190]: https://gitlab.freedesktop.org/drm/intel/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+  [i915#5354]: https://gitlab.freedesktop.org/drm/intel/issues/5354
+  [i915#6621]: https://gitlab.freedesktop.org/drm/intel/issues/6621
+  [i915#8809]: https://gitlab.freedesktop.org/drm/intel/issues/8809
+  [i915#9318]: https://gitlab.freedesktop.org/drm/intel/issues/9318
+  [i915#9413]: https://gitlab.freedesktop.org/drm/intel/issues/9413
+  [i915#9673]: https://gitlab.freedesktop.org/drm/intel/issues/9673
+  [i915#9732]: https://gitlab.freedesktop.org/drm/intel/issues/9732
+  [i915#9792]: https://gitlab.freedesktop.org/drm/intel/issues/9792
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_14611 -> Patchwork_132285v2
+
+  CI-20190529: 20190529
+  CI_DRM_14611: d02ac9d1c1a99eac3bb111d443de62d7286f7708 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7814: 7814
+  Patchwork_132285v2: d02ac9d1c1a99eac3bb111d443de62d7286f7708 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/index.html
+
+--===============4152323096870968380==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsi: stop relying on implicit dev_priv variable (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132285/">https://patchwork.freedesktop.org/series/132285/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14611 -&gt; Patchwork_132285v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_132285v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_132285v2, please notify your bug team (&quot;I915-ci-infra@lists.freedesktop.org&quot;) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/index.html</p>
+<h2>Participating hosts (34 -&gt; 33)</h2>
+<p>Additional (4): fi-glk-j4005 bat-dg2-11 bat-mtlp-6 fi-elk-e7500 <br />
+  Missing    (5): fi-kbl-7567u bat-dg1-7 fi-apl-guc fi-kbl-8809g bat-jsl-1 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_132285v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-arls-2/igt@core_auth@basic-auth.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-arls-2/igt@core_auth@basic-auth.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@active:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@i915_selftest@live@active.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-arls-1/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-arls-1/igt@i915_selftest@live@gt_engines.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@debugfs_test@read_all_entries:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-mtlp-9/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-9/igt@debugfs_test@read_all_entries.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132285v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9318">i915#9318</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2582">i915#2582</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4079">i915#4079</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@objects:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-arls-1/igt@i915_selftest@live@objects.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-arls-1/igt@i915_selftest@live@objects.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10262">i915#10262</a>) +32 other tests dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-adlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-adlp-6/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9413">i915#9413</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-x-tiled-legacy:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_addfb_basic@addfb25-x-tiled-mismatch-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4212">i915#4212</a>) +7 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>)</li>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> +10 other tests skip</li>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4213">i915#4213</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3840">i915#3840</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3637">i915#3637</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/4342">i915#4342</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a>)</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5354">i915#5354</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9673">i915#9673</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9732">i915#9732</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9732">i915#9732</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a>)</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/8809">i915#8809</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/9792">i915#9792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/4077">i915#4077</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-11/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +2 other tests skip</li>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-mtlp-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-mtlp-6/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10216">i915#10216</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14611/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132285v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14611 -&gt; Patchwork_132285v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14611: d02ac9d1c1a99eac3bb111d443de62d7286f7708 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7814: 7814<br />
+  Patchwork_132285v2: d02ac9d1c1a99eac3bb111d443de62d7286f7708 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4152323096870968380==--
