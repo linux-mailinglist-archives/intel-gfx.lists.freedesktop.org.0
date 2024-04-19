@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B5C8AAE95
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 14:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B6D8AAE9C
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Apr 2024 14:36:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE7A10FEB3;
-	Fri, 19 Apr 2024 12:36:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MRoEviM3";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF7F10FEBA;
+	Fri, 19 Apr 2024 12:36:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F5E10FEB1;
- Fri, 19 Apr 2024 12:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713530164; x=1745066164;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=M94cwTmY2wA2rRmUTGrGazaBWg8b1Rrj2b3Uj08EcyQ=;
- b=MRoEviM3uG/31h3+11wzIaPGxgzbCIQ+AMAz4QEva2lsD+fI4rcW76cX
- y1zYKbl8cnx+ZM0ELZBCdkE7oFR20jFty5WK0FzSPldwTtAckI16swwis
- KeDJmfqSDamyfpPAzaLHHunNaPo+2IM+rxClO5tyyiNHKGvVeShLHenGN
- 3xZNi3Wo6FAEDoSjG7hKFJlYlKvf7bfK5F4RZLcC45pW+zEpvnaQEkPc7
- h+/1BuREDTNI2Xjx0twXVo63LwrMjxPDkrKWQucvt71jdnYcSbZpr8S5g
- w+5rAobq4nQ5pDH85WTUuKR27RNoyrdNofZKMkrHFL5IAdrvwi3IhMKA1 g==;
-X-CSE-ConnectionGUID: bwstqLIXSVuIzvF+T5NVZw==
-X-CSE-MsgGUID: nHskEchsR5+4fHwDmmwTHw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11049"; a="12918898"
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="12918898"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 05:36:04 -0700
-X-CSE-ConnectionGUID: Fo2oSY2US5GSNXTkbtrXjQ==
-X-CSE-MsgGUID: Yz67tNn2TKWyBw/0EhVAMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,213,1708416000"; d="scan'208";a="23185924"
-Received: from agherasi-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.46.119])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2024 05:36:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Maxime Ripard
- <mripard@kernel.org>
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v17 0/9] Enable Adaptive Sync SDP Support for DP
-In-Reply-To: <f3ec8e22-1963-47e0-8c5d-53a7e6fc73ae@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240311094238.3320888-1-mitulkumar.ajitkumar.golani@intel.com>
- <87a5mvppvd.fsf@intel.com> <20240319-devious-natural-rook-df5f43@houat>
- <f3ec8e22-1963-47e0-8c5d-53a7e6fc73ae@intel.com>
-Date: Fri, 19 Apr 2024 15:35:55 +0300
-Message-ID: <871q71wmvo.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD8010FEC6;
+ Fri, 19 Apr 2024 12:36:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Panel_replay_selecti?=
+ =?utf-8?q?ve_update_support_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 19 Apr 2024 12:36:47 -0000
+Message-ID: <171353020744.1520059.228851589266278685@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240419121141.2665945-1-jouni.hogander@intel.com>
+In-Reply-To: <20240419121141.2665945-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,44 +37,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 04 Apr 2024, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 3/19/2024 3:16 PM, Maxime Ripard wrote:
->> On Mon, Mar 18, 2024 at 04:37:58PM +0200, Jani Nikula wrote:
->>> On Mon, 11 Mar 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
->>>>   An Adaptive-Sync-capable DP protocol converter indicates its
->>>> support by setting the related bit in the DPCD register. This
->>>> is valid for DP and edp as well.
->>>>
->>>> Computes AS SDP values based on the display configuration,
->>>> ensuring proper handling of Variable Refresh Rate (VRR)
->>>> in the context of Adaptive Sync.
->>> [snip]
->>>
->>>> Mitul Golani (9):
->>>>    drm/dp: Add support to indicate if sink supports AS SDP
->>>>    drm: Add Adaptive Sync SDP logging
->>> Maarten, Maxime, Thomas, ack for merging these two patches via
->>> drm-intel-next?
->> Ack
->>
->> Maxime
->
-> Thanks for the patch, ack and reviews, pushed to drm-intel-next.
+== Series Details ==
 
-This came up again today [1]. The acks absolutely must be recorded in
-the commit messages when pushing the patches.
+Series: Panel replay selective update support (rev7)
+URL   : https://patchwork.freedesktop.org/series/128193/
+State : warning
 
-dim should complain about applying non-i915 patches without acks.
+== Summary ==
 
-BR,
-Jani.
+Error: dim checkpatch failed
+3122e5718521 drm/i915/psr: Rename has_psr2 as has_sel_update
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:255:
++		drm_printf(&p, "psr: %s, selective update: %s, panel replay: %s, selective fetch: %s\n",
++			    str_enabled_disabled(pipe_config->has_psr),
 
+total: 0 errors, 0 warnings, 1 checks, 88 lines checked
+53a7594c3aea drm/i915/dp: Use always vsc revision 0x6 for Panel Replay
+ad9fbcbf8cff drm/i915/psr: Rename psr2_enabled as sel_update_enabled
+83b0a46be2f6 drm/panelreplay: dpcd register definition for panelreplay SU
+534a60ff10e2 drm/i915/psr: Detect panel replay selective update support
+0a86229bdb3a drm/i915/psr: Modify intel_dp_get_su_granularity to support panel replay
+c656c7225488 drm/i915/psr: Panel replay uses SRD_STATUS to track it's status
+15ad371a67b1 drm/i915/psr: Do not apply workarounds in case of panel replay
+80c002964bd2 drm/i915/psr: Update PSR module parameter descriptions
+a5d39e6e4591 drm/i915/psr: Split intel_psr2_config_valid for panel replay
+009954d1bc66 drm/i915/psr: Add panel replay sel update support to debugfs interface
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
 
-[1] https://lore.kernel.org/r/Zh_Q72gYKMMbge9A@intel.com
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
 
 
--- 
-Jani Nikula, Intel
