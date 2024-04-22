@@ -2,164 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 683058AD642
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 23:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B287E8AD64D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 23:07:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE8E112D8A;
-	Mon, 22 Apr 2024 21:00:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38D54112D6F;
+	Mon, 22 Apr 2024 21:07:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R2ngjLIb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="numkNhsP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6243112D8D
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 21:00:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3010112D6F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 21:07:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713819625; x=1745355625;
+ t=1713820041; x=1745356041;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=GrfecW/+tT8hF25pXVQftuks7qXdLMywnfTuYymKUaI=;
- b=R2ngjLIbTgRLtJOAJHrB1onb+TA+vkScRsMGwOlqXEeuJwElXkHnMkq6
- FJjq0TSnYuHH0Pp3NdprAmaQPldGsYsC4wLAuagytnMLrR3BrJeHtXR2w
- DUDIKVXuY8kUoXtjoH8KK1xtkxhvt2adOlLbUXj6RH/iK7lpq7fklzKz7
- 6NkExRzDSjVlnMijlroTkWVrkHombs6cjQ99sHkV4QdYZnz4lrJEOirl6
- MBm8hfbRx/i+Kkzf5ZzojulY6WGU08+F/DtM5jcavjvQbJaLO2eRjYiqG
- J6Y25R1t3Q8nxxTiyKVRB/+G55NLo42kjnzasJlyLdI7+3gGzZJBz5i7y w==;
-X-CSE-ConnectionGUID: o1I8pb1XS3+Ba/Kp2slyEA==
-X-CSE-MsgGUID: J+HIcoqHSY+JZILwc9nB4A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="31870249"
-X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="31870249"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 14:00:24 -0700
-X-CSE-ConnectionGUID: Xk76RHpeR8OwwyQEYeu5PQ==
-X-CSE-MsgGUID: y8i7oCYhS2ysnjG3uSXRwQ==
+ bh=8ZUS7x8LPc4Q8TejE7UwZ0K3E/nflNCNa3KAz8UK7cU=;
+ b=numkNhsP6jGmFQYUlt6Na9DtR28hAdg8Iz5wUMrKMh32tH4v1TZBr4uZ
+ eKaKc2gjdx2E81VTR25ASy8lRjnTMohoWhdV+VKP8W/V1PjRQjyXKhs3W
+ cJrcNklwyxXForFtyPPim7EnOzO5CeNmWAoTtHCLKibxBAGQ2t+GNXbSw
+ Av+QXwr/IbTjMzw/t6jQf8E2vl2LXttgOXmlJ/mWo//+Ffwcz3pXhh7t9
+ cIWbFP6dPgER1sPOJoFA3P1NMkGWJ2fpX7fKn0zgyteTG9wmQXFGtMPGt
+ OJvcCcsGSVvIWxzRsngVWUxoAQpO/0UYfaXHRtpKvol5AHlDb/dmpzT4H w==;
+X-CSE-ConnectionGUID: pMe/A4mVQEyvWChsW3+zWQ==
+X-CSE-MsgGUID: Zn5w+LfgSgSHsgrDqXJPpw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9489680"
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; 
+   d="scan'208";a="9489680"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 14:07:16 -0700
+X-CSE-ConnectionGUID: dyYFdLvWQkKn0oIa5sCqjA==
+X-CSE-MsgGUID: SeglQPFoTaWcEIQfxgcYUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="61577795"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Apr 2024 14:00:25 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="24759994"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Apr 2024 14:07:11 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 22 Apr 2024 14:00:23 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.35; Mon, 22 Apr 2024 14:07:11 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 14:00:23 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Mon, 22 Apr 2024 14:07:11 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 22 Apr 2024 14:00:23 -0700
+ 15.1.2507.35; Mon, 22 Apr 2024 14:07:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mD9SjJNoUNRb/+rfg4EUbgYn0zlCPdyeMWPCFrSG3Jk5au8rNrKqgfyFxQMazpFfeF5seTIgBf3cjEWQQ9k2xfhJ2NipQTOiM0DPny41t7Y1Gc2WWLdW9T89Q6/QeyEHfw0mqdCT7VkBRUs/Zy24flJdwHeVhreVGhav2N/FNJZ/EcZte/KhnLEhGg4xTijx7+nRmQdFG0QW+BewotYFgvg6VKbDac1eKQLU6owcK9oVnK4dPbE12VXF1vwgrDwOv/7qxgk99LC4c20kPWGX6b9o7vU6eASUc+XLkMVIJB+hnH8IiHJj5FpWVStnuryHmz0A5/Cf9pQQT5wJWusW/Q==
+ b=dofoi+a+oGncv/RcSNWQUfrIVIWIZSBvewc+pUvF3wzFMfGFP2KmTvfPb2baCSj0LyCyCoHLjVWmsL0Unv9+KRxpJPsniziSzjhPFpMZ7d8LpgsCFV/apEug05Ldbt+2MykRxQHd6e/min3nOWyzZXHGD9REj+1GcReWQ83HInw4j/diI3DjmBpPTS9ND5zR2Qv0plZyIyVAtCotPP8OsdWgkBHP3A2HZ/aUy244tme2/tQrN/7zW5K7O276IFtgp6NzyCKb2Ow5meVaE63Xei+JK1bh2OstSHQZCqvBI+JC3qyFgs6v3lBS+kDrJ1omvhl0AX8cNKSm5tC0/FZmuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C6S321SvYD1kR+drs0hHVYlbV+Fg1Mt5Mucr4oFN0N8=;
- b=EVt/YpzkvkoTngLhoT9u3KQk/a456dSp+GJRHxE1wmz9/3Q2PZL237897hblGdyqyWjwmwlyY8phMvPCzJGgG9gTu3nMGzYr/3+iQG9eVdQ4VNWSPRSMmYjfqTv3YHoPZGuaH92cTd5Xb5KovKQPN4kMgkPoGGsGH4rDM4VQLiZ8V1D35Cjf//6rirWo0kEaei/IxRHGin4+9G4ziaAzh1LpCK5iF3bv/O0KOcRZ1nnyKrWVUahKW/dVyPqwBOxnX8vzFbzDtCnam71I3p/rBhewGFJ6edYCUKuBiS8F1MaO292xFjFW8rVFQCrNgz2qRyREDCbKQFDqu2vGUeEjiA==
+ bh=hcTSKEQh39S0DQtiVBDZCxVGNikF1qcKwvnlr22a0So=;
+ b=UcmcpLecs5aeeTpMhRJWMUOHwT0IkwD+ytHIhXK40PBVUxoZ6/7EfKWPI2JJ1piC3EksWcCu1nuknvuvIEzJePne8OU7rSBsWftUVN3ssoynLMIb8TTHuSJ6l+0w987XCDuNAy+ULjfEnJehntY94UWPCsJO+aE9Wyciyb0ZcsAdKRbzzmETdPL69ik6jc7Mw6gdGuZ9Axtyq2YdgOPF6Jc9E3xMiWJnrVC1Gm1B8oRy4X6+ohVLjkywi+Ez4JufmVervPRbIvIWBRgxzLD/R2fZGnwFUtLeyMs3YKdyNwbhYFDdAaIPZDHpfvBpUzbb1JK2MYdyM70OPtwoMOGSsg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SA1PR11MB8522.namprd11.prod.outlook.com (2603:10b6:806:3b1::19)
+ by PH7PR11MB6428.namprd11.prod.outlook.com (2603:10b6:510:1f4::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.20; Mon, 22 Apr
- 2024 21:00:22 +0000
+ 2024 21:07:08 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7519.018; Mon, 22 Apr 2024
- 21:00:22 +0000
-Date: Mon, 22 Apr 2024 17:00:18 -0400
+ 21:07:08 +0000
+Date: Mon, 22 Apr 2024 17:07:05 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2 2/4] drm/i915/dsi: add VLV_ prefix to VLV only
- register macros
-Message-ID: <ZibP4jBo7fc7veKW@intel.com>
+Subject: Re: [PATCH v2 3/4] drm/i915/dsi: unify connector/encoder type and
+ name usage
+Message-ID: <ZibReTeU56pIWnjG@intel.com>
 References: <cover.1713520813.git.jani.nikula@intel.com>
- <7e101167c52746748dbff739bc9247a664ca2840.1713520813.git.jani.nikula@intel.com>
+ <7aa8fbaa2ecbe2400255964d49aba40cfe0479c5.1713520813.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <7e101167c52746748dbff739bc9247a664ca2840.1713520813.git.jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0055.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::30) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <7aa8fbaa2ecbe2400255964d49aba40cfe0479c5.1713520813.git.jani.nikula@intel.com>
+X-ClientProxiedBy: BY3PR10CA0022.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::27) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB8522:EE_
-X-MS-Office365-Filtering-Correlation-Id: 956e9832-05a7-45ee-16f2-08dc630f3947
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH7PR11MB6428:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d40657d-37da-42d1-adf6-08dc63102bb1
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?sDQf2ESTOVY130A0qPjOIcL07e2Wgsu4TY+i33ihsY6xgguc4s0toBGPzAHF?=
- =?us-ascii?Q?vL9fwyF9o/BYKn0N1YnBBV5LYxQFasT1ON4yPs49IRzNtbPKfDlt0rlbH4YR?=
- =?us-ascii?Q?Ktnv47uFRu/bvJKhdTBdhWsox3ODG6K04c+x11h6RcW4MABmQVU4Yu1oFPaX?=
- =?us-ascii?Q?BUmi/pWACxWH/R8o1InA4CUaxIeG1IzwjKQbRVqCkdq6g71qJCDTi/0WEtjt?=
- =?us-ascii?Q?zW8TjXL5bFRDSC6GGpAp/w2/HsbdTKrfm94cn0WlsV2bDIINEgRXOjs7Tlvg?=
- =?us-ascii?Q?0KWYowRGMiT8PppZbDqJ9YN1BiqGNO+jW1tXmbq8gZMXTfPoW22vLvmd+3hp?=
- =?us-ascii?Q?pLVhvKsbFRmmdaRqLT/SVyG/e7g0vhrZy5NRRo4Y6STkSRHO+b6CFK9LF0NA?=
- =?us-ascii?Q?KAeAjlE4aROkI1X0gPdM/d7mCwl5nB6S97SVDCvFRtj8HQ5UHaQZBkM//klR?=
- =?us-ascii?Q?MgA448iWTTsfn2N87MjxESD/mNn6FFKmWo8c3MxIWViaTw7eA7QLHXl8WACY?=
- =?us-ascii?Q?DF9VyCf7VrHvbEgZkLDMgj5XeNUAGLdSzomxSlcvR7S+EHawv0hR1/VdqJAO?=
- =?us-ascii?Q?YX/bm2zAsRxQD8qLuYj2GaPwkNtPRqdF0+T0o1U8bfKqt18mQbTeNZGGC88R?=
- =?us-ascii?Q?MyGTK8+pCkaN862zK9qPJmmzcFH+DGzGmebtHrA0p/8HZnhzW8TsNLz3tic1?=
- =?us-ascii?Q?ePMbKCazG6ezPY3eDgNyi7htSIQ/OZDNrhXBx76mWwT7hu1jUDnVMuHyfkbD?=
- =?us-ascii?Q?9MoEP09S+lq4bXS4fvpdnZhFXssb9LoDXAyCV5XlhqfcjACL9VUG1T6Kl5qp?=
- =?us-ascii?Q?7zsVwSTgCYHKmHQX+YJRta3nKFHXTm3/am1EU2ShIdDNyH+cI7cYgUCXSF8f?=
- =?us-ascii?Q?OU3wxzblDGh8rPNRuhkrCEvQqg8wihsyhzmi9t8sKcliTwZGK3ijAbGyLHvT?=
- =?us-ascii?Q?9dApHPH7dpaUtypHKKOWcvK+cqM7J94dnDD5z01/amiGvuPxuUiSq3AFYA2B?=
- =?us-ascii?Q?gcePwgjrXDTl+H0QssCSXjGQWMLbO/1G3s+UWMbwOxco68kthwmAkmrbkJ9W?=
- =?us-ascii?Q?5V1E1N82QiY/B8bMeVCHoMjYcCrmBhCvCLM6pl6kPpho8xOz3uG1I0DW4YEQ?=
- =?us-ascii?Q?FJvlChpOEzQczwXBTuomGeEIAXSGetTtmX+IAPkhLA7whOnUgw1GEeOvuAFq?=
- =?us-ascii?Q?n7BH/NMYmpg0A/00ehIQisqVf3ubIScr9VfzsXi77jixm+2w9e9teKWfjSPs?=
- =?us-ascii?Q?+lK2gBmLNUu3PhogGLRNPvA67L+12jFUDSPdWu1NUA=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?/toLLjgPwOIlE7ofuVNpWIns4oKELoWpA1VFE8IWhAy2KgB6v6lWT957MLeJ?=
+ =?us-ascii?Q?EKNQb1tez4GH24kcaJbjgCFtHSx8ZwW10ffptbch37Ia8VgpyUuljqm9ZLiq?=
+ =?us-ascii?Q?oSu1c2m+l7tKzGPAm9vf51qrqFUpLRFbMxuaWXviMrn6PsHFjFmssM2k1E5Z?=
+ =?us-ascii?Q?GXcIJYN3XfTqeJ33FpBmvzK8G26BSne39s6fxlP79bK6HMnhlenBRKJ9543O?=
+ =?us-ascii?Q?G76TQmrgxZpayxmjS35uMXqOaEDNIneEYlhttOuXqhTQ8YxRsvr/I+xhYnvh?=
+ =?us-ascii?Q?t9h/hK+cT9PNvxEfW9iceiySSzdFFbcPVQgCLlmmfgw5AzVyEIrVAsgbxc8+?=
+ =?us-ascii?Q?G3zgM02HYCwLK1V2c78ThrYWQ89N8AlHLHYe7fgl6C6fPm9MfT2xBGjJknBd?=
+ =?us-ascii?Q?24yjn/+EObU25GQP0OU4HjGybYdpMqp7s2skbrYxOYVumwxloOzxbXcpDAzG?=
+ =?us-ascii?Q?U8/Wn3KkjQzrE0TnmoAz/dbVAU5xz1fVpmkDfUiwWiE0mgfAiyX/JqnknkvS?=
+ =?us-ascii?Q?Q+Rrv2avC7DTKQvSc4CZkgmM1Q/NoObhuFpo5lsRdI4Qj7AzIx3g4sEiOqv2?=
+ =?us-ascii?Q?dg0mDP/zN+TJf/eyXBNzzZO9BX3TGfMr40fAeUhrLKiMLy6uawRLbIuhpuxt?=
+ =?us-ascii?Q?fuOZUeRCXPg++fQ0iN4Ub01RZArtxDJE6PA94XVGL2svOY6UKJ2bjmY2sLvG?=
+ =?us-ascii?Q?G0TdF0l3ZdL5LnZ/+IoyCFBwXubOqrKjprXN09jIrA+buqMxqTTPBOPeuQMF?=
+ =?us-ascii?Q?i4lQUFZD9/f1YzcGFUzITQwhtzIsRi3DDfDjsybQ70BUmhLVlcytUtVUge9M?=
+ =?us-ascii?Q?Woc5F0q/Ch1ywUHy1U57lXYQJEz8TjM495v79hZGy13IlJiib2ByPjy8fuVO?=
+ =?us-ascii?Q?C39H2pUf7cy3bNwGBeow1CPg/0TsV+z1e3waUiq1Xl2iJNgs7T2b82YyxK/f?=
+ =?us-ascii?Q?Z5stv/Nadw/K9EAGZj9psEafnbiXfD/clow283Sk7GWJOmzXYOnLqqMP2zFa?=
+ =?us-ascii?Q?0gmUXuAJTS48yl+qjBKszjNI4i8X41P0JcTOEr/eCYjtGj7jYZPf3tzLkCMH?=
+ =?us-ascii?Q?mpRIDIj7OHzJ5TbdlGjfHe2/qtfSlEYM8tcCirH5NfUGToaX+XDWeRxpEyna?=
+ =?us-ascii?Q?7qrvp3BRD1OJUFOdyHFuLm7BkgYUdfvrTX/UgHOu4UWJLRnmJ/Xxb/qdl+Pq?=
+ =?us-ascii?Q?y/jVJ6Bxcm0UH+FyAnciR4U2F33IddqKHdo8ztdoo8renknrFaqau/TZVinP?=
+ =?us-ascii?Q?re14afo/08hu9BvKGj0YZQtZZMgDVm3SdOUetuJdiA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YWtaH1pnw6gMurekJe7q2RQpdgM3g3b1S0DH5f1p5cPzdoSuorZHc3wA9Rhz?=
- =?us-ascii?Q?CD+AVK/qhOTo8idFPekhc//U3X92/ytQE6n+xObfl3H366ZmR0xmJO/pyPVe?=
- =?us-ascii?Q?NpPPLh1/LPIuzT1jH2M1iwNzSCOMO1SYp4Ypo/i3GcKCLdAhjroQ7RozSK5M?=
- =?us-ascii?Q?EtEz6Lnsf2CPUwtspwkoPmgMVNfSNH+QPq2kpLMCRvs9lCbeUzqlvXuDcViC?=
- =?us-ascii?Q?GH5Wn5qSWQ5c+HI05iMmtK8qW+92bid18xTutisLQ51c7zRoY0Yno96vpcid?=
- =?us-ascii?Q?UMg2f919CrEAUvfC87nnznuMx1YAdX9hhFtbP6xlyTmQAVWHvVyca4/hx/dC?=
- =?us-ascii?Q?3BRnwLkolQILczDDceZpDPSmzRiYgKXlN40kJY03LBPFW7rkM7AdsSAtMjcA?=
- =?us-ascii?Q?KA1mJc6++wD9kcL+bjubq5gPGdPMRhuyu9/DcuZ3Vl/H0QRg64/y8PpD8dJ8?=
- =?us-ascii?Q?Mb8ds4klylLh5GvcyWINzxyldpgSX6dHp3FhPZJ8MqXYkNGizy37zZmT0aEo?=
- =?us-ascii?Q?kj7hGnflBWSxgzAq2Tf1BGOYuGdqtBiAC7uAwXNP2yRue9EyItbU/69cKSTu?=
- =?us-ascii?Q?xBX9RXIalzu0ARPCh2YAWm/1ZAUoyn1v2iuSM9tfaGw/OKITlxwLewAZGu6P?=
- =?us-ascii?Q?UoDzbkyw6SDNmsPD4zoNQF8tFIyuVYrfI+hPKdRrVhkPv7r2Ty1/lNaOaE8S?=
- =?us-ascii?Q?u7W0b10S4nBCKNVS65R4dMKma/ItZ4Pt5Bt6TURcnE/NSkA9j5Su80f6lrHv?=
- =?us-ascii?Q?dn+rV97VY8jq5oTe/wl4aRw3mVroid8MZ5W1QcE31r8Gbv84bopTMv13+7ts?=
- =?us-ascii?Q?3HtITyN6eA4Ap66L0cHGKwEVi974uZyxbCPgIFP6wTNhvytJhzMtiCrKDFGc?=
- =?us-ascii?Q?mre8KlsM31uRmbDsrGbwwvuAEvny5+vw1Isrouv7TNrUhtNy/mFZC2/sweyG?=
- =?us-ascii?Q?Dp11uVGJ+fWn39dAm5crJM70EfgGTpJ+8xusWn2ldNMweZtx+TBO2wtwQF0i?=
- =?us-ascii?Q?PJhUp17AkBHobZFvQQEHN6sWi3eRwGrr/+sRaHEIyCHTuo0vwIw8kK3NTkMm?=
- =?us-ascii?Q?R4YpYUNqjNV84y8A0QaJSgEOIn73ElNoQlWlPRYmYgXl0DIePWbISHDfPlXi?=
- =?us-ascii?Q?a0EqvM/jjDtlHYwYDH5YyVclWP79Q9803rFarSMZsB32Xo96tWKCROwB4AMy?=
- =?us-ascii?Q?Aj/kwetSntyBU1jGWUvGDNMNJq6x52kV6rPMFUnmXK9CfsUEG8crtrrawjv6?=
- =?us-ascii?Q?lKqHvNamU2nDBM9f6pYLZeeAUUT+UnlS6g1O1MGqcAAWxpS2byRDMiBOzdca?=
- =?us-ascii?Q?mwPI7oWU3QXDtUYgJbYNa0lB98uWJVQx+IbCn5cO9SN9OzaBS1a2o+lErp2J?=
- =?us-ascii?Q?XzVMTZRhrCOsxghDHtV3OH3oz2Hgd/G+SLoKiNAOrNrybkTssLcQAbWOX8XL?=
- =?us-ascii?Q?zghWPZr52/RIaJarnka9BVN6yMgYJbz3XpDoxQqiFUZpzjZvZf6zP1hEoLXN?=
- =?us-ascii?Q?GbPeu5aXsddvvHOHlBom18bhiCK8zH5zgvSwzclG2c2YCVhyycLyUi7AHEgz?=
- =?us-ascii?Q?8ByXY/x8Cg9CoXoNyvHpFWbdvIyuRB/sgOm4Q9ScPJW2YMC53EN3DQM1suKE?=
- =?us-ascii?Q?qQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 956e9832-05a7-45ee-16f2-08dc630f3947
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oMzQXAItTXlKBjhimuFDejCv2kXNTGi8bnsnFV/VRRh5ew3SehBCMVrujTFu?=
+ =?us-ascii?Q?/u0I/QOVs2jpqBWZCGFNA3/4VWbomnbxZuEzL9h+niQ3wY4WSP29fSAab4yt?=
+ =?us-ascii?Q?E8dWQiGvL6KrC2ZnrtpgZS4pKYbe9kTnGjm+tZXFjdUgdx3nR9+c1FBujWyH?=
+ =?us-ascii?Q?TE6dbW1IdfYc63c8nHVM8+EEFICt9NpDEUEvtdUR+di1IG9kjIt8uDWFE0Oh?=
+ =?us-ascii?Q?SBrqDPiSZVGfB/KP6pPLRu8mYubPO5fU0RQK4TNVyEevSiNoe9cRrNI9wT9P?=
+ =?us-ascii?Q?NBX43xk38HYmrM4AC/+rcp4JLHVHo286zBqRdJMCOMt6NQ3AcjF+dhO0zal7?=
+ =?us-ascii?Q?MbQjmBglO5iVEnF8FS7wZ7P5sq7l8eOljR7IBkAEYCnNDMKanntB1Y0Co9zJ?=
+ =?us-ascii?Q?lp0DxD8kWInlPkWiDJB6ISBa4ajZEMI28hiJ5LgLoLm6Hpw05lea6bcJlzaY?=
+ =?us-ascii?Q?b4ITrNkHyXccPHOSG/fngWXtOGkZxZxrts2VZbMqYooQTEb0JVooIQREEeFh?=
+ =?us-ascii?Q?2wjeidyxWMG2RNFgdzrSrNd3oi9uqNPC3CXl3ku4/fHFjSmd/pN7ZvhdM4Db?=
+ =?us-ascii?Q?8qd/lAXxJxY5U45qhryKq7zlP77Bf19hkhkAJt9ZQO5vCjyPf91B98Alrbax?=
+ =?us-ascii?Q?Jd6J45BWW83qrcd8iA9cmguw/OG0qtZhUDh1SzLa13nTU9KMaZmQkBwSNCwz?=
+ =?us-ascii?Q?O+iOSGMeNk4jnCWV27T0zkjtY4R9FaiQnW7h/Gw23PjrjXaD/7V7OMn2QbuA?=
+ =?us-ascii?Q?CcT4ePe0JVc23j+QFIXusk2N2TcLeG9L1tr092rKI+aYz4CZhBxFoZAX7kF1?=
+ =?us-ascii?Q?f0WeqN6qIEW8vTPBD3IvWqMKYYjMOMcE/ZmPuXOjG75XYpWSBykv2EKwPMPd?=
+ =?us-ascii?Q?5X1+EJ5d0Xj6fDAqWLunjDuaiSS5mUsgGvCIpw2Br4TgOXGOFgN/162a0CC3?=
+ =?us-ascii?Q?exU14UBDXZbGnKIdr2aSiOq93Pjd6ujyk5DgUmH1ogNkpFjU2x5VOwLoyigL?=
+ =?us-ascii?Q?FTD1nP8zpTnuqpWUvEO3JuW1vlqKrnYzvOiZTuyIfZzScHZlYq242lbOQOSH?=
+ =?us-ascii?Q?JbX/PYBP+FTNRVzGwsPEBH8SUruSW/RZ1WNPgcIN+/jBURAiobubCEcl6eUK?=
+ =?us-ascii?Q?JELViM2Bt46XTAdzBRqhW6eYC6smXH2f4ADzf/T/PZFKeVt/Sjg06KmV6QSM?=
+ =?us-ascii?Q?D+rTnWpitfPoUm6eGl5+zZh8Ug+K1RgmjbmYCXPW0sO/7zbKCHTUGohI52QQ?=
+ =?us-ascii?Q?ygTz0Yp8BamllndlG8qtroCjwcygXcTBpGxU+5OEYp/lr+tz8leH6+DJ+iNK?=
+ =?us-ascii?Q?wjNOMzFCUDxIHM/+xXPCcrhBNetJ5pE4ix5FrwpAmaoynjYzF45JVWzDP/0c?=
+ =?us-ascii?Q?J8rcVvnCEOaqOXfDnjQmgvmS23K3a0KdiD4j5Ja62z4a5PJq6zP9QTHY7cCP?=
+ =?us-ascii?Q?WBtm//KoESZS/crnozMB4LF382pPTKN+eReGNZdJKJF7KuykLPYAKeMzEl79?=
+ =?us-ascii?Q?GPIM5Mqp4XzsOsbjOOhtjVNuuy6gEzOsbYkGcyjOH/5nunZKOlOhKBrWfbDe?=
+ =?us-ascii?Q?aQ/fsujrVPi1fYyw0u74ObqwX2dKFpkIIYY2CQF9G+f6nqtjLWwcvCJISxj2?=
+ =?us-ascii?Q?VQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d40657d-37da-42d1-adf6-08dc63102bb1
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 21:00:22.0854 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2024 21:07:08.6624 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c3fAsPIZtvQD1l+BWrNRaF7JLsVghi5uu57lg0DywppV14UEh3dtRxLvGgQWaFBZUdc8ehEB28iDtJkrIvQi1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8522
+X-MS-Exchange-CrossTenant-UserPrincipalName: K9SxRWVeoyWrpV1O6bMEC2+0FXcARWjWDqOML+fUGwZlqo4AKoeOgmGjJx+cLxbmpXy80VT8MnWu9dOqQBllfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6428
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,73 +177,305 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 19, 2024 at 01:04:04PM +0300, Jani Nikula wrote:
-> All the BXT specific macros have BXT_ prefix, do the same for VLV for
-> consistency. This is helpful because the platform specific macros can
-> use the static MIPI MMIO base rather than dynamic.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, Apr 19, 2024 at 01:04:05PM +0300, Jani Nikula wrote:
+> Stop using struct drm_* local variables and parameters where
+> possible. Drop the intel_ prefix from struct intel_encoder and
+> intel_connector local variable and parameter names. Drop useless
+> intermediate variables.
+
+nice clean-up
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
+
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/vlv_dsi.c      | 6 +++---
->  drivers/gpu/drm/i915/display/vlv_dsi_regs.h | 4 ++--
->  2 files changed, 5 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/vlv_dsi.c | 134 +++++++++++--------------
+>  1 file changed, 60 insertions(+), 74 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index 63f4af601d15..665247a2e834 100644
+> index 665247a2e834..9967ef58f1ec 100644
 > --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
 > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -481,7 +481,7 @@ static void vlv_dsi_device_ready(struct intel_encoder *encoder)
->  		 * Common bit for both MIPI Port A & MIPI Port C
->  		 * No similar bit in MIPI Port C reg
->  		 */
-> -		intel_de_rmw(dev_priv, MIPI_PORT_CTRL(PORT_A), 0, LP_OUTPUT_HOLD);
-> +		intel_de_rmw(dev_priv, VLV_MIPI_PORT_CTRL(PORT_A), 0, LP_OUTPUT_HOLD);
->  		usleep_range(1000, 1500);
+> @@ -85,9 +85,7 @@ enum mipi_dsi_pixel_format pixel_format_from_register_bits(u32 fmt)
 >  
->  		intel_de_write(dev_priv, MIPI_DEVICE_READY(port),
-> @@ -563,7 +563,7 @@ static void glk_dsi_clear_device_ready(struct intel_encoder *encoder)
->  static i915_reg_t port_ctrl_reg(struct drm_i915_private *i915, enum port port)
+>  void vlv_dsi_wait_for_fifo_empty(struct intel_dsi *intel_dsi, enum port port)
 >  {
->  	return IS_GEMINILAKE(i915) || IS_BROXTON(i915) ?
-> -		BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(port);
-> +		BXT_MIPI_PORT_CTRL(port) : VLV_MIPI_PORT_CTRL(port);
+> -	struct drm_encoder *encoder = &intel_dsi->base.base;
+> -	struct drm_device *dev = encoder->dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+>  	u32 mask;
+>  
+>  	mask = LP_CTRL_FIFO_EMPTY | HS_CTRL_FIFO_EMPTY |
+> @@ -132,8 +130,8 @@ static ssize_t intel_dsi_host_transfer(struct mipi_dsi_host *host,
+>  				       const struct mipi_dsi_msg *msg)
+>  {
+>  	struct intel_dsi_host *intel_dsi_host = to_intel_dsi_host(host);
+> -	struct drm_device *dev = intel_dsi_host->intel_dsi->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct intel_dsi *intel_dsi = intel_dsi_host->intel_dsi;
+> +	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+>  	enum port port = intel_dsi_host->port;
+>  	struct mipi_dsi_packet packet;
+>  	ssize_t ret;
+> @@ -225,9 +223,7 @@ static const struct mipi_dsi_host_ops intel_dsi_host_ops = {
+>  static int dpi_send_cmd(struct intel_dsi *intel_dsi, u32 cmd, bool hs,
+>  			enum port port)
+>  {
+> -	struct drm_encoder *encoder = &intel_dsi->base.base;
+> -	struct drm_device *dev = encoder->dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+>  	u32 mask;
+>  
+>  	/* XXX: pipe, hs */
+> @@ -662,8 +658,7 @@ static void intel_dsi_port_enable(struct intel_encoder *encoder,
+>  
+>  static void intel_dsi_port_disable(struct intel_encoder *encoder)
+>  {
+> -	struct drm_device *dev = encoder->base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  
+> @@ -675,7 +670,8 @@ static void intel_dsi_port_disable(struct intel_encoder *encoder)
+>  		intel_de_posting_read(dev_priv, port_ctrl);
+>  	}
+>  }
+> -static void intel_dsi_prepare(struct intel_encoder *intel_encoder,
+> +
+> +static void intel_dsi_prepare(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *pipe_config);
+>  static void intel_dsi_unprepare(struct intel_encoder *encoder);
+>  
+> @@ -1009,8 +1005,7 @@ static bool intel_dsi_get_hw_state(struct intel_encoder *encoder,
+>  static void bxt_dsi_get_pipe_config(struct intel_encoder *encoder,
+>  				    struct intel_crtc_state *pipe_config)
+>  {
+> -	struct drm_device *dev = encoder->base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct drm_display_mode *adjusted_mode =
+>  					&pipe_config->hw.adjusted_mode;
+>  	struct drm_display_mode *adjusted_mode_sw;
+> @@ -1209,12 +1204,11 @@ static u16 txclkesc(u32 divider, unsigned int us)
+>  	}
 >  }
 >  
->  static void vlv_dsi_clear_device_ready(struct intel_encoder *encoder)
-> @@ -576,7 +576,7 @@ static void vlv_dsi_clear_device_ready(struct intel_encoder *encoder)
+> -static void set_dsi_timings(struct drm_encoder *encoder,
+> +static void set_dsi_timings(struct intel_encoder *encoder,
+>  			    const struct drm_display_mode *adjusted_mode)
+>  {
+> -	struct drm_device *dev = encoder->dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(encoder));
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  	unsigned int bpp = mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+>  	unsigned int lane_count = intel_dsi->lane_count;
+> @@ -1298,14 +1292,12 @@ static u32 pixel_format_to_reg(enum mipi_dsi_pixel_format fmt)
+>  	}
+>  }
+>  
+> -static void intel_dsi_prepare(struct intel_encoder *intel_encoder,
+> +static void intel_dsi_prepare(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *pipe_config)
+>  {
+> -	struct drm_encoder *encoder = &intel_encoder->base;
+> -	struct drm_device *dev = encoder->dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+> -	struct intel_dsi *intel_dsi = enc_to_intel_dsi(to_intel_encoder(encoder));
+> +	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+>  	enum port port;
+>  	unsigned int bpp = mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+> @@ -1591,8 +1583,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+>  
+>  static void vlv_dphy_param_init(struct intel_dsi *intel_dsi)
+>  {
+> -	struct drm_device *dev = intel_dsi->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+>  	struct intel_connector *connector = intel_dsi->attached_connector;
+>  	struct mipi_config *mipi_config = connector->panel.vbt.dsi.config;
+>  	u32 tlpx_ns, extra_byte_count, tlpx_ui;
+> @@ -1878,10 +1869,8 @@ static const struct dmi_system_id vlv_dsi_dmi_quirk_table[] = {
+>  void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_dsi *intel_dsi;
+> -	struct intel_encoder *intel_encoder;
+> -	struct drm_encoder *encoder;
+> -	struct intel_connector *intel_connector;
+> -	struct drm_connector *connector;
+> +	struct intel_encoder *encoder;
+> +	struct intel_connector *connector;
+>  	struct drm_display_mode *current_mode;
+>  	const struct dmi_system_id *dmi_id;
+>  	enum port port;
+> @@ -1902,64 +1891,61 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	if (!intel_dsi)
+>  		return;
+>  
+> -	intel_connector = intel_connector_alloc();
+> -	if (!intel_connector) {
+> +	connector = intel_connector_alloc();
+> +	if (!connector) {
+>  		kfree(intel_dsi);
+>  		return;
+>  	}
+>  
+> -	intel_encoder = &intel_dsi->base;
+> -	encoder = &intel_encoder->base;
+> -	intel_dsi->attached_connector = intel_connector;
+> -
+> -	connector = &intel_connector->base;
+> +	encoder = &intel_dsi->base;
+> +	intel_dsi->attached_connector = connector;
+>  
+> -	drm_encoder_init(&dev_priv->drm, encoder, &intel_dsi_funcs, DRM_MODE_ENCODER_DSI,
+> -			 "DSI %c", port_name(port));
+> +	drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_dsi_funcs,
+> +			 DRM_MODE_ENCODER_DSI, "DSI %c", port_name(port));
+>  
+> -	intel_encoder->compute_config = intel_dsi_compute_config;
+> -	intel_encoder->pre_enable = intel_dsi_pre_enable;
+> +	encoder->compute_config = intel_dsi_compute_config;
+> +	encoder->pre_enable = intel_dsi_pre_enable;
+>  	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+> -		intel_encoder->enable = bxt_dsi_enable;
+> -	intel_encoder->disable = intel_dsi_disable;
+> -	intel_encoder->post_disable = intel_dsi_post_disable;
+> -	intel_encoder->get_hw_state = intel_dsi_get_hw_state;
+> -	intel_encoder->get_config = intel_dsi_get_config;
+> -	intel_encoder->update_pipe = intel_backlight_update;
+> -	intel_encoder->shutdown = intel_dsi_shutdown;
+> +		encoder->enable = bxt_dsi_enable;
+> +	encoder->disable = intel_dsi_disable;
+> +	encoder->post_disable = intel_dsi_post_disable;
+> +	encoder->get_hw_state = intel_dsi_get_hw_state;
+> +	encoder->get_config = intel_dsi_get_config;
+> +	encoder->update_pipe = intel_backlight_update;
+> +	encoder->shutdown = intel_dsi_shutdown;
+>  
+> -	intel_connector->get_hw_state = intel_connector_get_hw_state;
+> +	connector->get_hw_state = intel_connector_get_hw_state;
+>  
+> -	intel_encoder->port = port;
+> -	intel_encoder->type = INTEL_OUTPUT_DSI;
+> -	intel_encoder->power_domain = POWER_DOMAIN_PORT_DSI;
+> -	intel_encoder->cloneable = 0;
+> +	encoder->port = port;
+> +	encoder->type = INTEL_OUTPUT_DSI;
+> +	encoder->power_domain = POWER_DOMAIN_PORT_DSI;
+> +	encoder->cloneable = 0;
+>  
+>  	/*
+>  	 * On BYT/CHV, pipe A maps to MIPI DSI port A, pipe B maps to MIPI DSI
+>  	 * port C. BXT isn't limited like this.
+>  	 */
+>  	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+> -		intel_encoder->pipe_mask = ~0;
+> +		encoder->pipe_mask = ~0;
+>  	else if (port == PORT_A)
+> -		intel_encoder->pipe_mask = BIT(PIPE_A);
+> +		encoder->pipe_mask = BIT(PIPE_A);
+>  	else
+> -		intel_encoder->pipe_mask = BIT(PIPE_B);
+> +		encoder->pipe_mask = BIT(PIPE_B);
+>  
+>  	intel_dsi->panel_power_off_time = ktime_get_boottime();
+>  
+> -	intel_bios_init_panel_late(dev_priv, &intel_connector->panel, NULL, NULL);
+> +	intel_bios_init_panel_late(dev_priv, &connector->panel, NULL, NULL);
+>  
+> -	if (intel_connector->panel.vbt.dsi.config->dual_link)
+> +	if (connector->panel.vbt.dsi.config->dual_link)
+>  		intel_dsi->ports = BIT(PORT_A) | BIT(PORT_C);
+>  	else
+>  		intel_dsi->ports = BIT(port);
+>  
+> -	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.bl_ports & ~intel_dsi->ports))
+> -		intel_connector->panel.vbt.dsi.bl_ports &= intel_dsi->ports;
+> +	if (drm_WARN_ON(&dev_priv->drm, connector->panel.vbt.dsi.bl_ports & ~intel_dsi->ports))
+> +		connector->panel.vbt.dsi.bl_ports &= intel_dsi->ports;
+>  
+> -	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
+> -		intel_connector->panel.vbt.dsi.cabc_ports &= intel_dsi->ports;
+> +	if (drm_WARN_ON(&dev_priv->drm, connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
+> +		connector->panel.vbt.dsi.cabc_ports &= intel_dsi->ports;
+>  
+>  	/* Create a DSI host (and a device) for each port. */
 >  	for_each_dsi_port(port, intel_dsi->ports) {
->  		/* Common bit for both MIPI Port A & MIPI Port C on VLV/CHV */
->  		i915_reg_t port_ctrl = IS_BROXTON(dev_priv) ?
-> -			BXT_MIPI_PORT_CTRL(port) : MIPI_PORT_CTRL(PORT_A);
-> +			BXT_MIPI_PORT_CTRL(port) : VLV_MIPI_PORT_CTRL(PORT_A);
+> @@ -1979,7 +1965,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	}
 >  
->  		intel_de_write(dev_priv, MIPI_DEVICE_READY(port),
->  			       DEVICE_READY | ULPS_STATE_ENTER);
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_regs.h b/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
-> index b0cdaad7db9c..12a608a73720 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi_regs.h
-> @@ -40,7 +40,7 @@
+>  	/* Use clock read-back from current hw-state for fastboot */
+> -	current_mode = intel_encoder_current_mode(intel_encoder);
+> +	current_mode = intel_encoder_current_mode(encoder);
+>  	if (current_mode) {
+>  		drm_dbg_kms(&dev_priv->drm, "Calculated pclk %d GOP %d\n",
+>  			    intel_dsi->pclk, current_mode->clock);
+> @@ -1995,22 +1981,22 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	vlv_dphy_param_init(intel_dsi);
 >  
->  #define _MIPIA_PORT_CTRL			(VLV_DISPLAY_BASE + 0x61190)
->  #define _MIPIC_PORT_CTRL			(VLV_DISPLAY_BASE + 0x61700)
-> -#define MIPI_PORT_CTRL(port)	_MMIO_MIPI(port, _MIPIA_PORT_CTRL, _MIPIC_PORT_CTRL)
-> +#define VLV_MIPI_PORT_CTRL(port)	_MMIO_MIPI(port, _MIPIA_PORT_CTRL, _MIPIC_PORT_CTRL)
+>  	intel_dsi_vbt_gpio_init(intel_dsi,
+> -				intel_dsi_get_hw_state(intel_encoder, &pipe));
+> +				intel_dsi_get_hw_state(encoder, &pipe));
 >  
->   /* BXT port control */
->  #define _BXT_MIPIA_PORT_CTRL				0x6B0C0
-> @@ -89,7 +89,7 @@
+> -	drm_connector_init(&dev_priv->drm, connector, &intel_dsi_connector_funcs,
+> +	drm_connector_init(&dev_priv->drm, &connector->base, &intel_dsi_connector_funcs,
+>  			   DRM_MODE_CONNECTOR_DSI);
 >  
->  #define _MIPIA_TEARING_CTRL			(VLV_DISPLAY_BASE + 0x61194)
->  #define _MIPIC_TEARING_CTRL			(VLV_DISPLAY_BASE + 0x61704)
-> -#define MIPI_TEARING_CTRL(port)			_MMIO_MIPI(port, _MIPIA_TEARING_CTRL, _MIPIC_TEARING_CTRL)
-> +#define VLV_MIPI_TEARING_CTRL(port)		_MMIO_MIPI(port, _MIPIA_TEARING_CTRL, _MIPIC_TEARING_CTRL)
->  #define  TEARING_EFFECT_DELAY_SHIFT			0
->  #define  TEARING_EFFECT_DELAY_MASK			(0xffff << 0)
+> -	drm_connector_helper_add(connector, &intel_dsi_connector_helper_funcs);
+> +	drm_connector_helper_add(&connector->base, &intel_dsi_connector_helper_funcs);
 >  
+> -	connector->display_info.subpixel_order = SubPixelHorizontalRGB; /*XXX*/
+> +	connector->base.display_info.subpixel_order = SubPixelHorizontalRGB; /*XXX*/
+>  
+> -	intel_connector_attach_encoder(intel_connector, intel_encoder);
+> +	intel_connector_attach_encoder(connector, encoder);
+>  
+>  	mutex_lock(&dev_priv->drm.mode_config.mutex);
+> -	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+> +	intel_panel_add_vbt_lfp_fixed_mode(connector);
+>  	mutex_unlock(&dev_priv->drm.mode_config.mutex);
+>  
+> -	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
+> +	if (!intel_panel_preferred_fixed_mode(connector)) {
+>  		drm_dbg_kms(&dev_priv->drm, "no fixed mode\n");
+>  		goto err_cleanup_connector;
+>  	}
+> @@ -2023,18 +2009,18 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  		quirk_func(intel_dsi);
+>  	}
+>  
+> -	intel_panel_init(intel_connector, NULL);
+> +	intel_panel_init(connector, NULL);
+>  
+> -	intel_backlight_setup(intel_connector, INVALID_PIPE);
+> +	intel_backlight_setup(connector, INVALID_PIPE);
+>  
+> -	vlv_dsi_add_properties(intel_connector);
+> +	vlv_dsi_add_properties(connector);
+>  
+>  	return;
+>  
+>  err_cleanup_connector:
+> -	drm_connector_cleanup(&intel_connector->base);
+> +	drm_connector_cleanup(&connector->base);
+>  err:
+> -	drm_encoder_cleanup(&intel_encoder->base);
+> +	drm_encoder_cleanup(&encoder->base);
+>  	kfree(intel_dsi);
+> -	kfree(intel_connector);
+> +	kfree(connector);
+>  }
 > -- 
 > 2.39.2
 > 
