@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390348AC428
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 08:25:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCE38AC43D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 08:33:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 989411127D4;
-	Mon, 22 Apr 2024 06:25:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iz2UrSXb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE6A110F3FC;
+	Mon, 22 Apr 2024 06:33:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0D01127D4
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 06:25:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713767104; x=1745303104;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/CUfAADq1X/ZmsBIyhRRFVeWrcBk3fx+Pmsz3/OTgHM=;
- b=iz2UrSXbrk9+UZ/KwkvybHA5/VSuD4TwyoSrX5aABsi5h4P3qEZaT7Hj
- d69eD3lXcehrTRp2j3kk4byqRWZCgXjW11sG9i2qAMbaQBikkE6z2oH/Q
- W/PR4S3P6dqPXSp5cU8+vEYgTetejaHG+HfLAPHgyNTyUxmXHo5wPCRpM
- k4uqyonxRUxqvsZ1vo3YRlJYnblef4NjdVU8wpNNZusKjbbk06V4Eh8ya
- AGCYGiDEqyL7ICn66W84WEl1hgp1DainodNXFFKGMXHCVX6WUmDwBz6D0
- lIyk6OumnEUDiHyF+0bb0VXWgOuzhNayRAqX4u53qxPgrHoM6ZBJzdy4y A==;
-X-CSE-ConnectionGUID: FTHWmR0tRKOWpYNgeO+mKA==
-X-CSE-MsgGUID: lTDqxR1pTQGb/3wfoLfvPw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="9402501"
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; 
-   d="scan'208";a="9402501"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2024 23:25:03 -0700
-X-CSE-ConnectionGUID: QoBncIJ8RT6AsnhSvMOi1A==
-X-CSE-MsgGUID: pDnD1Ge8Rou5n3FBGNjMSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="24430238"
-Received: from gyu3-linux.itwn.intel.com ([10.225.64.197])
- by orviesa007.jf.intel.com with ESMTP; 21 Apr 2024 23:25:01 -0700
-From: gareth.yu@intel.com
-To: intel-gfx@lists.freedesktop.org
-Cc: Gareth Yu <gareth.yu@intel.com>
-Subject: [PATCH] drm/i915/display: Fixed the main link lost in MST
-Date: Mon, 22 Apr 2024 14:33:00 +0800
-Message-Id: <20240422063300.1459712-1-gareth.yu@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39C610F3FC;
+ Mon, 22 Apr 2024 06:33:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Panel_replay_selecti?=
+ =?utf-8?q?ve_update_support_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Apr 2024 06:33:30 -0000
+Message-ID: <171376761080.1569602.17921649317668159518@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240419121141.2665945-1-jouni.hogander@intel.com>
+In-Reply-To: <20240419121141.2665945-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,41 +37,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Gareth Yu <gareth.yu@intel.com>
+== Series Details ==
 
-Re-train the main link when the sink asserts a HPD for the main lnk 
-lost.
+Series: Panel replay selective update support (rev8)
+URL   : https://patchwork.freedesktop.org/series/128193/
+State : warning
 
-Cc : Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Cc : Matt Roper <matthew.d.roper@intel.com>
-Cc : Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Gareth Yu <gareth.yu@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e05e25cd4a94..db5d4fa8340b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5849,8 +5849,13 @@ intel_dp_detect(struct drm_connector *connector,
- 	/* Can't disconnect eDP */
- 	if (intel_dp_is_edp(intel_dp))
- 		status = edp_detect(intel_dp);
--	else if (intel_digital_port_connected(encoder))
-+	else if (intel_digital_port_connected(encoder)) {
- 		status = intel_dp_detect_dpcd(intel_dp);
-+		if (status == connector_status_connected && intel_dp->is_mst &&
-+			!intel_dp_mst_link_status(intel_dp))
-+			if (intel_dp_retrain_link(encoder, ctx))
-+				status = connector_status_disconnected;
-+	}
- 	else
- 		status = connector_status_disconnected;
- 
--- 
-2.25.1
+Error: dim checkpatch failed
+593e3471f223 drm/i915/psr: Rename has_psr2 as has_sel_update
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:255:
++		drm_printf(&p, "psr: %s, selective update: %s, panel replay: %s, selective fetch: %s\n",
++			    str_enabled_disabled(pipe_config->has_psr),
+
+total: 0 errors, 0 warnings, 1 checks, 88 lines checked
+ad1c0ded57dc drm/i915/dp: Use always vsc revision 0x6 for Panel Replay
+5ce7a783007b drm/i915/psr: Rename psr2_enabled as sel_update_enabled
+6d8c3df3b150 drm/panelreplay: dpcd register definition for panelreplay SU
+c7c18554468a drm/i915/psr: Detect panel replay selective update support
+c8e19db9dbc4 drm/i915/psr: Modify intel_dp_get_su_granularity to support panel replay
+d56a947fcc05 drm/i915/psr: Panel replay uses SRD_STATUS to track it's status
+15052cd1b25b drm/i915/psr: Do not apply workarounds in case of panel replay
+e9f9df441ffc drm/i915/psr: Update PSR module parameter descriptions
+5e9e2e0040aa drm/i915/psr: Split intel_psr2_config_valid for panel replay
+f4abdac9eae1 drm/i915/psr: Add panel replay sel update support to debugfs interface
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
+
+total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+
 
