@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3138AC83E
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 11:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0B1B8AC83F
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 11:02:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF9E1128FE;
-	Mon, 22 Apr 2024 09:02:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EAE310F4B2;
+	Mon, 22 Apr 2024 09:02:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ky/cmw8B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bVacJLy/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 123161128FE
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 09:02:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B5010F3DD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Apr 2024 09:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713776539; x=1745312539;
+ t=1713776552; x=1745312552;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=kwzHSkWNrIkeHhOF6W6mS8B3It0yPvat1GaF3T+pyZk=;
- b=Ky/cmw8B2kBawqlwmK7UVVNzlTplNr/YA9/GhbDMiegk9pKRL9EDwpiT
- oEA40Pl3IlUfypoOhQvXbMt1twa0QdWtYpeylK+N5Tr/8KKhKdIuNGipd
- Of5IZ/mc8wU57JsMpjFKMIqSPFzRb07nZ7la0gGf+qrbyeS6lkWqlBXBc
- 6OWlHUiO3km6hqhm+stHVWmx48/29yoY3dENRaL2icSBvBedtnp1XIeSM
- gpSn+RTiunIeCa/tiTZ7vETCrLIqSmyC1AmjLvVGG7vbrenEc1qckMM+L
- LqVTSe74UFgNA8qzK+38LK4LHcVTVxFQQVeVR41mOl4zcoE1HRiW8F2Nf w==;
-X-CSE-ConnectionGUID: UPGXVoeVST++MaId9PnSvA==
-X-CSE-MsgGUID: TVfqsZO7SF67Td7XeCdzYQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="13077827"
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="13077827"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 02:02:16 -0700
-X-CSE-ConnectionGUID: +O6oQrgZRsCwtYdzKWsr1Q==
-X-CSE-MsgGUID: 5SB68JSlSQeO7TFdJY2J3g==
+ bh=ivuj5PxrLZD3Y1tZOIeXObsu0Xr7bp5DhEe5mG7Zsw0=;
+ b=bVacJLy/VTzdPkxaUb7zllxzKTl653YHox+IYgZQ/oapclzepOKwMKRN
+ 1VBioUSupAXCAHv4uhDw9Lsgx8r4QasIE3dJiO9UUgtakxsYq8hAUoHV5
+ MrMYEKG9e799+9pYNNWi/3gx0NZXMWh1ESGIGUFnWsOscedzg2NQr7ExG
+ S/qV3JAYq9iYkMcT8eMHdYi2PtdG9+QRzIk8nmoNj4oeCtcmO/KyU8x2d
+ I48eSWr7JvJjRQYeZMHv/HA85Lp+F87yddwo9VYA5eQDyT6zrqStvA+DJ
+ /CcW7l5h18n8iKnCFec54yywfVG2Bxctmnd5LOlVHcE/RFYjqyLIOaDBl Q==;
+X-CSE-ConnectionGUID: 5UvkrTm5RxC4r7TSYXjqZg==
+X-CSE-MsgGUID: e/WXGwJbQYGAeuvPo8+PjQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="26823987"
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="26823987"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 02:02:29 -0700
+X-CSE-ConnectionGUID: 5csopr1FRryUhGFMhGem7w==
+X-CSE-MsgGUID: HesGb14vQUGQpWeyQMgegw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="28415621"
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="28725546"
 Received: from ralbanes-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.63.128])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 02:01:39 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 02:02:27 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 02/14] drm/i915/dpio: s/VLV_REF_DW13/VLV_REF_DW11/
-In-Reply-To: <20240422083457.23815-3-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 03/14] drm/i915/dpio:
+ s/VLV_PLL_DW9_BCAST/VLV_PCS_DW17_BCAST/
+In-Reply-To: <20240422083457.23815-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240422083457.23815-1-ville.syrjala@linux.intel.com>
- <20240422083457.23815-3-ville.syrjala@linux.intel.com>
-Date: Mon, 22 Apr 2024 12:01:37 +0300
-Message-ID: <87il09vki6.fsf@intel.com>
+ <20240422083457.23815-4-ville.syrjala@linux.intel.com>
+Date: Mon, 22 Apr 2024 12:02:24 +0300
+Message-ID: <87frvdvkgv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,64 +74,67 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 22 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Our VLV_REF_DW13 is actually VLV_REF_DW11. Rename it.
+> VLV_PLL_DW9_BCAST is actually VLV_PCS_DW17_BCAST. The address
+> does kinda look like it goes to the PLL block on a first glance,
+> but broadcast is special and doesn't even exist for the PLL
+> (only PCS and TX have it).
+>
+> The fact that we use a broadcast write here is a bit sketchy
+> IMO since we're now blasting the register to all PCS splines
+> across the whole PHY. So the PCS registers in the other channel
+> (ie. other pipe/port) will also be written. But I guess the
+> fact that we always write the same value should make this a nop
+> even if the other channel is already enabled (assuming the VBIOS/GOP
+> didn't screw up and use some other value...).
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 I'll take your word for it. The patch does what the commit message says,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll.c | 8 ++++----
->  drivers/gpu/drm/i915/i915_reg.h           | 4 ++--
->  2 files changed, 6 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dpll.c | 2 +-
+>  drivers/gpu/drm/i915/i915_reg.h           | 3 ++-
+>  2 files changed, 3 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/=
 i915/display/intel_dpll.c
-> index 49274d632716..6693beafe9c0 100644
+> index 6693beafe9c0..7e8aca3c87ec 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> @@ -1880,19 +1880,19 @@ static void vlv_pllb_recal_opamp(struct drm_i915_=
-private *dev_priv,
->  	reg_val |=3D 0x00000030;
->  	vlv_dpio_write(dev_priv, phy, VLV_PLL_DW9(1), reg_val);
+> @@ -1920,7 +1920,7 @@ static void vlv_prepare_pll(const struct intel_crtc=
+_state *crtc_state)
+>  		vlv_pllb_recal_opamp(dev_priv, phy);
 >=20=20
-> -	reg_val =3D vlv_dpio_read(dev_priv, phy, VLV_REF_DW13);
-> +	reg_val =3D vlv_dpio_read(dev_priv, phy, VLV_REF_DW11);
->  	reg_val &=3D 0x00ffffff;
->  	reg_val |=3D 0x8c000000;
-> -	vlv_dpio_write(dev_priv, phy, VLV_REF_DW13, reg_val);
-> +	vlv_dpio_write(dev_priv, phy, VLV_REF_DW11, reg_val);
+>  	/* Set up Tx target for periodic Rcomp update */
+> -	vlv_dpio_write(dev_priv, phy, VLV_PLL_DW9_BCAST, 0x0100000f);
+> +	vlv_dpio_write(dev_priv, phy, VLV_PCS_DW17_BCAST, 0x0100000f);
 >=20=20
->  	reg_val =3D vlv_dpio_read(dev_priv, phy, VLV_PLL_DW9(1));
->  	reg_val &=3D 0xffffff00;
->  	vlv_dpio_write(dev_priv, phy, VLV_PLL_DW9(1), reg_val);
->=20=20
-> -	reg_val =3D vlv_dpio_read(dev_priv, phy, VLV_REF_DW13);
-> +	reg_val =3D vlv_dpio_read(dev_priv, phy, VLV_REF_DW11);
->  	reg_val &=3D 0x00ffffff;
->  	reg_val |=3D 0xb0000000;
-> -	vlv_dpio_write(dev_priv, phy, VLV_REF_DW13, reg_val);
-> +	vlv_dpio_write(dev_priv, phy, VLV_REF_DW11, reg_val);
->  }
->=20=20
->  static void vlv_prepare_pll(const struct intel_crtc_state *crtc_state)
+>  	/* Disable target IRef on PLL */
+>  	reg_val =3D vlv_dpio_read(dev_priv, phy, VLV_PLL_DW8(pipe));
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
 reg.h
-> index 8eb6c2bf4557..a2fadcbe0932 100644
+> index a2fadcbe0932..8f3c83d2ab8d 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -246,8 +246,8 @@
->  #define _VLV_PLL_DW11_CH1		0x806c
->  #define VLV_PLL_DW11(ch) _PIPE(ch, _VLV_PLL_DW11_CH0, _VLV_PLL_DW11_CH1)
+> @@ -233,7 +233,6 @@
+>  #define _VLV_PLL_DW8_CH1		0x8060
+>  #define VLV_PLL_DW8(ch) _PIPE(ch, _VLV_PLL_DW8_CH0, _VLV_PLL_DW8_CH1)
 >=20=20
-> -/* Spec for ref block start counts at DW10 */
-> -#define VLV_REF_DW13			0x80ac
-> +/* Spec for ref block start counts at DW8 */
-> +#define VLV_REF_DW11			0x80ac
+> -#define VLV_PLL_DW9_BCAST		0xc044
+>  #define _VLV_PLL_DW9_CH0		0x8044
+>  #define _VLV_PLL_DW9_CH1		0x8064
+>  #define VLV_PLL_DW9(ch) _PIPE(ch, _VLV_PLL_DW9_CH0, _VLV_PLL_DW9_CH1)
+> @@ -370,6 +369,8 @@
+>  #define _VLV_PCS_DW14_CH1		0x8438
+>  #define	VLV_PCS_DW14(ch) _PORT(ch, _VLV_PCS_DW14_CH0, _VLV_PCS_DW14_CH1)
 >=20=20
->  #define VLV_CMN_DW0			0x8100
+> +#define VLV_PCS_DW17_BCAST		0xc044
+> +
+>  #define _VLV_PCS_DW23_CH0		0x825c
+>  #define _VLV_PCS_DW23_CH1		0x845c
+>  #define VLV_PCS_DW23(ch) _PORT(ch, _VLV_PCS_DW23_CH0, _VLV_PCS_DW23_CH1)
 
 --=20
 Jani Nikula, Intel
