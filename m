@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 056FD8AC459
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 08:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 938FB8AC45C
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 08:40:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47FFC1127F6;
-	Mon, 22 Apr 2024 06:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E101127F0;
+	Mon, 22 Apr 2024 06:40:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTbk2SfB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WPkKUyr7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8A4F1127E9;
- Mon, 22 Apr 2024 06:40:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 494781127F7;
+ Mon, 22 Apr 2024 06:40:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713768018; x=1745304018;
+ t=1713768021; x=1745304021;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1TfEJ8PvVDoifb4hsf/LwZDd8afM1i+Uq3xwsm3chgI=;
- b=TTbk2SfBa3qq1omHiQL+axlo2D/kkXpt94SGgw5BIQ8LWmqHp90BO63K
- M1/BHhGw3yFpGjqEp2wMGbau2G9CMCHq+NApfaU85zerekYzCJLfupaIV
- 90iV6EPgOxw3tsYzExn22dM7QuGdcN+sBZy5no9NlvYlbN/wpK/mdM5fx
- qxthZj105Q5OHYxnP5CNFR/8PFfaUyOgGDbTPML3wSHNjdcWphv97Qlbk
- R0F/eCj+ZtOzTpGKegYB2RSdHI+K7QiFjRQVqBPhRwWkWITiIPc/FYKeL
- 6XvvY2YWpwBrOxnFQCN5Yv9xE5oAut5TLuea4eEZDlYPWDjdOFGKlSNyz g==;
-X-CSE-ConnectionGUID: sAqWCAU8Sl6fy5wzOLb8+g==
-X-CSE-MsgGUID: yWN2j5TWTt6wLJlz7qPL5Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="9208613"
+ bh=ve2dyTJ2FtLyay/LVGPOPXTaObcPaKAxObPfR6nmkq4=;
+ b=WPkKUyr7Sks5C2jNjFgVt3nBigh0uxuoT2IO8D+NplyNXQZsXDxYFHIK
+ bxiYJqAf1iFUQKzKTyyuWxKwz/DlWXkn1rJVCei/TJ+ERyA9Q6nSMxn41
+ Na4DKQcs1hpqoRZtpoAOJsYhmPjkhpfgTT652LgzckbQjaVlAiONTF0vJ
+ HIYNCJ3+GqDsrGRUDYUAw+tKC0eEe5OCp7jHCUkLEep2WebqVNlLTotHH
+ NZttwIHLoNwBmtlSHIG6Wo4aqx1HhSS+LOKhhiASEGO0/sZQSH2g1JvUy
+ /misr+eI6RCTJbZu20bogKn4lb+d8JEcnCKMdwMbbEKR8E6/puwkXTmCx Q==;
+X-CSE-ConnectionGUID: rDq98Yo1SH++6jtr8oHBSw==
+X-CSE-MsgGUID: DsGXsIXXQFuwaNRjGjfD1w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11051"; a="9208619"
 X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; 
-   d="scan'208";a="9208613"
+   d="scan'208";a="9208619"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2024 23:40:18 -0700
-X-CSE-ConnectionGUID: M6jOlHsZRROyoLZ4mlvUiQ==
-X-CSE-MsgGUID: Y+Po42C0RYG663IywVS9nA==
+ 21 Apr 2024 23:40:21 -0700
+X-CSE-ConnectionGUID: 0r3bLsAnRKOZWrm2eHMRmw==
+X-CSE-MsgGUID: wHeuI6WmTNOe04JpZNEZ0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="23896450"
+X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="23896459"
 Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2024 23:40:16 -0700
+ 21 Apr 2024 23:40:19 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Clint Taylor <Clinton.A.Taylor@intel.com>
-Subject: [PATCH v4 07/19] drm/i915/xe2hpd: Add support for eDP PLL
- configuration
-Date: Mon, 22 Apr 2024 12:10:26 +0530
-Message-Id: <20240422064038.1451579-8-balasubramani.vivekanandan@intel.com>
+ Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v4 08/19] drm/i915/xe2hpd: update pll values in sync with Bspec
+Date: Mon, 22 Apr 2024 12:10:27 +0530
+Message-Id: <20240422064038.1451579-9-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240422064038.1451579-1-balasubramani.vivekanandan@intel.com>
 References: <20240422064038.1451579-1-balasubramani.vivekanandan@intel.com>
@@ -73,185 +72,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tables for eDP PHY PLL configuration for different link rates added for
-Xe2_HPD. Previous platforms were using C10 PHY for eDP port whereas
-Xe2_HPD has C20 PHY.
+From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 
-v2: Updated with a more appropriate Bspec number.
+DP/eDP and HDMI pll values are updated for Xe2_HPD platform
+
+v2: Removed the unsupported mtl_c20_dp_uhbr20 from xehpd_c20_dp_tables
 
 Bspec: 74165
-CC: Clint Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 147 ++++++++++++++++++-
- 1 file changed, 146 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 46 +++++++++++++++++++-
+ 1 file changed, 44 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 9bf882b439f4..8d37a2688809 100644
+index 8d37a2688809..584a6a36b05f 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -945,6 +945,148 @@ static const struct intel_c20pll_state * const mtl_c20_dp_tables[] = {
+@@ -1087,6 +1087,41 @@ static const struct intel_c20pll_state * const xe2hpd_c20_edp_tables[] = {
  	NULL,
  };
  
-+/*
-+ * eDP link rates with 38.4 MHz reference clock.
-+ */
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r216 = {
-+	.clock = 216000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
++static const struct intel_c20pll_state xe2hpd_c20_dp_uhbr13_5 = {
++	.clock = 1350000, /* 13.5 Gbps */
++	.tx = {	0xbea0, /* tx cfg0 */
++		0x4800, /* tx cfg1 */
++		0x0000, /* tx cfg2 */
 +		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
++	.cmn = {0x0500, /* cmn cfg0*/
++		0x0005, /* cmn cfg1 */
++		0x0000, /* cmn cfg2 */
++		0x0000, /* cmn cfg3 */
 +		},
-+	.mpllb = { 0x50e1,
-+		   0x2120,
-+		   0x8e18,
-+		   0xbfc1,
-+		   0x9000,
-+		   0x78f6,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		  },
++	.mpllb = { 0x015f,	/* mpllb cfg0 */
++		0x2205,		/* mpllb cfg1 */
++		0x1b17,		/* mpllb cfg2 */
++		0xffc1,		/* mpllb cfg3 */
++		0xbd00,		/* mpllb cfg4 */
++		0x9ec3,		/* mpllb cfg5 */
++		0x2000,		/* mpllb cfg6 */
++		0x0001,		/* mpllb cfg7 */
++		0x4800,		/* mpllb cfg8 */
++		0x0000,		/* mpllb cfg9 */
++		0x0000,		/* mpllb cfg10 */
++		},
 +};
 +
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r243 = {
-+	.clock = 243000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x50fd,
-+		   0x2120,
-+		   0x8f18,
-+		   0xbfc1,
-+		   0xa200,
-+		   0x8814,
-+		   0x2000,
-+		   0x0001,
-+		   0x1000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r324 = {
-+	.clock = 324000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x30a8,
-+		   0x2110,
-+		   0xcd9a,
-+		   0xbfc1,
-+		   0x6c00,
-+		   0x5ab8,
-+		   0x2000,
-+		   0x0001,
-+		   0x6000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r432 = {
-+	.clock = 432000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x30e1,
-+		   0x2110,
-+		   0x8e18,
-+		   0xbfc1,
-+		   0x9000,
-+		   0x78f6,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state xe2hpd_c20_edp_r675 = {
-+	.clock = 675000,
-+	.tx = { 0xbe88,
-+		0x4800,
-+		0x0000,
-+		},
-+	.cmn = { 0x0500,
-+		 0x0005,
-+		 0x0000,
-+		 0x0000,
-+		},
-+	.mpllb = { 0x10af,
-+		   0x2108,
-+		   0xce1a,
-+		   0xbfc1,
-+		   0x7080,
-+		   0x5e80,
-+		   0x2000,
-+		   0x0001,
-+		   0x6400,
-+		   0x0000,
-+		   0x0000,
-+		  },
-+};
-+
-+static const struct intel_c20pll_state * const xe2hpd_c20_edp_tables[] = {
++static const struct intel_c20pll_state * const xe2hpd_c20_dp_tables[] = {
 +	&mtl_c20_dp_rbr,
-+	&xe2hpd_c20_edp_r216,
-+	&xe2hpd_c20_edp_r243,
 +	&mtl_c20_dp_hbr1,
-+	&xe2hpd_c20_edp_r324,
-+	&xe2hpd_c20_edp_r432,
 +	&mtl_c20_dp_hbr2,
-+	&xe2hpd_c20_edp_r675,
 +	&mtl_c20_dp_hbr3,
++	&mtl_c20_dp_uhbr10,
++	&xe2hpd_c20_dp_uhbr13_5,
 +	NULL,
 +};
 +
  /*
   * HDMI link rates with 38.4 MHz reference clock.
   */
-@@ -2062,7 +2204,10 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+@@ -2203,13 +2238,20 @@ static const struct intel_c20pll_state * const *
+ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
  			 struct intel_encoder *encoder)
  {
- 	if (intel_crtc_has_dp_encoder(crtc_state))
--		return mtl_c20_dp_tables;
-+		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
-+			return xe2hpd_c20_edp_tables;
-+		else
-+			return mtl_c20_dp_tables;
- 	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+-	if (intel_crtc_has_dp_encoder(crtc_state))
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++
++	if (intel_crtc_has_dp_encoder(crtc_state)) {
+ 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+ 			return xe2hpd_c20_edp_tables;
++
++		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++			return xe2hpd_c20_dp_tables;
+ 		else
+ 			return mtl_c20_dp_tables;
+-	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
++
++	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
  		return mtl_c20_hdmi_tables;
++	}
  
+ 	MISSING_CASE(encoder->type);
+ 	return NULL;
 -- 
 2.25.1
 
