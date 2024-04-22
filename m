@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE8988AD042
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 17:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C09878AD1E0
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Apr 2024 18:28:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 451E810E26E;
-	Mon, 22 Apr 2024 15:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A2C810F711;
+	Mon, 22 Apr 2024 16:28:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="adVjBiCN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f062FH+C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA3CB10E26E;
- Mon, 22 Apr 2024 15:07:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 437C510F98B;
+ Mon, 22 Apr 2024 16:28:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713798470; x=1745334470;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=cRtwhycGcTbbInORGykcDbLrv9ysXUSoMXZFPZ6xFeo=;
- b=adVjBiCNRCS7s9ZzHeKBgi2jgwr3w552s+2ilxNvEOZuI7wsYTmFqZxi
- 6mVMZN+Mxgw0Epznu13nkOFnizOhG54GgWVj+4rgj/drQRVBiulIrup4R
- sZ198xhoB5jbFG+xEJtzB7884Z4UnHWB5spk4yct4cLnxcw9PQGQyEoWR
- 0AwophX1rgm9YSjVzHkYXEiwk8ipdoAivUT+oT1RKyBjmEFxPZ2DRdKoK
- bZefwL+DWe+Na8WRopCexm8Mbrs0/kIZmssa80i7DYJIC39af8W7ZjyRV
- +KUSTIERdGCOQ79nPDq8oLI6TvnaLgwJ8LXDRhpgJkA9hRlDhbsPHqdHF Q==;
-X-CSE-ConnectionGUID: eBZD9TbvTMaHyGF4wMyQRg==
-X-CSE-MsgGUID: V+cBmmpvRYSV9FOmwx7GXg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="13123580"
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="13123580"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ t=1713803281; x=1745339281;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=L+B5dd2ITsEvtL/InMl+d+eOIxITm6YJHF2AkFELy1w=;
+ b=f062FH+CCRCWPq+5Ex/bzxdcm200ewsfXMRogKBfYxPFLpbUReY06V6l
+ lseLP7XV+wiCdypbdZ8m45CqWOu4WPHM0AKKkE2wVymMwOjqlMRgqeEKr
+ 4kXxk4eOZOklWNGLXOCG6PiPt56+RS7fbK9Tu9/knWzkW0LW9g30R7Nm2
+ YpI9AlC7B2D78s/uW2l+5OcdBc8oi8xZ5UKzlK+r98+n1OSnWy21GMIOm
+ SwH8QWtGwIqMsnLxVfXDT8y7z0jEmjHGOkO1ZkvqYbV1WwTshOzmvwa5x
+ zFafkj3rSTxuvFCQvHa4SoqhI2VxblE6QNIz+822nnVwQFUU7t9+q9VIg g==;
+X-CSE-ConnectionGUID: klfmmJaLRfa33ttrDkxbqw==
+X-CSE-MsgGUID: khxWQdblR0aYF+dZSR48wQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="13136918"
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="13136918"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 08:04:38 -0700
-X-CSE-ConnectionGUID: Xbffxe7hS9SyGgGgKtlS5Q==
-X-CSE-MsgGUID: hg8bHKE6RSaPB8uUQVz3yw==
+ 22 Apr 2024 09:28:01 -0700
+X-CSE-ConnectionGUID: pWO+h2tzRHqjElP6HmYpDw==
+X-CSE-MsgGUID: l8lyRpC9Qc6f1sKBEueEkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,220,1708416000"; d="scan'208";a="55256890"
-Received: from ralbanes-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.63.128])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2024 08:04:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Gustavo
- Sousa <gustavo.sousa@intel.com>
-Subject: Re: [PATCH v2 0/5] drm/i915/dmc: firmware path handling changes
-In-Reply-To: <xa6zj5rxk725th4em7knyei2745fpps5bplqsdft7ua3one7oo@ufm4kw24rj3i>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1713519628.git.jani.nikula@intel.com>
- <xa6zj5rxk725th4em7knyei2745fpps5bplqsdft7ua3one7oo@ufm4kw24rj3i>
-Date: Mon, 22 Apr 2024 18:04:33 +0300
-Message-ID: <87zftlsake.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,221,1708416000"; d="scan'208";a="47347741"
+Received: from unknown (HELO intel.com) ([10.247.119.74])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2024 09:27:55 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: [CI 0/2] Force CCS mode to the maximum
+Date: Mon, 22 Apr 2024 18:27:29 +0200
+Message-ID: <20240422162731.7046-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +67,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 19 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Fri, Apr 19, 2024 at 12:41:53PM GMT, Jani Nikula wrote:
->>v2 of https://lore.kernel.org/r/cover.1713450693.git.jani.nikula@intel.com
->>
->>Jani Nikula (5):
->>  drm/i915/dmc: handle request_firmware() errors separately
->>  drm/i915/dmc: improve firmware parse failure propagation
->>  drm/i915/dmc: split out per-platform firmware path selection
->>  drm/i915/dmc: change how to disable DMC firmware using module param
->>  drm/i915/display: move dmc_firmware_path to display params
->>
->> .../drm/i915/display/intel_display_params.c   |   4 +
->> .../drm/i915/display/intel_display_params.h   |   1 +
->> drivers/gpu/drm/i915/display/intel_dmc.c      | 175 +++++++++++-------
->> drivers/gpu/drm/i915/i915_params.c            |   3 -
->> drivers/gpu/drm/i915/i915_params.h            |   1 -
->> drivers/gpu/drm/xe/xe_device_types.h          |   3 -
->
-> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Hi,
 
-Thanks for the reviews and acks, pushed to drm-intel-next.
+There has been a regression apparently caused by the CCS mode
+forced to be 1[*]. But, because I think the kernel approach is
+correct and there might be something hardcoded in userspace, I
+want to show that with this series we won't see the regression.
 
-BR,
-Jani.
+What this series does is to force CCS mode to 4 (or to the
+maximum). This way we will understand whether the issue comes
+because of disabling the automatic load balancing or by forcing
+it to use only one CCS.
 
+Thanks gnattu for your report, i will appreciate if you can give
+this a try.
 
+Andi
 
->
-> thanks
-> Lucas De Marchi
->
->> 6 files changed, 112 insertions(+), 75 deletions(-)
->>
->>-- 
->>2.39.2
->>
+[*] https://gitlab.freedesktop.org/drm/intel/-/issues/10895
+
+Andi Shyti (2):
+  Revert "drm/i915/gt: Do not generate the command streamer for all the
+    CCS"
+  drm/i915/gt: Force ccs_mode 4
+
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c   | 17 -----------------
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 12 ++++++++----
+ 2 files changed, 8 insertions(+), 21 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.43.0
+
