@@ -2,198 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17BBC8ADED3
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 09:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 933518ADEEA
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 09:58:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E168113210;
-	Tue, 23 Apr 2024 07:47:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE6A2113199;
+	Tue, 23 Apr 2024 07:58:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XdDrj4Uh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F1miJgBM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7A37113210
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 07:47:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A315B113199
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 07:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713858421; x=1745394421;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=QRFFzRvRKjox6lwuKAIKpRD5uLtkVkJJ+C/AJ5mh8YY=;
- b=XdDrj4Uh2PJh4CZqfGpJN2LSUyON9Tt6BXojhPno4BkZwQFRFCcTzm6M
- CUxKdLzLcMw0eOIxS192SrZM8huXdzo50uF99+JbDsIZT9GD3zvDwEZWD
- E7Y26CZX6N8SnNZMIf8ZCyt9Xsa6x0Nwdi8eYNNdPHnO5yN5iFg5G1wsy
- em/oPvsmbsBhbIec+7PRSlgPkOJt06LJSNnmoQf2KCzlMmDOOaElHKpY1
- hypi1wk1S9Dryinn6F6nZSxJhHYmSaYfB1T7oQ6rlhRHCHQ5UKgLAMKzh
- ecPoehhO5QyNBxpEIxzm0f2uxzZS34ZW4DgpwC40Dlo7boVB0wFt5ORH+ Q==;
-X-CSE-ConnectionGUID: O98aG6GoR0i81MfoO5S/tQ==
-X-CSE-MsgGUID: R7W/A6ZFSbCECY9RSHDt5w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="9647659"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
-   d="scan'208";a="9647659"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 00:46:49 -0700
-X-CSE-ConnectionGUID: RI2yfPctTZC/pWTaCMZ4Lw==
-X-CSE-MsgGUID: UEku5DuaQpK8iydj1w722w==
+ t=1713859113; x=1745395113;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=+SDRH3juhNoY/ZgRJ2toPJcAcBnVISQaZTjMHARvOCU=;
+ b=F1miJgBMUp+mEyF+hAsBK5uqLeqKSlpkqACZh+kEUev4/0RejHYgs+Fn
+ tH7vQBW7SoFzytwG0/iQIxzmBs1kUiLhO52fB3JjE0pZ2phlNZqDN9mVQ
+ PFTy9DqSRWqE92pIhAKT7WKVZnt7WUyHTftcvq72fbI4qKbRPl/lZbrqt
+ ZUBC1AamcFOJPb1MCIvQuoiIczyQEZRGofzMqbPw0+b7B17pCYPR1Bzb2
+ 4fyC52d9cCr65/cWh/yFC8VTHu1FnrRCVm417uUa73nNuoq9b+O3YCt+Z
+ 6LDxI3bVGnwN4KjgdNKCr1qJHweGePMfVj6umTl15K+kD1MjFf9XGXHJr Q==;
+X-CSE-ConnectionGUID: OVRKaJjPRgec01zATTAxkQ==
+X-CSE-MsgGUID: oVmlvyvmRQmuWOWtDDRAIg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="31920366"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="31920366"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 00:58:32 -0700
+X-CSE-ConnectionGUID: J+euDh/0T3CRfchvB8a+4Q==
+X-CSE-MsgGUID: KsJ2G+omRn+HSB1I1xon9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24732183"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Apr 2024 00:46:49 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Apr 2024 00:46:47 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Apr 2024 00:46:47 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 23 Apr 2024 00:46:47 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 23 Apr 2024 00:46:47 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZoH6BXn//KTL4KuKL3F5mPTsEniZhPNnnfZyGEj5q1Mbm3foRfXjOZZU7Gg5iGnSNGwcoIX01IWSeJTH1rdRsbJBibfIWrNhKGdl23JYngoFJxIS/Np6dS4FMij/JmSqGJbGmM7r0bXazXQyDYLhxyzfKdokOqNXLdyf5UPCwOps6rCnuuq7lp1sBlrP/BMYuIYa8uO0jiQnM9ccYqPI7OpxRXRk6knJk3CH5sDADMgKaTA1BF75QeOF5VYdUp0T/GXM94w7WiALT75KeMC2ksUePijnLHrVtNccRFp/8Vts4kS/UZ04RXgabjwWV75IdOENdrnfrWj8Fv1Nc0MqiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QRFFzRvRKjox6lwuKAIKpRD5uLtkVkJJ+C/AJ5mh8YY=;
- b=HfdchwFOdi+HnUUGDgnR6S3sy7O+xNhR2LFGmu7LHI9vuCef8fvo/yFijD9SlbfqWNZo9msgwsMiaGHy8P116ekZhXnpzSiXcHvXJNGarMJ/FonHEuln4nzh5Ff3y1A++U09wH3hzvuBCq8GdVGVPi4/XkJuyV9sW36mjw5dbPBJnN1zQF4Fgig7Mbm29CN6XhM+J2mVFowrQ0DerfEQA+dnzisy8nUOQv1L8txBsQuRobfal+e4btznFI9C7hTYtyTeYqzi6/JU9d9p3sbzoW69BDrJ8gl5Mllc3NsJV4vjpR7xoSxcsub6T22ROh9q2aOxzSxJPuuiYV6mdDWxaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by SJ0PR11MB5149.namprd11.prod.outlook.com (2603:10b6:a03:2d1::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.22; Tue, 23 Apr
- 2024 07:46:45 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::60a1:eab8:65ee:6bb8%3]) with mapi id 15.20.7519.018; Tue, 23 Apr 2024
- 07:46:45 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-CC: "Saarinen, Jani" <jani.saarinen@intel.com>, "Lisovskiy, Stanislav"
- <stanislav.lisovskiy@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Syrjala, Ville" <ville.syrjala@intel.com>
-Subject: Re: [PATCH v10 6/6] drm/i915/display: force qgv check after the hw
- state readout
-Thread-Topic: [PATCH v10 6/6] drm/i915/display: force qgv check after the hw
- state readout
-Thread-Index: AQHah013UNnuT4yhxkKwgc8+mrv7HbFv7P4AgAWnToCAAAHdgA==
-Date: Tue, 23 Apr 2024 07:46:45 +0000
-Message-ID: <e4a47c78906f7dcbb8c9314fdd84671d1821f918.camel@intel.com>
-References: <20240405113533.338553-1-vinod.govindapillai@intel.com>
- <20240405113533.338553-7-vinod.govindapillai@intel.com>
- <ZiKnvOp3_Cq85NMt@intel.com>
- <58490248f4c6d443aea6dbe335c1233542703d58.camel@intel.com>
-In-Reply-To: <58490248f4c6d443aea6dbe335c1233542703d58.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|SJ0PR11MB5149:EE_
-x-ms-office365-filtering-correlation-id: 177e6ed8-f55c-4b98-eafe-08dc6369866c
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|376005|1800799015|366007|38070700009;
-x-microsoft-antispam-message-info: =?utf-8?B?ZENIM3A0ckhic3BuOXBrOTJtQW1zYXg0Z2lGT1lzdXNYR0VEWW5IVG8xcDFZ?=
- =?utf-8?B?SlBqU0R1OE9mVGJOQjhNcVYvMHlFb01pQzFkbkZJa3JtaG9SeFBZdklhV3Q4?=
- =?utf-8?B?Mm40K1ZGZG9taWgwZGRzTm94MnJpZG5LVTJsajA3akRLdDMwekNHR3Z1ckwz?=
- =?utf-8?B?RlZEVGYzaVBTVzBhWlBOeG9tR1dCa3hzb3BHQ1ByTW1lZms5VkI4QUdmZGtW?=
- =?utf-8?B?U3F5dG1IaVZIbzNiUlhvOXBZR25BWUVHVmRzaUZGOHhpbVA5SmJFU0NwOUlr?=
- =?utf-8?B?M3IycTNtVUp5bHdQaFB0bG5ibWJGMVJBNmxCVzlMWE5lenJWaHUxZDZUUXhS?=
- =?utf-8?B?T1R3YTcvamZMVHpIeWdPczRDNDFISTM3TUxtVnBXSEVKM0d5NG84RGIwdWMw?=
- =?utf-8?B?Y1k0dzZFSVJEL2xsQ2dkeXlFeTVYWDd1NXBmQlVFSnlHZGxrTEEwZnRzM085?=
- =?utf-8?B?UmNBZFpKREtneWZUdW83bmdBVThXZCtHYWJzMXlJdjlneGpBNzgxOURNV015?=
- =?utf-8?B?STJ3K3I2bythTGd1d2dieHZjdWQ2eXYrTmdlcUpkbUw5dDIvcUVndlhOU1Zh?=
- =?utf-8?B?d08vZEFzS1FWNTA1NkFueEk2SHYzSlcybDF6REdYdjZreEx5VWo1bmFQSGtw?=
- =?utf-8?B?YUJaSnBjWG5GS29VTjhqOEVZNW5CNjhxb3M3b0t1WFAwUWpwMUpBQUJYOWgw?=
- =?utf-8?B?TzF6dGNqdXZUUGZzRk90MGVRT2M3NmthcFFCS2lSb1ZiRVgyZm9HZ1VlOTRC?=
- =?utf-8?B?NlZDanhLdG9hamF5K0RnUndadzF6L2RPaUJQYTVQRkVDZlNCb0FiUjlLak9J?=
- =?utf-8?B?ZWZiNTFUb1U0YzBLK2x4WU9uY2FZcjIzdUNIdUZGOG1VVi90U1BwVkZoUFJP?=
- =?utf-8?B?bTJLNjR3STl2cE82U0hZSDVVQWVLMnliRTJsekFuY3VBcXlkU2tJRGxiZFRQ?=
- =?utf-8?B?QXc0eFI5U1UrTXhXTksxaVRibU5GR1RiSnpoWlV4SkV4ZW02cG9KRXN6bSsr?=
- =?utf-8?B?TDMrUHJwM0VWaDM2Y1ExSkpCRFlUQzJVR2JUdVJOM3hKMngzOWtzTkNuY3dw?=
- =?utf-8?B?ZWwxZWNFbXBPTHdCREY1eklHQk1GSzczaXN1RXpqaWQxQ0hPbFJlSEhrK1NY?=
- =?utf-8?B?Mkc2TGYwbXVJVE4wMDFaKzY4b0Q2M2tPNzVTY2tpR1NYb3BMZEtObGVhTmgw?=
- =?utf-8?B?cGs5VUxvcXdsR21GZ1FjNHRORmxST3o3ZmMzQVo0V2FPbVN2dUUxU2tvTER4?=
- =?utf-8?B?akVldUQ0K1NONExnODRWcksvMVJBOUtPb0F5Y2ZSaUhHdlNmMm4yU3VkSnJ4?=
- =?utf-8?B?V21pdi9OWW5jNVRRbjNuNWtqNnpod3cyMkplbC91SnVndDFKeFJlbkN5dzk3?=
- =?utf-8?B?aGlzelppdklWRmpNMmRNcENoQjZXL2lQLzRtWWRYNUhrakgvVmJET01hMkVj?=
- =?utf-8?B?T2VqQ1NSQVB2aXNSb3U0OWNWWFlQSjhWbG9IcTZjc0NQcEdSaTVSYm9FZ2pG?=
- =?utf-8?B?S0I3TlpjNmY2NG1VR1k0UWJVVGFYTkpNeWlhbWZwdjdJUE8vTVNsZzRFRDNK?=
- =?utf-8?B?TERod1pGUEQ5a1NpazJaNlFyN084Z3JJN2ROVkUxZ2VWQUpOYXlvSHZMM0pR?=
- =?utf-8?B?MmlSRHVsbXQvS3lJbnR1MEZ5WER5UHNyZG1OWEpCeUpqQS9KQS84a1BrVjMx?=
- =?utf-8?B?elB1Nm5QampnSFJYblJ2bWNjZXBCVlJoVkp6V3Z2UzF5QVJsOS9WeitCSlJL?=
- =?utf-8?B?YnpsR2tBRkpDODNTTEs0bGthak1nZHVYdGZaWk9QWmlzd1FuREU5UTk3c3Bq?=
- =?utf-8?B?bzArNHM3d0txWFhrS0FvZz09?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RkpNVXJPaS9RalEwekIxTWRkSWZwcElYNWJzUjBBaVBrQnVtbVJFdEVmcGtU?=
- =?utf-8?B?VkJHelNXeVdMbHBPTG9DRWlLYkdHbzZBTXFDOGxFOUVYZkxGemdZUzAzOW0r?=
- =?utf-8?B?Wi9ITmJZZzM1eHJNOTNhekZvVUJ4TlFGQXZrVTNpWE9xTU1rMnk2RDlJK0RO?=
- =?utf-8?B?bWdvV1dQRjVTLy9pd0tKaEhLdU9abjducEFSVGZ6SjNUTHNCOHBhcXdJd3Ji?=
- =?utf-8?B?TnFzUmorSHZrTVEyMmRzVksrS1doSnNDRXRiYVZxZGszSEx2UnIyNUxNK0lH?=
- =?utf-8?B?RDhDanl5SlF5S1lZbHVHVE1WVmtlb0tQZjgyS2Fvd1M2enBQVTcya0tYZnYv?=
- =?utf-8?B?YmdIaDExUGlNV0ExTzdYb1F4SGxiV3VPKzB3MnF6dEpkUWkyM0lNQ0krN2ta?=
- =?utf-8?B?b0VuUnlRTnZRdytkbGNlQlZhUUlveXFHR3VzL2FMSmtHbk51cG9ta09zdDZE?=
- =?utf-8?B?Vm15c1pzclFGUXUxY2F4a1g5bW9CTzhRQTEwbVY2bmQ2LzloM0NRSGVCS1BM?=
- =?utf-8?B?czVzek9WRUE4NVhHeURZSVY2ZHFrR0ZoUTJDTmxmVjB2OXl6TTVBYStya0Zt?=
- =?utf-8?B?YngzM0VpcjdEV3BmUzMzR1phdnY5cmFuUDg4b2VaRHVtNGx1NHpWeVI2bGNp?=
- =?utf-8?B?amJTbjNpbXpCNHFrc2ZUdXJhemRQMWhOb05GdzQra3oyVC9vaUoxczhZY3pW?=
- =?utf-8?B?YUh0Z0xlR3ZWemtCZFB0a3p0Z3gvL1QwRFptVXRKeHFVYWpsamZFQ1BjdU1q?=
- =?utf-8?B?WjFBZ0U1dGQ3c3U5dXBJZUdFWlJTUTBBTWp6SmpINlMrenpETk5oSE5TUjRV?=
- =?utf-8?B?dnlBSWRLcTl4K0tqdUU3bUhkcnk5dEwzSFdjNXJjTlNKRjg0TkJUbFMwQ2Jj?=
- =?utf-8?B?dHFOWVRZeE00UkRidnVvM2FqRjhLSVd1SWpFWjJjWm91M3plNlVnOWxwUmdY?=
- =?utf-8?B?a3dxMGc0cFlCR01wTVZxYnJnTm1PR3dMN2UrUkVhZy9mcmk4NU5XMWlZQjZZ?=
- =?utf-8?B?Uy91RXV1QW51R2NsTHI1TWVmdmtyUWx5bnBzSlRRQlhQTytDMklPN2d2M01I?=
- =?utf-8?B?ZjcrSWpaWTRRdGpxTXE2VXFlM1o1N2xrcXl3dDVhTjBsRkN3bVZoVzUxVlFK?=
- =?utf-8?B?ZUxTZC9EUjRXck9jQm4zYjc4Ukx0OGdKNDhuZ0VFVW5yRVNqc3ZiT3VQemtH?=
- =?utf-8?B?MnVBWHFQeTUzU05hTXJOY0pwTEJqYk43bEZQY1VJUnZRZGphbG9BSVQ3bDhW?=
- =?utf-8?B?enVNV3c0T01WMHVJa2VPZnlCT3ZVSUcwRnd4VWk1TUxZZjgvWFQ4R1hsWDFj?=
- =?utf-8?B?K0ppeVRIbjBzRis4SCtzSVUwd2tqWDB6WXM1NEFLQlJvVVVqdHJkd2txVWhX?=
- =?utf-8?B?LytRZXhxejcwZVd6d3Y1eXVQWUx6VzJVRm8yajNKNHVFYzdLK2Jack9HaC81?=
- =?utf-8?B?QmlDVEM1Qk1VNnprT1VzZ2QyL3cvUFo5SG5KWmNTYWRyVDdqdkphd3RBN1l3?=
- =?utf-8?B?ajl3ZFZXTGJ0T2F0VjNjS1hVU0kybkFEL2U0Vm5DdTd4WVRGRWQvNlpyL0VW?=
- =?utf-8?B?TEJNNmszdnB2alZDUmxITFN5SC9Ra2hhMkI2dnNMakJtd041RWhyaXZ0WGUz?=
- =?utf-8?B?SllpRDRkQW1QbXQ3Y2lHZm5RcHhZVHFJVUxBZStvNmlJcDdkWkhpVDZxK2lB?=
- =?utf-8?B?N1JjZnE0OHVhQ1BndjdLSDJnUFFGdDhCR2VmV2huUHEwSW1EQTEwS3I1T2lQ?=
- =?utf-8?B?VnRBcXlCYWJWd2l0U1ZqV3VQc3JyRmFtR2RwZkpVbm9ybWtWVVZEUGYxTFVy?=
- =?utf-8?B?ZUthQUphVnEyTDBPdDRKL3ZiZzg5ZFVudGx5bHFmQld5SEsyK2M4TzNEMHYw?=
- =?utf-8?B?QzVveWM2cnRoTTBOZzB0akpQb1kxMkx3V0tPRHpodmMvU0VLU29Gb2x5aEs5?=
- =?utf-8?B?a2hXTE9hV0I1R1VXVGJMM3FocXgyL3U4a2Y5Qit5V3RNbFJqcUtBWUlrbUtJ?=
- =?utf-8?B?MmRsb09aVFBZY01NaEtyZkljNU1jOUVkYjJOMGx3WjBsa3A1cEIxNkZGKzB2?=
- =?utf-8?B?NFo3eWRoL1hEb0tGYW9qdTNVTHNoK1hwalJUcFpucDVrNjBhMi9JRUhGS0JX?=
- =?utf-8?B?R1k4R2hscGEzWFJoNEUxVmFuQ1pKcklncUtYaHNlNUZaM3FEVTZacUZZK3lP?=
- =?utf-8?Q?JP9uydDB0vhkNLg3z/Cd+40=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EDF489C3C5AC504D97428EB7FD0B1F7B@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24355672"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 23 Apr 2024 00:58:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 23 Apr 2024 10:58:29 +0300
+Date: Tue, 23 Apr 2024 10:58:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 13/14] drm/i915/dpio: Clean up the vlv/chv PHY register
+ bits
+Message-ID: <ZidqJQ8XWMGJHdUS@intel.com>
+References: <20240422083457.23815-1-ville.syrjala@linux.intel.com>
+ <20240422083457.23815-14-ville.syrjala@linux.intel.com>
+ <87edaxtvjq.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 177e6ed8-f55c-4b98-eafe-08dc6369866c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2024 07:46:45.7635 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +WkL4Po1iZRDB9hhH/Ts10mFUq+brOVJYkJflTKSs0prl3pLw1gWfOPK6EQCfDQr5p/v03lJeaQ9QesM6TFoObQkGmlRuycoOUrnIvLeGXU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5149
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87edaxtvjq.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -209,87 +73,413 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI0LTA0LTIzIGF0IDEwOjQwICswMzAwLCBHb3ZpbmRhcGlsbGFpLCBWaW5vZCB3
-cm90ZToNCj4gT24gRnJpLCAyMDI0LTA0LTE5IGF0IDIwOjE5ICswMzAwLCBWaWxsZSBTeXJqw6Rs
-w6Qgd3JvdGU6DQo+ID4gT24gRnJpLCBBcHIgMDUsIDIwMjQgYXQgMDI6MzU6MzNQTSArMDMwMCwg
-Vmlub2QgR292aW5kYXBpbGxhaSB3cm90ZToNCj4gPiA+IFRoZSBjdXJyZW50IGludGVsX2J3X2F0
-b21pY19jaGVjayBkbyBub3QgY2hlY2sgdGhlIHBvc3NiaWxpdHkNCj4gPiA+IG9mIGEgc2FndiBj
-b25maWd1cmF0aW9uIGNoYW5nZSBhZnRlciB0aGUgaHcgc3RhdGUgcmVhZG91dC4NCj4gPiA+IEhl
-bmNlIGNhbm5vdCB1cGRhdGUgdGhlIHNhZ3YgY29uZmlndXJhdGlvbiB1bnRpbCBzb21lIG90aGVy
-DQo+ID4gPiByZWxldmFudCBjaGFuZ2VzIGxpa2UgZGF0YSByYXRlcywgbnVtYmVyIG9mIHBsYW5l
-cyBldGMuIGhhcHBlbi4NCj4gPiA+IEludHJvZHVjZSBhIGZsYWcgdG8gZm9yY2UgcWd2IGNoZWNr
-IGluIHN1Y2ggY2FzZXMuDQo+ID4gDQo+ID4gVGhlIGNvcnJlY3QgZml4IHdvdWxkIGJlIHRvIG1h
-a2Ugc3VyZSB0aGUgcmVhZG91dCBhY3R1YWxseQ0KPiA+IHdvcmtzLCBhbmQgdGh1cyB0aGUgc29m
-dHdhcmUgc3RhdGUgcmVmbGVjdHMgdGhlIHN0YXRlIG9mDQo+ID4gdGhlIGhhcmRhcmUgYWNjdXJh
-dGVseS4NCj4gDQo+IE9rYXkhIERvZXMgdGhhdCBtZWFuLCB3ZSBuZWVkIHRvIHVwZGF0ZSB0aGUg
-cWd2IHBvaW50cyBhbmQgdXBkYXRlIHRvIHBjb2RlIHJpZ2h0IGFmdGVyIHRoZSBIVw0KPiByZWFk
-b3V0Pw0KPiANCj4gUmlnaHQgbm93LCBvbiBid19pbml0IHdlIGZvcmNlIGRpc2FibGUgc2Fndiwg
-c28gdGhhdCB3ZSBoYXZlIGEga25vd24gc2FndiBzdGF0ZS4gVGhlbiBvbg0KPiDCoMKgwqDCoMKg
-wqDCoMKgaW50ZWxfbW9kZXNldF9yZWFkb3V0X2h3X3N0YXRlKCkgd2UgdXBkYXRlIHRoZSBid19z
-dGF0ZSBwYXJhbWV0ZXJzLiBTQUdWIGlzIHN0aWxsDQo+IGRpc2FibGVkLiBTbyBvbg0KPiBuZXh0
-bW9kZXNldGlmdGhlYndfc3RhdGVwYXJhbWV0ZXJzYXJlc2FtZWFzdGhlb2xkbSx0aGVud2V3aWxs
-bm90YmVjYWxjdWxhdGluZ3RoZVFHVnBvaW50cy5JdGhpbmtzdQ0KPiBjaGFzY2VuYXJpb2hhcHBl
-bnNvbmx5b25jZWFmdGVydGhlYm9vdC5Tb3RoYXRzdGhlcmVhc29uSWFkZGVkdGhpc2ZsYWd0b2Zv
-cmNlY2FsY3VsYXRlUUdWLg0KDQpSZXNlbmRpbmcgdGhlIHByZXZpb3VzIHJlcGx5IGFzIHNvbWVo
-b3cgdGhlIGZvcm1hdCBnb3QgbWVzc2VkIHVwIQ0KDQpPa2F5ISBEb2VzIHRoYXQgbWVhbiwgd2Ug
-bmVlZCB0byB1cGRhdGUgdGhlIHFndiBwb2ludHMgYW5kIHVwZGF0ZSB0byBwY29kZSByaWdodCBh
-ZnRlciB0aGUgSFcNCnJlYWRvdXQ/DQoNClJpZ2h0IG5vdywgb24gYndfaW5pdCB3ZSBmb3JjZSBk
-aXNhYmxlIHNhZ3YsIHNvIHRoYXQgd2UgaGF2ZSBhIGtub3duIHNhZ3Ygc3RhdGUuIFRoZW4gb24N
-CmludGVsX21vZGVzZXRfcmVhZG91dF9od19zdGF0ZSB3ZSB1cGRhdGUgdGhlIGJ3X3N0YXRlIHBh
-cmFtZXRlcnMuIFNBR1YgaXMgc3RpbGwgZGlzYWJsZWQuIFNvIG9uDQpuZXh0IG1vZGVzZXQgaWYg
-dGhlIGJ3X3N0YXRlIHBhcmFtZXRlcnMgYXJlIHNhbWUgYXMgdGhlIG9sZCwgdGhlbiB3ZSB3aWxs
-IG5vdCBiZSBjYWxjdWxhdGluZyB0aGUgUUdWDQpwb2ludHMuIEkgdGhpbmsgc3VjaCBhIHNjZW5h
-cmlvIGhhcHBlbnMgb25seSBvbmNlIGFmdGVyIHRoZSBib290LiBTbyB0aGF0cyB0aGUgcmVhc29u
-IEkgYWRkZWQgdGhpcw0KZmxhZyB0byBmb3JjZSBjYWxjdWxhdGUgUUdWLg0KDQpCUg0KVmlub2QN
-Cg0KPiANCj4gDQo+IEJSDQo+IFZpbm9kDQo+IA0KPiA+IA0KPiA+ID4gDQo+ID4gPiBTaWduZWQt
-b2ZmLWJ5OiBWaW5vZCBHb3ZpbmRhcGlsbGFpIDx2aW5vZC5nb3ZpbmRhcGlsbGFpQGludGVsLmNv
-bT4NCj4gPiA+IC0tLQ0KPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2J3LmMgfCA4ICsrKysrKy0tDQo+ID4gPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfYncuaCB8IDYgKysrKysrDQo+ID4gPiDCoDIgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gPiA+IA0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfYncuYw0KPiA+ID4gaW5kZXggNmZiMjI4YTFhMjhmLi4xYjE5MGJlNzQ1
-YTAgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2J3LmMNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncu
-Yw0KPiA+ID4gQEAgLTc1NSw2ICs3NTUsNyBAQCB2b2lkIGludGVsX2J3X2NydGNfdXBkYXRlKHN0
-cnVjdCBpbnRlbF9id19zdGF0ZSAqYndfc3RhdGUsDQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoGludGVsX2J3X2NydGNfZGF0YV9yYXRlKGNydGNfc3RhdGUpOw0KPiA+ID4g
-wqDCoMKgwqDCoMKgwqDCoGJ3X3N0YXRlLT5udW1fYWN0aXZlX3BsYW5lc1tjcnRjLT5waXBlXSA9
-DQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVsX2J3X2NydGNfbnVt
-X2FjdGl2ZV9wbGFuZXMoY3J0Y19zdGF0ZSk7DQo+ID4gPiArwqDCoMKgwqDCoMKgwqBid19zdGF0
-ZS0+Zm9yY2VfY2hlY2tfcWd2ID0gdHJ1ZTsNCj4gPiA+IMKgDQo+ID4gPiDCoMKgwqDCoMKgwqDC
-oMKgZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgInBpcGUgJWMgZGF0YSByYXRlICV1IG51bSBhY3Rp
-dmUgcGxhbmVzICV1XG4iLA0KPiA+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgcGlwZV9uYW1lKGNydGMtPnBpcGUpLA0KPiA+ID4gQEAgLTEzMzksOCArMTM0MCw5IEBA
-IGludCBpbnRlbF9id19hdG9taWNfY2hlY2soc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3Rh
-dGUpDQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgbmV3X2J3X3N0YXRlID0gaW50ZWxfYXRvbWljX2dl
-dF9uZXdfYndfc3RhdGUoc3RhdGUpOw0KPiA+ID4gwqANCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBp
-ZiAobmV3X2J3X3N0YXRlICYmDQo+ID4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW50ZWxfY2Fu
-X2VuYWJsZV9zYWd2KGk5MTUsIG9sZF9id19zdGF0ZSkgIT0NCj4gPiA+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoCBpbnRlbF9jYW5fZW5hYmxlX3NhZ3YoaTkxNSwgbmV3X2J3X3N0YXRlKSkNCj4gPiA+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoCAoaW50ZWxfY2FuX2VuYWJsZV9zYWd2KGk5MTUsIG9sZF9i
-d19zdGF0ZSkgIT0NCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVsX2Nhbl9lbmFi
-bGVfc2FndihpOTE1LCBuZXdfYndfc3RhdGUpIHx8DQo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBuZXdfYndfc3RhdGUtPmZvcmNlX2NoZWNrX3FndikpDQo+ID4gPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoGNoYW5nZWQgPSB0cnVlOw0KPiA+ID4gwqANCj4gPiA+IMKgwqDC
-oMKgwqDCoMKgwqAvKg0KPiA+ID4gQEAgLTEzNTQsNiArMTM1Niw4IEBAIGludCBpbnRlbF9id19h
-dG9taWNfY2hlY2soc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpDQo+ID4gPiDCoMKg
-wqDCoMKgwqDCoMKgaWYgKHJldCkNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgcmV0dXJuIHJldDsNCj4gPiA+IMKgDQo+ID4gPiArwqDCoMKgwqDCoMKgwqBuZXdfYndfc3Rh
-dGUtPmZvcmNlX2NoZWNrX3FndiA9IGZhbHNlOw0KPiA+ID4gKw0KPiA+ID4gwqDCoMKgwqDCoMKg
-wqDCoHJldHVybiAwOw0KPiA+ID4gwqB9DQo+ID4gPiDCoA0KPiA+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfYncuaA0KPiA+ID4gaW5kZXggZmExZTkyNGVjOTYxLi4xNjE4MTNj
-Y2E0NzMgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2J3LmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-YncuaA0KPiA+ID4gQEAgLTQ3LDYgKzQ3LDEyIEBAIHN0cnVjdCBpbnRlbF9id19zdGF0ZSB7DQo+
-ID4gPiDCoMKgwqDCoMKgwqDCoMKgICovDQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgdTE2IHFndl9w
-b2ludHNfbWFzazsNCj4gPiA+IMKgDQo+ID4gPiArwqDCoMKgwqDCoMKgwqAvKg0KPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgICogRmxhZyB0byBmb3JjZSB0aGUgUUdWIGNvbXBhcmlzb24gaW4gYXRvbWlj
-IGNoZWNrIHJpZ2h0IGFmdGVyIHRoZQ0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgICogaHcgc3RhdGUg
-cmVhZG91dA0KPiA+ID4gK8KgwqDCoMKgwqDCoMKgICovDQo+ID4gPiArwqDCoMKgwqDCoMKgwqBi
-b29sIGZvcmNlX2NoZWNrX3FndjsNCj4gPiA+ICsNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBpbnQg
-bWluX2NkY2xrW0k5MTVfTUFYX1BJUEVTXTsNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqB1bnNpZ25l
-ZCBpbnQgZGF0YV9yYXRlW0k5MTVfTUFYX1BJUEVTXTsNCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqB1
-OCBudW1fYWN0aXZlX3BsYW5lc1tJOTE1X01BWF9QSVBFU107DQo+ID4gPiAtLSANCj4gPiA+IDIu
-MzQuMQ0KPiA+IA0KPiANCg0K
+On Mon, Apr 22, 2024 at 03:46:01PM +0300, Jani Nikula wrote:
+> On Mon, 22 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Use REG_BIT() & co. for the vlv/chv DPIO PHY registers.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> What a PITA patch to review!
+
+Aye. Sorry.
+
+> 
+> A couple of comments inline, overall
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> [snip]
+> 
+> >  #define VLV_PLL_DW5(ch)			_VLV_PLL((ch), 5)
+> > -#define   DPIO_REFSEL_OVERRIDE		27
+> > -#define   DPIO_PLL_MODESEL_SHIFT	24 /* 3 bits */
+> > -#define   DPIO_BIAS_CURRENT_CTL_SHIFT	21 /* 3 bits, always 0x7 */
+> 
+> Here the shift is 21...
+> 
+> > -#define   DPIO_PLL_REFCLK_SEL_SHIFT	16 /* 2 bits */
+> > -#define   DPIO_PLL_REFCLK_SEL_MASK	3
+> > -#define   DPIO_DRIVER_CTL_SHIFT		12 /* always set to 0x8 */
+> > -#define   DPIO_CLK_BIAS_CTL_SHIFT	8 /* always set to 0x5 */
+> > +#define   DPIO_REFSEL_OVERRIDE		REG_BIT(27)
+> > +#define   DPIO_PLL_MODESEL_MASK		REG_GENMASK(26, 24)
+> > +#define   DPIO_BIAS_CURRENT_CTL_MASK	REG_GENMASK(22, 20) /* always 0x7 */
+> 
+> ...and here it's 20. Is this is a fix to match spec or an accident?
+
+20 looks to be the correct number. I guess I fixed it up when I
+originally wrote this patch, which apparently happened a few
+years ago. How time flies.
+
+> 
+> Code offers no help as it's unused afaict.
+> 
+> > +#define   DPIO_PLL_REFCLK_SEL_MASK	REG_GENMASK(17, 16)
+> > +#define   DPIO_DRIVER_CTL_MASK		REG_GENMASK(15, 12) /* always set to 0x8 */
+> > +#define   DPIO_CLK_BIAS_CTL_MASK	REG_GENMASK(11, 8) /* always set to 0x5 */
+> >  
+> >  #define VLV_PLL_DW7(ch)			_VLV_PLL((ch), 7)
+> >  
+> > @@ -253,101 +259,110 @@
+> >  #define VLV_PCS_DW0_GRP(ch)		_VLV_PCS_GRP((ch), 0)
+> >  #define VLV_PCS01_DW0(ch)		_VLV_PCS((ch), 0, 0)
+> >  #define VLV_PCS23_DW0(ch)		_VLV_PCS((ch), 1, 0)
+> > -#define   DPIO_PCS_TX_LANE2_RESET	(1 << 16)
+> > -#define   DPIO_PCS_TX_LANE1_RESET	(1 << 7)
+> > -#define   DPIO_LEFT_TXFIFO_RST_MASTER2	(1 << 4)
+> > -#define   DPIO_RIGHT_TXFIFO_RST_MASTER2	(1 << 3)
+> > +#define   DPIO_PCS_TX_LANE2_RESET	REG_BIT(16)
+> > +#define   DPIO_PCS_TX_LANE1_RESET	REG_BIT(7)
+> > +#define   DPIO_LEFT_TXFIFO_RST_MASTER2	REG_BIT(4)
+> > +#define   DPIO_RIGHT_TXFIFO_RST_MASTER2	REG_BIT(3)
+> >  
+> > -#define VLV_PCS_DW1_GRP(ch)		_VLV_PCS_GRP((ch), 1)
+> > -#define VLV_PCS01_DW1(ch)		_VLV_PCS((ch), 0, 1)
+> > -#define VLV_PCS23_DW1(ch)		_VLV_PCS((ch), 1, 1)
+> > -#define   CHV_PCS_REQ_SOFTRESET_EN	(1 << 23)
+> > -#define   DPIO_PCS_CLK_CRI_RXEB_EIOS_EN	(1 << 22)
+> > -#define   DPIO_PCS_CLK_CRI_RXDIGFILTSG_EN (1 << 21)
+> > -#define   DPIO_PCS_CLK_DATAWIDTH_SHIFT	(6)
+> > -#define   DPIO_PCS_CLK_SOFT_RESET	(1 << 5)
+> > +#define VLV_PCS_DW1_GRP(ch)		 _VLV_PCS_GRP((ch), 1)
+> > +#define VLV_PCS01_DW1(ch) _VLV_PCS((ch), 0, 1)
+> > +#define VLV_PCS23_DW1(ch) _VLV_PCS((ch), 1, 1)
+> > +#define   CHV_PCS_REQ_SOFTRESET_EN		REG_BIT(23)
+> > +#define   DPIO_PCS_CLK_CRI_RXEB_EIOS_EN		REG_BIT(22)
+> > +#define   DPIO_PCS_CLK_CRI_RXDIGFILTSG_EN	REG_BIT(21)
+> > +#define   DPIO_PCS_CLK_DATAWIDTH_MASK		REG_GENMASK(7, 6)
+> > +#define   DPIO_PCS_CLK_DATAWIDTH_8_10		REG_FIELD_PREP(DPIO_PCS_CLK_DATAWIDTH_MASK, 1)
+> > +#define   DPIO_PCS_CLK_DATAWIDTH_16_20		REG_FIELD_PREP(DPIO_PCS_CLK_DATAWIDTH_MASK, 2)
+> > +#define   DPIO_PCS_CLK_DATAWIDTH_32_40		REG_FIELD_PREP(DPIO_PCS_CLK_DATAWIDTH_MASK, 3)
+> > +#define   DPIO_PCS_CLK_SOFT_RESET		REG_BIT(5)
+> >  
+> >  #define VLV_PCS_DW8_GRP(ch)		_VLV_PCS_GRP((ch), 8)
+> >  #define VLV_PCS01_DW8(ch)		_VLV_PCS((ch), 0, 8)
+> >  #define VLV_PCS23_DW8(ch)		_VLV_PCS((ch), 1, 8)
+> > -#define   CHV_PCS_USEDCLKCHANNEL_OVRRIDE	(1 << 20)
+> > -#define   CHV_PCS_USEDCLKCHANNEL		(1 << 21)
+> > +#define   DPIO_PCS_USEDCLKCHANNEL		REG_BIT(21)
+> > +#define   DPIO_PCS_USEDCLKCHANNEL_OVRRIDE	REG_BIT(20)
+> >  
+> > -#define VLV_PCS_DW9_GRP(ch)		_VLV_PCS_GRP((ch), 9)
+> > +#define	VLV_PCS_DW9_GRP(ch)		_VLV_PCS_GRP((ch), 9)
+> 
+> Is the TAB intentional here, and in a number of similar places below?
+
+No. I did spot some stray tabs before sending and thought I cleaned
+then all up, but somehow they keep sneaking past my radar :/
+
+> 
+> BR,
+> Jani.
+> 
+> >  #define VLV_PCS01_DW9(ch)		_VLV_PCS((ch), 0, 9)
+> >  #define VLV_PCS23_DW9(ch)		_VLV_PCS((ch), 1, 9)
+> > -#define   DPIO_PCS_TX2MARGIN_MASK	(0x7 << 13)
+> > -#define   DPIO_PCS_TX2MARGIN_000	(0 << 13)
+> > -#define   DPIO_PCS_TX2MARGIN_101	(1 << 13)
+> > -#define   DPIO_PCS_TX1MARGIN_MASK	(0x7 << 10)
+> > -#define   DPIO_PCS_TX1MARGIN_000	(0 << 10)
+> > -#define   DPIO_PCS_TX1MARGIN_101	(1 << 10)
+> > +#define   DPIO_PCS_TX2MARGIN_MASK	REG_GENMASK(15, 13)
+> > +#define   DPIO_PCS_TX2MARGIN_000	REG_FIELD_PREP(DPIO_PCS_TX2MARGIN_MASK, 0)
+> > +#define   DPIO_PCS_TX2MARGIN_101	REG_FIELD_PREP(DPIO_PCS_TX2MARGIN_MASK, 1)
+> > +#define   DPIO_PCS_TX1MARGIN_MASK	REG_GENMASK(12, 10)
+> > +#define   DPIO_PCS_TX1MARGIN_000	REG_FIELD_PREP(DPIO_PCS_TX1MARGIN_MASK, 0)
+> > +#define   DPIO_PCS_TX1MARGIN_101	REG_FIELD_PREP(DPIO_PCS_TX1MARGIN_MASK, 1)
+> >  
+> > -#define VLV_PCS_DW10_GRP(ch)		_VLV_PCS_GRP((ch), 10)
+> > +#define	VLV_PCS_DW10_GRP(ch)		_VLV_PCS_GRP((ch), 10)
+> >  #define VLV_PCS01_DW10(ch)		_VLV_PCS((ch), 0, 10)
+> >  #define VLV_PCS23_DW10(ch)		_VLV_PCS((ch), 1, 10)
+> > -#define   DPIO_PCS_SWING_CALC_TX0_TX2	(1 << 30)
+> > -#define   DPIO_PCS_SWING_CALC_TX1_TX3	(1 << 31)
+> > -#define   DPIO_PCS_TX2DEEMP_MASK	(0xf << 24)
+> > -#define   DPIO_PCS_TX2DEEMP_9P5		(0 << 24)
+> > -#define   DPIO_PCS_TX2DEEMP_6P0		(2 << 24)
+> > -#define   DPIO_PCS_TX1DEEMP_MASK	(0xf << 16)
+> > -#define   DPIO_PCS_TX1DEEMP_9P5		(0 << 16)
+> > -#define   DPIO_PCS_TX1DEEMP_6P0		(2 << 16)
+> > +#define   DPIO_PCS_SWING_CALC_TX1_TX3	REG_BIT(31)
+> > +#define   DPIO_PCS_SWING_CALC_TX0_TX2	REG_BIT(30)
+> > +#define   DPIO_PCS_TX2DEEMP_MASK	REG_GENMASK(27, 24)
+> > +#define   DPIO_PCS_TX2DEEMP_9P5		REG_FIELD_PREP(DPIO_PCS_TX2DEEMP_MASK, 0)
+> > +#define   DPIO_PCS_TX2DEEMP_6P0		REG_FIELD_PREP(DPIO_PCS_TX2DEEMP_MASK, 2)
+> > +#define   DPIO_PCS_TX1DEEMP_MASK	REG_GENMASK(19, 16)
+> > +#define   DPIO_PCS_TX1DEEMP_9P5		REG_FIELD_PREP(DPIO_PCS_TX1DEEMP_MASK, 0)
+> > +#define   DPIO_PCS_TX1DEEMP_6P0		REG_FIELD_PREP(DPIO_PCS_TX1DEEMP_MASK, 2)
+> >  
+> > -#define VLV_PCS_DW11_GRP(ch)		_VLV_PCS_GRP((ch), 11)
+> > +#define	VLV_PCS_DW11_GRP(ch)		_VLV_PCS_GRP((ch), 11)
+> >  #define VLV_PCS01_DW11(ch)		_VLV_PCS((ch), 0, 11)
+> >  #define VLV_PCS23_DW11(ch)		_VLV_PCS((ch), 1, 11)
+> > -#define   DPIO_TX2_STAGGER_MASK(x)	((x) << 24)
+> > -#define   DPIO_LANEDESKEW_STRAP_OVRD	(1 << 3)
+> > -#define   DPIO_LEFT_TXFIFO_RST_MASTER	(1 << 1)
+> > -#define   DPIO_RIGHT_TXFIFO_RST_MASTER	(1 << 0)
+> > +#define   DPIO_TX2_STAGGER_MASK_MASK	REG_GENMASK(28, 24)
+> > +#define   DPIO_TX2_STAGGER_MASK(x)	REG_FIELD_PREP(DPIO_TX2_STAGGER_MASK_MASK, (x))
+> > +#define   DPIO_LANEDESKEW_STRAP_OVRD	REG_BIT(3)
+> > +#define   DPIO_LEFT_TXFIFO_RST_MASTER	REG_BIT(1)
+> > +#define   DPIO_RIGHT_TXFIFO_RST_MASTER	REG_BIT(0)
+> >  
+> > -#define VLV_PCS_DW12_GRP(ch)		_VLV_PCS_GRP((ch), 12)
+> > +#define	VLV_PCS_DW12_GRP(ch)		_VLV_PCS_GRP((ch), 12)
+> >  #define VLV_PCS01_DW12(ch)		_VLV_PCS((ch), 0, 12)
+> >  #define VLV_PCS23_DW12(ch)		_VLV_PCS((ch), 1, 12)
+> > -#define   DPIO_TX2_STAGGER_MULT(x)	((x) << 20)
+> > -#define   DPIO_TX1_STAGGER_MULT(x)	((x) << 16)
+> > -#define   DPIO_TX1_STAGGER_MASK(x)	((x) << 8)
+> > -#define   DPIO_LANESTAGGER_STRAP_OVRD	(1 << 6)
+> > -#define   DPIO_LANESTAGGER_STRAP(x)	((x) << 0)
+> > +#define   DPIO_TX2_STAGGER_MULT_MASK	REG_GENMASK(22, 20)
+> > +#define   DPIO_TX2_STAGGER_MULT(x)	REG_FIELD_PREP(DPIO_TX2_STAGGER_MULT_MASK, (x))
+> > +#define   DPIO_TX1_STAGGER_MULT_MASK	REG_GENMASK(20, 16)
+> > +#define   DPIO_TX1_STAGGER_MULT(x)	REG_FIELD_PREP(DPIO_TX1_STAGGER_MULT_MASK, (x))
+> > +#define   DPIO_TX1_STAGGER_MASK_MASK	REG_GENMASK(12, 8)
+> > +#define   DPIO_TX1_STAGGER_MASK(x)	REG_FIELD_PREP(DPIO_TX1_STAGGER_MASK_MASK, (x))
+> > +#define   DPIO_LANESTAGGER_STRAP_OVRD	REG_BIT(6)
+> > +#define   DPIO_LANESTAGGER_STRAP_MASK	REG_GENMASK(4, 0)
+> > +#define   DPIO_LANESTAGGER_STRAP(x)	REG_FIELD_PREP(DPIO_LANESTAGGER_STRAP_MASK, (x))
+> >  
+> > -#define VLV_PCS_DW14_GRP(ch)		_VLV_PCS_GRP((ch), 14)
+> > +#define	VLV_PCS_DW14_GRP(ch)		_VLV_PCS_GRP((ch), 14)
+> >  #define VLV_PCS01_DW14(ch)		_VLV_PCS((ch), 0, 14)
+> >  #define VLV_PCS23_DW14(ch)		_VLV_PCS((ch), 1, 14)
+> >  
+> > -#define VLV_PCS_DW17_BCAST		_VLV_PCS_BCAST(17)
+> > -#define VLV_PCS_DW17_GRP(ch)		_VLV_PCS_GRP((ch), 17)
+> > +#define	VLV_PCS_DW17_BCAST		_VLV_PCS_BCAST(17)
+> > +#define	VLV_PCS_DW17_GRP(ch)		_VLV_PCS_GRP((ch), 17)
+> >  #define VLV_PCS01_DW17(ch)		_VLV_PCS((ch), 0, 17)
+> >  #define VLV_PCS23_DW17(ch)		_VLV_PCS((ch), 1, 17)
+> >  
+> > -#define VLV_PCS_DW23_GRP(ch)		_VLV_PCS_GRP((ch), 23)
+> > +#define	VLV_PCS_DW23_GRP(ch)		_VLV_PCS_GRP((ch), 23)
+> >  #define VLV_PCS01_DW23(ch)		_VLV_PCS((ch), 0, 23)
+> >  #define VLV_PCS23_DW23(ch)		_VLV_PCS((ch), 1, 23)
+> >  
+> >  #define VLV_TX_DW2_GRP(ch)		_VLV_TX_GRP((ch), 2)
+> >  #define VLV_TX_DW2(ch, lane)		_VLV_TX((ch), (lane), 2)
+> > -#define   DPIO_SWING_MARGIN000_SHIFT	16
+> > -#define   DPIO_SWING_MARGIN000_MASK	(0xff << DPIO_SWING_MARGIN000_SHIFT)
+> > -#define   DPIO_UNIQ_TRANS_SCALE_SHIFT	8
+> > +#define   DPIO_SWING_MARGIN000_MASK	REG_GENMASK(23, 16)
+> > +#define   DPIO_SWING_MARGIN000(x)	REG_FIELD_PREP(DPIO_SWING_MARGIN000_MASK, (x))
+> > +#define   DPIO_UNIQ_TRANS_SCALE_MASK	REG_GENMASK(15, 8)
+> > +#define   DPIO_UNIQ_TRANS_SCALE(x)	REG_FIELD_PREP(DPIO_UNIQ_TRANS_SCALE_MASK, (x))
+> >  
+> >  #define VLV_TX_DW3_GRP(ch)		_VLV_TX_GRP((ch), 3)
+> >  #define VLV_TX_DW3(ch, lane)		_VLV_TX((ch), (lane), 3)
+> >  /* The following bit for CHV phy */
+> > -#define   DPIO_TX_UNIQ_TRANS_SCALE_EN	(1 << 27)
+> > -#define   DPIO_SWING_MARGIN101_SHIFT	16
+> > -#define   DPIO_SWING_MARGIN101_MASK	(0xff << DPIO_SWING_MARGIN101_SHIFT)
+> > +#define   DPIO_TX_UNIQ_TRANS_SCALE_EN	REG_BIT(27)
+> > +#define   DPIO_SWING_MARGIN101_MASK	REG_GENMASK(23, 16)
+> > +#define   DPIO_SWING_MARGIN101(x)	REG_FIELD_PREP(DPIO_SWING_MARGIN101_MASK, (x))
+> >  
+> >  #define VLV_TX_DW4_GRP(ch)		_VLV_TX_GRP((ch), 4)
+> >  #define VLV_TX_DW4(ch, lane)		_VLV_TX((ch), (lane), 4)
+> > -#define   DPIO_SWING_DEEMPH9P5_SHIFT	24
+> > -#define   DPIO_SWING_DEEMPH9P5_MASK	(0xff << DPIO_SWING_DEEMPH9P5_SHIFT)
+> > -#define   DPIO_SWING_DEEMPH6P0_SHIFT	16
+> > -#define   DPIO_SWING_DEEMPH6P0_MASK	(0xff << DPIO_SWING_DEEMPH6P0_SHIFT)
+> > +#define   DPIO_SWING_DEEMPH9P5_MASK	REG_GENMASK(31, 24)
+> > +#define   DPIO_SWING_DEEMPH9P5(x)	REG_FIELD_PREP(DPIO_SWING_DEEMPH9P5_MASK, (x))
+> > +#define   DPIO_SWING_DEEMPH6P0_MASK	REG_GENMASK(23, 16)
+> > +#define   DPIO_SWING_DEEMPH6P0_SHIFT	REG_FIELD_PREP(DPIO_SWING_DEEMPH6P0_MASK, (x))
+> >  
+> >  #define VLV_TX_DW5_GRP(ch)		_VLV_TX_GRP((ch), 5)
+> >  #define VLV_TX_DW5(ch, lane)		_VLV_TX((ch), (lane), 5)
+> > -#define   DPIO_TX_OCALINIT_EN		(1 << 31)
+> > +#define   DPIO_TX_OCALINIT_EN		REG_BIT(31)
+> >  
+> >  #define VLV_TX_DW11_GRP(ch)		_VLV_TX_GRP((ch), 11)
+> >  #define VLV_TX_DW11(ch, lane)		_VLV_TX((ch), (lane), 11)
+> > @@ -357,93 +372,107 @@
+> >  
+> >  /* CHV dpPhy registers */
+> >  #define CHV_PLL_DW0(ch)			_CHV_PLL((ch), 0)
+> > +#define   DPIO_CHV_M2_DIV_MASK		REG_GENMASK(7, 0)
+> > +#define   DPIO_CHV_M2_DIV(m2)		REG_FIELD_PREP(DPIO_CHV_M2_DIV_MASK, (m2))
+> >  
+> >  #define CHV_PLL_DW1(ch)			_CHV_PLL((ch), 1)
+> > -#define   DPIO_CHV_N_DIV_SHIFT		8
+> > -#define   DPIO_CHV_M1_DIV_BY_2		(0 << 0)
+> > +#define   DPIO_CHV_N_DIV_MASK		REG_GENMASK(11, 8)
+> > +#define   DPIO_CHV_N_DIV(n)		REG_FIELD_PREP(DPIO_CHV_N_DIV_MASK, (n))
+> > +#define   DPIO_CHV_M1_DIV_MASK		REG_GENMASK(2, 0)
+> > +#define   DPIO_CHV_M1_DIV(m1)		REG_FIELD_PREP(DPIO_CHV_M1_DIV_MASK, (m1))
+> > +#define   DPIO_CHV_M1_DIV_BY_2		0
+> >  
+> >  #define CHV_PLL_DW2(ch)			_CHV_PLL((ch), 2)
+> > +#define   DPIO_CHV_M2_FRAC_DIV_MASK	REG_GENMASK(21, 0)
+> > +#define   DPIO_CHV_M2_FRAC_DIV(m2_frac)	REG_FIELD_PREP(DPIO_CHV_M2_FRAC_DIV_MASK, (m2_frac))
+> >  
+> >  #define CHV_PLL_DW3(ch)			_CHV_PLL((ch), 3)
+> > -#define  DPIO_CHV_FRAC_DIV_EN		(1 << 16)
+> > -#define  DPIO_CHV_FIRST_MOD		(0 << 8)
+> > -#define  DPIO_CHV_SECOND_MOD		(1 << 8)
+> > -#define  DPIO_CHV_FEEDFWD_GAIN_SHIFT	0
+> > -#define  DPIO_CHV_FEEDFWD_GAIN_MASK		(0xF << 0)
+> > +#define   DPIO_CHV_FRAC_DIV_EN		REG_BIT(16)
+> > +#define   DPIO_CHV_SECOND_MOD		REG_BIT(8)
+> > +#define   DPIO_CHV_FEEDFWD_GAIN_MASK	REG_GENMASK(3, 0)
+> > +#define   DPIO_CHV_FEEDFWD_GAIN(x)	REG_FIELD_PREP(DPIO_CHV_FEEDFWD_GAIN_MASK, (x))
+> >  
+> >  #define CHV_PLL_DW6(ch)			_CHV_PLL((ch), 6)
+> > -#define   DPIO_CHV_GAIN_CTRL_SHIFT	16
+> > -#define	  DPIO_CHV_INT_COEFF_SHIFT	8
+> > -#define   DPIO_CHV_PROP_COEFF_SHIFT	0
+> > +#define   DPIO_CHV_GAIN_CTRL_MASK	REG_GENMASK(18, 16)
+> > +#define   DPIO_CHV_GAIN_CTRL(x)		REG_FIELD_PREP(DPIO_CHV_GAIN_CTRL_MASK, (x))
+> > +#define   DPIO_CHV_INT_COEFF_MASK	REG_GENMASK(12, 8)
+> > +#define   DPIO_CHV_INT_COEFF(x)		REG_FIELD_PREP(DPIO_CHV_INT_COEFF_MASK, (x))
+> > +#define   DPIO_CHV_PROP_COEFF_MASK	REG_GENMASK(3, 0)
+> > +#define   DPIO_CHV_PROP_COEFF(x)	REG_FIELD_PREP(DPIO_CHV_PROP_COEFF_MASK, (x))
+> >  
+> >  #define CHV_PLL_DW8(ch)			_CHV_PLL((ch), 8)
+> > -#define   DPIO_CHV_TDC_TARGET_CNT_SHIFT 0
+> > -#define   DPIO_CHV_TDC_TARGET_CNT_MASK  (0x3FF << 0)
+> > +#define   DPIO_CHV_TDC_TARGET_CNT_MASK	REG_GENMASK(9, 0)
+> > +#define   DPIO_CHV_TDC_TARGET_CNT(x)	REG_FIELD_PREP(DPIO_CHV_TDC_TARGET_CNT_MASK, (x))
+> >  
+> >  #define CHV_PLL_DW9(ch)			_CHV_PLL((ch), 9)
+> > -#define  DPIO_CHV_INT_LOCK_THRESHOLD_SHIFT		1 /* 3 bits */
+> > -#define  DPIO_CHV_INT_LOCK_THRESHOLD_MASK		(7 << 1)
+> > -#define  DPIO_CHV_INT_LOCK_THRESHOLD_SEL_COARSE	1 /* 1: coarse & 0 : fine  */
+> > +#define   DPIO_CHV_INT_LOCK_THRESHOLD_MASK		REG_GENMASK(3, 1)
+> > +#define   DPIO_CHV_INT_LOCK_THRESHOLD(x)		REG_FIELD_PREP(DPIO_CHV_INT_LOCK_THRESHOLD_MASK, (x))
+> > +#define   DPIO_CHV_INT_LOCK_THRESHOLD_SEL_COARSE	REG_BIT(0) /* 1: coarse & 0 : fine  */
+> >  
+> >  #define CHV_CMN_DW0_CH0			_CHV_CMN(0, 0)
+> > -#define   DPIO_ALLDL_POWERDOWN_SHIFT_CH0	19
+> > -#define   DPIO_ANYDL_POWERDOWN_SHIFT_CH0	18
+> > -#define   DPIO_ALLDL_POWERDOWN			(1 << 1)
+> > -#define   DPIO_ANYDL_POWERDOWN			(1 << 0)
+> > +#define   DPIO_ALLDL_POWERDOWN_CH0	REG_BIT(19)
+> > +#define   DPIO_ANYDL_POWERDOWN_CH0	REG_BIT(18)
+> > +#define   DPIO_ALLDL_POWERDOWN		BIT(1)
+> > +#define   DPIO_ANYDL_POWERDOWN		BIT(0)
+> >  
+> >  #define CHV_CMN_DW5_CH0			_CHV_CMN(0, 5)
+> > -#define   CHV_BUFRIGHTENA1_DISABLE	(0 << 20)
+> > -#define   CHV_BUFRIGHTENA1_NORMAL	(1 << 20)
+> > -#define   CHV_BUFRIGHTENA1_FORCE	(3 << 20)
+> > -#define   CHV_BUFRIGHTENA1_MASK		(3 << 20)
+> > -#define   CHV_BUFLEFTENA1_DISABLE	(0 << 22)
+> > -#define   CHV_BUFLEFTENA1_NORMAL	(1 << 22)
+> > -#define   CHV_BUFLEFTENA1_FORCE		(3 << 22)
+> > -#define   CHV_BUFLEFTENA1_MASK		(3 << 22)
+> > +#define   CHV_BUFRIGHTENA1_MASK		REG_GENMASK(21, 20)
+> > +#define   CHV_BUFRIGHTENA1_DISABLE	REG_FIELD_PREP(CHV_BUFRIGHTENA1_MASK, 0)
+> > +#define   CHV_BUFRIGHTENA1_NORMAL	REG_FIELD_PREP(CHV_BUFRIGHTENA1_MASK, 1)
+> > +#define   CHV_BUFRIGHTENA1_FORCE	REG_FIELD_PREP(CHV_BUFRIGHTENA1_MASK, 3)
+> > +#define   CHV_BUFLEFTENA1_MASK		REG_GENMASK(23, 22)
+> > +#define   CHV_BUFLEFTENA1_DISABLE	REG_FIELD_PREP(CHV_BUFLEFTENA1_MASK, 0)
+> > +#define   CHV_BUFLEFTENA1_NORMAL	REG_FIELD_PREP(CHV_BUFLEFTENA1_MASK, 1)
+> > +#define   CHV_BUFLEFTENA1_FORCE		REG_FIELD_PREP(CHV_BUFLEFTENA1_MASK, 3)
+> >  
+> >  #define CHV_CMN_DW13_CH0		_CHV_CMN(0, 13)
+> >  #define CHV_CMN_DW0_CH1			_CHV_CMN(1, 0)
+> > -#define   DPIO_CHV_S1_DIV_SHIFT		21
+> > -#define   DPIO_CHV_P1_DIV_SHIFT		13 /* 3 bits */
+> > -#define   DPIO_CHV_P2_DIV_SHIFT		8  /* 5 bits */
+> > -#define   DPIO_CHV_K_DIV_SHIFT		4
+> > -#define   DPIO_PLL_FREQLOCK		(1 << 1)
+> > -#define   DPIO_PLL_LOCK			(1 << 0)
+> > +#define   DPIO_CHV_S1_DIV_MASK		REG_GENMASK(23, 21)
+> > +#define   DPIO_CHV_S1_DIV(s1)		REG_FIELD_PREP(DPIO_CHV_S1_DIV_MASK, (s1))
+> > +#define   DPIO_CHV_P1_DIV_MASK		REG_GENMASK(15, 13)
+> > +#define   DPIO_CHV_P1_DIV(p1)		REG_FIELD_PREP(DPIO_CHV_P1_DIV_MASK, (p1))
+> > +#define   DPIO_CHV_P2_DIV_MASK		REG_GENMASK(12, 8)
+> > +#define   DPIO_CHV_P2_DIV(p2)		REG_FIELD_PREP(DPIO_CHV_P2_DIV_MASK, (p2))
+> > +#define   DPIO_CHV_K_DIV_MASK		REG_GENMASK(7, 4)
+> > +#define   DPIO_CHV_K_DIV(k)		REG_FIELD_PREP(DPIO_CHV_K_DIV_MASK, (k))
+> > +#define   DPIO_PLL_FREQLOCK		REG_BIT(1)
+> > +#define   DPIO_PLL_LOCK			REG_BIT(0)
+> >  #define CHV_CMN_DW13(ch)		_PIPE(ch, CHV_CMN_DW13_CH0, CHV_CMN_DW0_CH1)
+> >  
+> >  #define CHV_CMN_DW14_CH0		_CHV_CMN(0, 14)
+> >  #define CHV_CMN_DW1_CH1			_CHV_CMN(1, 1)
+> > -#define   DPIO_AFC_RECAL		(1 << 14)
+> > -#define   DPIO_DCLKP_EN			(1 << 13)
+> > -#define   CHV_BUFLEFTENA2_DISABLE	(0 << 17) /* CL2 DW1 only */
+> > -#define   CHV_BUFLEFTENA2_NORMAL	(1 << 17) /* CL2 DW1 only */
+> > -#define   CHV_BUFLEFTENA2_FORCE		(3 << 17) /* CL2 DW1 only */
+> > -#define   CHV_BUFLEFTENA2_MASK		(3 << 17) /* CL2 DW1 only */
+> > -#define   CHV_BUFRIGHTENA2_DISABLE	(0 << 19) /* CL2 DW1 only */
+> > -#define   CHV_BUFRIGHTENA2_NORMAL	(1 << 19) /* CL2 DW1 only */
+> > -#define   CHV_BUFRIGHTENA2_FORCE	(3 << 19) /* CL2 DW1 only */
+> > -#define   CHV_BUFRIGHTENA2_MASK		(3 << 19) /* CL2 DW1 only */
+> > +#define   DPIO_AFC_RECAL		REG_BIT(14)
+> > +#define   DPIO_DCLKP_EN			REG_BIT(13)
+> > +#define   CHV_BUFLEFTENA2_MASK		REG_GENMASK(18, 17) /* CL2 DW1 only */
+> > +#define   CHV_BUFLEFTENA2_DISABLE	REG_FIELD_PREP(CHV_BUFLEFTENA2_MASK, 0)
+> > +#define   CHV_BUFLEFTENA2_NORMAL	REG_FIELD_PREP(CHV_BUFLEFTENA2_MASK, 1)
+> > +#define   CHV_BUFLEFTENA2_FORCE		REG_FIELD_PREP(CHV_BUFLEFTENA2_MASK, 3)
+> > +#define   CHV_BUFRIGHTENA2_MASK		REG_GENMASK(20, 19) /* CL2 DW1 only */
+> > +#define   CHV_BUFRIGHTENA2_DISABLE	REG_FIELD_PREP(CHV_BUFRIGHTENA2_MASK, 0)
+> > +#define   CHV_BUFRIGHTENA2_NORMAL	REG_FIELD_PREP(CHV_BUFRIGHTENA2_MASK, 1)
+> > +#define   CHV_BUFRIGHTENA2_FORCE	REG_FIELD_PREP(CHV_BUFRIGHTENA2_MASK, 3)
+> >  #define CHV_CMN_DW14(ch)		_PIPE(ch, CHV_CMN_DW14_CH0, CHV_CMN_DW1_CH1)
+> >  
+> >  #define CHV_CMN_DW19_CH0		_CHV_CMN(0, 19)
+> >  #define CHV_CMN_DW6_CH1			_CHV_CMN(1, 6)
+> > -#define   DPIO_ALLDL_POWERDOWN_SHIFT_CH1	30 /* CL2 DW6 only */
+> > -#define   DPIO_ANYDL_POWERDOWN_SHIFT_CH1	29 /* CL2 DW6 only */
+> > -#define   DPIO_DYNPWRDOWNEN_CH1		(1 << 28) /* CL2 DW6 only */
+> > -#define   CHV_CMN_USEDCLKCHANNEL	(1 << 13)
+> > +#define   DPIO_ALLDL_POWERDOWN_CH1	REG_BIT(30) /* CL2 DW6 only */
+> > +#define   DPIO_ANYDL_POWERDOWN_CH1	REG_BIT(29) /* CL2 DW6 only */
+> > +#define   DPIO_DYNPWRDOWNEN_CH1		REG_BIT(28) /* CL2 DW6 only */
+> > +#define   CHV_CMN_USEDCLKCHANNEL	REG_BIT(13)
+> >  #define CHV_CMN_DW19(ch)		_PIPE(ch, CHV_CMN_DW19_CH0, CHV_CMN_DW6_CH1)
+> >  
+> >  #define CHV_CMN_DW28			_CHV_CMN(0, 28)
+> > -#define   DPIO_CL1POWERDOWNEN		(1 << 23)
+> > -#define   DPIO_DYNPWRDOWNEN_CH0		(1 << 22)
+> > -#define   DPIO_SUS_CLK_CONFIG_ON		(0 << 0)
+> > -#define   DPIO_SUS_CLK_CONFIG_CLKREQ		(1 << 0)
+> > -#define   DPIO_SUS_CLK_CONFIG_GATE		(2 << 0)
+> > -#define   DPIO_SUS_CLK_CONFIG_GATE_CLKREQ	(3 << 0)
+> > +#define   DPIO_CL1POWERDOWNEN			REG_BIT(23)
+> > +#define   DPIO_DYNPWRDOWNEN_CH0			REG_BIT(22)
+> > +#define   DPIO_SUS_CLK_CONFIG_MASK		REG_GENMASK(1, 0)
+> > +#define   DPIO_SUS_CLK_CONFIG_ON		REG_FIELD_PREP(DPIO_SUS_CLK_CONFIG_MASK, 0)
+> > +#define   DPIO_SUS_CLK_CONFIG_CLKREQ		REG_FIELD_PREP(DPIO_SUS_CLK_CONFIG_MASK, 1)
+> > +#define   DPIO_SUS_CLK_CONFIG_GATE		REG_FIELD_PREP(DPIO_SUS_CLK_CONFIG_MASK, 2)
+> > +#define   DPIO_SUS_CLK_CONFIG_GATE_CLKREQ	REG_FIELD_PREP(DPIO_SUS_CLK_CONFIG_MASK, 3)
+> >  
+> >  #define CHV_CMN_DW30			_CHV_CMN(0, 30)
+> > -#define   DPIO_CL2_LDOFUSE_PWRENB	(1 << 6)
+> > -#define   DPIO_LRC_BYPASS		(1 << 3)
+> > +#define   DPIO_CL2_LDOFUSE_PWRENB	REG_BIT(6)
+> > +#define   DPIO_LRC_BYPASS		REG_BIT(3)
+> >  
+> >  #define CHV_TX_DW0(ch, lane)		_VLV_TX((ch), (lane), 0)
+> >  #define CHV_TX_DW1(ch, lane)		_VLV_TX((ch), (lane), 1)
+> > @@ -458,10 +487,11 @@
+> >  #define CHV_TX_DW10(ch, lane)		_VLV_TX((ch), (lane), 10)
+> >  
+> >  #define CHV_TX_DW11(ch, lane)		_VLV_TX((ch), (lane), 11)
+> > -#define   DPIO_FRC_LATENCY_SHFIT	8
+> > +#define   DPIO_FRC_LATENCY_MASK		REG_GENMASK(10, 8)
+> > +#define   DPIO_FRC_LATENCY(x)		REG_FIELD_PREP(DPIO_FRC_LATENCY_MASK, (x))
+> >  
+> >  #define CHV_TX_DW14(ch, lane)		_VLV_TX((ch), (lane), 14)
+> > -#define   DPIO_UPAR_SHIFT		30
+> > +#define   DPIO_UPAR			REG_BIT(30)
+> >  
+> >  #define BXT_P_CR_GT_DISP_PWRON		_MMIO(0x138090)
+> >  #define  MIPIO_RST_CTRL				(1 << 2)
+> 
+> -- 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
