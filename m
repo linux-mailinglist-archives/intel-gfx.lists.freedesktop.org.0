@@ -2,68 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A385F8AF5D7
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 19:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2884B8AF5D8
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 19:51:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A081113540;
-	Tue, 23 Apr 2024 17:51:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFBD113541;
+	Tue, 23 Apr 2024 17:51:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BiLWucRH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QRB4+XkW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE42113540;
- Tue, 23 Apr 2024 17:51:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0753C113541;
+ Tue, 23 Apr 2024 17:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713894689; x=1745430689;
+ t=1713894703; x=1745430703;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=NRUE1kgmtOJnhqYFFL/bG9OV8vOu5aM4GNSCIOOna8E=;
- b=BiLWucRHtnOvoAB54rtBES5poPQX1ZFqr6t8GlawIhIGdb/DVHdzTwN6
- VuZ1nbLvAM4YN0v1+Ob4B1Vn5W/9E26qZEQbLxsxh1QDP7/ePlnJmBIWX
- IlQEURqNAZMSy9U02WO3sjVds+3dXVBoPJCeYcOs2f01HbL7xPkqVbjHk
- A03tNFG0kl73559bFLuQanAyuuKLhKGU4t+W1Nqri7cBChW2xTFk5Kg0n
- K393X4IdzBrzlETlAoOa7NRAHfuZ7N0Xtd/0FZ/X+QhQY6HvzO42pAy3a
- fGP4akj7HkTZDhLn+HsI1JEj4kqLlSChE6wrPEcrl3C6Ryk3jJ6Tl8SoE Q==;
-X-CSE-ConnectionGUID: +rsBfiNxQdyms8gX+D8Xqw==
-X-CSE-MsgGUID: d4A/itBgT1uL3ERZ3KAdPQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="20191307"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="20191307"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 10:51:27 -0700
-X-CSE-ConnectionGUID: EjK3LYjER4W2mFNV//qkwg==
-X-CSE-MsgGUID: 4ZX07d4jS9eelRTelWyTAQ==
+ bh=CDF3zuYG0PMkmsFi8PvGSSYmNfv67SimhMCAZ8fkXZU=;
+ b=QRB4+XkWSlJAS08CplT5OaP41oFxFg9qrnGDfVR+SIlJGR6zhpYPThH/
+ XtHzpSmoY1SHvjszb8i1wkKEbrHs4kWTsQg9zSQgtiz+CHqCwDbBQdrf8
+ c6bqJzLZUH1xQHu4PufxiBXvB4jDeD+cWAlt5imhAQVbJx6nR0ZkeE2bB
+ p4mjfv5Xe9qJomsOk4xckc0O5Dqrx8yX2RiDfC2DNm8uB7wPP9LhMLA4v
+ aiKnaqEihBDoP0MgNIMowHvmAN7ExU29rAbrQslD6IAkRi14c1Yz8A/VX
+ bJCLhCCE+VqFzWvDnVJCRSxxBvh6xL00Nkv0F4LiMKpcuh4RrWXG+LSpS A==;
+X-CSE-ConnectionGUID: r5GhrxHdSXuGp0adrVPeow==
+X-CSE-MsgGUID: FbqzagXIRPGtUEWgOXWdlg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="9325604"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; 
+   d="scan'208";a="9325604"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2024 10:51:43 -0700
+X-CSE-ConnectionGUID: SnoQ6IYGS6am2RedEewrJg==
+X-CSE-MsgGUID: fEXCLk1ZT8aOaQEgKNSefw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24325041"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Apr 2024 10:51:27 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="25070148"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Apr 2024 10:51:43 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Apr 2024 10:51:26 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Apr 2024 10:51:26 -0700
+ 15.1.2507.35; Tue, 23 Apr 2024 10:51:42 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 23 Apr 2024 10:51:26 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 23 Apr 2024 10:51:42 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 23 Apr 2024 10:51:26 -0700
+ 15.1.2507.35; Tue, 23 Apr 2024 10:51:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eh6AcaVhxVXfxAhUq6xBUVL9lUUU7IC8pVr00j0jMgmvlw1xo3fEeoc1TBY4l/BE0on0u8vGOqycjZ230ts2QLNvAyeOEV/Km0h12IjQYbBZZsM/IBeAfL2LEUIa8vVdgHuyBLaH3dUi4MVInRP38xS+CKX4jJCwM+Xm00XD4s/wjfM2BKsGW8pTt8ElyDBRGs4vPHSH/1eHgVrv7IfwVCQzrsT63egegUrT+SWUmuZQIaJccr1XPnEPOl2hpL9O26elVrhIRP313c+mO0luH6BIBH9kv4/Fo6uyZzf9nAaiTsR6CtpTfNBV5mp6oONsDammfdo14WHX+q3tYAdriA==
+ b=M2vG6V5w0XmRN9RFXGpejCAXlWazSjdES7vI5WcG6baOupKcHA4SbvkAbZBt4MwQiwxXMAePDITKlFplvy/xlhHa2p6lL1FUJhtbk0l7Uym5qVlGhtH9hT5kpXp1f3Oq017pjOrvYqi15/YHOmGAdI1iV8qmc1JIAwjVNj9RN9T9yDN/vbwVxKSz6Y3jgRjbrOZaV8ELJVm7wA80D3CQ58A3fVZzRs/7IiMubFtZhpXDS9UjUrMYf4W4kqMkblBxyAxGtIIGwkdag9WXCi051yqAgOj9v6ohoqhksAjrixeLIbvDjEEKrzhFochg9q+dB2wK5LEbgxBSJH1lJ9xvVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=76uV+HJN6VcNk9R3N9zFeVohNc5+kFU0e6iVStVGMW8=;
- b=oLID3Ll+AJmvewo9TD9nOcQ0addEoxU8p+fikY22b9KezE064sganr/PpQqlw68mmv8isBuDVf+GYkYP9XWXkUTrvTwOp6PpDg3s0gspKYNwahJh3eO+ynBP7df1wQ/2HlZMeUP2SUQ+dFGR7mi06HYazvVCccGm+ifWqmBDqXuo2DVe2eJrcysme8azrLthtudqR5Y/YhBe+KGSIe8pdOS1+hlyHXcbpWjv+UrwxCBUVqrAJlxFVWgUPpot9HolY8kB8YjPtiXJropx4+5PSGGU7BJA0zydX/EMdYsAwzvbdYdg2EeGWl0bKkUoBIohS8jOYk0hKBmZFfcDxfNQZg==
+ bh=5iGSFHXx/2Fn7U2SxymfPT30VBzFUQiQKWbOUcoUnjg=;
+ b=OpBpcOc4KaPE/5voBMll6zGFKXV3h25viYGrEcehqei89DfEdXov8BdCGRMonk2wU7YtICoPOoh7xT+BJoIUYoP34wNeVZGLpGy0qjcLsuqf5sE7G4gEvw1lYV6hJoN5p60Z+KpZb2P4BxSnkpRNIW6ml233qdcQinrBFKJg1wWWYImZko9A5o+J9A2Zw5tH/fxFbWFDjDwQdR51pZV/UnWecm3Nj/0gHtZxNOAEnykuyxAklfv7dhIeReSvlz4xgL+FmGX1nhKQbkGhriMNvLYMrXj0MgW6v7JFAsXlsaw+zlFPY961KcnFG24cfpDHYiIL58phBvyYLOfFjMxI2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,96 +70,96 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by PH8PR11MB6925.namprd11.prod.outlook.com (2603:10b6:510:227::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7430.46; Tue, 23 Apr
- 2024 17:51:23 +0000
+ 2024 17:51:37 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7519.018; Tue, 23 Apr 2024
- 17:51:23 +0000
-Date: Tue, 23 Apr 2024 13:51:19 -0400
+ 17:51:37 +0000
+Date: Tue, 23 Apr 2024 13:51:34 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/i915: pass dev_priv to _MMIO_PIPE2,
- _MMIO_TRANS2, _MMIO_CURSOR2
-Message-ID: <Zif1F10Y6OOKiyBS@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915: convert _MMIO_PIPE3()/_MMIO_PORT3() to
+ accept base
+Message-ID: <Zif1JrYnR25ViOgF@intel.com>
 References: <cover.1713890614.git.jani.nikula@intel.com>
- <3a865664898586ff6cb8e74eab3d1f36eafc0557.1713890614.git.jani.nikula@intel.com>
+ <4b95f125f5021abc00b5fc661b2728f1b583c01e.1713890614.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <3a865664898586ff6cb8e74eab3d1f36eafc0557.1713890614.git.jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0141.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::26) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <4b95f125f5021abc00b5fc661b2728f1b583c01e.1713890614.git.jani.nikula@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0300.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::35) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH8PR11MB6925:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4cebacfa-7005-4da0-b870-08dc63bdfd52
+X-MS-Office365-Filtering-Correlation-Id: 6b6b61ac-cbf4-42f3-0f9c-08dc63be060d
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8ZwjkFDHkZxDuR2yD2BB0OR7/tltexYdhSMi0HZSVEChnOzj+c6Pt1RJldze?=
- =?us-ascii?Q?m3kIm/aIaXHhhcYjGEJqr0PpD361wbCvhHgRch3TmvalQrr/Anu/2aUKMgi3?=
- =?us-ascii?Q?74dIFqElaNYdTPX1jKCc7bkzJ6T19p3z8foGLvZG6gPW8+sBUC1Ffaku/rMg?=
- =?us-ascii?Q?IG4/+KU7S7NUsRdNS2nT37tFFOhlFYQKhIzgFdH0tiDJCefV13bP9WQHRza/?=
- =?us-ascii?Q?oT+HX1o3GLVMaS8rJuFyoYGKIsfjsfquj6SaRSht0HGeZdewq0m+ch5Db9aY?=
- =?us-ascii?Q?4AiZ5YhRzrHZhz/RaJAkT8d7aVhiA6Rpo0XQW9jZKX3CbA7R5G3iezmxMnqS?=
- =?us-ascii?Q?4RY/C529fBmAvLla5fQBQZeCfoFIERkTpIu75flUc/hhHE0Apo6lwXrqVNVC?=
- =?us-ascii?Q?E7ozo2KzE4GUozd+TZuIWKIwoBcYzh1jwkMHITt02ZZqXH0tciis65V3B0dt?=
- =?us-ascii?Q?6+VyZs1VN2Di927XaQaWEwYjdrNRcd4rvOA5yaEC9CiAG8wwWFz47ALO4ck6?=
- =?us-ascii?Q?F19WohW5ABuB9uYO6WLkrmzMM3u9ft1XXvX7qlmUVKgFXF5IMOG0DZ0mt5wY?=
- =?us-ascii?Q?MSIGT1VRjcFamULhCdfu8+kPq1zB0zT7uAl4lJU8ehcynQPTXHd40ewD5rW6?=
- =?us-ascii?Q?aJmQc8LquUZq+sAgRwcuAbi+fAxuf0bP2zaAgkfht2WEJ68PA2YptPN2Eu8d?=
- =?us-ascii?Q?7YGl5BT9/BTqhg05bkz5jvetxlo3sokt3C8/9nZMW66TYw2jTplalzzc5iMW?=
- =?us-ascii?Q?hqnDCkdREj70suGsdu4Zmc+kedVBI6O5Lfx3TlmzO2vRB6WrHUfe6YopPef9?=
- =?us-ascii?Q?OozwufNofZJ/ULX46xMsiqckaeQ3s1zzx98StTy/6J15A3VE26soRYi/Q3Lu?=
- =?us-ascii?Q?WQJ7TJhm/u9DdGteB1nXALRhyaimoYalZ1idB1dcYYiEWNLHUwc3ZTB8oc89?=
- =?us-ascii?Q?06iHjcD0uXmfIN6rlj0CMlZbmZrpSSx5kEBO4+wGaZv2B6Aq4KXQ46IvCD/6?=
- =?us-ascii?Q?SxU0pnXiwSKsr3s8Go3frfjdHA3Z8bfFvhmAX+WwvCN9boRK/ECd65MiBLAz?=
- =?us-ascii?Q?CHG3Zc2a3IYiNSV6TVdWXILQb7TH36ca3ySaBFO2RHLoi16Cgh7wtUOOkHTv?=
- =?us-ascii?Q?uyl2w5UAWr9wN4jIFDFXzWDSLis4Isb61I7sR71UJ2zzWO7r8jjZgZXseSUs?=
- =?us-ascii?Q?6YJkoHUAwlSkTo/tMAdI1F/v1bOlGKCzK5hgLRxODNMO9LsBDzcs1spxk6+a?=
- =?us-ascii?Q?D9uGvMz6JdDFyZXUe7UIfqDHwZM+pXa7S4u5o1ft9g=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?dTq9AFZjG98f12GT+6YvQw8HOk/SPkM8ePn1s81d1JQOU0QYpD9aTNIkliAk?=
+ =?us-ascii?Q?F6YFyH7XsOAHPvj3qBGKDus3kv3uFydjrzGbNW/mQeF5zuVMJYQW/iBoAzLi?=
+ =?us-ascii?Q?T70hmUfKmbcOg83E1tNce8OeVfiVzAFQsIVFR+qrYbT+SlX0clpGAChAqoWw?=
+ =?us-ascii?Q?kCHh+VZRaL+6Jtz6f0FbC2Whvs9+DqqzADcKDQ6VVtxplvlHps6sk2oeRS/b?=
+ =?us-ascii?Q?mcjWvX5+gEXrk1AEpnkaRcmXPqwbORnKCVqzSDgW0aAzdFtpeT1jl9hqtJG8?=
+ =?us-ascii?Q?LaeNoSfd9qeiHWR28dJbtcl6hbloNZIjLfHomWcuNs/IbsFSfZMFI/QBH3Dc?=
+ =?us-ascii?Q?idBJy6p1HREWrcPSsy3t98W/x7GlSfJdlu6mugjk+INIEjdwNGOQRN6DGd10?=
+ =?us-ascii?Q?iLRpRdyY7o1HLZWYau0iV9z6D2q4+XBv3+T/sf5aMh4/G7ak16T4FyxLEbS+?=
+ =?us-ascii?Q?wYt1PexT4/yXEseRCW81qFz+ZeU15wWmtbx+jk47daOtncJQL71wJziapc52?=
+ =?us-ascii?Q?FHwRlXP1jLoIajlKurhiQRBsTrAfzIe95e3GeRMcGplZRB7Q60sTiC9O2wpT?=
+ =?us-ascii?Q?IovTIuNzbBaP2jrQkOF7vHLuRD2OL48zAB4GAb5IbCK375/WhuruLVKasjzu?=
+ =?us-ascii?Q?ACyyD15v1TzqsBTYzQLX4O5cTysaw5eCJh6lgYVvDSpXcAtz47ctFqf6zxVH?=
+ =?us-ascii?Q?xzrjq6ZLC0Cc+RElPDvgFuSiHiPl+YX+tINkaZYV5qvfvgefdXbZ3b7+OvUV?=
+ =?us-ascii?Q?9bLXCwrUywOP8u33vqcqd3WK8+Wu7jDIhMVuLPv8t6g9bv8mn1rawpjq1jOc?=
+ =?us-ascii?Q?ZlRHGVpjq/7r+v8uOo9pIfPXz6DQ0hDsnKErFI7bUIg1yM0nDtQcJTLuYx3a?=
+ =?us-ascii?Q?AI3gGoDsGiPPp7bEOdIfWDDGX/GQSaK7A7Xv+XOZ1bJtdXZ7JHbL4zik1rhd?=
+ =?us-ascii?Q?OPd7+NHWbGM54ek6yLgf9NQKaKCgSte9ixA/QdMXJSeb69nN/qXLQjhJbkD7?=
+ =?us-ascii?Q?GAx7mn+z7VtEVeQvmkLII4M2ygJ56CowSLVbntV5M8z64DlYv6B+ZTz8q5OF?=
+ =?us-ascii?Q?Ksp7uyDs4PnkXLRC7iLNe7Xa+v8gBHHFSeidCx8pFjQbl3rirdx90x7nG+NJ?=
+ =?us-ascii?Q?4XfNvxF5wqkbyTtXiHHfSeQPLO3vve6pKfeTXD7iHIVdEyI3urj2ctdgk3mU?=
+ =?us-ascii?Q?KubhtuAdmsSUpJupeZI36agP/xLbfE1lYy3aAi45b++XrFnoCP3ii1tPtLUx?=
+ =?us-ascii?Q?5djRczzUgR2L9XyOKShm4E1IjYkgzpNP5XWAfXmrqA=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/Klv7WawCN0cclA4lATU3lA7lbfyHRl55hUBtg29Z0Uc4HWhINOKhbnyPU3p?=
- =?us-ascii?Q?hPVO+3d3EgV8Rtiqumi2Qxqz04NMW/UEY7B8STgvXxN1f6YoqYf401qa0DV5?=
- =?us-ascii?Q?MMk8/Nrd+2tzbdsuEIwFpxVsqv+TuWTa6WNIU5CknOiDSjPNWvLv92JgKUQo?=
- =?us-ascii?Q?q2oRuzRZuiprViNPv0oLJ9Nv20Cxo0+eodumNTbAWYhngHYRnx9HxlAwOSIX?=
- =?us-ascii?Q?o4+DmQRjdsvZLujU8uFD+fxKkZP286Cj/vvBxB36mcyQBN7thS60aWZsm80c?=
- =?us-ascii?Q?XgHFw5y5ERUS5Y0L2m4egh+EmSO9WPGf8cDnPdWl1HEHI7JbiyvcdMZ/Xsgm?=
- =?us-ascii?Q?fxKrgDblykHgWyD974wiLpwuSvZwzaDCRAcUK2Vzu4NnAd9R+l7/gwziAYyy?=
- =?us-ascii?Q?xOTp+YnigXxv3RJTKlK8pxTRXo6uVSlyYNhqLN27PORYC1gLMBCFLheC08Au?=
- =?us-ascii?Q?yS12FA2u+fCtq3ffsWkfDQcBi8n34G3vNzDciqKBrmkaL7+WYGG5HTk1faDP?=
- =?us-ascii?Q?4PKwvtxUrXZF/sHNZdWlJ/Wad9iMkwWT8wPfJWRKjbBxbLhI99nLTtgbT/8v?=
- =?us-ascii?Q?jtTt7yJyKV04TdJ/2z5c85dgITsrP+z//fwIK+ndTiIKxhZbqwGzjFA8Nys4?=
- =?us-ascii?Q?YsgiPy7Ys/2J4EL8tzbiOwokE3iw9ycysCfbkJOZofc/oFWMqPYk5/vbZtyZ?=
- =?us-ascii?Q?Jg3insEO7+dDJAbHIXsMejinZ4Drzista6EhDF9ucSuSMrfjGFGllO/T9vMk?=
- =?us-ascii?Q?m53VSU2a0JnoI9ohBiX/L7R/grfoPbENwBWL17NUKiPdOJWAhEJ9OgeZfpaR?=
- =?us-ascii?Q?+8BIBHZEoeGptnl+XrtohURIYsopqCK1m0fqGQm0Gfjkr3A6IiXjZcUXsWnL?=
- =?us-ascii?Q?W7PmQvLPDqMH+2LWJsS14ScijuSEXp/Q34yong32QRHPrKOzNzEjNsXNdNRZ?=
- =?us-ascii?Q?PJqqme8PNX2PvQO++ol9rStw1r+xs759mWoMyDxT3srpvxgyvv8nDRhI7GrO?=
- =?us-ascii?Q?n5OoakfXnlKM5xi0m3G4HAB7W3q9ytD6kCyq8LDzFEspCEXg+xpKLZDdslQO?=
- =?us-ascii?Q?5wQeiuaIdktbpwNM20qkjp0dyNm5n0gKBAAVHz6fPSGwo8Lj0EaRryktGcUu?=
- =?us-ascii?Q?lIKcbXx3Dkd0LweuBkIMtkiRe0784zsPMWpPt2GKzwT93PG9QJkJsJz611pg?=
- =?us-ascii?Q?Na4BIcC8+CUWf4OZdjV2h2o8vssdBgtnE9t23FcmAJ40MLXsgkkwaLIU0JDj?=
- =?us-ascii?Q?2RWKOdsqGOg3JJ8nH6lJT7IaeFI2cUdYo33BZyoMCbHyxgGX3v14Z2g//B8O?=
- =?us-ascii?Q?t/WV3Y/OSOUWdijFuACCzE4uSsg4Laa2Y2vaDakgT8GtsvUfHnFz5yJwi987?=
- =?us-ascii?Q?g0xrevQl60lW61EOtAbBEdnqcxeGap9780CxJWi4NhlWUgTjWsAJswomLN3D?=
- =?us-ascii?Q?tIzcYVOzWYnVpiNYvJhmPRw3CBW47BTo459erPsY4+Flu18fTIUZObHdv7bC?=
- =?us-ascii?Q?rZyYURD6uFaVCucsakUJhyZyEIwhn26Ej2YfzbnzVaTjysauSrfmcuOjHc9y?=
- =?us-ascii?Q?E2VfdhkZEx86w1caBBuN146LCG5OFpEkrIQHQpEpXdB+7aTSDFLUiYXwUGM/?=
- =?us-ascii?Q?4g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4cebacfa-7005-4da0-b870-08dc63bdfd52
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+RtvzzNEwwIiT709rmRLvp5ISCR8B/TLb/lJR0YGIQr/ZOhokLzu4x/CU0Mi?=
+ =?us-ascii?Q?TTmNI2GZS0rOkWuUWsp5P1krbotZKJ71oaGKiBMEfpgY/Ys7p/40+cETAW8H?=
+ =?us-ascii?Q?hLjzaaIbgG6NA9Cxp1qvqk+WIB3w6fierUlKzzoDWGHvEwU4YKAlCH8hGBJT?=
+ =?us-ascii?Q?sTAoROaeL3UGH5t9iNjeN/XbMzBb0+JtlWliEFN0Rq0h8z+t+R+OuHhESPRv?=
+ =?us-ascii?Q?Zr200DVQ+DdNb1KHJ6/52DKLm18Y9fzLAXIWluP0g12EBqX3wBT4eleAv4w6?=
+ =?us-ascii?Q?94nro6JRpPIQwPfjGxnRULIEai56jmqM4YHCoLfcWuUBQdiwIsCFFH0ZxngG?=
+ =?us-ascii?Q?pcSmZJKLeb+aPkSjUOVHhH96jyPuEqEC05TrxPTo3tDGt1H3+pZTgnfwyMQo?=
+ =?us-ascii?Q?gyLvd5zuxedYMPQ63RnRByAn/3yTQPx4bZVRkI8Q7R7cETaLhYADBkMd+8IX?=
+ =?us-ascii?Q?npPASvDluwU/2sEPOfsmjPObe0Qd7UgWlvTAg0iqFJvqapM6MbwFh8BpqHxJ?=
+ =?us-ascii?Q?0/XB0loIesPIgiPm6PVGc/aoSRvGPoCdO/7vqW7PgneBMMYvh4ECzcFALr8j?=
+ =?us-ascii?Q?7aa2TcxAV3QH3rhNPkj7UjMb+SqnO+cW9rCmBl8AdUMiFn2KMWzzQXIEXvVd?=
+ =?us-ascii?Q?/nsj7PSaDXvO5A8sUsgxLH3L4pueAjPjcJVXpgNB/EMvh0kIBptUzD1Dr5iY?=
+ =?us-ascii?Q?+7xxjSCgzALFhJbpL3yj/rU1zPeww3MQFxlQsggjL3xnspII/nFZ01oSPavP?=
+ =?us-ascii?Q?OjFQ4d0vd/QdpqQBk+Cc/1GTQU/aF+iLvXA+4YaL3AaSuT6AjP7jwHkuvISv?=
+ =?us-ascii?Q?ljQVrfDOhUPgFx2TnK5ZQg1lT/qq0lfMlyLgypwaoTeouf2gy1iYn++q9dUr?=
+ =?us-ascii?Q?fsEvr6OBKsGLjPFgNCto+/On297LcjEVl1rEU6s8HmgSWqgZhsuTYkB86vB8?=
+ =?us-ascii?Q?gY1gJE/cjdnm6RuRGG0q+MjsnjKEudoXniFji+9hlj/D0QDacaYZ+V/2Yh/4?=
+ =?us-ascii?Q?VhhDlB1JERaEyWZ++dF6L2/4aVU3pxjrKHyyF3+s5GaWverZHyXWBaq1nls3?=
+ =?us-ascii?Q?asNKmKh3C5F6efEy9tLBo7DOpkjw2LBqtU22w4psGxQt1q3zawOpjD+meKuX?=
+ =?us-ascii?Q?hC8hsrz3p84cLV/iODhgpn35kCaHSo3iTVBo55B9NxLzjdEk7QJe5Zyn8hQr?=
+ =?us-ascii?Q?wCe5ks5h+sA4EMFm3nHe97rc4qxxo1mlLYs9QeHo6kkADTzg4AcBHpIUF8cN?=
+ =?us-ascii?Q?AIHlrNdq6owkVa+g2hFh3oZ5OuWkc4BEZAAdjRSC8IcTcdnTiliIYJ4pwn6g?=
+ =?us-ascii?Q?CkONP+iZCetDZCgjPIXVAxKNUuzTQhaFAn3t0hl7AW4objqRJNqFU9lgU0bg?=
+ =?us-ascii?Q?QJuM4b06+A6JabSl6H9kn/Z6XbOi2jR70ZoXsDw5rHdh+W3w9ZVvGGunyv8m?=
+ =?us-ascii?Q?Uo6HrLBopnqvL9YDAzeH56OUTyfBxECxd1zqLyH0mvMOVxh/0lvZjfGDXEmx?=
+ =?us-ascii?Q?J5I0H1PcUNNtMSBHyVt5RKtCubTKv20w8IgFt7n2Ru62yRCITamZJ6dB8xCV?=
+ =?us-ascii?Q?s+d78CkaZzb103P4+rwMZQ25k5/ryCU3TY4KepO3pmsuTtTygxilVA7wrk9H?=
+ =?us-ascii?Q?aQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b6b61ac-cbf4-42f3-0f9c-08dc63be060d
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 17:51:23.3290 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 17:51:37.8708 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: L9bQKlqQjMsWwj/D+Y85Xn7La1UB2ybc95j24x9Bnj3x3ldz3s/9QX9lj7Y3NocjlmNvHT4EQFUO9eSXD3GD8Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: xT/oJhdKcrRDaoNfthm7gxvE4G535OfHPQ7943P+jgn3SE0yuQ5M62sJqyCvz3KNTiOXm5nPYUuXLQ87ypWd9w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6925
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -180,650 +177,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 23, 2024 at 07:45:00PM +0300, Jani Nikula wrote:
-> Pass the dev_priv parameter to the low-level helpers, and move the
-> implicit dev_priv usage one level higher.
-> 
-> sed -i "s/\(_MMIO_PIPE2(\|_MMIO_TRANS2(\|_MMIO_CURSOR2(\)/\1dev_priv, /" \
-> 	$(git ls-files drivers/gpu/drm/i915)
-> 
-> Name the parameter "display", as the generics allow it to be display
-> already.
-
-won't this cause some confusion? I know that it is only used inside
-this header, but other devs adding new changes that uses this
-macro might be confused for a while, no?
-
-perhaps at least a comment somewhere there?
-
-but up to you...
-
+On Tue, Apr 23, 2024 at 07:44:59PM +0300, Jani Nikula wrote:
+> Most users of _MMIO_PIPE3() and _MMIO_PORT3() need to add the MMIO base
+> to the registers. Convert the macros to _MMIO_BASE_PIPE3() and
+> _MMIO_BASE_PORT3() to move the base addition until after the register
+> selection. If the register address depends on DISPLAY_MMIO_BASE(), this
+> removes the need to figure the base out for each register, and it only
+> needs to be added once.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> ---
-> 
-> If we can think of a better name for the macros, now would be a good
-> time!
-
-I'm definitely not good with names and would be open to any good name
-
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  .../gpu/drm/i915/display/intel_color_regs.h   |  12 +-
->  .../drm/i915/display/intel_display_reg_defs.h |  18 +-
->  drivers/gpu/drm/i915/display/intel_psr_regs.h |  38 ++--
->  drivers/gpu/drm/i915/i915_reg.h               | 188 +++++++++---------
->  4 files changed, 128 insertions(+), 128 deletions(-)
+>  .../drm/i915/display/intel_display_reg_defs.h |  4 +-
+>  drivers/gpu/drm/i915/i915_reg.h               | 80 ++++++++++---------
+>  2 files changed, 44 insertions(+), 40 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/gpu/drm/i915/display/intel_color_regs.h
-> index 9f4ae58f3e7e..ec8732401cd8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
-> @@ -228,12 +228,12 @@
->  #define _PIPE_A_WGC_C21_C20	0x600C0 /* s2.10 */
->  #define _PIPE_A_WGC_C22		0x600C4 /* s2.10 */
->  
-> -#define PIPE_WGC_C01_C00(pipe)		_MMIO_TRANS2(pipe, _PIPE_A_WGC_C01_C00)
-> -#define PIPE_WGC_C02(pipe)		_MMIO_TRANS2(pipe, _PIPE_A_WGC_C02)
-> -#define PIPE_WGC_C11_C10(pipe)		_MMIO_TRANS2(pipe, _PIPE_A_WGC_C11_C10)
-> -#define PIPE_WGC_C12(pipe)		_MMIO_TRANS2(pipe, _PIPE_A_WGC_C12)
-> -#define PIPE_WGC_C21_C20(pipe)		_MMIO_TRANS2(pipe, _PIPE_A_WGC_C21_C20)
-> -#define PIPE_WGC_C22(pipe)		_MMIO_TRANS2(pipe, _PIPE_A_WGC_C22)
-> +#define PIPE_WGC_C01_C00(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C01_C00)
-> +#define PIPE_WGC_C02(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C02)
-> +#define PIPE_WGC_C11_C10(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C11_C10)
-> +#define PIPE_WGC_C12(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C12)
-> +#define PIPE_WGC_C21_C20(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C21_C20)
-> +#define PIPE_WGC_C22(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C22)
->  
->  /* pipe CSC & degamma/gamma LUTs on CHV */
->  #define _CGM_PIPE_A_CSC_COEFF01	(VLV_DISPLAY_BASE + 0x67900)
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-> index 23fc1505dc08..b83ad06f2ea7 100644
+> index 2f07b7afa3bf..23fc1505dc08 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-> @@ -36,14 +36,14 @@
+> @@ -29,8 +29,8 @@
+>  #define _MMIO_PLL(pll, a, b)		_MMIO(_PLL(pll, a, b))
+>  #define _MMIO_PHY(phy, a, b)		_MMIO(_PHY(phy, a, b))
+>  
+> -#define _MMIO_PIPE3(pipe, a, b, c)	_MMIO(_PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+> -#define _MMIO_PORT3(pipe, a, b, c)	_MMIO(_PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+> +#define _MMIO_BASE_PIPE3(base, pipe, a, b, c)	_MMIO((base) + _PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+> +#define _MMIO_BASE_PORT3(base, pipe, a, b, c)	_MMIO((base) + _PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+>  
+>  /*
 >   * Device info offset array based helpers for groups of registers with unevenly
->   * spaced base offsets.
->   */
-> -#define _MMIO_PIPE2(pipe, reg)		_MMIO(DISPLAY_INFO(dev_priv)->pipe_offsets[(pipe)] - \
-> -					      DISPLAY_INFO(dev_priv)->pipe_offsets[PIPE_A] + \
-> -					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
-> -#define _MMIO_TRANS2(tran, reg)		_MMIO(DISPLAY_INFO(dev_priv)->trans_offsets[(tran)] - \
-> -					      DISPLAY_INFO(dev_priv)->trans_offsets[TRANSCODER_A] + \
-> -					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
-> -#define _MMIO_CURSOR2(pipe, reg)	_MMIO(DISPLAY_INFO(dev_priv)->cursor_offsets[(pipe)] - \
-> -					      DISPLAY_INFO(dev_priv)->cursor_offsets[PIPE_A] + \
-> -					      DISPLAY_MMIO_BASE(dev_priv) + (reg))
-> +#define _MMIO_PIPE2(display, pipe, reg)		_MMIO(DISPLAY_INFO(display)->pipe_offsets[(pipe)] - \
-> +						      DISPLAY_INFO(display)->pipe_offsets[PIPE_A] + \
-> +						      DISPLAY_MMIO_BASE(display) + (reg))
-> +#define _MMIO_TRANS2(display, tran, reg)	_MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
-> +						      DISPLAY_INFO(display)->trans_offsets[TRANSCODER_A] + \
-> +						      DISPLAY_MMIO_BASE(display) + (reg))
-> +#define _MMIO_CURSOR2(display, pipe, reg)	_MMIO(DISPLAY_INFO(display)->cursor_offsets[(pipe)] - \
-> +						      DISPLAY_INFO(display)->cursor_offsets[PIPE_A] + \
-> +						      DISPLAY_MMIO_BASE(display) + (reg))
->  
->  #endif /* __INTEL_DISPLAY_REG_DEFS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> index b004672d1deb..ebc22999572c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> @@ -9,7 +9,7 @@
->  #include "intel_display_reg_defs.h"
->  #include "intel_dp_aux_regs.h"
->  
-> -#define TRANS_EXITLINE(trans)	_MMIO_TRANS2((trans), _TRANS_EXITLINE_A)
-> +#define TRANS_EXITLINE(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_EXITLINE_A)
->  #define   EXITLINE_ENABLE	REG_BIT(31)
->  #define   EXITLINE_MASK		REG_GENMASK(12, 0)
->  #define   EXITLINE_SHIFT	0
-> @@ -23,7 +23,7 @@
->  #define HSW_SRD_CTL				_MMIO(0x64800)
->  #define _SRD_CTL_A				0x60800
->  #define _SRD_CTL_EDP				0x6f800
-> -#define EDP_PSR_CTL(tran)			_MMIO_TRANS2(tran, _SRD_CTL_A)
-> +#define EDP_PSR_CTL(tran)			_MMIO_TRANS2(dev_priv, tran, _SRD_CTL_A)
->  #define   EDP_PSR_ENABLE			REG_BIT(31)
->  #define   BDW_PSR_SINGLE_FRAME			REG_BIT(30)
->  #define   EDP_PSR_RESTORE_PSR_ACTIVE_CTX_MASK	REG_BIT(29) /* SW can't modify */
-> @@ -66,8 +66,8 @@
->  #define EDP_PSR_IIR				_MMIO(0x64838)
->  #define _PSR_IMR_A				0x60814
->  #define _PSR_IIR_A				0x60818
-> -#define TRANS_PSR_IMR(tran)			_MMIO_TRANS2(tran, _PSR_IMR_A)
-> -#define TRANS_PSR_IIR(tran)			_MMIO_TRANS2(tran, _PSR_IIR_A)
-> +#define TRANS_PSR_IMR(tran)			_MMIO_TRANS2(dev_priv, tran, _PSR_IMR_A)
-> +#define TRANS_PSR_IIR(tran)			_MMIO_TRANS2(dev_priv, tran, _PSR_IIR_A)
->  #define   _EDP_PSR_TRANS_SHIFT(trans)		((trans) == TRANSCODER_EDP ? \
->  						 0 : ((trans) - TRANSCODER_A + 1) * 8)
->  #define   TGL_PSR_MASK			REG_GENMASK(2, 0)
-> @@ -86,7 +86,7 @@
->  #define HSW_SRD_AUX_CTL				_MMIO(0x64810)
->  #define _SRD_AUX_CTL_A				0x60810
->  #define _SRD_AUX_CTL_EDP			0x6f810
-> -#define EDP_PSR_AUX_CTL(tran)			_MMIO_TRANS2(tran, _SRD_AUX_CTL_A)
-> +#define EDP_PSR_AUX_CTL(tran)			_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_CTL_A)
->  #define   EDP_PSR_AUX_CTL_TIME_OUT_MASK		DP_AUX_CH_CTL_TIME_OUT_MASK
->  #define   EDP_PSR_AUX_CTL_MESSAGE_SIZE_MASK	DP_AUX_CH_CTL_MESSAGE_SIZE_MASK
->  #define   EDP_PSR_AUX_CTL_PRECHARGE_2US_MASK	DP_AUX_CH_CTL_PRECHARGE_2US_MASK
-> @@ -96,12 +96,12 @@
->  #define HSW_SRD_AUX_DATA(i)			_MMIO(0x64814 + (i) * 4) /* 5 registers */
->  #define _SRD_AUX_DATA_A				0x60814
->  #define _SRD_AUX_DATA_EDP			0x6f814
-> -#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(tran, _SRD_AUX_DATA_A + (i) * 4) /* 5 registers */
-> +#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_DATA_A + (i) * 4) /* 5 registers */
->  
->  #define HSW_SRD_STATUS				_MMIO(0x64840)
->  #define _SRD_STATUS_A				0x60840
->  #define _SRD_STATUS_EDP				0x6f840
-> -#define EDP_PSR_STATUS(tran)			_MMIO_TRANS2(tran, _SRD_STATUS_A)
-> +#define EDP_PSR_STATUS(tran)			_MMIO_TRANS2(dev_priv, tran, _SRD_STATUS_A)
->  #define   EDP_PSR_STATUS_STATE_MASK		REG_GENMASK(31, 29)
->  #define   EDP_PSR_STATUS_STATE_IDLE		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 0)
->  #define   EDP_PSR_STATUS_STATE_SRDONACK		REG_FIELD_PREP(EDP_PSR_STATUS_STATE_MASK, 1)
-> @@ -126,14 +126,14 @@
->  #define HSW_SRD_PERF_CNT		_MMIO(0x64844)
->  #define _SRD_PERF_CNT_A			0x60844
->  #define _SRD_PERF_CNT_EDP		0x6f844
-> -#define EDP_PSR_PERF_CNT(tran)		_MMIO_TRANS2(tran, _SRD_PERF_CNT_A)
-> +#define EDP_PSR_PERF_CNT(tran)		_MMIO_TRANS2(dev_priv, tran, _SRD_PERF_CNT_A)
->  #define   EDP_PSR_PERF_CNT_MASK		REG_GENMASK(23, 0)
->  
->  /* PSR_MASK on SKL+ */
->  #define HSW_SRD_DEBUG				_MMIO(0x64860)
->  #define _SRD_DEBUG_A				0x60860
->  #define _SRD_DEBUG_EDP				0x6f860
-> -#define EDP_PSR_DEBUG(tran)			_MMIO_TRANS2(tran, _SRD_DEBUG_A)
-> +#define EDP_PSR_DEBUG(tran)			_MMIO_TRANS2(dev_priv, tran, _SRD_DEBUG_A)
->  #define   EDP_PSR_DEBUG_MASK_MAX_SLEEP		REG_BIT(28)
->  #define   EDP_PSR_DEBUG_MASK_LPSP		REG_BIT(27)
->  #define   EDP_PSR_DEBUG_MASK_MEMUP		REG_BIT(26)
-> @@ -153,7 +153,7 @@
->  
->  #define _PSR2_CTL_A				0x60900
->  #define _PSR2_CTL_EDP				0x6f900
-> -#define EDP_PSR2_CTL(tran)			_MMIO_TRANS2(tran, _PSR2_CTL_A)
-> +#define EDP_PSR2_CTL(tran)			_MMIO_TRANS2(dev_priv, tran, _PSR2_CTL_A)
->  #define   EDP_PSR2_ENABLE			REG_BIT(31)
->  #define   EDP_SU_TRACK_ENABLE			REG_BIT(30) /* up to adl-p */
->  #define   TGL_EDP_PSR2_BLOCK_COUNT_MASK		REG_BIT(28)
-> @@ -195,7 +195,7 @@
->  #define _PSR_EVENT_TRANS_C			0x62848
->  #define _PSR_EVENT_TRANS_D			0x63848
->  #define _PSR_EVENT_TRANS_EDP			0x6f848
-> -#define PSR_EVENT(tran)				_MMIO_TRANS2(tran, _PSR_EVENT_TRANS_A)
-> +#define PSR_EVENT(tran)				_MMIO_TRANS2(dev_priv, tran, _PSR_EVENT_TRANS_A)
->  #define  PSR_EVENT_PSR2_WD_TIMER_EXPIRE		REG_BIT(17)
->  #define  PSR_EVENT_PSR2_DISABLED		REG_BIT(16)
->  #define  PSR_EVENT_SU_DIRTY_FIFO_UNDERRUN	REG_BIT(15)
-> @@ -215,13 +215,13 @@
->  
->  #define _PSR2_STATUS_A				0x60940
->  #define _PSR2_STATUS_EDP			0x6f940
-> -#define EDP_PSR2_STATUS(tran)			_MMIO_TRANS2(tran, _PSR2_STATUS_A)
-> +#define EDP_PSR2_STATUS(tran)			_MMIO_TRANS2(dev_priv, tran, _PSR2_STATUS_A)
->  #define EDP_PSR2_STATUS_STATE_MASK		REG_GENMASK(31, 28)
->  #define EDP_PSR2_STATUS_STATE_DEEP_SLEEP	REG_FIELD_PREP(EDP_PSR2_STATUS_STATE_MASK, 0x8)
->  
->  #define _PSR2_SU_STATUS_A		0x60914
->  #define _PSR2_SU_STATUS_EDP		0x6f914
-> -#define _PSR2_SU_STATUS(tran, index)	_MMIO_TRANS2(tran, _PSR2_SU_STATUS_A + (index) * 4)
-> +#define _PSR2_SU_STATUS(tran, index)	_MMIO_TRANS2(dev_priv, tran, _PSR2_SU_STATUS_A + (index) * 4)
->  #define PSR2_SU_STATUS(tran, frame)	(_PSR2_SU_STATUS(tran, (frame) / 3))
->  #define PSR2_SU_STATUS_SHIFT(frame)	(((frame) % 3) * 10)
->  #define PSR2_SU_STATUS_MASK(frame)	(0x3ff << PSR2_SU_STATUS_SHIFT(frame))
-> @@ -229,7 +229,7 @@
->  
->  #define _PSR2_MAN_TRK_CTL_A					0x60910
->  #define _PSR2_MAN_TRK_CTL_EDP					0x6f910
-> -#define PSR2_MAN_TRK_CTL(tran)					_MMIO_TRANS2(tran, _PSR2_MAN_TRK_CTL_A)
-> +#define PSR2_MAN_TRK_CTL(tran)					_MMIO_TRANS2(dev_priv, tran, _PSR2_MAN_TRK_CTL_A)
->  #define  PSR2_MAN_TRK_CTL_ENABLE				REG_BIT(31)
->  #define  PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK		REG_GENMASK(30, 21)
->  #define  PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(val)		REG_FIELD_PREP(PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR_MASK, val)
-> @@ -249,7 +249,7 @@
->  /* PSR2 Early transport */
->  #define _PIPE_SRCSZ_ERLY_TPT_A	0x70074
->  
-> -#define PIPE_SRCSZ_ERLY_TPT(trans)	_MMIO_TRANS2(trans, _PIPE_SRCSZ_ERLY_TPT_A)
-> +#define PIPE_SRCSZ_ERLY_TPT(trans)	_MMIO_TRANS2(dev_priv, trans, _PIPE_SRCSZ_ERLY_TPT_A)
->  
->  #define _SEL_FETCH_PLANE_BASE_1_A		0x70890
->  #define _SEL_FETCH_PLANE_BASE_2_A		0x708B0
-> @@ -297,7 +297,7 @@
->  						  _SEL_FETCH_PLANE_BASE_1_A)
->  
->  #define _ALPM_CTL_A	0x60950
-> -#define ALPM_CTL(tran)	_MMIO_TRANS2(tran, _ALPM_CTL_A)
-> +#define ALPM_CTL(tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL_A)
->  #define  ALPM_CTL_ALPM_ENABLE				REG_BIT(31)
->  #define  ALPM_CTL_ALPM_AUX_LESS_ENABLE			REG_BIT(30)
->  #define  ALPM_CTL_LOBF_ENABLE				REG_BIT(29)
-> @@ -321,7 +321,7 @@
->  #define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
->  
->  #define _ALPM_CTL2_A	0x60954
-> -#define ALPM_CTL2(tran)	_MMIO_TRANS2(tran, _ALPM_CTL2_A)
-> +#define ALPM_CTL2(tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL2_A)
->  #define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK		REG_GENMASK(28, 24)
->  #define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(val)		REG_FIELD_PREP(ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK, val)
->  #define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK		REG_GENMASK(19, 16)
-> @@ -335,7 +335,7 @@
->  #define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES(val)	REG_FIELD_PREP(ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK, val)
->  
->  #define _PORT_ALPM_CTL_A			0x16fa2c
-> -#define PORT_ALPM_CTL(tran)			_MMIO_TRANS2(tran, _PORT_ALPM_CTL_A)
-> +#define PORT_ALPM_CTL(tran)			_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_CTL_A)
->  #define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	REG_BIT(31)
->  #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
->  #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
-> @@ -345,7 +345,7 @@
->  #define  PORT_ALPM_CTL_SILENCE_PERIOD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_SILENCE_PERIOD_MASK, val)
->  
->  #define _PORT_ALPM_LFPS_CTL_A					0x16fa30
-> -#define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(tran, _PORT_ALPM_LFPS_CTL_A)
-> +#define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_LFPS_CTL_A)
->  #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
->  #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
->  #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 51f703970cf6..4eb37f38d888 100644
+> index 8eb6c2bf4557..51f703970cf6 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1649,18 +1649,18 @@
->  #define _PIPE_CRC_RES_4_B_IVB		0x61070
->  #define _PIPE_CRC_RES_5_B_IVB		0x61074
+> @@ -973,13 +973,13 @@
+>  #define VLV_AUD_CHICKEN_BIT_REG		_MMIO(VLV_DISPLAY_BASE + 0x62F38)
+>  #define VLV_CHICKEN_BIT_DBG_ENABLE	(1 << 0)
 >  
-> -#define PIPE_CRC_CTL(pipe)		_MMIO_TRANS2(pipe, _PIPE_CRC_CTL_A)
-> -#define PIPE_CRC_RES_1_IVB(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_1_A_IVB)
-> -#define PIPE_CRC_RES_2_IVB(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_2_A_IVB)
-> -#define PIPE_CRC_RES_3_IVB(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_3_A_IVB)
-> -#define PIPE_CRC_RES_4_IVB(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_4_A_IVB)
-> -#define PIPE_CRC_RES_5_IVB(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_5_A_IVB)
+> -#define _VLV_AUD_PORT_EN_B_DBG		(VLV_DISPLAY_BASE + 0x62F20)
+> -#define _VLV_AUD_PORT_EN_C_DBG		(VLV_DISPLAY_BASE + 0x62F30)
+> -#define _VLV_AUD_PORT_EN_D_DBG		(VLV_DISPLAY_BASE + 0x62F34)
+> -#define VLV_AUD_PORT_EN_DBG(port)	_MMIO_PORT3((port) - PORT_B,	   \
+> -						    _VLV_AUD_PORT_EN_B_DBG, \
+> -						    _VLV_AUD_PORT_EN_C_DBG, \
+> -						    _VLV_AUD_PORT_EN_D_DBG)
+> +#define _VLV_AUD_PORT_EN_B_DBG		0x62F20
+> +#define _VLV_AUD_PORT_EN_C_DBG		0x62F30
+> +#define _VLV_AUD_PORT_EN_D_DBG		0x62F34
+> +#define VLV_AUD_PORT_EN_DBG(port)	_MMIO_BASE_PORT3(VLV_DISPLAY_BASE, (port) - PORT_B, \
+> +							 _VLV_AUD_PORT_EN_B_DBG, \
+> +							 _VLV_AUD_PORT_EN_C_DBG, \
+> +							 _VLV_AUD_PORT_EN_D_DBG)
+>  #define VLV_AMP_MUTE		        (1 << 1)
+>  
+>  #define GEN6_BSD_RNCID			_MMIO(0x12198)
+> @@ -1147,10 +1147,11 @@
+>  /*
+>   * Clock control & power management
+>   */
+> -#define _DPLL_A (DISPLAY_MMIO_BASE(dev_priv) + 0x6014)
+> -#define _DPLL_B (DISPLAY_MMIO_BASE(dev_priv) + 0x6018)
+> -#define _CHV_DPLL_C (DISPLAY_MMIO_BASE(dev_priv) + 0x6030)
+> -#define DPLL(pipe) _MMIO_PIPE3((pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C)
+> +#define _DPLL_A			0x6014
+> +#define _DPLL_B			0x6018
+> +#define _CHV_DPLL_C		0x6030
+> +#define DPLL(pipe)		_MMIO_BASE_PIPE3(DISPLAY_MMIO_BASE(dev_priv), \
+> +						 (pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C)
+>  
+>  #define VGA0	_MMIO(0x6000)
+>  #define VGA1	_MMIO(0x6004)
+> @@ -1246,10 +1247,11 @@
+>  #define   SDVO_MULTIPLIER_SHIFT_HIRES		4
+>  #define   SDVO_MULTIPLIER_SHIFT_VGA		0
+>  
+> -#define _DPLL_A_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x601c)
+> -#define _DPLL_B_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x6020)
+> -#define _CHV_DPLL_C_MD (DISPLAY_MMIO_BASE(dev_priv) + 0x603c)
+> -#define DPLL_MD(pipe) _MMIO_PIPE3((pipe), _DPLL_A_MD, _DPLL_B_MD, _CHV_DPLL_C_MD)
+> +#define _DPLL_A_MD		0x601c
+> +#define _DPLL_B_MD		0x6020
+> +#define _CHV_DPLL_C_MD		0x603c
+> +#define DPLL_MD(pipe)		_MMIO_BASE_PIPE3(DISPLAY_MMIO_BASE(dev_priv), \
+> +						 (pipe), _DPLL_A_MD, _DPLL_B_MD, _CHV_DPLL_C_MD)
+>  
+>  /*
+>   * UDI pixel divider, controlling how many pixels are stuffed into a packet.
+> @@ -2718,8 +2720,8 @@
+>  #define _WM0_PIPEA_ILK		0x45100
+>  #define _WM0_PIPEB_ILK		0x45104
+>  #define _WM0_PIPEC_IVB		0x45200
+> -#define WM0_PIPE_ILK(pipe)	_MMIO_PIPE3((pipe), _WM0_PIPEA_ILK, \
+> -					    _WM0_PIPEB_ILK, _WM0_PIPEC_IVB)
+> +#define WM0_PIPE_ILK(pipe)	_MMIO_BASE_PIPE3(0, (pipe), _WM0_PIPEA_ILK, \
+> +						 _WM0_PIPEB_ILK, _WM0_PIPEC_IVB)
+>  #define  WM0_PIPE_PRIMARY_MASK	REG_GENMASK(31, 16)
+>  #define  WM0_PIPE_SPRITE_MASK	REG_GENMASK(15, 8)
+>  #define  WM0_PIPE_CURSOR_MASK	REG_GENMASK(7, 0)
+> @@ -4767,27 +4769,29 @@
+>  #define TVIDEO_DIP_GCP(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_GCP_A, _VIDEO_DIP_GCP_B)
+>  
+>  /* Per-transcoder DIP controls (VLV) */
+> -#define _VLV_VIDEO_DIP_CTL_A		(VLV_DISPLAY_BASE + 0x60200)
+> -#define _VLV_VIDEO_DIP_DATA_A		(VLV_DISPLAY_BASE + 0x60208)
+> -#define _VLV_VIDEO_DIP_GDCP_PAYLOAD_A	(VLV_DISPLAY_BASE + 0x60210)
 > -
-> -#define PIPE_CRC_RES_RED(pipe)		_MMIO_TRANS2(pipe, _PIPE_CRC_RES_RED_A)
-> -#define PIPE_CRC_RES_GREEN(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_GREEN_A)
-> -#define PIPE_CRC_RES_BLUE(pipe)		_MMIO_TRANS2(pipe, _PIPE_CRC_RES_BLUE_A)
-> -#define PIPE_CRC_RES_RES1_I915(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_RES1_A_I915)
-> -#define PIPE_CRC_RES_RES2_G4X(pipe)	_MMIO_TRANS2(pipe, _PIPE_CRC_RES_RES2_A_G4X)
-> +#define PIPE_CRC_CTL(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_CTL_A)
-> +#define PIPE_CRC_RES_1_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_1_A_IVB)
-> +#define PIPE_CRC_RES_2_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_2_A_IVB)
-> +#define PIPE_CRC_RES_3_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_3_A_IVB)
-> +#define PIPE_CRC_RES_4_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_4_A_IVB)
-> +#define PIPE_CRC_RES_5_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_5_A_IVB)
+> -#define _VLV_VIDEO_DIP_CTL_B		(VLV_DISPLAY_BASE + 0x61170)
+> -#define _VLV_VIDEO_DIP_DATA_B		(VLV_DISPLAY_BASE + 0x61174)
+> -#define _VLV_VIDEO_DIP_GDCP_PAYLOAD_B	(VLV_DISPLAY_BASE + 0x61178)
+> -
+> -#define _CHV_VIDEO_DIP_CTL_C		(VLV_DISPLAY_BASE + 0x611f0)
+> -#define _CHV_VIDEO_DIP_DATA_C		(VLV_DISPLAY_BASE + 0x611f4)
+> -#define _CHV_VIDEO_DIP_GDCP_PAYLOAD_C	(VLV_DISPLAY_BASE + 0x611f8)
+> -
+> -#define VLV_TVIDEO_DIP_CTL(pipe) \
+> -	_MMIO_PIPE3((pipe), _VLV_VIDEO_DIP_CTL_A, \
+> -	       _VLV_VIDEO_DIP_CTL_B, _CHV_VIDEO_DIP_CTL_C)
+> -#define VLV_TVIDEO_DIP_DATA(pipe) \
+> -	_MMIO_PIPE3((pipe), _VLV_VIDEO_DIP_DATA_A, \
+> -	       _VLV_VIDEO_DIP_DATA_B, _CHV_VIDEO_DIP_DATA_C)
+> -#define VLV_TVIDEO_DIP_GCP(pipe) \
+> -	_MMIO_PIPE3((pipe), _VLV_VIDEO_DIP_GDCP_PAYLOAD_A, \
+> -		_VLV_VIDEO_DIP_GDCP_PAYLOAD_B, _CHV_VIDEO_DIP_GDCP_PAYLOAD_C)
+> +#define _VLV_VIDEO_DIP_CTL_A		0x60200
+> +#define _VLV_VIDEO_DIP_CTL_B		0x61170
+> +#define _CHV_VIDEO_DIP_CTL_C		0x611f0
+> +#define VLV_TVIDEO_DIP_CTL(pipe)	_MMIO_BASE_PIPE3(VLV_DISPLAY_BASE, (pipe), \
+> +							 _VLV_VIDEO_DIP_CTL_A, \
+> +							 _VLV_VIDEO_DIP_CTL_B, \
+> +							 _CHV_VIDEO_DIP_CTL_C)
 > +
-> +#define PIPE_CRC_RES_RED(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RED_A)
-> +#define PIPE_CRC_RES_GREEN(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_GREEN_A)
-> +#define PIPE_CRC_RES_BLUE(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_BLUE_A)
-> +#define PIPE_CRC_RES_RES1_I915(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES1_A_I915)
-> +#define PIPE_CRC_RES_RES2_G4X(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES2_A_G4X)
+> +#define _VLV_VIDEO_DIP_DATA_A		0x60208
+> +#define _VLV_VIDEO_DIP_DATA_B		0x61174
+> +#define _CHV_VIDEO_DIP_DATA_C		0x611f4
+> +#define VLV_TVIDEO_DIP_DATA(pipe)	_MMIO_BASE_PIPE3(VLV_DISPLAY_BASE, (pipe), \
+> +							 _VLV_VIDEO_DIP_DATA_A, \
+> +							 _VLV_VIDEO_DIP_DATA_B, \
+> +							 _CHV_VIDEO_DIP_DATA_C)
+> +
+> +#define _VLV_VIDEO_DIP_GDCP_PAYLOAD_A	0x60210
+> +#define _VLV_VIDEO_DIP_GDCP_PAYLOAD_B	0x61178
+> +#define _CHV_VIDEO_DIP_GDCP_PAYLOAD_C	0x611f8
+> +#define VLV_TVIDEO_DIP_GCP(pipe)	_MMIO_BASE_PIPE3(VLV_DISPLAY_BASE, (pipe), \
+> +							 _VLV_VIDEO_DIP_GDCP_PAYLOAD_A, \
+> +							 _VLV_VIDEO_DIP_GDCP_PAYLOAD_B, \
+> +							 _CHV_VIDEO_DIP_GDCP_PAYLOAD_C)
 >  
->  /* Pipe/transcoder A timing regs */
->  #define _TRANS_HTOTAL_A		0x60000
-> @@ -1729,23 +1729,23 @@
->  #define _TRANS_VSYNC_DSI1	0x6b814
->  #define _TRANS_VSYNCSHIFT_DSI1	0x6b828
+>  /* Haswell DIP controls */
 >  
-> -#define TRANS_HTOTAL(trans)	_MMIO_TRANS2((trans), _TRANS_HTOTAL_A)
-> -#define TRANS_HBLANK(trans)	_MMIO_TRANS2((trans), _TRANS_HBLANK_A)
-> -#define TRANS_HSYNC(trans)	_MMIO_TRANS2((trans), _TRANS_HSYNC_A)
-> -#define TRANS_VTOTAL(trans)	_MMIO_TRANS2((trans), _TRANS_VTOTAL_A)
-> -#define TRANS_VBLANK(trans)	_MMIO_TRANS2((trans), _TRANS_VBLANK_A)
-> -#define TRANS_VSYNC(trans)	_MMIO_TRANS2((trans), _TRANS_VSYNC_A)
-> -#define BCLRPAT(trans)		_MMIO_TRANS2((trans), _BCLRPAT_A)
-> -#define TRANS_VSYNCSHIFT(trans)	_MMIO_TRANS2((trans), _TRANS_VSYNCSHIFT_A)
-> -#define PIPESRC(pipe)		_MMIO_TRANS2((pipe), _PIPEASRC)
-> -#define TRANS_MULT(trans)	_MMIO_TRANS2((trans), _TRANS_MULT_A)
-> +#define TRANS_HTOTAL(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HTOTAL_A)
-> +#define TRANS_HBLANK(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
-> +#define TRANS_HSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
-> +#define TRANS_VTOTAL(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VTOTAL_A)
-> +#define TRANS_VBLANK(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VBLANK_A)
-> +#define TRANS_VSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VSYNC_A)
-> +#define BCLRPAT(trans)		_MMIO_TRANS2(dev_priv, (trans), _BCLRPAT_A)
-> +#define TRANS_VSYNCSHIFT(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VSYNCSHIFT_A)
-> +#define PIPESRC(pipe)		_MMIO_TRANS2(dev_priv, (pipe), _PIPEASRC)
-> +#define TRANS_MULT(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
->  
->  /* VRR registers */
->  #define _TRANS_VRR_CTL_A		0x60420
->  #define _TRANS_VRR_CTL_B		0x61420
->  #define _TRANS_VRR_CTL_C		0x62420
->  #define _TRANS_VRR_CTL_D		0x63420
-> -#define TRANS_VRR_CTL(trans)			_MMIO_TRANS2(trans, _TRANS_VRR_CTL_A)
-> +#define TRANS_VRR_CTL(trans)			_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_CTL_A)
->  #define   VRR_CTL_VRR_ENABLE			REG_BIT(31)
->  #define   VRR_CTL_IGN_MAX_SHIFT			REG_BIT(30)
->  #define   VRR_CTL_FLIP_LINE_EN			REG_BIT(29)
-> @@ -1759,21 +1759,21 @@
->  #define _TRANS_VRR_VMAX_B		0x61424
->  #define _TRANS_VRR_VMAX_C		0x62424
->  #define _TRANS_VRR_VMAX_D		0x63424
-> -#define TRANS_VRR_VMAX(trans)		_MMIO_TRANS2(trans, _TRANS_VRR_VMAX_A)
-> +#define TRANS_VRR_VMAX(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VMAX_A)
->  #define   VRR_VMAX_MASK			REG_GENMASK(19, 0)
->  
->  #define _TRANS_VRR_VMIN_A		0x60434
->  #define _TRANS_VRR_VMIN_B		0x61434
->  #define _TRANS_VRR_VMIN_C		0x62434
->  #define _TRANS_VRR_VMIN_D		0x63434
-> -#define TRANS_VRR_VMIN(trans)		_MMIO_TRANS2(trans, _TRANS_VRR_VMIN_A)
-> +#define TRANS_VRR_VMIN(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VMIN_A)
->  #define   VRR_VMIN_MASK			REG_GENMASK(15, 0)
->  
->  #define _TRANS_VRR_VMAXSHIFT_A		0x60428
->  #define _TRANS_VRR_VMAXSHIFT_B		0x61428
->  #define _TRANS_VRR_VMAXSHIFT_C		0x62428
->  #define _TRANS_VRR_VMAXSHIFT_D		0x63428
-> -#define TRANS_VRR_VMAXSHIFT(trans)	_MMIO_TRANS2(trans, \
-> +#define TRANS_VRR_VMAXSHIFT(trans)	_MMIO_TRANS2(dev_priv, trans, \
->  					_TRANS_VRR_VMAXSHIFT_A)
->  #define   VRR_VMAXSHIFT_DEC_MASK	REG_GENMASK(29, 16)
->  #define   VRR_VMAXSHIFT_DEC		REG_BIT(16)
-> @@ -1783,7 +1783,7 @@
->  #define _TRANS_VRR_STATUS_B		0x6142C
->  #define _TRANS_VRR_STATUS_C		0x6242C
->  #define _TRANS_VRR_STATUS_D		0x6342C
-> -#define TRANS_VRR_STATUS(trans)		_MMIO_TRANS2(trans, _TRANS_VRR_STATUS_A)
-> +#define TRANS_VRR_STATUS(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_STATUS_A)
->  #define   VRR_STATUS_VMAX_REACHED	REG_BIT(31)
->  #define   VRR_STATUS_NOFLIP_TILL_BNDR	REG_BIT(30)
->  #define   VRR_STATUS_FLIP_BEF_BNDR	REG_BIT(29)
-> @@ -1803,7 +1803,7 @@
->  #define _TRANS_VRR_VTOTAL_PREV_B	0x61480
->  #define _TRANS_VRR_VTOTAL_PREV_C	0x62480
->  #define _TRANS_VRR_VTOTAL_PREV_D	0x63480
-> -#define TRANS_VRR_VTOTAL_PREV(trans)	_MMIO_TRANS2(trans, \
-> +#define TRANS_VRR_VTOTAL_PREV(trans)	_MMIO_TRANS2(dev_priv, trans, \
->  					_TRANS_VRR_VTOTAL_PREV_A)
->  #define   VRR_VTOTAL_FLIP_BEFR_BNDR	REG_BIT(31)
->  #define   VRR_VTOTAL_FLIP_AFTER_BNDR	REG_BIT(30)
-> @@ -1814,7 +1814,7 @@
->  #define _TRANS_VRR_FLIPLINE_B		0x61438
->  #define _TRANS_VRR_FLIPLINE_C		0x62438
->  #define _TRANS_VRR_FLIPLINE_D		0x63438
-> -#define TRANS_VRR_FLIPLINE(trans)	_MMIO_TRANS2(trans, \
-> +#define TRANS_VRR_FLIPLINE(trans)	_MMIO_TRANS2(dev_priv, trans, \
->  					_TRANS_VRR_FLIPLINE_A)
->  #define   VRR_FLIPLINE_MASK		REG_GENMASK(19, 0)
->  
-> @@ -1822,19 +1822,19 @@
->  #define _TRANS_VRR_STATUS2_B		0x6143C
->  #define _TRANS_VRR_STATUS2_C		0x6243C
->  #define _TRANS_VRR_STATUS2_D		0x6343C
-> -#define TRANS_VRR_STATUS2(trans)	_MMIO_TRANS2(trans, _TRANS_VRR_STATUS2_A)
-> +#define TRANS_VRR_STATUS2(trans)	_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_STATUS2_A)
->  #define   VRR_STATUS2_VERT_LN_CNT_MASK	REG_GENMASK(19, 0)
->  
->  #define _TRANS_PUSH_A			0x60A70
->  #define _TRANS_PUSH_B			0x61A70
->  #define _TRANS_PUSH_C			0x62A70
->  #define _TRANS_PUSH_D			0x63A70
-> -#define TRANS_PUSH(trans)		_MMIO_TRANS2(trans, _TRANS_PUSH_A)
-> +#define TRANS_PUSH(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_PUSH_A)
->  #define   TRANS_PUSH_EN			REG_BIT(31)
->  #define   TRANS_PUSH_SEND		REG_BIT(30)
->  
->  #define _TRANS_VRR_VSYNC_A		0x60078
-> -#define TRANS_VRR_VSYNC(trans)		_MMIO_TRANS2(trans, _TRANS_VRR_VSYNC_A)
-> +#define TRANS_VRR_VSYNC(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VSYNC_A)
->  #define VRR_VSYNC_END_MASK		REG_GENMASK(28, 16)
->  #define VRR_VSYNC_END(vsync_end)	REG_FIELD_PREP(VRR_VSYNC_END_MASK, (vsync_end))
->  #define VRR_VSYNC_START_MASK		REG_GENMASK(12, 0)
-> @@ -2390,18 +2390,18 @@
->  #define PIPESTAT_INT_ENABLE_MASK		0x7fff0000
->  #define PIPESTAT_INT_STATUS_MASK		0x0000ffff
->  
-> -#define TRANSCONF(trans)	_MMIO_PIPE2((trans), _TRANSACONF)
-> -#define PIPEDSL(pipe)		_MMIO_PIPE2(pipe, _PIPEADSL)
-> -#define PIPEFRAME(pipe)		_MMIO_PIPE2(pipe, _PIPEAFRAMEHIGH)
-> -#define PIPEFRAMEPIXEL(pipe)	_MMIO_PIPE2(pipe, _PIPEAFRAMEPIXEL)
-> -#define PIPESTAT(pipe)		_MMIO_PIPE2(pipe, _PIPEASTAT)
-> +#define TRANSCONF(trans)	_MMIO_PIPE2(dev_priv, (trans), _TRANSACONF)
-> +#define PIPEDSL(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEADSL)
-> +#define PIPEFRAME(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
-> +#define PIPEFRAMEPIXEL(pipe)	_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEPIXEL)
-> +#define PIPESTAT(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEASTAT)
->  
->  #define  _PIPEAGCMAX           0x70010
->  #define  _PIPEBGCMAX           0x71010
-> -#define PIPEGCMAX(pipe, i)     _MMIO_PIPE2(pipe, _PIPEAGCMAX + (i) * 4) /* u1.16 */
-> +#define PIPEGCMAX(pipe, i)     _MMIO_PIPE2(dev_priv, pipe, _PIPEAGCMAX + (i) * 4) /* u1.16 */
->  
->  #define _PIPE_ARB_CTL_A			0x70028 /* icl+ */
-> -#define PIPE_ARB_CTL(pipe)		_MMIO_PIPE2(pipe, _PIPE_ARB_CTL_A)
-> +#define PIPE_ARB_CTL(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPE_ARB_CTL_A)
->  #define   PIPE_ARB_USE_PROG_SLOTS	REG_BIT(13)
->  
->  #define _PIPE_MISC_A			0x70030
-> @@ -2445,7 +2445,7 @@
->  #define PIPE_MISC2(pipe)		_MMIO_PIPE(pipe, _PIPE_MISC2_A, _PIPE_MISC2_B)
->  
->  #define _ICL_PIPE_A_STATUS			0x70058
-> -#define ICL_PIPESTATUS(pipe)			_MMIO_PIPE2(pipe, _ICL_PIPE_A_STATUS)
-> +#define ICL_PIPESTATUS(pipe)			_MMIO_PIPE2(dev_priv, pipe, _ICL_PIPE_A_STATUS)
->  #define   PIPE_STATUS_UNDERRUN				REG_BIT(31)
->  #define   PIPE_STATUS_SOFT_UNDERRUN_XELPD		REG_BIT(28)
->  #define   PIPE_STATUS_HARD_UNDERRUN_XELPD		REG_BIT(27)
-> @@ -2775,8 +2775,8 @@
->  /* GM45+ just has to be different */
->  #define _PIPEA_FRMCOUNT_G4X	0x70040
->  #define _PIPEA_FLIPCOUNT_G4X	0x70044
-> -#define PIPE_FRMCOUNT_G4X(pipe) _MMIO_PIPE2(pipe, _PIPEA_FRMCOUNT_G4X)
-> -#define PIPE_FLIPCOUNT_G4X(pipe) _MMIO_PIPE2(pipe, _PIPEA_FLIPCOUNT_G4X)
-> +#define PIPE_FRMCOUNT_G4X(pipe) _MMIO_PIPE2(dev_priv, pipe, _PIPEA_FRMCOUNT_G4X)
-> +#define PIPE_FLIPCOUNT_G4X(pipe) _MMIO_PIPE2(dev_priv, pipe, _PIPEA_FLIPCOUNT_G4X)
->  
->  /* Cursor A & B regs */
->  #define _CURACNTR		0x70080
-> @@ -2837,14 +2837,14 @@
->  #define _CURBBASE_IVB		0x71084
->  #define _CURBPOS_IVB		0x71088
->  
-> -#define CURCNTR(pipe) _MMIO_CURSOR2(pipe, _CURACNTR)
-> -#define CURBASE(pipe) _MMIO_CURSOR2(pipe, _CURABASE)
-> -#define CURPOS(pipe) _MMIO_CURSOR2(pipe, _CURAPOS)
-> -#define CURPOS_ERLY_TPT(pipe) _MMIO_CURSOR2(pipe, _CURAPOS_ERLY_TPT)
-> -#define CURSIZE(pipe) _MMIO_CURSOR2(pipe, _CURASIZE)
-> -#define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(pipe, _CUR_FBC_CTL_A)
-> -#define CUR_CHICKEN(pipe) _MMIO_CURSOR2(pipe, _CUR_CHICKEN_A)
-> -#define CURSURFLIVE(pipe) _MMIO_CURSOR2(pipe, _CURASURFLIVE)
-> +#define CURCNTR(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURACNTR)
-> +#define CURBASE(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURABASE)
-> +#define CURPOS(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURAPOS)
-> +#define CURPOS_ERLY_TPT(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURAPOS_ERLY_TPT)
-> +#define CURSIZE(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASIZE)
-> +#define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_FBC_CTL_A)
-> +#define CUR_CHICKEN(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_CHICKEN_A)
-> +#define CURSURFLIVE(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASURFLIVE)
->  
->  /* Display A control */
->  #define _DSPAADDR_VLV				0x7017C /* vlv/chv */
-> @@ -2901,18 +2901,18 @@
->  #define _DSPASURFLIVE				0x701AC
->  #define _DSPAGAMC				0x701E0
->  
-> -#define DSPADDR_VLV(plane)	_MMIO_PIPE2(plane, _DSPAADDR_VLV)
-> -#define DSPCNTR(plane)		_MMIO_PIPE2(plane, _DSPACNTR)
-> -#define DSPADDR(plane)		_MMIO_PIPE2(plane, _DSPAADDR)
-> -#define DSPSTRIDE(plane)	_MMIO_PIPE2(plane, _DSPASTRIDE)
-> -#define DSPPOS(plane)		_MMIO_PIPE2(plane, _DSPAPOS)
-> -#define DSPSIZE(plane)		_MMIO_PIPE2(plane, _DSPASIZE)
-> -#define DSPSURF(plane)		_MMIO_PIPE2(plane, _DSPASURF)
-> -#define DSPTILEOFF(plane)	_MMIO_PIPE2(plane, _DSPATILEOFF)
-> +#define DSPADDR_VLV(plane)	_MMIO_PIPE2(dev_priv, plane, _DSPAADDR_VLV)
-> +#define DSPCNTR(plane)		_MMIO_PIPE2(dev_priv, plane, _DSPACNTR)
-> +#define DSPADDR(plane)		_MMIO_PIPE2(dev_priv, plane, _DSPAADDR)
-> +#define DSPSTRIDE(plane)	_MMIO_PIPE2(dev_priv, plane, _DSPASTRIDE)
-> +#define DSPPOS(plane)		_MMIO_PIPE2(dev_priv, plane, _DSPAPOS)
-> +#define DSPSIZE(plane)		_MMIO_PIPE2(dev_priv, plane, _DSPASIZE)
-> +#define DSPSURF(plane)		_MMIO_PIPE2(dev_priv, plane, _DSPASURF)
-> +#define DSPTILEOFF(plane)	_MMIO_PIPE2(dev_priv, plane, _DSPATILEOFF)
->  #define DSPLINOFF(plane)	DSPADDR(plane)
-> -#define DSPOFFSET(plane)	_MMIO_PIPE2(plane, _DSPAOFFSET)
-> -#define DSPSURFLIVE(plane)	_MMIO_PIPE2(plane, _DSPASURFLIVE)
-> -#define DSPGAMC(plane, i)	_MMIO_PIPE2(plane, _DSPAGAMC + (5 - (i)) * 4) /* plane C only, 6 x u0.8 */
-> +#define DSPOFFSET(plane)	_MMIO_PIPE2(dev_priv, plane, _DSPAOFFSET)
-> +#define DSPSURFLIVE(plane)	_MMIO_PIPE2(dev_priv, plane, _DSPASURFLIVE)
-> +#define DSPGAMC(plane, i)	_MMIO_PIPE2(dev_priv, plane, _DSPAGAMC + (5 - (i)) * 4) /* plane C only, 6 x u0.8 */
->  
->  /* CHV pipe B blender and primary plane */
->  #define _CHV_BLEND_A		0x60a00
-> @@ -2939,11 +2939,11 @@
->  #define   PRIM_CONST_ALPHA_MASK		REG_GENMASK(7, 0)
->  #define   PRIM_CONST_ALPHA(alpha)	REG_FIELD_PREP(PRIM_CONST_ALPHA_MASK, (alpha))
->  
-> -#define CHV_BLEND(pipe)		_MMIO_TRANS2(pipe, _CHV_BLEND_A)
-> -#define CHV_CANVAS(pipe)	_MMIO_TRANS2(pipe, _CHV_CANVAS_A)
-> -#define PRIMPOS(plane)		_MMIO_TRANS2(plane, _PRIMPOS_A)
-> -#define PRIMSIZE(plane)		_MMIO_TRANS2(plane, _PRIMSIZE_A)
-> -#define PRIMCNSTALPHA(plane)	_MMIO_TRANS2(plane, _PRIMCNSTALPHA_A)
-> +#define CHV_BLEND(pipe)		_MMIO_TRANS2(dev_priv, pipe, _CHV_BLEND_A)
-> +#define CHV_CANVAS(pipe)	_MMIO_TRANS2(dev_priv, pipe, _CHV_CANVAS_A)
-> +#define PRIMPOS(plane)		_MMIO_TRANS2(dev_priv, plane, _PRIMPOS_A)
-> +#define PRIMSIZE(plane)		_MMIO_TRANS2(dev_priv, plane, _PRIMSIZE_A)
-> +#define PRIMCNSTALPHA(plane)	_MMIO_TRANS2(dev_priv, plane, _PRIMCNSTALPHA_A)
->  
->  /* Display/Sprite base address macros */
->  #define DISP_BASEADDR_MASK	(0xfffff000)
-> @@ -3742,14 +3742,14 @@
->  #define _PIPEB_LINK_M2		0x61048
->  #define _PIPEB_LINK_N2		0x6104c
->  
-> -#define PIPE_DATA_M1(tran) _MMIO_TRANS2(tran, _PIPEA_DATA_M1)
-> -#define PIPE_DATA_N1(tran) _MMIO_TRANS2(tran, _PIPEA_DATA_N1)
-> -#define PIPE_DATA_M2(tran) _MMIO_TRANS2(tran, _PIPEA_DATA_M2)
-> -#define PIPE_DATA_N2(tran) _MMIO_TRANS2(tran, _PIPEA_DATA_N2)
-> -#define PIPE_LINK_M1(tran) _MMIO_TRANS2(tran, _PIPEA_LINK_M1)
-> -#define PIPE_LINK_N1(tran) _MMIO_TRANS2(tran, _PIPEA_LINK_N1)
-> -#define PIPE_LINK_M2(tran) _MMIO_TRANS2(tran, _PIPEA_LINK_M2)
-> -#define PIPE_LINK_N2(tran) _MMIO_TRANS2(tran, _PIPEA_LINK_N2)
-> +#define PIPE_DATA_M1(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_DATA_M1)
-> +#define PIPE_DATA_N1(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_DATA_N1)
-> +#define PIPE_DATA_M2(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_DATA_M2)
-> +#define PIPE_DATA_N2(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_DATA_N2)
-> +#define PIPE_LINK_M1(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_M1)
-> +#define PIPE_LINK_N1(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
-> +#define PIPE_LINK_M2(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_M2)
-> +#define PIPE_LINK_N2(tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N2)
->  
->  /* CPU panel fitter */
->  /* IVB+ has 3 fitters, 0 is 7x5 capable, the other two only 3x3 */
-> @@ -4836,25 +4836,25 @@
->  #define _ICL_VIDEO_DIP_PPS_ECC_A	0x603D4
->  #define _ICL_VIDEO_DIP_PPS_ECC_B	0x613D4
->  
-> -#define HSW_TVIDEO_DIP_CTL(trans)		_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_CTL_A)
-> -#define HSW_TVIDEO_DIP_GCP(trans)		_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_GCP_A)
-> -#define HSW_TVIDEO_DIP_AVI_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
-> -#define HSW_TVIDEO_DIP_VS_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
-> -#define HSW_TVIDEO_DIP_SPD_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
-> -#define HSW_TVIDEO_DIP_GMP_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
-> -#define HSW_TVIDEO_DIP_VSC_DATA(trans, i)	_MMIO_TRANS2(trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
-> -#define GLK_TVIDEO_DIP_DRM_DATA(trans, i)	_MMIO_TRANS2(trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
-> -#define ICL_VIDEO_DIP_PPS_DATA(trans, i)	_MMIO_TRANS2(trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
-> -#define ICL_VIDEO_DIP_PPS_ECC(trans, i)		_MMIO_TRANS2(trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
-> +#define HSW_TVIDEO_DIP_CTL(trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_CTL_A)
-> +#define HSW_TVIDEO_DIP_GCP(trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GCP_A)
-> +#define HSW_TVIDEO_DIP_AVI_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
-> +#define HSW_TVIDEO_DIP_VS_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
-> +#define HSW_TVIDEO_DIP_SPD_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
-> +#define HSW_TVIDEO_DIP_GMP_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
-> +#define HSW_TVIDEO_DIP_VSC_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
-> +#define GLK_TVIDEO_DIP_DRM_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
-> +#define ICL_VIDEO_DIP_PPS_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
-> +#define ICL_VIDEO_DIP_PPS_ECC(trans, i)		_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
->  /*ADLP and later: */
-> -#define ADL_TVIDEO_DIP_AS_SDP_DATA(trans, i)	_MMIO_TRANS2(trans,\
-> +#define ADL_TVIDEO_DIP_AS_SDP_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans,\
->  							     _ADL_VIDEO_DIP_AS_DATA_A + (i) * 4)
->  
->  #define _HSW_STEREO_3D_CTL_A		0x70020
->  #define   S3D_ENABLE			(1 << 31)
->  #define _HSW_STEREO_3D_CTL_B		0x71020
->  
-> -#define HSW_STEREO_3D_CTL(trans)	_MMIO_PIPE2(trans, _HSW_STEREO_3D_CTL_A)
-> +#define HSW_STEREO_3D_CTL(trans)	_MMIO_PIPE2(dev_priv, trans, _HSW_STEREO_3D_CTL_A)
->  
->  #define _PCH_TRANS_HTOTAL_B          0xe1000
->  #define _PCH_TRANS_HBLANK_B          0xe1004
-> @@ -5340,7 +5340,7 @@ enum skl_power_gate {
->  #define _TRANS_DDI_FUNC_CTL_EDP		0x6F400
->  #define _TRANS_DDI_FUNC_CTL_DSI0	0x6b400
->  #define _TRANS_DDI_FUNC_CTL_DSI1	0x6bc00
-> -#define TRANS_DDI_FUNC_CTL(tran) _MMIO_TRANS2(tran, _TRANS_DDI_FUNC_CTL_A)
-> +#define TRANS_DDI_FUNC_CTL(tran) _MMIO_TRANS2(dev_priv, tran, _TRANS_DDI_FUNC_CTL_A)
->  
->  #define  TRANS_DDI_FUNC_ENABLE		(1 << 31)
->  /* Those bits are ignored by pipe EDP since it can only connect to DDI A */
-> @@ -5395,7 +5395,7 @@ enum skl_power_gate {
->  #define _TRANS_DDI_FUNC_CTL2_EDP	0x6f404
->  #define _TRANS_DDI_FUNC_CTL2_DSI0	0x6b404
->  #define _TRANS_DDI_FUNC_CTL2_DSI1	0x6bc04
-> -#define TRANS_DDI_FUNC_CTL2(tran)	_MMIO_TRANS2(tran, _TRANS_DDI_FUNC_CTL2_A)
-> +#define TRANS_DDI_FUNC_CTL2(tran)	_MMIO_TRANS2(dev_priv, tran, _TRANS_DDI_FUNC_CTL2_A)
->  #define  PORT_SYNC_MODE_ENABLE			REG_BIT(4)
->  #define  PORT_SYNC_MODE_MASTER_SELECT_MASK	REG_GENMASK(2, 0)
->  #define  PORT_SYNC_MODE_MASTER_SELECT(x)	REG_FIELD_PREP(PORT_SYNC_MODE_MASTER_SELECT_MASK, (x))
-> @@ -5408,7 +5408,7 @@ enum skl_power_gate {
->  #define _DP_TP_CTL_B			0x64140
->  #define _TGL_DP_TP_CTL_A		0x60540
->  #define DP_TP_CTL(port) _MMIO_PORT(port, _DP_TP_CTL_A, _DP_TP_CTL_B)
-> -#define TGL_DP_TP_CTL(tran) _MMIO_TRANS2((tran), _TGL_DP_TP_CTL_A)
-> +#define TGL_DP_TP_CTL(tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
->  #define  DP_TP_CTL_ENABLE			(1 << 31)
->  #define  DP_TP_CTL_FEC_ENABLE			(1 << 30)
->  #define  DP_TP_CTL_MODE_SST			(0 << 27)
-> @@ -5434,7 +5434,7 @@ enum skl_power_gate {
->  #define _DP_TP_STATUS_B			0x64144
->  #define _TGL_DP_TP_STATUS_A		0x60544
->  #define DP_TP_STATUS(port) _MMIO_PORT(port, _DP_TP_STATUS_A, _DP_TP_STATUS_B)
-> -#define TGL_DP_TP_STATUS(tran) _MMIO_TRANS2((tran), _TGL_DP_TP_STATUS_A)
-> +#define TGL_DP_TP_STATUS(tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_STATUS_A)
->  #define  DP_TP_STATUS_FEC_ENABLE_LIVE		(1 << 28)
->  #define  DP_TP_STATUS_IDLE_DONE			(1 << 25)
->  #define  DP_TP_STATUS_ACT_SENT			(1 << 24)
-> @@ -5615,14 +5615,14 @@ enum skl_power_gate {
->  #define _TRANSB_MSA_MISC		0x61410
->  #define _TRANSC_MSA_MISC		0x62410
->  #define _TRANS_EDP_MSA_MISC		0x6f410
-> -#define TRANS_MSA_MISC(tran) _MMIO_TRANS2(tran, _TRANSA_MSA_MISC)
-> +#define TRANS_MSA_MISC(tran) _MMIO_TRANS2(dev_priv, tran, _TRANSA_MSA_MISC)
->  /* See DP_MSA_MISC_* for the bit definitions */
->  
->  #define _TRANS_A_SET_CONTEXT_LATENCY		0x6007C
->  #define _TRANS_B_SET_CONTEXT_LATENCY		0x6107C
->  #define _TRANS_C_SET_CONTEXT_LATENCY		0x6207C
->  #define _TRANS_D_SET_CONTEXT_LATENCY		0x6307C
-> -#define TRANS_SET_CONTEXT_LATENCY(tran)		_MMIO_TRANS2(tran, _TRANS_A_SET_CONTEXT_LATENCY)
-> +#define TRANS_SET_CONTEXT_LATENCY(tran)		_MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
->  #define  TRANS_SET_CONTEXT_LATENCY_MASK		REG_GENMASK(15, 0)
->  #define  TRANS_SET_CONTEXT_LATENCY_VALUE(x)	REG_FIELD_PREP(TRANS_SET_CONTEXT_LATENCY_MASK, (x))
->  
-> @@ -6076,7 +6076,7 @@ enum skl_power_gate {
->  
->  #define _VLV_PIPE_MSA_MISC_A			0x70048
->  #define VLV_PIPE_MSA_MISC(pipe)		\
-> -			_MMIO_PIPE2(pipe, _VLV_PIPE_MSA_MISC_A)
-> +			_MMIO_PIPE2(dev_priv, pipe, _VLV_PIPE_MSA_MISC_A)
->  #define   VLV_MSA_MISC1_HW_ENABLE			REG_BIT(31)
->  #define   VLV_MSA_MISC1_SW_S3D_MASK			REG_GENMASK(2, 0) /* MSA MISC1 3:1 */
->  
-> @@ -6149,7 +6149,7 @@ enum skl_power_gate {
->  
->  #define _MTL_CLKGATE_DIS_TRANS_A			0x604E8
->  #define _MTL_CLKGATE_DIS_TRANS_B			0x614E8
-> -#define MTL_CLKGATE_DIS_TRANS(trans)			_MMIO_TRANS2(trans, _MTL_CLKGATE_DIS_TRANS_A)
-> +#define MTL_CLKGATE_DIS_TRANS(trans)			_MMIO_TRANS2(dev_priv, trans, _MTL_CLKGATE_DIS_TRANS_A)
->  #define  MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS		REG_BIT(7)
->  
->  #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
 > -- 
 > 2.39.2
 > 
