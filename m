@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473BE8AF64A
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 20:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B25158AF667
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 20:16:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6CE10F2AD;
-	Tue, 23 Apr 2024 18:08:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2AED113574;
+	Tue, 23 Apr 2024 18:16:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F09C310F2AD;
- Tue, 23 Apr 2024 18:08:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7FA113574;
+ Tue, 23 Apr 2024 18:16:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6140221681461470379=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_baby_ste?=
- =?utf-8?q?ps_towards_removing_implicit_dev=5Fpriv?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_baby_steps_towa?=
+ =?utf-8?q?rds_removing_implicit_dev=5Fpriv?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Apr 2024 18:08:40 -0000
-Message-ID: <171389572098.1607644.16603713462831945405@8e613ede5ea5>
+Date: Tue, 23 Apr 2024 18:16:06 -0000
+Message-ID: <171389616612.1609648.18234360218189093543@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1713890614.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1713890614.git.jani.nikula@intel.com>
@@ -41,136 +41,191 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============6140221681461470379==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915: baby steps towards removing implicit dev_priv
 URL   : https://patchwork.freedesktop.org/series/132785/
-State : warning
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-4d48c2fc31ca drm/i915: convert _MMIO_PIPE3()/_MMIO_PORT3() to accept base
--:26: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#26: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:32:
-+#define _MMIO_BASE_PIPE3(base, pipe, a, b, c)	_MMIO((base) + _PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+CI Bug Log - changes from CI_DRM_14636 -> Patchwork_132785v1
+====================================================
 
--:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
-#26: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:32:
-+#define _MMIO_BASE_PIPE3(base, pipe, a, b, c)	_MMIO((base) + _PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+Summary
+-------
 
--:27: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#27: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:33:
-+#define _MMIO_BASE_PORT3(base, pipe, a, b, c)	_MMIO((base) + _PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+  **FAILURE**
 
--:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'a' - possible side-effects?
-#27: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:33:
-+#define _MMIO_BASE_PORT3(base, pipe, a, b, c)	_MMIO((base) + _PICK_EVEN_2RANGES(pipe, 1, a, a, b, c))
+  Serious unknown changes coming with Patchwork_132785v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_132785v1, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-total: 0 errors, 2 warnings, 2 checks, 120 lines checked
-eca8b26e9b0a drm/i915: pass dev_priv to _MMIO_PIPE2, _MMIO_TRANS2, _MMIO_CURSOR2
--:59: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#59: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:39:
-+#define _MMIO_PIPE2(display, pipe, reg)		_MMIO(DISPLAY_INFO(display)->pipe_offsets[(pipe)] - \
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/index.html
 
--:59: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'display' - possible side-effects?
-#59: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:39:
-+#define _MMIO_PIPE2(display, pipe, reg)		_MMIO(DISPLAY_INFO(display)->pipe_offsets[(pipe)] - \
-+						      DISPLAY_INFO(display)->pipe_offsets[PIPE_A] + \
-+						      DISPLAY_MMIO_BASE(display) + (reg))
+Participating hosts (41 -> 39)
+------------------------------
 
--:60: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#60: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:40:
-+						      DISPLAY_INFO(display)->pipe_offsets[PIPE_A] + \
+  Additional (2): fi-elk-e7500 fi-bsw-n3050 
+  Missing    (4): bat-arls-4 bat-mtlp-8 fi-snb-2520m fi-kbl-8809g 
 
--:62: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#62: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:42:
-+#define _MMIO_TRANS2(display, tran, reg)	_MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
+Possible new issues
+-------------------
 
--:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'display' - possible side-effects?
-#62: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:42:
-+#define _MMIO_TRANS2(display, tran, reg)	_MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
-+						      DISPLAY_INFO(display)->trans_offsets[TRANSCODER_A] + \
-+						      DISPLAY_MMIO_BASE(display) + (reg))
+  Here are the unknown changes that may have been introduced in Patchwork_132785v1:
 
--:63: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#63: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:43:
-+						      DISPLAY_INFO(display)->trans_offsets[TRANSCODER_A] + \
+### IGT changes ###
 
--:65: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#65: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:45:
-+#define _MMIO_CURSOR2(display, pipe, reg)	_MMIO(DISPLAY_INFO(display)->cursor_offsets[(pipe)] - \
+#### Possible regressions ####
 
--:65: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'display' - possible side-effects?
-#65: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:45:
-+#define _MMIO_CURSOR2(display, pipe, reg)	_MMIO(DISPLAY_INFO(display)->cursor_offsets[(pipe)] - \
-+						      DISPLAY_INFO(display)->cursor_offsets[PIPE_A] + \
-+						      DISPLAY_MMIO_BASE(display) + (reg))
+  * igt@gem_close_race@basic-threads:
+    - bat-arls-2:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14636/bat-arls-2/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/bat-arls-2/igt@gem_close_race@basic-threads.html
 
--:66: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#66: FILE: drivers/gpu/drm/i915/display/intel_display_reg_defs.h:46:
-+						      DISPLAY_INFO(display)->cursor_offsets[PIPE_A] + \
+  
+Known issues
+------------
 
--:117: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
-#117: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:99:
-+#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_DATA_A + (i) * 4) /* 5 registers */
+  Here are the changes found in Patchwork_132785v1 that come from known issues:
 
--:174: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#174: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:224:
-+#define _PSR2_SU_STATUS(tran, index)	_MMIO_TRANS2(dev_priv, tran, _PSR2_SU_STATUS_A + (index) * 4)
+### IGT changes ###
 
--:183: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#183: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:232:
-+#define PSR2_MAN_TRK_CTL(tran)					_MMIO_TRANS2(dev_priv, tran, _PSR2_MAN_TRK_CTL_A)
+#### Issues hit ####
 
--:228: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
-#228: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:348:
-+#define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_LFPS_CTL_A)
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] +19 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
 
--:472: WARNING:LONG_LINE_COMMENT: line length of 116 exceeds 100 columns
-#472: FILE: drivers/gpu/drm/i915/i915_reg.h:2915:
-+#define DSPGAMC(plane, i)	_MMIO_PIPE2(dev_priv, plane, _DSPAGAMC + (5 - (i)) * 4) /* plane C only, 6 x u0.8 */
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][4] +24 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
 
--:532: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#532: FILE: drivers/gpu/drm/i915/i915_reg.h:4841:
-+#define HSW_TVIDEO_DIP_AVI_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
+  
+#### Possible fixes ####
 
--:533: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#533: FILE: drivers/gpu/drm/i915/i915_reg.h:4842:
-+#define HSW_TVIDEO_DIP_VS_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
+  * igt@gem_exec_parallel@engines@userptr:
+    - {bat-rpls-4}:       [DMESG-WARN][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14636/bat-rpls-4/igt@gem_exec_parallel@engines@userptr.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/bat-rpls-4/igt@gem_exec_parallel@engines@userptr.html
 
--:534: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#534: FILE: drivers/gpu/drm/i915/i915_reg.h:4843:
-+#define HSW_TVIDEO_DIP_SPD_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
--:535: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#535: FILE: drivers/gpu/drm/i915/i915_reg.h:4844:
-+#define HSW_TVIDEO_DIP_GMP_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
-
--:536: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#536: FILE: drivers/gpu/drm/i915/i915_reg.h:4845:
-+#define HSW_TVIDEO_DIP_VSC_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
-
--:537: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#537: FILE: drivers/gpu/drm/i915/i915_reg.h:4846:
-+#define GLK_TVIDEO_DIP_DRM_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
-
--:538: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#538: FILE: drivers/gpu/drm/i915/i915_reg.h:4847:
-+#define ICL_VIDEO_DIP_PPS_DATA(trans, i)	_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
-
--:539: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#539: FILE: drivers/gpu/drm/i915/i915_reg.h:4848:
-+#define ICL_VIDEO_DIP_PPS_ECC(trans, i)		_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
-
--:603: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#603: FILE: drivers/gpu/drm/i915/i915_reg.h:5625:
-+#define TRANS_SET_CONTEXT_LATENCY(tran)		_MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-
--:621: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#621: FILE: drivers/gpu/drm/i915/i915_reg.h:6152:
-+#define MTL_CLKGATE_DIS_TRANS(trans)			_MMIO_TRANS2(dev_priv, trans, _MTL_CLKGATE_DIS_TRANS_A)
-
-total: 0 errors, 21 warnings, 3 checks, 551 lines checked
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_14636 -> Patchwork_132785v1
+
+  CI-20190529: 20190529
+  CI_DRM_14636: e1dc9638bb47a28181fee1a9a180445ca2a8b9cf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_132785v1: e1dc9638bb47a28181fee1a9a180445ca2a8b9cf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/index.html
+
+--===============6140221681461470379==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: baby steps towards removing implicit dev_priv</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132785/">https://patchwork.freedesktop.org/series/132785/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14636 -&gt; Patchwork_132785v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_132785v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_132785v1, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Additional (2): fi-elk-e7500 fi-bsw-n3050 <br />
+  Missing    (4): bat-arls-4 bat-mtlp-8 fi-snb-2520m fi-kbl-8809g </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_132785v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_close_race@basic-threads:<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14636/bat-arls-2/igt@gem_close_race@basic-threads.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/bat-arls-2/igt@gem_close_race@basic-threads.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132785v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@random-engines:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_parallel@engines@userptr:<ul>
+<li>{bat-rpls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14636/bat-rpls-4/igt@gem_exec_parallel@engines@userptr.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132785v1/bat-rpls-4/igt@gem_exec_parallel@engines@userptr.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14636 -&gt; Patchwork_132785v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14636: e1dc9638bb47a28181fee1a9a180445ca2a8b9cf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7818: 8e68eb5f6393f1be25ff775c094b427243a6a403 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_132785v1: e1dc9638bb47a28181fee1a9a180445ca2a8b9cf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6140221681461470379==--
