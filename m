@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A638AE0DA
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 11:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 419A28AE0FA
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Apr 2024 11:27:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D5B11324E;
-	Tue, 23 Apr 2024 09:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB6B710E735;
+	Tue, 23 Apr 2024 09:27:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROdHevGR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aRH4DjHK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70ED711324E
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Apr 2024 09:20:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAD9F10E735;
+ Tue, 23 Apr 2024 09:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713864019; x=1745400019;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=2Qt8yLGpiEuXSGHTBTWuthT75ClW2Z582uWgJ38LYws=;
- b=ROdHevGRYiaT+TDANn7NWJGWXsyIXwyCq0zRr/LW6HY1YQmv1bNlrkr4
- S3n2F+WExTzTIC++NEyUpXNP1pFK9i0CbCGXiOHSuIYpTuASn0hLi9VMJ
- 3Kd6j6VKGsJtr3Vj2Vz/2jj+9J++Xa4klqkB/pggXU84FehDIfpqQ8vwJ
- HrR23C0nRi4wU8XyjQ/Q6zkayBkTWIUCAzTbNtW8bsvThiPTKjIbDGdsX
- Gqud/cXr3eHRC7YUqVthygMWCNwLmyXqWk86MvyJU2EoHLcRPqERycKAO
- 7DPSRTU4wIkLMSgvl53bH5K6jCwtomD/rH6nDPFZGYZJ0ZtMGD1nfJE+m A==;
-X-CSE-ConnectionGUID: LZkuiQdHSEKd7qPbbrXZ8A==
-X-CSE-MsgGUID: WoMAuPcjSgGPt5Rv9vO8sw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="20134184"
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="20134184"
+ t=1713864463; x=1745400463;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=wLXR6antpvv/gtV7lYJtQlKMQXhel1VhhCfFTZVP0Dg=;
+ b=aRH4DjHKreFWApIca3WgEGDgkX5K9W2hYbeYtId9Rh8u0Y3hx+PDaVJo
+ 7OHpzHrqadIYZGduFTfZebAcwDHdlH4/2MMf8OQqBx/caWiuB4vscEP6T
+ l3bh+fVaxJLTEMAx/wTq2zIB2HzqUUjfK5PObCmOmrWpLDiLUgHRhcfMr
+ EKvfH6HmXA2poU+ALz4g4HFFWzsdxBYfUHMhY8G0di6Pp9t9v/v4H7LNK
+ c3fnI85ZAiXRpBQ3UcjBZDHxRXSgJDmnfdn4MH90umQPLtXnkVlYt6oBp
+ CmyjhraI1bBkDbP0bhcsSUR+DhuXdzDPC0+5NiJqc0Dzgnp7SPURlbzJ4 A==;
+X-CSE-ConnectionGUID: 4sg//Kf8RC6NjF1b4lFO2Q==
+X-CSE-MsgGUID: 5/YXDCUkSxGwVZnFXBtYOA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11052"; a="20135039"
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="20135039"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 02:20:19 -0700
-X-CSE-ConnectionGUID: snd1ARhfSYiIRYk5yTAI0g==
-X-CSE-MsgGUID: 9rjocc1iRiyzpkrHmK3Isg==
+ 23 Apr 2024 02:27:42 -0700
+X-CSE-ConnectionGUID: f5FHc+02RN6OQDxRBtwWMg==
+X-CSE-MsgGUID: cUZGYC/yRCOjazBlwcPPsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24355619"
-Received: from fpirou-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.46.117])
+X-IronPort-AV: E=Sophos;i="6.07,222,1708416000"; d="scan'208";a="24357435"
+Received: from unknown (HELO intel.com) ([10.247.119.79])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2024 02:20:17 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 09/14] drm/i915/dpio: Derive the phy from the port
- rather than pipe in encoder hooks
-In-Reply-To: <Zid1SnDvslKvqa82@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240422083457.23815-1-ville.syrjala@linux.intel.com>
- <20240422083457.23815-10-ville.syrjala@linux.intel.com>
- <87y195u2q6.fsf@intel.com> <Zid1SnDvslKvqa82@intel.com>
-Date: Tue, 23 Apr 2024 12:20:15 +0300
-Message-ID: <87edawsaeo.fsf@intel.com>
+ 23 Apr 2024 02:27:37 -0700
+Date: Tue, 23 Apr 2024 11:27:28 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ John.C.Harrison@intel.com
+Subject: Re: [PATCH v2 1/2] drm/i915: Refactor confusing __intel_gt_reset()
+Message-ID: <Zid_APtzggnQUYY3@ashyti-mobl2.lan>
+References: <20240422201951.633-1-nirmoy.das@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240422201951.633-1-nirmoy.das@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +68,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Apr 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, Apr 22, 2024 at 01:10:57PM +0300, Jani Nikula wrote:
->> On Mon, 22 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > diff --git a/drivers/gpu/drm/i915/vlv_sideband.c b/drivers/gpu/drm/i91=
-5/vlv_sideband.c
->> > index ffa195560d0d..68291412f4cb 100644
->> > --- a/drivers/gpu/drm/i915/vlv_sideband.c
->> > +++ b/drivers/gpu/drm/i915/vlv_sideband.c
->> > @@ -9,7 +9,6 @@
->> >  #include "vlv_sideband.h"
->> >=20=20
->> >  #include "display/intel_dpio_phy.h"
->> > -#include "display/intel_display_types.h"
->>=20
->> I guess this should be done in some other patch?
->
-> I think it should have been part of
-> commit f70a68bc1d18 ("drm/i915: convert vlv_dpio_read()/write() from
-> pipe to phy")
->
-> but got missed. This patch is basically what was left from a
-> similar change I had in my branch. I can split this hunk out
-> into a separate patch.
+Hi Nirmoy,
 
-No big deal, really. I just want to get this stuff merged. :)
+On Mon, Apr 22, 2024 at 10:19:50PM +0200, Nirmoy Das wrote:
+> __intel_gt_reset() is really for resetting engines though
+> the name might suggest something else. So add a helper function
+> to remove confusions with no functional changes.
+> 
+> v2: Move intel_gt_reset_all_engines() next to
+>     intel_gt_reset_engine() to make diff simple(John)
+> 
+> Cc: John Harrison <john.c.harrison@intel.com>
+> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
 
-BR,
-Jani.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
---=20
-Jani Nikula, Intel
+Thanks,
+Andi
