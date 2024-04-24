@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DC78B0876
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Apr 2024 13:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 534AB8B0879
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Apr 2024 13:42:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D43113A8A;
-	Wed, 24 Apr 2024 11:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B795C113A8B;
+	Wed, 24 Apr 2024 11:42:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L7eAt8ku";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5ED0113A8A;
- Wed, 24 Apr 2024 11:41:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17530113A8B;
+ Wed, 24 Apr 2024 11:42:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1713958929; x=1745494929;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MjNSo6byudOvIh5r7lIWbPvCjdhgXbJD25RwwXl6T1I=;
+ b=L7eAt8ku5jxctXEbsJpPJF7mxpkGMuF6SNcZwxDtg2uxWqlvPIp9r84U
+ HLv63ygkLkKiPq4jf6hRdhzO2PPf7lumTORMfqZPT7AtapEYSo4BIrJc1
+ u3F2WU7GOYqK/p3c8fqRRh8IzL2ZfU9z7eFpw5mlenIvby9hYNHq62iJh
+ ARASPeaT+mEZzzeti13cITc+Fg/E/Tveg4UISE14QP0EKOK5k/yk02cu9
+ 8qdaT59Ow2PP4n+UiCazmm+cD6czHKC+HJI8oPkGIbMD11HomG7PyVPi7
+ 0QfkOl51BU2I5WfawqB87NpJFm9zjlyxV5zlwsq76bXVt4Wjt8a7BprQN A==;
+X-CSE-ConnectionGUID: 0by3XgtYSjuWkV0Y8fCp1w==
+X-CSE-MsgGUID: c6hwhyAvTdCUzFPz3ujqAQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11053"; a="27098667"
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="27098667"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2024 04:42:08 -0700
+X-CSE-ConnectionGUID: F3xs/mRbRUis9xdddTQm7Q==
+X-CSE-MsgGUID: CgRv3EzcQeOFUyhliS5t9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,226,1708416000"; d="scan'208";a="25135731"
+Received: from unknown (HELO rknop-desk.ger.corp.intel.com) ([10.217.160.54])
+ by orviesa006-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Apr 2024 04:42:08 -0700
+From: Ryszard Knop <ryszard.knop@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [PATCH] MAINTAINERS: Move the drm-intel repo location to fd.o GitLab
+Date: Wed, 24 Apr 2024 13:41:59 +0200
+Message-ID: <20240424114159.38719-1-ryszard.knop@intel.com>
+X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_nightly=2Econf=3A_Update_?=
- =?utf-8?q?drm-intel_URLs=2C_add_missing_bare_ssh_drm-xe_URL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ryszard Knop" <ryszard.knop@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 Apr 2024 11:41:56 -0000
-Message-ID: <171395891680.1630367.3072938459632649291@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240424113218.37162-2-ryszard.knop@intel.com>
-In-Reply-To: <20240424113218.37162-2-ryszard.knop@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,27 +64,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The drm-intel repo is moving from the classic fd.o git host to GitLab.
+Update its location with a URL matching other fd.o GitLab kernel trees.
 
-Series: nightly.conf: Update drm-intel URLs, add missing bare ssh drm-xe URL
-URL   : https://patchwork.freedesktop.org/series/132841/
-State : failure
+Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/132841/revisions/1/mbox/ not applied
-Applying: nightly.conf: Update drm-intel URLs, add missing bare ssh drm-xe URL
-error: sha1 information is lacking or useless (nightly.conf).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 nightly.conf: Update drm-intel URLs, add missing bare ssh drm-xe URL
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d6327dc12cb1..fbf7371a0bb0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10854,7 +10854,7 @@ W:	https://drm.pages.freedesktop.org/intel-docs/
+ Q:	http://patchwork.freedesktop.org/project/intel-gfx/
+ B:	https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+ C:	irc://irc.oftc.net/intel-gfx
+-T:	git git://anongit.freedesktop.org/drm-intel
++T:	git https://gitlab.freedesktop.org/drm/i915/kernel.git
+ F:	Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+ F:	Documentation/gpu/i915.rst
+ F:	drivers/gpu/drm/ci/xfails/i915*
+-- 
+2.44.0
 
