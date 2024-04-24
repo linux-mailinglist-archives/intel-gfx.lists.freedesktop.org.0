@@ -2,195 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8ADC8B14EE
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Apr 2024 22:51:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB5D8B1771
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Apr 2024 01:50:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34AF6113DA5;
-	Wed, 24 Apr 2024 20:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D67D9113EB1;
+	Wed, 24 Apr 2024 23:50:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K3wh/UyN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CyLWCOMz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC25B113DA7
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Apr 2024 20:51:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B313B113EAA;
+ Wed, 24 Apr 2024 23:50:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1713991917; x=1745527917;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:mime-version;
- bh=wMfDjAQB/dSiMDPw/HBaQsDWXFPnDOsXhGJ0vuyDa+Y=;
- b=K3wh/UyN82xs/kYAUl0DJJ5t1K5WeZ5Bkw1IEPWBX+xhWBDs6rlHzlJC
- Ur75mgkuoXa/XwwWSXl9Hdj66DgGYtyEIu3Fakm4zrMwaB9PExnlUwOSO
- E6mz+C7NnRiFd033YtiKNqcGWt/aPlj3yrCBDftvcpopKlqOb+GxGjSG+
- 38g8DQjFqdXt/gZSNZvx3Auu0CK8g1PHq72JuBZZ7p1r/lhLvwBanlLDx
- oZkC2AP9/i1RvWv7r4dBEWsYmhUyMyZ+NJf6ipGhUnK2GZeaULnBEbp/+
- HF0e/gxKCRiT/73BGkvKZb764LjOqfgxzb9XfTewptSVw06TFb7bVMes5 Q==;
-X-CSE-ConnectionGUID: 9V56HaSPQ4uqDYVk7UqB6A==
-X-CSE-MsgGUID: UwlYlIjFTF+FrqpkYR7aPA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="13435225"
-X-IronPort-AV: E=Sophos;i="6.07,227,1708416000"; d="scan'208,217";a="13435225"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2024 13:51:57 -0700
-X-CSE-ConnectionGUID: p3kW2ZaIQfG43XGr/htj3g==
-X-CSE-MsgGUID: FtmxQKsQTCuBUD9fJ1SZ2Q==
+ t=1714002640; x=1745538640;
+ h=date:from:to:cc:subject:message-id;
+ bh=QN9oXNWVfelInKL274CPVm3ZvZGmfwn9ExCdErUsu/Y=;
+ b=CyLWCOMzVKCPLW7civGW6ia596reM8QEEcuc3/6jDEkdTxr29FKdPx5y
+ bkjttE3TkjevF8HSKMWBFLsdm1ZQxpEHQ+nusf1vUiJqyEDYf3gNoCJPe
+ pJoILjPe2k52sIDWhoinSL43SK3Srzl9Tvs9mOjeukeV1QUktVUvvp8K0
+ 6TUIoWKZjitfHpjXEt0MNfSbrpFBTcjKXkL2lBV4Th1LwMOXirk4y6ATF
+ TnxBYT5r8PXFe+1qm+UA/iVNUwDj0UFmhPLOqkwf5NIhfK8LtdvcTp72Y
+ C/0upGa7CdGNgVEDqZ/FIKDN0LqL+FLEjgHfry2D3oPuTb1aMkkGmGdp8 A==;
+X-CSE-ConnectionGUID: p0Cau1z5S1qBPOq3q9fBPw==
+X-CSE-MsgGUID: cVLrasx8SZ+yQ5hBVR7SbQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="10198275"
+X-IronPort-AV: E=Sophos;i="6.07,227,1708416000"; d="scan'208";a="10198275"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2024 16:50:39 -0700
+X-CSE-ConnectionGUID: B+qfO7J9SyK+TUgh+LSHDw==
+X-CSE-MsgGUID: 5HZNCFX5R9aWsX44TnvBAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,227,1708416000"; d="scan'208,217";a="24897338"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Apr 2024 13:51:56 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 24 Apr 2024 13:51:55 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 24 Apr 2024 13:51:55 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 24 Apr 2024 13:51:55 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 24 Apr 2024 13:51:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mZb59xbmNKC7mJmTY42Sa4+s+of+QGZV53H3XmI2+fBsgbDyMoya3gP3XKvpFkAN2twZY7GuFbvbMO9k3nn0yKz5dlmteA9r9SbZhY7dtUykZpn5J632IIPpLyl99nuAZSTlDZLUOqn6zJeH42aGzDjtHbgF1xnBzFwAKpQOPQjf+NKaLghO5tw+LdrxAdUP2VSWzT24x564FqP7qXJ33bZgtDVeM7HRxQuYlsG3NvOrnNJRZp7oxgrXAEKIaMfJCMlR15Kn0qQucRuli3Y1DunJ55w9WSoLwGlBabXdg5NyzRyRkZSoWJDktbBqaeR3pwd3jxC09X9Q3aybMMC4sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wMfDjAQB/dSiMDPw/HBaQsDWXFPnDOsXhGJ0vuyDa+Y=;
- b=Z/ts1LNEXYBdqcY/M6/BWTv4WG4GyMYKDKs2D7gx0Q5KnuLEvHh2AAzY5X29p1qGtaRWE4/l0jToswyrhGEoT/7qUpEzzNeIvEvrFBRrMNVXOxOPwIqUaMYy2pCCgVp0DXAd+T8qTH0E75C9uM7UCyoL2sS2/+LP6ShGv78ZM8CaH4t8XdzbBp9uffWkPvQ7Rc7k1vIogPJKXoCVFhjOoqMiWZ8L/s3kiVWGlxCjdS+UUCEI60CyHlKCrH+W2qPunZY52UY8dai8e0P2HfvRgGvYJVdiZSKOKKknx0KD8DoDYvC7BR0MqPmhcirkMZyHN+A5i74VuSZC1yw7hkQyBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB6541.namprd11.prod.outlook.com (2603:10b6:8:d3::14) by
- DM4PR11MB7399.namprd11.prod.outlook.com (2603:10b6:8:101::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7519.22; Wed, 24 Apr 2024 20:51:48 +0000
-Received: from DS0PR11MB6541.namprd11.prod.outlook.com
- ([fe80::d616:a889:aeb0:3724]) by DS0PR11MB6541.namprd11.prod.outlook.com
- ([fe80::d616:a889:aeb0:3724%7]) with mapi id 15.20.7519.020; Wed, 24 Apr 2024
- 20:51:48 +0000
-From: "Das, Nirmoy" <nirmoy.das@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das
- <nirmoy.das@linux.intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Patchwork <patchwork@emeril.freedesktop.org>
-Subject: =?utf-8?B?UmU6IOKclyBGaS5DSS5JR1Q6IGZhaWx1cmUgZm9yIHNlcmllcyBzdGFydGlu?=
- =?utf-8?B?ZyB3aXRoIFt2MiwxLzJdIGRybS9pOTE1OiBSZWZhY3RvciBjb25mdXNpbmcg?=
- =?utf-8?B?X19pbnRlbF9ndF9yZXNldCgpIChyZXYyKQ==?=
-Thread-Topic: =?utf-8?B?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2VyaWVzIHN0YXJ0aW5nIHdp?=
- =?utf-8?B?dGggW3YyLDEvMl0gZHJtL2k5MTU6IFJlZmFjdG9yIGNvbmZ1c2luZyBfX2lu?=
- =?utf-8?B?dGVsX2d0X3Jlc2V0KCkgKHJldjIp?=
-Thread-Index: AQHalh/CRf6mGHToIE+HNM0Ln8BF2LF3HmAAgACI6gCAAD7RxQ==
-Date: Wed, 24 Apr 2024 20:51:47 +0000
-Message-ID: <DS0PR11MB654126D51CA093E739BD58C699102@DS0PR11MB6541.namprd11.prod.outlook.com>
-References: <20240422201951.633-1-nirmoy.das@intel.com>
- <171394657048.1628979.1495409636175588912@8e613ede5ea5>
- <c0350600-db5d-46eb-a9e8-9ca6188a5a66@linux.intel.com>
- <Zik8Hr-UxY4LxGfT@ashyti-mobl2.lan>
-In-Reply-To: <Zik8Hr-UxY4LxGfT@ashyti-mobl2.lan>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB6541:EE_|DM4PR11MB7399:EE_
-x-ms-office365-filtering-correlation-id: 7d0bc621-76cf-41a2-8b1f-08dc64a05bf2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|376005|366007|1800799015|38070700009;
-x-microsoft-antispam-message-info: =?utf-8?B?OEpaeXFKMnNBcHRTaktqK2pNd1RvMXRNdWYyaXlnWlVjMHhySTBUVzg3dS9X?=
- =?utf-8?B?bUlqYW9Rdm9Yc0hxK21aZFZsRmJEOE9RSFU3NGRVVFV6MFhjSnJ0ZUF1SDVO?=
- =?utf-8?B?UkR5QzJoR1pROEV3TGJ5Y044bCs5em1MQm4zUitzaXRFais2bEp5anV2VEhV?=
- =?utf-8?B?OWNxSkZRNE9VSUc4Q2R2cmM4QnJiZVJ0QlEzYU1mdHhkaDFGdlRiS0h5RHJ5?=
- =?utf-8?B?UDVJek5NeXBiV3ZHbTFCbVhmL0tTb2pVOHZscVh1WndYWmxvMXJ4QmJ3U3I0?=
- =?utf-8?B?UU51VmJNdVAxSzNOekNRRDBPT1g0SHJCamV2T2x1RlVHK1NJK09BSU9oRncx?=
- =?utf-8?B?Mm9YeGV1VzJ5VU8wUHkyYU5HQkFVdkFXdUxxcWZSeVp0SVJUQTVZM3RhTmRE?=
- =?utf-8?B?VUZSK3pmeU4vQVdDay9LNHhJTERCdU9IWVpFMG1sdEx3WmRwMUxUeHhZTEhr?=
- =?utf-8?B?T1JtV252VUV3ZUxVRytybDVpVW1xdmcxT1dCRTl3aEhnQU4rTkFIMDJVenEr?=
- =?utf-8?B?K1lxR2k5TnNtcGdQU3VIcDRKb3FKeVFsTGdwcm9uTU5DRHJlNUJ6SUY1ZGZL?=
- =?utf-8?B?Vk0xaDdlOHZiWkg4MVpUd202dTNmQWFGSVp1Y2RWdTBqTmlvb0tiVVVoYW1q?=
- =?utf-8?B?ZzcrK1FELzBnQzlRdkhUN0RCY2JMZFFXYnZZTmhScUZ4eXFUa0h6UnF4ck1O?=
- =?utf-8?B?SnYvSS9wWVd1M2dQdFgxdUcwTGlZclN0SlIyY25iWFRoYlBLejd3SzkvN1Zr?=
- =?utf-8?B?bWNQUWFDUnMzOHJ5aWV4MkNMdG5lNWdHbkxvWWNoOEJOcmYxV2FWaWl1VWxB?=
- =?utf-8?B?RnhsWS8vV1AvMEczRWMzUWFjNThHbEVxWk8xU3h4dVhFQTU0NTJ4RGJlaFVS?=
- =?utf-8?B?cGNmMllZK1o5bUVCZC9VSDBQc0tsMXM3MXBKMzNITmZjbDFPVUIzRStJRW8r?=
- =?utf-8?B?a2RtUlF3VkN0Qm5MNHNLS1FsN1hFZmEzUHlXMVVkL0RHdGtVWUNsaXEwZTdQ?=
- =?utf-8?B?Yk03TUZoNm40ajc1Sm5SSk1xMmpZRE9na1BFVUl6SnQ1SGJNQUFtNDFHbXo2?=
- =?utf-8?B?KytQbkVvKzBSem9zNS9na2ZBN1hLT0F1MEdGNFhHcXpwMUFnNnkrZXA2WEdM?=
- =?utf-8?B?cHdQcVIvRWYrdTdUb01SK3FJTmdJaFAzQkJJWk8xSUFDaFExbHM4dm9TK2Jy?=
- =?utf-8?B?WUM3c2F2cmpUR0xIMThscjFZVnhRUy96UmhlVStwN3QxOTVPdkw2YWVSeDhB?=
- =?utf-8?B?emVUUHNQb3laVExhTm5WU2psUVJIbHZvMjVyZWJjcjNyOTBZdXcwc2tVYzRv?=
- =?utf-8?B?a3RTTEdERStEMlhPbXBLRnhHdHdlTG5YNDdUa09mYTBQc2tmT2k1TU1iMmhP?=
- =?utf-8?B?OUREY0VKYVBNdmdrOUtBUTZ5WlQ4VkVzK2kyU1g5OFNLaHZXVTQwV3lITFpu?=
- =?utf-8?B?eWJjeTBsaE5URHhSRzBhdWovbHVsOHdrNFBTVjBqWFVENW1UTzNwUlZKSC9r?=
- =?utf-8?B?Z0g5NFQ0QVR6enUrK1hOWElma2M0Qmx3TVBHc3pSMWorT3luM3djemFLUXJC?=
- =?utf-8?B?RFFGVm1MbUxzMTdodTNMcGlmNXI0cHo5NTZEZjVkSjM4RjhGcDF4THVXV29M?=
- =?utf-8?B?R2lYYkhuWVlVcjd6NTdnNlhVbmFqZ1p5UjFRNGZYQk9GV1VuMUdVSVBESmpo?=
- =?utf-8?B?bDI0dGJ5YXBROEVGS1RGd2RIYW1kOEZydEpHQjArQWNkR2lWdENXNkk2QkZS?=
- =?utf-8?Q?z21VPNe+YdoiYdWvgc=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB6541.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?THNzV2JiOVIwTEtaNFgybndQTHN6eVQ5SUIzMC9zaVU3R0I1Q2YzUW95N2ZE?=
- =?utf-8?B?R21mMFRTbG1yRXpaR3gwOUt6UjFhNUZ1Y3BXVXR2b2wwWldMaTlkaGhRYld3?=
- =?utf-8?B?K1RYZXJkcXpKUDQ3TXhzVmtVZ0o3V05KOVpNTkMvcDh6bWFOM2lEMkNTT3Zu?=
- =?utf-8?B?enl1TlZkcWdkbFlQQUxUMWxPVWVROTB1Y3hZaFJaS01BZjZIbGtHL1VBVjVC?=
- =?utf-8?B?Y0tMbFBOKzlOOFJDRGVUL0VKSXZXTjYzRjEyZ3VMeloxQWJkRWxuZ1kreXlr?=
- =?utf-8?B?REJPY1NONVpkbEpnK3JKUW5iOERHMUtSVDNRYm5WNnFkU2hMeXhKYmJSVjJj?=
- =?utf-8?B?dTIrSTNmS0p0d1g1WDhwRUxEQ0ZxVUxEL0FyNjRZanQ4eWhtL3dFUWNxRmFi?=
- =?utf-8?B?aGRCNzZUNGEyaERQamdwZFVsaXdLTFZHS1hjc0pkYkwzSkNPQk1wMVJmM2JU?=
- =?utf-8?B?cm5Ud3I5ZXlWWVo5RU9pZXRQdi9FRWZQNHhMQ1RZOFZKVlZGcWl5REcraWdm?=
- =?utf-8?B?bTFUUnVGL0dIN1p2ZzBHbG5GQ2x6Sm0wZlV6NUFJZ3VEL0ljWkNXajZuQUpY?=
- =?utf-8?B?b0Zjd1E2djhwVVZTazJiZnRCaUduK2RJV1BWNDR2eUFkRDFsSDY0ak43ZEZ4?=
- =?utf-8?B?LzRHdGxJWU92Z3QrRVIrVXFFQ29SME5WQVgrYTlpclFBSkprclNNS0IrclpH?=
- =?utf-8?B?MmhmczhsY200L0hTSlBqNnk5ZWRLbENEak5CeWZOY0lNYm5uNjVuRmVWcFRP?=
- =?utf-8?B?a0lIeGkvQnBoMFFQNXlBc0dCeWdTa0NiS3phOTl1aHh2UmtwMHEwbVAzblRI?=
- =?utf-8?B?elRYVTg3eWdydDlucmFRT3pGbXFSQTltUmZyVFVYVFplSjZKYXpYeWZ6N05o?=
- =?utf-8?B?b1V2a3EvNW5LTis5alY5WkVFV3FycStzMXhMTmUwNW1hajdBdVVKdENZSUkr?=
- =?utf-8?B?NzJNbk82NUNvdnYxQkVuU3RiMGtRS3Q1emdqcGMvYno4clFORlNaNXBKK05J?=
- =?utf-8?B?SERsOFdibWNIcnF3dGFya3l1UGZSc3puMkt0OXZHb0dBRGRxLzgzRG5idFRG?=
- =?utf-8?B?LzJvSTRNK1h3eENCUlN5aW5CVFJFREhzdGxybTFNSUxGcXhyYW5tM3M2ZTVT?=
- =?utf-8?B?eTJZMzlBWU9zeHVWN2l2NHhjSUd1Ujk4U3lXYjVkTTBqMk52dDE3eWxSOXVU?=
- =?utf-8?B?Q200RFl6ZWhFUVNPa2x2ckx4OFZ1ZTkwNktoREJ0bzNMeFdXMDlmSmZtK1RI?=
- =?utf-8?B?Y09ZMHJRY3dwNHp6SU4rQWtoczI0ckV0dGEwb0ltVXRVVUNybzVSOUlWd0Rh?=
- =?utf-8?B?NVh5NTl1VkR3RVdOTGl1RThzL2Z1SjlDMEFYMXNHMldUWU81OWFNcGtKSngv?=
- =?utf-8?B?dC93UmF1MFVVQ0c0NmlpOXVzM2ZOaDRRNTVIV0R2Ti90YzdleWNaejRjdFFz?=
- =?utf-8?B?T1BIVlNIL3RQcmw1VEZMOXExNGpLNzhjaUdUY3BOUStRMDIrTkRoUXhCMitr?=
- =?utf-8?B?UkswdE43d0lGNjRocUEvVFdyajVTSEx4Rk9sblVCbTdHV2ExOGpmWVA5MjRh?=
- =?utf-8?B?eXYxU0NPWXdCc0o2YkRjMXRycHJPWFlHNFVqaEcyNVdpaElJTVpGS1o1Q2JG?=
- =?utf-8?B?aVNFWjVBOHdBWnkzbUhJN0RNalJJWmhqbkJpQlJQeVlENVJKQ2JlckZybGFy?=
- =?utf-8?B?MTArU05hbTk3QzIxdDluem9CMUYwdnNCOU9FZVVhNWd1QWVqUGt2a2lZKzNK?=
- =?utf-8?B?b2IrSWtDSFltZTdjZ1Baa21tOEJtbFRCL3kzS3hlNFluTkEwa1RoNmtJejly?=
- =?utf-8?B?S2dQRVpZdGpJWUZaMWQvTm5mRFFMdUhPWjM3emRTNkJ0UjY5NlJTSmdyb1lj?=
- =?utf-8?B?WGczMGRKTy9ReGR3SWdzWGVqNE9RcU1Pc0FsamhSWkxXLzFHOEJaNjRyRFpq?=
- =?utf-8?B?OHk5S3hBaDV5MzRpT3JHaHBwZ3ZaM1VKK3ZNanJ5cnhoamhvakZsNHAwc2Qz?=
- =?utf-8?B?Q1lZTkdMc0MzR29EMlVmL0VQTm1TV3hwQURlcWlIRi9zdU0zMkhhOE0raXJC?=
- =?utf-8?B?RHYwNzNMcVZ3WnN4Y1ZzM2R1TDROYXQzdk5yTHY5eXdENEpqc3ZBb01haWF5?=
- =?utf-8?Q?cekA=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_DS0PR11MB654126D51CA093E739BD58C699102DS0PR11MB6541namp_"
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB6541.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d0bc621-76cf-41a2-8b1f-08dc64a05bf2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2024 20:51:47.9843 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LZ0I9AHRlfAmSuY1lHiWzyb5LZ2FFp4NpEYgL5QrfSdwr9m3zvkWgU4H4n3yYDO6Fj0hUWE1miGv+mMzV1XQhw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7399
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.07,227,1708416000"; d="scan'208";a="24958263"
+Received: from lkp-server01.sh.intel.com (HELO e434dd42e5a1) ([10.239.97.150])
+ by fmviesa010.fm.intel.com with ESMTP; 24 Apr 2024 16:50:35 -0700
+Received: from kbuild by e434dd42e5a1 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rzmNk-0001ms-2v;
+ Wed, 24 Apr 2024 23:50:32 +0000
+Date: Thu, 25 Apr 2024 07:49:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arch@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-usb@vger.kernel.org, netdev@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Subject: [linux-next:master] BUILD REGRESSION
+ 5e4f84f18c4ee9b0ccdc19e39b7de41df21699dd
+Message-ID: <202404250749.yxbQKLGh-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -206,161 +71,487 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_DS0PR11MB654126D51CA093E739BD58C699102DS0PR11MB6541namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 5e4f84f18c4ee9b0ccdc19e39b7de41df21699dd  Add linux-next specific files for 20240424
 
-VGhhbmtzIGEgbG90IQ0KDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCkludGVsIERldXRzY2hsYW5k
-IEdtYkgNClJlZ2lzdGVyZWQgQWRkcmVzczogQW0gQ2FtcGVvbiAxMCwgODU1NzkgTmV1YmliZXJn
-LCBHZXJtYW55DQpUZWw6ICs0OSA4OSA5OSA4ODUzLTAsIHd3dy5pbnRlbC5kZTxodHRwOi8vd3d3
-LmludGVsLmRlPiA8aHR0cDovL3d3dy5pbnRlbC5kZT48aHR0cDovL3d3dy5pbnRlbC5kZT4NCk1h
-bmFnaW5nIERpcmVjdG9yczogQ2hyaXN0aW4gRWlzZW5zY2htaWQsIFNoYXJvbiBIZWNrLCBUaWZm
-YW55IERvb24gU2lsdmENCkNoYWlycGVyc29uIG9mIHRoZSBTdXBlcnZpc29yeSBCb2FyZDogTmlj
-b2xlIExhdQ0KUmVnaXN0ZXJlZCBPZmZpY2U6IE11bmljaA0KQ29tbWVyY2lhbCBSZWdpc3Rlcjog
-QW10c2dlcmljaHQgTXVlbmNoZW4gSFJCIDE4NjkyOA0KDQoNCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQpGcm9tOiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGxpbnV4LmludGVsLmNv
-bT4NClNlbnQ6IFdlZG5lc2RheSwgQXByaWwgMjQsIDIwMjQgNzowNiBQTQ0KVG86IE5pcm1veSBE
-YXMgPG5pcm1veS5kYXNAbGludXguaW50ZWwuY29tPg0KQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcgPGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBQYXRjaHdvcmsg
-PHBhdGNod29ya0BlbWVyaWwuZnJlZWRlc2t0b3Aub3JnPjsgRGFzLCBOaXJtb3kgPG5pcm1veS5k
-YXNAaW50ZWwuY29tPjsgQW5kaSBTaHl0aSA8YW5kaS5zaHl0aUBsaW51eC5pbnRlbC5jb20+DQpT
-dWJqZWN0OiBSZTog4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2VyaWVzIHN0YXJ0aW5nIHdp
-dGggW3YyLDEvMl0gZHJtL2k5MTU6IFJlZmFjdG9yIGNvbmZ1c2luZyBfX2ludGVsX2d0X3Jlc2V0
-KCkgKHJldjIpDQoNCkhpIE5pcm1veSwNCg0KT24gV2VkLCBBcHIgMjQsIDIwMjQgYXQgMTA6NTY6
-MzZBTSArMDIwMCwgTmlybW95IERhcyB3cm90ZToNCj4NCj4gT24gNC8yNC8yMDI0IDEwOjE2IEFN
-LCBQYXRjaHdvcmsgd3JvdGU6DQo+DQo+ICAgICBQYXRjaCBEZXRhaWxzDQo+DQo+ICAgICBTZXJp
-ZXM6ICBzZXJpZXMgc3RhcnRpbmcgd2l0aCBbdjIsMS8yXSBkcm0vaTkxNTogUmVmYWN0b3IgY29u
-ZnVzaW5nDQo+ICAgICAgICAgICAgICBfX2ludGVsX2d0X3Jlc2V0KCkgKHJldjIpDQo+ICAgICBV
-Ukw6ICAgICBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzEzMjczMS8N
-Cj4gICAgIFN0YXRlOiAgIGZhaWx1cmUNCj4gICAgIERldGFpbHM6IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMjczMXYyLw0KPiAgICAgICAgICAg
-ICAgaW5kZXguaHRtbA0KPg0KPiAgICAgQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1f
-MTQ2MzNfZnVsbCAtPiBQYXRjaHdvcmtfMTMyNzMxdjJfZnVsbA0KPg0KPiAgICAgU3VtbWFyeQ0K
-Pg0KPiAgICAgRkFJTFVSRQ0KPg0KPiAgICAgU2VyaW91cyB1bmtub3duIGNoYW5nZXMgY29taW5n
-IHdpdGggUGF0Y2h3b3JrXzEzMjczMXYyX2Z1bGwgYWJzb2x1dGVseSBuZWVkDQo+ICAgICB0byBi
-ZQ0KPiAgICAgdmVyaWZpZWQgbWFudWFsbHkuDQo+DQo+ICAgICBJZiB5b3UgdGhpbmsgdGhlIHJl
-cG9ydGVkIGNoYW5nZXMgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMNCj4gICAg
-IGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzEzMjczMXYyX2Z1bGwsIHBsZWFzZSBub3RpZnkgeW91
-ciBidWcgdGVhbSAoJw0KPiAgICAgSTkxNS1jaS1pbmZyYUBsaXN0cy5mcmVlZGVza3RvcC5vcmcn
-KSB0byBhbGxvdyB0aGVtDQo+ICAgICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUs
-IHdoaWNoIHdpbGwgcmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4NCj4gICAgIEV4dGVy
-bmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
-cmtfMTMyNzMxdjIvDQo+ICAgICBpbmRleC5odG1sDQo+DQo+ICAgICBQYXJ0aWNpcGF0aW5nIGhv
-c3RzICg5IC0+IDgpDQo+DQo+ICAgICBNaXNzaW5nICgxKTogc2hhcmQtZGcyLXNldDINCj4NCj4g
-ICAgIFBvc3NpYmxlIG5ldyBpc3N1ZXMNCj4NCj4gICAgIEhlcmUgYXJlIHRoZSB1bmtub3duIGNo
-YW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4NCj4gICAgIFBhdGNod29ya18x
-MzI3MzF2Ml9mdWxsOg0KPg0KPiAgICAgSUdUIGNoYW5nZXMNCj4NCj4gICAgIFBvc3NpYmxlIHJl
-Z3Jlc3Npb25zDQo+DQo+ICAgICAgIOKWoSBpZ3RAZ2VtX2V4ZWNfYXdhaXRAd2lkZS1hbGw6DQo+
-DQo+ICAgICAgICAgICDimIYgc2hhcmQtZGcxOiBOT1RSVU4gLT4gSU5DT01QTEVURQ0KPiAgICAg
-ICDilqEgaWd0QGdlbV9leGVjX2d0dGZpbGxAZW5naW5lc0BjY3MwOg0KPg0KPiAgICAgICAgICAg
-4piGIHNoYXJkLWRnMjogTk9UUlVOIC0+IElOQ09NUExFVEUNCj4NCj4gVGhlc2UgYXJlIHVucmVs
-YXRlZCBhcyB0aGUgY2hhbmdlIG9ubHkgZWZmZWN0cyB3aGVyZSBHdUMgc3VibWlzc2lvbiBkaXNh
-YmxlZC4NCj4NCj4gQW5kaSwgY291bGQgeW91IHBsZWFzZSBoZWxwIG1lIG1lcmdlIHRoaXMgb25l
-LiBNeSBkZXYgbWFjaGluZSBpcyBzdGlsbCBicm9rZW4uDQoNCm1lcmdlZCBpbnRvIGRybS1pbnRl
-bC1ndC1uZXh0Lg0KDQpUaGFua3MsDQpBbmRpDQo=
+Error/Warning reports:
 
---_000_DS0PR11MB654126D51CA093E739BD58C699102DS0PR11MB6541namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+https://lore.kernel.org/oe-kbuild-all/202404242144.8931hnhx-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202404242330.Fb2cmamD-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202404242344.MYSO5VxE-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202404250156.2PQRWmex-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202404250209.hmhCgEgB-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202404250552.GnSS0wy7-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202404250558.HmgIruu0-lkp@intel.com
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29m
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFwdG9zLCBBcHRvc19FbWJlZGRlZEZvbnQsIEFwdG9zX01T
-Rm9udFNlcnZpY2UsIENhbGlicmksIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MXB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpUaGFua3MgYSBsb3QhPC9kaXY+DQo8ZGl2IGNs
-YXNzPSJlbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OiBBcHRvcywgQXB0b3NfRW1i
-ZWRkZWRGb250LCBBcHRvc19NU0ZvbnRTZXJ2aWNlLCBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMt
-c2VyaWY7IGZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9k
-aXY+DQo8ZGl2IGlkPSJTaWduYXR1cmUiIHN0eWxlPSJjb2xvcjogaW5oZXJpdDsgYmFja2dyb3Vu
-ZC1jb2xvcjogaW5oZXJpdDsiPg0KPHByZT48ZGl2IHN0eWxlPSJmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTwvZGl2PjwvcHJlPg0KPHByZT48
-ZGl2IHN0eWxlPSJmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij5JbnRlbCBE
-ZXV0c2NobGFuZCBHbWJIClJlZ2lzdGVyZWQgQWRkcmVzczogQW0gQ2FtcGVvbiAxMCwgODU1Nzkg
-TmV1YmliZXJnLCBHZXJtYW55ClRlbDogKzQ5IDg5IDk5IDg4NTMtMCwgPGEgaHJlZj0iaHR0cDov
-L3d3dy5pbnRlbC5kZSI+d3d3LmludGVsLmRlPC9hPiZuYnNwOzxhIGhyZWY9Imh0dHA6Ly93d3cu
-aW50ZWwuZGUiPiZsdDtodHRwOi8vd3d3LmludGVsLmRlJmd0OzwvYT4KTWFuYWdpbmcgRGlyZWN0
-b3JzOiBDaHJpc3RpbiBFaXNlbnNjaG1pZCwgU2hhcm9uIEhlY2ssIFRpZmZhbnkgRG9vbiBTaWx2
-YSAmbmJzcDsKQ2hhaXJwZXJzb24gb2YgdGhlIFN1cGVydmlzb3J5IEJvYXJkOiBOaWNvbGUgTGF1
-ClJlZ2lzdGVyZWQgT2ZmaWNlOiBNdW5pY2gKQ29tbWVyY2lhbCBSZWdpc3RlcjogQW10c2dlcmlj
-aHQgTXVlbmNoZW4gSFJCIDE4NjkyOAo8L2Rpdj48L3ByZT4NCjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTogQ2FsaWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+PGJyPg0KPC9zcGFuPjwvZGl2Pg0KPGRpdiBpZD0i
-YXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lk
-dGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIi
-Pjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIg
-Y29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBBbmRpIFNoeXRpICZsdDthbmRpLnNoeXRpQGxp
-bnV4LmludGVsLmNvbSZndDs8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBBcHJpbCAyNCwg
-MjAyNCA3OjA2IFBNPGJyPg0KPGI+VG86PC9iPiBOaXJtb3kgRGFzICZsdDtuaXJtb3kuZGFzQGxp
-bnV4LmludGVsLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IGludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcgJmx0O2ludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcmZ3Q7OyBQYXRjaHdv
-cmsgJmx0O3BhdGNod29ya0BlbWVyaWwuZnJlZWRlc2t0b3Aub3JnJmd0OzsgRGFzLCBOaXJtb3kg
-Jmx0O25pcm1veS5kYXNAaW50ZWwuY29tJmd0OzsgQW5kaSBTaHl0aSAmbHQ7YW5kaS5zaHl0aUBs
-aW51eC5pbnRlbC5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiDinJcgRmkuQ0kuSUdU
-OiBmYWlsdXJlIGZvciBzZXJpZXMgc3RhcnRpbmcgd2l0aCBbdjIsMS8yXSBkcm0vaTkxNTogUmVm
-YWN0b3IgY29uZnVzaW5nIF9faW50ZWxfZ3RfcmVzZXQoKSAocmV2Mik8L2ZvbnQ+DQo8ZGl2PiZu
-YnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJCb2R5RnJhZ21lbnQiPjxmb250IHNpemU9
-IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPg0KPGRpdiBjbGFzcz0iUGxhaW5UZXh0
-Ij5IaSBOaXJtb3ksPGJyPg0KPGJyPg0KT24gV2VkLCBBcHIgMjQsIDIwMjQgYXQgMTA6NTY6MzZB
-TSArMDIwMCwgTmlybW95IERhcyB3cm90ZTo8YnI+DQomZ3Q7IDxicj4NCiZndDsgT24gNC8yNC8y
-MDI0IDEwOjE2IEFNLCBQYXRjaHdvcmsgd3JvdGU6PGJyPg0KJmd0OyA8YnI+DQomZ3Q7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7IFBhdGNoIERldGFpbHM8YnI+DQomZ3Q7IDxicj4NCiZndDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsgU2VyaWVzOiZuYnNwOyBzZXJpZXMgc3RhcnRpbmcgd2l0aCBb
-djIsMS8yXSBkcm0vaTkxNTogUmVmYWN0b3IgY29uZnVzaW5nPGJyPg0KJmd0OyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyBfX2ludGVsX2d0X3Jlc2V0KCkgKHJldjIpPGJyPg0KJmd0OyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyBVUkw6Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDxhIGhyZWY9Imh0dHBz
-Oi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTMyNzMxLyI+aHR0cHM6Ly9wYXRj
-aHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy8xMzI3MzEvPC9hPjxicj4NCiZndDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsgU3RhdGU6Jm5ic3A7Jm5ic3A7IGZhaWx1cmU8YnI+DQomZ3Q7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IERldGFpbHM6IDxhIGhyZWY9Imh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMjczMXYyLyI+DQpodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzI3MzF2Mi88L2E+PGJy
-Pg0KJmd0OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbmRleC5odG1sPGJyPg0KJmd0OyA8YnI+DQom
-Z3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IENJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lf
-RFJNXzE0NjMzX2Z1bGwgLSZndDsgUGF0Y2h3b3JrXzEzMjczMXYyX2Z1bGw8YnI+DQomZ3Q7IDxi
-cj4NCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgU3VtbWFyeTxicj4NCiZndDsgPGJyPg0K
-Jmd0OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBGQUlMVVJFPGJyPg0KJmd0OyA8YnI+DQomZ3Q7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFNlcmlvdXMgdW5rbm93biBjaGFuZ2VzIGNvbWluZyB3
-aXRoIFBhdGNod29ya18xMzI3MzF2Ml9mdWxsIGFic29sdXRlbHkgbmVlZDxicj4NCiZndDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsgdG8gYmU8YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7IHZlcmlmaWVkIG1hbnVhbGx5Ljxicj4NCiZndDsgPGJyPg0KJmd0OyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyBJZiB5b3UgdGhpbmsgdGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2ZSBub3RoaW5n
-IHRvIGRvIHdpdGggdGhlIGNoYW5nZXM8YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-IGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzEzMjczMXYyX2Z1bGwsIHBsZWFzZSBub3RpZnkgeW91
-ciBidWcgdGVhbSAoJzxicj4NCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgSTkxNS1jaS1p
-bmZyYUBsaXN0cy5mcmVlZGVza3RvcC5vcmcnKSB0byBhbGxvdyB0aGVtPGJyPg0KJmd0OyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdo
-aWNoIHdpbGwgcmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbiBDSS48YnI+DQomZ3Q7IDxicj4NCiZn
-dDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgRXh0ZXJuYWwgVVJMOiA8YSBocmVmPSJodHRwczov
-L2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzI3MzF2Mi8iPg0K
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMyNzMx
-djIvPC9hPjxicj4NCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5kZXguaHRtbDxicj4N
-CiZndDsgPGJyPg0KJmd0OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBQYXJ0aWNpcGF0aW5nIGhv
-c3RzICg5IC0mZ3Q7IDgpPGJyPg0KJmd0OyA8YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7IE1pc3NpbmcgKDEpOiBzaGFyZC1kZzItc2V0Mjxicj4NCiZndDsgPGJyPg0KJmd0OyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyBQb3NzaWJsZSBuZXcgaXNzdWVzPGJyPg0KJmd0OyA8YnI+DQom
-Z3Q7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMg
-dGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW48YnI+DQomZ3Q7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7IFBhdGNod29ya18xMzI3MzF2Ml9mdWxsOjxicj4NCiZndDsgPGJyPg0KJmd0OyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBJR1QgY2hhbmdlczxicj4NCiZndDsgPGJyPg0KJmd0OyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBQb3NzaWJsZSByZWdyZXNzaW9uczxicj4NCiZndDsgPGJy
-Pg0KJmd0OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyDilqEgaWd0QGdlbV9l
-eGVjX2F3YWl0QHdpZGUtYWxsOjxicj4NCiZndDsgPGJyPg0KJmd0OyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyDimIYgc2hhcmQtZGcx
-OiBOT1RSVU4gLSZndDsgSU5DT01QTEVURTxicj4NCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsg4pahIGlndEBnZW1fZXhlY19ndHRmaWxsQGVuZ2luZXNAY2NzMDo8YnI+
-DQomZ3Q7IDxicj4NCiZndDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsg4piGIHNoYXJkLWRnMjogTk9UUlVOIC0mZ3Q7IElOQ09NUExF
-VEU8YnI+DQomZ3Q7IDxicj4NCiZndDsgVGhlc2UgYXJlIHVucmVsYXRlZCBhcyB0aGUgY2hhbmdl
-IG9ubHkgZWZmZWN0cyB3aGVyZSBHdUMgc3VibWlzc2lvbiBkaXNhYmxlZC48YnI+DQomZ3Q7IDxi
-cj4NCiZndDsgQW5kaSwgY291bGQgeW91IHBsZWFzZSBoZWxwIG1lIG1lcmdlIHRoaXMgb25lLiBN
-eSBkZXYgbWFjaGluZSBpcyBzdGlsbCBicm9rZW4uPGJyPg0KPGJyPg0KbWVyZ2VkIGludG8gZHJt
-LWludGVsLWd0LW5leHQuPGJyPg0KPGJyPg0KVGhhbmtzLDxicj4NCkFuZGk8YnI+DQo8L2Rpdj4N
-Cjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Error/Warning: (recently discovered and may have been fixed)
 
---_000_DS0PR11MB654126D51CA093E739BD58C699102DS0PR11MB6541namp_--
+/usr/bin/ld: pse_core.c:(.text+0x72): undefined reference to `rdev_get_id'
+ERROR: modpost: "__spi_register_driver" [drivers/iio/dac/ad9739a.ko] undefined!
+ERROR: modpost: "spi_async" [drivers/base/regmap/regmap-spi.ko] undefined!
+ERROR: modpost: "spi_sync" [drivers/base/regmap/regmap-spi.ko] undefined!
+ERROR: modpost: "spi_write_then_read" [drivers/base/regmap/regmap-spi.ko] undefined!
+WARNING: modpost: vmlinux: section mismatch in reference: dentry_name+0x7c (section: .text) -> .LVL1195 (section: .init.text)
+WARNING: modpost: vmlinux: section mismatch in reference: fwnode_string+0x230 (section: .text) -> .LVL1131 (section: .init.text)
+drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:379:52: error: '%s' directive output may be truncated writing up to 29 bytes into a region of size 23 [-Werror=format-truncation=]
+drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c:379:52: warning: '%s' directive output may be truncated writing up to 29 bytes into a region of size 23 [-Wformat-truncation=]
+kismet: WARNING: unmet direct dependencies detected for REGMAP_SPI when selected by AD9739A
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn401/dcn401_fpu.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_translation_helper.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/dml21_utils.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml21/src/dml2_top/dml_top_mcache.o uses hard float, drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml/dcn401/dcn401_fpu.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_translation_helper.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/dml21_utils.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_dcn4_calcs.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_core/dml2_core_shared.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_dpmm/dml2_dpmm_dcn4.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_mcg/dml2_mcg_dcn4.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn3.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_standalone_libraries/lib_float_math.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+powerpc-linux-ld: drivers/gpu/drm/amd/display/dc/dml2/dml21/src/dml2_top/dml_top_mcache.o uses hard float, arch/powerpc/kernel/udbg.o uses soft float
+
+Unverified Error/Warning (likely false positive, please contact us if interested):
+
+csky-linux-ld: panel-lg-sw43408.c:(.text+0x300): undefined reference to `drm_dsc_pps_payload_pack'
+{standard input}:1047: Error: unknown pseudo-op: `.l182'
+
+Error/Warning ids grouped by kconfigs:
+
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- arc-randconfig-r122-20240424
+|   |-- drivers-pci-pci.h:sparse:sparse:incorrect-type-in-argument-(different-base-types)-expected-unsigned-long-usertype-new-got-restricted-pci_channel_state_t-_n_
+|   `-- drivers-pci-pci.h:sparse:sparse:incorrect-type-in-argument-(different-base-types)-expected-unsigned-long-usertype-old-got-restricted-pci_channel_state_t-_o_
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- csky-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- csky-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- csky-randconfig-002-20240424
+|   |-- ERROR:__spi_register_driver-drivers-iio-dac-ad9739a.ko-undefined
+|   |-- ERROR:spi_async-drivers-base-regmap-regmap-spi.ko-undefined
+|   |-- ERROR:spi_sync-drivers-base-regmap-regmap-spi.ko-undefined
+|   `-- ERROR:spi_write_then_read-drivers-base-regmap-regmap-spi.ko-undefined
+|-- csky-randconfig-r061-20240425
+|   `-- csky-linux-ld:panel-lg-sw43408.c:(.text):undefined-reference-to-drm_dsc_pps_payload_pack
+|-- i386-randconfig-141-20240424
+|   |-- drivers-pwm-core.c-pwm_cdev_ioctl()-warn:possible-spectre-second-half.-pwm
+|   `-- drivers-pwm-core.c-pwm_cdev_ioctl()-warn:potential-spectre-issue-cdata-pwm-r
+|-- loongarch-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- microblaze-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:error:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- microblaze-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- openrisc-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- parisc-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-gpu-drm-nouveau-nvif-object.c:error:memcpy-accessing-or-more-bytes-at-offsets-and-overlaps-bytes-at-offset
+|-- parisc-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-gpu-drm-nouveau-nvif-object.c:error:memcpy-accessing-or-more-bytes-at-offsets-and-overlaps-bytes-at-offset
+|-- powerpc-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- powerpc-randconfig-c024-20220727
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml-dcn401-dcn401_fpu.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-dml21_translation_helper.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-dml21_utils.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_core-dml2_core_dcn4.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_core-dml2_core_dcn4_calcs.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_core-dml2_core_shared.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-floa
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_dpmm-dml2_dpmm_dcn4.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_mcg-dml2_mcg_dcn4.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn3.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn4.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn4_fams2.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-fl
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_standalone_libraries-lib_float_math.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-
+|   `-- powerpc-linux-ld:drivers-gpu-drm-amd-amdgpu-..-display-dc-dml2-dml21-src-dml2_top-dml_top_mcache.o-uses-hard-float-drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm_helpers.o-uses-soft-float
+|-- powerpc-randconfig-r032-20230106
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml-dcn401-dcn401_fpu.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-dml21_translation_helper.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-dml21_utils.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_core-dml2_core_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_core-dml2_core_dcn4_calcs.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_core-dml2_core_shared.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_dpmm-dml2_dpmm_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_mcg-dml2_mcg_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn3.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn4_fams2.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_standalone_libraries-lib_float_math.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   `-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_top-dml_top_mcache.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|-- powerpc64-randconfig-001-20240424
+|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
+|-- powerpc64-randconfig-003-20240424
+|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
+|-- riscv-buildonly-randconfig-r003-20220906
+|   |-- WARNING:modpost:vmlinux:section-mismatch-in-reference:dentry_name-(section:.text)-.-(section:.init.text)
+|   `-- WARNING:modpost:vmlinux:section-mismatch-in-reference:fwnode_string-(section:.text)-.-(section:.init.text)
+|-- riscv-randconfig-001-20240424
+|   `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
+|-- s390-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- sh-randconfig-001-20230926
+|   `-- standard-input:Error:unknown-pseudo-op:l182
+|-- sparc-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- sparc-randconfig-002-20240424
+|   |-- (.head.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-init.text
+|   `-- (.init.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-symbol-leon_smp_cpu_startup-defined-in-.text-section-in-arch-sparc-kernel-trampoline_32.o
+|-- sparc64-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- sparc64-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|-- um-randconfig-r001-20230725
+|   `-- usr-bin-ld:pse_core.c:(.text):undefined-reference-to-rdev_get_id
+`-- x86_64-buildonly-randconfig-003-20240424
+    `-- drivers-gpu-drm-amd-amdgpu-gfx_v9_4_3.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
+clang_recent_errors
+|-- arm64-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-renesas-rcar-du-rcar_cmm.c:error:unused-function-rcar_cmm_read-Werror-Wunused-function
+|   |-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-zone_stat_item-and-enum-numa_stat_item-)-Werror-Wenum-enum-conversion
+|-- hexagon-allmodconfig
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- include-asm-generic-io.h:error:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior-Werror-Wnull-pointer-arithmetic
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|-- hexagon-allyesconfig
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- include-asm-generic-io.h:error:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior-Werror-Wnull-pointer-arithmetic
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|-- powerpc-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-zone_stat_item-and-enum-numa_stat_item-)-Werror-Wenum-enum-conversion
+|-- riscv-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-zone_stat_item-and-enum-numa_stat_item-)-Werror-Wenum-enum-conversion
+|-- riscv-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-zone_stat_item-and-enum-numa_stat_item-)-Werror-Wenum-enum-conversion
+|-- s390-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- include-asm-generic-io.h:error:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior-Werror-Wnull-pointer-arithmetic
+|   |-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-node_stat_item-and-enum-lru_list-)-Werror-Wenum-enum-conversion
+|   `-- include-linux-vmstat.h:error:arithmetic-between-different-enumeration-types-(-enum-zone_stat_item-and-enum-numa_stat_item-)-Werror-Wenum-enum-conversion
+|-- x86_64-allnoconfig
+|   |-- Warning:MAINTAINERS-references-a-file-that-doesn-t-exist:Documentation-devicetree-bindings-display-exynos
+|   |-- Warning:MAINTAINERS-references-a-file-that-doesn-t-exist:Documentation-devicetree-bindings-reserved-memory-qcom
+|   |-- kismet:WARNING:unmet-direct-dependencies-detected-for-REGMAP_SPI-when-selected-by-AD9739A
+|   `-- net-ipv6-udp.c:trace-events-udp.h-is-included-more-than-once.
+|-- x86_64-allyesconfig
+|   |-- drivers-gpu-drm-bridge-synopsys-dw-hdmi-i2s-audio.c:error:unused-function-hdmi_read-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_insert-Werror-Wunused-function
+|   |-- drivers-gpu-drm-drm_mm.c:error:unused-function-drm_mm_interval_tree_iter_next-Werror-Wunused-function
+|   |-- drivers-gpu-drm-kmb-kmb_dsi.c:error:unused-function-set_test_mode_src_osc_freq_target_hi_bits-Werror-Wunused-function
+|   |-- drivers-gpu-drm-kmb-kmb_dsi.c:error:unused-function-set_test_mode_src_osc_freq_target_low_bits-Werror-Wunused-function
+|   `-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+`-- x86_64-randconfig-161-20240424
+    |-- drivers-pwm-core.c-pwm_cdev_ioctl()-warn:possible-spectre-second-half.-pwm
+    |-- drivers-pwm-core.c-pwm_cdev_ioctl()-warn:potential-spectre-issue-cdata-pwm-r
+    `-- drivers-usb-typec-ucsi-ucsi.c-ucsi_get_pd_caps()-warn:passing-zero-to-ERR_PTR
+
+elapsed time: 735m
+
+configs tested: 180
+configs skipped: 3
+
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240424   gcc  
+arc                   randconfig-002-20240424   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                       multi_v4t_defconfig   clang
+arm                       netwinder_defconfig   gcc  
+arm                   randconfig-001-20240424   gcc  
+arm                   randconfig-002-20240424   gcc  
+arm                   randconfig-003-20240424   gcc  
+arm                   randconfig-004-20240424   clang
+arm                         socfpga_defconfig   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240424   clang
+arm64                 randconfig-002-20240424   gcc  
+arm64                 randconfig-003-20240424   gcc  
+arm64                 randconfig-004-20240424   clang
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240424   gcc  
+csky                  randconfig-002-20240424   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240424   clang
+hexagon               randconfig-002-20240424   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240424   gcc  
+i386         buildonly-randconfig-002-20240424   gcc  
+i386         buildonly-randconfig-003-20240424   gcc  
+i386         buildonly-randconfig-004-20240424   gcc  
+i386         buildonly-randconfig-005-20240424   gcc  
+i386         buildonly-randconfig-006-20240424   gcc  
+i386                                defconfig   clang
+i386                  randconfig-001-20240424   gcc  
+i386                  randconfig-002-20240424   gcc  
+i386                  randconfig-003-20240424   gcc  
+i386                  randconfig-004-20240424   clang
+i386                  randconfig-005-20240424   gcc  
+i386                  randconfig-006-20240424   gcc  
+i386                  randconfig-011-20240424   clang
+i386                  randconfig-012-20240424   gcc  
+i386                  randconfig-013-20240424   clang
+i386                  randconfig-014-20240424   clang
+i386                  randconfig-015-20240424   clang
+i386                  randconfig-016-20240424   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240424   gcc  
+loongarch             randconfig-002-20240424   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                           ip28_defconfig   gcc  
+mips                         rt305x_defconfig   clang
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240424   gcc  
+nios2                 randconfig-002-20240424   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+openrisc                       virt_defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240424   gcc  
+parisc                randconfig-002-20240424   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                   microwatt_defconfig   gcc  
+powerpc                 mpc8315_rdb_defconfig   clang
+powerpc               mpc834x_itxgp_defconfig   clang
+powerpc                     rainier_defconfig   gcc  
+powerpc               randconfig-001-20240424   clang
+powerpc               randconfig-002-20240424   gcc  
+powerpc               randconfig-003-20240424   gcc  
+powerpc64             randconfig-001-20240424   gcc  
+powerpc64             randconfig-002-20240424   gcc  
+powerpc64             randconfig-003-20240424   gcc  
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240424   gcc  
+riscv                 randconfig-002-20240424   clang
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240424   gcc  
+s390                  randconfig-002-20240424   clang
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                        edosk7705_defconfig   gcc  
+sh                               j2_defconfig   gcc  
+sh                    randconfig-001-20240424   gcc  
+sh                    randconfig-002-20240424   gcc  
+sh                   rts7751r2dplus_defconfig   gcc  
+sh                           sh2007_defconfig   gcc  
+sh                          urquell_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240424   gcc  
+sparc64               randconfig-002-20240424   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240424   gcc  
+um                    randconfig-002-20240424   clang
+um                           x86_64_defconfig   clang
+x86_64                           alldefconfig   gcc  
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240424   clang
+x86_64       buildonly-randconfig-002-20240424   clang
+x86_64       buildonly-randconfig-003-20240424   gcc  
+x86_64       buildonly-randconfig-004-20240424   gcc  
+x86_64       buildonly-randconfig-005-20240424   gcc  
+x86_64       buildonly-randconfig-006-20240424   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240424   clang
+x86_64                randconfig-002-20240424   clang
+x86_64                randconfig-003-20240424   gcc  
+x86_64                randconfig-004-20240424   gcc  
+x86_64                randconfig-005-20240424   clang
+x86_64                randconfig-006-20240424   clang
+x86_64                randconfig-011-20240424   clang
+x86_64                randconfig-012-20240424   gcc  
+x86_64                randconfig-013-20240424   gcc  
+x86_64                randconfig-014-20240424   gcc  
+x86_64                randconfig-015-20240424   clang
+x86_64                randconfig-016-20240424   gcc  
+x86_64                randconfig-071-20240424   clang
+x86_64                randconfig-072-20240424   clang
+x86_64                randconfig-073-20240424   gcc  
+x86_64                randconfig-074-20240424   clang
+x86_64                randconfig-075-20240424   gcc  
+x86_64                randconfig-076-20240424   gcc  
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+xtensa                randconfig-001-20240424   gcc  
+xtensa                randconfig-002-20240424   gcc  
+xtensa                    smp_lx200_defconfig   gcc  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
