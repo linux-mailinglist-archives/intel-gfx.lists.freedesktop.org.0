@@ -2,89 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAFD8B2060
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Apr 2024 13:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD198B20BE
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Apr 2024 13:52:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6E9511A3C3;
-	Thu, 25 Apr 2024 11:37:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 093AE11A3D1;
+	Thu, 25 Apr 2024 11:52:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eld2OjKR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lTD2xcoG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1450811A3C6
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Apr 2024 11:37:22 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 049E9CE1A11
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Apr 2024 11:37:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6420CC4AF13
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Apr 2024 11:37:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1714045039;
- bh=04ZZrhki7rm8fIvYzPnun4Ob5mdYALT1VDibxGYrjI4=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=eld2OjKR4SSx4h2n74/4s2VCkx5ue8Aq9VhBDzBU0gfxI4afm9CKGJOE1W4mK182I
- HlA3YEXDC2aoQLfTR5zQyiPZ71ElTfcNyHRVelK6ulU8RbhPMBpmosPg6mlmWL7bAp
- JkthAWq6Ecey+NFNaF2CmSbtqQbXKzP5tXIb7qAPCxla4UH3SCMr+uzXpwMui50Tz0
- RoAmKYDalliJWgX/oNFpt6W7fsOqSZ9B0PZLLn54mi/HaxURteQpot1XE7ojSZOemu
- MCTh/hYSbZ06BVXLBuTCK7hIdabtbdScdW2I3LVjZEjkyidj0KasV0OdnclE/jhxpN
- hOBwHz7YQFOuA==
-Received: by mail-qk1-f171.google.com with SMTP id
- af79cd13be357-78f02298dc6so73909585a.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Apr 2024 04:37:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXxxOlM8GiLFRJg2SjAizobZa3u8sZBSLArV+i+iftJGXjTVjOXUrv50n/A5KNrnGEBNTzN9cvasIfQXk70/+ytj1VeC/JLgQ8KOKy2t4p0
-X-Gm-Message-State: AOJu0Yx+v9FYul2BN7xp5vw5FT27lzqAsZz56Im3fIgw4nQnQfiTRA4P
- vXXMtRMLxsa29X3pYUnmOO7VDq8aOUpwN3qkQ6QWQSpO9jqefQ3AK++gpWdyoZ5z1TxObrMrSpP
- PbAvPvcXrdTwa8bxbhSdDIhVc2h/66nZcRGw8UA==
-X-Google-Smtp-Source: AGHT+IGuw6PIRmWLIfWrkf5dDv5YzpHXbZic9qJ7hexXwbCiJetOlrvLTH7Xqti7ICr77TwHib5HF+hy8/iedLopUhw=
-X-Received: by 2002:a05:6902:983:b0:dc6:d258:c694 with SMTP id
- bv3-20020a056902098300b00dc6d258c694mr1879933ybb.19.1714045017450; Thu, 25
- Apr 2024 04:36:57 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663E511A3D1;
+ Thu, 25 Apr 2024 11:51:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714045920; x=1745581920;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=JdieYab+VuBd8IHv7Rd+EQz7ayx9e9lUtwh+NNRAU5Q=;
+ b=lTD2xcoGRrNaz+TL4sgHQeOvTbOEM5yC0zmBvqpCtK9BHViZBJ2gsuPI
+ oQWvO3+DsMjVoh7LlsV1dxdwfggaSxJ15bMCkIuNkAzaARD/wWhXjprBl
+ MGozcfzDJf9RCJaImpmhO4auBXctNYt1vBZT3b3CT3Waj8v+wVAlPGK46
+ AoO6Pss1guOO1uIXbuCtDuLhODXhqIeIZiCsqO3J3x5+45fj+038Sjy/P
+ AQzeDmllTB7N5GlNl5MBOyLceHoOFBOgwCp9iobnV0PrbUKruSd7R3htK
+ /fElYMlqkUFUEyEdA562hVdDWdd5Sda6RgUIbn2tZTKrVmUNb2g7720ZO w==;
+X-CSE-ConnectionGUID: 5u82NzR5TWmYzShj/+JQKg==
+X-CSE-MsgGUID: 4QO4SYB4RAKVwK/HttIQJA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11054"; a="9593053"
+X-IronPort-AV: E=Sophos;i="6.07,229,1708416000"; 
+   d="scan'208";a="9593053"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2024 04:51:58 -0700
+X-CSE-ConnectionGUID: KQl0Tw63Qr+E5OYEtuGs4w==
+X-CSE-MsgGUID: t2wnuVjwSlCkPXB8goU64w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,229,1708416000"; d="scan'208";a="25535263"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2024 04:51:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, "Hogander, Jouni"
+ <jouni.hogander@intel.com>, "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, "joonas.lahtinen@linux.intel.com"
+ <joonas.lahtinen@linux.intel.com>, "ogabbay@kernel.org"
+ <ogabbay@kernel.org>, "javierm@redhat.com" <javierm@redhat.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "Deak, Imre"
+ <imre.deak@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v8 6/6] drm/{i915,xe}: Implement fbdev emulation as
+ in-kernel client
+In-Reply-To: <e10d9029-0f02-4d2e-8fee-f4759eb05148@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240409081029.17843-1-tzimmermann@suse.de>
+ <20240409081029.17843-7-tzimmermann@suse.de>
+ <d164f7d9b0fab2573c9c9781cab17b02c4cdce46.camel@intel.com>
+ <1517673a-50da-4f66-958c-1222b1dfc4a6@suse.de>
+ <275e85aa8165204bcfe8ff6039356cd0f3577c61.camel@intel.com>
+ <e10d9029-0f02-4d2e-8fee-f4759eb05148@suse.de>
+Date: Thu, 25 Apr 2024 14:51:49 +0300
+Message-ID: <87frv9psmi.fsf@intel.com>
 MIME-Version: 1.0
-References: <20240422121011.4133236-1-jani.nikula@intel.com>
-In-Reply-To: <20240422121011.4133236-1-jani.nikula@intel.com>
-From: Robert Foss <rfoss@kernel.org>
-Date: Thu, 25 Apr 2024 13:36:46 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi5JOZCdc9=pKvhc0m+Mf8mXixekc2Vq=jWZe=SpfWEdjA@mail.gmail.com>
-Message-ID: <CAN6tsi5JOZCdc9=pKvhc0m+Mf8mXixekc2Vq=jWZe=SpfWEdjA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/print: drop include debugfs.h and include where
- needed
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Maxime Ripard <mripard@kernel.org>,
- Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>, 
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Russell King <linux@armlinux.org.uk>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Alain Volmat <alain.volmat@foss.st.com>, 
- Huang Rui <ray.huang@amd.com>, Zack Rusin <zack.rusin@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,544 +86,783 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 22, 2024 at 2:10=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
- wrote:
+On Tue, 23 Apr 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Hi
 >
-> Surprisingly many places depend on debugfs.h to be included via
-> drm_print.h. Fix them.
+> Am 23.04.24 um 13:36 schrieb Hogander, Jouni:
+>> On Tue, 2024-04-23 at 13:13 +0200, Thomas Zimmermann wrote:
+>>> Hi
+>>>
+>>> Am 22.04.24 um 16:11 schrieb Hogander, Jouni:
+>>>> On Tue, 2024-04-09 at 10:04 +0200, Thomas Zimmermann wrote:
+>>>>> Replace all code that initializes or releases fbdev emulation
+>>>>> throughout the driver. Instead initialize the fbdev client by a
+>>>>> single call to intel_fbdev_setup() after i915 has registered its
+>>>>> DRM device. Just like similar code in other drivers, i915 fbdev
+>>>>> emulation now acts like a regular DRM client. Do the same for xe.
+>>>>>
+>>>>> The fbdev client setup consists of the initial preparation and
+>>>>> the
+>>>>> hot-plugging of the display. The latter creates the fbdev device
+>>>>> and sets up the fbdev framebuffer. The setup performs display
+>>>>> hot-plugging once. If no display can be detected, DRM probe
+>>>>> helpers
+>>>>> re-run the detection on each hotplug event.
+>>>>>
+>>>>> A call to drm_client_dev_unregister() releases all in-kernel
+>>>>> clients
+>>>>> automatically. No further action is required within i915. If the
+>>>>> fbdev
+>>>>> framebuffer has been fully set up, struct fb_ops.fb_destroy
+>>>>> implements
+>>>>> the release. For partially initialized emulation, the fbdev
+>>>>> client
+>>>>> reverts the initial setup. Do the same for xe and remove its call
+>>>>> to
+>>>>> intel_fbdev_fini().
+>>>>>
+>>>>> v8:
+>>>>> - setup client in intel_display_driver_register (Jouni)
+>>>>> - mention xe in commit message
+>>>>>
+>>>>> v7:
+>>>>> - update xe driver
+>>>>> - reword commit message
+>>>>>
+>>>>> v6:
+>>>>> - use 'i915' for i915 device (Jouni)
+>>>>> - remove unnecessary code for non-atomic mode setting (Jouni,
+>>>>> Ville)
+>>>>> - fix function name in commit message (Jouni)
+>>>>>
+>>>>> v3:
+>>>>> -=C2=A0 as before, silently ignore devices without displays
+>>>>>
+>>>>> v2:
+>>>>> -=C2=A0 let drm_client_register() handle initial hotplug
+>>>>> -=C2=A0 fix driver name in error message (Jani)
+>>>>> -=C2=A0 fix non-fbdev build (kernel test robot)
+>>>>>
+>>>>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>>> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>>> Thank you so much. All patches has R-bs. Can you add the series to
+>>> the
+>>> intel tree?
+>> Is it ok to merge patch 01/06 via intel tree as well?
 >
-> v3: Also fix armada, ite-it6505, imagination, msm, sti, vc4, and xe
->
-> v2: Also fix ivpu and vmwgfx
->
-> Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20240410141434.157908=
--1-jani.nikula@intel.com
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> ---
->
-> Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: Frank Binns <frank.binns@imgtec.com>
-> Cc: Matt Coster <matt.coster@imgtec.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-> Cc: Alain Volmat <alain.volmat@foss.st.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
-> Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadc=
-om.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: freedreno@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: amd-gfx@lists.freedesktop.org
-> ---
->  drivers/accel/ivpu/ivpu_debugfs.c           | 2 ++
->  drivers/gpu/drm/armada/armada_debugfs.c     | 1 +
->  drivers/gpu/drm/bridge/ite-it6505.c         | 1 +
->  drivers/gpu/drm/bridge/panel.c              | 2 ++
->  drivers/gpu/drm/drm_print.c                 | 6 +++---
->  drivers/gpu/drm/i915/display/intel_dmc.c    | 1 +
->  drivers/gpu/drm/imagination/pvr_fw_trace.c  | 1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c | 2 ++
->  drivers/gpu/drm/nouveau/dispnv50/crc.c      | 2 ++
->  drivers/gpu/drm/radeon/r100.c               | 1 +
->  drivers/gpu/drm/radeon/r300.c               | 1 +
->  drivers/gpu/drm/radeon/r420.c               | 1 +
->  drivers/gpu/drm/radeon/r600.c               | 3 ++-
->  drivers/gpu/drm/radeon/radeon_fence.c       | 1 +
->  drivers/gpu/drm/radeon/radeon_gem.c         | 1 +
->  drivers/gpu/drm/radeon/radeon_ib.c          | 2 ++
->  drivers/gpu/drm/radeon/radeon_pm.c          | 1 +
->  drivers/gpu/drm/radeon/radeon_ring.c        | 2 ++
->  drivers/gpu/drm/radeon/radeon_ttm.c         | 1 +
->  drivers/gpu/drm/radeon/rs400.c              | 1 +
->  drivers/gpu/drm/radeon/rv515.c              | 1 +
->  drivers/gpu/drm/sti/sti_drv.c               | 1 +
->  drivers/gpu/drm/ttm/ttm_device.c            | 1 +
->  drivers/gpu/drm/ttm/ttm_resource.c          | 3 ++-
->  drivers/gpu/drm/ttm/ttm_tt.c                | 5 +++--
->  drivers/gpu/drm/vc4/vc4_drv.h               | 1 +
->  drivers/gpu/drm/vmwgfx/vmwgfx_gem.c         | 2 ++
->  drivers/gpu/drm/xe/xe_debugfs.c             | 1 +
->  drivers/gpu/drm/xe/xe_gt_debugfs.c          | 2 ++
->  drivers/gpu/drm/xe/xe_uc_debugfs.c          | 2 ++
->  include/drm/drm_print.h                     | 2 +-
->  31 files changed, 46 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/accel/ivpu/ivpu_debugfs.c b/drivers/accel/ivpu/ivpu_=
-debugfs.c
-> index d09d29775b3f..e07e447d08d1 100644
-> --- a/drivers/accel/ivpu/ivpu_debugfs.c
-> +++ b/drivers/accel/ivpu/ivpu_debugfs.c
-> @@ -3,6 +3,8 @@
->   * Copyright (C) 2020-2023 Intel Corporation
->   */
->
-> +#include <linux/debugfs.h>
-> +
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_print.h>
-> diff --git a/drivers/gpu/drm/armada/armada_debugfs.c b/drivers/gpu/drm/ar=
-mada/armada_debugfs.c
-> index 29f4b52e3c8d..a763349dd89f 100644
-> --- a/drivers/gpu/drm/armada/armada_debugfs.c
-> +++ b/drivers/gpu/drm/armada/armada_debugfs.c
-> @@ -5,6 +5,7 @@
->   */
->
->  #include <linux/ctype.h>
-> +#include <linux/debugfs.h>
->  #include <linux/module.h>
->  #include <linux/seq_file.h>
->  #include <linux/uaccess.h>
-> diff --git a/drivers/gpu/drm/bridge/ite-it6505.c b/drivers/gpu/drm/bridge=
-/ite-it6505.c
-> index 27334173e911..3f68c82888c2 100644
-> --- a/drivers/gpu/drm/bridge/ite-it6505.c
-> +++ b/drivers/gpu/drm/bridge/ite-it6505.c
-> @@ -3,6 +3,7 @@
->   * Copyright (c) 2020, The Linux Foundation. All rights reserved.
->   */
->  #include <linux/bits.h>
-> +#include <linux/debugfs.h>
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/err.h>
-> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/pane=
-l.c
-> index 7f41525f7a6e..32506524d9a2 100644
-> --- a/drivers/gpu/drm/bridge/panel.c
-> +++ b/drivers/gpu/drm/bridge/panel.c
-> @@ -4,6 +4,8 @@
->   * Copyright (C) 2017 Broadcom
->   */
->
-> +#include <linux/debugfs.h>
-> +
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_connector.h>
-> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> index 699b7dbffd7b..cf2efb44722c 100644
-> --- a/drivers/gpu/drm/drm_print.c
-> +++ b/drivers/gpu/drm/drm_print.c
-> @@ -23,13 +23,13 @@
->   * Rob Clark <robdclark@gmail.com>
->   */
->
-> -#include <linux/stdarg.h>
-> -
-> +#include <linux/debugfs.h>
-> +#include <linux/dynamic_debug.h>
->  #include <linux/io.h>
->  #include <linux/moduleparam.h>
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
-> -#include <linux/dynamic_debug.h>
-> +#include <linux/stdarg.h>
->
->  #include <drm/drm.h>
->  #include <drm/drm_drv.h>
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
-915/display/intel_dmc.c
-> index 3697a02b51b6..09346afd1f0e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -22,6 +22,7 @@
->   *
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/firmware.h>
->
->  #include "i915_drv.h"
-> diff --git a/drivers/gpu/drm/imagination/pvr_fw_trace.c b/drivers/gpu/drm=
-/imagination/pvr_fw_trace.c
-> index 31199e45b72e..73707daa4e52 100644
-> --- a/drivers/gpu/drm/imagination/pvr_fw_trace.c
-> +++ b/drivers/gpu/drm/imagination/pvr_fw_trace.c
-> @@ -12,6 +12,7 @@
->
->  #include <linux/build_bug.h>
->  #include <linux/dcache.h>
-> +#include <linux/debugfs.h>
->  #include <linux/sysfs.h>
->  #include <linux/types.h>
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c b/drivers/gpu/dr=
-m/msm/disp/dpu1/dpu_hw_sspp.c
-> index 0bf8a83e8df3..8586f2761782 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-> @@ -2,6 +2,8 @@
->  /* Copyright (c) 2015-2018, The Linux Foundation. All rights reserved.
->   */
->
-> +#include <linux/debugfs.h>
-> +
->  #include "dpu_hwio.h"
->  #include "dpu_hw_catalog.h"
->  #include "dpu_hw_lm.h"
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc.c b/drivers/gpu/drm/nou=
-veau/dispnv50/crc.c
-> index 9c942fbd836d..5936b6b3b15d 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/crc.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/crc.c
-> @@ -1,5 +1,7 @@
->  // SPDX-License-Identifier: MIT
-> +#include <linux/debugfs.h>
->  #include <linux/string.h>
-> +
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.=
-c
-> index 86b8b770af19..0b1e19345f43 100644
-> --- a/drivers/gpu/drm/radeon/r100.c
-> +++ b/drivers/gpu/drm/radeon/r100.c
-> @@ -26,6 +26,7 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/firmware.h>
->  #include <linux/module.h>
->  #include <linux/pci.h>
-> diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.=
-c
-> index 25201b9a5aae..1620f534f55f 100644
-> --- a/drivers/gpu/drm/radeon/r300.c
-> +++ b/drivers/gpu/drm/radeon/r300.c
-> @@ -26,6 +26,7 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/pci.h>
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
-> diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.=
-c
-> index eae8a6389f5e..a979662eaa73 100644
-> --- a/drivers/gpu/drm/radeon/r420.c
-> +++ b/drivers/gpu/drm/radeon/r420.c
-> @@ -26,6 +26,7 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/pci.h>
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
-> diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.=
-c
-> index b5e97d95a19f..087d41e370fd 100644
-> --- a/drivers/gpu/drm/radeon/r600.c
-> +++ b/drivers/gpu/drm/radeon/r600.c
-> @@ -26,11 +26,12 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/firmware.h>
->  #include <linux/module.h>
->  #include <linux/pci.h>
-> -#include <linux/slab.h>
->  #include <linux/seq_file.h>
-> +#include <linux/slab.h>
->
->  #include <drm/drm_device.h>
->  #include <drm/drm_vblank.h>
-> diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/rade=
-on/radeon_fence.c
-> index 9ebe4a0b9a6c..4fb780d96f32 100644
-> --- a/drivers/gpu/drm/radeon/radeon_fence.c
-> +++ b/drivers/gpu/drm/radeon/radeon_fence.c
-> @@ -30,6 +30,7 @@
->   */
->
->  #include <linux/atomic.h>
-> +#include <linux/debugfs.h>
->  #include <linux/firmware.h>
->  #include <linux/kref.h>
->  #include <linux/sched/signal.h>
-> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon=
-/radeon_gem.c
-> index 3fec3acdaf28..2ef201a072f1 100644
-> --- a/drivers/gpu/drm/radeon/radeon_gem.c
-> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
-> @@ -26,6 +26,7 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/iosys-map.h>
->  #include <linux/pci.h>
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/=
-radeon_ib.c
-> index fb9ecf5dbe2b..63d914f3414d 100644
-> --- a/drivers/gpu/drm/radeon/radeon_ib.c
-> +++ b/drivers/gpu/drm/radeon/radeon_ib.c
-> @@ -27,6 +27,8 @@
->   *          Christian K=C3=B6nig
->   */
->
-> +#include <linux/debugfs.h>
-> +
->  #include <drm/drm_file.h>
->
->  #include "radeon.h"
-> diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/=
-radeon_pm.c
-> index 4482c8c5f5ce..2d9d9f46f243 100644
-> --- a/drivers/gpu/drm/radeon/radeon_pm.c
-> +++ b/drivers/gpu/drm/radeon/radeon_pm.c
-> @@ -21,6 +21,7 @@
->   *          Alex Deucher <alexdeucher@gmail.com>
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/hwmon-sysfs.h>
->  #include <linux/hwmon.h>
->  #include <linux/pci.h>
-> diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeo=
-n/radeon_ring.c
-> index 38048593bb4a..8d1d458286a8 100644
-> --- a/drivers/gpu/drm/radeon/radeon_ring.c
-> +++ b/drivers/gpu/drm/radeon/radeon_ring.c
-> @@ -27,6 +27,8 @@
->   *          Christian K=C3=B6nig
->   */
->
-> +#include <linux/debugfs.h>
-> +
->  #include <drm/drm_device.h>
->  #include <drm/drm_file.h>
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon=
-/radeon_ttm.c
-> index 2078b0000e22..5c65b6dfb99a 100644
-> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
-> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
-> @@ -30,6 +30,7 @@
->   *    Dave Airlie
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/pagemap.h>
->  #include <linux/pci.h>
-> diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs40=
-0.c
-> index d7f552d441ab..d4d1501e6576 100644
-> --- a/drivers/gpu/drm/radeon/rs400.c
-> +++ b/drivers/gpu/drm/radeon/rs400.c
-> @@ -26,6 +26,7 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
->
-> diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv51=
-5.c
-> index 79709d26d983..bbc6ccabf788 100644
-> --- a/drivers/gpu/drm/radeon/rv515.c
-> +++ b/drivers/gpu/drm/radeon/rv515.c
-> @@ -26,6 +26,7 @@
->   *          Jerome Glisse
->   */
->
-> +#include <linux/debugfs.h>
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
->
-> diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_drv.=
-c
-> index 4bab93c4fefd..1799c12babf5 100644
-> --- a/drivers/gpu/drm/sti/sti_drv.c
-> +++ b/drivers/gpu/drm/sti/sti_drv.c
-> @@ -5,6 +5,7 @@
->   */
->
->  #include <linux/component.h>
-> +#include <linux/debugfs.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_d=
-evice.c
-> index 76027960054f..434cf0258000 100644
-> --- a/drivers/gpu/drm/ttm/ttm_device.c
-> +++ b/drivers/gpu/drm/ttm/ttm_device.c
-> @@ -27,6 +27,7 @@
->
->  #define pr_fmt(fmt) "[TTM DEVICE] " fmt
->
-> +#include <linux/debugfs.h>
->  #include <linux/mm.h>
->
->  #include <drm/ttm/ttm_bo.h>
-> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm=
-_resource.c
-> index be8d286513f9..4a66b851b67d 100644
-> --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
-> @@ -22,8 +22,9 @@
->   * Authors: Christian K=C3=B6nig
->   */
->
-> -#include <linux/iosys-map.h>
-> +#include <linux/debugfs.h>
->  #include <linux/io-mapping.h>
-> +#include <linux/iosys-map.h>
->  #include <linux/scatterlist.h>
->
->  #include <drm/ttm/ttm_bo.h>
-> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-> index 578a7c37f00b..474fe7aad2a0 100644
-> --- a/drivers/gpu/drm/ttm/ttm_tt.c
-> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
-> @@ -32,10 +32,11 @@
->  #define pr_fmt(fmt) "[TTM] " fmt
->
->  #include <linux/cc_platform.h>
-> -#include <linux/sched.h>
-> -#include <linux/shmem_fs.h>
-> +#include <linux/debugfs.h>
->  #include <linux/file.h>
->  #include <linux/module.h>
-> +#include <linux/sched.h>
-> +#include <linux/shmem_fs.h>
->  #include <drm/drm_cache.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_util.h>
-> diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.=
-h
-> index ab61e96e7e14..08e29fa82563 100644
-> --- a/drivers/gpu/drm/vc4/vc4_drv.h
-> +++ b/drivers/gpu/drm/vc4/vc4_drv.h
-> @@ -5,6 +5,7 @@
->  #ifndef _VC4_DRV_H_
->  #define _VC4_DRV_H_
->
-> +#include <linux/debugfs.h>
->  #include <linux/delay.h>
->  #include <linux/of.h>
->  #include <linux/refcount.h>
-> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c b/drivers/gpu/drm/vmwgfx=
-/vmwgfx_gem.c
-> index 2132a8ad8c0c..07185c108218 100644
-> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_gem.c
-> @@ -30,6 +30,8 @@
->  #include "drm/drm_prime.h"
->  #include "drm/drm_gem_ttm_helper.h"
->
-> +#include <linux/debugfs.h>
-> +
->  static void vmw_gem_object_free(struct drm_gem_object *gobj)
->  {
->         struct ttm_buffer_object *bo =3D drm_gem_ttm_of_gem(gobj);
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debu=
-gfs.c
-> index c9b30dbdc14d..0b7aebaae843 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -5,6 +5,7 @@
->
->  #include "xe_debugfs.h"
->
-> +#include <linux/debugfs.h>
->  #include <linux/string_helpers.h>
->
->  #include <drm/drm_debugfs.h>
-> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_g=
-t_debugfs.c
-> index ff7f4cf52fa9..8cf0b2625efc 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> @@ -5,6 +5,8 @@
->
->  #include "xe_gt_debugfs.h"
->
-> +#include <linux/debugfs.h>
-> +
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_managed.h>
->
-> diff --git a/drivers/gpu/drm/xe/xe_uc_debugfs.c b/drivers/gpu/drm/xe/xe_u=
-c_debugfs.c
-> index 0a39ec5a6e99..78eb8db73791 100644
-> --- a/drivers/gpu/drm/xe/xe_uc_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_uc_debugfs.c
-> @@ -3,6 +3,8 @@
->   * Copyright =C2=A9 2022 Intel Corporation
->   */
->
-> +#include <linux/debugfs.h>
-> +
->  #include <drm/drm_debugfs.h>
->
->  #include "xe_gt.h"
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 9cc473e5d353..561c3b96b6fd 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -30,11 +30,11 @@
->  #include <linux/printk.h>
->  #include <linux/seq_file.h>
->  #include <linux/device.h>
-> -#include <linux/debugfs.h>
->  #include <linux/dynamic_debug.h>
->
->  #include <drm/drm.h>
->
-> +struct debugfs_regset32;
->  struct drm_device;
->
->  /* Do *not* use outside of drm_print.[ch]! */
-> --
-> 2.39.2
->
->
+> Sure, np.
 
-Acked-by: Robert Foss <rfoss@kernel.org> #drm/bridge
+Pushed the series to drm-intel-next, thanks for the patches and
+review. And the patience in waiting for us to getting this merged!
+
+BR,
+Jani.
+
+
+>
+> Best regards
+> Thomas
+>
+>>
+>> Rodrigo, This set is containing Xe display changes as well. Is it ok to
+>> push this via drm-intel?
+>>
+>> BR,
+>>
+>> Jouni H=C3=B6gander
+>>
+>>> Best regards
+>>> Thomas
+>>>
+>>>>> ---
+>>>>>  =C2=A0=C2=A0drivers/gpu/drm/i915/display/intel_display.c=C2=A0 |=C2=
+=A0=C2=A0 1 -
+>>>>>  =C2=A0=C2=A0.../drm/i915/display/intel_display_driver.c=C2=A0=C2=A0 =
+|=C2=A0 20 +-
+>>>>>  =C2=A0=C2=A0drivers/gpu/drm/i915/display/intel_fbdev.c=C2=A0=C2=A0=
+=C2=A0 | 177 ++++++++---
+>>>>> -----
+>>>>> --
+>>>>>  =C2=A0=C2=A0drivers/gpu/drm/i915/display/intel_fbdev.h=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 20 +-
+>>>>>  =C2=A0=C2=A0drivers/gpu/drm/xe/display/xe_display.c=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 -
+>>>>>  =C2=A0=C2=A05 files changed, 80 insertions(+), 140 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>>>>> b/drivers/gpu/drm/i915/display/intel_display.c
+>>>>> index 614e60420a29a..161a5aabf6746 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>>>> @@ -85,7 +85,6 @@
+>>>>>  =C2=A0=C2=A0#include "intel_dvo.h"
+>>>>>  =C2=A0=C2=A0#include "intel_fb.h"
+>>>>>  =C2=A0=C2=A0#include "intel_fbc.h"
+>>>>> -#include "intel_fbdev.h"
+>>>>>  =C2=A0=C2=A0#include "intel_fdi.h"
+>>>>>  =C2=A0=C2=A0#include "intel_fifo_underrun.h"
+>>>>>  =C2=A0=C2=A0#include "intel_frontbuffer.h"
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c
+>>>>> b/drivers/gpu/drm/i915/display/intel_display_driver.c
+>>>>> index e5f052d4ff1cc..ed8589fa35448 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+>>>>> @@ -514,10 +514,6 @@ int intel_display_driver_probe(struct
+>>>>> drm_i915_private *i915)
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_overlay_=
+setup(i915);
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D intel_fbdev_init(&=
+i915->drm);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return ret;
+>>>>> -
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Only enable=
+ hotplug handling once the fbdev is fully
+>>>>> set
+>>>>> up. */
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_hpd_init=
+(i915);
+>>>>>=20=20=20=20
+>>>>> @@ -544,16 +540,6 @@ void intel_display_driver_register(struct
+>>>>> drm_i915_private *i915)
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_display_=
+debugfs_register(i915);
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Some ports require corr=
+ectly set-up hpd registers for
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * detection to work prope=
+rly (leading to ghost connected
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * connector status), e.g.=
+ VGA on gm45.=C2=A0 Hence we can
+>>>>> only
+>>>>> set
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * up the initial fbdev co=
+nfig after hpd irqs are fully
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * enabled. We do it last =
+so that the async config cannot
+>>>>> run
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * before the connectors a=
+re registered.
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_initial_config=
+_async(i915);
+>>>>> -
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * We need to =
+coordinate the hotplugs with the
+>>>>> asynchronous
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * fbdev confi=
+guration, for which we use the
+>>>>> @@ -562,6 +548,8 @@ void intel_display_driver_register(struct
+>>>>> drm_i915_private *i915)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_kms_helper=
+_poll_init(&i915->drm);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_hpd_poll=
+_disable(i915);
+>>>>>=20=20=20=20
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_setup(i915);
+>>>>> +
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_display_=
+device_info_print(DISPLAY_INFO(i915),
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DISPLAY_RUNTIME_INFO(i91
+>>>>> 5),
+>>>>> &p);
+>>>>>  =C2=A0=C2=A0}
+>>>>> @@ -597,9 +585,6 @@ void intel_display_driver_remove_noirq(struct
+>>>>> drm_i915_private *i915)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_hpd_poll=
+_fini(i915);
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* poll work can call into=
+ fbdev, hence clean that up
+>>>>> afterwards */
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_fini(i915);
+>>>>> -
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_unregist=
+er_dsm_handler();
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* flush any d=
+elayed tasks or pending work */
+>>>>> @@ -640,7 +625,6 @@ void intel_display_driver_unregister(struct
+>>>>> drm_i915_private *i915)
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_client_dev=
+_unregister(&i915->drm);
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_unregister(i91=
+5);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * After flush=
+ing the fbdev (incl. a late async config
+>>>>> which
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * will have d=
+elayed queuing of a hotplug event), then
+>>>>> flush
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> index f783de611a7f5..bda702c2cab8e 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>>>>> @@ -24,7 +24,6 @@
+>>>>>  =C2=A0=C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0 David Airlie
+>>>>>  =C2=A0=C2=A0 */
+>>>>>=20=20=20=20
+>>>>> -#include <linux/async.h>
+>>>>>  =C2=A0=C2=A0#include <linux/console.h>
+>>>>>  =C2=A0=C2=A0#include <linux/delay.h>
+>>>>>  =C2=A0=C2=A0#include <linux/errno.h>
+>>>>> @@ -39,6 +38,7 @@
+>>>>>  =C2=A0=C2=A0#include <linux/vga_switcheroo.h>
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0#include <drm/drm_crtc.h>
+>>>>> +#include <drm/drm_crtc_helper.h>
+>>>>>  =C2=A0=C2=A0#include <drm/drm_fb_helper.h>
+>>>>>  =C2=A0=C2=A0#include <drm/drm_fourcc.h>
+>>>>>  =C2=A0=C2=A0#include <drm/drm_gem_framebuffer_helper.h>
+>>>>> @@ -58,7 +58,6 @@ struct intel_fbdev {
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_f=
+ramebuffer *fb;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_vm=
+a *vma;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0unsigned long =
+vma_flags;
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0async_cookie_t cookie;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int preferred_=
+bpp;
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Whether or =
+not fbdev hpd processing is temporarily
+>>>>> suspended */
+>>>>> @@ -135,6 +134,26 @@ static int intel_fbdev_mmap(struct fb_info
+>>>>> *info, struct vm_area_struct *vma)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return i915_ge=
+m_fb_mmap(obj, vma);
+>>>>>  =C2=A0=C2=A0}
+>>>>>=20=20=20=20
+>>>>> +static void intel_fbdev_fb_destroy(struct fb_info *info)
+>>>>> +{
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_fb_helper *fb_h=
+elper =3D info->par;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_fbdev *ifbdev=
+ =3D container_of(fb_helper,
+>>>>> struct
+>>>>> intel_fbdev, helper);
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_fini(&ifbdev=
+->helper);
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * We rely on the object-f=
+ree to release the VMA pinning
+>>>>> for
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * the info->screen_base m=
+maping. Leaking the VMA is
+>>>>> simpler
+>>>>> than
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * trying to rectify all t=
+he possible error paths leading
+>>>>> here.
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_unpin_fb_vma(ifbdev-=
+>vma, ifbdev->vma_flags);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_framebuffer_remove(&if=
+bdev->fb->base);
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_client_release(&fb_hel=
+per->client);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_unprepare(&i=
+fbdev->helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0kfree(ifbdev);
+>>>>> +}
+>>>>> +
+>>>>>  =C2=A0=C2=A0__diag_push();
+>>>>>  =C2=A0=C2=A0__diag_ignore_all("-Woverride-init", "Allow field
+>>>>> initialization
+>>>>> overrides for fb ops");
+>>>>>=20=20=20=20
+>>>>> @@ -147,6 +166,7 @@ static const struct fb_ops intelfb_ops =3D {
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.fb_pan_displa=
+y =3D intel_fbdev_pan_display,
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0__FB_DEFAULT_D=
+EFERRED_OPS_DRAW(intel_fbdev),
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.fb_mmap =3D i=
+ntel_fbdev_mmap,
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.fb_destroy =3D intel_fbde=
+v_fb_destroy,
+>>>>>  =C2=A0=C2=A0};
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0__diag_pop();
+>>>>> @@ -158,7 +178,6 @@ static int intelfb_create(struct
+>>>>> drm_fb_helper
+>>>>> *helper,
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_f=
+ramebuffer *intel_fb =3D ifbdev->fb;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_dev=
+ice *dev =3D helper->dev;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i91=
+5_private *dev_priv =3D to_i915(dev);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pci_dev *pdev =3D t=
+o_pci_dev(dev_priv->drm.dev);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct i=
+915_gtt_view view =3D {
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.type =3D I915_GTT_VIEW_NORMAL,
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+>>>>> @@ -250,7 +269,7 @@ static int intelfb_create(struct
+>>>>> drm_fb_helper
+>>>>> *helper,
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ifbdev->vma_fl=
+ags =3D flags;
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_runtime_=
+pm_put(&dev_priv->runtime_pm, wakeref);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vga_switcheroo_client_fb_s=
+et(pdev, info);
+>>>>> +
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0out_unpin:
+>>>>> @@ -276,26 +295,6 @@ static const struct drm_fb_helper_funcs
+>>>>> intel_fb_helper_funcs =3D {
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.fb_dirty =3D =
+intelfb_dirty,
+>>>>>  =C2=A0=C2=A0};
+>>>>>=20=20=20=20
+>>>>> -static void intel_fbdev_destroy(struct intel_fbdev *ifbdev)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* We rely on the object-f=
+ree to release the VMA pinning
+>>>>> for
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * the info->screen_base m=
+maping. Leaking the VMA is
+>>>>> simpler
+>>>>> than
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * trying to rectify all t=
+he possible error paths leading
+>>>>> here.
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_fini(&ifbdev=
+->helper);
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ifbdev->vma)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0intel_unpin_fb_vma(ifbdev->vma, ifbdev-
+>>>>>> vma_flags);
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ifbdev->fb)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0drm_framebuffer_remove(&ifbdev->fb->base);
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_client_release(&ifbdev=
+->helper.client);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_unprepare(&i=
+fbdev->helper);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0kfree(ifbdev);
+>>>>> -}
+>>>>> -
+>>>>>  =C2=A0=C2=A0/*
+>>>>>  =C2=A0=C2=A0 * Build an intel_fbdev struct using a BIOS allocated
+>>>>> framebuffer,
+>>>>> if possible.
+>>>>>  =C2=A0=C2=A0 * The core display code will have read out the current =
+plane
+>>>>> configuration,
+>>>>> @@ -459,16 +458,6 @@ static void
+>>>>> intel_fbdev_suspend_worker(struct
+>>>>> work_struct *work)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0true);
+>>>>>  =C2=A0=C2=A0}
+>>>>>=20=20=20=20
+>>>>> -static void intel_fbdev_sync(struct intel_fbdev *ifbdev)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev->cookie)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Only serialises with al=
+l preceding async calls, hence
+>>>>> +1
+>>>>> */
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0async_synchronize_cookie(i=
+fbdev->cookie + 1);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ifbdev->cookie =3D 0;
+>>>>> -}
+>>>>> -
+>>>>>  =C2=A0=C2=A0/* Suspends/resumes fbdev processing of incoming HPD eve=
+nts.
+>>>>> When
+>>>>> resuming HPD
+>>>>>  =C2=A0=C2=A0 * processing, fbdev will perform a full connector repro=
+be if a
+>>>>> hotplug event
+>>>>>  =C2=A0=C2=A0 * was received while HPD was suspended.
+>>>>> @@ -559,8 +548,6 @@ static int
+>>>>> intel_fbdev_output_poll_changed(struct
+>>>>> drm_device *dev)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -EINVAL;
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_sync(ifbdev);
+>>>>> -
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_lock(&if=
+bdev->hpd_lock);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0send_hpd =3D !=
+ifbdev->hpd_suspended;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ifbdev->hpd_wa=
+iting =3D true;
+>>>>> @@ -580,7 +567,6 @@ static int intel_fbdev_restore_mode(struct
+>>>>> drm_i915_private *dev_priv)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -EINVAL;
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_sync(ifbdev);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev->v=
+ma)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -ENOMEM;
+>>>>>=20=20=20=20
+>>>>> @@ -598,7 +584,20 @@ static int intel_fbdev_restore_mode(struct
+>>>>> drm_i915_private *dev_priv)
+>>>>>  =C2=A0=C2=A0 */
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0static void intel_fbdev_client_unregister(struct drm_cli=
+ent_dev
+>>>>> *client)
+>>>>> -{ }
+>>>>> +{
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_fb_helper *fb_h=
+elper =3D
+>>>>> drm_fb_helper_from_client(client);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_device *dev =3D=
+ fb_helper->dev;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pci_dev *pdev =3D t=
+o_pci_dev(dev->dev);
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (fb_helper->info) {
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0vga_switcheroo_client_fb_set(pdev, NULL);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_unregister_info(fb_helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_unprepare(fb_helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0drm_client_release(&fb_helper->client);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0kfree(fb_helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>>>> +}
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0static int intel_fbdev_client_restore(struct drm_client_=
+dev
+>>>>> *client)
+>>>>>  =C2=A0=C2=A0{
+>>>>> @@ -616,7 +615,31 @@ static int intel_fbdev_client_restore(struct
+>>>>> drm_client_dev *client)
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0static int intel_fbdev_client_hotplug(struct drm_client_=
+dev
+>>>>> *client)
+>>>>>  =C2=A0=C2=A0{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return intel_fbdev_output_=
+poll_changed(client->dev);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_fb_helper *fb_h=
+elper =3D
+>>>>> drm_fb_helper_from_client(client);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_device *dev =3D=
+ client->dev;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct pci_dev *pdev =3D t=
+o_pci_dev(dev->dev);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (dev->fb_helper)
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return intel_fbdev_output_poll_changed(dev);
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_fb_helper_init=
+(dev, fb_helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0goto err_drm_err;
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_fb_helper_init=
+ial_config(fb_helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0goto err_drm_fb_helper_fini;
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vga_switcheroo_client_fb_s=
+et(pdev, fb_helper->info);
+>>>>> +
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>>>> +
+>>>>> +err_drm_fb_helper_fini:
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_fini(fb_help=
+er);
+>>>>> +err_drm_err:
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_err(dev, "Failed to se=
+tup i915 fbdev emulation
+>>>>> (ret=3D%d)\n", ret);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ret;
+>>>>>  =C2=A0=C2=A0}
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0static const struct drm_client_funcs intel_fbdev_client_=
+funcs =3D
+>>>>> {
+>>>>> @@ -626,22 +649,23 @@ static const struct drm_client_funcs
+>>>>> intel_fbdev_client_funcs =3D {
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0.hotplug=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D intel_fbdev_client_hotplug,
+>>>>>  =C2=A0=C2=A0};
+>>>>>=20=20=20=20
+>>>>> -int intel_fbdev_init(struct drm_device *dev)
+>>>>> +void intel_fbdev_setup(struct drm_i915_private *i915)
+>>>>>  =C2=A0=C2=A0{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *d=
+ev_priv =3D to_i915(dev);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_device *dev =3D=
+ &i915->drm;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_f=
+bdev *ifbdev;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (drm_WARN_ON(dev, !HAS_=
+DISPLAY(dev_priv)))
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return -ENODEV;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!HAS_DISPLAY(i915))
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ifbdev =3D kza=
+lloc(sizeof(*ifbdev), GFP_KERNEL);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return -ENOMEM;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_init(&ifbdev->hpd_lo=
+ck);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_=
+prepare(dev, &ifbdev->helper, 32,
+>>>>> &intel_fb_helper_funcs);
+>>>>>=20=20=20=20
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i915->display.fbdev.fbdev =
+=3D ifbdev;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0INIT_WORK(&i915->display.f=
+bdev.suspend_work,
+>>>>> intel_fbdev_suspend_worker);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_init(&ifbdev->hpd_lo=
+ck);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_fbde=
+v_init_bios(dev, ifbdev))
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ifbdev->helper.preferred_bpp =3D ifbdev-
+>>>>>> preferred_bpp;
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else
+>>>>> @@ -649,68 +673,19 @@ int intel_fbdev_init(struct drm_device
+>>>>> *dev)
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_cl=
+ient_init(dev, &ifbdev->helper.client,
+>>>>> "intel-
+>>>>> fbdev",
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &intel_fbdev_client_funcs);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret) {
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0drm_err(dev, "Failed to register client: %d\n",
+>>>>> ret);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0goto err_drm_fb_helper_unprepare;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_fb_helper_init=
+(dev, &ifbdev->helper);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0goto err_drm_client_release;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dev_priv->display.fbdev.fb=
+dev =3D ifbdev;
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0INIT_WORK(&dev_priv->displ=
+ay.fbdev.suspend_work,
+>>>>> intel_fbdev_suspend_worker);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_client_register(&ifbde=
+v->helper.client);
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>>=20=20=20=20
+>>>>> -err_drm_client_release:
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_client_release(&ifbdev=
+->helper.client);
+>>>>>  =C2=A0=C2=A0err_drm_fb_helper_unprepare:
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_=
+unprepare(&ifbdev->helper);
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_destroy(&ifbdev->hpd=
+_lock);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0kfree(ifbdev);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ret;
+>>>>> -}
+>>>>> -
+>>>>> -static void intel_fbdev_initial_config(void *data,
+>>>>> async_cookie_t
+>>>>> cookie)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_fbdev *ifbdev=
+ =3D data;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Due to peculiar init or=
+der wrt to hpd handling this is
+>>>>> separate. */
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (drm_fb_helper_initial_=
+config(&ifbdev->helper))
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_unregister(to_i915(ifbdev-
+>>>>>> helper.dev));
+>>>>> -}
+>>>>> -
+>>>>> -void intel_fbdev_initial_config_async(struct drm_i915_private
+>>>>> *dev_priv)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_fbdev *ifbdev=
+ =3D dev_priv-
+>>>>>> display.fbdev.fbdev;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ifbdev->cookie =3D
+>>>>> async_schedule(intel_fbdev_initial_config,
+>>>>> ifbdev);
+>>>>> -}
+>>>>> -
+>>>>> -void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_fbdev *ifbdev=
+ =3D dev_priv-
+>>>>>> display.fbdev.fbdev;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_set_suspend(&d=
+ev_priv->drm,
+>>>>> FBINFO_STATE_SUSPENDED, true);
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!current_is_async())
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_sync(ifbdev);
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_fb_helper_unregister_i=
+nfo(&ifbdev->helper);
+>>>>> -}
+>>>>> -
+>>>>> -void intel_fbdev_fini(struct drm_i915_private *dev_priv)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_fbdev *ifbdev=
+ =3D fetch_and_zero(&dev_priv-
+>>>>>> display.fbdev.fbdev);
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!ifbdev)
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>> -
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_destroy(ifbdev=
+);
+>>>>>  =C2=A0=C2=A0}
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0struct intel_framebuffer *intel_fbdev_framebuffer(struct
+>>>>> intel_fbdev
+>>>>> *fbdev)
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h
+>>>>> b/drivers/gpu/drm/i915/display/intel_fbdev.h
+>>>>> index 8c953f102ba22..08de2d5b34338 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+>>>>> @@ -14,27 +14,11 @@ struct intel_fbdev;
+>>>>>  =C2=A0=C2=A0struct intel_framebuffer;
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0#ifdef CONFIG_DRM_FBDEV_EMULATION
+>>>>> -int intel_fbdev_init(struct drm_device *dev);
+>>>>> -void intel_fbdev_initial_config_async(struct drm_i915_private
+>>>>> *dev_priv);
+>>>>> -void intel_fbdev_unregister(struct drm_i915_private *dev_priv);
+>>>>> -void intel_fbdev_fini(struct drm_i915_private *dev_priv);
+>>>>> +void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+>>>>>  =C2=A0=C2=A0void intel_fbdev_set_suspend(struct drm_device *dev, int=
+ state,
+>>>>> bool
+>>>>> synchronous);
+>>>>>  =C2=A0=C2=A0struct intel_framebuffer *intel_fbdev_framebuffer(struct
+>>>>> intel_fbdev
+>>>>> *fbdev);
+>>>>>  =C2=A0=C2=A0#else
+>>>>> -static inline int intel_fbdev_init(struct drm_device *dev)
+>>>>> -{
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>>>> -}
+>>>>> -
+>>>>> -static inline void intel_fbdev_initial_config_async(struct
+>>>>> drm_i915_private *dev_priv)
+>>>>> -{
+>>>>> -}
+>>>>> -
+>>>>> -static inline void intel_fbdev_unregister(struct
+>>>>> drm_i915_private
+>>>>> *dev_priv)
+>>>>> -{
+>>>>> -}
+>>>>> -
+>>>>> -static inline void intel_fbdev_fini(struct drm_i915_private
+>>>>> *dev_priv)
+>>>>> +static inline void intel_fbdev_setup(struct drm_i915_private
+>>>>> *dev_priv)
+>>>>>  =C2=A0=C2=A0{
+>>>>>  =C2=A0=C2=A0}
+>>>>>=20=20=20=20
+>>>>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c
+>>>>> b/drivers/gpu/drm/xe/display/xe_display.c
+>>>>> index cdbc3f04c80a7..ca5cbe1d8a03b 100644
+>>>>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>>>>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>>>>> @@ -214,9 +214,7 @@ void xe_display_fini(struct xe_device *xe)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!xe->info.=
+enable_display)
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return;
+>>>>>=20=20=20=20
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* poll work can call into=
+ fbdev, hence clean that up
+>>>>> afterwards */
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_hpd_poll=
+_fini(xe);
+>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fbdev_fini(xe);
+>>>>>=20=20=20=20
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_hdcp_com=
+ponent_fini(xe);
+>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_audio_de=
+init(xe);
+
+--=20
+Jani Nikula, Intel
