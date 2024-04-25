@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653B38B2005
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Apr 2024 13:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A628B2014
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Apr 2024 13:17:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C91BE10F5C7;
-	Thu, 25 Apr 2024 11:13:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kwzsYtdd";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 833CC10E147;
+	Thu, 25 Apr 2024 11:17:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE4910F5C7;
- Thu, 25 Apr 2024 11:13:47 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 1248961753;
- Thu, 25 Apr 2024 11:13:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8845C113CC;
- Thu, 25 Apr 2024 11:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1714043626;
- bh=UdE/4VvWguswfPLwhPsX/2X0F7/oUgqui2wg2DgneZQ=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=kwzsYtdd0hAovJSOhImyMm/eguj4w9HNQIO9PqY5Nd4EaZWUK+kPf4L53jPNCOxPU
- LVguMyn6n1X5KWbxMqrDEi9gQMpE/KEH9MJ80Wx4/d2uc1vlcYl7hO0k+QmjXvJ0k6
- sfj7TiQauOmI7VPi6PtD7O/uHcLZGU8wreLiRQU0+uqHio7PKV00NKghqOVJI/AmFk
- LSAJKRUx4F8a9fbzd1TLC3e7r3BuhZkxODjaC6FBSrlbQe5rGHQ3MyuU+fwX7PEcY8
- CEbyRswR9ZJCUe4yiOvg1Rr7UnPqtYWMipFTpF0Hdi4AsGKTtW4VYYYZC47AfLNqGu
- L1CiVG6ZcaszA==
-Received: by mail-yw1-f182.google.com with SMTP id
- 00721157ae682-61816fc256dso8206327b3.0; 
- Thu, 25 Apr 2024 04:13:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUUdSXueoND6u+EJLiM3FQD0EkbiuMy299+SrmJJbYQoZdmimeUADQ5KYDDcWzdcFBrs3hI9w5yKo5nJOMGOabGQTF8v7D1hQx5cbGPV5Vl9ax8NVuB8J8mfuGZhd/jKTbm6mWcbidHK6C+9FAxKug=
-X-Gm-Message-State: AOJu0YwUeM6eTJvjHbSAUIYMRHbV7zJswWnVYDMzDwFYXEMQ/dhnkneu
- IUlA76+yNg+/Jxlivlg7hdHGAeaWHI0ov8wrrhd4Q+jGeleZzp9AIap56CDSMJo7gSf64Q9anLq
- KL1uTmE/+yW63gqfPWo+UytBuCUs=
-X-Google-Smtp-Source: AGHT+IH0r0HuuhH+CjENzxURKfg+8noQ+AdC4Rc8qgNcIBcwuEPoIMh4zgRJAUHb92NoaQfxuR+SLS3UnPmrzJbGe8A=
-X-Received: by 2002:a05:690c:7084:b0:619:da17:87be with SMTP id
- jg4-20020a05690c708400b00619da1787bemr5670833ywb.42.1714043625975; Thu, 25
- Apr 2024 04:13:45 -0700 (PDT)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B120810E147;
+ Thu, 25 Apr 2024 11:17:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8894876724875850534=="
 MIME-Version: 1.0
-References: <20240424200515.281478-2-gustavo.sousa@intel.com>
-In-Reply-To: <20240424200515.281478-2-gustavo.sousa@intel.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Thu, 25 Apr 2024 07:13:34 -0400
-X-Gmail-Original-Message-ID: <CA+5PVA4MeV56Zj_Xr2JuRUS7KWWOw0fd6-9mTow1i64ADkPpkw@mail.gmail.com>
-Message-ID: <CA+5PVA4MeV56Zj_Xr2JuRUS7KWWOw0fd6-9mTow1i64ADkPpkw@mail.gmail.com>
-Subject: Re: PR for Xe2LPD DMC v2.20
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: linux-firmware@kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Unpin_c?=
+ =?utf-8?q?ursor_worker_in_vblank_worker_series=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 25 Apr 2024 11:17:30 -0000
+Message-ID: <171404385072.1650497.8447093528366252505@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240425102604.1704520-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240425102604.1704520-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,45 +37,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 24, 2024 at 4:05=E2=80=AFPM Gustavo Sousa <gustavo.sousa@intel.=
-com> wrote:
->
-> The following changes since commit 93f329774542b9b7d57abb18ea8b6542f2d8fe=
-ac:
->
->   Merge branch 'robot/pr-0-1709214990' into 'main' (2024-02-29 14:10:53 +=
-0000)
->
-> are available in the Git repository at:
->
->   https://gitlab.freedesktop.org/drm/firmware.git tags/intel-2024-04-24
+--===============8894876724875850534==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Merged and pushed out.
+== Series Details ==
 
-https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/201
+Series: drm/i915/display: Unpin cursor worker in vblank worker series.
+URL   : https://patchwork.freedesktop.org/series/132900/
+State : success
 
-josh
+== Summary ==
 
->
-> for you to fetch changes up to 8a52a94db5502d797864f5209c28739d2d9449d0:
->
->   i915: Update Xe2LPD DMC to v2.20 (2024-04-22 23:31:42 +0530)
->
-> ----------------------------------------------------------------
-> Intel DRM firmware intel-2024-04-24
->
-> ----------------------------------------------------------------
-> Daniele Ceraolo Spurio (1):
->       i915: Add DG2 HuC 7.10.15
->
-> Dnyaneshwar Bhadane (1):
->       i915: Update Xe2LPD DMC to v2.20
->
->  WHENCE               |   4 ++--
->  i915/dg2_huc_gsc.bin | Bin 622592 -> 630784 bytes
->  i915/xe2lpd_dmc.bin  | Bin 61208 -> 59284 bytes
->  3 files changed, 2 insertions(+), 2 deletions(-)
->  mode change 100755 =3D> 100644 i915/dg2_huc_gsc.bin
+CI Bug Log - changes from CI_DRM_14649 -> Patchwork_132900v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/index.html
+
+Participating hosts (40 -> 39)
+------------------------------
+
+  Missing    (1): fi-bsw-n3050 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_132900v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#10378])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14649/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][3] ([i915#9500]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14649/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - {bat-mtlp-9}:       [DMESG-WARN][5] ([i915#10435]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14649/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
+  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14649 -> Patchwork_132900v1
+
+  CI-20190529: 20190529
+  CI_DRM_14649: 67988afd596f307b6b7e849e6a246bca9a20e93d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7823: 61121a2eac4d191ad9f3077948c8ba19686fbb16 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_132900v1: 67988afd596f307b6b7e849e6a246bca9a20e93d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/index.html
+
+--===============8894876724875850534==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Unpin cursor worker in vblank worker series.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132900/">https://patchwork.freedesktop.org/series/132900/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14649 -&gt; Patchwork_132900v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 39)</h2>
+<p>Missing    (1): fi-bsw-n3050 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132900v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14649/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14649/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14649/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132900v1/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14649 -&gt; Patchwork_132900v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14649: 67988afd596f307b6b7e849e6a246bca9a20e93d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7823: 61121a2eac4d191ad9f3077948c8ba19686fbb16 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_132900v1: 67988afd596f307b6b7e849e6a246bca9a20e93d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8894876724875850534==--
