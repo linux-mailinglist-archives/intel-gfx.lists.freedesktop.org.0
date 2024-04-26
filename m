@@ -2,47 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44258B2E94
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 04:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 792D58B2ED2
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 05:03:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A56F111A98C;
-	Fri, 26 Apr 2024 02:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2D910F1AF;
+	Fri, 26 Apr 2024 03:03:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="FRT4dQh+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z65KLWA2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B04610FF09;
- Fri, 26 Apr 2024 02:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1714097429;
- bh=1ojHsRPiRsoir+Q24y/ktvG1Mk3MRS2GO165P9N7x8Y=;
- h=Date:From:To:Cc:Subject:From;
- b=FRT4dQh+esGSDeX4HQBZcy8sf1DcR9wTgS+M9YzHA0H3gSIlF0aGr5VI+LxRaCZwc
- mUPj6ZxwlTAPou1JnofUpDb5AeldQ1Etu17O3TBLPeE/6nYLDb97p3xKOMGTUqmRGa
- sTurosRmQG733M2gXQgED4UrPVW9LNAbtyZbkZsB4Y+YFqHgXrkmOwo+sGtkFnNbxo
- 6V+G5aFqgE6q2UvABAQW/de+3rWAao83AivEec/KI4eypJ14pPzQulmud1Z7jsbRVt
- u+yv/X6MRrnLbBRgqOViujI9tMfDtn7WXG9/IvxlaZ2169X1wafOv5YMAeZ7a5C7SA
- hDYqpYzbvWQdA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4VQbm43Gzhz4wyQ;
- Fri, 26 Apr 2024 12:10:28 +1000 (AEST)
-Date: Fri, 26 Apr 2024 12:10:27 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@intel.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build failures after merge of the drm-misc tree
-Message-ID: <20240426121027.2033ddd0@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C5F710F1AF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Apr 2024 03:03:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714100625; x=1745636625;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+otUs7/2fXFgqTRL5Rr7x0QWwbeQoQRRNB6l1zDkDHY=;
+ b=Z65KLWA2vj8Jo+nt5foBtPNKOId6oJ4OG4oP/OFwbyhAVMsPNxh4p6s7
+ ZLMDoDuRsgGsp0pdUAJyP6Vff+G4+jWBD7WoENYR4vgnFVJDQRJN2aSC9
+ KOWMfe16HG3cPjN6227+/v8fR4atnvwaNCez2SSDxOVqHfZyFfyCqf6NB
+ iM0ye0fOc39M8xgspapfk6VP3KetWv9Eev8OfaBNGFnZ7eZUnvRdupQs5
+ VOc4y5l3ppVX/VsV/HtCBi9iIB7yrcq8npUMlpwfn7kyAi8gSInXp0yLl
+ p0YfOolljkMMTKhIdY1+jwvtZ6lVpCfEoxodRAYvbYlYb91CsMwdnMveY w==;
+X-CSE-ConnectionGUID: uafZgBnyS0aLBvfPZQMNKA==
+X-CSE-MsgGUID: 6GNVfxWoSAiASWYFd9oIeQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="27281878"
+X-IronPort-AV: E=Sophos;i="6.07,231,1708416000"; d="scan'208";a="27281878"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2024 20:03:45 -0700
+X-CSE-ConnectionGUID: 7cfbF41zRX+EXSYoaBGSgw==
+X-CSE-MsgGUID: MdrLFYBDSUGh8ffEIgvCiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,231,1708416000"; d="scan'208";a="25161019"
+Received: from gyu3-linux.itwn.intel.com ([10.225.64.197])
+ by orviesa010.jf.intel.com with ESMTP; 25 Apr 2024 20:03:43 -0700
+From: gareth.yu@intel.com
+To: intel-gfx@lists.freedesktop.org
+Cc: gareth.yu@intel.com,
+ Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915/display: Fixed the main link lost in MST
+Date: Fri, 26 Apr 2024 11:11:41 +0800
+Message-Id: <20240426031141.2506987-1-gareth.yu@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240422063300.1459712-1-gareth.yu@intel.com>
+References: <20240422063300.1459712-1-gareth.yu@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/=Ij.CB74ner2v2IZJgS4KBc";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,61 +70,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/=Ij.CB74ner2v2IZJgS4KBc
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+From: Gareth Yu <gareth.yu@intel.com>
 
-Hi all,
+Re-train the main link for the main link lost in MST. The previous
+version doesn't cover MST mode.
 
-After merging the drm-misc tree, today's linux-next builds (arm
-multi_v7_defconfig and x86_64 allmodconfig) failed like this:
+v5: Move link status check to the location which covers MST mode
 
-(from the arm build)
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10902
+Cc: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Gareth Yu <gareth.yu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-drivers/gpu/drm/omapdrm/omap_fb.c: In function 'omap_framebuffer_describe':
-drivers/gpu/drm/omapdrm/omap_fb.c:325:9: error: implicit declaration of fun=
-ction 'seq_printf'; did you mean 'drm_printf'? [-Werror=3Dimplicit-function=
--declaration]
-  325 |         seq_printf(m, "fb: %dx%d@%4.4s\n", fb->width, fb->height,
-      |         ^~~~~~~~~~
-      |         drm_printf
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index e05e25cd4a94..8043740b4233 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5891,16 +5891,6 @@ intel_dp_detect(struct drm_connector *connector,
+ 
+ 	intel_dp_print_rates(intel_dp);
+ 
+-	if (intel_dp->is_mst) {
+-		/*
+-		 * If we are in MST mode then this connector
+-		 * won't appear connected or have anything
+-		 * with EDID on it
+-		 */
+-		status = connector_status_disconnected;
+-		goto out;
+-	}
+-
+ 	/*
+ 	 * Some external monitors do not signal loss of link synchronization
+ 	 * with an IRQ_HPD, so force a link status check.
+@@ -5911,6 +5901,16 @@ intel_dp_detect(struct drm_connector *connector,
+ 			return ret;
+ 	}
+ 
++	if (intel_dp->is_mst) {
++		/*
++		 * If we are in MST mode then this connector
++		 * won't appear connected or have anything
++		 * with EDID on it
++		 */
++		status = connector_status_disconnected;
++		goto out;
++	}
++
+ 	/*
+ 	 * Clearing NACK and defer counts to get their exact values
+ 	 * while reading EDID which are required by Compliance tests
+-- 
+2.25.1
 
-(from the x86_64 build)
-
-drivers/gpu/drm/loongson/lsdc_crtc.c: In function 'lsdc_crtc_late_register':
-drivers/gpu/drm/loongson/lsdc_crtc.c:692:9: error: implicit declaration of =
-function 'debugfs_create_file'; did you mean 'bus_create_file'? [-Werror=3D=
-implicit-function-declaration]
-  692 |         debugfs_create_file("ops", 0644, crtc->debugfs_entry, lcrtc,
-      |         ^~~~~~~~~~~~~~~~~~~
-      |         bus_create_file
-
-Caused by commits
-
-  9e2b84fb6cd7 ("drm/print: drop include seq_file.h")
-  33d5ae6cacf4 ("drm/print: drop include debugfs.h and include where needed=
-")
-
-I have used the drm-misc tree from next-20240423 for today.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/=Ij.CB74ner2v2IZJgS4KBc
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmYrDRMACgkQAVBC80lX
-0Gxm3wf+PzMwQe47NtzpGc7OV20UnbDTHUsuVa7yxfjlFoBSlXTjPSnUA6a9zmEM
-AsjgmuA3Iog1k902zOmLAGzZN928mcTskkkYE3sRRZnJSK4rGOcwrTOZ8/ycq6lD
-DqMLIo7SNHaRbaOGVzKhVVVhK6W2mrlohWogu5Ec8goHo1KuIDKESZywaUzmKC8i
-vD6JzLAELe8U4NTAormWzo9RFKGItIJ1zks6NkdrTBA8icKkbxOFP+5A2zwnysx/
-xr1dQzDX7c76toSQIjfqaY1cEcYCPQMFjcDLVpW7d09DwEEThNp3FLXu1165hh1L
-hMEjYQvfxBZbD+AKY6HkanPo1y7tRQ==
-=huZo
------END PGP SIGNATURE-----
-
---Sig_/=Ij.CB74ner2v2IZJgS4KBc--
