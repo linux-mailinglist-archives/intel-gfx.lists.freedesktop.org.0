@@ -2,61 +2,170 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79B28B3A85
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 17:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B338B3C01
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 17:47:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3192110FCD1;
-	Fri, 26 Apr 2024 15:03:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0845112678;
+	Fri, 26 Apr 2024 15:47:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AFpGza3z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWDAnN/P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C5410FCD1
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Apr 2024 15:03:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 404AD112668;
+ Fri, 26 Apr 2024 15:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714143808; x=1745679808;
+ t=1714146436; x=1745682436;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=CB6kj4DIkhksXk8MwoM7K2/eagXU2AnitZqi6cLxfyk=;
- b=AFpGza3zkaIIl8Qh7T0oBbSwNeunPUfyv2298IbD9Cjsk4OdFUYqi/GP
- HKpCubgQvrdFi56/i9312p+ifKI/HMG0jz+UEFCepMrqzvkc+OzBX70N6
- gH+wXzkHOi6oCm1IcSYeCR2AtFScwdfedsSh3bX7BYmNmFodIYzPfyVrl
- /2TQ6IsTDJWXoInimEg6QHFc6hErjNfy192TEWZ4SiG0lP2fTdlWu4cGR
- t0oj4e/s2kwK9LNtz2SshpsUr6QeZz4dtcGVOPPAm9GkWVhOD6n51BTA3
- Zynpb71txuT1TuRmygva/MM0hcM89kW2J3jFdq4fseb+gtzNfaBk55kvb g==;
-X-CSE-ConnectionGUID: Z/yvFoKQS8WGde8LisaW+g==
-X-CSE-MsgGUID: YD7L8eohTE6ptmE4jv6PBQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="21299962"
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="21299962"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 08:03:27 -0700
-X-CSE-ConnectionGUID: bBJAcg9pS7qweSTCOeIlzQ==
-X-CSE-MsgGUID: jgABaTTkQuq4VLbdnmHDEA==
+ in-reply-to:mime-version;
+ bh=Wrkm0gMDlzCKaLHlZpc0StHomTlxNkn5/TvnFKR7xEI=;
+ b=VWDAnN/PQ+NFQnhsvlz3iYDZAX/kIV0oALTZW4ZsXNyHsRyY/vaQPzTo
+ lsEhPb+P2hf68DFkTMV1cliAZ9O87AWieRtmQiVdvgEumxxiGYkwWJQKt
+ uC3SiaVkP0pBPGd5UeNKB3O7X51SD1zQ3NeC9Mpo5XCXPBxJPhO4CAbeP
+ pUUW87s8Zf/vTkDiULVoaqz1DFomKj0pgaCiTVM2r8XO35slv/cXG13IZ
+ W0elfwfW7n0X9n6W4tWqHM9bkh3vSVqmOLIWVRfCGBPhXii8h+JBV1W71
+ bICckxIMblwM2SbiSoRjSu2JcVusqh2rkX4uJtEtko6vHxgakPyYxnCiO g==;
+X-CSE-ConnectionGUID: nhINP30pTKWJ9oBRSyylHQ==
+X-CSE-MsgGUID: 6xZSc+p6Q6ubewGYJQu+Rg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="13674581"
+X-IronPort-AV: E=Sophos;i="6.07,233,1708416000"; d="scan'208";a="13674581"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 08:47:15 -0700
+X-CSE-ConnectionGUID: QBz7WPYRQAymUjN5rIWgrQ==
+X-CSE-MsgGUID: y01z4mD6QuuzuLvtj1ZJhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25471597"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 26 Apr 2024 08:03:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 26 Apr 2024 18:03:24 +0300
-Date: Fri, 26 Apr 2024 18:03:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v2 3/4] drm/i915/display: split out intel_fbc_regs.h from
- i915_reg.h
-Message-ID: <ZivCPC7znGUDO0lR@intel.com>
-References: <cover.1714128645.git.jani.nikula@intel.com>
- <aa9b5d8adefbe97e1e37c9cfada3ab1581b0e8d5.1714128645.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.07,233,1708416000"; d="scan'208";a="62932619"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Apr 2024 08:47:15 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 26 Apr 2024 08:47:14 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 26 Apr 2024 08:47:13 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 26 Apr 2024 08:47:13 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Fri, 26 Apr 2024 08:47:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QzrcgDPrwDQbtM/CeryDIAsK2gHoMseThTy9VrbPd4oemV4Fnn6dG0aGIRxGAb4cw/0yLA087F9F7mqzKFncYYOP2p8YiED42ayOgeyHs7H2E702L+Lb3Kn+Rom72RpmomObEH+tDVleEodnBgykyWYvY4Qu0/xZ2MEST1l7Pq5ZnQ1NVxia84bOnHC8cyWQCaWBDP/pFkacvYYQO2AUjxxcRrgdwtOTeFCBESNvMQSC+sWQsm8PYMEk6EbAvZfIh66K7ylxNHxyvy2nRFS4801qKV/UgURZVwRCGcrbSEwUEsTYJRVCHrLoWXJksdANOo6yMbBWUnTR4p0+knyW7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w5GsBE544ikW2sJEtj+RFaS7wPjwCl1fI56hCXAK+aY=;
+ b=Vxup85Q9Qr/D7FOLJNTonTgQcc+T3mtx5KyxOtYtqLWEevxTia2XSAN90rLioA9VwMJKgEjW7aSgml2lm8paR4ffDGEOpOcgydDa0W3dkReoGHIv7Q+a9a0sOoOO9dCkYGkL+l5OAz9yeqdZjBifoeFuLo4lfEDiVGdReBtACPbHKNMhoN3d1OifiZPn6HIDSpgRwMPJAh7b9gS+WuI1jSzqY6k6BL/AkadHgTckut+URaSqvpdSTS7uoMruWalIYBJ3LvphB0yBcbZ9d7TLVgqO1I2sX3WvLMGcO68REgn+vUMvehZrRuNlkqGngmI+BKSN5zxmwQoP1mRFQEZ1CA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS7PR11MB7908.namprd11.prod.outlook.com (2603:10b6:8:ea::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7519.22; Fri, 26 Apr 2024 15:47:11 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9365:d8e6:4e8d:8711]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9365:d8e6:4e8d:8711%6]) with mapi id 15.20.7519.030; Fri, 26 Apr 2024
+ 15:47:11 +0000
+Date: Fri, 26 Apr 2024 10:47:09 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ryszard Knop <ryszard.knop@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH] MAINTAINERS: Move the drm-intel repo location to fd.o
+ GitLab
+Message-ID: <bq7u2v4mtkxyjnjeu2ijgh2jzw5iorkrlagva7eazir4i6kbes@2vvesiqaujpi>
+References: <20240424114159.38719-1-ryszard.knop@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aa9b5d8adefbe97e1e37c9cfada3ab1581b0e8d5.1714128645.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20240424114159.38719-1-ryszard.knop@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0085.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::30) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB7908:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c1d9a0a-ebdc-4000-5588-08dc66082311
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2IPG79mm+x54LmzNrKuietQ12uHBDcZpjOCY0ENXlkFRjaseaVa67fRPXlUT?=
+ =?us-ascii?Q?/uAM9O/HC1tevPa+7tsWeJFxEmrWBlOWPoTokypjNw/p0wz2AUpgijTxsoAo?=
+ =?us-ascii?Q?FILLLokt1LWzUZ3pN0AscNKM7rt+G7WPJ2gDLqI6hkwhS2QJaW3qQxxz3Th+?=
+ =?us-ascii?Q?1t3nlnVj+O/44ddcvILk0HFPA4PPgJIoCHA3YlG4Pxh/28W4lHvqlyXSb6cz?=
+ =?us-ascii?Q?vWD8/jrN4BbegGQmRbiusV4TwjtAUiktgIMPURO1q0wPxcDk1XNF9WQdFjfG?=
+ =?us-ascii?Q?976d2TtVXeHH2HfjvwSKG8ILuEK+P+Z9hfoJ5HQvfUYw+c7MrD0LABwdYMcP?=
+ =?us-ascii?Q?4aNEBgGt1mI+1Az9M7IxIXwp+R1Dp5ZefYej4EZK8Zcnvb14kAdA4IlbD9yz?=
+ =?us-ascii?Q?YbAWHMTxv1q4QZypWYbPv+g7W7+jM2+gUdDv0j4FTH1jGKOrEuhViTkWO4pu?=
+ =?us-ascii?Q?zn9DsOZG5hloWv4p/Rl8WG16tZRxk3Jl4EVCir81wJkZ+ERwRwq0PCB7SBGp?=
+ =?us-ascii?Q?n5ovxo2L4Il2viJOr0JHCcL0ZrVKXP4kYDJ4rgVw8E26vlmv5d2wGtzXylTh?=
+ =?us-ascii?Q?XJ2GpYG42QWZMwvwN4OsWJdMXKE3tUfSmzanKQh0Z/fUzzCnEXyoDolbI+fE?=
+ =?us-ascii?Q?fkzoq1gsmuU1MriTjubm19UA36RhroXm+ncRRcmrr7ZkeZh9Z02i7oSs7Zia?=
+ =?us-ascii?Q?YIrcRbvUG5YArmh5rHHD54v+zVR8HtIdlywBTjvo3PoYAX0z5b3qPMlmta89?=
+ =?us-ascii?Q?Rm6ut6DbSiIujCPeemKMASBxMPDGqcodtn1zhqtu2hFdsVsSZ3kI4WF9LRhx?=
+ =?us-ascii?Q?D3FcdX6nW/1xhC7ruoKlnbfRl2HRU1N1BGPd+Xzg9tum3xtnswSXZw9HR2yy?=
+ =?us-ascii?Q?urY+ErbijKlgg97FROLxLntomdRyONbmCYsXI9/t2kV7PzOrGCoU6LvLjDdP?=
+ =?us-ascii?Q?6BxrYmX6iHr8zzuNbkFYNpU677WC8N4Tn3/MfKEVNa33+IxkExuJaUKqkjMs?=
+ =?us-ascii?Q?hTQK6vT9iobngaXKc29h4NW01DNmBomLSTAyegvOu5ERwSZ356ljrMtAaFU4?=
+ =?us-ascii?Q?AbYbIReGLGmtkJAhVrrd7E8KJlAOU2YQX4qv/dxUoaGFjE9DEC3XKTjWuTEH?=
+ =?us-ascii?Q?ll/81XmSISJHqAvr2zynT0Bjn+XeK71BMcOSdl56oH4JOCDQMDjFqt9c+NxR?=
+ =?us-ascii?Q?q61+oFl1iMxJCW2FpCrwd6sGD2M/+sV8fZrk+RidXAZDyzgAqv1GQooPkX0?=
+ =?us-ascii?Q?=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q/Gch4pqFgn1F8NwCMlo2Q5w5P33sUNhI2gjMrXYFOHu+4X1jpHYX7MKQeLh?=
+ =?us-ascii?Q?k1gBUvg4jcKF4Hj5HuS6qqDeMQ7gOFdRVbaipnKxz5JbBZ23IqqLaEOXy4IM?=
+ =?us-ascii?Q?lRC6ccAFAnI/vJFqVdnUGSEz//jjVciJeSgzr0jYHvxRQwbgAOXy6rdsRJed?=
+ =?us-ascii?Q?U9gi7jVlq8IXqPPy+mrexZYSUj7wBh0adt1dgmoRVYpaND0FUDwrfrPxA7po?=
+ =?us-ascii?Q?klygKc0m7784lhBVFEOQdNNUrqjBhfvwiMTx/QMnUyWyduKAhh4gS9K+QSgT?=
+ =?us-ascii?Q?S7ATYLwv/JhNQN6Hi/wz/A9GQAs8RBXONTk1f62s/QKtNKy5sjQLT7P2eldT?=
+ =?us-ascii?Q?mA0Ktn0LhZDVkBf/T+X/fgUxLV8nP9zUxmoRyjlG07CD8foXp8eGI5pT44qt?=
+ =?us-ascii?Q?6EoV+3lLjN53OeA7pQ0H7jX9/xWTgK5H5L9czfzT63pwgmrRIeG64cA+Kug+?=
+ =?us-ascii?Q?c97mUqVo/AKcPwOvsK50ZyURQxN+ivRKpnpnmBr05nAU1Vbs/Dv8rtU4RFLm?=
+ =?us-ascii?Q?L/R0MIXG9b4dIxUxTWuMgvjKs/Hoxr5ojWivSLhDvsUwpyOU+DmiAJvy8wf7?=
+ =?us-ascii?Q?Gp8GYoUFzXiBIPskRBZzM7v0xBwsXwHdJwmRcrcEpXZLCqpxgUftSLCfOtti?=
+ =?us-ascii?Q?sR+Gq0NY6olzoL3Rf/KJTO6h//oWxpWJOd92QujJB2P7WpSmauCj++H0GZom?=
+ =?us-ascii?Q?kIOLx/81+F0nC8h9EitJDi2gpO/lsVidJgDDI8H93f07NVYfvfz9iIDT3fkH?=
+ =?us-ascii?Q?NATs0m5a0K/7Oj7SBntoT+ScP+5R8oAj8nXg5UDgGDG9oIOqD+xAiEp/b/vI?=
+ =?us-ascii?Q?DhVm0mt5sqOmebWVMWb31xXz9YuUrYyNYVDPSaI0AHxeHbie9QkkSBeA2vaM?=
+ =?us-ascii?Q?idmt9WrEVWiuHYR+hot/S9wbPffNm19t6vXMj50DKfgK2CWbUj2husAhOTJf?=
+ =?us-ascii?Q?oofBIFUU8+rXCpPcnL8Pktd16hxqUdccniajBtdzcTcjDz4QCf0Vo4wLQVCI?=
+ =?us-ascii?Q?+8JHlhYM7qcdoRaQIzwHRz2bqV4+zmjK9xPwfHoizAQGS4H1xI2WnahA8rhb?=
+ =?us-ascii?Q?tYkjbQcNCkJXl73fiJ4Llwy+MEi94+37PMLZqBEK8mplr0/q7FngnqkH7Mt2?=
+ =?us-ascii?Q?y8yupP34M0GnJWTRUowpPD6zb0RYYgD0HHXK1vk8nqNQzG1ZhNvJO1Buc1H0?=
+ =?us-ascii?Q?sS56+agBqcq2J8h4vdKW8P7Avxq/x/vDMieJ5BKNvL5HkSeN5TFkS2pk7gfp?=
+ =?us-ascii?Q?+EVJrXdHyLgNOUMd5hoG+v37gAFC0nWiw0TUSEHNuXaOlQaj3czzCag0YmMW?=
+ =?us-ascii?Q?Dh6kaBWzxAvV+oEs0D4P85hJjC0EiUNtXMp1ZWc0R0YqKGv2FJZwJjMLBZPp?=
+ =?us-ascii?Q?xJQldmJDS9CFQubg8UmpJSjBVsrZXEZiwp33d26lJuwNnAAJ88LPwFf2MKSW?=
+ =?us-ascii?Q?BxbrYYmArO6d5l+7kqH8X4EDM/QqEAJolUlmUkBEWnYZSGsESvKQj4t8nrtP?=
+ =?us-ascii?Q?H4Er6tozak3JS6bTOQyMRrO1itUk8ShiS3/lQB4lk55aIWMq4fqLU4eoLNU8?=
+ =?us-ascii?Q?9/f1OFbB+QdhoQcGOy3yWjv6AVtuiKtplNbGvi8ZiDmMEWvOtPGEvm1xmAlF?=
+ =?us-ascii?Q?xA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c1d9a0a-ebdc-4000-5588-08dc66082311
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2024 15:47:11.5651 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XC/sXgTUbqnpJFUtILQHEyZz5055qjK0Fwgc0H0OicMz6qOzYEpeAZGS0ni+eTvQK39aouOd3mD7bUYPNS0HlIw8fCQDyR2iTltmk6NTCtg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7908
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,348 +181,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 26, 2024 at 01:51:36PM +0300, Jani Nikula wrote:
-> Clean up i915_reg.h.
-> 
-> v2: Drop chicken regs and comments (Ville)
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Wed, Apr 24, 2024 at 01:41:59PM GMT, Ryszard Knop wrote:
+>The drm-intel repo is moving from the classic fd.o git host to GitLab.
+>Update its location with a URL matching other fd.o GitLab kernel trees.
+>
+>Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   1 +
->  drivers/gpu/drm/i915/display/intel_fbc_regs.h | 120 +++++++++++++++++
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   2 +
->  drivers/gpu/drm/i915/i915_reg.h               | 123 ------------------
->  drivers/gpu/drm/i915/intel_clock_gating.c     |   1 +
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
->  6 files changed, 125 insertions(+), 123 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 7c4d2b2bf20b..151dcd0c45b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -54,6 +54,7 @@
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
->  #include "intel_fbc.h"
-> +#include "intel_fbc_regs.h"
->  #include "intel_frontbuffer.h"
->  
->  #define for_each_fbc_id(__dev_priv, __fbc_id) \
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> new file mode 100644
-> index 000000000000..ae0699c3c2fe
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-> @@ -0,0 +1,120 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/* Copyright © 2024 Intel Corporation */
-> +
-> +#ifndef __INTEL_FBC_REGS__
-> +#define __INTEL_FBC_REGS__
-> +
-> +#include "intel_display_reg_defs.h"
-> +
-> +#define FBC_CFB_BASE		_MMIO(0x3200) /* 4k page aligned */
-> +#define FBC_LL_BASE		_MMIO(0x3204) /* 4k page aligned */
-> +#define FBC_CONTROL		_MMIO(0x3208)
-> +#define   FBC_CTL_EN			REG_BIT(31)
-> +#define   FBC_CTL_PERIODIC		REG_BIT(30)
-> +#define   FBC_CTL_INTERVAL_MASK		REG_GENMASK(29, 16)
-> +#define   FBC_CTL_INTERVAL(x)		REG_FIELD_PREP(FBC_CTL_INTERVAL_MASK, (x))
-> +#define   FBC_CTL_STOP_ON_MOD		REG_BIT(15)
-> +#define   FBC_CTL_UNCOMPRESSIBLE	REG_BIT(14) /* i915+ */
-> +#define   FBC_CTL_C3_IDLE		REG_BIT(13) /* i945gm only */
-> +#define   FBC_CTL_STRIDE_MASK		REG_GENMASK(12, 5)
-> +#define   FBC_CTL_STRIDE(x)		REG_FIELD_PREP(FBC_CTL_STRIDE_MASK, (x))
-> +#define   FBC_CTL_FENCENO_MASK		REG_GENMASK(3, 0)
-> +#define   FBC_CTL_FENCENO(x)		REG_FIELD_PREP(FBC_CTL_FENCENO_MASK, (x))
-> +#define FBC_COMMAND		_MMIO(0x320c)
-> +#define   FBC_CMD_COMPRESS		REG_BIT(0)
-> +#define FBC_STATUS		_MMIO(0x3210)
-> +#define   FBC_STAT_COMPRESSING		REG_BIT(31)
-> +#define   FBC_STAT_COMPRESSED		REG_BIT(30)
-> +#define   FBC_STAT_MODIFIED		REG_BIT(29)
-> +#define   FBC_STAT_CURRENT_LINE_MASK	REG_GENMASK(10, 0)
-> +#define FBC_CONTROL2		_MMIO(0x3214) /* i965gm only */
-> +#define   FBC_CTL_FENCE_DBL		REG_BIT(4)
-> +#define   FBC_CTL_IDLE_MASK		REG_GENMASK(3, 2)
-> +#define   FBC_CTL_IDLE_IMM		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 0)
-> +#define   FBC_CTL_IDLE_FULL		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 1)
-> +#define   FBC_CTL_IDLE_LINE		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 2)
-> +#define   FBC_CTL_IDLE_DEBUG		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 3)
-> +#define   FBC_CTL_CPU_FENCE_EN		REG_BIT(1)
-> +#define   FBC_CTL_PLANE_MASK		REG_GENMASK(1, 0)
-> +#define   FBC_CTL_PLANE(i9xx_plane)	REG_FIELD_PREP(FBC_CTL_PLANE_MASK, (i9xx_plane))
-> +#define FBC_FENCE_OFF		_MMIO(0x3218)  /* i965gm only, BSpec typo has 321Bh */
-> +#define FBC_MOD_NUM		_MMIO(0x3220)  /* i965gm only */
-> +#define   FBC_MOD_NUM_MASK		REG_GENMASK(31, 1)
-> +#define   FBC_MOD_NUM_VALID		REG_BIT(0)
-> +#define FBC_TAG(i)		_MMIO(0x3300 + (i) * 4) /* 49 reisters */
-> +#define   FBC_TAG_MASK			REG_GENMASK(1, 0) /* 16 tags per register */
-> +#define   FBC_TAG_MODIFIED		REG_FIELD_PREP(FBC_TAG_MASK, 0)
-> +#define   FBC_TAG_UNCOMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 1)
-> +#define   FBC_TAG_UNCOMPRESSIBLE	REG_FIELD_PREP(FBC_TAG_MASK, 2)
-> +#define   FBC_TAG_COMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 3)
-> +
-> +#define FBC_LL_SIZE		(1536)
-> +
-> +#define DPFC_CB_BASE			_MMIO(0x3200)
-> +#define ILK_DPFC_CB_BASE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43200, 0x43240)
-> +#define DPFC_CONTROL			_MMIO(0x3208)
-> +#define ILK_DPFC_CONTROL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43208, 0x43248)
-> +#define   DPFC_CTL_EN				REG_BIT(31)
-> +#define   DPFC_CTL_PLANE_MASK_G4X		REG_BIT(30) /* g4x-snb */
-> +#define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_G4X, (i9xx_plane))
-> +#define   DPFC_CTL_FENCE_EN_G4X			REG_BIT(29) /* g4x-snb */
-> +#define   DPFC_CTL_PLANE_MASK_IVB		REG_GENMASK(30, 29) /* ivb only */
-> +#define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
-> +#define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
-> +#define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
-> +#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* lnl+ */
-> +#define   DPFC_CTL_PLANE_BINDING(plane_id)	REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, (plane_id))
-> +#define   DPFC_CTL_FALSE_COLOR			REG_BIT(10) /* ivb+ */
-> +#define   DPFC_CTL_SR_EN			REG_BIT(10) /* g4x only */
-> +#define   DPFC_CTL_SR_EXIT_DIS			REG_BIT(9) /* g4x only */
-> +#define   DPFC_CTL_LIMIT_MASK			REG_GENMASK(7, 6)
-> +#define   DPFC_CTL_LIMIT_1X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 0)
-> +#define   DPFC_CTL_LIMIT_2X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 1)
-> +#define   DPFC_CTL_LIMIT_4X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 2)
-> +#define   DPFC_CTL_FENCENO_MASK			REG_GENMASK(3, 0)
-> +#define   DPFC_CTL_FENCENO(fence)		REG_FIELD_PREP(DPFC_CTL_FENCENO_MASK, (fence))
-> +#define DPFC_RECOMP_CTL			_MMIO(0x320c)
-> +#define ILK_DPFC_RECOMP_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x4320c, 0x4324c)
-> +#define   DPFC_RECOMP_STALL_EN			REG_BIT(27)
-> +#define   DPFC_RECOMP_STALL_WM_MASK		REG_GENMASK(26, 16)
-> +#define   DPFC_RECOMP_TIMER_COUNT_MASK		REG_GENMASK(5, 0)
-> +#define DPFC_STATUS			_MMIO(0x3210)
-> +#define ILK_DPFC_STATUS(fbc_id)		_MMIO_PIPE((fbc_id), 0x43210, 0x43250)
-> +#define   DPFC_INVAL_SEG_MASK			REG_GENMASK(26, 16)
-> +#define   DPFC_COMP_SEG_MASK			REG_GENMASK(10, 0)
-> +#define DPFC_STATUS2			_MMIO(0x3214)
-> +#define ILK_DPFC_STATUS2(fbc_id)	_MMIO_PIPE((fbc_id), 0x43214, 0x43254)
-> +#define   DPFC_COMP_SEG_MASK_IVB		REG_GENMASK(11, 0)
-> +#define DPFC_FENCE_YOFF			_MMIO(0x3218)
-> +#define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
-> +#define DPFC_CHICKEN			_MMIO(0x3224)
-> +#define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
-> +#define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
-> +#define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
-> +#define   DPFC_CHICKEN_COMP_DUMMY_PIXEL		REG_BIT(14) /* glk+ */
-> +#define   DPFC_CHICKEN_FORCE_SLB_INVALIDATION	REG_BIT(13) /* icl+ */
-> +#define   DPFC_DISABLE_DUMMY0			REG_BIT(8) /* ivb+ */
-> +
-> +#define GLK_FBC_STRIDE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43228, 0x43268)
-> +#define   FBC_STRIDE_OVERRIDE	REG_BIT(15)
-> +#define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
-> +#define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
-> +
-> +#define ILK_FBC_RT_BASE		_MMIO(0x2128)
-> +#define   ILK_FBC_RT_VALID	REG_BIT(0)
-> +#define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
-> +
-> +#define SNB_DPFC_CTL_SA		_MMIO(0x100100)
-> +#define   SNB_DPFC_FENCE_EN		REG_BIT(29)
-> +#define   SNB_DPFC_FENCENO_MASK		REG_GENMASK(4, 0)
-> +#define   SNB_DPFC_FENCENO(fence)	REG_FIELD_PREP(SNB_DPFC_FENCENO_MASK, (fence))
-> +#define SNB_DPFC_CPU_FENCE_OFFSET	_MMIO(0x100104)
-> +
-> +#define IVB_FBC_RT_BASE			_MMIO(0x7020)
-> +#define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
-> +
-> +#define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
-> +#define   FBC_REND_NUKE			REG_BIT(2)
-> +#define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
-> +
-> +#endif /* __INTEL_FBC_REGS__ */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 68b6aa11bcf7..40e79f0dc257 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -17,6 +17,8 @@
->  #include "intel_ring.h"
->  #include "intel_workarounds.h"
->  
-> +#include "display/intel_fbc_regs.h"
-> +
->  /**
->   * DOC: Hardware workarounds
->   *
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index c5ea2ed653b9..5cdf3b17e7d4 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -986,109 +986,6 @@
->  #define   GEN7_FF_DS_SCHED_LOAD_BALANCE	(0x1 << 4)  /* Default */
->  #define   GEN7_FF_DS_SCHED_HW		(0x0 << 4)
->  
-> -/*
-> - * Framebuffer compression (915+ only)
-> - */
-> -
-> -#define FBC_CFB_BASE		_MMIO(0x3200) /* 4k page aligned */
-> -#define FBC_LL_BASE		_MMIO(0x3204) /* 4k page aligned */
-> -#define FBC_CONTROL		_MMIO(0x3208)
-> -#define   FBC_CTL_EN			REG_BIT(31)
-> -#define   FBC_CTL_PERIODIC		REG_BIT(30)
-> -#define   FBC_CTL_INTERVAL_MASK		REG_GENMASK(29, 16)
-> -#define   FBC_CTL_INTERVAL(x)		REG_FIELD_PREP(FBC_CTL_INTERVAL_MASK, (x))
-> -#define   FBC_CTL_STOP_ON_MOD		REG_BIT(15)
-> -#define   FBC_CTL_UNCOMPRESSIBLE	REG_BIT(14) /* i915+ */
-> -#define   FBC_CTL_C3_IDLE		REG_BIT(13) /* i945gm only */
-> -#define   FBC_CTL_STRIDE_MASK		REG_GENMASK(12, 5)
-> -#define   FBC_CTL_STRIDE(x)		REG_FIELD_PREP(FBC_CTL_STRIDE_MASK, (x))
-> -#define   FBC_CTL_FENCENO_MASK		REG_GENMASK(3, 0)
-> -#define   FBC_CTL_FENCENO(x)		REG_FIELD_PREP(FBC_CTL_FENCENO_MASK, (x))
-> -#define FBC_COMMAND		_MMIO(0x320c)
-> -#define   FBC_CMD_COMPRESS		REG_BIT(0)
-> -#define FBC_STATUS		_MMIO(0x3210)
-> -#define   FBC_STAT_COMPRESSING		REG_BIT(31)
-> -#define   FBC_STAT_COMPRESSED		REG_BIT(30)
-> -#define   FBC_STAT_MODIFIED		REG_BIT(29)
-> -#define   FBC_STAT_CURRENT_LINE_MASK	REG_GENMASK(10, 0)
-> -#define FBC_CONTROL2		_MMIO(0x3214) /* i965gm only */
-> -#define   FBC_CTL_FENCE_DBL		REG_BIT(4)
-> -#define   FBC_CTL_IDLE_MASK		REG_GENMASK(3, 2)
-> -#define   FBC_CTL_IDLE_IMM		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 0)
-> -#define   FBC_CTL_IDLE_FULL		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 1)
-> -#define   FBC_CTL_IDLE_LINE		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 2)
-> -#define   FBC_CTL_IDLE_DEBUG		REG_FIELD_PREP(FBC_CTL_IDLE_MASK, 3)
-> -#define   FBC_CTL_CPU_FENCE_EN		REG_BIT(1)
-> -#define   FBC_CTL_PLANE_MASK		REG_GENMASK(1, 0)
-> -#define   FBC_CTL_PLANE(i9xx_plane)	REG_FIELD_PREP(FBC_CTL_PLANE_MASK, (i9xx_plane))
-> -#define FBC_FENCE_OFF		_MMIO(0x3218)  /* i965gm only, BSpec typo has 321Bh */
-> -#define FBC_MOD_NUM		_MMIO(0x3220)  /* i965gm only */
-> -#define   FBC_MOD_NUM_MASK		REG_GENMASK(31, 1)
-> -#define   FBC_MOD_NUM_VALID		REG_BIT(0)
-> -#define FBC_TAG(i)		_MMIO(0x3300 + (i) * 4) /* 49 reisters */
-> -#define   FBC_TAG_MASK			REG_GENMASK(1, 0) /* 16 tags per register */
-> -#define   FBC_TAG_MODIFIED		REG_FIELD_PREP(FBC_TAG_MASK, 0)
-> -#define   FBC_TAG_UNCOMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 1)
-> -#define   FBC_TAG_UNCOMPRESSIBLE	REG_FIELD_PREP(FBC_TAG_MASK, 2)
-> -#define   FBC_TAG_COMPRESSED		REG_FIELD_PREP(FBC_TAG_MASK, 3)
-> -
-> -#define FBC_LL_SIZE		(1536)
-> -
-> -/* Framebuffer compression for GM45+ */
-> -#define DPFC_CB_BASE			_MMIO(0x3200)
-> -#define ILK_DPFC_CB_BASE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43200, 0x43240)
-> -#define DPFC_CONTROL			_MMIO(0x3208)
-> -#define ILK_DPFC_CONTROL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43208, 0x43248)
-> -#define   DPFC_CTL_EN				REG_BIT(31)
-> -#define   DPFC_CTL_PLANE_MASK_G4X		REG_BIT(30) /* g4x-snb */
-> -#define   DPFC_CTL_PLANE_G4X(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_G4X, (i9xx_plane))
-> -#define   DPFC_CTL_FENCE_EN_G4X			REG_BIT(29) /* g4x-snb */
-> -#define   DPFC_CTL_PLANE_MASK_IVB		REG_GENMASK(30, 29) /* ivb only */
-> -#define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
-> -#define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
-> -#define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
-> -#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* lnl+ */
-> -#define   DPFC_CTL_PLANE_BINDING(plane_id)	REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, (plane_id))
-> -#define   DPFC_CTL_FALSE_COLOR			REG_BIT(10) /* ivb+ */
-> -#define   DPFC_CTL_SR_EN			REG_BIT(10) /* g4x only */
-> -#define   DPFC_CTL_SR_EXIT_DIS			REG_BIT(9) /* g4x only */
-> -#define   DPFC_CTL_LIMIT_MASK			REG_GENMASK(7, 6)
-> -#define   DPFC_CTL_LIMIT_1X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 0)
-> -#define   DPFC_CTL_LIMIT_2X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 1)
-> -#define   DPFC_CTL_LIMIT_4X			REG_FIELD_PREP(DPFC_CTL_LIMIT_MASK, 2)
-> -#define   DPFC_CTL_FENCENO_MASK			REG_GENMASK(3, 0)
-> -#define   DPFC_CTL_FENCENO(fence)		REG_FIELD_PREP(DPFC_CTL_FENCENO_MASK, (fence))
-> -#define DPFC_RECOMP_CTL			_MMIO(0x320c)
-> -#define ILK_DPFC_RECOMP_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x4320c, 0x4324c)
-> -#define   DPFC_RECOMP_STALL_EN			REG_BIT(27)
-> -#define   DPFC_RECOMP_STALL_WM_MASK		REG_GENMASK(26, 16)
-> -#define   DPFC_RECOMP_TIMER_COUNT_MASK		REG_GENMASK(5, 0)
-> -#define DPFC_STATUS			_MMIO(0x3210)
-> -#define ILK_DPFC_STATUS(fbc_id)		_MMIO_PIPE((fbc_id), 0x43210, 0x43250)
-> -#define   DPFC_INVAL_SEG_MASK			REG_GENMASK(26, 16)
-> -#define   DPFC_COMP_SEG_MASK			REG_GENMASK(10, 0)
-> -#define DPFC_STATUS2			_MMIO(0x3214)
-> -#define ILK_DPFC_STATUS2(fbc_id)	_MMIO_PIPE((fbc_id), 0x43214, 0x43254)
-> -#define   DPFC_COMP_SEG_MASK_IVB		REG_GENMASK(11, 0)
-> -#define DPFC_FENCE_YOFF			_MMIO(0x3218)
-> -#define ILK_DPFC_FENCE_YOFF(fbc_id)	_MMIO_PIPE((fbc_id), 0x43218, 0x43258)
-> -#define DPFC_CHICKEN			_MMIO(0x3224)
-> -#define ILK_DPFC_CHICKEN(fbc_id)	_MMIO_PIPE((fbc_id), 0x43224, 0x43264)
-> -#define   DPFC_HT_MODIFY			REG_BIT(31) /* pre-ivb */
-> -#define   DPFC_NUKE_ON_ANY_MODIFICATION		REG_BIT(23) /* bdw+ */
-> -#define   DPFC_CHICKEN_COMP_DUMMY_PIXEL		REG_BIT(14) /* glk+ */
-> -#define   DPFC_CHICKEN_FORCE_SLB_INVALIDATION	REG_BIT(13) /* icl+ */
-> -#define   DPFC_DISABLE_DUMMY0			REG_BIT(8) /* ivb+ */
-> -
-> -#define GLK_FBC_STRIDE(fbc_id)	_MMIO_PIPE((fbc_id), 0x43228, 0x43268)
-> -#define   FBC_STRIDE_OVERRIDE	REG_BIT(15)
-> -#define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
-> -#define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
-> -
-> -#define ILK_FBC_RT_BASE		_MMIO(0x2128)
-> -#define   ILK_FBC_RT_VALID	REG_BIT(0)
-> -#define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
-> -
->  #define ILK_DISPLAY_CHICKEN1	_MMIO(0x42000)
->  #define   ILK_FBCQ_DIS			REG_BIT(22)
->  #define   ILK_PABSTRETCH_DIS		REG_BIT(21)
-> @@ -1104,30 +1001,10 @@
->  #define   IVB_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 2)
->  #define   IVB_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(IVB_SPR_STRETCH_MAX_MASK, 3)
->  
-> -
-> -/*
-> - * Framebuffer compression for Sandybridge
-> - *
-> - * The following two registers are of type GTTMMADR
-> - */
-> -#define SNB_DPFC_CTL_SA		_MMIO(0x100100)
-> -#define   SNB_DPFC_FENCE_EN		REG_BIT(29)
-> -#define   SNB_DPFC_FENCENO_MASK		REG_GENMASK(4, 0)
-> -#define   SNB_DPFC_FENCENO(fence)	REG_FIELD_PREP(SNB_DPFC_FENCENO_MASK, (fence))
-> -#define SNB_DPFC_CPU_FENCE_OFFSET	_MMIO(0x100104)
-> -
-> -/* Framebuffer compression for Ivybridge */
-> -#define IVB_FBC_RT_BASE			_MMIO(0x7020)
-> -#define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
-> -
->  #define IPS_CTL		_MMIO(0x43408)
->  #define   IPS_ENABLE		REG_BIT(31)
->  #define   IPS_FALSE_COLOR	REG_BIT(4)
->  
-> -#define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x50384)
-> -#define   FBC_REND_NUKE			REG_BIT(2)
-> -#define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
-> -
->  /*
->   * Clock control & power management
->   */
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index 7e70ee4fbd84..1dc5281b2ade 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -28,6 +28,7 @@
->  #include "display/intel_de.h"
->  #include "display/intel_display.h"
->  #include "display/intel_display_trace.h"
-> +#include "display/intel_fbc_regs.h"
->  #include "display/skl_watermark.h"
->  
->  #include "gt/intel_engine_regs.h"
-> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> index d0f111ff0ada..0d3689203510 100644
-> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -11,6 +11,7 @@
->  #include "display/intel_dmc_regs.h"
->  #include "display/intel_dp_aux_regs.h"
->  #include "display/intel_dpio_phy.h"
-> +#include "display/intel_fbc_regs.h"
->  #include "display/intel_fdi_regs.h"
->  #include "display/intel_lvds_regs.h"
->  #include "display/intel_psr_regs.h"
-> -- 
-> 2.39.2
+Also Cc'ing maintainers
 
--- 
-Ville Syrjälä
-Intel
+>---
+> MAINTAINERS | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/MAINTAINERS b/MAINTAINERS
+>index d6327dc12cb1..fbf7371a0bb0 100644
+>--- a/MAINTAINERS
+>+++ b/MAINTAINERS
+>@@ -10854,7 +10854,7 @@ W:	https://drm.pages.freedesktop.org/intel-docs/
+> Q:	http://patchwork.freedesktop.org/project/intel-gfx/
+> B:	https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+> C:	irc://irc.oftc.net/intel-gfx
+>-T:	git git://anongit.freedesktop.org/drm-intel
+>+T:	git https://gitlab.freedesktop.org/drm/i915/kernel.git
+> F:	Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+> F:	Documentation/gpu/i915.rst
+> F:	drivers/gpu/drm/ci/xfails/i915*
+>-- 
+>2.44.0
+>
