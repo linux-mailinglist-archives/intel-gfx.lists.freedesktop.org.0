@@ -2,170 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B338B3C01
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 17:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 662CF8B3C4C
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 18:03:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0845112678;
-	Fri, 26 Apr 2024 15:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 963F310F143;
+	Fri, 26 Apr 2024 16:02:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWDAnN/P";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="unMSbzdn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 404AD112668;
- Fri, 26 Apr 2024 15:47:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714146436; x=1745682436;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Wrkm0gMDlzCKaLHlZpc0StHomTlxNkn5/TvnFKR7xEI=;
- b=VWDAnN/PQ+NFQnhsvlz3iYDZAX/kIV0oALTZW4ZsXNyHsRyY/vaQPzTo
- lsEhPb+P2hf68DFkTMV1cliAZ9O87AWieRtmQiVdvgEumxxiGYkwWJQKt
- uC3SiaVkP0pBPGd5UeNKB3O7X51SD1zQ3NeC9Mpo5XCXPBxJPhO4CAbeP
- pUUW87s8Zf/vTkDiULVoaqz1DFomKj0pgaCiTVM2r8XO35slv/cXG13IZ
- W0elfwfW7n0X9n6W4tWqHM9bkh3vSVqmOLIWVRfCGBPhXii8h+JBV1W71
- bICckxIMblwM2SbiSoRjSu2JcVusqh2rkX4uJtEtko6vHxgakPyYxnCiO g==;
-X-CSE-ConnectionGUID: nhINP30pTKWJ9oBRSyylHQ==
-X-CSE-MsgGUID: 6xZSc+p6Q6ubewGYJQu+Rg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="13674581"
-X-IronPort-AV: E=Sophos;i="6.07,233,1708416000"; d="scan'208";a="13674581"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 08:47:15 -0700
-X-CSE-ConnectionGUID: QBz7WPYRQAymUjN5rIWgrQ==
-X-CSE-MsgGUID: y01z4mD6QuuzuLvtj1ZJhw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,233,1708416000"; d="scan'208";a="62932619"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Apr 2024 08:47:15 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Apr 2024 08:47:14 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Apr 2024 08:47:13 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 26 Apr 2024 08:47:13 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Fri, 26 Apr 2024 08:47:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QzrcgDPrwDQbtM/CeryDIAsK2gHoMseThTy9VrbPd4oemV4Fnn6dG0aGIRxGAb4cw/0yLA087F9F7mqzKFncYYOP2p8YiED42ayOgeyHs7H2E702L+Lb3Kn+Rom72RpmomObEH+tDVleEodnBgykyWYvY4Qu0/xZ2MEST1l7Pq5ZnQ1NVxia84bOnHC8cyWQCaWBDP/pFkacvYYQO2AUjxxcRrgdwtOTeFCBESNvMQSC+sWQsm8PYMEk6EbAvZfIh66K7ylxNHxyvy2nRFS4801qKV/UgURZVwRCGcrbSEwUEsTYJRVCHrLoWXJksdANOo6yMbBWUnTR4p0+knyW7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w5GsBE544ikW2sJEtj+RFaS7wPjwCl1fI56hCXAK+aY=;
- b=Vxup85Q9Qr/D7FOLJNTonTgQcc+T3mtx5KyxOtYtqLWEevxTia2XSAN90rLioA9VwMJKgEjW7aSgml2lm8paR4ffDGEOpOcgydDa0W3dkReoGHIv7Q+a9a0sOoOO9dCkYGkL+l5OAz9yeqdZjBifoeFuLo4lfEDiVGdReBtACPbHKNMhoN3d1OifiZPn6HIDSpgRwMPJAh7b9gS+WuI1jSzqY6k6BL/AkadHgTckut+URaSqvpdSTS7uoMruWalIYBJ3LvphB0yBcbZ9d7TLVgqO1I2sX3WvLMGcO68REgn+vUMvehZrRuNlkqGngmI+BKSN5zxmwQoP1mRFQEZ1CA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS7PR11MB7908.namprd11.prod.outlook.com (2603:10b6:8:ea::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7519.22; Fri, 26 Apr 2024 15:47:11 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9365:d8e6:4e8d:8711]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::9365:d8e6:4e8d:8711%6]) with mapi id 15.20.7519.030; Fri, 26 Apr 2024
- 15:47:11 +0000
-Date: Fri, 26 Apr 2024 10:47:09 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ryszard Knop <ryszard.knop@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53E1510F10E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Apr 2024 16:02:57 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-41ba1ba55e9so4289305e9.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Apr 2024 09:02:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1714147375; x=1714752175;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=noFvmcljj0OuZQzbU6OvkyTtLgVDe82Z+aYXxhzP6XA=;
+ b=unMSbzdnnzHyK1b02eQD9TwcxuOwGviBPRojRQ/Z4jldKteP7EqcYIxgR263vzLHNJ
+ 4zvWQwm0lYxCd25/MBAVK7HFOrGwJO67zMKamem/ZxlojktEXAvoI5sIdHhZC7Sn9R2f
+ H7Rn4lD21lMIiYapzyN0zl54SPcr6WGB2Z2Td8gGBlCBPWl0JeTq/HfqPdeYJVwIGAku
+ X3TulsrKDLaj67ugmpnIoHRRg4qDaNKqXi8znWHyxjW0/yqsOcKIWe//LaqCX41PIdFg
+ kgd2eou/ZcKO1hTXV7VmR3msjvHExPSMGMjTKak+8d8UuR+tkd6SiLTid15gaRjCafLn
+ 2YTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714147375; x=1714752175;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=noFvmcljj0OuZQzbU6OvkyTtLgVDe82Z+aYXxhzP6XA=;
+ b=gN/sqDpqx4ghB3gylWztwLrU1FIrTGry5UHL7g44Mm6jDbqKtElmhbNM0+7QhOLe+4
+ Vmn6WJn3mTg1ANPik9x0O+m4X+icz45OLM78O6tsIEGNGUrJVjISnAsr/obw4nCqpqG3
+ tQAFtfLGwkXRkIY1WYvKq0h4L9Oz5jeUMj35QIKvx8sXB4RlajnEXyUb57NCED03+DB7
+ Cy0PjfG3FpcnGG30OQz4NP5TjwhDZ7YXR9oOpBJa0GQY/xFdPFAFSdSir14TiwadxnjY
+ UsVBUEkQc/4Q35pmzVv1glKhjq2hhMAjQCc4xfokhCcSUgBhHBdGHn2I0SK0YnLeGT6Z
+ QsIA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVdLLWpsSsmqAmUAheRhNeZVqZ9XA5PQ8oavDi7BFxAZChX49hUPPm8zCPzFfwaKPGW42Z+3MCsDWg7xK5VrzAwv1kyaPg/gHVBNjP9tiLU
+X-Gm-Message-State: AOJu0YzkYzinPneQe9252hxooFI8aUR0liBPx0E6oLDQ6TPK+n+Hemmh
+ HMXP7OJUycjm2OrbJFfReWI8mlzRKcYLQ8Y4CdkPJ1D8pJi33ric2sDFM1oPn1o=
+X-Google-Smtp-Source: AGHT+IGzAb76p+bVJud3sgdl3B7jT6s0zqzvw2JiPKiULYqlBDMGSeSy/97X/XgzQStOOWz/jwUIHg==
+X-Received: by 2002:a05:600c:19d3:b0:417:fbc2:caf8 with SMTP id
+ u19-20020a05600c19d300b00417fbc2caf8mr2235789wmq.23.1714147375482; 
+ Fri, 26 Apr 2024 09:02:55 -0700 (PDT)
+Received: from [192.168.0.101] ([84.65.0.132])
+ by smtp.gmail.com with ESMTPSA id
+ ay28-20020a05600c1e1c00b0041b4f563a17sm5972375wmb.39.2024.04.26.09.02.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 26 Apr 2024 09:02:55 -0700 (PDT)
+Message-ID: <f45e7438-ee34-4f45-b537-aca2fa63e40b@ursulin.net>
+Date: Fri, 26 Apr 2024 17:02:54 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] MAINTAINERS: Move the drm-intel repo location to fd.o
  GitLab
-Message-ID: <bq7u2v4mtkxyjnjeu2ijgh2jzw5iorkrlagva7eazir4i6kbes@2vvesiqaujpi>
+Content-Language: en-GB
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Ryszard Knop <ryszard.knop@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 References: <20240424114159.38719-1-ryszard.knop@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240424114159.38719-1-ryszard.knop@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0085.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::30) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB7908:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c1d9a0a-ebdc-4000-5588-08dc66082311
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2IPG79mm+x54LmzNrKuietQ12uHBDcZpjOCY0ENXlkFRjaseaVa67fRPXlUT?=
- =?us-ascii?Q?/uAM9O/HC1tevPa+7tsWeJFxEmrWBlOWPoTokypjNw/p0wz2AUpgijTxsoAo?=
- =?us-ascii?Q?FILLLokt1LWzUZ3pN0AscNKM7rt+G7WPJ2gDLqI6hkwhS2QJaW3qQxxz3Th+?=
- =?us-ascii?Q?1t3nlnVj+O/44ddcvILk0HFPA4PPgJIoCHA3YlG4Pxh/28W4lHvqlyXSb6cz?=
- =?us-ascii?Q?vWD8/jrN4BbegGQmRbiusV4TwjtAUiktgIMPURO1q0wPxcDk1XNF9WQdFjfG?=
- =?us-ascii?Q?976d2TtVXeHH2HfjvwSKG8ILuEK+P+Z9hfoJ5HQvfUYw+c7MrD0LABwdYMcP?=
- =?us-ascii?Q?4aNEBgGt1mI+1Az9M7IxIXwp+R1Dp5ZefYej4EZK8Zcnvb14kAdA4IlbD9yz?=
- =?us-ascii?Q?YbAWHMTxv1q4QZypWYbPv+g7W7+jM2+gUdDv0j4FTH1jGKOrEuhViTkWO4pu?=
- =?us-ascii?Q?zn9DsOZG5hloWv4p/Rl8WG16tZRxk3Jl4EVCir81wJkZ+ERwRwq0PCB7SBGp?=
- =?us-ascii?Q?n5ovxo2L4Il2viJOr0JHCcL0ZrVKXP4kYDJ4rgVw8E26vlmv5d2wGtzXylTh?=
- =?us-ascii?Q?XJ2GpYG42QWZMwvwN4OsWJdMXKE3tUfSmzanKQh0Z/fUzzCnEXyoDolbI+fE?=
- =?us-ascii?Q?fkzoq1gsmuU1MriTjubm19UA36RhroXm+ncRRcmrr7ZkeZh9Z02i7oSs7Zia?=
- =?us-ascii?Q?YIrcRbvUG5YArmh5rHHD54v+zVR8HtIdlywBTjvo3PoYAX0z5b3qPMlmta89?=
- =?us-ascii?Q?Rm6ut6DbSiIujCPeemKMASBxMPDGqcodtn1zhqtu2hFdsVsSZ3kI4WF9LRhx?=
- =?us-ascii?Q?D3FcdX6nW/1xhC7ruoKlnbfRl2HRU1N1BGPd+Xzg9tum3xtnswSXZw9HR2yy?=
- =?us-ascii?Q?urY+ErbijKlgg97FROLxLntomdRyONbmCYsXI9/t2kV7PzOrGCoU6LvLjDdP?=
- =?us-ascii?Q?6BxrYmX6iHr8zzuNbkFYNpU677WC8N4Tn3/MfKEVNa33+IxkExuJaUKqkjMs?=
- =?us-ascii?Q?hTQK6vT9iobngaXKc29h4NW01DNmBomLSTAyegvOu5ERwSZ356ljrMtAaFU4?=
- =?us-ascii?Q?AbYbIReGLGmtkJAhVrrd7E8KJlAOU2YQX4qv/dxUoaGFjE9DEC3XKTjWuTEH?=
- =?us-ascii?Q?ll/81XmSISJHqAvr2zynT0Bjn+XeK71BMcOSdl56oH4JOCDQMDjFqt9c+NxR?=
- =?us-ascii?Q?q61+oFl1iMxJCW2FpCrwd6sGD2M/+sV8fZrk+RidXAZDyzgAqv1GQooPkX0?=
- =?us-ascii?Q?=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q/Gch4pqFgn1F8NwCMlo2Q5w5P33sUNhI2gjMrXYFOHu+4X1jpHYX7MKQeLh?=
- =?us-ascii?Q?k1gBUvg4jcKF4Hj5HuS6qqDeMQ7gOFdRVbaipnKxz5JbBZ23IqqLaEOXy4IM?=
- =?us-ascii?Q?lRC6ccAFAnI/vJFqVdnUGSEz//jjVciJeSgzr0jYHvxRQwbgAOXy6rdsRJed?=
- =?us-ascii?Q?U9gi7jVlq8IXqPPy+mrexZYSUj7wBh0adt1dgmoRVYpaND0FUDwrfrPxA7po?=
- =?us-ascii?Q?klygKc0m7784lhBVFEOQdNNUrqjBhfvwiMTx/QMnUyWyduKAhh4gS9K+QSgT?=
- =?us-ascii?Q?S7ATYLwv/JhNQN6Hi/wz/A9GQAs8RBXONTk1f62s/QKtNKy5sjQLT7P2eldT?=
- =?us-ascii?Q?mA0Ktn0LhZDVkBf/T+X/fgUxLV8nP9zUxmoRyjlG07CD8foXp8eGI5pT44qt?=
- =?us-ascii?Q?6EoV+3lLjN53OeA7pQ0H7jX9/xWTgK5H5L9czfzT63pwgmrRIeG64cA+Kug+?=
- =?us-ascii?Q?c97mUqVo/AKcPwOvsK50ZyURQxN+ivRKpnpnmBr05nAU1Vbs/Dv8rtU4RFLm?=
- =?us-ascii?Q?L/R0MIXG9b4dIxUxTWuMgvjKs/Hoxr5ojWivSLhDvsUwpyOU+DmiAJvy8wf7?=
- =?us-ascii?Q?Gp8GYoUFzXiBIPskRBZzM7v0xBwsXwHdJwmRcrcEpXZLCqpxgUftSLCfOtti?=
- =?us-ascii?Q?sR+Gq0NY6olzoL3Rf/KJTO6h//oWxpWJOd92QujJB2P7WpSmauCj++H0GZom?=
- =?us-ascii?Q?kIOLx/81+F0nC8h9EitJDi2gpO/lsVidJgDDI8H93f07NVYfvfz9iIDT3fkH?=
- =?us-ascii?Q?NATs0m5a0K/7Oj7SBntoT+ScP+5R8oAj8nXg5UDgGDG9oIOqD+xAiEp/b/vI?=
- =?us-ascii?Q?DhVm0mt5sqOmebWVMWb31xXz9YuUrYyNYVDPSaI0AHxeHbie9QkkSBeA2vaM?=
- =?us-ascii?Q?idmt9WrEVWiuHYR+hot/S9wbPffNm19t6vXMj50DKfgK2CWbUj2husAhOTJf?=
- =?us-ascii?Q?oofBIFUU8+rXCpPcnL8Pktd16hxqUdccniajBtdzcTcjDz4QCf0Vo4wLQVCI?=
- =?us-ascii?Q?+8JHlhYM7qcdoRaQIzwHRz2bqV4+zmjK9xPwfHoizAQGS4H1xI2WnahA8rhb?=
- =?us-ascii?Q?tYkjbQcNCkJXl73fiJ4Llwy+MEi94+37PMLZqBEK8mplr0/q7FngnqkH7Mt2?=
- =?us-ascii?Q?y8yupP34M0GnJWTRUowpPD6zb0RYYgD0HHXK1vk8nqNQzG1ZhNvJO1Buc1H0?=
- =?us-ascii?Q?sS56+agBqcq2J8h4vdKW8P7Avxq/x/vDMieJ5BKNvL5HkSeN5TFkS2pk7gfp?=
- =?us-ascii?Q?+EVJrXdHyLgNOUMd5hoG+v37gAFC0nWiw0TUSEHNuXaOlQaj3czzCag0YmMW?=
- =?us-ascii?Q?Dh6kaBWzxAvV+oEs0D4P85hJjC0EiUNtXMp1ZWc0R0YqKGv2FJZwJjMLBZPp?=
- =?us-ascii?Q?xJQldmJDS9CFQubg8UmpJSjBVsrZXEZiwp33d26lJuwNnAAJ88LPwFf2MKSW?=
- =?us-ascii?Q?BxbrYYmArO6d5l+7kqH8X4EDM/QqEAJolUlmUkBEWnYZSGsESvKQj4t8nrtP?=
- =?us-ascii?Q?H4Er6tozak3JS6bTOQyMRrO1itUk8ShiS3/lQB4lk55aIWMq4fqLU4eoLNU8?=
- =?us-ascii?Q?9/f1OFbB+QdhoQcGOy3yWjv6AVtuiKtplNbGvi8ZiDmMEWvOtPGEvm1xmAlF?=
- =?us-ascii?Q?xA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c1d9a0a-ebdc-4000-5588-08dc66082311
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2024 15:47:11.5651 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XC/sXgTUbqnpJFUtILQHEyZz5055qjK0Fwgc0H0OicMz6qOzYEpeAZGS0ni+eTvQK39aouOd3mD7bUYPNS0HlIw8fCQDyR2iTltmk6NTCtg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7908
-X-OriginatorOrg: intel.com
+ <bq7u2v4mtkxyjnjeu2ijgh2jzw5iorkrlagva7eazir4i6kbes@2vvesiqaujpi>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <bq7u2v4mtkxyjnjeu2ijgh2jzw5iorkrlagva7eazir4i6kbes@2vvesiqaujpi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,33 +91,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 24, 2024 at 01:41:59PM GMT, Ryszard Knop wrote:
->The drm-intel repo is moving from the classic fd.o git host to GitLab.
->Update its location with a URL matching other fd.o GitLab kernel trees.
->
->Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
 
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Also Cc'ing maintainers
+On 26/04/2024 16:47, Lucas De Marchi wrote:
+> On Wed, Apr 24, 2024 at 01:41:59PM GMT, Ryszard Knop wrote:
+>> The drm-intel repo is moving from the classic fd.o git host to GitLab.
+>> Update its location with a URL matching other fd.o GitLab kernel trees.
+>>
+>> Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
+> 
+> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> Also Cc'ing maintainers
 
->---
-> MAINTAINERS | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
->diff --git a/MAINTAINERS b/MAINTAINERS
->index d6327dc12cb1..fbf7371a0bb0 100644
->--- a/MAINTAINERS
->+++ b/MAINTAINERS
->@@ -10854,7 +10854,7 @@ W:	https://drm.pages.freedesktop.org/intel-docs/
-> Q:	http://patchwork.freedesktop.org/project/intel-gfx/
-> B:	https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
-> C:	irc://irc.oftc.net/intel-gfx
->-T:	git git://anongit.freedesktop.org/drm-intel
->+T:	git https://gitlab.freedesktop.org/drm/i915/kernel.git
-> F:	Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
-> F:	Documentation/gpu/i915.rst
-> F:	drivers/gpu/drm/ci/xfails/i915*
->-- 
->2.44.0
->
+Thanks,
+
+Acked-by: Tvrtko Ursulin <tursulin@ursulin.net>
+
+Regards,
+
+Tvrtko
+
+>> ---
+>> MAINTAINERS | 2 +-
+>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index d6327dc12cb1..fbf7371a0bb0 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -10854,7 +10854,7 @@ W:    
+>> https://drm.pages.freedesktop.org/intel-docs/
+>> Q:    http://patchwork.freedesktop.org/project/intel-gfx/
+>> B:    
+>> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+>> C:    irc://irc.oftc.net/intel-gfx
+>> -T:    git git://anongit.freedesktop.org/drm-intel
+>> +T:    git https://gitlab.freedesktop.org/drm/i915/kernel.git
+>> F:    Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+>> F:    Documentation/gpu/i915.rst
+>> F:    drivers/gpu/drm/ci/xfails/i915*
+>> -- 
+>> 2.44.0
+>>
