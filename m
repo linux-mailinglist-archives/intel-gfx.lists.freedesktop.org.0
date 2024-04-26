@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 771D18B37EF
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 15:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4C28B37F0
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 15:04:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C82981123A5;
-	Fri, 26 Apr 2024 13:04:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49BA81123AA;
+	Fri, 26 Apr 2024 13:04:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LZKjiQRr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lUaofKAr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0239F1123AD;
- Fri, 26 Apr 2024 13:04:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A160E1123AA;
+ Fri, 26 Apr 2024 13:04:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714136689; x=1745672689;
+ t=1714136694; x=1745672694;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KKlXM1JGMXwjKwzzLbA6wuE/jp7+yKZNAB/V4qggrUI=;
- b=LZKjiQRrfPCo/wdZoQyjFpBDlUFdOScUp1DzloRhasGpD2zafSxVcghN
- hiTj6T6r76HZ0aNh0YmrSVlcdsIdhqsPajRoNdm96+3itIESPV5svApg9
- BgEyQGy5cp4PKHBGKWOdr4WpgIe4l1t+q9GrK3o9E1rPkluvXoQAxCNb1
- 2iOlH+q17WflhjvBx9XTy5oXzBMgIke2EnRhZQV70OQ2c/GvMHb+GbjB3
- VcHoWbX8PVmMVlqeEJB4VoeXpRmTb3qU6Uyr3A7m7EhDL97qCw/udH6hA
- EsYxTnruIbSQBiZ3pkjmWb8d2QacjNvtvlDcMIgjHN3Hc0wvPkqRRWIkN A==;
-X-CSE-ConnectionGUID: Tc1ZfrYsQ6ak6l8Q3y0YkQ==
-X-CSE-MsgGUID: oNcw54JtRnCyEp/iLIaT8Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="32368305"
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="32368305"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 06:04:49 -0700
-X-CSE-ConnectionGUID: Skj4VaYbS8mvoIKmw+7aZQ==
-X-CSE-MsgGUID: YaRyLmVpTKyzFQbDw6voPA==
+ bh=VDc4V37xq/u+/K5BJ1NXhuqvncOaG3as94YDBcsKUiM=;
+ b=lUaofKArFWyOg8fkb9Qib7J+ZX1fJNGBEErZAgKlLxkZCN1/vBE/P1S2
+ LSO51FzbQ554aZRbW0FER0+aAShKYUmw6jjtfqjX4mKED97P7vkoTYmea
+ xp6Y9TJEqx2KLKJwCHRJPQA7Gwbo2OCBZUzSkbFkKsNh/eQ+ddEIw3w3N
+ /G5/+MaXNQYZd31UnJc7RH+fry/vLwU8zSbYJuM1jP7s/jOqeFRNi1DD0
+ kZa1QTYLVl8/0hIGqA4DH9R8zkwqZ8CgdIrw8jydEQRkAxXLyTkF4fusf
+ 8Yzh/3rOsUE8Uf+zu3K5MGw5I+xOGVUtiQTRyAOGOxX0M4vNAXM9vERrr Q==;
+X-CSE-ConnectionGUID: T+6miKiARtaHhmMldlC2pg==
+X-CSE-MsgGUID: IHbJp7GCSn6QlPuVDJI0JQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11056"; a="9991765"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; 
+   d="scan'208";a="9991765"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 06:04:54 -0700
+X-CSE-ConnectionGUID: 9u6/9p3BSKCqtNKthadjOw==
+X-CSE-MsgGUID: lesG9cyhRBWbWIc2HLk7Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="62889636"
+X-IronPort-AV: E=Sophos;i="6.07,232,1708416000"; d="scan'208";a="25297408"
 Received: from dgarbuz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.48.145])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2024 06:04:48 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 06:04:53 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 016/123] drm/i915: pass dev_priv explicitly to TRANS_HBLANK
-Date: Fri, 26 Apr 2024 16:01:41 +0300
-Message-Id: <bcf7949c83ece58b125ee64efcc64477e426a287.1714136165.git.jani.nikula@intel.com>
+Subject: [PATCH 017/123] drm/i915: pass dev_priv explicitly to TRANS_HSYNC
+Date: Fri, 26 Apr 2024 16:01:42 +0300
+Message-Id: <84e1268646def31277b98ef49f4eb90dfcd0bccf.1714136165.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1714136165.git.jani.nikula@intel.com>
 References: <cover.1714136165.git.jani.nikula@intel.com>
@@ -71,114 +72,128 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the TRANS_HBLANK register macro.
+explicitly to the TRANS_HSYNC register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c     | 7 ++++---
+ drivers/gpu/drm/i915/display/icl_dsi.c           | 3 ++-
+ drivers/gpu/drm/i915/display/intel_display.c     | 6 +++---
  drivers/gpu/drm/i915/display/intel_pch_display.c | 2 +-
  drivers/gpu/drm/i915/i915_reg.h                  | 2 +-
  drivers/gpu/drm/i915/intel_gvt_mmio_table.c      | 8 ++++----
- 4 files changed, 10 insertions(+), 9 deletions(-)
+ 5 files changed, 11 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index af0d3159369e..f87a2170ac91 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -938,7 +938,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+ 
+ 		for_each_dsi_port(port, intel_dsi->ports) {
+ 			dsi_trans = dsi_port_to_transcoder(port);
+-			intel_de_write(dev_priv, TRANS_HSYNC(dsi_trans),
++			intel_de_write(dev_priv,
++				       TRANS_HSYNC(dev_priv, dsi_trans),
+ 				       HSYNC_START(hsync_start - 1) | HSYNC_END(hsync_end - 1));
+ 		}
+ 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d84c5541f3ee..b9da3605b6aa 100644
+index b9da3605b6aa..49c63b8855b3 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2708,7 +2708,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 	intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder),
- 		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
- 		       HTOTAL(adjusted_mode->crtc_htotal - 1));
--	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
+@@ -2711,7 +2711,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+ 	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
  		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
  		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
- 	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
-@@ -2811,7 +2811,8 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
- 	adjusted_mode->crtc_htotal = REG_FIELD_GET(HTOTAL_MASK, tmp) + 1;
+-	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
++	intel_de_write(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder),
+ 		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
+ 		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
  
- 	if (!transcoder_is_dsi(cpu_transcoder)) {
--		tmp = intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder));
-+		tmp = intel_de_read(dev_priv,
-+				    TRANS_HBLANK(dev_priv, cpu_transcoder));
- 		adjusted_mode->crtc_hblank_start = REG_FIELD_GET(HBLANK_START_MASK, tmp) + 1;
+@@ -2817,7 +2817,7 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
  		adjusted_mode->crtc_hblank_end = REG_FIELD_GET(HBLANK_END_MASK, tmp) + 1;
  	}
-@@ -8164,7 +8165,7 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
  
- 	intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder),
+-	tmp = intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder));
+ 	adjusted_mode->crtc_hsync_start = REG_FIELD_GET(HSYNC_START_MASK, tmp) + 1;
+ 	adjusted_mode->crtc_hsync_end = REG_FIELD_GET(HSYNC_END_MASK, tmp) + 1;
+ 
+@@ -8167,7 +8167,7 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
  		       HACTIVE(640 - 1) | HTOTAL(800 - 1));
--	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
+ 	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
  		       HBLANK_START(640 - 1) | HBLANK_END(800 - 1));
- 	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
+-	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
++	intel_de_write(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder),
  		       HSYNC_START(656 - 1) | HSYNC_END(752 - 1));
+ 	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
+ 		       VACTIVE(480 - 1) | VTOTAL(525 - 1));
 diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 2bf00d5336e3..625b1fedd54c 100644
+index 625b1fedd54c..480c0e09434d 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -226,7 +226,7 @@ static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state *crtc_s
- 	intel_de_write(dev_priv, PCH_TRANS_HTOTAL(pch_transcoder),
- 		       intel_de_read(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder)));
+@@ -228,7 +228,7 @@ static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state *crtc_s
  	intel_de_write(dev_priv, PCH_TRANS_HBLANK(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder)));
-+		       intel_de_read(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder)));
+ 		       intel_de_read(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder)));
  	intel_de_write(dev_priv, PCH_TRANS_HSYNC(pch_transcoder),
- 		       intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder)));
+-		       intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder)));
++		       intel_de_read(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder)));
  
+ 	intel_de_write(dev_priv, PCH_TRANS_VTOTAL(pch_transcoder),
+ 		       intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder)));
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 3ab39bbd1d2d..f5ddcb6d9127 100644
+index f5ddcb6d9127..57a195c5b698 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1730,7 +1730,7 @@
- #define _TRANS_VSYNCSHIFT_DSI1	0x6b828
+@@ -1731,7 +1731,7 @@
  
  #define TRANS_HTOTAL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HTOTAL_A)
--#define TRANS_HBLANK(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
-+#define TRANS_HBLANK(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
- #define TRANS_HSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
+ #define TRANS_HBLANK(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
+-#define TRANS_HSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
++#define TRANS_HSYNC(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
  #define TRANS_VTOTAL(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VTOTAL_A)
  #define TRANS_VBLANK(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VBLANK_A)
+ #define TRANS_VSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VSYNC_A)
 diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 09db1d7a777d..7243b36b2a4e 100644
+index 7243b36b2a4e..8c614543b79f 100644
 --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
 +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -227,7 +227,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(SPRSURFLIVE(PIPE_C));
+@@ -228,7 +228,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
  	MMIO_D(REG_50080(PIPE_C, PLANE_SPRITE0));
  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_A));
--	MMIO_D(TRANS_HBLANK(TRANSCODER_A));
-+	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_A));
- 	MMIO_D(TRANS_HSYNC(TRANSCODER_A));
+ 	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_HSYNC(TRANSCODER_A));
++	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_A));
  	MMIO_D(TRANS_VTOTAL(TRANSCODER_A));
  	MMIO_D(TRANS_VBLANK(TRANSCODER_A));
-@@ -236,7 +236,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_A));
+ 	MMIO_D(TRANS_VSYNC(TRANSCODER_A));
+@@ -237,7 +237,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
  	MMIO_D(PIPESRC(TRANSCODER_A));
  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_B));
--	MMIO_D(TRANS_HBLANK(TRANSCODER_B));
-+	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_B));
- 	MMIO_D(TRANS_HSYNC(TRANSCODER_B));
+ 	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_HSYNC(TRANSCODER_B));
++	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_B));
  	MMIO_D(TRANS_VTOTAL(TRANSCODER_B));
  	MMIO_D(TRANS_VBLANK(TRANSCODER_B));
-@@ -245,7 +245,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_B));
+ 	MMIO_D(TRANS_VSYNC(TRANSCODER_B));
+@@ -246,7 +246,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
  	MMIO_D(PIPESRC(TRANSCODER_B));
  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_C));
--	MMIO_D(TRANS_HBLANK(TRANSCODER_C));
-+	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_C));
- 	MMIO_D(TRANS_HSYNC(TRANSCODER_C));
+ 	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_HSYNC(TRANSCODER_C));
++	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_C));
  	MMIO_D(TRANS_VTOTAL(TRANSCODER_C));
  	MMIO_D(TRANS_VBLANK(TRANSCODER_C));
-@@ -254,7 +254,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_C));
+ 	MMIO_D(TRANS_VSYNC(TRANSCODER_C));
+@@ -255,7 +255,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
  	MMIO_D(PIPESRC(TRANSCODER_C));
  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_EDP));
--	MMIO_D(TRANS_HBLANK(TRANSCODER_EDP));
-+	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_EDP));
- 	MMIO_D(TRANS_HSYNC(TRANSCODER_EDP));
+ 	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_HSYNC(TRANSCODER_EDP));
++	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_EDP));
  	MMIO_D(TRANS_VTOTAL(TRANSCODER_EDP));
  	MMIO_D(TRANS_VBLANK(TRANSCODER_EDP));
+ 	MMIO_D(TRANS_VSYNC(TRANSCODER_EDP));
 -- 
 2.39.2
 
