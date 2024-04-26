@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4519F8B2F60
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 06:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 201898B312D
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Apr 2024 09:17:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7500211A9FB;
-	Fri, 26 Apr 2024 04:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD9C010E2A7;
+	Fri, 26 Apr 2024 07:17:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RMTax+kV";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D068711A9FB;
- Fri, 26 Apr 2024 04:17:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8248398875908337052=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C55210E151;
+ Fri, 26 Apr 2024 07:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714115859; x=1745651859;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Jk3KD3N5immD9rl2BYmUGLivzY4ZF5VTOCAKfxBGZ/c=;
+ b=RMTax+kVLG1ywLRUhD+ya5eaCh3llUCezq+adVxp9ChBDzexMHN+mtaf
+ gC/EbI/Kf9tWktapHO55p6DQKaCcMTLzqKXLd8L8zCMaKsyAS7Oyne8R6
+ ZZYRlxS6s/i4QThqQyqlRKihsV1fXFzl+6+mMI4YfBG/uJGS4K6bkToyj
+ aSIq/55dn213obzlEfLc4AD4LCIQMqJ5D1FQwnvHjC3zGvbJ0FvFZ5Na+
+ jK7XriD+vT8KXnRrIpI3MG157HiH64+PH9ZLTZCSm0qcSNcJE8cx4esU3
+ HtRg/117v7+kTfdkk9G/SJR+86J56ErO7ZdXwIemeVNSXOo8xMHxKa0G9 g==;
+X-CSE-ConnectionGUID: PPWBRxReTJ+mRGq1gTyMJQ==
+X-CSE-MsgGUID: bnTPSw86QGOMKPnjEhvBpA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11055"; a="9712938"
+X-IronPort-AV: E=Sophos;i="6.07,231,1708416000"; 
+   d="scan'208";a="9712938"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 00:17:38 -0700
+X-CSE-ConnectionGUID: Z/x+xP5GRsGsplttb5vILQ==
+X-CSE-MsgGUID: QQ/D42zKTHiIjgYJuxmERQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,231,1708416000"; d="scan'208";a="62806741"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.179])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2024 00:17:30 -0700
+Date: Fri, 26 Apr 2024 10:17:25 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <ZitVBTvZmityDi7D@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_Fixed_t?=
- =?utf-8?q?he_main_link_lost_in_MST_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: gareth.yu@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 26 Apr 2024 04:17:25 -0000
-Message-ID: <171410504584.1669136.17604770697104476217@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240422063300.1459712-1-gareth.yu@intel.com>
-In-Reply-To: <20240422063300.1459712-1-gareth.yu@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,351 +74,313 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8248398875908337052==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave & Sima,
 
-== Series Details ==
+Here's the drm-intel-gt-next PR for v6.10 in one shot.
 
-Series: drm/i915/display: Fixed the main link lost in MST (rev5)
-URL   : https://patchwork.freedesktop.org/series/132685/
-State : failure
+We are adding a new uAPI for Mesa to request higher GT frequency for
+compute contexts on GuC platform.
 
-== Summary ==
+Then there is a W/A for DG2 to move to fixed CCS load balancing and
+make all DG2 SKUs appear with single CCS with all the EUs attached by
+default. Read more below under "UAPI Changes". There is one reported
+regression against it which we're working on resolving, so expect to
+see -next-fixes shortly once that happens.
 
-CI Bug Log - changes from CI_DRM_14660 -> Patchwork_132685v5
-====================================================
+Beyond that we have a bunch of workaround updates/fixes, fix for UAF
+that has been hunted down for a while, GT reset fix for platforms that
+load GuC but don't submit via it, fix for execlists priority submission,
+proper capture of EIR register on hang.
 
-Summary
--------
+THe rest is usual code cleanups/refactoring and selftest fixes.
 
-  **FAILURE**
+Regards, Joonas
 
-  Serious unknown changes coming with Patchwork_132685v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_132685v5, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+***
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/index.html
+drm-intel-gt-next-2024-04-26:
 
-Participating hosts (43 -> 39)
-------------------------------
+UAPI Changes:
 
-  Missing    (4): fi-glk-j4005 bat-dg2-11 fi-snb-2520m fi-kbl-8809g 
+- drm/i915/guc: Use context hints for GT frequency
 
-Possible new issues
--------------------
+    Allow user to provide a low latency context hint. When set, KMD
+    sends a hint to GuC which results in special handling for this
+    context. SLPC will ramp the GT frequency aggressively every time
+    it switches to this context. The down freq threshold will also be
+    lower so GuC will ramp down the GT freq for this context more slowly.
+    We also disable waitboost for this context as that will interfere with
+    the strategy.
 
-  Here are the unknown changes that may have been introduced in Patchwork_132685v5:
+    We need to enable the use of SLPC Compute strategy during init, but
+    it will apply only to contexts that set this bit during context
+    creation.
 
-### IGT changes ###
+    Userland can check whether this feature is supported using a new param-
+    I915_PARAM_HAS_CONTEXT_FREQ_HINT. This flag is true for all guc submission
+    enabled platforms as they use SLPC for frequency management.
 
-#### Possible regressions ####
+    The Mesa usage model for this flag is here -
+    https://gitlab.freedesktop.org/sushmave/mesa/-/commits/compute_hint
 
-  * igt@i915_selftest@live@hugepages:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14660/fi-bsw-nick/igt@i915_selftest@live@hugepages.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/fi-bsw-nick/igt@i915_selftest@live@hugepages.html
-    - bat-arls-2:         NOTRUN -> [ABORT][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@i915_selftest@live@hugepages.html
+- drm/i915/gt: Enable only one CCS for compute workload
 
-  
-Known issues
-------------
+    Enable only one CCS engine by default with all the compute sices
+    allocated to it.
 
-  Here are the changes found in Patchwork_132685v5 that come from known issues:
+    While generating the list of UABI engines to be exposed to the
+    user, exclude any additional CCS engines beyond the first
+    instance
 
-### IGT changes ###
+    ***
 
-#### Issues hit ####
+    NOTE: This W/A will make all DG2 SKUs appear like single CCS SKUs by
+    default to mitigate a hardware bug. All the EUs will still remain
+    usable, and all the userspace drivers have been confirmed to be able
+    to dynamically detect the change in number of CCS engines and adjust.
 
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-9:          [PASS][4] -> [FAIL][5] ([i915#10378])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14660/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-    - bat-dg2-8:          [PASS][6] -> [FAIL][7] ([i915#10378])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14660/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+    For the smaller percent of applications that get perf benefit from
+    letting the userspace driver dispatch across all 4 CCS engines we will
+    be introducing a sysfs control as a later patch to choose 4 CCS each
+    with 25% EUs (or 50% if 2 CCS).
 
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-arls-2:         NOTRUN -> [SKIP][8] ([i915#10213]) +3 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_lmem_swapping@verify-random.html
+    NOTE: A regression has been reported at
 
-  * igt@gem_mmap@basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][9] ([i915#4083])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_mmap@basic.html
+    https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10895
 
-  * igt@gem_mmap_gtt@basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][10] ([i915#10196] / [i915#4077]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_mmap_gtt@basic.html
+    However Andi has been triaging the issue and we're closing in a fix
+    to the gap in the W/A implementation:
 
-  * igt@gem_render_tiled_blits@basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][11] ([i915#10197] / [i915#10211] / [i915#4079])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_render_tiled_blits@basic.html
+    https://lists.freedesktop.org/archives/intel-gfx/2024-April/348747.html
 
-  * igt@gem_tiled_pread_basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][12] ([i915#10206] / [i915#4079])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_tiled_pread_basic.html
+Driver Changes:
 
-  * igt@i915_pm_rps@basic-api:
-    - bat-arls-2:         NOTRUN -> [SKIP][13] ([i915#10209])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@i915_pm_rps@basic-api.html
+- Add new and fix to existing workarounds: Wa_14018575942 (MTL),
+  Wa_16019325821 (Gen12.70), Wa_14019159160 (MTL), Wa_16015675438,
+  Wa_14020495402 (Gen12.70) (Tejas, John, Lucas)
+- Fix UAF on destroy against retire race and remove two earlier
+  partial fixes (Janusz)
+- Limit the reserved VM space to only the platforms that need it (Andi)
+- Reset queue_priority_hint on parking for execlist platforms (Chris)
+- Fix gt reset with GuC submission is disabled (Nirmoy)
+- Correct capture of EIR register on hang (John)
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-arls-2:         NOTRUN -> [SKIP][14] ([i915#10200]) +9 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+- Remove usage of the deprecated ida_simple_xx() API
+- Refactor confusing __intel_gt_reset() (Nirmoy)
+- Fix the fix for GuC reset lock confusion (John)
+- Simplify/extend platform check for Wa_14018913170 (John)
+- Replace dev_priv with i915 (Andi)
+- Add and use gt_to_guc() wrapper (Andi)
+- Remove bogus null check (Rodrigo, Dan)
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-arls-2:         NOTRUN -> [SKIP][15] ([i915#10202]) +1 other test skip
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+. Selftest improvements (Janusz, Nirmoy, Daniele)
 
-  * igt@kms_dsc@dsc-basic:
-    - bat-arls-2:         NOTRUN -> [SKIP][16] ([i915#9886])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_dsc@dsc-basic.html
+The following changes since commit db7bbd13f08774cde0332c705f042e327fe21e73:
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-arls-2:         NOTRUN -> [SKIP][17] ([i915#10207])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_force_connector_basic@force-load-detect.html
+  drm/i915: Check before removing mm notifier (2024-02-28 13:11:32 +0000)
 
-  * igt@kms_psr@psr-primary-mmap-gtt@edp-1:
-    - bat-arls-2:         NOTRUN -> [SKIP][18] ([i915#10196] / [i915#4077] / [i915#9688])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html
+are available in the Git repository at:
 
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-arls-2:         NOTRUN -> [SKIP][19] ([i915#10208] / [i915#8809])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_setmode@basic-clone-single-crtc.html
+  https://anongit.freedesktop.org/git/drm/drm-intel tags/drm-intel-gt-next-2024-04-26
 
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-arls-2:         NOTRUN -> [SKIP][20] ([i915#10196] / [i915#3708] / [i915#4077]) +1 other test skip
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-fence-mmap.html
+for you to fetch changes up to 4d3421e04c5dc38baf15224c051256204f223c15:
 
-  * igt@prime_vgem@basic-fence-read:
-    - bat-arls-2:         NOTRUN -> [SKIP][21] ([i915#10212] / [i915#3708])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-fence-read.html
+  drm/i915: Fix gt reset with GuC submission is disabled (2024-04-24 18:48:32 +0200)
 
-  * igt@prime_vgem@basic-read:
-    - bat-arls-2:         NOTRUN -> [SKIP][22] ([i915#10214] / [i915#3708])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-read.html
+----------------------------------------------------------------
+UAPI Changes:
 
-  * igt@prime_vgem@basic-write:
-    - bat-arls-2:         NOTRUN -> [SKIP][23] ([i915#10216] / [i915#3708])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-write.html
+- drm/i915/guc: Use context hints for GT frequency
 
-  
-  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
-  [i915#10197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197
-  [i915#10200]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200
-  [i915#10202]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10202
-  [i915#10206]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206
-  [i915#10207]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10207
-  [i915#10208]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208
-  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
-  [i915#10211]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211
-  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
-  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+    Allow user to provide a low latency context hint. When set, KMD
+    sends a hint to GuC which results in special handling for this
+    context. SLPC will ramp the GT frequency aggressively every time
+    it switches to this context. The down freq threshold will also be
+    lower so GuC will ramp down the GT freq for this context more slowly.
+    We also disable waitboost for this context as that will interfere with
+    the strategy.
 
+    We need to enable the use of SLPC Compute strategy during init, but
+    it will apply only to contexts that set this bit during context
+    creation.
 
-Build changes
--------------
+    Userland can check whether this feature is supported using a new param-
+    I915_PARAM_HAS_CONTEXT_FREQ_HINT. This flag is true for all guc submission
+    enabled platforms as they use SLPC for frequency management.
 
-  * Linux: CI_DRM_14660 -> Patchwork_132685v5
+    The Mesa usage model for this flag is here -
+    https://gitlab.freedesktop.org/sushmave/mesa/-/commits/compute_hint
 
-  CI-20190529: 20190529
-  CI_DRM_14660: c1796775e3eb2ba0e49212d4927985049a8da1ae @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7824: 7824
-  Patchwork_132685v5: c1796775e3eb2ba0e49212d4927985049a8da1ae @ git://anongit.freedesktop.org/gfx-ci/linux
+- drm/i915/gt: Enable only one CCS for compute workload
 
-== Logs ==
+    Enable only one CCS engine by default with all the compute sices
+    allocated to it.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/index.html
+    While generating the list of UABI engines to be exposed to the
+    user, exclude any additional CCS engines beyond the first
+    instance
 
---===============8248398875908337052==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+    ***
 
+    NOTE: This W/A will make all DG2 SKUs appear like single CCS SKUs by
+    default to mitigate a hardware bug. All the EUs will still remain
+    usable, and all the userspace drivers have been confirmed to be able
+    to dynamically detect the change in number of CCS engines and adjust.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+    For the smaller percent of applications that get perf benefit from
+    letting the userspace driver dispatch across all 4 CCS engines we will
+    be introducing a sysfs control as a later patch to choose 4 CCS each
+    with 25% EUs (or 50% if 2 CCS).
 
+    NOTE: A regression has been reported at
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Fixed the main link lost in MST (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132685/">https://patchwork.freedesktop.org/series/132685/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+    https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10895
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/index.html</a></td></tr>
+    However Andi has been triaging the issue and we're closing in a fix
+    to the gap in the W/A implementation:
 
-</table>
+    https://lists.freedesktop.org/archives/intel-gfx/2024-April/348747.html
 
+Driver Changes:
 
-    <h1>CI Bug Log - changes from CI_DRM_14660 -&gt; Patchwork_132685v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_132685v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_132685v5, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/index.html</p>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Missing    (4): fi-glk-j4005 bat-dg2-11 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_132685v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hugepages:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14660/fi-bsw-nick/igt@i915_selftest@live@hugepages.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/fi-bsw-nick/igt@i915_selftest@live@hugepages.html">INCOMPLETE</a></li>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@i915_selftest@live@hugepages.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132685v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14660/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14660/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213">i915#10213</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196">i915#10196</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197">i915#10197</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211">i915#10211</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206">i915#10206</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209">i915#10209</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200">i915#10200</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10202">i915#10202</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10207">i915#10207</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-mmap-gtt@edp-1:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196">i915#10196</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208">i915#10208</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809">i915#8809</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196">i915#10196</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212">i915#10212</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214">i915#10214</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132685v5/bat-arls-2/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216">i915#10216</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14660 -&gt; Patchwork_132685v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14660: c1796775e3eb2ba0e49212d4927985049a8da1ae @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7824: 7824<br />
-  Patchwork_132685v5: c1796775e3eb2ba0e49212d4927985049a8da1ae @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+- Add new and fix to existing workarounds: Wa_14018575942 (MTL),
+  Wa_16019325821 (Gen12.70), Wa_14019159160 (MTL), Wa_16015675438,
+  Wa_14020495402 (Gen12.70) (Tejas, John, Lucas)
+- Fix UAF on destroy against retire race and remove two earlier
+  partial fixes (Janusz)
+- Limit the reserved VM space to only the platforms that need it (Andi)
+- Reset queue_priority_hint on parking for execlist platforms (Chris)
+- Fix gt reset with GuC submission is disabled (Nirmoy)
+- Correct capture of EIR register on hang (John)
 
-</body>
-</html>
+- Remove usage of the deprecated ida_simple_xx() API
+- Refactor confusing __intel_gt_reset() (Nirmoy)
+- Fix the fix for GuC reset lock confusion (John)
+- Simplify/extend platform check for Wa_14018913170 (John)
+- Replace dev_priv with i915 (Andi)
+- Add and use gt_to_guc() wrapper (Andi)
+- Remove bogus null check (Rodrigo, Dan)
 
---===============8248398875908337052==--
+. Selftest improvements (Janusz, Nirmoy, Daniele)
+
+----------------------------------------------------------------
+Andi Shyti (7):
+      drm/i915/gt: Create the gt_to_guc() wrapper
+      drm/i915/guc: Use the new gt_to_guc() wrapper
+      drm/i915/gt: Limit the reserved VM space to only the platforms that need it
+      drm/i915/gem: Replace dev_priv with i915
+      drm/i915/gt: Disable HW load balancing for CCS
+      drm/i915/gt: Do not generate the command streamer for all the CCS
+      drm/i915/gt: Enable only one CCS for compute workload
+
+Chris Wilson (1):
+      drm/i915/gt: Reset queue_priority_hint on parking
+
+Christophe JAILLET (1):
+      drm/i915/guc: Remove usage of the deprecated ida_simple_xx() API
+
+Daniele Ceraolo Spurio (1):
+      drm/i915/dg2: wait for HuC load completion before running selftests
+
+Janusz Krzysztofik (5):
+      drm/i915/selftest_hangcheck: Check sanity with more patience
+      drm/i915/selftests: Fix dependency of some timeouts on HZ
+      drm/i915/vma: Fix UAF on destroy against retire race
+      drm/i915: Remove extra multi-gt pm-references
+      Revert "drm/i915: Wait for active retire before i915_active_fini()"
+
+John Harrison (6):
+      drm/i915/guc: Correct capture of EIR register on hang
+      drm/i915/guc: Simplify/extend platform check for Wa_14018913170
+      drm/i915: Enable Wa_16019325821
+      drm/i915/guc: Add support for w/a KLVs
+      drm/i915/guc: Enable Wa_14019159160
+      drm/i915/guc: Fix the fix for reset lock confusion
+
+Lucas De Marchi (1):
+      drm/i915: Drop WA 16015675438
+
+Nirmoy Das (3):
+      drm/i915/selftests: Pick correct caching mode.
+      drm/i915: Refactor confusing __intel_gt_reset()
+      drm/i915: Fix gt reset with GuC submission is disabled
+
+Radhakrishna Sripada (1):
+      drm/i915/xelpg: Add Wa_14020495402
+
+Rodrigo Vivi (1):
+      drm/i915/guc: Remove bogus null check
+
+Tejas Upadhyay (1):
+      drm/i915/mtl: Update workaround 14018575942
+
+Vinay Belgaumkar (1):
+      drm/i915/guc: Use context hints for GT frequency
+
+ drivers/gpu/drm/i915/Makefile                      |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        | 16 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h  |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 22 +-----
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |  6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.h         |  8 +-
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c         | 18 ++---
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c        |  6 +-
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    | 14 ++--
+ .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |  5 +-
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c           | 22 ++++--
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c               |  3 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h      |  1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          | 23 +++++-
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c          |  3 -
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |  8 +-
+ .../gpu/drm/i915/gt/intel_execlists_submission.c   |  5 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c               |  9 +--
+ drivers/gpu/drm/i915/gt/intel_gt.c                 |  8 +-
+ drivers/gpu/drm/i915/gt/intel_gt.h                 | 14 +++-
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c        | 39 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h        | 13 ++++
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c             |  6 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c              |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c      |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h            |  7 ++
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c        |  8 +-
+ drivers/gpu/drm/i915/gt/intel_rc6.c                |  4 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c              | 51 ++++++++++--
+ drivers/gpu/drm/i915/gt/intel_reset.h              |  3 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c                |  6 +-
+ drivers/gpu/drm/i915/gt/intel_tlb.c                |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        | 43 ++++++++--
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c           |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_slpc.c            |  6 +-
+ .../gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h  | 21 +++++
+ drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h    |  1 +
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h      |  7 ++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c          |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_proxy.c       |  3 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c             | 15 +++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h             |  2 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c         | 91 +++++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_capture.c     | 12 +--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  6 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h        |  8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        | 17 ++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h        |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 78 ++++++++++---------
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  4 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c              |  4 +
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c           |  4 +-
+ drivers/gpu/drm/i915/gt/uc/selftest_guc.c          |  2 +-
+ drivers/gpu/drm/i915/i915_driver.c                 |  2 +-
+ drivers/gpu/drm/i915/i915_getparam.c               |  6 ++
+ drivers/gpu/drm/i915/i915_vma.c                    | 52 ++++++++++---
+ drivers/gpu/drm/i915/selftests/i915_selftest.c     | 36 ++++++++-
+ .../drm/i915/selftests/intel_scheduler_helpers.c   |  6 +-
+ include/uapi/drm/i915_drm.h                        | 15 ++++
+ 61 files changed, 598 insertions(+), 190 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
