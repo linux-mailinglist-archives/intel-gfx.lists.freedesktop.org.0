@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3745E8B4BA8
-	for <lists+intel-gfx@lfdr.de>; Sun, 28 Apr 2024 14:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 606398B4DA5
+	for <lists+intel-gfx@lfdr.de>; Sun, 28 Apr 2024 21:34:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90F4010FC5F;
-	Sun, 28 Apr 2024 12:13:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cq9fThlO";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A56F8112964;
+	Sun, 28 Apr 2024 19:34:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88B3F10FBEA
- for <intel-gfx@lists.freedesktop.org>; Sun, 28 Apr 2024 12:13:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714306381; x=1745842381;
- h=message-id:date:mime-version:cc:subject:to:references:
- from:in-reply-to:content-transfer-encoding;
- bh=W/UgtUyxaHLsPcJ+ga9AeASOOdq1iI94EO3mRhaSb80=;
- b=Cq9fThlO+iE3nE4L+DwqKWw/Gz9nZaWS1V1p34Day/NaWUg36I4DgUgE
- F1JjCygkuI30a/GU1yUxLH8npoKwGQ5bqG1/5k3f3MREyCQi/cJT1hbVR
- Ayr/KLxBZxu/+OqxvzCOPVL4oGQj+TQcu34+MrSKeA8mDICrld6x/dSHk
- UxeweEM7uy1ef3l0V1iYBoLF0/U74ZIEuUCor2+2NndyGJ+1m2clyOTYu
- 5pQ9kOmUYkdQ9POiY21n8xxO5u62CWV1CoIt9xo2Aw9tTyCvFEaUq01YQ
- mZV9yUUyCZiiW0+aYqlRpcEghXmlK9K+fifBIwdyYmaN6iaVmyehwgTdE g==;
-X-CSE-ConnectionGUID: O1xOs16WRsOqmgBUoyB6uw==
-X-CSE-MsgGUID: h/M5f9J3RwuRqfRpCuyezQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="35373135"
-X-IronPort-AV: E=Sophos;i="6.07,237,1708416000"; d="scan'208";a="35373135"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2024 05:13:01 -0700
-X-CSE-ConnectionGUID: CMutR6kmRP2Pa6mU08/a7w==
-X-CSE-MsgGUID: EXspfr5dRjuBaLJJUBbVuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,237,1708416000"; d="scan'208";a="25872323"
-Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.125.244.72])
- ([10.125.244.72])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2024 05:12:58 -0700
-Message-ID: <850146ff-ce6f-44b3-9326-d44d29550b34@linux.intel.com>
-Date: Sun, 28 Apr 2024 20:12:56 +0800
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18FB5112964;
+ Sun, 28 Apr 2024 19:34:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7304667160372470688=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] iommu/vt-d: Decouple igfx_off from graphic identity
- mapping
-To: "Tian, Kevin" <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, "Wang, Zhenyu Z" <zhenyu.z.wang@intel.com>
-References: <20240428032020.214616-1-baolu.lu@linux.intel.com>
- <BN9PR11MB5276AF4C9A57C3B8D3A25E8E8C142@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <BN9PR11MB5276AF4C9A57C3B8D3A25E8E8C142@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Disarm_bread?=
+ =?utf-8?q?crumbs_if_engines_are_already_idle_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sun, 28 Apr 2024 19:34:12 -0000
+Message-ID: <171433285209.1737410.2774708107664807878@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,87 +37,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2024/4/28 14:45, Tian, Kevin wrote:
->> From: Lu Baolu<baolu.lu@linux.intel.com>
->> Sent: Sunday, April 28, 2024 11:20 AM
->>
->> A kernel command called igfx_off was introduced in commit <ba39592764ed>
->> ("Intel IOMMU: Intel IOMMU driver"). This command allows the user to
->> disable the IOMMU dedicated to SOC-integrated graphic devices.
->>
->> Commit <9452618e7462> ("iommu/intel: disable DMAR for g4x integrated
->> gfx")
->> used this mechanism to disable the graphic-dedicated IOMMU for some
->> problematic devices. Later, more problematic graphic devices were added
->> to the list by commit <1f76249cc3beb> ("iommu/vt-d: Declare Broadwell igfx
->> dmar support snafu").
->>
->> On the other hand, commit <19943b0e30b05> ("intel-iommu: Unify
->> hardware
->> and software passthrough support") uses the identity domain for graphic
->> devices if CONFIG_DMAR_BROKEN_GFX_WA is selected.
->>
->> +       if (iommu_pass_through)
->> +               iommu_identity_mapping = 1;
->> +#ifdef CONFIG_DMAR_BROKEN_GFX_WA
->> +       else
->> +               iommu_identity_mapping = 2;
->> +#endif
->> ...
->>
->> static int iommu_should_identity_map(struct pci_dev *pdev, int startup)
->> {
->> +        if (iommu_identity_mapping == 2)
->> +                return IS_GFX_DEVICE(pdev);
->> ...
->>
->> In the following driver evolution, CONFIG_DMAR_BROKEN_GFX_WA and
->> quirk_iommu_igfx() are mixed together, causing confusion in the driver's
->> device_def_domain_type callback. On one hand, dmar_map_gfx is used to
->> turn
->> off the graphic-dedicated IOMMU as a workaround for some buggy
->> hardware;
->> on the other hand, for those graphic devices, IDENTITY mapping is required
->> for the IOMMU core.
->>
->> Commit <4b8d18c0c986> "iommu/vt-d: Remove
->> INTEL_IOMMU_BROKEN_GFX_WA" has
->> removed the CONFIG_DMAR_BROKEN_GFX_WA option, so the
->> IDENTITY_DOMAIN
->> requirement for graphic devices is no longer needed. Therefore, this
->> requirement can be removed from device_def_domain_type() and igfx_off
->> can
->> be made independent.
->>
->> Fixes: 4b8d18c0c986 ("iommu/vt-d: Remove
->> INTEL_IOMMU_BROKEN_GFX_WA")
->> Signed-off-by: Lu Baolu<baolu.lu@linux.intel.com>
->> ---
->>   drivers/iommu/intel/iommu.c | 19 ++++++-------------
->>   1 file changed, 6 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
->> index fbbf8fda22f3..57a986524502 100644
->> --- a/drivers/iommu/intel/iommu.c
->> +++ b/drivers/iommu/intel/iommu.c
->> @@ -217,12 +217,11 @@ int intel_iommu_sm =
->> IS_ENABLED(CONFIG_INTEL_IOMMU_SCALABLE_MODE_DEFAULT_ON);
->>   int intel_iommu_enabled = 0;
->>   EXPORT_SYMBOL_GPL(intel_iommu_enabled);
->>
->> -static int dmar_map_gfx = 1;
->>   static int intel_iommu_superpage = 1;
->>   static int iommu_identity_mapping;
->>   static int iommu_skip_te_disable;
->> +static int disable_igfx_dedicated_iommu;
->>
-> what about 'no_igfx_iommu"? dedicated is implied for igfx
-> so a shorter name might be slightly better.
+--===============7304667160372470688==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I like disable_igfx_iommu more. :-)
+== Series Details ==
 
-Best regards,
-baolu
+Series: drm/i915/gt: Disarm breadcrumbs if engines are already idle (rev2)
+URL   : https://patchwork.freedesktop.org/series/132786/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14657 -> Patchwork_132786v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/index.html
+
+Participating hosts (41 -> 41)
+------------------------------
+
+  Additional (1): fi-kbl-8809g 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_132786v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@bad-flink:
+    - bat-arls-2:         NOTRUN -> [FAIL][1] ([i915#10958]) +19 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [PASS][4] -> [FAIL][5] ([i915#10378])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+    - bat-dg2-8:          [PASS][6] -> [FAIL][7] ([i915#10378])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@gem_mmap@basic:
+    - bat-arls-2:         NOTRUN -> [INCOMPLETE][8] ([i915#10951])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@gem_mmap@basic.html
+
+  * igt@kms_addfb_basic@addfb25-modifier-no-flag:
+    - bat-arls-2:         NOTRUN -> [INCOMPLETE][9] ([i915#10377]) +86 other tests incomplete
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][10] +30 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - bat-arls-2:         NOTRUN -> [INCOMPLETE][11] ([i915#10377] / [i915#10553]) +1 other test incomplete
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  * igt@prime_vgem@basic-fence-mmap:
+    - bat-arls-2:         NOTRUN -> [SKIP][12] ([i915#10196] / [i915#3708] / [i915#4077])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@prime_vgem@basic-fence-mmap.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_fence@basic-busy@ccs0:
+    - bat-arls-2:         [ABORT][13] ([i915#10950]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-arls-2/igt@gem_exec_fence@basic-busy@ccs0.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@gem_exec_fence@basic-busy@ccs0.html
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-11:         [FAIL][15] ([i915#10378]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][17] ([i915#10594]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
+  [i915#10377]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10377
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#10553]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10553
+  [i915#10594]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594
+  [i915#10950]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10950
+  [i915#10951]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10951
+  [i915#10958]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10958
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14657 -> Patchwork_132786v2
+
+  CI-20190529: 20190529
+  CI_DRM_14657: 92b848b529903fb99d21168491692474aae4872c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7824: 7824
+  Patchwork_132786v2: 92b848b529903fb99d21168491692474aae4872c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/index.html
+
+--===============7304667160372470688==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Disarm breadcrumbs if engines are already idle (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132786/">https://patchwork.freedesktop.org/series/132786/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14657 -&gt; Patchwork_132786v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 41)</h2>
+<p>Additional (1): fi-kbl-8809g <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132786v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@gem_flink_basic@bad-flink.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10958">i915#10958</a>) +19 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@gem_mmap@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10951">i915#10951</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-modifier-no-flag:</p>
+<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@kms_addfb_basic@addfb25-modifier-no-flag.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10377">i915#10377</a>) +86 other tests incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@kms_pm_rpm@basic-pci-d3-state.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10377">i915#10377</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10553">i915#10553</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-mmap:</p>
+<ul>
+<li>bat-arls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196">i915#10196</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-busy@ccs0:</p>
+<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-arls-2/igt@gem_exec_fence@basic-busy@ccs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10950">i915#10950</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-arls-2/igt@gem_exec_fence@basic-busy@ccs0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14657/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594">i915#10594</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14657 -&gt; Patchwork_132786v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14657: 92b848b529903fb99d21168491692474aae4872c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7824: 7824<br />
+  Patchwork_132786v2: 92b848b529903fb99d21168491692474aae4872c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7304667160372470688==--
