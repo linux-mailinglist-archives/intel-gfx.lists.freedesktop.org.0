@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0208B5D55
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 17:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A4F8B5EFC
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 18:29:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112DA10E2E3;
-	Mon, 29 Apr 2024 15:20:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0868710E831;
+	Mon, 29 Apr 2024 16:29:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J35OYt91";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB30B10E190;
- Mon, 29 Apr 2024 15:20:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7475895531992222383=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A8310E82D;
+ Mon, 29 Apr 2024 16:29:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714408162; x=1745944162;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZND1thzlY+Ba5ASnhqGZyzFrmiJR8faoYhKqZaVKG1c=;
+ b=J35OYt91biteEGTwbB9twDdYqB82dEa8VXcpKT5oixS9O9ROwg5h31wP
+ QKL049JTpe8A2iXBD8zcxQJTVMvgep5f3kAmkPuNEFIN85XGTQLB4ZDIc
+ 2AdMs6iQAqWgkrwkMf+xCuGm0Xf7CGIlCOBw+TcMa8jSoZiAQD+XKVqTW
+ wAqBp8wxQ0+vDRaarv9iwbEg3r/2AHnmckmRk8jwEU17IadC1vP/b1Gj1
+ 1/ArJmjRjjmwSqPsUaSlJo+jbtLlRamFEkG6g/edsZNpvtsZ68OcHGBtk
+ Ni2AWfSye4/E8CCVwDWPXs1DBSh6rWiaZ46RPwISlcKo2CZymEQxbOA/b g==;
+X-CSE-ConnectionGUID: ePUF8MglSpuZCdEPFjflUQ==
+X-CSE-MsgGUID: bk0KkcbPQiqwvJSaTWEiXA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="10235682"
+X-IronPort-AV: E=Sophos;i="6.07,240,1708416000"; d="scan'208";a="10235682"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 09:29:21 -0700
+X-CSE-ConnectionGUID: yikJz1hbQqe6QdDR2paypw==
+X-CSE-MsgGUID: 4twqwpWzSCiKXYy0wfe7BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,240,1708416000"; d="scan'208";a="30641915"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 09:29:21 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/xe/xe_ggtt: No need to use xe_pm_runtime_get_noresume
+Date: Mon, 29 Apr 2024 09:29:15 -0700
+Message-ID: <20240429162915.1831945-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/color=3A_first_bat?=
- =?utf-8?q?ch_of_implicit_dev=5Fpriv_removals?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Apr 2024 15:20:28 -0000
-Message-ID: <171440402883.1756580.2213647879630986357@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1714399071.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1714399071.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,149 +63,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7475895531992222383==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Switching from xe_device_mem_access_get/put to xe_pm_runtime_get/put
+results in the following WARNING in xe_oa:
 
-== Series Details ==
+[11614.356168] xe 0000:00:02.0: Missing outer runtime PM protection
+[11614.356187] WARNING: CPU: 1 PID: 13075 at drivers/gpu/drm/xe/xe_pm.c:549 xe_pm_runtime_get_noresume+0x60/0x80 [xe]
+...
+[11614.356377] Call Trace:
+[11614.356379]  <TASK>
+[11614.356381]  ? __warn+0x7e/0x180
+[11614.356387]  ? xe_pm_runtime_get_noresume+0x60/0x80 [xe]
+[11614.356507]  xe_ggtt_remove_node+0x22/0x80 [xe]
+[11614.356546]  xe_ttm_bo_destroy+0xea/0xf0 [xe]
+[11614.356579]  xe_oa_stream_destroy+0xf7/0x120 [xe]
+[11614.356627]  xe_oa_release+0x35/0xc0 [xe]
+[11614.356673]  __fput+0xa1/0x2d0
+[11614.356679]  __x64_sys_close+0x37/0x80
+[11614.356697]  do_syscall_64+0x6d/0x140
+[11614.356700]  entry_SYSCALL_64_after_hwframe+0x71/0x79
+[11614.356702] RIP: 0033:0x7f2b37314f67
 
-Series: drm/i915/color: first batch of implicit dev_priv removals
-URL   : https://patchwork.freedesktop.org/series/133024/
-State : success
+There seems to be no reason to use xe_pm_runtime_get_noresume in xe_ggtt
+functions. Just use xe_pm_runtime_get.
 
-== Summary ==
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from CI_DRM_14673 -> Patchwork_133024v1
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 0d541f55b4fc..8548a2eb3b32 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -404,7 +404,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	if (err)
+ 		return err;
+ 
+-	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
++	xe_pm_runtime_get(tile_to_xe(ggtt->tile));
+ 	mutex_lock(&ggtt->lock);
+ 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
+ 					  alignment, 0, start, end, 0);
+@@ -433,7 +433,7 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+ 			 bool invalidate)
+ {
+-	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
++	xe_pm_runtime_get(tile_to_xe(ggtt->tile));
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	xe_ggtt_clear(ggtt, node->start, node->size);
+-- 
+2.41.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/index.html
-
-Participating hosts (37 -> 33)
-------------------------------
-
-  Missing    (4): fi-kbl-8809g fi-bsw-n3050 fi-snb-2520m bat-arls-3 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_133024v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-8:          [PASS][1] -> [FAIL][2] ([i915#10378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14673/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-11:         [FAIL][3] ([i915#10378]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14673/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#10436]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10436
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14673 -> Patchwork_133024v1
-
-  CI-20190529: 20190529
-  CI_DRM_14673: c90b2a6c278edd586b8a5c57880d62852356184d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_133024v1: c90b2a6c278edd586b8a5c57880d62852356184d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/index.html
-
---===============7475895531992222383==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/color: first batch of implicit dev_priv removals</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133024/">https://patchwork.freedesktop.org/series/133024/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14673 -&gt; Patchwork_133024v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 33)</h2>
-<p>Missing    (4): fi-kbl-8809g fi-bsw-n3050 fi-snb-2520m bat-arls-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_133024v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14673/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14673/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133024v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14673 -&gt; Patchwork_133024v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14673: c90b2a6c278edd586b8a5c57880d62852356184d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_133024v1: c90b2a6c278edd586b8a5c57880d62852356184d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7475895531992222383==--
