@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDFAD8B5AD1
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 16:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C318B5AFA
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 16:09:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D7D110F53A;
-	Mon, 29 Apr 2024 14:03:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3875B10E042;
+	Mon, 29 Apr 2024 14:09:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j2GMzavW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESc3bJAk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5A7710FB61
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:02:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16AF10EB3E;
+ Mon, 29 Apr 2024 14:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714399380; x=1745935380;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Mr4NnfSw7YR7w8rBgHVso0If2mTM98NNQTFjya0rtbs=;
- b=j2GMzavW9RQBWRHSSzMgKr5B5u6IT7cMVT0CURDQwkEoloMsO+tNoQaC
- 6JcQ84RCsW1rpppaYHkpMFblKpEf7NW5Cwux//WAz6xCi09ZSDe45Ckg8
- gWwg/F2MI7D2DJsFJG2VcDo9TeCatqaji05fIzNdV8jhwxdFqILyWmXlT
- xanyzKqLduVBiwWV05fpaIC+rqvOw7zBSsjPZEdCa/PB/DdUfRgxQ7dMh
- HGGnKW5Ipt4MIwUj+Pqaw/8EAAOni0RxEqismGgsye8bttSzZFTl5aDkB
- AReG1tHm4rF4sKdeAHQQnJE9Fq9nmdLjnj0XciAtx2rQG11Kw0eDof8Ba g==;
-X-CSE-ConnectionGUID: N12m6vNaRfaVIxlKQDcSgQ==
-X-CSE-MsgGUID: oCKEMtDPRoOfhlKmTanPVw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="27510446"
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="27510446"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 07:03:00 -0700
-X-CSE-ConnectionGUID: 55lslVaGQ9yhGuQsQsRADw==
-X-CSE-MsgGUID: COq9Kt+FRpi6SBXuWGNSIg==
+ t=1714399739; x=1745935739;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=MMDS5y1s0zRD0OoyMoHkY0lpSuThQOQW2HBaNWWOTyY=;
+ b=ESc3bJAkvf4JCjT5khRDdqg2/7/ynV8NjvTRg5wyoFWp4BQT3j42b7Xd
+ z9KvN482OeURalfiybjdeaGzNJQ8DBuO/fTodZ86HRHzLTOcEaF0kbFbf
+ Qgw6/+EwFbLJbsYm6Ww+bwHVlg/ZkxvtZcMb7Pgzy3LuHpTC+0u4Ja06H
+ BCkkdSM6Nlrjj5GOXyBqd1lngSUhh/nTc+HTPZAUwziXBKvje/ksaKf/1
+ A0YHq0jCDkalDnPeCd1CqyqkX1ljodYfgBEnlzujB11VhvEmpxKG3lI/P
+ cAE4c+d44zA7rTAmUaoeblFgi2toxsEKugNo6sq1KN531KV0JFNDQI2qj Q==;
+X-CSE-ConnectionGUID: PJPHvpTPRieVSzsmKHWa5w==
+X-CSE-MsgGUID: lkYxi12gQ5SO5Fhvv9FGJA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="20675711"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="20675711"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 07:08:58 -0700
+X-CSE-ConnectionGUID: L0214hdnTJmxUyzW9Dui9g==
+X-CSE-MsgGUID: 9C1KYrv2T9Kja+a3f9DC4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="56991806"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="26081215"
 Received: from aantonov-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.49.167])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 07:02:58 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 07:08:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com,
-	jani.nikula@intel.com
-Subject: [PATCH 7/7] drm/i915: pass dev_priv explicitly to PIPE_WGC_C22
-Date: Mon, 29 Apr 2024 17:02:21 +0300
-Message-Id: <0a07f615c574040094b37c861078e41daf53c706.1714399071.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1714399071.git.jani.nikula@intel.com>
-References: <cover.1714399071.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 000/123] drm/i915: remove implicit dev_priv local
+ variable use
+In-Reply-To: <Zi-V6EPHHnkG399m@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1714136165.git.jani.nikula@intel.com>
+ <87ttjo46ee.fsf@intel.com> <Zi-V6EPHHnkG399m@intel.com>
+Date: Mon, 29 Apr 2024 17:08:54 +0300
+Message-ID: <875xw045xl.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,50 +70,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PIPE_WGC_C22 register macro.
+On Mon, 29 Apr 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> From a glance on these initial patches, it sounds really organized in
+> individual patches and easy to review.
+> Perhaps if we take this path we might just split the series in blocks
+> and merge these initial 17, and we continue over the next weeks.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c      | 4 ++--
- drivers/gpu/drm/i915/display/intel_color_regs.h | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Ack.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index fc27c1bda676..d23163dc64d4 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -628,7 +628,7 @@ static void vlv_load_wgc_csc(struct intel_crtc *crtc,
- 
- 	intel_de_write_fw(dev_priv, PIPE_WGC_C21_C20(dev_priv, pipe),
- 			  csc->coeff[7] << 16 | csc->coeff[6]);
--	intel_de_write_fw(dev_priv, PIPE_WGC_C22(pipe),
-+	intel_de_write_fw(dev_priv, PIPE_WGC_C22(dev_priv, pipe),
- 			  csc->coeff[8]);
- }
- 
-@@ -657,7 +657,7 @@ static void vlv_read_wgc_csc(struct intel_crtc *crtc,
- 	csc->coeff[6] = tmp & 0xffff;
- 	csc->coeff[7] = tmp >> 16;
- 
--	tmp = intel_de_read_fw(dev_priv, PIPE_WGC_C22(pipe));
-+	tmp = intel_de_read_fw(dev_priv, PIPE_WGC_C22(dev_priv, pipe));
- 	csc->coeff[8] = tmp & 0xffff;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/gpu/drm/i915/display/intel_color_regs.h
-index c2e06ccf96c4..bb99ea533842 100644
---- a/drivers/gpu/drm/i915/display/intel_color_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
-@@ -261,7 +261,7 @@
- #define PIPE_WGC_C11_C10(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C11_C10)
- #define PIPE_WGC_C12(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C12)
- #define PIPE_WGC_C21_C20(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C21_C20)
--#define PIPE_WGC_C22(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C22)
-+#define PIPE_WGC_C22(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C22)
- 
- /* pipe CSC & degamma/gamma LUTs on CHV */
- #define _CGM_PIPE_A_CSC_COEFF01	(VLV_DISPLAY_BASE + 0x67900)
+> However, if this is automated like you mentioned in the cover letter,
+> perhaps we can do one patch per directory? (display vs gvt vs gem? vs drm/i915/{.c,.h})
+
+I'll look into it. The first natural batch came about when I moved some
+color regs, so I sent them [1].
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/cover.1714399071.git.jani.nikula@intel.com
+
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
