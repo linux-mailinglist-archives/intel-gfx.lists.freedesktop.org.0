@@ -2,161 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FD18B58DA
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 14:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 581838B593A
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 14:59:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C67D110FE75;
-	Mon, 29 Apr 2024 12:44:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7665112C54;
+	Mon, 29 Apr 2024 12:59:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxoLyLt8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XBnIslku";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C13EB10FE75;
- Mon, 29 Apr 2024 12:44:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14896112C56;
+ Mon, 29 Apr 2024 12:59:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714394682; x=1745930682;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=g/UY96YjtSpw9i3Mb0QaTT7txuXWUPx6cIElVxoXv1w=;
- b=nxoLyLt8Az2ThwxUfZKl1YaVSrvBtZTJzfriH5Y2vcn2oavj6kkoUrak
- VnqikEW6tilILozWEP0ji/ebAOKsgdaZkppn7jZ7HduJqkSatkHb+VqFo
- TngcSHEfB3SFXgdlUkvBHsZdXCuX74hCcSDxzwM/Jxjgmg8yJjlnUPHN1
- wMfKyFFvcgmkfuHscSfgHsG1/sKDbrX2SJxjEx1fT6cX8TkrKrmmjyQLU
- bDJra+ttBRCNsjG0LKJtRWrKNrP4Dyv9ZbyiwJq9tYrtNJDZ/r7LXVu3Y
- ViTXD8oyzZwUR6CbSCIwmRsEtL/7TIrCp6ZrglVAMmgx553rkbgoghp7N w==;
-X-CSE-ConnectionGUID: sfdFHjX1TGGuIo3Jrxi64w==
-X-CSE-MsgGUID: UrPwW5jORYePcc5DMFOmQw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="20739232"
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="20739232"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:44:42 -0700
-X-CSE-ConnectionGUID: HRhQBqrLQ3Gm4MD6TmlssQ==
-X-CSE-MsgGUID: YnllCd1zTkex4LURlOZcFQ==
+ t=1714395584; x=1745931584;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=mKNazLe/Cp7NIJ+D/uJzSIFssLGGDnrsIlr3JeDnF8k=;
+ b=XBnIslkuqVsuXbuMI4jPzaKqZR58LiD3qFGj0BrnLVuzUDB6oOGCA3J0
+ 1hHDxrzWFnUjO4I7bXkXljoI19fFOcj40Bioy//1TaEQhIKSnLJNrWyK3
+ EAkaehS/swV4wbxaT32ZIyiy1Wlee5GaVisEXoxY8lKxyj76qYJrYElPH
+ 9suNUn5CMatiYCLakWycjr9066tQYjC2jp0CTc+waU0+OIHFL5Joc2/w5
+ UcLA3MRIypPYXv0Y2oS5aa+/+vKREpFIP7S4VzuSqhZ1Yv4ne8drOHmnS
+ JWC0W+1zW23FBRW9viiwoWzOEnzGmApzot0U2+gZT0U6U+71cDVjU4a74 A==;
+X-CSE-ConnectionGUID: ZXtLxlsZROuiFREQRmSuXA==
+X-CSE-MsgGUID: O0gIBhzsTCGMfY+aNe6nTw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="20602495"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="20602495"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 05:59:44 -0700
+X-CSE-ConnectionGUID: OYLrGEMZSTSwPrcckj7sDg==
+X-CSE-MsgGUID: xSjCxCGqTQmRKPvgO43gpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="56974836"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Apr 2024 05:44:42 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Apr 2024 05:44:41 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 29 Apr 2024 05:44:41 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Mon, 29 Apr 2024 05:44:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C1m3L2erdQvPE6wlz9QufDMgSPle0vkXlGtwkV2eQZEHYo+0gHHnxJaxIdTUSLay/JQdceI1Dx1UZCNrxQBCnQq4Wl6lepW6QK5QGjukRHLkVQWIz/AdSK8tksis+BOT1qUJBqE1c04hzm9GmBzZT1lL8zMqRdjLeWkmBvau1c52dFmZraHgT2G/dfZ8j6ktg2xoL4ACOVFI1IegBzYqYheGihUvJpLflRTBJTED0AtrWfwCOUl3BmdN1zjpTv0kgAWX/VxjBDMfOkiVXbLkCG0IxNo63MS9AZBn6PXmQsVfwBfMvYFV96mXiZYNTyXLdDkk9JLnzkHTsLP7Jay2pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JIIJRHMWWTxhDCSgaLXX8cwsGzRzm9+K1dh6OM5Y5+I=;
- b=j592VIouwkZIKmwGtJMiB+vN/InklfElekRI5hT4Mk7Rx+tST+FPUZDAc+kdk8sSM8+XOe5whHXGldJ/ST1dMHLhIl5bKYEQTgY1FFR7j71tQ3R98jgD26s6BmcPaFiQ5ZAaJ58v2dO51CV4FzrojkBRpiow7uKJbKLIrxSASnJxqGCE3nTAb3kl+829lH8u7BJF9i4yBPUXGKVsUxBJgI2xMQi9QjjuLhm4gvTQvUfuKvHUzejcg0EuXBEmAm0xcqXDsS0l9wCLsVqEDjhkm0zX8/6fO5q9X7tqbO9Yp2xiq2epVumADHYC377UPGPCnzsV1KBnwHVETM+4BmfoRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB6144.namprd11.prod.outlook.com (2603:10b6:8:af::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
- 2024 12:44:38 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::cf6f:eb9e:9143:f413]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::cf6f:eb9e:9143:f413%5]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
- 12:44:38 +0000
-Date: Mon, 29 Apr 2024 08:44:34 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>
-Subject: Re: [PATCH i-g-t] tests/intel/xe_gt_freq: Check for RPe freq updates
-Message-ID: <Zi-WMuOQobaJ6GxQ@intel.com>
-References: <20240425195657.3638599-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240425195657.3638599-1-vinay.belgaumkar@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0071.namprd03.prod.outlook.com
- (2603:10b6:a03:331::16) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="26066691"
+Received: from sbint17x-mobl.gar.corp.intel.com (HELO [10.249.254.23])
+ ([10.249.254.23])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 05:59:40 -0700
+Message-ID: <0290d950cfb1baf7bca225458f7ceb0891317346.camel@linux.intel.com>
+Subject: Re: [PATCH v3] drm/i915/vma: Fix UAF on reopen vs destroy race
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Andi Shyti <andi.shyti@linux.intel.com>, Andrzej
+ Hajda <andrzej.hajda@intel.com>,  Nirmoy Das <nirmoy.das@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>, Chris Wilson
+ <chris.p.wilson@linux.intel.com>
+Date: Mon, 29 Apr 2024 14:59:38 +0200
+In-Reply-To: <2675698.Isy0gbHreE@jkrzyszt-mobl2.ger.corp.intel.com>
+References: <20240415195310.165934-2-janusz.krzysztofik@linux.intel.com>
+ <13491837.dW097sEU6C@jkrzyszt-mobl2.ger.corp.intel.com>
+ <Zh6p7M9QoMTowh2F@intel.com>
+ <2675698.Isy0gbHreE@jkrzyszt-mobl2.ger.corp.intel.com>
+Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6144:EE_
-X-MS-Office365-Filtering-Correlation-Id: eebcdaee-16d5-4420-a702-08dc684a21c5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LttcJlaeMiuXKVafaOK889mjOhTmROmy4HRFI2MlE4V7ojK9Tx6Wizm3+s4y?=
- =?us-ascii?Q?XOwcSFLBzmUBdQ2ojezgKihT+b5U9daC5HeA1Ob3b0jK2P4hU11S1vtkRd2J?=
- =?us-ascii?Q?i2ltGgXMdNl2Jlu7gVgbGrrWPnvmVI63pqdX8aCmkgDQRmf9uZuUvhY2R0Je?=
- =?us-ascii?Q?o1q39hOWpApyl6c+k+WqduzJsFprn9FMUUx+sXsCdEN0PDf0ssIX40aghl2H?=
- =?us-ascii?Q?/GENwyU9AR00YmCfxu7mHYsvpoHFMBy1DjgwVHlKmTJH+AmTBDj69XcgGKx/?=
- =?us-ascii?Q?bChrIBD7I0jsuDT3vG5OMEyVwGKrRIDwOkLs6u8kSrtnq2cdKCD0iULYVMMD?=
- =?us-ascii?Q?oaNj7JslzK1YmgsM0zYzbyfr4c6/I4h3xfJNiiTra+4xU+wBfXpFMGa7Rnq0?=
- =?us-ascii?Q?NXFw3H3YKaIl/9uukL6H2JLqzIH7A8/Y2GTR6EljQCX6FMaFsLVYeb9uiLwg?=
- =?us-ascii?Q?4ke2t3dbq8sOzfoKl7bBacAQmnfgID8sqt9uKSSFl3Z89y8TGa7PJxA90+jZ?=
- =?us-ascii?Q?fGgzbFKGrxracWwByUDl5vpHBpsqQTZMLMGcbAb7eGxGpIcnrFEeTlmnCVyH?=
- =?us-ascii?Q?mWPX9lye8Fn2ngZVx+3CfV5tDLO2rvhOIc54wMq6T/g8/j4eXNEeG4YWiigt?=
- =?us-ascii?Q?AjXi3e/Z5FvkbArGNf/SDjrbBQMOuyjrMXZZH8Aax+M1TMdJ1FuMPXs1LhpR?=
- =?us-ascii?Q?uz7D8Yd790GQLENXQW4ubyol43e84M/7ES93Miirz9V7Tjl02QaCiLRKGnhJ?=
- =?us-ascii?Q?yjNy42Z7eCoBE8dqiI+gPsByZzM6ShYEXbnuuZxRUmP6UytaQFtQyd3cB2Ld?=
- =?us-ascii?Q?I/1fNDqcDXRpct63fDlRxK6ToafVStKXDHaj2Sf9LazFLfgCra6v1IjF9VJf?=
- =?us-ascii?Q?F0vhncXyhvE+qWYFhFNESswERGB+S08mS7NiVN0+Fgqavh3PZ0+OQ0xv9gcE?=
- =?us-ascii?Q?ETWq6gTuhxAn5euXmMEaeYVQolzavjkFJISjG7FwKISpuAt2sTtp9KatRtX7?=
- =?us-ascii?Q?HSeTknUP5JZ1SyUGRuyXzi2xG+hbiXmiROtowU387znRgx8M5A5vzFkMHulH?=
- =?us-ascii?Q?uYMtnCQtp99P1X00zvgRLsYPxf3hnzgTTiATyKNcXDgKFnr/0ku7Xfgbn0r9?=
- =?us-ascii?Q?OyJEy62C1zoNMh95NB5YlRex1YtH6xa1HGmI1QoCqcMFd+b41EJYcW7EuUaa?=
- =?us-ascii?Q?zLzjXTkavLG2CrGq+PsnGeZ9u2l6E9tV4obRPiz90QWdH3U+mimX+UED3neB?=
- =?us-ascii?Q?c0buAukZ/ZkosCHHWBQyvT4mMe9AVWFbYGKNWqH8qw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sDx01tZdVzrbe4PbKemcTYsPoPY7KS+HGH293KyMg91VRPckD41HetRuq8JA?=
- =?us-ascii?Q?TtvNhRO5ONbCFtg96uQs0b9ut945j1DhaRyZ6RfZu3yOUHxFZp+DUB/z7rmn?=
- =?us-ascii?Q?tJvEnE1Ze3a4FipkRvR5yd1r+zg9DXX/VZNnLGJKsEF+PsYzJ5gsLrcIWeSr?=
- =?us-ascii?Q?Xduzw+W9m0hTqQywKHjHHeP4TaMD/qQmchmQnVyx1Z7nOVcbdcykm7NvYf3S?=
- =?us-ascii?Q?jEed2t4/wpYASPJGn0zA5SiLKVbGVth4NyERuzxsj+iML9bzHmB9DeYyTyQ0?=
- =?us-ascii?Q?Z5rVhzy/aHxVuBKKQB5lkYev+XkMLNjHm6d8WrF8Jcc4U+bixkogneM5mmFS?=
- =?us-ascii?Q?HQiIEG9pDsG3UFVENyNUk4YNtWBu4sWO68lKtDxWk9+aAtF9ioonAvepDi6a?=
- =?us-ascii?Q?jglpBN8o9WvJjwtO7ObybAKTb68txJVNM5paR8aErqYiZs/rUZAwigLkEDzh?=
- =?us-ascii?Q?Ltuz7NJ+RpEmiJ78WyMXaZWBII1eFjym8Kn4KHzB3rHGunWg+FVjUBz45sU6?=
- =?us-ascii?Q?OB0E0ygPm1jXV6ahCZBp5xj5xAPh4kAkW3aIkUGLnQHP+avLF3H5y3QBlzIg?=
- =?us-ascii?Q?RtGZ1hzTfCtFDy6OZ9IVk9+PPw/hLzGmWl0YQGLCcxyrMe3B1meLftazqkcr?=
- =?us-ascii?Q?Mjc35SXIvpKQcwChE0GdghcLEKr76cs0zGSC6J4etRKs2AhIYU+jGhupS+gS?=
- =?us-ascii?Q?vfIqykdEaW6Gmn3D7UT8qQFn0EGKQAhi0jpbKoX+bRY+l2/rlbDHwWxTGKRj?=
- =?us-ascii?Q?8u5cjrPzT1aDI1ShSyvAHpwlGdzdkYNoXBrbsGNEPuM0ZkOzNu2m/V4tdsvG?=
- =?us-ascii?Q?oTvsobrAFLbWoGa4szEIEtbVQ5vQ8TuUV8w132hCOOuO2PlgdkU9KlifGdMu?=
- =?us-ascii?Q?04+gwyKRCHtnbTaXHgU8NTuBSvOwZ1B7JR5KHS513EWrREpD5q4Ygi2YUcaR?=
- =?us-ascii?Q?jyfL5DT5kDKK+F1xaqMCv7g97UTjX7WljPdBuyNtjGf1LD2TqHOOjn4qveNQ?=
- =?us-ascii?Q?Zpm+NvgNGxbiny3kmCgXfFWs2dO/4wDbU+MmI3ghiCkrsqh1H0JoGM+xHxGV?=
- =?us-ascii?Q?lw1aMemOnuWtfHUGvFkw8D9Z9RRCTrrL+6kdAkJL7+zyptSIJbxwza0NELvn?=
- =?us-ascii?Q?by4VfVwlijc+YMqXTahwFap6gdW+IHXyGTbvA75L/HE7DHjO3Dfum9w65/8b?=
- =?us-ascii?Q?/EtQgUZHhKZA90g7dAa73TqMjaiE54kDLEimgUWRSWWe+LvfzqWlttQBmPnT?=
- =?us-ascii?Q?Q0D0nys1f9o8Io34UFW+tQfhgx+z9Q8dnC9F2CLoGXeOQrTwIxB7sVdBjXXG?=
- =?us-ascii?Q?+Xh6Ys4Ac5XT8IdsHHCEiljeY34slIF/w+Bq0WMb0qcaXbyKmHXYZ1lLj1bM?=
- =?us-ascii?Q?cko/DkcVEoZEzf3tZZvLK0O+EjEU+DgHesVbW0OXYLovCpS5n4DllEYcMTQN?=
- =?us-ascii?Q?RqGvLlqiSa6VDTjglWGsMNEcd7q85FzNP1ghgU1W+xdMNjFIe5b2vxidmrPg?=
- =?us-ascii?Q?5od0iUpuNIcADRNAgkP8r+z4/eMXByQANYHHwC0haN+V2w+8KtgLrvcdRi6Z?=
- =?us-ascii?Q?4k79DSukMzOKoH/5g9T4Y17GDjVtmiDMv2E+BMUT?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: eebcdaee-16d5-4420-a702-08dc684a21c5
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2024 12:44:38.5557 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uo0XqqiXZmdxB/QeAuAqjetHHNUzd8D9m4/z4IHJlVyEO9+ZL76ozMIjqU3eLoG9IXQqyAnNV7bBOcE/BYWISA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6144
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,43 +81,388 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 25, 2024 at 12:56:57PM -0700, Vinay Belgaumkar wrote:
-> Pcode can dynamically update RPe frequency. Use the latest value
-> in tests that check it.
-> 
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+On Thu, 2024-04-25 at 20:42 +0200, Janusz Krzysztofik wrote:
+> Hi Thomas,
+>=20
+> On Tuesday, 16 April 2024 18:40:12 CEST Rodrigo Vivi wrote:
+> > On Tue, Apr 16, 2024 at 10:09:46AM +0200, Janusz Krzysztofik wrote:
+> > > Hi Rodrigo,
+> > >=20
+> > > On Tuesday, 16 April 2024 03:16:31 CEST Rodrigo Vivi wrote:
+> > > > On Mon, Apr 15, 2024 at 09:53:09PM +0200, Janusz Krzysztofik
+> > > > wrote:
+> > > > > We defer actually closing, unbinding and destroying a VMA
+> > > > > until next idle
+> > > > > point, or until the object is freed in the meantime.=C2=A0 By
+> > > > > postponing the
+> > > > > unbind, we allow for the VMA to be reopened by the client,
+> > > > > avoiding the
+> > > > > work required to rebind the VMA.
+> > > > >=20
+> > > > > It was assumed that as long as a GT is held idle, no VMA
+> > > > > would be reopened
+> > > > > while we destroy them.=C2=A0 That assumption is no longer true in
+> > > > > multi-GT
+> > > > > configurations, where a VMA we reopen may be handled by a GT
+> > > > > different
+> > > > > from the one that we already keep active via its engine while
+> > > > > we set up
+> > > > > an execbuf request.
+> > > > >=20
+> > > > > <4> [260.290809] ------------[ cut here ]------------
+> > > > > <4> [260.290988] list_del corruption. prev->next should be
+> > > > > ffff888118c5d990, but was ffff888118c5a510.
+> > > > > (prev=3Dffff888118c5a510)
+> > > > > <4> [260.291004] WARNING: CPU: 2 PID: 1143 at
+> > > > > lib/list_debug.c:62
+> > > > > __list_del_entry_valid_or_report+0xb7/0xe0
+> > > > > ..
+> > > > > <4> [260.291055] CPU: 2 PID: 1143 Comm: kms_plane Not tainted
+> > > > > 6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
+> > > > > <4> [260.291058] Hardware name: Intel Corporation Meteor Lake
+> > > > > Client Platform/MTL-P LP5x T3 RVP, BIOS
+> > > > > MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+> > > > > <4> [260.291060] RIP:
+> > > > > 0010:__list_del_entry_valid_or_report+0xb7/0xe0
+> > > > > ...
+> > > > > <4> [260.291087] Call Trace:
+> > > > > <4> [260.291089]=C2=A0 <TASK>
+> > > > > <4> [260.291124]=C2=A0 i915_vma_reopen+0x43/0x80 [i915]
+> > > > > <4> [260.291298]=C2=A0 eb_lookup_vmas+0x9cb/0xcc0 [i915]
+> > > > > <4> [260.291579]=C2=A0 i915_gem_do_execbuffer+0xc9a/0x26d0 [i915]
+> > > > > <4> [260.291883]=C2=A0 i915_gem_execbuffer2_ioctl+0x123/0x2a0
+> > > > > [i915]
+> > > > > ...
+> > > > > <4> [260.292301]=C2=A0 </TASK>
+> > > > > ...
+> > > > > <4> [260.292506] ---[ end trace 0000000000000000 ]---
+> > > > > <4> [260.292782] general protection fault, probably for non-
+> > > > > canonical address 0x6b6b6b6b6b6b6ca3: 0000 [#1] PREEMPT SMP
+> > > > > NOPTI
+> > > > > <4> [260.303575] CPU: 2 PID: 1143 Comm: kms_plane Tainted:
+> > > > > G=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 W=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ =
+#1
+> > > > > <4> [260.313851] Hardware name: Intel Corporation Meteor Lake
+> > > > > Client Platform/MTL-P LP5x T3 RVP, BIOS
+> > > > > MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+> > > > > <4> [260.326359] RIP: 0010:eb_validate_vmas+0x114/0xd80
+> > > > > [i915]
+> > > > > ...
+> > > > > <4> [260.428756] Call Trace:
+> > > > > <4> [260.431192]=C2=A0 <TASK>
+> > > > > <4> [639.283393]=C2=A0 i915_gem_do_execbuffer+0xd05/0x26d0 [i915]
+> > > > > <4> [639.305245]=C2=A0 i915_gem_execbuffer2_ioctl+0x123/0x2a0
+> > > > > [i915]
+> > > > > ...
+> > > > > <4> [639.411134]=C2=A0 </TASK>
+> > > > > ...
+> > > > > <4> [639.449979] ---[ end trace 0000000000000000 ]---
+> > > > >=20
+> > > > > As soon as we start unbinding and destroying a VMA, marked it
+> > > > > as parked,
+> > > > > and also keep it marked as closed for the rest of its life.=C2=A0
+> > > > > When a VMA
+> > > > > to be opened occurs closed, reopen it only if not yet parked.
+> > > > >=20
+> > > > > v3: Fix misplaced brackets.
+> > > > > v2: Since we no longer re-init the VMA closed list link on
+> > > > > VMA park so it
+> > > > > =C2=A0=C2=A0=C2=A0 looks like still on a list, don't try to delet=
+e it from
+> > > > > the list again
+> > > > > =C2=A0=C2=A0=C2=A0 after the VMA has been marked as parked.
+> > > > >=20
+> > > > > Fixes: b0647a5e79b1 ("drm/i915: Avoid live-lock with
+> > > > > i915_vma_parked()")
+> > > >=20
+> > > > what about reverting that?
+> > >=20
+> > > I didn't think of that.=C2=A0 Why you think that might be a better
+> > > approach?
+> >=20
+> > well, I thought of that mainly because...
+> >=20
+> > >=20
+> > > Anyway, that's a 4 years old patch and a few things have changed
+> > > since then,=20
+> > > so simple revert won't work.=C2=A0 Moreover, I've just checked that
+> > > patch was=20
+> > > supposed to fix another patch, 77853186e547 ("drm/i915: Claim vma
+> > > while under=20
+> > > closed_lock in i915_vma_parked()"), which in turn was supposed to
+> > > fix=20
+> > > aa5e4453dc05 ("drm/i915/gem: Try to flush pending unbind
+> > > events"), and that=20
+> > > one also referenced still another, cb6c3d45f948 ("drm/i915/gem:
+> > > Avoid parking=20
+> > > the vma as we unbind") from December 2019, which finally wasn't a
+> > > fix but an=20
+> > > improvement.
+> >=20
+> > ... because of histories like that ^ and I was afraid of this patch
+> > here now
+> > just put us into a different corner case.
+> >=20
+> > I have a feeling that without locks there we might just hit another
+> > race soon with the the park and only using the atomic checks.
+> >=20
+> > > Then, we would have to consider new fixes alternative to at least
+> > > some of those three, I guess.=20
+> >=20
+> > Indeed.. I didn't think that deep on that...
+> >=20
+> > > I'd rather not dig that deep, unless we invest=20
+> > > in a completely new solution (e.g. backport VMA handling from xe
+> > > if more=20
+> > > effective while compatible to some extent?).=C2=A0 Even then, we need
+> > > a fix for=20
+> > > now.
+> >=20
+> > yeap, not sure if that would help. was also not designed to
+> > the park unpark.
+> >=20
+> > >=20
+> > > Alternatively, we can try to revert my 1f33dc0c1189 ("drm/i915:
+> > > Remove extra=20
+> > > multi-gt pm-references") which was a manual revert of
+> > > f56fe3e91787 ("drm/i915:=20
+> > > Fix a VMA UAF for multi-gt platform") -- a workaround that was
+> > > supposed to=20
+> > > address some multi-GT related VMA issues.=C2=A0 While it didn't reall=
+y
+> > > resolve=20
+> > > those issues it was addressing, I think it may help with this
+> > > one, which=20
+> > > started appearing after I reverted that workaround.=C2=A0 However, it=
+s
+> > > effectiveness is limited to MTL topology.
+> >=20
+> > perhaps the safer path for this case indeed. something that could
+> > be really
+> > limited to a single platform would be better.
+> >=20
+> > But I confess that I don't have other better suggestions.
+> > If we need to go with this patch as a quick solution, it is
+> > apparently
+> > better than leaving the bug there as is.
+> >=20
+> > +Thomas. any good thoughts there or advices?
+>=20
+> I'm waiting for you opinion here.=C2=A0 Which option would you prefer,
+> this patch=20
+> or revert of 1f33dc0c1189 ("drm/i915: Remove extra multi-gt pm-
+> references")?=C2=A0=20
+> Or can you suggest any potentially better solutions?
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Hi,
 
-> ---
->  tests/intel/xe_gt_freq.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
-> index c12f6c52c..5c6373016 100644
-> --- a/tests/intel/xe_gt_freq.c
-> +++ b/tests/intel/xe_gt_freq.c
-> @@ -186,6 +186,9 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
->  		igt_assert(get_freq(fd, gt_id, "act") == rpn);
->  	}
->  
-> +	/* Refresh value of rpe, pcode could have adjusted it */
-> +	rpe = get_freq(fd, gt_id, "rpe");
-> +
->  	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
->  	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
->  	usleep(ACT_FREQ_LATENCY_US);
-> @@ -268,6 +271,10 @@ static void test_freq_low_max(int fd, int gt_id)
->  	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
->  	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
->  	usleep(ACT_FREQ_LATENCY_US);
-> +
-> +	/* Refresh value of rpe, pcode could have adjusted it */
-> +	rpe = get_freq(fd, gt_id, "rpe");
-> +
->  	igt_assert(get_freq(fd, gt_id, "cur") == rpe);
->  
->  	if (!xe_is_gt_in_c6(fd, gt_id))
-> -- 
-> 2.38.1
-> 
+Sorry for the late response. I don't really have anything to add to the
+discussion since I don't have the time to again familiarize myself with
+the code.
+
+The only advise I can give is to try to document as much as possible so
+that it's reasonably clear what's being done and why.
+
+Thanks,
+Thomas
+
+
+
+
+
+>=20
+> Thanks,
+> Janusz
+>=20
+> >=20
+> > Thanks,
+> > Rodrigo.
+> >=20
+> > >=20
+> > > Thanks,
+> > > Janusz
+> > >=20
+> > > >=20
+> > > > > Closes:
+> > > > > https://gitlab.freedesktop.org/drm/intel/-/issues/10608
+> > > > > Signed-off-by: Janusz Krzysztofik
+> > > > > <janusz.krzysztofik@linux.intel.com>
+> > > > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > Cc: stable@vger.kernel.org=C2=A0# v6.0+
+> > > > > ---
+> > > > > =C2=A0.../gpu/drm/i915/gem/i915_gem_execbuffer.c=C2=A0=C2=A0=C2=
+=A0 | 10 ++++--
+> > > > > =C2=A0drivers/gpu/drm/i915/i915_vma.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 32
+> > > > > +++++++++++++++----
+> > > > > =C2=A0drivers/gpu/drm/i915/i915_vma.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> > > > > =C2=A0drivers/gpu/drm/i915/i915_vma_types.h=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 ++
+> > > > > =C2=A04 files changed, 37 insertions(+), 10 deletions(-)
+> > > > >=20
+> > > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > > b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > > index 42619fc05de48..97e014f94002e 100644
+> > > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > > @@ -847,9 +847,12 @@ static int __eb_add_lut(struct
+> > > > > i915_execbuffer *eb,
+> > > > > =C2=A0	if (unlikely(!lut))
+> > > > > =C2=A0		return -ENOMEM;
+> > > > > =C2=A0
+> > > > > +	if (!i915_vma_open(vma)) {
+> > > > > +		err =3D -EEXIST;	/* let eb_vma_lookup() retry
+> > > > > */
+> > > > > +		goto err_lut_free;
+> > > > > +	}
+> > > > > +
+> > > > > =C2=A0	i915_vma_get(vma);
+> > > > > -	if (!atomic_fetch_inc(&vma->open_count))
+> > > > > -		i915_vma_reopen(vma);
+> > > > > =C2=A0	lut->handle =3D handle;
+> > > > > =C2=A0	lut->ctx =3D ctx;
+> > > > > =C2=A0
+> > > > > @@ -880,8 +883,9 @@ static int __eb_add_lut(struct
+> > > > > i915_execbuffer *eb,
+> > > > > =C2=A0	return 0;
+> > > > > =C2=A0
+> > > > > =C2=A0err:
+> > > > > -	i915_vma_close(vma);
+> > > > > =C2=A0	i915_vma_put(vma);
+> > > > > +	i915_vma_close(vma);
+> > > > > +err_lut_free:
+> > > > > =C2=A0	i915_lut_handle_free(lut);
+> > > > > =C2=A0	return err;
+> > > > > =C2=A0}
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_vma.c
+> > > > > b/drivers/gpu/drm/i915/i915_vma.c
+> > > > > index d2f064d2525cc..4435c76f28c8c 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_vma.c
+> > > > > +++ b/drivers/gpu/drm/i915/i915_vma.c
+> > > > > @@ -1735,14 +1735,33 @@ static void
+> > > > > __i915_vma_remove_closed(struct i915_vma *vma)
+> > > > > =C2=A0	list_del_init(&vma->closed_link);
+> > > > > =C2=A0}
+> > > > > =C2=A0
+> > > > > -void i915_vma_reopen(struct i915_vma *vma)
+> > > > > +static struct i915_vma *i915_vma_reopen(struct i915_vma
+> > > > > *vma)
+> > > > > +{
+> > > > > +	if (atomic_read(&vma->flags) & I915_VMA_PARKED)
+> > > > > +		return NULL;
+> > > > > +
+> > > > > +	__i915_vma_remove_closed(vma);
+> > > > > +	return vma;
+> > > > > +}
+> > > > > +
+> > > > > +struct i915_vma *i915_vma_open(struct i915_vma *vma)
+> > > > > =C2=A0{
+> > > > > =C2=A0	struct intel_gt *gt =3D vma->vm->gt;
+> > > > > =C2=A0
+> > > > > +	if (atomic_inc_not_zero(&vma->open_count))
+> > > > > +		return vma;
+> > > > > +
+> > > > > =C2=A0	spin_lock_irq(&gt->closed_lock);
+> > > > > -	if (i915_vma_is_closed(vma))
+> > > > > -		__i915_vma_remove_closed(vma);
+> > > > > +	if (!atomic_inc_not_zero(&vma->open_count)) {
+> > > > > +		if (i915_vma_is_closed(vma))
+> > > > > +			vma =3D i915_vma_reopen(vma);
+> > > > > +
+> > > > > +		if (vma)
+> > > > > +			atomic_inc(&vma->open_count);
+> > > > > +	}
+> > > > > =C2=A0	spin_unlock_irq(&gt->closed_lock);
+> > > > > +
+> > > > > +	return vma;
+> > > > > =C2=A0}
+> > > > > =C2=A0
+> > > > > =C2=A0static void force_unbind(struct i915_vma *vma)
+> > > > > @@ -1770,7 +1789,8 @@ static void release_references(struct
+> > > > > i915_vma *vma, struct intel_gt *gt,
+> > > > > =C2=A0	spin_unlock(&obj->vma.lock);
+> > > > > =C2=A0
+> > > > > =C2=A0	spin_lock_irq(&gt->closed_lock);
+> > > > > -	__i915_vma_remove_closed(vma);
+> > > > > +	if (!(atomic_read(&vma->flags) & I915_VMA_PARKED))
+> > > > > +		__i915_vma_remove_closed(vma);
+> > > > > =C2=A0	spin_unlock_irq(&gt->closed_lock);
+> > > > > =C2=A0
+> > > > > =C2=A0	if (vm_ddestroy)
+> > > > > @@ -1854,22 +1874,22 @@ void i915_vma_parked(struct intel_gt
+> > > > > *gt)
+> > > > > =C2=A0		}
+> > > > > =C2=A0
+> > > > > =C2=A0		list_move(&vma->closed_link, &closed);
+> > > > > +		atomic_or(I915_VMA_PARKED, &vma->flags);
+> > > > > =C2=A0	}
+> > > > > =C2=A0	spin_unlock_irq(&gt->closed_lock);
+> > > > > =C2=A0
+> > > > > -	/* As the GT is held idle, no vma can be reopened as
+> > > > > we destroy them */
+> > > > > =C2=A0	list_for_each_entry_safe(vma, next, &closed,
+> > > > > closed_link) {
+> > > > > =C2=A0		struct drm_i915_gem_object *obj =3D vma->obj;
+> > > > > =C2=A0		struct i915_address_space *vm =3D vma->vm;
+> > > > > =C2=A0
+> > > > > =C2=A0		if (i915_gem_object_trylock(obj, NULL)) {
+> > > > > -			INIT_LIST_HEAD(&vma->closed_link);
+> > > > > =C2=A0			i915_vma_destroy(vma);
+> > > > > =C2=A0			i915_gem_object_unlock(obj);
+> > > > > =C2=A0		} else {
+> > > > > =C2=A0			/* back you go.. */
+> > > > > =C2=A0			spin_lock_irq(&gt->closed_lock);
+> > > > > =C2=A0			list_add(&vma->closed_link, &gt-
+> > > > > >closed_vma);
+> > > > > +			atomic_andnot(I915_VMA_PARKED, &vma-
+> > > > > >flags);
+> > > > > =C2=A0			spin_unlock_irq(&gt->closed_lock);
+> > > > > =C2=A0		}
+> > > > > =C2=A0
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_vma.h
+> > > > > b/drivers/gpu/drm/i915/i915_vma.h
+> > > > > index e356dfb883d34..331d19672c764 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_vma.h
+> > > > > +++ b/drivers/gpu/drm/i915/i915_vma.h
+> > > > > @@ -268,7 +268,7 @@ int __must_check
+> > > > > i915_vma_unbind_async(struct i915_vma *vma, bool trylock_vm);
+> > > > > =C2=A0int __must_check i915_vma_unbind_unlocked(struct i915_vma
+> > > > > *vma);
+> > > > > =C2=A0void i915_vma_unlink_ctx(struct i915_vma *vma);
+> > > > > =C2=A0void i915_vma_close(struct i915_vma *vma);
+> > > > > -void i915_vma_reopen(struct i915_vma *vma);
+> > > > > +struct i915_vma *i915_vma_open(struct i915_vma *vma);
+> > > > > =C2=A0
+> > > > > =C2=A0void i915_vma_destroy_locked(struct i915_vma *vma);
+> > > > > =C2=A0void i915_vma_destroy(struct i915_vma *vma);
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_vma_types.h
+> > > > > b/drivers/gpu/drm/i915/i915_vma_types.h
+> > > > > index 559de74d0b114..41784c3025349 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> > > > > +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> > > > > @@ -263,6 +263,9 @@ struct i915_vma {
+> > > > > =C2=A0#define I915_VMA_SCANOUT_BIT	17
+> > > > > =C2=A0#define
+> > > > > I915_VMA_SCANOUT	((int)BIT(I915_VMA_SCANOUT_BIT))
+> > > > > =C2=A0
+> > > > > +#define I915_VMA_PARKED_BIT	18
+> > > > > +#define
+> > > > > I915_VMA_PARKED		((int)BIT(I915_VMA_PARKED_BIT))
+> > > > > +
+> > > > > =C2=A0	struct i915_active active;
+> > > > > =C2=A0
+> > > > > =C2=A0#define I915_VMA_PAGES_BIAS 24
+> > > >=20
+> > >=20
+> > >=20
+> > >=20
+> > >=20
+> >=20
+>=20
+>=20
+>=20
+>=20
+
