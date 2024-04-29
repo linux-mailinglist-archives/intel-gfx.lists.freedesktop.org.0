@@ -2,33 +2,189 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17EC8B62E8
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 21:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9A78B62D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 21:49:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 554D010E1A1;
-	Mon, 29 Apr 2024 19:54:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9A11112103;
+	Mon, 29 Apr 2024 19:48:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QbbnHQbE";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1045 seconds by postgrey-1.36 at gabe;
- Mon, 29 Apr 2024 19:54:01 UTC
-Received: from mail.sig21.net (mail.sig21.net [217.197.84.222])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7618110E1A1
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 19:54:01 +0000 (UTC)
-Received: from localhorst ([127.0.0.1]) by mail.sig21.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.94.2) (envelope-from <js@sig21.net>) id 1s1WlZ-0002Xz-Ix 
- for intel-gfx@lists.freedesktop.org; Mon, 29 Apr 2024 21:34:22 +0200
-Received: from js by abc.local with local (Exim 4.97)
- (envelope-from <js@sig21.net>) id 1s1WlV-000000001Lv-07QA
- for intel-gfx@lists.freedesktop.org; Mon, 29 Apr 2024 21:34:17 +0200
-Date: Mon, 29 Apr 2024 21:34:17 +0200
-From: Johannes Stezenbach <js@sig21.net>
-To: intel-gfx@lists.freedesktop.org
-Subject: i915 IVB hangup after resume from s2mem since v6.6.x
-Message-ID: <Zi_2OWwG0JGI2j2B@sig21.net>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440FD10FFE6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 19:48:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714420138; x=1745956138;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=DuzJFPtT90NEoZccXkaA3BUM+ztnHN433GeLo5glfnc=;
+ b=QbbnHQbEdHdqwxVlZI9njnMLK2TNp+NO38G44Cm17Vzr/+XXxX/62J1Q
+ XtvqShOOAKBNBa2gxsP2Cd2x1RYzzc1P+kMMV1eQvpw2dG0JRQ9ZrKrKg
+ 7qLMZigUl0B7plWXbIGk8FRKUy0SfM7iDnYmmRTceBCjehJXdjHJ/armF
+ 2Sy+tgSiLgVagvCvyQeOkg4L9LIY8lCIaAqQFPTnYq5kvgKw9n00QsEgY
+ es7F+Z5o2pjrvTWZBNhW8//k2qbBAVVJGucegjpvkGAr6LfCTazd1234A
+ msa7EJ7TCBlD+gNo3Dmav497FammqBdidavQQmwEVeox8dqNAUlPmFIee A==;
+X-CSE-ConnectionGUID: Ygo5Tfi0Q6iJ+hD5JZFsoQ==
+X-CSE-MsgGUID: 0a7f+BN8TbGjEvQMn8/fQQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="9961437"
+X-IronPort-AV: E=Sophos;i="6.07,240,1708416000"; 
+   d="scan'208";a="9961437"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2024 12:48:58 -0700
+X-CSE-ConnectionGUID: yZM3hc+MRyWqEjKtSvNeBg==
+X-CSE-MsgGUID: Nid4OkIyRM6BlVZdMXRxzA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,240,1708416000"; d="scan'208";a="30855446"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Apr 2024 12:48:57 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 29 Apr 2024 12:48:57 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 29 Apr 2024 12:48:56 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Mon, 29 Apr 2024 12:48:56 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Mon, 29 Apr 2024 12:48:56 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XemITvBTpuM+myjezaSYGLWh/8rbXZ/gmjk1RkqYUv20Hl5H4ht1y3G61XNbvaQbBCogiFEcd/c8A7isRqDVP35TtgvlcrQa5oB2L4myoe2r7Ij+6GjoDnl6GaOBBBg2kLv3P0uuMnDRVjwNVeNgriA6qPBFVxuKSoYYVypB0as+TAoWJp4sridCWcKTWpB7uNF11iKLY074lSVX95iYSTcuq2Okztq1UzB5O3Ub4owZTyx6t2tbCCowfO9Mh9aqGLHUIacjuzG0aCwt5jArS5vkw7yNE1a3hepAtWTv3AyMygs3gvQeDHjfqtrh2HPpBQJU26jQyCPOUXUXflpsgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DuzJFPtT90NEoZccXkaA3BUM+ztnHN433GeLo5glfnc=;
+ b=SveSmW3QqwZ6sukTOZKqH3JkND1He2KlpFTy/GUFO+dboPxNuu5fZtj/r+EaFLSc7A+Xxawh4uDVeX7vkAAk7OJlcs+muMnb6S9WXGOp+ofxpYV4tRzabXxD1YMMZZUn4yP/6YLvF+5nUIqulCl55SfOohmBbhkQHfbT2fu/wPYzAX+TSbz9wwvtNFvW6IuE6tddV8LYNXDrCb1dxgR2RAdews8tnkDVDmxMeS8iHoUhVTD+4PM7yAtB7u1wqT6AaReN7OynBOLghcZFFaCfjmwVtGNatvRelebv4pLLwkNd62ihC65YY5bBBOD1zBjGCutdhLzslCJ17DVMD+BfnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
+ by DM6PR11MB4659.namprd11.prod.outlook.com (2603:10b6:5:2a5::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Mon, 29 Apr
+ 2024 19:48:54 +0000
+Received: from PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::8970:61a2:f00d:b23f]) by PH7PR11MB5981.namprd11.prod.outlook.com
+ ([fe80::8970:61a2:f00d:b23f%4]) with mapi id 15.20.7519.031; Mon, 29 Apr 2024
+ 19:48:54 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH v8 06/11] drm/i915/psr: Modify intel_dp_get_su_granularity
+ to support panel replay
+Thread-Topic: [PATCH v8 06/11] drm/i915/psr: Modify
+ intel_dp_get_su_granularity to support panel replay
+Thread-Index: AQHami3zzVHdXa4kJEepTOVyLOCVmrF/p9sQ
+Date: Mon, 29 Apr 2024 19:48:54 +0000
+Message-ID: <PH7PR11MB598110B26DDF4EE60F5C6925F91B2@PH7PR11MB5981.namprd11.prod.outlook.com>
+References: <20240429120755.3990652-1-jouni.hogander@intel.com>
+ <20240429120755.3990652-7-jouni.hogander@intel.com>
+In-Reply-To: <20240429120755.3990652-7-jouni.hogander@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|DM6PR11MB4659:EE_
+x-ms-office365-filtering-correlation-id: 73742c87-1082-48cd-2d06-08dc688566fe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230031|376005|1800799015|366007|38070700009;
+x-microsoft-antispam-message-info: =?utf-8?B?bElYRzFhaVN3ZU5VWDNWdXBYVWZ1WTdwdmRqd2RXbzcyUjYrajRMazc0UnFY?=
+ =?utf-8?B?RHlkNHJGTlNYallOODNObTRuT0ZKWGVmOU0vVFN1OVUyL3JKRENPdEt1cjFx?=
+ =?utf-8?B?M0lLMWcvQkViSUo5VFNPNldFUlRLMi9pa01lcnZyalJ0Z0ZSSmlVY21XK3Zh?=
+ =?utf-8?B?MGJUWUFDZUZHNUhyc2F2ck54NEFwZ0FJaW1jaVFFZVNkK0ZFZHRTWVdNSTd4?=
+ =?utf-8?B?eHJHVk5GRTFUc0kvVEVqbnBRK1loOHVXRUplbUl4WFRkZE5GZE5jYy9xR3Nl?=
+ =?utf-8?B?K2djamJ1TDdTbmRqa2lSZm5YZ0l5cHFjTU9aQ0VNSDBUbjJFajM1MzhqY0FD?=
+ =?utf-8?B?eFIxaGhTM0hkNDMrelIzOEt1b0I5Z1dZQVFDOVZoNFZ6MFFqMlNHeGFVWVJ4?=
+ =?utf-8?B?N0xOUU1RRTl0R0dCWlU4RUFXeGtLaEoxQU5xdndrdW5neThRT0JHSU5BcTN1?=
+ =?utf-8?B?elVZMHMzaG1PMnBTeVJNUHZtV0FMWkVWZDhaZ2c4MHhjWWc2RHhySjVQdHFx?=
+ =?utf-8?B?dE5XVFFlcVIzU0xWR0ZxelhtcHFtUURKOVVMM2syOWxlL1Z0WWRxSk1LWTE1?=
+ =?utf-8?B?bkdJMlRYL3BkekhGMVJDT1JhYXVxSTNQVXF5cHQxN3ZWSS9FSTBzM3RpKyt6?=
+ =?utf-8?B?d3dwRk93c3F6TCtmc2pmNms4WGY1TG9mUG50MXA4QzBCVWxrandZLzVZUDVl?=
+ =?utf-8?B?dHJzdFVpVEg2S2Q0YmRDOTJVV3k4NVFxVjgwMzRjb3pMaGdJejFOdXdTUExK?=
+ =?utf-8?B?TnJzcUtOczg1K1Z0b1gvbXo2ZjVQMEpFSjlWR2hOQ2NjS3UzSUtjNHB5U0ZS?=
+ =?utf-8?B?bDlOL1F3OGUramFac3Q3VVJzVXZ6ejI5RFVOcVJSNVBFSm9GWk55blZiMjdT?=
+ =?utf-8?B?Z3FkMEwxYnp6dmhsWE41MVpiRlJDU1YvMHpKSUJYWGFTdzJJN1JaelNTNXI5?=
+ =?utf-8?B?WkVwMjZGYUxqTVdPTTRNMzFxcHJVUjlZZGNKc1Q4TVJpUDZGcEVHeTVQNnYv?=
+ =?utf-8?B?SWpoQUNYRktRNTZGeEt3NXhSdTZQaEJkSURCTE1QZHYyVzU4N2lrNmVtWHVi?=
+ =?utf-8?B?cEZpZWxVekxkUzdxeVQybUl4YW1mK2toUjVoanMyWTRLdXBxV1A4UzUwd1pj?=
+ =?utf-8?B?Y0xPaERzSTN3d3VNUFBBSzF5a2x3NjM3dnZobG5NQkk5N2lCYkNZYVhFcnJz?=
+ =?utf-8?B?OWRMZ1Ewdk1QbTVhaXFUVjg3WEhOZzRRZS9jWU1CM2Y3Y2g5WFJmMEpSRFFY?=
+ =?utf-8?B?QWRXWlBLNlBTZUE0TE1Oa1RiM0FEWFVGaHM3d1BEQ0dwVUlEc3E2ZzZGd1Fa?=
+ =?utf-8?B?TXQxRE1BdVR6aE85VG5oNU5kSnpFenAxWXpONGFEdHNtcmVNTTdKQjkzRHk1?=
+ =?utf-8?B?SmNONjVtRzA0dy92bFg5RlkvL0l2L1hGMHZFUzU1MlhNcWNXU1ZuMnhmV0w1?=
+ =?utf-8?B?cEhtZXM4MStaM1dkZDNkNWw3VGI5YTdqckFwVUI5K0Q3cDA1QnZOYWJpUjVI?=
+ =?utf-8?B?VTU4U2xOL05jb2dqTUN4d2p3eVJTVEVBTDk3Q3RINmUxWVRTc3pQek9DWHgr?=
+ =?utf-8?B?Nzh1bXh1dllSejlKMWRWSkZKUlljb0c1cFM5Y0M4Ukx0Ukd4S0RJWE5UMTZM?=
+ =?utf-8?B?L0pzbnYrSmU2NHNGZENnOGhsWi9RQjBZNi94L2g0OWJibWdDSHNENUNiUTZX?=
+ =?utf-8?B?Z1ROSEMzR0k5MWJEVUs1R2syQ25yM3pDckd4dnk1aVlEeEx2VUFxZG9GM2VU?=
+ =?utf-8?Q?LnFT7huGI8NJYbz2V/7jBO2xp8Rk8S2JI70i5Ml?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Q2IyZlpoZ0VQRDc5NU9YUk5YT1hvbzEzVnpmU3MwRXpPbTBTcExnWTBadFVy?=
+ =?utf-8?B?a3EzQkM4VTJ5ZjFJUGp4ejdkKzNDendjbTU4UXpyYjZENGZsWVBCM1QvZHlS?=
+ =?utf-8?B?TmFobGp6cmtPOEFuV21iVVNsTHZmMlExZEFhcCtJNHB2VzFnNlF4aVhtV2Zi?=
+ =?utf-8?B?cEtnT1IrMENqcXhjNmNzUlZwd0k4aEpxeUZRWENYOU1HVGN3Y0QxRk5WZTVE?=
+ =?utf-8?B?cGhjd0s1dmhKN0tUL0tVSVk2RlhobHJwZGt6eVd1NXdFMXBXKyt2b2tiYWRO?=
+ =?utf-8?B?TUdxRXVPVHAvbXZheDF3MWlHVXhHanY3SzhENWV1WGxxUlQ3VGhJNTNVUm0x?=
+ =?utf-8?B?T3BhM1hHNFd1cXdPZmhUYW5ZTlJZcDMyUCtaWnp3YmZhWjYyQmlkajJOYWJj?=
+ =?utf-8?B?TVVyZ044MHJ6VlVNdmxCVmcvZkgrVlhSZ3JNZWh1WkJGTnVFS25kcHJTc3F1?=
+ =?utf-8?B?U3d5WjlUdGxPc2lSbGxxZ1JiT1J0aitDZi9CN2I0Umg2YTQzMk9UeGRZMUk3?=
+ =?utf-8?B?Nk1jYTdTMFJNaFdRKzE2NndOYlZsR0JXaG9FMTN1cEtVdGNXUzFFUFlraTBO?=
+ =?utf-8?B?bjhkWjhTemUrQlRoMy9nNGRsWVpPMWpzSlM4K21maVhabnQ3ZFNlZGxzNllE?=
+ =?utf-8?B?Q25VMUJqbkIzN2ttYlI2WDBwTGR5dDZ5QUxLQUZaWmNGYnk5RSt6SzdBSk5W?=
+ =?utf-8?B?elNBYWdqTnVBY3hLb2dMcEkyeEJmdlB5NFZDRG42NysrOFRJZElMK2h0cDFB?=
+ =?utf-8?B?YmZyUmVlcTdnMnhwUkk3ZVR0c0JuVUlJOHRWb056VTRYZFR0eCtibXNwekxo?=
+ =?utf-8?B?dWxnZWNFYXJyUnpyanpnbWhtRXkweUYxUC8rUlBNaGI2N1BmQklFTGhpd0I3?=
+ =?utf-8?B?cUpSekExY2NYSVJiWGQvNHhxQTlNYzkvTDM2aDlWb2E5Vm43c3hONGtHUzM1?=
+ =?utf-8?B?R2RFS3BWRmRpWGFJZWZERVF2YjIwUkZ5NEt5Y1o4V2Y3RElpbWxNSWdRelNJ?=
+ =?utf-8?B?dCtzZlRNQUJMbHBNcU5ndGM0SVFiZEt0RXZwQ2hRMzNNN3RjbzVQcThCbjUz?=
+ =?utf-8?B?ZFVpWkNabW5mNkh0bTJ0OVorN3NEZEFRdUZLVFlEK3BmdUFZcndBUnk3dmZ5?=
+ =?utf-8?B?N1NUbWZDRzllaXZNRSs1akhDZFJGaUlObjVOb2FPeVBkaUtIM25BOXNqNGdk?=
+ =?utf-8?B?NWJlamxFWDFoc1hzVUVUWnNWb2NJQ09qdW9KRlZjVTF3dSt1UEVqWko0TmxT?=
+ =?utf-8?B?ekZpR0tXcW1LdE5xMGxlVEdnVTFpWGVCTG85ak91cEF1Rm15TDd4cXBNNjRN?=
+ =?utf-8?B?THovOEtwb00yejRwd3NwSDVaRVZEcUI2R1ptbWlDZ2ZXM3lrZ1BEM2xiUHpE?=
+ =?utf-8?B?dDlMZWhycXVONHBxeDdROXFGWm1HTGpMMGZPWmozem1IcitZTy9NMGVkQnA0?=
+ =?utf-8?B?SnprU0NCWXRJd01GVmwyR1IwdFVXeDJweDZNU1ZWamxhK1VVOFBIUmVGNHE4?=
+ =?utf-8?B?S0dZOWdKTEI4YVpXSXowcFN4VDc1cVpSWFRDbjk3L3pQMDdGNFFWZk1OR0pN?=
+ =?utf-8?B?NnFXT2xXU1dHYnlNV1U5clJ4bmtPSVVwdXRJalZSaUVuT09CT1pRRi9mM0do?=
+ =?utf-8?B?MTd6ay9yMzM5Qmt6ZkhFUHA2bjQxVTdaTll3QU8yR1dKS1IrSWZ2L0hPV29i?=
+ =?utf-8?B?RnBsQThUdGpEYmRCcGQ3OW9zR0lpcmdGK0lMUDlrb2cyRkgwNW5DeHZPTm5u?=
+ =?utf-8?B?M0dzazhGcmN6U1NFcDcvaTE0Mzc4dDZrNkY0THV2a0tnZjNyVm1tNmhHUnkw?=
+ =?utf-8?B?YWdBcmUvSFc3RmJJaWNMeWRaeisyTUx1WXBwcDlPbmphMnlEYnkvVnN1RXdX?=
+ =?utf-8?B?ZnpoM24ybmFmNDFERFE1YlhPNGZRSDBuWml3UjQ3Nnc2emVtZlJpdVAzSmF5?=
+ =?utf-8?B?K0xEWGt1OExndWdqZnJnby90VFlCWFRHOVhYN3lHdUo4SXc4NUVFbzErZjhQ?=
+ =?utf-8?B?c0JodklIK2J5M20wYk9JVzhNUTAzcVVwVEhKYTZsZU1zS3VBK0ljL21oTDRY?=
+ =?utf-8?B?Z0dVeTdndTFzVXdqT1d3aFQxUVFMbm14c0EzZlVSbElrZFRYeXRNQklJVC83?=
+ =?utf-8?Q?rCMx++JUSPkFSYOQiZv0g4m+7?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73742c87-1082-48cd-2d06-08dc688566fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2024 19:48:54.7133 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xlXXoU1szYxHqgxB2nN4cuX9YLoaphurYlEXbVp30b3wWfxAmmKVr8lD++hBrnIsEvJOtE0MAHhWZZONYKJ6tg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4659
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,225 +200,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-I updated the Linux kernel on an old machine from v6.5.9
-to current v6.8.8 and found the display failed after resume
-from suspend to RAM. Then I tried v6.7.9 and v6.6.29, both
-also failed. v6.5.9 works.
-
-- display connected via display port: hangup
-
-- I also tried HDMI with v6.6.29: garbage (color noise) after wakeup,
-  after a bit of switching between Linux virtual consoles
-  the display came back to live, first flickering between
-  color noise and actual output, then stable output
-
-CPU/GPU: Core i5-3550
-00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v2/3rd Gen Core processor Graphics Controller (rev 09)
-00:02.0 0300: 8086:0152 (rev 09)
-
-
-HDMI generates this error in kernel log:
-
-[    C0] i915 0000:00:02.0: [drm] *ERROR* uncleared pch fifo underrun on pch transcoder A
-[    C0] i915 0000:00:02.0: [drm] *ERROR* PCH transcoder A FIFO underrun
-
-
-DP genrates this error spew on v6.6.29:
-
- [    C3] i915 0000:00:02.0: [drm] *ERROR* uncleared pch fifo underrun on pch transcoder A
- [    C3] i915 0000:00:02.0: [drm] *ERROR* PCH transcoder A FIFO underrun
- [ T3502] PM: suspend entry (deep)
-...
- [ T3927] ------------[ cut here ]------------
- [ T3927] i915 0000:00:02.0: drm_WARN_ON((intel_de_read(dev_priv, intel_dp->output_reg) & (1 << 31)) == 0)
- [ T3927] WARNING: CPU: 2 PID: 3927 at drivers/gpu/drm/i915/display/g4x_dp.c:417 intel_dp_link_down.isra.0+0x2e4/0x300
- [ T3927] Modules linked in: mt76x0u mt76x0_common mt76x02_usb mt76_usb mt76x02_lib mt76 mac80211 kvm_intel cfg80211 kv>
- [ T3927] CPU: 2 PID: 3927 Comm: kworker/u8:26 Not tainted 6.6.29 #1
- [ T3927] Hardware name: System manufacturer System Product Name/P8H77-V, BIOS 1905 10/27/2014
- [ T3927] Workqueue: events_unbound async_run_entry_fn
- [ T3927] RIP: 0010:intel_dp_link_down.isra.0+0x2e4/0x300
- [ T3927] Code: 48 8b 5f 50 48 85 db 75 03 48 8b 1f e8 c5 0d 07 00 48 c7 c1 70 8c ac 89 48 89 da 48 c7 c7 f1 16 9d 89 4>
- [ T3927] RSP: 0018:ffffa41d41b37a68 EFLAGS: 00010246
- [ T3927] RAX: 0000000000000000 RBX: ffff9df340d79380 RCX: 0000000000000000
- [ T3927] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
- [ T3927] RBP: ffff9df346478000 R08: 0000000000000000 R09: 0000000000000000
- [ T3927] R10: 0000000000000000 R11: 0000000000000000 R12: ffff9df34647ad68
- [ T3927] R13: ffff9df34649e000 R14: 0000000000000001 R15: 0000000000000000
- [ T3927] FS:  0000000000000000(0000) GS:ffff9df64f800000(0000) knlGS:0000000000000000
- [ T3927] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
- [ T3927] CR2: 00007f026e63418c CR3: 000000032bc50006 CR4: 00000000001706e0
- [ T3927] Call Trace:
- [ T3927]  <TASK>
- [ T3927]  ? __warn+0x80/0x160
- [ T3927]  ? intel_dp_link_down.isra.0+0x2e4/0x300
- [ T3927]  ? report_bug+0x19e/0x1d0
- [ T3927]  ? handle_bug+0x40/0x80
- [ T3927]  ? exc_invalid_op+0x13/0x70
- [ T3927]  ? asm_exc_invalid_op+0x16/0x20
- [ T3927]  ? intel_dp_link_down.isra.0+0x2e4/0x300
- [ T3927]  ? intel_dp_link_down.isra.0+0x2e4/0x300
- [ T3927]  g4x_post_disable_dp+0x2e/0x120
- [ T3927]  intel_encoders_post_disable+0x72/0x90
- [ T3927]  ilk_crtc_disable+0x80/0xe0
- [ T3927]  intel_atomic_commit_tail+0x404/0xed0
- [ T3927]  ? intel_atomic_commit+0x374/0x3c0
- [ T3927]  ? intel_atomic_commit+0x30a/0x3c0
- [ T3927]  intel_atomic_commit+0x374/0x3c0
- [ T3927]  drm_atomic_commit+0x96/0xd0
- [ T3927]  ? __pfx___drm_printfn_info+0x10/0x10
- [ T3927]  drm_atomic_helper_disable_all+0x19a/0x1b0
- [ T3927]  drm_atomic_helper_suspend+0xd5/0x240
- [ T3927]  intel_display_driver_suspend+0x28/0x70
- [ T3927]  i915_drm_suspend+0x42/0xf0
- [ T3927]  pci_pm_suspend+0x73/0x170
- [ T3927]  ? __pfx_pci_pm_suspend+0x10/0x10
- [ T3927]  dpm_run_callback+0x52/0x190
- [ T3927]  __device_suspend+0xf3/0x4b0
- [ T3927]  ? process_one_work+0x1ad/0x510
- [ T3927]  async_suspend+0x1a/0x60
- [ T3927]  async_run_entry_fn+0x30/0x160
- [ T3927]  ? process_one_work+0x1ad/0x510
- [ T3927]  process_one_work+0x219/0x510
- [ T3927]  worker_thread+0x1d6/0x3e0
- [ T3927]  ? __pfx_worker_thread+0x10/0x10
- [ T3927]  kthread+0xf6/0x130
- [ T3927]  ? __pfx_kthread+0x10/0x10
- [ T3927]  ret_from_fork+0x30/0x50
- [ T3927]  ? __pfx_kthread+0x10/0x10
- [ T3927]  ret_from_fork_asm+0x1b/0x30
- [ T3927]  </TASK>
- [ T3927] ---[ end trace 0000000000000000 ]---
- [ T3502] ACPI: PM: Preparing to enter system sleep state S3
- [ T3502] ACPI: PM: Saving platform NVS memory
- [ T3502] Disabling non-boot CPUs ...
-...
- [ T3502] ACPI: PM: Waking up from system sleep state S3
- [ T3928] i915 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=io+mem:owns=io+mem
- [ T3502] PM: suspend exit
- [    C0] i915 0000:00:02.0: [drm] *ERROR* uncleared pch fifo underrun on pch transcoder A
- [    C0] i915 0000:00:02.0: [drm] *ERROR* PCH transcoder A FIFO underrun
- [    C0] sysrq: Emergency Sync
- [    T8] Emergency Sync complete
- [    C0] sysrq: Emergency Remount R/O
-
-
-and on v6.8.8:
-
- [    C3] i915 0000:00:02.0: [drm] *ERROR* uncleared pch fifo underrun on pch transcoder A
- [    C3] i915 0000:00:02.0: [drm] *ERROR* PCH transcoder A FIFO underrun
- [T10083] PM: suspend entry (deep)
-...
- [T10083] ACPI: PM: Waking up from system sleep state S3
- [T10083] serial 00:06: activated
- [T10569] i915 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=io+mem:owns=io+mem
-...
- [T10083] PM: suspend exit
- [    C0] i915 0000:00:02.0: [drm] *ERROR* uncleared pch fifo underrun on pch transcoder A
- [    C0] i915 0000:00:02.0: [drm] *ERROR* PCH transcoder A FIFO underrun
-...
- [   T37] INFO: task kworker/1:1:47 blocked for more than 122 seconds.
- [   T37]       Not tainted 6.8.8 #1
- [   T37] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
- [   T37] task:kworker/1:1     state:D stack:0     pid:47    tgid:47    ppid:2      flags:0x00004000
- [   T37] Workqueue: i915-unordered i915_hotplug_work_func
- [   T37] Call Trace:
- [   T37]  <TASK>
- [   T37]  __schedule+0x4c9/0x1810
- [   T37]  ? find_held_lock+0x2b/0x90
- [   T37]  ? find_held_lock+0x2b/0x90
- [   T37]  schedule+0x49/0x150
- [   T37]  schedule_preempt_disabled+0x18/0x30
- [   T37]  __ww_mutex_lock.constprop.0+0x90e/0x12d0
- [   T37]  ? modeset_lock+0x17d/0x1e0
- [   T37]  ? modeset_lock+0x17d/0x1e0
- [   T37]  modeset_lock+0x17d/0x1e0
- [   T37]  drm_helper_probe_detect_ctx+0x7b/0x120
- [   T37]  intel_hotplug_detect_connector+0x43/0x120
- [   T37]  intel_hdmi_hotplug+0xe/0x30
- [   T37]  i915_hotplug_work_func+0x2af/0x3e0
- [   T37]  ? process_one_work+0x1ad/0x510
- [   T37]  process_one_work+0x219/0x510
- [   T37]  worker_thread+0x1d6/0x3e0
- [   T37]  ? __pfx_worker_thread+0x10/0x10
- [   T37]  kthread+0xf6/0x130
- [   T37]  ? __pfx_kthread+0x10/0x10
- [   T37]  ret_from_fork+0x30/0x50
- [   T37]  ? __pfx_kthread+0x10/0x10
- [   T37]  ret_from_fork_asm+0x1b/0x30
- [   T37]  </TASK>
- [   T37] INFO: task Xorg:3197 blocked for more than 122 seconds.
- [   T37]       Not tainted 6.8.8 #1
- [   T37] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
- [   T37] task:Xorg            state:D stack:0     pid:3197  tgid:3197  ppid:3185   flags:0x00400002
- [   T37] Call Trace:
- [   T37]  <TASK>
- [   T37]  __schedule+0x4c9/0x1810
- [   T37]  ? find_held_lock+0x2b/0x90
- [   T37]  schedule+0x49/0x150
- [   T37]  drm_vblank_work_flush+0x92/0xf0
- [   T37]  ? __pfx_autoremove_wake_function+0x10/0x10
- [   T37]  intel_wait_for_vblank_workers+0x4b/0x90
- [   T37]  intel_atomic_commit_tail+0x747/0x1080
- [   T37]  ? find_held_lock+0x2b/0x90
- [   T37]  ? local_clock_noinstr+0x9/0xc0
- [   T37]  ? _raw_spin_unlock+0x29/0x60
- [   T37]  ? intel_atomic_commit+0x2f3/0x340
- [   T37]  ? intel_atomic_commit+0x299/0x340
- [   T37]  intel_atomic_commit+0x2f3/0x340
- [   T37]  drm_atomic_commit+0x96/0xd0
- [   T37]  ? __pfx___drm_printfn_info+0x10/0x10
- [   T37]  drm_mode_gamma_set_ioctl+0x3c5/0x590
- [   T37]  ? __pfx_drm_mode_gamma_set_ioctl+0x10/0x10
- [   T37]  drm_ioctl_kernel+0xbc/0x110
- [   T37]  drm_ioctl+0x284/0x500
- [   T37]  ? __pfx_drm_mode_gamma_set_ioctl+0x10/0x10
- [   T37]  __x64_sys_ioctl+0xa9/0xd0
- [   T37]  do_syscall_64+0x7b/0x140
- [   T37]  ? local_clock_noinstr+0x9/0xc0
- [   T37]  ? lock_release+0x14a/0x400
- [   T37]  ? trace_hardirqs_on_prepare+0x3c/0xb0
- [   T37]  ? syscall_exit_to_user_mode+0x9c/0x1a0
- [   T37]  ? do_syscall_64+0x87/0x140
- [   T37]  ? do_syscall_64+0x87/0x140
- [   T37]  ? do_syscall_64+0x87/0x140
- [   T37]  ? trace_hardirqs_on_prepare+0x3c/0xb0
- [   T37]  entry_SYSCALL_64_after_hwframe+0x78/0x80
- [   T37] RIP: 0033:0x7f0a152195cb
- [   T37] RSP: 002b:00007ffe12bd6410 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
- [   T37] RAX: ffffffffffffffda RBX: 0000000000000007 RCX: 00007f0a152195cb
- [   T37] RDX: 00007ffe12bd64a0 RSI: 00000000c02064a5 RDI: 000000000000000f
- [   T37] RBP: 00007ffe12bd64a0 R08: 0000564b17a70950 R09: 0000564b17a70b50
- [   T37] R10: 0000564b17a70750 R11: 0000000000000246 R12: 00000000c02064a5
- [   T37] R13: 000000000000000f R14: 0000000000000003 R15: 00007ffe12bd6560
- [   T37]  </TASK>
- [   T37]
- [   T37] Showing all locks held in the system:
- [   T37] 1 lock held by khungtaskd/37:
- [   T37]  #0: ffffffff87d601c0 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x32/0x110
- [   T37] 6 locks held by kworker/1:1/47:
- [   T37]  #0: ffff927000c09548 ((wq_completion)i915-unordered){....}-{0:0}, at: process_one_work+0x1ad/0x510
- [   T37]  #1: ffffb1d6801bbe50 ((work_completion)(&(&i915->display.hotplug.hotplug_work)->work)){....}-{0:0}, at: proc>
- [   T37]  #2: ffff9270074084f0 (&dev->mode_config.mutex){....}-{3:3}, at: i915_hotplug_work_func+0x58/0x3e0
- [   T37]  #3: ffffffff87e4d680 (drm_connector_list_iter){....}-{0:0}, at: i915_hotplug_work_func+0x1fc/0x3e0
- [   T37]  #4: ffffb1d6801bbce0 (crtc_ww_class_acquire){....}-{0:0}, at: drm_helper_probe_detect_ctx+0x4b/0x120
- [   T37]  #5: ffff927007408590 (crtc_ww_class_mutex){....}-{3:3}, at: modeset_lock+0x17d/0x1e0
- [   T37] 1 lock held by in:imklog/2976:
- [   T37]  #0: ffff9270012698d8 (&f->f_pos_lock){....}-{3:3}, at: __fdget_pos+0x52/0x80
- [   T37] 2 locks held by Xorg/3197:
- [   T37]  #0: ffffb1d682027bf8 (crtc_ww_class_acquire){....}-{0:0}, at: drm_mode_gamma_set_ioctl+0x15d/0x590
- [   T37]  #1: ffff927007408590 (crtc_ww_class_mutex){....}-{3:3}, at: modeset_lock+0x17d/0x1e0
- [   T37] 2 locks held by kworker/u8:61/10605:
- [   T37]  #0: ffff9270001da748 ((wq_completion)phy2){....}-{0:0}, at: process_one_work+0x1ad/0x510
- [   T37]  #1: ffffb1d68213fe50 ((work_completion)(&(&dev->cal_work)->work)){....}-{0:0}, at: process_one_work+0x1ad/0x>
- [   T37]
- [   T37] =============================================
-
-
-I hope you have ideas about fixes to try, bisect testing takes
-much time which I don't have...
-
-
-Best Regards,
-Johannes
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSG9nYW5kZXIsIEpvdW5p
+IDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IFNlbnQ6IE1vbmRheSwgQXByaWwgMjksIDIw
+MjQgNTozOCBQTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzog
+TWFubmEsIEFuaW1lc2ggPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPjsgSG9nYW5kZXIsIEpvdW5p
+DQo+IDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSCB2OCAwNi8x
+MV0gZHJtL2k5MTUvcHNyOiBNb2RpZnkgaW50ZWxfZHBfZ2V0X3N1X2dyYW51bGFyaXR5DQo+IHRv
+IHN1cHBvcnQgcGFuZWwgcmVwbGF5DQo+IA0KPiBDdXJyZW50bHkgaW50ZWxfZHBfZ2V0X3N1X2dy
+YW51bGFyaXR5IGRvZXNuJ3Qgc3VwcG9ydCBwYW5lbCByZXBsYXkuDQo+IFRoaXMgZml4IG1vZGlm
+aWVzIGl0IHRvIHN1cHBvcnQgcGFuZWwgcmVwbGF5IGFzIHdlbGwuDQo+IA0KPiB2MzogdXNlIGNv
+cnJlY3Qgb2Zmc2V0IGZvciBEUF9QQU5FTF9QQU5FTF9SRVBMQVlfQ0FQQUJJTElUWQ0KPiB2Mjog
+cmVseSBvbiBQU1IgZGVmaW5pdGlvbnMgb24gY29tbW9uIGJpdHMNCj4gDQo+IFNpZ25lZC1vZmYt
+Ynk6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiAtLS0NCj4g
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCA2MiArKysrKysrKysr
+KysrKysrKysrKystLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA1NSBpbnNlcnRpb25zKCspLCA3IGRl
+bGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfcHNyLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
+ci5jDQo+IGluZGV4IGI5NGY4ZTMzZWQxZi4uODA3NDIzZGIzYTEzIDEwMDY0NA0KPiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gQEAgLTQ2Niw2ICs0NjYsNDAgQEAg
+c3RhdGljIHU4IGludGVsX2RwX2dldF9zaW5rX3N5bmNfbGF0ZW5jeShzdHJ1Y3QNCj4gaW50ZWxf
+ZHAgKmludGVsX2RwKQ0KPiAgCXJldHVybiB2YWw7DQo+ICB9DQo+IA0KPiArc3RhdGljIHU4IGlu
+dGVsX2RwX2dldF9zdV9jYXBhYmlsaXR5KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApIHsNCj4g
+Kwl1OCBzdV9jYXBhYmlsaXR5Ow0KPiArDQo+ICsJaWYgKGludGVsX2RwLT5wc3Iuc2lua19wYW5l
+bF9yZXBsYXlfc3Vfc3VwcG9ydCkNCj4gKwkJZHJtX2RwX2RwY2RfcmVhZCgmaW50ZWxfZHAtPmF1
+eCwNCj4gKwkJCQkgRFBfUEFORUxfUEFORUxfUkVQTEFZX0NBUEFCSUxJVFksDQo+ICsJCQkJICZz
+dV9jYXBhYmlsaXR5LCAxKTsNCg0KZHJtX2RwX2RwY2RfcmVhZGIoKSBjYW4gYmUgdXNlZCBoZXJl
+LCBvdGhlcndpc2UgbG9va3MgZ29vZCB0byBtZS4NCg0KUmVnYXJkcywNCkFuaW1lc2gNCg0KPiAr
+CWVsc2UNCj4gKwkJc3VfY2FwYWJpbGl0eSA9IGludGVsX2RwLT5wc3JfZHBjZFsxXTsNCj4gKw0K
+PiArCXJldHVybiBzdV9jYXBhYmlsaXR5Ow0KPiArfQ0KPiArDQo+ICtzdGF0aWMgdW5zaWduZWQg
+aW50DQo+ICtpbnRlbF9kcF9nZXRfc3VfeF9ncmFudWxhcml0eV9vZmZzZXQoc3RydWN0IGludGVs
+X2RwICppbnRlbF9kcCkgew0KPiArCXJldHVybiBpbnRlbF9kcC0+cHNyLnNpbmtfcGFuZWxfcmVw
+bGF5X3N1X3N1cHBvcnQgPw0KPiArCQlEUF9QQU5FTF9QQU5FTF9SRVBMQVlfWF9HUkFOVUxBUklU
+WSA6DQo+ICsJCURQX1BTUjJfU1VfWF9HUkFOVUxBUklUWTsNCj4gK30NCj4gKw0KPiArc3RhdGlj
+IHVuc2lnbmVkIGludA0KPiAraW50ZWxfZHBfZ2V0X3N1X3lfZ3JhbnVsYXJpdHlfb2Zmc2V0KHN0
+cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApIHsNCj4gKwlyZXR1cm4gaW50ZWxfZHAtPnBzci5zaW5r
+X3BhbmVsX3JlcGxheV9zdV9zdXBwb3J0ID8NCj4gKwkJRFBfUEFORUxfUEFORUxfUkVQTEFZX1lf
+R1JBTlVMQVJJVFkgOg0KPiArCQlEUF9QU1IyX1NVX1lfR1JBTlVMQVJJVFk7DQo+ICt9DQo+ICsN
+Cj4gKy8qDQo+ICsgKiBOb3RlOiBCaXRzIHJlbGF0ZWQgdG8gZ3JhbnVsYXJpdHkgYXJlIHNhbWUg
+aW4gcGFuZWwgcmVwbGF5IGFuZCBwc3INCj4gKyAqIHJlZ2lzdGVycy4gUmVseSBvbiBQU1IgZGVm
+aW5pdGlvbnMgb24gdGhlc2UgImNvbW1vbiIgYml0cy4NCj4gKyAqLw0KPiAgc3RhdGljIHZvaWQg
+aW50ZWxfZHBfZ2V0X3N1X2dyYW51bGFyaXR5KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApICB7
+DQo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBkcF90b19pOTE1KGludGVsX2Rw
+KTsgQEAgLTQ3MywxOA0KPiArNTA3LDI5IEBAIHN0YXRpYyB2b2lkIGludGVsX2RwX2dldF9zdV9n
+cmFudWxhcml0eShzdHJ1Y3QgaW50ZWxfZHANCj4gKmludGVsX2RwKQ0KPiAgCXUxNiB3Ow0KPiAg
+CXU4IHk7DQo+IA0KPiAtCS8qIElmIHNpbmsgZG9uJ3QgaGF2ZSBzcGVjaWZpYyBncmFudWxhcml0
+eSByZXF1aXJlbWVudHMgc2V0IGxlZ2FjeSBvbmVzDQo+ICovDQo+IC0JaWYgKCEoaW50ZWxfZHAt
+PnBzcl9kcGNkWzFdICYNCj4gRFBfUFNSMl9TVV9HUkFOVUxBUklUWV9SRVFVSVJFRCkpIHsNCj4g
+KwkvKg0KPiArCSAqIFRPRE86IERvIHdlIG5lZWQgdG8gdGFrZSBpbnRvIGFjY291bnQgcGFuZWwg
+c3VwcG9ydGluZyBib3RoIFBTUg0KPiBhbmQNCj4gKwkgKiBQYW5lbCByZXBsYXk/DQo+ICsJICov
+DQo+ICsNCj4gKwkvKg0KPiArCSAqIElmIHNpbmsgZG9uJ3QgaGF2ZSBzcGVjaWZpYyBncmFudWxh
+cml0eSByZXF1aXJlbWVudHMgc2V0IGxlZ2FjeQ0KPiArCSAqIG9uZXMuDQo+ICsJICovDQo+ICsJ
+aWYgKCEoaW50ZWxfZHBfZ2V0X3N1X2NhcGFiaWxpdHkoaW50ZWxfZHApICYNCj4gKwkgICAgICBE
+UF9QU1IyX1NVX0dSQU5VTEFSSVRZX1JFUVVJUkVEKSkgew0KPiAgCQkvKiBBcyBQU1IyIEhXIHNl
+bmRzIGZ1bGwgbGluZXMsIHdlIGRvIG5vdCBjYXJlIGFib3V0IHgNCj4gZ3JhbnVsYXJpdHkgKi8N
+Cj4gIAkJdyA9IDQ7DQo+ICAJCXkgPSA0Ow0KPiAgCQlnb3RvIGV4aXQ7DQo+ICAJfQ0KPiANCj4g
+LQlyID0gZHJtX2RwX2RwY2RfcmVhZCgmaW50ZWxfZHAtPmF1eCwNCj4gRFBfUFNSMl9TVV9YX0dS
+QU5VTEFSSVRZLCAmdywgMik7DQo+ICsJciA9IGRybV9kcF9kcGNkX3JlYWQoJmludGVsX2RwLT5h
+dXgsDQo+ICsJCQkgICAgIGludGVsX2RwX2dldF9zdV94X2dyYW51bGFyaXR5X29mZnNldChpbnRl
+bF9kcCksDQo+ICsJCQkgICAgICZ3LCAyKTsNCj4gIAlpZiAociAhPSAyKQ0KPiAgCQlkcm1fZGJn
+X2ttcygmaTkxNS0+ZHJtLA0KPiAtCQkJICAgICJVbmFibGUgdG8gcmVhZA0KPiBEUF9QU1IyX1NV
+X1hfR1JBTlVMQVJJVFlcbiIpOw0KPiArCQkJICAgICJVbmFibGUgdG8gcmVhZCBzZWxlY3RpdmUg
+dXBkYXRlIHggZ3JhbnVsYXJpdHlcbiIpOw0KPiAgCS8qDQo+ICAJICogU3BlYyBzYXlzIHRoYXQg
+aWYgdGhlIHZhbHVlIHJlYWQgaXMgMCB0aGUgZGVmYXVsdCBncmFudWxhcml0eSBzaG91bGQNCj4g
+IAkgKiBiZSB1c2VkIGluc3RlYWQuDQo+IEBAIC00OTIsMTAgKzUzNywxMiBAQCBzdGF0aWMgdm9p
+ZCBpbnRlbF9kcF9nZXRfc3VfZ3JhbnVsYXJpdHkoc3RydWN0DQo+IGludGVsX2RwICppbnRlbF9k
+cCkNCj4gIAlpZiAociAhPSAyIHx8IHcgPT0gMCkNCj4gIAkJdyA9IDQ7DQo+IA0KPiAtCXIgPSBk
+cm1fZHBfZHBjZF9yZWFkKCZpbnRlbF9kcC0+YXV4LA0KPiBEUF9QU1IyX1NVX1lfR1JBTlVMQVJJ
+VFksICZ5LCAxKTsNCj4gKwlyID0gZHJtX2RwX2RwY2RfcmVhZCgmaW50ZWxfZHAtPmF1eCwNCj4g
+KwkJCSAgICAgaW50ZWxfZHBfZ2V0X3N1X3lfZ3JhbnVsYXJpdHlfb2Zmc2V0KGludGVsX2RwKSwN
+Cj4gKwkJCSAgICAgJnksIDEpOw0KPiAgCWlmIChyICE9IDEpIHsNCj4gIAkJZHJtX2RiZ19rbXMo
+Jmk5MTUtPmRybSwNCj4gLQkJCSAgICAiVW5hYmxlIHRvIHJlYWQNCj4gRFBfUFNSMl9TVV9ZX0dS
+QU5VTEFSSVRZXG4iKTsNCj4gKwkJCSAgICAiVW5hYmxlIHRvIHJlYWQgc2VsZWN0aXZlIHVwZGF0
+ZSB5IGdyYW51bGFyaXR5XG4iKTsNCj4gIAkJeSA9IDQ7DQo+ICAJfQ0KPiAgCWlmICh5ID09IDAp
+DQo+IEBAIC01ODgsNyArNjM1LDggQEAgdm9pZCBpbnRlbF9wc3JfaW5pdF9kcGNkKHN0cnVjdCBp
+bnRlbF9kcCAqaW50ZWxfZHApDQo+ICAJaWYgKGludGVsX2RwLT5wc3JfZHBjZFswXSkNCj4gIAkJ
+X3Bzcl9pbml0X2RwY2QoaW50ZWxfZHApOw0KPiANCj4gLQlpZiAoaW50ZWxfZHAtPnBzci5zaW5r
+X3BzcjJfc3VwcG9ydCkNCj4gKwlpZiAoaW50ZWxfZHAtPnBzci5zaW5rX3BzcjJfc3VwcG9ydCB8
+fA0KPiArCSAgICBpbnRlbF9kcC0+cHNyLnNpbmtfcGFuZWxfcmVwbGF5X3N1X3N1cHBvcnQpDQo+
+ICAJCWludGVsX2RwX2dldF9zdV9ncmFudWxhcml0eShpbnRlbF9kcCk7DQo+ICB9DQo+IA0KPiAt
+LQ0KPiAyLjM0LjENCg0K
