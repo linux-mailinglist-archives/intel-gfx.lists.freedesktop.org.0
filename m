@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E248B5ACA
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 16:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B43A8B5ACB
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 16:02:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76DFC10E512;
-	Mon, 29 Apr 2024 14:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE4D610E18A;
+	Mon, 29 Apr 2024 14:02:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IcLlhZN8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VniaiEHd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48BF410E512
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:02:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5314D10E18A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 14:02:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714399359; x=1745935359;
+ t=1714399361; x=1745935361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s1U4hBbzwn4DM3ERGgvCnl93RxYuQenXkkvjeTyG74E=;
- b=IcLlhZN8dtdSHe3MfgGIMXQHqEQVH+glxaUpAQ4MKlKfbtBmA57GHzuY
- pMdoDNDeWwFRgPfOO5vkV3dF7YauL0rP8fv6sD4/XrzFECG18BIcgycNJ
- 8KFtjdY9dU9hAa7NQwuZ5N+5r/n4rwVPGxF+dXgFfmeT4MW6kJNDVOiyg
- CTNErOQMR+5lm+ApRz7Ul5Igibb7DWoIcREy59/YeiIwVPRR/GhmFULUJ
- MavfjeYt916IH0KdAK5ri/qnvoKPDJ8PCm12GY7RGY0P7KHTJALQhFQey
- DT/3e6I5vaLTJuHSvB6LVnsnJpZxgbcCbu8lNTpxPpapkuKMi0dMH7QfH w==;
-X-CSE-ConnectionGUID: 9dV1g86nSn+Z4KULpah+gA==
-X-CSE-MsgGUID: W5SAEm5QQwifnwF/EyRyKQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="32563302"
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="32563302"
+ bh=J7ovakKZI7/IeBOcZPOMsrOa/77b6wjDLhrQAxCRsBc=;
+ b=VniaiEHdx18dQ/z039qWflbMRrzWmJqfBeiHijaWEnC4HB1Q+ZeO41HA
+ vMRFwYJU/A7glKt2ns7GCAm519kAHZpwZ88+wFhU8IcxHH6xHidzbNOLt
+ d6oT1mEDYlAJgIGk3tv7xfqAnoNKPSL2huOIX1bnywgU3UecK12StO5l7
+ REznki85IRhBP/i2kkVm3Vuxuuxr6A2dd9k0OWYNui+VuDEtXdoTobSdK
+ +Fvk9mfnkEa2t7xAr0Q4wBWrE36u/8l/iW8zWBWapAUxjx0xH4FOzSBP+
+ VQUuenM1UUMfqfK83aVe5Ug6PDadoIqdhMdWdKhIcJnhsR9KjVj8ebj07 A==;
+X-CSE-ConnectionGUID: XEpHBDlhTzyRUEKQ4nx2zg==
+X-CSE-MsgGUID: jIs/IQ+dSKib1TUdXGvzWA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="32563319"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="32563319"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 07:02:32 -0700
-X-CSE-ConnectionGUID: SXILw8amQ7C2r9/glMGZ/g==
-X-CSE-MsgGUID: +WBGiE1+S9u8rNF31LaM+A==
+ 29 Apr 2024 07:02:37 -0700
+X-CSE-ConnectionGUID: HRwGkyANQnyKmq1VAYnspA==
+X-CSE-MsgGUID: ZPX8h7N2Sk6QbyZksjS8AQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="63598989"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="63599014"
 Received: from aantonov-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.49.167])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 07:02:31 -0700
+ 29 Apr 2024 07:02:36 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 1/7] drm/i915: pass dev_priv explicitly to PALETTE
-Date: Mon, 29 Apr 2024 17:02:15 +0300
-Message-Id: <bf07d29cefef23ebd5d54fbb0d3bf7e41d132d93.1714399071.git.jani.nikula@intel.com>
+Subject: [PATCH 2/7] drm/i915: pass dev_priv explicitly to PIPE_WGC_C01_C00
+Date: Mon, 29 Apr 2024 17:02:16 +0300
+Message-Id: <85b3db6e666a7a629b10b482b7e7043d52d30511.1714399071.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1714399071.git.jani.nikula@intel.com>
 References: <cover.1714399071.git.jani.nikula@intel.com>
@@ -71,104 +71,49 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PALETTE register macro.
+explicitly to the PIPE_WGC_C01_C00 register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c    | 29 ++++++++++++-------
- .../gpu/drm/i915/display/intel_color_regs.h   |  2 +-
- 2 files changed, 20 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c      | 4 ++--
+ drivers/gpu/drm/i915/display/intel_color_regs.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index ca7112b32cb3..edb805fc9c97 100644
+index edb805fc9c97..cdcf8e796335 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1227,7 +1227,7 @@ static void i9xx_load_lut_8(struct intel_crtc *crtc,
- 	lut = blob->data;
- 
- 	for (i = 0; i < 256; i++)
--		intel_de_write_fw(dev_priv, PALETTE(pipe, i),
-+		intel_de_write_fw(dev_priv, PALETTE(dev_priv, pipe, i),
- 				  i9xx_lut_8(&lut[i]));
- }
- 
-@@ -1240,9 +1240,11 @@ static void i9xx_load_lut_10(struct intel_crtc *crtc,
+@@ -616,7 +616,7 @@ static void vlv_load_wgc_csc(struct intel_crtc *crtc,
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
  	enum pipe pipe = crtc->pipe;
  
- 	for (i = 0; i < lut_size - 1; i++) {
--		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 0),
-+		intel_de_write_fw(dev_priv,
-+				  PALETTE(dev_priv, pipe, 2 * i + 0),
- 				  i9xx_lut_10_ldw(&lut[i]));
--		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 1),
-+		intel_de_write_fw(dev_priv,
-+				  PALETTE(dev_priv, pipe, 2 * i + 1),
- 				  i9xx_lut_10_udw(&lut[i]));
- 	}
- }
-@@ -1274,9 +1276,11 @@ static void i965_load_lut_10p6(struct intel_crtc *crtc,
+-	intel_de_write_fw(dev_priv, PIPE_WGC_C01_C00(pipe),
++	intel_de_write_fw(dev_priv, PIPE_WGC_C01_C00(dev_priv, pipe),
+ 			  csc->coeff[1] << 16 | csc->coeff[0]);
+ 	intel_de_write_fw(dev_priv, PIPE_WGC_C02(pipe),
+ 			  csc->coeff[2]);
+@@ -639,7 +639,7 @@ static void vlv_read_wgc_csc(struct intel_crtc *crtc,
  	enum pipe pipe = crtc->pipe;
+ 	u32 tmp;
  
- 	for (i = 0; i < lut_size - 1; i++) {
--		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 0),
-+		intel_de_write_fw(dev_priv,
-+				  PALETTE(dev_priv, pipe, 2 * i + 0),
- 				  i965_lut_10p6_ldw(&lut[i]));
--		intel_de_write_fw(dev_priv, PALETTE(pipe, 2 * i + 1),
-+		intel_de_write_fw(dev_priv,
-+				  PALETTE(dev_priv, pipe, 2 * i + 1),
- 				  i965_lut_10p6_udw(&lut[i]));
- 	}
+-	tmp = intel_de_read_fw(dev_priv, PIPE_WGC_C01_C00(pipe));
++	tmp = intel_de_read_fw(dev_priv, PIPE_WGC_C01_C00(dev_priv, pipe));
+ 	csc->coeff[0] = tmp & 0xffff;
+ 	csc->coeff[1] = tmp >> 16;
  
-@@ -3150,7 +3154,8 @@ static struct drm_property_blob *i9xx_read_lut_8(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
--		u32 val = intel_de_read_fw(dev_priv, PALETTE(pipe, i));
-+		u32 val = intel_de_read_fw(dev_priv,
-+					   PALETTE(dev_priv, pipe, i));
- 
- 		i9xx_lut_8_pack(&lut[i], val);
- 	}
-@@ -3176,8 +3181,10 @@ static struct drm_property_blob *i9xx_read_lut_10(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < lut_size - 1; i++) {
--		ldw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 0));
--		udw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 1));
-+		ldw = intel_de_read_fw(dev_priv,
-+				       PALETTE(dev_priv, pipe, 2 * i + 0));
-+		udw = intel_de_read_fw(dev_priv,
-+				       PALETTE(dev_priv, pipe, 2 * i + 1));
- 
- 		i9xx_lut_10_pack(&lut[i], ldw, udw);
- 	}
-@@ -3224,8 +3231,10 @@ static struct drm_property_blob *i965_read_lut_10p6(struct intel_crtc *crtc)
- 	lut = blob->data;
- 
- 	for (i = 0; i < lut_size - 1; i++) {
--		u32 ldw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 0));
--		u32 udw = intel_de_read_fw(dev_priv, PALETTE(pipe, 2 * i + 1));
-+		u32 ldw = intel_de_read_fw(dev_priv,
-+					   PALETTE(dev_priv, pipe, 2 * i + 0));
-+		u32 udw = intel_de_read_fw(dev_priv,
-+					   PALETTE(dev_priv, pipe, 2 * i + 1));
- 
- 		i965_lut_10p6_pack(&lut[i], ldw, udw);
- 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/gpu/drm/i915/display/intel_color_regs.h
-index 02033c882d7f..250ceffbd481 100644
+index 250ceffbd481..57438989f469 100644
 --- a/drivers/gpu/drm/i915/display/intel_color_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
-@@ -30,7 +30,7 @@
- #define   PALETTE_10BIT_BLUE_EXP_MASK	REG_GENMASK(7, 6)
- #define   PALETTE_10BIT_BLUE_MANT_MASK	REG_GENMASK(5, 2)
- #define   PALETTE_10BIT_BLUE_UDW_MASK	REG_GENMASK(1, 0)
--#define PALETTE(pipe, i) _MMIO(DISPLAY_MMIO_BASE(dev_priv) +			\
-+#define PALETTE(dev_priv, pipe, i) _MMIO(DISPLAY_MMIO_BASE(dev_priv) +			\
- 			       _PICK_EVEN_2RANGES(pipe, 2,			\
- 						  _PALETTE_A, _PALETTE_B,	\
- 						  _CHV_PALETTE_C, _CHV_PALETTE_C) + \
+@@ -256,7 +256,7 @@
+ #define _PIPE_A_WGC_C21_C20	0x600C0 /* s2.10 */
+ #define _PIPE_A_WGC_C22		0x600C4 /* s2.10 */
+ 
+-#define PIPE_WGC_C01_C00(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C01_C00)
++#define PIPE_WGC_C01_C00(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C01_C00)
+ #define PIPE_WGC_C02(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C02)
+ #define PIPE_WGC_C11_C10(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C11_C10)
+ #define PIPE_WGC_C12(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_A_WGC_C12)
 -- 
 2.39.2
 
