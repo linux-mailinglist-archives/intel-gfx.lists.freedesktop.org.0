@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D348B576D
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 14:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71CB88B5770
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Apr 2024 14:08:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0B6810F7F4;
-	Mon, 29 Apr 2024 12:08:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C049910FDE0;
+	Mon, 29 Apr 2024 12:08:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLYpPnty";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F477bks1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A90A10F3E4
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 12:08:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A099A10F3E4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Apr 2024 12:08:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714392500; x=1745928500;
+ t=1714392501; x=1745928501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ulzhZRtBs1WgHHROZPxeE5+9sVY6c5DrqWLLfY76br8=;
- b=jLYpPntyNpC6VAm9QN1nDuCyGUrMzG2KK/Y2W59tzSaMgGMC/H1Cyt0w
- a5ELTYDLqCktB/+BFqi1m5h/R7qK0SSWaPLhbY99PPjI8+TzgkubpX8uY
- 7jhPram/z5BLpwUGibDoH9dDgfPlE5RHnwwrxiGP5AliKG+Z4xsrzz871
- 3xOkJUUHGrscNgSfmUeJhi62rJXXQWh7cxMT6EHUxdCBiTDFwNSSpw9cM
- tMB1eaorc6jlBnh1rtHoIl9UXIGv2xRaxN02eJKNz/qlbT5zBQGIgXOgv
- V0w8hCzJp8gQwMAyWBVTj+vHDl0RZUOjog7JvA74a4ziD3iJrEpkp2vx6 Q==;
-X-CSE-ConnectionGUID: W6P6VWXFTEK5sjiY8AiH5g==
-X-CSE-MsgGUID: K08rAxypTY+/4gFQqKHV2w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="21455443"
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="21455443"
+ bh=4yVeS7qzLGIZKbVrFpFfEwlAAQIqAuEmovLSdFcQgKM=;
+ b=F477bks1o1VAIDvNxo4g0C/xm2UO+rwIGz8Sa59IqnxUNT0UN5GmGChE
+ IYkCVoWNwBJDEmCBvd9P1qwfdF8cmDCzYgBHA/OEZ+zhSvvfT/3QsbyWk
+ +VfEBBdeHlD3nwMcFnccVWGSyKsmONGKmgQFF8miVyr2Q8UtN2eLGHWVK
+ rEo0jgx5hlPIBgvj7F1XwvAOKIWq0EXQWDdtdDEADt1sETYXReNzsOh/b
+ fuNAbuG2mMB8qPdJk8qr1DyCmlM30F8z8oJK+cf9CxY1p6MLr/9wvQBIZ
+ 7Jsl5S99UE4+qL8iNMKuO8MztiAuQJrOUMqQs45V7mUfxcbY3lKx/3OZt Q==;
+X-CSE-ConnectionGUID: qQgzdzvFSNaVID+1ZKMnpw==
+X-CSE-MsgGUID: qSp2n6rkTWihmg8lHiBXWw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11057"; a="21455444"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="21455444"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:08:20 -0700
-X-CSE-ConnectionGUID: ilwHLyZOStWwVBLOLWRGYw==
-X-CSE-MsgGUID: 0pc7EiIMSLWeUmCz68nSlg==
+ 29 Apr 2024 05:08:21 -0700
+X-CSE-ConnectionGUID: Tkaxr5zeSvGzFuR75EqTnA==
+X-CSE-MsgGUID: POUdlfkXQQuL0mROVUx9CA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="26074445"
+X-IronPort-AV: E=Sophos;i="6.07,239,1708416000"; d="scan'208";a="26074458"
 Received: from domelchx-mobl2.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.208.96])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2024 05:08:19 -0700
+ 29 Apr 2024 05:08:20 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Animesh Manna <animesh.manna@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v8 04/11] drm/panelreplay: dpcd register definition for
- panelreplay SU
-Date: Mon, 29 Apr 2024 15:07:48 +0300
-Message-Id: <20240429120755.3990652-5-jouni.hogander@intel.com>
+Subject: [PATCH v8 05/11] drm/i915/psr: Detect panel replay selective update
+ support
+Date: Mon, 29 Apr 2024 15:07:49 +0300
+Message-Id: <20240429120755.3990652-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240429120755.3990652-1-jouni.hogander@intel.com>
 References: <20240429120755.3990652-1-jouni.hogander@intel.com>
@@ -72,33 +72,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add definitions for panel replay selective update
+Add new boolean to store panel replay selective update support of sink into
+intel_psr struct.  Detect panel replay selective update support and store
+it into this new boolean.
 
-v2: Remove unnecessary Cc from commit message
+v3: Clear sink_panel_replay_su_support in intel_dp_detect
+v2: Merge adding new boolean into this patch
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- include/drm/display/drm_dp.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c           | 10 ++++++++--
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 0b032faa8cf2..906949ca3cee 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -548,6 +548,12 @@
- # define DP_PANEL_REPLAY_SUPPORT            (1 << 0)
- # define DP_PANEL_REPLAY_SU_SUPPORT         (1 << 1)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 150e6c8e0320..a693728f8344 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1719,6 +1719,7 @@ struct intel_psr {
+ 	u16 su_y_granularity;
+ 	bool source_panel_replay_support;
+ 	bool sink_panel_replay_support;
++	bool sink_panel_replay_su_support;
+ 	bool panel_replay_enabled;
+ 	u32 dc3co_exitline;
+ 	u32 dc3co_exit_delay;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 313e7c25b25f..6f72896b7197 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5858,6 +5858,7 @@ intel_dp_detect(struct drm_connector *connector,
+ 		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
+ 		memset(intel_connector->dp.dsc_dpcd, 0, sizeof(intel_connector->dp.dsc_dpcd));
+ 		intel_dp->psr.sink_panel_replay_support = false;
++		intel_dp->psr.sink_panel_replay_su_support = false;
  
-+#define DP_PANEL_PANEL_REPLAY_CAPABILITY		0xb1
-+# define DP_PANEL_PANEL_REPLAY_SU_GRANULARITY_REQUIRED	(1 << 5)
+ 		intel_dp_mst_disconnect(intel_dp);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index af18728460c9..b94f8e33ed1f 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -520,9 +520,15 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
+ 		return;
+ 	}
+ 
+-	drm_dbg_kms(&i915->drm,
+-		    "Panel replay is supported by panel\n");
+ 	intel_dp->psr.sink_panel_replay_support = true;
 +
-+#define DP_PANEL_PANEL_REPLAY_X_GRANULARITY		0xb2
-+#define DP_PANEL_PANEL_REPLAY_Y_GRANULARITY		0xb4
++	if (pr_dpcd & DP_PANEL_REPLAY_SU_SUPPORT)
++		intel_dp->psr.sink_panel_replay_su_support = true;
 +
- /* Link Configuration */
- #define	DP_LINK_BW_SET		            0x100
- # define DP_LINK_RATE_TABLE		    0x00    /* eDP 1.4 */
++	drm_dbg_kms(&i915->drm,
++		    "Panel replay %sis supported by panel\n",
++		    intel_dp->psr.sink_panel_replay_su_support ?
++		    "selective_update " : "");
+ }
+ 
+ static void _psr_init_dpcd(struct intel_dp *intel_dp)
 -- 
 2.34.1
 
