@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B198B7D6E
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 18:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D0F8B7E83
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 19:30:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07B2B1127BA;
-	Tue, 30 Apr 2024 16:48:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A30D1112D7D;
+	Tue, 30 Apr 2024 17:30:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0N5p/mT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fTHC59pa";
 	dkim-atps=neutral
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A51110EF30
- for <Intel-GFX@lists.freedesktop.org>; Tue, 30 Apr 2024 16:48:29 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72336112D73;
+ Tue, 30 Apr 2024 17:30:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714495710; x=1746031710;
+ t=1714498219; x=1746034219;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=7Bvlg46zXPQET1u/JRg4DooDuLEOoFpvms2fUwsI6fY=;
- b=L0N5p/mTmWmYsEyIuwP2paGdE9pHSpgzdKT9dUhm7BqDEGWigdgloS1m
- NDAA51jkaCFwA0CGLMNGlT3r3wjMTS7kz/lgogBR0cb9143UJCdBiZe8+
- +IWWY9Jw7wWa/STIW5C0Fk4A4CoM2gHzDEgJXEpexnkyxe/lPgWFsWiJX
- i7v5zNTBxthPHNy2h+rD50lkbU6WRO8dpED7QiNPok6ztQkiuvaWORqjA
- DzbdG6YVgGdfrjE7Kqx53rhR5aC3+EqxU+5TCt2moNL7mme9HTGhdk3sz
- sJV0681w/UE5PK2VY4aVc4Nr58JrwKseBwGlF52HZxciBoNjb3/YoFIfN w==;
-X-CSE-ConnectionGUID: TgG75zPXQbCBJocMfo2hPA==
-X-CSE-MsgGUID: UUrBBYACTgalx2Qfc9awyQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="10339316"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="10339316"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 09:48:23 -0700
-X-CSE-ConnectionGUID: tAeZBNypQqiHbt6eALGXow==
-X-CSE-MsgGUID: ClN3XcDuTgys6og5XfATHg==
+ bh=y/ox8ad/06uMbDbOBI1rW6Az5G+uY01JbomfaLffmJE=;
+ b=fTHC59paNBXUgHBlI0U7DZ9H3Z2lm7kUJ2/tF2RE9wh4p/Tw3F+9kmHO
+ et1ZPqJYLXs/lu/y1rAljOfmS5PStrqY+1U+ngj+E8+n8HkInQ68FPne9
+ tVN1Ro0A9pEltjPlxUnLVetAg89aU8luhoxMV2ilnCCa9+L9SY2Nktl6N
+ mrA1zHCNhCgFRU8Pm2k+o18u2YsLcpOY3GtWhZvjCRY94yaOjCdTeeqyp
+ 76jxBRSS8oUT1mJ0aFn5s0nV4XBKyk57bgVDXhbvu1U1bJyKnaKQ0hKv3
+ 8/5nNOfoxA9EnngbliyK4umakM2vAL3ltjnIx36XHTWEWN1BnChy1CpGL Q==;
+X-CSE-ConnectionGUID: QWJKqd3CQTy4ToHoDWrEqw==
+X-CSE-MsgGUID: /67q9M19QTu1OhHTBioGlg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27741982"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27741982"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 10:30:18 -0700
+X-CSE-ConnectionGUID: VjS/3qRsTj+zQyWgOAx5Tg==
+X-CSE-MsgGUID: kvIDt7FVQN+zBaK283VBjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="49731340"
-Received: from bfilipch-desk.jf.intel.com ([10.165.21.204])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 09:48:22 -0700
-From: Julia Filipchuk <julia.filipchuk@intel.com>
-To: Intel-GFX@Lists.FreeDesktop.Org
-Cc: Arnd Bergmann <arnd@arndb.de>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH] drm/i915/guc: avoid FIELD_PREP warning
-Date: Tue, 30 Apr 2024 09:48:09 -0700
-Message-ID: <20240430164809.482131-1-julia.filipchuk@intel.com>
-X-Mailer: git-send-email 2.43.2
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617809"
+Received: from invictus.jf.intel.com ([10.165.21.201])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 10:30:18 -0700
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 00/19] Enable display support for Battlemage
+Date: Tue, 30 Apr 2024 10:28:31 -0700
+Message-Id: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,62 +67,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
 
-With gcc-7 and earlier, there are lots of warnings like
+Adds display support for Battlemage.
 
-In file included from <command-line>:0:0:
-In function '__guc_context_policy_add_priority.isra.66',
-    inlined from '__guc_context_set_prio.isra.67' at drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3292:3,
-    inlined from 'guc_context_set_prio' at drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:3320:2:
-include/linux/compiler_types.h:399:38: error: call to '__compiletime_assert_631' declared with attribute error: FIELD_PREP: mask is not constant
-  _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-                                      ^
-...
-drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c:2422:3: note: in expansion of macro 'FIELD_PREP'
-   FIELD_PREP(GUC_KLV_0_KEY, GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
-   ^~~~~~~~~~
+v4:
+* Dropped patch "drm/i915/xe2hpd: Skip CCS modifiers" as there is 
+  already a patch merged taking care of this fix.
+* Dropped patch "drm/i915/display: Enable RM timeout detection" as it 
+  is not really a BMG enablement patch. Will be posted as a separate 
+  series.
+* Macros renamed and rearranged to match the existing style in the
+  file for patch "Add new C20 PHY SRAM address"
 
-Make sure that GUC_KLV_0_KEY is an unsigned value to avoid the warning.
+v3:
+* use s/XE_LPDP_FEATURES/XE_LPD_FEATURE as base for BMG display info
+  structure
+* Limit "BW Credits" programming only to xelpdp
+* Removed UHBR20 support
+* Commit description improved for patch - "Skip CCS modifiers for Xe2 platforms"
+* Still retained the patch "Enable RM timeout detection" in this series
+  hoping there are no further comments and could be merged with this
+  series.
+* Removed the check where RM timeout interrupt was enabled only for
+  xe2hpd
+* Redesigned how the right C20 PHY offsets are selected for different
+  display IP versions
 
-Fixes: 77b6f79df66e ("drm/i915/guc: Update to GuC version 69.0.3")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
----
+v2: Rebased on latest drm-tip
+v3: Rebase and fix a white space error(RK)
 
-Resubmit of a previous patch that was reviewed but never merged.
-Patch resolves warnings on some older GCC versions of failed
-constant propagation. Issue has been reported again; hoping to
-resolve.
+Ankit Nautiyal (1):
+  Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
 
-Previous Unmerged Patch:
-https://patchwork.freedesktop.org/series/114145/
+Anusha Srivatsa (1):
+  drm/i915/xe2hpd: Configure CHICKEN_MISC_2 before enabling planes
 
-Reported Issue:
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10821
+Balasubramani Vivekanandan (5):
+  drm/i915/bmg: Define IS_BATTLEMAGE macro
+  drm/i915/xe2hpd: Add new C20 PHY SRAM address
+  drm/i915/xe2hpd: Add support for eDP PLL configuration
+  drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+  drm/xe/bmg: Enable the display support
 
+Clint Taylor (2):
+  drm/i915/bmg: Lane reversal requires writes to both context lanes
+  drm/i915/xe2hpd: Initial cdclk table
 
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+José Roberto de Souza (2):
+  drm/i915/xe2hpd: Properly disable power in port A
+  drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-index bebf28e3c479..525587cfe1af 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-@@ -29,9 +29,9 @@
-  */
- 
- #define GUC_KLV_LEN_MIN				1u
--#define GUC_KLV_0_KEY				(0xffff << 16)
--#define GUC_KLV_0_LEN				(0xffff << 0)
--#define GUC_KLV_n_VALUE				(0xffffffff << 0)
-+#define GUC_KLV_0_KEY				(0xffffu << 16)
-+#define GUC_KLV_0_LEN				(0xffffu << 0)
-+#define GUC_KLV_n_VALUE				(0xffffffffu << 0)
- 
- /**
-  * DOC: GuC Self Config KLVs
+Lucas De Marchi (1):
+  drm/i915/xe2hpd: Add display info
+
+Matt Roper (2):
+  drm/i915/xe2hpd: Add max memory bandwidth algorithm
+  drm/i915/bmg: BMG should re-use MTL's south display logic
+
+Matthew Auld (2):
+  drm/xe/gt_print: add xe_gt_err_once()
+  drm/i915/display: perform transient flush
+
+Nirmoy Das (1):
+  drm/xe/device: implement transient flush
+
+Radhakrishna Sripada (1):
+  drm/i915/bmg: Extend DG2 tc check to future
+
+Ravi Kumar Vodapalli (1):
+  drm/i915/xe2hpd: update pll values in sync with Bspec
+
+ drivers/gpu/drm/i915/display/intel_bios.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  65 +++-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  11 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 285 +++++++++++++++---
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  48 ++-
+ drivers/gpu/drm/i915/display/intel_display.c  |  10 +-
+ .../drm/i915/display/intel_display_device.c   |   7 +
+ .../drm/i915/display/intel_display_power.c    |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 +
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   2 +
+ drivers/gpu/drm/i915/display/intel_tdf.h      |  25 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   1 +
+ drivers/gpu/drm/i915/soc/intel_dram.c         |   4 +
+ drivers/gpu/drm/i915/soc/intel_pch.c          |   4 +-
+ drivers/gpu/drm/xe/Makefile                   |   3 +-
+ drivers/gpu/drm/xe/display/xe_tdf.c           |  13 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  49 +++
+ drivers/gpu/drm/xe/xe_device.h                |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   1 +
+ drivers/gpu/drm/xe/xe_gt_printk.h             |   3 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   1 +
+ 24 files changed, 504 insertions(+), 57 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
+
 -- 
-2.43.2
+2.34.1
 
