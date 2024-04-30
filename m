@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC39E8B6F3D
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 042D08B6F3F
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:10:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A71010FA6D;
-	Tue, 30 Apr 2024 10:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6136A10FABE;
+	Tue, 30 Apr 2024 10:10:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R68wTSDC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESf+26i7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6DB10FA6D
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:10:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 479AF10FABE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714471843; x=1746007843;
+ t=1714471847; x=1746007847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TEQekyIIk8GaxcvZN+9stREBLt1iGDJTBsPp9XUlXfc=;
- b=R68wTSDCcuPmqb2NPDvn2Ha9/2Okt0BYjkkStqfVce5RFqGdef5zn69Q
- jeYoRzzOYaI+j6MzAgIRVEY+QECkdQFwcCrSsYkkJKrWqAxFUD8SZFTuh
- IQr6y6QDLS27uJ+/ocRMqkknZVWDfZTmeZKJ40xeL9jleLW1mlhnhsyso
- 6tOZ4dXEzSa6yrTVXTrW8z7upuk+RGo7JoGibUXaERSf0FkDyVVEbwTe5
- ySq7dDhVEi+C02Ijp6kdU+P5NtsN4i7zrc8RisCtUY6su2XwkJhO1Duwa
- VmWmJ66s3yXarB74bC0gOVp2TlkHfBkduwAgMZ8u+j98zurmn18y7v9Qv w==;
-X-CSE-ConnectionGUID: 1iX+N0P1RpuVnZwGtAawIg==
-X-CSE-MsgGUID: N+rz57owTv2q0oaemBTk4w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="27619569"
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="27619569"
+ bh=OfMz7A1mAxaZD7E7Bu7bYutslpPBR/NrkQKTKf8DQkY=;
+ b=ESf+26i7rjDVbj8PQdZ5S4U/NOAaGu7vFYXFuyu7z7W5CcYdNit1XC9s
+ 0PVLwDrGFGphlWNsoa1Wg0AbpBAf4O6XpM94ChAa+urzDrYrulS/Ombd9
+ c7/mB2mO5Qq2t24JYmaf/SrNLv3y73Iyqm1eJBVOF6URr4lZ5YAgCmVhH
+ euoW04mkJ3j3K2inNnML7Nt0+sjPAoYkboIep1tXlSGHCWt+j/KIBEOge
+ w5g2K9jxD4Q1OVHjLk5uXhitHx8d6L5qTB6ZVQfO+mydGVEacECdNUz3m
+ LW2KnSxQcYAKqolYCxtlSqpM6QfX/TGKy2vLeStAZc+HBQgzWYS6yiAgH Q==;
+X-CSE-ConnectionGUID: eBYY0nnMRg+rWJl6iu19Mw==
+X-CSE-MsgGUID: WhYCQJ46Scyp+91tUWr2mQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="27619573"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="27619573"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:10:42 -0700
-X-CSE-ConnectionGUID: RuliYIiHRFuaJVPKTNsAhA==
-X-CSE-MsgGUID: tr+qJ2COTT67+t9ZpX/yuw==
+ 30 Apr 2024 03:10:46 -0700
+X-CSE-ConnectionGUID: IKuim9bLQ2SxjGDSbapQEw==
+X-CSE-MsgGUID: XCQO3znOQG2YIH5seyYPAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26424669"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26424697"
 Received: from vkats-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.167])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:10:40 -0700
+ 30 Apr 2024 03:10:45 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, jouni.hogander@intel.com,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 05/19] drm/i915: pass dev_priv explicitly to EDP_PSR_AUX_CTL
-Date: Tue, 30 Apr 2024 13:09:59 +0300
-Message-Id: <66ec1f81be49c87cd9613ba052ce6fd50362d0e0.1714471597.git.jani.nikula@intel.com>
+Subject: [PATCH 06/19] drm/i915: pass dev_priv explicitly to EDP_PSR_AUX_DATA
+Date: Tue, 30 Apr 2024 13:10:00 +0300
+Message-Id: <4e3dc15b170c2b64168e46ebf1802d63df34b4a2.1714471597.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1714471597.git.jani.nikula@intel.com>
 References: <cover.1714471597.git.jani.nikula@intel.com>
@@ -71,7 +71,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the EDP_PSR_AUX_CTL register macro.
+explicitly to the EDP_PSR_AUX_DATA register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
@@ -80,31 +80,31 @@ Signed-off-by: Jani Nikula <jani.nikula@intel.com>
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 0b1f7e62470e..daeb1b65a2e5 100644
+index daeb1b65a2e5..5fe9feddc0e0 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -323,7 +323,7 @@ static i915_reg_t psr_aux_ctl_reg(struct drm_i915_private *dev_priv,
- 				  enum transcoder cpu_transcoder)
+@@ -332,7 +332,7 @@ static i915_reg_t psr_aux_data_reg(struct drm_i915_private *dev_priv,
+ 				   enum transcoder cpu_transcoder, int i)
  {
  	if (DISPLAY_VER(dev_priv) >= 8)
--		return EDP_PSR_AUX_CTL(cpu_transcoder);
-+		return EDP_PSR_AUX_CTL(dev_priv, cpu_transcoder);
+-		return EDP_PSR_AUX_DATA(cpu_transcoder, i);
++		return EDP_PSR_AUX_DATA(dev_priv, cpu_transcoder, i);
  	else
- 		return HSW_SRD_AUX_CTL;
+ 		return HSW_SRD_AUX_DATA(i);
  }
 diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 5fd4f875ade0..a4f785bcf605 100644
+index a4f785bcf605..6a6d7de901bc 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -86,7 +86,7 @@
- #define HSW_SRD_AUX_CTL				_MMIO(0x64810)
- #define _SRD_AUX_CTL_A				0x60810
- #define _SRD_AUX_CTL_EDP			0x6f810
--#define EDP_PSR_AUX_CTL(tran)			_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_CTL_A)
-+#define EDP_PSR_AUX_CTL(dev_priv, tran)			_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_CTL_A)
- #define   EDP_PSR_AUX_CTL_TIME_OUT_MASK		DP_AUX_CH_CTL_TIME_OUT_MASK
- #define   EDP_PSR_AUX_CTL_MESSAGE_SIZE_MASK	DP_AUX_CH_CTL_MESSAGE_SIZE_MASK
- #define   EDP_PSR_AUX_CTL_PRECHARGE_2US_MASK	DP_AUX_CH_CTL_PRECHARGE_2US_MASK
+@@ -96,7 +96,7 @@
+ #define HSW_SRD_AUX_DATA(i)			_MMIO(0x64814 + (i) * 4) /* 5 registers */
+ #define _SRD_AUX_DATA_A				0x60814
+ #define _SRD_AUX_DATA_EDP			0x6f814
+-#define EDP_PSR_AUX_DATA(tran, i)		_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_DATA_A + (i) * 4) /* 5 registers */
++#define EDP_PSR_AUX_DATA(dev_priv, tran, i)		_MMIO_TRANS2(dev_priv, tran, _SRD_AUX_DATA_A + (i) * 4) /* 5 registers */
+ 
+ #define HSW_SRD_STATUS				_MMIO(0x64840)
+ #define _SRD_STATUS_A				0x60840
 -- 
 2.39.2
 
