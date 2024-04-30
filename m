@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E70D8B6F44
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8A18B6F45
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:11:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7717B10FAF6;
-	Tue, 30 Apr 2024 10:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10B0810FB27;
+	Tue, 30 Apr 2024 10:11:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LsASLF/n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nHuM+6RS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE2410FAF6
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:11:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 322F510FB56
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714471869; x=1746007869;
+ t=1714471874; x=1746007874;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=60WRL3/mlQm+ps0JjSp+3NXNNA4qYI34PtasRkLnSfQ=;
- b=LsASLF/n/+kKDF7p0UmyW3rGRJIXY0iUgrKo0WgnYvLB8xbLjsjYlnyr
- UYqCT8i8ck5DdUrajw92mS9hNsR9l0foVXQ5PDqbW9fqF99FAh0dRKJHK
- 5nqS2G9UXwKvyI0ZTzWIFJwfhgzuciyubrtW6AkJ6sdIG3PyXhHPYSYV3
- 0Wxhbzoo8NgBAUqlpw3Vk/bV3XbtrMxAl5nK1hKGi3pk3cWEPzaHXgnqu
- zG+E7kGfTZj1YeXBeIlmS6okHDGpIC/M+YYJpIvWJBC5ifqXYkj+PqbfZ
- kelpkXy9nUYGyBsl3TL2Etg4QQ82hSo6pOA0PfIVW8b/9Li+xQMDvRWND A==;
-X-CSE-ConnectionGUID: M6NC3j9HTFGi3NodxknEfg==
-X-CSE-MsgGUID: mStz+zHLQmG60KkwUJzm5Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="10043824"
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="10043824"
+ bh=vaylDO3QmT849Fv2TVOXWyeCcExEGNUdQq0adoyB9og=;
+ b=nHuM+6RSE2apeOEYNh/HwW7/WTl4sAWz+EfFKFgzzhDzgwZVvuuwsywo
+ xRWLYrsGLmABY3w8CtyQjzAjWVUfKiwr+bCf9EzoaPXmBA7ihG6wOU0Fi
+ EdabqbLYowc8Z6hWad/Wi8NKMwEjq3jEodxTWwhAVQQ1B7XF9dfoGEhJ0
+ 12voX0sQxevJL85QPfrEAVRjn2BfTCAVlUnMIyS/PPlkefZGTujU9c56z
+ DcTMBwjvx5qGzikcJwubc0IzMkdNJy22GLOkBRE0IfUbwqDsccSftUPn3
+ IPfWyRphHCVCCd0utr4gfNu5PuvugTzmrcySNzmUpsxS+7unRvHltrNf4 w==;
+X-CSE-ConnectionGUID: IdexGuRaTlKan0936GO/Jg==
+X-CSE-MsgGUID: KFVHHjJKRwihK3xjbe5gQA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="10043835"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="10043835"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:11:09 -0700
-X-CSE-ConnectionGUID: /+jaw5GeSWCMED2P/bdb4Q==
-X-CSE-MsgGUID: q3wOqR6lQsimI7/RgLEL9A==
+ 30 Apr 2024 03:11:14 -0700
+X-CSE-ConnectionGUID: 1nzfXh8kQ9eTHGp2UXyrIQ==
+X-CSE-MsgGUID: V1l90F05S+yBCP3lp6aygg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26281451"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26281457"
 Received: from vkats-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.167])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:11:08 -0700
+ 30 Apr 2024 03:11:12 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, jouni.hogander@intel.com,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 11/19] drm/i915: pass dev_priv explicitly to PSR_EVENT
-Date: Tue, 30 Apr 2024 13:10:05 +0300
-Message-Id: <9bc5819afa46416eb8f12ac050ed4d3bcde34b63.1714471597.git.jani.nikula@intel.com>
+Subject: [PATCH 12/19] drm/i915: pass dev_priv explicitly to EDP_PSR2_STATUS
+Date: Tue, 30 Apr 2024 13:10:06 +0300
+Message-Id: <5d86a48f51ae6fa4c5a3abf098440a94d07de870.1714471597.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1714471597.git.jani.nikula@intel.com>
 References: <cover.1714471597.git.jani.nikula@intel.com>
@@ -71,42 +71,68 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PSR_EVENT register macro.
+explicitly to the EDP_PSR2_STATUS register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c      | 4 +++-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 9 +++++----
  drivers/gpu/drm/i915/display/intel_psr_regs.h | 2 +-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ 2 files changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 156660ab7adf..2dca9957a06b 100644
+index 2dca9957a06b..36c08cd3a624 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -415,7 +415,9 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
- 		if (DISPLAY_VER(dev_priv) >= 9) {
- 			u32 val;
+@@ -2052,7 +2052,7 @@ static void intel_psr_wait_exit_locked(struct intel_dp *intel_dp)
+ 	u32 psr_status_mask;
  
--			val = intel_de_rmw(dev_priv, PSR_EVENT(cpu_transcoder), 0, 0);
-+			val = intel_de_rmw(dev_priv,
-+					   PSR_EVENT(dev_priv, cpu_transcoder),
-+					   0, 0);
+ 	if (intel_dp->psr.psr2_enabled) {
+-		psr_status = EDP_PSR2_STATUS(cpu_transcoder);
++		psr_status = EDP_PSR2_STATUS(dev_priv, cpu_transcoder);
+ 		psr_status_mask = EDP_PSR2_STATUS_STATE_MASK;
+ 	} else {
+ 		psr_status = psr_status_reg(dev_priv, cpu_transcoder);
+@@ -2768,7 +2768,7 @@ static int _psr2_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
+ 	 * EDP_PSR2_STATUS_STATE_DEEP_SLEEP to be cleared.
+ 	 */
+ 	return intel_de_wait_for_clear(dev_priv,
+-				       EDP_PSR2_STATUS(cpu_transcoder),
++				       EDP_PSR2_STATUS(dev_priv, cpu_transcoder),
+ 				       EDP_PSR2_STATUS_STATE_DEEP_SLEEP, 50);
+ }
  
- 			psr_event_print(dev_priv, val, intel_dp->psr.psr2_enabled);
- 		}
+@@ -2835,7 +2835,7 @@ static bool __psr_wait_for_idle_locked(struct intel_dp *intel_dp)
+ 		return false;
+ 
+ 	if (intel_dp->psr.psr2_enabled) {
+-		reg = EDP_PSR2_STATUS(cpu_transcoder);
++		reg = EDP_PSR2_STATUS(dev_priv, cpu_transcoder);
+ 		mask = EDP_PSR2_STATUS_STATE_MASK;
+ 	} else {
+ 		reg = psr_status_reg(dev_priv, cpu_transcoder);
+@@ -3467,7 +3467,8 @@ psr_source_status(struct intel_dp *intel_dp, struct seq_file *m)
+ 			"BUF_ON",
+ 			"TG_ON"
+ 		};
+-		val = intel_de_read(dev_priv, EDP_PSR2_STATUS(cpu_transcoder));
++		val = intel_de_read(dev_priv,
++				    EDP_PSR2_STATUS(dev_priv, cpu_transcoder));
+ 		status_val = REG_FIELD_GET(EDP_PSR2_STATUS_STATE_MASK, val);
+ 		if (status_val < ARRAY_SIZE(live_status))
+ 			status = live_status[status_val];
 diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 785e4f9e7828..817bc372bf35 100644
+index 817bc372bf35..e6c62512512f 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -195,7 +195,7 @@
- #define _PSR_EVENT_TRANS_C			0x62848
- #define _PSR_EVENT_TRANS_D			0x63848
- #define _PSR_EVENT_TRANS_EDP			0x6f848
--#define PSR_EVENT(tran)				_MMIO_TRANS2(dev_priv, tran, _PSR_EVENT_TRANS_A)
-+#define PSR_EVENT(dev_priv, tran)				_MMIO_TRANS2(dev_priv, tran, _PSR_EVENT_TRANS_A)
- #define  PSR_EVENT_PSR2_WD_TIMER_EXPIRE		REG_BIT(17)
- #define  PSR_EVENT_PSR2_DISABLED		REG_BIT(16)
- #define  PSR_EVENT_SU_DIRTY_FIFO_UNDERRUN	REG_BIT(15)
+@@ -215,7 +215,7 @@
+ 
+ #define _PSR2_STATUS_A				0x60940
+ #define _PSR2_STATUS_EDP			0x6f940
+-#define EDP_PSR2_STATUS(tran)			_MMIO_TRANS2(dev_priv, tran, _PSR2_STATUS_A)
++#define EDP_PSR2_STATUS(dev_priv, tran)			_MMIO_TRANS2(dev_priv, tran, _PSR2_STATUS_A)
+ #define EDP_PSR2_STATUS_STATE_MASK		REG_GENMASK(31, 28)
+ #define EDP_PSR2_STATUS_STATE_DEEP_SLEEP	REG_FIELD_PREP(EDP_PSR2_STATUS_STATE_MASK, 0x8)
+ 
 -- 
 2.39.2
 
