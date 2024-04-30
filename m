@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7198B6F5C
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 959A98B6F6A
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:17:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4487710FB81;
-	Tue, 30 Apr 2024 10:15:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C28B10FBBF;
+	Tue, 30 Apr 2024 10:17:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="or7wT6NA";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Tf1cRUDY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30D3610FB93
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:15:12 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-51ca95db667so5120750e87.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 03:15:12 -0700 (PDT)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+ [209.85.208.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F04CC10FBCD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:17:20 +0000 (UTC)
+Received: by mail-lj1-f174.google.com with SMTP id
+ 38308e7fff4ca-2dd19c29c41so66795001fa.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 03:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1714472110; x=1715076910; darn=lists.freedesktop.org;
+ d=linaro.org; s=google; t=1714472239; x=1715077039; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=dIx1dFfAcpeKO8TErHh7vGY1lorqPiA5UlnTCSzH2HY=;
- b=or7wT6NAHsECDftCtwLq4AdEwaZoYx1UYfN1z/F86slRB/4Qw/j18o/ezQKkTJAhaW
- vQKK4bFXKKKzS3bMwqnhCxRdUvR6aAGm6xgq1K1gVGHIr3oXOFPyYST+BEmQ80fZtTOC
- 25epPaa447S44OjikOGhpWnJ38w/l9hWseSVyoWXoX3Y45B0iwraIAgdr4A/D3NzxkcF
- PNEVz6orccuEmpNHjXJXcjPHh50PVrH+PsRiNsiY+DTVOyoE5GGOqrVzZ9Ds1vVCJ4S9
- 8dRwmEt29Cp1Sf2+pjrRFbtNxcmFgSwZRwDD9TeDHfuRbPsrDcsfDNQGwTkAVviEt5li
- 1tMQ==
+ bh=vLkLH0SSmvOSmWzdY7vcX+RCH3AFTNGOUA3YHRv8hu4=;
+ b=Tf1cRUDYcOXqBJ36EltEHXfT6wM+60kHmcooCsvvZ2jp1Xajxx6xtl7Jr9DH4CqEDu
+ lduGDwRNKMsl23M6P0bsI82jFTCMr0hujCeOTyt3kaXWs4JQNC0RSdsgoi3pDH0XseGx
+ iqVHc/g27+3isF/JIyiou9GFMNi0hJV7qemtiJPMVu9MHvcdEf0Wi2R910GBy1+3haG5
+ M9H1hl2doNixnOJj8QXunvYFs+4F5pAiFRneelkOMy3hgFksD0VTR+MuO3cRH4YArTJO
+ W6af5ksv5IDfIBL0mQSjhpqvVqL4uFVsMtejcWYAPVggN1Rml/6C92VNeXwPYhRI3Dgu
+ gx6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714472110; x=1715076910;
+ d=1e100.net; s=20230601; t=1714472239; x=1715077039;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=dIx1dFfAcpeKO8TErHh7vGY1lorqPiA5UlnTCSzH2HY=;
- b=NTZb9l610m3yQkCj0rQRIS4I6HB+fbvUGlPzPjYPSsbju49E1Ac4brqckLuBbmdTmq
- B9twPuM61c62OEWOS/5PqAFHp0sOs18Ls4t08o90yoiuxH2xq7aUoa350/cJCcspYrB4
- CjN1dUsALIP9sNgKYD/qfp7k3ZmSB+YN8UARX0IpY2p5SXsWxb8fIxpp6z0edvh5y+ah
- 01aP40H7j8NXrYuoElGO8tPzt6qJLe1gdYRGnivNmfExSRoRG4wnjD93+XUje0/5NTl0
- ptusRMxBxxI1VnNzO90BB9I2Wd42KR6tf9P3MFArFDirxYNSohgXoxZ+Y17knILJO2hv
- 9Lgw==
+ bh=vLkLH0SSmvOSmWzdY7vcX+RCH3AFTNGOUA3YHRv8hu4=;
+ b=LEyvONHb+Z9etuPnw2iwkVbtX8wk9FgQDLaup0QsWaMIPPqwimumLhKjJmDtjquois
+ 578lt2+rOdTMRLWPyfHpIccqL0WqUBEn75kDFj1GJfqNHNxgbAAi24HS0H4Cf0ZOkI+O
+ uYnTPtEpLt1hIF0goSVBNe1LZXuiYl/2yCOEXWKALkftt5Xerdacsq6HGJH3Z+ygOrc2
+ rhvgWiVlsBHtwPo7laQq7+Wx0IixEYR71l49P1tOPnR3gP0GLBYP5cueVgaVL3QmkZNj
+ I8eTsaorDSxx6k9nzoCZrKl/KkgiiRQsgiENUHV7qsxIGQNMrAOtzOdo9kzDaT4qs1AK
+ wRNw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXlmp9N3hj62Yb5fIIk9lLWecqskpydzJfz0SHmxPZqiJDX2kTdLsEm6G5YTvcMq5oh6904FRvHO8/Xvmm7tys8HtnZan+/AOrXDUUQWBJ1
-X-Gm-Message-State: AOJu0YzdHN+nDeL41jRBTdPw+MvwRSsKdBLA79msrn3b5xn/2Wc26SO5
- 3n5fumJ6EcgZITNRShZEFX0U42VCcJrVmQrx5MMZNKmdEHBcDidTP1avUMMhluQ=
-X-Google-Smtp-Source: AGHT+IEeZGVbkW3UvagFGYDQZ5bMmN4VdL24N9F8cduZig7xQbulffwe9LBCfuUp6MPaqlZqlp0YPw==
-X-Received: by 2002:ac2:4945:0:b0:516:cf23:588 with SMTP id
- o5-20020ac24945000000b00516cf230588mr10156881lfi.27.1714472109993; 
- Tue, 30 Apr 2024 03:15:09 -0700 (PDT)
+ AJvYcCVWEIeA6G48M2T0KnmpynmqZML7ZVfJIuv4k7GzRcrPFX0feRQMObXkJWBJaU2E9WQfYsZ7JdkltPjsPiEKcuGGwSA72ZN+THWqfEgYPzfM
+X-Gm-Message-State: AOJu0YwHcjWuN4QpeYrOX+IJSnq0N3tXEgqA+wpmbKLpR30f/hlZTObb
+ ayo8zotn59IDRp9yavNyb30QFVnZE8HdGuY3SKSNuJ0x4OWAKPOxUhV5EY97kYg=
+X-Google-Smtp-Source: AGHT+IHaFm4lzkxq9U1a8iPWUfix49p5Xd5gLpx7H0AEzCvQ84t8kRB/7beeUSB3FIO6fjrXa0k+4A==
+X-Received: by 2002:a2e:8e23:0:b0:2e0:e129:7011 with SMTP id
+ r3-20020a2e8e23000000b002e0e1297011mr1308756ljk.16.1714472238962; 
+ Tue, 30 Apr 2024 03:17:18 -0700 (PDT)
 Received: from eriador.lumag.spb.ru
  (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
  by smtp.gmail.com with ESMTPSA id
- g29-20020a0565123b9d00b0051d807addd7sm884156lfv.60.2024.04.30.03.15.09
+ f28-20020a2eb5bc000000b002e0e78240a4sm205475ljn.77.2024.04.30.03.17.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Apr 2024 03:15:09 -0700 (PDT)
-Date: Tue, 30 Apr 2024 13:15:08 +0300
+ Tue, 30 Apr 2024 03:17:18 -0700 (PDT)
+Date: Tue, 30 Apr 2024 13:17:17 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Vignesh Raman <vignesh.raman@collabora.com>
 Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
@@ -69,14 +69,14 @@ Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
  amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, 
  virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 5/5] drm/ci: update xfails for the new testlist
-Message-ID: <hon4klkoaouuxhtvm3qb3qstsrdcibihksyrmvxkt3taijl6wb@ubitr6namryw>
+Subject: Re: [PATCH v1 2/5] drm/ci: generate testlist from build
+Message-ID: <k7sepoksttro3dgxxtwxfmlxwv5w5zn3aeso7p24mm3n74bo45@kx2dpe2qkqgo>
 References: <20240430091121.508099-1-vignesh.raman@collabora.com>
- <20240430091121.508099-6-vignesh.raman@collabora.com>
+ <20240430091121.508099-3-vignesh.raman@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240430091121.508099-6-vignesh.raman@collabora.com>
+In-Reply-To: <20240430091121.508099-3-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,123 +92,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 30, 2024 at 02:41:21PM +0530, Vignesh Raman wrote:
-> Now the testlist is used from IGT build, so update
-> xfails with the new testlist.
+On Tue, Apr 30, 2024 at 02:41:18PM +0530, Vignesh Raman wrote:
+> Stop vendoring the testlist into the kernel. Instead, use the
+> testlist from the IGT build to ensure we do not miss renamed
+> or newly added tests.
 > 
 > Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 > ---
->  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt | 47 +++++++----
->  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  8 +-
->  .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt | 15 ++++
->  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt | 22 ++++-
->  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  8 ++
->  drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |  8 ++
->  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  | 45 +++++-----
->  drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |  5 ++
->  drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  | 12 +++
->  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  | 26 +++++-
->  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |  6 ++
->  drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |  8 ++
->  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  | 28 +++++--
->  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  | 12 +++
->  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  | 39 ++++-----
->  drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt | 10 ++-
->  drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  | 21 +++++
->  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  | 75 +++++++++--------
->  drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  | 13 +++
->  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  | 46 +++++------
->  drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |  8 ++
->  .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 47 +++--------
->  .../drm/ci/xfails/mediatek-mt8183-fails.txt   | 17 +---
->  .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |  5 ++
->  .../gpu/drm/ci/xfails/meson-g12b-fails.txt    | 20 +----
->  .../gpu/drm/ci/xfails/meson-g12b-flakes.txt   |  5 ++
->  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   | 26 ++----
->  .../gpu/drm/ci/xfails/msm-apq8016-flakes.txt  |  5 ++
->  .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  5 +-
->  .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |  5 ++
->  .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   | 67 +++++++++++++++
->  .../msm-sc7180-trogdor-kingoftown-fails.txt   | 34 ++++----
->  .../msm-sc7180-trogdor-kingoftown-flakes.txt  |  5 ++
->  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 34 ++++----
->  ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |  5 ++
->  .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    | 75 ++++-------------
->  .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   | 26 ++----
->  .../drm/ci/xfails/rockchip-rk3288-fails.txt   | 54 ------------
->  .../drm/ci/xfails/rockchip-rk3399-fails.txt   | 80 ++----------------
->  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  7 --
->  .../drm/ci/xfails/virtio_gpu-none-fails.txt   | 82 +++++++++++++------
->  .../drm/ci/xfails/virtio_gpu-none-skips.txt   |  3 +
->  42 files changed, 574 insertions(+), 495 deletions(-)
->  create mode 100644 drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
->  create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
->  delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
->  delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+>  drivers/gpu/drm/ci/build-igt.sh  |   23 +
+>  drivers/gpu/drm/ci/igt_runner.sh |    9 +-
+>  drivers/gpu/drm/ci/testlist.txt  | 2761 ------------------------------
+>  3 files changed, 28 insertions(+), 2765 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/ci/testlist.txt
 > 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index 500fa4f5c30a..cedc62baba1e 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
+> @@ -26,6 +26,29 @@ meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
+>  ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
+>  ninja -C build install
+>  
+> +set +ex
+> +export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib64
+> +while read -r line; do
+> +    if [ "$line" = "TESTLIST" ] || [ "$line" = "END TESTLIST" ]; then
+> +        continue
+> +    fi
+> +
+> +    tests=$(echo "$line" | tr ' ' '\n')
+> +
+> +    for test in $tests; do
+> +        output=$(/igt/libexec/igt-gpu-tools/"$test" --list-subtests)
+> +
+> +        if [ -z "$output" ]; then
+> +            echo "$test"
+> +        else
+> +            echo "$output" | while read -r subtest; do
+> +                echo "$test@$subtest"
+> +            done
+> +        fi
+> +    done
+> +done < /igt/libexec/igt-gpu-tools/test-list.txt > /igt/libexec/igt-gpu-tools/testlist.txt
+> +set -ex
 
-[skipped]
+Is the list in sync between x86 and arm/arm64 IGT builds? Is there a
+chance of having a safety net here?
 
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> index 44a5c62dedad..96e9faf0e607 100644
-> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
-> @@ -1,19 +1,9 @@
-> +core_setmaster_vs_auth,Fail
-> +device_reset,Fail
-> +dumb_buffer,Fail
-
-This doesn't look correct, core tests should be passing.
-
->  kms_3d,Fail
-> -kms_addfb_basic@addfb25-bad-modifier,Fail
-> -kms_cursor_legacy@all-pipes-forked-bo,Fail
-> -kms_cursor_legacy@all-pipes-forked-move,Fail
-> -kms_cursor_legacy@all-pipes-single-bo,Fail
-> -kms_cursor_legacy@all-pipes-single-move,Fail
-> -kms_cursor_legacy@all-pipes-torture-bo,Fail
-> -kms_cursor_legacy@all-pipes-torture-move,Fail
-> -kms_cursor_legacy@pipe-A-forked-bo,Fail
-> -kms_cursor_legacy@pipe-A-forked-move,Fail
-> -kms_cursor_legacy@pipe-A-single-bo,Fail
-> -kms_cursor_legacy@pipe-A-single-move,Fail
-> -kms_cursor_legacy@pipe-A-torture-bo,Fail
-> -kms_cursor_legacy@pipe-A-torture-move,Fail
-> -kms_force_connector_basic@force-edid,Fail
-> -kms_hdmi_inject@inject-4k,Fail
-> -kms_selftest@drm_format,Timeout
-> -kms_selftest@drm_format_helper,Timeout
-
-Fine, kms_cursor_legacy tests were migrated to -flakes. But what
-happened with the rest of the failures?
-
-> -msm_mapping@ring,Fail
-> +kms_force_connector_basic,Fail
-> +kms_lease,Fail
-> +msm_mapping,Fail
-> +msm_submit,Fail
-> +tools_test,Fail
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
-> new file mode 100644
-> index 000000000000..3cc361b3d3b3
-> --- /dev/null
-> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
-> @@ -0,0 +1,5 @@
-> +# Board Name: apq8016-sbc-usb-host
-> +# Bug Report: TBD
-> +# IGT Version: 1.28-gd2af13d9f
-> +# Linux Version: 6.9.0-rc4
-> +kms_cursor_legacy
-
-It looks like one of the scripts has lost subtest granularity. It should
-be fixed before the patchset can be merged.
+> +
+>  mkdir -p artifacts/
+>  tar -cf artifacts/igt.tar /igt
+>  
+> diff --git a/drivers/gpu/drm/ci/igt_runner.sh b/drivers/gpu/drm/ci/igt_runner.sh
+> index f1a08b9b146f..20026612a9bd 100755
+> --- a/drivers/gpu/drm/ci/igt_runner.sh
+> +++ b/drivers/gpu/drm/ci/igt_runner.sh
+> @@ -59,25 +59,26 @@ fi
+>  
+>  curl -L --retry 4 -f --retry-all-errors --retry-delay 60 -s ${FDO_HTTP_CACHE_URI:-}$PIPELINE_ARTIFACTS_BASE/$ARCH/igt.tar.gz | tar --zstd -v -x -C /
+>  
+> +TESTLIST="/igt/libexec/igt-gpu-tools/testlist.txt"
+>  
+>  # If the job is parallel at the gitab job level, take the corresponding fraction
+>  # of the caselist.
+>  if [ -n "$CI_NODE_INDEX" ]; then
+> -    sed -ni $CI_NODE_INDEX~$CI_NODE_TOTAL"p" /install/testlist.txt
+> +    sed -ni $CI_NODE_INDEX~$CI_NODE_TOTAL"p" $TESTLIST
+>  fi
+>  
+>  # core_getversion checks if the driver is loaded and probed correctly
+>  # so run it in all shards
+> -if ! grep -q "core_getversion" /install/testlist.txt; then
+> +if ! grep -q "core_getversion" $TESTLIST; then
+>      # Add the line to the file
+> -    echo "core_getversion" >> /install/testlist.txt
+> +    echo "core_getversion" >> $TESTLIST
+>  fi
+>  
+>  set +e
+>  igt-runner \
+>      run \
+>      --igt-folder /igt/libexec/igt-gpu-tools \
+> -    --caselist /install/testlist.txt \
+> +    --caselist $TESTLIST \
+>      --output /results \
+>      $IGT_SKIPS \
+>      $IGT_FLAKES \
 
 -- 
 With best wishes
