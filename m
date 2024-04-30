@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7911D8B7FA1
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 20:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A2E8B7FEC
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 20:42:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC92C112E28;
-	Tue, 30 Apr 2024 18:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99288112E3A;
+	Tue, 30 Apr 2024 18:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03674112E1E;
- Tue, 30 Apr 2024 18:21:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3114379803259366029=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF9BF112E39;
+ Tue, 30 Apr 2024 18:42:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_avoid_FIELD?=
- =?utf-8?q?=5FPREP_warning_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable_display_suppo?=
+ =?utf-8?q?rt_for_Battlemage_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arnd Bergmann" <arnd@kernel.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 18:21:55 -0000
-Message-ID: <171450131501.1793102.8713899604994787434@8e613ede5ea5>
+Date: Tue, 30 Apr 2024 18:42:15 -0000
+Message-ID: <171450253584.1793102.15853429785531784857@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240430164809.482131-1-julia.filipchuk@intel.com>
-In-Reply-To: <20240430164809.482131-1-julia.filipchuk@intel.com>
+References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
+In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,130 +41,80 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3114379803259366029==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/guc: avoid FIELD_PREP warning (rev2)
-URL   : https://patchwork.freedesktop.org/series/114145/
-State : success
+Series: Enable display support for Battlemage (rev3)
+URL   : https://patchwork.freedesktop.org/series/132429/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14684 -> Patchwork_114145v2
-====================================================
+Error: dim checkpatch failed
+f1746e09cce1 drm/i915/bmg: Lane reversal requires writes to both context lanes
+1f4c0c333523 drm/i915/bmg: Define IS_BATTLEMAGE macro
+-:36: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#36: FILE: drivers/gpu/drm/i915/i915_drv.h:545:
++#define IS_LUNARLAKE(i915) (0 && i915)
 
-Summary
--------
+-:37: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'i915' may be better as '(i915)' to avoid precedence issues
+#37: FILE: drivers/gpu/drm/i915/i915_drv.h:546:
++#define IS_BATTLEMAGE(i915)  (0 && i915)
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 2 checks, 16 lines checked
+7646a5845c9e drm/i915/xe2hpd: Initial cdclk table
+807b6ed291be drm/i915/bmg: Extend DG2 tc check to future
+b604b7e04284 drm/i915/xe2hpd: Properly disable power in port A
+28ffde021d25 drm/i915/xe2hpd: Add new C20 PHY SRAM address
+-:80: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#80: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2201:
++									  PHY_C20_B_MPLLB_CNTX_CFG(i915, i));
 
-  No regressions found.
+-:86: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#86: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2205:
++									  PHY_C20_A_MPLLB_CNTX_CFG(i915, i));
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/index.html
+-:96: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2213:
++									  PHY_C20_B_MPLLA_CNTX_CFG(i915, i));
 
-Participating hosts (40 -> 36)
-------------------------------
+-:102: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#102: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2217:
++									  PHY_C20_A_MPLLA_CNTX_CFG(i915, i));
 
-  Missing    (4): fi-kbl-7567u bat-dg1-7 fi-snb-2520m fi-kbl-8809g 
+-:195: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#195: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:279:
++		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_TX_CNTX_CFG : _MTL_C20_A_TX_CNTX_CFG) - (idx))
 
-Known issues
-------------
+-:197: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:281:
++		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_B_TX_CNTX_CFG : _MTL_C20_B_TX_CNTX_CFG) - (idx))
 
-  Here are the changes found in Patchwork_114145v2 that come from known issues:
+-:205: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#205: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:285:
++		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_CMN_CNTX_CFG : _MTL_C20_A_CMN_CNTX_CFG) - (idx))
 
-### IGT changes ###
+-:207: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#207: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:287:
++		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_B_CMN_CNTX_CFG : _MTL_C20_B_CMN_CNTX_CFG) - (idx))
 
-#### Issues hit ####
+total: 0 errors, 8 warnings, 0 checks, 186 lines checked
+f5d924d272ac drm/i915/xe2hpd: Add support for eDP PLL configuration
+09a439a2a899 drm/i915/xe2hpd: update pll values in sync with Bspec
+4d5f82862e88 drm/i915/xe2hpd: Add display info
+ebdc8b9b543d drm/i915/xe2hpd: Configure CHICKEN_MISC_2 before enabling planes
+be26cf5266c1 drm/i915/xe2hpd: Add max memory bandwidth algorithm
+dd732ff9cfa4 drm/i915/xe2hpd: Do not program MBUS_DBOX BW credits
+bfa9506dd656 drm/i915/bmg: BMG should re-use MTL's south display logic
+c2baf9f5c3f2 Revert "drm/i915/dgfx: DGFX uses direct VBT pin mapping"
+b46debdf0a5f drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
+13550a8d9ec5 drm/xe/gt_print: add xe_gt_err_once()
+5e8c3853eea1 drm/xe/device: implement transient flush
+b1166e0edf40 drm/i915/display: perform transient flush
+-:59: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#59: 
+new file mode 100644
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-8:          [PASS][1] -> [DMESG-FAIL][2] ([i915#9500])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14684/bat-dg2-8/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/bat-dg2-8/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10911]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10911
-  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14684 -> Patchwork_114145v2
-
-  CI-20190529: 20190529
-  CI_DRM_14684: 8aebdf15c4291ea17c810781d54a16f7d12c19fb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_114145v2: 8aebdf15c4291ea17c810781d54a16f7d12c19fb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/index.html
-
---===============3114379803259366029==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+c91c48888796 drm/xe/bmg: Enable the display support
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: avoid FIELD_PREP warning (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114145/">https://patchwork.freedesktop.org/series/114145/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14684 -&gt; Patchwork_114145v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 36)</h2>
-<p>Missing    (4): fi-kbl-7567u bat-dg1-7 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_114145v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14684/bat-dg2-8/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_114145v2/bat-dg2-8/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14684 -&gt; Patchwork_114145v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14684: 8aebdf15c4291ea17c810781d54a16f7d12c19fb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_114145v2: 8aebdf15c4291ea17c810781d54a16f7d12c19fb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3114379803259366029==--
