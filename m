@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91DF8B6DB7
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 11:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 442618B6DC8
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 11:12:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4352810E83F;
-	Tue, 30 Apr 2024 09:09:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E02310F672;
+	Tue, 30 Apr 2024 09:12:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="KE5WpSPb";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A18F310E83F;
- Tue, 30 Apr 2024 09:09:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1912913437747801983=="
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5474210F866;
+ Tue, 30 Apr 2024 09:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1714468335;
+ bh=Q6up+U23E5APYIMETLmfiB1ibki5YAl7MpYr3vD7xLE=;
+ h=From:To:Cc:Subject:Date:From;
+ b=KE5WpSPbzhjMWvlaKe8+wAl5amqx/bo+kGu0nR8qV0BnT+EpHef2nFuLTNyuV/FUG
+ OXpRrnwMw0UusKK2qo2ccvla2/MnwHsXXViKbFIU4DVI9bgWcvF7BrypK/E88QMIps
+ rdZcASyjzRKYXiKVE3dp/I6f7PDihykSPDSyfLLC57JF9XN8KO9V2BLtL/YW7vESVq
+ td7cUTrvNX/lZgp9E0jndbl9NKdAxHOlJevkfK4U3P6PVYbMCbY3+oGnDCmfxGf9Lq
+ SCZG8TAY0vrh76a6z+gUYV/jdriHAZQwzAlVfLDGy3e3skmZF3EvWxop+G6+DSlx+v
+ C6OVGbLdQR+Gg==
+Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 53E3D3782165;
+ Tue, 30 Apr 2024 09:12:11 +0000 (UTC)
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com, helen.koike@collabora.com, airlied@gmail.com,
+ daniel@ffwll.ch, robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ dmitry.baryshkov@linaro.org, mcanal@igalia.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/5] drm/ci: uprev mesa and generate testlist
+Date: Tue, 30 Apr 2024 14:41:16 +0530
+Message-Id: <20240430091121.508099-1-vignesh.raman@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/audio=3A_Fix_audio?=
- =?utf-8?q?_time_stamp_programming_for_DP_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 09:09:41 -0000
-Message-ID: <171446818165.1778343.16070558123433774213@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240430083429.729247-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20240430083429.729247-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,150 +60,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1912913437747801983==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Uprev mesa to the latest version and stop vendoring the
+testlist into the kernel. Instead, use the testlist from the
+IGT build to ensure we do not miss renamed or newly added tests.
+Update the xfails with the latest testlist run.
 
-== Series Details ==
+Also build virtual GPU driver for virtio as module.
 
-Series: drm/i915/audio: Fix audio time stamp programming for DP (rev3)
-URL   : https://patchwork.freedesktop.org/series/132602/
-State : success
+The flakes list needs to be reported upsteam. Will send it
+after this series is reviewed.
 
-== Summary ==
+https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1166575
 
-CI Bug Log - changes from CI_DRM_14678 -> Patchwork_132602v3
-====================================================
+Vignesh Raman (5):
+  drm/ci: uprev mesa version
+  drm/ci: generate testlist from build
+  drm/ci: build virtual GPU driver as module
+  drm/ci: skip driver specific tests
+  drm/ci: update xfails for the new testlist
 
-Summary
--------
+ drivers/gpu/drm/ci/build-igt.sh               |   23 +
+ drivers/gpu/drm/ci/build.sh                   |    2 +-
+ drivers/gpu/drm/ci/container.yml              |   12 +-
+ drivers/gpu/drm/ci/gitlab-ci.yml              |   11 +-
+ drivers/gpu/drm/ci/igt_runner.sh              |   15 +-
+ drivers/gpu/drm/ci/image-tags.yml             |    7 +-
+ drivers/gpu/drm/ci/test.yml                   |    3 +
+ drivers/gpu/drm/ci/testlist.txt               | 2761 -----------------
+ drivers/gpu/drm/ci/x86_64.config              |    2 +-
+ .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   47 +-
+ .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |    8 +-
+ .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |   29 +-
+ drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |   22 +-
+ .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |    8 +
+ drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |   22 +-
+ drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   45 +-
+ drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |    5 +
+ drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  |   26 +-
+ drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |   26 +-
+ drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |    6 +
+ drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |   20 +
+ drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |   28 +-
+ drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |   26 +-
+ drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |   39 +-
+ drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt |   10 +-
+ drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  |   35 +-
+ drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |   75 +-
+ drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |   27 +-
+ drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |   46 +-
+ drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |   22 +-
+ .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   47 +-
+ .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   12 +
+ .../drm/ci/xfails/mediatek-mt8183-fails.txt   |   17 +-
+ .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |    5 +
+ .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   14 +
+ .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |   20 +-
+ .../gpu/drm/ci/xfails/meson-g12b-flakes.txt   |    5 +
+ .../gpu/drm/ci/xfails/meson-g12b-skips.txt    |   14 +
+ .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |   26 +-
+ .../gpu/drm/ci/xfails/msm-apq8016-flakes.txt  |    5 +
+ .../gpu/drm/ci/xfails/msm-apq8016-skips.txt   |   14 +
+ .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |    5 +-
+ .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |    5 +
+ .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   |   81 +-
+ .../msm-sc7180-trogdor-kingoftown-fails.txt   |   34 +-
+ .../msm-sc7180-trogdor-kingoftown-flakes.txt  |    5 +
+ .../msm-sc7180-trogdor-kingoftown-skips.txt   |   15 +
+ ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |   34 +-
+ ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |    5 +
+ ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   15 +
+ .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |   75 +-
+ .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   |   26 +-
+ .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   15 +
+ .../drm/ci/xfails/rockchip-rk3288-fails.txt   |   54 -
+ .../drm/ci/xfails/rockchip-rk3288-skips.txt   |   17 +-
+ .../drm/ci/xfails/rockchip-rk3399-fails.txt   |   80 +-
+ .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |    7 -
+ .../drm/ci/xfails/rockchip-rk3399-skips.txt   |   15 +
+ .../drm/ci/xfails/virtio_gpu-none-fails.txt   |   82 +-
+ .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   18 +-
+ 60 files changed, 886 insertions(+), 3289 deletions(-)
+ delete mode 100644 drivers/gpu/drm/ci/testlist.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
+ create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+ delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+ delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
 
-  **SUCCESS**
+-- 
+2.40.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/index.html
-
-Participating hosts (39 -> 39)
-------------------------------
-
-  Additional (1): fi-elk-e7500 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_132602v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-elk-e7500:       NOTRUN -> [SKIP][1] +24 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][2] ([i915#9500]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14678/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
-  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14678 -> Patchwork_132602v3
-
-  CI-20190529: 20190529
-  CI_DRM_14678: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_132602v3: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/index.html
-
---===============1912913437747801983==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/audio: Fix audio time stamp programming for DP (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132602/">https://patchwork.freedesktop.org/series/132602/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14678 -&gt; Patchwork_132602v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/index.html</p>
-<h2>Participating hosts (39 -&gt; 39)</h2>
-<p>Additional (1): fi-elk-e7500 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132602v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_pm_rpm@basic-pci-d3-state:<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14678/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132602v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14678 -&gt; Patchwork_132602v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14678: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_132602v3: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1912913437747801983==--
