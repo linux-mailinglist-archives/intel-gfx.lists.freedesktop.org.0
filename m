@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4327F8B7E91
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 19:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D49398B7E86
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 19:30:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AE7112D83;
-	Tue, 30 Apr 2024 17:31:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27011112D7B;
+	Tue, 30 Apr 2024 17:30:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ACLsh1lg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mPEv53l9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD3EA112D7A;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E54112D77;
  Tue, 30 Apr 2024 17:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714498221; x=1746034221;
+ t=1714498222; x=1746034222;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r1sklwSj48CNNRxPiIAqoKjo7MaVp0gz+dElCYGXxnE=;
- b=ACLsh1lg6A8Y66Ugu802rUgvkJ9AniTeyro4fbN+kN3geMemuPWLOQIV
- i4mn9tf2XE5aPgrILk7+kBxz7XnnNVL863MI3dK82DYWN/mFxx7nF3ogY
- 2sYp2Kf+l8yAn+BecvG3nFcmbLKkxzscc/w8kLsbDt8dx3JjybKZqFy7N
- GXKuh6/afy74UciKS5D4+eXxTanbqwa4s6eLaguh803STVVsXic6Qs5Gn
- rgO45bOku0rDnaqdUegZ/rx35u1AE0/dJoTvgNYRWRhgEK7ztFi+swI1F
- PrkLozC313i0Zv/k1Isw9pkKUoCFkrL3/eCIZ7FDFZEu5Fe1GAcLA6ujC g==;
-X-CSE-ConnectionGUID: Xjw3MIWBTc6cDo4QVHLTQg==
-X-CSE-MsgGUID: U5oNP7nWQ+WgnP7wFo70qg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742002"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742002"
+ bh=shPQJaO9/KURCj0ZVJLjXTFD7lHOMtV483tA46Qv7rM=;
+ b=mPEv53l9LMWrYzD26deQlQBqqFILNL5fk9CsIKyCcCR0aWT+ARrYDQXq
+ gUA4igiO2EvW6lZLo07YQ51oOrOzsW2XntMmCn1DN1bzVZMcUUij0evlp
+ L3nRA8SUHUz7mZSN+AxcIDvHEpRsAn84nC3WeXfbUSmoXwm+vQyYN3W1R
+ g0Rs8GQxwkM1KmqSjkWXNe1wTTzqRjtPwKTdsMSLBoDeY98XgeqYIFwhJ
+ 2pkRmGCsxOlzALwlkdKOCbtL64MnPk7eB9kL3XDs3N43Nb6ikSd3BPEug
+ FOXysp4xTIspRa4mFffeAlARfRw0Hrg4ZIdtA2h2NbaBnNaVeQRAbQREi w==;
+X-CSE-ConnectionGUID: CzeJO0+gQAuRRptRWTw00Q==
+X-CSE-MsgGUID: 7rqG98AnQCyAyGfuqP9wug==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27742003"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27742003"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:21 -0700
-X-CSE-ConnectionGUID: LTOuyirKQuSRxxSAmksKWw==
-X-CSE-MsgGUID: KlZswUupTte14HxdqkgJMQ==
+X-CSE-ConnectionGUID: MjQV/H/mQCuyKQpU5mpr0A==
+X-CSE-MsgGUID: 8W7VwWg0TRiZmCf77dSsug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617855"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26617859"
 Received: from invictus.jf.intel.com ([10.165.21.201])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Apr 2024 10:30:21 -0700
 From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>,
  Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Subject: [PATCH v3 15/19] drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5
-Date: Tue, 30 Apr 2024 10:28:46 -0700
-Message-Id: <20240430172850.1881525-16-radhakrishna.sripada@intel.com>
+Subject: [PATCH v3 16/19] drm/xe/gt_print: add xe_gt_err_once()
+Date: Tue, 30 Apr 2024 10:28:47 -0700
+Message-Id: <20240430172850.1881525-17-radhakrishna.sripada@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
 References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
@@ -70,32 +70,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
 
-Max supported speed by xe2hpd is UHBR13.5. Limit the max DP source rate
-to it.
+Needed in an upcoming patch, where we want GT level print, but only
+which to trigger once to avoid flooding dmesg.
 
-Bspec: 67066
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ drivers/gpu/drm/xe/xe_gt_printk.h | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e05e25cd4a94..486361eb0070 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -477,6 +477,9 @@ static int mtl_max_source_rate(struct intel_dp *intel_dp)
- 	if (intel_encoder_is_c10phy(encoder))
- 		return 810000;
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index c2b004d3f48e..d6228baaff1e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -13,6 +13,9 @@
+ #define xe_gt_printk(_gt, _level, _fmt, ...) \
+ 	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
  
-+	if (DISPLAY_VER_FULL(to_i915(encoder->base.dev)) == IP_VER(14, 1))
-+		return 1350000;
++#define xe_gt_err_once(_gt, _fmt, ...) \
++	xe_gt_printk((_gt), err_once, _fmt, ##__VA_ARGS__)
 +
- 	return 2000000;
- }
+ #define xe_gt_err(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
  
 -- 
 2.34.1
