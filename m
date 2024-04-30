@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF038BABAD
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 13:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 873198BACA0
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9E5D10F0A6;
-	Fri,  3 May 2024 11:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8B9E10F228;
+	Fri,  3 May 2024 12:38:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kU+Pbgfm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c9oNAuFF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8434610F0A6;
- Fri,  3 May 2024 11:36:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6738261454;
- Fri,  3 May 2024 11:36:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35FEDC116B1;
- Fri,  3 May 2024 11:35:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1714736165;
- bh=fIbetBuQVrEG023U7eI1zy1F+Dx8KclRAJyueT8XV4Y=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=kU+PbgfmV2WYTvcKoIKD2SagvRYfVtWIILVja2exLH0MFtfHic0+Py5SLz8ioBh2c
- bqpbYbxJ/W9l6syTIapYfSN8oXLB4jn8f3Me0mm0uAJK/HVh9Fym6kP9MVBwSMsr3k
- Jxor+f8RX7pVwuuRJivzQlZh7ay51U+v39/npfLfZ7SyAMSRMB4SIfamdKqeQwinVk
- K9VNzZ0cPydBqTF+/eTYn5JPlrfdcNvCY5ixi4VD0+WIvYHt43TEYrbf91dw/oLydB
- tffGxIoNupZL31C61JfQelalR2aYh/QVLvdIroxHiS3/lJQpV1lJ/uyXJPQRKOstnd
- l8jmPUnOkSLrw==
-Date: Fri, 3 May 2024 13:35:54 +0200
-From: Christian Brauner <brauner@kernel.org>
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: Kees Cook <keescook@chromium.org>, Al Viro <viro@zeniv.linux.org.uk>, 
- Jan Kara <jack@suse.cz>, linux-fsdevel@vger.kernel.org, 
- Zack Rusin <zack.rusin@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Andi Shyti <andi.shyti@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Will Deacon <will@kernel.org>, Boqun Feng <boqun.feng@gmail.com>, 
- Mark Rutland <mark.rutland@arm.com>,
- Kent Overstreet <kent.overstreet@linux.dev>, 
- Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nicolas@fjasle.eu>, Andrew Morton <akpm@linux-foundation.org>, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- linux-kbuild@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 5/5] fs: Convert struct file::f_count to refcount_long_t
-Message-ID: <20240503-kramen-punkten-848aa0cfd3d0@brauner>
-References: <20240502224250.GM2118490@ZenIV> <202405021548.040579B1C@keescook>
- <20240502231228.GN2118490@ZenIV> <202405021620.C8115568@keescook>
- <20240502234152.GP2118490@ZenIV> <202405021708.267B02842@keescook>
- <20240503001445.GR2118490@ZenIV> <202405021736.574A688@keescook>
- <20240503-inventar-braut-c82e15e56a32@brauner>
- <20240503103614.GF30852@noisy.programming.kicks-ass.net>
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com
+ [209.85.222.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB555112E4E;
+ Tue, 30 Apr 2024 18:49:53 +0000 (UTC)
+Received: by mail-ua1-f48.google.com with SMTP id
+ a1e0cc1a2514c-7ed38f80242so1939524241.2; 
+ Tue, 30 Apr 2024 11:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1714502992; x=1715107792; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ovRxnaBd6FTDXqV2H7WIeHH2Iv92ouqScbx2FXXHbgo=;
+ b=c9oNAuFFGWgtB8PviX8vjvs7i64xGDXWWi8RmMYzHfWllZ/xNIvBHQcYz7gIkg2LwB
+ C7Kfl3JWRBFGq0sSjO311qcwB+mxdu0U4B6bmByUgXkEKpBd69/VGmGpN3TLkULN2ig/
+ XJ7T4TjFlMptivSyrOW9psWJDuQMANF33ysCjkHxxihshmqG9J2/Fcr/blPmgQeAld7t
+ lkN3MSNaUUvxT4vHEBr6t5OQ0Zhi68x4VtkHaIrE3qZ9SzVGjmtq7FAtK5E7c4wf7dpV
+ Z7OHH1l1PEfv7L4HGeVdfR4MXoRulwZ9awLd+vd46OmedytH6rV3qrHjhq3soZe0wRN/
+ KreA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714502992; x=1715107792;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ovRxnaBd6FTDXqV2H7WIeHH2Iv92ouqScbx2FXXHbgo=;
+ b=b7SF9eyj2LCpMyaqVO5hTZvJmZYBtwUfeDzVfrazwFGzSqc8nSKQ5A5yHmN+wVWek7
+ QCsP6n0SUK7kgUG7wJpDFIpdPKdt7NrS3a1IfiMsxEJPv6XAO564nIRpgiWmq6gLIuU4
+ xQGyPa+Iw1QAE7sPp2viLuhKsqTUkJbZ/mybCPeBskLOuIu4GcJW9isZQ/8aVA8ok6vA
+ 4p7Yo21QKsW+nttGeTodBfKxHyLXpJMKoLIrxbS2C2pEQsyxkHz6VhIoc6yXj91gFJh2
+ 0iGGqc3ah1ppwEQwSnhC3bCOo145+a6xi5RfhlHyrHtizYPHrK2XiZjXlflIvgWV//P5
+ ZBig==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWPlKLAVg1tvDquJg5AnfLg2+cbuZFGXwS8yYqSWpZXuSL76KaPluY0c9O/BjNoscF6OptjPhU77UaBNuaqHC2iKR2D0d2IuP8FYOYD4feOc2/SdwUqk+kvA67DBIlndxnlr0Yi8oNdEzzxJKEVoZ3quDpDDU8JnQ+AVEEkCRPTwVcWCJO9J3nwgtQdlh4UePGqu5PKvTEy+PX0bLxQCQ9z4m/Zn++VBaLWp1MPieMYzYFBeEs=
+X-Gm-Message-State: AOJu0Yy+4DtfsQCP6ha9eD6qtFYFHIm/8OTVge+bLLEUgDHyiFaP2Qut
+ UE0mPjDa7D72MtY05QJ7Eq7KnzbAfJNhew6hSAG7HSrdDGQfOPj2vO8ztUwiyZJiXGQrYTunKT6
+ 2Sihnolj1JOjgsShxp13eWoVmAeg=
+X-Google-Smtp-Source: AGHT+IEYrpal3QoBPRQ++rwUqDaIC9CmdEKHvVPwvAQ+vncPDFl0h7pwu+HmwYOWtzcwQ1PiHyzGG1EvQK6S81Uls4s=
+X-Received: by 2002:a67:eed7:0:b0:47d:8561:99aa with SMTP id
+ o23-20020a67eed7000000b0047d856199aamr661606vsp.4.1714502992443; Tue, 30 Apr
+ 2024 11:49:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240503103614.GF30852@noisy.programming.kicks-ass.net>
+References: <20240429193921.66648-1-jim.cromie@gmail.com>
+ <20240429193921.66648-10-jim.cromie@gmail.com>
+In-Reply-To: <20240429193921.66648-10-jim.cromie@gmail.com>
+From: jim.cromie@gmail.com
+Date: Tue, 30 Apr 2024 12:49:26 -0600
+Message-ID: <CAJfuBxxdfaATOCvZ2giY1Y-KTP+65UarRqwcKsg9tKjyrNtBXw@mail.gmail.com>
+Subject: Re: [PATCH v8 29/35] dyndbg: add __counted_by annotations
+To: jbaron@akamai.com, gregkh@linuxfoundation.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 03 May 2024 12:38:27 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,37 +82,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 03, 2024 at 12:36:14PM +0200, Peter Zijlstra wrote:
-> On Fri, May 03, 2024 at 11:37:25AM +0200, Christian Brauner wrote:
-> > On Thu, May 02, 2024 at 05:41:23PM -0700, Kees Cook wrote:
-> > > On Fri, May 03, 2024 at 01:14:45AM +0100, Al Viro wrote:
-> > > > On Thu, May 02, 2024 at 05:10:18PM -0700, Kees Cook wrote:
-> > > > 
-> > > > > But anyway, there needs to be a general "oops I hit 0"-aware form of
-> > > > > get_file(), and it seems like it should just be get_file() itself...
-> > > > 
-> > > > ... which brings back the question of what's the sane damage mitigation
-> > > > for that.  Adding arseloads of never-exercised failure exits is generally
-> > > > a bad idea - it's asking for bitrot and making the thing harder to review
-> > > > in future.
-> > > 
-> > > Linus seems to prefer best-effort error recovery to sprinkling BUG()s
-> > > around.  But if that's really the solution, then how about get_file()
-> > > switching to to use inc_not_zero and BUG on 0?
-> > 
-> > Making get_file() return an error is not an option. For all current
-> > callers that's pointless churn for a condition that's not supposed to
-> > happen at all.
-> > 
-> > Additionally, iirc *_inc_not_zero() variants are implemented with
-> > try_cmpxchg() which scales poorly under contention for a condition
-> > that's not supposed to happen.
-> 
-> 	unsigned long old = atomic_long_fetch_inc_relaxed(&f->f_count);
-> 	WARN_ON(!old);
-> 
-> Or somesuch might be an option?
+On Mon, Apr 29, 2024 at 1:39=E2=80=AFPM Jim Cromie <jim.cromie@gmail.com> w=
+rote:
+>
+> Tell the compiler about our vectors (array,length), in 2 places:
+>
 
-Yeah, I'd be fine with that. WARN_ON() (or WARN_ON_ONCE() even?) and
-then people can do their panic_on_warn stuff to get the BUG_ON()
-behavior if they want to.
+these are not flex-arrays,  using counted-by is wrong here.
+
+Ive dropped this commit, series rebases clean wo it.
+
+
+> h: struct _ddebug_info, which keeps refs to the __dyndbg_* ELF/DATA
+> sections, these are all vectors with a length.
+>
