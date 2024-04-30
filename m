@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C98888B6F49
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B90648B6F4A
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:11:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 099CD10FB9B;
-	Tue, 30 Apr 2024 10:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14EAD10FB36;
+	Tue, 30 Apr 2024 10:11:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iaUA4L/J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXQTVwVQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F1A10FB57
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:11:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1288810FB36
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714471892; x=1746007892;
+ t=1714471897; x=1746007897;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NUAzbhCeka5o15NZ0C7/WrvNj/56P0xk2RJEWT1uzOI=;
- b=iaUA4L/Jya6DZWkzMGffapp/hNMyhpmzrOdSFYy63k8/iQH14KAr4yeH
- SCDOsrGBK0DUZYtJNrbr26vLJ9yyWE+sk7vE3Rc0hgwcWJBEU0RyPMymy
- DrTe6yZds+RXuAqcMro8CYrERTmwSVPadm61+Bv7J2ctoNEO8qo64Wzvy
- muo0YJFMGlfy4FZ0NpCgSqdiuRLBrCarNqru/b0ypaosEZN5Ky4xCpHh9
- gx2IkkO+35HICf4rRX4KSrUlg57qURMVP7M05dvolgRsRJ7b1m84XuQ1Q
- qoBIvrPNYwq8axfF0QyUhVFW8emXomMRfGjQLbk1cFSUzDAQ0WoV0iAT7 A==;
-X-CSE-ConnectionGUID: B8Z5Hse4QM6RI/tkdPDnDw==
-X-CSE-MsgGUID: QxTbpTnuQ0mmC9ErorGHqA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="10043869"
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="10043869"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:11:32 -0700
-X-CSE-ConnectionGUID: Poi6toSWTRKaOCad8gWqyQ==
-X-CSE-MsgGUID: 8G7O3X4mRIa0lEKqGcQOPQ==
+ bh=naHN44cXJK1Dwc5KQpdiV3H236n3Jc5PmpVQiHfPn+c=;
+ b=iXQTVwVQnSyyIHZHy8yiYZ88hpBf4m7+0/wC3KaLXyau4IkGSCB2n97M
+ F2bvchOhEknZKPT6mb+iM+JBu5u4CfmA38eM+qiiaUt9+eyGLD9J3VPXj
+ cM8QS1FL+oxNT7KucxZ+nN3uFNm14PjFn02l9rNiTDNwb6mhMdN3oPW2e
+ /OOHbEA3M0u755hOHYYt5c9z+EQ8JIBL+NFlYFO6FeS1acFwH8H5kw4wd
+ /bsbxWW2/UVJeOoHKuuFCtdEAZi8/K8rDEJC2PYstTJMlmrLnscYt9nb+
+ xbn0nDfVRrzrciHV+dbNP2i2vy2zxAU1Pzgh4tRL/Bmehv5Tr65fLXCtW g==;
+X-CSE-ConnectionGUID: 9Idnc9wzQUyAv0yTv2E41A==
+X-CSE-MsgGUID: frC+TWXuRi6QMYBZQ5eqqA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="32673143"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="32673143"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 03:11:37 -0700
+X-CSE-ConnectionGUID: oNKLJu2RSj+oebE/PLbIFg==
+X-CSE-MsgGUID: MVrs9TYbT0CSvJoW8O1X9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26281468"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26511325"
 Received: from vkats-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.33.167])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:11:30 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 03:11:35 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, jouni.hogander@intel.com,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 16/19] drm/i915: pass dev_priv explicitly to ALPM_CTL
-Date: Tue, 30 Apr 2024 13:10:10 +0300
-Message-Id: <96da9be36dc93fa9a7c329f25ff963e4998998c1.1714471597.git.jani.nikula@intel.com>
+Subject: [PATCH 17/19] drm/i915: pass dev_priv explicitly to ALPM_CTL2
+Date: Tue, 30 Apr 2024 13:10:11 +0300
+Message-Id: <09acf2751cfd2f524e6ba97c3ac285495eae5c86.1714471597.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1714471597.git.jani.nikula@intel.com>
 References: <cover.1714471597.git.jani.nikula@intel.com>
@@ -71,49 +71,26 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the ALPM_CTL register macro.
+explicitly to the ALPM_CTL2 register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c      | 4 ++--
  drivers/gpu/drm/i915/display/intel_psr_regs.h | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 37b85b721ddf..fad24b1e5ae2 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1812,7 +1812,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
- 
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(psr->alpm_parameters.check_entry_lines);
- 
--	intel_de_write(dev_priv, ALPM_CTL(cpu_transcoder), alpm_ctl);
-+	intel_de_write(dev_priv, ALPM_CTL(dev_priv, cpu_transcoder), alpm_ctl);
- }
- 
- static void intel_psr_enable_source(struct intel_dp *intel_dp,
-@@ -2112,7 +2112,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 
- 	/* Panel Replay on eDP is always using ALPM aux less. */
- 	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
--		intel_de_rmw(dev_priv, ALPM_CTL(cpu_transcoder),
-+		intel_de_rmw(dev_priv, ALPM_CTL(dev_priv, cpu_transcoder),
- 			     ALPM_CTL_ALPM_ENABLE |
- 			     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 4ccbb651016f..4d950b22d4f1 100644
+index 4d950b22d4f1..05dc1c1d4ac2 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -297,7 +297,7 @@
- 						  _SEL_FETCH_PLANE_BASE_1_A)
+@@ -321,7 +321,7 @@
+ #define  ALPM_CTL_AUX_LESS_WAKE_TIME(val)		REG_FIELD_PREP(ALPM_CTL_AUX_LESS_WAKE_TIME_MASK, val)
  
- #define _ALPM_CTL_A	0x60950
--#define ALPM_CTL(tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL_A)
-+#define ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL_A)
- #define  ALPM_CTL_ALPM_ENABLE				REG_BIT(31)
- #define  ALPM_CTL_ALPM_AUX_LESS_ENABLE			REG_BIT(30)
- #define  ALPM_CTL_LOBF_ENABLE				REG_BIT(29)
+ #define _ALPM_CTL2_A	0x60954
+-#define ALPM_CTL2(tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL2_A)
++#define ALPM_CTL2(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL2_A)
+ #define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK		REG_GENMASK(28, 24)
+ #define  ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(val)		REG_FIELD_PREP(ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK, val)
+ #define  ALPM_CTL2_AUX_LESS_WAKE_TIME_EXTENSION_MASK		REG_GENMASK(19, 16)
 -- 
 2.39.2
 
