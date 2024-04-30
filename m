@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37978B6B61
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 09:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB05C8B6B5B
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 09:21:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE04C10E959;
-	Tue, 30 Apr 2024 07:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3CD210E871;
+	Tue, 30 Apr 2024 07:21:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2bZFbd2";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1A2310E959;
- Tue, 30 Apr 2024 07:26:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5904672358121343647=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AAA110E959
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 07:21:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714461691; x=1745997691;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9lIMCT9y6oqQBMv9IURziDz7CJYq+wSzXtSZAB+9RsE=;
+ b=m2bZFbd2XfmKtcRBhtoJzNxakGa3AMt9tjqiApvXyNuJJnYv2ZttECNg
+ zlysl9ZNv/ywkVs6iO3a1NpkSDBdcAsEVvJByR3beYDdi5RaaV5ntpDEd
+ owFXZk81SWiGtc2FCZ95FqONEb3vP6dZ1ZXVhmPEWNqyCn4taOo7Ikr5p
+ yYf35DCex+XfU0VXTd4cxmCI0fJ1uOZyb0L2DztUf/BQtuPdI2cmUWOkM
+ 6wmAPEoH7uZ+YG8TAPKph6sBt0Kb5LhM3BzyocEwrBhwC7O6eRxBWoNvj
+ x79xqchsHCYCtbqiA20TONDnb0UerRrS0J+L4XraiUt2A6UUrqi/Yf9c9 Q==;
+X-CSE-ConnectionGUID: kR4z5Z/VRmKVPYs0o5Tz+g==
+X-CSE-MsgGUID: uQV4Zb0uQyKGjOGyryE24Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="35539535"
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="35539535"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 00:21:31 -0700
+X-CSE-ConnectionGUID: L+zp2qbQQaWqtd0gbE1hIA==
+X-CSE-MsgGUID: 8qZC7BruSw+cJfWz42feQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26467208"
+Received: from unknown (HELO gyu3-linux.itwn.intel.com) ([10.225.64.210])
+ by fmviesa006.fm.intel.com with ESMTP; 30 Apr 2024 00:21:26 -0700
+From: gareth.yu@intel.com
+To: intel-gfx@lists.freedesktop.org
+Cc: gareth.yu@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915/display: Fixed the main link lost in MST
+Date: Tue, 30 Apr 2024 15:31:12 +0800
+Message-Id: <20240430073112.10586-1-gareth.yu@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240422063300.1459712-1-gareth.yu@intel.com>
+References: <20240422063300.1459712-1-gareth.yu@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Fixes_in_hdcp_remote_capabi?=
- =?utf-8?q?lity?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Apr 2024 07:26:15 -0000
-Message-ID: <171446197585.1778343.7106119205181440008@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240430064030.887080-1-suraj.kandpal@intel.com>
-In-Reply-To: <20240430064030.887080-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,178 +66,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5904672358121343647==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Gareth Yu <gareth.yu@intel.com>
 
-== Series Details ==
+Re-train the main link for the main link lost in MST. The previous
+version doesn't cover MST mode.
 
-Series: Fixes in hdcp remote capability
-URL   : https://patchwork.freedesktop.org/series/133047/
-State : success
+v5: Move link status check to the location which covers MST mode
+v6: Correct Tejas' email address in cc
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10902
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Gareth Yu <gareth.yu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-CI Bug Log - changes from CI_DRM_14678 -> Patchwork_133047v1
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index e05e25cd4a94..8043740b4233 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5891,16 +5891,6 @@ intel_dp_detect(struct drm_connector *connector,
+ 
+ 	intel_dp_print_rates(intel_dp);
+ 
+-	if (intel_dp->is_mst) {
+-		/*
+-		 * If we are in MST mode then this connector
+-		 * won't appear connected or have anything
+-		 * with EDID on it
+-		 */
+-		status = connector_status_disconnected;
+-		goto out;
+-	}
+-
+ 	/*
+ 	 * Some external monitors do not signal loss of link synchronization
+ 	 * with an IRQ_HPD, so force a link status check.
+@@ -5911,6 +5901,16 @@ intel_dp_detect(struct drm_connector *connector,
+ 			return ret;
+ 	}
+ 
++	if (intel_dp->is_mst) {
++		/*
++		 * If we are in MST mode then this connector
++		 * won't appear connected or have anything
++		 * with EDID on it
++		 */
++		status = connector_status_disconnected;
++		goto out;
++	}
++
+ 	/*
+ 	 * Clearing NACK and defer counts to get their exact values
+ 	 * while reading EDID which are required by Compliance tests
+-- 
+2.25.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/index.html
-
-Participating hosts (39 -> 38)
-------------------------------
-
-  Additional (2): fi-kbl-8809g fi-elk-e7500 
-  Missing    (3): bat-mtlp-9 fi-snb-2520m fi-bsw-n3050 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_133047v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] +30 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-elk-e7500:       NOTRUN -> [SKIP][4] +24 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#9500]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14678/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14678 -> Patchwork_133047v1
-
-  CI-20190529: 20190529
-  CI_DRM_14678: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_133047v1: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/index.html
-
---===============5904672358121343647==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixes in hdcp remote capability</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133047/">https://patchwork.freedesktop.org/series/133047/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14678 -&gt; Patchwork_133047v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Additional (2): fi-kbl-8809g fi-elk-e7500 <br />
-  Missing    (3): bat-mtlp-9 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_133047v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14678/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133047v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14678 -&gt; Patchwork_133047v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14678: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7826: ce6ce0f60dd1a6c0df93a01ad71a31964158a2cf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_133047v1: 429c710ab5eee230e239c85040716ed068fff345 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5904672358121343647==--
