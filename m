@@ -2,57 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB328B7EF2
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 19:40:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 263BA8B7F3A
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 19:49:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29E5C112D9C;
-	Tue, 30 Apr 2024 17:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A229112DC7;
+	Tue, 30 Apr 2024 17:49:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="aTRVaflF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iAhHUZiw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2A846112D9F;
- Tue, 30 Apr 2024 17:39:56 +0000 (UTC)
-Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.174.176])
- by linux.microsoft.com (Postfix) with ESMTPSA id E1EDA210FBDE;
- Tue, 30 Apr 2024 10:39:55 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E1EDA210FBDE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1714498796;
- bh=LvRO4FEESpLokCYQD2ZuS51ozrqf4H1RJsiJiahJkVU=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aTRVaflFEWIMAqshiWDxArfU5XjQwH0ttqTTe5Eks67jfIs6N/s/t3VJRr53Vd5kP
- t2u2g1lYO0fbYogN/b8O8d+jc4JiLeivVSba5ffd7CCtnB4gXV6Px3pkmqR2bg2n/9
- oFPDohf+feN3GOXoi5OznLJ9+fXnJfhy93dhNsvo=
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
- Helge Deller <deller@gmx.de>,
- linux-fbdev@vger.kernel.org (open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER
- DRIVER), dri-devel@lists.freedesktop.org (open list:FRAMEBUFFER LAYER),
- linux-kernel@vger.kernel.org (open list)
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list),
- intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
- linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
- Easwar Hariharan <eahariha@linux.microsoft.com>
-Subject: [PATCH v1 12/12] fbdev/viafb: Make I2C terminology more inclusive
-Date: Tue, 30 Apr 2024 17:38:11 +0000
-Message-Id: <20240430173812.1423757-13-eahariha@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
-References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 448E510EE7A;
+ Tue, 30 Apr 2024 17:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714499353; x=1746035353;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=h8hFyMojdR/kaI4XiAinNnzmyOIXfzpEZdGC0raj5/Y=;
+ b=iAhHUZiwYX5i5Y9MGICdPwbpYDxkpt0pP4VM0YzbCRhCmTCsU5yXy9SM
+ fif3PtndeFtwyODiq/V7S9mZRzFmLaXUotmIOKrLD/dBtgfltlVe6PRxZ
+ KRUVkUhemsj9kgxUwwFAKLlYVJw1cRWB/trybfX9mBLA6wZrryf5Kx5rF
+ rUR/JexHlpjoWz+DITpMVMrWTcQWmQbO7D4WDX08uoD5m3tge/IAyfrlw
+ Kc6i+BhAUsuX4KV/hNyFCD07Pi+KJCXZ6YuJuapNw2JbK5m5UG+LRb0gX
+ lSeHqgJY64yXaqxqIAzwtThVcZULES0z8d5S4Hmnc+0d6mJo9u2IPM38e w==;
+X-CSE-ConnectionGUID: MQssWeHGTWG1k8cMBlJuzg==
+X-CSE-MsgGUID: LQy7CdqPSZODAbKtlJcwhA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="14017161"
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="14017161"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2024 10:49:12 -0700
+X-CSE-ConnectionGUID: KxcrWHwZSrOuyboHtMQXkw==
+X-CSE-MsgGUID: uMiZGQXnSI+gwio8eGMylA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="49747450"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Apr 2024 10:49:13 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 30 Apr 2024 10:49:11 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 30 Apr 2024 10:49:11 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 30 Apr 2024 10:49:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O75A36EFGWsn+WotJ9yQn2wBCWaAieeih+hKg8GhTwJFlLZfqa2hQ+e26rkAJ87OpZNzwo4ofqKSPf1z/FYn9lX2L42myGkTIZOJ5+CseZJ18ACtvz6kqu4CVbiEc5Snj6R7+tArm5udNsK+5cV9PfciIO8b/2CtiXiFEwMtPPFi0Va6/VrH6WmaJAM6vdtvEAx/KfXwFhAuWk3oNY6gwh/ZT+KCeDM6PE/PXv0YjLgJ2yZqilTNLDYVHDUvuNWrGD+YAIAn0oUmEXc9y5p+FqikDPAf9D7DnZRAxOVj2XtshX+X5TxdsHug3u2DdT50fJplPCiZkylib0wGcLm5zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z4EA2l480GvBcnk3mfJQ/VJRWlu42pSfaSRvaxeAYrQ=;
+ b=CIMER1ukISVloeC3mhU/20o8Et8x95LVqfiSXm0MgZLSe/KEU6D3dqIZWZ1DPQS60ZvwEWnNv4E002hx38NAdQQTQ3Tw2aBxwS/4M30oOjG6ZihOe3VLXHEmEtgNtJQWdXse6dFo2YbTbXf1t79oHR8sYXsf5CrTWeF3IyOqPF8uU+AUYH6QwrDX6BNMd3OPBb3FiUH2Shi6TXQoB+yAVwpJrfO6kSz2SsLY5NhnMCQA60ISEArFQWYlsx2EwwDVvbwUyRImY+FbwhJj8DraFfauKVOaodtwMFaUBUGPSajevg2grr2qipiJZn7uwU27Bo8UTPDdS4Z+I5v8dwIhKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CY8PR11MB6889.namprd11.prod.outlook.com (2603:10b6:930:5e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Tue, 30 Apr
+ 2024 17:49:09 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9365:d8e6:4e8d:8711]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::9365:d8e6:4e8d:8711%6]) with mapi id 15.20.7519.031; Tue, 30 Apr 2024
+ 17:49:09 +0000
+Date: Tue, 30 Apr 2024 12:49:06 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>, "Shekhar
+ Chauhan" <shekhar.chauhan@intel.com>
+Subject: Re: [PATCH v3 19/19] drm/xe/bmg: Enable the display support
+Message-ID: <zt4b4u37gxu6pfwnwu7ia2oiin3uz6u3uciaekrglwemvwlkmi@wkavseqkvhh5>
+References: <20240430172850.1881525-1-radhakrishna.sripada@intel.com>
+ <20240430172850.1881525-20-radhakrishna.sripada@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240430172850.1881525-20-radhakrishna.sripada@intel.com>
+X-ClientProxiedBy: MW4PR04CA0043.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::18) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY8PR11MB6889:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef99205a-75c6-4625-a053-08dc693dd645
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|376005|1800799015;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xSiFrl7ropTJEQH/zfOTG3Tyzgha1PX7U6dwHx7HXcBBPibjWs+NavYahevY?=
+ =?us-ascii?Q?KMZQPDA6H8Cm464dnfctGi7Bg9VuPZMoDe4A2swWNHa21EEwlc6zUv9jz2xe?=
+ =?us-ascii?Q?MvQKvQkeqtdki/fdkHlVTvTCH5c1VZf5EEJM5yrHruGn+bHyP5U0JZfnbZaf?=
+ =?us-ascii?Q?NvRXvSOvMgRTpn/FacUNsHsY9ZH4QcivJL8koLuvV9FZN+rYmxK0sU2GhasW?=
+ =?us-ascii?Q?2/WNbjBOdMeGzX5jca+3pqt1v3AXxnpxlPn//0VH4zPle0ZuzeuFZadJLGfq?=
+ =?us-ascii?Q?1NkPkaLaDXg88wxRXDGpfJbG5KfGOJcyo4QRrAYf+/F4bJXRGqYakN9wzfu3?=
+ =?us-ascii?Q?UeMAse1/YHgv+n4LLcCf6dscMxB70vbWRbGraj80Pyz/R3kHLUkqgMY7YSlt?=
+ =?us-ascii?Q?zVRzgSXi1PPLSXIIJgDyCfk4kspWiWbSwzjtlHfuGnxQw4BuObS13mBiIATZ?=
+ =?us-ascii?Q?evROlSMTtSbnvYhbueoVJmO5GQFkdFEwUrsM6CqQUl3uZdYTg1YFcWQUxEh+?=
+ =?us-ascii?Q?hspeiFjw0sAjRSdLWF/94/CdlwoZvtKzVNucDnW5rZDNT882ouRGYHsIk+dR?=
+ =?us-ascii?Q?Shk7fUHJdn1sfnGG0N0wfMgKCs/SeAUmL1Ss+CCeP5am/iu5ZATANLRRxdlX?=
+ =?us-ascii?Q?I3xi6Pj0E3qlhMLEjU8HmC/m3GzYx3RbdT50JajR6SLhuRDy7DCl/qrRRSU+?=
+ =?us-ascii?Q?aiOyAsdbFH2am7/wrLxOtVc2xixmBbCEDZtBAS6uUW0/5cnAOw3THfAEcyde?=
+ =?us-ascii?Q?HizDizF11JLCv1VegWakdNVQgoXDDUxqNvrRn+GtErxSOu2bmthC8DAF9Ced?=
+ =?us-ascii?Q?7dFDnskFxwvi6EahXK4qR3ivVjRaV/sFaksMhqe1WV8qFgFGLQUQ6TvE+jK2?=
+ =?us-ascii?Q?PZ7Nvq+LBQSMYS1z4ITj5Rmsd+QHP9bq01Ur5DweWdEMGXOf9LWVKEUk1ACI?=
+ =?us-ascii?Q?TEqm3Mffxtyi5PY71i7dZMYyaRjxyfnNWvKmykXr52t3Q2lt65dLGSnnwaAi?=
+ =?us-ascii?Q?bFYzOqSdOeeUUBq0NUp+kfiJAIGPf7I94NW5VcDUM+ex/Yp4fKiPmLbaJReo?=
+ =?us-ascii?Q?+NEQN/nWObcvDrPymCiKpUDlXqHcteH19qm4vTmHAJKQKCEBQXnmiFB736/a?=
+ =?us-ascii?Q?mteyWXUghZwCQn/iq0JEhppKTci+x9WIOntw6gUEE42HXSc7ecfDGQzw4LWn?=
+ =?us-ascii?Q?HK6QXTBouSS/tDSfrDkkeY7aP7rfo4ylyHsNkOhRO8AcBWWHKr3s24Yfn4/t?=
+ =?us-ascii?Q?SG190bEqkxQkzQXujggWKc/u4sZzso7BuhCobmQSyA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bwlKxCYiQ9LrwT8Jx3zjiGKpip+yYeOIxSdWUpbHM9oEEdqkBClx7EN3Uh1g?=
+ =?us-ascii?Q?patmgQMZVVQQvgiOpdPhq9QKlFfECTng2Wrm35t86obvyLXogfldaUQ86XMs?=
+ =?us-ascii?Q?yPujVnB6dRZhPWHN7G/6cpiEH6Zn1KzoscFh2+PES3c43P4jnt8/IMbO5kLL?=
+ =?us-ascii?Q?dYpSPfx1OaI0Si0PMyT63hNrL0KK+8nx6RwopOPtkYCY+/HEfOZO/wz+2ITu?=
+ =?us-ascii?Q?+1sMgBqWBu1JZgQi4OsGxhMk04h5QYfs3hsM9H4XtFYkA5dfZiaIzrkUZqVy?=
+ =?us-ascii?Q?9gFVr8keETMIWg0ClHEN7dh8YdImcIwVBlr0SV+xCxGrL7oVWKvArq5QFBcY?=
+ =?us-ascii?Q?FdQwK7JvdXi48ioIke7KJCGVdFgyo08PTtqp15MP0yTTvsrtXjM6wIFjn/Mb?=
+ =?us-ascii?Q?dHFn8SGM1ILQ0jAQOy72pdIOxX4bDEZv3AMsuEbMiCxYfEJ4ljEcSBfVYmjH?=
+ =?us-ascii?Q?gPBVdWwZS2oAqaOs7sjeI8Cny97HZVyGpcZp0aKWWs5ytlhg1gcZ2zYiUzjC?=
+ =?us-ascii?Q?94Fg6fzxjLNFK5qL3SB0bDIUfE3w9VG1MdyJxwjUcD7hRFFRFsIFfqujQCWm?=
+ =?us-ascii?Q?DSSwtBAQi1rf5XqzW1zO8mkUJFsY+wXrYPzVFbBI6JIgBu6UwzZPnECfFkke?=
+ =?us-ascii?Q?11lN8w2cK2pbIZX22RzMKgYStUQ0WoiXvNB4sA3gHQcYExkZPbcCt8ccWYfb?=
+ =?us-ascii?Q?9qHd1ep9mkhyzo6Vqn7QGMgzzHuvIfh+kQzv2TYnsur8lz0/u5MU2C2OCjvp?=
+ =?us-ascii?Q?tgOeHsIhrIy/ALctiphmYQUs8DQ7bhSwwNggBfgdQOgZ/n0yuAL2n9GQJKLd?=
+ =?us-ascii?Q?LBp0gFQPfvwA+K1Vd4XmGfFxZ/YtDnWh/D6rh2z2grfKtcWI7+/ja+5JKenz?=
+ =?us-ascii?Q?Y4vLjFdtV8YzBK9kQXF6MZIBpMoemi5k+7lQ4rpogPIv+YVseh2fnoyzNttr?=
+ =?us-ascii?Q?ERo5gLd8pB857GBk5PD9HC3fDfMdxiggb3ppTHzsUzDJc7rF3cUECkU6UWJe?=
+ =?us-ascii?Q?pheBehROoZEZ9QGjrCkuZJ1d8A+fpKKRtGmgmWWTamCDiGwhIe5UyZr2kg8t?=
+ =?us-ascii?Q?u5/Pec99VxUsktvRCKAFHvOmgjKxTvSM2k7uhiRJmcdtjoXxokjMHzaX9hDM?=
+ =?us-ascii?Q?Kr4U5a/YQUmrPpRkwhiG5oZBOoe1cXNudGaNacakqIA310VIzE6qOLDG5XMi?=
+ =?us-ascii?Q?lCKWWG3iNgfgjjKO8vBhbkahl9u509+4jARzjmxyJmRqhSdRxWbJR49lVAty?=
+ =?us-ascii?Q?Tlto3zyfC93Fjay9v7apVVpF25EzLGvNO9pmDsd72qz3kskScj8FqcdIovA2?=
+ =?us-ascii?Q?NecoZDOLOsnZHHXBL3TbzT8WFpxFowGY8yN5BP466eQNoB0CSuak1D7eJTku?=
+ =?us-ascii?Q?v9QxpxZye1bxZZMaXAgmINd53CIWEMBGVM+f+dobQ1l2ug1qqWAeselLH3af?=
+ =?us-ascii?Q?C7FK4OIb1ta/+EIH+DDKY1/EgH9gYXdcnvK6l8AsG7wagU1W/ANenSNZ8bTI?=
+ =?us-ascii?Q?o7N+LDTUTj+mnL9E8v75sS0Uj4qW1HaUxRALfhEQPbH9SDc5zbS1AlLY2Sfw?=
+ =?us-ascii?Q?2b7/2ryLUzdFIrfJifTB0LhBxCaYM87zjGS+tAJBAi2gZQuYoLEBu/Jt+pAL?=
+ =?us-ascii?Q?YA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef99205a-75c6-4625-a053-08dc693dd645
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2024 17:49:09.0169 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DmqvfZnCNJr0kbrcAs3G3BoSmfk/uIlEty3dP2G3EoduwJ6ul3MpyQ07CZQrdGLOW1ajy7hJlEIXGJRBa0fR/NGifsfk8QXqxJyfC/reLxc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6889
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,292 +176,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
-with more appropriate terms. Inspired by and following on to Wolfram's
-series to fix drivers/i2c/[1], fix the terminology for users of
-I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
-in the specification.
+On Tue, Apr 30, 2024 at 10:28:50AM GMT, Radhakrishna Sripada wrote:
+>From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>
+>Enable the display support for Battlemage
+>
+>Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+>Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-Compile tested, no functionality changes intended
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+to merge this through drm-intel-next once we confirm it's passing CI
+(and tested on BMG).
 
-[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+Lucas De Marchi
 
-Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
----
- drivers/video/fbdev/via/chip.h    |  8 ++++----
- drivers/video/fbdev/via/dvi.c     | 24 ++++++++++++------------
- drivers/video/fbdev/via/lcd.c     |  6 +++---
- drivers/video/fbdev/via/via_aux.h |  2 +-
- drivers/video/fbdev/via/via_i2c.c | 12 ++++++------
- drivers/video/fbdev/via/vt1636.c  |  6 +++---
- 6 files changed, 29 insertions(+), 29 deletions(-)
-
-diff --git a/drivers/video/fbdev/via/chip.h b/drivers/video/fbdev/via/chip.h
-index f0a19cbcb9e5..1ea6d4ce79e7 100644
---- a/drivers/video/fbdev/via/chip.h
-+++ b/drivers/video/fbdev/via/chip.h
-@@ -69,7 +69,7 @@
- #define     VT1632_TMDS             0x01
- #define     INTEGRATED_TMDS         0x42
- 
--/* Definition TMDS Trasmitter I2C Slave Address */
-+/* Definition TMDS Trasmitter I2C Client Address */
- #define     VT1632_TMDS_I2C_ADDR    0x10
- 
- /**************************************************/
-@@ -88,21 +88,21 @@
- #define     TX_DATA_DDR_MODE        0x04
- #define     TX_DATA_SDR_MODE        0x08
- 
--/* Definition LVDS Trasmitter I2C Slave Address */
-+/* Definition LVDS Trasmitter I2C Client Address */
- #define     VT1631_LVDS_I2C_ADDR    0x70
- #define     VT3271_LVDS_I2C_ADDR    0x80
- #define     VT1636_LVDS_I2C_ADDR    0x80
- 
- struct tmds_chip_information {
- 	int tmds_chip_name;
--	int tmds_chip_slave_addr;
-+	int tmds_chip_client_addr;
- 	int output_interface;
- 	int i2c_port;
- };
- 
- struct lvds_chip_information {
- 	int lvds_chip_name;
--	int lvds_chip_slave_addr;
-+	int lvds_chip_client_addr;
- 	int output_interface;
- 	int i2c_port;
- };
-diff --git a/drivers/video/fbdev/via/dvi.c b/drivers/video/fbdev/via/dvi.c
-index 13147e3066eb..db7db26416c3 100644
---- a/drivers/video/fbdev/via/dvi.c
-+++ b/drivers/video/fbdev/via/dvi.c
-@@ -70,7 +70,7 @@ bool viafb_tmds_trasmitter_identify(void)
- 	/* Check for VT1632: */
- 	viaparinfo->chip_info->tmds_chip_info.tmds_chip_name = VT1632_TMDS;
- 	viaparinfo->chip_info->
--		tmds_chip_info.tmds_chip_slave_addr = VT1632_TMDS_I2C_ADDR;
-+		tmds_chip_info.tmds_chip_client_addr = VT1632_TMDS_I2C_ADDR;
- 	viaparinfo->chip_info->tmds_chip_info.i2c_port = VIA_PORT_31;
- 	if (check_tmds_chip(VT1632_DEVICE_ID_REG, VT1632_DEVICE_ID)) {
- 		/*
-@@ -128,14 +128,14 @@ bool viafb_tmds_trasmitter_identify(void)
- 	viaparinfo->chip_info->
- 		tmds_chip_info.tmds_chip_name = NON_TMDS_TRANSMITTER;
- 	viaparinfo->chip_info->tmds_chip_info.
--		tmds_chip_slave_addr = VT1632_TMDS_I2C_ADDR;
-+		tmds_chip_client_addr = VT1632_TMDS_I2C_ADDR;
- 	return false;
- }
- 
- static void tmds_register_write(int index, u8 data)
- {
- 	viafb_i2c_writebyte(viaparinfo->chip_info->tmds_chip_info.i2c_port,
--			    viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr,
-+			    viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
- 			    index, data);
- }
- 
-@@ -144,7 +144,7 @@ static int tmds_register_read(int index)
- 	u8 data;
- 
- 	viafb_i2c_readbyte(viaparinfo->chip_info->tmds_chip_info.i2c_port,
--			   (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr,
-+			   (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
- 			   (u8) index, &data);
- 	return data;
- }
-@@ -152,7 +152,7 @@ static int tmds_register_read(int index)
- static int tmds_register_read_bytes(int index, u8 *buff, int buff_len)
- {
- 	viafb_i2c_readbytes(viaparinfo->chip_info->tmds_chip_info.i2c_port,
--			    (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr,
-+			    (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
- 			    (u8) index, buff, buff_len);
- 	return 0;
- }
-@@ -256,14 +256,14 @@ static int viafb_dvi_query_EDID(void)
- 
- 	DEBUG_MSG(KERN_INFO "viafb_dvi_query_EDID!!\n");
- 
--	restore = viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr;
--	viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr = 0xA0;
-+	restore = viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr;
-+	viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr = 0xA0;
- 
- 	data0 = (u8) tmds_register_read(0x00);
- 	data1 = (u8) tmds_register_read(0x01);
- 	if ((data0 == 0) && (data1 == 0xFF)) {
- 		viaparinfo->chip_info->
--			tmds_chip_info.tmds_chip_slave_addr = restore;
-+			tmds_chip_info.tmds_chip_client_addr = restore;
- 		return EDID_VERSION_1;	/* Found EDID1 Table */
- 	}
- 
-@@ -280,8 +280,8 @@ static void dvi_get_panel_size_from_DDCv1(
- 
- 	DEBUG_MSG(KERN_INFO "\n dvi_get_panel_size_from_DDCv1 \n");
- 
--	restore = tmds_chip->tmds_chip_slave_addr;
--	tmds_chip->tmds_chip_slave_addr = 0xA0;
-+	restore = tmds_chip->tmds_chip_client_addr;
-+	tmds_chip->tmds_chip_client_addr = 0xA0;
- 	for (i = 0x25; i < 0x6D; i++) {
- 		switch (i) {
- 		case 0x36:
-@@ -306,7 +306,7 @@ static void dvi_get_panel_size_from_DDCv1(
- 
- 	DEBUG_MSG(KERN_INFO "DVI max pixelclock = %d\n",
- 		tmds_setting->max_pixel_clock);
--	tmds_chip->tmds_chip_slave_addr = restore;
-+	tmds_chip->tmds_chip_client_addr = restore;
- }
- 
- /* If Disable DVI, turn off pad */
-@@ -427,7 +427,7 @@ void viafb_dvi_enable(void)
- 				viafb_i2c_writebyte(viaparinfo->chip_info->
- 					tmds_chip_info.i2c_port,
- 					viaparinfo->chip_info->
--					tmds_chip_info.tmds_chip_slave_addr,
-+					tmds_chip_info.tmds_chip_client_addr,
- 					0x08, data);
- 			}
- 		}
-diff --git a/drivers/video/fbdev/via/lcd.c b/drivers/video/fbdev/via/lcd.c
-index beec5c8d4d08..9a6e4ac9e551 100644
---- a/drivers/video/fbdev/via/lcd.c
-+++ b/drivers/video/fbdev/via/lcd.c
-@@ -147,7 +147,7 @@ bool viafb_lvds_trasmitter_identify(void)
- 		return true;
- 	/* Check for VT1631: */
- 	viaparinfo->chip_info->lvds_chip_info.lvds_chip_name = VT1631_LVDS;
--	viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr =
-+	viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr =
- 		VT1631_LVDS_I2C_ADDR;
- 
- 	if (check_lvds_chip(VT1631_DEVICE_ID_REG, VT1631_DEVICE_ID)) {
-@@ -161,7 +161,7 @@ bool viafb_lvds_trasmitter_identify(void)
- 
- 	viaparinfo->chip_info->lvds_chip_info.lvds_chip_name =
- 		NON_LVDS_TRANSMITTER;
--	viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr =
-+	viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr =
- 		VT1631_LVDS_I2C_ADDR;
- 	return false;
- }
-@@ -327,7 +327,7 @@ static int lvds_register_read(int index)
- 	u8 data;
- 
- 	viafb_i2c_readbyte(VIA_PORT_2C,
--			(u8) viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr,
-+			(u8) viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr,
- 			(u8) index, &data);
- 	return data;
- }
-diff --git a/drivers/video/fbdev/via/via_aux.h b/drivers/video/fbdev/via/via_aux.h
-index 0933bbf20e58..e2b617b1e6fd 100644
---- a/drivers/video/fbdev/via/via_aux.h
-+++ b/drivers/video/fbdev/via/via_aux.h
-@@ -24,7 +24,7 @@ struct via_aux_drv {
- 	struct list_head chain;		/* chain to support multiple drivers */
- 
- 	struct via_aux_bus *bus;	/* the I2C bus used */
--	u8 addr;			/* the I2C slave address */
-+	u8 addr;			/* the I2C client address */
- 
- 	const char *name;	/* human readable name of the driver */
- 	void *data;		/* private data of this driver */
-diff --git a/drivers/video/fbdev/via/via_i2c.c b/drivers/video/fbdev/via/via_i2c.c
-index 582502810575..907c739475d0 100644
---- a/drivers/video/fbdev/via/via_i2c.c
-+++ b/drivers/video/fbdev/via/via_i2c.c
-@@ -104,7 +104,7 @@ static void via_i2c_setsda(void *data, int state)
- 	spin_unlock_irqrestore(&i2c_vdev->reg_lock, flags);
- }
- 
--int viafb_i2c_readbyte(u8 adap, u8 slave_addr, u8 index, u8 *pdata)
-+int viafb_i2c_readbyte(u8 adap, u8 client_addr, u8 index, u8 *pdata)
- {
- 	int ret;
- 	u8 mm1[] = {0x00};
-@@ -115,7 +115,7 @@ int viafb_i2c_readbyte(u8 adap, u8 slave_addr, u8 index, u8 *pdata)
- 	*pdata = 0;
- 	msgs[0].flags = 0;
- 	msgs[1].flags = I2C_M_RD;
--	msgs[0].addr = msgs[1].addr = slave_addr / 2;
-+	msgs[0].addr = msgs[1].addr = client_addr / 2;
- 	mm1[0] = index;
- 	msgs[0].len = 1; msgs[1].len = 1;
- 	msgs[0].buf = mm1; msgs[1].buf = pdata;
-@@ -128,7 +128,7 @@ int viafb_i2c_readbyte(u8 adap, u8 slave_addr, u8 index, u8 *pdata)
- 	return ret;
- }
- 
--int viafb_i2c_writebyte(u8 adap, u8 slave_addr, u8 index, u8 data)
-+int viafb_i2c_writebyte(u8 adap, u8 client_addr, u8 index, u8 data)
- {
- 	int ret;
- 	u8 msg[2] = { index, data };
-@@ -137,7 +137,7 @@ int viafb_i2c_writebyte(u8 adap, u8 slave_addr, u8 index, u8 data)
- 	if (!via_i2c_par[adap].is_active)
- 		return -ENODEV;
- 	msgs.flags = 0;
--	msgs.addr = slave_addr / 2;
-+	msgs.addr = client_addr / 2;
- 	msgs.len = 2;
- 	msgs.buf = msg;
- 	ret = i2c_transfer(&via_i2c_par[adap].adapter, &msgs, 1);
-@@ -149,7 +149,7 @@ int viafb_i2c_writebyte(u8 adap, u8 slave_addr, u8 index, u8 data)
- 	return ret;
- }
- 
--int viafb_i2c_readbytes(u8 adap, u8 slave_addr, u8 index, u8 *buff, int buff_len)
-+int viafb_i2c_readbytes(u8 adap, u8 client_addr, u8 index, u8 *buff, int buff_len)
- {
- 	int ret;
- 	u8 mm1[] = {0x00};
-@@ -159,7 +159,7 @@ int viafb_i2c_readbytes(u8 adap, u8 slave_addr, u8 index, u8 *buff, int buff_len
- 		return -ENODEV;
- 	msgs[0].flags = 0;
- 	msgs[1].flags = I2C_M_RD;
--	msgs[0].addr = msgs[1].addr = slave_addr / 2;
-+	msgs[0].addr = msgs[1].addr = client_addr / 2;
- 	mm1[0] = index;
- 	msgs[0].len = 1; msgs[1].len = buff_len;
- 	msgs[0].buf = mm1; msgs[1].buf = buff;
-diff --git a/drivers/video/fbdev/via/vt1636.c b/drivers/video/fbdev/via/vt1636.c
-index 8d8cfdb05618..614e5c29a449 100644
---- a/drivers/video/fbdev/via/vt1636.c
-+++ b/drivers/video/fbdev/via/vt1636.c
-@@ -44,7 +44,7 @@ u8 viafb_gpio_i2c_read_lvds(struct lvds_setting_information
- 	u8 data;
- 
- 	viafb_i2c_readbyte(plvds_chip_info->i2c_port,
--			   plvds_chip_info->lvds_chip_slave_addr, index, &data);
-+			   plvds_chip_info->lvds_chip_client_addr, index, &data);
- 	return data;
- }
- 
-@@ -60,7 +60,7 @@ void viafb_gpio_i2c_write_mask_lvds(struct lvds_setting_information
- 	data = (data & (~io_data.Mask)) | io_data.Data;
- 
- 	viafb_i2c_writebyte(plvds_chip_info->i2c_port,
--			    plvds_chip_info->lvds_chip_slave_addr, index, data);
-+			    plvds_chip_info->lvds_chip_client_addr, index, data);
- }
- 
- void viafb_init_lvds_vt1636(struct lvds_setting_information
-@@ -113,7 +113,7 @@ bool viafb_lvds_identify_vt1636(u8 i2c_adapter)
- 	DEBUG_MSG(KERN_INFO "viafb_lvds_identify_vt1636.\n");
- 
- 	/* Sense VT1636 LVDS Transmiter */
--	viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr =
-+	viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr =
- 		VT1636_LVDS_I2C_ADDR;
- 
- 	/* Check vendor ID first: */
--- 
-2.34.1
-
+>---
+> drivers/gpu/drm/xe/xe_pci.c | 1 +
+> 1 file changed, 1 insertion(+)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>index a0cf5dd803c2..b01b1d30976a 100644
+>--- a/drivers/gpu/drm/xe/xe_pci.c
+>+++ b/drivers/gpu/drm/xe/xe_pci.c
+>@@ -342,6 +342,7 @@ static const struct xe_device_desc lnl_desc = {
+> static const struct xe_device_desc bmg_desc __maybe_unused = {
+> 	DGFX_FEATURES,
+> 	PLATFORM(XE_BATTLEMAGE),
+>+	.has_display = true,
+> 	.require_force_probe = true,
+> };
+>
+>-- 
+>2.34.1
+>
