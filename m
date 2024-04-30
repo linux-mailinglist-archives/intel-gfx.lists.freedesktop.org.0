@@ -2,59 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F448B6F4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7198B6F5C
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2024 12:15:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 413FC10FB75;
-	Tue, 30 Apr 2024 10:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4487710FB81;
+	Tue, 30 Apr 2024 10:15:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Px/Ckrc0";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="or7wT6NA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0C7810FB60
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714471906; x=1746007906;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=G/lPQpxq+W7y3z+ra0kn9P04HgkapjQJTLexeCVLeK8=;
- b=Px/Ckrc0wscL5ijYvcFo98kiamojWOK+X5hZ/TngcFtSlysz39hOzDPs
- ttJLX7O6boqCpiPl5hUQpgwzgh0SHeSUOBPqDvRwpQJsi2nO59/yZ6lBj
- DcoJ6KT0Z+w7jPAdXlAFDU6kGh22IGOefiqbjHTMqekSB697j9N80hw8o
- BwRZN4eQB6TSM8fGmfagzxaax5lYu+rYjF8cu+4iA7/cqHDLSNb4h3rrz
- TMuKx/MS4Q6e0aIBTMmjCHiJl7plJgoHRrSjJ/PF7/pUVEVM9fkHKGZaU
- 707e86CpeTBSF6Aw+QhId5E5Ve7QFJcoJdGgKFaRXtJBCwusisBGnq2zW w==;
-X-CSE-ConnectionGUID: Jbu9KLRsQ+OgqS4o5Xm2Gg==
-X-CSE-MsgGUID: yKuVdQxaSiKZIvxrLkRljg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11059"; a="32673180"
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="32673180"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:11:46 -0700
-X-CSE-ConnectionGUID: MZasXfepQ7WYAAhUFiw84g==
-X-CSE-MsgGUID: JnOgOjsrQUuvJBBgEfJR3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,241,1708416000"; d="scan'208";a="26511337"
-Received: from vkats-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.33.167])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 03:11:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, jouni.hogander@intel.com,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 19/19] drm/i915: pass dev_priv explicitly to PORT_ALPM_LFPS_CTL
-Date: Tue, 30 Apr 2024 13:10:13 +0300
-Message-Id: <f8a3bbade94258852b8129c5f5918fb06ceab54b.1714471597.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1714471597.git.jani.nikula@intel.com>
-References: <cover.1714471597.git.jani.nikula@intel.com>
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
+ [209.85.167.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30D3610FB93
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 10:15:12 +0000 (UTC)
+Received: by mail-lf1-f45.google.com with SMTP id
+ 2adb3069b0e04-51ca95db667so5120750e87.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2024 03:15:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1714472110; x=1715076910; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=dIx1dFfAcpeKO8TErHh7vGY1lorqPiA5UlnTCSzH2HY=;
+ b=or7wT6NAHsECDftCtwLq4AdEwaZoYx1UYfN1z/F86slRB/4Qw/j18o/ezQKkTJAhaW
+ vQKK4bFXKKKzS3bMwqnhCxRdUvR6aAGm6xgq1K1gVGHIr3oXOFPyYST+BEmQ80fZtTOC
+ 25epPaa447S44OjikOGhpWnJ38w/l9hWseSVyoWXoX3Y45B0iwraIAgdr4A/D3NzxkcF
+ PNEVz6orccuEmpNHjXJXcjPHh50PVrH+PsRiNsiY+DTVOyoE5GGOqrVzZ9Ds1vVCJ4S9
+ 8dRwmEt29Cp1Sf2+pjrRFbtNxcmFgSwZRwDD9TeDHfuRbPsrDcsfDNQGwTkAVviEt5li
+ 1tMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714472110; x=1715076910;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=dIx1dFfAcpeKO8TErHh7vGY1lorqPiA5UlnTCSzH2HY=;
+ b=NTZb9l610m3yQkCj0rQRIS4I6HB+fbvUGlPzPjYPSsbju49E1Ac4brqckLuBbmdTmq
+ B9twPuM61c62OEWOS/5PqAFHp0sOs18Ls4t08o90yoiuxH2xq7aUoa350/cJCcspYrB4
+ CjN1dUsALIP9sNgKYD/qfp7k3ZmSB+YN8UARX0IpY2p5SXsWxb8fIxpp6z0edvh5y+ah
+ 01aP40H7j8NXrYuoElGO8tPzt6qJLe1gdYRGnivNmfExSRoRG4wnjD93+XUje0/5NTl0
+ ptusRMxBxxI1VnNzO90BB9I2Wd42KR6tf9P3MFArFDirxYNSohgXoxZ+Y17knILJO2hv
+ 9Lgw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXlmp9N3hj62Yb5fIIk9lLWecqskpydzJfz0SHmxPZqiJDX2kTdLsEm6G5YTvcMq5oh6904FRvHO8/Xvmm7tys8HtnZan+/AOrXDUUQWBJ1
+X-Gm-Message-State: AOJu0YzdHN+nDeL41jRBTdPw+MvwRSsKdBLA79msrn3b5xn/2Wc26SO5
+ 3n5fumJ6EcgZITNRShZEFX0U42VCcJrVmQrx5MMZNKmdEHBcDidTP1avUMMhluQ=
+X-Google-Smtp-Source: AGHT+IEeZGVbkW3UvagFGYDQZ5bMmN4VdL24N9F8cduZig7xQbulffwe9LBCfuUp6MPaqlZqlp0YPw==
+X-Received: by 2002:ac2:4945:0:b0:516:cf23:588 with SMTP id
+ o5-20020ac24945000000b00516cf230588mr10156881lfi.27.1714472109993; 
+ Tue, 30 Apr 2024 03:15:09 -0700 (PDT)
+Received: from eriador.lumag.spb.ru
+ (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+ by smtp.gmail.com with ESMTPSA id
+ g29-20020a0565123b9d00b0051d807addd7sm884156lfv.60.2024.04.30.03.15.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Apr 2024 03:15:09 -0700 (PDT)
+Date: Tue, 30 Apr 2024 13:15:08 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, 
+ david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, 
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 5/5] drm/ci: update xfails for the new testlist
+Message-ID: <hon4klkoaouuxhtvm3qb3qstsrdcibihksyrmvxkt3taijl6wb@ubitr6namryw>
+References: <20240430091121.508099-1-vignesh.raman@collabora.com>
+ <20240430091121.508099-6-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240430091121.508099-6-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +92,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PORT_ALPM_LFPS_CTL register macro.
+On Tue, Apr 30, 2024 at 02:41:21PM +0530, Vignesh Raman wrote:
+> Now the testlist is used from IGT build, so update
+> xfails with the new testlist.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+>  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt | 47 +++++++----
+>  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  8 +-
+>  .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt | 15 ++++
+>  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt | 22 ++++-
+>  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  8 ++
+>  drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |  8 ++
+>  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  | 45 +++++-----
+>  drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |  5 ++
+>  drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  | 12 +++
+>  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  | 26 +++++-
+>  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |  6 ++
+>  drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |  8 ++
+>  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  | 28 +++++--
+>  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  | 12 +++
+>  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  | 39 ++++-----
+>  drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt | 10 ++-
+>  drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  | 21 +++++
+>  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  | 75 +++++++++--------
+>  drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  | 13 +++
+>  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  | 46 +++++------
+>  drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |  8 ++
+>  .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 47 +++--------
+>  .../drm/ci/xfails/mediatek-mt8183-fails.txt   | 17 +---
+>  .../drm/ci/xfails/mediatek-mt8183-flakes.txt  |  5 ++
+>  .../gpu/drm/ci/xfails/meson-g12b-fails.txt    | 20 +----
+>  .../gpu/drm/ci/xfails/meson-g12b-flakes.txt   |  5 ++
+>  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   | 26 ++----
+>  .../gpu/drm/ci/xfails/msm-apq8016-flakes.txt  |  5 ++
+>  .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  5 +-
+>  .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |  5 ++
+>  .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   | 67 +++++++++++++++
+>  .../msm-sc7180-trogdor-kingoftown-fails.txt   | 34 ++++----
+>  .../msm-sc7180-trogdor-kingoftown-flakes.txt  |  5 ++
+>  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 34 ++++----
+>  ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |  5 ++
+>  .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    | 75 ++++-------------
+>  .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   | 26 ++----
+>  .../drm/ci/xfails/rockchip-rk3288-fails.txt   | 54 ------------
+>  .../drm/ci/xfails/rockchip-rk3399-fails.txt   | 80 ++----------------
+>  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  7 --
+>  .../drm/ci/xfails/virtio_gpu-none-fails.txt   | 82 +++++++++++++------
+>  .../drm/ci/xfails/virtio_gpu-none-skips.txt   |  3 +
+>  42 files changed, 574 insertions(+), 495 deletions(-)
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8183-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/meson-g12b-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+>  delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+>  delete mode 100644 drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+> 
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c      | 3 ++-
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+[skipped]
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index e88f326b78d6..664ffda6a86d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1798,7 +1798,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
- 			       PORT_ALPM_CTL_SILENCE_PERIOD(
- 				       psr->alpm_parameters.silence_period_sym_clocks));
- 
--		intel_de_write(dev_priv, PORT_ALPM_LFPS_CTL(cpu_transcoder),
-+		intel_de_write(dev_priv,
-+			       PORT_ALPM_LFPS_CTL(dev_priv, cpu_transcoder),
- 			       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
- 			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
- 				       psr->alpm_parameters.lfps_half_cycle_num_of_syms) |
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 5e52dddacf91..08c6d488e89d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -345,7 +345,7 @@
- #define  PORT_ALPM_CTL_SILENCE_PERIOD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_SILENCE_PERIOD_MASK, val)
- 
- #define _PORT_ALPM_LFPS_CTL_A					0x16fa30
--#define PORT_ALPM_LFPS_CTL(tran)				_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_LFPS_CTL_A)
-+#define PORT_ALPM_LFPS_CTL(dev_priv, tran)				_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_LFPS_CTL_A)
- #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> index 44a5c62dedad..96e9faf0e607 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> @@ -1,19 +1,9 @@
+> +core_setmaster_vs_auth,Fail
+> +device_reset,Fail
+> +dumb_buffer,Fail
+
+This doesn't look correct, core tests should be passing.
+
+>  kms_3d,Fail
+> -kms_addfb_basic@addfb25-bad-modifier,Fail
+> -kms_cursor_legacy@all-pipes-forked-bo,Fail
+> -kms_cursor_legacy@all-pipes-forked-move,Fail
+> -kms_cursor_legacy@all-pipes-single-bo,Fail
+> -kms_cursor_legacy@all-pipes-single-move,Fail
+> -kms_cursor_legacy@all-pipes-torture-bo,Fail
+> -kms_cursor_legacy@all-pipes-torture-move,Fail
+> -kms_cursor_legacy@pipe-A-forked-bo,Fail
+> -kms_cursor_legacy@pipe-A-forked-move,Fail
+> -kms_cursor_legacy@pipe-A-single-bo,Fail
+> -kms_cursor_legacy@pipe-A-single-move,Fail
+> -kms_cursor_legacy@pipe-A-torture-bo,Fail
+> -kms_cursor_legacy@pipe-A-torture-move,Fail
+> -kms_force_connector_basic@force-edid,Fail
+> -kms_hdmi_inject@inject-4k,Fail
+> -kms_selftest@drm_format,Timeout
+> -kms_selftest@drm_format_helper,Timeout
+
+Fine, kms_cursor_legacy tests were migrated to -flakes. But what
+happened with the rest of the failures?
+
+> -msm_mapping@ring,Fail
+> +kms_force_connector_basic,Fail
+> +kms_lease,Fail
+> +msm_mapping,Fail
+> +msm_submit,Fail
+> +tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+> new file mode 100644
+> index 000000000000..3cc361b3d3b3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-flakes.txt
+> @@ -0,0 +1,5 @@
+> +# Board Name: apq8016-sbc-usb-host
+> +# Bug Report: TBD
+> +# IGT Version: 1.28-gd2af13d9f
+> +# Linux Version: 6.9.0-rc4
+> +kms_cursor_legacy
+
+It looks like one of the scripts has lost subtest granularity. It should
+be fixed before the patchset can be merged.
+
 -- 
-2.39.2
-
+With best wishes
+Dmitry
