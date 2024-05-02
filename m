@@ -2,70 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873198BACA0
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DAE48BAC9F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B9E10F228;
-	Fri,  3 May 2024 12:38:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E90C310F099;
+	Fri,  3 May 2024 12:38:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c9oNAuFF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZZj44Cwl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com
- [209.85.222.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB555112E4E;
- Tue, 30 Apr 2024 18:49:53 +0000 (UTC)
-Received: by mail-ua1-f48.google.com with SMTP id
- a1e0cc1a2514c-7ed38f80242so1939524241.2; 
- Tue, 30 Apr 2024 11:49:53 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
+ [209.85.208.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBC6A10E395;
+ Thu,  2 May 2024 10:36:36 +0000 (UTC)
+Received: by mail-lj1-f180.google.com with SMTP id
+ 38308e7fff4ca-2e0b7136f2bso4293121fa.0; 
+ Thu, 02 May 2024 03:36:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1714502992; x=1715107792; darn=lists.freedesktop.org;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1714646195; x=1715250995; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ovRxnaBd6FTDXqV2H7WIeHH2Iv92ouqScbx2FXXHbgo=;
- b=c9oNAuFFGWgtB8PviX8vjvs7i64xGDXWWi8RmMYzHfWllZ/xNIvBHQcYz7gIkg2LwB
- C7Kfl3JWRBFGq0sSjO311qcwB+mxdu0U4B6bmByUgXkEKpBd69/VGmGpN3TLkULN2ig/
- XJ7T4TjFlMptivSyrOW9psWJDuQMANF33ysCjkHxxihshmqG9J2/Fcr/blPmgQeAld7t
- lkN3MSNaUUvxT4vHEBr6t5OQ0Zhi68x4VtkHaIrE3qZ9SzVGjmtq7FAtK5E7c4wf7dpV
- Z7OHH1l1PEfv7L4HGeVdfR4MXoRulwZ9awLd+vd46OmedytH6rV3qrHjhq3soZe0wRN/
- KreA==
+ bh=FT2Vebyh1FWwMJQubPeWb4xwvsvNpVAsZHgyxB9GdA0=;
+ b=ZZj44CwlYX01l7h7GylobKDCQEX5wKQMCbdxYoVzeG0iICWUwEUMW6JUj7oD0kD2Ef
+ E63480w92o78NQdWvlrMEuYUEi9Uzinau8dWCkC72mPpsHf+c4FHwmBpcE/OIyOXmJmf
+ YSJjTWq3YXz6hR1apKgePAP87OZUqc9a3epOXszzspy1MTuWdefU0J0PUPqkfIl5vg4p
+ X87u4ZNPnCchi2ERVmRTEcYDBsEn0cfGLRb56Qi50knAeraog1EQ8U4JWfzBtHEnCeN6
+ jb5ZkDZnDOv+77D32jNoR6UC39Y0GKbTgw0u0gJIOQBmlXZ8HSTQveks2kvJuH77vZt/
+ 81Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714502992; x=1715107792;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1714646195; x=1715250995;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ovRxnaBd6FTDXqV2H7WIeHH2Iv92ouqScbx2FXXHbgo=;
- b=b7SF9eyj2LCpMyaqVO5hTZvJmZYBtwUfeDzVfrazwFGzSqc8nSKQ5A5yHmN+wVWek7
- QCsP6n0SUK7kgUG7wJpDFIpdPKdt7NrS3a1IfiMsxEJPv6XAO564nIRpgiWmq6gLIuU4
- xQGyPa+Iw1QAE7sPp2viLuhKsqTUkJbZ/mybCPeBskLOuIu4GcJW9isZQ/8aVA8ok6vA
- 4p7Yo21QKsW+nttGeTodBfKxHyLXpJMKoLIrxbS2C2pEQsyxkHz6VhIoc6yXj91gFJh2
- 0iGGqc3ah1ppwEQwSnhC3bCOo145+a6xi5RfhlHyrHtizYPHrK2XiZjXlflIvgWV//P5
- ZBig==
+ bh=FT2Vebyh1FWwMJQubPeWb4xwvsvNpVAsZHgyxB9GdA0=;
+ b=W2GIH/uvAIWjl1z2OOTgH/Ujig6l7IpDD/6F4dn0M+caU95Dl0/IRLhs3VE77w7eJh
+ Sj+ETAS1/oaskuM3+wlGjCcGjaUZMEs7vuD8I/bMLcCPRP5urUA2Vhda3JC/K3IR8Hvb
+ cZptbtapi+wnZYLKPlHzVJhd5gTNH/iXYNIgVEMv5b2K0FSzMHLmr1e8pnBEeHD8At2M
+ Ukdtp5KEwzkxX2YpTiBUyFK2f3h/hfF9YXEcvMsuCUuZjVvW88CemDxEo1hPKhG+JQfl
+ zJnLv0Pq8zkND3xRbb7f1G6twWAuZrZbR4zWB5+GWnDcmhYVQqX9N60Hw8c1w7nAe+gz
+ Zu7A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWPlKLAVg1tvDquJg5AnfLg2+cbuZFGXwS8yYqSWpZXuSL76KaPluY0c9O/BjNoscF6OptjPhU77UaBNuaqHC2iKR2D0d2IuP8FYOYD4feOc2/SdwUqk+kvA67DBIlndxnlr0Yi8oNdEzzxJKEVoZ3quDpDDU8JnQ+AVEEkCRPTwVcWCJO9J3nwgtQdlh4UePGqu5PKvTEy+PX0bLxQCQ9z4m/Zn++VBaLWp1MPieMYzYFBeEs=
-X-Gm-Message-State: AOJu0Yy+4DtfsQCP6ha9eD6qtFYFHIm/8OTVge+bLLEUgDHyiFaP2Qut
- UE0mPjDa7D72MtY05QJ7Eq7KnzbAfJNhew6hSAG7HSrdDGQfOPj2vO8ztUwiyZJiXGQrYTunKT6
- 2Sihnolj1JOjgsShxp13eWoVmAeg=
-X-Google-Smtp-Source: AGHT+IEYrpal3QoBPRQ++rwUqDaIC9CmdEKHvVPwvAQ+vncPDFl0h7pwu+HmwYOWtzcwQ1PiHyzGG1EvQK6S81Uls4s=
-X-Received: by 2002:a67:eed7:0:b0:47d:8561:99aa with SMTP id
- o23-20020a67eed7000000b0047d856199aamr661606vsp.4.1714502992443; Tue, 30 Apr
- 2024 11:49:52 -0700 (PDT)
+ AJvYcCU0wWJUznqw64xiHNyTm7UAdehHsHDhmxprQqlN7yFGJRZscu1RSerJNMFI+/ZTOFledHoOgFruMfynJZ7y8VEmL8d8MK3SGFYYanO0PqySjxWoqeydRsLtzI+VuQcPLijHK9Ued0Qpwf65mTRSZ/WN
+X-Gm-Message-State: AOJu0Yzha/RuLmDhzRLW/ziCuD9XgYcTQr/vYWHPAJ3Gp7gKARhuQVpF
+ P3xLj916LubLFY1XWKyc0CC+E6PDTeX1Rod99KZh53deLVJ7ZoW+
+X-Google-Smtp-Source: AGHT+IF6z5Prb/zz+BTozZr6JQYkXzLArcZTkDyBdDQRPe4LSx9aMuoUBBv13IOxRD7Z4PR0uozM+g==
+X-Received: by 2002:a19:ca44:0:b0:513:ec32:aa89 with SMTP id
+ h4-20020a19ca44000000b00513ec32aa89mr2847492lfj.2.1714646194515; 
+ Thu, 02 May 2024 03:36:34 -0700 (PDT)
+Received: from dmitrii-TM1701.. ([2001:8f8:1d3a:4eb3:9dcd:1735:fcaa:e2])
+ by smtp.gmail.com with ESMTPSA id
+ rn24-20020a170906d93800b00a52433f0907sm402630ejb.37.2024.05.02.03.36.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 May 2024 03:36:34 -0700 (PDT)
+From: Dmitrii Bundin <dmitrii.bundin.a@gmail.com>
+To: dmitrii.bundin.a@gmail.com
+Cc: airlied@gmail.com, bp@suse.de, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, gongruiqi1@huawei.com,
+ intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, linux-kernel@vger.kernel.org,
+ michal.wajdeczko@intel.com, rdunlap@infradead.org, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net
+Subject: [PATCH RESEND] drm/i915/guc: Fix UB due to signed int overflow
+Date: Thu,  2 May 2024 13:36:18 +0300
+Message-Id: <20240502103618.129017-1-dmitrii.bundin.a@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
+References: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
 MIME-Version: 1.0
-References: <20240429193921.66648-1-jim.cromie@gmail.com>
- <20240429193921.66648-10-jim.cromie@gmail.com>
-In-Reply-To: <20240429193921.66648-10-jim.cromie@gmail.com>
-From: jim.cromie@gmail.com
-Date: Tue, 30 Apr 2024 12:49:26 -0600
-Message-ID: <CAJfuBxxdfaATOCvZ2giY1Y-KTP+65UarRqwcKsg9tKjyrNtBXw@mail.gmail.com>
-Subject: Re: [PATCH v8 29/35] dyndbg: add __counted_by annotations
-To: jbaron@akamai.com, gregkh@linuxfoundation.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 03 May 2024 12:38:27 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,17 +88,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 29, 2024 at 1:39=E2=80=AFPM Jim Cromie <jim.cromie@gmail.com> w=
-rote:
->
-> Tell the compiler about our vectors (array,length), in 2 places:
->
+Fix compile errors of the form "FIELD_PREP: mask is not constant" caused
+by signed integer constant overflow. Files affected:
 
-these are not flex-arrays,  using counted-by is wrong here.
+drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 
-Ive dropped this commit, series rebases clean wo it.
+Reproducible with gcc 7.5
 
+See https://lore.kernel.org/r/YkwQ6%2BtIH8GQpuct@zn.tnic for the gory
+details as to why it triggers with older gccs only.
 
-> h: struct _ddebug_info, which keeps refs to the __dyndbg_* ELF/DATA
-> sections, these are all vectors with a length.
->
+Signed-off-by: Dmitrii Bundin <dmitrii.bundin.a@gmail.com>
+---
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+index 58012edd4eb0..8814d4cd371c 100644
+--- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
+@@ -29,7 +29,7 @@
+  */
+ 
+ #define GUC_KLV_LEN_MIN				1u
+-#define GUC_KLV_0_KEY				(0xffff << 16)
++#define GUC_KLV_0_KEY				(0xffffU << 16)
+ #define GUC_KLV_0_LEN				(0xffff << 0)
+ #define GUC_KLV_n_VALUE				(0xffffffff << 0)
+ 
+-- 
+2.34.1
+
