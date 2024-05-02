@@ -2,59 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9339B8BA31C
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 00:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E04E88BA331
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 00:33:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18E9C1126E7;
-	Thu,  2 May 2024 22:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86EC310F6AA;
+	Thu,  2 May 2024 22:33:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="NhCrLKdI";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="bTlM6HG1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 90BBF1126F6;
- Thu,  2 May 2024 22:26:38 +0000 (UTC)
-Received: from [100.64.232.195] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id 518C5206B4FD;
- Thu,  2 May 2024 15:26:37 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 518C5206B4FD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1714688797;
- bh=NzMrFwSnELsNTouka86zwY4xBu0HDKLPheXHNRlf/UY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=NhCrLKdI/ZqOMxIi0x/9IcKVE1fu8SJgV6IOu9yOzA4/X9AoPavE5e5S65Ugw3uBC
- sulaSRBperkkDcIDt2jCnwInTZEDOTYmaUAyGGeCvlgfS23LBxyBkoeXTUrIdi6qwD
- 4F+b4DUgYEKEoHW556opdVdEoci1DJoGsON85j90=
-Message-ID: <076e0a0d-ad26-490e-9784-300ed52637ca@linux.microsoft.com>
-Date: Thu, 2 May 2024 15:26:36 -0700
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECFD10F6AA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 May 2024 22:33:44 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-1ecd9dab183so12081185ad.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 May 2024 15:33:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1714689223; x=1715294023;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Alkyi5JqXUdcGMCJmPn2xNXTUHn7MjYy9EVPcBLGUQQ=;
+ b=bTlM6HG1Us0dHeidylhPUimN0RRV8pgph1DmnIOqtT7wzN66taD5q9KDaRUzEtF44d
+ Rh2o+pUB+CFib/T3YEjU+VP+Lgfhwy+AWWqWRhosvdkUnJqVRcpC60KgvgHyKxp4OxoR
+ XYB21zYp0Zfgm6I4KN7l16fQH1ckx1m0owXTc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1714689223; x=1715294023;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Alkyi5JqXUdcGMCJmPn2xNXTUHn7MjYy9EVPcBLGUQQ=;
+ b=Ma6rUW1bqsL76L/1uxDcgnP1tun2PypGpt51jYaUsZPsbSkNWIzJh78Mde0jOQqVWe
+ vcfERyYBEdc38AW8RJTscMp2mRS2UsUv9TW8tUXoLXNi/XG/4YQFEEa0zmb1i+u1STux
+ 1ZHOU30rRXGNMKX8qa4ZvMB/3xhB0MzrxPXW5e5mSEVV6To/ftHZsMOIB034rwyEALKI
+ bTUB0DVv859rGOlHrn6pPvzrufj6HTxPQSDEgZwmzJ+lvlZyPRJ5cWinSaXPU/WT7ssX
+ /IukdI4NiGNal/RMIh85ikqHzBxKBi+uobFspRxloAuPEJtJ+5AxDU4eDehyySaIeBY2
+ qZkQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWLDpGJaxMzYeNbf2RZWnWYEXgu+bS4LmEoNzsfd6B7nb07NCO6zVe7eTPncDqBR+7imm6thUUZIXpqb+UNa/nqEnc3zA0gjF7AcMioybXS
+X-Gm-Message-State: AOJu0YxcMo2kVPu36cYt65bV28KgbZrC0lgE69fDx+7Xf3+ljFAgHupF
+ ACXw/fiSQRqpMwpSYfzRUSCO30gaFuHGlOfEBrL0m32c3vKf4WauuWeR7en/Fw==
+X-Google-Smtp-Source: AGHT+IGAayZiLEBsyLgIJp727/HOhIW8jcf68JHnImgIz5MoqiH36x7xVdhDcqAQUHQ4AOs7ALD8tQ==
+X-Received: by 2002:a17:902:ce81:b0:1e2:7734:63dd with SMTP id
+ f1-20020a170902ce8100b001e2773463ddmr5911220plg.30.1714689223609; 
+ Thu, 02 May 2024 15:33:43 -0700 (PDT)
+Received: from www.outflux.net ([198.0.35.241])
+ by smtp.gmail.com with ESMTPSA id
+ e15-20020a17090301cf00b001ec852124f6sm1859006plh.309.2024.05.02.15.33.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 May 2024 15:33:42 -0700 (PDT)
+From: Kees Cook <keescook@chromium.org>
+To: Christian Brauner <brauner@kernel.org>,
+	Will Deacon <will@kernel.org>
+Cc: Kees Cook <keescook@chromium.org>, Al Viro <viro@zeniv.linux.org.uk>,
+ Jan Kara <jack@suse.cz>, Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Kent Overstreet <kent.overstreet@linux.dev>,
+ Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+Subject: [PATCH 0/5] fs: Do not allow get_file() to resurrect 0 f_count
+Date: Thu,  2 May 2024 15:33:35 -0700
+Message-Id: <20240502222252.work.690-kees@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 12/12] fbdev/viafb: Make I2C terminology more inclusive
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
- Helge Deller <deller@gmx.de>,
- "open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER DRIVER"
- <linux-fbdev@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>
-References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
- <20240430173812.1423757-13-eahariha@linux.microsoft.com>
- <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
-Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1562; i=keescook@chromium.org; 
+ h=from:subject:message-id;
+ bh=zh3jTYlv3gAfsJ0fJDEOOWbgXfu84QDhZ5jAngTPr/A=; 
+ b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBmNBTDFUoY6TVoqmQxs375eqvdFBj89/ctuDLOW
+ 2+X99yJ49+JAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZjQUwwAKCRCJcvTf3G3A
+ JspPEACtGBTA/04xGkfNe0POOY6UGlh9ESMNyH/8oZZ8d3UQPt4M6jepl1PWlD4m3cEnHJK7W59
+ Ew1O/o3JMO6xpM/DaYhVWnWU6vmyOuXC2BLL3sC0H78DoDCS1YeGvgwcsLvoJQkPR6yocxZc1Lp
+ ArPQeS2n1GN6Natd2CKQpRU1hHaVx8V4k47jJ1C1ooXgDt7NaA3v3Mxp2k1nkVABc40Xt0iPZHe
+ N135yJYCUnJcpYLB0ibjarI10wI4Q38s3kkHaSPBUFFlyZzwaqs8cVJtVafb+WFIadgKLSgplR6
+ Gvo818ypPYTYB7jNIlptvHB2MpN4nJBL6DYjM9W9EA22HbIDDGJexmcFxNXqlQl/qXZpFt7XmnP
+ Q6IX+BvQ65e6Zl3n+AYDDb+8lD/3uddFxKLY+yN8uImNTJaomfLEsLEdpWNQISX4Sd0iZoqRgNU
+ wW8OcE471z7VJafbM8my64tY9J+xrj7sh3jZrbv695WaOXZVOZhvKl4yHNKdmuB7SwoTxzGJp8c
+ 6H/kFSBF+jTC0H5n89DfR0Uuy/y1HoONrXrvE252vDox1DwVh8Gfz62Vr1+HtbNlBpcN9K4w/k7
+ /tznwjyRyIqPUxNhJJzdX9hpAs9d/CHvDyY8049XOPocPYOnqRtriVf3abZjlh68t5HB+axTGF/
+ GHusxWn D0shXk1Q==
+X-Developer-Key: i=keescook@chromium.org; a=openpgp;
+ fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,52 +118,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 5/2/2024 3:46 AM, Thomas Zimmermann wrote:
-> 
-> 
-> Am 30.04.24 um 19:38 schrieb Easwar Hariharan:
->> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
->> with more appropriate terms. Inspired by and following on to Wolfram's
->> series to fix drivers/i2c/[1], fix the terminology for users of
->> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->> in the specification.
->>
->> Compile tested, no functionality changes intended
->>
->> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
->>
->> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
-> 
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> 
+Hi,
 
-Thanks for the ack! I had been addressing feedback as I got it on the v0 series, and it seems
-I missed out on updating viafb and smscufx to spec-compliant controller/target terminology like
-the v0->v1 changelog calls out before posting v1.
+Failure with f_count reference counting are better contained by
+an actual reference counting type, like refcount_t. The first step
+is for get_file() to use inc_not_zero to avoid resurrection. I also
+found a couple open-coded modifications of f_count that should be using
+get_file(). Since long ago, f_count was switched to atomic_long_t, so to
+get proper reference count checking, I've added a refcount_long_t API,
+and then converted f_count to refcount_long_t.
 
-For smscufx, I feel phrasing the following line (as an example)
+Now if there are underflows (or somehow an overflow), we'll see them
+reported.
 
-> -/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host, 
-> +/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, *controller*, 
+-Kees
 
-would actually impact readability negatively, so I propose to leave smscufx as is.
+Kees Cook (5):
+  fs: Do not allow get_file() to resurrect 0 f_count
+  drm/vmwgfx: Do not directly manipulate file->f_count
+  drm/i915: Do not directly manipulate file->f_count
+  refcount: Introduce refcount_long_t and APIs
+  fs: Convert struct file::f_count to refcount_long_t
 
-For viafb, I propose making it compliant with the spec using the controller/target terminology and
-posting a v2 respin (which I can send out as soon as you say) and ask you to review again.
+ MAINTAINERS                           |   2 +-
+ Makefile                              |  11 +-
+ drivers/gpu/drm/i915/gt/shmem_utils.c |   5 +-
+ drivers/gpu/drm/vmwgfx/ttm_object.c   |   2 +-
+ fs/file.c                             |   4 +-
+ fs/file_table.c                       |   6 +-
+ include/linux/fs.h                    |   7 +-
+ include/linux/refcount-impl.h         | 344 ++++++++++++++++++++++++++
+ include/linux/refcount.h              | 341 +------------------------
+ include/linux/refcount_types.h        |  12 +
+ lib/refcount.c                        |  17 +-
+ 11 files changed, 398 insertions(+), 353 deletions(-)
+ create mode 100644 include/linux/refcount-impl.h
 
-What do you think?
+-- 
+2.34.1
 
-Thanks,
-Easwar
-
->> ---
->>   drivers/video/fbdev/via/chip.h    |  8 ++++----
->>   drivers/video/fbdev/via/dvi.c     | 24 ++++++++++++------------
->>   drivers/video/fbdev/via/lcd.c     |  6 +++---
->>   drivers/video/fbdev/via/via_aux.h |  2 +-
->>   drivers/video/fbdev/via/via_i2c.c | 12 ++++++------
->>   drivers/video/fbdev/via/vt1636.c  |  6 +++---
->>   6 files changed, 29 insertions(+), 29 deletions(-)
->>
-
-<snip>
