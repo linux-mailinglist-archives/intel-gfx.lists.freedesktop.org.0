@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1EEA8BA726
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E6B8BA725
 	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 08:34:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1668411283F;
-	Fri,  3 May 2024 06:34:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DEB11283D;
+	Fri,  3 May 2024 06:34:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8zREdiM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IyXGiV+a";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 503F211283C
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 06:34:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8AB911283D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 06:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714718079; x=1746254079;
+ t=1714718081; x=1746254081;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ucjZWnDe7GpPPj5xhazKx4jK9smdviAHTRukM7d7wrE=;
- b=B8zREdiMKw9nmbMiBifupkEm+ytBfVE1uHb1yyoHWUVu+oSJqESknER8
- /ik6SsP9eVUaHQbPH2mn6ZO6bOtvWlAOFbmU/3cjUb6PbQ+VO3oDIR3PN
- dmPb5WIbCN01+fotY+agGsknWTBqzIDwtHKp6o+wdPWMT4brc5FJpFSoL
- r0wcTFS75u+IZpSjYBb9qMvLRpxZ1L4gHx6NrCmYkUy/JoZip+t3anijF
- sxfC3hGWpkWT7MWsK7RDaONlUPAdcDJe77iWwQcr3H0A5Eaivd+qbTSDb
- H2OI/6p95rYRwgZBBl2LWWQrG2lpYPvRv28Y2q5ZFL4DbOtGM/0o73wdN A==;
-X-CSE-ConnectionGUID: Bpyqf262SGGb+pAk619NWw==
-X-CSE-MsgGUID: j/LHWCauToqXl5xtPFzhIA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="14302322"
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="14302322"
+ bh=HJ2R/L8dWp0t8fHF2C108JVrTsUZc8Zn52FPUgb1mSA=;
+ b=IyXGiV+aRkwIWs69qvgwqqW+rr89vs2o2nTvFlRMempEJSyh+nHOo0rW
+ /RX8Nl0ZLhgkRxEy9hD5/tSoAL7ixz3nZIhI2EEE4AXJ3zUQsUxvsUsqc
+ hPWdemz80gqONbdZXYz6b0bR3hiaNA5wmvlstIvWt91WoKIfbhVIMk8f4
+ 8GbYwx9FQo0GhDo97Uy+9wfieBCg783thok+FaBI5kq0KIyLA7nJkSybP
+ 2uxuVJYEsdKLR1nrR36SjveYQf9NUYIREgvBh4Wcz881yEzWEJHLmRGdF
+ RewnQSusocjwQWRf7yvQ8fVj1bAcwHNRbBqUo8Ag6k3fQgwx7IJiBTZzD w==;
+X-CSE-ConnectionGUID: PZ4/MeW/S6qXJ1wDInrIhQ==
+X-CSE-MsgGUID: eGUP8IaaTsWbtWVgGS3+Ug==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="14302324"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="14302324"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 23:34:39 -0700
-X-CSE-ConnectionGUID: J7mTBDq2Tlm5/Tw6ziYzPQ==
-X-CSE-MsgGUID: xzH4pTqpSWyg6UTHwBg9og==
+ 02 May 2024 23:34:41 -0700
+X-CSE-ConnectionGUID: aO8Od+fxSD6LdVZkIPiN0w==
+X-CSE-MsgGUID: Uo4jmQQNRDynpwFiZzwVpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="50558741"
+X-IronPort-AV: E=Sophos;i="6.07,247,1708416000"; d="scan'208";a="50558744"
 Received: from azaki-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.249.32.146])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2024 23:34:37 -0700
+ 02 May 2024 23:34:39 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v9 10/12] drm/i915/psr: Update PSR module parameter
- descriptions
-Date: Fri,  3 May 2024 09:34:11 +0300
-Message-Id: <20240503063413.1008135-11-jouni.hogander@intel.com>
+Subject: [PATCH v9 11/12] drm/i915/psr: Split intel_psr2_config_valid for
+ panel replay
+Date: Fri,  3 May 2024 09:34:12 +0300
+Message-Id: <20240503063413.1008135-12-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240503063413.1008135-1-jouni.hogander@intel.com>
 References: <20240503063413.1008135-1-jouni.hogander@intel.com>
@@ -72,50 +72,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are re-using PSR module parameters for panel replay. Update module
-parameter descriptions with panel replay information:
+Part of intel_psr2_config_valid is valid for panel replay. rename it as
+intel_sel_update_config_valid. Split psr2 specific part and name it as
+intel_psr2_config_valid.
 
-enable_psr:
-
--1 (default) == follow what is in VBT
-0 == disable PSR/PR
-1 == Allow PSR1 and PR full frame update
-2 == allow PSR1/PSR2 and PR Selective Update
-
-enable_psr2_sel_fetch
-
-0 == disable selective fetch for PSR and PR
-1 (default) == allow selective fetch for PSR PR
+v3:
+  - move early transport check to psr2 specific check
+  - check intel_psr2_config_valid only for non-Panel Replay case
+v2:
+  - use psr2_global_enabled for panel replay as well
+  - goto unsupported instead of return when global enabled check fails
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_params.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 76 ++++++++++++++----------
+ 1 file changed, 46 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index 1799a6643128..aebdb7b59dbf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -106,7 +106,8 @@ intel_display_param_named_unsafe(enable_fbc, int, 0400,
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index f2eca0db47fd..2198448fdb27 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1142,9 +1142,6 @@ static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
  
- intel_display_param_named_unsafe(enable_psr, int, 0400,
- 	"Enable PSR "
--	"(0=disabled, 1=enable up to PSR1, 2=enable up to PSR2) "
-+	"(0=disabled, 1=enable up to PSR1 and Panel Replay full frame update, "
-+	"2=enable up to PSR2 and Panel Replay Selective Update) "
- 	"Default: -1 (use per-chip default)");
+-	if (psr2_su_region_et_valid(intel_dp))
+-		crtc_state->enable_psr2_su_region_et = true;
+-
+ 	return crtc_state->enable_psr2_sel_fetch = true;
+ }
  
- intel_display_param_named(psr_safest_params, bool, 0400,
-@@ -116,7 +117,7 @@ intel_display_param_named(psr_safest_params, bool, 0400,
- 	"Default: 0");
+@@ -1515,11 +1512,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
  
- intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
--	"Enable PSR2 selective fetch "
-+	"Enable PSR2 and Panel Replay selective fetch "
- 	"(0=disabled, 1=enabled) "
- 	"Default: 1");
+-	if (!psr2_global_enabled(intel_dp)) {
+-		drm_dbg_kms(&dev_priv->drm, "PSR2 disabled by flag\n");
+-		return false;
+-	}
+-
+ 	/*
+ 	 * DSC and PSR2 cannot be enabled simultaneously. If a requested
+ 	 * resolution requires DSC to be enabled, priority is given to DSC
+@@ -1532,12 +1524,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
  
+-	if (crtc_state->crc_enabled) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled because it would inhibit pipe CRC calculation\n");
+-		return false;
+-	}
+-
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		psr_max_h = 5120;
+ 		psr_max_v = 3200;
+@@ -1588,30 +1574,60 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
+-	if (HAS_PSR2_SEL_FETCH(dev_priv)) {
+-		if (!intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
+-		    !HAS_PSR_HW_TRACKING(dev_priv)) {
+-			drm_dbg_kms(&dev_priv->drm,
+-				    "PSR2 not enabled, selective fetch not valid and no HW tracking available\n");
+-			return false;
+-		}
+-	}
+-
+-	if (!psr2_granularity_check(intel_dp, crtc_state)) {
+-		drm_dbg_kms(&dev_priv->drm, "PSR2 not enabled, SU granularity not compatible\n");
+-		goto unsupported;
+-	}
+-
+ 	if (!crtc_state->enable_psr2_sel_fetch &&
+ 	    (crtc_hdisplay > psr_max_h || crtc_vdisplay > psr_max_v)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "PSR2 not enabled, resolution %dx%d > max supported %dx%d\n",
+ 			    crtc_hdisplay, crtc_vdisplay,
+ 			    psr_max_h, psr_max_v);
+-		goto unsupported;
++		return false;
+ 	}
+ 
+ 	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
++
++	if (psr2_su_region_et_valid(intel_dp))
++		crtc_state->enable_psr2_su_region_et = true;
++
++	return true;
++}
++
++static bool intel_sel_update_config_valid(struct intel_dp *intel_dp,
++					  struct intel_crtc_state *crtc_state)
++{
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
++
++	if (HAS_PSR2_SEL_FETCH(dev_priv) &&
++	    !intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
++	    !HAS_PSR_HW_TRACKING(dev_priv)) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Selective update not enabled, selective fetch not valid and no HW tracking available\n");
++		goto unsupported;
++	}
++
++	if (!psr2_global_enabled(intel_dp)) {
++		drm_dbg_kms(&dev_priv->drm, "Selective update disabled by flag\n");
++		goto unsupported;
++	}
++
++	if (!crtc_state->has_panel_replay && !intel_psr2_config_valid(intel_dp, crtc_state))
++		goto unsupported;
++
++	if (crtc_state->has_panel_replay && (DISPLAY_VER(dev_priv) < 14 ||
++					     !intel_dp->psr.sink_panel_replay_su_support))
++		goto unsupported;
++
++	if (crtc_state->crc_enabled) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Selective update not enabled because it would inhibit pipe CRC calculation\n");
++		goto unsupported;
++	}
++
++	if (!psr2_granularity_check(intel_dp, crtc_state)) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "Selective update not enabled, SU granularity not compatible\n");
++		goto unsupported;
++	}
++
+ 	return true;
+ 
+ unsupported:
+@@ -1693,7 +1709,7 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 	if (!crtc_state->has_psr)
+ 		return;
+ 
+-	crtc_state->has_sel_update = intel_psr2_config_valid(intel_dp, crtc_state);
++	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
+ }
+ 
+ void intel_psr_get_config(struct intel_encoder *encoder,
 -- 
 2.34.1
 
