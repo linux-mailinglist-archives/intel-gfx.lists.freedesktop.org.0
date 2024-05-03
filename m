@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70508BAC71
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:26:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EE98BAC72
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:26:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17F1B1128E9;
-	Fri,  3 May 2024 12:25:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFC1B1128D8;
+	Fri,  3 May 2024 12:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kjdUgio8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLVqg7YO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 653DC1128E6
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:25:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 388971128D8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714739157; x=1746275157;
+ t=1714739160; x=1746275160;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=tDpu2mbyqJpfip2btq74MtuvO8VJ+3XX5ae/2qiiI5M=;
- b=kjdUgio8/A/05YYpt+xvR7iH75pr1NKejfbnwM1C/Xghj5L86eVeIyXt
- TB49zHNEUUajwBKQwCNex73WenO9xx5EBs4Sy38b5WXUn3nttdvl7l6UR
- Lwgq3FexVMk0fW+ImGClbieBdi47Zl9+UpeKhTdxNbPjHn/QyQoMgzj5t
- GHp1Rxaw9fPFi+BRFRAErv3OALqYqMYvjjrbndUFrFN9L2digICrNgBJ1
- /GoLEhYQMZVRS/wZiUo03B7mYE2wqFI6KNWIuQTGkpIo/g04DKD+oIQsq
- cYohlspUeKAksUCRlcgwfhXbiE312jf95zsL3P+5dk9YRrHZIfahd26Hd Q==;
-X-CSE-ConnectionGUID: NWGpqP+oS0G1Tzc9WG5FMw==
-X-CSE-MsgGUID: yxQf1sVJRcqC8qG53MA2ag==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10372779"
-X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="10372779"
+ bh=7ZfQEL3ls4v8siFiywqzOmhWSme4p3Qp/Ytz3mxtTnY=;
+ b=MLVqg7YOrDS8ipAU2zFVExmto5uXGOoqinl9BQ0YwdEEB0/JRNwsFPVC
+ 2XtTRgSeDr9/F7GfpcJFAtZWVWDdNOQuYTynqxYwdv6wDqOUw8cV0/pD1
+ otvnfejsTmE0HsrknegBOzjGF4fYPOfSftlhfadIqJdtZfMAoXupdsrzH
+ e/LwtGCZr4hsH6oiNERKnFubEaahqsX2WmQSzKPVdK1Zae6Ux4PU+pf7s
+ 0ZaD3IBgNNTMmOH86C3lTkQAea3CZgUWvS2InFEUJ8oqu4lzijOyZAWgY
+ CVq574O2n47x55sVAMQlcxL6MFlY6si31h80Bl+UOQkuRIhmF8LgBDmEZ Q==;
+X-CSE-ConnectionGUID: hCOjcdvWRjOuqZQY1hbg4A==
+X-CSE-MsgGUID: FmozCihtSeCtLOgK5FzD+g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10372782"
+X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="10372782"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2024 05:25:57 -0700
-X-CSE-ConnectionGUID: oJTuYaocSbiL/VRLaM8B1w==
-X-CSE-MsgGUID: bmxko20EQwK1eHt69XbjDg==
+ 03 May 2024 05:26:00 -0700
+X-CSE-ConnectionGUID: 1aEBQBQCTyOB1LVPf+7e9A==
+X-CSE-MsgGUID: ZaTN2DzQQ+iMbLZHXrQ/UQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="27463803"
+X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="27463804"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 May 2024 05:25:55 -0700
+ by fmviesa008.fm.intel.com with SMTP; 03 May 2024 05:25:58 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 May 2024 15:25:54 +0300
+ Fri, 03 May 2024 15:25:57 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 23/35] drm/i915/bios: Define VBT block 24 (SDVO LVDS PnP ID)
+Subject: [PATCH 24/35] drm/i915/bios: Define VBT block 25 (SDVO LVDS PPS)
  contents
-Date: Fri,  3 May 2024 15:24:37 +0300
-Message-ID: <20240503122449.27266-24-ville.syrjala@linux.intel.com>
+Date: Fri,  3 May 2024 15:24:38 +0300
+Message-ID: <20240503122449.27266-25-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
 References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
@@ -71,30 +71,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Define the contents of VBT block 24 (SDVO LVDS PnP ID).
+Define the contents of VBT block 25 (SDVO LVDS PPS).
 
-The descriotion is not part of the VBT spec anymore, but the layout
-is rather obsvious.
+Not 100% sure about the order of the fields as this is not
+documented in the VBT spec anymore, but this order matches
+what is included as part of the power sequencing SDVO commands
+(struct sdvo_panel_power_sequencing). Also the real world
+VBT data I have looks OK with this definition.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 6216c1689901..8fe2ded884e3 100644
+index 8fe2ded884e3..c6d03905593d 100644
 --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -964,6 +964,14 @@ struct bdb_sdvo_lvds_dtd {
- 	struct bdb_edid_dtd dtd[4];
+@@ -972,6 +972,22 @@ struct bdb_sdvo_lvds_pnp_id {
+ 	struct bdb_edid_pnp_id pnp_id[4];
  } __packed;
  
 +/*
-+ * Block 24 - SDVO LVDS PnP ID
++ * Block 25 - SDVO LVDS PPS
 + */
 +
-+struct bdb_sdvo_lvds_pnp_id {
-+	struct bdb_edid_pnp_id pnp_id[4];
++struct sdvo_lvds_pps {
++	u16 t0; /* power on */
++	u16 t1; /* backlight on */
++	u16 t2; /* backlight off */
++	u16 t3; /* power off */
++	u16 t4; /* power cycle */
++} __packed;
++
++struct bdb_sdvo_lvds_pps {
++	struct sdvo_lvds_pps pps[4];
 +} __packed;
 +
  /*
