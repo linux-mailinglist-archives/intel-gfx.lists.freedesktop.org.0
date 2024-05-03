@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0B38BAC6F
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D65C8BAC70
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:25:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58B861128D7;
-	Fri,  3 May 2024 12:25:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAA311128C7;
+	Fri,  3 May 2024 12:25:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I2ADuye5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hw+b1g+c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1D5B1128D7
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:25:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0C3B1128D8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714739152; x=1746275152;
+ t=1714739154; x=1746275154;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=X7bbtsz37ZO9LmRqQeBZRdBfYmZPUPq+tThQEcqvE1I=;
- b=I2ADuye5tJgy18ul8UyEuGaIE6leEs02KYx0Db2YKW2IWtIqrRXxxbAq
- n1F2z39SA+PJpvb8VWGmncDMSq55945CCBMhH4ZR55fvUdF9b47MxsMUJ
- pxvYodSSyZNTsGQqIInOFKPwObHz+6D8EQ6XYMip8U9gtw+aH98Igiv96
- xdT+LWW//fCWk1ZQdAALKLOavLnfKLsImNL1FtoEaxQA4G3uiCmutDn6i
- 8NwPKMV4D73K7HrYneTdbB6IriE38f0SXi5PgpB+Rh9Dj0wVaux2pKGvd
- j8EGtBbPyWrhY5PszqvvCrtdTQQozYolPXxb0ru2Rs+s5ZXjHdLnBSz/t w==;
-X-CSE-ConnectionGUID: CqNCFWvJScarWdn5eU/HYw==
-X-CSE-MsgGUID: qeH7VedBSOy3IuM/YNFc6g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10372776"
-X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="10372776"
+ bh=qP61Siw0yTe+w2z7NP6tQBiaZXrAvS/Xpc9/7dIn5Zw=;
+ b=hw+b1g+cdJ7GOLnX+5zU+1NrAWLxEa6fhzIfLCuiAajAlD4q4fwcArNS
+ ynNUwYM4KPXsrwgH4Vn+vBcZ8/n29BDEvT2I8u4E4i0uZc08HgBTPi7oi
+ lA3J/vGg6uyjQ00gbwIAz8UzIGk7s3nNqMhmYeSrzKpSRK+VxO+3QFY4k
+ T8F05z5fck/iIcxSVIGQmuX6DqVejgj6rLYn/iVpBHwh7vBUlBwQXD4jG
+ QmUQWUcd/wf9QzKL+kux4bvwY38IUgPHvpld0pthi3BCpBatncLPXk2mQ
+ HdXdgc08TtGGSylA6sGH4M7mB68L3XohFBjYP6YZb08Nfy1GdOFlzqnj0 g==;
+X-CSE-ConnectionGUID: Sp5DS+KLSGCk2hXf8nWOQA==
+X-CSE-MsgGUID: 4GpDQucoTWqbSaM/Lu6NpQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10372778"
+X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="10372778"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2024 05:25:51 -0700
-X-CSE-ConnectionGUID: HzZwV76/S9ObietCysLNFA==
-X-CSE-MsgGUID: dJxfRoVSQpSFmhIDDkkZCw==
+ 03 May 2024 05:25:54 -0700
+X-CSE-ConnectionGUID: iQXGiwhUTuqoafbwmqF91g==
+X-CSE-MsgGUID: bzOahYNoRMWl09VqIC/kZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="27463800"
+X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="27463801"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 May 2024 05:25:49 -0700
+ by fmviesa008.fm.intel.com with SMTP; 03 May 2024 05:25:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 May 2024 15:25:48 +0300
+ Fri, 03 May 2024 15:25:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 21/35] drm/i915/bios: Define VBT block 20 (OEM Customizable
- Modes) contents
-Date: Fri,  3 May 2024 15:24:35 +0300
-Message-ID: <20240503122449.27266-22-ville.syrjala@linux.intel.com>
+Subject: [PATCH 22/35] drm/i915/bios: Define VBT block 21 (EFP List) contents
+Date: Fri,  3 May 2024 15:24:36 +0300
+Message-ID: <20240503122449.27266-23-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
 References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
@@ -71,44 +70,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Define the contents of VBT block 20 (OEM Customizable Modes).
-Each entry is either 26 or 28 bytes, depending on the BDB version.
+Define the contents of VBT block 21 (EFP List). Specs are nowhere
+to be found, but real world data suggests that each entry is just
+the first four bytes of the EDID PnP ID structure.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 30d60835e4d0..a61ae39196b1 100644
+index a61ae39196b1..6216c1689901 100644
 --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -897,6 +897,30 @@ struct bdb_display_remove_old {
- 	struct display_remove_entry_old table[];
+@@ -921,6 +921,21 @@ struct bdb_oem_custom {
+ 	struct oem_mode modes[];
  } __packed;
  
 +/*
-+ * Block 20 - OEM Customizable Modes
++ * Block 21 - EFP List
 + */
 +
-+struct oem_mode {
-+	u8 enable_in_vbios:1;
-+	u8 enable_in_os:1;
-+	u8 enable_in_gop:1;					/* 207+ */
-+	u8 reserved:5;
-+	u8 display_flags;					/* ???-216 */
-+	u16 x_res;
-+	u16 y_res;
-+	u8 color_depth;
-+	u8 refresh_rate;
-+	struct bdb_edid_dtd dtd;
-+	u16 display_flags_2;					/* 217+ */
++struct efp_entry {
++	u16 mfg_name;
++	u16 product_code;
 +} __packed;
 +
-+struct bdb_oem_custom {
++struct bdb_efp_list {
 +	u8 num_entries;
 +	u8 entry_size;
-+	struct oem_mode modes[];
++	struct efp_entry efp[];
 +} __packed;
 +
  /*
