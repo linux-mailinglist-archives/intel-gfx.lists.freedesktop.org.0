@@ -2,89 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D9608BAC9D
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 190B78BAC57
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:24:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C68D10EAA8;
-	Fri,  3 May 2024 12:38:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED8610FBF3;
+	Fri,  3 May 2024 12:24:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="PhtnMo/9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g52FuJ4a";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 374E710ECCA;
- Fri,  3 May 2024 07:54:00 +0000 (UTC)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4436srbR030347;
- Fri, 3 May 2024 07:53:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- message-id:date:mime-version:subject:to:cc:references:from
- :in-reply-to:content-type:content-transfer-encoding; s=
- qcppdkim1; bh=3mzdCXxXwnn8uCG5UnxaKBkw7nHf6ws+H3ixiga1rf4=; b=Ph
- tnMo/9H5defEBpAiWaXHCbfUbzlzPihxbRvIm/T1sckITy/l1zp8nVhHfFwjUHgQ
- s5Ug37+Kxp/aa2QvM69pIrTfcgt1LpxtwPKFoqhois04amUWjupw9meo8Ak1aio4
- 7mLNa2NpGTBtdJNJYexesOmg41tnxkXCqelUU+XoiLwLDG1rF9T5KLjq6qKWtc9A
- cl0zL08qZd5bbsS7WHpW56EZZyJd4oqgwEVL7jykzyNXL2Sms8cA2A5Lf9zH8xTK
- frQMAdINzapOmJ9BvugUip3a1p1h79ZtWP4VOgbFlIWvca95yy14y/YODvEDLSP6
- h2DsazBpJweCZsLjmBAQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xvu2n833h-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 03 May 2024 07:53:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4437rpdi000345
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 3 May 2024 07:53:51 GMT
-Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 3 May 2024
- 00:53:46 -0700
-Message-ID: <a0daf2d5-4c72-4d96-a8d4-b15adb7252d5@quicinc.com>
-Date: Fri, 3 May 2024 13:23:43 +0530
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2295210FBF3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:24:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1714739093; x=1746275093;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oiCPAgwNtPC3ivbc9JeAZ/Rg349lqKoL2uiAEb3Tg3I=;
+ b=g52FuJ4al5b7xbKoi1OujS55xvHvKbttbbtFgLFfOKK7Kfm5x5Au4uPT
+ pyhHZKPcqMUm1JZCoY9FnWTDeplL09q9M5c3cZV+gCxO68+8LeRUQYhtF
+ d6+DQfGZgdWNokQwfO75qd1VsZnkyjyjkhEmnDZNs9QV62o1EqeeTL/2f
+ d6aM1ZC+qbaPu6AzJwJfY8HH+uUtkNBS7BIuHB0B+NEqG/rCiQzOdPUGI
+ 52doUnwrDoKuaJjTihbqb3451ZMf0KtushvcUW4lcQWfJZrapolwGbB0j
+ 1SePbIb59KOc3igaVhl6evK/Zi0AEEzPLcWk6FkjBbqDjSKIcemjrMjwE w==;
+X-CSE-ConnectionGUID: DLn/TznZTtiA5DqkgZ2WkA==
+X-CSE-MsgGUID: zCT7werfT0y4iZiMaO6b/g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10372717"
+X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="10372717"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2024 05:24:52 -0700
+X-CSE-ConnectionGUID: cKcMLPzNQvitE4rqyGjc6g==
+X-CSE-MsgGUID: 9Ux5b/D+S6mMdTcjucPgeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="27463549"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 03 May 2024 05:24:50 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 03 May 2024 15:24:49 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/35] drm/i915/bios: Define (almost) all BDB blocks
+Date: Fri,  3 May 2024 15:24:14 +0300
+Message-ID: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [linux-next:master] BUILD REGRESSION
- 9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
-To: Greg KH <gregkh@linuxfoundation.org>
-CC: kernel test robot <lkp@intel.com>, Andrew Morton
- <akpm@linux-foundation.org>, Linux Memory Management List
- <linux-mm@kvack.org>,
- <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
- <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>
-References: <202405030439.AH8NR0Mg-lkp@intel.com>
- <2024050342-slashing-froth-bcf9@gregkh>
- <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
- <2024050314-knelt-sandpaper-3884@gregkh>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <2024050314-knelt-sandpaper-3884@gregkh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
-X-Proofpoint-ORIG-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-03_04,2024-05-03_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 mlxlogscore=707
- priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2404010003 definitions=main-2405030055
-X-Mailman-Approved-At: Fri, 03 May 2024 12:38:28 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,53 +66,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+I got curious about what gems (or turds) might be hiding
+inside the BDB blocks we aren't parsing. So I undertook the
+effort to dig up the definition for pretty much all of them.
 
-On 5/3/2024 11:58 AM, Greg KH wrote:
-> On Fri, May 03, 2024 at 11:30:50AM +0530, Krishna Kurapati PSSNV wrote:
->>
->>
->> On 5/3/2024 10:42 AM, Greg KH wrote:
->>> Ok, I'm getting tired of seeing these for the USB portion of the tree,
->>> so I went to look for:
->>>
->>> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
->>>> |-- arc-randconfig-002-20240503
->>>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
->>>
->>> This warning (same for all arches), but can't seem to find it anywhere.
->>>
->>> Any hints as to where it would be?
->>>
->>
->> Hi Greg,
->>
->>   I think the hw_mode was not removed in hs_phy_setup and left unused.
->>
->>   Thinh reported the same when there was a merge conflict into linux next
->> (that the hw_mode variable was removed in ss_phy_setup and should be removed
->> in hs_phy_setup as well):
->>
->> https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
->>
->>   Perhaps that was missed ?
-> 
-> Must have been.  I need it in a format that it can be applied in (a
-> 2-way diff can't apply...)
-> 
+Unfortunately I didn't find anything really interesting, but
+might as well stick the definitions into the header for
+posterity. And I do have a followup to intel_vbt_decode to
+parse pretty much everything.
 
-I just checked it with W=1 and it is causing the issue:
+I left out a few VBIOS only blocks, as well as the obsolete
+compression parameters block.
 
-/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c: 
-In function 'dwc3_hs_phy_setup':
-/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c:679:15: 
-warning: variable 'hw_mode' set but not used [-Wunused-but-set-variable]
-   unsigned int hw_mode;
-                ^
+The details were dug up from varius sources:
+- some came from various copies of the spec
+- some were derived from VBIOS sources
+- some I just had to reverse engineer by hand
 
-I can send a patch to fix it up. Also, just wanted to confirm if  I skip 
-the fixes and CC tags as the main patch wasn't yet merged into any 
-stable trees ?
+And I still have a few VBTs with a bunch of completely unknown
+blocks: one VLV with blocks 60-65, and one ADL with block 212.
+No clue as of now what those might be.
 
-Regards,
-Krishna,
+Ville Syrjälä (35):
+  drm/i915/bios: Define eDP DSC disable bit
+  drm/i915/bios: Remove version number comment from DEVICE_HANDLE_EFP4
+  drm/i915/bios: Indicate which VBT structures are based on EDID
+  drm/i915/bios: Get rid of "LVDS" from all LFP data stuff
+  drm/i915/bios: Rename SDVO DTD blocks a bit
+  drm/i915/bios: Define "TV" child device handle
+  drm/i915/bios: Flag "VBIOS only" VBT data blocks
+  drm/i915/bios: Add version notes for some blocks
+  drm/i915/bios: Define VBT block 3 (Display Toggle Option) contents
+  drm/i915/bios: Define VBT block 4 (Mode Support List) contents
+  drm/i915/bios: Define VBT block 5 (Generic Mode Table)
+  drm/i915/bios: Define VBT blocks 6,7,8 (register tables) contents
+  drm/i915/bios: Define VBT block 10 (Mode Removal Table) contents
+  drm/i915/bios: Define VBT block 12 (Driver Persistent Algorithm)
+    contents
+  drm/i915/bios: Define VBT block 15 (Dot Clock Override Table) contents
+  drm/i915/bios: Define ALM only VBT block 9 contents
+  drm/i915/bios: Define VBT block 17 (SV Test Functions) contents
+  drm/i915/bios: Define VBT block 18 (Driver Rotation) contents
+  drm/i915/bios: Define VBT blocks 16,29,31 (Toggle List) contents
+  drm/i915/bios: Define VBT blocks 19,30,32 (Display Configuration
+    Removal Table) contents
+  drm/i915/bios: Define VBT block 20 (OEM Customizable Modes) contents
+  drm/i915/bios: Define VBT block 21 (EFP List) contents
+  drm/i915/bios: Define VBT block 24 (SDVO LVDS PnP ID) contents
+  drm/i915/bios: Define VBT block 25 (SDVO LVDS PPS) contents
+  drm/i915/bios: Define VBT block 26 (TV Options) contents
+  drm/i915/bios: Define VBT block 28 (EFP DTD) contents
+  drm/i915/bios: Define VBT block 45 (eDP BFI) contents
+  drm/i915/bios: Define VBT block 46 (Chromaticity For Narrow Gamut
+    Panel) contents
+  drm/i915/bios: Define VBT block 51 (Fixed Set Mode Table) contents
+  drm/i915/bios: Define VBT block 55 (RGB Palette Table) contents
+  drm/i915/bios: Define VBT block 57 (Vswing PreEmphasis Table) contents
+  drm/i915/bios: Define VBT block 50 (MIPI) contents
+  drm/i915/bios: Define VBT block 55 (Compression Parameters)
+  drm/i915/bios: Define VBT block 252 (int15 Hook)
+  drm/i915/bios: Define VBT block 253 (PRD Table) contents
+
+ drivers/gpu/drm/i915/display/intel_bios.c     | 229 +++---
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 714 +++++++++++++++---
+ 5 files changed, 742 insertions(+), 207 deletions(-)
+
+-- 
+2.43.2
+
