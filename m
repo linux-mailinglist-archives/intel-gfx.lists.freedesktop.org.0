@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBBE28BAC7D
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8088A8BAD1F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 15:05:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D44F11290B;
-	Fri,  3 May 2024 12:26:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bOI6Txwr";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF9B610FC2D;
+	Fri,  3 May 2024 13:05:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EEFC11290B
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 12:26:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714739192; x=1746275192;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=WqUQx2hyTAbceSRswype6IxpgKGlX1DuC6HUsxgNDFc=;
- b=bOI6TxwrIDwJpfFTZDgdI2eLG902ICI3/iGtCbpYxfods6lDCpLu4zJU
- uz2slKLDjGSnbUkeTkUOTsyQIKUEM7qWp/MnT4fIn4NG/LAN8kbCwxeMd
- JvIF/V+N2ACtfzH7OGCXUMZ0aMSc7+leZrcmrwpQnIXh+5adhMjs1TLij
- r9mJhtGFfHfjjQF5AbBsaSTOKFvBpYFWjBMpIHEzoNhAae95Whtkhrsqb
- ZooaQFrXU3RY8NP1KPMGRG15bST6jnQpKpYfLkbCtLJMI5R4424icWSJK
- Asj5GmT3yn9itshT6HOMnMRXkj81Pe2CFuz62poFztOrWd7+Ev2km1sjx A==;
-X-CSE-ConnectionGUID: y8HH/Ij4SCqPPUQQx69bIg==
-X-CSE-MsgGUID: jF8gXtJQTsG4xryldyFwhw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11062"; a="10372805"
-X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="10372805"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2024 05:26:31 -0700
-X-CSE-ConnectionGUID: Mjy+E28PTMGaeXvVQofCBQ==
-X-CSE-MsgGUID: TtGWKs7MSvy1+rkYMQ1R+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,251,1708416000"; d="scan'208";a="27463970"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 May 2024 05:26:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 03 May 2024 15:26:28 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 35/35] drm/i915/bios: Define VBT block 253 (PRD Table) contents
-Date: Fri,  3 May 2024 15:24:49 +0300
-Message-ID: <20240503122449.27266-36-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
-References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 908CE10FC2D;
+ Fri,  3 May 2024 13:05:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/bios=3A_Def?=
+ =?utf-8?q?ine_=28almost=29_all_BDB_blocks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 03 May 2024 13:05:44 -0000
+Message-ID: <171474154458.1887365.4492278068984603486@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,65 +37,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Define the contents of VBT block 253 (PRD Table).
+Series: drm/i915/bios: Define (almost) all BDB blocks
+URL   : https://patchwork.freedesktop.org/series/133169/
+State : warning
 
-Unfortunately the block has two definitions, with the cutoff
-supposedly happening on ICL vs. TGL. Also according to some
-notes it might be that the VBIOS (if that's still a thing)
-still uses the old definition even on TGL+. Quite the mess.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Error: dim checkpatch failed
+da729809e1d5 drm/i915/bios: Define eDP DSC disable bit
+b3bf97c68e98 drm/i915/bios: Remove version number comment from DEVICE_HANDLE_EFP4
+f21e9ca180aa drm/i915/bios: Indicate which VBT structures are based on EDID
+0b46faab7f53 drm/i915/bios: Get rid of "LVDS" from all LFP data stuff
+a4771f0a6ee1 drm/i915/bios: Rename SDVO DTD blocks a bit
+403f4f36faa1 drm/i915/bios: Define "TV" child device handle
+78756cf33765 drm/i915/bios: Flag "VBIOS only" VBT data blocks
+d2c010e3c8c0 drm/i915/bios: Add version notes for some blocks
+613106335c58 drm/i915/bios: Define VBT block 3 (Display Toggle Option) contents
+d0a342dc8526 drm/i915/bios: Define VBT block 4 (Mode Support List) contents
+1b18443b8777 drm/i915/bios: Define VBT block 5 (Generic Mode Table)
+f88c6b2dac47 drm/i915/bios: Define VBT blocks 6, 7, 8 (register tables) contents
+5022159a3bb3 drm/i915/bios: Define VBT block 10 (Mode Removal Table) contents
+b53301562c43 drm/i915/bios: Define VBT block 12 (Driver Persistent Algorithm) contents
+6f2a9f7540b4 drm/i915/bios: Define VBT block 15 (Dot Clock Override Table) contents
+780e79356def drm/i915/bios: Define ALM only VBT block 9 contents
+-:51: ERROR:FLEXIBLE_ARRAY: Use C99 flexible arrays - see https://docs.kernel.org/process/deprecated.html#zero-length-and-one-element-arrays
+#51: FILE: drivers/gpu/drm/i915/display/intel_vbt_defs.h:671:
++	struct dot_clock_override_entry_gen2 t[0];
++} __packed;
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 338f6133bb1e..9d5b87ff1728 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -189,6 +189,7 @@ enum bdb_block_id {
- 	BDB_VSWING_PREEMPH		= 57, /* 218+ */
- 	BDB_GENERIC_DTD			= 58, /* 229+ */
- 	BDB_INT15_HOOK			= 252, /* VBIOS only */
-+	BDB_PRD_TABLE			= 253,
- 	BDB_SKIP			= 254, /* VBIOS only */
- };
- 
-@@ -1576,4 +1577,29 @@ struct bdb_generic_dtd {
- 	struct generic_dtd_entry dtd[];	/* up to 24 DTD's */
- } __packed;
- 
-+/*
-+ * Block 253 - PRD Table
-+ */
-+
-+struct prd_entry_old {
-+	u8 displays_attached;
-+	u8 display_in_pipe_a;
-+	u8 display_in_pipe_b;
-+} __packed;
-+
-+struct bdb_prd_table_old {
-+	struct prd_entry_old list[0];				/* ???-216 */
-+	u16 num_entries;					/* ???-216 */
-+} __packed;
-+
-+struct prd_entry_new {
-+	u16 primary_display;
-+	u16 secondary_display;
-+} __packed;
-+
-+struct bdb_prd_table_new {
-+	u16 num_entries;					/* 217+ */
-+	struct prd_entry_new list[];				/* 217+ */
-+} __packed;
-+
- #endif /* _INTEL_VBT_DEFS_H_ */
--- 
-2.43.2
+total: 1 errors, 0 warnings, 0 checks, 49 lines checked
+bc8a1ad9d9e8 drm/i915/bios: Define VBT block 17 (SV Test Functions) contents
+81c9f3da4917 drm/i915/bios: Define VBT block 18 (Driver Rotation) contents
+76d2393227a5 drm/i915/bios: Define VBT blocks 16, 29, 31 (Toggle List) contents
+7766468413aa drm/i915/bios: Define VBT blocks 19, 30, 32 (Display Configuration Removal Table) contents
+f115adad0975 drm/i915/bios: Define VBT block 20 (OEM Customizable Modes) contents
+a6f7d6b10ece drm/i915/bios: Define VBT block 21 (EFP List) contents
+8a53f5e4b114 drm/i915/bios: Define VBT block 24 (SDVO LVDS PnP ID) contents
+46fc32698ae9 drm/i915/bios: Define VBT block 25 (SDVO LVDS PPS) contents
+712d377ad383 drm/i915/bios: Define VBT block 26 (TV Options) contents
+aafc45f77a40 drm/i915/bios: Define VBT block 28 (EFP DTD) contents
+1513b1b6f365 drm/i915/bios: Define VBT block 45 (eDP BFI) contents
+9fddf03e4aa0 drm/i915/bios: Define VBT block 46 (Chromaticity For Narrow Gamut Panel) contents
+d5c916aa7854 drm/i915/bios: Define VBT block 51 (Fixed Set Mode Table) contents
+5168f333f009 drm/i915/bios: Define VBT block 55 (RGB Palette Table) contents
+8583a728e753 drm/i915/bios: Define VBT block 57 (Vswing PreEmphasis Table) contents
+cefcbd6413e4 drm/i915/bios: Define VBT block 50 (MIPI) contents
+b77455dcf3d3 drm/i915/bios: Define VBT block 55 (Compression Parameters)
+f0cb4e49136f drm/i915/bios: Define VBT block 252 (int15 Hook)
+77279f1c2a50 drm/i915/bios: Define VBT block 253 (PRD Table) contents
+
 
