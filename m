@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38DA8BAE80
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 16:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6022C8BB13B
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 18:49:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5925010FD6C;
-	Fri,  3 May 2024 14:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10617113160;
+	Fri,  3 May 2024 16:48:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="rkGr+1kX";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3539510EF9A;
- Fri,  3 May 2024 14:09:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6494965335923000456=="
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3790111315A;
+ Fri,  3 May 2024 16:48:55 +0000 (UTC)
+Received: from [100.65.224.148] (unknown [20.236.10.206])
+ by linux.microsoft.com (Postfix) with ESMTPSA id ED65B20B2C82;
+ Fri,  3 May 2024 09:48:53 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com ED65B20B2C82
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1714754934;
+ bh=GAu8Rak4A+pCgzw/uvyDGmtVcqwJgPNajSTWUoSmEQw=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=rkGr+1kX0SctOUPwkhdrQ4qFQeA027/UkwhMstN1oK11s07V0R7Wi7aRofjAnlC1w
+ NT0xX9K1RqDBBTorM82GqIiYoTbasEg2t4t6Fe9M8VXV9I+qcP4kpK+ALqrx64mma1
+ /QTPAvj8aVxAk84+SPJbJzAv82Hdw3+D0Hq7DSGc=
+Message-ID: <6256cc5a-9ff0-4a1f-8eba-f70b7c571631@linux.microsoft.com>
+Date: Fri, 3 May 2024 09:48:53 -0700
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_Fix_UB_due_?=
- =?utf-8?q?to_signed_int_overflow_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitrii Bundin" <dmitrii.bundin.a@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 03 May 2024 14:09:06 -0000
-Message-ID: <171474534621.1887365.4477044193663780972@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
-In-Reply-To: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 12/12] fbdev/viafb: Make I2C terminology more inclusive
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
+ Helge Deller <deller@gmx.de>,
+ "open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER DRIVER"
+ <linux-fbdev@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>
+References: <20240430173812.1423757-1-eahariha@linux.microsoft.com>
+ <20240430173812.1423757-13-eahariha@linux.microsoft.com>
+ <271ad513-0ea1-45df-ba0f-51582474ff34@suse.de>
+ <076e0a0d-ad26-490e-9784-300ed52637ca@linux.microsoft.com>
+ <f1eccd9d-885f-4508-9325-3454ecc35eae@suse.de>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <f1eccd9d-885f-4508-9325-3454ecc35eae@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,151 +70,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6494965335923000456==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 5/3/2024 12:39 AM, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 03.05.24 um 00:26 schrieb Easwar Hariharan:
+>> On 5/2/2024 3:46 AM, Thomas Zimmermann wrote:
+>>>
+>>> Am 30.04.24 um 19:38 schrieb Easwar Hariharan:
+>>>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+>>>> with more appropriate terms. Inspired by and following on to Wolfram's
+>>>> series to fix drivers/i2c/[1], fix the terminology for users of
+>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>>>> in the specification.
+>>>>
+>>>> Compile tested, no functionality changes intended
+>>>>
+>>>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>>>
+>>>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+>>> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>>
+>> Thanks for the ack! I had been addressing feedback as I got it on the v0 series, and it seems
+>> I missed out on updating viafb and smscufx to spec-compliant controller/target terminology like
+>> the v0->v1 changelog calls out before posting v1.
+>>
+>> For smscufx, I feel phrasing the following line (as an example)
+>>
+>>> -/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host,
+>>> +/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, *controller*,
+>> would actually impact readability negatively, so I propose to leave smscufx as is.
+> 
+> Why? I don't see much of a difference.
+> 
+>>
+>> For viafb, I propose making it compliant with the spec using the controller/target terminology and
+>> posting a v2 respin (which I can send out as soon as you say) and ask you to review again.
+>>
+>> What do you think?
+> 
+> I think we should adopt the spec's language everywhere. That makes it possible to grep the spec for terms used in the source code. Using 'host' in smscufx appears to introduce yet another term. If you are worried about using 'I2C controller' and 'controller' in the same sentence, you can replace 'I2C controller' with 'DDC channel'. That's even more precise about the purpose of this code.
 
-== Series Details ==
+Great, thanks! That was exactly my concern, I will fix up smscufx and send a v2.
 
-Series: drm/i915/guc: Fix UB due to signed int overflow (rev2)
-URL   : https://patchwork.freedesktop.org/series/132446/
-State : success
+Thanks,
+Easwar
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14707 -> Patchwork_132446v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/index.html
-
-Participating hosts (37 -> 36)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_132446v2 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-9:          [FAIL][1] ([i915#10378]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14707/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-    - bat-dg2-8:          [FAIL][3] ([i915#10378]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14707/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - {bat-mtlp-9}:       [DMESG-WARN][5] ([i915#10435]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14707/bat-mtlp-9/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/bat-mtlp-9/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14707 -> Patchwork_132446v2
-
-  CI-20190529: 20190529
-  CI_DRM_14707: 3bc655eb4a31c9a89cccac484e09112f73414b29 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7831: e1d202abb373e78b80e92814924316ee6b52b569 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_132446v2: 3bc655eb4a31c9a89cccac484e09112f73414b29 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/index.html
-
---===============6494965335923000456==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Fix UB due to signed int overflow (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132446/">https://patchwork.freedesktop.org/series/132446/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14707 -&gt; Patchwork_132446v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/index.html</p>
-<h2>Participating hosts (37 -&gt; 36)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_132446v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14707/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14707/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14707/bat-mtlp-9/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132446v2/bat-mtlp-9/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14707 -&gt; Patchwork_132446v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14707: 3bc655eb4a31c9a89cccac484e09112f73414b29 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7831: e1d202abb373e78b80e92814924316ee6b52b569 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_132446v2: 3bc655eb4a31c9a89cccac484e09112f73414b29 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6494965335923000456==--
