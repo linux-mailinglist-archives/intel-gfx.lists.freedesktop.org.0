@@ -2,77 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DAE48BAC9F
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E3C8BAC9E
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E90C310F099;
-	Fri,  3 May 2024 12:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9C910EC7C;
+	Fri,  3 May 2024 12:38:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZZj44Cwl";
+	dkim=pass (2048-bit key; unprotected) header.d=gigaio-com.20230601.gappssmtp.com header.i=@gigaio-com.20230601.gappssmtp.com header.b="ZZj4d8Js";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
- [209.85.208.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC6A10E395;
- Thu,  2 May 2024 10:36:36 +0000 (UTC)
-Received: by mail-lj1-f180.google.com with SMTP id
- 38308e7fff4ca-2e0b7136f2bso4293121fa.0; 
- Thu, 02 May 2024 03:36:36 -0700 (PDT)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
+ [209.85.210.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FCD510E14C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 01:22:39 +0000 (UTC)
+Received: by mail-ot1-f48.google.com with SMTP id
+ 46e09a7af769-6ee575da779so2407461a34.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 May 2024 18:22:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1714646195; x=1715250995; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gigaio-com.20230601.gappssmtp.com; s=20230601; t=1714699359; x=1715304159;
+ darn=lists.freedesktop.org; 
+ h=to:references:message-id:content-transfer-encoding:cc:date
+ :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=FT2Vebyh1FWwMJQubPeWb4xwvsvNpVAsZHgyxB9GdA0=;
- b=ZZj44CwlYX01l7h7GylobKDCQEX5wKQMCbdxYoVzeG0iICWUwEUMW6JUj7oD0kD2Ef
- E63480w92o78NQdWvlrMEuYUEi9Uzinau8dWCkC72mPpsHf+c4FHwmBpcE/OIyOXmJmf
- YSJjTWq3YXz6hR1apKgePAP87OZUqc9a3epOXszzspy1MTuWdefU0J0PUPqkfIl5vg4p
- X87u4ZNPnCchi2ERVmRTEcYDBsEn0cfGLRb56Qi50knAeraog1EQ8U4JWfzBtHEnCeN6
- jb5ZkDZnDOv+77D32jNoR6UC39Y0GKbTgw0u0gJIOQBmlXZ8HSTQveks2kvJuH77vZt/
- 81Hg==
+ bh=k3nkCSoTperPlX+PtC8qWAin0Hv01DoPF7+bPAgfSgA=;
+ b=ZZj4d8JseZXXiICswGinGCT9GsNv7nEC0rD5ufcM7JleyXmYYKuzXu6Gs/bLr1zX34
+ LXZPQtFn2PvklLuJSt78vJ33MmaxVZoGtS83WN1V4b9y52yE82TcDkML86hc1zA/p4Yw
+ ZFQ/VzTU39QjrrDs1KwbRppUHGHAYXFWL40ZFBQ06ZwIPjRM2ataVvwiTDAOix9VVAOX
+ 4giSroQS4fj9RAqf3oKLRzZm0PDo/jlJL7eId2K5vszV0/8FvYB/2ec1GrzpxnxeUAQ3
+ 2K2yRjJ2gQf6NoDSexox7z7beBI9qAnZdI2uy5kjIj+uM21m3LO/IFR7k689+uQ4xfQm
+ B6DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714646195; x=1715250995;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1714699359; x=1715304159;
+ h=to:references:message-id:content-transfer-encoding:cc:date
+ :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=FT2Vebyh1FWwMJQubPeWb4xwvsvNpVAsZHgyxB9GdA0=;
- b=W2GIH/uvAIWjl1z2OOTgH/Ujig6l7IpDD/6F4dn0M+caU95Dl0/IRLhs3VE77w7eJh
- Sj+ETAS1/oaskuM3+wlGjCcGjaUZMEs7vuD8I/bMLcCPRP5urUA2Vhda3JC/K3IR8Hvb
- cZptbtapi+wnZYLKPlHzVJhd5gTNH/iXYNIgVEMv5b2K0FSzMHLmr1e8pnBEeHD8At2M
- Ukdtp5KEwzkxX2YpTiBUyFK2f3h/hfF9YXEcvMsuCUuZjVvW88CemDxEo1hPKhG+JQfl
- zJnLv0Pq8zkND3xRbb7f1G6twWAuZrZbR4zWB5+GWnDcmhYVQqX9N60Hw8c1w7nAe+gz
- Zu7A==
+ bh=k3nkCSoTperPlX+PtC8qWAin0Hv01DoPF7+bPAgfSgA=;
+ b=xB/t1gzsAp+dy7qtLr7k39u1MUuYQpr2c9ZJRPpHMiePOr+T1zI6aGBdtoEYdk7o4V
+ uLXgEKhgsGG/PbWRRuy5vuoQtPAjsbE2kwR3xZTuYAuiSAOKqFB8CrnqgY9ofwGu35Zh
+ lDuDGE6d8Sq3bwwLU/uiwzXExxaiTqUlv0gMjZjkLBALxoaMa/iibBp4iil2oxGTW2HW
+ qvc/1ycsbDj1F/D+88OCKRTC+uPbWjJjD98XLL1O6t2XIjlPjAkaVL6QpnMbOvWIF1BV
+ Cpr20NWIZJ5rmCJv0ulJNmn+1FQA4aB6z3U9JBLxdmQG1O0v9Lr1FChcPvvVOLBdilRq
+ BkzQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU0wWJUznqw64xiHNyTm7UAdehHsHDhmxprQqlN7yFGJRZscu1RSerJNMFI+/ZTOFledHoOgFruMfynJZ7y8VEmL8d8MK3SGFYYanO0PqySjxWoqeydRsLtzI+VuQcPLijHK9Ued0Qpwf65mTRSZ/WN
-X-Gm-Message-State: AOJu0Yzha/RuLmDhzRLW/ziCuD9XgYcTQr/vYWHPAJ3Gp7gKARhuQVpF
- P3xLj916LubLFY1XWKyc0CC+E6PDTeX1Rod99KZh53deLVJ7ZoW+
-X-Google-Smtp-Source: AGHT+IF6z5Prb/zz+BTozZr6JQYkXzLArcZTkDyBdDQRPe4LSx9aMuoUBBv13IOxRD7Z4PR0uozM+g==
-X-Received: by 2002:a19:ca44:0:b0:513:ec32:aa89 with SMTP id
- h4-20020a19ca44000000b00513ec32aa89mr2847492lfj.2.1714646194515; 
- Thu, 02 May 2024 03:36:34 -0700 (PDT)
-Received: from dmitrii-TM1701.. ([2001:8f8:1d3a:4eb3:9dcd:1735:fcaa:e2])
- by smtp.gmail.com with ESMTPSA id
- rn24-20020a170906d93800b00a52433f0907sm402630ejb.37.2024.05.02.03.36.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 May 2024 03:36:34 -0700 (PDT)
-From: Dmitrii Bundin <dmitrii.bundin.a@gmail.com>
-To: dmitrii.bundin.a@gmail.com
-Cc: airlied@gmail.com, bp@suse.de, daniel@ffwll.ch,
- dri-devel@lists.freedesktop.org, gongruiqi1@huawei.com,
- intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, linux-kernel@vger.kernel.org,
- michal.wajdeczko@intel.com, rdunlap@infradead.org, rodrigo.vivi@intel.com,
- tursulin@ursulin.net
-Subject: [PATCH RESEND] drm/i915/guc: Fix UB due to signed int overflow
-Date: Thu,  2 May 2024 13:36:18 +0300
-Message-Id: <20240502103618.129017-1-dmitrii.bundin.a@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
-References: <20240413031747.2416581-1-dmitrii.bundin.a@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 03 May 2024 12:38:27 +0000
+ AJvYcCUZcwgZmwzO2Iy/fceEdFlsyuct06jade7M5MuTLWeFsORZbhnkgG13cpnDUO+y2OkCvLPBMByc3xWK5fMasZxkSgAbKpSyTnLVf7JTchJ8
+X-Gm-Message-State: AOJu0YwIzWzwaNZx8p1PaGP8NFhbH6lShcUWdoa80lS4LAAgJkXKiNQa
+ e8N4JHx8P0mWJUQFCKW7XZ0IoUieSsxopoY2VDfPlHJFlkG9wbr7SUHTbdWgA/w=
+X-Google-Smtp-Source: AGHT+IGYuWQGoJVifB5ByXnZOOtnc0jo+Gwcp8Ftoa0rZdJC9qXcD/CvZftAT0HRvOGe4Jw7d7sdMw==
+X-Received: by 2002:a05:6830:3490:b0:6ea:30bc:a6b5 with SMTP id
+ c16-20020a056830349000b006ea30bca6b5mr1921224otu.22.1714699358803; 
+ Thu, 02 May 2024 18:22:38 -0700 (PDT)
+Received: from smtpclient.apple (45-31-42-85.lightspeed.sndgca.sbcglobal.net.
+ [45.31.42.85]) by smtp.gmail.com with ESMTPSA id
+ d11-20020a656b8b000000b005f7ff496050sm1699721pgw.76.2024.05.02.18.22.37
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 02 May 2024 18:22:38 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: [PATCH v6 0/4] drm: Use full allocated minor range for DRM
+From: Eric Pilmore <epilmore@gigaio.com>
+In-Reply-To: <20230724211428.3831636-1-michal.winiarski@intel.com>
+Date: Thu, 2 May 2024 18:22:26 -0700
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simon Ser <contact@emersion.fr>,
+ Matthew Wilcox <willy@infradead.org>, Oded Gabbay <ogabbay@kernel.org>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ James Zhu <James.Zhu@amd.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Emil Velikov <emil.l.velikov@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <83E51798-5335-49AA-8211-60EC29577617@gigaio.com>
+References: <20230724211428.3831636-1-michal.winiarski@intel.com>
+To: =?utf-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
+X-Mailman-Approved-At: Fri, 03 May 2024 12:38:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,34 +96,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix compile errors of the form "FIELD_PREP: mask is not constant" caused
-by signed integer constant overflow. Files affected:
 
-drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 
-Reproducible with gcc 7.5
+> On Jul 24, 2023, at 2:14=E2=80=AFPM, Micha=C5=82 Winiarski =
+<michal.winiarski@intel.com> wrote:
+>=20
+> 64 DRM device nodes is not enough for everyone.
+> Upgrade it to ~512K (which definitely is more than enough).
+>=20
+> To allow testing userspace support for >64 devices, add additional DRM
+> modparam (force_extended_minors) which causes DRM to skip allocating =
+minors
+> in 0-192 range.
+> Additionally - convert minors to use XArray instead of IDR to simplify =
+the
+> locking.
+>=20
+> v1 -> v2:
+> Don't touch DRM_MINOR_CONTROL and its range (Simon Ser)
+>=20
+> v2 -> v3:
+> Don't use legacy scheme for >=3D192 minor range (Dave Airlie)
+> Add modparam for testing (Dave Airlie)
+> Add lockdep annotation for IDR (Daniel Vetter)
+>=20
+> v3 -> v4:
+> Convert from IDR to XArray (Matthew Wilcox)
+>=20
+> v4 -> v5:
+> Fixup IDR to XArray conversion (Matthew Wilcox)
+>=20
+> v5 -> v6:
+> Also convert Accel to XArray
+> Rename skip_legacy_minors to force_extended_minors
+>=20
+> Micha=C5=82 Winiarski (4):
+>  drm: Use XArray instead of IDR for minors
+>  accel: Use XArray instead of IDR for minors
+>  drm: Expand max DRM device number to full MINORBITS
+>  drm: Introduce force_extended_minors modparam
+>=20
+> drivers/accel/drm_accel.c      | 110 +++------------------------------
+> drivers/gpu/drm/drm_drv.c      | 105 ++++++++++++++++---------------
+> drivers/gpu/drm/drm_file.c     |   2 +-
+> drivers/gpu/drm/drm_internal.h |   4 --
+> include/drm/drm_accel.h        |  18 +-----
+> include/drm/drm_file.h         |   5 ++
+> 6 files changed, 69 insertions(+), 175 deletions(-)
+>=20
+> --=20
+> 2.41.0
+>=20
 
-See https://lore.kernel.org/r/YkwQ6%2BtIH8GQpuct@zn.tnic for the gory
-details as to why it triggers with older gccs only.
 
-Signed-off-by: Dmitrii Bundin <dmitrii.bundin.a@gmail.com>
----
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Michal,
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-index 58012edd4eb0..8814d4cd371c 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-@@ -29,7 +29,7 @@
-  */
- 
- #define GUC_KLV_LEN_MIN				1u
--#define GUC_KLV_0_KEY				(0xffff << 16)
-+#define GUC_KLV_0_KEY				(0xffffU << 16)
- #define GUC_KLV_0_LEN				(0xffff << 0)
- #define GUC_KLV_n_VALUE				(0xffffffff << 0)
- 
--- 
-2.34.1
+What is the status on this patch? Did it ever get accepted upstream?
+If so, what release? I don=E2=80=99t see the changes in the latest Linux =
+kernel.
+I am working on a system that involves a large number of GPUs, where
+each GPU consumes a number of DRM devices. As such, I=E2=80=99m easily
+exceeding the current limit of 64 in the (6.6) kernel. To workaround =
+this issue,
+I have temporarily picked up this patch which is doing the trick, but =
+now
+I=E2=80=99m wondering if this patch has seen the light of day in the =
+Linux kernel.
+
+Thanks for any info!
+
+Regards,
+Eric
 
