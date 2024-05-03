@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E3C8BAC9E
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 846E48BACA2
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 14:38:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9C910EC7C;
-	Fri,  3 May 2024 12:38:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A555810FD5D;
+	Fri,  3 May 2024 12:38:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gigaio-com.20230601.gappssmtp.com header.i=@gigaio-com.20230601.gappssmtp.com header.b="ZZj4d8Js";
+	dkim=pass (2048-bit key; unprotected) header.d=gigaio-com.20230601.gappssmtp.com header.i=@gigaio-com.20230601.gappssmtp.com header.b="p0I3vOdD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
- [209.85.210.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FCD510E14C
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E41B10E14C
  for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2024 01:22:39 +0000 (UTC)
-Received: by mail-ot1-f48.google.com with SMTP id
- 46e09a7af769-6ee575da779so2407461a34.2
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-6082fd3e96eso6276938a12.1
  for <intel-gfx@lists.freedesktop.org>; Thu, 02 May 2024 18:22:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gigaio-com.20230601.gappssmtp.com; s=20230601; t=1714699359; x=1715304159;
+ d=gigaio-com.20230601.gappssmtp.com; s=20230601; t=1714699358; x=1715304158;
  darn=lists.freedesktop.org; 
  h=to:references:message-id:content-transfer-encoding:cc:date
  :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
  bh=k3nkCSoTperPlX+PtC8qWAin0Hv01DoPF7+bPAgfSgA=;
- b=ZZj4d8JseZXXiICswGinGCT9GsNv7nEC0rD5ufcM7JleyXmYYKuzXu6Gs/bLr1zX34
- LXZPQtFn2PvklLuJSt78vJ33MmaxVZoGtS83WN1V4b9y52yE82TcDkML86hc1zA/p4Yw
- ZFQ/VzTU39QjrrDs1KwbRppUHGHAYXFWL40ZFBQ06ZwIPjRM2ataVvwiTDAOix9VVAOX
- 4giSroQS4fj9RAqf3oKLRzZm0PDo/jlJL7eId2K5vszV0/8FvYB/2ec1GrzpxnxeUAQ3
- 2K2yRjJ2gQf6NoDSexox7z7beBI9qAnZdI2uy5kjIj+uM21m3LO/IFR7k689+uQ4xfQm
- B6DQ==
+ b=p0I3vOdDYh5LTMjiYPmjiWKdtrBg3eyd8t0l/PLhY0PJzqVojj8shWi9ACaQ8vBSpP
+ KNfHY18ptMFrXQtfGPFgWIEzS6cPNMIIb4NFftBUWqwRY5UJOAk+i7+eNFDznFdqbJK2
+ 2XZzWTbpzQaviOBBK6RsKP8J9LQJJVIAchhh2a+Zdlfcd8F6lnQNW69rgLRmAfEpDT7g
+ 98TlL5U90ZYPg8F2/l4gMOpwQMN0W/7ni/ynVrdsJJiAzphxt8mv9PF/EgSrdhCHj7iK
+ nq+g2cm8Dp5I+9QL+CfD6qTKFFu7otSOGbgjKtkIXXLyMVWJqaEEkNSPYg9P05X3Gj9/
+ +gJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1714699359; x=1715304159;
+ d=1e100.net; s=20230601; t=1714699358; x=1715304158;
  h=to:references:message-id:content-transfer-encoding:cc:date
  :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
  bh=k3nkCSoTperPlX+PtC8qWAin0Hv01DoPF7+bPAgfSgA=;
- b=xB/t1gzsAp+dy7qtLr7k39u1MUuYQpr2c9ZJRPpHMiePOr+T1zI6aGBdtoEYdk7o4V
- uLXgEKhgsGG/PbWRRuy5vuoQtPAjsbE2kwR3xZTuYAuiSAOKqFB8CrnqgY9ofwGu35Zh
- lDuDGE6d8Sq3bwwLU/uiwzXExxaiTqUlv0gMjZjkLBALxoaMa/iibBp4iil2oxGTW2HW
- qvc/1ycsbDj1F/D+88OCKRTC+uPbWjJjD98XLL1O6t2XIjlPjAkaVL6QpnMbOvWIF1BV
- Cpr20NWIZJ5rmCJv0ulJNmn+1FQA4aB6z3U9JBLxdmQG1O0v9Lr1FChcPvvVOLBdilRq
- BkzQ==
+ b=eNxN0/8x/EtXxdxP7EJh46gcWiX2jR7Kzkau0tDlnWeoL29nccOXfGMoudVNBtCVXK
+ gnLkcMQ70mTu3NkiYHeliq+O7XhAMQf+rL1MQF4o1kxdyE9rR1YShtMWEHiMGFHO+BpD
+ q/R8R04JCKMCLy8hKmOvpjtbHUdbintCXfvRaKKfZWBdLRrOUiznkK742vij4WQLkLBT
+ 4nQlHWHrU+9vtvHiMcYsDvoNF9q0xSFJAVTDkOgVLY8srrhkqVGAVTFld90LF5QRwzRX
+ va1TdZIvctiGH8IlgsCCLLtIbkvUKTrtTjdgM5r4QBziZ4hJymxX2oOfiQVQb2bi813y
+ 0ZyQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUZcwgZmwzO2Iy/fceEdFlsyuct06jade7M5MuTLWeFsORZbhnkgG13cpnDUO+y2OkCvLPBMByc3xWK5fMasZxkSgAbKpSyTnLVf7JTchJ8
-X-Gm-Message-State: AOJu0YwIzWzwaNZx8p1PaGP8NFhbH6lShcUWdoa80lS4LAAgJkXKiNQa
- e8N4JHx8P0mWJUQFCKW7XZ0IoUieSsxopoY2VDfPlHJFlkG9wbr7SUHTbdWgA/w=
-X-Google-Smtp-Source: AGHT+IGYuWQGoJVifB5ByXnZOOtnc0jo+Gwcp8Ftoa0rZdJC9qXcD/CvZftAT0HRvOGe4Jw7d7sdMw==
-X-Received: by 2002:a05:6830:3490:b0:6ea:30bc:a6b5 with SMTP id
- c16-20020a056830349000b006ea30bca6b5mr1921224otu.22.1714699358803; 
+ AJvYcCUEX5NlsbgPAKkTEAfqjWBxFEM7vuIM34xxCAKbuZO5n5eDN2XHpZeGXuaDIQLNm40ZRGrJeGTBkj3aYH3PtlQuN+AD2wDSNvXp4Bui3AwA
+X-Gm-Message-State: AOJu0YwghEhXGZPCQy8rix5qv79NXZ9mhsJJ9P74bcogQcvWuX+kcWT3
+ vYtZW+u+daaoIre5wV4VcoNNT5cCm4F6a27OVnfZSBWSnhgFlUu3yJmPtgpxKLk=
+X-Google-Smtp-Source: AGHT+IGPqQB/XAgZAB9D4Bug4cwSh5le6UZzq1h/8n6SQY9bePdvao23D1TuRx+ucuD5rPg2lKkumw==
+X-Received: by 2002:a05:6a20:1585:b0:1ad:2016:dff2 with SMTP id
+ h5-20020a056a20158500b001ad2016dff2mr1772812pzj.26.1714699358545; 
  Thu, 02 May 2024 18:22:38 -0700 (PDT)
 Received: from smtpclient.apple (45-31-42-85.lightspeed.sndgca.sbcglobal.net.
  [45.31.42.85]) by smtp.gmail.com with ESMTPSA id
- d11-20020a656b8b000000b005f7ff496050sm1699721pgw.76.2024.05.02.18.22.37
+ sx7-20020a17090b2cc700b002a4b2933a7asm3931314pjb.1.2024.05.02.18.22.37
  (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
  Thu, 02 May 2024 18:22:38 -0700 (PDT)
 Content-Type: text/plain;
