@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6FE8BA77E
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 09:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72DAC8BA77F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2024 09:16:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56147112170;
-	Fri,  3 May 2024 07:16:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBE24112859;
+	Fri,  3 May 2024 07:16:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E75D5112170;
- Fri,  3 May 2024 07:16:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA97C112859;
+ Fri,  3 May 2024 07:16:49 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Panel_replay_selecti?=
- =?utf-8?q?ve_update_support_=28rev10=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Panel_replay_selective_u?=
+ =?utf-8?q?pdate_support_=28rev10=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 03 May 2024 07:16:46 -0000
-Message-ID: <171472060694.1870324.9819482421943913219@8e613ede5ea5>
+Date: Fri, 03 May 2024 07:16:49 -0000
+Message-ID: <171472060969.1870171.6088156562329825394@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240503063413.1008135-1-jouni.hogander@intel.com>
 In-Reply-To: <20240503063413.1008135-1-jouni.hogander@intel.com>
@@ -49,23 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-4015b924c87d drm/i915/psr: Rename has_psr2 as has_sel_update
-e080275710d0 drm/i915/display: Do not print "psr: enabled" for on Panel Replay
-3741020e7abb drm/i915/dp: Use always vsc revision 0x6 for Panel Replay
-3b475bdf96a1 drm/i915/psr: Rename psr2_enabled as sel_update_enabled
-8b62b202c798 drm/panelreplay: dpcd register definition for panelreplay SU
-82bbbc2be289 drm/i915/psr: Detect panel replay selective update support
-90e8d3c59350 drm/i915/psr: Modify intel_dp_get_su_granularity to support panel replay
-78b212fdfe0c drm/i915/psr: Panel replay uses SRD_STATUS to track it's status
-466b27bea5a8 drm/i915/psr: Do not apply workarounds in case of panel replay
-25473571d334 drm/i915/psr: Update PSR module parameter descriptions
-0f75dcca3fc7 drm/i915/psr: Split intel_psr2_config_valid for panel replay
-13a721fd99eb drm/i915/psr: Add panel replay sel update support to debugfs interface
--:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#13: 
-Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
-
-total: 0 errors, 1 warnings, 0 checks, 22 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
