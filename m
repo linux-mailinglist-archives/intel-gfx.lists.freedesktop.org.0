@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3758D8BCFAE
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 16:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35DD88BCFB9
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 16:09:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDEAF10F053;
-	Mon,  6 May 2024 14:08:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U5yBVKF9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2B110E921;
+	Mon,  6 May 2024 14:09:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D53E710E921;
- Mon,  6 May 2024 14:08:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715004482; x=1746540482;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=+c3GrMAerlraFvtfbB/+sYjCQQFY+K5lyJoBJuVLhH0=;
- b=U5yBVKF9NMhZ1ETk7Pvuxj9im7XXloMRWxxwgBVd6HCDuvg/i/tsXUbj
- pBGvlnGyR2+2ahb3Q1XlLbUnsyvjNLlQnIlSmMeR8kJFbvJee42tcWBn+
- xIhRIwIqkzpzbpvLUsbOY39CPDzqV5kagvrP2WIbtutu9eCWAAHzPxaRJ
- KdIjpDm2oM8k7dIAb7vAAy28eurvuiYzMQKsDTT+vuL8WKqsyC+Y2n0lo
- 6ZpxVp67bzkYWfpBo3dKx5dELG/C/Fae1KRptxxTVRAWxvFuHZgt30Z4j
- fHc4ugDHtmlB0Ot94VCaH0NQU4iqZveGL2PN/7/VZsrF80s4Yp8sUM3H4 w==;
-X-CSE-ConnectionGUID: tvXJVNneSrmuEZ59e0ljDw==
-X-CSE-MsgGUID: Mb2zLaT1RMu7SgFgeRtpQg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="28275977"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28275977"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 07:08:00 -0700
-X-CSE-ConnectionGUID: ofxdw4+gSZqyip1wVAiDjQ==
-X-CSE-MsgGUID: KyaeDQ0WQRCxMnf2W273Ig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32764188"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 07:07:59 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 5/9] drm/i915: Polish types in fb calculations
-In-Reply-To: <20240506125718.26001-6-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
- <20240506125718.26001-6-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 17:07:55 +0300
-Message-ID: <87v83rkp8k.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2DE10E513;
+ Mon,  6 May 2024 14:09:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0881629328932026053=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Disarm_bread?=
+ =?utf-8?q?crumbs_if_engines_are_already_idle_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 06 May 2024 14:09:37 -0000
+Message-ID: <171500457710.1939725.17829097740135343912@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,234 +37,379 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Be a bit more consistent in our use of integer types in
-> the fb related calculatiosn. u32 we generally only use
-> for ggtt offsets and such, and everything else can be regular
-> (unsigned) ints.
->
-> There's also an overabundance of consts for local variables
-> in skl_check_main_surface() which is not something we generally
-> do. So get rid of those while at it.
+--===============0881629328932026053==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_fb.c       | 27 +++++++++--------
->  drivers/gpu/drm/i915/display/intel_fb_pin.c   |  2 +-
->  .../drm/i915/display/skl_universal_plane.c    | 29 +++++++++----------
->  4 files changed, 29 insertions(+), 31 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
-i915/display/i9xx_plane.c
-> index 21303fa4f08f..ea4d8ba55ad8 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> @@ -266,7 +266,7 @@ int i9xx_check_plane_surface(struct intel_plane_state=
- *plane_state)
->  	 * despite them not using the linear offset anymore.
->  	 */
->  	if (DISPLAY_VER(dev_priv) >=3D 4 && fb->modifier =3D=3D I915_FORMAT_MOD=
-_X_TILED) {
-> -		u32 alignment =3D intel_surf_alignment(fb, 0);
-> +		unsigned int alignment =3D intel_surf_alignment(fb, 0);
->  		int cpp =3D fb->format->cpp[0];
->=20=20
->  		while ((src_x + src_w) * cpp > plane_state->view.color_plane[0].mappin=
-g_stride) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index bf24f48a1e76..b6638726949d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -1045,7 +1045,7 @@ static u32 intel_compute_aligned_offset(struct drm_=
-i915_private *i915,
->  					int color_plane,
->  					unsigned int pitch,
->  					unsigned int rotation,
-> -					u32 alignment)
-> +					unsigned int alignment)
->  {
->  	unsigned int cpp =3D fb->format->cpp[color_plane];
->  	u32 offset, offset_aligned;
-> @@ -1102,8 +1102,8 @@ u32 intel_plane_compute_aligned_offset(int *x, int =
-*y,
->  	struct drm_i915_private *i915 =3D to_i915(intel_plane->base.dev);
->  	const struct drm_framebuffer *fb =3D state->hw.fb;
->  	unsigned int rotation =3D state->hw.rotation;
-> -	int pitch =3D state->view.color_plane[color_plane].mapping_stride;
-> -	u32 alignment;
-> +	unsigned int pitch =3D state->view.color_plane[color_plane].mapping_str=
-ide;
-> +	unsigned int alignment;
->=20=20
->  	if (intel_plane->id =3D=3D PLANE_CURSOR)
->  		alignment =3D intel_cursor_alignment(i915);
-> @@ -1120,8 +1120,7 @@ static int intel_fb_offset_to_xy(int *x, int *y,
->  				 int color_plane)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(fb->dev);
-> -	unsigned int height;
-> -	u32 alignment, unused;
-> +	unsigned int height, alignment, unused;
->=20=20
->  	if (DISPLAY_VER(i915) >=3D 12 &&
->  	    !intel_fb_needs_pot_stride_remap(to_intel_framebuffer(fb)) &&
-> @@ -1508,8 +1507,8 @@ static u32 calc_plane_remap_info(const struct intel=
-_framebuffer *fb, int color_p
->  		check_array_bounds(i915, view->gtt.remapped.plane, color_plane);
->=20=20
->  		if (view->gtt.remapped.plane_alignment) {
-> -			unsigned int aligned_offset =3D ALIGN(gtt_offset,
-> -							    view->gtt.remapped.plane_alignment);
-> +			u32 aligned_offset =3D ALIGN(gtt_offset,
-> +						   view->gtt.remapped.plane_alignment);
->=20=20
->  			size +=3D aligned_offset - gtt_offset;
->  			gtt_offset =3D aligned_offset;
-> @@ -1795,16 +1794,16 @@ u32 intel_fb_max_stride(struct drm_i915_private *=
-dev_priv,
->  		return 128 * 1024;
->  }
->=20=20
-> -static u32
-> +static unsigned int
->  intel_fb_stride_alignment(const struct drm_framebuffer *fb, int color_pl=
-ane)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(fb->dev);
-> -	u32 tile_width;
-> +	unsigned int tile_width;
->=20=20
->  	if (is_surface_linear(fb, color_plane)) {
-> -		u32 max_stride =3D intel_plane_fb_max_stride(dev_priv,
-> -							   fb->format->format,
-> -							   fb->modifier);
-> +		unsigned int max_stride =3D intel_plane_fb_max_stride(dev_priv,
-> +								    fb->format->format,
-> +								    fb->modifier);
->=20=20
->  		/*
->  		 * To make remapping with linear generally feasible
-> @@ -2061,7 +2060,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  	drm_helper_mode_fill_fb_struct(&dev_priv->drm, fb, mode_cmd);
->=20=20
->  	for (i =3D 0; i < fb->format->num_planes; i++) {
-> -		u32 stride_alignment;
-> +		unsigned int stride_alignment;
->=20=20
->  		if (mode_cmd->handles[i] !=3D mode_cmd->handles[0]) {
->  			drm_dbg_kms(&dev_priv->drm, "bad plane %d handle\n",
-> @@ -2078,7 +2077,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  		}
->=20=20
->  		if (intel_fb_is_gen12_ccs_aux_plane(fb, i)) {
-> -			int ccs_aux_stride =3D gen12_ccs_aux_stride(intel_fb, i);
-> +			unsigned int ccs_aux_stride =3D gen12_ccs_aux_stride(intel_fb, i);
->=20=20
->  			if (fb->pitches[i] !=3D ccs_aux_stride) {
->  				drm_dbg_kms(&dev_priv->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/dr=
-m/i915/display/intel_fb_pin.c
-> index 5b71d9488184..041f09f76628 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> @@ -113,9 +113,9 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
->  	struct drm_i915_gem_object *obj =3D intel_fb_obj(fb);
->  	intel_wakeref_t wakeref;
->  	struct i915_gem_ww_ctx ww;
-> +	unsigned int alignment;
->  	struct i915_vma *vma;
->  	unsigned int pinctl;
-> -	u32 alignment;
->  	int ret;
->=20=20
->  	if (drm_WARN_ON(dev, !i915_gem_object_is_framebuffer(obj)))
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index b8103d6ebc1f..24f90368d344 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1619,7 +1619,7 @@ skl_check_main_ccs_coordinates(struct intel_plane_s=
-tate *plane_state,
->  	int aux_x =3D plane_state->view.color_plane[ccs_plane].x;
->  	int aux_y =3D plane_state->view.color_plane[ccs_plane].y;
->  	u32 aux_offset =3D plane_state->view.color_plane[ccs_plane].offset;
-> -	u32 alignment =3D intel_surf_alignment(fb, ccs_plane);
-> +	unsigned int alignment =3D intel_surf_alignment(fb, ccs_plane);
->  	int hsub;
->  	int vsub;
->=20=20
-> @@ -1639,8 +1639,7 @@ skl_check_main_ccs_coordinates(struct intel_plane_s=
-tate *plane_state,
->  							       plane_state,
->  							       ccs_plane,
->  							       aux_offset,
-> -							       aux_offset -
-> -								alignment);
-> +							       aux_offset - alignment);
->  		aux_x =3D x * hsub + aux_x % hsub;
->  		aux_y =3D y * vsub + aux_y % vsub;
->  	}
-> @@ -1662,10 +1661,10 @@ int skl_calc_main_surface_offset(const struct int=
-el_plane_state *plane_state,
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
->  	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> -	const int aux_plane =3D skl_main_to_aux_plane(fb, 0);
-> -	const u32 aux_offset =3D plane_state->view.color_plane[aux_plane].offse=
-t;
-> -	const u32 alignment =3D intel_surf_alignment(fb, 0);
-> -	const int w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
-> +	int aux_plane =3D skl_main_to_aux_plane(fb, 0);
-> +	u32 aux_offset =3D plane_state->view.color_plane[aux_plane].offset;
-> +	unsigned int alignment =3D intel_surf_alignment(fb, 0);
-> +	int w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
->=20=20
->  	intel_add_fb_offsets(x, y, plane_state, 0);
->  	*offset =3D intel_plane_compute_aligned_offset(x, y, plane_state, 0);
-> @@ -1715,13 +1714,13 @@ static int skl_check_main_surface(struct intel_pl=
-ane_state *plane_state)
->  	const unsigned int rotation =3D plane_state->hw.rotation;
->  	int x =3D plane_state->uapi.src.x1 >> 16;
->  	int y =3D plane_state->uapi.src.y1 >> 16;
-> -	const int w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
-> -	const int h =3D drm_rect_height(&plane_state->uapi.src) >> 16;
-> -	const int min_width =3D intel_plane_min_width(plane, fb, 0, rotation);
-> -	const int max_width =3D intel_plane_max_width(plane, fb, 0, rotation);
-> -	const int max_height =3D intel_plane_max_height(plane, fb, 0, rotation);
-> -	const int aux_plane =3D skl_main_to_aux_plane(fb, 0);
-> -	const u32 alignment =3D intel_surf_alignment(fb, 0);
-> +	int w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
-> +	int h =3D drm_rect_height(&plane_state->uapi.src) >> 16;
-> +	int min_width =3D intel_plane_min_width(plane, fb, 0, rotation);
-> +	int max_width =3D intel_plane_max_width(plane, fb, 0, rotation);
-> +	int max_height =3D intel_plane_max_height(plane, fb, 0, rotation);
-> +	unsigned int alignment =3D intel_surf_alignment(fb, 0);
-> +	int aux_plane =3D skl_main_to_aux_plane(fb, 0);
->  	u32 offset;
->  	int ret;
->=20=20
-> @@ -1809,7 +1808,7 @@ static int skl_check_nv12_aux_surface(struct intel_=
-plane_state *plane_state)
->=20=20
->  	if (ccs_plane) {
->  		u32 aux_offset =3D plane_state->view.color_plane[ccs_plane].offset;
-> -		u32 alignment =3D intel_surf_alignment(fb, uv_plane);
-> +		unsigned int alignment =3D intel_surf_alignment(fb, uv_plane);
->=20=20
->  		if (offset > aux_offset)
->  			offset =3D intel_plane_adjust_aligned_offset(&x, &y,
+Series: drm/i915/gt: Disarm breadcrumbs if engines are already idle (rev3)
+URL   : https://patchwork.freedesktop.org/series/132786/
+State : success
 
---=20
-Jani Nikula, Intel
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14711 -> Patchwork_132786v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/index.html
+
+Participating hosts (42 -> 36)
+------------------------------
+
+  Missing    (6): bat-kbl-2 fi-bsw-n3050 fi-snb-2520m fi-cfl-8109u bat-dg2-11 bat-arls-3 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_132786v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-8 (NEW):
+    - {bat-mtlp-9}:       NOTRUN -> [FAIL][1] +2 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-mtlp-9/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-8.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_14711 and Patchwork_132786v3:
+
+### New IGT tests (16) ###
+
+  * igt@kms_flip@basic-plain-flip@a-dp9:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.21] s
+
+  * igt@kms_flip@basic-plain-flip@b-dp9:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.20] s
+
+  * igt@kms_flip@basic-plain-flip@c-dp9:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.09] s
+
+  * igt@kms_flip@basic-plain-flip@d-dp9:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.07] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.29] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-9:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.15] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.79] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.97] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-a-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.08] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-b-dp-9:
+    - Statuses : 1 pass(s)
+    - Exec time: [1.08] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.68] s
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.68] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-8:
+    - Statuses : 1 pass(s)
+    - Exec time: [2.12] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-9:
+    - Statuses : 1 fail(s)
+    - Exec time: [2.97] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-8:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.29] s
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-dp-8:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.15] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_132786v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - bat-dg2-9:          [PASS][2] -> [DMESG-WARN][3] ([i915#10014])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-dg2-9/igt@i915_module_load@load.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-dg2-9/igt@i915_module_load@load.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - {bat-mtlp-9}:       [DMESG-WARN][4] ([i915#10435] / [i915#9157]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - {bat-mtlp-9}:       [DMESG-WARN][6] ([i915#10435]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10014]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
+  [i915#10911]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10911
+  [i915#6121]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121
+  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14711 -> Patchwork_132786v3
+
+  CI-20190529: 20190529
+  CI_DRM_14711: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_132786v3: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/index.html
+
+--===============0881629328932026053==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Disarm breadcrumbs if engines are already idle (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/132786/">https://patchwork.freedesktop.org/series/132786/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14711 -&gt; Patchwork_132786v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/index.html</p>
+<h2>Participating hosts (42 -&gt; 36)</h2>
+<p>Missing    (6): bat-kbl-2 fi-bsw-n3050 fi-snb-2520m fi-cfl-8109u bat-dg2-11 bat-arls-3 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_132786v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-8 (NEW):<ul>
+<li>{bat-mtlp-9}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-mtlp-9/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-8.html">FAIL</a> +2 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_14711 and Patchwork_132786v3:</p>
+<h3>New IGT tests (16)</h3>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-dp9:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.21] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@b-dp9:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.20] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-dp9:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.09] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-plain-flip@d-dp9:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.07] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.29] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-9:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.15] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-c-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.79] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.97] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-a-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.08] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-b-dp-9:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [1.08] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-c-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.68] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24@pipe-d-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.68] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-8:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [2.12] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-9:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [2.97] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [1.29] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-dp-8:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [1.15] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_132786v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-dg2-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014">i915#10014</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157">i915#9157</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_132786v3/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14711 -&gt; Patchwork_132786v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14711: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_132786v3: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0881629328932026053==--
