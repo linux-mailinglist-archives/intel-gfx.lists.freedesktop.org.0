@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A6E8BCAC4
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6518BCACB
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:37:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C477811226F;
-	Mon,  6 May 2024 09:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB6E7112270;
+	Mon,  6 May 2024 09:37:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VETOD91Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ElSCBKY+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D816511226F
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:36:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCA9112270
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714988209; x=1746524209;
+ t=1714988247; x=1746524247;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=K3FxDGe+CD7fK7LoMYlHjqVa8E49cb+ocRYAFzLZwlA=;
- b=VETOD91Zwft4Pvw7vvuMrXQtC8kYUGSpH7NtFm5p7x/wQp+hCX4jPa+s
- f6Q2gX+AixBfbu4FeDdCNmOF+tVieh6AOJ/UKML3G+JXz1nnxKatppNYq
- rloc1UHSBJmKqQwGOnWcnr6hvvMTn4Lfxz3GFNsBeq6fYzAPrl5rzKCjd
- w5/bGRPwqJ2NW9ETaWXbSxOxUcNK7z2P38e8FQRo0RYLGJXVb3K6RX8De
- VTtUgGgi1R6AUzgz2T2/WMYyDXAJXweJFCn98DTXGRx1L5ySngCgL83ne
- RHw2jHy5KysiBvFRFW1t8OKT+NZHg7TuBwqOOreMR24bIlu6plGQjyjrx Q==;
-X-CSE-ConnectionGUID: kc7iA8bVQeabGH2xPocZqQ==
-X-CSE-MsgGUID: WOgVC22CRBGtfCD959pzKQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10575809"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10575809"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:36:48 -0700
-X-CSE-ConnectionGUID: iQkbsiFzSpyn3GAVbKrhTA==
-X-CSE-MsgGUID: YnWlubvgR0OsyKIutpPA4A==
+ bh=yiuDBsd0Z+9TpdxnEkH4deSsLGGkd/CuHt+e7iVH2Yw=;
+ b=ElSCBKY+/S93KO/nUmH3qv5YVBWTrOUN4c/XNtXWN6zZTyoVQU+cZ04h
+ CvtZ5aLkJgwuO61repw6gt67DkBgf1sA2No50KJRIXa4jUfJyWR94NR7t
+ pFFowDYeRJdSWHzd2PppFmlvVz+6sm2HnqSglP9vwsWwVOjo61qh/27QL
+ Jxg3F26e1/rS5HLWfR5ZJ7GtdMpgwxwWkaOrjBUd5sktlvleVl8MABfab
+ uu+wxs15jfPAINIqaKQ455N8YnI16S6DBVpg4sGXqI5VughVBJldhc1I7
+ gZR190jPfvV8j5aulCX0O3UYAzsNbqE+MOnFrzlRUQBMjYEqVf/J86Qhv A==;
+X-CSE-ConnectionGUID: pfa8xhNTSiiGufDKH5WyRg==
+X-CSE-MsgGUID: X75qkhaUTpC9+uEEgwxn6w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10882821"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10882821"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:37:27 -0700
+X-CSE-ConnectionGUID: Vh6TI64SRWOHhiKC51S6lQ==
+X-CSE-MsgGUID: HJ8VpooeQe+zxHpRb42srw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32589720"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="65544124"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.230])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:36:46 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:37:25 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 25/35] drm/i915/bios: Define VBT block 26 (TV Options)
+Subject: Re: [PATCH 26/35] drm/i915/bios: Define VBT block 28 (EFP DTD)
  contents
-In-Reply-To: <20240503122449.27266-26-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240503122449.27266-27-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
- <20240503122449.27266-26-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 12:36:43 +0300
-Message-ID: <87wmo7mgd0.fsf@intel.com>
+ <20240503122449.27266-27-ville.syrjala@linux.intel.com>
+Date: Mon, 06 May 2024 12:37:22 +0300
+Message-ID: <87ttjbmgbx.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,39 +74,43 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 03 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Define the contents of VBT block 26 (TV Options).
+> Define the contents of VBT block 28 (EFP DTD).
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index c6d03905593d..1b94d4aba00a 100644
+> index 1b94d4aba00a..716a339f6e2a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -988,6 +988,18 @@ struct bdb_sdvo_lvds_pps {
->  	struct sdvo_lvds_pps pps[4];
+> @@ -167,6 +167,7 @@ enum bdb_block_id {
+>  	BDB_SDVO_LVDS_PPS		=3D 25,
+>  	BDB_TV_OPTIONS			=3D 26,
+>  	BDB_EDP				=3D 27,
+> +	BDB_EFP_DTD			=3D 28, /* 161+ */
+>  	BDB_DISPLAY_SELECT_IVB		=3D 29, /* 164+ */
+>  	BDB_DISPLAY_REMOVE_IVB		=3D 30, /* 164+ */
+>  	BDB_DISPLAY_SELECT_HSW		=3D 31, /* 166+ */
+> @@ -1072,6 +1073,14 @@ struct bdb_edp {
+>  	u16 edp_dsc_disable;					/* 251+ */
 >  } __packed;
 >=20=20
 > +/*
-> + * Block 26 - TV Options Block
+> + * Block 28 - EFP DTD Block
 > + */
 > +
-> +struct bdb_tv_options {
-> +	u16 underscan_overscan_hdtv_component:2;
-> +	u16 rsvd1:10;
-> +	u16 underscan_overscan_hdtv_dvi:2;
-> +	u16 add_modes_to_avoid_overscan_issue:1;
-> +	u16 d_connector_support:1;
+> +struct bdb_efp_dtd {
+> +	struct bdb_edid_dtd dtd[3];
 > +} __packed;
 > +
 >  /*
->   * Block 27 - eDP VBT Block
+>   * Block 29 - Toggle List Block (IVB)
 >   */
 
 --=20
