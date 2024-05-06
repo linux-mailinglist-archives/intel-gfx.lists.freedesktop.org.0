@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E36C8BCABB
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A6E8BCAC4
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:36:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A4610F2B3;
-	Mon,  6 May 2024 09:35:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C477811226F;
+	Mon,  6 May 2024 09:36:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WpWUDz3M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VETOD91Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F3510F2B3
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:35:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D816511226F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714988146; x=1746524146;
+ t=1714988209; x=1746524209;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=R31aNFimFbYx6AF+u/9SPi3IP/wnY8YRmX87BDtUlvA=;
- b=WpWUDz3MEfd3unk/FIxHgU1mZ9Lj+fwNp5peEAlUzAPPvfE156K7qnYI
- JpjINZW1vkabMQ3qyDuGKwrra2P6y9fhkSHyhKsood78KrhWQyv0UN52/
- K5fF9QtTRonG69vwexsiIukJHSTf19o5A4ynmvgpYlrlUvvct5U3PmQWh
- 0kzJ1aYnkbpMM8cB1ILjvSvI4xidwNfkmZuRWVHZ+R6iYUNeTO5A3XfeD
- SEZJCFMN7j4LHXovoeLWhFoI2ZhKEn8pd4L6z88cbBX7ltODmNFf5bx50
- 2P/uLpar02Jodjobyfx7otkFyhDLMKikMOpA9R8mkPQst6dnctY+L9g6j Q==;
-X-CSE-ConnectionGUID: xnfqbCYJRga/wTPL6Y8N5Q==
-X-CSE-MsgGUID: BfvuT+koR7+nhM7gb7l1JA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10652861"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10652861"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:35:46 -0700
-X-CSE-ConnectionGUID: uElpjaMeTMiaAtcc5Nymgg==
-X-CSE-MsgGUID: fiYk/Gv4S+i6ctn5vcD71g==
+ bh=K3FxDGe+CD7fK7LoMYlHjqVa8E49cb+ocRYAFzLZwlA=;
+ b=VETOD91Zwft4Pvw7vvuMrXQtC8kYUGSpH7NtFm5p7x/wQp+hCX4jPa+s
+ f6Q2gX+AixBfbu4FeDdCNmOF+tVieh6AOJ/UKML3G+JXz1nnxKatppNYq
+ rloc1UHSBJmKqQwGOnWcnr6hvvMTn4Lfxz3GFNsBeq6fYzAPrl5rzKCjd
+ w5/bGRPwqJ2NW9ETaWXbSxOxUcNK7z2P38e8FQRo0RYLGJXVb3K6RX8De
+ VTtUgGgi1R6AUzgz2T2/WMYyDXAJXweJFCn98DTXGRx1L5ySngCgL83ne
+ RHw2jHy5KysiBvFRFW1t8OKT+NZHg7TuBwqOOreMR24bIlu6plGQjyjrx Q==;
+X-CSE-ConnectionGUID: kc7iA8bVQeabGH2xPocZqQ==
+X-CSE-MsgGUID: WOgVC22CRBGtfCD959pzKQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10575809"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10575809"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:36:48 -0700
+X-CSE-ConnectionGUID: iQkbsiFzSpyn3GAVbKrhTA==
+X-CSE-MsgGUID: YnWlubvgR0OsyKIutpPA4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28213227"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32589720"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.230])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:35:44 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:36:46 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 21/35] drm/i915/bios: Define VBT block 20 (OEM
- Customizable Modes) contents
-In-Reply-To: <20240503122449.27266-22-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 25/35] drm/i915/bios: Define VBT block 26 (TV Options)
+ contents
+In-Reply-To: <20240503122449.27266-26-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
- <20240503122449.27266-22-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 12:35:41 +0300
-Message-ID: <87zft3mgeq.fsf@intel.com>
+ <20240503122449.27266-26-ville.syrjala@linux.intel.com>
+Date: Mon, 06 May 2024 12:36:43 +0300
+Message-ID: <87wmo7mgd0.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,52 +74,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 03 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Define the contents of VBT block 20 (OEM Customizable Modes).
-> Each entry is either 26 or 28 bytes, depending on the BDB version.
+> Define the contents of VBT block 26 (TV Options).
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index 30d60835e4d0..a61ae39196b1 100644
+> index c6d03905593d..1b94d4aba00a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -897,6 +897,30 @@ struct bdb_display_remove_old {
->  	struct display_remove_entry_old table[];
+> @@ -988,6 +988,18 @@ struct bdb_sdvo_lvds_pps {
+>  	struct sdvo_lvds_pps pps[4];
 >  } __packed;
 >=20=20
 > +/*
-> + * Block 20 - OEM Customizable Modes
+> + * Block 26 - TV Options Block
 > + */
 > +
-> +struct oem_mode {
-> +	u8 enable_in_vbios:1;
-> +	u8 enable_in_os:1;
-> +	u8 enable_in_gop:1;					/* 207+ */
-> +	u8 reserved:5;
-> +	u8 display_flags;					/* ???-216 */
-> +	u16 x_res;
-> +	u16 y_res;
-> +	u8 color_depth;
-> +	u8 refresh_rate;
-> +	struct bdb_edid_dtd dtd;
-> +	u16 display_flags_2;					/* 217+ */
-> +} __packed;
-> +
-> +struct bdb_oem_custom {
-> +	u8 num_entries;
-> +	u8 entry_size;
-> +	struct oem_mode modes[];
+> +struct bdb_tv_options {
+> +	u16 underscan_overscan_hdtv_component:2;
+> +	u16 rsvd1:10;
+> +	u16 underscan_overscan_hdtv_dvi:2;
+> +	u16 add_modes_to_avoid_overscan_issue:1;
+> +	u16 d_connector_support:1;
 > +} __packed;
 > +
 >  /*
->   * Block 22 - SDVO LVDS General Options
+>   * Block 27 - eDP VBT Block
 >   */
 
 --=20
