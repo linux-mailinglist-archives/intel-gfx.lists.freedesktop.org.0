@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17F68BCBAA
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 12:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6C98BCBAF
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 12:10:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1D010ED1C;
-	Mon,  6 May 2024 10:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25DB010EF3A;
+	Mon,  6 May 2024 10:10:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m2deMda0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLvh6DHs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D7FA10ED1C
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 10:09:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43F8910EF0A;
+ Mon,  6 May 2024 10:10:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714990163; x=1746526163;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=u/vOSHySwoi5VI8c8uTlX+M4ChND5g/QX3sN87mdOHw=;
- b=m2deMda0Q86tP2Vwh6F9doHYQ393+uFtecmotseXor/hMukVCT7dczvS
- lBF70x4urMe8m2i9ZiTpAmvle4FOcghMwkgJnuqUSHlHV4rNTaczCpafm
- rIlU1z7oHUwaeLNujxcoScq9wCoTdltHSU3NNgqRcQHUVKxjpKiNjlRNF
- pfQ9Vd+/4qjIps/J7CTV/Ql75s9A4ucZUt4RK+DSMz9/Q1EKpFY/urESl
- wUGkeJMi34XER2+Bqsf48DQ9fiZs/y0l/CTsuRGWpIAxiLD3i9umTqxhM
- 6wUde9R8PhwJBxv79/95HZ5ekq4IMh9likQkIy4LnJtkJ9a+SvURBYRKR Q==;
-X-CSE-ConnectionGUID: BlDMFbPHTLeaOLj1ZP2EMg==
-X-CSE-MsgGUID: ZTAvwGr9RYKUONXNhQyC7g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="21341452"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="21341452"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 03:09:23 -0700
-X-CSE-ConnectionGUID: aufo5He0QO+PdupgKMrPbw==
-X-CSE-MsgGUID: FZb/UfHmSF+TElTozYZYLg==
+ t=1714990210; x=1746526210;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uurv42DQvE0bDmBo9g4/e2TwBQoXxrS7DK/Q/7vzPYw=;
+ b=TLvh6DHsf3W1UrRknGZBI6gZgD3TwlnN6uAsY6jgayKT5QBsZ2dMaKN7
+ fq3bUvjgcFU//Ynjyt4rfF31BqBqZOjDu18I02rH+a3Y3LSPvEhY8oUpf
+ f5lDTXWpR0oZRQikxXQcwW4g2JG0UTheq2UwFhdxKABLRD6UXd1cDq8Dz
+ Hw04Wez0Dq9p1v5ITrviCXk1rXUd6twEFW/2B89KYamg8iLLlYn47I5oh
+ qTA0NXG92b0YT2qyvE6C8B0V2rwYJCBHjAT8CiJM6lKQ2CY+GrgozrV2T
+ 2jZsEMGFcQp9/2FXgBOrywxumvHgDtPHN9WurdrSLnFj2+yo090RlGS15 Q==;
+X-CSE-ConnectionGUID: WTx+vlZ9QVGnySL3/Z8ksA==
+X-CSE-MsgGUID: ZLrnT99rSPWoBehbCUsMLQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="14534143"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="14534143"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 03:10:09 -0700
+X-CSE-ConnectionGUID: iy8TwkwnStWbsuopJVWfBw==
+X-CSE-MsgGUID: RKXDccZmSUGUtghEZzruuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32719096"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 03:09:21 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915: pass dev_priv explicitly to PORT_DFT2_G4X
-Date: Mon,  6 May 2024 13:09:04 +0300
-Message-Id: <0db8ee7b66b9660fc9fd80598257c6d36f0f506b.1714990089.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1714990089.git.jani.nikula@intel.com>
-References: <cover.1714990089.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32926593"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by orviesa005.jf.intel.com with ESMTP; 06 May 2024 03:10:06 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, jani.nikula@linux.intel.com,
+ matthew.d.roper@intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: [v3] drm/i915: Implement Audio WA_14020863754
+Date: Mon,  6 May 2024 15:48:17 +0530
+Message-ID: <20240506101817.2590328-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,68 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PORT_DFT2_G4X register macro.
+WA_14020863754: Corner case with Min Hblank Fix can cause
+audio hang
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Issue: Previously a fix was made to avoid issues with extremely
+small hblanks, called the "Min Hblank Fix". However, this can
+potentially cause an audio hang.
+
+Workaround :
+During "Audio Programming Sequence" Audio Enabling -
+When DP mode is enabled Set mmio offset 0x65F1C bit 18 = 1b,
+before step #1 "Enable audio Presence Detect"
+
+During "Audio Programming Sequence" Audio Disabling -
+When DP mode is enabled Clear mmio offset 0x65F1C bit 18 = 0b,
+after step #6 "Disable Audio PD (Presence Detect)"
+If not clearing PD bit, must also not clear 0x65F1C bit 18 (leave = 1b)
+
+v2: Update the platform checks (Jani Nikula)
+
+v3: Limited the WA to LNL and BMG, added a helper (Matt Roper)
+
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pipe_crc.c | 8 ++++----
- drivers/gpu/drm/i915/i915_reg.h               | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c     | 18 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_audio_regs.h    |  3 +++
+ 2 files changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-index 35c3dd1130ce..b3dcfee6ec0e 100644
---- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-@@ -167,7 +167,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 	 *   - DisplayPort scrambling: used for EMI reduction
- 	 */
- 	if (need_stable_symbols) {
--		u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X);
-+		u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X(dev_priv));
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index ed81e1466c4b..cb055c16dd98 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -183,6 +183,18 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
+ 	{ 192000, TMDS_445_5M, 20480, 371250 },
+ };
  
- 		tmp |= DC_BALANCE_RESET_VLV;
- 		switch (pipe) {
-@@ -183,7 +183,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 		default:
- 			return -EINVAL;
- 		}
--		intel_de_write(dev_priv, PORT_DFT2_G4X, tmp);
-+		intel_de_write(dev_priv, PORT_DFT2_G4X(dev_priv), tmp);
- 	}
- 
- 	return 0;
-@@ -229,7 +229,7 @@ static int i9xx_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- static void vlv_undo_pipe_scramble_reset(struct drm_i915_private *dev_priv,
- 					 enum pipe pipe)
++/*
++ * WA_14020863754: Implement Audio Workaround
++ * Corner case with Min Hblank Fix can cause audio hang
++ */
++static bool needs_wa_14020863754(struct drm_i915_private *i915)
++{
++	if (DISPLAY_VER(i915) == 20 || IS_BATTLEMAGE(i915))
++		return true;
++
++	return false;
++}
++
+ /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
+ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
  {
--	u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X);
-+	u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X(dev_priv));
+@@ -415,6 +427,9 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+ 		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
  
- 	switch (pipe) {
- 	case PIPE_A:
-@@ -246,7 +246,7 @@ static void vlv_undo_pipe_scramble_reset(struct drm_i915_private *dev_priv,
- 	}
- 	if (!(tmp & PIPE_SCRAMBLE_RESET_MASK))
- 		tmp &= ~DC_BALANCE_RESET_VLV;
--	intel_de_write(dev_priv, PORT_DFT2_G4X, tmp);
-+	intel_de_write(dev_priv, PORT_DFT2_G4X(dev_priv), tmp);
++	if (needs_wa_14020863754(i915))
++		intel_de_rmw(i915, AUD_CHICKENBIT_REG3, CHICKEN3_SPARE18, 0);
++
+ 	mutex_unlock(&i915->display.audio.mutex);
  }
  
- static int ilk_pipe_crc_ctl_reg(enum intel_pipe_crc_source *source,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4a88eb9cd1f8..5670eee4a498 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1479,7 +1479,7 @@
+@@ -540,6 +555,9 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
+ 		enable_audio_dsc_wa(encoder, crtc_state);
  
- #define PORT_DFT_I9XX				_MMIO(0x61150)
- #define   DC_BALANCE_RESET			(1 << 25)
--#define PORT_DFT2_G4X		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61154)
-+#define PORT_DFT2_G4X(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61154)
- #define   DC_BALANCE_RESET_VLV			(1 << 31)
- #define   PIPE_SCRAMBLE_RESET_MASK		((1 << 14) | (0x3 << 0))
- #define   PIPE_C_SCRAMBLE_RESET			REG_BIT(14) /* chv */
++	if (needs_wa_14020863754(i915))
++		intel_de_rmw(i915, AUD_CHICKENBIT_REG3, 0, CHICKEN3_SPARE18);
++
+ 	/* Enable audio presence detect */
+ 	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+ 		     0, AUDIO_OUTPUT_ENABLE(cpu_transcoder));
+diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+index 88ea2740365d..7de82cd3380e 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+@@ -164,4 +164,7 @@
+ 							 _VLV_AUD_PORT_EN_D_DBG)
+ #define VLV_AMP_MUTE		        (1 << 1)
+ 
++#define AUD_CHICKENBIT_REG3		_MMIO(0x65F1C)
++#define  CHICKEN3_SPARE18		REG_BIT(18)
++
+ #endif /* __INTEL_AUDIO_REGS_H__ */
 -- 
-2.39.2
+2.42.0
 
