@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6958BCD8F
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 172C78BCD90
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:13:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86AC910EDCB;
-	Mon,  6 May 2024 12:13:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBE610EFC7;
+	Mon,  6 May 2024 12:13:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SBC/CmaB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HZe8HD9W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E02E10EDCB
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 12:13:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9647010EFC7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 12:13:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714997609; x=1746533609;
+ t=1714997628; x=1746533628;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ewxGZLRNwbKRtvCj3Y9LgkEUN8lWhuk2jflSUooP5BU=;
- b=SBC/CmaBay+4jI/uTRjET+SXJvJTa+byumfeKPBuex8qV/+gywtPZ1Qa
- DCqz+v5j5BZqlLQJmRnE4yk5gGCGf5zIYsmnmc4vKp7PtbUxbzWSRvpvh
- I7IOvCjxbU0LPxNDkQzlMKlQBtcceVDDHet44ajJ6dR/S5yZ6s9cMjZoi
- maZqwTsdYsU6mpdOYyfmMAUeMqw6kJEnWugP6/ov4ZGrGDO9epACKuPft
- E3kUoaSiHH7eRzgK5JD4V7+/E7dTmFhJAslHKAcq/8xDuNqrkbE0KCs1a
- KbkO/EGeO9VYSKBX/sh180CZ7YAKSNOILPZ0bOk53mZMOBem5yCEM7q4K A==;
-X-CSE-ConnectionGUID: B0g026bKRMiT+JB5Wbk6+Q==
-X-CSE-MsgGUID: awmkA8FqT92/TFH9f2Um+g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10862283"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10862283"
+ bh=elX3ITjfxasAygIkTK4HNSzuUM6t+NXQugU3z+3v1HU=;
+ b=HZe8HD9WPtlWtLyERCI3o7ZUQiegh2RzPsiJ9rIWJ4cZLG4Zjr7CCQDj
+ heSDTBkWv0DHpTI4R1vzPSVVFTQvh7ont8c4uhytvlsthBH/aTcNV5SZZ
+ KXctbC8vK2fiUgZ0g/2B4sSviC4kNRygX4qOIRSdLC3EH/OFfZWu0appy
+ seNd8Io/PQeVBDlBoFtU9e0NP8/lcmebcLz2Wcp4AJ557AMI69Da1oLLn
+ B3ulGE1IA907gwvH5M0swLOh9G+XIkks9CKQmBOVkfU5Zn6A5mjrK3VJ0
+ Oc4teOF3rHqBCr21Ll9xydUSn+agEl7EgmDX7Z/RGwr9QPmSdBwZNOGCI A==;
+X-CSE-ConnectionGUID: JSvFsLELTXKOlipx4LW6DQ==
+X-CSE-MsgGUID: kDlFbnw/Q3WwQwSpBSSNdQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10862412"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10862412"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 05:13:08 -0700
-X-CSE-ConnectionGUID: JLL0TEZBQWOFLXqIgio+Ow==
-X-CSE-MsgGUID: Yf0OfpFNT3qUOmwUPgvdLQ==
+ 06 May 2024 05:13:45 -0700
+X-CSE-ConnectionGUID: U1Y9x1GNShO9JWtfRnYTsw==
+X-CSE-MsgGUID: BC8BJGpxQkiChnEJJbX9hg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28158792"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28158866"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:13:05 -0700
+ by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:13:43 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 15:13:04 +0300
-Date: Mon, 6 May 2024 15:13:04 +0300
+ Mon, 06 May 2024 15:13:42 +0300
+Date: Mon, 6 May 2024 15:13:42 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/3] drm/i915: pass dev_priv explicitly to PORT_DFT2_G4X
-Message-ID: <ZjjJUO6_QRII3zrN@intel.com>
+Subject: Re: [PATCH 2/3] drm/i915: pass dev_priv explicitly to PIPE_CRC_*
+Message-ID: <ZjjJdqzVfs1sx0ok@intel.com>
 References: <cover.1714990089.git.jani.nikula@intel.com>
- <0db8ee7b66b9660fc9fd80598257c6d36f0f506b.1714990089.git.jani.nikula@intel.com>
+ <849315d4417a2ce60e867648d9a040c5e96bc22d.1714990089.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0db8ee7b66b9660fc9fd80598257c6d36f0f506b.1714990089.git.jani.nikula@intel.com>
+In-Reply-To: <849315d4417a2ce60e867648d9a040c5e96bc22d.1714990089.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,76 +71,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 06, 2024 at 01:09:04PM +0300, Jani Nikula wrote:
+On Mon, May 06, 2024 at 01:09:03PM +0300, Jani Nikula wrote:
 > Avoid the implicit dev_priv local variable use, and pass dev_priv
-> explicitly to the PORT_DFT2_G4X register macro.
-
-Looks like we only use this on VLV/CHV, so could define a fixed
-offset _VLV variant.
-
-But this works too
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
+> explicitly to the PIPE_CRC_RES_* register macros.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c | 8 ++++----
->  drivers/gpu/drm/i915/i915_reg.h               | 2 +-
->  2 files changed, 5 insertions(+), 5 deletions(-)
+>  .../gpu/drm/i915/display/intel_display_irq.c  | 24 ++++++++++---------
+>  drivers/gpu/drm/i915/i915_reg.h               | 22 ++++++++---------
+>  2 files changed, 24 insertions(+), 22 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> index 35c3dd1130ce..b3dcfee6ec0e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> @@ -167,7 +167,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
->  	 *   - DisplayPort scrambling: used for EMI reduction
->  	 */
->  	if (need_stable_symbols) {
-> -		u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X);
-> +		u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X(dev_priv));
->  
->  		tmp |= DC_BALANCE_RESET_VLV;
->  		switch (pipe) {
-> @@ -183,7 +183,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
->  		default:
->  			return -EINVAL;
->  		}
-> -		intel_de_write(dev_priv, PORT_DFT2_G4X, tmp);
-> +		intel_de_write(dev_priv, PORT_DFT2_G4X(dev_priv), tmp);
->  	}
->  
->  	return 0;
-> @@ -229,7 +229,7 @@ static int i9xx_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
->  static void vlv_undo_pipe_scramble_reset(struct drm_i915_private *dev_priv,
->  					 enum pipe pipe)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index c41f058acaff..1674570dff1e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -356,7 +356,7 @@ static void hsw_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+>  				     enum pipe pipe)
 >  {
-> -	u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X);
-> +	u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X(dev_priv));
->  
->  	switch (pipe) {
->  	case PIPE_A:
-> @@ -246,7 +246,7 @@ static void vlv_undo_pipe_scramble_reset(struct drm_i915_private *dev_priv,
->  	}
->  	if (!(tmp & PIPE_SCRAMBLE_RESET_MASK))
->  		tmp &= ~DC_BALANCE_RESET_VLV;
-> -	intel_de_write(dev_priv, PORT_DFT2_G4X, tmp);
-> +	intel_de_write(dev_priv, PORT_DFT2_G4X(dev_priv), tmp);
+>  	display_pipe_crc_irq_handler(dev_priv, pipe,
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(dev_priv, pipe)),
+
+I believe the _IVB variants could be defined without
+needing dev_priv.
+
+But this works as well so
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  				     0, 0, 0, 0);
 >  }
 >  
->  static int ilk_pipe_crc_ctl_reg(enum intel_pipe_crc_source *source,
+> @@ -364,11 +364,11 @@ static void ivb_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+>  				     enum pipe pipe)
+>  {
+>  	display_pipe_crc_irq_handler(dev_priv, pipe,
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(pipe)),
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_2_IVB(pipe)),
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_3_IVB(pipe)),
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_4_IVB(pipe)),
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_5_IVB(pipe)));
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(dev_priv, pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_2_IVB(dev_priv, pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_3_IVB(dev_priv, pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_4_IVB(dev_priv, pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_5_IVB(dev_priv, pipe)));
+>  }
+>  
+>  static void i9xx_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+> @@ -377,19 +377,21 @@ static void i9xx_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+>  	u32 res1, res2;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 3)
+> -		res1 = intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RES1_I915(pipe));
+> +		res1 = intel_uncore_read(&dev_priv->uncore,
+> +					 PIPE_CRC_RES_RES1_I915(dev_priv, pipe));
+>  	else
+>  		res1 = 0;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+> -		res2 = intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RES2_G4X(pipe));
+> +		res2 = intel_uncore_read(&dev_priv->uncore,
+> +					 PIPE_CRC_RES_RES2_G4X(dev_priv, pipe));
+>  	else
+>  		res2 = 0;
+>  
+>  	display_pipe_crc_irq_handler(dev_priv, pipe,
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RED(pipe)),
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_GREEN(pipe)),
+> -				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_BLUE(pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RED(dev_priv, pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_GREEN(dev_priv, pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_BLUE(dev_priv, pipe)),
+>  				     res1, res2);
+>  }
+>  
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 4a88eb9cd1f8..5670eee4a498 100644
+> index 4525afafc79f..4a88eb9cd1f8 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1479,7 +1479,7 @@
+> @@ -1138,17 +1138,17 @@
+>  #define _PIPE_CRC_RES_5_B_IVB		0x61074
 >  
->  #define PORT_DFT_I9XX				_MMIO(0x61150)
->  #define   DC_BALANCE_RESET			(1 << 25)
-> -#define PORT_DFT2_G4X		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61154)
-> +#define PORT_DFT2_G4X(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61154)
->  #define   DC_BALANCE_RESET_VLV			(1 << 31)
->  #define   PIPE_SCRAMBLE_RESET_MASK		((1 << 14) | (0x3 << 0))
->  #define   PIPE_C_SCRAMBLE_RESET			REG_BIT(14) /* chv */
+>  #define PIPE_CRC_CTL(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_CTL_A)
+> -#define PIPE_CRC_RES_1_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_1_A_IVB)
+> -#define PIPE_CRC_RES_2_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_2_A_IVB)
+> -#define PIPE_CRC_RES_3_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_3_A_IVB)
+> -#define PIPE_CRC_RES_4_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_4_A_IVB)
+> -#define PIPE_CRC_RES_5_IVB(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_5_A_IVB)
+> -
+> -#define PIPE_CRC_RES_RED(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RED_A)
+> -#define PIPE_CRC_RES_GREEN(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_GREEN_A)
+> -#define PIPE_CRC_RES_BLUE(pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_BLUE_A)
+> -#define PIPE_CRC_RES_RES1_I915(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES1_A_I915)
+> -#define PIPE_CRC_RES_RES2_G4X(pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES2_A_G4X)
+> +#define PIPE_CRC_RES_1_IVB(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_1_A_IVB)
+> +#define PIPE_CRC_RES_2_IVB(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_2_A_IVB)
+> +#define PIPE_CRC_RES_3_IVB(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_3_A_IVB)
+> +#define PIPE_CRC_RES_4_IVB(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_4_A_IVB)
+> +#define PIPE_CRC_RES_5_IVB(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_5_A_IVB)
+> +
+> +#define PIPE_CRC_RES_RED(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RED_A)
+> +#define PIPE_CRC_RES_GREEN(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_GREEN_A)
+> +#define PIPE_CRC_RES_BLUE(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_BLUE_A)
+> +#define PIPE_CRC_RES_RES1_I915(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES1_A_I915)
+> +#define PIPE_CRC_RES_RES2_G4X(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES2_A_G4X)
+>  
+>  /* Pipe/transcoder A timing regs */
+>  #define _TRANS_HTOTAL_A		0x60000
 > -- 
 > 2.39.2
 
