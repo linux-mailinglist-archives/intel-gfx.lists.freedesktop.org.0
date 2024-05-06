@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 910CB8BCE95
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF91A8BCE96
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:57:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2970A10F750;
-	Mon,  6 May 2024 12:57:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EEFA10F9A1;
+	Mon,  6 May 2024 12:57:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLKmF6ZE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NhGCGb9p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3802010F750;
- Mon,  6 May 2024 12:57:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCCE112F97;
+ Mon,  6 May 2024 12:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715000247; x=1746536247;
+ t=1715000250; x=1746536250;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Abhl3teA+ljzbyLXLR/wPKDQgOsPQiV5a5951fHgEp8=;
- b=jLKmF6ZEqEhnLnQ1NPc7VNfOvBt4ionlKpofMNjNjd9KnFJXMdtWKo2H
- rgE1ZQq3E8w2JhW/uA9KgYxnlrU70wa6CquRFIQQGSAmooZ43Sq8G7w99
- BOS7wsBUNf2cfQi5mG0ox+qJD4zaIPOCPCpYADhp/X2SQLYbrJwObBd0c
- dEwKfiM2EHGYX3+7ckDQKHoKQtSAPEegJsOFdK3QS/CFEf3p/OPHjqUCt
- 8V2KjAhSw8jtO9GGDonggiZ9k128LYub7p0ROrM7XBsWbbdMSi9OfhFg/
- A6rI33hIWwLJW/VzkmnbgNcuT3Na5JwaEisxWxS7+gk10mouypgsJhfQU Q==;
-X-CSE-ConnectionGUID: oxS3dcUOSn2ouWpIHLxkpg==
-X-CSE-MsgGUID: WBah+K6ETLeXSoxAu26tdA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10865320"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10865320"
+ bh=wW+9CyIxmHGowJRpf15he5NmpdKHMBKEP5dSWWTxn0Q=;
+ b=NhGCGb9p9XOsQEgDUVBHIf4xbtFaQJ3EQOWPCYZxUHtzyDwPabwGrL5q
+ cirZ/vsIlvzgTwfZHxqRah7aseZdV7eZIte3Z5/5PqmGSXddorbf0kyk2
+ W+Uhdznmn/rQC3euofEJu5kast8Hkn3JSngbyEoipbS/SakkIipkdZ5uJ
+ ro8p/iebEW0wuKoH3KvgQv8g6iGQG/9fvVXn42xuJEkPpjHsZyTbKWkyr
+ bleV2Z735P6wJIPdEt02XXBigCynS2w+/37K1Yq4G0Dwn8GuUA11DtZJS
+ VM9weJZGQ04al7jLdF6ZtvbEvLate0nPj0sOG3jKZdBMhq98RPjW9kL/F g==;
+X-CSE-ConnectionGUID: vEofLJAJRsuGzo7KodKYkg==
+X-CSE-MsgGUID: CXzRouCxTaWXgYWxHUCoeg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10865321"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10865321"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 05:57:27 -0700
-X-CSE-ConnectionGUID: 6PFP9ZI2QSWrQIxLaUvs2A==
-X-CSE-MsgGUID: ESU4LjItR6KIS1C6xghHNA==
+ 06 May 2024 05:57:30 -0700
+X-CSE-ConnectionGUID: s2PorL3mRk+P8EKcVbX+0A==
+X-CSE-MsgGUID: SHUKBs1pRCC3Kujp43u/3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28164944"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28164945"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:57:25 -0700
+ by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:57:28 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 15:57:24 +0300
+ Mon, 06 May 2024 15:57:27 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/9] drm/i915: Clean up skl+ plane stride limits
-Date: Mon,  6 May 2024 15:57:11 +0300
-Message-ID: <20240506125718.26001-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/9] drm/i915: Drop 'uses_fence' parameter from
+ intel_pin_fb_obj_dpt()
+Date: Mon,  6 May 2024 15:57:12 +0300
+Message-ID: <20240506125718.26001-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
 References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
@@ -71,107 +72,37 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-skl_plane_max_stride() is pretty messy. Streamline it and
-split it into clear skl+ vs. adl+ variants.
-
-TODO: Deal with icl and tgl strude limits properly
+Fence regions are only relevant for GGTT, not DPT. Drop the
+pointless 'uses_fence' argument from intel_pin_fb_obj_dpt().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/skl_universal_plane.c    | 65 +++++++++++--------
- 1 file changed, 37 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb_pin.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 0a8e781a3648..b8103d6ebc1f 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -461,41 +461,46 @@ static int icl_plane_max_height(const struct drm_framebuffer *fb,
- }
- 
- static unsigned int
--skl_plane_max_stride(struct intel_plane *plane,
--		     u32 pixel_format, u64 modifier,
--		     unsigned int rotation)
-+plane_max_stride(struct intel_plane *plane,
-+		 u32 pixel_format, u64 modifier,
-+		 unsigned int rotation,
-+		 unsigned int max_pixels,
-+		 unsigned int max_bytes)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index be095cc696ba..2b50c1946c63 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -20,7 +20,6 @@ static struct i915_vma *
+ intel_pin_fb_obj_dpt(struct drm_framebuffer *fb,
+ 		     const struct i915_gtt_view *view,
+ 		     unsigned int alignment,
+-		     bool uses_fence,
+ 		     unsigned long *out_flags,
+ 		     struct i915_address_space *vm)
  {
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
- 	const struct drm_format_info *info = drm_format_info(pixel_format);
- 	int cpp = info->cpp[0];
--	int max_horizontal_pixels = 8192;
--	int max_stride_bytes;
--
--	if (DISPLAY_VER(i915) >= 13) {
--		/*
--		 * The stride in bytes must not exceed of the size
--		 * of 128K bytes. For pixel formats of 64bpp will allow
--		 * for a 16K pixel surface.
--		 */
--		max_stride_bytes = 131072;
--		if (cpp == 8)
--			max_horizontal_pixels = 16384;
--		else
--			max_horizontal_pixels = 65536;
--	} else {
--		/*
--		 * "The stride in bytes must not exceed the
--		 * of the size of 8K pixels and 32K bytes."
--		 */
--		max_stride_bytes = 32768;
--	}
+@@ -274,8 +273,8 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+ 		plane_state->ggtt_vma = vma;
  
- 	if (drm_rotation_90_or_270(rotation))
--		return min(max_horizontal_pixels, max_stride_bytes / cpp);
-+		return min(max_pixels, max_bytes / cpp);
- 	else
--		return min(max_horizontal_pixels * cpp, max_stride_bytes);
-+		return min(max_pixels * cpp, max_bytes);
- }
- 
-+static unsigned int
-+adl_plane_max_stride(struct intel_plane *plane,
-+		     u32 pixel_format, u64 modifier,
-+		     unsigned int rotation)
-+{
-+	unsigned int max_pixels = 65536; /* PLANE_OFFSET limit */
-+	unsigned int max_bytes = 128 * 1024;
-+
-+	return plane_max_stride(plane, pixel_format,
-+				modifier, rotation,
-+				max_pixels, max_bytes);
-+}
-+
-+static unsigned int
-+skl_plane_max_stride(struct intel_plane *plane,
-+		     u32 pixel_format, u64 modifier,
-+		     unsigned int rotation)
-+{
-+	unsigned int max_pixels = 8192; /* PLANE_OFFSET limit */
-+	unsigned int max_bytes = 32 * 1024;
-+
-+	return plane_max_stride(plane, pixel_format,
-+				modifier, rotation,
-+				max_pixels, max_bytes);
-+}
- 
- /* Preoffset values for YUV to RGB Conversion */
- #define PREOFF_YUV_TO_RGB_HI		0x1800
-@@ -2357,7 +2362,11 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 		plane->min_cdclk = skl_plane_min_cdclk;
- 	}
- 
--	plane->max_stride = skl_plane_max_stride;
-+	if (DISPLAY_VER(dev_priv) >= 13)
-+		plane->max_stride = adl_plane_max_stride;
-+	else
-+		plane->max_stride = skl_plane_max_stride;
-+
- 	if (DISPLAY_VER(dev_priv) >= 11) {
- 		plane->update_noarm = icl_plane_update_noarm;
- 		plane->update_arm = icl_plane_update_arm;
+ 		vma = intel_pin_fb_obj_dpt(fb, &plane_state->view.gtt,
+-					   alignment, false,
+-					   &plane_state->flags, intel_fb->dpt_vm);
++					   alignment, &plane_state->flags,
++					   intel_fb->dpt_vm);
+ 		if (IS_ERR(vma)) {
+ 			intel_dpt_unpin(intel_fb->dpt_vm);
+ 			plane_state->ggtt_vma = NULL;
 -- 
 2.43.2
 
