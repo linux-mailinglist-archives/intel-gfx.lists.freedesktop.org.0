@@ -2,23 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 474408BCC17
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 12:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57BFF8BCC18
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 12:35:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 899B6112F63;
-	Mon,  6 May 2024 10:35:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0FB9112F6A;
+	Mon,  6 May 2024 10:35:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A00AB10EF29;
- Mon,  6 May 2024 10:35:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3368010EF2D;
+ Mon,  6 May 2024 10:35:50 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v4 3/4] drm/xe: Use simple xchg to cache DPT
-Date: Mon,  6 May 2024 12:36:03 +0200
-Message-ID: <20240506103604.146146-4-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v4 4/4] drm/xe/display: Re-use display vmas when possible
+Date: Mon,  6 May 2024 12:36:04 +0200
+Message-ID: <20240506103604.146146-5-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240506103604.146146-1-maarten.lankhorst@linux.intel.com>
 References: <20240506103604.146146-1-maarten.lankhorst@linux.intel.com>
@@ -39,127 +39,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Preallocate a DPT when creating the FB, and store it in
-i915_address_space. This can be used to prevent an expensive
-allocation in the pinning path.
+i915 has this really nice, infrastructure where everything becomes
+complicated, GGTT needs eviction, etc..
+
+Lets not do that, and make the dumbest possible interface instead.
+Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
+fb.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 33 +++++++++++++++-----------
- 1 file changed, 19 insertions(+), 14 deletions(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |  8 ++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
+ 8 files changed, 64 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index b083b985d170..ee82f4b6abbc 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1123,7 +1123,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (!obj)
+ 		return 0;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 2118b87ccb10..dab938566c94 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -761,7 +761,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	if (ret)
+ 		goto out_free;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index be095cc696ba..24bcaea53f0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -234,7 +234,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+ 	i915_vma_put(vma);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++int intel_plane_pin_fb(struct intel_plane_state *plane_state,
++		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index de0efaa25905..48675e6233f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+ 
+ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state);
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index bda702c2cab8..2d5bf26b2aad 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -695,3 +695,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+ 
+ 	return to_intel_framebuffer(fbdev->helper.fb);
+ }
++
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return fbdev ? fbdev->vma : NULL;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index 08de2d5b3433..24a3434558cb 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -17,6 +17,8 @@ struct intel_framebuffer;
+ void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
++
+ #else
+ static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
+ {
+@@ -30,6 +32,12 @@ static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbd
+ {
+ 	return NULL;
+ }
++
++static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return NULL;
++}
++
+ #endif
+ 
+ #endif /* __INTEL_FBDEV_H__ */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index a20d2638ea7a..193382f97823 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -9,6 +9,8 @@
+ #include <uapi/drm/i915_drm.h>
+ #include <drm/drm_mm.h>
+ 
++#include <linux/refcount.h>
++
+ /* We don't want these from i915_drm.h in case of Xe */
+ #undef I915_TILING_X
+ #undef I915_TILING_Y
+@@ -18,6 +20,7 @@
+ struct xe_bo;
+ 
+ struct i915_vma {
++	refcount_t ref;
+ 	struct xe_bo *bo, *dpt;
+ 	struct drm_mm_node node;
+ };
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 5a8d6857fb89..6ebda3ded8b4 100644
+index 6ebda3ded8b4..75e030f0fb70 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -112,9 +112,11 @@ static struct xe_bo *xe_fb_dpt_alloc(struct intel_framebuffer *fb)
- 	return dpt;
- }
+@@ -8,6 +8,7 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
++#include "intel_fbdev.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_pm.h"
+@@ -348,6 +349,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	if (!vma)
+ 		return ERR_PTR(-ENOMEM);
  
--static void xe_fb_dpt_free(struct i915_vma *vma)
-+static void xe_fb_dpt_free(struct i915_vma *vma, struct intel_framebuffer *fb)
- {
--	xe_bo_put(vma->dpt);
-+	if (!fb || cmpxchg((struct xe_bo **)&fb->dpt_vm, NULL, vma->dpt))
-+		xe_bo_put(vma->dpt);
-+
- 	vma->dpt = NULL;
- }
- 
-@@ -152,10 +154,11 @@ static int xe_fb_dpt_map_ggtt(struct xe_bo *dpt)
- static int
- xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
- {
--	struct xe_bo *dpt;
-+	struct xe_bo *dpt = (struct xe_bo *)xchg(&fb->dpt_vm, NULL);
- 	int err;
- 
--	dpt = xe_fb_dpt_alloc(fb);
-+	if (!dpt)
-+		dpt = xe_fb_dpt_alloc(fb);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
- 
-@@ -171,17 +174,17 @@ xe_fb_dpt_alloc_pinned(struct i915_vma *vma, struct intel_framebuffer *fb)
- 		ttm_bo_unreserve(&dpt->ttm);
- 	}
- 	if (err)
--		xe_fb_dpt_free(vma);
-+		xe_fb_dpt_free(vma, fb);
- 	return err;
- }
- 
--static void xe_fb_dpt_unpin_free(struct i915_vma *vma)
-+static void xe_fb_dpt_unpin_free(struct i915_vma *vma, struct intel_framebuffer *fb)
- {
- 	ttm_bo_reserve(&vma->dpt->ttm, false, false, NULL);
- 	ttm_bo_unpin(&vma->dpt->ttm);
- 	ttm_bo_unreserve(&vma->dpt->ttm);
- 
--	xe_fb_dpt_free(vma);
-+	xe_fb_dpt_free(vma, fb);
- }
- 
- static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
-@@ -237,7 +240,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 
- 	ret = xe_fb_dpt_map_ggtt(dpt);
- 	if (ret)
--		xe_fb_dpt_unpin_free(vma);
-+		xe_fb_dpt_unpin_free(vma, fb);
- 	return ret;
- }
- 
-@@ -399,14 +402,14 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	return ERR_PTR(ret);
- }
- 
--static void __xe_unpin_fb_vma(struct i915_vma *vma)
-+static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb)
- {
++	refcount_set(&vma->ref, 1);
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+ 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+@@ -407,6 +409,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
  	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
  	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
  
++	if (!refcount_dec_and_test(&vma->ref))
++		return;
++
  	if (vma->dpt) {
  		xe_ggtt_remove_bo(ggtt, vma->dpt);
--		xe_fb_dpt_unpin_free(vma);
-+		xe_fb_dpt_unpin_free(vma, fb);
- 	} else {
- 		if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
- 		    vma->bo->ggtt_node.start != vma->node.start)
-@@ -433,7 +436,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- {
--	__xe_unpin_fb_vma(vma);
-+	__xe_unpin_fb_vma(vma, NULL);
+ 		xe_fb_dpt_unpin_free(vma, fb);
+@@ -439,20 +444,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+ 	__xe_unpin_fb_vma(vma, NULL);
  }
  
- int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-@@ -455,7 +458,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
- 
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++static bool reuse_vma(struct intel_plane_state *new_plane_state,
++		      const struct intel_plane_state *old_plane_state)
  {
--	__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
-+	__xe_unpin_fb_vma(old_plane_state->ggtt_vma, to_intel_framebuffer(old_plane_state->hw.fb));
- 	old_plane_state->ggtt_vma = NULL;
- }
- 
-@@ -465,10 +468,12 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
-  */
- struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
- {
--	return NULL;
-+	return (struct i915_address_space *)xe_fb_dpt_alloc(fb);
- }
- 
- void intel_dpt_destroy(struct i915_address_space *vm)
- {
--	return;
-+	struct xe_bo *bo = (struct xe_bo *)vm;
+-	struct drm_framebuffer *fb = plane_state->hw.fb;
++	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct i915_vma *vma;
 +
-+	xe_bo_put(bo);
++	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
++	    !memcmp(&old_plane_state->view.gtt,
++		    &new_plane_state->view.gtt,
++	            sizeof(new_plane_state->view.gtt))) {
++		vma = old_plane_state->ggtt_vma;
++		goto found;
++	}
++
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++		if (vma)
++			goto found;
++	}
++
++	return false;
++
++found:
++	refcount_inc(&vma->ref);
++	new_plane_state->ggtt_vma = vma;
++	return true;
++}
++
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state)
++{
++	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+ 	struct xe_bo *bo = intel_fb_obj(fb);
+ 	struct i915_vma *vma;
+ 
++	if (reuse_vma(new_plane_state, old_plane_state))
++		return 0;
++
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
++	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+-	plane_state->ggtt_vma = vma;
++	new_plane_state->ggtt_vma = vma;
+ 	return 0;
  }
+ 
 -- 
 2.43.0
 
