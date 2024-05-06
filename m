@@ -2,28 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57BFF8BCC18
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 12:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A20898BCC7B
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 12:57:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0FB9112F6A;
-	Mon,  6 May 2024 10:35:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8B3510EFEB;
+	Mon,  6 May 2024 10:57:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3368010EF2D;
- Mon,  6 May 2024 10:35:50 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v4 4/4] drm/xe/display: Re-use display vmas when possible
-Date: Mon,  6 May 2024 12:36:04 +0200
-Message-ID: <20240506103604.146146-5-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240506103604.146146-1-maarten.lankhorst@linux.intel.com>
-References: <20240506103604.146146-1-maarten.lankhorst@linux.intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01D1B10F069;
+ Mon,  6 May 2024 10:57:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8131620348533093397=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_remove_?=
+ =?utf-8?q?implicit_dev=5Fpriv_from_pipe_crc?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 06 May 2024 10:57:09 -0000
+Message-ID: <171499302900.1939724.15454810092680474564@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1714990089.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1714990089.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,230 +37,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915 has this really nice, infrastructure where everything becomes
-complicated, GGTT needs eviction, etc..
+--===============8131620348533093397==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Lets not do that, and make the dumbest possible interface instead.
-Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
-fb.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  8 ++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
- 8 files changed, 64 insertions(+), 8 deletions(-)
+Series: drm/i915/display: remove implicit dev_priv from pipe crc
+URL   : https://patchwork.freedesktop.org/series/133224/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index b083b985d170..ee82f4b6abbc 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1123,7 +1123,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
- 	if (!obj)
- 		return 0;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 2118b87ccb10..dab938566c94 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -761,7 +761,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (ret)
- 		goto out_free;
- 
--	ret = intel_plane_pin_fb(new_plane_state);
-+	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
- 	if (ret)
- 		goto out_free;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index be095cc696ba..24bcaea53f0b 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -234,7 +234,8 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	i915_vma_put(vma);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-+		       const struct intel_plane_state *old_plane_state)
- {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index de0efaa25905..48675e6233f0 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -22,7 +22,8 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 
- void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags);
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state);
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index bda702c2cab8..2d5bf26b2aad 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -695,3 +695,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
- 
- 	return to_intel_framebuffer(fbdev->helper.fb);
- }
-+
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return fbdev ? fbdev->vma : NULL;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 08de2d5b3433..24a3434558cb 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -17,6 +17,8 @@ struct intel_framebuffer;
- void intel_fbdev_setup(struct drm_i915_private *dev_priv);
- void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
-+struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
-+
- #else
- static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
- {
-@@ -30,6 +32,12 @@ static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbd
- {
- 	return NULL;
- }
-+
-+static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
-+{
-+	return NULL;
-+}
-+
- #endif
- 
- #endif /* __INTEL_FBDEV_H__ */
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index a20d2638ea7a..193382f97823 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -9,6 +9,8 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
- 
-+#include <linux/refcount.h>
-+
- /* We don't want these from i915_drm.h in case of Xe */
- #undef I915_TILING_X
- #undef I915_TILING_Y
-@@ -18,6 +20,7 @@
- struct xe_bo;
- 
- struct i915_vma {
-+	refcount_t ref;
- 	struct xe_bo *bo, *dpt;
- 	struct drm_mm_node node;
- };
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 6ebda3ded8b4..75e030f0fb70 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -8,6 +8,7 @@
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-+#include "intel_fbdev.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_pm.h"
-@@ -348,6 +349,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (!vma)
- 		return ERR_PTR(-ENOMEM);
- 
-+	refcount_set(&vma->ref, 1);
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
- 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
-@@ -407,6 +409,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma, struct intel_framebuffer *fb
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 
-+	if (!refcount_dec_and_test(&vma->ref))
-+		return;
-+
- 	if (vma->dpt) {
- 		xe_ggtt_remove_bo(ggtt, vma->dpt);
- 		xe_fb_dpt_unpin_free(vma, fb);
-@@ -439,20 +444,53 @@ void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
- 	__xe_unpin_fb_vma(vma, NULL);
- }
- 
--int intel_plane_pin_fb(struct intel_plane_state *plane_state)
-+static bool reuse_vma(struct intel_plane_state *new_plane_state,
-+		      const struct intel_plane_state *old_plane_state)
- {
--	struct drm_framebuffer *fb = plane_state->hw.fb;
-+	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
-+	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct i915_vma *vma;
-+
-+	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
-+	    !memcmp(&old_plane_state->view.gtt,
-+		    &new_plane_state->view.gtt,
-+	            sizeof(new_plane_state->view.gtt))) {
-+		vma = old_plane_state->ggtt_vma;
-+		goto found;
-+	}
-+
-+	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
-+		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-+		if (vma)
-+			goto found;
-+	}
-+
-+	return false;
-+
-+found:
-+	refcount_inc(&vma->ref);
-+	new_plane_state->ggtt_vma = vma;
-+	return true;
-+}
-+
-+int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
-+		       const struct intel_plane_state *old_plane_state)
-+{
-+	struct drm_framebuffer *fb = new_plane_state->hw.fb;
- 	struct xe_bo *bo = intel_fb_obj(fb);
- 	struct i915_vma *vma;
- 
-+	if (reuse_vma(new_plane_state, old_plane_state))
-+		return 0;
-+
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
- 
--	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
-+	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
--	plane_state->ggtt_vma = vma;
-+	new_plane_state->ggtt_vma = vma;
- 	return 0;
- }
- 
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_14711 -> Patchwork_133224v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-jsl-1 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133224v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [PASS][1] -> [FAIL][2] ([i915#10378])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-11:         [PASS][3] -> [DMESG-FAIL][4] ([i915#9500])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - {bat-mtlp-9}:       [DMESG-WARN][5] ([i915#10435] / [i915#9157]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - {bat-mtlp-9}:       [DMESG-WARN][7] ([i915#10435]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
+  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
+  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14711 -> Patchwork_133224v1
+
+  CI-20190529: 20190529
+  CI_DRM_14711: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133224v1: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/index.html
+
+--===============8131620348533093397==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: remove implicit dev_priv from pipe crc</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133224/">https://patchwork.freedesktop.org/series/133224/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14711 -&gt; Patchwork_133224v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-jsl-1 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133224v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157">i915#9157</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133224v1/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14711 -&gt; Patchwork_133224v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14711: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133224v1: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8131620348533093397==--
