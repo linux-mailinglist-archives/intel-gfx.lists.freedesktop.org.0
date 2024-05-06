@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAD348BCAA8
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B638BCAB0
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:32:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A1610EDF7;
-	Mon,  6 May 2024 09:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7EE11227D;
+	Mon,  6 May 2024 09:32:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/lE2xHz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xusa6o5U";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F7510EDF7
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:29:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9083112263
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714987793; x=1746523793;
+ t=1714987921; x=1746523921;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=EORkPeV/8JZHtQyvknOYaE0TALurab2z8pRE2xS1H1c=;
- b=Q/lE2xHz2i6Qisa85sOCDBqkatIpsbH5J/d5M+KKuceBZQDg+zxUtyLc
- 8cXwHHNM7ryriy5WMP+G/NdOdw6Vh4jPo7He8XGRHchDsTGgI5yPfgEiv
- j6d+lOCSKOqk2GJTEBj9/wYmyUM9TGnHo5o+6SD774ijExPZ3OttLCoa6
- rfCqpj4ty3+Oi7BqP1+BT2RP5FN0ZezJMhOo9Q4Rh4TRxpDSOiBx4BvT7
- c5rx2wPDx0tqcSj6a3uXGcJxTohDVxhH6BDKQJXMA5PqfgPwOiYKjDpkj
- +Rw8lP5U0Cjm5tLSvgxQGEkjXeIPJTidyWNYHfkhruik0fTZ01vELMsW0 w==;
-X-CSE-ConnectionGUID: PJvZItN+TDG0J00tJ+wtUA==
-X-CSE-MsgGUID: wDyMXQChSBylJgI3rPRZWQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10603887"
-X-IronPort-AV: E=Sophos;i="6.07,257,1708416000"; d="scan'208";a="10603887"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:29:52 -0700
-X-CSE-ConnectionGUID: FyIbdyOxQDubD8bWEgvjXQ==
-X-CSE-MsgGUID: y836fAkcS2mbmrVhJtjrUg==
+ bh=ffQDrSnC7pkpJ4EuocwUEi0MWuIPelhl97o7JJcn1vs=;
+ b=Xusa6o5UZP1J5A6DvLLvJaTPX97p/Saeryvyb5sa+iMQovw51uuFOw6s
+ O4/jn+RTM3w66STnwWscTYgcFYgAMK5PUhvLX8n6iygMHDGmHzj/pZgeJ
+ k0i3aAaozv9Wyw/GV8vYXLiDfEq6G8fsGssOVmLcpBew+UzYMfNwgrxyZ
+ 8VhEZQek3rfTFQF5Oa3GBBfwJMagv5kFyhwjkd9tbZPTY19A7xmqKHxut
+ OAVg/XXZurR4pgsEh6Rttm02C033/avUwt8uHiiqwgD1XuoXo96i0D1NI
+ HP8PDgxgnjrLia30lGJ4MuHGbLXerG2GJLGQAzGgRit9ZCjUlFwJOm8n+ w==;
+X-CSE-ConnectionGUID: j+mNv5q/RoGJ96lh9tzfPA==
+X-CSE-MsgGUID: Bj3cZweLR7+PiU5P9h9u1w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10849960"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10849960"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:32:00 -0700
+X-CSE-ConnectionGUID: eIzGQN1fQKK4VOuWZU2NuA==
+X-CSE-MsgGUID: V2j7d535Q4ucTy0xNCCqxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="27993253"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32918777"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.230])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:29:51 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:31:59 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 14/35] drm/i915/bios: Define VBT block 12 (Driver
- Persistent Algorithm) contents
-In-Reply-To: <20240503122449.27266-15-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 18/35] drm/i915/bios: Define VBT block 18 (Driver
+ Rotation) contents
+In-Reply-To: <20240503122449.27266-19-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
- <20240503122449.27266-15-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 12:29:47 +0300
-Message-ID: <875xvrnv90.fsf@intel.com>
+ <20240503122449.27266-19-ville.syrjala@linux.intel.com>
+Date: Mon, 06 May 2024 12:31:56 +0300
+Message-ID: <8734qvnv5f.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,44 +74,35 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 03 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Define the contents of VBT block 12 (Driver Persistent Algorithm).
+> Define the contents of block 18 (Driver Rotation).
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Baffled.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index d78523cd4214..2075d53ca317 100644
+> index c97bca5d12d1..2792da3c916e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -778,6 +778,25 @@ struct bdb_driver_features {
->  	u16 pc_feature_valid:1;					/* 159+ */
+> @@ -845,6 +845,18 @@ struct bdb_sv_test_functions {
+>  	u8 sv_bits[8];
 >  } __packed;
 >=20=20
 > +/*
-> + * Block 13 - Driver Persistent Algorithm
+> + * Block 18 - Driver Rotation
 > + */
 > +
-> +struct bdb_driver_persistence {
-> +	u16 hotkey_persistent_algorithm:1;
-> +	u16 lid_switch_persistent_algorithm:1;
-> +	u16 power_management_persistent_algorithm:1;
-> +	u16 hotkey_persistent_on_mds_twin:1;
-> +	u16 hotkey_persistent_on_refresh_rate:1;
-> +	u16 hotkey_persistent_on_restore_pipe:1;
-> +	u16 hotkey_persistent_on_mode:1;
-> +	u16 edid_persistent_on_mode:1;
-> +	u16 dvo_hotplug_persistent_on_mode:1;
-> +	u16 docking_persistent_algorithm:1;
-> +	u16 rsvd:6;
-> +	u8 persistent_max_config;
+> +struct bdb_driver_rotation {
+> +	u8 rotation_enable;
+> +	u8 rotation_flags_1;
+> +	u16 rotation_flags_2;
+> +	u32 rotation_flags_3;
+> +	u32 rotation_flags_4;
 > +} __packed;
 > +
 >  /*
