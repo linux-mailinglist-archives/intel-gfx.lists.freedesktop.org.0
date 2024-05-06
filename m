@@ -2,81 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3286E8BD41A
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 19:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC738BD44F
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 20:03:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2CF10F1F7;
-	Mon,  6 May 2024 17:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51F7210E77F;
+	Mon,  6 May 2024 18:03:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="emZr/hQR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DRi9Ig3z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C57210F1F7
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 17:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1715017829;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=9wu/fxykHqpC3qk/F8ss5hlhJpShzSA63g/qKQykOUQ=;
- b=emZr/hQR18em71Q7aTeWassc3QsT7VjUOKUUNXfMyqWPmMQemXhHvD6TW22QT8Chn/5H1Q
- o02xVdaPyCJ65afckkm0A/RvhQvzN83kcJ3/t6Ppo8OSIXrfO03Gry3lcJ19eTPWs2ZX5A
- bVpi+Qg2qtQU7ppkhnlDWWKtgWSxztk=
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
- [209.85.208.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-557-Qd4MZAiBM2aE81PFwdMUrA-1; Mon, 06 May 2024 13:50:27 -0400
-X-MC-Unique: Qd4MZAiBM2aE81PFwdMUrA-1
-Received: by mail-lj1-f198.google.com with SMTP id
- 38308e7fff4ca-2e0b3a7ffbeso20507591fa.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 06 May 2024 10:50:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715017826; x=1715622626;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=9wu/fxykHqpC3qk/F8ss5hlhJpShzSA63g/qKQykOUQ=;
- b=N+G0cWgAMBJ/nT8mcPNOgqYw7oN7ZyAT/UmMonGlR1qcSGy/r0nl0kK6Q//qVsUp5L
- 8Fc4715h+vuqi3xhZhBEmjn7NgESAbBMJ3Qv3rL22r/AnkXGC8NhuWqLJEifge7uvY/w
- hh5f3xnei3WPGOBzs7tOIvEvnQWT/V6TFORVBBT7t2G+gYXmRnB0++XV+bG3v1FUxwDX
- TBgQAxKqsaQXjU7SE+t4R/p+B93MNF6bJHHVPkkHtZvq3/RIeMwwCOkG33i8b6DLaofv
- MTDcTjyADN2wfzxIdSsuxLRLx18tDRlJasWl8uwYnkNa6Seyw6qdBuLN2GJL7hp+OYji
- HIVQ==
-X-Gm-Message-State: AOJu0YxGWmfEalAi9MY5/t9Div+WSRu4l7fnNEpW+aH/YjLg6qAm4/Ox
- FzT6YjZ5sJzu4PNcePp65DvLbgRm0D6yFhRZ0by8ChqZCzCyZwXOMCE8gGDlUE4kXtV3NJ2Vtv3
- VJamYddallUm9v4LdrpXWq9Z4w7XvN6RuvIAp2KLdy8ixvCzAz6zyo8m0/9W75rg7/HX4i6kuXG
- WOTQtHxrIlLHQv6P/wXXj4FBNy6ASRxFuHPDKty6bf
-X-Received: by 2002:a2e:8904:0:b0:2df:4bad:cb7a with SMTP id
- d4-20020a2e8904000000b002df4badcb7amr8305784lji.0.1715017826274; 
- Mon, 06 May 2024 10:50:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEcO2gsOO3T2Ymz5JPqTyvt1q/i7ssadW3hR/YrhdpacpXgQKAPEEfpLkSOBCL+svNLckEVA4gtn5p/vhZnXAE=
-X-Received: by 2002:a2e:8904:0:b0:2df:4bad:cb7a with SMTP id
- d4-20020a2e8904000000b002df4badcb7amr8305765lji.0.1715017825827; Mon, 06 May
- 2024 10:50:25 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9BC10E77F;
+ Mon,  6 May 2024 18:03:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715018591; x=1746554591;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WA7gpQ5/qfbvyVtG/DErm9fN33Xlo9wpJfnFBInPi3Q=;
+ b=DRi9Ig3zePvKNTihfXSIuZPJ9rJJfZe0Cs3OYrMCmgzR6sB9/ULMlh5k
+ VXUfjC1ADixdcHUt5ZENmMEkJ3jS2MbOqFtSQbcxFqibDc53mfKPu4hbn
+ IbabAmVXYhqYlyBV2UW1Hnl+Uc75LOchhVvNPMj5QrHXPMX96fsSfSix4
+ t+41lk/OJoUOxwYpjXiTuzFZ0o/tosh98G+1qI3EWAm816pwkynrIo1iD
+ F8KBxuhvFCrvMRe9YDxiMZ2VijfYOzkavobW6hkZcShONhW1DKAdbLE69
+ BQV435REqdavg7UQ3Htc6qRR9hpMMgRU5A+d9VG3/C0HTtYZZz4qOFEon Q==;
+X-CSE-ConnectionGUID: S5MQmKQiSl+sK024cTDDNQ==
+X-CSE-MsgGUID: 4bDlN0wPRfCsGa6nCIaW+A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="14561875"
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="14561875"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 11:03:10 -0700
+X-CSE-ConnectionGUID: FF9EackjSrSqgWEH1CEqMQ==
+X-CSE-MsgGUID: Xxvn9M6fSfmyGc6e/ns1Qw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.07,259,1708416000"; d="scan'208";a="59097542"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.213.17.128])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 11:03:08 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH] Revert "drm/i915: Remove extra multi-gt pm-references"
+Date: Mon,  6 May 2024 20:02:50 +0200
+Message-ID: <20240506180253.96858-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.45.0
 MIME-Version: 1.0
-References: <20240422033256.713902-6-suraj.kandpal@intel.com>
- <20240423212129.GA99376@toolbox>
- <SN7PR11MB6750052CC3E4F6481F8F1093E3102@SN7PR11MB6750.namprd11.prod.outlook.com>
-In-Reply-To: <SN7PR11MB6750052CC3E4F6481F8F1093E3102@SN7PR11MB6750.namprd11.prod.outlook.com>
-From: Sebastian Wick <sebastian.wick@redhat.com>
-Date: Mon, 6 May 2024 19:50:14 +0200
-Message-ID: <CA+hFU4xY3EzUbS1=phP873bvrYmLpxDSKm_NNoOy7H1rjNRd6Q@mail.gmail.com>
-Subject: Re: [5/6] drm/i915/dp: Enable AUX based backlight for HDR
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, "Shankar,
- Uma" <uma.shankar@intel.com>, 
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy,
- Arun R" <arun.r.murthy@intel.com>, 
- "Kumar, Naveen1" <naveen1.kumar@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,353 +72,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 24, 2024 at 5:59=E2=80=AFAM Kandpal, Suraj <suraj.kandpal@intel=
-.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Sebastian Wick <sebastian.wick@redhat.com>
-> > Sent: Wednesday, April 24, 2024 2:51 AM
-> > To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Borah, Chaitanya Kumar
-> > <chaitanya.kumar.borah@intel.com>; Shankar, Uma
-> > <uma.shankar@intel.com>; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>=
-;
-> > Murthy, Arun R <arun.r.murthy@intel.com>; Kumar, Naveen1
-> > <naveen1.kumar@intel.com>
-> > Subject: Re: [5/6] drm/i915/dp: Enable AUX based backlight for HDR
-> >
-> > On Mon, Apr 22, 2024 at 09:02:54AM +0530, Suraj Kandpal wrote:
-> > > As of now whenerver HDR is switched on we use the PWM to change the
-> > > backlight as opposed to AUX based backlight changes in terms of nits.
-> > > This patch writes to the appropriate DPCD registers to enable aux
-> > > based backlight using values in nits.
-> > >
-> > > --v2
-> > > -Fix max_cll and max_fall assignment [Jani] -Fix the size sent in
-> > > drm_dpcd_write [Jani]
-> > >
-> > > --v3
-> > > -Content Luminance needs to be sent only for pre-ICL after that it is
-> > > directly picked up from hdr metadata [Ville]
-> > >
-> > > --v4
-> > > -Add checks for HDR TCON cap bits [Ville] -Check eotf of
-> > > hdr_output_data and sets bits base of that value.
-> > >
-> > > --v5
-> > > -Fix capability check bits.
-> > > -Check colorspace before setting BT2020
-> > >
-> > > --v6
-> > > -Use intel_dp_has_gamut_dip to check if we have capability to send sd=
-p
-> > > [Ville] -Seprate filling of all hdr tcon related bits into it's own
-> > > function.
-> > > -Check eotf data to make sure we are in HDR mode [Sebastian]
-> > >
-> > > --v7
-> > > -Fix confusion function name for hdr mode check [Jani] -Fix the
-> > > condition which tells us if we are in HDR mode or not [Sebastian]
-> > >
-> > > --v8
-> > > -Call fill_hdr_tcon_param unconditionally as some parameters may not
-> > > be dependent on the fact if we are in hdr mode or not [Sebastian] -Fi=
-x
-> > > some conditions after change in hdr mode check [Sebastian]
-> > >
-> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > ---
-> > >  .../drm/i915/display/intel_dp_aux_backlight.c | 98
-> > > ++++++++++++++++---
-> > >  1 file changed, 87 insertions(+), 11 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > > index b61bad218994..e23694257ea5 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> > > @@ -40,11 +40,6 @@
-> > >  #include "intel_dp.h"
-> > >  #include "intel_dp_aux_backlight.h"
-> > >
-> > > -/* TODO:
-> > > - * Implement HDR, right now we just implement the bare minimum to
-> > > bring us back into SDR mode so we
-> > > - * can make people's backlights work in the mean time
-> > > - */
-> > > -
-> > >  /*
-> > >   * DP AUX registers for Intel's proprietary HDR backlight interface.=
- We define
-> > >   * them here since we'll likely be the only driver to ever use these=
-.
-> > > @@ -127,9 +122,6 @@ intel_dp_aux_supports_hdr_backlight(struct
-> > intel_connector *connector)
-> > >     if (ret !=3D sizeof(tcon_cap))
-> > >             return false;
-> > >
-> > > -   if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> > > -           return false;
-> > > -
-> > >     drm_dbg_kms(&i915->drm, "[CONNECTOR:%d:%s] Detected %s HDR
-> > backlight interface version %d\n",
-> > >                 connector->base.base.id, connector->base.name,
-> > >                 is_intel_tcon_cap(tcon_cap) ? "Intel" : "unsupported"=
-,
-> > > tcon_cap[0]); @@ -137,6 +129,9 @@
-> > intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
-> > >     if (!is_intel_tcon_cap(tcon_cap))
-> > >             return false;
-> > >
-> > > +   if (!(tcon_cap[1] & INTEL_EDP_HDR_TCON_BRIGHTNESS_NITS_CAP))
-> > > +           return false;
-> > > +
-> > >     /*
-> > >      * If we don't have HDR static metadata there is no way to
-> > >      * runtime detect used range for nits based control. For now @@
-> > > -225,13 +220,27 @@ intel_dp_aux_hdr_set_aux_backlight(const struct
-> > drm_connector_state *conn_state,
-> > >                     connector->base.base.id, connector->base.name);  =
-}
-> > >
-> > > +static bool
-> > > +intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state) {
-> > > +   struct hdr_output_metadata *hdr_metadata;
-> > > +
-> > > +   if (!conn_state->hdr_output_metadata)
-> > > +           return false;
-> > > +
-> > > +   hdr_metadata =3D conn_state->hdr_output_metadata->data;
-> > > +
-> > > +   return hdr_metadata->hdmi_metadata_type1.eotf =3D=3D
-> > > +HDMI_EOTF_SMPTE_ST2084; }
-> > > +
-> > >  static void
-> > >  intel_dp_aux_hdr_set_backlight(const struct drm_connector_state
-> > > *conn_state, u32 level)  {
-> > >     struct intel_connector *connector =3D to_intel_connector(conn_sta=
-te-
-> > >connector);
-> > >     struct intel_panel *panel =3D &connector->panel;
-> > >
-> > > -   if (panel->backlight.edp.intel.sdr_uses_aux) {
-> > > +   if (intel_dp_in_hdr_mode(conn_state) ||
-> > > +       panel->backlight.edp.intel.sdr_uses_aux) {
-> > >             intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
-> > >     } else {
-> > >             const u32 pwm_level =3D
-> > intel_backlight_level_to_pwm(connector,
-> > > level); @@ -240,6 +249,64 @@ intel_dp_aux_hdr_set_backlight(const
-> > struct drm_connector_state *conn_state, u32
-> > >     }
-> > >  }
-> > >
-> > > +static void
-> > > +intel_dp_aux_write_content_luminance(struct intel_connector *connect=
-or,
-> > > +                                struct hdr_output_metadata
-> > *hdr_metadata) {
-> > > +   struct intel_dp *intel_dp =3D enc_to_intel_dp(connector->encoder)=
-;
-> > > +   struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
-> > > +   int ret;
-> > > +   u8 buf[4];
-> > > +
-> > > +   if (!intel_dp_has_gamut_metadata_dip(connector->encoder))
-> > > +           return;
-> >
-> > The usage of intel_dp_has_gamut_metadata_dip is all over the place. You
-> > happily set INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE and
-> > INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE even when it doesn't have
-> > the dip but you require it for INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX
-> > and INTEL_EDP_HDR_CONTENT_LUMINANCE. Why?
-> >
-> > Especially because when there is no gamut_metadata_dip, the KMS propert=
-ies
-> > for HDR is not exposed.
-> >
->
-> As I have iterated multiple times before segmented backlight needs to be =
-set
-> regardless of H/W's capabilities to send SDP(the spec demands it). Having=
- it set based on a KMS property
-> Is a whole different conversation keeping in mind this is an INTEL specif=
-ic spec DPCD
-> reg bit which needs to be set, do we really want to expose a property tha=
-t only intel
-> H/W will use does not seem right but as I said a discussion that needs to=
- be taken up later
-> and should not be a part of this patch series which enables HDR and AUX b=
-ased backlight.
+This reverts commit 1f33dc0c1189efb9ae19c6fc22b64dd3e26261fb.
 
-I don't have the spec and can only speculate what's going on, but I
-doubt a lot that you cannot enter HDR mode without segmented
-backlight. Did you actually test this?
+There was a patch supposed to fix an issue of illegal attempts to free a
+still active i915 VMA object when parking a GT believed to be idle,
+reported by CI on 2-GT Meteor Lake.  As a solution, an extra wakeref for
+a Primary GT was acquired from i915_gem_do_execbuffer() -- see commit
+f56fe3e91787 ("drm/i915: Fix a VMA UAF for multi-gt platform").
 
-Control over segmented backlight is part of both Vulkan and DX so I
-don't think it's far-fetched to expose this to KMS.
+However, that fix occurred insufficient -- the issue was still reported by
+CI.  That wakeref was released on exit from i915_gem_do_execbuffer(), then
+potentially before completion of the request and deactivation of its
+associated VMAs.  Moreover, CI reports indicated that single-GT platforms
+also suffered sporadically from the same race.
 
-Either way, I agree with you, this is something for the future.
+Since that issue was fixed by another commit f3c71b2ded5c ("drm/i915/vma:
+Fix UAF on destroy against retire race"), the changes introduced by that
+insufficient fix were dropped as no longer useful.  However, that series
+resulted in another VMA UAF scenario now being triggered in CI.
 
-> INTEL_EDP_HDR_CONTENT_LUMINANCE is only set in cases DISPLAY_VER < 11 tha=
-t's why the
-> Dip check there since it return true in case DISPLAY_VER >=3D 11 or if po=
-rt is not A (which is used for EDP).
-> INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX well and this need a dip check which =
-seems obvious since we
-> Would only want to override aux if SDP is present.
-> So in short I am pretty happy with the bits that have been set and the co=
-nditions used to set them.
+<4> [260.290809] ------------[ cut here ]------------
+<4> [260.290988] list_del corruption. prev->next should be ffff888118c5d990, but was ffff888118c5a510. (prev=ffff888118c5a510)
+<4> [260.291004] WARNING: CPU: 2 PID: 1143 at lib/list_debug.c:62 __list_del_entry_valid_or_report+0xb7/0xe0
+..
+<4> [260.291055] CPU: 2 PID: 1143 Comm: kms_plane Not tainted 6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
+<4> [260.291058] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+<4> [260.291060] RIP: 0010:__list_del_entry_valid_or_report+0xb7/0xe0
+...
+<4> [260.291087] Call Trace:
+<4> [260.291089]  <TASK>
+<4> [260.291124]  i915_vma_reopen+0x43/0x80 [i915]
+<4> [260.291298]  eb_lookup_vmas+0x9cb/0xcc0 [i915]
+<4> [260.291579]  i915_gem_do_execbuffer+0xc9a/0x26d0 [i915]
+<4> [260.291883]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
+...
+<4> [260.292301]  </TASK>
+...
+<4> [260.292506] ---[ end trace 0000000000000000 ]---
+<4> [260.292782] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6ca3: 0000 [#1] PREEMPT SMP NOPTI
+<4> [260.303575] CPU: 2 PID: 1143 Comm: kms_plane Tainted: G        W          6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
+<4> [260.313851] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+<4> [260.326359] RIP: 0010:eb_validate_vmas+0x114/0xd80 [i915]
+...
+<4> [260.428756] Call Trace:
+<4> [260.431192]  <TASK>
+<4> [639.283393]  i915_gem_do_execbuffer+0xd05/0x26d0 [i915]
+<4> [639.305245]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
+...
+<4> [639.411134]  </TASK>
+...
+<4> [639.449979] ---[ end trace 0000000000000000 ]---
 
-The dip check is never going to be reached when the dip check fails in
-the first place. You only expose the property when the dip check
-succeeds, thus you only can be in hdr mode if it succeeds and you only
-ever call intel_dp_aux_write_content_luminance if the connector is in
-hdr mode. It is redundant here but it's your driver and it still works
-just fine as is.
+We defer actually closing, unbinding and destroying a VMA until next idle
+point, or until the object is freed in the meantime.  By postponing the
+unbind, we allow for the VMA to be reopened by the client, avoiding the
+work required to rebind the VMA.
 
-For the whole series:
+Starting from commit b0647a5e79b1 ("drm/i915: Avoid live-lock with
+i915_vma_parked()"), we assume that as long as a GT is held idle, no VMA
+would be reopened while we destroy them.  That assumption is no longer
+true in multi-GT configurations, where a VMA we reopen may be handled by a
+GT different from the one that we already keep active via its engine while
+we set up an execbuf request.
 
-Reviewed-by: Sebastian Wick <sebastian.wick@redhat.com>
+Restoring the extra GT0 PM wakeref removed from i915_gem_do_execbuffer()
+processing path seems to fix this issue.
 
->
-> > > +
-> > > +   buf[0] =3D hdr_metadata->hdmi_metadata_type1.max_cll & 0xFF;
-> > > +   buf[1] =3D (hdr_metadata->hdmi_metadata_type1.max_cll & 0xFF00)
-> > >> 8;
-> > > +   buf[2] =3D hdr_metadata->hdmi_metadata_type1.max_fall & 0xFF;
-> > > +   buf[3] =3D (hdr_metadata->hdmi_metadata_type1.max_fall & 0xFF00)
-> > >> 8;
-> > > +
-> > > +   ret =3D drm_dp_dpcd_write(&intel_dp->aux,
-> > > +                           INTEL_EDP_HDR_CONTENT_LUMINANCE,
-> > > +                           buf, sizeof(buf));
-> > > +   if (ret < 0)
-> > > +           drm_dbg_kms(&i915->drm,
-> > > +                       "Content Luminance DPCD reg write failed, err=
-:-
-> > %d\n",
-> > > +                       ret);
-> > > +}
-> > > +
-> > > +static void
-> > > +intel_dp_aux_fill_hdr_tcon_params(const struct drm_connector_state
-> > > +*conn_state, u8 *ctrl) {
-> > > +   struct intel_connector *connector =3D to_intel_connector(conn_sta=
-te-
-> > >connector);
-> > > +   struct intel_panel *panel =3D &connector->panel;
-> > > +   struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
-> > > +
-> > > +   /*
-> > > +    * According to spec segmented backlight needs to be set whenever
-> > panel is in
-> > > +    * HDR mode.
-> > > +    */
-> > > +   if (intel_dp_in_hdr_mode(conn_state)) {
-> > > +           *ctrl |=3D
-> > INTEL_EDP_HDR_TCON_SEGMENTED_BACKLIGHT_ENABLE;
-> > > +           *ctrl |=3D INTEL_EDP_HDR_TCON_2084_DECODE_ENABLE;
-> > > +   }
-> > > +
-> > > +   if (DISPLAY_VER(i915) < 11)
-> > > +           *ctrl &=3D ~INTEL_EDP_HDR_TCON_TONE_MAPPING_ENABLE;
-> > > +
-> > > +   if (panel->backlight.edp.intel.supports_2020_gamut &&
-> > > +       (conn_state->colorspace =3D=3D
-> > DRM_MODE_COLORIMETRY_BT2020_RGB ||
-> > > +        conn_state->colorspace =3D=3D
-> > DRM_MODE_COLORIMETRY_BT2020_YCC ||
-> > > +        conn_state->colorspace =3D=3D
-> > DRM_MODE_COLORIMETRY_BT2020_CYCC))
-> > > +           *ctrl |=3D INTEL_EDP_HDR_TCON_2020_GAMUT_ENABLE;
-> > > +
-> > > +   if (panel->backlight.edp.intel.supports_sdp_colorimetry &&
-> > > +       intel_dp_has_gamut_metadata_dip(connector->encoder))
-> > > +           *ctrl |=3D INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX;
-> > > +   else
-> > > +           *ctrl &=3D ~INTEL_EDP_HDR_TCON_SDP_OVERRIDE_AUX;
-> > > +}
-> > > +
-> > >  static void
-> > >  intel_dp_aux_hdr_enable_backlight(const struct intel_crtc_state *crt=
-c_state,
-> > >                               const struct drm_connector_state
-> > *conn_state, u32 level) @@
-> > > -248,6 +315,7 @@ intel_dp_aux_hdr_enable_backlight(const struct
-> > intel_crtc_state *crtc_state,
-> > >     struct intel_panel *panel =3D &connector->panel;
-> > >     struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
-> > >     struct intel_dp *intel_dp =3D enc_to_intel_dp(connector->encoder)=
-;
-> > > +   struct hdr_output_metadata *hdr_metadata;
-> > >     int ret;
-> > >     u8 old_ctrl, ctrl;
-> > >
-> > > @@ -261,8 +329,10 @@ intel_dp_aux_hdr_enable_backlight(const struct
-> > intel_crtc_state *crtc_state,
-> > >     }
-> > >
-> > >     ctrl =3D old_ctrl;
-> > > -   if (panel->backlight.edp.intel.sdr_uses_aux) {
-> > > +   if (intel_dp_in_hdr_mode(conn_state) ||
-> > > +       panel->backlight.edp.intel.sdr_uses_aux) {
-> > >             ctrl |=3D INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-> > > +
-> > >             intel_dp_aux_hdr_set_aux_backlight(conn_state, level);
-> > >     } else {
-> > >             u32 pwm_level =3D intel_backlight_level_to_pwm(connector,
-> > level); @@
-> > > -272,10 +342,17 @@ intel_dp_aux_hdr_enable_backlight(const struct
-> > intel_crtc_state *crtc_state,
-> > >             ctrl &=3D ~INTEL_EDP_HDR_TCON_BRIGHTNESS_AUX_ENABLE;
-> > >     }
-> > >
-> > > +   intel_dp_aux_fill_hdr_tcon_params(conn_state, &ctrl);
-> > > +
-> > >     if (ctrl !=3D old_ctrl &&
-> > >         drm_dp_dpcd_writeb(&intel_dp->aux,
-> > INTEL_EDP_HDR_GETSET_CTRL_PARAMS, ctrl) !=3D 1)
-> > >             drm_err(&i915->drm, "[CONNECTOR:%d:%s] Failed to
-> > configure DPCD brightness controls\n",
-> > >                     connector->base.base.id, connector->base.name);
-> >
-> > Unrelated to the changes here, but why is crtl based on the old value?
-> > There is nothing else that sets it so the state is always entirely dete=
-rmined
-> > here.
-> >
->
-> We read the getset_param register and set oldctrl and ctrl. Then ctrl is =
-changed based on
-> State and other params. In case ctrl and old ctrl still end up being the =
-same value that means
-> No change in DPCD register is required as of now so let's not waste a AUX=
- write operation on that
->
-> Regards,
-> Suraj Kandpal
-> > > +
-> > > +   if (intel_dp_in_hdr_mode(conn_state)) {
-> > > +           hdr_metadata =3D conn_state->hdr_output_metadata->data;
-> > > +           intel_dp_aux_write_content_luminance(connector,
-> > hdr_metadata);
-> > > +   }
-> > >  }
-> > >
-> > >  static void
-> > > @@ -332,7 +409,6 @@ intel_dp_aux_hdr_setup_backlight(struct
-> > intel_connector *connector, enum pipe pi
-> > >                 connector->base.base.id, connector->base.name,
-> > >                 panel->backlight.min, panel->backlight.max);
-> > >
-> > > -
-> > >     panel->backlight.level =3D intel_dp_aux_hdr_get_backlight(connect=
-or,
-> > pipe);
-> > >     panel->backlight.enabled =3D panel->backlight.level !=3D 0;
-> > >
->
+Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10608
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 42619fc05de48..090724fa766c9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -255,6 +255,7 @@ struct i915_execbuffer {
+ 	struct intel_context *context; /* logical state for the request */
+ 	struct i915_gem_context *gem_context; /** caller's context */
+ 	intel_wakeref_t wakeref;
++	intel_wakeref_t wakeref_gt0;
+ 
+ 	/** our requests to build */
+ 	struct i915_request *requests[MAX_ENGINE_INSTANCE + 1];
+@@ -2685,6 +2686,7 @@ static int
+ eb_select_engine(struct i915_execbuffer *eb)
+ {
+ 	struct intel_context *ce, *child;
++	struct intel_gt *gt;
+ 	unsigned int idx;
+ 	int err;
+ 
+@@ -2708,10 +2710,17 @@ eb_select_engine(struct i915_execbuffer *eb)
+ 		}
+ 	}
+ 	eb->num_batches = ce->parallel.number_children + 1;
++	gt = ce->engine->gt;
+ 
+ 	for_each_child(ce, child)
+ 		intel_context_get(child);
+ 	eb->wakeref = intel_gt_pm_get(ce->engine->gt);
++	/*
++	 * Keep GT0 active on MTL so that i915_vma_parked() doesn't
++	 * free VMAs while execbuf ioctl is validating VMAs.
++	 */
++	if (gt->info.id)
++		eb->wakeref_gt0 = intel_gt_pm_get(to_gt(gt->i915));
+ 
+ 	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+ 		err = intel_context_alloc_state(ce);
+@@ -2750,6 +2759,9 @@ eb_select_engine(struct i915_execbuffer *eb)
+ 	return err;
+ 
+ err:
++	if (gt->info.id)
++		intel_gt_pm_put(to_gt(gt->i915), eb->wakeref_gt0);
++
+ 	intel_gt_pm_put(ce->engine->gt, eb->wakeref);
+ 	for_each_child(ce, child)
+ 		intel_context_put(child);
+@@ -2763,6 +2775,12 @@ eb_put_engine(struct i915_execbuffer *eb)
+ 	struct intel_context *child;
+ 
+ 	i915_vm_put(eb->context->vm);
++	/*
++	 * This works in conjunction with eb_select_engine() to prevent
++	 * i915_vma_parked() from interfering while execbuf validates vmas.
++	 */
++	if (eb->gt->info.id)
++		intel_gt_pm_put(to_gt(eb->gt->i915), eb->wakeref_gt0);
+ 	intel_gt_pm_put(eb->context->engine->gt, eb->wakeref);
+ 	for_each_child(eb->context, child)
+ 		intel_context_put(child);
+-- 
+2.45.0
 
