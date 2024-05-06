@@ -2,43 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDE68BD5CB
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 21:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 775568BD5B3
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 21:46:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 822B810F292;
-	Mon,  6 May 2024 19:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0099C11233F;
+	Mon,  6 May 2024 19:46:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
- Mon, 06 May 2024 19:48:09 UTC
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net
- [83.223.78.240])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF97410F357
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 19:48:09 +0000 (UTC)
-Received: from h08.hostsharing.net (h08.hostsharing.net
- [IPv6:2a01:37:1000::53df:5f1c:0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
- client-signature RSA-PSS (4096 bits) client-digest SHA256)
- (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
- by bmailout2.hostsharing.net (Postfix) with ESMTPS id 10A5B2800B6D2;
- Mon,  6 May 2024 21:42:19 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
- id DCDE14A9A40; Mon,  6 May 2024 21:42:18 +0200 (CEST)
-Date: Mon, 6 May 2024 21:42:18 +0200
-From: Lukas Wunner <lukas@wunner.de>
-To: Johannes Stezenbach <js@sig21.net>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: "Saarinen, Jani" <jani.saarinen@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: i915 IVB hangup after resume from s2mem since v6.6.x
-Message-ID: <ZjkymnMC40-Le7vG@wunner.de>
-References: <Zi_2OWwG0JGI2j2B@sig21.net>
- <DM8PR11MB5655F60990852E1E4AF760F2E01A2@DM8PR11MB5655.namprd11.prod.outlook.com>
- <ZjCqbhdSWPiABmRg@sig21.net> <Zjkk3y906HKdzScK@sig21.net>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D555211233F;
+ Mon,  6 May 2024 19:46:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zjkk3y906HKdzScK@sig21.net>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Revert_=22drm/i915?=
+ =?utf-8?q?=3A_Remove_extra_multi-gt_pm-references=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 06 May 2024 19:46:06 -0000
+Message-ID: <171502476687.1941770.12086306143342921318@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240506180253.96858-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240506180253.96858-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,36 +37,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[cc += Thomas]
+== Series Details ==
 
-On Mon, May 06, 2024 at 08:43:43PM +0200, Johannes Stezenbach wrote:
-> so, git bisect pointed to:
-> 
->  commit 701d2054fa317188cd4039c84e72c73254013b23
->  Author: Thomas Zimmermann <tzimmermann@suse.de>
->  Date:   Tue Jun 13 13:07:13 2023 +0200
-> 
->     fbdev: Make support for userspace interfaces configurable
-> 
->     Add Kconfig option CONFIG_FB_DEVICE and make the virtual fbdev
->     ...
-> 
-> I think nothing on my system uses /dev/fb*, thus I had disabled
-> CONFIG_FB_DEVICE. Everything worked, only suspend/resume broke.
-> I can confirm v6.8.9 with CONFIG_FB_DEVICE=y works fine.
-> 
-> Maybe setting CONFIG_FB_DEVICE=n would allow you to reproduce
-> it in your CI tests?
-> Let me know if you still want me to file at bug report about this.
+Series: Revert "drm/i915: Remove extra multi-gt pm-references"
+URL   : https://patchwork.freedesktop.org/series/133245/
+State : warning
 
-A user-visible regression like this is always sufficient to ask for a
-revert of the offending commit.  It's the commit author's duty to find
-a fix ASAP. If you could file a bug report that would be helpful but
-you've already done more than could be asked from any user.
+== Summary ==
 
-Thanks,
+Error: dim checkpatch failed
+decb51cfa6e8 Revert "drm/i915: Remove extra multi-gt pm-references"
+-:26: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#26: 
+<4> [260.290988] list_del corruption. prev->next should be ffff888118c5d990, but was ffff888118c5a510. (prev=ffff888118c5a510)
 
-Lukas
+total: 0 errors, 1 warnings, 0 checks, 52 lines checked
+
+
