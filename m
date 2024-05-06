@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB8378BCE93
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AF88BCE94
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:57:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16C2E10E9D9;
-	Mon,  6 May 2024 12:57:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D37E710F76B;
+	Mon,  6 May 2024 12:57:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BgSMSIVk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DndElYl7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C445010E9D9;
- Mon,  6 May 2024 12:57:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB0D10F6C3;
+ Mon,  6 May 2024 12:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715000242; x=1746536242;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yqGU7QbmUk+Whr+STIIHyLR+1sejKFx4BaPW/hvCGxo=;
- b=BgSMSIVk/yWf4j0d6hK5vbfo4R6cGDotCZMyjexhCwHZdM+uJ3NFwgq7
- 2du/PU9P73wvRyXU40KlbaYBH9mK4Pchctmjnj0O+gHoAZ5ivdf/DX2bJ
- xSYXof4WYNWgW6HPrE2ShAaeh8V8aPgE8HJLGzjBtt9LqghvyXEHJtG49
- OWsZ3cD/pfSyDOUiS/mpnfeZKipdSLa5mZydvDKNDrUK4GAFAJ/XyAkMs
- 26HH2NiWQVCBCPib3LEhLA1PreyYJlo2zvdQgJ/cFXjanoGxrVAmnEzhx
- LSXYEnNimekqM5j+36JD82c1iP90iCtlu4GhnAhO5DcqicVNiOPX6Odmb w==;
-X-CSE-ConnectionGUID: 17W1lzK2QzmiecDpeiVBkw==
-X-CSE-MsgGUID: IOzuA9QHQkatJKE2KaXJew==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10865309"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10865309"
+ t=1715000244; x=1746536244;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MlhpzetGflHLvLmX0xVnP2Vt4VJFXfOgVTrg/+YpD/4=;
+ b=DndElYl723zNiPTPPNsQtm8sBOuri5kdhjZDNGxH4bCrmz9bCAqq/PgR
+ t+Z5DC2Aw8Kc4jXD5yFVMoiZBpbS5UqwV7OOLPLktrbPk2Ei38RX8oNaL
+ y5OziVDldhuk9lG11ARBaB3PK8/4vEPd+AoVBotq5YLlEeFrsicaXn4oM
+ 7JNaqgh0fwyoa0yJpXpVa9GsOL6CmtU/1E0WF/zu6FK+NlNBZTKSDhIa7
+ 5MjfWFy+Gx0jbQ4X0mLYGgx/SZAwkUoyxmHcZcFTYZBW2V0zi46e71fP6
+ 27rxR0nE6+6LdEJy1Ge4oplnPybhQppCLSe1xv0oniBZxgShn2gFOWIL2 g==;
+X-CSE-ConnectionGUID: o9an4j3zSyWOcupcjM5xAQ==
+X-CSE-MsgGUID: Qh+NiCwRTzqFMJHF5ssYuQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10865316"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10865316"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 05:57:21 -0700
-X-CSE-ConnectionGUID: P4mJmdlPQYKkemA0mDb3RA==
-X-CSE-MsgGUID: ZsDqxqoiRR6DPRzhdlzcxw==
+ 06 May 2024 05:57:24 -0700
+X-CSE-ConnectionGUID: 0+Is2SrKTGC7CW0hCxMHRw==
+X-CSE-MsgGUID: 02jmG0SPQ5GWo8oyGLbZyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28164942"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28164943"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:57:19 -0700
+ by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:57:22 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 15:57:18 +0300
+ Mon, 06 May 2024 15:57:21 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/9] drm/i915: Plane fb refactoring
-Date: Mon,  6 May 2024 15:57:09 +0300
-Message-ID: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/9] drm/i915: Split gen2 vs. gen3 .max_stride()
+Date: Mon,  6 May 2024 15:57:10 +0300
+Message-ID: <20240506125718.26001-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
+References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,38 +71,71 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-A bit of cleanup/refactoring around plane fb stuff.
-This is mainly prep work for a slightly bigger rework
-of alignment handling.
+Plane .max_stride() is alreayd a vfunc so having one made
+up of two branches based on the display version is silly.
+Split i9xx_plane_max_stride() into gen2 vs. gen3 variants
+so  that we get rid of said check.
 
-Ville Syrjälä (9):
-  drm/i915: Split gen2 vs. gen3 .max_stride()
-  drm/i915: Clean up skl+ plane stride limits
-  drm/i915: Drop 'uses_fence' parameter from intel_pin_fb_obj_dpt()
-  drm/i915: Extract intel_plane_needs_physical()
-  drm/i915: Polish types in fb calculations
-  drm/i915: Constify 'fb' in during pinning
-  drm/i915: Change intel_fbdev_fb_alloc() reuturn type
-  drm/i915: Cleanup fbdev fb setup
-  drm/i915: Rename the fb pinning functions to indicate the address
-    space
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/i9xx_plane.c | 32 +++++++++++++----------
+ 1 file changed, 18 insertions(+), 14 deletions(-)
 
- drivers/gpu/drm/i915/display/i9xx_plane.c     | 34 ++++---
- .../gpu/drm/i915/display/intel_atomic_plane.c |  8 ++
- .../gpu/drm/i915/display/intel_atomic_plane.h |  1 +
- drivers/gpu/drm/i915/display/intel_dpt.c      |  6 +-
- drivers/gpu/drm/i915/display/intel_dpt.h      |  6 +-
- drivers/gpu/drm/i915/display/intel_fb.c       | 27 +++---
- drivers/gpu/drm/i915/display/intel_fb_pin.c   | 73 +++++++-------
- drivers/gpu/drm/i915/display/intel_fb_pin.h   | 12 +--
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 39 ++++----
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  6 +-
- drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  5 +-
- .../drm/i915/display/skl_universal_plane.c    | 94 ++++++++++---------
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 18 ++--
- drivers/gpu/drm/xe/display/xe_plane_initial.c |  4 +-
- 14 files changed, 175 insertions(+), 158 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+index 3442264443e5..21303fa4f08f 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
++++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+@@ -741,23 +741,25 @@ i965_plane_max_stride(struct intel_plane *plane,
+ }
+ 
+ static unsigned int
+-i9xx_plane_max_stride(struct intel_plane *plane,
++i915_plane_max_stride(struct intel_plane *plane,
+ 		      u32 pixel_format, u64 modifier,
+ 		      unsigned int rotation)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
++	if (modifier == I915_FORMAT_MOD_X_TILED)
++		return 8 * 1024;
++	else
++		return 16 * 1024;
++}
+ 
+-	if (DISPLAY_VER(dev_priv) >= 3) {
+-		if (modifier == I915_FORMAT_MOD_X_TILED)
+-			return 8*1024;
+-		else
+-			return 16*1024;
+-	} else {
+-		if (plane->i9xx_plane == PLANE_C)
+-			return 4*1024;
+-		else
+-			return 8*1024;
+-	}
++static unsigned int
++i8xx_plane_max_stride(struct intel_plane *plane,
++		      u32 pixel_format, u64 modifier,
++		      unsigned int rotation)
++{
++	if (plane->i9xx_plane == PLANE_C)
++		return 4 * 1024;
++	else
++		return 8 * 1024;
+ }
+ 
+ static const struct drm_plane_funcs i965_plane_funcs = {
+@@ -854,8 +856,10 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 	if (HAS_GMCH(dev_priv)) {
+ 		if (DISPLAY_VER(dev_priv) >= 4)
+ 			plane->max_stride = i965_plane_max_stride;
++		else if (DISPLAY_VER(dev_priv) == 3)
++			plane->max_stride = i915_plane_max_stride;
+ 		else
+-			plane->max_stride = i9xx_plane_max_stride;
++			plane->max_stride = i8xx_plane_max_stride;
+ 	} else {
+ 		if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+ 			plane->max_stride = hsw_primary_max_stride;
 -- 
 2.43.2
 
