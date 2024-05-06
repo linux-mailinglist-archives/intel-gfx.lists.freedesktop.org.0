@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6518BCACB
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 591D08BCAE1
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 11:39:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB6E7112270;
-	Mon,  6 May 2024 09:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9533C10EAFF;
+	Mon,  6 May 2024 09:39:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ElSCBKY+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RfRH/3gE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCA9112270
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:37:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2664D10EAFF
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 09:39:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714988247; x=1746524247;
+ t=1714988387; x=1746524387;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=yiuDBsd0Z+9TpdxnEkH4deSsLGGkd/CuHt+e7iVH2Yw=;
- b=ElSCBKY+/S93KO/nUmH3qv5YVBWTrOUN4c/XNtXWN6zZTyoVQU+cZ04h
- CvtZ5aLkJgwuO61repw6gt67DkBgf1sA2No50KJRIXa4jUfJyWR94NR7t
- pFFowDYeRJdSWHzd2PppFmlvVz+6sm2HnqSglP9vwsWwVOjo61qh/27QL
- Jxg3F26e1/rS5HLWfR5ZJ7GtdMpgwxwWkaOrjBUd5sktlvleVl8MABfab
- uu+wxs15jfPAINIqaKQ455N8YnI16S6DBVpg4sGXqI5VughVBJldhc1I7
- gZR190jPfvV8j5aulCX0O3UYAzsNbqE+MOnFrzlRUQBMjYEqVf/J86Qhv A==;
-X-CSE-ConnectionGUID: pfa8xhNTSiiGufDKH5WyRg==
-X-CSE-MsgGUID: X75qkhaUTpC9+uEEgwxn6w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10882821"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10882821"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:37:27 -0700
-X-CSE-ConnectionGUID: Vh6TI64SRWOHhiKC51S6lQ==
-X-CSE-MsgGUID: HJ8VpooeQe+zxHpRb42srw==
+ bh=Xrmu8uU2B7HgST3M2ae+Fi9zKdRtT6fULCpva9336RU=;
+ b=RfRH/3gEBH3WsT1mSF9pFpdkMwG6oMjyIsaSqGK3AQ+ptEQCWkddfBm0
+ 6yRTzqXZ4BJXdqn8p45CDxlxIBoKrDyIT/0LknVsW29IRJNlEFq5PF4MS
+ Pc4V0HWTvA1NmHqGOMpUqllx8Qgi2mVTipBsv4S4JT5OswUBpJKWGere5
+ 9RL821nhYu6tyHG3HU2bOECFH6g5wMJSF8UkJN61uMeb+BxccfeYT4POB
+ GJAzqb/b2RUt62475cujAuY7iwsi7xUJATULS71Rfhdz3zWCsBzpjc/r4
+ 3yBSKmFYpl6i55pIXgtAIcy7y4nvQ6HcQ3HU5mHIjJXOgk7Hdzi4KXwTq g==;
+X-CSE-ConnectionGUID: yOogbdQ0T2uC535Yl8C8uw==
+X-CSE-MsgGUID: +G6mW/tiQyOrcEkNVRSHew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10576054"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10576054"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:39:47 -0700
+X-CSE-ConnectionGUID: EE01dLYNS9agR61weZXayA==
+X-CSE-MsgGUID: 9VvXagndQVqHZyZ7jBwdYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="65544124"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="32590152"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.230])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 02:37:25 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2024 02:39:45 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 26/35] drm/i915/bios: Define VBT block 28 (EFP DTD)
- contents
-In-Reply-To: <20240503122449.27266-27-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 28/35] drm/i915/bios: Define VBT block 46 (Chromaticity
+ For Narrow Gamut Panel) contents
+In-Reply-To: <20240503122449.27266-29-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
- <20240503122449.27266-27-ville.syrjala@linux.intel.com>
-Date: Mon, 06 May 2024 12:37:22 +0300
-Message-ID: <87ttjbmgbx.fsf@intel.com>
+ <20240503122449.27266-29-ville.syrjala@linux.intel.com>
+Date: Mon, 06 May 2024 12:39:42 +0300
+Message-ID: <87r0efmg81.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,43 +74,66 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 03 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Define the contents of VBT block 28 (EFP DTD).
+> Define the contents of VBT block 46 (Chromaticity For Narrow Gamut
+> Panel). One entry per panel.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+but...
+
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
 drm/i915/display/intel_vbt_defs.h
-> index 1b94d4aba00a..716a339f6e2a 100644
+> index 87d073154d49..5f1f485f8bf7 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -167,6 +167,7 @@ enum bdb_block_id {
->  	BDB_SDVO_LVDS_PPS		=3D 25,
->  	BDB_TV_OPTIONS			=3D 26,
->  	BDB_EDP				=3D 27,
-> +	BDB_EFP_DTD			=3D 28, /* 161+ */
->  	BDB_DISPLAY_SELECT_IVB		=3D 29, /* 164+ */
->  	BDB_DISPLAY_REMOVE_IVB		=3D 30, /* 164+ */
->  	BDB_DISPLAY_SELECT_HSW		=3D 31, /* 166+ */
-> @@ -1072,6 +1073,14 @@ struct bdb_edp {
->  	u16 edp_dsc_disable;					/* 251+ */
+> @@ -178,6 +178,7 @@ enum bdb_block_id {
+>  	BDB_LFP_BACKLIGHT		=3D 43,
+>  	BDB_LFP_POWER			=3D 44,
+>  	BDB_EDP_BFI			=3D 45, /* 160+ */
+> +	BDB_CHROMATICITY		=3D 46, /* 169+ */
+>  	BDB_MIPI_CONFIG			=3D 52, /* 175+ */
+>  	BDB_MIPI_SEQUENCE		=3D 53, /* 177+ */
+>  	BDB_COMPRESSION_PARAMETERS	=3D 56, /* 213+ */
+> @@ -1364,6 +1365,31 @@ struct bdb_edp_bfi {
+>  	struct edp_bfi bfi[16];
 >  } __packed;
 >=20=20
 > +/*
-> + * Block 28 - EFP DTD Block
+> + * Block 46 - Chromaticity For Narrow Gamut Panel Configuration Block
 > + */
 > +
-> +struct bdb_efp_dtd {
-> +	struct bdb_edid_dtd dtd[3];
+> +struct chromaticity {
+> +	u8 chromaticity_enable:1;
+> +	u8 chromaticity_from_edid_base_block:1;
+> +	u8 rsvd:6;
+> +
+> +	u8 red_green;
+> +	u8 blue_white;
+> +	u8 red_x;
+> +	u8 red_y;
+> +	u8 green_x;
+> +	u8 green_y;
+> +	u8 blue_x;
+> +	u8 blue_y;
+> +	u8 white_x;
+> +	u8 white_y;
+> +} __packed;
+> +
+> +struct bdb_chromaticity {
+> +	struct chromaticity chromaticity[16];
+
+...you can have luminance/gamma stuff here from 211+. Can be added later.
+
 > +} __packed;
 > +
 >  /*
->   * Block 29 - Toggle List Block (IVB)
+>   * Block 52 - MIPI Configuration Block
 >   */
 
 --=20
