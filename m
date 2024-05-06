@@ -2,36 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18DEC8BD4CC
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 20:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A268BD4EB
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 20:52:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6373910F259;
-	Mon,  6 May 2024 18:46:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70ED310F283;
+	Mon,  6 May 2024 18:52:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MCcZZToh";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.sig21.net (mail.sig21.net [217.197.84.222])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8240F10F255
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 18:46:00 +0000 (UTC)
-Received: from localhorst ([127.0.0.1]) by mail.sig21.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.94.2) (envelope-from <js@sig21.net>)
- id 1s43JR-0003u1-7G ; Mon, 06 May 2024 20:43:45 +0200
-Received: from js by abc.local with local (Exim 4.97)
- (envelope-from <js@sig21.net>) id 1s43JP-000000003DQ-41QU;
- Mon, 06 May 2024 20:43:43 +0200
-Date: Mon, 6 May 2024 20:43:43 +0200
-From: Johannes Stezenbach <js@sig21.net>
-To: "Saarinen, Jani" <jani.saarinen@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: i915 IVB hangup after resume from s2mem since v6.6.x
-Message-ID: <Zjkk3y906HKdzScK@sig21.net>
-References: <Zi_2OWwG0JGI2j2B@sig21.net>
- <DM8PR11MB5655F60990852E1E4AF760F2E01A2@DM8PR11MB5655.namprd11.prod.outlook.com>
- <ZjCqbhdSWPiABmRg@sig21.net>
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
+ [209.85.208.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7283210F283;
+ Mon,  6 May 2024 18:52:51 +0000 (UTC)
+Received: by mail-lj1-f178.google.com with SMTP id
+ 38308e7fff4ca-2df848f9325so27775851fa.1; 
+ Mon, 06 May 2024 11:52:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1715021569; x=1715626369; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=sLiIknzIVMcV/RkH/nncrSGVrKPjch6sB0bbMLkCJpw=;
+ b=MCcZZTohQ+fF1OFOf6Gh5/UJRrbJLbmPU+SqFtwqohhqZp+hDAixZVNbwrTiP0KIix
+ w+h5R+6ODOokUPTIFDiqi3E7tedZIjrHi6Y961L/fw6Z8sOOApyczPO5i6DKJjQVGyRD
+ N57S8fOqvxMifXRXxS9v8iL8+inEVdbbdJmnwp98S/py5forT/ZZC/9INk1DEXkEyl4Z
+ CJDHfAJOb1waFk1ZN6UmzXzLy8Cui6pQppNI9pIZKbobsi+Gbm+47f1YUasxcdfPtX63
+ CDm0nYQ/hncusZb15/jEKjgpr605KB+5nRCJxauqYK1a53Wh4w5pn/+1NhM9Hb9iamVV
+ Z6vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1715021569; x=1715626369;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=sLiIknzIVMcV/RkH/nncrSGVrKPjch6sB0bbMLkCJpw=;
+ b=ESd5D88l3hufVGHROAqLPBYZSAu/7y0TBn9jKcvZmlf/5VHId4X46IH6g4bS0BkHsk
+ UpJpZ2MfzowEXpt+rlKB742Ih4cqRgUjr+mhcMRezBF1qv3WWvf4AXG04Y8Ae9fNzyVk
+ R1KOwqjNFXeolgtyLx8pml2bBRiOJRd98Izah3howBvT5pn8HCb4TsV62NZJm/yN3HbU
+ 3CeDXq2udicbtBS8GBjeFzKTGrOHU+IMhaaf820IbXg+WSUa9DgtS4SyD9nTPGbPounY
+ 3aRqgDfhST1qRRcTzstQ2sGyfD4bnfrA9iiQKl3WIV1B0yZkUjzhlRDGHAveyppsgQ7r
+ N1gQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXT3YFsq0gzo3BDyo0upcvTpnxiu5pvN5cmXyyCLrn5gl8+zSXbIE8pfIo5UnHJHumD5RT7hDzwRbkW/7M3NF2gj+tWxtGgEUSm419yRuYM
+X-Gm-Message-State: AOJu0YweN8MZxyDPvliHZZ+/Iv7vyHo0Yli2nhDZePAAPpytgdQIfBo5
+ dekrUzEJu8GC5W7rAAJHXguRfGIXmYH5u14O/D2HQmLNai9JtdLJ8slRbwVEeKmOBQ==
+X-Google-Smtp-Source: AGHT+IEMXIvDfGes+jfCFmVyhYb30kSA7XTe+0DM89X0xn9e5M+qzgxtsxVVQbpak60BdFgqgQtZVw==
+X-Received: by 2002:a05:651c:604:b0:2e1:c5d2:b338 with SMTP id
+ k4-20020a05651c060400b002e1c5d2b338mr6121810lje.24.1715021568706; 
+ Mon, 06 May 2024 11:52:48 -0700 (PDT)
+Received: from jheikkil-mobl1.. (91-156-196-125.elisa-laajakaista.fi.
+ [91.156.196.125]) by smtp.gmail.com with ESMTPSA id
+ c11-20020a05651c014b00b002dcdeb98653sm1673945ljd.8.2024.05.06.11.52.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 06 May 2024 11:52:47 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ "Chery, Nanley G" <nanley.g.chery@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>,
+ "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
+ "Souza, Jose" <jose.souza@intel.com>,
+ "Mathew, Alwin" <alwin.mathew@intel.com>,
+ "Zhang, Jianxun" <jianxun.zhang@intel.com>,
+ "Syrjala, Ville" <ville.syrjala@linux.intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>
+Subject: [RFC PATCH 0/3] Introducing I915_FORMAT_MOD_4_TILED_XE2_CCS Modifier
+ for Xe2
+Date: Mon,  6 May 2024 21:52:35 +0300
+Message-Id: <20240506185238.364539-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZjCqbhdSWPiABmRg@sig21.net>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,27 +89,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+These patches introduce I915_FORMAT_MOD_4_TILED_XE2_CCS modifier, which,
+from the kernel's perspective, behaves similarly to `I915_FORMAT_MOD_4_TILED`.
+This new modifier is primarily intended for user space to effectively monitor
+compression status, especially when dealing with a mix of compressed and
+uncompressed buffers.
 
-so, git bisect pointed to:
+The addition of this modifier facilitates user space in managing compression
+status, particularly when utilizing both compressed and uncompressed buffers
+concurrently. To leverage compression for these buffers, user space
+applications must configure the appropriate Page Attribute Table (PAT) index.
+Display engine will treat all Tile4 as if it were compressed under all
+circumstances on Xe2 architecture.
 
- commit 701d2054fa317188cd4039c84e72c73254013b23
- Author: Thomas Zimmermann <tzimmermann@suse.de>
- Date:   Tue Jun 13 13:07:13 2023 +0200
+Notably, this patch series omits support for X-tiled CCS and linear CCS
+for Xe2, neither of which is supported by display engine. X-tiled CCS
+offers stateless compression making it less likely to be extensively
+utilized. Linear CCS does possess state, but currently lacks expected users.
 
-    fbdev: Make support for userspace interfaces configurable
+These patches aim to enhance the flexibility and efficiency of handling
+compressed and uncompressed buffers in Xe driver, particularly
+catering to the specific requirements of the Xe2 architecture.
 
-    Add Kconfig option CONFIG_FB_DEVICE and make the virtual fbdev
-    ...
+Juha-Pekka Heikkila (3):
+  drm/fourcc: define Intel Xe2 related tile4 ccs modifier
+  drm/xe/display: allow creation of case I915_FORMAT_MOD_4_TILED_XE2_CCS
+    type framebuffer
+  drm/i915/display: allow creation of case
+    I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
 
-I think nothing on my system uses /dev/fb*, thus I had disabled
-CONFIG_FB_DEVICE. Everything worked, only suspend/resume broke.
-I can confirm v6.8.9 with CONFIG_FB_DEVICE=y works fine.
+ drivers/gpu/drm/i915/display/intel_display.c       |  1 +
+ drivers/gpu/drm/i915/display/intel_fb.c            | 10 ++++++++++
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 +++-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c      |  1 +
+ include/uapi/drm/drm_fourcc.h                      | 12 ++++++++++++
+ 5 files changed, 27 insertions(+), 1 deletion(-)
 
-Maybe setting CONFIG_FB_DEVICE=n would allow you to reproduce
-it in your CI tests?
-Let me know if you still want me to file at bug report about this.
+-- 
+2.43.2
 
-
-Best Regards,
-Johannes
