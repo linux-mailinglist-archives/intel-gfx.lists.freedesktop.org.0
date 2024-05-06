@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8942F8BCD1C
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 13:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC2C8BCD21
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 13:47:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 379BD10EF7E;
-	Mon,  6 May 2024 11:47:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OMWZmYGT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C29710E10C;
+	Mon,  6 May 2024 11:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ACE710EF7E
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 May 2024 11:47:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714996046; x=1746532046;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=8UzoLJdDQCZbkcyEKf6nYIGXoPeLturJsfiBb/fDPOQ=;
- b=OMWZmYGT5pdOfdGhBBSt8gJ9cpOwu7nwcNwj7tOW+0wSusgMy8U9DraK
- HKrcJlXluzwPBozMzyPxZeIlatpH6iyieJdV5tke9ExVGVp3ZEQW2LlTb
- verHegoUs9wwaK89NfjPQhkZdTQDzykgoi63TPFNvoaBIQRRa8yXLTbfa
- R5vo8LMn/4olKg9ZJwMhZ6PhYMBKSSZzbNAaYzrWeQGswGQlVyzRb3lV0
- OQcCmH14XodHW810Hvo44jdkO5plV1VvE3Gobghr8kI9oiguupHK4Gi94
- tESpqYruhNDr0SUI4BmvOwGb+2TCkBdTmNT2QEqq75cBSFaAwPVaxU2d/ w==;
-X-CSE-ConnectionGUID: htr5PZWWTaW2spqYd4k0OQ==
-X-CSE-MsgGUID: i9XoJ8rZRP2/yEt0G1r/mw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11064"; a="10859202"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10859202"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 04:47:19 -0700
-X-CSE-ConnectionGUID: uZDcN0F9SOyO+6ktkEMDkA==
-X-CSE-MsgGUID: Elc+k27tSqudPhcXWHbYAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28152326"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 04:47:16 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 14:47:15 +0300
-Date: Mon, 6 May 2024 14:47:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 31/35] drm/i915/bios: Define VBT block 57 (Vswing
- PreEmphasis Table) contents
-Message-ID: <ZjjDQ9r675jsaXzY@intel.com>
-References: <20240503122449.27266-1-ville.syrjala@linux.intel.com>
- <20240503122449.27266-32-ville.syrjala@linux.intel.com>
- <87ikzrmg44.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD5810EF9D;
+ Mon,  6 May 2024 11:47:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3343455786678197985=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ikzrmg44.fsf@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe=3A_More_fb_pinning_o?=
+ =?utf-8?q?ptimizations=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 06 May 2024 11:47:52 -0000
+Message-ID: <171499607231.1939724.10700729145013972353@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240506103604.146146-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240506103604.146146-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,90 +37,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 06, 2024 at 12:42:03PM +0300, Jani Nikula wrote:
-> On Fri, 03 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Define the contents of VBT block 57 (Vswing PreEmphasis Table).
-> >
-> > The contents is highly platform specific. The columns of the
-> > table corresponding to some set of PHY/etc registers. The rows
-> > corresponding to all legal vswing+pre-emphasis combinations
-> > (ie. should be 10 rows in each table). And each table
-> > corresponds to a platform specific (mostly undocumented)
-> > mapping based on link rate/eDP low-vswing/etc. parameters.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> I guess we should use this... but I'm not sure how.
+--===============3343455786678197985==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah. Based on he bug report there are at least some 
-ICL machines that need this.
+== Series Details ==
 
-My rough idea is:
-1. change our buf_trans structs to match this (ie. make
-   everything u32 basically), and get the column->register
-   mapping from the Windows code to make sure the struct
-   members are in the correct order. Sadly none of this 
-   is docuemnted in the VBT spec
-2. also snoop the rules for selecting the correct table 
-   from the Windows code, since that too is undocumented.
-   I think there is some kind of note about this for ICL
-   specifically, but even that might have been outdated
-3. point at the correct VBT provided table rather than
-   an in kernel table when appropriate
+Series: drm/xe: More fb pinning optimizations.
+URL   : https://patchwork.freedesktop.org/series/133228/
+State : success
 
-But I think there are some additional complications due to
-mg/dkl vs. combo PHY as well. So probably not 100% trivial.
+== Summary ==
 
-I don't totally like step 1 of that plan as it'll increase
-the size of the in kernel buf_trans tables needlessly. But
-the alternative would involve converting the VBT layout
-into our layout as needed, which is perhaps a bit less
-straightforward. Dunno.
+CI Bug Log - changes from CI_DRM_14711 -> Patchwork_133228v1
+====================================================
 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > index 50d0d96fca67..0e5a2bf429f4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > @@ -184,6 +184,7 @@ enum bdb_block_id {
-> >  	BDB_MIPI_SEQUENCE		= 53, /* 177+ */
-> >  	BDB_RGB_PALETTE			= 54, /* 180+ */
-> >  	BDB_COMPRESSION_PARAMETERS	= 56, /* 213+ */
-> > +	BDB_VSWING_PREEMPH		= 57, /* 218+ */
-> >  	BDB_GENERIC_DTD			= 58, /* 229+ */
-> >  	BDB_SKIP			= 254, /* VBIOS only */
-> >  };
-> > @@ -1486,6 +1487,16 @@ struct bdb_compression_parameters {
-> >  	struct dsc_compression_parameters_entry data[16];
-> >  } __packed;
-> >  
-> > +/*
-> > + * Block 57 -  Vswing PreEmphasis Table
-> > + */
-> > +
-> > +struct bdb_vswing_preemph {
-> > +	u8 num_tables;
-> > +	u8 num_columns;
-> > +	u32 tables[];
-> > +} __packed;
-> > +
-> >  /*
-> >   * Block 58 - Generic DTD Block
-> >   */
-> 
-> -- 
-> Jani Nikula, Intel
+Summary
+-------
 
--- 
-Ville Syrjälä
-Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Additional (1): fi-apl-guc 
+  Missing    (4): bat-dg2-11 bat-arls-1 fi-snb-2520m bat-mtlp-6 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_133228v1:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@gt_engines:
+    - {bat-arls-4}:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-arls-4/igt@i915_selftest@live@gt_engines.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/bat-arls-4/igt@i915_selftest@live@gt_engines.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133228v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-apl-guc:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-apl-guc:         NOTRUN -> [SKIP][4] +17 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - {bat-mtlp-9}:       [DMESG-WARN][5] ([i915#10435] / [i915#9157]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - {bat-mtlp-9}:       [DMESG-WARN][7] ([i915#10435]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14711 -> Patchwork_133228v1
+
+  CI-20190529: 20190529
+  CI_DRM_14711: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133228v1: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/index.html
+
+--===============3343455786678197985==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: More fb pinning optimizations.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133228/">https://patchwork.freedesktop.org/series/133228/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14711 -&gt; Patchwork_133228v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Additional (1): fi-apl-guc <br />
+  Missing    (4): bat-dg2-11 bat-arls-1 fi-snb-2520m bat-mtlp-6 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_133228v1:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@gt_engines:<ul>
+<li>{bat-arls-4}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-arls-4/igt@i915_selftest@live@gt_engines.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/bat-arls-4/igt@i915_selftest@live@gt_engines.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133228v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/fi-apl-guc/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/fi-apl-guc/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> +17 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157">i915#9157</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14711/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133228v1/bat-mtlp-9/igt@kms_force_connector_basic@force-connector-state.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14711 -&gt; Patchwork_133228v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14711: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7833: 6f89cac1b180e7cd7cbac535e65843595b2bb5bd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133228v1: 5a43da669cdb9b8df66e32a661b09cd9c52e35f2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3343455786678197985==--
