@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFCDE8BCE9A
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B47B8BCE9C
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 May 2024 14:57:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FFB110F734;
-	Mon,  6 May 2024 12:57:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0DF310F85D;
+	Mon,  6 May 2024 12:57:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DGegB0fq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="egxHdr2x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A9310F85D;
- Mon,  6 May 2024 12:57:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10CED10F7D9;
+ Mon,  6 May 2024 12:57:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715000262; x=1746536262;
+ t=1715000265; x=1746536265;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tUmv3wU1cwcvO1ENMvcJg5pdsSNIZF1jswhCIF06aWk=;
- b=DGegB0fqdKNz5G6O+0au0t/9xFh+u1+6Hc4tq355EWs5LtYllp/xfZHD
- PvQfNifnGvtVHXuRmWk2xxlUfRzV7dMq4ORMAPsjOzor71/aVzv6mg0YB
- b6V9wfibXLrTsmpLCW7de/rPvPeFg791UdovRezLzd+Zdij6zmGKFnz0c
- COfpnOBOf1Av97xQToiRLOsRiaRrfHAGnBWnL/3xvgQUUdY2o0GncAH9n
- pPcbPLgyP99KEzBJyaI7kf8MvV6+PdEvYmv8yZZfC4/0BPp26DtUdXb/5
- MqvemlJ6u3Uh3mdpA32S6E+YEWmn+vzoQur4g7PZkgHvQQNQC2oWr8KjK g==;
-X-CSE-ConnectionGUID: tA8M8RUdQdOe7hdFTE2WyQ==
-X-CSE-MsgGUID: 6ZGgXbLHRJyIA4xLbhy2FQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10865336"
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10865336"
+ bh=TQKWxZUHmEUAdlGWYjHBENfhb+MA/iR+iXB8iuyFCt4=;
+ b=egxHdr2x0+nDBrLsrswMPHR+30Op/Cd8Iv04CJV+7a4bE2NDo83F6ilh
+ LIyugsowHLE740BouKf0wQKjMFobVPseqFBDiZTDgVraakqXbz5INlrq5
+ EC5xhhVDF8CrQUH4iBIHdH0RJYEZg1iAzmM+Ga4ctNaUnuwDZtuGn8EOT
+ bvlI3zoyFsqOEQh0FDujA4PzQRSCeJ939mJEXgJxIxEuBT8ntP3yKmzRQ
+ CbMPA0/U0tRR2vmucYCO1TDwaXW1cUHoHC3zQaT8vw+SCiHrq7bpZ8rFC
+ WIRHn/11L+11gTc1fthDYB2OdE04msq0dWKdkXOokrR3fnpTDDpX2tfaU Q==;
+X-CSE-ConnectionGUID: jySEd/n7Rz6ez7v3G8557w==
+X-CSE-MsgGUID: mGNiaT6BR8yHsuGnphxUXQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="10865343"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="10865343"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 05:57:42 -0700
-X-CSE-ConnectionGUID: uxyt23sqQz6ldiQPuZe/jQ==
-X-CSE-MsgGUID: 8n9itwfvQK2dvTkuT64K/g==
+ 06 May 2024 05:57:45 -0700
+X-CSE-ConnectionGUID: +Vg95iiYQNihNwu80v5BSA==
+X-CSE-MsgGUID: /mDxxbyPTkW/r8jg3BZSzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28164952"
+X-IronPort-AV: E=Sophos;i="6.07,258,1708416000"; d="scan'208";a="28164954"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:57:39 -0700
+ by fmviesa008.fm.intel.com with SMTP; 06 May 2024 05:57:42 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 06 May 2024 15:57:39 +0300
+ Mon, 06 May 2024 15:57:42 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 7/9] drm/i915: Change intel_fbdev_fb_alloc() reuturn type
-Date: Mon,  6 May 2024 15:57:16 +0300
-Message-ID: <20240506125718.26001-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 8/9] drm/i915: Cleanup fbdev fb setup
+Date: Mon,  6 May 2024 15:57:17 +0300
+Message-ID: <20240506125718.26001-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
 References: <20240506125718.26001-1-ville.syrjala@linux.intel.com>
@@ -71,80 +71,111 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Change intel_fbdev_fb_alloc() to return struct intel_fb instead
-of struct drm_framebuffer. Let's us eliminate some annoying
-aliasing variables in the fbdev setup code.
+We use a mix of 'fb' vs. 'ifbdev->fb' in the same function.
+Both should be pointing at the same thing. Make things less
+confusing by just getting existing fb from 'ifbdev->fb' at the
+start and then sticking with the local 'fb' until the very end.
+
+And we'll also change intel_fbdev_fb_alloc() to return
+struct intel_fb instead of struct drm_framebuffer so that
+we don't have to have yet another alias for the same thing.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  6 +++---
- drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  5 +++--
- 3 files changed, 11 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 39 +++++++++++-----------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index bda702c2cab8..0d79ec1a6427 100644
+index 0d79ec1a6427..e898018ab76a 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -207,13 +207,13 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 		intel_fb = ifbdev->fb = NULL;
+@@ -175,7 +175,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 			  struct drm_fb_helper_surface_size *sizes)
+ {
+ 	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
+-	struct intel_framebuffer *intel_fb = ifbdev->fb;
++	struct intel_framebuffer *fb = ifbdev->fb;
+ 	struct drm_device *dev = helper->dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	const struct i915_gtt_view view = {
+@@ -195,30 +195,30 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	if (ret)
+ 		return ret;
+ 
+-	if (intel_fb &&
+-	    (sizes->fb_width > intel_fb->base.width ||
+-	     sizes->fb_height > intel_fb->base.height)) {
++	ifbdev->fb = NULL;
++
++	if (fb &&
++	    (sizes->fb_width > fb->base.width ||
++	     sizes->fb_height > fb->base.height)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "BIOS fb too small (%dx%d), we require (%dx%d),"
+ 			    " releasing it\n",
+-			    intel_fb->base.width, intel_fb->base.height,
++			    fb->base.width, fb->base.height,
+ 			    sizes->fb_width, sizes->fb_height);
+-		drm_framebuffer_put(&intel_fb->base);
+-		intel_fb = ifbdev->fb = NULL;
++		drm_framebuffer_put(&fb->base);
++		fb = NULL;
  	}
- 	if (!intel_fb || drm_WARN_ON(dev, !intel_fb_obj(&intel_fb->base))) {
--		struct drm_framebuffer *fb;
-+		struct intel_framebuffer *fb;
+-	if (!intel_fb || drm_WARN_ON(dev, !intel_fb_obj(&intel_fb->base))) {
+-		struct intel_framebuffer *fb;
++	if (!fb || drm_WARN_ON(dev, !intel_fb_obj(&fb->base))) {
  		drm_dbg_kms(&dev_priv->drm,
  			    "no BIOS fb, allocating a new one\n");
--		fb = intel_fbdev_fb_alloc(helper, sizes);
--		if (IS_ERR(fb))
--			return PTR_ERR(fb);
--		intel_fb = ifbdev->fb = to_intel_framebuffer(fb);
-+		intel_fb = intel_fbdev_fb_alloc(helper, sizes);
-+		if (IS_ERR(intel_fb))
-+			return PTR_ERR(intel_fb);
-+		ifbdev->fb = fb;
+-		intel_fb = intel_fbdev_fb_alloc(helper, sizes);
+-		if (IS_ERR(intel_fb))
+-			return PTR_ERR(intel_fb);
+-		ifbdev->fb = fb;
++		fb = intel_fbdev_fb_alloc(helper, sizes);
++		if (IS_ERR(fb))
++			return PTR_ERR(fb);
  	} else {
  		drm_dbg_kms(&dev_priv->drm, "re-using BIOS fb\n");
  		prealloc = true;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-index 0665f943f65f..497525ef9668 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -11,8 +11,8 @@
- #include "intel_display_types.h"
- #include "intel_fbdev_fb.h"
+-		sizes->fb_width = intel_fb->base.width;
+-		sizes->fb_height = intel_fb->base.height;
++		sizes->fb_width = fb->base.width;
++		sizes->fb_height = fb->base.height;
+ 	}
  
--struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
--					     struct drm_fb_helper_surface_size *sizes)
-+struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
-+					       struct drm_fb_helper_surface_size *sizes)
- {
- 	struct drm_framebuffer *fb;
- 	struct drm_device *dev = helper->dev;
-@@ -63,7 +63,7 @@ struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 	fb = intel_framebuffer_create(obj, &mode_cmd);
- 	i915_gem_object_put(obj);
+ 	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+@@ -227,7 +227,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	 * This also validates that any existing fb inherited from the
+ 	 * BIOS is suitable for own access.
+ 	 */
+-	vma = intel_pin_and_fence_fb_obj(&ifbdev->fb->base, false,
++	vma = intel_pin_and_fence_fb_obj(&fb->base, false,
+ 					 &view, false, &flags);
+ 	if (IS_ERR(vma)) {
+ 		ret = PTR_ERR(vma);
+@@ -241,11 +241,11 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 		goto out_unpin;
+ 	}
  
--	return fb;
-+	return to_intel_framebuffer(fb);
- }
+-	ifbdev->helper.fb = &ifbdev->fb->base;
++	ifbdev->helper.fb = &fb->base;
  
- int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-index a395b2c65d33..82e8e7cc007b 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-@@ -12,9 +12,10 @@ struct drm_i915_gem_object;
- struct drm_i915_private;
- struct fb_info;
- struct i915_vma;
-+struct intel_framebuffer;
+ 	info->fbops = &intelfb_ops;
  
--struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
--					     struct drm_fb_helper_surface_size *sizes);
-+struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
-+					       struct drm_fb_helper_surface_size *sizes);
- int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
- 			     struct drm_i915_gem_object *obj, struct i915_vma *vma);
+-	obj = intel_fb_obj(&intel_fb->base);
++	obj = intel_fb_obj(&fb->base);
+ 
+ 	ret = intel_fbdev_fb_fill_info(dev_priv, info, obj, vma);
+ 	if (ret)
+@@ -263,8 +263,9 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
+ 
+ 	drm_dbg_kms(&dev_priv->drm, "allocated %dx%d fb: 0x%08x\n",
+-		    ifbdev->fb->base.width, ifbdev->fb->base.height,
++		    fb->base.width, fb->base.height,
+ 		    i915_ggtt_offset(vma));
++	ifbdev->fb = fb;
+ 	ifbdev->vma = vma;
+ 	ifbdev->vma_flags = flags;
  
 -- 
 2.43.2
