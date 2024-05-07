@@ -2,68 +2,174 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B8A8BEEE0
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 May 2024 23:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BF978BEFF5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 00:57:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82C67112694;
-	Tue,  7 May 2024 21:27:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3EB41126F7;
+	Tue,  7 May 2024 22:57:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RQllzkiG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Do5LU6/Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBC1F112691;
- Tue,  7 May 2024 21:27:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E977C1126F6;
+ Tue,  7 May 2024 22:57:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715117241; x=1746653241;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PnNK5wwc4RP/I62vXPgG0O947NrjKTFTDH1GMiR++SE=;
- b=RQllzkiG3x5iBzbZ8EpHXN690wYdN88Jel5k6uPMzR+8d2VJAe/CAOF1
- e/4C2BL16ZNNnxZ+AV0TeoIrm2ynb7+rfyOuLcYl9XElyJodhWLqow8ap
- NIybuTrKlczcPw+tzCaNQK1diN9xlmRioWsbmQ4TOw+eeEMBFw0QZvp8G
- ij7juKIWudVtFWOtTmJxPC2heP6GeoeNjOn6k9HAXH5IGYrnJDiNTPugE
- D+NIYiv4jGqUpdUReQuJkyGQnzFN5g/LAv3OWVlFw6doGZNeWhqbx8v/e
- BP8+1Ko7hcWgXUQAo8CDh+d1r3dV7YEYwde6a21sUmW1Sg7POJudAcegW g==;
-X-CSE-ConnectionGUID: 5bV02qmHSJGr31wwFNjSkg==
-X-CSE-MsgGUID: VImoDRqOTWK50QRleSjFWQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="33455315"
-X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="33455315"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 14:27:21 -0700
-X-CSE-ConnectionGUID: ZKuRaPorTwSh6a6449tqcg==
-X-CSE-MsgGUID: u1Ga3M/dSyujkZBGdwyAmg==
+ t=1715122627; x=1746658627;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=56e3Si6RbbXxKfyq+s+bjN4Zvd/OvuWWxgJijZlgVyY=;
+ b=Do5LU6/ZtXv7/PKGoW13FrKrfUIZbCFJQ8hT6kvwNmv0F+aldwmIZku7
+ GoIjdmltZodl3EwCd2CyvZPUCxz3IsgC280YrR/N+BwFYbu3d+pPLRAgJ
+ 71egnOiM8jjRH9yR7RW5mS9ACrsiRU4jCJMOjzF/GlJU4VsFex2A4YzJl
+ kMFaBBC4BjJ0kTvC+3gCJlBnaxZpBkwRrP3oiRR1ynngwPl/buTZk4gaG
+ NZpGPq8dGzfQnSykReHXplIRsYMS5Ci2PEsD0RdwARq8QoGdMUMGz6Gud
+ QMQxU8j98Q+pIi4v2LR545EyLGLasY7aILOXjam2B9pboWSXUeSdTBsAB g==;
+X-CSE-ConnectionGUID: nPSHb9w9Q7WnWMcsiJlDIQ==
+X-CSE-MsgGUID: 5GWr5kmiSBmNeAG4yE4PpQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="10821138"
+X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="10821138"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2024 15:57:06 -0700
+X-CSE-ConnectionGUID: yIX7nop/TemJdNoUyJrQew==
+X-CSE-MsgGUID: 1rcy12mrSTKXCKGLUmPbLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="33351636"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.50.245])
- ([10.246.50.245])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 14:27:18 -0700
-Message-ID: <a95d0897-7e23-447e-9d97-4db97f82af06@linux.intel.com>
-Date: Tue, 7 May 2024 23:27:15 +0200
+X-IronPort-AV: E=Sophos;i="6.08,143,1712646000"; d="scan'208";a="33202993"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 May 2024 15:57:06 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 7 May 2024 15:57:05 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 7 May 2024 15:57:04 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 7 May 2024 15:57:04 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Tue, 7 May 2024 15:57:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P08lkK1YFjUp/wFRzwCM/oXnuYAiulu/EehCtO+6JfHUXkpWUye/Q6XZU5CtTONQbEq+TuxSvuwznM2TYJsNZvAwUl95HpVAvm9KJpCNZIK/HX6xwsSwe5TZrUmgNcrP+dnaZFD8oLpBrIGIMF3J1MrU4fTHcGqrH+tYI0HY/qXcL63aweO352bDRj+Dhxpx/OeGgIxw7RiyCNBZ/hGv3KKnvc6tavks3NqP0p8XmTpuXoWY1giq5FAGDG5+X0eOk6uz7EM2QgBfltCJ03XP1O6Vk2pYdAzfA0JUW+AZTMj6p8CTXd2c4xfwWSAGlxMyIc8k/cqU53I7g0zbnrYp4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aEorFrSn2JTp7Zw95ZZmH7Vn9LfkbvqR4EhqvJENJsM=;
+ b=ll9u7TVCLLh/pHOCig6GgyGIQlv19estcFZxkT0tD/gvJ8NWFHRq+zWayDxyjx668PTO9llZqt1YjM0zt+fkNjz9Vqy4W/E+9zCV1AQ75V/ZeW/DF+2f1gu2RZlavdiTmnWhlofXKBjaPzy9CN3lnZBU1dBbLx3pF3H3PKUwvgyWKf0BGtdv/fuRuO1leQ2ElAq57ZdkUlLbMZYirmtqzpw2Lf3/kVlKqGBjcR9gE/SnlJmM45PNWl0cMdyeOK9VZ/qBUJXJXCEgakyCPjLN1ZNCv8fvnI1SsS6Qkp+oVjdoCxAp2vhScmxSlU183XulW+fvED8qP2QUv9IBgpbQdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by IA0PR11MB8301.namprd11.prod.outlook.com (2603:10b6:208:48d::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.41; Tue, 7 May
+ 2024 22:57:00 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7544.036; Tue, 7 May 2024
+ 22:57:00 +0000
+Date: Tue, 7 May 2024 15:56:57 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ "Chery, Nanley G" <nanley.g.chery@intel.com>, "Saarinen, Jani"
+ <jani.saarinen@intel.com>, "Graunke, Kenneth W"
+ <kenneth.w.graunke@intel.com>, "Souza, Jose" <jose.souza@intel.com>, "Mathew, 
+ Alwin" <alwin.mathew@intel.com>, "Zhang, Jianxun" <jianxun.zhang@intel.com>,
+ "Syrjala, Ville" <ville.syrjala@linux.intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>
+Subject: Re: [RFC PATCH 0/3] Introducing I915_FORMAT_MOD_4_TILED_XE2_CCS
+ Modifier for Xe2
+Message-ID: <20240507225657.GI5615@mdroper-desk1.amr.corp.intel.com>
+References: <20240506185238.364539-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240506185238.364539-1-juhapekka.heikkila@gmail.com>
+X-ClientProxiedBy: SJ0PR13CA0015.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c0::20) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/i915: Remove extra multi-gt pm-references"
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-References: <20240506180253.96858-2-janusz.krzysztofik@linux.intel.com>
- <91bf1eae-a9c5-408c-8ed7-affb83517d10@linux.intel.com>
- <2180809.irdbgypaU6@jkrzyszt-mobl2.ger.corp.intel.com>
- <Zjpgga6ODnpmzeB9@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <Zjpgga6ODnpmzeB9@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA0PR11MB8301:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a41e4b2-e8f4-4396-97d1-08dc6ee900f7
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|1800799015|366007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?naDsB+viLeRRj+PSs06gRpSNfif80GxvCdc2Z3mDQqn3iFd7NGXi5PdZI/DR?=
+ =?us-ascii?Q?Qm7gVXDod9U49twnGmpBjIORgHa+dD2KS+D1xjCXzf+bu6bC4JYF2DTvCRxX?=
+ =?us-ascii?Q?Y8iV9z3c1A/fLxV7XDfXuEiFfup+O/StXgt1s9AwzTbbgKm7lL07TK3S1Kc0?=
+ =?us-ascii?Q?qiSmEoL2e2qyEubOCtUH+r+NmPRbEAStswNxYpfOHEw25AaSpEy5gqIfzrrY?=
+ =?us-ascii?Q?450LZGm0l69MMrM8KMLOi5mw65rSGLNYKcKVnc6yaMoYdpVZx6Q+LAhmO2k2?=
+ =?us-ascii?Q?vsJiEvTWP0uerXMIkWlHvafxotXeyxf7iGt1U5iRwK8wB3/alYTNkKh1xwxy?=
+ =?us-ascii?Q?1J45hdd9cl5w28c12RU9HMMR+RmNbZ8Ra6wnDtN+lSCgv6qVgt3BYhW/DW3G?=
+ =?us-ascii?Q?WEvVuBK4FjtPXxmxY+LdBXf1jWURBENDatO2weoUi73qIE5SlF0TVht0TMtO?=
+ =?us-ascii?Q?CnZlX17sBb+3oTUQB7+s5UvrsBWZXie2KKPNwi6hFIqnDyzFsBbOk8uGIgyZ?=
+ =?us-ascii?Q?cJzH9+0puzNn+rFuCp33CedKDIF4o9IAnMpxLmVZpb6/W9aXSIEhEG4Z4uPq?=
+ =?us-ascii?Q?96leG8PxROzrPw3LkWwT/dDSBeoTBFyuhJkwOYJBFTnIem5wqe82mc0qKL9w?=
+ =?us-ascii?Q?SZoVbUgecnPzIj+vYY2eTkitg1Quytvd+sQhWrh8aLjKwEj1bxv1447NmbcC?=
+ =?us-ascii?Q?4OCA1snL0OmbPjsGCo5dCkmsX2Uj7HlsUv8YtfxQ2wW5Z1VhOpF4Y4zKzF2g?=
+ =?us-ascii?Q?Inu6qJY5Mx82XLdDZauLsbvY/FLjSM/eJ1rDhfJNtsS0QjXO2QcIcbHcPaSE?=
+ =?us-ascii?Q?rY7Y80/mPtJgeaOS28YuGfrnTKQvGKNC/eQyQa5gFjxww0M84EHUDk984Bfa?=
+ =?us-ascii?Q?5VFGqip3IO59MF/pHJ2RPdjbWm9XBZmLlYxRViv+mVTQpbxkRE+t+GKB3Q3o?=
+ =?us-ascii?Q?IbqzhXVPwIM8Md+6o0yEuBbpZeckMfqyhI6PF1aMzM8yq1CmqxELml01n6i8?=
+ =?us-ascii?Q?R19orBxIXmYSGJIWYueMOA3sPWpVdTx7mmQmcVGMCi/nPSFt+nJiBxukVQWx?=
+ =?us-ascii?Q?3XqhSKbecBCzR7s+ja7+8ugzF2WmtkJM6e9U9MttMlcUTlR5r8wkh2q9784l?=
+ =?us-ascii?Q?aub9JsLx+dd9kQ3O0RcTsl1cgWLSBPXOFnlfGf9QtrPao2Qhl/T3s9avZQ9d?=
+ =?us-ascii?Q?N6l1hrc8pvhXCNgf0bBqX8zEVmVDfaRQtocbcTNFrpghRoNVDKFvAl9SyXsl?=
+ =?us-ascii?Q?mtVo8Dwpmh7klfsHpuWijefkg0fW70IrCrot6KzNfQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EjR2ZSpyXY6RiX/nHjHnDATzyrJtVc1TQZryC8U7BPtWsk/T1vqX7AXXym9f?=
+ =?us-ascii?Q?VXK707DVnT5J6BJud9fADdD8LoLBo7P8cBjkPLpulxgUhQVSlhzi8W5vdm9h?=
+ =?us-ascii?Q?7cBystm5x/4iAAH0kFY15FpfyJVeoiv49zVgZSfR2qMQAxJKGvCX/DW+xfZB?=
+ =?us-ascii?Q?pE1wqh2dqIlQNyqxmmhq5ftnV/e54Gr6l+kpthnZyMUOqtHXp4NZbqNbMwn/?=
+ =?us-ascii?Q?6ne8TGWT2yf8XHVKBr0mAIRb+DT3ZpYNpWvEhyIoYWBMLWZ3O5SEvelI9sbl?=
+ =?us-ascii?Q?OeAor4W5ZIQpbOZvWTUNQRD5wfm2rHl9LhTpnSm38hs3cDNsK9AYNoR364Ju?=
+ =?us-ascii?Q?KRL/CIYz65zR3VKRgdPBM/V4bN0hgL8MdmHQdGWNvO13CElHeuPQdDanqemw?=
+ =?us-ascii?Q?UgezGA+u/KDwd+Kq4nE6Powpbi64l6ywQ5wvLNihArxtt4RXHtWxdI9ryoqK?=
+ =?us-ascii?Q?+zZuG1H+J0ucsBUdmtjpc1nav1b3vHKgsSVTSxq4O2jn/llnOE5EAtMbHEKE?=
+ =?us-ascii?Q?tYBoH5GszeekdlLbraHD0GL5dHRxB2uEojv65Ts9nOpEszTkEodn3eCkaSVp?=
+ =?us-ascii?Q?HpSP2KCQj1X1E6HeBj9Skr8r2nJgGRuYscQSljyIKuE+WRA4uvl69Z/qKhJ/?=
+ =?us-ascii?Q?qzGAEWD9KpyZVz3O7VIdYe6ANlOIBgyV3OjlNqyiFP/eln0kCQaIoOnTKN7b?=
+ =?us-ascii?Q?ONt3q8lrnH4J+Dhea53MkbJ/8RmUhMdkiNoge2kBESMa4dO1Mnz5lfWN61L/?=
+ =?us-ascii?Q?5wwwyrN0iPyFU4llHPuMC+sMg7Z1uHc69oY6nJx+JPx0cQDk82EDS1GQ/ZwK?=
+ =?us-ascii?Q?a8xR8KXcmgefpyucNm8ynPhLPGdi8DmbbkV4+K3AbXwCirnRSQnm4TpM6DLo?=
+ =?us-ascii?Q?WaBFEkaeRTzcDa1ZASUbJvIbBu/KZDlsBKDTo02J7zvshWANwGFukTT7wZsJ?=
+ =?us-ascii?Q?hKbf3BOlVPrq3wIdvMOoJIN9fjk9T7gy94OOxAFt5tcmvsyKf9iI4Sclc59v?=
+ =?us-ascii?Q?iDn8yngxCWqw5GctcVQN2ZS0pRz/zIRiipAWAj6naqKBB+XMGLq0G/jyFdn6?=
+ =?us-ascii?Q?H5VpnUssPe1/o6rEq7vVUenTzqKlob2tL+pAy3KEOS9fIPfiO3dF/hpb2pNh?=
+ =?us-ascii?Q?1lczy0EJwfySz+Nescxoyd4sZY9+ksI4s8mhVlXbePQY4cxD+0Ux583oPRVj?=
+ =?us-ascii?Q?gleDSgldk0JzxMR9MqrgSXajwU76V2HWtOVb0s858iUzIl5w/SkEQwcc24f/?=
+ =?us-ascii?Q?/ln1KQwQkeHMY5cVA6cQoiTQ8TDwrkf1x7WLV2q8TrYD9KrUJSMSBguyfTeA?=
+ =?us-ascii?Q?bHk1YbC1GwzixbYBeocY0IEB7moWo49S7aOgw2t6Fp03V4abiBZIQmQiYAHU?=
+ =?us-ascii?Q?uS0B2bDCDYDzZjjweq8Rp73htBwyM5O49OaEZrHrQ4ZGTqkYrAXekcFOnc3V?=
+ =?us-ascii?Q?Fv6iP+YBFHoCB4puY352R4WviorwLeQJXEjqaiRIKAU2OhPsL4EVMu14HbKp?=
+ =?us-ascii?Q?RYeds23pDDNx0MJeADFeuhPM5xkytJOJsTfKNj31+WPMyT/SUhneNOYUm2rp?=
+ =?us-ascii?Q?JezNogOgIxW5F/OBPWTGd/IrvmpD319iBCBuLvrYA2yawupOfCQ4nGo3Skjv?=
+ =?us-ascii?Q?7w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a41e4b2-e8f4-4396-97d1-08dc6ee900f7
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2024 22:57:00.4295 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: H80G4SgB3HQSJqpIvzQ/sZDbUqZ0blEnK0G6/v+zmYNOs+1i3x2dcm6xjM09GVz2iJxao7eV2MYQXkYjGHOe18ivN5jUEUhmoYFnrrKIvZg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8301
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,172 +185,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, May 06, 2024 at 09:52:35PM +0300, Juha-Pekka Heikkila wrote:
+> These patches introduce I915_FORMAT_MOD_4_TILED_XE2_CCS modifier, which,
+> from the kernel's perspective, behaves similarly to `I915_FORMAT_MOD_4_TILED`.
+> This new modifier is primarily intended for user space to effectively monitor
+> compression status, especially when dealing with a mix of compressed and
+> uncompressed buffers.
+> 
+> The addition of this modifier facilitates user space in managing compression
+> status, particularly when utilizing both compressed and uncompressed buffers
+> concurrently. To leverage compression for these buffers, user space
+> applications must configure the appropriate Page Attribute Table (PAT) index.
+> Display engine will treat all Tile4 as if it were compressed under all
+> circumstances on Xe2 architecture.
 
-On 5/7/2024 7:10 PM, Rodrigo Vivi wrote:
-> On Tue, May 07, 2024 at 10:54:11AM +0200, Janusz Krzysztofik wrote:
->> On Tuesday, 7 May 2024 09:30:15 GMT+2 Nirmoy Das wrote:
->>> Hi Janusz,
->>>
->>>
->>> Just realized we need Fixes tag for this.
->>>
->>> Fixes: 1f33dc0c1189 ("drm/i915: Remove extra multi-gt pm-references")
->> Whoever is going to push this patch, please feel free to add this tag.
-> dim b4-shazam gets that automagically, now it was sent in reply ;)
-Nice!
->
-> I just pushed the patch. thanks for the patch and reviews.
+I may have missed some discussion about this, but I thought the previous
+consensus was that we didn't want/need new modifiers for compression on
+Xe2?  If a userspace client (or the display hardware) receives a buffer
+of unknown origin and unknown compression status, it's always fine to
+select a compressed PAT when binding the buffer to read since even for
+uncompressed buffers the CCS metadata will accurately reflect the
+compression status.  Unlike Xe1, where generating content without
+compression enabled would leave random garbage in the FlatCCS area, Xe2
+will set the corresponding FlatCCS to '0x0' for each block, indicating
+uncompressed data.
+
+Can you explain more what the benefit of handling these modifiers
+explicitly is?
 
 
-Thanks,
+Matt
 
-Nirmoy
+> 
+> Notably, this patch series omits support for X-tiled CCS and linear CCS
+> for Xe2, neither of which is supported by display engine. X-tiled CCS
+> offers stateless compression making it less likely to be extensively
+> utilized. Linear CCS does possess state, but currently lacks expected users.
+> 
+> These patches aim to enhance the flexibility and efficiency of handling
+> compressed and uncompressed buffers in Xe driver, particularly
+> catering to the specific requirements of the Xe2 architecture.
+> 
+> Juha-Pekka Heikkila (3):
+>   drm/fourcc: define Intel Xe2 related tile4 ccs modifier
+>   drm/xe/display: allow creation of case I915_FORMAT_MOD_4_TILED_XE2_CCS
+>     type framebuffer
+>   drm/i915/display: allow creation of case
+>     I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
+> 
+>  drivers/gpu/drm/i915/display/intel_display.c       |  1 +
+>  drivers/gpu/drm/i915/display/intel_fb.c            | 10 ++++++++++
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 +++-
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c      |  1 +
+>  include/uapi/drm/drm_fourcc.h                      | 12 ++++++++++++
+>  5 files changed, 27 insertions(+), 1 deletion(-)
+> 
+> -- 
+> 2.43.2
+> 
 
->
->> Thanks,
->> Janusz
->>
->>>
->>> Regards,
->>>
->>> Nirmoy
->>>
->>> On 5/6/2024 8:02 PM, Janusz Krzysztofik wrote:
->>>> This reverts commit 1f33dc0c1189efb9ae19c6fc22b64dd3e26261fb.
->>>>
->>>> There was a patch supposed to fix an issue of illegal attempts to free a
->>>> still active i915 VMA object when parking a GT believed to be idle,
->>>> reported by CI on 2-GT Meteor Lake.  As a solution, an extra wakeref for
->>>> a Primary GT was acquired from i915_gem_do_execbuffer() -- see commit
->>>> f56fe3e91787 ("drm/i915: Fix a VMA UAF for multi-gt platform").
->>>>
->>>> However, that fix occurred insufficient -- the issue was still reported by
->>>> CI.  That wakeref was released on exit from i915_gem_do_execbuffer(), then
->>>> potentially before completion of the request and deactivation of its
->>>> associated VMAs.  Moreover, CI reports indicated that single-GT platforms
->>>> also suffered sporadically from the same race.
->>>>
->>>> Since that issue was fixed by another commit f3c71b2ded5c ("drm/i915/vma:
->>>> Fix UAF on destroy against retire race"), the changes introduced by that
->>>> insufficient fix were dropped as no longer useful.  However, that series
->>>> resulted in another VMA UAF scenario now being triggered in CI.
->>>>
->>>> <4> [260.290809] ------------[ cut here ]------------
->>>> <4> [260.290988] list_del corruption. prev->next should be ffff888118c5d990, but was ffff888118c5a510. (prev=ffff888118c5a510)
->>>> <4> [260.291004] WARNING: CPU: 2 PID: 1143 at lib/list_debug.c:62 __list_del_entry_valid_or_report+0xb7/0xe0
->>>> ..
->>>> <4> [260.291055] CPU: 2 PID: 1143 Comm: kms_plane Not tainted 6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
->>>> <4> [260.291058] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
->>>> <4> [260.291060] RIP: 0010:__list_del_entry_valid_or_report+0xb7/0xe0
->>>> ...
->>>> <4> [260.291087] Call Trace:
->>>> <4> [260.291089]  <TASK>
->>>> <4> [260.291124]  i915_vma_reopen+0x43/0x80 [i915]
->>>> <4> [260.291298]  eb_lookup_vmas+0x9cb/0xcc0 [i915]
->>>> <4> [260.291579]  i915_gem_do_execbuffer+0xc9a/0x26d0 [i915]
->>>> <4> [260.291883]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
->>>> ...
->>>> <4> [260.292301]  </TASK>
->>>> ...
->>>> <4> [260.292506] ---[ end trace 0000000000000000 ]---
->>>> <4> [260.292782] general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6ca3: 0000 [#1] PREEMPT SMP NOPTI
->>>> <4> [260.303575] CPU: 2 PID: 1143 Comm: kms_plane Tainted: G        W          6.9.0-rc2-CI_DRM_14524-ga25d180c6853+ #1
->>>> <4> [260.313851] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
->>>> <4> [260.326359] RIP: 0010:eb_validate_vmas+0x114/0xd80 [i915]
->>>> ...
->>>> <4> [260.428756] Call Trace:
->>>> <4> [260.431192]  <TASK>
->>>> <4> [639.283393]  i915_gem_do_execbuffer+0xd05/0x26d0 [i915]
->>>> <4> [639.305245]  i915_gem_execbuffer2_ioctl+0x123/0x2a0 [i915]
->>>> ...
->>>> <4> [639.411134]  </TASK>
->>>> ...
->>>> <4> [639.449979] ---[ end trace 0000000000000000 ]---
->>>>
->>>> We defer actually closing, unbinding and destroying a VMA until next idle
->>>> point, or until the object is freed in the meantime.  By postponing the
->>>> unbind, we allow for the VMA to be reopened by the client, avoiding the
->>>> work required to rebind the VMA.
->>>>
->>>> Starting from commit b0647a5e79b1 ("drm/i915: Avoid live-lock with
->>>> i915_vma_parked()"), we assume that as long as a GT is held idle, no VMA
->>>> would be reopened while we destroy them.  That assumption is no longer
->>>> true in multi-GT configurations, where a VMA we reopen may be handled by a
->>>> GT different from the one that we already keep active via its engine while
->>>> we set up an execbuf request.
->>>>
->>>> Restoring the extra GT0 PM wakeref removed from i915_gem_do_execbuffer()
->>>> processing path seems to fix this issue.
->>>>
->>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/10608
->>>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> Cc: Nirmoy Das <nirmoy.das@linux.intel.com>
->>>> ---
->>>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 18 ++++++++++++++++++
->>>>    1 file changed, 18 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>>> index 42619fc05de48..090724fa766c9 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>>> @@ -255,6 +255,7 @@ struct i915_execbuffer {
->>>>    	struct intel_context *context; /* logical state for the request */
->>>>    	struct i915_gem_context *gem_context; /** caller's context */
->>>>    	intel_wakeref_t wakeref;
->>>> +	intel_wakeref_t wakeref_gt0;
->>>>    
->>>>    	/** our requests to build */
->>>>    	struct i915_request *requests[MAX_ENGINE_INSTANCE + 1];
->>>> @@ -2685,6 +2686,7 @@ static int
->>>>    eb_select_engine(struct i915_execbuffer *eb)
->>>>    {
->>>>    	struct intel_context *ce, *child;
->>>> +	struct intel_gt *gt;
->>>>    	unsigned int idx;
->>>>    	int err;
->>>>    
->>>> @@ -2708,10 +2710,17 @@ eb_select_engine(struct i915_execbuffer *eb)
->>>>    		}
->>>>    	}
->>>>    	eb->num_batches = ce->parallel.number_children + 1;
->>>> +	gt = ce->engine->gt;
->>>>    
->>>>    	for_each_child(ce, child)
->>>>    		intel_context_get(child);
->>>>    	eb->wakeref = intel_gt_pm_get(ce->engine->gt);
->>>> +	/*
->>>> +	 * Keep GT0 active on MTL so that i915_vma_parked() doesn't
->>>> +	 * free VMAs while execbuf ioctl is validating VMAs.
->>>> +	 */
->>>> +	if (gt->info.id)
->>>> +		eb->wakeref_gt0 = intel_gt_pm_get(to_gt(gt->i915));
->>>>    
->>>>    	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
->>>>    		err = intel_context_alloc_state(ce);
->>>> @@ -2750,6 +2759,9 @@ eb_select_engine(struct i915_execbuffer *eb)
->>>>    	return err;
->>>>    
->>>>    err:
->>>> +	if (gt->info.id)
->>>> +		intel_gt_pm_put(to_gt(gt->i915), eb->wakeref_gt0);
->>>> +
->>>>    	intel_gt_pm_put(ce->engine->gt, eb->wakeref);
->>>>    	for_each_child(ce, child)
->>>>    		intel_context_put(child);
->>>> @@ -2763,6 +2775,12 @@ eb_put_engine(struct i915_execbuffer *eb)
->>>>    	struct intel_context *child;
->>>>    
->>>>    	i915_vm_put(eb->context->vm);
->>>> +	/*
->>>> +	 * This works in conjunction with eb_select_engine() to prevent
->>>> +	 * i915_vma_parked() from interfering while execbuf validates vmas.
->>>> +	 */
->>>> +	if (eb->gt->info.id)
->>>> +		intel_gt_pm_put(to_gt(eb->gt->i915), eb->wakeref_gt0);
->>>>    	intel_gt_pm_put(eb->context->engine->gt, eb->wakeref);
->>>>    	for_each_child(eb->context, child)
->>>>    		intel_context_put(child);
->>
->>
->>
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
