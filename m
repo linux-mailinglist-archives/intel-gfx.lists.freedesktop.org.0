@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522868BD9E4
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 May 2024 05:53:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F8D8BD9E5
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 May 2024 05:53:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C649410E090;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7DAE10E65B;
 	Tue,  7 May 2024 03:53:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N5WimYHH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRFkGh9V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90F5810E090
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 May 2024 03:53:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2218F10E64F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 May 2024 03:53:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715053985; x=1746589985;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=x6MRAHGXpDlstTTYwT4p6mfYHlVBHGppdjBio8ncfgw=;
- b=N5WimYHHr9jg7DZEozDTTmjnvvFaIzQKEjlLqMPhEsseM0Cm101Umugc
- ClcApS4bguO8Ez/AHbYTlJZtpwHX5UdemTzaC4SEufa9HfET0m7x8quBJ
- pXyTWjHQiveCsPTnb2qynkJRQQMftrPXzfEwD2jHUUDQymyuYTAsd+YJQ
- 9Rb0GcHHnalHvV5nKrqTsXkpGPMmr7fuce7EWOeJL6zbeFl2nH8ALVBr0
- vKLYX/Cg1B4dqNe5cY3RypcsoE1HRInAAo1QIwQJYYB6eEnCNU7QyX3F2
- wBG1ZsqA+vhuu+sqrIzFq8msCjwLJ+SpCreacY3BwOg/vcza8SvPxxGwC w==;
-X-CSE-ConnectionGUID: JE2z4n7RTLeCmPfGJiDyBw==
-X-CSE-MsgGUID: 3M3g5faOQXCBthSeGKQbLQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21501932"
-X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208";a="21501932"
+ t=1715053986; x=1746589986;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MO+EnuEwWbcGXFJITz59TLwWyUV5Nk9Zt/Ju2ais1pE=;
+ b=mRFkGh9V3bHOSE0v8nFrCAo1+IZIYw+7csjX4Upvsgq8GLv7fyqJOny9
+ mM1j/cuDItejk171MpN+Ydey9CxP3dzD5tFxrjh2jOgW01GShvPSgGnAc
+ TUNiFrfzuUfyIMYuD99vPcmfX2O9VHBJldx/JqglZxItyKqtFBVPOFfPK
+ oFo9oWFvCpxvyqxDBKnUWYv/0bbDczvJNaAUATXDOjJKDzXIfxxmgZTLY
+ FurJX3CVwNW695mFb/nV43LpUXfXOE0opDL7+i71TB0kIoHk4lRL6eV1K
+ tyjX5D5qQQw9aCqJKC2HXNjzHP3OPJDhlfZ6Jo5Ums/8Wf6KqCDIDJUGu Q==;
+X-CSE-ConnectionGUID: Jg7ylVVkR1mIcgN5swkePA==
+X-CSE-MsgGUID: ljCkCRHPRJytAXOb+vKBiQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11065"; a="21501935"
+X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208";a="21501935"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2024 20:53:04 -0700
-X-CSE-ConnectionGUID: bH0k4noTSam0+6wJEX/KfA==
-X-CSE-MsgGUID: Y8JURVo1QamLSITDZ8/gHA==
+ 06 May 2024 20:53:06 -0700
+X-CSE-ConnectionGUID: xOCAJT1/Q1Ss3tYULDRv2A==
+X-CSE-MsgGUID: pkHqPhJAT8ehduDmST3aVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208";a="28452071"
+X-IronPort-AV: E=Sophos;i="6.07,260,1708416000"; d="scan'208";a="28452078"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa006.fm.intel.com with ESMTP; 06 May 2024 20:53:02 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 06 May 2024 20:53:04 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
  ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 0/2] Fixes in hdcp remote capability
-Date: Tue,  7 May 2024 09:20:35 +0530
-Message-ID: <20240507035037.1025012-1-suraj.kandpal@intel.com>
+Subject: [PATCH 1/2] drm/i915/hdcp: Move aux assignment after connector type
+ check
+Date: Tue,  7 May 2024 09:20:36 +0530
+Message-ID: <20240507035037.1025012-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240507035037.1025012-1-suraj.kandpal@intel.com>
+References: <20240507035037.1025012-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,19 +68,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch series aims to avoid page fault errors caused by aux
-early assignment as connector may not be mst and using encoder
-to check for connector type.
+Move assignment of aux after connector type check as port may not
+exist if connector is not DPMST.
+
+--v2
+-Fix unwanted change in intel_encoder check [Jani]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Suraj Kandpal (2):
-  drm/i915/hdcp: Move aux assignment after connector type check
-  drm/i915/hdcp: Check mst_port to determine connector type
-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 92b03073acdd..551c862ed7a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -687,7 +687,7 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
+ 					bool *hdcp2_capable)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+-	struct drm_dp_aux *aux = &connector->port->aux;
++	struct drm_dp_aux *aux;
+ 	u8 bcaps;
+ 	int ret;
+ 
+@@ -696,6 +696,7 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
+ 	if (!intel_encoder_is_mst(connector->encoder))
+ 		return -EINVAL;
+ 
++	aux = &connector->port->aux;
+ 	ret =  _intel_dp_hdcp2_get_capability(aux, hdcp2_capable);
+ 	if (ret)
+ 		drm_dbg_kms(&i915->drm,
 -- 
 2.43.2
 
