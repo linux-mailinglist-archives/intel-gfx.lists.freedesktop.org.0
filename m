@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F15D8BFC8B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 13:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F56C8BFCA7
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 13:48:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBB23112835;
-	Wed,  8 May 2024 11:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 789B410EC1C;
+	Wed,  8 May 2024 11:48:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AwDyz1/Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k9I5y6+T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058D7112835
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 11:45:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 887E810EC1C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 11:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715168717; x=1746704717;
+ t=1715168885; x=1746704885;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=Z2+oS4Ans8JqBprbt8lhZ5VM4SNNrnzMJHmgefB0DiE=;
- b=AwDyz1/YCvGlj8So8qPXaCr25mhzBHqNKBDjpTViAEVjj0Oml/bZ4eer
- tT5GV3eiYcDvALc2Uu2HCNPYwV/PcIWUzdbx1RSoaz/vdVsiopav4WQ9S
- KaofwX2zZkB+gBqNHiaCX7g5xnbnpAgVuwAdrwxWiwDdp/fempSQsjjcc
- qEgDb8dHWD4P5bvAjkDgfFTgXBDqooimtzJP3gNFkFCvL16XqBYXH/NXO
- O9ZePdml970ssazgZqsUTe0Riv/nuCdJO38yoyD1y0gs3FFeaXf0n8MWK
- G6XZLKyHlsmxSHNcQYTEKVypNUTUvrTIowrfYQ01tHcQ50q1x6B6wfMOs g==;
-X-CSE-ConnectionGUID: u9Cq8vh1Rui7ISOzCAkLSg==
-X-CSE-MsgGUID: iEaLtZQ1SqaRv7jwAprbSA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="11234268"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="11234268"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 04:45:17 -0700
-X-CSE-ConnectionGUID: S35w54SuRoCUdApyHuxSMg==
-X-CSE-MsgGUID: F9EBuTF0SeeggaJXrlMq5g==
+ bh=EUWI8ksxoDSmh6qlMf772rG0YlCOEBBmHDGWkTMC5aY=;
+ b=k9I5y6+Tn642ytyvC+fzZAPEP5ljX+BYQugOL7A+2gQ/VmfQKQet+P1v
+ xJ4QsnBRa3/MnHri6865kJaeRnenZHpWXeiivol0PPLeq0F+Mkw7mY2LU
+ R1LXUo6YRA8+m/RcwyW0NIe6QQRTfz3cvsGlwiB4ZcFb9WY9eOoKvEr+S
+ UXpFYu/lz+1zzCb1mbOCKfHkHdU0X1mLIrQry857VFyQwurs89gtehV3H
+ W0Efamd6WasqujL/8Y2zkAZXNdFf7oY5f2pxkGDzUPdUFG9rwTVrCFF9a
+ APk7fQONsCrikwcM4Tebx/tJpC+/N/TZgOW6GWwKa5G4WHNbvRskIMWFQ g==;
+X-CSE-ConnectionGUID: ZB4AeTQrSXydb6U5j3fljQ==
+X-CSE-MsgGUID: 53JKI/GkQQ+6yNC9qJjtog==
+X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="33528389"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33528389"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 04:48:05 -0700
+X-CSE-ConnectionGUID: XnnDgeklTnSpEqO8kamC9Q==
+X-CSE-MsgGUID: rHC3ufkRQHOEdZ7h96PYKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33697459"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33548516"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 04:45:13 -0700
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 04:48:01 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Rodrigo
- Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com, Bjorn Helgaas
- <bhelgaas@google.com>, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/5] drm/i915: don't include CML PCI IDs in CFL
-In-Reply-To: <ZjtapMK6kadLqHCN@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>, Ville =?utf-8?B?U3lyasOk?=
+ =?utf-8?B?bMOk?= <ville.syrjala@linux.intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/display/dp: Remove UHBR13.5 for icl
+In-Reply-To: <IA0PR11MB7307289257C865A660C59A73BAE52@IA0PR11MB7307.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1715086509.git.jani.nikula@intel.com>
- <bebbdad2decb22f3db29e6bc66746b4a05e1387b.1715086509.git.jani.nikula@intel.com>
- <Zjow5HXrXpg2cuOA@intel.com> <ZjtapMK6kadLqHCN@intel.com>
-Date: Wed, 08 May 2024 14:45:10 +0300
-Message-ID: <87o79gjznd.fsf@intel.com>
+References: <20240506090625.2812332-1-arun.r.murthy@intel.com>
+ <ZjjHl2oHYpm3--zR@intel.com>
+ <IA0PR11MB7307F436AB51E954D870EEA5BA1C2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <ZjjLJEyQJDddXcaq@intel.com>
+ <IA0PR11MB73076CE4DB3C399F961188E2BAE52@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <87v83ok4kp.fsf@intel.com>
+ <IA0PR11MB7307289257C865A660C59A73BAE52@IA0PR11MB7307.namprd11.prod.outlook.com>
+Date: Wed, 08 May 2024 14:47:58 +0300
+Message-ID: <87le4kjzip.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -72,92 +75,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 08 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, May 07, 2024 at 09:47:16AM -0400, Rodrigo Vivi wrote:
->> On Tue, May 07, 2024 at 03:56:48PM +0300, Jani Nikula wrote:
->> > It's confusing for INTEL_CFL_IDS() to include all CML PCI IDs. Even if
->> > we treat them the same in a lot of places, CML is a platform of its ow=
-n,
->> > and the lists of PCI IDs should not conflate them.
->> >=20
->> > Cc: Bjorn Helgaas <bhelgaas@google.com>
->> > Cc: linux-pci@vger.kernel.org
->> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> > ---
->> >  arch/x86/kernel/early-quirks.c                      |  1 +
->> >  drivers/gpu/drm/i915/display/intel_display_device.c |  1 +
->> >  include/drm/i915_pciids.h                           | 12 +++++++-----
->> >  3 files changed, 9 insertions(+), 5 deletions(-)
->> >=20
->> > diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-qu=
-irks.c
->> > index 59f4aefc6bc1..2e2d15be4025 100644
->> > --- a/arch/x86/kernel/early-quirks.c
->> > +++ b/arch/x86/kernel/early-quirks.c
->> > @@ -547,6 +547,7 @@ static const struct pci_device_id intel_early_ids[=
-] __initconst =3D {
->> >  	INTEL_BXT_IDS(&gen9_early_ops),
->> >  	INTEL_KBL_IDS(&gen9_early_ops),
->> >  	INTEL_CFL_IDS(&gen9_early_ops),
->> > +	INTEL_CML_IDS(&gen9_early_ops),
->> >  	INTEL_GLK_IDS(&gen9_early_ops),
->> >  	INTEL_CNL_IDS(&gen9_early_ops),
->> >  	INTEL_ICL_11_IDS(&gen11_early_ops),
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/dri=
-vers/gpu/drm/i915/display/intel_display_device.c
->> > index 56a2e17d7d9e..3aa7d1cdd228 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_device.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
->> > @@ -832,6 +832,7 @@ static const struct {
->> >  	INTEL_GLK_IDS(&glk_display),
->> >  	INTEL_KBL_IDS(&skl_display),
->> >  	INTEL_CFL_IDS(&skl_display),
->> > +	INTEL_CML_IDS(&skl_display),
->> >  	INTEL_ICL_11_IDS(&icl_display),
->> >  	INTEL_EHL_IDS(&jsl_ehl_display),
->> >  	INTEL_JSL_IDS(&jsl_ehl_display),
->> > diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
->> > index 85ce33ad6e26..5f52c504ffde 100644
->> > --- a/include/drm/i915_pciids.h
->> > +++ b/include/drm/i915_pciids.h
->> > @@ -472,6 +472,12 @@
->> >  	INTEL_VGA_DEVICE(0x9BCA, info), \
->> >  	INTEL_VGA_DEVICE(0x9BCC, info)
->> >=20=20
->> > +#define INTEL_CML_IDS(info) \
->> > +	INTEL_CML_GT1_IDS(info), \
->> > +	INTEL_CML_GT2_IDS(info), \
->> > +	INTEL_CML_U_GT1_IDS(info), \
->> > +	INTEL_CML_U_GT2_IDS(info)
->> > +
->> >  #define INTEL_KBL_IDS(info) \
->> >  	INTEL_KBL_GT1_IDS(info), \
->> >  	INTEL_KBL_GT2_IDS(info), \
->> > @@ -535,11 +541,7 @@
->> >  	INTEL_WHL_U_GT1_IDS(info), \
->> >  	INTEL_WHL_U_GT2_IDS(info), \
->> >  	INTEL_WHL_U_GT3_IDS(info), \
->> > -	INTEL_AML_CFL_GT2_IDS(info), \
->> > -	INTEL_CML_GT1_IDS(info), \
->> > -	INTEL_CML_GT2_IDS(info), \
->> > -	INTEL_CML_U_GT1_IDS(info), \
->> > -	INTEL_CML_U_GT2_IDS(info)
->> > +	INTEL_AML_CFL_GT2_IDS(info)
->>=20
->> Why only CML and not AML and WHL as well?
+On Wed, 08 May 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Wednesday, May 8, 2024 3:29 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; Ville Syrj=C3=A4l=C3=A4
+>> <ville.syrjala@linux.intel.com>
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Subject: RE: [PATCH] drm/i915/display/dp: Remove UHBR13.5 for icl
+>>
+>> On Wed, 08 May 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> > This is the limitation from the retimer hardware.
+>>
+>> The commit message needs to reflect this.
+>>
+>> Do all units have a retimer with the limitation? Or could you have a DG2
+>> without the limitation? Do we need to check for that instead of blanket =
+removal
+>> of UHBR 13.5 for DG2?
+>>
+> Changed the commit msg as below
 >
-> Why do we even have CML as a separate platform? The only difference=20
-> I can see is is that we do allow_read_ctx_timestamp() for CML but
-> not for CFL. Does that even make sense?
+> Display 12+ hardware supports UHBR13.5
 
-git blame tells me:
+Not true.
 
-5f4ae2704d59 ("drm/i915: Identify Cometlake platform")
-dbc7e72897a4 ("drm/i915/gt: Make the CTX_TIMESTAMP readable on !rcs")
+> but due to the retimer constraints platform doesn't support UHBR13.5.
+
+Which platform?
+
+> This is the same for mtl and UHBR13.5 is removed as part of the commit ca=
+f3d748f646 ("drm/i915/dp: Remove support for UHBR13.5")
+> This patch removes UHBR13.5 support for icl/dg2.
+
+ICL does not support UHBR 13.5.
 
 BR,
 Jani.
+
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+>> BR,
+>> Jani.
+>>
+>>
+>> --
+>> Jani Nikula, Intel
 
 --=20
 Jani Nikula, Intel
