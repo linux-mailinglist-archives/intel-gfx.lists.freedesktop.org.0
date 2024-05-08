@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54E68C0163
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 17:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BED528C0164
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 17:48:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63EB111308D;
-	Wed,  8 May 2024 15:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32A211130EB;
+	Wed,  8 May 2024 15:48:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OFNLTFj7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U1/TLkJh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF91511308D
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 15:48:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE9281130BD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 15:48:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715183321; x=1746719321;
+ t=1715183325; x=1746719325;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=04rGwcGtfLLnKG2YEiWgPeRrAPx4vrUBvpmpvK0vmzQ=;
- b=OFNLTFj7r2e76+ha3BFtoWzUSGdXdxe7qapEFUrUAyrH53GfQCbSFBCx
- HWxK56ZY2FSwbZ0hgZLeA+CPi3g3YZZPIHHaPiTGs0eHd40GBL0Au0Zzu
- lZJIIfj1An+Korv9yyhap84ZY22eELr6M9h+tHlfTv2XvaPpI6PRDKvwv
- 7d+m/OoiEio5XyAjFQ3syyMSt/6S6NZrEw/0biRsY/BNWp6H0UattOolR
- +EZ2MJi17sc8+XY92t4CCoCc1h+prnjtNB5N5vXLI9BFnI7hnzvi9Fpo3
- sRcVn7LM8dMwaKahIuUVkJOaHT7VamKWPfnpTDBt6lfgdveY+qwiGvwfm g==;
-X-CSE-ConnectionGUID: NGy18X3VQ6SoHJlI3o5wew==
-X-CSE-MsgGUID: lQ/VbTKLQeaFLlj84sOpBg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="11215384"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="11215384"
+ bh=SWe5zljzs+nCEIilkhn/BpBrtyfvbKMqOIksiMX0MOA=;
+ b=U1/TLkJhlHmImYc3UX0T+IAwlBX/vxVSc1gKmUDoQoCEo6QmjNIx5wLt
+ DB3Lw5Wly4oSbcmrpAq9K8Fu5xyiVscz2IuE6bBf346cbTNm0wjO2hCD3
+ CfU6WEvV1BXnRN2w2APM9LzWtrz7HMrQCPSezxMHB9eufn953JSPi70vP
+ gnunZiKGOabgSGQRbHgbW/KDV/uGN5BfS/tlqhBT+NQxYtgU+rlUS4/pe
+ DqSSVva/VRy7413SjIhuo4qkbEOrEfDRZmQGd+kqOLSFuqooo0jhrjBQB
+ j6WYorfVdUuFMu1OLhJM4xIN6Ng76NQcZIgC729IMLTnI3lnCIE2rG6eY A==;
+X-CSE-ConnectionGUID: foF5EPvZSW+KdZgRwbyp9w==
+X-CSE-MsgGUID: WqEIKaUaQbar1D1hHiiAbw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="11215390"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="11215390"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 08:48:41 -0700
-X-CSE-ConnectionGUID: U7QxHM1AS2KYr7a8L4GAHg==
-X-CSE-MsgGUID: 6bTvuEXfQxGzXSCAA+sWWw==
+ 08 May 2024 08:48:45 -0700
+X-CSE-ConnectionGUID: Uj+IaJjGTp6bcHBQSlWO7Q==
+X-CSE-MsgGUID: CUbaPNy5RYaZL40lkLvEHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="28884898"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="28884914"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.105])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 08:48:39 -0700
+ 08 May 2024 08:48:44 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 09/10] drm/i915: pass dev_priv explicitly to TRANS_PUSH
-Date: Wed,  8 May 2024 18:47:55 +0300
-Message-Id: <5b2a4eea42cf76830a829d8a543d877cad0fc52d.1715183162.git.jani.nikula@intel.com>
+Subject: [PATCH 10/10] drm/i915: pass dev_priv explicitly to TRANS_VRR_VSYNC
+Date: Wed,  8 May 2024 18:47:56 +0300
+Message-Id: <61b464bedfd75a97ca214e066be5417d790ccb26.1715183162.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1715183162.git.jani.nikula@intel.com>
 References: <cover.1715183162.git.jani.nikula@intel.com>
@@ -70,68 +70,61 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the TRANS_PUSH register macro.
+explicitly to the TRANS_VRR_VSYNC register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 9 +++++----
+ drivers/gpu/drm/i915/display/intel_vrr.c | 9 ++++++---
  drivers/gpu/drm/i915/i915_reg.h          | 2 +-
- 2 files changed, 6 insertions(+), 5 deletions(-)
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index e7709b06b92c..5031b7ac8007 100644
+index 5031b7ac8007..fbfece3f687c 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -237,7 +237,7 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
--	intel_de_write(dev_priv, TRANS_PUSH(cpu_transcoder),
-+	intel_de_write(dev_priv, TRANS_PUSH(dev_priv, cpu_transcoder),
- 		       TRANS_PUSH_EN | TRANS_PUSH_SEND);
- }
- 
-@@ -250,7 +250,7 @@ bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.enable)
- 		return false;
- 
--	return intel_de_read(dev_priv, TRANS_PUSH(cpu_transcoder)) & TRANS_PUSH_SEND;
-+	return intel_de_read(dev_priv, TRANS_PUSH(dev_priv, cpu_transcoder)) & TRANS_PUSH_SEND;
- }
- 
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
-@@ -261,7 +261,8 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
--	intel_de_write(dev_priv, TRANS_PUSH(cpu_transcoder), TRANS_PUSH_EN);
-+	intel_de_write(dev_priv, TRANS_PUSH(dev_priv, cpu_transcoder),
-+		       TRANS_PUSH_EN);
+@@ -265,7 +265,8 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 		       TRANS_PUSH_EN);
  
  	if (HAS_AS_SDP(dev_priv))
- 		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder),
-@@ -286,7 +287,7 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	intel_de_wait_for_clear(dev_priv,
- 				TRANS_VRR_STATUS(dev_priv, cpu_transcoder),
- 				VRR_STATUS_VRR_EN_LIVE, 1000);
--	intel_de_write(dev_priv, TRANS_PUSH(cpu_transcoder), 0);
-+	intel_de_write(dev_priv, TRANS_PUSH(dev_priv, cpu_transcoder), 0);
+-		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder),
++		intel_de_write(dev_priv,
++			       TRANS_VRR_VSYNC(dev_priv, cpu_transcoder),
+ 			       VRR_VSYNC_END(crtc_state->vrr.vsync_end) |
+ 			       VRR_VSYNC_START(crtc_state->vrr.vsync_start));
+ 
+@@ -290,7 +291,8 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 	intel_de_write(dev_priv, TRANS_PUSH(dev_priv, cpu_transcoder), 0);
  
  	if (HAS_AS_SDP(dev_priv))
- 		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder), 0);
+-		intel_de_write(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder), 0);
++		intel_de_write(dev_priv,
++		               TRANS_VRR_VSYNC(dev_priv, cpu_transcoder), 0);
+ }
+ 
+ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+@@ -326,7 +328,8 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 
+ 		if (HAS_AS_SDP(dev_priv)) {
+ 			trans_vrr_vsync =
+-				intel_de_read(dev_priv, TRANS_VRR_VSYNC(cpu_transcoder));
++				intel_de_read(dev_priv,
++					      TRANS_VRR_VSYNC(dev_priv, cpu_transcoder));
+ 			crtc_state->vrr.vsync_start =
+ 				REG_FIELD_GET(VRR_VSYNC_START_MASK, trans_vrr_vsync);
+ 			crtc_state->vrr.vsync_end =
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 18c8ef911579..9d443365b85a 100644
+index 9d443365b85a..7af0623bb9b5 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1317,7 +1317,7 @@
- #define _TRANS_PUSH_B			0x61A70
- #define _TRANS_PUSH_C			0x62A70
- #define _TRANS_PUSH_D			0x63A70
--#define TRANS_PUSH(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_PUSH_A)
-+#define TRANS_PUSH(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_PUSH_A)
- #define   TRANS_PUSH_EN			REG_BIT(31)
+@@ -1322,7 +1322,7 @@
  #define   TRANS_PUSH_SEND		REG_BIT(30)
  
+ #define _TRANS_VRR_VSYNC_A		0x60078
+-#define TRANS_VRR_VSYNC(trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VSYNC_A)
++#define TRANS_VRR_VSYNC(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VSYNC_A)
+ #define VRR_VSYNC_END_MASK		REG_GENMASK(28, 16)
+ #define VRR_VSYNC_END(vsync_end)	REG_FIELD_PREP(VRR_VSYNC_END_MASK, (vsync_end))
+ #define VRR_VSYNC_START_MASK		REG_GENMASK(12, 0)
 -- 
 2.39.2
 
