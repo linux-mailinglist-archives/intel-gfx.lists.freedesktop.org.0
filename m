@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C948C022B
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 18:41:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE498C04AF
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 21:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42D1A113115;
-	Wed,  8 May 2024 16:41:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8BAD10F7C3;
+	Wed,  8 May 2024 19:00:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MpU1KTkY";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3545113104;
- Wed,  8 May 2024 16:41:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB4710E2A8;
+ Wed,  8 May 2024 19:00:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715194810; x=1746730810;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wHX6ZayZR410P7sCEH4zTMDoMC1Yufhcki0M3kCLVwQ=;
+ b=MpU1KTkYmgKqr7Oovj2QHS/gFdCpYJHp8mQ/18EztrpRXFIp/bg90KN5
+ JduY2BlMX+j3gAM9M3QDwdNVN3An6eV+VdLSpAIJG70XvQpWmpUdaS77X
+ 4GfyvmWJIIpabZmH+QqqV6+dFMvEMj0kX2IruuFwDywubEWHiNauwUx2M
+ wrJJhhEvWqp/9a1BcbbMg1wleKrVTKfNyD58ZN7ZzEMt5qdbOGCOFF54u
+ 9JdzawKZjj/Z9y0NeRg/GabZzdrfWkrzQVSLgNbH0V9gszGjNOYZbwMyd
+ fZdwqnJJc3a0AE9gq6NPjC3e+805TKDJ1R5KrbnZ4X3vEu8xfGWEhN5AW w==;
+X-CSE-ConnectionGUID: X/ry1wjZTzivJFSWiHZFVw==
+X-CSE-MsgGUID: v4EqN914Szy9II+WjPe86w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="11239834"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="11239834"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 12:00:07 -0700
+X-CSE-ConnectionGUID: HHXJY81iR96PGF0kBfWn7A==
+X-CSE-MsgGUID: 6UIHKEHNQPaH/GKQipAIUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="28928855"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 08 May 2024 12:00:05 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 May 2024 22:00:03 +0300
+Date: Wed, 8 May 2024 22:00:03 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/5] drm/amdgpu: Use drm_crtc_vblank_crtc()
+Message-ID: <ZjvLs0KZKSxEfU9F@intel.com>
+References: <20240408190611.24914-1-ville.syrjala@linux.intel.com>
+ <20240408190611.24914-2-ville.syrjala@linux.intel.com>
+ <CADnq5_OF=MM-J6WAqnLYtu-kUWcCXkzCmi499viFptrFnBWGAg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
- =?utf-8?q?remove_implicit_dev=5Fpriv_from_VRR?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 08 May 2024 16:41:14 -0000
-Message-ID: <171518647499.2017561.4761287856823900292@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1715183162.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1715183162.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADnq5_OF=MM-J6WAqnLYtu-kUWcCXkzCmi499viFptrFnBWGAg@mail.gmail.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,52 +72,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, May 08, 2024 at 09:47:50AM -0400, Alex Deucher wrote:
+> On Mon, Apr 8, 2024 at 3:06 PM Ville Syrjala
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Replace the open coded drm_crtc_vblank_crtc() with the real
+> > thing.
+> >
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: "Christian König" <christian.koenig@amd.com>
+> > Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> > Cc: amd-gfx@lists.freedesktop.org
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Series: drm/i915/display: remove implicit dev_priv from VRR
-URL   : https://patchwork.freedesktop.org/series/133330/
-State : warning
+Thanks. Pushed to drm-misc-next.
 
-== Summary ==
-
-Error: dim checkpatch failed
-b51cea67ab0e drm/i915: pass dev_priv explicitly to TRANS_VRR_CTL
--:70: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#70: FILE: drivers/gpu/drm/i915/i915_reg.h:1236:
-+#define TRANS_VRR_CTL(dev_priv, trans)			_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_CTL_A)
-
-total: 0 errors, 1 warnings, 0 checks, 50 lines checked
-467129a9c71a drm/i915: pass dev_priv explicitly to TRANS_VRR_VMAX
-de6095cefa23 drm/i915: pass dev_priv explicitly to TRANS_VRR_VMIN
-3bd71a922c5b drm/i915: pass dev_priv explicitly to TRANS_VRR_VMAXSHIFT
-d88994b3456c drm/i915: pass dev_priv explicitly to TRANS_VRR_STATUS
--:34: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#34: FILE: drivers/gpu/drm/i915/i915_reg.h:1274:
-+#define TRANS_VRR_STATUS(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_STATUS_A)
-
-total: 0 errors, 1 warnings, 0 checks, 17 lines checked
-299de36e3f57 drm/i915: pass dev_priv explicitly to TRANS_VRR_VTOTAL_PREV
-e102cc339513 drm/i915: pass dev_priv explicitly to TRANS_VRR_FLIPLINE
--:31: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#31: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:316:
-+							 TRANS_VRR_FLIPLINE(dev_priv, cpu_transcoder)) + 1;
-
-total: 0 errors, 1 warnings, 0 checks, 26 lines checked
-1f9d98de293e drm/i915: pass dev_priv explicitly to TRANS_VRR_STATUS2
-48ea1d97c2f0 drm/i915: pass dev_priv explicitly to TRANS_PUSH
-05c90497a890 drm/i915: pass dev_priv explicitly to TRANS_VRR_VSYNC
--:31: ERROR:CODE_INDENT: code indent should use tabs where possible
-#31: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:295:
-+^I^I               TRANS_VRR_VSYNC(dev_priv, cpu_transcoder), 0);$
-
--:54: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#54: FILE: drivers/gpu/drm/i915/i915_reg.h:1325:
-+#define TRANS_VRR_VSYNC(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VSYNC_A)
-
-total: 1 errors, 1 warnings, 0 checks, 35 lines checked
-
-
+-- 
+Ville Syrjälä
+Intel
