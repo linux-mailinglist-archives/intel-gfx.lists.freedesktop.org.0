@@ -2,188 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8E98BFFCD
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 16:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9398C007B
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 16:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE39E112CC1;
-	Wed,  8 May 2024 14:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0F610FD87;
+	Wed,  8 May 2024 14:53:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AO/C+4vt";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h4tjao93";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EEC1112CA1
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 14:17:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715177842; x=1746713842;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=4bvu9t+oKPb8y+wK11mLtunOfRQwEQG3fqsdenx1C80=;
- b=AO/C+4vtjuSjO+rTFW56HG65s683rhrWRpwb5Gaw73oFZvfun5uciTzL
- PDmi5KGrlgMhfaxO/KMzyQugUkD2ePwGSm6RwFIJBwpn3tpznG8JGUF4D
- t1eXAdDrnxZHHvzAnOJnbkKrL2N7Ly2tq9m8rKyXBNAvXMkRhnFBWyOHS
- EqtG7L8AtEuQGCy58Tov1AibsfL1anHLWTWrux208OmO3SpuOymmHIIo9
- Q1c71f+gaElc3T1Ru2zpVCSV09+dMdLEwqbXcHl2ethVLuVDS9CIyv+WG
- UNaYIV7E49yu4206YACM0l75HUwDFMyPu3IR/iUvfRCH6/XntYQt8vP1D Q==;
-X-CSE-ConnectionGUID: iZMwKW+bRMCOnGJDm+OrFw==
-X-CSE-MsgGUID: cuuG7on5Qy2erCzh/MSavw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="14848850"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="14848850"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 07:17:21 -0700
-X-CSE-ConnectionGUID: K68dGVtLT32jEXPnBzZQCQ==
-X-CSE-MsgGUID: 5YYEnqXDTcO/d8i+JglyAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="29416472"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 May 2024 07:17:21 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 07:17:21 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 07:17:20 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 8 May 2024 07:17:20 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 8 May 2024 07:17:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LsNJ6APrOB4qPzl+fkUUrPpY/5NmePALm1dsM9tkTe87RF3R38upSISTxTvEB7EaTrCUgj+UXc+l3bbi2qvVuylEmSYZI3mE6WKDyHBZrEvI7lkavnUGduKVCsBD8L4FEQziuy/RT5n32IJ/RqEmRX8XC3TevohSCD1wFEPLL9RrYrt8e5eifWWgiGQd9JKb6g20WiieWG9eRlh/hZsa+tLETYVdgVZkVjSJkSEU1vNVavy0XOoy4PvbU2WrZjciII8JOrFIJqeGMMGXJoxpLpe8shGQg+B16VS+IAarAP02uKMfGAXt41+AkvnEg3hYi32dVWYIz86T+0OLTSwvwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4bvu9t+oKPb8y+wK11mLtunOfRQwEQG3fqsdenx1C80=;
- b=aLrJbK6EV/auSCUA2fIUXgFpJXdV1svL05Pss5rAx4Wq839RFkU4n1hjiJABKGDUwGIN3Px+O4x0rlW6jt+Ho8SERsParzM0gB1h3NoFBkHi/4DqvvQf6PtRsU10DMJ+HPzQZxaAjaXyzf7W+kYz0IRTmB9erpxyLNNP2cwvG3SpBDO4sJpDXhAsZZl51DVB1w5lo8N5964PBWbT2KBQROw2zZEafwZWc7lwjdAGeosI4xzHPIWYFQxXGcMNex9BhkR4opX9VFwMzNtnXasC8QEcKD4ljFREPtnaGOmMaTGlBOUIc2sSQFnsoOi8E+X4kYei29zz7YZl+FGVRmdMzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by SA2PR11MB5068.namprd11.prod.outlook.com (2603:10b6:806:116::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.45; Wed, 8 May
- 2024 14:17:18 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::1604:d970:ed05:4729]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::1604:d970:ed05:4729%7]) with mapi id 15.20.7544.041; Wed, 8 May 2024
- 14:17:18 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Chen, Angus" <angus.chen@intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/mtl: Update workaround 14018778641
-Thread-Topic: [PATCH] drm/i915/mtl: Update workaround 14018778641
-Thread-Index: AQHal6yD86iewfOex0i8aIVBmcjbvbF/BsWAgAGqq4CADMPGQA==
-Date: Wed, 8 May 2024 14:17:18 +0000
-Message-ID: <SJ1PR11MB6204A1D3BB33FFFBB6BF32E581E52@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20240426073638.45775-1-angus.chen@intel.com>
- <Zi9uDRgtkT3IkTyG@ashyti-mobl2.lan>
- <c4e0d0c2-e22d-4cef-b6ba-d11970451ed9@intel.com>
-In-Reply-To: <c4e0d0c2-e22d-4cef-b6ba-d11970451ed9@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|SA2PR11MB5068:EE_
-x-ms-office365-filtering-correlation-id: 982aa848-a751-4955-bc54-08dc6f6991b1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|1800799015|366007|376005|38070700009;
-x-microsoft-antispam-message-info: =?utf-8?B?enIzMzFrTDNYNW1wSGk0cHUxUjVMRHpUSmJLYmNuRXdZMktQdzI5dEZFSktX?=
- =?utf-8?B?MHM4bWdobWprbXY0RGtZcEtXZmZ4OGMrNFd0aWF4RG8zQTVIN0tzNG1pdFor?=
- =?utf-8?B?cUQwVUV5eXRGbkFkcG5qY3YrVlVPNjhhN256VlRsK0xBUHBFTVN2emZOUlNC?=
- =?utf-8?B?SGNMTHhrejdmK0RzUXU1dUxURzFBVmsrTkowWG1nODdpd2xHbnRYa1pLTlJH?=
- =?utf-8?B?VTRhc0VTekFDczhqS0hweVNqUEkxUTJYQ1V4aS81SGQwNUFOUldWSTZpMlI5?=
- =?utf-8?B?ZUZnZmpOSUV1TVNvZnJ3RHJOS1hPS2J1TmlvdzN4UVJla1ZwTVdRUG42WmxI?=
- =?utf-8?B?N0l0c0dsZ1NDQjNJd1Z0QlhpdENKa1ZxR1Yvc1dNODRzYUg3TU84VjExY1hC?=
- =?utf-8?B?a25CZjMvTW1uU0JQN1Y0MUNFVEZOZWNPUDdnelkyM2FEVTMvWVVDSnFtTHFH?=
- =?utf-8?B?OFpjNk9yQ1NOME1aZG5DNi92amg5cWR4Z05Mb2dXaFVSSmZVaG4ydUI1TzMx?=
- =?utf-8?B?dnNVYTh4dGx1d0E5dWYzT2xlWDg0Ukk2eFhoNkxiRnVwWUdtWnlEUktQQTg2?=
- =?utf-8?B?cTBpY1JJTERYTktScjl6bk9PM0UrRnZhdmE4OGtOVU1tazAvckQrTVp0MUUx?=
- =?utf-8?B?UzJROHBsc0E4bkZsMHNBeGZHQlRPSU13NUZlOERjMkZyTHZEV0hoUWNFOHBw?=
- =?utf-8?B?MTBNY3YwQnozQW1YYkx5bG9tTjZrSVpJREN4M1h5QzZPQ082Q0hNKzhHc2FE?=
- =?utf-8?B?aHUvbDZTd3djcnorNjVROE5LclBOU2dob2t6OEcxMjhiNTFCT1ludlY3OE1Z?=
- =?utf-8?B?OENqOUYreStLcW9RdnNRMzBpNWVZZG9qTFFjUURhMWxkOUI3WElWakFybzBm?=
- =?utf-8?B?cDhUMlFING5qdDJzMG9mK0J2RGlGT1VlRmxHZEVQVTlscnZEYklrUTFodmlj?=
- =?utf-8?B?T0lzdGkzc01aK0FWQjd4QUo0UlJKcm0yUWRoS0ZIL3FaYlBybS9OTDdrbStp?=
- =?utf-8?B?TnBXaFR3SjM3azZENUxMMGtGUFNXYXJFUCsra0Zjc2t5bmhZR3NXMnFSZW04?=
- =?utf-8?B?eW5OL3lZRkYyS3RBenNwVzlnRGR3UGRJTmVJUWJkMTlicVFNZzZ6aTNRSFov?=
- =?utf-8?B?OUJjUDlUWlZtdytPMGRzZVV2MXRZTS9tekZMYk9ZSUR1TERSREpIckltQ1Fr?=
- =?utf-8?B?dUV3T1VVYUxFbktOSmtqdUNNR1Y5cnpUNSs5UEpaTEZ1TU1qVjh6OE04ajRI?=
- =?utf-8?B?emhNT1dxQkUzWkR1cVpYOXZ0RmRnaTd4Y3BxSWVabHZqaUZnMGpqbGF4Rm1v?=
- =?utf-8?B?Ri9TOXEzNS94SC9tQ1BZTWYyRHBZRURpTDYzbHNBdytzVEtXSEFGSVF4YitU?=
- =?utf-8?B?NDhzcUNYYUJkWEJ5QjBqYUU1cU1HRUlYYTE0NXVyS3lQblYvSXoyNnNEem9W?=
- =?utf-8?B?QmQ5Wms1ZVdVaFMvRVhmRnM0N0ZmSEhhZXllRkR6SytNM2tIeGVMTUNXa3BM?=
- =?utf-8?B?R2ZOWWRVZ2QyU3lJdjBQRkhjcVVMUTk5bTMvSkliTG1UR1BlaEJqQXo4Y1dm?=
- =?utf-8?B?Z1JBUmsrVFVzNXRVZlFaL2RIRFRLbityMnFpMmlDcE15Z1BraEhJK3IrYUsz?=
- =?utf-8?B?VmNqWjJwdDhLTmVVd1FOaStDNXBqM085Sm5VY0RHaUtJWEQwcXRzZFE3aUlL?=
- =?utf-8?B?R3A2ZXNPOGJlSW9nMWtqNFBML3U2NU1Ca2lpdjVUUjV0UytMK2VHRkRBPT0=?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QStVUU80VExzNlNqdVA1eTNqd2hoYm8wYUN1VmdwNkcvZ0pNZTUrU1dBUzds?=
- =?utf-8?B?WFgxcy9tZWJteHFmREdiaVZ2MnFWa0c3WFVqbTR2ejVVeFlNdjNFRGloaytq?=
- =?utf-8?B?TXhiUXZsZVpiV3VudEF3OS9BVzB4a1dBOGNxOVg4U3dPSlFIMG15SHhDN2FI?=
- =?utf-8?B?WHVMK3JpZ3IxU3R4ZHhsK1Q4clF5OWdsZTlxZStqZUxwVlZFOGJLdXMxOW1S?=
- =?utf-8?B?ZnJlKzNaVGFuMHA5c1IyNDZZTVlST085Q0xXeFlsYmdFUjVOdmJoQVl2Q1N4?=
- =?utf-8?B?Q3RueHhXVkxJNjU4T3IxcHNVdkFZWHBMRkpmcDVCM0dyKzdtbmRIbTFQQUVp?=
- =?utf-8?B?WTI4VjN3cTBZRUEzZ0ZxbDljZ2pVUVNRbWtXZ1EvcGVDQkk0blU2MW03azJR?=
- =?utf-8?B?bHhVRHdJVDlxcGdoQXAreU1LTm5DSkJiZWdSeGtzY012L3dZWUtoOXlmZmpi?=
- =?utf-8?B?SHVVWlIvaWVVekhnSnNtVmQzWGxHZFlPYWV3UW5JUitMa1BqSGJhWlQ0NURI?=
- =?utf-8?B?NCt4V0RlUnMyZmJUWDhSMGpkTGZwcm9UVHdZTjU1M0JYK1dnNG0vdEtPaFNJ?=
- =?utf-8?B?MXNjUGlzaHQxOVd3S2syZjVtQVF4Tmdqdi8xWXo0NXVhWHR6RDd1bEpoNEdB?=
- =?utf-8?B?R3pkZ2RaYlVMYXg1ZFlaRDMvNjBCY29FSHFreFBwTzcrZHVTRFdCZDc4VkRL?=
- =?utf-8?B?QVk3UHFpblJFSWdMN2dKMjNhcHlucmNxK0pIRkIzcHd1US96eUJOckR5dnlZ?=
- =?utf-8?B?NGZhUHkwZTVkTkFJYmpZbU9mR1ZXWS9OUmJiU1F0NTE4TDFIWDN3Z1FobjVx?=
- =?utf-8?B?clplM1p3cTFXRHpzMDNFaDFYU1lsM0ZPQyt4ZURPYTRMdFhQbUx2YW9VVlM2?=
- =?utf-8?B?aXBWdDE5MW54WXZOWEo3WGhBU2dwd0RlNldxdFRNWEdkVFRkY011TWtjUUFI?=
- =?utf-8?B?WTcrTTZYbDAvR04xdHlZMnIxQy9tNCs1eHN3eWc4OVhFK0RISHVEZHhVdlJj?=
- =?utf-8?B?dW92bW1oeTZZU2I5NDdUNGJvNzFHYXdRc3E0N05WMTJHckZCQ1Zaajg3cDlW?=
- =?utf-8?B?SllROGhQSlh3UTZrbHU1TkdlZnI4VjFoZG12bXB4OGJXVnZtQWkySCt5RlU3?=
- =?utf-8?B?d3BTYXErK1JqcE90QnhJWDIxazMxN0k3ZEpPVDYxN0p1M0ZHVHVORXZ2SFVW?=
- =?utf-8?B?elg5NDR4eUNGZUZPc2d2Z01vSXhyL3FQM1Q5NDN0K25tUVJwQzVDTkdOSTdo?=
- =?utf-8?B?Wkc5L1EzYTNhWFhCZVNlb0w5Qkt0TXp3ZUVYQmxNZldHRjhlZ1hoR0VoTHRx?=
- =?utf-8?B?R05SNVpMN2FQYkU5M0tOVVFqaFk0RllQcHRLQ2kvT3FZVlVwMktLc0UxN2x4?=
- =?utf-8?B?VXZ1NFMwK3d4ZVJBV3VEOWVQTTlnVUwxdms3S1JIWURtZUpUVHJJcTVSOVhN?=
- =?utf-8?B?SWdvMk1iT29nby9TenFrdUpDc1hyTFNyTDMzTmdiUEh1dE53MlRRL3VlTWJF?=
- =?utf-8?B?YytTYXJJSmk1VnVkV25BMmgrZ3g5Q0NmNHJWSWZUMHR1a3BoMXBJV1hmcThQ?=
- =?utf-8?B?WGhkaU9sNW4yaGFOQUZ3YzZOZ1dVTjVFVG96NjkvRVBEaXVtMlJORG1QNGtK?=
- =?utf-8?B?eVVPQjdOeUF6SDVJUi9xNTI4RDBzVXVpd2drMit6UlVjQjBOand1QjYyUlNU?=
- =?utf-8?B?YWlUK0h5THhQaElOQVdrdmtKRG93VzNrUDVqL2tYbTJMWk5NWUNjK0JZTTM3?=
- =?utf-8?B?WTlzRGpKbkhUOEVma3I3RTY3Vk1DUGI0L1hjM2pnbUx5cmVpaWpNdm12V05i?=
- =?utf-8?B?YkJlQWNvaTI2bWd6ZDVXd3J6a1VRaTJFSHpIZVI5RjFFNHhIMy9pWHZ6ODZN?=
- =?utf-8?B?emdaeHhTWjJYUy9Ga2VrSitPVXFWcjZkaUIvUEVQQXd3TlB2N1I2ZkhCK253?=
- =?utf-8?B?azNuYk40c1JnK0xRM2VENGJpbERwRnA3RmxCUVVsZ2FKNWNqUUtVQndyb1Iw?=
- =?utf-8?B?aWVLS2xWeVZZdWxwajlwdHpwb2tITENDQkhmbWV0NzlibC9HaC8zc3ZjZVlX?=
- =?utf-8?B?SHo5SUF1eis2a1p3OWtQZWhIR1Q4L2NhTXJMRmt4RzhOVHp6WnJ1Z1AzSEI1?=
- =?utf-8?B?QWFEN2Zua3Zod3pUM3NvWEtGVm1BS2JJeDBkdWhNWHBqSXRvZ0M0OWVyRnJS?=
- =?utf-8?Q?Uh63N9C8mB+aYc89T5mMJlM=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 964FD10FD87;
+ Wed,  8 May 2024 14:53:13 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-1eca195a7c8so36359825ad.2; 
+ Wed, 08 May 2024 07:53:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1715179993; x=1715784793; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8vhaN0DvnzEE7UFS6Z8+WhLp7dcxsndKh+qCCeMmpD4=;
+ b=h4tjao93Qhzo6buZYvvuc1hA7PDZ7Nwhou8kWJaaqPeQ0rQ+wTyO4P8TN3t56/aK6a
+ gFYz5IEUs9AlkoUoEw6ZC3TFlloKZaG9tK93EgSch0gVOeQ9czAppDhOemYsYX5C7Zrb
+ 1ib46eIQGSESb/cJr1FemkSNqqE8kczk+m1A6Gw+zFgcZ+FdAcmKQpFPmjntCkxT1rTO
+ 3MTbTodb8Ukv6Cf4gXrmq4L7HE3JyCEN65k9IwRslMXO9Tp/r05nx7OLnaI2qwqzM1sK
+ HJRqFgKXJPjGVU/1BneEUyBvOZSlxsVRIv2TLXxVOk5fd7UsCUSndmPgXJ7qNFubQjLN
+ Qbxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1715179993; x=1715784793;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=8vhaN0DvnzEE7UFS6Z8+WhLp7dcxsndKh+qCCeMmpD4=;
+ b=saRj3gld+dNz///hJ5ueE1EAGdZtRhCKR6StOkGO6YC69QTa2QzhrTfjxfCuC8DQJC
+ nGwe+EY5WCbQnte/k3wzgQJ+MTl9gGaZ1yjvjoPkH/HWKdPUBaGroQ1Qin6c7UGLfxqL
+ F3sfbgNhK6JNxc0G3SiMVNNABwKCQeAhXjxPjEQk44DEQcdwDhi60259vpaezHFtcu3z
+ vo/XVoOCcEJYPbmPFpKmJ3cjz94sccLWAJ6YSzAKA93yIK3gqvHap7z7WkP8zz0su0nA
+ EUo5+OESXWOY36n/ZFO0SBA+KQJuhKEm2F3JbqBzmC/rp6kHW4W9OKi86o+z348FAxR+
+ Zx0A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWKzxpWuf98NmvX3M4j+mpSbUov/YgfOAyGCV30Ni2hoO16dnjnAKbenbnkaHdikYR7h/EngKGCoLzeMDn3lR4lCasMM1YcMosOqwwuO1p7bikTxUwOzQUraZI4xeZIFDfOVklM64QqzWZsQIp55aFVeVTNuLDklY490DLfTk3F7c9iXXTXGSolqHJWHLwFChl+ipeNiXI5DnBbiWwErINKIATtFOp2mrXAf+oBvmtVyFqOCrte/Uz6/SOSix765Nvu7d5WypQHUgOZ5ZKqTw==
+X-Gm-Message-State: AOJu0Yw4qICUgGmy7HG4y1xMVJvWQbeM1OSwXW5MzpI8z18+PQNxud2Y
+ G+2Le8b4ehKcj8zNx0/WOHonJTDYMMqcjt6paLyqqL1xtFgw9wd9TJUUBDjQ3PplWbFZPaKIik3
+ 4A602np8l7B+RTuNPnZeQ73q0Al0w+Q==
+X-Google-Smtp-Source: AGHT+IGL3PYhnDLj6ks3jqYaCF3oC5CbXYK5TPhVcB57zpPxv4lXUjO9ZJm3pfZo093/G3vsqtu6vNgRmORCuwy8WGQ=
+X-Received: by 2002:a17:902:ec89:b0:1e2:a61d:905 with SMTP id
+ d9443c01a7336-1eeb078ef79mr30093575ad.63.1715179992582; Wed, 08 May 2024
+ 07:53:12 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 982aa848-a751-4955-bc54-08dc6f6991b1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2024 14:17:18.6058 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: m7YzXWI1H5B1OyiAvbFkjpWZT5eCavvqK0BDNz2crf4GfrbDvhHapmbhvvTNva/j6S7wKr2rws38IaehG0rpQvH+KMPOfTf/HXyMF68gCoM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5068
-X-OriginatorOrg: intel.com
+References: <20240503181333.2336999-1-eahariha@linux.microsoft.com>
+ <20240503181333.2336999-2-eahariha@linux.microsoft.com>
+ <0a6d4fa9-169f-425b-93d6-04314c617090@linux.microsoft.com>
+In-Reply-To: <0a6d4fa9-169f-425b-93d6-04314c617090@linux.microsoft.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 8 May 2024 10:53:00 -0400
+Message-ID: <CADnq5_NpxPM-FTcCchdBMRng=6xdM03s93XEX2_8fx44MRVYag@mail.gmail.com>
+Subject: Re: [PATCH v2 01/12] drm/amdgpu, drm/radeon: Make I2C terminology
+ more inclusive
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>, 
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>, 
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Evan Quan <evan.quan@amd.com>, 
+ Hawking Zhang <Hawking.Zhang@amd.com>, Candice Li <candice.li@amd.com>, 
+ Ran Sun <sunran001@208suo.com>, Alexander Richards <electrodeyt@gmail.com>, 
+ Wolfram Sang <wsa@kernel.org>, Andi Shyti <andi.shyti@linux.intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>, 
+ Ruan Jinjie <ruanjinjie@huawei.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, 
+ Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
+ Alvin Lee <alvin.lee2@amd.com>, 
+ Sohaib Nadeem <sohaib.nadeem@amd.com>, Charlene Liu <charlene.liu@amd.com>, 
+ Tom Chung <chiahsuan.chung@amd.com>, Alan Liu <haoping.liu@amd.com>, 
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, 
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ George Shen <george.shen@amd.com>, 
+ Aric Cyr <aric.cyr@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Qingqing Zhuo <Qingqing.Zhuo@amd.com>, Dillon Varone <dillon.varone@amd.com>, 
+ Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>, 
+ Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
+ Darren Powell <darren.powell@amd.com>, Yang Wang <kevinyang.wang@amd.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>, Le Ma <Le.Ma@amd.com>, 
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -199,25 +121,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBDaGVuLA0K
-PiBBbmd1cw0KPiBTZW50OiBUdWVzZGF5LCBBcHJpbCAzMCwgMjAyNCA0OjUwIFBNDQo+IFRvOiBB
-bmRpIFNoeXRpIDxhbmRpLnNoeXRpQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IGludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2k5MTUvbXRs
-OiBVcGRhdGUgd29ya2Fyb3VuZCAxNDAxODc3ODY0MQ0KPiANCj4gVGhlIG9yaWdpbmFsIHdvcmth
-cm91bmQgd2FzIGZyb20NCj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNo
-LzUzMzU3NC8NCj4gVGhlbiwgd2UgZG9uJ3QgYXBwbHkgV0EgdG8gVkRCT1gsIFZFQk9YIGFuZCBS
-RU5ERVIgZW5naW5lIHdpdGggdGhlDQo+IGZvbGxvd2luZyBwYXRjaA0KPiBodHRwczovL3BhdGNo
-d29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNTQzMTE3Lz9zZXJpZXM9MTE5NTE3JnJldj0xDQo+
-IEJ1dCBub3cgd2UgbmVlZCB0aGlzIFdBIHRvIGNvdmVyIFZEQk9YLg0KPiANCj4gT24gNC8yOS8y
-MDI0IDU6NTMgUE0sIEFuZGkgU2h5dGkgd3JvdGU6DQo+ID4gSGkgQW5ndXMsDQo+ID4NCj4gPiAu
-Li4NCj4gPg0KPiA+PiBAQCAtMTU4Niw2ICsxNTg2LDggQEAgeGVscG1wX2d0X3dvcmthcm91bmRz
-X2luaXQoc3RydWN0IGludGVsX2d0ICpndCwNCj4gc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQ0K
-PiA+PiAgIAkgKi8NCj4gPj4gICAJd2Ffd3JpdGVfb3Iod2FsLCBYRUxQTVBfR1NDX01PRF9DVFJM
-LCBGT1JDRV9NSVNTX0ZUTEIpOw0KPiA+Pg0KPiA+PiArCXdhX3dyaXRlX29yKHdhbCwgWEVMUE1Q
-X1ZEQlhfTU9EX0NUUkwsIEZPUkNFX01JU1NfRlRMQik7DQo+ID4gQ2FuIHlvdSBwbGVhc2UgYWRk
-IHRoZSByZWZlcmVuY2Ugb2YgdGhlIHdvcmthcm91bmQgaW4gYSBjb21tZW50IGhlcmU/DQoNCkFz
-IGZhciBhcyBJIGtub3cgbWVkaWEgdGVhbSBjb25maXJtZWQgdGhhdCB0aGVyZSBpcyBubyBwZXJm
-IGltcGFjdCBhbmQgdGhpcyBXQSBjYW4gYmUgcmVtb3ZlZC4gQXMgQW5kaSBzYWlkLCByZWZlcmVu
-Y2Ugd291bGQgYmUgaGVscCBoZXJlLg0KDQpUaGFua3MsDQpUZWphcw0KPiA+DQo+ID4gVGhhbmtz
-LA0KPiA+IEFuZGkNCj4gPg0KPiA+PiArDQo=
+On Tue, May 7, 2024 at 2:32=E2=80=AFPM Easwar Hariharan
+<eahariha@linux.microsoft.com> wrote:
+>
+> On 5/3/2024 11:13 AM, Easwar Hariharan wrote:
+> > I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/s=
+lave"
+> > with more appropriate terms. Inspired by and following on to Wolfram's
+> > series to fix drivers/i2c/[1], fix the terminology for users of
+> > I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> > in the specification.
+> >
+> > Compile tested, no functionality changes intended
+> >
+> > [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang=
+-engineering.com/
+> >
+> > Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> > ---
+> >  .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  8 +++---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       | 10 +++----
+> >  drivers/gpu/drm/amd/amdgpu/atombios_i2c.c     |  8 +++---
+> >  drivers/gpu/drm/amd/amdgpu/atombios_i2c.h     |  2 +-
+> >  drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    | 20 ++++++-------
+> >  .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 +-
+> >  .../drm/amd/display/dc/bios/bios_parser2.c    |  2 +-
+> >  .../drm/amd/display/dc/core/dc_link_exports.c |  4 +--
+> >  drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+> >  drivers/gpu/drm/amd/display/dc/dce/dce_i2c.c  |  4 +--
+> >  .../display/include/grph_object_ctrl_defs.h   |  2 +-
+> >  drivers/gpu/drm/amd/include/atombios.h        |  2 +-
+> >  drivers/gpu/drm/amd/include/atomfirmware.h    | 26 ++++++++---------
+> >  .../powerplay/hwmgr/vega20_processpptables.c  |  4 +--
+> >  .../amd/pm/powerplay/inc/smu11_driver_if.h    |  2 +-
+> >  .../inc/pmfw_if/smu11_driver_if_arcturus.h    |  2 +-
+> >  .../inc/pmfw_if/smu11_driver_if_navi10.h      |  2 +-
+> >  .../pmfw_if/smu11_driver_if_sienna_cichlid.h  |  2 +-
+> >  .../inc/pmfw_if/smu13_driver_if_aldebaran.h   |  2 +-
+> >  .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  2 +-
+> >  .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  2 +-
+> >  .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  4 +--
+> >  .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  8 +++---
+> >  drivers/gpu/drm/radeon/atombios.h             | 16 +++++------
+> >  drivers/gpu/drm/radeon/atombios_i2c.c         |  4 +--
+> >  drivers/gpu/drm/radeon/radeon_combios.c       | 28 +++++++++----------
+> >  drivers/gpu/drm/radeon/radeon_i2c.c           | 10 +++----
+> >  drivers/gpu/drm/radeon/radeon_mode.h          |  6 ++--
+> >  28 files changed, 93 insertions(+), 93 deletions(-)
+> >
+>
+> <snip>
+>
+> Hello Christian, Daniel, David, others,
+>
+> Could you re-review v2 since the feedback provided in v0 [1] has now been=
+ addressed? I can send v3 with
+> all other feedback and signoffs from the other maintainers incorporated w=
+hen I have something for amdgpu
+> and radeon.
+
+This seems like a lot of churn.  Additionally, a bunch of these
+headers are shared with other OSes, so it's possible some of the
+changes may end up getting reverted accidently when we sync up or we
+may add new headers in new code with the old nomenclature and then
+we'd need to make sure to adjust it to make sure everything was
+aligned again.  I would just as soon leave things as is, but I'm open
+to acking them if there is a strong desire to update things.
+
+Alex
