@@ -2,172 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54CF38BF4DF
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 05:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9A668BF5DA
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 08:00:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E75911243C;
-	Wed,  8 May 2024 03:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AACE1133A7;
+	Wed,  8 May 2024 06:00:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ks1t+Wro";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="oJBUSnqZ";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="LALyyqtM";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="oJBUSnqZ";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="LALyyqtM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F72611243C
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 03:15:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715138133; x=1746674133;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Dej7mpdbh+TeysZLiV9PTskEgPGtDBndOtYJCHLCfzE=;
- b=ks1t+WrofaoNbzzi61vv5nGx6n7DwmuOFwDr380lmaF+5Zp93QD4YYpe
- xmMVK2tQLnibTJWCZqso0bJNW9XovUpEk81zAeMZfdgbuV2/Zwm6mAOAh
- frvVt6IR06pKoyKxognrOVaMGanS+U1Xy7tR8k2szFMkNMvDNmL89TkMU
- /s+NPN47v4tao9KbEQwY7UpmH1OKEaG2gz8ylakyNplS9cImEDZ8JZj0r
- z5ZbLOW+pK92c1YyC1hTW6XjPoZiMCqwPjrQtdAXPCWWdTVpeJQwPjGXV
- vzAkkpvd68fIli16lFSB8c/FyclOKq9SK+WG/pHC7MhS1ASk8y/pXfPPT w==;
-X-CSE-ConnectionGUID: mvXnGErjSfWAq+O5qBQEJA==
-X-CSE-MsgGUID: CeBWDKa4RoucaLChDaO10g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="11420688"
-X-IronPort-AV: E=Sophos;i="6.08,144,1712646000"; d="scan'208";a="11420688"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2024 20:15:32 -0700
-X-CSE-ConnectionGUID: pJz7tFG/SoiVNwR6547OVA==
-X-CSE-MsgGUID: RuDdZMp2T/ari9ycgde7pQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,144,1712646000"; d="scan'208";a="66163222"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 May 2024 20:15:32 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 7 May 2024 20:15:31 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 7 May 2024 20:15:31 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 7 May 2024 20:15:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OCDzIbS+LC1ETHJd6Z5c1HGuuyRHWIm7FjhSf2dQKNYTlfx5IW2cBQGYkyd9gL3YBZwDwzq5zeUAMRT8kGTQH678ON/flZHtO0jfYCrCmnZswUFwfGD7sItCz/AexCzvsqdGfWOdN0penrWn93ttdOkJnu19imWEGsWEsEBNUlXNqyt9qAdvg7Nnd5fOZS6wNOy0S+FYjtdsROZySVPtCpv6uEYSMV5FyBwcu7urZK3NapLKnGlm464AR9uXYk3l+Uvy1PsCwpO+pZQXksw+i+UFZhzT5MWowwHta8WXVrfs1pkjIJO6ixpfuNcHgFo9w6ATEjqDPpDEGj6h4EPfeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qJzGy63aqWo5vTpLmDehaB83NVHu7I3rvAoL9gyFAW0=;
- b=jcjp1zMg1CRUvi3B2Ult8TKT9iEjg94XQLemG78lt2tmR4w1Ij7IL0xqdGs+K8HRwYmluWc3RnCXTdLSFEkfVDKKBOPq31MjKC5B1pnq5hM+IkQryQxoNDIkVsAuXd2SqmavmYsnPqZ0OABIPQToM1Mj40WrGiIj2NrHBnJogjG7aUnd/Cy3bWcdHltcfTtS1OZKvxmwl/jPgvft67OCnlEgTLMnv0qhsJqBAhsWkj+ZcnKXJK7puMneLc0N8Ex7bV8th/wKxYppHpD1ypdtZ1zezIzLtPbL7lSrlXi+34nt45l7Oym8+SEDHcfVWGGoZnsGTnaxBp5Y3LlFCynEYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by MW4PR11MB6838.namprd11.prod.outlook.com (2603:10b6:303:213::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7519.34; Wed, 8 May
- 2024 03:15:29 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::d95b:a57d:ecc:5637]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::d95b:a57d:ecc:5637%7]) with mapi id 15.20.7544.041; Wed, 8 May 2024
- 03:15:29 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH] drm/i915/display/dp: Remove UHBR13.5 for icl
-Thread-Topic: [PATCH] drm/i915/display/dp: Remove UHBR13.5 for icl
-Thread-Index: AQHan5YSD3Ayhk4uokappAeuaODKUrGKHESAgAAAclCAAAPJAIACjBPQ
-Date: Wed, 8 May 2024 03:15:29 +0000
-Message-ID: <IA0PR11MB73076CE4DB3C399F961188E2BAE52@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20240506090625.2812332-1-arun.r.murthy@intel.com>
- <ZjjHl2oHYpm3--zR@intel.com>
- <IA0PR11MB7307F436AB51E954D870EEA5BA1C2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <ZjjLJEyQJDddXcaq@intel.com>
-In-Reply-To: <ZjjLJEyQJDddXcaq@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|MW4PR11MB6838:EE_
-x-ms-office365-filtering-correlation-id: 6d066bfb-dcc5-460f-313b-08dc6f0d1d30
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|1800799015|366007|376005|38070700009;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?iQ1ZMYfNaUTuVDCX8o5GuAyarS2ybBd2qHgWHbWu2J8GgLfI4y4PkKx7uB?=
- =?iso-8859-1?Q?a1vdFpj9YSfIUjAysIm7PXJu38ENWBKgpvh41fjBVIGjFHC8FlTb8jRgPE?=
- =?iso-8859-1?Q?mtDcekOl3V7Mt4r6SReES8++zpkpms3haNOO05LzXRUfUt+p4HlFHZcmFK?=
- =?iso-8859-1?Q?fOEl91MRSuuHcrm105F3uypNxHvfZkZlLoe+hFKC74Rl10BU0iBaen+pBd?=
- =?iso-8859-1?Q?sAnGQTaKbEKF2OOn7Z7EUcd4rkXImMIQ8Njc/7FM8plSJylqpypokvJJLF?=
- =?iso-8859-1?Q?7lUVfnqemJQMhE/SfFFJpwvLJWLRfYKt98isW+fi7Otc4kL/bhRNWnY51V?=
- =?iso-8859-1?Q?dHpiU6LVvtQfqPCpOg05vcUKhdWI47s06HV+uQ8mHhSUELDQ1rHX/kLWmJ?=
- =?iso-8859-1?Q?xNbWqAdQDgpAEaVrkB7o9ASAHrZFyYzrDWcNviTp3+cdt5qHkSAxhS6BQO?=
- =?iso-8859-1?Q?AxWDWVpbrbneXy6AP9nZODTEhX6dmrEtFNY8i+/QDnhRRsNNVT0Zv2hGJ6?=
- =?iso-8859-1?Q?v37HYjFAzIQ1eltpQ1p5U5Ps6l8ZqiJ0ptjwjfZuKvOco+slOrWUF4Qgag?=
- =?iso-8859-1?Q?tlUj8BAG8c3JIeLojhWJcX47E2dOWhA+063OfUpA15FlwjRQbik9keNLVm?=
- =?iso-8859-1?Q?p7tKgr026dUwWq7Gl28XPtjH4EMsokLmiMQ+azM9h0En4tRkiGMTq1Xz+u?=
- =?iso-8859-1?Q?lkr09oWpU0I0rbpgCALTIZB6IHWkbtes3UI4SK+6k6az6pRoWXKIhrmGZC?=
- =?iso-8859-1?Q?yN4kFVpvM1ilbT6Xa5cSTti3w69Lx/7iMsPfNWhVqproLTCLoDUimLz2ow?=
- =?iso-8859-1?Q?2IC0jbnB2ILf4axV/q7Z3himfVT54CUKCKmkEjW4ShoevQpMkQplQ5k1WX?=
- =?iso-8859-1?Q?M3z7WYboMnbA7NWWAwWno7ndc/PH7WdmtJbhP/RmvQJpEmeqT8PXH5oYZT?=
- =?iso-8859-1?Q?lyFnG63+of69mksz/v+5McYe2sK0/y3xVIyy5X2qBitRnIaeH5ydfD5Atq?=
- =?iso-8859-1?Q?K9ubM47BcNKfJet90iqpnnJ9C8N7Oe9SlG0IKtlzHeiCL3RljTc2/EbRtt?=
- =?iso-8859-1?Q?qjgng6C6jwnkPMNzqn8M8v2RZiHHJr/iLjV6sgyMNZD9MCCJd/0yhLVrH0?=
- =?iso-8859-1?Q?k3WSI/epq0em/RzdKm9y3wi1ScXQCNAMLaUfUmNGhfk7z6HN69shS8ie4L?=
- =?iso-8859-1?Q?+G1YDrT93THWxTKS0pgg+9OGgOIHW8Xoau7eRUzPX/k/1YhewjTo50JYr8?=
- =?iso-8859-1?Q?MC90fljd8hQJFO11cHynUicsrAOfmb6TlvBhqn8Ld/SpbCV5NTy82EeovT?=
- =?iso-8859-1?Q?E/YObv+bJY2q5YFbeN5LXdmkJXglPYkGlmuMWcgkaqXDUixhBEXn++MuUY?=
- =?iso-8859-1?Q?O9fhiYgZ4qG/3EtNrcRQZhUJEAF39npg=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?VPu2SNf7crNvGfTYcmNBgQUzM/hJTsT4pzE/h0aQAk8xZ9yUcxui9TgFxl?=
- =?iso-8859-1?Q?SmRtrkdTT4rRVnXhuNEe8akZZiRHPB7rU26CWyYnhsJkOqXwzpJArpM9A5?=
- =?iso-8859-1?Q?a9ajvgtSgX4l8qtiHcWkqBaNrwsR8gjHPrxeg5QqYlLj4IfwFEql7md91C?=
- =?iso-8859-1?Q?WfE5LywAjFDhrOXvuFbC824MSCJcOo6Z+a5CFAunOgRVkPzN7LxPtWc6jB?=
- =?iso-8859-1?Q?rDCw8WCVqloRK6PpA4Q8fRT/td8JhY+kbL/bxrmti42r99O5Tgjs0m+tfl?=
- =?iso-8859-1?Q?gJwhGarjoXQ41QWvErXY+9uEWp/9d6gpAoOSYUVqOV0NX8zKkPmqEAC/Wq?=
- =?iso-8859-1?Q?o1On8CmvmTs5moL9rWRSDe1gdQBXyVy9p9VpERnM5vW9Xh8jDdzAV+cuFz?=
- =?iso-8859-1?Q?sG8XEdaACXX1SHgggoCgsHU0t/MDHwMr+h40MSJ2KhJ1G54ajO15rRn1K9?=
- =?iso-8859-1?Q?hTfSyq4ckNd/ZcCxdogydUNEXYBBblTwhS2m3OMxl6zyMGT62s2+3OJeX2?=
- =?iso-8859-1?Q?oXAnxQOJWxfoQGxFE9sH0/ElRcnZaDk2u3zd8Bh1lUwo0f9/01ocu3sxUq?=
- =?iso-8859-1?Q?Vd0XdyLzUOaAJNqba3E3JORKoscRdDdWppUdsP2xMwShDvJOzJEXM/Qgei?=
- =?iso-8859-1?Q?6vxWeE+tMagsERjit8EqfCj3mQVOPbYdbUly1CxHAZeQ+yyDHfaBWQuTY0?=
- =?iso-8859-1?Q?c5wj0BP53dSXTH+nhScBCTOxU07YoSjIUjUjudbRHZ3nFGJUGJRS+W9WOy?=
- =?iso-8859-1?Q?PcIrxQ8MhunLlNQK7vtQL5PLAOlRpPJ/SrEgOggXzAxXuLUhNS49epzRp5?=
- =?iso-8859-1?Q?75cS22ryvTmgQ4K6DmA73YnQUsh3d1c4e1nWKRcyLBzLsjwOxmnBTtJ7k2?=
- =?iso-8859-1?Q?JnPzLBQRwCUWrvcgCpLpmYNka4uB5heq198Aq0R+VDmqtFyKnd4jQQ0zjw?=
- =?iso-8859-1?Q?BhJuhQKHMJhhLBePSbIa7dLYMkgsZYayGTen9qlou4KBIK/dxEAEVC7A65?=
- =?iso-8859-1?Q?L1SsaQI7XhXTCH1rvKBYwrjmqhNFNXwnKx2lj40+Ys5km0HEGMmhd4zvPg?=
- =?iso-8859-1?Q?+hyzl8DNq76r/ufKd/58Yt9hZnmCt9q2HdtSrSfBNGvn3Yh9QEfr8Pjo8S?=
- =?iso-8859-1?Q?kwmtNHAXsXm3a4byC6mCryHxfhqPY7URFQSuhI9MWcl4dI6ta/NsBdIn0r?=
- =?iso-8859-1?Q?Tm1XqTPJ8g94AbZCKOOUrh+nX1Fy5lVnz0BfBN9KQrUtK4t+8JJ3gp7/8w?=
- =?iso-8859-1?Q?TqH8FoBikvmcD9uGwFB9dwX4TaWXSCWYAd6W/kRxMZTgBp/HkZxEMuc8OB?=
- =?iso-8859-1?Q?h8wuw5OgqJEQyNJ4xAG6gKn5pDU4k+qRBeXJOpvzSKPMTRioZxXloBuH/p?=
- =?iso-8859-1?Q?yFuONuTtub7mOhKzKjfY2ZNOkVRVcyaMomm1YL/4R138YBDWc6CbC1iJHf?=
- =?iso-8859-1?Q?C88gZSxpuwIKu2DwQy/ZgFPyDKy2xyuzKlYCjaOpseRzocNgEiFpO3OSko?=
- =?iso-8859-1?Q?DD3xzQPgTyBxPwtAUeTWCq3yFRWIUEn0vIYTFZZhc8LVrIDWPiUAJoe5sj?=
- =?iso-8859-1?Q?Q1Z9P9ckN+vS/lGa1VcUKqvOn/TZDjpXJXggPlJkTizC6C8cQZxcy+YLvt?=
- =?iso-8859-1?Q?NndgtBEsqnYLlVmUIVykCZ5W3vU+Ma56yj?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E55E1127FA;
+ Wed,  8 May 2024 06:00:29 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 1710921A3C;
+ Wed,  8 May 2024 06:00:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1715148027; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
+ b=oJBUSnqZI7EMjfLSBFZJVb44HlHinhbFGw6fI8Dnc2xpkzBYD1XKpxGf4uifFmvRoG61rt
+ QVRqUSBQqc6vOTInrJu0yU9OsgNIHL2uesL+75THSxQBwLxd66hkPtvOfRTKTqRCOUmcjB
+ nGNVx0QMAAlgqx1J23NlvRc1IK42+CI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1715148027;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
+ b=LALyyqtMas/4qlYZtcYxHdHGH9G64b4tNDkdXEw/W00Ws0sioAsIy89uQ0NBT0eoGUf4tT
+ NYE1i0b7yLQda9AQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1715148027; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
+ b=oJBUSnqZI7EMjfLSBFZJVb44HlHinhbFGw6fI8Dnc2xpkzBYD1XKpxGf4uifFmvRoG61rt
+ QVRqUSBQqc6vOTInrJu0yU9OsgNIHL2uesL+75THSxQBwLxd66hkPtvOfRTKTqRCOUmcjB
+ nGNVx0QMAAlgqx1J23NlvRc1IK42+CI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1715148027;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=Is1QIooOcsSsCqTmiQyMmRHwJK9pqSAkls0yrv548qo=;
+ b=LALyyqtMas/4qlYZtcYxHdHGH9G64b4tNDkdXEw/W00Ws0sioAsIy89uQ0NBT0eoGUf4tT
+ NYE1i0b7yLQda9AQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C879F1386E;
+ Wed,  8 May 2024 06:00:25 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([10.150.64.162])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id abWuL/kUO2bdVQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 08 May 2024 06:00:25 +0000
+Message-ID: <2b464f50-15e0-4df3-a846-21417a103ed6@suse.de>
+Date: Wed, 8 May 2024 08:00:24 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d066bfb-dcc5-460f-313b-08dc6f0d1d30
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2024 03:15:29.4142 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k4KHkISHB4wV3iSKAkUF++EBxexQ2c0LhkRL+3TCI0TdCLcx0E6KGyyyoe8a0nnym+bd0SM4ByD2sd1L0hkdKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6838
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/11] drm/tegra: Use fbdev client helpers
+To: Felix Kuehling <felix.kuehling@amd.com>, javierm@redhat.com,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ inki.dae@samsung.com, sw0312.kim@samsung.com, kyungmin.park@samsung.com,
+ linux@armlinux.org.uk, krzk@kernel.org, alim.akhtar@samsung.com,
+ patrik.r.jakobsson@gmail.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, robdclark@gmail.com, quic_abhinavk@quicinc.com,
+ dmitry.baryshkov@linaro.org, sean@poorly.run, marijn.suijten@somainline.org,
+ tomi.valkeinen@ideasonboard.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, thierry.reding@gmail.com,
+ mperttunen@nvidia.com, jonathanh@nvidia.com
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20240507120422.25492-1-tzimmermann@suse.de>
+ <20240507120422.25492-12-tzimmermann@suse.de>
+ <b463d432-669c-43a4-933a-cafef000f7da@amd.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <b463d432-669c-43a4-933a-cafef000f7da@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -2.79
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.79 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ XM_UA_NO_VERSION(0.01)[]; TAGGED_RCPT(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[amd.com,redhat.com,ffwll.ch,linux.intel.com,kernel.org,samsung.com,armlinux.org.uk,gmail.com,intel.com,ursulin.net,quicinc.com,linaro.org,poorly.run,somainline.org,ideasonboard.com,nvidia.com];
+ RCPT_COUNT_TWELVE(0.00)[31]; MID_RHS_MATCH_FROM(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, suse.de:email]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,75 +155,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Monday, May 6, 2024 5:51 PM
-> To: Murthy, Arun R <arun.r.murthy@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
-> Subject: Re: [PATCH] drm/i915/display/dp: Remove UHBR13.5 for icl
->=20
-> On Mon, May 06, 2024 at 12:15:13PM +0000, Murthy, Arun R wrote:
-> >
-> > > -----Original Message-----
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Sent: Monday, May 6, 2024 5:36 PM
-> > > To: Murthy, Arun R <arun.r.murthy@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org; Nikula, Jani
-> > > <jani.nikula@intel.com>
-> > > Subject: Re: [PATCH] drm/i915/display/dp: Remove UHBR13.5 for icl
-> > >
-> > > On Mon, May 06, 2024 at 02:36:25PM +0530, Arun R Murthy wrote:
-> > > > UHBR13.5 is not supported in icl+ as well. This has been removed
-> > > > for mtl by the commit caf3d748f646 ("drm/i915/dp: Remove support
-> > > > for
-> > > > UHBR13.5")
-> > >
-> > > icl/tgl/adl don't support UHBR at all. The numbers are there for dg2
-> > > presumably, which I think does support this.
-> > As per the recommendation from hardware team this is not supported on
-> DG2 and MTL.
->=20
-> That is not what bspec says.
->=20
-This is the limitation from the retimer hardware.
+Hi
 
-Thanks and Regards,
-Arun R Murthy
--------------------
-> >
-> > Thanks and Regards,
-> > Arun R Murthy
-> > -------------------
-> > >
-> > > >
-> > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > index 163da48bc406..7098ca65701f 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -507,7 +507,7 @@ intel_dp_set_source_rates(struct intel_dp
-> *intel_dp)
-> > > >  	};
-> > > >  	static const int icl_rates[] =3D {
-> > > >  		162000, 216000, 270000, 324000, 432000, 540000, 648000,
-> > > 810000,
-> > > > -		1000000, 1350000,
-> > > > +		1000000,
-> > > >  	};
-> > > >  	static const int bxt_rates[] =3D {
-> > > >  		162000, 216000, 243000, 270000, 324000, 432000, 540000
-> > > > --
-> > > > 2.25.1
-> > >
-> > > --
-> > > Ville Syrj=E4l=E4
-> > > Intel
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+Am 07.05.24 um 23:03 schrieb Felix Kuehling:
+>
+> On 2024-05-07 07:58, Thomas Zimmermann wrote:
+>> Implement struct drm_client_funcs with the respective helpers and
+>> remove the custom code from the emulation. The generic helpers are
+>> equivalent in functionality.
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> ---
+>>   drivers/gpu/drm/radeon/radeon_fbdev.c | 66 ++-------------------------
+>
+> Was radeon meant to be a separate patch?
+
+Indeed. It also _was_ a separate patch. This looks like a mistake during 
+rebasing. Thanks for noticing. I'll fix that in v2.
+
+Best regards
+Thomas
+
+>
+> Regards,
+>   Felix
+>
+>
+>>   drivers/gpu/drm/tegra/fbdev.c         | 58 ++---------------------
+>>   2 files changed, 6 insertions(+), 118 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c 
+>> b/drivers/gpu/drm/radeon/radeon_fbdev.c
+>> index 02bf25759059a..cf790922174ea 100644
+>> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
+>> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+>> @@ -29,7 +29,6 @@
+>>   #include <linux/pm_runtime.h>
+>>   #include <linux/vga_switcheroo.h>
+>>   -#include <drm/drm_crtc_helper.h>
+>>   #include <drm/drm_drv.h>
+>>   #include <drm/drm_fb_helper.h>
+>>   #include <drm/drm_fourcc.h>
+>> @@ -293,71 +292,12 @@ static const struct drm_fb_helper_funcs 
+>> radeon_fbdev_fb_helper_funcs = {
+>>   };
+>>     /*
+>> - * Fbdev client and struct drm_client_funcs
+>> + * struct drm_client_funcs
+>>    */
+>>   -static void radeon_fbdev_client_unregister(struct drm_client_dev 
+>> *client)
+>> -{
+>> -    struct drm_fb_helper *fb_helper = 
+>> drm_fb_helper_from_client(client);
+>> -    struct drm_device *dev = fb_helper->dev;
+>> -    struct radeon_device *rdev = dev->dev_private;
+>> -
+>> -    if (fb_helper->info) {
+>> -        vga_switcheroo_client_fb_set(rdev->pdev, NULL);
+>> -        drm_helper_force_disable_all(dev);
+>> -        drm_fb_helper_unregister_info(fb_helper);
+>> -    } else {
+>> -        drm_client_release(&fb_helper->client);
+>> -        drm_fb_helper_unprepare(fb_helper);
+>> -        kfree(fb_helper);
+>> -    }
+>> -}
+>> -
+>> -static int radeon_fbdev_client_restore(struct drm_client_dev *client)
+>> -{
+>> -    drm_fb_helper_lastclose(client->dev);
+>> -    vga_switcheroo_process_delayed_switch();
+>> -
+>> -    return 0;
+>> -}
+>> -
+>> -static int radeon_fbdev_client_hotplug(struct drm_client_dev *client)
+>> -{
+>> -    struct drm_fb_helper *fb_helper = 
+>> drm_fb_helper_from_client(client);
+>> -    struct drm_device *dev = client->dev;
+>> -    struct radeon_device *rdev = dev->dev_private;
+>> -    int ret;
+>> -
+>> -    if (dev->fb_helper)
+>> -        return drm_fb_helper_hotplug_event(dev->fb_helper);
+>> -
+>> -    ret = drm_fb_helper_init(dev, fb_helper);
+>> -    if (ret)
+>> -        goto err_drm_err;
+>> -
+>> -    if (!drm_drv_uses_atomic_modeset(dev))
+>> -        drm_helper_disable_unused_functions(dev);
+>> -
+>> -    ret = drm_fb_helper_initial_config(fb_helper);
+>> -    if (ret)
+>> -        goto err_drm_fb_helper_fini;
+>> -
+>> -    vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
+>> -
+>> -    return 0;
+>> -
+>> -err_drm_fb_helper_fini:
+>> -    drm_fb_helper_fini(fb_helper);
+>> -err_drm_err:
+>> -    drm_err(dev, "Failed to setup radeon fbdev emulation 
+>> (ret=%d)\n", ret);
+>> -    return ret;
+>> -}
+>> -
+>>   static const struct drm_client_funcs radeon_fbdev_client_funcs = {
+>> -    .owner        = THIS_MODULE,
+>> -    .unregister    = radeon_fbdev_client_unregister,
+>> -    .restore    = radeon_fbdev_client_restore,
+>> -    .hotplug    = radeon_fbdev_client_hotplug,
+>> +    .owner = THIS_MODULE,
+>> +    DRM_FBDEV_HELPER_CLIENT_FUNCS,
+>>   };
+>>     void radeon_fbdev_setup(struct radeon_device *rdev)
+>> diff --git a/drivers/gpu/drm/tegra/fbdev.c 
+>> b/drivers/gpu/drm/tegra/fbdev.c
+>> index db6eaac3d30e6..f9cc365cfed94 100644
+>> --- a/drivers/gpu/drm/tegra/fbdev.c
+>> +++ b/drivers/gpu/drm/tegra/fbdev.c
+>> @@ -12,7 +12,6 @@
+>>   #include <linux/vmalloc.h>
+>>     #include <drm/drm_drv.h>
+>> -#include <drm/drm_crtc_helper.h>
+>>   #include <drm/drm_fb_helper.h>
+>>   #include <drm/drm_fourcc.h>
+>>   #include <drm/drm_framebuffer.h>
+>> @@ -150,63 +149,12 @@ static const struct drm_fb_helper_funcs 
+>> tegra_fb_helper_funcs = {
+>>   };
+>>     /*
+>> - * struct drm_client
+>> + * struct drm_client_funcs
+>>    */
+>>   -static void tegra_fbdev_client_unregister(struct drm_client_dev 
+>> *client)
+>> -{
+>> -    struct drm_fb_helper *fb_helper = 
+>> drm_fb_helper_from_client(client);
+>> -
+>> -    if (fb_helper->info) {
+>> -        drm_fb_helper_unregister_info(fb_helper);
+>> -    } else {
+>> -        drm_client_release(&fb_helper->client);
+>> -        drm_fb_helper_unprepare(fb_helper);
+>> -        kfree(fb_helper);
+>> -    }
+>> -}
+>> -
+>> -static int tegra_fbdev_client_restore(struct drm_client_dev *client)
+>> -{
+>> -    drm_fb_helper_lastclose(client->dev);
+>> -
+>> -    return 0;
+>> -}
+>> -
+>> -static int tegra_fbdev_client_hotplug(struct drm_client_dev *client)
+>> -{
+>> -    struct drm_fb_helper *fb_helper = 
+>> drm_fb_helper_from_client(client);
+>> -    struct drm_device *dev = client->dev;
+>> -    int ret;
+>> -
+>> -    if (dev->fb_helper)
+>> -        return drm_fb_helper_hotplug_event(dev->fb_helper);
+>> -
+>> -    ret = drm_fb_helper_init(dev, fb_helper);
+>> -    if (ret)
+>> -        goto err_drm_err;
+>> -
+>> -    if (!drm_drv_uses_atomic_modeset(dev))
+>> -        drm_helper_disable_unused_functions(dev);
+>> -
+>> -    ret = drm_fb_helper_initial_config(fb_helper);
+>> -    if (ret)
+>> -        goto err_drm_fb_helper_fini;
+>> -
+>> -    return 0;
+>> -
+>> -err_drm_fb_helper_fini:
+>> -    drm_fb_helper_fini(fb_helper);
+>> -err_drm_err:
+>> -    drm_err(dev, "Failed to setup fbdev emulation (ret=%d)\n", ret);
+>> -    return ret;
+>> -}
+>> -
+>>   static const struct drm_client_funcs tegra_fbdev_client_funcs = {
+>> -    .owner        = THIS_MODULE,
+>> -    .unregister    = tegra_fbdev_client_unregister,
+>> -    .restore    = tegra_fbdev_client_restore,
+>> -    .hotplug    = tegra_fbdev_client_hotplug,
+>> +    .owner = THIS_MODULE,
+>> +    DRM_FBDEV_HELPER_CLIENT_FUNCS,
+>>   };
+>>     void tegra_fbdev_setup(struct drm_device *dev)
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
