@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6FF8C0160
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 17:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9C18C0161
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 17:48:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8261126D9;
-	Wed,  8 May 2024 15:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 095F71126DB;
+	Wed,  8 May 2024 15:48:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKi2Lmqz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9OKbyRm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF5F1126D9
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 15:48:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 784081126DB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 15:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715183307; x=1746719307;
+ t=1715183311; x=1746719311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fpFcFE4eTjEKBmwC5A+Mcv1O6Q/sZgcQ846b0nLVpxs=;
- b=WKi2Lmqz6wqtqqicB5D/vHlmaKhVX87hewu09A1ewaL56KF6zOUE6w80
- hvXpQ7PRDQrA8S71n8Nv6kMYMxU+kx0PXI8RAESvPV1l8fK8+DKz5mD4w
- dvbVxcG7MXTvKpuDnthYSb77Rwrs6ErLsMlpLQg8YaasKaXUci5jhNSBD
- ul8Vc5BKZrZhKiRt06eJtNg4W04hMVk3CjauYaUfeqRcdRArPLwM0PZYC
- EVIWAmPmD4FHrlrKl82rRqxG71IycoQXAy7O2UB2oUg9vTSs8vaVfbR5O
- a36wHpm9rMWxn1Pu6ZkfEpgmVNhVUc4SGswWy+uTVS/9iDLSp8/TK6Qsf Q==;
-X-CSE-ConnectionGUID: dtFSdTd6Rq6EePK4AwA1pw==
-X-CSE-MsgGUID: dYHS2vp8SAmQqhrYElHBRQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10925017"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="10925017"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 08:48:27 -0700
-X-CSE-ConnectionGUID: op54B7bBQc2UVRuGvY5Uuw==
-X-CSE-MsgGUID: HDgpSmu8TGKy3Avv1Kjqtg==
+ bh=2DtiU+3wf4v3iXkL3UMDQXsu831it//HO/25tScKmsU=;
+ b=g9OKbyRmvQxr9/ILxjdKQYI+n+oGe0PEnl6IYapfVipgsXuZliXqY+cw
+ 7HljuaPuYVRL+7fnLG3/Uije2yTbvIeClmsO9QB+bl3a6r0lf5u7+rDka
+ 7DA9ohioZP5SwDn1vdog/ZjsBvjgkl4HDAAJHT/eNepSNySc/6csedVnn
+ RhVZZe7wFFCm441yk3Lj8DaplDERJiF4VHoJ8ZWCi5xB/9O3RhOJyrSt8
+ 52Hbkz8PqftSERcI6Gbxwd3hm68yrynM1sC4GkcYt+wEglM9XzcYXJs1A
+ nq6aQ8poYotZaEzgJ8isHkLgkVYxbMJ6r8qByo8R6az61IMr/MJbNleFf Q==;
+X-CSE-ConnectionGUID: bOsKKi3YRDySQutXhj3DYA==
+X-CSE-MsgGUID: DuW+i8IdTdWRWvAwMhDs0w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="28532136"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="28532136"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 08:48:31 -0700
+X-CSE-ConnectionGUID: vJ5OexJrTGCitk6J2xdAtw==
+X-CSE-MsgGUID: tfV7i3FKRoG2udr4om1Jhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="52137351"
+X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="29447143"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.105])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 08:48:26 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 08:48:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 06/10] drm/i915: pass dev_priv explicitly to
- TRANS_VRR_VTOTAL_PREV
-Date: Wed,  8 May 2024 18:47:52 +0300
-Message-Id: <de2c305ffef3df1112234baeae944b8dc84d0707.1715183162.git.jani.nikula@intel.com>
+Subject: [PATCH 07/10] drm/i915: pass dev_priv explicitly to TRANS_VRR_FLIPLINE
+Date: Wed,  8 May 2024 18:47:53 +0300
+Message-Id: <fd8b6a7c71ba908a55a7b40dc54a1d4cf920056c.1715183162.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1715183162.git.jani.nikula@intel.com>
 References: <cover.1715183162.git.jani.nikula@intel.com>
@@ -71,26 +70,51 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the TRANS_VRR_VTOTAL_PREV register macro.
+explicitly to the TRANS_VRR_FLIPLINE register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 6 ++++--
+ drivers/gpu/drm/i915/i915_reg.h          | 2 +-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 05cbd6e4fc60..e7709b06b92c 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -224,7 +224,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+ 		       crtc_state->vrr.vmax - 1);
+ 	intel_de_write(dev_priv, TRANS_VRR_CTL(dev_priv, cpu_transcoder),
+ 		       trans_vrr_ctl(crtc_state));
+-	intel_de_write(dev_priv, TRANS_VRR_FLIPLINE(cpu_transcoder), crtc_state->vrr.flipline - 1);
++	intel_de_write(dev_priv, TRANS_VRR_FLIPLINE(dev_priv, cpu_transcoder),
++		       crtc_state->vrr.flipline - 1);
+ }
+ 
+ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
+@@ -311,7 +312,8 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 				REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, trans_vrr_ctl);
+ 
+ 	if (trans_vrr_ctl & VRR_CTL_FLIP_LINE_EN) {
+-		crtc_state->vrr.flipline = intel_de_read(dev_priv, TRANS_VRR_FLIPLINE(cpu_transcoder)) + 1;
++		crtc_state->vrr.flipline = intel_de_read(dev_priv,
++							 TRANS_VRR_FLIPLINE(dev_priv, cpu_transcoder)) + 1;
+ 		crtc_state->vrr.vmax = intel_de_read(dev_priv,
+ 						     TRANS_VRR_VMAX(dev_priv, cpu_transcoder)) + 1;
+ 		crtc_state->vrr.vmin = intel_de_read(dev_priv,
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index df43b9eb5374..745ef9a32d88 100644
+index 745ef9a32d88..9f63d68eb9a0 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1291,7 +1291,7 @@
- #define _TRANS_VRR_VTOTAL_PREV_B	0x61480
- #define _TRANS_VRR_VTOTAL_PREV_C	0x62480
- #define _TRANS_VRR_VTOTAL_PREV_D	0x63480
--#define TRANS_VRR_VTOTAL_PREV(trans)	_MMIO_TRANS2(dev_priv, trans, \
-+#define TRANS_VRR_VTOTAL_PREV(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, \
- 					_TRANS_VRR_VTOTAL_PREV_A)
- #define   VRR_VTOTAL_FLIP_BEFR_BNDR	REG_BIT(31)
- #define   VRR_VTOTAL_FLIP_AFTER_BNDR	REG_BIT(30)
+@@ -1302,7 +1302,7 @@
+ #define _TRANS_VRR_FLIPLINE_B		0x61438
+ #define _TRANS_VRR_FLIPLINE_C		0x62438
+ #define _TRANS_VRR_FLIPLINE_D		0x63438
+-#define TRANS_VRR_FLIPLINE(trans)	_MMIO_TRANS2(dev_priv, trans, \
++#define TRANS_VRR_FLIPLINE(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, \
+ 					_TRANS_VRR_FLIPLINE_A)
+ #define   VRR_FLIPLINE_MASK		REG_GENMASK(19, 0)
+ 
 -- 
 2.39.2
 
