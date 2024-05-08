@@ -2,173 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7337B8C05F6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 22:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA96F8C0615
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 23:12:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC5351131EB;
-	Wed,  8 May 2024 20:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2B701129C3;
+	Wed,  8 May 2024 21:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cLD4GxG7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LkpFwnSa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 958BC1131EB;
- Wed,  8 May 2024 20:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715201704; x=1746737704;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=ivwUUdSO9B1rn41c384Jiee+jmfQI5kcz9LbglFCZ08=;
- b=cLD4GxG7zCCXNaSF1jO3rkhr7ShHE6R5ySzkHXMSoGdp/1ttRJjf+nXY
- 2WYuUIyn5GDHO6v32ieoE7HPu593QZ5UjHPwWRJyFFQWhBRdz8mfSSk7V
- jiaA/o9HevUqeIcVrgeLiNnFbwLe5/JIue1XzB1s1kHoPxpY+zQpvyAvF
- TqtHL4RCeWjyNNPukW7UXx/sAQsvzlXLvH0ZrLTmdCZCQZWaBRbhG3hWm
- /xNPuBIL2BAUaklnR+uqQWJYqg80D+oS8J8l7yeiGBT5w35xtBw0r3FKH
- 2g675ZCg6luzvxxHqKcFODmSM6iACWwqJK8XaJpNsnfj195YDL/+xwUU1 Q==;
-X-CSE-ConnectionGUID: 4iNcwBrxSXmwloDk0z0N4Q==
-X-CSE-MsgGUID: WLU3HgcWSeG12gW22WWMCw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10940974"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="10940974"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 13:55:03 -0700
-X-CSE-ConnectionGUID: 7qOCAIePTQqUSxzZM2Cg2Q==
-X-CSE-MsgGUID: HSmuQ2yNSTisaZtuUpzw3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; d="scan'208";a="33847547"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 May 2024 13:55:02 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 13:55:02 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 8 May 2024 13:55:01 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 8 May 2024 13:55:01 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 8 May 2024 13:55:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=inlH5BQcqjF8lRrMsrjDnk5USwwhRLZzKBz4phgeGc88Nf/1lJXI+80ZhwS8ebGRufjK48oJP+O+X+k+Mzn4bLXZEkFxVw1GYB7yeC0rZKFvGGh4gTGhc1TP/6OiHboA7BPNCgOYO+CZIgme8fy2ujGS7QjvGu6o0/f0FsXUM66PdE4estY7OpOPE0jKpkL8bk/u/pyxfeHThBBzreXnRydW0trbo/BamXF43OwsFCshWj+U13k63mNcA+kVf2EfTGV/aGwZPGjLUcpeIR3SkZ/+/pHzkAvamulHU95cfBfOnvusQJYeIJZbv7NXuoc9TP/wQWxeP4llLI0t7vpGFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q1zreyCal3FIy423YuEYAsvgIze9/E61Igwt23+9V8M=;
- b=PAT8qnpvfC+aWTajoqv8FwXNdyL4Vsqbd8gIspi4K6E3AnGUbOga0OTNorwtyF45RE8QZQpPd1auL81LyPOQfcWnbVZe+lgrB+W7WIMIHjM30t6IoFJoFWNVEFHVklsYpn9hCla9NyvtGyzZXjMDeqUaEVhcx/+zRX0nqGlC9FTPjQw5gFa+hvU63r4Af/aT8dNKnxA3AelOiHkPk4ciMYnTDvcGQZXp1+KIc/nM80wGg4HgEh3rj7eK0iBVDm/1oXEtNcCiduo8rkAWcoS+swleiQ/e9/8JFi/6OnAxmGxkDd6oRD+frpMhPzu//p4hI3A/WVBM5Kn2UCtL0qMMbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB4862.namprd11.prod.outlook.com (2603:10b6:a03:2de::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.43; Wed, 8 May
- 2024 20:54:55 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.7544.041; Wed, 8 May 2024
- 20:54:55 +0000
-Date: Wed, 8 May 2024 15:54:53 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: Jani Nikula <jani.nikula@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>, "Oded
- Gabbay" <ogabbay@kernel.org>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Nuke xe's copy of intel_fbdev_fb.h
-Message-ID: <vhkrhplkhep2agw7f7igvdycz4vdtv7skj2imk3jzmaleu77yi@olrsv5d5f75v>
-References: <20240506183331.7720-1-ville.syrjala@linux.intel.com>
- <87msp2knor.fsf@intel.com> <ZjvYFkUbsP_hXOG4@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZjvYFkUbsP_hXOG4@intel.com>
-X-ClientProxiedBy: MW4PR04CA0348.namprd04.prod.outlook.com
- (2603:10b6:303:8a::23) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E705D10F70E;
+ Wed,  8 May 2024 21:12:39 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-1ed41eb3382so1032635ad.0; 
+ Wed, 08 May 2024 14:12:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1715202759; x=1715807559; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pZrJFIbLTxTYrbPISz2hMEePGMl55QlS4SmkJ5sghxc=;
+ b=LkpFwnSar0R81RifQoYT8suCEgUQySymb7FwhX6znUiPuF3FzIRDLpUT78BQj2aODp
+ b8X3FMlqdz6NihPEN9W8CBKHNGtNVGuv7PuXKGqZIe7nlPVJCE+w+145YJlAFIqU18jn
+ pOsoTlEcaA+0DhC49Hb/vCZ8YhuGtsBoI6gd/NLTR5Pw5ybqZLdCDBcjMq1bv5NU9JuH
+ jULlo8FQLXMTHI2gVrQqxs7TQArrF5XB3u/X57hXfo2SznKFF5edQAPC42/kXgP1A1UI
+ UfgucPuW9ib/GO2NYa61mZ4iGHpM0FC6fsqPmip/XMdOt9jBYD4RPBAI0G//HA6CIjUf
+ O6pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1715202759; x=1715807559;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=pZrJFIbLTxTYrbPISz2hMEePGMl55QlS4SmkJ5sghxc=;
+ b=vY9TVLoo8XcIU5O2RiZRCBtw6j9lQe2Rq9DSPC4MpdGcYPSXNAJ7L3o1h3s5MY6k7C
+ TAJMLPNPjeFI99KTHHdgFOHPyrHpEz5StJXyFXAft+ixaRVBcRCzQSg5BdySiV0skuvy
+ zxKsqcv+09pcBJdEVnkXBsUGna+W77SCRDctW3dzaV52xXgnF69ApzsjFKwnV+wz4ZAe
+ X7b3hK0WB80cIibkeB2M4dTGKs3xAE9I0MmAUEn5UbzMZz6akxQbgS63KP0Pen7OEYWf
+ 70ZyTRCM3vjOkZ0pEdtJh640uox2PilwAolMG9cKZe+D7OH/+BXY3fO6mhlKB249oo4a
+ EHJw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWL0aCs9AhXOxia3a0crXz6q1JlxJUKUv6Pqyx2946+NGm5DkHA+Uz89LhBOupBomuoaD2yeJYykdaOkgj94YgSPkqKBZ52s7zsJwyh96DUb1+imi1s/DTetS6/ljFN8Vf/TThT9YgR1pfcNvy011sheXl8bPHTvAXvz4N0DG0bVtORyR8HDWIshXaW1LX269TF87SX8czRJIJhi1XmSWmZvUbV7ea0uIFQvrH+UFojfskvILP5GEFUY3KW6zQcURHEmDJGRWtp50wVTryc3Q==
+X-Gm-Message-State: AOJu0Yxzs+DBEu5JTBWg1Z/tytBU4GtRw0yRS8XjcDpCmuHiZStdOU7A
+ ifzJ91E42oe5MNGW3gK28w6xK/PkOJ1+6/WyO0LOm1HcMPZrOPN+nyxOkAXnXU0/7dtxbRmTz3a
+ smFXbVQi+i+lLl3OUvgV/tAczpesbGaWj
+X-Google-Smtp-Source: AGHT+IHxDh3V7MlhtBOeSZmaUOUREgbpbUX+stT5ktTHA7M8CkQTRfPTcAkO7AsXwTWHGXOdozSH9iqT5gOxtlkl7Mw=
+X-Received: by 2002:a17:902:b110:b0:1e4:b4f5:5cfa with SMTP id
+ d9443c01a7336-1eeb03a05d3mr37380885ad.27.1715202759142; Wed, 08 May 2024
+ 14:12:39 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB4862:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6bdda26-3622-48bc-9e7a-08dc6fa11d1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?axiyI39ikpWR7iu9Y4ReVBkLYCgdECsxqgxjgN4h6pFo1WhoRgYWZOyrrM?=
- =?iso-8859-1?Q?g1kZyEqBEtpsKfjGXfTke4a5TdmoonZOmo4qcvRkFZFbnjANHW0m5YxaQ5?=
- =?iso-8859-1?Q?zAu5dwrlbPnZDx3Xhfo1YY+OV287UwLhDlF24yVFzeu6fSXsURRmnUPBuZ?=
- =?iso-8859-1?Q?+Ph+MEnCZmcfUo5/RVSCgwHQFLWBxYDVpaHw+ztEOgSv1MKAIALGRwxn+m?=
- =?iso-8859-1?Q?DOoznxjKy+oVNZTUpDoESpZJK7U10AbJTB8OI0QAriTYtkrdJLkL/HxH0f?=
- =?iso-8859-1?Q?NKPwXWxHNFLeqIBnQri0+sbY6DsK8jwDjmjb9EVtYdSFF+4IusAc6TXH3+?=
- =?iso-8859-1?Q?fXOAzti3XmRis+r11MixuBRbUZCF/4SQNA0IQPLNbQ+IAR47tmPXu2hC5h?=
- =?iso-8859-1?Q?dfcBvA3oHyRB22MkofpsIBX3wKZG8zRaQKSVj4141kPt+mkvX6ntYYQ+TO?=
- =?iso-8859-1?Q?wqhK+FTkE0WseCaYtgJJF/R3K9tDbnzDdiNlIzqbbpNsd6z3skWqKkZvXD?=
- =?iso-8859-1?Q?Q5ghdCpFxE9i0wq06aWkF8X/MGiNNwqYbSQUlixghs/YrNLSq4kTbO92ps?=
- =?iso-8859-1?Q?/sxki1PM1GrDqMOw2qNpTyLXWhm6PBaNSnR+lcGn/yyz363+GRk9ZAz77x?=
- =?iso-8859-1?Q?cTlNpKgw/HmH7+qMMHDCSTCSrHp3bsYKftbnXKQgwNHwttqWXWC++a0DR4?=
- =?iso-8859-1?Q?cpBnq4knzcORgEHYk53o4CmsMQgf6xR0Dc9BNSMstl0txhsHQPf5ccImKx?=
- =?iso-8859-1?Q?f5q9PS3ftxFOp//B/xLEypwrUSjsTUIiIEENp4ly9A36WFZk5JzvzwJoIk?=
- =?iso-8859-1?Q?xiiArhOHcvfPib6iBMMLwqxv1zbiioiBtAaPvwiYRzTMidy8wjwwGf8Lr5?=
- =?iso-8859-1?Q?GG0DSyJ7596So0iighMODWQXDtPGlwWS/CUjpJ1vqrUe1FU1C0bQf+Ie5x?=
- =?iso-8859-1?Q?QnfC5p9r+Edhee0YQxOhFjbhPi6o/UaDT5eks1XNtSUiQtoSobr0oxZbbo?=
- =?iso-8859-1?Q?1L6902AI0gA3G2a98ZwcpFmECIzW5cLrBJPUQUvj03iOSJytBJdc43Hfra?=
- =?iso-8859-1?Q?YXDGI1hYWUMX12px8uf82bTxi5rwgS72HM7rX2SW+gqUvLimbT1u2ukBml?=
- =?iso-8859-1?Q?1Yr62s01WSVnyK43UJFVTRNpsIzc8fbGtwISd1A0Nn4D3Vkejs24RqBeOm?=
- =?iso-8859-1?Q?vzJj/qOMgwXkRULltLt1Vis8vd7ZJBrFscpnB8CcT4uX/O9YSF4Zhd272N?=
- =?iso-8859-1?Q?aNgAcwPpkNDha9LzPCkrei7w2aikixs+EMZCdTLwiTDhIzYpypkHQmbT81?=
- =?iso-8859-1?Q?MW0rVtM3V3pK2fjqfo5GVhIUcA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?KAyf6PXZj3ZwQ1LGYDHND7sNbNsYWB3rwfK9Ohw+fHEwhDPzsNVf26uKbt?=
- =?iso-8859-1?Q?YTPtphyF2RxZntpq1l31im17+Cg5vRpHFMP5vkXTCYI9/5ZJz3yZihlASk?=
- =?iso-8859-1?Q?nzWIgvm/iXxwBT5RxAbohLt5eNmBS9Ttq8vcHMVDnrnltPhYSroPzkFi2l?=
- =?iso-8859-1?Q?Td+5RG0M7Rvz9Zu+zLmAlVzF9GXGgJhaEFQj3iJNhUyukKDANXUZpXziqf?=
- =?iso-8859-1?Q?yrX7PxktUMcuUaQkp5PjtFsld5ePyNaWH6UVfRBWXhLjNVYohznkKolUC9?=
- =?iso-8859-1?Q?Z6dd3nFu5Fputn0OVLuJ6sDm43cD6qswg5guse/XONWxv4AqtGvrUhuloC?=
- =?iso-8859-1?Q?2DBrVKaQf4guFFGGFRXA+MgCQDISEnWsyRFuMSf5I93C6FRxsKFjgPz5sn?=
- =?iso-8859-1?Q?7PhddLgDZPn4KDHf/W+hqvv+m/DTQuQrYwQ4WUqK+GcU9q56X7ajHGVlU7?=
- =?iso-8859-1?Q?LzzU/U4kGct+qE2jdsjL79mcMIQJQ1X8FTd6FfeFLUbexTs3RJh7oNUWZj?=
- =?iso-8859-1?Q?r/PjGLnJgjzsKnuI9xzOX4vc35k5E+JHS+TMVtuWND0lANgzPpeY2Wb+Ik?=
- =?iso-8859-1?Q?26PKhb591YqXKWNZQ8MszmBfka6mN1qyro9jLBvWsqq6wjAPHQsEbRIPea?=
- =?iso-8859-1?Q?c9pgkM0cItRt44tWdii/yKK0WmdzZN4ZNu3FEoiV8lWxsGgAo+tBSUWBtz?=
- =?iso-8859-1?Q?khfUCoEBzCiyAv2uYFARDOV4pz3d8H9v0nMfTbPjSvUlJIyWgtIwN4QqUY?=
- =?iso-8859-1?Q?7F+n23TUxDNLNUlGHdJmW3BYS6SHBanSPVecsxN1WPxW8vallFPk088nZX?=
- =?iso-8859-1?Q?c1wEoOlyUbmd6wBf+eaYFChsHaoDYOj3LejXNa1xWif8pkzi82Dx1Uw7z4?=
- =?iso-8859-1?Q?MKPWrjG3NkUUvGmaZAqQTQ8Cf1bySTWVc8vGdz6qLArsvqYfnUcw0Nlgpc?=
- =?iso-8859-1?Q?BbOQjzVFn0YJButz0CSh5Y4u0SOjoYRj/BiOJRdJ9PiGk9XWQpNP7ulyRC?=
- =?iso-8859-1?Q?vJvorfkYBgwi+ptRqSXzQHAojDcLwMNZ+XzYI+vyAArExIoPY4BE0gTlEw?=
- =?iso-8859-1?Q?VP2vBXVXzcicZvIl9cus8o1lRpSxE0j+U7FafpNiomGel/b+hiTXSREUx+?=
- =?iso-8859-1?Q?RL31CKwMDGtDtiWj/o16bKY4WzuEg4Wk9FsqEmBcBXtr+qNvAUjt4otkJp?=
- =?iso-8859-1?Q?K9mlIWJcgRICPctjIrRZDBTfdFnYF2q6gSQHqRTwsbN3naa/w4jkpdSDYc?=
- =?iso-8859-1?Q?F4ZVoB2Qh//0TaewCgJLQhK0XucYPX/VsCt2AoSj31BDtIoDzY8XeonCzf?=
- =?iso-8859-1?Q?NTRBfKDdzrGRsncGuQhjlvO6/+kXzkyifYxJqXU3g+PXZAk0LUrLrvvA/q?=
- =?iso-8859-1?Q?I1JMxOpsAl7W1zvZZB3JXaicrQOwfmkFejuXwev2gQfPWFhHr7u0h548BW?=
- =?iso-8859-1?Q?85GHQrMLYiTuM7NLAkVBTXQMutGlr8bhtWR7Rd+fz5FI+CWN7dk6w2N6jG?=
- =?iso-8859-1?Q?Cpt/UMyXQHP/q5sqMJlOdh92yiThU20Vn+kU1yVW3r0xjrWhrC4YVF/Gqk?=
- =?iso-8859-1?Q?2pPvbY7VlckN10a9GD6e6sROWpKX8pDnA+wzb1896MadrbLQ4iRMUjvDEr?=
- =?iso-8859-1?Q?+PobApFsqg8sME7kMK2CKn9x8Z1hKEuUH+EXgAsb8Q4kPwtFOtAPNGfg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6bdda26-3622-48bc-9e7a-08dc6fa11d1b
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2024 20:54:55.0600 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tuJ6WW/tWhmeMPSPakxEmqM0gpO86PPAWRrOJbj0joZWJADd0VHbSr6Q5deBO08MvyAMGF7qkJjtEWAqy3eqNl9Z3V+B9DePdtGT1vwjoDE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4862
-X-OriginatorOrg: intel.com
+References: <20240503181333.2336999-1-eahariha@linux.microsoft.com>
+ <20240503181333.2336999-2-eahariha@linux.microsoft.com>
+ <0a6d4fa9-169f-425b-93d6-04314c617090@linux.microsoft.com>
+ <CADnq5_NpxPM-FTcCchdBMRng=6xdM03s93XEX2_8fx44MRVYag@mail.gmail.com>
+ <2654ad6e-66b7-4698-94da-892cc9d0802c@linux.microsoft.com>
+In-Reply-To: <2654ad6e-66b7-4698-94da-892cc9d0802c@linux.microsoft.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 8 May 2024 17:12:26 -0400
+Message-ID: <CADnq5_PAr6GHEBuStcJ6KVBS+mg64koqJwTDcz+7UcaEy_P_qA@mail.gmail.com>
+Subject: Re: [PATCH v2 01/12] drm/amdgpu, drm/radeon: Make I2C terminology
+ more inclusive
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, 
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>, 
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>, 
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Evan Quan <evan.quan@amd.com>, 
+ Hawking Zhang <Hawking.Zhang@amd.com>, Candice Li <candice.li@amd.com>, 
+ Ran Sun <sunran001@208suo.com>, Alexander Richards <electrodeyt@gmail.com>, 
+ Wolfram Sang <wsa@kernel.org>, Andi Shyti <andi.shyti@linux.intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>, 
+ Ruan Jinjie <ruanjinjie@huawei.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, 
+ Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
+ Alvin Lee <alvin.lee2@amd.com>, 
+ Sohaib Nadeem <sohaib.nadeem@amd.com>, Charlene Liu <charlene.liu@amd.com>, 
+ Tom Chung <chiahsuan.chung@amd.com>, Alan Liu <haoping.liu@amd.com>, 
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, 
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ George Shen <george.shen@amd.com>, 
+ Aric Cyr <aric.cyr@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Qingqing Zhuo <Qingqing.Zhuo@amd.com>, Dillon Varone <dillon.varone@amd.com>, 
+ Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>, 
+ Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
+ Darren Powell <darren.powell@amd.com>, Yang Wang <kevinyang.wang@amd.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>, Le Ma <Le.Ma@amd.com>, 
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,38 +123,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 08, 2024 at 10:52:54PM GMT, Ville Syrjälä wrote:
->On Tue, May 07, 2024 at 11:53:40AM +0300, Jani Nikula wrote:
->> On Mon, 06 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> >
->> > For some reason xe and i915 each have an identical (fortunately)
->> > copy of intel_fbdev_fb.h. The xe copy actually only gets included
->> > by xe's intel_fbdev_fb.c, and the i915 copy by everyone else,
->> > include intel_fbdev.c which is the actual caller of the
->> > functions declared in the header.
->> >
->> > This means the xe and i915 headers are free to define/declare
->> > completely incompatible things and the build would still succeed
->> > as long as the symbol names match.
->> >
->> > That is not a good thing, so let's nuke xe's copy of the header
->> > so that everyone will use the same header, and be forced to
->> > agree on the same API/ABI.
->> >
->> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On Wed, May 8, 2024 at 4:12=E2=80=AFPM Easwar Hariharan
+<eahariha@linux.microsoft.com> wrote:
 >
->Thanks.
+> On 5/8/2024 7:53 AM, Alex Deucher wrote:
+> > On Tue, May 7, 2024 at 2:32=E2=80=AFPM Easwar Hariharan
+> > <eahariha@linux.microsoft.com> wrote:
+> >>
+> >> On 5/3/2024 11:13 AM, Easwar Hariharan wrote:
+> >>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master=
+/slave"
+> >>> with more appropriate terms. Inspired by and following on to Wolfram'=
+s
+> >>> series to fix drivers/i2c/[1], fix the terminology for users of
+> >>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exis=
+ts
+> >>> in the specification.
+> >>>
+> >>> Compile tested, no functionality changes intended
+> >>>
+> >>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sa=
+ng-engineering.com/
+> >>>
+> >>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> >>> ---
+> >>>  .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  8 +++---
+> >>>  drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       | 10 +++----
+> >>>  drivers/gpu/drm/amd/amdgpu/atombios_i2c.c     |  8 +++---
+> >>>  drivers/gpu/drm/amd/amdgpu/atombios_i2c.h     |  2 +-
+> >>>  drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    | 20 ++++++-------
+> >>>  .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 +-
+> >>>  .../drm/amd/display/dc/bios/bios_parser2.c    |  2 +-
+> >>>  .../drm/amd/display/dc/core/dc_link_exports.c |  4 +--
+> >>>  drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+> >>>  drivers/gpu/drm/amd/display/dc/dce/dce_i2c.c  |  4 +--
+> >>>  .../display/include/grph_object_ctrl_defs.h   |  2 +-
+> >>>  drivers/gpu/drm/amd/include/atombios.h        |  2 +-
+> >>>  drivers/gpu/drm/amd/include/atomfirmware.h    | 26 ++++++++---------
+> >>>  .../powerplay/hwmgr/vega20_processpptables.c  |  4 +--
+> >>>  .../amd/pm/powerplay/inc/smu11_driver_if.h    |  2 +-
+> >>>  .../inc/pmfw_if/smu11_driver_if_arcturus.h    |  2 +-
+> >>>  .../inc/pmfw_if/smu11_driver_if_navi10.h      |  2 +-
+> >>>  .../pmfw_if/smu11_driver_if_sienna_cichlid.h  |  2 +-
+> >>>  .../inc/pmfw_if/smu13_driver_if_aldebaran.h   |  2 +-
+> >>>  .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  2 +-
+> >>>  .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  2 +-
+> >>>  .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  4 +--
+> >>>  .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  8 +++---
+> >>>  drivers/gpu/drm/radeon/atombios.h             | 16 +++++------
+> >>>  drivers/gpu/drm/radeon/atombios_i2c.c         |  4 +--
+> >>>  drivers/gpu/drm/radeon/radeon_combios.c       | 28 +++++++++--------=
+--
+> >>>  drivers/gpu/drm/radeon/radeon_i2c.c           | 10 +++----
+> >>>  drivers/gpu/drm/radeon/radeon_mode.h          |  6 ++--
+> >>>  28 files changed, 93 insertions(+), 93 deletions(-)
+> >>>
+> >>
+> >> <snip>
+> >>
+> >> Hello Christian, Daniel, David, others,
+> >>
+> >> Could you re-review v2 since the feedback provided in v0 [1] has now b=
+een addressed? I can send v3 with
+> >> all other feedback and signoffs from the other maintainers incorporate=
+d when I have something for amdgpu
+> >> and radeon.
+> >
+> > This seems like a lot of churn.  Additionally, a bunch of these
+> > headers are shared with other OSes, so it's possible some of the
+> > changes may end up getting reverted accidently when we sync up or we
+> > may add new headers in new code with the old nomenclature and then
+> > we'd need to make sure to adjust it to make sure everything was
+> > aligned again.  I would just as soon leave things as is, but I'm open
+> > to acking them if there is a strong desire to update things.
+> >
+> > Alex
 >
->I was going to push this to drm-xe-next, but I should actually
->push it to drm-intel-next since I'll be massaging this stuff
->there.
+> The way I see it, this is a small downpayment on the debt we have built u=
+p so far. Internship
+> programs like LF Outreachy to get more underrepresented groups involved i=
+n open source are trying to
+> change the open source community culture to be more inclusive, but simult=
+aneously rely on the culture
+> being welcoming enough as well.
 >
->xe maintainers, ack for merging via drm-intel-next?
+> I do see the challenge involved in preserving the changes and ensuring no=
+ new code is added with
+> outdated nomenclature (but see [1]), but culture changes one person at a =
+time, and I'd encourage the community
+> to do the work needed so we can move past our (mostly) inadvertent role i=
+n perpetuating it.
+>
+> That's my 2c (or your sub-unit currency of choice).
 
+Fair enough.
+Acked-by: Aex Deucher <alexander.deucher@amd.com>
 
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
+>
+> Easwar
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
+mmit/?id=3D49decddd39e5f6132ccd7d9fdc3d7c470b0061bb
