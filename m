@@ -2,83 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F518BFE00
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 15:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8188BFF4F
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 15:48:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 781B210FD5D;
-	Wed,  8 May 2024 13:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C2910FB92;
+	Wed,  8 May 2024 13:48:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fvcg0Mxm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OMNMFiKn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E0D110FD4D;
- Wed,  8 May 2024 13:08:24 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-41ba1ba55e8so27760235e9.1; 
- Wed, 08 May 2024 06:08:23 -0700 (PDT)
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
+ [209.85.215.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7ACA10F45F;
+ Wed,  8 May 2024 13:48:02 +0000 (UTC)
+Received: by mail-pg1-f171.google.com with SMTP id
+ 41be03b00d2f7-61aef9901deso3024619a12.1; 
+ Wed, 08 May 2024 06:48:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715173702; x=1715778502; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=892xtprlFxlxrBkop3HK4NPVZZC+3lK4rHDc4lstyNc=;
- b=fvcg0MxmbyyjsF+caO+AkJgq0OU9S+FYzoOnv/OY6W7ZO2UrGq7/1uR3Yemp+gGOxz
- gB9tYVYKWZ0/Mb3wVNDz5aB9Q3nZWubumvr2mcYQdq0Zl/5u9PcNw1AuO5OmoDzKtrMn
- ly5/MvH8VApY0oyxllzXk/4RPRjKqsTW07n16DAk7RGKhWE1NRRNtM98okwVDvKcly9x
- idFi3FJMEJ1Gd+ORu1fnbS05ujyJlwWtEYieMzIRd33bUWU5ZIFNIi4osSYnSEFhfork
- bPXcxkbBTzH/cSzS+nb7vo3Wo7O6QunEkrww97rbZ0RynvxUpTBb87cxLqBGtqy/GVrK
- +N7g==
+ d=gmail.com; s=20230601; t=1715176082; x=1715780882; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=MQDk2xB0WQjUhRNs2EAciXxFONLNnOupCUzKUQ7mDoo=;
+ b=OMNMFiKn90wKGjJoiFp++mTutOk9zyGAFy71RPPxrgGRtsfKCl7DPTGhjiOwp4Ql2L
+ aRkk8gvCA0JXwPvLVTAlD8bduY9cqTRRA5xfdvTO6gnPTWwlq/djbZeXPPwW2D3KSfDR
+ P4GihQffkQgxbg3+WNvqneqVfkRuIXcFDmnNzvud2HO71jdP/V+X1Z5LmySN1eynHgAd
+ IPODrbAbGIAj6SGr1kOlUw+0v6jpskdt0cSFWuj+YzQB4UNLRmbDo/rEkP9UCFoRfP7I
+ x5LJhzs/LSRSzNOIJeXU1AebkGa4nRV6preXC7n7oIhjK9QPJAouSyVMDIxDIFHygP9+
+ yEjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715173702; x=1715778502;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=892xtprlFxlxrBkop3HK4NPVZZC+3lK4rHDc4lstyNc=;
- b=dpFN5YVQGYZcyt2VX3R8edXBwHNVMHB4fXjLCv2Xofg0jQ9szgF5voRCykF5AMHTHn
- +++CQMpij888otFby5Nr1dZYQOH1pXq8jucQV3xFBxcISqecmEDjwf+Mo+eCaL6eIB/b
- MSepTJslaZdrlQG5Z3ezOaNWjxAhENP5TCDILqEaPn1t2te1Wot392BzZYNYTPBSx1zp
- grVGtLymWZqMh6RdISxDdS5stX2yDsAEKoSV7jiCv0qPV1jxRS+Htg/1dUsSh8SmNX4U
- qoLJ/HQG8WIlY2hRnpYvvNv1amUDghstPUvWWqvvV1MD5deZLK4nbpGbuti1k5/y+gZ4
- pv0g==
+ d=1e100.net; s=20230601; t=1715176082; x=1715780882;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=MQDk2xB0WQjUhRNs2EAciXxFONLNnOupCUzKUQ7mDoo=;
+ b=I9cug21yVr25CH7IsHUsfBEyVIOtPeGoin+Lcin3XREKum/CqmyCIm8Q93yZok6G8B
+ +/qgnaG3WGmDeZXaKRlWUhHu5D8Tt7aKzJBdrCdrQdQBnXf+A4smWlGNzkGXaJN8C4xy
+ EXvww6X5udaEU1y0HqvOOpjKfp6cnZ1qNUuzpNvhq99Tg3Z1ci4ysoDWa7ixp7xANTml
+ qOLNlv45bQIpgwY16EjQxCdEDRdnbFX3LTZ+DqcbnwQVP4tf7IBKYa49luczbvoUUelU
+ XUvWW5NzOf4X9bMRx3P3s0GcJs3qYTNnwEXMHpOissov2uIgaz0EG4b2Rug/sNGmBOXv
+ I7jQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVBUePQUsVbZe3MlC4sNhSJx6mzyepNZIVxAXTp9z3/ybGvqE1+y5CoQJ1h98y9PNYuf+hdTs/WkM//RO0fnHwBgL/v4e8jOltKQcQsfWfS
-X-Gm-Message-State: AOJu0YztTT+9WnrcOqNGVdNF1eUWCu0IsCtGLiGWocEEz4dg+uzKaMtY
- buWw3M0y8DE5Z8lc1TDNtoSJx6syQvfAq7hocXeBySaF6gBBX+A+
-X-Google-Smtp-Source: AGHT+IHHA+fbjgfDZnKrn++/3KmCFZ470zke3tBt6rj5CkdL889kzX5xAtsJIOvqnYKqCGaNU+C2Hg==
-X-Received: by 2002:a05:600c:19cd:b0:419:d91e:ba41 with SMTP id
- 5b1f17b1804b1-41f723a0d39mr22470815e9.32.1715173702146; 
- Wed, 08 May 2024 06:08:22 -0700 (PDT)
-Received: from [0.0.0.0] ([134.134.139.86])
- by smtp.googlemail.com with ESMTPSA id
- 5b1f17b1804b1-41f88111028sm23125305e9.33.2024.05.08.06.08.16
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 08 May 2024 06:08:21 -0700 (PDT)
-Message-ID: <f2de8f4e-7e16-4832-92d3-d702b632aed2@gmail.com>
-Date: Wed, 8 May 2024 16:08:16 +0300
+ AJvYcCVtN2/1Wwv5bKzL3aDuPEtaDwnOyMzc/suK3Hwd4GE6DvVTefRYJrMdSQ2zKPmSGqPQ/H2BHh6xg/xhtc8fC5Kx9zVQsZA3ajAdr/T0sZGT5fA4Neh+LPARTe7FmFst8vhaj3Jcgf0lVjcnLHRI0Q==
+X-Gm-Message-State: AOJu0YwYyn8O1kFMkvb7ykgX2RlNVxERKfYxEB8akZMbw10UQEeQMaV2
+ A+KhwMpqAJyxY4NiO9sYD7K0NpiMSLpUu7AHn/gTSyAAP0oe5mWbdHTZg+3LLl/21bXEGEPM/bh
+ qwkKkn18aDcmm6Tvc+kAX6KmQ0Ls=
+X-Google-Smtp-Source: AGHT+IFSVVt9RrcAL5Wi7+chr4r3elmGE8J+LMQf7kBN65pmNJVpe6JBbHG/U5jrxQ6hVgSVO9M4R2yKT+Lkao2KJMQ=
+X-Received: by 2002:a05:6a20:431d:b0:1af:93b0:f006 with SMTP id
+ adf61e73a8af0-1afc8d3d46bmr3194469637.21.1715176082175; Wed, 08 May 2024
+ 06:48:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] Introducing I915_FORMAT_MOD_4_TILED_XE2_CCS
- Modifier for Xe2
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- "Chery, Nanley G" <nanley.g.chery@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
- "Souza, Jose" <jose.souza@intel.com>, "Mathew, Alwin"
- <alwin.mathew@intel.com>, "Zhang, Jianxun" <jianxun.zhang@intel.com>,
- "Syrjala, Ville" <ville.syrjala@linux.intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>
-References: <20240506185238.364539-1-juhapekka.heikkila@gmail.com>
- <20240507225657.GI5615@mdroper-desk1.amr.corp.intel.com>
-Content-Language: en-US
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <20240507225657.GI5615@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240408190611.24914-1-ville.syrjala@linux.intel.com>
+ <20240408190611.24914-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240408190611.24914-2-ville.syrjala@linux.intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 8 May 2024 09:47:50 -0400
+Message-ID: <CADnq5_OF=MM-J6WAqnLYtu-kUWcCXkzCmi499viFptrFnBWGAg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] drm/amdgpu: Use drm_crtc_vblank_crtc()
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,82 +79,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8.5.2024 1.56, Matt Roper wrote:
-> On Mon, May 06, 2024 at 09:52:35PM +0300, Juha-Pekka Heikkila wrote:
->> These patches introduce I915_FORMAT_MOD_4_TILED_XE2_CCS modifier, which,
->> from the kernel's perspective, behaves similarly to `I915_FORMAT_MOD_4_TILED`.
->> This new modifier is primarily intended for user space to effectively monitor
->> compression status, especially when dealing with a mix of compressed and
->> uncompressed buffers.
->>
->> The addition of this modifier facilitates user space in managing compression
->> status, particularly when utilizing both compressed and uncompressed buffers
->> concurrently. To leverage compression for these buffers, user space
->> applications must configure the appropriate Page Attribute Table (PAT) index.
->> Display engine will treat all Tile4 as if it were compressed under all
->> circumstances on Xe2 architecture.
-> 
-> I may have missed some discussion about this, but I thought the previous
-> consensus was that we didn't want/need new modifiers for compression on
-> Xe2?  If a userspace client (or the display hardware) receives a buffer
-> of unknown origin and unknown compression status, it's always fine to
-> select a compressed PAT when binding the buffer to read since even for
-> uncompressed buffers the CCS metadata will accurately reflect the
-> compression status.  Unlike Xe1, where generating content without
-> compression enabled would leave random garbage in the FlatCCS area, Xe2
-> will set the corresponding FlatCCS to '0x0' for each block, indicating
-> uncompressed data.
+On Mon, Apr 8, 2024 at 3:06=E2=80=AFPM Ville Syrjala
+<ville.syrjala@linux.intel.com> wrote:
+>
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Replace the open coded drm_crtc_vblank_crtc() with the real
+> thing.
+>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-UMDs have been wishing solution for situation where they receive shared 
-bo with unknown compressions status. Problem would arise when 
-uncompressed buffer is shared and it's mapped as compressed while 
-process which shared bo still would use it as uncompressed. One who 
-mapped it last will have correct content on surface while other will 
-have have semi-random garbage.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
- From what I understand of the compression specifications, all buffers 
-should indeed be treated as compressed unless they fall into one of the 
-specially listed categories, which are primarily display-related. I 
-can't say if this patch set is what is needed to solve UMD issues, I 
-don't know why wouldn't user space treat buffers as compressed by default.
-
-> 
-> Can you explain more what the benefit of handling these modifiers
-> explicitly is?
-> 
-> 
-> Matt
-> 
->>
->> Notably, this patch series omits support for X-tiled CCS and linear CCS
->> for Xe2, neither of which is supported by display engine. X-tiled CCS
->> offers stateless compression making it less likely to be extensively
->> utilized. Linear CCS does possess state, but currently lacks expected users.
->>
->> These patches aim to enhance the flexibility and efficiency of handling
->> compressed and uncompressed buffers in Xe driver, particularly
->> catering to the specific requirements of the Xe2 architecture.
->>
->> Juha-Pekka Heikkila (3):
->>    drm/fourcc: define Intel Xe2 related tile4 ccs modifier
->>    drm/xe/display: allow creation of case I915_FORMAT_MOD_4_TILED_XE2_CCS
->>      type framebuffer
->>    drm/i915/display: allow creation of case
->>      I915_FORMAT_MOD_4_TILED_XE2_CCS type framebuffer
->>
->>   drivers/gpu/drm/i915/display/intel_display.c       |  1 +
->>   drivers/gpu/drm/i915/display/intel_fb.c            | 10 ++++++++++
->>   drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 +++-
->>   drivers/gpu/drm/xe/display/xe_plane_initial.c      |  1 +
->>   include/uapi/drm/drm_fourcc.h                      | 12 ++++++++++++
->>   5 files changed, 27 insertions(+), 1 deletion(-)
->>
->> -- 
->> 2.43.2
->>
-> 
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c          | 8 ++------
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+>  2 files changed, 3 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/a=
+md/amdgpu/amdgpu_vkms.c
+> index 8baa2e0935cc..258703145161 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+> @@ -65,9 +65,7 @@ static enum hrtimer_restart amdgpu_vkms_vblank_simulate=
+(struct hrtimer *timer)
+>
+>  static int amdgpu_vkms_enable_vblank(struct drm_crtc *crtc)
+>  {
+> -       struct drm_device *dev =3D crtc->dev;
+> -       unsigned int pipe =3D drm_crtc_index(crtc);
+> -       struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
+> +       struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(crtc);
+>         struct amdgpu_vkms_output *out =3D drm_crtc_to_amdgpu_vkms_output=
+(crtc);
+>         struct amdgpu_crtc *amdgpu_crtc =3D to_amdgpu_crtc(crtc);
+>
+> @@ -91,10 +89,8 @@ static bool amdgpu_vkms_get_vblank_timestamp(struct dr=
+m_crtc *crtc,
+>                                              ktime_t *vblank_time,
+>                                              bool in_vblank_irq)
+>  {
+> -       struct drm_device *dev =3D crtc->dev;
+> -       unsigned int pipe =3D crtc->index;
+>         struct amdgpu_vkms_output *output =3D drm_crtc_to_amdgpu_vkms_out=
+put(crtc);
+> -       struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
+> +       struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(crtc);
+>         struct amdgpu_crtc *amdgpu_crtc =3D to_amdgpu_crtc(crtc);
+>
+>         if (!READ_ONCE(vblank->enabled)) {
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 71d2d44681b2..662d2d83473b 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -528,7 +528,7 @@ static void dm_vupdate_high_irq(void *interrupt_param=
+s)
+>         if (acrtc) {
+>                 vrr_active =3D amdgpu_dm_crtc_vrr_active_irq(acrtc);
+>                 drm_dev =3D acrtc->base.dev;
+> -               vblank =3D &drm_dev->vblank[acrtc->base.index];
+> +               vblank =3D drm_crtc_vblank_crtc(&acrtc->base);
+>                 previous_timestamp =3D atomic64_read(&irq_params->previou=
+s_timestamp);
+>                 frame_duration_ns =3D vblank->time - previous_timestamp;
+>
+> --
+> 2.43.2
+>
