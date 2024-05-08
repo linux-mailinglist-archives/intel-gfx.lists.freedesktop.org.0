@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C7CE8BF89A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 10:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F6E8BF95C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2024 11:12:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F57C10F9F6;
-	Wed,  8 May 2024 08:33:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2F1210E1FF;
+	Wed,  8 May 2024 09:12:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VaMI90pQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VoBhli5l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B4510F8EF
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2024 08:33:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4B210E1FF;
+ Wed,  8 May 2024 09:12:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715157230; x=1746693230;
+ t=1715159557; x=1746695557;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=YCsg1u+niEczogssz+PTwGFiNoFiKGD6NSqDv/+3zqM=;
- b=VaMI90pQSxuEG+b5+YgTva9gwYdFbvF5jhmYNO+qjp1NHPErFQISLYRl
- hRH8hlXEunrO3SL6LKIkCSqBm3VvvrFBmVaoo5vvkO2szaTm5aMfqBio1
- 2lIu5DdyoR4aW0rfb7yFn0G+Bz6kETLYxt2o/wxIYuqv06u/lj/cGcQyl
- ppUff46BM7Ph3jnie2v4plI81v87O5rznOFD+jZiqE109W1HYRV2LPJBS
- x5iM8Mc+oVRmhIiNsj190ETopol4kR3d8wQCbX5AgDXaK//pRPIvuLiOm
- NXzzYLLF2Cxbr6iMJtCk/KV7QTcQAg6yMJAGSlYZ3Dte5oBEPmvx9YjQ9 g==;
-X-CSE-ConnectionGUID: N4G6nAsyRLSxKdp3X1t8fQ==
-X-CSE-MsgGUID: 7mW07wQgS5u9bF9LRBW+JQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="22155811"
-X-IronPort-AV: E=Sophos;i="6.08,144,1712646000"; d="scan'208";a="22155811"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 01:33:49 -0700
-X-CSE-ConnectionGUID: 4zQr7uIDSSGGu2cIeWHoQA==
-X-CSE-MsgGUID: tUlY151TTQunbj2t184GZA==
+ message-id:mime-version:content-transfer-encoding;
+ bh=0cdYrcajI4uDWAbcgops0ANjWE4byoMs83LrP4k67WE=;
+ b=VoBhli5lEd7s4T+8ih8I0kngrkTl4dHIxFDbIkaTWweHKgG95A4oGtP1
+ z/pCV+7DeR4yR6VVZI0VbB54ikxVUO33j5ntfft8NJdO4n8ecKcRMmAAy
+ E4U7RbMgChHJj37q4l4AjutYQcAQNW+hmfn2eyS67vgwiPto0SHUj3SWj
+ 9o5m3vDFku74WEDhh8ElfdqMDBnGtVt+/b4nhtNHqiwyJfrOtzhJKbchw
+ v1Y5DbUgkeccqecVpW065zK+oSdi1jqS7PTIliJwzRNWmQn9DsA2q/SbY
+ Ww2stqov/d0L+gYVEMP4cCkgrrkMqBLhMJm3Y9Te28xeD9vNod2nle+gR g==;
+X-CSE-ConnectionGUID: KRpsiRozRy6/ioEq4se9JQ==
+X-CSE-MsgGUID: DGA27Z2HSGWH4UcSNnVSpA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="36386309"
+X-IronPort-AV: E=Sophos;i="6.08,144,1712646000"; d="scan'208";a="36386309"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 02:12:36 -0700
+X-CSE-ConnectionGUID: KRr2VZ/QSGm+Ya4PJ5qCUw==
+X-CSE-MsgGUID: IqhLXdO4SOmMYy+B6tEGsQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,144,1712646000"; d="scan'208";a="52023373"
+X-IronPort-AV: E=Sophos;i="6.08,144,1712646000"; d="scan'208";a="33377853"
 Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
  localhost) ([10.245.246.76])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 01:33:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, lucas.demarchi@intel.com, Bjorn
- Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/5] drm/i915: don't include CML PCI IDs in CFL
-In-Reply-To: <Zjow5HXrXpg2cuOA@intel.com>
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 02:12:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 3/5] drm/i915: Use drm_crtc_vblank_crtc()
+In-Reply-To: <20240408190611.24914-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1715086509.git.jani.nikula@intel.com>
- <bebbdad2decb22f3db29e6bc66746b4a05e1387b.1715086509.git.jani.nikula@intel.com>
- <Zjow5HXrXpg2cuOA@intel.com>
-Date: Wed, 08 May 2024 11:33:43 +0300
-Message-ID: <87cypwln2w.fsf@intel.com>
+References: <20240408190611.24914-1-ville.syrjala@linux.intel.com>
+ <20240408190611.24914-3-ville.syrjala@linux.intel.com>
+Date: Wed, 08 May 2024 12:12:32 +0300
+Message-ID: <877cg4lla7.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,38 +71,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 07 May 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, May 07, 2024 at 03:56:48PM +0300, Jani Nikula wrote:
->> @@ -535,11 +541,7 @@
->>  	INTEL_WHL_U_GT1_IDS(info), \
->>  	INTEL_WHL_U_GT2_IDS(info), \
->>  	INTEL_WHL_U_GT3_IDS(info), \
->> -	INTEL_AML_CFL_GT2_IDS(info), \
->> -	INTEL_CML_GT1_IDS(info), \
->> -	INTEL_CML_GT2_IDS(info), \
->> -	INTEL_CML_U_GT1_IDS(info), \
->> -	INTEL_CML_U_GT2_IDS(info)
->> +	INTEL_AML_CFL_GT2_IDS(info)
+On Mon, 08 Apr 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Why only CML and not AML and WHL as well?
-
-Mainly because we don't have a separate enumeration in enum
-intel_platform for AML or WHL, while for CML we do. We don't even have
-subplatforms for AML or WHL. So we don't need to distinguish them.
-
-That said, we could also have a rule that anything with a name needs to
-have a PCI ID macro. Could lean either way.
-
-BR,
-Jani.
-
+> Replace the open coded drm_crtc_vblank_crtc() with the real
+> thing.
 >
->>  
->>  /* CNL */
->>  #define INTEL_CNL_PORT_F_IDS(info) \
->> -- 
->> 2.39.2
->> 
+> Cc: intel-gfx@lists.freedesktop.org
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
--- 
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c   |  3 +--
+>  drivers/gpu/drm/i915/display/intel_vblank.c | 16 +++++-----------
+>  2 files changed, 6 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
+i915/display/intel_crtc.c
+> index 25593f6aae7d..339010384b86 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -78,8 +78,7 @@ void intel_wait_for_vblank_if_active(struct drm_i915_pr=
+ivate *i915,
+>=20=20
+>  u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
+>  {
+> -	struct drm_device *dev =3D crtc->base.dev;
+> -	struct drm_vblank_crtc *vblank =3D &dev->vblank[drm_crtc_index(&crtc->b=
+ase)];
+> +	struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(&crtc->base);
+>=20=20
+>  	if (!crtc->active)
+>  		return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/dr=
+m/i915/display/intel_vblank.c
+> index baf7354cb6e2..951190bcbc50 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> @@ -132,8 +132,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+>  static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc =
+*crtc)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -	struct drm_vblank_crtc *vblank =3D
+> -		&crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+> +	struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(&crtc->base);
+>  	const struct drm_display_mode *mode =3D &vblank->hwmode;
+>  	u32 htotal =3D mode->crtc_htotal;
+>  	u32 clock =3D mode->crtc_clock;
+> @@ -178,8 +177,7 @@ static u32 intel_crtc_scanlines_since_frame_timestamp=
+(struct intel_crtc *crtc)
+>   */
+>  static u32 __intel_get_crtc_scanline_from_timestamp(struct intel_crtc *c=
+rtc)
+>  {
+> -	struct drm_vblank_crtc *vblank =3D
+> -		&crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+> +	struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(&crtc->base);
+>  	const struct drm_display_mode *mode =3D &vblank->hwmode;
+>  	u32 vblank_start =3D mode->crtc_vblank_start;
+>  	u32 vtotal =3D mode->crtc_vtotal;
+> @@ -200,17 +198,14 @@ static int __intel_get_crtc_scanline(struct intel_c=
+rtc *crtc)
+>  {
+>  	struct drm_device *dev =3D crtc->base.dev;
+>  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> -	const struct drm_display_mode *mode;
+> -	struct drm_vblank_crtc *vblank;
+> +	struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(&crtc->base);
+> +	const struct drm_display_mode *mode =3D &vblank->hwmode;
+>  	enum pipe pipe =3D crtc->pipe;
+>  	int position, vtotal;
+>=20=20
+>  	if (!crtc->active)
+>  		return 0;
+>=20=20
+> -	vblank =3D &crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+> -	mode =3D &vblank->hwmode;
+> -
+>  	if (crtc->mode_flags & I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP)
+>  		return __intel_get_crtc_scanline_from_timestamp(crtc);
+>=20=20
+> @@ -254,8 +249,7 @@ static int __intel_get_crtc_scanline(struct intel_crt=
+c *crtc)
+>=20=20
+>  int intel_crtc_scanline_to_hw(struct intel_crtc *crtc, int scanline)
+>  {
+> -	const struct drm_vblank_crtc *vblank =3D
+> -		&crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+> +	const struct drm_vblank_crtc *vblank =3D drm_crtc_vblank_crtc(&crtc->ba=
+se);
+>  	const struct drm_display_mode *mode =3D &vblank->hwmode;
+>  	int vtotal;
+
+--=20
 Jani Nikula, Intel
