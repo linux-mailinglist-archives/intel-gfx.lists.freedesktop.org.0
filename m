@@ -2,60 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25AFB8C0E94
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 May 2024 12:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E71ED8C0FC1
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 May 2024 14:41:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA0310E06F;
-	Thu,  9 May 2024 10:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF5310E684;
+	Thu,  9 May 2024 12:41:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HWl+6zkX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cmZn6Ymx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9E0510E06F
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 May 2024 10:54:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11AB410E684;
+ Thu,  9 May 2024 12:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715252049; x=1746788049;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FXwmCn6M0xDgDXyU1KS9t2djHTPBbrNHBTTXSczsItI=;
- b=HWl+6zkXVjRIs42evwbIs+Y7aISbww8BVPyITKc0sKzD3pQlQ0BJlwg0
- Ygb+Q3Uf4OX2B4Np8rumpG+J+eituyZxsw21yWcJdxnVTOHOd6/jrvjdY
- yi0OrSeniC68HPN4Dqtri1fBIloHcWg3/Og5Dk7kD6rZPuLMtPPKlmL63
- zujKXNg3+N830UF201Muxw4RcdhHDKFxT70QX5YhbktXY1FaCBZ/C5L3X
- l5QndWW+xwMnzP+rmjuruiJa3P9JBQV5h272fkA+wWQ8Vtx58BOCCSFmz
- oUFZfoRfr9fd+XywxdTPQJiAXZlLkET10aKIKC/OpiKhaS8bJa/B+uHNB Q==;
-X-CSE-ConnectionGUID: jOD4qmYbReKLYs68QwGnJw==
-X-CSE-MsgGUID: da8LjBmdQYGn3VvseEbA3Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="22567938"
-X-IronPort-AV: E=Sophos;i="6.08,147,1712646000"; d="scan'208";a="22567938"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2024 03:54:08 -0700
-X-CSE-ConnectionGUID: KLVdJ+xrSiGL44xDblmyHw==
-X-CSE-MsgGUID: k1yMHfLtRJeMtuNIBWvbaQ==
+ t=1715258487; x=1746794487;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6pbefjLKJhvOdZI1dD1jrgcdxXYoJrlekTBRjWnVafc=;
+ b=cmZn6YmxGmcRymZnb9UIpTMiddSMSNJeSApAu5kXVs42t06fppWFnGNz
+ N0SV+J0xbekOcGUhjtBQIqwkB59JEW968FTfJvD6ymB6UxNOv9aaJaFut
+ ClCsVBiPP+VddS6CogbpMF5mQ7qFWVCxAG7KmyCcXR56uqsCBHYx6EwIQ
+ IS0+rOdSjPEUh14U9LsR7vVAuyA9ilTNhUucGwIkXeprZmogTnn+wzLKa
+ HcCipJ9vRe+9A9HPWlIs1K+eLY9eYDZmnCsJ3w6xVUJ8in3UlIxhhT497
+ xnt6k06gAQ5y/RBEMGB4TTUzQq5gYLTzBTNfuAO51vDnl+lVLOus9flJl g==;
+X-CSE-ConnectionGUID: AAwzWHBkT16LWSBSukaEBg==
+X-CSE-MsgGUID: +aEla2dRRZm7hRvn1U00UA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="21744676"
+X-IronPort-AV: E=Sophos;i="6.08,147,1712646000"; d="scan'208";a="21744676"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2024 05:41:25 -0700
+X-CSE-ConnectionGUID: babgHg71SXep+9+1qTPv8w==
+X-CSE-MsgGUID: LZWrGUFSS/Cs/KMzce+EMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,147,1712646000"; d="scan'208";a="29143467"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 09 May 2024 03:54:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 May 2024 13:54:04 +0300
-Date: Thu, 9 May 2024 13:54:04 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH] drm/i915/pps: Disable DPLS_GATING around pps sequence
-Message-ID: <ZjyrTLGidDq8lu6S@intel.com>
-References: <20240416093730.625486-2-suraj.kandpal@intel.com>
- <20240509032922.1145558-2-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,147,1712646000"; d="scan'208";a="29205111"
+Received: from ahajda-mobl.ger.corp.intel.com (HELO [10.246.4.197])
+ ([10.246.4.197])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2024 05:41:21 -0700
+Message-ID: <b086ed94-f562-48af-97a1-2e472d3c2125@intel.com>
+Date: Thu, 9 May 2024 14:41:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240509032922.1145558-2-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/gt: Disarm breadcrumbs if engines are already
+ idle
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+References: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
+Content-Language: en-US
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,107 +78,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 09, 2024 at 08:59:23AM +0530, Suraj Kandpal wrote:
-> Disable bit 29 of SCLKGATE_DIS register around pps sequence
-> when we turn panel power on.
+On 23.04.2024 18:23, Janusz Krzysztofik wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
 > 
-> --v2
-> -Squash two commit together [Jani]
-> -Use IS_DISPLAY_VER [Jani]
-> -Fix multiline comment [Jani]
+> The breadcrumbs use a GT wakeref for guarding the interrupt, but are
+> disarmed during release of the engine wakeref. This leaves a hole where
+> we may attach a breadcrumb just as the engine is parking (after it has
+> parked its breadcrumbs), execute the irq worker with some signalers still
+> attached, but never be woken again.
 > 
-> --v3
-> -Define register in a more appropriate place [Mitul]
+> That issue manifests itself in CI with IGT runner timeouts while tests
+> are waiting indefinitely for release of all GT wakerefs.
 > 
-> Bspec: 49304
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> <6> [209.151778] i915: Running live_engine_pm_selftests/live_engine_busy_stats
+> <7> [209.231628] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_5
+> <7> [209.231816] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_4
+> <7> [209.231944] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_3
+> <7> [209.232056] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_2
+> <7> [209.232166] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling DC_off
+> <7> [209.232270] i915 0000:00:02.0: [drm:skl_enable_dc6 [i915]] Enabling DC6
+> <7> [209.232368] i915 0000:00:02.0: [drm:gen9_set_dc_state.part.0 [i915]] Setting DC state from 00 to 02
+> <4> [299.356116] [IGT] Inactivity timeout exceeded. Killing the current test with SIGQUIT.
+> ...
+> <6> [299.356526] sysrq: Show State
+> ...
+> <6> [299.373964] task:i915_selftest   state:D stack:11784 pid:5578  tgid:5578  ppid:873    flags:0x00004002
+> <6> [299.373967] Call Trace:
+> <6> [299.373968]  <TASK>
+> <6> [299.373970]  __schedule+0x3bb/0xda0
+> <6> [299.373974]  schedule+0x41/0x110
+> <6> [299.373976]  intel_wakeref_wait_for_idle+0x82/0x100 [i915]
+> <6> [299.374083]  ? __pfx_var_wake_function+0x10/0x10
+> <6> [299.374087]  live_engine_busy_stats+0x9b/0x500 [i915]
+> <6> [299.374173]  __i915_subtests+0xbe/0x240 [i915]
+> <6> [299.374277]  ? __pfx___intel_gt_live_setup+0x10/0x10 [i915]
+> <6> [299.374369]  ? __pfx___intel_gt_live_teardown+0x10/0x10 [i915]
+> <6> [299.374456]  intel_engine_live_selftests+0x1c/0x30 [i915]
+> <6> [299.374547]  __run_selftests+0xbb/0x190 [i915]
+> <6> [299.374635]  i915_live_selftests+0x4b/0x90 [i915]
+> <6> [299.374717]  i915_pci_probe+0x10d/0x210 [i915]
+> 
+> At the end of the interrupt worker, if there are no more engines awake,
+> disarm the breadcrumb and go to sleep.
+> 
+> Fixes: 9d5612ca165a ("drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission")
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/10026
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.12+
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+
+Completely forgot this one.
+
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+
+Regards
+Andrzej
+
+
 > ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 12 ++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h          |  4 ++++
->  2 files changed, 16 insertions(+)
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 15 +++++++--------
+>   1 file changed, 7 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 0ccbf9a85914..d774aeb1673e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -948,6 +948,14 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
->  		intel_de_posting_read(dev_priv, pp_ctrl_reg);
->  	}
->  
-> +	/*
-> +	 * WA: 16023567976
-> +	 * Disable DPLS gating around power sequence.
-> +	 */
-> +	if (IS_DISPLAY_VER(dev_priv, 12, 14))
-
-The issue has supposedly existed since at least BXT.
-It was documented as w/a #1124 there:
-https://patchwork.freedesktop.org/series/70655/
-
-The original w/a called for keeping the clock gating
-disabled between the PP_ON_DELAYS and PP_CONTROL
-writes, which would have been annoying to implement
-so I went with the extra delay instead. But if the new
-approach of just toggle the clock gating around the
-PP_CONTROL write works then that is definitely better.
-
-Sadly I wasn't able to reproduce this issue locally. Gave it
-a decent try on GLK, TGL, and ADL, but no joy. So can't be
-sure this actually works.
-
-I suppose technically it doesn't matter for us since we always use
-the VDD override anyway, but no harm in having the w/a implemented
-anyway in case we ever change that.
-
-> +		intel_de_rmw(dev_priv, SCLKGATE_DIS,
-> +			     0, DPLS_GATING_DISABLE);
-
-IIRC on BXT/GLK we need to poke at some north clock gating register.
-
-And on BXT/GLK, and ICP+ we can have two power sequencers so we
-probably want to poke the bits for both of them.
-
-The other issue is that we are poking at these register from multiple
-places, so we probably need a lock to protect it. I'm think we could
-have just a single chicken_lock or something for these kinds of use
-cases.
-
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index d650beb8ed22f..20b9b04ec1e0b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -263,8 +263,13 @@ static void signal_irq_work(struct irq_work *work)
+>   		i915_request_put(rq);
+>   	}
+>   
+> +	/* Lazy irq enabling after HW submission */
+>   	if (!READ_ONCE(b->irq_armed) && !list_empty(&b->signalers))
+>   		intel_breadcrumbs_arm_irq(b);
 > +
->  	pp |= PANEL_POWER_ON;
->  	if (!IS_IRONLAKE(dev_priv))
->  		pp |= PANEL_POWER_RESET;
-> @@ -958,6 +966,10 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
->  	wait_panel_on(intel_dp);
->  	intel_dp->pps.last_power_on = jiffies;
->  
-> +	if (IS_DISPLAY_VER(dev_priv, 12, 14))
-> +		intel_de_rmw(dev_priv, SCLKGATE_DIS,
-> +			     DPLS_GATING_DISABLE, 0);
-> +
->  	if (IS_IRONLAKE(dev_priv)) {
->  		pp |= PANEL_POWER_RESET; /* restore panel reset bit */
->  		intel_de_write(dev_priv, pp_ctrl_reg, pp);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 5670eee4a498..4cc82360298b 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -5151,6 +5151,10 @@ enum skl_power_gate {
->  
->  #define _MMIO_PLANE_GAMC(plane, i, a, b)  _MMIO(_PIPE(plane, a, b) + (i) * 4)
->  
-> +/* SCLKGATE_DIS */
-> +#define SCLKGATE_DIS			_MMIO(0xc2020)
+> +	/* And confirm that we still want irqs enabled before we yield */
+> +	if (READ_ONCE(b->irq_armed) && !atomic_read(&b->active))
+> +		intel_breadcrumbs_disarm_irq(b);
+>   }
+>   
+>   struct intel_breadcrumbs *
+> @@ -315,13 +320,7 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+>   		return;
+>   
+>   	/* Kick the work once more to drain the signalers, and disarm the irq */
+> -	irq_work_sync(&b->irq_work);
+> -	while (READ_ONCE(b->irq_armed) && !atomic_read(&b->active)) {
+> -		local_irq_disable();
+> -		signal_irq_work(&b->irq_work);
+> -		local_irq_enable();
+> -		cond_resched();
+> -	}
+> +	irq_work_queue(&b->irq_work);
+>   }
+>   
+>   void intel_breadcrumbs_free(struct kref *kref)
+> @@ -404,7 +403,7 @@ static void insert_breadcrumb(struct i915_request *rq)
+>   	 * the request as it may have completed and raised the interrupt as
+>   	 * we were attaching it into the lists.
+>   	 */
+> -	if (!b->irq_armed || __i915_request_is_complete(rq))
+> +	if (!READ_ONCE(b->irq_armed) || __i915_request_is_complete(rq))
+>   		irq_work_queue(&b->irq_work);
+>   }
+>   
 
-We already have that register.
-
-> +#define  DPLS_GATING_DISABLE		REG_BIT(29)
-> +
->  /* Plane CSC Registers */
->  #define _PLANE_CSC_RY_GY_1_A	0x70210
->  #define _PLANE_CSC_RY_GY_2_A	0x70310
-> -- 
-> 2.43.2
-
--- 
-Ville Syrjälä
-Intel
