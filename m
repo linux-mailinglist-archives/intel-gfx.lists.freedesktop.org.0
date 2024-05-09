@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEA68C0B2B
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 May 2024 07:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C5F8C0AEF
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 May 2024 07:27:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D887C10E290;
-	Thu,  9 May 2024 05:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5995210E0C5;
+	Thu,  9 May 2024 05:27:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTBfUHFl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ha2ISRUI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D84CC10E2F4;
- Thu,  9 May 2024 05:48:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B19510E0C5;
+ Thu,  9 May 2024 05:26:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715233688; x=1746769688;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0kiCswv9uYYvHnA++SyybTdOdMPnZip/EerZbx3D6SA=;
- b=BTBfUHFlsDon2SX9UcPK7Jw2dtnSQie2OAY+tNQi6TD9eXTBZ3KDD6mw
- 4UZAif93P+R5Okb0HJcUvbywA2bFvcD8h8Aj+nfFsxKYB6Zv8H5/Ei+st
- HDJMnLJbPOCZpdW7UL0FZR2nF3wTXXuwj/r0t1xkmeus2D7GUSDDxfURs
- U7H3uluDP5W4Uo9TiJkrcMgQkbQNjapIUOOiBhwz8JBB0/JezWtCujrlk
- YCS6qWa0eJlGV3JsYHUl3eDZOT+kPGn/IY9OO3kAUCKjWfF1VgZcH5VTp
- L85yif5N6/CcGVRxVTZojZLryri6zQIq1UVkRp76PEtLld8s9lJHeXpXo A==;
-X-CSE-ConnectionGUID: pxChH77ZRGW9Sruy+N0Dig==
-X-CSE-MsgGUID: laLs/4IRTuuvMYUlQJiujA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="28645997"
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="28645997"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2024 22:48:07 -0700
-X-CSE-ConnectionGUID: zq5+6Y/TTwGEyCoUteG44w==
-X-CSE-MsgGUID: VoX/xFSpT3+dLufqW1nOtw==
+ t=1715232419; x=1746768419;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=G/am8F1JWmlyxXWzHgntCdgpGeXleO2MUKmXkQW6buA=;
+ b=Ha2ISRUIKO9ezO7zIlYkpk4BLzRRNNlwN2VfOofLXe0IllpCeQt5kqAS
+ FG6Zp5Ir3cry7sAGjZa/RlsEG9IwCD1a97YQXbNYMLQqrr5MdmwYQDuKL
+ wJYMxufp180gI3VNZpoOna19B11T3E5OJOp6l170bJED+MlCFVQjHnUGC
+ gZNhhvqwZ4H7V0t3czqxPQK8DyGG8YuZlbDYrXUFT4vbobOhNGbmK8Apd
+ lBWC7w1SgqQSIzTnk0E4h1UXZxEFK6DG1lMCM9EdTCpnF2DrT/8cEkTkd
+ 9A5LPumxIbygbdBX94QxqiBlpfywmjf7sfOUj5EDm8/MVKkcxxroi8l7u g==;
+X-CSE-ConnectionGUID: i1Ye3YXhQGivnbPpBmLL1g==
+X-CSE-MsgGUID: YLruQ16FQWmyeQyHIVJueA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10981628"
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="10981628"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2024 22:26:59 -0700
+X-CSE-ConnectionGUID: mh2dz4wzSV2LwIYLfaQ6Tg==
+X-CSE-MsgGUID: pB0tG9UQS5ehCs975xuetA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="33817648"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa003.jf.intel.com with ESMTP; 08 May 2024 22:48:05 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, jani.nikula@intel.com,
- jouni.hogander@intel.com, arun.r.murthy@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 6/6] drm/i915/alpm: Add debugfs for LOBF
-Date: Thu,  9 May 2024 11:01:55 +0530
-Message-Id: <20240509053155.327071-7-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20240509053155.327071-1-animesh.manna@intel.com>
-References: <20240509053155.327071-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; d="scan'208";a="33686106"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by fmviesa004.fm.intel.com with ESMTP; 08 May 2024 22:26:56 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, jani.nikula@linux.intel.com,
+ matthew.d.roper@intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: [v4] drm/i915: Implement Audio WA_14020863754
+Date: Thu,  9 May 2024 11:05:08 +0530
+Message-ID: <20240509053508.2807834-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,113 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For validation purpose add debugfs for LOBF.
+WA_14020863754: Corner case with Min Hblank Fix can cause
+audio hang
 
-v1: Initial version.
-v2: Add aux-wake/less info along with lobf status. [Jouni]
+Issue: Previously a fix was made to avoid issues with extremely
+small hblanks, called the "Min Hblank Fix". However, this can
+potentially cause an audio hang.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Workaround :
+During "Audio Programming Sequence" Audio Enabling -
+When DP mode is enabled Set mmio offset 0x65F1C bit 18 = 1b,
+before step #1 "Enable audio Presence Detect"
+
+During "Audio Programming Sequence" Audio Disabling -
+When DP mode is enabled Clear mmio offset 0x65F1C bit 18 = 0b,
+after step #6 "Disable Audio PD (Presence Detect)"
+If not clearing PD bit, must also not clear 0x65F1C bit 18 (leave = 1b)
+
+v2: Update the platform checks (Jani Nikula)
+
+v3: Limited the WA to LNL and BMG, added a helper (Matt Roper)
+
+v4: Updated the bit naming, fixed redundant if statement
+
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 49 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h     |  2 +
- .../drm/i915/display/intel_display_debugfs.c  |  2 +
- 3 files changed, 53 insertions(+)
+ drivers/gpu/drm/i915/display/intel_audio.c      | 15 +++++++++++++++
+ drivers/gpu/drm/i915/display/intel_audio_regs.h |  3 +++
+ 2 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index c8eddc910cc5..b5b4c212de88 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -354,3 +354,52 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index ed81e1466c4b..adde87900557 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -183,6 +183,15 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
+ 	{ 192000, TMDS_445_5M, 20480, 371250 },
+ };
+ 
++/*
++ * WA_14020863754: Implement Audio Workaround
++ * Corner case with Min Hblank Fix can cause audio hang
++ */
++static bool needs_wa_14020863754(struct drm_i915_private *i915)
++{
++	return (DISPLAY_VER(i915) == 20 || IS_BATTLEMAGE(i915));
++}
++
+ /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
+ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
  {
- 	lnl_alpm_configure(intel_dp, crtc_state);
+@@ -415,6 +424,9 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+ 		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
+ 
++	if (needs_wa_14020863754(i915))
++		intel_de_rmw(i915, AUD_CHICKENBIT_REG3, DACBE_DISABLE_MIN_HBLANK_FIX, 0);
++
+ 	mutex_unlock(&i915->display.audio.mutex);
  }
-+
-+static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
-+{
-+	struct intel_connector *connector = m->private;
-+	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-+	struct drm_crtc *crtc;
-+	struct intel_crtc_state *crtc_state;
-+	enum transcoder cpu_transcoder;
-+	u32 alpm_ctl;
-+	int ret;
-+
-+	ret = drm_modeset_lock_single_interruptible(&dev_priv->drm.mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+
-+	crtc = connector->base.state->crtc;
-+	if (connector->base.status != connector_status_connected || !crtc) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
-+	crtc_state = to_intel_crtc_state(crtc->state);
-+	cpu_transcoder = crtc_state->cpu_transcoder;
-+	alpm_ctl = intel_de_read(dev_priv, ALPM_CTL(dev_priv, cpu_transcoder));
-+	seq_printf(m, "LOBF status: %s\n", str_enabled_disabled(alpm_ctl & ALPM_CTL_LOBF_ENABLE));
-+	seq_printf(m, "Aux-wake alpm status: %s\n",
-+		   str_enabled_disabled(!(alpm_ctl & ALPM_CTL_ALPM_AUX_LESS_ENABLE)));
-+	seq_printf(m, "Aux-less alpm status: %s\n",
-+		   str_enabled_disabled(alpm_ctl & ALPM_CTL_ALPM_AUX_LESS_ENABLE));
-+out:
-+	drm_modeset_unlock(&dev_priv->drm.mode_config.connection_mutex);
-+
-+	return ret;
-+}
-+
-+DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
-+
-+void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
-+{
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct dentry *root = connector->base.debugfs_entry;
-+
-+	if (DISPLAY_VER(i915) < 20 ||
-+	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
-+		return;
-+
-+	debugfs_create_file("i915_edp_lobf_info", 0444, root,
-+			    connector, &i915_edp_lobf_info_fops);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index c0c085c1e5b0..8e1e0bbd44a3 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -11,6 +11,7 @@
- struct intel_dp;
- struct intel_crtc_state;
- struct drm_connector_state;
-+struct intel_connector;
  
- enum alpm_mode intel_alpm_get_capability(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
-@@ -20,4 +21,5 @@ void intel_alpm_compute_lobf_config(struct intel_dp *intel_dp,
- 				    struct drm_connector_state *conn_state);
- void intel_alpm_configure(struct intel_dp *intel_dp,
- 			  const struct intel_crtc_state *crtc_state);
-+void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 35f9f86ef70f..86d9900c40af 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -13,6 +13,7 @@
- #include "i915_debugfs.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
-+#include "intel_alpm.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_crtc_state_dump.h"
-@@ -1515,6 +1516,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
- 	intel_drrs_connector_debugfs_add(connector);
- 	intel_pps_connector_debugfs_add(connector);
- 	intel_psr_connector_debugfs_add(connector);
-+	intel_alpm_lobf_debugfs_add(connector);
+@@ -540,6 +552,9 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
+ 		enable_audio_dsc_wa(encoder, crtc_state);
  
- 	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
- 	    connector_type == DRM_MODE_CONNECTOR_HDMIA ||
++	if (needs_wa_14020863754(i915))
++		intel_de_rmw(i915, AUD_CHICKENBIT_REG3, 0, DACBE_DISABLE_MIN_HBLANK_FIX);
++
+ 	/* Enable audio presence detect */
+ 	intel_de_rmw(i915, HSW_AUD_PIN_ELD_CP_VLD,
+ 		     0, AUDIO_OUTPUT_ENABLE(cpu_transcoder));
+diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+index 88ea2740365d..4c31844d21df 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
+@@ -164,4 +164,7 @@
+ 							 _VLV_AUD_PORT_EN_D_DBG)
+ #define VLV_AMP_MUTE		        (1 << 1)
+ 
++#define AUD_CHICKENBIT_REG3		_MMIO(0x65F1C)
++#define  DACBE_DISABLE_MIN_HBLANK_FIX	REG_BIT(18)
++
+ #endif /* __INTEL_AUDIO_REGS_H__ */
 -- 
-2.29.0
+2.42.0
 
