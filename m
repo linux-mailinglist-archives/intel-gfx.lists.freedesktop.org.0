@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B878C0C9D
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 May 2024 10:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F19FC8C0C9E
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 May 2024 10:32:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE5F10E2BE;
-	Thu,  9 May 2024 08:32:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EAD910E32A;
+	Thu,  9 May 2024 08:32:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCE710E2FA;
- Thu,  9 May 2024 08:31:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2BE10E32A;
+ Thu,  9 May 2024 08:32:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Implement_CMRR_Suppo?=
- =?utf-8?q?rt_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Implement_CMRR_Support_?=
+ =?utf-8?q?=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 09 May 2024 08:31:59 -0000
-Message-ID: <171524351912.2037450.12137731001047978665@8e613ede5ea5>
+Date: Thu, 09 May 2024 08:32:02 -0000
+Message-ID: <171524352218.2037450.2936890367032519341@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240509075833.1858363-1-mitulkumar.ajitkumar.golani@intel.com>
 In-Reply-To: <20240509075833.1858363-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -49,38 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-92bb97f71e5a drm/i915: Define and compute Transcoder CMRR registers
--:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
-#45: FILE: drivers/gpu/drm/i915/display/intel_display.c:5061:
-+#define PIPE_CONF_CHECK_LLI(name) do { \
-+	if (current_config->name != pipe_config->name) { \
-+		pipe_config_mismatch(&p, fastset, crtc, __stringify(name), \
-+				     "(expected %lli, found %lli)", \
-+				     current_config->name, \
-+				     pipe_config->name); \
-+		ret = false; \
-+	} \
-+} while (0)
-
--:45: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'name' may be better as '(name)' to avoid precedence issues
-#45: FILE: drivers/gpu/drm/i915/display/intel_display.c:5061:
-+#define PIPE_CONF_CHECK_LLI(name) do { \
-+	if (current_config->name != pipe_config->name) { \
-+		pipe_config_mismatch(&p, fastset, crtc, __stringify(name), \
-+				     "(expected %lli, found %lli)", \
-+				     current_config->name, \
-+				     pipe_config->name); \
-+		ret = false; \
-+	} \
-+} while (0)
-
-total: 0 errors, 0 warnings, 2 checks, 119 lines checked
-510f4b1dbdb6 drm/i915: Add Enable/Disable for CMRR based on VRR state
-b46ecb3a76b0 drm/i915: Compute CMRR and calculate vtotal
-0c2dda3d0bda Add refresh rate divider to struct representing AS SDP
-d290c6cbc14d drm/i915/display: Add support for pack and unpack
-e1f1d198d476 drm/i915/display: Compute Adaptive sync SDP params
-3c0f9940bc19 drm/i915/display: Compute vrr vsync params
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
