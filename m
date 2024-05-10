@@ -2,68 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DDF8C281F
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 17:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 622378C2837
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 17:52:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E45A10EDCC;
-	Fri, 10 May 2024 15:45:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HlfQ1CQz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35B4E892F6;
+	Fri, 10 May 2024 15:52:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB2E10E7E2;
- Fri, 10 May 2024 15:45:49 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-2b3646494a8so1760764a91.2; 
- Fri, 10 May 2024 08:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715355949; x=1715960749; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=eCyaxRcT2+wbZVhzZ1BB+Dli+tMLqeMid3YFa7QuT48=;
- b=HlfQ1CQzInpT1uaCJ9ZTwCTSO0mcS50Ej2uRS/4Z7MzDkq8+C8J0aSqtRh6rkjMX+G
- 9iAh92sFos1TcnnHAzOeCJ+lFsbmozaSBK7OBjtmzRgb+cJHH9dccD9XUbNboKldp20B
- ghxaEnpLucJY3OlkqzS+xLu+UIUkTECjqN3qRC2eyfzB6VA61EdF7wdfgZu1aJC63Kfv
- EJKYd/lTcnfU/pANckgb9U+u/aQtu8MgAsAtB0O5LX7lW+HVYgO5asMj3hKLN8UzArJg
- uA6yQsr5XxhK9TzFLfpD1GncN7oXHdA2CbPsya5z3civnDYoEuLn5bLPLDkdZBoksnzd
- 4X+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715355949; x=1715960749;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=eCyaxRcT2+wbZVhzZ1BB+Dli+tMLqeMid3YFa7QuT48=;
- b=qYWmCgznZsluWppKwDbicKj8E5SUHoA01a/rchZkW0W2Uuyg7qAABVAsx3jjbnqqYE
- JK3htMU2PFP0cxPO/UxBh+o8JfhpoFwq1mrFTLYOsP2Ivs5ZBZ06DL+SDE5wQvkcYJp8
- 5cgFn9WN/Di+JF0UJCj0uqmjpaQiV9RH1KDjP2yxt3pt16cbmbJWnMW0YUm7mu1Q13ry
- hGAIU1v4GLtSsXUMkVdjraVV7qOGYHnuzH4lUog+fZZcqVahphoj78vRhRmhxSTeXUrD
- z9K8DzUdg6cRmf+ObTX170z6zGMEA2E3RMDpmxFXHUdVEjKa43hnB/EDJMXj9vwPWvNF
- 5DhQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWwOsTv+kpVX/vdvna5wp06Qu4jWi8d4/7KQ2Txk9A9uce3hpvJR549SKLqy7Nop93zyalFbI+5shARtEUQ///6E+SbSKd/9wOalUqziDitX/xPKmYN1pTlmvy0OfKGM8vI+9OHDxlrszy5c7ReduOS73RERxcUigMqeBgDquN70AQY2UGY7eW/jTAucUU=
-X-Gm-Message-State: AOJu0YzLxiuGkgZwHx7OCviCFbWlz4Hx1QvcCCeRj1PYhScgAxf7KJ/0
- lHU4S5E7p+mqYizqw+J1K7A6syL73wwuY3EzhY/C5s1l9FCVHqpxvJ9DMSbknpNVk/+AqHnZHSf
- OfIPWIiQR9PDpu6wSLrQTYBcdf8TcLQ==
-X-Google-Smtp-Source: AGHT+IETRwCKCw5m2fwIY96WLnlfk+Xo7r6OSlnsL1Thi1F8xij/i5eRt60qHpLaH05c4+ESTk8DDeRm9Swp55raUW4=
-X-Received: by 2002:a17:90a:1f04:b0:2af:8fa4:40e with SMTP id
- 98e67ed59e1d1-2b6cc340faemr2850546a91.1.1715355948584; Fri, 10 May 2024
- 08:45:48 -0700 (PDT)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 723E610EE51;
+ Fri, 10 May 2024 15:52:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm=2C_nouveau/radeon/am?=
+ =?utf-8?q?dpgu=3A_edid=5Fblob=5Fptr_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 May 2024 15:52:28 -0000
+Message-ID: <171535634846.2056703.571708601010156593@8e613ede5ea5>
+X-Patchwork-Hint: ignore
 References: <cover.1715353572.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1715353572.git.jani.nikula@intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 10 May 2024 11:45:36 -0400
-Message-ID: <CADnq5_OMOuz_T-OUZ4jVELEAL1FfFdqoFukKdvZA0eSoPQExLg@mail.gmail.com>
-Subject: Re: [RESEND 0/6] drm, nouveau/radeon/amdpgu: edid_blob_ptr cleanups
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,53 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 10, 2024 at 11:17=E2=80=AFAM Jani Nikula <jani.nikula@intel.com=
-> wrote:
->
-> I've sent this some moths ago, let's try again...
->
-> BR,
-> Jani.
->
-> Jani Nikula (6):
->   drm/nouveau: convert to using is_hdmi and has_audio from display info
->   drm/radeon: convert to using is_hdmi and has_audio from display info
->   drm/radeon: remove radeon_connector_edid() and stop using
->     edid_blob_ptr
->   drm/amdgpu: remove amdgpu_connector_edid() and stop using
->     edid_blob_ptr
->   drm/edid: add a helper for EDID sysfs property show
->   drm/connector: update edid_blob_ptr documentation
+== Series Details ==
 
-Series is:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Series: drm, nouveau/radeon/amdpgu: edid_blob_ptr cleanups
+URL   : https://patchwork.freedesktop.org/series/133455/
+State : warning
 
->
->  .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 16 ---------
->  .../gpu/drm/amd/amdgpu/amdgpu_connectors.h    |  1 -
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  4 +--
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  4 +--
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  4 +--
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  4 +--
->  drivers/gpu/drm/drm_crtc_internal.h           |  2 ++
->  drivers/gpu/drm/drm_edid.c                    | 33 +++++++++++++++++++
->  drivers/gpu/drm/drm_sysfs.c                   | 24 ++------------
->  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  8 ++---
->  drivers/gpu/drm/nouveau/dispnv50/head.c       |  8 +----
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  2 +-
->  drivers/gpu/drm/radeon/atombios_encoders.c    | 10 +++---
->  drivers/gpu/drm/radeon/evergreen_hdmi.c       |  5 ++-
->  drivers/gpu/drm/radeon/radeon_audio.c         | 13 ++++----
->  drivers/gpu/drm/radeon/radeon_connectors.c    | 27 ++++-----------
->  drivers/gpu/drm/radeon/radeon_display.c       |  2 +-
->  drivers/gpu/drm/radeon/radeon_encoders.c      |  4 +--
->  drivers/gpu/drm/radeon/radeon_mode.h          |  2 --
->  include/drm/drm_connector.h                   |  6 +++-
->  20 files changed, 79 insertions(+), 100 deletions(-)
->
-> --
-> 2.39.2
->
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
+
