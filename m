@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CB98C2009
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 10:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F13DE8C2031
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 11:05:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1C610E067;
-	Fri, 10 May 2024 08:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5470B10E28F;
+	Fri, 10 May 2024 09:05:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iEmGiHvF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CjATO8R6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFBB10E067
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 08:48:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0B9D10E28F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 09:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715330921; x=1746866921;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RKHMfKIZzZvaZKba7aYZYQHxaEL/TJb3GV0A1o2ocZQ=;
- b=iEmGiHvFY+ZebL8Cp8EKDUakSTFQgti5WEwKgv6YAG0y36oIM+lPRWEw
- lWJOH5mbJF2mf1QYCHhTPkZlqlcHnsI6DqINVHj06Gdb4bfT7+IG9mHzo
- o8KFVTCsogUAjdSEVce/sOsW2N0yLi3+VOI91W1tk3RE3+K/WTeN8oBQX
- YOOIo1MLsm5k6ydG2+cAy4Iqki+WdEXEd0cCf5wU6PCP51zbO4JI8892H
- iqco7YcanctJsMv+EVGXfKVLIrSVF9PmoV3vAzggOaQPY04CmQ5T4kOWI
- ZKNGn9eMF+LXvbQVHjw55IJM2MNGSzxroKiME9QNyOGFQIZ5w3jK5k/Bp Q==;
-X-CSE-ConnectionGUID: aQYcwIccTF6PagQ9moleuA==
-X-CSE-MsgGUID: 9KoKZCN5Tyi6amDFGSSbOQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="28785676"
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="28785676"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 01:48:41 -0700
-X-CSE-ConnectionGUID: ZtrPAPfmRk+wPUVwFNJaLQ==
-X-CSE-MsgGUID: tR5kgHfrRDWJgga0+eeOHw==
+ t=1715331914; x=1746867914;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6OfXqDaFhUVWn3dEePdncQImh80hFJhuGhhiQeBg/eo=;
+ b=CjATO8R61Mg5bXwdvg1eozGxhFvrFnOKZTr6AcFjBKIPcDeHLihPEhvr
+ 0Z707Mirl/uKTeP5aiO/++8HrfGJkRcqsEFK2zKc9SyQo2CRMXdPqSYYm
+ gLzGw1375DzNo/Yfhid6ymsOSPBQZxTgTclAYnWm+m+2DjKTdJHP87A6U
+ Bf14CAop495rmjaNlEDlMIQ3CKhZZ8WMUN4+m1U0CubIhuIS47Az0ySLe
+ BocMoCi0/aX6UVIgq+UvkD4C56V4AdHCDwuIj4JQqP7Uvvb9tiaV6MaSh
+ Pz3GU5kAiS1tra8Ap6t4WkrFbnPEuIAqvgGDVW7TNbWSJONj0RRoL0OIC A==;
+X-CSE-ConnectionGUID: hrrXafM+TlesaLeCiapQZQ==
+X-CSE-MsgGUID: r+37Gfx/REqQbrcUXMjb8w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11433174"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="11433174"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:05:14 -0700
+X-CSE-ConnectionGUID: W8VZb/jbQneWUSnLWWZ5iw==
+X-CSE-MsgGUID: RklqWl36QU+mqroi5tDoxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="29566403"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.180])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 01:48:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 04/10] drm/i915: pass dev_priv explicitly to
- TRANS_VRR_VMAXSHIFT
-In-Reply-To: <Zj19NlUA2bm0bTdW@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1715183162.git.jani.nikula@intel.com>
- <6117aa8936a8e91c58a7a0bada21f266c79a0e5f.1715183162.git.jani.nikula@intel.com>
- <Zj19NlUA2bm0bTdW@intel.com>
-Date: Fri, 10 May 2024 11:48:36 +0300
-Message-ID: <875xvmjbmj.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34414330"
+Received: from hrmarapi-mobl1.ger.corp.intel.com (HELO
+ hazy.ger.corp.intel.com) ([10.252.35.104])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:05:12 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	gustavo.sousa@intel.com
+Subject: [PATCH] Documentation/i915: remove kernel-doc for DMC wakelocks
+Date: Fri, 10 May 2024 12:05:02 +0300
+Message-Id: <20240510090502.667556-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,48 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 09 May 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, May 08, 2024 at 06:47:50PM +0300, Jani Nikula wrote:
->> Avoid the implicit dev_priv local variable use, and pass dev_priv
->> explicitly to the TRANS_VRR_VMAXSHIFT register macro.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_reg.h | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index 775c878ca72f..9739ef525e13 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -1261,7 +1261,7 @@
->>  #define _TRANS_VRR_VMAXSHIFT_B		0x61428
->>  #define _TRANS_VRR_VMAXSHIFT_C		0x62428
->>  #define _TRANS_VRR_VMAXSHIFT_D		0x63428
->> -#define TRANS_VRR_VMAXSHIFT(trans)	_MMIO_TRANS2(dev_priv, trans, \
->> +#define TRANS_VRR_VMAXSHIFT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, \
->
-> unused? should we remove?
-> or one of those with wip around that is going to get used soon?
-> if so,
+The function descriptions are optional and have not yet been added to
+the DMC wakelock code, so we shouldn't try to use it.  Since this is a
+regression, remove the kernel-doc entry for DMC wakelocks for now.
+The proper documentation will be added in a future patch.
 
-VRR is new-ish, so I decided to keep these even though I don't know for
-sure that they will be used soon.
+Fixes: 765425f598c2 ("drm/i915/display: add support for DMC wakelocks")
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
+ Documentation/gpu/i915.rst | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Thanks for the review, series pushed to din.
-
-BR,
-Jani.
-
->
->>  					_TRANS_VRR_VMAXSHIFT_A)
->>  #define   VRR_VMAXSHIFT_DEC_MASK	REG_GENMASK(29, 16)
->>  #define   VRR_VMAXSHIFT_DEC		REG_BIT(16)
->> -- 
->> 2.39.2
->> 
-
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index 17261ba18313..3113e36f14cf 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -210,9 +210,6 @@ DMC wakelock support
+ .. kernel-doc:: drivers/gpu/drm/i915/display/intel_dmc_wl.c
+    :doc: DMC wakelock support
+ 
+-.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dmc_wl.c
+-   :internal:
+-
+ Video BIOS Table (VBT)
+ ----------------------
+ 
 -- 
-Jani Nikula, Intel
+2.39.2
+
