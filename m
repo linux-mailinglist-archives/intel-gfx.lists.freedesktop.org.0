@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B569C8C1F0A
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 09:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 437A98C1F68
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 10:05:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4359E10E62F;
-	Fri, 10 May 2024 07:36:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEAB10E57E;
+	Fri, 10 May 2024 08:05:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4A7210E158;
- Fri, 10 May 2024 07:36:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C64310E57E;
+ Fri, 10 May 2024 08:05:34 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2090211653422720036=="
+ boundary="===============4533627713845125635=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EIGT=3A_failure_for_Implement_CMRR_Support_=28r?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EIGT=3A_success_for_Implement_CMRR_Support_=28r?=
  =?utf-8?q?ev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 May 2024 07:36:28 -0000
-Message-ID: <171532658872.2056295.3550295431037750434@8e613ede5ea5>
+Date: Fri, 10 May 2024 08:05:34 -0000
+Message-ID: <171532833462.2056296.2500076462351942239@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240509075833.1858363-1-mitulkumar.ajitkumar.golani@intel.com>
 In-Reply-To: <20240509075833.1858363-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -41,7 +41,7 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2090211653422720036==
+--===============4533627713845125635==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -50,7 +50,7 @@ Content-Transfer-Encoding: 7bit
 
 Series: Implement CMRR Support (rev8)
 URL   : https://patchwork.freedesktop.org/series/126443/
-State : failure
+State : success
 
 == Summary ==
 
@@ -60,10 +60,10 @@ CI Bug Log - changes from CI_DRM_14737_full -> Patchwork_126443v8_full
 Summary
 -------
 
-  **FAILURE**
+  **WARNING**
 
-  Serious unknown changes coming with Patchwork_126443v8_full absolutely need to be
-  verified manually.
+  Minor unknown changes coming with Patchwork_126443v8_full need to be verified
+  manually.
   
   If you think the reported changes have nothing to do with the changes
   introduced in Patchwork_126443v8_full, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them
@@ -81,45 +81,45 @@ Possible new issues
 
   Here are the unknown changes that may have been introduced in Patchwork_126443v8_full:
 
-### CI changes ###
-
-#### Possible regressions ####
-
-  * boot:
-    - shard-glk:          ([PASS][1], [PASS][2], [PASS][3], [PASS][4], [PASS][5], [PASS][6], [PASS][7]) -> ([PASS][8], [PASS][9], [PASS][10], [PASS][11], [PASS][12], [PASS][13], [PASS][14], [FAIL][15], [PASS][16])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk8/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk7/boot.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk6/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk5/boot.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk3/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk2/boot.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk1/boot.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk3/boot.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk5/boot.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk6/boot.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk7/boot.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk8/boot.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk8/boot.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk3/boot.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk2/boot.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk1/boot.html
-
-  
-
 ### IGT changes ###
 
 #### Warnings ####
 
   * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu:
-    - shard-snb:          [SKIP][17] -> [ABORT][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-snb5/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-snb5/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu.html
+    - shard-snb:          [SKIP][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-snb5/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-snb5/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu.html
 
   
 Known issues
 ------------
 
   Here are the changes found in Patchwork_126443v8_full that come from known issues:
+
+### CI changes ###
+
+#### Issues hit ####
+
+  * boot:
+    - shard-glk:          ([PASS][3], [PASS][4], [PASS][5], [PASS][6], [PASS][7], [PASS][8], [PASS][9]) -> ([PASS][10], [PASS][11], [PASS][12], [PASS][13], [PASS][14], [PASS][15], [PASS][16], [FAIL][17], [PASS][18]) ([i915#11073])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk8/boot.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk7/boot.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk6/boot.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk5/boot.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk3/boot.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk2/boot.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14737/shard-glk1/boot.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk3/boot.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk5/boot.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk6/boot.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk7/boot.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk8/boot.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk8/boot.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk3/boot.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk2/boot.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk1/boot.html
+
+  
 
 ### IGT changes ###
 
@@ -1249,6 +1249,7 @@ Known issues
   [i915#10656]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10656
   [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
   [i915#11072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11072
+  [i915#11073]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11073
   [i915#1257]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1257
   [i915#1339]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1339
   [i915#1825]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1825
@@ -1404,7 +1405,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/index.html
 
---===============2090211653422720036==
+--===============4533627713845125635==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -1427,7 +1428,7 @@ Content-Transfer-Encoding: quoted-printable
 <tr><td><b>Series:</b></td><td>Implement CMRR Support (rev8)</td></tr>
 <tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
 ries/126443/">https://patchwork.freedesktop.org/series/126443/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
 tree/drm-tip/Patchwork_126443v8/index.html">https://intel-gfx-ci.01.org/tre=
@@ -1439,10 +1440,10 @@ e/drm-tip/Patchwork_126443v8/index.html</a></td></tr>
     <h1>CI Bug Log - changes from CI_DRM_14737_full -&gt; Patchwork_126443v=
 8_full</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_126443v8_full absolutely n=
-eed to be<br />
-  verified manually.</p>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with Patchwork_126443v8_full need to be ver=
+ified<br />
+  manually.</p>
 <p>If you think the reported changes have nothing to do with the changes<br=
  />
   introduced in Patchwork_126443v8_full, please notify your bug team (&#x27=
@@ -1454,8 +1455,24 @@ I.</p>
 <h2>Possible new issues</h2>
 <p>Here are the unknown changes that may have been introduced in Patchwork_=
 126443v8_full:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu:<u=
+l>
+<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_14737/shard-snb5/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-s=
+hrfb-draw-mmap-cpu.html">SKIP</a> -&gt; <a href=3D"https://intel-gfx-ci.01.=
+org/tree/drm-tip/Patchwork_126443v8/shard-snb5/igt@kms_frontbuffer_tracking=
+@psr-1p-offscren-pri-shrfb-draw-mmap-cpu.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_126443v8_full that come from kno=
+wn issues:</p>
 <h3>CI changes</h3>
-<h4>Possible regressions</h4>
+<h4>Issues hit</h4>
 <ul>
 <li>boot:<ul>
 <li>shard-glk:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
@@ -1479,26 +1496,12 @@ ip/Patchwork_126443v8/shard-glk8/boot.html">PASS</a>, <a href=3D"https://in=
 tel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443v8/shard-glk3/boot.html">PAS=
 S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_126443=
 v8/shard-glk2/boot.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/Patchwork_126443v8/shard-glk1/boot.html">PASS</a>)</li>
+ree/drm-tip/Patchwork_126443v8/shard-glk1/boot.html">PASS</a>) (<a href=3D"=
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11073">i915#11073</=
+a>)</li>
 </ul>
 </li>
 </ul>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-cpu:<u=
-l>
-<li>shard-snb:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_14737/shard-snb5/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-s=
-hrfb-draw-mmap-cpu.html">SKIP</a> -&gt; <a href=3D"https://intel-gfx-ci.01.=
-org/tree/drm-tip/Patchwork_126443v8/shard-snb5/igt@kms_frontbuffer_tracking=
-@psr-1p-offscren-pri-shrfb-draw-mmap-cpu.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_126443v8_full that come from kno=
-wn issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
@@ -4106,4 +4109,4 @@ edesktop.org/piglit</p>
 </body>
 </html>
 
---===============2090211653422720036==--
+--===============4533627713845125635==--
