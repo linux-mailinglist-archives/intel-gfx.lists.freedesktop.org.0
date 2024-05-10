@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 333138C27A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 17:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF888C27A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 17:24:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8BC10EDBF;
-	Fri, 10 May 2024 15:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25D3610EDC3;
+	Fri, 10 May 2024 15:24:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0ydhHOX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NlZDfNPg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31EE410EDBD
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 15:24:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA64B10EDC0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 15:24:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715354648; x=1746890648;
+ t=1715354651; x=1746890651;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=UWiTi3cK0HPEcZZMizhbqx24vfD3G6ebSrt4WWzt108=;
- b=T0ydhHOXBn4v2Q8F/dLbhnVh/kyprMOXdKdymVdSHDTtMGk/QKxL0Yj2
- cRZwz6BWY0/seAZCYjz6TxKn1+Jh6niRuNZ7j/NsYnoj8g1RhAZCun0xV
- bW64aoRJhKlG6aOl0Yd5knPMumxRKhOF6tpwoYbsn+/14ZW1RE+0Du0y1
- rv6rPv1iv3k1/byFPQfbeUFqDzpbVo+KUwbGelx/k0nEk7Iijz2W1YvUM
- nzIEZ1LuHt0XconrJLbpqDdz3VirwBD8ths5qlb5NOtehtnhngxsKoG/i
- 6LEaOm1kTVU++jQl46+u5Z1m2d2k5IQm1gEXuz2RXyhhVL2v2FPzTy927 A==;
-X-CSE-ConnectionGUID: OYeX28EMTu6no2MGrHFwwg==
-X-CSE-MsgGUID: P09N3H6ARJWPqhT+fiB9lw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11468871"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="11468871"
+ bh=BrsPbmC73JMWlT9l9s1eGFeG8FOM/BfbaHduopAOCV0=;
+ b=NlZDfNPgS+THIkvYzG5rE+yO7+haS42rFYsRN9qaRb1vzVZWo2gm+fXv
+ 4Zr3PSJCpxX9iI/MRsXe90zYsMXl8qrhIJLaDEiWlzwQw02+I8vDvojNe
+ eVWoc1/VoLUpOWEbLC6yY/yfFb/maM+teQX9nPmfrUW/Q/3s/igFvzzls
+ sT1vcLsvRN0fHY5GmFMwwGOoEYXox4fvzjDI43WzQTrc3E6oI2UjsQ+m5
+ 6Vn7uG902vvoQ1bvpiSBoRk2Fb/Ltr02kkpaEZ1RpmQuTq6vfIZkS7aLH
+ ugdLuxi4he6VdQhofTXtutdGCXeLCoQFrl0CzqMe0CkVBv0h90KsbC4VD g==;
+X-CSE-ConnectionGUID: /zBP94P/SZK+UTOHR7irsg==
+X-CSE-MsgGUID: qFZUS6tYR/i7LQVJfHC13Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11468872"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="11468872"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 08:24:08 -0700
-X-CSE-ConnectionGUID: /sTzBxEpRuqKsqZ74C417g==
-X-CSE-MsgGUID: FaR7DeNxT4eNZ3kyWPNAkw==
+ 10 May 2024 08:24:10 -0700
+X-CSE-ConnectionGUID: CJk/DBZ3RxqYg/FAqkqNOQ==
+X-CSE-MsgGUID: ObQttF5AR426hLWGV/i8WA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="29595012"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="29595027"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 May 2024 08:24:06 -0700
+ by fmviesa008.fm.intel.com with SMTP; 10 May 2024 08:24:09 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 10 May 2024 18:24:05 +0300
+ Fri, 10 May 2024 18:24:08 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 11/16] drm/i915: Use REG_BIT for PLANE_WM bits
-Date: Fri, 10 May 2024 18:23:24 +0300
-Message-ID: <20240510152329.24098-12-ville.syrjala@linux.intel.com>
+Subject: [PATCH 12/16] drm/i915: Drop a few unwanted tabs from skl+ plane reg
+ defines
+Date: Fri, 10 May 2024 18:23:25 +0300
+Message-ID: <20240510152329.24098-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
 References: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
@@ -70,29 +71,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-A couple of PLANE_WM bits were still using the hand
-rolled (1<<N) form. Replace with REG_BIT().
+A few extra tabs have snuck into the skl+ plane register bit
+definitions. Remove them.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane_regs.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane_regs.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-index 0ad14727e334..8ef9bd50d021 100644
+index 8ef9bd50d021..18dbe717ea21 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-@@ -300,8 +300,8 @@
- 	_MMIO_PLANE(plane, _PLANE_CSC_POSTOFF_HI_1(pipe) + (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + (index) * 4)
+@@ -199,17 +199,17 @@
  
- #define _PLANE_WM_1_A_0				0x70240
--#define   PLANE_WM_EN				(1 << 31)
--#define   PLANE_WM_IGNORE_LINES			(1 << 30)
-+#define   PLANE_WM_EN				REG_BIT(31)
-+#define   PLANE_WM_IGNORE_LINES			REG_BIT(30)
- #define   PLANE_WM_LINES_MASK			REG_GENMASK(26, 14)
- #define   PLANE_WM_BLOCKS_MASK			REG_GENMASK(11, 0)
- #define _PLANE_WM_1_B_0				0x71240
+ #define _PLANE_CUS_CTL_1_A			0x701c8
+ #define   PLANE_CUS_ENABLE			REG_BIT(31)
+-#define   PLANE_CUS_Y_PLANE_MASK			REG_BIT(30)
++#define   PLANE_CUS_Y_PLANE_MASK		REG_BIT(30)
+ #define   PLANE_CUS_Y_PLANE_4_RKL		REG_FIELD_PREP(PLANE_CUS_Y_PLANE_MASK, 0)
+ #define   PLANE_CUS_Y_PLANE_5_RKL		REG_FIELD_PREP(PLANE_CUS_Y_PLANE_MASK, 1)
+ #define   PLANE_CUS_Y_PLANE_6_ICL		REG_FIELD_PREP(PLANE_CUS_Y_PLANE_MASK, 0)
+ #define   PLANE_CUS_Y_PLANE_7_ICL		REG_FIELD_PREP(PLANE_CUS_Y_PLANE_MASK, 1)
+-#define   PLANE_CUS_HPHASE_SIGN_NEGATIVE		REG_BIT(19)
++#define   PLANE_CUS_HPHASE_SIGN_NEGATIVE	REG_BIT(19)
+ #define   PLANE_CUS_HPHASE_MASK			REG_GENMASK(17, 16)
+ #define   PLANE_CUS_HPHASE_0			REG_FIELD_PREP(PLANE_CUS_HPHASE_MASK, 0)
+ #define   PLANE_CUS_HPHASE_0_25			REG_FIELD_PREP(PLANE_CUS_HPHASE_MASK, 1)
+ #define   PLANE_CUS_HPHASE_0_5			REG_FIELD_PREP(PLANE_CUS_HPHASE_MASK, 2)
+-#define   PLANE_CUS_VPHASE_SIGN_NEGATIVE		REG_BIT(15)
++#define   PLANE_CUS_VPHASE_SIGN_NEGATIVE	REG_BIT(15)
+ #define   PLANE_CUS_VPHASE_MASK			REG_GENMASK(13, 12)
+ #define   PLANE_CUS_VPHASE_0			REG_FIELD_PREP(PLANE_CUS_VPHASE_MASK, 0)
+ #define   PLANE_CUS_VPHASE_0_25			REG_FIELD_PREP(PLANE_CUS_VPHASE_MASK, 1)
 -- 
 2.43.2
 
