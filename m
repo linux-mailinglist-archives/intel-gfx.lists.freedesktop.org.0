@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501D28C2563
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 15:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA39B8C2575
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 15:15:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A705A10E1AD;
-	Fri, 10 May 2024 13:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64DE810E749;
+	Fri, 10 May 2024 13:15:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8141910E1AD;
- Fri, 10 May 2024 13:09:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B3410E749;
+ Fri, 10 May 2024 13:15:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3620556793375584223=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/pciids=3A_P?=
- =?utf-8?q?CI_ID_macro_cleanups?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/pciids=3A_PCI_ID_m?=
+ =?utf-8?q?acro_cleanups?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 May 2024 13:09:02 -0000
-Message-ID: <171534654252.2056703.15287261869853263195@8e613ede5ea5>
+Date: Fri, 10 May 2024 13:15:00 -0000
+Message-ID: <171534690019.2056703.5391694129466546821@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <cover.1715340032.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1715340032.git.jani.nikula@intel.com>
@@ -41,183 +41,361 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3620556793375584223==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/i915/pciids: PCI ID macro cleanups
 URL   : https://patchwork.freedesktop.org/series/133444/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-74c4a4b08b9b drm/i915/pciids: add INTEL_PNV_IDS(), use acronym
--:72: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#72: FILE: include/drm/i915_pciids.h:117:
-+#define INTEL_PNV_IDS(info) \
-+	INTEL_PNV_G_IDS(info), \
-+	INTEL_PNV_M_IDS(info)
+CI Bug Log - changes from CI_DRM_14747 -> Patchwork_133444v1
+====================================================
 
--:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#72: FILE: include/drm/i915_pciids.h:117:
-+#define INTEL_PNV_IDS(info) \
-+	INTEL_PNV_G_IDS(info), \
-+	INTEL_PNV_M_IDS(info)
+Summary
+-------
 
-total: 1 errors, 0 warnings, 1 checks, 46 lines checked
-ec59b5b635f2 drm/i915/pciids: add INTEL_ILK_IDS(), use acronym
--:73: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#73: FILE: include/drm/i915_pciids.h:127:
-+#define INTEL_ILK_IDS(info) \
-+	INTEL_ILK_D_IDS(info), \
-+	INTEL_ILK_M_IDS(info)
+  **SUCCESS**
 
--:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#73: FILE: include/drm/i915_pciids.h:127:
-+#define INTEL_ILK_IDS(info) \
-+	INTEL_ILK_D_IDS(info), \
-+	INTEL_ILK_M_IDS(info)
+  No regressions found.
 
-total: 1 errors, 0 warnings, 1 checks, 47 lines checked
-36178b28f831 drm/i915/pciids: add INTEL_SNB_IDS()
--:48: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#48: FILE: include/drm/i915_pciids.h:154:
-+#define INTEL_SNB_IDS(info) \
-+	INTEL_SNB_D_IDS(info), \
-+	INTEL_SNB_M_IDS(info)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/index.html
 
--:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#48: FILE: include/drm/i915_pciids.h:154:
-+#define INTEL_SNB_IDS(info) \
-+	INTEL_SNB_D_IDS(info), \
-+	INTEL_SNB_M_IDS(info)
+Participating hosts (42 -> 42)
+------------------------------
 
-total: 1 errors, 0 warnings, 1 checks, 28 lines checked
-05d3be80584d drm/i915/pciids: add INTEL_IVB_IDS()
--:48: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#48: FILE: include/drm/i915_pciids.h:180:
-+#define INTEL_IVB_IDS(info) \
-+	INTEL_IVB_M_IDS(info), \
-+	INTEL_IVB_D_IDS(info)
+  Additional (2): fi-glk-j4005 bat-mtlp-8 
+  Missing    (2): fi-snb-2520m bat-arls-3 
 
--:48: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#48: FILE: include/drm/i915_pciids.h:180:
-+#define INTEL_IVB_IDS(info) \
-+	INTEL_IVB_M_IDS(info), \
-+	INTEL_IVB_D_IDS(info)
+Known issues
+------------
 
-total: 1 errors, 0 warnings, 1 checks, 28 lines checked
-b960793f2bf0 drm/i915/pciids: don't include WHL/CML PCI IDs in CFL
--:56: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#56: FILE: include/drm/i915_pciids.h:491:
-+#define INTEL_CML_IDS(info) \
-+	INTEL_CML_GT1_IDS(info), \
-+	INTEL_CML_GT2_IDS(info), \
-+	INTEL_CML_U_GT1_IDS(info), \
-+	INTEL_CML_U_GT2_IDS(info)
+  Here are the changes found in Patchwork_133444v1 that come from known issues:
 
--:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#56: FILE: include/drm/i915_pciids.h:491:
-+#define INTEL_CML_IDS(info) \
-+	INTEL_CML_GT1_IDS(info), \
-+	INTEL_CML_GT2_IDS(info), \
-+	INTEL_CML_U_GT1_IDS(info), \
-+	INTEL_CML_U_GT2_IDS(info)
+### IGT changes ###
 
--:69: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#69: FILE: include/drm/i915_pciids.h:536:
-+#define INTEL_CFL_IDS(info)	   \
-+	INTEL_CFL_S_GT1_IDS(info), \
-+	INTEL_CFL_S_GT2_IDS(info), \
-+	INTEL_CFL_H_GT1_IDS(info), \
-+	INTEL_CFL_H_GT2_IDS(info), \
-+	INTEL_CFL_U_GT2_IDS(info), \
-+	INTEL_CFL_U_GT3_IDS(info), \
-+	INTEL_AML_CFL_GT2_IDS(info)
+#### Issues hit ####
 
--:69: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#69: FILE: include/drm/i915_pciids.h:536:
-+#define INTEL_CFL_IDS(info)	   \
-+	INTEL_CFL_S_GT1_IDS(info), \
-+	INTEL_CFL_S_GT2_IDS(info), \
-+	INTEL_CFL_H_GT1_IDS(info), \
-+	INTEL_CFL_H_GT2_IDS(info), \
-+	INTEL_CFL_U_GT2_IDS(info), \
-+	INTEL_CFL_U_GT3_IDS(info), \
-+	INTEL_AML_CFL_GT2_IDS(info)
+  * igt@debugfs_test@basic-hwmon:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][1] ([i915#9318])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html
 
--:92: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#92: FILE: include/drm/i915_pciids.h:559:
-+#define INTEL_WHL_IDS(info) \
- 	INTEL_WHL_U_GT1_IDS(info), \
- 	INTEL_WHL_U_GT2_IDS(info), \
-+	INTEL_WHL_U_GT3_IDS(info)
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
 
--:92: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#92: FILE: include/drm/i915_pciids.h:559:
-+#define INTEL_WHL_IDS(info) \
- 	INTEL_WHL_U_GT1_IDS(info), \
- 	INTEL_WHL_U_GT2_IDS(info), \
-+	INTEL_WHL_U_GT3_IDS(info)
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_lmem_swapping@parallel-random-engines.html
+    - fi-glk-j4005:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/fi-glk-j4005/igt@gem_lmem_swapping@parallel-random-engines.html
 
-total: 3 errors, 0 warnings, 3 checks, 66 lines checked
-765c60a9fc28 drm/i915/pciids: remove 11 from INTEL_ICL_IDS()
--:61: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#61: FILE: include/drm/i915_pciids.h:600:
-+#define INTEL_ICL_IDS(info) \
- 	INTEL_ICL_PORT_F_IDS(info), \
- 	INTEL_VGA_DEVICE(0x8A51, info), \
- 	INTEL_VGA_DEVICE(0x8A5D, info)
+  * igt@gem_mmap@basic:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][5] ([i915#4083])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_mmap@basic.html
 
--:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#61: FILE: include/drm/i915_pciids.h:600:
-+#define INTEL_ICL_IDS(info) \
- 	INTEL_ICL_PORT_F_IDS(info), \
- 	INTEL_VGA_DEVICE(0x8A51, info), \
- 	INTEL_VGA_DEVICE(0x8A5D, info)
+  * igt@gem_render_tiled_blits@basic:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][6] ([i915#4079]) +1 other test skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html
 
-total: 1 errors, 0 warnings, 1 checks, 32 lines checked
-e9739817685c drm/i915/pciids: remove 12 from INTEL_TGL_IDS()
--:74: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#74: FILE: include/drm/i915_pciids.h:623:
-+#define INTEL_TGL_GT1_IDS(info) \
- 	INTEL_VGA_DEVICE(0x9A60, info), \
- 	INTEL_VGA_DEVICE(0x9A68, info), \
- 	INTEL_VGA_DEVICE(0x9A70, info)
+  * igt@gem_tiled_fence_blits@basic:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][7] ([i915#4077]) +2 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_tiled_fence_blits@basic.html
 
--:74: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#74: FILE: include/drm/i915_pciids.h:623:
-+#define INTEL_TGL_GT1_IDS(info) \
- 	INTEL_VGA_DEVICE(0x9A60, info), \
- 	INTEL_VGA_DEVICE(0x9A68, info), \
- 	INTEL_VGA_DEVICE(0x9A70, info)
+  * igt@i915_pm_rps@basic-api:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][8] ([i915#6621])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@i915_pm_rps@basic-api.html
 
--:80: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#80: FILE: include/drm/i915_pciids.h:628:
-+#define INTEL_TGL_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x9A40, info), \
- 	INTEL_VGA_DEVICE(0x9A49, info), \
- 	INTEL_VGA_DEVICE(0x9A59, info), \
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-adlp-6:         [PASS][9] -> [INCOMPLETE][10] ([i915#10886])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14747/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html
 
--:80: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#80: FILE: include/drm/i915_pciids.h:628:
-+#define INTEL_TGL_GT2_IDS(info) \
- 	INTEL_VGA_DEVICE(0x9A40, info), \
- 	INTEL_VGA_DEVICE(0x9A49, info), \
- 	INTEL_VGA_DEVICE(0x9A59, info), \
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][11] ([i915#5190])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
 
--:91: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#91: FILE: include/drm/i915_pciids.h:638:
-+#define INTEL_TGL_IDS(info) \
-+	INTEL_TGL_GT1_IDS(info), \
-+	INTEL_TGL_GT2_IDS(info)
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][12] ([i915#4212]) +8 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html
 
--:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
-#91: FILE: include/drm/i915_pciids.h:638:
-+#define INTEL_TGL_IDS(info) \
-+	INTEL_TGL_GT1_IDS(info), \
-+	INTEL_TGL_GT2_IDS(info)
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][13] ([i915#4213]) +1 other test skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
 
-total: 3 errors, 0 warnings, 3 checks, 58 lines checked
-18218e6b0d87 drm/i915/pciids: don't include RPL-U PCI IDs in RPL-P
+  * igt@kms_dsc@dsc-basic:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][14] ([i915#3555] / [i915#3840] / [i915#9159])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][15]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][16] ([i915#5274])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt@edp-1:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][17] ([i915#4077] / [i915#9688])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][18] +10 other tests skip
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/fi-glk-j4005/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][19] ([i915#3555] / [i915#8809])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][20] ([i915#3708]) +1 other test skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-gtt:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][21] ([i915#3708] / [i915#4077]) +1 other test skip
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@prime_vgem@basic-gtt.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-mtlp-8:         NOTRUN -> [SKIP][22] ([i915#10216] / [i915#3708])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-mtlp-9}:       [CRASH][23] ([i915#10911]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14747/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
+  [i915#10886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10886
+  [i915#10911]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10911
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
+  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
+  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
+  [i915#4212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212
+  [i915#4213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#5190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190
+  [i915#5274]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274
+  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
+  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
+  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
+  [i915#9159]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9159
+  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_14747 -> Patchwork_133444v1
+
+  CI-20190529: 20190529
+  CI_DRM_14747: b885b00e7fc01fc109887d59ce2d1283714b07c6 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133444v1: b885b00e7fc01fc109887d59ce2d1283714b07c6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/index.html
+
+--===============3620556793375584223==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pciids: PCI ID macro cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133444/">https://patchwork.freedesktop.org/series/133444/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14747 -&gt; Patchwork_133444v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 42)</h2>
+<p>Additional (2): fi-glk-j4005 bat-mtlp-8 <br />
+  Missing    (2): fi-snb-2520m bat-arls-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133444v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318">i915#9318</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/fi-glk-j4005/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@gem_tiled_fence_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621">i915#6621</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14747/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10886">i915#10886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212">i915#4212</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213">i915#4213</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9159">i915#9159</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274">i915#5274</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-mmap-gtt@edp-1:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/fi-glk-j4005/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809">i915#8809</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-gtt:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@prime_vgem@basic-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-mtlp-8:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-8/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216">i915#10216</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14747/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10911">i915#10911</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133444v1/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14747 -&gt; Patchwork_133444v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14747: b885b00e7fc01fc109887d59ce2d1283714b07c6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133444v1: b885b00e7fc01fc109887d59ce2d1283714b07c6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3620556793375584223==--
