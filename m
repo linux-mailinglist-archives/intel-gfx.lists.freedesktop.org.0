@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08018C2798
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 17:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C49B8C279A
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 17:24:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4750D10EDB9;
-	Fri, 10 May 2024 15:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3E010EDB8;
+	Fri, 10 May 2024 15:24:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ps/IJAGv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UY31UnN0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7049010EDB8
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 15:23:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF1BB10EDB8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 15:23:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715354636; x=1746890636;
+ t=1715354640; x=1746890640;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Uq84jbQu1unEZg36n/MJhYbK8PSAKbEfQbZKvGLTIjU=;
- b=Ps/IJAGvaUsF3i6vXTcIQpPY4wiY7AhniqZRBV9TEDafQ7k7wXK6AJNm
- 58Y9mqH1hWbHnbrkhiY0jJBYoJlLawc7GRlx0md1fi7odZYROGLMhLpza
- LLVOjlO9pvtKxaoyP0lNgF4pcx7Qg0Ac3nrDq6U+y+bq85s3HxUytq7HM
- rT89yntNzC9pubq6yaqGBU6QcWF2Qa5OD3LFYSFG2vYyp/pHK8XWdy4RL
- LQop6rtoXJCsfUXzAzNJgr5d7/PiphugVsOdVHHrHEaLSAbEXnxMGbpBX
- xSdjqu5DNl8xFAYAnkPYVGw1NGn2Kfg4UKJOzuLxD01vGPGDqQS2QOqAm w==;
-X-CSE-ConnectionGUID: I74oLnXyT5i+1XoOnpfLZA==
-X-CSE-MsgGUID: 9sNk8V8ES82tJDmw+gMpCA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11468865"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="11468865"
+ bh=tuP3ZSBDkE3BNYzslDMJkMQnXZ0xkAmXiw3P1YWVLEw=;
+ b=UY31UnN0rg+6v6yuRfBMV3AFldCZtRotoLiSWysxibj6usqV7ALOsmo0
+ xIjQGTekxxuqwXywb9gI5KjTuqUDG4PGZRVx8i7c+7a8MdTuEoTxggIyy
+ kTA6NE87HkTZVaeq+2Ao2uGfjSS7TLDTH//vFZAZTTpKoOJf6WK6muIrq
+ w/Es6WwyVuRLbTf1r0jg/3skXi0fpijHiJVubtfh2UnOleWBMtixbFTo1
+ C5pD+oiX9YepqLcPtt183Lj+BmcrLmU5xrR+knZ2TfKi6n0SRElMyXFwz
+ R0KFv5hmnRxECobc01mBZWVn2//4HcvlTahKO9SQVrjKWggC6WXSkxenW w==;
+X-CSE-ConnectionGUID: bC9bog+8RJmvGVgzx5yNaA==
+X-CSE-MsgGUID: /Bo/OrEMTwKDxjXkjwjUXw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11468867"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="11468867"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 08:23:56 -0700
-X-CSE-ConnectionGUID: TXGOBVi3S22LlmTQnFLvYQ==
-X-CSE-MsgGUID: IVhrVdViStW526OvRw6hwA==
+ 10 May 2024 08:23:59 -0700
+X-CSE-ConnectionGUID: CY9+HvcLTYiY1GPh4wAZXA==
+X-CSE-MsgGUID: yyxhpaE7SSGNrN/UA48IgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="29594960"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; d="scan'208";a="29594973"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 May 2024 08:23:54 -0700
+ by fmviesa008.fm.intel.com with SMTP; 10 May 2024 08:23:57 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 10 May 2024 18:23:53 +0300
+ Fri, 10 May 2024 18:23:56 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>
-Subject: [PATCH 07/16] drm/i915/gvt: Use the full PLANE_KEY*() defines
-Date: Fri, 10 May 2024 18:23:20 +0300
-Message-ID: <20240510152329.24098-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/16] drm/i915/gvt: Use PLANE_CTL and PLANE_SURF defines
+Date: Fri, 10 May 2024 18:23:21 +0300
+Message-ID: <20240510152329.24098-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
 References: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
@@ -71,45 +71,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Stop hand rolling PLANE_KEY*() register defines and just
-use the real thing.
+Stop hand rolling PLANE_CTL and PLANE_SURF for the third plane
+and just use the real thing.
 
 Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
 CC: Zhi Wang <zhi.wang.linux@gmail.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index ad3bf60855bc..b53c98cd6d7f 100644
+index b53c98cd6d7f..843bdb46d49c 100644
 --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
 +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -1075,15 +1075,15 @@ static int iterate_skl_plus_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(_MMIO(0x70034));
- 	MMIO_D(_MMIO(0x71034));
- 	MMIO_D(_MMIO(0x72034));
--	MMIO_D(_MMIO(_PLANE_KEYVAL_1(PIPE_A)));
--	MMIO_D(_MMIO(_PLANE_KEYVAL_1(PIPE_B)));
--	MMIO_D(_MMIO(_PLANE_KEYVAL_1(PIPE_C)));
--	MMIO_D(_MMIO(_PLANE_KEYMAX_1(PIPE_A)));
--	MMIO_D(_MMIO(_PLANE_KEYMAX_1(PIPE_B)));
--	MMIO_D(_MMIO(_PLANE_KEYMAX_1(PIPE_C)));
--	MMIO_D(_MMIO(_PLANE_KEYMSK_1(PIPE_A)));
--	MMIO_D(_MMIO(_PLANE_KEYMSK_1(PIPE_B)));
--	MMIO_D(_MMIO(_PLANE_KEYMSK_1(PIPE_C)));
-+	MMIO_D(PLANE_KEYVAL(PIPE_A, 0));
-+	MMIO_D(PLANE_KEYVAL(PIPE_B, 0));
-+	MMIO_D(PLANE_KEYVAL(PIPE_C, 0));
-+	MMIO_D(PLANE_KEYMAX(PIPE_A, 0));
-+	MMIO_D(PLANE_KEYMAX(PIPE_B, 0));
-+	MMIO_D(PLANE_KEYMAX(PIPE_C, 0));
-+	MMIO_D(PLANE_KEYMSK(PIPE_A, 0));
-+	MMIO_D(PLANE_KEYMSK(PIPE_B, 0));
-+	MMIO_D(PLANE_KEYMSK(PIPE_C, 0));
- 	MMIO_D(_MMIO(0x44500));
- #define CSFE_CHICKEN1_REG(base) _MMIO((base) + 0xD4)
- 	MMIO_RING_D(CSFE_CHICKEN1_REG);
+@@ -1030,12 +1030,12 @@ static int iterate_skl_plus_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(PLANE_AUX_OFFSET(PIPE_C, 1));
+ 	MMIO_D(PLANE_AUX_OFFSET(PIPE_C, 2));
+ 	MMIO_D(PLANE_AUX_OFFSET(PIPE_C, 3));
+-	MMIO_D(_MMIO(_PLANE_CTL_3_A));
+-	MMIO_D(_MMIO(_PLANE_CTL_3_B));
+-	MMIO_D(_MMIO(0x72380));
+-	MMIO_D(_MMIO(0x7239c));
+-	MMIO_D(_MMIO(_PLANE_SURF_3_A));
+-	MMIO_D(_MMIO(_PLANE_SURF_3_B));
++	MMIO_D(PLANE_CTL(PIPE_A, 2));
++	MMIO_D(PLANE_CTL(PIPE_B, 2));
++	MMIO_D(PLANE_CTL(PIPE_C, 2));
++	MMIO_D(PLANE_SURF(PIPE_A, 2));
++	MMIO_D(PLANE_SURF(PIPE_B, 2));
++	MMIO_D(PLANE_SURF(PIPE_C, 2));
+ 	MMIO_D(DMC_SSP_BASE);
+ 	MMIO_D(DMC_HTP_SKL);
+ 	MMIO_D(DMC_LAST_WRITE);
 -- 
 2.43.2
 
