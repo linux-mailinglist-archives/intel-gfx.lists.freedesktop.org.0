@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3A98C2238
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 12:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9808C2259
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 12:40:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFB1710E2FB;
-	Fri, 10 May 2024 10:34:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NY8K5RzM";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 429D210E85E;
+	Fri, 10 May 2024 10:40:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C40C710E2FB
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 10:34:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715337263; x=1746873263;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hv04sRqCA31uFmQ4yw/szZ1Jv9n99l6K92wWek1+Yuc=;
- b=NY8K5RzMASCRVsNgbgMDgYdeKev9XtxlFYvUS9Vnn7lSWjR0nTyfIy6G
- DrmQy2oP5m7ImawkrgenHH0dwscUT6YBlYTHF8l/JAHuVOjtrhlGJ5FwW
- laz/AFrBQu3BoylFrzj6vP3vrPi5XxmCJY9rS9hHvIS/p6dJBDccwF1d9
- kuB06QvwiQYAJbVvoQMzsavk8mDi/bou7tnwm/A7FySUjfs2xGKLPTxpE
- Acgc/RehRPwoFt9rOVZJ5GlJ5AlCUfDSCpxSTuDNs9B4HmpOUIfwraBBi
- CNUJH4eGdoXCvPgcKAIRfx4Xg2aatnYO6ZtDeIJUtnyRwJwoc+X2NRCfR Q==;
-X-CSE-ConnectionGUID: 29ANKpe6R8G73jp7jK61Xg==
-X-CSE-MsgGUID: vSSrz0z7RvWNjsPYvfNFdg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11190397"
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="11190397"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 03:34:21 -0700
-X-CSE-ConnectionGUID: o/tSbNKlSx+2TIjNlt6A2Q==
-X-CSE-MsgGUID: FzdSfPQcSeidHxKFN0+Ibw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="29519006"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 May 2024 03:34:19 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 10 May 2024 13:34:17 +0300
-Date: Fri, 10 May 2024 13:34:17 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- lucas.demarchi@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
- linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/5] drm/i915: don't include CML PCI IDs in CFL
-Message-ID: <Zj34KTmYP6VNQ3CS@intel.com>
-References: <cover.1715086509.git.jani.nikula@intel.com>
- <bebbdad2decb22f3db29e6bc66746b4a05e1387b.1715086509.git.jani.nikula@intel.com>
- <Zjow5HXrXpg2cuOA@intel.com> <ZjtapMK6kadLqHCN@intel.com>
- <87o79gjznd.fsf@intel.com> <ZjtprkZVSQ-o_qch@intel.com>
- <87le4ihsmr.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0751410E85E;
+ Fri, 10 May 2024 10:40:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6239768263259673878=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87le4ihsmr.fsf@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Documentation/i915=3A_remov?=
+ =?utf-8?q?e_kernel-doc_for_DMC_wakelocks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 May 2024 10:40:51 -0000
+Message-ID: <171533765103.2056296.13686177126110763454@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240510090502.667556-1-luciano.coelho@intel.com>
+In-Reply-To: <20240510090502.667556-1-luciano.coelho@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,63 +37,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 10, 2024 at 01:24:12PM +0300, Jani Nikula wrote:
-> On Wed, 08 May 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Wed, May 08, 2024 at 02:45:10PM +0300, Jani Nikula wrote:
-> >> On Wed, 08 May 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> > On Tue, May 07, 2024 at 09:47:16AM -0400, Rodrigo Vivi wrote:
-> >> >> On Tue, May 07, 2024 at 03:56:48PM +0300, Jani Nikula wrote:
-> >> >> > It's confusing for INTEL_CFL_IDS() to include all CML PCI IDs. Even if
-> >> >> > we treat them the same in a lot of places, CML is a platform of its own,
-> >> >> > and the lists of PCI IDs should not conflate them.
-> 
-> [snip]
-> 
-> >> >> Why only CML and not AML and WHL as well?
-> >> >
-> >> > Why do we even have CML as a separate platform? The only difference 
-> >> > I can see is is that we do allow_read_ctx_timestamp() for CML but
-> >> > not for CFL. Does that even make sense?
-> >> 
-> >> git blame tells me:
-> >> 
-> >> 5f4ae2704d59 ("drm/i915: Identify Cometlake platform")
-> >> dbc7e72897a4 ("drm/i915/gt: Make the CTX_TIMESTAMP readable on !rcs")
-> >
-> > Right. That explains why we need it on CML+. But is there some reason
-> > we  can't just do it on CFL as well, even if not strictly necessary?
-> > I would assume that setting FORCE_TO_NONPRIV on an already
-> > non-privileged register should be totally fine.
-> 
-> I have absolutely no idea.
-> 
-> I'm somewhat thinking "CML being a separate platform" is a separate
-> problem from "CFL PCI ID macros including CML".
-> 
-> I'm starting to think the PCI ID macros should be grouped by "does the
-> platform have a name of its own",
+--===============6239768263259673878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-That and/or "does bspec have a separate 'Confgurations <platform>' page?"
+== Series Details ==
 
-> not by how those macros are actually
-> used by the driver. Keeping them separate at the PCI ID macro level just
-> reduces the pain in maintaining the PCI IDs, and lets us wiggle stuff
-> around in the driver how we see fit.
+Series: Documentation/i915: remove kernel-doc for DMC wakelocks
+URL   : https://patchwork.freedesktop.org/series/133435/
+State : success
 
-Aye.
+== Summary ==
 
-> 
-> And that spins back to Rodrigo's question, "Why only CML and not AML and
-> WHL as well?". Yeah, indeed.
-> 
-> If we decide to stop treating CML as a separate platform in the
-> *driver*, that's another matter.
+CI Bug Log - changes from CI_DRM_14746 -> Patchwork_133435v1
+====================================================
 
-Sure. Seeing it just got me wondering...
+Summary
+-------
 
--- 
-Ville Syrjälä
-Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/index.html
+
+Participating hosts (40 -> 38)
+------------------------------
+
+  Additional (1): fi-kbl-8809g 
+  Missing    (3): bat-dg1-7 bat-dg2-11 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133435v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] +30 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-atsm-1:         [FAIL][4] ([i915#10378]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14746/bat-atsm-1/igt@gem_lmem_swapping@basic@lmem0.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/bat-atsm-1/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14746 -> Patchwork_133435v1
+
+  CI-20190529: 20190529
+  CI_DRM_14746: 0c99ca6cc719cf585be5945a455b68b66313b427 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133435v1: 0c99ca6cc719cf585be5945a455b68b66313b427 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/index.html
+
+--===============6239768263259673878==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Documentation/i915: remove kernel-doc for DMC wakelocks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133435/">https://patchwork.freedesktop.org/series/133435/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14746 -&gt; Patchwork_133435v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/index.html</p>
+<h2>Participating hosts (40 -&gt; 38)</h2>
+<p>Additional (1): fi-kbl-8809g <br />
+  Missing    (3): bat-dg1-7 bat-dg2-11 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133435v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14746/bat-atsm-1/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133435v1/bat-atsm-1/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14746 -&gt; Patchwork_133435v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14746: 0c99ca6cc719cf585be5945a455b68b66313b427 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7846: 4a5fd4e7cb2798636f6464e2bd61399f3242b322 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133435v1: 0c99ca6cc719cf585be5945a455b68b66313b427 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6239768263259673878==--
