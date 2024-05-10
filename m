@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69458C2125
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 11:39:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 312508C213A
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 11:43:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C67F10E85B;
-	Fri, 10 May 2024 09:39:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6E810E46D;
+	Fri, 10 May 2024 09:43:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nrSZufu9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X/Kwgelq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 376BA10E812
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 09:39:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 143C610E46D;
+ Fri, 10 May 2024 09:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715333943; x=1746869943;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P/xr+haVjTQaqAxt6N0RUiG7IjvieZlR+BAaTaNCEmA=;
- b=nrSZufu9Hht7gnVu8KwevM1SwcrfTRluPw5nECkqr7XLVhBzsqG9iBw9
- DzdvS7VM4jrulZprimOuvpVhs+2koI9lgWNDhg/t9S5FnRlIFyazaSviL
- ytbciC+ofxm8f1U0Tn81YEYESgdwl9J8yUep2HVwWT7qwn/zJwQG5DOBc
- 1l4IYpj8HEvXNGgipPqCb61bckHhh5AlQsf6ARer6Xp/Ilty83ttDXYv8
- HIIsFQWu/mG1TM5NQMSuxHarCLEpJSPoRNnRJKEOmUplxpTcvyxINdyUn
- KUcW/FTUjYjILLvMhE2DqZfmdEPMyDvdeo1nQjIur9kxqkckUb6nEUuXY w==;
-X-CSE-ConnectionGUID: 13vIXWCZTnGiw3zYQ9V3+Q==
-X-CSE-MsgGUID: K1+fzrXkS2mV2NWMJ8nbDQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="36684712"
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="36684712"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 02:39:03 -0700
-X-CSE-ConnectionGUID: rtwjvzCFTrKEQjYbgDz0Dw==
-X-CSE-MsgGUID: xH/lz2BLRiq/ufUsLozX4Q==
+ t=1715334199; x=1746870199;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Pg+VLSV5LwG/F484HkWJ43sfpg8QgH0S403zB1yjD8Q=;
+ b=X/KwgelqWPEsoYidpnoma+aLT/P/vs0XeHdtW4CrN7abJaFYeq1/FEJh
+ PoZkIWbPT9w/SwGIMuwT2M5aYZAojjAcJk40LiGWIy1twXcZstAp8xxDC
+ PaX/i6fm/yPmkf4WJYiI1b77jJe0NKwR9iPtJ+IDu/ixNt+TOlS+WMo6H
+ q2IW1PUElN7EC5acDLDKmEGPh/P2lPqFgVfzAcrQtvmapGJZm0NpfpNb3
+ g/YKhIqQDOjo+I/8ismqI56dHDexaYNWzcoprj6sOHMiGBlz4n/bq5iP3
+ 9a7xBCaUGQd1P50JBEHPC3N1PP6Jo3Gm9/WKGYnpf+Nf9nkIS2k+sgEHK Q==;
+X-CSE-ConnectionGUID: bX+OK9XPRIWTlrruFCMMNw==
+X-CSE-MsgGUID: t7SsQIxMQGGQQ8yQN19LlQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="15141221"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="15141221"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:43:19 -0700
+X-CSE-ConnectionGUID: eVc5MbQOSdCJ1BXZTz6ofw==
+X-CSE-MsgGUID: 31y3fOsmR/iSdMXAUpyp7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34075631"
-Received: from dlazzaro-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.51.148])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 02:39:02 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: animesh.manna@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Kunal Joshi <kunal1.joshi@intel.com>
-Subject: [PATCH v10 12/12] drm/i915/psr: Add panel replay sel update support
- to debugfs interface
-Date: Fri, 10 May 2024 12:38:23 +0300
-Message-Id: <20240510093823.3146455-13-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240510093823.3146455-1-jouni.hogander@intel.com>
-References: <20240510093823.3146455-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34213574"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.180])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2024 02:43:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/2] drm/xe/display: remove unused xe->enabled_irq_mask
+Date: Fri, 10 May 2024 12:43:12 +0300
+Message-Id: <20240510094313.3422982-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,54 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add panel replay selective update support to debugfs status interface. In
-case of sink supporting panel replay we will print out:
+The xe->enabled_irq_mask member has never been used for anything.
 
-Sink support: PSR = no, Panel Replay = yes, Panel Replay Selective Update = yes
-
-and PSR mode will look like this if printing out enabled panel replay
-selective update:
-
-PSR mode: Panel Replay Selective Update Enabled
-
-Current PSR and panel replay printouts remain same.
-
-Cc: Kunal Joshi <kunal1.joshi@intel.com>
-
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 1 -
+ drivers/gpu/drm/xe/xe_device_types.h    | 2 --
+ 2 files changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 12ddf84e8d02..2514ac48312b 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3603,7 +3603,9 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 0de0566e5b39..fbe2c2eddea9 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -97,7 +97,6 @@ int xe_display_create(struct xe_device *xe)
+ 	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
  
- 	if (psr->sink_support)
- 		seq_printf(m, " [0x%02x]", intel_dp->psr_dpcd[0]);
--	seq_printf(m, ", Panel Replay = %s\n", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
-+	seq_printf(m, ", Panel Replay Selective Update = %s\n",
-+		   str_yes_no(psr->sink_panel_replay_su_support));
+ 	drmm_mutex_init(&xe->drm, &xe->sb_lock);
+-	xe->enabled_irq_mask = ~0;
  
- 	if (!(psr->sink_support || psr->sink_panel_replay_support))
- 		return 0;
-@@ -3612,9 +3614,10 @@ static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
- 	mutex_lock(&psr->lock);
+ 	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 906b98fb973b..b78223e3baab 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -517,8 +517,6 @@ struct xe_device {
+ 	/* only to allow build, not used functionally */
+ 	u32 irq_mask;
  
- 	if (psr->panel_replay_enabled)
--		status = "Panel Replay Enabled";
-+		status = psr->sel_update_enabled ? "Panel Replay Selective Update Enabled" :
-+			"Panel Replay Enabled";
- 	else if (psr->enabled)
--		status = psr->sel_update_enabled ? "PSR2 enabled" : "PSR1 enabled";
-+		status = psr->sel_update_enabled ? "PSR2" : "PSR1";
- 	else
- 		status = "disabled";
- 	seq_printf(m, "PSR mode: %s\n", status);
+-	u32 enabled_irq_mask;
+-
+ 	struct intel_uncore {
+ 		spinlock_t lock;
+ 	} uncore;
 -- 
-2.34.1
+2.39.2
 
