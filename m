@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4902F8C231B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 13:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B18308C231D
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2024 13:22:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B731F10E8BB;
-	Fri, 10 May 2024 11:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03C4810E95A;
+	Fri, 10 May 2024 11:22:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XpFIhVsN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l+5Qz9A1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BFA410E8BB
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 11:22:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DACD410E94F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 May 2024 11:22:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715340168; x=1746876168;
+ t=1715340174; x=1746876174;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EmISR6cK/K/g8lUwbQi3gdogGyK78b/kkEnZ1pzAuY8=;
- b=XpFIhVsN/WZkjE4go5EJxuOGhVUeS5h79EYIAfI10nJv+/9heq4dIPEO
- vD/H6zymudTJJYXtjJNBK5CksHn4VRTVSCQuEzkynFgP5UnzlZZ85shsN
- SdrxlB2my0dIqsjVDpBmJKaFsKtg3X6I6rnfChQc57MI7fzicuZelqjoD
- 0aUdQHRjmoktdiOUXxsITjgqkFVPF1dAhi3QOo5m7UL24Kgs6EOIPvdxl
- yOlzlY+QPvMmRYmk6B/v8+X9Qs7/vKaNPVIa8+tTIJB8FMF/elDYehJYd
- CKuBWJVs4aaTa81tcIiZoY5ISgTKcYgcgdwTdCtY7lY0a0lG45O4wLw9k A==;
-X-CSE-ConnectionGUID: c+K6mNK5S3ysZp8HqkPDLg==
-X-CSE-MsgGUID: 7dMZ1ourSTGiioA8lgZ0nA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11442661"
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="11442661"
+ bh=gNthO8hrks93STnqKNOoHkVO7y8f0oXX7ICJ5gA5IVg=;
+ b=l+5Qz9A1B5AfZF134Ug7ZjCIqbJMyEkT8Q9X/Jy35s0Tk3U4LKZo5xw+
+ Snxib+ELS9pK8ku60t2nttUNWzsoh5DaqO5LWo7J45pLI8qJEEHKdnE7c
+ mpVK6NDqF0tqvzLIMEmaRFOYlgPb++0QHsBKea94PQIsf2r3UjnnA3uWb
+ BVJqbkvf6XZoNKSNHNg+mEtsaB7RaCEcQrQ2ipfygzpIxevM1860fKgZz
+ SO/TYPLgXOE661oJpU6v2kvS4+jZNllFrfBxx81jGlfufrbghrQsS/CjH
+ yp16potdI4+l6ozJGjuEo3GyDs02OFD+TAxFGyddMBbosKwejpcp0k35/ A==;
+X-CSE-ConnectionGUID: /M/rOJ+lTpej8blFVi0SFg==
+X-CSE-MsgGUID: NUz1f0kyTsqWLo7DA9VMVg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11442671"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="11442671"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 04:22:48 -0700
-X-CSE-ConnectionGUID: dOc+XxiBQu2ilvMy+psdGw==
-X-CSE-MsgGUID: u4/KWnT2TJqxHiXE+AvaJw==
+ 10 May 2024 04:22:54 -0700
+X-CSE-ConnectionGUID: FO8a4JwzQnmTfMFiuB64iw==
+X-CSE-MsgGUID: aE5Dcm/wSQ6VQaNZ+niy6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34234955"
+X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; d="scan'208";a="34234985"
 Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.180])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2024 04:22:46 -0700
+ 10 May 2024 04:22:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
  linux-pci@vger.kernel.org
-Subject: [PATCH 4/8] drm/i915/pciids: add INTEL_IVB_IDS()
-Date: Fri, 10 May 2024 14:22:17 +0300
-Message-Id: <ed89a25b2c6bce318fe59e883d18b62d9453196b.1715340032.git.jani.nikula@intel.com>
+Subject: [PATCH 5/8] drm/i915/pciids: don't include WHL/CML PCI IDs in CFL
+Date: Fri, 10 May 2024 14:22:18 +0300
+Message-Id: <7cca91dc78ed2b5982f14e400f03a1704645e475.1715340032.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1715340032.git.jani.nikula@intel.com>
 References: <cover.1715340032.git.jani.nikula@intel.com>
@@ -70,60 +70,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add INTEL_IVB_IDS() to identify all IVBs except IVB Q transcode.
+It's confusing for INTEL_CFL_IDS() to include all WHL and CML PCI
+IDs. Even if we treat them the same in a lot of places, CML is a
+platform of its own, and the lists of PCI IDs should not conflate them.
+
+Largely go by the idea that if a platform has a name, group its PCI IDs
+together.
+
+That said, AML is special, having both KBL and CFL variants. Leave that
+alone.
+
+v2: Also split out WHL not just CML (Rodrigo)
 
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Cc: linux-pci@vger.kernel.org
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- arch/x86/kernel/early-quirks.c                      | 3 +--
- drivers/gpu/drm/i915/display/intel_display_device.c | 3 +--
- include/drm/i915_pciids.h                           | 4 ++++
- 3 files changed, 6 insertions(+), 4 deletions(-)
+ arch/x86/kernel/early-quirks.c                |  2 ++
+ .../drm/i915/display/intel_display_device.c   |  2 ++
+ include/drm/i915_pciids.h                     | 30 +++++++++++--------
+ 3 files changed, 21 insertions(+), 13 deletions(-)
 
 diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
-index 23ded9260302..6549507003ec 100644
+index 6549507003ec..2b698a3f56ef 100644
 --- a/arch/x86/kernel/early-quirks.c
 +++ b/arch/x86/kernel/early-quirks.c
-@@ -535,8 +535,7 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
- 	INTEL_G45_IDS(&gen3_early_ops),
- 	INTEL_ILK_IDS(&gen3_early_ops),
- 	INTEL_SNB_IDS(&gen6_early_ops),
--	INTEL_IVB_M_IDS(&gen6_early_ops),
--	INTEL_IVB_D_IDS(&gen6_early_ops),
-+	INTEL_IVB_IDS(&gen6_early_ops),
- 	INTEL_HSW_IDS(&gen6_early_ops),
- 	INTEL_BDW_IDS(&gen8_early_ops),
- 	INTEL_CHV_IDS(&chv_early_ops),
+@@ -543,6 +543,8 @@ static const struct pci_device_id intel_early_ids[] __initconst = {
+ 	INTEL_BXT_IDS(&gen9_early_ops),
+ 	INTEL_KBL_IDS(&gen9_early_ops),
+ 	INTEL_CFL_IDS(&gen9_early_ops),
++	INTEL_WHL_IDS(&gen9_early_ops),
++	INTEL_CML_IDS(&gen9_early_ops),
+ 	INTEL_GLK_IDS(&gen9_early_ops),
+ 	INTEL_CNL_IDS(&gen9_early_ops),
+ 	INTEL_ICL_11_IDS(&gen11_early_ops),
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index c40d12ca386a..bb681c8ed8a0 100644
+index bb681c8ed8a0..23909a8e2dc8 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -819,8 +819,7 @@ static const struct {
- 	INTEL_ILK_D_IDS(&ilk_d_display),
- 	INTEL_ILK_M_IDS(&ilk_m_display),
- 	INTEL_SNB_IDS(&snb_display),
--	INTEL_IVB_M_IDS(&ivb_display),
--	INTEL_IVB_D_IDS(&ivb_display),
-+	INTEL_IVB_IDS(&ivb_display),
- 	INTEL_HSW_IDS(&hsw_display),
- 	INTEL_VLV_IDS(&vlv_display),
- 	INTEL_BDW_IDS(&bdw_display),
+@@ -829,6 +829,8 @@ static const struct {
+ 	INTEL_GLK_IDS(&glk_display),
+ 	INTEL_KBL_IDS(&skl_display),
+ 	INTEL_CFL_IDS(&skl_display),
++	INTEL_WHL_IDS(&skl_display),
++	INTEL_CML_IDS(&skl_display),
+ 	INTEL_ICL_11_IDS(&icl_display),
+ 	INTEL_EHL_IDS(&jsl_ehl_display),
+ 	INTEL_JSL_IDS(&jsl_ehl_display),
 diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-index 0d48c493dcce..16778d92346b 100644
+index 16778d92346b..0c5a20d59801 100644
 --- a/include/drm/i915_pciids.h
 +++ b/include/drm/i915_pciids.h
-@@ -177,6 +177,10 @@
- 	INTEL_IVB_D_GT1_IDS(info), \
- 	INTEL_IVB_D_GT2_IDS(info)
+@@ -488,6 +488,12 @@
+ 	INTEL_VGA_DEVICE(0x9BCA, info), \
+ 	INTEL_VGA_DEVICE(0x9BCC, info)
  
-+#define INTEL_IVB_IDS(info) \
-+	INTEL_IVB_M_IDS(info), \
-+	INTEL_IVB_D_IDS(info)
++#define INTEL_CML_IDS(info) \
++	INTEL_CML_GT1_IDS(info), \
++	INTEL_CML_GT2_IDS(info), \
++	INTEL_CML_U_GT1_IDS(info), \
++	INTEL_CML_U_GT2_IDS(info)
 +
- #define INTEL_IVB_Q_IDS(info) \
- 	INTEL_QUANTA_VGA_DEVICE(info) /* Quanta transcode */
+ #define INTEL_KBL_IDS(info) \
+ 	INTEL_KBL_GT1_IDS(info), \
+ 	INTEL_KBL_GT2_IDS(info), \
+@@ -527,6 +533,15 @@
+ 	INTEL_VGA_DEVICE(0x3EA7, info), /* ULT GT3 */ \
+ 	INTEL_VGA_DEVICE(0x3EA8, info)  /* ULT GT3 */
  
++#define INTEL_CFL_IDS(info)	   \
++	INTEL_CFL_S_GT1_IDS(info), \
++	INTEL_CFL_S_GT2_IDS(info), \
++	INTEL_CFL_H_GT1_IDS(info), \
++	INTEL_CFL_H_GT2_IDS(info), \
++	INTEL_CFL_U_GT2_IDS(info), \
++	INTEL_CFL_U_GT3_IDS(info), \
++	INTEL_AML_CFL_GT2_IDS(info)
++
+ /* WHL/CFL U GT1 */
+ #define INTEL_WHL_U_GT1_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x3EA1, info), \
+@@ -541,21 +556,10 @@
+ #define INTEL_WHL_U_GT3_IDS(info) \
+ 	INTEL_VGA_DEVICE(0x3EA2, info)
+ 
+-#define INTEL_CFL_IDS(info)	   \
+-	INTEL_CFL_S_GT1_IDS(info), \
+-	INTEL_CFL_S_GT2_IDS(info), \
+-	INTEL_CFL_H_GT1_IDS(info), \
+-	INTEL_CFL_H_GT2_IDS(info), \
+-	INTEL_CFL_U_GT2_IDS(info), \
+-	INTEL_CFL_U_GT3_IDS(info), \
++#define INTEL_WHL_IDS(info) \
+ 	INTEL_WHL_U_GT1_IDS(info), \
+ 	INTEL_WHL_U_GT2_IDS(info), \
+-	INTEL_WHL_U_GT3_IDS(info), \
+-	INTEL_AML_CFL_GT2_IDS(info), \
+-	INTEL_CML_GT1_IDS(info), \
+-	INTEL_CML_GT2_IDS(info), \
+-	INTEL_CML_U_GT1_IDS(info), \
+-	INTEL_CML_U_GT2_IDS(info)
++	INTEL_WHL_U_GT3_IDS(info)
+ 
+ /* CNL */
+ #define INTEL_CNL_PORT_F_IDS(info) \
 -- 
 2.39.2
 
