@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DF388C3EAF
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 May 2024 12:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A158C3EC8
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 May 2024 12:21:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 221F610E214;
-	Mon, 13 May 2024 10:13:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D3F10E5D7;
+	Mon, 13 May 2024 10:21:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+sMItZW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C351uPlk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A2B610E214
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 10:13:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0926810E5D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 10:21:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715595204; x=1747131204;
+ t=1715595714; x=1747131714;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=1ekwnS1LvlhCHB506LPr8dZChJzvzoQ54omSRiWUnD4=;
- b=O+sMItZWqt1GJixMYGnVv858aY9yxSvjmhK6CFhe04NV3FvLJgTJ4fjr
- QcRgw6tEp3gFcgn2Apxeqrr+uMUGikRLMtYeBql2oLwQAPImgwnEopOtt
- tUIJsL5WfuN70ElRin5hC6e13QQeKhS39rhvidCgEa5Gxi4COCrt0aYPX
- GoFh45kD9TaUABdOBnGieUx7RUYYVFsYmcuok7jawIXH+Eb88DyJTqsa9
- vtLMbenECdA0hHEBpu1bHw4Vscum0Id09i3SBVXc+GXl90/7+7quXiTcn
- BiwQ10RqS2HZhqJRlN/63VuoDAwuXnHiUFNUbj81dsPWgI+kpOksPOloR w==;
-X-CSE-ConnectionGUID: HHOdBuJGTvO6fD9fOPGwyQ==
-X-CSE-MsgGUID: CyfiO0ZvTCeLsQtd5tOFjw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22669589"
-X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="22669589"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 03:13:24 -0700
-X-CSE-ConnectionGUID: aK4XXs+bTwKYCew4T3v2VA==
-X-CSE-MsgGUID: kPhaZ35nRVeOtZxKkx4mwA==
+ bh=iLKSzS0+JEjuQH4jERE4U9bBkbu37+TY+4A+10pghg8=;
+ b=C351uPlkOS2Xg56ZCXHFj3/iopH7Q7XHipS8UkejqUaVvbJt6iKN280I
+ D0ssA6xL75txvub+gJk8889iBVOMNV2Ut/4TyYBH2fxKGetGKIb0MW7O5
+ kASGl5YEyAhFi5A/aWquMh5OZXz2MS8bjDzqXhHCoDbGhatx1oZ7xEyqa
+ VLoV+B+Jd/v1ed/8CzD5tFxtWTRaOwFB6CG7z8YBFt/mv/qIilmaztsqq
+ f5CxFrp8WB7D457mHOneUXqQW0CvgO1N5iU08iFzd5Rt20d8GUqBZKe4n
+ MoGGMw1/mk6r+fHRJuxk3DaUrGXLq4xzn2jCYFVOFROGv1vjDLMoONbVl w==;
+X-CSE-ConnectionGUID: ThrKpM1KSh+2AHy868tECw==
+X-CSE-MsgGUID: ZGR20C+UQOeTGEHF82Xe2w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="14470371"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="14470371"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 03:21:53 -0700
+X-CSE-ConnectionGUID: plw4/N6BTgWSDMsf9pk5Sg==
+X-CSE-MsgGUID: lIMzUU5TS+mo7/2ctGh23A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="67791398"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="34805606"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.7])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 03:13:21 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 03:21:51 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>
-Subject: Re: [PATCH 04/16] drm/i915: Move skl+ wm/ddb registers to proper
- headers
-In-Reply-To: <20240510152329.24098-5-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 05/16] drm/i915/gvt: Use the proper PLANE_AUX_DIST() define
+In-Reply-To: <20240510152329.24098-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
- <20240510152329.24098-5-ville.syrjala@linux.intel.com>
-Date: Mon, 13 May 2024 13:13:18 +0300
-Message-ID: <87y18ef29t.fsf@intel.com>
+ <20240510152329.24098-6-ville.syrjala@linux.intel.com>
+Date: Mon, 13 May 2024 13:21:48 +0300
+Message-ID: <87ttj2f1vn.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +74,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 10 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> On SKL+ the watermark/DDB registers are proper per-plane
-> registers. Move the definitons to their respective files.
+> Stop hand rolling PLANE_AUX_DIST() and just use the real thing.
 >
 > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
 > CC: Zhi Wang <zhi.wang.linux@gmail.com>
@@ -85,251 +83,103 @@ On Fri, 10 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  .../gpu/drm/i915/display/intel_cursor_regs.h  | 20 +++++
->  .../i915/display/skl_universal_plane_regs.h   | 64 ++++++++++++++
->  drivers/gpu/drm/i915/display/skl_watermark.c  |  1 +
->  .../gpu/drm/i915/display/skl_watermark_regs.h | 83 -------------------
->  drivers/gpu/drm/i915/gvt/handlers.c           |  1 +
->  5 files changed, 86 insertions(+), 83 deletions(-)
+>  drivers/gpu/drm/i915/gvt/handlers.c         | 24 ++++++++++-----------
+>  drivers/gpu/drm/i915/gvt/reg.h              |  1 -
+>  drivers/gpu/drm/i915/intel_gvt_mmio_table.c | 24 ++++++++++-----------
+>  3 files changed, 24 insertions(+), 25 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor_regs.h b/drivers/g=
-pu/drm/i915/display/intel_cursor_regs.h
-> index 62f7fb5c3f10..a478ef5787c5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-> @@ -75,4 +75,24 @@
->  #define CUR_CHICKEN(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_CHICKEN_A)
->  #define CURSURFLIVE(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASURFLIVE)
->=20=20
-> +/* skl+ */
-> +#define _CUR_WM_A_0		0x70140
-> +#define _CUR_WM_B_0		0x71140
-> +#define _CUR_WM_SAGV_A		0x70158
-> +#define _CUR_WM_SAGV_B		0x71158
-> +#define _CUR_WM_SAGV_TRANS_A	0x7015C
-> +#define _CUR_WM_SAGV_TRANS_B	0x7115C
-> +#define _CUR_WM_TRANS_A		0x70168
-> +#define _CUR_WM_TRANS_B		0x71168
-> +#define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
-> +#define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
-> +#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_=
-B)
-> +#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _=
-CUR_WM_SAGV_TRANS_B)
-> +#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRA=
-NS_B)
-> +
-> +/* skl+ */
-> +#define _CUR_BUF_CFG_A				0x7017c
-> +#define _CUR_BUF_CFG_B				0x7117c
-> +#define CUR_BUF_CFG(pipe)	_MMIO_PIPE(pipe, _CUR_BUF_CFG_A, _CUR_BUF_CFG_=
-B)
-> +
->  #endif /* __INTEL_CURSOR_REGS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/dr=
-ivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> index 7e34470beb74..2222d0c760e8 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> @@ -402,4 +402,68 @@
->  							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
->  							    (index) * 4)
->=20=20
-> +#define _PLANE_WM_1_A_0		0x70240
-> +#define _PLANE_WM_1_B_0		0x71240
-> +#define _PLANE_WM_2_A_0		0x70340
-> +#define _PLANE_WM_2_B_0		0x71340
-> +#define _PLANE_WM_SAGV_1_A	0x70258
-> +#define _PLANE_WM_SAGV_1_B	0x71258
-> +#define _PLANE_WM_SAGV_2_A	0x70358
-> +#define _PLANE_WM_SAGV_2_B	0x71358
-> +#define _PLANE_WM_SAGV_TRANS_1_A	0x7025C
-> +#define _PLANE_WM_SAGV_TRANS_1_B	0x7125C
-> +#define _PLANE_WM_SAGV_TRANS_2_A	0x7035C
-> +#define _PLANE_WM_SAGV_TRANS_2_B	0x7135C
-> +#define _PLANE_WM_TRANS_1_A	0x70268
-> +#define _PLANE_WM_TRANS_1_B	0x71268
-> +#define _PLANE_WM_TRANS_2_A	0x70368
-> +#define _PLANE_WM_TRANS_2_B	0x71368
-> +#define   PLANE_WM_EN		(1 << 31)
-> +#define   PLANE_WM_IGNORE_LINES	(1 << 30)
-> +#define   PLANE_WM_LINES_MASK	REG_GENMASK(26, 14)
-> +#define   PLANE_WM_BLOCKS_MASK	REG_GENMASK(11, 0)
-> +
-> +#define _PLANE_WM_1(pipe) _PIPE(pipe, _PLANE_WM_1_A_0, _PLANE_WM_1_B_0)
-> +#define _PLANE_WM_2(pipe) _PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
-> +#define _PLANE_WM_BASE(pipe, plane) \
-> +	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
-> +#define PLANE_WM(pipe, plane, level) \
-> +	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
-> +#define _PLANE_WM_SAGV_1(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_1_A, _PLANE_WM_SAGV_1_B)
-> +#define _PLANE_WM_SAGV_2(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_2_A, _PLANE_WM_SAGV_2_B)
-> +#define PLANE_WM_SAGV(pipe, plane) \
-> +	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
-> +#define _PLANE_WM_SAGV_TRANS_1(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_1_A, _PLANE_WM_SAGV_TRANS_1_B)
-> +#define _PLANE_WM_SAGV_TRANS_2(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_2_A, _PLANE_WM_SAGV_TRANS_2_B)
-> +#define PLANE_WM_SAGV_TRANS(pipe, plane) \
-> +	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_=
-2(pipe)))
-> +#define _PLANE_WM_TRANS_1(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_TRANS_1_A, _PLANE_WM_TRANS_1_B)
-> +#define _PLANE_WM_TRANS_2(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_TRANS_2_A, _PLANE_WM_TRANS_2_B)
-> +#define PLANE_WM_TRANS(pipe, plane) \
-> +	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
-> +
-> +#define _PLANE_BUF_CFG_1_B			0x7127c
-> +#define _PLANE_BUF_CFG_2_B			0x7137c
-> +#define _PLANE_BUF_CFG_1(pipe)	\
-> +	_PIPE(pipe, _PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B)
-> +#define _PLANE_BUF_CFG_2(pipe)	\
-> +	_PIPE(pipe, _PLANE_BUF_CFG_2_A, _PLANE_BUF_CFG_2_B)
-> +#define PLANE_BUF_CFG(pipe, plane)	\
-> +	_MMIO_PLANE(plane, _PLANE_BUF_CFG_1(pipe), _PLANE_BUF_CFG_2(pipe))
-> +
-> +#define _PLANE_NV12_BUF_CFG_1_B		0x71278
-> +#define _PLANE_NV12_BUF_CFG_2_B		0x71378
-> +#define _PLANE_NV12_BUF_CFG_1(pipe)	\
-> +	_PIPE(pipe, _PLANE_NV12_BUF_CFG_1_A, _PLANE_NV12_BUF_CFG_1_B)
-> +#define _PLANE_NV12_BUF_CFG_2(pipe)	\
-> +	_PIPE(pipe, _PLANE_NV12_BUF_CFG_2_A, _PLANE_NV12_BUF_CFG_2_B)
-> +#define PLANE_NV12_BUF_CFG(pipe, plane)	\
-> +	_MMIO_PLANE(plane, _PLANE_NV12_BUF_CFG_1(pipe), _PLANE_NV12_BUF_CFG_2(p=
-ipe))
-> +
->  #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index 53a565c673e2..2a2073bf3aca 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -13,6 +13,7 @@
->  #include "intel_bw.h"
->  #include "intel_cdclk.h"
->  #include "intel_crtc.h"
-> +#include "intel_cursor_regs.h"
->  #include "intel_de.h"
->  #include "intel_display.h"
->  #include "intel_display_power.h"
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/=
-gpu/drm/i915/display/skl_watermark_regs.h
-> index 269163fa3350..c5572fc0e847 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> @@ -43,89 +43,6 @@
->  #define   MBUS_TRANSLATION_THROTTLE_MIN_MASK	REG_GENMASK(15, 13)
->  #define   MBUS_TRANSLATION_THROTTLE_MIN(val)	REG_FIELD_PREP(MBUS_TRANSLA=
-TION_THROTTLE_MIN_MASK, val)
->=20=20
-> -/* Watermark register definitions for SKL */
-> -#define _CUR_WM_A_0		0x70140
-> -#define _CUR_WM_B_0		0x71140
-> -#define _CUR_WM_SAGV_A		0x70158
-> -#define _CUR_WM_SAGV_B		0x71158
-> -#define _CUR_WM_SAGV_TRANS_A	0x7015C
-> -#define _CUR_WM_SAGV_TRANS_B	0x7115C
-> -#define _CUR_WM_TRANS_A		0x70168
-> -#define _CUR_WM_TRANS_B		0x71168
-> -#define _PLANE_WM_1_A_0		0x70240
-> -#define _PLANE_WM_1_B_0		0x71240
-> -#define _PLANE_WM_2_A_0		0x70340
-> -#define _PLANE_WM_2_B_0		0x71340
-> -#define _PLANE_WM_SAGV_1_A	0x70258
-> -#define _PLANE_WM_SAGV_1_B	0x71258
-> -#define _PLANE_WM_SAGV_2_A	0x70358
-> -#define _PLANE_WM_SAGV_2_B	0x71358
-> -#define _PLANE_WM_SAGV_TRANS_1_A	0x7025C
-> -#define _PLANE_WM_SAGV_TRANS_1_B	0x7125C
-> -#define _PLANE_WM_SAGV_TRANS_2_A	0x7035C
-> -#define _PLANE_WM_SAGV_TRANS_2_B	0x7135C
-> -#define _PLANE_WM_TRANS_1_A	0x70268
-> -#define _PLANE_WM_TRANS_1_B	0x71268
-> -#define _PLANE_WM_TRANS_2_A	0x70368
-> -#define _PLANE_WM_TRANS_2_B	0x71368
-> -#define   PLANE_WM_EN		(1 << 31)
-> -#define   PLANE_WM_IGNORE_LINES	(1 << 30)
-> -#define   PLANE_WM_LINES_MASK	REG_GENMASK(26, 14)
-> -#define   PLANE_WM_BLOCKS_MASK	REG_GENMASK(11, 0)
-> -
-> -#define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
-> -#define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
-> -#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_=
-B)
-> -#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _=
-CUR_WM_SAGV_TRANS_B)
-> -#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRA=
-NS_B)
-> -#define _PLANE_WM_1(pipe) _PIPE(pipe, _PLANE_WM_1_A_0, _PLANE_WM_1_B_0)
-> -#define _PLANE_WM_2(pipe) _PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
-> -#define _PLANE_WM_BASE(pipe, plane) \
-> -	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
-> -#define PLANE_WM(pipe, plane, level) \
-> -	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
-> -#define _PLANE_WM_SAGV_1(pipe) \
-> -	_PIPE(pipe, _PLANE_WM_SAGV_1_A, _PLANE_WM_SAGV_1_B)
-> -#define _PLANE_WM_SAGV_2(pipe) \
-> -	_PIPE(pipe, _PLANE_WM_SAGV_2_A, _PLANE_WM_SAGV_2_B)
-> -#define PLANE_WM_SAGV(pipe, plane) \
-> -	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
-> -#define _PLANE_WM_SAGV_TRANS_1(pipe) \
-> -	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_1_A, _PLANE_WM_SAGV_TRANS_1_B)
-> -#define _PLANE_WM_SAGV_TRANS_2(pipe) \
-> -	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_2_A, _PLANE_WM_SAGV_TRANS_2_B)
-> -#define PLANE_WM_SAGV_TRANS(pipe, plane) \
-> -	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_=
-2(pipe)))
-> -#define _PLANE_WM_TRANS_1(pipe) \
-> -	_PIPE(pipe, _PLANE_WM_TRANS_1_A, _PLANE_WM_TRANS_1_B)
-> -#define _PLANE_WM_TRANS_2(pipe) \
-> -	_PIPE(pipe, _PLANE_WM_TRANS_2_A, _PLANE_WM_TRANS_2_B)
-> -#define PLANE_WM_TRANS(pipe, plane) \
-> -	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
-> -
-> -#define _PLANE_BUF_CFG_1_B			0x7127c
-> -#define _PLANE_BUF_CFG_2_B			0x7137c
-> -#define _PLANE_BUF_CFG_1(pipe)	\
-> -	_PIPE(pipe, _PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B)
-> -#define _PLANE_BUF_CFG_2(pipe)	\
-> -	_PIPE(pipe, _PLANE_BUF_CFG_2_A, _PLANE_BUF_CFG_2_B)
-> -#define PLANE_BUF_CFG(pipe, plane)	\
-> -	_MMIO_PLANE(plane, _PLANE_BUF_CFG_1(pipe), _PLANE_BUF_CFG_2(pipe))
-> -
-> -#define _PLANE_NV12_BUF_CFG_1_B		0x71278
-> -#define _PLANE_NV12_BUF_CFG_2_B		0x71378
-> -#define _PLANE_NV12_BUF_CFG_1(pipe)	\
-> -	_PIPE(pipe, _PLANE_NV12_BUF_CFG_1_A, _PLANE_NV12_BUF_CFG_1_B)
-> -#define _PLANE_NV12_BUF_CFG_2(pipe)	\
-> -	_PIPE(pipe, _PLANE_NV12_BUF_CFG_2_A, _PLANE_NV12_BUF_CFG_2_B)
-> -#define PLANE_NV12_BUF_CFG(pipe, plane)	\
-> -	_MMIO_PLANE(plane, _PLANE_NV12_BUF_CFG_1(pipe), _PLANE_NV12_BUF_CFG_2(p=
-ipe))
-> -
-> -/* SKL new cursor registers */
-> -#define _CUR_BUF_CFG_A				0x7017c
-> -#define _CUR_BUF_CFG_B				0x7117c
-> -#define CUR_BUF_CFG(pipe)	_MMIO_PIPE(pipe, _CUR_BUF_CFG_A, _CUR_BUF_CFG_=
-B)
-> -
->  /*
->   * The below are numbered starting from "S1" on gen11/gen12, but starting
->   * with display 13, the bspec switches to a 0-based numbering scheme
 > diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/g=
 vt/handlers.c
-> index aae0443015f0..6c857beb5083 100644
+> index 6c857beb5083..6b02612ddef5 100644
 > --- a/drivers/gpu/drm/i915/gvt/handlers.c
 > +++ b/drivers/gpu/drm/i915/gvt/handlers.c
-> @@ -42,6 +42,7 @@
->  #include "i915_pvinfo.h"
->  #include "intel_mchbar_regs.h"
->  #include "display/bxt_dpio_phy_regs.h"
-> +#include "display/intel_cursor_regs.h"
->  #include "display/intel_display_types.h"
->  #include "display/intel_dmc_regs.h"
->  #include "display/intel_dp_aux_regs.h"
+> @@ -2678,20 +2678,20 @@ static int init_skl_mmio_info(struct intel_gvt *g=
+vt)
+>  	MMIO_DH(PLANE_NV12_BUF_CFG(PIPE_C, 2), D_SKL_PLUS, NULL, NULL);
+>  	MMIO_DH(PLANE_NV12_BUF_CFG(PIPE_C, 3), D_SKL_PLUS, NULL, NULL);
+>=20=20
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_A, 1)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_A, 2)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_A, 3)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_A, 4)), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_A, 0), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_A, 1), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_A, 2), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_A, 3), D_SKL_PLUS, NULL, NULL);
+>=20=20
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_B, 1)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_B, 2)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_B, 3)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_B, 4)), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_B, 0), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_B, 1), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_B, 2), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_B, 3), D_SKL_PLUS, NULL, NULL);
+>=20=20
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_C, 1)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_C, 2)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_C, 3)), D_SKL_PLUS, NULL, NULL);
+> -	MMIO_DH(_MMIO(_REG_701C0(PIPE_C, 4)), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_C, 0), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_C, 1), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_C, 2), D_SKL_PLUS, NULL, NULL);
+> +	MMIO_DH(PLANE_AUX_DIST(PIPE_C, 3), D_SKL_PLUS, NULL, NULL);
+>=20=20
+>  	MMIO_DH(_MMIO(_REG_701C4(PIPE_A, 1)), D_SKL_PLUS, NULL, NULL);
+>  	MMIO_DH(_MMIO(_REG_701C4(PIPE_A, 2)), D_SKL_PLUS, NULL, NULL);
+> diff --git a/drivers/gpu/drm/i915/gvt/reg.h b/drivers/gpu/drm/i915/gvt/re=
+g.h
+> index d8216c63c39a..e8a56faafe95 100644
+> --- a/drivers/gpu/drm/i915/gvt/reg.h
+> +++ b/drivers/gpu/drm/i915/gvt/reg.h
+> @@ -57,7 +57,6 @@
+>=20=20
+>  #define VGT_SPRSTRIDE(pipe)	_PIPE(pipe, _SPRA_STRIDE, _PLANE_STRIDE_2_B)
+>=20=20
+> -#define _REG_701C0(pipe, plane) (0x701c0 + pipe * 0x1000 + (plane - 1) *=
+ 0x100)
+>  #define _REG_701C4(pipe, plane) (0x701c4 + pipe * 0x1000 + (plane - 1) *=
+ 0x100)
+>=20=20
+>  #define SKL_FLIP_EVENT(pipe, plane) (PRIMARY_A_FLIP_DONE + (plane) * 3 +=
+ (pipe))
+> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/dr=
+m/i915/intel_gvt_mmio_table.c
+> index 3b79c1c84b79..cf45342a6db0 100644
+> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+> @@ -1006,18 +1006,18 @@ static int iterate_skl_plus_mmio(struct intel_gvt=
+_mmio_table_iter *iter)
+>  	MMIO_D(PLANE_NV12_BUF_CFG(PIPE_C, 1));
+>  	MMIO_D(PLANE_NV12_BUF_CFG(PIPE_C, 2));
+>  	MMIO_D(PLANE_NV12_BUF_CFG(PIPE_C, 3));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_A, 1)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_A, 2)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_A, 3)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_A, 4)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_B, 1)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_B, 2)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_B, 3)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_B, 4)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_C, 1)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_C, 2)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_C, 3)));
+> -	MMIO_D(_MMIO(_REG_701C0(PIPE_C, 4)));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_A, 0));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_A, 1));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_A, 2));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_A, 3));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_B, 0));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_B, 1));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_B, 2));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_B, 3));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_C, 0));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_C, 1));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_C, 2));
+> +	MMIO_D(PLANE_AUX_DIST(PIPE_C, 3));
+>  	MMIO_D(_MMIO(_REG_701C4(PIPE_A, 1)));
+>  	MMIO_D(_MMIO(_REG_701C4(PIPE_A, 2)));
+>  	MMIO_D(_MMIO(_REG_701C4(PIPE_A, 3)));
 
 --=20
 Jani Nikula, Intel
