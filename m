@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30738C3EEC
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 May 2024 12:30:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C048C3EF3
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 May 2024 12:32:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76AB710E623;
-	Mon, 13 May 2024 10:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D99010E624;
+	Mon, 13 May 2024 10:32:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VviC10Wj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d/lMjH/u";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B80610E623
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 10:30:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31D5E10E624
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 10:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715596240; x=1747132240;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=hFl+mbahl2hbq3eC+1YV2+YPacVvkzmkMOq2K+oCVa4=;
- b=VviC10WjfTWUH2j9FLGQkEQI3k93rd4qb2a2ZKPVq88B2OfJjGqQ6vsW
- z8XaYDpuaisfgqoKSZWvNtTrceESklFHTqyUhOvB6B7+B4AMkbk3Ut9sW
- JQM00CFJ60rMEB+DuNPWEg2v2DoimDs7DcVJ6Onbp532prTBFu/7TsXEu
- UKjvTb8y3MAtCCqqfX6NxfUz9jCEgQVGhoguCTzKjV4ZEDpcZZ5eUPOJJ
- AUet92ntSoOJUL3fKgwkN+8AtMQk9JS3mpY2nb22w7NbMzdTR2FDqdEig
- XgUMBs2GTaaQVqSyX91BoCTHq80jSoDAvm3fiKPPn2Y0y+z+8cYnW6KeG w==;
-X-CSE-ConnectionGUID: RJ+xbRoFSIeVnJ9qKb/DWw==
-X-CSE-MsgGUID: UjkPVwCZSoCOCjIV9QQP8A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="11683742"
-X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="11683742"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 03:30:39 -0700
-X-CSE-ConnectionGUID: I5UKZLqBRV2Q7v8TAI/JHA==
-X-CSE-MsgGUID: d0UwazeGQn6ahZ1my0tJBQ==
+ t=1715596367; x=1747132367;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=Wh/nvtYMZrEBhxYz5gYMFPifaggbFYT+1naHYFyMofw=;
+ b=d/lMjH/u1yyatESeI2653hNeO8UOzBKfWt5EK1aygBv2vf3i6ZJvO2ar
+ xgQzcYPrzriPZV3taqxk8YUfEpr+xb+SDUjBUBLURUm3ZQzZ48F5KUTID
+ wFEf9NN/vT70L0MvCmYFb9Dhs4Aq5lQiUku1t7JDnU3sJhJroxvGJKQct
+ MxW3QyWXGPZvDX47Fr1Ot6uN/DseIaLylXXGFThiQ2eA6hQoQv+xydmz1
+ eMaKy9tFyUkSlSmI4MOCr66nUfjsPfxRoTdKZU9LIHu4/OYZk7F9XHAql
+ HPmHN5MnVXaTkJgi+wXj3wfBImAyO1XMSzA0KGdxnvqs8/NVl11d5l2jH Q==;
+X-CSE-ConnectionGUID: FE4Y4VXSTs69HtOd+06sIw==
+X-CSE-MsgGUID: rzS1hivLScipMZ/8aaHHqg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="14471158"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="14471158"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 03:32:47 -0700
+X-CSE-ConnectionGUID: aV5z2EIMQ6+9d9zbS95zYQ==
+X-CSE-MsgGUID: aGBE2lVXRpuAHAjsXtnNAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="34717036"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="34808944"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.7])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2024 03:30:38 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 03:32:45 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>
-Subject: Re: [PATCH 08/16] drm/i915/gvt: Use PLANE_CTL and PLANE_SURF defines
-In-Reply-To: <20240510152329.24098-9-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 09/16] drm/i915: Drop useless PLANE_FOO_3 register defines
+In-Reply-To: <20240510152329.24098-10-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
- <20240510152329.24098-9-ville.syrjala@linux.intel.com>
-Date: Mon, 13 May 2024 13:30:34 +0300
-Message-ID: <87le4ef1h1.fsf@intel.com>
+ <20240510152329.24098-10-ville.syrjala@linux.intel.com>
+Date: Mon, 13 May 2024 13:32:42 +0300
+Message-ID: <87ikzif1dh.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,46 +73,80 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 10 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Stop hand rolling PLANE_CTL and PLANE_SURF for the third plane
-> and just use the real thing.
+> We only need register defines for the first two planes
+> on the first two pipes. Nuke everything else.
 >
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> CC: Zhi Wang <zhi.wang.linux@gmail.com>
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-The original is a baffling mix.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+>  .../gpu/drm/i915/display/skl_universal_plane_regs.h  | 12 ------------
+>  1 file changed, 12 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/dr=
-m/i915/intel_gvt_mmio_table.c
-> index b53c98cd6d7f..843bdb46d49c 100644
-> --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -1030,12 +1030,12 @@ static int iterate_skl_plus_mmio(struct intel_gvt=
-_mmio_table_iter *iter)
->  	MMIO_D(PLANE_AUX_OFFSET(PIPE_C, 1));
->  	MMIO_D(PLANE_AUX_OFFSET(PIPE_C, 2));
->  	MMIO_D(PLANE_AUX_OFFSET(PIPE_C, 3));
-> -	MMIO_D(_MMIO(_PLANE_CTL_3_A));
-> -	MMIO_D(_MMIO(_PLANE_CTL_3_B));
-> -	MMIO_D(_MMIO(0x72380));
-> -	MMIO_D(_MMIO(0x7239c));
-> -	MMIO_D(_MMIO(_PLANE_SURF_3_A));
-> -	MMIO_D(_MMIO(_PLANE_SURF_3_B));
-> +	MMIO_D(PLANE_CTL(PIPE_A, 2));
-> +	MMIO_D(PLANE_CTL(PIPE_B, 2));
-> +	MMIO_D(PLANE_CTL(PIPE_C, 2));
-> +	MMIO_D(PLANE_SURF(PIPE_A, 2));
-> +	MMIO_D(PLANE_SURF(PIPE_B, 2));
-> +	MMIO_D(PLANE_SURF(PIPE_C, 2));
->  	MMIO_D(DMC_SSP_BASE);
->  	MMIO_D(DMC_HTP_SKL);
->  	MMIO_D(DMC_LAST_WRITE);
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/dr=
+ivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> index 2222d0c760e8..0558d97614e1 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> @@ -234,49 +234,38 @@
+>=20=20
+>  #define _PLANE_CTL_1_B				0x71180
+>  #define _PLANE_CTL_2_B				0x71280
+> -#define _PLANE_CTL_3_B				0x71380
+>  #define _PLANE_CTL_1(pipe)	_PIPE(pipe, _PLANE_CTL_1_A, _PLANE_CTL_1_B)
+>  #define _PLANE_CTL_2(pipe)	_PIPE(pipe, _PLANE_CTL_2_A, _PLANE_CTL_2_B)
+> -#define _PLANE_CTL_3(pipe)	_PIPE(pipe, _PLANE_CTL_3_A, _PLANE_CTL_3_B)
+>  #define PLANE_CTL(pipe, plane)	\
+>  	_MMIO_PLANE(plane, _PLANE_CTL_1(pipe), _PLANE_CTL_2(pipe))
+>=20=20
+>  #define _PLANE_STRIDE_1_B			0x71188
+>  #define _PLANE_STRIDE_2_B			0x71288
+> -#define _PLANE_STRIDE_3_B			0x71388
+>  #define _PLANE_STRIDE_1(pipe)	\
+>  	_PIPE(pipe, _PLANE_STRIDE_1_A, _PLANE_STRIDE_1_B)
+>  #define _PLANE_STRIDE_2(pipe)	\
+>  	_PIPE(pipe, _PLANE_STRIDE_2_A, _PLANE_STRIDE_2_B)
+> -#define _PLANE_STRIDE_3(pipe)	\
+> -	_PIPE(pipe, _PLANE_STRIDE_3_A, _PLANE_STRIDE_3_B)
+>  #define PLANE_STRIDE(pipe, plane)	\
+>  	_MMIO_PLANE(plane, _PLANE_STRIDE_1(pipe), _PLANE_STRIDE_2(pipe))
+>=20=20
+>  #define _PLANE_POS_1_B				0x7118c
+>  #define _PLANE_POS_2_B				0x7128c
+> -#define _PLANE_POS_3_B				0x7138c
+>  #define _PLANE_POS_1(pipe)	_PIPE(pipe, _PLANE_POS_1_A, _PLANE_POS_1_B)
+>  #define _PLANE_POS_2(pipe)	_PIPE(pipe, _PLANE_POS_2_A, _PLANE_POS_2_B)
+> -#define _PLANE_POS_3(pipe)	_PIPE(pipe, _PLANE_POS_3_A, _PLANE_POS_3_B)
+>  #define PLANE_POS(pipe, plane)	\
+>  	_MMIO_PLANE(plane, _PLANE_POS_1(pipe), _PLANE_POS_2(pipe))
+>=20=20
+>  #define _PLANE_SIZE_1_B				0x71190
+>  #define _PLANE_SIZE_2_B				0x71290
+> -#define _PLANE_SIZE_3_B				0x71390
+>  #define _PLANE_SIZE_1(pipe)	_PIPE(pipe, _PLANE_SIZE_1_A, _PLANE_SIZE_1_B)
+>  #define _PLANE_SIZE_2(pipe)	_PIPE(pipe, _PLANE_SIZE_2_A, _PLANE_SIZE_2_B)
+> -#define _PLANE_SIZE_3(pipe)	_PIPE(pipe, _PLANE_SIZE_3_A, _PLANE_SIZE_3_B)
+>  #define PLANE_SIZE(pipe, plane)	\
+>  	_MMIO_PLANE(plane, _PLANE_SIZE_1(pipe), _PLANE_SIZE_2(pipe))
+>=20=20
+>  #define _PLANE_SURF_1_B				0x7119c
+>  #define _PLANE_SURF_2_B				0x7129c
+> -#define _PLANE_SURF_3_B				0x7139c
+>  #define _PLANE_SURF_1(pipe)	_PIPE(pipe, _PLANE_SURF_1_A, _PLANE_SURF_1_B)
+>  #define _PLANE_SURF_2(pipe)	_PIPE(pipe, _PLANE_SURF_2_A, _PLANE_SURF_2_B)
+> -#define _PLANE_SURF_3(pipe)	_PIPE(pipe, _PLANE_SURF_3_A, _PLANE_SURF_3_B)
+>  #define PLANE_SURF(pipe, plane)	\
+>  	_MMIO_PLANE(plane, _PLANE_SURF_1(pipe), _PLANE_SURF_2(pipe))
+>=20=20
+> @@ -351,7 +340,6 @@
+>=20=20
+>  #define _PLANE_COLOR_CTL_1_B			0x711CC
+>  #define _PLANE_COLOR_CTL_2_B			0x712CC
+> -#define _PLANE_COLOR_CTL_3_B			0x713CC
+>  #define _PLANE_COLOR_CTL_1(pipe)	\
+>  	_PIPE(pipe, _PLANE_COLOR_CTL_1_A, _PLANE_COLOR_CTL_1_B)
+>  #define _PLANE_COLOR_CTL_2(pipe)	\
 
 --=20
 Jani Nikula, Intel
