@@ -2,64 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3B58C457C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 May 2024 18:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D7F8C4581
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 May 2024 19:00:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8480A10E89C;
-	Mon, 13 May 2024 16:59:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB7010E8AD;
+	Mon, 13 May 2024 17:00:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lT2O2ydC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C64m56Z+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9706510E89C
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 16:59:44 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 98893CE0F22
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 16:59:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E484C4AF0D
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 16:59:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1715619581;
- bh=JitgSMLRZNI4ny1UnV3o1usQaHTQC5I0Tk9f27RylSQ=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=lT2O2ydCn169pZ6YH3hZwo6Heyyp70Py//tELvxYzOkNoYwDUkxOEYyMH4hIIseLV
- MGQLolSW/qiDKsoaU96xrQ/EO4LmABCcft0V2wqUBTBrYPBJ94Q0cRvTA2ho+ZUKVR
- wTomjz+qVTULYZpRbSjPKl0CC3JUhbqgBgjFZibk/rrerlyoNb44QfXwSamDrUdirZ
- wmrs0MJZmahc+TXDLcMPd5taMUMG/jbIF7bzilTPXo6wZiikbRrMlE1V4pqfHhwg3k
- 8LEcqwj05B2/9Pkiao1XDhLOm5rfegZUiaFq8eSCu1mnuJmSeBVUtUnxfBmrDhML97
- LrFgpuSTWvIlQ==
-Received: by mail-oa1-f48.google.com with SMTP id
- 586e51a60fabf-23d3d092a1bso2679781fac.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 09:59:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCW10+cdFQasfLtM2Tgj47w1Avba0KBRIJDs5NLMVcxVRee9+t1qCiYZ2bYq3iBvvR4p1InQ/vxfc/4XXuK9saKIBdPZICvChr6pKS9cuzEk
-X-Gm-Message-State: AOJu0YwXErvftaiMka71jOwhXaQ4XwIBa165kMRkDXaqabd+201ViZpJ
- Hjv1tHdpsbaSl52FAyvVjMrUvPaAYS9pw6BX1hYaPmd/m22KLreAXcKgrYGeYWit8s6YW+W5ljD
- GqysZMQaRgt1UlQyFV0l90M3zYP9FB3DexpZXlQ==
-X-Google-Smtp-Source: AGHT+IGlxh1Dy5ysKOVds09zArKG9c9noCluyALHfc5Bn+YbXeExnTTxJ5+knqKIQqmNb6mYhwGsmaYQo1ct2IYqvuU=
-X-Received: by 2002:a05:6871:729a:b0:23c:a6f8:9362 with SMTP id
- 586e51a60fabf-24172a76ff6mr13846720fac.13.1715619580755; Mon, 13 May 2024
- 09:59:40 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9436910E8AC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 17:00:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715619601; x=1747155601;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uEMlnM/9TApx0rvTLLNuRyD2Qx/iDJ/f2SLY/5I2ZLw=;
+ b=C64m56Z+5zqHR4mtlRp5XRFcw4iGmFF1PN4OMrflvTOIRh5NEBJsYzNf
+ l0yoc3oLlLtlvR8zLiAg5kaylSWt+Muvx4D4V0Em4t71wNyyC1EOOgNi9
+ MrhcV7Ztzu1dZFXqm8Kgw+rEooOr7wgUzX17f08hROFHwK3jFxnK+e17F
+ TAnw2+4dseRKAmfiElzNGJmcgk38hg+TppLv2WZsixowimpyJUD+tg3tL
+ lB0894wdBTo5fXmiiMmVkVzAa8AB3uhEbH4+LaOtwjoqTyb4PFrR1UmD4
+ E2pH9Ouxa271p91a1MSZDZInotCNieaaL75eo09JXMMYu4HJkRsaIcvPD w==;
+X-CSE-ConnectionGUID: w5OFNK2zS2uwq3Wfqaj1lw==
+X-CSE-MsgGUID: 5yHM5rRqS2unWAky31YgfA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11072"; a="15387794"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="15387794"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2024 09:59:48 -0700
+X-CSE-ConnectionGUID: Wef9WCY8T72GGwnHSwz9VA==
+X-CSE-MsgGUID: FHedfIxsQxSq1Ja4IyLkTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; d="scan'208";a="30378754"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 13 May 2024 09:59:46 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 13 May 2024 19:59:45 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v2 11/16] drm/i915: Use REG_BIT for PLANE_WM bits
+Date: Mon, 13 May 2024 19:59:45 +0300
+Message-ID: <20240513165945.15285-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240510152329.24098-12-ville.syrjala@linux.intel.com>
+References: <20240510152329.24098-12-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-References: <cover.1715353572.git.jani.nikula@intel.com>
- <b2bdec9161ddcbf79c8516aeea508a9903bd0074.1715353572.git.jani.nikula@intel.com>
-In-Reply-To: <b2bdec9161ddcbf79c8516aeea508a9903bd0074.1715353572.git.jani.nikula@intel.com>
-From: Robert Foss <rfoss@kernel.org>
-Date: Mon, 13 May 2024 18:59:29 +0200
-X-Gmail-Original-Message-ID: <CAN6tsi5Og9E_thegG1-spCrYvQzuzq2tSigQ5huLHkOYE65GEw@mail.gmail.com>
-Message-ID: <CAN6tsi5Og9E_thegG1-spCrYvQzuzq2tSigQ5huLHkOYE65GEw@mail.gmail.com>
-Subject: Re: [RESEND 3/6] drm/radeon: remove radeon_connector_edid() and stop
- using edid_blob_ptr
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Pan@freedesktop.org, Xinhui <Xinhui.Pan@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,132 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 10, 2024 at 5:08=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
- wrote:
->
-> radeon_connector_edid() copies the EDID from edid_blob_ptr as a side
-> effect if radeon_connector->edid isn't initialized. However, everywhere
-> that the returned EDID is used, the EDID should have been set
-> beforehands.
->
-> Only the drm EDID code should look at the EDID property, anyway, so stop
-> using it.
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Pan, Xinhui <Xinhui.Pan@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/radeon/radeon_audio.c      |  7 ++++---
->  drivers/gpu/drm/radeon/radeon_connectors.c | 15 ---------------
->  drivers/gpu/drm/radeon/radeon_mode.h       |  2 --
->  3 files changed, 4 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_audio.c b/drivers/gpu/drm/rade=
-on/radeon_audio.c
-> index 16c10db3ce6f..0bcd767b9f47 100644
-> --- a/drivers/gpu/drm/radeon/radeon_audio.c
-> +++ b/drivers/gpu/drm/radeon/radeon_audio.c
-> @@ -303,6 +303,7 @@ void radeon_audio_endpoint_wreg(struct radeon_device =
-*rdev, u32 offset,
->  static void radeon_audio_write_sad_regs(struct drm_encoder *encoder)
->  {
->         struct drm_connector *connector =3D radeon_get_connector_for_enco=
-der(encoder);
-> +       struct radeon_connector *radeon_connector =3D to_radeon_connector=
-(connector);
->         struct radeon_encoder *radeon_encoder =3D to_radeon_encoder(encod=
-er);
->         struct cea_sad *sads;
->         int sad_count;
-> @@ -310,7 +311,7 @@ static void radeon_audio_write_sad_regs(struct drm_en=
-coder *encoder)
->         if (!connector)
->                 return;
->
-> -       sad_count =3D drm_edid_to_sad(radeon_connector_edid(connector), &=
-sads);
-> +       sad_count =3D drm_edid_to_sad(radeon_connector->edid, &sads);
->         if (sad_count < 0)
->                 DRM_ERROR("Couldn't read SADs: %d\n", sad_count);
->         if (sad_count <=3D 0)
-> @@ -326,6 +327,7 @@ static void radeon_audio_write_sad_regs(struct drm_en=
-coder *encoder)
->  static void radeon_audio_write_speaker_allocation(struct drm_encoder *en=
-coder)
->  {
->         struct drm_connector *connector =3D radeon_get_connector_for_enco=
-der(encoder);
-> +       struct radeon_connector *radeon_connector =3D to_radeon_connector=
-(connector);
->         struct radeon_encoder *radeon_encoder =3D to_radeon_encoder(encod=
-er);
->         u8 *sadb =3D NULL;
->         int sad_count;
-> @@ -333,8 +335,7 @@ static void radeon_audio_write_speaker_allocation(str=
-uct drm_encoder *encoder)
->         if (!connector)
->                 return;
->
-> -       sad_count =3D drm_edid_to_speaker_allocation(radeon_connector_edi=
-d(connector),
-> -                                                  &sadb);
-> +       sad_count =3D drm_edid_to_speaker_allocation(radeon_connector->ed=
-id, &sadb);
->         if (sad_count < 0) {
->                 DRM_DEBUG("Couldn't read Speaker Allocation Data Block: %=
-d\n",
->                           sad_count);
-> diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm=
-/radeon/radeon_connectors.c
-> index 81b5c3c8f658..80879e946342 100644
-> --- a/drivers/gpu/drm/radeon/radeon_connectors.c
-> +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
-> @@ -255,21 +255,6 @@ static struct drm_encoder *radeon_find_encoder(struc=
-t drm_connector *connector,
->         return NULL;
->  }
->
-> -struct edid *radeon_connector_edid(struct drm_connector *connector)
-> -{
-> -       struct radeon_connector *radeon_connector =3D to_radeon_connector=
-(connector);
-> -       struct drm_property_blob *edid_blob =3D connector->edid_blob_ptr;
-> -
-> -       if (radeon_connector->edid) {
-> -               return radeon_connector->edid;
-> -       } else if (edid_blob) {
-> -               struct edid *edid =3D kmemdup(edid_blob->data, edid_blob-=
->length, GFP_KERNEL);
-> -               if (edid)
-> -                       radeon_connector->edid =3D edid;
-> -       }
-> -       return radeon_connector->edid;
-> -}
-> -
->  static void radeon_connector_get_edid(struct drm_connector *connector)
->  {
->         struct drm_device *dev =3D connector->dev;
-> diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeo=
-n/radeon_mode.h
-> index 546381a5c918..e0a5af180801 100644
-> --- a/drivers/gpu/drm/radeon/radeon_mode.h
-> +++ b/drivers/gpu/drm/radeon/radeon_mode.h
-> @@ -701,8 +701,6 @@ extern u16 radeon_connector_encoder_get_dp_bridge_enc=
-oder_id(struct drm_connecto
->  extern bool radeon_connector_is_dp12_capable(struct drm_connector *conne=
-ctor);
->  extern int radeon_get_monitor_bpc(struct drm_connector *connector);
->
-> -extern struct edid *radeon_connector_edid(struct drm_connector *connecto=
-r);
-> -
->  extern void radeon_connector_hotplug(struct drm_connector *connector);
->  extern int radeon_dp_mode_valid_helper(struct drm_connector *connector,
->                                        struct drm_display_mode *mode);
-> --
-> 2.39.2
->
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Robert Foss <rfoss@kernel.org>
+A couple of PLANE_WM bits were still using the hand
+rolled (1<<N) form. Replace with REG_BIT().
+
+v2: Rebase
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane_regs.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+index 5fcd5898af4f..e8d399592fd3 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+@@ -307,8 +307,8 @@
+ #define _PLANE_WM_2(pipe)		_PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
+ #define _PLANE_WM_BASE(pipe, plane)	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
+ #define PLANE_WM(pipe, plane, level)	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
+-#define   PLANE_WM_EN				(1 << 31)
+-#define   PLANE_WM_IGNORE_LINES			(1 << 30)
++#define   PLANE_WM_EN				REG_BIT(31)
++#define   PLANE_WM_IGNORE_LINES			REG_BIT(30)
+ #define   PLANE_WM_LINES_MASK			REG_GENMASK(26, 14)
+ #define   PLANE_WM_BLOCKS_MASK			REG_GENMASK(11, 0)
+ 
+-- 
+2.43.2
+
