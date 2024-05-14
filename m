@@ -2,61 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E228C5781
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 May 2024 16:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC328C5627
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 May 2024 14:46:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A8310E788;
-	Tue, 14 May 2024 14:03:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D75C710E873;
+	Tue, 14 May 2024 12:46:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MguecVbz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXcLaHy/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
- [209.85.216.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1540010E25D
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 May 2024 06:39:19 +0000 (UTC)
-Received: by mail-pj1-f50.google.com with SMTP id
- 98e67ed59e1d1-2b239b5fedaso4060171a91.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 May 2024 23:39:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715668759; x=1716273559; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=hOibIN2xitJmQsGGKgpZTUMu3F5H6Nz4kThmUrUT8Pg=;
- b=MguecVbz4biDa0TwQAsv9xwqPyQzojBAAZm7bMLmnl7gyHW9eT2LEi0VFD6cpZn/5t
- X7d20+Mr4L3gzUT53D12FF95CZex4jYYqZhjQRj9xVvaexU/VHgcSrOaPLeTTKY82zWf
- mTddNQk6MnJFE/Ex/aG+plPjyVQWDflUvgnTGCIcDK7f8xEHIqz6z8ZXLbsarBJzaRom
- +Y3vYUTdM7xNH6aSBVV2jKQsgIzgm8oo/CD6F322xa5n66FooTIjzudgVTQGnDgtJ1Z/
- xbJq/aJBGJSPNCiYdRRixNhtP+8E6HdDb1x738o/42krRyz98p3uSAuwDuNz6fL7AeSu
- rhdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715668759; x=1716273559;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=hOibIN2xitJmQsGGKgpZTUMu3F5H6Nz4kThmUrUT8Pg=;
- b=ZgnMxpk4ryBnDrcYwKdZxnWfZN3iZA+7dbZszT8egzze/6eNpZkMOnCW0XLBVTBdaw
- +XO7PdyG+ggsBUSt382dSApJx0K5wroxG4fSWV9CiQzLZbVzHLxeI1fuIANsEutbqoym
- wSQlJGDIJkR3x4zHoHaQCXwqGukNQ8Leh40TZh0nA10zxKeuSIncPsypbxfVb6WYqWyA
- RbYHvzlwLDmtt8iqcfr49slM8J9/yybukT8Xf0wMGHeMZHnT7fHlMGz/AuUbXXO3Kr6D
- q9RYa6mvN/oQRxhMNSJ293RBBHgvUJS72W5n9lereV7xE693TFQWto6ZWNI2Zv7lLUzO
- 8RHA==
-X-Gm-Message-State: AOJu0YwJ/D+IVrJtKc15ECM1XxSsugeG1awcZFH3E78ZY/TKW7q/ro9a
- pnrN9xn6AK6+TIFnMfqQfZ7JOMp3AzBe1tZ7Y5r1arljle8cD4XFGbZ/1MYcFC8VoTgbXpzaiiY
- MjWzgUB9jux4fpr4ex7DKlSklB52XXg==
-X-Google-Smtp-Source: AGHT+IHZ01sMzApXlFteqiimaoUaPVFyudnfTbSK8biUhh61wLMTLsZheXVGKF6yQ9Jn8j0mkAy/8Y4cmql3LhmsYnQ=
-X-Received: by 2002:a17:90a:5502:b0:2ac:40c8:1ed3 with SMTP id
- 98e67ed59e1d1-2b6cc342957mr10167799a91.5.1715668758959; Mon, 13 May 2024
- 23:39:18 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D885E10E3BC;
+ Tue, 14 May 2024 12:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715690801; x=1747226801;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=q+euxl9+CeaiZA2voqV8Td5btJDKHhjPdMWDF9Y4osc=;
+ b=AXcLaHy/QhKhYhDexReBi4wV8D9Dyx1dqCY8KKMfTVMS2Bw7kaKTdPAZ
+ HAlxyqEU5aGjq6I7AGBY0R+Bq+tj/8ij1Mm3rNq2RT6Hz5/JkglWcbVPh
+ hbxVk1gcfCEnfNckLBC1PdIZeVNu9xKteg+7qRZkdT8Qx+p5hK88a2PcN
+ RNZ0bGWOWpV0icAgcNungOKGj5C02RyYYfOMKEAkIQyeY6bNbwgBtm1QZ
+ JDFercWf1fc6L23dxsIQcsrP4vlDZ8qh6rmGTmZCOZn+NhnQjHbYMgREJ
+ 9Fem7hH+CG+Ym4I7Gy7xuLcOgYnzj3HdP2TI9eYms/aJH7pwBc7Xqs+Qy g==;
+X-CSE-ConnectionGUID: XfR48TrhQUi2U11EJO7cIg==
+X-CSE-MsgGUID: KPKOBtJ+RyKUo9TyTm8lMA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="29188353"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="29188353"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2024 05:46:40 -0700
+X-CSE-ConnectionGUID: K/lpEmc2S9iKJSYwoBM4vg==
+X-CSE-MsgGUID: 9DBeWJNvSiiChiF9jaekrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; d="scan'208";a="35385374"
+Received: from anmitta2-mobl3.gar.corp.intel.com (HELO intel.com)
+ ([10.247.118.126])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2024 05:46:34 -0700
+Date: Tue, 14 May 2024 14:46:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/gt: Disarm breadcrumbs if engines are already
+ idle
+Message-ID: <ZkNdJTx8Z17oPq6z@ashyti-mobl2.lan>
+References: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-From: Anup Kumarr <kumarranup62@gmail.com>
-Date: Tue, 14 May 2024 12:09:06 +0530
-Message-ID: <CAKdDKJUizCxr326DVe13R0acrGW1Z3VaSRsBN8St7aso_e813Q@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] intel: Disable
- drm_intel_probe_agp_aperture_size() on Android
-To: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000ee1f870618644295"
-X-Mailman-Approved-At: Tue, 14 May 2024 14:03:34 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240423165505.465734-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,14 +76,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000ee1f870618644295
-Content-Type: text/plain; charset="UTF-8"
+Hi Janusz,
 
+On Tue, Apr 23, 2024 at 06:23:10PM +0200, Janusz Krzysztofik wrote:
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> The breadcrumbs use a GT wakeref for guarding the interrupt, but are
+> disarmed during release of the engine wakeref. This leaves a hole where
+> we may attach a breadcrumb just as the engine is parking (after it has
+> parked its breadcrumbs), execute the irq worker with some signalers still
+> attached, but never be woken again.
+> 
+> That issue manifests itself in CI with IGT runner timeouts while tests
+> are waiting indefinitely for release of all GT wakerefs.
+> 
+> <6> [209.151778] i915: Running live_engine_pm_selftests/live_engine_busy_stats
+> <7> [209.231628] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_5
+> <7> [209.231816] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_4
+> <7> [209.231944] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_3
+> <7> [209.232056] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling PW_2
+> <7> [209.232166] i915 0000:00:02.0: [drm:intel_power_well_disable [i915]] disabling DC_off
+> <7> [209.232270] i915 0000:00:02.0: [drm:skl_enable_dc6 [i915]] Enabling DC6
+> <7> [209.232368] i915 0000:00:02.0: [drm:gen9_set_dc_state.part.0 [i915]] Setting DC state from 00 to 02
+> <4> [299.356116] [IGT] Inactivity timeout exceeded. Killing the current test with SIGQUIT.
+> ...
+> <6> [299.356526] sysrq: Show State
+> ...
+> <6> [299.373964] task:i915_selftest   state:D stack:11784 pid:5578  tgid:5578  ppid:873    flags:0x00004002
+> <6> [299.373967] Call Trace:
+> <6> [299.373968]  <TASK>
+> <6> [299.373970]  __schedule+0x3bb/0xda0
+> <6> [299.373974]  schedule+0x41/0x110
+> <6> [299.373976]  intel_wakeref_wait_for_idle+0x82/0x100 [i915]
+> <6> [299.374083]  ? __pfx_var_wake_function+0x10/0x10
+> <6> [299.374087]  live_engine_busy_stats+0x9b/0x500 [i915]
+> <6> [299.374173]  __i915_subtests+0xbe/0x240 [i915]
+> <6> [299.374277]  ? __pfx___intel_gt_live_setup+0x10/0x10 [i915]
+> <6> [299.374369]  ? __pfx___intel_gt_live_teardown+0x10/0x10 [i915]
+> <6> [299.374456]  intel_engine_live_selftests+0x1c/0x30 [i915]
+> <6> [299.374547]  __run_selftests+0xbb/0x190 [i915]
+> <6> [299.374635]  i915_live_selftests+0x4b/0x90 [i915]
+> <6> [299.374717]  i915_pci_probe+0x10d/0x210 [i915]
+> 
+> At the end of the interrupt worker, if there are no more engines awake,
+> disarm the breadcrumb and go to sleep.
+> 
+> Fixes: 9d5612ca165a ("drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission")
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/10026
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.12+
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
+Reviewed and applied!
 
---000000000000ee1f870618644295
-Content-Type: text/html; charset="UTF-8"
-
-<div dir="auto"></div>
-
---000000000000ee1f870618644295--
+Thanks,
+Andi
