@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F14B48C64B4
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 12:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A60738C64B7
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 12:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823A410E672;
-	Wed, 15 May 2024 10:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F72B10E6AA;
+	Wed, 15 May 2024 10:04:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bs1kEIR8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WLLeQ89x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1FA010E648
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 10:04:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0966F10E648
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 10:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715767478; x=1747303478;
+ t=1715767479; x=1747303479;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Xt4m+OEP29fttCyoHbwSPPQJIHd9v/lfKbUi8uL7Yfk=;
- b=Bs1kEIR8ovf5uW/6uRJxZZGBHqOF+4Gywik8g1S2StAUdkWd+9jlYrtx
- C2uMMpm2xu4m35EZV1vU11UfB4GGd0VekPcu5aoow1Ap92bUuusz/5yNw
- +MS2HfmA4nVvxd4kcbXQgZpAFrYzpW7gl6O37yMMJyS8RA59RO3lVh5CW
- uDHW84Wfq4y05w+Pz1g4FytLjja/ZGOZyJvz0Wc0O36CEB6dxqnKFTP2+
- dxsdX0IP3IW6mOGBdc3ke2eyFw/OgUep8QS9jcLEeaJw7Z0Tz+qp6MX8L
- WPNkt5owGNFa4AApJO2pR0U+qAXT56apRuhReH7POLQ9aWQjBT/iV5l0j A==;
-X-CSE-ConnectionGUID: q8ariW05QYC/9ig5+l3gMQ==
-X-CSE-MsgGUID: uUy8SRC2Snqt5EDSgUskXA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11937023"
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="11937023"
+ bh=S1S0t6XScAiYr8FJi7Am7NsynYJ8UAj3k08QiFANuHo=;
+ b=WLLeQ89xphCx/3sP3VppdCxQy0R6x7j0m79nrfaBKoEeglFgqtWSGADf
+ PyAuGpcNKpmj+KfxOakvGkCsc8el9670XmDQqYvYfXxTe2oqFKQk+bydv
+ 8+l5mE4gOyDipgBkSVYFisE1JOwxsrbOr5U7dQ3ybLAPMILjpJC8BiQtJ
+ W6lqZLbE5iwn8mwUScMmSeKCblWwXyJIjrj33bw9Kua/tyg0kFcZpjyAp
+ c4Myx/sHf1Rkr6tbZsMNuq0FgL6zz61dPXfyKoDcuhN3IPbYFuLN2Xk4y
+ 0eXIS+sy7cPWSxnlD1I7oe16g860wp4z3Q1aXGWkCGgX//q45O2aGvFN4 w==;
+X-CSE-ConnectionGUID: /kdCLapOTJ+F2jxvyG382g==
+X-CSE-MsgGUID: Szxh9iF4SCm+TFoMkZ46Ww==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11937030"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="11937030"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 03:04:38 -0700
-X-CSE-ConnectionGUID: XWRSvUFaT5ysZZLznkISKQ==
-X-CSE-MsgGUID: SV0aMBw+SvezzB8a4LrEsg==
+ 15 May 2024 03:04:39 -0700
+X-CSE-ConnectionGUID: 4u1j93lxR8WM3wc6snd93Q==
+X-CSE-MsgGUID: kBVwD1IBSAmz2OJ/YZPurQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="31584256"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="31584264"
 Received: from sghitax-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.210.177])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 03:04:37 -0700
+ 15 May 2024 03:04:38 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 7/8] drm/i915/display: Skip Panel Replay on pipe comparison if
- no active planes
-Date: Wed, 15 May 2024 13:04:10 +0300
-Message-Id: <20240515100411.691203-8-jouni.hogander@intel.com>
+Subject: [PATCH 8/8] drm/i915/psr: Write also AUX Less Wake lines into ALPM_CTL
+Date: Wed, 15 May 2024 13:04:11 +0300
+Message-Id: <20240515100411.691203-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240515100411.691203-1-jouni.hogander@intel.com>
 References: <20240515100411.691203-1-jouni.hogander@intel.com>
@@ -71,30 +70,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Panel Replay is not enabled if there are no active planes. Do not compare
-it on pipe comparison. Otherwise we get pipe mismatch.
+Currently AUX Less Wake lines are not written into ALPM_CTL. Fix this.
 
-Fixes: ac9ef327327b ("drm/i915/psr: Panel replay has to be enabled before link training")
+Fixes: 1ccbf135862b ("drm/i915/psr: Enable ALPM on source side for eDP Panel replay")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4035b3ec311d..bb8a0922a7f3 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5318,7 +5318,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	 * Panel replay has to be enabled before link training. PSR doesn't have
- 	 * this requirement -> check these only if using panel replay
- 	 */
--	if (current_config->has_panel_replay || pipe_config->has_panel_replay) {
-+	if (current_config->active_planes &&
-+	    (current_config->has_panel_replay ||
-+	     pipe_config->has_panel_replay)) {
- 		PIPE_CONF_CHECK_BOOL(has_psr);
- 		PIPE_CONF_CHECK_BOOL(has_sel_update);
- 		PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index e8bed1d60fa7..2e1c3ba68544 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1860,7 +1860,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
+ 	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
+ 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
+ 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+-			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS;
++			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
++			ALPM_CTL_AUX_LESS_WAKE_TIME(psr->alpm_parameters.aux_less_wake_lines);
+ 
+ 		intel_de_write(dev_priv,
+ 			       PORT_ALPM_CTL(dev_priv, cpu_transcoder),
 -- 
 2.34.1
 
