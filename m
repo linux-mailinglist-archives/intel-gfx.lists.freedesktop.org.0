@@ -2,142 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9066A8C6664
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 14:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5AD8C6683
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 14:52:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 396B210E31A;
-	Wed, 15 May 2024 12:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDDB10E39B;
+	Wed, 15 May 2024 12:52:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="HU1Yl/nc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Zq2o0eNJ";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="kbS3ND1k";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PxopBDK+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z1AAKNuc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1F3F10E31A
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 12:36:24 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id D8A012066A;
- Wed, 15 May 2024 12:36:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1715776583; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=8Lpm0YVAx6wanZ+YCFpwhI49IM8vKoAX997VVwUI8YE=;
- b=HU1Yl/ncrMbTz6ExH2D5qfbtXLZqhsvcIaR9LVOxt367djkTPVYbaQvrFIqa+NmYyR38/q
- gQUVvwqo6XXZKW9idBr+Towdi/P6L/Zn93IFDhzsGK1/d446OgkeJj78iEaKLyUUdcmjQk
- hO0rwknc7myKTak7OB66bI9vqG4s+AU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1715776583;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=8Lpm0YVAx6wanZ+YCFpwhI49IM8vKoAX997VVwUI8YE=;
- b=Zq2o0eNJE/1LekphlxlhfVMMTSotRwXlpOwHUhiR2lJORTpMx1j242euHvxpCFAltitXGo
- QVmQWhO4GgVSwABg==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=kbS3ND1k;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=PxopBDK+
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1715776582; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=8Lpm0YVAx6wanZ+YCFpwhI49IM8vKoAX997VVwUI8YE=;
- b=kbS3ND1kCfXKtCw+AontA54JGaKVqC3nKg8Yvw5cQbY9N3XNfiXxYVaKsHUW6VzFvcJkel
- Tykd4993sgyubblboBM2RGm/0q4GYKby8jwFthk2KxhfuBwIb8YkagXVn6YjQbp5SQWGfO
- VTBudazZ04rS2O1IoxeEyTDdDymorQ8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1715776582;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=8Lpm0YVAx6wanZ+YCFpwhI49IM8vKoAX997VVwUI8YE=;
- b=PxopBDK+L0YBTFu9hazcTc01UQZeVhSHxRtUbUE/h24W1kIRrQNQZHP6uhWF8llAKlBRVJ
- hJ9u4o/0aq3x4fDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AE453136A8;
- Wed, 15 May 2024 12:36:22 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 6xk6KUasRGa0WQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 15 May 2024 12:36:22 +0000
-Content-Type: multipart/mixed; boundary="------------S579z9E0aWpHktEBVSxgQj9x"
-Message-ID: <32d604d3-49a8-4a77-b2d4-766895cfe625@suse.de>
-Date: Wed, 15 May 2024 14:36:22 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B32C10E39B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 12:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715777561; x=1747313561;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=5sBhIBr45QqJ11yBsoemCn3s7fYtv4fam0aovJ/2qUc=;
+ b=Z1AAKNuccKsIcGwBp+7ZS9axITkhcvK2oPJXHnnlRK5ky+qwSlmQjg6A
+ fh1b08K/mBL/cgTo1/JltfcijoFvBOxHauE9xFrB/K1ir9U5WJzCYbmGN
+ QoIyYzZDOhyrnDyMs8rsXhrSObRJCuf4VedwtPDS/qv1FlEbCDYJW+UyW
+ ux4CtSBMHD7tA4LOQi6jGSqeiZeKoavgbUI6OsjgeNps8HpBRcMEcojWZ
+ NKkeXaq7/y9eAfywz0EtbqKBxGiEiJaryUpDRbFMYApKuq5AY+auNEKJV
+ 7oHyk//lCuilXxP/fe58sANfEO1yh6EEefcBzDoJRxPoRYH18dp/sAWFE w==;
+X-CSE-ConnectionGUID: hjVG5whjQOyJctAispaPfw==
+X-CSE-MsgGUID: dHy1oJFUQq2QAr6T1q7g5g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="14770749"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="14770749"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 05:52:40 -0700
+X-CSE-ConnectionGUID: hZV0IZG3R3S/7EEoGKmqrw==
+X-CSE-MsgGUID: 0uyjYTawS+iyhMYkR+Xgsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="61878933"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.141])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 05:52:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 02/20] drm/i915/dp: Move link train params to a
+ substruct in intel_dp
+In-Reply-To: <20240514191418.2863344-3-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240514191418.2863344-1-imre.deak@intel.com>
+ <20240514191418.2863344-3-imre.deak@intel.com>
+Date: Wed, 15 May 2024 15:52:33 +0300
+Message-ID: <87h6ezck4u.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Regression on linux-next (next-20240506)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>
-References: <SJ1PR11MB61294E38C4405716DE9BE2CBB9E52@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB6129AF1E3865F993278B7047B9EC2@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <def71e6b-53a0-4da0-8369-b69629d2dfca@suse.de>
- <SJ1PR11MB61298B3FBE1CD57BB6DCD0C9B9EC2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <SJ1PR11MB61298B3FBE1CD57BB6DCD0C9B9EC2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-X-Spam-Level: 
-X-Spamd-Result: default: False [-5.40 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MIME_BASE64_TEXT_BOGUS(1.00)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_BASE64_TEXT(0.10)[];
- MIME_GOOD(-0.10)[multipart/mixed,text/plain,text/x-patch];
- XM_UA_NO_VERSION(0.01)[]; MX_GOOD(-0.01)[];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; TO_DN_SOME(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_TRACE(0.00)[0:+,1:+,2:+]; TO_DN_EQ_ADDR_SOME(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- FROM_EQ_ENVFROM(0.00)[]; RCPT_COUNT_FIVE(0.00)[5];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- HAS_ATTACHMENT(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim, suse.de:email,
- imap1.dmz-prg2.suse.org:helo, imap1.dmz-prg2.suse.org:rdns]
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: D8A012066A
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spam-Flag: NO
-X-Spam-Score: -5.40
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,119 +68,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------S579z9E0aWpHktEBVSxgQj9x
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Tue, 14 May 2024, Imre Deak <imre.deak@intel.com> wrote:
+> For clarity move the link training parameters updated during link
+> training based on the pass/fail LT result under a substruct in intel_dp.
+> This prepares for later patches in this patchset adding similar params
+> here. Rename intel_dp_reset_max_link_params() to
+> intel_dp_reset_link_train_params() to better reflect what state gets
+> reset.
 
-Hi
+High level bikeshedding, why "link_train" instead of just "link"?
 
-Am 15.05.24 um 13:38 schrieb Borah, Chaitanya Kumar:
-[...]
->> Sorry, I didn't notice the report before. The commit is not related to ACPI.
->> There's now asm/video.h and acpi/video.h. Maybe there's a conflict among
->> included files.
->>
->> Do you have a kernel config to build with?
->>
-> ~Sorry my email client messed up my previous reply. So sending again~
->
-> I could not find a public link for the linux-next config we use but this should be close enough.
-> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14764/kconfig.txt
+You could have three groups: source, sink and link.
 
-Builds without problems.
-
-But I think there's a name collision between the video module in 
-drivers/acpi and the new video module in arch/*/video. The attached 
-patch renames the ACPI module. Could you please try it and report back 
-the results?
-
-Best regards
-Thomas
+BR,
+Jani.
 
 
 >
-> Regards
-> Chaitanya
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    | 12 ++++----
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 30 +++++++++----------
+>  2 files changed, 22 insertions(+), 20 deletions(-)
 >
->
->> Best regards
->> Thomas
->>
->>>> Thank you.
->>>>
->>>> Regards
->>>>
->>>> Chaitanya
->>>>
->>>> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
->>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
->>>> next.git/commit/?h=next-20240506
->>>> [3]
->>>> https://intel-gfx-ci.01.org/tree/linux-next/next-20240506/bat-mtlp-
->>>> 9/igt@i915_selftest@live@gt_contexts.html
->>>> [4] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
->>>> next.git/commit/?h=next-
->>>> 20240506&id=2fd001cd36005846caa6456fff1008c6f5bae9d4
->> --
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Frankenstrasse 146, 90461 Nuernberg, Germany
->> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman HRB
->> 36809 (AG Nuernberg)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index fec3de25ea54e..7edb533758416 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1738,7 +1738,6 @@ struct intel_dp {
+>  	u8 lane_count;
+>  	u8 sink_count;
+>  	bool link_trained;
+> -	bool reset_link_params;
+>  	bool use_max_params;
+>  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
+>  	u8 psr_dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
+> @@ -1759,10 +1758,13 @@ struct intel_dp {
+>  	/* intersection of source and sink rates */
+>  	int num_common_rates;
+>  	int common_rates[DP_MAX_SUPPORTED_RATES];
+> -	/* Max lane count for the current link */
+> -	int max_link_lane_count;
+> -	/* Max rate for the current link */
+> -	int max_link_rate;
+> +	struct {
+> +		/* Max lane count for the current link */
+> +		int max_lane_count;
+> +		/* Max rate for the current link */
+> +		int max_rate;
+> +	} link_train;
+> +	bool reset_link_params;
+>  	int mso_link_count;
+>  	int mso_pixel_overlap;
+>  	/* sink or branch descriptor */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6b8a94d0ca999..ffa627c63e048 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -372,13 +372,13 @@ int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
+>  
+>  int intel_dp_max_lane_count(struct intel_dp *intel_dp)
+>  {
+> -	switch (intel_dp->max_link_lane_count) {
+> +	switch (intel_dp->link_train.max_lane_count) {
+>  	case 1:
+>  	case 2:
+>  	case 4:
+> -		return intel_dp->max_link_lane_count;
+> +		return intel_dp->link_train.max_lane_count;
+>  	default:
+> -		MISSING_CASE(intel_dp->max_link_lane_count);
+> +		MISSING_CASE(intel_dp->link_train.max_lane_count);
+>  		return 1;
+>  	}
+>  }
+> @@ -644,7 +644,7 @@ static bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
+>  	 * boot-up.
+>  	 */
+>  	if (link_rate == 0 ||
+> -	    link_rate > intel_dp->max_link_rate)
+> +	    link_rate > intel_dp->link_train.max_rate)
+>  		return false;
+>  
+>  	if (lane_count == 0 ||
+> @@ -705,8 +705,8 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+>  				    "Retrying Link training for eDP with same parameters\n");
+>  			return 0;
+>  		}
+> -		intel_dp->max_link_rate = intel_dp_common_rate(intel_dp, index - 1);
+> -		intel_dp->max_link_lane_count = lane_count;
+> +		intel_dp->link_train.max_rate = intel_dp_common_rate(intel_dp, index - 1);
+> +		intel_dp->link_train.max_lane_count = lane_count;
+>  	} else if (lane_count > 1) {
+>  		if (intel_dp_is_edp(intel_dp) &&
+>  		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> @@ -716,8 +716,8 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+>  				    "Retrying Link training for eDP with same parameters\n");
+>  			return 0;
+>  		}
+> -		intel_dp->max_link_rate = intel_dp_max_common_rate(intel_dp);
+> -		intel_dp->max_link_lane_count = lane_count >> 1;
+> +		intel_dp->link_train.max_rate = intel_dp_max_common_rate(intel_dp);
+> +		intel_dp->link_train.max_lane_count = lane_count >> 1;
+>  	} else {
+>  		drm_err(&i915->drm, "Link Training Unsuccessful\n");
+>  		return -1;
+> @@ -1382,7 +1382,7 @@ intel_dp_max_link_rate(struct intel_dp *intel_dp)
+>  {
+>  	int len;
+>  
+> -	len = intel_dp_common_len_rate_limit(intel_dp, intel_dp->max_link_rate);
+> +	len = intel_dp_common_len_rate_limit(intel_dp, intel_dp->link_train.max_rate);
+>  
+>  	return intel_dp_common_rate(intel_dp, len - 1);
+>  }
+> @@ -3017,10 +3017,10 @@ void intel_dp_set_link_params(struct intel_dp *intel_dp,
+>  	intel_dp->lane_count = lane_count;
+>  }
+>  
+> -static void intel_dp_reset_max_link_params(struct intel_dp *intel_dp)
+> +static void intel_dp_reset_link_train_params(struct intel_dp *intel_dp)
+>  {
+> -	intel_dp->max_link_lane_count = intel_dp_max_common_lane_count(intel_dp);
+> -	intel_dp->max_link_rate = intel_dp_max_common_rate(intel_dp);
+> +	intel_dp->link_train.max_lane_count = intel_dp_max_common_lane_count(intel_dp);
+> +	intel_dp->link_train.max_rate = intel_dp_max_common_rate(intel_dp);
+>  }
+>  
+>  /* Enable backlight PWM and backlight PP control. */
+> @@ -3355,7 +3355,7 @@ void intel_dp_sync_state(struct intel_encoder *encoder,
+>  	intel_dp_tunnel_resume(intel_dp, crtc_state, dpcd_updated);
+>  
+>  	if (crtc_state)
+> -		intel_dp_reset_max_link_params(intel_dp);
+> +		intel_dp_reset_link_train_params(intel_dp);
+>  }
+>  
+>  bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
+> @@ -5888,7 +5888,7 @@ intel_dp_detect(struct drm_connector *connector,
+>  	 * supports link training fallback params.
+>  	 */
+>  	if (intel_dp->reset_link_params || intel_dp->is_mst) {
+> -		intel_dp_reset_max_link_params(intel_dp);
+> +		intel_dp_reset_link_train_params(intel_dp);
+>  		intel_dp->reset_link_params = false;
+>  	}
+>  
+> @@ -6740,7 +6740,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  
+>  	intel_dp_set_source_rates(intel_dp);
+>  	intel_dp_set_common_rates(intel_dp);
+> -	intel_dp_reset_max_link_params(intel_dp);
+> +	intel_dp_reset_link_train_params(intel_dp);
+>  
+>  	/* init MST on ports that can support it */
+>  	intel_dp_mst_encoder_init(dig_port,
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
---------------S579z9E0aWpHktEBVSxgQj9x
-Content-Type: text/x-patch; charset=UTF-8;
- name="0001-acpi-video-Fix-name-collision-with-architecture-vide.patch"
-Content-Disposition: attachment;
- filename*0="0001-acpi-video-Fix-name-collision-with-architecture-vide.pa";
- filename*1="tch"
-Content-Transfer-Encoding: base64
-
-RnJvbSBjNDJmMWU0NGZkYzEzMzU4YjIyMGYyN2JlMGMzMTc2ZTI3NWViMTg4IE1vbiBTZXAg
-MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5A
-c3VzZS5kZT4KRGF0ZTogV2VkLCAxNSBNYXkgMjAyNCAxNDozMTo1MyArMDIwMApTdWJqZWN0
-OiBbUEFUQ0hdIGFjcGkvdmlkZW86IEZpeCBuYW1lIGNvbGxpc2lvbiB3aXRoIGFyY2hpdGVj
-dHVyZSB2aWRlbyBtb2R1bGUKClNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0
-emltbWVybWFubkBzdXNlLmRlPgotLS0KIGRyaXZlcnMvYWNwaS9NYWtlZmlsZSAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICB8IDUgKysrLS0KIGRyaXZlcnMvYWNwaS97YWNwaV92aWRl
-by5jID0+IGFjcGlfdmlkZW9fY29yZS5jfSB8IDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgNCBp
-bnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQogcmVuYW1lIGRyaXZlcnMvYWNwaS97YWNw
-aV92aWRlby5jID0+IGFjcGlfdmlkZW9fY29yZS5jfSAoOTklKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvYWNwaS9NYWtlZmlsZSBiL2RyaXZlcnMvYWNwaS9NYWtlZmlsZQppbmRleCAzOWVh
-NWNmYTgzMjY5Li5iMmMyNDcxZWU5MzVlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2FjcGkvTWFr
-ZWZpbGUKKysrIGIvZHJpdmVycy9hY3BpL01ha2VmaWxlCkBAIC03OCw3ICs3OCw5IEBAIG9i
-ai0kKENPTkZJR19BQ1BJX0ZBTikJCSs9IGZhbi5vCiBmYW4tb2JqcwkJCTo9IGZhbl9jb3Jl
-Lm8KIGZhbi1vYmpzCQkJKz0gZmFuX2F0dHIubwogCi1vYmotJChDT05GSUdfQUNQSV9WSURF
-TykJKz0gdmlkZW8ubworb2JqLSQoQ09ORklHX0FDUElfVklERU8pCSs9IGFjcGlfdmlkZW8u
-bworYWNwaV92aWRlby1vYmpzCQkJKz0gYWNwaV92aWRlb19jb3JlLm8gdmlkZW9fZGV0ZWN0
-Lm8KKwogb2JqLSQoQ09ORklHX0FDUElfVEFEKQkJKz0gYWNwaV90YWQubwogb2JqLSQoQ09O
-RklHX0FDUElfUENJX1NMT1QpCSs9IHBjaV9zbG90Lm8KIG9iai0kKENPTkZJR19BQ1BJX1BS
-T0NFU1NPUikJKz0gcHJvY2Vzc29yLm8KQEAgLTExOSw3ICsxMjEsNiBAQCBvYmotJChDT05G
-SUdfQUNQSV9DT05GSUdGUykJKz0gYWNwaV9jb25maWdmcy5vCiAKIG9iai15CQkJCSs9IHBt
-aWMvCiAKLXZpZGVvLW9ianMJCQkrPSBhY3BpX3ZpZGVvLm8gdmlkZW9fZGV0ZWN0Lm8KIG9i
-ai15CQkJCSs9IGRwdGYvCiAKIG9iai0kKENPTkZJR19BUk02NCkJCSs9IGFybTY0LwpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9hY3BpL2FjcGlfdmlkZW8uYyBiL2RyaXZlcnMvYWNwaS9hY3Bp
-X3ZpZGVvX2NvcmUuYwpzaW1pbGFyaXR5IGluZGV4IDk5JQpyZW5hbWUgZnJvbSBkcml2ZXJz
-L2FjcGkvYWNwaV92aWRlby5jCnJlbmFtZSB0byBkcml2ZXJzL2FjcGkvYWNwaV92aWRlb19j
-b3JlLmMKaW5kZXggMWZkYTMwMzg4Mjk3My4uMzJiZjgxYzU3NzNhNCAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9hY3BpL2FjcGlfdmlkZW8uYworKysgYi9kcml2ZXJzL2FjcGkvYWNwaV92aWRl
-b19jb3JlLmMKQEAgLTEsNiArMSw2IEBACiAvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
-R1BMLTIuMC1vci1sYXRlcgogLyoKLSAqICB2aWRlby5jIC0gQUNQSSBWaWRlbyBEcml2ZXIK
-KyAqICBhY3BpX3ZpZGVvX2NvcmUuYyAtIEFDUEkgVmlkZW8gRHJpdmVyCiAgKgogICogIENv
-cHlyaWdodCAoQykgMjAwNCBMdW1pbmcgWXUgPGx1bWluZy55dUBpbnRlbC5jb20+CiAgKiAg
-Q29weXJpZ2h0IChDKSAyMDA0IEJydW5vIER1Y3JvdCA8ZHVjcm90QHBvdXBpbm91Lm9yZz4K
-LS0gCjIuNDUuMAoK
-
---------------S579z9E0aWpHktEBVSxgQj9x--
+Jani Nikula, Intel
