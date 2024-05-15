@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 161948C6603
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 13:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EBA8C6604
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 13:57:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8136E10E7F5;
-	Wed, 15 May 2024 11:57:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A88210E838;
+	Wed, 15 May 2024 11:57:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGDWfeNS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aSigN/un";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFC9E10E790
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 11:57:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F142310E7FE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 11:57:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715774239; x=1747310239;
+ t=1715774245; x=1747310245;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LW+cBBpfl37sB1vAscZl5y/Fv6flmjO7hRVT7ae0ox8=;
- b=jGDWfeNSqrtIJymSd8avldBmSIZ2eybczgf7H1gmru1xc9pc7kmrMeaq
- sMJJQzzGTJjOAxexvSbtp4MJconzHQuI0qkkIZ6Dl3dS12aVIZp9VhIvU
- j+EAr94gL3eRqgf1p6ZEHHQS02HvTeDTsYFRPmlFLzJ2hU9ffIX3AL/OW
- 1vaC+ZXbsYWjfiZrK3Cv4uqc+wjAlARi8ExsZEo/qonXYbcmy7EP3PUxk
- qfPP2icxwxNg46/FWgmyZuo1ajh9IYzcUd3lY39bRufFl2PS+18TCqGyO
- qJ6RWhQOls8oN6XjiZhglDobiAcTiv2ZxtCmCHobg4RlbxlKyEUBnlvp+ g==;
-X-CSE-ConnectionGUID: 3tW9lJHrT9Cicy8n13NFNw==
-X-CSE-MsgGUID: TGXZqBMPTZGK8/P5HdlHMw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="15604787"
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="15604787"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 04:57:19 -0700
-X-CSE-ConnectionGUID: usoMloYaR3arsAlQraAaIA==
-X-CSE-MsgGUID: EFrnL1LrSo2S+5hfqCQ25A==
+ bh=7abdvhOES0Cqwm31ZgUXRJnLED/vQaj8+5xDnPIHJYg=;
+ b=aSigN/unnzZugVlTu+2TxMBqSYg3625CUz6kuIAKB6iR+01LE59Dg/Gg
+ 7oYbTZwh3qk9N5dpDYKA/X9PrqfrC8Jwvqf+GiTWAoryBVn6l1VLOwoRl
+ f1ucwSaW/dJ1x6/RLdPcMjUlf/M2CGRWoF8kK7kuy0IR1U4WR5W74Hztu
+ HAqtTbBUQ3YVTrfjITjGMvKQy7TBapDUG3bMutq9LFBo8Kgi3+IkVlLMC
+ lmhunahP9S46HOBAymKnohmrx00KtqJn1rw0aLCP9ls7xUdA7kX/XrTWr
+ t19sS/i+RhbMBQm1Z5TSyHgtqEp9oHIqb1lIGZ21lR7agC+S/ZHFJGIbv Q==;
+X-CSE-ConnectionGUID: NO3HyBRYRbqdijgOdfeQwQ==
+X-CSE-MsgGUID: 12SCT8TSS0OBNRpMXY606w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11948028"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="11948028"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 04:57:25 -0700
+X-CSE-ConnectionGUID: vEN+a6RQR46EUuY7ThvKAg==
+X-CSE-MsgGUID: IVnFVVT2RG2hU5mpZytHjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="30962313"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="54237624"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.141])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 04:57:17 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 04:57:23 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 5/8] drm/i915: pass dev_priv explicitly to CURSIZE
-Date: Wed, 15 May 2024 14:56:45 +0300
-Message-Id: <521ca44416eb95dcfcf4bfbc32ac7f9371aeaf5d.1715774156.git.jani.nikula@intel.com>
+Subject: [PATCH 6/8] drm/i915: pass dev_priv explicitly to CUR_FBC_CTL
+Date: Wed, 15 May 2024 14:56:46 +0300
+Message-Id: <f5e76f916ccf02aaf6016ffd476e9544817ac179.1715774156.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1715774156.git.jani.nikula@intel.com>
 References: <cover.1715774156.git.jani.nikula@intel.com>
@@ -71,40 +71,59 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the CURSIZE register macro.
+explicitly to the CUR_FBC_CTL register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c      | 2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c      | 3 ++-
  drivers/gpu/drm/i915/display/intel_cursor_regs.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c      | 6 +++---
+ 3 files changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index f8baf25c4a4f..8553f6164760 100644
+index 8553f6164760..c780ce146131 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -297,7 +297,7 @@ static void i845_cursor_update_arm(struct intel_plane *plane,
+@@ -646,7 +646,8 @@ static void i9xx_cursor_update_arm(struct intel_plane *plane,
+ 	    plane->cursor.size != fbc_ctl ||
  	    plane->cursor.cntl != cntl) {
- 		intel_de_write_fw(dev_priv, CURCNTR(dev_priv, PIPE_A), 0);
- 		intel_de_write_fw(dev_priv, CURBASE(dev_priv, PIPE_A), base);
--		intel_de_write_fw(dev_priv, CURSIZE(PIPE_A), size);
-+		intel_de_write_fw(dev_priv, CURSIZE(dev_priv, PIPE_A), size);
- 		intel_de_write_fw(dev_priv, CURPOS(dev_priv, PIPE_A), pos);
- 		intel_de_write_fw(dev_priv, CURCNTR(dev_priv, PIPE_A), cntl);
- 
+ 		if (HAS_CUR_FBC(dev_priv))
+-			intel_de_write_fw(dev_priv, CUR_FBC_CTL(pipe),
++			intel_de_write_fw(dev_priv,
++					  CUR_FBC_CTL(dev_priv, pipe),
+ 					  fbc_ctl);
+ 		intel_de_write_fw(dev_priv, CURCNTR(dev_priv, pipe), cntl);
+ 		intel_de_write_fw(dev_priv, CURPOS(dev_priv, pipe), pos);
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor_regs.h b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-index 0d1ee13ec066..7c3a76f5151d 100644
+index 7c3a76f5151d..40b01205e247 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-@@ -70,7 +70,7 @@
- #define CURBASE(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURABASE)
+@@ -71,7 +71,7 @@
  #define CURPOS(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURAPOS)
  #define CURPOS_ERLY_TPT(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURAPOS_ERLY_TPT)
--#define CURSIZE(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASIZE)
-+#define CURSIZE(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASIZE)
- #define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_FBC_CTL_A)
+ #define CURSIZE(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASIZE)
+-#define CUR_FBC_CTL(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_FBC_CTL_A)
++#define CUR_FBC_CTL(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_FBC_CTL_A)
  #define CUR_CHICKEN(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_CHICKEN_A)
  #define CURSURFLIVE(pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASURFLIVE)
+ 
+diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+index 5ea1fbc2e981..b485976976db 100644
+--- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
++++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+@@ -154,9 +154,9 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(CURBASE(dev_priv, PIPE_A));
+ 	MMIO_D(CURBASE(dev_priv, PIPE_B));
+ 	MMIO_D(CURBASE(dev_priv, PIPE_C));
+-	MMIO_D(CUR_FBC_CTL(PIPE_A));
+-	MMIO_D(CUR_FBC_CTL(PIPE_B));
+-	MMIO_D(CUR_FBC_CTL(PIPE_C));
++	MMIO_D(CUR_FBC_CTL(dev_priv, PIPE_A));
++	MMIO_D(CUR_FBC_CTL(dev_priv, PIPE_B));
++	MMIO_D(CUR_FBC_CTL(dev_priv, PIPE_C));
+ 	MMIO_D(_MMIO(0x700ac));
+ 	MMIO_D(_MMIO(0x710ac));
+ 	MMIO_D(_MMIO(0x720ac));
 -- 
 2.39.2
 
