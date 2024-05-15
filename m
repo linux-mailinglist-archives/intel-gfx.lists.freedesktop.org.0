@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA9E8C6B12
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 18:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BDA38C6BE0
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 20:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A43B910EB30;
-	Wed, 15 May 2024 16:57:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fxx2M7V0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E5910E04F;
+	Wed, 15 May 2024 18:09:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFC0210EB30
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 16:57:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715792226; x=1747328226;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TOB+u5jEXO/15fZ1UIGfSMaUetmaGj29tHaY96q97TE=;
- b=Fxx2M7V0AbflFRQy/nqSKzGVLVy0shTDc4+GDxHCLuxUNp+v89axQaNN
- WAL5obYNsJjkZGNEV/HyV1jvG0bG4kzz9R8oK+rQ3NUptnc/7oHZlhHBT
- TIl82RYvnpWRe8WSwl5cUC5ozZZEQuPZnrK4AYpYyPhz7HI5vD7wnbFa/
- EUQ4yUwuRjRHtc3WhwDMpMCmTNxo/YwYHAhBMX1Sxqxlzd8XX/JssCIcr
- 1uU+KW/CLe9IIQhBX4EA+tHJe25wPEi1Xpu2wrzuTLG0BeG5a6xkK7KzZ
- RkkLo8zsnGwzeyY3MkPLR7i/HWOXlSrNS41BnvwIBO3mzEftoKbGWTBZM A==;
-X-CSE-ConnectionGUID: vrAcmqxPTDC+DiL14DNlow==
-X-CSE-MsgGUID: wKEoNyc5Se6QMWBq1b3Yvw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="22461281"
-X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="22461281"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 09:57:05 -0700
-X-CSE-ConnectionGUID: QletJ7CvRSmJFvNCNDbFGg==
-X-CSE-MsgGUID: ZuB6TSE8Q5GXylDotBZ1/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,162,1712646000"; d="scan'208";a="62317730"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.141])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 09:57:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 2/2] drm/i915: stop redefining INTEL_VGA_DEVICE
-Date: Wed, 15 May 2024 19:56:51 +0300
-Message-Id: <20240515165651.1230465-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240515165651.1230465-1-jani.nikula@intel.com>
-References: <20240515165651.1230465-1-jani.nikula@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51A3F10EBC1;
+ Wed, 15 May 2024 18:09:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0332366602783594682=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/pciids=3A_switch_to_xe_driver_style_PCI_ID_macros?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 May 2024 18:09:34 -0000
+Message-ID: <171579657433.2118792.8224751309424478318@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240515165651.1230465-1-jani.nikula@intel.com>
+In-Reply-To: <20240515165651.1230465-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,254 +37,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that the PCI ID macros allow us to pass in the macro to use, stop
-redefining INTEL_VGA_DEVICE.
+--===============0332366602783594682==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_display_device.c   | 87 +++++++++---------
- drivers/gpu/drm/i915/intel_device_info.c      | 91 +++++++++----------
- 2 files changed, 88 insertions(+), 90 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 950e66cdba0a..cf093bc0cb28 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -795,55 +795,54 @@ static bool has_no_display(struct pci_dev *pdev)
- 	return pci_match_id(ids, pdev);
- }
- 
--#undef INTEL_VGA_DEVICE
--#define INTEL_VGA_DEVICE(id, info) { id, info }
-+#define INTEL_DISPLAY_DEVICE(_id, _info) { .devid = (_id), .info = (_info) }
- 
- static const struct {
- 	u32 devid;
- 	const struct intel_display_device_info *info;
- } intel_display_ids[] = {
--	INTEL_I830_IDS(INTEL_VGA_DEVICE, &i830_display),
--	INTEL_I845G_IDS(INTEL_VGA_DEVICE, &i845_display),
--	INTEL_I85X_IDS(INTEL_VGA_DEVICE, &i85x_display),
--	INTEL_I865G_IDS(INTEL_VGA_DEVICE, &i865g_display),
--	INTEL_I915G_IDS(INTEL_VGA_DEVICE, &i915g_display),
--	INTEL_I915GM_IDS(INTEL_VGA_DEVICE, &i915gm_display),
--	INTEL_I945G_IDS(INTEL_VGA_DEVICE, &i945g_display),
--	INTEL_I945GM_IDS(INTEL_VGA_DEVICE, &i945gm_display),
--	INTEL_I965G_IDS(INTEL_VGA_DEVICE, &i965g_display),
--	INTEL_G33_IDS(INTEL_VGA_DEVICE, &g33_display),
--	INTEL_I965GM_IDS(INTEL_VGA_DEVICE, &i965gm_display),
--	INTEL_GM45_IDS(INTEL_VGA_DEVICE, &gm45_display),
--	INTEL_G45_IDS(INTEL_VGA_DEVICE, &g45_display),
--	INTEL_PNV_IDS(INTEL_VGA_DEVICE, &pnv_display),
--	INTEL_ILK_D_IDS(INTEL_VGA_DEVICE, &ilk_d_display),
--	INTEL_ILK_M_IDS(INTEL_VGA_DEVICE, &ilk_m_display),
--	INTEL_SNB_IDS(INTEL_VGA_DEVICE, &snb_display),
--	INTEL_IVB_IDS(INTEL_VGA_DEVICE, &ivb_display),
--	INTEL_HSW_IDS(INTEL_VGA_DEVICE, &hsw_display),
--	INTEL_VLV_IDS(INTEL_VGA_DEVICE, &vlv_display),
--	INTEL_BDW_IDS(INTEL_VGA_DEVICE, &bdw_display),
--	INTEL_CHV_IDS(INTEL_VGA_DEVICE, &chv_display),
--	INTEL_SKL_IDS(INTEL_VGA_DEVICE, &skl_display),
--	INTEL_BXT_IDS(INTEL_VGA_DEVICE, &bxt_display),
--	INTEL_GLK_IDS(INTEL_VGA_DEVICE, &glk_display),
--	INTEL_KBL_IDS(INTEL_VGA_DEVICE, &skl_display),
--	INTEL_CFL_IDS(INTEL_VGA_DEVICE, &skl_display),
--	INTEL_WHL_IDS(INTEL_VGA_DEVICE, &skl_display),
--	INTEL_CML_IDS(INTEL_VGA_DEVICE, &skl_display),
--	INTEL_ICL_IDS(INTEL_VGA_DEVICE, &icl_display),
--	INTEL_EHL_IDS(INTEL_VGA_DEVICE, &jsl_ehl_display),
--	INTEL_JSL_IDS(INTEL_VGA_DEVICE, &jsl_ehl_display),
--	INTEL_TGL_IDS(INTEL_VGA_DEVICE, &tgl_display),
--	INTEL_DG1_IDS(INTEL_VGA_DEVICE, &dg1_display),
--	INTEL_RKL_IDS(INTEL_VGA_DEVICE, &rkl_display),
--	INTEL_ADLS_IDS(INTEL_VGA_DEVICE, &adl_s_display),
--	INTEL_RPLS_IDS(INTEL_VGA_DEVICE, &adl_s_display),
--	INTEL_ADLP_IDS(INTEL_VGA_DEVICE, &xe_lpd_display),
--	INTEL_ADLN_IDS(INTEL_VGA_DEVICE, &xe_lpd_display),
--	INTEL_RPLU_IDS(INTEL_VGA_DEVICE, &xe_lpd_display),
--	INTEL_RPLP_IDS(INTEL_VGA_DEVICE, &xe_lpd_display),
--	INTEL_DG2_IDS(INTEL_VGA_DEVICE, &xe_hpd_display),
-+	INTEL_I830_IDS(INTEL_DISPLAY_DEVICE, &i830_display),
-+	INTEL_I845G_IDS(INTEL_DISPLAY_DEVICE, &i845_display),
-+	INTEL_I85X_IDS(INTEL_DISPLAY_DEVICE, &i85x_display),
-+	INTEL_I865G_IDS(INTEL_DISPLAY_DEVICE, &i865g_display),
-+	INTEL_I915G_IDS(INTEL_DISPLAY_DEVICE, &i915g_display),
-+	INTEL_I915GM_IDS(INTEL_DISPLAY_DEVICE, &i915gm_display),
-+	INTEL_I945G_IDS(INTEL_DISPLAY_DEVICE, &i945g_display),
-+	INTEL_I945GM_IDS(INTEL_DISPLAY_DEVICE, &i945gm_display),
-+	INTEL_I965G_IDS(INTEL_DISPLAY_DEVICE, &i965g_display),
-+	INTEL_G33_IDS(INTEL_DISPLAY_DEVICE, &g33_display),
-+	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_display),
-+	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_display),
-+	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_display),
-+	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_display),
-+	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_display),
-+	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_display),
-+	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_display),
-+	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_display),
-+	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_display),
-+	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_display),
-+	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_display),
-+	INTEL_CHV_IDS(INTEL_DISPLAY_DEVICE, &chv_display),
-+	INTEL_SKL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
-+	INTEL_BXT_IDS(INTEL_DISPLAY_DEVICE, &bxt_display),
-+	INTEL_GLK_IDS(INTEL_DISPLAY_DEVICE, &glk_display),
-+	INTEL_KBL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
-+	INTEL_CFL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
-+	INTEL_WHL_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
-+	INTEL_CML_IDS(INTEL_DISPLAY_DEVICE, &skl_display),
-+	INTEL_ICL_IDS(INTEL_DISPLAY_DEVICE, &icl_display),
-+	INTEL_EHL_IDS(INTEL_DISPLAY_DEVICE, &jsl_ehl_display),
-+	INTEL_JSL_IDS(INTEL_DISPLAY_DEVICE, &jsl_ehl_display),
-+	INTEL_TGL_IDS(INTEL_DISPLAY_DEVICE, &tgl_display),
-+	INTEL_DG1_IDS(INTEL_DISPLAY_DEVICE, &dg1_display),
-+	INTEL_RKL_IDS(INTEL_DISPLAY_DEVICE, &rkl_display),
-+	INTEL_ADLS_IDS(INTEL_DISPLAY_DEVICE, &adl_s_display),
-+	INTEL_RPLS_IDS(INTEL_DISPLAY_DEVICE, &adl_s_display),
-+	INTEL_ADLP_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
-+	INTEL_ADLN_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
-+	INTEL_RPLU_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
-+	INTEL_RPLP_IDS(INTEL_DISPLAY_DEVICE, &xe_lpd_display),
-+	INTEL_DG2_IDS(INTEL_DISPLAY_DEVICE, &xe_hpd_display),
- 
- 	/*
- 	 * Do not add any GMD_ID-based platforms to this list.  They will
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 82bb34416fb1..862f4b705227 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -127,81 +127,80 @@ void intel_device_info_print(const struct intel_device_info *info,
- 	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
- }
- 
--#undef INTEL_VGA_DEVICE
--#define INTEL_VGA_DEVICE(id, info) (id)
-+#define ID(id) (id)
- 
- static const u16 subplatform_ult_ids[] = {
--	INTEL_HSW_ULT_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_HSW_ULT_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_HSW_ULT_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULT_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULT_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULT_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULT_RSVD_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_SKL_ULT_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_SKL_ULT_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_SKL_ULT_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_KBL_ULT_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_KBL_ULT_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_KBL_ULT_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_CFL_U_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_CFL_U_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_WHL_U_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_WHL_U_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_WHL_U_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_CML_U_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_CML_U_GT2_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_HSW_ULT_GT1_IDS(ID),
-+	INTEL_HSW_ULT_GT2_IDS(ID),
-+	INTEL_HSW_ULT_GT3_IDS(ID),
-+	INTEL_BDW_ULT_GT1_IDS(ID),
-+	INTEL_BDW_ULT_GT2_IDS(ID),
-+	INTEL_BDW_ULT_GT3_IDS(ID),
-+	INTEL_BDW_ULT_RSVD_IDS(ID),
-+	INTEL_SKL_ULT_GT1_IDS(ID),
-+	INTEL_SKL_ULT_GT2_IDS(ID),
-+	INTEL_SKL_ULT_GT3_IDS(ID),
-+	INTEL_KBL_ULT_GT1_IDS(ID),
-+	INTEL_KBL_ULT_GT2_IDS(ID),
-+	INTEL_KBL_ULT_GT3_IDS(ID),
-+	INTEL_CFL_U_GT2_IDS(ID),
-+	INTEL_CFL_U_GT3_IDS(ID),
-+	INTEL_WHL_U_GT1_IDS(ID),
-+	INTEL_WHL_U_GT2_IDS(ID),
-+	INTEL_WHL_U_GT3_IDS(ID),
-+	INTEL_CML_U_GT1_IDS(ID),
-+	INTEL_CML_U_GT2_IDS(ID),
- };
- 
- static const u16 subplatform_ulx_ids[] = {
--	INTEL_HSW_ULX_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_HSW_ULX_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULX_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULX_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULX_GT3_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_BDW_ULX_RSVD_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_SKL_ULX_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_SKL_ULX_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_KBL_ULX_GT1_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_KBL_ULX_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_AML_KBL_GT2_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_AML_CFL_GT2_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_HSW_ULX_GT1_IDS(ID),
-+	INTEL_HSW_ULX_GT2_IDS(ID),
-+	INTEL_BDW_ULX_GT1_IDS(ID),
-+	INTEL_BDW_ULX_GT2_IDS(ID),
-+	INTEL_BDW_ULX_GT3_IDS(ID),
-+	INTEL_BDW_ULX_RSVD_IDS(ID),
-+	INTEL_SKL_ULX_GT1_IDS(ID),
-+	INTEL_SKL_ULX_GT2_IDS(ID),
-+	INTEL_KBL_ULX_GT1_IDS(ID),
-+	INTEL_KBL_ULX_GT2_IDS(ID),
-+	INTEL_AML_KBL_GT2_IDS(ID),
-+	INTEL_AML_CFL_GT2_IDS(ID),
- };
- 
- static const u16 subplatform_portf_ids[] = {
--	INTEL_ICL_PORT_F_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_ICL_PORT_F_IDS(ID),
- };
- 
- static const u16 subplatform_uy_ids[] = {
--	INTEL_TGL_GT2_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_TGL_GT2_IDS(ID),
- };
- 
- static const u16 subplatform_n_ids[] = {
--	INTEL_ADLN_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_ADLN_IDS(ID),
- };
- 
- static const u16 subplatform_rpl_ids[] = {
--	INTEL_RPLS_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_RPLU_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_RPLP_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_RPLS_IDS(ID),
-+	INTEL_RPLU_IDS(ID),
-+	INTEL_RPLP_IDS(ID),
- };
- 
- static const u16 subplatform_rplu_ids[] = {
--	INTEL_RPLU_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_RPLU_IDS(ID),
- };
- 
- static const u16 subplatform_g10_ids[] = {
--	INTEL_DG2_G10_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_ATS_M150_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_DG2_G10_IDS(ID),
-+	INTEL_ATS_M150_IDS(ID),
- };
- 
- static const u16 subplatform_g11_ids[] = {
--	INTEL_DG2_G11_IDS(INTEL_VGA_DEVICE, 0),
--	INTEL_ATS_M75_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_DG2_G11_IDS(ID),
-+	INTEL_ATS_M75_IDS(ID),
- };
- 
- static const u16 subplatform_g12_ids[] = {
--	INTEL_DG2_G12_IDS(INTEL_VGA_DEVICE, 0),
-+	INTEL_DG2_G12_IDS(ID),
- };
- 
- static bool find_devid(u16 id, const u16 *p, unsigned int num)
--- 
-2.39.2
+Series: series starting with [1/2] drm/i915/pciids: switch to xe driver style PCI ID macros
+URL   : https://patchwork.freedesktop.org/series/133664/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14768 -> Patchwork_133664v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/index.html
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (1): fi-kbl-8809g 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133664v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [PASS][2] -> [FAIL][3] ([i915#10378])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14768/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@kms_dsc@dsc-basic:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] +30 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-11:         [FAIL][6] ([i915#10378]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14768/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@a-dp7:
+    - {bat-mtlp-9}:       [DMESG-WARN][8] ([i915#10435]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14768/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp7.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp7.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14768 -> Patchwork_133664v1
+
+  CI-20190529: 20190529
+  CI_DRM_14768: 26a52a7b24c1f334d92f5deac9f3eaf3224f3864 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7855: 7855
+  Patchwork_133664v1: 26a52a7b24c1f334d92f5deac9f3eaf3224f3864 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/index.html
+
+--===============0332366602783594682==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/pciids: switch to xe driver style PCI ID macros</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133664/">https://patchwork.freedesktop.org/series/133664/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14768 -&gt; Patchwork_133664v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 43)</h2>
+<p>Additional (1): fi-kbl-8809g <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133664v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14768/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +30 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14768/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@a-dp7:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14768/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp7.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435">i915#10435</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133664v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp7.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14768 -&gt; Patchwork_133664v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14768: 26a52a7b24c1f334d92f5deac9f3eaf3224f3864 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7855: 7855<br />
+  Patchwork_133664v1: 26a52a7b24c1f334d92f5deac9f3eaf3224f3864 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0332366602783594682==--
