@@ -2,62 +2,188 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A354A8C6564
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 13:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0ED8C65D2
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 13:36:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C35310E2AE;
-	Wed, 15 May 2024 11:17:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53DEB10E7D5;
+	Wed, 15 May 2024 11:36:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3mPtchQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BXU0YO5O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47C1C10E2AE
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 11:17:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8378D10E7D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 11:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715771834; x=1747307834;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Pfxo9Hi1KZcDpB8UmjMmmyw0mHnO/jkBUQjnxQiF4ns=;
- b=l3mPtchQX3NOVkwiY4tLaNM82EzrDL3LK+BzBJDneZGMN5/Rb3oxFgbx
- ukYaVKoOinA/Ajdk5dFxczYcdUOQrZPqGrdkcRW+ndjWK+JXgr628xqHf
- b3qzNjJWvUYAgLZG8opmUa3Rv3bnGWbNAmwn0iToeHajEoqXj5Qu701wI
- d8VUIzl8q6fZQoH9PQqRBn8aS0C49JgdCSLSH9CrRJOcKELWsZwLuaxqD
- fVoW8m+z5lirhqtsbPX5veJK2lqn2Xjtn4szuY1fVbGyAMm2u/aVD4hDl
- 4yeIBowdWkKRuFSVW7ZRdnNy0v3ZfdfdHz2z1Rbb8IIc7eFwH783H8V48 Q==;
-X-CSE-ConnectionGUID: FKCooAZVTeSeZ54Rn+3W3g==
-X-CSE-MsgGUID: kqVOhuX+R2OnlEOZQK3VQQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="34328671"
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="34328671"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 04:17:13 -0700
-X-CSE-ConnectionGUID: FwBUdjWtS/WxkOi30j+ZLw==
-X-CSE-MsgGUID: /aDqkC+hQT6mLXqNNpgWSA==
+ t=1715772978; x=1747308978;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=ZyMxb+0uLDF38kFFgqCdhjwbYTnsCDP7aDFk5QeZVCY=;
+ b=BXU0YO5OO7qQKAlvlJ/sPoLf+7a9bPs/+q0X7LgO1IOCF27pgl/6O4kE
+ N9bnlGw1Zo5QO7BKZ2wSbZHZyhS3RWr6QZl8Qwoy7LKrRShxQYGTGL0SC
+ XnD2GTrzYkp+DCaBynjTw3+7b3gnaakTn78KNl1/AaazxeDK+yIJBUFEX
+ ml3wXCEvuqqeGG2wMV0e02MsvJT01J7eLtEgQRxgU7Q5A3J++bdcVltlU
+ u7CVOKuR9a6X1kbUEeVukD+l7Qzg4ExVxispopUwJyB4IA+K2zja7kBFY
+ ckC3Gc3JHakQRvKz/cetb2i9fw30Wf+vwulTh9j8ccJwFOC7V9z2wsqrd g==;
+X-CSE-ConnectionGUID: zgKXHwweStaH4TM6bump2g==
+X-CSE-MsgGUID: GkPQTawuTgWY+tvrY1TlEQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="22401108"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208,217";a="22401108"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 04:36:18 -0700
+X-CSE-ConnectionGUID: z96Zxow+QJmZ3t+urm4bJQ==
+X-CSE-MsgGUID: rbaTtliQTmKNG177KHfQMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="31024259"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 15 May 2024 04:17:10 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 15 May 2024 14:17:09 +0300
-Date: Wed, 15 May 2024 14:17:09 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 16/16] drm/i915: Handle SKL+ WM/DDB registers next to all
- other plane registers
-Message-ID: <ZkSZtcjf24OnAiEH@intel.com>
-References: <20240510152329.24098-1-ville.syrjala@linux.intel.com>
- <20240510152329.24098-17-ville.syrjala@linux.intel.com>
- <871q65e8p3.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208,217";a="35731698"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 May 2024 04:36:17 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 15 May 2024 04:36:17 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 15 May 2024 04:36:17 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 15 May 2024 04:36:17 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 15 May 2024 04:36:16 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=al5P1V7gEdkILQwsJjHVOc9apK98ZTlNQp7lOthBGYgGOXBBSOscWIwi+fJuxnv5ypCq5KXoQzCCRHwPyZHtXzg2+ooHjBsmYYnlATRqBVIZeY9+BlHMRx8iRnvZBmBnZ4cAUVuOmUStpNQVwnF+fbUkIS15XX51t6DfTLZGvQOMBId4j1b+dR6/lAFT10clcQ//tAXT/nZbFw9r7QwWJoGbaXnHEBCV3lQIywo7/VJwhk8p2+xTqUYYRYGaehBCFV820aH7s/iS1yqcBLojh2vIzWawIyUBzSJUUOrM1In76gbSIuyvQX7RtMbTY+6BeLD2dGsYpkJpMEvWh0ODAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5XXXvv27KtbL3sIiyaFFhKAok6iRnnhFOFKm4nkhCMQ=;
+ b=azP0rBoFnqS8rECAyvM4nLUIcWRVuCDBFqFHRTM43rvTmhhlICbhJzVFYEU1/i2P5BuqqKn2/MAtv0uJ6kFSMByWiNnJFmeQ9XBU+yLpYNpB7XLqrzhpsVQbElJIIV2FSPmlH33ggtt8ixU09JKI+n2mT4HZ+BxmXcTuRRg1ZDhgUSPG3OsOEvPo2SrfMgBNnBdCU+AQAskbqDvzuBiQe0o4gjAMglSV2gjMeQnI8pJWKmfA3T13AMCwf/5JPDg6RUgrEXDyOc/XeycN4Bzsgfpd/IDcs3BhuM3QBApdPfEMGxdru9cBNG+ce2UkuMaJ1Ox0bRzEZE0V24Be3Cfv6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
+ by DS0PR11MB7481.namprd11.prod.outlook.com (2603:10b6:8:14b::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Wed, 15 May
+ 2024 11:36:08 +0000
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525%6]) with mapi id 15.20.7544.052; Wed, 15 May 2024
+ 11:36:08 +0000
+Content-Type: multipart/alternative;
+ boundary="------------mSWb4gwyn0fd05sk3Y00tj08"
+Message-ID: <3b2b913f-485d-43cb-9be5-a3facb0835d0@intel.com>
+Date: Wed, 15 May 2024 17:06:02 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: Regression on linux-next (next-20240506)
+Content-Language: en-GB
+To: Thomas Zimmermann <tzimmermann@suse.de>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
+ <jani.saarinen@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
+References: <SJ1PR11MB61294E38C4405716DE9BE2CBB9E52@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB6129AF1E3865F993278B7047B9EC2@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <def71e6b-53a0-4da0-8369-b69629d2dfca@suse.de>
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+In-Reply-To: <def71e6b-53a0-4da0-8369-b69629d2dfca@suse.de>
+X-ClientProxiedBy: PN2PR01CA0023.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::28) To SJ1PR11MB6129.namprd11.prod.outlook.com
+ (2603:10b6:a03:488::12)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <871q65e8p3.fsf@intel.com>
-X-Patchwork-Hint: comment
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|DS0PR11MB7481:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5bd5e88c-2c11-4afa-33bf-08dc74d336b9
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cStaUHFFSjh0dDZkdE8yRTZMK2cxVkR5VEdhcVNVdDVHM3BNZkZiUHdhRE56?=
+ =?utf-8?B?aU1RcWt4ZGxhNE90eW1BNi9hQ0g5RGhUQ3RLd282QWd2Rkg3RVB4OFV5eWFk?=
+ =?utf-8?B?VEpUYUZMR1FzS05WcytYb2R2SGNvaU9WVXZCcURhc2QxK1hNbGdDaCsrYVEz?=
+ =?utf-8?B?SjVlQ2NpcnhBc1ZnaXl2MzdCNmc4TnVQMUFDaUx2YjFLYW9EQnZyazJSUmVJ?=
+ =?utf-8?B?R1FmcWxWSkpEeFV3Tko5V1MzVUUzWW9VbVpXZDU3cFROVXJTWnljQm5vQzd3?=
+ =?utf-8?B?WmplSTdZTXRYS2xSOWJRM2loNWRtYjZnMy9uc3NSSUt1bmgxM084R2ZrY2Jt?=
+ =?utf-8?B?SzNTY1l3TmJleUkxTzEyRFB1ZnNudGhHOFhGT1Vra3F5eGwwQTcrRjF6SW8r?=
+ =?utf-8?B?TTV6Q1B0OUErWjFWYTVVc20ybVhjMzVEUENaY1M0SjRrYXJHS0J3OCtyek1J?=
+ =?utf-8?B?TitER3o3S0pZRi9QQ05MZDVyanZFMktQVTRzempZZFJpejNkYWorOGlzQkNo?=
+ =?utf-8?B?aUkrSDBYd2FJOVFNSmQ3M2k2MkorVGxkNnJvMzNVUUhzTU5TczdSc2wrcHZM?=
+ =?utf-8?B?RVNJS09kMnhKamJTcXROQ0RCWktYa2VTcHpjbWE2QU14dnVmdTM4cXdUcEd1?=
+ =?utf-8?B?MENRZ0hNTmlUb3A2ai9kOGx2SWc3SndaUmVzZHJjR0NhNlR0aHcrSkdBdDIv?=
+ =?utf-8?B?V2lTOXIxOVBzLytCWkpINzlpSnI4ZGYxMjVja3M2V01BaGRleGFOcnoyZDM0?=
+ =?utf-8?B?eDJTdGdDUFpzQWNveVpobHRqeG5KdmFnaGVNNTdweTFpb01tekh3ZUJMRU40?=
+ =?utf-8?B?bWxqRWIrNlExYTMzL01seFpBamhVeGd2cDdBNHNSdk8vMDd5cjFFT1ljRnRs?=
+ =?utf-8?B?Q1BCVTZVbjJGZEZyRzlZSE9hTG5OWHpwOENMRDljU1FKakVoNktLUHRqOHNQ?=
+ =?utf-8?B?QXduUmtZbFhWZFQwTmlwSDhyTHU5M3krSDVINzQzZzVFQVQ5K05hNE9wczJy?=
+ =?utf-8?B?end5TnFPMjRDNURKQ0RZS0FUWWxuYXpVeEtlMjY4anRCeEEwR2dxZnpPb040?=
+ =?utf-8?B?SmpqWDFUaG5kQy9jMkhRb3o1UEhKQTVsNnRlWVZpSWFPcGpQZ0NhbS9ETnp3?=
+ =?utf-8?B?NFVGc3dOcjFabzZSanltZEszOVhwekZWaGJQQWVnV21oakZFUkZxRnJCVUhE?=
+ =?utf-8?B?RXE1T0h0NkhPcEcrZVh1T0Uva2NKeDI5YTFzTUN1RGczUEpGM3ZDZFZvMStR?=
+ =?utf-8?B?MnBobEZnWlZFdGVHQzR4a09BQjVvbGd2QTRuTVVnbnVNVGcyanlWVVRFUCt2?=
+ =?utf-8?B?eEhLN083OU13UDNlNStWZEpXNE5UZmVudkJtSDEwOWRPcXhLSGFublZxUDlu?=
+ =?utf-8?B?QmFoZ3pLYU9VQXFKbU5YYlZ0UG9FVExrVWg0b3VzM2JYWDc5bC9ZN3Bpelh4?=
+ =?utf-8?B?ME9ld0lNdjNqemV2YnFXbVhZWWh1N0NuSU90NERrMk9hS3IzOE5UV2wwZXRK?=
+ =?utf-8?B?cU5TK2JqZXN4cUN6WkZ2RTlhbmdDaUlTaDJHcjdRR2FNMVhNSWQrazl3N2pU?=
+ =?utf-8?B?azJnaWdhYm9sTVZmSUg0aFgySXc1NlpGcG04UHpwNHl1VHdHQkR3OFhjZ3N4?=
+ =?utf-8?Q?CZJtvNJetQmZT4iRfTyYyy4gp8o2axqeup33+omY02uM=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SW1kZVBxQmE1TWVZU2JTRTV3ZXNubWpwT2RLamhUUnM5WWRyNWtzSmlXYUI1?=
+ =?utf-8?B?TzV6cm00RzFWZHgxa3VyczV1Zm1KMjlUUzl3MmpIbmlZOTUwZTRHTWZ4MTgx?=
+ =?utf-8?B?NGIzYkhFMmsxZWx5UksySTZRdGRia3VWdnZQZ2lKUE1Sd1JlSkJJOHM4WlNa?=
+ =?utf-8?B?WEczNURDMHZJa3FOck40d01aWXJIM2c0bGxaa1lzV0ljZCtBV2wzMi9aRVRU?=
+ =?utf-8?B?STIzZmN3R2lPQjdKOG5JS1pJYW5DSUNWQ0U2M0dUdUZvd0VESjdCWE5YbkVa?=
+ =?utf-8?B?aVFwdzJPY0lBS3Y2aWdZemREdTJKblJjZ0VpRnB5akFrMmUwakFCbzc4OWhs?=
+ =?utf-8?B?NENsS0NURDV5ZDVyQzRTVzJBN09ZMnpzY0l3Y3pxdkVoc1VFejJnRWxzNkxa?=
+ =?utf-8?B?SFFBVXB3TEVXQUlYMCtBTUJSTUJndnN6dDh4NXEvWXlySW1kdmdHYjJQbnNn?=
+ =?utf-8?B?UVlEZnM5SzJHQk5rRk5ta3p1TWsvNG4yaVhGTWZHNkdLYThPTnNvYXduMytO?=
+ =?utf-8?B?SmtWM3UxMWtCbnVuL1dnb0FWVFROdW1kbmxmekFHNzh3Ui9wNHd5dU9QTVdt?=
+ =?utf-8?B?eG5xQlJOZGRxTzRJR2xrc21qUkNjQWtLN3VjNDFWdnZGYUlNa1lWdnZUVkdS?=
+ =?utf-8?B?M09kQUpnR1huY25BWkt3S21jZSsvRWE2WEh6NlA5TWZUS1BrcWJaRis0SmZ5?=
+ =?utf-8?B?RVNId1VidnpEVVJERDFIU2RDRVFaNGpBdk9FVTl5M1BHQldpTGVHajBNZVht?=
+ =?utf-8?B?RVlpWm9FZXE5eFFSUmNabUgxY0oraXpydktJT0VySXU4SkxzVnhXcVg1S2I4?=
+ =?utf-8?B?ZmxISnJhQ1l0ZjBpejgrSmV5dFg2aGROMmYxUmxiOTFFM1FoWnFEbnIvSlZu?=
+ =?utf-8?B?dkdaalFRa2RSM3BaemdUVnQzbWZOQWFCaVdnMFZhbUpHOVEvSDRmc2JyNG1I?=
+ =?utf-8?B?eTBGZ3c5UUZOKzFKd2l5dDhDYVExM3lsUnlOUEF3aG9vRU9uRHJCc1hTQmlo?=
+ =?utf-8?B?Qy91WmI5NHpET1hydFU5N1ZqS2liazI1RXh6bFVmbDhyUnJjTTVpRVhPWGoy?=
+ =?utf-8?B?aEdYVk83WlV0eUVRVGxxS3VDcW9RSTlEbEliZ1VsUFNrZ0JOanp5Y0kzOTlu?=
+ =?utf-8?B?aHd6aGFUY3BsemtHMVBkY2g1dUNyMG1GOGNyQjlvUUNCTG0wWGg3OGdaMUY0?=
+ =?utf-8?B?V2ZWbGc3SDFqSWZ0K1hrNitXUHAvcFpESDEvdW5TcmxGSUtjdndnWUFnQnFQ?=
+ =?utf-8?B?b3pHQTRhMERDRTdIMFpvdDVIU1RycmM2Qk1uSk0zVXVXWFFRM1g4TnhTV201?=
+ =?utf-8?B?S0RrWTBUL1c2aHgyYmE0cWFINHNoQ2RYZGdyeVlZU29sNGZFRW9tY0lQRzJU?=
+ =?utf-8?B?L3FNTXFYTFpPVXgyOU9RNm5KNDNOOFBRdFZsSUFoZ01idWJack0yZk5Calpn?=
+ =?utf-8?B?UjdNMHR0czhPZi9QWU1obE9LV3RDRXM0RUhWcXd5SUwrMXhXZ1BXcWRtcEY3?=
+ =?utf-8?B?dTF3RFg4TklFOEZWbkRJczRtMVRpanQ5RjVGb3QrMXFQWTQyZUhnY0xEVm1R?=
+ =?utf-8?B?T2xlVDY3bEZtNkg1WUFYRFF1S1NrTHhYWjlLZWlzdDREeWpncWpYR3crL1Jk?=
+ =?utf-8?B?UHQxcGtQYnhXU2xoMStVNXoxTG5ucnMwbEpwWUw1cnhPL1pUemZnQjMwNWY2?=
+ =?utf-8?B?QkVINGR2SG1pRFk4NmtUejE0Mm56eU1jOW4zcGxQZmZUSjZ6OGRKUE5TMjlC?=
+ =?utf-8?B?NzR2QzNUMjNudnJhZlRNemV2VUVQbVQydXJxMG9oY0ljQ3N0eG5lSHdkM0dX?=
+ =?utf-8?B?aTlaejdHbjVMbWhJcjFuVk55R1JVZVJybzVxblVoNVN5NUIvWjk0UURHQVg5?=
+ =?utf-8?B?NzgvaERUS0s0bEdubTBLYnpMMnNmVy85bUNzZHJOMFV4cE1td0tMSFc0L0Fy?=
+ =?utf-8?B?eFY2aFRQRWJUVjJValZib05yME9oUGcwandENnE1SlFYUVZpc0Y3Z0tsTDJa?=
+ =?utf-8?B?RVlvdy8yNmhaV21ja0toSDVkU29zb1JuSFFXNGlSS0l3MWtyaGl3ODd6d1NB?=
+ =?utf-8?B?b1pOSytzYmdKUlArQ1laYjRHMWMwaHpVSXB0VHJBMkY3QnA3UUxxTTdFU0lq?=
+ =?utf-8?B?M0JmcndnYkszRmgzWmlTenl5R2U2UzZtbkl1Z0ZVVzcvSzhwRzJLQnhRNGJo?=
+ =?utf-8?Q?tj7IENF1Ktpd6+O6kV8oCdk=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5bd5e88c-2c11-4afa-33bf-08dc74d336b9
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2024 11:36:08.8010 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bPkfFtWB4d1RoqwlAwRZhKO+gqRhxMAUfC/hIf4CrB3D5SPN+MStaaGA8p5RSl/AJ7cW3DJIHc/x4TjgvvNJ03N6pRC9IgywRU3nfdwCt2A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7481
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,225 +199,354 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 13, 2024 at 11:52:08PM +0300, Jani Nikula wrote:
-> On Fri, 10 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Having the plane WM/DDB regitster write functions in skl_watermarks.c
-> > is rather annoying when trying to implement DSB based plane updates.
-> > Move them into the respective files that handle all other plane
-> > register writes. Less places where I need to worry about the DSB
-> > vs. MMIO decisions.
-> >
-> > The downside is that we spread the wm struct details a bit further
-> > afield. But if that becomes too annoying we can probably abstract
-> > things a bit more with a few extra functions.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> [snip]
-> 
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.h b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-> > index e92e00c01b29..8eb4521ee851 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.h
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-> > @@ -12,6 +12,8 @@ struct drm_i915_private;
-> >  struct intel_crtc;
-> >  struct intel_initial_plane_config;
-> >  struct intel_plane_state;
-> > +struct skl_ddb_entry;
-> > +struct skl_wm_level;
-> >  
-> >  enum pipe;
-> >  enum plane_id;
-> > @@ -35,4 +37,7 @@ bool icl_is_nv12_y_plane(struct drm_i915_private *dev_priv,
-> >  u8 icl_hdr_plane_mask(void);
-> >  bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id plane_id);
-> >  
-> > +u32 skl_plane_ddb_reg_val(const struct skl_ddb_entry *entry);
-> > +u32 skl_plane_wm_reg_val(const struct skl_wm_level *level);
-> 
-> Yeah, I don't much like interfaces that return register values for
-> registers that aren't even known... but let's see how this pans out. It
-> does what it says on the box.
+--------------mSWb4gwyn0fd05sk3Y00tj08
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Yeah, I was mulling over whether to just define the register bits
-separately for the cursor registers as well and have its own versions
-of these. Might be what I'll end up doing.
+Hi,
 
-I think there are also still some other PSR related plane registers
-that are defined in a non-standard way, so those might need similar
-treatment as well.
+On 5/15/2024 2:24 PM, Thomas Zimmermann wrote:
+> Hi
+>
+> Am 15.05.24 um 10:16 schrieb Borah, Chaitanya Kumar:
+>>
+>>> -----Original Message-----
+>>> From: Borah, Chaitanya Kumar
+>>> Sent: Wednesday, May 8, 2024 3:05 PM
+>>> To: tzimmermann@suse.de
+>>> Cc: intel-gfx@lists.freedesktop.org; Kurmi, Suresh Kumar
+>>> <suresh.kumar.kurmi@intel.com>; Saarinen, Jani 
+>>> <jani.saarinen@intel.com>
+>>> Subject: Regression on linux-next (next-20240506)
+>>>
+>>> Hello Thomas,
+>>>
+>>> Hope you are doing well.
+>>>
+>>> This mail is regarding a regression we are seeing in our CI runs[1] 
+>>> on linux-
+>>> next repository.
+>>>
+>>> Since the version next-20240506Â [2], we are seeing the following 
+>>> regression
+>>>
+>>> ````````````````````````````````````````````````````````````````````````````````` 
+>>>
+>>> Starting dynamic subtest: gt_contexts
+>>> (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+>>> acpi_video_unregister (err -2)
+>>> (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+>>> acpi_video_register_backlight (err -2)
+>>> (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+>>> __acpi_video_get_backlight_type (err -2)
+>>> (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+>>> acpi_video_register (err -2)
+>>> (i915_selftest:1107) igt_kmod-CRITICAL: Test assertion failure function
+>>> igt_kselftest_execute, file 
+>>> ../../../usr/src/igt-gpu-tools/lib/igt_kmod.c:1594:
+>>> (i915_selftest:1107) igt_kmod-CRITICAL: Failed assertion: err == 0
+>>> (i915_selftest:1107) igt_kmod-CRITICAL: kselftest "i915
+>>> igt__23__live_gt_contexts=1 live_selftests=-1 disable_display=1 
+>>> st_filter="
+>>> failed: No such file or directory [2] Dynamic subtest gt_contexts 
+>>> failed.
+>>> ````````````````````````````````````````````````````````````````````````````````` 
+>>>
+>>> Details log can be found in [3].
+>>>
+>>> After bisecting the tree, the following patch [4] seems to be the 
+>>> first "bad"
+>>> commit
+>>>
+>>> ````````````````````````````````````````````````````````````````````````````````````````````````````````` 
+>>>
+>>> 2fd001cd36005846caa6456fff1008c6f5bae9d4 is the first bad commit commit
+>>> 2fd001cd36005846caa6456fff1008c6f5bae9d4
+>>> Author: Thomas Zimmermann tzimmermann@suse.de
+>>> Date:Â Â  Fri Mar 29 21:32:12 2024 +0100
+>>>
+>>> Â Â Â Â  arch: Rename fbdev header and source files
+>>> ````````````````````````````````````````````````````````````````````````````````````````````````````````` 
+>>>
+>>>
+>>> We also verified that if we revert the patch the issue is not seen.
+>>>
+>>> Could you please check why the patch causes this regression and 
+>>> provide a fix
+>>> if necessary?
+>>>
+>> +Jani N
+>>
+>> Gentle Reminder ðŸ˜Š
+>
+> Sorry, I didn't notice the report before. The commit is not related to 
+> ACPI. There's now asm/video.h and acpi/video.h. Maybe there's a 
+> conflict among included files.
+>
+> Do you have a kernel config to build with?
 
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+I could not find a public link for the linux-next config we use but this 
+should be close enough.
 
-Thanks. Pushed the lot.
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14764/kconfig.txt
 
-> 
-> > +
-> >  #endif
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > index 1daceb8ef9de..2064f72da675 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > @@ -1396,7 +1396,7 @@ skl_total_relative_data_rate(const struct intel_crtc_state *crtc_state)
-> >  	return data_rate;
-> >  }
-> >  
-> > -static const struct skl_wm_level *
-> > +const struct skl_wm_level *
-> >  skl_plane_wm_level(const struct skl_pipe_wm *pipe_wm,
-> >  		   enum plane_id plane_id,
-> >  		   int level)
-> > @@ -1409,7 +1409,7 @@ skl_plane_wm_level(const struct skl_pipe_wm *pipe_wm,
-> >  	return &wm->wm[level];
-> >  }
-> >  
-> > -static const struct skl_wm_level *
-> > +const struct skl_wm_level *
-> >  skl_plane_trans_wm(const struct skl_pipe_wm *pipe_wm,
-> >  		   enum plane_id plane_id)
-> >  {
-> > @@ -2365,97 +2365,6 @@ static int skl_build_pipe_wm(struct intel_atomic_state *state,
-> >  	return skl_wm_check_vblank(crtc_state);
-> >  }
-> >  
-> > -static u32 skl_plane_ddb_reg_val(const struct skl_ddb_entry *entry)
-> > -{
-> > -	if (!entry->end)
-> > -		return 0;
-> > -
-> > -	return PLANE_BUF_END(entry->end - 1) |
-> > -		PLANE_BUF_START(entry->start);
-> > -}
-> > -
-> > -static u32 skl_plane_wm_reg_val(const struct skl_wm_level *level)
-> > -{
-> > -	u32 val = 0;
-> > -
-> > -	if (level->enable)
-> > -		val |= PLANE_WM_EN;
-> > -	if (level->ignore_lines)
-> > -		val |= PLANE_WM_IGNORE_LINES;
-> > -	val |= REG_FIELD_PREP(PLANE_WM_BLOCKS_MASK, level->blocks);
-> > -	val |= REG_FIELD_PREP(PLANE_WM_LINES_MASK, level->lines);
-> > -
-> > -	return val;
-> > -}
-> > -
-> > -void skl_write_plane_wm(struct intel_plane *plane,
-> > -			const struct intel_crtc_state *crtc_state)
-> > -{
-> > -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> > -	enum plane_id plane_id = plane->id;
-> > -	enum pipe pipe = plane->pipe;
-> > -	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
-> > -	const struct skl_ddb_entry *ddb =
-> > -		&crtc_state->wm.skl.plane_ddb[plane_id];
-> > -	const struct skl_ddb_entry *ddb_y =
-> > -		&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> > -	int level;
-> > -
-> > -	for (level = 0; level < i915->display.wm.num_levels; level++)
-> > -		intel_de_write_fw(i915, PLANE_WM(pipe, plane_id, level),
-> > -				  skl_plane_wm_reg_val(skl_plane_wm_level(pipe_wm, plane_id, level)));
-> > -
-> > -	intel_de_write_fw(i915, PLANE_WM_TRANS(pipe, plane_id),
-> > -			  skl_plane_wm_reg_val(skl_plane_trans_wm(pipe_wm, plane_id)));
-> > -
-> > -	if (HAS_HW_SAGV_WM(i915)) {
-> > -		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
-> > -
-> > -		intel_de_write_fw(i915, PLANE_WM_SAGV(pipe, plane_id),
-> > -				  skl_plane_wm_reg_val(&wm->sagv.wm0));
-> > -		intel_de_write_fw(i915, PLANE_WM_SAGV_TRANS(pipe, plane_id),
-> > -				  skl_plane_wm_reg_val(&wm->sagv.trans_wm));
-> > -	}
-> > -
-> > -	intel_de_write_fw(i915, PLANE_BUF_CFG(pipe, plane_id),
-> > -			  skl_plane_ddb_reg_val(ddb));
-> > -
-> > -	if (DISPLAY_VER(i915) < 11)
-> > -		intel_de_write_fw(i915, PLANE_NV12_BUF_CFG(pipe, plane_id),
-> > -				  skl_plane_ddb_reg_val(ddb_y));
-> > -}
-> > -
-> > -void skl_write_cursor_wm(struct intel_plane *plane,
-> > -			 const struct intel_crtc_state *crtc_state)
-> > -{
-> > -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> > -	enum plane_id plane_id = plane->id;
-> > -	enum pipe pipe = plane->pipe;
-> > -	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
-> > -	const struct skl_ddb_entry *ddb =
-> > -		&crtc_state->wm.skl.plane_ddb[plane_id];
-> > -	int level;
-> > -
-> > -	for (level = 0; level < i915->display.wm.num_levels; level++)
-> > -		intel_de_write_fw(i915, CUR_WM(pipe, level),
-> > -				  skl_plane_wm_reg_val(skl_plane_wm_level(pipe_wm, plane_id, level)));
-> > -
-> > -	intel_de_write_fw(i915, CUR_WM_TRANS(pipe),
-> > -			  skl_plane_wm_reg_val(skl_plane_trans_wm(pipe_wm, plane_id)));
-> > -
-> > -	if (HAS_HW_SAGV_WM(i915)) {
-> > -		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
-> > -
-> > -		intel_de_write_fw(i915, CUR_WM_SAGV(pipe),
-> > -				  skl_plane_wm_reg_val(&wm->sagv.wm0));
-> > -		intel_de_write_fw(i915, CUR_WM_SAGV_TRANS(pipe),
-> > -				  skl_plane_wm_reg_val(&wm->sagv.trans_wm));
-> > -	}
-> > -
-> > -	intel_de_write_fw(i915, CUR_BUF_CFG(pipe),
-> > -			  skl_plane_ddb_reg_val(ddb));
-> > -}
-> > -
-> >  static bool skl_wm_level_equals(const struct skl_wm_level *l1,
-> >  				const struct skl_wm_level *l2)
-> >  {
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-> > index 91f92c0e706e..78b121941237 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> > @@ -18,6 +18,8 @@ struct intel_bw_state;
-> >  struct intel_crtc;
-> >  struct intel_crtc_state;
-> >  struct intel_plane;
-> > +struct skl_pipe_wm;
-> > +struct skl_wm_level;
-> >  
-> >  u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *i915);
-> >  
-> > @@ -30,11 +32,6 @@ bool intel_has_sagv(struct drm_i915_private *i915);
-> >  u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *i915,
-> >  			    const struct skl_ddb_entry *entry);
-> >  
-> > -void skl_write_plane_wm(struct intel_plane *plane,
-> > -			const struct intel_crtc_state *crtc_state);
-> > -void skl_write_cursor_wm(struct intel_plane *plane,
-> > -			 const struct intel_crtc_state *crtc_state);
-> > -
-> >  bool skl_ddb_allocation_overlaps(const struct skl_ddb_entry *ddb,
-> >  				 const struct skl_ddb_entry *entries,
-> >  				 int num_entries, int ignore_idx);
-> > @@ -51,6 +48,12 @@ unsigned int skl_watermark_max_latency(struct drm_i915_private *i915,
-> >  				       int initial_wm_level);
-> >  void skl_wm_init(struct drm_i915_private *i915);
-> >  
-> > +const struct skl_wm_level *skl_plane_wm_level(const struct skl_pipe_wm *pipe_wm,
-> > +					      enum plane_id plane_id,
-> > +					      int level);
-> > +const struct skl_wm_level *skl_plane_trans_wm(const struct skl_pipe_wm *pipe_wm,
-> > +					      enum plane_id plane_id);
-> > +
-> >  struct intel_dbuf_state {
-> >  	struct intel_global_state base;
-> 
-> -- 
-> Jani Nikula, Intel
 
--- 
-Ville Syrjälä
-Intel
+Regards
+
+Chaitanya
+
+>
+> Best regards
+> Thomas
+>
+>>
+>>> Thank you.
+>>>
+>>> Regards
+>>>
+>>> Chaitanya
+>>>
+>>> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
+>>> next.git/commit/?h=next-20240506
+>>> [3] https://intel-gfx-ci.01.org/tree/linux-next/next-20240506/bat-mtlp-
+>>> 9/igt@i915_selftest@live@gt_contexts.html
+>>> [4] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
+>>> next.git/commit/?h=next-
+>>> 20240506&id=2fd001cd36005846caa6456fff1008c6f5bae9d4
+>
+--------------mSWb4gwyn0fd05sk3Y00tj08
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+  </head>
+  <body>
+    <p>Hi,<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 5/15/2024 2:24 PM, Thomas Zimmermann
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite" cite=3D"mid:def71e6b-53a0-4da0-8369-b69629d2d=
+fca@suse.de">Hi
+      <br>
+      <br>
+      Am 15.05.24 um 10:16 schrieb Borah, Chaitanya Kumar:
+      <br>
+      <blockquote type=3D"cite">
+        <br>
+        <blockquote type=3D"cite">-----Original Message-----
+          <br>
+          From: Borah, Chaitanya Kumar
+          <br>
+          Sent: Wednesday, May 8, 2024 3:05 PM
+          <br>
+          To: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:tzimmerm=
+ann@suse.de">tzimmermann@suse.de</a>
+          <br>
+          Cc: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:intel-gf=
+x@lists.freedesktop.org">intel-gfx@lists.freedesktop.org</a>; Kurmi, Suresh=
+ Kumar
+          <br>
+          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:suresh.kumar.ku=
+rmi@intel.com">&lt;suresh.kumar.kurmi@intel.com&gt;</a>; Saarinen, Jani
+          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:jani.saarinen@i=
+ntel.com">&lt;jani.saarinen@intel.com&gt;</a>
+          <br>
+          Subject: Regression on linux-next (next-20240506)
+          <br>
+          <br>
+          Hello Thomas,
+          <br>
+          <br>
+          Hope you are doing well.
+          <br>
+          <br>
+          This mail is regarding a regression we are seeing in our CI
+          runs[1] on linux-
+          <br>
+          next repository.
+          <br>
+          <br>
+          Since the version next-20240506&nbsp;[2], we are seeing the
+          following regression
+          <br>
+          <br>
+```````````````````````````````````````````````````````````````````````````=
+``````
+          <br>
+          Starting dynamic subtest: gt_contexts
+          <br>
+          (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+          <br>
+          acpi_video_unregister (err -2)
+          <br>
+          (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+          <br>
+          acpi_video_register_backlight (err -2)
+          <br>
+          (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+          <br>
+          __acpi_video_get_backlight_type (err -2)
+          <br>
+          (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol
+          <br>
+          acpi_video_register (err -2)
+          <br>
+          (i915_selftest:1107) igt_kmod-CRITICAL: Test assertion failure
+          function
+          <br>
+          igt_kselftest_execute, file
+          ../../../usr/src/igt-gpu-tools/lib/igt_kmod.c:1594:
+          <br>
+          (i915_selftest:1107) igt_kmod-CRITICAL: Failed assertion: err
+          =3D=3D 0
+          <br>
+          (i915_selftest:1107) igt_kmod-CRITICAL: kselftest &quot;i915
+          <br>
+          igt__23__live_gt_contexts=3D1 live_selftests=3D-1
+          disable_display=3D1 st_filter=3D&quot;
+          <br>
+          failed: No such file or directory [2] Dynamic subtest
+          gt_contexts failed.
+          <br>
+```````````````````````````````````````````````````````````````````````````=
+``````
+          <br>
+          Details log can be found in [3].
+          <br>
+          <br>
+          After bisecting the tree, the following patch [4] seems to be
+          the first &quot;bad&quot;
+          <br>
+          commit
+          <br>
+          <br>
+```````````````````````````````````````````````````````````````````````````=
+``````````````````````````````
+          <br>
+          2fd001cd36005846caa6456fff1008c6f5bae9d4 is the first bad
+          commit commit
+          <br>
+          2fd001cd36005846caa6456fff1008c6f5bae9d4
+          <br>
+          Author: Thomas Zimmermann <a class=3D"moz-txt-link-abbreviated" h=
+ref=3D"mailto:tzimmermann@suse.de">tzimmermann@suse.de</a>
+          <br>
+          Date:&nbsp;&nbsp; Fri Mar 29 21:32:12 2024 +0100
+          <br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp; arch: Rename fbdev header and source fil=
+es
+          <br>
+```````````````````````````````````````````````````````````````````````````=
+``````````````````````````````
+          <br>
+          <br>
+          We also verified that if we revert the patch the issue is not
+          seen.
+          <br>
+          <br>
+          Could you please check why the patch causes this regression
+          and provide a fix
+          <br>
+          if necessary?
+          <br>
+          <br>
+        </blockquote>
+        +Jani N
+        <br>
+        <br>
+        Gentle Reminder =F0=9F=98=8A
+        <br>
+      </blockquote>
+      <br>
+      Sorry, I didn't notice the report before. The commit is not
+      related to ACPI. There's now asm/video.h and acpi/video.h. Maybe
+      there's a conflict among included files.
+      <br>
+      <br>
+      Do you have a kernel config to build with?
+      <br>
+    </blockquote>
+    <p>I could not find a public link for the linux-next config we use
+      but this should be close enough.</p>
+    <p><a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14764/kco=
+nfig.txt" data-auth=3D"NotApplicable" data-linkindex=3D"0" id=3D"LPlnk19519=
+4" style=3D"border: 0px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-ea=
+st-asian: inherit; font-variant-alternates: inherit; font-variant-position:=
+ inherit; font-weight: 400; font-stretch: inherit; font-size: 14.6667px; li=
+ne-height: inherit; font-family: &quot;Segoe UI&quot;, &quot;Segoe UI Web (=
+West European)&quot;, &quot;Segoe UI&quot;, -apple-system, BlinkMacSystemFo=
+nt, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font-optical-sizing: in=
+herit; font-kerning: inherit; font-feature-settings: inherit; font-variatio=
+n-settings: inherit; margin: 0px; padding: 0px; vertical-align: baseline; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; white-space: normal; background-color: rgb(255, 255, 255);" class=3D"=
+moz-txt-link-freetext">https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1476=
+4/kconfig.txt</a></p>
+    <p><br>
+    </p>
+    <p>Regards</p>
+    <p>Chaitanya<br>
+    </p>
+    <blockquote type=3D"cite" cite=3D"mid:def71e6b-53a0-4da0-8369-b69629d2d=
+fca@suse.de">
+      <br>
+      Best regards
+      <br>
+      Thomas
+      <br>
+      <br>
+      <blockquote type=3D"cite">
+        <br>
+        <blockquote type=3D"cite">Thank you.
+          <br>
+          <br>
+          Regards
+          <br>
+          <br>
+          Chaitanya
+          <br>
+          <br>
+          [1]
+          <a class=3D"moz-txt-link-freetext" href=3D"https://intel-gfx-ci.0=
+1.org/tree/linux-next/combined-alt.html">https://intel-gfx-ci.01.org/tree/l=
+inux-next/combined-alt.html</a>?
+          <br>
+          [2]
+          <a class=3D"moz-txt-link-freetext" href=3D"https://git.kernel.org=
+/pub/scm/linux/kernel/git/next/linux">https://git.kernel.org/pub/scm/linux/=
+kernel/git/next/linux</a>-
+          <br>
+          next.git/commit/?h=3Dnext-20240506
+          <br>
+          [3]
+          <a class=3D"moz-txt-link-freetext" href=3D"https://intel-gfx-ci.0=
+1.org/tree/linux-next/next-20240506/bat-mtlp">https://intel-gfx-ci.01.org/t=
+ree/linux-next/next-20240506/bat-mtlp</a>-
+          <br>
+          <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:9/igt@i915_s=
+elftest@live@gt_contexts.html">9/igt@i915_selftest@live@gt_contexts.html</a=
+>
+          <br>
+          [4]
+          <a class=3D"moz-txt-link-freetext" href=3D"https://git.kernel.org=
+/pub/scm/linux/kernel/git/next/linux">https://git.kernel.org/pub/scm/linux/=
+kernel/git/next/linux</a>-
+          <br>
+          next.git/commit/?h=3Dnext-
+          <br>
+          20240506&amp;id=3D2fd001cd36005846caa6456fff1008c6f5bae9d4
+          <br>
+        </blockquote>
+      </blockquote>
+      <br>
+    </blockquote>
+  </body>
+</html>
+
+--------------mSWb4gwyn0fd05sk3Y00tj08--
