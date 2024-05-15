@@ -2,64 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E864E8C6762
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 15:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1687A8C6769
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 May 2024 15:32:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC1C10E1AD;
-	Wed, 15 May 2024 13:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E85610E311;
+	Wed, 15 May 2024 13:32:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BaY/EEvN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KapdkKkb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B137410E1AD
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 13:29:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E09B10E877
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 May 2024 13:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715779747; x=1747315747;
+ t=1715779946; x=1747315946;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:cc:to:date:message-id:mime-version;
- bh=Lv13xlb4OJNxDcfZZsVxfoCK/YfcQ77DuawnD22vl+4=;
- b=BaY/EEvNOQATAjETZNOJtB3L0uilkVH4AszrG1zFV582qizxCuUCaHty
- izZ2FumTLBV1xve+xFtIPMYYhKfxH0dCeuse6GTVifaLVJYbjCKhr1q5z
- CGo3oxb5mJ1f5DU9mbFSR/7p8dHtZrFUatZLh++qBlf4b4goRdasx091t
- LWUrqzEhwvqGejMIHGPoSMPQR5zP16WerVJqsJavin8Imw7Nvbxd9SV0T
- 4ScS9WlXdc1JEbho7QW8d0uVUgox7N/PkrHBafCh9SHZeDjMxnFHNkuwx
- E+onnU/xy6OPgVAkfpO3aUemYEyL033oLNrcT9GWLC3KXjLUUE1UYFT+f Q==;
-X-CSE-ConnectionGUID: HZOcY3JxTUmAaqrvBeuVOQ==
-X-CSE-MsgGUID: gtlleCFDQLmmfzHmU5cmRQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="11699236"
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="11699236"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2024 06:29:05 -0700
-X-CSE-ConnectionGUID: LriHp/MsT5aZa1/PW6pJUw==
-X-CSE-MsgGUID: b9beJ6HuSCOIo5g4xWuInA==
+ bh=iDrfE1KY2yOeYjA2cHgRM1W2Fm4utISSUUXsUCiW3XQ=;
+ b=KapdkKkblUz1KUA26Nel1SVtQk1r67K6U8xupu0Pb+TF4/wPhh9baBkj
+ y6lSQ1rvkoJuLXw/K4St9pilAWuOJNTOsfNHifsYUs5oxG9WYPPCxaf9p
+ 4ojCIubxG86S56PxCMfpnsT0fxg/0FjZuDVWxUF0h0rpU+bC0vKPaOBk/
+ 4GbDNnS37ecoJOYAvvydYORrt8mH8Q9EXwYyki1H94V1EFuvCwuFNouiO
+ otDRBeCprrV7ghXHx7AfuQgpgW1z/8Jlbjou6jBmoeOfSeuQHlu7nb5Wh
+ Iv2o6KlRxOf1EP/iZT2UmAIddD+cZnA4Iphw09CT62X/0ciQlAPqd+UyM Q==;
+X-CSE-ConnectionGUID: Rlps3qD3TIWG2j85o5KGWg==
+X-CSE-MsgGUID: zeZMWQHrTFiZCvmrXorUGg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="22969274"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="22969274"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2024 06:32:26 -0700
+X-CSE-ConnectionGUID: oyaDfgV9SviNO270AiL7/g==
+X-CSE-MsgGUID: X9NBIEuUSQqwiT+6xei3Vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="31182252"
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; d="scan'208";a="31149849"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 May 2024 06:29:04 -0700
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 May 2024 06:32:26 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 15 May 2024 06:29:03 -0700
+ 15.1.2507.35; Wed, 15 May 2024 06:32:25 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 15 May 2024 06:32:25 -0700
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 15 May 2024 06:29:03 -0700
+ 15.1.2507.39 via Frontend Transport; Wed, 15 May 2024 06:32:25 -0700
 Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.40) by
  edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 15 May 2024 06:29:03 -0700
+ 15.1.2507.35; Wed, 15 May 2024 06:32:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GO3+tamvjJY6dwDJGF/psgsApyd9FgGiwSG/vYThlPbwRhwFxlDvpcnLdAhK7oESE8APvAlHET7VbwdKNM44uW9RQZTDhQ3YGQ5WCNJ0hklKJTKel8T0CP732ZikcT+rzvY0GzkAr3tcju9TkEUEN7qjCKbVnoi2Qr9xe7xieqkWE4GR7a66r1Db93VJws1OU/jq8oWx9+Ze6+cRfzyckIscCzoZldhUwruBmHv6StS5cJg6CO8Ay5sA3PS0P3RKvsgvgCjaiqUe9gQh22GLUGM95PDBjHOFs5yw3thNkc6fhle0RR9hKP+syVngy6ctsOnMzl28uwCiwrSFrkANFA==
+ b=au+9Jo/18X84N7oJ7DhjQEfh1zl8/BfKex0NlEcyt8N9aGUzGEZe3+IGgV9+gNFDjDcof6Q1N2JipVYpIqbe2LH/l9/jo6IGtDJXhYafARTQmf3nbj8tIzhbPhIKyt3Pr5N4VnRVkQ2yP5KqcAmq7sV44BIO0V467YWl3P5s6vOfOImzCWFJn71qQzk8Dd5Hq3S9TLRJSefCI4+cJJCTTMHiwVx82IhFV+UE1b9MYmv/RaiAVVaMc2mazPcJUNnHPhV8okEIWLsHeyWEbFU6p4OV66GJ5QptGbdQWh8HpSUANfipA8eHLEBbJEmPsqfkwibrS7dWQYhJr8DaGKE66Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wYqq0gCvnAmQX8pxwlpSmmVGXufewCJ3knugVUILVOI=;
- b=C069sjzVEU6eaVk8VZOb5BeaSRH9IOdZjzjgjGCCeIojL8BpUcfwFgVW5arBfAE1o3gOHjfzmJoYkUsqMKInRKsvJ2AA4pbYK9Upd4gOeUhD2OPugWV6c5b++0Z2vCxA/Eqo8GCiGEWa4zyzuTt5lOqHNS1+TuhMa6ra0O3V3+yMuEynQiZ+R5ugHdjuhMNptGtGnv/6aVi3kjyy87y7DGq6yqS4TuDqldfWT6pz0To/IWiu/K3fqKNkZAV15OM91+BkuM7TBDXmI/c3DDC3Bv80RbNnwpKkVxfg1Y69SdJsd8pppgQJdFleje/NMY3DkJGI3XuFIpY4PpvqqpGKzw==
+ bh=q6H2lImL9nTJKA29f7tcekp8zjc5Z+bX9MFTjn2140Q=;
+ b=brkYyDcol2zl0QJirDhgrv8VK1BxnhTKPoQ7apQ5CM2bkX4KDXTXFB3ndjBB/5ubEE7jnVh50iybFLOL0YjGQG6Qa/Lz0+1jnswTr+awUdY+E5TqSHE5/q+Lym37hhq+hPxpGB4MraJzQ4la+gQnZhLr2JcWWnTbAeWTJw1Dcjj03oet49UtLWcKIGMj3F+YyGBKrpY0OMqXVW3z4Y0XVOqVZuTW8HwdV+1TJlcZVs/tUM2uNgolvxNVGROrGLmWdeDj//tD+TWGFi3kLQGfrFd+Zk8N0RHK79tOBQtX5EOV+pL56SfxpkimuWE9rZ2DrQTucE0IVD9rdfyJ+nWfwg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,113 +73,114 @@ Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
  by BL3PR11MB6433.namprd11.prod.outlook.com (2603:10b6:208:3b9::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.27; Wed, 15 May
- 2024 13:29:00 +0000
+ 2024 13:32:22 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350%4]) with mapi id 15.20.7587.026; Wed, 15 May 2024
- 13:28:57 +0000
+ 13:32:22 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240515064524.164137-2-mika.kahola@intel.com>
+In-Reply-To: <171577943416.27300.8384710551224092618@gjsousa-mobl2>
 References: <20240515064524.164137-1-mika.kahola@intel.com>
- <20240515064524.164137-2-mika.kahola@intel.com>
-Subject: Re: [PATCH 2/2] drm/i915/display: Remove .clock from pll state
- structure
+ <171577943416.27300.8384710551224092618@gjsousa-mobl2>
+Subject: Re: [PATCH 1/2] drm/i915/display: Move port clock calculation
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 CC: <imre.deak@intel.com>, Mika Kahola <mika.kahola@intel.com>
 To: Mika Kahola <mika.kahola@intel.com>, <intel-gfx@lists.freedesktop.org>
-Date: Wed, 15 May 2024 10:28:45 -0300
-Message-ID: <171577972543.27300.697660708854023975@gjsousa-mobl2>
+Date: Wed, 15 May 2024 10:32:18 -0300
+Message-ID: <171577993817.27300.2440039459653683149@gjsousa-mobl2>
 User-Agent: alot/0.10
-X-ClientProxiedBy: SJ0PR05CA0184.namprd05.prod.outlook.com
- (2603:10b6:a03:330::9) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0174.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::29) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|BL3PR11MB6433:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c615382-2996-4970-a81c-08dc74e2f91c
+X-MS-Office365-Filtering-Correlation-Id: 21c206ff-ed74-4b7e-7a67-08dc74e37347
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VS9BV3hVUVNSMFNQUlBXU0F3QUhNenhBS2E5a3pEaXozaDYwQUhIL0lLZWd0?=
- =?utf-8?B?U1lnd3ArbFR3dEs5YWgya3lCYlhhMVJTMFpxN0sxdS8vYkxqMDR5QWxOcHVD?=
- =?utf-8?B?dE9DNllxdlNGUWxGekNMUG50dWFlbTdCMGNNRG0yS1FlUk1nTDV1aFdTUk4y?=
- =?utf-8?B?OHFaTTFGd09SZHZSa0FRTjkwaEJiaFMyQVdjem9HZkdERndnUnlGcWxUU252?=
- =?utf-8?B?SVpHWUVUdXFKMktIM1loR3Q3Y0hmVk54eDBld05tZ0pvM2FxUm04Zk9Cenlu?=
- =?utf-8?B?Qk81U1hGZzZuTHYyNG52cllPb3o3RE43NFJBTzdtNmZZVUt6K00xZUJEbUpz?=
- =?utf-8?B?MFlDcnVnTmE2cmNZc0dQME5YVkduL3lHdTV4V0dtZ1ZNLzdBZVNiNlFxdmNB?=
- =?utf-8?B?eWl6V05lYmxoL1FLYnJMeDV5aGxNaFRHa3hvc216QkxPdDFybllMZ1loelBX?=
- =?utf-8?B?RWNXZGZzQjhlSTNYVGdKTmRPN05ISEs4V05JeTdKeFlOQWN4YVBBNHNyZzVw?=
- =?utf-8?B?VmMzWkZleUVWUjZNY0lYdVl4VWZaOXNrcUtoRXdtd1gyVFBidGR1eUpZbUJu?=
- =?utf-8?B?M3gybjhOVHEzcHpEcldGWDdNYmFoVXBaMVc5TTNNY1FHVmovWVY3dVoyTUdG?=
- =?utf-8?B?dnBoZDN1Ry9kcS9GT0ZicUNBV2tjaFNPeVpnTEJYT2U1UHRub0lLMjFJYWkx?=
- =?utf-8?B?cmdWcUhwMm5aVGkydDh1M1BjQzJ5bFlyWjQyM3lJeDJuRHBpSUs2VG9wKyt3?=
- =?utf-8?B?WHZWbUNYa1ZtTUNZd3l4b0lwT1lUSC9vVVNURWtwOFkxTnk2VWJVaVBTa2xV?=
- =?utf-8?B?OWIvZmpGdmEzcDRTRkd4bWxnZHBTTzdqWkN4MGxMOFVkaXArMWt1WUs0aFdj?=
- =?utf-8?B?Qmd6aEdNN08zbCsveEt1REJoc2tIWllVQjIvN0ZadlFtOXdNUXIvamU0ZmJ1?=
- =?utf-8?B?Slk1cmkyWkw4enhucHFUaTFNTEFqd1RBa1UyTXFnOWJnbU9LOVFBbWY0ZGlB?=
- =?utf-8?B?YXJ3RWIzYmxLbUJSWjQvOGFaT3crM09IaENvSk1kQktOb0hOT0puUzNLVitH?=
- =?utf-8?B?MDdoMGR2ZEdBb3M0T2NWWDdWbVB0RW5Pd1Nrb0VsZURsY2x5WUl0TVBtSks3?=
- =?utf-8?B?dW1nTjZBTWI3R1NMZHVSZ0g5eXJZeDhpN0ZmSVBmTXdEMDQ3TjZZR2ZYVzc4?=
- =?utf-8?B?c3lsM1VMU0Z5czRQTkcwcjR6VHVmTm1lS2RuL0g5OXpRZkZVdTFLVnNvZ3BK?=
- =?utf-8?B?SEFQUDhnVCsyOGVmTGlBMmVoVzk3MkdqWlZ2dHNZcGFVUjNhTjI3Nlhjb3Ex?=
- =?utf-8?B?OUNXOHFCNm9JNldGOFFCc01FbGs1NmRGb0hNUCtWU3FDN0lxU0FEZzRuaFcy?=
- =?utf-8?B?VHB6Wmd2aThEYS9JVEw1M0lvTWxuTDdpSWRlMktqQ3AwVmUxSi9yemhpUFdE?=
- =?utf-8?B?cjlKcHV6MlBkWEppU2wzM29XcHFOeDJqc1pFdURGT3VmaFNHOGdJTXJSK1Y0?=
- =?utf-8?B?M2thZzB6VmVJdXhCR1ZDTEZEVTFFcEIvUnBXYlFxQkI1aXhrMzZvR3FBbGQx?=
- =?utf-8?B?aUoweFhONDk4SU5TSloybmZ0OXQ4YzRCR21GQ2twYVNPcEFlYmFURUNwd3l5?=
- =?utf-8?B?WURwQTF6bWxGME1qdEo3MGpudkdZT0VRSG9KUmNJdEo5NG43Ky9VU3FhcFdv?=
- =?utf-8?B?QmlkeUp1eGZ3UllaS3M1VDUwZUI0bEZIaUloOU9iVGVKOExYYzZTcWVBPT0=?=
+X-Microsoft-Antispam: BCL:0; ARA:13230031|1800799015|366007|376005|16122699003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SUhFSlZCY3IxcEZLdHAvV04wTjQ0TGdpc1RkWE54OUJSeHd5VXVFakJadUZ0?=
+ =?utf-8?B?Z0ZnZWZuMWpXMHlBSlhLZEVyTi80bFlMczk0VVMrdjRKYlladGx6a0tuRGZJ?=
+ =?utf-8?B?Mm5idUNTK2M3Q2IrUll3cDU5YmpzOEo3bEpIM3dib3B6WVhrS3ZDY2d3T3RC?=
+ =?utf-8?B?TDljZ0dOcWk4MzFyci9tWmNoUUtUdVJJMTVUWGRkdERycUdFYnJ5RTltQ05j?=
+ =?utf-8?B?L2I5Q2lXdDI3Mld3Ri94S29HQWpFV1JkaE5hUWhzS1ZVY1VLWTM2TG9vc0Ro?=
+ =?utf-8?B?dEZUcXhVSGp4L0pzRkhYeThiZjlBa3FOMVl4VUZ6VWhsMzYzZTJYR1lNamN2?=
+ =?utf-8?B?dWl5ZzNIcjhBOUJVYURmQUhHRU5CSWh3VDVoUGNvUmdTWEVUbHc3eU9mR3lG?=
+ =?utf-8?B?eWR6TDRsQjJNcHIrS01KSUhhcFk1WVdkdXJDLzFBeEhoNzBsYzV3eHZpRHNU?=
+ =?utf-8?B?S1IxbjA2cGQrYUljSXd5TkdkUkh2MGN0VGRMd3AyWDdTRExteExGbHI0OEIv?=
+ =?utf-8?B?WEsxei9taityNVJ6bnBmWmc5OHhUQ2p5cEp4MTVNM3JBRWVVZTdOZDE0a3R3?=
+ =?utf-8?B?dk9ieXVFUVRXeU90RWpzcWlxK0pnQzJueUF4bk80MEx3ZTZwTjZ3Myt1eVVX?=
+ =?utf-8?B?ajF2WHBnems1SEtEQksrT2JTcWM2WWhkWE9Ldzd1bElDbzdHUTV6L0lEM2V2?=
+ =?utf-8?B?RXIzVjNNZGdBeGhyU0FKSkJNdjBmUXpyWlNhMld5UFJVNTR1UG5kWDM4ZU5r?=
+ =?utf-8?B?ZlVZdlNYUGY3YkE5aHNEVXFUSlhHQThoV2t2U2R4YzVuOWwzSkw3RGd0eE43?=
+ =?utf-8?B?MlNWMzZVT1JwNmpCbm51dzZqc3lXcGNITVBPTllUOWJTWkFEWEhnMVNRQkF3?=
+ =?utf-8?B?aWlMTE9JMUpva3gvcXNmbXZjTm00V05KQS9rVWN6ZHNQSFA0MVZZczNuUWhR?=
+ =?utf-8?B?ZlZwNExIcEZYMWI3TklmbVh4ZldJdDUvYWc2d2RNWnZTMlh1VUNCNWR5TERQ?=
+ =?utf-8?B?TnQreERBL1B1dHBRbGtmL1lqanAwRnBhRExoczNjRkhzbExobS9IcnRxSEI4?=
+ =?utf-8?B?Tytzam1TZ254UnVMcDhZVmNiZXdGNUFqVWVLZmNyeXJlRG5BQWNkdXRMK0E5?=
+ =?utf-8?B?MHFBOVg4bHZtRFBJdFFHanhJck9qRGF3OXYwaWU0WEdiOFFNaHRVcCtNY0Jh?=
+ =?utf-8?B?QzdRd05UY2o1ZG00VzAvTU5sVmU0OFY0UytIcGRoRmprelRGYkdKbXQ2OTAw?=
+ =?utf-8?B?dVczbzZ2SWNGaEFFQzcycnE5bUZVZGphZmMweTJsL09kZ0RwOE5rNFpmYXR1?=
+ =?utf-8?B?Zk0ybnVENE81cmFyRWJZcC84dFdDNTdXVXJuYWhJWWdhMC9jYUQ3dFlUV1pS?=
+ =?utf-8?B?c2xpRGlEQ3VXYThjNnhORUhiNlJQc2NQSGZ4OUhPSGVodUJrcEh3WGI2NWxX?=
+ =?utf-8?B?czA5K1dvYmI3S2tndHhueC8ramhMWEhwcHBjUXhEVnpmY1luU01PUVMxSGNJ?=
+ =?utf-8?B?WmRSMitsUThLb0dZYTBKR1o3SFpKZjFkYlZ3b3Z2TmRMTkw5WFBFYzVBcHBr?=
+ =?utf-8?B?OXRod1pjVFh1YTI5b3NWK0paVVZ0SFZQQ0kyMHJ5R29LN01uZWpuVGEwbUVQ?=
+ =?utf-8?B?YnBGQjA1YlVSUXdDUVNBWWZZYncrWG9lSi85S0FGaXY4Tld4a2hySVh2ejBG?=
+ =?utf-8?B?VUVkUjFEajNtZGx6b0tRdTNldk01bUN2TGZpYXhrbjcwa0J6dUpGSEhMYzZi?=
+ =?utf-8?B?b29uTURuc043enNYWUlFY0J5M09tVTJUblNNUUczbmtHU0lkL2FTYlRjY25p?=
+ =?utf-8?B?RzIvY05BR3VpREMzRW52Zz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
+ SFS:(13230031)(1800799015)(366007)(376005)(16122699003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1FlcURRMEVrZUtDSlhzTWIvMmNkZFdyVlhPamxaRm5Hc3JicTByVStERDhE?=
- =?utf-8?B?ZklyUEpIVmZnUk5IWlczTjdFN2FMQlROOGFZdzNtVmlFQm5ZeUJwSVlweU9y?=
- =?utf-8?B?NkRMM3BvNWJBaDlnM0tPeXZhVDBTK3Joamx3SHlUR0VqWmpuTVpMZm43cHJL?=
- =?utf-8?B?dnpSN2htSjV1VzlJcXdkaWRhc2dzZ0plNEhkMENTd2VYb1h6WnBzNGxETjVn?=
- =?utf-8?B?MzRqb1VVTjNNYllGWFcwS2hLM2xjWGVoaFJ4bkxCWnJDSEtOZFl6TFRKUWQw?=
- =?utf-8?B?bjFrZVBvaWI4MC9WdEJ5c054SW9ubHk3NUt5L2pabXd1SlZlRC8xelRUeFIr?=
- =?utf-8?B?WlpCL2hCNVdSZWpjZGdpYWx3WmJjSTFQUFpiVzh4elk5TFVuNUVvNjBYK2Jh?=
- =?utf-8?B?VDZkaDRGT01jNHJaanpwVEhvNVMwRVlINlB2SWlyOHAyeXpsU0YzcDN1M0pW?=
- =?utf-8?B?T0FKT0xNYjltRUVORkM4VGNoRkNsVW9GTGxkeGlBYzBIeTNSd3FuTnZHdmpE?=
- =?utf-8?B?ZFBXcmg0TCtubWhOVHBBait5K25CTE9Ma05MM0MvS2taazRNREoxeFZINFZw?=
- =?utf-8?B?WlpXb1FHcERpUFcxZHh1RFlaUTZpei9BZVZycytnMGJrcmpWekV2aHJaZmd0?=
- =?utf-8?B?a1NQKzRUemx3YzJQRm4vS0dnY3luMW5ONWFzRjM1RDFncElPQmU1OHhSRkU4?=
- =?utf-8?B?ajNxOXZNa0RaRCtIWWhCZS9UckhCSEs4K25UUjZLSUZxOVJFWmdoVncxTTV2?=
- =?utf-8?B?TW05TDZSU2JiZDkyK2IwMnJaWGJPaFViNTFFM3pmUVg4d0NoVHJpdzN1K0Fp?=
- =?utf-8?B?d1oxdFB3TEw4bTczcG5DbUhESVl2bE1rd2cwSGlvZkhYcjVNemc1K0FtTzZR?=
- =?utf-8?B?Ly9xVUduTUJBUUEwdy9meGI0UkZjYi9oNHJ6alZYZnpMOHpvQ2w4elg4N0lm?=
- =?utf-8?B?ckYvN2JjV05iTUpId0NhR0JtT3c1WDVkY2R1VU42d1V4NFBYaVoyZXp1QWdQ?=
- =?utf-8?B?WEpSTTkyNzdWekhRMXdNOFliQXMxb1Y0TzNIRi8wVDhZbmlVQjFGVGs2R1Ba?=
- =?utf-8?B?ZmFqekJJdFZtdC9aeit3eFNNcENwL0RjZXZodCtaa2NyN3F1YzV6cXFyWEQr?=
- =?utf-8?B?d2ZKeTZGVStsS3l4RDJkNldJN1ZpTFUxN2FNMnBBYUhKaDVrZGtNVXo5aG1F?=
- =?utf-8?B?c3NtRDVmeXNVRWpMK085aXU0SE90QWZYeDBRV0FvVXAzaHBwamdHS2ZFUEgz?=
- =?utf-8?B?NWFMYkp3Y0RzSE40SDFEUWdkejR0V2VjRVB6cTRXUWhwT2xac2tQWE5KeFdR?=
- =?utf-8?B?eEJmUE9KcGZ4VUJWd3Y4SCtuQ3RzS1A0U0Q3cHQvcUZ6Wmh5dnlaZHdUeTFv?=
- =?utf-8?B?YmJRQk1jMXl6eFNSZmNKMmNWYVdRTms1bXdQS3lmTXhFZUJvYmc4MnJSS1lU?=
- =?utf-8?B?UFJjQmFBTTdWSW5HRTVxNm9McFBPTjFLaDZ2V1M2blRKcFpOS1k3Q0lNeFJ3?=
- =?utf-8?B?bkFucG9sTklNZWoyY25tTXMzK0RLWG9BVXQxYjZIMlBqL1BUOFNqVlMvZURw?=
- =?utf-8?B?MHl4VWQ4T3E2Q0hHL1o3bEhmbWE4M3FmZW9KbGlpeDl6RVVldGxrditrRUQ5?=
- =?utf-8?B?VlJYa0VrNWFJb0prRDJ2WTcvWmF3bWhlN0ZVOHVGM09RVDErTVc4Ris0UDY5?=
- =?utf-8?B?UmJJU2d5NlNxNzFKNThiYk1YeGp6V1hIMXV0a1U3R0hENGNlUGlmVDVrcDhp?=
- =?utf-8?B?bnJFTHI3aHhhMlpFUkp4Qy95STVwZ29SY29mQ3R0dlRHRnJpbXcyaWw0cUtJ?=
- =?utf-8?B?Ukp2MndaeDFDSDRmaFM4b2RNa01IbVJtMFZvc3dnNWZhWkZ2V09kcDNsRHdr?=
- =?utf-8?B?UzVKdzJac0dSQjdaNjhtdjZaaXBVek9tTk81Y3hKa3V6YTZ5VFd3UGhiZGY5?=
- =?utf-8?B?Q05TcmNYWnRBeHdsVkU2bGQrZ2Ftd2p0WnVkeW5iQVQ0bFpvRGUybzVHbEFs?=
- =?utf-8?B?VGJoMnVhN3l3WGx0akRpbkdnVDlSLzZXdDhKcFVvekJjY0lCeVRHVHpBSk93?=
- =?utf-8?B?QUVBN2djc0dJZ1Q4c0ZMNzdHRkl6dnlPUkFsaU9hVStocHdrdEhmTndwUDB5?=
- =?utf-8?B?bkFyUXYrMEZkQ2xiSzRWK0Jmcm1sT0FwaHRBSC9HYXc2VXg3Nngxa0hLQmhH?=
- =?utf-8?B?MVE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c615382-2996-4970-a81c-08dc74e2f91c
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aTJUZFJBU1puZDhNQnloS3FzTnBUekxhZzhBYTVlaUhYaWJydFYwV2ZzK01W?=
+ =?utf-8?B?d2RNWUpUVUFXVW9DMEJqdWpuYXBZT3REUTd1YkNhc1g2ZWNQcFRDUkRuTEJ0?=
+ =?utf-8?B?eGdHSnFoS1ZXVmRqZ1l4dDI4N2pzV3hSODhhS0YxeG9ITURDWUVwZExNTHA1?=
+ =?utf-8?B?ZmtyNEErSm5FcXQzUmlxbUNuNUdqT0tzUnAyNFk4Sld4SGxNRmhpNXRaWmJT?=
+ =?utf-8?B?NG5vTEhIMVNBRlh1cnR5b2JtMThObkR6K0pIb0UrbjhYYWFSY2p6YW9VblpQ?=
+ =?utf-8?B?b1E5Q3BHZlFLWkhQZk9TWW5pV2RHeTlGOFlIT2w2VUV3MFNDeVdIK3JoM3J1?=
+ =?utf-8?B?bURrbUZYNFlBN2lUbmk0VkdibytkU3RKQUppTHdjYU85SlNtMUdIY2pJa2p1?=
+ =?utf-8?B?SG9hRnJMbnYxb2lKd0N6VUJkejh2bDU5b1o2N0RCbW9HRlNnZDN2aUM2N0li?=
+ =?utf-8?B?T2JiNXZpSS9VcDcxT0VGUEVUYmQyRjgrcUVEbWNVSjcvRXk3VUNkbk9Cb3Ft?=
+ =?utf-8?B?VWt5TXdkcjJDbElTTW53Rk5OQUlNdWxucG0waCs3WlhCZkJ3VEM0U3lFdVdy?=
+ =?utf-8?B?di84eFFSNWRFZlJRU2lHRDlrdFA5Z2w3ZjJGU0lmSm05eFVYZXI4U2lhcW1n?=
+ =?utf-8?B?M0xSZkNDa1NHZ29RUEFXTWZlNklxaWUyU3FBakdGNXJ4dXR0UE9zVVVyRTFz?=
+ =?utf-8?B?QitjdG9zODJ2eUcrYUtPd21rUEY3UmhEVmhSRU0vUDBCdmpkUDNxMEk4bWJm?=
+ =?utf-8?B?aHJUUXNMQjVWcFFOUUlTT3R6dS90TnBGclNBa25SdldFOGpnTmhIT2I0RlBh?=
+ =?utf-8?B?ZGFuK1dvS0lCZy9xbUdKbDRDaVZlOWlBMm9KdlBIei9jREdtTTVId0JxeVhQ?=
+ =?utf-8?B?S3hqZ2ptU3hrNlBsZFVsRC9oWm0rZnlFUXJkMUxGYWZnUUVvSzNKeGh0YlJK?=
+ =?utf-8?B?bStHQWRnZW0xYmY4cmhBb3lMZC8yOUhCRnBBTUY0Z3lmMXA1SC9Ta0s3UW9l?=
+ =?utf-8?B?R0NnU2doeHI1elVjZHMvcmszeDk0QllEcHZzRzUvRlppWklONmJjYStyL29N?=
+ =?utf-8?B?cjFoOXN4aER3bjB2QW4vREltNzF5Qlk3WWo4WEVBK0ZKMU5YMDNUQlcxZjlU?=
+ =?utf-8?B?bVhOZDM4byszU01STHhkUmlpcy8ya2d5dEdONGJyOFFFTUFYcGpQWFEyVnps?=
+ =?utf-8?B?OTlKYnNQZHQrL0FQenltV0RiSmJQUGtCNU1NNk1EeTB3YUtuM1RaSHVUZnda?=
+ =?utf-8?B?RmdMZUpSczFWbWo2ckhreTg5ZkpWWThxNmFBVXdHbmsvVTZDR1ZJTndPYmhC?=
+ =?utf-8?B?TUdTMGN2QmhKUmVvRjczaUhISVFJN3hocytkNU1iRVN6ZkhhK0swSGNkQlpU?=
+ =?utf-8?B?Z2VMVXNZdHFTM0M2SjMvMEJVcFFkS25xYS9aYjgyMFNWam9lUzBzeG8wTWg1?=
+ =?utf-8?B?R0FCd1RnYWdTUGwzU2ZiaUV4NkdMcWd3eWFlSlhBb2NKb3dMTzlQbS9oWUg1?=
+ =?utf-8?B?TE1lT1hmbEVOc2FSZTB6YXVJSk9FYXEwL1VicUl0L0hyR012TXlvSytMYW05?=
+ =?utf-8?B?cnFGUWZVckFpMjRsQ0xWMDdFcnVHVUJmTitIWlJLM3I0UUxGd084NEh2MlpV?=
+ =?utf-8?B?KzcxSlBiZXlMZVpTa052WmNsaUNISnIrVTVySzFyNkY0V0NMWWFzUUVBYkpV?=
+ =?utf-8?B?aHYzRHdya0hCL05NeFJUbVU1S1NJWXpJa3JzbUdLdkFJN3huYlhqeFRqeDVa?=
+ =?utf-8?B?bU9wQ1l5dzFZLzRoU2lLVm5iMkVMNUNaRGMyTGgyVFF4Q1NMZXNYeElZWGtj?=
+ =?utf-8?B?SllaUFAzRGVFdm9KZ0hSS3dqS1prYzd1YkFvM2E5VGUwUlpOakhFL0xWWTdZ?=
+ =?utf-8?B?bjRCSFlYZ2ZFSXRPT1ZTb0EyN1NCMzE1ZXowRHFQbENvMllMWEUyaUhrdExX?=
+ =?utf-8?B?a2lZUXE1WC9tdWNSd3pNQkwzbVlMKzlaU1cvRzNhR1c1VGFRR2E0aHg1bnpC?=
+ =?utf-8?B?ZnBDVXBYQXk4M0I2UE05SnNCUW0zQVE0UUpxNlZXMnBFNmNQNjFWM0F6RnVV?=
+ =?utf-8?B?RGJFb0UzTisxN0NoQlcyUFFtSnd2TTZGelRLbTdDYzdYbDZ5NDIxM3Azb0x4?=
+ =?utf-8?B?d1VzbU1xMVAxRnFRMHF6dVMvYnoxK1BrN2tFZkt3MzJkRGV3dk8yQml1UC8z?=
+ =?utf-8?B?cUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21c206ff-ed74-4b7e-7a67-08dc74e37347
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2024 13:28:57.4105 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2024 13:32:22.1141 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6fqcqV8fKDibjmwHA/ewbp+NF/m7JZqghAZvTvbBN9M7vuiU+NemD7hzqP1QSsxgFiRVad9GzeVtewL/eaaXpw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8NWqtGtTwZPtK+QeT9d5yCBqYiGKlIPd9dMp+IuAhM3wC+UZguJU+b346b1OF39DUE2lRAjsMHvqEwb5c2w99w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6433
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -193,823 +198,343 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kahola (2024-05-15 03:45:24-03:00)
->.clock is not necessarily required to have in pll state
->structure as it can always recalculated with the *_calc_port_clock()
->function. Hence, let's remove this struct member complitely.
->
->Signed-off-by: Mika Kahola <mika.kahola@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 86 -------------------
-> drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  2 -
-> 2 files changed, 88 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/dr=
-m/i915/display/intel_cx0_phy.c
->index 9f860a05e623..abb937368284 100644
->--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->@@ -505,7 +505,6 @@ void intel_cx0_phy_set_signal_levels(struct intel_enco=
-der *encoder,
->  */
->=20
-> static const struct intel_c10pll_state mtl_c10_dp_rbr =3D {
->-        .clock =3D 162000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0xB4,
->@@ -531,7 +530,6 @@ static const struct intel_c10pll_state mtl_c10_dp_rbr =
-=3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_edp_r216 =3D {
->-        .clock =3D 216000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0x4,
->@@ -557,7 +555,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r21=
-6 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_edp_r243 =3D {
->-        .clock =3D 243000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0x34,
->@@ -583,7 +580,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r24=
-3 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_dp_hbr1 =3D {
->-        .clock =3D 270000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0xF4,
->@@ -609,7 +605,6 @@ static const struct intel_c10pll_state mtl_c10_dp_hbr1=
- =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_edp_r324 =3D {
->-        .clock =3D 324000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0xB4,
->@@ -635,7 +630,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r32=
-4 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_edp_r432 =3D {
->-        .clock =3D 432000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0x4,
->@@ -661,7 +655,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r43=
-2 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_dp_hbr2 =3D {
->-        .clock =3D 540000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0xF4,
->@@ -687,7 +680,6 @@ static const struct intel_c10pll_state mtl_c10_dp_hbr2=
- =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_edp_r675 =3D {
->-        .clock =3D 675000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0xB4,
->@@ -713,7 +705,6 @@ static const struct intel_c10pll_state mtl_c10_edp_r67=
-5 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_dp_hbr3 =3D {
->-        .clock =3D 810000,
->         .tx =3D 0x10,
->         .cmn =3D 0x21,
->         .pll[0] =3D 0x34,
->@@ -761,7 +752,6 @@ static const struct intel_c10pll_state * const mtl_c10=
-_edp_tables[] =3D {
->=20
-> /* C20 basic DP 1.4 tables */
-> static const struct intel_c20pll_state mtl_c20_dp_rbr =3D {
->-        .clock =3D 162000,
->         .tx =3D {        0xbe88, /* tx cfg0 */
->                 0x5800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -786,7 +776,6 @@ static const struct intel_c20pll_state mtl_c20_dp_rbr =
-=3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_dp_hbr1 =3D {
->-        .clock =3D 270000,
->         .tx =3D {        0xbe88, /* tx cfg0 */
->                 0x4800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -811,7 +800,6 @@ static const struct intel_c20pll_state mtl_c20_dp_hbr1=
- =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_dp_hbr2 =3D {
->-        .clock =3D 540000,
->         .tx =3D {        0xbe88, /* tx cfg0 */
->                 0x4800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -836,7 +824,6 @@ static const struct intel_c20pll_state mtl_c20_dp_hbr2=
- =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_dp_hbr3 =3D {
->-        .clock =3D 810000,
->         .tx =3D {        0xbe88, /* tx cfg0 */
->                 0x4800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -862,7 +849,6 @@ static const struct intel_c20pll_state mtl_c20_dp_hbr3=
- =3D {
->=20
-> /* C20 basic DP 2.0 tables */
-> static const struct intel_c20pll_state mtl_c20_dp_uhbr10 =3D {
->-        .clock =3D 1000000, /* 10 Gbps */
->         .tx =3D {        0xbe21, /* tx cfg0 */
->                 0xe800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -886,7 +872,6 @@ static const struct intel_c20pll_state mtl_c20_dp_uhbr=
-10 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_dp_uhbr13_5 =3D {
->-        .clock =3D 1350000, /* 13.5 Gbps */
->         .tx =3D {        0xbea0, /* tx cfg0 */
->                 0x4800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -911,7 +896,6 @@ static const struct intel_c20pll_state mtl_c20_dp_uhbr=
-13_5 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_dp_uhbr20 =3D {
->-        .clock =3D 2000000, /* 20 Gbps */
->         .tx =3D {        0xbe20, /* tx cfg0 */
->                 0x4800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -950,7 +934,6 @@ static const struct intel_c20pll_state * const mtl_c20=
-_dp_tables[] =3D {
->  */
->=20
-> static const struct intel_c20pll_state xe2hpd_c20_edp_r216 =3D {
->-        .clock =3D 216000,
->         .tx =3D { 0xbe88,
->                 0x4800,
->                 0x0000,
->@@ -975,7 +958,6 @@ static const struct intel_c20pll_state xe2hpd_c20_edp_=
-r216 =3D {
-> };
->=20
-> static const struct intel_c20pll_state xe2hpd_c20_edp_r243 =3D {
->-        .clock =3D 243000,
->         .tx =3D { 0xbe88,
->                 0x4800,
->                 0x0000,
->@@ -1000,7 +982,6 @@ static const struct intel_c20pll_state xe2hpd_c20_edp=
-_r243 =3D {
-> };
->=20
-> static const struct intel_c20pll_state xe2hpd_c20_edp_r324 =3D {
->-        .clock =3D 324000,
->         .tx =3D { 0xbe88,
->                 0x4800,
->                 0x0000,
->@@ -1025,7 +1006,6 @@ static const struct intel_c20pll_state xe2hpd_c20_ed=
-p_r324 =3D {
-> };
->=20
-> static const struct intel_c20pll_state xe2hpd_c20_edp_r432 =3D {
->-        .clock =3D 432000,
->         .tx =3D { 0xbe88,
->                 0x4800,
->                 0x0000,
->@@ -1050,7 +1030,6 @@ static const struct intel_c20pll_state xe2hpd_c20_ed=
-p_r432 =3D {
-> };
->=20
-> static const struct intel_c20pll_state xe2hpd_c20_edp_r675 =3D {
->-        .clock =3D 675000,
->         .tx =3D { 0xbe88,
->                 0x4800,
->                 0x0000,
->@@ -1088,7 +1067,6 @@ static const struct intel_c20pll_state * const xe2hp=
-d_c20_edp_tables[] =3D {
-> };
->=20
-> static const struct intel_c20pll_state xe2hpd_c20_dp_uhbr13_5 =3D {
->-        .clock =3D 1350000, /* 13.5 Gbps */
->         .tx =3D {        0xbea0, /* tx cfg0 */
->                 0x4800, /* tx cfg1 */
->                 0x0000, /* tx cfg2 */
->@@ -1127,7 +1105,6 @@ static const struct intel_c20pll_state * const xe2hp=
-d_c20_dp_tables[] =3D {
->  */
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_25_2 =3D {
->-        .clock =3D 25200,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x4,
->@@ -1153,7 +1130,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-25_2 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_27_0 =3D {
->-        .clock =3D 27000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34,
->@@ -1179,7 +1155,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-27_0 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_74_25 =3D {
->-        .clock =3D 74250,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4,
->@@ -1205,7 +1180,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-74_25 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_148_5 =3D {
->-        .clock =3D 148500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4,
->@@ -1231,7 +1205,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-148_5 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_594 =3D {
->-        .clock =3D 594000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4,
->@@ -1258,7 +1231,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-594 =3D {
->=20
-> /* Precomputed C10 HDMI PLL tables */
-> static const struct intel_c10pll_state mtl_c10_hdmi_27027 =3D {
->-        .clock =3D 27027,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xC0, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1268,7 +1240,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-27027 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_28320 =3D {
->-        .clock =3D 28320,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x04, .pll[1] =3D 0x00, .pll[2] =3D 0xCC, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1278,7 +1249,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-28320 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_30240 =3D {
->-        .clock =3D 30240,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x04, .pll[1] =3D 0x00, .pll[2] =3D 0xDC, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1288,7 +1258,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-30240 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_31500 =3D {
->-        .clock =3D 31500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x62, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1298,7 +1267,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-31500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_36000 =3D {
->-        .clock =3D 36000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xC4, .pll[1] =3D 0x00, .pll[2] =3D 0x76, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1308,7 +1276,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-36000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_40000 =3D {
->-        .clock =3D 40000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x86, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1318,7 +1285,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-40000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_49500 =3D {
->-        .clock =3D 49500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x74, .pll[1] =3D 0x00, .pll[2] =3D 0xAE, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1328,7 +1294,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-49500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_50000 =3D {
->-        .clock =3D 50000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x74, .pll[1] =3D 0x00, .pll[2] =3D 0xB0, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1338,7 +1303,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-50000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_57284 =3D {
->-        .clock =3D 57284,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xCE, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1348,7 +1312,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-57284 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_58000 =3D {
->-        .clock =3D 58000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xD0, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1358,7 +1321,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-58000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_65000 =3D {
->-        .clock =3D 65000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x66, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1368,7 +1330,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-65000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_71000 =3D {
->-        .clock =3D 71000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x72, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1378,7 +1339,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-71000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_74176 =3D {
->-        .clock =3D 74176,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1388,7 +1348,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-74176 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_75000 =3D {
->-        .clock =3D 75000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7C, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1398,7 +1357,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-75000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_78750 =3D {
->-        .clock =3D 78750,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x84, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1408,7 +1366,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-78750 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_85500 =3D {
->-        .clock =3D 85500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x92, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1418,7 +1375,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-85500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_88750 =3D {
->-        .clock =3D 88750,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x74, .pll[1] =3D 0x00, .pll[2] =3D 0x98, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1428,7 +1384,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-88750 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_106500 =3D {
->-        .clock =3D 106500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xBC, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1438,7 +1393,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-106500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_108000 =3D {
->-        .clock =3D 108000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xC0, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1448,7 +1402,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-108000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_115500 =3D {
->-        .clock =3D 115500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xD0, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1458,7 +1411,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-115500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_119000 =3D {
->-        .clock =3D 119000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xD6, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1468,7 +1420,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-119000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_135000 =3D {
->-        .clock =3D 135000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x6C, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1478,7 +1429,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-135000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_138500 =3D {
->-        .clock =3D 138500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x70, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1488,7 +1438,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-138500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_147160 =3D {
->-        .clock =3D 147160,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x78, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1498,7 +1447,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-147160 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_148352 =3D {
->-        .clock =3D 148352,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1508,7 +1456,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-148352 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_154000 =3D {
->-        .clock =3D 154000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x80, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1518,7 +1465,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-154000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_162000 =3D {
->-        .clock =3D 162000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x88, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1528,7 +1474,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-162000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_167000 =3D {
->-        .clock =3D 167000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x8C, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1538,7 +1483,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-167000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_197802 =3D {
->-        .clock =3D 197802,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x74, .pll[1] =3D 0x00, .pll[2] =3D 0xAE, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1548,7 +1492,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-197802 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_198000 =3D {
->-        .clock =3D 198000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x74, .pll[1] =3D 0x00, .pll[2] =3D 0xAE, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1558,7 +1501,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-198000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_209800 =3D {
->-        .clock =3D 209800,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xBA, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1568,7 +1510,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-209800 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_241500 =3D {
->-        .clock =3D 241500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xDA, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1578,7 +1519,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-241500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_262750 =3D {
->-        .clock =3D 262750,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x68, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1588,7 +1528,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-262750 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_268500 =3D {
->-        .clock =3D 268500,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x6A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1598,7 +1537,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-268500 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_296703 =3D {
->-        .clock =3D 296703,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1608,7 +1546,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-296703 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_297000 =3D {
->-        .clock =3D 297000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1618,7 +1555,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-297000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_319750 =3D {
->-        .clock =3D 319750,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xB4, .pll[1] =3D 0x00, .pll[2] =3D 0x86, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1628,7 +1564,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-319750 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_497750 =3D {
->-        .clock =3D 497750,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0x34, .pll[1] =3D 0x00, .pll[2] =3D 0xE2, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1638,7 +1573,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-497750 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_592000 =3D {
->-        .clock =3D 592000,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1648,7 +1582,6 @@ static const struct intel_c10pll_state mtl_c10_hdmi_=
-592000 =3D {
-> };
->=20
-> static const struct intel_c10pll_state mtl_c10_hdmi_593407 =3D {
->-        .clock =3D 593407,
->         .tx =3D 0x10,
->         .cmn =3D 0x1,
->         .pll[0] =3D 0xF4, .pll[1] =3D 0x00, .pll[2] =3D 0x7A, .pll[3] =3D=
- 0x00, .pll[4] =3D 0x00,
->@@ -1707,7 +1640,6 @@ static const struct intel_c10pll_state * const mtl_c=
-10_hdmi_tables[] =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_25_175 =3D {
->-        .clock =3D 25175,
->         .tx =3D {  0xbe88, /* tx cfg0 */
->                   0x9800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1732,7 +1664,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-25_175 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_27_0 =3D {
->-        .clock =3D 27000,
->         .tx =3D {  0xbe88, /* tx cfg0 */
->                   0x9800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1757,7 +1688,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-27_0 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_74_25 =3D {
->-        .clock =3D 74250,
->         .tx =3D {  0xbe88, /* tx cfg0 */
->                   0x9800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1782,7 +1712,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-74_25 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_148_5 =3D {
->-        .clock =3D 148500,
->         .tx =3D {  0xbe88, /* tx cfg0 */
->                   0x9800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1807,7 +1736,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-148_5 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_594 =3D {
->-        .clock =3D 594000,
->         .tx =3D {  0xbe88, /* tx cfg0 */
->                   0x9800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1832,7 +1760,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-594 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_300 =3D {
->-        .clock =3D 3000000,
->         .tx =3D {  0xbe98, /* tx cfg0 */
->                   0x8800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1857,7 +1784,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-300 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_600 =3D {
->-        .clock =3D 6000000,
->         .tx =3D {  0xbe98, /* tx cfg0 */
->                   0x8800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1882,7 +1808,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-600 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_800 =3D {
->-        .clock =3D 8000000,
->         .tx =3D {  0xbe98, /* tx cfg0 */
->                   0x8800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1907,7 +1832,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-800 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_1000 =3D {
->-        .clock =3D 10000000,
->         .tx =3D {  0xbe98, /* tx cfg0 */
->                   0x8800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -1932,7 +1856,6 @@ static const struct intel_c20pll_state mtl_c20_hdmi_=
-1000 =3D {
-> };
->=20
-> static const struct intel_c20pll_state mtl_c20_hdmi_1200 =3D {
->-        .clock =3D 12000000,
->         .tx =3D {  0xbe98, /* tx cfg0 */
->                   0x8800, /* tx cfg1 */
->                   0x0000, /* tx cfg2 */
->@@ -2259,7 +2182,6 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel=
-_clock, struct intel_c20pll_
->         else
->                 mpllb_ana_freq_vco =3D MPLLB_ANA_FREQ_VCO_0;
->=20
->-        pll_state->clock        =3D pixel_clock;
->         pll_state->tx[0]        =3D 0xbe88;
->         pll_state->tx[1]        =3D 0x9800;
->         pll_state->tx[2]        =3D 0x0000;
->@@ -2438,8 +2360,6 @@ static void intel_c20pll_readout_hw_state(struct int=
-el_encoder *encoder,
->                 }
->         }
->=20
->-        pll_state->clock =3D intel_c20pll_calc_port_clock(encoder, pll_st=
-ate);
->-
->         intel_cx0_phy_transaction_end(encoder, wakeref);
-> }
->=20
->@@ -3299,14 +3219,8 @@ static void intel_c20pll_state_verify(const struct =
-intel_crtc_state *state,
->         const struct intel_c20pll_state *mpll_sw_state =3D &state->dpll_h=
-w_state.cx0pll.c20;
->         bool sw_use_mpllb =3D intel_c20phy_use_mpllb(mpll_sw_state);
->         bool hw_use_mpllb =3D intel_c20phy_use_mpllb(mpll_hw_state);
->-        int clock =3D intel_c20pll_calc_port_clock(encoder, mpll_sw_state=
-);
->         int i;
->=20
->-        I915_STATE_WARN(i915, mpll_hw_state->clock !=3D clock,
->-                        "[CRTC:%d:%s] mismatch in C20: Register CLOCK (ex=
-pected %d, found %d)",
->-                        crtc->base.base.id, crtc->base.name,
->-                        mpll_sw_state->clock, mpll_hw_state->clock);
->-
+Quoting Gustavo Sousa (2024-05-15 10:23:54-03:00)
+>Quoting Mika Kahola (2024-05-15 03:45:23-03:00)
+>>As a preparation to remove .clock member from pll state
+>>structure, let's move the port clock calculation on better
+>>location
 
-Maybe it would be better if we did not remove this check? We could
-calculate port clock for mpll_hw_state and keep the check, this could be
-done in a separate patch.
+Ah... Also, I noticed that we are not simply moving the implementation
+of port calculation functions with this patch. We are also replacing
+usage of the "clock" members with function calls. I think the message
+subject and body should be reworded.
 
 --
 Gustavo Sousa
 
->         I915_STATE_WARN(i915, sw_use_mpllb !=3D hw_use_mpllb,
->                         "[CRTC:%d:%s] mismatch in C20: Register MPLLB sel=
-ection (expected %d, found %d)",
->                         crtc->base.base.id, crtc->base.name,
->diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/d=
-rm/i915/display/intel_dpll_mgr.h
->index f09e513ce05b..fedc5e41460c 100644
->--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->@@ -242,14 +242,12 @@ struct intel_mpllb_state {
-> };
->=20
-> struct intel_c10pll_state {
->-        u32 clock; /* in KHz */
->         u8 tx;
->         u8 cmn;
->         u8 pll[20];
-> };
->=20
-> struct intel_c20pll_state {
->-        u32 clock; /* in kHz */
->         u16 tx[3];
->         u16 cmn[4];
->         union {
->--=20
->2.34.1
+>>
+>>Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+>>---
+>> drivers/gpu/drm/i915/display/intel_cx0_phy.c | 176 ++++++++++---------
+>> 1 file changed, 91 insertions(+), 85 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
+rm/i915/display/intel_cx0_phy.c
+>>index 1b1ebafa49e8..9f860a05e623 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>>@@ -1970,13 +1970,92 @@ static const struct intel_c20pll_state * const mt=
+l_c20_hdmi_tables[] =3D {
+>>         NULL,
+>> };
+>>=20
+>>-static int intel_c10_phy_check_hdmi_link_rate(int clock)
+>>+static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+>>+                                        const struct intel_c10pll_state =
+*pll_state)
+>>+{
+>>+        unsigned int frac_quot =3D 0, frac_rem =3D 0, frac_den =3D 1;
+>>+        unsigned int multiplier, tx_clk_div, hdmi_div, refclk =3D 38400;
+>>+        int tmpclk =3D 0;
+>>+
+>>+        if (pll_state->pll[0] & C10_PLL0_FRACEN) {
+>>+                frac_quot =3D pll_state->pll[12] << 8 | pll_state->pll[1=
+1];
+>>+                frac_rem =3D  pll_state->pll[14] << 8 | pll_state->pll[1=
+3];
+>>+                frac_den =3D  pll_state->pll[10] << 8 | pll_state->pll[9=
+];
+>>+        }
+>>+
+>>+        multiplier =3D (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK, pll_st=
+ate->pll[3]) << 8 |
+>>+                      pll_state->pll[2]) / 2 + 16;
+>>+
+>>+        tx_clk_div =3D REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state=
+->pll[15]);
+>>+        hdmi_div =3D REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->p=
+ll[15]);
+>>+
+>>+        tmpclk =3D DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier=
+ << 16) + frac_quot) +
+>>+                                     DIV_ROUND_CLOSEST(refclk * frac_rem=
+, frac_den),
+>>+                                     10 << (tx_clk_div + 16));
+>>+        tmpclk *=3D (hdmi_div ? 2 : 1);
+>>+
+>>+        return tmpclk;
+>>+}
+>>+
+>>+static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *stat=
+e)
+>>+{
+>>+        return state->tx[0] & C20_PHY_USE_MPLLB;
+>>+}
+>>+
+>>+static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
 >
+>While at it, also remove the unused "encoder" parameter?
+>
+>Also, note that there are legitimate checkpatch issues reported for
+>this patch, with those addressed:
+>
+>    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>
+>>+                                        const struct intel_c20pll_state =
+*pll_state)
+>>+{
+>>+        unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
+>>+        unsigned int multiplier, refclk =3D 38400;
+>>+        unsigned int tx_clk_div;
+>>+        unsigned int ref_clk_mpllb_div;
+>>+        unsigned int fb_clk_div4_en;
+>>+        unsigned int ref, vco;
+>>+        unsigned int tx_rate_mult;
+>>+        unsigned int tx_rate =3D REG_FIELD_GET(C20_PHY_TX_RATE, pll_stat=
+e->tx[0]);
+>>+
+>>+        if (intel_c20phy_use_mpllb(pll_state)) {
+>>+                tx_rate_mult =3D 1;
+>>+                frac_en =3D REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->m=
+pllb[6]);
+>>+                frac_quot =3D pll_state->mpllb[8];
+>>+                frac_rem =3D  pll_state->mpllb[9];
+>>+                frac_den =3D  pll_state->mpllb[7];
+>>+                multiplier =3D REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_st=
+ate->mpllb[0]);
+>>+                tx_clk_div =3D REG_FIELD_GET(C20_MPLLB_TX_CLK_DIV_MASK, =
+pll_state->mpllb[0]);
+>>+                ref_clk_mpllb_div =3D REG_FIELD_GET(C20_REF_CLK_MPLLB_DI=
+V_MASK, pll_state->mpllb[6]);
+>>+                fb_clk_div4_en =3D 0;
+>>+        } else {
+>>+                tx_rate_mult =3D 2;
+>>+                frac_en =3D REG_FIELD_GET(C20_MPLLA_FRACEN, pll_state->m=
+plla[6]);
+>>+                frac_quot =3D pll_state->mplla[8];
+>>+                frac_rem =3D  pll_state->mplla[9];
+>>+                frac_den =3D  pll_state->mplla[7];
+>>+                multiplier =3D REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_st=
+ate->mplla[0]);
+>>+                tx_clk_div =3D REG_FIELD_GET(C20_MPLLA_TX_CLK_DIV_MASK, =
+pll_state->mplla[1]);
+>>+                ref_clk_mpllb_div =3D REG_FIELD_GET(C20_REF_CLK_MPLLB_DI=
+V_MASK, pll_state->mplla[6]);
+>>+                fb_clk_div4_en =3D REG_FIELD_GET(C20_FB_CLK_DIV4_EN, pll=
+_state->mplla[0]);
+>>+        }
+>>+
+>>+        if (frac_en)
+>>+                frac =3D frac_quot + DIV_ROUND_CLOSEST(frac_rem, frac_de=
+n);
+>>+        else
+>>+                frac =3D 0;
+>>+
+>>+        ref =3D DIV_ROUND_CLOSEST(refclk * (1 << (1 + fb_clk_div4_en)), =
+1 << ref_clk_mpllb_div);
+>>+        vco =3D DIV_ROUND_CLOSEST_ULL(mul_u32_u32(ref, (multiplier << (1=
+7 - 2)) + frac) >> 17, 10);
+>>+
+>>+        return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
+>>+}
+>>+
+>>+static int intel_c10_phy_check_hdmi_link_rate(struct intel_encoder *enco=
+der,
+>>+                                              int clock)
+>> {
+>>         const struct intel_c10pll_state * const *tables =3D mtl_c10_hdmi=
+_tables;
+>>         int i;
+>>=20
+>>         for (i =3D 0; tables[i]; i++) {
+>>-                if (clock =3D=3D tables[i]->clock)
+>>+                int port_clock =3D intel_c10pll_calc_port_clock(encoder,=
+ tables[i]);
+>>+                if (clock =3D=3D port_clock)
+>>                         return MODE_OK;
+>>         }
+>>=20
+>>@@ -2035,7 +2114,8 @@ static int intel_c10pll_calc_state(struct intel_crt=
+c_state *crtc_state,
+>>                 return -EINVAL;
+>>=20
+>>         for (i =3D 0; tables[i]; i++) {
+>>-                if (crtc_state->port_clock =3D=3D tables[i]->clock) {
+>>+                int port_clock =3D intel_c10pll_calc_port_clock(encoder,=
+ tables[i]);
+>>+                if (crtc_state->port_clock =3D=3D port_clock) {
+>>                         crtc_state->dpll_hw_state.cx0pll.c10 =3D *tables=
+[i];
+>>                         intel_c10pll_update_pll(crtc_state, encoder);
+>>=20
+>>@@ -2209,13 +2289,15 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pi=
+xel_clock, struct intel_c20pll_
+>>         return 0;
+>> }
+>>=20
+>>-static int intel_c20_phy_check_hdmi_link_rate(int clock)
+>>+static int intel_c20_phy_check_hdmi_link_rate(struct intel_encoder *enco=
+der,
+>>+                                              int clock)
+>> {
+>>         const struct intel_c20pll_state * const *tables =3D mtl_c20_hdmi=
+_tables;
+>>         int i;
+>>=20
+>>         for (i =3D 0; tables[i]; i++) {
+>>-                if (clock =3D=3D tables[i]->clock)
+>>+                int port_clock =3D intel_c20pll_calc_port_clock(encoder,=
+ tables[i]);
+>>+                if (clock =3D=3D port_clock)
+>>                         return MODE_OK;
+>>         }
+>>=20
+>>@@ -2230,8 +2312,8 @@ int intel_cx0_phy_check_hdmi_link_rate(struct intel=
+_hdmi *hdmi, int clock)
+>>         struct intel_digital_port *dig_port =3D hdmi_to_dig_port(hdmi);
+>>=20
+>>         if (intel_encoder_is_c10phy(&dig_port->base))
+>>-                return intel_c10_phy_check_hdmi_link_rate(clock);
+>>-        return intel_c20_phy_check_hdmi_link_rate(clock);
+>>+                return intel_c10_phy_check_hdmi_link_rate(hdmi->attached=
+_connector->encoder, clock);
+>>+        return intel_c20_phy_check_hdmi_link_rate(hdmi->attached_connect=
+or->encoder, clock);
+>> }
+>>=20
+>> static const struct intel_c20pll_state * const *
+>>@@ -2275,7 +2357,8 @@ static int intel_c20pll_calc_state(struct intel_crt=
+c_state *crtc_state,
+>>                 return -EINVAL;
+>>=20
+>>         for (i =3D 0; tables[i]; i++) {
+>>-                if (crtc_state->port_clock =3D=3D tables[i]->clock) {
+>>+                int port_clock =3D intel_c20pll_calc_port_clock(encoder,=
+ tables[i]);
+>>+                if (crtc_state->port_clock =3D=3D port_clock) {
+>>                         crtc_state->dpll_hw_state.cx0pll.c20 =3D *tables=
+[i];
+>>                         return 0;
+>>                 }
+>>@@ -2292,56 +2375,6 @@ int intel_cx0pll_calc_state(struct intel_crtc_stat=
+e *crtc_state,
+>>         return intel_c20pll_calc_state(crtc_state, encoder);
+>> }
+>>=20
+>>-static bool intel_c20phy_use_mpllb(const struct intel_c20pll_state *stat=
+e)
+>>-{
+>>-        return state->tx[0] & C20_PHY_USE_MPLLB;
+>>-}
+>>-
+>>-static int intel_c20pll_calc_port_clock(struct intel_encoder *encoder,
+>>-                                        const struct intel_c20pll_state =
+*pll_state)
+>>-{
+>>-        unsigned int frac, frac_en, frac_quot, frac_rem, frac_den;
+>>-        unsigned int multiplier, refclk =3D 38400;
+>>-        unsigned int tx_clk_div;
+>>-        unsigned int ref_clk_mpllb_div;
+>>-        unsigned int fb_clk_div4_en;
+>>-        unsigned int ref, vco;
+>>-        unsigned int tx_rate_mult;
+>>-        unsigned int tx_rate =3D REG_FIELD_GET(C20_PHY_TX_RATE, pll_stat=
+e->tx[0]);
+>>-
+>>-        if (intel_c20phy_use_mpllb(pll_state)) {
+>>-                tx_rate_mult =3D 1;
+>>-                frac_en =3D REG_FIELD_GET(C20_MPLLB_FRACEN, pll_state->m=
+pllb[6]);
+>>-                frac_quot =3D pll_state->mpllb[8];
+>>-                frac_rem =3D  pll_state->mpllb[9];
+>>-                frac_den =3D  pll_state->mpllb[7];
+>>-                multiplier =3D REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_st=
+ate->mpllb[0]);
+>>-                tx_clk_div =3D REG_FIELD_GET(C20_MPLLB_TX_CLK_DIV_MASK, =
+pll_state->mpllb[0]);
+>>-                ref_clk_mpllb_div =3D REG_FIELD_GET(C20_REF_CLK_MPLLB_DI=
+V_MASK, pll_state->mpllb[6]);
+>>-                fb_clk_div4_en =3D 0;
+>>-        } else {
+>>-                tx_rate_mult =3D 2;
+>>-                frac_en =3D REG_FIELD_GET(C20_MPLLA_FRACEN, pll_state->m=
+plla[6]);
+>>-                frac_quot =3D pll_state->mplla[8];
+>>-                frac_rem =3D  pll_state->mplla[9];
+>>-                frac_den =3D  pll_state->mplla[7];
+>>-                multiplier =3D REG_FIELD_GET(C20_MULTIPLIER_MASK, pll_st=
+ate->mplla[0]);
+>>-                tx_clk_div =3D REG_FIELD_GET(C20_MPLLA_TX_CLK_DIV_MASK, =
+pll_state->mplla[1]);
+>>-                ref_clk_mpllb_div =3D REG_FIELD_GET(C20_REF_CLK_MPLLB_DI=
+V_MASK, pll_state->mplla[6]);
+>>-                fb_clk_div4_en =3D REG_FIELD_GET(C20_FB_CLK_DIV4_EN, pll=
+_state->mplla[0]);
+>>-        }
+>>-
+>>-        if (frac_en)
+>>-                frac =3D frac_quot + DIV_ROUND_CLOSEST(frac_rem, frac_de=
+n);
+>>-        else
+>>-                frac =3D 0;
+>>-
+>>-        ref =3D DIV_ROUND_CLOSEST(refclk * (1 << (1 + fb_clk_div4_en)), =
+1 << ref_clk_mpllb_div);
+>>-        vco =3D DIV_ROUND_CLOSEST_ULL(mul_u32_u32(ref, (multiplier << (1=
+7 - 2)) + frac) >> 17, 10);
+>>-
+>>-        return vco << tx_rate_mult >> tx_clk_div >> tx_rate;
+>>-}
+>>-
+>> static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+>>                                           struct intel_c20pll_state *pll=
+_state)
+>> {
+>>@@ -2636,33 +2669,6 @@ static void intel_c20_pll_program(struct drm_i915_=
+private *i915,
+>>                       BIT(0), cntx ? 0 : 1, MB_WRITE_COMMITTED);
+>> }
+>>=20
+>>-static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
+>>-                                        const struct intel_c10pll_state =
+*pll_state)
+>>-{
+>>-        unsigned int frac_quot =3D 0, frac_rem =3D 0, frac_den =3D 1;
+>>-        unsigned int multiplier, tx_clk_div, hdmi_div, refclk =3D 38400;
+>>-        int tmpclk =3D 0;
+>>-
+>>-        if (pll_state->pll[0] & C10_PLL0_FRACEN) {
+>>-                frac_quot =3D pll_state->pll[12] << 8 | pll_state->pll[1=
+1];
+>>-                frac_rem =3D  pll_state->pll[14] << 8 | pll_state->pll[1=
+3];
+>>-                frac_den =3D  pll_state->pll[10] << 8 | pll_state->pll[9=
+];
+>>-        }
+>>-
+>>-        multiplier =3D (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK, pll_st=
+ate->pll[3]) << 8 |
+>>-                      pll_state->pll[2]) / 2 + 16;
+>>-
+>>-        tx_clk_div =3D REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, pll_state=
+->pll[15]);
+>>-        hdmi_div =3D REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->p=
+ll[15]);
+>>-
+>>-        tmpclk =3D DIV_ROUND_CLOSEST_ULL(mul_u32_u32(refclk, (multiplier=
+ << 16) + frac_quot) +
+>>-                                     DIV_ROUND_CLOSEST(refclk * frac_rem=
+, frac_den),
+>>-                                     10 << (tx_clk_div + 16));
+>>-        tmpclk *=3D (hdmi_div ? 2 : 1);
+>>-
+>>-        return tmpclk;
+>>-}
+>>-
+>> static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+>>                                          const struct intel_crtc_state *=
+crtc_state,
+>>                                          bool lane_reversal)
+>>--=20
+>>2.34.1
+>>
