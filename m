@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573368C7327
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 10:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A8D8C732B
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 10:50:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B17110E893;
-	Thu, 16 May 2024 08:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1CB810EC1B;
+	Thu, 16 May 2024 08:50:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rq9fNCBG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hp+GRayp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B4910E893
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2024 08:50:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDEC610E893
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2024 08:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715849422; x=1747385422;
+ t=1715849423; x=1747385423;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tMUMtvsIyg0/GXkLRNIW1EIh+1vbZH9LNhcN8Lf45mU=;
- b=Rq9fNCBGhQBFebxd+wtQ5+uR4TV65AdOfzc+QkOAKLcL/e/ILZV+mGZ9
- +w8F9J3kBYzGSNrX4Prj9CjFoed9HhWiloR2kw90X85RXL6YxoTXKGefD
- cc1NaJgI5fbyMyuipB9D0+gWqGJL42QWI6fOhs4pn4Mt94S92hy5RnTyw
- A037kQRemhNCSPJyCFOgttD/y63qexvfM2uFVGCqLTyIAhHASeqSOb4/U
- W2f0Lel3pvxQiTM9L9Snl7/yFWyv/1nbX4T4uf9pUJkiCvsmuer1BEG8L
- hWVVYZ/xaD2foL6tyekbwmW424w2KmAnJc+KoenzEqMTUS0F1sZKXqCBs A==;
-X-CSE-ConnectionGUID: 9YPxjC1URIWY0C1srN3DYA==
-X-CSE-MsgGUID: /U7Pm38qSFGi+O3D30jzJw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11756063"
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="11756063"
+ bh=+szKxTSOgEIDRM/429ev80DKLMC3HChQWpJUPkuTqXg=;
+ b=hp+GRaypRd5jy10bSjbOoZF7mFLFGVmnlKJvyyPHWeWjmrGa0NhpYggT
+ F8TWzb7C+KUY/xe6WhqfxtL8Xt7NLwOCA3ahOEbKcN2P7gGkEnXwcgy3I
+ tgWhQG/+a5JNZOyddYjScJ31FiHd8H16W83NGQ/DhUPOUC4DjJgCQU5Zw
+ U8xjEBg2pwzz81dEp2UyPjY9fnZ5/RZPyOMmyq37ADbbxTx9H9YXOSq2+
+ hgVhzpjl/3A8Zg6NrZVUXrWbC3mdTSuQpMi7ocwYr2bbKgvKz82Kgc8f6
+ Ch5MmBiXj6XoeTjz38FA/4cD3f2nX5aUq1140heBmIWVQYJoB7w7CazeA g==;
+X-CSE-ConnectionGUID: cYQBhXB/Td2DIhyIamvftA==
+X-CSE-MsgGUID: g+Q0WNcJQmq0OOvsoytECQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11756067"
+X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="11756067"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 01:50:21 -0700
-X-CSE-ConnectionGUID: iYnYw5RtQtmPIW+NgQzK4A==
-X-CSE-MsgGUID: cY+OxB4bTdqZZ3EC/TS/+g==
+ 16 May 2024 01:50:23 -0700
+X-CSE-ConnectionGUID: VAnzcqojT66kn/Y7Nu1mhw==
+X-CSE-MsgGUID: MewZhKUGT2aUIQIyWbso3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="31398150"
+X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="31398157"
 Received: from tlonnber-mobl3.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.211.12])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 01:50:20 -0700
+ 16 May 2024 01:50:21 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 07/17] drm/i915/psr: Add Early Transport into psr debugfs
- interface
-Date: Thu, 16 May 2024 11:49:47 +0300
-Message-Id: <20240516084957.1557028-8-jouni.hogander@intel.com>
+Subject: [PATCH 08/17] drm/display: Add missing aux less alpm wake related bits
+Date: Thu, 16 May 2024 11:49:48 +0300
+Message-Id: <20240516084957.1557028-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240516084957.1557028-1-jouni.hogander@intel.com>
 References: <20240516084957.1557028-1-jouni.hogander@intel.com>
@@ -72,72 +71,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to have sink Early Transport capability and usage in our psr
-debugfs status interface.
+eDP1.5 adds some more bits into DP_RECEIVER_ALPM_CAP and
+DP_RECEIVER_ALPM_CONFIG registers. Add definitions for these.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 36 ++++++++++++++++++------
- 1 file changed, 28 insertions(+), 8 deletions(-)
+ include/drm/display/drm_dp.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bc200fc043f0..5d2424c71d4c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3594,25 +3594,45 @@ static void intel_psr_sink_capability(struct intel_dp *intel_dp,
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 79bde372b152..f3ce8c483659 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -232,6 +232,8 @@
  
- 	if (psr->sink_support)
- 		seq_printf(m, " [0x%02x]", intel_dp->psr_dpcd[0]);
-+	if (intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_ET_SUPPORTED)
-+		seq_printf(m, " (Early Transport)");
- 	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
--	seq_printf(m, ", Panel Replay Selective Update = %s\n",
-+	seq_printf(m, ", Panel Replay Selective Update = %s",
- 		   str_yes_no(psr->sink_panel_replay_su_support));
-+	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)
-+		seq_printf(m, " (Early Transport)");
-+	seq_printf(m, "\n");
- }
+ #define DP_RECEIVER_ALPM_CAP		    0x02e   /* eDP 1.4 */
+ # define DP_ALPM_CAP			    (1 << 0)
++# define DP_ALPM_PM_STATE_2A_SUPPORT	    (1 << 1) /* eDP 1.5 */
++# define DP_ALPM_AUX_LESS_CAP		    (1 << 2) /* eDP 1.5 */
  
- static void intel_psr_psr_mode(struct intel_dp *intel_dp,
- 			       struct seq_file *m)
- {
- 	struct intel_psr *psr = &intel_dp->psr;
--	const char *status;
-+	const char *status, *mode, *region_et;
+ #define DP_SINK_DEVICE_AUX_FRAME_SYNC_CAP   0x02f   /* eDP 1.4 */
+ # define DP_AUX_FRAME_SYNC_CAP		    (1 << 0)
+@@ -685,6 +687,7 @@
+ #define DP_RECEIVER_ALPM_CONFIG		    0x116   /* eDP 1.4 */
+ # define DP_ALPM_ENABLE			    (1 << 0)
+ # define DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE  (1 << 1)
++# define DP_ALPM_MODE_AUX_LESS		    (1 << 2) /* eDP 1.5 */
  
--	if (psr->panel_replay_enabled)
--		status = psr->sel_update_enabled ? "Panel Replay Selective Update Enabled" :
--			"Panel Replay Enabled";
-+	if (psr->enabled)
-+		status = " enabled";
-+	else
-+		status = " disabled";
-+
-+	if (psr->panel_replay_enabled && psr->sel_update_enabled)
-+		mode = "Panel Replay Selective Update";
-+	else if (psr->panel_replay_enabled)
-+		mode = "Panel Replay";
-+	else if (psr->sel_update_enabled)
-+		mode = "PSR2";
- 	else if (psr->enabled)
--		status = psr->sel_update_enabled ? "PSR2" : "PSR1";
-+		mode = "PSR1";
-+	else
-+		mode = "";
-+
-+	if (psr->sel_update_enabled &&
-+	    (psr2_su_region_et_valid(intel_dp, psr->panel_replay_enabled)))
-+		region_et = " Early Transport";
- 	else
--		status = "disabled";
--	seq_printf(m, "PSR mode: %s\n", status);
-+		region_et = "";
-+
-+	seq_printf(m, "PSR mode: %s%s%s\n", mode, region_et, status);
- }
- 
- static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
+ #define DP_SINK_DEVICE_AUX_FRAME_SYNC_CONF  0x117   /* eDP 1.4 */
+ # define DP_AUX_FRAME_SYNC_ENABLE	    (1 << 0)
 -- 
 2.34.1
 
