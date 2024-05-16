@@ -2,28 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB4C8C7A54
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 18:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7E38C7B2C
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 19:33:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37CE010E18C;
-	Thu, 16 May 2024 16:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C18810E3B5;
+	Thu, 16 May 2024 17:33:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mOaLFM3Y";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DABE410E18C;
- Thu, 16 May 2024 16:27:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9153191816167425556=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Panel_Replay_eDP_support?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E7F610E3B5;
+ Thu, 16 May 2024 17:33:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715880809; x=1747416809;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IOeEh7kRfRKtlnqKWfmYj0750ClwuhWw8RQ+Q/sQk2g=;
+ b=mOaLFM3YjqwUER1s6VE4G8aYoWpf4BT6mi/oFXiA675Ta/iG6NkpR07N
+ HU1VK7nQ1yYXzH8ZgaylvtEhKNP4Ss0Gc1ioJrQNEq4INn1T2RgIt4zMC
+ lV+amjreKcPfcpo5JGGM/qSIXXGgiqWLA71A+QrwgCgRUb8T0rU5AVbfC
+ /2PBHBPDar0XfsON/2yOI6rnaZc3dOnb1fqRl87HABCpmPAbjFaWWMGyx
+ WAN4BkycaeMa43niGTMfkR/UYFZBpSsEATK8Ago0LszdpG9KcOnxjQrLZ
+ YlE5w0ghtcWsZUFf8jAjb4o+0KnMLJ2V+UkUUXaZ3XWWTK+cP3Yl665T0 w==;
+X-CSE-ConnectionGUID: 6MC1eNBySAmxQPNhfENRVw==
+X-CSE-MsgGUID: 9lRH4SVTTfiB3si9ZldoyQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="29517753"
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="29517753"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2024 10:33:28 -0700
+X-CSE-ConnectionGUID: DOei1TphQAeqg2T3nrzenA==
+X-CSE-MsgGUID: /yPbzQicTPeQSd+YypkeiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="31512477"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 16 May 2024 10:33:25 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 May 2024 20:33:24 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 May 2024 16:27:55 -0000
-Message-ID: <171587687589.2122196.18150073648366249722@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240516084957.1557028-1-jouni.hogander@intel.com>
-In-Reply-To: <20240516084957.1557028-1-jouni.hogander@intel.com>
+Subject: [PATCH] drm/probe-helper: Call drm_mode_validate_ycbcr420() before
+ connector->mode_valid()
+Date: Thu, 16 May 2024 20:33:24 +0300
+Message-ID: <20240516173324.18149-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.44.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,148 +65,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============9153191816167425556==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Make life easier for drivers by filtering out unwanted YCbCr 4:2:0
+only modes prior to calling the connector->mode_valid() hook.
+Currently drivers will still see YCbCr 4:2:0 only modes in said
+hook, which will likely come as a suprise when the driver has
+declared no support for such modes (via setting
+connector->ycbcr_420_allowed to false).
 
-Series: Panel Replay eDP support
-URL   : https://patchwork.freedesktop.org/series/133684/
-State : success
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10992
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_probe_helper.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+index 4f75a1cfd820..249c8c2cb319 100644
+--- a/drivers/gpu/drm/drm_probe_helper.c
++++ b/drivers/gpu/drm/drm_probe_helper.c
+@@ -474,6 +474,10 @@ static int __drm_helper_update_and_validate(struct drm_connector *connector,
+ 		if (mode->status != MODE_OK)
+ 			continue;
+ 
++		mode->status = drm_mode_validate_ycbcr420(mode, connector);
++		if (mode->status != MODE_OK)
++			continue;
++
+ 		ret = drm_mode_validate_pipeline(mode, connector, ctx,
+ 						 &mode->status);
+ 		if (ret) {
+@@ -486,10 +490,6 @@ static int __drm_helper_update_and_validate(struct drm_connector *connector,
+ 			else
+ 				return -EDEADLK;
+ 		}
+-
+-		if (mode->status != MODE_OK)
+-			continue;
+-		mode->status = drm_mode_validate_ycbcr420(mode, connector);
+ 	}
+ 
+ 	return 0;
+-- 
+2.44.1
 
-CI Bug Log - changes from CI_DRM_14775 -> Patchwork_133684v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/index.html
-
-Participating hosts (41 -> 36)
-------------------------------
-
-  Missing    (5): fi-snb-2520m fi-glk-j4005 fi-cfl-8109u fi-kbl-8809g bat-arls-1 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_133684v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bsw-nick:        [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14775/fi-bsw-nick/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/fi-bsw-nick/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_auth@basic-auth:
-    - {bat-apl-1}:        [DMESG-WARN][3] ([i915#1982]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14775/bat-apl-1/igt@core_auth@basic-auth.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/bat-apl-1/igt@core_auth@basic-auth.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14775 -> Patchwork_133684v1
-
-  CI-20190529: 20190529
-  CI_DRM_14775: 3b6a503228b84c010794599203ac3e1e3d349bab @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7858: 133c90d6aabcd90871e36946317c90ee83c2f847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_133684v1: 3b6a503228b84c010794599203ac3e1e3d349bab @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/index.html
-
---===============9153191816167425556==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Panel Replay eDP support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133684/">https://patchwork.freedesktop.org/series/133684/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14775 -&gt; Patchwork_133684v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 36)</h2>
-<p>Missing    (5): fi-snb-2520m fi-glk-j4005 fi-cfl-8109u fi-kbl-8809g bat-arls-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_133684v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14775/fi-bsw-nick/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/fi-bsw-nick/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_auth@basic-auth:<ul>
-<li>{bat-apl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14775/bat-apl-1/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133684v1/bat-apl-1/igt@core_auth@basic-auth.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14775 -&gt; Patchwork_133684v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14775: 3b6a503228b84c010794599203ac3e1e3d349bab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7858: 133c90d6aabcd90871e36946317c90ee83c2f847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_133684v1: 3b6a503228b84c010794599203ac3e1e3d349bab @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============9153191816167425556==--
