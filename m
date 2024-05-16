@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68CB88C7C4B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 20:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3BB8C7C54
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 20:27:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 950C310EDAA;
-	Thu, 16 May 2024 18:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96D1210ED98;
+	Thu, 16 May 2024 18:27:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vo2fVHCd";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE2E10ED98;
- Thu, 16 May 2024 18:25:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8A910ED98
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2024 18:27:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715884038; x=1747420038;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0zic5FlstVUmmTEvJ0HXs6oj+mqWlx8Vvdx/7yi0OXQ=;
+ b=Vo2fVHCd4+laGN+SsWexreEpddk0j9Kp1Z6NbbBRzOVHd5Vr8gC7y0Wr
+ tp2rk4X85rxY8UVcFqXlVU1m9mLplKddrfI/flyK/x+vFVsb0U/hndicn
+ zjptkJwbL5y9EXOcWsU8Ldl5cLi2s3jW2/0skTFcnKV5trePyVDVUML/5
+ YxEs91FK7HlS6m7zHFHdvwB7oryjuF4mwM02BdHlKDqBxSWaCH9B6Ggqq
+ ig58mm11GDRgA0gslF4e19JC+Ge1jKnAgMrZLbj22SA8YprATNPBMVP+J
+ bO1aa9laQLQK1zgJASH7bGOMYBrcbYX7HIlo1CnHWmDya/xmrjxQDdYnE g==;
+X-CSE-ConnectionGUID: 2vwEY4GKRTmXYwsbtE8k3g==
+X-CSE-MsgGUID: P9u8i1k1QMWgxAd4sOKw7w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="15848851"
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="15848851"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2024 11:27:18 -0700
+X-CSE-ConnectionGUID: IuhF3XmySfa22gjBQiQ+qg==
+X-CSE-MsgGUID: 5+mWzzMkTy+yKG3yV2f/fg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; d="scan'208";a="31529377"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 16 May 2024 11:27:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 May 2024 21:27:15 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/i915: Bump max TMDS bitrate to 6 Gbps on ADL/DG2+
+Date: Thu, 16 May 2024 21:27:15 +0300
+Message-ID: <20240516182715.27119-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.44.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_tracing/treewide=3A_Remov?=
- =?utf-8?q?e_second_parameter_of_=5F=5Fassign=5Fstr=28=29_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Steven Rostedt" <rostedt@goodmis.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 May 2024 18:25:46 -0000
-Message-ID: <171588394665.2122196.3338029421854248723@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240516133454.681ba6a0@rorschach.local.home>
-In-Reply-To: <20240516133454.681ba6a0@rorschach.local.home>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,45 +63,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: tracing/treewide: Remove second parameter of __assign_str() (rev3)
-URL   : https://patchwork.freedesktop.org/series/130320/
-State : failure
+Bspec lists the mas TMDS bitrate as 6 Gbps on ADL/DG2.
+Bump our limit to match.
 
-== Summary ==
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/130320/revisions/3/mbox/ not applied
-Applying: tracing/treewide: Remove second parameter of __assign_str()
-Using index info to reconstruct a base tree...
-M	drivers/net/ethernet/hisilicon/hns3/hns3pf/hclge_trace.h
-M	drivers/net/ethernet/hisilicon/hns3/hns3vf/hclgevf_trace.h
-M	drivers/thermal/thermal_trace.h
-M	fs/smb/client/trace.h
-M	include/trace/events/btrfs.h
-M	include/trace/events/sched.h
-M	net/wireless/trace.h
-Falling back to patching base and 3-way merge...
-Auto-merging net/wireless/trace.h
-Auto-merging include/trace/events/sched.h
-CONFLICT (content): Merge conflict in include/trace/events/sched.h
-Auto-merging include/trace/events/btrfs.h
-Auto-merging fs/smb/client/trace.h
-Auto-merging drivers/thermal/thermal_trace.h
-Auto-merging drivers/net/ethernet/hisilicon/hns3/hns3vf/hclgevf_trace.h
-CONFLICT (content): Merge conflict in drivers/net/ethernet/hisilicon/hns3/hns3vf/hclgevf_trace.h
-Auto-merging drivers/net/ethernet/hisilicon/hns3/hns3pf/hclge_trace.h
-CONFLICT (content): Merge conflict in drivers/net/ethernet/hisilicon/hns3/hns3pf/hclge_trace.h
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 tracing/treewide: Remove second parameter of __assign_str()
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 0faf2afa1c09..bd0ba4edcd1d 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1784,7 +1784,9 @@ static int intel_hdmi_source_max_tmds_clock(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	int max_tmds_clock, vbt_max_tmds_clock;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 10)
++	if (DISPLAY_VER(dev_priv) >= 13)
++		max_tmds_clock = 600000;
++	else if (DISPLAY_VER(dev_priv) >= 10)
+ 		max_tmds_clock = 594000;
+ 	else if (DISPLAY_VER(dev_priv) >= 8 || IS_HASWELL(dev_priv))
+ 		max_tmds_clock = 300000;
+-- 
+2.44.1
 
