@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27FC18C7339
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 10:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B308C732E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 10:50:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FC3B10EC03;
-	Thu, 16 May 2024 08:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC6F210EC2A;
+	Thu, 16 May 2024 08:50:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fwD6Pi+K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Govj71Ec";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B897510EC03
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2024 08:50:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6588910EC2D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2024 08:50:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715849429; x=1747385429;
+ t=1715849430; x=1747385430;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GeQYiMaVQG1A+lxUsG0gTnCLuz7UKdOdJ6TS2ZC+yyg=;
- b=fwD6Pi+K9vWFoCAMK1jKS49ZFney30lV5D9ok5ru4w/85/eyy6lZ+3PU
- 3zmNZe5/CKTu5627fxer5XJ9DkoapDZrL1f9o/vKtDjH8ysEPVknyxrgz
- fs21VTuF23wBRCIKy10bsxxS1gsTbKafXklKXlzORjgfsbO03LJuSOF0M
- PflXc/gCt37tBamzjs/EeHHg+ueSraUjrAa+QcWJnmM2Nc8blVAAaAM2E
- GO628eAwWRUJzWX2ryvy0CiGuMs8kzJP45x5GaaPwGBHbm39ayfF5X8+I
- U7nq1/NE/148G4oPIoZ0Oi/FoUxHXsCmwOSk4M7tHdS4lujBNmyEvM1QL Q==;
-X-CSE-ConnectionGUID: 7nCIsbaNSAG13xpUEuDoBg==
-X-CSE-MsgGUID: ip1vwnOBSgyfSIy/RT1tUw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11756086"
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="11756086"
+ bh=vPIgjLg27U2dhQRAJuB8wVfIhH+Q4vFWx3YEyXGJ1cM=;
+ b=Govj71EcC8bUtW3HLHfXukVaBEGrCaakrla/eZb81/zctH3nnJc3Vuk5
+ A8L1HOsCJn7r7m10FuQFlg20Nr9PImyitaexa3mrvStQpI8YXMFFKXxPn
+ yZVSQwGXSlMGb3pgki0L8xDlO/PPJirCUcr7jWu3RwCr5E8t5l1LsKdlQ
+ KSJQISNHwsz0L7c/vy55pAakT/YnDSoZgSqrEIvJy4nF5thaUERTpXN1c
+ oyiWCBdCdpDsfWhuYWYkWg6jChcGlXT/dJGUlHHePynoW0voboQg9yIlC
+ /s7J2pRTelgC69lH+hOTOLxGr/qPzPbICf6DIQT4ubA9w6iXRD2sypTxW Q==;
+X-CSE-ConnectionGUID: 8JfkZDqZQqG+dOsJFEWGjA==
+X-CSE-MsgGUID: mkxk7PToT2C6AV4zKMjjNA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11756090"
+X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="11756090"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 01:50:29 -0700
-X-CSE-ConnectionGUID: TkfKTmy6Sg2S69Srv4u3uA==
-X-CSE-MsgGUID: pNSG3E3rQLmeblub70YVWw==
+ 16 May 2024 01:50:30 -0700
+X-CSE-ConnectionGUID: 4VJVnix1RrOju103F8xZEg==
+X-CSE-MsgGUID: cL4PxzzhRJm5LEJG0qeNxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="31398199"
+X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="31398207"
 Received: from tlonnber-mobl3.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.211.12])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 01:50:27 -0700
+ 16 May 2024 01:50:28 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 12/17] drm/i915/psr: Check panel Early Transport capability
- for eDP PR
-Date: Thu, 16 May 2024 11:49:52 +0300
-Message-Id: <20240516084957.1557028-13-jouni.hogander@intel.com>
+Subject: [PATCH 13/17] drm/i915/psr: Perfrom psr2 checks related to ALPM for
+ Panel Replay
+Date: Thu, 16 May 2024 11:49:53 +0300
+Message-Id: <20240516084957.1557028-14-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240516084957.1557028-1-jouni.hogander@intel.com>
 References: <20240516084957.1557028-1-jouni.hogander@intel.com>
@@ -72,45 +72,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Our HW doesn't support panel replay without Early Transport on eDP.
+eDP1.5 support ALPM with Panel Replay as well. We need to check ALPM
+related things for Panel Replay as well.
 
 Bspec: 68920
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 45 +++++++++++++-----------
+ 1 file changed, 24 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index d01170ccf603..daba46aa1149 100644
+index daba46aa1149..4bbb0c05054f 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -549,12 +549,19 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, u8 alpm_caps)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
--	if (intel_dp_is_edp(intel_dp) &&
--	    (!(alpm_caps & DP_ALPM_CAP) ||
--	     !(alpm_caps & DP_ALPM_AUX_LESS_CAP))) {
--		drm_dbg_kms(&i915->drm,
--			    "Panel doesn't support AUX-less ALPM, eDP Panel Replay not possible\n");
--		return;
-+	if (intel_dp_is_edp(intel_dp)) {
-+		if (!(alpm_caps & DP_ALPM_CAP) ||
-+		    !(alpm_caps & DP_ALPM_AUX_LESS_CAP)) {
-+			drm_dbg_kms(&i915->drm,
-+				    "Panel doesn't support AUX-less ALPM, eDP Panel Replay not possible\n");
-+			return;
-+		}
-+
-+		if (!(intel_dp->pr_dpcd & DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)) {
-+			drm_dbg_kms(&i915->drm,
-+				    "Panel doesn't support early transport, eDP Panel Replay not possible\n");
-+			return;
-+		}
+@@ -1590,27 +1590,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
  	}
  
- 	intel_dp->psr.sink_panel_replay_support = true;
+-	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, PSR2 SDP indication do not fit in hblank\n");
+-		return false;
+-	}
+-
+-	if (!_compute_alpm_params(intel_dp, crtc_state)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, Unable to use long enough wake times\n");
+-		return false;
+-	}
+-
+-	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
+-	if (crtc_state->hw.adjusted_mode.crtc_vblank_end -
+-	    crtc_state->hw.adjusted_mode.crtc_vblank_start <
+-	    psr2_block_count_lines(intel_dp)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, too short vblank time\n");
+-		return false;
+-	}
+-
+ 	if (!crtc_state->enable_psr2_sel_fetch &&
+ 	    (crtc_hdisplay > psr_max_h || crtc_vdisplay > psr_max_v)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+@@ -1649,6 +1628,30 @@ static bool intel_sel_update_config_valid(struct intel_dp *intel_dp,
+ 	if (!crtc_state->has_panel_replay && !intel_psr2_config_valid(intel_dp, crtc_state))
+ 		goto unsupported;
+ 
++	if (intel_dp_is_edp(intel_dp)) {
++		if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp,
++								 crtc_state)) {
++			drm_dbg_kms(&dev_priv->drm,
++				    "Selective update not enabled, SDP indication do not fit in hblank\n");
++			goto unsupported;
++		}
++
++		if (!_compute_alpm_params(intel_dp, crtc_state)) {
++			drm_dbg_kms(&dev_priv->drm,
++				    "Selective update not enabled, Unable to use long enough wake times\n");
++			goto unsupported;
++		}
++
++		/* Vblank >= PSR2_CTL Block Count Number maximum line count */
++		if (crtc_state->hw.adjusted_mode.crtc_vblank_end -
++		    crtc_state->hw.adjusted_mode.crtc_vblank_start <
++		    psr2_block_count_lines(intel_dp)) {
++			drm_dbg_kms(&dev_priv->drm,
++				    "Selective update not enabled, too short vblank time\n");
++			goto unsupported;
++		}
++	}
++
+ 	if (crtc_state->has_panel_replay && (DISPLAY_VER(dev_priv) < 14 ||
+ 					     !intel_dp->psr.sink_panel_replay_su_support))
+ 		goto unsupported;
 -- 
 2.34.1
 
