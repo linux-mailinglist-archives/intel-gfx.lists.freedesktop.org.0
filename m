@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7134E8C780D
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 15:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B01D58C787E
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2024 16:36:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A743D10ED37;
-	Thu, 16 May 2024 13:57:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LBz6g0jt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5332910E05B;
+	Thu, 16 May 2024 14:36:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E525B10ED3D
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2024 13:57:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715867822; x=1747403822;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=FZWxfW1sT9Nq8FdS4IsTRfs+yFQPaZDgDuksVcwbMcM=;
- b=LBz6g0jtMaxn3cyV7Eap+l7zhgeIBa0LOPhJxhSHAuEVPTHwZP6wOzel
- CePORocsH4maXhufaW/V4komxK9LfCDKtssQJ22VbCqVGmrv5/ZGh/1Gw
- JiAyZJVcZdPNljeLJg+u7rTm6sUHy2Nk5RTmqTqVVfrK/Zy7fO0GhifgR
- W0aZU5H8oQXO7jf3DNYuooiMHSt4u6on/oY4JJCDc9t13cUq5GkKHoSCH
- GeECv/xzle/JhFkO3fA6kAeNW3aOiHFHcIXmDzLE6xs0A/ElJBKPl48+6
- rOJi/lw/+CvICW5DKOrdCnwQnQWycQs78mKfu3qjIyC9ec02v2FwTZEUw Q==;
-X-CSE-ConnectionGUID: mU3wsa+ySQuJLmV8PMvs/Q==
-X-CSE-MsgGUID: cDpfvfefRhWyDuLK52jEqg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="37357221"
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="37357221"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2024 06:57:01 -0700
-X-CSE-ConnectionGUID: 8m9DPkAVSCOF46GCW0eOnw==
-X-CSE-MsgGUID: xWcBuo9aSW2bpA8p3+IsLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,164,1712646000"; d="scan'208";a="31435235"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 May 2024 06:57:00 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 May 2024 16:56:59 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 13/13] drm/i915: Document which platforms use which sprite
- registers
-Date: Thu, 16 May 2024 16:56:22 +0300
-Message-ID: <20240516135622.3498-14-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.1
-In-Reply-To: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
-References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4280C10E05B;
+ Thu, 16 May 2024 14:36:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Plane_re?=
+ =?utf-8?q?gister_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 May 2024 14:36:19 -0000
+Message-ID: <171587017926.2121816.16852783395198666712@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,88 +37,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Note which sprite registers are valid for which platforms.
+Series: drm/i915: Plane register cleanups
+URL   : https://patchwork.freedesktop.org/series/133701/
+State : warning
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../gpu/drm/i915/display/intel_sprite_regs.h  | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite_regs.h b/drivers/gpu/drm/i915/display/intel_sprite_regs.h
-index c27adbaf0f00..73021e3ced6d 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_sprite_regs.h
-@@ -6,6 +6,7 @@
- 
- #include "intel_display_reg_defs.h"
- 
-+/* g4x/ilk/snb video sprite */
- #define _DVSACNTR		0x72180
- #define _DVSBCNTR		0x73180
- #define DVSCNTR(pipe) _MMIO_PIPE(pipe, _DVSACNTR, _DVSBCNTR)
-@@ -111,6 +112,7 @@
- #define _DVSBGAMCMAX_ILK	0x73340 /* ilk/snb */
- #define DVSGAMCMAX_ILK(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMCMAX_ILK, _DVSBGAMCMAX_ILK) + (i) * 4) /* 3 x u1.10 */
- 
-+/* ivb/hsw/bdw sprite */
- #define _SPRA_CTL		0x70280
- #define _SPRB_CTL		0x71280
- #define SPRCTL(pipe) _MMIO_PIPE(pipe, _SPRA_CTL, _SPRB_CTL)
-@@ -140,8 +142,8 @@
- #define   SPRITE_TILED				REG_BIT(10)
- #define   SPRITE_DEST_KEY			REG_BIT(2)
- 
--#define _SPRA_LINOFF		0x70284
--#define _SPRB_LINOFF		0x71284
-+#define _SPRA_LINOFF		0x70284 /* ivb */
-+#define _SPRB_LINOFF		0x71284 /* ivb */
- #define SPRLINOFF(pipe) _MMIO_PIPE(pipe, _SPRA_LINOFF, _SPRB_LINOFF)
- 
- #define _SPRA_STRIDE		0x70288
-@@ -181,24 +183,24 @@
- #define _SPRB_KEYMAX		0x712a0
- #define SPRKEYMAX(pipe) _MMIO_PIPE(pipe, _SPRA_KEYMAX, _SPRB_KEYMAX)
- 
--#define _SPRA_TILEOFF		0x702a4
--#define _SPRB_TILEOFF		0x712a4
-+#define _SPRA_TILEOFF		0x702a4 /* ivb */
-+#define _SPRB_TILEOFF		0x712a4 /* ivb */
- #define SPRTILEOFF(pipe) _MMIO_PIPE(pipe, _SPRA_TILEOFF, _SPRB_TILEOFF)
- #define   SPRITE_OFFSET_Y_MASK	REG_GENMASK(31, 16)
- #define   SPRITE_OFFSET_Y(y)	REG_FIELD_PREP(SPRITE_OFFSET_Y_MASK, (y))
- #define   SPRITE_OFFSET_X_MASK	REG_GENMASK(15, 0)
- #define   SPRITE_OFFSET_X(x)	REG_FIELD_PREP(SPRITE_OFFSET_X_MASK, (x))
- 
--#define _SPRA_OFFSET		0x702a4
--#define _SPRB_OFFSET		0x712a4
-+#define _SPRA_OFFSET		0x702a4 /* hsw/bdw */
-+#define _SPRB_OFFSET		0x712a4 /* hsw/bdw */
- #define SPROFFSET(pipe) _MMIO_PIPE(pipe, _SPRA_OFFSET, _SPRB_OFFSET)
- 
- #define _SPRA_SURFLIVE		0x702ac
- #define _SPRB_SURFLIVE		0x712ac
- #define SPRSURFLIVE(pipe) _MMIO_PIPE(pipe, _SPRA_SURFLIVE, _SPRB_SURFLIVE)
- 
--#define _SPRA_SCALE		0x70304
--#define _SPRB_SCALE		0x71304
-+#define _SPRA_SCALE		0x70304 /* ivb */
-+#define _SPRB_SCALE		0x71304 /* ivb */
- #define SPRSCALE(pipe) _MMIO_PIPE(pipe, _SPRA_SCALE, _SPRB_SCALE)
- #define   SPRITE_SCALE_ENABLE			REG_BIT(31)
- #define   SPRITE_FILTER_MASK			REG_GENMASK(30, 29)
-@@ -224,6 +226,7 @@
- #define _SPRB_GAMC17		0x7144c
- #define SPRGAMC17(pipe, i) _MMIO(_PIPE(pipe, _SPRA_GAMC17, _SPRB_GAMC17) + (i) * 4) /* 3 x u2.10 */
- 
-+/* vlv/chv sprite */
- #define _VLV_SPR(pipe, plane_id, reg_a, reg_b) \
- 	_PIPE((pipe) * 2 + (plane_id) - PLANE_SPRITE0, (reg_a), (reg_b))
- #define _MMIO_VLV_SPR(pipe, plane_id, reg_a, reg_b) \
--- 
-2.44.1
+Error: dim checkpatch failed
+2cd1d3b16e64 drm/i915: Add skl+ plane name aliases to enum plane_id
+ad5e92ec05c2 drm/i915: Clean up the cursor register defines
+7220bc7c82e0 drm/i915: Add separate define for SEL_FETCH_CUR_CTL()
+9477d75d613a drm/i915: Simplify PIPESRC_ERLY_TPT definition
+-:54: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:252:
++#define PIPE_SRCSZ_ERLY_TPT(pipe)	_MMIO_PIPE((pipe), _PIPE_SRCSZ_ERLY_TPT_A, _PIPE_SRCSZ_ERLY_TPT_B)
+
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
+bb31d70432ff drm/i915: Rename selective fetch plane registers
+d6e1c598110f drm/i915: Define SEL_FETCH_PLANE registers via PICK_EVEN_2RANGES()
+-:90: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:20:
++#define _SEL_FETCH(pipe, plane, reg_1_a, reg_1_b, reg_2_a, reg_2_b, reg_5_a, reg_5_b, reg_6_a, reg_6_b) \
+
+-:90: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#90: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:20:
++#define _SEL_FETCH(pipe, plane, reg_1_a, reg_1_b, reg_2_a, reg_2_b, reg_5_a, reg_5_b, reg_6_a, reg_6_b) \
++	_PICK_EVEN_2RANGES((plane), PLANE_5, \
++			   _PIPE((pipe), (reg_1_a), (reg_1_b)), \
++			   _PIPE((pipe), (reg_2_a), (reg_2_b)), \
++			   _PIPE((pipe), (reg_5_a), (reg_5_b)), \
++			   _PIPE((pipe), (reg_6_a), (reg_6_b)))
+
+-:96: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:26:
++#define _MMIO_SEL_FETCH(pipe, plane, reg_1_a, reg_1_b, reg_2_a, reg_2_b, reg_5_a, reg_5_b, reg_6_a, reg_6_b) \
+
+-:117: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#117: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:390:
++								_SEL_FETCH_PLANE_CTL_1_A, _SEL_FETCH_PLANE_CTL_1_B, \
+
+-:118: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#118: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:391:
++								_SEL_FETCH_PLANE_CTL_2_A, _SEL_FETCH_PLANE_CTL_2_B, \
+
+-:119: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#119: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:392:
++								_SEL_FETCH_PLANE_CTL_5_A, _SEL_FETCH_PLANE_CTL_5_B, \
+
+-:120: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#120: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:393:
++								_SEL_FETCH_PLANE_CTL_6_A, _SEL_FETCH_PLANE_CTL_6_B)
+
+-:132: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#132: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:405:
++								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
+
+-:133: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#133: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:406:
++								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
+
+-:134: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#134: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:407:
++								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
+
+-:135: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#135: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:408:
++								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
+
+-:146: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#146: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:419:
++								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
+
+-:147: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#147: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:420:
++								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
+
+-:148: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#148: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:421:
++								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
+
+-:149: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#149: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:422:
++								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
+
+-:160: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#160: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:433:
++								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
+
+-:161: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#161: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:434:
++								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
+
+-:162: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#162: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:435:
++								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
+
+-:163: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#163: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:436:
++								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
+
+total: 0 errors, 18 warnings, 1 checks, 129 lines checked
+b2c21e2c199b drm/i915: Add separate defines for cursor WM/DDB register bits
+-:62: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/display/intel_cursor.c:597:
++				  skl_cursor_wm_reg_val(skl_plane_wm_level(pipe_wm, plane_id, level)));
+
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+4f55aa37ef0c drm/i915: Move PIPEGCMAX to intel_color_regs.h
+72bbeba17259 drm/i915: Extract i9xx_plane_regs.h
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
+
+-:109: WARNING:LONG_LINE_COMMENT: line length of 116 exceeds 100 columns
+#109: FILE: drivers/gpu/drm/i915/display/i9xx_plane_regs.h:76:
++#define DSPGAMC(plane, i)	_MMIO_PIPE2(dev_priv, plane, _DSPAGAMC + (5 - (i)) * 4) /* plane C only, 6 x u0.8 */
+
+total: 0 errors, 2 warnings, 0 checks, 278 lines checked
+15ddd4a2177e drm/i915: Polish pre-skl primary plane registers
+-:89: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
+#89: FILE: drivers/gpu/drm/i915/display/i9xx_plane_regs.h:87:
++#define DSPGAMC(plane, i)			_MMIO_PIPE2(dev_priv, plane, _DSPAGAMC + (5 - (i)) * 4) /* plane C only, 6 x u0.8 */
+
+total: 0 errors, 1 warnings, 0 checks, 96 lines checked
+554bc0f1d34b drm/i915: Document a few pre-skl primary plane platform dependencies
+466e7977948e drm/i915: Polish sprite plane register definitions
+-:87: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:89:
++#define DVSGAMC_G4X(pipe, i) _MMIO(_PIPE(pipe, _DVSAGAMC_G4X, _DVSBGAMC_G4X) + (5 - (i)) * 4) /* 6 x u0.8 */
+
+-:303: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#303: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:287:
++#define SPKEYMINVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMINVAL, _SPBKEYMINVAL)
+
+-:316: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#316: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:300:
++#define SPKEYMAXVAL(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPAKEYMAXVAL, _SPBKEYMAXVAL)
+
+-:328: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#328: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:312:
++#define SPCONSTALPHA(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPACONSTALPHA, _SPBCONSTALPHA)
+
+-:335: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#335: FILE: drivers/gpu/drm/i915/display/intel_sprite_regs.h:319:
++#define SPSURFLIVE(pipe, plane_id)	_MMIO_VLV_SPR((pipe), (plane_id), _SPASURFLIVE, _SPBSURFLIVE)
+
+total: 0 errors, 5 warnings, 0 checks, 369 lines checked
+e4fee9e8867a drm/i915: Document which platforms use which sprite registers
+
 
