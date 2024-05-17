@@ -2,91 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC898C877F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 15:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0118C87A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 16:00:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1674C10EED4;
-	Fri, 17 May 2024 13:54:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95AB110E307;
+	Fri, 17 May 2024 14:00:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FqciInBf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPAYDAQn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4E2910EED5
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 13:54:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1715954079;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ckgzF/gF0LVkJPIHaMi6FsUAJKsbsEhiiso6m6KhFLY=;
- b=FqciInBfECmndZ1+u6oABqdWo0Bd+IWXLMsHkU5LcTbnD3uGwMYyrRWFxww22zUPowYF96
- 58bTT7pqs5klw0js6L9fdI5u8oBIDWZES/16652BCXIJ3+L+/tRfeWpAIUpKFmkR/4GiwI
- DQRnfbDIzlTOgs7XpCvnkkxrUfLoefg=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-374-rUciREz4P9KYemCr4B9gbw-1; Fri, 17 May 2024 09:54:38 -0400
-X-MC-Unique: rUciREz4P9KYemCr4B9gbw-1
-Received: by mail-ej1-f70.google.com with SMTP id
- a640c23a62f3a-a59a0d2280cso673702566b.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 06:54:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715954077; x=1716558877;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ckgzF/gF0LVkJPIHaMi6FsUAJKsbsEhiiso6m6KhFLY=;
- b=AFd48li8ThcN6PoolehWcCkpdLX3t07yA3GWKcMOmtG0cEpF6bbExOLHhYFbHzwe52
- CE58cCLTwLQQAcSdVL9pqV8KR21PF2rDbkHRGmOS1VOX+Fe7vfzK/aFLHN2/ODqZNa3W
- c4h0QwCnAT5uUUJiQ++xfZqzR4v3dG1pjYyJb+UjQvASennKNEI+82Z80eAobWrh32Cy
- 2nhBFTyMXTuPC0L8A/sSRzhszuEPV3S7Eird/JDe1jvDMwyp6ImUVhQV2A+mludQUj+j
- AtcVhiBV77iBZeBA8WrphIx93f6QqZ7jXSRJ3pjoWE3lmWbgqopjFi/6gndT+4v8+ye1
- D9Nw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX2dLezO1HJ4IbRWlFg88PjIlrl8pT8Zq0atBRQnqL16i7OMjL5FPPj1/C985iRCcUJeoAt6ve57XdbPLTzKmkg8gSwRYH2o5DdgjhSqRGF
-X-Gm-Message-State: AOJu0Yxr6EE16OfbsYfxjFq0DPnZAWxZRgrmNKFiO6QpYAU9tKXug1nB
- w3f1fHYxy5sSb8yeiEBW1tZ+/xXffEtBnsjJAvuR1wSzrdiVZ4UBj3dzkJj5n0K9UAJ/pSIsIlC
- FF+KfqVKG3jIgv/LoF9VmoMqK6mv2HfJTqiSX041U5uoB/cAhxgYxliYkRxDTbyIEMw==
-X-Received: by 2002:a17:906:ae45:b0:a59:c208:a4c with SMTP id
- a640c23a62f3a-a5a2d583d60mr1357055866b.17.1715954076882; 
- Fri, 17 May 2024 06:54:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFfJJCDx/mcZGpVUvsHhPUh6z3RkyZXkBJ3RqvMnfIOyn/dCG2D89v/HagZxG/or5jXzYtY3Q==
-X-Received: by 2002:a17:906:ae45:b0:a59:c208:a4c with SMTP id
- a640c23a62f3a-a5a2d583d60mr1357053966b.17.1715954076330; 
- Fri, 17 May 2024 06:54:36 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a5a17b17cd0sm1114128366b.214.2024.05.17.06.54.35
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 17 May 2024 06:54:35 -0700 (PDT)
-Message-ID: <d074cf56-c7e4-41ba-9e8e-931a5d350578@redhat.com>
-Date: Fri, 17 May 2024 15:54:35 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5AE10E307;
+ Fri, 17 May 2024 14:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1715954412; x=1747490412;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=A8jgIJtb4tQL965Td8qYgJavQdRas8UEkvgkOgxQs0I=;
+ b=fPAYDAQnhGkrGvBo0xGq7XNXqkqrvGZXwmLcVnWqhAjY8n2Ap6G45NTF
+ USzbBtmtN5aaW/JAxfJtyjvxWw58EvAxUZke3bAEr4jqk+hRt+HurS7LQ
+ 99j9KbqXwpIOcwH7bAa9JKpuIjLp3+ib+abfuKePRJu4MZdR+wVjCmKv5
+ 9orKK8dhQKodVOsfX6Od0J66Mk8QoSAJYANifoIloYXKFvUm3lK1ou5Mr
+ 1MYRWuOQzmef6pf7ti7P17eeSWk5+NoBlKJu4LUICIILzVAj9i7/bPxyS
+ HjhWH7ynDLD+Hnn1zLv4vJmdJ33pPt9Eq7O33Cz8kzv+NHoVctnqSCzkW g==;
+X-CSE-ConnectionGUID: lia2oUtNQKafOiEXTwQmTQ==
+X-CSE-MsgGUID: HLqopI/nS4qv9SCK9Mp5xw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="12074516"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="12074516"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 07:00:12 -0700
+X-CSE-ConnectionGUID: XCwrNQNqScebi7KQzPXJ4w==
+X-CSE-MsgGUID: GcJHKOsFQ7a5irN65iNZ/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="36602415"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.50.245])
+ ([10.246.50.245])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 07:00:10 -0700
+Message-ID: <e2a23879-c69e-4b57-a0a0-4c1ac81d9403@linux.intel.com>
+Date: Fri, 17 May 2024 16:00:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arch: Fix name collision with ACPI's video.o
-To: Thomas Zimmermann <tzimmermann@suse.de>, arnd@arndb.de,
- chaitanya.kumar.borah@intel.com, suresh.kumar.kurmi@intel.com,
- jani.saarinen@intel.com, davem@davemloft.net, andreas@gaisler.com,
- tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
- dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, rafael@kernel.org
-Cc: linux-arch@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-acpi@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20240517091557.25800-1-tzimmermann@suse.de>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20240517091557.25800-1-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 2/2] drm/i915: Don't treat FLR resets as errors
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+References: <20240517112550.251955-1-andi.shyti@linux.intel.com>
+ <20240517112550.251955-3-andi.shyti@linux.intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240517112550.251955-3-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,75 +76,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Andi,
 
-On 5/17/24 11:14 AM, Thomas Zimmermann wrote:
-> Commit 2fd001cd3600 ("arch: Rename fbdev header and source files")
-> renames the video source files under arch/ such that they do not
-> refer to fbdev any longer. The new files named video.o conflict with
-> ACPI's video.ko module. Modprobing the ACPI module can then fail with
-> warnings about missing symbols, as shown below.
-> 
->   (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol acpi_video_unregister (err -2)
->   (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol acpi_video_register_backlight (err -2)
->   (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol __acpi_video_get_backlight_type (err -2)
->   (i915_selftest:1107) igt_kmod-WARNING: i915: Unknown symbol acpi_video_register (err -2)
-> 
-> Fix the issue by renaming the architecture's video.o to video-common.o.
-> 
-> Reported-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Closes: https://lore.kernel.org/intel-gfx/9dcac6e9-a3bf-4ace-bbdc-f697f767f9e0@suse.de/T/#t
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Fixes: 2fd001cd3600 ("arch: Rename fbdev header and source files")
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: linux-arch@vger.kernel.org
-> Cc: linux-fbdev@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
+On 5/17/2024 1:25 PM, Andi Shyti wrote:
+> If we timeout while waiting for an FLR reset, there is nothing we
+> can do and i915 doesn't have any control on it. In any case the
+> system is still perfectly usable
 
-Thanks, patch looks good to me:
+If a FLR reset fails then we will have a dead GPU, I don't think the GPU 
+is usable without a cold reboot.
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+This is a serious issue and should be report as an error.  I think we 
+need to create a HW ticket to understand
+
+why is FLR reset fails.
+
 
 Regards,
 
-Hans
+Nirmoy
 
 
 
-
+>   and the function returns void.
+>
+> We don't need to be alarmed, therefore, print the timeout
+> expiration as a debug message instead of an error.
+>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10955
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 > ---
->  arch/sparc/video/Makefile                    | 2 +-
->  arch/sparc/video/{video.c => video-common.c} | 0
->  arch/x86/video/Makefile                      | 2 +-
->  arch/x86/video/{video.c => video-common.c}   | 0
->  4 files changed, 2 insertions(+), 2 deletions(-)
->  rename arch/sparc/video/{video.c => video-common.c} (100%)
->  rename arch/x86/video/{video.c => video-common.c} (100%)
-> 
-> diff --git a/arch/sparc/video/Makefile b/arch/sparc/video/Makefile
-> index fdf83a408d750..dcfbe7a5912c0 100644
-> --- a/arch/sparc/video/Makefile
-> +++ b/arch/sparc/video/Makefile
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
-> -obj-y	+= video.o
-> +obj-y	+= video-common.o
-> diff --git a/arch/sparc/video/video.c b/arch/sparc/video/video-common.c
-> similarity index 100%
-> rename from arch/sparc/video/video.c
-> rename to arch/sparc/video/video-common.c
-> diff --git a/arch/x86/video/Makefile b/arch/x86/video/Makefile
-> index fdf83a408d750..dcfbe7a5912c0 100644
-> --- a/arch/x86/video/Makefile
-> +++ b/arch/x86/video/Makefile
-> @@ -1,3 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
-> -obj-y	+= video.o
-> +obj-y	+= video-common.o
-> diff --git a/arch/x86/video/video.c b/arch/x86/video/video-common.c
-> similarity index 100%
-> rename from arch/x86/video/video.c
-> rename to arch/x86/video/video-common.c
-
+>   drivers/gpu/drm/i915/intel_uncore.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 2eba289d88ad..a3fa2ed91aae 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -2637,7 +2637,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
+>   	 */
+>   	ret = intel_wait_for_register_fw(uncore, GU_CNTL, DRIVERFLR, 0, flr_timeout_ms);
+>   	if (ret) {
+> -		drm_err(&i915->drm,
+> +		drm_dbg(&i915->drm,
+>   			"Failed to wait for Driver-FLR bit to clear! %d\n",
+>   			ret);
+>   		return;
+> @@ -2652,7 +2652,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
+>   					 DRIVERFLR, 0,
+>   					 flr_timeout_ms);
+>   	if (ret) {
+> -		drm_err(&i915->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
+> +		drm_dbg(&i915->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
+>   		return;
+>   	}
+>   
+> @@ -2661,7 +2661,7 @@ static void driver_initiated_flr(struct intel_uncore *uncore)
+>   					 DRIVERFLR_STATUS, DRIVERFLR_STATUS,
+>   					 flr_timeout_ms);
+>   	if (ret) {
+> -		drm_err(&i915->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
+> +		drm_dbg(&i915->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
+>   		return;
+>   	}
+>   
