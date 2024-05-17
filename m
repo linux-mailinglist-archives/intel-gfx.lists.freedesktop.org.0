@@ -2,62 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BC28C89A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 17:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 147F58C89BB
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 18:01:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9895210E041;
-	Fri, 17 May 2024 15:55:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YbWbppSZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E14E10E1BB;
+	Fri, 17 May 2024 16:01:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1637310E041
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 15:55:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715961339; x=1747497339;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5HF/TbyRHSSPeG/Y1/aQWC9oHHAXrGHwQStmtwFxEJk=;
- b=YbWbppSZGZsTDnDiAxqaxyHI/aSHnjS5uqPgbdGNjuBRWWRMQAjUQiag
- SyquhBeEkZu5/35m9Ys0F7XTGnZbq6OFZQlTaJ7pOaFZzmX+u7mR8S8F2
- S5k5/zi4x2NUjlI20xs+oKzXZdFZ1MCydKBJP0nE6BGtUaB2c//6PXFIw
- 3PMRiD9Mo6k0M9Wc9enRq2m5dlo+Kfm001DW4Gw/P9qd0yUKw8m+DmrLV
- 7MUA5s1+Ji9W1pYpFy54HU7tkEdRyOpOFqFCrI8uTEnjX0Sfh+a4CI3Kn
- oK+C7xdk4u8eRSv8o9She0xVQyOcFrlM1CThIR0P4Mu1kx0cGjZv8y6O/ g==;
-X-CSE-ConnectionGUID: Cn2xGkGtQve8t/LPB224yA==
-X-CSE-MsgGUID: z6544m7XTUuSnx17b9BScw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="22754492"
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="22754492"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 08:55:38 -0700
-X-CSE-ConnectionGUID: uKbe3IWqSeW2UmtGQsBUtg==
-X-CSE-MsgGUID: 8XVd9aK2T1CuMAGhe8CmUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="31822921"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 May 2024 08:55:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 May 2024 18:55:35 +0300
-Date: Fri, 17 May 2024 18:55:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 01/13] drm/i915: Add skl+ plane name aliases to enum
- plane_id
-Message-ID: <Zkd99ysYhXNDIZJk@intel.com>
-References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
- <20240516135622.3498-2-ville.syrjala@linux.intel.com>
- <87jzjsa1wl.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16A1010E1BB;
+ Fri, 17 May 2024 16:01:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3090788296932171563=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87jzjsa1wl.fsf@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_DSC_stuff?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 May 2024 16:01:03 -0000
+Message-ID: <171596166308.2143811.5923366965614560843@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,56 +36,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 17, 2024 at 06:33:46PM +0300, Jani Nikula wrote:
-> On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Using PLANE_PRIMARY + PLANE_SPRITE? on skl+ results in a bunch
-> > of unnecessary head scratching. Add aliases using the skl+ plane
-> > names.
-> > And for pre-skl we only need to keep PRIMARY,SPRITE0,SPRITE1
-> > as we only ever have 0-2 sprites per pipe on those platforms.
-> 
-> Should these be changed too?
-> 
-> - intel_plane_set_ckey()
+--===============3090788296932171563==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I suppose one could consider splitting this to pre-skl
-vs. skl+ variants and using the appropriate names
-in each. But the whole ckey uapi is really designed
-around the pre-skl single primary + single sprite world
-view, so using the PLANE_PRIMARY name there seems OK.
+== Series Details ==
 
-> - for_each_plane_id_on_crtc()
+Series: drm/i915: DSC stuff
+URL   : https://patchwork.freedesktop.org/series/133758/
+State : failure
 
-There's not really a right answer here I guess. As 
-long as it's 0 where we start this will work.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14781 -> Patchwork_133758v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_133758v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_133758v1, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/index.html
+
+Participating hosts (45 -> 37)
+------------------------------
+
+  Missing    (8): bat-kbl-2 bat-arls-3 fi-snb-2520m fi-kbl-8809g fi-cfl-8109u fi-elk-e7500 bat-mtlp-8 bat-mtlp-6 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_133758v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bsw-n3050:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14781/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133758v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14781/fi-kbl-7567u/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/fi-kbl-7567u/igt@i915_module_load@reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-8:          [FAIL][5] ([i915#10378]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14781/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
 
 
-> I'm not sure. But there's one real issue:
-> 
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index 32d10e62b2b9..d0bfee2ca643 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -238,9 +238,9 @@ int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
-> >  static u8 icl_nv12_y_plane_mask(struct drm_i915_private *i915)
-> >  {
-> >  	if (DISPLAY_VER(i915) >= 13 || HAS_D12_PLANE_MINIMIZATION(i915))
-> > -		return BIT(PLANE_SPRITE2) | BIT(PLANE_SPRITE3);
-> > +		return BIT(PLANE_6) | BIT(PLANE_7);
-> >  	else
-> > -		return BIT(PLANE_SPRITE4) | BIT(PLANE_SPRITE5);
-> > +		return BIT(PLANE_4) | BIT(PLANE_5);
-> 
-> The if branches got swapped?
+Build changes
+-------------
 
-Yeah. Good catch. I suspect my brain was in the
-"newer platforms surely have more things" mindset.
+  * Linux: CI_DRM_14781 -> Patchwork_133758v1
 
--- 
-Ville Syrjälä
-Intel
+  CI-20190529: 20190529
+  CI_DRM_14781: d953159dab6ba6800d7316fb516ca2330dcbefe4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7860: 05b3f5540c6dcaacdf2169dc730c126df9ffd7e2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133758v1: d953159dab6ba6800d7316fb516ca2330dcbefe4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/index.html
+
+--===============3090788296932171563==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: DSC stuff</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133758/">https://patchwork.freedesktop.org/series/133758/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14781 -&gt; Patchwork_133758v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_133758v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_133758v1, please notify your bug team (&#x27;I915-ci-infra@lists.freedesktop.org&#x27;) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 37)</h2>
+<p>Missing    (8): bat-kbl-2 bat-arls-3 fi-snb-2520m fi-kbl-8809g fi-cfl-8109u fi-elk-e7500 bat-mtlp-8 bat-mtlp-6 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_133758v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14781/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/fi-bsw-n3050/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133758v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14781/fi-kbl-7567u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14781/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133758v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14781 -&gt; Patchwork_133758v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14781: d953159dab6ba6800d7316fb516ca2330dcbefe4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7860: 05b3f5540c6dcaacdf2169dc730c126df9ffd7e2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133758v1: d953159dab6ba6800d7316fb516ca2330dcbefe4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3090788296932171563==--
