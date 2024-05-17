@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB278C888B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 16:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 766548C888C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 16:54:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F34FD10EEFA;
-	Fri, 17 May 2024 14:54:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F2D10EEFD;
+	Fri, 17 May 2024 14:54:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hT/jGmMG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b6DiqLuA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5477910EEF5
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 14:54:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4151810EEFB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 14:54:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715957651; x=1747493651;
+ t=1715957654; x=1747493654;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C7m2SPoImBnbL9nLWJhvCuXl/6ZIW7+ECDZOVaBPt7o=;
- b=hT/jGmMGcxWEUdI+vwpNzD8LLn7PCrwuoa5VcWDvU4T2u3VE458gZYQS
- Csoc9zxE6NysB7jStMxKAbf5BFZoOlOQNNZGXIDu9qXdEqWctWxtuBB/I
- vrrKHCDRosQpiRZxCt7AFgkT9GakmcNMYeWlHm9ky6yZFu3v2JHN0ZNRG
- 1Pae8k8P32++dvOGmHdh8ADeal31DYcOFpi5Esic/uyulRACTf0yIFr+o
- BWZasLwWSa/loHxXNipYq9cg15HZZ33IenNkraiQuANN68SMWE8SU1vMQ
- nf5x2LJgSqO370GurS8kC4Q3hafQyx4gNUosQ4X/mwkMTPWTds2BRfFdi g==;
-X-CSE-ConnectionGUID: L3Y4PnNKTVOGMgpfUcIZRQ==
-X-CSE-MsgGUID: xwasytcMS9KrpeCCXKyX2A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="12008037"
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="12008037"
+ bh=ljFHJp9pPggBvHJx0eb3/VO/hR5xhSdbOjzZVVLaYS0=;
+ b=b6DiqLuABn5BhZhA1K410VoqOmlA89GuHjPBIDbxBV7KjI09JSMOxupC
+ uMJHh7pqIwrpIGTRGUJ4dcSx499eqAszJNZf+TmeBRgv+5/2PdXn0StQt
+ mYwgikKT0soyBaoDBs8WSjyz1YoMZ03icOjiUyGiPxBsGw0EQNOLpg/aJ
+ ZvxG4xuKIvrmxa5JMpcto5DZt+yvSRux/GstuABoRwoSNBPCreCQrVZk2
+ ElxfhPcDao7bCxBFT677AyZrB4zJBJrHP66e92tU/3Hyr7ZBbG3+KNBJN
+ VXROk8FqW9D04920HuIi9POy5qTbtWKFyohj0mqfpN97kydVkMXoxF7Vf g==;
+X-CSE-ConnectionGUID: 4QOnhJHXTr6Q4kOR7lqi2Q==
+X-CSE-MsgGUID: JRd5FViiQ0aW6aJN57H14g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="12008042"
+X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="12008042"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 07:54:11 -0700
-X-CSE-ConnectionGUID: hAD+LlDDRsa075b1BOr0kQ==
-X-CSE-MsgGUID: m3acIvaaSUmCkUTpgcMFyA==
+ 17 May 2024 07:54:14 -0700
+X-CSE-ConnectionGUID: 7jEVaC/1Qwu7ILWu678MEA==
+X-CSE-MsgGUID: LuYHBXksRrGpViiZUa2BtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="31800973"
+X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="31800985"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 May 2024 07:54:09 -0700
+ by fmviesa008.fm.intel.com with SMTP; 17 May 2024 07:54:12 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 May 2024 17:54:07 +0300
+ Fri, 17 May 2024 17:54:11 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 4/7] drm/i915: Use intel_dp_has_dsc() during .compute_config()
-Date: Fri, 17 May 2024 17:53:53 +0300
-Message-ID: <20240517145356.26103-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/7] drm/i915: Reuse intel_dp_supports_dsc() for MST
+Date: Fri, 17 May 2024 17:53:54 +0300
+Message-ID: <20240517145356.26103-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.1
 In-Reply-To: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
 References: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
@@ -70,49 +70,103 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reuse intel_dp_has_dsc() during .compute_config() instead of
-repeating some of the checks again by hand. We'll be adding
-more checks to intel_dp_has_dsc() and this will make sure
-we cover both .mode_valid() and .compute_config() with them.
+intel_dp_supports_dsc() now works for MST as well, reuse it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     |  4 ++--
+ drivers/gpu/drm/i915/display/intel_dp.h     |  3 +++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 20 ++++----------------
+ 3 files changed, 9 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index a4703b71c498..6dfde22e5f9d 100644
+index 6dfde22e5f9d..a15ef6c015c8 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1459,14 +1459,16 @@ bool intel_dp_supports_fec(struct intel_dp *intel_dp,
+@@ -1459,8 +1459,8 @@ bool intel_dp_supports_fec(struct intel_dp *intel_dp,
  		drm_dp_sink_supports_fec(connector->dp.fec_capability);
  }
  
--static bool intel_dp_supports_dsc(const struct intel_connector *connector,
-+static bool intel_dp_supports_dsc(struct intel_connector *connector,
- 				  const struct intel_crtc_state *crtc_state)
+-static bool intel_dp_supports_dsc(struct intel_connector *connector,
+-				  const struct intel_crtc_state *crtc_state)
++bool intel_dp_supports_dsc(struct intel_connector *connector,
++			   const struct intel_crtc_state *crtc_state)
  {
-+	if (!intel_dp_has_dsc(connector))
-+		return false;
-+
- 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) && !crtc_state->fec_enable)
+ 	if (!intel_dp_has_dsc(connector))
  		return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index c0d3e315559e..f1d90fc458d9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -170,6 +170,9 @@ bool intel_dp_supports_fec(struct intel_dp *intel_dp,
+ 			   const struct intel_connector *connector,
+ 			   const struct intel_crtc_state *pipe_config);
  
--	return intel_dsc_source_support(crtc_state) &&
--		drm_dp_sink_supports_dsc(connector->dp.dsc_dpcd);
-+	return intel_dsc_source_support(crtc_state);
++bool intel_dp_supports_dsc(struct intel_connector *connector,
++			   const struct intel_crtc_state *crtc_state);
++
+ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 pipe_bpp);
+ 
+ void intel_ddi_update_pipe(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index b57753d2d82c..4a624c826604 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -400,18 +400,6 @@ static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
+ 	return 0;
  }
  
- static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
-@@ -2213,7 +2215,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+-static bool
+-intel_dp_mst_dsc_source_support(const struct intel_crtc_state *crtc_state)
+-{
+-	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+-
+-	/*
+-	 * FIXME: Enabling DSC on ICL results in blank screen and FIFO pipe /
+-	 * transcoder underruns, re-enable DSC after fixing this issue.
+-	 */
+-	return DISPLAY_VER(i915) >= 12 && intel_dsc_source_support(crtc_state);
+-}
+-
+ static int mode_hblank_period_ns(const struct drm_display_mode *mode)
  {
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
--	const struct intel_connector *connector =
-+	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode =
- 		&pipe_config->hw.adjusted_mode;
+ 	return DIV_ROUND_CLOSEST_ULL(mul_u32_u32(mode->htotal - mode->hdisplay,
+@@ -443,7 +431,7 @@ hblank_expansion_quirk_needs_dsc(const struct intel_connector *connector,
+ }
+ 
+ static bool
+-adjust_limits_for_dsc_hblank_expansion_quirk(const struct intel_connector *connector,
++adjust_limits_for_dsc_hblank_expansion_quirk(struct intel_connector *connector,
+ 					     const struct intel_crtc_state *crtc_state,
+ 					     struct link_config_limits *limits,
+ 					     bool dsc)
+@@ -456,7 +444,7 @@ adjust_limits_for_dsc_hblank_expansion_quirk(const struct intel_connector *conne
+ 		return true;
+ 
+ 	if (!dsc) {
+-		if (intel_dp_mst_dsc_source_support(crtc_state)) {
++		if (intel_dp_supports_dsc(connector, crtc_state)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[CRTC:%d:%s][CONNECTOR:%d:%s] DSC needed by hblank expansion quirk\n",
+ 				    crtc->base.base.id, crtc->base.name,
+@@ -503,7 +491,7 @@ adjust_limits_for_dsc_hblank_expansion_quirk(const struct intel_connector *conne
+ 
+ static bool
+ intel_dp_mst_compute_config_limits(struct intel_dp *intel_dp,
+-				   const struct intel_connector *connector,
++				   struct intel_connector *connector,
+ 				   struct intel_crtc_state *crtc_state,
+ 				   bool dsc,
+ 				   struct link_config_limits *limits)
+@@ -602,7 +590,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+ 			    str_yes_no(intel_dp->force_dsc_en));
+ 
+-		if (!intel_dp_mst_dsc_source_support(pipe_config))
++		if (!intel_dp_supports_dsc(connector, pipe_config))
+ 			return -EINVAL;
+ 
+ 		if (!intel_dp_mst_compute_config_limits(intel_dp,
 -- 
 2.44.1
 
