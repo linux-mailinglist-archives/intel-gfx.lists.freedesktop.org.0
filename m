@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADDFA8C867C
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 14:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FE0C8C86B4
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 14:57:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16E4B10EE9B;
-	Fri, 17 May 2024 12:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B171B10EEA6;
+	Fri, 17 May 2024 12:57:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e/287K4C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZAzRHDQp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E654410EE9B
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 12:48:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A5EC10EE9D;
+ Fri, 17 May 2024 12:57:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715950133; x=1747486133;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=58d3eiClVXBnAmm6VStTwiE9jgjwjizWFdfWmgYxNyk=;
- b=e/287K4Cp2OvjGgK/pfp0OjetXHww2vSSqZ1fsJLcYEc6si+beCHwC+J
- Df7YUVSKOxveD10Rzvi3cM4TgPSnThcszIUPyEuXIJwQAojQUsD061J+K
- Vw+oOEgo3ufPm4WNZtrFsrIWtBJ7f9pm+jQQ9gYWzvM94dnif7t1Cvtjv
- 2KIIIhD6ZRiB310kBktmwtEF3oDBuqZlg7GKXLtKbhHTmBoVGHZfBmArx
- hfv4hg9wwvB9RRwJ0Yc2ZSrM7sRJiPH6/fF0SpEZYdjOxoiLUWD1MDWDt
- jbcBLD8IX4a5fb0pl609ke7J/QV3DpCkU1W/jv7XAsiiRgWQ6J6tuS1kg A==;
-X-CSE-ConnectionGUID: PgL5OOjvRPiXHVpnmL3Qzw==
-X-CSE-MsgGUID: qFScrVMnS8aV7NPTKqD1Fg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="22798573"
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="22798573"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 05:48:52 -0700
-X-CSE-ConnectionGUID: R4B+fHgQT4iPiJUxc8RW9Q==
-X-CSE-MsgGUID: 1kUZuXURSjKBbKEj1/473g==
+ t=1715950666; x=1747486666;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UIjknq9H/p1x3eVO1ZvOJBk6p66jGpdvdJktDTeiHKE=;
+ b=ZAzRHDQp1EBV3vJe9UNpqui0M6GnndDwi4vpOmtrzSFgsiZAsMne45U4
+ El+SM2Wt8hLUZJkSRIU06ErxuVwvrKJzV3xke0K4rlCXpzff1dU9T+KHV
+ mknjF4R3jX7pNcQtT1TvRBpT2hJOeNUWzpyMNqjF1UG9DI253i7VukiB+
+ qmx2Q0VD7hl9J7Cy/HuTb5WgrleQPM/KatjzRrQ+wM6QiGOungUgrPkGe
+ 2SR9lN/DIquLrsFbRtA75JRDUWBEIjVms9j0lvcR7K8am2FVV0gADJzJJ
+ JR6LtxgMIsggvNbPwUsrqShXafjAXkazcAyITPjaf2jLsYCrZjM2xWSOU w==;
+X-CSE-ConnectionGUID: +GLd0mZ8SsCpU2FybiOaHw==
+X-CSE-MsgGUID: EG5VuUpgQtyxWymruYZADw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="12314177"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="12314177"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 05:57:45 -0700
+X-CSE-ConnectionGUID: H0CcssJORsyPR9pV6KwNuA==
+X-CSE-MsgGUID: juK8DQE0T2+0pkOk2lmxbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="32326525"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 05:48:51 -0700
-Date: Fri, 17 May 2024 15:48:53 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
- uma.shankar@intel.com, ankit.k.nautiyal@intel.com
-Subject: Re: [PATCH 2/2] drm/i915/hdcp: Check mst_port to determine connector
- type
-Message-ID: <ZkdSNa0Cb1EpwpUB@ideak-desk.fi.intel.com>
-References: <20240507035037.1025012-1-suraj.kandpal@intel.com>
- <20240507035037.1025012-3-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; d="scan'208";a="31604886"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.252.59])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 05:57:44 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 0/3] Improve drm printer code
+Date: Fri, 17 May 2024 14:57:27 +0200
+Message-Id: <20240517125730.2304-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240507035037.1025012-3-suraj.kandpal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,51 +64,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 07, 2024 at 09:20:37AM +0530, Suraj Kandpal wrote:
-> Check mst_port field in intel_connector to check connector type
-> rather than rely on encoder as it may not be attached to connector
-> at times.
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 551c862ed7a6..2edffe62f360 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -693,7 +693,7 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
->  
->  	*hdcp_capable = false;
->  	*hdcp2_capable = false;
-> -	if (!intel_encoder_is_mst(connector->encoder))
-> +	if (!connector->mst_port)
+We already have some drm printk functions that need to duplicate
+a code to get a similar format of the final result, for example:
 
-I suppose this fixes
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10898
+  [ ] 0000:00:00.0: [drm:foo] bar
+  [ ] 0000:00:00.0: [drm] foo bar
+  [ ] 0000:00:00.0: [drm] *ERROR* foo
 
-Could you add the Closes: line for it?
+Add a generic __drm_dev_vprintk() function that can format the
+final message like all other existing function do and allows us
+to keep the formatting code in one place.
 
-Can this function be called for anything else than an MST connector?
+Above also allows to improve drm_dbg_printer() that today lacks
+of outputing symbolic name of the caller, like drm_dbg() does.
 
-Afaics it's only called from 
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Jani Nikula <jani.nikula@intel.com>
 
-intel_connector_info() ->
-	intel_hdcp_info(..., remote_req = true)
+Michal Wajdeczko (3):
+  drm/print: Add generic drm dev printk function
+  drm/print: Improve drm_dbg_printer
+  drm/i915: Don't use __func__ as prefix for drm_dbg_printer
 
-only for MST connectors, which makes sense since only MST connectors
-would have remote caps. In that case it would be enough to simply remove
-the encoder check which leads to the NULL deref in case the output is
-disabled.
+ drivers/gpu/drm/drm_print.c                | 50 ++++++++++++----------
+ drivers/gpu/drm/i915/gt/intel_reset.c      |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_context.c |  2 +-
+ include/drm/drm_print.h                    |  5 +++
+ 4 files changed, 34 insertions(+), 25 deletions(-)
 
->  		return -EINVAL;
->  
->  	aux = &connector->port->aux;
-> -- 
-> 2.43.2
-> 
+-- 
+2.43.0
+
