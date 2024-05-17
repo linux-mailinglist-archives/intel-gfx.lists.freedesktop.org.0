@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B873A8C888D
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 16:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA64C8C8964
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 17:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437C210EF00;
-	Fri, 17 May 2024 14:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6685510E240;
+	Fri, 17 May 2024 15:33:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LxuIpnL+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eGNTK39e";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D159110EEFF
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 14:54:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C1C10E240
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 May 2024 15:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1715957660; x=1747493660;
- h=from:to:subject:date:message-id:in-reply-to:references:
+ t=1715960033; x=1747496033;
+ h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=KabiJgJyWr8qZrePASfxx6Z3uANKcQucl2FQbZYedwA=;
- b=LxuIpnL+DlYXq9pLk6NnUnyfhuOrE4Uo19KITYtDZoS2DxA7QP0dfEuv
- HceGZUvNnoUDNbfQPpCMKolPyyqUnqgrYg29vrv3apT74fJ8BcoGZJQF+
- zHHr34MENMvWePMcI2LgX/A6N0eqNQRT+WqQz0Ko0XVanZnw5PNF0zP44
- l0WeINGtxAoeR8Reuc6L0ifLgNIH4MCaT29ck8kbhyEQs113wofTBG2kh
- nlmVFY0UqIis/QUqzyzRQWwUVQ5YgTv9kHaRmkXY6U4oZftPvNygqHl+C
- Pv3S2Q0283LHE5ggd85o8g+V0nbi9LtLxiApM6CRnHl7WBsVDyG9aemL0 A==;
-X-CSE-ConnectionGUID: SUxKxHAOREurVuUsXSYPew==
-X-CSE-MsgGUID: G4HZ3J81Qm+Tn7+DRhZcqQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="12008051"
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="12008051"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2024 07:54:20 -0700
-X-CSE-ConnectionGUID: tL4D4Z58TdCnLxeClQ3IFQ==
-X-CSE-MsgGUID: U14bgcNATtaKfrxf20a4Jg==
+ bh=lMP1feXYMayAvnde6jmhVroF00yspiNiY36XNC7vGOA=;
+ b=eGNTK39erkn4ViSi9d0FOkU01nCWBOgcAZfg3gGdvpUxbmwd+11WGlTK
+ U71tj88Zdid5n0FdS78GLNgkwJYFh4X8m07W+86eKyHFZJBF++84ilF7L
+ QODmCjP25YwWPkEEY8WaKL2ZxnTSX6xX8tspQMncsq8Lide0w87MJhn10
+ RzshqiPpC2XyAghEoArZ8NGUdrZTAcqwuI3tLemXt1EOfvfkyVefnYRCc
+ b56TUCSQjHFtkoDpKkNxtNC4dx2Htpf9pGXfE3W543Aj4SnBa7iba8iJp
+ NRvjFCuCom3SENAbxUGjX7IVG4bZp1cqJyjv/rmknYgy3pz6ZNWby1W5t w==;
+X-CSE-ConnectionGUID: MsslTjLPSOqZEJwiLbiDhg==
+X-CSE-MsgGUID: QQzZZh/uQWmsNccDK4iGLg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="11990842"
+X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="11990842"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 08:33:52 -0700
+X-CSE-ConnectionGUID: fIRZgwbPQkSClSrxGio7uA==
+X-CSE-MsgGUID: M1AOxDzOTnqsHN7WsHtGKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="31801030"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 May 2024 07:54:17 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 May 2024 17:54:17 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 7/7] drm/i915: Remove bogus MST check in intel_dp_has_audio()
-Date: Fri, 17 May 2024 17:53:56 +0300
-Message-ID: <20240517145356.26103-8-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.1
-In-Reply-To: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
-References: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; d="scan'208";a="36628675"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.32])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2024 08:33:51 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 01/13] drm/i915: Add skl+ plane name aliases to enum
+ plane_id
+In-Reply-To: <20240516135622.3498-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
+ <20240516135622.3498-2-ville.syrjala@linux.intel.com>
+Date: Fri, 17 May 2024 18:33:46 +0300
+Message-ID: <87jzjsa1wl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,47 +71,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Using PLANE_PRIMARY + PLANE_SPRITE? on skl+ results in a bunch
+> of unnecessary head scratching. Add aliases using the skl+ plane
+> names.
+> And for pre-skl we only need to keep PRIMARY,SPRITE0,SPRITE1
+> as we only ever have 0-2 sprites per pipe on those platforms.
 
-No idea what this MST checks is doing in intel_dp_has_audio().
-Looks completely pointless, so get rid of it.
+Should these be changed too?
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+- intel_plane_set_ckey()
+- for_each_plane_id_on_crtc()
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index af298d5017d9..4a486bb6d48c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2806,7 +2806,6 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- }
- 
- static bool intel_dp_has_audio(struct intel_encoder *encoder,
--			       struct intel_crtc_state *crtc_state,
- 			       const struct drm_connector_state *conn_state)
- {
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-@@ -2815,8 +2814,7 @@ static bool intel_dp_has_audio(struct intel_encoder *encoder,
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
- 
--	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) &&
--	    !intel_dp_port_has_audio(i915, encoder->port))
-+	if (!intel_dp_port_has_audio(i915, encoder->port))
- 		return false;
- 
- 	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
-@@ -2875,7 +2873,7 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 			      struct drm_connector_state *conn_state)
- {
- 	pipe_config->has_audio =
--		intel_dp_has_audio(encoder, pipe_config, conn_state) &&
-+		intel_dp_has_audio(encoder, conn_state) &&
- 		intel_audio_compute_config(encoder, pipe_config, conn_state);
- 
- 	pipe_config->sdp_split_enable = pipe_config->has_audio &&
--- 
-2.44.1
+I'm not sure. But there's one real issue:
 
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index 32d10e62b2b9..d0bfee2ca643 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -238,9 +238,9 @@ int skl_format_to_fourcc(int format, bool rgb_order, =
+bool alpha)
+>  static u8 icl_nv12_y_plane_mask(struct drm_i915_private *i915)
+>  {
+>  	if (DISPLAY_VER(i915) >=3D 13 || HAS_D12_PLANE_MINIMIZATION(i915))
+> -		return BIT(PLANE_SPRITE2) | BIT(PLANE_SPRITE3);
+> +		return BIT(PLANE_6) | BIT(PLANE_7);
+>  	else
+> -		return BIT(PLANE_SPRITE4) | BIT(PLANE_SPRITE5);
+> +		return BIT(PLANE_4) | BIT(PLANE_5);
+
+The if branches got swapped?
+
+BR,
+Jani.
+
+
+--=20
+Jani Nikula, Intel
