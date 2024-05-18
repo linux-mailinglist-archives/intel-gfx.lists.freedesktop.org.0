@@ -2,89 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ADC58C8D83
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 May 2024 23:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B158C8F16
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 May 2024 03:25:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9020110E243;
-	Fri, 17 May 2024 21:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CF010E299;
+	Sat, 18 May 2024 01:25:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lx8MVCMz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iIKGU5hj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC71610E243;
- Fri, 17 May 2024 21:04:07 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id
- d9443c01a7336-1f2ecea41deso5033525ad.1; 
- Fri, 17 May 2024 14:04:07 -0700 (PDT)
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com
+ [209.85.161.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1390B10E163;
+ Sat, 18 May 2024 01:25:12 +0000 (UTC)
+Received: by mail-oo1-f44.google.com with SMTP id
+ 006d021491bc7-5b2a66dce8fso1468742eaf.1; 
+ Fri, 17 May 2024 18:25:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1715979847; x=1716584647; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
- :reply-to; bh=LSGmPsvhsE8MetA3f75jbOyyenF8fqWa7epNrquz5fM=;
- b=lx8MVCMzFApvijmHki46iqiwMBCvfuu6uZDdgMxC0RuXXfzh0S+4Coi/EzscsGZiDc
- hRalUpPiXDXoTqJmlB/HL3Ge5bXpDejDzlr3HYp4nWlOuiYwM63LId5fO5pgveOxjFpv
- dVPSbih+FLHHyIm/0XdwoilaK3UfKEa0uJ/VGYG0HeunHnOcLN8LIUM2sCHayAeeOthO
- aMDtblbbgbvO3B3n8/mJtW0zYddmUE1GJ7qoR5XBetDg3/r2qeU2OZ2RT5VQK2BTu7WF
- VNLzbjRZ9/9MgwUOkcUpNwrD4IyGzG43/CzecbnTv4sI7dn4Z0Z391hzGzMOA2fGw99E
- X7hQ==
+ d=gmail.com; s=20230601; t=1715995511; x=1716600311; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :references:cc:to:from:subject:user-agent:mime-version:date
+ :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=cJqjedwoYcqSzJKmZSEwT+6hVhtxWLfg/8QtauvSdx4=;
+ b=iIKGU5hj9quAoucc/N7d3Erm4p83Jr6+1Rahf+bAA9N84ywbV6d9Tjn9tT1GsN0dFM
+ FtjOgWCntAEbSU+B11hE4r0zffcai2BQsPYACru1ne9fXQjLD+LPElnMSicindBgqiSy
+ c6rYSzceb5RgJ9234xh7gLhvoGTlxr0EPW4X1U9eqorU2J1TatksfpBW2C4V4lHBdMa/
+ d0VexkZALf5c2CZplg//ZRjf7eThMzBPYOKanQRcVHfKaz+ZQX5y1n/NQy0YYujj+wag
+ 6zXM487gLEKt6urgIfcXBs70nFJAEvTqEXDMnHgT6HY+/g5pOfNBTcb1R6zCoqL+C3B+
+ Tumw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1715979847; x=1716584647;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=LSGmPsvhsE8MetA3f75jbOyyenF8fqWa7epNrquz5fM=;
- b=aiCIFzKrVUPIex2Sf+9MARhEFVbqgrc2h9enW54R7NWb6vjyoAa7H8bZvLIRo2b4yg
- Pz0fDqsCl+YjrW+UPq000VmcIn4HPPXr722tBTb+PDTFT3JOkWyEwgOwj3w9WVAkXWjS
- r906Ena9iMtRK63KaanPPXCdYYxUp/EZTeR9s3xnInJ/tlTT5eQuLKCyui/ahjqQV9qZ
- Eo01Sv5we/esT2M7GkS/r9fjrRLewVWWMz/+Vx5oG+OSTA8z3NAMOCQczlcaZofzMmJi
- JNSGXJpgHkx8mbAAE89YmloAQmxGzHoqfA3gglXEEmI7Z7+B7ce31Dc+kMjzoEIoHP7r
- ORUQ==
+ d=1e100.net; s=20230601; t=1715995511; x=1716600311;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :references:cc:to:from:subject:user-agent:mime-version:date
+ :message-id:sender:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cJqjedwoYcqSzJKmZSEwT+6hVhtxWLfg/8QtauvSdx4=;
+ b=N2fWURafbG3vDbIv1J/8PmcHOYLihkSD+ENlBjHBYUMYI2Dicl/mltku3p8CPBgQx3
+ Kl0HGNtwU40JiaWXlS+XqIkiBr4x/lZDG9ec8az3aFzVPfwLKS3eJ03eOjmbVzvB+gdy
+ O8uN4P4RcyQ67Oh2wPPLyobRVz+GTgtyiVIjYyGvjFzNcp+xaEbEA6L75fDRqgSzLsNv
+ ncLoNIwDvPipVFq8gQK+YKVOj7VD2VeKwBqAS6yFA9l2OSDdDDKMS7sFHOgQMbjggCJO
+ uRwJzFGNvwE2Qw6uXZZ6ZaSYn2EH91R3BdxEugAwGypoBIPgi3KZ/pYbhIs4lbnlV16A
+ J79g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXRFPQjfCNW7WvIj6vOKe98HCW5gN4lO5qRGKvrAIZr22UdEQ96TBe+Qi1sKr+q7GQoD06FIDFoZLgWBffRve+0OLxj4YVQr++wDZyPLhvd9jp6Hbf4PPGC/JisqxnNCbaqfOLWrL8OomCWV72ElQw=
-X-Gm-Message-State: AOJu0YxsLCCBes50KSyrHJRzEVgXHiGjHF5PkDeYfDvwiujIVChX3iM7
- e2wYa2Xg1EdGieXf3C8QlBp4vxkM6OjlY27uAmrBo6VlZsfzGPsN
-X-Google-Smtp-Source: AGHT+IGhi4Z/q/DIJ2PGOE/sA5K4Ii//7cPJVS4c4SvV5loP1DIF3BVdz0KhqlaEEe1nyqvCAR8+ew==
-X-Received: by 2002:a17:902:da87:b0:1eb:b50e:3577 with SMTP id
- d9443c01a7336-1ef4404f4a5mr335556095ad.56.1715979847035; 
- Fri, 17 May 2024 14:04:07 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ AJvYcCXC2+KzfmFdmBBW0LYc7rRWAjDtG8Hdu/Jl8M7Yv5AB9q0QKiFLWQhRAzfdhKAdUuKo40uvfT/YzAwjzeIMAY7c0pIst9vUqMwpCsR0Pyy0yZ8lcjjjUxlKEtSfps+I3B8cztUGGW8saSzvHPifGIOTQIx1RfF/WeqRDP6YYO0rw1QSG2ynNT/ofQNObOFZX0Mr49z01gZsct/ImwFKJ7Kgq1Y6toS9rwbyaZddd3gCsVuBYPcVqhgr6Vf8p0APwu9nwG7vxNVVz3Hx7AtHzx9z
+X-Gm-Message-State: AOJu0YxOUDWNK7pPrsfzbXF24bdlJjqkUpQBya9x0xjA2mFdt7xg+Xur
+ NermLxYVcLahx0E+NamKzMBx4YexhalB0vYlp4zyXDiDumsHZa9e
+X-Google-Smtp-Source: AGHT+IFRaG5+veBhAS+2oO1Mq9a7mnKgK9vX9unu3cCbE/KbyDzrBjSt084GN8tso2cWg108BqN4VA==
+X-Received: by 2002:a05:6870:a3d2:b0:240:c8ff:c96a with SMTP id
+ 586e51a60fabf-241728fc1damr27553351fac.27.1715995510785; 
+ Fri, 17 May 2024 18:25:10 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
+ ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1f2e1c81db0sm17839365ad.78.2024.05.17.14.04.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 May 2024 14:04:06 -0700 (PDT)
-Date: Fri, 17 May 2024 14:04:04 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Sui Jingfeng <sui.jingfeng@linux.dev>, Pan@freedesktop.org
-Subject: Re: [RESEND v3 1/2] drm: enable (most) W=1 warnings by default
- across the subsystem
-Message-ID: <6584ea16-06f7-4a95-bd83-870f30fc4b5d@roeck-us.net>
-References: <cover.1709629403.git.jani.nikula@intel.com>
- <a50f1a69d5af72e913996179a75bc3a71d81ebea.1709629403.git.jani.nikula@intel.com>
+ d2e1a72fcca58-6f4d2a66316sm15339938b3a.35.2024.05.17.18.25.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 17 May 2024 18:25:09 -0700 (PDT)
+Message-ID: <64db2b94-edb3-4ea3-87cf-bb91746869e6@roeck-us.net>
+Date: Fri, 17 May 2024 18:25:06 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a50f1a69d5af72e913996179a75bc3a71d81ebea.1709629403.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] tracing/treewide: Remove second parameter of
+ __assign_str()
+From: Guenter Roeck <linux@roeck-us.net>
+To: Steven Rostedt <rostedt@goodmis.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+ Linux trace kernel <linux-trace-kernel@vger.kernel.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-cxl@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, virtualization@lists.linux.dev,
+ linux-rdma@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev,
+ linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, ath10k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org, brcm80211@lists.linux.dev,
+ brcm80211-dev-list.pdl@broadcom.com, linux-usb@vger.kernel.org,
+ linux-bcachefs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, linux-cifs@vger.kernel.org,
+ linux-xfs@vger.kernel.org, linux-edac@vger.kernel.org,
+ selinux@vger.kernel.org, linux-btrfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-hwmon@vger.kernel.org, io-uring@vger.kernel.org,
+ linux-sound@vger.kernel.org, bpf@vger.kernel.org,
+ linux-wpan@vger.kernel.org, dev@openvswitch.org, linux-s390@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, Julia Lawall <Julia.Lawall@inria.fr>
+References: <20240516133454.681ba6a0@rorschach.local.home>
+ <5080f4c5-e0b3-4c2e-9732-f673d7e6ca66@roeck-us.net>
+ <20240517134834.43e726dd@gandalf.local.home>
+ <5cff0ff0-48d1-49f8-84f4-bb33571fdf16@roeck-us.net>
+Content-Language: en-US
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <5cff0ff0-48d1-49f8-84f4-bb33571fdf16@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,82 +158,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Tue, Mar 05, 2024 at 11:07:35AM +0200, Jani Nikula wrote:
-> At least the i915 and amd drivers enable a bunch more compiler warnings
-> than the kernel defaults.
+On 5/17/24 11:00, Guenter Roeck wrote:
+> On 5/17/24 10:48, Steven Rostedt wrote:
+>> On Fri, 17 May 2024 10:36:37 -0700
+>> Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>>> Building csky:allmodconfig (and others) ... failed
+>>> --------------
+>>> Error log:
+>>> In file included from include/trace/trace_events.h:419,
+>>>                   from include/trace/define_trace.h:102,
+>>>                   from drivers/cxl/core/trace.h:737,
+>>>                   from drivers/cxl/core/trace.c:8:
+>>> drivers/cxl/core/./trace.h:383:1: error: macro "__assign_str" passed 2 arguments, but takes just 1
+>>>
+>>> This is with the patch applied on top of v6.9-8410-gff2632d7d08e.
+>>> So far that seems to be the only build failure.
+>>> Introduced with commit 6aec00139d3a8 ("cxl/core: Add region info to
+>>> cxl_general_media and cxl_dram events"). Guess we'll see more of those
+>>> towards the end of the commit window.
+>>
+>> Looks like I made this patch just before this commit was pulled into
+>> Linus's tree.
+>>
+>> Which is why I'll apply and rerun the above again probably on Tuesday of
+>> next week against Linus's latest.
+>>
+>> This patch made it through both an allyesconfig and an allmodconfig, but on
+>> the commit I had applied it to, which was:
+>>
+>>    1b294a1f3561 ("Merge tag 'net-next-6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next")
+>>
+>> I'll be compiling those two builds after I update it then.
+>>
 > 
-> Extend most of the W=1 warnings to the entire drm subsystem by
-> default. Use the copy-pasted warnings from scripts/Makefile.extrawarn
-> with s/KBUILD_CFLAGS/subdir-ccflags-y/ to make it easier to compare and
-> keep up with them in the future.
-> 
-> This is similar to the approach currently used in i915.
-> 
-> Some of the -Wextra warnings do need to be disabled, just like in
-> Makefile.extrawarn, but take care to not disable them for W=2 or W=3
-> builds, depending on the warning.
-> 
-> There are too many -Wformat-truncation warnings to cleanly fix up front;
-> leave that warning disabled for now.
+> I am currently repeating my test builds with the above errors fixed.
+> That should take a couple of hours. I'll let you know how it goes.
 > 
 
-With this patch in the mainline kernel, I get the following build error
-when trying to build parisc:allmodconfig.
+There are no more build failures caused by this patch after fixing the above
+errors.
 
-Error log:
-drivers/gpu/drm/nouveau/nvif/object.c: In function 'nvif_object_mthd':
-drivers/gpu/drm/nouveau/nvif/object.c:161:9: error: 'memcpy' accessing 4294967264 or more bytes at offsets 0 and 32 overlaps 6442450881 bytes at offset -2147483617 [-Werror=restrict]
-  161 |         memcpy(data, args->mthd.data, size);
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/nouveau/nvif/object.c: In function 'nvif_object_ctor':
-drivers/gpu/drm/nouveau/nvif/object.c:298:17: error: 'memcpy' accessing 4294967240 or more bytes at offsets 0 and 56 overlaps 6442450833 bytes at offset -2147483593 [-Werror=restrict]
-  298 |                 memcpy(data, args->new.data, size);
+Tested-by: Guenter Roeck <linux@roeck-us.net>
 
-The problem is also seen with v6.9 when trying to build an image
-with W=1, so it is not triggered by a code change. I don't know
-if other architectures are affected. The problem is not seen with
-gcc 11.4, but it is seen with gcc 12.3 and 13.2. I did not try
-with older versions of gcc.
-
-Bisect log is attached for reference.
-
-The odd error makes me wonder if I should revert to testing with gcc 11.4
-and no longer bother with later versions of gcc, at least for any affected
-architectures. Any recommendations ?
-
-Thanks,
 Guenter
 
----
-# bad: [7ee332c9f12bc5b380e36919cd7d056592a7073f] Merge tag 'parisc-for-6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux
-# good: [a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6] Linux 6.9
-git bisect start 'HEAD' 'v6.9'
-# good: [1b294a1f35616977caddaddf3e9d28e576a1adbc] Merge tag 'net-next-6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
-git bisect good 1b294a1f35616977caddaddf3e9d28e576a1adbc
-# bad: [d34672777da3ea919e8adb0670ab91ddadf7dea0] Merge tag 'fbdev-for-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev
-git bisect bad d34672777da3ea919e8adb0670ab91ddadf7dea0
-# bad: [2871ec40994912ce4f2e2d5072a428eb84c77d3c] Merge tag 'drm-misc-next-2024-04-19' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next
-git bisect bad 2871ec40994912ce4f2e2d5072a428eb84c77d3c
-# bad: [34633158b8eb8fca145c9a73f8fe4f98c7275b06] Merge tag 'amd-drm-next-6.10-2024-04-13' of https://gitlab.freedesktop.org/agd5f/linux into drm-next
-git bisect bad 34633158b8eb8fca145c9a73f8fe4f98c7275b06
-# good: [4b0cb230bdb71c23981acfa5e7b367c7dde02a41] drm/amdgpu: retire UMC v12 mca_addr_to_pa
-git bisect good 4b0cb230bdb71c23981acfa5e7b367c7dde02a41
-# bad: [6376eb8b911534735fec104c1a0d780e4cf3116a] drm/dp: Clarify that wait_hpd_asserted() is not optional for panels
-git bisect bad 6376eb8b911534735fec104c1a0d780e4cf3116a
-# bad: [9c86b03863844ce69f99aa66404c79492ec9e208] drm/panthor: Fix panthor_devfreq kerneldoc
-git bisect bad 9c86b03863844ce69f99aa66404c79492ec9e208
-# bad: [b5d7cb76f2674c9d01b611141702723a95d12553] drm: add missing header guards to drm_internal.h
-git bisect bad b5d7cb76f2674c9d01b611141702723a95d12553
-# good: [4bdca11507928a4c9174e9b7240e9d058c12a71d] drm/panthor: Add the driver frontend block
-git bisect good 4bdca11507928a4c9174e9b7240e9d058c12a71d
-# good: [b2ec429b69280001d85029dc50b5427af41eb641] drm/tidss: Use dev_err_probe() over dev_dbg() when failing to probe the port
-git bisect good b2ec429b69280001d85029dc50b5427af41eb641
-# bad: [a61ddb4393ad1be61d2ffd92576d42707b05be17] drm: enable (most) W=1 warnings by default across the subsystem
-git bisect bad a61ddb4393ad1be61d2ffd92576d42707b05be17
-# good: [113cc3ad8566e06d6c8ef4fc0075a938dedefab5] drm/bridge: Document bridge init order with pre_enable_prev_first
-git bisect good 113cc3ad8566e06d6c8ef4fc0075a938dedefab5
-# good: [460be1d527a8e296d85301e8b14923299508d4fc] drm/nouveau: move more missing UAPI bits
-git bisect good 460be1d527a8e296d85301e8b14923299508d4fc
-# first bad commit: [a61ddb4393ad1be61d2ffd92576d42707b05be17] drm: enable (most) W=1 warnings by default across the subsystem
