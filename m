@@ -2,62 +2,99 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87B98C9DD4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 15:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC1D8C9DD5
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 15:07:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEC1110E700;
-	Mon, 20 May 2024 13:07:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5E610E702;
+	Mon, 20 May 2024 13:07:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=me.com header.i=@me.com header.b="m/LbXgjW";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="RnOBP9ts";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 333 seconds by postgrey-1.36 at gabe;
- Sun, 19 May 2024 15:40:03 UTC
-Received: from mr85p00im-hyfv06021401.me.com (mr85p00im-hyfv06021401.me.com
- [17.58.23.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C00A410E174
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 May 2024 15:40:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
- t=1716132867; bh=+mCGBENVlQIS+dvweTnVDii2QJywLVkSDXoaeBGEjgA=;
- h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:To;
- b=m/LbXgjWQt8OESRD0vDsAkXiqDi+7obhuI3lCjNL3bLkZpfKpxExy0k+/CouJUuNG
- OWD/zPKAEFvNNcsrSrWiF1xMxNiFtdDzZiS+zehPlGniZONCUe3oQk1fdgH9k2cs7i
- Fqm5PBGP715ZQrOVIheh6EHIJTVb6RQ5pSsceN9Yw2NjJyMXbE2N4/QDod6wzTLyjp
- nRQmGE4brkTdGLuiE8EwktJbD5GJPWbkPhF7DCGE5eNwytm2LVsivhl2VIDV3amtNM
- yqsw82kYb+hYxvxa6cfdkQ69qKO6PBdIVbn43NJHdKWzMqNaQS9GIHSLOz2cP8+JXo
- idB8NfECJr4iw==
-Received: from smtpclient.apple (mr38p00im-dlb-asmtp-mailmevip.me.com
- [17.57.152.18])
- by mr85p00im-hyfv06021401.me.com (Postfix) with ESMTPSA id 1358D30382FD;
- Sun, 19 May 2024 15:34:24 +0000 (UTC)
-From: Gnattu OC <gnattuoc@me.com>
-Message-Id: <EC3326C7-3810-47A3-9BDE-6F9B2EA37D6B@me.com>
-Content-Type: multipart/alternative;
- boundary="Apple-Mail=_56A64CEC-8DFB-4238-9CE5-C02766CF18BE"
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.600.62\))
-Subject: Re: [PATCH] drm/i915/gt: Fix CCS id's calculation for CCS mode setting
-Date: Sun, 19 May 2024 23:34:12 +0800
-In-Reply-To: <20240517090616.242529-1-andi.shyti@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Andi Shyti <andi.shyti@kernel.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Jian Ye <jian.ye@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-References: <20240517090616.242529-1-andi.shyti@linux.intel.com>
-X-Mailer: Apple Mail (2.3774.600.62)
-X-Proofpoint-GUID: KngUkHdT1eYE2UcbP-pTQ-52z3LlU31W
-X-Proofpoint-ORIG-GUID: KngUkHdT1eYE2UcbP-pTQ-52z3LlU31W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-19_06,2024-05-17_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- bulkscore=0 malwarescore=0
- adultscore=0 phishscore=0 mlxlogscore=999 mlxscore=0 clxscore=1011
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2405190136
-X-Mailman-Approved-At: Mon, 20 May 2024 13:07:16 +0000
+X-Greylist: delayed 411 seconds by postgrey-1.36 at gabe;
+ Sun, 19 May 2024 23:13:47 UTC
+Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com
+ [91.218.175.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E991C10E2FC
+ for <intel-gfx@lists.freedesktop.org>; Sun, 19 May 2024 23:13:47 +0000 (UTC)
+X-Envelope-To: oliver.sang@intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1716160012;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=EjPbvxfPWKN4uO1RV19FptYrj9baoes5ODzgRfOovGI=;
+ b=RnOBP9tstxKStTFsR6JuY3r4CaXCx8FhWbwG+HNTzwYcucJbkF1f6R67iRSUiXegEnrDgZ
+ PpXUhikB5cb1P6Di8OD88JwkJZBi4LWOXAd4jgqgi99I2w0NJ5KwiwrGoE4f+5A0aH7Vve
+ zijFCQJ504V0TNVgfoZnOKbB2rKWE+I=
+X-Envelope-To: surenb@google.com
+X-Envelope-To: oe-lkp@lists.linux.dev
+X-Envelope-To: lkp@intel.com
+X-Envelope-To: linux-mm@kvack.org
+X-Envelope-To: akpm@linux-foundation.org
+X-Envelope-To: rdunlap@infradead.org
+X-Envelope-To: keescook@chromium.org
+X-Envelope-To: viro@zeniv.linux.org.uk
+X-Envelope-To: alex.gaynor@gmail.com
+X-Envelope-To: aliceryhl@google.com
+X-Envelope-To: a.hindborg@samsung.com
+X-Envelope-To: benno.lossin@proton.me
+X-Envelope-To: bjorn3_gh@protonmail.com
+X-Envelope-To: boqun.feng@gmail.com
+X-Envelope-To: cl@linux.com
+X-Envelope-To: dennis@kernel.org
+X-Envelope-To: gary@garyguo.net
+X-Envelope-To: ojeda@kernel.org
+X-Envelope-To: pasha.tatashin@soleen.com
+X-Envelope-To: peterz@infradead.org
+X-Envelope-To: tj@kernel.org
+X-Envelope-To: vbabka@suse.cz
+X-Envelope-To: wedsonaf@gmail.com
+X-Envelope-To: linux-hardening@vger.kernel.org
+X-Envelope-To: jani.nikula@linux.intel.com
+X-Envelope-To: joonas.lahtinen@linux.intel.com
+X-Envelope-To: rodrigo.vivi@intel.com
+X-Envelope-To: tursulin@ursulin.net
+X-Envelope-To: airlied@gmail.com
+X-Envelope-To: daniel@ffwll.ch
+X-Envelope-To: intel-gfx@lists.freedesktop.org
+X-Envelope-To: dri-devel@lists.freedesktop.org
+Date: Sun, 19 May 2024 19:06:45 -0400
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Kent Overstreet <kent.overstreet@linux.dev>
+To: kernel test robot <oliver.sang@intel.com>
+Cc: Suren Baghdasaryan <surenb@google.com>, oe-lkp@lists.linux.dev, 
+ lkp@intel.com, Linux Memory Management List <linux-mm@kvack.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Kees Cook <keescook@chromium.org>, Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Alice Ryhl <aliceryhl@google.com>, 
+ Andreas Hindborg <a.hindborg@samsung.com>,
+ Benno Lossin <benno.lossin@proton.me>, 
+ =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, 
+ Christoph Lameter <cl@linux.com>, Dennis Zhou <dennis@kernel.org>,
+ Gary Guo <gary@garyguo.net>, 
+ Miguel Ojeda <ojeda@kernel.org>, Pasha Tatashin <pasha.tatashin@soleen.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Tejun Heo <tj@kernel.org>,
+ Vlastimil Babka <vbabka@suse.cz>, 
+ Wedson Almeida Filho <wedsonaf@gmail.com>, linux-hardening@vger.kernel.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [linux-next:master] [mm/slab]  7bd230a266:
+ WARNING:at_mm/util.c:#kvmalloc_node_noprof
+Message-ID: <a7qrk7rkfbg44mhfehup3cgwi7bhcuqys72tg2ri7ck7sggfnx@643nnjnpxwzt>
+References: <202405151008.6ddd1aaf-oliver.sang@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202405151008.6ddd1aaf-oliver.sang@intel.com>
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Mon, 20 May 2024 13:07:17 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,281 +110,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+this looks like an i915 bug
 
---Apple-Mail=_56A64CEC-8DFB-4238-9CE5-C02766CF18BE
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
-
-
-
-> On May 17, 2024, at 17:06, Andi Shyti <andi.shyti@linux.intel.com> =
-wrote:
->=20
-> The whole point of the previous fixes has been to change the CCS
-> hardware configuration to generate only one stream available to
-> the compute users. We did this by changing the info.engine_mask
-> that is set during device probe, reset during the detection of
-> the fused engines, and finally reset again when choosing the CCS
-> mode.
->=20
-> We can't use the engine_mask variable anymore, as with the
-> current configuration, it imposes only one CCS no matter what the
-> hardware configuration is.
->=20
-> Before changing the engine_mask for the third time, save it and
-> use it for calculating the CCS mode.
->=20
-> After the previous changes, the user reported a performance drop
-> to around 1/4. We have tested that the compute operations, with
-> the current patch, have improved by the same factor.
->=20
-> Fixes: 6db31251bb26 ("drm/i915/gt: Enable only one CCS for compute =
-workload")
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Cc: Gnattu OC <gnattuoc@me.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Tested-by: Jian Ye <jian.ye@intel.com>
-> ---
-> Hi,
->=20
-> This ensures that all four CCS engines work properly. However,
-> during the tests, Jian detected that the performance during
-> memory copy assigned to the CCS engines is negatively impacted.
->=20
-> I believe this might be expected, considering that based on the
-> engines' availability, the media user might decide to reduce the
-> copy in multitasking.
->=20
-> With the upcoming work that will give the user the chance to
-> configure the CCS mode, this might improve.
->=20
-> Gnattu, can I use your kindness to ask for a test on this patch
-> and check whether the performance improve on your side as well?
->=20
-> Thanks,
-> Andi
->=20
-> drivers/gpu/drm/i915/gt/intel_engine_cs.c   | 6 ++++++
-> drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 2 +-
-> drivers/gpu/drm/i915/gt/intel_gt_types.h    | 8 ++++++++
-> 3 files changed, 15 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c =
-b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 5c8e9ee3b008..3b740ca25000 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -885,6 +885,12 @@ static intel_engine_mask_t =
-init_engine_mask(struct intel_gt *gt)
-> 	if (IS_DG2(gt->i915)) {
-> 		u8 first_ccs =3D __ffs(CCS_MASK(gt));
->=20
-> +		/*
-> +		 * Store the number of active cslices before
-> +		 * changing the CCS engine configuration
-> +		 */
-> +		gt->ccs.cslices =3D CCS_MASK(gt);
-> +
-> 		/* Mask off all the CCS engine */
-> 		info->engine_mask &=3D ~GENMASK(CCS3, CCS0);
-> 		/* Put back in the first CCS engine */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c =
-b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-> index 99b71bb7da0a..3c62a44e9106 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-> @@ -19,7 +19,7 @@ unsigned int intel_gt_apply_ccs_mode(struct intel_gt =
-*gt)
->=20
-> 	/* Build the value for the fixed CCS load balancing */
-> 	for (cslice =3D 0; cslice < I915_MAX_CCS; cslice++) {
-> -		if (CCS_MASK(gt) & BIT(cslice))
-> +		if (gt->ccs.cslices & BIT(cslice))
-> 			/*
-> 			 * If available, assign the cslice
-> 			 * to the first available engine...
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h =
-b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index def7dd0eb6f1..cfdd2ad5e954 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -207,6 +207,14 @@ struct intel_gt {
-> 					    [MAX_ENGINE_INSTANCE + 1];
-> 	enum intel_submission_method submission_method;
->=20
-> +	struct {
-> +		/*
-> +		 * Mask of the non fused CCS slices
-> +		 * to be used for the load balancing
-> +		 */
-> +		intel_engine_mask_t cslices;
-> +	} ccs;
-> +
-> 	/*
-> 	 * Default address space (either GGTT or ppGTT depending on =
-arch).
-> 	 *
-> --=20
-> 2.43.0
-
-Hi Andi,
-
-I can confirm that this patch restores most of the performance we had =
-before the CCS change.=20
-
-I do notice a reduction in memcpy performance, but it is good enough for =
-our use case since our video processing pipeline is zero-copy once the =
-video is loaded to the VRAM.
-
-Tested-by: Gnattu OC <gnattuoc@me.com <mailto:gnattuoc@me.com>>
-
-
---Apple-Mail=_56A64CEC-8DFB-4238-9CE5-C02766CF18BE
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
-charset=3Dus-ascii"></head><body style=3D"overflow-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;"><br =
-id=3D"lineBreakAtBeginningOfMessage"><div><br><blockquote =
-type=3D"cite"><div>On May 17, 2024, at 17:06, Andi Shyti =
-&lt;andi.shyti@linux.intel.com&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div><div>The whole point of the =
-previous fixes has been to change the CCS<br>hardware configuration to =
-generate only one stream available to<br>the compute users. We did this =
-by changing the info.engine_mask<br>that is set during device probe, =
-reset during the detection of<br>the fused engines, and finally reset =
-again when choosing the CCS<br>mode.<br><br>We can't use the engine_mask =
-variable anymore, as with the<br>current configuration, it imposes only =
-one CCS no matter what the<br>hardware configuration is.<br><br>Before =
-changing the engine_mask for the third time, save it and<br>use it for =
-calculating the CCS mode.<br><br>After the previous changes, the user =
-reported a performance drop<br>to around 1/4. We have tested that the =
-compute operations, with<br>the current patch, have improved by the same =
-factor.<br><br>Fixes: 6db31251bb26 ("drm/i915/gt: Enable only one CCS =
-for compute workload")<br>Cc: Chris Wilson =
-&lt;chris.p.wilson@linux.intel.com&gt;<br>Cc: Gnattu OC =
-&lt;gnattuoc@me.com&gt;<br>Cc: Joonas Lahtinen =
-&lt;joonas.lahtinen@linux.intel.com&gt;<br>Cc: Matt Roper =
-&lt;matthew.d.roper@intel.com&gt;<br>Tested-by: Jian Ye =
-&lt;jian.ye@intel.com&gt;<br>---<br>Hi,<br><br>This ensures that all =
-four CCS engines work properly. However,<br>during the tests, Jian =
-detected that the performance during<br>memory copy assigned to the CCS =
-engines is negatively impacted.<br><br>I believe this might be expected, =
-considering that based on the<br>engines' availability, the media user =
-might decide to reduce the<br>copy in multitasking.<br><br>With the =
-upcoming work that will give the user the chance to<br>configure the CCS =
-mode, this might improve.<br><br>Gnattu, can I use your kindness to ask =
-for a test on this patch<br>and check whether the performance improve on =
-your side as well?<br><br>Thanks,<br>Andi<br><br> =
-drivers/gpu/drm/i915/gt/intel_engine_cs.c &nbsp;&nbsp;| 6 ++++++<br> =
-drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 2 +-<br> =
-drivers/gpu/drm/i915/gt/intel_gt_types.h &nbsp;&nbsp;&nbsp;| 8 =
-++++++++<br> 3 files changed, 15 insertions(+), 1 =
-deletion(-)<br><br>diff --git =
-a/drivers/gpu/drm/i915/gt/intel_engine_cs.c =
-b/drivers/gpu/drm/i915/gt/intel_engine_cs.c<br>index =
-5c8e9ee3b008..3b740ca25000 100644<br>--- =
-a/drivers/gpu/drm/i915/gt/intel_engine_cs.c<br>+++ =
-b/drivers/gpu/drm/i915/gt/intel_engine_cs.c<br>@@ -885,6 +885,12 @@ =
-static intel_engine_mask_t init_engine_mask(struct intel_gt *gt)<br> =
-<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>if (IS_DG2(gt-&gt;i915)) {<br> <span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>u8 first_ccs =3D =
-__ffs(CCS_MASK(gt));<br><br>+<span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>/*<br>+<span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span> * Store =
-the number of active cslices before<br>+<span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span> * changing the CCS engine =
-configuration<br>+<span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span> */<br>+<span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>gt-&gt;ccs.cslices =3D CCS_MASK(gt);<br>+<br> <span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/* Mask =
-off all the CCS engine */<br> <span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>info-&gt;engine_mask &amp;=3D =
-~GENMASK(CCS3, CCS0);<br> <span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>/* Put back in the first CCS =
-engine */<br>diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c =
-b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c<br>index =
-99b71bb7da0a..3c62a44e9106 100644<br>--- =
-a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c<br>+++ =
-b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c<br>@@ -19,7 +19,7 @@ =
-unsigned int intel_gt_apply_ccs_mode(struct intel_gt *gt)<br><br> <span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/* Build =
-the value for the fixed CCS load balancing */<br> <span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>for =
-(cslice =3D 0; cslice &lt; I915_MAX_CCS; cslice++) {<br>-<span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>if =
-(CCS_MASK(gt) &amp; BIT(cslice))<br>+<span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>if (gt-&gt;ccs.cslices &amp; =
-BIT(cslice))<br> <span class=3D"Apple-tab-span" style=3D"white-space:pre">=
-	</span><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>/*<br> <span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span> * If available, assign the cslice<br> <span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span> * to the =
-first available engine...<br>diff --git =
-a/drivers/gpu/drm/i915/gt/intel_gt_types.h =
-b/drivers/gpu/drm/i915/gt/intel_gt_types.h<br>index =
-def7dd0eb6f1..cfdd2ad5e954 100644<br>--- =
-a/drivers/gpu/drm/i915/gt/intel_gt_types.h<br>+++ =
-b/drivers/gpu/drm/i915/gt/intel_gt_types.h<br>@@ -207,6 +207,14 @@ =
-struct intel_gt {<br> <span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span> =
-&nbsp;&nbsp;&nbsp;[MAX_ENGINE_INSTANCE + 1];<br> <span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>enum =
-intel_submission_method submission_method;<br><br>+<span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>struct =
-{<br>+<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>/*<br>+<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span> * Mask of the non fused CCS slices<br>+<span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span> * to be =
-used for the load balancing<br>+<span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span> */<br>+<span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span><span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>intel_engine_mask_t cslices;<br>+<span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>} ccs;<br>+<br> <span =
-class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>/*<br> =
-<span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span> =
-* Default address space (either GGTT or ppGTT depending on arch).<br> =
-<span class=3D"Apple-tab-span" style=3D"white-space:pre">	</span> =
-*<br>-- =
-<br>2.43.0<br></div></div></blockquote><div><br></div><div><div>Hi =
-Andi,</div><div><br></div><div>I can confirm that this patch restores =
-most of the performance we had before the CCS =
-change.&nbsp;</div><div><br></div><div>I do notice a reduction in memcpy =
-performance, but it is good enough for our use case since our video =
-processing pipeline is zero-copy once the video is loaded to the =
-VRAM.</div><div><br></div></div></div><div>Tested-by: Gnattu OC &lt;<a =
-href=3D"mailto:gnattuoc@me.com">gnattuoc@me.com</a>&gt;</div><br></body></=
-html>=
-
---Apple-Mail=_56A64CEC-8DFB-4238-9CE5-C02766CF18BE--
+On Wed, May 15, 2024 at 10:41:19AM +0800, kernel test robot wrote:
+> 
+> 
+> Hello,
+> 
+> as we understand, this commit is not the root-cause of this WARNING. the WARNING
+> just shows in another way by commit changes.
+> 
+> 53ed0af496422959 7bd230a26648ac68ab3731ebbc4
+> ---------------- ---------------------------
+>        fail:runs  %reproduction    fail:runs
+>            |             |             |
+>           6:6          -83%            :6     dmesg.RIP:kvmalloc_node
+>            :6           33%           6:6     dmesg.RIP:kvmalloc_node_noprof
+>           6:6          -83%            :6     dmesg.WARNING:at_mm/util.c:#kvmalloc_node
+>            :6           33%           6:6     dmesg.WARNING:at_mm/util.c:#kvmalloc_node_noprof
+> 
+> 
+> but we failed to bisect "dmesg.WARNING:at_mm/util.c:#kvmalloc_node".
+> 
+> we still made this report FYI what we observed in our tests, not sure if it
+> could give somebody some hints to find the real problem then judge if a fix
+> is needed.
+> 
+> below is full report.
+> 
+> 
+> 
+> kernel test robot noticed "WARNING:at_mm/util.c:#kvmalloc_node_noprof" on:
+> 
+> commit: 7bd230a26648ac68ab3731ebbc449090f0ac6a37 ("mm/slab: enable slab allocation tagging for kmalloc and friends")
+> https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git master
+> 
+> [test failed on linux-next/master 6ba6c795dc73c22ce2c86006f17c4aa802db2a60]
+> 
+> in testcase: igt
+> version: igt-x86_64-86712f2ef-1_20240511
+> with following parameters:
+> 
+> 	group: gem_exec_reloc
+> 
+> 
+> 
+> compiler: gcc-13
+> test machine: 20 threads 1 sockets (Commet Lake) with 16G memory
+> 
+> (please refer to attached dmesg/kmsg for entire log/backtrace)
+> 
+> 
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <oliver.sang@intel.com>
+> | Closes: https://lore.kernel.org/oe-lkp/202405151008.6ddd1aaf-oliver.sang@intel.com
+> 
+> 
+> [  940.101700][ T5353] ------------[ cut here ]------------
+> [ 940.107107][ T5353] WARNING: CPU: 1 PID: 5353 at mm/util.c:649 kvmalloc_node_noprof (mm/util.c:649 (discriminator 1)) 
+> [  940.116178][ T5353] Modules linked in: netconsole btrfs blake2b_generic xor zstd_compress intel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_common raid6_pq libcrc32c x86_pkg_temp_thermal intel_powerclamp coretemp kvm_intel sd_mod t10_pi crc64_rocksoft_generic crc64_rocksoft ipmi_devintf crc64 sg ipmi_msghandler kvm crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel i915 sha512_ssse3 sdhci_pci drm_buddy cqhci ahci rapl intel_gtt drm_display_helper sdhci libahci mei_me ttm intel_cstate i2c_designware_platform ppdev intel_uncore intel_wmi_thunderbolt wmi_bmof libata mei i2c_designware_core idma64 drm_kms_helper mmc_core i2c_i801 i2c_smbus intel_pch_thermal parport_pc video parport pinctrl_cannonlake wmi acpi_pad acpi_tad serio_raw binfmt_misc drm fuse loop dm_mod ip_tables
+> [  940.188041][ T5353] CPU: 1 PID: 5353 Comm: gem_exec_reloc Not tainted 6.9.0-rc4-00085-g7bd230a26648 #1
+> [ 940.197459][ T5353] RIP: 0010:kvmalloc_node_noprof (mm/util.c:649 (discriminator 1)) 
+> [ 940.203412][ T5353] Code: 04 a3 0d 00 48 83 c4 18 48 83 c4 08 5b 5d 41 5c 41 5d 41 5e c3 cc cc cc cc 49 be 00 00 00 00 00 20 00 00 eb 9f 80 e7 20 75 de <0f> 0b eb da 48 c7 c7 10 ec af 84 e8 0e a6 18 00 e9 3f ff ff ff 48
+> All code
+> ========
+>    0:	04 a3                	add    $0xa3,%al
+>    2:	0d 00 48 83 c4       	or     $0xc4834800,%eax
+>    7:	18 48 83             	sbb    %cl,-0x7d(%rax)
+>    a:	c4                   	(bad)  
+>    b:	08 5b 5d             	or     %bl,0x5d(%rbx)
+>    e:	41 5c                	pop    %r12
+>   10:	41 5d                	pop    %r13
+>   12:	41 5e                	pop    %r14
+>   14:	c3                   	retq   
+>   15:	cc                   	int3   
+>   16:	cc                   	int3   
+>   17:	cc                   	int3   
+>   18:	cc                   	int3   
+>   19:	49 be 00 00 00 00 00 	movabs $0x200000000000,%r14
+>   20:	20 00 00 
+>   23:	eb 9f                	jmp    0xffffffffffffffc4
+>   25:	80 e7 20             	and    $0x20,%bh
+>   28:	75 de                	jne    0x8
+>   2a:*	0f 0b                	ud2    		<-- trapping instruction
+>   2c:	eb da                	jmp    0x8
+>   2e:	48 c7 c7 10 ec af 84 	mov    $0xffffffff84afec10,%rdi
+>   35:	e8 0e a6 18 00       	callq  0x18a648
+>   3a:	e9 3f ff ff ff       	jmpq   0xffffffffffffff7e
+>   3f:	48                   	rex.W
+> 
+> Code starting with the faulting instruction
+> ===========================================
+>    0:	0f 0b                	ud2    
+>    2:	eb da                	jmp    0xffffffffffffffde
+>    4:	48 c7 c7 10 ec af 84 	mov    $0xffffffff84afec10,%rdi
+>    b:	e8 0e a6 18 00       	callq  0x18a61e
+>   10:	e9 3f ff ff ff       	jmpq   0xffffffffffffff54
+>   15:	48                   	rex.W
+> [  940.222971][ T5353] RSP: 0018:ffffc90000b576f8 EFLAGS: 00010246
+> [  940.228978][ T5353] RAX: 0000000000000000 RBX: 00000000000000c0 RCX: 0000000000000013
+> [  940.236885][ T5353] RDX: 000000000007ffff RSI: 0000000080000000 RDI: 0000000000000000
+> [  940.244792][ T5353] RBP: 0000000080000000 R08: 0000000000000001 R09: 0000000000000000
+> [  940.252700][ T5353] R10: ffffc90000b576f8 R11: 0000000000000000 R12: 00000000ffffffff
+> [  940.260626][ T5353] R13: 0000000000000000 R14: 0000000004000000 R15: ffffc90000b579a8
+> [  940.268566][ T5353] FS:  00007f2043c5e8c0(0000) GS:ffff8883ee080000(0000) knlGS:0000000000000000
+> [  940.277455][ T5353] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [  940.283988][ T5353] CR2: 00007f2043b5d000 CR3: 000000022f74a002 CR4: 00000000003706f0
+> [  940.291922][ T5353] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> [  940.299872][ T5353] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+> [  940.307791][ T5353] Call Trace:
+> [  940.311021][ T5353]  <TASK>
+> [ 940.313926][ T5353] ? __warn (kernel/panic.c:694) 
+> [ 940.317930][ T5353] ? kvmalloc_node_noprof (mm/util.c:649 (discriminator 1)) 
+> [ 940.323187][ T5353] ? report_bug (lib/bug.c:180 lib/bug.c:219) 
+> [ 940.327596][ T5353] ? handle_bug (arch/x86/kernel/traps.c:239 (discriminator 1)) 
+> [ 940.331835][ T5353] ? exc_invalid_op (arch/x86/kernel/traps.c:260 (discriminator 1)) 
+> [ 940.336419][ T5353] ? asm_exc_invalid_op (arch/x86/include/asm/idtentry.h:621) 
+> [ 940.341348][ T5353] ? kvmalloc_node_noprof (mm/util.c:649 (discriminator 1)) 
+> [ 940.346602][ T5353] ? kvmalloc_node_noprof (mm/util.c:640) 
+> [ 940.351795][ T5353] eb_copy_relocations (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1685) i915
+> [ 940.357636][ T5353] eb_relocate_parse_slow (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1815) i915
+> [ 940.363616][ T5353] i915_gem_do_execbuffer (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1960 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3466) i915
+> [ 940.369790][ T5353] ? unwind_get_return_address (arch/x86/kernel/unwind_orc.c:369 (discriminator 1)) 
+> [ 940.375305][ T5353] ? arch_stack_walk (arch/x86/kernel/stacktrace.c:26) 
+> [ 940.380084][ T5353] ? __pfx_i915_gem_do_execbuffer (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3359) i915
+> [ 940.386673][ T5353] ? kasan_save_track (arch/x86/include/asm/current.h:49 (discriminator 1) mm/kasan/common.c:60 (discriminator 1) mm/kasan/common.c:69 (discriminator 1)) 
+> [ 940.391449][ T5353] ? __kasan_kmalloc (mm/kasan/common.c:370 mm/kasan/common.c:387) 
+> [ 940.396121][ T5353] ? __pfx___might_resched (kernel/sched/core.c:10152) 
+> [ 940.401339][ T5353] ? check_heap_object (arch/x86/include/asm/bitops.h:206 (discriminator 1) arch/x86/include/asm/bitops.h:238 (discriminator 1) include/asm-generic/bitops/instrumented-non-atomic.h:142 (discriminator 1) include/linux/page-flags.h:527 (discriminator 1) mm/usercopy.c:194 (discriminator 1)) 
+> [ 940.406359][ T5353] i915_gem_execbuffer2_ioctl (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3612) i915
+> [ 940.412769][ T5353] ? __pfx_i915_gem_execbuffer2_ioctl (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3572) i915
+> [ 940.419658][ T5353] drm_ioctl_kernel (drivers/gpu/drm/drm_ioctl.c:744) drm
+> [ 940.425039][ T5353] ? __pfx_drm_ioctl_kernel (drivers/gpu/drm/drm_ioctl.c:729) drm
+> [ 940.430914][ T5353] drm_ioctl (drivers/gpu/drm/drm_ioctl.c:842) drm
+> [ 940.435660][ T5353] ? __pfx_i915_gem_execbuffer2_ioctl (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3572) i915
+> [ 940.442610][ T5353] ? __pfx_drm_ioctl (drivers/gpu/drm/drm_ioctl.c:763) drm
+> [ 940.447822][ T5353] ? __fget_light (include/linux/atomic/atomic-arch-fallback.h:479 (discriminator 2) include/linux/atomic/atomic-instrumented.h:50 (discriminator 2) fs/file.c:1145 (discriminator 2)) 
+> [ 940.452318][ T5353] __x64_sys_ioctl (fs/ioctl.c:51 fs/ioctl.c:904 fs/ioctl.c:890 fs/ioctl.c:890) 
+> [ 940.457008][ T5353] do_syscall_64 (arch/x86/entry/common.c:52 (discriminator 1) arch/x86/entry/common.c:83 (discriminator 1)) 
+> [ 940.461440][ T5353] entry_SYSCALL_64_after_hwframe (arch/x86/entry/entry_64.S:130) 
+> [  940.467236][ T5353] RIP: 0033:0x7f2046007c5b
+> [ 940.471588][ T5353] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1c 48 8b 44 24 18 64 48 2b 04 25 28 00 00
+> All code
+> ========
+>    0:	00 48 89             	add    %cl,-0x77(%rax)
+>    3:	44 24 18             	rex.R and $0x18,%al
+>    6:	31 c0                	xor    %eax,%eax
+>    8:	48 8d 44 24 60       	lea    0x60(%rsp),%rax
+>    d:	c7 04 24 10 00 00 00 	movl   $0x10,(%rsp)
+>   14:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+>   19:	48 8d 44 24 20       	lea    0x20(%rsp),%rax
+>   1e:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+>   23:	b8 10 00 00 00       	mov    $0x10,%eax
+>   28:	0f 05                	syscall 
+>   2a:*	89 c2                	mov    %eax,%edx		<-- trapping instruction
+>   2c:	3d 00 f0 ff ff       	cmp    $0xfffff000,%eax
+>   31:	77 1c                	ja     0x4f
+>   33:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+>   38:	64                   	fs
+>   39:	48                   	rex.W
+>   3a:	2b                   	.byte 0x2b
+>   3b:	04 25                	add    $0x25,%al
+>   3d:	28 00                	sub    %al,(%rax)
+> 	...
+> 
+> Code starting with the faulting instruction
+> ===========================================
+>    0:	89 c2                	mov    %eax,%edx
+>    2:	3d 00 f0 ff ff       	cmp    $0xfffff000,%eax
+>    7:	77 1c                	ja     0x25
+>    9:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+>    e:	64                   	fs
+>    f:	48                   	rex.W
+>   10:	2b                   	.byte 0x2b
+>   11:	04 25                	add    $0x25,%al
+>   13:	28 00                	sub    %al,(%rax)
+> 
+> 
+> The kernel config and materials to reproduce are available at:
+> https://download.01.org/0day-ci/archive/20240515/202405151008.6ddd1aaf-oliver.sang@intel.com
+> 
+> 
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
+> 
