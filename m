@@ -2,81 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AC58C9BBF
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 13:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 409598C9BC6
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 13:02:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FC0A10E43C;
-	Mon, 20 May 2024 11:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA3E210E187;
+	Mon, 20 May 2024 11:02:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ngKplQJy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WNjXC0mU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
- [209.85.167.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03DA110E414
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 11:00:44 +0000 (UTC)
-Received: by mail-lf1-f43.google.com with SMTP id
- 2adb3069b0e04-52388d9ca98so5171198e87.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 04:00:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1716202843; x=1716807643; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=zbU3zeRUyfJhQipGYR6FKYCuEp6+mBicTADebou1jyQ=;
- b=ngKplQJyJUQv5czDr1HI3bGAP4G3rIGuii+iugwIElteTfe3/cI9N6VXtkLVytc2ye
- F3HWc2yvqiIiILLyYisnMIbXvIGpUG2LqZzIykxaSNPSx0KnYitaaJ9sOAt0VpGEtGh2
- YcWPyzrsBV0rvv1+4+81LYw0oDTPz26AU7sj7zTKeDlz/hOb+qIWwkCjKDD7W568+Exr
- jGbf3UAsk8FYVPqIOirb/h5SlOVCfcbQF89cqGDuCSrFPFfr2Tw4INLD7/N5bgUXQVBw
- JAPvyUvC5Sv3V/kjQJzCTKMg+PQdYtD2bHNGDVudODS0FaWwU5n9QJJWi5jPrROSfJew
- 9WoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716202843; x=1716807643;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=zbU3zeRUyfJhQipGYR6FKYCuEp6+mBicTADebou1jyQ=;
- b=lYAEme3E+Xv/rNchBf58Gqjk4jMBh8dIQ87xvDU7Nyu4EmRBzCeXic3rCrHsfPR6uo
- OGPrtl7D+kN9rFh+5VuGg529d8kmBJRYzeuDDkHlZwXifRl4TEiR4+gdv6l5HYzPLQXn
- DtTpRtwgAaT4oB3XW5Laxn6vkQ9oth6sn5wiD42H+Btiq2CGAk99nWswfKeRmVhuBN/L
- f/Qnr3rSHdnRzn9bKMJbMP0BDGj1uk7zdUZ0VR6pEGV/JioVDOjXTPORvXKDMxfz8hdF
- 5J5XpPabCB4Aa0v6TwgTdM8XqdX7Tvzp45GUZsj+vJ5XeTF939AcD90jTkNJLI3rMgY7
- c9pg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWYrYZei3QCoUd6q+d32JjZwCO289dwn1O+1fpuwIy9W8o9k/1UkIch0ILAKZLQ8S8IQPOYbtDWTkmRW7yvY9WTDCJU8yV2Yz+3xKuGoupw
-X-Gm-Message-State: AOJu0YzlB0eUFdONolfEK/jsJwxGVntUQWkvw1xL6e8bSTP4ybVAuYA+
- pwbBASIYPU/UX7E4G9LMm8F8YmVm3fW5TZpLpUhfSoN2v48qVr2NXWizCL9QqYk=
-X-Google-Smtp-Source: AGHT+IEoP2+bL0oMFj4P0Aa7CMuek/Wx23WK1fJZHUBxVQUK6n4Or8upEK0eOTuockV49z8ZJoyWZA==
-X-Received: by 2002:ac2:504c:0:b0:51a:df97:cc8d with SMTP id
- 2adb3069b0e04-5220fd7cc70mr18338046e87.26.1716202842997; 
- Mon, 20 May 2024 04:00:42 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-521f35ad5fdsm4253446e87.24.2024.05.20.04.00.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 May 2024 04:00:42 -0700 (PDT)
-Date: Mon, 20 May 2024 14:00:40 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, 
- david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, 
- mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, 
- virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] drm/ci: generate testlist from build
-Message-ID: <o363vir3dqz2znrnifo6enbdwudalmxqbigdkci2ykxf5qjbnx@2ngllflxotgk>
-References: <20240517092502.647420-1-vignesh.raman@collabora.com>
- <20240517092502.647420-3-vignesh.raman@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A2510E585
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 11:02:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716202961; x=1747738961;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=2sL2KVm27uBQj/otdx2Y4aVqWUq8XBGdkr4X1A+9bUI=;
+ b=WNjXC0mUNJQTgtIYX8ciOgtR7Vc092L+xTdjQLBdZPbzRo2MgnNhFb94
+ T0/IcUMIjq1IC3WtEvyONBFFn5fgABwlzfy/FOqVVWwUfVT5b3vjgLB9V
+ Qh+9lJAw2GkIWQUa53ft1aaXeT/F34NHQu3bTM99LqLbM3ZJOcEI7zVmS
+ CgRLNfPV/LXE0nIUjir7adn57SLB+7pDoM2BK6pGboyzjFhD8DxsvUylR
+ hAcBikoFDVPQaiAljeFHYhDAWEhKl1NAMepHvvQZxAUWv+n4HYwOYwZyF
+ 6Jnevma/qho5OxPvPSlKcyMQBrUeBWJk4n4dwEiYtNRgBubTM0CwHYrXa Q==;
+X-CSE-ConnectionGUID: frjGqBgdSRqpqplesfrOSg==
+X-CSE-MsgGUID: 5D54e0J5Ss2ZES/A0sS51g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11077"; a="22931250"
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="22931250"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 04:02:36 -0700
+X-CSE-ConnectionGUID: BV/EdRqvT3+O4ZndpQiIrw==
+X-CSE-MsgGUID: rSUya02cSW6oBcOYS1mVLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="37318924"
+Received: from unknown (HELO localhost) ([10.245.246.99])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 04:02:34 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 7/7] drm/i915: Remove bogus MST check in
+ intel_dp_has_audio()
+In-Reply-To: <20240517145356.26103-8-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
+ <20240517145356.26103-8-ville.syrjala@linux.intel.com>
+Date: Mon, 20 May 2024 14:02:30 +0300
+Message-ID: <87cypgu4op.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240517092502.647420-3-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,54 +70,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 17, 2024 at 02:54:58PM +0530, Vignesh Raman wrote:
-> Stop vendoring the testlist into the kernel. Instead, use the
-> testlist from the IGT build to ensure we do not miss renamed
-> or newly added tests.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+On Fri, 17 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> No idea what this MST checks is doing in intel_dp_has_audio().
+> Looks completely pointless, so get rid of it.
+
+2e775f2d41ef ("drm/i915/display: update intel_dp_has_audio to support MST")
+6297ee90f682 ("drm/i915/display: configure SDP split for DP-MST")
+
+The division of changes here is not ideal, but I presume the goal was to
+not do functional changes compared to intel_dp_mst_has_audio(). Which
+may or may not be a good reason...
+
+BR,
+Jani.
+
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
-> 
-> v2:
->   - Fix testlist generation for arm and arm64 builds.
-> 
-> ---
->  drivers/gpu/drm/ci/build-igt.sh  |   34 +
->  drivers/gpu/drm/ci/igt_runner.sh |    9 +-
->  drivers/gpu/drm/ci/testlist.txt  | 2761 ------------------------------
->  3 files changed, 39 insertions(+), 2765 deletions(-)
->  delete mode 100644 drivers/gpu/drm/ci/testlist.txt
-> 
-> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
-> index 7859554756c4..e62244728613 100644
-> --- a/drivers/gpu/drm/ci/build-igt.sh
-> +++ b/drivers/gpu/drm/ci/build-igt.sh
+>  drivers/gpu/drm/i915/display/intel_dp.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index af298d5017d9..4a486bb6d48c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2806,7 +2806,6 @@ intel_dp_drrs_compute_config(struct intel_connector=
+ *connector,
+>  }
+>=20=20
+>  static bool intel_dp_has_audio(struct intel_encoder *encoder,
+> -			       struct intel_crtc_state *crtc_state,
+>  			       const struct drm_connector_state *conn_state)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+> @@ -2815,8 +2814,7 @@ static bool intel_dp_has_audio(struct intel_encoder=
+ *encoder,
+>  	struct intel_connector *connector =3D
+>  		to_intel_connector(conn_state->connector);
+>=20=20
+> -	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) &&
+> -	    !intel_dp_port_has_audio(i915, encoder->port))
+> +	if (!intel_dp_port_has_audio(i915, encoder->port))
+>  		return false;
+>=20=20
+>  	if (intel_conn_state->force_audio =3D=3D HDMI_AUDIO_AUTO)
+> @@ -2875,7 +2873,7 @@ intel_dp_audio_compute_config(struct intel_encoder =
+*encoder,
+>  			      struct drm_connector_state *conn_state)
+>  {
+>  	pipe_config->has_audio =3D
+> -		intel_dp_has_audio(encoder, pipe_config, conn_state) &&
+> +		intel_dp_has_audio(encoder, conn_state) &&
+>  		intel_audio_compute_config(encoder, pipe_config, conn_state);
+>=20=20
+>  	pipe_config->sdp_split_enable =3D pipe_config->has_audio &&
 
-[...]
-
-> @@ -26,6 +50,16 @@ meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
->  ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
->  ninja -C build install
->  
-> +if [[ "$KERNEL_ARCH" = "arm64" ]]; then
-> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib/aarch64-linux-gnu
-> +elif [[ "$KERNEL_ARCH" = "arm" ]]; then
-> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib
-> +else
-> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib64
-
-Could you please clarify this part? The arm64 vs arm don't look logical
-from my point of view.
-
-The rest LGTM.
-
-> +fi
-> +
-> +generate_testlist
-> +
->  mkdir -p artifacts/
->  tar -cf artifacts/igt.tar /igt
->  
--- 
-With best wishes
-Dmitry
+--=20
+Jani Nikula, Intel
