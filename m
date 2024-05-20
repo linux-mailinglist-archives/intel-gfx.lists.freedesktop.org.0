@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A751F8CA29A
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 21:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5908CA2BE
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 21:30:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EF6910E458;
-	Mon, 20 May 2024 19:14:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0841410E5F6;
+	Mon, 20 May 2024 19:30:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5BCF10E458;
- Mon, 20 May 2024 19:14:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2155737818827361744=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A3A10E5F6;
+ Mon, 20 May 2024 19:30:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe=3A_Cleanup_xe=5Fmmio?=
- =?utf-8?q?=2Eh?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dp=5Fmst=3A?=
+ =?utf-8?q?_Enable_link_training_fallback_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 May 2024 19:14:45 -0000
-Message-ID: <171623248574.2157358.17718265206466367994@8e613ede5ea5>
+Date: Mon, 20 May 2024 19:30:52 -0000
+Message-ID: <171623345234.2157358.17270861142676879514@8e613ede5ea5>
 X-Patchwork-Hint: ignore
-References: <20240520181814.2392-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20240520181814.2392-1-michal.wajdeczko@intel.com>
+References: <20240520185822.3725844-1-imre.deak@intel.com>
+In-Reply-To: <20240520185822.3725844-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,153 +41,45 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2155737818827361744==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Cleanup xe_mmio.h
-URL   : https://patchwork.freedesktop.org/series/133825/
-State : success
+Series: drm/i915/dp_mst: Enable link training fallback (rev3)
+URL   : https://patchwork.freedesktop.org/series/133624/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_14785 -> Patchwork_133825v1
-====================================================
+Error: dim checkpatch failed
+3901134df2a3 drm/i915/dp_mst: Align TUs to avoid splitting symbols across MTPs
+28d65f0e37e3 drm/i915/dp: Move link train params to a substruct in intel_dp
+ff4e8e37d80a drm/i915/dp: Move link train fallback to intel_dp_link_training.c
+-:196: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#196: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:1140:
++							      intel_dp_common_rate(intel_dp, index - 1),
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 195 lines checked
+9b5277bae76d drm/i915/dp: Sanitize intel_dp_get_link_train_fallback_values()
+2a76291f9545 drm/i915: Factor out function to modeset commit a set of pipes
+7bf5284c899d drm/i915/dp: Use a commit modeset for link retraining MST links
+82047795cc89 drm/i915/dp: Recheck link state after modeset
+2628e40a6de7 drm/i915/dp: Reduce link params only after retrying with unchanged params
+44933405fc08 drm/i915/dp: Pass atomic state to link training function
+eefedc87bcc1 drm/i915/dp: Send a link training modeset-retry uevent to all MST connectors
+62a79366ba9d drm/i915/dp: Use check link state work in the hotplug handler
+b709e61f0cc5 drm/i915/dp: Use check link state work in the detect handler
+b8bb9bccea89 drm/i915/dp: Use check link state work in the HPD IRQ handler
+872973e3096d drm/i915/dp: Disable link retraining after the last fallback step
+1f4c395aa4ea drm/i915/dp_mst: Reset intel_dp->link_trained during disabling
+c9e59063ea28 drm/i915/dp_mst: Enable link training fallback for MST
+6572f48d2ae8 drm/i915/dp: Add debugfs entries to set a target link rate/lane count
+-:74: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#74: FILE: drivers/gpu/drm/i915/display/intel_dp.c:376:
++	return clamp(intel_dp->link.requested_lane_count, 1, intel_dp_max_common_lane_count(intel_dp));
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): bat-jsl-3 bat-arls-3 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_133825v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#10378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-dg2-8:          [DMESG-WARN][3] ([i915#10014]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-dg2-8/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/bat-dg2-8/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@gt_timelines:
-    - bat-arls-2:         [INCOMPLETE][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-arls-2/igt@i915_selftest@live@gt_timelines.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/bat-arls-2/igt@i915_selftest@live@gt_timelines.html
-
-  
-  [i915#10014]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+total: 0 errors, 1 warnings, 0 checks, 419 lines checked
+b4d9d57db44b drm/i915/dp: Add debugfs entries to get the max link rate/lane count
+66d34360dd51 drm/i915/dp: Add debugfs entry to force link training failure
+52bf93fe9d04 drm/i915/dp: Add debugfs entry to force link retrain
+d08235d7f4ac drm/i915/dp: Add debugfs entry for link training info
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_14785 -> Patchwork_133825v1
-
-  CI-20190529: 20190529
-  CI_DRM_14785: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7863: fa1dc232d5d840532521df8a6fcf1fe82c514304 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_133825v1: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/index.html
-
---===============2155737818827361744==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Cleanup xe_mmio.h</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133825/">https://patchwork.freedesktop.org/series/133825/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14785 -&gt; Patchwork_133825v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): bat-jsl-3 bat-arls-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_133825v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-dg2-8/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014">i915#10014</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/bat-dg2-8/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_timelines:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-arls-2/igt@i915_selftest@live@gt_timelines.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133825v1/bat-arls-2/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14785 -&gt; Patchwork_133825v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14785: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7863: fa1dc232d5d840532521df8a6fcf1fe82c514304 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_133825v1: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2155737818827361744==--
