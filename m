@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A5FE8C9B47
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 12:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 853258C9B6B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 12:37:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E25E10E4FE;
-	Mon, 20 May 2024 10:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB01110E272;
+	Mon, 20 May 2024 10:37:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f7cN4kKh";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26A2310E4F6;
- Mon, 20 May 2024 10:29:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C55210E272
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 10:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716201470; x=1747737470;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=tEIBJiTVNBHEx+CZoNI1uMp8Ec8nN8jjaFjekETEmqg=;
+ b=f7cN4kKhy0aJbrOnTJxaWUAxoMbHqoYl/lGGk1qNZPUp95lB6zST4fll
+ Wa5vPFcmp549GfQg7bzaeESDlkzPYyfTWagyafKZlYsag02DOEK1zwTy/
+ jAu24jEM6OB/5swRop+Oo6kUtYdD9fdQ3krXuz/F8GDB4ZBonmTKB09Eh
+ mxX1EabtLfKmMbzeMnSQzFKotSiHP6+Apwth2U2pmjCInIxCKiBfjDs9a
+ 7/fw3uzsJ2xW1BtWqolFmbNXoSOV9b/2tJyF+6q832yl8F0r+p7vFuia6
+ 0/CrVucVzajhf0tRda+qh9EVe9aVRpO+4JAT5177obmDA3PSICXSx3Eom Q==;
+X-CSE-ConnectionGUID: lAlcy+zvSImtgMQ61Y8hiQ==
+X-CSE-MsgGUID: /HbX95foReuvAuOSiPPyOA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11077"; a="12261965"
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="12261965"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 03:37:31 -0700
+X-CSE-ConnectionGUID: PMRs00iUSfWGJQeSsvWAJg==
+X-CSE-MsgGUID: 4GBBRNNhRsGtraGMjPSDPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="33094715"
+Received: from unknown (HELO localhost) ([10.245.246.99])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 03:37:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: Bump max TMDS bitrate to 6 Gbps on ADL/DG2+
+In-Reply-To: <20240516182715.27119-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240516182715.27119-1-ville.syrjala@linux.intel.com>
+Date: Mon, 20 May 2024 13:37:26 +0300
+Message-ID: <87le44u5uh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Ultrajoiner_basic_fu?=
- =?utf-8?q?nctionality_series?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 May 2024 10:29:34 -0000
-Message-ID: <171620097415.2146420.8869671199739169693@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240520073839.23881-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20240520073839.23881-1-stanislav.lisovskiy@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,214 +65,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Bspec lists the mas TMDS bitrate as 6 Gbps on ADL/DG2.
 
-Series: Ultrajoiner basic functionality series
-URL   : https://patchwork.freedesktop.org/series/133800/
-State : warning
+*max
 
-== Summary ==
+There's also ADL-S with display 12 and 6 Gbps support?
 
-Error: dim checkpatch failed
-f1c5de795401 drm/i915: Rename all bigjoiner to joiner
--:200: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#200: FILE: drivers/gpu/drm/i915/display/intel_display.c:2320:
-+static void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
- 					   struct drm_display_mode *mode)
+BR,
+Jani.
 
--:299: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#299: FILE: drivers/gpu/drm/i915/display/intel_display.c:3496:
-+static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
- 				    u8 *master_pipes, u8 *slave_pipes)
+> Bump our limit to match.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 0faf2afa1c09..bd0ba4edcd1d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1784,7 +1784,9 @@ static int intel_hdmi_source_max_tmds_clock(struct =
+intel_encoder *encoder)
+>  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+>  	int max_tmds_clock, vbt_max_tmds_clock;
+>=20=20
+> -	if (DISPLAY_VER(dev_priv) >=3D 10)
+> +	if (DISPLAY_VER(dev_priv) >=3D 13)
+> +		max_tmds_clock =3D 600000;
+> +	else if (DISPLAY_VER(dev_priv) >=3D 10)
+>  		max_tmds_clock =3D 594000;
+>  	else if (DISPLAY_VER(dev_priv) >=3D 8 || IS_HASWELL(dev_priv))
+>  		max_tmds_clock =3D 300000;
 
--:415: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#415: FILE: drivers/gpu/drm/i915/display/intel_display.c:4501:
-+copy_joiner_crtc_state_nomodeset(struct intel_atomic_state *state,
- 				    struct intel_crtc *slave_crtc)
-
--:424: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#424: FILE: drivers/gpu/drm/i915/display/intel_display.c:4521:
-+copy_joiner_crtc_state_modeset(struct intel_atomic_state *state,
- 				  struct intel_crtc *slave_crtc)
-
--:471: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#471: FILE: drivers/gpu/drm/i915/display/intel_display.c:5735:
-+static int intel_crtc_add_joiner_planes(struct intel_atomic_state *state,
- 					   struct intel_crtc *crtc,
-
--:514: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#514: FILE: drivers/gpu/drm/i915/display/intel_display.c:5891:
-+static int intel_atomic_check_joiner(struct intel_atomic_state *state,
- 					struct intel_crtc *master_crtc)
-
--:577: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#577: FILE: drivers/gpu/drm/i915/display/intel_display.c:5962:
-+static void kill_joiner_slave(struct intel_atomic_state *state,
- 				 struct intel_crtc *master_crtc)
-
--:971: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#971: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1211:
-+bool intel_dp_need_joiner(struct intel_dp *intel_dp,
- 			     struct intel_connector *connector,
-
--:1001: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1001: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1259:
-+	if (intel_dp_need_joiner(intel_dp, connector,
- 				    mode->hdisplay, target_clock)) {
-
--:1073: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1073: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2436:
-+	if (intel_dp_need_joiner(intel_dp, connector,
- 				    adjusted_mode->crtc_hdisplay,
-
--:1122: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1122: FILE: drivers/gpu/drm/i915/display/intel_dp.h:154:
-+bool intel_dp_need_joiner(struct intel_dp *intel_dp,
- 			     struct intel_connector *connector,
-
--:1144: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1144: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:571:
-+	if (intel_dp_need_joiner(intel_dp, connector,
- 				    adjusted_mode->crtc_hdisplay,
-
--:1173: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1173: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:1422:
-+	if (intel_dp_need_joiner(intel_dp, intel_connector,
- 				    mode->hdisplay, target_clock)) {
-
--:1313: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1313: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:278:
-+	joiner_slaves_mask = get_joiner_slave_pipes(i915,
- 							  portsync_master_mask |
-
--:1372: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#1372: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:739:
-+								 intel_crtc_joiner_slave_pipes(crtc_state)) {
-
-total: 0 errors, 1 warnings, 14 checks, 1283 lines checked
-8e8e3298a19d drm/i915: Implement basic functions for ultrajoiner support
-c30500d06cf7 drm/i915: Implement hw state readout for ultrajoiner
--:9: WARNING:BAD_SIGN_OFF: 'Signed-off-by:' is the preferred signature form
-#9: 
-SIgned-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
--:48: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#48: FILE: drivers/gpu/drm/i915/display/intel_display.c:3577:
-+
-+
-
--:71: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
-#71: FILE: drivers/gpu/drm/i915/display/intel_display.c:3616:
-+		return fls(master_pipes) - 1;
-+	} else {
-
-total: 0 errors, 2 warnings, 1 checks, 130 lines checked
-f8f5dde0ee99 drm/i915: Compute config and mode valid changes for ultrajoiner
--:66: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#66: FILE: drivers/gpu/drm/i915/display/intel_dp.c:814:
-+	max_bpp_joiner = max_bpp_small_joiner_ram =
-
--:206: ERROR:ELSE_AFTER_BRACE: else should follow close brace '}'
-#206: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1304:
-+	}
-+	else if (intel_dp_need_bigjoiner(intel_dp, connector,
-
--:207: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#207: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1305:
-+	else if (intel_dp_need_bigjoiner(intel_dp, connector,
- 				    mode->hdisplay, target_clock)) {
-
--:324: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#324: FILE: drivers/gpu/drm/i915/display/intel_dp.h:123:
-+bool intel_dp_joiner_needs_dsc(struct drm_i915_private *i915, bool use_bigjoiner, bool use_ultrajoiner);
-
--:380: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#380: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:574:
-+	else if (intel_dp_need_bigjoiner(intel_dp, connector,
- 				    adjusted_mode->crtc_hdisplay,
-
--:494: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#494: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2351:
-+
-+
-
--:550: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
-#550: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:813:
-+			dss_ctl1_val |= MASTER_ULTRA_JOINER_ENABLE;;
-
-total: 1 errors, 2 warnings, 4 checks, 480 lines checked
-dee2c5b44f8d drm/i915: Add new abstraction layer to handle pipe order for different joiners
--:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#7: 
-Ultrajoiner case requires special treatment where both reverse and staight order
-
--:77: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:1701:
- 
-+
-
--:82: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#82: FILE: drivers/gpu/drm/i915/display/intel_display.c:1706:
-+	static const enum pipe ultrajoiner_pipe_order_enable[I915_MAX_PIPES] =
-+		{ PIPE_B, PIPE_D, PIPE_C, PIPE_A };
-
--:84: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#84: FILE: drivers/gpu/drm/i915/display/intel_display.c:1708:
-+	static const enum pipe bigjoiner_pipe_order_enable[I915_MAX_PIPES] =
-+		{ PIPE_B, PIPE_A, PIPE_D, PIPE_C };
-
--:86: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#86: FILE: drivers/gpu/drm/i915/display/intel_display.c:1710:
-+	static const enum pipe nojoiner_pipe_order_enable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_C, PIPE_D };
-
--:98: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#98: FILE: drivers/gpu/drm/i915/display/intel_display.c:1722:
-+	static const enum pipe ultrajoiner_pipe_order_disable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_D, PIPE_C };
-
--:100: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#100: FILE: drivers/gpu/drm/i915/display/intel_display.c:1724:
-+	static const enum pipe bigjoiner_pipe_order_disable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_C, PIPE_D };
-
--:102: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#102: FILE: drivers/gpu/drm/i915/display/intel_display.c:1726:
-+	static const enum pipe nojoiner_pipe_order_disable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_C, PIPE_D };
-
--:218: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__dev_priv' - possible side-effects?
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__p' - possible side-effects?
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__priolist' - possible side-effects?
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
-total: 7 errors, 1 warnings, 4 checks, 241 lines checked
-
-
+--=20
+Jani Nikula, Intel
