@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413968CA0A5
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 18:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCECF8CA0AD
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 18:25:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E0AA10E6DF;
-	Mon, 20 May 2024 16:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EAE10E7F0;
+	Mon, 20 May 2024 16:25:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V1xUVStI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nPqwxKvF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67A9510E6DF
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 16:23:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ECD710E7E2;
+ Mon, 20 May 2024 16:25:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716222229; x=1747758229;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0b5E8JSpdsCdTG1zRFOVS+YlopqIrfh0fdZJVR3kgYs=;
- b=V1xUVStI0jM/zt8jGxA6X6YLQn/SlNgLQkpUJtFjJziuVpLJC1FUF6e/
- 9oCP21CrmFvNxThpazNAc639brNQu9Yve7xZstXWK+cQikU79ox0o9WGj
- 1rv+C35cTwxjw75BEBI2TgfzAj4ntullykti85XOlw7lfYpzyh/Us4RC2
- Obwivi3bOYqXM8nqeaxX2fSrwxz58CPGg+PN13QZoz+wg5a9Re4iwIN9B
- Ujn/VlzGQ7mzMvWSSfaw855oM/ql6nW7QxXCzq1CB52ZN/3xntARtwpKn
- 4EBeWelY3BRvlnymAEIWHdzIGhDEPKOoZ972TBblsCYLFfU18EYAbxTAv w==;
-X-CSE-ConnectionGUID: ogCrnjI/QSO8r5u939pWmQ==
-X-CSE-MsgGUID: EyJSObPyQquj7VodH6A8xw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23503752"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="23503752"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 09:23:49 -0700
-X-CSE-ConnectionGUID: zcf8+WXiTimW7HDQB3TwgQ==
-X-CSE-MsgGUID: v5w7A5kHSg2OjwI7vjRlWQ==
+ t=1716222345; x=1747758345;
+ h=date:from:to:cc:subject:message-id;
+ bh=dEmgpORmzYIlG5VIjhPv8tz+Sx+mvLA8tr1mBQVpcrs=;
+ b=nPqwxKvFqIPeL5Dk/wq/JSyEMtMnDaShLUToFgx3ES454WAX21WLHc6v
+ RAX9OfoZe80/AmmQt8ppOmIHnwzJUFMt62fiyt9Py/MqevNV1FJnamF8H
+ mhCWO2UShY8fxOl5cumYsNyRS8/ytBgPgqKxqJHz6TV+EuBn5O/G6/Ssw
+ 1POg8jL1GJYCs941fG+aWQQjzon6Gx0DrD5PEHf/RqKgIWehnJX186dkD
+ gCFgEzA6S491vpV6HUj1w8IxuCDYq6VwXKdE6QZceOQrwr4kTYgrDeZof
+ bZR9lFuSNr5pjnX3jAxCVmpNVMmM/ZyHWiX1H/Efu1GSvzEeIpedhh1Wb w==;
+X-CSE-ConnectionGUID: Q/utVOM6SPCrNDcxbGAcjw==
+X-CSE-MsgGUID: u42mPpvMQT+ktcS2XvAUKA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12540727"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="12540727"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 09:25:44 -0700
+X-CSE-ConnectionGUID: ewrm6qiMS4OmlOIMCmjPJQ==
+X-CSE-MsgGUID: VCSCIw03QvmPGpmaLQNdgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32576094"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 20 May 2024 09:23:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 May 2024 19:23:46 +0300
-Date: Mon, 20 May 2024 19:23:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 02/13] drm/i915: Clean up the cursor register defines
-Message-ID: <Zkt5EhreisBepuTS@intel.com>
-References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
- <20240516135622.3498-3-ville.syrjala@linux.intel.com>
- <878r04voft.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <878r04voft.fsf@intel.com>
-X-Patchwork-Hint: comment
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32728530"
+Received: from unknown (HELO 108735ec233b) ([10.239.97.151])
+ by fmviesa010.fm.intel.com with ESMTP; 20 May 2024 09:25:40 -0700
+Received: from kbuild by 108735ec233b with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1s95pS-0004xU-0n;
+ Mon, 20 May 2024 16:25:38 +0000
+Date: Tue, 21 May 2024 00:25:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx@lists.freedesktop.org, bpf@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arch@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Subject: [linux-next:master] BUILD REGRESSION
+ 632483ea8004edfadd035de36e1ab2c7c4f53158
+Message-ID: <202405210013.ovPO7kFU-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,166 +71,505 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 20, 2024 at 12:10:30PM +0300, Jani Nikula wrote:
-> On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Group the cursor register defines such that everything to
-> > do with one register is in one place.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> but a couple of nitpicks inline...
-> 
-> > ---
-> >  .../gpu/drm/i915/display/intel_cursor_regs.h  | 52 +++++++++----------
-> >  1 file changed, 26 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor_regs.h b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-> > index c2190af1e9f5..270c26c2e6df 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
-> > @@ -9,6 +9,7 @@
-> >  #include "intel_display_reg_defs.h"
-> >  
-> >  #define _CURACNTR		0x70080
-> > +#define CURCNTR(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CURACNTR)
-> 
-> In addition to code movement, these add braces around (dev_priv) and
-> (pipe). While it makes review harder by breaking 'git show
-> --color-moved',
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: 632483ea8004edfadd035de36e1ab2c7c4f53158  Add linux-next specific files for 20240520
 
-Sorry. Forgot I snuck it in there.
+Error/Warning reports:
 
-> I also think it's kind of unnecessary when they're only
-> passed on as parameters. Or is there some corner case where it matters?
+https://lore.kernel.org/oe-kbuild-all/202405202243.SHvS2otq-lkp@intel.com
+https://lore.kernel.org/oe-kbuild-all/202405210004.5M02x213-lkp@intel.com
 
-I think cargo-culting is probably the best argument for protecting
-each and every macro argument. If used universally then I think
-it'll be a bit more likely that newly added macros, where it
-might matter more, will inherit it as well.
+Error/Warning: (recently discovered and may have been fixed)
 
-And we've certainly had incidents with misplaced commas (the
-i915_reg_t addition was a reaction to one such event), so I
-wouldn't dare claim that there is zero chance of screwups
-with these.
+drivers/thermal/thermal_trip.o: warning: objtool: unexpected relocation symbol type in .rela.discard.reachable
 
-> Comma has the lowest precedence, and I don't think you could easily pass
-> in a value with a comma operator.
-> 
-> No need to change for this, it's not wrong either.
-> 
-> >  /* Old style CUR*CNTR flags (desktop 8xx) */
-> >  #define   CURSOR_ENABLE			REG_BIT(31)
-> >  #define   CURSOR_PIPE_GAMMA_ENABLE	REG_BIT(30)
-> > @@ -38,61 +39,60 @@
-> >  #define   MCURSOR_MODE_128_ARGB_AX	(0x20 | MCURSOR_MODE_128_32B_AX)
-> >  #define   MCURSOR_MODE_256_ARGB_AX	(0x20 | MCURSOR_MODE_256_32B_AX)
-> >  #define   MCURSOR_MODE_64_ARGB_AX	(0x20 | MCURSOR_MODE_64_32B_AX)
-> > +
-> >  #define _CURABASE		0x70084
-> > +#define CURBASE(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CURABASE)
-> > +
-> >  #define _CURAPOS		0x70088
-> > -#define _CURAPOS_ERLY_TPT	0x7008c
-> > +#define CURPOS(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CURAPOS)
-> >  #define   CURSOR_POS_Y_SIGN		REG_BIT(31)
-> >  #define   CURSOR_POS_Y_MASK		REG_GENMASK(30, 16)
-> >  #define   CURSOR_POS_Y(y)		REG_FIELD_PREP(CURSOR_POS_Y_MASK, (y))
-> >  #define   CURSOR_POS_X_SIGN		REG_BIT(15)
-> >  #define   CURSOR_POS_X_MASK		REG_GENMASK(14, 0)
-> >  #define   CURSOR_POS_X(x)		REG_FIELD_PREP(CURSOR_POS_X_MASK, (x))
-> > +
-> > +#define _CURAPOS_ERLY_TPT	0x7008c
-> > +#define CURPOS_ERLY_TPT(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CURAPOS_ERLY_TPT)
-> > +
-> >  #define _CURASIZE		0x700a0 /* 845/865 */
-> > +#define CURSIZE(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CURASIZE)
-> >  #define   CURSOR_HEIGHT_MASK		REG_GENMASK(21, 12)
-> >  #define   CURSOR_HEIGHT(h)		REG_FIELD_PREP(CURSOR_HEIGHT_MASK, (h))
-> >  #define   CURSOR_WIDTH_MASK		REG_GENMASK(9, 0)
-> >  #define   CURSOR_WIDTH(w)		REG_FIELD_PREP(CURSOR_WIDTH_MASK, (w))
-> > +
-> >  #define _CUR_FBC_CTL_A		0x700a0 /* ivb+ */
-> > +#define CUR_FBC_CTL(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CUR_FBC_CTL_A)
-> >  #define   CUR_FBC_EN			REG_BIT(31)
-> >  #define   CUR_FBC_HEIGHT_MASK		REG_GENMASK(7, 0)
-> >  #define   CUR_FBC_HEIGHT(h)		REG_FIELD_PREP(CUR_FBC_HEIGHT_MASK, (h))
-> > +
-> >  #define _CUR_CHICKEN_A		0x700a4 /* mtl+ */
-> > +#define CUR_CHICKEN(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CUR_CHICKEN_A)
-> > +
-> >  #define _CURASURFLIVE		0x700ac /* g4x+ */
-> > -#define _CURBCNTR		0x700c0
-> > -#define _CURBBASE		0x700c4
-> > -#define _CURBPOS		0x700c8
-> > -
-> > -#define _CURBCNTR_IVB		0x71080
-> > -#define _CURBBASE_IVB		0x71084
-> > -#define _CURBPOS_IVB		0x71088
-> > -
-> > -#define CURCNTR(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURACNTR)
-> > -#define CURBASE(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURABASE)
-> > -#define CURPOS(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURAPOS)
-> > -#define CURPOS_ERLY_TPT(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURAPOS_ERLY_TPT)
-> > -#define CURSIZE(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASIZE)
-> > -#define CUR_FBC_CTL(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_FBC_CTL_A)
-> > -#define CUR_CHICKEN(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CUR_CHICKEN_A)
-> > -#define CURSURFLIVE(dev_priv, pipe) _MMIO_CURSOR2(dev_priv, pipe, _CURASURFLIVE)
-> > +#define CURSURFLIVE(dev_priv, pipe)	_MMIO_CURSOR2((dev_priv), (pipe), _CURASURFLIVE)
-> >  
-> >  /* skl+ */
-> >  #define _CUR_WM_A_0		0x70140
-> >  #define _CUR_WM_B_0		0x71140
-> > +#define CUR_WM(pipe, level)	_MMIO(_PIPE((pipe), _CUR_WM_A_0, _CUR_WM_B_0) + (level) * 4)
-> > +
-> >  #define _CUR_WM_SAGV_A		0x70158
-> >  #define _CUR_WM_SAGV_B		0x71158
-> > +#define CUR_WM_SAGV(pipe)	_MMIO_PIPE((pipe), _CUR_WM_SAGV_A, _CUR_WM_SAGV_B)
-> > +
-> >  #define _CUR_WM_SAGV_TRANS_A	0x7015C
-> >  #define _CUR_WM_SAGV_TRANS_B	0x7115C
-> > +#define CUR_WM_SAGV_TRANS(pipe)	_MMIO_PIPE((pipe), _CUR_WM_SAGV_TRANS_A, _CUR_WM_SAGV_TRANS_B)
-> > +
-> >  #define _CUR_WM_TRANS_A		0x70168
-> >  #define _CUR_WM_TRANS_B		0x71168
-> > -#define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
-> > -#define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
-> 
-> There's some unmentioned drive-by cleanup here too. No biggie, but I've
-> found 'git show --color-moved' to be such a powerful aid in reviewing
-> code movement patches that I'd prefer these to be separate. No need to
-> change now, because I already reviewed it. :)
+Error/Warning ids grouped by kconfigs:
 
-Agreed. I suppose I got a bit of tunnel vision here and didn't do
-a proper job of reviewing my own stuff before sending it out.
-I'll need to add --color-moved to my "this should be pure
-code movement" checklist...
+gcc_recent_errors
+|-- alpha-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- arc-allmodconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- arc-allyesconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- arc-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- arm-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- arm-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- arm-randconfig-003-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- csky-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- csky-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- csky-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- i386-allmodconfig
+|   |-- ERROR:__udivdi3-drivers-vdpa-octeon_ep-octep_vdpa.ko-undefined
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- i386-allyesconfig
+|   |-- ERROR:__udivdi3-drivers-vdpa-octeon_ep-octep_vdpa.ko-undefined
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- i386-randconfig-012-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- i386-randconfig-014-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- i386-randconfig-016-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- loongarch-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- loongarch-defconfig
+|   `-- drivers-thermal-thermal_trip.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
+|-- loongarch-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- m68k-allmodconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- m68k-allyesconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- microblaze-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- microblaze-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- mips-allyesconfig
+|   |-- ERROR:__udivdi3-drivers-vdpa-octeon_ep-octep_vdpa.ko-undefined
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- nios2-allmodconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- nios2-allyesconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- nios2-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- nios2-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- openrisc-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- parisc-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   |-- drivers-gpu-drm-nouveau-nvif-object.c:error:memcpy-accessing-or-more-bytes-at-offsets-and-overlaps-bytes-at-offset
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- parisc-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   |-- drivers-gpu-drm-nouveau-nvif-object.c:error:memcpy-accessing-or-more-bytes-at-offsets-and-overlaps-bytes-at-offset
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- powerpc-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- powerpc-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- powerpc-randconfig-r051-20240520
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml-dcn401-dcn401_fpu.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-dml21_translation_helper.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-dml21_utils.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_core-dml2_core_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_core-dml2_core_dcn4_calcs.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_core-dml2_core_shared.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_dpmm-dml2_dpmm_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_mcg-dml2_mcg_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn3.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn4.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_pmo-dml2_pmo_dcn4_fams2.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   |-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_standalone_libraries-lib_float_math.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|   `-- powerpc-linux-ld:drivers-gpu-drm-amd-display-dc-dml2-dml21-src-dml2_top-dml_top_mcache.o-uses-hard-float-arch-powerpc-kernel-udbg.o-uses-soft-float
+|-- riscv-randconfig-001-20240520
+|   |-- drivers-irqchip-irq-riscv-imsic-early.c:error:too-many-arguments-to-function-riscv_ipi_set_virq_range
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- s390-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- s390-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sh-allmodconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sh-allyesconfig
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sh-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc-randconfig-001-20240520
+|   |-- (.head.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-init.text
+|   `-- (.init.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-symbol-leon_smp_cpu_startup-defined-in-.text-section-in-arch-sparc-kernel-trampoline_32.o
+|-- sparc-randconfig-002-20240520
+|   |-- (.head.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-init.text
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc-randconfig-r063-20240520
+|   |-- (.head.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-init.text
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc-randconfig-r064-20240520
+|   |-- (.head.text):relocation-truncated-to-fit:R_SPARC_WDISP22-against-init.text
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc64-allmodconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc64-allyesconfig
+|   |-- drivers-gpu-drm-imx-ipuv3-imx-ldb.c:error:_sel-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   |-- drivers-gpu-drm-nouveau-nouveau_backlight.c:error:d-directive-output-may-be-truncated-writing-between-and-bytes-into-a-region-of-size
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- sparc64-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- um-allyesconfig
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|   `-- kernel-bpf-verifier.c:error:pcpu_hot-undeclared-(first-use-in-this-function)
+|-- um-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-buildonly-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-buildonly-randconfig-003-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-buildonly-randconfig-005-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-buildonly-randconfig-006-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-003-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-005-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-012-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-016-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-074-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-076-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-103-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|-- x86_64-randconfig-161-20240520
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_stream.c-dc_stream_get_max_flickerless_instant_vtotal_delta()-warn:always-true-condition-((safe_refresh_v_total-stream-timing.v_total)-)-(-u32max-)
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-core-dc_stream.c-dc_stream_get_max_flickerless_instant_vtotal_delta()-warn:always-true-condition-((stream-timing.v_total-safe_refresh_v_total)-)-(-u32max-)
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+|   `-- net-ipv6-route.c-rt6_fill_node()-error:we-previously-assumed-dst-could-be-null-(see-line-)
+|-- xtensa-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+`-- xtensa-randconfig-r061-20240520
+    `-- drivers-regulator-rtq2208-regulator.c:warning:rtq2208_regulator_ldo_ops-defined-but-not-used
+clang_recent_errors
+|-- arm-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- arm-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- arm-randconfig-004-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- arm64-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-renesas-rcar-du-rcar_cmm.c:error:unused-function-rcar_cmm_read-Werror-Wunused-function
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- arm64-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- arm64-randconfig-004-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- arm64-randconfig-r054-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- hexagon-allmodconfig
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|   `-- include-asm-generic-io.h:error:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior-Werror-Wnull-pointer-arithmetic
+|-- hexagon-allyesconfig
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|   `-- include-asm-generic-io.h:error:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior-Werror-Wnull-pointer-arithmetic
+|-- hexagon-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- hexagon-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-buildonly-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-buildonly-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-buildonly-randconfig-003-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-buildonly-randconfig-004-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-buildonly-randconfig-006-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-001-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-005-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-013-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-051-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-052-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- i386-randconfig-141-20240520
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|   `-- net-ipv6-route.c-rt6_fill_node()-error:we-previously-assumed-dst-could-be-null-(see-line-)
+|-- powerpc-randconfig-002-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- riscv-defconfig
+|   `-- drivers-irqchip-irq-riscv-imsic-early.c:error:too-many-arguments-to-function-call-expected-have
+|-- s390-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-amd_asic_type-and-enum-amd_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-amdgpu_ras.c:error:arithmetic-between-different-enumeration-types-(-enum-amdgpu_ras_block-and-enum-amdgpu_ras_mca_block-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   |-- drivers-gpu-drm-radeon-radeon_drv.c:error:bitwise-operation-between-different-enumeration-types-(-enum-radeon_family-and-enum-radeon_chip_flags-)-Werror-Wenum-enum-conversion
+|   |-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|   `-- include-asm-generic-io.h:error:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior-Werror-Wnull-pointer-arithmetic
+|-- x86_64-allyesconfig
+|   |-- drivers-gpu-drm-pl111-pl111_versatile.c:error:cast-to-smaller-integer-type-enum-versatile_clcd-from-const-void-Werror-Wvoid-pointer-to-enum-cast
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- x86_64-randconfig-006-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- x86_64-randconfig-013-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- x86_64-randconfig-014-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- x86_64-randconfig-073-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- x86_64-randconfig-075-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+|-- x86_64-randconfig-101-20240520
+|   `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
+`-- x86_64-randconfig-102-20240520
+    `-- drivers-regulator-rtq2208-regulator.c:warning:unused-variable-rtq2208_regulator_ldo_ops
 
-> 
-> BR,
-> Jani.
-> 
-> > -#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_B)
-> > -#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _CUR_WM_SAGV_TRANS_B)
-> > -#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRANS_B)
-> > +#define CUR_WM_TRANS(pipe)	_MMIO_PIPE((pipe), _CUR_WM_TRANS_A, _CUR_WM_TRANS_B)
-> >  
-> > -/* skl+ */
-> > -#define _CUR_BUF_CFG_A				0x7017c
-> > -#define _CUR_BUF_CFG_B				0x7117c
-> > -#define CUR_BUF_CFG(pipe)	_MMIO_PIPE(pipe, _CUR_BUF_CFG_A, _CUR_BUF_CFG_B)
-> > +#define _CUR_BUF_CFG_A		0x7017c
-> > +#define _CUR_BUF_CFG_B		0x7117c
-> > +#define CUR_BUF_CFG(pipe)	_MMIO_PIPE((pipe), _CUR_BUF_CFG_A, _CUR_BUF_CFG_B)
-> >  
-> >  #endif /* __INTEL_CURSOR_REGS_H__ */
-> 
-> -- 
-> Jani Nikula, Intel
+elapsed time: 740m
+
+configs tested: 177
+configs skipped: 3
+
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240520   gcc  
+arc                   randconfig-002-20240520   gcc  
+arc                    vdk_hs38_smp_defconfig   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                         at91_dt_defconfig   clang
+arm                                 defconfig   clang
+arm                          ixp4xx_defconfig   gcc  
+arm                            qcom_defconfig   clang
+arm                   randconfig-001-20240520   clang
+arm                   randconfig-002-20240520   clang
+arm                   randconfig-003-20240520   gcc  
+arm                   randconfig-004-20240520   clang
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240520   clang
+arm64                 randconfig-002-20240520   clang
+arm64                 randconfig-003-20240520   clang
+arm64                 randconfig-004-20240520   clang
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240520   gcc  
+csky                  randconfig-002-20240520   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240520   clang
+hexagon               randconfig-002-20240520   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240520   clang
+i386         buildonly-randconfig-002-20240520   clang
+i386         buildonly-randconfig-003-20240520   clang
+i386         buildonly-randconfig-004-20240520   clang
+i386         buildonly-randconfig-005-20240520   clang
+i386         buildonly-randconfig-006-20240520   clang
+i386                                defconfig   clang
+i386                  randconfig-001-20240520   clang
+i386                  randconfig-002-20240520   clang
+i386                  randconfig-003-20240520   gcc  
+i386                  randconfig-004-20240520   gcc  
+i386                  randconfig-005-20240520   clang
+i386                  randconfig-006-20240520   gcc  
+i386                  randconfig-011-20240520   gcc  
+i386                  randconfig-012-20240520   gcc  
+i386                  randconfig-013-20240520   clang
+i386                  randconfig-014-20240520   gcc  
+i386                  randconfig-015-20240520   clang
+i386                  randconfig-016-20240520   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240520   gcc  
+loongarch             randconfig-002-20240520   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                       m5208evb_defconfig   gcc  
+m68k                          multi_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                           ip22_defconfig   gcc  
+mips                      maltaaprp_defconfig   clang
+mips                       rbtx49xx_defconfig   gcc  
+nios2                            alldefconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240520   gcc  
+nios2                 randconfig-002-20240520   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                generic-32bit_defconfig   gcc  
+parisc                randconfig-001-20240520   gcc  
+parisc                randconfig-002-20240520   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                      ppc6xx_defconfig   gcc  
+powerpc               randconfig-001-20240520   gcc  
+powerpc               randconfig-002-20240520   clang
+powerpc               randconfig-003-20240520   clang
+powerpc                        warp_defconfig   gcc  
+powerpc64             randconfig-001-20240520   clang
+powerpc64             randconfig-002-20240520   gcc  
+powerpc64             randconfig-003-20240520   clang
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240520   gcc  
+riscv                 randconfig-002-20240520   gcc  
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240520   gcc  
+s390                  randconfig-002-20240520   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                    randconfig-001-20240520   gcc  
+sh                    randconfig-002-20240520   gcc  
+sh                           se7721_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240520   gcc  
+sparc64               randconfig-002-20240520   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240520   clang
+um                    randconfig-002-20240520   gcc  
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240520   clang
+x86_64       buildonly-randconfig-002-20240520   gcc  
+x86_64       buildonly-randconfig-003-20240520   gcc  
+x86_64       buildonly-randconfig-004-20240520   gcc  
+x86_64       buildonly-randconfig-005-20240520   gcc  
+x86_64       buildonly-randconfig-006-20240520   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240520   clang
+x86_64                randconfig-002-20240520   gcc  
+x86_64                randconfig-003-20240520   gcc  
+x86_64                randconfig-004-20240520   gcc  
+x86_64                randconfig-005-20240520   gcc  
+x86_64                randconfig-006-20240520   clang
+x86_64                randconfig-011-20240520   clang
+x86_64                randconfig-012-20240520   gcc  
+x86_64                randconfig-013-20240520   clang
+x86_64                randconfig-014-20240520   clang
+x86_64                randconfig-015-20240520   gcc  
+x86_64                randconfig-016-20240520   gcc  
+x86_64                randconfig-071-20240520   clang
+x86_64                randconfig-072-20240520   gcc  
+x86_64                randconfig-073-20240520   clang
+x86_64                randconfig-074-20240520   gcc  
+x86_64                randconfig-075-20240520   clang
+x86_64                randconfig-076-20240520   gcc  
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+xtensa                randconfig-001-20240520   gcc  
+xtensa                randconfig-002-20240520   gcc  
 
 -- 
-Ville Syrjälä
-Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
