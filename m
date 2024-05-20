@@ -2,92 +2,171 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9948C9842
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 05:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE278C988D
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 05:58:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 627DE10E0BC;
-	Mon, 20 May 2024 03:30:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70B4A10E069;
+	Mon, 20 May 2024 03:58:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="MwA1Rn/U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PPXz/wZo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B85F010E0BC
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 03:30:17 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-1e651a9f3ffso57809135ad.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 19 May 2024 20:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1716175817; x=1716780617;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=+JrWPfIASUzFRmiR/DV6jZQiIB7Zl8bPPeoGLFG72Uo=;
- b=MwA1Rn/UOntKNOFiZYrGQav2hDtCe83KQFPLypKujfoOsNOWjRwRgCOh/IDE+pM7aY
- +A48n3x5VeqJEMzm8oB/BvUY/NQsVHMReDhYagH+iGLcMuM2bqIU0tdoE47po40HrtIJ
- cVJhmIMwm/KJ4PtaPvv2AkdAUkooXODNqEkds=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716175817; x=1716780617;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+JrWPfIASUzFRmiR/DV6jZQiIB7Zl8bPPeoGLFG72Uo=;
- b=a68QUgNbzg60mT7BZxg5C9rB9SA1n2reRAUEJbmmifIYm64uIsmc6HEziKlrkK78Ii
- kTXbe+UZLVVXTvZaADbn+WigxxxcPDkc7O4eC5hTSU3I9ZZZz7RShLMsR8EIswt2pFM0
- p4sQSkytVGU8EA7NkUx6GfOBoj+ST2pEThAnE4Fbyvvfzin76NPt18WbfBBPOu/MyVON
- brg0KjbRf7gKSDo1Q/mkgai6ZQu4cfEoPWaJNDzyWb/hHfLnKoxwtmgwoRRtBb7B15kH
- cfwdjtNEKOyNJG23F9fOHm7LK7zpura+8PzpUrZVkSEhOz1E9XOoycS3nwVjBjUcxEmT
- Kjhg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX39YO3Jp3TRdNB+q61QiuskjHhW50mkilMNGDRIMCTn/3dmZyQcLbb+W1bUxljx1f/aEaRQZShmENIVpQvv5ISfnV1UO+49+K6HRmmuq5o
-X-Gm-Message-State: AOJu0Yw32gBPepTNcyPYhzv2BAk0+dWzVh/zCqfM4WQLJs2pF4oa7OoC
- EdVklz7N0RMRhqTCNQrogCaBCE7Wi3plZjoJC/4mDjdxqTRSyXFutRXH7sRJbw==
-X-Google-Smtp-Source: AGHT+IGEIhXHFo8lQr4BEx8nWbaYE1K8DXMrMP87uwXai76RXva2jls+/QFtIlMVhVxe/QA8pDzVAQ==
-X-Received: by 2002:a17:902:6bc4:b0:1ea:f9af:ee99 with SMTP id
- d9443c01a7336-1ef43d28276mr260443125ad.25.1716175817070; 
- Sun, 19 May 2024 20:30:17 -0700 (PDT)
-Received: from www.outflux.net ([198.0.35.241])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1ef0bada3efsm193550625ad.114.2024.05.19.20.30.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 19 May 2024 20:30:16 -0700 (PDT)
-Date: Sun, 19 May 2024 20:30:15 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Kent Overstreet <kent.overstreet@linux.dev>
-Cc: kernel test robot <oliver.sang@intel.com>,
- Suren Baghdasaryan <surenb@google.com>, oe-lkp@lists.linux.dev,
- lkp@intel.com, Linux Memory Management List <linux-mm@kvack.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Randy Dunlap <rdunlap@infradead.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Alex Gaynor <alex.gaynor@gmail.com>, Alice Ryhl <aliceryhl@google.com>,
- Andreas Hindborg <a.hindborg@samsung.com>,
- Benno Lossin <benno.lossin@proton.me>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Christoph Lameter <cl@linux.com>,
- Dennis Zhou <dennis@kernel.org>, Gary Guo <gary@garyguo.net>,
- Miguel Ojeda <ojeda@kernel.org>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Zijlstra <peterz@infradead.org>, Tejun Heo <tj@kernel.org>,
- Vlastimil Babka <vbabka@suse.cz>,
- Wedson Almeida Filho <wedsonaf@gmail.com>, linux-hardening@vger.kernel.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [linux-next:master] [mm/slab]  7bd230a266:
- WARNING:at_mm/util.c:#kvmalloc_node_noprof
-Message-ID: <202405192018.9A54A254A@keescook>
-References: <202405151008.6ddd1aaf-oliver.sang@intel.com>
- <a7qrk7rkfbg44mhfehup3cgwi7bhcuqys72tg2ri7ck7sggfnx@643nnjnpxwzt>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8D8310E069
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 03:58:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716177504; x=1747713504;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=+M77llNPzfMndGyzfLMxOEsnGwlE1kxr4soR37cO6UM=;
+ b=PPXz/wZozxaxt+AojqfaGOSa1u/Tce0nciBKBFiVz+lQa4SVpADfWlhN
+ J5oYmL4AaiCN1oL3V1cTBh6VDyNwsMiJggMTc1ZfYnJJKGoV3SJvwSiRQ
+ z5fSvmQMgaU5DTfe4E/BUnXYnJ9+MFPZe4jkJ+tTHtI4bvVs/Q+rURn5h
+ U4ec/n/IRvcdqRbRiML2TSVFtbD0SHY+tkERBMRHHF1r4X6IrjieozJ+o
+ WthlenaadAPAwavJAwKHd5KKLkvmfih01NZNAN8pQaNfQ7CaBMIkzDrC9
+ AMfLIRCpIG2j4IBzNzYDiH5ngGJ8lVSfPUb7vRpujjeBMkfbY4Nu6lZlb Q==;
+X-CSE-ConnectionGUID: kJ/H0PQjRo2eaYmgx1OV8w==
+X-CSE-MsgGUID: Xv3a7jXbQ3y9E7Bs5qTpWQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11077"; a="12134760"
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="12134760"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2024 20:58:23 -0700
+X-CSE-ConnectionGUID: jEnSNzTATtSjT98RIFpzcw==
+X-CSE-MsgGUID: C71qL8BXQmC+rcFUzbqC3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="32417539"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 May 2024 20:58:23 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Sun, 19 May 2024 20:58:22 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Sun, 19 May 2024 20:58:22 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Sun, 19 May 2024 20:58:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YsQG3Q+1dO9m5/Rot9KUnpBxkI4KMKldA/vhOS4QBASt2D1d4tbq4m6VWqw0AwsV/2ndI3HcroAeuVv2EYr0lU56SPPxI9MAOy4ISKiIk/tE4hUC7Fv5nE9yhsLOi2FvprptZpu0Wk3LaME+T+eUtnEBCkxBxjL6t8aTMwHxPRNxl9X3GpQ9qhUdULYyIvUnB2ChWEb5Qsw9lprxXDfGsC+MIQ3YvcqH7KUvodW5bl+YLXGjNjPJqQFzV9+/tvqtTneVYPFgQBAkZ3sRGsx5B5wODepYhSYGt28aDI69+CY0dFyseyj+w1N25CKrafnzSPBPWgmS1+E6YGrZLhjaog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JkNnVRdNc0HWW7+/cA/u+1jZ0/PWZQfxPvn+MzUNqGE=;
+ b=jhEsUuIVcGimFlRsyNLHfzDmMvKTm2kbGOtCVjtT5/VFqQFcWY65lwWqb/lvfRy7d/LtolB7UC+Xnf2Hr+bzmLGgEjeefB+eM+S5pSlXfxOlCtg0IbMSxVpZxXGiiNqp6kzPFfoYqZfE0cAB7dIy3KWfXItxm0HM+kSKla72DkMyM13pox63v8zmD6T5TdLM0GXa0TvkVUYEQ1DkrNCuTI3pSaliqdX7KLkFuOkZiuPOBVcz1s/UyEF0/bQLakjzHOEJ96KOYk1RfkVuSw9+hc66BFU8pfjoJJVcfXiPytzDQ1m4NGfoon/HIaclbdjleChc+83HPB3JlI66SC2l4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by MW4PR11MB6668.namprd11.prod.outlook.com (2603:10b6:303:1e9::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.35; Mon, 20 May
+ 2024 03:58:19 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%6]) with mapi id 15.20.7587.030; Mon, 20 May 2024
+ 03:58:19 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH 2/2] drm/i915/hdcp: Check mst_port to determine connector
+ type
+Thread-Topic: [PATCH 2/2] drm/i915/hdcp: Check mst_port to determine connector
+ type
+Thread-Index: AQHaoDIXFc6VCMz6EEWUA4m9xUoHd7GbcMCAgAQe4JA=
+Date: Mon, 20 May 2024 03:58:19 +0000
+Message-ID: <SN7PR11MB6750DAD5AAD6759070FCD197E3E92@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20240507035037.1025012-1-suraj.kandpal@intel.com>
+ <20240507035037.1025012-3-suraj.kandpal@intel.com>
+ <ZkdSNa0Cb1EpwpUB@ideak-desk.fi.intel.com>
+In-Reply-To: <ZkdSNa0Cb1EpwpUB@ideak-desk.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|MW4PR11MB6668:EE_
+x-ms-office365-filtering-correlation-id: 45ad2e90-4579-4044-8579-08dc7881160a
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230031|366007|376005|1800799015|38070700009;
+x-microsoft-antispam-message-info: =?us-ascii?Q?v4oG4zqOkr9aR11RaOx7U0VfM5TxqnwXhu1HaONxxFGdyZxhRl0QapVRMZox?=
+ =?us-ascii?Q?fIgZv3rQncow3iwyUhcIyZlKzwPL1FdHPw8kr3L/nTPQ57+dfSF0Ii0tkxdV?=
+ =?us-ascii?Q?kk2rxKK4ZWAITUhrJE8f+ybFNHc/hfJPA4qoTzyk5TxcOOZZcYYXJvOpdS5n?=
+ =?us-ascii?Q?cHXerVxDlt+By5vzqlAw8txiXMGNADGAtba2AFnywLNSgoIGzy5UJcokXGOH?=
+ =?us-ascii?Q?YmJRkg9zb0wilJGIfPttUWI/uk3ZfL0pRbelB1K4CkLWzhoiXMWz4UQWnGz8?=
+ =?us-ascii?Q?kGqZH2V+JUFWdgaIiasGd3xaSUeHW5sfcgRIiHBGcDOuArlB4BRiAi9gM68m?=
+ =?us-ascii?Q?+SwFjmLt5G8QRYmSmxP901Wqu9qnfqMvoQmmRyhV700Actjom2kOqT1xwIzh?=
+ =?us-ascii?Q?f24PZamZsv3wd991tKy0nz1svSIC0ajQ6QpK1+nYGl4KrXJrs7QYU6xPH2Cx?=
+ =?us-ascii?Q?e4YFOG5FUvAcCvVsxkFtGCbwdhnpxRVAiZyt11ggqVG2x5kP/fbmZbLkacuT?=
+ =?us-ascii?Q?cUFBWKAmSkG0RxIrwQ8HqYWCdIAHaA2YbYiLICGQAEx/y8CFQw1QD33zCElB?=
+ =?us-ascii?Q?jo4DwO57JBx4i+w6AGNLTMDej22aFKYV46c128b8mltjqZWvOHyiiJ2QQW8z?=
+ =?us-ascii?Q?fP74TUkHhVyz7c6GOaE5z5jfiortgyNfwj9qsOak95j92QmHNqIuwb/qEHwp?=
+ =?us-ascii?Q?yDPuUKS4285lRXZ8vZ+epN0SIeQ95ieoqiPPKKyLIVT3wjWUtIfNWsq4UIcE?=
+ =?us-ascii?Q?3ZEPbs1sGsJuFCgvK6oq7NBZerLJsxrHEf2IL4nj/tuEZn9fdYq8FSvnU1rI?=
+ =?us-ascii?Q?gCq61R4SwnK8TivdH6IvTbEWerPa6RwTIEIZZlkWhszhgWB5z6xQs0BKLPuR?=
+ =?us-ascii?Q?L+4rNbIPzHwqe5X4/x3IiTRq9igsZGWAxsXKNYHQd8fc5SmdSjJcyGHfHi7v?=
+ =?us-ascii?Q?G2uYjq8CUerMv/JzoqmsCq9l41SBorr3UyxDPwDkid0YZNDkhwRDumylki+M?=
+ =?us-ascii?Q?5DLRS2xmmZSvViuZuY4XTVYEfz813gIA4PWykTeQRtGhP4ZCZtuAlvKUuyEz?=
+ =?us-ascii?Q?qdczQ41OzIfcT2t+ghoznaKUzYG4HLszVsRX+kC8Du38S+6g47qZBqLKd70I?=
+ =?us-ascii?Q?AyhcaVMn+6dZ/zadE24IlBZ+xKwIxw2K7EuT8OGkWMvJMG3NP1zyhvjVTsv7?=
+ =?us-ascii?Q?ot7u51zcUFmsXrhwDcAy7g2+omXnt4vZkOjQa555qPNZmzRPedLgVc569yol?=
+ =?us-ascii?Q?VkRxIZ2JnrS/YZecuz7WEl6cMMSb2vQkQ3WflXn/WQ=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366007)(376005)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?KnLqD6yKjjB52n5Ur4bU/c5MiiRDmYoa9mOEthhMj/u5OsyojmXvbrezQkZz?=
+ =?us-ascii?Q?2HI6Q/wc2jthiMq9DM6oG7FRyDxi8bjkcndYalvSP2ljx7b6tETt6u+dnmi8?=
+ =?us-ascii?Q?SoHw97Qt6/L+snnM2MFDDva/WweO+MAlGCeTLoziqJyoP35Bk8Lc+LaojREY?=
+ =?us-ascii?Q?271iut2W1MdTX9kKyuKSHiDRVDuRFNHdMli6alYgUpaoweeoHI8lwHejUhI0?=
+ =?us-ascii?Q?m0lSjZKz25ABGVBpBYNenBZ5VDSM0MA39ZLWDh9N/kPwvPCqrlgUGBBHccJq?=
+ =?us-ascii?Q?Lw2QXgNCkSpZWFsj+J1tpAKimziGWS6D9YqWH71iWPNRNnBPvL9fYRXgPXIh?=
+ =?us-ascii?Q?mlvFMLUHEvsp+VQKKeYxAtpbCx64Y8SDkcULMWK5Y9erTc3/SOoFWVERKCl8?=
+ =?us-ascii?Q?3Z1i8AJe3gt61LI/D81rAruR3avb3fmvcAHumlN+tOqRhxqLINWZfmMqFHxr?=
+ =?us-ascii?Q?vrXszXYQs3bOEl4Sa7dpMigXuAgu+NANjJJFd6XnyxnnS47QdBV3sX/VuxV8?=
+ =?us-ascii?Q?LU1NYQtlrUEHjIKVo8itPj0KgIGv9uqcEgNshZ9DWyPozp1K0Y65K66eD2s5?=
+ =?us-ascii?Q?u0xJJdTLrbK/DAggQ+sYXSrPCwFIN5bmE6CpsIILOtzB045ebmqCefN0ekIk?=
+ =?us-ascii?Q?Sr6KlnoFv9arYpFXtd+lM4d3fMIVgjzdyVFIr1fyblVqXJwmHUZuInQcZh7J?=
+ =?us-ascii?Q?srf6P0SY1LAW3YnGXQLZf9w/62jk7xd5zG463SKeIKr8q8BHd2qx7fX02ikC?=
+ =?us-ascii?Q?K4abDI0IYzn8KBCZIxrU1eAoB2lo4LQsAFoyDjVZfREB4d+uL6t0w+SkyYkR?=
+ =?us-ascii?Q?hY+gN72771alkKOnT+/ZReVttDKFXxRCHO7L5OiDx8bnJBDu9UjCEvT1NHC/?=
+ =?us-ascii?Q?z+loG7+VjaA2rkm/EivV6UY50q6BaCl8ThrIFOPxx46HM0sb2/USt2GrQv77?=
+ =?us-ascii?Q?wF1AaLMNI+EPg0HKEDQrBrxzn5Bdh6oFsEgD8foavRWCDswdUqrd2ptgMMHL?=
+ =?us-ascii?Q?2xvCs4u3P5g3oDPoX4O/YTAfnmKi7klHJYVV3xLSKsup2riUwLIp2wlAVd2Y?=
+ =?us-ascii?Q?wseNYKzZSDzBYhzmJ0TvZV5shw70KjJcy9U6/ilMHkJnmlvT/OYq+Ci8fEWx?=
+ =?us-ascii?Q?3WqvCQnk13VY1vjLVcC/W+a5u+Fh9RMi7twhfThAS15FZCiMUCPRxqVGBTpl?=
+ =?us-ascii?Q?Ts/v1pOxIohYo3vcmNQrTfmGxBirgdS5OlU6ZAxzXj7ld7JKQjqqiC9Ftn0j?=
+ =?us-ascii?Q?nYW9K3qj+zbjyEIAPQbj8/T/955pcT+uQw7eNa+NPi4wr82lpLFxePBOKqSf?=
+ =?us-ascii?Q?fYyotll6oraAf17yIjGNiY1VYJfWRpgP+pUPwxH/rGFtGjGkZ7r6Iqi5vbxy?=
+ =?us-ascii?Q?m6MJa9IgyX8TOZAldodkMzlyfNPsNWcTGa14h+hK1suHg/o0O12FAG0o+TE0?=
+ =?us-ascii?Q?IEpfsZVFL6low8KbA7EA7MUS0QkV6pJ2Jp97WnLxfn7UyqkqL3LxR4zgpfly?=
+ =?us-ascii?Q?3zXqZCdI7U4BV3CljD/7QPumzsfgffJb5QhzyMSLCUUrNfwLqYPuILOSYFEx?=
+ =?us-ascii?Q?OnKsWpEzTjf9xteah8RF55d1fyQbBzAX8NZBj8Hi?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a7qrk7rkfbg44mhfehup3cgwi7bhcuqys72tg2ri7ck7sggfnx@643nnjnpxwzt>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45ad2e90-4579-4044-8579-08dc7881160a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2024 03:58:19.5646 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mYUx2ct05OLwkV3iioUIXXLqdUzykRzeahL+wNt8odSo83XFGMWAfnBuxOOBvV2enFx2wEDNdd2pdm14Hginvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6668
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,48 +182,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, May 19, 2024 at 07:06:45PM -0400, Kent Overstreet wrote:
-> this looks like an i915 bug
-
-Yeah, agreed.
-
-> On Wed, May 15, 2024 at 10:41:19AM +0800, kernel test robot wrote:
-[...]
-> > [test failed on linux-next/master 6ba6c795dc73c22ce2c86006f17c4aa802db2a60]
-[...]
-> > 
-> > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <oliver.sang@intel.com>
-> > | Closes: https://lore.kernel.org/oe-lkp/202405151008.6ddd1aaf-oliver.sang@intel.com
-> > 
-> > 
-> > [  940.101700][ T5353] ------------[ cut here ]------------
-> > [ 940.107107][ T5353] WARNING: CPU: 1 PID: 5353 at mm/util.c:649 kvmalloc_node_noprof (mm/util.c:649 (discriminator 1)) 
-
-This is:
-
-        /* Don't even allow crazy sizes */
-        if (unlikely(size > INT_MAX)) {
-                WARN_ON_ONCE(!(flags & __GFP_NOWARN));
 
 
-> > [  940.307791][ T5353] Call Trace:
-[...]
-> > [ 940.351795][ T5353] eb_copy_relocations (drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1685) i915
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: Friday, May 17, 2024 6:19 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Borah, Chaitanya Kumar
+> <chaitanya.kumar.borah@intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Subject: Re: [PATCH 2/2] drm/i915/hdcp: Check mst_port to determine
+> connector type
+>=20
+> On Tue, May 07, 2024 at 09:20:37AM +0530, Suraj Kandpal wrote:
+> > Check mst_port field in intel_connector to check connector type rather
+> > than rely on encoder as it may not be attached to connector at times.
+> >
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > index 551c862ed7a6..2edffe62f360 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > @@ -693,7 +693,7 @@ int intel_dp_hdcp_get_remote_capability(struct
+> > intel_connector *connector,
+> >
+> >  	*hdcp_capable =3D false;
+> >  	*hdcp2_capable =3D false;
+> > -	if (!intel_encoder_is_mst(connector->encoder))
+> > +	if (!connector->mst_port)
+>=20
+> I suppose this fixes
+> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10898
+>=20
+> Could you add the Closes: line for it?
+>=20
 
-And this is:
+Sure Imre will add that.
 
-                const unsigned int nreloc = eb->exec[i].relocation_count;
-		...
-                size = nreloc * sizeof(*relocs);
+> Can this function be called for anything else than an MST connector?
+>=20
+> Afaics it's only called from
+>=20
+> intel_connector_info() ->
+> 	intel_hdcp_info(..., remote_req =3D true)
+>=20
+> only for MST connectors, which makes sense since only MST connectors woul=
+d
+> have remote caps. In that case it would be enough to simply remove the
+> encoder check which leads to the NULL deref in case the output is disable=
+d.
+>=20
 
-                relocs = kvmalloc_array(1, size, GFP_KERNEL);
+Right this function is not invoked from anywhere but hdcp_info() since this=
+ was=20
+Created just to have a sense of the actual HDCP capability of remote monito=
+r rather than
+having to display the first monitor's HDCP capability and repeating it for =
+the second monitor
+specially when in daisy chain setup.
 
-So something isn't checking the "relocation_count" size that I assume is
-coming in from the ioctl?
+Regards,
+Suraj Kandpal
 
--Kees
-
--- 
-Kees Cook
+> >  		return -EINVAL;
+> >
+> >  	aux =3D &connector->port->aux;
+> > --
+> > 2.43.2
+> >
