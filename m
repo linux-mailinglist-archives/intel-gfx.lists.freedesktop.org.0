@@ -2,61 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED2F8C9E4F
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 15:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E2E48C9FDF
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 17:43:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559B210E353;
-	Mon, 20 May 2024 13:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A87DC891D7;
+	Mon, 20 May 2024 15:43:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cR46irLT";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from omta38.uswest2.a.cloudfilter.net
- (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2173210E353
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 13:44:43 +0000 (UTC)
-Received: from eig-obgw-6007a.ext.cloudfilter.net ([10.0.30.247])
- by cmsmtp with ESMTPS
- id 8zYCsLljZSLKx93JjsSIlE; Mon, 20 May 2024 13:44:43 +0000
-Received: from gator3278.hostgator.com ([198.57.247.242]) by cmsmtp with ESMTPS
- id 93JisMr5k5Q3W93Jisnv4k; Mon, 20 May 2024 13:44:42 +0000
-X-Authority-Analysis: v=2.4 cv=crOdkU4i c=1 sm=1 tr=0 ts=664b53ca
- a=wI8P0wgu9qut9Qmby1c6ng==:117 a=h+eJxL3/QSVnGqTFzLwsFA==:17
- a=_EFfJTh7bTAO8byP:21 a=kj9zAlcOel0A:10 a=TpHVaj0NuXgA:10 a=yDewdsc7jJQA:10
- a=VGZVzwQjAAAA:8 a=2rZ2s8yqNwkMNIv42ZYA:9 a=CjuIK1q_8ugA:10
- a=7KbCETwRv5F4J-amU3zH:22
-Received: from 89-65-233-120.dynamic.chello.pl ([89.65.233.120]:51646
- helo=localhost) by gator3278.hostgator.com with esmtpa (Exim 4.96.2)
- (envelope-from <arkadiusz@drabczyk.org>) id 1s93Jh-001Tck-2T
- for intel-gfx@lists.freedesktop.org; Mon, 20 May 2024 08:44:42 -0500
-Date: Mon, 20 May 2024 15:42:15 +0200
-From: Arkadiusz Drabczyk <arkadiusz@drabczyk.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFF86891D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 15:43:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716219804; x=1747755804;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=h3LSq93u8qqOLtPMVD6ngZ1xo5TgL+9T5blxSnTLDU0=;
+ b=cR46irLTVZMXILKRPnDAAZnzh4L7bubwjzOIfKAlD6ugA6mLFchL/Q8T
+ MvkHFPddxUXKFaVFCZ3M3FNvt5rfgXJ+xJirif7pA2lVQ+wulZO9EQxvd
+ sDLQCd5ynma6fZ6gSE53jiU6JlAh3Pbb2dTjBSdDW8AgxQrr8gwMNc2BD
+ 6RBZbmbva0PW/NDwvbu6srBIh7f1oN8g5BJhBqJjcy3FejHBwoLjRa252
+ +4ai72IGQWYRGSHra8eAM9OmPnvrW4RRIlaD2koYLPPO5AjPII8877uSU
+ aqLapDPd3LQWmRRIU0okoY51KgsWPBTyZQGRuCGcfGRPYWdu1oLW8nLWt Q==;
+X-CSE-ConnectionGUID: dRmyMYKpRdOYoDzhCps+nQ==
+X-CSE-MsgGUID: W2KE/phNRpOGD2yfGqbZxg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12204938"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="12204938"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 08:43:23 -0700
+X-CSE-ConnectionGUID: pxMNUqDISO6RatUkMUIhtg==
+X-CSE-MsgGUID: k9alW/A8Ty23vv1ROuCeMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32741963"
+Received: from vsrini4-xps-8920.iind.intel.com ([10.99.123.50])
+ by orviesa009.jf.intel.com with ESMTP; 20 May 2024 08:43:21 -0700
+From: "Srinivas, Vidya" <vidya.srinivas@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: Is it possible to distinguish between HDMI and DVI in i915?
-Message-ID: <20240520134215.GF15976@comp..>
+Cc: ville.syrjala@intel.com, shawn.c.lee@intel.com,
+	"Srinivas, Vidya" <vidya.srinivas@intel.com>,
+	Srinivas@freedesktop.org
+Subject: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
+Date: Mon, 20 May 2024 20:54:10 +0530
+Message-Id: <20240520152410.1098393-1-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator3278.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - drabczyk.org
-X-BWhitelist: no
-X-Source-IP: 89.65.233.120
-X-Source-L: No
-X-Exim-ID: 1s93Jh-001Tck-2T
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 89-65-233-120.dynamic.chello.pl (localhost)
- [89.65.233.120]:51646
-X-Source-Auth: arkadiusz@drabczyk.org
-X-Email-Count: 2
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: cmt1bXZicmg7cmt1bXZicmg7Z2F0b3IzMjc4Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfCkddW8SObxsDTsVXErx9jpqqmSFZMWbn6+l/4k2gtSL0xHmf1lVlz7F3ZdaZZc5WbD+4ESxSZbdAE2Z2X36CqXdZcXYZx6dnbXDvNJpPkCDiFyrSl+r
- 1dBEUfz1TkfUpzMpG6T1nT3jOuOIWhi5UWRNlW3jyKNGJ8kovd9K9N3KD6jSf425zEVmnjXom+db6khykmyQAz+tPMYBM7NL2wa5mAINeB3Ux3qE2KA3vkSp
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,10 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-My Asus Z97-A motherboard has DVI and HDMI connectors but i915 shows
-2x HDMI ports (and the 3rd one for DP but a separate DP1 is also
-shown). Would it be possible to distinguish between DVI and HDMI in
-the driver code for example by reading some undocumented VBT registers
-or testing port characteristics or something?
+In some scenarios, the DPT object gets shrunk but
+the actual framebuffer did not and thus its still
+there on the DPT's vm->bound_list. Then it tries to
+rewrite the PTEs via a stale CPU mapping. This causes panic.
+
+Credits-to: Ville Syrjala <ville.syrjala@linux.intel.com>
+	    Shawn Lee <shawn.c.lee@intel.com>
+
+Signed-off-by: Srinivas, Vidya <vidya.srinivas@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 3560a062d287..e6b485fc54d4 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
+ static inline bool
+ i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
+ {
+-	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
++	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
++		!obj->is_dpt;
+ }
+ 
+ static inline bool
 -- 
-Arkadiusz Drabczyk <arkadiusz@drabczyk.org>
+2.34.1
+
