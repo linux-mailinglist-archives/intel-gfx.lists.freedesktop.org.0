@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B808CA0B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 18:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F358CA0C4
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 18:34:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C45C10E7EC;
-	Mon, 20 May 2024 16:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0208610E2C2;
+	Mon, 20 May 2024 16:34:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmgtmRgo";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB7610E7EA;
- Mon, 20 May 2024 16:26:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0216268826993921846=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dpt=3A_Make_DPT_ob?=
- =?utf-8?q?ject_unshrinkable?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Srinivas, Vidya" <vidya.srinivas@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB89710E2C2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 16:34:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716222849; x=1747758849;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=hurwADxMqOZ4pGn+7POucIyNr3HgCzFTUEPMwTuFLOQ=;
+ b=GmgtmRgoXOe7Xfr0whxG7wdedbVgMVI0DBytwBUSb6o71NeNo5/55o/d
+ 1JMnO3o1raotzHpJfdr/PlfGYmA6U4HqTziwEgWe/O9Tujp+w2bVakg/v
+ EwZBGcDiT49RMptpqqUbBHVKIIt7pJ2gG9T0c6l7fHpTt5cYJcU4F5Oef
+ 4Y0p9sOnCS5HS54iTTKF+q2QO3BytM6jkivJK5zm7kEZSrbF3nhdrI/7r
+ h1yGuGsji+JNJ9CBoxKlv3ZZFFCJK7mLE3VBJuVfwZOBjHuJB5g7gMCNC
+ vn4ZTetrZyqTwg8pXJsY67qe3nel1PvwS3I/ykRUMCldqEJEm7UGwV5A1 w==;
+X-CSE-ConnectionGUID: bOzyve6nTXemx8R41BLlNw==
+X-CSE-MsgGUID: W70rvLioScqihXCVAJ5/yQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="16193560"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="16193560"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 09:34:08 -0700
+X-CSE-ConnectionGUID: WS8mFVF8Rk2C4OI2YyhJQA==
+X-CSE-MsgGUID: BzhUMw/5QBmYIZ78n2a2yA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="33190336"
+Received: from unknown (HELO localhost) ([10.245.246.99])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 09:34:06 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 May 2024 16:26:37 -0000
-Message-ID: <171622239757.2160454.3572094538738765283@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240520152410.1098393-1-vidya.srinivas@intel.com>
-In-Reply-To: <20240520152410.1098393-1-vidya.srinivas@intel.com>
+Subject: Re: [PATCH 02/13] drm/i915: Clean up the cursor register defines
+In-Reply-To: <Zkt5EhreisBepuTS@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
+ <20240516135622.3498-3-ville.syrjala@linux.intel.com>
+ <878r04voft.fsf@intel.com> <Zkt5EhreisBepuTS@intel.com>
+Date: Mon, 20 May 2024 19:34:03 +0300
+Message-ID: <8734qcsaro.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,128 +67,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0216268826993921846==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 20 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Mon, May 20, 2024 at 12:10:30PM +0300, Jani Nikula wrote:
+>> On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> I also think it's kind of unnecessary when they're only
+>> passed on as parameters. Or is there some corner case where it matters?
+>
+> I think cargo-culting is probably the best argument for protecting
+> each and every macro argument. If used universally then I think
+> it'll be a bit more likely that newly added macros, where it
+> might matter more, will inherit it as well.
 
-== Series Details ==
+That's a good point.
 
-Series: drm/i915/dpt: Make DPT object unshrinkable
-URL   : https://patchwork.freedesktop.org/series/133818/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14785 -> Patchwork_133818v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/index.html
-
-Participating hosts (41 -> 38)
-------------------------------
-
-  Missing    (3): fi-kbl-7567u bat-jsl-1 bat-arls-2 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_133818v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-dg2-8:          [DMESG-WARN][1] ([i915#10014]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-dg2-8/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/bat-dg2-8/igt@i915_module_load@load.html
-
-  
-  [i915#10014]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_14785 -> Patchwork_133818v1
-
-  CI-20190529: 20190529
-  CI_DRM_14785: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7863: fa1dc232d5d840532521df8a6fcf1fe82c514304 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_133818v1: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/index.html
-
---===============0216268826993921846==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dpt: Make DPT object unshrinkable</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133818/">https://patchwork.freedesktop.org/series/133818/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14785 -&gt; Patchwork_133818v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Missing    (3): fi-kbl-7567u bat-jsl-1 bat-arls-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_133818v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14785/bat-dg2-8/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014">i915#10014</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133818v1/bat-dg2-8/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14785 -&gt; Patchwork_133818v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14785: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7863: fa1dc232d5d840532521df8a6fcf1fe82c514304 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_133818v1: 1ba62f8cea9c797427d45108df1d453f4b343240 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0216268826993921846==--
+--=20
+Jani Nikula, Intel
