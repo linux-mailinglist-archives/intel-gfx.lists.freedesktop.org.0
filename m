@@ -2,81 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4798C9B89
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 12:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B49FD8C9B9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 12:47:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B273B10E10D;
-	Mon, 20 May 2024 10:43:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E6F10E4FC;
+	Mon, 20 May 2024 10:47:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="QzH0sxnV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZSP5w+lL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
- [209.85.167.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F014910E10D
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 10:43:28 +0000 (UTC)
-Received: by mail-lf1-f53.google.com with SMTP id
- 2adb3069b0e04-5238fe0cfc9so2405301e87.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 03:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1716201807; x=1716806607; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=icwVF42TmZ2hZjEXcduZvhpSy5tVelIfuJSjSBSENHo=;
- b=QzH0sxnVvfMQQ90abtI6zeEZsW5XbNqdOOSrdO+1DHrkzus3C/ETLdazpTJr95j0qK
- ckdWwOxAxI2h6JrcsUWMikBRg4zZxPwBRPLdVkXBpKp8GKy1Tb3ckxA+QxwCtmGji+Qn
- FahnlEVifmp/yh+6gu54iFL9ZA1L8v1VLZYNwJOVugsYmKuKoxbo0HIw1IS7gAuz0ZrR
- CmBOo4LQYVoo2b25AVLbbbhniqxg3OucCKg5/mmK0X9SsKwOj5lDrar6zzhCIZJ8/PAQ
- grMHBQ0fh1ARi9gtwBPk9PlCdq2Y4XJfg/+RQsocsADuPxOnonHpDYIL/ymLcr/5CBJq
- cG1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716201807; x=1716806607;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=icwVF42TmZ2hZjEXcduZvhpSy5tVelIfuJSjSBSENHo=;
- b=XLx7TfFFg+UljzvFbMm4/12psMjrs5looEk3RMyDgN1ohni5uNpJHSWdKOcR7f4yRd
- 8IAYJsF6LS1L3ft/pCI70t2PWrsy7pdCtUMMQ8a+EjBWs8V49kLi2/Fosu1Uc274ZJsx
- goOU8Jcq7Is5J8h2lhRvFdHI94puSHfzWUVw568XOzT+/fVaS1zwP1bhhOuXvwiJ7Ds7
- ME0nftTzFtinpkfr7xTWI6oU2mFC5PACVQfaIfUthhKZipeL6TzVdt8uoxihKpkuSjqA
- ROnp5qfsplSHFe/JQ9IFHEVSl3U9zyMvk7mhb3K+PJzNFAhIhp9iXJFXz1ZJ4N/SA5Im
- 8fxg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVX2flYhZP3+xcSWY7LJEJ8WOolVrNm7TrFtHHQlGVYOmPnsiN+9//FIi67PDzhFgHQFqhtTyf7fO7u5DOPRq+Ssap5FhcKh8ktdRcLW09H
-X-Gm-Message-State: AOJu0YwmmPIR8G1LpZw8Nj8o2urJA36TPXe1SCrpB3/aCJm3vBUhZrMV
- MvEu/Zhep1spiH8V9P7yHj85jK5YFoTTZoH2y0WS42pZExK0r03AkfPTMDJOBB4=
-X-Google-Smtp-Source: AGHT+IFzot8n6xHV0OHm6wH4k0sEr+LYxBLD0eD+umJwBs/mAovf2bSRWjBos0WaEoAs2a0risJ1Ww==
-X-Received: by 2002:a05:6512:4801:b0:51d:8ff3:f835 with SMTP id
- 2adb3069b0e04-52407cddc3fmr1595444e87.26.1716201806986; 
- Mon, 20 May 2024 03:43:26 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5238bee41afsm2044239e87.294.2024.05.20.03.43.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 May 2024 03:43:26 -0700 (PDT)
-Date: Mon, 20 May 2024 13:43:24 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, 
- david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, 
- mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, 
- virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] drm/ci: uprev mesa version
-Message-ID: <2qzmfv3oc6feihwxu3tl37rg6w3qsj2vddu5olvqk6vhqr26cc@bxu5y6ijvtfa>
-References: <20240517092502.647420-1-vignesh.raman@collabora.com>
- <20240517092502.647420-2-vignesh.raman@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A41A10E577
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 10:47:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716202059; x=1747738059;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=dBRsaBcs5owcgFMgjY+0yBXd8hiZKxl6GTEwo66e3Ak=;
+ b=ZSP5w+lLdwTtXtVbhz9sd9Piikuolhdl/cjE7mN71xFK4/sSyUqYVypg
+ jbpsH9ZeYgEGvS9kNg5vsummGxXucLRHBjH8U3ga32uyvsVRZJxTS6cAS
+ KMuX7oZG12TYQfL58mvOhVaGckPCqXihCEMM690Ubge6cJLyqdzdwxKwh
+ tjI4mujpOzg10VrPoY6FYhIyHoGLQwAt4fdWnSBuZm7APVhnUBDTpb9Ia
+ pZhSKukCCX0aQ/jaFB0fnKvgVD9V3MdczUEuoKu1B9ROEWaZ/1GhixW50
+ DDIySOyhcVVV57lkU+XgtMGQZ1iUpKxy5v7UbQJk8NZXYi2Zn7hviCZwS A==;
+X-CSE-ConnectionGUID: C8eY94wZRnqUbRX8TgzIIQ==
+X-CSE-MsgGUID: dB1E66hGTrWKFgy2IKFFcw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11077"; a="37699966"
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="37699966"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 03:47:38 -0700
+X-CSE-ConnectionGUID: ji8bajf0T9Gs7Rjw3SLQuw==
+X-CSE-MsgGUID: eH9r3rpCTeGL4D0/0p+6pQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="55729370"
+Received: from unknown (HELO localhost) ([10.245.246.99])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 03:47:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/7] drm/i915: Extract intel_dp_has_dsc()
+In-Reply-To: <20240517145356.26103-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
+ <20240517145356.26103-3-ville.syrjala@linux.intel.com>
+Date: Mon, 20 May 2024 13:47:34 +0300
+Message-ID: <87h6esu5dl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240517092502.647420-2-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,60 +69,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 17, 2024 at 02:54:57PM +0530, Vignesh Raman wrote:
-> zlib.net is not allowing tarball download anymore and results
-> in below error in kernel+rootfs_arm32 container build,
-> urllib.error.HTTPError: HTTP Error 403: Forbidden
-> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
-> 
-> Uprev mesa to latest version which includes a fix for this issue.
-> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
-> 
-> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
-> mesa-rootfs, update the variables accordingly. Also copy helper scripts
-> to install, so that the ci jobs can use these scripts for logging.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+On Fri, 17 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Extract a helper to check whether the source+sink combo
+> supports DSC. That basic check is needed both during mode
+> validation and compute config. We'll also need to add extra
+> checks to both places, so having a single place for it is nicer.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
-> 
-> v2:
->   - Uprev to recent version and use id_tokens for JWT authentication
-> 
-> ---
->  drivers/gpu/drm/ci/build-igt.sh   |  2 +-
->  drivers/gpu/drm/ci/build.sh       |  6 +++--
->  drivers/gpu/drm/ci/container.yml  | 12 +++------
->  drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
->  drivers/gpu/drm/ci/image-tags.yml |  2 +-
->  drivers/gpu/drm/ci/lava-submit.sh |  4 +--
->  drivers/gpu/drm/ci/test.yml       |  2 ++
->  7 files changed, 44 insertions(+), 28 deletions(-)
-> 
+>  drivers/gpu/drm/i915/display/intel_dp.c | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 1e88449fe5f2..7bf283b4df7f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1220,6 +1220,19 @@ bool intel_dp_need_bigjoiner(struct intel_dp *inte=
+l_dp,
+>  	       connector->force_bigjoiner_enable;
+>  }
+>=20=20
+> +static bool intel_dp_has_dsc(struct intel_connector *connector)
 
-[skipped]
+Why not const?
 
-> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-> index 8bc63912fddb..612c9ede3507 100644
-> --- a/drivers/gpu/drm/ci/test.yml
-> +++ b/drivers/gpu/drm/ci/test.yml
-> @@ -150,6 +150,8 @@ msm:sdm845:
->      BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/cheza-kernel
->      GPU_VERSION: sdm845
->      RUNNER_TAG: google-freedreno-cheza
-> +    DEVICE_TYPE: sdm845-cheza-r3
-> +    FARM: google
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+> +
+> +	if (!HAS_DSC(i915))
+> +		return false;
+> +
+> +	if (!drm_dp_sink_supports_dsc(connector->dp.dsc_dpcd))
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>  static enum drm_mode_status
+>  intel_dp_mode_valid(struct drm_connector *_connector,
+>  		    struct drm_display_mode *mode)
+> @@ -1274,8 +1287,7 @@ intel_dp_mode_valid(struct drm_connector *_connecto=
+r,
+>  	mode_rate =3D intel_dp_link_required(target_clock,
+>  					   intel_dp_mode_min_output_bpp(connector, mode));
+>=20=20
+> -	if (HAS_DSC(dev_priv) &&
+> -	    drm_dp_sink_supports_dsc(connector->dp.dsc_dpcd)) {
+> +	if (intel_dp_has_dsc(connector)) {
+>  		enum intel_output_format sink_format, output_format;
+>  		int pipe_bpp;
 
-I see that this is the only user of the FARM: tag. Is it correct?
-Also we miss DEVICE_TYPE for several other boards. Should we be adding
-them?
-
->    script:
->      - ./install/bare-metal/cros-servo.sh
->  
-> -- 
-> 2.40.1
-> 
-
--- 
-With best wishes
-Dmitry
+--=20
+Jani Nikula, Intel
