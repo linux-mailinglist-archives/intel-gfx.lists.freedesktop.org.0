@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75088CA25E
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 20:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F2A8CA268
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 20:58:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1724310E6D5;
-	Mon, 20 May 2024 18:58:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6F3610E863;
+	Mon, 20 May 2024 18:58:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JI9t9fIz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h22ZsXoi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2845710E5CB
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 18:58:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6053310E4F9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 18:58:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716231507; x=1747767507;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=x0ZeAVyhLbo0sZnsC3WaCsTnrh2+139qI+X4iydrNis=;
- b=JI9t9fIzobtNRyzgGVXPgdUBS/V3rrq7eIy0X5thP2ga4S9BntZUR3EB
- d/pWM1XiSVdkgop6FH+wFfe9uXcyszvQLzKSxijAZbUY0WWGndg+Y+lmy
- nd1Ag6BK16MRD5RXefpkbxEpf22PLbEdb99bpLxyLwK5O+Brbun/+8cGd
- U35uvJve3tVJ7E5A7PNUS3p781rHeYfP0/OuRWR0x64M6vTBVBY1XtdJW
- Cet75dLqOAK8AXPHpEhwDflaBe8Dd6GPIpmBW4OKaeg65LzEl6gD0Lh2Q
- a/hD70ZzBrHvWXGLLu+xzTD+LWw2DNl1OvdGXDhz8Z01SV4q92dAGOa9b Q==;
-X-CSE-ConnectionGUID: pXwDqgZWQo27B9BBWAnGDA==
-X-CSE-MsgGUID: URnT01QERrCwsgp+PGuIsw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="16218528"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="16218528"
+ t=1716231508; x=1747767508;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=VO3jQncVcjKCZjdrr7iKqB4r5Xpgugmvsqis8ostWso=;
+ b=h22ZsXoiXofptlWG5MNYDZrwhg/E6NuLjkXGn/DUo7i8F0I89CLlgZRd
+ 3xZtny8x8GKr6nZkd2F46V1xrXu/JL752KCmV0+1LJ6Fs75/0Hz4XjqFr
+ ZtcfgE5N6hopBglASq7hVjQkple7kOaMIEa9OiqhJB2xyBOmMHzutA1g6
+ 79Kkl/A8js78VjHIki4mWH2HlN327A4ctHsJB4CuWUCiPHomFKFYcLqZk
+ PeW1kpKiLoYYjWxnNyJXXDrOgEX3N1yga9yxnNQ4yX0NUDGFTIrE3RA3U
+ H9Hkz+2pd3jTVYOcqfUcSADxIvJyIew5G+kFMrikbitF2ZfCqKcK6XH/v w==;
+X-CSE-ConnectionGUID: +P2PwZoJTNag1ZdJ5qpXTg==
+X-CSE-MsgGUID: +Kdf7xj3QDKyiMcgNjf97g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="16218533"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="16218533"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 11:58:27 -0700
-X-CSE-ConnectionGUID: cZ/RINmrTO2/lOOfF6C/zA==
-X-CSE-MsgGUID: q0NldzE8T0ye+6UcRPKpVw==
+ 20 May 2024 11:58:28 -0700
+X-CSE-ConnectionGUID: 3uYDKC1NT9m4yp5pD/WWaQ==
+X-CSE-MsgGUID: aRadFnmQQx6MdZuHYgE+mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="37213851"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="37213855"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 11:58:26 -0700
+ 20 May 2024 11:58:27 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 08/21] drm/i915/dp: Reduce link params only after retrying
- with unchanged params
-Date: Mon, 20 May 2024 21:58:06 +0300
-Message-ID: <20240520185822.3725844-9-imre.deak@intel.com>
+Cc: Imre Deak <imre.deak@gmail.com>
+Subject: [PATCH v2 09/21] drm/i915/dp: Pass atomic state to link training
+ function
+Date: Mon, 20 May 2024 21:58:07 +0300
+Message-ID: <20240520185822.3725844-10-imre.deak@intel.com>
 X-Mailer: git-send-email 2.43.3
 In-Reply-To: <20240520185822.3725844-1-imre.deak@intel.com>
 References: <20240520185822.3725844-1-imre.deak@intel.com>
@@ -67,82 +68,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Try to maintain the current link parameters by retrying the link
-training with unchanged link parameters before reducing these parameters
-(sending an uevent to userspace to retrain the link instead).
+From: Imre Deak <imre.deak@gmail.com>
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+The next patch adds sending a modeset-retry uevent after a link training
+failure to all MST connectors on link. This requires the atomic state,
+so pass it to intel_dp_start_link_train(). In case of SST where
+retraining still happens by calling this function directly instead of a
+modeset commit the atomic state is not available and NULL is passed
+instead. This is ok, since in this case the encoder's only DP connector
+is available from intel_dp->attached_connector not requiring the atomic
+state.
+
+Signed-off-by: Imre Deak <imre.deak@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h    | 2 ++
- drivers/gpu/drm/i915/display/intel_dp.c               | 4 ++++
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 8 ++++++++
- 3 files changed, 14 insertions(+)
+ drivers/gpu/drm/i915/display/g4x_dp.c                 | 2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c              | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dp.c               | 2 +-
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 4 +++-
+ drivers/gpu/drm/i915/display/intel_dp_link_training.h | 4 +++-
+ 5 files changed, 11 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 9317c1ae04efe..bde518c843468 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1765,6 +1765,8 @@ struct intel_dp {
- 		int max_lane_count;
- 		/* Max rate for the current link */
- 		int max_rate;
-+		/* Sequential link training failures after a passing LT */
-+		int seq_train_failures;
- 	} link;
- 	bool reset_link_params;
- 	int mso_link_count;
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 4363e32a834df..0d7424a7581e6 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -707,7 +707,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
+ 	intel_dp_configure_protocol_converter(intel_dp, pipe_config);
+ 	intel_dp_check_frl_training(intel_dp);
+ 	intel_dp_pcon_dsc_configure(intel_dp, pipe_config);
+-	intel_dp_start_link_train(intel_dp, pipe_config);
++	intel_dp_start_link_train(state, intel_dp, pipe_config);
+ 	intel_dp_stop_link_train(intel_dp, pipe_config);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 86358ec27e685..58e57a7704811 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2586,7 +2586,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
+ 	 *     (timeout after 800 us)
+ 	 */
+-	intel_dp_start_link_train(intel_dp, crtc_state);
++	intel_dp_start_link_train(state, intel_dp, crtc_state);
+ 
+ 	/* 6.n Set DP_TP_CTL link training to Normal */
+ 	if (!is_trans_port_sync_mode(crtc_state))
+@@ -2728,7 +2728,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	 *     Pattern, wait for 5 idle patterns (DP_TP_STATUS Min_Idles_Sent)
+ 	 *     (timeout after 800 us)
+ 	 */
+-	intel_dp_start_link_train(intel_dp, crtc_state);
++	intel_dp_start_link_train(state, intel_dp, crtc_state);
+ 
+ 	/* 7.k Set DP_TP_CTL link training to Normal */
+ 	if (!is_trans_port_sync_mode(crtc_state))
+@@ -2795,7 +2795,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 						   to_intel_connector(conn_state->connector),
+ 						   crtc_state);
+ 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state, true);
+-	intel_dp_start_link_train(intel_dp, crtc_state);
++	intel_dp_start_link_train(state, intel_dp, crtc_state);
+ 	if ((port != PORT_A || DISPLAY_VER(dev_priv) >= 9) &&
+ 	    !is_trans_port_sync_mode(crtc_state))
+ 		intel_dp_stop_link_train(intel_dp, crtc_state);
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8da277f0c2735..7c824c5a13346 100644
+index 7c824c5a13346..1f0b7cceea2dc 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2950,6 +2950,7 @@ static void intel_dp_reset_link_params(struct intel_dp *intel_dp)
- {
- 	intel_dp->link.max_lane_count = intel_dp_max_common_lane_count(intel_dp);
- 	intel_dp->link.max_rate = intel_dp_max_common_rate(intel_dp);
-+	intel_dp->link.seq_train_failures = 0;
- }
+@@ -5214,7 +5214,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
  
- /* Enable backlight PWM and backlight PP control. */
-@@ -5056,6 +5057,9 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
- 					intel_dp->lane_count))
- 		return false;
- 
-+	if (intel_dp->link.seq_train_failures)
-+		return true;
-+
- 	/* Retrain if link not ok */
- 	return !intel_dp_link_ok(intel_dp, link_status);
- }
+ 		intel_dp_check_frl_training(intel_dp);
+ 		intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
+-		intel_dp_start_link_train(intel_dp, crtc_state);
++		intel_dp_start_link_train(NULL, intel_dp, crtc_state);
+ 		intel_dp_stop_link_train(intel_dp, crtc_state);
+ 		break;
+ 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index ad1fbb150ff90..e804f0b801c02 100644
+index e804f0b801c02..4f60daa97407d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1486,10 +1486,13 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 		passed = intel_dp_link_train_all_phys(intel_dp, crtc_state, lttpr_count);
+@@ -1453,6 +1453,7 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
  
- 	if (passed) {
-+		intel_dp->link.seq_train_failures = 0;
- 		intel_ddi_queue_link_check(dig_port, 2000);
- 		return;
- 	}
+ /**
+  * intel_dp_start_link_train - start link training
++ * @state: Atomic state
+  * @intel_dp: DP struct
+  * @crtc_state: state for CRTC attached to the encoder
+  *
+@@ -1461,7 +1462,8 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
+  * fails.
+  * After calling this function intel_dp_stop_link_train() must be called.
+  */
+-void intel_dp_start_link_train(struct intel_dp *intel_dp,
++void intel_dp_start_link_train(struct intel_atomic_state *state,
++			       struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+index 19836a8a4f904..f658230960333 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+@@ -8,6 +8,7 @@
  
-+	intel_dp->link.seq_train_failures++;
-+
- 	/*
- 	 * Ignore the link failure in CI
- 	 *
-@@ -1507,6 +1510,11 @@ void intel_dp_start_link_train(struct intel_dp *intel_dp,
- 		return;
- 	}
+ #include <drm/display/drm_dp_helper.h>
  
-+	if (intel_dp->link.seq_train_failures < 2) {
-+		intel_ddi_queue_link_check(dig_port, 0);
-+		return;
-+	}
-+
- 	intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
- }
++struct intel_atomic_state;
+ struct intel_crtc_state;
+ struct intel_dp;
  
+@@ -25,7 +26,8 @@ void intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+ void intel_dp_set_signal_levels(struct intel_dp *intel_dp,
+ 				const struct intel_crtc_state *crtc_state,
+ 				enum drm_dp_phy dp_phy);
+-void intel_dp_start_link_train(struct intel_dp *intel_dp,
++void intel_dp_start_link_train(struct intel_atomic_state *state,
++			       struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state);
+ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ 			      const struct intel_crtc_state *crtc_state);
 -- 
 2.43.3
 
