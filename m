@@ -2,57 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A788C9BEC
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 13:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89AC58C9BBF
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 13:00:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E042410E632;
-	Mon, 20 May 2024 11:05:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FC0A10E43C;
+	Mon, 20 May 2024 11:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jGTpA5Zg";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ngKplQJy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3193E10E625;
- Mon, 20 May 2024 11:04:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716203088; x=1747739088;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=57ZUdas4PgR36h9kw7njbc5Pp8988NXozKuYuFzg7d8=;
- b=jGTpA5Zg/J9lSvMkwLHxPJFH9MPsqe3Ycq9idDHSKYwlrBvmnfe/45Dt
- og7Ux5Uuw7zuB29T41O3qBcTDbIbOzHm46kBKrlRuY/lEwQ2iuObDKLzi
- wIZguKdkWDpNuPYlHPX/vcEnttdNO9toE6loTrGayatu7iveYRr8CQ8A8
- m08XCBzFNkMEXVJIDM6Mvk6TDmw4XHEvYGN/6BQFr9nEsSGzHDusEybO7
- 8XWKAeVdlgIRSS/zpG6THgFd1FpswnvNpruW4CUIHV8KvBx5we9/wY4dy
- bkmwqcZ1oSrlcavfDeJuZl2tzgttziWThBvU+Ku7x53EM9T16LEpSJnBg g==;
-X-CSE-ConnectionGUID: WCHItAeBRGGy3Cixte6oQg==
-X-CSE-MsgGUID: VBtZBMqLSSeG3gX5mnUSkQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11077"; a="22996399"
-X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="22996399"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 04:04:48 -0700
-X-CSE-ConnectionGUID: qeG3BRaXRHGibvri9YctLw==
-X-CSE-MsgGUID: APRsW1XlTaKlXXIwZHxtug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; d="scan'208";a="63723644"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa001.fm.intel.com with ESMTP; 20 May 2024 04:04:46 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, jani.nikula@intel.com,
- jouni.hogander@intel.com, arun.r.murthy@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v5 6/6] drm/i915/alpm: Add debugfs for LOBF
-Date: Mon, 20 May 2024 16:18:22 +0530
-Message-Id: <20240520104822.1116122-7-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20240520104822.1116122-1-animesh.manna@intel.com>
-References: <20240520104822.1116122-1-animesh.manna@intel.com>
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03DA110E414
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 11:00:44 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-52388d9ca98so5171198e87.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 04:00:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1716202843; x=1716807643; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=zbU3zeRUyfJhQipGYR6FKYCuEp6+mBicTADebou1jyQ=;
+ b=ngKplQJyJUQv5czDr1HI3bGAP4G3rIGuii+iugwIElteTfe3/cI9N6VXtkLVytc2ye
+ F3HWc2yvqiIiILLyYisnMIbXvIGpUG2LqZzIykxaSNPSx0KnYitaaJ9sOAt0VpGEtGh2
+ YcWPyzrsBV0rvv1+4+81LYw0oDTPz26AU7sj7zTKeDlz/hOb+qIWwkCjKDD7W568+Exr
+ jGbf3UAsk8FYVPqIOirb/h5SlOVCfcbQF89cqGDuCSrFPFfr2Tw4INLD7/N5bgUXQVBw
+ JAPvyUvC5Sv3V/kjQJzCTKMg+PQdYtD2bHNGDVudODS0FaWwU5n9QJJWi5jPrROSfJew
+ 9WoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716202843; x=1716807643;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zbU3zeRUyfJhQipGYR6FKYCuEp6+mBicTADebou1jyQ=;
+ b=lYAEme3E+Xv/rNchBf58Gqjk4jMBh8dIQ87xvDU7Nyu4EmRBzCeXic3rCrHsfPR6uo
+ OGPrtl7D+kN9rFh+5VuGg529d8kmBJRYzeuDDkHlZwXifRl4TEiR4+gdv6l5HYzPLQXn
+ DtTpRtwgAaT4oB3XW5Laxn6vkQ9oth6sn5wiD42H+Btiq2CGAk99nWswfKeRmVhuBN/L
+ f/Qnr3rSHdnRzn9bKMJbMP0BDGj1uk7zdUZ0VR6pEGV/JioVDOjXTPORvXKDMxfz8hdF
+ 5J5XpPabCB4Aa0v6TwgTdM8XqdX7Tvzp45GUZsj+vJ5XeTF939AcD90jTkNJLI3rMgY7
+ c9pg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYrYZei3QCoUd6q+d32JjZwCO289dwn1O+1fpuwIy9W8o9k/1UkIch0ILAKZLQ8S8IQPOYbtDWTkmRW7yvY9WTDCJU8yV2Yz+3xKuGoupw
+X-Gm-Message-State: AOJu0YzlB0eUFdONolfEK/jsJwxGVntUQWkvw1xL6e8bSTP4ybVAuYA+
+ pwbBASIYPU/UX7E4G9LMm8F8YmVm3fW5TZpLpUhfSoN2v48qVr2NXWizCL9QqYk=
+X-Google-Smtp-Source: AGHT+IEoP2+bL0oMFj4P0Aa7CMuek/Wx23WK1fJZHUBxVQUK6n4Or8upEK0eOTuockV49z8ZJoyWZA==
+X-Received: by 2002:ac2:504c:0:b0:51a:df97:cc8d with SMTP id
+ 2adb3069b0e04-5220fd7cc70mr18338046e87.26.1716202842997; 
+ Mon, 20 May 2024 04:00:42 -0700 (PDT)
+Received: from eriador.lumag.spb.ru
+ (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-521f35ad5fdsm4253446e87.24.2024.05.20.04.00.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 May 2024 04:00:42 -0700 (PDT)
+Date: Mon, 20 May 2024 14:00:40 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, 
+ david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, 
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] drm/ci: generate testlist from build
+Message-ID: <o363vir3dqz2znrnifo6enbdwudalmxqbigdkci2ykxf5qjbnx@2ngllflxotgk>
+References: <20240517092502.647420-1-vignesh.raman@collabora.com>
+ <20240517092502.647420-3-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240517092502.647420-3-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,113 +92,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For validation purpose add debugfs for LOBF.
+On Fri, May 17, 2024 at 02:54:58PM +0530, Vignesh Raman wrote:
+> Stop vendoring the testlist into the kernel. Instead, use the
+> testlist from the IGT build to ensure we do not miss renamed
+> or newly added tests.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+>   - Fix testlist generation for arm and arm64 builds.
+> 
+> ---
+>  drivers/gpu/drm/ci/build-igt.sh  |   34 +
+>  drivers/gpu/drm/ci/igt_runner.sh |    9 +-
+>  drivers/gpu/drm/ci/testlist.txt  | 2761 ------------------------------
+>  3 files changed, 39 insertions(+), 2765 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/ci/testlist.txt
+> 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index 7859554756c4..e62244728613 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
 
-v1: Initial version.
-v2: Add aux-wake/less info along with lobf status. [Jouni]
+[...]
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c     | 49 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h     |  2 +
- .../drm/i915/display/intel_display_debugfs.c  |  2 +
- 3 files changed, 53 insertions(+)
+> @@ -26,6 +50,16 @@ meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
+>  ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
+>  ninja -C build install
+>  
+> +if [[ "$KERNEL_ARCH" = "arm64" ]]; then
+> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib/aarch64-linux-gnu
+> +elif [[ "$KERNEL_ARCH" = "arm" ]]; then
+> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib
+> +else
+> +    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/igt/lib64
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 8f4da817ef55..843ffb5fcb7a 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -360,3 +360,52 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
- {
- 	lnl_alpm_configure(intel_dp, crtc_state);
- }
-+
-+static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
-+{
-+	struct intel_connector *connector = m->private;
-+	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-+	struct drm_crtc *crtc;
-+	struct intel_crtc_state *crtc_state;
-+	enum transcoder cpu_transcoder;
-+	u32 alpm_ctl;
-+	int ret;
-+
-+	ret = drm_modeset_lock_single_interruptible(&dev_priv->drm.mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+
-+	crtc = connector->base.state->crtc;
-+	if (connector->base.status != connector_status_connected || !crtc) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
-+	crtc_state = to_intel_crtc_state(crtc->state);
-+	cpu_transcoder = crtc_state->cpu_transcoder;
-+	alpm_ctl = intel_de_read(dev_priv, ALPM_CTL(dev_priv, cpu_transcoder));
-+	seq_printf(m, "LOBF status: %s\n", str_enabled_disabled(alpm_ctl & ALPM_CTL_LOBF_ENABLE));
-+	seq_printf(m, "Aux-wake alpm status: %s\n",
-+		   str_enabled_disabled(!(alpm_ctl & ALPM_CTL_ALPM_AUX_LESS_ENABLE)));
-+	seq_printf(m, "Aux-less alpm status: %s\n",
-+		   str_enabled_disabled(alpm_ctl & ALPM_CTL_ALPM_AUX_LESS_ENABLE));
-+out:
-+	drm_modeset_unlock(&dev_priv->drm.mode_config.connection_mutex);
-+
-+	return ret;
-+}
-+
-+DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
-+
-+void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
-+{
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct dentry *root = connector->base.debugfs_entry;
-+
-+	if (DISPLAY_VER(i915) < 20 ||
-+	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
-+		return;
-+
-+	debugfs_create_file("i915_edp_lobf_info", 0444, root,
-+			    connector, &i915_edp_lobf_info_fops);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index fd9be8aa876c..0dab2068164a 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -11,6 +11,7 @@
- struct intel_dp;
- struct intel_crtc_state;
- struct drm_connector_state;
-+struct intel_connector;
- 
- void intel_alpm_get_capability(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
-@@ -20,4 +21,5 @@ void intel_alpm_compute_lobf_config(struct intel_dp *intel_dp,
- 				    struct drm_connector_state *conn_state);
- void intel_alpm_configure(struct intel_dp *intel_dp,
- 			  const struct intel_crtc_state *crtc_state);
-+void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 35f9f86ef70f..86d9900c40af 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -13,6 +13,7 @@
- #include "i915_debugfs.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
-+#include "intel_alpm.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_crtc_state_dump.h"
-@@ -1515,6 +1516,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
- 	intel_drrs_connector_debugfs_add(connector);
- 	intel_pps_connector_debugfs_add(connector);
- 	intel_psr_connector_debugfs_add(connector);
-+	intel_alpm_lobf_debugfs_add(connector);
- 
- 	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
- 	    connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+Could you please clarify this part? The arm64 vs arm don't look logical
+from my point of view.
+
+The rest LGTM.
+
+> +fi
+> +
+> +generate_testlist
+> +
+>  mkdir -p artifacts/
+>  tar -cf artifacts/igt.tar /igt
+>  
 -- 
-2.29.0
-
+With best wishes
+Dmitry
