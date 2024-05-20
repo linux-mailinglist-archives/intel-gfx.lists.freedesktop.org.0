@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9F358CA0C4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 18:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCEEC8CA0CC
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 18:40:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0208610E2C2;
-	Mon, 20 May 2024 16:34:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7A3710E61E;
+	Mon, 20 May 2024 16:40:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmgtmRgo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UoqtuO92";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB89710E2C2
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 16:34:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E0BC10E61E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 16:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716222849; x=1747758849;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=hurwADxMqOZ4pGn+7POucIyNr3HgCzFTUEPMwTuFLOQ=;
- b=GmgtmRgoXOe7Xfr0whxG7wdedbVgMVI0DBytwBUSb6o71NeNo5/55o/d
- 1JMnO3o1raotzHpJfdr/PlfGYmA6U4HqTziwEgWe/O9Tujp+w2bVakg/v
- EwZBGcDiT49RMptpqqUbBHVKIIt7pJ2gG9T0c6l7fHpTt5cYJcU4F5Oef
- 4Y0p9sOnCS5HS54iTTKF+q2QO3BytM6jkivJK5zm7kEZSrbF3nhdrI/7r
- h1yGuGsji+JNJ9CBoxKlv3ZZFFCJK7mLE3VBJuVfwZOBjHuJB5g7gMCNC
- vn4ZTetrZyqTwg8pXJsY67qe3nel1PvwS3I/ykRUMCldqEJEm7UGwV5A1 w==;
-X-CSE-ConnectionGUID: bOzyve6nTXemx8R41BLlNw==
-X-CSE-MsgGUID: W70rvLioScqihXCVAJ5/yQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="16193560"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="16193560"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 09:34:08 -0700
-X-CSE-ConnectionGUID: WS8mFVF8Rk2C4OI2YyhJQA==
-X-CSE-MsgGUID: BzhUMw/5QBmYIZ78n2a2yA==
+ t=1716223202; x=1747759202;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=SyCGTanyhXHZO0yXsNL43T8xAE0uInuvvLkfN/vICtw=;
+ b=UoqtuO92fo+2yOAyXsAoMvviEbdNLy4QxS3s/2dAF+Ue6GQWUGV5lzPQ
+ XxZ171xLmpQLpGyx/Dn1cwO//uhCNdB/OH1qVWzJB7gnvOKgM7lxxtWxA
+ aUf2otrWB9VJw82rC5OeWw072ytJ6yOzXb0xd/OXmNt0QijDoalgURFNm
+ p0qHXjHeJuFs7fFDFcVc8f5PThyGGVuTETjqXloHp2ylnaGOe+2n8cr/S
+ hY3+Ydm/mvnntkyeoLHytqFVDRvGs0yxmhCqYlAxj+7QOQQZjW/H0l2PE
+ QF9A9a+rSlN/7MXWc7C35xzvsHcZSTDUKRVLc5kVzH1bFJPxc2W+LPtZI A==;
+X-CSE-ConnectionGUID: 1EvKV4m2Ty6HJMczhzEQNw==
+X-CSE-MsgGUID: CPZtQiLOR5+qb8+BCoeWGA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="29882783"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="29882783"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 09:40:01 -0700
+X-CSE-ConnectionGUID: k6GaAn4pTHKcI6vRUEsDTQ==
+X-CSE-MsgGUID: G+lo1jxcQmG9pi5sTBfhsQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="33190336"
-Received: from unknown (HELO localhost) ([10.245.246.99])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 09:34:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 02/13] drm/i915: Clean up the cursor register defines
-In-Reply-To: <Zkt5EhreisBepuTS@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
- <20240516135622.3498-3-ville.syrjala@linux.intel.com>
- <878r04voft.fsf@intel.com> <Zkt5EhreisBepuTS@intel.com>
-Date: Mon, 20 May 2024 19:34:03 +0300
-Message-ID: <8734qcsaro.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32578715"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 20 May 2024 09:40:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 May 2024 19:39:58 +0300
+Date: Mon, 20 May 2024 19:39:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Srinivas, Vidya" <vidya.srinivas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com,
+ shawn.c.lee@intel.com, Srinivas@freedesktop.org
+Subject: Re: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
+Message-ID: <Zkt83jwHX2bvpxqX@intel.com>
+References: <20240520152410.1098393-1-vidya.srinivas@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240520152410.1098393-1-vidya.srinivas@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,23 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Mon, May 20, 2024 at 12:10:30PM +0300, Jani Nikula wrote:
->> On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> I also think it's kind of unnecessary when they're only
->> passed on as parameters. Or is there some corner case where it matters?
->
-> I think cargo-culting is probably the best argument for protecting
-> each and every macro argument. If used universally then I think
-> it'll be a bit more likely that newly added macros, where it
-> might matter more, will inherit it as well.
+On Mon, May 20, 2024 at 08:54:10PM +0530, Srinivas, Vidya wrote:
+> In some scenarios, the DPT object gets shrunk but
+> the actual framebuffer did not and thus its still
+> there on the DPT's vm->bound_list. Then it tries to
+> rewrite the PTEs via a stale CPU mapping. This causes panic.
+> 
+> Credits-to: Ville Syrjala <ville.syrjala@linux.intel.com>
+> 	    Shawn Lee <shawn.c.lee@intel.com>
+> 
+> Signed-off-by: Srinivas, Vidya <vidya.srinivas@intel.com>
 
-That's a good point.
+The format should be "first_name last_name <email>"
 
-BR,
-Jani.
+We also probably want
+Cc: stable@vger.kernel.org
+Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation for dpt")
 
+Although the patch won't actually build unless we also have 
+commit 779cb5ba64ec ("drm/i915/dpt: Treat the DPT BO as a framebuffer")
+but that hast the same fixes tag, so should be fine even if
+someone backports things that far back.
 
---=20
-Jani Nikula, Intel
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> index 3560a062d287..e6b485fc54d4 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
+>  static inline bool
+>  i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
+>  {
+
+Maybe toss something like this here:
+/* TODO: make DPT shrinkable when it has no bound vmas */
+
+DPTs aren't necessarily so small that shrinking them wouldn't
+have any benefits. But actually implementing that would require
+some actual work, so not suitable for a quick fix.
+
+I can add all that stuff when applying the patch, no need to
+resend for this.
+
+> -	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
+> +	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
+> +		!obj->is_dpt;
+>  }
+>  
+>  static inline bool
+> -- 
+> 2.34.1
+
+-- 
+Ville Syrjälä
+Intel
