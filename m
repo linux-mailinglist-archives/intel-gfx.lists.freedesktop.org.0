@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E05488CA11F
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 19:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 116C68CA10B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 19:08:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AD710E3C7;
-	Mon, 20 May 2024 17:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE31E10E418;
+	Mon, 20 May 2024 17:08:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cR7eHO6S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BwVvQkKa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9391310E3C7
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 17:16:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8462F10E524
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 17:08:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716225362; x=1747761362;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9xMXqirmrS/KjGPrHamiK+u0YLlE+Rr9VOFJSXKx134=;
- b=cR7eHO6SV0sF0+iB8Ewl/+Dnp+7b/RRnEQQ8j+5cnd+M0E6DCW854Ecc
- lGD18P8GEuPX1tbbvNaVpWU22u+7WxrJyBgKT1+2XebwNoVkam09lojv2
- b5lHq+VjVz0+L6K/foIDLhKU9Jq5uO1z8/oqGzZOL6TfDcqaaDX0DQZiL
- oi1GM1bQj3FdoPOBPKTJPscyQ9eeyloNtxQlQMJ1RaO6qmuvt/up056VB
- P7l98VGk/OQJAeoZystGU17X0orAjqHAfkeJICNK5u14LvtGrbTny0Tpr
- JmBNENNCcaHxDhSUbGj0P4qx3tKlhX8xBNla8bjNz+AVQe22IExx2Kf0q w==;
-X-CSE-ConnectionGUID: bZUTZrVURWqbqaHUZHC7mQ==
-X-CSE-MsgGUID: pFq8ffuyRgufSXyZpw/sTw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="22946361"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="22946361"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 10:16:01 -0700
-X-CSE-ConnectionGUID: kk1BKTZtRuqV/RPERNf4jA==
-X-CSE-MsgGUID: Dvmd7404QpGy7dGMIUrXjQ==
+ t=1716224929; x=1747760929;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=GrejBLazsRtoIlvx/9feza19DSc8IUPpGOawsXvSfkw=;
+ b=BwVvQkKa5hy+JnjhWVQ2gDAv6HNMLCuOUJzqiDOItWlxQRuOf55hpvx1
+ 7poZ6tiSZW8sS+sY2c6lrIEzDDIZMbJEoGVWJj+lZpTSdv/eFtI4eydSk
+ XHb+a4oYqaHfGVTmabg7//BuBLA5wbkazzzEAHCZeVoPyZheZ8giv9Pee
+ awVOIoJdw4saw3LTuitycNglw4dpyN6wJ8WREs6B9WBLqqtp9tv6J8Lyv
+ Yo4B2swM834tv57TgUO4ac9LmpnBOjRehC+TKQyl/vyIfLrMYHBjCjQ1k
+ vKMSZkRzHUU51puOqG7+pasLlTwOuAloyeu4eyVH6yqYhUlRjqRYgANbB g==;
+X-CSE-ConnectionGUID: 6IG1HPchRQuzshIvEBF0pA==
+X-CSE-MsgGUID: qeET1RlrTQmi6n7QHZKrnw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12556912"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="12556912"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 10:08:49 -0700
+X-CSE-ConnectionGUID: cJE3+avZSoSoMb4H9R1XyA==
+X-CSE-MsgGUID: VUNRRL+ZTjajwK3sT1P0MA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="63840432"
-Received: from vsrini4-xps-8920.iind.intel.com ([10.99.123.50])
- by fmviesa001.fm.intel.com with ESMTP; 20 May 2024 10:16:00 -0700
-From: Vidya Srinivas <vidya.srinivas@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@intel.com, shawn.c.lee@intel.com,
- Vidya Srinivas <vidya.srinivas@intel.com>, stable@vger.kernel.org
-Subject: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
-Date: Mon, 20 May 2024 22:26:34 +0530
-Message-Id: <20240520165634.1162470-1-vidya.srinivas@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240520152410.1098393-1-vidya.srinivas@intel.com>
-References: <20240520152410.1098393-1-vidya.srinivas@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32593581"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 20 May 2024 10:08:47 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 May 2024 20:08:46 +0300
+Date: Mon, 20 May 2024 20:08:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 03/13] drm/i915: Add separate define for
+ SEL_FETCH_CUR_CTL()
+Message-ID: <ZkuDnoMpZ5qe3Tr3@intel.com>
+References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
+ <20240516135622.3498-4-ville.syrjala@linux.intel.com>
+ <875xv8vnnr.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <875xv8vnnr.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,35 +73,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In some scenarios, the DPT object gets shrunk but
-the actual framebuffer did not and thus its still
-there on the DPT's vm->bound_list. Then it tries to
-rewrite the PTEs via a stale CPU mapping. This causes panic.
+On Mon, May 20, 2024 at 12:27:20PM +0300, Jani Nikula wrote:
+> On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Split the cursor stuff from the rest of the selective fetch
+> > plane registers so that we can collect all cursor registers
+> > in intel_cursor_regs.h. Also take the opportunity to rename
+> > the registers to match the spec.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cursor.c      | 6 +++---
+> >  drivers/gpu/drm/i915/display/intel_cursor_regs.h | 5 +++++
+> >  2 files changed, 8 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > index c780ce146131..b44809899502 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > @@ -508,7 +508,7 @@ static void i9xx_cursor_disable_sel_fetch_arm(struct intel_plane *plane,
+> >  	if (!crtc_state->enable_psr2_sel_fetch)
+> >  		return;
+> >  
+> > -	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), 0);
+> > +	intel_de_write_fw(dev_priv, SEL_FETCH_CUR_CTL(pipe), 0);
+> >  }
+> >  
+> >  static void wa_16021440873(struct intel_plane *plane,
+> > @@ -523,7 +523,7 @@ static void wa_16021440873(struct intel_plane *plane,
+> >  	ctl &= ~MCURSOR_MODE_MASK;
+> >  	ctl |= MCURSOR_MODE_64_2B;
+> >  
+> > -	intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id), ctl);
+> > +	intel_de_write_fw(dev_priv, SEL_FETCH_CUR_CTL(pipe), ctl);
+> >  
+> >  	intel_de_write(dev_priv, PIPE_SRCSZ_ERLY_TPT(dev_priv, pipe),
+> >  		       PIPESRC_HEIGHT(et_y_position));
+> > @@ -548,7 +548,7 @@ static void i9xx_cursor_update_sel_fetch_arm(struct intel_plane *plane,
+> >  					  val);
+> >  		}
+> >  
+> > -		intel_de_write_fw(dev_priv, PLANE_SEL_FETCH_CTL(pipe, plane->id),
+> > +		intel_de_write_fw(dev_priv, SEL_FETCH_CUR_CTL(pipe),
+> >  				  plane_state->ctl);
+> >  	} else {
+> >  		/* Wa_16021440873 */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor_regs.h b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
+> > index 270c26c2e6df..ab02d497fba6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cursor_regs.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_cursor_regs.h
+> > @@ -95,4 +95,9 @@
+> >  #define _CUR_BUF_CFG_B		0x7117c
+> >  #define CUR_BUF_CFG(pipe)	_MMIO_PIPE((pipe), _CUR_BUF_CFG_A, _CUR_BUF_CFG_B)
+> >  
+> > +#define _SEL_FETCH_CUR_CTL_A	0x70880 /* mtl+ */
+> > +#define _SEL_FETCH_CUR_CTL_B	0x71880
+> > +#define SEL_FETCH_CUR_CTL(pipe)	_MMIO_PIPE((pipe), _SEL_FETCH_CUR_CTL_A, _SEL_FETCH_CUR_CTL_A)
+> 
+> _SEL_FETCH_CUR_CTL_A is doubled, the latter should be _B.
 
-Credits-to: Ville Syrjala <ville.syrjala@linux.intel.com>
-	    Shawn Lee <shawn.c.lee@intel.com>
+Derp. I also don't know where I got that mtl+ note. I must have been
+thinking about early transport or something, but selective fetch
+in general should be a thing for tgl+.
 
-Cc: stable@vger.kernel.org
-Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation for dpt")
-Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> With that,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> I must admit I was trying to follow how PLANE_SEL_FETCH_CTL(pipe,
+> CURSOR_A) ends up being identical to this new SEL_FETCH_CUR_CTL(pipe),
+> but holy crap it trips my brain completely. How did we come up with so
+> many levels of abstractions for this stuff, in such complicated ways?!
+> :o
+> 
+> 
+> > +#define   SEL_FETCH_CUR_CTL_ENABLE	REG_BIT(31)
+> > +
+> >  #endif /* __INTEL_CURSOR_REGS_H__ */
+> 
+> -- 
+> Jani Nikula, Intel
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 3560a062d287..e6b485fc54d4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
- static inline bool
- i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
- {
--	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
-+	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
-+		!obj->is_dpt;
- }
- 
- static inline bool
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
