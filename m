@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2E48C9FDF
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 17:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C41F18C9FD9
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2024 17:42:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A87DC891D7;
-	Mon, 20 May 2024 15:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 346D710E66C;
+	Mon, 20 May 2024 15:42:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cR46irLT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RN2NUZqh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFF86891D7
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 15:43:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6F210E72F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 May 2024 15:42:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716219804; x=1747755804;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h3LSq93u8qqOLtPMVD6ngZ1xo5TgL+9T5blxSnTLDU0=;
- b=cR46irLTVZMXILKRPnDAAZnzh4L7bubwjzOIfKAlD6ugA6mLFchL/Q8T
- MvkHFPddxUXKFaVFCZ3M3FNvt5rfgXJ+xJirif7pA2lVQ+wulZO9EQxvd
- sDLQCd5ynma6fZ6gSE53jiU6JlAh3Pbb2dTjBSdDW8AgxQrr8gwMNc2BD
- 6RBZbmbva0PW/NDwvbu6srBIh7f1oN8g5BJhBqJjcy3FejHBwoLjRa252
- +4ai72IGQWYRGSHra8eAM9OmPnvrW4RRIlaD2koYLPPO5AjPII8877uSU
- aqLapDPd3LQWmRRIU0okoY51KgsWPBTyZQGRuCGcfGRPYWdu1oLW8nLWt Q==;
-X-CSE-ConnectionGUID: dRmyMYKpRdOYoDzhCps+nQ==
-X-CSE-MsgGUID: W2KE/phNRpOGD2yfGqbZxg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12204938"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="12204938"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2024 08:43:23 -0700
-X-CSE-ConnectionGUID: pxMNUqDISO6RatUkMUIhtg==
-X-CSE-MsgGUID: k9alW/A8Ty23vv1ROuCeMg==
+ t=1716219754; x=1747755754;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=1LjQ5pAMFeVw+iMB+WjNBlHjncyFESbSwiOgyPn4wBY=;
+ b=RN2NUZqhXGVCK3Yra6/qwFYNmqh47N3b7Pjc2ZgfnSnmaenkNfs/pen1
+ hiG5wpSKN3gWc8RYEq8QcGv2trxBLH+f3hA3AZc/Hs/OXY2W2zwsfYMLk
+ +Jp/pNtdmidmXNCLS5pM0ClDZpUUMgMqya5SmEyYR/aUmz5QSUAs+BsDq
+ N3ol51+EWyuH67MUomu4OIV7Xj2WDMbA983cJEE6U8kiJQRAgEx/gVW4F
+ cxEyzi+bOnxyfrpRSVg9c1KfSwJzt4pW1CaFEW/4nFYwJgjILrTh55+Iy
+ Wwy8K8IFxDjhFIshBaVHUbXuW/u9CPhgkAC7tI406xDht9Nr9zcYXxVDY A==;
+X-CSE-ConnectionGUID: YzxlP3cPQhOLthFiM7czdg==
+X-CSE-MsgGUID: NVMrZAvKSTmUB3UuXaA0Kw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23766136"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="23766136"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 08:42:33 -0700
+X-CSE-ConnectionGUID: 84QKifLDTKygqz8PfLe8zQ==
+X-CSE-MsgGUID: qRJ5xoNPRjG6/0b87ayoDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="32741963"
-Received: from vsrini4-xps-8920.iind.intel.com ([10.99.123.50])
- by orviesa009.jf.intel.com with ESMTP; 20 May 2024 08:43:21 -0700
-From: "Srinivas, Vidya" <vidya.srinivas@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@intel.com, shawn.c.lee@intel.com,
-	"Srinivas, Vidya" <vidya.srinivas@intel.com>,
-	Srinivas@freedesktop.org
-Subject: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
-Date: Mon, 20 May 2024 20:54:10 +0530
-Message-Id: <20240520152410.1098393-1-vidya.srinivas@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; d="scan'208";a="37111543"
+Received: from unknown (HELO localhost) ([10.245.246.99])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2024 08:42:31 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arkadiusz Drabczyk <arkadiusz@drabczyk.org>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: Is it possible to distinguish between HDMI and DVI in i915?
+In-Reply-To: <20240520134215.GF15976@comp..>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240520134215.GF15976@comp..>
+Date: Mon, 20 May 2024 18:42:28 +0300
+Message-ID: <875xv8sd5n.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,33 +66,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In some scenarios, the DPT object gets shrunk but
-the actual framebuffer did not and thus its still
-there on the DPT's vm->bound_list. Then it tries to
-rewrite the PTEs via a stale CPU mapping. This causes panic.
+On Mon, 20 May 2024, Arkadiusz Drabczyk <arkadiusz@drabczyk.org> wrote:
+> My Asus Z97-A motherboard has DVI and HDMI connectors but i915 shows
+> 2x HDMI ports (and the 3rd one for DP but a separate DP1 is also
+> shown). Would it be possible to distinguish between DVI and HDMI in
+> the driver code for example by reading some undocumented VBT registers
+> or testing port characteristics or something?
 
-Credits-to: Ville Syrjala <ville.syrjala@linux.intel.com>
-	    Shawn Lee <shawn.c.lee@intel.com>
+Please file a bug as described at [1], attach dmesg with drm.debug=14
+and VBT as described in the link, and we'll be able to tell you more.
 
-Signed-off-by: Srinivas, Vidya <vidya.srinivas@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Thanks,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 3560a062d287..e6b485fc54d4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
- static inline bool
- i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
- {
--	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
-+	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
-+		!obj->is_dpt;
- }
- 
- static inline bool
+
+[1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+
+
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
