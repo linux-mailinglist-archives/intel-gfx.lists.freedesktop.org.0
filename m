@@ -2,49 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14ABE8CB60F
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 00:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7B78CB617
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 00:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B19510E5A7;
-	Tue, 21 May 2024 22:39:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="Y21L3u/K";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8194410F185;
+	Tue, 21 May 2024 22:42:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C06010E308;
- Tue, 21 May 2024 22:39:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1716331142;
- bh=p8KNo+cfG2R+IzfJIWpYnsdYSibDV/vD9YF0M7P6XEk=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Y21L3u/KloKPi7GEMb9w5jzvYwbk3NcJgLc74pNoS+p+jZXFuQHxE0jqIGtzPbOuQ
- OwEmR82HuOrQZhPsovT+MjRy5lIrHLvgVhKbb86ItCU+kzu/Y7d0ZaczPLC5djLi1t
- CydgJsTTZvHxG0Kc87LuWyvvX/uyXi4FEPj9qWXkBiTxVXhyJb4H7JNNKuN5AWoRXy
- ZrxhfyhgFVD4JtfTZP3w0ZxerAiwGvM2EIZgrGVDD4ousjYVGvAljwZcmME9hkHsYz
- BLH2SsKWDnz2pdKV7gJTgHv/MBYqAycKZwpxqS6LfkhZ5CUeS+ZJDCeljpyG2swzOD
- YyTP8vR96dBDA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4VkTr55f2Bz4wcC;
- Wed, 22 May 2024 08:39:01 +1000 (AEST)
-Date: Wed, 22 May 2024 08:39:00 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: "Knop, Ryszard" <ryszard.knop@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: FYI: drm-intel repo moved to fd.o GitLab
-Message-ID: <20240522083900.16040a14@canb.auug.org.au>
-In-Reply-To: <adff92fd559f6798690e3050b4474b099a3dde75.camel@intel.com>
-References: <adff92fd559f6798690e3050b4474b099a3dde75.camel@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0727210F185;
+ Tue, 21 May 2024 22:42:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2064857375783515331=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/YTcK.kgb7TPTW7wJgNgc4FM";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/gt=3A_Fix_CCS_id?=
+ =?utf-8?q?=27s_calculation_for_CCS_mode_setting_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 May 2024 22:42:33 -0000
+Message-ID: <171633135302.2165265.493792000387836495@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240517090616.242529-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240517090616.242529-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,46 +37,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/YTcK.kgb7TPTW7wJgNgc4FM
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--===============2064857375783515331==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Ryszard,
+== Series Details ==
 
-On Tue, 21 May 2024 14:56:22 +0000 "Knop, Ryszard" <ryszard.knop@intel.com>=
- wrote:
->
-> As of today, we've moved the drm-intel repository (upstream for
-> drivers/gpu/drm/i915) to a new location:
->=20
-> Previously: https://cgit.freedesktop.org/drm-intel
-> Moved to: https://gitlab.freedesktop.org/drm/i915/kernel
+Series: drm/i915/gt: Fix CCS id's calculation for CCS mode setting (rev2)
+URL   : https://patchwork.freedesktop.org/series/133732/
+State : failure
 
-I have updated where linux-next fetched from.  I used the URL but added
-".git" to the end to save an extra round trip delay when the above
-redirects.
+== Summary ==
 
---=20
-Cheers,
-Stephen Rothwell
+CI Bug Log - changes from CI_DRM_14797 -> Patchwork_133732v2
+====================================================
 
---Sig_/YTcK.kgb7TPTW7wJgNgc4FM
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **FAILURE**
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmZNIoQACgkQAVBC80lX
-0GwIgQf/f/34jIyZDXAwnTErf3irYYWtX7y0Ch2OFWoq9l6Age2TJOtN/Jc3ebII
-55PYWd4ENGDGC4zmMtqFQjTh+EMG28NKZJ6d75vrotfZ+Bgm0a+EB8ZuGMFN0+3y
-f/Rb5NeK49ojPPX/3x7axsPtTupSInoSixh1Pg0EFhu7JKzS34VnHJBELPzmRxWy
-f6lcbC/IBE/5kOuK/O9UoDDqQm7DA9MQtb0eppYoOmRPK2Rfds1KGVDeXcr+ktwx
-tHXYjiI0ZIBcp6nPr0ir2i6G2Bc12gn2yf9FCsEcEGlFEtKCeLxRnUIWUzjeWil3
-5AAj2SccwDQITK4Tsnv/rHIYfUveUw==
-=Mz54
------END PGP SIGNATURE-----
+  Serious unknown changes coming with Patchwork_133732v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_133732v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
---Sig_/YTcK.kgb7TPTW7wJgNgc4FM--
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_133732v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gem_migrate:
+    - bat-arls-3:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14797/bat-arls-3/igt@i915_selftest@live@gem_migrate.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-arls-3/igt@i915_selftest@live@gem_migrate.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_getparams_basic@basic-eu-total:
+    - {bat-apl-1}:        [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14797/bat-apl-1/igt@i915_getparams_basic@basic-eu-total.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-apl-1/igt@i915_getparams_basic@basic-eu-total.html
+
+  * igt@runner@aborted:
+    - {bat-apl-1}:        NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-apl-1/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133732v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [PASS][6] -> [FAIL][7] ([i915#10378])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14797/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#10911]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10911
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14797 -> Patchwork_133732v2
+
+  CI-20190529: 20190529
+  CI_DRM_14797: 3fc3e155dc8c334ca7b18aa461b2171867e4febe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7866: 2b7701838c3ebaa3c717b6521cafafe3b9ae4a4f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133732v2: 3fc3e155dc8c334ca7b18aa461b2171867e4febe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/index.html
+
+--===============2064857375783515331==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Fix CCS id&#x27;s calculation for CCS mode setting (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133732/">https://patchwork.freedesktop.org/series/133732/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14797 -&gt; Patchwork_133732v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_133732v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_133732v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_133732v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gem_migrate:<ul>
+<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14797/bat-arls-3/igt@i915_selftest@live@gem_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-arls-3/igt@i915_selftest@live@gem_migrate.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@i915_getparams_basic@basic-eu-total:</p>
+<ul>
+<li>{bat-apl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14797/bat-apl-1/igt@i915_getparams_basic@basic-eu-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-apl-1/igt@i915_getparams_basic@basic-eu-total.html">INCOMPLETE</a></li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>{bat-apl-1}:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-apl-1/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133732v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14797/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133732v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14797 -&gt; Patchwork_133732v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14797: 3fc3e155dc8c334ca7b18aa461b2171867e4febe @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7866: 2b7701838c3ebaa3c717b6521cafafe3b9ae4a4f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133732v2: 3fc3e155dc8c334ca7b18aa461b2171867e4febe @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2064857375783515331==--
