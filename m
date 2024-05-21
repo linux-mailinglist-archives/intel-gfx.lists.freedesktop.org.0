@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B61778CB410
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 21:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 315318CB5FF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 00:25:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEE9610F0AA;
-	Tue, 21 May 2024 19:09:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k6oZePdY";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64AA810E344;
+	Tue, 21 May 2024 22:25:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D34D310ED97;
- Tue, 21 May 2024 19:09:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716318579; x=1747854579;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=HM5M9rwn7lRqywWH1h3KoZ/hzMZhjbpsLLVcCiHSDaM=;
- b=k6oZePdYVafpx3whcpWbcfwAG6fM6BT+sQMi3Rg6WEC+13eC4abR3ZCf
- TdvucOeRnRO2mGegtRotneBq4HfJHZM1kIxGzhgD487g4ju5zZfuR8qPy
- kABBNZmuBhI4gh6Jbm74Y/AEfO3UbUyyAofwq/KJtfFN7yEYZCjvJgfgE
- ZQhNON64IIFEglTUOwaSXi4vrhHO5/EdhpzkPkplHhesegznDxcSmeB4F
- HTgK8DqqIl3Qahyu/PStVWxewyBepokR6xS+1CU9czjVBSEBiWNIktCSU
- RoDa4K3LAAUu1aVrvh++OGaCldNZnuGrMFMrzAx+kl/DjGQSsuxFWmIuA g==;
-X-CSE-ConnectionGUID: 3QJWevmmR9GO46meNGmwyw==
-X-CSE-MsgGUID: 1offdBjpRMm+rZRm9f9Jfw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="16375479"
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="16375479"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 12:09:38 -0700
-X-CSE-ConnectionGUID: xAeZxi50QTqLSkuurvcbGw==
-X-CSE-MsgGUID: llWMDmoOQJmbqMJBeW3C5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="33005396"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 21 May 2024 12:09:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 May 2024 22:09:35 +0300
-Date: Tue, 21 May 2024 22:09:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/probe-helper: Call drm_mode_validate_ycbcr420()
- before connector->mode_valid()
-Message-ID: <Zkzxb9QsHTveWe1-@intel.com>
-References: <20240516173324.18149-1-ville.syrjala@linux.intel.com>
- <ZkyO7ybX-pdDiWMR@phenom.ffwll.local>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE05710E344;
+ Tue, 21 May 2024 22:25:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZkyO7ybX-pdDiWMR@phenom.ffwll.local>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/gt=3A_Fix_CCS_i?=
+ =?utf-8?q?d=27s_calculation_for_CCS_mode_setting_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 May 2024 22:25:30 -0000
+Message-ID: <171633033090.2165162.14285795084837030217@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240517090616.242529-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240517090616.242529-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,69 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 21, 2024 at 02:09:19PM +0200, Daniel Vetter wrote:
-> On Thu, May 16, 2024 at 08:33:24PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Make life easier for drivers by filtering out unwanted YCbCr 4:2:0
-> > only modes prior to calling the connector->mode_valid() hook.
-> > Currently drivers will still see YCbCr 4:2:0 only modes in said
-> > hook, which will likely come as a suprise when the driver has
-> > declared no support for such modes (via setting
-> > connector->ycbcr_420_allowed to false).
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10992
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Sounds reasonable.
-> 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+== Series Details ==
 
-Thanks. Pushed to drm-misc-next.
+Series: drm/i915/gt: Fix CCS id's calculation for CCS mode setting (rev2)
+URL   : https://patchwork.freedesktop.org/series/133732/
+State : warning
 
-> 
-> > ---
-> >  drivers/gpu/drm/drm_probe_helper.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
-> > index 4f75a1cfd820..249c8c2cb319 100644
-> > --- a/drivers/gpu/drm/drm_probe_helper.c
-> > +++ b/drivers/gpu/drm/drm_probe_helper.c
-> > @@ -474,6 +474,10 @@ static int __drm_helper_update_and_validate(struct drm_connector *connector,
-> >  		if (mode->status != MODE_OK)
-> >  			continue;
-> >  
-> > +		mode->status = drm_mode_validate_ycbcr420(mode, connector);
-> > +		if (mode->status != MODE_OK)
-> > +			continue;
-> > +
-> >  		ret = drm_mode_validate_pipeline(mode, connector, ctx,
-> >  						 &mode->status);
-> >  		if (ret) {
-> > @@ -486,10 +490,6 @@ static int __drm_helper_update_and_validate(struct drm_connector *connector,
-> >  			else
-> >  				return -EDEADLK;
-> >  		}
-> > -
-> > -		if (mode->status != MODE_OK)
-> > -			continue;
-> > -		mode->status = drm_mode_validate_ycbcr420(mode, connector);
-> >  	}
-> >  
-> >  	return 0;
-> > -- 
-> > 2.44.1
-> > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
+
