@@ -2,85 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FC78CB307
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 19:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2C68CB34E
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 20:09:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71D3510F013;
-	Tue, 21 May 2024 17:39:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9135E10E1F6;
+	Tue, 21 May 2024 18:09:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KJbzsR2m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bo5iuRHR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
- [209.85.215.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD2D10F013;
- Tue, 21 May 2024 17:39:56 +0000 (UTC)
-Received: by mail-pg1-f182.google.com with SMTP id
- 41be03b00d2f7-5c6bd3100fcso421899a12.3; 
- Tue, 21 May 2024 10:39:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716313196; x=1716917996; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=l6naY1ebYgtBqBr6FtFx0JuqKFL0i54ZhF9HoediEIY=;
- b=KJbzsR2mYC/ZuZrvoOs8RONKeRvuFYok80Cvj01Poy+1pgNVmnq0j3Km1xNQ89DpnO
- /NmYjdzqltjyywf7mKWBS9ixo8eaBM8mobrkg0Z4aW7G5i/mDF075zonOHQJcz533BSe
- efEwm/rYPp+aA+Z0MdFbBQt3ViPV77KpdCe3pjD0+41rt/KCpQZ2dYnbthCjMbA4g5P1
- EtBdin5ctxMcBRIGklZXoH0z4tWO+/TXEO2TwmLpbpLZoMdLfGNFG5cToHhe+Y65U8Ze
- mqTexo52iuG949HV6KLicSIL5+DEjbr9RBsrHPt9RTZhTe4r/5IvG9TAwPrf0JIfbQTS
- mCsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716313196; x=1716917996;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=l6naY1ebYgtBqBr6FtFx0JuqKFL0i54ZhF9HoediEIY=;
- b=bNFZuWP3nd+BjsaLZOQL/BN9r/DD/lLrEzXKarz+rSh1tN7oItvVqiH5Tt54ApZKuQ
- UC/ZgWfETohEpPZK64jCXSulgxUUgRZ46PDtHo28RiXLVzJl/NoTCdOuqS6/YsR/ArpT
- +5TR1FYuBtkIho2Vbl1bfBduMkZA7wyXXJkQnKhHdqFB5MVPkKzvgRcRUSpqmeCE2mi7
- IqvRbi3s90a7owI/wk05zHsJB0MLceBc847cTYbdgc/KtLCeHP+kYDTKt3X5yNTm28+Q
- 3fe60Txzmg5Bo9gqJNBY58/Z/mQ8EZiO935M+Lg7RsKW6pFRd7xVn/vIeGp0fSNkcB3/
- eQtQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWl0ee4ZNhcjciykQQH7XB7DTNB1SDeJ8qWwCLPFWY4wOBuyXxMmxE948YIarYC3dHLVBUyxvoO1adk4l7LOJuhe4FnH8AljXl6yJAgEiZM4G47JcdX3ITAWCbF1PePnoLRjA6XdPWvW8AuV8HrvF8uv2/geaV3qeiU/nqYRIFROB/4+7dyyWojVaD5Y7Q5mQ==
-X-Gm-Message-State: AOJu0YxMnSCfk+gmaB0b106srtVh+cu6Mgk4zuGifQ2dbI9a1Fsa0JQK
- yjNMvTHHklPacfOiisK3g1m4DRjceHGfPckMt2y4UJ6EmCmr0wx/phO6e8LgFzwJ2ev0dVfdue4
- HQiN9CVnEfmN62l6UREOQDRnF7Qc=
-X-Google-Smtp-Source: AGHT+IEtIwnLHEJom7EzPs7RT34MstjtZMfmyW9DXLDXYepTOE0snpQgoUF0SiAcYhvLERYK6iuAIEpcIVtspvvn1Wc=
-X-Received: by 2002:a17:90a:fd8a:b0:2bc:9bce:19c3 with SMTP id
- 98e67ed59e1d1-2bc9bce1df0mr12631794a91.43.1716313195890; Tue, 21 May 2024
- 10:39:55 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15D5E10E1F6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 18:09:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716314975; x=1747850975;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=PmHA/1a6HKxOiqlbmDG4pyceNWVD+Dq9hWmEd+BVtK0=;
+ b=Bo5iuRHRiGpCwOHL0silxDffY8WPXVjOib0XeixipWNvX+ZHIfjOVOHP
+ YWRAFtFm+Ifin11DIgp8dpLWs7Kqfk3VyPOFPDeoDu/oP2/fR/z3ScvD1
+ uz4Nv/s4wpIGj/QqljfW942wC+PV0MSXLWh+GBWCvWRn+O1MGq7WhCieK
+ gZurWZjTCCwuKlZ9o8Uw6R8XTuvQtIbBX2OBfmUNrtcCV4SBRank1o/sJ
+ eG9ohLiXoaL/773ZEZEQF/BD12zB/xU4VpUO327Bfpivi1ko96bQVOm4f
+ 6jym2v7GKJYkwIzkhM290uo2r2sVBeDRqG/CDkQjmkGvRhlSJcP2qsiAA Q==;
+X-CSE-ConnectionGUID: RZ/4qILQSgSXINqll1OGPQ==
+X-CSE-MsgGUID: zPjHfsBwSQiVrNXYaGMihQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="16359317"
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="16359317"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2024 11:09:20 -0700
+X-CSE-ConnectionGUID: m3/CAtEVQJ6kuYnb3aEldw==
+X-CSE-MsgGUID: zLB385XhSd6mzwyoujkyHg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="32987757"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 21 May 2024 11:09:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 May 2024 21:09:16 +0300
+Date: Tue, 21 May 2024 21:09:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
+Subject: Re: [PATCH 2/5] drm/i915: Implement basic functions for ultrajoiner
+ support
+Message-ID: <ZkzjTAkAHjzZzr4e@intel.com>
+References: <20240520073839.23881-1-stanislav.lisovskiy@intel.com>
+ <20240520073839.23881-3-stanislav.lisovskiy@intel.com>
+ <ZkuVbZ8w6K5xoOnf@intel.com> <ZkxaewqkBXyL77Cr@intel.com>
 MIME-Version: 1.0
-References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
- <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
- <41b87510-7abf-47e8-b28a-9ccc91bbd3c1@leemhuis.info>
- <177cfae4-b2b5-4e2c-9f1e-9ebe262ce48c@amd.com>
- <CO6PR12MB5489FA9307280A4442BAD51DFCE72@CO6PR12MB5489.namprd12.prod.outlook.com>
- <87wmo2hver.fsf@intel.com> <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
- <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
- <CADnq5_P+WsL8B6B2vK5ENe8VWdvheoHyxoUfgF3Oex8Gvp7Lbg@mail.gmail.com>
-In-Reply-To: <CADnq5_P+WsL8B6B2vK5ENe8VWdvheoHyxoUfgF3Oex8Gvp7Lbg@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 21 May 2024 13:39:44 -0400
-Message-ID: <CADnq5_MYDNBpqXT8snztEGxqHh3N8_7wktNdjedkjnhe1Te6CQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
- drm_dp_add_payload_part2
-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Cc: "Limonciello, Mario" <mario.limonciello@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- "Lin, Wayne" <Wayne.Lin@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>, 
- "lyude@redhat.com" <lyude@redhat.com>,
- "imre.deak@intel.com" <imre.deak@intel.com>, 
- =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>, 
- "stable@vger.kernel.org" <stable@vger.kernel.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZkxaewqkBXyL77Cr@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,118 +73,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Applied and pushed out:
-https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3D8a0a7b98d4b6eeeab337=
-ec25daa4bc0a5e710a15
+On Tue, May 21, 2024 at 11:25:31AM +0300, Lisovskiy, Stanislav wrote:
+> On Mon, May 20, 2024 at 09:24:45PM +0300, Ville Syrjälä wrote:
+> > On Mon, May 20, 2024 at 10:38:36AM +0300, Stanislav Lisovskiy wrote:
+> > > Lets implement or change basic functions required for ultrajoiner
+> > > support from atomic commit/modesetting point of view.
+> > > 
+> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 66 +++++++++++++++++---
+> > >  1 file changed, 56 insertions(+), 10 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index c74721188e59..c390b79a43d6 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -242,33 +242,65 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
+> > >  		is_trans_port_sync_slave(crtc_state);
+> > >  }
+> > >  
+> > > -static enum pipe joiner_master_pipe(const struct intel_crtc_state *crtc_state)
+> > > +static u8 joiner_master_pipes(const struct intel_crtc_state *crtc_state)
+> > >  {
+> > > -	return ffs(crtc_state->joiner_pipes) - 1;
+> > > +	return BIT(PIPE_A) | BIT(PIPE_C);
+> > 
+> > Not a fan of the hardcoded pipes.
+> > 
+> > We could just do something like 
+> > joiner_pipes & ((BIT(2) | BIT(0)) << joiner_master_pipe())
+> > or some variant of that.
+> 
+> Well, here we need to decide whats worse: hardcoded bits/shifts versus harcoded pipes..
+> I would vote for pipes then, with reasoning that they are at least more obvious and easy to read.
+> It is anyway quite easy to change those here or make it platform based, if needed.
 
-Alex
+Hardcoded pipes aren't going to allow us to make the rest of the
+code generic because the overall master pipe can be anything when
+ultrajoiner isn't used.
 
-On Tue, May 21, 2024 at 12:12=E2=80=AFPM Alex Deucher <alexdeucher@gmail.co=
-m> wrote:
->
-> I've got it teed up.  Is drm-misc-fixes the right branch since we are
-> in the merge window?
->
-> Alex
->
-> On Tue, May 21, 2024 at 7:20=E2=80=AFAM Linux regression tracking (Thorst=
-en
-> Leemhuis) <regressions@leemhuis.info> wrote:
-> >
-> > Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
-> > for once, to make this easily accessible to everyone.
-> >
-> > Hmm, from here it looks like the patch now that it was reviewed more
-> > that a week ago is still not even in -next. Is there a reason?
-> >
-> > I know, we are in the merge window. But at the same time this is a fix
-> > (that already lingered on the lists for way too long before it was
-> > reviewed) for a regression in a somewhat recent kernel, so it in Linus
-> > own words should be "expedited"[1].
-> >
-> > Or are we again just missing a right person for the job in the CC?
-> > Adding Dave and Sima just in case.
-> >
-> > Ciao, Thorsten
-> >
-> > [1]
-> > https://lore.kernel.org/all/CAHk-=3Dwis_qQy4oDNynNKi5b7Qhosmxtoj1jxo5wm=
-B6SRUwQUBQ@mail.gmail.com/
-> >
-> > On 12.05.24 18:11, Limonciello, Mario wrote:
-> > > On 5/10/2024 4:24 AM, Jani Nikula wrote:
-> > >> On Fri, 10 May 2024, "Lin, Wayne" <Wayne.Lin@amd.com> wrote:
-> > >>>> -----Original Message-----
-> > >>>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
-> > >>>> Sent: Friday, May 10, 2024 3:18 AM
-> > >>>> To: Linux regressions mailing list <regressions@lists.linux.dev>;
-> > >>>> Wentland, Harry
-> > >>>> <Harry.Wentland@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>
-> > >>>> Cc: lyude@redhat.com; imre.deak@intel.com; Leon Wei=C3=9F
-> > >>>> <leon.weiss@ruhr-uni-
-> > >>>> bochum.de>; stable@vger.kernel.org; dri-devel@lists.freedesktop.or=
-g;
-> > >>>> amd-
-> > >>>> gfx@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> > >>>> Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
-> > >>>> drm_dp_add_payload_part2
-> > >>>>
-> > >>>> On 5/9/2024 07:43, Linux regression tracking (Thorsten Leemhuis) w=
-rote:
-> > >>>>> On 18.04.24 21:43, Harry Wentland wrote:
-> > >>>>>> On 2024-03-07 01:29, Wayne Lin wrote:
-> > >>>>>>> [Why]
-> > >>>>>>> Commit:
-> > >>>>>>> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
-> > >>>>>>> allocation/removement") accidently overwrite the commit
-> > >>>>>>> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in
-> > >>>>>>> drm_dp_add_payload_part2") which cause regression.
-> > >>>>>>>
-> > >>>>>>> [How]
-> > >>>>>>> Recover the original NULL fix and remove the unnecessary input
-> > >>>>>>> parameter 'state' for drm_dp_add_payload_part2().
-> > >>>>>>>
-> > >>>>>>> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
-> > >>>>>>> allocation/removement")
-> > >>>>>>> Reported-by: Leon Wei=C3=9F <leon.weiss@ruhr-uni-bochum.de>
-> > >>>>>>> Link:
-> > >>>>>>> https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371=
-cc8.c
-> > >>>>>>> amel@ruhr-uni-bochum.de/
-> > >>>>>>> Cc: lyude@redhat.com
-> > >>>>>>> Cc: imre.deak@intel.com
-> > >>>>>>> Cc: stable@vger.kernel.org
-> > >>>>>>> Cc: regressions@lists.linux.dev
-> > >>>>>>> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
-> > >>>>>>
-> > >>>>>> I haven't been deep in MST code in a while but this all looks pr=
-etty
-> > >>>>>> straightforward and good.
-> > >>>>>>
-> > >>>>>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-> > >>>>>
-> > >>>>> Hmmm, that was three weeks ago, but it seems since then nothing
-> > >>>>> happened to fix the linked regression through this or some other
-> > >>>>> patch. Is there a reason? The build failure report from the CI ma=
-ybe?
-> > >>>>
-> > >>>> It touches files outside of amd but only has an ack from AMD.  I
-> > >>>> think we
-> > >>>> /probably/ want an ack from i915 and nouveau to take it through.
-> > >>>
-> > >>> Thanks, Mario!
-> > >>>
-> > >>> Hi Thorsten,
-> > >>> Yeah, like what Mario said. Would also like to have ack from i915 a=
-nd
-> > >>> nouveau.
-> > >>
-> > >> It usually works better if you Cc the folks you want an ack from! ;)
-> > >>
-> > >> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> > >>
-> > >
-> > > Thanks! Can someone with commit permissions take this to drm-misc?
-> > >
-> > >
-> > >
+Eg. the way we assign the bigjoiner_pipes is by simply setting a
+some number (either two or four) of consecutive bits in the mask.
+In order for that to keep working universally these functions must 
+be able to answer questions based on that bitmask, no matter which
+consecutive set of bits are set.
+
+> 
+> > 
+> > > +}
+> > > +
+> > > +static u8 joiner_primary_master_pipes(const struct intel_crtc_state *crtc_state)
+> > > +{
+> > > +	return BIT(PIPE_A);
+> > 
+> > This is just the joiner_master_pipe() we already have.
+> 
+> I decided to convert joiner_master_pipe to joiner_master_pipes which should return a mask,
+> instead of a pipe.
+> That approach makes it more generic: for bigjoiner we still get only a single bit set in a mask,
+> however for ultrajoiner case we have now 2 master pipes, so we need a mask here.
+> 
+> joiner_primary_master_pipes is indeed supposed to return only a single primary master pipe,
+> however I decided that operating with masks instead of enum, seems more generic and practical approach,
+> for example if we need to get all pipes, which are not primary master, as below.
+> 
+> > 
+> > >  }
+> > >  
+> > >  u8 intel_crtc_joiner_slave_pipes(const struct intel_crtc_state *crtc_state)
+> > >  {
+> > > -	if (crtc_state->joiner_pipes)
+> > > -		return crtc_state->joiner_pipes & ~BIT(joiner_master_pipe(crtc_state));
+> > > +	if (intel_is_ultrajoiner(crtc_state))
+> > > +		return crtc_state->joiner_pipes & ~joiner_primary_master_pipes(crtc_state);
+> > > +	else if (intel_is_bigjoiner(crtc_state))
+> > > +		return crtc_state->joiner_pipes & ~joiner_master_pipes(crtc_state);
+> > >  	else
+> > >  		return 0;
+> > 
+> > I don't see why this should make any distinction between bigjoiner
+> > and ultrajoiner.
+> > 
+> > Either it returns everything that isn't the overall master,
+> 
+> For ultrajoiner that is slave pipes + secondary master pipe.
+> I.e it is everything that is below primary master.
+
+Same for for non-ultrajoiner. The only difference is that there is just
+the one slave rather than three. But the callers don't need to care
+about that in general.
+
+I suspect there is probably only few uses cases for this:
+- the master->slave state copying. And there we just want to
+  go through all the slaves, no matter how many there are
+- during the high level modeset sequence (and probably a few
+  other places as well) we need to simply skip all the slaves,
+  and again it doesn't matter how many there are
+
+For the plane updates and such we probably don't really need to
+care about the master/slave relationships, so the current thing
+that just iterates all joined pipes will work perfectly fine.
+
+And for actual modeset sequencing I suspect we just need the
+bigjoiner master/slave bitmasks and make sure we iterate through
+each in turn:
+enable:
+ 1. for_each_reverse(bigjoiner_slaves)
+ 2. for_each_reverse(bigjoiner_masters)
+disable:
+ 1. for_each(bigjoiner_masters)
+ 2. for_each(bigjoiner_slaves)
+
+> > returns just all the bigjoiner slave pipes. Which one we want
+> > depends on the use case I guess. So we might need both variants.
+> 
+> Yeah, we need both ways: sometimes we need to get all pipes except primary master.
+> And sometimes we need to get only slave pipes in Bigjoiner terminology.
+> There are use cases for both.
+> 
+> However definition of slave pipe is a bit tricky here, because technically secondary
+> master pipe is also a slave pipe in relation to primary master pipe.
+> 
+> > 
+> > >  }
+> > >  
+> > > -bool intel_crtc_is_joiner_slave(const struct intel_crtc_state *crtc_state)
+> > > +bool intel_crtc_is_bigjoiner_slave(const struct intel_crtc_state *crtc_state)
+> > >  {
+> > >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > >  
+> > >  	return crtc_state->joiner_pipes &&
+> > > -		crtc->pipe != joiner_master_pipe(crtc_state);
+> > > +		!(BIT(crtc->pipe) & joiner_master_pipes(crtc_state));
+> > 
+> > I'd probably add a joiner_slave_pipes() so that the logic is less
+> > convoluted.
+> 
+> Yeah, then joiner_slave_pipes would have to return only slave pipes in
+> bigjoiner terminology.
+> 
+> > 
+> > But I think first we need a solid agreement on the terminology,
+> > and stick to it consistently.
+> > 
+> > Perhaps we need names for?
+> > - the single master within the overall set of joined pipes
+> >   (be it ultrajoiner master or the bigjoiner/uncompressed
+> >    joiner master when ultrajoiner isn't used).
+> >   Just call this joiner_master perhaps? Or perhaps just call it
+> >   ultrajoiner_master but document that it is valid to use it
+> >   also for the non-ultrajoiner cases.
+> 
+> I think it would be quite natural to call it a primary master.
+> 
+> Initially BSpec called it that way and it sounds logical.
+> 
+> I.e now we have not only master/slave hierarchy, but also 
+> second level of hierarchy between masters: secondary master
+> and primary master.
+> Other names sound less obvious tbh: i.e "master of masters" :)
+> or "overall master" and etc..
+> 
+> That is why I'm a bit opposed to that Jani says to rename
+> master/slave to primary/secondary - we get a problem with
+> naming for Ultrajoiner then:
+> as we are going to have primary of primary pipe or smth like that.
+> 
+> Can't think of anything better than using primary/secondary master.
+> If anyone has better sounding ideas - you are welcome.
+
+The bspec rename does this:
+ master -> primary
+ slave -> secondary
+
+I do agree that what you're going for here would have been pretty
+natural way to experss this, but I think that ship sailed when
+the annoying bspec rename happened. If we now start using those
+same names to refer to a completely different concept I think the
+end result will be extremely confusing.
+
+IMO we probably need to slighly extend the ultrajoiner and bigjoiners
+terms to cover all the joiner cases, which would look something like this:
+- ultrajoiner master/primary = the first pipe in the set
+- ultrajoiner slaves/secondaries = the rest of the pipes in the set
+- bigjoiner masters/primaries = first pipe + third pipe + ... in the set
+- bigjoiner slaves/secondaries = second pipe + fourth pipe + ... in the set
+
+Or perhaps we just drop the "ultra" part form the first two and
+speak of just "joiner" in general when referring to things on
+that level?
+
+Either that or we try to invent some new terminology for these
+two levels of roles that doesn't conflict badly with the bspec
+terminology. What that would be I'm not sure. Up/down,
+heads/tails, noble/peasant, apple/orange? Nothing truly
+inspiring comes to mind right now.
+
+-- 
+Ville Syrjälä
+Intel
