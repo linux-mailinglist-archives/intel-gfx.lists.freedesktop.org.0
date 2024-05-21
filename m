@@ -2,68 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64DA8CAD39
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 13:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3585F8CADE2
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 14:09:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFADC10E1A1;
-	Tue, 21 May 2024 11:20:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43AD510EB79;
+	Tue, 21 May 2024 12:09:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="ZKgBEFJ9";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="epBRfOE2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [80.237.130.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1E810E0BF;
- Tue, 21 May 2024 11:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=leemhuis.info; s=he214686; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- In-Reply-To:References; bh=bryoWbNN8cFi6dYEo/k2lPyQOXpLR2x/eApoa9hqlW8=;
- t=1716290432; x=1716722432; b=ZKgBEFJ9w9i55I8dBKvNlBdda3XHecq9c5maVEUJ/wTroGs
- iLTaYmXXveIXKct6DBLJ7Kt8wZyxWVhWn8tc4HifJBoNiH2SH9JKIDB23KigLHdk6nCH5M33zBQ1w
- EEV5vJJO5uOXkqvLK6tgPnyRMh6w6nREg9fgxBJrvTo18myS8dUcsPBE6chPrqAib7to3f9rHT3K3
- U3Gh8p1AupSSf1NGAjaIgfMFSQKuUSEQKdCGrQdob+paaE39+DWWrLOov3wQoiZCCQydks0SAAKu0
- JQrsY+Vz/H3ry7xDH2ovpFNUCxnoTfOGQOky18K8HbQL9AjEaW9koVa2uPAjWSyQ==;
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1s9NXZ-000357-WB; Tue, 21 May 2024 13:20:22 +0200
-Message-ID: <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
-Date: Tue, 21 May 2024 13:20:21 +0200
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6424F10EB79
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 12:09:26 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-5239296b714so980632e87.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 05:09:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1716293364; x=1716898164; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=BSr7XhF5S8WaGr9arreORqdLq/I+uMrvPz566WVlO90=;
+ b=epBRfOE2gL73EBJnnbJd3ePa9uSz22XWqPXZzX0mEf+XUAQBHD0pSxeJ6bD8UNrzCK
+ 3vZdkl22DNEbjS81k/HIkBtYPJbTBxxBCfTL7euTrFj9EBDY372vHl6RVT2c40LXACU8
+ 9gxb435TqGHW47q84K1kAHkr5bKiMNLcRulXs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716293364; x=1716898164;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BSr7XhF5S8WaGr9arreORqdLq/I+uMrvPz566WVlO90=;
+ b=Kv9c4PRKBgnUmk7V/hoL/vjQ+CKvsuHNWBKqBKE3uHgmwqwgpQ5ODNbzLgDVU/REwq
+ ai/go/fs7R+Hlhul9zzSHqGEoOVeCZm+kWerkEBmfXeTbjPIziA7rb9rTxgv6xe5vpP9
+ leXm3lMRbz1F6FtcAlRuD7U+umoprR7pg61plwX4SZcSXqztia/fS7LU11q68ztCrvKn
+ lf+Oilf8tYkYWBY9aWDN1AH7rC0y5Qq2uEHM3ua/7lP6PImnOZBTSMK+lCxYttq3L7Kc
+ nroW+hTMdyQzE5AkM1UdkPpYqk7tu5wkxAeroNy7cxi4KZIBVmkl5d/3HFSVef7mUfxd
+ b2bg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWfkhx4TiEjq13dSWJDNpObu63grZlDbAJu8d3bWNov/ylQRxVdKbNANy2ZY+Zhahr144lRZyufAhFZVehJRi3bJrSeAVinfY0DJKQv1RsT
+X-Gm-Message-State: AOJu0Yz3quwdJNZMIWIhNn7Hbu2VTesu1EMX25FyYSbWk/1PRHK+dtHQ
+ g684Q8ib8o6RyOrDJRL0cHJnx9IZ+KXnjuKgvmGzEB/K3110owFzyIaXu3R0w7E=
+X-Google-Smtp-Source: AGHT+IHoXTL75VZZmSseXjU8/3hJvrLezkyEL4ClkngPvT91a0/B3d9SAEKQ8jn/6yXAyQnWEQvlog==
+X-Received: by 2002:a05:6512:131d:b0:523:68bf:9d55 with SMTP id
+ 2adb3069b0e04-52368bf9e50mr14861039e87.2.1716293363766; 
+ Tue, 21 May 2024 05:09:23 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a5a179c7da8sm1612817166b.99.2024.05.21.05.09.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 May 2024 05:09:21 -0700 (PDT)
+Date: Tue, 21 May 2024 14:09:19 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/probe-helper: Call drm_mode_validate_ycbcr420()
+ before connector->mode_valid()
+Message-ID: <ZkyO7ybX-pdDiWMR@phenom.ffwll.local>
+References: <20240516173324.18149-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
- drm_dp_add_payload_part2
-To: "Limonciello, Mario" <mario.limonciello@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, "Lin, Wayne" <Wayne.Lin@amd.com>,
- Linux regressions mailing list <regressions@lists.linux.dev>,
- "Wentland, Harry" <Harry.Wentland@amd.com>
-Cc: "lyude@redhat.com" <lyude@redhat.com>,
- "imre.deak@intel.com" <imre.deak@intel.com>,
- =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
- <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
- <41b87510-7abf-47e8-b28a-9ccc91bbd3c1@leemhuis.info>
- <177cfae4-b2b5-4e2c-9f1e-9ebe262ce48c@amd.com>
- <CO6PR12MB5489FA9307280A4442BAD51DFCE72@CO6PR12MB5489.namprd12.prod.outlook.com>
- <87wmo2hver.fsf@intel.com> <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-Content-Language: en-US, de-DE
-In-Reply-To: <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1716290432;
- 6a53ef40; 
-X-HE-SMSGID: 1s9NXZ-000357-WB
+In-Reply-To: <20240516173324.18149-1-ville.syrjala@linux.intel.com>
+X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,97 +79,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
-for once, to make this easily accessible to everyone.
-
-Hmm, from here it looks like the patch now that it was reviewed more
-that a week ago is still not even in -next. Is there a reason?
-
-I know, we are in the merge window. But at the same time this is a fix
-(that already lingered on the lists for way too long before it was
-reviewed) for a regression in a somewhat recent kernel, so it in Linus
-own words should be "expedited"[1].
-
-Or are we again just missing a right person for the job in the CC?
-Adding Dave and Sima just in case.
-
-Ciao, Thorsten
-
-[1]
-https://lore.kernel.org/all/CAHk-=wis_qQy4oDNynNKi5b7Qhosmxtoj1jxo5wmB6SRUwQUBQ@mail.gmail.com/
-
-On 12.05.24 18:11, Limonciello, Mario wrote:
-> On 5/10/2024 4:24 AM, Jani Nikula wrote:
->> On Fri, 10 May 2024, "Lin, Wayne" <Wayne.Lin@amd.com> wrote:
->>>> -----Original Message-----
->>>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
->>>> Sent: Friday, May 10, 2024 3:18 AM
->>>> To: Linux regressions mailing list <regressions@lists.linux.dev>;
->>>> Wentland, Harry
->>>> <Harry.Wentland@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>
->>>> Cc: lyude@redhat.com; imre.deak@intel.com; Leon Wei√ü
->>>> <leon.weiss@ruhr-uni-
->>>> bochum.de>; stable@vger.kernel.org; dri-devel@lists.freedesktop.org;
->>>> amd-
->>>> gfx@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->>>> Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
->>>> drm_dp_add_payload_part2
->>>>
->>>> On 5/9/2024 07:43, Linux regression tracking (Thorsten Leemhuis) wrote:
->>>>> On 18.04.24 21:43, Harry Wentland wrote:
->>>>>> On 2024-03-07 01:29, Wayne Lin wrote:
->>>>>>> [Why]
->>>>>>> Commit:
->>>>>>> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
->>>>>>> allocation/removement") accidently overwrite the commit
->>>>>>> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in
->>>>>>> drm_dp_add_payload_part2") which cause regression.
->>>>>>>
->>>>>>> [How]
->>>>>>> Recover the original NULL fix and remove the unnecessary input
->>>>>>> parameter 'state' for drm_dp_add_payload_part2().
->>>>>>>
->>>>>>> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
->>>>>>> allocation/removement")
->>>>>>> Reported-by: Leon Wei√ü <leon.weiss@ruhr-uni-bochum.de>
->>>>>>> Link:
->>>>>>> https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371cc8.c
->>>>>>> amel@ruhr-uni-bochum.de/
->>>>>>> Cc: lyude@redhat.com
->>>>>>> Cc: imre.deak@intel.com
->>>>>>> Cc: stable@vger.kernel.org
->>>>>>> Cc: regressions@lists.linux.dev
->>>>>>> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
->>>>>>
->>>>>> I haven't been deep in MST code in a while but this all looks pretty
->>>>>> straightforward and good.
->>>>>>
->>>>>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
->>>>>
->>>>> Hmmm, that was three weeks ago, but it seems since then nothing
->>>>> happened to fix the linked regression through this or some other
->>>>> patch. Is there a reason? The build failure report from the CI maybe?
->>>>
->>>> It touches files outside of amd but only has an ack from AMD.¬† I
->>>> think we
->>>> /probably/ want an ack from i915 and nouveau to take it through.
->>>
->>> Thanks, Mario!
->>>
->>> Hi Thorsten,
->>> Yeah, like what Mario said. Would also like to have ack from i915 and
->>> nouveau.
->>
->> It usually works better if you Cc the folks you want an ack from! ;)
->>
->> Acked-by: Jani Nikula <jani.nikula@intel.com>
->>
+On Thu, May 16, 2024 at 08:33:24PM +0300, Ville Syrjala wrote:
+> From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 > 
-> Thanks! Can someone with commit permissions take this to drm-misc?
+> Make life easier for drivers by filtering out unwanted YCbCr 4:2:0
+> only modes prior to calling the connector->mode_valid() hook.
+> Currently drivers will still see YCbCr 4:2:0 only modes in said
+> hook, which will likely come as a suprise when the driver has
+> declared no support for such modes (via setting
+> connector->ycbcr_420_allowed to false).
 > 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10992
+> Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+
+Sounds reasonable.
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> ---
+>  drivers/gpu/drm/drm_probe_helper.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+> index 4f75a1cfd820..249c8c2cb319 100644
+> --- a/drivers/gpu/drm/drm_probe_helper.c
+> +++ b/drivers/gpu/drm/drm_probe_helper.c
+> @@ -474,6 +474,10 @@ static int __drm_helper_update_and_validate(struct drm_connector *connector,
+>  		if (mode->status != MODE_OK)
+>  			continue;
+>  
+> +		mode->status = drm_mode_validate_ycbcr420(mode, connector);
+> +		if (mode->status != MODE_OK)
+> +			continue;
+> +
+>  		ret = drm_mode_validate_pipeline(mode, connector, ctx,
+>  						 &mode->status);
+>  		if (ret) {
+> @@ -486,10 +490,6 @@ static int __drm_helper_update_and_validate(struct drm_connector *connector,
+>  			else
+>  				return -EDEADLK;
+>  		}
+> -
+> -		if (mode->status != MODE_OK)
+> -			continue;
+> -		mode->status = drm_mode_validate_ycbcr420(mode, connector);
+>  	}
+>  
+>  	return 0;
+> -- 
+> 2.44.1
 > 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
