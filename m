@@ -2,174 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023508CB130
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 17:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D478CB1FB
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 18:12:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A3C10ED65;
-	Tue, 21 May 2024 15:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 202D610E13F;
+	Tue, 21 May 2024 16:12:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0cxT4JT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eRXQGHFw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A040D10ED65;
- Tue, 21 May 2024 15:26:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716305174; x=1747841174;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=I5CJhnnCSBqe1QFHSTltH4qOuyAuF2GRwv2Hi76gLSg=;
- b=T0cxT4JTaVr7wuPrCASIUTAE6IIY36ETJV1QB7kD8QxFOhJIZgSy4MLm
- qPAQQvHcR1PVWA4OvRWWTAHON8TS/cDzTtcgv6hITXrg+OE/r281oEyNx
- uh+hZQ8vpR0VGAhHFnOKARdRTtoNKDkmiAIb/V75PYzmQ+Ov9Mwg7z9je
- Smts8ysqrXFlIbKnYJA5EEhYkXzc4Ovd3RmHDr/nf6RGOcW5nQ+LgVKcT
- vuz2uokGUQJ2fjAw9+9pvJ88b7BpxFHDai1GOElmvH8UM3OPsf4ilX3fO
- kuoJYqMo+0Bl4OcH48RfYF9QpjXfMaUXQsvqdNXfvXprir/Rq3gV9D/DJ Q==;
-X-CSE-ConnectionGUID: m83p2fKyTZOPR8n/CVrcdA==
-X-CSE-MsgGUID: 2Vii4vUpRzSccva97Ci8IA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12736867"
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="12736867"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 08:26:13 -0700
-X-CSE-ConnectionGUID: FTpR6vWhT4eYI3zADnbrHg==
-X-CSE-MsgGUID: vpe00nChRXql86+7QoRkuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; d="scan'208";a="37542181"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 May 2024 08:26:13 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 21 May 2024 08:26:12 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 21 May 2024 08:26:12 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 21 May 2024 08:26:12 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 21 May 2024 08:26:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EpUgJ/IUPKF7BJBQVJuCXvO9edAhWonDNFVbOgvDxQPBhJuz9JKBHspbBOMhdtT872VIO6vqKrxYhpZZmc61XRd+jGyNWTRh4yJbvEPmlV0bnKWi3bxvem7xTu3YO/C1ay0ZP98TOeiuoFX9IjAmb8zmKRH2sp30p6xADWT+yNyKJ1JkLRtjR+XcWfXx7BrGKyp9b743f0Cc+hpnzg0TFPlzlCL4JTfVSHcVw9rsuiGw/sGN4LfAO6Up2jW7nFk9IHUV/Vq5MdJHdpGINABgVcbTYFDl0LgGFQcSq8vASL0Ybr16lp+ZPDhz0PPhmcP6R4ceHef/IS953ePzGYZqJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I5CJhnnCSBqe1QFHSTltH4qOuyAuF2GRwv2Hi76gLSg=;
- b=QVZS9rghMnEh7USDECLFnBDiaFrbxq0U7Cy/pR5Yu3azfaltBUEGXx44vfMplf9cZv4AGUcg/Ek7pL1ClEw+38M8Y/cxkgGyDwB586D/BM/B7yC4XcC97Ba5Tf+xsrmOGiob5ij5IDG1vHmTioOM4eGQW9zWt6U1HwgZhqNlt0o9dzEWrCrXazp3CUfGhHnOfkmtnjy23QmfSdzXiFPSmh5fYT53V+UF16+zCu8D8nqaAhwXGoQe84GZ9MQzUPZaHipNQv98bLk/GxrRUntkx1L5ol+tvUXyNblq2nnH9/ABQohWD3PuvCDCVmwtyupdtVPBWQXucSNVochTdchBxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA1PR11MB7810.namprd11.prod.outlook.com (2603:10b6:208:3f3::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.35; Tue, 21 May
- 2024 15:26:09 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.7587.035; Tue, 21 May 2024
- 15:26:09 +0000
-Date: Tue, 21 May 2024 10:26:03 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Knop, Ryszard" <ryszard.knop@intel.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
- "sfr@canb.auug.org.au" <sfr@canb.auug.org.au>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Daniel
- Vetter" <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, "Joonas
- Lahtinen" <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>
-Subject: Re: FYI: drm-intel repo moved to fd.o GitLab
-Message-ID: <lutgryt5og2hrkoh5fjp5lmuq2ynksjwxrjfpl5brkob6pujud@zayf2voxtcdp>
-References: <adff92fd559f6798690e3050b4474b099a3dde75.camel@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <adff92fd559f6798690e3050b4474b099a3dde75.camel@intel.com>
-X-ClientProxiedBy: MW4PR04CA0047.namprd04.prod.outlook.com
- (2603:10b6:303:6a::22) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
+ [209.85.215.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A994D89D7F;
+ Tue, 21 May 2024 16:12:48 +0000 (UTC)
+Received: by mail-pg1-f169.google.com with SMTP id
+ 41be03b00d2f7-5f415fd71f8so478977a12.3; 
+ Tue, 21 May 2024 09:12:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1716307968; x=1716912768; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CCvtAT9yL4bsyunfEMr4mUSenqzklzI9+JXqeALbOyQ=;
+ b=eRXQGHFwb86Oaj0T29EtKcSU4uW880AH0ISYNJWHrwOkJgejuUr1DAPMppjOouip6v
+ JnKiQOipxT+zf+3rnpylLxlnj98zQYwbArlnVLgONq3t8y6fvkfA+ZaFZL7Yx3IJaeD9
+ e9X2n8hOkIfBJfq8PTdOQBATHDPB4dnoauMNSxDYrkmkpaq3/L8bMzV2G/xfvClkDOiI
+ rlOZ3HT4PDGA28LpSWeCOpbZFJkAAjkfYR8ZXv1VRxg+W0ctWJJG8ckpVHUgn30v1kvN
+ VfJ8Hnz/wmFXb4i29QzNdDwjltAmerSoauDGgyQruljtek/rEIoxK58fer+rJoN25NcE
+ kD5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716307968; x=1716912768;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=CCvtAT9yL4bsyunfEMr4mUSenqzklzI9+JXqeALbOyQ=;
+ b=MbFzJpXY4LWeJTWNbwFw3FdPLT4AJcWTJ+WEisnHuvtd1kNebn5HFrki4q4XOIdoQU
+ XUr54ML4UjuwspQv6wxz4iOH25hwNgxqy+kFvOvnlPr4qrzGxzWd2PIWrTBv6CE5/2Y0
+ VNljyJoojgKIVCMsGrcD3rHjoTWCBynZp/IHggjptjtjfrBe16q/+eqstpAtkAwW/W/w
+ vMQWnGEgeh96F/mvpbjUIY6nsTEluqxSKO5Qh4Xka36vMqU/fbkTOxFRd5C1AGE8pK7C
+ 2V2dhqTUmmpBv7zxKZHgAF6t0UG7GAA2qaQpZPDX8slAxktPow+y6IRZ23a5S89fCsM1
+ tsUQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVz1Se5QPTpU3hFfDPfNUHxAfUUgJLfOc7gfTnc/KTTOkK9EghfOvixVUHr4M6Dov74wSgbp/Ro8/ORPengk3RLicJBikqGYkqYl7V94eHTVveJ/8IPMpV4KZTF3EuloppQA+82c7A1XKxFHMi4wnNvU5H4q1q5fsHowwx0yRbKN8chzkrnbUz1bR0Cl6ajWA==
+X-Gm-Message-State: AOJu0YwrNdNi7eEd87MtN4urKooU65IS6ZHlvYY6BrolrRTxyKzwAm+H
+ PsBFDUS/g4CSfIZNMBjO9/HJu5GY4kOBV2KoPlHNYviihcew6ZFky71D8mT9LNPQ6XA93DXq5xj
+ KWj4zB961IJ82q6eq2H1uSnCqmOk=
+X-Google-Smtp-Source: AGHT+IHAP3KDnJJS0O7SkGfKIP7uk1EKp+f8X1mluB24KubBN9tLU3rOHMtfN8y0ky6xkTXQo2yflL/anOYUpzKLWLA=
+X-Received: by 2002:a17:90a:eb07:b0:2a3:10d3:239d with SMTP id
+ 98e67ed59e1d1-2b6ccd6bbbdmr28841420a91.32.1716307967824; Tue, 21 May 2024
+ 09:12:47 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB7810:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36902928-e9b6-4563-6914-08dc79aa5718
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|7416005|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fyX9TXgCvXavDeuBD+pJZVb15gaKzUeeXtHpOKxWsxnxp7xcUWGHNT4furCQ?=
- =?us-ascii?Q?DmK1n44C12pNWndiRUtJaLgvELbz1wdADdukBvjfgxouAhufe3Z3kAYllBlR?=
- =?us-ascii?Q?PjxOqVoFDUgdC5pgkKYWYZbkVXHGiq9ZskNzbnT9NNtdPLA0WknlXifympK1?=
- =?us-ascii?Q?qPP53y9CnjCfPJ5RbLh7ZvgrQdbmE4ka3/bICgfqSH/zbb9atiL/ufhnyJuP?=
- =?us-ascii?Q?eNY1UieA5bASwCtVSI7tdpRbtcLJ+yf51EzO6VuGkyOjMD1gCeCOLT5e0PZm?=
- =?us-ascii?Q?RZchRjcArhE51QbudekZogP5JeZOkfV++wtoWWgB/79L19gHQn122DoTwev0?=
- =?us-ascii?Q?pxiSKLNYPzqGnDImcF1gvsdm72h5200xbLoZq6Rw35mFPbZwvpOQWBXDN6ug?=
- =?us-ascii?Q?1bPfxh8edlbjDyXrV3EZvshE46oQUJbFpg10oBQ0l7lT0OTrwrK5BDWzufzP?=
- =?us-ascii?Q?VqW3Zm0Zh9hgHggfxumVAcDd8QizFc3+9GzyotB/LwH5s68wNRrIiOuoL0Gq?=
- =?us-ascii?Q?mrL1eGFqbg3Qm8c7pc6TxLr07564vBJwGL0UDbYgbrsdhhSziq22fr/36oMR?=
- =?us-ascii?Q?uVvYSQnxww2AOXzpB4cELJmdmFB3Be5mxXu7bKl1nvfo6G2uG3ofkMYGia7o?=
- =?us-ascii?Q?nLsM79lOL5rdmcqY90tD+xwhJzoIxZX2DJDe90ZBSDf7tG1ftppDBliPj6lU?=
- =?us-ascii?Q?BFt3/N4Ew4ljCYDjuN2GbJ3BbzrT9JsxLEmW7ctj8S/RbJN4UhqTZAtY3C6F?=
- =?us-ascii?Q?SPmhTDB24I8Y37J2RbQwLwKAU8W1GnwpR3qUkOp+k59UdZ3wMeYy/O9rdVhE?=
- =?us-ascii?Q?ImTkYnwvOHZ+JET+C9W1lJVb2YXty1m8lkH6GglAw87jEMq64QUt50lslHdk?=
- =?us-ascii?Q?5Iq7Dmoqd0zJENZRnMk9aJRCQxshuUw21aSoE2pTM5nG59yVgnHya2qtZp2b?=
- =?us-ascii?Q?sROi0vOgEkVCUPdQ7pZP4saQnI37QcGFRHU51lPeHhGb0xLKYOO5w8ZXh/Em?=
- =?us-ascii?Q?64MlAn1Rq1wr8Uvjq4YjPJ+qaH2e0BKmQHUEoPIl6Ygwyty8hk+EgP95/0Mu?=
- =?us-ascii?Q?+iLTbGYpKYJV9XJXd/Q7kZfS18KHOpymbRmg4Q/sJqdVw6v5AYYFmFkN+Bbm?=
- =?us-ascii?Q?V6mRx2//LZrhxTAf6uxGu3MHWimeXL6Ao33K7BQT8B1968A91IIBEWgJLLEp?=
- =?us-ascii?Q?uC1grEq5HlFgN4Puqm1rZDsi3MD58hmYSqPVs+s0zTmTwM6TdSZekPbZ1hs?=
- =?us-ascii?Q?=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(7416005)(366007)(376005); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dCm+2wA4IZvb5CZlpXMoiv8vbq1AMjDkzQaeTOeHtkComV+vryODYQjniQ64?=
- =?us-ascii?Q?92Zp+PIvys77oTL8YinYcDHKCm+RRs5rXIvlkQ+WkSuUJ8XB8q+OeVVTUzui?=
- =?us-ascii?Q?dhYCqtKqsEynj5YRdVnj5GYgn8OVvrXRfb6yOqtJDGUUHByLToWNRWxSyi3J?=
- =?us-ascii?Q?CVfGe2eHTyQhlogqHwWih6RTaKpzvsqdsnTKR0GwB8M179aF/oYzjmGjQ7z9?=
- =?us-ascii?Q?sXQ9vLUnRUO4M5sKpKFrC6S8vS1gPgsm3mGWs3cMdbtw3CnEMm8cY6wdYDwG?=
- =?us-ascii?Q?5mc0GRbPf3QZeb3Nm31e3lDaFrrWOt6RkRFnim8u8kqoQp1qlkndqBp/7cFH?=
- =?us-ascii?Q?jyMDdtqYUymhDJLfUotFFqvlLzIkX+pp0lvlWhL2vOx0AYS5t7uBnRGjl+D2?=
- =?us-ascii?Q?ckSULhiwP/jlWkJrLfXzfnUd0FzGn3dmrklkxyluvcsfZaS7d5+cGG7sIiG0?=
- =?us-ascii?Q?fyjR92NKUzwzFx4eBUPQnRSpjS+qP6WaUTUQCXLRIKeIp/GHpseJ7u0qYwlt?=
- =?us-ascii?Q?2VZizZe+gtggTrKFDa1dca8eZnBeQkRmrlprZtOqTZndm2KPI5MUtlC8nt6C?=
- =?us-ascii?Q?scOo65+2TL1FTJVZI7JER0CrIOIs0fl3l/a/5GU3Cah584XV+aZISxzQ+DdY?=
- =?us-ascii?Q?nV7zolU9Z2Boof3LilUUidhyfGNwKuekIOWQ/9Fr26mUUo96eN9H2cNKS3r8?=
- =?us-ascii?Q?bFkPfjz7KpFGfOXrK2emoQ0k6e1wTL5bxBGDix2pYbuwS97xPzP0tD+TQ8gk?=
- =?us-ascii?Q?D9Z9NHB8OxFIm7ZJwAUkMb9mC+E5kjBXl/EyisImP/mesGSeL9ypAGZA9ubJ?=
- =?us-ascii?Q?fA3lB6etY3jQ+YgJevsNhP6F72GhuSKTuOQbXrl4Knq2ajITVhU31W06Wwi7?=
- =?us-ascii?Q?pFQxsyVy7VXrGhGGuQcIq2cnZtTTcnT+SrQzBhBsZbZtr0wdOmQqIycRxp87?=
- =?us-ascii?Q?YKK3d/0Sv6ypK4dce7Dig1Uw+/f1w4ZHYGedZ+v6DZrJRKp0ARj48kJhez94?=
- =?us-ascii?Q?NenGVbHezXRJeVS6JaybwMeKZV7s2BmWA556oHmjwepSstgjn/WCbM8OVGc+?=
- =?us-ascii?Q?9aRAYGm3D0LXYCJ0iGYL/JBx11qjEtwY03wgPp50EQuFADdfZ8VHbEp6xCJe?=
- =?us-ascii?Q?5mk9w/hKHD0T7Rsxrg4dCVSVzVFnIXqcqa8bXoMDsZ0OZmzMwyn5VIO/XWT+?=
- =?us-ascii?Q?nLFh7nzTEGZJjUfcTguzoIKGwEzkcUXlBpYGYFcdZmQynfpGS2e6YGYBKgtP?=
- =?us-ascii?Q?BZjSIYpcsab72Rgk8cP0HxLlavolbQ0sK+kGnf00EjFONhbjACd+/57v3CYd?=
- =?us-ascii?Q?FzpAo56Tb9BgeU2e1BS2jB3tK9w5y3tkFxuLa4e0Mc7FLel/rhUgkthwJrcN?=
- =?us-ascii?Q?40S6hFx+wncWZS0+h8kTr+4Pm1AouhiaGpBi/b5R+e4ZKbu/LOHpztgDFOyT?=
- =?us-ascii?Q?X4I904UXgD3Lv7HjwRSuqwsDCmr0U6mrQggZqNcnLM3CZTnhsk5A3PobPOJ0?=
- =?us-ascii?Q?iBk7fzpvFDtfThPqdprm09ey4XjLj4AHOQRMSdGIm7IkXEM8h8IlEDxUyywb?=
- =?us-ascii?Q?15TA9nXiua1O3XCFsZqWNxX6A7q8bh+xl4yjsDX0MOkukEYlCFFKUIV/hGbi?=
- =?us-ascii?Q?6Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36902928-e9b6-4563-6914-08dc79aa5718
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2024 15:26:09.4804 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: inFD08ti8brnldW1IpJIhxb5q+UP4d0JmI3k4Opt+MdfHPPCnX9ZxQ4aylY9Y20vYixePYVsTCKZUfzfJjvCW5/1htI1SpsB/pLzO3KiMRs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7810
-X-OriginatorOrg: intel.com
+References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
+ <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
+ <41b87510-7abf-47e8-b28a-9ccc91bbd3c1@leemhuis.info>
+ <177cfae4-b2b5-4e2c-9f1e-9ebe262ce48c@amd.com>
+ <CO6PR12MB5489FA9307280A4442BAD51DFCE72@CO6PR12MB5489.namprd12.prod.outlook.com>
+ <87wmo2hver.fsf@intel.com> <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
+ <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
+In-Reply-To: <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 21 May 2024 12:12:36 -0400
+Message-ID: <CADnq5_P+WsL8B6B2vK5ENe8VWdvheoHyxoUfgF3Oex8Gvp7Lbg@mail.gmail.com>
+Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
+ drm_dp_add_payload_part2
+To: Linux regressions mailing list <regressions@lists.linux.dev>
+Cc: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ "Lin, Wayne" <Wayne.Lin@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>, 
+ "lyude@redhat.com" <lyude@redhat.com>,
+ "imre.deak@intel.com" <imre.deak@intel.com>, 
+ =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>, 
+ "stable@vger.kernel.org" <stable@vger.kernel.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,36 +95,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cc'ing drm and drm-intel maintainers too.
+I've got it teed up.  Is drm-misc-fixes the right branch since we are
+in the merge window?
 
-And a few more details below.
+Alex
 
-On Tue, May 21, 2024 at 02:56:22PM GMT, Knop, Ryszard wrote:
->Hello,
+On Tue, May 21, 2024 at 7:20=E2=80=AFAM Linux regression tracking (Thorsten
+Leemhuis) <regressions@leemhuis.info> wrote:
 >
->As of today, we've moved the drm-intel repository (upstream for
->drivers/gpu/drm/i915) to a new location:
+> Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
+> for once, to make this easily accessible to everyone.
 >
->Previously: https://cgit.freedesktop.org/drm-intel
->Moved to: https://gitlab.freedesktop.org/drm/i915/kernel
-
-For those using dim, it should ask you to migrate your remote
-automatically on your next branch update. By default it will use
-the ssh protocol. If you don't have your ssh key in gitlab already,
-you can follow https://docs.gitlab.com/ee/user/ssh.html#add-an-ssh-key-to-your-gitlab-account
-to add it.
-
-New server has no git:// protocol, so anyone using it is advised
-to move to https:// instead.
-
+> Hmm, from here it looks like the patch now that it was reviewed more
+> that a week ago is still not even in -next. Is there a reason?
 >
->The old repo is now a read-only mirror of the GitLab-hosted one.
->Relevant documentation and links were updated. Thanks to bentiss,
->mripard and demarchi for help with the move!
-
-and thank you for preparing all the patches to the different repos.
-
-Lucas De Marchi
-
+> I know, we are in the merge window. But at the same time this is a fix
+> (that already lingered on the lists for way too long before it was
+> reviewed) for a regression in a somewhat recent kernel, so it in Linus
+> own words should be "expedited"[1].
 >
->Ryszard
+> Or are we again just missing a right person for the job in the CC?
+> Adding Dave and Sima just in case.
+>
+> Ciao, Thorsten
+>
+> [1]
+> https://lore.kernel.org/all/CAHk-=3Dwis_qQy4oDNynNKi5b7Qhosmxtoj1jxo5wmB6=
+SRUwQUBQ@mail.gmail.com/
+>
+> On 12.05.24 18:11, Limonciello, Mario wrote:
+> > On 5/10/2024 4:24 AM, Jani Nikula wrote:
+> >> On Fri, 10 May 2024, "Lin, Wayne" <Wayne.Lin@amd.com> wrote:
+> >>>> -----Original Message-----
+> >>>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
+> >>>> Sent: Friday, May 10, 2024 3:18 AM
+> >>>> To: Linux regressions mailing list <regressions@lists.linux.dev>;
+> >>>> Wentland, Harry
+> >>>> <Harry.Wentland@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>
+> >>>> Cc: lyude@redhat.com; imre.deak@intel.com; Leon Wei=C3=9F
+> >>>> <leon.weiss@ruhr-uni-
+> >>>> bochum.de>; stable@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> >>>> amd-
+> >>>> gfx@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> >>>> Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
+> >>>> drm_dp_add_payload_part2
+> >>>>
+> >>>> On 5/9/2024 07:43, Linux regression tracking (Thorsten Leemhuis) wro=
+te:
+> >>>>> On 18.04.24 21:43, Harry Wentland wrote:
+> >>>>>> On 2024-03-07 01:29, Wayne Lin wrote:
+> >>>>>>> [Why]
+> >>>>>>> Commit:
+> >>>>>>> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
+> >>>>>>> allocation/removement") accidently overwrite the commit
+> >>>>>>> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in
+> >>>>>>> drm_dp_add_payload_part2") which cause regression.
+> >>>>>>>
+> >>>>>>> [How]
+> >>>>>>> Recover the original NULL fix and remove the unnecessary input
+> >>>>>>> parameter 'state' for drm_dp_add_payload_part2().
+> >>>>>>>
+> >>>>>>> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
+> >>>>>>> allocation/removement")
+> >>>>>>> Reported-by: Leon Wei=C3=9F <leon.weiss@ruhr-uni-bochum.de>
+> >>>>>>> Link:
+> >>>>>>> https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371cc=
+8.c
+> >>>>>>> amel@ruhr-uni-bochum.de/
+> >>>>>>> Cc: lyude@redhat.com
+> >>>>>>> Cc: imre.deak@intel.com
+> >>>>>>> Cc: stable@vger.kernel.org
+> >>>>>>> Cc: regressions@lists.linux.dev
+> >>>>>>> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
+> >>>>>>
+> >>>>>> I haven't been deep in MST code in a while but this all looks pret=
+ty
+> >>>>>> straightforward and good.
+> >>>>>>
+> >>>>>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> >>>>>
+> >>>>> Hmmm, that was three weeks ago, but it seems since then nothing
+> >>>>> happened to fix the linked regression through this or some other
+> >>>>> patch. Is there a reason? The build failure report from the CI mayb=
+e?
+> >>>>
+> >>>> It touches files outside of amd but only has an ack from AMD.  I
+> >>>> think we
+> >>>> /probably/ want an ack from i915 and nouveau to take it through.
+> >>>
+> >>> Thanks, Mario!
+> >>>
+> >>> Hi Thorsten,
+> >>> Yeah, like what Mario said. Would also like to have ack from i915 and
+> >>> nouveau.
+> >>
+> >> It usually works better if you Cc the folks you want an ack from! ;)
+> >>
+> >> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> >>
+> >
+> > Thanks! Can someone with commit permissions take this to drm-misc?
+> >
+> >
+> >
