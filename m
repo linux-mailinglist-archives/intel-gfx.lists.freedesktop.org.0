@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5EEC8CAA2A
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 10:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A8D8CAA2B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 10:41:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2C8E10E17D;
-	Tue, 21 May 2024 08:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5711A10E1AB;
+	Tue, 21 May 2024 08:41:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PHLLgYgv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lzF9xdnL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA5F10E17D
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 08:41:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6E110E17D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 08:41:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716280904; x=1747816904;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xIu1dz7d40ycBSk3+piXmG20KKt6mVab/apydkpeKSU=;
- b=PHLLgYgvbJ/FJfHdvMiqR8N0AsQYPgo6/c8Mw/gY9A/6S0wWBZQZQJ8m
- 1xZWupDvScH7VFOj5QKjlpJjZMK5785kIydsVYMpa34/1Q39paGDfwHKH
- GWGnJzTrKi305I7Yqi+SGTwSdqXNhhJHLzL5x+KdMXyujDDP1Wr+q3kYt
- kh1Ta2e7iDuEW8YeHxXPPf6lhW/5Ye+nq8Zf737JMsAPrHeXU0P7Jrlfw
- MhAwpEI7kmXRmSXSuwJK8zBBwLtE7P1kNHoVrwgYxyh507MrBuoFPMcfV
- qvO5hdVa76Am9VirvMIq48gtDAJaxtfvekc2omfL2Ca8SV7VYVUtq3dtE Q==;
-X-CSE-ConnectionGUID: qrEmTAhxTQOtL1ufe0DU/g==
-X-CSE-MsgGUID: GRuTHefWT9i1GYs9nAk1ng==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23860326"
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="23860326"
+ t=1716280905; x=1747816905;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oCtdaIQ2U4frK3S1ldkgPJsJ3iX914RuOdHq2pkH5E0=;
+ b=lzF9xdnLFHP7Em1efLqN7TmefReNYVjBrq4nJWBUjSn8bl+1AzpSc2we
+ GHpGJzNZfBFCuRshAkQHh32VBYFJ0ndJ1J/tVUGe5yyTK2M+y3zgBK/+Q
+ 4eMoewP8q/EDWiLQ4OmOtz398LohGVfGlcKbF2cfnmK3pz2qeV6DgWYcL
+ JldRt0amAeanCg0ywT41aq26NgAU1GNd3lA+kbIiBmBefN2iy+h7YQq48
+ ZWjcBi8/nQg7NOcA4gnFSQDhhjPCWXGzojmiXEnkKJAumEoWmMrOxxSse
+ lshIU1+Ix5PSboi7bXIyYfUTBkh7j/8uyKneeP5JKjZbF8uxPHdl9G8r8 w==;
+X-CSE-ConnectionGUID: ijuzQ4pFSNGV984eEmjCEg==
+X-CSE-MsgGUID: rEBqneWkQV+8PtacrVKWzA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23860330"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="23860330"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 01:41:43 -0700
-X-CSE-ConnectionGUID: x1sx+bFQSfudqcNsN9jnow==
-X-CSE-MsgGUID: d7EEv8NOROKow1qLNtL5eA==
+ 21 May 2024 01:41:45 -0700
+X-CSE-ConnectionGUID: WjUABUEhRmCKvroQeMK0wQ==
+X-CSE-MsgGUID: 52yKJK3BR9+SIaFRrNpxIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="37426188"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="37426201"
 Received: from mathiasj-mobl.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.211.157])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 01:41:41 -0700
+ 21 May 2024 01:41:44 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 0/9] Panel Replay Fixes
-Date: Tue, 21 May 2024 11:41:14 +0300
-Message-Id: <20240521084123.1984075-1-jouni.hogander@intel.com>
+Subject: [PATCH v2 1/9] drm/i915/psr: Do not use fast_wake_lines for aux less
+ wake time
+Date: Tue, 21 May 2024 11:41:15 +0300
+Message-Id: <20240521084123.1984075-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240521084123.1984075-1-jouni.hogander@intel.com>
+References: <20240521084123.1984075-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,34 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch set contains fixes found when debugging Panel Replay and
-Early Transport and ALPM using eDP panel supporting all these features.
+We want to have own variables for fast wake lines and aux less wake
+time. It might be needed to choose if we can enable Panel Replay Selective
+Update or PSR2.
 
-v2:
-  - ensure fastset is performed when the Early transport disable bit changes
-  - take into account differing Y position when Early Transport is used
+Also currently aux less wake time is overwritten by calculated fast wake
+time.
 
-Jouni Högander (9):
-  drm/i915/psr: Do not use fast_wake_lines for aux less wake time
-  drm/i915/psr: Add Early Transport status boolean into intel_psr
-  drm/i915/psr: Get Early Transport status in intel_psr_pipe_get_config
-  drm/i915/psr: Use enable boolean from intel_crtc_state for Early
-    Transport
-  drm/i915/psr: Allow setting I915_PSR_DEBUG_SU_REGION_ET_DISABLE via
-    debugfs
-  drm/i915/display: Take panel replay into account in vsc sdp unpacking
-  drm/i915/display: Skip Panel Replay on pipe comparison if no active
-    planes
-  drm/i915/psr: Write also AUX Less Wake lines into ALPM_CTL
-  drm/i915/display: Selective fetch Y position on Region Early Transport
+Fixes: da6a9836ac09 ("drm/i915/psr: Calculate aux less wake time")
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+ drivers/gpu/drm/i915/display/intel_psr.c           | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_display.c  |  4 ++-
- .../drm/i915/display/intel_display_types.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c       |  5 +++-
- drivers/gpu/drm/i915/display/intel_psr.c      | 25 +++++++++++++------
- .../drm/i915/display/skl_universal_plane.c    |  6 ++++-
- 5 files changed, 31 insertions(+), 11 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 9678c2b157f6..95a806538cdc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1712,6 +1712,7 @@ struct intel_psr {
+ 
+ 		/* LNL and beyond */
+ 		u8 check_entry_lines;
++		u8 aux_less_wake_lines;
+ 		u8 silence_period_sym_clocks;
+ 		u8 lfps_half_cycle_num_of_syms;
+ 	} alpm_parameters;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index d18baeb971bb..1fadac7d9d94 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1348,7 +1348,7 @@ static int _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 	if (i915->display.params.psr_safest_params)
+ 		aux_less_wake_lines = ALPM_CTL_AUX_LESS_WAKE_TIME_MASK;
+ 
+-	intel_dp->psr.alpm_parameters.fast_wake_lines = aux_less_wake_lines;
++	intel_dp->psr.alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
+ 	intel_dp->psr.alpm_parameters.silence_period_sym_clocks = silence_period;
+ 	intel_dp->psr.alpm_parameters.lfps_half_cycle_num_of_syms = lfps_half_cycle;
+ 
 -- 
 2.34.1
 
