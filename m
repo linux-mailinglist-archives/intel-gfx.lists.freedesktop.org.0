@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A79D8CAA32
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 10:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA19A8CAA33
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 10:42:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C466010E30C;
-	Tue, 21 May 2024 08:42:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F06E10E220;
+	Tue, 21 May 2024 08:42:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YrrVenIT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MmG2+b3C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8312810E26F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 08:41:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4559610E30C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 08:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716280918; x=1747816918;
+ t=1716280920; x=1747816920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XH3V7nAkJsOtiSm/U6wVe00fnQkJ4eCg7WThxGpXixA=;
- b=YrrVenITRX+n86WKYRpWMnaBBdjY56oimpjw/aiFqMQlbYTb4xP7mh9t
- L0bYgnegF9TpdHFgcV/UCEdFFBgaGDn7hbCxiZz4FgDOV7msEp0lqklWG
- D9bvN6arCQ4Ph7lCKKlpNrRvLi2djwvt3JwVcc3Omn2N4lAmYxloz5o9a
- tyxIegClddypDoLdslX5McsV9sF5bHeZM0nlZs3bjj6QOGVEOVJcyQmSq
- i9OSF6Vy7TOrGlA4s6FEUetnn4E0r1gsHe8i28loxz6/l2Qr0ndfTUJ1b
- g3JAKaPE5p8LQ4qo4xFqSNoRbtTtlFINB5wHUiFd4jW47tq2JTDuKxYw8 A==;
-X-CSE-ConnectionGUID: 0FZOVkWKTu6MT5CKEOTG1w==
-X-CSE-MsgGUID: emrMPj5hQ+aXDZVlJEeTSA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23860373"
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="23860373"
+ bh=6SGdPBCuu8o4cQHWnwHuWkvbbdPBRmPgEJMT5h+O8QQ=;
+ b=MmG2+b3CX4/WVTCKu2kOEY4QRl8J5AQBXvtRhuEy5ZJgVKSgQQbkwHhK
+ XiPo5KNmfXKniZ89ZwT+VzAcfULIAO6oa0VftcsWZURwqBKx/GztQwHuk
+ E9C9LA4fHFEzEtnSOcTSW2FMgKKDwdj2q4RdCEkxCp5Su6ACBQuVrSQ+/
+ hXH54J5PJQIW82GfWuxSZmCQXQnWNYC4vDXWuofKllNzyUV5+qkR0H9k5
+ d0SemzSSFo5InPptWJYd+jESrNIHFOr8jzqCZCZjGYHQSDwUmkL59DR2i
+ XZGDpNY3iV2nAPfYKUwLlPOS0fhtkWv1nSGV2Jybjfdj1tCtYxBhZftkT Q==;
+X-CSE-ConnectionGUID: S43jpxqRTXyNrtWlCCMUzw==
+X-CSE-MsgGUID: 2/TEXuhhSJW16xuCurwx0g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23860375"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="23860375"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 01:41:58 -0700
-X-CSE-ConnectionGUID: RQlisUJiQBOjZH3l04BKOA==
-X-CSE-MsgGUID: ejY+osuaSQuNEvnSJTNjKw==
+ 21 May 2024 01:42:00 -0700
+X-CSE-ConnectionGUID: Clr6mvYET32hxMRJgPUEFA==
+X-CSE-MsgGUID: 9f1M5jVsSqCCT9Olmw6Idg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="37426308"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="37426344"
 Received: from mathiasj-mobl.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.211.157])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 01:41:56 -0700
+ 21 May 2024 01:41:58 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 8/9] drm/i915/psr: Write also AUX Less Wake lines into
- ALPM_CTL
-Date: Tue, 21 May 2024 11:41:22 +0300
-Message-Id: <20240521084123.1984075-9-jouni.hogander@intel.com>
+Subject: [PATCH v2 9/9] drm/i915/display: Selective fetch Y position on Region
+ Early Transport
+Date: Tue, 21 May 2024 11:41:23 +0300
+Message-Id: <20240521084123.1984075-10-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240521084123.1984075-1-jouni.hogander@intel.com>
 References: <20240521084123.1984075-1-jouni.hogander@intel.com>
@@ -72,28 +72,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently AUX Less Wake lines are not written into ALPM_CTL. Fix this.
+Selective fetch Y position differs when Region Early Transport is
+used. Use formula from Bspec for this.
 
-Fixes: 1ccbf135862b ("drm/i915/psr: Enable ALPM on source side for eDP Panel replay")
+Bspec: 68927
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 64c5d03aff03..ee75e27cd755 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1864,7 +1864,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp)
- 	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
- 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
- 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
--			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS;
-+			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
-+			ALPM_CTL_AUX_LESS_WAKE_TIME(psr->alpm_parameters.aux_less_wake_lines);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 32d10e62b2b9..92628bed0b8e 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1302,7 +1302,11 @@ static void icl_plane_update_sel_fetch_noarm(struct intel_plane *plane,
  
- 		intel_de_write(dev_priv,
- 			       PORT_ALPM_CTL(dev_priv, cpu_transcoder),
+ 	clip = &plane_state->psr2_sel_fetch_area;
+ 
+-	val = (clip->y1 + plane_state->uapi.dst.y1) << 16;
++	if (crtc_state->enable_psr2_su_region_et)
++		y = max(0, plane_state->uapi.dst.y1 - crtc_state->psr2_su_area.y1);
++	else
++		y = (clip->y1 + plane_state->uapi.dst.y1);
++	val = y << 16;
+ 	val |= plane_state->uapi.dst.x1;
+ 	intel_de_write_fw(i915, PLANE_SEL_FETCH_POS(pipe, plane->id), val);
+ 
 -- 
 2.34.1
 
