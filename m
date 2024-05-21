@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F5B8CAA49
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 10:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C2EE8CAA4A
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 10:47:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC8EB10E75F;
-	Tue, 21 May 2024 08:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E85E810E760;
+	Tue, 21 May 2024 08:47:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iMbw1L2n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GkNNOBUr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 226CF10E75F
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 08:47:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1093710E776
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2024 08:47:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716281240; x=1747817240;
+ t=1716281242; x=1747817242;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A4B+KKDjh4xmqktQa981ql6Ex2RsPIYIb8ijn3JFx9c=;
- b=iMbw1L2nclCnWa42/lkPrrjHvEcuJ/6MssZcUEBWx77q0dqTCCPT80fo
- ZO7tpmAO5S0e7jQtFQPb3mtH6Vr4Q+FRTuroMd9JTTgVXHANqoyQj81YL
- cSTzBken4hnZufn97FIPTDpMtiZFlrUvHbBOiHYpjIeW2ArieVjhrx9vp
- tTH+KD+6v3OQZ9dS5h4yirCHLRLrnPcnnIihTD8lrhBi7UcNBMdrBKwq3
- /zg0loEtaJ3RSITFrEzex7EemhdTb19sg5dNLtn0mgYLTuVRS2fUCTLKa
- NknrtEskLaJYJlJTfXZ+39KGbQSuietsRQDObgc2vIFJG22V5iglAhn3b Q==;
-X-CSE-ConnectionGUID: ziD2N79oRsSHskM9noL1eQ==
-X-CSE-MsgGUID: Biu4ycbTQzGjl7K6VPx55Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12297815"
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="12297815"
+ bh=+szKxTSOgEIDRM/429ev80DKLMC3HChQWpJUPkuTqXg=;
+ b=GkNNOBUr2f/xs7W/Te0wWwf1h2RF4NtIQ9rvCiLNPVcbVzxN1rC8x4G/
+ dbWQAOiaz3XAHy+bO+Eou5HBEtQ3dyxzjjRvASb4wKT/XojbMkUyyYlf1
+ aWSU+UgurBUwwDdLqgVXFIuSzi7fizlJ0+zsk06+V+Y6YFamnuOUkZ8zv
+ FYby0+g1UIMXbLPPKnVIjsUcPZ9dpaRduWYsRSCrpovr6+Uezcc8ZkTAz
+ 0pHdg9+G+lKfX7Safc9eU3x5AH9JYNEq2X/4+T/jHAbpaqxIZbx82Qzx+
+ 2AD3FysyiUdQa2OpdsYrcMqNE6c564SOCJw3qOD7h/iIcDHk9iMl4OgUx A==;
+X-CSE-ConnectionGUID: 7BVgmvXRQBu1s8EO7HvXDA==
+X-CSE-MsgGUID: VgBuJp0qRg2UPvjIzwlgzg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12297819"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="12297819"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 01:47:20 -0700
-X-CSE-ConnectionGUID: XyjlqJ8IRDKH2ba14cWNHg==
-X-CSE-MsgGUID: 9F5z4ow8TLmwkt5D+oLbzA==
+ 21 May 2024 01:47:22 -0700
+X-CSE-ConnectionGUID: 0277/SW/QjyCg1FSpdNnMA==
+X-CSE-MsgGUID: AscDVcYKQgmIZuPEwCIA+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="33272522"
+X-IronPort-AV: E=Sophos;i="6.08,177,1712646000"; d="scan'208";a="33272528"
 Received: from mathiasj-mobl.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.211.157])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2024 01:47:19 -0700
+ 21 May 2024 01:47:21 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 07/17] drm/i915/psr: Add Early Transport into psr debugfs
- interface
-Date: Tue, 21 May 2024 11:46:38 +0300
-Message-Id: <20240521084648.1987837-8-jouni.hogander@intel.com>
+Subject: [PATCH v2 08/17] drm/display: Add missing aux less alpm wake related
+ bits
+Date: Tue, 21 May 2024 11:46:39 +0300
+Message-Id: <20240521084648.1987837-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240521084648.1987837-1-jouni.hogander@intel.com>
 References: <20240521084648.1987837-1-jouni.hogander@intel.com>
@@ -72,75 +72,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to have sink Early Transport capability and usage in our psr
-debugfs status interface.
-
-v2: printout "Selective Update enabled (Early Transport)" instead of
-    "Selective Update Early Transport enabled"
+eDP1.5 adds some more bits into DP_RECEIVER_ALPM_CAP and
+DP_RECEIVER_ALPM_CONFIG registers. Add definitions for these.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 36 ++++++++++++++++++------
- 1 file changed, 28 insertions(+), 8 deletions(-)
+ include/drm/display/drm_dp.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 24d832dc26c7..cc2d0143ca2d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3603,25 +3603,45 @@ static void intel_psr_sink_capability(struct intel_dp *intel_dp,
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 79bde372b152..f3ce8c483659 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -232,6 +232,8 @@
  
- 	if (psr->sink_support)
- 		seq_printf(m, " [0x%02x]", intel_dp->psr_dpcd[0]);
-+	if (intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_ET_SUPPORTED)
-+		seq_printf(m, " (Early Transport)");
- 	seq_printf(m, ", Panel Replay = %s", str_yes_no(psr->sink_panel_replay_support));
--	seq_printf(m, ", Panel Replay Selective Update = %s\n",
-+	seq_printf(m, ", Panel Replay Selective Update = %s",
- 		   str_yes_no(psr->sink_panel_replay_su_support));
-+	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_EARLY_TRANSPORT_SUPPORT)
-+		seq_printf(m, " (Early Transport)");
-+	seq_printf(m, "\n");
- }
+ #define DP_RECEIVER_ALPM_CAP		    0x02e   /* eDP 1.4 */
+ # define DP_ALPM_CAP			    (1 << 0)
++# define DP_ALPM_PM_STATE_2A_SUPPORT	    (1 << 1) /* eDP 1.5 */
++# define DP_ALPM_AUX_LESS_CAP		    (1 << 2) /* eDP 1.5 */
  
- static void intel_psr_psr_mode(struct intel_dp *intel_dp,
- 			       struct seq_file *m)
- {
- 	struct intel_psr *psr = &intel_dp->psr;
--	const char *status;
-+	const char *status, *mode, *region_et;
+ #define DP_SINK_DEVICE_AUX_FRAME_SYNC_CAP   0x02f   /* eDP 1.4 */
+ # define DP_AUX_FRAME_SYNC_CAP		    (1 << 0)
+@@ -685,6 +687,7 @@
+ #define DP_RECEIVER_ALPM_CONFIG		    0x116   /* eDP 1.4 */
+ # define DP_ALPM_ENABLE			    (1 << 0)
+ # define DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE  (1 << 1)
++# define DP_ALPM_MODE_AUX_LESS		    (1 << 2) /* eDP 1.5 */
  
--	if (psr->panel_replay_enabled)
--		status = psr->sel_update_enabled ? "Panel Replay Selective Update Enabled" :
--			"Panel Replay Enabled";
-+	if (psr->enabled)
-+		status = " enabled";
-+	else
-+		status = " disabled";
-+
-+	if (psr->panel_replay_enabled && psr->sel_update_enabled)
-+		mode = "Panel Replay Selective Update";
-+	else if (psr->panel_replay_enabled)
-+		mode = "Panel Replay";
-+	else if (psr->sel_update_enabled)
-+		mode = "PSR2";
- 	else if (psr->enabled)
--		status = psr->sel_update_enabled ? "PSR2" : "PSR1";
-+		mode = "PSR1";
-+	else
-+		mode = "";
-+
-+	if (psr->sel_update_enabled &&
-+	    (psr2_su_region_et_valid(intel_dp, psr->panel_replay_enabled)))
-+		region_et = " (Early Transport)";
- 	else
--		status = "disabled";
--	seq_printf(m, "PSR mode: %s\n", status);
-+		region_et = "";
-+
-+	seq_printf(m, "PSR mode: %s%s%s\n", mode, status, region_et);
- }
- 
- static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
+ #define DP_SINK_DEVICE_AUX_FRAME_SYNC_CONF  0x117   /* eDP 1.4 */
+ # define DP_AUX_FRAME_SYNC_ENABLE	    (1 << 0)
 -- 
 2.34.1
 
