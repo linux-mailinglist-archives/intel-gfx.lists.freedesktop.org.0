@@ -2,84 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D478CB1FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 18:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC5C8CB216
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2024 18:22:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 202D610E13F;
-	Tue, 21 May 2024 16:12:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eRXQGHFw";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1971D10E312;
+	Tue, 21 May 2024 16:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
- [209.85.215.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A994D89D7F;
- Tue, 21 May 2024 16:12:48 +0000 (UTC)
-Received: by mail-pg1-f169.google.com with SMTP id
- 41be03b00d2f7-5f415fd71f8so478977a12.3; 
- Tue, 21 May 2024 09:12:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716307968; x=1716912768; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CCvtAT9yL4bsyunfEMr4mUSenqzklzI9+JXqeALbOyQ=;
- b=eRXQGHFwb86Oaj0T29EtKcSU4uW880AH0ISYNJWHrwOkJgejuUr1DAPMppjOouip6v
- JnKiQOipxT+zf+3rnpylLxlnj98zQYwbArlnVLgONq3t8y6fvkfA+ZaFZL7Yx3IJaeD9
- e9X2n8hOkIfBJfq8PTdOQBATHDPB4dnoauMNSxDYrkmkpaq3/L8bMzV2G/xfvClkDOiI
- rlOZ3HT4PDGA28LpSWeCOpbZFJkAAjkfYR8ZXv1VRxg+W0ctWJJG8ckpVHUgn30v1kvN
- VfJ8Hnz/wmFXb4i29QzNdDwjltAmerSoauDGgyQruljtek/rEIoxK58fer+rJoN25NcE
- kD5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716307968; x=1716912768;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=CCvtAT9yL4bsyunfEMr4mUSenqzklzI9+JXqeALbOyQ=;
- b=MbFzJpXY4LWeJTWNbwFw3FdPLT4AJcWTJ+WEisnHuvtd1kNebn5HFrki4q4XOIdoQU
- XUr54ML4UjuwspQv6wxz4iOH25hwNgxqy+kFvOvnlPr4qrzGxzWd2PIWrTBv6CE5/2Y0
- VNljyJoojgKIVCMsGrcD3rHjoTWCBynZp/IHggjptjtjfrBe16q/+eqstpAtkAwW/W/w
- vMQWnGEgeh96F/mvpbjUIY6nsTEluqxSKO5Qh4Xka36vMqU/fbkTOxFRd5C1AGE8pK7C
- 2V2dhqTUmmpBv7zxKZHgAF6t0UG7GAA2qaQpZPDX8slAxktPow+y6IRZ23a5S89fCsM1
- tsUQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVz1Se5QPTpU3hFfDPfNUHxAfUUgJLfOc7gfTnc/KTTOkK9EghfOvixVUHr4M6Dov74wSgbp/Ro8/ORPengk3RLicJBikqGYkqYl7V94eHTVveJ/8IPMpV4KZTF3EuloppQA+82c7A1XKxFHMi4wnNvU5H4q1q5fsHowwx0yRbKN8chzkrnbUz1bR0Cl6ajWA==
-X-Gm-Message-State: AOJu0YwrNdNi7eEd87MtN4urKooU65IS6ZHlvYY6BrolrRTxyKzwAm+H
- PsBFDUS/g4CSfIZNMBjO9/HJu5GY4kOBV2KoPlHNYviihcew6ZFky71D8mT9LNPQ6XA93DXq5xj
- KWj4zB961IJ82q6eq2H1uSnCqmOk=
-X-Google-Smtp-Source: AGHT+IHAP3KDnJJS0O7SkGfKIP7uk1EKp+f8X1mluB24KubBN9tLU3rOHMtfN8y0ky6xkTXQo2yflL/anOYUpzKLWLA=
-X-Received: by 2002:a17:90a:eb07:b0:2a3:10d3:239d with SMTP id
- 98e67ed59e1d1-2b6ccd6bbbdmr28841420a91.32.1716307967824; Tue, 21 May 2024
- 09:12:47 -0700 (PDT)
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1494110E132;
+ Tue, 21 May 2024 16:22:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8114924994373162608=="
 MIME-Version: 1.0
-References: <20240307062957.2323620-1-Wayne.Lin@amd.com>
- <0847dc03-c7db-47d7-998b-bda2e82ed442@amd.com>
- <41b87510-7abf-47e8-b28a-9ccc91bbd3c1@leemhuis.info>
- <177cfae4-b2b5-4e2c-9f1e-9ebe262ce48c@amd.com>
- <CO6PR12MB5489FA9307280A4442BAD51DFCE72@CO6PR12MB5489.namprd12.prod.outlook.com>
- <87wmo2hver.fsf@intel.com> <6f66e479-2f5a-477a-9705-dca4a3606760@amd.com>
- <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
-In-Reply-To: <83df4e94-e1ec-42f6-8a15-6439ef4a25b7@leemhuis.info>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 21 May 2024 12:12:36 -0400
-Message-ID: <CADnq5_P+WsL8B6B2vK5ENe8VWdvheoHyxoUfgF3Oex8Gvp7Lbg@mail.gmail.com>
-Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
- drm_dp_add_payload_part2
-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Cc: "Limonciello, Mario" <mario.limonciello@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- "Lin, Wayne" <Wayne.Lin@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>, 
- "lyude@redhat.com" <lyude@redhat.com>,
- "imre.deak@intel.com" <imre.deak@intel.com>, 
- =?UTF-8?Q?Leon_Wei=C3=9F?= <leon.weiss@ruhr-uni-bochum.de>, 
- "stable@vger.kernel.org" <stable@vger.kernel.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Fix_audio_compo?=
+ =?utf-8?q?nent_initialization?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 May 2024 16:22:56 -0000
+Message-ID: <171630857608.2162685.11835581785494504379@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240521143022.3784539-1-imre.deak@intel.com>
+In-Reply-To: <20240521143022.3784539-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,109 +37,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I've got it teed up.  Is drm-misc-fixes the right branch since we are
-in the merge window?
+--===============8114924994373162608==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Alex
+== Series Details ==
 
-On Tue, May 21, 2024 at 7:20=E2=80=AFAM Linux regression tracking (Thorsten
-Leemhuis) <regressions@leemhuis.info> wrote:
->
-> Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
-> for once, to make this easily accessible to everyone.
->
-> Hmm, from here it looks like the patch now that it was reviewed more
-> that a week ago is still not even in -next. Is there a reason?
->
-> I know, we are in the merge window. But at the same time this is a fix
-> (that already lingered on the lists for way too long before it was
-> reviewed) for a regression in a somewhat recent kernel, so it in Linus
-> own words should be "expedited"[1].
->
-> Or are we again just missing a right person for the job in the CC?
-> Adding Dave and Sima just in case.
->
-> Ciao, Thorsten
->
-> [1]
-> https://lore.kernel.org/all/CAHk-=3Dwis_qQy4oDNynNKi5b7Qhosmxtoj1jxo5wmB6=
-SRUwQUBQ@mail.gmail.com/
->
-> On 12.05.24 18:11, Limonciello, Mario wrote:
-> > On 5/10/2024 4:24 AM, Jani Nikula wrote:
-> >> On Fri, 10 May 2024, "Lin, Wayne" <Wayne.Lin@amd.com> wrote:
-> >>>> -----Original Message-----
-> >>>> From: Limonciello, Mario <Mario.Limonciello@amd.com>
-> >>>> Sent: Friday, May 10, 2024 3:18 AM
-> >>>> To: Linux regressions mailing list <regressions@lists.linux.dev>;
-> >>>> Wentland, Harry
-> >>>> <Harry.Wentland@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>
-> >>>> Cc: lyude@redhat.com; imre.deak@intel.com; Leon Wei=C3=9F
-> >>>> <leon.weiss@ruhr-uni-
-> >>>> bochum.de>; stable@vger.kernel.org; dri-devel@lists.freedesktop.org;
-> >>>> amd-
-> >>>> gfx@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> >>>> Subject: Re: [PATCH] drm/mst: Fix NULL pointer dereference at
-> >>>> drm_dp_add_payload_part2
-> >>>>
-> >>>> On 5/9/2024 07:43, Linux regression tracking (Thorsten Leemhuis) wro=
-te:
-> >>>>> On 18.04.24 21:43, Harry Wentland wrote:
-> >>>>>> On 2024-03-07 01:29, Wayne Lin wrote:
-> >>>>>>> [Why]
-> >>>>>>> Commit:
-> >>>>>>> - commit 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
-> >>>>>>> allocation/removement") accidently overwrite the commit
-> >>>>>>> - commit 54d217406afe ("drm: use mgr->dev in drm_dbg_kms in
-> >>>>>>> drm_dp_add_payload_part2") which cause regression.
-> >>>>>>>
-> >>>>>>> [How]
-> >>>>>>> Recover the original NULL fix and remove the unnecessary input
-> >>>>>>> parameter 'state' for drm_dp_add_payload_part2().
-> >>>>>>>
-> >>>>>>> Fixes: 5aa1dfcdf0a4 ("drm/mst: Refactor the flow for payload
-> >>>>>>> allocation/removement")
-> >>>>>>> Reported-by: Leon Wei=C3=9F <leon.weiss@ruhr-uni-bochum.de>
-> >>>>>>> Link:
-> >>>>>>> https://lore.kernel.org/r/38c253ea42072cc825dc969ac4e6b9b600371cc=
-8.c
-> >>>>>>> amel@ruhr-uni-bochum.de/
-> >>>>>>> Cc: lyude@redhat.com
-> >>>>>>> Cc: imre.deak@intel.com
-> >>>>>>> Cc: stable@vger.kernel.org
-> >>>>>>> Cc: regressions@lists.linux.dev
-> >>>>>>> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
-> >>>>>>
-> >>>>>> I haven't been deep in MST code in a while but this all looks pret=
-ty
-> >>>>>> straightforward and good.
-> >>>>>>
-> >>>>>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-> >>>>>
-> >>>>> Hmmm, that was three weeks ago, but it seems since then nothing
-> >>>>> happened to fix the linked regression through this or some other
-> >>>>> patch. Is there a reason? The build failure report from the CI mayb=
-e?
-> >>>>
-> >>>> It touches files outside of amd but only has an ack from AMD.  I
-> >>>> think we
-> >>>> /probably/ want an ack from i915 and nouveau to take it through.
-> >>>
-> >>> Thanks, Mario!
-> >>>
-> >>> Hi Thorsten,
-> >>> Yeah, like what Mario said. Would also like to have ack from i915 and
-> >>> nouveau.
-> >>
-> >> It usually works better if you Cc the folks you want an ack from! ;)
-> >>
-> >> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> >>
-> >
-> > Thanks! Can someone with commit permissions take this to drm-misc?
-> >
-> >
-> >
+Series: drm/i915: Fix audio component initialization
+URL   : https://patchwork.freedesktop.org/series/133882/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14791 -> Patchwork_133882v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/index.html
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Missing    (4): bat-dg2-13 bat-dg2-11 bat-jsl-1 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133882v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - {bat-mtlp-9}:       [DMESG-WARN][1] ([i915#11009]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - {bat-mtlp-9}:       [SKIP][3] ([i915#10580]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@b-dp6:
+    - {bat-mtlp-9}:       [DMESG-FAIL][5] ([i915#11009]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp6.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp6.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@b-dp7:
+    - {bat-mtlp-9}:       [FAIL][7] ([i915#6121]) -> [PASS][8] +5 other tests pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10435
+  [i915#10580]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580
+  [i915#11009]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009
+  [i915#6121]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14791 -> Patchwork_133882v1
+
+  CI-20190529: 20190529
+  CI_DRM_14791: 413686054e38d01eb91dfb49d665d1ab7d004848 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7865: 3578243d16f1ea5055f7baa0b1fe7f520538c4ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133882v1: 413686054e38d01eb91dfb49d665d1ab7d004848 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/index.html
+
+--===============8114924994373162608==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix audio component initialization</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133882/">https://patchwork.freedesktop.org/series/133882/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14791 -&gt; Patchwork_133882v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Missing    (4): bat-dg2-13 bat-dg2-11 bat-jsl-1 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133882v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009">i915#11009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580">i915#10580</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@b-dp6:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp6.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009">i915#11009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp6.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms@b-dp7:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14791/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133882v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html">PASS</a> +5 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14791 -&gt; Patchwork_133882v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14791: 413686054e38d01eb91dfb49d665d1ab7d004848 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7865: 3578243d16f1ea5055f7baa0b1fe7f520538c4ab @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133882v1: 413686054e38d01eb91dfb49d665d1ab7d004848 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8114924994373162608==--
