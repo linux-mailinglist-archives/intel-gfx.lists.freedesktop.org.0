@@ -2,69 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134148CBD82
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 11:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA798CBDED
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 11:38:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25B3E10E11C;
-	Wed, 22 May 2024 09:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2BF910E3EA;
+	Wed, 22 May 2024 09:38:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YB1HeEAC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gz3GoWHn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1BC510E11C;
- Wed, 22 May 2024 09:07:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8CC10E3EA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 May 2024 09:38:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716368871; x=1747904871;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4zWoGvl4viJHGwKz+nWtLTg5u+BKce1IHQyYauCVg1I=;
- b=YB1HeEAC/zYgkuhbBlZXisWdHw7KoEDBv89gLRTT+kUch5OXYiggVhVt
- e9RZEjcarT366UPrLSFivEB+rOHX5oCIhvgoNovTAjs0a/p6hLQ1qwUUG
- hap7Sd3KSA6ebc3xdMcrAZlozHz1aNM9vt9cUrl26wQjHjzvfHipGWuBb
- xb50QggMkpVjMIOoduE3UvJJZn0vnOVboRCBuCufeIeFXn/6/tnv4dqPO
- raT6ozuqbWOm8ukbnqfVNgfl49X/ltGsOkCKXCiMcAnfLoccgX0Rs5Uze
- BG8B3qnODU5sS9tn754VgGiFrYo70EdHBPlpOHp6OSNrgRCNvg22j8WM5 w==;
-X-CSE-ConnectionGUID: 1IzeoB9ISg2ixWxXJM89hA==
-X-CSE-MsgGUID: yhSZDPBTQmeo8AUOARAuUw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="30128344"
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="30128344"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 02:07:49 -0700
-X-CSE-ConnectionGUID: C1F9e3FhSU+rPwL0KH1J/g==
-X-CSE-MsgGUID: yddKHkSGQziQC5nVrEFTvA==
+ t=1716370731; x=1747906731;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=r31b5XsZauySG5fB2ewLktOBU5ZzZvb7fe3tJ1L/WpE=;
+ b=Gz3GoWHn2APa0kcd+ED/On74pdHlTWj699xPajzrnwy06JjzpKKljh74
+ OYF5XKG7mY45WM1OcJaZac5DX0DLha36OyJc3E5Wc333gxruZOs1wY27Q
+ ectYwgth1dDSN0w0adznu0ce8iFU/b5dn31PBJaFRdgZJeaIrZ/1R9NzR
+ vA/+q3Onoy7R9rBByIHLV35lXkapM7mQwJRI9TslkwnT8XYRV3kdINcwc
+ HMpnPsanA8kKA7qxbrZWQ5TWCuqlQ44PsG1RX7TYZy5xJMkfBBAVQdYzq
+ 5Eeh52UB95c1tMacWV2O0INFSEhXClJBzwFjpUbYy/MSVoiF2OVWi2XBZ g==;
+X-CSE-ConnectionGUID: m6beX3phRha4EO2aLVfMQQ==
+X-CSE-MsgGUID: Bljcd+U6RKmnXznXxCWUTA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="12481623"
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="12481623"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 02:38:51 -0700
+X-CSE-ConnectionGUID: FQJZ/fYxShybsl3yrbQ4gg==
+X-CSE-MsgGUID: Svy05p/lRKWE6uVzAmh2Dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="70632113"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.252.151])
- ([10.94.252.151])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 02:07:48 -0700
-Message-ID: <af8150dc-c36f-478f-a0f5-b5dfed272b30@linux.intel.com>
-Date: Wed, 22 May 2024 11:07:45 +0200
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="33203756"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.230])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 02:38:49 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/display: Add compare config for MTL+
+ platforms
+In-Reply-To: <20240522061350.248749-3-mika.kahola@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240522061350.248749-1-mika.kahola@intel.com>
+ <20240522061350.248749-3-mika.kahola@intel.com>
+Date: Wed, 22 May 2024 12:38:46 +0300
+Message-ID: <87h6eqqj89.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915: Don't treat FLR resets as errors
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>
-References: <20240517112550.251955-1-andi.shyti@linux.intel.com>
- <20240517112550.251955-3-andi.shyti@linux.intel.com>
- <e2a23879-c69e-4b57-a0a0-4c1ac81d9403@linux.intel.com>
- <ZkexSOO9MYt7Y9-8@ashyti-mobl2.lan>
- <b78fea46-2db1-45f9-9d7a-e257bc242c91@linux.intel.com>
- <Zkx9-RHwTEnblEXo@ashyti-mobl2.lan>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <Zkx9-RHwTEnblEXo@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,101 +70,257 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
-
-On 5/21/2024 12:56 PM, Andi Shyti wrote:
-> Hi Nirmoy,
+On Wed, 22 May 2024, Mika Kahola <mika.kahola@intel.com> wrote:
+> Currently, we may bump into pll mismatch errors during the
+> state verification stage. This happens when we try to use
+> fastset instead of full modeset. Hence, we would need to add
+> a check for pipe configuration to ensure that the sw and the
+> hw configuration will match. In case of hw and sw mismatch,
+> we would need to disable fastset and use full modeset instead.
 >
-> On Fri, May 17, 2024 at 10:13:37PM +0200, Nirmoy Das wrote:
->> Hi Andi,
->>
->> On 5/17/2024 9:34 PM, Andi Shyti wrote:
->>
->>      Hi Nirmoy,
->>
->>      On Fri, May 17, 2024 at 04:00:02PM +0200, Nirmoy Das wrote:
->>
->>          On 5/17/2024 1:25 PM, Andi Shyti wrote:
->>
->>              If we timeout while waiting for an FLR reset, there is nothing we
->>              can do and i915 doesn't have any control on it. In any case the
->>              system is still perfectly usable
->>
->>          If a FLR reset fails then we will have a dead GPU, I don't think the GPU is
->>          usable without a cold reboot.
->>
->>      fact is that the GPU keeps going and even though the timeout has
->>      expired, the system moves to the next phase.
->>
->> The current test might look like it is has passed, but if you look into the
->> subsequent tests you can see a dead GPU:
->>
->> <7>[  369.168121] pci 0000:00:02.0: [drm:intel_uncore_fini_mmio [i915]] Triggering Driver-FLR
->> <3>[  372.170189] pci 0000:00:02.0: [drm] *ERROR* Driver-FLR-teardown wait completion failed! -110
->> <7>[  372.437630] [IGT] i915_selftest: finished subtest requests, SUCCESS
->> <7>[  372.438356] [IGT] i915_selftest: starting dynamic subtest migrate
->> <5>[  373.110580] Setting dangerous option live_selftests - tainting kernel
->> <3>[  373.183499] i915 0000:00:02.0: Unable to change power state from D0 to D0, device inaccessible
->> <3>[  373.246921] i915 0000:00:02.0: [drm] *ERROR* Unrecognized display IP version 1023.255; disabling display.
->> <7>[  373.247130] i915 0000:00:02.0: [drm:intel_step_init [i915]] Using future steppings
->> <7>[  373.247716] i915 0000:00:02.0: [drm:intel_step_init [i915]] Using future steppings
->> <7>[  373.248263] i915 0000:00:02.0: [drm:intel_step_init [i915]] Using future display steppings
->> <7>[  373.251843] i915 0000:00:02.0: [drm:intel_gt_common_init_early [i915]] WOPCM: 2048K
->> <7>[  373.252505] i915 0000:00:02.0: [drm:intel_uc_init_early [i915]] GT0: enable_guc=3 (guc:yes submission:yes huc:no slpc:yes)
->> <7>[  373.253140] i915 0000:00:02.0: [drm:intel_gt_probe_all [i915]] GT0: Setting up Primary GT
->> <7>[  373.253556] i915 0000:00:02.0: [drm:intel_gt_probe_all [i915]] GT1: Setting up Standalone Media GT
->> <7>[  373.253941] i915 0000:00:02.0: [drm:intel_gt_common_init_early [i915]] WOPCM: 2048K
->> <7>[  373.254365] i915 0000:00:02.0: [drm:intel_uc_init_early [i915]] GT1: enable_guc=3 (guc:yes submission:yes huc:yes slpc:yes)
->> <3>[  375.256235] i915 0000:00:02.0: [drm] *ERROR* Device is non-operational; MMIO access returns 0xFFFFFFFF!
->> <3>[  375.259089] i915 0000:00:02.0: Device initialization failed (-5)
->> <3>[  375.260521] i915 0000:00:02.0: probe with driver i915 failed with error -5
->> <7>[  375.392209] [IGT] i915_selftest: finished subtest migrate, FAIL
->>
->> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14724/bat-arls-3/dmesg0.txt
-> Are we sure this is dependent on the FLR reset?
-
-Yes, while on FLR read into memory will return either 0/F.
-
-
->   There are cases
-> when the FLR reset doesn't make any difference and in any case
-> this error is completely ignored by the driver.
-
-This happens at very late with no recovery possible and hope is module  
-reload works.
-
-
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 74 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +
+>  drivers/gpu/drm/i915/display/intel_display.c  | 39 ++++++++++
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+>  4 files changed, 116 insertions(+)
 >
-> Perhaps we can change it to a warning?
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index c9e5bb6ecfd7..f549753ab1cf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2038,6 +2038,7 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+>  		if (crtc_state->port_clock == tables[i]->clock) {
+>  			crtc_state->dpll_hw_state.cx0pll.c10 = *tables[i];
+>  			intel_c10pll_update_pll(crtc_state, encoder);
+> +			crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
 
-I think it should be error. CI will still complain even on warning.
+The readout doesn't set use_c10 anywhere, does it?
+
+>  
+>  			return 0;
+>  		}
+> @@ -2277,6 +2278,7 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+>  	for (i = 0; tables[i]; i++) {
+>  		if (crtc_state->port_clock == tables[i]->clock) {
+>  			crtc_state->dpll_hw_state.cx0pll.c20 = *tables[i];
+> +			crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
+>  			return 0;
+>  		}
+>  	}
+> @@ -3272,6 +3274,78 @@ void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+>  		intel_c20pll_readout_hw_state(encoder, &pll_state->c20);
+>  }
+>  
+> +static bool mtl_compare_hw_state_c10(const struct intel_c10pll_state *a,
+> +				     const struct intel_c10pll_state *b)
+> +{
+> +	return a->clock == b->clock ||
+> +	       a->tx == b->tx ||
+> +	       a->cmn == b->cmn ||
+> +	       a->pll[0] == b->pll[0] ||
+> +	       a->pll[1] == b->pll[1] ||
+> +	       a->pll[2] == b->pll[2] ||
+> +	       a->pll[3] == b->pll[3] ||
+> +	       a->pll[4] == b->pll[4] ||
+> +	       a->pll[5] == b->pll[5] ||
+> +	       a->pll[6] == b->pll[6] ||
+> +	       a->pll[7] == b->pll[7] ||
+> +	       a->pll[8] == b->pll[8] ||
+> +	       a->pll[9] == b->pll[9] ||
+> +	       a->pll[10] == b->pll[10] ||
+> +	       a->pll[11] == b->pll[11] ||
+> +	       a->pll[12] == b->pll[12] ||
+> +	       a->pll[13] == b->pll[13] ||
+> +	       a->pll[14] == b->pll[14] ||
+> +	       a->pll[15] == b->pll[15] ||
+> +	       a->pll[16] == b->pll[16] ||
+> +	       a->pll[17] == b->pll[17] ||
+> +	       a->pll[18] == b->pll[18] ||
+> +	       a->pll[19] == b->pll[19];
+
+How about memcmp(a->pll, b->pll, sizeof(a->pll)) == 0 instead?
 
 
->
->>          This is a serious issue and should be report as an error.  I think we need
->>          to create a HW ticket to understand
->>
->>          why is FLR reset fails.
->>
->>      Maybe it takes longer and longer to reset. We've been sending
->>      several patches in the latest years to fix the timings.
->>
->> HW spec says 3 sec but we can try increasing it bit higher to try it out.
-> We could go, then, with just patch 1 and see if it improves.
+> +}
+> +
+> +static bool mtl_compare_hw_state_c20(const struct intel_c20pll_state *a,
+> +				     const struct intel_c20pll_state *b)
+> +{
+> +	int i;
+> +
+> +	if (a->clock != b->clock)
+> +		return false;
+> +
+> +	for (i = 0; i < 3; i++) {
+> +		if (a->tx[i] != b->tx[i])
+> +			return false;
+> +	}
 
-Does it help ? If helps then we can go ahead with increased timeout.
+memcmp with sizeof, so we don't have to hardcode the sizes.
 
+> +
+> +	for (i = 4; i < 4; i++) {
 
->   Also
-> because, the FLR reset might also depend on the firmware.
+Typo, this does nothing... but memcmp.
 
-Possible. In that case we should wait for firmware fix ?
+> +		if (a->cmn[i] != b->cmn[i])
+> +			return false;
+> +	}
+> +
+> +	if (a->tx[0] & C20_PHY_USE_MPLLB) {
+> +		for (i = 0; i < ARRAY_SIZE(a->mpllb); i++) {
+> +			if (a->mpllb[i] != b->mpllb[i])
+> +				return false;
+> +		}
+> +	} else {
+> +		for (i = 0; i < ARRAY_SIZE(a->mplla); i++) {
+> +			if (a->mplla[i] != b->mplla[i])
+> +				return false;
+> +		}
+> +	}
 
+And memcmp.
 
-Regards,
+> +
+> +	return true;
+> +}
+> +
+> +bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
+> +				   const struct intel_cx0pll_state *b)
+> +{
 
-Nirmoy
+Maybe this for starters?
 
->
-> Thanks, Nirmoy,
-> Andi
+if (a->use_c10 != b->use_c10)
+	return false;
+
+> +	if (a->use_c10 && b->use_c10)
+> +		return mtl_compare_hw_state_c10(&a->c10,
+> +						&b->c10);
+> +	else
+> +		return mtl_compare_hw_state_c20(&a->c20,
+> +						&b->c20);
+> +}
+> +
+>  int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
+>  				 const struct intel_cx0pll_state *pll_state)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> index 3e03af3e006c..180821df1834 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> @@ -39,6 +39,8 @@ void intel_c10pll_dump_hw_state(struct drm_i915_private *dev_priv,
+>  				const struct intel_c10pll_state *hw_state);
+>  void intel_cx0pll_state_verify(struct intel_atomic_state *state,
+>  			       struct intel_crtc *crtc);
+> +bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
+> +				   const struct intel_cx0pll_state *b);
+>  void intel_c20pll_dump_hw_state(struct drm_i915_private *i915,
+>  				const struct intel_c20pll_state *hw_state);
+>  void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index cce1420fb541..17b43b2ae0e9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -66,6 +66,7 @@
+>  #include "intel_crtc.h"
+>  #include "intel_crtc_state_dump.h"
+>  #include "intel_cursor_regs.h"
+> +#include "intel_cx0_phy.h"
+>  #include "intel_ddi.h"
+>  #include "intel_de.h"
+>  #include "intel_display_driver.h"
+> @@ -5002,6 +5003,30 @@ pipe_config_pll_mismatch(struct drm_printer *p, bool fastset,
+>  	intel_dpll_dump_hw_state(i915, p, b);
+>  }
+>  
+> +static void
+> +pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
+> +			    const struct intel_crtc *crtc,
+> +			    const char *name,
+> +			    const struct intel_cx0pll_state *a,
+> +			    const struct intel_cx0pll_state *b)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +
+> +	pipe_config_mismatch(p, fastset, crtc, name, " "); /* stupid -Werror=format-zero-length */
+
+Instead of working around something and adding comments like that, maybe
+actually use it for something useful?
+
+Something like, idk, "%s", a->c10 ? "c10" : "c20"
+
+> +
+> +	if (a->use_c10) {
+> +		drm_printf(p, "expected:\n");
+> +		intel_c10pll_dump_hw_state(i915, &a->c10);
+> +		drm_printf(p, "found:\n");
+> +		intel_c10pll_dump_hw_state(i915, &b->c10);
+> +	} else {
+> +		drm_printf(p, "expected:\n");
+> +		intel_c20pll_dump_hw_state(i915, &a->c20);
+> +		drm_printf(p, "found:\n");
+> +		intel_c20pll_dump_hw_state(i915, &b->c20);
+> +	}
+> +		drm_printf(p, "found:\n");
+> +		intel_c10pll_dump_hw_state(i915, &b->c10);
+> +	} else {
+> +		drm_printf(p, "expected:\n");
+> +		intel_c20pll_dump_hw_state(i915, &a->c20);
+> +		drm_printf(p, "found:\n");
+> +		intel_c20pll_dump_hw_state(i915, &b->c20);
+> +	}
+
+I think I'd add a intel_cx0pll_dump_hw_state() to avoid looking into the
+details like this at high level code. This becomes cleaner too.
+
+> +}
+> +
+>  bool
+>  intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  			  const struct intel_crtc_state *pipe_config,
+> @@ -5105,6 +5130,16 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	} \
+>  } while (0)
+>  
+> +#define PIPE_CONF_CHECK_PLL_CX0(name) do { \
+> +	if (!intel_cx0pll_compare_hw_state(&current_config->name, \
+> +					   &pipe_config->name)) { \
+> +		pipe_config_cx0pll_mismatch(&p, fastset, crtc, __stringify(name), \
+> +					    &current_config->name, \
+> +					    &pipe_config->name); \
+> +		ret = false; \
+> +	} \
+> +} while (0)
+> +
+>  #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
+>  	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
+>  	PIPE_CONF_CHECK_I(name.crtc_htotal); \
+> @@ -5337,6 +5372,10 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	if (dev_priv->display.dpll.mgr || HAS_GMCH(dev_priv))
+>  		PIPE_CONF_CHECK_PLL(dpll_hw_state);
+>  
+> +	/* FIXME convert MTL+ platforms over to dpll_mgr */
+> +	if (DISPLAY_VER(dev_priv) >= 14)
+> +		PIPE_CONF_CHECK_PLL_CX0(dpll_hw_state.cx0pll);
+> +
+>  	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+>  	PIPE_CONF_CHECK_X(dsi_pll.div);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> index f09e513ce05b..36baed75b89a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> @@ -264,6 +264,7 @@ struct intel_cx0pll_state {
+>  		struct intel_c20pll_state c20;
+>  	};
+>  	bool ssc_enabled;
+> +	bool use_c10;
+>  };
+>  
+>  struct intel_dpll_hw_state {
+
+-- 
+Jani Nikula, Intel
