@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDE38CC663
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 20:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0E78CC68A
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 20:45:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D89F310E48E;
-	Wed, 22 May 2024 18:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7A6B10E833;
+	Wed, 22 May 2024 18:45:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GyR0DChs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U7bMGdPK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 090C510E48A;
- Wed, 22 May 2024 18:36:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD0710E846
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 May 2024 18:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716403006; x=1747939006;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=2rhgh+BR9bBd83IwdIjhqo7oQ+mkjjxUcF4D9vgGo1E=;
- b=GyR0DChsNnkFShFKOmen4h0ODF3V8sgW6tCM5drtG++8EJ1MBELAC9iN
- rMIZHTrrsYEk0/I1Eaapg2XdcFYZ+jeLwvduvdjEbXPiISZjCP6Zumw+i
- EsuB2iel3fFkgqIKPJquzZKdoFe0UHWqy4PnJZFufQEhkSjKmxN3jXJdf
- XM5S4AKJXZa68PzmE+HeYqAvedVQNb2jzMN8hgtIUFCyZlt8WXqneR5ht
- cvCNrkbTgPyGQN576u+m80HdSPiUb+3W66CW7huft6mixS9iB+H5lZKCB
- fh5b9EA2jL/5+vTGL0NbT8/JVs4ytP+0a4Xyls1neR0Arl6j8eGm1mOr7 Q==;
-X-CSE-ConnectionGUID: 6quRsU79TjeTD0K9jwL0CA==
-X-CSE-MsgGUID: ++LENxvNQzqIbHmSs/sK8Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="35190095"
-X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="35190095"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 11:36:44 -0700
-X-CSE-ConnectionGUID: kQPOyKLSTX+MeEW0Ez596A==
-X-CSE-MsgGUID: yiGVV04IQsaXQMwCNKVHBA==
+ t=1716403543; x=1747939543;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=jj6ry3jlYsQWWlCfsC67FSgeUC+oZULoKoDgSyXYO6s=;
+ b=U7bMGdPKT+XIsesf3VG91EJ5Plj65ZKAlBB6vF5EMhyMw79U+4ZRyzfH
+ R5S2RyKVv4pfWZVEF1T77ggYmyVmwygswKKgfe9TtbqCSGzxrXDPEH5mS
+ 2pE6gmOldihM3M4Egl0w2gbQ26b2ItUbGIU4yNCj3reX6OmtkDMMmPv0i
+ mL9d62dVSAPmQeLy7GuauxU0sMbRsCo1s3HdZUq+CCF8wBx83sO4nUsm6
+ GLfqBWorzGP2bFEUiRkR6r8ZbLejblhOIdB79N+V36y4Nt/l0CVYDjbIS
+ AQ+607NteBCbQuIogqevlq0wMpznBeMdWseyBUK87cHs3PyhuXQeFiXGP Q==;
+X-CSE-ConnectionGUID: JL5RvTleT0CBo/rc0oRpuw==
+X-CSE-MsgGUID: QXNCyBKKRkO1zkYWuy1S5Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="12517540"
+X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="12517540"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 11:45:43 -0700
+X-CSE-ConnectionGUID: QRe/tkM/R8KpfMDoxOUdZA==
+X-CSE-MsgGUID: yX97MbQISrisDyU/WobXXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="56625760"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 11:36:42 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com
-Subject: Re: [PATCH 00/10] drm/i915: identify all platforms in display probe
-In-Reply-To: <171640168863.10417.28066664900974969@gjsousa-mobl2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1716399081.git.jani.nikula@intel.com>
- <171640168863.10417.28066664900974969@gjsousa-mobl2>
-Date: Wed, 22 May 2024 21:36:40 +0300
-Message-ID: <87y181pubr.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="64626360"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 11:45:42 -0700
+Date: Wed, 22 May 2024 21:45:45 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 04/21] drm/i915/dp: Sanitize
+ intel_dp_get_link_train_fallback_values()
+Message-ID: <Zk49WeoaEOYVNui4@ideak-desk.fi.intel.com>
+References: <20240520185822.3725844-1-imre.deak@intel.com>
+ <20240520185822.3725844-5-imre.deak@intel.com>
+ <Zk44GKykmIQ_fpWi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zk44GKykmIQ_fpWi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,34 +68,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 May 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-05-22 14:33:37-03:00)
->>Add independent platform probe in display, in preparation for breaking
->>free from i915 and xe code.
->>
->>Up next would be adding separate IS_<PLATFORM>() style macros to
->>display. Not included here, because I couldn't come up with nice names
->>yet. IS_DISPLAY_<PLATFORM>() is a bit verbose.
->
-> Drive-by comment: At least for recent hardware, we can use
-> display-specific release names, e.g. IS_XE2LPD() for LNL's display,
-> since theoretically that display IP could be reused in a different
-> platform.
+On Wed, May 22, 2024 at 09:23:20PM +0300, Ville Syrjälä wrote:
+> On Mon, May 20, 2024 at 09:58:02PM +0300, Imre Deak wrote:
+> > Reduce the indentation in intel_dp_get_link_train_fallback_values() by
+> > adding separate helpers to reduce the link rate and lane count. Also
+> > simplify things by passing crtc_state to the function.
+> > 
+> > This also prepares for later patches in the patchset adding a limitation
+> > on how the link params are reduced.
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_dp_link_training.c | 82 ++++++++++++-------
+> >  1 file changed, 51 insertions(+), 31 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 4db293f256896..edc970036866a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -1109,11 +1109,37 @@ static bool intel_dp_can_link_train_fallback_for_edp(struct intel_dp *intel_dp,
+> >  	return true;
+> >  }
+> >  
+> > +static int reduce_link_rate(struct intel_dp *intel_dp, int current_rate)
+> > +{
+> > +	int rate_index;
+> > +	int new_rate;
+> > +
+> > +	rate_index = intel_dp_rate_index(intel_dp->common_rates,
+> > +					 intel_dp->num_common_rates,
+> > +					 current_rate);
+> > +
+> > +	if (rate_index <= 0)
+> > +		return -1;
+> > +
+> > +	new_rate = intel_dp_common_rate(intel_dp, rate_index - 1);
+> > +
+> > +	return new_rate;
+> 
+> This is structured as
+> 
+> if (bad)
+> 	fail;
+> success;
+> 
+> > +}
+> > +
+> > +static int reduce_lane_count(struct intel_dp *intel_dp, int current_lane_count)
+> > +{
+> > +	if (current_lane_count > 1)
+> > +		return current_lane_count >> 1;
+> > +
+> > +	return -1;
+> 
+> whereas this is
+> 
+> if (ok)
+> 	success;
+> fail;
+> 
+> I'd rearrange one of them so the logic is the same way around in both.
 
-I think we should prefer the IP version checks over adding names like
-xe2lpd which IMO are hard to remember and associate with platforms or IP
-versions.
+Ok, will change that.
 
-And we'll still need the platform checks for a plethora of old
-platforms.
-
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
+> Otherwise lgtm
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> > +}
+> > +
+> >  static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> > -						   int link_rate, u8 lane_count)
+> > +						   const struct intel_crtc_state *crtc_state)
+> >  {
+> >  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> > -	int index;
+> > +	int new_link_rate;
+> > +	int new_lane_count;
+> >  
+> >  	/*
+> >  	 * TODO: Enable fallback on MST links once MST link compute can handle
+> > @@ -1131,36 +1157,32 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> >  		return 0;
+> >  	}
+> >  
+> > -	index = intel_dp_rate_index(intel_dp->common_rates,
+> > -				    intel_dp->num_common_rates,
+> > -				    link_rate);
+> > -	if (index > 0) {
+> > -		if (intel_dp_is_edp(intel_dp) &&
+> > -		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> > -							      intel_dp_common_rate(intel_dp, index - 1),
+> > -							      lane_count)) {
+> > -			drm_dbg_kms(&i915->drm,
+> > -				    "Retrying Link training for eDP with same parameters\n");
+> > -			return 0;
+> > -		}
+> > -		intel_dp->link.max_rate = intel_dp_common_rate(intel_dp, index - 1);
+> > -		intel_dp->link.max_lane_count = lane_count;
+> > -	} else if (lane_count > 1) {
+> > -		if (intel_dp_is_edp(intel_dp) &&
+> > -		    !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> > -							      intel_dp_max_common_rate(intel_dp),
+> > -							      lane_count >> 1)) {
+> > -			drm_dbg_kms(&i915->drm,
+> > -				    "Retrying Link training for eDP with same parameters\n");
+> > -			return 0;
+> > -		}
+> > -		intel_dp->link.max_rate = intel_dp_max_common_rate(intel_dp);
+> > -		intel_dp->link.max_lane_count = lane_count >> 1;
+> > -	} else {
+> > +	new_lane_count = crtc_state->lane_count;
+> > +	new_link_rate = reduce_link_rate(intel_dp, crtc_state->port_clock);
+> > +	if (new_link_rate < 0) {
+> > +		new_lane_count = reduce_lane_count(intel_dp, crtc_state->lane_count);
+> > +		new_link_rate = intel_dp_max_common_rate(intel_dp);
+> > +	}
+> > +
+> > +	if (new_lane_count < 0) {
+> >  		drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> >  		return -1;
+> >  	}
+> >  
+> > +	if (intel_dp_is_edp(intel_dp) &&
+> > +	    !intel_dp_can_link_train_fallback_for_edp(intel_dp, new_link_rate, new_lane_count)) {
+> > +		drm_dbg_kms(&i915->drm,
+> > +			    "Retrying Link training for eDP with same parameters\n");
+> > +		return 0;
+> > +	}
+> > +
+> > +	drm_dbg_kms(&i915->drm, "Reducing link parameters from %dx%d to %dx%d\n",
+> > +		    crtc_state->lane_count, crtc_state->port_clock,
+> > +		    new_lane_count, new_link_rate);
+> > +
+> > +	intel_dp->link.max_rate = new_link_rate;
+> > +	intel_dp->link.max_lane_count = new_lane_count;
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -1178,9 +1200,7 @@ static void intel_dp_schedule_fallback_link_training(struct intel_dp *intel_dp,
+> >  		lt_dbg(intel_dp, DP_PHY_DPRX,
+> >  		       "Link Training failed with HOBL active, not enabling it from now on\n");
+> >  		intel_dp->hobl_failed = true;
+> > -	} else if (intel_dp_get_link_train_fallback_values(intel_dp,
+> > -							   crtc_state->port_clock,
+> > -							   crtc_state->lane_count)) {
+> > +	} else if (intel_dp_get_link_train_fallback_values(intel_dp, crtc_state)) {
+> >  		return;
+> >  	}
+> >  
+> > -- 
+> > 2.43.3
+> 
+> -- 
+> Ville Syrjälä
+> Intel
