@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638C98CBAAC
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 07:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DB58CBAAD
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 07:33:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AEBE10E4C9;
-	Wed, 22 May 2024 05:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB4C10E201;
+	Wed, 22 May 2024 05:33:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEC1D10E1E2;
- Wed, 22 May 2024 05:33:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD4CC10E12D;
+ Wed, 22 May 2024 05:33:23 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [v6 1/3] drm: Add drm_vblank_work_flush_all().
-Date: Wed, 22 May 2024 07:33:39 +0200
-Message-ID: <20240522053341.137592-2-maarten.lankhorst@linux.intel.com>
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [v6 2/3] drm/i915: Use vblank worker to unpin old legacy cursor fb
+ safely
+Date: Wed, 22 May 2024 07:33:40 +0200
+Message-ID: <20240522053341.137592-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
 References: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,70 +42,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In some cases we want to flush all vblank work, right before vblank_off
-for example. Add a simple function to make this possible.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Check that both pending_work and running work are empty when flushing.
+The cursor hardware only does sync updates, and thus the hardware
+will be scanning out from the old fb until the next start of vblank.
+So in order to make the legacy cursor fastpath actually safe we
+should not unpin the old fb until we're sure the hardware has
+ceased accessing it. The simplest approach is to just use a vblank
+work here to do the delayed unpin.
 
-Co-Developed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Not 100% sure it's a good idea to put this onto the same high
+priority vblank worker as eg. our timing critical gamma updates.
+But let's keep it simple for now, and it we later discover that
+this is causing problems we can think about adding a lower
+priority worker for such things.
+
+This patch is slightly reworked by Maarten
+
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
- include/drm/drm_vblank_work.h     |  2 ++
- 2 files changed, 24 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 26 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_display.c  |  3 +++
+ .../drm/i915/display/intel_display_types.h    |  3 +++
+ 3 files changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
-index 4fe9b1d3b00f..1752ffb44e1d 100644
---- a/drivers/gpu/drm/drm_vblank_work.c
-+++ b/drivers/gpu/drm/drm_vblank_work.c
-@@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work *work)
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index c780ce146131..36e2dcbe3614 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -710,6 +710,17 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
+ 	return format == DRM_FORMAT_ARGB8888;
  }
- EXPORT_SYMBOL(drm_vblank_work_flush);
  
-+/**
-+ * drm_vblank_work_flush_all - flush all currently pending vblank work on crtc.
-+ * @crtc: crtc for which vblank work to flush
-+ *
-+ * Wait until all currently queued vblank work on @crtc
-+ * has finished executing once.
-+ */
-+void drm_vblank_work_flush_all(struct drm_crtc *crtc)
++static void intel_cursor_unpin_work(struct kthread_work *base)
 +{
-+	struct drm_device *dev = crtc->dev;
-+	struct drm_vblank_crtc *vblank = &dev->vblank[drm_crtc_index(crtc)];
++	struct drm_vblank_work *work = to_drm_vblank_work(base);
++	struct intel_plane_state *plane_state =
++		container_of(work, typeof(*plane_state), unpin_work);
++	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
 +
-+	spin_lock_irq(&dev->event_lock);
-+	wait_event_lock_irq(vblank->work_wait_queue,
-+			    list_empty(&vblank->pending_work),
-+			    dev->event_lock);
-+	spin_unlock_irq(&dev->event_lock);
-+
-+	kthread_flush_worker(vblank->worker);
++	intel_plane_unpin_fb(plane_state);
++	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
 +}
-+EXPORT_SYMBOL(drm_vblank_work_flush_all);
 +
- /**
-  * drm_vblank_work_init - initialize a vblank work item
-  * @work: vblank work item
-diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.h
-index eb41d0810c4f..e04d436b7297 100644
---- a/include/drm/drm_vblank_work.h
-+++ b/include/drm/drm_vblank_work.h
-@@ -17,6 +17,7 @@ struct drm_crtc;
-  * drm_vblank_work_init()
-  * drm_vblank_work_cancel_sync()
-  * drm_vblank_work_flush()
-+ * drm_vblank_work_flush_all()
-  */
- struct drm_vblank_work {
- 	/**
-@@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work, struct drm_crtc *crtc,
- 			  void (*func)(struct kthread_work *work));
- bool drm_vblank_work_cancel_sync(struct drm_vblank_work *work);
- void drm_vblank_work_flush(struct drm_vblank_work *work);
-+void drm_vblank_work_flush_all(struct drm_crtc *crtc);
+ static int
+ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 			   struct drm_crtc *_crtc,
+@@ -853,14 +864,25 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
  
- #endif /* !_DRM_VBLANK_WORK_H_ */
+ 	intel_psr_unlock(crtc_state);
+ 
+-	intel_plane_unpin_fb(old_plane_state);
++	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
++		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
++				     intel_cursor_unpin_work);
++
++		drm_vblank_work_schedule(&old_plane_state->unpin_work,
++					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
++					 false);
++
++		old_plane_state = NULL;
++	} else {
++		intel_plane_unpin_fb(old_plane_state);
++	}
+ 
+ out_free:
+ 	if (new_crtc_state)
+ 		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
+ 	if (ret)
+ 		intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
+-	else
++	else if (old_plane_state)
+ 		intel_plane_destroy_state(&plane->base, &old_plane_state->uapi);
+ 	return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index cce1420fb541..715672c142b4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -66,6 +66,7 @@
+ #include "intel_crtc.h"
+ #include "intel_crtc_state_dump.h"
+ #include "intel_cursor_regs.h"
++#include "intel_cursor.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
+ #include "intel_display_driver.h"
+@@ -6925,6 +6926,8 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
+ 			continue;
+ 
+ 		intel_crtc_disable_planes(state, crtc);
++
++		drm_vblank_work_flush_all(&crtc->base);
+ 	}
+ 
+ 	/* Only disable port sync and MST slaves */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 9678c2b157f6..51fa73a2a161 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -735,6 +735,9 @@ struct intel_plane_state {
+ 	struct intel_fb_view view;
+ 	u32 phys_dma_addr; /* for cursor_needs_physical */
+ 
++	/* for legacy cursor fb unpin */
++	struct drm_vblank_work unpin_work;
++
+ 	/* Plane pxp decryption state */
+ 	bool decrypt;
+ 
 -- 
 2.43.0
 
