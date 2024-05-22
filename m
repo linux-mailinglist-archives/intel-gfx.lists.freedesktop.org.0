@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17E98CC635
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 20:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E038CC63E
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 20:22:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0AFF10E296;
-	Wed, 22 May 2024 18:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2C310E02F;
+	Wed, 22 May 2024 18:22:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D9lyXqsq";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF62E10E296;
- Wed, 22 May 2024 18:19:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_identify?=
- =?utf-8?q?_all_platforms_in_display_probe?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0F910E02F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 May 2024 18:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716402174; x=1747938174;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=2zck2cMxDBS7ipH7j2j97UcukDAo5CBDJJxU3/VOvBQ=;
+ b=D9lyXqsqFgC/POOgwOj0dCOwOwlQAxtY6PrXjYpF7MJ0tKl6R5L4NTju
+ o8JWBvggbnJOS/2dV4U1w+9hVkoGEZhWBNdtgY+H1xW5a9QA1x94U2q7o
+ JjXkRSkbvjnjG+gR+zUrxunSd9bBB5kxBPZJAhV/sQe3MCJC+ZIyzouJL
+ y1ZMBo8xM4X2fDAOIwyzExerDaRzEOq44vfPmv4zJDk2wiKG4YvOssaG7
+ oGWvcBFdEwqi6ntN5X6UeOg2Brz06jBZOvM1dmyAlqkV+mNdoneoyF4AL
+ xHA6qoJ3ilnN3Ko92RsKRnJJ7e8jkZQyjyBWDa4jeYyyYSXG6oHw66SOR g==;
+X-CSE-ConnectionGUID: Bf2yvEOkSmu0HCo8Vrfj/g==
+X-CSE-MsgGUID: QJq9Z+S9SRqnnyTSeVUXuA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="12514774"
+X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="12514774"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 11:22:54 -0700
+X-CSE-ConnectionGUID: h9cqX7JjTGGgIoA9eSJAYA==
+X-CSE-MsgGUID: RTMVgwhuTlKgiWMSoS9U2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,181,1712646000"; d="scan'208";a="33360816"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 22 May 2024 11:22:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 22 May 2024 21:22:51 +0300
+Date: Wed, 22 May 2024 21:22:51 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 May 2024 18:19:18 -0000
-Message-ID: <171640195878.2167933.9289928949078981214@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1716399081.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1716399081.git.jani.nikula@intel.com>
+Subject: Re: [PATCH v2 01/21] drm/i915/dp_mst: Align TUs to avoid splitting
+ symbols across MTPs
+Message-ID: <Zk43-5RnbKCqwVe_@intel.com>
+References: <20240520185822.3725844-1-imre.deak@intel.com>
+ <20240520185822.3725844-2-imre.deak@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240520185822.3725844-2-imre.deak@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,89 +69,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, May 20, 2024 at 09:57:59PM +0300, Imre Deak wrote:
+> Symbols consisting of multiple (4) TU timeslots may get split across
+> MTPs when using 2 or 1 link lanes. Avoid this, as required by Bspec by
+> aligning the allocated TUs to 2 when using 2 lanes and 4 when using 1
+> lane.
+> 
+> Atm, we also have to align the PBNs used to allocate BW along the MST
+> path, since DRM core keeps track of its own TU value, derived from the
+> PBN and that TU value must match what the driver calculates.
+> 
+> On some platforms the alignment is only required on 8b/10b links, a
+> follow-up patch will remove the limitation for those.
+> 
+> Bspec: 49266, 68922
+> 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Series: drm/i915: identify all platforms in display probe
-URL   : https://patchwork.freedesktop.org/series/133932/
-State : warning
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 27 ++++++++++++++++++---
+>  1 file changed, 23 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index c772ba19c5477..c9c5d235744ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -207,6 +207,7 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  		int remote_bw_overhead;
+>  		int link_bpp_x16;
+>  		int remote_tu;
+> +		fixed20_12 pbn;
+>  
+>  		drm_dbg_kms(&i915->drm, "Trying bpp %d\n", bpp);
+>  
+> @@ -237,11 +238,29 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  		 * crtc_state->dp_m_n.tu), provided that the driver doesn't
+>  		 * enable SSC on the corresponding link.
+>  		 */
+> -		crtc_state->pbn = intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
+> -							link_bpp_x16,
+> -							remote_bw_overhead);
+> +		pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
+> +							      link_bpp_x16,
+> +							      remote_bw_overhead));
+> +		remote_tu = DIV_ROUND_UP(pbn.full, mst_state->pbn_div.full);
+>  
+> -		remote_tu = DIV_ROUND_UP(dfixed_const(crtc_state->pbn), mst_state->pbn_div.full);
+> +		/*
+> +		 * Aligning the TUs ensures that symbols consisting of multiple
+> +		 * (4) symbol cycles don't get split between two consecutive
+> +		 * MTPs, as required by Bspec.
+> +		 * TODO: remove the alignment restriction for 128b/132b links
+> +		 * on some platforms, where Bspec allows this.
+> +		 */
+> +		remote_tu = ALIGN(remote_tu, 4 / crtc_state->lane_count);
+> +
+> +		/*
+> +		 * Also align PBNs accordingly, since MST core will derive its
+> +		 * own copy of TU from the PBN in drm_dp_atomic_find_time_slots().
+> +		 * The above comment about the difference between the PBN
+> +		 * allocated for the whole path and the TUs allocated for the
+> +		 * first branch device's link also applies here.
+> +		 */
+> +		pbn.full = remote_tu * mst_state->pbn_div.full;
+> +		crtc_state->pbn = dfixed_trunc(pbn);
+>  
+>  		drm_WARN_ON(&i915->drm, remote_tu < crtc_state->dp_m_n.tu);
+>  		crtc_state->dp_m_n.tu = remote_tu;
+> -- 
+> 2.43.3
 
-Error: dim checkpatch failed
-4b7fb7e322d3 drm/i915/display: move params copy at probe earlier
-1740c90203fa drm/i915/display: change probe for no display case
-d09e0d981dd9 drm/i915/display: check platforms without display one level higher
-9fec60fe3fc3 drm/i915/display: change GMD ID display ip ver propagation at probe
-347981472468 drm/i915/display: add platform descriptors
--:51: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
-#51: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:211:
-+		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C), /* DVO A/B/C */
-
--:238: WARNING:LONG_LINE_COMMENT: line length of 117 exceeds 100 columns
-#238: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:349:
-+		.__runtime_defaults.port_mask = BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* SDVO/HDMI/DP B/C, DP D */
-
--:252: WARNING:LONG_LINE_COMMENT: line length of 117 exceeds 100 columns
-#252: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:358:
-+		.__runtime_defaults.port_mask = BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* SDVO/HDMI/DP B/C, DP D */
-
--:302: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
-#302: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:400:
-+		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-
--:328: WARNING:LONG_LINE: line length of 142 exceeds 100 columns
-#328: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:416:
-+		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-
--:395: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#395: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:455:
-+		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
-
--:433: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#433: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:477:
-+		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
-
--:463: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
-#463: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:495:
-+		.__runtime_defaults.port_mask = BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* HDMI/DP B/C/D */
-
--:545: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#545: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:627:
-+		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
-
-total: 0 errors, 9 warnings, 0 checks, 728 lines checked
-6911c76c17b3 drm/i915: add LNL PCI IDs
--:22: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#22: FILE: include/drm/i915_pciids.h:787:
-+#define INTEL_LNL_IDS(MACRO__, ...) \
-+	MACRO__(0x6420, ## __VA_ARGS__), \
-+	MACRO__(0x64A0, ## __VA_ARGS__), \
-+	MACRO__(0x64B0, ## __VA_ARGS__)
-
--:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
-#22: FILE: include/drm/i915_pciids.h:787:
-+#define INTEL_LNL_IDS(MACRO__, ...) \
-+	MACRO__(0x6420, ## __VA_ARGS__), \
-+	MACRO__(0x64A0, ## __VA_ARGS__), \
-+	MACRO__(0x64B0, ## __VA_ARGS__)
-
-total: 1 errors, 0 warnings, 1 checks, 10 lines checked
-79c37572339f drm/i915/display: change display probe to identify GMD ID based platforms
--:108: ERROR:CODE_INDENT: code indent should use tabs where possible
-#108: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1044:
-+        if (!info)$
-
--:108: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#108: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1044:
-+        if (!info)$
-
-total: 1 errors, 1 warnings, 0 checks, 89 lines checked
-4b7235ae8cf5 drm/i915/display: identify platforms with enum and name
-23bf096a14df drm/i915/display: add support for subplatforms
-da0463e24a73 drm/i915/display: add probe message
-
-
+-- 
+Ville Syrjälä
+Intel
