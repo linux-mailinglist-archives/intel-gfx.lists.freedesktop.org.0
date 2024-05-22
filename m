@@ -2,61 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A86C8CBD7B
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 11:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 134148CBD82
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 May 2024 11:07:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 492F110E173;
-	Wed, 22 May 2024 09:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25B3E10E11C;
+	Wed, 22 May 2024 09:07:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a3eilJjG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YB1HeEAC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35A7910E173
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 May 2024 09:05:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BC510E11C;
+ Wed, 22 May 2024 09:07:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716368726; x=1747904726;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=ZoLrhLmSRVQWU5YpPgr+geazsSAJ+1yKXR/31mJPhs8=;
- b=a3eilJjG8sh4ozNOS59gTtpcw1PGKR3m2pPDQNixgvOLPVxn1jmtPjmd
- +6bL8DbMA+xW1e+v0FOi6WMrJJGpj0/5FQrabiUMDoBcqOZ+t2LyIRie7
- HLA8DiNxIv0lgU83JGtFPIZAZfsKyRwsggGC7zoULawcwWacUh02omtcg
- by+0qWMHfrWarh8+O0GRK0xtoS33qkxRq4Zks3MebPe9irQccL6FsJmKw
- cuDlq/f71wLl+cqURGDTeGOUXFlPiBdI1rJSvT/3FXjqEk1dxHRYmK5cJ
- R1KftfxBWwOSyj9W5iBKYpa1KFLbwu8DOLarQG1Q3OT8q4TGCVW8RzRST g==;
-X-CSE-ConnectionGUID: z81ff7KRTDKCppSEFiOdqA==
-X-CSE-MsgGUID: 3BwQ3uqGRAy7Yr7mYGZqBg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="30108734"
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="30108734"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 02:05:20 -0700
-X-CSE-ConnectionGUID: MNhuyxEsSAmi+v8sw3nrRw==
-X-CSE-MsgGUID: 7uz+Qz0RSqSW8oVsvCJUtw==
+ t=1716368871; x=1747904871;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=4zWoGvl4viJHGwKz+nWtLTg5u+BKce1IHQyYauCVg1I=;
+ b=YB1HeEAC/zYgkuhbBlZXisWdHw7KoEDBv89gLRTT+kUch5OXYiggVhVt
+ e9RZEjcarT366UPrLSFivEB+rOHX5oCIhvgoNovTAjs0a/p6hLQ1qwUUG
+ hap7Sd3KSA6ebc3xdMcrAZlozHz1aNM9vt9cUrl26wQjHjzvfHipGWuBb
+ xb50QggMkpVjMIOoduE3UvJJZn0vnOVboRCBuCufeIeFXn/6/tnv4dqPO
+ raT6ozuqbWOm8ukbnqfVNgfl49X/ltGsOkCKXCiMcAnfLoccgX0Rs5Uze
+ BG8B3qnODU5sS9tn754VgGiFrYo70EdHBPlpOHp6OSNrgRCNvg22j8WM5 w==;
+X-CSE-ConnectionGUID: 1IzeoB9ISg2ixWxXJM89hA==
+X-CSE-MsgGUID: yhSZDPBTQmeo8AUOARAuUw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="30128344"
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="30128344"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 02:07:49 -0700
+X-CSE-ConnectionGUID: C1F9e3FhSU+rPwL0KH1J/g==
+X-CSE-MsgGUID: yddKHkSGQziQC5nVrEFTvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="33086470"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2024 02:05:19 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/7] drm/i915: Extract intel_dp_has_dsc()
-In-Reply-To: <ZkznUVgYqPOxhbGQ@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240517145356.26103-1-ville.syrjala@linux.intel.com>
- <20240517145356.26103-3-ville.syrjala@linux.intel.com>
- <87h6esu5dl.fsf@intel.com> <Zktzmthyfrxk7ACO@intel.com>
- <87seybqyrc.fsf@intel.com> <ZkznUVgYqPOxhbGQ@intel.com>
-Date: Wed, 22 May 2024 12:05:16 +0300
-Message-ID: <87jzjmqks3.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; d="scan'208";a="70632113"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.94.252.151])
+ ([10.94.252.151])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2024 02:07:48 -0700
+Message-ID: <af8150dc-c36f-478f-a0f5-b5dfed272b30@linux.intel.com>
+Date: Wed, 22 May 2024 11:07:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/i915: Don't treat FLR resets as errors
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+References: <20240517112550.251955-1-andi.shyti@linux.intel.com>
+ <20240517112550.251955-3-andi.shyti@linux.intel.com>
+ <e2a23879-c69e-4b57-a0a0-4c1ac81d9403@linux.intel.com>
+ <ZkexSOO9MYt7Y9-8@ashyti-mobl2.lan>
+ <b78fea46-2db1-45f9-9d7a-e257bc242c91@linux.intel.com>
+ <Zkx9-RHwTEnblEXo@ashyti-mobl2.lan>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <Zkx9-RHwTEnblEXo@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,74 +80,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Tue, May 21, 2024 at 12:51:03PM +0300, Jani Nikula wrote:
->> On Mon, 20 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
-com> wrote:
->> > On Mon, May 20, 2024 at 01:47:34PM +0300, Jani Nikula wrote:
->> >> On Fri, 17 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wr=
-ote:
->> >> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >> >
->> >> > Extract a helper to check whether the source+sink combo
->> >> > supports DSC. That basic check is needed both during mode
->> >> > validation and compute config. We'll also need to add extra
->> >> > checks to both places, so having a single place for it is nicer.
->> >> >
->> >> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om>
->> >> > ---
->> >> >  drivers/gpu/drm/i915/display/intel_dp.c | 16 ++++++++++++++--
->> >> >  1 file changed, 14 insertions(+), 2 deletions(-)
->> >> >
->> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/=
-drm/i915/display/intel_dp.c
->> >> > index 1e88449fe5f2..7bf283b4df7f 100644
->> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> >> > @@ -1220,6 +1220,19 @@ bool intel_dp_need_bigjoiner(struct intel_dp=
- *intel_dp,
->> >> >  	       connector->force_bigjoiner_enable;
->> >> >  }
->> >> >=20=20
->> >> > +static bool intel_dp_has_dsc(struct intel_connector *connector)
->> >>=20
->> >> Why not const?
->> >
->> > We've generally not consted these things. And then whenver add
->> > one const somewhere it usually ends up getting in the way later,
->> > not because we need mutability but simply because we want to
->> > call something that doesn't have the const.
->> >
->> > I suppose if we do want to start consting things more we should
->> > just do some kind of bigger pass over the whole codebase so that
->> > that there's less chance of pain later.
->> >
->> > We're also not using container_of_const() for these right now,
->> > so the const can vanish semi-accidentally when casting things.
->> >
->> > I suppose this thing might be low level enough that the const
->> > could be kept. I'll have another think about it.
->>=20
->> It's just that this series drops a bunch of const because of this, which
->> feels like the opposite of what you usually do. :)
+Hi Andi,
+
+On 5/21/2024 12:56 PM, Andi Shyti wrote:
+> Hi Nirmoy,
 >
-> I suppose.
+> On Fri, May 17, 2024 at 10:13:37PM +0200, Nirmoy Das wrote:
+>> Hi Andi,
+>>
+>> On 5/17/2024 9:34 PM, Andi Shyti wrote:
+>>
+>>      Hi Nirmoy,
+>>
+>>      On Fri, May 17, 2024 at 04:00:02PM +0200, Nirmoy Das wrote:
+>>
+>>          On 5/17/2024 1:25 PM, Andi Shyti wrote:
+>>
+>>              If we timeout while waiting for an FLR reset, there is nothing we
+>>              can do and i915 doesn't have any control on it. In any case the
+>>              system is still perfectly usable
+>>
+>>          If a FLR reset fails then we will have a dead GPU, I don't think the GPU is
+>>          usable without a cold reboot.
+>>
+>>      fact is that the GPU keeps going and even though the timeout has
+>>      expired, the system moves to the next phase.
+>>
+>> The current test might look like it is has passed, but if you look into the
+>> subsequent tests you can see a dead GPU:
+>>
+>> <7>[  369.168121] pci 0000:00:02.0: [drm:intel_uncore_fini_mmio [i915]] Triggering Driver-FLR
+>> <3>[  372.170189] pci 0000:00:02.0: [drm] *ERROR* Driver-FLR-teardown wait completion failed! -110
+>> <7>[  372.437630] [IGT] i915_selftest: finished subtest requests, SUCCESS
+>> <7>[  372.438356] [IGT] i915_selftest: starting dynamic subtest migrate
+>> <5>[  373.110580] Setting dangerous option live_selftests - tainting kernel
+>> <3>[  373.183499] i915 0000:00:02.0: Unable to change power state from D0 to D0, device inaccessible
+>> <3>[  373.246921] i915 0000:00:02.0: [drm] *ERROR* Unrecognized display IP version 1023.255; disabling display.
+>> <7>[  373.247130] i915 0000:00:02.0: [drm:intel_step_init [i915]] Using future steppings
+>> <7>[  373.247716] i915 0000:00:02.0: [drm:intel_step_init [i915]] Using future steppings
+>> <7>[  373.248263] i915 0000:00:02.0: [drm:intel_step_init [i915]] Using future display steppings
+>> <7>[  373.251843] i915 0000:00:02.0: [drm:intel_gt_common_init_early [i915]] WOPCM: 2048K
+>> <7>[  373.252505] i915 0000:00:02.0: [drm:intel_uc_init_early [i915]] GT0: enable_guc=3 (guc:yes submission:yes huc:no slpc:yes)
+>> <7>[  373.253140] i915 0000:00:02.0: [drm:intel_gt_probe_all [i915]] GT0: Setting up Primary GT
+>> <7>[  373.253556] i915 0000:00:02.0: [drm:intel_gt_probe_all [i915]] GT1: Setting up Standalone Media GT
+>> <7>[  373.253941] i915 0000:00:02.0: [drm:intel_gt_common_init_early [i915]] WOPCM: 2048K
+>> <7>[  373.254365] i915 0000:00:02.0: [drm:intel_uc_init_early [i915]] GT1: enable_guc=3 (guc:yes submission:yes huc:yes slpc:yes)
+>> <3>[  375.256235] i915 0000:00:02.0: [drm] *ERROR* Device is non-operational; MMIO access returns 0xFFFFFFFF!
+>> <3>[  375.259089] i915 0000:00:02.0: Device initialization failed (-5)
+>> <3>[  375.260521] i915 0000:00:02.0: probe with driver i915 failed with error -5
+>> <7>[  375.392209] [IGT] i915_selftest: finished subtest migrate, FAIL
+>>
+>> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14724/bat-arls-3/dmesg0.txt
+> Are we sure this is dependent on the FLR reset?
+
+Yes, while on FLR read into memory will return either 0/F.
+
+
+>   There are cases
+> when the FLR reset doesn't make any difference and in any case
+> this error is completely ignored by the driver.
+
+This happens at very late with no recovery possible and hope is module  
+reload works.
+
+
 >
-> My current rule of thumb is:
-> - atomic object states and fbs should be const if possible
-> - everything else is not
+> Perhaps we can change it to a warning?
+
+I think it should be error. CI will still complain even on warning.
+
+
 >
-> I wouldn't mind making more things const, but I suspect
-> there are several sizeable rabbit holes that need to be
-> dug out beforehand.
+>>          This is a serious issue and should be report as an error.  I think we need
+>>          to create a HW ticket to understand
+>>
+>>          why is FLR reset fails.
+>>
+>>      Maybe it takes longer and longer to reset. We've been sending
+>>      several patches in the latest years to fix the timings.
+>>
+>> HW spec says 3 sec but we can try increasing it bit higher to try it out.
+> We could go, then, with just patch 1 and see if it improves.
 
-Fair enough. Like I said, the series is R-b.
-
-J.
+Does it help ? If helps then we can go ahead with increased timeout.
 
 
+>   Also
+> because, the FLR reset might also depend on the firmware.
 
---=20
-Jani Nikula, Intel
+Possible. In that case we should wait for firmware fix ?
+
+
+Regards,
+
+Nirmoy
+
+>
+> Thanks, Nirmoy,
+> Andi
