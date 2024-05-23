@@ -2,82 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBCB8CD367
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 15:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F538CD3C9
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 15:19:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61B1710E211;
-	Thu, 23 May 2024 13:15:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0890B10E26E;
+	Thu, 23 May 2024 13:19:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="sfrs5tZ6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlFgCA20";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ABE310E560
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 13:14:59 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-4200ee78f34so18253555e9.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 06:14:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1716470097; x=1717074897;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=ElmXxnz32RpQCAO/NAAwTiLr8wz0mgoU3tNFVcIdneo=;
- b=sfrs5tZ6Cogr5NtKuUTGBGF3/VL0xQ7VmdjFbNiQngadXJLpqJDu1e3/0kfkzp5/tr
- vD3z6cfTen3dWKW8Ob2Wfm5hTBu3ixVJHV3V+/1b1OqqMxL8Q32pX81JTQTYrFWNvgf7
- k4Qk1lRGR5SeAx7zWAnYd3r1X+dobJQFa/oTfz/kqVuZcWF1kdRgyBIIs1Fa/RtXF/eQ
- 8rH++o/hxy+Mvh7VrFh7DMGt0v7cLFoH9J91eDkttnEPkQUbB7x0TC4YnMHcZYpaLahw
- fqkkqpc3/hMe1idAAmsITMNliwyjR8Ust4fymSRlC6pJYBaCxykxRi/RmFgktwgyEZMH
- u2ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716470097; x=1717074897;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ElmXxnz32RpQCAO/NAAwTiLr8wz0mgoU3tNFVcIdneo=;
- b=BIGiwYZLnkm4SQRMeZPqPtKpF/NPv1Iiykx3+RhL78RDirVjJIXYve8UKfVLFPo8a+
- 0mbfKR5B3soOcTiFaLTfDPiWoy/KAwSXS5I2eEDLXya0vjDn1eUUXsRiA9YXbpeFmbYk
- IcdyiUnpA31FB85HhIrIuT5qKJYo+op1+Jn/bP6xOadAl/QRmKF1d0Xuaf80KjKKTxo9
- f9P6DDEkIEOav4fGYytaAvLy7CdE307JAl52jhHh0wBiCkd+7XGhy9/X6Bmo+mOLtXmN
- vUVsGIKib4Cunb3JfLflgsmvrG0vXNUjrPajWs0eG0JuPrlQFeWwcnWLN2THfX2xCb4N
- +R3A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUZFQJhjZ3BVISfzAMDSEkn3/Mov/QEmcSKdV2nWju4GzRUueY+0aRyG3hV5IQkV5+51wiU+PWJOEkJ6OvkvB2uBC7v4lFg6MkKIp2aXN9+
-X-Gm-Message-State: AOJu0Yxtjz4UVxyjcQkbxzgKXCSNhXKJ0MT6OXW5/CZW/IMn6yrUPowK
- Cr88i3REX1IVa3rgrItzHAyq/Qfh0JvsYmnZbUVnKMJ1Q4z9QO84tLrg/92l0pAqGBFdFspeTjS
- g
-X-Google-Smtp-Source: AGHT+IGMZ8pk3znmuF66zoIYGQdLwGoVs7oLIhbyi+fIHlZWEzfthamohI7z5rgTKtbguNe8v+EKTQ==
-X-Received: by 2002:a05:600c:295:b0:41f:e10f:889a with SMTP id
- 5b1f17b1804b1-420fd2f1504mr36811355e9.7.1716470097510; 
- Thu, 23 May 2024 06:14:57 -0700 (PDT)
-Received: from [192.168.0.101] ([84.69.19.168])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42100f5d189sm25591595e9.24.2024.05.23.06.14.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 23 May 2024 06:14:57 -0700 (PDT)
-Message-ID: <44eefd9c-4086-45a9-b555-d5d201d27a57@ursulin.net>
-Date: Thu, 23 May 2024 14:14:56 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3139910E26E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 13:19:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716470340; x=1748006340;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=JpcNseAA3F0LF4D2pjNb+ER0xDn+g6XjzFuuP9XvY5c=;
+ b=nlFgCA20kbi5g4oC9Z3dao3eGaBopEZ2qG/NVB2OImwKLxFbFFcJp0vb
+ 7g43iL8wi+UOV4O1BCNe+ScAvdyZ+t6UAW+yO5MDChj5P5XePMJ3DVXla
+ Oq9TrByeOClujk+6O+8wlIA/SvYYfMCAP5EzHGM15hGkvYZ+oC5qNXJwD
+ BmHx3GRNx0Y/UUwlzXNtd7uQXsvZpsRpRxNqF6vCEiIFw04uzu1JSNEGx
+ tc29QStj6t8JWyeW7376gFMHAjOklwGIn1IfQ/c0LFxMRazlENnPPMGHu
+ Df7Oa4RbtTpS6eq3dQWqhDd/ishNxy/Ib0JUM94KmKo1vpMMDvOsMgQVQ A==;
+X-CSE-ConnectionGUID: qalgf2tHRuiZjs490x6tEQ==
+X-CSE-MsgGUID: omzgsANbRtKQeuPUSz0dlA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="23396382"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="23396382"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:19:00 -0700
+X-CSE-ConnectionGUID: /afPOcM9S3m4eVNQdDBoHA==
+X-CSE-MsgGUID: tDMcWX+NQ92RPHKtXSe6vQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="38652847"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:18:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 16/16] drm/i915: pass dev_priv explicitly to PIPEGCMAX
+In-Reply-To: <Zk9BNS0B7FiVrCw3@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1716469091.git.jani.nikula@intel.com>
+ <5fdc8562fe7b8d26e1ec1bb8f9a221348246bbe1.1716469091.git.jani.nikula@intel.com>
+ <Zk9BNS0B7FiVrCw3@intel.com>
+Date: Thu, 23 May 2024 16:18:55 +0300
+Message-ID: <875xv4psxs.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
-Content-Language: en-GB
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Vidya Srinivas <vidya.srinivas@intel.com>,
- intel-gfx@lists.freedesktop.org, shawn.c.lee@intel.com,
- stable@vger.kernel.org
-References: <20240520165634.1162470-1-vidya.srinivas@intel.com>
- <20240522152916.1702614-1-vidya.srinivas@intel.com>
- <5e5660ac-e14b-4759-a6f6-38cc55d37246@ursulin.net>
- <Zk8mM0bh5QMGcSGL@intel.com>
- <0f459a5b-4926-40ea-820e-ab0e5516a821@ursulin.net>
- <Zk81eDBUlz_axOn4@intel.com>
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <Zk81eDBUlz_axOn4@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,101 +70,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 23 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, May 23, 2024 at 03:59:44PM +0300, Jani Nikula wrote:
+>> Avoid the implicit dev_priv local variable use, and pass dev_priv
+>> explicitly to the PIPEGCMAX register macro.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_color.c      | 13 +++++++------
+>>  drivers/gpu/drm/i915/display/intel_color_regs.h |  6 +++---
+>>  2 files changed, 10 insertions(+), 9 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/dr=
+m/i915/display/intel_color.c
+>> index a83f41ee6834..da56d24eb933 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_color.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+>> @@ -1284,9 +1284,10 @@ static void i965_load_lut_10p6(struct intel_crtc =
+*crtc,
+>>  				  i965_lut_10p6_udw(&lut[i]));
+>>  	}
+>>=20=20
+>> -	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
+>> -	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
+>> -	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
+>> +	intel_de_write_fw(dev_priv, PIPEGCMAX(dev_priv, pipe, 0), lut[i].red);
+>> +	intel_de_write_fw(dev_priv, PIPEGCMAX(dev_priv, pipe, 1),
+>> +			  lut[i].green);
+>
+> nit: the newline breaks the pattern in a somewhat ugly way
 
-On 23/05/2024 13:24, Ville Syrjälä wrote:
-> On Thu, May 23, 2024 at 01:07:24PM +0100, Tvrtko Ursulin wrote:
->>
->> On 23/05/2024 12:19, Ville Syrjälä wrote:
->>> On Thu, May 23, 2024 at 09:25:45AM +0100, Tvrtko Ursulin wrote:
->>>>
->>>> On 22/05/2024 16:29, Vidya Srinivas wrote:
->>>>> In some scenarios, the DPT object gets shrunk but
->>>>> the actual framebuffer did not and thus its still
->>>>> there on the DPT's vm->bound_list. Then it tries to
->>>>> rewrite the PTEs via a stale CPU mapping. This causes panic.
->>>>>
->>>>> Suggested-by: Ville Syrjala <ville.syrjala@linux.intel.com>
->>>>> Cc: stable@vger.kernel.org
->>>>> Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation for dpt")
->>>>> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
->>>>> ---
->>>>>     drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
->>>>>     1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>>> index 3560a062d287..e6b485fc54d4 100644
->>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->>>>> @@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
->>>>>     static inline bool
->>>>>     i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
->>>>>     {
->>>>> -	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
->>>>> +	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
->>>>> +		!obj->is_dpt;
->>>>
->>>> Is there a reason i915_gem_object_make_unshrinkable() cannot be used to
->>>> mark the object at a suitable place?
->>>
->>> Do you have a suitable place in mind?
->>> i915_gem_object_make_unshrinkable() contains some magic
->>> ingredients so doesn't look like it can be called willy
->>> nilly.
->>
->> After it is created in intel_dpt_create?
->>
->> I don't see that helper couldn't be called. It is called from madvise
->> and tiling for instance without any apparent special considerations.
-> 
-> Did you actually read through i915_gem_object_make_unshrinkable()?
+It's all cocci's doing... sometimes it's smart, sometimes less so.
 
-Briefly, and also looked around how it is used. I don't immediately 
-understand which part concerns you and it is also quite possible I am 
-missing something.
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-But see for example how it is used in intel_context.c+intel_lrc.c to 
-protect the context state object from the shrinker while it is in use by 
-the GPU. It does not appear any black magic is required.
+Thanks!
 
-Question also is does that kind of lifetime aligns with the DPT use case.
 
->> Also, there is no mention of this angle in the commit message so I
->> assumed it wasn't considered. If it was, then it should have been
->> mentioned why hacky solution was chosen instead...
-> 
-> I suppose.
-> 
->>
->>> Anyways, looks like I forgot to reply that I already pushed this
->>> with this extra comment added:
->>> /* TODO: make DPT shrinkable when it has no bound vmas */
->>
->> ... becuase IMO the special case is quite ugly and out of place. :(
-> 
-> Yeah, not the nicest. But there's already a is_dpt check in the
-> i915_gem_object_is_framebuffer() right next door, so it's not
-> *that* out of place.
+>
+>> +	intel_de_write_fw(dev_priv, PIPEGCMAX(dev_priv, pipe, 2), lut[i].blue);
+>>  }
+>>=20=20
+>>  static void i965_load_luts(const struct intel_crtc_state *crtc_state)
+>> @@ -3239,9 +3240,9 @@ static struct drm_property_blob *i965_read_lut_10p=
+6(struct intel_crtc *crtc)
+>>  		i965_lut_10p6_pack(&lut[i], ldw, udw);
+>>  	}
+>>=20=20
+>> -	lut[i].red =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEG=
+CMAX(pipe, 0)));
+>> -	lut[i].green =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIP=
+EGCMAX(pipe, 1)));
+>> -	lut[i].blue =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPE=
+GCMAX(pipe, 2)));
+>> +	lut[i].red =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEG=
+CMAX(dev_priv, pipe, 0)));
+>> +	lut[i].green =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIP=
+EGCMAX(dev_priv, pipe, 1)));
+>> +	lut[i].blue =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPE=
+GCMAX(dev_priv, pipe, 2)));
+>>=20=20
+>>  	return blob;
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/g=
+pu/drm/i915/display/intel_color_regs.h
+>> index 61c18b4a7fa5..8eb643cfead7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_color_regs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
+>> @@ -37,9 +37,9 @@
+>>  						  (i) * 4)
+>>=20=20
+>>  /* i965/g4x/vlv/chv */
+>> -#define  _PIPEAGCMAX           0x70010
+>> -#define  _PIPEBGCMAX           0x71010
+>> -#define PIPEGCMAX(pipe, i)     _MMIO_PIPE2(dev_priv, pipe, _PIPEAGCMAX =
++ (i) * 4) /* u1.16 */
+>> +#define  _PIPEAGCMAX			0x70010
+>> +#define  _PIPEBGCMAX			0x71010
+>> +#define PIPEGCMAX(dev_priv, pipe, i)	_MMIO_PIPE2(dev_priv, pipe, _PIPEA=
+GCMAX + (i) * 4) /* u1.16 */
+>>=20=20
+>>  /* ilk+ palette */
+>>  #define _LGC_PALETTE_A           0x4a000
+>> --=20
+>> 2.39.2
 
-I also see who added that one! ;)
-
-> Another option maybe could be to manually clear
-> I915_GEM_OBJECT_IS_SHRINKABLE but I don't think that is
-> supposed to be mutable, so might also have other issues.
-> So a more proper solution with that approach would perhaps
-> need some kind of gem_create_shmem_unshrinkable() function.
-> 
->>
->> I don't remember from the top of my head how DPT magic works but if
->> shrinker protection needs to be tied with VMAs there is also
->> i915_make_make(un)shrinkable to try.
-> 
-> I presume you mistyped something there.
-
-Oops - i915_vma_make_(un)shrinkable.
-
-Anyway, I think it is worth giving it a try if the DPT lifetimes makes 
-it possible.
-
-Regards,
-
-Tvrtko
+--=20
+Jani Nikula, Intel
