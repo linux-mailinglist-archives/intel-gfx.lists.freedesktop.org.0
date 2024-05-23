@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 722108CCBDF
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 07:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74268CCC0B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 08:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3EC10E049;
-	Thu, 23 May 2024 05:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8712E10E1E4;
+	Thu, 23 May 2024 06:07:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="V6XZISe2";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="coShTuf2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
  [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 784B810E034;
- Thu, 23 May 2024 05:45:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDE710EC5F;
+ Thu, 23 May 2024 06:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1716443149;
- bh=ixt8OajYR20IPA+H5M4ytRrCuvQEPCIDj6wZr5U9vZU=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=V6XZISe2rHRPDxCU3RcaRltfEjMsf3Um1F7s2Knx3jBoPnoWXYLTzBB1x2GEXFNlA
- zCUCvq/awcplJhGU9EHEmA06ZVtHfJe0QRL0SxHOCBDpNUeLpks5b6o7YrYR8Z+0JD
- jJVHUHbOum7lO29ITpT33LzBWBmhEmtjVsm1AeUnTM81zmzbDR00y3AVw7dE0/xQ7q
- wgIzSxGobBDfFQRLyrrVAK78jMvSAybnilANfAm2CwRhrPydRXI5h2h1YYYNI9aIDM
- pVoGtRcF0sS4YgQRyYQUvx/UVf6KA9mvN2TP05pxOmAzrMSCZx594KP6GwZlPhptpQ
- PQxZ6jnI5aOrg==
+ s=mail; t=1716444457;
+ bh=ous1oe/kRPBiEhDvboed42vXxlkNgqhP3ypAKRJeMQM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=coShTuf2hYo7TRLfb7IfCR4Zujw4PpdPG/DQ3NeLkqe74gGerapIkIcVEgSnRTEdu
+ iOlykt96+WfRFsm4hkM0sokeNs/qFailldaa+TvEqawT9IqysUGEFIomjMQ0oZ89W8
+ abpgCL8RunDK5HZKJmbOM/zlXZMAaHlbb5d0T5BertoWrBqCyjfkyVoCfCQ+KNHYBi
+ ZwR4PFk8JEyOe44RHUQtaYpgxxES0m4vpV6y45qmXnufBqR0eluXBefdpqyTFNgmu0
+ r/ZWUUGsW01BBxSm2uF2EbAXIVUcnL0IjG1GlADRP0rMZvgtnTUbnHj4cy3ivwp3V1
+ Z8oTMTKl/pE1g==
 Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
  (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: vignesh)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8AA8637820E5;
- Thu, 23 May 2024 05:45:45 +0000 (UTC)
-Message-ID: <bb94b70d-cb6d-4ca6-8c80-abb6a12c2ef3@collabora.com>
-Date: Thu, 23 May 2024 11:15:42 +0530
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id 119D137820E5;
+ Thu, 23 May 2024 06:07:33 +0000 (UTC)
+Message-ID: <9cd0667a-12ee-4d45-80e8-dc34259bf01d@collabora.com>
+Date: Thu, 23 May 2024 11:37:31 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] drm/ci: build virtual GPU driver as module
-From: Vignesh Raman <vignesh.raman@collabora.com>
+Subject: Re: [PATCH v2 1/6] drm/ci: uprev mesa version
+Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
  helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
@@ -49,13 +49,12 @@ Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
  intel-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
  linux-kernel@vger.kernel.org
 References: <20240517092502.647420-1-vignesh.raman@collabora.com>
- <20240517092502.647420-4-vignesh.raman@collabora.com>
- <elftuzsd7lhz6y5ow6rb5uu5fb5b5jcprxtvxtxtojo774rnyr@swpeg4vkgtnc>
- <f3646d66-01f0-476c-8b7f-5df102790fcb@collabora.com>
-Content-Language: en-US
-In-Reply-To: <f3646d66-01f0-476c-8b7f-5df102790fcb@collabora.com>
+ <20240517092502.647420-2-vignesh.raman@collabora.com>
+ <2qzmfv3oc6feihwxu3tl37rg6w3qsj2vddu5olvqk6vhqr26cc@bxu5y6ijvtfa>
+From: Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <2qzmfv3oc6feihwxu3tl37rg6w3qsj2vddu5olvqk6vhqr26cc@bxu5y6ijvtfa>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,136 +72,69 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Dmitry,
 
-On 21/05/24 12:39, Vignesh Raman wrote:
-> Hi Dmitry,
-> 
-> On 20/05/24 16:32, Dmitry Baryshkov wrote:
->> On Fri, May 17, 2024 at 02:54:59PM +0530, Vignesh Raman wrote:
->>> With latest IGT, the tests tries to load the module and it
->>> fails. So build the virtual GPU driver for virtio as module.
+On 20/05/24 16:13, Dmitry Baryshkov wrote:
+> On Fri, May 17, 2024 at 02:54:57PM +0530, Vignesh Raman wrote:
+>> zlib.net is not allowing tarball download anymore and results
+>> in below error in kernel+rootfs_arm32 container build,
+>> urllib.error.HTTPError: HTTP Error 403: Forbidden
+>> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
 >>
->> Why? If the test fails on module loading (if the driver is built-in)
->> then it's the test that needs to be fixed, not the kerenel config.
+>> Uprev mesa to latest version which includes a fix for this issue.
+>> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
 >>
->> It's fine as a temporal workaround, but please include a link to the
->> patch posted to fix the issue.
+>> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
+>> mesa-rootfs, update the variables accordingly. Also copy helper scripts
+>> to install, so that the ci jobs can use these scripts for logging.
+>>
+>> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+>> ---
+>>
+>> v2:
+>>    - Uprev to recent version and use id_tokens for JWT authentication
+>>
+>> ---
+>>   drivers/gpu/drm/ci/build-igt.sh   |  2 +-
+>>   drivers/gpu/drm/ci/build.sh       |  6 +++--
+>>   drivers/gpu/drm/ci/container.yml  | 12 +++------
+>>   drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
+>>   drivers/gpu/drm/ci/image-tags.yml |  2 +-
+>>   drivers/gpu/drm/ci/lava-submit.sh |  4 +--
+>>   drivers/gpu/drm/ci/test.yml       |  2 ++
+>>   7 files changed, 44 insertions(+), 28 deletions(-)
+>>
 > 
-> I will recheck this issue and post a link to the fix.
+> [skipped]
+> 
+>> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+>> index 8bc63912fddb..612c9ede3507 100644
+>> --- a/drivers/gpu/drm/ci/test.yml
+>> +++ b/drivers/gpu/drm/ci/test.yml
+>> @@ -150,6 +150,8 @@ msm:sdm845:
+>>       BM_KERNEL: https://${PIPELINE_ARTIFACTS_BASE}/arm64/cheza-kernel
+>>       GPU_VERSION: sdm845
+>>       RUNNER_TAG: google-freedreno-cheza
+>> +    DEVICE_TYPE: sdm845-cheza-r3
+>> +    FARM: google
+> 
+> I see that this is the only user of the FARM: tag. Is it correct?
 
+No, we need to add FARM variable for other jobs as well.
 
-This was the issue seen with IGT commit 
-https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/7d1841317c13c19c26b6352f923b205d43742c55 
+> Also we miss DEVICE_TYPE for several other boards. Should we be adding
+> them?
 
+Yes, device type needs to be added for msm:apq8016, msm:apq8096, virtio_gpu.
 
-[    4.450571] [drm:virtio_gpu_init] *ERROR* failed to find virt queues
-[    4.450962] virtio_gpu virtio0: probe with driver virtio_gpu failed 
-with error -2
-[    5.471417] [drm:virtio_gpu_init] *ERROR* failed to find virt queues
-[    5.471916] virtio_gpu virtio0: probe with driver virtio_gpu failed 
-with error -2
-
-https://gitlab.freedesktop.org/vigneshraman/linux/-/jobs/59037122
-
-With the recent uprev of IGT to 
-https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0df7b9b97f9da0e364f5ee30fe331004b8c86b56,
-this issue is not seen. So will drop this commit.
+I will add this. Thanks.
 
 Regards,
 Vignesh
 
 > 
-> Regards,
-> Vignesh
+>>     script:
+>>       - ./install/bare-metal/cros-servo.sh
+>>   
+>> -- 
+>> 2.40.1
+>>
 > 
->>
->>>
->>> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->>> ---
->>>
->>> v2:
->>>    - No changes.
->>>
->>> ---
->>>   drivers/gpu/drm/ci/build.sh       | 1 -
->>>   drivers/gpu/drm/ci/igt_runner.sh  | 6 +++---
->>>   drivers/gpu/drm/ci/image-tags.yml | 4 ++--
->>>   drivers/gpu/drm/ci/test.yml       | 1 +
->>>   drivers/gpu/drm/ci/x86_64.config  | 2 +-
->>>   5 files changed, 7 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
->>> index a67871fdcd3f..e938074ac8e7 100644
->>> --- a/drivers/gpu/drm/ci/build.sh
->>> +++ b/drivers/gpu/drm/ci/build.sh
->>> @@ -157,7 +157,6 @@ fi
->>>   mkdir -p artifacts/install/lib
->>>   mv install/* artifacts/install/.
->>> -rm -rf artifacts/install/modules
->>>   ln -s common artifacts/install/ci-common
->>>   cp .config artifacts/${CI_JOB_NAME}_config
->>> diff --git a/drivers/gpu/drm/ci/igt_runner.sh 
->>> b/drivers/gpu/drm/ci/igt_runner.sh
->>> index 20026612a9bd..55532f79fbdc 100755
->>> --- a/drivers/gpu/drm/ci/igt_runner.sh
->>> +++ b/drivers/gpu/drm/ci/igt_runner.sh
->>> @@ -30,10 +30,10 @@ case "$DRIVER_NAME" in
->>>               export IGT_FORCE_DRIVER="panfrost"
->>>           fi
->>>           ;;
->>> -    amdgpu)
->>> +    amdgpu|virtio_gpu)
->>>           # Cannot use HWCI_KERNEL_MODULES as at that point we don't 
->>> have the module in /lib
->>> -        mv /install/modules/lib/modules/* /lib/modules/.
->>> -        modprobe amdgpu
->>> +        mv /install/modules/lib/modules/* /lib/modules/. || true
->>> +        modprobe --first-time $DRIVER_NAME
->>>           ;;
->>>   esac
->>> diff --git a/drivers/gpu/drm/ci/image-tags.yml 
->>> b/drivers/gpu/drm/ci/image-tags.yml
->>> index 60323ebc7304..328f5c560742 100644
->>> --- a/drivers/gpu/drm/ci/image-tags.yml
->>> +++ b/drivers/gpu/drm/ci/image-tags.yml
->>> @@ -4,9 +4,9 @@ variables:
->>>      DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
->>>      DEBIAN_X86_64_BUILD_IMAGE_PATH: "debian/x86_64_build"
->>> -   DEBIAN_BUILD_TAG: "2023-10-08-config"
->>> +   DEBIAN_BUILD_TAG: "2024-05-09-virtio"
->>> -   KERNEL_ROOTFS_TAG: "2023-10-06-amd"
->>> +   KERNEL_ROOTFS_TAG: "2024-05-09-virtio"
->>>      DEBIAN_X86_64_TEST_BASE_IMAGE: "debian/x86_64_test-base"
->>>      DEBIAN_X86_64_TEST_IMAGE_GL_PATH: "debian/x86_64_test-gl"
->>> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
->>> index 612c9ede3507..864ac3809d84 100644
->>> --- a/drivers/gpu/drm/ci/test.yml
->>> +++ b/drivers/gpu/drm/ci/test.yml
->>> @@ -350,6 +350,7 @@ virtio_gpu:none:
->>>     script:
->>>       - ln -sf $CI_PROJECT_DIR/install /install
->>>       - mv install/bzImage /lava-files/bzImage
->>> +    - mkdir -p /lib/modules
->>
->> Is it necessary to create it manually here?
->>
->>>       - mkdir -p $CI_PROJECT_DIR/results
->>>       - ln -sf $CI_PROJECT_DIR/results /results
->>>       - install/crosvm-runner.sh install/igt_runner.sh
->>> diff --git a/drivers/gpu/drm/ci/x86_64.config 
->>> b/drivers/gpu/drm/ci/x86_64.config
->>> index 1cbd49a5b23a..78479f063e8e 100644
->>> --- a/drivers/gpu/drm/ci/x86_64.config
->>> +++ b/drivers/gpu/drm/ci/x86_64.config
->>> @@ -91,7 +91,7 @@ CONFIG_KVM=y
->>>   CONFIG_KVM_GUEST=y
->>>   CONFIG_VIRT_DRIVERS=y
->>>   CONFIG_VIRTIO_FS=y
->>> -CONFIG_DRM_VIRTIO_GPU=y
->>> +CONFIG_DRM_VIRTIO_GPU=m
->>>   CONFIG_SERIAL_8250_CONSOLE=y
->>>   CONFIG_VIRTIO_NET=y
->>>   CONFIG_VIRTIO_CONSOLE=y
->>> -- 
->>> 2.40.1
->>>
->>
