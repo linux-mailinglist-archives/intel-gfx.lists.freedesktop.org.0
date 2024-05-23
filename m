@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD9B8CCED9
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 11:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 814CF8CCF81
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 11:41:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B36CC10E175;
-	Thu, 23 May 2024 09:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADE4210E5BF;
+	Thu, 23 May 2024 09:41:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mxkw+M7E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ggj1Ox1P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF4610E175
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 09:15:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA5710E5BF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 09:41:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716455759; x=1747991759;
+ t=1716457299; x=1747993299;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=e3/oI5NWO6gDeAK8HMZMaQbfyqlCIs684NcIeoqzCCU=;
- b=mxkw+M7E3Kgg0oVETZj60ac8yPq+Ta+r8iuoXRTV/KIl5z/ObM4DxbNK
- llPCZk5O4UQe+fdRs/ENpJUw8PnSW0fFOlfcNqyb2g+7w5dK/C2IPxpAC
- 8exMrY06A8hhLnIqFhufy6IVTVyQP6cl+eRzXVypA0jPostin/FTa6CNS
- zGq9Bvdi93sNNfR/CZKNub/H4TZY82gMW58fbwOgtclAZKL0rfvXn9Erl
- hywpvvAP5TI9HA50KigAzdFoAeO2taHny7dpN8VqIwiSTLbJq2T7NJny5
- IMMv5HCWe//Fc6R40ZqB+NAZKGf1RDKyfgbZb4JheszBeTZvSDoefPups Q==;
-X-CSE-ConnectionGUID: 3AdCM/fiQDWJpWnGUv+rzw==
-X-CSE-MsgGUID: S2dXfHcwRdia26jMvIOLXA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="12607726"
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12607726"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 02:15:59 -0700
-X-CSE-ConnectionGUID: /29lQYhLTd+Pz5XCpBf2+A==
-X-CSE-MsgGUID: SqkA7KcVTPaTdlSuZMcoTg==
+ mime-version; bh=cchU2s5CZevV21mk7uyLB3Z5koiwDsOohk3E3z1qw+A=;
+ b=Ggj1Ox1Pc/wk4Ue9bxClNNWas6cLCKgbYYsbQKd+T6CQ4hl9rMImcYRk
+ Eq+dU1QPfIOaU0mFu/A2PkzSdl1gDXmLl2PcctCymC+Vn3cO4BVfGp0B5
+ wcHHP+Ni9YwpaDdTlPi+oYmHYG22xSkRgwdzmcv0DBXNw/UK/mb2LlK2J
+ M+r9gBegarTkXBgwO5E7jl7pbjEfMPZYX8cJlKx3dLIicwG234/L1+d13
+ k58oJ4WgVx8ZHDKY8vgvPpKrAzXBkPBrxIWL9vYBUKqySkDC1vEFNwKVD
+ 5KvPlsUS5smUZj319QiLL6EkmIdSELIYncdZBN3NmGldSNKrT7pKZhLF2 w==;
+X-CSE-ConnectionGUID: bMTpsZSmRu2Ifm+HO7a+1w==
+X-CSE-MsgGUID: //iDIYgUTCK/JoTtaWZrYg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="24169791"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="24169791"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 02:41:37 -0700
+X-CSE-ConnectionGUID: iZSkcHcDR7yBemhTwMc5OA==
+X-CSE-MsgGUID: KBmb9fN5SZiVU1sXsdLuSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33447320"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="38085297"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.57])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 02:15:55 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 02:41:35 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 06/13] drm/i915: Define SEL_FETCH_PLANE registers via
- PICK_EVEN_2RANGES()
-In-Reply-To: <20240516135622.3498-7-ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: Fix audio component initialization
+In-Reply-To: <20240521143022.3784539-1-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
- <20240516135622.3498-7-ville.syrjala@linux.intel.com>
-Date: Thu, 23 May 2024 12:15:53 +0300
-Message-ID: <87ikz4q46u.fsf@intel.com>
+References: <20240521143022.3784539-1-imre.deak@intel.com>
+Date: Thu, 23 May 2024 12:41:32 +0300
+Message-ID: <87ed9sq303.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,194 +66,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Tue, 21 May 2024, Imre Deak <imre.deak@intel.com> wrote:
+> After registering the audio component in i915_audio_component_init()
+> the audio driver may call i915_audio_component_get_power() via the
+> component ops. This could program AUD_FREQ_CNTRL with an uninitialized
+> value if the latter function is called before display.audio.freq_cntrl
+> gets initialized. The get_power() function also does a modeset which in
+> the above case happens too early before the initialization step and
+> triggers the
 >
-> Instead of that huge _PICK() let's use PICK_EVEN_2RANGES()
-> for the SEL_FETCH_PLANE registers. A bit more tedious to have
-> to define 8 raw register offsets for everything, but perhaps
-> a bit easier to understand since we use a standard mechanism
-> now instead of hand rolling the arithmetic.
+> "Reject display access from task"
 >
-> Also bloat-o-meter says:
-> add/remove: 0/0 grow/shrink: 0/3 up/down: 0/-326 (-326)
-> Function                                     old     new   delta
-> icl_plane_update_arm                         510     446     -64
-> icl_plane_disable_sel_fetch_arm.isra         158      54    -104
-> icl_plane_update_noarm                      1898    1740    -158
-> Total: Before=3D2574502, After=3D2574176, chg -0.01%
+> error message added by the Fixes: commit below.
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Fix the above issue by registering the audio component only after the
+> initialization step.
+>
+> Fixes: bd738d859e71 ("drm/i915: Prevent modesets during driver init/shutdown")
 
-I just don't understand the old one.
+I think the race condition exists before that commit, actually.
+
+Already commit 87c1694533c9 ("drm/i915: save AUD_FREQ_CNTRL state at
+audio domain suspend") adds freq_cntrl init after component register,
+and the order should be different, right?
+
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10291
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c    | 32 ++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_audio.h    |  1 +
+>  .../drm/i915/display/intel_display_driver.c   |  2 ++
+>  3 files changed, 24 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index adde87900557f..4c031e97f9a55 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -1267,17 +1267,6 @@ static const struct component_ops i915_audio_component_bind_ops = {
+>  static void i915_audio_component_init(struct drm_i915_private *i915)
+>  {
+>  	u32 aud_freq, aud_freq_init;
+> -	int ret;
+> -
+> -	ret = component_add_typed(i915->drm.dev,
+> -				  &i915_audio_component_bind_ops,
+> -				  I915_COMPONENT_AUDIO);
+> -	if (ret < 0) {
+> -		drm_err(&i915->drm,
+> -			"failed to add audio component (%d)\n", ret);
+> -		/* continue with reduced functionality */
+> -		return;
+> -	}
+>  
+>  	if (DISPLAY_VER(i915) >= 9) {
+>  		aud_freq_init = intel_de_read(i915, AUD_FREQ_CNTRL);
+> @@ -1300,6 +1289,21 @@ static void i915_audio_component_init(struct drm_i915_private *i915)
+>  
+>  	/* init with current cdclk */
+>  	intel_audio_cdclk_change_post(i915);
+> +}
+> +
+> +static void i915_audio_component_register(struct drm_i915_private *i915)
+> +{
+> +	int ret;
+> +
+> +	ret = component_add_typed(i915->drm.dev,
+> +				  &i915_audio_component_bind_ops,
+> +				  I915_COMPONENT_AUDIO);
+> +	if (ret < 0) {
+> +		drm_err(&i915->drm,
+> +			"failed to add audio component (%d)\n", ret);
+> +		/* continue with reduced functionality */
+> +		return;
+> +	}
+>  
+>  	i915->display.audio.component_registered = true;
+>  }
+> @@ -1332,6 +1336,12 @@ void intel_audio_init(struct drm_i915_private *i915)
+>  		i915_audio_component_init(i915);
+>  }
+>  
+> +void intel_audio_register(struct drm_i915_private *i915)
+> +{
+> +	if (!i915->display.audio.lpe.platdev)
+> +		i915_audio_component_register(i915);
+> +}
+> +
+>  /**
+>   * intel_audio_deinit() - deinitialize the audio driver
+>   * @i915: the i915 drm device private data
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.h b/drivers/gpu/drm/i915/display/intel_audio.h
+> index 9327954b801e5..576c061d72a45 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.h
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.h
+> @@ -28,6 +28,7 @@ void intel_audio_codec_get_config(struct intel_encoder *encoder,
+>  void intel_audio_cdclk_change_pre(struct drm_i915_private *dev_priv);
+>  void intel_audio_cdclk_change_post(struct drm_i915_private *dev_priv);
+>  void intel_audio_init(struct drm_i915_private *dev_priv);
+> +void intel_audio_register(struct drm_i915_private *i915);
+>  void intel_audio_deinit(struct drm_i915_private *dev_priv);
+>  void intel_audio_sdp_split_update(const struct intel_crtc_state *crtc_state);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 89bd032ed995e..794b4af380558 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -540,6 +540,8 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+>  
+>  	intel_display_driver_enable_user_access(i915);
+>  
+> +	intel_audio_register(i915);
+> +
+
+It's a bit silly that intel_display_driver_register() now calls both
+intel_audio_init() and intel_audio_register(). We should probably move
+the init earlier. The register part shouldn't really be doing any
+hardware initialization stuff, just expose the software interfaces to
+the world.
+
+Regardless,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+>  	intel_display_debugfs_register(i915);
+>  
+>  	/*
 
-> ---
->  drivers/gpu/drm/i915/display/intel_psr_regs.h | 45 ------------
->  .../i915/display/skl_universal_plane_regs.h   | 68 +++++++++++++++++++
->  2 files changed, 68 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/=
-drm/i915/display/intel_psr_regs.h
-> index f0bd0a726d7a..289c371c98d1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> @@ -251,51 +251,6 @@
->  #define _PIPE_SRCSZ_ERLY_TPT_B	0x71074
->  #define PIPE_SRCSZ_ERLY_TPT(pipe)	_MMIO_PIPE((pipe), _PIPE_SRCSZ_ERLY_TP=
-T_A, _PIPE_SRCSZ_ERLY_TPT_B)
->=20=20
-> -#define _SEL_FETCH_PLANE_BASE_1_A		0x70890
-> -#define _SEL_FETCH_PLANE_BASE_2_A		0x708B0
-> -#define _SEL_FETCH_PLANE_BASE_3_A		0x708D0
-> -#define _SEL_FETCH_PLANE_BASE_4_A		0x708F0
-> -#define _SEL_FETCH_PLANE_BASE_5_A		0x70920
-> -#define _SEL_FETCH_PLANE_BASE_6_A		0x70940
-> -#define _SEL_FETCH_PLANE_BASE_7_A		0x70960
-> -#define _SEL_FETCH_PLANE_BASE_CUR_A		0x70880
-> -#define _SEL_FETCH_PLANE_BASE_1_B		0x71890
-> -
-> -#define _SEL_FETCH_PLANE_BASE_A(plane) _PICK(plane, \
-> -					     _SEL_FETCH_PLANE_BASE_1_A, \
-> -					     _SEL_FETCH_PLANE_BASE_2_A, \
-> -					     _SEL_FETCH_PLANE_BASE_3_A, \
-> -					     _SEL_FETCH_PLANE_BASE_4_A, \
-> -					     _SEL_FETCH_PLANE_BASE_5_A, \
-> -					     _SEL_FETCH_PLANE_BASE_6_A, \
-> -					     _SEL_FETCH_PLANE_BASE_7_A, \
-> -					     _SEL_FETCH_PLANE_BASE_CUR_A)
-> -#define _SEL_FETCH_PLANE_BASE_1(pipe) _PIPE(pipe, _SEL_FETCH_PLANE_BASE_=
-1_A, _SEL_FETCH_PLANE_BASE_1_B)
-> -#define _SEL_FETCH_PLANE_BASE(pipe, plane) (_SEL_FETCH_PLANE_BASE_1(pipe=
-) - \
-> -					    _SEL_FETCH_PLANE_BASE_1_A + \
-> -					    _SEL_FETCH_PLANE_BASE_A(plane))
-> -
-> -#define _SEL_FETCH_PLANE_CTL_1_A		0x70890
-> -#define SEL_FETCH_PLANE_CTL(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pip=
-e, plane) + \
-> -					       _SEL_FETCH_PLANE_CTL_1_A - \
-> -					       _SEL_FETCH_PLANE_BASE_1_A)
-> -#define SEL_FETCH_PLANE_CTL_ENABLE		REG_BIT(31)
-> -
-> -#define _SEL_FETCH_PLANE_POS_1_A		0x70894
-> -#define SEL_FETCH_PLANE_POS(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pip=
-e, plane) + \
-> -					       _SEL_FETCH_PLANE_POS_1_A - \
-> -					       _SEL_FETCH_PLANE_BASE_1_A)
-> -
-> -#define _SEL_FETCH_PLANE_SIZE_1_A		0x70898
-> -#define SEL_FETCH_PLANE_SIZE(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(pi=
-pe, plane) + \
-> -						_SEL_FETCH_PLANE_SIZE_1_A - \
-> -						_SEL_FETCH_PLANE_BASE_1_A)
-> -
-> -#define _SEL_FETCH_PLANE_OFFSET_1_A		0x7089C
-> -#define SEL_FETCH_PLANE_OFFSET(pipe, plane) _MMIO(_SEL_FETCH_PLANE_BASE(=
-pipe, plane) + \
-> -						  _SEL_FETCH_PLANE_OFFSET_1_A - \
-> -						  _SEL_FETCH_PLANE_BASE_1_A)
-> -
->  #define _ALPM_CTL_A	0x60950
->  #define ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _ALPM_CTL_=
-A)
->  #define  ALPM_CTL_ALPM_ENABLE				REG_BIT(31)
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/dr=
-ivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> index cb3bdd71b6b2..a6528e0d719e 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> @@ -17,6 +17,17 @@
->  #define _MMIO_SKL_PLANE_DW(pipe, plane, dw, reg_1_a, reg_1_b, reg_2_a, r=
-eg_2_b) \
->  	_MMIO(_SKL_PLANE_DW((pipe), (plane), (dw), (reg_1_a), (reg_1_b), (reg_2=
-_a), (reg_2_b)))
->=20=20
-> +#define _SEL_FETCH(pipe, plane, reg_1_a, reg_1_b, reg_2_a, reg_2_b, reg_=
-5_a, reg_5_b, reg_6_a, reg_6_b) \
-> +	_PICK_EVEN_2RANGES((plane), PLANE_5, \
-> +			   _PIPE((pipe), (reg_1_a), (reg_1_b)), \
-> +			   _PIPE((pipe), (reg_2_a), (reg_2_b)), \
-> +			   _PIPE((pipe), (reg_5_a), (reg_5_b)), \
-> +			   _PIPE((pipe), (reg_6_a), (reg_6_b)))
-> +#define _MMIO_SEL_FETCH(pipe, plane, reg_1_a, reg_1_b, reg_2_a, reg_2_b,=
- reg_5_a, reg_5_b, reg_6_a, reg_6_b) \
-> +	_MMIO(_SEL_FETCH((pipe), (plane), \
-> +			 (reg_1_a), (reg_1_b), (reg_2_a), (reg_2_b), \
-> +			 (reg_5_a), (reg_5_b), (reg_6_a), (reg_6_b)))
-> +
->  #define _PLANE_CTL_1_A				0x70180
->  #define _PLANE_CTL_2_A				0x70280
->  #define _PLANE_CTL_1_B				0x71180
-> @@ -367,4 +378,61 @@
->  #define   PLANE_BUF_START_MASK			REG_GENMASK(11, 0)
->  #define   PLANE_BUF_START(start)		REG_FIELD_PREP(PLANE_BUF_START_MASK, (=
-start))
->=20=20
-> +#define _SEL_FETCH_PLANE_CTL_1_A		0x70890 /* mtl+ */
-> +#define _SEL_FETCH_PLANE_CTL_2_A		0x708b0
-> +#define _SEL_FETCH_PLANE_CTL_5_A		0x70920
-> +#define _SEL_FETCH_PLANE_CTL_6_A		0x70940
-> +#define _SEL_FETCH_PLANE_CTL_1_B		0x71890
-> +#define _SEL_FETCH_PLANE_CTL_2_B		0x718b0
-> +#define _SEL_FETCH_PLANE_CTL_5_B		0x71920
-> +#define _SEL_FETCH_PLANE_CTL_6_B		0x71940
-> +#define SEL_FETCH_PLANE_CTL(pipe, plane)	_MMIO_SEL_FETCH((pipe), (plane)=
-,\
-> +								_SEL_FETCH_PLANE_CTL_1_A, _SEL_FETCH_PLANE_CTL_1_B, \
-> +								_SEL_FETCH_PLANE_CTL_2_A, _SEL_FETCH_PLANE_CTL_2_B, \
-> +								_SEL_FETCH_PLANE_CTL_5_A, _SEL_FETCH_PLANE_CTL_5_B, \
-> +								_SEL_FETCH_PLANE_CTL_6_A, _SEL_FETCH_PLANE_CTL_6_B)
-> +#define   SEL_FETCH_PLANE_CTL_ENABLE		REG_BIT(31)
-> +
-> +#define _SEL_FETCH_PLANE_POS_1_A		0x70894 /* mtl+ */
-> +#define _SEL_FETCH_PLANE_POS_2_A		0x708b4
-> +#define _SEL_FETCH_PLANE_POS_5_A		0x70924
-> +#define _SEL_FETCH_PLANE_POS_6_A		0x70944
-> +#define _SEL_FETCH_PLANE_POS_1_B		0x71894
-> +#define _SEL_FETCH_PLANE_POS_2_B		0x718b4
-> +#define _SEL_FETCH_PLANE_POS_5_B		0x71924
-> +#define _SEL_FETCH_PLANE_POS_6_B		0x71944
-> +#define SEL_FETCH_PLANE_POS(pipe, plane)	_MMIO_SEL_FETCH((pipe), (plane)=
-,\
-> +								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
-> +								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
-> +								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
-> +								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
-> +
-> +#define _SEL_FETCH_PLANE_SIZE_1_A		0x70898 /* mtl+ */
-> +#define _SEL_FETCH_PLANE_SIZE_2_A		0x708b8
-> +#define _SEL_FETCH_PLANE_SIZE_5_A		0x70928
-> +#define _SEL_FETCH_PLANE_SIZE_6_A		0x70948
-> +#define _SEL_FETCH_PLANE_SIZE_1_B		0x71898
-> +#define _SEL_FETCH_PLANE_SIZE_2_B		0x718b8
-> +#define _SEL_FETCH_PLANE_SIZE_5_B		0x71928
-> +#define _SEL_FETCH_PLANE_SIZE_6_B		0x71948
-> +#define SEL_FETCH_PLANE_SIZE(pipe, plane)	_MMIO_SEL_FETCH((pipe), (plane=
-),\
-> +								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
-> +								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
-> +								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
-> +								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
-> +
-> +#define _SEL_FETCH_PLANE_OFFSET_1_A		0x7089c /* mtl+ */
-> +#define _SEL_FETCH_PLANE_OFFSET_2_A		0x708bc
-> +#define _SEL_FETCH_PLANE_OFFSET_5_A		0x7092c
-> +#define _SEL_FETCH_PLANE_OFFSET_6_A		0x7094c
-> +#define _SEL_FETCH_PLANE_OFFSET_1_B		0x7189c
-> +#define _SEL_FETCH_PLANE_OFFSET_2_B		0x718bc
-> +#define _SEL_FETCH_PLANE_OFFSET_5_B		0x7192c
-> +#define _SEL_FETCH_PLANE_OFFSET_6_B		0x7194c
-> +#define SEL_FETCH_PLANE_OFFSET(pipe, plane)	_MMIO_SEL_FETCH((pipe), (pla=
-ne),\
-> +								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
-> +								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
-> +								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
-> +								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
-> +
->  #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
-
---=20
+-- 
 Jani Nikula, Intel
