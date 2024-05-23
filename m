@@ -2,62 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C378CD1BE
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 14:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2E38CD1CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 14:07:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF86710E171;
-	Thu, 23 May 2024 12:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E13D10E1B7;
+	Thu, 23 May 2024 12:07:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1QHIHY+";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="GW+xIX3O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94BC610E171
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 12:06:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716465973; x=1748001973;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=gvG7vxjvm1pEpYZAnIgskU0kTWP54kQBuIMzClro23o=;
- b=D1QHIHY++r02Z1/abG28sUpusu+WOktkFYzFRcfuoUq/PKXsRTKSZZTS
- cZGfMmwRCa9oDaxBPFxP1dGQhT1fXWfbSbQ7JiU4Ui9hd7pOJDStlUM7H
- z/jv6KPrl8rSEJwsuHR+71etCdwJRsajcTGyxoBZlwRvQmRVRXSTNSCZ+
- VIlxVJASFldjlqpbLg9ZknVnH2j5hfKlfy3aFHYjN48lKWA81FbGAcWnW
- 8EvHS6w2S+RKBnqVudk/TGzixm9g0CxeWnZVvqb2BVIfsD3T0RSyvVqH9
- vv271tWBxUqixFZ57DtN7/MkO2c1LOV2H2BOlhmvGG3UjMyrqYk3Fxu0p A==;
-X-CSE-ConnectionGUID: 2cmCLK0LQJGpXomWpwh9sQ==
-X-CSE-MsgGUID: U50OlWxXQ+u2JdgLSqRIqw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13008933"
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="13008933"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 05:06:12 -0700
-X-CSE-ConnectionGUID: 9LCWs7AOSVSxJDaWzCs4cQ==
-X-CSE-MsgGUID: 3+F11AgWSuKYs3YMzNdFRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33632899"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 23 May 2024 05:06:10 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 May 2024 15:06:09 +0300
-Date: Thu, 23 May 2024 15:06:09 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 06/13] drm/i915: Define SEL_FETCH_PLANE registers via
- PICK_EVEN_2RANGES()
-Message-ID: <Zk8xMdOVB7taPAUM@intel.com>
-References: <20240516135622.3498-1-ville.syrjala@linux.intel.com>
- <20240516135622.3498-7-ville.syrjala@linux.intel.com>
- <87ikz4q46u.fsf@intel.com>
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B7510E1B7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 12:07:27 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-351d309bbecso5043963f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 05:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1716466046; x=1717070846;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3eNHeNryBK8p7xTgnO1zIJAEL4hJ5+B2FVSnyYQrZ9M=;
+ b=GW+xIX3OoFiUZfnL7fTldIzHqesVKPHBYYtU3PiqUvUuVLI3JEXozEeYAvKQ+Ll4Hy
+ b5tgG9nM3gRYDh02csvU/mJBqPibiXbWMSyUkM1R8qw3LavblUcF/zO4Ud8pV89nrhLY
+ huopbrm+7uafn+UmzZswvNwnN5b2EQ/RS496lUcRtvWuwePJ9pSEPrtvkPJTifDoNMVb
+ EqZu6HsHNUE8HWx1AmjjQcqmJjOYubARHig6X4YouxMXsrJAsfb8ZSbxNjuQfs3XHZeg
+ p4cF0upZQnGb50b1twRo73AGxyVxm9OG9yp9cZ2YnWPUWkBRE2I9PJcBJ8vQlZPEk6y1
+ UjPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716466046; x=1717070846;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3eNHeNryBK8p7xTgnO1zIJAEL4hJ5+B2FVSnyYQrZ9M=;
+ b=ZlToNLD3iMZh/PkEMcTEha+NCpb8E5G2eNmXjfr9hjFowKeZTFaXLWZIaMoeOzYVNf
+ B78MAYK53COn2deF7U1m1h+1mtZ5NJ6e6T2UcGHqcX1tSA4bGwV2Cxva1XWjkLI0LqOK
+ ISnR4mO6/SPpHVVKpew56x801TkzUmD3lcwacuVyPXkR5nQQADb7i62gU0YPPB9puASA
+ U+t84F0P/FMBEj8o+QxeNIGO/87yk1af/bPpg0GEp39zXaDfO82foXE1MEqhKYRiX1Xf
+ 83QATiezjygZ9D3WJ7OwuDf1Rl7BhUWLg9mSgIoXtocljgxIGXpIXtwhQ5w6+bd9jQbg
+ IugA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX0w6Y9eMCc15+Rl9JaLEXS8FmROF1cZWmOpFL6LYB5sqpcNJzwbh8K4Uz+6hVvjwNEjOMXnF7gZfcItjmP2ac6GPwvfg4NE3KoEwMaf/Xp
+X-Gm-Message-State: AOJu0Yx8BOyr/ZcadEDaQB8txudvIdtGxdL1/AcQgwIMmIj0ygK7nTOq
+ 7cnALKV6SZCoGGbXj/uElfj2seBQUC7hTewalonMOmRAIPpFvNr2dtAu/iSWf0E=
+X-Google-Smtp-Source: AGHT+IELmGdsUzvYFgU56NQigjF6vuQEjjnXTJgyqhD5TiZb4O2YPbv5NJxZ2TnZBCgqYfN7OCz/UA==
+X-Received: by 2002:a5d:6446:0:b0:34f:c7c8:5a12 with SMTP id
+ ffacd0b85a97d-354d8ce454dmr5009741f8f.40.1716466045651; 
+ Thu, 23 May 2024 05:07:25 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3502bbbbff7sm36449649f8f.101.2024.05.23.05.07.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 23 May 2024 05:07:25 -0700 (PDT)
+Message-ID: <0f459a5b-4926-40ea-820e-ab0e5516a821@ursulin.net>
+Date: Thu, 23 May 2024 13:07:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
+Content-Language: en-GB
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Vidya Srinivas <vidya.srinivas@intel.com>,
+ intel-gfx@lists.freedesktop.org, shawn.c.lee@intel.com,
+ stable@vger.kernel.org
+References: <20240520165634.1162470-1-vidya.srinivas@intel.com>
+ <20240522152916.1702614-1-vidya.srinivas@intel.com>
+ <5e5660ac-e14b-4759-a6f6-38cc55d37246@ursulin.net>
+ <Zk8mM0bh5QMGcSGL@intel.com>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <Zk8mM0bh5QMGcSGL@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ikz4q46u.fsf@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,52 +90,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 23, 2024 at 12:15:53PM +0300, Jani Nikula wrote:
-> On Thu, 16 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Instead of that huge _PICK() let's use PICK_EVEN_2RANGES()
-> > for the SEL_FETCH_PLANE registers. A bit more tedious to have
-> > to define 8 raw register offsets for everything, but perhaps
-> > a bit easier to understand since we use a standard mechanism
-> > now instead of hand rolling the arithmetic.
-> >
-> > Also bloat-o-meter says:
-> > add/remove: 0/0 grow/shrink: 0/3 up/down: 0/-326 (-326)
-> > Function                                     old     new   delta
-> > icl_plane_update_arm                         510     446     -64
-> > icl_plane_disable_sel_fetch_arm.isra         158      54    -104
-> > icl_plane_update_noarm                      1898    1740    -158
-> > Total: Before=2574502, After=2574176, chg -0.01%
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> I just don't understand the old one.
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_psr_regs.h | 45 ------------
-> >  .../i915/display/skl_universal_plane_regs.h   | 68 +++++++++++++++++++
-> >  2 files changed, 68 insertions(+), 45 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> > index f0bd0a726d7a..289c371c98d1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-<snip>
-> > @@ -367,4 +378,61 @@
-> >  #define   PLANE_BUF_START_MASK			REG_GENMASK(11, 0)
-> >  #define   PLANE_BUF_START(start)		REG_FIELD_PREP(PLANE_BUF_START_MASK, (start))
-> >  
-> > +#define _SEL_FETCH_PLANE_CTL_1_A		0x70890 /* mtl+ */
 
-I noticed I had these bogus mtl+ comments here too, so changed
-those to tgl+ while pushing.
+On 23/05/2024 12:19, Ville SyrjÃ¤lÃ¤ wrote:
+> On Thu, May 23, 2024 at 09:25:45AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 22/05/2024 16:29, Vidya Srinivas wrote:
+>>> In some scenarios, the DPT object gets shrunk but
+>>> the actual framebuffer did not and thus its still
+>>> there on the DPT's vm->bound_list. Then it tries to
+>>> rewrite the PTEs via a stale CPU mapping. This causes panic.
+>>>
+>>> Suggested-by: Ville Syrjala <ville.syrjala@linux.intel.com>
+>>> Cc: stable@vger.kernel.org
+>>> Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation for dpt")
+>>> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
+>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>> index 3560a062d287..e6b485fc54d4 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+>>> @@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
+>>>    static inline bool
+>>>    i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
+>>>    {
+>>> -	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
+>>> +	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
+>>> +		!obj->is_dpt;
+>>
+>> Is there a reason i915_gem_object_make_unshrinkable() cannot be used to
+>> mark the object at a suitable place?
+> 
+> Do you have a suitable place in mind?
+> i915_gem_object_make_unshrinkable() contains some magic
+> ingredients so doesn't look like it can be called willy
+> nilly.
 
-Entire series is in now. Thanks for slogging through it.
+After it is created in intel_dpt_create?
 
--- 
-Ville Syrjälä
-Intel
+I don't see that helper couldn't be called. It is called from madvise 
+and tiling for instance without any apparent special considerations.
+
+Also, there is no mention of this angle in the commit message so I 
+assumed it wasn't considered. If it was, then it should have been 
+mentioned why hacky solution was chosen instead...
+
+> Anyways, looks like I forgot to reply that I already pushed this
+> with this extra comment added:
+> /* TODO: make DPT shrinkable when it has no bound vmas */
+
+... becuase IMO the special case is quite ugly and out of place. :(
+
+I don't remember from the top of my head how DPT magic works but if 
+shrinker protection needs to be tied with VMAs there is also 
+i915_make_make(un)shrinkable to try.
+
+Regards,
+
+Tvrtko
