@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F538CD3C9
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 15:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD858CD44A
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 15:23:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0890B10E26E;
-	Thu, 23 May 2024 13:19:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67D3910E40A;
+	Thu, 23 May 2024 13:23:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlFgCA20";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j2RTx0Pd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3139910E26E
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 13:19:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEB2010E40A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 13:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716470340; x=1748006340;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=JpcNseAA3F0LF4D2pjNb+ER0xDn+g6XjzFuuP9XvY5c=;
- b=nlFgCA20kbi5g4oC9Z3dao3eGaBopEZ2qG/NVB2OImwKLxFbFFcJp0vb
- 7g43iL8wi+UOV4O1BCNe+ScAvdyZ+t6UAW+yO5MDChj5P5XePMJ3DVXla
- Oq9TrByeOClujk+6O+8wlIA/SvYYfMCAP5EzHGM15hGkvYZ+oC5qNXJwD
- BmHx3GRNx0Y/UUwlzXNtd7uQXsvZpsRpRxNqF6vCEiIFw04uzu1JSNEGx
- tc29QStj6t8JWyeW7376gFMHAjOklwGIn1IfQ/c0LFxMRazlENnPPMGHu
- Df7Oa4RbtTpS6eq3dQWqhDd/ishNxy/Ib0JUM94KmKo1vpMMDvOsMgQVQ A==;
-X-CSE-ConnectionGUID: qalgf2tHRuiZjs490x6tEQ==
-X-CSE-MsgGUID: omzgsANbRtKQeuPUSz0dlA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="23396382"
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="23396382"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 06:19:00 -0700
-X-CSE-ConnectionGUID: /afPOcM9S3m4eVNQdDBoHA==
-X-CSE-MsgGUID: tDMcWX+NQ92RPHKtXSe6vQ==
+ t=1716470627; x=1748006627;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=P0B1Q5ZRxujyhAVsnNUVFqxq3zxYGRutKVQD5Y47r8s=;
+ b=j2RTx0PdfwNUxGoHcDgm2g/QlDkGKrEZPr+Rrm8XpZMPtWWzIVqfa++t
+ o/1UQdKaQQPOhUSnmJsX76UDYSzhAPboPNNxnksSpOyvtVvGvBhRpHHka
+ 4etiLMf8JXOWghN37NP8oQ20hqoj2MqqmsD/wadIexRjwi0vNNOQQ2Us3
+ dmigzfAaBHyPo4lbEgiSefXRsascduA9yldn7duMtPsqOVjlIRFkmm/BD
+ th2+dGj6DIY2ehVjfKpH4fC2ZwL3r/ZIXCTZGXCsJ9JzuGfz9QpuAx0Kj
+ pVzPaysh9a0wc/1eRg71KNq8AsmCX4SkBXd/56uWWowvtxZbRhxhP5Luw g==;
+X-CSE-ConnectionGUID: pUszX28CSKWTpFwYPB98/A==
+X-CSE-MsgGUID: /wMeQnyrQxOMg4HtfNuWtA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12660791"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12660791"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:23:47 -0700
+X-CSE-ConnectionGUID: wo+UF8NeRx+UuEBZfk29cg==
+X-CSE-MsgGUID: 5LqyP7oSRt6zKTOzjWbBlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="38652847"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 06:18:59 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33646348"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 23 May 2024 06:23:45 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 May 2024 16:23:44 +0300
+Date: Thu, 23 May 2024 16:23:44 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 16/16] drm/i915: pass dev_priv explicitly to PIPEGCMAX
-In-Reply-To: <Zk9BNS0B7FiVrCw3@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1716469091.git.jani.nikula@intel.com>
- <5fdc8562fe7b8d26e1ec1bb8f9a221348246bbe1.1716469091.git.jani.nikula@intel.com>
- <Zk9BNS0B7FiVrCw3@intel.com>
-Date: Thu, 23 May 2024 16:18:55 +0300
-Message-ID: <875xv4psxs.fsf@intel.com>
+Subject: Re: [PATCH v2 07/21] drm/i915/dp: Recheck link state after modeset
+Message-ID: <Zk9DYJK4KowYvPza@intel.com>
+References: <20240520185822.3725844-1-imre.deak@intel.com>
+ <20240520185822.3725844-8-imre.deak@intel.com>
+ <Zk31bvX1nRy0QsTJ@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zk31bvX1nRy0QsTJ@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,92 +72,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, May 23, 2024 at 03:59:44PM +0300, Jani Nikula wrote:
->> Avoid the implicit dev_priv local variable use, and pass dev_priv
->> explicitly to the PIPEGCMAX register macro.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_color.c      | 13 +++++++------
->>  drivers/gpu/drm/i915/display/intel_color_regs.h |  6 +++---
->>  2 files changed, 10 insertions(+), 9 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/dr=
-m/i915/display/intel_color.c
->> index a83f41ee6834..da56d24eb933 100644
->> --- a/drivers/gpu/drm/i915/display/intel_color.c
->> +++ b/drivers/gpu/drm/i915/display/intel_color.c
->> @@ -1284,9 +1284,10 @@ static void i965_load_lut_10p6(struct intel_crtc =
-*crtc,
->>  				  i965_lut_10p6_udw(&lut[i]));
->>  	}
->>=20=20
->> -	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
->> -	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
->> -	intel_de_write_fw(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
->> +	intel_de_write_fw(dev_priv, PIPEGCMAX(dev_priv, pipe, 0), lut[i].red);
->> +	intel_de_write_fw(dev_priv, PIPEGCMAX(dev_priv, pipe, 1),
->> +			  lut[i].green);
->
-> nit: the newline breaks the pattern in a somewhat ugly way
+On Wed, May 22, 2024 at 04:38:54PM +0300, Imre Deak wrote:
+> On Mon, May 20, 2024 at 09:58:05PM +0300, Imre Deak wrote:
+> > [...]
+> > +static void intel_ddi_link_check_work_fn(struct work_struct *work)
+> > +{
+> > +	struct intel_digital_port *dig_port =
+> > +		container_of(work, typeof(*dig_port), check_link_work.work);
+> > +	struct intel_encoder *encoder = &dig_port->base;
+> > +	struct drm_modeset_acquire_ctx ctx;
+> > +	int ret;
+> > +
+> > +	intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret)
+> > +		if (dig_port->dp.attached_connector)
+> > +			ret = intel_dp_retrain_link(encoder, &ctx);
+> 
+> ret should not be let here uninited making the loop spin forever. This
+> can't actually happen since the work won't get schedule w/o
+> dp.attached_connector, but the above check should be also just an assert
+> at this point (at least until handling HDMI is also added).
 
-It's all cocci's doing... sometimes it's smart, sometimes less so.
+Hmm. Why are we actually initializing ret=-EDEADLK in
+_intel_modeset_lock_begin()?
 
-> Series is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> 
+> > +}
+> > +
+> > +void intel_ddi_init_link_check_work(struct intel_digital_port *dig_port)
+> > +{
+> > +	INIT_DELAYED_WORK(&dig_port->check_link_work, intel_ddi_link_check_work_fn);
+> > +}
+> > +
+> > +void intel_ddi_flush_link_check_work(struct intel_digital_port *dig_port)
+> > +{
+> > +	cancel_delayed_work_sync(&dig_port->check_link_work);
+> > +}
+> > +
+> > +void intel_ddi_queue_link_check(struct intel_digital_port *dig_port, int delay_ms)
+> > +{
+> > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > +
+> > +	mod_delayed_work(i915->unordered_wq,
+> > +			 &dig_port->check_link_work, msecs_to_jiffies(delay_ms));
+> > +}
+> > +
+> >  static int intel_hdmi_reset_link(struct intel_encoder *encoder,
+> >  				 struct drm_modeset_acquire_ctx *ctx)
+> >  {
+> > @@ -4911,6 +4943,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv,
+> >  
+> >  	dig_port->aux_ch = AUX_CH_NONE;
+> >  
+> > +	intel_ddi_init_link_check_work(dig_port);
+> > +
+> >  	encoder = &dig_port->base;
+> >  	encoder->devdata = devdata;
+> >  
 
-Thanks!
-
-
->
->> +	intel_de_write_fw(dev_priv, PIPEGCMAX(dev_priv, pipe, 2), lut[i].blue);
->>  }
->>=20=20
->>  static void i965_load_luts(const struct intel_crtc_state *crtc_state)
->> @@ -3239,9 +3240,9 @@ static struct drm_property_blob *i965_read_lut_10p=
-6(struct intel_crtc *crtc)
->>  		i965_lut_10p6_pack(&lut[i], ldw, udw);
->>  	}
->>=20=20
->> -	lut[i].red =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEG=
-CMAX(pipe, 0)));
->> -	lut[i].green =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIP=
-EGCMAX(pipe, 1)));
->> -	lut[i].blue =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPE=
-GCMAX(pipe, 2)));
->> +	lut[i].red =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPEG=
-CMAX(dev_priv, pipe, 0)));
->> +	lut[i].green =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIP=
-EGCMAX(dev_priv, pipe, 1)));
->> +	lut[i].blue =3D i965_lut_11p6_max_pack(intel_de_read_fw(dev_priv, PIPE=
-GCMAX(dev_priv, pipe, 2)));
->>=20=20
->>  	return blob;
->>  }
->> diff --git a/drivers/gpu/drm/i915/display/intel_color_regs.h b/drivers/g=
-pu/drm/i915/display/intel_color_regs.h
->> index 61c18b4a7fa5..8eb643cfead7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_color_regs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_color_regs.h
->> @@ -37,9 +37,9 @@
->>  						  (i) * 4)
->>=20=20
->>  /* i965/g4x/vlv/chv */
->> -#define  _PIPEAGCMAX           0x70010
->> -#define  _PIPEBGCMAX           0x71010
->> -#define PIPEGCMAX(pipe, i)     _MMIO_PIPE2(dev_priv, pipe, _PIPEAGCMAX =
-+ (i) * 4) /* u1.16 */
->> +#define  _PIPEAGCMAX			0x70010
->> +#define  _PIPEBGCMAX			0x71010
->> +#define PIPEGCMAX(dev_priv, pipe, i)	_MMIO_PIPE2(dev_priv, pipe, _PIPEA=
-GCMAX + (i) * 4) /* u1.16 */
->>=20=20
->>  /* ilk+ palette */
->>  #define _LGC_PALETTE_A           0x4a000
->> --=20
->> 2.39.2
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
