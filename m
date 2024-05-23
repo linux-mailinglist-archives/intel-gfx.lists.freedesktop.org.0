@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BC538CD875
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 18:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63F378CD87C
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 18:36:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E464410E0DB;
-	Thu, 23 May 2024 16:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62E3D10EC03;
+	Thu, 23 May 2024 16:36:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IeWzCmgb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="acQLHz/h";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 332A710E0DB
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 16:32:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 754EB10EC03
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 16:36:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716481933; x=1748017933;
+ t=1716482160; x=1748018160;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=op+hu1Pl0iy/N3NdyEbbPVDDj2MWeGJFVHqTbXY5cOc=;
- b=IeWzCmgbpHgSjJxfvJdNi3KjG+hi9RbdLeQ3EMPSeqk/0SaVPM4Pjgme
- IpDWgrdrGmpeMPFUirXnZ9HmLeernk56tvltwHzD47WJW4mpro7n/fVOP
- dMe3UPD5UC3NB3DhCgtCuZKzDe3hiVbKpq8yUdkr0a3LEmbxQcKaEmR5h
- ZE8YMOWy5HkxvmuLn9/sZZ0lFkmyCoo73xZjYmQtxrG34jUMRJeOMAJO9
- VD6TNWnAS5yfbJwlOlKzPaXB4DO/o+TNri6PVdOUQmkU62tk8gn6LwCcy
- z0l6WX0OPHpgElJ9RlkXhqFIk5adedqDO1kKalUs8krX5wnAtJgdXxPDC g==;
-X-CSE-ConnectionGUID: NSqCeGL9QhCAwtmvXiIu9w==
-X-CSE-MsgGUID: KSaMuX5wRkSQqd7Rr77RUw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12665013"
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="12665013"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 09:32:04 -0700
-X-CSE-ConnectionGUID: GpqU3EVXS/aINDILRUSHAA==
-X-CSE-MsgGUID: fhsty6/VRle3aq2KG1YO+Q==
+ bh=OXCXgOHVT0F4aMere1OOnKrsMwxrXBbnQBqilmMZkwU=;
+ b=acQLHz/hkvq548fPcsEv5/TEpqMFdoRaU61K6C+Uz/Zu3AlyIYtAIMjB
+ 6t4M6J3A7fZcLbC0McBsPcibCF8zY1wtive9n/RB56iSjLTikQETDkaLq
+ kaygbKBzOK1AXv984WLIeuV3T7V1AykTOPcd/s/AznsUYOPJgU5Jlk/aP
+ CV6XalOwkgU9lc51GUbge9V5Vr3f4kqxHm2guiecJONiOzjjP5zlhfajO
+ vULP2MMHXiIe3DTk4ENop3vVM8SLLFvc3EuUGn7ERYuKd7sxkLA1hOYdR
+ rMFMAQuaVLOOIEZ2g/jaaFbE0FmO93dY1yIFFYWdOV3L5NMSzo2NFX3pN A==;
+X-CSE-ConnectionGUID: DXDEOKK7Q8Wvm0+supFmPg==
+X-CSE-MsgGUID: s5F5hqGZSg6hjevn6hGoYw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12689811"
+X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="12689811"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 09:36:00 -0700
+X-CSE-ConnectionGUID: v0cnfccLQhSho67iWqDkhw==
+X-CSE-MsgGUID: POkrtkwfQQ6JiegXahW1RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33573275"
+X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="38717960"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 09:32:03 -0700
-Date: Thu, 23 May 2024 19:32:06 +0300
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 09:35:59 -0700
+Date: Thu, 23 May 2024 19:36:02 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 19/21] drm/i915/dp: Add debugfs entry to force link
- training failure
-Message-ID: <Zk9vhqCU8kWTYsMs@ideak-desk.fi.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 14/21] drm/i915/dp: Disable link retraining after the
+ last fallback step
+Message-ID: <Zk9wcs9uccZXS5mO@ideak-desk.fi.intel.com>
 References: <20240520185822.3725844-1-imre.deak@intel.com>
- <20240520185822.3725844-20-imre.deak@intel.com>
- <Zk9g3nvs261GQtdz@intel.com>
+ <20240520185822.3725844-15-imre.deak@intel.com>
+ <Zk9gjMYbI_Ym8pYl@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zk9g3nvs261GQtdz@intel.com>
+In-Reply-To: <Zk9gjMYbI_Ym8pYl@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,116 +72,134 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 23, 2024 at 06:29:34PM +0300, Ville Syrjälä wrote:
-> On Mon, May 20, 2024 at 09:58:17PM +0300, Imre Deak wrote:
-> > Add a connector debugfs entry to force a failure during the following
-> > 1-2 link training. The entry will auto-reset after the specified link
-> > training events are complete.
+On Thu, May 23, 2024 at 06:28:12PM +0300, Ville Syrjälä wrote:
+> On Mon, May 20, 2024 at 09:58:12PM +0300, Imre Deak wrote:
+> > After a link training failure if the link parameters can't be further
+> > reduced, there is no point in trying to retrain the link in the driver.
+> > This avoids excessive retrain attempts after detecting a bad link, for
+> > instance while handling MST HPD IRQs, which is likely redundant as the
+> > link training failed already twice with the same minimum link
+> > parameters. Userspace can still try to retrain the link with these
+> > parameters via a modeset.
 > > 
-> > v2: Add the entry from intel_dp_link_training.c (Jani)
+> > While at it make the error message more accurate and emit instead a
+> > debug message if the link training failure was only forced for testing
+> > purposes.
 > > 
-> > Cc: Jani Nikula <jani.nikula@intel.com>
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
 > >  .../drm/i915/display/intel_display_types.h    |  1 +
-> >  .../drm/i915/display/intel_dp_link_training.c | 52 ++++++++++++++++++-
-> >  2 files changed, 52 insertions(+), 1 deletion(-)
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |  4 ++++
+> >  .../drm/i915/display/intel_dp_link_training.c | 22 +++++++++++++------
+> >  3 files changed, 20 insertions(+), 7 deletions(-)
 > > 
 > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index e1c41cece249d..dbe1468fe471d 100644
+> > index bde518c843468..eb0cac3e27acf 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1770,6 +1770,7 @@ struct intel_dp {
-> >  		bool retrain_disabled;
+> > @@ -1765,6 +1765,7 @@ struct intel_dp {
+> >  		int max_lane_count;
+> >  		/* Max rate for the current link */
+> >  		int max_rate;
+> > +		bool retrain_disabled;
 > >  		/* Sequential link training failures after a passing LT */
 > >  		int seq_train_failures;
-> > +		int force_train_failure;
 > >  	} link;
-> >  	bool reset_link_params;
-> >  	int mso_link_count;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index b72dbd7becb74..34d64fe3302ef 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -2950,6 +2950,7 @@ static void intel_dp_reset_link_params(struct intel_dp *intel_dp)
+> >  {
+> >  	intel_dp->link.max_lane_count = intel_dp_max_common_lane_count(intel_dp);
+> >  	intel_dp->link.max_rate = intel_dp_max_common_rate(intel_dp);
+> > +	intel_dp->link.retrain_disabled = false;
+> >  	intel_dp->link.seq_train_failures = 0;
+> >  }
+> >  
+> > @@ -5061,6 +5062,9 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+> >  					intel_dp->lane_count))
+> >  		return false;
+> >  
+> > +	if (intel_dp->link.retrain_disabled)
+> > +		return false;
+> > +
+> >  	if (intel_dp->link.seq_train_failures)
+> >  		return true;
+> >  
 > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index 764187bc42ff9..b40148a42f442 100644
+> > index 97d499e4b6ef7..375f59afd4dec 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -1489,7 +1489,10 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
-> >  	else
-> >  		passed = intel_dp_link_train_all_phys(intel_dp, crtc_state, lttpr_count);
+> > @@ -1165,10 +1165,8 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> >  		new_link_rate = intel_dp_max_common_rate(intel_dp);
+> >  	}
 > >  
-> > -	if (passed) {
-> > +	if (intel_dp->link.force_train_failure) {
-> > +		intel_dp->link.force_train_failure--;
-> > +		lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training failure\n");
-> > +	} else if (passed) {
-> >  		intel_dp->link.seq_train_failures = 0;
-> >  		intel_ddi_queue_link_check(dig_port, 2000);
-> >  		return;
-> > @@ -1799,6 +1802,50 @@ static int i915_dp_max_lane_count_show(void *data, u64 *val)
+> > -	if (new_lane_count < 0) {
+> > -		drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> > +	if (new_lane_count < 0)
+> >  		return -1;
+> > -	}
+> >  
+> >  	if (intel_dp_is_edp(intel_dp) &&
+> >  	    !intel_dp_can_link_train_fallback_for_edp(intel_dp, new_link_rate, new_lane_count)) {
+> > @@ -1187,7 +1185,7 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> >  	return 0;
 > >  }
-> >  DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_max_lane_count_fops, i915_dp_max_lane_count_show, NULL, "%llu\n");
 > >  
-> > +static int i915_dp_force_link_training_failure_show(void *data, u64 *val)
-> > +{
-> > +	struct intel_connector *connector = to_intel_connector(data);
-> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> > +	struct intel_dp *intel_dp;
-> > +	int err;
-> > +
-> > +	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	intel_dp = intel_connector_to_intel_dp(connector);
-> > +	*val = intel_dp->link.force_train_failure;
-> > +
-> > +	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int i915_dp_force_link_training_failure_write(void *data, u64 val)
-> > +{
-> > +	struct intel_connector *connector = to_intel_connector(data);
-> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> > +	struct intel_dp *intel_dp;
-> > +	int err;
-> > +
-> > +	if (val > 2)
-> 
-> Why 2 specifically?
-
-There are 2 back-to-back link trainings that can fail after a modeset or
-later after detecting a bad link state, the initial one and a second
-with the same LT parameters. That's followed by reducing the LT
-parameters and probably a modeset changing the mode.
-
-> > +		return -EINVAL;
-> > +
-> > +	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	intel_dp = intel_connector_to_intel_dp(connector);
-> > +	intel_dp->link.force_train_failure = val;
-> > +
-> > +	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
-> > +
-> > +	return 0;
-> > +}
-> > +DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_force_link_training_failure_fops,
-> > +			 i915_dp_force_link_training_failure_show,
-> > +			 i915_dp_force_link_training_failure_write, "%llu\n");
-> > +
-> >  void intel_dp_link_training_debugfs_add(struct intel_connector *connector)
+> > -static void intel_dp_schedule_fallback_link_training(struct intel_atomic_state *state,
+> > +static bool intel_dp_schedule_fallback_link_training(struct intel_atomic_state *state,
+> >  						     struct intel_dp *intel_dp,
+> >  						     const struct intel_crtc_state *crtc_state)
 > >  {
-> >  	struct dentry *root = connector->base.debugfs_entry;
-> > @@ -1818,4 +1865,7 @@ void intel_dp_link_training_debugfs_add(struct intel_connector *connector)
+> > @@ -1195,7 +1193,7 @@ static void intel_dp_schedule_fallback_link_training(struct intel_atomic_state *
 > >  
-> >  	debugfs_create_file("i915_dp_max_lane_count", 0444, root,
-> >  			    connector, &i915_dp_max_lane_count_fops);
+> >  	if (!intel_digital_port_connected(&dp_to_dig_port(intel_dp)->base)) {
+> >  		lt_dbg(intel_dp, DP_PHY_DPRX, "Link Training failed on disconnected sink.\n");
+> > -		return;
+> > +		return true;
+> >  	}
+> >  
+> >  	if (intel_dp->hobl_active) {
+> > @@ -1203,11 +1201,13 @@ static void intel_dp_schedule_fallback_link_training(struct intel_atomic_state *
+> >  		       "Link Training failed with HOBL active, not enabling it from now on\n");
+> >  		intel_dp->hobl_failed = true;
+> >  	} else if (intel_dp_get_link_train_fallback_values(intel_dp, crtc_state)) {
+> > -		return;
+> > +		return false;
+> >  	}
+> >  
+> >  	/* Schedule a Hotplug Uevent to userspace to start modeset */
+> >  	intel_dp_queue_modeset_retry_for_link(state, encoder, crtc_state);
 > > +
-> > +	debugfs_create_file("i915_dp_force_link_training_failure", 0644, root,
-> > +			    connector, &i915_dp_force_link_training_failure_fops);
+> > +	return true;
 > >  }
+> >  
+> >  /* Perform the link training on all LTTPRs and the DPRX on a link. */
+> > @@ -1518,7 +1518,15 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+> >  		return;
+> >  	}
+> >  
+> > -	intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state);
+> > +	if (intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state))
+> > +		return;
+> > +
+> > +	intel_dp->link.retrain_disabled = true;
+> > +
+> > +	if (!passed)
+> > +		lt_err(intel_dp, DP_PHY_DPRX, "Can't reduce link training parameters after failure\n");
+> > +	else
+> > +		lt_dbg(intel_dp, DP_PHY_DPRX, "Can't reduce link training parameters after forced failure\n");
+> 
+> The forced failure stuff is in later patch, is it not?
+
+Yes, I had a different patch order earlier, will move the error->debug
+message change there.
+
+> 
+> >  }
+> >  
+> >  void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
 > > -- 
 > > 2.43.3
 > 
