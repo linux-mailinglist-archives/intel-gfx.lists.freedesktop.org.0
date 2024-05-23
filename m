@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D965D8CD4AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 15:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AC28CD4B3
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 15:27:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8CE10E501;
-	Thu, 23 May 2024 13:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 074A610E5AD;
+	Thu, 23 May 2024 13:27:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j7w4eiV9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="llMo1403";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FEBF10E501
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 13:26:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA4210E6F0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 13:27:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716470813; x=1748006813;
- h=date:from:to:cc:subject:message-id:reply-to:references:
+ t=1716470828; x=1748006828;
+ h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=qgMuCE/GSLHDJJEkW3DSaEBjUs47LsZCYuTQ7lRsxCY=;
- b=j7w4eiV9Pp5Q24KALvhdoRjZIAF8i1UZDYTGeAGRfz6Gp3aBDXU08Uqe
- HRFPWQYE+fG7wPIoArpGJin6YEQc+Dicwjbto1a6ZaGiZbPX0fsWOnyO/
- wHCyPJvAH60ocABVriKgHIdjinydf+mkYyq3GT76vh8/yO0+t9yHTMI8W
- MTlD3CefjYSZebSWdVSgkpdY79BV76vPQsgwqtMNSLXK/jMfmenID36yb
- /E/pHfOIlIWHld3JvtVbVIAcWcOagwX9bYbWm8yhwsdVafip+Cn1ifjGh
- nwtX0AmhZBYZR1MuA/AIAkzqn1w3qNwfSUgMdMyXlASfQNPfW8Uf/ZcPY g==;
-X-CSE-ConnectionGUID: TAwFWASqQdegUgYB3UEPLA==
-X-CSE-MsgGUID: q5pjFl89T2a4rtVHcJckdg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="13017556"
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="13017556"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 06:26:52 -0700
-X-CSE-ConnectionGUID: U+/zBEOwSl2HZEthmeLE/g==
-X-CSE-MsgGUID: hLIr4+nqSOGntuI/74P2xA==
+ bh=BILnEAGQSnTojb5n1AhcOzA9NLBc/9Hoy3CYCb3v3Cs=;
+ b=llMo14034HpR0m9X4xl57mWl71RXBYA1yElSOjtBc5ELV0DPQGtrSPwt
+ b6EnEZeNH0KY9xqXvCUQ6kPIdcynJK8JtxpbnvKNSPArqbtnbSHTCrOdE
+ PSs7ABD13dgctyLbzKFmzVwX7HwAq+DlB1nv6EqcLIf6u8miBUvPLxZIY
+ q4CwEhIFsv0c2fka4Qz+JrtvD62VJCaFJNrzXpotBSNeAAp/bOJ0YX7/S
+ cfhYvkZZ6dzjNwd9g/jquwc6y6rc7efRiY1x/fQsSMfkUq4OHix2YlCt+
+ +RRQb/jIWuQtEo+8zycFrRGIy6qepmADr1oATZveCDhYKIaGBwAxj0D5k A==;
+X-CSE-ConnectionGUID: uFBFhugyTk2Y33UuYn/nmg==
+X-CSE-MsgGUID: /Ou/gtE9S6+Rg18jJQUBMw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12661022"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12661022"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 06:27:08 -0700
+X-CSE-ConnectionGUID: Ir8HWInZQIGQKwrrDB93FQ==
+X-CSE-MsgGUID: iiUOJ91nRBeQb3WXVF3C2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33679639"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 06:26:51 -0700
-Date: Thu, 23 May 2024 16:26:55 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33646791"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 23 May 2024 06:27:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 May 2024 16:27:05 +0300
+Date: Thu, 23 May 2024 16:27:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v2 06/21] drm/i915/dp: Use a commit modeset for link
- retraining MST links
-Message-ID: <Zk9EH74e+uBKV8LE@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH v2 07/21] drm/i915/dp: Recheck link state after modeset
+Message-ID: <Zk9EKYGf2AWNALqG@intel.com>
 References: <20240520185822.3725844-1-imre.deak@intel.com>
- <20240520185822.3725844-7-imre.deak@intel.com>
- <Zk89dsQn9Jg1ZwxQ@intel.com>
+ <20240520185822.3725844-8-imre.deak@intel.com>
+ <Zk31bvX1nRy0QsTJ@ideak-desk.fi.intel.com>
+ <Zk9DYJK4KowYvPza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zk89dsQn9Jg1ZwxQ@intel.com>
+In-Reply-To: <Zk9DYJK4KowYvPza@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,102 +70,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 23, 2024 at 03:58:30PM +0300, Ville Syrjälä wrote:
-> On Mon, May 20, 2024 at 09:58:04PM +0300, Imre Deak wrote:
-> > Instead of direct calls to the link train functions, retrain the link
-> > via a commit modeset. The direct call means that the output port will be
-> > disabled/re-enabled while the rest of the pipeline (transcoder) is
-> > active, which doesn't seem to work on MST at least. It leads to
-> > underruns and black screen, presumedly because the transcoder is not
-> > disabled/re-enabled along the port.
+On Thu, May 23, 2024 at 04:23:44PM +0300, Ville Syrjälä wrote:
+> On Wed, May 22, 2024 at 04:38:54PM +0300, Imre Deak wrote:
+> > On Mon, May 20, 2024 at 09:58:05PM +0300, Imre Deak wrote:
+> > > [...]
+> > > +static void intel_ddi_link_check_work_fn(struct work_struct *work)
+> > > +{
+> > > +	struct intel_digital_port *dig_port =
+> > > +		container_of(work, typeof(*dig_port), check_link_work.work);
+> > > +	struct intel_encoder *encoder = &dig_port->base;
+> > > +	struct drm_modeset_acquire_ctx ctx;
+> > > +	int ret;
+> > > +
+> > > +	intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret)
+> > > +		if (dig_port->dp.attached_connector)
+> > > +			ret = intel_dp_retrain_link(encoder, &ctx);
 > > 
-> > Leave switching to a commit modeset on SST for a later patchset, as that
-> > seems to work ok currently (though better to using a commit there too,
-> > due to the suppressed underruns).
+> > ret should not be let here uninited making the loop spin forever. This
+> > can't actually happen since the work won't get schedule w/o
+> > dp.attached_connector, but the above check should be also just an assert
+> > at this point (at least until handling HDMI is also added).
+> 
+> Hmm. Why are we actually initializing ret=-EDEADLK in
+> _intel_modeset_lock_begin()?
+
+answer: so that _drm_modeset_lock_loop() actually works
+
+> 
 > > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 25 +++++++++++++++++++------
-> >  1 file changed, 19 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 81e620dd33bb7..120f7b420807b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -5147,6 +5147,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
-> >  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> >  	struct intel_crtc *crtc;
-> >  	u8 pipe_mask;
-> > +	bool mst_output = false;
-> 
-> nit: maybe move that up one line to maintain a bit more of a steady slope
-
-Ok.
-
-> >  	int ret;
-> >  
-> >  	if (!intel_dp_is_connected(intel_dp))
-> > @@ -5177,6 +5178,11 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
-> >  		const struct intel_crtc_state *crtc_state =
-> >  			to_intel_crtc_state(crtc->base.state);
-> >  
-> > +		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-> > +			mst_output = true;
-> > +			break;
-> > +		}
-> 
-> I was pondering if we need a bit more care to make sure all
-> the pipes agree, but I suppose if that wasn't the case
-> check_digital_port_conflicts() would have a failed at its
-> job. So this seems fine.
-
-Yes, mixed SST/MST CRTCs connected to the same encoder is what you
-mean I guess. It would have caused a failure elsewhere or make the
-commit added here fail during atomic check.
-
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> > +
-> >  		/* Suppress underruns caused by re-training */
-> >  		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
-> >  		if (crtc_state->has_pch_encoder)
-> > @@ -5184,16 +5190,23 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
-> >  							      intel_crtc_pch_transcoder(crtc), false);
-> >  	}
-> >  
-> > +	/* TODO: use a modeset for SST as well. */
-> > +	if (mst_output) {
-> > +		ret = intel_modeset_commit_pipes(dev_priv, pipe_mask, ctx);
-> > +
-> > +		if (ret && ret != -EDEADLK)
-> > +			drm_dbg_kms(&dev_priv->drm,
-> > +				    "[ENCODER:%d:%s] link retraining failed: %pe\n",
-> > +				    encoder->base.base.id, encoder->base.name,
-> > +				    ERR_PTR(ret));
-> > +
-> > +		return ret;
-> > +	}
-> > +
-> >  	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask) {
-> >  		const struct intel_crtc_state *crtc_state =
-> >  			to_intel_crtc_state(crtc->base.state);
-> >  
-> > -		/* retrain on the MST master transcoder */
-> > -		if (DISPLAY_VER(dev_priv) >= 12 &&
-> > -		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) &&
-> > -		    !intel_dp_mst_is_master_trans(crtc_state))
-> > -			continue;
-> > -
-> >  		intel_dp_check_frl_training(intel_dp);
-> >  		intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
-> >  		intel_dp_start_link_train(intel_dp, crtc_state);
-> > -- 
-> > 2.43.3
+> > > +}
+> > > +
+> > > +void intel_ddi_init_link_check_work(struct intel_digital_port *dig_port)
+> > > +{
+> > > +	INIT_DELAYED_WORK(&dig_port->check_link_work, intel_ddi_link_check_work_fn);
+> > > +}
+> > > +
+> > > +void intel_ddi_flush_link_check_work(struct intel_digital_port *dig_port)
+> > > +{
+> > > +	cancel_delayed_work_sync(&dig_port->check_link_work);
+> > > +}
+> > > +
+> > > +void intel_ddi_queue_link_check(struct intel_digital_port *dig_port, int delay_ms)
+> > > +{
+> > > +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> > > +
+> > > +	mod_delayed_work(i915->unordered_wq,
+> > > +			 &dig_port->check_link_work, msecs_to_jiffies(delay_ms));
+> > > +}
+> > > +
+> > >  static int intel_hdmi_reset_link(struct intel_encoder *encoder,
+> > >  				 struct drm_modeset_acquire_ctx *ctx)
+> > >  {
+> > > @@ -4911,6 +4943,8 @@ void intel_ddi_init(struct drm_i915_private *dev_priv,
+> > >  
+> > >  	dig_port->aux_ch = AUX_CH_NONE;
+> > >  
+> > > +	intel_ddi_init_link_check_work(dig_port);
+> > > +
+> > >  	encoder = &dig_port->base;
+> > >  	encoder->devdata = devdata;
+> > >  
 > 
 > -- 
 > Ville Syrjälä
 > Intel
+
+-- 
+Ville Syrjälä
+Intel
