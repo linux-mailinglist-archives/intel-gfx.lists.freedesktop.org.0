@@ -2,64 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD898CD23E
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 14:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D538CD2E4
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2024 14:58:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 075D710E1B9;
-	Thu, 23 May 2024 12:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 618C610E241;
+	Thu, 23 May 2024 12:58:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHMLGmED";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dk/2oI48";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD38310E1B9
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 12:24:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D57010E241
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2024 12:58:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716467068; x=1748003068;
+ t=1716469113; x=1748005113;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=x3/gDXCN8QwyY7LtftEfCAY5ZJlQ8iNcSJuXoLgkKpc=;
- b=kHMLGmEDetU4sbJMX3FLOc8LPokqJW+4nU/l4LQEF+Gj1Bn04C5+zxql
- Diz5vyyL9ARJKOaNA4Z9raCLC9ldBDgPU/MfqvKxAEF/mVA9JjQEa6oy1
- rjz8X4TFm+VLdEDpErGA8CEeoiulqP1sPi0fkc95nLqX81GrjeHNhLg5U
- mFL+ueLk0/THv+LtMZ0ByZlCW33tarSzJHgaH57Nt5xA8+GzzFgPzTsQF
- 3nHjV9L89fUAgd/2eaPwI+BkBMILK60d5LIfno1MOwmhE+EQizzCCyS8e
- hwtr0ENJ/6jyWw214ZrWv7LrshJz5V/d906wQL4+XXwxG3a477fGvwcN6 Q==;
-X-CSE-ConnectionGUID: RyZJwvcPSYmbXJcUJurv3Q==
-X-CSE-MsgGUID: uBLrSIh5QmqF8MSvJQM4ww==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12896211"
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12896211"
+ bh=Yy36NXA+PvdlVobylndl/kQSiNrTxW2Dbt7xEWWLfPw=;
+ b=Dk/2oI48essQJ7rocKk1BoiCg9Gw6FakFSQ60khG3AGHBKQPXnvVLlXp
+ B5gO2IfwoRoHnA8Opt8pPGNzTqmxPcj+s7XdWSRMSLYEJPM1cjBQzVF1m
+ 3uzcjxVNDsV5x2IXNMHwiQfOfdI6wSn3ZeDsZHkQq7R7xDgTapESd6mFo
+ dQNGBy4HLOs8cvuip2pta9IzLn3Pu5OrkozdfF5UVo4lPBzsRh9a+DGR1
+ tvs1AHdUXTa9uX0oA1AJ5VBBU0sOFWf9Kh/F0ISNbJGCbbW8NPnprBGVT
+ nF8fzF0c5btSqYy6Mltsc9aq5fLt3b4gkllRp9RpvJxmMAwaFimKbCQv7 Q==;
+X-CSE-ConnectionGUID: 6HV8T6vhT4GRhfbqg6kh2g==
+X-CSE-MsgGUID: bv9C/J/VRQmCTz+H5xmEDg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="23450880"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="23450880"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 05:24:28 -0700
-X-CSE-ConnectionGUID: sT/bykXxTj6c8qchiUwrMg==
-X-CSE-MsgGUID: rrME+WXwRRuhNSt37UKCEQ==
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 05:58:33 -0700
+X-CSE-ConnectionGUID: DJjkIDGISi6k3kNQWKzovQ==
+X-CSE-MsgGUID: VVVJf9QXRA2xvuzhyDvu/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33635693"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="33642700"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 23 May 2024 05:24:25 -0700
+ by fmviesa008.fm.intel.com with SMTP; 23 May 2024 05:58:31 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 May 2024 15:24:24 +0300
-Date: Thu, 23 May 2024 15:24:24 +0300
+ Thu, 23 May 2024 15:58:30 +0300
+Date: Thu, 23 May 2024 15:58:30 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Vidya Srinivas <vidya.srinivas@intel.com>,
- intel-gfx@lists.freedesktop.org, shawn.c.lee@intel.com,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/dpt: Make DPT object unshrinkable
-Message-ID: <Zk81eDBUlz_axOn4@intel.com>
-References: <20240520165634.1162470-1-vidya.srinivas@intel.com>
- <20240522152916.1702614-1-vidya.srinivas@intel.com>
- <5e5660ac-e14b-4759-a6f6-38cc55d37246@ursulin.net>
- <Zk8mM0bh5QMGcSGL@intel.com>
- <0f459a5b-4926-40ea-820e-ab0e5516a821@ursulin.net>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 06/21] drm/i915/dp: Use a commit modeset for link
+ retraining MST links
+Message-ID: <Zk89dsQn9Jg1ZwxQ@intel.com>
+References: <20240520185822.3725844-1-imre.deak@intel.com>
+ <20240520185822.3725844-7-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0f459a5b-4926-40ea-820e-ab0e5516a821@ursulin.net>
+In-Reply-To: <20240520185822.3725844-7-imre.deak@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,82 +72,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 23, 2024 at 01:07:24PM +0100, Tvrtko Ursulin wrote:
+On Mon, May 20, 2024 at 09:58:04PM +0300, Imre Deak wrote:
+> Instead of direct calls to the link train functions, retrain the link
+> via a commit modeset. The direct call means that the output port will be
+> disabled/re-enabled while the rest of the pipeline (transcoder) is
+> active, which doesn't seem to work on MST at least. It leads to
+> underruns and black screen, presumedly because the transcoder is not
+> disabled/re-enabled along the port.
 > 
-> On 23/05/2024 12:19, Ville Syrjälä wrote:
-> > On Thu, May 23, 2024 at 09:25:45AM +0100, Tvrtko Ursulin wrote:
-> >>
-> >> On 22/05/2024 16:29, Vidya Srinivas wrote:
-> >>> In some scenarios, the DPT object gets shrunk but
-> >>> the actual framebuffer did not and thus its still
-> >>> there on the DPT's vm->bound_list. Then it tries to
-> >>> rewrite the PTEs via a stale CPU mapping. This causes panic.
-> >>>
-> >>> Suggested-by: Ville Syrjala <ville.syrjala@linux.intel.com>
-> >>> Cc: stable@vger.kernel.org
-> >>> Fixes: 0dc987b699ce ("drm/i915/display: Add smem fallback allocation for dpt")
-> >>> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> >>> ---
-> >>>    drivers/gpu/drm/i915/gem/i915_gem_object.h | 3 ++-
-> >>>    1 file changed, 2 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> >>> index 3560a062d287..e6b485fc54d4 100644
-> >>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> >>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> >>> @@ -284,7 +284,8 @@ bool i915_gem_object_has_iomem(const struct drm_i915_gem_object *obj);
-> >>>    static inline bool
-> >>>    i915_gem_object_is_shrinkable(const struct drm_i915_gem_object *obj)
-> >>>    {
-> >>> -	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE);
-> >>> +	return i915_gem_object_type_has(obj, I915_GEM_OBJECT_IS_SHRINKABLE) &&
-> >>> +		!obj->is_dpt;
-> >>
-> >> Is there a reason i915_gem_object_make_unshrinkable() cannot be used to
-> >> mark the object at a suitable place?
-> > 
-> > Do you have a suitable place in mind?
-> > i915_gem_object_make_unshrinkable() contains some magic
-> > ingredients so doesn't look like it can be called willy
-> > nilly.
+> Leave switching to a commit modeset on SST for a later patchset, as that
+> seems to work ok currently (though better to using a commit there too,
+> due to the suppressed underruns).
 > 
-> After it is created in intel_dpt_create?
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 25 +++++++++++++++++++------
+>  1 file changed, 19 insertions(+), 6 deletions(-)
 > 
-> I don't see that helper couldn't be called. It is called from madvise 
-> and tiling for instance without any apparent special considerations.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 81e620dd33bb7..120f7b420807b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5147,6 +5147,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	struct intel_crtc *crtc;
+>  	u8 pipe_mask;
+> +	bool mst_output = false;
 
-Did you actually read through i915_gem_object_make_unshrinkable()?
+nit: maybe move that up one line to maintain a bit more of a steady slope
 
-> 
-> Also, there is no mention of this angle in the commit message so I 
-> assumed it wasn't considered. If it was, then it should have been 
-> mentioned why hacky solution was chosen instead...
+>  	int ret;
+>  
+>  	if (!intel_dp_is_connected(intel_dp))
+> @@ -5177,6 +5178,11 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
+>  		const struct intel_crtc_state *crtc_state =
+>  			to_intel_crtc_state(crtc->base.state);
+>  
+> +		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
+> +			mst_output = true;
+> +			break;
+> +		}
 
-I suppose.
+I was pondering if we need a bit more care to make sure all
+the pipes agree, but I suppose if that wasn't the case
+check_digital_port_conflicts() would have a failed at its
+job. So this seems fine.
 
-> 
-> > Anyways, looks like I forgot to reply that I already pushed this
-> > with this extra comment added:
-> > /* TODO: make DPT shrinkable when it has no bound vmas */
-> 
-> ... becuase IMO the special case is quite ugly and out of place. :(
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Yeah, not the nicest. But there's already a is_dpt check in the
-i915_gem_object_is_framebuffer() right next door, so it's not
-*that* out of place.
-
-Another option maybe could be to manually clear
-I915_GEM_OBJECT_IS_SHRINKABLE but I don't think that is
-supposed to be mutable, so might also have other issues.
-So a more proper solution with that approach would perhaps
-need some kind of gem_create_shmem_unshrinkable() function.
-
-> 
-> I don't remember from the top of my head how DPT magic works but if 
-> shrinker protection needs to be tied with VMAs there is also 
-> i915_make_make(un)shrinkable to try.
-
-I presume you mistyped something there.
+> +
+>  		/* Suppress underruns caused by re-training */
+>  		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
+>  		if (crtc_state->has_pch_encoder)
+> @@ -5184,16 +5190,23 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
+>  							      intel_crtc_pch_transcoder(crtc), false);
+>  	}
+>  
+> +	/* TODO: use a modeset for SST as well. */
+> +	if (mst_output) {
+> +		ret = intel_modeset_commit_pipes(dev_priv, pipe_mask, ctx);
+> +
+> +		if (ret && ret != -EDEADLK)
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "[ENCODER:%d:%s] link retraining failed: %pe\n",
+> +				    encoder->base.base.id, encoder->base.name,
+> +				    ERR_PTR(ret));
+> +
+> +		return ret;
+> +	}
+> +
+>  	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask) {
+>  		const struct intel_crtc_state *crtc_state =
+>  			to_intel_crtc_state(crtc->base.state);
+>  
+> -		/* retrain on the MST master transcoder */
+> -		if (DISPLAY_VER(dev_priv) >= 12 &&
+> -		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) &&
+> -		    !intel_dp_mst_is_master_trans(crtc_state))
+> -			continue;
+> -
+>  		intel_dp_check_frl_training(intel_dp);
+>  		intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
+>  		intel_dp_start_link_train(intel_dp, crtc_state);
+> -- 
+> 2.43.3
 
 -- 
 Ville Syrjälä
