@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9828CDDD6
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2024 01:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D45658CDEF3
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2024 02:41:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D6710F5BC;
-	Thu, 23 May 2024 23:59:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BnSO+x1F";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C42F310E043;
+	Fri, 24 May 2024 00:40:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0FF610F5BC;
- Thu, 23 May 2024 23:59:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716508748; x=1748044748;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bhx0bySx4hwOfsnD3E/UaYeTsUSPU11jGU8DRq6SVec=;
- b=BnSO+x1FW1rKGAbs79KYC4JajauNu7IyQyYOOie+UYX8nTKPeXKIqYSA
- 24jpDJ1wF+D1aZBD7pJzcXpKjcunE/A3C5YPVHujvt5BoSjmLTDInRSUl
- DJruZrSN+4/RY+bwz+BImyZnz+ViNDCc4wmfVlEpnZHYMX+sj19JUiAfe
- ks3+1mJeBjfsC4IzY3wGd8Mvv3O17RjZknBteg1vYF84zSQlC77aXxBqN
- JruSLLoXNMWq0ehYqnulVqZxUbuMVwo29wFCITknNuepQD+EQlFeXLO6b
- 4e5DkZ60wO7L+FC9roa/kRj0Rc7uSi1xeEEBp+0j/NsuUZmQibXO4QXqA A==;
-X-CSE-ConnectionGUID: 177ogQ0uS+en5UNXWVTevQ==
-X-CSE-MsgGUID: aPTolw2FTxieYdtyg8+QPw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="12695123"
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="12695123"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 16:59:07 -0700
-X-CSE-ConnectionGUID: qr773CKuRjapYpP1URQa/A==
-X-CSE-MsgGUID: V3OIqiQxR4OkixesWdGQUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,183,1712646000"; d="scan'208";a="33920643"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.245.206])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2024 16:59:05 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Nirmoy Das <nirmoy.das@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Subject: [PATCH v2] drm/i915: Increase FLR timeout from 3s to 9s
-Date: Fri, 24 May 2024 01:58:53 +0200
-Message-ID: <20240523235853.171796-1-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.45.1
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D40910E043;
+ Fri, 24 May 2024 00:40:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2335872270971753805=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Increase_FLR_ti?=
+ =?utf-8?q?meout_from_3s_to_9s?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 May 2024 00:40:55 -0000
+Message-ID: <171651125511.2170280.8902356965368293836@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240523235853.171796-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240523235853.171796-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,52 +37,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Following the guidelines it takes 3 seconds to perform an FLR
-reset. Let's give it a bit more slack because this time can
-change depending on the platform and on the firmware
+--===============2335872270971753805==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
-Hi,
+== Series Details ==
 
-In this second version I removed patch 2 that was ignoring the
-FLR reset timeouts, until we develop a proper patch.
+Series: drm/i915: Increase FLR timeout from 3s to 9s
+URL   : https://patchwork.freedesktop.org/series/133994/
+State : success
 
-This first patch is basically the same as v1. Thanks Nirmoy for
-your review.
+== Summary ==
 
-Andi
+CI Bug Log - changes from CI_DRM_14813 -> Patchwork_133994v1
+====================================================
 
- drivers/gpu/drm/i915/intel_uncore.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index 729409a4bada..2eba289d88ad 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2614,11 +2614,18 @@ void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
- static void driver_initiated_flr(struct intel_uncore *uncore)
- {
- 	struct drm_i915_private *i915 = uncore->i915;
--	const unsigned int flr_timeout_ms = 3000; /* specs recommend a 3s wait */
-+	unsigned int flr_timeout_ms;
- 	int ret;
- 
- 	drm_dbg(&i915->drm, "Triggering Driver-FLR\n");
- 
-+	/*
-+	 * The specification recommends a 3 seconds FLR reset timeout. To be
-+	 * cautious, we will extend this to 9 seconds, three times the specified
-+	 * timeout.
-+	 */
-+	flr_timeout_ms = 9000;
-+
- 	/*
- 	 * Make sure any pending FLR requests have cleared by waiting for the
- 	 * FLR trigger bit to go to zero. Also clear GU_DEBUG's DRIVERFLR_STATUS
--- 
-2.45.1
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Additional (1): fi-elk-e7500 
+  Missing    (3): bat-dg2-11 bat-mtlp-9 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133994v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][1] +24 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-8:          [FAIL][2] ([i915#10378]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14813/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [ABORT][4] ([i915#10594]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14813/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+  [i915#10594]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14813 -> Patchwork_133994v1
+
+  CI-20190529: 20190529
+  CI_DRM_14813: 1385623a20ad940dab90bfaa4bc01fe599506e09 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7870: ad1cea5f9b4ce0f4a036cbda2da3d8979fb1ce15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133994v1: 1385623a20ad940dab90bfaa4bc01fe599506e09 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/index.html
+
+--===============2335872270971753805==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Increase FLR timeout from 3s to 9s</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133994/">https://patchwork.freedesktop.org/series/133994/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14813 -&gt; Patchwork_133994v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Additional (1): fi-elk-e7500 <br />
+  Missing    (3): bat-dg2-11 bat-mtlp-9 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133994v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html">SKIP</a> +24 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14813/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14813/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594">i915#10594</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133994v1/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14813 -&gt; Patchwork_133994v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14813: 1385623a20ad940dab90bfaa4bc01fe599506e09 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7870: ad1cea5f9b4ce0f4a036cbda2da3d8979fb1ce15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133994v1: 1385623a20ad940dab90bfaa4bc01fe599506e09 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2335872270971753805==--
