@@ -2,29 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F78B8CE8A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2024 18:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD9C8CE8BF
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2024 18:35:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40EF310E088;
-	Fri, 24 May 2024 16:28:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E03310E2BE;
+	Fri, 24 May 2024 16:35:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="ObRtqmTi";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="E4S1CsEp";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F46F10E088;
- Fri, 24 May 2024 16:28:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C0510EAC3;
+ Fri, 24 May 2024 16:35:14 +0000 (UTC)
+Date: Fri, 24 May 2024 18:35:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1716568512;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vh8OUsqfOVObVAmBElVwuem5J/AvIqnTJ7LXgHjEXVc=;
+ b=ObRtqmTiNA+fkmfaobrPpG6mtnC92YerUlSAxtjYH3Y84jOjJAauag1Zrfhy/Y/Vh7AnNY
+ HcOtBK4PKeS/KYYaADC/pMxMNp/xzJevnGVgkOAXS9SScXEE2aTZ9v19eaF7hNHPEpLpNp
+ k+WeydifUrRRAL7rZf6d+sg+5cHGl64fcbjTnKgBI+O5ifLVTIART5Cyg5nK0wEnrpWbN1
+ Zz4jTwSbQ+FW2BMOI3buspKb9boTmw7I69kwTKDRwYrOPXOqPIu1nbok+6PGKcQaRE4WJ9
+ pihsTH17WyWjkcAAySvYixOAbgL4C5sNjyojlGI1tRAQP9K3UQnABhh87xLKyg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1716568512;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=vh8OUsqfOVObVAmBElVwuem5J/AvIqnTJ7LXgHjEXVc=;
+ b=E4S1CsEp61sK3pxUa0j91sOIx9oMjYvR6eurciPEwzrv79GbQk76NhID2slkC1xx75LMak
+ dXIW6xKnJm9oCKCw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: XE tests on Tiger Lake
+Message-ID: <20240524163510.B_1yWz1h@linutronix.de>
+References: <20240522141822.bJcQDijH@linutronix.de> <87bk4wq2td.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Fix_SEL?=
- =?utf-8?q?=5FFETCH=5F=7BSIZE=2COFFSET=7D_registers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 May 2024 16:28:06 -0000
-Message-ID: <171656808605.2171858.5868346306589662763@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240524155000.13358-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240524155000.13358-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <87bk4wq2td.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,52 +62,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2024-05-23 12:45:34 [+0300], Jani Nikula wrote:
+>
+> Thanks for testing! I suggest filing an issue at [1], attaching dmesg
+> from boot with drm.debug=14 module parameter set.
+> 
+> Cc: xe driver maintainers.
 
-Series: drm/i915: Fix SEL_FETCH_{SIZE,OFFSET} registers
-URL   : https://patchwork.freedesktop.org/series/134026/
-State : warning
+Thanks. Submitted as [0]. No idea how to Cc someone there.
 
-== Summary ==
+[0] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1947
 
-Error: dim checkpatch failed
-f0f015e3695b drm/i915: Fix SEL_FETCH_{SIZE,OFFSET} registers
--:33: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#33: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:422:
-+								_SEL_FETCH_PLANE_SIZE_1_A, _SEL_FETCH_PLANE_SIZE_1_B, \
+> BR,
+> Jani.
 
--:34: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#34: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:423:
-+								_SEL_FETCH_PLANE_SIZE_2_A, _SEL_FETCH_PLANE_SIZE_2_B, \
-
--:35: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
-#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:424:
-+								_SEL_FETCH_PLANE_SIZE_5_A, _SEL_FETCH_PLANE_SIZE_5_B, \
-
--:36: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
-#36: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:425:
-+								_SEL_FETCH_PLANE_SIZE_6_A, _SEL_FETCH_PLANE_SIZE_6_B)
-
--:48: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:437:
-+								_SEL_FETCH_PLANE_OFFSET_1_A, _SEL_FETCH_PLANE_OFFSET_1_B, \
-
--:49: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#49: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:438:
-+								_SEL_FETCH_PLANE_OFFSET_2_A, _SEL_FETCH_PLANE_OFFSET_2_B, \
-
--:50: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:439:
-+								_SEL_FETCH_PLANE_OFFSET_5_A, _SEL_FETCH_PLANE_OFFSET_5_B, \
-
--:51: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
-#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:440:
-+								_SEL_FETCH_PLANE_OFFSET_6_A, _SEL_FETCH_PLANE_OFFSET_6_B)
-
-total: 0 errors, 8 warnings, 0 checks, 27 lines checked
-
-
+Sebastian
