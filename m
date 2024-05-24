@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358E78CE385
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2024 11:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A638CE431
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2024 12:30:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76BA310E15A;
-	Fri, 24 May 2024 09:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B417110E8F3;
+	Fri, 24 May 2024 10:30:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HQZCljLK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XPy+jD88";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5127610E15A
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 May 2024 09:32:38 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-6f6765226d0so3041242b3a.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 May 2024 02:32:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716543157; x=1717147957; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=5BYxhr/fNSuqug37CVsjAC2+4fH96ZEtgP75gEBmpVo=;
- b=HQZCljLKDBlifM0BcyNNd9gPdAwA3gcFlXiFOm8NbttdItCyjEK7N4nycOR6FV8AZv
- 3yPQ1h7QbfXvTYEOrbyE10i14zgEKoZvmKGnZmC9sLC4QP8DhownxBONQYrgr/yz6BWv
- RLH6eRWCN0BY7Up1MbUreGiNgv92E9KpDexZNy7YtFvzKvdZ2w8DQXWsEo+0HyhdDOnE
- Z0IzWVgfd+0IMam5oRMSY++QiY228iF/JIna1dJVdBQ3LvcZxUBbGqDJXldnS+P0WIIm
- +TeGpCdKPIGBU0/+j1pXtpiU1VENynF7xmfg5a2idX3xZ9+7/QfKLh9dJoXcMcXQo2Q/
- c3ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716543157; x=1717147957;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=5BYxhr/fNSuqug37CVsjAC2+4fH96ZEtgP75gEBmpVo=;
- b=BAIsN62hgmHwDQ/4DO31ER06nbrygqP6naPWv9sfQgHtqq5IQ6A32O4hv/30MMJysv
- 78M49oRWfABuKC4nW+Bo+Y3MQq5Fdmdqlrnx4LBsdV1Soi3Lq4qhQq52MqiW3e5EOU1k
- INyTRuvw9Y1scAWFmRNmC33SrjnEV9TokFLdlRL0RinSkOkM+WCONqd3vGLAR3lkCRZP
- YVxZOEgdF7BvW+FZRI5O3SO2vK3LlTP7ISzM0DJWoEGir+3DMFcYKZDg+q5AlOdLeVPl
- d+tS1WaW5hugdGtA37mv9BHbR7jNbc8W7vETS5yEAmk1M8ucg5gwxVHxzLWVv+EM5BrX
- 8DrQ==
-X-Gm-Message-State: AOJu0Yxf4jVspOVp1LfNeoNzsC/PZJJ/t6EtSBy+s2hsnSgkzptnXGA3
- B3L+eHYnPMdmYPXEZk4qi7zZHNGBnJSxFHKJ1pl2ttvRLE23RzM8oA2CEQmQgNEqlguXCUt9/HE
- Hv7IPwBel9Xzc3tpaxb3IIpS74tWKPw1D
-X-Google-Smtp-Source: AGHT+IEAarNT3cn/jLT8uO34lg9U62kvikGqCTQkyuXKvLxmL7NEZbU/LkCbvwNp1H3JR+SiPRDEJzVri6Kd+AjMEaU=
-X-Received: by 2002:a05:6a20:3945:b0:1af:ce5e:ca5e with SMTP id
- adf61e73a8af0-1b212d0f9d0mr2352204637.22.1716543157269; Fri, 24 May 2024
- 02:32:37 -0700 (PDT)
-MIME-Version: 1.0
-From: Choi Wonseok <wonseok9911@gmail.com>
-Date: Fri, 24 May 2024 18:32:25 +0900
-Message-ID: <CADcKPMcKQOUioAEhXhs_zf+z0Z05StnTxwBtfdYpmLD9vbQuAA@mail.gmail.com>
-Subject: Context Switch Monitoring functionality
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC71A10E471
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 May 2024 10:30:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716546615; x=1748082615;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0lS4yuOs38RGsOpajAWAVh2jMgAPPQxf3yhrexPwGkQ=;
+ b=XPy+jD88dojpW7lDNL6GLHdAwNoHhodm1t4uR1lqyZ+7t3Bl7cVFeiVt
+ gMGxcjTjzP6uLs+qBLzBetiK+y2KeluolHHrceA2v8xOnOELotdz8VNQ9
+ wY0m3/5Qb06gnrb+010HviPF+HN7Dkeq+/EaZDLiicGzXbHwqZe3/OHLL
+ /B1qMxTSGYePGz8O9LBBJR3WLy/EiZu1bbajS/Eux6+xONfjKXDgct3RJ
+ jqo2yBFe4UYB0Z1+ZzkxE9K9B3mWGf2jojSpSV+c6/nFMT+nKxqt/DwnO
+ TBi1APiPfrgi93vXF8nHk/1CBPLoV+baG+GSUrDUEh9nF7DGlXlDZkD4J Q==;
+X-CSE-ConnectionGUID: ejKUDw6JQLSnEUlY2NUVFA==
+X-CSE-MsgGUID: FH6+svPyRj6g6LbJGfvPsw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11081"; a="15862704"
+X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="15862704"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 May 2024 03:30:13 -0700
+X-CSE-ConnectionGUID: xw3bxnhkRGO603Gcm/hNGg==
+X-CSE-MsgGUID: Yo34CksuSuyRcQ8ODqeXRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,185,1712646000"; d="scan'208";a="71385631"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa001.jf.intel.com with ESMTP; 24 May 2024 03:30:12 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000217b4506192fd946"
+Cc: ankit.k.nautiyal@intel.com
+Subject: [PATCH v9 0/8] Implement CMRR Support
+Date: Fri, 24 May 2024 15:54:24 +0530
+Message-Id: <20240524102432.2499104-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,89 +64,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000217b4506192fd946
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+CMRR is a display feature that uses adaptive sync
+framework to vary Vtotal slightly to match the
+content rate exactly without frame drops. This
+feature is a variation of VRR where it varies Vtotal
+slightly (between additional 0 and 1 Vtotal scanlines)
+to match content rate exactly without frame drops
+using the adaptive sync framework.
 
-Hello. I am graduate student at Korea University studying Intel GPU.
+enable this feature by programing new registers for
+CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
+CMRR_M/CMRR_N ratio represents the fractional part
+in (actual refresh rate/target refresh rate) * origVTotal.
 
-The functionality I need is to find out the 'context identifier' that was
-just switched-out when a (or specific) context is switched-in to an engine
-(Render Engine etc.).
-I'd like to implement such functionality, especially with 'Context
-Submission via GuC' enabled. (and I understand that in Proxy Submission
-through GuC, guc_id is used as a context identifier instead of Context ID)
+--v6:
+- CMRR handling in co-existatnce of LRR and DRRS
+- Correct vtotal paramas accuracy and add 2 digit precision.
 
-Is it possible to monitor context in/out in this way (through kernel
-modification + H2G/G2H communication etc.) and, if possible, Could you
-provide direction/insight on what elements should be used to implement this=
-?
+--v7:
+- Rebased patches in-accordance to AS SDP merge.
+- Add neccessary gaurd to prevent crtc_state mismatch
+during intel_vrr_get_config.
 
-I'm sorry for asking such a bothersome question. I would really appreciate
-it if you could reply.
+-v8:
+- Add support for AS SDP for CMRR.
+- update palce holder for CMRR register(Jani).
+- Make CMRR as subset of FAVT, as per comments in patch#3.
 
+-v9:
+- Add CMRR register definitions to separate intel_vrr_reg.h.
+- Remove cmrr_enabling/disabling, use vrr.enable instead.
+- Update AS SDP pack function to accomodate target_rr_divider.
+- Remove duplicated lines to compute vrr_vsync params.
+- Set cmrr.enable with a separate patch at last.
 
+Mitul Golani (8):
+  drm/i915: Define and compute Transcoder CMRR registers
+  drm/i915: Update trans_vrr_ctl flag when cmrr is computed
+  drm/i915: Compute CMRR and calculate vtotal
+  Add refresh rate divider to struct representing AS SDP
+  drm/i915/display: Add support for pack and unpack
+  drm/i915/display: Compute Adaptive sync SDP params
+  drm/i915/display: Compute vrr vsync params
+  drm/i915/display: Compute cmrr.enable flag
 
-[image: Mailtrack]
-<https://mailtrack.io?utm_source=3Dgmail&utm_medium=3Dsignature&utm_campaig=
-n=3Dsignaturevirality11&>
-Sender
-notified by
-Mailtrack
-<https://mailtrack.io?utm_source=3Dgmail&utm_medium=3Dsignature&utm_campaig=
-n=3Dsignaturevirality11&>
-24.
-05. 24. =EC=98=A4=ED=9B=84 06:32:21
+ drivers/gpu/drm/i915/display/intel_display.c  |  24 ++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  21 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 139 +++++++++++++++---
+ drivers/gpu/drm/i915/intel_vrr_reg.h          |  21 +++
+ include/drm/display/drm_dp_helper.h           |   1 +
+ 7 files changed, 191 insertions(+), 22 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/intel_vrr_reg.h
 
---000000000000217b4506192fd946
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+-- 
+2.25.1
 
-<div dir=3D"ltr">Hello. I am graduate=C2=A0student at Korea University stud=
-ying Intel GPU.<div><br></div><div>The functionality I need is to find out =
-the &#39;context identifier&#39; that was just switched-out when a (or spec=
-ific) context is switched-in to an engine (Render Engine etc.).<br><div>I&#=
-39;d like to implement such functionality, especially with &#39;Context Sub=
-mission via GuC&#39; enabled. (and=C2=A0I understand that in Proxy Submissi=
-on through GuC, guc_id is used as a context identifier instead of Context I=
-D)<br><br>Is it possible to monitor context in/out in this way (through ker=
-nel modification + H2G/G2H communication etc.) and, if possible, Could you =
-provide direction/insight on what elements should be used to implement this=
-?<br><br></div><div>I&#39;m sorry for asking such a bothersome question. I =
-would really appreciate it if you could reply.</div></div><br><br><br><div =
-id=3D"mt-signature">
-        <table border=3D"0" cellpadding=3D"8" cellspacing=3D"0" style=3D"us=
-er-select: none;">
-            <tbody><tr>
-                <td>
-                    <a id=3D"signatureLink-logo" href=3D"https://mailtrack.=
-io?utm_source=3Dgmail&amp;utm_medium=3Dsignature&amp;utm_campaign=3Dsignatu=
-revirality11&amp;" class=3D"" style=3D"text-decoration:none">
-                        <img src=3D"https://s3.amazonaws.com/mailtrack-sign=
-ature/sender-notified-72.gif" alt=3D"Mailtrack" class=3D"" width=3D"32" hei=
-ght=3D"32">
-                    </a>
-                </td>
-                <td>
-                    <span style=3D"color:#777">Sender notified by</span> <b=
-r>
-                    <a id=3D"signatureLink-text" href=3D"https://mailtrack.=
-io?utm_source=3Dgmail&amp;utm_medium=3Dsignature&amp;utm_campaign=3Dsignatu=
-revirality11&amp;" class=3D"mt-install" style=3D"color:#4374f7">Mailtrack</=
-a>
-                   =20
-    </td><td><span style=3D"color:transparent;font-size:0">24. 05. 24. =EC=
-=98=A4=ED=9B=84 06:32:21</span></td>
-
-               =20
-                <td>
-                   =20
-
-                </td>
-            </tr>
-        </tbody></table>
-    </div><img width=3D"0" height=3D"0" class=3D"mailtrack-img" alt=3D"" st=
-yle=3D"display:flex" src=3D"https://mailtrack.io/trace/mail/3e439ad59d49020=
-5cc3f453231727fcf487553d7.png?u=3D11115169"></div>
-
---000000000000217b4506192fd946--
