@@ -2,60 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016758D09DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 20:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3EC8D09E9
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 20:36:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC0C10E2C4;
-	Mon, 27 May 2024 18:25:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kr6iJYtS";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54B5F10E251;
+	Mon, 27 May 2024 18:36:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F29E510E2C4
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 18:25:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716834324; x=1748370324;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Qv4mFw43RMgjzQgGPV0YGwl0W/oYstLJiHL7FKUrBmk=;
- b=kr6iJYtSCD23x2A99R2qNVPInps48UbWPq3fsvyspl4M/PJuAx/iGU2x
- evBm0GCGgQJAzy77svVQig3lRzrViGT1z0dWIQ1QKsANlvaRwlmmgm0CY
- fEHrAxmDUbsFMdrRPdCmoi9iAS6/sJGZOxAXrbdckQjpZDO4Df/9ztqhY
- r0IfxObM2iEsBC1HfeSYS5jcYCnnD8K/t78YCISLlysvOL8ts1j5V89Dw
- 926na9iAzNVGIJkX913RzLcYxCF0fFKK68/4ixfnPqGs/nCuRH5SdYBGU
- ET0xSAHDuhAPMtgQ/Ne34S1usxnIhyQOfS2YbqGoYDsIvaujg8i3OpGFB w==;
-X-CSE-ConnectionGUID: CJbIS4qBRuylkZmieGKZdQ==
-X-CSE-MsgGUID: GwwC3um7Si2ZQiT1wagHnw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="16952023"
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="16952023"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 11:25:23 -0700
-X-CSE-ConnectionGUID: q0laAZoaRouvHFdwPz4LWg==
-X-CSE-MsgGUID: PBQ5lzcrRrq0sCsYebT9Fg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; d="scan'208";a="34722701"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.200])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 11:25:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915: move rawclk init to intel_cdclk_init()
-In-Reply-To: <874jajm87f.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240408172315.3418692-1-jani.nikula@intel.com>
- <ZhQpO3lJz9TB7c-4@intel.com> <ZhQrvAjDK_H-9Af4@intel.com>
- <874jajm87f.fsf@intel.com>
-Date: Mon, 27 May 2024 21:25:18 +0300
-Message-ID: <87wmnfkt81.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3CB410E251;
+ Mon, 27 May 2024 18:36:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/i915=3A_move_rawclk_init_to_intel=5Fcdclk=5Finit=28=29_?=
+ =?utf-8?q?=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 May 2024 18:36:39 -0000
+Message-ID: <171683499966.2213173.4169981742649172525@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240408172315.3418692-1-jani.nikula@intel.com>
+In-Reply-To: <20240408172315.3418692-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,56 +38,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 May 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Mon, 08 Apr 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
->> On Mon, Apr 08, 2024 at 08:28:27PM +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
->>> On Mon, Apr 08, 2024 at 08:23:14PM +0300, Jani Nikula wrote:
->>> > The rawclk initialization is a bit out of place in
->>> > intel_device_info_runtime_init(). Move it to intel_cdclk_init(), with=
- a
->>> > bit of refactoring on intel_read_rawclk().
->>>=20
->>> rawclk is used outside of display.
->>
->> The correct solution would likely be to extract a=20
->> i9xx_fsb_freq(), and use that to populate both rawclk_freq
->> and fsb_freq (and switch over to fsb_freq in the
->> non-display code).
->
-> I circled back to this, and PNV seems to be the problem case for making
-> this happen.
->
-> pnv_detect_mem_freq() in intel_dram.c and i9xx_hrawclk() in
-> intel_cdclk.c interpret the CLKCFG register slightly differently.
->
-> I'm presuming PNV only supports a subset of the values covered by
-> i9xx_hrawclk(). For IS_MOBILE() they all match, but for !IS_MOBILE()
-> there's a different value for 400 MHz FSB.
->
-> So how should desktop PNV interpret the register, I wonder? I can't find
-> any specs on that anymore.
+== Series Details ==
 
-My guess would be this:
+Series: series starting with [1/2] drm/i915: move rawclk init to intel_cdclk_init() (rev2)
+URL   : https://patchwork.freedesktop.org/series/132168/
+State : failure
 
-index b78154c82a71..19ca3ed5212a 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3545,7 +3545,7 @@ static int i9xx_hrawclk(struct drm_i915_private *dev_=
-priv)
- 	 */
- 	clkcfg =3D intel_de_read(dev_priv, CLKCFG) & CLKCFG_FSB_MASK;
-=20
--	if (IS_MOBILE(dev_priv)) {
-+	if (IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv)) {
- 		switch (clkcfg) {
- 		case CLKCFG_FSB_400:
- 			return 100000;
+== Summary ==
+
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/132168/revisions/2/mbox/ not applied
+Applying: drm/i915: move rawclk init to intel_cdclk_init()
+Applying: drm/i915: move rawclk from runtime to display runtime info
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_cdclk.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0002 drm/i915: move rawclk from runtime to display runtime info
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
-
---=20
-Jani Nikula, Intel
