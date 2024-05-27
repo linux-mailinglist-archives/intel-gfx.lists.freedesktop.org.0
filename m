@@ -2,55 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E2D8CF897
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 07:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BD68CF8B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 07:26:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4609E10E8E3;
-	Mon, 27 May 2024 05:04:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA89310F8A9;
+	Mon, 27 May 2024 05:26:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c84x0Xlx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WulTNo9I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D40FF10E8E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 05:04:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD3E410F8A9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 05:26:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716786249; x=1748322249;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OfjMT3kbVO3Yk56gR1EbGc4ptrDpAFUt12t6Y2R4kKw=;
- b=c84x0XlxfC/cBQlfVJLDSK+HnfwRHP5RT9iOVb8kTlfgINzKyp8IqOYW
- Ya2BgyVawUa9ee3peAtJfH05Ow3agUJyJAhAWIUtFsoVIlIlOZTlDiPf2
- z1wvAtryCloFPOjRKbFa1DAkk9kX7diY7zPG2xY6OeGCYTPcf16mz6HQt
- GjLzI73Zc1VeJOsLfbYOPcwhgH9jE6Os5NT/mGbWtnldu8KmI5FPfmStv
- F2gyfUgZwgtNTAilO2VtZkPe885bDDB34ttoeIKkDY+KakfJpiRg2ny8l
- gju9ZZPDQdzrP8/x6m58B895Hby48lBCKKbRNs0hJD2ekjO/7kiJSFyj7 g==;
-X-CSE-ConnectionGUID: ETFgNuMDQrawntfZiGejmg==
-X-CSE-MsgGUID: 2WgnFbPMTzy8tg8zBY/bGA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="30597503"
-X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="30597503"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2024 22:04:08 -0700
-X-CSE-ConnectionGUID: FQBJk8+zQqaMBP7irMyMMA==
-X-CSE-MsgGUID: 3zyE/wZTSC6PKtA01mmyGw==
+ t=1716787606; x=1748323606;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RA8FDgpicZWp1eJkq5WorteqXEnZzC3pmNfmMd3urNQ=;
+ b=WulTNo9IGfnHKP5CzdXh5nIzJ3CgrbtF6B0sBCeFPvPU7vcOEriD6gEQ
+ u2Q7xAYh3nnf1vwCSgT8jY8S8Jf/rocNotN9XCoq9vzzRKhCEZoDbH08o
+ Kg30fqeHApLK/vrNbrbCF0EluZvNYWidWSOg7zntHaloZnXrLI0+tTEGu
+ K2Y2ZDuHF4+xZJF3dXq4FCd3etEQo/92QzUow+BBhlH2VvGCc+/lF1PX/
+ xIly+1o70IhIP/sZZa0+wV0h9UX9krvrZfO8GojaJi4uF8scGE+Ymqs82
+ UfvD8gp0W5fzmB8igJrxbwWGyD27w5ZQtEwnz5GhC6QBN0jWux3aDLKc/ g==;
+X-CSE-ConnectionGUID: YydqkO3wR3SqZLRZttbS2Q==
+X-CSE-MsgGUID: EX60fd7LT2WTpiIBIdzhUg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="38470154"
+X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="38470154"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2024 22:26:45 -0700
+X-CSE-ConnectionGUID: wmQ7nL7TQHeZJ2L9cwbwrQ==
+X-CSE-MsgGUID: 2TpdlbwDQFGP4xExF/KrzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="34718992"
-Received: from gyu3-linux.itwn.intel.com ([10.225.64.210])
- by orviesa009.jf.intel.com with ESMTP; 26 May 2024 22:04:07 -0700
-From: gareth.yu@intel.com
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org,
-	gareth.yu@intel.com
-Subject: [PATCH v2 12/21] drm/i915/dp: Use check link state work in the detect
- handler
-Date: Mon, 27 May 2024 13:14:32 +0800
-Message-Id: <20240527051432.173965-1-gareth.yu@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240520185822.3725844-13-imre.deak@intel.com>
-References: <20240520185822.3725844-13-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; d="scan'208";a="34720050"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmviesa010.fm.intel.com with ESMTP; 26 May 2024 22:26:44 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, matthew.d.roper@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/hdcp: Fix IS_METEORLAKE usage for HDCP line rekeying
+Date: Mon, 27 May 2024 10:51:19 +0530
+Message-ID: <20240527052118.1624216-2-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,25 +65,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A bad link in MST is not retrained. Please also consider MST.
-The issue ticket is https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10902.
+Replace IS_METEORLAKE usage with a more appropriate macro. While
+we are at it also add the stepping restrictions for other platforms.
 
-	if (intel_dp->is_mst) {
-		/*
-		 * If we are in MST mode then this connector
-		 * won't appear connected or have anything
-		 * with EDID on it
-		 */
-		status = connector_status_disconnected;
-		goto out;
-	}
+Fixes: 6a3691ca4799 ("drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2 on HDMI")
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-	/*
-	 * Some external monitors do not signal loss of link synchronization
-	 * with an IRQ_HPD, so force a link status check.
-	 */
-	if (!intel_dp_is_edp(intel_dp)) {
-		ret = intel_dp_retrain_link(encoder, ctx);
-		if (ret)
-			return ret;
-	}
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 02cbbbfd8e25..5767070248bb 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -42,10 +42,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+ 		return;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 14) {
+-		if (IS_METEORLAKE(dev_priv))
++		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
+ 			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+ 				     0, HDCP_LINE_REKEY_DISABLE);
+-		else
++		else if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
++			 IS_DISPLAY_IP_STEP(dev_priv, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
+ 			intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(hdcp->cpu_transcoder),
+ 				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+ 	}
+-- 
+2.43.2
+
