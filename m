@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD838CFE47
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 12:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 553F58CFE56
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 12:48:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71FAC10FA47;
-	Mon, 27 May 2024 10:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 740DF10E0E5;
+	Mon, 27 May 2024 10:48:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HEnTDHUF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GX/R7fyx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25C0310FA47
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 10:42:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3344110E0FD;
+ Mon, 27 May 2024 10:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716806554; x=1748342554;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pqKp+qpAIpiITUUDVkWH03C+xSwYivfiX14G/SVnn1c=;
- b=HEnTDHUF+vH5l4aUs4nUdkZ4jNrOgbJNJrzZFuV0AWBSFPtHk22sKM6d
- 68R7LdG2r/Gf8Kuu05Uu9xMGZUHYefqZ1FJTQrTkllCREXKEh8s8DgxTv
- nu2YcO83Daiqsb+VGYDPFpn/Lhsh8zMjvv+39rKXJVBIEGgs4BXWXe+bj
- 9o1ZymA2SEpT28k1+SwXdNOcSHGsVNGN1TkQZRjIfXBkiiJBb4uqmk/tu
- XttRiX7wY0uZTFBt3bxDnTaDzkBTpR+FPzlm0PhBT0KLXhXiIUd6b2A0z
- wm8wvdS4O3DrCXUCzfst2KavrlFqchtGNJPuj5Kq1fBGPcHhhseMz33nO Q==;
-X-CSE-ConnectionGUID: RQ6Ho86+Sy6/LdYUKskzXQ==
-X-CSE-MsgGUID: cglQC9V2QHqk6v3Ti7OVGQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="24535957"
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="24535957"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 03:42:34 -0700
-X-CSE-ConnectionGUID: Y0J8cdYnSKmQIEbQU8TApw==
-X-CSE-MsgGUID: XBAwOIN8S+OJshfMGfoHJw==
+ t=1716806880; x=1748342880;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=iNFQ7o+1ofjztuvjdIzNE+iV2ceTEh/py0eSks+HeNE=;
+ b=GX/R7fyxk44p6s15N/yJ8zgF9CSZ5oKWiumG6ZyecSlGWX+mDnVVqDbr
+ kmyebtUsGqXtDu+lkV7CuWo+VXmIbK+D6jLqlR5ja/irGYeDLaSbIE2V7
+ Byc3Vn6mMIRjpEJ84O86euF9RwrX9s2VvH6KZNbxsRjwYCj7RrWSGjpGL
+ KqEkJl9SiMZjG2lJcfLZXyGeRv6sQhZXP3wUZ39UMtHWp9ixN9piGZZUv
+ M47L/fS54fqOWXVPGyq5lgf0QS15pewCeqB4lBbpvcmagNhI9wkSVOFHx
+ 9DdeTrYRSwxskn6Ik3zMtgQOENBNUqj1Zr3Hh+jvlbx6Q/L41LwxGZbAC g==;
+X-CSE-ConnectionGUID: PcFD7nq/RjS3una0lXdtuA==
+X-CSE-MsgGUID: oowZZ9C1RR+xPqdXLkGWDw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="12967237"
+X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="12967237"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2024 03:48:00 -0700
+X-CSE-ConnectionGUID: Iv/5M7qDQBWsLo9dj8BAtA==
+X-CSE-MsgGUID: MG0CKHZnT+qLC06qeiHCJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="39156298"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.200])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 03:42:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 6/6] drm/i915: pass dev_priv explicitly to PP_DIVISOR
-Date: Mon, 27 May 2024 13:42:02 +0300
-Message-Id: <28e9f7e3570c15ac5c229048ec0def2e4a667ffc.1716806471.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1716806471.git.jani.nikula@intel.com>
-References: <cover.1716806471.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="34805621"
+Received: from dneilan-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.244.157])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2024 03:47:58 -0700
+Date: Mon, 27 May 2024 11:47:49 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Nirmoy Das <nirmoy.das@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+Subject: Re: [PATCH v2] drm/i915: Increase FLR timeout from 3s to 9s
+Message-ID: <ZlRk1Qdr8i2YPITh@ashyti-mobl2.lan>
+References: <20240523235853.171796-1-andi.shyti@linux.intel.com>
+ <ZlCfMPZpvQJmHybR@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZlCfMPZpvQJmHybR@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,64 +74,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PP_DIVISOR register macro.
+On Fri, May 24, 2024 at 10:07:44AM -0400, Rodrigo Vivi wrote:
+> On Fri, May 24, 2024 at 01:58:53AM +0200, Andi Shyti wrote:
+> > Following the guidelines it takes 3 seconds to perform an FLR
+> > reset. Let's give it a bit more slack because this time can
+> > change depending on the platform and on the firmware
+> 
+> But did we see any issue with that?
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lvds.c     | 4 ++--
- drivers/gpu/drm/i915/display/intel_pps.c      | 2 +-
- drivers/gpu/drm/i915/display/intel_pps_regs.h | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+yes, we have some FLR expiration timeouts that apparently are not
+able to bring up the device and the memory is not accessible
+anymore. It's worth giving it a bit more time.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 3adfe93794ef..891777481dd9 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -173,7 +173,7 @@ static void intel_lvds_pps_get_hw_state(struct drm_i915_private *dev_priv,
- 	pps->t3 = REG_FIELD_GET(PANEL_POWER_DOWN_DELAY_MASK, val);
- 	pps->tx = REG_FIELD_GET(PANEL_LIGHT_OFF_DELAY_MASK, val);
- 
--	val = intel_de_read(dev_priv, PP_DIVISOR(0));
-+	val = intel_de_read(dev_priv, PP_DIVISOR(dev_priv, 0));
- 	pps->divider = REG_FIELD_GET(PP_REFERENCE_DIVIDER_MASK, val);
- 	val = REG_FIELD_GET(PANEL_POWER_CYCLE_DELAY_MASK, val);
- 	/*
-@@ -226,7 +226,7 @@ static void intel_lvds_pps_init_hw(struct drm_i915_private *dev_priv,
- 		       REG_FIELD_PREP(PANEL_POWER_DOWN_DELAY_MASK, pps->t3) |
- 		       REG_FIELD_PREP(PANEL_LIGHT_OFF_DELAY_MASK, pps->tx));
- 
--	intel_de_write(dev_priv, PP_DIVISOR(0),
-+	intel_de_write(dev_priv, PP_DIVISOR(dev_priv, 0),
- 		       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, pps->divider) |
- 		       REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(pps->t4, 1000) + 1));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 2cc6d5f209e6..73046ef58d8e 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -501,7 +501,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
- 	    INTEL_PCH_TYPE(dev_priv) >= PCH_CNP)
- 		regs->pp_div = INVALID_MMIO_REG;
- 	else
--		regs->pp_div = PP_DIVISOR(pps_idx);
-+		regs->pp_div = PP_DIVISOR(dev_priv, pps_idx);
- }
- 
- static i915_reg_t
-diff --git a/drivers/gpu/drm/i915/display/intel_pps_regs.h b/drivers/gpu/drm/i915/display/intel_pps_regs.h
-index b1ccc54410ce..8f9dbfab9523 100644
---- a/drivers/gpu/drm/i915/display/intel_pps_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_pps_regs.h
-@@ -71,7 +71,7 @@
- #define  PANEL_LIGHT_OFF_DELAY_MASK	REG_GENMASK(12, 0)
- 
- #define _PP_DIVISOR			0x61210
--#define PP_DIVISOR(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_DIVISOR)
-+#define PP_DIVISOR(dev_priv, pps_idx)	_MMIO_PPS(dev_priv, pps_idx, _PP_DIVISOR)
- #define  PP_REFERENCE_DIVIDER_MASK	REG_GENMASK(31, 8)
- #define  PANEL_POWER_CYCLE_DELAY_MASK	REG_GENMASK(4, 0)
- 
--- 
-2.39.2
+> if that changes per platform and per firmware, shouldn't it all
+> be explicit in the spec as well?
 
+Is it always documented? We might anyway die after the FLR reset
+failure, so that I see it quite safe to wait and pray a little
+more.
+
+Andi
