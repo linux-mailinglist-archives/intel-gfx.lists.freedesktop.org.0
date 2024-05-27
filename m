@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3C58CFE41
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 12:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6858CFE42
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 12:42:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73F4F10FA41;
-	Mon, 27 May 2024 10:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBE6010FA43;
+	Mon, 27 May 2024 10:42:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4KAV4R2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OgdL3RJl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA3310FA41
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 10:42:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBCF010FA42
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 10:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716806531; x=1748342531;
+ t=1716806536; x=1748342536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Jr+yMjJG9VIzTw5jceHVz/i+Ca9/JWGdltsqad30+Mo=;
- b=C4KAV4R22hVb14hdH34NYK28071UQkiQtt5mqPbc48JLIOulovnPUyyW
- pQwbkXjufMJn/lhmb4yMx3X7J1n+8jBbNI/vtce8v4iFAM+dxCqoIQioM
- cm9WMLRK5sdD8W73dLvBOAzO82txyqd/Ltse/k/z0VHp3yE13CkiYSo66
- Qh21Xjk7ZXhaz+XEjFuu7bSfrik3bcu1Mdo2WplqAEvSYzyIsnSHnqx8l
- GR2M+4xKe6Lrgo3JlAllpaDODTnjMa8fUv3ihuqm3DTBYyOLhx01J45Ss
- kADGnUipiswSW0utE1aQfLL5b11AhdeUuU/ttzNqRY2Ks7ERmI2kMe7zN Q==;
-X-CSE-ConnectionGUID: 2FUEaqMcQy2V7Gsi88pl5g==
-X-CSE-MsgGUID: CEpprUSHSHiNxTaFYqAtgw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="23718224"
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="23718224"
+ bh=DsHsKWeU4OwJcJl2AaYf3LV6+6SgqAluSKS6MalkMf8=;
+ b=OgdL3RJlzh1uQGkmimemO/i3D6A99f+Yx/h++aC7PdMC/pI8MgH93q2z
+ qdH58kLrqyHh5djdVfXPzfvrbup9KAYRrMcoWmtKZIAhsR/za/MIriItm
+ Yx4E1xLiVF4tpqhUiUJ8iXzx98FkPZ5oV974rzmKCOx2UGuHfyJW6YCtJ
+ 1kR4YDqeMOhhfX9Lo8ySE1eZ6dqdmHmBQAtXUQpgX0CRHBl9qQ6hq1Xsr
+ rIQHc6QD6jHtKurjg9+jM9F0/YGZbPINl+42TRhGnV5mJHw+oB+aQ6/H1
+ JVSiJIxBiB+ZTmQlTYvbJ0CAz8fbqX/nKcMhAYgDpKQCBlbczpiMzzp3Z A==;
+X-CSE-ConnectionGUID: zlbvMDxsRv2DqVX1l/EEfA==
+X-CSE-MsgGUID: q/HMFb4lSiKcdo2kme8OcA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="23718231"
+X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="23718231"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 03:42:11 -0700
-X-CSE-ConnectionGUID: FkaAHqa0TTyeEo7pc8Gl/w==
-X-CSE-MsgGUID: JwyMGhlLQquve9ityjqEyA==
+ 27 May 2024 03:42:15 -0700
+X-CSE-ConnectionGUID: Q0pGefixTLaSYO8a3UPPJg==
+X-CSE-MsgGUID: k1JFC18oR7CR9wcbDooQfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="39122758"
+X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="39122762"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.200])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 03:42:10 -0700
+ 27 May 2024 03:42:14 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 1/6] drm/i915: pass dev_priv explicitly to _MMIO_PPS
-Date: Mon, 27 May 2024 13:41:57 +0300
-Message-Id: <1e9f3ef7eee65946c0e6bf06cc2547a38e8dab78.1716806471.git.jani.nikula@intel.com>
+Subject: [PATCH 2/6] drm/i915: pass dev_priv explicitly to PP_STATUS
+Date: Mon, 27 May 2024 13:41:58 +0300
+Message-Id: <7b76be10723f36d6e1b45be76d112a4b178ef493.1716806471.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1716806471.git.jani.nikula@intel.com>
 References: <cover.1716806471.git.jani.nikula@intel.com>
@@ -71,77 +71,95 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the _MMIO_PPS register macro.
-
-While at it, use __to_intel_display() to allow passing in struct
-intel_display at a later time.
+explicitly to the PP_STATUS register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pps_regs.h | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c          | 6 +++---
+ drivers/gpu/drm/i915/display/intel_pps.c           | 4 ++--
+ drivers/gpu/drm/i915/display/intel_pps_regs.h      | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index a860d88a65da..34b6d843bc9e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1207,7 +1207,7 @@ static void assert_can_disable_lcpll(struct drm_i915_private *dev_priv)
+ 			intel_de_read(dev_priv, WRPLL_CTL(1)) & WRPLL_PLL_ENABLE,
+ 			"WRPLL2 enabled\n");
+ 	I915_STATE_WARN(dev_priv,
+-			intel_de_read(dev_priv, PP_STATUS(0)) & PP_ON,
++			intel_de_read(dev_priv, PP_STATUS(dev_priv, 0)) & PP_ON,
+ 			"Panel power on\n");
+ 	I915_STATE_WARN(dev_priv,
+ 			intel_de_read(dev_priv, BLC_PWM_CPU_CTL2) & BLM_PWM_ENABLE,
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index 8b8959073466..eec0dab3c3b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -324,7 +324,7 @@ static void intel_enable_lvds(struct intel_atomic_state *state,
+ 	intel_de_rmw(dev_priv, PP_CONTROL(0), 0, PANEL_POWER_ON);
+ 	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+ 
+-	if (intel_de_wait_for_set(dev_priv, PP_STATUS(0), PP_ON, 5000))
++	if (intel_de_wait_for_set(dev_priv, PP_STATUS(dev_priv, 0), PP_ON, 5000))
+ 		drm_err(&dev_priv->drm,
+ 			"timed out waiting for panel to power on\n");
+ 
+@@ -340,7 +340,7 @@ static void intel_disable_lvds(struct intel_atomic_state *state,
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
+ 	intel_de_rmw(dev_priv, PP_CONTROL(0), PANEL_POWER_ON, 0);
+-	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_ON, 1000))
++	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(dev_priv, 0), PP_ON, 1000))
+ 		drm_err(&dev_priv->drm,
+ 			"timed out waiting for panel to power off\n");
+ 
+@@ -379,7 +379,7 @@ static void intel_lvds_shutdown(struct intel_encoder *encoder)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 
+-	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_CYCLE_DELAY_ACTIVE, 5000))
++	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(dev_priv, 0), PP_CYCLE_DELAY_ACTIVE, 5000))
+ 		drm_err(&dev_priv->drm,
+ 			"timed out waiting for panel power cycle delay\n");
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 0ccbf9a85914..9aa08b525810 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -272,7 +272,7 @@ typedef bool (*pps_check)(struct drm_i915_private *dev_priv, int pps_idx);
+ 
+ static bool pps_has_pp_on(struct drm_i915_private *dev_priv, int pps_idx)
+ {
+-	return intel_de_read(dev_priv, PP_STATUS(pps_idx)) & PP_ON;
++	return intel_de_read(dev_priv, PP_STATUS(dev_priv, pps_idx)) & PP_ON;
+ }
+ 
+ static bool pps_has_vdd_on(struct drm_i915_private *dev_priv, int pps_idx)
+@@ -492,7 +492,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 		pps_idx = intel_dp->pps.pps_idx;
+ 
+ 	regs->pp_ctrl = PP_CONTROL(pps_idx);
+-	regs->pp_stat = PP_STATUS(pps_idx);
++	regs->pp_stat = PP_STATUS(dev_priv, pps_idx);
+ 	regs->pp_on = PP_ON_DELAYS(pps_idx);
+ 	regs->pp_off = PP_OFF_DELAYS(pps_idx);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_pps_regs.h b/drivers/gpu/drm/i915/display/intel_pps_regs.h
-index 60edd2a27100..bdcdf6ae2747 100644
+index bdcdf6ae2747..06bdf766b749 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_pps_regs.h
-@@ -6,6 +6,7 @@
- #ifndef __INTEL_PPS_REGS_H__
- #define __INTEL_PPS_REGS_H__
- 
-+#include "intel_display_conversion.h"
- #include "intel_display_reg_defs.h"
- 
- /* Panel power sequencing */
-@@ -13,12 +14,11 @@
- #define VLV_PPS_BASE			(VLV_DISPLAY_BASE + PPS_BASE)
- #define PCH_PPS_BASE			0xC7200
- 
--#define _MMIO_PPS(pps_idx, reg)		_MMIO(dev_priv->display.pps.mmio_base -	\
--					      PPS_BASE + (reg) +	\
--					      (pps_idx) * 0x100)
-+#define _MMIO_PPS(dev_priv, pps_idx, reg) \
-+	_MMIO(__to_intel_display(dev_priv)->pps.mmio_base - PPS_BASE + (reg) + (pps_idx) * 0x100)
+@@ -18,7 +18,7 @@
+ 	_MMIO(__to_intel_display(dev_priv)->pps.mmio_base - PPS_BASE + (reg) + (pps_idx) * 0x100)
  
  #define _PP_STATUS			0x61200
--#define PP_STATUS(pps_idx)		_MMIO_PPS(pps_idx, _PP_STATUS)
-+#define PP_STATUS(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_STATUS)
+-#define PP_STATUS(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_STATUS)
++#define PP_STATUS(dev_priv, pps_idx)	_MMIO_PPS(dev_priv, pps_idx, _PP_STATUS)
  #define   PP_ON				REG_BIT(31)
  /*
   * Indicates that all dependencies of the panel are on:
-@@ -45,7 +45,7 @@
- #define   PP_SEQUENCE_STATE_RESET	REG_FIELD_PREP(PP_SEQUENCE_STATE_MASK, 0xf)
- 
- #define _PP_CONTROL			0x61204
--#define PP_CONTROL(pps_idx)		_MMIO_PPS(pps_idx, _PP_CONTROL)
-+#define PP_CONTROL(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_CONTROL)
- #define  PANEL_UNLOCK_MASK		REG_GENMASK(31, 16)
- #define  PANEL_UNLOCK_REGS		REG_FIELD_PREP(PANEL_UNLOCK_MASK, 0xabcd)
- #define  BXT_POWER_CYCLE_DELAY_MASK	REG_GENMASK(8, 4)
-@@ -55,7 +55,7 @@
- #define  PANEL_POWER_ON			REG_BIT(0)
- 
- #define _PP_ON_DELAYS			0x61208
--#define PP_ON_DELAYS(pps_idx)		_MMIO_PPS(pps_idx, _PP_ON_DELAYS)
-+#define PP_ON_DELAYS(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_ON_DELAYS)
- #define  PANEL_PORT_SELECT_MASK		REG_GENMASK(31, 30)
- #define  PANEL_PORT_SELECT_LVDS		REG_FIELD_PREP(PANEL_PORT_SELECT_MASK, 0)
- #define  PANEL_PORT_SELECT_DPA		REG_FIELD_PREP(PANEL_PORT_SELECT_MASK, 1)
-@@ -66,12 +66,12 @@
- #define  PANEL_LIGHT_ON_DELAY_MASK	REG_GENMASK(12, 0)
- 
- #define _PP_OFF_DELAYS			0x6120C
--#define PP_OFF_DELAYS(pps_idx)		_MMIO_PPS(pps_idx, _PP_OFF_DELAYS)
-+#define PP_OFF_DELAYS(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_OFF_DELAYS)
- #define  PANEL_POWER_DOWN_DELAY_MASK	REG_GENMASK(28, 16)
- #define  PANEL_LIGHT_OFF_DELAY_MASK	REG_GENMASK(12, 0)
- 
- #define _PP_DIVISOR			0x61210
--#define PP_DIVISOR(pps_idx)		_MMIO_PPS(pps_idx, _PP_DIVISOR)
-+#define PP_DIVISOR(pps_idx)		_MMIO_PPS(dev_priv, pps_idx, _PP_DIVISOR)
- #define  PP_REFERENCE_DIVIDER_MASK	REG_GENMASK(31, 8)
- #define  PANEL_POWER_CYCLE_DELAY_MASK	REG_GENMASK(4, 0)
- 
 -- 
 2.39.2
 
