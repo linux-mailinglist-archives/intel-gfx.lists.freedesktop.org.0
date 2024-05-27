@@ -2,59 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 902118CFEFC
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 13:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F188D0131
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 15:20:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF2210E29E;
-	Mon, 27 May 2024 11:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 392F110F58E;
+	Mon, 27 May 2024 13:20:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I/XVs8Ap";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dc+68W/P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB33410E29E
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 11:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716809419; x=1748345419;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=x2wYc1TIxnVCGGqQkm9IqMs+l1jiuD3Lt6pePfbbBTs=;
- b=I/XVs8ApJaly8rxpltEP9odleH/V8osur8DVFNPbjPnEpTWpm3gN2OOb
- ez5hHa4CvvuosDEc8bDaAHx6W2h7TpjmyaFcowFBdK9w85VyEvhBX57wF
- Kw9yPVGALdcm0YvyxlozJ2Y+Hw3Jlv1P9Hg68y2L4ZlaOV2Uh1Fqg7fQX
- MdrfxpBF9O44pbqhI5hxUgwmk92Wo3+WvRh3jWeNB21xdvg5zDG9X/R9S
- 4Vt0gtQnKunzdeo+IGQ/Ljy2VZcc2XOox4qgZE+dcLMPQhz/jzL3MiacT
- ourQ/2QOndga5MejfYP3wrxiL6f8G50cR7CZr8d+gn6RG2RTdds8eERZz A==;
-X-CSE-ConnectionGUID: SRIToGLxTYaSSY+OeMXMzg==
-X-CSE-MsgGUID: v59bDCtJRauaP3kLYybBww==
-X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="16070686"
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="16070686"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 04:30:18 -0700
-X-CSE-ConnectionGUID: cZBtnKiTQmKzYFl5/dfGkQ==
-X-CSE-MsgGUID: L+JlTX4xSYOg6TRRuJHmsQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="39517740"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 04:30:17 -0700
-Date: Mon, 27 May 2024 14:30:21 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: gareth.yu@intel.com
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2 12/21] drm/i915/dp: Use check link state work in the
- detect handler
-Message-ID: <ZlRuzWgnwLJ/VOLA@ideak-desk.fi.intel.com>
-References: <20240520185822.3725844-13-imre.deak@intel.com>
- <20240527051432.173965-1-gareth.yu@intel.com>
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
+ [209.85.208.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E70D10F4CF;
+ Mon, 27 May 2024 13:20:14 +0000 (UTC)
+Received: by mail-ed1-f46.google.com with SMTP id
+ 4fb4d7f45d1cf-578517c7ae9so3878660a12.3; 
+ Mon, 27 May 2024 06:20:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1716816012; x=1717420812; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=583OMcuKvHNT1Ww+Sb5JEHcYkO2V/RPQQEiPPcbZRAU=;
+ b=Dc+68W/PdmArLfyy7a38U3XT23pEEjxvbnow3rpTmWIBS22JqoM7X+dJqMWsQabxsP
+ xLFaAwt1jIqauxES1EaXUxGYadHIQq70Qbdbvn+BX5kXFHA3q7RJWkD2u313stzQpfhJ
+ Bw5LFyHrXyvIdxuIZSFgrG5xewMUvwKpq1SEFOSbBD/sZIFyuFwXk5FV/SlcGgtouQqP
+ cLp/GnjvGgPgBq04bWOF0JZY2+NixRS/ExZTEz5YsdfBr2u97hT0M5p4lwxGed8uv2WG
+ SfF7oBkjH3s3baaO9cjhIZVgnHY3da5efOpf0ZDrzz/3Dx/fg/BRYHGnfjqHYPIL43Uq
+ C21A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716816012; x=1717420812;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=583OMcuKvHNT1Ww+Sb5JEHcYkO2V/RPQQEiPPcbZRAU=;
+ b=sBZbBlDnNcxo1jOwtk0TStoHYKnurVWyzFqukw1iwY/jN15lh2/D00kcH5fp9203Jk
+ VBitvTc4ojndODf4w4HUSZilylz9SbIRhfO1PQm5chyvr9wKmU6vEX6L1L2AH5e0xkI4
+ 9FPH3XRcIv4oC20FolQu6sm23XTE1FcrGvF8ST6BLPJc2NQrY3Uh3v4nLXSz3fIunwaz
+ EaziEQC7+x0KeMH5GBpbD4yG9SB7gfosDRe0eeqoKj1yCK30jiMcTcczkh34r6/QMxLv
+ cEASq5+KLHfNyiRvQHCLGTC/fcnfzB6bPq08J/VG3Ch8OOvb4EOW70k6U0fdnMYiXf4H
+ PKDQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU0JIw/DuEryJaUIAqDsvhjFLixooXGSkmk2dgk/PzHyth5iRH9VcrOwnPUPZPyjZ9CZ0cqDfVYy0q4+9BcrSNRVmDioGCcA31x9i4eAIwXi3E9utNvPJ/to2VFApyBRns8qGtdYz33wKb9xr/QqR0h
+X-Gm-Message-State: AOJu0YyZDOuGRr7rzxsxLBGdqAbdJXP/dMNNNNnCxZ/lx+Bckx78Ed51
+ E6v8BVKEE7XvrjPGeZ5WgThlAul1ToSK8eGUKAS/oKzXbwUtjEoTiTBh/B2FpUovovgDT4RWsJn
+ sK5OsqbRiX6W7d2emsfLUATIVBlg=
+X-Google-Smtp-Source: AGHT+IFAU5YkoQQCpo2YBJF5cZ7P9SUOU+cK1hlCD0x11A8DdQnGvCOJ3WRTYFceD3JkPIeraFXM9GsH58VbgH3clsU=
+X-Received: by 2002:a17:907:971c:b0:a62:cecd:26e3 with SMTP id
+ a640c23a62f3a-a62cecd2767mr357363566b.39.1716816012441; Mon, 27 May 2024
+ 06:20:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240527051432.173965-1-gareth.yu@intel.com>
+References: <20240527094320.2653177-1-jani.nikula@intel.com>
+ <20240527094320.2653177-2-jani.nikula@intel.com>
+In-Reply-To: <20240527094320.2653177-2-jani.nikula@intel.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 27 May 2024 16:19:35 +0300
+Message-ID: <CAHp75Ve0vyOv3KNY_7286wLKd8u6HOvu0Trm17rs46h-BOGsfA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm: use mem_is_zero() instead of !memchr_inv(s, 0, n)
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, Kees Cook <keescook@chromium.org>, 
+ Andy Shevchenko <andy@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,39 +78,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 27, 2024 at 01:14:32PM +0800, gareth.yu@intel.com wrote:
-Hi,
+On Mon, May 27, 2024 at 12:43=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
+> wrote:
+>
+> Use the mem_is_zero() helper where possible.
 
-> A bad link in MST is not retrained. Please also consider MST.
-> The issue ticket is https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10902.
-> 
-> 	if (intel_dp->is_mst) {
-> 		/*
-> 		 * If we are in MST mode then this connector
-> 		 * won't appear connected or have anything
-> 		 * with EDID on it
-> 		 */
-> 		status = connector_status_disconnected;
-> 		goto out;
-> 	}
-> 
-> 	/*
-> 	 * Some external monitors do not signal loss of link synchronization
-> 	 * with an IRQ_HPD, so force a link status check.
-> 	 */
-> 	if (!intel_dp_is_edp(intel_dp)) {
-> 		ret = intel_dp_retrain_link(encoder, ctx);
-> 		if (ret)
-> 			return ret;
-> 	}
+...
 
-this is not the proper place to retrain the link, the plan is to remove
-the above. Could you give a try to the patchset and follow up with a
-dmesg log on the ticket?
+> -       if (memchr_inv(guid, 0, 16) =3D=3D NULL) {
+> +       if (mem_is_zero(guid, 16)) {
+>                 tmp64 =3D get_jiffies_64();
+>                 memcpy(&guid[0], &tmp64, sizeof(u64));
+>                 memcpy(&guid[8], &tmp64, sizeof(u64));
 
-Thanks,
-Imre
+What is the type of guid? Shouldn't it be guid_t with the respective
+guid_is_null()
+
+...
+
+> -       if (memchr_inv(guid, 0, 16))
+> +       if (!mem_is_zero(guid, 16))
+>                 return true;
+
+Ditto.
+
+--=20
+With Best Regards,
+Andy Shevchenko
