@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F108CFA43
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 09:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46C48CFA78
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 May 2024 09:50:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 374C210F3A2;
-	Mon, 27 May 2024 07:37:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSYoNAe/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F063C10E02B;
+	Mon, 27 May 2024 07:50:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD67310F3A2
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 May 2024 07:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716795469; x=1748331469;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=fZMqPfJqCUg/SlLncVNbmA1qWJZqwal7dr1M/6bJxMA=;
- b=mSYoNAe/C2YRJoRPpElpoGUMyUMkhvpRfgzZY2jW26zT4byS5XYOQsBT
- LKNKKIWn9BFzreMKhK6LBP4KCU+OyrbwH10dMau4CFv4dDOr2U5OvhYxd
- XBVVwrzxuMBegeMlsnouEIMB9vgiFfKMrfEDMHv/IiLUhGXGl6L5tMSk2
- DPiyCbOqTdxHQ3Qbfpi/k3Tomfo7zPvZN0gEqqImimVOunCI3OEVRugQ9
- 24q1la6xEguWi/6my18o/wENqQ/FHjoZxXjDn7VasNh7ElsTrmi2TtuBY
- UOTYptIhcB4iQt4JgWhCZ2xnLmeYZauPXiMenwN4DzNH+21mImZh0sUEm w==;
-X-CSE-ConnectionGUID: JehA+FQGRpyk9W17dhQAyg==
-X-CSE-MsgGUID: gbZDBNrUS++AZ5NtN5A1Kg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="11710493"
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="11710493"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 00:37:48 -0700
-X-CSE-ConnectionGUID: DhpN3/rBQJypK8rNKDyT5Q==
-X-CSE-MsgGUID: 4HA9OeD+SEW5kuVnplz+4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,192,1712646000"; d="scan'208";a="39109090"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.200])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2024 00:37:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: Fix SEL_FETCH_{SIZE,OFFSET} registers
-In-Reply-To: <20240524155000.13358-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240524155000.13358-1-ville.syrjala@linux.intel.com>
-Date: Mon, 27 May 2024 10:37:43 +0300
-Message-ID: <874jajogc8.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E6A610E02B;
+ Mon, 27 May 2024 07:50:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Panel_Replay_eDP_sup?=
+ =?utf-8?q?port_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 May 2024 07:50:29 -0000
+Message-ID: <171679622951.2212026.12347494699558534931@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240527072220.3294769-1-jouni.hogander@intel.com>
+In-Reply-To: <20240527072220.3294769-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,70 +37,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Fix up the SEL_FETCH_{SIZE,OFFSET} registers. A classic
-> copy-paste fail on my part.
->
-> I even had a small test to confirm that the old and new register
-> offsets match, but somehow I must have screwed things up when
-> running it, and likely just ended up comparing the old defines
-> against themselves :/
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Fixes: 4bfa8a140db3 ("drm/i915: Define SEL_FETCH_PLANE registers via PICK=
-_EVEN_2RANGES()")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Ugh. And here I thought I did a pretty thorough job reviewing that
-series. :(
+Series: Panel Replay eDP support (rev3)
+URL   : https://patchwork.freedesktop.org/series/133684/
+State : warning
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
-> ---
->  .../drm/i915/display/skl_universal_plane_regs.h  | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/dr=
-ivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> index 9904ecc54128..4ddcd7d46bbd 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> @@ -419,10 +419,10 @@
->  #define _SEL_FETCH_PLANE_SIZE_5_B		0x71928
->  #define _SEL_FETCH_PLANE_SIZE_6_B		0x71948
->  #define SEL_FETCH_PLANE_SIZE(pipe, plane)	_MMIO_SEL_FETCH((pipe), (plane=
-),\
-> -								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
-> -								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
-> -								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
-> -								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
-> +								_SEL_FETCH_PLANE_SIZE_1_A, _SEL_FETCH_PLANE_SIZE_1_B, \
-> +								_SEL_FETCH_PLANE_SIZE_2_A, _SEL_FETCH_PLANE_SIZE_2_B, \
-> +								_SEL_FETCH_PLANE_SIZE_5_A, _SEL_FETCH_PLANE_SIZE_5_B, \
-> +								_SEL_FETCH_PLANE_SIZE_6_A, _SEL_FETCH_PLANE_SIZE_6_B)
->=20=20
->  /* tgl+ */
->  #define _SEL_FETCH_PLANE_OFFSET_1_A		0x7089c
-> @@ -434,9 +434,9 @@
->  #define _SEL_FETCH_PLANE_OFFSET_5_B		0x7192c
->  #define _SEL_FETCH_PLANE_OFFSET_6_B		0x7194c
->  #define SEL_FETCH_PLANE_OFFSET(pipe, plane)	_MMIO_SEL_FETCH((pipe), (pla=
-ne),\
-> -								_SEL_FETCH_PLANE_POS_1_A, _SEL_FETCH_PLANE_POS_1_B, \
-> -								_SEL_FETCH_PLANE_POS_2_A, _SEL_FETCH_PLANE_POS_2_B, \
-> -								_SEL_FETCH_PLANE_POS_5_A, _SEL_FETCH_PLANE_POS_5_B, \
-> -								_SEL_FETCH_PLANE_POS_6_A, _SEL_FETCH_PLANE_POS_6_B)
-> +								_SEL_FETCH_PLANE_OFFSET_1_A, _SEL_FETCH_PLANE_OFFSET_1_B, \
-> +								_SEL_FETCH_PLANE_OFFSET_2_A, _SEL_FETCH_PLANE_OFFSET_2_B, \
-> +								_SEL_FETCH_PLANE_OFFSET_5_A, _SEL_FETCH_PLANE_OFFSET_5_B, \
-> +								_SEL_FETCH_PLANE_OFFSET_6_A, _SEL_FETCH_PLANE_OFFSET_6_B)
->=20=20
->  #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
+Error: dim checkpatch failed
+a6760c452878 drm/i915/psr: Store pr_dpcd in intel_dp
+dda76ebd3328 drm/panel replay: Add edp1.5 Panel Replay bits and register
+2d67e39801e0 drm/i915/psr: Move printing sink PSR support to own function
+98a0f1930285 drm/i915/psr: Move printing PSR mode to own function
+d63c0e45fe26 drm/i915/psr: modify psr status debugfs to support eDP Panel Replay
+02f47380c8f7 drm/i915/psr: Add Panel Replay support to intel_psr2_config_et_valid
+5832a97b0391 drm/i915/psr: Add Early Transport into psr debugfs interface
+-:27: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#27: FILE: drivers/gpu/drm/i915/display/intel_psr.c:3607:
++		seq_printf(m, " (Early Transport)");
 
---=20
-Jani Nikula, Intel
+-:33: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#33: FILE: drivers/gpu/drm/i915/display/intel_psr.c:3612:
++		seq_printf(m, " (Early Transport)");
+
+-:34: WARNING:PREFER_SEQ_PUTS: Prefer seq_puts to seq_printf
+#34: FILE: drivers/gpu/drm/i915/display/intel_psr.c:3613:
++	seq_printf(m, "\n");
+
+total: 0 errors, 3 warnings, 0 checks, 53 lines checked
+749443867680 drm/display: Add missing aux less alpm wake related bits
+fb15cdbbd4d5 drm/i915/psr: Check panel ALPM capability for eDP Panel Replay
+968b5cb3826a drm/i915/psr: Inform Panel Replay source support on eDP as well
+abeba30ec9c8 drm/i915/psr: enable sink for eDP1.5 Panel Replay
+a7dae2f04ef3 drm/i915/psr: Check panel Early Transport capability for eDP PR
+1e8bd8d8a93a drm/i915/psr: Perfrom psr2 checks related to ALPM for Panel Replay
+0556008ba719 drm/i915/psr: Add Panel Replay compute_config helper
+68a61430c086 drm/i915/psr: 128b/132b Panel Replay is not supported on eDP
+0058fb92bc71 drm/i915/psr: HW will not allow PR on eDP when HDCP enabled
+ec9ed155917e drm/i915/psr: Check Early Transport for Panel Replay as well
+a8d19530e8de drm/i915/psr: Modify dg2_activate_panel_replay to support eDP
+00fc642f16f8 drm/i915/psr: Add new debug bit to disable Panel Replay
+119259e8625e Revert "drm/i915/psr: Disable early transport by default"
+
+
