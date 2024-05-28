@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F6E8D1962
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 13:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5E68D1965
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 13:28:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03A3A10FD52;
-	Tue, 28 May 2024 11:27:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E79A10ED5A;
+	Tue, 28 May 2024 11:28:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjA4+C4U";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D88F110ED5A;
- Tue, 28 May 2024 11:27:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1249889616072681858=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D68EA10ED5A;
+ Tue, 28 May 2024 11:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716895670; x=1748431670;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Tlf9mGFHqEQtdTqCDknBhZRix/3FW09q9e4CUTE9Lkc=;
+ b=VjA4+C4UJX6wYon607PlRg8ZaCp5XyUgd86KlI6YdCue/UGJsQGcf8O5
+ 19fikPVcJIhoWQqyzhZUINW0YGFQOw8asP+o86wuohag5L/oROORRd3pz
+ r+voL/QbGtvx8w5IC27Lz8uiLmC7xKbsaWBtYHVLqA2xgxrCBwveGYQt9
+ AQrYsXZAT7c1Ubc90Fhai1mIMsNEf7MwIahiiJHW61UDeRCGAhwd9WLgZ
+ s2+3oTAuZCStAHKUcMMigdly5A0FsqsGn4l/SlJQ0mWlabR3rwVUH6YBw
+ IRf5wYBuIICbhAbPgP2ry8ENWYEx5uimwhV5ZwE7Qd2eM1rVsBIhCpr6S w==;
+X-CSE-ConnectionGUID: 2dJtQ5pLThGtoGPuYPjI1w==
+X-CSE-MsgGUID: Eve0IL7DQiGpRMZCdjTiiA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13355033"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13355033"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 04:27:50 -0700
+X-CSE-ConnectionGUID: QPL/0V3qSxGH0FeXp0ldWA==
+X-CSE-MsgGUID: ENmxweN4Q6yOG6NZVcnyIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="65874017"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 04:27:48 -0700
+Date: Tue, 28 May 2024 14:27:52 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 4/9] drm/i915: Introduce fb->min_alignment
+Message-ID: <ZlW/uMCDFles0dyv@ideak-desk.fi.intel.com>
+References: <20240513175942.12910-1-ville.syrjala@linux.intel.com>
+ <20240513175942.12910-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_WA_for_Re-initialize_dispcn?=
- =?utf-8?q?lunitt1_xosc_clock?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 May 2024 11:27:47 -0000
-Message-ID: <171689566788.2216237.14924593112381059399@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <20240528081821.2809508-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240528081821.2809508-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240513175942.12910-5-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,252 +66,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1249889616072681858==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, May 13, 2024 at 08:59:37PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Different planes could have different alignment requirements
+> even for the same format/modifier. Collect the alignment
+> requirements across all planes capable of scanning out the
+> fb such that the alignment used when pinning the normal ggtt
+> view is satisfactory to all those planes.
+> 
+> When pinning per-plane views we only have to satisfy the
+> alignment requirements of the specific plane.
+> 
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 23 ++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c   | 27 +++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    | 18 +------------
+>  4 files changed, 51 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 40d6e5f4c350..58bb65832adf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -145,6 +145,8 @@ struct intel_framebuffer {
+>  	};
+>  
+>  	struct i915_address_space *dpt_vm;
+> +
+> +	unsigned int min_alignment;
+>  };
+>  
+>  enum intel_hotplug_state {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 3f3a9cd534f4..c5bae05cbbc3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/dma-resv.h>
+>  
+>  #include "i915_drv.h"
+> +#include "intel_atomic_plane.h"
+>  #include "intel_display.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dpt.h"
+> @@ -1616,6 +1617,26 @@ bool intel_fb_supports_90_270_rotation(const struct intel_framebuffer *fb)
+>  	       fb->base.modifier == I915_FORMAT_MOD_Yf_TILED;
+>  }
+>  
+> +static unsigned int intel_fb_min_alignment(const struct drm_framebuffer *fb)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(fb->dev);
+> +	struct intel_plane *plane;
+> +	unsigned int min_alignment = 0;
+> +
+> +	for_each_intel_plane(&i915->drm, plane) {
+> +		if (!drm_plane_has_format(&plane->base, fb->format->format, fb->modifier))
+> +			continue;
+> +
+> +		if (intel_plane_needs_physical(plane))
+> +			continue;
+> +
+> +		min_alignment = max(min_alignment,
+> +				    plane->min_alignment(plane, fb, 0));
+> +	}
+> +
+> +	return min_alignment;
+> +}
+> +
+>  int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *fb)
+>  {
+>  	struct drm_i915_gem_object *obj = intel_fb_obj(&fb->base);
+> @@ -1698,6 +1719,8 @@ int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *
+>  		return -EINVAL;
+>  	}
+>  
+> +	fb->min_alignment = intel_fb_min_alignment(&fb->base);
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> index 9b0f1ea41b70..1ae02de906f5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> @@ -230,13 +230,36 @@ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+>  	i915_vma_put(vma);
+>  }
+>  
+> +static bool gtt_view_is_per_plane(const struct intel_plane_state *plane_state)
+> +{
+> +	const struct intel_framebuffer *fb = to_intel_framebuffer(plane_state->hw.fb);
+> +
+> +	if (plane_state->view.gtt.type == I915_GTT_VIEW_REMAPPED &&
+> +	    intel_fb_needs_pot_stride_remap(fb))
+> +		return false;
 
-== Series Details ==
+The above view is created only once for the FB, I suppose this is how
+you differentiate it from views created each time due to a stride
+limit (based on intel_plane_needs_remap()).
 
-Series: WA for Re-initialize dispcnlunitt1 xosc clock
-URL   : https://patchwork.freedesktop.org/series/134114/
-State : success
+> +
+> +	return plane_state->view.gtt.type != I915_GTT_VIEW_NORMAL;
 
-== Summary ==
+So the rotated and remapped views created for a stride limit are
+per-plane based on the above. There is also a rotated view created only
+once for the FB, is it intentional to regard this kind of view as
+per-plane as well?
 
-CI Bug Log - changes from CI_DRM_14831 -> Patchwork_134114v1
-====================================================
+> +}
+> +
+>  static unsigned int
+>  intel_plane_fb_min_alignment(const struct intel_plane_state *plane_state)
+>  {
+>  	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+> -	const struct drm_framebuffer *fb = plane_state->hw.fb;
+> +	const struct intel_framebuffer *fb = to_intel_framebuffer(plane_state->hw.fb);
+>  
+> -	return plane->min_alignment(plane, fb, 0);
+> +	/*
+> +	 * Only use plane specific alignment for binding
+> +	 * a per-plane gtt view (remapped or rotated),
+> +	 * otherwise make sure the alignment is suitable
+> +	 * for all planes.
+> +	 */
+> +	if (!gtt_view_is_per_plane(plane_state))
+> +		return fb->min_alignment;
+> +
+> +	if (intel_plane_needs_physical(plane))
+> +		return 0;
 
-Summary
--------
+I guess the above is ok, though looks like an unrelated change: the
+cursor plane min_alignment() for relevant platforms is <= 4k, which will
+be rounded up to 4k anyway when binding the vma.
 
-  **SUCCESS**
+> +
+> +	return plane->min_alignment(plane, &fb->base, 0);
 
-  No regressions found.
+The commit could've had more details about the rational for the above.
+As I understand it avoids having to rebind the vma for different plane
+types, though this is already handled to some degree by
+i915_vma::display_alignment.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/index.html
-
-Participating hosts (37 -> 33)
-------------------------------
-
-  Additional (1): bat-atsm-1 
-  Missing    (5): fi-glk-j4005 fi-elk-e7500 bat-dg2-11 bat-jsl-3 bat-mtlp-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_134114v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-8:          [PASS][1] -> [FAIL][2] ([i915#10378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14831/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@gem_mmap@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][3] ([i915#4083])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@gem_mmap@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][4] ([i915#4079]) +1 other test skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#6621])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_addfb_basic@size-max:
-    - bat-atsm-1:         NOTRUN -> [SKIP][6] ([i915#6077]) +37 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_addfb_basic@size-max.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][7] ([i915#6078]) +22 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-atsm-1:         NOTRUN -> [SKIP][8] ([i915#6093]) +4 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-atsm-1:         NOTRUN -> [SKIP][9] ([i915#1836]) +6 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][10] ([i915#7357])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_prop_blob@basic.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-atsm-1:         NOTRUN -> [SKIP][11] ([i915#6094])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-atsm-1:         NOTRUN -> [SKIP][12] ([i915#4077]) +4 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-atsm-1:         NOTRUN -> [SKIP][13] +2 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@prime_vgem@basic-write.html
-
-  
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
-  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
-  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
-  [i915#6078]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6078
-  [i915#6093]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6093
-  [i915#6094]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6094
-  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
-  [i915#7357]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7357
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14831 -> Patchwork_134114v1
-
-  CI-20190529: 20190529
-  CI_DRM_14831: 5ba74aaea55bf295898f2a4f69c59fe12e84e842 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7872: baba9988c34c55977332044f3521cfbba80ca630 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_134114v1: 5ba74aaea55bf295898f2a4f69c59fe12e84e842 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/index.html
-
---===============1249889616072681858==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>WA for Re-initialize dispcnlunitt1 xosc clock</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134114/">https://patchwork.freedesktop.org/series/134114/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14831 -&gt; Patchwork_134114v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 33)</h2>
-<p>Additional (1): bat-atsm-1 <br />
-  Missing    (5): fi-glk-j4005 fi-elk-e7500 bat-dg2-11 bat-jsl-3 bat-mtlp-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_134114v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14831/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@size-max:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_addfb_basic@size-max.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +37 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6078">i915#6078</a>) +22 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6093">i915#6093</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7357">i915#7357</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6094">i915#6094</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134114v1/bat-atsm-1/igt@prime_vgem@basic-write.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14831 -&gt; Patchwork_134114v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14831: 5ba74aaea55bf295898f2a4f69c59fe12e84e842 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7872: baba9988c34c55977332044f3521cfbba80ca630 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_134114v1: 5ba74aaea55bf295898f2a4f69c59fe12e84e842 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1249889616072681858==--
+>  }
+>  
+>  static unsigned int
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index ff685aebbd1a..124aac172acb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -46,7 +46,6 @@
+>  #include "gem/i915_gem_mman.h"
+>  
+>  #include "i915_drv.h"
+> -#include "intel_crtc.h"
+>  #include "intel_display_types.h"
+>  #include "intel_fb.h"
+>  #include "intel_fb_pin.h"
+> @@ -172,21 +171,6 @@ static const struct fb_ops intelfb_ops = {
+>  
+>  __diag_pop();
+>  
+> -static unsigned int intel_fbdev_min_alignment(const struct drm_framebuffer *fb)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(fb->dev);
+> -	struct intel_plane *plane;
+> -	struct intel_crtc *crtc;
+> -
+> -	crtc = intel_first_crtc(i915);
+> -	if (!crtc)
+> -		return 0;
+> -
+> -	plane = to_intel_plane(crtc->base.primary);
+> -
+> -	return plane->min_alignment(plane, fb, 0);
+> -}
+> -
+>  static int intelfb_create(struct drm_fb_helper *helper,
+>  			  struct drm_fb_helper_surface_size *sizes)
+>  {
+> @@ -244,7 +228,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>  	 * BIOS is suitable for own access.
+>  	 */
+>  	vma = intel_fb_pin_to_ggtt(&fb->base, &view,
+> -				   intel_fbdev_min_alignment(&fb->base), 0,
+> +				   fb->min_alignment, 0,
+>  				   false, &flags);
+>  	if (IS_ERR(vma)) {
+>  		ret = PTR_ERR(vma);
+> -- 
+> 2.43.2
+> 
