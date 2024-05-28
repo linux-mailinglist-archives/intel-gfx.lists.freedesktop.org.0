@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75BE8D1967
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 13:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE77D8D1968
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 13:29:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 563AC112040;
-	Tue, 28 May 2024 11:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 197651120E7;
+	Tue, 28 May 2024 11:29:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQtHVUeK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l/Cl2p6C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CDCF11219E
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 May 2024 11:29:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A7F112172
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 May 2024 11:29:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716895753; x=1748431753;
+ t=1716895754; x=1748431754;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=o5ndWSsy0+wNS560NAkmzs5oBpGlC86Q7Utk0uxaIXM=;
- b=kQtHVUeKXNJRea4ylZOhmwFriAByThBCJHEpR6ltqCMZRuXFuRPfkFEt
- l8oN8VXgX1rdxUN06xADKTXtYl8G6m4WFVG7uOrcIozsEtfhQrcoIo1QP
- pNjAj3GdTVGcwv+eQzeRyFi1YSGpZqRiJY57aG5BGDVVRjN692wKtmw0L
- YjCtOZgw0k5N/Qj8QVOV7GTnJ5zaWdZIovRTyo6a80Dj+YYFI7PlwZzWE
- ebQBZ61erTPkx0bLx0GrG7dtdd7EZ2DqL+kaz95sYIhE7eZ8Nm8MTTqeU
- gkIy9gLF3hfOZ3kXmjYOrVMkORVJjcHiHUJwU2dj/8Mwc8AzaQzPRWEnJ w==;
-X-CSE-ConnectionGUID: BtXIitNiQeu5bD2AoPzBLA==
-X-CSE-MsgGUID: 0CTPC8zoSrKXk2F1nzY97A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13078572"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13078572"
+ bh=ttBRv4YBl05C6t49B4+cpoTdPE0YTPIM83n7IlyqAU4=;
+ b=l/Cl2p6CcJxsf8y1CdxnOa54aEkVN965hJIp6yjiHpxeGP0tRIk5zfJl
+ fK0+GpyDzDS3ivDY0myN+2H2K8zm+r54krx8mpGiIMbxoymkwZdRl/Vy1
+ R+zSgBqagNxaXsKSfKbyPVQKHeSHBOopTSh3YdBsBHYU+J1e+RlwpQ0JY
+ V0sU6U1r3auUtKmDuEokkF9V5DQj3JY45bWDd9883iimuAUbC3Nxjj9q0
+ OcZmbm7fJaGZwoygNykdVuyAG7GDg7g39s0s4fmM4uT/rd7hrmUyuPZow
+ JaFpmLyDMTP0SJYjpTaHxOs2kxhexUlPxe0FscR9Y2CPqVhEftYrTLOgj A==;
+X-CSE-ConnectionGUID: dUhQcO9aTCGf04QvofgZMA==
+X-CSE-MsgGUID: 3al3rpDQQLa1ezfrB6UyEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13078577"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13078577"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 04:29:13 -0700
-X-CSE-ConnectionGUID: y8iN3dtTTd6YChpMIp+Y7w==
-X-CSE-MsgGUID: 14hiiR87TCKXJB+IrYp05w==
+ 28 May 2024 04:29:14 -0700
+X-CSE-ConnectionGUID: pXvZKWzHSNSYDs9oxmkQbw==
+X-CSE-MsgGUID: 7AJxIgmaQo6AXWRwKRp/cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="34962276"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="34962283"
 Received: from dgoldx-mobl1.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
  ([10.249.36.167])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 04:29:12 -0700
+ 28 May 2024 04:29:13 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@intel.com
-Subject: [PATCH 1/2] drm/i915/bios: double check array-boundary in
- parse_sdvo_lvds_data
-Date: Tue, 28 May 2024 14:29:00 +0300
-Message-Id: <20240528112901.476068-2-luciano.coelho@intel.com>
+Subject: [PATCH 2/2] drm/i915: move uapi.event outside spinlock in
+ intel_crtc_vblank_work
+Date: Tue, 28 May 2024 14:29:01 +0300
+Message-Id: <20240528112901.476068-3-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240528112901.476068-1-luciano.coelho@intel.com>
 References: <20240528112901.476068-1-luciano.coelho@intel.com>
@@ -69,44 +69,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During static analysis, a concern was raised that we may access the
-dtd->dtd[] array out of bounds, because we are not checking whether
-the index we use is larger than the array.
+In intel_crtc_vblank_work(), we access uapi.event before grabbing the
+event_lock spinlock, but modify it inside the spinlock block.  This
+causes some static analyzers to get confused and issue a warning.
 
-This should not be a problem as is, because the enumeration that is
-used for this index comes from "panel_type", which uses an enumeration
-with 4 items.  But if this enumeration is ever changed, it can lead to
-hard-to-detect bugs, so better double-check it before using it as an
-index to the array.
+The uapi.event value is not protected by the event_lock, so we can
+safely move it out of the protected block to prevent false positives.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index b0a49b2f957f..128fe9250f40 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1120,6 +1120,18 @@ parse_sdvo_lvds_data(struct drm_i915_private *i915,
- 	if (!dtd)
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index ca6dc1dc56c8..bf6e74e99f5c 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -411,8 +411,8 @@ static void intel_crtc_vblank_work(struct kthread_work *base)
+ 	if (crtc_state->uapi.event) {
+ 		spin_lock_irq(&crtc->base.dev->event_lock);
+ 		drm_crtc_send_vblank_event(&crtc->base, crtc_state->uapi.event);
+-		crtc_state->uapi.event = NULL;
+ 		spin_unlock_irq(&crtc->base.dev->event_lock);
++		crtc_state->uapi.event = NULL;
+ 	}
  
-+	/*
-+	 * This should not happen, as long as the panel_type
-+	 * enumeration doesn't grow over 4 items.  But if it does, it
-+	 * could lead to hard-to-detect bugs, so better double-check
-+	 * it here to be sure.
-+	 */
-+	if (index >= ARRAY_SIZE(dtd->dtd)) {
-+		drm_err(&i915->drm, "index %d is larger than dtd->dtd[4] array\n",
-+			index);
-+		return;
-+	}
-+
- 	panel_fixed_mode = kzalloc(sizeof(*panel_fixed_mode), GFP_KERNEL);
- 	if (!panel_fixed_mode)
- 		return;
+ 	trace_intel_crtc_vblank_work_end(crtc);
 -- 
 2.39.2
 
