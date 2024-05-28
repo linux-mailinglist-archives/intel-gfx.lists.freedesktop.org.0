@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9988D17EF
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 12:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47D058D17F4
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 12:02:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC02D1120B1;
-	Tue, 28 May 2024 10:02:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PjGIzdxW";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 463B51120BE;
+	Tue, 28 May 2024 10:02:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B17681120BF
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 May 2024 10:02:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716890521; x=1748426521;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7RNWhGNJXGj8/bGGYwVaxOcoWb9rNv3Xr1IdhiWwU4M=;
- b=PjGIzdxWfzqUoInjUuo3hPVuyFm9sADNjqDXpU17I47NnL2YxnM37bly
- iH/rs4OZCqsWRgkn/u6qC/dXqpFop3ddMv8jHkVH1avcYo5wwbaxmwHLu
- Iv7F9nRrn2h7UDOib3W8Ta94QEdrtUYpL7Oci8EhuBdagPEeeM8vXn5DD
- fYeFlv8xnL3wEOwkE2fX2oYHMITBuO8DzjeSawipuq+MwTZ6dVZS2HYYX
- fzXUN1zd8Kpgl4B57lvwXCsLwE179/GCTjzlsHoPF8W2fHFU3WHh6R6ra
- 3igx9eJgf0AqbemiOYSYnWv42cmWP9T+gf5Yz4Vs31wqrDrySWqu28i9F Q==;
-X-CSE-ConnectionGUID: zz0WnwdoSIec02pEA10lyQ==
-X-CSE-MsgGUID: +/9PSKu+TFuMRJoJT3cA+g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="30746864"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="30746864"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 03:02:00 -0700
-X-CSE-ConnectionGUID: 7d9slUCuTnObmxbmVGs6Qg==
-X-CSE-MsgGUID: +vB3p2uITcmsx3lCSwflWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39846758"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO vgovind2-mobl3..)
- ([10.245.244.205])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 03:01:56 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
- jani.nikula@intel.com
-Subject: [PATCH v2] drm/i915/display: update handling of FBC when VT-d active
- workaround
-Date: Tue, 28 May 2024 13:01:38 +0300
-Message-Id: <20240528100138.107414-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38B71120BF;
+ Tue, 28 May 2024 10:02:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1760873498535506326=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Fix_cursor_FB_unpinning=2E_?=
+ =?utf-8?q?=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 May 2024 10:02:17 -0000
+Message-ID: <171689053792.2215486.6689359403484192892@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,69 +37,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the handling of the disabling FBC when VT-d is active wa
-as part of the intel_fbc_check_plane(). As the hw is still there,
-intel_fbc_sanitize should be able to handle the state properly.
+--===============1760873498535506326==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: update the patch description (Jani Nikula)
+== Series Details ==
 
-Bspec: 21664
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 22 ++++++----------------
- 1 file changed, 6 insertions(+), 16 deletions(-)
+Series: Fix cursor FB unpinning. (rev2)
+URL   : https://patchwork.freedesktop.org/series/133896/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index e9189a864f69..492dc26ecfa2 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1235,6 +1235,12 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
-+	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
-+	if (i915_vtd_active(i915) && (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
-+		plane_state->no_fbc_reason = "VT-d enabled";
-+		return true;
-+	}
-+
- 	crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
- 
- 	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE) {
-@@ -1820,19 +1826,6 @@ static int intel_sanitize_fbc_option(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--static bool need_fbc_vtd_wa(struct drm_i915_private *i915)
--{
--	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
--	if (i915_vtd_active(i915) &&
--	    (IS_SKYLAKE(i915) || IS_BROXTON(i915))) {
--		drm_info(&i915->drm,
--			 "Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
--		return true;
--	}
--
--	return false;
--}
--
- void intel_fbc_add_plane(struct intel_fbc *fbc, struct intel_plane *plane)
- {
- 	plane->fbc = fbc;
-@@ -1878,9 +1871,6 @@ void intel_fbc_init(struct drm_i915_private *i915)
- {
- 	enum intel_fbc_id fbc_id;
- 
--	if (need_fbc_vtd_wa(i915))
--		DISPLAY_RUNTIME_INFO(i915)->fbc_mask = 0;
--
- 	i915->display.params.enable_fbc = intel_sanitize_fbc_option(i915);
- 	drm_dbg_kms(&i915->drm, "Sanitized enable_fbc value: %d\n",
- 		    i915->display.params.enable_fbc);
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_14829 -> Patchwork_133896v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/index.html
+
+Participating hosts (40 -> 34)
+------------------------------
+
+  Missing    (6): bat-kbl-2 fi-glk-j4005 fi-cfl-8109u fi-elk-e7500 bat-dg2-11 bat-mtlp-8 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_133896v2 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [ABORT][1] ([i915#10594]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14829/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#10594]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14829 -> Patchwork_133896v2
+
+  CI-20190529: 20190529
+  CI_DRM_14829: 37c66dc55bdd7959ff2b52240d1f805f7cc6c272 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7872: baba9988c34c55977332044f3521cfbba80ca630 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133896v2: 37c66dc55bdd7959ff2b52240d1f805f7cc6c272 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/index.html
+
+--===============1760873498535506326==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix cursor FB unpinning. (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133896/">https://patchwork.freedesktop.org/series/133896/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14829 -&gt; Patchwork_133896v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/index.html</p>
+<h2>Participating hosts (40 -&gt; 34)</h2>
+<p>Missing    (6): bat-kbl-2 fi-glk-j4005 fi-cfl-8109u fi-elk-e7500 bat-dg2-11 bat-mtlp-8 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133896v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14829/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594">i915#10594</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133896v2/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14829 -&gt; Patchwork_133896v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14829: 37c66dc55bdd7959ff2b52240d1f805f7cc6c272 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7872: baba9988c34c55977332044f3521cfbba80ca630 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133896v2: 37c66dc55bdd7959ff2b52240d1f805f7cc6c272 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1760873498535506326==--
