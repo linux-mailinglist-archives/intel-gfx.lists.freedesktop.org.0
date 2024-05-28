@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF828D1CC3
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 15:23:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E062A8D1DCB
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 16:00:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B57D10E0FE;
-	Tue, 28 May 2024 13:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB8110EC04;
+	Tue, 28 May 2024 14:00:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ICuO7VJY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hr2cb1JY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5D5510E0FE;
- Tue, 28 May 2024 13:22:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33E0E1122E4;
+ Tue, 28 May 2024 14:00:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716902575; x=1748438575;
+ t=1716904837; x=1748440837;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=XEOPjns0nVXCGzx+SC2kPEHOM+3C3+LQ4sn059mNQXY=;
- b=ICuO7VJYjkzEziwzpFEG8Bay4laV3vRSEkCL+HUYhxeyNR2T5+Scqfhq
- A5hKhy7aaNzRMA4jhe/mBroJwnv/VHiszkx/NPpk/uXaPbTQVqrt8yZwi
- U7rLb+cai8W6T9bzZc7aVHv58NzWApJtztF3zqoP1dMZJ28jwyKDaSZTE
- TD0TG5kZWZgtXtCTbKGUTFNJs3KbO/RPRSH/Kez1r0IC9dllWYDhNMwrW
- 0CNFM+PO4r6w6Qk+NNYrSPEit5+cLB6ry3Brjsisa7o601XgdW0773jyF
- sBV9KtwOUUdC3Wb+Ime4JiDyV7Ub/asl4A6uDbpuFVhM/XWIKKRm+gmnl g==;
-X-CSE-ConnectionGUID: nhvqTtadTjmGIkPe/JGd5w==
-X-CSE-MsgGUID: zv/MTyXzQPqdLTwANL1rww==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13415184"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13415184"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 06:22:55 -0700
-X-CSE-ConnectionGUID: G6xQX+ntSNeozMHlXb6VhA==
-X-CSE-MsgGUID: efQb0vaaQu6o80L7nWm6ww==
+ bh=wuwD9M3OnrW3S+ZzJk0mp/tDlv32D7qXk0sSujXymA0=;
+ b=hr2cb1JYCJl9yHQmkiYUisgf2AZmPhsCKP1gCrGcvwCaMgkUHs5YalV6
+ z8pM7lG1+xwrF7QRc1bumlk/dlq/bzsfgkbxHY5o/yax0+kIH+AZKlw0H
+ GTLBmffRmeQUXWTD4lGoPfnHn7BKgwnxiD3f5VboIhZufKsdm1+saT1Ar
+ InKz6fnH0NtiK7opbg5fIBfco1yQ58f1q214xY78Cm+PRbUynFobbnPbW
+ rlbiR8aTM5/YZd2vFZj6cRPlCVfuWfwllEyQ3Xm5Q/m6jtsbZeFU+ZVyE
+ 42O4GiMWP3W4mO3bpGeOZd9iddTnjOz0eUmDx2T6KC/vsXASK66kspLHK w==;
+X-CSE-ConnectionGUID: EoFD0fHXTn6YEftwJpWILA==
+X-CSE-MsgGUID: uqhmJ2eoSCexQFGlXTBxfg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13021713"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="13021713"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 07:00:36 -0700
+X-CSE-ConnectionGUID: orumg5ZrQfmT5LXl4BDupw==
+X-CSE-MsgGUID: IU7j43npSA2F7ZOilOgQ7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="35128472"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="72507202"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 06:22:54 -0700
-Date: Tue, 28 May 2024 16:22:59 +0300
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 07:00:35 -0700
+Date: Tue, 28 May 2024 17:00:40 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 8/9] drm/i915: Update plane alignment requirements for TGL+
-Message-ID: <ZlXas05WHYVoEG3S@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH 9/9] drm/i915: Nuke the TGL+ chroma plane tile row
+ alignment stuff
+Message-ID: <ZlXjiHRpcEa37hU9@ideak-desk.fi.intel.com>
 References: <20240513175942.12910-1-ville.syrjala@linux.intel.com>
- <20240513175942.12910-9-ville.syrjala@linux.intel.com>
+ <20240513175942.12910-10-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240513175942.12910-9-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240513175942.12910-10-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,167 +71,109 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 13, 2024 at 08:59:41PM +0300, Ville Syrjala wrote:
+On Mon, May 13, 2024 at 08:59:42PM +0300, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Currently we still use the SKL+ PLANE_SURF alignment even
-> for TGL+ even though the hardware no longer needs it.
-> Introduce a separate tgl_plane_min_alignment() and update
-> it to more accurately reflect the hardware requirements.
+> I don't think the display hardware really has such chroma
+> plane tile row alignment requirements as outlined in
+> commit d156135e6a54 ("drm/i915/tgl: Make sure a semiplanar
+> UV plane is tile row size aligned")
+> 
+> Bspec had the same exact thing to say about earlier hardware
+> as well, but we never cared and things work just fine.
+> 
+> The one thing mentioned in that commit that is definitely
+> true however is the fence alignment issue. But we don't
+> deal with that on earlier hardware either. We do have code
+> to deal with that issue for the first color plane, but not
+> the chroma planes. So I think if we did want to check this
+> more extensively we should do it in the same places where
+> we already check the first color plane (namely
+> convert_plane_offset_to_xy() and intel_fb_bo_framebuffer_init()).
+
+Imo a correct alignment should be required to help users figure out why
+a given config doesn't work (even if an incorrect alignment doesn't
+cause other HW issues). But agreed that it should be the same then for
+all platforms, so ok to remove it in its current form.
+
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  .../drm/i915/display/skl_universal_plane.c    | 103 ++++++++++--------
->  1 file changed, 55 insertions(+), 48 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_fb.c            | 12 +-----------
+>  drivers/gpu/drm/i915/display/intel_fb.h            |  1 -
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 11 -----------
+>  3 files changed, 1 insertion(+), 23 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 1ecd7c691317..ca7fc9fae990 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -502,75 +502,79 @@ skl_plane_max_stride(struct intel_plane *plane,
->  				max_pixels, max_bytes);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index c80f866f3fb6..fc18da3106fd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -584,12 +584,6 @@ static bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int color_pl
+>  	return intel_fb_rc_ccs_cc_plane(fb) == color_plane;
 >  }
 >  
-> -static unsigned int skl_plane_min_alignment(struct intel_plane *plane,
-> -					    const struct drm_framebuffer *fb,
-> -					    int color_plane)
-> +static u32 tgl_plane_min_alignment(struct intel_plane *plane,
-> +				   const struct drm_framebuffer *fb,
-> +				   int color_plane)
+> -bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane)
+> -{
+> -	return intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
+> -		color_plane == 1;
+> -}
+> -
+>  bool is_surface_linear(const struct drm_framebuffer *fb, int color_plane)
 >  {
-> -	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-> -
-> -	if (intel_fb_uses_dpt(fb)) {
-> -		/* AUX_DIST needs only 4K alignment */
-> -		if (intel_fb_is_ccs_aux_plane(fb, color_plane))
-> -			return 512 * 4096;
-> -
-> -		/*
-> -		 * FIXME ADL sees GGTT/DMAR faults with async
-> -		 * flips unless we align to 16k at least.
-> -		 * Figure out what's going on here...
-> -		 */
-> -		if (IS_ALDERLAKE_P(dev_priv) &&
-> -		    !intel_fb_is_ccs_modifier(fb->modifier) &&
-> -		    HAS_ASYNC_FLIPS(dev_priv))
-> -			return 512 * 16 * 1024;
-> -
-> -		return 512 * 4096;
-> -	}
-> +	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> +	/* PLANE_SURF GGTT -> DPT alignment */
-> +	int mult = intel_fb_uses_dpt(fb) ? 512 : 1;
+>  	return fb->modifier == DRM_FORMAT_MOD_LINEAR ||
+> @@ -1019,11 +1013,7 @@ static int intel_fb_offset_to_xy(int *x, int *y,
+>  	struct drm_i915_private *i915 = to_i915(fb->dev);
+>  	unsigned int height, alignment, unused;
 >  
->  	/* AUX_DIST needs only 4K alignment */
+> -	if (DISPLAY_VER(i915) >= 12 &&
+> -	    !intel_fb_needs_pot_stride_remap(to_intel_framebuffer(fb)) &&
+> -	    is_semiplanar_uv_plane(fb, color_plane))
+> -		alignment = intel_tile_row_size(fb, color_plane);
+> -	else if (fb->modifier != DRM_FORMAT_MOD_LINEAR)
+> +	if (fb->modifier != DRM_FORMAT_MOD_LINEAR)
+>  		alignment = intel_tile_size(i915);
+>  	else
+>  		alignment = 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+> index 1b1fef2dc39a..6dee0c8b7f22 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> @@ -34,7 +34,6 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
+>  bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+>  bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+>  
+> -bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane);
+>  bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
+>  int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index ca7fc9fae990..476f5b7d9497 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -514,17 +514,6 @@ static u32 tgl_plane_min_alignment(struct intel_plane *plane,
 >  	if (intel_fb_is_ccs_aux_plane(fb, color_plane))
-> -		return 4096;
-> +		return mult * 4 * 1024;
+>  		return mult * 4 * 1024;
 >  
->  	if (is_semiplanar_uv_plane(fb, color_plane)) {
->  		/*
->  		 * TODO: cross-check wrt. the bspec stride in bytes * 64 bytes
->  		 * alignment for linear UV planes on all platforms.
->  		 */
-> -		if (DISPLAY_VER(dev_priv) >= 12) {
-> -			if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
-> -				return 256 * 1024;
+> -	if (is_semiplanar_uv_plane(fb, color_plane)) {
+> -		/*
+> -		 * TODO: cross-check wrt. the bspec stride in bytes * 64 bytes
+> -		 * alignment for linear UV planes on all platforms.
+> -		 */
+> -		if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
+> -			return 256 * 1024;
 > -
-> -			return intel_tile_row_size(fb, color_plane);
-> -		}
-> -
-> -		return 4096;
+> -		return intel_tile_row_size(fb, color_plane);
 > -	}
-> -
-> -	drm_WARN_ON(&dev_priv->drm, color_plane != 0);
-> -
-> -	switch (fb->modifier) {
-> -	case DRM_FORMAT_MOD_LINEAR:
-> -		return 256 * 1024;
-> -	case I915_FORMAT_MOD_X_TILED:
-> -		if (HAS_ASYNC_FLIPS(dev_priv))
-> +		if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
->  			return 256 * 1024;
-> -		return 0;
-> +
-> +		return intel_tile_row_size(fb, color_plane);
-> +	}
-> +
-> +	switch (fb->modifier) {
-> +	case DRM_FORMAT_MOD_LINEAR:
-> +	case I915_FORMAT_MOD_X_TILED:
-> +	case I915_FORMAT_MOD_Y_TILED:
-> +	case I915_FORMAT_MOD_4_TILED:
-> +		/*
-> +		 * FIXME ADL sees GGTT/DMAR faults with async
-> +		 * flips unless we align to 16k at least.
-> +		 * Figure out what's going on here...
-> +		 */
-> +		if (IS_ALDERLAKE_P(i915) && HAS_ASYNC_FLIPS(i915))
 
-On ADL HAS_ASYNC_FLIPS() is always true, otherwise looks ok:
+The above will also use the correct 2MB for DPT, which the previous
+patch should've kept already. Other than that looks ok:
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-> +			return mult * 16 * 1024;
-> +		return mult * 4 * 1024;
->  	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
->  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
->  	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
-> +	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-> +	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-> +	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
->  	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
->  	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
->  	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
-> -		return 16 * 1024;
-> +		/* 4x1 main surface tiles (16K) match 64B of AUX */
-> +		return max(mult * 4 * 1024, 16 * 1024);
-> +	default:
-> +		MISSING_CASE(fb->modifier);
-> +		return 0;
-> +	}
-> +}
-> +
-> +static u32 skl_plane_min_alignment(struct intel_plane *plane,
-> +				   const struct drm_framebuffer *fb,
-> +				   int color_plane)
-> +{
-> +	/*
-> +	 * AUX_DIST needs only 4K alignment,
-> +	 * as does ICL UV PLANE_SURF.
-> +	 */
-> +	if (color_plane != 0)
-> +		return 4 * 1024;
-> +
-> +	switch (fb->modifier) {
-> +	case DRM_FORMAT_MOD_LINEAR:
-> +	case I915_FORMAT_MOD_X_TILED:
-> +		return 256 * 1024;
->  	case I915_FORMAT_MOD_Y_TILED_CCS:
->  	case I915_FORMAT_MOD_Yf_TILED_CCS:
->  	case I915_FORMAT_MOD_Y_TILED:
-> -	case I915_FORMAT_MOD_4_TILED:
->  	case I915_FORMAT_MOD_Yf_TILED:
->  		return 1 * 1024 * 1024;
-> -	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
-> -	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
-> -	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
-> -		return 16 * 1024;
->  	default:
->  		MISSING_CASE(fb->modifier);
->  		return 0;
-> @@ -2442,7 +2446,10 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  	else
->  		plane->max_stride = skl_plane_max_stride;
->  
-> -	plane->min_alignment = skl_plane_min_alignment;
-> +	if (DISPLAY_VER(dev_priv) >= 12)
-> +		plane->min_alignment = tgl_plane_min_alignment;
-> +	else
-> +		plane->min_alignment = skl_plane_min_alignment;
->  
->  	if (DISPLAY_VER(dev_priv) >= 11) {
->  		plane->update_noarm = icl_plane_update_noarm;
+> -
+>  	switch (fb->modifier) {
+>  	case DRM_FORMAT_MOD_LINEAR:
+>  	case I915_FORMAT_MOD_X_TILED:
 > -- 
 > 2.43.2
 > 
