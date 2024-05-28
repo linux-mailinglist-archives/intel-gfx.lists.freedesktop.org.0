@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA7C8D1EB6
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 16:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9D58D1EC3
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 16:28:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26EB31122BA;
-	Tue, 28 May 2024 14:26:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HmXMaSyX";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4108810E06D;
+	Tue, 28 May 2024 14:28:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71925112311;
- Tue, 28 May 2024 14:26:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716906371; x=1748442371;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+jPZIQYo2qmwLxYm20fZb0xgJQnBVtQKgj7vfVO8dSg=;
- b=HmXMaSyXMYkjJFRaphxHzw6LejbtOr1dC3b7l8wn5tlDtnDtbaMJRreW
- qTYKeYySACUJy0V8gTArPHbwuHy19Dr5mnv5tcQLrYi3um0ARiumydwMF
- Yg+15XE5wcEKt9OQyG/LiJZHg9p38XpkGN0qBkI3PjgXfCYRaN13dz4Ud
- dmoirAKYjRt7B+/KzFeyyIqIezf2AtFWF91iiDCACgYH9pY3uhj+2hnHR
- 9X+LOh3rPUgbbxxfy2hsj0BF0ZYyWdPg5gxtioI8vcnVZ1MkqSm2QOZW1
- Oqh/SlwQa7hLUhFm0ozwOtPViUGwYW9EeVaPruMBWPEOhhJN4WGwUlNoR Q==;
-X-CSE-ConnectionGUID: sC4njDLSSsSHhd6Z4gFssA==
-X-CSE-MsgGUID: KzYVMrlBR2Oqyj7zRS9IrQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="24669311"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="24669311"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 07:26:11 -0700
-X-CSE-ConnectionGUID: g0FuLiOrTWyX6WTfqHzDsg==
-X-CSE-MsgGUID: Y4PdURhMRv+AJQcS+K2PNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="65927445"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.13])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 07:26:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 12/12] drm/xe/display: drop unused rawclk_freq and
- RUNTIME_INFO()
-Date: Tue, 28 May 2024 17:25:01 +0300
-Message-Id: <abb9c17cec091943d15d988dbd37ca634e1194e1.1716906179.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1716906179.git.jani.nikula@intel.com>
-References: <cover.1716906179.git.jani.nikula@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51A6510E06D;
+ Tue, 28 May 2024 14:28:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2113850454858943888=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Panel_Replay_eDP_debugfs_su?=
+ =?utf-8?q?pport?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 May 2024 14:28:38 -0000
+Message-ID: <171690651832.2216896.8333484370855244318@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <20240528114455.175961-1-jouni.hogander@intel.com>
+In-Reply-To: <20240528114455.175961-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,47 +37,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With rawclk_freq moved to display runtime info, xe has no users left for
-them.
+--===============2113850454858943888==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
- drivers/gpu/drm/xe/xe_device_types.h              | 6 ------
- 2 files changed, 7 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index cd4632276141..6c5830875091 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -181,7 +181,6 @@ struct i915_sched_attr {
- 	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
- 
- #define pdev_to_i915 pdev_to_xe_device
--#define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
- 
- #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
- 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index d834905a3786..0211e4d8a0f2 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -288,12 +288,6 @@ struct xe_device {
- 		u8 has_atomic_enable_pte_bit:1;
- 		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
- 		u8 has_device_atomics_on_smem:1;
--
--#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--		struct {
--			u32 rawclk_freq;
--		} i915_runtime;
--#endif
- 	} info;
- 
- 	/** @irq: device interrupt state */
--- 
-2.39.2
+Series: Panel Replay eDP debugfs support
+URL   : https://patchwork.freedesktop.org/series/134125/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_14833 -> Patchwork_134125v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/index.html
+
+Participating hosts (39 -> 37)
+------------------------------
+
+  Missing    (2): fi-kbl-7567u fi-kbl-8809g 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_134125v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-3:         [PASS][1] -> [ABORT][2] ([i915#10937])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14833/bat-arls-3/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/bat-arls-3/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#10937]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10937
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14833 -> Patchwork_134125v1
+
+  CI-20190529: 20190529
+  CI_DRM_14833: 74ca368d029a2f7918fd2702caa402c156821cca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7872: baba9988c34c55977332044f3521cfbba80ca630 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_134125v1: 74ca368d029a2f7918fd2702caa402c156821cca @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/index.html
+
+--===============2113850454858943888==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Panel Replay eDP debugfs support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134125/">https://patchwork.freedesktop.org/series/134125/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14833 -&gt; Patchwork_134125v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 37)</h2>
+<p>Missing    (2): fi-kbl-7567u fi-kbl-8809g </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_134125v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14833/bat-arls-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134125v1/bat-arls-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10937">i915#10937</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14833 -&gt; Patchwork_134125v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14833: 74ca368d029a2f7918fd2702caa402c156821cca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7872: baba9988c34c55977332044f3521cfbba80ca630 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_134125v1: 74ca368d029a2f7918fd2702caa402c156821cca @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2113850454858943888==--
