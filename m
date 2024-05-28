@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DCF18D1EB0
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 16:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A1398D1EB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 16:26:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F14A1122C5;
-	Tue, 28 May 2024 14:26:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8949112268;
+	Tue, 28 May 2024 14:26:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bqo9Crs5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bwVvTyRs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4263410FA16;
- Tue, 28 May 2024 14:25:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20EE710E7D0;
+ Tue, 28 May 2024 14:25:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716906354; x=1748442354;
+ t=1716906360; x=1748442360;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UFPLV0K/QJCW5a0HP8MWN60r/LumKh0UVZF2JRSXmAc=;
- b=Bqo9Crs59LxTA9H9zB/p+P0PW6BfZbaBnBeb/y44bRtp12p/4fjO0PUK
- QBcz2/ZN9g/IpjVWZq88OsYnLaFvxjt/iDD9IMIXkrblTBb7fr18JTsna
- wE1Mah+FyL6kINwBlxAjli1YGdTj/IJL6BitSXvatjjtth2LAollioLPH
- 3X5rasre3ONbDQURbIWO75EOnPW0QOZAJs6nSxL3QodGq9nGmyJyvyOkP
- SYhq5Quyw3G4zE5gZShDCVG0/Oooxcyw1cVtY1mcf8jBsMiHzQFIUBZbi
- eagRicUxZKDxo20L2+olKDP/yaRJYBAaMOscEsgp9359Dh5a2bfUlAnTo w==;
-X-CSE-ConnectionGUID: p7hjyCYuTEC/sbvf8je/Tg==
-X-CSE-MsgGUID: /7baVOe4RimSrm9CeRieJw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="35769089"
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="35769089"
+ bh=B+bfYKgW+jY0n18PnE1cyl6MYORAdC630Q2B44d5xWY=;
+ b=bwVvTyRsCemNi1wqm99KOAhW7/+7I0HIHBn0HQHZjb7r2T5RmtStlrr0
+ Q6/ZcdlQZCnv0ddFNovEEOLSE2PTF/4OoizXvk3vWsryAsg52rUvnVm3q
+ Uizyqkm8wGiy7ttjj0XBauYKCohdeGAVSp3sRkZKXKYMFGyTrQ7B2oVE9
+ 0bxpYhXaHBWy7IXGP7OcbpMDZDVCMk4d/W+891OHjQ2LStjd50B4288+s
+ t+aO1dq+dYyODLowUYCuQPTRyw0JC1Uauxc5KIa3c0qhLp14DXAufMzYo
+ sXG3Ch2Ofw0XwTTTM6cdItTR+ptG8/D6uQfjgMR/stxq28N1LEa15L8ul w==;
+X-CSE-ConnectionGUID: Wo9f6HHFRC+zADz7u1iZjQ==
+X-CSE-MsgGUID: ymOGgcTzRvGiKzPI8GuIkg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="35769130"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="35769130"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 07:25:54 -0700
-X-CSE-ConnectionGUID: hLmegPWrQICcUBlFcltK5g==
-X-CSE-MsgGUID: 9eRDaR3PTWCoIhwn+Pgvfw==
+ 28 May 2024 07:25:59 -0700
+X-CSE-ConnectionGUID: ju2VyFSoTAiE5KmPfZgwwg==
+X-CSE-MsgGUID: xs+EHH7mTxiaGwLa6vR/2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39615106"
+X-IronPort-AV: E=Sophos;i="6.08,195,1712646000"; d="scan'208";a="39615111"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.13])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 07:25:52 -0700
+ 28 May 2024 07:25:57 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 09/12] drm/i915/cdclk: use i9xx_fsb_freq() for rawclk_freq
- initialization
-Date: Tue, 28 May 2024 17:24:58 +0300
-Message-Id: <83e668584c898e445552275a09cc4fa55d68f62a.1716906179.git.jani.nikula@intel.com>
+Subject: [PATCH 10/12] drm/i915: move rawclk init to intel_cdclk_init()
+Date: Tue, 28 May 2024 17:24:59 +0300
+Message-Id: <cd2264d9608fca5dd98af54e1ee3519b6e7c3283.1716906179.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1716906179.git.jani.nikula@intel.com>
 References: <cover.1716906179.git.jani.nikula@intel.com>
@@ -72,86 +71,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of duplicating the CLKCFG parsing, reuse i9xx_fsb_freq() to
-figure out rawclk_freq where applicable.
+The rawclk initialization is a bit out of place in
+intel_device_info_runtime_init(). Move it to intel_cdclk_init(), with a
+bit of refactoring on intel_read_rawclk().
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 46 ++--------------------
- 1 file changed, 3 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 23 +++++++++++-----------
+ drivers/gpu/drm/i915/display/intel_cdclk.h |  1 -
+ drivers/gpu/drm/i915/intel_device_info.c   |  4 ----
+ 3 files changed, 11 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index b78154c82a71..c731c489c925 100644
+index c731c489c925..55c2dfe5422f 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -23,6 +23,7 @@
- 
- #include <linux/time.h>
- 
-+#include "soc/intel_dram.h"
- #include "hsw_ips.h"
- #include "i915_reg.h"
- #include "intel_atomic.h"
-@@ -3529,10 +3530,8 @@ static int vlv_hrawclk(struct drm_i915_private *dev_priv)
- 				      CCK_DISPLAY_REF_CLOCK_CONTROL);
+@@ -3218,6 +3218,8 @@ int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joi
+ 	return intel_atomic_lock_global_state(&cdclk_state->base);
  }
  
--static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
-+static int i9xx_hrawclk(struct drm_i915_private *i915)
++static void intel_rawclk_init(struct drm_i915_private *dev_priv);
++
+ int intel_cdclk_init(struct drm_i915_private *dev_priv)
  {
--	u32 clkcfg;
--
- 	/*
- 	 * hrawclock is 1/4 the FSB frequency
- 	 *
-@@ -3543,46 +3542,7 @@ static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
- 	 * don't know which registers have that information,
- 	 * and all the relevant docs have gone to bit heaven :(
- 	 */
--	clkcfg = intel_de_read(dev_priv, CLKCFG) & CLKCFG_FSB_MASK;
--
--	if (IS_MOBILE(dev_priv)) {
--		switch (clkcfg) {
--		case CLKCFG_FSB_400:
--			return 100000;
--		case CLKCFG_FSB_533:
--			return 133333;
--		case CLKCFG_FSB_667:
--			return 166667;
--		case CLKCFG_FSB_800:
--			return 200000;
--		case CLKCFG_FSB_1067:
--			return 266667;
--		case CLKCFG_FSB_1333:
--			return 333333;
--		default:
--			MISSING_CASE(clkcfg);
--			return 133333;
--		}
--	} else {
--		switch (clkcfg) {
--		case CLKCFG_FSB_400_ALT:
--			return 100000;
--		case CLKCFG_FSB_533:
--			return 133333;
--		case CLKCFG_FSB_667:
--			return 166667;
--		case CLKCFG_FSB_800:
--			return 200000;
--		case CLKCFG_FSB_1067_ALT:
--			return 266667;
--		case CLKCFG_FSB_1333_ALT:
--			return 333333;
--		case CLKCFG_FSB_1600_ALT:
--			return 400000;
--		default:
--			return 133333;
--		}
--	}
-+	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(i915), 4);
+ 	struct intel_cdclk_state *cdclk_state;
+@@ -3229,6 +3231,8 @@ int intel_cdclk_init(struct drm_i915_private *dev_priv)
+ 	intel_atomic_global_obj_init(dev_priv, &dev_priv->display.cdclk.obj,
+ 				     &cdclk_state->base, &intel_cdclk_funcs);
+ 
++	intel_rawclk_init(dev_priv);
++
+ 	return 0;
  }
  
- /**
+@@ -3545,16 +3549,13 @@ static int i9xx_hrawclk(struct drm_i915_private *i915)
+ 	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(i915), 4);
+ }
+ 
+-/**
+- * intel_read_rawclk - Determine the current RAWCLK frequency
+- * @dev_priv: i915 device
+- *
+- * Determine the current RAWCLK frequency. RAWCLK is a fixed
+- * frequency clock so this needs to done only once.
++/*
++ * Initialize the current RAWCLK frequency. RAWCLK is a fixed frequency clock so
++ * this needs to done only once.
+  */
+-u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
++static void intel_rawclk_init(struct drm_i915_private *dev_priv)
+ {
+-	u32 freq;
++	u32 freq = 0;
+ 
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_MTL)
+ 		/*
+@@ -3573,11 +3574,9 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+ 		freq = vlv_hrawclk(dev_priv);
+ 	else if (DISPLAY_VER(dev_priv) >= 3)
+ 		freq = i9xx_hrawclk(dev_priv);
+-	else
+-		/* no rawclk on other platforms, or no need to know it */
+-		return 0;
+ 
+-	return freq;
++	RUNTIME_INFO(dev_priv)->rawclk_freq = freq;
++	drm_dbg_kms(&dev_priv->drm, "rawclk rate: %d kHz\n", freq);
+ }
+ 
+ static int i915_cdclk_info_show(struct seq_file *m, void *unused)
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index cfdcdec07a4d..a3f950d5a366 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -64,7 +64,6 @@ void intel_cdclk_uninit_hw(struct drm_i915_private *i915);
+ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv);
+ void intel_update_max_cdclk(struct drm_i915_private *dev_priv);
+ void intel_update_cdclk(struct drm_i915_private *dev_priv);
+-u32 intel_read_rawclk(struct drm_i915_private *dev_priv);
+ bool intel_cdclk_clock_changed(const struct intel_cdclk_config *a,
+ 			       const struct intel_cdclk_config *b);
+ int intel_mdclk_cdclk_ratio(struct drm_i915_private *i915,
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 862f4b705227..cc7a8fb0a87d 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -370,10 +370,6 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 			 "Disabling ppGTT for VT-d support\n");
+ 		runtime->ppgtt_type = INTEL_PPGTT_NONE;
+ 	}
+-
+-	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
+-	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
+-
+ }
+ 
+ /*
 -- 
 2.39.2
 
