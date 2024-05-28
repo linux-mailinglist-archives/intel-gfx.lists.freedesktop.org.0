@@ -2,172 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501F38D1567
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 09:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF7D58D1576
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2024 09:46:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB7D910FBEE;
-	Tue, 28 May 2024 07:37:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D219610E097;
+	Tue, 28 May 2024 07:46:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TlmZM0cU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j3FeiCCH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09D3210FBEE;
- Tue, 28 May 2024 07:37:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92D8310E097
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 May 2024 07:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716881844; x=1748417844;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=wuobsUps69XKjV+eK7Nmf/ytrp9XERu4IL7voGSgug4=;
- b=TlmZM0cUeEk0k7K0tPgMjeVvZYUQAtGlwsAVxOuJrXBDJPSXWI6u1Gwl
- 8RUvt/JsjPCXrcGkHXnptjagByn+VqpsSLVTiTXinGMjrooZ9AUdYdP8x
- RYKwrbDXkbE1vyuYwUXKHTOI6crLjwrGYSs/g9qx6oC1zXukP6Fn9Qiih
- GBoJn+zvgROhrNp1xT6cLPufpAA2BWfmGqAaslIGwFJVKNgSY5adO6nwn
- vGz/IYozcygFXQnWZdE5t7pfNBB8HVEwhM+zZBakImVmsyyp/998rbZx7
- qPUraGYKCSiUleWU5rrnnFdtA7Fxfizqv2LYTzIFZx2qGCe0G1g9IiZHf A==;
-X-CSE-ConnectionGUID: dK29FyoKR3yIerr21Hxo1w==
-X-CSE-MsgGUID: 9+F9u7wvQSac/2X3yRfPng==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13158566"
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="13158566"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2024 00:37:24 -0700
-X-CSE-ConnectionGUID: oYYuBHp7QVKx5ItKMO5BpA==
-X-CSE-MsgGUID: vutbuUZvSii5lSs772Smng==
+ t=1716882380; x=1748418380;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JeVwiLQwwwp5mhGLHI7OOVXsuM6HX8f0mU6lblXWOkY=;
+ b=j3FeiCCHQ4JwmHYM3KOzkcuAcU7YXndlem74Y1b7rXCnaaggGTQHickH
+ jaIyONrihURekib4u3y8220eQP1+PPs05z06EIGF7ibiZmUa6ZnTg1Ov2
+ /ZJZKV/zCOjWdE47zXkshZ9uEtCsKoN1zIyQOYhbyS//wXW3cJXDtRtQq
+ 6BKGvycZWLi+WmibSgjRbUZr4eTSinGP7rIbpkC0ldPG+PPZNepmcRRnX
+ GOKH7BfBFdYaAwzsPMydcEROSQyw2AvkgktuFs2dc74s/6nbz19zDIJK3
+ 7suVZ+QAJGUWsc2J1LstFHKZYAQnkxoNXlsbd6Vf03S1gb+2+AaDqovUd Q==;
+X-CSE-ConnectionGUID: 45kbDHspS4aSwol7DiDeMg==
+X-CSE-MsgGUID: hjSsXvAxTIeXUrXH5kms/Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="23766541"
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="23766541"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 00:46:20 -0700
+X-CSE-ConnectionGUID: NaO2sUKjSxeHsvTjyemQzA==
+X-CSE-MsgGUID: oaim6OL3QjWNA+4JA2oJJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="34996263"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 May 2024 00:37:24 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 28 May 2024 00:37:23 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 28 May 2024 00:37:22 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 28 May 2024 00:37:22 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 28 May 2024 00:37:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k2B68C7l6/EacqToVG+usTjAOTrvQOUsyOih8j4CiXEPb5zi/NjvHfkjaRa6My82IiA9lTP7byEh1T9GhuQ05QGlLBUrnSuYQDj5ke5zGUEOgfaSShZ0Jh4zhlFFT0U5sPvXcJ1J/LusPheJWRyen0dtHSCfqq1R2/euYzMsJv9gQ/f/g6jjrdHrlPcCoNed/mmWhg79ahkmVrtzFrRYrpx/p78+iOaFJc9t4Oa4wB0fkOQckdEDTDGhnzCiBUIX87IgfLR5OESkTuynJzFDBdbbLpu78Nzl1f5airRhupU0ter7X5da/G4A9UYMgzsqwfLUAMs/i4tSi/uHwQPMgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OaSBeD95iOsU5dfamUFcHR954u008GwlKbjbL9h2vWg=;
- b=NXX3LjEzfnMriswGjBKLh/M5FZhxHA4U+Bn/4aFeW3njXGP5BHSBVnvIwcPdOpUkLeS5Wngby2dc8+RhH4+pNw8q7qReIZuUlP/bsXfcTLQMoUITHU9RBouoFtthvUOXHH9+wIxFA2uyf/UaPct9tS2ztrQ+aVR5NkuX2Ba6vym3BZyTgqpH+bukoCznh4h4NYCmQFHs1fP9tYEfjYE66zrXQHmMvK02GgrONPAuaVA8JbnEHR7AeaKELBnIEDcv55N3k7Tvrp3pxKnX/i6d11RVz08bsuHEFQus9HmPhKygRH0yBsldOC1Ud94ofFSVmXMjNzSd8FXZZQcE/vGxRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- DS0PR11MB7311.namprd11.prod.outlook.com (2603:10b6:8:11e::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7611.29; Tue, 28 May 2024 07:37:20 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6%6]) with mapi id 15.20.7611.025; Tue, 28 May 2024
- 07:37:20 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Borah, 
- Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Subject: RE: [v6 1/3] drm: Add drm_vblank_work_flush_all().
-Thread-Topic: [v6 1/3] drm: Add drm_vblank_work_flush_all().
-Thread-Index: AQHarAmjvG/bgK+YKUaEt3mEjt/Bo7GsSwgA
-Date: Tue, 28 May 2024 07:37:20 +0000
-Message-ID: <DM4PR11MB636020DA96109BD2A0D049D0F4F12@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
- <20240522053341.137592-2-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240522053341.137592-2-maarten.lankhorst@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|DS0PR11MB7311:EE_
-x-ms-office365-filtering-correlation-id: f0b9cacd-6e8f-4497-9f10-08dc7ee90207
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|376005|1800799015|366007|38070700009;
-x-microsoft-antispam-message-info: =?us-ascii?Q?iDe+pcGbudf4zl2xYyEf/o+H6yHYIWaX9Tmh9aL4oc0G3awxAtcvCtj3bNpD?=
- =?us-ascii?Q?4FM+UQdBiON7qm04M/9JDX8S8lJVXIn0Ul8+lZ8IHCxoaw/T+hvlgHa+JrV0?=
- =?us-ascii?Q?iUA5IHMJeI5ovjK1mrfhWETbVZQfP3c8cdn4lNmohpAMZPoNTUCzs6Tul7An?=
- =?us-ascii?Q?35yggxeyE963QClCyR5OJ/Q7UF0O6mymPurG/IpzOKJJu5uYmX9wmBFvm3S6?=
- =?us-ascii?Q?13RqZnV7+CCcqqfoF+3yIniyFLvdSy23UB+eHF55z1Crx2ONv9PnAGD4gVwf?=
- =?us-ascii?Q?wOV5jomigU4VGjvnsGsYYAyfCXDQ3B9t5SSyadF3m+2gfkV0sCMM1VTvL4mu?=
- =?us-ascii?Q?GR9YjXvw2HxJZbUw/HNBkjCZduq5t5H2ULlsFJK58/GmJuWYDjczRcZyap37?=
- =?us-ascii?Q?X2Gcoj2yEUeAfgUU/gHlSjctlL+AYkYdMHfs6F0OYUcdqC+MynPmlEPgVUd3?=
- =?us-ascii?Q?cZ88qvYHOkkUoVbo89x+srrdSE0G1+5egGW2Py/0/3ibZQsg0FVhzwr52GLF?=
- =?us-ascii?Q?d+o4syu69QwDGV3pne4eW8ttUL277cYwTasI5hiEkNVvao2JS9ZtkKVWLalW?=
- =?us-ascii?Q?WmrBNOFDNKD6KtXWK/ci+jhqc6avVlxn5Fm1Qy8/VQ/4QIbd3hB9A2PZUQxq?=
- =?us-ascii?Q?kTdwo/vfECRCdXIPJbKjmiFg4NTcq9L+MBJDjHHw2DgVGQvRUX/7GopVmg0s?=
- =?us-ascii?Q?nOl5AuGclGjPkaFknvxBsjM/qREwLN+2ys+KARt6YkiZ3ubN1YORZauZsbu1?=
- =?us-ascii?Q?mIrTUX+CnVoKKCvCL0juSg4HFT+WvbIlbaTuwuKPlKAqvOqCd8ZtszdnYtH7?=
- =?us-ascii?Q?PnKpKmM32WE35t3S2C0ZQfyGl9vkeApk5y3iSafYAP5mN4F2K0uBaC2IEIm3?=
- =?us-ascii?Q?Qfn33kQEqXn9LvBGGiH+5s41JKU98J9rxtYnMll0mPsFoJ+GosjQph8dSA7s?=
- =?us-ascii?Q?HdjFNzP00QCj3k+zBM19OTwiQ+DV8v8vRqFTIrnZ5hLYTQWVoWA+D8rMYcmw?=
- =?us-ascii?Q?RDQw1MVejcRnis0tpG4VD348LKTllI5NSo2xhs3QMppOVtgxrTnHDm5Vv5KT?=
- =?us-ascii?Q?7bXJZT/+0FQE2bZC5tBzdD/gS/eRV/Q60H0J0WckZDJMNnBkyxUdzxxeD8EN?=
- =?us-ascii?Q?ASgdzD+pNjB3IY+4GMpaz1Cu6zKbk1VdrH5KgTAY1cWVrRvD/RH1D/yuBWos?=
- =?us-ascii?Q?Si7U/qK69oO0CzoObh0OqfX1OJEX7YlW8WuWSSC565eVVvO1a2UZ8E1GxGc5?=
- =?us-ascii?Q?m02xyDFjwVXa3NA3EeMhT0PFwXBIiaqKalskQS2OATh1EDbkGx2Krovx/UkO?=
- =?us-ascii?Q?dYtng1OpkACRJpMF6p66CRIVkMRnEsDOlVFCaBsPXd08jg=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(1800799015)(366007)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?B9MWt0DJaFntK3WdRY1RxY/ez2jwpe4AOtBu3w2eHZI4Zvs1Fqvx5vSxs38L?=
- =?us-ascii?Q?exmCoLQtUGMCJHzdk1MN6R6XhmaaNvmKhyyQQUfbh+03iNg/abGVUEv0Xqqg?=
- =?us-ascii?Q?Fk/4t94frq9D3XaEgAqCMH4BauI2J/ilbzZoGeov6Zwtl1buv1fETToq2CHA?=
- =?us-ascii?Q?lXPHo76ELsyuTzA+qYz7xt0RqZYr/y1Evu7sIODc9LL5OkBmSsmcAFmmPQWK?=
- =?us-ascii?Q?crpR1/kW99A1SxNsNiS6g1PtXYOQ75B2Ow/YZyigijPrxrsqHmawnmieA1Kd?=
- =?us-ascii?Q?1kiKrVVP8JmqIIEiHq7neflenqG2nmKtKNndsrwby7CtD5wkj+/Lp90IGwU6?=
- =?us-ascii?Q?FzqXcAGIcdgBZb5yCDcXuDE22BZKu2cu9QK0HHH2k4awOJcAXB3mwjf/iy2Z?=
- =?us-ascii?Q?rXgpRF9/pBOkX8e8N4K/QlIJq2ufAZJg+Fq7r5yVQFsSH4kHbGbM+hH4Az8z?=
- =?us-ascii?Q?m1A0e3Nbz8vJlTKCaLWBjAUrxFccMc4c6/UseEq2LXGgaPTmS4dSZj1wPxKH?=
- =?us-ascii?Q?oEyFZZAQ7w4zzaFIWWTfKLG0EQfzB++S2mLvxIIXLVbg73cDxl7UN54UhTgH?=
- =?us-ascii?Q?hcsU8/U7cfSn6MUMweFtQYsMWf1mhY5BHlvXMa9BkjhSq7vzQtTDPlYtzX5s?=
- =?us-ascii?Q?X8ODRXT+y3tEhRo9dpHSq401HRvd8TN3khQb0w8LyIfPiO4mIYCt/H+HSSBg?=
- =?us-ascii?Q?9Hq/sH+76ZA9LuFGK0+in6BGFwLQfjy7/ITn0Kk2DoazzgnU5RDEoWK87tgb?=
- =?us-ascii?Q?vzyLhfnK7uNn0FhueNSeGrN2MopXkpUbLbM1ZTuswKmTwHSua4qts00/Mp1O?=
- =?us-ascii?Q?59807PL0K1aBgROdn/PO7T2b27VLv3kviv1da2rVhMTXDw6KgGyde31aOX8u?=
- =?us-ascii?Q?Mw6vQ9KlCyJFPe3+Rkpcx8m2zhjgEYnbBVm42bA2R76RwmDVSh9Q2/rIjpYC?=
- =?us-ascii?Q?rHafhPfzKhcpqh4TCTMaWkrOT3ZRSDutGE+jd3WnY2MXMVr64NXbXzujoIIL?=
- =?us-ascii?Q?cZWGE5e77Rpp96DDbmzVrz3GdrvvMiA/SoM3URpQmAck5ufhIVD2gXwjMKUO?=
- =?us-ascii?Q?Xm6tChDY+0q93W+z/3Z9JSCbemf1jIdgrjLKbzPhJ9ltFG7hUFUUUdcDcRGp?=
- =?us-ascii?Q?GlEjMZUzv2JDdoeokgo3H+MzbqlIdDVMOlDLaIExuLnna9di6z4DZyzIpdsV?=
- =?us-ascii?Q?2sqsaDkXeztSHf5LX8e5MH+fjSREyeLTEUMAOQdOogoHGHMkLs+t0Ospm/7/?=
- =?us-ascii?Q?f3oNLUj20UPQxGF43ETX+Q0yzqQoafUJZ/XT/+D36TBZ6Uo7ga4/LxEzlm3+?=
- =?us-ascii?Q?EV4rUjvsAPzSn9qlqEW8Wi6dq2skBy1paFPe4pwpEdgXB9lPCrowsqtowj45?=
- =?us-ascii?Q?igVpN8DVDreFRk6meMRmTSs0GSQ/WevjqA7BS/t52Qcuy7Gtsvxyf1MU4Oyk?=
- =?us-ascii?Q?1/7elfGyH3678t8v1+UG0v2FDvnNVcVC10+Ws47lp0PJFkbQPdRtoxdx+j2V?=
- =?us-ascii?Q?zaSGUJ32yihmw7p35yrIc6p4Rcbw3zG6qJn6OcOaFtNTrvpFz44hd7RL0CIq?=
- =?us-ascii?Q?VGv1zM/NlCodhfvFulXuj9NZ10wx4UYZx1gGWV3/?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.08,194,1712646000"; d="scan'208";a="39807459"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.13])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2024 00:46:19 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [core-for-CI PATCH] Revert "igc: fix a log entry using uninitialized
+ netdev"
+Date: Tue, 28 May 2024 10:46:14 +0300
+Message-Id: <20240528074614.3306301-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0b9cacd-6e8f-4497-9f10-08dc7ee90207
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2024 07:37:20.5839 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: s1rpopicYxcLdlOrS3GTXYoP5DbB/LKb9afMUVSuh8CBNMzozpNhJlro3t/g8xMlB6JElfu8tOHs1p9X0q6bDw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7311
-X-OriginatorOrg: intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,93 +68,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This reverts commit 86167183a17e03ec77198897975e9fdfbd53cb0b.
 
+The commit moved igc_ptp_init() which initializes spinlocks after
+igt_reset() which ends up using the adapter->ptp_tx_lock. Lockdep isn't
+happy:
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Maar=
-ten
-> Lankhorst
-> Sent: Wednesday, May 22, 2024 11:04 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org; Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com>; Borah, Chaitanya Kumar
-> <chaitanya.kumar.borah@intel.com>
-> Subject: [v6 1/3] drm: Add drm_vblank_work_flush_all().
+<3>[   10.648947] INFO: trying to register non-static key.
+<3>[   10.648950] The code is fine but needs lockdep annotation, or maybe
+<3>[   10.648951] you didn't initialize this object before use?
+<3>[   10.648952] turning off the locking correctness validator.
+<4>[   10.648954] CPU: 2 PID: 313 Comm: systemd-udevd Not tainted 6.9.0-next-20240513-next-20240513-g6ba6c795dc73+ #1
+<4>[   10.648958] Hardware name: Intel Corporation Arrow Lake Client Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.3473.D80.2311222130 11/22/2023
+<4>[   10.648960] Call Trace:
+<4>[   10.648962]  <TASK>
+<4>[   10.648964]  dump_stack_lvl+0x82/0xd0
+<4>[   10.648971]  register_lock_class+0x795/0x7e0
+<4>[   10.648978]  ? __free_object+0xa1/0x340
+<4>[   10.648983]  ? lockdep_hardirqs_on+0xc1/0x140
+<4>[   10.648990]  __lock_acquire+0x75/0x2260
+<4>[   10.648993]  ? __switch_to+0x123/0x600
+<4>[   10.648997]  ? _raw_spin_unlock_irqrestore+0x58/0x70
+<4>[   10.649002]  lock_acquire+0xd9/0x2f0
+<4>[   10.649006]  ? igc_ptp_clear_tx_tstamp+0x28/0x60 [igc]
+<4>[   10.649027]  _raw_spin_lock_irqsave+0x3d/0x60
+<4>[   10.649030]  ? igc_ptp_clear_tx_tstamp+0x28/0x60 [igc]
+<4>[   10.649038]  igc_ptp_clear_tx_tstamp+0x28/0x60 [igc]
+<4>[   10.649048]  igc_ptp_set_timestamp_mode.isra.0+0x20b/0x230 [igc]
+<4>[   10.649056]  igc_ptp_reset+0x31/0x180 [igc]
+<4>[   10.649066]  igc_reset+0xb4/0x100 [igc]
+<4>[   10.649079]  igc_probe+0x797/0x8e0 [igc]
+<4>[   10.649091]  pci_device_probe+0x95/0x120
+<4>[   10.649095]  really_probe+0xd9/0x370
+<4>[   10.649099]  ? __pfx___driver_attach+0x10/0x10
+<4>[   10.649101]  __driver_probe_device+0x73/0x150
+<4>[   10.649103]  driver_probe_device+0x19/0xa0
+<4>[   10.649105]  __driver_attach+0xb6/0x180
+<4>[   10.649107]  ? __pfx___driver_attach+0x10/0x10
+<4>[   10.649109]  bus_for_each_dev+0x77/0xd0
+<4>[   10.649114]  bus_add_driver+0x110/0x240
+<4>[   10.649117]  driver_register+0x5b/0x110
+<4>[   10.649120]  ? __pfx_igc_init_module+0x10/0x10 [igc]
+<4>[   10.649130]  do_one_initcall+0x5c/0x2b0
+<4>[   10.649134]  ? kmalloc_trace_noprof+0x22f/0x290
+<4>[   10.649141]  ? do_init_module+0x1e/0x210
+<4>[   10.669989]  do_init_module+0x5f/0x210
+<4>[   10.669993]  load_module+0x1d44/0x1fc0
+<4>[   10.670001]  ? init_module_from_file+0x86/0xd0
+<4>[   10.670004]  init_module_from_file+0x86/0xd0
+<4>[   10.670009]  idempotent_init_module+0x17c/0x230
+<4>[   10.670015]  __x64_sys_finit_module+0x56/0xb0
+<4>[   10.670019]  do_syscall_64+0x69/0x140
+<4>[   10.670023]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+<4>[   10.670027] RIP: 0033:0x7f6d2704595d
+<4>[   10.670030] Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48
+8b 0d 03 35 0d 00 f7 d8 64 89 01 48
+<4>[   10.670032] RSP: 002b:00007ffc72aad018 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+<4>[   10.670036] RAX: ffffffffffffffda RBX: 000055d3f0e69690 RCX: 00007f6d2704595d
+<4>[   10.670038] RDX: 0000000000000000 RSI: 00007f6d26f25ded RDI: 0000000000000010
+<4>[   10.670039] RBP: 0000000000020000 R08: 0000000000000000 R09: 0000000000000000
+<4>[   10.670041] R10: 0000000000000010 R11: 0000000000000246 R12: 00007f6d26f25ded
+<4>[   10.670042] R13: 0000000000000000 R14: 000055d3f0c64d20 R15: 000055d3f0e69690
+<4>[   10.670046]  </TASK>
+<6>[   10.672046] pps pps0: new PPS source ptp0
 
-Nit: Drop the "." from patch header
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11198
+References: https://lore.kernel.org/r/87o78rmkhu.fsf@intel.com
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/net/ethernet/intel/igc/igc_main.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-> In some cases we want to flush all vblank work, right before vblank_off f=
-or
-> example. Add a simple function to make this possible.
->=20
-> Check that both pending_work and running work are empty when flushing.
-
-Have been closely following the developments and approaches.
-This version looks good to me.
-
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-
-> Co-Developed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/drm_vblank_work.c | 22 ++++++++++++++++++++++
->  include/drm/drm_vblank_work.h     |  2 ++
->  2 files changed, 24 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_vblank_work.c
-> b/drivers/gpu/drm/drm_vblank_work.c
-> index 4fe9b1d3b00f..1752ffb44e1d 100644
-> --- a/drivers/gpu/drm/drm_vblank_work.c
-> +++ b/drivers/gpu/drm/drm_vblank_work.c
-> @@ -232,6 +232,28 @@ void drm_vblank_work_flush(struct drm_vblank_work
-> *work)  }  EXPORT_SYMBOL(drm_vblank_work_flush);
->=20
-> +/**
-> + * drm_vblank_work_flush_all - flush all currently pending vblank work o=
-n crtc.
-> + * @crtc: crtc for which vblank work to flush
-> + *
-> + * Wait until all currently queued vblank work on @crtc
-> + * has finished executing once.
-> + */
-> +void drm_vblank_work_flush_all(struct drm_crtc *crtc) {
-> +	struct drm_device *dev =3D crtc->dev;
-> +	struct drm_vblank_crtc *vblank =3D &dev->vblank[drm_crtc_index(crtc)];
-> +
-> +	spin_lock_irq(&dev->event_lock);
-> +	wait_event_lock_irq(vblank->work_wait_queue,
-> +			    list_empty(&vblank->pending_work),
-> +			    dev->event_lock);
-> +	spin_unlock_irq(&dev->event_lock);
-> +
-> +	kthread_flush_worker(vblank->worker);
-> +}
-> +EXPORT_SYMBOL(drm_vblank_work_flush_all);
-> +
->  /**
->   * drm_vblank_work_init - initialize a vblank work item
->   * @work: vblank work item
-> diff --git a/include/drm/drm_vblank_work.h b/include/drm/drm_vblank_work.=
-h
-> index eb41d0810c4f..e04d436b7297 100644
-> --- a/include/drm/drm_vblank_work.h
-> +++ b/include/drm/drm_vblank_work.h
-> @@ -17,6 +17,7 @@ struct drm_crtc;
->   * drm_vblank_work_init()
->   * drm_vblank_work_cancel_sync()
->   * drm_vblank_work_flush()
-> + * drm_vblank_work_flush_all()
->   */
->  struct drm_vblank_work {
->  	/**
-> @@ -67,5 +68,6 @@ void drm_vblank_work_init(struct drm_vblank_work *work,
-> struct drm_crtc *crtc,
->  			  void (*func)(struct kthread_work *work));  bool
-> drm_vblank_work_cancel_sync(struct drm_vblank_work *work);  void
-> drm_vblank_work_flush(struct drm_vblank_work *work);
-> +void drm_vblank_work_flush_all(struct drm_crtc *crtc);
->=20
->  #endif /* !_DRM_VBLANK_WORK_H_ */
-> --
-> 2.43.0
+diff --git a/drivers/net/ethernet/intel/igc/igc_main.c b/drivers/net/ethernet/intel/igc/igc_main.c
+index 12f004f46082..ace2fbfd87d6 100644
+--- a/drivers/net/ethernet/intel/igc/igc_main.c
++++ b/drivers/net/ethernet/intel/igc/igc_main.c
+@@ -7028,6 +7028,8 @@ static int igc_probe(struct pci_dev *pdev,
+ 	device_set_wakeup_enable(&adapter->pdev->dev,
+ 				 adapter->flags & IGC_FLAG_WOL_SUPPORTED);
+ 
++	igc_ptp_init(adapter);
++
+ 	igc_tsn_clear_schedule(adapter);
+ 
+ 	/* reset the hardware with the new settings */
+@@ -7049,9 +7051,6 @@ static int igc_probe(struct pci_dev *pdev,
+ 	/* Check if Media Autosense is enabled */
+ 	adapter->ei = *ei;
+ 
+-	/* do hw tstamp init after resetting */
+-	igc_ptp_init(adapter);
+-
+ 	/* print pcie link status and MAC address */
+ 	pcie_print_link_status(pdev);
+ 	netdev_info(netdev, "MAC: %pM\n", netdev->dev_addr);
+-- 
+2.39.2
 
