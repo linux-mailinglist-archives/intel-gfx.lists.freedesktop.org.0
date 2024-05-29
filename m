@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA75A8D5EE1
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 11:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91DAE8D5F79
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 12:20:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7011010E5F0;
-	Fri, 31 May 2024 09:51:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K8uBLqqw";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B31810E6EB;
+	Fri, 31 May 2024 10:20:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE5AE10E5C1
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 09:50:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717149049; x=1748685049;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hhTbBnjts07Vpd1jWtpIVuhdDbUvTc38WxP5DVTPLaE=;
- b=K8uBLqqwmBxjt+6RgRyF37V4RKb9vZpl53aceuJF07EBFaWZiASJ9hMq
- ENkvfGpfye0Z4e9oqAn59W8FIRvyd95AOuB/7cf2YWA+aEfCRDz1uBCk4
- 2tKC/XsME8FDqcQfvUdsz6Mnx+wylcBjDgt7zGdnL75ppMGI/QYddBkwu
- /8RSgRaGR6vys8+SYUxDTATDZDk+BuA/BwEy9XMRiISb5rB68MWgF4GG6
- 1Ob5ofVeThge+17ZsKQsQk0MCyCZu0oXmrO/LuQJ7cNg419N70erd64CI
- GqYdd7VhqgzoSZLNz7Xn3UMGQsfZsGxHrnEAiXaljAmpvjQ7t0mYfi/D9 w==;
-X-CSE-ConnectionGUID: ycZKhQJQRY2Y+/0zkHoYqw==
-X-CSE-MsgGUID: yC4ARoN+R7mDbfetSUe07g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13446592"
-X-IronPort-AV: E=Sophos;i="6.08,203,1712646000"; d="scan'208";a="13446592"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 02:50:49 -0700
-X-CSE-ConnectionGUID: Tl6p7b3ZQ/iJwnoQUIwBVA==
-X-CSE-MsgGUID: OJwv36v+RiSQ9hIyZfVeVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,203,1712646000"; d="scan'208";a="41189320"
-Received: from romanove-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.249.36.204])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 02:50:47 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: animesh.manna@intel.com, mika.kahola@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v4 19/19] Revert "drm/i915/psr: Disable early transport by
- default"
-Date: Fri, 31 May 2024 12:49:53 +0300
-Message-Id: <20240531094953.1797508-20-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240531094953.1797508-1-jouni.hogander@intel.com>
-References: <20240531094953.1797508-1-jouni.hogander@intel.com>
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4992310E8CC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 07:27:03 +0000 (UTC)
+Received: from SoMainline.org
+ (2a02-a420-77-cc79-164f-8aff-fee4-5930.mobile6.kpn.net
+ [IPv6:2a02:a420:77:cc79:164f:8aff:fee4:5930])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits)
+ server-digest SHA256) (No client certificate requested)
+ by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 04CB91F899;
+ Wed, 29 May 2024 09:26:59 +0200 (CEST)
+Date: Wed, 29 May 2024 09:26:58 +0200
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ Caleb Connolly <caleb.connolly@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Vinod Koul <vkoul@kernel.org>, 
+ Caleb Connolly <caleb@connolly.tech>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v4 1/3] drm/panel/lg-sw43408: select
+ CONFIG_DRM_DISPLAY_DP_HELPER
+Message-ID: <livf7gwhypjxncqhw73nibavga4b4xeqe3pqgoidvnk5653yzw@dssrwsfruajv>
+References: <20240528-panel-sw43408-fix-v4-0-330b42445bcc@linaro.org>
+ <20240528-panel-sw43408-fix-v4-1-330b42445bcc@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240528-panel-sw43408-fix-v4-1-330b42445bcc@linaro.org>
+X-Mailman-Approved-At: Fri, 31 May 2024 10:20:00 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,31 +68,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit f3c2031db7dfdf470a2d9bf3bd1efa6edfa72d8d.
+On 2024-05-28 22:39:18, Dmitry Baryshkov wrote:
+> This panel driver uses DSC PPS functions and as such depends on the
+> DRM_DISPLAY_DP_HELPER. Select this symbol to make required functions
+> available to the driver.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202404200800.kYsRYyli-lkp@intel.com/
+> Fixes: 069a6c0e94f9 ("drm: panel: Add LG sw43408 panel driver")
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-We want to notice possible issues faced with PSR2 Region Early Transport as
-early as possible -> let's revert patch disabling Region Early Transport by
-default. Also eDP 1.5 Panel Replay requires Early Transport.
+Maybe good context to mention that the DSC<->DP discrepancy will be resolved in
+the future, otherwise this patch is slightly unclear for anyone who isn't aware
+of the current patch series and its context.  Other than that, for the change
+itself:
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
- 1 file changed, 3 deletions(-)
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 885c75c55f9a..0f58553049a0 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3136,9 +3136,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 	if (HAS_PSR(dev_priv) && intel_dp_is_edp(intel_dp))
- 		intel_dp->psr.source_support = true;
- 
--	/* Disable early transport for now */
--	intel_dp->psr.debug |= I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
--
- 	/* Set link_standby x link_off defaults */
- 	if (DISPLAY_VER(dev_priv) < 12)
- 		/* For new platforms up to TGL let's respect VBT back again */
--- 
-2.34.1
-
+> ---
+>  drivers/gpu/drm/panel/Kconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 982324ef5a41..2ae0eb0638f3 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -340,6 +340,8 @@ config DRM_PANEL_LG_SW43408
+>  	depends on OF
+>  	depends on DRM_MIPI_DSI
+>  	depends on BACKLIGHT_CLASS_DEVICE
+> +	select DRM_DISPLAY_DP_HELPER
+> +	select DRM_DISPLAY_HELPER
+>  	help
+>  	  Say Y here if you want to enable support for LG sw43408 panel.
+>  	  The panel has a 1080x2160@60Hz resolution and uses 24 bit RGB per
+> 
+> -- 
+> 2.39.2
+> 
