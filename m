@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF958D3DA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 19:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2AB28D3DA5
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 19:48:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A569010E1EA;
-	Wed, 29 May 2024 17:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B266B10E439;
+	Wed, 29 May 2024 17:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rr4+O1Mw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RqowZ9Ay";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC07710E350;
- Wed, 29 May 2024 17:48:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17DEE10E350;
+ Wed, 29 May 2024 17:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717004894; x=1748540894;
+ t=1717004900; x=1748540900;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DDSD+ifMmZLOI86JIN9ZjQUgvxtvQOkyhhQmI2aCg98=;
- b=Rr4+O1Mww9iZ+IQUqTDmtxeDDdSgIhx8rrbfyKt5PFUd1d/vyV7ZSLYK
- PZNnnZ7SMdr0wB9JFhKtES/dAXOwiAupLXA9lfUHeKXngot1Kdytieu82
- Z2mpzHJzbOH6X8NjZh8K9mpcPRoyy6cVwystoOL3ivYlDwI0rCP8NWzJ5
- GFfEaP7sLvhAEzjb7li6Om9rh/WkQ3c5ah+ICPXl0sZtReDxle0zNivOZ
- TbZqpXp9ceVkQ6dT0/SgcdRzgAL9Wi6vshOshmpIVE0Zm6jT8LLf65Vgo
- yx47KTr9QuCvCejGpWwfA+CDS0cvKB5MaTkc9CNyLCPyB0jCPNrqRAuwn g==;
-X-CSE-ConnectionGUID: hbB+n3F6Q5uCdOk4af9J3w==
-X-CSE-MsgGUID: oyBFDZEzRQypJNd5Lkw68Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="24082648"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="24082648"
+ bh=cTci0aj+c1TimvNuGvGl2HiTFkg+fVEuvTXkhxrJX0c=;
+ b=RqowZ9Ay80z97YLIxtP/OIKUJWSGbQB9lqY6quppgMkk5r1V7Apd7zR1
+ 7uJUvWwLvYsbMzpSW0jCxWwYqUR9cAiVW90c/YRO+TRP83tyIci+igrTe
+ td6yvPrb3ziuOe+0CT6g05Rt7MfsFsIDA014JobM7mOiBv8BB4S73k47A
+ Qsy0dFl7VyTwDHuEG2ioKGiGmaN/7sLwquxm8CzNmihKwPG8lly+gpTWD
+ t13TgeJQqSpfQdFBXQ2TEwi/VrIQnRH35BSpTWiKCzVd86LFuUcVZLJzC
+ CkYEV1Y/kqPSiUHE8GyNUil+ilp3gFiyzmV1+MULkWNGYNU4AtxyX1vNa w==;
+X-CSE-ConnectionGUID: y1PIiWrQSK2XunmjYpVmUg==
+X-CSE-MsgGUID: khRIYZHOTHWUrAD6TT2/Ug==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="24082660"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="24082660"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 10:48:13 -0700
-X-CSE-ConnectionGUID: LxaA6alqSIeydpKxQBpJQg==
-X-CSE-MsgGUID: HEUta/LpQkexoJmS/wdKvA==
+ 29 May 2024 10:48:19 -0700
+X-CSE-ConnectionGUID: g59i3B3mTUyBph2RF15aWQ==
+X-CSE-MsgGUID: uGU2EaMUTNeyaIjJkclMnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="35452778"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="35452783"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.86])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 10:48:11 -0700
+ 29 May 2024 10:48:17 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	rodrigo.vivi@intel.com,
 	lucas.demarchi@intel.com
-Subject: [PATCH 02/10] drm/i915/display: include gt/intel_gt_types.h where
- needed
-Date: Wed, 29 May 2024 20:48:06 +0300
-Message-Id: <df73c0934ad21f157714a41b33b81cebd2a523a6.1717004739.git.jani.nikula@intel.com>
+Subject: [PATCH 03/10] drm/i915/display: include i915_gpu_error.h where needed
+Date: Wed, 29 May 2024 20:48:07 +0300
+Message-Id: <a5dbb8d46403761bd8518db45fa71dc55930d3cf.1717004739.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717004739.git.jani.nikula@intel.com>
 References: <cover.1717004739.git.jani.nikula@intel.com>
@@ -73,45 +72,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Include what you use. We need to move the compat intel_gt_types.h under
-gt subdir. With this, we can drop the include from xe compat i915_drv.h.
+Include what you use. With this, we can drop the include from xe compat
+i915_drv.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c                         | 1 +
- drivers/gpu/drm/xe/compat-i915-headers/{ => gt}/intel_gt_types.h | 0
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h                | 1 -
- 3 files changed, 1 insertion(+), 1 deletion(-)
- rename drivers/gpu/drm/xe/compat-i915-headers/{ => gt}/intel_gt_types.h (100%)
+ drivers/gpu/drm/i915/display/intel_dmc.c          | 1 +
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 6985abeb6102..8e956e7a1964 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -44,6 +44,7 @@
- #include <drm/drm_fourcc.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 63fccdda56c0..b5ebb0f5b269 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -26,6 +26,7 @@
+ #include <linux/firmware.h>
  
- #include "gem/i915_gem_stolen.h"
-+#include "gt/intel_gt_types.h"
  #include "i915_drv.h"
++#include "i915_gpu_error.h"
  #include "i915_reg.h"
- #include "i915_utils.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h b/drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h
-similarity index 100%
-rename from drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
-rename to drivers/gpu/drm/xe/compat-i915-headers/gt/intel_gt_types.h
+ #include "intel_de.h"
+ #include "intel_dmc.h"
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 3be3d419530a..fb784ab64cd4 100644
+index fb784ab64cd4..9776cc3332fe 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -22,7 +22,6 @@
- #include "i915_gpu_error.h"
+@@ -19,7 +19,6 @@
+ #include "xe_bo.h"
+ #include "xe_pm.h"
+ #include "xe_step.h"
+-#include "i915_gpu_error.h"
  #include "i915_reg_defs.h"
  #include "i915_utils.h"
--#include "intel_gt_types.h"
  #include "intel_step.h"
- #include "intel_uncore.h"
- #include "intel_runtime_pm.h"
 -- 
 2.39.2
 
