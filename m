@@ -2,188 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96ACF8D2EC5
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 09:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 917768D2F09
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 10:00:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5CD112E53;
-	Wed, 29 May 2024 07:46:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03A52112379;
+	Wed, 29 May 2024 08:00:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CCXShSpa";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="h197XVs5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28656112FC9
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 07:46:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716968765; x=1748504765;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=2e9hh6o/UnnoGdMt+Qr7OuaT/z1iYFPC5SowOGwWiaY=;
- b=CCXShSpaj0neVt9fNhgzRVA3Vliy3Y2MLvP9bsrQwHV8zJF6U28JHoAX
- HaESOJnmmnBV9nt6U9tmNT8rla7ajWXcWmPeE5JZsiOYlxvlFyKBHsSnB
- 5dsz29d7evd4+7MfkgbspYIWx6wfZN54ifwMGvCIOx30OAJIF+MiC6dCm
- P+POGBBAuxFANcX4xek9Xt58ph85mb9t/r/NvGC8eT2zQ5yO6I8hLqrel
- fyjhtM4HJQY+CR92FEhanQ7nKN27nz4wyZWVib5unOS8qVl7cSlHstiyh
- HWU8tqEi9/DJQXJmosSBRyrWR+kAxz67/bdV9rJ2pJn7DYKmb4Zpyvs2y g==;
-X-CSE-ConnectionGUID: QB7w4tEFTce4Qv1O7dy1Mw==
-X-CSE-MsgGUID: wSpjAI2MQNaYN43/VYDkyQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="13303434"
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="13303434"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 00:45:45 -0700
-X-CSE-ConnectionGUID: m1PR8fDfSuSgH9AVkPZ3VA==
-X-CSE-MsgGUID: vyNyGxoDSE2wfYVLQl0RuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="39778395"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 May 2024 00:45:45 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 29 May 2024 00:45:44 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 29 May 2024 00:45:44 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 29 May 2024 00:45:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Iswycpo45s4L4wU5R7J7XUpxVvlo1XhZxs15zYmxVdLbmXNGrhB+qMaNFZb9QZi14oj9lX0gvjngrXXdRm0zaKdkoPFk7kzeDUNM+rJlvpKslSUyLW+e4PhX5ak96yLZe98NXQik9U1QyIc5s2WYX70fMpJBeoXrGGSkiD3cP1TTdV/NoyqNS9gaI3mpQlXOAl/uD95/XHW5fwSrZpaLd9e8wjK8vgm0X9gepuvu4meGhjuUCAPh789NkD5OX8oOQeQE6/r8xNpGX9xkCxl31iTohZYbusbrYhHekg+BtOk1x2Jpp29nLu+RiZhT/mNd9K1Nwf4sboDACihPifTu9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2e9hh6o/UnnoGdMt+Qr7OuaT/z1iYFPC5SowOGwWiaY=;
- b=Ne3MnEpOExTGOA1K8aUIsrTbghiPiXyrfdF1/mwIDY8EFbyTNU0OFgRuGc4Kvab2tWLHsbY9X/xN2x7A3iSIIx8u+/dVracx0kYsKHYtCyNEH1G0NsVTDbNgSrsxdPhDKCAsCfdoZGs5EMZ8syZn1YU0DCZZBK5fhALN0gFhrnpBm2f2+zXqBnyexvD9WlctcPYr9Y1+w7Tn6eV4gYl3t4veR5DRRFbtJUnWVLIjmCw9L6XcwehzPjF4+KqKB/dq3Gr9skIXlOWZ+uc9QYkhcPz6Y1nWBdrRFTdFA8CWhZJQZFD+qnyQniLz5FwWrj4YHlzL6Spuvkt4xmlXtecA5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5655.namprd11.prod.outlook.com (2603:10b6:8:28::10) by
- SA2PR11MB5082.namprd11.prod.outlook.com (2603:10b6:806:115::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7633.19; Wed, 29 May 2024 07:45:41 +0000
-Received: from DM8PR11MB5655.namprd11.prod.outlook.com
- ([fe80::f6db:9044:ad81:33d9]) by DM8PR11MB5655.namprd11.prod.outlook.com
- ([fe80::f6db:9044:ad81:33d9%3]) with mapi id 15.20.7611.030; Wed, 29 May 2024
- 07:45:41 +0000
-From: "Saarinen, Jani" <jani.saarinen@intel.com>
-To: Nirmal Patel <nirmal.patel@linux.intel.com>, "Deak, Imre"
- <imre.deak@intel.com>
-CC: "Jiang, Dave" <dave.jiang@intel.com>, =?utf-8?B?5p2OLCDmmJ/ovok=?=
- <korantli@tencent.com>, Jonathan Derrick <jonathan.derrick@linux.dev>, "Bjorn
- Helgaas" <bhelgaas@google.com>, "linux-pci@vger.kernel.org"
- <linux-pci@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Subject: RE: Lockdep annotation introduced warn in VMD driver
-Thread-Topic: Lockdep annotation introduced warn in VMD driver
-Thread-Index: AQHasPvGoTC05+utlkaEOOCd4uPGL7GtQa0AgACOemA=
-Date: Wed, 29 May 2024 07:45:41 +0000
-Message-ID: <DM8PR11MB5655204BCE54EAB8438038E1E0F22@DM8PR11MB5655.namprd11.prod.outlook.com>
-References: <ZlXP5oTnSApiDbD1@ideak-desk.fi.intel.com>
- <20240528155228.00005850@linux.intel.com>
-In-Reply-To: <20240528155228.00005850@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5655:EE_|SA2PR11MB5082:EE_
-x-ms-office365-filtering-correlation-id: 907ba9c1-71d3-4144-eec7-08dc7fb35715
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|366007|1800799015|376005|38070700009;
-x-microsoft-antispam-message-info: =?utf-8?B?RmJFTVBVQk5MMW5oL2lCUUc1bW5NcUxxSExLQkJqMmVkdm82aFZUdnduQXRo?=
- =?utf-8?B?MGsxRTlKY0pVbm12ZGIrKzZzY2h2REVBUUtkekZvVVN2NmNqUFdmMEZMRERZ?=
- =?utf-8?B?a21wRklRVFhWUmxUWTZSSklXMG5wdUxLVEdWb0NRTmdWSlNaRXNqc3NjblUz?=
- =?utf-8?B?djFuTW9MWXpzZEJwZWxBMW5YeDhqQU5mMldLL0tWOXhteDNqUlBIeU5FbW0r?=
- =?utf-8?B?T1JWVDdGNldUMmJRY0dBTG9GV3ZnZUttSVFDZjJVd0g1dHNxbW0ySTlrbzRi?=
- =?utf-8?B?c0ZiRVFnZmlZekFrWVI0Q0MrUzB4TjhIY2hCRU00eVlMT2RKNURnT0w0K0Na?=
- =?utf-8?B?b3ZWZVYrTGJHTU1DNkpEblZ5QWlJeGxrMGE5enJKd3oxOEFrTDRiM0o1dHRN?=
- =?utf-8?B?N0NDU0luUHlTTU1Lc2o1V0V6U1BCSUNkOFRYNUJxWTRzVkhraDZiSjJjU1A4?=
- =?utf-8?B?TXBqOW9WanNMdjVFYjVWTWpheXBhU1BUUU9WbzJuc0VtRlJhVld6QWFMd1BI?=
- =?utf-8?B?eC9rRi8rL0M3MGFXd3Yrd1YvQklhMHYwN1JBbFRLTmtybStJekZBbEQyQnBY?=
- =?utf-8?B?alhkS3UxVHVjWnFnS0RGZmh2WTNTQXErUXV0blArY1J1c2lPTGQwcVNFcDQz?=
- =?utf-8?B?dzNtNFJYMWVRVEc4WFBLVWJadStZRmpqanFyRlRLcURnSUhQMzU5ZVZoUjFX?=
- =?utf-8?B?eUhpTnlZZWEwcS8zS0ZtZm8rTHRzb0drdmRSRm8wckpiekkvTTlpMEdzeXBT?=
- =?utf-8?B?Qyt3cVBHWjlTL0JYTDkybEVwRVlrRURoVXJrUS80L01ieUdpMUhOWXExZG9I?=
- =?utf-8?B?eWRHamF6SlRvRkcyRTZ4RnNMSW1FRDd0RDNZR2pTWVJmdlpvbm03c3BaWjU1?=
- =?utf-8?B?ZEhRbTRwNWI0MGRZR09SWXcwNUFmZTg1L0NxdXpWejh3WkhjbVRTT2JHbExv?=
- =?utf-8?B?NG9HVEw1cmxkSWdmemlrYTlhNE1lR2h4SWNIV0JLQnluU0c2S0QzT3lnQU80?=
- =?utf-8?B?WU9xeGhyd0pKQVdsK1puQ3NHZ2RNUkk1R0lPemROVWRJdmhDdkMxRmJmdlhq?=
- =?utf-8?B?Z0xzcGdDNm9FUUdzNjJEdHVCQW9ZcGdGWVVacThlS0xBSnEySTN6MzdyUUVN?=
- =?utf-8?B?WlVhMkxkUFN5UU44RGdUcDlzbTI3dlF2RHFYQjNpZ3RiK2lUbVNjZ2FiOEJT?=
- =?utf-8?B?VjRYOTJvenB6RmN2UlZDYWoxRXdQOVE5VUlvQTdTVzBobEllWUxPYjVwL3hD?=
- =?utf-8?B?UlI1azVVajVqZG5ORG9kdHZEU1R0aVhjS2ZhcnpDbjlmbnc3cXBUb2hVQnNK?=
- =?utf-8?B?YUx2WGRMcUFpT2J5SXNYa1FrcU4zVDJ5RmR4L0VPL24vY1JMeEVWYjgwbnFL?=
- =?utf-8?B?YmpGK3RIMmVRNXFESjJNZC9zSTVaRTNQUXZISWhza2lRMlQ3QXBuVmsrUGF4?=
- =?utf-8?B?MlNzNGFENmlDdmJmQ3I2bjVEaFZ5S2d4czBhbWZ5RXBGc3NFY0t6MytMYld4?=
- =?utf-8?B?S2cydFRxa0MyZW1VcXlDZXpONE1sOWh5cGdpUmpVVkwyUTlPc003enR6ZVB5?=
- =?utf-8?B?NFBoMTRuWS9tb2xET2Iwczk5WWd3R25lV2ZiVHVvcEx6M3ZYcEpKeDFFS0hQ?=
- =?utf-8?B?Sm5mMXYzb2NJR2JYWEZnbHlDdmlRNTZzamRvalpLTHZMZVdJYmZkMldhY0pi?=
- =?utf-8?B?c2d3bTFjMWk1R3ArcmRSUWFrRmxkTXI4bnl3Nmo1eUJyeloyUTM3OEZWY21E?=
- =?utf-8?Q?LDh9qFdRF/JxYkrZgA=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5655.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?L3RxUnFPZWY5enhRcW5XUkJPckdwL3U3UStCb3BIUjVyUDY3cjVYcXRUUlQ0?=
- =?utf-8?B?dW9Wa1prbmo5R2MyWWN5Vzl0YUxFbTd3Mk90cHBLRUxoc2k2WWk5MWduL2hy?=
- =?utf-8?B?dTU1SzFLNm8vNGtjMmRqR0x6QmJzTTNKQ0tHUGFXTi95VVZITWNidm5ySlZ2?=
- =?utf-8?B?ejROQmlweFVyQzdmb3pQTjQxdVI1NzFCMVJpeWN2WFdKQ1h1VzRtUlpjeWhk?=
- =?utf-8?B?SmtjVE0rNzBnMGdmRWVLSU4rc1NwMkVTNlRKTlhESzBjWWVHNU96U3dCNDdw?=
- =?utf-8?B?aDZ6OGVRQnNLWDFodGY1Tmw3SVpuaERadzB6RVNQRm5qSm1RRDZsMVFrR0M2?=
- =?utf-8?B?YmxNMjFHLzNPMkJXYVlMNmROZ3JoSGdOQTBRdWlKVkhwZ1o0V01tdkVPSjVN?=
- =?utf-8?B?bVNINU9Ta2luK1JHZXozMWx6VnJWTkNLMTJ1TGZsai9iOEMyNzlGU1hKMzI2?=
- =?utf-8?B?eTJvU0tPWkZTdCt2Q1VUbXJuT2VpNXJ6N2V5R1dZTlp3RXBJNWV6Wk5FUWxK?=
- =?utf-8?B?dUdwYnVEZDA3ZjBVV0ZHT2Q5Q2UwWEg5dXI3bnE2N3A5a0NTSHFEZnd5WEZh?=
- =?utf-8?B?QnQ5ZFRQeUl0YkJiOTFGMDFrejNhM2IrM1kvWDBValFKZ29CVk0xeW9SSVRK?=
- =?utf-8?B?UGJVYmFxVzJvOTBlaFNBR2svNGtRM0FVaWlJSncvYm5YcWJrOTZkRThCVlJz?=
- =?utf-8?B?QTZtekk2ZzJKK3ZNeFI1bTRtTS9DZHFSR2NUNkZIcGQydWZkcnBZTWVFOFcz?=
- =?utf-8?B?NzZYaUpCVGp5RzcwTVlURFpjdDM0TytocURVSWE3UnJlTDJSRkt5Qmx5WnhF?=
- =?utf-8?B?Qjd0anRFOHhXRnRhSldXbHo2bTRFZ0NycUszZTlQcE9ycGkyczNZc2dEYVAz?=
- =?utf-8?B?anB3NkVKRllSNkpQMkpKUWd1OHJIVERVZHVzeFZjVi9LaUNZQlo1S3kvZFBU?=
- =?utf-8?B?KzdMNEZaeVZvOFIzTHVWcUhreHd3MkhPZGMrNXorUEVialhKcVp5a3ZLZHpU?=
- =?utf-8?B?akU2Q3lVa0ZCa0lrNkIxa2UzMWpZZ3RaOVBDbkNsVXdCWjRwSW9XWlVydVBS?=
- =?utf-8?B?djJ6TEdDeEEvdzVJelZ2aFhSUjFuYTVWWkpRdkQ4YkFGdUZqeUd1UlNCZWx5?=
- =?utf-8?B?NThaV3NaWlFUelhMSC8yZHppVVJOR2FGdzJ3dTJBL0hsOUJqWGo2Yk1OMnI5?=
- =?utf-8?B?d0tDNFJRMmovWlB1dVZodEhLUTJocmhnelQzcHJYYTFsN1Z0Nm5UNEhHMmhq?=
- =?utf-8?B?MUhuZm5uQmlBUzhoNUs3VFBPdHU3SUhTdHR2QmFWc1ZxWWk3cHpPbFUrWCs0?=
- =?utf-8?B?TnVQcTJjU0N0Vk1YbU5uTkNZVFRXKzFiNjR2VXBhMzcwNDVmN1B5V2oxV1F2?=
- =?utf-8?B?TUQrUjhaT1dqRjFqZXRqNW5BeHI5VjZBWS9NeTRiMVFhbEIxWlFCaHAwbW83?=
- =?utf-8?B?eVBueFRESHJZYmhKVGlEbm9wYkVzd2lGRmxXVnBZQmRUZkowTFRxd2I1bUVO?=
- =?utf-8?B?czE1dGUzUzdoM2dOSk9VRUNicGpLRTB3MDBjRjBDeStTUnZhbXY3eDZ3UzB2?=
- =?utf-8?B?ZzV6eDNkSGplcE5vTWlDY2w2NWdXKzRlK0NodU1FWVR5MWNpbUpwUkdlbW5h?=
- =?utf-8?B?c2tDQS9WRnBGbHZ2L0FWZUs0Vm5lb2orL0lXOTZ3cmFLOVZTdU0rTG5YeUhQ?=
- =?utf-8?B?dUt3LzV6bjUveHFtSHZyUTVvbVVnb1Vnb0craytMMHZxU25vSndFa0VNbWh6?=
- =?utf-8?B?M3RrNVJxeEdlc09taEg2cGtNM3RCYzR2dUtYeXZlNEpuRy9HSGdCczUyUjIw?=
- =?utf-8?B?SXltUjFYU0txbWdKbGk4aVBWcTQ0TFVCRVNZeFhlU3RxN3pVeGsxMVBoTlB4?=
- =?utf-8?B?eXAvWFIzM2RuMjZiTElJckQzTWt5WXo2Z3N1VnlMdFJDeWtpdVJwdGtPczd4?=
- =?utf-8?B?SFFnTmpURFphVzhNNjBwdDBoc0M1SDVQbmhGNXU4eGllZ3F1aUpjcnVONnFB?=
- =?utf-8?B?dzVuUCtPRk1HU05CbEVGMm5TOWdnSW95L3JNVklITXZJM2p1NitiMEVpQXJq?=
- =?utf-8?B?eldpbE9jT3dhN1d5dEVIRk81WFIzTmcrWjI5ZXJ5Ny9SVGEwTmRjVmljRGN4?=
- =?utf-8?Q?fW7K2uD2vkzxzNeRNFK7r5D8L?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9F6810F77F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 08:00:49 +0000 (UTC)
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-52ae38957e8so405507e87.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 01:00:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1716969647; x=1717574447; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=zD29YA70Cy0USqBbo8xvXZTUrCbVka7ckmTsWC/TK4o=;
+ b=h197XVs5hzJVHa4WoiSc95WpipjrNAbEfRMiz4ANFfGchkszYbEwXFqoxpCxkNIzzY
+ 8VDkv5voK+wHWX/nlFdSKT5RUgYdPAbcPLDY4BF/EqYpC681yLthw4F44ee9J33GaNwm
+ mJlN5gnr220sYCLml8GUWMUUa6rblFlxyU/+OZ9ev0v3AsmLlkdXs4p9MzJXznromY/O
+ ve0xR5b43F3oajSseae9SRUNtbdxp3RcWIyqE/Qkj3eRQPKUxogyZN6i3CH2eK8JhZ7n
+ D7WdYBUfigaf4g8WICNsmULUDNM54uAf9PkmTHgD2ZY8kLisSSU2H2PIlt1+r82Nv8+2
+ KgZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716969647; x=1717574447;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zD29YA70Cy0USqBbo8xvXZTUrCbVka7ckmTsWC/TK4o=;
+ b=kGYemo5aAcEzjHlS3jvpyhfk2wi+KyweFC5NKShpZIwzS9jOjl542ZG7YswzyrxPgr
+ 8y/+j0rNXP53PbFhuOuPbUEMiR0DyXS9+AVi3uaD6BS2nAV+z8Vm9Y9N+/YkrNLn2gif
+ 7JS3AxVXvgHoDFpYZ6TYnL+kS6+TB5K89w5ieqV08eRl/tJIvu7m1VzJdsO5mDd3++Nl
+ rmLi/IRTX5Py/Fr8GNqotij2ycTzwrV0taeTW2/5609Ellf6yU4y8BbZEcIuB3XVuBcV
+ sm887jN49hVwMuGAbigHKrePvCzbseWzhPZrATQctyrvY22v0eWN008iBqJROKpiuAmu
+ pe4g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWGIv5GvvQ4XSng9S3N5vZBRX3IuHMxegdAapaFPGJcm6/gaSsSvVQIABGy9ydum+NRj4esPb5NEUq6U+sqeohtBmMXXEIetnV3qtdkua+5
+X-Gm-Message-State: AOJu0YwzWElPj7NLk3D1b8KE9Xb5tc60L2mnMCemfRYVvCQ5FNnYer4b
+ 1PpX4Lj9+PWFHd5qGT3ycEvKAt0xco2VlhpPrh2JwIarMoF16pMduSBnNfhX+d8=
+X-Google-Smtp-Source: AGHT+IG2TK5V/GOOy6mWpP0mDd6KNOVwEgaTvSfXglYmQv8otNodQaR0DRmsKmEPX0RF6OkTisOKlw==
+X-Received: by 2002:a05:6512:348d:b0:51d:c46d:8844 with SMTP id
+ 2adb3069b0e04-529645e4fccmr7614981e87.27.1716969647125; 
+ Wed, 29 May 2024 01:00:47 -0700 (PDT)
+Received: from eriador.lumag.spb.ru
+ (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5297066b233sm1183976e87.135.2024.05.29.01.00.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 May 2024 01:00:46 -0700 (PDT)
+Date: Wed, 29 May 2024 11:00:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, 
+ david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, 
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] drm/ci: update xfails for the new testlist
+Message-ID: <hmb3bcruab6lscqgdxx3zsxwmfo6kekse4jt36ozxchwuzc3ax@7y6pjrt3iqen>
+References: <20240529024049.356327-1-vignesh.raman@collabora.com>
+ <20240529024049.356327-7-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5655.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 907ba9c1-71d3-4144-eec7-08dc7fb35715
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2024 07:45:41.6516 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Q8v+aKPQRqzkcGF12gNoX4mWncez4xt8iP1lnHhHd4R/60eF6qji/x0mtXqck06Sm2Z0OySSnFsnyBY2s1VISw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5082
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240529024049.356327-7-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -199,148 +92,2115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksIA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGlu
-dGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mDQo+IE5p
-cm1hbCBQYXRlbA0KPiBTZW50OiBXZWRuZXNkYXksIDI5IE1heSAyMDI0IDEuNTMNCj4gVG86IERl
-YWssIEltcmUgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+IENjOiBKaWFuZywgRGF2ZSA8ZGF2ZS5q
-aWFuZ0BpbnRlbC5jb20+OyDmnY4sIOaYn+i+iSA8a29yYW50bGlAdGVuY2VudC5jb20+Ow0KPiBK
-b25hdGhhbiBEZXJyaWNrIDxqb25hdGhhbi5kZXJyaWNrQGxpbnV4LmRldj47IEJqb3JuIEhlbGdh
-YXMNCj4gPGJoZWxnYWFzQGdvb2dsZS5jb20+OyBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOyBp
-bnRlbC0NCj4gZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBSZTogTG9ja2Rl
-cCBhbm5vdGF0aW9uIGludHJvZHVjZWQgd2FybiBpbiBWTUQgZHJpdmVyDQo+IA0KPiBPbiBUdWUs
-IDI4IE1heSAyMDI0IDE1OjM2OjU0ICswMzAwDQo+IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
-LmNvbT4gd3JvdGU6DQo+IA0KPiA+IEhpLA0KPiA+DQo+ID4gY29tbWl0IDdlODllZmM2ZTllNDAy
-ODM5NjQzY2IyOTdiYWIxNDA1NWM1NDdmMDcNCj4gPiBBdXRob3I6IERhdmUgSmlhbmcgPGRhdmUu
-amlhbmdAaW50ZWwuY29tPg0KPiA+IERhdGU6ICAgVGh1IE1heSAyIDA5OjU3OjMxIDIwMjQgLTA3
-MDANCj4gPg0KPiA+ICAgICBQQ0k6IExvY2sgdXBzdHJlYW0gYnJpZGdlIGZvciBwY2lfcmVzZXRf
-ZnVuY3Rpb24oKQ0KPiA+DQo+ID4gaW50cm9kdWNlZCB0aGUgV0FSTiBiZWxvdyBpbiB0aGUgVk1E
-IGRyaXZlciwgc2VlIFsxXSBmb3IgdGhlIGZ1bGwgbG9nLg0KPiA+IE5vdCBzdXJlIGlmIHRoZSBh
-bm5vdGF0aW9uIGlzIGluY29ycmVjdCBvciB0aGUgVk1EIGRyaXZlciBpcyBtaXNzaW5nDQo+ID4g
-dGhlIGxvY2ssIENDJ2luZyBWTUQgZm9sa3MuDQo+ID4NCj4gPiAtLUltcmUNCj4gQ2FuIHlvdSBw
-bGVhc2UgcHJvdmlkZSByZXBybyBzdGVwcyBhbmQgc29tZSBiYWNrZ3JvdW5kIG9uIHRoZSBzZXR1
-cD8NCg0KV2hhdCB5b3UgbWVhbj8gSnVzdCB0YWtlIGxhdGVzdCByYzEgYW5kIHNlZSByZXBvcnRz
-IGZyb20gb3VyIENJLiANClRoZXNlIGFyZSBsaW5rcyBmcm9tICBDSSB0aGF0IGNhbiBiZSBzZWVu
-IGZyb20gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnLyANClRoZXNlIGFyZSBjdXJyZW50bHkg
-aXNzdWVzIG9uIG91ciBkcm0tdGlwIGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
-bS10aXAvaW5kZXguaHRtbD8gDQpTZWUgdGhvc2UgcmVtYWluaW5nIHJlZCBvbmVzIGh0dHBzOi8v
-aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvaWd0QHJ1bm5lckBhYm9ydGVkLmh0bWwg
-YW5kIA0KZXNwZWNpYWxseSBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L2luZGV4Lmh0bWw/aG9zdHM9bXRscC05JTdDZGcyLTEzJTdDZGcyLTE0JTdDYWRscC0xMSAuIA0K
-T3JpZ2luYWxseSBmcm9tIDEwIGJhZCBiZWhhdmluZyBzeXN0ZW0gb25lIHJlZ3Jlc3Npb24gd2Fz
-IGZpeGVkIGF0IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJN
-XzE0ODMwL2dpdC1sb2ctb25lbGluZS50eHQNCnRoYXQgcGF0Y2ggd2FzIG1lcmdlZCB0byBvdXIg
-Y29yZS1mb3ItY2kgdG8gd2FpdCBwcm9wZXIgZml4IGxhbmQgZHVyaW5nIHJjLTIrIHRpbWVzIGFu
-ZCB0aGF0IGxlZnQgNSBzeXN0ZW1zIGJlaGF2aW5nIGJhZCBzdGlsbC4gRm9yIHRob3NlIDQgKGV4
-Y2x1ZGluZyBhcGwtMSkgd2UgaGF2ZSBhbHJlYWR5IGZpeCBhdCAjMSAuDQpGb3IgYXBsLTEgd2Ug
-YWxyZWFkeSBoYXZlIGZpeCBmcm9tIERhbiB0aGF0IGlzIHJlcG9ydGVkIGFuZCByYidkIHRvby4g
-DQoNCg0KIzEgaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsL2NmYjUwNjAxLTVkMmEtNDY3Ni1h
-OTU4LTFiZDNmMWIwNjY1NEBpbnRlbC5jb20vIA0KDQpEb2VzIHRoYXQgZXhwbGFpbiA/IA0KQnIs
-DQpKYW5pDQo+IA0KPiAtbmlybWFsDQo+ID4NCj4gPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzQxMTJ2MS9iYXQtYWRscC0xDQo+ID4gMS9ib290
-MC50eHQNCj4gPg0KPiA+IDw0PlsgICAxNy4zNTQwNzFdIFdBUk5JTkc6IENQVTogMCBQSUQ6IDEg
-YXQgZHJpdmVycy9wY2kvcGNpLmM6NDg4Ng0KPiA+IHBjaV9icmlkZ2Vfc2Vjb25kYXJ5X2J1c19y
-ZXNldCsweDVkLzB4NzAgPDQ+WyAgIDE3LjM1NDA5NV0gTW9kdWxlcw0KPiA+IGxpbmtlZCBpbjog
-PDQ+WyAgIDE3LjM1NDEwNF0gQ1BVOiAwIFBJRDogMSBDb21tOiBzd2FwcGVyLzAgTm90DQo+ID4g
-dGFpbnRlZCA2LjEwLjAtcmMxLVBhdGNod29ya18xMzQxMTJ2MS1nYWJhZWFlMjAyZGZiKyAjMSA8
-ND5bDQo+ID4gMTcuMzU0MTI4XSBIYXJkd2FyZSBuYW1lOiBJbnRlbCBDb3Jwb3JhdGlvbiBBbGRl
-ciBMYWtlIENsaWVudA0KPiA+IFBsYXRmb3JtL0FsZGVyTGFrZS1QIExQNSBSVlAsIEJJT1MgUlBM
-UEZXSTEuUjAwLjQwMzUuQTAwLjIzMDEyMDA3MjMNCj4gPiAwMS8yMC8yMDIzIDw0PlsgICAxNy4z
-NTQxNTNdIFJJUDoNCj4gPiAwMDEwOnBjaV9icmlkZ2Vfc2Vjb25kYXJ5X2J1c19yZXNldCsweDVk
-LzB4NzAgPDQ+WyAgIDE3LjM1NDE2N10gQ29kZToNCj4gPiBjMyBjYyBjYyBjYyBjYyA0OCA4OSBl
-ZiA0OCBjNyBjNiA3OCA1NSA0NCA4MiA1ZCBlOSBkOCBjNiBmZiBmZiA0OCA4ZA0KPiA+IGJmIDQ4
-IDA4IDAwIDAwIGJlIGZmIGZmIGZmIGZmIGU4IDk3IDEwIDVmIDAwIDg1IGMwIDc1IGI1IDwwZj4g
-MGIgZWINCj4gPiBiMSA2NiA2NiAyZSAwZiAxZiA4NCAwMCAwMCAwMCAwMCAwMCAwZiAxZiA0MCAw
-MCA5MCA5MCA5MCA8ND5bDQo+ID4gMTcuMzU0MTk5XSBSU1A6IDAwMDA6ZmZmZmM5MDAwMDA5N2Nh
-MCBFRkxBR1M6IDAwMDEwMjQ2IDw0PlsNCj4gMTcuMzU0MjEwXQ0KPiA+IFJBWDogMDAwMDAwMDAw
-MDAwMDAwMCBSQlg6IGZmZmY4ODgxMDU2MDQwMDAgUkNYOg0KPiA+IDAwMDAwMDAwMDAwMDAwMDAg
-PDQ+WyAgIDE3LjM1NDIyNF0gUkRYOiAwMDAwMDAwMDgwMDAwMDAwIFJTSToNCj4gPiBmZmZmZmZm
-ZjgyNDIxYzQwIFJESTogZmZmZmZmZmY4MjQ0MWM0YyA8ND5bICAgMTcuMzU0MjM4XSBSQlA6DQo+
-ID4gZmZmZjg4ODEwNTYwMTAwMCBSMDg6IDAwMDAwMDAwMDAwMDAwMDEgUjA5OiAwMDAwMDAwMDAw
-MDAwMDAwIDw0PlsNCj4gPiAxNy4zNTQyNTFdIFIxMDogMDAwMDAwMDAwMDAwMDAwMSBSMTE6IGZm
-ZmY4ODgxMDA4YzgwNDAgUjEyOg0KPiA+IDAwMDAwMDAwMDAwMDAwMDAgPDQ+WyAgIDE3LjM1NDI2
-NF0gUjEzOiAwMDAwMDAwMDAwMDAwMDIwIFIxNDoNCj4gPiAwMDAwMDAwMDAwMDAwMDdmIFIxNTog
-ZmZmZjg4ODEwNTYxNWMyOCA8ND5bICAgMTcuMzU0MjgzXSBGUzoNCj4gPiAwMDAwMDAwMDAwMDAw
-MDAwKDAwMDApIEdTOmZmZmY4ODgyYTZlMDAwMDAoMDAwMCkNCj4gPiBrbmxHUzowMDAwMDAwMDAw
-MDAwMDAwIDw0PlsgICAxNy4zNTQzMTNdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMA0KPiA+
-IENSMDogMDAwMDAwMDA4MDA1MDAzMyA8ND5bICAgMTcuMzU0MzM0XSBDUjI6IGZmZmY4ODgyYWZi
-ZmYwMDAgQ1IzOg0KPiA+IDAwMDAwMDAwMDY2M2EwMDAgQ1I0OiAwMDAwMDAwMDAwZjUwZWYwIDw0
-PlsgICAxNy4zNTQzNDhdIFBLUlU6DQo+ID4gNTU1NTU1NTQgPDQ+WyAgIDE3LjM1NDM1NV0gQ2Fs
-bCBUcmFjZTogPDQ+WyAgIDE3LjM1NDM2MV0gIDxUQVNLPiA8ND5bDQo+ID4gICAxNy4zNTQzNjdd
-ICA/IF9fd2FybisweDhjLzB4MTkwIDw0PlsgICAxNy4zNTQzODBdICA/DQo+ID4gcGNpX2JyaWRn
-ZV9zZWNvbmRhcnlfYnVzX3Jlc2V0KzB4NWQvMHg3MCA8ND5bICAgMTcuMzU0MzkyXSAgPw0KPiA+
-IHJlcG9ydF9idWcrMHgxZjgvMHgyMDAgPDQ+WyAgIDE3LjM1NDQwNV0gID8gaGFuZGxlX2J1Zysw
-eDNjLzB4NzAgPDQ+Ww0KPiA+ICAgMTcuMzU0NDE1XSAgPyBleGNfaW52YWxpZF9vcCsweDE4LzB4
-NzAgPDQ+WyAgIDE3LjM1NDQyNF0gID8NCj4gPiBhc21fZXhjX2ludmFsaWRfb3ArMHgxYS8weDIw
-IDw0PlsgICAxNy4zNTQ0MzhdICA/DQo+ID4gcGNpX2JyaWRnZV9zZWNvbmRhcnlfYnVzX3Jlc2V0
-KzB4NWQvMHg3MCA8ND5bICAgMTcuMzU0NDUxXQ0KPiA+IHBjaV9yZXNldF9idXMrMHgxZDgvMHgy
-NzAgPDQ+WyAgIDE3LjM1NDQ2MV0gIHZtZF9wcm9iZSsweDc3OC8weGExMA0KPiA+IDw0PlsgICAx
-Ny4zNTQ0NzRdICBwY2lfZGV2aWNlX3Byb2JlKzB4OTUvMHgxMjAgPDQ+WyAgIDE3LjM1NDQ4NF0N
-Cj4gPiByZWFsbHlfcHJvYmUrMHhkOS8weDM3MCA8ND5bICAgMTcuMzU0NDk2XSAgPw0KPiA+IF9f
-cGZ4X19fZHJpdmVyX2F0dGFjaCsweDEwLzB4MTAgPDQ+WyAgIDE3LjM1NDUwNV0NCj4gPiBfX2Ry
-aXZlcl9wcm9iZV9kZXZpY2UrMHg3My8weDE1MCA8ND5bICAgMTcuMzU0NTE2XQ0KPiA+IGRyaXZl
-cl9wcm9iZV9kZXZpY2UrMHgxOS8weGEwIDw0PlsgICAxNy4zNTQ1MjVdDQo+ID4gX19kcml2ZXJf
-YXR0YWNoKzB4YjYvMHgxODAgPDQ+WyAgIDE3LjM1NDUzNF0gID8NCj4gPiBfX3BmeF9fX2RyaXZl
-cl9hdHRhY2grMHgxMC8weDEwIDw0PlsgICAxNy4zNTQ1NDRdDQo+ID4gYnVzX2Zvcl9lYWNoX2Rl
-disweDc3LzB4ZDAgPDQ+WyAgIDE3LjM1NDU1NV0NCj4gPiBidXNfYWRkX2RyaXZlcisweDExMC8w
-eDI0MCA8ND5bICAgMTcuMzU0NTY2XQ0KPiA+IGRyaXZlcl9yZWdpc3RlcisweDViLzB4MTEwIDw0
-PlsgICAxNy4zNTQ1NzVdICA/DQo+ID4gX19wZnhfdm1kX2Rydl9pbml0KzB4MTAvMHgxMCA8ND5b
-ICAgMTcuMzU0NTg3XQ0KPiA+IGRvX29uZV9pbml0Y2FsbCsweDVjLzB4MmIwIDw0PlsgICAxNy4z
-NTQ2MDBdDQo+ID4ga2VybmVsX2luaXRfZnJlZWFibGUrMHgxOGUvMHgzNDAgPDQ+WyAgIDE3LjM1
-NDYxMl0gID8NCj4gPiBfX3BmeF9rZXJuZWxfaW5pdCsweDEwLzB4MTAgPDQ+WyAgIDE3LjM1NDYy
-M10gIGtlcm5lbF9pbml0KzB4MTUvMHgxMzANCj4gPiA8ND5bICAgMTcuMzU0NjMxXSAgcmV0X2Zy
-b21fZm9yaysweDJjLzB4NTAgPDQ+WyAgIDE3LjM1NDY0MV0gID8NCj4gPiBfX3BmeF9rZXJuZWxf
-aW5pdCsweDEwLzB4MTAgPDQ+WyAgIDE3LjM1NDY1MF0NCj4gPiByZXRfZnJvbV9mb3JrX2FzbSsw
-eDFhLzB4MzAgPDQ+WyAgIDE3LjM1NDY2M10gIDwvVEFTSz4gPDQ+Ww0KPiA+IDE3LjM1NDY2OV0g
-aXJxIGV2ZW50IHN0YW1wOiAyODU3NzY4NSA8ND5bICAgMTcuMzU0Njc3XSBoYXJkaXJxcyBsYXN0
-DQo+ID4gZW5hYmxlZCBhdCAoMjg1Nzc2OTMpOiBbPGZmZmZmZmZmODExN2MwNjA+XQ0KPiA+IGNv
-bnNvbGVfdW5sb2NrKzB4MTEwLzB4MTIwIDw0PlsgICAxNy4zNTQ2OTddIGhhcmRpcnFzIGxhc3Qg
-ZGlzYWJsZWQNCj4gPiBhdCAoMjg1Nzc3MDApOiBbPGZmZmZmZmZmODExN2MwNDU+XSBjb25zb2xl
-X3VubG9jaysweGY1LzB4MTIwIDw0PlsNCj4gPiAxNy4zNTQ3MTNdIHNvZnRpcnFzIGxhc3QgIGVu
-YWJsZWQgYXQgKDI4NTc3MTc2KTogWzxmZmZmZmZmZjgxMGRmMjljPl0NCj4gPiBoYW5kbGVfc29m
-dGlycXMrMHgyZWMvMHgzZjAgPDQ+WyAgIDE3LjM1NDczMV0gc29mdGlycXMgbGFzdCBkaXNhYmxl
-ZA0KPiA+IGF0ICgyODU3NzE2Nyk6IFs8ZmZmZmZmZmY4MTBkZmExNz5dIGlycV9leGl0X3JjdSsw
-eDg3LzB4YzAgPDQ+Ww0KPiA+IDE3LjM1NDc0N10gLS0tWyBlbmQgdHJhY2UgMDAwMDAwMDAwMDAw
-MDAwMCBdLS0tDQo+ID4NCj4gPiA8ND5bICAgMTcuNDg3Mjc0XSA9PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09DQo+ID4gPDQ+WyAgIDE3LjQ4NzI3N10gV0FSTklORzogYmFkIHVu
-bG9jayBiYWxhbmNlIGRldGVjdGVkIQ0KPiA+IDw0PlsgICAxNy40ODcyNzldIDYuMTAuMC1yYzEt
-UGF0Y2h3b3JrXzEzNDExMnYxLWdhYmFlYWUyMDJkZmIrICMxDQo+ID4gVGFpbnRlZDogRyAgICAg
-ICAgVyA8ND5bICAgMTcuNDg3MjgyXQ0KPiA+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0gPDQ+WyAgIDE3LjQ4NzI4NF0gc3dhcHBlci8wLzENCj4gPiBpcyB0cnlpbmcgdG8g
-cmVsZWFzZSBsb2NrICgxMDAwMDplMTowMC4wKSBhdDogPDQ+WyAgIDE3LjQ4NzI4N10NCj4gPiBb
-PGZmZmZmZmZmODE3NmIzNzc+XSBwY2lfY2ZnX2FjY2Vzc191bmxvY2srMHg1Ny8weDYwIDw0PlsN
-Cj4gPiAxNy40ODcyOTJdIGJ1dCB0aGVyZSBhcmUgbm8gbW9yZSBsb2NrcyB0byByZWxlYXNlISA8
-ND5bICAgMTcuNDg3Mjk0XQ0KPiA+ICAgICAgICAgICAgICAgICAgIG90aGVyIGluZm8gdGhhdCBt
-aWdodCBoZWxwIHVzIGRlYnVnIHRoaXM6DQo+ID4gPDQ+WyAgIDE3LjQ4NzI5N10gMiBsb2NrcyBo
-ZWxkIGJ5IHN3YXBwZXIvMC8xOg0KPiA+IDw0PlsgICAxNy40ODcyOTldICAjMDogZmZmZjg4ODEw
-MmMxYzFiMCAoJmRldi0+bXV0ZXgpey4uLi59LXszOjN9LA0KPiA+IGF0OiBfX2RyaXZlcl9hdHRh
-Y2grMHhhYi8weDE4MCA8ND5bICAgMTcuNDg3MzA2XSAgIzE6DQo+ID4gZmZmZjg4ODEwNTYwNDFi
-MCAoJmRldi0+bXV0ZXgpey4uLi59LXszOjN9LCBhdDoNCj4gPiBwY2lfZGV2X3RyeWxvY2srMHgx
-OS8weDUwIDw0PlsgICAxNy40ODczMTJdIHN0YWNrIGJhY2t0cmFjZToNCj4gPiA8ND5bICAgMTcu
-NDg3MzE0XSBDUFU6IDAgUElEOiAxIENvbW06IHN3YXBwZXIvMCBUYWludGVkOiBHICAgICAgICBX
-DQo+ID4gICAgICAgIDYuMTAuMC1yYzEtUGF0Y2h3b3JrXzEzNDExMnYxLWdhYmFlYWUyMDJkZmIr
-ICMxIDw0PlsgMTcuNDg3MzE4XQ0KPiA+IEhhcmR3YXJlIG5hbWU6IEludGVsIENvcnBvcmF0aW9u
-IEFsZGVyIExha2UgQ2xpZW50DQo+ID4gUGxhdGZvcm0vQWxkZXJMYWtlLVAgTFA1IFJWUCwgQklP
-UyBSUExQRldJMS5SMDAuNDAzNS5BMDAuMjMwMTIwMDcyMw0KPiA+IDAxLzIwLzIwMjMgPDQ+WyAg
-IDE3LjQ4NzMyMl0gQ2FsbCBUcmFjZTogPDQ+WyAgIDE3LjQ4NzMyNF0gIDxUQVNLPg0KPiA+IDw0
-PlsgICAxNy40ODczMjVdICBkdW1wX3N0YWNrX2x2bCsweDgyLzB4ZDAgPDQ+WyAgIDE3LjQ4NzMy
-OV0NCj4gPiBsb2NrX3JlbGVhc2UrMHgyMGIvMHgyZDAgPDQ+WyAgIDE3LjQ4NzMzNF0gIHBjaV9i
-dXNfdW5sb2NrKzB4MjUvMHg0MA0KPiA+IDw0PlsgICAxNy40ODczMzddICBwY2lfcmVzZXRfYnVz
-KzB4MWViLzB4MjcwDQo+ID4gPDQ+WyAgIDE3LjQ4NzM0MF0gIHZtZF9wcm9iZSsweDc3OC8weGEx
-MA0KPiA+IDw0PlsgICAxNy40ODczNDRdICBwY2lfZGV2aWNlX3Byb2JlKzB4OTUvMHgxMjANCj4g
-PiA8ND5bICAgMTcuNDg3MzQ2XSAgcmVhbGx5X3Byb2JlKzB4ZDkvMHgzNzANCj4gPiA8ND5bICAg
-MTcuNDg3MzQ5XSAgPyBfX3BmeF9fX2RyaXZlcl9hdHRhY2grMHgxMC8weDEwDQo+ID4gPDQ+WyAg
-IDE3LjQ4NzM1Ml0gIF9fZHJpdmVyX3Byb2JlX2RldmljZSsweDczLzB4MTUwDQo+ID4gPDQ+WyAg
-IDE3LjQ4NzM1NF0gIGRyaXZlcl9wcm9iZV9kZXZpY2UrMHgxOS8weGEwDQo+ID4gPDQ+WyAgIDE3
-LjQ4NzM1N10gIF9fZHJpdmVyX2F0dGFjaCsweGI2LzB4MTgwDQo+ID4gPDQ+WyAgIDE3LjQ4NzM1
-OV0gID8gX19wZnhfX19kcml2ZXJfYXR0YWNoKzB4MTAvMHgxMA0KPiA+IDw0PlsgICAxNy40ODcz
-NjJdICBidXNfZm9yX2VhY2hfZGV2KzB4NzcvMHhkMA0KPiA+IDw0PlsgICAxNy40ODczNjVdICBi
-dXNfYWRkX2RyaXZlcisweDExMC8weDI0MA0KPiA+IDw0PlsgICAxNy40ODczNjldICBkcml2ZXJf
-cmVnaXN0ZXIrMHg1Yi8weDExMA0KPiA+IDw0PlsgICAxNy40ODczNzFdICA/IF9fcGZ4X3ZtZF9k
-cnZfaW5pdCsweDEwLzB4MTANCj4gPiA8ND5bICAgMTcuNDg3Mzc0XSAgZG9fb25lX2luaXRjYWxs
-KzB4NWMvMHgyYjANCj4gPiA8ND5bICAgMTcuNDg3Mzc4XSAga2VybmVsX2luaXRfZnJlZWFibGUr
-MHgxOGUvMHgzNDANCj4gPiA8ND5bICAgMTcuNDg3MzgxXSAgPyBfX3BmeF9rZXJuZWxfaW5pdCsw
-eDEwLzB4MTANCj4gPiA8ND5bICAgMTcuNDg3Mzg0XSAga2VybmVsX2luaXQrMHgxNS8weDEzMA0K
-PiA+IDw0PlsgICAxNy40ODczODddICByZXRfZnJvbV9mb3JrKzB4MmMvMHg1MA0KPiA+IDw0Plsg
-ICAxNy40ODczOTBdICA/IF9fcGZ4X2tlcm5lbF9pbml0KzB4MTAvMHgxMA0KPiA+IDw0PlsgICAx
-Ny40ODczOTJdICByZXRfZnJvbV9mb3JrX2FzbSsweDFhLzB4MzANCj4gPiA8ND5bICAgMTcuNDg3
-Mzk2XSAgPC9UQVNLPg0KPiA+DQoNCg==
+On Wed, May 29, 2024 at 08:10:49AM +0530, Vignesh Raman wrote:
+> Now the testlist is used from IGT build, so update
+> xfails with the new testlist.
+> 
+> Set the timeout of all i915 jobs to 1h30m since some jobs
+> takes more than 1 hour to complete.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+This had an explicit '# msm testlist' at the end. Please don't drop
+important parts of tags. I didn't review fails/flakes for other
+platforms.
+
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+>   - Set the timeout of all i915 jobs to 1h30m and updated expectations file.
+> 
+> v3:
+>   - Add a link to the email reporting the flaky tests to the maintainers.
+> 
+> ---
+>  drivers/gpu/drm/ci/test.yml                   |   6 +-
+>  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |  41 ++--
+>  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |   7 +
+>  .../gpu/drm/ci/xfails/amdgpu-stoney-skips.txt |  18 ++
+>  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  31 ++++
+>  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |   9 +
+>  drivers/gpu/drm/ci/xfails/i915-amly-skips.txt |  11 ++
+>  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |  46 +++--
+>  drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |   6 +
+>  drivers/gpu/drm/ci/xfails/i915-apl-skips.txt  |  15 ++
+>  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  38 ++++
+>  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   6 +
+>  drivers/gpu/drm/ci/xfails/i915-cml-skips.txt  |  14 ++
+>  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |  41 +++-
+>  drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt |   7 +
+>  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |  15 ++
+>  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |  42 ++---
+>  drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt |   7 +-
+>  drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt  |  25 +++
+>  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |  77 ++++----
+>  drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt  |  17 ++
+>  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |  63 ++++---
+>  drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt |   6 +
+>  drivers/gpu/drm/ci/xfails/i915-whl-skips.txt  |  11 ++
+>  .../drm/ci/xfails/mediatek-mt8173-fails.txt   |  30 ++-
+>  .../drm/ci/xfails/mediatek-mt8173-flakes.txt  |  11 ++
+>  .../drm/ci/xfails/mediatek-mt8173-skips.txt   |   4 +
+>  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  21 +--
+>  .../drm/ci/xfails/mediatek-mt8183-skips.txt   |   4 +
+>  .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |  24 +--
+>  .../gpu/drm/ci/xfails/meson-g12b-skips.txt    |   4 +
+>  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |  12 +-
+>  .../gpu/drm/ci/xfails/msm-apq8016-skips.txt   |   4 +
+>  .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |   7 +
+>  .../gpu/drm/ci/xfails/msm-apq8096-flakes.txt  |   6 +
+>  .../gpu/drm/ci/xfails/msm-apq8096-skips.txt   |  12 ++
+>  .../msm-sc7180-trogdor-kingoftown-fails.txt   | 175 +++++++++++++++++-
+>  .../msm-sc7180-trogdor-kingoftown-flakes.txt  |   8 +
+>  .../msm-sc7180-trogdor-kingoftown-skips.txt   |   7 +
+>  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 175 +++++++++++++++++-
+>  ...m-sc7180-trogdor-lazor-limozeen-flakes.txt |   6 +
+>  ...sm-sc7180-trogdor-lazor-limozeen-skips.txt |   4 +
+>  .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |  38 +---
+>  .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   |  25 ++-
+>  .../gpu/drm/ci/xfails/msm-sdm845-skips.txt    |   7 +
+>  .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  62 +------
+>  .../drm/ci/xfails/rockchip-rk3288-skips.txt   |   4 +
+>  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  83 +--------
+>  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  13 +-
+>  .../drm/ci/xfails/rockchip-rk3399-skips.txt   |   4 +
+>  drivers/gpu/drm/ci/xfails/update-xfails.py    |   4 +-
+>  .../drm/ci/xfails/virtio_gpu-none-fails.txt   |  94 +++++++---
+>  .../drm/ci/xfails/virtio_gpu-none-skips.txt   |   4 +
+>  53 files changed, 1023 insertions(+), 388 deletions(-)
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
+>  create mode 100644 drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+> 
+> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+> index 2615f67f6aa3..322cce714657 100644
+> --- a/drivers/gpu/drm/ci/test.yml
+> +++ b/drivers/gpu/drm/ci/test.yml
+> @@ -191,6 +191,7 @@ rockchip:rk3399:
+>    extends:
+>      - .lava-igt:x86_64
+>    stage: i915
+> +  timeout: "1h30m"
+>    variables:
+>      DRIVER_NAME: i915
+>      DTB: ""
+> @@ -201,7 +202,6 @@ i915:apl:
+>    extends:
+>      - .i915
+>    parallel: 3
+> -  timeout: "1h30m"
+>    variables:
+>      DEVICE_TYPE: asus-C523NA-A20057-coral
+>      GPU_VERSION: apl
+> @@ -211,7 +211,6 @@ i915:glk:
+>    extends:
+>      - .i915
+>    parallel: 2
+> -  timeout: "1h30m"
+>    variables:
+>      DEVICE_TYPE: hp-x360-12b-ca0010nr-n4020-octopus
+>      GPU_VERSION: glk
+> @@ -221,7 +220,6 @@ i915:amly:
+>    extends:
+>      - .i915
+>    parallel: 2
+> -  timeout: "1h30m"
+>    variables:
+>      DEVICE_TYPE: asus-C433TA-AJ0005-rammus
+>      GPU_VERSION: amly
+> @@ -240,7 +238,6 @@ i915:whl:
+>    extends:
+>      - .i915
+>    parallel: 2
+> -  timeout: "1h30m"
+>    variables:
+>      DEVICE_TYPE: dell-latitude-5400-8665U-sarien
+>      GPU_VERSION: whl
+> @@ -250,7 +247,6 @@ i915:cml:
+>    extends:
+>      - .i915
+>    parallel: 2
+> -  timeout: "1h30m"
+>    variables:
+>      DEVICE_TYPE: asus-C436FA-Flip-hatch
+>      GPU_VERSION: cml
+> diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt
+> index ea87dc46bc2b..e8c2f4044a92 100644
+> --- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt
+> @@ -1,27 +1,40 @@
+> +amdgpu/amd_abm@abm_enabled,Fail
+> +amdgpu/amd_abm@abm_gradual,Fail
+> +amdgpu/amd_abm@backlight_monotonic_abm,Fail
+> +amdgpu/amd_abm@backlight_monotonic_basic,Fail
+> +amdgpu/amd_assr@assr-links,Fail
+> +amdgpu/amd_assr@assr-links-dpms,Fail
+> +amdgpu/amd_mall@static-screen,Crash
+> +amdgpu/amd_mode_switch@mode-switch-first-last-pipe-2,Crash
+> +amdgpu/amd_plane@mpo-pan-nv12,Fail
+> +amdgpu/amd_plane@mpo-pan-p010,Fail
+> +amdgpu/amd_plane@mpo-pan-rgb,Crash
+> +amdgpu/amd_plane@mpo-scale-nv12,Fail
+> +amdgpu/amd_plane@mpo-scale-p010,Fail
+> +amdgpu/amd_plane@mpo-scale-rgb,Crash
+> +amdgpu/amd_plane@mpo-swizzle-toggle,Fail
+> +amdgpu/amd_uvd_dec@amdgpu_uvd_decode,Fail
+> +dumb_buffer@invalid-bpp,Fail
+>  kms_addfb_basic@bad-pitch-65536,Fail
+>  kms_addfb_basic@bo-too-small,Fail
+>  kms_addfb_basic@too-high,Fail
+> -kms_async_flips@async-flip-with-page-flip-events,Fail
+> -kms_async_flips@crc,Fail
+> -kms_async_flips@invalid-async-flip,Fail
+>  kms_atomic_transition@plane-all-modeset-transition-internal-panels,Fail
+>  kms_atomic_transition@plane-all-transition,Fail
+>  kms_atomic_transition@plane-all-transition-nonblocking,Fail
+>  kms_atomic_transition@plane-toggle-modeset-transition,Fail
+>  kms_atomic_transition@plane-use-after-nonblocking-unbind,Fail
+> -kms_bw@linear-tiling-1-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-1-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> -kms_color@degamma,Fail
+> +kms_cursor_crc@cursor-onscreen-64x21,Fail
+> +kms_cursor_crc@cursor-onscreen-64x64,Fail
+> +kms_cursor_crc@cursor-random-64x21,Fail
+> +kms_cursor_crc@cursor-random-64x64,Fail
+>  kms_cursor_crc@cursor-size-change,Fail
+> -kms_cursor_crc@pipe-A-cursor-size-change,Fail
+> -kms_cursor_crc@pipe-B-cursor-size-change,Fail
+> +kms_cursor_crc@cursor-sliding-64x21,Fail
+> +kms_cursor_crc@cursor-sliding-64x64,Fail
+>  kms_flip@flip-vs-modeset-vs-hang,Fail
+>  kms_flip@flip-vs-panning-vs-hang,Fail
+> -kms_hdr@bpc-switch,Fail
+> -kms_hdr@bpc-switch-dpms,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane@pixel-format,Fail
+> -kms_plane_multiple@atomic-pipe-A-tiling-none,Fail
+> -kms_rmfb@close-fd,Fail
+> +kms_plane_cursor@primary,Fail
+>  kms_rotation_crc@primary-rotation-180,Fail
+> +perf@i915-ref-count,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt
+> index 6faf75e667d3..ea512ff8c352 100644
+> --- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt
+> +++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt
+> @@ -1 +1,8 @@
+> +# Board Name: hp-11A-G6-EE-grunt
+> +# Bug Report: https://lore.kernel.org/amd-gfx/3542730f-b8d7-404d-a947-b7a5e95d661c@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+>  kms_async_flips@async-flip-with-page-flip-events
+> +kms_async_flips@crc
+> +kms_plane@pixel-format-source-clamping
+> diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt
+> index 21d26d5e67c2..3a2ce45d3cb9 100644
+> --- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-skips.txt
+> @@ -13,3 +13,21 @@ panfrost_.*
+>  gem_.*
+>  i915_.*
+>  xe_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +amdgpu/amd_module_load@reload
+> +core_hotunplug.*
+> +
+> +# GPU reset seen and it hangs the machine
+> +amdgpu/amd_deadlock@amdgpu-deadlock-sdma
+> +amdgpu/amd_deadlock@amdgpu-gfx-illegal-reg-access
+> +amdgpu/amd_dispatch@amdgpu-reset-test-gfx-with-IP-GFX-and-COMPUTE
+> +
+> +# Hangs the machine and timeout occurs
+> +amdgpu/amd_pci_unplug@amdgpu_hotunplug_simple
+> +amdgpu/amd_pci_unplug@amdgpu_hotunplug_with_cs
+> +amdgpu/amd_pci_unplug@amdgpu_hotunplug_with_exported_bo
+> +amdgpu/amd_pci_unplug@amdgpu_hotunplug_with_exported_fence
+> +amdgpu/amd_vrr_range@freesync-parsing
+> +device_reset.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt b/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt
+> index 59438e4df86e..6641520ac587 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt
+> @@ -1,3 +1,16 @@
+> +core_setmaster@master-drop-set-user,Fail
+> +core_setmaster_vs_auth,Fail
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+> +i915_pm_rpm@gem-execbuf-stress,Timeout
+> +i915_pm_rpm@module-reload,Fail
+> +kms_async_flips@invalid-async-flip,Timeout
+> +kms_atomic_transition@modeset-transition-fencing,Timeout
+> +kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout
+> +kms_fb_coherency@memset-crc,Crash
+> +kms_flip@flip-vs-dpms-off-vs-modeset,Timeout
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+> @@ -20,7 +33,25 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane_alpha_blend@alpha-basic,Fail
+>  kms_plane_alpha_blend@alpha-opaque-fb,Fail
+>  kms_plane_alpha_blend@alpha-transparent-fb,Fail
+>  kms_plane_alpha_blend@constant-alpha-max,Fail
+> +kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout
+> +kms_pm_rpm@modeset-lpsp-stress,Timeout
+> +kms_pm_rpm@modeset-stress-extra-wait,Timeout
+> +kms_pm_rpm@universal-planes,Timeout
+> +kms_pm_rpm@universal-planes-dpms,Timeout
+> +perf@i915-ref-count,Fail
+> +perf_pmu@module-unload,Fail
+> +perf_pmu@rc6,Crash
+> +sysfs_heartbeat_interval@long,Timeout
+> +sysfs_heartbeat_interval@off,Timeout
+> +sysfs_preempt_timeout@off,Timeout
+> +sysfs_timeslice_duration@off,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@many-reload,Fail
+> +xe_module_load@reload,Fail
+> +xe_module_load@reload-no-display,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+> new file mode 100644
+> index 000000000000..0a76547a103d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+> @@ -0,0 +1,9 @@
+> +# Board Name: asus-C433TA-AJ0005-rammus
+> +# Bug Report: https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +i915_hangman@engine-engine-error
+> +i915_hangman@gt-engine-hang
+> +kms_async_flips@crc
+> +kms_universal_plane@cursor-fb-leak
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt b/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt
+> index 1e80987cf584..5663ed0420a7 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-amly-skips.txt
+> @@ -11,3 +11,14 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_pm_rc6_residency.*
+> +i915_suspend.*
+> +kms_scaling_modes.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt
+> index 2e3b7c5dac3c..e612281149aa 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt
+> @@ -1,13 +1,7 @@
+> -kms_3d,Timeout
+> -kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-4-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-4-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-4-displays-3840x2160p,Fail
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+> @@ -30,18 +24,30 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-upscaling,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane_alpha_blend@alpha-basic,Fail
+>  kms_plane_alpha_blend@alpha-opaque-fb,Fail
+>  kms_plane_alpha_blend@alpha-transparent-fb,Fail
+>  kms_plane_alpha_blend@constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-A-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-A-alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@pipe-A-constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-B-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-B-alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@pipe-B-constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-C-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-C-alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@pipe-C-constant-alpha-max,Fail
+> +kms_pm_backlight@basic-brightness,Fail
+> +kms_pm_backlight@fade,Fail
+> +kms_pm_backlight@fade-with-dpms,Fail
+> +kms_pm_rpm@legacy-planes,Timeout
+> +kms_pm_rpm@legacy-planes-dpms,Timeout
+> +kms_pm_rpm@modeset-stress-extra-wait,Timeout
+> +kms_pm_rpm@universal-planes,Timeout
+> +kms_pm_rpm@universal-planes-dpms,Timeout
+>  kms_sysfs_edid_timing,Fail
+> +perf@i915-ref-count,Fail
+> +perf@non-zero-reason,Timeout
+> +perf_pmu@module-unload,Fail
+> +perf_pmu@rc6,Crash
+> +sysfs_heartbeat_interval@long,Timeout
+> +sysfs_heartbeat_interval@off,Timeout
+> +sysfs_preempt_timeout@off,Timeout
+> +sysfs_timeslice_duration@off,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@many-reload,Fail
+> +xe_module_load@reload,Fail
+> +xe_module_load@reload-no-display,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+> new file mode 100644
+> index 000000000000..cb010c153a6a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+> @@ -0,0 +1,6 @@
+> +# Board Name: asus-C523NA-A20057-coral
+> +# Bug Report: https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +kms_fb_coherency@memset-crc
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt
+> index 0104f2ffa8ba..ab588e7a447c 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-apl-skips.txt
+> @@ -13,3 +13,18 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_pm_rc6_residency.*
+> +i915_suspend.*
+> +i915_pm_rpm.*
+> +device_reset.*
+> +api_intel_allocator.*
+> +kms_frontbuffer_tracking.*
+> +kms_ccs.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt b/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt
+> index 240ef8467c26..26cd62bbf30a 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt
+> @@ -1,3 +1,19 @@
+> +core_setmaster@master-drop-set-user,Fail
+> +core_setmaster_vs_auth,Fail
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+> +i915_pipe_stress@stress-xrgb8888-untiled,Fail
+> +i915_pipe_stress@stress-xrgb8888-ytiled,Fail
+> +i915_pm_rpm@gem-execbuf-stress,Timeout
+> +i915_pm_rpm@module-reload,Fail
+> +i915_pm_rpm@system-suspend-execbuf,Timeout
+> +kms_async_flips@invalid-async-flip,Timeout
+> +kms_atomic_transition@modeset-transition-fencing,Timeout
+> +kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout
+> +kms_fb_coherency@memset-crc,Crash
+> +kms_flip@flip-vs-dpms-off-vs-modeset,Timeout
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+> @@ -20,11 +36,33 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane_alpha_blend@alpha-basic,Fail
+>  kms_plane_alpha_blend@alpha-opaque-fb,Fail
+>  kms_plane_alpha_blend@alpha-transparent-fb,Fail
+>  kms_plane_alpha_blend@constant-alpha-max,Fail
+>  kms_plane_alpha_blend@constant-alpha-min,Fail
+> +kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout
+> +kms_pm_rpm@modeset-stress-extra-wait,Timeout
+> +kms_pm_rpm@universal-planes,Timeout
+> +kms_pm_rpm@universal-planes-dpms,Timeout
+> +kms_psr2_sf@fbc-plane-move-sf-dmg-area,Timeout
+> +kms_psr2_sf@overlay-plane-update-continuous-sf,Fail
+> +kms_psr2_sf@overlay-plane-update-sf-dmg-area,Fail
+> +kms_psr2_sf@primary-plane-update-sf-dmg-area,Fail
+> +kms_psr2_sf@primary-plane-update-sf-dmg-area-big-fb,Fail
+>  kms_psr2_su@page_flip-NV12,Fail
+>  kms_psr2_su@page_flip-P010,Fail
+> +kms_psr@psr-sprite-render,Timeout
+>  kms_setmode@basic,Fail
+> +perf@i915-ref-count,Fail
+> +perf_pmu@module-unload,Fail
+> +perf_pmu@rc6,Crash
+> +perf_pmu@rc6-suspend,Crash
+> +sysfs_heartbeat_interval@long,Timeout
+> +sysfs_heartbeat_interval@off,Timeout
+> +sysfs_preempt_timeout@off,Timeout
+> +sysfs_timeslice_duration@off,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@many-reload,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+> new file mode 100644
+> index 000000000000..bb560ff1e2cd
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+> @@ -0,0 +1,6 @@
+> +# Board Name: asus-C436FA-Flip-hatch
+> +# Bug Report: https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +kms_plane_alpha_blend@constant-alpha-min
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt b/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt
+> index 398ebe163ad0..93b7736fffbb 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-cml-skips.txt
+> @@ -9,3 +9,17 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_pm_rc6_residency.*
+> +i915_suspend.*
+> +xe_module_load.*
+> +api_intel_allocator.*
+> +kms_cursor_legacy.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> +kms_frontbuffer_tracking.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt b/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt
+> index 4596055d7e5e..fca15b487929 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt
+> @@ -1,5 +1,20 @@
+> -kms_fbcon_fbt@fbc,Fail
+> -kms_flip@blocking-wf_vblank,Fail
+> +core_setmaster@master-drop-set-user,Fail
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+> +kms_async_flips@invalid-async-flip,Timeout
+> +kms_atomic_transition@modeset-transition-fencing,Timeout
+> +kms_big_fb@linear-16bpp-rotate-0,Fail
+> +kms_big_fb@linear-16bpp-rotate-180,Fail
+> +kms_big_fb@linear-32bpp-rotate-0,Fail
+> +kms_big_fb@linear-32bpp-rotate-180,Fail
+> +kms_big_fb@linear-8bpp-rotate-0,Fail
+> +kms_big_fb@linear-8bpp-rotate-180,Fail
+> +kms_big_fb@linear-max-hw-stride-32bpp-rotate-0,Fail
+> +kms_dirtyfb@default-dirtyfb-ioctl,Fail
+> +kms_draw_crc@draw-method-render,Fail
+> +kms_flip@flip-vs-dpms-off-vs-modeset,Timeout
+>  kms_flip@wf_vblank-ts-check,Fail
+>  kms_flip@wf_vblank-ts-check-interruptible,Fail
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+> @@ -11,7 +26,6 @@ kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-downscaling,Fail
+> @@ -26,11 +40,24 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+>  kms_frontbuffer_tracking@fbc-tiling-linear,Fail
+>  kms_frontbuffer_tracking@fbcdrrs-tiling-linear,Fail
+> -kms_plane_alpha_blend@alpha-basic,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane_alpha_blend@alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@constant-alpha-max,Fail
+> +kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout
+> +kms_pm_rpm@legacy-planes,Timeout
+> +kms_pm_rpm@legacy-planes-dpms,Timeout
+> +kms_pm_rpm@modeset-stress-extra-wait,Timeout
+> +kms_pm_rpm@universal-planes,Timeout
+> +kms_pm_rpm@universal-planes-dpms,Timeout
+>  kms_rotation_crc@multiplane-rotation,Fail
+>  kms_rotation_crc@multiplane-rotation-cropping-bottom,Fail
+>  kms_rotation_crc@multiplane-rotation-cropping-top,Fail
+> -kms_setmode@basic,Fail
+> +perf@non-zero-reason,Timeout
+> +sysfs_heartbeat_interval@long,Timeout
+> +sysfs_heartbeat_interval@off,Timeout
+> +sysfs_preempt_timeout@off,Timeout
+> +sysfs_timeslice_duration@off,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@many-reload,Fail
+> +xe_module_load@reload,Fail
+> +xe_module_load@reload-no-display,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt
+> new file mode 100644
+> index 000000000000..58fc424f8a42
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt
+> @@ -0,0 +1,7 @@
+> +# Board Name: hp-x360-12b-ca0010nr-n4020-octopus
+> +# Bug Report: https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +core_hotunplug@unplug-rescan
+> +kms_fb_coherency@memset-crc
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt b/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt
+> index 4f5419d62170..b3226b2d9ba1 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-glk-skips.txt
+> @@ -12,3 +12,18 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_pm_rc6_residency.*
+> +i915_suspend.*
+> +i915_pm_rpm.*
+> +kms_ccs.*
+> +kms_plane_multiple.*
+> +perf.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> +kms_plane_alpha_blend.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt
+> index dab202716909..d4fba4f55ec1 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt
+> @@ -1,32 +1,28 @@
+> -kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-4-displays-2560x1440p,Fail
+> -kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+> +i915_pm_rpm@gem-execbuf-stress,Timeout
+>  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-32bpp-xtile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-32bpp-xtile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-upscaling,Fail
+> -kms_plane_alpha_blend@alpha-basic,Fail
+> -kms_plane_alpha_blend@alpha-opaque-fb,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane_alpha_blend@alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-A-constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-B-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-C-constant-alpha-max,Fail
+> +perf@i915-ref-count,Fail
+> +perf_pmu@busy-accuracy-50,Fail
+> +perf_pmu@module-unload,Fail
+> +perf_pmu@rc6,Crash
+> +sysfs_heartbeat_interval@long,Timeout
+> +sysfs_heartbeat_interval@off,Timeout
+> +sysfs_preempt_timeout@off,Timeout
+> +sysfs_timeslice_duration@off,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@many-reload,Fail
+> +xe_module_load@reload,Fail
+> +xe_module_load@reload-no-display,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt
+> index a12f888530dd..6cf1fed2e575 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt
+> @@ -1 +1,6 @@
+> -kms_async_flips@crc
+> +# Board Name: hp-x360-14-G1-sona
+> +# Bug Report: https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +prime_busy@hang
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt
+> index 4f5419d62170..f0cf8a6dda25 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-kbl-skips.txt
+> @@ -12,3 +12,28 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_.*
+> +api_intel_bb.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> +kms_.*
+> +prime_mmap_coherency.*
+> +perf.*
+> +drm_read.*
+> +api_intel_allocator.*
+> +sysfs_preempt_timeout.*
+> +dumb_buffer.*
+> +gen9_exec_parse.*
+> +debugfs_test.*
+> +core_hotunplug.*
+> +tools_test.*
+> +
+> +# GPU hang
+> +sysfs_timeslice_.*
+> +sysfs_heartbeat_.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt
+> index 27bfca1c6f2c..9a50e894c3e7 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt
+> @@ -1,36 +1,43 @@
+> -kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-4-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-4-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-4-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-5-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-5-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-5-displays-3840x2160p,Fail
+> -kms_flip@flip-vs-panning-vs-hang,Timeout
+> -kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-32bpp-xtile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-xtile-to-32bpp-xtile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-upscaling,Fail
+> -kms_rotation_crc@bad-pixel-format,Fail
+> +api_intel_bb@blit-noreloc-keep-cache,Timeout
+> +api_intel_bb@offset-control,Timeout
+> +api_intel_bb@render-ccs,Timeout
+> +core_getclient,Timeout
+> +core_hotunplug@hotreplug-lateclose,Timeout
+> +drm_read@short-buffer-block,Timeout
+> +drm_read@short-buffer-nonblock,Timeout
+> +dumb_buffer@map-uaf,Timeout
+> +gen3_render_tiledx_blits,Timeout
+> +gen7_exec_parse@basic-allocation,Timeout
+> +gen7_exec_parse@batch-without-end,Timeout
+> +gen9_exec_parse@batch-invalid-length,Timeout
+> +gen9_exec_parse@bb-secure,Timeout
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+> +i915_pciid,Timeout
+> +i915_query@engine-info,Timeout
+> +kms_lease@lease-uevent,Fail
+>  kms_rotation_crc@multiplane-rotation,Fail
+> -kms_rotation_crc@multiplane-rotation-cropping-bottom,Fail
+> -kms_rotation_crc@multiplane-rotation-cropping-top,Fail
+> +perf@i915-ref-count,Fail
+> +perf_pmu@busy,Timeout
+> +perf_pmu@enable-race,Timeout
+> +perf_pmu@event-wait,Timeout
+> +perf_pmu@gt-awake,Timeout
+> +perf_pmu@module-unload,Fail
+> +perf_pmu@rc6,Crash
+> +prime_mmap@test_map_unmap,Timeout
+> +prime_self_import@basic-with_one_bo,Timeout
+> +syncobj_basic@bad-destroy,Timeout
+> +syncobj_eventfd@invalid-bad-pad,Timeout
+> +syncobj_wait@invalid-multi-wait-unsubmitted-signaled,Timeout
+> +syncobj_wait@invalid-signal-illegal-handle,Timeout
+> +syncobj_wait@invalid-single-wait-all-unsubmitted,Timeout
+> +syncobj_wait@multi-wait-all-submitted,Timeout
+> +syncobj_wait@multi-wait-for-submit-submitted-signaled,Timeout
+> +syncobj_wait@wait-any-complex,Timeout
+> +syncobj_wait@wait-delayed-signal,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@reload,Fail
+> +xe_module_load@reload-no-display,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt
+> index b0372c239b93..e600782ef96a 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-tgl-skips.txt
+> @@ -18,3 +18,20 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_pm_rc6_residency.*
+> +i915_suspend.*
+> +sysfs_heartbeat_interval.*
+> +syncobj_timeline.*
+> +sysfs_timeslice_duration.*
+> +syncobj_wait.*
+> +
+> +# Kernel panic and test hangs with multiple kms tests
+> +kms_.*
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt
+> index 967327ddc1ac..7582d313dd9b 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt
+> @@ -1,14 +1,25 @@
+> -kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-4-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-4-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-4-displays-3840x2160p,Fail
+> -kms_fbcon_fbt@fbc,Fail
+> -kms_fbcon_fbt@fbc-suspend,Fail
+> +core_setmaster@master-drop-set-user,Fail
+> +core_setmaster_vs_auth,Fail
+> +i915_module_load@load,Fail
+> +i915_module_load@reload,Fail
+> +i915_module_load@reload-no-display,Fail
+> +i915_module_load@resize-bar,Fail
+> +i915_pm_rpm@gem-execbuf-stress,Timeout
+> +i915_pm_rpm@module-reload,Fail
+> +i915_pm_rpm@system-suspend-execbuf,Timeout
+> +kms_async_flips@invalid-async-flip,Timeout
+> +kms_atomic_transition@modeset-transition-fencing,Timeout
+> +kms_big_fb@linear-16bpp-rotate-0,Fail
+> +kms_big_fb@linear-16bpp-rotate-180,Fail
+> +kms_big_fb@linear-32bpp-rotate-0,Fail
+> +kms_big_fb@linear-32bpp-rotate-180,Fail
+> +kms_big_fb@linear-8bpp-rotate-0,Fail
+> +kms_big_fb@linear-8bpp-rotate-180,Fail
+> +kms_big_fb@linear-max-hw-stride-32bpp-rotate-0,Fail
+> +kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout
+> +kms_dirtyfb@default-dirtyfb-ioctl,Fail
+> +kms_draw_crc@draw-method-render,Fail
+> +kms_fb_coherency@memset-crc,Crash
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail
+> @@ -18,8 +29,6 @@ kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-linear-to-32bpp-linear-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-xtile-to-16bpp-xtile-upscaling,Fail
+> @@ -31,18 +40,26 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail
+>  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail
+> -kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-upscaling,Fail
+>  kms_frontbuffer_tracking@fbc-tiling-linear,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_plane_alpha_blend@alpha-basic,Fail
+>  kms_plane_alpha_blend@alpha-opaque-fb,Fail
+>  kms_plane_alpha_blend@alpha-transparent-fb,Fail
+>  kms_plane_alpha_blend@constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-A-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-A-alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@pipe-A-constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-B-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-B-alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@pipe-B-constant-alpha-max,Fail
+> -kms_plane_alpha_blend@pipe-C-alpha-opaque-fb,Fail
+> -kms_plane_alpha_blend@pipe-C-alpha-transparent-fb,Fail
+> -kms_plane_alpha_blend@pipe-C-constant-alpha-max,Fail
+> +kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout
+> +kms_pm_rpm@modeset-stress-extra-wait,Timeout
+> +kms_pm_rpm@universal-planes,Timeout
+> +kms_pm_rpm@universal-planes-dpms,Timeout
+> +perf@i915-ref-count,Fail
+> +perf_pmu@module-unload,Fail
+> +perf_pmu@rc6,Crash
+> +perf_pmu@rc6-suspend,Crash
+> +sysfs_heartbeat_interval@long,Timeout
+> +sysfs_heartbeat_interval@off,Timeout
+> +sysfs_preempt_timeout@off,Timeout
+> +sysfs_timeslice_duration@off,Timeout
+> +xe_module_load@force-load,Fail
+> +xe_module_load@load,Fail
+> +xe_module_load@many-reload,Fail
+> +xe_module_load@reload,Fail
+> +xe_module_load@reload-no-display,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt
+> new file mode 100644
+> index 000000000000..1167a58c7dd1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt
+> @@ -0,0 +1,6 @@
+> +# Board Name: dell-latitude-5400-8665U-sarien
+> +# Bug Report: https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +kms_pm_rpm@modeset-lpsp-stress
+> diff --git a/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt b/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt
+> index 398ebe163ad0..20bd91525f45 100644
+> --- a/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/i915-whl-skips.txt
+> @@ -9,3 +9,14 @@ panfrost_.*
+>  ^v3d.*
+>  ^vc4.*
+>  ^vmwgfx*
+> +
+> +# GEM tests takes ~1000 hours, so skip it
+> +gem_.*
+> +
+> +# Hangs the machine and timeout occurs
+> +i915_pm_rc6_residency.*
+> +i915_suspend.*
+> +kms_flip.*
+> +
+> +# Kernel panic
+> +drm_fdinfo.*
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+> index ef0cb7c3698c..cc5e9c1c2d57 100644
+> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt
+> @@ -1,36 +1,30 @@
+> +device_reset@cold-reset-bound,Fail
+> +device_reset@reset-bound,Fail
+> +device_reset@unbind-cold-reset-rebind,Fail
+> +device_reset@unbind-reset-rebind,Fail
+> +dumb_buffer@invalid-bpp,Fail
+> +fbdev@eof,Fail
+> +fbdev@read,Fail
+> +fbdev@unaligned-write,Fail
+>  kms_3d,Fail
+>  kms_bw@linear-tiling-1-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-1-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-1-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-1-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-2-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+>  kms_color@invalid-gamma-lut-sizes,Fail
+> -kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
+> -kms_color@pipe-B-invalid-gamma-lut-sizes,Fail
+>  kms_cursor_legacy@cursor-vs-flip-atomic,Fail
+>  kms_cursor_legacy@cursor-vs-flip-legacy,Fail
+>  kms_flip@flip-vs-modeset-vs-hang,Fail
+>  kms_flip@flip-vs-panning-vs-hang,Fail
+>  kms_flip@flip-vs-suspend,Fail
+>  kms_flip@flip-vs-suspend-interruptible,Fail
+> -kms_force_connector_basic@force-edid,Fail
+> -kms_force_connector_basic@force-load-detect,Fail
+> -kms_force_connector_basic@prune-stale-modes,Fail
+> -kms_hdmi_inject@inject-4k,Fail
+> -kms_plane_scaling@planes-upscale-20x20,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75,Fail
+> -kms_plane_scaling@upscale-with-modifier-20x20,Fail
+> -kms_plane_scaling@upscale-with-pixel-format-20x20,Fail
+> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_properties@get_properties-sanity-atomic,Fail
+>  kms_properties@plane-properties-atomic,Fail
+>  kms_properties@plane-properties-legacy,Fail
+>  kms_rmfb@close-fd,Fail
+> -kms_selftest@drm_format,Timeout
+> -kms_selftest@drm_format_helper,Timeout
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+> new file mode 100644
+> index 000000000000..395ac0463404
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-flakes.txt
+> @@ -0,0 +1,11 @@
+> +# Board Name: mt8173-elm-hana
+> +# Bug Report: https://lore.kernel.org/linux-mediatek/0b2a1899-15dd-42fa-8f63-ea0ca28dbb17@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +core_setmaster_vs_auth
+> +dumb_buffer@create-clear
+> +fbdev@unaligned-write
+> +fbdev@write
+> +kms_cursor_legacy@cursor-vs-flip-atomic-transitions
+> +kms_prop_blob@invalid-set-prop
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+> index db0c9dbbeb61..0c6108392140 100644
+> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-skips.txt
+> @@ -10,3 +10,7 @@ panfrost_.*
+>  # Skip intel specific tests
+>  gem_.*
+>  i915_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+> index 67d690fc4037..9ef460646d76 100644
+> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt
+> @@ -1,13 +1,8 @@
+> -kms_addfb_basic@addfb25-bad-modifier,Fail
+> -kms_bw@linear-tiling-1-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+> -kms_color@pipe-A-invalid-gamma-lut-sizes,Fail
+> -kms_plane_cursor@overlay,Fail
+> -kms_plane_cursor@primary,Fail
+> -kms_plane_cursor@viewport,Fail
+> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
+> -kms_rmfb@close-fd,Fail
+> +dumb_buffer@create-clear,Fail
+> +dumb_buffer@create-valid-dumb,Fail
+> +dumb_buffer@invalid-bpp,Fail
+> +dumb_buffer@map-invalid-size,Fail
+> +dumb_buffer@map-uaf,Fail
+> +dumb_buffer@map-valid,Fail
+> +panfrost_prime@gem-prime-import,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+> index 7a1c8be89e5b..715b9a8f4997 100644
+> --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-skips.txt
+> @@ -12,3 +12,7 @@ i915_.*
+>  
+>  # Panfrost is not a KMS driver, so skip the KMS tests
+>  kms_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt b/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt
+> index 56a2ae7047b4..9ef460646d76 100644
+> --- a/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt
+> @@ -1,16 +1,8 @@
+> -kms_3d,Fail
+> -kms_cursor_legacy@forked-bo,Fail
+> -kms_cursor_legacy@forked-move,Fail
+> -kms_cursor_legacy@single-bo,Fail
+> -kms_cursor_legacy@single-move,Fail
+> -kms_cursor_legacy@torture-bo,Fail
+> -kms_cursor_legacy@torture-move,Fail
+> -kms_force_connector_basic@force-edid,Fail
+> -kms_hdmi_inject@inject-4k,Fail
+> -kms_plane_cursor@overlay,Fail
+> -kms_plane_cursor@primary,Fail
+> -kms_plane_cursor@viewport,Fail
+> -kms_properties@connector-properties-atomic,Fail
+> -kms_properties@connector-properties-legacy,Fail
+> -kms_properties@get_properties-sanity-atomic,Fail
+> -kms_properties@get_properties-sanity-non-atomic,Fail
+> +dumb_buffer@create-clear,Fail
+> +dumb_buffer@create-valid-dumb,Fail
+> +dumb_buffer@invalid-bpp,Fail
+> +dumb_buffer@map-invalid-size,Fail
+> +dumb_buffer@map-uaf,Fail
+> +dumb_buffer@map-valid,Fail
+> +panfrost_prime@gem-prime-import,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt b/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+> index 7a1c8be89e5b..715b9a8f4997 100644
+> --- a/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/meson-g12b-skips.txt
+> @@ -12,3 +12,7 @@ i915_.*
+>  
+>  # Panfrost is not a KMS driver, so skip the KMS tests
+>  kms_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> index b14d4e884971..3dfbabdf905e 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt
+> @@ -1,8 +1,16 @@
+> +device_reset@cold-reset-bound,Fail
+> +device_reset@reset-bound,Fail
+> +device_reset@unbind-cold-reset-rebind,Fail
+> +device_reset@unbind-reset-rebind,Fail
+> +dumb_buffer@invalid-bpp,Fail
+>  kms_3d,Fail
+>  kms_addfb_basic@addfb25-bad-modifier,Fail
+> +kms_cursor_legacy@forked-move,Fail
+> +kms_cursor_legacy@single-bo,Fail
+>  kms_cursor_legacy@torture-bo,Fail
+> +kms_cursor_legacy@torture-move,Fail
+>  kms_force_connector_basic@force-edid,Fail
+>  kms_hdmi_inject@inject-4k,Fail
+> -kms_selftest@drm_format,Timeout
+> -kms_selftest@drm_format_helper,Timeout
+> +kms_lease@lease-uevent,Fail
+>  msm_mapping@ring,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+> index 7fea49ec6b8f..ff12202abb6e 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-skips.txt
+> @@ -9,3 +9,7 @@ panfrost_.*
+>  # Skip intel specific tests
+>  gem_.*
+>  i915_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
+> index 88a1fc0a3b0d..23a5f6f9097f 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt
+> @@ -1,2 +1,9 @@
+> +device_reset@cold-reset-bound,Fail
+> +device_reset@reset-bound,Fail
+> +device_reset@unbind-cold-reset-rebind,Fail
+> +device_reset@unbind-reset-rebind,Fail
+> +dumb_buffer@invalid-bpp,Fail
+>  kms_3d,Fail
+>  kms_addfb_basic@addfb25-bad-modifier,Fail
+> +kms_lease@lease-uevent,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
+> new file mode 100644
+> index 000000000000..a275584c8bbb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-flakes.txt
+> @@ -0,0 +1,6 @@
+> +# Board Name: apq8096-db820c
+> +# Bug Report: https://lore.kernel.org/linux-arm-msm/661483c8-ad82-400d-bcd8-e94986d20d7d@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +dumb_buffer@create-clear
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt
+> index 9ab2177df1ab..1c45fc6c512d 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-skips.txt
+> @@ -12,3 +12,15 @@ panfrost_.*
+>  # Skip intel specific tests
+>  gem_.*
+>  i915_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> +
+> +# gpu fault
+> +# [IGT] msm_mapping: executing
+> +# [IGT] msm_mapping: starting subtest shadow
+> +# *** gpu fault: ttbr0=00000001030ea000 iova=0000000001074000 dir=WRITE type=PERMISSION source=1f030000 (0,0,0,0)
+> +# msm_mdp 901000.display-controller: RBBM | ME master split | status=0x701000B0
+> +# watchdog: BUG: soft lockup - CPU#0 stuck for 26s! [kworker/u16:3:46]
+> +msm_mapping@shadow
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
+> index f0576aa629e8..eb7a3886d397 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
+> @@ -1,18 +1,191 @@
+> +device_reset@cold-reset-bound,Fail
+> +device_reset@reset-bound,Fail
+> +device_reset@unbind-cold-reset-rebind,Fail
+> +device_reset@unbind-reset-rebind,Fail
+> +dumb_buffer@invalid-bpp,Fail
+> +kms_atomic_transition@plane-primary-toggle-with-vblank-wait,Fail
+>  kms_color@ctm-0-25,Fail
+>  kms_color@ctm-0-50,Fail
+>  kms_color@ctm-0-75,Fail
+>  kms_color@ctm-blue-to-red,Fail
+>  kms_color@ctm-green-to-red,Fail
+> +kms_color@ctm-max,Fail
+>  kms_color@ctm-negative,Fail
+>  kms_color@ctm-red-to-blue,Fail
+>  kms_color@ctm-signed,Fail
+> +kms_content_protection@atomic,Crash
+> +kms_content_protection@atomic-dpms,Crash
+> +kms_content_protection@content-type-change,Crash
+> +kms_content_protection@lic-type-0,Crash
+> +kms_content_protection@lic-type-1,Crash
+> +kms_content_protection@srm,Crash
+> +kms_content_protection@type1,Crash
+> +kms_content_protection@uevent,Crash
+> +kms_cursor_crc@cursor-alpha-opaque,Fail
+> +kms_cursor_crc@cursor-alpha-transparent,Fail
+> +kms_cursor_crc@cursor-dpms,Fail
+> +kms_cursor_crc@cursor-offscreen-128x128,Fail
+> +kms_cursor_crc@cursor-offscreen-128x42,Fail
+> +kms_cursor_crc@cursor-offscreen-256x256,Fail
+> +kms_cursor_crc@cursor-offscreen-256x85,Fail
+> +kms_cursor_crc@cursor-offscreen-32x10,Fail
+> +kms_cursor_crc@cursor-offscreen-32x32,Fail
+> +kms_cursor_crc@cursor-offscreen-512x170,Fail
+> +kms_cursor_crc@cursor-offscreen-512x512,Fail
+> +kms_cursor_crc@cursor-offscreen-64x21,Fail
+> +kms_cursor_crc@cursor-offscreen-64x64,Fail
+> +kms_cursor_crc@cursor-onscreen-128x128,Fail
+> +kms_cursor_crc@cursor-onscreen-128x42,Fail
+> +kms_cursor_crc@cursor-onscreen-256x256,Fail
+> +kms_cursor_crc@cursor-onscreen-256x85,Fail
+> +kms_cursor_crc@cursor-onscreen-32x10,Fail
+> +kms_cursor_crc@cursor-onscreen-32x32,Fail
+> +kms_cursor_crc@cursor-onscreen-512x170,Fail
+> +kms_cursor_crc@cursor-onscreen-512x512,Fail
+> +kms_cursor_crc@cursor-onscreen-64x21,Fail
+> +kms_cursor_crc@cursor-onscreen-64x64,Fail
+> +kms_cursor_crc@cursor-random-128x128,Fail
+> +kms_cursor_crc@cursor-random-128x42,Fail
+> +kms_cursor_crc@cursor-random-256x256,Fail
+> +kms_cursor_crc@cursor-random-256x85,Fail
+> +kms_cursor_crc@cursor-random-32x10,Fail
+> +kms_cursor_crc@cursor-random-32x32,Fail
+> +kms_cursor_crc@cursor-random-512x170,Fail
+> +kms_cursor_crc@cursor-random-512x512,Fail
+> +kms_cursor_crc@cursor-random-64x21,Fail
+> +kms_cursor_crc@cursor-random-64x64,Fail
+> +kms_cursor_crc@cursor-rapid-movement-128x128,Fail
+> +kms_cursor_crc@cursor-rapid-movement-128x42,Fail
+> +kms_cursor_crc@cursor-rapid-movement-256x256,Fail
+> +kms_cursor_crc@cursor-rapid-movement-256x85,Fail
+> +kms_cursor_crc@cursor-rapid-movement-32x10,Fail
+> +kms_cursor_crc@cursor-rapid-movement-32x32,Fail
+> +kms_cursor_crc@cursor-rapid-movement-512x170,Fail
+> +kms_cursor_crc@cursor-rapid-movement-512x512,Fail
+> +kms_cursor_crc@cursor-rapid-movement-64x21,Fail
+> +kms_cursor_crc@cursor-rapid-movement-64x64,Fail
+> +kms_cursor_crc@cursor-size-change,Fail
+> +kms_cursor_crc@cursor-sliding-128x128,Fail
+> +kms_cursor_crc@cursor-sliding-128x42,Fail
+> +kms_cursor_crc@cursor-sliding-256x256,Fail
+> +kms_cursor_crc@cursor-sliding-256x85,Fail
+> +kms_cursor_crc@cursor-sliding-32x10,Fail
+> +kms_cursor_crc@cursor-sliding-32x32,Fail
+> +kms_cursor_crc@cursor-sliding-512x170,Fail
+> +kms_cursor_crc@cursor-sliding-512x512,Fail
+> +kms_cursor_crc@cursor-sliding-64x21,Fail
+> +kms_cursor_crc@cursor-sliding-64x64,Fail
+> +kms_cursor_edge_walk@128x128-left-edge,Fail
+> +kms_cursor_edge_walk@128x128-right-edge,Fail
+> +kms_cursor_edge_walk@128x128-top-bottom,Fail
+> +kms_cursor_edge_walk@128x128-top-edge,Fail
+> +kms_cursor_edge_walk@256x256-left-edge,Fail
+> +kms_cursor_edge_walk@256x256-right-edge,Fail
+> +kms_cursor_edge_walk@256x256-top-bottom,Fail
+> +kms_cursor_edge_walk@256x256-top-edge,Fail
+> +kms_cursor_edge_walk@64x64-left-edge,Fail
+> +kms_cursor_edge_walk@64x64-right-edge,Fail
+> +kms_cursor_edge_walk@64x64-top-bottom,Fail
+> +kms_cursor_edge_walk@64x64-top-edge,Fail
+> +kms_cursor_legacy@2x-cursor-vs-flip-atomic,Fail
+> +kms_cursor_legacy@2x-cursor-vs-flip-legacy,Fail
+> +kms_cursor_legacy@2x-flip-vs-cursor-atomic,Fail
+> +kms_cursor_legacy@2x-flip-vs-cursor-legacy,Fail
+> +kms_cursor_legacy@2x-long-cursor-vs-flip-atomic,Fail
+> +kms_cursor_legacy@2x-long-cursor-vs-flip-legacy,Fail
+> +kms_cursor_legacy@2x-long-flip-vs-cursor-atomic,Fail
+> +kms_cursor_legacy@2x-long-flip-vs-cursor-legacy,Fail
+>  kms_cursor_legacy@cursor-vs-flip-toggle,Fail
+>  kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
+> +kms_display_modes@extended-mode-basic,Fail
+> +kms_flip@2x-flip-vs-modeset-vs-hang,Fail
+> +kms_flip@2x-flip-vs-panning-vs-hang,Fail
+> +kms_flip@absolute-wf_vblank,Fail
+> +kms_flip@absolute-wf_vblank-interruptible,Fail
+> +kms_flip@basic-flip-vs-wf_vblank,Fail
+> +kms_flip@basic-plain-flip,Fail
+> +kms_flip@blocking-absolute-wf_vblank,Fail
+> +kms_flip@blocking-absolute-wf_vblank-interruptible,Fail
+> +kms_flip@blocking-wf_vblank,Fail
+> +kms_flip@busy-flip,Fail
+> +kms_flip@dpms-off-confusion,Fail
+> +kms_flip@dpms-off-confusion-interruptible,Fail
+> +kms_flip@dpms-vs-vblank-race,Fail
+> +kms_flip@dpms-vs-vblank-race-interruptible,Fail
+> +kms_flip@flip-vs-absolute-wf_vblank,Fail
+> +kms_flip@flip-vs-absolute-wf_vblank-interruptible,Fail
+> +kms_flip@flip-vs-blocking-wf-vblank,Fail
+> +kms_flip@flip-vs-expired-vblank,Fail
+> +kms_flip@flip-vs-expired-vblank-interruptible,Fail
+>  kms_flip@flip-vs-modeset-vs-hang,Fail
+> +kms_flip@flip-vs-panning,Fail
+> +kms_flip@flip-vs-panning-interruptible,Fail
+>  kms_flip@flip-vs-panning-vs-hang,Fail
+> +kms_flip@flip-vs-rmfb,Fail
+> +kms_flip@flip-vs-rmfb-interruptible,Fail
+> +kms_flip@flip-vs-wf_vblank-interruptible,Fail
+> +kms_flip@modeset-vs-vblank-race,Fail
+> +kms_flip@modeset-vs-vblank-race-interruptible,Fail
+> +kms_flip@plain-flip-fb-recreate,Fail
+> +kms_flip@plain-flip-fb-recreate-interruptible,Fail
+> +kms_flip@plain-flip-interruptible,Fail
+> +kms_flip@plain-flip-ts-check,Fail
+> +kms_flip@plain-flip-ts-check-interruptible,Fail
+> +kms_flip@wf_vblank-ts-check,Fail
+> +kms_flip@wf_vblank-ts-check-interruptible,Fail
+> +kms_lease@cursor-implicit-plane,Fail
+> +kms_lease@lease-uevent,Fail
+> +kms_lease@page-flip-implicit-plane,Fail
+> +kms_lease@setcrtc-implicit-plane,Fail
+> +kms_lease@simple-lease,Fail
+> +kms_multipipe_modeset@basic-max-pipe-crc-check,Fail
+>  kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
+> +kms_pipe_crc_basic@compare-crc-sanitycheck-xr24,Fail
+> +kms_pipe_crc_basic@disable-crc-after-crtc,Fail
+> +kms_pipe_crc_basic@nonblocking-crc,Fail
+> +kms_pipe_crc_basic@nonblocking-crc-frame-sequence,Fail
+> +kms_pipe_crc_basic@read-crc,Fail
+> +kms_pipe_crc_basic@read-crc-frame-sequence,Fail
+> +kms_plane@pixel-format,Fail
+> +kms_plane@pixel-format-source-clamping,Fail
+> +kms_plane@plane-panning-bottom-right,Fail
+> +kms_plane@plane-panning-top-left,Fail
+> +kms_plane@plane-position-covered,Fail
+> +kms_plane@plane-position-hole,Fail
+> +kms_plane@plane-position-hole-dpms,Fail
+>  kms_plane_alpha_blend@alpha-7efc,Fail
+> +kms_plane_alpha_blend@alpha-basic,Fail
+> +kms_plane_alpha_blend@alpha-opaque-fb,Fail
+> +kms_plane_alpha_blend@alpha-transparent-fb,Fail
+> +kms_plane_alpha_blend@constant-alpha-max,Fail
+> +kms_plane_alpha_blend@constant-alpha-mid,Fail
+> +kms_plane_alpha_blend@constant-alpha-min,Fail
+>  kms_plane_alpha_blend@coverage-7efc,Fail
+>  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
+> +kms_plane_cursor@primary,Fail
+> +kms_plane_lowres@tiling-none,Fail
+> +kms_plane_multiple@tiling-none,Fail
+>  kms_rmfb@close-fd,Fail
+> -kms_universal_plane@universal-plane-sanity,Fail
+> +kms_rotation_crc@cursor-rotation-180,Fail
+> +kms_rotation_crc@primary-rotation-180,Fail
+> +kms_sequence@get-busy,Fail
+> +kms_sequence@get-forked,Fail
+> +kms_sequence@get-forked-busy,Fail
+> +kms_sequence@get-idle,Fail
+> +kms_sequence@queue-busy,Fail
+> +kms_sequence@queue-idle,Fail
+> +kms_vblank@accuracy-idle,Fail
+> +kms_vblank@crtc-id,Fail
+> +kms_vblank@query-busy,Fail
+> +kms_vblank@query-forked,Fail
+> +kms_vblank@query-forked-busy,Fail
+> +kms_vblank@query-idle,Fail
+> +kms_vblank@ts-continuation-dpms-rpm,Fail
+> +kms_vblank@ts-continuation-idle,Fail
+> +kms_vblank@ts-continuation-modeset,Fail
+> +kms_vblank@ts-continuation-modeset-rpm,Fail
+> +kms_vblank@wait-busy,Fail
+> +kms_vblank@wait-forked,Fail
+> +kms_vblank@wait-forked-busy,Fail
+> +kms_vblank@wait-idle,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
+> new file mode 100644
+> index 000000000000..6dec63d48cfb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-flakes.txt
+> @@ -0,0 +1,8 @@
+> +# Board Name: sc7180-trogdor-kingoftown
+> +# Bug Report: https://lore.kernel.org/linux-arm-msm/661483c8-ad82-400d-bcd8-e94986d20d7d@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +msm_mapping@shadow
+> +msm_shrink@copy-gpu-oom-32
+> +msm_shrink@copy-gpu-oom-8
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt
+> index edf64057f866..68c96005ba54 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt
+> @@ -12,3 +12,10 @@ panfrost_.*
+>  # Skip intel specific tests
+>  gem_.*
+>  i915_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> +
+> +# Timeout occurs
+> +kms_flip@2x-wf_vblank-ts-check
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
+> index f0576aa629e8..eb7a3886d397 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
+> @@ -1,18 +1,191 @@
+> +device_reset@cold-reset-bound,Fail
+> +device_reset@reset-bound,Fail
+> +device_reset@unbind-cold-reset-rebind,Fail
+> +device_reset@unbind-reset-rebind,Fail
+> +dumb_buffer@invalid-bpp,Fail
+> +kms_atomic_transition@plane-primary-toggle-with-vblank-wait,Fail
+>  kms_color@ctm-0-25,Fail
+>  kms_color@ctm-0-50,Fail
+>  kms_color@ctm-0-75,Fail
+>  kms_color@ctm-blue-to-red,Fail
+>  kms_color@ctm-green-to-red,Fail
+> +kms_color@ctm-max,Fail
+>  kms_color@ctm-negative,Fail
+>  kms_color@ctm-red-to-blue,Fail
+>  kms_color@ctm-signed,Fail
+> +kms_content_protection@atomic,Crash
+> +kms_content_protection@atomic-dpms,Crash
+> +kms_content_protection@content-type-change,Crash
+> +kms_content_protection@lic-type-0,Crash
+> +kms_content_protection@lic-type-1,Crash
+> +kms_content_protection@srm,Crash
+> +kms_content_protection@type1,Crash
+> +kms_content_protection@uevent,Crash
+> +kms_cursor_crc@cursor-alpha-opaque,Fail
+> +kms_cursor_crc@cursor-alpha-transparent,Fail
+> +kms_cursor_crc@cursor-dpms,Fail
+> +kms_cursor_crc@cursor-offscreen-128x128,Fail
+> +kms_cursor_crc@cursor-offscreen-128x42,Fail
+> +kms_cursor_crc@cursor-offscreen-256x256,Fail
+> +kms_cursor_crc@cursor-offscreen-256x85,Fail
+> +kms_cursor_crc@cursor-offscreen-32x10,Fail
+> +kms_cursor_crc@cursor-offscreen-32x32,Fail
+> +kms_cursor_crc@cursor-offscreen-512x170,Fail
+> +kms_cursor_crc@cursor-offscreen-512x512,Fail
+> +kms_cursor_crc@cursor-offscreen-64x21,Fail
+> +kms_cursor_crc@cursor-offscreen-64x64,Fail
+> +kms_cursor_crc@cursor-onscreen-128x128,Fail
+> +kms_cursor_crc@cursor-onscreen-128x42,Fail
+> +kms_cursor_crc@cursor-onscreen-256x256,Fail
+> +kms_cursor_crc@cursor-onscreen-256x85,Fail
+> +kms_cursor_crc@cursor-onscreen-32x10,Fail
+> +kms_cursor_crc@cursor-onscreen-32x32,Fail
+> +kms_cursor_crc@cursor-onscreen-512x170,Fail
+> +kms_cursor_crc@cursor-onscreen-512x512,Fail
+> +kms_cursor_crc@cursor-onscreen-64x21,Fail
+> +kms_cursor_crc@cursor-onscreen-64x64,Fail
+> +kms_cursor_crc@cursor-random-128x128,Fail
+> +kms_cursor_crc@cursor-random-128x42,Fail
+> +kms_cursor_crc@cursor-random-256x256,Fail
+> +kms_cursor_crc@cursor-random-256x85,Fail
+> +kms_cursor_crc@cursor-random-32x10,Fail
+> +kms_cursor_crc@cursor-random-32x32,Fail
+> +kms_cursor_crc@cursor-random-512x170,Fail
+> +kms_cursor_crc@cursor-random-512x512,Fail
+> +kms_cursor_crc@cursor-random-64x21,Fail
+> +kms_cursor_crc@cursor-random-64x64,Fail
+> +kms_cursor_crc@cursor-rapid-movement-128x128,Fail
+> +kms_cursor_crc@cursor-rapid-movement-128x42,Fail
+> +kms_cursor_crc@cursor-rapid-movement-256x256,Fail
+> +kms_cursor_crc@cursor-rapid-movement-256x85,Fail
+> +kms_cursor_crc@cursor-rapid-movement-32x10,Fail
+> +kms_cursor_crc@cursor-rapid-movement-32x32,Fail
+> +kms_cursor_crc@cursor-rapid-movement-512x170,Fail
+> +kms_cursor_crc@cursor-rapid-movement-512x512,Fail
+> +kms_cursor_crc@cursor-rapid-movement-64x21,Fail
+> +kms_cursor_crc@cursor-rapid-movement-64x64,Fail
+> +kms_cursor_crc@cursor-size-change,Fail
+> +kms_cursor_crc@cursor-sliding-128x128,Fail
+> +kms_cursor_crc@cursor-sliding-128x42,Fail
+> +kms_cursor_crc@cursor-sliding-256x256,Fail
+> +kms_cursor_crc@cursor-sliding-256x85,Fail
+> +kms_cursor_crc@cursor-sliding-32x10,Fail
+> +kms_cursor_crc@cursor-sliding-32x32,Fail
+> +kms_cursor_crc@cursor-sliding-512x170,Fail
+> +kms_cursor_crc@cursor-sliding-512x512,Fail
+> +kms_cursor_crc@cursor-sliding-64x21,Fail
+> +kms_cursor_crc@cursor-sliding-64x64,Fail
+> +kms_cursor_edge_walk@128x128-left-edge,Fail
+> +kms_cursor_edge_walk@128x128-right-edge,Fail
+> +kms_cursor_edge_walk@128x128-top-bottom,Fail
+> +kms_cursor_edge_walk@128x128-top-edge,Fail
+> +kms_cursor_edge_walk@256x256-left-edge,Fail
+> +kms_cursor_edge_walk@256x256-right-edge,Fail
+> +kms_cursor_edge_walk@256x256-top-bottom,Fail
+> +kms_cursor_edge_walk@256x256-top-edge,Fail
+> +kms_cursor_edge_walk@64x64-left-edge,Fail
+> +kms_cursor_edge_walk@64x64-right-edge,Fail
+> +kms_cursor_edge_walk@64x64-top-bottom,Fail
+> +kms_cursor_edge_walk@64x64-top-edge,Fail
+> +kms_cursor_legacy@2x-cursor-vs-flip-atomic,Fail
+> +kms_cursor_legacy@2x-cursor-vs-flip-legacy,Fail
+> +kms_cursor_legacy@2x-flip-vs-cursor-atomic,Fail
+> +kms_cursor_legacy@2x-flip-vs-cursor-legacy,Fail
+> +kms_cursor_legacy@2x-long-cursor-vs-flip-atomic,Fail
+> +kms_cursor_legacy@2x-long-cursor-vs-flip-legacy,Fail
+> +kms_cursor_legacy@2x-long-flip-vs-cursor-atomic,Fail
+> +kms_cursor_legacy@2x-long-flip-vs-cursor-legacy,Fail
+>  kms_cursor_legacy@cursor-vs-flip-toggle,Fail
+>  kms_cursor_legacy@cursor-vs-flip-varying-size,Fail
+> +kms_display_modes@extended-mode-basic,Fail
+> +kms_flip@2x-flip-vs-modeset-vs-hang,Fail
+> +kms_flip@2x-flip-vs-panning-vs-hang,Fail
+> +kms_flip@absolute-wf_vblank,Fail
+> +kms_flip@absolute-wf_vblank-interruptible,Fail
+> +kms_flip@basic-flip-vs-wf_vblank,Fail
+> +kms_flip@basic-plain-flip,Fail
+> +kms_flip@blocking-absolute-wf_vblank,Fail
+> +kms_flip@blocking-absolute-wf_vblank-interruptible,Fail
+> +kms_flip@blocking-wf_vblank,Fail
+> +kms_flip@busy-flip,Fail
+> +kms_flip@dpms-off-confusion,Fail
+> +kms_flip@dpms-off-confusion-interruptible,Fail
+> +kms_flip@dpms-vs-vblank-race,Fail
+> +kms_flip@dpms-vs-vblank-race-interruptible,Fail
+> +kms_flip@flip-vs-absolute-wf_vblank,Fail
+> +kms_flip@flip-vs-absolute-wf_vblank-interruptible,Fail
+> +kms_flip@flip-vs-blocking-wf-vblank,Fail
+> +kms_flip@flip-vs-expired-vblank,Fail
+> +kms_flip@flip-vs-expired-vblank-interruptible,Fail
+>  kms_flip@flip-vs-modeset-vs-hang,Fail
+> +kms_flip@flip-vs-panning,Fail
+> +kms_flip@flip-vs-panning-interruptible,Fail
+>  kms_flip@flip-vs-panning-vs-hang,Fail
+> +kms_flip@flip-vs-rmfb,Fail
+> +kms_flip@flip-vs-rmfb-interruptible,Fail
+> +kms_flip@flip-vs-wf_vblank-interruptible,Fail
+> +kms_flip@modeset-vs-vblank-race,Fail
+> +kms_flip@modeset-vs-vblank-race-interruptible,Fail
+> +kms_flip@plain-flip-fb-recreate,Fail
+> +kms_flip@plain-flip-fb-recreate-interruptible,Fail
+> +kms_flip@plain-flip-interruptible,Fail
+> +kms_flip@plain-flip-ts-check,Fail
+> +kms_flip@plain-flip-ts-check-interruptible,Fail
+> +kms_flip@wf_vblank-ts-check,Fail
+> +kms_flip@wf_vblank-ts-check-interruptible,Fail
+> +kms_lease@cursor-implicit-plane,Fail
+> +kms_lease@lease-uevent,Fail
+> +kms_lease@page-flip-implicit-plane,Fail
+> +kms_lease@setcrtc-implicit-plane,Fail
+> +kms_lease@simple-lease,Fail
+> +kms_multipipe_modeset@basic-max-pipe-crc-check,Fail
+>  kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
+> +kms_pipe_crc_basic@compare-crc-sanitycheck-xr24,Fail
+> +kms_pipe_crc_basic@disable-crc-after-crtc,Fail
+> +kms_pipe_crc_basic@nonblocking-crc,Fail
+> +kms_pipe_crc_basic@nonblocking-crc-frame-sequence,Fail
+> +kms_pipe_crc_basic@read-crc,Fail
+> +kms_pipe_crc_basic@read-crc-frame-sequence,Fail
+> +kms_plane@pixel-format,Fail
+> +kms_plane@pixel-format-source-clamping,Fail
+> +kms_plane@plane-panning-bottom-right,Fail
+> +kms_plane@plane-panning-top-left,Fail
+> +kms_plane@plane-position-covered,Fail
+> +kms_plane@plane-position-hole,Fail
+> +kms_plane@plane-position-hole-dpms,Fail
+>  kms_plane_alpha_blend@alpha-7efc,Fail
+> +kms_plane_alpha_blend@alpha-basic,Fail
+> +kms_plane_alpha_blend@alpha-opaque-fb,Fail
+> +kms_plane_alpha_blend@alpha-transparent-fb,Fail
+> +kms_plane_alpha_blend@constant-alpha-max,Fail
+> +kms_plane_alpha_blend@constant-alpha-mid,Fail
+> +kms_plane_alpha_blend@constant-alpha-min,Fail
+>  kms_plane_alpha_blend@coverage-7efc,Fail
+>  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
+> +kms_plane_cursor@primary,Fail
+> +kms_plane_lowres@tiling-none,Fail
+> +kms_plane_multiple@tiling-none,Fail
+>  kms_rmfb@close-fd,Fail
+> -kms_universal_plane@universal-plane-sanity,Fail
+> +kms_rotation_crc@cursor-rotation-180,Fail
+> +kms_rotation_crc@primary-rotation-180,Fail
+> +kms_sequence@get-busy,Fail
+> +kms_sequence@get-forked,Fail
+> +kms_sequence@get-forked-busy,Fail
+> +kms_sequence@get-idle,Fail
+> +kms_sequence@queue-busy,Fail
+> +kms_sequence@queue-idle,Fail
+> +kms_vblank@accuracy-idle,Fail
+> +kms_vblank@crtc-id,Fail
+> +kms_vblank@query-busy,Fail
+> +kms_vblank@query-forked,Fail
+> +kms_vblank@query-forked-busy,Fail
+> +kms_vblank@query-idle,Fail
+> +kms_vblank@ts-continuation-dpms-rpm,Fail
+> +kms_vblank@ts-continuation-idle,Fail
+> +kms_vblank@ts-continuation-modeset,Fail
+> +kms_vblank@ts-continuation-modeset-rpm,Fail
+> +kms_vblank@wait-busy,Fail
+> +kms_vblank@wait-forked,Fail
+> +kms_vblank@wait-forked-busy,Fail
+> +kms_vblank@wait-idle,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+> new file mode 100644
+> index 000000000000..dcb24b835dc3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-flakes.txt
+> @@ -0,0 +1,6 @@
+> +# Board Name: sc7180-trogdor-lazor-limozeen-nots-r5
+> +# Bug Report: https://lore.kernel.org/linux-arm-msm/661483c8-ad82-400d-bcd8-e94986d20d7d@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +msm_mapping@shadow
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt
+> index edf64057f866..1168c53acd2d 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-skips.txt
+> @@ -12,3 +12,7 @@ panfrost_.*
+>  # Skip intel specific tests
+>  gem_.*
+>  i915_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
+> index e9043a00383e..8f010c8a9c4f 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt
+> @@ -1,3 +1,8 @@
+> +device_reset@cold-reset-bound,Fail
+> +device_reset@reset-bound,Fail
+> +device_reset@unbind-cold-reset-rebind,Fail
+> +device_reset@unbind-reset-rebind,Fail
+> +dumb_buffer@invalid-bpp,Fail
+>  kms_color@ctm-0-25,Fail
+>  kms_color@ctm-0-50,Fail
+>  kms_color@ctm-0-75,Fail
+> @@ -6,17 +11,6 @@ kms_color@ctm-green-to-red,Fail
+>  kms_color@ctm-negative,Fail
+>  kms_color@ctm-red-to-blue,Fail
+>  kms_color@ctm-signed,Fail
+> -kms_color@pipe-A-ctm-0-25,Fail
+> -kms_color@pipe-A-ctm-0-5,Fail
+> -kms_color@pipe-A-ctm-0-75,Fail
+> -kms_color@pipe-A-ctm-blue-to-red,Fail
+> -kms_color@pipe-A-ctm-green-to-red,Fail
+> -kms_color@pipe-A-ctm-max,Fail
+> -kms_color@pipe-A-ctm-negative,Fail
+> -kms_color@pipe-A-ctm-red-to-blue,Fail
+> -kms_color@pipe-A-legacy-gamma,Fail
+> -kms_cursor_legacy@basic-flip-after-cursor-atomic,Fail
+> -kms_cursor_legacy@basic-flip-after-cursor-varying-size,Fail
+>  kms_cursor_legacy@basic-flip-before-cursor-atomic,Fail
+>  kms_cursor_legacy@basic-flip-before-cursor-legacy,Fail
+>  kms_cursor_legacy@cursor-vs-flip-atomic,Fail
+> @@ -31,30 +25,12 @@ kms_cursor_legacy@flip-vs-cursor-crc-legacy,Fail
+>  kms_cursor_legacy@flip-vs-cursor-legacy,Fail
+>  kms_flip@flip-vs-modeset-vs-hang,Fail
+>  kms_flip@flip-vs-panning-vs-hang,Fail
+> +kms_lease@lease-uevent,Fail
+>  kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
+>  kms_plane_alpha_blend@alpha-7efc,Fail
+>  kms_plane_alpha_blend@coverage-7efc,Fail
+>  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
+> -kms_plane_alpha_blend@pipe-A-alpha-7efc,Fail
+> -kms_plane_alpha_blend@pipe-A-coverage-7efc,Fail
+> -kms_plane_alpha_blend@pipe-A-coverage-vs-premult-vs-constant,Fail
+>  kms_plane_cursor@overlay,Fail
+> -kms_plane_cursor@pipe-A-overlay-size-128,Fail
+> -kms_plane_cursor@pipe-A-overlay-size-256,Fail
+> -kms_plane_cursor@pipe-A-overlay-size-64,Fail
+> -kms_plane_cursor@pipe-A-viewport-size-128,Fail
+> -kms_plane_cursor@pipe-A-viewport-size-256,Fail
+> -kms_plane_cursor@pipe-A-viewport-size-64,Fail
+>  kms_plane_cursor@viewport,Fail
+> -kms_plane_scaling@downscale-with-pixel-format-factor-0-25,Timeout
+> -kms_plane_scaling@downscale-with-pixel-format-factor-0-5,Timeout
+> -kms_plane_scaling@downscale-with-pixel-format-factor-0-75,Timeout
+> -kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-25,Timeout
+> -kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-5,Timeout
+> -kms_plane_scaling@plane-downscale-with-pixel-format-factor-0-75,Timeout
+> -kms_plane_scaling@plane-scaler-with-clipping-clamping-pixel-formats,Timeout
+> -kms_plane_scaling@plane-scaler-with-pixel-format-unity-scaling,Timeout
+> -kms_plane_scaling@planes-downscale-factor-0-25,Fail
+> -kms_plane_scaling@scaler-with-clipping-clamping,Timeout
+> -kms_plane_scaling@scaler-with-pixel-format-unity-scaling,Timeout
+>  kms_rmfb@close-fd,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt
+> index 8a492f01eaa4..2c5f62b07632 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt
+> @@ -1,22 +1,19 @@
+> -# Board Name: msm:sdm845
+> -# Bug Report: https://lore.kernel.org/dri-devel/46287831-edfa-78e8-6055-d7a08831c445@collabora.com/T/#u
+> +# Board Name: sdm845-cheza-r3
+> +# Bug Report: https://lore.kernel.org/linux-arm-msm/661483c8-ad82-400d-bcd8-e94986d20d7d@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+>  # Failure Rate: 50
+> -# IGT Version: 1.28-gd2af13d9f
+> -# Linux Version: 6.7.0-rc3
+> -
+> -# Reported by deqp-runner
+> +kms_cursor_legacy@basic-flip-after-cursor-atomic
+>  kms_cursor_legacy@basic-flip-after-cursor-legacy
+> -kms_cursor_legacy@flip-vs-cursor-toggle
+> +kms_cursor_legacy@basic-flip-after-cursor-varying-size
+> +kms_cursor_legacy@basic-flip-before-cursor-varying-size
+> +kms_cursor_legacy@flip-vs-cursor-atomic-transitions
+> +kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size
+>  kms_cursor_legacy@flip-vs-cursor-varying-size
+> +kms_cursor_legacy@short-flip-after-cursor-atomic-transitions
+> +kms_cursor_legacy@short-flip-after-cursor-atomic-transitions-varying-size
+>  kms_cursor_legacy@short-flip-after-cursor-toggle
+>  kms_cursor_legacy@short-flip-before-cursor-atomic-transitions
+>  kms_cursor_legacy@short-flip-before-cursor-atomic-transitions-varying-size
+>  msm_shrink@copy-gpu-32
+>  msm_shrink@copy-gpu-oom-32
+> -
+> -# The below test shows inconsistency across multiple runs, giving
+> -# results of Pass and Fail alternately.
+> -kms_cursor_legacy@basic-flip-before-cursor-varying-size
+> -kms_cursor_legacy@flip-vs-cursor-atomic-transitions
+> -kms_cursor_legacy@short-flip-after-cursor-atomic-transitions
+> -kms_cursor_legacy@short-flip-after-cursor-atomic-transitions-varying-size
+> diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+> index dd24dc190db0..5185212c8fb2 100644
+> --- a/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-skips.txt
+> @@ -17,3 +17,10 @@ panfrost_.*
+>  # Skip intel specific tests
+>  gem_.*
+>  i915_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> +
+> +# Whole machine hangs
+> +kms_cursor_crc.*
+> diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+> index 90c63f519e9e..f9b99bf27105 100644
+> --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt
+> @@ -1,54 +1,8 @@
+> -kms_3d,Crash
+> -kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+> -kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> -kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+> -kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+> -kms_flip@flip-vs-modeset-vs-hang,Crash
+> -kms_flip@flip-vs-panning-vs-hang,Crash
+> -kms_force_connector_basic@force-load-detect,Fail
+> -kms_invalid_mode@int-max-clock,Crash
+> -kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Crash
+> -kms_pipe_crc_basic@nonblocking-crc-frame-sequence,Crash
+> -kms_pipe_crc_basic@read-crc-frame-sequence,Crash
+> -kms_plane@pixel-format,Crash
+> -kms_plane@pixel-format-source-clamping,Crash
+> -kms_plane@plane-position-hole,Crash
+> -kms_plane@plane-position-hole-dpms,Crash
+> -kms_plane_cursor@overlay,Crash
+> -kms_plane_cursor@pipe-A-overlay-size-128,Fail
+> -kms_plane_cursor@pipe-A-overlay-size-256,Fail
+> -kms_plane_cursor@pipe-A-overlay-size-64,Fail
+> -kms_plane_cursor@pipe-A-primary-size-128,Fail
+> -kms_plane_cursor@pipe-A-primary-size-256,Fail
+> -kms_plane_cursor@pipe-A-primary-size-64,Fail
+> -kms_plane_cursor@pipe-A-viewport-size-128,Fail
+> -kms_plane_cursor@pipe-A-viewport-size-256,Fail
+> -kms_plane_cursor@pipe-A-viewport-size-64,Fail
+> -kms_plane_cursor@pipe-B-overlay-size-128,Fail
+> -kms_plane_cursor@pipe-B-overlay-size-256,Fail
+> -kms_plane_cursor@pipe-B-overlay-size-64,Fail
+> -kms_plane_cursor@pipe-B-primary-size-128,Fail
+> -kms_plane_cursor@pipe-B-primary-size-256,Fail
+> -kms_plane_cursor@pipe-B-primary-size-64,Fail
+> -kms_plane_cursor@pipe-B-viewport-size-128,Fail
+> -kms_plane_cursor@pipe-B-viewport-size-256,Fail
+> -kms_plane_cursor@pipe-B-viewport-size-64,Fail
+> -kms_plane_cursor@primary,Crash
+> -kms_plane_cursor@viewport,Crash
+> -kms_plane_lowres@tiling-none,Fail
+> -kms_plane_scaling@downscale-with-modifier-factor-0-25,Fail
+> -kms_plane_scaling@downscale-with-rotation-factor-0-25,Fail
+> -kms_plane_scaling@upscale-with-modifier-20x20,Fail
+> -kms_plane_scaling@upscale-with-modifier-factor-0-25,Fail
+> -kms_plane_scaling@upscale-with-pixel-format-20x20,Fail
+> -kms_plane_scaling@upscale-with-pixel-format-factor-0-25,Fail
+> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
+> -kms_prime@basic-crc,Fail
+> -kms_properties@connector-properties-atomic,Crash
+> -kms_properties@connector-properties-legacy,Crash
+> -kms_properties@get_properties-sanity-atomic,Crash
+> -kms_properties@get_properties-sanity-non-atomic,Crash
+> -kms_rmfb@close-fd,Crash
+> -kms_setmode@invalid-clone-single-crtc,Crash
+> +dumb_buffer@create-clear,Crash
+> +dumb_buffer@create-valid-dumb,Crash
+> +dumb_buffer@invalid-bpp,Crash
+> +dumb_buffer@map-invalid-size,Crash
+> +dumb_buffer@map-uaf,Crash
+> +dumb_buffer@map-valid,Crash
+> +panfrost_prime@gem-prime-import,Crash
+> +tools_test@tools_test,Crash
+> diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt
+> index c33dc95b7fc1..6d3757dca83b 100644
+> --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-skips.txt
+> @@ -65,3 +65,7 @@ i915_.*
+>  
+>  # Panfrost is not a KMS driver, so skip the KMS tests
+>  kms_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt
+> index d516d9c1d546..9ef460646d76 100644
+> --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt
+> @@ -1,75 +1,8 @@
+> -kms_color@gamma,Fail
+> -kms_color@legacy-gamma,Fail
+> -kms_color@pipe-A-legacy-gamma,Fail
+> -kms_color@pipe-B-legacy-gamma,Fail
+> -kms_cursor_crc@cursor-alpha-opaque,Fail
+> -kms_cursor_crc@cursor-alpha-transparent,Fail
+> -kms_cursor_crc@cursor-dpms,Fail
+> -kms_cursor_crc@cursor-offscreen-32x10,Fail
+> -kms_cursor_crc@cursor-offscreen-32x32,Fail
+> -kms_cursor_crc@cursor-offscreen-64x64,Fail
+> -kms_cursor_crc@cursor-onscreen-32x10,Fail
+> -kms_cursor_crc@cursor-onscreen-32x32,Fail
+> -kms_cursor_crc@cursor-onscreen-64x21,Fail
+> -kms_cursor_crc@cursor-onscreen-64x64,Fail
+> -kms_cursor_crc@cursor-random-32x10,Fail
+> -kms_cursor_crc@cursor-random-32x32,Fail
+> -kms_cursor_crc@cursor-random-64x21,Fail
+> -kms_cursor_crc@cursor-random-64x64,Fail
+> -kms_cursor_crc@cursor-rapid-movement-32x32,Fail
+> -kms_cursor_crc@cursor-rapid-movement-64x21,Fail
+> -kms_cursor_crc@cursor-rapid-movement-64x64,Fail
+> -kms_cursor_crc@cursor-size-change,Fail
+> -kms_cursor_crc@cursor-sliding-32x10,Fail
+> -kms_cursor_crc@cursor-sliding-32x32,Fail
+> -kms_cursor_crc@cursor-sliding-64x21,Fail
+> -kms_cursor_crc@cursor-sliding-64x64,Fail
+> -kms_flip@basic-flip-vs-wf_vblank,Fail
+> -kms_flip@blocking-wf_vblank,Fail
+> -kms_flip@dpms-vs-vblank-race,Fail
+> -kms_flip@flip-vs-absolute-wf_vblank,Fail
+> -kms_flip@flip-vs-absolute-wf_vblank-interruptible,Fail
+> -kms_flip@flip-vs-blocking-wf-vblank,Fail
+> -kms_flip@flip-vs-modeset-vs-hang,Fail
+> -kms_flip@flip-vs-panning,Fail
+> -kms_flip@flip-vs-panning-interruptible,Fail
+> -kms_flip@flip-vs-panning-vs-hang,Fail
+> -kms_flip@modeset-vs-vblank-race,Fail
+> -kms_flip@plain-flip-fb-recreate,Fail
+> -kms_flip@plain-flip-fb-recreate-interruptible,Fail
+> -kms_flip@plain-flip-ts-check,Fail
+> -kms_flip@plain-flip-ts-check-interruptible,Fail
+> -kms_flip@wf_vblank-ts-check,Fail
+> -kms_flip@wf_vblank-ts-check-interruptible,Fail
+> -kms_invalid_mode@int-max-clock,Fail
+> -kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
+> -kms_pipe_crc_basic@compare-crc-sanitycheck-xr24,Fail
+> -kms_pipe_crc_basic@disable-crc-after-crtc,Fail
+> -kms_pipe_crc_basic@nonblocking-crc,Fail
+> -kms_pipe_crc_basic@nonblocking-crc-frame-sequence,Fail
+> -kms_pipe_crc_basic@read-crc,Fail
+> -kms_pipe_crc_basic@read-crc-frame-sequence,Fail
+> -kms_plane@pixel-format,Fail
+> -kms_plane@pixel-format-source-clamping,Fail
+> -kms_plane@plane-panning-bottom-right,Fail
+> -kms_plane@plane-panning-top-left,Fail
+> -kms_plane@plane-position-covered,Fail
+> -kms_plane@plane-position-hole,Fail
+> -kms_plane@plane-position-hole-dpms,Fail
+> -kms_plane_cursor@overlay,Fail
+> -kms_plane_cursor@pipe-B-overlay-size-128,Fail
+> -kms_plane_cursor@pipe-B-overlay-size-256,Fail
+> -kms_plane_cursor@pipe-B-overlay-size-64,Fail
+> -kms_plane_cursor@pipe-B-primary-size-128,Fail
+> -kms_plane_cursor@pipe-B-primary-size-256,Fail
+> -kms_plane_cursor@pipe-B-primary-size-64,Fail
+> -kms_plane_cursor@pipe-B-viewport-size-128,Fail
+> -kms_plane_cursor@pipe-B-viewport-size-256,Fail
+> -kms_plane_cursor@pipe-B-viewport-size-64,Fail
+> -kms_plane_cursor@primary,Fail
+> -kms_plane_cursor@viewport,Fail
+> -kms_plane_multiple@atomic-pipe-B-tiling-none,Fail
+> -kms_plane_multiple@tiling-none,Fail
+> -kms_prime@basic-crc,Fail
+> -kms_rmfb@close-fd,Fail
+> -kms_universal_plane@universal-plane-pipe-B-functional,Fail
+> +dumb_buffer@create-clear,Fail
+> +dumb_buffer@create-valid-dumb,Fail
+> +dumb_buffer@invalid-bpp,Fail
+> +dumb_buffer@map-invalid-size,Fail
+> +dumb_buffer@map-uaf,Fail
+> +dumb_buffer@map-valid,Fail
+> +panfrost_prime@gem-prime-import,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+> index c9fdc623ab91..742c27d9a598 100644
+> --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+> +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt
+> @@ -1,7 +1,6 @@
+> -kms_bw@linear-tiling-2-displays-1920x1080p
+> -kms_cursor_crc@cursor-offscreen-64x21
+> -kms_flip@dpms-vs-vblank-race-interruptible
+> -kms_flip@flip-vs-wf_vblank-interruptible
+> -kms_plane_cursor@overlay
+> -kms_plane_cursor@primary
+> -kms_plane_cursor@viewport
+> +# Board Name: rk3399-gru-kevin
+> +# Bug Report: https://lore.kernel.org/dri-devel/5cc34a8b-c1fa-4744-9031-2d33ecf41011@collabora.com/T/#u
+> +# IGT Version: 1.28-g0df7b9b97
+> +# Linux Version: 6.9.0-rc7
+> +# Failure Rate: 50
+> +panfrost_submit@pan-unhandled-pagefault
+> diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt
+> index 8a7c9464b30d..5c52b25b4213 100644
+> --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-skips.txt
+> @@ -18,3 +18,7 @@ i915_.*
+>  
+>  # Panfrost is not a KMS driver, so skip the KMS tests
+>  kms_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> diff --git a/drivers/gpu/drm/ci/xfails/update-xfails.py b/drivers/gpu/drm/ci/xfails/update-xfails.py
+> index e9f0ec7fed8d..a446e98d72a1 100755
+> --- a/drivers/gpu/drm/ci/xfails/update-xfails.py
+> +++ b/drivers/gpu/drm/ci/xfails/update-xfails.py
+> @@ -93,10 +93,10 @@ def add_unit_test_or_update_result_to_fails_if_present(fails_txt, unit_test, fai
+>  def split_unit_test_from_collate(xfails):
+>      for job_name in xfails.keys():
+>          for job_id in xfails[job_name].copy().keys():
+> -            if "not found" in xfails[job_name][job_id]:
+> +            if "not found" in xfails[job_name][job_id].content_as_str:
+>                  del xfails[job_name][job_id]
+>                  continue
+> -            xfails[job_name][job_id] = xfails[job_name][job_id].strip().split("\n")
+> +            xfails[job_name][job_id] = xfails[job_name][job_id].content_as_str.splitlines()
+>  
+>  
+>  def get_xfails_from_pipeline_url(pipeline_url):
+> diff --git a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt
+> index 007f21e56d89..fdf09fe11566 100644
+> --- a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt
+> +++ b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-fails.txt
+> @@ -1,33 +1,72 @@
+> -kms_addfb_basic@addfb25-bad-modifier,Fail
+>  kms_addfb_basic@bad-pitch-65536,Fail
+>  kms_addfb_basic@bo-too-small,Fail
+>  kms_addfb_basic@size-max,Fail
+>  kms_addfb_basic@too-high,Fail
+>  kms_atomic_transition@plane-primary-toggle-with-vblank-wait,Fail
+>  kms_bw@linear-tiling-1-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-1-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-1-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-1-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-10-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-10-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-10-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-10-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-11-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-11-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-11-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-11-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-12-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-12-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-12-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-12-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-13-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-13-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-13-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-13-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-14-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-14-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-14-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-14-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-15-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-15-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-15-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-15-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-16-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-16-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-16-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-16-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-2-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-2-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-2-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-2-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-3-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-3-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-3-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-3-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-4-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-4-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-4-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-4-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-5-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-5-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-5-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-5-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-6-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-6-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-6-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-6-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-7-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-7-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-7-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-7-displays-3840x2160p,Fail
+>  kms_bw@linear-tiling-8-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-8-displays-2160x1440p,Fail
+>  kms_bw@linear-tiling-8-displays-2560x1440p,Fail
+>  kms_bw@linear-tiling-8-displays-3840x2160p,Fail
+> +kms_bw@linear-tiling-9-displays-1920x1080p,Fail
+> +kms_bw@linear-tiling-9-displays-2160x1440p,Fail
+> +kms_bw@linear-tiling-9-displays-2560x1440p,Fail
+> +kms_bw@linear-tiling-9-displays-3840x2160p,Fail
+>  kms_flip@absolute-wf_vblank,Fail
+>  kms_flip@absolute-wf_vblank-interruptible,Fail
+>  kms_flip@basic-flip-vs-wf_vblank,Fail
+> @@ -54,31 +93,34 @@ kms_flip@plain-flip-ts-check-interruptible,Fail
+>  kms_flip@wf_vblank-ts-check,Fail
+>  kms_flip@wf_vblank-ts-check-interruptible,Fail
+>  kms_invalid_mode@int-max-clock,Fail
+> -kms_plane_scaling@downscale-with-modifier-factor-0-25,Fail
+> -kms_plane_scaling@downscale-with-rotation-factor-0-25,Fail
+> -kms_plane_scaling@planes-upscale-20x20,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-25,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-5,Fail
+> -kms_plane_scaling@planes-upscale-20x20-downscale-factor-0-75,Fail
+> -kms_plane_scaling@upscale-with-modifier-20x20,Fail
+> -kms_plane_scaling@upscale-with-modifier-factor-0-25,Fail
+> -kms_plane_scaling@upscale-with-pixel-format-20x20,Fail
+> -kms_plane_scaling@upscale-with-pixel-format-factor-0-25,Fail
+> -kms_plane_scaling@upscale-with-rotation-20x20,Fail
+> -kms_selftest@drm_format,Timeout
+> -kms_selftest@drm_format_helper,Timeout
+> +kms_lease@cursor-implicit-plane,Fail
+> +kms_lease@lease-uevent,Fail
+> +kms_lease@page-flip-implicit-plane,Fail
+> +kms_lease@setcrtc-implicit-plane,Fail
+> +kms_lease@simple-lease,Fail
+> +kms_sequence@get-busy,Fail
+> +kms_sequence@get-forked,Fail
+> +kms_sequence@get-forked-busy,Fail
+> +kms_sequence@get-idle,Fail
+> +kms_sequence@queue-busy,Fail
+> +kms_sequence@queue-idle,Fail
+>  kms_setmode@basic,Fail
+> +kms_vblank@accuracy-idle,Fail
+>  kms_vblank@crtc-id,Fail
+>  kms_vblank@invalid,Fail
+> -kms_vblank@pipe-A-accuracy-idle,Fail
+> -kms_vblank@pipe-A-query-busy,Fail
+> -kms_vblank@pipe-A-query-forked,Fail
+> -kms_vblank@pipe-A-query-forked-busy,Fail
+> -kms_vblank@pipe-A-query-idle,Fail
+> -kms_vblank@pipe-A-ts-continuation-idle,Fail
+> -kms_vblank@pipe-A-ts-continuation-modeset,Fail
+> -kms_vblank@pipe-A-ts-continuation-suspend,Fail
+> -kms_vblank@pipe-A-wait-busy,Fail
+> -kms_vblank@pipe-A-wait-forked,Fail
+> -kms_vblank@pipe-A-wait-forked-busy,Fail
+> -kms_vblank@pipe-A-wait-idle,Fail
+> +kms_vblank@query-busy,Fail
+> +kms_vblank@query-forked,Fail
+> +kms_vblank@query-forked-busy,Fail
+> +kms_vblank@query-idle,Fail
+> +kms_vblank@ts-continuation-dpms-rpm,Fail
+> +kms_vblank@ts-continuation-dpms-suspend,Fail
+> +kms_vblank@ts-continuation-idle,Fail
+> +kms_vblank@ts-continuation-modeset,Fail
+> +kms_vblank@ts-continuation-modeset-rpm,Fail
+> +kms_vblank@ts-continuation-suspend,Fail
+> +kms_vblank@wait-busy,Fail
+> +kms_vblank@wait-forked,Fail
+> +kms_vblank@wait-forked-busy,Fail
+> +kms_vblank@wait-idle,Fail
+> +perf@i915-ref-count,Fail
+> +tools_test@tools_test,Fail
+> diff --git a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt
+> index 59d390d6856f..e0ca4fadb84f 100644
+> --- a/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt
+> +++ b/drivers/gpu/drm/ci/xfails/virtio_gpu-none-skips.txt
+> @@ -18,3 +18,7 @@ panfrost_.*
+>  gem_.*
+>  i915_.*
+>  xe_.*
+> +
+> +# Currently fails and causes coverage loss for other tests
+> +# since core_getversion also fails.
+> +core_hotunplug.*
+> -- 
+> 2.40.1
+> 
+
+-- 
+With best wishes
+Dmitry
