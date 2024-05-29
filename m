@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84BCF8D3F5B
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 22:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F578D3F83
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 22:24:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275B410E4C7;
-	Wed, 29 May 2024 20:06:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0003B10FA58;
+	Wed, 29 May 2024 20:24:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eEtkhrFE";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 594FE10E17C;
- Wed, 29 May 2024 20:06:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2542292271284397270=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8C810EAB0;
+ Wed, 29 May 2024 20:23:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717014240; x=1748550240;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PQhCRb+mQCBwJ5/z/XSHrbptac2w2qMbwSlHNGVVY/k=;
+ b=eEtkhrFEmEF88RqCLyzuEvhQGl1sX0zexoX5iaY15fviZeQEYC4cOinR
+ GvfXYcIZBu6ily9jzjqAOxPwRG6giISUGVyzneDnotzRSMpMA7YXubRkO
+ pHAJSaURQ13Ou5XPxlZqIvGOrxLcKv9JxbdXk9Ih/FAh3FiJQ2TdqFkNi
+ Q/vB8PQR8v+YHCzAGNbHt/a7U/xpH6yyAm5Rqg+MMmOhA+hVH44f2+Fw1
+ Cfk0g/wEIk1g1fvu6kS+WESuj9WkSISbThD4WmgFsusPGqGoGtTk6JCdL
+ rSEeu2pg+vCZ8ihffbIXF5ufqocHHL8oM2MVSt/TA4bVc/fvgiub7n2mk Q==;
+X-CSE-ConnectionGUID: O2E2fpmbRV6OXovSOT18nA==
+X-CSE-MsgGUID: ndFYxR6/Qpa3kD2h4xGRWw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13397232"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13397232"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 13:23:58 -0700
+X-CSE-ConnectionGUID: GYz43VkNR8SiRxOPpfTyyw==
+X-CSE-MsgGUID: 0d/GVT4LSD24g9r2jwpjXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="66759914"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa001.fm.intel.com with ESMTP; 29 May 2024 13:23:57 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v7 0/6] Link off between frames for edp
+Date: Thu, 30 May 2024 01:37:36 +0530
+Message-Id: <20240529200742.1694401-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Lockdep_annotation_introduc?=
- =?utf-8?q?ed_warn_in_VMD_driver?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Williams" <dan.j.williams@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 May 2024 20:06:06 -0000
-Message-ID: <171701316635.2234143.8546014833426011227@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <ZlXP5oTnSApiDbD1@ideak-desk.fi.intel.com>
-In-Reply-To: <ZlXP5oTnSApiDbD1@ideak-desk.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,200 +63,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2542292271284397270==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Link Off Between Active Frames (LOBF) allows an eDP link to be turned Off and On
+durning long VBLANK durations without enabling any of the PSR/PSR2/PR modes of operation.
 
-== Series Details ==
+Bspec: 71477
 
-Series: Lockdep annotation introduced warn in VMD driver
-URL   : https://patchwork.freedesktop.org/series/134203/
-State : success
+Note: Lobf need to be enabled adaptive sync fixed refresh mode
+where vmin = vmax = flipline, which will arise after cmmr feature
+enablement. Currently existing code refactored and make compute-config()
+and enabling function ready. Will add enabling sequence in a separate patch.
 
-== Summary ==
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-CI Bug Log - changes from CI_DRM_14849 -> Patchwork_134203v1
-====================================================
+Animesh Manna (5):
+  drm/i915/alpm: Move alpm parameters from intel_psr
+  drm/i915/alpm: Move alpm related code to a new file
+  drm/i915/alpm: Add compute config for lobf
+  drm/i915/alpm: Enable lobf from source in ALPM_CTL
+  drm/i915/alpm: Add debugfs for LOBF
 
-Summary
--------
+Jouni Högander (1):
+  drm/display: Add missing aux less alpm wake related bits
 
-  **SUCCESS**
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 411 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_alpm.h     |  25 ++
+ .../drm/i915/display/intel_display_debugfs.c  |   2 +
+ .../drm/i915/display/intel_display_types.h    |  26 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   4 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 303 +------------
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/display/drm_dp.h                  |   5 +-
+ 9 files changed, 475 insertions(+), 303 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_alpm.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_alpm.h
 
-  No regressions found.
+-- 
+2.29.0
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Additional (1): fi-glk-j4005 
-  Missing    (2): bat-dg2-11 fi-bsw-n3050 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_134203v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/fi-glk-j4005/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-9:          [PASS][3] -> [FAIL][4] ([i915#10378])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14849/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][5] +10 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-8:          [FAIL][6] ([i915#10378]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14849/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html
-
-  * igt@i915_module_load@load:
-    - bat-dg2-8:          [DMESG-WARN][8] ([i915#10014]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14849/bat-dg2-8/igt@i915_module_load@load.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/bat-dg2-8/igt@i915_module_load@load.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10014]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#11199]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11199
-  [i915#11217]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11217
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14849 -> Patchwork_134203v1
-
-  CI-20190529: 20190529
-  CI_DRM_14849: 55d6179b96e0390025f2ba101c03b94b50cab7a1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_134203v1: 55d6179b96e0390025f2ba101c03b94b50cab7a1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/index.html
-
---===============2542292271284397270==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Lockdep annotation introduced warn in VMD driver</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134203/">https://patchwork.freedesktop.org/series/134203/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14849 -&gt; Patchwork_134203v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Additional (1): fi-glk-j4005 <br />
-  Missing    (2): bat-dg2-11 fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_134203v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/fi-glk-j4005/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14849/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> +10 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14849/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/bat-dg2-8/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14849/bat-dg2-8/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10014">i915#10014</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134203v1/bat-dg2-8/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14849 -&gt; Patchwork_134203v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14849: 55d6179b96e0390025f2ba101c03b94b50cab7a1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7873: b9bcded9123ac56ce05748de6c4870fb49451b87 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_134203v1: 55d6179b96e0390025f2ba101c03b94b50cab7a1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2542292271284397270==--
