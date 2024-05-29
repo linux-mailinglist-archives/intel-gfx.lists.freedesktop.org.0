@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1818D3335
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 11:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F1F8D3337
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 11:39:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D112910E0BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F016A10E3C3;
 	Wed, 29 May 2024 09:39:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDmFHQCR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLmpncAi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD38D10E0BB
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 09:39:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FD7810F5B4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 09:39:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716975548; x=1748511548;
+ t=1716975550; x=1748511550;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=c9kpFuTh+5WUlEneBvfvSugvnrUclTc3/I9G7J4M7uQ=;
- b=GDmFHQCRQmfbwwJyHgXos3azJdOgySRlgYuWXrjXM5/AHf6/R2KUHtAI
- +ZNBHQamT8SP/7zjaZ8wP5sKE+8Wajs4h6w/cEYm63LgWZ4hNudDF3okI
- ckhi570k4P+rs/5Mrf6tPeqHNtJqW1ikIclIKmTxF3LUkEKQ9XboAivon
- RGENyalLRCUTWk0/v9SpOfuKMGbc3O/DBTqZkOr5cQ+D1ROyQA9E5APp3
- 0XfhhkjqAKH+dypyb2A+zoS6FjbhN0GuKTlWB0ipQR/DFI+YDJBmGwPO8
- TVh0VfnnUw22Y89wDxxE/7CQV23ohfNMwz0kMgawXQ1uBnR2yqsuPcxS4 A==;
-X-CSE-ConnectionGUID: ASjqzPM3RdWKmYPQGwecuw==
-X-CSE-MsgGUID: 0vrdPhjzTL+fGgWrr2txXQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="16316812"
-X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="16316812"
+ bh=B5biMBXaqHsgMjvKiabm/ekIayOo7VFPZMTKvVbv7+o=;
+ b=FLmpncAihaLr/taBZ+bz5R0QQwCdEAOuwEujkGT9HWGJVjc/zFXL6uFj
+ 5ckihVexFCidCS6OL2AbofBwicVWkvEZ1OiqkpKxTQhE6LEGJML1tjnBt
+ n+fk/TIoZiPOUgOtJK9vWZKQgUAuiKAOet2RL8APwfPOsDlpXok74+Txg
+ 8eXmivhjurh8FrI32d35Bax6k0o1n9LE5c/BOh99yW2zNEKsAnMhRdR9w
+ QSkvJR1V6pIzUbnXaz1HA42C3n17spH5aNL87+BWjXoAE4Ql0Ge15Dik7
+ DNVZqsHuTaVv87uEu2ihYckiH4qNLeMfTH+crOdRGERGt4OscoPeuomZY A==;
+X-CSE-ConnectionGUID: 3+Icej0NRxWFI/2IJjfX3g==
+X-CSE-MsgGUID: gQuX2S4uSraijxZ0DwEKgA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="16316817"
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="16316817"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 02:39:08 -0700
-X-CSE-ConnectionGUID: s9Sfrd/dSRmbrUu9wb42Qw==
-X-CSE-MsgGUID: iJadkHkbR8KMgrzTSe2/CA==
+ 29 May 2024 02:39:09 -0700
+X-CSE-ConnectionGUID: gjcZ90tXSMeBanhDehif+Q==
+X-CSE-MsgGUID: 7PGcXzLxT6226n37yCKoLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="40273887"
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; d="scan'208";a="40273890"
 Received: from romanove-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.36.185])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 02:39:06 -0700
+ 29 May 2024 02:39:08 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 3/6] drm/i915/psr: Use enable boolean from intel_crtc_state
- for Early Transport
-Date: Wed, 29 May 2024 12:38:46 +0300
-Message-Id: <20240529093849.1016172-4-jouni.hogander@intel.com>
+Subject: [PATCH 4/6] drm/i915/display: Selective fetch Y position on Region
+ Early Transport
+Date: Wed, 29 May 2024 12:38:47 +0300
+Message-Id: <20240529093849.1016172-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240529093849.1016172-1-jouni.hogander@intel.com>
 References: <20240529093849.1016172-1-jouni.hogander@intel.com>
@@ -72,28 +72,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When enabling Early Transport use
-intel_crtc_state->enable_psr2_su_region_et instead of
-psr2_su_region_et_valid.
+Selective fetch Y position differs when Region Early Transport is
+used. Use formula from Bspec for this.
 
-Fixes: 467e4e061c44 ("drm/i915/psr: Enable psr2 early transport as possible")
+Bspec: 68927
+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1e55d447481a..605ca6b6321d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -709,7 +709,7 @@ void intel_psr_enable_sink(struct intel_dp *intel_dp,
- 					   DP_ALPM_ENABLE |
- 					   DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index b7678b8a7f3d..1aa70fc35b9d 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1302,7 +1302,11 @@ static void icl_plane_update_sel_fetch_noarm(struct intel_plane *plane,
  
--			if (psr2_su_region_et_valid(intel_dp))
-+			if (crtc_state->enable_psr2_su_region_et)
- 				dpcd_val |= DP_PSR_ENABLE_SU_REGION_ET;
- 		}
+ 	clip = &plane_state->psr2_sel_fetch_area;
+ 
+-	val = (clip->y1 + plane_state->uapi.dst.y1) << 16;
++	if (crtc_state->enable_psr2_su_region_et)
++		y = max(0, plane_state->uapi.dst.y1 - crtc_state->psr2_su_area.y1);
++	else
++		y = (clip->y1 + plane_state->uapi.dst.y1);
++	val = y << 16;
+ 	val |= plane_state->uapi.dst.x1;
+ 	intel_de_write_fw(i915, SEL_FETCH_PLANE_POS(pipe, plane->id), val);
  
 -- 
 2.34.1
