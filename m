@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 495928D5F78
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8258D5F77
 	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 12:20:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1943810E748;
-	Fri, 31 May 2024 10:20:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C277D10E7B8;
+	Fri, 31 May 2024 10:20:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9FF510EA1C
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 07:27:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7085510E77A;
+ Wed, 29 May 2024 07:31:56 +0000 (UTC)
 Received: from SoMainline.org
  (2a02-a420-77-cc79-164f-8aff-fee4-5930.mobile6.kpn.net
  [IPv6:2a02:a420:77:cc79:164f:8aff:fee4:5930])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits)
  server-digest SHA256) (No client certificate requested)
- by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 8C5771FE87;
- Wed, 29 May 2024 09:27:36 +0200 (CEST)
-Date: Wed, 29 May 2024 09:27:35 +0200
+ by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 013031F8E2;
+ Wed, 29 May 2024 09:31:52 +0200 (CEST)
+Date: Wed, 29 May 2024 09:31:51 +0200
 From: Marijn Suijten <marijn.suijten@somainline.org>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
@@ -41,17 +41,15 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Caleb Connolly <caleb@connolly.tech>, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, 
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, 
- freedreno@lists.freedesktop.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v4 2/3] drm/panel/lg-sw43408: mark sw43408_backlight_ops
- as static
-Message-ID: <anspa5kgrmfvv2c23mjlukc7vrsctyk34yzud7cffjiljccisz@v7mazfwaxhu6>
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v4 3/3] drm/display: split DSC helpers from DP helpers
+Message-ID: <nfo5qbqwuq6zlywayt5pt2xh63wvg6eofjusz2wlelzi76busf@tuj5kaubcznl>
 References: <20240528-panel-sw43408-fix-v4-0-330b42445bcc@linaro.org>
- <20240528-panel-sw43408-fix-v4-2-330b42445bcc@linaro.org>
+ <20240528-panel-sw43408-fix-v4-3-330b42445bcc@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240528-panel-sw43408-fix-v4-2-330b42445bcc@linaro.org>
+In-Reply-To: <20240528-panel-sw43408-fix-v4-3-330b42445bcc@linaro.org>
 X-Mailman-Approved-At: Fri, 31 May 2024 10:20:00 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,35 +66,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2024-05-28 22:39:19, Dmitry Baryshkov wrote:
-> Fix sparse warning regarding symbol 'sw43408_backlight_ops' not being
-> declared.
+On 2024-05-28 22:39:20, Dmitry Baryshkov wrote:
+> Currently the DRM DSC functions are selected by the
+> DRM_DISPLAY_DP_HELPER Kconfig symbol. This is not optimal, since the DSI
+> code (both panel and host drivers) end up selecting the seemingly
+> irrelevant DP helpers. Split the DSC code to be guarded by the separate
+> DRM_DISPLAY_DSC_HELPER Kconfig symbol.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202404200739.hbWZvOhR-lkp@intel.com/
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Fixes: 069a6c0e94f9 ("drm: panel: Add LG sw43408 panel driver")
+> Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
 > ---
->  drivers/gpu/drm/panel/panel-lg-sw43408.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/amd/amdgpu/Kconfig | 1 +
+>  drivers/gpu/drm/display/Kconfig    | 6 ++++++
+>  drivers/gpu/drm/display/Makefile   | 3 ++-
+>  drivers/gpu/drm/i915/Kconfig       | 1 +
+>  drivers/gpu/drm/msm/Kconfig        | 1 +
+>  drivers/gpu/drm/panel/Kconfig      | 6 +++---
+>  6 files changed, 14 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> index 115f4702d59f..2b3a73696dce 100644
-> --- a/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> @@ -182,7 +182,7 @@ static int sw43408_backlight_update_status(struct backlight_device *bl)
->  	return mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
->  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> index 4232ab27f990..5933ca8c6b96 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> @@ -6,6 +6,7 @@ config DRM_AMDGPU
+>  	depends on !UML
+>  	select FW_LOADER
+>  	select DRM_DISPLAY_DP_HELPER
+> +	select DRM_DISPLAY_DSC_HELPER
+>  	select DRM_DISPLAY_HDMI_HELPER
+>  	select DRM_DISPLAY_HDCP_HELPER
+>  	select DRM_DISPLAY_HELPER
+> diff --git a/drivers/gpu/drm/display/Kconfig b/drivers/gpu/drm/display/Kconfig
+> index 864a6488bfdf..f524cf95dec3 100644
+> --- a/drivers/gpu/drm/display/Kconfig
+> +++ b/drivers/gpu/drm/display/Kconfig
+> @@ -59,6 +59,12 @@ config DRM_DISPLAY_DP_TUNNEL_STATE_DEBUG
 >  
-> -const struct backlight_ops sw43408_backlight_ops = {
-> +static const struct backlight_ops sw43408_backlight_ops = {
->  	.update_status = sw43408_backlight_update_status,
->  };
+>  	  If in doubt, say "N".
 >  
+> +config DRM_DISPLAY_DSC_HELPER
+> +	bool
+> +	depends on DRM_DISPLAY_HELPER
+> +	help
+> +	  DRM display helpers for VESA DSC (used by DSI and DisplayPort).
+> +
+>  config DRM_DISPLAY_HDCP_HELPER
+>  	bool
+>  	depends on DRM_DISPLAY_HELPER
+> diff --git a/drivers/gpu/drm/display/Makefile b/drivers/gpu/drm/display/Makefile
+> index 17d2cc73ff56..2ec71e15c3cb 100644
+> --- a/drivers/gpu/drm/display/Makefile
+> +++ b/drivers/gpu/drm/display/Makefile
+> @@ -6,7 +6,8 @@ drm_display_helper-y := drm_display_helper_mod.o
+>  drm_display_helper-$(CONFIG_DRM_DISPLAY_DP_HELPER) += \
+>  	drm_dp_dual_mode_helper.o \
+>  	drm_dp_helper.o \
+> -	drm_dp_mst_topology.o \
+> +	drm_dp_mst_topology.o
+> +drm_display_helper-$(CONFIG_DRM_DISPLAY_DSC_HELPER) += \
+>  	drm_dsc_helper.o
+>  drm_display_helper-$(CONFIG_DRM_DISPLAY_DP_TUNNEL) += \
+>  	drm_dp_tunnel.o
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 5932024f8f95..117b84260b1c 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -11,6 +11,7 @@ config DRM_I915
+>  	select SHMEM
+>  	select TMPFS
+>  	select DRM_DISPLAY_DP_HELPER
+> +	select DRM_DISPLAY_DSC_HELPER
+>  	select DRM_DISPLAY_HDCP_HELPER
+>  	select DRM_DISPLAY_HDMI_HELPER
+>  	select DRM_DISPLAY_HELPER
+> diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
+> index 1931ecf73e32..6dcd26180611 100644
+> --- a/drivers/gpu/drm/msm/Kconfig
+> +++ b/drivers/gpu/drm/msm/Kconfig
+> @@ -111,6 +111,7 @@ config DRM_MSM_DSI
+>  	depends on DRM_MSM
+>  	select DRM_PANEL
+>  	select DRM_MIPI_DSI
+> +	select DRM_DISPLAY_DSC_HELPER
+>  	default y
+>  	help
+>  	  Choose this option if you have a need for MIPI DSI connector
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 2ae0eb0638f3..3e3f63479544 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -340,7 +340,7 @@ config DRM_PANEL_LG_SW43408
+>  	depends on OF
+>  	depends on DRM_MIPI_DSI
+>  	depends on BACKLIGHT_CLASS_DEVICE
+> -	select DRM_DISPLAY_DP_HELPER
+> +	select DRM_DISPLAY_DSC_HELPER
+>  	select DRM_DISPLAY_HELPER
+>  	help
+>  	  Say Y here if you want to enable support for LG sw43408 panel.
+> @@ -549,7 +549,7 @@ config DRM_PANEL_RAYDIUM_RM692E5
+>  	depends on OF
+>  	depends on DRM_MIPI_DSI
+>  	depends on BACKLIGHT_CLASS_DEVICE
+> -	select DRM_DISPLAY_DP_HELPER
+> +	select DRM_DISPLAY_DSC_HELPER
+>  	select DRM_DISPLAY_HELPER
+>  	help
+>  	  Say Y here if you want to enable support for Raydium RM692E5-based
+> @@ -907,7 +907,7 @@ config DRM_PANEL_VISIONOX_R66451
+>  	depends on OF
+>  	depends on DRM_MIPI_DSI
+>  	depends on BACKLIGHT_CLASS_DEVICE
+> -	select DRM_DISPLAY_DP_HELPER
+> +	select DRM_DISPLAY_DSC_HELPER
+>  	select DRM_DISPLAY_HELPER
+>  	help
+>  	  Say Y here if you want to enable support for Visionox
 > 
 > -- 
 > 2.39.2
