@@ -2,62 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F7D8D2FAF
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 10:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 305A98D3029
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 10:10:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B8E911340C;
-	Wed, 29 May 2024 08:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C99510E68D;
+	Wed, 29 May 2024 08:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AvfrBWTx";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="y6WY+R+O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77E5611340C
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 08:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1716969982; x=1748505982;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=4sXYU2pnhYp2DRdbXFtk9AxlZs07TCDN6muWSOAhXfY=;
- b=AvfrBWTxit/DIzUBixrwTzmMtrG2Ih4Lb9zy3oQssMWZgSZveTF+gaxY
- 7c8eF8TAgJxQlhD7KpDUcifvAICuQvsG7/uD58JvF4xitR0FQx9veQfDC
- d5dWsWvOML3fMaFJ2UFLmSg2xmPB0/xdLktLX1sURWQruTiA0bXneGAip
- 0xMM0MiIRSILLHR/Esm4cspSGE0RizwzmvNVORpaWzVnSTkvOb7ya6OOQ
- UEZRC9O4XIhw7JE4TzEsQCfhLAKgFO4ZpjVlbkkfeHGwerIeL8wG45sEC
- 21zObSCN3UBiikEe8xJ2xltbrMRfPQwxKgrArNAOcaDnmG65QKv52XwbT g==;
-X-CSE-ConnectionGUID: UaQsHhaCTJaDwmVATJUsiQ==
-X-CSE-MsgGUID: gW/n6rcsTE+JTLsVW4U8gg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="16307017"
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="16307017"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 01:06:22 -0700
-X-CSE-ConnectionGUID: H+dU+dvyQwenXwBigX0wGQ==
-X-CSE-MsgGUID: 6YuIOCorSpKTCQ29s/jf2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="35830130"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.86])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 01:06:18 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nirmal Patel <nirmal.patel@linux.intel.com>, Imre Deak
- <imre.deak@intel.com>
-Cc: Dave Jiang <dave.jiang@intel.com>, Xinghui Li <korantli@tencent.com>,
- Jonathan Derrick <jonathan.derrick@linux.dev>, Bjorn Helgaas
- <bhelgaas@google.com>, linux-pci@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Subject: Re: Lockdep annotation introduced warn in VMD driver
-In-Reply-To: <20240528155228.00005850@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <ZlXP5oTnSApiDbD1@ideak-desk.fi.intel.com>
- <20240528155228.00005850@linux.intel.com>
-Date: Wed, 29 May 2024 11:06:17 +0300
-Message-ID: <877cfdkpom.fsf@intel.com>
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6279E10E229
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 08:09:57 +0000 (UTC)
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-52965199234so2003389e87.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 01:09:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1716970195; x=1717574995; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=enlxS5GkWub7qfeq6FBQU5uJl3JqVotYfwFdD9Rt9Ng=;
+ b=y6WY+R+OOt3nFg/9O5UrjVUUAIA2P2ALNNcFi/HGwuLZLkvI3C45eS+hRmoU1QgeTy
+ k5xcMLChJy3qxCUuQZcY0MkPQCaRh2CxAcHuADIxO2DURGB0TzfJOaEwMtLN1IXBLL4A
+ xA1d2X13XfN/PbkbkuUO1YBT2yAOAagObkth54gccdFHUF/KrB4BVw3SOm9D5qO9nHXT
+ GiM1lyLjiIG+VWRb36wNGrrOA52OVbKgL7VR6nWjdC1D61YwKdoYomC14gUQ3vXgrQk7
+ YK2I4UqoMLTFQTPZt0+A4FI2SP88D3R5dFKSR5I0btC5/eABy3yQ3WL4879MYsyuLbu5
+ dN2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716970195; x=1717574995;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=enlxS5GkWub7qfeq6FBQU5uJl3JqVotYfwFdD9Rt9Ng=;
+ b=HzPFTTCZM2N8vgdsnSTab+pwChYX/Y1XI0JD3P88T0/IsuBLiKxJMxHKaO31dVkSL8
+ u72pToN3yvjOtSeID73Z7h09nArxFdgFYommIwk/cvoaKq4fhtvbslwcLjnYFkQvRf/l
+ g3KZhMRn52L7egPiJTlwKdYbAWmGywMdqdrVMYzoCBu0k/ryUBGJY9AZzLtmYcqrxhDy
+ PH5YZrB5iAyqX8qZTqY/IBZk4cYO8lGzCiMpqR9/ophGSIc5z02S9lfYOQ/Ifbv8wfzR
+ s4AjA2Wg/mAc26w+nB37uHIrRoBvVtsBBoQweeOxNhHBXjc46P377serL+N005zfU9AA
+ E/PA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWeSeATSNlO5NTxkrXC/qJLTpS+Lyl2+KX+UebS0OI25DHPGN9mx5t4xYQyoAx9RRCMA3P+r66sf2yAk1npKq15J2wQMCspT1X3mJt7N59W
+X-Gm-Message-State: AOJu0Yw0rs3J/k9QZSP4QBdK+dR8ZepXm0Bmv3irubOFP7BQ8zHroc2p
+ eo0l477f7668Y5v/3HKRg3yo92ctxajgsia64C15UCcY+OasvfSOz6t2BKt71tI=
+X-Google-Smtp-Source: AGHT+IHAAOSe1YF9ohma3qLilcNBhTgUrp5XW+R17Dfxhf/XQBKuTb9CXtbrrq9LBMBwT336LwrXXQ==
+X-Received: by 2002:a05:6512:3128:b0:522:33cd:64bd with SMTP id
+ 2adb3069b0e04-52964aba466mr8988769e87.27.1716970195416; 
+ Wed, 29 May 2024 01:09:55 -0700 (PDT)
+Received: from eriador.lumag.spb.ru
+ (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-529aa049e3csm859093e87.167.2024.05.29.01.09.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 May 2024 01:09:55 -0700 (PDT)
+Date: Wed, 29 May 2024 11:09:53 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, 
+ david.heidelberg@collabora.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, 
+ mcanal@igalia.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/6] drm/ci: uprev IGT
+Message-ID: <bj6mpegmxo6i5o34xyxwiytdaokv2u6p5iu4eoek3ctqimwviy@jbo5aw7gy4ue>
+References: <20240529024049.356327-1-vignesh.raman@collabora.com>
+ <20240529024049.356327-5-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240529024049.356327-5-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,141 +92,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 May 2024, Nirmal Patel <nirmal.patel@linux.intel.com> wrote:
-> On Tue, 28 May 2024 15:36:54 +0300
-> Imre Deak <imre.deak@intel.com> wrote:
->
->> Hi,
->> 
->> commit 7e89efc6e9e402839643cb297bab14055c547f07
->> Author: Dave Jiang <dave.jiang@intel.com>
->> Date:   Thu May 2 09:57:31 2024 -0700
->> 
->>     PCI: Lock upstream bridge for pci_reset_function()
->> 
->> introduced the WARN below in the VMD driver, see [1] for the full log.
->> Not sure if the annotation is incorrect or the VMD driver is missing
->> the lock, CC'ing VMD folks.
->> 
->> --Imre
-> Can you please provide repro steps and some background on the setup?
+On Wed, May 29, 2024 at 08:10:47AM +0530, Vignesh Raman wrote:
+> test-list.txt and test-list-full.txt are not generated for
+> cross-builds and they are required by drm-ci for testing
+> arm32 targets. This is fixed in igt-gpu-tools. So uprev
+> IGT to include the commit which fixes this issue. Also
+> disable building xe driver tests for non-intel platforms.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+>   - Split IGT uprev to seperate patch.
+> 
+> v3:
+>   - No changes.
+> 
+> ---
+>  drivers/gpu/drm/ci/build-igt.sh  | 4 ++++
+>  drivers/gpu/drm/ci/gitlab-ci.yml | 2 +-
+>  2 files changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index b7d2a49a6db3..eddb5f782a5e 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
+> @@ -45,6 +45,10 @@ MESON_OPTIONS="-Doverlay=disabled                    \
+>                 -Dlibunwind=enabled                   \
+>                 -Dprefix=/igt"
+>  
+> +if [[ "$KERNEL_ARCH" = "arm64" ]] || [[ "$KERNEL_ARCH" = "arm" ]]; then
+> +    MESON_OPTIONS="$MESON_OPTIONS -Dxe_driver=disabled"
+> +fi
+> +
+>  mkdir -p /igt
+>  meson build $MESON_OPTIONS $EXTRA_MESON_ARGS
+>  ninja -C build -j${FDO_CI_CONCURRENT:-4} || ninja -C build -j 1
+> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
+> index 8f32de63d92e..1b29c3b6406b 100644
+> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
+> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+> @@ -5,7 +5,7 @@ variables:
+>    UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
+>    TARGET_BRANCH: drm-next
+>  
+> -  IGT_VERSION: d2af13d9f5be5ce23d996e4afd3e45990f5ab977
+> +  IGT_VERSION: 0df7b9b97f9da0e364f5ee30fe331004b8c86b56
 
-Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P
-LP5 RVP.
+Let's land this, then I'll ask to uprev to
+dc2d7fb4f978048b87707ea9ec32da748b01b378, which fixes an issue with the
+writeback tests on MSM devices.
 
-Kconfig: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14842/kconfig.txt
-
-Just booting with the above commit is enough.
-
-BR,
-Jani.
-
->
-> -nirmal
->> 
->> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134112v1/bat-adlp-11/boot0.txt
->> 
->> <4>[   17.354071] WARNING: CPU: 0 PID: 1 at drivers/pci/pci.c:4886
->> pci_bridge_secondary_bus_reset+0x5d/0x70 <4>[   17.354095] Modules
->> linked in: <4>[   17.354104] CPU: 0 PID: 1 Comm: swapper/0 Not
->> tainted 6.10.0-rc1-Patchwork_134112v1-gabaeae202dfb+ #1 <4>[
->> 17.354128] Hardware name: Intel Corporation Alder Lake Client
->> Platform/AlderLake-P LP5 RVP, BIOS RPLPFWI1.R00.4035.A00.2301200723
->> 01/20/2023 <4>[   17.354153] RIP:
->> 0010:pci_bridge_secondary_bus_reset+0x5d/0x70 <4>[   17.354167] Code:
->> c3 cc cc cc cc 48 89 ef 48 c7 c6 78 55 44 82 5d e9 d8 c6 ff ff 48 8d
->> bf 48 08 00 00 be ff ff ff ff e8 97 10 5f 00 85 c0 75 b5 <0f> 0b eb
->> b1 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 <4>[
->> 17.354199] RSP: 0000:ffffc90000097ca0 EFLAGS: 00010246 <4>[
->> 17.354210] RAX: 0000000000000000 RBX: ffff888105604000 RCX:
->> 0000000000000000 <4>[   17.354224] RDX: 0000000080000000 RSI:
->> ffffffff82421c40 RDI: ffffffff82441c4c <4>[   17.354238] RBP:
->> ffff888105601000 R08: 0000000000000001 R09: 0000000000000000 <4>[
->> 17.354251] R10: 0000000000000001 R11: ffff8881008c8040 R12:
->> 0000000000000000 <4>[   17.354264] R13: 0000000000000020 R14:
->> 000000000000007f R15: ffff888105615c28 <4>[   17.354283] FS:
->> 0000000000000000(0000) GS:ffff8882a6e00000(0000)
->> knlGS:0000000000000000 <4>[   17.354313] CS:  0010 DS: 0000 ES: 0000
->> CR0: 0000000080050033 <4>[   17.354334] CR2: ffff8882afbff000 CR3:
->> 000000000663a000 CR4: 0000000000f50ef0 <4>[   17.354348] PKRU:
->> 55555554 <4>[   17.354355] Call Trace: <4>[   17.354361]  <TASK> <4>[
->>   17.354367]  ? __warn+0x8c/0x190 <4>[   17.354380]  ?
->> pci_bridge_secondary_bus_reset+0x5d/0x70 <4>[   17.354392]  ?
->> report_bug+0x1f8/0x200 <4>[   17.354405]  ? handle_bug+0x3c/0x70 <4>[
->>   17.354415]  ? exc_invalid_op+0x18/0x70 <4>[   17.354424]  ?
->> asm_exc_invalid_op+0x1a/0x20 <4>[   17.354438]  ?
->> pci_bridge_secondary_bus_reset+0x5d/0x70 <4>[   17.354451]
->> pci_reset_bus+0x1d8/0x270 <4>[   17.354461]  vmd_probe+0x778/0xa10
->> <4>[   17.354474]  pci_device_probe+0x95/0x120 <4>[   17.354484]
->> really_probe+0xd9/0x370 <4>[   17.354496]  ?
->> __pfx___driver_attach+0x10/0x10 <4>[   17.354505]
->> __driver_probe_device+0x73/0x150 <4>[   17.354516]
->> driver_probe_device+0x19/0xa0 <4>[   17.354525]
->> __driver_attach+0xb6/0x180 <4>[   17.354534]  ?
->> __pfx___driver_attach+0x10/0x10 <4>[   17.354544]
->> bus_for_each_dev+0x77/0xd0 <4>[   17.354555]
->> bus_add_driver+0x110/0x240 <4>[   17.354566]
->> driver_register+0x5b/0x110 <4>[   17.354575]  ?
->> __pfx_vmd_drv_init+0x10/0x10 <4>[   17.354587]
->> do_one_initcall+0x5c/0x2b0 <4>[   17.354600]
->> kernel_init_freeable+0x18e/0x340 <4>[   17.354612]  ?
->> __pfx_kernel_init+0x10/0x10 <4>[   17.354623]  kernel_init+0x15/0x130
->> <4>[   17.354631]  ret_from_fork+0x2c/0x50 <4>[   17.354641]  ?
->> __pfx_kernel_init+0x10/0x10 <4>[   17.354650]
->> ret_from_fork_asm+0x1a/0x30 <4>[   17.354663]  </TASK> <4>[
->> 17.354669] irq event stamp: 28577685 <4>[   17.354677] hardirqs last
->> enabled at (28577693): [<ffffffff8117c060>]
->> console_unlock+0x110/0x120 <4>[   17.354697] hardirqs last disabled
->> at (28577700): [<ffffffff8117c045>] console_unlock+0xf5/0x120 <4>[
->> 17.354713] softirqs last  enabled at (28577176): [<ffffffff810df29c>]
->> handle_softirqs+0x2ec/0x3f0 <4>[   17.354731] softirqs last disabled
->> at (28577167): [<ffffffff810dfa17>] irq_exit_rcu+0x87/0xc0 <4>[
->> 17.354747] ---[ end trace 0000000000000000 ]---
->> 
->> <4>[   17.487274] =====================================
->> <4>[   17.487277] WARNING: bad unlock balance detected!
->> <4>[   17.487279] 6.10.0-rc1-Patchwork_134112v1-gabaeae202dfb+ #1
->> Tainted: G        W <4>[   17.487282]
->> ------------------------------------- <4>[   17.487284] swapper/0/1
->> is trying to release lock (10000:e1:00.0) at: <4>[   17.487287]
->> [<ffffffff8176b377>] pci_cfg_access_unlock+0x57/0x60 <4>[
->> 17.487292] but there are no more locks to release! <4>[   17.487294]
->>                   other info that might help us debug this:
->> <4>[   17.487297] 2 locks held by swapper/0/1:
->> <4>[   17.487299]  #0: ffff888102c1c1b0 (&dev->mutex){....}-{3:3},
->> at: __driver_attach+0xab/0x180 <4>[   17.487306]  #1:
->> ffff8881056041b0 (&dev->mutex){....}-{3:3}, at:
->> pci_dev_trylock+0x19/0x50 <4>[   17.487312] stack backtrace:
->> <4>[   17.487314] CPU: 0 PID: 1 Comm: swapper/0 Tainted: G        W
->>        6.10.0-rc1-Patchwork_134112v1-gabaeae202dfb+ #1 <4>[
->> 17.487318] Hardware name: Intel Corporation Alder Lake Client
->> Platform/AlderLake-P LP5 RVP, BIOS RPLPFWI1.R00.4035.A00.2301200723
->> 01/20/2023 <4>[   17.487322] Call Trace: <4>[   17.487324]  <TASK>
->> <4>[   17.487325]  dump_stack_lvl+0x82/0xd0 <4>[   17.487329]
->> lock_release+0x20b/0x2d0 <4>[   17.487334]  pci_bus_unlock+0x25/0x40
->> <4>[   17.487337]  pci_reset_bus+0x1eb/0x270
->> <4>[   17.487340]  vmd_probe+0x778/0xa10
->> <4>[   17.487344]  pci_device_probe+0x95/0x120
->> <4>[   17.487346]  really_probe+0xd9/0x370
->> <4>[   17.487349]  ? __pfx___driver_attach+0x10/0x10
->> <4>[   17.487352]  __driver_probe_device+0x73/0x150
->> <4>[   17.487354]  driver_probe_device+0x19/0xa0
->> <4>[   17.487357]  __driver_attach+0xb6/0x180
->> <4>[   17.487359]  ? __pfx___driver_attach+0x10/0x10
->> <4>[   17.487362]  bus_for_each_dev+0x77/0xd0
->> <4>[   17.487365]  bus_add_driver+0x110/0x240
->> <4>[   17.487369]  driver_register+0x5b/0x110
->> <4>[   17.487371]  ? __pfx_vmd_drv_init+0x10/0x10
->> <4>[   17.487374]  do_one_initcall+0x5c/0x2b0
->> <4>[   17.487378]  kernel_init_freeable+0x18e/0x340
->> <4>[   17.487381]  ? __pfx_kernel_init+0x10/0x10
->> <4>[   17.487384]  kernel_init+0x15/0x130
->> <4>[   17.487387]  ret_from_fork+0x2c/0x50
->> <4>[   17.487390]  ? __pfx_kernel_init+0x10/0x10
->> <4>[   17.487392]  ret_from_fork_asm+0x1a/0x30
->> <4>[   17.487396]  </TASK>
->> 
->
+>  
+>    DEQP_RUNNER_GIT_URL: https://gitlab.freedesktop.org/anholt/deqp-runner.git
+>    DEQP_RUNNER_GIT_TAG: v0.15.0
+> -- 
+> 2.40.1
+> 
 
 -- 
-Jani Nikula, Intel
+With best wishes
+Dmitry
