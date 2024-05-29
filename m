@@ -2,91 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1D48D31A3
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 10:38:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 597518D31C4
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 10:42:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4893010F0FA;
-	Wed, 29 May 2024 08:38:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7632A10E106;
+	Wed, 29 May 2024 08:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="AAQ0X0Jz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZSXRYAym";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
- [209.85.167.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC13A10F4A3
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 08:38:26 +0000 (UTC)
-Received: by mail-lf1-f44.google.com with SMTP id
- 2adb3069b0e04-52ae14e78e5so429564e87.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2024 01:38:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1716971905; x=1717576705; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=IqrQnHagTsqc8XSpxu+I+AI5vFFrCWmKxdpq/9RvgHQ=;
- b=AAQ0X0JzpkTJPr8jEb7cCPXU0GIXsVaIzvtnh7UaO1CwBvFwNTXIE4yBTTAOP8J9gQ
- 4Pu69fEq/eXCuzCW6GEfGQmpZGRIe6dmlFcDseRs+wS8N+EF8BFCHC6xJIScGRnCiq66
- 4CI7WmIqUzLW8elxBQ2rBqJ4cB/Vs4edINqY2ijZxIxOA1V2PM0y9Zwzm7cqqGQWDrIo
- 0sj5DzV3nn95t6U2NNhGwqZ1gAfDnfYFJqXjUN6RTIRUE/A6ctDxsjB5Hdk2Uut0GpgC
- FF7+o7LSeUiu5oiXtoZM2uDE2x7g1ijdi4NhPjSgjlw4PowFBSQSkLgosyjRai+zhnyi
- I/eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716971905; x=1717576705;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=IqrQnHagTsqc8XSpxu+I+AI5vFFrCWmKxdpq/9RvgHQ=;
- b=XyeRdn5xnO4SRijmOE8g9/F1LXKMg0/nxeh4kbpRcPkreKYQSLIXN7/SDVPmj6yYej
- xBL3iC7ahAWTQ6ovm+fwjFT64e7jg5aYVj/yCJTRtqgCIRck+hOFB4UFyDuW9/FQ44uJ
- UNNed4uJOj6jGqEwjOSktT21gU6aLoGEM752A0n2LTZx3RBWjdLm1ChvUGfzeR+O1JQ0
- drbeiWp1+puSBlaq01k1r3wLDd1qzMf0Bai5pxUb+KsT+SnKTX5zaaW3RwdPV4zwvynq
- 3GIs34jUaA5vQhMdvD2RM+qB+DVuiKFVWE/7XoALOczpbZZlDD3T5+RjqkNvcd4yJG9e
- g+Mw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUAz681PfTd6Oi4V97w9TT28/c67QdFAyeb3LzIDUDcdGFycc+9/qyIY6gsRQTiBQ2UUq95oLQzVGCewacetx5+MdbcsU9/6wUmgs+jQ86l
-X-Gm-Message-State: AOJu0Yw3wR/sYNbph1lv3oYOHFzbfEQFEVGXeij79XWymvc3AJdg2KaT
- RA9Fe0JvXyHNnPOK9YHPmUBbBKaEB6FBqISsHCdwb4asyJhuk6UN/uxiyagScIw=
-X-Google-Smtp-Source: AGHT+IFxNS9ivx6ftoot6k7b4A5XcOe5Biw65h+SXYi89WIc3qRRrD3Vy3EqpcmprR3+hTvfeKjCOg==
-X-Received: by 2002:a19:f613:0:b0:523:ef21:8e2c with SMTP id
- 2adb3069b0e04-529664dac67mr7731487e87.51.1716971904911; 
- Wed, 29 May 2024 01:38:24 -0700 (PDT)
-Received: from eriador.lan (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00::227]) by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-52b3d918a5csm59684e87.257.2024.05.29.01.38.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 May 2024 01:38:24 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- Caleb Connolly <caleb.connolly@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Vinod Koul <vkoul@kernel.org>, Caleb Connolly <caleb@connolly.tech>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- kernel test robot <lkp@intel.com>
-Subject: Re: (subset) [PATCH v4 0/3] drm/panel: two fixes for lg-sw43408
-Date: Wed, 29 May 2024 11:38:22 +0300
-Message-ID: <171697189027.975427.12036219693814257280.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240528-panel-sw43408-fix-v4-0-330b42445bcc@linaro.org>
-References: <20240528-panel-sw43408-fix-v4-0-330b42445bcc@linaro.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAB8310E106;
+ Wed, 29 May 2024 08:42:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716972135; x=1748508135;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=v9qTfQQNVSHKFQJvGsalKNH/EXP4hSDPKzkYoVZxIYQ=;
+ b=ZSXRYAymRwxOjlw1Is4UZ7yxQ0hc58ckOR1WppjrHa31Hrn6vSsVjX6P
+ GGh5OZPaYK92bxgkccIaUGYOHGTR8y0E9nQzIVnk+87aUVzwXkzno2d3o
+ wZRANPuFn1Iuh3tXgbb4a4q2JrVOyKR0N03cAlfPiUe0NT07WzJpVRU/p
+ JWcsPbDkgxTST0bkE1QAUjdUq6d0+J3WCDeRyO12yMaQs+OhtHtVPOqa2
+ N/5sjCw+9Ms5aQ36A8ijh7bxJwnEOgVEPCl4lk5LUG1T2kyLosjoXJfja
+ 7oe3QlbK80oEnTnlvsCBWxCfzme3Z4CUzYvckuLdN9ExiMAeDozuZgnYT Q==;
+X-CSE-ConnectionGUID: mKlfgrfNRAKyMwdlhgFMmw==
+X-CSE-MsgGUID: XKFhlkxFQ3iT7FxFL/qMbg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="17153647"
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="17153647"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 01:42:14 -0700
+X-CSE-ConnectionGUID: EK72pWMqRV6KqEDw2+CxEw==
+X-CSE-MsgGUID: ujxQzvadSCebdWqFr8DPig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,197,1712646000"; d="scan'208";a="35290243"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.33.194])
+ ([10.246.33.194])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 01:42:11 -0700
+Message-ID: <f2c2f983-6e75-4cc6-b793-5ff928b5605d@linux.intel.com>
+Date: Wed, 29 May 2024 10:42:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/i915: Increase FLR timeout from 3s to 9s
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Nirmoy Das <nirmoy.das@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+References: <20240523235853.171796-1-andi.shyti@linux.intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20240523235853.171796-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,21 +74,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 May 2024 22:39:17 +0300, Dmitry Baryshkov wrote:
-> Fix two issues with the panel-lg-sw43408 driver reported by the kernel
-> test robot.
-> 
-> 
 
-Applied to drm-misc-fixes, thanks!
-
-[1/3] drm/panel/lg-sw43408: select CONFIG_DRM_DISPLAY_DP_HELPER
-      commit: 33defcacd207196a6b35857087e6335590adad62
-[2/3] drm/panel/lg-sw43408: mark sw43408_backlight_ops as static
-      commit: 8c318cb70c88aa02068db7518e852b909c9b400f
-
-Best regards,
--- 
-With best wishes
-Dmitry
-
+On 5/24/2024 1:58 AM, Andi Shyti wrote:
+> Following the guidelines it takes 3 seconds to perform an FLR
+> reset. Let's give it a bit more slack because this time can
+> change depending on the platform and on the firmware
+>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+> Hi,
+>
+> In this second version I removed patch 2 that was ignoring the
+> FLR reset timeouts, until we develop a proper patch.
+>
+> This first patch is basically the same as v1. Thanks Nirmoy for
+> your review.
+>
+> Andi
+>
+>   drivers/gpu/drm/i915/intel_uncore.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+> index 729409a4bada..2eba289d88ad 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -2614,11 +2614,18 @@ void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
+>   static void driver_initiated_flr(struct intel_uncore *uncore)
+>   {
+>   	struct drm_i915_private *i915 = uncore->i915;
+> -	const unsigned int flr_timeout_ms = 3000; /* specs recommend a 3s wait */
+> +	unsigned int flr_timeout_ms;
+>   	int ret;
+>   
+>   	drm_dbg(&i915->drm, "Triggering Driver-FLR\n");
+>   
+> +	/*
+> +	 * The specification recommends a 3 seconds FLR reset timeout. To be
+> +	 * cautious, we will extend this to 9 seconds, three times the specified
+> +	 * timeout.
+> +	 */
+> +	flr_timeout_ms = 9000;
+> +
+>   	/*
+>   	 * Make sure any pending FLR requests have cleared by waiting for the
+>   	 * FLR trigger bit to go to zero. Also clear GU_DEBUG's DRIVERFLR_STATUS
