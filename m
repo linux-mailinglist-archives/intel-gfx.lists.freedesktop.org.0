@@ -2,169 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE728D402D
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 23:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2528D4030
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2024 23:20:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07FCC10F752;
-	Wed, 29 May 2024 21:17:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AADD71137F0;
+	Wed, 29 May 2024 21:20:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hrAjvAEx";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="DSk1supW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3F710F752;
- Wed, 29 May 2024 21:17:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717017423; x=1748553423;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=4Sr3DpDAg3kbSsUbumpGqnUFu8JKsjYitj9R2kbPj/o=;
- b=hrAjvAExNh0mmo33FGByZVqJXAT6AkQde/TgXc+GKhAh1Rb0Hcbiosdn
- 5geOUjuQM4OlBDgLBx8o8rVUNxI7tOtyXhNPX9kal8U+FEFTLSS8hqO3M
- C5yKGeFjsOTgbM1UWckAvuX53Zo41kHPPewziAqYQnljhfF9jqnUs4edO
- e5jcqju9Snlrns0LAxUJStSOJwzc0cbDqWqODzI/EGIIHJ3IBaF9Qbbc2
- Au72tNd8sWU9hdnX6D6GHzmgC7nLk3dUfic07mKdCyTPtSFXChIDU8wrJ
- 5vxJs3G1epHNVqc3rl9LDhRC5ePvqQ23CNFfXG2GS/lI7HJ0So5y0sXw3 g==;
-X-CSE-ConnectionGUID: yWpltiRkSVOTeKf/eIeSwQ==
-X-CSE-MsgGUID: 6jt0iFtCTo+9DZH5dZmOrA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13637090"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13637090"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 14:17:01 -0700
-X-CSE-ConnectionGUID: xnFeYi1HQq+s5OmMX9WvbA==
-X-CSE-MsgGUID: xyDSXveFQx+h03W56HiAhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="40577368"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 May 2024 14:17:02 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 29 May 2024 14:17:00 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 29 May 2024 14:17:00 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 29 May 2024 14:17:00 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 29 May 2024 14:17:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZIE+bhzaEyn3dTb+c0EfFM42QrUHQ2w+Ky6ePVwwEAPprG/LKTztmZfPDD2P5uTG1+9FT2Y2IlB+tLkFey2KChY3QsX+GndNmKvjoA2yIBUlI1mLp1JgPinX+vAQ2jkzg5uA19Ma9By1QDfcZqLAnjxixXtvamcRQVqdQ9kDWkTGkcQ2V0I7ItXU53nHkGeOSGx/Lpn6xOrMS/OeYeomsR9aa1uacv9Vc40c450q2+zgMdrgG36UZYKqgkhjSngbbI31Y6eX4cGXCRCIRi6hC4fBR27FFlzajUM5+laE9J6bL17y7JZQnTm3CFF+00+/7CayyHBXVknH/yror8Ha0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XjYZTnDeKpHTNtv6YtcGJUZ8qq1F8lDfHsTjSX9zqHA=;
- b=hwIzxaFTmpVqYg83V+AM6kxBpla43gINdzgx8Vb0ZBKHYo2m6EP9Lpcond9oFFzYcfA6iOhyVOJxpbJfYanrK6GnyVUhpIgec3Nh8u6aPgpGTjBPfZdN29fnalhWZC2gkxnwCtqqaJVB8000rq5FAfro7zmpira8rOEX4AmnzPAvjq6XsdLsaEONSmO9/NoeaycVKOWfQyZ5ES4tRlKy+T7N8+n9sE5zk2681j711B92X9lGhLZo2j4GABxOu5fFfmzIgaSUJo30jwmgwztyRMdTetChmMIeGtiY/VmC+OwDClovNX+fy7xIZ2Fx2K7jv1DNakl4wiRhGYXs6aqbDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CH3PR11MB7297.namprd11.prod.outlook.com (2603:10b6:610:140::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Wed, 29 May
- 2024 21:16:58 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7611.030; Wed, 29 May 2024
- 21:16:57 +0000
-Date: Wed, 29 May 2024 14:16:55 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 06/12] drm/i915: convert fsb_freq and mem_freq to kHz
-Message-ID: <20240529211655.GU4990@mdroper-desk1.amr.corp.intel.com>
-References: <cover.1716906179.git.jani.nikula@intel.com>
- <1e4f2fe8c22c5a4fd8f137385f9a884e31986075.1716906179.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1e4f2fe8c22c5a4fd8f137385f9a884e31986075.1716906179.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BY5PR16CA0002.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::15) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 803FD10F2F1;
+ Wed, 29 May 2024 21:20:23 +0000 (UTC)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TCKAUu015705;
+ Wed, 29 May 2024 21:20:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ ho9URM4GLxtmveMfnMpGaju9PuKA1yrv2/alLG7suIs=; b=DSk1supWGfabS6qz
+ ljMH72mlzoHdERNCl5WJqDO3UIjB92aQtKki/S344GtCfonq6kaiad1xRpOaBdLG
+ auLhrAVgH877Cyc42PuE5KF9bDMV8DfxFx2iswLE6+V/s7a271VrirNFh41ahAIc
+ p1hAgPw6iaN9AzSs43/IWrnRKEX00BienzvHEzcYMGHDadMbcVnQ+8sBnhRlmQnx
+ Jf/ehnXFyKTVS06RYJH2q6ZmuaB9T5J7k/HXugFjbkvfhe/eWtZzQQdUWCNFj3Bn
+ UqP/5oKsBFDG5NWxs0zTkCX6KEiob0LoG4EVnPWKg8fxHxOmPbxQN5e1CqKMPgTg
+ rdH6Ow==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba2ha9c4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 29 May 2024 21:20:08 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com
+ [10.46.141.250])
+ by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TLK7pK009738
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 29 May 2024 21:20:07 GMT
+Received: from [10.71.108.229] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
+ 2024 14:20:07 -0700
+Message-ID: <0728e1fb-4208-4cad-8cbc-22ca115e2224@quicinc.com>
+Date: Wed, 29 May 2024 14:20:06 -0700
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CH3PR11MB7297:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c548092-e57d-4d53-9529-08dc8024ac4f
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?N1JrWeAkG7dOQoY3/dskw/gZO0FUDGXI93J5oG5wxRL5SBPtiPun60AmtTOL?=
- =?us-ascii?Q?afL9zOIQD35Zq4JKCSiXE3LQkFgg6YBwmx8EIwYrNozjb/3aQfjaReeJ51u1?=
- =?us-ascii?Q?rw0+GSKQXeWzGjEu1TGPpNb4WLut4885F8qpqW9CovGOzcB35d2Yr8+XlxQe?=
- =?us-ascii?Q?74/52JIn/FDXbVD/7uFjSR/cS0tbTYMYGFnpQIGz1hYOPaJJWuabJD59AxPU?=
- =?us-ascii?Q?GzUsXnv5dXmohtnDJWlwyKzfjHnTVNg7+cVqgI2L5KFVYuZUc7Vqu8uJevqn?=
- =?us-ascii?Q?XsRUdKJqeORLCN16WUKseVrFWxPona+AhjJrl40t296Gsc5TtIXMcwHSJOVX?=
- =?us-ascii?Q?buIYAKdi+s85639h17RPLkyRVWWmIUrwO86sPklQmYGpsY9ln3SK41AcT2vJ?=
- =?us-ascii?Q?KJU2eL3zr7Zzby7a6MPLMkNIVJqVZidamX4dlAaIWZXRw4iP7h0Jo3/+ytdG?=
- =?us-ascii?Q?8gf5wxuIaYZnuutQ1miHv9l4rtywWvLTJ9Q+8YH88AbmMW6BlN4Pi9ZRapqs?=
- =?us-ascii?Q?PEq6Tityu269E8z0/04BazUMFJfvhUkP9yCJQRKzdsxczchPs9+XXlEVrIh2?=
- =?us-ascii?Q?i9SaceqjpMUeYL1McnAJlIhykJpB5ENacNAmZ1UKrLaus3PO30K8pTsxPyjo?=
- =?us-ascii?Q?yK4ppH0tp4sVhc7PqBVJmVZREDknpVXcSt/G+FVoLly64ajOnSvn08mmEb8Y?=
- =?us-ascii?Q?tNvHiXHPSELZvR+fl9TOqKRiWGnQMriBPjrCu6vsRWXbfywrulFZfJNroGwL?=
- =?us-ascii?Q?nGTa4xZLIv0y+AoAy6HD5lukL/h9c1KpTYIzqkSABCPCpJGEoR1yv0kiTgfc?=
- =?us-ascii?Q?Vo9vxgX5Fq1qRYxchM4p/oPhzIef6gUdlbT6txA5AGjvkiLotY3g6K0yle3j?=
- =?us-ascii?Q?d/WXQLr+RBJHHW9+WyJ25ZlKAFcw21isb4Cb9PShCv+QM4vi6rFv//yXJpCa?=
- =?us-ascii?Q?IlBEatesD9F6oAMi2hbj+vmWc4Va/J/WLVGBIgb1n7TscEBV49aXYAt40ASr?=
- =?us-ascii?Q?jsZCJtgmuzajiZb3LENTh1aKNi4317IK7DEjigCueJ0KM5VpxJUHUiPQ0Hdi?=
- =?us-ascii?Q?g3wWDOLvkl+K6tEtO2z2ZwlSLPAkkpHWHfCrmWtVZgQTm10PujxXsGMsb9B0?=
- =?us-ascii?Q?/g2yg47kCMv69PiQQMUbxyjjVlV8xk9wssez8N8bUjjCqLeVarEP08VXEFeI?=
- =?us-ascii?Q?2wsIknkB46BtVmT5IC2BADdTrzLcdL15l+e+B8cI2ERVxSiVk+DX7jDq7cbm?=
- =?us-ascii?Q?MWHHYVdQtiwkMT6nE7bXUFMNkGgfCsUXPHcuYDigFg=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(366007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QzEK0KOSTre1c31wt+vo9Xb5DYowMbaI6Ql7aW6xZyRrsdg9XGIfkWPmCVj3?=
- =?us-ascii?Q?nA+7dJ10miOSVjuKDLlpgVeKFcxaX1CmQlpf2GxP4xdMDZQeEhzW1VbSCipg?=
- =?us-ascii?Q?A3KKMIlySsKLVGJildNN/bzMXkfQa1UJANIITI8rWaLwVIHfkia8tEmCAWJv?=
- =?us-ascii?Q?KDi7y+j1S/XpFB4sRHqQR2NwwHphQMiD41J/ce5OWJdcDHV55p5Ejk1+JBc+?=
- =?us-ascii?Q?/tRigod1D1hrssR605f2R2wsQ3YUWLAU0E1YlPYY6T6bUCIe623aJMb7Q4vD?=
- =?us-ascii?Q?UH+maGX8ovjsg6yeevW/hSLm2aYQWaw2Q7CL/4eM6RVSzUuZNLkIPYbJls95?=
- =?us-ascii?Q?sSE9qYIvFDiKcL7R9TiiRuSJBtMDLJeF3fWrRRxMC2F0+KP273Tv5L3HbC8d?=
- =?us-ascii?Q?MXdIkfsCWRerrPBbzNFBJq1GCz/TVCWZ0Dc1nW38njRjTXWK7OWyTQzrOjDj?=
- =?us-ascii?Q?bqyZFCf0ssQiZOt7LHogqZeqh4iPWabH2B7vUPwfMcaGaX5LyrdIZTvSIKmY?=
- =?us-ascii?Q?3xVh/bE109/7sZRS+FjEMHWdjjztZRqOB2Pcf3jlV4SwFcaeRzfgczQ16PnF?=
- =?us-ascii?Q?VhVMOqCmWSyDW571RGmPpYs8OSVfdYR6tMdyf6wYmeX16MoLli6yoP8ckrdz?=
- =?us-ascii?Q?eEua2aIalrl53TdJeW0fKTHq796uJaC6Niy1MrcfjLHp3BFzatYhysEn5Hsb?=
- =?us-ascii?Q?+fVO5AqbXiU6OflpFHNZ5ggvxg8UN3Jl2ZzjkTeDqHf3nS6wt49hdCbGYqGI?=
- =?us-ascii?Q?pbtapS30swuVvK7rhj/yNu8WAPGixwe3pUMtyJjQQxqtSvrsTKdP3Z2Ae/WX?=
- =?us-ascii?Q?1nBtK3gYw/E3rFFg9a15I1/9a6BR5IgxPIPO+3NpHjOkxlUjDwqqem3VXY4Z?=
- =?us-ascii?Q?xwppVLScNhDq7hbtUyzaQ6zFZJ6G1w36cRKDloE8ur093uHf4MoG4dtx5msQ?=
- =?us-ascii?Q?bErUjojxJeU6dG/G7L6KVKJVhAOnlfStHhtBisKeivfTZtkHf4nP2g8d5YeF?=
- =?us-ascii?Q?IgIVhwhSVjDEUZk+mOkyaS67wvUUTvlX44IS83JugABpYfv6+aNSvy0DFfxG?=
- =?us-ascii?Q?I3KZQZuY3e/AqIcdQRNv92u8nABagqiOr/z2yQbDqG/ngdNS+s/C6ms1veRJ?=
- =?us-ascii?Q?L/d6+Ar1MOD947u5Vtl+n8w43bAiFKYwugyteSFEACyWqMw4Etgu9YSLGwpu?=
- =?us-ascii?Q?UlOt85+IbNTZlrD2vJsgbLP1JorQlrewr56CnRLTjtXUbSMLGB66Qy4kUjnF?=
- =?us-ascii?Q?pdX+uR+wi/Swl+P7X1TZbXD/2d84MBkux1PLb/Ph8RH+j71TlcyyRiRe/Acy?=
- =?us-ascii?Q?0b+wBMGI/pzI2uWDlcpzhjGB/cEDww9aURWB1u70v0wOkN9AVzOO8H+UKWXr?=
- =?us-ascii?Q?XHCAuUI3o9tc6oocaOEhWoBc4w6ga+EBrZsMV9JMo80JUr32VdAXJaficdVn?=
- =?us-ascii?Q?08qw3u17jJz341JmoYniRfDNsZXDizKqmimFWdVIT+PsBWKCx208USJ7Wbkh?=
- =?us-ascii?Q?It4HWN7OwzLtGy2lk9VWG3z59qd7JF3hXBdnLL/SDMIcEufRf2pvxRegWP1C?=
- =?us-ascii?Q?pjtpZEWVJBhmR/OGONfNn0uTH+Dsz3PHDiOxz76x8Qc1SwTVSwhrs5cr5iWy?=
- =?us-ascii?Q?Nw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c548092-e57d-4d53-9529-08dc8024ac4f
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2024 21:16:57.9021 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QeX6INUYYPCuNDbao8Ol+o8qrk4iGZL7lR9U2kRX9tGKRKPykAnVm6FwrOg4uE6qkveiOodw8vSDZYQR/Fz51xTAWUIT2wof2veCtZfPWoA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7297
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] drm/ci: uprev mesa version
+Content-Language: en-US
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ <dri-devel@lists.freedesktop.org>
+CC: <daniels@collabora.com>, <helen.koike@collabora.com>, <airlied@gmail.com>, 
+ <daniel@ffwll.ch>, <robdclark@gmail.com>,
+ <david.heidelberg@collabora.com>, <guilherme.gallo@collabora.com>,
+ <sergi.blanch.torne@collabora.com>, <dmitry.baryshkov@linaro.org>,
+ <mcanal@igalia.com>, <linux-mediatek@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <amd-gfx@lists.freedesktop.org>,
+ <linux-arm-msm@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
+ <virtualization@lists.linux-foundation.org>, <linux-kernel@vger.kernel.org>
+References: <20240529024049.356327-1-vignesh.raman@collabora.com>
+ <20240529024049.356327-2-vignesh.raman@collabora.com>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240529024049.356327-2-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: CCh6wsfY60u7InhlF8hd8oJD7Lp4-hfI
+X-Proofpoint-ORIG-GUID: CCh6wsfY60u7InhlF8hd8oJD7Lp4-hfI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-29_16,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 adultscore=0
+ malwarescore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ phishscore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405290151
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,199 +98,285 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 28, 2024 at 05:24:55PM +0300, Jani Nikula wrote:
-> We'll want to use fsb frequency for deriving GT clock and rawclk
-> frequencies in the future. Increase the accuracy by converting to
-> kHz. Do the same for mem freq to be aligned.
+
+
+On 5/28/2024 7:40 PM, Vignesh Raman wrote:
+> zlib.net is not allowing tarball download anymore and results
+> in below error in kernel+rootfs_arm32 container build,
+> urllib.error.HTTPError: HTTP Error 403: Forbidden
+> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
 > 
-> Round the frequencies ending in 666 to 667.
+> Uprev mesa to latest version which includes a fix for this issue.
+> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
+> mesa-rootfs, update the variables accordingly. Also copy helper scripts
+> to install, so that the ci jobs can use these scripts for logging.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 
-Would it be worth adding a "_khz" suffix to the structure fields to help
-clarify the units?
+Hi Vignesh,
 
-Either way,
+Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Thanks,
+
+Jessica Zhang
 
 > ---
->  drivers/gpu/drm/i915/display/i9xx_wm.c |  6 ++--
->  drivers/gpu/drm/i915/gt/intel_rps.c    |  4 +--
->  drivers/gpu/drm/i915/soc/intel_dram.c  | 50 +++++++++++++-------------
->  3 files changed, 30 insertions(+), 30 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-> index 8b8a0f305c3a..08c5d122af8f 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-> @@ -83,14 +83,14 @@ static const struct cxsr_latency *pnv_get_cxsr_latency(struct drm_i915_private *
->  
->  		if (is_desktop == latency->is_desktop &&
->  		    i915->is_ddr3 == latency->is_ddr3 &&
-> -		    i915->fsb_freq == latency->fsb_freq &&
-> -		    i915->mem_freq == latency->mem_freq)
-> +		    DIV_ROUND_CLOSEST(i915->fsb_freq, 1000) == latency->fsb_freq &&
-> +		    DIV_ROUND_CLOSEST(i915->mem_freq, 1000) == latency->mem_freq)
->  			return latency;
->  	}
->  
->  err:
->  	drm_dbg_kms(&i915->drm,
-> -		    "Could not find CxSR latency for DDR%s, FSB %u MHz, MEM %u MHz\n",
-> +		    "Could not find CxSR latency for DDR%s, FSB %u kHz, MEM %u kHz\n",
->  		    i915->is_ddr3 ? "3" : "2", i915->fsb_freq, i915->mem_freq);
->  
->  	return NULL;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index c9cb2a391942..5d3de1cddcf6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -280,9 +280,9 @@ static void gen5_rps_init(struct intel_rps *rps)
->  	u32 rgvmodectl;
->  	int c_m, i;
->  
-> -	if (i915->fsb_freq <= 3200)
-> +	if (i915->fsb_freq <= 3200000)
->  		c_m = 0;
-> -	else if (i915->fsb_freq <= 4800)
-> +	else if (i915->fsb_freq <= 4800000)
->  		c_m = 1;
->  	else
->  		c_m = 2;
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> index 266ed6cfa485..ace9372244a4 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> @@ -56,11 +56,11 @@ static unsigned int pnv_mem_freq(struct drm_i915_private *dev_priv)
->  
->  	switch (tmp & CLKCFG_MEM_MASK) {
->  	case CLKCFG_MEM_533:
-> -		return 533;
-> +		return 533333;
->  	case CLKCFG_MEM_667:
-> -		return 667;
-> +		return 666667;
->  	case CLKCFG_MEM_800:
-> -		return 800;
-> +		return 800000;
->  	}
->  
->  	return 0;
-> @@ -73,13 +73,13 @@ static unsigned int ilk_mem_freq(struct drm_i915_private *dev_priv)
->  	ddrpll = intel_uncore_read16(&dev_priv->uncore, DDRMPLL1);
->  	switch (ddrpll & 0xff) {
->  	case 0xc:
-> -		return 800;
-> +		return 800000;
->  	case 0x10:
-> -		return 1066;
-> +		return 1066667;
->  	case 0x14:
-> -		return 1333;
-> +		return 1333333;
->  	case 0x18:
-> -		return 1600;
-> +		return 1600000;
->  	default:
->  		drm_dbg(&dev_priv->drm, "unknown memory frequency 0x%02x\n",
->  			ddrpll & 0xff);
-> @@ -97,9 +97,9 @@ static unsigned int chv_mem_freq(struct drm_i915_private *i915)
->  
->  	switch ((val >> 2) & 0x7) {
->  	case 3:
-> -		return 2000;
-> +		return 2000000;
->  	default:
-> -		return 1600;
-> +		return 1600000;
->  	}
->  }
->  
-> @@ -114,11 +114,11 @@ static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
->  	switch ((val >> 6) & 3) {
->  	case 0:
->  	case 1:
-> -		return 800;
-> +		return 800000;
->  	case 2:
-> -		return 1066;
-> +		return 1066667;
->  	case 3:
-> -		return 1333;
-> +		return 1333333;
->  	}
->  
->  	return 0;
-> @@ -139,7 +139,7 @@ static void detect_mem_freq(struct drm_i915_private *i915)
->  		i915->is_ddr3 = pnv_is_ddr3(i915);
->  
->  	if (i915->mem_freq)
-> -		drm_dbg(&i915->drm, "DDR speed: %d MHz\n", i915->mem_freq);
-> +		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
->  }
->  
->  static unsigned int pnv_fsb_freq(struct drm_i915_private *i915)
-> @@ -150,13 +150,13 @@ static unsigned int pnv_fsb_freq(struct drm_i915_private *i915)
->  
->  	switch (fsb) {
->  	case CLKCFG_FSB_400:
-> -		return 400;
-> +		return 400000;
->  	case CLKCFG_FSB_533:
-> -		return 533;
-> +		return 533333;
->  	case CLKCFG_FSB_667:
-> -		return 667;
-> +		return 666667;
->  	case CLKCFG_FSB_800:
-> -		return 800;
-> +		return 800000;
->  	}
->  
->  	return 0;
-> @@ -170,19 +170,19 @@ static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
->  
->  	switch (fsb) {
->  	case 0x00c:
-> -		return 3200;
-> +		return 3200000;
->  	case 0x00e:
-> -		return 3733;
-> +		return 3733333;
->  	case 0x010:
-> -		return 4266;
-> +		return 4266667;
->  	case 0x012:
-> -		return 4800;
-> +		return 4800000;
->  	case 0x014:
-> -		return 5333;
-> +		return 5333333;
->  	case 0x016:
-> -		return 5866;
-> +		return 5866667;
->  	case 0x018:
-> -		return 6400;
-> +		return 6400000;
->  	default:
->  		drm_dbg(&dev_priv->drm, "unknown fsb frequency 0x%04x\n", fsb);
->  		return 0;
-> @@ -197,7 +197,7 @@ static void detect_fsb_freq(struct drm_i915_private *i915)
->  		i915->fsb_freq = pnv_fsb_freq(i915);
->  
->  	if (i915->fsb_freq)
-> -		drm_dbg(&i915->drm, "FSB frequency: %d MHz\n", i915->fsb_freq);
-> +		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
->  }
->  
->  static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
+> v2:
+>    - Uprev to recent version and use id_tokens for JWT authentication
+> 
+> v3:
+>    - Move adding farm variable and updating device type variable to seperate commit
+> 
+> ---
+>   drivers/gpu/drm/ci/build-igt.sh   |  2 +-
+>   drivers/gpu/drm/ci/build.sh       |  6 +++--
+>   drivers/gpu/drm/ci/container.yml  | 12 +++------
+>   drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
+>   drivers/gpu/drm/ci/image-tags.yml |  2 +-
+>   drivers/gpu/drm/ci/lava-submit.sh |  4 +--
+>   6 files changed, 42 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index 500fa4f5c30a..7859554756c4 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
+> @@ -32,4 +32,4 @@ tar -cf artifacts/igt.tar /igt
+>   # Pass needed files to the test stage
+>   S3_ARTIFACT_NAME="igt.tar.gz"
+>   gzip -c artifacts/igt.tar > ${S3_ARTIFACT_NAME}
+> -ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${KERNEL_ARCH}/${S3_ARTIFACT_NAME}
+> +ci-fairy s3cp --token-file "${S3_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${KERNEL_ARCH}/${S3_ARTIFACT_NAME}
+> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+> index 106f2d40d222..a67871fdcd3f 100644
+> --- a/drivers/gpu/drm/ci/build.sh
+> +++ b/drivers/gpu/drm/ci/build.sh
+> @@ -128,6 +128,7 @@ fi
+>   # Pass needed files to the test stage
+>   mkdir -p install
+>   cp -rfv .gitlab-ci/* install/.
+> +cp -rfv ci/*  install/.
+>   cp -rfv install/common install/ci-common
+>   cp -rfv drivers/gpu/drm/ci/* install/.
+>   
+> @@ -141,14 +142,15 @@ if [[ "$UPLOAD_TO_MINIO" = "1" ]]; then
+>           FILES_TO_UPLOAD="$FILES_TO_UPLOAD $(basename -a $DEVICE_TREES)"
+>       fi
+>   
+> +    ls -l "${S3_JWT_FILE}"
+>       for f in $FILES_TO_UPLOAD; do
+> -        ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" /lava-files/$f \
+> +        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /lava-files/$f \
+>                   https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/$f
+>       done
+>   
+>       S3_ARTIFACT_NAME="kernel-files.tar.zst"
+>       tar --zstd -cf $S3_ARTIFACT_NAME install
+> -    ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/${S3_ARTIFACT_NAME}
+> +    ci-fairy s3cp --token-file "${S3_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/${S3_ARTIFACT_NAME}
+>   
+>       echo "Download vmlinux.xz from https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/vmlinux.xz"
+>   fi
+> diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/container.yml
+> index 9764e7921a4f..d6edf3635b23 100644
+> --- a/drivers/gpu/drm/ci/container.yml
+> +++ b/drivers/gpu/drm/ci/container.yml
+> @@ -36,15 +36,15 @@ debian/android_build:
+>     rules:
+>       - when: never
+>   
+> -debian/x86_64_test-android:
+> +.debian/x86_64_test-android:
+>     rules:
+>       - when: never
+>   
+> -windows_build_vs2019:
+> +windows_build_msvc:
+>     rules:
+>       - when: never
+>   
+> -windows_test_vs2019:
+> +windows_test_msvc:
+>     rules:
+>       - when: never
+>   
+> @@ -56,10 +56,6 @@ rustfmt:
+>      rules:
+>       - when: never
+>   
+> -windows_vs2019:
+> -   rules:
+> -    - when: never
+> -
+> -clang-format:
+> +windows_msvc:
+>      rules:
+>       - when: never
+> \ No newline at end of file
+> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
+> index 084e3ff8e3f4..8f32de63d92e 100644
+> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
+> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+> @@ -1,6 +1,6 @@
+>   variables:
+>     DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+> -  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 9d162de9a05155e1c4041857a5848842749164cf
+> +  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha e2b9c5a9e3e4f9b532067af8022eaef8d6fc6c00
+>   
+>     UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
+>     TARGET_BRANCH: drm-next
+> @@ -19,33 +19,47 @@ variables:
+>             bash download-git-cache.sh
+>             rm download-git-cache.sh
+>             set +o xtrace
+> +  S3_JWT_FILE: /s3_jwt
+>     S3_HOST: s3.freedesktop.org
+> +  # This bucket is used to fetch the kernel image
+> +  S3_KERNEL_BUCKET: mesa-rootfs
+> +  # Bucket for git cache
+> +  S3_GITCACHE_BUCKET: git-cache
+> +  # Bucket for the pipeline artifacts pushed to S3
+> +  S3_ARTIFACTS_BUCKET: artifacts
+>     # per-pipeline artifact storage on MinIO
+> -  PIPELINE_ARTIFACTS_BASE: ${S3_HOST}/artifacts/${CI_PROJECT_PATH}/${CI_PIPELINE_ID}
+> +  PIPELINE_ARTIFACTS_BASE: ${S3_HOST}/${S3_ARTIFACTS_BUCKET}/${CI_PROJECT_PATH}/${CI_PIPELINE_ID}
+>     # per-job artifact storage on MinIO
+>     JOB_ARTIFACTS_BASE: ${PIPELINE_ARTIFACTS_BASE}/${CI_JOB_ID}
+>     # default kernel for rootfs before injecting the current kernel tree
+>     KERNEL_REPO: "gfx-ci/linux"
+> -  KERNEL_TAG: "v6.6.4-for-mesa-ci-e4f4c500f7fb"
+> -  KERNEL_IMAGE_BASE: https://${S3_HOST}/mesa-lava/${KERNEL_REPO}/${KERNEL_TAG}
+> +  KERNEL_TAG: "v6.6.21-mesa-f8ea"
+> +  KERNEL_IMAGE_BASE: https://${S3_HOST}/${S3_KERNEL_BUCKET}/${KERNEL_REPO}/${KERNEL_TAG}
+> +  PKG_REPO_REV: "3cc12a2a"
+>     LAVA_TAGS: subset-1-gfx
+>     LAVA_JOB_PRIORITY: 30
+> +  ARTIFACTS_BASE_URL: https://${CI_PROJECT_ROOT_NAMESPACE}.${CI_PAGES_DOMAIN}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts
+> +  # Python scripts for structured logger
+> +  PYTHONPATH: "$PYTHONPATH:$CI_PROJECT_DIR/install"
+>   
+>   default:
+> +  id_tokens:
+> +    S3_JWT:
+> +      aud: https://s3.freedesktop.org
+>     before_script:
+>       - export SCRIPTS_DIR=$(mktemp -d)
+>       - curl -L -s --retry 4 -f --retry-all-errors --retry-delay 60 -O --output-dir "${SCRIPTS_DIR}" "${DRM_CI_PROJECT_URL}/-/raw/${DRM_CI_COMMIT_SHA}/.gitlab-ci/setup-test-env.sh"
+>       - source ${SCRIPTS_DIR}/setup-test-env.sh
+>       - echo -e "\e[0Ksection_start:$(date +%s):unset_env_vars_section[collapsed=true]\r\e[0KUnsetting vulnerable environment variables"
+> -    - export CI_JOB_JWT_FILE="${CI_JOB_JWT_FILE:-$(mktemp)}"
+> -    - echo -n "${CI_JOB_JWT}" > "${CI_JOB_JWT_FILE}"
+> -    - unset CI_JOB_JWT
+> +    - echo -n "${S3_JWT}" > "${S3_JWT_FILE}"
+> +    - unset CI_JOB_JWT S3_JWT
+>       - echo -e "\e[0Ksection_end:$(date +%s):unset_env_vars_section\r\e[0K"
+>   
+>       - echo -e "\e[0Ksection_start:$(date +%s):drm_ci_download_section[collapsed=true]\r\e[0KDownloading mesa from $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz"
+>       - cd $CI_PROJECT_DIR
+>       - curl --output - $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz | tar -xz
+>       - mv mesa-$DRM_CI_COMMIT_SHA/.gitlab-ci* .
+> +    - mv mesa-$DRM_CI_COMMIT_SHA/bin/ci .
+>       - rm -rf mesa-$DRM_CI_COMMIT_SHA/
+>       - echo -e "\e[0Ksection_end:$(date +%s):drm_ci_download_section\r\e[0K"
+>   
+> @@ -53,9 +67,9 @@ default:
+>       - >
+>         set +x
+>   
+> -      test -e "${CI_JOB_JWT_FILE}" &&
+> -      export CI_JOB_JWT="$(<${CI_JOB_JWT_FILE})" &&
+> -      rm "${CI_JOB_JWT_FILE}"
+> +      test -e "${S3_JWT_FILE}" &&
+> +      export S3_JWT="$(<${S3_JWT_FILE})" &&
+> +      rm "${S3_JWT_FILE}"
+>   
+>   include:
+>     - project: 'freedesktop/ci-templates'
+> @@ -87,6 +101,7 @@ include:
+>         - '/src/intel/ci/gitlab-ci-inc.yml'
+>         - '/src/freedreno/ci/gitlab-ci-inc.yml'
+>         - '/src/amd/ci/gitlab-ci-inc.yml'
+> +      - '/src/virtio/ci/gitlab-ci-inc.yml'
+>     - drivers/gpu/drm/ci/image-tags.yml
+>     - drivers/gpu/drm/ci/container.yml
+>     - drivers/gpu/drm/ci/static-checks.yml
+> @@ -98,6 +113,7 @@ include:
+>   stages:
+>     - sanity
+>     - container
+> +  - code-validation
+>     - git-archive
+>     - build
+>     - amdgpu
+> @@ -107,7 +123,6 @@ stages:
+>     - msm
+>     - rockchip
+>     - virtio-gpu
+> -  - lint
+>   
+>   # YAML anchors for rule conditions
+>   # --------------------------------
+> @@ -218,14 +233,15 @@ make git archive:
+>     script:
+>       # Remove drm-ci files we just added
+>       - rm -rf .gitlab-ci.*
+> +    - rm -rf ci
+>   
+>       # Compactify the .git directory
+>       - git gc --aggressive
+>       # compress the current folder
+>       - tar -cvzf ../$CI_PROJECT_NAME.tar.gz .
+>   
+> -    # login with the JWT token file
+> -    - ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ../$CI_PROJECT_NAME.tar.gz https://$S3_HOST/git-cache/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PROJECT_NAME.tar.gz
+> +    # Use id_tokens for JWT auth
+> +    - ci-fairy s3cp --token-file "${S3_JWT_FILE}" ../$CI_PROJECT_NAME.tar.gz https://$S3_HOST/${S3_GITCACHE_BUCKET}/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PROJECT_NAME.tar.gz
+>   
+>   
+>   # Sanity checks of MR settings and commit logs
+> @@ -262,4 +278,4 @@ sanity:
+>   
+>   # Jobs that need to pass before spending hardware resources on further testing
+>   .required-for-hardware-jobs:
+> -  needs: []
+> \ No newline at end of file
+> +  needs: []
+> diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
+> index 7ab4f2514da8..60323ebc7304 100644
+> --- a/drivers/gpu/drm/ci/image-tags.yml
+> +++ b/drivers/gpu/drm/ci/image-tags.yml
+> @@ -1,5 +1,5 @@
+>   variables:
+> -   CONTAINER_TAG: "2023-10-11-mesa-uprev"
+> +   CONTAINER_TAG: "2024-05-09-mesa-uprev"
+>      DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+>      DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+>   
+> diff --git a/drivers/gpu/drm/ci/lava-submit.sh b/drivers/gpu/drm/ci/lava-submit.sh
+> index 3d39b0c916a8..0707fa706a48 100755
+> --- a/drivers/gpu/drm/ci/lava-submit.sh
+> +++ b/drivers/gpu/drm/ci/lava-submit.sh
+> @@ -27,7 +27,7 @@ KERNEL_IMAGE_BASE="https://${BASE_SYSTEM_HOST_PATH}" \
+>   section_end variables
+>   
+>   tar zcf job-rootfs-overlay.tar.gz -C results/job-rootfs-overlay/ .
+> -ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" job-rootfs-overlay.tar.gz "https://${JOB_ROOTFS_OVERLAY_PATH}"
+> +ci-fairy s3cp --token-file "${S3_JWT_FILE}" job-rootfs-overlay.tar.gz "https://${JOB_ROOTFS_OVERLAY_PATH}"
+>   
+>   touch results/lava.log
+>   tail -f results/lava.log &
+> @@ -45,7 +45,7 @@ PYTHONPATH=artifacts/ artifacts/lava/lava_job_submitter.py \
+>   	--ci-project-dir "${CI_PROJECT_DIR}" \
+>   	--device-type "${DEVICE_TYPE}" \
+>   	--dtb-filename "${DTB}" \
+> -	--jwt-file "${CI_JOB_JWT_FILE}" \
+> +	--jwt-file "${S3_JWT_FILE}" \
+>   	--kernel-image-name "${KERNEL_IMAGE_NAME}" \
+>   	--kernel-image-type "${KERNEL_IMAGE_TYPE}" \
+>   	--boot-method "${BOOT_METHOD}" \
 > -- 
-> 2.39.2
+> 2.40.1
 > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
