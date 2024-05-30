@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F148D44B2
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 07:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90A6F8D44B8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 07:19:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1D9010E6C1;
-	Thu, 30 May 2024 05:14:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A9F10E058;
+	Thu, 30 May 2024 05:19:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XY82tB2N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bIix1vYn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2075B10E6C1
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 May 2024 05:14:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F9DA10E058
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 May 2024 05:19:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717046080; x=1748582080;
+ t=1717046370; x=1748582370;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OfjMT3kbVO3Yk56gR1EbGc4ptrDpAFUt12t6Y2R4kKw=;
- b=XY82tB2NIlzHOU7tejWIOvS+9AcimVsx3j1E9WsdEp1ocgsDuQIzU1ej
- ffG7mSoX3pq7PQNIF8G+vcbChvk4BraD6h570wVHshFuN4iA9ihVLVLBE
- unbxJVL2qxrGPyRel5DPomJVPhasdMdFiymoZkwyBrv6pWnEGoBYdX2WV
- xLF5VASfa6DcfL2veyVwjrlvkMoYzX0bI83L4D6C8i16cgof28B+Gp1WG
- UwgmWEXQDOown48sSvWMHrqfDr4uNIV+1st9zjMEReZJRCQ/p/9FUrpYV
- h3YMRQCPe7iorb5C3uFQRfe5iPuU8JaNn/4xgDWA6I+9UqkvT3dPBbexm w==;
-X-CSE-ConnectionGUID: 6eJJXeIsSEi5Ik0IWHVw+Q==
-X-CSE-MsgGUID: D3JddbPZQyyLqFkkAaBEFg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="11781368"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="11781368"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2024 22:14:39 -0700
-X-CSE-ConnectionGUID: 3eIp/F9hREyObF4gfIlJPQ==
-X-CSE-MsgGUID: YrFfQ8QsSXaOFvCog5sFOA==
+ bh=36LzkfVAmtQXoclLTPSKG3OZGfKRUAFABlQRHgPJS3Y=;
+ b=bIix1vYny0hfowNJ7NXnhdwFbKwnub45b6x/m98EBigIxVVTHQHaQLwH
+ 6ypsK1qkzRAIHvtt0QuPMT+jdUiN5dNtYACQzH8IjHSzZ/jfgcy49aC5l
+ n4viFfXgbBCbPiaotVxyHsXlTqUAw+avN3CRV2MIOIFPsRxSL16ZPjoP7
+ brxJYz04iqIpBw62ZXx2xqhfSWMBIuAN3yg5w32EeJo2+jUh5/lo1hWkN
+ vIbLOy0WP0CW+WdaNaQXrvPSM9rhTRr5vhF0AdUXVo3DvUrT0tYUEIj+f
+ Y1qEZNTV2sQSHLb32OfuK+rutCmgy5P6g8yKI1Zshz1XSkNitGDqI86/z g==;
+X-CSE-ConnectionGUID: XestIWSEQl2hVYSl77XeoA==
+X-CSE-MsgGUID: qxhOo6mrTxK57HczIci2KA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="36020625"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="36020625"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2024 22:19:25 -0700
+X-CSE-ConnectionGUID: IuGHm9DMRJuGs1azrYsgOg==
+X-CSE-MsgGUID: WJ07wh5vSLaRrCVwQ4HoNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="35747510"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="58855720"
 Received: from gyu3-linux.itwn.intel.com ([10.225.64.210])
- by orviesa009.jf.intel.com with ESMTP; 29 May 2024 22:14:34 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 29 May 2024 22:19:22 -0700
 From: gareth.yu@intel.com
 To: jani.nikula@linux.intel.com
 Cc: gareth.yu@intel.com, intel-gfx@lists.freedesktop.org,
  matthew.d.roper@intel.com, tejas.upadhyay@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v2 12/21] drm/i915/dp: Use check link state work in the detect
- handler
-Date: Thu, 30 May 2024 13:24:59 +0800
-Message-Id: <20240530052459.3744520-1-gareth.yu@intel.com>
+Subject: drm/i915/display: Fixed the main link lost in MST (rev6)
+Date: Thu, 30 May 2024 13:29:48 +0800
+Message-Id: <20240530052948.3746443-1-gareth.yu@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240430073112.10586-1-gareth.yu@intel.com>
 References: <20240430073112.10586-1-gareth.yu@intel.com>
@@ -69,25 +68,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A bad link in MST is not retrained. Please also consider MST.
-The issue ticket is https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10902.
+Please Ignore the last message.
 
-	if (intel_dp->is_mst) {
-		/*
-		 * If we are in MST mode then this connector
-		 * won't appear connected or have anything
-		 * with EDID on it
-		 */
-		status = connector_status_disconnected;
-		goto out;
-	}
+Hi, may I know the status of this change? What is the next steps?
 
-	/*
-	 * Some external monitors do not signal loss of link synchronization
-	 * with an IRQ_HPD, so force a link status check.
-	 */
-	if (!intel_dp_is_edp(intel_dp)) {
-		ret = intel_dp_retrain_link(encoder, ctx);
-		if (ret)
-			return ret;
-	}
+Thanks,
+Gareth
