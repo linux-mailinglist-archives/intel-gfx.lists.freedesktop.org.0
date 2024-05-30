@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A788D5012
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 18:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 143308D50BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 19:14:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5882A113A84;
-	Thu, 30 May 2024 16:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4309E10E279;
+	Thu, 30 May 2024 17:14:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IlwYK5QE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EdfECa1E";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04E97113A84
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 May 2024 16:46:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 544A010E00F;
+ Thu, 30 May 2024 17:14:37 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 6C766CE1AED;
- Thu, 30 May 2024 16:46:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 782AEC2BBFC;
- Thu, 30 May 2024 16:46:28 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 057BBCE1B15;
+ Thu, 30 May 2024 17:14:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8734CC2BBFC;
+ Thu, 30 May 2024 17:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1717087588;
- bh=S3koTg/Gg0yDRSQEsIXG0A5glf4bKujAHcfOsarPm/4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=IlwYK5QEc5jZojeIE7fls0S6awoOL8B4l93N+JaQvALOU0cEQ7+8h4gC2rLY987Ci
- BE8D0HY4tUV8DQQaD5ervJmPCmqZM8BlEJk6Y/k1CKNGx8QKMqwEzPLdsnaa3sLayA
- y4pwKg+DLgS/Iym2vMg7qQhwsNu7b1/QhUmilGouGSfE/qfttx2DhOt6QX2HSIDsjV
- dftrkgbX+o4IU6UIQlRcCGT2q1EYM54MeIrmhkYmTY7hHI9iqO3ZdSyAwneFQYix68
- VAzSI+/1e+oceARXg5aaNvsxJ3gvRsyEeTJpngc9fdPrw7EZbategFCxjSEd6guLlO
- 0hM2r6raGOGKg==
-Date: Thu, 30 May 2024 11:46:26 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Dan Williams <dan.j.williams@intel.com>,
- Jani Saarinen <jani.saarinen@intel.com>, Dave Jiang <dave.jiang@intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org
-Subject: Re: [core-for-CI PATCH] PCI: Make PCI cfg_access_lock lockdep key a
- singleton
-Message-ID: <20240530164626.GA550564@bhelgaas>
+ s=k20201202; t=1717089274;
+ bh=EtJPMO8Qsbmacd1a3SLmAxIagzEDdqfsAqMgxfjoBO0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=EdfECa1EM7VH7Kw+eI1rSxkEbyBZHklpOdNL6ZMDygZiZlxj6HOe4ltF9a7h3jofm
+ pkuuo4lBaHKz3PbcunHVpVX+tuo7NzoufrGOmJaIA6BTDDdq6cRc1Ar0BmodJ0uRDZ
+ HWqVEdK5shm6pf6v+cNpCjcspAgbsWQeZfqTXd8KnnAhKDhM29/MGa1WIRWeAskGxL
+ iBQ7dJPop3h7ulPdCQKvaYaeaeIddTsjNhoPErFOTx4DNs6E4iowE22Pf7Mbd1aABU
+ R3AtXBfRhSKZ3iInEdY7s3buxLO9UhnTg0vX+8LXRGee2gH9ZSPx1yOldghi1f0bmn
+ mlPrIX5PUW55Q==
+Date: Thu, 30 May 2024 20:14:26 +0300
+From: Zhi Wang <zhiwang@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.wang.linux@gmail.com>, intel-gvt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/gvt: stop using drm_edid_block_valid()
+Message-ID: <20240530201426.00006d57.zhiwang@kernel.org>
+In-Reply-To: <20240530124352.362736-1-jani.nikula@intel.com>
+References: <20240530124352.362736-1-jani.nikula@intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529114901.344655-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,84 +59,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[+cc linux-pci, this is a follow-up to 7e89efc6e9e4, which appeared in
-v6.10-rc1 via the PCI tree]
+On Thu, 30 May 2024 15:43:51 +0300
+Jani Nikula <jani.nikula@intel.com> wrote:
 
-On Wed, May 29, 2024 at 02:49:01PM +0300, Imre Deak wrote:
-> From: Dan Williams <dan.j.williams@intel.com>
+> We'll want to stop drm_edid_block_valid() usage. KVMGT is the last
+> user. Replace with drm_edid_valid(), which unfortunately requires an
+> allocated drm_edid. However, on the plus side, this would be required
+> to handle the TODO comment about EDID extension block support.
 > 
-> The new lockdep annotation for cfg_access_lock naively registered a new
-> key per device. This is overkill and leads to warnings on hash
-> collisions at dynamic registration time:
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > 
->  WARNING: CPU: 0 PID: 1 at kernel/locking/lockdep.c:1226 lockdep_register_key+0xb0/0x240
->  RIP: 0010:lockdep_register_key+0xb0/0x240
->  [..]
->  Call Trace:
->   <TASK>
->   ? __warn+0x8c/0x190
->   ? lockdep_register_key+0xb0/0x240
->   ? report_bug+0x1f8/0x200
->   ? handle_bug+0x3c/0x70
->   ? exc_invalid_op+0x18/0x70
->   ? asm_exc_invalid_op+0x1a/0x20
->   ? lockdep_register_key+0xb0/0x240
->   pci_device_add+0x14b/0x560
->   ? pci_setup_device+0x42e/0x6a0
->   pci_scan_single_device+0xa7/0xd0
->   p2sb_scan_and_cache_devfn+0xc/0x90
->   p2sb_fs_init+0x15f/0x170
-> 
-> Switch to a shared static key for all instances.
-> 
-> Fixes: 7e89efc6e9e4 ("PCI: Lock upstream bridge for pci_reset_function()")
-> Reported-by: Jani Saarinen <jani.saarinen@intel.com>
-> Closes: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14834/bat-apl-1/boot0.txt
-> Cc: Dave Jiang <dave.jiang@intel.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Signed-off-by: Dan Williams <dan.j.williams@intel.com>
 > ---
->  drivers/pci/probe.c | 7 ++++---
->  include/linux/pci.h | 1 -
->  2 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index 8e696e547565c..15168881ec941 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -2533,6 +2533,8 @@ static void pci_set_msi_domain(struct pci_dev *dev)
->  	dev_set_msi_domain(&dev->dev, d);
->  }
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Cc: Zhi Wang <zhi.wang.linux@gmail.com>
+> Cc: intel-gvt-dev@lists.freedesktop.org
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>  drivers/gpu/drm/i915/gvt/kvmgt.c | 18 +++++++++++++-----
+>  1 file changed, 13 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> b/drivers/gpu/drm/i915/gvt/kvmgt.c index 4f74d867fe1a..7e3e5382c0c0
+> 100644 --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -425,6 +425,18 @@ static const struct intel_vgpu_regops
+> intel_vgpu_regops_opregion = { .release =
+> intel_vgpu_reg_release_opregion, };
 >  
-> +static struct lock_class_key cfg_access_key;
+> +static bool edid_valid(const void *edid, size_t size)
+> +{
+> +	const struct drm_edid *drm_edid;
+> +	bool is_valid;
 > +
->  void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
->  {
->  	int ret;
-> @@ -2546,9 +2548,8 @@ void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
->  	dev->dev.dma_mask = &dev->dma_mask;
->  	dev->dev.dma_parms = &dev->dma_parms;
->  	dev->dev.coherent_dma_mask = 0xffffffffull;
-> -	lockdep_register_key(&dev->cfg_access_key);
-> -	lockdep_init_map(&dev->cfg_access_lock, dev_name(&dev->dev),
-> -			 &dev->cfg_access_key, 0);
-> +	lockdep_init_map(&dev->cfg_access_lock, "&dev->cfg_access_lock",
-> +			 &cfg_access_key, 0);
->  
->  	dma_set_max_seg_size(&dev->dev, 65536);
->  	dma_set_seg_boundary(&dev->dev, 0xffffffff);
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index fb004fd4e8890..5bece7fd11f88 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -413,7 +413,6 @@ struct pci_dev {
->  	struct resource driver_exclusive_resource;	 /* driver exclusive resource ranges */
->  
->  	bool		match_driver;		/* Skip attaching driver */
-> -	struct lock_class_key cfg_access_key;
->  	struct lockdep_map cfg_access_lock;
->  
->  	unsigned int	transparent:1;		/* Subtractive decode bridge */
-> -- 
-> 2.43.3
-> 
+> +	drm_edid = drm_edid_alloc(edid, size);
+> +	is_valid = drm_edid_valid(drm_edid);
+> +	drm_edid_free(drm_edid);
+> +
+> +	return is_valid;
+> +}
+> +
+>  static int handle_edid_regs(struct intel_vgpu *vgpu,
+>  			struct vfio_edid_region *region, char *buf,
+>  			size_t count, u16 offset, bool is_write)
+> @@ -443,11 +455,7 @@ static int handle_edid_regs(struct intel_vgpu
+> *vgpu, switch (offset) {
+>  		case offsetof(struct vfio_region_gfx_edid,
+> link_state): if (data == VFIO_DEVICE_GFX_LINK_STATE_UP) {
+> -				if (!drm_edid_block_valid(
+> -					(u8 *)region->edid_blob,
+> -					0,
+> -					true,
+> -					NULL)) {
+> +				if (!edid_valid(region->edid_blob,
+> EDID_SIZE)) { gvt_vgpu_err("invalid EDID blob\n");
+>  					return -EINVAL;
+>  				}
+
+Acked-by: Zhi Wang <zhiwang@kernel.org>
