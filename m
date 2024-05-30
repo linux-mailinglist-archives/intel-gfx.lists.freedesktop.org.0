@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8500B8D4E3F
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 16:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 369E38D4E75
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 16:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7555810E686;
-	Thu, 30 May 2024 14:44:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nA09fFHp";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B75312B0AB;
+	Thu, 30 May 2024 14:55:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F047A10E686;
- Thu, 30 May 2024 14:44:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717080274; x=1748616274;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=XWuC68Ymxu+qscPXITcNDE8QopUAS/Sqku+VcDLa+uY=;
- b=nA09fFHpw0FWzYdqzFOXuH7mI03BKOYRGMsNKxHQmUZiFtQItiet4/sg
- PXvnWK8Gudb7cBYERfX1T2w4h27Lkvp+XglCxRnpQOFVK9v5lqaAdxJhD
- Ciydfe9QN1jQlWVQ2zfLcHHP7hkhc9QCffocvOZcsrgiU/IdCKmFQj8Un
- w+0uisrQxK2kq+SEqImelMA/GhPtT5NcofUBdlE9Ygogy0G1td6ofNXSa
- zqZurseb1UgnG1bz4h4yp51+WcepGiBKCfpbvB6B+K+7641h8miFmwEdz
- YtuSpUOHgTBYcKmT1/qyH2frCBSDm6TuswxBbebED/vxqTMogoHGV1Xzd w==;
-X-CSE-ConnectionGUID: MxYGXrRmRmypgM5M22aexA==
-X-CSE-MsgGUID: FrxjVAxnRYeCdUZxzyacPw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="36093492"
-X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="36093492"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 07:44:33 -0700
-X-CSE-ConnectionGUID: 1dDblkjoTHmFtKqVppxsyA==
-X-CSE-MsgGUID: XV1bdY3rTBSsJf53PkSKiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; d="scan'208";a="35813850"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 07:44:31 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
-Subject: Re: [v6 0/3] Fix cursor FB unpinning.
-In-Reply-To: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240522053341.137592-1-maarten.lankhorst@linux.intel.com>
-Date: Thu, 30 May 2024 17:44:28 +0300
-Message-ID: <87le3rgy0j.fsf@intel.com>
+Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34F011A4F4;
+ Thu, 30 May 2024 14:55:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm=3A_move_Intel_dr?=
+ =?utf-8?q?m_headers_to_a_subdirectory_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 May 2024 14:55:23 -0000
+Message-ID: <171708092366.2238285.11480881648594611448@8e613ede5ea5>
+X-Patchwork-Hint: ignore
+References: <cover.1717075103.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1717075103.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,37 +37,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 May 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> =
-wrote:
-> Hopefully last attempt.
-> Small bug in drm_vblank_work_flush_all left, fixed now hopefully.
+== Series Details ==
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm: move Intel drm headers to a subdirectory (rev4)
+URL   : https://patchwork.freedesktop.org/series/132264/
+State : warning
 
-for merging via drm-misc, but drm-intel is also fine by me. No big deal
-this time of the cycle when we can get the backmerge fairly quickly.
+== Summary ==
 
->
-> Maarten Lankhorst (2):
->   drm: Add drm_vblank_work_flush_all().
->   drm/i915: Use the same vblank worker for atomic unpin
->
-> Ville Syrj=C3=A4l=C3=A4 (1):
->   drm/i915: Use vblank worker to unpin old legacy cursor fb safely
->
->  drivers/gpu/drm/drm_vblank_work.c             | 22 +++++++++++++
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 13 +++++++-
->  .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
->  drivers/gpu/drm/i915/display/intel_crtc.c     | 31 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_cursor.c   | 26 ++++++++++++++--
->  drivers/gpu/drm/i915/display/intel_cursor.h   |  3 ++
->  drivers/gpu/drm/i915/display/intel_display.c  |  3 ++
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  include/drm/drm_vblank_work.h                 |  2 ++
->  9 files changed, 102 insertions(+), 3 deletions(-)
+Error: dim checkpatch failed
+db129675ce86 drm: move intel-gtt.h under include/drm/intel
+-:84: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#84: 
+rename from include/drm/intel-gtt.h
 
---=20
-Jani Nikula, Intel
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+21bf3feb858e drm: move i915_gsc_proxy_mei_interface.h under include/drm/intel
+-:60: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#60: 
+rename from include/drm/i915_gsc_proxy_mei_interface.h
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+31b026f2a701 drm: move i915_component.h under include/drm/intel
+-:140: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#140: 
+rename from include/drm/i915_component.h
+
+total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+babab6bf8260 drm: move intel_lpe_audio.h under include/drm/intel
+-:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#47: 
+rename from include/drm/intel_lpe_audio.h
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+b7f1f8643072 drm: move i915_drm.h under include/drm/intel
+-:130: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#130: 
+rename from include/drm/i915_drm.h
+
+total: 0 errors, 1 warnings, 0 checks, 64 lines checked
+2c5dfb19827a drm: move i915_pxp_tee_interface.h under include/drm/intel
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+rename from include/drm/i915_pxp_tee_interface.h
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+320386370f51 drm: move i915_pciids.h under include/drm/intel
+-:71: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#71: 
+rename from include/drm/i915_pciids.h
+
+total: 0 errors, 1 warnings, 0 checks, 32 lines checked
+f9a7ff64ef30 drm: move xe_pciids.h under include/drm/intel
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+rename from include/drm/xe_pciids.h
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+c0a1cbd57f5c drm: move i915_hdcp_interface.h under include/drm/intel
+-:84: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#84: 
+rename from include/drm/i915_hdcp_interface.h
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+fbd5fb7ec1cf MAINTAINERS: update i915 and xe entries for include/drm/intel
+
+
