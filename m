@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09008D45DD
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 09:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F3D8D461E
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 09:30:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2075311B66C;
-	Thu, 30 May 2024 07:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 634E310E1FE;
+	Thu, 30 May 2024 07:30:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lFaxP6Af";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="btisPHTs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9676A11B66C;
- Thu, 30 May 2024 07:15:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7885110E115;
+ Thu, 30 May 2024 07:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717053357; x=1748589357;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=C9YsrD7tvAZLW8ovOMeqjhEhZexpWn5VvNdIE/h5jLM=;
- b=lFaxP6Af1rXSRy5R4l4KyJJH4L7aJwOTn4lYyW0F5O6zjghwRwFVl3ff
- i6Net4O6UPHYtdkanI24KSN0gvxoZolA2xitg7l8iC1iKeVJbSUcHShJ9
- jyMcQdedcXAcM5oq+P9gK4oAVOzVVsz7ctUpPK3YmQ0R/5GhCCLZbJzwy
- DuAl7LDElVUEqSBNmw9Ktebu7YkftTWnpet8sUwjjD2qN4yunQ+Xi44qD
- CIZTRjXgTq5Jc+jWW6PPtnmf1YjuPRTuYJq6FhxmKfp1wkHg6YHA9PDBx
- xO0ltUbyRYLhjT8R+889Hc2/USbeTDEJI+HV9rt4oB5tDNQatXiUIDxEF A==;
-X-CSE-ConnectionGUID: NWyxA4T9TKSpv/+28NZWfA==
-X-CSE-MsgGUID: T3F1l3/PT+6YwsMx1cAEXw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13639148"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13639148"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 00:14:49 -0700
-X-CSE-ConnectionGUID: nAsK3rIyTBWPB1H7+GIEew==
-X-CSE-MsgGUID: wh1RixR7Rl2Nq1Ll+vAisQ==
+ t=1717054237; x=1748590237;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=gGdyNg4FvsZRt+gYXxxil25JxaTzvHtWbFhW+Oghm7A=;
+ b=btisPHTsWP8P4/512zuYmiwN+oqU8Z/z29HjbX8R+kaLnteBAvA34mDh
+ VIK6/2OHMiJfTHRNvh7IMPQo7KcTtXv/4f1gSQEqaqA+Alq80sMQGpMn0
+ JbBkOg2RCcH24fhlXFkz80qz5jjD+8uIzIrSaWpOVfo/36wWDuOhXNHMH
+ 5ITRajhDYP160zWI+lRZvyOEoMvaloQQOA4QG5pK3LJYW5ThrbzTbUoD1
+ HiQvEnsccVPdpntdJunM5noWPimKAEWjisj+barZksj94h/U0mtRtCXiO
+ 5fbJvve65uv1uv9FbFTk07XLFldGFgtZSH3d88jzfhgurDAV8tCHr5iBK Q==;
+X-CSE-ConnectionGUID: kG8+u2AbToSVZmlpm3twSA==
+X-CSE-MsgGUID: IGXA0YaeSR+U8qS0eR7ffQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13458988"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="13458988"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 00:30:35 -0700
+X-CSE-ConnectionGUID: aHg2+l0IQ2CBC+byeNs8JQ==
+X-CSE-MsgGUID: JkumP6+MRmCZPgwY0OUIAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="35697795"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; d="scan'208";a="66585859"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.132])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2024 00:14:46 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2024 00:30:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 07/12] drm/i915: extend the fsb_freq initialization to
- more platforms
-In-Reply-To: <20240529213955.GV4990@mdroper-desk1.amr.corp.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1716906179.git.jani.nikula@intel.com>
- <31252aa5da27d111b9156904ab4f97325431303d.1716906179.git.jani.nikula@intel.com>
- <20240529213955.GV4990@mdroper-desk1.amr.corp.intel.com>
-Date: Thu, 30 May 2024 10:14:43 +0300
-Message-ID: <87cyp3ixek.fsf@intel.com>
+Date: Thu, 30 May 2024 10:30:26 +0300
+Message-ID: <87a5k7iwod.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,124 +73,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 May 2024, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Tue, May 28, 2024 at 05:24:56PM +0300, Jani Nikula wrote:
->> Initialize fsb frequency for more platforms to be able to use it for GT
->> clock and rawclk frequency initialization.
->> 
->> Note: There's a discrepancy between existing pnv_fsb_freq() and
->> i9xx_hrawclk() regarding CLKCFG interpretation. Presume all PNV is
->> mobile.
->
-> Do you just mean we assume PNV always treats CLKCFG the same way mobile
-> platforms do?  Because we have both mobile and non-mobile platforms
-> defined in the driver (pnv_m_info vs pnv_g_info) and that matches
-> https://ark.intel.com/content/www/us/en/ark/products/codename/32201/products-formerly-pineview.html
-> that lists both desktop and mobile.
 
-Yeah. The problem is, current code in intel_dram.c and intel_cdclk.c
-interpret the CLKCFG register differently for desktop PNV. At least one
-of them is wrong. Basically I just picked one, and secretly hoped Ville
-would tell me. ;)
+Hi Dave & Sima -
+
+drm-intel-fixes-2024-05-30:
+drm/i915 fixes for v6.10-rc2:
+- Fix a race in audio component by registering it later
+- Make DPT object unshrinkable to avoid shrinking when framebuffer has
+  not shrunk
+- Fix CCS id calculation to fix a perf regression
+- Fix selftest caching mode
+- Fix FIELD_PREP compiler warnings
+- Fix indefinite wait for GT wakeref release
+- Revert overeager multi-gt pm reference removal
 
 BR,
 Jani.
 
+The following changes since commit 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0:
 
->
->
-> Matt
->
->> 
->> FIXME: What should the default or failure mode be when the value is
->> unknown?
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/soc/intel_dram.c | 54 ++++++++++++++++++++-------
->>  1 file changed, 40 insertions(+), 14 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
->> index ace9372244a4..74b5b70e91f9 100644
->> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
->> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
->> @@ -142,24 +142,50 @@ static void detect_mem_freq(struct drm_i915_private *i915)
->>  		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
->>  }
->>  
->> -static unsigned int pnv_fsb_freq(struct drm_i915_private *i915)
->> +static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
->>  {
->>  	u32 fsb;
->>  
->>  	fsb = intel_uncore_read(&i915->uncore, CLKCFG) & CLKCFG_FSB_MASK;
->>  
->> -	switch (fsb) {
->> -	case CLKCFG_FSB_400:
->> -		return 400000;
->> -	case CLKCFG_FSB_533:
->> -		return 533333;
->> -	case CLKCFG_FSB_667:
->> -		return 666667;
->> -	case CLKCFG_FSB_800:
->> -		return 800000;
->> +	if (IS_PINEVIEW(i915) || IS_MOBILE(i915)) {
->> +		switch (fsb) {
->> +		case CLKCFG_FSB_400:
->> +			return 400000;
->> +		case CLKCFG_FSB_533:
->> +			return 533333;
->> +		case CLKCFG_FSB_667:
->> +			return 666667;
->> +		case CLKCFG_FSB_800:
->> +			return 800000;
->> +		case CLKCFG_FSB_1067:
->> +			return 1066667;
->> +		case CLKCFG_FSB_1333:
->> +			return 1333333;
->> +		default:
->> +			MISSING_CASE(fsb);
->> +			return 1333333;
->> +		}
->> +	} else {
->> +		switch (fsb) {
->> +		case CLKCFG_FSB_400_ALT:
->> +			return 400000;
->> +		case CLKCFG_FSB_533:
->> +			return 533333;
->> +		case CLKCFG_FSB_667:
->> +			return 666667;
->> +		case CLKCFG_FSB_800:
->> +			return 800000;
->> +		case CLKCFG_FSB_1067_ALT:
->> +			return 1066667;
->> +		case CLKCFG_FSB_1333_ALT:
->> +			return 1333333;
->> +		case CLKCFG_FSB_1600_ALT:
->> +			return 1600000;
->> +		default:
->> +			return 533333;
->> +		}
->>  	}
->> -
->> -	return 0;
->>  }
->>  
->>  static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
->> @@ -193,8 +219,8 @@ static void detect_fsb_freq(struct drm_i915_private *i915)
->>  {
->>  	if (GRAPHICS_VER(i915) == 5)
->>  		i915->fsb_freq = ilk_fsb_freq(i915);
->> -	else if (IS_PINEVIEW(i915))
->> -		i915->fsb_freq = pnv_fsb_freq(i915);
->> +	else if (GRAPHICS_VER(i915) == 3 || GRAPHICS_VER(i915) == 4)
->> +		i915->fsb_freq = i9xx_fsb_freq(i915);
->>  
->>  	if (i915->fsb_freq)
->>  		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
->> -- 
->> 2.39.2
->> 
+  Linux 6.10-rc1 (2024-05-26 15:20:12 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-05-30
+
+for you to fetch changes up to 75800e2e4203ea83bbc9d4f63ad97ea582244a08:
+
+  drm/i915: Fix audio component initialization (2024-05-29 11:35:48 +0300)
+
+----------------------------------------------------------------
+drm/i915 fixes for v6.10-rc2:
+- Fix a race in audio component by registering it later
+- Make DPT object unshrinkable to avoid shrinking when framebuffer has
+  not shrunk
+- Fix CCS id calculation to fix a perf regression
+- Fix selftest caching mode
+- Fix FIELD_PREP compiler warnings
+- Fix indefinite wait for GT wakeref release
+- Revert overeager multi-gt pm reference removal
+
+----------------------------------------------------------------
+Andi Shyti (1):
+      drm/i915/gt: Fix CCS id's calculation for CCS mode setting
+
+Arnd Bergmann (1):
+      drm/i915/guc: avoid FIELD_PREP warning
+
+Chris Wilson (1):
+      drm/i915/gt: Disarm breadcrumbs if engines are already idle
+
+Imre Deak (1):
+      drm/i915: Fix audio component initialization
+
+Janusz Krzysztofik (1):
+      Revert "drm/i915: Remove extra multi-gt pm-references"
+
+Nirmoy Das (1):
+      drm/i915/selftests: Set always_coherent to false when reading from CPU
+
+Vidya Srinivas (1):
+      drm/i915/dpt: Make DPT object unshrinkable
+
+ drivers/gpu/drm/i915/display/intel_audio.c         | 32 ++++++++++++++--------
+ drivers/gpu/drm/i915/display/intel_audio.h         |  1 +
+ .../gpu/drm/i915/display/intel_display_driver.c    |  2 ++
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 18 ++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h         |  4 ++-
+ .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |  2 +-
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        | 15 +++++-----
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c          |  6 ++++
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h           |  8 ++++++
+ drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h      |  6 ++--
+ 11 files changed, 71 insertions(+), 25 deletions(-)
 
 -- 
 Jani Nikula, Intel
