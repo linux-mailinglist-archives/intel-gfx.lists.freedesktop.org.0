@@ -2,50 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B1C8D511B
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 19:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5112E8D511F
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 19:39:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 370CF10E0EA;
-	Thu, 30 May 2024 17:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25BD810E86D;
+	Thu, 30 May 2024 17:39:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dMrUu6vj";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aJUp0jUS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBBAE10E0EA
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 May 2024 17:37:01 +0000 (UTC)
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F93810E86D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 May 2024 17:39:28 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2D9BF62889;
- Thu, 30 May 2024 17:37:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6CFAC2BBFC;
- Thu, 30 May 2024 17:37:00 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTP id 9FB59CE18D9;
+ Thu, 30 May 2024 17:39:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B6C7C2BBFC;
+ Thu, 30 May 2024 17:39:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1717090620;
- bh=9buMljHg6Qmc+NqPIB9TuVaIWbL9u2s4lr5fjhfPwIw=;
+ s=k20201202; t=1717090765;
+ bh=p9yvG2j6uMFhkjr5QizXNDtZ5kjQ9Sk0fBvFP3D92TU=;
  h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=dMrUu6vj7i11uoTpdcf6efi9onKMbUwzoy0maDXem35JQdTCIebSRB0VVF53RS9PX
- nQiaOC3wziFbw/1hZefwb3pcFvVlBNj9Ne8VFXzqETh762aStsKbRDwDzOql3MNoQx
- Rb534YZThaOkVCJDLBZLD3vEWq5SGa2LUAcTi4kcRSL2EG3uY3dgqzpU7RYLobTAsa
- 0w816ZChwoC4jhf+L9zopmNqmMlGbAdPx5PF5piIP8Rht5/ttd4K7LvkGrWQ2NQAH/
- vue4E4LuZlAxTtarMWHLynITp0zynt+pXwb3AgE8V9urrOH/XF1epn3NqObpHJ857L
- JEpLK2O1CeWKQ==
-Date: Thu, 30 May 2024 12:36:59 -0500
+ b=aJUp0jUSOr2ycGktJXRcA1lWtEpHY7dBCiaio4eFVgofuYkWk2wEcVVnyDPiEvNRK
+ N94JG66iszYuPlFwj6LYNChsFVs36eb63hykFgu6UrFzaMRoqgTHS4qNvFCew9bBIl
+ dSGVgbH1lX+s/nkyqD8dyopEwD1C4sygBuYkDnNeX1keQhUSAQONL1ng3TiR6Gq7W1
+ /pCp/5XcS1GjG1Zfs+EnedbBfb7yhw35bmjxAxjudKIkHL/sk8CbHDAm7/9SBnv7V9
+ 6xL5CKB06nsRn0PDhmgf0Vkxk3OFEV9HOt308fmshU9Z6TNXrxkdLpjfqBtv4pPz7s
+ 9RXf6VB56bznQ==
+Date: Thu, 30 May 2024 12:39:23 -0500
 From: Bjorn Helgaas <helgaas@kernel.org>
-To: Dan Williams <dan.j.williams@intel.com>
-Cc: bhelgaas@google.com, Jani Saarinen <jani.saarinen@intel.com>,
- Dave Jiang <dave.jiang@intel.com>, linux-cxl@vger.kernel.org,
- linux-pci@vger.kernel.org, Alison Schofield <alison.schofield@intel.com>,
- Imre Deak <imre.deak@intel.com>, Xinghui Li <korantli@tencent.com>,
- Nirmal Patel <nirmal.patel@linux.intel.com>,
- Jonathan Derrick <jonathan.derrick@linux.dev>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] PCI: Make PCI cfg_access_lock lockdep key a singleton
-Message-ID: <20240530173659.GA553323@bhelgaas>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Dan Williams <dan.j.williams@intel.com>,
+ Jani Saarinen <jani.saarinen@intel.com>, Dave Jiang <dave.jiang@intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [core-for-CI PATCH] PCI: Make PCI cfg_access_lock lockdep key a
+ singleton
+Message-ID: <20240530173923.GA553624@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <171693842964.1298616.14265420982007939967.stgit@dwillia2-xfh.jf.intel.com>
+In-Reply-To: <20240529114901.344655-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,12 +58,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[+cc Alison, Imre, et al.  IIUC this patch didn't help the similar
-issue reported by Imre at
-https://lore.kernel.org/r/ZlXP5oTnSApiDbD1@ideak-desk.fi.intel.com,
-but just FYI]
-
-On Tue, May 28, 2024 at 04:22:59PM -0700, Dan Williams wrote:
+On Wed, May 29, 2024 at 02:49:01PM +0300, Imre Deak wrote:
+> From: Dan Williams <dan.j.williams@intel.com>
+> 
 > The new lockdep annotation for cfg_access_lock naively registered a new
 > key per device. This is overkill and leads to warnings on hash
 > collisions at dynamic registration time:
@@ -98,25 +92,16 @@ On Tue, May 28, 2024 at 04:22:59PM -0700, Dan Williams wrote:
 > Cc: Bjorn Helgaas <bhelgaas@google.com>
 > Signed-off-by: Dan Williams <dan.j.williams@intel.com>
 
-Applied with Alison's reviewed-by and Jani's tested-by to for-linus
-for v6.10, thanks!
-
-
+FWIW, this patch has been applied to the PCI tree for v6.10:
+https://lore.kernel.org/r/20240530173659.GA553323@bhelgaas
 
 > ---
-> Hi Bjorn,
-> 
-> One more fallout from the cfg_access_lock lockdep annotation. This one
-> still wants a Tested-by from Jani before merging, but wanted to make you
-> aware of it in case similar reports make their way to you in the
-> meantime.
-> 
->  drivers/pci/probe.c |    7 ++++---
->  include/linux/pci.h |    1 -
+>  drivers/pci/probe.c | 7 ++++---
+>  include/linux/pci.h | 1 -
 >  2 files changed, 4 insertions(+), 4 deletions(-)
 > 
 > diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index 8e696e547565..15168881ec94 100644
+> index 8e696e547565c..15168881ec941 100644
 > --- a/drivers/pci/probe.c
 > +++ b/drivers/pci/probe.c
 > @@ -2533,6 +2533,8 @@ static void pci_set_msi_domain(struct pci_dev *dev)
@@ -141,7 +126,7 @@ for v6.10, thanks!
 >  	dma_set_max_seg_size(&dev->dev, 65536);
 >  	dma_set_seg_boundary(&dev->dev, 0xffffffff);
 > diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index fb004fd4e889..5bece7fd11f8 100644
+> index fb004fd4e8890..5bece7fd11f88 100644
 > --- a/include/linux/pci.h
 > +++ b/include/linux/pci.h
 > @@ -413,7 +413,6 @@ struct pci_dev {
@@ -152,4 +137,6 @@ for v6.10, thanks!
 >  	struct lockdep_map cfg_access_lock;
 >  
 >  	unsigned int	transparent:1;		/* Subtractive decode bridge */
+> -- 
+> 2.43.3
 > 
