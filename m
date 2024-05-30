@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2427B8D50D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 19:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B1C8D511B
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 May 2024 19:37:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6F85112D2F;
-	Thu, 30 May 2024 17:17:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 370CF10E0EA;
+	Thu, 30 May 2024 17:37:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mAeiNqSa";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dMrUu6vj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 409F61129CA;
- Thu, 30 May 2024 17:17:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBBAE10E0EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 May 2024 17:37:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 993E562886;
- Thu, 30 May 2024 17:17:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A393EC2BBFC;
- Thu, 30 May 2024 17:17:08 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 2D9BF62889;
+ Thu, 30 May 2024 17:37:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6CFAC2BBFC;
+ Thu, 30 May 2024 17:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1717089430;
- bh=iZR6IHmeSBh9bdyLMQRmhd+tC//9mar20EMaEAByleM=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=mAeiNqSaitwlpWJx2sMROMuiVppMSzVmQNnQscNcH6VAD15OKWh3S0t/nHo5zoIHt
- qI4TWmysJM/fqEjNgUDtujYaeoNFppY3o1vK8iqGo3obrS4Zqa+uTTlwUSmzRLiLx9
- X19po4tRjjqgkBjwJ15EzbuvS7EMCCxPED0AXb+1uOnwOPzlvYV5fAXFMPfw+qy3Ak
- oIjzWpLbzh73Ts1JsBwReCgKEs0AGZAflNTAnTIldga/avQZYuktbMFZGRuEiApKrL
- YI8xbY3Shm8tzTghbP3hOAbp3p1aPyYOaavBn/OVQ0Sa9fj25bBOWUblB+7N5JrbfG
- gzKm7P45D3UYA==
-Date: Thu, 30 May 2024 20:17:04 +0300
-From: Zhi Wang <zhiwang@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.wang.linux@gmail.com>, intel-gvt-dev@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/edid: make drm_edid_block_valid() static
-Message-ID: <20240530201704.0000492c.zhiwang@kernel.org>
-In-Reply-To: <20240530124352.362736-2-jani.nikula@intel.com>
-References: <20240530124352.362736-1-jani.nikula@intel.com>
- <20240530124352.362736-2-jani.nikula@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-w64-mingw32)
+ s=k20201202; t=1717090620;
+ bh=9buMljHg6Qmc+NqPIB9TuVaIWbL9u2s4lr5fjhfPwIw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=dMrUu6vj7i11uoTpdcf6efi9onKMbUwzoy0maDXem35JQdTCIebSRB0VVF53RS9PX
+ nQiaOC3wziFbw/1hZefwb3pcFvVlBNj9Ne8VFXzqETh762aStsKbRDwDzOql3MNoQx
+ Rb534YZThaOkVCJDLBZLD3vEWq5SGa2LUAcTi4kcRSL2EG3uY3dgqzpU7RYLobTAsa
+ 0w816ZChwoC4jhf+L9zopmNqmMlGbAdPx5PF5piIP8Rht5/ttd4K7LvkGrWQ2NQAH/
+ vue4E4LuZlAxTtarMWHLynITp0zynt+pXwb3AgE8V9urrOH/XF1epn3NqObpHJ857L
+ JEpLK2O1CeWKQ==
+Date: Thu, 30 May 2024 12:36:59 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Dan Williams <dan.j.williams@intel.com>
+Cc: bhelgaas@google.com, Jani Saarinen <jani.saarinen@intel.com>,
+ Dave Jiang <dave.jiang@intel.com>, linux-cxl@vger.kernel.org,
+ linux-pci@vger.kernel.org, Alison Schofield <alison.schofield@intel.com>,
+ Imre Deak <imre.deak@intel.com>, Xinghui Li <korantli@tencent.com>,
+ Nirmal Patel <nirmal.patel@linux.intel.com>,
+ Jonathan Derrick <jonathan.derrick@linux.dev>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] PCI: Make PCI cfg_access_lock lockdep key a singleton
+Message-ID: <20240530173659.GA553323@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <171693842964.1298616.14265420982007939967.stgit@dwillia2-xfh.jf.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,83 +61,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 30 May 2024 15:43:52 +0300
-Jani Nikula <jani.nikula@intel.com> wrote:
+[+cc Alison, Imre, et al.  IIUC this patch didn't help the similar
+issue reported by Imre at
+https://lore.kernel.org/r/ZlXP5oTnSApiDbD1@ideak-desk.fi.intel.com,
+but just FYI]
 
-> drm_edid_block_valid() is no longer used outside of drm_edid.c. Make
-> it static.
+On Tue, May 28, 2024 at 04:22:59PM -0700, Dan Williams wrote:
+> The new lockdep annotation for cfg_access_lock naively registered a new
+> key per device. This is overkill and leads to warnings on hash
+> collisions at dynamic registration time:
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>  WARNING: CPU: 0 PID: 1 at kernel/locking/lockdep.c:1226 lockdep_register_key+0xb0/0x240
+>  RIP: 0010:lockdep_register_key+0xb0/0x240
+>  [..]
+>  Call Trace:
+>   <TASK>
+>   ? __warn+0x8c/0x190
+>   ? lockdep_register_key+0xb0/0x240
+>   ? report_bug+0x1f8/0x200
+>   ? handle_bug+0x3c/0x70
+>   ? exc_invalid_op+0x18/0x70
+>   ? asm_exc_invalid_op+0x1a/0x20
+>   ? lockdep_register_key+0xb0/0x240
+>   pci_device_add+0x14b/0x560
+>   ? pci_setup_device+0x42e/0x6a0
+>   pci_scan_single_device+0xa7/0xd0
+>   p2sb_scan_and_cache_devfn+0xc/0x90
+>   p2sb_fs_init+0x15f/0x170
 > 
+> Switch to a shared static key for all instances.
+> 
+> Fixes: 7e89efc6e9e4 ("PCI: Lock upstream bridge for pci_reset_function()")
+> Reported-by: Jani Saarinen <jani.saarinen@intel.com>
+> Closes: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14834/bat-apl-1/boot0.txt
+> Cc: Dave Jiang <dave.jiang@intel.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: Dan Williams <dan.j.williams@intel.com>
+
+Applied with Alison's reviewed-by and Jani's tested-by to for-linus
+for v6.10, thanks!
+
+
+
 > ---
+> Hi Bjorn,
 > 
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Cc: Zhi Wang <zhi.wang.linux@gmail.com>
-> Cc: intel-gvt-dev@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> ---
->  drivers/gpu/drm/drm_edid.c | 17 ++++-------------
->  include/drm/drm_edid.h     |  2 --
->  2 files changed, 4 insertions(+), 15 deletions(-)
+> One more fallout from the cfg_access_lock lockdep annotation. This one
+> still wants a Tested-by from Jani before merging, but wanted to make you
+> aware of it in case similar reports make their way to you in the
+> meantime.
 > 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index f68a41eeb1fa..13b3fd351b16 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -1966,22 +1966,14 @@ static void edid_block_dump(const char
-> *level, const void *block, int block_num) block, EDID_LENGTH, false);
+>  drivers/pci/probe.c |    7 ++++---
+>  include/linux/pci.h |    1 -
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index 8e696e547565..15168881ec94 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -2533,6 +2533,8 @@ static void pci_set_msi_domain(struct pci_dev *dev)
+>  	dev_set_msi_domain(&dev->dev, d);
 >  }
 >  
-> -/**
-> - * drm_edid_block_valid - Sanity check the EDID block (base or
-> extension)
-> - * @_block: pointer to raw EDID block
-> - * @block_num: type of block to validate (0 for base, extension
-> otherwise)
-> - * @print_bad_edid: if true, dump bad EDID blocks to the console
-> - * @edid_corrupt: if true, the header or checksum is invalid
-> - *
-> +/*
->   * Validate a base or extension EDID block and optionally dump bad
-> blocks to
->   * the console.
-> - *
-> - * Return: True if the block is valid, false otherwise.
->   */
-> -bool drm_edid_block_valid(u8 *_block, int block_num, bool
-> print_bad_edid,
-> -			  bool *edid_corrupt)
-> +static bool drm_edid_block_valid(void *_block, int block_num, bool
-> print_bad_edid,
-> +				 bool *edid_corrupt)
+> +static struct lock_class_key cfg_access_key;
+> +
+>  void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
 >  {
-> -	struct edid *block = (struct edid *)_block;
-> +	struct edid *block = _block;
->  	enum edid_block_status status;
->  	bool is_base_block = block_num == 0;
->  	bool valid;
-> @@ -2024,7 +2016,6 @@ bool drm_edid_block_valid(u8 *_block, int
-> block_num, bool print_bad_edid, 
->  	return valid;
->  }
-> -EXPORT_SYMBOL(drm_edid_block_valid);
+>  	int ret;
+> @@ -2546,9 +2548,8 @@ void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
+>  	dev->dev.dma_mask = &dev->dma_mask;
+>  	dev->dev.dma_parms = &dev->dma_parms;
+>  	dev->dev.coherent_dma_mask = 0xffffffffull;
+> -	lockdep_register_key(&dev->cfg_access_key);
+> -	lockdep_init_map(&dev->cfg_access_lock, dev_name(&dev->dev),
+> -			 &dev->cfg_access_key, 0);
+> +	lockdep_init_map(&dev->cfg_access_lock, "&dev->cfg_access_lock",
+> +			 &cfg_access_key, 0);
 >  
->  /**
->   * drm_edid_is_valid - sanity check EDID data
-> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-> index 6bdfa254a1c1..eaac5e665892 100644
-> --- a/include/drm/drm_edid.h
-> +++ b/include/drm/drm_edid.h
-> @@ -440,8 +440,6 @@ int drm_add_modes_noedid(struct drm_connector
-> *connector, int hdisplay, int vdisplay);
+>  	dma_set_max_seg_size(&dev->dev, 65536);
+>  	dma_set_seg_boundary(&dev->dev, 0xffffffff);
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index fb004fd4e889..5bece7fd11f8 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -413,7 +413,6 @@ struct pci_dev {
+>  	struct resource driver_exclusive_resource;	 /* driver exclusive resource ranges */
 >  
->  int drm_edid_header_is_valid(const void *edid);
-> -bool drm_edid_block_valid(u8 *raw_edid, int block, bool
-> print_bad_edid,
-> -			  bool *edid_corrupt);
->  bool drm_edid_is_valid(struct edid *edid);
->  void drm_edid_get_monitor_name(const struct edid *edid, char *name,
->  			       int buflen);
-
-Acked-by: Zhi Wang <zhiwang@kernel.rog>
+>  	bool		match_driver;		/* Skip attaching driver */
+> -	struct lock_class_key cfg_access_key;
+>  	struct lockdep_map cfg_access_lock;
+>  
+>  	unsigned int	transparent:1;		/* Subtractive decode bridge */
+> 
