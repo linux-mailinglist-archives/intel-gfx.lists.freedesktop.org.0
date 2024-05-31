@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A43738D6100
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 13:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0AD8D611D
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:00:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A21C10E00D;
-	Fri, 31 May 2024 11:54:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 137D510E67C;
+	Fri, 31 May 2024 12:00:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmUVf+MR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsPHcO5N";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5952010E26D
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 11:54:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00D6F10E67C;
+ Fri, 31 May 2024 12:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717156445; x=1748692445;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=U6snJ//pufM3VccbllJDcGDZVXHduenGdmaUoUOp3ow=;
- b=GmUVf+MR6vup7mSj2ZiWzvllU292uCR6XW/yq2JI24eXPYpGV6i1QHCr
- cVai3Ham7c3k7Keh4JoI+RfzQ5gVDllNRZy7ndkuFxanVQ7Zv0uB9HvOd
- hDYQ2RFfWBEFdqxReAywk59QjZE7YwsyN5xmSZYNUbt/3cXfDQ9xwJZEv
- YSiZYjNsI82uyDOgYwKdJwpH2rGOK/hxs8pO9ewlOa3qrqNulAu+mcx/K
- rFkXoyB018K9Pg7SAeWOAZnphuRbSydPWo6icy09Ld6JfrOHcHqbFJnbz
- GbM0fU60eNVSADbMpiZdEL6s1yMJvU1O1ByT43ORyONbV8IcTt35F2rxt A==;
-X-CSE-ConnectionGUID: iEfUfz38StCzWC6WVasVPg==
-X-CSE-MsgGUID: oSpgDbuhQKmBa9NCDIDZ+g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13864674"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="13864674"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 04:54:04 -0700
-X-CSE-ConnectionGUID: LnYjr6iMT8iGvI9Brk0njA==
-X-CSE-MsgGUID: 9GSHGHsORA2biCUtv+ptfg==
+ t=1717156846; x=1748692846;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kNDnXROgfcqZ7N9s79r6DNMSF3EGZX+UFuG15pvKq84=;
+ b=FsPHcO5NX7UYbVGV7n9NCmx6Tm6jkg6JwAY9mFG7Zdtpvypy6yTcHFSu
+ wpEJ87kjvE6PiKdJ5xTctTqM/MvYI9ddkZYEZnj/Wcq8Vb9E6rbdOH9VZ
+ cvReAg4fnclOElKtIJmLyTxC03xoReRXIgElP1tp/w0j0jTaHEbgT8cby
+ bMmZ3LrxleBGWqbketNXSeG4MT2XCSXovtvbs5SU5DZp8hdH+kBciBdTC
+ zKE+9mlrdNhXCGtNbIp2eVms99y0ZRzRSQxsm9T0da4Zs6WEpJwnyYjBe
+ bVeumjdnNiZQnZXPzSmBNh4SiUSVNSR6ABArgmmXJ8oayh8RaM5OCv1wW A==;
+X-CSE-ConnectionGUID: 8dPEoCmQQNaAWlCCyBFSkg==
+X-CSE-MsgGUID: 7m3EbjdJQ2mhfc2Y/Ed9ZQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="31223851"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="31223851"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:00:40 -0700
+X-CSE-ConnectionGUID: 3j93L+t0RVWlGApSrRGu+Q==
+X-CSE-MsgGUID: Hn0KHkKGSnSZVvsCJezA9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36135008"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 31 May 2024 04:54:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 31 May 2024 14:54:01 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 7/7] drm/i915: Protect CRC reg macro arguments for consistency
-Date: Fri, 31 May 2024 14:53:42 +0300
-Message-ID: <20240531115342.2763-8-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.1
-In-Reply-To: <20240531115342.2763-1-ville.syrjala@linux.intel.com>
-References: <20240531115342.2763-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36076193"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.190])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:00:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	amd-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Pan Xinhui <Xinhui.Pan@amd.com>, jani.nikula@intel.com
+Subject: [PATCH 0/3] drm/mst & drm/amd/display: switch to using guid_t
+Date: Fri, 31 May 2024 15:00:30 +0300
+Message-Id: <cover.1717156601.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,99 +70,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+We have a guid_t type for GUIDs, switch to using it instead of hand
+rolling buffers. Convert to guid_gen() in separate patches to pinpoint
+the functional changes.
 
-It's probably a good idea to start protecting all macro arguments
-to avoid any cargo-cult mistakes when people go looking for examples
-of how to define these things.
+BR,
+Jani.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/i915/display/intel_pipe_crc_regs.h    | 26 +++++++++----------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+Jani Nikula (3):
+  drm/mst: switch to guid_t type for GUID
+  drm/mst: switch to guid_gen() to generate valid GUIDs
+  drm/amd/display: switch to guid_gen() to generate valid GUIDs
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h b/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h
-index 383910a785f6..4e65f51d34e6 100644
---- a/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h
-@@ -9,7 +9,7 @@
- #include "intel_display_reg_defs.h"
- 
- #define _PIPE_CRC_CTL_A			0x60050
--#define PIPE_CRC_CTL(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_CTL_A)
-+#define PIPE_CRC_CTL(dev_priv, pipe)		_MMIO_TRANS2((dev_priv), (pipe), _PIPE_CRC_CTL_A)
- #define   PIPE_CRC_ENABLE		REG_BIT(31)
- /* skl+ source selection */
- #define   PIPE_CRC_SOURCE_MASK_SKL	REG_GENMASK(30, 28)
-@@ -76,19 +76,19 @@
- #define   PIPE_CRC_EXP_RES2_MASK	REG_BIT(22, 0) /* pre-ivb */
- 
- #define _PIPE_CRC_RES_RED_A		0x60060
--#define PIPE_CRC_RES_RED(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RED_A)
-+#define PIPE_CRC_RES_RED(dev_priv, pipe)	_MMIO_TRANS2((dev_priv), (pipe), _PIPE_CRC_RES_RED_A)
- 
- #define _PIPE_CRC_RES_GREEN_A		0x60064
--#define PIPE_CRC_RES_GREEN(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_GREEN_A)
-+#define PIPE_CRC_RES_GREEN(dev_priv, pipe)	_MMIO_TRANS2((dev_priv), (pipe), _PIPE_CRC_RES_GREEN_A)
- 
- #define _PIPE_CRC_RES_BLUE_A		0x60068
--#define PIPE_CRC_RES_BLUE(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_BLUE_A)
-+#define PIPE_CRC_RES_BLUE(dev_priv, pipe)	_MMIO_TRANS2((dev_priv), (pipe), _PIPE_CRC_RES_BLUE_A)
- 
- #define _PIPE_CRC_RES_RES1_A_I915	0x6006c /* i915+ */
--#define PIPE_CRC_RES_RES1_I915(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES1_A_I915)
-+#define PIPE_CRC_RES_RES1_I915(dev_priv, pipe)	_MMIO_TRANS2((dev_priv), (pipe), _PIPE_CRC_RES_RES1_A_I915)
- 
- #define _PIPE_CRC_RES_RES2_A_G4X	0x60080 /* g4x+ */
--#define PIPE_CRC_RES_RES2_G4X(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _PIPE_CRC_RES_RES2_A_G4X)
-+#define PIPE_CRC_RES_RES2_G4X(dev_priv, pipe)	_MMIO_TRANS2((dev_priv), (pipe), _PIPE_CRC_RES_RES2_A_G4X)
- 
- /* ivb */
- #define _PIPE_CRC_EXP_2_A_IVB		0x60054
-@@ -117,36 +117,36 @@
- /* ivb */
- #define _PIPE_CRC_RES_1_A_IVB		0x60064
- #define _PIPE_CRC_RES_1_B_IVB		0x61064
--#define PIPE_CRC_RES_1_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_RES_1_A_IVB, _PIPE_CRC_RES_1_B_IVB)
-+#define PIPE_CRC_RES_1_IVB(pipe)		_MMIO_PIPE((pipe), _PIPE_CRC_RES_1_A_IVB, _PIPE_CRC_RES_1_B_IVB)
- 
- /* ivb */
- #define _PIPE_CRC_RES_2_A_IVB		0x60068
- #define _PIPE_CRC_RES_2_B_IVB		0x61068
--#define PIPE_CRC_RES_2_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_RES_2_A_IVB, _PIPE_CRC_RES_2_B_IVB)
-+#define PIPE_CRC_RES_2_IVB(pipe)		_MMIO_PIPE((pipe), _PIPE_CRC_RES_2_A_IVB, _PIPE_CRC_RES_2_B_IVB)
- 
- /* ivb */
- #define _PIPE_CRC_RES_3_A_IVB		0x6006c
- #define _PIPE_CRC_RES_3_B_IVB		0x6106c
--#define PIPE_CRC_RES_3_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_RES_3_A_IVB, _PIPE_CRC_RES_3_B_IVB)
-+#define PIPE_CRC_RES_3_IVB(pipe)		_MMIO_PIPE((pipe), _PIPE_CRC_RES_3_A_IVB, _PIPE_CRC_RES_3_B_IVB)
- 
- /* ivb */
- #define _PIPE_CRC_RES_4_A_IVB		0x60070
- #define _PIPE_CRC_RES_4_B_IVB		0x61070
--#define PIPE_CRC_RES_4_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_RES_4_A_IVB, _PIPE_CRC_RES_4_B_IVB)
-+#define PIPE_CRC_RES_4_IVB(pipe)		_MMIO_PIPE((pipe), _PIPE_CRC_RES_4_A_IVB, _PIPE_CRC_RES_4_B_IVB)
- 
- /* ivb */
- #define _PIPE_CRC_RES_5_A_IVB		0x60074
- #define _PIPE_CRC_RES_5_B_IVB		0x61074
--#define PIPE_CRC_RES_5_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_RES_5_A_IVB, _PIPE_CRC_RES_5_B_IVB)
-+#define PIPE_CRC_RES_5_IVB(pipe)		_MMIO_PIPE((pipe), _PIPE_CRC_RES_5_A_IVB, _PIPE_CRC_RES_5_B_IVB)
- 
- /* hsw+ */
- #define _PIPE_CRC_EXP_A_HSW		0x60054
- #define _PIPE_CRC_EXP_B_HSW		0x61054
--#define PIPE_CRC_EXP_HSW(pipe)			_MMIO_PIPE(pipe, _PIPE_CRC_EXP_A_HSW, _PIPE_CRC_EXP_B_HSW)
-+#define PIPE_CRC_EXP_HSW(pipe)			_MMIO_PIPE((pipe), _PIPE_CRC_EXP_A_HSW, _PIPE_CRC_EXP_B_HSW)
- 
- /* hsw+ */
- #define _PIPE_CRC_RES_A_HSW		0x60064
- #define _PIPE_CRC_RES_B_HSW		0x61064
--#define PIPE_CRC_RES_HSW(pipe)			_MMIO_PIPE(pipe, _PIPE_CRC_RES_A_HSW, _PIPE_CRC_RES_B_HSW)
-+#define PIPE_CRC_RES_HSW(pipe)			_MMIO_PIPE((pipe), _PIPE_CRC_RES_A_HSW, _PIPE_CRC_RES_B_HSW)
- 
- #endif /* __INTEL_PIPE_CRC_REGS_H__ */
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++---
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 67 ++++++++++---------
+ include/drm/display/drm_dp_mst_helper.h       | 12 ++--
+ 3 files changed, 52 insertions(+), 50 deletions(-)
+
 -- 
-2.44.1
+2.39.2
 
