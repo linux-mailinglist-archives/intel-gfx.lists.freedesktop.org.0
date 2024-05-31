@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9008D6136
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:04:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 834928D6148
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:07:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F28210E630;
-	Fri, 31 May 2024 12:04:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D41410E6FE;
+	Fri, 31 May 2024 12:07:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HaHm7yQ4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MPgUaWa4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25CF510E630
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 12:04:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A9B110E54B;
+ Fri, 31 May 2024 12:07:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717157050; x=1748693050;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=CXWPJJbO5rKY3eefFkYwDFGOpANoRfjo/ww9UQmlmic=;
- b=HaHm7yQ4dd0E4XPTdFK+Ck9s94X50gHAu1rXWEPL4xp6CQoPbd8+A2c6
- 8PWbtx0XRbqC9XZ+LgGsOy/30xiicyxUfa3wieJFTMnRdGXbAXS57fF9g
- G6XpSKu27wUQua6OImNLukg2st40umCFzV4rABMlepxIdfyC3roU2Ihm7
- 7BZsqLuAQemOR/QMoOTDWBAog5ibmJ8OX7u+AEFSwsRaRCbfO7p6kHqIA
- r1w3OhD0UQkYmaLC6QYnwRas5Uf2XGE3bYjYU0tirQYSj1vz+Y907X3x7
- JqN3a18pPq0La/50E/JVbSYTj3OledP/wv9hR14TFsHTRcPc/5sO1HIAX A==;
-X-CSE-ConnectionGUID: A308dZTZTVi1H4Dgv+OtzQ==
-X-CSE-MsgGUID: NXtDnwxYQt2bCNZn/uJd8w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="17541751"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="17541751"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:04:08 -0700
-X-CSE-ConnectionGUID: gydbWdZYSsCJGbpLZE9Kbg==
-X-CSE-MsgGUID: 7bHYJBViQXmM6LYpHyYyRw==
+ t=1717157228; x=1748693228;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=4kUf/JZLG5PFY7KoQJWB13VjaKCUsJCz6Q6gfXFXCw8=;
+ b=MPgUaWa4OrFOF7zMqTyo82NmlTCa16OO7F7DUP8Dp29+ihk/NhPhwA2a
+ du9pP8y+p/hKrxioSBcBtEL+Z9g3On7VXOejVE4GHahP7xvd4hUx312nX
+ X/6+N1/aThzn62DbeKOwFKXn/W1P4jPPURY4UwM9GFChIvE1OKm14XHnm
+ ihZlw3sUzmpD1/7KqwGqzMK0LTzWy4LU4c16HCSDWVU6cZgj6vd9mENTm
+ i/B+KF4NJ6dnjKVNxWRTBzPlbcVduwryWrBF9INN0mH+5KszB0IZsq1y2
+ khz5O7Twn+WO9pCOK3oq4W29AQd0YBgJuZhSCkiYFYqTrPdnTaare31ZZ g==;
+X-CSE-ConnectionGUID: yP9pN4tLQOOxHC1FVRVmug==
+X-CSE-MsgGUID: 8XsLRjPeRGugtdvhm9A7pA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="24819180"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="24819180"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:07:07 -0700
+X-CSE-ConnectionGUID: rSvnl+FJT66T/XptfUVWYw==
+X-CSE-MsgGUID: 1PEZ4C5ZTC63dPx4ZlZfEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36136619"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 31 May 2024 05:04:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 31 May 2024 15:04:06 +0300
-Date: Fri, 31 May 2024 15:04:06 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 0/5] drm/i915: DP AUX CH macro cleanups
-Message-ID: <Zlm8th9xrAe1z8LY@intel.com>
-References: <cover.1716894909.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="40597926"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.190])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:07:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, lucas.demarchi@intel.com
+Subject: Re: [PATCH 03/10] drm/i915/display: include i915_gpu_error.h where
+ needed
+In-Reply-To: <Zlm1__e57Bt11mAM@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1717004739.git.jani.nikula@intel.com>
+ <a5dbb8d46403761bd8518db45fa71dc55930d3cf.1717004739.git.jani.nikula@intel.com>
+ <Zlm1__e57Bt11mAM@intel.com>
+Date: Fri, 31 May 2024 15:07:00 +0300
+Message-ID: <87ikyufamz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1716894909.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,29 +73,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 28, 2024 at 02:15:37PM +0300, Jani Nikula wrote:
-> Jani Nikula (5):
->   drm/i915/gvt: use proper macros for DP AUX CH CTL registers
->   drm/i915: remove unused DP AUX CH register macros
->   drm/i915: rearrange DP AUX register macros
->   drm/i915: move PCH DP AUX CH regs to intel_dp_aux_regs.h
->   drm/i915: remove intermediate _PCH_DP_* macros
+On Fri, 31 May 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, May 29, 2024 at 08:48:07PM +0300, Jani Nikula wrote:
+>> Include what you use. With this, we can drop the include from xe compat
+>> i915_drv.h.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dmc.c          | 1 +
+>>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
+>>  2 files changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/=
+i915/display/intel_dmc.c
+>> index 63fccdda56c0..b5ebb0f5b269 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> @@ -26,6 +26,7 @@
+>>  #include <linux/firmware.h>
+>>=20=20
+>>  #include "i915_drv.h"
+>> +#include "i915_gpu_error.h"
+>
+> Someone should probably convert intel_dmc_print_error_state()
+> to use the drm_printer interface instead, assuming that is the
+> only thing that needs this header in intel_dmc.c.
 
-Didn't spot anything off.
+I don't disagree, but kind of wanted to keep this series focused on just
+rearranging the headers. And this serves a purpose: now you can look at
+the files under display to have a better grasp at what's needed from
+outside of display. i915_gpu_error.h include flags one case.
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+BR,
+Jani.
 
-> 
->  .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 18 +++++++---
->  drivers/gpu/drm/i915/gvt/handlers.c           | 35 +++++++++----------
->  drivers/gpu/drm/i915/i915_reg.h               | 32 ++---------------
->  drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  8 ++---
->  4 files changed, 37 insertions(+), 56 deletions(-)
-> 
-> -- 
-> 2.39.2
-
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel
