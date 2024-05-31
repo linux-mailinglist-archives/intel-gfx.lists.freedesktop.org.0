@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 123D78D64FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 16:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BF2B8D68B9
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 20:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CF0D10E34E;
-	Fri, 31 May 2024 14:56:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55A7D10E185;
+	Fri, 31 May 2024 18:07:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CxV3bdlD";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DBD410E3EF;
- Fri, 31 May 2024 14:56:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3737345698256418400=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 883D610E185
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 18:07:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1717178874; x=1748714874;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=7xBE+SvvfFf//ERf1HgZ4tjUMMo9PDVZOF1+/Ikp74Q=;
+ b=CxV3bdlDi5EtVgNCunlVy2ts4jQcPaQNwL7RAgumGTjCOlW7LkxG0RQO
+ iWO8rjI+oSXAhEFHwMh5eW5UI+o+K90s5YPu2JMg4PrcixLiX6UVa5QMd
+ f+wCxfgPbH+G98VgDsv1RsLfH8pKvknW4x9u0cszQRGwAeiOogw4NTYbM
+ YVvxqJ5cmIM3peURwpbvWXKYFlQ3tkELtaBZNrb4vwu7gs/IUuWMVxJ54
+ ixRWNqpNThp7INdVQIjoGzCj7+rCWDhfxDULezxP5VhfifXrzspuMvtcd
+ vPitn4NvrGRLAy+OpnLD4itYRtbtr3STbOhTowEYljWw6OHKuW1FDfziv Q==;
+X-CSE-ConnectionGUID: oGC7OMpATiKsNK7iyoDIIw==
+X-CSE-MsgGUID: sZObQQzbSaCAw6HMveGqJw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11089"; a="39132654"
+X-IronPort-AV: E=Sophos;i="6.08,205,1712646000"; d="scan'208";a="39132654"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 11:07:53 -0700
+X-CSE-ConnectionGUID: +FscU0FNSo+145fZHCIw3A==
+X-CSE-MsgGUID: Mgf5vgz9SbKMPqDacHRp7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,205,1712646000"; d="scan'208";a="36851784"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.190])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 11:07:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 6/7] drm/i915: Define the PIPE_CRC_EXP registers
+In-Reply-To: <20240531115342.2763-7-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240531115342.2763-1-ville.syrjala@linux.intel.com>
+ <20240531115342.2763-7-ville.syrjala@linux.intel.com>
+Date: Fri, 31 May 2024 21:07:48 +0300
+Message-ID: <878qzpetxn.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/mst_=26_drm/amd/display?=
- =?utf-8?q?=3A_switch_to_using_guid=5Ft?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 May 2024 14:56:54 -0000
-Message-ID: <171716741431.2241947.575026175973529114@8e613ede5ea5>
-X-Patchwork-Hint: ignore
-References: <cover.1717156601.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1717156601.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,158 +67,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3737345698256418400==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 31 May 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> I need a scratch register which fill the following requirements:
+> - can be accessed via DSB
+> - all the bits can be read/written
+> - no serious side effects
+>
+> So far the only thing I could think of is the "expected CRC"
+> register. Add the definition so I can use it.
+>
+> While I only need the hsw+ variant currently, let's define the
+> older variants as well for completeness.
 
-== Series Details ==
+I'm having a hard time finding the spec for the old ones.
 
-Series: drm/mst & drm/amd/display: switch to using guid_t
-URL   : https://patchwork.freedesktop.org/series/134297/
-State : success
+The hsw+ is fine.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14865 -> Patchwork_134297v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_134297v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - bat-arls-3:         [PASS][1] -> [ABORT][2] ([i915#11041])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14865/bat-arls-3/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/bat-arls-3/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][3] -> [ABORT][4] ([i915#10594])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14865/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-adln-1:         [ABORT][5] ([i915#10021]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14865/bat-adln-1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/bat-adln-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#10021]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10021
-  [i915#10594]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594
-  [i915#11041]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11041
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_14865 -> Patchwork_134297v1
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_pipe_crc_regs.h    | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h b/drivers=
+/gpu/drm/i915/display/intel_pipe_crc_regs.h
+> index 4f4bf51e1940..383910a785f6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc_regs.h
+> @@ -56,6 +56,24 @@
+>  #define   PIPE_CRC_SOURCE_DP_C_G4X	REG_FIELD_PREP(PIPE_CRC_SOURCE_MASK_I=
+9XX, 7)
+>  /* gen2 doesn't have source selection bits */
+>  #define   PIPE_CRC_INCLUDE_BORDER_I8XX	REG_BIT(30)
+> +#define   PIPE_CRC_EXP_RED_MASK		REG_BIT(22, 0) /* pre-ivb */
+> +#define   PIPE_CRC_EXP_1_MASK_IVB	REG_BIT(22, 0) /* ivb */
+> +
+> +#define _PIPE_CRC_EXP_GREEN_A		0x60054
+> +#define PIPE_CRC_EXP_GREEN(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, =
+_PIPE_CRC_EXP_GREEN_A)
+> +#define   PIPE_CRC_EXP_GREEN_MASK	REG_BIT(22, 0) /* pre-ivb */
+> +
+> +#define _PIPE_CRC_EXP_BLUE_A		0x60058
+> +#define PIPE_CRC_EXP_BLUE(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _=
+PIPE_CRC_EXP_BLUE_A)
+> +#define   PIPE_CRC_EXP_BLUE_MASK	REG_BIT(22, 0) /* pre-ivb */
+> +
+> +#define _PIPE_CRC_EXP_RES1_A_I915	0x6005c /* i915+ */
+> +#define PIPE_CRC_EXP_RES1_I915(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pi=
+pe, _PIPE_CRC_EXP_RES1_A_I915)
+> +#define   PIPE_CRC_EXP_RES1_MASK	REG_BIT(22, 0) /* pre-ivb */
+> +
+> +#define _PIPE_CRC_EXP_RES2_A_G4X	0x60080 /* g4x+ */
+> +#define PIPE_CRC_EXP_RES2_G4X(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pip=
+e, _PIPE_CRC_EXP_RES2_A_G4X)
+> +#define   PIPE_CRC_EXP_RES2_MASK	REG_BIT(22, 0) /* pre-ivb */
+>=20=20
+>  #define _PIPE_CRC_RES_RED_A		0x60060
+>  #define PIPE_CRC_RES_RED(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pipe, _P=
+IPE_CRC_RES_RED_A)
+> @@ -72,6 +90,30 @@
+>  #define _PIPE_CRC_RES_RES2_A_G4X	0x60080 /* g4x+ */
+>  #define PIPE_CRC_RES_RES2_G4X(dev_priv, pipe)	_MMIO_TRANS2(dev_priv, pip=
+e, _PIPE_CRC_RES_RES2_A_G4X)
+>=20=20
+> +/* ivb */
+> +#define _PIPE_CRC_EXP_2_A_IVB		0x60054
+> +#define _PIPE_CRC_EXP_2_B_IVB		0x61054
+> +#define PIPE_CRC_EXP_2_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_EXP_2_A_IVB=
+, _PIPE_CRC_EXP_2_B_IVB)
+> +#define   PIPE_CRC_EXP_2_MASK_IVB	REG_BIT(22, 0) /* ivb */
+> +
+> +/* ivb */
+> +#define _PIPE_CRC_EXP_3_A_IVB		0x60058
+> +#define _PIPE_CRC_EXP_3_B_IVB		0x61058
+> +#define PIPE_CRC_EXP_3_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_EXP_3_A_IVB=
+, _PIPE_CRC_EXP_3_B_IVB)
+> +#define   PIPE_CRC_EXP_3_MASK_IVB	REG_BIT(22, 0) /* ivb */
+> +
+> +/* ivb */
+> +#define _PIPE_CRC_EXP_4_A_IVB		0x6005c
+> +#define _PIPE_CRC_EXP_4_B_IVB		0x6105c
+> +#define PIPE_CRC_EXP_4_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_EXP_2_A_IVB=
+, _PIPE_CRC_EXP_2_B_IVB)
+> +#define   PIPE_CRC_EXP_4_MASK_IVB	REG_BIT(22, 0) /* ivb */
+> +
+> +/* ivb */
+> +#define _PIPE_CRC_EXP_5_A_IVB		0x60060
+> +#define _PIPE_CRC_EXP_5_B_IVB		0x61060
+> +#define PIPE_CRC_EXP_5_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_EXP_2_A_IVB=
+, _PIPE_CRC_EXP_2_B_IVB)
+> +#define   PIPE_CRC_EXP_5_MASK_IVB	REG_BIT(22, 0) /* ivb */
+> +
+>  /* ivb */
+>  #define _PIPE_CRC_RES_1_A_IVB		0x60064
+>  #define _PIPE_CRC_RES_1_B_IVB		0x61064
+> @@ -97,6 +139,11 @@
+>  #define _PIPE_CRC_RES_5_B_IVB		0x61074
+>  #define PIPE_CRC_RES_5_IVB(pipe)		_MMIO_PIPE(pipe, _PIPE_CRC_RES_5_A_IVB=
+, _PIPE_CRC_RES_5_B_IVB)
+>=20=20
+> +/* hsw+ */
+> +#define _PIPE_CRC_EXP_A_HSW		0x60054
+> +#define _PIPE_CRC_EXP_B_HSW		0x61054
+> +#define PIPE_CRC_EXP_HSW(pipe)			_MMIO_PIPE(pipe, _PIPE_CRC_EXP_A_HSW, _=
+PIPE_CRC_EXP_B_HSW)
+> +
+>  /* hsw+ */
+>  #define _PIPE_CRC_RES_A_HSW		0x60064
+>  #define _PIPE_CRC_RES_B_HSW		0x61064
 
-  CI-20190529: 20190529
-  CI_DRM_14865: 71fb583af6dea41793b38d947a991f06156f7f11 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7875: 44d48b5aec41357e90aa7990c8877ca807ff8d57 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_134297v1: 71fb583af6dea41793b38d947a991f06156f7f11 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/index.html
-
---===============3737345698256418400==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/mst &amp; drm/amd/display: switch to using guid_t</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134297/">https://patchwork.freedesktop.org/series/134297/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14865 -&gt; Patchwork_134297v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_134297v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-arls-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14865/bat-arls-3/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/bat-arls-3/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11041">i915#11041</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14865/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594">i915#10594</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14865/bat-adln-1/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10021">i915#10021</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134297v1/bat-adln-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14865 -&gt; Patchwork_134297v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14865: 71fb583af6dea41793b38d947a991f06156f7f11 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7875: 44d48b5aec41357e90aa7990c8877ca807ff8d57 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_134297v1: 71fb583af6dea41793b38d947a991f06156f7f11 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3737345698256418400==--
+--=20
+Jani Nikula, Intel
