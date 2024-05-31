@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BC38D6122
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A79DA8D612D
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:02:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3B7E10E6F8;
-	Fri, 31 May 2024 12:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B480410E4CA;
+	Fri, 31 May 2024 12:02:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JUb8fw6w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SU7dfbxu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA9B10E5FB;
- Fri, 31 May 2024 12:00:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0FEC10E4CA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 12:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717156859; x=1748692859;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lDcs9Jm2G2+qFaU8M6G4gKlFJEEMAh2YAbmNmj2oa6E=;
- b=JUb8fw6wlNcvEbyRPcaxngmwjbvnQH5JKAgtRclbidbdMtO4p2pqsPQs
- tZGWC6PBfs5/AxiJnZfUfLUTBSgbQ+w7l7aAV4lvbjLg7wFLsDkzCjiKR
- x85Ts0nCX1wJiyehYoU07aqW9PxC2IyqSGifI7vTEMxF+QV4WPME6TsJO
- PcL8kPsJHP5CXoeC6XRzD0zwFWh6uGmA9oiSHAYWQHgiZY6SbwORMtUgo
- gqJTfm1HGvi1TjeIBy4YnJpyysEME48RpbAEJ6HvMwnXPN6ur7z3zuZ17
- eahumR1tXL0QdyBvOuXzsi6Pl/dyzOoKF14RM6IROOw4I7SOasATnR0bc g==;
-X-CSE-ConnectionGUID: 5Ax9KE1bT06o9ckLpRJp4g==
-X-CSE-MsgGUID: b2XJJ1eSRGqrKn2wnvqLRg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="31223876"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="31223876"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:00:59 -0700
-X-CSE-ConnectionGUID: 7TFy1CyUT6KcBQYl5mWsmw==
-X-CSE-MsgGUID: ZU7afWMFS+idfHnOP81gfg==
+ t=1717156929; x=1748692929;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UBBIDxa3EaghXIj9sgXgn2ZPep5c2Dy61D4Dda2eGyk=;
+ b=SU7dfbxuHt7kjtf4vvv+0LFv7ZWUiL9bugYIC8uFvxklgVhwHeWnv3BJ
+ PcMzQZ9AHH3I2R6sghTC1McbKpVN53OSj2P0pov4cdMgBNcFGAjVqVMel
+ IM1Go+3ks2uO39GtaLVGnPE30U1PyQ3Nrp/dTehV1x3BZxmM1XkBIzwCR
+ HV5NEPSQTpgcnFuPGWRiUJqyKqPlB8S96QlESd7OhWcFytm57g1CNNz94
+ 0NjukhYkWxDAgXkzp2MzlYYkSmEgBBQ6SY8rnX9yxTWwfnF5rUn7Cq8k1
+ zuC5L8NtgcsAb4w0g8KcnBwArQ+AFBVGEpgyYYa3WHUzF09yNTPtZJurZ w==;
+X-CSE-ConnectionGUID: KZsVkZNsTraKQTsTyI8d2Q==
+X-CSE-MsgGUID: zssc9npuTfiACmz00GVElQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="17494555"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="17494555"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:01:59 -0700
+X-CSE-ConnectionGUID: kmxSzk1OQ8q9JqOCJGYX6Q==
+X-CSE-MsgGUID: z0/m9MzuS32kse5dmQ2cYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36076213"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36224932"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.190])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:00:55 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:01:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	amd-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/amd/display: switch to guid_gen() to generate valid
- GUIDs
-Date: Fri, 31 May 2024 15:00:33 +0300
-Message-Id: <4ef8a2a1985599389b89ee5828df029e5e9725d8.1717156602.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1717156601.git.jani.nikula@intel.com>
-References: <cover.1717156601.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH v10 1/8] drm/i915: Separate VRR related register
+ definitions
+In-Reply-To: <IA1PR11MB6348AB30F4F05CD617A5981BB2FC2@IA1PR11MB6348.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20240530060408.67027-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20240530060408.67027-2-mitulkumar.ajitkumar.golani@intel.com>
+ <87o78nh0la.fsf@intel.com>
+ <IA1PR11MB6348AB30F4F05CD617A5981BB2FC2@IA1PR11MB6348.namprd11.prod.outlook.com>
+Date: Fri, 31 May 2024 15:01:52 +0300
+Message-ID: <87r0difavj.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,72 +73,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of just smashing jiffies into a GUID, use guid_gen() to generate
-RFC 4122 compliant GUIDs.
+On Fri, 31 May 2024, "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> Hi Jani,
+>
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Thursday, May 30, 2024 7:19 PM
+>> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>;
+>> intel-gfx@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org; Nautiyal, Ankit K
+>> <ankit.k.nautiyal@intel.com>
+>> Subject: Re: [PATCH v10 1/8] drm/i915: Separate VRR related register
+>> definitions
+>>
+>> On Thu, 30 May 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>> wrote:
+>> > Move VRR related register definitions to a separate file called
+>> > intel_vrr_regs.h.
+>>
+>> But this is not just movement... there's a bunch of other (mostly
+>> unwanted?) changes there too.
+>>
+>> 'git show --color-moved' is a powerful tool for reviewing code movement. If it's
+>> not just movement, you have to fallback to manual review of the whole thing.
+>
+> I have moved the VRR-related registers from i915_reg.h to
+> intel_vrr_regs.h and reordered them based on their register
+> offsets. However, if preferred, I can move only the VRR-related
+> registers for now and handle the reordering in a separate patch series
+> later. Please let me know if this approach is acceptable.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Yes. You can check with 'git show --color-moved'. Also avoid the
+indentation changes.
 
----
+BR,
+Jani.
 
-Side note, it baffles me why amdgpu has a copy of this instead of
-plumbing it into drm mst code.
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++---------
- 1 file changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 65ebc01dc90f..a1bd847857b8 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2403,9 +2403,9 @@ static int dm_late_init(void *handle)
- 
- static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
- {
-+	u8 buf[UUID_SIZE];
-+	guid_t guid;
- 	int ret;
--	u8 guid[16];
--	u64 tmp64;
- 
- 	mutex_lock(&mgr->lock);
- 	if (!mgr->mst_primary)
-@@ -2426,26 +2426,27 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
- 	}
- 
- 	/* Some hubs forget their guids after they resume */
--	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
--	if (ret != 16) {
-+	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
-+	if (ret != sizeof(buf)) {
- 		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
- 		goto out_fail;
- 	}
- 
--	if (memchr_inv(guid, 0, 16) == NULL) {
--		tmp64 = get_jiffies_64();
--		memcpy(&guid[0], &tmp64, sizeof(u64));
--		memcpy(&guid[8], &tmp64, sizeof(u64));
-+	import_guid(&guid, buf);
- 
--		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, guid, 16);
-+	if (guid_is_null(&guid)) {
-+		guid_gen(&guid);
-+		export_guid(buf, &guid);
- 
--		if (ret != 16) {
-+		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, buf, sizeof(buf));
-+
-+		if (ret != sizeof(buf)) {
- 			drm_dbg_kms(mgr->dev, "check mstb guid failed - undocked during suspend?\n");
- 			goto out_fail;
- 		}
- 	}
- 
--	import_guid(&mgr->mst_primary->guid, guid);
-+	guid_copy(&mgr->mst_primary->guid, &guid);
- 
- out_fail:
- 	mutex_unlock(&mgr->lock);
+>
+> Regards,
+> Mitul
+>>
+>> > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_vrr.c      |   1 +
+>> >  drivers/gpu/drm/i915/display/intel_vrr_regs.h | 117 ++++++++++++++++++
+>> >  drivers/gpu/drm/i915/i915_reg.h               | 100 ---------------
+>> >  3 files changed, 118 insertions(+), 100 deletions(-)  create mode
+>> > 100644 drivers/gpu/drm/i915/display/intel_vrr_regs.h
+>> >
+>
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
