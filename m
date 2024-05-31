@@ -2,62 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79DA8D612D
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D308D6133
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 14:03:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B480410E4CA;
-	Fri, 31 May 2024 12:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18BE710E6B8;
+	Fri, 31 May 2024 12:03:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SU7dfbxu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RljpxejE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0FEC10E4CA
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 12:02:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80CAE10E6B8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 12:03:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717156929; x=1748692929;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=UBBIDxa3EaghXIj9sgXgn2ZPep5c2Dy61D4Dda2eGyk=;
- b=SU7dfbxuHt7kjtf4vvv+0LFv7ZWUiL9bugYIC8uFvxklgVhwHeWnv3BJ
- PcMzQZ9AHH3I2R6sghTC1McbKpVN53OSj2P0pov4cdMgBNcFGAjVqVMel
- IM1Go+3ks2uO39GtaLVGnPE30U1PyQ3Nrp/dTehV1x3BZxmM1XkBIzwCR
- HV5NEPSQTpgcnFuPGWRiUJqyKqPlB8S96QlESd7OhWcFytm57g1CNNz94
- 0NjukhYkWxDAgXkzp2MzlYYkSmEgBBQ6SY8rnX9yxTWwfnF5rUn7Cq8k1
- zuC5L8NtgcsAb4w0g8KcnBwArQ+AFBVGEpgyYYa3WHUzF09yNTPtZJurZ w==;
-X-CSE-ConnectionGUID: KZsVkZNsTraKQTsTyI8d2Q==
-X-CSE-MsgGUID: zssc9npuTfiACmz00GVElQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="17494555"
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="17494555"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:01:59 -0700
-X-CSE-ConnectionGUID: kmxSzk1OQ8q9JqOCJGYX6Q==
-X-CSE-MsgGUID: z0/m9MzuS32kse5dmQ2cYA==
+ t=1717157014; x=1748693014;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=S8QODjoHviQyQTO21hw1751w1OKXV+AuYXY/2pHJH1k=;
+ b=RljpxejES5W3jicK9AFNNrOyfFhOJv1TOcIFyQHGbQyh1RX2iLYzHHQ+
+ aFSdphd0bCieWPKlzI8DiAIXF8ZdZTpye9HVrZw2PVMxD1d9NeVg19bXD
+ mqQRxLTKxCYUG2W1HXbc3AwdbfQ8Y0883dzDkHi08L/aLKLcq7Qjmv97B
+ KJ6ikovv1k0ThSisT12REccpnyilYPnblMC6BRGM4tczEpopGjqOzKLru
+ HYMCLFxrWRZxJhOxdxKcaeGxNGGr5qVoWCW6M6s1VtP7kNLBAn/I7zBD/
+ 9VyaIqluFBbRsycxMhZcGxKjQQQKiPacbq8ywm7Wqu+DrTcmuhm2JpHjv Q==;
+X-CSE-ConnectionGUID: DYxcrBvxQNm/YiRlqWKApA==
+X-CSE-MsgGUID: WAyPduZiTriRCSjtAQDNwQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13865568"
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="13865568"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 May 2024 05:03:33 -0700
+X-CSE-ConnectionGUID: QxuFOdFHR2irSSQ22fkbxw==
+X-CSE-MsgGUID: z1yfY+DHQGe3eqMTXhuYXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36224932"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.190])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 05:01:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH v10 1/8] drm/i915: Separate VRR related register
- definitions
-In-Reply-To: <IA1PR11MB6348AB30F4F05CD617A5981BB2FC2@IA1PR11MB6348.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240530060408.67027-1-mitulkumar.ajitkumar.golani@intel.com>
- <20240530060408.67027-2-mitulkumar.ajitkumar.golani@intel.com>
- <87o78nh0la.fsf@intel.com>
- <IA1PR11MB6348AB30F4F05CD617A5981BB2FC2@IA1PR11MB6348.namprd11.prod.outlook.com>
-Date: Fri, 31 May 2024 15:01:52 +0300
-Message-ID: <87r0difavj.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,204,1712646000"; d="scan'208";a="36136454"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 31 May 2024 05:03:31 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 31 May 2024 15:03:30 +0300
+Date: Fri, 31 May 2024 15:03:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915: drop unnecessary i915_reg.h includes
+Message-ID: <Zlm8kqh3kwN9NLCm@intel.com>
+References: <20240530100747.328631-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240530100747.328631-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,56 +70,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 31 May 2024, "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com> wrote:
-> Hi Jani,
->
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Thursday, May 30, 2024 7:19 PM
->> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>;
->> intel-gfx@lists.freedesktop.org
->> Cc: dri-devel@lists.freedesktop.org; Nautiyal, Ankit K
->> <ankit.k.nautiyal@intel.com>
->> Subject: Re: [PATCH v10 1/8] drm/i915: Separate VRR related register
->> definitions
->>
->> On Thu, 30 May 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
->> wrote:
->> > Move VRR related register definitions to a separate file called
->> > intel_vrr_regs.h.
->>
->> But this is not just movement... there's a bunch of other (mostly
->> unwanted?) changes there too.
->>
->> 'git show --color-moved' is a powerful tool for reviewing code movement. If it's
->> not just movement, you have to fallback to manual review of the whole thing.
->
-> I have moved the VRR-related registers from i915_reg.h to
-> intel_vrr_regs.h and reordered them based on their register
-> offsets. However, if preferred, I can move only the VRR-related
-> registers for now and handle the reordering in a separate patch series
-> later. Please let me know if this approach is acceptable.
+On Thu, May 30, 2024 at 01:07:46PM +0300, Jani Nikula wrote:
+> With the register header refactoring, some of the includes of i915_reg.h
+> have become unnecessary. Remove.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/dvo_ns2501.c         | 1 -
+>  drivers/gpu/drm/i915/display/intel_atomic.c       | 1 -
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.c | 1 -
+>  drivers/gpu/drm/i915/display/intel_dkl_phy.c      | 1 -
+>  drivers/gpu/drm/i915/display/intel_dsb.c          | 1 -
+>  drivers/gpu/drm/i915/display/intel_sprite.c       | 1 -
+>  drivers/gpu/drm/i915/display/intel_vdsc.c         | 1 -
+>  7 files changed, 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/dvo_ns2501.c b/drivers/gpu/drm/i915/display/dvo_ns2501.c
+> index 1df212fb000e..21486008dae9 100644
+> --- a/drivers/gpu/drm/i915/display/dvo_ns2501.c
+> +++ b/drivers/gpu/drm/i915/display/dvo_ns2501.c
+> @@ -27,7 +27,6 @@
+>   */
+>  
+>  #include "i915_drv.h"
+> -#include "i915_reg.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dvo_dev.h"
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index 7a77ae3dc394..76aa10b6f647 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -35,7 +35,6 @@
+>  #include <drm/drm_fourcc.h>
+>  
+>  #include "i915_drv.h"
+> -#include "i915_reg.h"
+>  #include "intel_atomic.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_display_types.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index a2a827070c33..a4ce39a7f265 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -39,7 +39,6 @@
+>  #include <drm/drm_fourcc.h>
+>  
+>  #include "i915_config.h"
+> -#include "i915_reg.h"
 
-Yes. You can check with 'git show --color-moved'. Also avoid the
-indentation changes.
+That has sure spread into some weird places.
 
-BR,
-Jani.
+As it seems to build, the series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-
->
-> Regards,
-> Mitul
->>
->> > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_vrr.c      |   1 +
->> >  drivers/gpu/drm/i915/display/intel_vrr_regs.h | 117 ++++++++++++++++++
->> >  drivers/gpu/drm/i915/i915_reg.h               | 100 ---------------
->> >  3 files changed, 118 insertions(+), 100 deletions(-)  create mode
->> > 100644 drivers/gpu/drm/i915/display/intel_vrr_regs.h
->> >
->
+>  #include "i9xx_plane_regs.h"
+>  #include "intel_atomic_plane.h"
+>  #include "intel_cdclk.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+> index a001232ad445..b146b4c46943 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+> @@ -4,7 +4,6 @@
+>   */
+>  
+>  #include "i915_drv.h"
+> -#include "i915_reg.h"
+>  
+>  #include "intel_de.h"
+>  #include "intel_display.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> index 4baaa92ceaec..bcc9de047fac 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -6,7 +6,6 @@
+>  
+>  #include "i915_drv.h"
+>  #include "i915_irq.h"
+> -#include "i915_reg.h"
+>  #include "intel_crtc.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index 36a253a19c74..e1c907f601da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -39,7 +39,6 @@
+>  #include <drm/drm_rect.h>
+>  
+>  #include "i915_drv.h"
+> -#include "i915_reg.h"
+>  #include "i9xx_plane.h"
+>  #include "intel_atomic_plane.h"
+>  #include "intel_de.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 17d6572f9d0a..d76e70846a8c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -10,7 +10,6 @@
+>  #include <drm/display/drm_dsc_helper.h>
+>  
+>  #include "i915_drv.h"
+> -#include "i915_reg.h"
+>  #include "intel_crtc.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+> -- 
+> 2.39.2
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
