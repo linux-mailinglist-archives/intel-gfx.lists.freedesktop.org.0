@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897B58D5EE4
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 11:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3BCA8D5ED9
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 May 2024 11:50:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76B0B10E74A;
-	Fri, 31 May 2024 09:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BCA10E4E3;
+	Fri, 31 May 2024 09:50:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TwZxnDav";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OxT+C+Gw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9383610E506
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 09:50:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62EA210E554
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 May 2024 09:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717149042; x=1748685042;
+ t=1717149043; x=1748685043;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=icFY9mDDiFCzJ8Vtaux6jof2YksJvytT6b+E75rABbE=;
- b=TwZxnDavJSQJ7/GDmXB1fkwOHRxPg98HRzI9BhCPLAjRSvHhl4iXN6rn
- wzIj358M2sTwEzhK5r+le6OSC7Yj1svylPbLfURcKwe1/qgjQZQEJPYDf
- BWtNpyV0CJ3G8UaKG3SLlqD+C254/Pyx42hoZ0oQbNkXO9wo6EKaIDu0Q
- v+WbSnb/qfgDraW3Bz0L+7eQmo9XqOqoF1k3X++CE6FkGZ1ORG4vv2fKU
- 1VTtOrIk09iwy0OOp7lmarnfCgtv+buuJIpO/i3ZokgWH1uZB7oyOMlWI
- 2KFj+6c3JICnKv8BrMhUkOumIq4KdrilWbtlJ0YxEJCwQ++PZ4f5CY47E w==;
-X-CSE-ConnectionGUID: aFUEA1b4S3i/j+wOluALQQ==
-X-CSE-MsgGUID: 3/32ibMAQXqfD8NcpYay2g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13446585"
-X-IronPort-AV: E=Sophos;i="6.08,203,1712646000"; d="scan'208";a="13446585"
+ bh=sn+9uC1yAidMBc1+BtsPRF/sXwTDZCqTntJuSmRz2Ww=;
+ b=OxT+C+GwpFiPN5bvsLKoM2fXRmsE/dXmbwD3j6fYnzXEAMOi3GPeILGx
+ aBFLI15UL4IdYOFGey+Q6rURJeqF480lL/woVUaNHtlq34/dAOs1xS7zz
+ SH/xU6WK/l28exalipvwIM8aS6cq4Rk02b4b0F08O+ou06zv0XKmKvBOh
+ +IRDmElxeImvAWoUu+kVyfYg1n9ug5Yv5+9vzgzjlilKF4eegBsOocA42
+ s7MKiWzvZ+nQs3XJ28Uad8BLQXmE6CqXta6+OcyooVWnFgVpPAXmz0y8U
+ RFCO1lL4kVx8AyryQUMQv5xW3+nTNKlK2XzawqFtBgs5du7yZAK/OUddy A==;
+X-CSE-ConnectionGUID: EtzEdu2fS5OnNSd3IX3RJQ==
+X-CSE-MsgGUID: EL4LBodHQCCb9fAw5P1QLg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="13446587"
+X-IronPort-AV: E=Sophos;i="6.08,203,1712646000"; d="scan'208";a="13446587"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 02:50:41 -0700
-X-CSE-ConnectionGUID: 2x8RaYBeR0GEexhTZZGVjQ==
-X-CSE-MsgGUID: ARIR0lxOT6CWn+vA7TlLcQ==
+ 31 May 2024 02:50:43 -0700
+X-CSE-ConnectionGUID: FRk/BqiXTXy7VuyiR4AffA==
+X-CSE-MsgGUID: z25OjMQJRV2CRm0YrRpdpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,203,1712646000"; d="scan'208";a="41189275"
+X-IronPort-AV: E=Sophos;i="6.08,203,1712646000"; d="scan'208";a="41189282"
 Received: from romanove-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.36.204])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2024 02:50:40 -0700
+ 31 May 2024 02:50:41 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v4 15/19] drm/i915/psr: HW will not allow PR on eDP when HDCP
- enabled
-Date: Fri, 31 May 2024 12:49:49 +0300
-Message-Id: <20240531094953.1797508-16-jouni.hogander@intel.com>
+Subject: [PATCH v4 16/19] drm/i915/psr: Check Early Transport for Panel Replay
+ as well
+Date: Fri, 31 May 2024 12:49:50 +0300
+Message-Id: <20240531094953.1797508-17-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240531094953.1797508-1-jouni.hogander@intel.com>
 References: <20240531094953.1797508-1-jouni.hogander@intel.com>
@@ -72,58 +72,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Take into account in Panel Replay compute config that  HW will not allow PR
-on eDP when HDCP enabled.
+Move Early Transport validity check to be performed for Panel Replay as
+well and use Early Transport for eDP Panel Replay always.
+
+v2:set crtc_state->enable_psr2_su_region_et directly (not in if block)
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 6f69bd6d4461..2bb25634b65d 100644
+index 2bb25634b65d..81e29223c026 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1474,8 +1474,13 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
+@@ -1368,9 +1368,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
  
- static bool
- _panel_replay_compute_config(struct intel_dp *intel_dp,
--			     const struct intel_crtc_state *crtc_state)
-+			     const struct intel_crtc_state *crtc_state,
-+			     const struct drm_connector_state *conn_state)
- {
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+
- 	if (!CAN_PANEL_REPLAY(intel_dp))
- 		return false;
+ 	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
  
-@@ -1488,6 +1493,14 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
- 	if (intel_dp_is_uhbr(crtc_state))
- 		return false;
- 
-+	/* HW will not allow Panel Replay on eDP when HDCP enabled */
-+	if (conn_state->content_protection ==
-+	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
-+	    (conn_state->content_protection ==
-+	     DRM_MODE_CONTENT_PROTECTION_ENABLED && hdcp->value ==
-+	     DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
-+		return false;
-+
+-	if (psr2_su_region_et_valid(intel_dp, crtc_state->has_panel_replay))
+-		crtc_state->enable_psr2_su_region_et = true;
+-
  	return true;
  }
  
-@@ -1527,7 +1540,8 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+@@ -1435,6 +1432,9 @@ static bool intel_sel_update_config_valid(struct intel_dp *intel_dp,
+ 		goto unsupported;
  	}
  
- 	crtc_state->has_panel_replay = _panel_replay_compute_config(intel_dp,
--								    crtc_state);
-+								    crtc_state,
-+								    conn_state);
++	crtc_state->enable_psr2_su_region_et =
++		psr2_su_region_et_valid(intel_dp, crtc_state->has_panel_replay);
++
+ 	return true;
  
- 	crtc_state->has_psr = crtc_state->has_panel_replay ? true :
- 		_psr_compute_config(intel_dp, crtc_state);
+ unsupported:
 -- 
 2.34.1
 
