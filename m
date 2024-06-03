@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C695B8D8329
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2024 15:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 612058D832A
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2024 15:01:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7176510E341;
-	Mon,  3 Jun 2024 13:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDE4510E39C;
+	Mon,  3 Jun 2024 13:01:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cMK2bgoP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lmKTDsmX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BED2810E394
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jun 2024 13:01:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D80410E396
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jun 2024 13:01:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717419671; x=1748955671;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WesjoU+OxefA4cC+hqMK6c4CkX3StrB/8PTQc8jOon4=;
- b=cMK2bgoP2dyciZ17FlgPAJHdF3ALowEWIZ54OFV5DmMWLEaNbnK7vB17
- Q57g5ICQmFNpbD+Y5wu/pO4a4ORM7VjrVgA0ZmkJJ6nXeMQl5HdNKASEJ
- mWo87WNv0rJpGWVeon7ZHRFdXy4Mg21DMgP9LH18fkxu5PTH99oWKUVqt
- MezvrU87O3MOTCZlVWhE0I6SjUpxzjJRGI6DwprRtoUEuVplNX/f6I07u
- 6eD2mJ7b0aSxRBVlUj9OznXNYxyeLpavj64QNZbd/fxd/PuGksC02zPpV
- dmnIV6K/f/cjQRWgPRWtW3UrBwy5lFtlR638khpqyuZ0H1jJdFQHJqqVM A==;
-X-CSE-ConnectionGUID: C3BGPO5lQ1GNCZySagnuJg==
-X-CSE-MsgGUID: LaFSxI6TTQ2i8HAGR0Yx8w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="13774457"
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="13774457"
+ bh=+ycKo+uhWdC/oOkm5ysJvhE83D0VSqgq/dw6i3KRMhU=;
+ b=lmKTDsmX3ryLqdllp0VvQBiTCrMBxf32FQuCyEqig2LrvwDWNoCEDrjj
+ pKXh5oCGFGNcMaXVB7EvT8AlZKoMgQ/91wqWVtwuER51P1F3ujTdHFHv7
+ 3tv4C73dMwDpbj4sHoq3lzlGG8+o94l9Vqq0Fg41eTN5vTIMApBTKjqDA
+ SSfSBLqhIj4QXKPE0zzMvvqvd5UcfJzKmWXytKqGgpJO1ApJwmrzHVNf2
+ 6jbjUHIkdDTQJMbSl39UhGJy+5RUgePNa3GUe+T4WaIMdFfW7PNMHEd/s
+ dWm4+qu+pCcBodbQxjrhYYi5SPPyrHCrHXOqPe5vqtQ8ZNM22cMxRkPB0 Q==;
+X-CSE-ConnectionGUID: kGFOWjkgSFuAbm/366RAfw==
+X-CSE-MsgGUID: H/uQ+yFDRA2lqqxdEJ7T7w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="13774463"
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="13774463"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 06:01:02 -0700
-X-CSE-ConnectionGUID: d3E9gR7dS6Cw+K7tJ5iRVw==
-X-CSE-MsgGUID: p/nfoZeQRi+jnNuxisguyw==
+ 03 Jun 2024 06:01:04 -0700
+X-CSE-ConnectionGUID: lf0eU2QKSjW9ZH/H7gApIQ==
+X-CSE-MsgGUID: 1mcr/5kCRaypm1lyHHKZAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="41291711"
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="41291734"
 Received: from jgulati-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.251.212.183])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 06:01:01 -0700
+ 03 Jun 2024 06:01:02 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v5 03/19] drm/i915/display: Take panel replay into account in
- vsc sdp unpacking
-Date: Mon,  3 Jun 2024 16:00:27 +0300
-Message-Id: <20240603130043.2615716-4-jouni.hogander@intel.com>
+Subject: [PATCH v5 04/19] drm/i915/display: Skip Panel Replay on pipe
+ comparison if no active planes
+Date: Mon,  3 Jun 2024 16:00:28 +0300
+Message-Id: <20240603130043.2615716-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240603130043.2615716-1-jouni.hogander@intel.com>
 References: <20240603130043.2615716-1-jouni.hogander@intel.com>
@@ -72,38 +72,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently intel_dp_vsc_sdp_unpack is not taking into account Panel Replay
-vsc sdp. Fix this by adding vsc sdp revision 0x6 and length 0x10 into
-intel_dp_vsc_sdp_unpack
+Panel Replay is not enabled if there are no active planes. Do not compare
+it on pipe comparison. Otherwise we get pipe mismatch.
 
+Fixes: ac9ef327327b ("drm/i915/psr: Panel replay has to be enabled before link training")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index fd054e16850d..286119eb77f8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4438,7 +4438,8 @@ static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
- 	vsc->length = sdp->sdp_header.HB3;
- 
- 	if ((sdp->sdp_header.HB2 == 0x2 && sdp->sdp_header.HB3 == 0x8) ||
--	    (sdp->sdp_header.HB2 == 0x4 && sdp->sdp_header.HB3 == 0xe)) {
-+	    (sdp->sdp_header.HB2 == 0x4 && sdp->sdp_header.HB3 == 0xe) ||
-+	    (sdp->sdp_header.HB2 == 0x6 && sdp->sdp_header.HB3 == 0x10)) {
- 		/*
- 		 * - HB2 = 0x2, HB3 = 0x8
- 		 *   VSC SDP supporting 3D stereo + PSR
-@@ -4446,6 +4447,8 @@ static int intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
- 		 *   VSC SDP supporting 3D stereo + PSR2 with Y-coordinate of
- 		 *   first scan line of the SU region (applies to eDP v1.4b
- 		 *   and higher).
-+		 * - HB2 = 0x6, HB3 = 0x10
-+		 *   VSC SDP supporting 3D stereo + Panel Replay.
- 		 */
- 		return 0;
- 	} else if (sdp->sdp_header.HB2 == 0x5 && sdp->sdp_header.HB3 == 0x13) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7370acdd6b8b..2747dd01bb0a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5331,7 +5331,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	 * Panel replay has to be enabled before link training. PSR doesn't have
+ 	 * this requirement -> check these only if using panel replay
+ 	 */
+-	if (current_config->has_panel_replay || pipe_config->has_panel_replay) {
++	if (current_config->active_planes &&
++	    (current_config->has_panel_replay ||
++	     pipe_config->has_panel_replay)) {
+ 		PIPE_CONF_CHECK_BOOL(has_psr);
+ 		PIPE_CONF_CHECK_BOOL(has_sel_update);
+ 		PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
 -- 
 2.34.1
 
