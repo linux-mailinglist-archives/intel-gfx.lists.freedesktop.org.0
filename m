@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA1C8D81B0
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2024 13:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6958E8D81DA
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2024 14:04:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B25B410E315;
-	Mon,  3 Jun 2024 11:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5CA10E19E;
+	Mon,  3 Jun 2024 12:04:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 8e613ede5ea5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21D4610E315;
- Mon,  3 Jun 2024 11:55:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD8510E19E;
+ Mon,  3 Jun 2024 12:04:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5646703202220935449=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Ultrajoiner_basic_fu?=
- =?utf-8?q?nctionality_series_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Ultrajoiner_basic_functiona?=
+ =?utf-8?q?lity_series_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 03 Jun 2024 11:55:21 -0000
-Message-ID: <171741572110.2261818.4004578528125265587@8e613ede5ea5>
+Date: Mon, 03 Jun 2024 12:04:52 -0000
+Message-ID: <171741629254.2261818.6123314013049842829@8e613ede5ea5>
 X-Patchwork-Hint: ignore
 References: <20240603112551.6481-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20240603112551.6481-1-stanislav.lisovskiy@intel.com>
@@ -41,121 +41,203 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5646703202220935449==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: Ultrajoiner basic functionality series (rev2)
 URL   : https://patchwork.freedesktop.org/series/133800/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-e7e2b28e489e drm/i915: Rename all bigjoiner to joiner
--:200: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#200: FILE: drivers/gpu/drm/i915/display/intel_display.c:2322:
-+static void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
- 					   struct drm_display_mode *mode)
+CI Bug Log - changes from CI_DRM_14870 -> Patchwork_133800v2
+====================================================
 
--:299: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#299: FILE: drivers/gpu/drm/i915/display/intel_display.c:3498:
-+static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
- 				    u8 *master_pipes, u8 *slave_pipes)
+Summary
+-------
 
--:415: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#415: FILE: drivers/gpu/drm/i915/display/intel_display.c:4484:
-+copy_joiner_crtc_state_nomodeset(struct intel_atomic_state *state,
- 				    struct intel_crtc *slave_crtc)
+  **SUCCESS**
 
--:424: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#424: FILE: drivers/gpu/drm/i915/display/intel_display.c:4504:
-+copy_joiner_crtc_state_modeset(struct intel_atomic_state *state,
- 				  struct intel_crtc *slave_crtc)
+  No regressions found.
 
--:471: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#471: FILE: drivers/gpu/drm/i915/display/intel_display.c:5750:
-+static int intel_crtc_add_joiner_planes(struct intel_atomic_state *state,
- 					   struct intel_crtc *crtc,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/index.html
 
--:514: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#514: FILE: drivers/gpu/drm/i915/display/intel_display.c:5906:
-+static int intel_atomic_check_joiner(struct intel_atomic_state *state,
- 					struct intel_crtc *master_crtc)
+Participating hosts (39 -> 35)
+------------------------------
 
--:577: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#577: FILE: drivers/gpu/drm/i915/display/intel_display.c:5977:
-+static void kill_joiner_slave(struct intel_atomic_state *state,
- 				 struct intel_crtc *master_crtc)
+  Additional (3): bat-arls-4 fi-glk-j4005 fi-kbl-7567u 
+  Missing    (7): bat-kbl-2 bat-adlp-9 bat-adlp-6 fi-snb-2520m fi-cfl-8109u fi-kbl-8809g bat-jsl-1 
 
--:971: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#971: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1212:
-+bool intel_dp_need_joiner(struct intel_dp *intel_dp,
- 			     struct intel_connector *connector,
+Known issues
+------------
 
--:1001: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1001: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1260:
-+	if (intel_dp_need_joiner(intel_dp, connector,
- 				    mode->hdisplay, target_clock)) {
+  Here are the changes found in Patchwork_133800v2 that come from known issues:
 
--:1073: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1073: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2437:
-+	if (intel_dp_need_joiner(intel_dp, connector,
- 				    adjusted_mode->crtc_hdisplay,
+### IGT changes ###
 
--:1122: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1122: FILE: drivers/gpu/drm/i915/display/intel_dp.h:154:
-+bool intel_dp_need_joiner(struct intel_dp *intel_dp,
- 			     struct intel_connector *connector,
+#### Issues hit ####
 
--:1144: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1144: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:571:
-+	if (intel_dp_need_joiner(intel_dp, connector,
- 				    adjusted_mode->crtc_hdisplay,
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-7567u:       NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html
+    - fi-glk-j4005:       NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
 
--:1173: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1173: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:1422:
-+	if (intel_dp_need_joiner(intel_dp, intel_connector,
- 				    mode->hdisplay, target_clock)) {
+  * igt@gem_lmem_swapping@basic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-glk-j4005/igt@gem_lmem_swapping@basic.html
+    - fi-kbl-7567u:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html
 
--:1313: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1313: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:278:
-+	joiner_slaves_mask = get_joiner_slave_pipes(i915,
- 							  portsync_master_mask |
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-adln-1:         [PASS][5] -> [INCOMPLETE][6] ([i915#9413])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14870/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
 
--:1372: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#1372: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:739:
-+								 intel_crtc_joiner_slave_pipes(crtc_state)) {
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][7] +10 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
 
-total: 0 errors, 1 warnings, 14 checks, 1283 lines checked
-1e79a2293464 drm/i915: Rename bigjoiner master/slave to bigjoiner primary/secondary
--:615: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#615: FILE: drivers/gpu/drm/i915/display/intel_display.c:5977:
-+static void kill_joiner_secondary(struct intel_atomic_state *state,
-+				 struct intel_crtc *primary_crtc)
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-7567u:       NOTRUN -> [SKIP][8] +11 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html
 
--:842: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#842: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:248:
-+	*secondary_pipes_mask = get_transcoder_pipes(i915, primary_crtc_state->sync_mode_slaves_mask);
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
--:876: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#876: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:278:
-+	joiner_secondarys_mask = get_joiner_secondary_pipes(i915,
- 							  portsync_master_mask |
-
--:933: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
-#933: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:739:
-+								 intel_crtc_joiner_secondary_pipes(crtc_state)) {
-
--:938: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#938: FILE: drivers/gpu/drm/i915/display/intel_modeset_setup.c:742:
-+					secondary_crtc_state = to_intel_crtc_state(secondary_crtc->base.state);
-
-total: 0 errors, 3 warnings, 2 checks, 910 lines checked
-aec71c580051 drm/i915: Add some essential functionality for joiners
--:61: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#61: FILE: drivers/gpu/drm/i915/display/intel_display.c:276:
-+	for (i = lsb; i < msb; i += 4)
-+	{
-
-total: 1 errors, 0 warnings, 0 checks, 160 lines checked
+  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
+  [i915#10197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197
+  [i915#10200]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200
+  [i915#10202]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10202
+  [i915#10206]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206
+  [i915#10207]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10207
+  [i915#10208]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208
+  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
+  [i915#10211]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211
+  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
+  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
+  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
+  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
+  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
+  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
+  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
+  [i915#9812]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9812
+  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_14870 -> Patchwork_133800v2
+
+  CI-20190529: 20190529
+  CI_DRM_14870: 35fd8da4aabacfb22e4d62be372aa7f2db72e426 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7877: 23b8b8a0168e1b5141e29346be1f83fdbed31037 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133800v2: 35fd8da4aabacfb22e4d62be372aa7f2db72e426 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/index.html
+
+--===============5646703202220935449==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Ultrajoiner basic functionality series (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133800/">https://patchwork.freedesktop.org/series/133800/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14870 -&gt; Patchwork_133800v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 35)</h2>
+<p>Additional (3): bat-arls-4 fi-glk-j4005 fi-kbl-7567u <br />
+  Missing    (7): bat-kbl-2 bat-adlp-9 bat-adlp-6 fi-snb-2520m fi-cfl-8109u fi-kbl-8809g bat-jsl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133800v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-kbl-7567u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-glk-j4005/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-kbl-7567u/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14870/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-7567u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v2/fi-kbl-7567u/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +11 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14870 -&gt; Patchwork_133800v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14870: 35fd8da4aabacfb22e4d62be372aa7f2db72e426 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7877: 23b8b8a0168e1b5141e29346be1f83fdbed31037 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133800v2: 35fd8da4aabacfb22e4d62be372aa7f2db72e426 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5646703202220935449==--
