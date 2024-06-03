@@ -2,60 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D148D833F
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2024 15:01:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD278D8350
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2024 15:02:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA70310E3AB;
-	Mon,  3 Jun 2024 13:01:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B4410E3B4;
+	Mon,  3 Jun 2024 13:02:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XcxevdYc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U6RzQhpq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9852E10E3AB
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jun 2024 13:01:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA8C10E032
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Jun 2024 13:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717419690; x=1748955690;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FTO11mQWAGGEdI3CVI9wR/zNrL+zpGPa1SZ6Gt9LQgg=;
- b=XcxevdYcjUSU5+ikEZoAugmNY8MOmnFqVSiCko95QzmsCET/MfYYjv56
- m3/RLmqPAZnKINc9aYy6HrXAgdImCMWe92JRLi9c8O1RdfLaUw7/PAUvx
- OZZ2xNYjYtkLzDhzv6Wk5xsYZshYuh2eMdB/NdTXnQz0+1acdU70nF22L
- cCxX/E6JjFlTuQ9pYEWmpMhyNpoSCpWjgMwJeloHV1IfOZPVJHC0qRJpN
- j6kP64coLcLQr4YFNfgUBIi/CB2Ud3MXoqygs+rVxATBJSub9xiW88jD6
- bPaNZA9g05nTEj+J/MSQT8r6PaMj2Nay3i7QX/cIx60OGMuv/SqzTgW6+ A==;
-X-CSE-ConnectionGUID: VXewYgFdTd23U56ohpeeag==
-X-CSE-MsgGUID: v//uRrggQ4q69VjBUvIrGA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="13774512"
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="13774512"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 06:01:30 -0700
-X-CSE-ConnectionGUID: 8L9bOgYETmac9qw+zzdMMw==
-X-CSE-MsgGUID: +z5KHs4+TpWDVGtoNFRpMQ==
+ t=1717419775; x=1748955775;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W5fnLzfI3AymgvsL8Rq28LuUgjWRSutSEdwe1p+RP1I=;
+ b=U6RzQhpqU2zWNbJox0Ld1q/Nq45J+RTQNqufh//G8NJfSSZwWdj44RDm
+ n4Pbxm1iooZDy1HELmwd1lQbEliAc+jYtJZe1Tv92laCmX3Bf3TkCo+Rg
+ k4TroeQI4jbZYlQHbXuVf3Ap2+vmQwr8eV5eFbx2eTq7neOgFjDabfes6
+ Yf8wdTvNoro40EYIpehqEa0qfatYWzY/51l3IbBO8+Y4eVRRS83OzjKtG
+ gT+mcEA6uE9iTafR/EHr6yYcStGzShtJ4wFh0V0BXMDMD5iNjdGiwDY3l
+ +cnUUOrOKRp1rTgVFnUZN5h0ravarSYG+XCaHsCJWxxheogFpewozZpAs g==;
+X-CSE-ConnectionGUID: P3qFDvwOQyeyX/EDLM5b0A==
+X-CSE-MsgGUID: gMaOHUyoRt2dMZlxTrJQPA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="11873377"
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="11873377"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2024 06:02:55 -0700
+X-CSE-ConnectionGUID: vZZowNPmSOKr+fzw/N95EA==
+X-CSE-MsgGUID: 9DkM52a/Sr+GcavCAm6wMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="41292003"
-Received: from jgulati-mobl.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
- ([10.251.212.183])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2024 06:01:28 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,211,1712646000"; d="scan'208";a="41959956"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2024 06:02:53 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: animesh.manna@intel.com, mika.kahola@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v5 19/19] Revert "drm/i915/psr: Disable early transport by
- default"
-Date: Mon,  3 Jun 2024 16:00:43 +0300
-Message-Id: <20240603130043.2615716-20-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240603130043.2615716-1-jouni.hogander@intel.com>
-References: <20240603130043.2615716-1-jouni.hogander@intel.com>
+Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
+ mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 0/5] Use VRR timing generator for fixed refresh rate modes
+Date: Mon,  3 Jun 2024 18:33:14 +0530
+Message-Id: <20240603130319.1594872-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,31 +66,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit f3c2031db7dfdf470a2d9bf3bd1efa6edfa72d8d.
+Even though the VRR timing generator (TG) is primarily used for
+variable refresh rates, it can be used for fixed refresh rates as
+well. For a fixed refresh rate the Flip Line and Vmax must be equal
+(TRANS_VRR_FLIPLINE = TRANS_VRR_VMAX). Beyond that, there are some
+dependencies between the VRR timings and the legacy timing generator
+registgers.
 
-We want to notice possible issues faced with PSR2 Region Early Transport as
-early as possible -> let's revert patch disabling Region Early Transport by
-default. Also eDP 1.5 Panel Replay requires Early Transport.
+This series is an attempt to use VRR TG for fixed refresh rate.
+Currently the support to use VRR timing generator for fixed refresh
+rate is added from LNL+ and only for panels that support VRR, however
+this can be used for older platforms also and used with panels that do
+not support VRR, which will be added subsequently.
+There are still few cases that need plumbing like having PSR/PSR2 with
+VRR timing generator and bigjoiner + VRR.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
- 1 file changed, 3 deletions(-)
+Ankit Nautiyal (5):
+  drm/i915/dp: fix the Adaptive sync Operation mode for SDP
+  drm/i915/display: Add member fixed_rr to denote Fixed refresh rate
+    with VRRTG
+  drm/i915/dp: Set FAVT mode in DP SDP with fixed refresh rate
+  drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed
+    refresh rate
+  drm/i915/vrr/xe2lpd: Use VRR timing generator whenever panel supports
+    VRR
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index e1861ba8fc0c..68704f6badcb 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3151,9 +3151,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 	if (HAS_PSR(dev_priv) && intel_dp_is_edp(intel_dp))
- 		intel_dp->psr.source_support = true;
- 
--	/* Disable early transport for now */
--	intel_dp->psr.debug |= I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
--
- 	/* Set link_standby x link_off defaults */
- 	if (DISPLAY_VER(dev_priv) < 12)
- 		/* For new platforms up to TGL let's respect VBT back again */
+ drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
+ .../drm/i915/display/intel_display_types.h    |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  6 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 59 ++++++++++++-------
+ 4 files changed, 46 insertions(+), 25 deletions(-)
+
 -- 
-2.34.1
+2.40.1
 
