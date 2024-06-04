@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7DF8FB710
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB59C8FB711
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5A3110E4CF;
-	Tue,  4 Jun 2024 15:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAAB110E4F8;
+	Tue,  4 Jun 2024 15:28:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PlIZe3iE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NEXoDhib";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A99210E4E6
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5D4210E4EA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717514895; x=1749050895;
+ t=1717514899; x=1749050899;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PRIWDykf9britUwpaI8jCWPCwAlSOB9lIiZGxx2SJpE=;
- b=PlIZe3iEmxkYqIAlN4DWJES9ICvh7zrYQUt1kkhyCCyE/f2IMNjh4kDn
- Ecjm4p3FA3LvX8U1CImoRcsBXFF05JuZx3JpKOUpwgNAmLxfg7OSG6QKU
- U+jAi3gzTq2qxCfKF28IIvKrR2XDgtJsUpfreyuXwDCd2FXFFKhRwNlle
- rsuhLBQo09YyVLovWKkFuB7YfTWNXT3IiTTiEbUaL3mgyRFu/eo/+YDbR
- ZL57zBpQeK+W9HUErybb4ODI3uNvM8T4IYhQ9miMVT0D5Adex8I2/IUS+
- RvLKX/vPDqRdyJ++9meqLjSUk/nwQXW4VwrMiyzysxuAlJTK0G63auBta Q==;
-X-CSE-ConnectionGUID: zefaHnMaQaCOTrHn4uUlGQ==
-X-CSE-MsgGUID: AZIltnTRRbyr7qmsNxNY9Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14225628"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="14225628"
+ bh=cwXvhefYBasMl3QJ+9GZWMpd7Zx9fGjBDJuElak7Z5I=;
+ b=NEXoDhibp4JQSS2/bmwLIeMhlilYLB33B0Ma8KHb8r0AWi2Ftn07dtnD
+ 7bjT9zXbDzKFTpdAMZRCL1YpV2oLOidjW11j9Qe9e2C75MXCuas1WyKAF
+ QOg4gxLqmhjQQU6wmDNe0dzkwpJaMsErVnyDyW1yDIggqbPTLcEHizMIE
+ 3ggfN+7tXUMpvu24riECiAKeKDBG926mLcOheZJf9SIy8USfzjHei6C1A
+ 9F3WUZF1Gl49TnDWCe8RjKrbTSLTsdkrsrDkjdl5LbuvxIV+ZatL1F8gb
+ d+/3wBmndVWsPjfN7GI0YMnNLbSmbkbWUN4YkGJ3MevK+imGDE4B1YMEq A==;
+X-CSE-ConnectionGUID: sAFnQYgJRxKdHjUE4SxYXA==
+X-CSE-MsgGUID: ZJIiWKMJSi+R+urRYDeJcA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14225637"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="14225637"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:15 -0700
-X-CSE-ConnectionGUID: HX2KZDAFTnKHejQF8i9mGg==
-X-CSE-MsgGUID: qQEMI0m8SZe4mF6qO95L3A==
+ 04 Jun 2024 08:28:19 -0700
+X-CSE-ConnectionGUID: t9D1BulMQBij+y0yhQAeMQ==
+X-CSE-MsgGUID: jKtbqRgJRYKO9gBPdoG8Nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37277995"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37278015"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:14 -0700
+ 04 Jun 2024 08:28:18 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 22/65] drm/i915: pass dev_priv explicitly to PIPESTAT
-Date: Tue,  4 Jun 2024 18:25:40 +0300
-Message-Id: <8b18a1e77ccfd451bbaee80b6ddb23bdbc479336.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 23/65] drm/i915: pass dev_priv explicitly to PIPE_ARB_CTL
+Date: Tue,  4 Jun 2024 18:25:41 +0300
+Message-Id: <e75e80bd96e05ece6b82c0bdb509527ab2dd0e6d.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -70,111 +70,40 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PIPESTAT register macro.
+explicitly to the PIPE_ARB_CTL register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c   | 9 +++++----
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 4 ++--
- drivers/gpu/drm/i915/i915_reg.h                    | 2 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c        | 8 ++++----
- 4 files changed, 12 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ drivers/gpu/drm/i915/i915_reg.h              | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index be5b48861baf..76bba95410e7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -224,7 +224,7 @@ u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
- void i915_enable_pipestat(struct drm_i915_private *dev_priv,
- 			  enum pipe pipe, u32 status_mask)
- {
--	i915_reg_t reg = PIPESTAT(pipe);
-+	i915_reg_t reg = PIPESTAT(dev_priv, pipe);
- 	u32 enable_mask;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9434eba91839..48ee8aee21be 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -439,7 +439,7 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
  
- 	drm_WARN_ONCE(&dev_priv->drm, status_mask & ~PIPESTAT_INT_STATUS_MASK,
-@@ -247,7 +247,7 @@ void i915_enable_pipestat(struct drm_i915_private *dev_priv,
- void i915_disable_pipestat(struct drm_i915_private *dev_priv,
- 			   enum pipe pipe, u32 status_mask)
- {
--	i915_reg_t reg = PIPESTAT(pipe);
-+	i915_reg_t reg = PIPESTAT(dev_priv, pipe);
- 	u32 enable_mask;
+ 	/* Wa_22012358565:adl-p */
+ 	if (DISPLAY_VER(dev_priv) == 13)
+-		intel_de_rmw(dev_priv, PIPE_ARB_CTL(pipe),
++		intel_de_rmw(dev_priv, PIPE_ARB_CTL(dev_priv, pipe),
+ 			     0, PIPE_ARB_USE_PROG_SLOTS);
  
- 	drm_WARN_ONCE(&dev_priv->drm, status_mask & ~PIPESTAT_INT_STATUS_MASK,
-@@ -400,7 +400,8 @@ void i9xx_pipestat_irq_reset(struct drm_i915_private *dev_priv)
- 	enum pipe pipe;
- 
- 	for_each_pipe(dev_priv, pipe) {
--		intel_uncore_write(&dev_priv->uncore, PIPESTAT(pipe),
-+		intel_uncore_write(&dev_priv->uncore,
-+				   PIPESTAT(dev_priv, pipe),
- 				   PIPESTAT_INT_STATUS_MASK |
- 				   PIPE_FIFO_UNDERRUN_STATUS);
- 
-@@ -453,7 +454,7 @@ void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
- 		if (!status_mask)
- 			continue;
- 
--		reg = PIPESTAT(pipe);
-+		reg = PIPESTAT(dev_priv, pipe);
- 		pipe_stats[pipe] = intel_uncore_read(&dev_priv->uncore, reg) & status_mask;
- 		enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index 09a7fa6c0c37..401726f466c0 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -94,7 +94,7 @@ static bool cpt_can_enable_serr_int(struct drm_device *dev)
- static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	i915_reg_t reg = PIPESTAT(crtc->pipe);
-+	i915_reg_t reg = PIPESTAT(dev_priv, crtc->pipe);
- 	u32 enable_mask;
- 
- 	lockdep_assert_held(&dev_priv->irq_lock);
-@@ -115,7 +115,7 @@ static void i9xx_set_fifo_underrun_reporting(struct drm_device *dev,
- 					     bool enable, bool old)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	i915_reg_t reg = PIPESTAT(pipe);
-+	i915_reg_t reg = PIPESTAT(dev_priv, pipe);
- 
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
+ 	if (DISPLAY_VER(dev_priv) >= 14) {
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index a6dff480bd0b..0aaceedf77dc 100644
+index 0aaceedf77dc..1b2c0d650bff 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1880,7 +1880,7 @@
- #define PIPEDSL(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEADSL)
- #define PIPEFRAME(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
- #define PIPEFRAMEPIXEL(dev_priv, pipe)	_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEPIXEL)
--#define PIPESTAT(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEASTAT)
-+#define PIPESTAT(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEASTAT)
+@@ -1883,7 +1883,7 @@
+ #define PIPESTAT(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEASTAT)
  
  #define _PIPE_ARB_CTL_A			0x70028 /* icl+ */
- #define PIPE_ARB_CTL(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPE_ARB_CTL_A)
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 6a37f790c753..00ee588fab39 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -134,10 +134,10 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_B));
- 	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_C));
- 	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_EDP));
--	MMIO_D(PIPESTAT(PIPE_A));
--	MMIO_D(PIPESTAT(PIPE_B));
--	MMIO_D(PIPESTAT(PIPE_C));
--	MMIO_D(PIPESTAT(_PIPE_EDP));
-+	MMIO_D(PIPESTAT(dev_priv, PIPE_A));
-+	MMIO_D(PIPESTAT(dev_priv, PIPE_B));
-+	MMIO_D(PIPESTAT(dev_priv, PIPE_C));
-+	MMIO_D(PIPESTAT(dev_priv, _PIPE_EDP));
- 	MMIO_D(PIPE_FLIPCOUNT_G4X(PIPE_A));
- 	MMIO_D(PIPE_FLIPCOUNT_G4X(PIPE_B));
- 	MMIO_D(PIPE_FLIPCOUNT_G4X(PIPE_C));
+-#define PIPE_ARB_CTL(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPE_ARB_CTL_A)
++#define PIPE_ARB_CTL(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPE_ARB_CTL_A)
+ #define   PIPE_ARB_USE_PROG_SLOTS	REG_BIT(13)
+ 
+ #define _PIPE_MISC_A			0x70030
 -- 
 2.39.2
 
