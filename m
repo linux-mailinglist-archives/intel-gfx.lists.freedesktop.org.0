@@ -2,54 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D328FB89F
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 18:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4326A8FB938
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 18:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADFBF10E541;
-	Tue,  4 Jun 2024 16:16:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93D1510E555;
+	Tue,  4 Jun 2024 16:41:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OqfKOnhY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k0X1ACZW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFC710E541
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 16:16:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B80B10E2A2;
+ Tue,  4 Jun 2024 16:41:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717517772; x=1749053772;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mbZp8Uy821v3zSkUn5ZtePcTev1Q0aJRhku/89XoznU=;
- b=OqfKOnhYHnH5jVVpXYxiILNhqE6yox9FUeU26Ym6ZP/F1uvyNUacqlXz
- eZZPG7W8vAp8WN3eC2nVDIISaRFyh5M6j9efy5Y7VN+INl3rM1SCIBQk9
- XDLISw6sH3rRYc3TbP71qWKvduSY3PHZXsshgL8XkHL8jjEL9WS7BBCfM
- lC9ndf3xM35/rr8Bc+wcuW1PKeyCjVEQmkbRQ/G1rB/QLJu0YRJt7madF
- AHTfOCJ2qjRQsqsXULvypl/ILO2pEvquoMxFFBOTHndaIQRg1+LeyLv3Y
- 06MZ7Kp+XnpeNOiwBRkgia4n+Lx1uucoELjavkycBUd6tgY9LEILjq0Ok w==;
-X-CSE-ConnectionGUID: 8Sncc1b0Q+6VAg9InYrrWw==
-X-CSE-MsgGUID: T0GJd8E/SKqabMKQlYFBYw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="17015869"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="17015869"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 09:16:12 -0700
-X-CSE-ConnectionGUID: Etf0KJCuQ7exUiA9KcaBnw==
-X-CSE-MsgGUID: Zyt32kNERI29Cq/oPReR0Q==
+ t=1717519285; x=1749055285;
+ h=date:from:to:cc:subject:message-id;
+ bh=l99PcNxm8obHng7+n5hWYuP+Gxq+vqCy0R2Wqi9Gv4E=;
+ b=k0X1ACZWO+uoHQ3ZTOKCaij+wCQG7VDdn9IAJe9xkpQXSdg+A7L60/om
+ Z55XOsOydU6J2uNEtTtFfmN7xQyh3anymD5g8qr/E1BvWhrapfkJyQNTL
+ Xh5taGRl6yPAMCmlkocJV23lIpFqp93DO7toOJeStAPUXTTd8Cz2r9d1o
+ gboG15YTBhaLsT43xkExjk5X4Al4NX93VIuulbr0UUsjd8L4ld43CKuOR
+ +DvKqipRenGQ1VUMlXk6YixMS8dXgMYYNaXFAzs2iyZY2XtsgDc9krNNx
+ nDV/dt+9h8ld5XG8T94QVqdkCiIksUqpjjlZf/hZFULKvY6nnxNN90BT+ Q==;
+X-CSE-ConnectionGUID: sCbFDs0sR4ifoZLx92YIxg==
+X-CSE-MsgGUID: GbhROo92R1CgEUshU3sjKA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="31617977"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="31617977"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 09:41:24 -0700
+X-CSE-ConnectionGUID: 6g5Cbd1/Thu3xeby3WCB3A==
+X-CSE-MsgGUID: 5tKQ5h9yTDmUv9XaVX7aww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="68438328"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 09:16:11 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [core-for-CI PATCH] thunderbolt: Add Kconfig option to disable PCIe
- tunneling
-Date: Tue,  4 Jun 2024 19:16:18 +0300
-Message-ID: <20240604161618.1958674-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.43.3
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37378848"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+ by fmviesa010.fm.intel.com with ESMTP; 04 Jun 2024 09:41:20 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sEXDp-0000DL-2w;
+ Tue, 04 Jun 2024 16:41:18 +0000
+Date: Wed, 05 Jun 2024 00:40:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx@lists.freedesktop.org, bpf@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: [linux-next:master] BUILD REGRESSION
+ d97496ca23a2d4ee80b7302849404859d9058bcd
+Message-ID: <202406050014.Wmet4Lvf-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,158 +70,291 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
+tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+branch HEAD: d97496ca23a2d4ee80b7302849404859d9058bcd  Add linux-next specific files for 20240604
 
-In typical cases PCIe tunneling is needed to make the devices fully
-usable for the host system. However, it poses a security issue because
-they can also use DMA to access the host memory. We already have two
-ways of preventing this, one an IOMMU that is enabled on recent systems
-by default and the second is the "authorized" attribute under each
-connected device that needs to be written by userspace before a PCIe
-tunnel is created. This option adds one more by adding a Kconfig option,
-which is enabled by default, that can be used to make kernel binaries
-where PCIe tunneling is completely disabled.
+Error/Warning reports:
 
-Signed-off-by: Mika Westerberg <mika.westerberg@linux.intel.com>
-References: https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_134314v1/bat-mtlp-9/boot0.txt
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11261
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
+https://lore.kernel.org/oe-kbuild-all/202406041641.wE3cCT4C-lkp@intel.com
 
-The issue at the first References: link is a known false-positive lockdep issue
-in the TBT/PCIe subsystem. After discussion with the TBT maintainer (Mika
-Westerberg), the easiest solution for the iGFX CI is to disable the PCIe TBT
-tunneling functionality which leads to the issue, as
+Error/Warning: (recently discovered and may have been fixed)
 
-- It's not an important feature iGFX CI needs to test.
-- There is no available solution (patch) yet to solve the lockdep issue.
+drivers/input/touchscreen/wacom_w8001.c:637:29: warning: ' Pen' directive output may be truncated writing 4 bytes into a region of size between 1 and 64 [-Wformat-truncation=]
+drivers/input/touchscreen/wacom_w8001.c:653:29: warning: ' Finger' directive output may be truncated writing 7 bytes into a region of size between 1 and 64 [-Wformat-truncation=]
 
-The feature could be re-enabled if needed once the lockdep issue is
-solved upstream. This patch will be merged upstream, until that sending it
-for core-for-CI.
+Error/Warning ids grouped by kconfigs:
 
- drivers/thunderbolt/Kconfig  | 18 ++++++++++++++++++
- drivers/thunderbolt/tb.c     |  2 +-
- drivers/thunderbolt/tb.h     |  9 +++++++++
- drivers/thunderbolt/tunnel.c |  8 ++++----
- drivers/thunderbolt/usb4.c   |  2 +-
- 5 files changed, 33 insertions(+), 6 deletions(-)
+gcc_recent_errors
+|-- i386-randconfig-063-20240604
+|   `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
+|-- loongarch-defconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-hubbub-dcn401-dcn401_hubbub.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
+|   `-- drivers-thermal-thermal_trip.o:warning:objtool:unexpected-relocation-symbol-type-in-.rela.discard.reachable
+|-- microblaze-randconfig-r006-20230312
+|   |-- drivers-input-touchscreen-wacom_w8001.c:warning:Finger-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|   `-- drivers-input-touchscreen-wacom_w8001.c:warning:Pen-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
+|-- nios2-randconfig-r111-20240604
+|   |-- drivers-gpu-drm-arm-display-komeda-komeda_dev.c:error:implicit-declaration-of-function-seq_puts
+|   |-- drivers-gpu-drm-arm-display-komeda-komeda_dev.c:error:invalid-use-of-undefined-type-struct-seq_file
+|   `-- drivers-gpu-drm-arm-display-komeda-komeda_dev.c:error:type-defaults-to-int-in-declaration-of-DEFINE_SHOW_ATTRIBUTE
+`-- um-allyesconfig
+    `-- kernel-bpf-verifier.c:error:pcpu_hot-undeclared-(first-use-in-this-function)
+clang_recent_errors
+|-- arm64-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-renesas-rcar-du-rcar_cmm.c:error:unused-function-rcar_cmm_read-Werror-Wunused-function
+|-- arm64-randconfig-001-20240604
+|   |-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+|   `-- drivers-gpu-drm-renesas-rcar-du-rcar_cmm.c:error:unused-function-rcar_cmm_read-Werror-Wunused-function
+|-- powerpc-randconfig-r112-20240604
+|   |-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-buf-got-void-noderef-__iomem
+|   `-- drivers-mtd-nand-raw-mxc_nand.c:sparse:sparse:incorrect-type-in-initializer-(different-address-spaces)-expected-unsigned-short-noderef-usertype-__iomem-t-got-void-buf
+|-- riscv-allmodconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|-- riscv-allyesconfig
+|   |-- drivers-gpu-drm-amd-amdgpu-..-display-amdgpu_dm-amdgpu_dm.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-amd-amdgpu-..-display-dc-irq-dce110-irq_service_dce110.c:error:arithmetic-between-different-enumeration-types-(-enum-dc_irq_source-and-enum-irq_type-)-Werror-Wenum-enum-conversion
+|-- s390-allmodconfig
+|   |-- drivers-gpu-drm-i915-display-intel_cursor.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_ddi.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-phy-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_display_irq.c:error:arithmetic-between-different-enumeration-types-(-enum-transcoder-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_dpll_mgr.c:error:arithmetic-between-different-enumeration-types-(-enum-tc_port-and-enum-intel_dpll_id-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_hotplug.c:error:arithmetic-between-different-enumeration-types-(-enum-hpd_pin-and-enum-port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_pipe_crc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_tc.c:error:arithmetic-between-different-enumeration-types-(-enum-intel_display_power_domain-and-enum-tc_port-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-intel_vdsc.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   |-- drivers-gpu-drm-i915-display-skl_universal_plane.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|   `-- drivers-gpu-drm-i915-display-skl_watermark.c:error:arithmetic-between-different-enumeration-types-(-enum-pipe-and-enum-intel_display_power_domain-)-Werror-Wenum-enum-conversion
+|-- x86_64-randconfig-011-20240604
+|   `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
+|-- x86_64-randconfig-122-20240604
+|   `-- drivers-hwmon-cros_ec_hwmon.c:sparse:sparse:cast-to-restricted-__le16
+`-- x86_64-randconfig-161-20240604
+    `-- drivers-gpu-drm-drm_mm.c:error:function-drm_mm_node_scanned_block-is-not-needed-and-will-not-be-emitted-Werror-Wunneeded-internal-declaration
 
-diff --git a/drivers/thunderbolt/Kconfig b/drivers/thunderbolt/Kconfig
-index 448fd2ec8f6e2..facf2e684c022 100644
---- a/drivers/thunderbolt/Kconfig
-+++ b/drivers/thunderbolt/Kconfig
-@@ -18,6 +18,24 @@ menuconfig USB4
- 
- if USB4
- 
-+config USB4_PCIE_TUNNELING
-+	bool "Allow PCI Express tunneling over USB4 fabric"
-+	depends on PCI
-+	default y
-+	help
-+	  USB4 and Thunderbolt devices typically include PCIe switch
-+	  with a number of PCIe endpoints such as USB host controllers,
-+	  GPUs and network adapters. These are made available to the
-+	  host system through PCIe tunneling. These can use DMA and
-+	  therefore have access to the host memory which is typically
-+	  guarded by an IOMMU. This option allows disabling PCIe
-+	  tunneling completely.
-+
-+	  For devices to be usable it is recommended to say Y here.
-+
-+	  Note this only works with systems that use Software Based
-+	  Connection Manager (this is most USB4 hosts).
-+
- config USB4_DEBUGFS_WRITE
- 	bool "Enable write by debugfs to configuration spaces (DANGEROUS)"
- 	help
-diff --git a/drivers/thunderbolt/tb.c b/drivers/thunderbolt/tb.c
-index 10e719dd837ce..7d71ff3f82c13 100644
---- a/drivers/thunderbolt/tb.c
-+++ b/drivers/thunderbolt/tb.c
-@@ -3181,7 +3181,7 @@ struct tb *tb_probe(struct tb_nhi *nhi)
- 	if (!tb)
- 		return NULL;
- 
--	if (tb_acpi_may_tunnel_pcie())
-+	if (tb_may_tunnel_pcie())
- 		tb->security_level = TB_SECURITY_USER;
- 	else
- 		tb->security_level = TB_SECURITY_NOPCIE;
-diff --git a/drivers/thunderbolt/tb.h b/drivers/thunderbolt/tb.h
-index 18aae4ccaed59..22fad8a9679ae 100644
---- a/drivers/thunderbolt/tb.h
-+++ b/drivers/thunderbolt/tb.h
-@@ -1436,6 +1436,15 @@ static inline int tb_acpi_power_on_retimers(struct tb_port *port) { return 0; }
- static inline int tb_acpi_power_off_retimers(struct tb_port *port) { return 0; }
- #endif
- 
-+static inline bool tb_may_tunnel_pcie(void)
-+{
-+#ifdef CONFIG_USB4_PCIE_TUNNELING
-+	return tb_acpi_may_tunnel_pcie();
-+#else
-+	return false;
-+#endif
-+}
-+
- #ifdef CONFIG_DEBUG_FS
- void tb_debugfs_init(void);
- void tb_debugfs_exit(void);
-diff --git a/drivers/thunderbolt/tunnel.c b/drivers/thunderbolt/tunnel.c
-index 41cf6378ad251..7c8397c135ba9 100644
---- a/drivers/thunderbolt/tunnel.c
-+++ b/drivers/thunderbolt/tunnel.c
-@@ -101,7 +101,7 @@ static unsigned int tb_available_credits(const struct tb_port *port,
- 	size_t ndp;
- 
- 	usb3 = tb_acpi_may_tunnel_usb3() ? sw->max_usb3_credits : 0;
--	pcie = tb_acpi_may_tunnel_pcie() ? sw->max_pcie_credits : 0;
-+	pcie = tb_may_tunnel_pcie() ? sw->max_pcie_credits : 0;
- 
- 	if (tb_acpi_is_xdomain_allowed()) {
- 		spare = min_not_zero(sw->max_dma_credits, dma_credits);
-@@ -426,7 +426,7 @@ bool tb_tunnel_reserved_pci(struct tb_port *port, int *reserved_up,
- 	if (WARN_ON_ONCE(!port->remote))
- 		return false;
- 
--	if (!tb_acpi_may_tunnel_pcie())
-+	if (!tb_may_tunnel_pcie())
- 		return false;
- 
- 	if (tb_port_get_link_generation(port) < 4)
-@@ -1510,7 +1510,7 @@ static unsigned int tb_dma_available_credits(const struct tb_port *port)
- 	int credits;
- 
- 	credits = tb_available_credits(port, NULL);
--	if (tb_acpi_may_tunnel_pcie())
-+	if (tb_may_tunnel_pcie())
- 		credits -= sw->max_pcie_credits;
- 	credits -= port->dma_credits;
- 
-@@ -1821,7 +1821,7 @@ static int tb_usb3_consumed_bandwidth(struct tb_tunnel *tunnel,
- 		int *consumed_up, int *consumed_down)
- {
- 	struct tb_port *port = tb_upstream_port(tunnel->dst_port->sw);
--	int pcie_weight = tb_acpi_may_tunnel_pcie() ? TB_PCI_WEIGHT : 0;
-+	int pcie_weight = tb_may_tunnel_pcie() ? TB_PCI_WEIGHT : 0;
- 
- 	/*
- 	 * PCIe tunneling, if enabled, affects the USB3 bandwidth so
-diff --git a/drivers/thunderbolt/usb4.c b/drivers/thunderbolt/usb4.c
-index de480bf2a53de..cacc7bec19eb4 100644
---- a/drivers/thunderbolt/usb4.c
-+++ b/drivers/thunderbolt/usb4.c
-@@ -282,7 +282,7 @@ int usb4_switch_setup(struct tb_switch *sw)
- 	 * Only enable PCIe tunneling if the parent router supports it
- 	 * and it is not disabled.
- 	 */
--	if (tb_acpi_may_tunnel_pcie() &&
-+	if (tb_may_tunnel_pcie() &&
- 	    tb_switch_find_port(parent, TB_TYPE_PCIE_DOWN)) {
- 		val |= ROUTER_CS_5_PTO;
- 		/*
+elapsed time: 734m
+
+configs tested: 179
+configs skipped: 3
+
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                   randconfig-001-20240604   gcc  
+arc                   randconfig-002-20240604   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   clang
+arm                              allyesconfig   gcc  
+arm                                 defconfig   clang
+arm                          ep93xx_defconfig   clang
+arm                            hisi_defconfig   gcc  
+arm                   randconfig-001-20240604   clang
+arm                   randconfig-002-20240604   gcc  
+arm                   randconfig-003-20240604   clang
+arm                   randconfig-004-20240604   gcc  
+arm64                            allmodconfig   clang
+arm64                             allnoconfig   gcc  
+arm64                               defconfig   gcc  
+arm64                 randconfig-001-20240604   clang
+arm64                 randconfig-002-20240604   gcc  
+arm64                 randconfig-003-20240604   gcc  
+arm64                 randconfig-004-20240604   clang
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+csky                  randconfig-001-20240604   gcc  
+csky                  randconfig-002-20240604   gcc  
+hexagon                          allmodconfig   clang
+hexagon                           allnoconfig   clang
+hexagon                          allyesconfig   clang
+hexagon                             defconfig   clang
+hexagon               randconfig-001-20240604   clang
+hexagon               randconfig-002-20240604   clang
+i386                             allmodconfig   gcc  
+i386                              allnoconfig   gcc  
+i386                             allyesconfig   gcc  
+i386         buildonly-randconfig-001-20240604   gcc  
+i386         buildonly-randconfig-002-20240604   clang
+i386         buildonly-randconfig-003-20240604   clang
+i386         buildonly-randconfig-004-20240604   gcc  
+i386         buildonly-randconfig-005-20240604   clang
+i386         buildonly-randconfig-006-20240604   clang
+i386                                defconfig   clang
+i386                  randconfig-001-20240604   clang
+i386                  randconfig-002-20240604   clang
+i386                  randconfig-003-20240604   clang
+i386                  randconfig-004-20240604   clang
+i386                  randconfig-005-20240604   gcc  
+i386                  randconfig-006-20240604   gcc  
+i386                  randconfig-011-20240604   clang
+i386                  randconfig-012-20240604   gcc  
+i386                  randconfig-013-20240604   gcc  
+i386                  randconfig-014-20240604   clang
+i386                  randconfig-015-20240604   clang
+i386                  randconfig-016-20240604   clang
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20240604   gcc  
+loongarch             randconfig-002-20240604   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+m68k                        m5307c3_defconfig   gcc  
+m68k                            mac_defconfig   gcc  
+m68k                            q40_defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+nios2                 randconfig-001-20240604   gcc  
+nios2                 randconfig-002-20240604   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc                randconfig-001-20240604   gcc  
+parisc                randconfig-002-20240604   gcc  
+parisc64                            defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   clang
+powerpc                    amigaone_defconfig   gcc  
+powerpc                        cell_defconfig   gcc  
+powerpc                      chrp32_defconfig   clang
+powerpc                       eiger_defconfig   clang
+powerpc                   microwatt_defconfig   gcc  
+powerpc                     rainier_defconfig   gcc  
+powerpc               randconfig-001-20240604   gcc  
+powerpc               randconfig-002-20240604   gcc  
+powerpc               randconfig-003-20240604   gcc  
+powerpc                     tqm8560_defconfig   gcc  
+powerpc                        warp_defconfig   gcc  
+powerpc64             randconfig-001-20240604   gcc  
+powerpc64             randconfig-002-20240604   gcc  
+powerpc64             randconfig-003-20240604   clang
+riscv                            allmodconfig   clang
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   clang
+riscv                               defconfig   clang
+riscv                 randconfig-001-20240604   clang
+riscv                 randconfig-002-20240604   gcc  
+s390                             allmodconfig   clang
+s390                              allnoconfig   clang
+s390                             allyesconfig   gcc  
+s390                                defconfig   clang
+s390                  randconfig-001-20240604   clang
+s390                  randconfig-002-20240604   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                          lboxre2_defconfig   gcc  
+sh                    randconfig-001-20240604   gcc  
+sh                    randconfig-002-20240604   gcc  
+sh                          urquell_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                               defconfig   gcc  
+sparc64                          alldefconfig   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+sparc64               randconfig-001-20240604   gcc  
+sparc64               randconfig-002-20240604   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   gcc  
+um                                  defconfig   clang
+um                             i386_defconfig   gcc  
+um                    randconfig-001-20240604   clang
+um                    randconfig-002-20240604   clang
+um                           x86_64_defconfig   clang
+x86_64                            allnoconfig   clang
+x86_64                           allyesconfig   clang
+x86_64       buildonly-randconfig-001-20240604   clang
+x86_64       buildonly-randconfig-002-20240604   clang
+x86_64       buildonly-randconfig-003-20240604   gcc  
+x86_64       buildonly-randconfig-004-20240604   clang
+x86_64       buildonly-randconfig-005-20240604   gcc  
+x86_64       buildonly-randconfig-006-20240604   clang
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20240604   clang
+x86_64                randconfig-002-20240604   gcc  
+x86_64                randconfig-003-20240604   gcc  
+x86_64                randconfig-004-20240604   gcc  
+x86_64                randconfig-005-20240604   gcc  
+x86_64                randconfig-006-20240604   gcc  
+x86_64                randconfig-011-20240604   clang
+x86_64                randconfig-012-20240604   clang
+x86_64                randconfig-013-20240604   clang
+x86_64                randconfig-014-20240604   clang
+x86_64                randconfig-015-20240604   clang
+x86_64                randconfig-016-20240604   clang
+x86_64                randconfig-071-20240604   clang
+x86_64                randconfig-072-20240604   gcc  
+x86_64                randconfig-073-20240604   gcc  
+x86_64                randconfig-074-20240604   clang
+x86_64                randconfig-075-20240604   clang
+x86_64                randconfig-076-20240604   clang
+x86_64                          rhel-8.3-rust   clang
+xtensa                            allnoconfig   gcc  
+xtensa                randconfig-001-20240604   gcc  
+xtensa                randconfig-002-20240604   gcc  
+
 -- 
-2.43.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
