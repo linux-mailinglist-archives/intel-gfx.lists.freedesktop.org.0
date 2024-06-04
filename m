@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16EF08FB716
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F58A8FB718
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA97B10E4E6;
-	Tue,  4 Jun 2024 15:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C676210E4E8;
+	Tue,  4 Jun 2024 15:28:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJLYCr5Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XzQPpyN0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AAB310E4E8
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 002F410E4E8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717514916; x=1749050916;
+ t=1717514920; x=1749050920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J0NQ6g/eeohaE/0QIoqmUB9YRk6NQ4UIxdyBHgD/gbY=;
- b=lJLYCr5Z+83HPaHvVVtYAyZdInE3br+iuQcTl3/Bruuy+U2iFSU9tubo
- QwMIz1aZ+uvH785+/7w+mW05Sl042aJDoFSLit6MCW464VUE5ktxr21fm
- s8oZor60oBomDQypYwY54tqSWZ1cDld7W+FagE20R7f363e1yFdCL/HAs
- z02XoC9PpoZ9Wx5CnRT5k8yHH/auTTl8UxSyhi7CsPYsdmOFbvxrIwU3N
- bHNL3wj07YHC42u0iRY8xDxXvbuxY7GPyHUzH4WQHMqmaadMPLZ2O4xRp
- U1RfoHdsByifkHb/rXHUCBQVzyNcuhhk+G72T0UOr5H6Rl+fbYhehirIx w==;
-X-CSE-ConnectionGUID: kPj9nonwSYSbQKM87KWqDw==
-X-CSE-MsgGUID: kiVbg9cyT4CWL7/t0tD6xA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="17009109"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="17009109"
+ bh=pO44MDCl3PepoIxFUifUkObCvZZ0TwDjl/9KjohNFBo=;
+ b=XzQPpyN0vRsesbTMt98fmKQ3TTZWZBJH3gDynLfMjL8RL5RwdQBEkTLr
+ Qn69cCm9IFErjsvDKCcrtw+cBbMcgV9UdF48tseGnx9KyuvtqVrVgKW2N
+ PfN79u6Qr6I1VCWxxUPoiLuaVdHnYpeVI55KvdZAvCELzAow5Z6dJOz23
+ e8xZfADGL45OY+JHIw4sJj4aWhnsDFGEfkALWybl5n5qEiH1vR4OULeGy
+ lqhlu5xZ75qNGvxZ1N8eV8rRtRo9BKQzUeFcioa8U5headiqmU+wHATGI
+ hQRd1cwLC6hwkH1nDuFxP9SkUN+v8jz6oOo6jybEZyjfh6qhQqKX/W7uu A==;
+X-CSE-ConnectionGUID: XlxJki7KQ6ya5Gwzx0xwCA==
+X-CSE-MsgGUID: 4OuEo73yRq+QupjQ51gwRA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="17009133"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="17009133"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:34 -0700
-X-CSE-ConnectionGUID: F8LnwHs8QwWHN7q/xqvlsw==
-X-CSE-MsgGUID: 4FOXdW+HRpW8KH3lMvcV/w==
+ 04 Jun 2024 08:28:39 -0700
+X-CSE-ConnectionGUID: Dqe5uSjERtuKBN1GxmOEfA==
+X-CSE-MsgGUID: L2BY4oMYRj21UvDz79/2Tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37742175"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37742189"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:33 -0700
+ 04 Jun 2024 08:28:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 26/65] drm/i915: pass dev_priv explicitly to DSPFW1
-Date: Tue,  4 Jun 2024 18:25:44 +0300
-Message-Id: <4843726dff7d95e4127fb948073c9e4addc1e683.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 27/65] drm/i915: pass dev_priv explicitly to DSPFW2
+Date: Tue,  4 Jun 2024 18:25:45 +0300
+Message-Id: <ba349f90b6614605c52f58ae048961c7b4da4495.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -70,114 +70,79 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the DSPFW1 register macro.
+explicitly to the DSPFW2 register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c | 25 +++++++++++++------------
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 13 +++++++------
  drivers/gpu/drm/i915/i915_reg.h        |  2 +-
- 2 files changed, 14 insertions(+), 13 deletions(-)
+ 2 files changed, 8 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index fd14010b4cc3..e39415fb1c19 100644
+index e39415fb1c19..1e11d66d1a7e 100644
 --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
 +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -657,10 +657,10 @@ static void pnv_update_wm(struct drm_i915_private *dev_priv)
- 					&pnv_display_wm,
- 					pnv_display_wm.fifo_size,
- 					cpp, latency->display_sr);
--		reg = intel_uncore_read(&dev_priv->uncore, DSPFW1);
-+		reg = intel_uncore_read(&dev_priv->uncore, DSPFW1(dev_priv));
- 		reg &= ~DSPFW_SR_MASK;
- 		reg |= FW_WM(wm, SR);
--		intel_uncore_write(&dev_priv->uncore, DSPFW1, reg);
-+		intel_uncore_write(&dev_priv->uncore, DSPFW1(dev_priv), reg);
- 		drm_dbg_kms(&dev_priv->drm, "DSPFW1 register is %x\n", reg);
- 
- 		/* cursor SR */
-@@ -720,7 +720,7 @@ static void g4x_write_wm_values(struct drm_i915_private *dev_priv,
- 	for_each_pipe(dev_priv, pipe)
- 		trace_g4x_wm(intel_crtc_for_pipe(dev_priv, pipe), wm);
- 
--	intel_uncore_write(&dev_priv->uncore, DSPFW1,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1(dev_priv),
- 			   FW_WM(wm->sr.plane, SR) |
+@@ -725,7 +725,7 @@ static void g4x_write_wm_values(struct drm_i915_private *dev_priv,
  			   FW_WM(wm->pipe[PIPE_B].plane[PLANE_CURSOR], CURSORB) |
  			   FW_WM(wm->pipe[PIPE_B].plane[PLANE_PRIMARY], PLANEB) |
-@@ -738,7 +738,7 @@ static void g4x_write_wm_values(struct drm_i915_private *dev_priv,
- 			   FW_WM(wm->hpll.cursor, HPLL_CURSOR) |
- 			   FW_WM(wm->hpll.plane, HPLL_SR));
- 
--	intel_uncore_posting_read(&dev_priv->uncore, DSPFW1);
-+	intel_uncore_posting_read(&dev_priv->uncore, DSPFW1(dev_priv));
- }
- 
- #define FW_WM_VLV(value, plane) \
-@@ -770,7 +770,7 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
- 	intel_uncore_write(&dev_priv->uncore, DSPFW5, 0);
- 	intel_uncore_write(&dev_priv->uncore, DSPFW6, 0);
- 
--	intel_uncore_write(&dev_priv->uncore, DSPFW1,
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1(dev_priv),
- 			   FW_WM(wm->sr.plane, SR) |
+ 			   FW_WM(wm->pipe[PIPE_A].plane[PLANE_PRIMARY], PLANEA));
+-	intel_uncore_write(&dev_priv->uncore, DSPFW2,
++	intel_uncore_write(&dev_priv->uncore, DSPFW2(dev_priv),
+ 			   (wm->fbc_en ? DSPFW_FBC_SR_EN : 0) |
+ 			   FW_WM(wm->sr.fbc, FBC_SR) |
+ 			   FW_WM(wm->hpll.fbc, FBC_HPLL_SR) |
+@@ -775,7 +775,7 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
  			   FW_WM(wm->pipe[PIPE_B].plane[PLANE_CURSOR], CURSORB) |
  			   FW_WM_VLV(wm->pipe[PIPE_B].plane[PLANE_PRIMARY], PLANEB) |
-@@ -817,7 +817,7 @@ static void vlv_write_wm_values(struct drm_i915_private *dev_priv,
- 				   FW_WM(wm->pipe[PIPE_A].plane[PLANE_PRIMARY] >> 8, PLANEA_HI));
- 	}
- 
--	intel_uncore_posting_read(&dev_priv->uncore, DSPFW1);
-+	intel_uncore_posting_read(&dev_priv->uncore, DSPFW1(dev_priv));
- }
- 
- #undef FW_WM_VLV
-@@ -2067,10 +2067,11 @@ static void i965_update_wm(struct drm_i915_private *dev_priv)
- 		    srwm);
- 
- 	/* 965 has limitations... */
--	intel_uncore_write(&dev_priv->uncore, DSPFW1, FW_WM(srwm, SR) |
--		   FW_WM(8, CURSORB) |
--		   FW_WM(8, PLANEB) |
--		   FW_WM(8, PLANEA));
-+	intel_uncore_write(&dev_priv->uncore, DSPFW1(dev_priv),
-+		           FW_WM(srwm, SR) |
-+		           FW_WM(8, CURSORB) |
-+		           FW_WM(8, PLANEB) |
-+		           FW_WM(8, PLANEA));
- 	intel_uncore_write(&dev_priv->uncore, DSPFW2, FW_WM(8, CURSORA) |
- 		   FW_WM(8, PLANEC_OLD));
+ 			   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_PRIMARY], PLANEA));
+-	intel_uncore_write(&dev_priv->uncore, DSPFW2,
++	intel_uncore_write(&dev_priv->uncore, DSPFW2(dev_priv),
+ 			   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_SPRITE1], SPRITEB) |
+ 			   FW_WM(wm->pipe[PIPE_A].plane[PLANE_CURSOR], CURSORA) |
+ 			   FW_WM_VLV(wm->pipe[PIPE_A].plane[PLANE_SPRITE0], SPRITEA));
+@@ -2072,8 +2072,9 @@ static void i965_update_wm(struct drm_i915_private *dev_priv)
+ 		           FW_WM(8, CURSORB) |
+ 		           FW_WM(8, PLANEB) |
+ 		           FW_WM(8, PLANEA));
+-	intel_uncore_write(&dev_priv->uncore, DSPFW2, FW_WM(8, CURSORA) |
+-		   FW_WM(8, PLANEC_OLD));
++	intel_uncore_write(&dev_priv->uncore, DSPFW2(dev_priv),
++		           FW_WM(8, CURSORA) |
++		           FW_WM(8, PLANEC_OLD));
  	/* update cursor SR watermark */
-@@ -3521,7 +3522,7 @@ static void g4x_read_wm_values(struct drm_i915_private *dev_priv,
- {
- 	u32 tmp;
+ 	intel_uncore_write(&dev_priv->uncore, DSPFW3, FW_WM(cursor_sr, CURSOR_SR));
  
--	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW1);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW1(dev_priv));
- 	wm->sr.plane = _FW_WM(tmp, SR);
- 	wm->pipe[PIPE_B].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORB);
+@@ -3528,7 +3529,7 @@ static void g4x_read_wm_values(struct drm_i915_private *dev_priv,
  	wm->pipe[PIPE_B].plane[PLANE_PRIMARY] = _FW_WM(tmp, PLANEB);
-@@ -3561,7 +3562,7 @@ static void vlv_read_wm_values(struct drm_i915_private *dev_priv,
- 			(tmp >> DDL_SPRITE_SHIFT(1)) & (DDL_PRECISION_HIGH | DRAIN_LATENCY_MASK);
- 	}
+ 	wm->pipe[PIPE_A].plane[PLANE_PRIMARY] = _FW_WM(tmp, PLANEA);
  
--	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW1);
-+	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW1(dev_priv));
- 	wm->sr.plane = _FW_WM(tmp, SR);
- 	wm->pipe[PIPE_B].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORB);
+-	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW2);
++	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW2(dev_priv));
+ 	wm->fbc_en = tmp & DSPFW_FBC_SR_EN;
+ 	wm->sr.fbc = _FW_WM(tmp, FBC_SR);
+ 	wm->hpll.fbc = _FW_WM(tmp, FBC_HPLL_SR);
+@@ -3568,7 +3569,7 @@ static void vlv_read_wm_values(struct drm_i915_private *dev_priv,
  	wm->pipe[PIPE_B].plane[PLANE_PRIMARY] = _FW_WM_VLV(tmp, PLANEB);
+ 	wm->pipe[PIPE_A].plane[PLANE_PRIMARY] = _FW_WM_VLV(tmp, PLANEA);
+ 
+-	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW2);
++	tmp = intel_uncore_read(&dev_priv->uncore, DSPFW2(dev_priv));
+ 	wm->pipe[PIPE_A].plane[PLANE_SPRITE1] = _FW_WM_VLV(tmp, SPRITEB);
+ 	wm->pipe[PIPE_A].plane[PLANE_CURSOR] = _FW_WM(tmp, CURSORA);
+ 	wm->pipe[PIPE_A].plane[PLANE_SPRITE0] = _FW_WM_VLV(tmp, SPRITEA);
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 75223b8cb575..5f1db52ee773 100644
+index 5f1db52ee773..8b642cb0d9b7 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2019,7 +2019,7 @@
- #define   DSPARB_SPRITEF_MASK_VLV	(0xff << 8)
- 
- /* pnv/gen4/g4x/vlv/chv */
--#define DSPFW1		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x70034)
-+#define DSPFW1(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x70034)
- #define   DSPFW_SR_SHIFT		23
- #define   DSPFW_SR_MASK			(0x1ff << 23)
- #define   DSPFW_CURSORB_SHIFT		16
+@@ -2030,7 +2030,7 @@
+ #define   DSPFW_PLANEA_SHIFT		0
+ #define   DSPFW_PLANEA_MASK		(0x7f << 0)
+ #define   DSPFW_PLANEA_MASK_VLV		(0xff << 0) /* vlv/chv */
+-#define DSPFW2		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x70038)
++#define DSPFW2(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x70038)
+ #define   DSPFW_FBC_SR_EN		(1 << 31)	  /* g4x */
+ #define   DSPFW_FBC_SR_SHIFT		28
+ #define   DSPFW_FBC_SR_MASK		(0x7 << 28) /* g4x */
 -- 
 2.39.2
 
