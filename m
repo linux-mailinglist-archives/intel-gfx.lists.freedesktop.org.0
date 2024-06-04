@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 142578FB74F
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10AC48FB754
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:31:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1A010E511;
-	Tue,  4 Jun 2024 15:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF33D10E51C;
+	Tue,  4 Jun 2024 15:31:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KSv210Z/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eWqtDJGd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 542D710E51C
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:31:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54EE110E50C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717515081; x=1749051081;
+ t=1717515085; x=1749051085;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TSU/pCDX/SMTqNVUJ9tHm34687i+GYzbrfeAA3rDUyU=;
- b=KSv210Z/zpG4FF5poYRDYl/pmz5Y4MgFNaWwZ5SB5XBMxudc2SdnyARs
- G1qFC4brqNWTB6z5groAcNTzWTvbaGqRRS8u3ATBAHaSoPzgh43qbekXN
- e9IWI0Uk0b9Z4ptUYx4uxawMEqOic0JXwQL7paoixRW0CukkAs3dH2JrG
- HVbK1oQOHKbumyjQog0wgS0yOaiXJGdHnaPr2UrKSpmOMQhNvN6kyxLlQ
- WZW+MiReJrdSzcCJ/jG3R8HDbW9rRTSmrtxWgeSAdujzt1Vrk3hzT91yq
- JyeiDRmzlqzkKTRoyefLMBe/nTx+mmVbaUn8DFhi/Bd2y00dJc0bDa2j1 w==;
-X-CSE-ConnectionGUID: JRYYPosnQIaJ+OwpMUoBOg==
-X-CSE-MsgGUID: KpNFzl+nTAKFbSR+cSkqxQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="24733625"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="24733625"
+ bh=xbC/PkxzzNtm+ip+5439t3OOpsNj0ToHdY1+bTTdHWU=;
+ b=eWqtDJGdVixZTDCz8FWyLR+KRudXVjEESb7iscM67huF8NntumRn1SXi
+ oOk5e8ASg75oYEDZF7YF/V0D9acPL+0yJRlhJ70s7K+FBsTFn4qRU+frz
+ BfnPmfgzEEWWJsl0n0+6VN3pVLq2UFfWkeXrml2wuXJxp3dYqDT9c5L+Q
+ WLulAUuMRysvA2wolwekl8D10SXPFJI4O/CkMKZDmGU6tWenso5rgnL0y
+ /vFSBH37kap+TqWGa6AsdlPKie5GRvZhh6JcuuL7txCtonnJl3v7XHHLz
+ ZgY5odwcKW5VAubZw+Nb16wb8AdWcT7mNJ42F9HhFfqMnKArbcywCirjv A==;
+X-CSE-ConnectionGUID: 9VOxQ9ESTjuriTkDKMfN+Q==
+X-CSE-MsgGUID: fi0gFJbMQ9uO/IG29K518A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="24733642"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="24733642"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:31:21 -0700
-X-CSE-ConnectionGUID: lsVpclYgSQisxL5ReJMC4g==
-X-CSE-MsgGUID: giHODLBMQoyWuz/AGyn6Ug==
+ 04 Jun 2024 08:31:25 -0700
+X-CSE-ConnectionGUID: cJXbqAC4Rz+yoJvusI0FYA==
+X-CSE-MsgGUID: itBIvHmdT0WLEtEP6IJDew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="41828070"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="41828102"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:31:20 -0700
+ 04 Jun 2024 08:31:24 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 61/65] drm/i915: pass dev_priv explicitly to TGL_DP_TP_CTL
-Date: Tue,  4 Jun 2024 18:26:19 +0300
-Message-Id: <3d3e2b732ec9372cf6b1ae44b25342179b028b1a.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 62/65] drm/i915: pass dev_priv explicitly to TGL_DP_TP_STATUS
+Date: Tue,  4 Jun 2024 18:26:20 +0300
+Message-Id: <c7aaf0e981324bfc5b3aec31f30a7b1a158ba568.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -70,7 +70,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the TGL_DP_TP_CTL register macro.
+explicitly to the TGL_DP_TP_STATUS register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
@@ -79,32 +79,32 @@ Signed-off-by: Jani Nikula <jani.nikula@intel.com>
  2 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 515996c49f5a..135c2e7964fc 100644
+index 135c2e7964fc..368cd1312d8a 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2184,7 +2184,8 @@ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+@@ -2196,7 +2196,8 @@ i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
  
  	if (DISPLAY_VER(dev_priv) >= 12)
--		return TGL_DP_TP_CTL(tgl_dp_tp_transcoder(crtc_state));
-+		return TGL_DP_TP_CTL(dev_priv,
-+				     tgl_dp_tp_transcoder(crtc_state));
+-		return TGL_DP_TP_STATUS(tgl_dp_tp_transcoder(crtc_state));
++		return TGL_DP_TP_STATUS(dev_priv,
++				        tgl_dp_tp_transcoder(crtc_state));
  	else
- 		return DP_TP_CTL(encoder->port);
+ 		return DP_TP_STATUS(encoder->port);
  }
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index f330953e71cf..c1547ecdc352 100644
+index c1547ecdc352..3de6e4f54bc0 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4022,7 +4022,7 @@ enum skl_power_gate {
- #define _DP_TP_CTL_B			0x64140
- #define _TGL_DP_TP_CTL_A		0x60540
- #define DP_TP_CTL(port) _MMIO_PORT(port, _DP_TP_CTL_A, _DP_TP_CTL_B)
--#define TGL_DP_TP_CTL(tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
-+#define TGL_DP_TP_CTL(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
- #define  DP_TP_CTL_ENABLE			(1 << 31)
- #define  DP_TP_CTL_FEC_ENABLE			(1 << 30)
- #define  DP_TP_CTL_MODE_SST			(0 << 27)
+@@ -4048,7 +4048,7 @@ enum skl_power_gate {
+ #define _DP_TP_STATUS_B			0x64144
+ #define _TGL_DP_TP_STATUS_A		0x60544
+ #define DP_TP_STATUS(port) _MMIO_PORT(port, _DP_TP_STATUS_A, _DP_TP_STATUS_B)
+-#define TGL_DP_TP_STATUS(tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_STATUS_A)
++#define TGL_DP_TP_STATUS(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_STATUS_A)
+ #define  DP_TP_STATUS_FEC_ENABLE_LIVE		(1 << 28)
+ #define  DP_TP_STATUS_IDLE_DONE			(1 << 25)
+ #define  DP_TP_STATUS_ACT_SENT			(1 << 24)
 -- 
 2.39.2
 
