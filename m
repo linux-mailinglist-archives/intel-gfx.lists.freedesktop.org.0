@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ACFA8FB712
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC5A8FB713
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C025D10E4EC;
-	Tue,  4 Jun 2024 15:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6BC010E4F1;
+	Tue,  4 Jun 2024 15:28:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="njZ9v27K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NUlizfiL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 452FB10E4F2
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2039110E4E8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717514904; x=1749050904;
+ t=1717514910; x=1749050910;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=R1NSoOkmg9iNSdBAaT0rXXomAUiNSlBAFwEFQdGlLYs=;
- b=njZ9v27KqN7S0DGk4LtxuNAGRMEweydFjukAsn+rI5sLFjvc9AuNkFJU
- 2Zu4O0ed5UiefG0OakTw6YpU+FCBEgXfwEyce8sudmU+16Zm2TR0QeRic
- VhzDOaf5oAGUW2Sjnw5rgJzRJUKqtVCroIfeEcjuh/MKkQzuXcBhPfteL
- W1HRTJ2ZPYB7oXsg0uFZsW4pMCuP+RKYJ2GkQZTxg6mXEAM1It0sXFhc4
- rFYeJIDud9wpXbdYElFtNzvxuMGXYEzlAsssmqAGNiWI2l4aJ67Y0w/cj
- wvZXO4GFXVI+D5aZGQ+yP79RXbJvpi5LoP5EvHCM7J+TK9nBBr1el7AzN A==;
-X-CSE-ConnectionGUID: O5urgZ2dSm2Ra3Lsz+tFbw==
-X-CSE-MsgGUID: Vb6xEy8NSJq6fUOmZZPfnw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14225645"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="14225645"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:24 -0700
-X-CSE-ConnectionGUID: VPJeHEicTuKXKPakzpG1fA==
-X-CSE-MsgGUID: FuubqNraToqgHulU/dPknQ==
+ bh=TJ+XKHxpzsE11h0pJLS/oq/LACwPnvBukeh3gXwzh1c=;
+ b=NUlizfiLAo9o8+DkoM1tVypTZF11Yt0u6IrhZTZ3SVOqWXPh3GGcyNGj
+ 77HT+ZZ4WFJEcPmoIzUQgdTXRE8XWxgFfHyJX1611lVFXJz7X2SWchBZF
+ YOX3zu6KAAS8mbPBOLS7ZYuMC4SEiDHVUcMbaKyj8wdstn2X4L6Cs9AD3
+ iPA7tJZzQdPxncstG9rjsM5NwQuCPUimbdLL7IoWlhovVFBSKSj2VR3vX
+ CgoHFjru1hjReZQemTiUORICxzRQJW8K0rntDpiRCsLHm7cnNA9ULkVD+
+ YfC2piqhPeucG06xxxDhYq5WNNIf94Oa9Zc/UtBsL3Cxwbzj1cJscF/6Q g==;
+X-CSE-ConnectionGUID: m6bl99O6TS2eAxDcNo8Nsg==
+X-CSE-MsgGUID: xHwwQj7tQ3GaCtDvqmmgww==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="17009069"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="17009069"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 08:28:29 -0700
+X-CSE-ConnectionGUID: Yn0U/CZuRf2h277L/XqYZg==
+X-CSE-MsgGUID: a7jeqPBZR+iHl9mrCcWP0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37278045"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37742162"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:22 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 08:28:28 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 24/65] drm/i915: pass dev_priv explicitly to ICL_PIPESTATUS
-Date: Tue,  4 Jun 2024 18:25:42 +0300
-Message-Id: <d9a7ef1ff8e848cd10729f4ee033d1ef55ee78cc.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 25/65] drm/i915: pass dev_priv explicitly to DSPARB
+Date: Tue,  4 Jun 2024 18:25:43 +0300
+Message-Id: <9e8dc8978ce3122a0e9c53778be547875a9ae6d8.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -70,55 +70,142 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the ICL_PIPESTATUS register macro.
+explicitly to the DSPARB register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 9 ++++++---
- drivers/gpu/drm/i915/i915_reg.h                    | 2 +-
- 2 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 22 ++++++++++++----------
+ drivers/gpu/drm/i915/i915_reg.h        |  2 +-
+ drivers/gpu/drm/i915/i915_suspend.c    |  6 ++++--
+ 3 files changed, 17 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index 401726f466c0..e5e4ca7cc499 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -209,7 +209,8 @@ static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 628e7192ebc9..fd14010b4cc3 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -269,13 +269,15 @@ static void vlv_get_fifo_size(struct intel_crtc_state *crtc_state)
  
- 	if (enable) {
- 		if (DISPLAY_VER(dev_priv) >= 11)
--			intel_de_write(dev_priv, ICL_PIPESTATUS(pipe),
-+			intel_de_write(dev_priv,
-+				       ICL_PIPESTATUS(dev_priv, pipe),
- 				       icl_pipe_status_underrun_mask(dev_priv));
+ 	switch (pipe) {
+ 	case PIPE_A:
+-		dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
++		dsparb = intel_uncore_read(&dev_priv->uncore,
++					   DSPARB(dev_priv));
+ 		dsparb2 = intel_uncore_read(&dev_priv->uncore, DSPARB2);
+ 		sprite0_start = VLV_FIFO_START(dsparb, dsparb2, 0, 0);
+ 		sprite1_start = VLV_FIFO_START(dsparb, dsparb2, 8, 4);
+ 		break;
+ 	case PIPE_B:
+-		dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
++		dsparb = intel_uncore_read(&dev_priv->uncore,
++					   DSPARB(dev_priv));
+ 		dsparb2 = intel_uncore_read(&dev_priv->uncore, DSPARB2);
+ 		sprite0_start = VLV_FIFO_START(dsparb, dsparb2, 16, 8);
+ 		sprite1_start = VLV_FIFO_START(dsparb, dsparb2, 24, 12);
+@@ -300,7 +302,7 @@ static void vlv_get_fifo_size(struct intel_crtc_state *crtc_state)
+ static int i9xx_get_fifo_size(struct drm_i915_private *dev_priv,
+ 			      enum i9xx_plane_id i9xx_plane)
+ {
+-	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
++	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB(dev_priv));
+ 	int size;
  
- 		bdw_enable_pipe_irq(dev_priv, pipe, mask);
-@@ -418,9 +419,11 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
- 	 * the underrun was caused by the downstream port.
- 	 */
- 	if (DISPLAY_VER(dev_priv) >= 11) {
--		underruns = intel_de_read(dev_priv, ICL_PIPESTATUS(pipe)) &
-+		underruns = intel_de_read(dev_priv,
-+					  ICL_PIPESTATUS(dev_priv, pipe)) &
- 			icl_pipe_status_underrun_mask(dev_priv);
--		intel_de_write(dev_priv, ICL_PIPESTATUS(pipe), underruns);
-+		intel_de_write(dev_priv, ICL_PIPESTATUS(dev_priv, pipe),
-+			       underruns);
+ 	size = dsparb & 0x7f;
+@@ -316,7 +318,7 @@ static int i9xx_get_fifo_size(struct drm_i915_private *dev_priv,
+ static int i830_get_fifo_size(struct drm_i915_private *dev_priv,
+ 			      enum i9xx_plane_id i9xx_plane)
+ {
+-	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
++	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB(dev_priv));
+ 	int size;
+ 
+ 	size = dsparb & 0x1ff;
+@@ -333,7 +335,7 @@ static int i830_get_fifo_size(struct drm_i915_private *dev_priv,
+ static int i845_get_fifo_size(struct drm_i915_private *dev_priv,
+ 			      enum i9xx_plane_id i9xx_plane)
+ {
+-	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB);
++	u32 dsparb = intel_uncore_read(&dev_priv->uncore, DSPARB(dev_priv));
+ 	int size;
+ 
+ 	size = dsparb & 0x7f;
+@@ -1787,7 +1789,7 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 
+ 	switch (crtc->pipe) {
+ 	case PIPE_A:
+-		dsparb = intel_uncore_read_fw(uncore, DSPARB);
++		dsparb = intel_uncore_read_fw(uncore, DSPARB(dev_priv));
+ 		dsparb2 = intel_uncore_read_fw(uncore, DSPARB2);
+ 
+ 		dsparb &= ~(VLV_FIFO(SPRITEA, 0xff) |
+@@ -1800,11 +1802,11 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 		dsparb2 |= (VLV_FIFO(SPRITEA_HI, sprite0_start >> 8) |
+ 			   VLV_FIFO(SPRITEB_HI, sprite1_start >> 8));
+ 
+-		intel_uncore_write_fw(uncore, DSPARB, dsparb);
++		intel_uncore_write_fw(uncore, DSPARB(dev_priv), dsparb);
+ 		intel_uncore_write_fw(uncore, DSPARB2, dsparb2);
+ 		break;
+ 	case PIPE_B:
+-		dsparb = intel_uncore_read_fw(uncore, DSPARB);
++		dsparb = intel_uncore_read_fw(uncore, DSPARB(dev_priv));
+ 		dsparb2 = intel_uncore_read_fw(uncore, DSPARB2);
+ 
+ 		dsparb &= ~(VLV_FIFO(SPRITEC, 0xff) |
+@@ -1817,7 +1819,7 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 		dsparb2 |= (VLV_FIFO(SPRITEC_HI, sprite0_start >> 8) |
+ 			   VLV_FIFO(SPRITED_HI, sprite1_start >> 8));
+ 
+-		intel_uncore_write_fw(uncore, DSPARB, dsparb);
++		intel_uncore_write_fw(uncore, DSPARB(dev_priv), dsparb);
+ 		intel_uncore_write_fw(uncore, DSPARB2, dsparb2);
+ 		break;
+ 	case PIPE_C:
+@@ -1841,7 +1843,7 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 		break;
  	}
  
- 	if (intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false)) {
+-	intel_uncore_posting_read_fw(uncore, DSPARB);
++	intel_uncore_posting_read_fw(uncore, DSPARB(dev_priv));
+ 
+ 	spin_unlock(&uncore->lock);
+ }
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 1b2c0d650bff..cbe109973f57 100644
+index cbe109973f57..75223b8cb575 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1927,7 +1927,7 @@
- #define PIPE_MISC2(pipe)		_MMIO_PIPE(pipe, _PIPE_MISC2_A, _PIPE_MISC2_B)
+@@ -1984,7 +1984,7 @@
+ #define   SPRITEA_INVALID_GTT_STATUS			REG_BIT(1)
+ #define   PLANEA_INVALID_GTT_STATUS			REG_BIT(0)
  
- #define _ICL_PIPE_A_STATUS			0x70058
--#define ICL_PIPESTATUS(pipe)			_MMIO_PIPE2(dev_priv, pipe, _ICL_PIPE_A_STATUS)
-+#define ICL_PIPESTATUS(dev_priv, pipe)			_MMIO_PIPE2(dev_priv, pipe, _ICL_PIPE_A_STATUS)
- #define   PIPE_STATUS_UNDERRUN				REG_BIT(31)
- #define   PIPE_STATUS_SOFT_UNDERRUN_XELPD		REG_BIT(28)
- #define   PIPE_STATUS_HARD_UNDERRUN_XELPD		REG_BIT(27)
+-#define DSPARB			_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x70030)
++#define DSPARB(dev_priv)			_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x70030)
+ #define   DSPARB_CSTART_MASK	(0x7f << 7)
+ #define   DSPARB_CSTART_SHIFT	7
+ #define   DSPARB_BSTART_MASK	(0x7f)
+diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
+index 81def10eb58f..bc449613c848 100644
+--- a/drivers/gpu/drm/i915/i915_suspend.c
++++ b/drivers/gpu/drm/i915/i915_suspend.c
+@@ -92,7 +92,8 @@ void i915_save_display(struct drm_i915_private *dev_priv)
+ 
+ 	/* Display arbitration control */
+ 	if (GRAPHICS_VER(dev_priv) <= 4)
+-		dev_priv->regfile.saveDSPARB = intel_de_read(dev_priv, DSPARB);
++		dev_priv->regfile.saveDSPARB = intel_de_read(dev_priv,
++							     DSPARB(dev_priv));
+ 
+ 	if (GRAPHICS_VER(dev_priv) == 4)
+ 		pci_read_config_word(pdev, GCDGMBUS,
+@@ -116,7 +117,8 @@ void i915_restore_display(struct drm_i915_private *dev_priv)
+ 
+ 	/* Display arbitration */
+ 	if (GRAPHICS_VER(dev_priv) <= 4)
+-		intel_de_write(dev_priv, DSPARB, dev_priv->regfile.saveDSPARB);
++		intel_de_write(dev_priv, DSPARB(dev_priv),
++			       dev_priv->regfile.saveDSPARB);
+ 
+ 	intel_vga_redisable(dev_priv);
+ 
 -- 
 2.39.2
 
