@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6B28FB706
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C7B8FB707
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:27:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 916C689D39;
-	Tue,  4 Jun 2024 15:27:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42AE610E4DE;
+	Tue,  4 Jun 2024 15:27:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G6yuzrcu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W0gt/AAv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5614410E4CF
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:27:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7D3010E0B8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:27:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717514858; x=1749050858;
+ t=1717514863; x=1749050863;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/6nmrf77p7jv6N5XLuy651PDVJ4zFLva/y4aGFTJzn0=;
- b=G6yuzrcuc2h6jh8qo006hGFG+clw+H3nsDLYmuQl+tg0kUEI9tVbowAW
- RsRXrdlslABbDYcKGjlgYUz9mf1J+QJHzGyvr7IbKGnrx9LwqSKlPrgTM
- Zd/qIk5MRSN4jnNeYlzcJDNMmHT1/ah52JXwRm/4Df6EYo/JY/80rkh2C
- zE2V/xDI67PtECUc6A3zguX0Ll/2/vTrjMKVAUmP07o4llIwwLEPGpvdG
- rGGKSZz703JAezGXfRIN5CzfutY+8XDHrmrUpAYV+GdNOOgpsx84aTOj/
- Ru/Zu3TUvL/HC6YObe/Qi5Dpli72FuveT9YSMbMzcNsLYx/SR83eHrxm2 g==;
-X-CSE-ConnectionGUID: w/CpyCg2Tx2sVk4S9ecUGQ==
-X-CSE-MsgGUID: R8rBe6HzSp+PUgF4tVsBIQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="25469758"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="25469758"
+ bh=cdm0lijiLxZ5BOMTZr5BABO6Dsb7kX4xfj27fzblFKw=;
+ b=W0gt/AAvBiCCC47D9RvQ+VZu7EPJeRKlzH2KjSn7HlvyNAlQtfQeIPpi
+ x03L+mweVg5f6DA71RmGHLE2s4cOQ58lh2v8aDbq6fZCeQCkQCZAbCPVh
+ uaVO+fCAfv4D9hXwJHT36uMe70P/BSc3HLJGoutlwJJWdeY3PrtpZldft
+ Jq/jnGE461SsgCRfuxSWihnL62EI3JXXC5GMVqaT1HTO9sKoeRVX7Fkyl
+ wkBaGnCuLftKbLJ02kPgOhEdzd63r3V3yG8mmdusMCYIKMJllHJLjSBmC
+ aaH8/SOJ7o0bTjLt2Z4KjDf7tEIhMJbVBSjkaLLxE8iOJISmldH4WM33T A==;
+X-CSE-ConnectionGUID: tO0HciLCSwuNVeHwXbYbkQ==
+X-CSE-MsgGUID: HSz44DO5QaKApEYFMac90Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="25469765"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="25469765"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:27:38 -0700
-X-CSE-ConnectionGUID: QC/9vOIQT8qjTQRFFdD80A==
-X-CSE-MsgGUID: nDbL6ai4RsmQ7DPYl/GhYw==
+ 04 Jun 2024 08:27:43 -0700
+X-CSE-ConnectionGUID: z/4yViFyTKafBRPffJGiRg==
+X-CSE-MsgGUID: NAvlERjeQrakFriGqrBgMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="42383354"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="42383383"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:27:37 -0700
+ 04 Jun 2024 08:27:42 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 14/65] drm/i915: pass dev_priv explicitly to PORT_HOTPLUG_STAT
-Date: Tue,  4 Jun 2024 18:25:32 +0300
-Message-Id: <9a47bba4ab8fa4b1a8e8ceea2ba5301bed54805d.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 15/65] drm/i915: pass dev_priv explicitly to PFIT_CONTROL
+Date: Tue,  4 Jun 2024 18:25:33 +0300
+Message-Id: <fad44d3d987d914c83844cdf172adaa19772e035.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -70,129 +70,95 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PORT_HOTPLUG_STAT register macro.
+explicitly to the PFIT_CONTROL register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c            | 2 +-
- drivers/gpu/drm/i915/display/intel_crt.c         | 5 +++--
- drivers/gpu/drm/i915/display/intel_display_irq.c | 2 +-
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 9 ++++++---
- drivers/gpu/drm/i915/i915_irq.c                  | 5 +++--
- drivers/gpu/drm/i915/i915_reg.h                  | 2 +-
- 6 files changed, 15 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 11 ++++++-----
+ drivers/gpu/drm/i915/display/intel_lvds.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h              |  2 +-
+ 4 files changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 06ec04e667e3..40fee8380a81 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -1228,7 +1228,7 @@ static bool g4x_digital_port_connected(struct intel_encoder *encoder)
- 		return false;
- 	}
- 
--	return intel_de_read(dev_priv, PORT_HOTPLUG_STAT) & bit;
-+	return intel_de_read(dev_priv, PORT_HOTPLUG_STAT(dev_priv)) & bit;
- }
- 
- static bool ilk_digital_port_connected(struct intel_encoder *encoder)
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index b7eab52b64b6..808fa8afb164 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -609,12 +609,13 @@ static bool intel_crt_detect_hotplug(struct drm_connector *connector)
- 				    "timed out waiting for FORCE_DETECT to go off");
- 	}
- 
--	stat = intel_de_read(dev_priv, PORT_HOTPLUG_STAT);
-+	stat = intel_de_read(dev_priv, PORT_HOTPLUG_STAT(dev_priv));
- 	if ((stat & CRT_HOTPLUG_MONITOR_MASK) != CRT_HOTPLUG_MONITOR_NONE)
- 		ret = true;
- 
- 	/* clear the interrupt we just generated, if any */
--	intel_de_write(dev_priv, PORT_HOTPLUG_STAT, CRT_HOTPLUG_INT_STATUS);
-+	intel_de_write(dev_priv, PORT_HOTPLUG_STAT(dev_priv),
-+		       CRT_HOTPLUG_INT_STATUS);
- 
- 	i915_hotplug_interrupt_update(dev_priv, CRT_HOTPLUG_FORCE_DETECT, 0);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 1674570dff1e..be5b48861baf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1377,7 +1377,7 @@ void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
- 		intel_uncore_write(uncore, DPINVGTT, DPINVGTT_STATUS_MASK_VLV);
- 
- 	i915_hotplug_interrupt_update_locked(dev_priv, 0xffffffff, 0);
--	intel_uncore_rmw(uncore, PORT_HOTPLUG_STAT, 0, 0);
-+	intel_uncore_rmw(uncore, PORT_HOTPLUG_STAT(dev_priv), 0, 0);
- 
- 	i9xx_pipestat_irq_reset(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index 90fe5f8538e1..a1f07ee69a86 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -435,18 +435,21 @@ u32 i9xx_hpd_irq_ack(struct drm_i915_private *dev_priv)
- 	 * bits can itself generate a new hotplug interrupt :(
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e7ee4970e306..49672694293f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1861,12 +1861,13 @@ static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state)
+ 	 * according to register description and PRM.
  	 */
- 	for (i = 0; i < 10; i++) {
--		u32 tmp = intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT) & hotplug_status_mask;
-+		u32 tmp = intel_uncore_read(&dev_priv->uncore,
-+					    PORT_HOTPLUG_STAT(dev_priv)) & hotplug_status_mask;
+ 	drm_WARN_ON(&dev_priv->drm,
+-		    intel_de_read(dev_priv, PFIT_CONTROL) & PFIT_ENABLE);
++		    intel_de_read(dev_priv, PFIT_CONTROL(dev_priv)) & PFIT_ENABLE);
+ 	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
  
- 		if (tmp == 0)
- 			return hotplug_status;
+ 	intel_de_write(dev_priv, PFIT_PGM_RATIOS,
+ 		       crtc_state->gmch_pfit.pgm_ratios);
+-	intel_de_write(dev_priv, PFIT_CONTROL, crtc_state->gmch_pfit.control);
++	intel_de_write(dev_priv, PFIT_CONTROL(dev_priv),
++		       crtc_state->gmch_pfit.control);
  
- 		hotplug_status |= tmp;
--		intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_STAT, hotplug_status);
-+		intel_uncore_write(&dev_priv->uncore,
-+				   PORT_HOTPLUG_STAT(dev_priv),
-+				   hotplug_status);
- 	}
+ 	/* Border color in case we don't scale up to the full screen. Black by
+ 	 * default, change to something else for debugging. */
+@@ -2195,8 +2196,8 @@ static void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+ 	assert_transcoder_disabled(dev_priv, old_crtc_state->cpu_transcoder);
  
- 	drm_WARN_ONCE(&dev_priv->drm, 1,
- 		      "PORT_HOTPLUG_STAT did not clear (0x%08x)\n",
--		      intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT));
-+		      intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_STAT(dev_priv)));
- 
- 	return hotplug_status;
+ 	drm_dbg_kms(&dev_priv->drm, "disabling pfit, current: 0x%08x\n",
+-		    intel_de_read(dev_priv, PFIT_CONTROL));
+-	intel_de_write(dev_priv, PFIT_CONTROL, 0);
++		    intel_de_read(dev_priv, PFIT_CONTROL(dev_priv)));
++	intel_de_write(dev_priv, PFIT_CONTROL(dev_priv), 0);
  }
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 678d632ed043..8059ac7e15fe 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -1040,7 +1040,8 @@ static void i915_irq_reset(struct drm_i915_private *dev_priv)
  
- 	if (I915_HAS_HOTPLUG(dev_priv)) {
- 		i915_hotplug_interrupt_update(dev_priv, 0xffffffff, 0);
--		intel_uncore_rmw(&dev_priv->uncore, PORT_HOTPLUG_STAT, 0, 0);
-+		intel_uncore_rmw(&dev_priv->uncore,
-+				 PORT_HOTPLUG_STAT(dev_priv), 0, 0);
+ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+@@ -2974,7 +2975,7 @@ static void i9xx_get_pfit_config(struct intel_crtc_state *crtc_state)
+ 	if (!i9xx_has_pfit(dev_priv))
+ 		return;
+ 
+-	tmp = intel_de_read(dev_priv, PFIT_CONTROL);
++	tmp = intel_de_read(dev_priv, PFIT_CONTROL(dev_priv));
+ 	if (!(tmp & PFIT_ENABLE))
+ 		return;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+index 891777481dd9..9f018503d4fd 100644
+--- a/drivers/gpu/drm/i915/display/intel_lvds.c
++++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+@@ -148,7 +148,7 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
+ 
+ 	/* gen2/3 store dither state in pfit control, needs to match */
+ 	if (DISPLAY_VER(dev_priv) < 4) {
+-		tmp = intel_de_read(dev_priv, PFIT_CONTROL);
++		tmp = intel_de_read(dev_priv, PFIT_CONTROL(dev_priv));
+ 
+ 		crtc_state->gmch_pfit.control |= tmp & PFIT_PANEL_8TO6_DITHER_ENABLE;
  	}
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 1c2099ed5514..e41881f08d1f 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -950,7 +950,7 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
+ 	} else {
+ 		u32 tmp;
  
- 	i9xx_pipestat_irq_reset(dev_priv);
-@@ -1149,7 +1150,7 @@ static void i965_irq_reset(struct drm_i915_private *dev_priv)
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 
- 	i915_hotplug_interrupt_update(dev_priv, 0xffffffff, 0);
--	intel_uncore_rmw(uncore, PORT_HOTPLUG_STAT, 0, 0);
-+	intel_uncore_rmw(uncore, PORT_HOTPLUG_STAT(dev_priv), 0, 0);
- 
- 	i9xx_pipestat_irq_reset(dev_priv);
- 
+-		if (intel_de_read(dev_priv, PFIT_CONTROL) & PFIT_VERT_AUTO_SCALE)
++		if (intel_de_read(dev_priv, PFIT_CONTROL(dev_priv)) & PFIT_VERT_AUTO_SCALE)
+ 			tmp = intel_de_read(dev_priv, PFIT_AUTO_RATIOS);
+ 		else
+ 			tmp = intel_de_read(dev_priv, PFIT_PGM_RATIOS);
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4508c535f320..166c7f4f9c6c 100644
+index 166c7f4f9c6c..b0dbe6113bbc 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1408,7 +1408,7 @@
- #define CRT_HOTPLUG_DETECT_VOLTAGE_325MV	(0 << 2)
- #define CRT_HOTPLUG_DETECT_VOLTAGE_475MV	(1 << 2)
+@@ -1588,7 +1588,7 @@
+ #define   VIDEO_DIP_ENABLE_AS_ADL	REG_BIT(23)
  
--#define PORT_HOTPLUG_STAT	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61114)
-+#define PORT_HOTPLUG_STAT(dev_priv)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61114)
- /* HDMI/DP bits are g4x+ */
- #define   PORTD_HOTPLUG_LIVE_STATUS_G4X		(1 << 27)
- #define   PORTC_HOTPLUG_LIVE_STATUS_G4X		(1 << 28)
+ /* Panel fitting */
+-#define PFIT_CONTROL	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61230)
++#define PFIT_CONTROL(dev_priv)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61230)
+ #define   PFIT_ENABLE			REG_BIT(31)
+ #define   PFIT_PIPE_MASK		REG_GENMASK(30, 29) /* 965+ */
+ #define   PFIT_PIPE(pipe)		REG_FIELD_PREP(PFIT_PIPE_MASK, (pipe))
 -- 
 2.39.2
 
