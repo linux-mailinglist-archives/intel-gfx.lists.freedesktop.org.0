@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB59C8FB711
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACFA8FB712
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:28:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAAB110E4F8;
-	Tue,  4 Jun 2024 15:28:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C025D10E4EC;
+	Tue,  4 Jun 2024 15:28:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NEXoDhib";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="njZ9v27K";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D4210E4EA
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 452FB10E4F2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:28:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717514899; x=1749050899;
+ t=1717514904; x=1749050904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cwXvhefYBasMl3QJ+9GZWMpd7Zx9fGjBDJuElak7Z5I=;
- b=NEXoDhibp4JQSS2/bmwLIeMhlilYLB33B0Ma8KHb8r0AWi2Ftn07dtnD
- 7bjT9zXbDzKFTpdAMZRCL1YpV2oLOidjW11j9Qe9e2C75MXCuas1WyKAF
- QOg4gxLqmhjQQU6wmDNe0dzkwpJaMsErVnyDyW1yDIggqbPTLcEHizMIE
- 3ggfN+7tXUMpvu24riECiAKeKDBG926mLcOheZJf9SIy8USfzjHei6C1A
- 9F3WUZF1Gl49TnDWCe8RjKrbTSLTsdkrsrDkjdl5LbuvxIV+ZatL1F8gb
- d+/3wBmndVWsPjfN7GI0YMnNLbSmbkbWUN4YkGJ3MevK+imGDE4B1YMEq A==;
-X-CSE-ConnectionGUID: sAFnQYgJRxKdHjUE4SxYXA==
-X-CSE-MsgGUID: ZJIiWKMJSi+R+urRYDeJcA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14225637"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="14225637"
+ bh=R1NSoOkmg9iNSdBAaT0rXXomAUiNSlBAFwEFQdGlLYs=;
+ b=njZ9v27KqN7S0DGk4LtxuNAGRMEweydFjukAsn+rI5sLFjvc9AuNkFJU
+ 2Zu4O0ed5UiefG0OakTw6YpU+FCBEgXfwEyce8sudmU+16Zm2TR0QeRic
+ VhzDOaf5oAGUW2Sjnw5rgJzRJUKqtVCroIfeEcjuh/MKkQzuXcBhPfteL
+ W1HRTJ2ZPYB7oXsg0uFZsW4pMCuP+RKYJ2GkQZTxg6mXEAM1It0sXFhc4
+ rFYeJIDud9wpXbdYElFtNzvxuMGXYEzlAsssmqAGNiWI2l4aJ67Y0w/cj
+ wvZXO4GFXVI+D5aZGQ+yP79RXbJvpi5LoP5EvHCM7J+TK9nBBr1el7AzN A==;
+X-CSE-ConnectionGUID: O5urgZ2dSm2Ra3Lsz+tFbw==
+X-CSE-MsgGUID: Vb6xEy8NSJq6fUOmZZPfnw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14225645"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="14225645"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:19 -0700
-X-CSE-ConnectionGUID: t9D1BulMQBij+y0yhQAeMQ==
-X-CSE-MsgGUID: jKtbqRgJRYKO9gBPdoG8Nw==
+ 04 Jun 2024 08:28:24 -0700
+X-CSE-ConnectionGUID: VPJeHEicTuKXKPakzpG1fA==
+X-CSE-MsgGUID: FuubqNraToqgHulU/dPknQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37278015"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="37278045"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:28:18 -0700
+ 04 Jun 2024 08:28:22 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 23/65] drm/i915: pass dev_priv explicitly to PIPE_ARB_CTL
-Date: Tue,  4 Jun 2024 18:25:41 +0300
-Message-Id: <e75e80bd96e05ece6b82c0bdb509527ab2dd0e6d.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 24/65] drm/i915: pass dev_priv explicitly to ICL_PIPESTATUS
+Date: Tue,  4 Jun 2024 18:25:42 +0300
+Message-Id: <d9a7ef1ff8e848cd10729f4ee033d1ef55ee78cc.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -70,40 +70,55 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the PIPE_ARB_CTL register macro.
+explicitly to the ICL_PIPESTATUS register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/i915_reg.h              | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 9 ++++++---
+ drivers/gpu/drm/i915/i915_reg.h                    | 2 +-
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9434eba91839..48ee8aee21be 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -439,7 +439,7 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+index 401726f466c0..e5e4ca7cc499 100644
+--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
++++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+@@ -209,7 +209,8 @@ static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
  
- 	/* Wa_22012358565:adl-p */
- 	if (DISPLAY_VER(dev_priv) == 13)
--		intel_de_rmw(dev_priv, PIPE_ARB_CTL(pipe),
-+		intel_de_rmw(dev_priv, PIPE_ARB_CTL(dev_priv, pipe),
- 			     0, PIPE_ARB_USE_PROG_SLOTS);
+ 	if (enable) {
+ 		if (DISPLAY_VER(dev_priv) >= 11)
+-			intel_de_write(dev_priv, ICL_PIPESTATUS(pipe),
++			intel_de_write(dev_priv,
++				       ICL_PIPESTATUS(dev_priv, pipe),
+ 				       icl_pipe_status_underrun_mask(dev_priv));
  
- 	if (DISPLAY_VER(dev_priv) >= 14) {
+ 		bdw_enable_pipe_irq(dev_priv, pipe, mask);
+@@ -418,9 +419,11 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+ 	 * the underrun was caused by the downstream port.
+ 	 */
+ 	if (DISPLAY_VER(dev_priv) >= 11) {
+-		underruns = intel_de_read(dev_priv, ICL_PIPESTATUS(pipe)) &
++		underruns = intel_de_read(dev_priv,
++					  ICL_PIPESTATUS(dev_priv, pipe)) &
+ 			icl_pipe_status_underrun_mask(dev_priv);
+-		intel_de_write(dev_priv, ICL_PIPESTATUS(pipe), underruns);
++		intel_de_write(dev_priv, ICL_PIPESTATUS(dev_priv, pipe),
++			       underruns);
+ 	}
+ 
+ 	if (intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false)) {
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0aaceedf77dc..1b2c0d650bff 100644
+index 1b2c0d650bff..cbe109973f57 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1883,7 +1883,7 @@
- #define PIPESTAT(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEASTAT)
+@@ -1927,7 +1927,7 @@
+ #define PIPE_MISC2(pipe)		_MMIO_PIPE(pipe, _PIPE_MISC2_A, _PIPE_MISC2_B)
  
- #define _PIPE_ARB_CTL_A			0x70028 /* icl+ */
--#define PIPE_ARB_CTL(pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPE_ARB_CTL_A)
-+#define PIPE_ARB_CTL(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPE_ARB_CTL_A)
- #define   PIPE_ARB_USE_PROG_SLOTS	REG_BIT(13)
- 
- #define _PIPE_MISC_A			0x70030
+ #define _ICL_PIPE_A_STATUS			0x70058
+-#define ICL_PIPESTATUS(pipe)			_MMIO_PIPE2(dev_priv, pipe, _ICL_PIPE_A_STATUS)
++#define ICL_PIPESTATUS(dev_priv, pipe)			_MMIO_PIPE2(dev_priv, pipe, _ICL_PIPE_A_STATUS)
+ #define   PIPE_STATUS_UNDERRUN				REG_BIT(31)
+ #define   PIPE_STATUS_SOFT_UNDERRUN_XELPD		REG_BIT(28)
+ #define   PIPE_STATUS_HARD_UNDERRUN_XELPD		REG_BIT(27)
 -- 
 2.39.2
 
