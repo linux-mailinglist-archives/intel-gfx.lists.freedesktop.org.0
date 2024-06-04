@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33CF18FB757
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 142578FB74F
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2024 17:31:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9B310E50C;
-	Tue,  4 Jun 2024 15:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1A010E511;
+	Tue,  4 Jun 2024 15:31:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JkPtj3ua";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KSv210Z/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32D0310E51B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 542D710E51C
  for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2024 15:31:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1717515081; x=1749051081;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wDWOb0B0szTrnsmZofonY97KTm3kCF7Ubb6fsIMV4hE=;
- b=JkPtj3uayqXcn9J/rzDXYBFOeNzjDgWT8g8N5rHLsqv0OAwQ8slimRSQ
- xSm1kESL4CDe+iM6RD5ORYbEMYg1g329+ZPXeHggelpjZUM+Af7PT/Eus
- zhcE1w6VNMxE2AVB8PqiwklDaZ4F27YFyXnj0jxSM2/HBmYO4hLqouEjL
- Eo78ES6Z/t1gHfcG0KjE81+/t19RRV7DqF7CGITbb0CqDQ8Jx/26nPCKz
- dyEC3WCCFJ1xnv/W3gMJSDCIGtaCNhEz7fZ4xT7zcNL2H4W0WdyhPgb+Q
- xp2uj9Seu22BOK8pB7fMWD2CNMT2D48wmtAxJ46gjcOh1XG4lzAWviKsn g==;
-X-CSE-ConnectionGUID: 9HEQLNvJRO297dkvU2DPJA==
-X-CSE-MsgGUID: Pgfq4aojTjetEd02k8lOxw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="24733605"
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="24733605"
+ bh=TSU/pCDX/SMTqNVUJ9tHm34687i+GYzbrfeAA3rDUyU=;
+ b=KSv210Z/zpG4FF5poYRDYl/pmz5Y4MgFNaWwZ5SB5XBMxudc2SdnyARs
+ G1qFC4brqNWTB6z5groAcNTzWTvbaGqRRS8u3ATBAHaSoPzgh43qbekXN
+ e9IWI0Uk0b9Z4ptUYx4uxawMEqOic0JXwQL7paoixRW0CukkAs3dH2JrG
+ HVbK1oQOHKbumyjQog0wgS0yOaiXJGdHnaPr2UrKSpmOMQhNvN6kyxLlQ
+ WZW+MiReJrdSzcCJ/jG3R8HDbW9rRTSmrtxWgeSAdujzt1Vrk3hzT91yq
+ JyeiDRmzlqzkKTRoyefLMBe/nTx+mmVbaUn8DFhi/Bd2y00dJc0bDa2j1 w==;
+X-CSE-ConnectionGUID: JRYYPosnQIaJ+OwpMUoBOg==
+X-CSE-MsgGUID: KpNFzl+nTAKFbSR+cSkqxQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="24733625"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="24733625"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:31:17 -0700
-X-CSE-ConnectionGUID: Q1IcFFMgQoOYcWF+/Aueqw==
-X-CSE-MsgGUID: 7wsEVo87To6CcfMdvvI8cQ==
+ 04 Jun 2024 08:31:21 -0700
+X-CSE-ConnectionGUID: lsVpclYgSQisxL5ReJMC4g==
+X-CSE-MsgGUID: giHODLBMQoyWuz/AGyn6Ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="41828043"
+X-IronPort-AV: E=Sophos;i="6.08,214,1712646000"; d="scan'208";a="41828070"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.123])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 08:31:15 -0700
+ 04 Jun 2024 08:31:20 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 60/65] drm/i915: pass dev_priv explicitly to
- TRANS_DDI_FUNC_CTL2
-Date: Tue,  4 Jun 2024 18:26:18 +0300
-Message-Id: <2b61bf9c1f74ae633c99aa34fbf1aa85735cc5b6.1717514638.git.jani.nikula@intel.com>
+Subject: [PATCH 61/65] drm/i915: pass dev_priv explicitly to TGL_DP_TP_CTL
+Date: Tue,  4 Jun 2024 18:26:19 +0300
+Message-Id: <3d3e2b732ec9372cf6b1ae44b25342179b028b1a.1717514638.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717514638.git.jani.nikula@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
@@ -71,101 +70,41 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Avoid the implicit dev_priv local variable use, and pass dev_priv
-explicitly to the TRANS_DDI_FUNC_CTL2 register macro.
+explicitly to the TGL_DP_TP_CTL register macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c           | 6 ++++--
- drivers/gpu/drm/i915/display/intel_ddi.c         | 9 ++++++---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 3 ++-
- drivers/gpu/drm/i915/i915_reg.h                  | 2 +-
- 4 files changed, 13 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 3 ++-
+ drivers/gpu/drm/i915/i915_reg.h          | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index acc80d439352..ae8f6617aa70 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -784,7 +784,8 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 	if (intel_dsi->dual_link) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL2(dsi_trans),
-+			intel_de_rmw(dev_priv,
-+				     TRANS_DDI_FUNC_CTL2(dev_priv, dsi_trans),
- 				     0, PORT_SYNC_MODE_ENABLE);
- 		}
- 
-@@ -1344,7 +1345,8 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
- 	if (intel_dsi->dual_link) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL2(dsi_trans),
-+			intel_de_rmw(dev_priv,
-+				     TRANS_DDI_FUNC_CTL2(dev_priv, dsi_trans),
- 				     PORT_SYNC_MODE_ENABLE, 0);
- 		}
- 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c5571be3c66e..515996c49f5a 100644
+index 515996c49f5a..135c2e7964fc 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -603,7 +603,8 @@ void intel_ddi_enable_transcoder_func(struct intel_encoder *encoder,
- 		}
+@@ -2184,7 +2184,8 @@ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
  
- 		intel_de_write(dev_priv,
--			       TRANS_DDI_FUNC_CTL2(cpu_transcoder), ctl2);
-+			       TRANS_DDI_FUNC_CTL2(dev_priv, cpu_transcoder),
-+			       ctl2);
- 	}
- 
- 	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(dev_priv, cpu_transcoder),
-@@ -640,7 +641,8 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
- 		intel_de_write(dev_priv,
--			       TRANS_DDI_FUNC_CTL2(cpu_transcoder), 0);
-+			       TRANS_DDI_FUNC_CTL2(dev_priv, cpu_transcoder),
-+			       0);
- 
- 	ctl = intel_de_read(dev_priv,
- 			    TRANS_DDI_FUNC_CTL(dev_priv, cpu_transcoder));
-@@ -3757,7 +3759,8 @@ static enum transcoder bdw_transcoder_master_readout(struct drm_i915_private *de
- 	u32 master_select;
- 
- 	if (DISPLAY_VER(dev_priv) >= 11) {
--		u32 ctl2 = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL2(cpu_transcoder));
-+		u32 ctl2 = intel_de_read(dev_priv,
-+				         TRANS_DDI_FUNC_CTL2(dev_priv, cpu_transcoder));
- 
- 		if ((ctl2 & PORT_SYNC_MODE_ENABLE) == 0)
- 			return INVALID_TRANSCODER;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 036f77c2702d..bf55c9064b76 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -913,7 +913,8 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
- 	 * Incase of dual link, TE comes from DSI_1
- 	 * this is to check if dual link is enabled
- 	 */
--	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
-+	val = intel_uncore_read(&dev_priv->uncore,
-+				TRANS_DDI_FUNC_CTL2(dev_priv, TRANSCODER_DSI_0));
- 	val &= PORT_SYNC_MODE_ENABLE;
- 
- 	/*
+ 	if (DISPLAY_VER(dev_priv) >= 12)
+-		return TGL_DP_TP_CTL(tgl_dp_tp_transcoder(crtc_state));
++		return TGL_DP_TP_CTL(dev_priv,
++				     tgl_dp_tp_transcoder(crtc_state));
+ 	else
+ 		return DP_TP_CTL(encoder->port);
+ }
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 14f4060dd573..f330953e71cf 100644
+index f330953e71cf..c1547ecdc352 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4009,7 +4009,7 @@ enum skl_power_gate {
- #define _TRANS_DDI_FUNC_CTL2_EDP	0x6f404
- #define _TRANS_DDI_FUNC_CTL2_DSI0	0x6b404
- #define _TRANS_DDI_FUNC_CTL2_DSI1	0x6bc04
--#define TRANS_DDI_FUNC_CTL2(tran)	_MMIO_TRANS2(dev_priv, tran, _TRANS_DDI_FUNC_CTL2_A)
-+#define TRANS_DDI_FUNC_CTL2(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _TRANS_DDI_FUNC_CTL2_A)
- #define  PORT_SYNC_MODE_ENABLE			REG_BIT(4)
- #define  PORT_SYNC_MODE_MASTER_SELECT_MASK	REG_GENMASK(2, 0)
- #define  PORT_SYNC_MODE_MASTER_SELECT(x)	REG_FIELD_PREP(PORT_SYNC_MODE_MASTER_SELECT_MASK, (x))
+@@ -4022,7 +4022,7 @@ enum skl_power_gate {
+ #define _DP_TP_CTL_B			0x64140
+ #define _TGL_DP_TP_CTL_A		0x60540
+ #define DP_TP_CTL(port) _MMIO_PORT(port, _DP_TP_CTL_A, _DP_TP_CTL_B)
+-#define TGL_DP_TP_CTL(tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
++#define TGL_DP_TP_CTL(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
+ #define  DP_TP_CTL_ENABLE			(1 << 31)
+ #define  DP_TP_CTL_FEC_ENABLE			(1 << 30)
+ #define  DP_TP_CTL_MODE_SST			(0 << 27)
 -- 
 2.39.2
 
