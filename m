@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E07558FC913
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 12:27:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 917CF8FC90F
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 12:27:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D06D10E74C;
-	Wed,  5 Jun 2024 10:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D71DA10E719;
+	Wed,  5 Jun 2024 10:27:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UWNevm63";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dua8SLzF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A984E10E76D
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 10:27:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592AB10E719
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 10:27:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717583222; x=1749119222;
+ t=1717583224; x=1749119224;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Lk4cvOzHDfvvdnCD26C3lRMjQmo1PUicvjmkb0UZOok=;
- b=UWNevm63ynZtlESIxQrhD670NpKDp6y/jPwBsumOa6Q1fBvVOo8EVIAd
- t1fLZiQSD2xO/C1kHTi5mpKsaYLtt2rFNE03ECXbzMVlM/QLjh9WT0N9D
- RcNv4yHuLRvHdJi2lQXC2dH7EESZiqOHfM/jP/gdhwRmiroAXPtiPu/mn
- zi+kXd/8WJPDJMEfEvvHLGVjyLq5wVETd38jdrkzT6hb9KYCmZx4agm/G
- BKMscol89YunVHJKn7nGxCheMDGBmXKUMrO1zhbz2OqsFI6gL1tgxLm3m
- QnRQAwOoUArZpdogrHca7nFYLqnoO45mq/AdCTT/jxaaB2/zJ+FuCaSWr w==;
-X-CSE-ConnectionGUID: HA/wUhnWSN656jbnQF5kJg==
-X-CSE-MsgGUID: 5Dl5c3ClQoyos2BRgVdNKg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14136169"
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="14136169"
+ bh=b90fgyFR5s3KD0ajF2iEbGbCu7z2gm71T4dbszjxJk0=;
+ b=Dua8SLzFPPNId0qkowPzqze//C48u4gpG+6QeOwO6Wqxr39nUk5Y6Y5u
+ XRMwxXLCJMpYCqseVkhFNB6k6sI/v2ngJ5e76Rpgn6PJKGmCRE4kyl/6l
+ aYrPgwQOQPxXNPCtJY83t2+qAb9nqm0R4nLaB7tgp97uYq5UV/qOQyMvn
+ ue99OGHX2tWX62H/MDOvztNWZnOn1jbcviprWYePvoeV+eLWxSOpKSFmz
+ OYz+QTqX/VUhMfsokaG42rnYwK+6gOY1oMSaW18/VWKld1GLtzJeVXv9Z
+ KSHPyQA7ygVZiBRMDAFdFGn+k5jeklx/Tfbhstv+N8nu0EziuclqJRSHI w==;
+X-CSE-ConnectionGUID: n92qaN5zQEaNXBssmEM7dg==
+X-CSE-MsgGUID: eDPUojGRTAisj1Na9nS/eg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14136170"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="14136170"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 03:27:02 -0700
-X-CSE-ConnectionGUID: HLjjjAm9RNGbw1P0lG8dUQ==
-X-CSE-MsgGUID: ZE+O0uIiQD+s3DQ0KdnFYw==
+ 05 Jun 2024 03:27:04 -0700
+X-CSE-ConnectionGUID: Az5xst2WTvehBp5saf8QxA==
+X-CSE-MsgGUID: zvKceSQbR2entRZR1ykcvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="68686331"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="68686335"
 Received: from amokrov-mobl1.ccr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.37.49])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 03:27:01 -0700
+ 05 Jun 2024 03:27:03 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v6 25/26] drm/i915/psr: Add new debug bit to disable Panel
- Replay
-Date: Wed,  5 Jun 2024 13:25:52 +0300
-Message-Id: <20240605102553.187309-26-jouni.hogander@intel.com>
+Subject: [PATCH v6 26/26] Revert "drm/i915/psr: Disable early transport by
+ default"
+Date: Wed,  5 Jun 2024 13:25:53 +0300
+Message-Id: <20240605102553.187309-27-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240605102553.187309-1-jouni.hogander@intel.com>
 References: <20240605102553.187309-1-jouni.hogander@intel.com>
@@ -72,70 +72,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently there is no way to disable Panel Replay without disabling
-PSR. Add new debug bit to be used with i915_edp_psr_debug debugfs
-interface.
+This reverts commit f3c2031db7dfdf470a2d9bf3bd1efa6edfa72d8d.
 
-v2: ensure that fastset is performed when the bit changes
+We want to notice possible issues faced with PSR2 Region Early Transport as
+early as possible -> let's revert patch disabling Region Early Transport by
+default. Also eDP 1.5 Panel Replay requires Early Transport.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c           | 11 +++++++++--
- 2 files changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index df29ec37ef28..089c53d5f3c9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1690,6 +1690,7 @@ struct intel_psr {
- #define I915_PSR_DEBUG_ENABLE_SEL_FETCH		0x4
- #define I915_PSR_DEBUG_IRQ			0x10
- #define I915_PSR_DEBUG_SU_REGION_ET_DISABLE	0x20
-+#define I915_PSR_DEBUG_PANEL_REPLAY_DISABLE	0x40
- 
- 	u32 debug;
- 	bool sink_support;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index a10d9383cc87..b4cd7a8b17bc 100644
+index b4cd7a8b17bc..36dedd8e9a9c 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1520,6 +1520,9 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
- 	if (!CAN_PANEL_REPLAY(intel_dp))
- 		return false;
+@@ -3171,9 +3171,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
+ 	if (HAS_PSR(dev_priv) && intel_dp_is_edp(intel_dp))
+ 		intel_dp->psr.source_support = true;
  
-+	if (intel_dp->psr.debug & I915_PSR_DEBUG_PANEL_REPLAY_DISABLE)
-+		return false;
-+
- 	if (!intel_dp_is_edp(intel_dp))
- 		return true;
- 
-@@ -2845,11 +2848,13 @@ int intel_psr_debug_set(struct intel_dp *intel_dp, u64 val)
- {
- 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
- 	const u32 mode = val & I915_PSR_DEBUG_MODE_MASK;
--	const u32 disable_bits = val & I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
-+	const u32 disable_bits = val & (I915_PSR_DEBUG_SU_REGION_ET_DISABLE |
-+					I915_PSR_DEBUG_PANEL_REPLAY_DISABLE);
- 	u32 old_mode, old_disable_bits;
- 	int ret;
- 
- 	if (val & ~(I915_PSR_DEBUG_IRQ | I915_PSR_DEBUG_SU_REGION_ET_DISABLE |
-+		    I915_PSR_DEBUG_PANEL_REPLAY_DISABLE |
- 		    I915_PSR_DEBUG_MODE_MASK) ||
- 	    mode > I915_PSR_DEBUG_ENABLE_SEL_FETCH) {
- 		drm_dbg_kms(&dev_priv->drm, "Invalid debug mask %llx\n", val);
-@@ -2862,7 +2867,9 @@ int intel_psr_debug_set(struct intel_dp *intel_dp, u64 val)
- 
- 	old_mode = intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK;
- 	old_disable_bits = intel_dp->psr.debug &
--		I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
-+		(I915_PSR_DEBUG_SU_REGION_ET_DISABLE |
-+		 I915_PSR_DEBUG_PANEL_REPLAY_DISABLE);
-+
- 	intel_dp->psr.debug = val;
- 
- 	/*
+-	/* Disable early transport for now */
+-	intel_dp->psr.debug |= I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
+-
+ 	/* Set link_standby x link_off defaults */
+ 	if (DISPLAY_VER(dev_priv) < 12)
+ 		/* For new platforms up to TGL let's respect VBT back again */
 -- 
 2.34.1
 
