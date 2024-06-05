@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA628FC313
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 07:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3F3C8FC326
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 07:52:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EF7E10E68C;
-	Wed,  5 Jun 2024 05:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35A9A10E68F;
+	Wed,  5 Jun 2024 05:52:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjQDJ3vP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FWc03q1e";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54ECE10E68C
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 05:45:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 040CA10E68F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 05:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717566353; x=1749102353;
+ t=1717566750; x=1749102750;
  h=from:to:cc:subject:date:message-id:in-reply-to: references;
- bh=0U+O1MpRhFj8dB6vhZxabHz89WW5pfsCgKDb6mHvN6c=;
- b=VjQDJ3vP0Y6q87eo7YnTi2gMFmQ25owPlvbZr/HPHOind4b1tbWaFkyu
- IqmlWaqix+mi9T3swXAK5a9dyJsBRwD6lFd8HZpWZhMHQhWRnvtkKG4tb
- 2xekf6/7pVWvqfyR75gagz9LZXaxNbtMozNLvIhcZ29ktO8yBw0jYTdos
- hwJWfS145Ya4UJLWCdN/N0wYeqtzZUTy/P5K7c0uXNlaf7fIntVyhdjT4
- IHd+/S1riGmfew7A+tccLrXFuD6d4zZzH7fJyi+c11k8JgzrZcUcTaZuK
- d+BYTQH+FSQlWeJsQwwxiTAMrWvfG6UOQmKKe7m82tPoBswJkmfC7nLGV g==;
-X-CSE-ConnectionGUID: 3FJSoHUPRg+xlWLQcM2TUA==
-X-CSE-MsgGUID: XZrIciR/RlqsjRf8idEmaQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="36669289"
-X-IronPort-AV: E=Sophos;i="6.08,215,1712646000"; d="scan'208";a="36669289"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 22:45:52 -0700
-X-CSE-ConnectionGUID: 5ARCU/hKQBeGk7B2Sj9IDw==
-X-CSE-MsgGUID: zHwsuJi0RseFQDivxAGyAg==
+ bh=n48gYpCAuaeb2EBo6NGRPJsmPS8SNCeo90wmwY0ymdg=;
+ b=FWc03q1eF4ggjkVyX4XbKm0fgZuaBzxKoa2wuGMgOcELHJgWpSt0MDe2
+ FKc6iJz6vy3DNLv49adKwwXQQJ45j+NdmqATrb1etBzqpzPUkuaqyfOIm
+ bXJwecoLHOb4SOJLC51pBdgcLu3isHbuTrpE8CSGnHaKQn3tQKrD7Qj6Y
+ D3REy26ts9zuO9Frivw7T7LqFZJVDsStlxMrtpRwBghL/ZonH3vpzw/k/
+ aikNofmK7ePZX4G3gGDhStQsn2pwouqRp+wOkjOJGcdl9l2RKHPNUwZq/
+ R7KFL9szfZlW1eKnV+2iLUtx4FI5cXtmDX7CicfrkyOt4sV8mfwNKFqs9 Q==;
+X-CSE-ConnectionGUID: e6VjK7qRQsu7g6tAH7bRyg==
+X-CSE-MsgGUID: Ey02GGW2SEqYp0vr74Me9w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="31690243"
+X-IronPort-AV: E=Sophos;i="6.08,215,1712646000"; d="scan'208";a="31690243"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2024 22:52:28 -0700
+X-CSE-ConnectionGUID: hsN7RwxKQNG8CBJJJiGmtw==
+X-CSE-MsgGUID: Nq3p/jESSPaGTrp7ZtcTfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,215,1712646000"; d="scan'208";a="42421875"
+X-IronPort-AV: E=Sophos;i="6.08,215,1712646000"; d="scan'208";a="37476108"
 Received: from basicluh01.gar.corp.intel.com (HELO localhost.localdomain)
  ([10.223.131.46])
- by orviesa005.jf.intel.com with ESMTP; 04 Jun 2024 22:45:50 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 04 Jun 2024 22:52:25 -0700
 From: Melanie Lobo <melanie.lobo@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: juha-pekka.heikkila@intel.com, swati2.sharma@intel.com,
@@ -47,8 +47,8 @@ Cc: juha-pekka.heikkila@intel.com, swati2.sharma@intel.com,
  Melanie Lobo <melanie.lobo@intel.com>,
  Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Subject: [PATCH] drm/i915: Support RGB16161616_64B compressed formats
-Date: Wed,  5 Jun 2024 11:28:19 +0530
-Message-Id: <20240605055819.9510-1-melanie.lobo@intel.com>
+Date: Wed,  5 Jun 2024 11:34:57 +0530
+Message-Id: <20240605060457.10086-1-melanie.lobo@intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20231011102356.22014-1-melanie.lobo@intel.com>
 References: <20231011102356.22014-1-melanie.lobo@intel.com>
@@ -106,10 +106,10 @@ index b6638726949d..91f2def14243 100644
  
  /*
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 1aa70fc35b9d..ac8435a002fd 100644
+index 1aa70fc35b9d..7719cb04bdf8 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2188,6 +2188,8 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
+@@ -2242,6 +2242,8 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
  	case DRM_FORMAT_XBGR8888:
  	case DRM_FORMAT_ARGB8888:
  	case DRM_FORMAT_ABGR8888:
@@ -118,7 +118,7 @@ index 1aa70fc35b9d..ac8435a002fd 100644
  		if (intel_fb_is_ccs_modifier(modifier))
  			return true;
  		fallthrough;
-@@ -2212,8 +2214,6 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
+@@ -2266,8 +2268,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
  	case DRM_FORMAT_C8:
  	case DRM_FORMAT_XBGR16161616F:
  	case DRM_FORMAT_ABGR16161616F:
