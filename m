@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC18B8FC903
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 12:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DFB8FC904
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 12:26:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2EFF10E6C8;
-	Wed,  5 Jun 2024 10:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8595010E5F0;
+	Wed,  5 Jun 2024 10:26:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JrxGsQQI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k7jhXjhR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46C2C10E554
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 10:26:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C33EC10E554
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 10:26:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717583197; x=1749119197;
+ t=1717583198; x=1749119198;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QG2CUZfWmj9PfbK64NMMiEBOLW/b43I6wuEXQpSOr+U=;
- b=JrxGsQQIFvI0Nqwh129vbnt7OyVcPey8Eb7TBoBF/NFkyRiXk9meE87X
- NGU6NyQbFd4qGbo/qoICVMo9XDAJlOjhkTNPkI18PFqipTT8T85a16upJ
- SFH9aPvwEDHhfS0P0EEa3mus+hU6PtlFAYZAJbSNslMhqKRCeFlIylx0b
- 2coDOjVsUc6iMTJ06Lg0rcOD1ShAADT56GGgFcGI9SpuLRiDlHOa/D0eC
- XJUrGBBlrthesZ2STefe+V88JdTHiExzR7Z1kBlSfSWIfSbOo9L3FxthB
- zPB/gTXELA7nrgz5i947TNMbAeK3rrYfreaa5JWlLn3XF4xWVYreEBD7H Q==;
-X-CSE-ConnectionGUID: +mrkZJo9QvqAGrmyLxoRIQ==
-X-CSE-MsgGUID: VGEP3ZKFQImRlAna8i8tvA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14136115"
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="14136115"
+ bh=NKCHC2Fl18VDdR/ibKuKHdkqhOSn+CJgqXaZFs5g0S0=;
+ b=k7jhXjhRjQFE7Zok21KAJ1fEDTbicUX+SFFKQ+E7xEHXZJ2ZuML+FdcY
+ ayaEFV8LXV/KN2O5PQEemYbJ/j8gLR23aHX2Kgh+A+py+uHr047uC8NuT
+ FJ2e+97+pY+fSQYElQJqMsIxSd8DjWsNInEUr62N7vVtT9bsE1SEgc8wx
+ EowPaZ5cAdiRMjn9qZkJtpk19BMqCKXEkgLrlQsitPOaw8ppUVAIBF7oW
+ u4Eh6PICaSMkJuvPNugu2XeD2DKmfdlwgDCIG6xvKSSYOxPJd+iCo37sJ
+ VbvaZOoB4ls4i5P8pyAAff2dngO+XQTdr26pnKZ+uN0KPeAdOfkJPiG6a g==;
+X-CSE-ConnectionGUID: tKk2uvaqSneCVdGg+Sf10A==
+X-CSE-MsgGUID: jEuJeg+tToKSyEMrM9X2jQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="14136117"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="14136117"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 03:26:37 -0700
-X-CSE-ConnectionGUID: QYvcXBflTK+dCBh+V4fpUw==
-X-CSE-MsgGUID: 024lm79tRCSDsoutTD0diQ==
+ 05 Jun 2024 03:26:38 -0700
+X-CSE-ConnectionGUID: Yb7hRnsqTxun8z0LxQVTZg==
+X-CSE-MsgGUID: Pub5DF42RimGxGSMjkss/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="68686183"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="68686202"
 Received: from amokrov-mobl1.ccr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.249.37.49])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 03:26:36 -0700
+ 05 Jun 2024 03:26:37 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v6 10/26] drm/i915/psr: Print Panel Replay status instead of
- frame lock status
-Date: Wed,  5 Jun 2024 13:25:37 +0300
-Message-Id: <20240605102553.187309-11-jouni.hogander@intel.com>
+Subject: [PATCH v6 11/26] drm/i915/psr: Move vblank length check to separate
+ function
+Date: Wed,  5 Jun 2024 13:25:38 +0300
+Message-Id: <20240605102553.187309-12-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240605102553.187309-1-jouni.hogander@intel.com>
 References: <20240605102553.187309-1-jouni.hogander@intel.com>
@@ -72,59 +72,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently Panel Replay status printout is printing frame lock status. It
-should print Panel Replay status instead. Panel Replay status register
-field follows PSR status register field. Use existing PSR code for that.
+We are about to add more complexity to vblank length check. It makes sense
+to move it to separate function for sake of clarity.
 
-Fixes: ef75c25e8fed ("drm/i915/panelreplay: Debugfs support for panel replay")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 22 +++++-----------------
- 1 file changed, 5 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 7bdae0d0ea45..3530e5f44096 100644
+index 3530e5f44096..23c3fed1f983 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3579,16 +3579,9 @@ static int i915_psr_sink_status_show(struct seq_file *m, void *data)
- 		"reserved",
- 		"sink internal error",
- 	};
--	static const char * const panel_replay_status[] = {
--		"Sink device frame is locked to the Source device",
--		"Sink device is coasting, using the VTotal target",
--		"Sink device is governing the frame rate (frame rate unlock is granted)",
--		"Sink device in the process of re-locking with the Source device",
--	};
- 	const char *str;
- 	int ret;
- 	u8 status, error_status;
--	u32 idx;
+@@ -1243,6 +1243,20 @@ static int intel_psr_entry_setup_frames(struct intel_dp *intel_dp,
+ 	return entry_setup_frames;
+ }
  
- 	if (!(CAN_PSR(intel_dp) || CAN_PANEL_REPLAY(intel_dp))) {
- 		seq_puts(m, "PSR/Panel-Replay Unsupported\n");
-@@ -3602,16 +3595,11 @@ static int i915_psr_sink_status_show(struct seq_file *m, void *data)
- 	if (ret)
- 		return ret;
++static bool vblank_length_valid(struct intel_dp *intel_dp,
++				const struct intel_crtc_state *crtc_state)
++{
++	int vblank = crtc_state->hw.adjusted_mode.crtc_vblank_end -
++		crtc_state->hw.adjusted_mode.crtc_vblank_start;
++	int wake_lines = psr2_block_count_lines(intel_dp);
++
++	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
++	if (vblank < wake_lines)
++		return false;
++
++	return true;
++}
++
+ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
+ {
+@@ -1333,9 +1347,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 	}
  
--	str = "unknown";
--	if (intel_dp->psr.panel_replay_enabled) {
--		idx = (status & DP_SINK_FRAME_LOCKED_MASK) >> DP_SINK_FRAME_LOCKED_SHIFT;
--		if (idx < ARRAY_SIZE(panel_replay_status))
--			str = panel_replay_status[idx];
--	} else if (intel_dp->psr.enabled) {
--		idx = status & DP_PSR_SINK_STATE_MASK;
--		if (idx < ARRAY_SIZE(sink_status))
--			str = sink_status[idx];
--	}
-+	status &= DP_PSR_SINK_STATE_MASK;
-+	if (status < ARRAY_SIZE(sink_status))
-+		str = sink_status[status];
-+	else
-+		str = "unknown";
- 
- 	seq_printf(m, "Sink %s status: 0x%x [%s]\n", psr_mode_str(intel_dp), status, str);
- 
+ 	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
+-	if (crtc_state->hw.adjusted_mode.crtc_vblank_end -
+-	    crtc_state->hw.adjusted_mode.crtc_vblank_start <
+-	    psr2_block_count_lines(intel_dp)) {
++	if (!vblank_length_valid(intel_dp, crtc_state)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "PSR2 not enabled, too short vblank time\n");
+ 		return false;
 -- 
 2.34.1
 
