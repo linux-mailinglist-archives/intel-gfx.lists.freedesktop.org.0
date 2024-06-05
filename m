@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533F18FCFEE
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 15:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5E18FCFEF
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 15:48:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E40310E467;
-	Wed,  5 Jun 2024 13:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6853210E69E;
+	Wed,  5 Jun 2024 13:48:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NkhJ+rLg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gsxB4Ohr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31CB010E467
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 13:48:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA30910E4F0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 13:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717595293; x=1749131293;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h6IihCrTzSwhWZoP0Mkf+nm3fhrpcINdZHPqzMvKn3c=;
- b=NkhJ+rLgnr5t7cbYFA0/JfLpBxGEAuZ13OyY9uo7idMcCkZPMVB58cLl
- /8TGqZqlkxh/iatuTSmWb5+3mWZq9eausN0ISAeBv9VXmGTK4OAvNzDwC
- faMYumiiWezE5Va+mLa5i8kFdM+yq4x5oawB8F8zpSJfcTQ9G5VcKhO1I
- ILRKAKVWo1Ezr0SZG3ZW8VjOUxUtw0OXdn04PJGclya8dQL3dC4nQ+MIl
- xqxg31AVH4mJlhpL0X4UjpGNt7qb3lc5Ph8LaDrcGLOYgFWGuDm6AoVOJ
- tDDnbJSDdVZczSsLBq+EUrP/17YvGep2qUCq7Y3U8W0hx2ZfI+OUcoF3A A==;
-X-CSE-ConnectionGUID: Mk0atlclSuyJ/WrxeYZvHA==
-X-CSE-MsgGUID: AHFjQTzmTJ+ODTRaScP8Ug==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="39608280"
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="39608280"
+ t=1717595295; x=1749131295;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=raoNF3iysIixTlSMsONE18nVKluaHZDzPFny85hlEB0=;
+ b=gsxB4Ohr99l7ainhyrFEWKBiqoy+4YGZZsiuug/J7lbeaVZFFkvmM33w
+ niGjOvJWWEijzzvA2D/e4gZNUn119FkLCexivJDA5Luu3SS2qXjMcD/68
+ anpd5rjoonQdjLzvwbull9saPg7nN7HoQL7wpA8NEka2QqDWK54jifeAR
+ E1/bSGiv6x/WistWwXCzpN26nV12lpbrdsHkHtbUC0W2ddbaA690H7IbT
+ Xaf9MhvuDViyDIdDOhBo72+ckGFXOpS9qpIdYUEBnIQDnIoyrQlV8dz/z
+ kGQOQO8ftyW0TYiHztz/kuk6GwQUbCjSY9A70fzeNXzOm3xTHYHhlKNxm Q==;
+X-CSE-ConnectionGUID: V0IvczV7R9iqIDj6FlTiuw==
+X-CSE-MsgGUID: vH7JRyKTRjGlJAKWCgpBzA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="39608300"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="39608300"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 06:47:59 -0700
-X-CSE-ConnectionGUID: NCZAmHDPRQiyCbFo0Quthw==
-X-CSE-MsgGUID: lTWuojNzTkefqTPKpUmPrA==
+ 05 Jun 2024 06:48:02 -0700
+X-CSE-ConnectionGUID: /vaLaLqLSqaSbhKvaIh0gQ==
+X-CSE-MsgGUID: lSXnG8W1QKODn/GI/bQAng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="37605037"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="37605045"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 05 Jun 2024 06:47:57 -0700
+ by fmviesa008.fm.intel.com with SMTP; 05 Jun 2024 06:48:00 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Jun 2024 16:47:56 +0300
+ Wed, 05 Jun 2024 16:47:59 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/i915/bios: Define block 46 chromaticity coordinates
- properly
-Date: Wed,  5 Jun 2024 16:47:55 +0300
-Message-ID: <20240605134756.17099-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/2] drm/i915/bios: Define the "luminance and gamma"
+ sub-struct of block 46
+Date: Wed,  5 Jun 2024 16:47:56 +0300
+Message-ID: <20240605134756.17099-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.1
+In-Reply-To: <20240605134756.17099-1-ville.syrjala@linux.intel.com>
+References: <20240605134756.17099-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,55 +71,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The VBT spec does a very poor job of defining how the chromaticity
-coordinates in block 46 are laid out. After double checking the
-Windows implementation it turns out these more or less match the
-EDID definition, where the 10bit values are split into 2bit + 8bit
-chunks. Adjust our struct definition to reflect that.
+Since BDB version 211 block 46 has included more luminance and
+gamma related information. Define it fully. The data is semi-based
+on DisplayID v2.0 apparently.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 27 ++++++++++++-------
- 1 file changed, 17 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 862c5923b83d..da8694771f69 100644
+index da8694771f69..1af8407e2081 100644
 --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
 +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -1376,16 +1376,23 @@ struct chromaticity {
- 	u8 chromaticity_from_edid_base_block:1;
- 	u8 rsvd:6;
- 
--	u8 red_green;
--	u8 blue_white;
--	u8 red_x;
--	u8 red_y;
--	u8 green_x;
--	u8 green_y;
--	u8 blue_x;
--	u8 blue_y;
--	u8 white_x;
--	u8 white_y;
-+	u8 green_y_lo:2;
-+	u8 green_x_lo:2;
-+	u8 red_y_lo:2;
-+	u8 red_x_lo:2;
-+	u8 white_y_lo:2;
-+	u8 white_x_lo:2;
-+	u8 blue_y_lo:2;
-+	u8 blue_x_lo:2;
-+
-+	u8 red_x_hi;
-+	u8 red_y_hi;
-+	u8 green_x_hi;
-+	u8 green_y_hi;
-+	u8 blue_x_hi;
-+	u8 blue_y_hi;
-+	u8 white_x_hi;
-+	u8 white_y_hi;
+@@ -1395,8 +1395,20 @@ struct chromaticity {
+ 	u8 white_y_hi;
  } __packed;
  
++struct luminance_and_gamma {
++	u8 luminance_enable:1;						/* 211+ */
++	u8 gamma_enable:1;						/* 211+ */
++	u8 rsvd:6;
++
++	u16 min_luminance;						/* 211+ */
++	u16 max_luminance;						/* 211+ */
++	u16 one_percent_max_luminance;					/* 211+ */
++	u8 gamma;							/* 211+ */
++} __packed;
++
  struct bdb_chromaticity {
+ 	struct chromaticity chromaticity[16];
++	struct luminance_and_gamma luminance_and_gamma[16];		/* 211+ */
+ } __packed;
+ 
+ /*
 -- 
 2.44.1
 
