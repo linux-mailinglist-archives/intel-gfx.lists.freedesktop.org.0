@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DCF68FCA35
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 13:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF90C8FCA36
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Jun 2024 13:18:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7F3A10E748;
-	Wed,  5 Jun 2024 11:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC8910E75F;
+	Wed,  5 Jun 2024 11:18:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LHLuaoAD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="laXFdP3i";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47EF610E59F
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 11:18:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 170F310E74A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Jun 2024 11:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717586318; x=1749122318;
+ t=1717586321; x=1749122321;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=/WqPNDBofw22ZA9ZX3IoQVJhfu3Vj/Q0wAxpJ13/ZFw=;
- b=LHLuaoADlQxSMPYNhxinUzoy3YZEw4/JqSFjNgeK8lkUCapxUpJIQ/G1
- k5IqHfVFwOpVHJS5UHqBafggz31XrDdS112H8QEQI2sE6C8EwlwmV5+Qo
- aoEkoy9m0fdG4cucswTCpqv4IrGOFlepMB2G81WGNJkSS9LdmoEA4BY6y
- JVrv9DFzTXulXY3qCwxTCA/lZsBn3j5DR5Hq0WUIJjCLuPCqXm31rD6Mv
- JHMYk2HYJyMRDCae6BCuerv73NvU1cdF3opq4NhPWWxTvipp7+Sz4uo3a
- /rVP+KmRYQ9ZJ+JDC1SNx1yeQqY644g9EwaLmG5PqzoThECsHoV2RA9st w==;
-X-CSE-ConnectionGUID: z+qTV49OQ+a/mUHcHSNgiA==
-X-CSE-MsgGUID: 4bCwOWNFQ7uStTsmyxgHGg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="11920176"
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="11920176"
+ bh=mVkCJ7wSJ5tfYRBfR9YOHUjZrXsaeGxItTZY7ZLHHt4=;
+ b=laXFdP3i44gyGA6waQyG3t4ZSLWE8UUET7x9x4RTX6tsBWz/0Gl+aMz4
+ tkQ/UFAhBVL+UgQppFSvmzOP6FLogfr0KgONvnBkroqmd4UR2KTZmDt31
+ IimEH/EVJqsXL4qGu9arbsrW6QWS8jGEIiCoagbRhoJl6FXdczMaSTVzP
+ cYiQiORxBb6dsnb/R55eiwCaG07jM7nQx2yhNH4fJvS/3OpUbV8+s0yK0
+ F5vc5gRSuv9vv6Trj6zhzotSm0JvTwv99WjF0Kl7jQ2tgIILyQLXP9kvt
+ M+MYCmrnxNIvBaSU3/JZevn+EnaU2VpJJmUMsD59AxWNuzNVZxNeEBXJS g==;
+X-CSE-ConnectionGUID: ur4UCEwhRMCB+RuVNydosQ==
+X-CSE-MsgGUID: fCiIWMxgTBao+9WyKxkzOg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11093"; a="11920177"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="11920177"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2024 04:18:38 -0700
-X-CSE-ConnectionGUID: 9dj1129uQ9Ov+tlURVISpw==
-X-CSE-MsgGUID: Ii5dv3vTSmyyNRsCBKtRuA==
+ 05 Jun 2024 04:18:41 -0700
+X-CSE-ConnectionGUID: Xmk0KcekQ4CaLRcI5P2TBg==
+X-CSE-MsgGUID: QkupMS94RtGaBJ6QKqb++Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="37566100"
+X-IronPort-AV: E=Sophos;i="6.08,216,1712646000"; d="scan'208";a="37566104"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 05 Jun 2024 04:18:36 -0700
+ by fmviesa008.fm.intel.com with SMTP; 05 Jun 2024 04:18:39 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 Jun 2024 14:18:35 +0300
+ Wed, 05 Jun 2024 14:18:38 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/7] drm/i915: Use REG_BIT() for bdw+ pipe interrupts
-Date: Wed,  5 Jun 2024 14:18:26 +0300
-Message-ID: <20240605111832.21373-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/7] drm/i915: Document bdw+ pipe interrupt bits
+Date: Wed,  5 Jun 2024 14:18:27 +0300
+Message-ID: <20240605111832.21373-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.1
 In-Reply-To: <20240605111832.21373-1-ville.syrjala@linux.intel.com>
 References: <20240605111832.21373-1-ville.syrjala@linux.intel.com>
@@ -70,76 +70,67 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the hand rolled (1<<n) with the modern REG_BIT()
-approach for the bdw+ pipe interrupt bits.
+Sprinkle some notes indicating which platforms have which
+pipe interrupt bits.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 54 ++++++++++++++++-----------------
- 1 file changed, 27 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 42 ++++++++++++++++-----------------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0569a23b83b2..6b77de060e33 100644
+index 6b77de060e33..2d0751fb9591 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2622,33 +2622,33 @@
- #define GEN8_DE_PIPE_IMR(pipe) _MMIO(0x44404 + (0x10 * (pipe)))
- #define GEN8_DE_PIPE_IIR(pipe) _MMIO(0x44408 + (0x10 * (pipe)))
- #define GEN8_DE_PIPE_IER(pipe) _MMIO(0x4440c + (0x10 * (pipe)))
--#define  GEN8_PIPE_FIFO_UNDERRUN	(1 << 31)
--#define  GEN8_PIPE_CDCLK_CRC_ERROR	(1 << 29)
--#define  GEN8_PIPE_CDCLK_CRC_DONE	(1 << 28)
--#define  XELPD_PIPE_SOFT_UNDERRUN	(1 << 22)
--#define  XELPD_PIPE_HARD_UNDERRUN	(1 << 21)
--#define  GEN12_PIPE_VBLANK_UNMOD	(1 << 19)
--#define  GEN8_PIPE_CURSOR_FAULT		(1 << 10)
--#define  GEN8_PIPE_SPRITE_FAULT		(1 << 9)
--#define  GEN8_PIPE_PRIMARY_FAULT	(1 << 8)
--#define  GEN8_PIPE_SPRITE_FLIP_DONE	(1 << 5)
--#define  GEN8_PIPE_PRIMARY_FLIP_DONE	(1 << 4)
--#define  GEN8_PIPE_SCAN_LINE_EVENT	(1 << 2)
--#define  GEN8_PIPE_VSYNC		(1 << 1)
--#define  GEN8_PIPE_VBLANK		(1 << 0)
--#define  GEN9_PIPE_CURSOR_FAULT		(1 << 11)
--#define  GEN11_PIPE_PLANE7_FAULT	(1 << 22)
--#define  GEN11_PIPE_PLANE6_FAULT	(1 << 21)
--#define  GEN11_PIPE_PLANE5_FAULT	(1 << 20)
--#define  GEN9_PIPE_PLANE4_FAULT		(1 << 10)
--#define  GEN9_PIPE_PLANE3_FAULT		(1 << 9)
--#define  GEN9_PIPE_PLANE2_FAULT		(1 << 8)
--#define  GEN9_PIPE_PLANE1_FAULT		(1 << 7)
--#define  GEN9_PIPE_PLANE4_FLIP_DONE	(1 << 6)
--#define  GEN9_PIPE_PLANE3_FLIP_DONE	(1 << 5)
--#define  GEN9_PIPE_PLANE2_FLIP_DONE	(1 << 4)
--#define  GEN9_PIPE_PLANE1_FLIP_DONE	(1 << 3)
--#define  GEN9_PIPE_PLANE_FLIP_DONE(p)	(1 << (3 + (p)))
-+#define  GEN8_PIPE_FIFO_UNDERRUN	REG_BIT(31)
-+#define  GEN8_PIPE_CDCLK_CRC_ERROR	REG_BIT(29)
-+#define  GEN8_PIPE_CDCLK_CRC_DONE	REG_BIT(28)
-+#define  XELPD_PIPE_SOFT_UNDERRUN	REG_BIT(22)
-+#define  XELPD_PIPE_HARD_UNDERRUN	REG_BIT(21)
-+#define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19)
-+#define  GEN8_PIPE_CURSOR_FAULT		REG_BIT(10)
-+#define  GEN8_PIPE_SPRITE_FAULT		REG_BIT(9)
-+#define  GEN8_PIPE_PRIMARY_FAULT	REG_BIT(8)
-+#define  GEN8_PIPE_SPRITE_FLIP_DONE	REG_BIT(5)
-+#define  GEN8_PIPE_PRIMARY_FLIP_DONE	REG_BIT(4)
-+#define  GEN8_PIPE_SCAN_LINE_EVENT	REG_BIT(2)
-+#define  GEN8_PIPE_VSYNC		REG_BIT(1)
-+#define  GEN8_PIPE_VBLANK		REG_BIT(0)
-+#define  GEN9_PIPE_CURSOR_FAULT		REG_BIT(11)
-+#define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22)
-+#define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21)
-+#define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20)
-+#define  GEN9_PIPE_PLANE4_FAULT		REG_BIT(10)
-+#define  GEN9_PIPE_PLANE3_FAULT		REG_BIT(9)
-+#define  GEN9_PIPE_PLANE2_FAULT		REG_BIT(8)
-+#define  GEN9_PIPE_PLANE1_FAULT		REG_BIT(7)
-+#define  GEN9_PIPE_PLANE4_FLIP_DONE	REG_BIT(6)
-+#define  GEN9_PIPE_PLANE3_FLIP_DONE	REG_BIT(5)
-+#define  GEN9_PIPE_PLANE2_FLIP_DONE	REG_BIT(4)
-+#define  GEN9_PIPE_PLANE1_FLIP_DONE	REG_BIT(3)
-+#define  GEN9_PIPE_PLANE_FLIP_DONE(p)	REG_BIT(3 + (p))
+@@ -2625,30 +2625,30 @@
+ #define  GEN8_PIPE_FIFO_UNDERRUN	REG_BIT(31)
+ #define  GEN8_PIPE_CDCLK_CRC_ERROR	REG_BIT(29)
+ #define  GEN8_PIPE_CDCLK_CRC_DONE	REG_BIT(28)
+-#define  XELPD_PIPE_SOFT_UNDERRUN	REG_BIT(22)
+-#define  XELPD_PIPE_HARD_UNDERRUN	REG_BIT(21)
+-#define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19)
+-#define  GEN8_PIPE_CURSOR_FAULT		REG_BIT(10)
+-#define  GEN8_PIPE_SPRITE_FAULT		REG_BIT(9)
+-#define  GEN8_PIPE_PRIMARY_FAULT	REG_BIT(8)
+-#define  GEN8_PIPE_SPRITE_FLIP_DONE	REG_BIT(5)
+-#define  GEN8_PIPE_PRIMARY_FLIP_DONE	REG_BIT(4)
++#define  XELPD_PIPE_SOFT_UNDERRUN	REG_BIT(22) /* adl/dg2+ */
++#define  XELPD_PIPE_HARD_UNDERRUN	REG_BIT(21) /* adl/dg2+ */
++#define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
++#define  GEN8_PIPE_CURSOR_FAULT		REG_BIT(10) /* bdw */
++#define  GEN8_PIPE_SPRITE_FAULT		REG_BIT(9) /* bdw */
++#define  GEN8_PIPE_PRIMARY_FAULT	REG_BIT(8) /* bdw */
++#define  GEN8_PIPE_SPRITE_FLIP_DONE	REG_BIT(5) /* bdw */
++#define  GEN8_PIPE_PRIMARY_FLIP_DONE	REG_BIT(4) /* bdw */
+ #define  GEN8_PIPE_SCAN_LINE_EVENT	REG_BIT(2)
+ #define  GEN8_PIPE_VSYNC		REG_BIT(1)
+ #define  GEN8_PIPE_VBLANK		REG_BIT(0)
+-#define  GEN9_PIPE_CURSOR_FAULT		REG_BIT(11)
+-#define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22)
+-#define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21)
+-#define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20)
+-#define  GEN9_PIPE_PLANE4_FAULT		REG_BIT(10)
+-#define  GEN9_PIPE_PLANE3_FAULT		REG_BIT(9)
+-#define  GEN9_PIPE_PLANE2_FAULT		REG_BIT(8)
+-#define  GEN9_PIPE_PLANE1_FAULT		REG_BIT(7)
+-#define  GEN9_PIPE_PLANE4_FLIP_DONE	REG_BIT(6)
+-#define  GEN9_PIPE_PLANE3_FLIP_DONE	REG_BIT(5)
+-#define  GEN9_PIPE_PLANE2_FLIP_DONE	REG_BIT(4)
+-#define  GEN9_PIPE_PLANE1_FLIP_DONE	REG_BIT(3)
+-#define  GEN9_PIPE_PLANE_FLIP_DONE(p)	REG_BIT(3 + (p))
++#define  GEN9_PIPE_CURSOR_FAULT		REG_BIT(11) /* skl+ */
++#define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
++#define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
++#define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
++#define  GEN9_PIPE_PLANE4_FAULT		REG_BIT(10) /* skl+ */
++#define  GEN9_PIPE_PLANE3_FAULT		REG_BIT(9) /* skl+ */
++#define  GEN9_PIPE_PLANE2_FAULT		REG_BIT(8) /* skl+ */
++#define  GEN9_PIPE_PLANE1_FAULT		REG_BIT(7) /* skl+ */
++#define  GEN9_PIPE_PLANE4_FLIP_DONE	REG_BIT(6) /* skl+ */
++#define  GEN9_PIPE_PLANE3_FLIP_DONE	REG_BIT(5) /* skl+ */
++#define  GEN9_PIPE_PLANE2_FLIP_DONE	REG_BIT(4) /* skl+ */
++#define  GEN9_PIPE_PLANE1_FLIP_DONE	REG_BIT(3) /* skl+ */
++#define  GEN9_PIPE_PLANE_FLIP_DONE(p)	REG_BIT(3 + (p)) /* skl+ */
  #define GEN8_DE_PIPE_IRQ_FAULT_ERRORS \
  	(GEN8_PIPE_CURSOR_FAULT | \
  	 GEN8_PIPE_SPRITE_FAULT | \
