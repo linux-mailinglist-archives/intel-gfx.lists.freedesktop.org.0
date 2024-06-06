@@ -2,68 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872EB8FEDFF
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 16:41:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB0F8FEE0B
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 16:41:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08CF910E97E;
-	Thu,  6 Jun 2024 14:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83A2C10E986;
+	Thu,  6 Jun 2024 14:41:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWTUFT5u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DzRvcWvX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C741910E97E
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 14:41:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999B710E986
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 14:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717684861; x=1749220861;
+ t=1717684885; x=1749220885;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=q2cdWJW05JNwkWik++dTuViwfUHqR3ayBP6zfB+rXoA=;
- b=VWTUFT5utK/MYWzeL+kFlJzP5KbBQL3sDge8urbEsQZp3F0wPmd/doOG
- QFfpTQCeFs0UqUPs6HPF2DG6I66zRp0eb7H8q/1kt1ubyVy3DVRGpwCon
- wGPHk8/EYHHjSJUMQ3pVMjSyQ1nHq0uZEWTtSjNW/9+OlpP4eGBKxjFkI
- M6pzNN4YHFDjq7DJTdDZzijlNJwuTnvvGy1dAOi2BcVf0xmwiw1QBiJTT
- wBwdaMddZzehpNNQ3SXxheJA5vFAzUrLK9Eghivt/FIeDP8D9mw7Ilhdu
- l5zjTeOLLDRDlRYolL3iBI+m7IjeufGjM+D8sYlG9/1n8u7/jCytMbkTW w==;
-X-CSE-ConnectionGUID: g6gCH+LMQPWlV0MtaFRvcA==
-X-CSE-MsgGUID: nzIfJYjCQc6YIoFk2UoTbg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14195233"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14195233"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 07:41:00 -0700
-X-CSE-ConnectionGUID: 1+GMdwyqQDit97SqUoXyQw==
-X-CSE-MsgGUID: Yjq2frWaRKyoQLPlHHbIIg==
+ bh=KH0E2e2x9yEL9oPvXvYEPlzo+A6cCzjN/8VfbiPosuY=;
+ b=DzRvcWvXQE3DXcBf15hUPSu7x0mGgPahffU0shnF5bl5Z3/WZzkH6W4S
+ t8hi4FBVQJmyiZe3irXsr147WzcsYdyzjO8zwBb7t2ocFVDfvH82FvJBi
+ l2/cia+/OhraxQtsVhXNx8s8ll517c694IBkijuxmxi0G8WZcs3HYbPTI
+ YWG2oiCBEG2ODUXkfckvFVGX0CNeY/aScg6Smb+4fAFQdZyqFQbZZvdzO
+ 7boauhVkO9QTBOCKlT4CLZ/4T1BI8YT/jwb96/f+NhJwGTEcwd9b939bm
+ oY6JtO6pgPs0V0ZzR3wwt10FZD85/jL8KsbZDTw897pDlgyMuTN1cUmU0 g==;
+X-CSE-ConnectionGUID: BnwzIH3aRxGNIgQyefL+HA==
+X-CSE-MsgGUID: MYJfllFKT0enNZQAUoWQDw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="25013314"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="25013314"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 07:41:25 -0700
+X-CSE-ConnectionGUID: Iwfwe8crQRGdwqNAE/XCOQ==
+X-CSE-MsgGUID: fjaTc8SgTHm8lRwTK8ZEyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38548448"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Jun 2024 07:41:00 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37992265"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Jun 2024 07:41:25 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 6 Jun 2024 07:40:59 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 6 Jun 2024 07:41:24 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 6 Jun 2024 07:40:59 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 6 Jun 2024 07:41:24 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 6 Jun 2024 07:40:59 -0700
+ 15.1.2507.39 via Frontend Transport; Thu, 6 Jun 2024 07:41:24 -0700
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 6 Jun 2024 07:40:58 -0700
+ 15.1.2507.39; Thu, 6 Jun 2024 07:41:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ncazoOH+giInNWln2BXsEr60jn2WYiS1mzI9rSit8iVm6HGs0xJLiojQ4IBo+NsxBtP8G4FWWgW45KUbgb1D+01qvhQEJGs9hvQ2vC1LoQblA4P5ivJIOH0AYiBdJq5FPcE092MKa+6Ry76uVH7m8ZJ5lpBQEIens63w+HRX9eU6aHC9KWpcGJgtn9YDYn9GOrfneIMSJbyxM+xMY3Ytx4o/ozxjbTZRq8vbNzqv9C9YFknaN5CtqjqWotUSFmpe25pyFuOGSCbgxtLg8wmpslwy4cRh5zVwecMkqQx3FsxI3yPcqSHa9SfmlDjaKm/rU/SVbxD9LUthiqMl/Bepdg==
+ b=MHdbDFPWSggQXczg5uBRa6lpNh79ZSvMdEf1V7NJryPrleHR8zL1iNRwzRZA1dI8+yu4E+OhkbFBea/0SPLpLh42cWD3H/SGR9ux5bw3qErNm1+aVd7eLscfXz9AoTs3NC3gNL4vI4nPfntZr0DWbI7ddPYlkeLFBUHdhOOzDkqu5plCPj0jwOjQhlxqB1JjUsjkHorjQSoq1amydMD53U3fMQpslYdwg37KbG7r1kFd2nmeIeXDYiWr6S6PsZ/ZmhwSCT7YImObNI7edFXUNSVmf+tcdpTNTYnAtNICa+w+c6ht8cDsnWxDvdUDFQK14Qu9nQUI1YTu+f2kXGxJig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8iCrdm5Kv2PFx08m+C4vA+cPY3GgX3FA3ydCEh2A0Y0=;
- b=FwfuwfPI7Upp/bhEfqWh/0kZcwNud6DRP4JEDP8yL/UoH+mssKrB1BdZtSDKNrbCf9tcN5hJECkpg7WF/DVogtBOwyoObENgG3+S/3hexaYfFDF4jiyDrGhz+s9UEv+hAyJDA7j0YflcoQc+22XWyCRdnH7Wg1v2lgnMRX/xOgHp/gN6TbBb+X8+EHhyvWf9e3gzjKB3Yx/rW9L9P59WsKgt4uulSMlmAsoPwi4qVPWVVF4p9C96Dz/FfplN08aPherDvYhVCmRV8gb1RnN4uf4doJNH9UV3O9eB0MSRxerdOKMLGUY+CK+YEtOfBaIA1Vp/qpOzoIKiwggm4vtbWA==
+ bh=Kr+2TP3GjE8llwANaRBBDTwh39+yPzEFYCQL/K9ydzg=;
+ b=fXmbf0DJGduSo3QYAkS5pi7h3cS4HJPqnlZXdNceilLdaNkU3cj/PR1LrAXbM9+TRhmlHNYdAkE4Zdqucqys/FySp/zfyFRVG8uFqcnHKVKnQKyXnz5/SiR6WHIPzj5cbJYm+Obrge198Ltf7wyAmvhMu2LdN3MR6rbLlrXEH4UIzTwsGzynnahT3D1EUCTFQMmwYfR6WWdfW9Y3ekB4M5uqSxMp1eETrcTrSKap50mTZXoP1/bgw5g3y3tztApo6LBCEvAYXmjihapVHw++bQkcwylfLH4fbl+xb14HZAac+I0SNlPkVUx/EhRe6rknoDVD7IbZzY/9gZya2LOhcw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,95 +73,95 @@ Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
  by PH7PR11MB6723.namprd11.prod.outlook.com (2603:10b6:510:1af::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.31; Thu, 6 Jun
- 2024 14:40:51 +0000
+ 2024 14:41:22 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7633.033; Thu, 6 Jun 2024
- 14:40:51 +0000
-Date: Thu, 6 Jun 2024 10:40:48 -0400
+ 14:41:22 +0000
+Date: Thu, 6 Jun 2024 10:41:20 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 04/65] drm/i915: pass dev_priv explicitly to TRANS_HBLANK
-Message-ID: <ZmHKcBx4zbavRki1@intel.com>
+Subject: Re: [PATCH 05/65] drm/i915: pass dev_priv explicitly to TRANS_HSYNC
+Message-ID: <ZmHKkIj4XdYjFYgd@intel.com>
 References: <cover.1717514638.git.jani.nikula@intel.com>
- <19d3d11d522be1787db89bdc254ae826ca4fb50a.1717514638.git.jani.nikula@intel.com>
+ <d387281470c9b677adb659b80fa3385df2faca99.1717514638.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <19d3d11d522be1787db89bdc254ae826ca4fb50a.1717514638.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BYAPR11CA0070.namprd11.prod.outlook.com
- (2603:10b6:a03:80::47) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <d387281470c9b677adb659b80fa3385df2faca99.1717514638.git.jani.nikula@intel.com>
+X-ClientProxiedBy: SJ0P220CA0007.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::15) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH7PR11MB6723:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9731781f-c94c-42b0-16fc-08dc8636a9b5
+X-MS-Office365-Filtering-Correlation-Id: 5e113a38-1088-4589-6ba6-08dc8636bbda
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|376005;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Han4Tlo40ZQDtbGGLwG77ESUIhgr7Dt0tMHdK86wtVsbYPkngDMbKm2WkEVn?=
- =?us-ascii?Q?c/vKz2ZwoTmv6f9Sl/oO65k7EvItIBD/BLDt52LWptEvk+oksblkGpSvGx0B?=
- =?us-ascii?Q?xdWHcelxUHLMIR7RKMN72TrkCMpHEoNAJRo5X0lYVNV7fd9xArPJz/AiBqC+?=
- =?us-ascii?Q?IcU3OdR0U8AIl2/eXhPd8lr+Z4hnOh7Je3nhjqvEtXNyVn6Sy1rEpngwvb9C?=
- =?us-ascii?Q?kaD9YiHMyAadBsUUyrHWNQHH59uxHAi3RIMiEr67LLX6jQUAhpwZLnkkRJ3n?=
- =?us-ascii?Q?FHY1A7fW12o48zjd/5duDL1KF+SEeEDKDjC/X2X4MJM4xsfla3OKMoKTlBFa?=
- =?us-ascii?Q?4bD/AmFK6QllpDxMbde10XknluRBR/65jzAMKuyGMCSNwKos6lwtWTbr2SUu?=
- =?us-ascii?Q?nZWWUN7ba5DKaYieh+LQI/KlNzlYUzkYl8eEX3kNER56cBZXPPRh6L8h7wR9?=
- =?us-ascii?Q?+rzCXFULyyiGsGQo7Ez8xxPAoJaRZ66lGaLyO4OoGlCDQKG669zTg4rW52Nt?=
- =?us-ascii?Q?fLDA2Mj4RbtVnCCMFFBqwTsY/QBo5VKQFEsa0wfeyK3FeUbd/Cth6C90uAvu?=
- =?us-ascii?Q?d/cx/e9T6SJoMooTpNWtPxYV5PHWSMwp7cT9yFBvRSbOk3tWpHYXVgAHbkIn?=
- =?us-ascii?Q?Ws9jB+bcslPvRXjAtZnRpQgtFGOEaTybCZCpx1dl7QoxRRYXMHVCZVfXgjXL?=
- =?us-ascii?Q?WuLw7W4/UJY0Vjf1lgtfKCyheXuJZoKUGfWmxbSdDj18i6xwVS9mWefyOKYj?=
- =?us-ascii?Q?SfsEHpAtTQTyUvn3sePC3nA3LVB8j96nYK8NGZPBNPKl5Nloy4V0+I2OT7Yn?=
- =?us-ascii?Q?hQoI581Fs0oHFJWTQNa1IPStrFT2Oo9kkkfa1b81IJBhA4UDYHW1HmjskHkq?=
- =?us-ascii?Q?g6OH3S3WpMLGy3bZ/ca++60MGrereEvvsmEdZinkBk1wPM3RVx8rLNuXTrgq?=
- =?us-ascii?Q?GW87DADiDNty4hA8NuuNVOkgB1su9vhI99q47Mmfs9s1/OXrEiUu2pJq5lNH?=
- =?us-ascii?Q?uPhwn1qUUKVcu1eyZTaEF4ck8y9R4wXMUdhgHCWORfjWp7lQTGj+fnhnjQpD?=
- =?us-ascii?Q?vU1NpYF+pIv741qyVmQb+2KYacwegkZJxPlGNGu7mUSGD8k7VWhrFuwPoOPm?=
- =?us-ascii?Q?GeKVBnWem5IU4aifbcnKZEcBAB+ZHah1GAdqHgALqFmJ2OO+8GDuIXSMgFfm?=
- =?us-ascii?Q?ywxlUmsCOkRubER0GfIuzI+UaCYrR57G8lhkzCuUBuzWLqwWPcSKlRqzf2SV?=
- =?us-ascii?Q?nMgn/0tuqohem37xUBffe3zSe9FMbiFNsamNOyB9Mz/myGtWwChxxZKEeCnH?=
- =?us-ascii?Q?BWCmFBG7vboBjycVBYiUCsMs?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uP36c3WQ7SqdSW+PKX8lkPQT9icsGzvS9apzgMxMU5tLkcDKwFLce/MC9QB0?=
+ =?us-ascii?Q?nmfPiOkrr7llsfh94XMI1cs1KA8I9mYOGHx/c0EuxQKwfqY984zQNsCx3grY?=
+ =?us-ascii?Q?vH/27Ah4ZS/JvStADLBNuBnwhvWIoLfW0BL7cevZga/AU2c6UuEe0xXSCyca?=
+ =?us-ascii?Q?NZUu7cn3RxUD7B+MNHqyctUFs5HlvrywMrnvj2h/sBAdJmJxbxT9AIFnJcll?=
+ =?us-ascii?Q?ic/AGP9h0jADFdxX4H1wLQ0gN5jIxwu0TMBFrj+h3vnesOBaPpQaYgJmFdcr?=
+ =?us-ascii?Q?68eky2qosnelGAXxFkJJwfcPjCbtkxldgpG4XbZjhCWw8J+CnV3lXqTpJqCd?=
+ =?us-ascii?Q?1aR6zisTFESBktXnbx/Dox4pBkLRBjAZnqtQWx+tJmsFjn9bRCMchlRqR+bP?=
+ =?us-ascii?Q?Mi7DJ76CrAtda4SAgPIjgHqVp1XHGG9WfKGk8dFLffqBKFTHemrmWIMOr45w?=
+ =?us-ascii?Q?7TkTmNgiVzom1noaaQOUVrSQoarRTUCSsKaP9DtOHlIMyiyqZsu0V2pAMVX1?=
+ =?us-ascii?Q?Z7l/n3NrNMsdf9gEhUEvkJdTWznGunxwJE/3TPBq4W9Q6kfnSOa1VR0OtUSr?=
+ =?us-ascii?Q?D73cMEB3MrWtCfYLJjiPDF6DyXtb/UrvnYJVH58Tb2isXPnffAxlMEp4XO6d?=
+ =?us-ascii?Q?1ba1WnEEpV/dMaji/xhw1NEvnRlz74B6Ucq4ni+q4SIrXqdneEyfeNfmtiSL?=
+ =?us-ascii?Q?oZ42E5iplxUUQyfTwbTEcNnniAGCSAX/Q5yXccz8n2B03j/istAcK/Z2CVQq?=
+ =?us-ascii?Q?9byQwGEHEUbzpZ+jfE3W6a1J8Z9u4QFxU1sD9oiY1CnDGi/K4QVA8g8hX06M?=
+ =?us-ascii?Q?aafkr9orxgU95Sy86FO7fKLzVoaoVduU+vH2Uy6NvUBhg5FFVfHrNwt6cexP?=
+ =?us-ascii?Q?hP4wKT1Z1EhtgGJNp4n+NvWsGKyz4WLFyB8lMB2vQnJe0sn8o0HTM2tybKmg?=
+ =?us-ascii?Q?Hrg8HLth/V1iEwskz5t6K6khJoKZGvVzu2Q31NZ0t0lxaX/csW8Lqd0wEWao?=
+ =?us-ascii?Q?CyjaOgMOIzMgRV7IyjjeiaaTjje8gDzsD7nF8NCpbgZoG9wPei8x5JCMoe9Q?=
+ =?us-ascii?Q?eIQ8NfurW4f51FFOIjY3AjiHRbFY6M+Ul6z5AzJJUCFsEPkxD3Z53Py2486W?=
+ =?us-ascii?Q?BJke4qU1pDqT86DbyuEtGWzvfUEmvnQNyNtYQKoCmPbg4bZw6QroqhgArLCt?=
+ =?us-ascii?Q?wpNKElTXlod7d9YhVL7rWPQq4gb2u3qAS9e8/g1W2zqM3Kvz29y48Sv4u6y6?=
+ =?us-ascii?Q?zW7pMxzuEJGkedcQwKZrd+AVb9fXV9V819nZPVlhD5iraA2Obi+Z6g1ejAFV?=
+ =?us-ascii?Q?5Zs=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(1800799015)(366007)(376005); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xfWlU7b8ClQrCzgpn0TETjV1p2qpsvBTvnDBnrOgsV7A9357DELzfMOE61Tx?=
- =?us-ascii?Q?ufGpcl6vSstQ4RTl86f4oAx8yuBx0nyROyY05pB3igzxZMCJ5HdCIeDsucR5?=
- =?us-ascii?Q?8LjAolQA7Ra1GlHmA9HFjqG/bV0vAqPgs1znxQOueSSFVzPNAS769qI9tNyq?=
- =?us-ascii?Q?vL0U/KcgkM0I1kk5A5O968354hyqDlOXQtAZ3N1nCOhiQn6n1fnfNc8XlAqp?=
- =?us-ascii?Q?W35Jbkmauo7Ytw3lBaM4oGb2taOQLgUJgbqtNTOECuSDdUl8k13X0wP5eyd9?=
- =?us-ascii?Q?DqpRmQ9qshKNHjQTkQGS+ojBDNRNbN3zVa8oLGRP8M2A+w7gfU2egXJFnegt?=
- =?us-ascii?Q?KrRCJo9j1STQrmYbHMIjfqpeyPulO4s7DedkZDGkjeY7ri6gum2U8fX6t9al?=
- =?us-ascii?Q?HKf7Ijvn9vCFzD/7BLEN6C8cRZppHGNSGtW9C70YyN2BmrHbYICXXXIMdBdC?=
- =?us-ascii?Q?G2HR2XHsKVaK/aQBfuh8r14BJPJvTKsHiD5DZTJ3F5qt2WbtevwPBORxWWey?=
- =?us-ascii?Q?1SnQs9y3+UfBenSuy06Wif4aoBMT/tilWzYS1ug17yzLApJVBL4ifwpVMN2e?=
- =?us-ascii?Q?F7VzdUqAoXt7A2K07uncRKBfbgNa+DEMTSlU9U6YpZtNQKtMjYMY8YtmCgys?=
- =?us-ascii?Q?WyyI12ypYTgSK8L/IptLdEZp7raqXPqli8LkpwYB+88EmKuQnANWafrgV4Qb?=
- =?us-ascii?Q?Kc4lIHpIn+9MpQhcpaGgD9mHfnMOOGdcMP92NLYfwEj947vfvsqAKOu1zItm?=
- =?us-ascii?Q?ulYTOD4Z7zx6hSmpjkry2pukHwSLehu+mjbV8nxTj/L7L0SlO5MyCVHHrSL5?=
- =?us-ascii?Q?RtqiyWQFIIKKwjQI/mRziX61SzdRcyjQ2fW6K6Y4Rxq2JbZ2jEOTQGJmyDG6?=
- =?us-ascii?Q?HYoANHIVDoBcRdwtt1+BQ/q/aXIiANj2LVD6ROoRGxtD4LsH+GWbGjzIsET8?=
- =?us-ascii?Q?MmNZ9rxmefVeF5GcX1P2NbkFMSSwp7A+1xr03z8M5r8TGVTUxP05iCjCJ58n?=
- =?us-ascii?Q?oOJkque0SN5JRpUZ4hhbYTv5H2iEWH1wZGrfqtkGtFTyfGGD3jGvrp62XMVt?=
- =?us-ascii?Q?ZCevqKpuP4dWxBH/ZIJtfSi7cJagk5hFFEbGIEBQttnkkJ3RHJU4yvSWNnwW?=
- =?us-ascii?Q?lAEBMiDq3f9r+wr2dixT9ebSFTfp7aUVX3BmaqqKesWgbBUWzxz5WwKA9fvr?=
- =?us-ascii?Q?ClJ7NvYGLt8LyOBy4zmZv7KSj4gxBDVwIk206mtaCECkTIWG3eojWjQPcyoL?=
- =?us-ascii?Q?greDqeHl8Y6PYjvvmvheS5g8YKA5J2f2e+WSjtYI1a6lCI8bNsaPu85FX4Ma?=
- =?us-ascii?Q?ZUo46LEeA8TutrB+sWtmfjBo52Y6RqZMWMtGZYJ4xphSVMh/kWxH+1LR+0v8?=
- =?us-ascii?Q?Ueq3vc6gFId27TK9xx0uUHy0yj6ZooKKIKeyuWc3A2I78VvuAi/dyy8wl/mW?=
- =?us-ascii?Q?eUBCKz5fyT1yvblnge6lz4YIW4/0/8J2/s8ggExfQGawMeGAnvfnO8zFOkrP?=
- =?us-ascii?Q?o1HUTVM3MNQkQpOja3TIBX4hq7ge7oljLHoM6bXz5sdLbpclVkkfhsCsJa0x?=
- =?us-ascii?Q?A7lQdXMC9C0u3YRaLA43JlWFapT85Ed0TWjnpb7F?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9731781f-c94c-42b0-16fc-08dc8636a9b5
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?G6Ho49vaGRGp29R1+8SazBcN1qnfm6QD0aHbW47ji08Szm9pNg6sHeMpO9QT?=
+ =?us-ascii?Q?6SfvJ4Yw93nwM6TIk/DWsdEzakC8WP1/U/C1PzH3HFNoHJb7jAgQXKa0qZ/Y?=
+ =?us-ascii?Q?LrNQ7hrkrK/EW3bNJxG85mUihqfxWi/8ggxPCHNzepNR69uweYD8zokDw88j?=
+ =?us-ascii?Q?ahPxqeg0rJmFQ63AnwBIqR0y2Bwvq//z6f9s4NPLcA4o6ZXVVk5VdlIwjHIh?=
+ =?us-ascii?Q?XQDfdYn5t5PSiM01hgtTy7Mz9YYw/Y+Y0tHvy/2EkNTPslaqJKHFuUKLCW+h?=
+ =?us-ascii?Q?T++KFgaBpazPs2fzg/irCFSRci8Gwk99fZw9yaeC3EaULmri5coGdaoHJavH?=
+ =?us-ascii?Q?6TRiSqcd63cCvOVoSebAB2DS8vnxlq7oB1RaomtEN3BUwQ/fIR+RvEQNP104?=
+ =?us-ascii?Q?Jjpw57yw0uGkloOmZaLkpSxi4JF8edPU/9Hf9QNYDJRNVDmImXVAOrofScLn?=
+ =?us-ascii?Q?F63TTIgW452qFy3AFPJNpT5tB7d0iUwPWK3OfvqThtHJZz4u1iRLLxk3QKJB?=
+ =?us-ascii?Q?rnszJsNgphIxiOZzuYDI+mzSt273ms6K108kZ5RX6jXT9vVo4lKd827AfHMG?=
+ =?us-ascii?Q?3GWuKDgQqR5cMw6GlAlCBeaTjcC7WR3s4y9npzhXcr2Xp2R7g+4WH6ZjmHem?=
+ =?us-ascii?Q?dQLNHZlN1Yi0YyIGxMUSjGszbGLfw244ltYZgFsjIYHO6Ik1eGFWVHsKhYkd?=
+ =?us-ascii?Q?dj3BUHOCyMNZI2KQTWCUhnuGNkXTSogcUancW1hOXiIz98Qn2IGKd2OW63oH?=
+ =?us-ascii?Q?8HCcZSBZEzokOZVUMusHY8CLCTcxnMvxfFYx7EncmGTG/xgRE9Cq9DX45838?=
+ =?us-ascii?Q?3k4ef0KUiLn6UfMfwMUDwncfAfSpadFLPwikCjRy5csxTJ+wScReWYGFuQSt?=
+ =?us-ascii?Q?O36IXIZ3qlZgMHn+Vf4TWEjGKo81M/hUt66lVl0JvyS5h52acWjrIJPRy8Uo?=
+ =?us-ascii?Q?uhYVqGHqA/OAvTSIS+uYchp8WUf5a9mGnI39YrtpvZudGxyUIwFJ26I5qa5M?=
+ =?us-ascii?Q?wdpz64mKNxBKqZwcpJmv5daIVgQ5BkjjmMwSKerORzc+wZ6xDtDFa/b7vw2R?=
+ =?us-ascii?Q?d8MH46vFcTFpNqA+OYpdZo+J02XCZWUa2D8JNm9sMMFiGPprha6kAgb2ZtQX?=
+ =?us-ascii?Q?l7SJB5mFIHl7Q3F7DMvO9dFvo4kdPH4g45l1WqG1BMSlaxebbq5kwQrGN0I4?=
+ =?us-ascii?Q?WkAXWCJDKbEDjnS1Vxj0ZwtGDHvAtDoemsFIRx4JeQLitRjuQBdVoM6HrVJ2?=
+ =?us-ascii?Q?0am6FhgNteQb+y25WpOpes+yxmECAn1W30vK2WhbR8cx0df5njY/sCiwV4ob?=
+ =?us-ascii?Q?L/tA8PQ9C5S7+TLiA0ptZ5OHDpt4lmmTKirKG0+mdDJLmElGEXzq00q1H3LX?=
+ =?us-ascii?Q?Ngn3c19w1djwv6MZtaA4OP9w0zFTJ2u4QykjaZqxDsfxXxKxa00maICCi1kn?=
+ =?us-ascii?Q?WsPPc9jCN6ELWugAjL+XEJFVNYBKMuifyFL36iE1H5Mt6q6aOdzYWKsehCW0?=
+ =?us-ascii?Q?/MSYs1OYvsPuXshIeoaSQq71Qp6vhLeXvP7VfluRQelOzF2YZXZsK5gyxir/?=
+ =?us-ascii?Q?dNu2ih1n6KyUh3ahB8SE1NCqsYQaz033ikDhKctY?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e113a38-1088-4589-6ba6-08dc8636bbda
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 14:40:51.5412 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 14:41:21.9931 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +vE2pcZFn826uXXMqWMrmBnDlQt0Cyfq/dJS0YONF40cJcfW6x9SqgDQzmpLM5VnhnTYDDV1Wp+3ukWN3l3KEw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: DGysEzfKzJoYuHTAnW/r3NzpLLAedHK68n/yAFVXW85PSq6MpEbQ7zP66k1w97EoYHD3yJqyGxR6xEaZaP6xKQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6723
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -179,119 +179,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 04, 2024 at 06:25:22PM +0300, Jani Nikula wrote:
+On Tue, Jun 04, 2024 at 06:25:23PM +0300, Jani Nikula wrote:
 > Avoid the implicit dev_priv local variable use, and pass dev_priv
-> explicitly to the TRANS_HBLANK register macro.
-> 
+> explicitly to the TRANS_HSYNC register macro.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
+> 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c     | 7 ++++---
+>  drivers/gpu/drm/i915/display/icl_dsi.c           | 3 ++-
+>  drivers/gpu/drm/i915/display/intel_display.c     | 6 +++---
 >  drivers/gpu/drm/i915/display/intel_pch_display.c | 2 +-
 >  drivers/gpu/drm/i915/i915_reg.h                  | 2 +-
 >  drivers/gpu/drm/i915/intel_gvt_mmio_table.c      | 8 ++++----
->  4 files changed, 10 insertions(+), 9 deletions(-)
+>  5 files changed, 11 insertions(+), 10 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index af0d3159369e..f87a2170ac91 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -938,7 +938,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_write(dev_priv, TRANS_HSYNC(dsi_trans),
+> +			intel_de_write(dev_priv,
+> +				       TRANS_HSYNC(dev_priv, dsi_trans),
+>  				       HSYNC_START(hsync_start - 1) | HSYNC_END(hsync_end - 1));
+>  		}
+>  	}
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 481e076b17e6..997418fb7310 100644
+> index 997418fb7310..111f2c400ecd 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2713,7 +2713,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
->  	intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder),
->  		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
->  		       HTOTAL(adjusted_mode->crtc_htotal - 1));
-> -	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
-> +	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
+> @@ -2716,7 +2716,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+>  	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
 >  		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
 >  		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
->  	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
-> @@ -2816,7 +2816,8 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
->  	adjusted_mode->crtc_htotal = REG_FIELD_GET(HTOTAL_MASK, tmp) + 1;
+> -	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
+> +	intel_de_write(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder),
+>  		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
+>  		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
 >  
->  	if (!transcoder_is_dsi(cpu_transcoder)) {
-> -		tmp = intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder));
-> +		tmp = intel_de_read(dev_priv,
-> +				    TRANS_HBLANK(dev_priv, cpu_transcoder));
->  		adjusted_mode->crtc_hblank_start = REG_FIELD_GET(HBLANK_START_MASK, tmp) + 1;
+> @@ -2822,7 +2822,7 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
 >  		adjusted_mode->crtc_hblank_end = REG_FIELD_GET(HBLANK_END_MASK, tmp) + 1;
 >  	}
-> @@ -8191,7 +8192,7 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
 >  
->  	intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder),
+> -	tmp = intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder));
+> +	tmp = intel_de_read(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder));
+>  	adjusted_mode->crtc_hsync_start = REG_FIELD_GET(HSYNC_START_MASK, tmp) + 1;
+>  	adjusted_mode->crtc_hsync_end = REG_FIELD_GET(HSYNC_END_MASK, tmp) + 1;
+>  
+> @@ -8194,7 +8194,7 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
 >  		       HACTIVE(640 - 1) | HTOTAL(800 - 1));
-> -	intel_de_write(dev_priv, TRANS_HBLANK(cpu_transcoder),
-> +	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
+>  	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
 >  		       HBLANK_START(640 - 1) | HBLANK_END(800 - 1));
->  	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
+> -	intel_de_write(dev_priv, TRANS_HSYNC(cpu_transcoder),
+> +	intel_de_write(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder),
 >  		       HSYNC_START(656 - 1) | HSYNC_END(752 - 1));
+>  	intel_de_write(dev_priv, TRANS_VTOTAL(cpu_transcoder),
+>  		       VACTIVE(480 - 1) | VTOTAL(525 - 1));
 > diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> index 2bf00d5336e3..625b1fedd54c 100644
+> index 625b1fedd54c..480c0e09434d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> @@ -226,7 +226,7 @@ static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state *crtc_s
->  	intel_de_write(dev_priv, PCH_TRANS_HTOTAL(pch_transcoder),
->  		       intel_de_read(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder)));
+> @@ -228,7 +228,7 @@ static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state *crtc_s
 >  	intel_de_write(dev_priv, PCH_TRANS_HBLANK(pch_transcoder),
-> -		       intel_de_read(dev_priv, TRANS_HBLANK(cpu_transcoder)));
-> +		       intel_de_read(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder)));
+>  		       intel_de_read(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder)));
 >  	intel_de_write(dev_priv, PCH_TRANS_HSYNC(pch_transcoder),
->  		       intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder)));
+> -		       intel_de_read(dev_priv, TRANS_HSYNC(cpu_transcoder)));
+> +		       intel_de_read(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder)));
 >  
+>  	intel_de_write(dev_priv, PCH_TRANS_VTOTAL(pch_transcoder),
+>  		       intel_de_read(dev_priv, TRANS_VTOTAL(cpu_transcoder)));
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 8398826e9c2d..66e652119a7e 100644
+> index 66e652119a7e..0d33815b91a4 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1218,7 +1218,7 @@
->  #define _TRANS_VSYNCSHIFT_DSI1	0x6b828
+> @@ -1219,7 +1219,7 @@
 >  
 >  #define TRANS_HTOTAL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HTOTAL_A)
-> -#define TRANS_HBLANK(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
-> +#define TRANS_HBLANK(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
->  #define TRANS_HSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
+>  #define TRANS_HBLANK(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HBLANK_A)
+> -#define TRANS_HSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
+> +#define TRANS_HSYNC(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_HSYNC_A)
 >  #define TRANS_VTOTAL(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VTOTAL_A)
 >  #define TRANS_VBLANK(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VBLANK_A)
+>  #define TRANS_VSYNC(trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VSYNC_A)
 > diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> index 2bc90909d980..47681fa69020 100644
+> index 47681fa69020..09d8960f7398 100644
 > --- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
 > +++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-> @@ -232,7 +232,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
->  	MMIO_D(SPRSURFLIVE(PIPE_C));
+> @@ -233,7 +233,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
 >  	MMIO_D(REG_50080(PIPE_C, PLANE_SPRITE0));
 >  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_A));
-> -	MMIO_D(TRANS_HBLANK(TRANSCODER_A));
-> +	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_A));
->  	MMIO_D(TRANS_HSYNC(TRANSCODER_A));
+>  	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_A));
+> -	MMIO_D(TRANS_HSYNC(TRANSCODER_A));
+> +	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_A));
 >  	MMIO_D(TRANS_VTOTAL(TRANSCODER_A));
 >  	MMIO_D(TRANS_VBLANK(TRANSCODER_A));
-> @@ -241,7 +241,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
->  	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_A));
+>  	MMIO_D(TRANS_VSYNC(TRANSCODER_A));
+> @@ -242,7 +242,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
 >  	MMIO_D(PIPESRC(TRANSCODER_A));
 >  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_B));
-> -	MMIO_D(TRANS_HBLANK(TRANSCODER_B));
-> +	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_B));
->  	MMIO_D(TRANS_HSYNC(TRANSCODER_B));
+>  	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_B));
+> -	MMIO_D(TRANS_HSYNC(TRANSCODER_B));
+> +	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_B));
 >  	MMIO_D(TRANS_VTOTAL(TRANSCODER_B));
 >  	MMIO_D(TRANS_VBLANK(TRANSCODER_B));
-> @@ -250,7 +250,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
->  	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_B));
+>  	MMIO_D(TRANS_VSYNC(TRANSCODER_B));
+> @@ -251,7 +251,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
 >  	MMIO_D(PIPESRC(TRANSCODER_B));
 >  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_C));
-> -	MMIO_D(TRANS_HBLANK(TRANSCODER_C));
-> +	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_C));
->  	MMIO_D(TRANS_HSYNC(TRANSCODER_C));
+>  	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_C));
+> -	MMIO_D(TRANS_HSYNC(TRANSCODER_C));
+> +	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_C));
 >  	MMIO_D(TRANS_VTOTAL(TRANSCODER_C));
 >  	MMIO_D(TRANS_VBLANK(TRANSCODER_C));
-> @@ -259,7 +259,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
->  	MMIO_D(TRANS_VSYNCSHIFT(TRANSCODER_C));
+>  	MMIO_D(TRANS_VSYNC(TRANSCODER_C));
+> @@ -260,7 +260,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
 >  	MMIO_D(PIPESRC(TRANSCODER_C));
 >  	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_EDP));
-> -	MMIO_D(TRANS_HBLANK(TRANSCODER_EDP));
-> +	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_EDP));
->  	MMIO_D(TRANS_HSYNC(TRANSCODER_EDP));
+>  	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_EDP));
+> -	MMIO_D(TRANS_HSYNC(TRANSCODER_EDP));
+> +	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_EDP));
 >  	MMIO_D(TRANS_VTOTAL(TRANSCODER_EDP));
 >  	MMIO_D(TRANS_VBLANK(TRANSCODER_EDP));
+>  	MMIO_D(TRANS_VSYNC(TRANSCODER_EDP));
 > -- 
 > 2.39.2
 > 
