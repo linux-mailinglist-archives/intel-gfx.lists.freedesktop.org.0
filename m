@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570B88FE4C7
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 12:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D073A8FE4E4
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 13:09:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDFFD10E8C3;
-	Thu,  6 Jun 2024 10:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27DB910E8CE;
+	Thu,  6 Jun 2024 11:09:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTD/57KQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WNh6oivF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5AA10E8C3
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 10:56:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D21BC10E8CE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 11:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717671384; x=1749207384;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=SqaeeYpv9eTup2dAmTHi5jc814um+9nJb6NL6n44wSY=;
- b=TTD/57KQ8CR/37i4MJJNF7TJuy8zBkGNbuHMBU0PEG0jBhjaNu2Pz9Kt
- 1PRBjgGUu3yAad9TwVQPDqJjuVGhzC7xOsD7Tw6l62orjZLANbvMmxwM7
- Dkp2JBlH3SGY85ITLmzJn3Rvm7w4WjFlu0uPFo9zA7bVwuYikV92iQ7R2
- iaOBA4QfGbaLP3B8k8M6h8nV0QAKChSkvHSbPbQdXAwshUjrcPqA+oq+f
- bpH/Zsxd3VR+ZgnemQiuYRnaJE77ySy2+LhfXN1uKUo7qa166W1SYC4Qh
- 9zojQp9pU29QEVxS6qdkzEuB7RYyAHZ2wmnQK0pvaMyimBTMdWRcwTNkn Q==;
-X-CSE-ConnectionGUID: 2v574vVfTnm7SiVGeFjf1A==
-X-CSE-MsgGUID: 90zdX+rpSE63YWDYF9mZ/w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="31873927"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="31873927"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 03:56:23 -0700
-X-CSE-ConnectionGUID: qPXmbD6HQtC8r/Bxq+jsVQ==
-X-CSE-MsgGUID: Hv3MqHwNR7i0ULbPwMI76g==
+ t=1717672146; x=1749208146;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zve9G2JytZASQAvD76puZL+MVs+1Z0md/PLm9udI1t0=;
+ b=WNh6oivFCX8T48MFRVgyR+ZHBf5gevmFvOEKk+FQ69tdW9BXziKl1EwY
+ EVQ8YSgPWWrcc1dRw6OhVkcAHlNKxQ0ytvIVKv4UgUjzWyPW/nJZo/bvi
+ 8McHMTAZl5XOgN/R4knJ3CZFD0lKeaerPM6rZBEA1ltClb/TEV8It44Lp
+ 0nJGzgwZXQYu5g4buAhUiI7Jw7m0AmAJbn6WtmolPQXDR6tgblYwvVBEy
+ 0HLSimL5evKJcegcWZSpH+CuUZzoj/bzHRaaY8oHjpm3g0YQyuLFP2ipk
+ i2HSHagi1InpUJNR8V5saoFh/Qg7lK3kBZlQW2oubXM8wuE3bBKibnHAh w==;
+X-CSE-ConnectionGUID: 69m0VkjUTDuxA8qTa6s7Jg==
+X-CSE-MsgGUID: t9e0F53IRPSAuml+/ju8GA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="24987487"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="24987487"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 04:09:05 -0700
+X-CSE-ConnectionGUID: DvewvNUVT3S3qPioCpC0pw==
+X-CSE-MsgGUID: pIFp3w5GQ+e8aRpEeQbFeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37889946"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38379393"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 03:56:22 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 04:09:03 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/bios: Define the "luminance and gamma"
- sub-struct of block 46
-In-Reply-To: <20240605134756.17099-2-ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: animesh.manna@intel.com, arun.r.murthy@intel.com,
+ jouni.hogander@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
+In-Reply-To: <20240606082926.1816416-4-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240605134756.17099-1-ville.syrjala@linux.intel.com>
- <20240605134756.17099-2-ville.syrjala@linux.intel.com>
-Date: Thu, 06 Jun 2024 13:56:20 +0300
-Message-ID: <875xumbaqz.fsf@intel.com>
+References: <20240606082926.1816416-2-suraj.kandpal@intel.com>
+ <20240606082926.1816416-4-suraj.kandpal@intel.com>
+Date: Thu, 06 Jun 2024 14:09:01 +0300
+Message-ID: <8734pqba5u.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,47 +69,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 05 Jun 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Thu, 06 Jun 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> To reach PC10 when PKG_C_LATENCY is configure we must do the following
+> things
+> 1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be entered
+> 2) Allow PSR2 deep sleep when DC5 can be entered
+> 3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
+> eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
+> not happening.
 >
-> Since BDB version 211 block 46 has included more luminance and
-> gamma related information. Define it fully. The data is semi-based
-> on DisplayID v2.0 apparently.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
+> WA: 16023497226
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_psr.c | 75 +++++++++++++++++++++++-
+>  1 file changed, 73 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
-drm/i915/display/intel_vbt_defs.h
-> index da8694771f69..1af8407e2081 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -1395,8 +1395,20 @@ struct chromaticity {
->  	u8 white_y_hi;
->  } __packed;
->=20=20
-> +struct luminance_and_gamma {
-> +	u8 luminance_enable:1;						/* 211+ */
-> +	u8 gamma_enable:1;						/* 211+ */
-> +	u8 rsvd:6;
-> +
-> +	u16 min_luminance;						/* 211+ */
-> +	u16 max_luminance;						/* 211+ */
-> +	u16 one_percent_max_luminance;					/* 211+ */
-> +	u8 gamma;							/* 211+ */
-> +} __packed;
-> +
->  struct bdb_chromaticity {
->  	struct chromaticity chromaticity[16];
-> +	struct luminance_and_gamma luminance_and_gamma[16];		/* 211+ */
->  } __packed;
->=20=20
->  /*
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 6fc88f6c6b26..b22745c019df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -811,12 +811,81 @@ static u8 psr_compute_idle_frames(struct intel_dp *intel_dp)
+>  	return idle_frames;
+>  }
+>  
+> +static bool intel_psr_check_delayed_vblank_limit(struct drm_i915_private *i915,
+> +						 enum transcoder cpu_transcoder)
+> +{
+> +	return intel_de_read(i915, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder)) >= 6;
 
---=20
+Please don't use the hardware to preserve the state for you. It will get
+really complicated to maintain.
+
+> +}
+> +
+> +static bool intel_psr_is_dpkgc_configured(struct drm_i915_private *i915)
+> +{
+> +	return intel_de_read(i915, LNL_PKG_C_LATENCY) == U32_MAX;
+
+Ditto.
+
+> +}
+> +
+> +static bool intel_psr_is_dc5_entry_possible(struct drm_i915_private *i915)
+> +{
+> +	struct intel_crtc *intel_crtc;
+> +	bool ret = true;
+> +
+> +	for_each_intel_crtc(&i915->drm, intel_crtc) {
+> +		struct intel_encoder *encoder;
+> +		struct drm_crtc *crtc = &intel_crtc->base;
+> +		enum pipe pipe = intel_crtc->pipe;
+> +
+> +		if (!crtc->active)
+> +			continue;
+> +
+> +		if (!(i915->display.irq.de_irq_mask[pipe] & GEN8_PIPE_VBLANK))
+
+You have no business looking directly at that. It's for display irq code
+*only*.
+
+> +			ret = false;
+> +
+> +		for_each_encoder_on_crtc(&i915->drm, crtc, encoder) {
+> +			struct intel_dp *intel_dp = enc_to_intel_dp(_encoder);
+> +			struct intel_psr *psr = &intel_dp->psr;
+> +
+> +			if (!psr->enabled)
+> +				ret = false;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static bool wa_16023497226_check(struct intel_dp *intel_dp, bool psr1)
+> +{
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+> +
+> +	if (DISPLAY_VER(i915) != 20)
+> +		return true;
+> +
+> +	if (is_dpkg_c_configured(i915)) {
+> +		if (psr1 &&
+> +		    (intel_psr_check_delayed_vblank_limit(i915, cpu_transcoder) ||
+> +		     intel_psr_is_dc5_entry_possible(i915)))
+> +			return true;
+> +		else if (!psr1 && is_dc5_entry_possible(i915))
+> +			return true;
+> +		else
+> +			return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>  static bool hsw_activate_psr1(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+>  	u32 max_sleep_time = 0x1f;
+> -	u32 val = EDP_PSR_ENABLE;
+> +	u32 val = 0;
+> +
+> +	/* WA: 16023497226*/
+> +	if (wa_16023497226_check(intel_dp, true)) {
+> +		val = EDP_PSR_ENABLE;
+> +	} else {
+> +		drm_dbg_kms(&dev_priv->drm, "PSR1 was not activated\n");
+
+Please add reason.
+
+> +		return false;
+> +	}
+
+Switch the condition around and use early return.
+
+>  
+>  	val |= EDP_PSR_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+>  
+> @@ -910,7 +979,9 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+>  	u32 val = EDP_PSR2_ENABLE;
+>  	u32 psr_val = 0;
+>  
+> -	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+> +	/* WA: 16023497226*/
+> +	if (wa_16023497226_check(intel_dp, false))
+> +		val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+>  
+>  	if (DISPLAY_VER(dev_priv) < 14 && !IS_ALDERLAKE_P(dev_priv))
+>  		val |= EDP_SU_TRACK_ENABLE;
+
+-- 
 Jani Nikula, Intel
