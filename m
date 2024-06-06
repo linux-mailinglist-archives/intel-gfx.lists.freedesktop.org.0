@@ -2,62 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06888FF707
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 23:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B38E08FF786
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 00:09:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C59E10E23E;
-	Thu,  6 Jun 2024 21:48:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A78710EADF;
+	Thu,  6 Jun 2024 22:09:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GNpejkRi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4oqPQq1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A168310E23E
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 21:48:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E43C10EADF;
+ Thu,  6 Jun 2024 22:09:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717710514; x=1749246514;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ey+qneSYX9tUYxRu25ZozXqIQA2hdB225YK/ra1eUwM=;
- b=GNpejkRipmOKLhjEhLZ6278XYSBCWhlKgRHj8hp2/fSY2jTpperydol7
- uLQxVLWLWqipirifUcSakSt3rQh+sC777zkLXNDTDzEbw77wPWVRGB3qG
- TtXLRmiNhkxzTI92HJT4v+q36jsJA8BoCWty49xOndiA+ma6aRB1BO4av
- Yi9EU6wOiEZuV+gHcM4lXZvUX7yKuHpeoqe+NRM7DpF1mYtnd9DfJMblG
- 653Q9ColsguugR3lQZqwINrLRxBRIUuUsJ3QI1qmnv+q6BxeYdlsxdBIv
- tSpNxzq+wRwdMZ241UJPr16qeuTbOjNOUm6bTLw6cq4TPRmQe1bW97wai A==;
-X-CSE-ConnectionGUID: YKV5TK2OQZOVC7c7IBDSNg==
-X-CSE-MsgGUID: lH96Orj6QaWbuTFjP5RDHA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14251698"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14251698"
+ t=1717711786; x=1749247786;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=zP0kotE5FVo9el/DXFxkalN/XT6pkXcVELeA2h3cOcw=;
+ b=f4oqPQq1YV1U+0m5O3ac7HA6fGpbVXum87RCq9vZFEx1uiESI8o8i+YX
+ WNXPaLBuqn7N2rnCnyTfiL6JqYxNytFpSJI0qteTDomgo77ao99Ck1Hdh
+ AcNpn5eP+ntPRxHRl1i+fXWld6B6GXRQXArJDX+MMAVZamplKLlpy8N3w
+ B+dqTsZ4IXixayc6irGjsxPHhGi2BdCyjSV47p3+XFjLvm/KfA3X1pBbB
+ i53UfnWBWOHvgxDBh8HjBKsnfVU7/fk8n/9VwmRlaJiXk95hjZt2jVZo4
+ JNEd0xkWY1QzYPz4Hh7+5/9RLeO1AbuMUcdhz+vjf9JJQOQddl7h0+RZB g==;
+X-CSE-ConnectionGUID: DImmT9y3SqWfS6K+0CC8QQ==
+X-CSE-MsgGUID: O/LRuoB0RSGGwrZxddNoLQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="31959776"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="31959776"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 14:48:33 -0700
-X-CSE-ConnectionGUID: X9J3pHlJQeadPCPFbwelAA==
-X-CSE-MsgGUID: rIMQcq1ISNeughnHqcYH6g==
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 15:09:33 -0700
+X-CSE-ConnectionGUID: IjPgGKN3Qm6kYyoLzU+wTw==
+X-CSE-MsgGUID: uVgIMDG/TyCoW/5NA/2tRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38550937"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
- by orviesa006.jf.intel.com with ESMTP; 06 Jun 2024 14:48:32 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sFKyC-0003ls-0M;
- Thu, 06 Jun 2024 21:48:28 +0000
-Date: Fri, 7 Jun 2024 05:48:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, animesh.manna@intel.com,
- arun.r.murthy@intel.com, jouni.hogander@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
-Message-ID: <202406070543.soJpPCOs-lkp@intel.com>
-References: <20240606082926.1816416-4-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38555454"
+Received: from mmiotk-mobl2.ger.corp.intel.com (HELO [10.249.37.149])
+ ([10.249.37.149])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 15:09:29 -0700
+Message-ID: <d5645d00-a8cf-47d9-a2a0-4ff55842fc7d@linux.intel.com>
+Date: Fri, 7 Jun 2024 00:09:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240606082926.1816416-4-suraj.kandpal@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,124 +77,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Suraj,
+Hi Dave, Sima,
 
-kernel test robot noticed the following build errors:
+Lots of fixes for vmwgfx all over the place, and one fix for sitronix panel.
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.10-rc2 next-20240606]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Cheers,
+Maarten
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-psr-Add-return-bool-value-for-hsw_activate_psr1/20240606-163351
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240606082926.1816416-4-suraj.kandpal%40intel.com
-patch subject: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
-config: microblaze-allmodconfig (https://download.01.org/0day-ci/archive/20240607/202406070543.soJpPCOs-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240607/202406070543.soJpPCOs-lkp@intel.com/reproduce)
+drm-misc-fixes-2024-06-07:
+drm-misc-fixes for v6.10-rc3:
+- Robustness fixes for vmwgfx.
+- Error check for of_drm_get_panel_orientation failing in
+   sitronix-st7789v.
+The following changes since commit bb195358806847217efba98de62b7decec3b371f:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406070543.soJpPCOs-lkp@intel.com/
+   drm/msm: remove python 3.9 dependency for compiling msm (2024-05-30 
+18:49:23 +0200)
 
-All errors (new ones prefixed by >>):
+are available in the Git repository at:
 
-   In file included from drivers/gpu/drm/i915/display/intel_psr.c:35:
-   drivers/gpu/drm/i915/display/intel_psr.c: In function 'intel_psr_check_delayed_vblank_limit':
->> drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg.h:4158:62: error: 'dev_priv' undeclared (first use in this function); did you mean 'dev_crit'?
-    4158 | #define TRANS_SET_CONTEXT_LATENCY(tran)         _MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-         |                                                              ^~~~~~~~
-   drivers/gpu/drm/i915/display/intel_de.h:31:69: note: in definition of macro 'intel_de_read'
-      31 | #define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
-         |                                                                     ^~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/display/intel_display_reg_defs.h:42:49: note: in expansion of macro '_MMIO'
-      42 | #define _MMIO_TRANS2(display, tran, reg)        _MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
-         |                                                 ^~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:185:42: note: in expansion of macro '__to_intel_display'
-     185 | #define DISPLAY_INFO(i915)              (__to_intel_display(i915)->info.__device_info)
-         |                                          ^~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/display/intel_display_reg_defs.h:42:55: note: in expansion of macro 'DISPLAY_INFO'
-      42 | #define _MMIO_TRANS2(display, tran, reg)        _MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
-         |                                                       ^~~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg.h:4158:49: note: in expansion of macro '_MMIO_TRANS2'
-    4158 | #define TRANS_SET_CONTEXT_LATENCY(tran)         _MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-         |                                                 ^~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:817:36: note: in expansion of macro 'TRANS_SET_CONTEXT_LATENCY'
-     817 |         return intel_de_read(i915, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder)) >= 6;
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg.h:4158:62: note: each undeclared identifier is reported only once for each function it appears in
-    4158 | #define TRANS_SET_CONTEXT_LATENCY(tran)         _MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-         |                                                              ^~~~~~~~
-   drivers/gpu/drm/i915/display/intel_de.h:31:69: note: in definition of macro 'intel_de_read'
-      31 | #define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
-         |                                                                     ^~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/display/intel_display_reg_defs.h:42:49: note: in expansion of macro '_MMIO'
-      42 | #define _MMIO_TRANS2(display, tran, reg)        _MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
-         |                                                 ^~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:185:42: note: in expansion of macro '__to_intel_display'
-     185 | #define DISPLAY_INFO(i915)              (__to_intel_display(i915)->info.__device_info)
-         |                                          ^~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/display/intel_display_reg_defs.h:42:55: note: in expansion of macro 'DISPLAY_INFO'
-      42 | #define _MMIO_TRANS2(display, tran, reg)        _MMIO(DISPLAY_INFO(display)->trans_offsets[(tran)] - \
-         |                                                       ^~~~~~~~~~~~
-   drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg.h:4158:49: note: in expansion of macro '_MMIO_TRANS2'
-    4158 | #define TRANS_SET_CONTEXT_LATENCY(tran)         _MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-         |                                                 ^~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c:817:36: note: in expansion of macro 'TRANS_SET_CONTEXT_LATENCY'
-     817 |         return intel_de_read(i915, TRANS_SET_CONTEXT_LATENCY(cpu_transcoder)) >= 6;
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_psr.c:815:66: error: parameter 'cpu_transcoder' set but not used [-Werror=unused-but-set-parameter]
-     815 |                                                  enum transcoder cpu_transcoder)
-         |                                                  ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c: In function 'intel_psr_is_dpkgc_configured':
->> drivers/gpu/drm/i915/display/intel_psr.c:822:36: error: 'LNL_PKG_C_LATENCY' undeclared (first use in this function)
-     822 |         return intel_de_read(i915, LNL_PKG_C_LATENCY) == U32_MAX;
-         |                                    ^~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_de.h:31:69: note: in definition of macro 'intel_de_read'
-      31 | #define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
-         |                                                                     ^~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_psr.c: In function 'intel_psr_is_dc5_entry_possible':
->> drivers/gpu/drm/i915/display/intel_psr.c:835:26: error: 'struct drm_crtc' has no member named 'active'
-     835 |                 if (!crtc->active)
-         |                          ^~
->> drivers/gpu/drm/i915/display/intel_psr.c:842:69: error: '_encoder' undeclared (first use in this function); did you mean 'encoder'?
-     842 |                         struct intel_dp *intel_dp = enc_to_intel_dp(_encoder);
-         |                                                                     ^~~~~~~~
-         |                                                                     encoder
-   drivers/gpu/drm/i915/display/intel_psr.c: In function 'wa_16023497226_check':
->> drivers/gpu/drm/i915/display/intel_psr.c:861:13: error: implicit declaration of function 'is_dpkg_c_configured' [-Werror=implicit-function-declaration]
-     861 |         if (is_dpkg_c_configured(i915)) {
-         |             ^~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_psr.c:866:35: error: implicit declaration of function 'is_dc5_entry_possible'; did you mean 'intel_psr_is_dc5_entry_possible'? [-Werror=implicit-function-declaration]
-     866 |                 else if (!psr1 && is_dc5_entry_possible(i915))
-         |                                   ^~~~~~~~~~~~~~~~~~~~~
-         |                                   intel_psr_is_dc5_entry_possible
-   drivers/gpu/drm/i915/display/intel_psr.c: In function 'intel_psr_check_delayed_vblank_limit':
-   drivers/gpu/drm/i915/display/intel_psr.c:818:1: warning: control reaches end of non-void function [-Wreturn-type]
-     818 | }
-         | ^
-   drivers/gpu/drm/i915/display/intel_psr.c: At top level:
->> drivers/gpu/drm/i915/display/intel_psr.c:820:13: error: 'intel_psr_is_dpkgc_configured' defined but not used [-Werror=unused-function]
-     820 | static bool intel_psr_is_dpkgc_configured(struct drm_i915_private *i915)
-         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
+   https://gitlab.freedesktop.org/drm/misc/kernel.git 
+tags/drm-misc-fixes-2024-06-07
 
+for you to fetch changes up to 5703fc058efdafcdd6b70776ee562478f0753acb:
 
-vim +4158 drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg.h
+   drm/vmwgfx: Don't memcmp equivalent pointers (2024-06-05 22:38:40 -0400)
 
-dae847991a4327 Paulo Zanoni          2012-10-15  4153  
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4154  #define _TRANS_A_SET_CONTEXT_LATENCY		0x6007C
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4155  #define _TRANS_B_SET_CONTEXT_LATENCY		0x6107C
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4156  #define _TRANS_C_SET_CONTEXT_LATENCY		0x6207C
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4157  #define _TRANS_D_SET_CONTEXT_LATENCY		0x6307C
-407569ff790979 Jani Nikula           2024-04-23 @4158  #define TRANS_SET_CONTEXT_LATENCY(tran)		_MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4159  #define  TRANS_SET_CONTEXT_LATENCY_MASK		REG_GENMASK(15, 0)
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4160  #define  TRANS_SET_CONTEXT_LATENCY_VALUE(x)	REG_FIELD_PREP(TRANS_SET_CONTEXT_LATENCY_MASK, (x))
-1d53ccdc400c87 José Roberto de Souza 2021-06-16  4161  
+----------------------------------------------------------------
+drm-misc-fixes for v6.10-rc3:
+- Robustness fixes for vmwgfx.
+- Error check for of_drm_get_panel_orientation failing in
+   sitronix-st7789v.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+----------------------------------------------------------------
+Chen Ni (1):
+       drm/panel: sitronix-st7789v: Add check for 
+of_drm_get_panel_orientation
+
+Dr. David Alan Gilbert (1):
+       drm/vmwgfx: remove unused struct 'vmw_stdu_dma'
+
+Ian Forbes (6):
+       drm/vmwgfx: Filter modes which exceed graphics memory
+       drm/vmwgfx: 3D disabled should not effect STDU memory limits
+       drm/vmwgfx: Remove STDU logic from generic mode_valid function
+       drm/vmwgfx: Standardize use of kibibytes when logging
+       drm/vmwgfx: Don't destroy Screen Target when CRTC is enabled but 
+inactive
+       drm/vmwgfx: Don't memcmp equivalent pointers
+
+  drivers/gpu/drm/panel/panel-sitronix-st7789v.c |  4 +-
+  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c            | 19 +++-----
+  drivers/gpu/drm/vmwgfx/vmwgfx_drv.h            |  3 --
+  drivers/gpu/drm/vmwgfx/vmwgfx_gmrid_manager.c  |  4 +-
+  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c            | 28 +++++-------
+  drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c           | 60 
++++++++++++++++++++++++---
+  6 files changed, 74 insertions(+), 44 deletions(-)
