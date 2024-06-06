@@ -2,185 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C908FED2D
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 16:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91D5F8FED9A
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 16:38:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD1F10E009;
-	Thu,  6 Jun 2024 14:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF0A10E07E;
+	Thu,  6 Jun 2024 14:38:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OwkBdzaO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bc2y+LF8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5956E10E009
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 14:35:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 836E910E07E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 14:38:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717684543; x=1749220543;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=2c5MrQ0qCkZbHbZDBtTPJ9E95eYaahSeAAUI/9NRMgo=;
- b=OwkBdzaOi1nMtdR/vbjbjyl6usdp/H6EIcnQV9Z3p2qv05DXB6NJISgp
- V1PXHc8bCciwJunLLEY23oSiEHkeZ30YQCqtXHoXYJQzm49LgVX7ERB/X
- NADeTgKC5FY6d80OllaJPYVrHowIfuSrgnqe6IjJBLbE/oQndMEGlth/Z
- ZlPjg4j1lw5aHouYtGhngkU0LTeo4E65BU2h1X17wPlF6CHqWSzrmxgNo
- rIght8CNyLP3qokXhGdsU8EYWVaMZyhwOU+8aWRfPHrvaMuFGfbc09CsO
- d+Du7Cs+iwuA+VquNE9gQKXDQwYsuES4i4GJMbgvpthkHOUmM2IGpXev2 Q==;
-X-CSE-ConnectionGUID: n0l6B05cRmOFHqcKeczHQA==
-X-CSE-MsgGUID: waKGbX34SWWaxhKuYLyONg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="18147959"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="18147959"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 07:35:42 -0700
-X-CSE-ConnectionGUID: 63S4UL0FQe+0w9143yeiYA==
-X-CSE-MsgGUID: L2UODwO9SGSkzvioaRJgZg==
+ t=1717684712; x=1749220712;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=IKV8hVRKNqb4CCc7darwRaChq99g0PN5wojSjPQolq4=;
+ b=Bc2y+LF81MbJoPOUJdG3B4tS/BAbiJ9PtVd/q6To7aq5MNlo+I7GLCQa
+ gNgNxq7d+VB/4ziKGaJWU75o9KEIT4cuSMR3g5FTDMdu/t5TX5/gOACia
+ xretNk5+XyR2QVbqmECDZmotCJ7kmerqCfLKfbO4gyZveLjd1lTdmhQSB
+ CArNKUMqANo958GpQ3eSBK838ajnFfimkkG2AoQcPOmtutvYnHy5o+l61
+ qNSSQLq2SdqEe46rSy3sdDhfbqYDRC63nunniQG1IXfG1qvMzYJE40piW
+ TcnfC5YYBJV8Bst3I9qzizfWNkW4r2UlShO8zCnvFP54XWs3WKCY8ojJp A==;
+X-CSE-ConnectionGUID: 1C8yxqHaRxCPv0jIr37qPQ==
+X-CSE-MsgGUID: TDPVvrAaQj+GhfbVbj62NA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14316227"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14316227"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 07:38:32 -0700
+X-CSE-ConnectionGUID: e8hiDWbQRuSTyfGndxKX4Q==
+X-CSE-MsgGUID: +1KNwU8wQc6uJ47CCDaftg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38059042"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Jun 2024 07:35:42 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37933694"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Jun 2024 07:38:31 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 6 Jun 2024 07:35:41 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 6 Jun 2024 07:38:31 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 6 Jun 2024 07:35:41 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.46) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 6 Jun 2024 07:38:31 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 6 Jun 2024 07:38:31 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 6 Jun 2024 07:35:41 -0700
+ 15.1.2507.39; Thu, 6 Jun 2024 07:38:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TJM2vVq5nfAhi9TqSEPhyGZR3/ewGsDDfmus8HbXSm2a+VgYLF8V08mORKvN5HiXwZkTF7VakUi2XcmPrKgRBlMISEPeD4Ct2LTYvHCIyine/vUrd+I/soqIHF0aApLqaHI0ENeSmVhxruwoRFZG1FFSwjQDqhPhqZHRNOcs/HaLApGDMF5sXbbGhRp6JXW9vfgCb3I7xBoLRCKsImQTxyXk1aOloTA6hA6Qxj+Wkf7iZSoeLZiJ2no18Ybs+y79Y+gwL6Ev2mllRw2M3ODdcZxX2i7pd+Fr4tHNjHbkQNnwHXlXJMFwnRqgfqO0KPFC8TQpgYwthDvQiEDeDAl1sg==
+ b=MxHcftswFaxI1PGc7r1GlaC2VVbGB/qRHXFH8OS3jSsawih5VmruIKTkwhKg7SOzaG8CvzaIVCrUS/L3tC7HLPeq1WyLxNJoTGKWZde8N9obqK580+KTbydniCGS48vt7zFQsWEQJ63ZyBC7ImN8YCb5eQD3wgGSUOou9kjAP3/lPpT3PvLMXalQ6L9pZkPxfIJDvbpb9bVG9nuuCGltyyqD/szXOaPlBvKb+GV9YYOus+EvZliGZ4znVkkd1c22YmaY4NcFhZZj7g0SJmKCq3q5eEtQJZe2l6bIvWMWmIpJbLbdufyeqiLtsvhl5i/Bc0SMnPUuaFO3C1idlaFFPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2c5MrQ0qCkZbHbZDBtTPJ9E95eYaahSeAAUI/9NRMgo=;
- b=LpEh9ZA2Hh93rlLJr/L4vC2Z/ck452WImRb65IsYbCVd/k84GEidXZnihvBGpa95/BXXY0UCbdSdd2QGsSHUJu1xKFVw7LKib+zsv6nccAZDsesqbeRmQwSIqQbywsVYAOy2VWimOQO/Bp81bYEXjAo2OYoad3RzilxO4mmnVMPXg9oGF5XeQAmgITigx1M/TcI4gFqLzLBrMa24G96WiDqE87zQ+dBJ1ItOwWs73TTBWB+W0hvXmTe52BRj6LCGb61ohElvavPTSsi+7kUxN2L7xflfuFK3/bN+uiquo0RIV80xKeZ5QUdJ2yaOesU9Lx0om807Avszkz0XDdk8sw==
+ bh=rWOzt28VDsM0t5oou9NMpaER4l49JCI1Dt6rU16opy0=;
+ b=JzMsm7gFShTNTQpaC0bPcgqqKRq3roVrIJjLnEkEQI6zYNLPpGWRXbK/IS5Y9lvc0zwIj+HxRunbPjswnjnE1Bga/Ka06wG7P64SIEUb4nNAPt4LqKLsSLbyNzxNbef4QhjTMbmHnT6fCp9Ur+ar0cpaSsxOUcvvEh/IIp5HTr8qwF1g3T+FvhuHuSfLOOmIVXpsIk6yzmfd6Lc6VqCAZCS7u4nplQEJ7LHB4C2S16RVAtS44YJwXIMopzkdc42GtPYPojR3+/Xi+739X36jJl5RGHtuFECw3shjx7i246qxgUXrJA2ia2Qtob0E8Jfr+v22H37kqlGRtlGGiADm4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
- by DS7PR11MB6064.namprd11.prod.outlook.com (2603:10b6:8:77::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.27; Thu, 6 Jun
- 2024 14:35:38 +0000
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::40e0:95a6:26e8:8de0]) by PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::40e0:95a6:26e8:8de0%6]) with mapi id 15.20.7633.018; Thu, 6 Jun 2024
- 14:35:38 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Kahola, Mika" <mika.kahola@intel.com>
-Subject: RE: [PATCH v6 10/26] drm/i915/psr: Print Panel Replay status instead
- of frame lock status
-Thread-Topic: [PATCH v6 10/26] drm/i915/psr: Print Panel Replay status instead
- of frame lock status
-Thread-Index: AQHatzLdsIUoGo+1NESwzwj69wwgrLG6zW5g
-Date: Thu, 6 Jun 2024 14:35:38 +0000
-Message-ID: <PH7PR11MB598181E00446463602261261F9FA2@PH7PR11MB5981.namprd11.prod.outlook.com>
-References: <20240605102553.187309-1-jouni.hogander@intel.com>
- <20240605102553.187309-11-jouni.hogander@intel.com>
-In-Reply-To: <20240605102553.187309-11-jouni.hogander@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|DS7PR11MB6064:EE_
-x-ms-office365-filtering-correlation-id: 8bf78926-8f49-4382-47d1-08dc8635ef7b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|366007|1800799015|376005|38070700009;
-x-microsoft-antispam-message-info: =?utf-8?B?ZFRTNStyWEUwcUJFdG8yaTZHWjhUb2FOSUJ2R2pHa2hwV0hvUkh0QUI4VWVm?=
- =?utf-8?B?YVJSMlp0ZzMwZE5kNVJwcVR6ZGdjdnVITmd4UUs2NThEaHZLOXVUOExmQmNq?=
- =?utf-8?B?MGNHMC90bGNXekVWQjlwejlobU1DSFZaVmUxNkxTR09KakpmSWZJRXpBaEI5?=
- =?utf-8?B?bi9jbFYySDJid3pMNUlrOXhKMVYyQ3BNSVRyUm82SE8xNnBhWmtqcko2UTZQ?=
- =?utf-8?B?bXEyM0xNVXI4OUVSdjByTFNFU0xlcU5yajIwU0tkdDk0S2g5Ums0UTRDdDM0?=
- =?utf-8?B?eTJ3b2VjUERoQmZYdWZpdjQ2SHdFOHhFbi9sUE9HZFNmSmh0VjdDRTFSWTJh?=
- =?utf-8?B?OUNCdm1BQXVqM1dITm5xVkV0VTVwMmZic05CL3F1b3RhZTFiYTVxbFFpVmRR?=
- =?utf-8?B?OUtPU2pNa2kwR0RVaGdkTEZNT25jeGFRQkZUS1VmTTBURkFjSDk1Nk9wbllB?=
- =?utf-8?B?VWJPRFFZcmZEbHduWE1IanYwVWpwTkVJZFdZazdQSUNiazBOZmhBaWpQOG9I?=
- =?utf-8?B?Vm1EWnNFZWNXWHFzQVV0dXhjdlA2azhQaEtZWSszKzB5MndjaGk0NUpsZnlC?=
- =?utf-8?B?NXFYK1lWekpWcTVZUUUwbkNjcEc2dG95N0ZuUUJkZkh5ZnZRNXphMEsxRFlV?=
- =?utf-8?B?TTFDQVBhdnFuWWI0VG1ianFUTi94ajY5MHhmVHNOdmhCaG9TMGZkMDNvelRR?=
- =?utf-8?B?TDNyVlE2bFpwaHV4TWJreWQ2T1hEam9nakRvS3hIU0gramthYWNZQmdENms1?=
- =?utf-8?B?V2U4WTQrMTNVVHpmR1VWdlZ2THE0VUVjUkh2QXlITmU2K0pWMW5vTG1LamM4?=
- =?utf-8?B?TytCWGtjamtsa1FFUXEwMDFzNWdEQVJ2eHIyN2gvR3dDa09sUTZMblpyMzI4?=
- =?utf-8?B?Wk90RFNCd2lwZmd2bXZUaVcxanZNRmx5bEF0Mlg5dXZBS3picVN4emxzakdz?=
- =?utf-8?B?bDlacDljNnpUUTNWRXhyN3h6Wk9KZGh3R096SUh6Mk1DU01oUmlxVHozbUx4?=
- =?utf-8?B?Q3N2cVk3VjgwaU1kWXF2bkkxdXd1UFh2R3RtQTVwQStnNFY5RGFhWnVpZGlK?=
- =?utf-8?B?Q1lRS3Rzek5pbGZYelRnMS9QN2tVNDlYWHM2T3NrMWpheEQwNWU5K3JzTWo1?=
- =?utf-8?B?RlJhTFZBUDQ0M0VSZGpFNXQyQ3ZlOUcyUHlwWVU5TkJsUExJWTNSZ0dkSzZu?=
- =?utf-8?B?VC9Kb1VKMEZwSDMwWStpZzM5N2tNb2VXU0tRQlRNd1hScHhkcWhKTlo4dHNW?=
- =?utf-8?B?SVBUZHkyS2tkSDM5ZTNPOUNyNEJTb1lsdnI1QjVvNWUxMDBlYm5JaFNmMDlZ?=
- =?utf-8?B?UVY5MlFFaDBLeWk0U1dOZmtudldMc1YrQndjS3UrbFp4Tk9zd2o5QTFRU0RO?=
- =?utf-8?B?YVlhd01Ob0NOZW9TUjZlZWxPZjVPSmxHQXo2Z3dxbjJIY3RLL2hIb1hhZVBs?=
- =?utf-8?B?SG5VS0daMVc2aEN3UUpBRjE1WENkQTAyRy9pbk50eS9VQVlCZFlYN0MzZHpp?=
- =?utf-8?B?NWhMcDRROVhUTllSRC9XRE0vdzhwYnk2anF4TFFGM3FNdTlNY1Z5eW42M3NK?=
- =?utf-8?B?OHlaSDhhYlgwbG9KdjFETFcxS3NRSGlSaEh6MVNyWVdvRUV0UGtiZjBRUUNE?=
- =?utf-8?B?STRiNHcwUTRNdVp4SUVFMVBwSTlCcWJLNGxCTXVPckI4TGRmMHRZNHREN0RS?=
- =?utf-8?B?Y3dUZWdhc0o2RFdFdDVCd1JRNEdESGU0ZkdZVXBPRE5zWUZFV2xYcWVOUXZH?=
- =?utf-8?B?VXNHLzM1RVdhakpzTklHR3A0OCtBbWZTanRMeWdJQ1NlT0pvYlBjNkFCMjhZ?=
- =?utf-8?Q?5ALgUjBs2PDYeSUz2BDzgfWkpGq9QkZideILc=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366007)(1800799015)(376005)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?c3JHMG03S0pidUlFQmU0bmVFcEpQeHRWYnR6Rk9DZnhkZWNCdTN4M1J3THMy?=
- =?utf-8?B?c3AzRGNucDIrSitKL2F5ZmZCUnZPaHU3dWRzLzhwdEVlTGdYY3cvVmhVSW5I?=
- =?utf-8?B?QmlBZU4wWHRPcTBPSjBSUVVBVzNxYUM4dVNYR1VZdUplaU5SNzFJdjEzREpr?=
- =?utf-8?B?SEp1andnWk9idkg2WHRKRURuOHVDaTdKMGFkQzk0c1kvYmlIZWhrRzlWN0l3?=
- =?utf-8?B?cHNxYkFmc2M2TE5kcW02VnRDcURZYXFzREZEWHBqRnFqRERrcEtqOEU3ajRt?=
- =?utf-8?B?UVo1TGh2dWVGS0c0QXlMdXJwNTZ1dXovWE92RmVWYjliZE4ra1BsSTVHMlZn?=
- =?utf-8?B?cVFvM3p1ajM0S01iRWsvT2l1eGtSR1A3V1o3N3lwaXY0T0gwMXRqb3lvYTZx?=
- =?utf-8?B?M0orQU15MFE1d0dJWDhVTGFWN2JLRUxjNERHS0dKTGIrR3pNZmtvYk1vS3ph?=
- =?utf-8?B?Z1lNbjNXSXRpR2lhZFkvZXZjUzVhRkU4Q2JNOCtQR21kMTBlakF4bGFCWFY1?=
- =?utf-8?B?VG9wQ1kvS2p5MTVmSjM1RmgyTTRNb1R6UlNocXpBTzdVMzFERitEUnpIM2Jk?=
- =?utf-8?B?S2Rqanpwa3lKUzQvaWgrNGZGZWRkRTR6NlBLTkEyRmlmR1JWalZYTmNuNFJi?=
- =?utf-8?B?c2lKbnlyMzlHd0ZNckN5UzdnakFwRWMwNUFrc0JqcFltUlZWZmVKYk5IVjhj?=
- =?utf-8?B?clVzZVdzMHh1c240ZURCYi9MWHkxWFZPMkJFMTNwWGgwdFk2ZzBCOFFtb2lI?=
- =?utf-8?B?TlJTbEE5TUloNmJad29MdXJIQm8wSkt3WkFVYWMzYnVoVWtEV3dNQzRYSHcv?=
- =?utf-8?B?QnZjZXNFaVp1QVArWXlSVGdPQlpNYlZHQ0g4Ty8zalhnOEJlVDljZmViMGhY?=
- =?utf-8?B?VXVTMDBqRGVIZ1kzN0RYSG12eDBHekhpSGNOUjRhVFhuUHNacTBCV3llbHh6?=
- =?utf-8?B?YmxWVlpLTEpvYW5ZVjVyUTZ6eFdUVVRjL0xIdXZQYTlVcVhzN1pXUkgvTjk3?=
- =?utf-8?B?OFF2QTBVRFRIc2cyc09ZMzlVRmpnQnZxdTRoRWw5OFl2d2ZYVTNRNjRjUGg0?=
- =?utf-8?B?ck1nMWdoM3Z0M2xvb2dFVm1xeXdRRnFDRkJNcFVtS3plYmhjMWRLcTkySkdC?=
- =?utf-8?B?UFBYUXdOZzJwNVpaRko4WmUveE9kSWdIazdudHF1Q1Q4eHNsazdiZUFveFBQ?=
- =?utf-8?B?WFdHVEJ5WGx2UEdkOXAyUjIxMC9pOEFkTzZTWTVoTngzejlNN1ovRmlKcElt?=
- =?utf-8?B?dnh1TUJMcThxalkvU2VVSFNQYmxCUG1UbEovWjlOMTJORUxQQVpjQ1huSHUr?=
- =?utf-8?B?Z2s5Yy9hVjZsR0FJaEY3SWtQKzEvbFJIbkhzWFV0cFMwQ0hRbVRFQlMwN1ZU?=
- =?utf-8?B?ZWV3NmxNMXBqQTdoa2J2c2ZMeCtlUGgreFNXcjhIY1ZiTVB4SXN6eDI4Wko2?=
- =?utf-8?B?TnlGOG54cFIvWStxSHpSK3ZScGpLajEwQWJkNDJRSjhrVTV0NmZlT1VSNGU2?=
- =?utf-8?B?ZzJqclR5cHZkM20rR0ZML2VxaDJURlV1RXM5NkZRL3VGcGlWTSsyckNLZzlz?=
- =?utf-8?B?bmhNNnZtQTVUdTh1UTR3azFUTmwyaU4ybSs2YlRzaXpxRlZQTVRXakd1SjU3?=
- =?utf-8?B?aUVvM2t2MGtxNzFrV0tndzQzbTR3KzZlWkt6aGs0cXJJeWZ2VC90ZzFwR202?=
- =?utf-8?B?cXRaSW1VVW1OMmFCUjFLbkRQbWVqUFlVUlF6Wm1TN05ZZFBSOEFsM1RUbEFa?=
- =?utf-8?B?d241RS9VVXE4MmNuYTEyN21iRTFSZWxxeU5mYk51R29qL3gwTUFqdzcrMlVj?=
- =?utf-8?B?NVBqeW5DY3JqaDNjL2pXY1Y1VGkxd1lNSlh1bGhrODVwN09jUFpHWVp5aTMx?=
- =?utf-8?B?UTdpNDZRV1k2dzQ0VFREQlBWdVRpajdKMXFWWGN3WitHUzBwL1hxMmtSZTRn?=
- =?utf-8?B?S1lvc3BjYmJkWjhNSFd0dVFVdTlUdUpGZDM2cTVpQnBVVGowaEpFMGpHdG9O?=
- =?utf-8?B?T2xSOExJcFVNaHpGYWZOMkJTYkRPR01veDViTi9tck44ZEhRSFEwcXBvWDds?=
- =?utf-8?B?NU1oZWk3N1M4dUlDSG1majlHdjBsalM3NVByOWtIMjhkZDV6NS9objM2NkpZ?=
- =?utf-8?Q?h4JGknaPJ4vtEMuda27yriehw?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by MW4PR11MB6714.namprd11.prod.outlook.com (2603:10b6:303:20f::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.27; Thu, 6 Jun
+ 2024 14:38:22 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7633.033; Thu, 6 Jun 2024
+ 14:38:22 +0000
+Date: Thu, 6 Jun 2024 10:38:20 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 01/65] drm/i915: pass dev_priv explicitly to DPLL
+Message-ID: <ZmHJ3LKb_QE2zL2g@intel.com>
+References: <cover.1717514638.git.jani.nikula@intel.com>
+ <7deea1d86c2706994450ec938f8f174a2ac54d27.1717514638.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <7deea1d86c2706994450ec938f8f174a2ac54d27.1717514638.git.jani.nikula@intel.com>
+X-ClientProxiedBy: BY5PR20CA0009.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::22) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|MW4PR11MB6714:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2d1d2b5f-a829-4fbc-9aaf-08dc86365106
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230031|376005|366007|1800799015;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OHlzFintf11Rs34ShGPEQIcKNWdHqxbzOORKAiSt5Oxzxr+eXfCBqkfkkoTi?=
+ =?us-ascii?Q?oiscOVQHwpRcpe9WUXSqW4dUaVzAukuRHgdVCcASg8a2ZbRt9sUnPc156oks?=
+ =?us-ascii?Q?V5A2/WaFt4XpER1SdtmEld2J7XSt9DmUNexig88r1VfFnUbUR/1qU/NP1I4y?=
+ =?us-ascii?Q?JTGuoylF+89fdIDIFNCabB5EYkSGSw5nDk0EdkiYeog5ojK00WjwoIou6/oz?=
+ =?us-ascii?Q?NdW0qkApIfVkkNE8CIbEUFOQgjH2mCVU3it/b95rTo6OF1orY7WG0POBR1ZY?=
+ =?us-ascii?Q?obw1kdwTRBXAj7iavSIYdrsF6n0dbDEwsUC2vDlryqQF9LpaJVlTOyZSeXlQ?=
+ =?us-ascii?Q?B8Sh4Imch6NG77nD+pkfAA6vvfDS5w7LyS/D6pX8yTEoFlyhwyRoU0UDOox+?=
+ =?us-ascii?Q?D1Q7JjYmq8jU7gAQzNISX377o0f5PndJyZ4LqMo6SaQ3zMzkAjMZVj/euNYi?=
+ =?us-ascii?Q?BgJfOQ9n8LSsHCJe8nA7cAF1MQMkavOnNqG5VUIL3UwuXen8kECKc11vzKFq?=
+ =?us-ascii?Q?A4imCIKhL2O50ONHYadOibmKEDh9QnGwPjExw0PY6cuoMp9mpIChf929GGHC?=
+ =?us-ascii?Q?KlHqqQZI6qlzoFkzYpWNBaUzKDIvQpw2vL/EgGhljWAiC9hOUHKBEyeHfGAl?=
+ =?us-ascii?Q?yvbNk7343vrM0NKbGMRhNu0QxNGgA10mYs8CVfKsluoQkuNPYdEDdiMJtAdv?=
+ =?us-ascii?Q?sLKTFcaO1DcoEPk1yFmfGj6s4J3/M4J4R92BaJlKeRQ9OxH4Fw3KahuBvId7?=
+ =?us-ascii?Q?vaQTla/v7NwiUd0KzQXqoVzsezW83QRSVnSyW4L+a8wCbWiqybS9g/Kh+WtG?=
+ =?us-ascii?Q?HeGwKEjmv/3JF43LCPE3kOPBAIVxGoJU6GcPCb+QISIJhEQLSRrNxT2H2XuM?=
+ =?us-ascii?Q?RlYmbBoSTvZNTNIlaRo10kD+WNKUk4E49oSQeyBFNPdCTTqrzcojv3pM11/9?=
+ =?us-ascii?Q?DNKJFORBtUPNYqq2qvAhZY0i6iCBB7IF1Z+6zJL9JQB23G+H1rKuQR5AGgtK?=
+ =?us-ascii?Q?DBH8Qi8EXjm41myNyJ8bS8CEFlh2dsCrCOalGx22TcBqlk7o3EJ6SO16hnmy?=
+ =?us-ascii?Q?Xlhzxb/sKmT4LEG5RSpHT8FOScVbrusL99zeNMUUnawl8mqByzBPkQtpYRsB?=
+ =?us-ascii?Q?9PBNxFWAaMcNFeLN8GTSIncbZnAlBqOkAPwK0U1MFlrsN4Kcv20jVLlLDlOm?=
+ =?us-ascii?Q?Gw5WDJP+cRwDRStQKPNLUoQk/gsVGtWYGzrJYPFdW8Sf4IHN1UgK6cOIdl4U?=
+ =?us-ascii?Q?+aBJ5yrInDjehH1jn9mE5UxUulE6NXgCvm0naozXaAjnoEzatG8Y3idfROp6?=
+ =?us-ascii?Q?majzDMZetBPnvp1b4aD3fm9K?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(366007)(1800799015); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Hlh+UrL1QYxF+M+HqJdyAnwlL9bZyODVINL5e28r8DMODbFMhwjIoNX6fpj1?=
+ =?us-ascii?Q?S1LiJB51mjF2+24ZykS4Q3ID3/pg1EzXFC79XXZTY3g9El4fD7cuv7f1tnlo?=
+ =?us-ascii?Q?vU4uKFoAqpe9coy86Xch4H8WE12uDb7i8JKNOS9N+PL1kM3nzCmixwCI6igI?=
+ =?us-ascii?Q?r/MMvYr3r3qn4I/+sqD4t5czIMrMEUnqIJXhSls0LxPKhsSRK3JVLe38Fyfs?=
+ =?us-ascii?Q?neKwABwzKSdvhdLBfmW1dKoddJDs9ISOiUPeVIxIrXrRr6Ujvxz7RTnvQZf8?=
+ =?us-ascii?Q?IIOpo3mfxOXZ7jIGND0NUWoRjl2/NcyVY2SLQF8Cctki9eqzeBdbhgk6l8C8?=
+ =?us-ascii?Q?9ugSkMcTd/FKx0zIgGRXmKU5Cgpt6h3yvMS1hKFVqyrG1XWAXJyeLM86vEVs?=
+ =?us-ascii?Q?pSpO+Rpr86jAKif5igCUmDpvj22t3VJnD0l3sev7vWIGU+MGwthSBiuYvX5U?=
+ =?us-ascii?Q?Wma4FCmnBANmTG9WwkrHcpv5nBBeue7P//HjW1PeO9Brp9QDJKz152tlHK/f?=
+ =?us-ascii?Q?A/muC3lfdjJzs0xPdiTnM9eo/PB8MpwstAwf95bWgd0+PBqr5YfttLRBGkZv?=
+ =?us-ascii?Q?IDqlaUQQKQHAbrdg3OXOmxJqSAQTc41ZVx+C1ZBgnz+hKl3q/RxgDX6tNGpq?=
+ =?us-ascii?Q?LHintEsLA9HD5BlRvxbztzqCDN7d9EFSlZejZ2HOSFv1UdOD7WceLfOtzuUm?=
+ =?us-ascii?Q?9Pdtg9/yW9XNQm/fGWEN5JTloSSJu0JSSNqgC3Bz0SYYSbCzsfb6BLOlK7sY?=
+ =?us-ascii?Q?Np9HIBzSBsb6oq8yIX7Gf97fu+ygXqu1eVsVJFtUm/nWdBXNzVcpGeoNJ61b?=
+ =?us-ascii?Q?S7WXRmaVh8wVIbx+BdNJLIiHc97KFLYGF+y6JtxknCIZfBOABbGM1yE8iz8Y?=
+ =?us-ascii?Q?e/18n5TisZYYESp0PPfFD6pkIzRP81nEc6xUeNsQFbBEMbqIH9oWtBs9BYcK?=
+ =?us-ascii?Q?XUBBqm75LaWJM3KQhli/kKLK37cZN1atLEZoTnuuag/KSBTM+xZi+ftFcALR?=
+ =?us-ascii?Q?p3nvNoY+lL6SV1forIEsvNCnBZ59z8fZ671zJxlwvYF/H2dVqQ/ziGMEhxph?=
+ =?us-ascii?Q?5khF2ewQ45WXgmLdCJaEtHWsGhSLjWUe3ZYWcTVkvkS03liuwK9bfGgFfKVe?=
+ =?us-ascii?Q?dCLmNLa7KTufeFpTWa5XEMNI30ZXd6YyByzNgFDlZ9FfzMm9+HFJ3cPbQDK6?=
+ =?us-ascii?Q?5UGyvEhh66I4QwF7iLGy+bm1tJbtDuMpO+mL333eU/1rn4s4VU76tyOIfbYa?=
+ =?us-ascii?Q?Oj0X9X2y0ueCYdFti76lSyA2LKD36j01r2xj/ZCTTH/5cZHOabDFclN5yOlQ?=
+ =?us-ascii?Q?454GHAp9SjVr5OlQDo7c1DkmUFjOEUkxDxqk5gbNf3uv1yMjwKwtiKeLu3oH?=
+ =?us-ascii?Q?ycCNzIJ3am1njMFKnzuSyErp7884eeeZp/yID1Xe0jhSRQPTx+aGoUFnVYP0?=
+ =?us-ascii?Q?1HyUiP2LwhNwenP7gbRssi6rBhpqSGLM20DyYMDn+B+ZWymppFQ6w7a1oT/H?=
+ =?us-ascii?Q?C0UnJTuwAyL1QBpaT7Kl1oy76nSbNYFgU+mQEbnCvFhgj33neVMMXONWnGDW?=
+ =?us-ascii?Q?+WDwpU6u/DlBWP9pbG7DYGpe8OO5uB8aNQm9N9nO?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1d2b5f-a829-4fbc-9aaf-08dc86365106
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bf78926-8f49-4382-47d1-08dc8635ef7b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2024 14:35:38.8877 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KScEmV6vTDv376Z08Ag+niJ9hNfyvvRG0aaNaQDjfePZ5BLLPfv5xi3FhQ8j9BJDY4yYek56c80Y4OE4/lbSAQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6064
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2024 14:38:22.8075 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oAEns3QN0IKa4N57WCqmcqM+p3zHNALErfw8pmTNlKyEZUkzWWDzqORnPPisam7nkerHnUAAQT08g/YGC7G/Sw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6714
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,54 +179,324 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSG9nYW5kZXIsIEpvdW5p
-IDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IFNlbnQ6IFdlZG5lc2RheSwgSnVuZSA1LCAy
-MDI0IDM6NTYgUE0NCj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6
-IE1hbm5hLCBBbmltZXNoIDxhbmltZXNoLm1hbm5hQGludGVsLmNvbT47IEthaG9sYSwgTWlrYQ0K
-PiA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPjsgSG9nYW5kZXIsIEpvdW5pIDxqb3VuaS5ob2dhbmRl
-ckBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSCB2NiAxMC8yNl0gZHJtL2k5MTUvcHNyOiBQ
-cmludCBQYW5lbCBSZXBsYXkgc3RhdHVzIGluc3RlYWQgb2YNCj4gZnJhbWUgbG9jayBzdGF0dXMN
-Cj4gDQo+IEN1cnJlbnRseSBQYW5lbCBSZXBsYXkgc3RhdHVzIHByaW50b3V0IGlzIHByaW50aW5n
-IGZyYW1lIGxvY2sgc3RhdHVzLiBJdA0KPiBzaG91bGQgcHJpbnQgUGFuZWwgUmVwbGF5IHN0YXR1
-cyBpbnN0ZWFkLiBQYW5lbCBSZXBsYXkgc3RhdHVzIHJlZ2lzdGVyDQo+IGZpZWxkIGZvbGxvd3Mg
-UFNSIHN0YXR1cyByZWdpc3RlciBmaWVsZC4gVXNlIGV4aXN0aW5nIFBTUiBjb2RlIGZvciB0aGF0
-Lg0KPiANCj4gRml4ZXM6IGVmNzVjMjVlOGZlZCAoImRybS9pOTE1L3BhbmVscmVwbGF5OiBEZWJ1
-Z2ZzIHN1cHBvcnQgZm9yIHBhbmVsDQo+IHJlcGxheSIpDQo+IFNpZ25lZC1vZmYtYnk6IEpvdW5p
-IEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAyMiArKysrKy0tLS0tLS0tLS0tLS0t
-LS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkN
-Cj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
-ci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRl
-eCA3YmRhZTBkMGVhNDUuLjM1MzBlNWY0NDA5NiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC0zNTc5LDE2ICszNTc5LDkgQEAgc3RhdGljIGlu
-dCBpOTE1X3Bzcl9zaW5rX3N0YXR1c19zaG93KHN0cnVjdA0KPiBzZXFfZmlsZSAqbSwgdm9pZCAq
-ZGF0YSkNCj4gIAkJInJlc2VydmVkIiwNCj4gIAkJInNpbmsgaW50ZXJuYWwgZXJyb3IiLA0KPiAg
-CX07DQo+IC0Jc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCBwYW5lbF9yZXBsYXlfc3RhdHVzW10g
-PSB7DQo+IC0JCSJTaW5rIGRldmljZSBmcmFtZSBpcyBsb2NrZWQgdG8gdGhlIFNvdXJjZSBkZXZp
-Y2UiLA0KPiAtCQkiU2luayBkZXZpY2UgaXMgY29hc3RpbmcsIHVzaW5nIHRoZSBWVG90YWwgdGFy
-Z2V0IiwNCj4gLQkJIlNpbmsgZGV2aWNlIGlzIGdvdmVybmluZyB0aGUgZnJhbWUgcmF0ZSAoZnJh
-bWUgcmF0ZSB1bmxvY2sgaXMNCj4gZ3JhbnRlZCkiLA0KPiAtCQkiU2luayBkZXZpY2UgaW4gdGhl
-IHByb2Nlc3Mgb2YgcmUtbG9ja2luZyB3aXRoIHRoZSBTb3VyY2UNCj4gZGV2aWNlIiwNCj4gLQl9
-Ow0KPiAgCWNvbnN0IGNoYXIgKnN0cjsNCj4gIAlpbnQgcmV0Ow0KPiAgCXU4IHN0YXR1cywgZXJy
-b3Jfc3RhdHVzOw0KPiAtCXUzMiBpZHg7DQo+IA0KPiAgCWlmICghKENBTl9QU1IoaW50ZWxfZHAp
-IHx8IENBTl9QQU5FTF9SRVBMQVkoaW50ZWxfZHApKSkgew0KPiAgCQlzZXFfcHV0cyhtLCAiUFNS
-L1BhbmVsLVJlcGxheSBVbnN1cHBvcnRlZFxuIik7DQo+IEBAIC0zNjAyLDE2ICszNTk1LDExIEBA
-IHN0YXRpYyBpbnQgaTkxNV9wc3Jfc2lua19zdGF0dXNfc2hvdyhzdHJ1Y3QNCj4gc2VxX2ZpbGUg
-Km0sIHZvaWQgKmRhdGEpDQo+ICAJaWYgKHJldCkNCj4gIAkJcmV0dXJuIHJldDsNCj4gDQo+IC0J
-c3RyID0gInVua25vd24iOw0KPiAtCWlmIChpbnRlbF9kcC0+cHNyLnBhbmVsX3JlcGxheV9lbmFi
-bGVkKSB7DQo+IC0JCWlkeCA9IChzdGF0dXMgJiBEUF9TSU5LX0ZSQU1FX0xPQ0tFRF9NQVNLKSA+
-Pg0KPiBEUF9TSU5LX0ZSQU1FX0xPQ0tFRF9TSElGVDsNCj4gLQkJaWYgKGlkeCA8IEFSUkFZX1NJ
-WkUocGFuZWxfcmVwbGF5X3N0YXR1cykpDQo+IC0JCQlzdHIgPSBwYW5lbF9yZXBsYXlfc3RhdHVz
-W2lkeF07DQo+IC0JfSBlbHNlIGlmIChpbnRlbF9kcC0+cHNyLmVuYWJsZWQpIHsNCj4gLQkJaWR4
-ID0gc3RhdHVzICYgRFBfUFNSX1NJTktfU1RBVEVfTUFTSzsNCj4gLQkJaWYgKGlkeCA8IEFSUkFZ
-X1NJWkUoc2lua19zdGF0dXMpKQ0KPiAtCQkJc3RyID0gc2lua19zdGF0dXNbaWR4XTsNCj4gLQl9
-DQo+ICsJc3RhdHVzICY9IERQX1BTUl9TSU5LX1NUQVRFX01BU0s7DQo+ICsJaWYgKHN0YXR1cyA8
-IEFSUkFZX1NJWkUoc2lua19zdGF0dXMpKQ0KPiArCQlzdHIgPSBzaW5rX3N0YXR1c1tzdGF0dXNd
-Ow0KPiArCWVsc2UNCj4gKwkJc3RyID0gInVua25vd24iOw0KDQpwc3JfZ2V0X3N0YXR1c19hbmRf
-ZXJyb3Jfc3RhdHVzKCkgaXMgcmV0dXJuaW5nIGZyYW1lLWxvY2tlZC1zdGF0dXMgZm9yIHBhbmVs
-IHJlcGxheSwgSXRzIGRpZmZlcmVudCBkcGNkIERQX1NJTktfREVWSUNFX1BSX0FORF9GUkFNRV9M
-T0NLX1NUQVRVUywgbm90IHNhbWUgbGlrZSBwc3IuDQoNClJlZ2FyZHMsDQpBbmltZXNoDQoNCj4g
-DQo+ICAJc2VxX3ByaW50ZihtLCAiU2luayAlcyBzdGF0dXM6IDB4JXggWyVzXVxuIiwgcHNyX21v
-ZGVfc3RyKGludGVsX2RwKSwNCj4gc3RhdHVzLCBzdHIpOw0KPiANCj4gLS0NCj4gMi4zNC4xDQoN
-Cg==
+On Tue, Jun 04, 2024 at 06:25:19PM +0300, Jani Nikula wrote:
+> Avoid the implicit dev_priv local variable use, and pass dev_priv
+> explicitly to the DPLL register macro.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+(
+even though it is a big series and overall it looks all right,
+I will put one by one for 2 reasons:
+- so I ensure I don't miss details and I know where I stopped
+- so you can use dim b4 directly without extra rebase and adding my rv-b one by one...
+)
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++-----
+>  .../drm/i915/display/intel_display_power.c    |  2 +-
+>  .../i915/display/intel_display_power_well.c   |  6 +--
+>  drivers/gpu/drm/i915/display/intel_dpll.c     | 45 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dvo.c      |  5 ++-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |  2 +-
+>  drivers/gpu/drm/i915/i915_reg.h               |  2 +-
+>  7 files changed, 43 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 7370acdd6b8b..42e2d884c98e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -382,11 +382,11 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+>  		fallthrough;
+>  	case PORT_B:
+>  		port_mask = DPLL_PORTB_READY_MASK;
+> -		dpll_reg = DPLL(0);
+> +		dpll_reg = DPLL(dev_priv, 0);
+>  		break;
+>  	case PORT_C:
+>  		port_mask = DPLL_PORTC_READY_MASK;
+> -		dpll_reg = DPLL(0);
+> +		dpll_reg = DPLL(dev_priv, 0);
+>  		expected_mask <<= 4;
+>  		break;
+>  	case PORT_D:
+> @@ -8212,11 +8212,12 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  	 * the P1/P2 dividers. Otherwise the DPLL will keep using the old
+>  	 * dividers, even though the register value does change.
+>  	 */
+> -	intel_de_write(dev_priv, DPLL(pipe), dpll & ~DPLL_VGA_MODE_DIS);
+> -	intel_de_write(dev_priv, DPLL(pipe), dpll);
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe),
+> +		       dpll & ~DPLL_VGA_MODE_DIS);
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+>  
+>  	/* Wait for the clocks to stabilize. */
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  	udelay(150);
+>  
+>  	/* The pixel multiplier can only be updated once the
+> @@ -8224,12 +8225,12 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  	 *
+>  	 * So write it again.
+>  	 */
+> -	intel_de_write(dev_priv, DPLL(pipe), dpll);
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+>  
+>  	/* We do this three times for luck */
+>  	for (i = 0; i < 3 ; i++) {
+> -		intel_de_write(dev_priv, DPLL(pipe), dpll);
+> -		intel_de_posting_read(dev_priv, DPLL(pipe));
+> +		intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+> +		intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  		udelay(150); /* wait for warmup */
+>  	}
+>  
+> @@ -8262,8 +8263,8 @@ void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  
+>  	intel_wait_for_pipe_scanline_stopped(crtc);
+>  
+> -	intel_de_write(dev_priv, DPLL(pipe), DPLL_VGA_MODE_DIS);
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), DPLL_VGA_MODE_DIS);
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  }
+>  
+>  void intel_hpd_poll_fini(struct drm_i915_private *i915)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 34b6d843bc9e..3c5cb587f9bd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1772,7 +1772,7 @@ static void chv_phy_control_init(struct drm_i915_private *dev_priv)
+>  	 * current lane status.
+>  	 */
+>  	if (intel_power_well_is_enabled(dev_priv, cmn_bc)) {
+> -		u32 status = intel_de_read(dev_priv, DPLL(PIPE_A));
+> +		u32 status = intel_de_read(dev_priv, DPLL(dev_priv, PIPE_A));
+>  		unsigned int mask;
+>  
+>  		mask = status & DPLL_PORTB_READY_MASK;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 83f616097a29..3b6cb237d80a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -1196,13 +1196,13 @@ static void vlv_display_power_well_init(struct drm_i915_private *dev_priv)
+>  	 * CHV DPLL B/C have some issues if VGA mode is enabled.
+>  	 */
+>  	for_each_pipe(dev_priv, pipe) {
+> -		u32 val = intel_de_read(dev_priv, DPLL(pipe));
+> +		u32 val = intel_de_read(dev_priv, DPLL(dev_priv, pipe));
+>  
+>  		val |= DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+>  		if (pipe != PIPE_A)
+>  			val |= DPLL_INTEGRATED_CRI_CLK_VLV;
+>  
+> -		intel_de_write(dev_priv, DPLL(pipe), val);
+> +		intel_de_write(dev_priv, DPLL(dev_priv, pipe), val);
+>  	}
+>  
+>  	vlv_init_display_clock_gating(dev_priv);
+> @@ -1355,7 +1355,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+>  		 */
+>  		if (BITS_SET(phy_control,
+>  			     PHY_CH_POWER_DOWN_OVRD(0xf, DPIO_PHY0, DPIO_CH1)) &&
+> -		    (intel_de_read(dev_priv, DPLL(PIPE_B)) & DPLL_VCO_ENABLE) == 0)
+> +		    (intel_de_read(dev_priv, DPLL(dev_priv, PIPE_B)) & DPLL_VCO_ENABLE) == 0)
+>  			phy_status |= PHY_STATUS_CMN_LDO(DPIO_PHY0, DPIO_CH1);
+>  
+>  		if (BITS_SET(phy_control,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+> index a981f45facb3..a007ca5208b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -403,7 +403,7 @@ void i9xx_dpll_get_hw_state(struct intel_crtc *crtc,
+>  		hw_state->dpll_md = tmp;
+>  	}
+>  
+> -	hw_state->dpll = intel_de_read(dev_priv, DPLL(crtc->pipe));
+> +	hw_state->dpll = intel_de_read(dev_priv, DPLL(dev_priv, crtc->pipe));
+>  
+>  	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv)) {
+>  		hw_state->fp0 = intel_de_read(dev_priv, FP0(crtc->pipe));
+> @@ -1842,11 +1842,12 @@ void i9xx_enable_pll(const struct intel_crtc_state *crtc_state)
+>  	 * the P1/P2 dividers. Otherwise the DPLL will keep using the old
+>  	 * dividers, even though the register value does change.
+>  	 */
+> -	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll & ~DPLL_VGA_MODE_DIS);
+> -	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe),
+> +		       hw_state->dpll & ~DPLL_VGA_MODE_DIS);
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), hw_state->dpll);
+>  
+>  	/* Wait for the clocks to stabilize. */
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  	udelay(150);
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 4) {
+> @@ -1857,13 +1858,13 @@ void i9xx_enable_pll(const struct intel_crtc_state *crtc_state)
+>  		 *
+>  		 * So write it again.
+>  		 */
+> -		intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+> +		intel_de_write(dev_priv, DPLL(dev_priv, pipe), hw_state->dpll);
+>  	}
+>  
+>  	/* We do this three times for luck */
+>  	for (i = 0; i < 3; i++) {
+> -		intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+> -		intel_de_posting_read(dev_priv, DPLL(pipe));
+> +		intel_de_write(dev_priv, DPLL(dev_priv, pipe), hw_state->dpll);
+> +		intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  		udelay(150); /* wait for warmup */
+>  	}
+>  }
+> @@ -1991,11 +1992,11 @@ static void _vlv_enable_pll(const struct intel_crtc_state *crtc_state)
+>  	const struct i9xx_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.i9xx;
+>  	enum pipe pipe = crtc->pipe;
+>  
+> -	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), hw_state->dpll);
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  	udelay(150);
+>  
+> -	if (intel_de_wait_for_set(dev_priv, DPLL(pipe), DPLL_LOCK_VLV, 1))
+> +	if (intel_de_wait_for_set(dev_priv, DPLL(dev_priv, pipe), DPLL_LOCK_VLV, 1))
+>  		drm_err(&dev_priv->drm, "DPLL %d failed to lock\n", pipe);
+>  }
+>  
+> @@ -2012,7 +2013,7 @@ void vlv_enable_pll(const struct intel_crtc_state *crtc_state)
+>  	assert_pps_unlocked(dev_priv, pipe);
+>  
+>  	/* Enable Refclk */
+> -	intel_de_write(dev_priv, DPLL(pipe),
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe),
+>  		       hw_state->dpll & ~(DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV));
+>  
+>  	if (hw_state->dpll & DPLL_VCO_ENABLE) {
+> @@ -2138,10 +2139,10 @@ static void _chv_enable_pll(const struct intel_crtc_state *crtc_state)
+>  	udelay(1);
+>  
+>  	/* Enable PLL */
+> -	intel_de_write(dev_priv, DPLL(pipe), hw_state->dpll);
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), hw_state->dpll);
+>  
+>  	/* Check PLL is locked */
+> -	if (intel_de_wait_for_set(dev_priv, DPLL(pipe), DPLL_LOCK_VLV, 1))
+> +	if (intel_de_wait_for_set(dev_priv, DPLL(dev_priv, pipe), DPLL_LOCK_VLV, 1))
+>  		drm_err(&dev_priv->drm, "PLL %d failed to lock\n", pipe);
+>  }
+>  
+> @@ -2158,7 +2159,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+>  	assert_pps_unlocked(dev_priv, pipe);
+>  
+>  	/* Enable Refclk and SSC */
+> -	intel_de_write(dev_priv, DPLL(pipe),
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe),
+>  		       hw_state->dpll & ~DPLL_VCO_ENABLE);
+>  
+>  	if (hw_state->dpll & DPLL_VCO_ENABLE) {
+> @@ -2183,7 +2184,7 @@ void chv_enable_pll(const struct intel_crtc_state *crtc_state)
+>  		 * We should always have it disabled.
+>  		 */
+>  		drm_WARN_ON(&dev_priv->drm,
+> -			    (intel_de_read(dev_priv, DPLL(PIPE_B)) &
+> +			    (intel_de_read(dev_priv, DPLL(dev_priv, PIPE_B)) &
+>  			     DPLL_VGA_MODE_DIS) == 0);
+>  	} else {
+>  		intel_de_write(dev_priv, DPLL_MD(pipe), hw_state->dpll_md);
+> @@ -2241,8 +2242,8 @@ void vlv_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  	if (pipe != PIPE_A)
+>  		val |= DPLL_INTEGRATED_CRI_CLK_VLV;
+>  
+> -	intel_de_write(dev_priv, DPLL(pipe), val);
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), val);
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  }
+>  
+>  void chv_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
+> @@ -2259,8 +2260,8 @@ void chv_disable_pll(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  	if (pipe != PIPE_A)
+>  		val |= DPLL_INTEGRATED_CRI_CLK_VLV;
+>  
+> -	intel_de_write(dev_priv, DPLL(pipe), val);
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), val);
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  
+>  	vlv_dpio_get(dev_priv);
+>  
+> @@ -2285,8 +2286,8 @@ void i9xx_disable_pll(const struct intel_crtc_state *crtc_state)
+>  	/* Make sure the pipe isn't still relying on us */
+>  	assert_transcoder_disabled(dev_priv, crtc_state->cpu_transcoder);
+>  
+> -	intel_de_write(dev_priv, DPLL(pipe), DPLL_VGA_MODE_DIS);
+> -	intel_de_posting_read(dev_priv, DPLL(pipe));
+> +	intel_de_write(dev_priv, DPLL(dev_priv, pipe), DPLL_VGA_MODE_DIS);
+> +	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+>  }
+>  
+>  
+> @@ -2312,7 +2313,7 @@ static void assert_pll(struct drm_i915_private *dev_priv,
+>  {
+>  	bool cur_state;
+>  
+> -	cur_state = intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENABLE;
+> +	cur_state = intel_de_read(dev_priv, DPLL(dev_priv, pipe)) & DPLL_VCO_ENABLE;
+>  	I915_STATE_WARN(dev_priv, cur_state != state,
+>  			"PLL state assertion failure (expected %s, current %s)\n",
+>  			str_on_off(state), str_on_off(cur_state));
+> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
+> index 1840f5b59229..091824334f26 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> @@ -456,13 +456,14 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
+>  	 * the device.
+>  	 */
+>  	for_each_pipe(dev_priv, pipe)
+> -		dpll[pipe] = intel_de_rmw(dev_priv, DPLL(pipe), 0, DPLL_DVO_2X_MODE);
+> +		dpll[pipe] = intel_de_rmw(dev_priv, DPLL(dev_priv, pipe), 0,
+> +					  DPLL_DVO_2X_MODE);
+>  
+>  	ret = dvo->dev_ops->init(&intel_dvo->dev, i2c);
+>  
+>  	/* restore the DVO 2x clock state to original */
+>  	for_each_pipe(dev_priv, pipe) {
+> -		intel_de_write(dev_priv, DPLL(pipe), dpll[pipe]);
+> +		intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll[pipe]);
+>  	}
+>  
+>  	intel_gmbus_force_bit(i2c, false);
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 73046ef58d8e..42306bc4ba86 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -119,7 +119,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
+>  	else
+>  		DP |= DP_PIPE_SEL(pipe);
+>  
+> -	pll_enabled = intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENABLE;
+> +	pll_enabled = intel_de_read(dev_priv, DPLL(dev_priv, pipe)) & DPLL_VCO_ENABLE;
+>  
+>  	/*
+>  	 * The DPLL for the pipe must be enabled for this to work.
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 6877e2f0fbc3..8ff04bb19cbe 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -668,7 +668,7 @@
+>  #define _DPLL_A			0x6014
+>  #define _DPLL_B			0x6018
+>  #define _CHV_DPLL_C		0x6030
+> -#define DPLL(pipe)		_MMIO_BASE_PIPE3(DISPLAY_MMIO_BASE(dev_priv), \
+> +#define DPLL(dev_priv, pipe)		_MMIO_BASE_PIPE3(DISPLAY_MMIO_BASE(dev_priv), \
+>  						 (pipe), _DPLL_A, _DPLL_B, _CHV_DPLL_C)
+>  
+>  #define VGA0	_MMIO(0x6000)
+> -- 
+> 2.39.2
+> 
