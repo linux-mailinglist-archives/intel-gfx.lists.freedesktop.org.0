@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51DF88FE50C
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 13:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA9B18FE50D
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 13:16:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2BE410E8FA;
-	Thu,  6 Jun 2024 11:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D50410E8FD;
+	Thu,  6 Jun 2024 11:16:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2uPsTyd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L1Wg6hqn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7714D10E8FA
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 11:16:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00B1D10E8FC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 11:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717672602; x=1749208602;
+ t=1717672605; x=1749208605;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EoFQVi0UODweHgrP0tKhdWe7ns1MP/Sv+srUWzOz6/g=;
- b=M2uPsTydmJNECJuLePDwhdxvZ7ZnY4tPxEUzJwQYYTrJVXHBRSw4K0y1
- crUIpzn8Ay2q7EWJ6miEnA0Vz/8zBnjQM1AihkIurN72eScTnMO8H7uUW
- i2IRIdC+BLEgPcsDCbed0DM9TCVOWGthEYaYKUl+xFncUEbJpOsiC9Voo
- ngYzryTp0CV9IV1KVI0WXQJyQmj+lBycGyo25CU7Fi0/1HnoRywZil3ex
- hjWfJvdx21DJcnk+fr9NcX3XBuaZBWwpYo2oYWJzqKPxUieJ55XrucFz4
- yStzc+IY8oEU4O9E7zK90xpkQZHh9FnO39ZuzAqYSasbUPNKMxY07kwSr A==;
-X-CSE-ConnectionGUID: J/dpnOf+TiqLfO/U1HZQUg==
-X-CSE-MsgGUID: tYaBkOooRySXezvOFsiedw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="14556686"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14556686"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 04:16:42 -0700
-X-CSE-ConnectionGUID: FqRFW5p1SnS305kl0uPI1Q==
-X-CSE-MsgGUID: DMm1WLAxTZq8ChXdzdEWmg==
+ bh=oHU6hHd19roRcwuADRkm2Ffv49ch1s3xOuFUxiN4w60=;
+ b=L1Wg6hqn1iC1YYuPYFSgSzpLGtUvvs3RDX7s9VqVXl8AXXWFWu44MXBF
+ Rlt9kFE7QmR5sohYTpUy30aQ+v9IzQD3fJgqin0KfdJVYYZ8QldVg7OnQ
+ zoSkAqDyiQPGhEHxKjP21F7Si/NLucJ7AeyNUrshfcelKnQGXvi4oIV4Q
+ TELY3Er7bi8lr9AOsA45Aas0ghLjT7C41Oln3pGqw1Ht2AKBaVfJZRgF4
+ M3zZmEM+acfylzPWfEZbgadmUF92eT6HMKal8W7w5XCegJtK/BWLWVCRR
+ Ebt78J+yOmF9i3n/Naj6pGNeMUMjSl+CAV1+tsC4uze0dYmN7h3sW4zAN w==;
+X-CSE-ConnectionGUID: IBv49jVNQgGd2z+HWB2Kyg==
+X-CSE-MsgGUID: k4bJO8iWQS2EcirArpWx4Q==
+X-IronPort-AV: E=McAfee;i="6600,9927,11094"; a="14468072"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14468072"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 04:16:45 -0700
+X-CSE-ConnectionGUID: 6NT2+11DQb+4rZDJCdNrdQ==
+X-CSE-MsgGUID: 0XQOX4x4SBuAEeQtpjp2uQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38494535"
+X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="38003833"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 04:16:40 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2024 04:16:44 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 09/14] drm/i915: use i9xx_fsb_freq() for GT clock frequency
-Date: Thu,  6 Jun 2024 14:16:01 +0300
-Message-Id: <f53b6d5f5388b24ee255b78cf47e8f4bcdad16c8.1717672515.git.jani.nikula@intel.com>
+Subject: [PATCH v2 10/14] drm/i915/cdclk: use i9xx_fsb_freq() for rawclk_freq
+ initialization
+Date: Thu,  6 Jun 2024 14:16:02 +0300
+Message-Id: <8117cc078ec43e91eb3b2f626f02f8399306e570.1717672515.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1717672515.git.jani.nikula@intel.com>
 References: <cover.1717672515.git.jani.nikula@intel.com>
@@ -68,66 +69,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reuse i9xx_fsb_freq() for GT clock frequency initialization instead of
-depending on rawclk_freq.
-
-Note: If the init order was changed, we could use i915->fsb_freq
-directly. However, GT clock initialization is done in
-i915_driver_mmio_probe(), but intel_dram_detect() later in
-i915_driver_hw_probe(), with a dependency on intel_pcode_init().
+Instead of duplicating the CLKCFG parsing, reuse i9xx_fsb_freq() to
+figure out rawclk_freq where applicable.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c | 3 ++-
- drivers/gpu/drm/i915/soc/intel_dram.c          | 2 +-
- drivers/gpu/drm/i915/soc/intel_dram.h          | 1 +
- 3 files changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 46 ++--------------------
+ 1 file changed, 3 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-index 7c9be4fd1c8c..6e63505fe478 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-@@ -9,6 +9,7 @@
- #include "intel_gt_clock_utils.h"
- #include "intel_gt_print.h"
- #include "intel_gt_regs.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 7ef8dcb1601a..7e93984eba11 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -23,6 +23,7 @@
+ 
+ #include <linux/time.h>
+ 
 +#include "soc/intel_dram.h"
+ #include "hsw_ips.h"
+ #include "i915_reg.h"
+ #include "intel_atomic.h"
+@@ -3539,10 +3540,8 @@ static int vlv_hrawclk(struct drm_i915_private *dev_priv)
+ 				      CCK_DISPLAY_REF_CLOCK_CONTROL);
+ }
  
- static u32 read_reference_ts_freq(struct intel_uncore *uncore)
+-static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
++static int i9xx_hrawclk(struct drm_i915_private *i915)
  {
-@@ -151,7 +152,7 @@ static u32 gen4_read_clock_frequency(struct intel_uncore *uncore)
+-	u32 clkcfg;
+-
+ 	/*
+ 	 * hrawclock is 1/4 the FSB frequency
  	 *
- 	 * Testing on actual hardware has shown there is no /16.
+@@ -3553,46 +3552,7 @@ static int i9xx_hrawclk(struct drm_i915_private *dev_priv)
+ 	 * don't know which registers have that information,
+ 	 * and all the relevant docs have gone to bit heaven :(
  	 */
--	return RUNTIME_INFO(uncore->i915)->rawclk_freq * 1000;
-+	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(uncore->i915), 4) * 1000;
+-	clkcfg = intel_de_read(dev_priv, CLKCFG) & CLKCFG_FSB_MASK;
+-
+-	if (IS_MOBILE(dev_priv)) {
+-		switch (clkcfg) {
+-		case CLKCFG_FSB_400:
+-			return 100000;
+-		case CLKCFG_FSB_533:
+-			return 133333;
+-		case CLKCFG_FSB_667:
+-			return 166667;
+-		case CLKCFG_FSB_800:
+-			return 200000;
+-		case CLKCFG_FSB_1067:
+-			return 266667;
+-		case CLKCFG_FSB_1333:
+-			return 333333;
+-		default:
+-			MISSING_CASE(clkcfg);
+-			return 133333;
+-		}
+-	} else {
+-		switch (clkcfg) {
+-		case CLKCFG_FSB_400_ALT:
+-			return 100000;
+-		case CLKCFG_FSB_533:
+-			return 133333;
+-		case CLKCFG_FSB_667:
+-			return 166667;
+-		case CLKCFG_FSB_800:
+-			return 200000;
+-		case CLKCFG_FSB_1067_ALT:
+-			return 266667;
+-		case CLKCFG_FSB_1333_ALT:
+-			return 333333;
+-		case CLKCFG_FSB_1600_ALT:
+-			return 400000;
+-		default:
+-			return 133333;
+-		}
+-	}
++	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(i915), 4);
  }
  
- static u32 read_clock_frequency(struct intel_uncore *uncore)
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 1b01e5130f79..dac39b41fa51 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -142,7 +142,7 @@ static void detect_mem_freq(struct drm_i915_private *i915)
- 		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
- }
- 
--static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
-+unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
- {
- 	u32 fsb;
- 
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 4ba13c13162c..a10136eda674 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.h
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -10,5 +10,6 @@ struct drm_i915_private;
- 
- void intel_dram_edram_detect(struct drm_i915_private *i915);
- void intel_dram_detect(struct drm_i915_private *i915);
-+unsigned int i9xx_fsb_freq(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_DRAM_H__ */
+ /**
 -- 
 2.39.2
 
