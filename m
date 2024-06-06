@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87ED48FE63A
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 14:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 483668FE666
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 14:23:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD67510E920;
-	Thu,  6 Jun 2024 12:13:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BAB310E08C;
+	Thu,  6 Jun 2024 12:23:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I54cmj7+";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA1810E920;
- Thu,  6 Jun 2024 12:13:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 563D610E08C;
+ Thu,  6 Jun 2024 12:23:27 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 8B1576173B;
+ Thu,  6 Jun 2024 12:23:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3FBFC4AF0A;
+ Thu,  6 Jun 2024 12:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1717676606;
+ bh=IlInq4cZuAv5dDIz56+IQg5jU99RfgvfiKv9Sn3hZhM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=I54cmj7+eLYvzc6dQWZ3+4x5NKHh9VKkw1Dy2lyXk8CtDDaKNggSxoayvd+C/JxKz
+ sxp9L5qd+wUac73XcruK3RqsESllJf/pywTa95eZGO3Sra5ywRs31LX8jemS0jZ7wM
+ xRwJFGNxq9v7PZzqdppfo+H6TD4ToFq1BnGBCIqBXPLyXoMgsI69Prto/v9qgCPQR5
+ 3bMqwQudDJqbk9ox2CQOJqnwojXUyyUKc9ag72Kg1V/LP486poCjnZL4xO8+mjhVm2
+ xqJhWjYGWnqAuKYOaa2qDsyEVYclTNBzy9R9hFvfscIgrNyzYTS2idxmz6OFuznvIl
+ +SUspe/Sh9a7g==
+Date: Thu, 6 Jun 2024 14:23:23 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>, 
+ intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v13 5/9] drm/dp: Add refresh rate divider to struct
+ representing AS SDP
+Message-ID: <20240606-finicky-savvy-harrier-edec83@houat>
+References: <20240605170111.494784-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20240605170111.494784-6-mitulkumar.ajitkumar.golani@intel.com>
+ <87wmn29u7u.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_mem/fsb/rawc?=
- =?utf-8?q?lk_freq_cleanups_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 06 Jun 2024 12:13:35 -0000
-Message-ID: <171767601577.22408.15394180867596839797@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <cover.1717672515.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1717672515.git.jani.nikula@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="43fn6thlzuhizwk3"
+Content-Disposition: inline
+In-Reply-To: <87wmn29u7u.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +60,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: mem/fsb/rawclk freq cleanups (rev2)
-URL   : https://patchwork.freedesktop.org/series/134145/
-State : warning
+--43fn6thlzuhizwk3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On Thu, Jun 06, 2024 at 02:38:45PM GMT, Jani Nikula wrote:
+> On Wed, 05 Jun 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>=
+ wrote:
+> > Add target_rr_divider to structure representing AS SDP.
+> > It is valid only in FAVT mode, sink device ignores the bit in AVT
+> > mode.
+> >
+> > --v2:
+> > - Update commit header and send patch to dri-devel.
+> >
+> > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> > Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+>=20
+> Maxime, Maarten, Thomas, ack for merging this via drm-intel-next?
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
+Maxime
 
+--43fn6thlzuhizwk3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZmGqOwAKCRAnX84Zoj2+
+dguBAX9UWND51DrNwVU1T6JlorfZQxyw4S1HIlPLwKHReYBVLJtXuiw1i223bB6d
+KmBFGyUBgKoTAdcUIwi3wsM7sVuU3adpIL1SNTeLp+cZ3koNhVECozgXlL4A9dqA
+wE4xZcmgbg==
+=nu6K
+-----END PGP SIGNATURE-----
+
+--43fn6thlzuhizwk3--
