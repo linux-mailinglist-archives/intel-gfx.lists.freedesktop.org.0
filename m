@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E095C8FE86C
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 16:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 905768FEA42
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2024 16:19:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A14EB10E114;
-	Thu,  6 Jun 2024 14:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4403210E958;
+	Thu,  6 Jun 2024 14:19:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/wC1yIk";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="jdiewfDl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E3610E0F2
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2024 14:07:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717682836; x=1749218836;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7GhHi5Io+OIAGgKVgOzeCLVlAMCaGBz9Im8qqQiiDi0=;
- b=E/wC1yIk9xFi3nUTpYxmqHdqDN96hPc8JUMLEAa/DP9ank2ASNw4YXG9
- bMOTIaGgzjS33jS+jKDe8ICu0D/RtIusJV+VMpLB0QV0MdOhQWiF+1xKP
- 7IxqwrC+YmcV5oF+BoQLVsWbt0mG1Efq8UlhWFjlnXNgsllFpRWBudmC2
- 3CUZYXUFlJKHXKf9Ob2kVAdnciLPRdjQGvtyzYo4kYQmHlk6Zu2N4w+nL
- n4kNTT9bW6wVKlqqGIg35/FzvlpKgc2FhjH6FKReUVJ5DVZex41iS0jIM
- fQNju1+IMljRDmz7/AZMO/dA7NPtEiy2y9mmB4qZbk7Wkinn1Nul687/Q Q==;
-X-CSE-ConnectionGUID: pYZjsi2UTPG9GAzSGiizcw==
-X-CSE-MsgGUID: sexJqVxERVGjdeHzR0gWZg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14471291"
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="14471291"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 07:07:15 -0700
-X-CSE-ConnectionGUID: 2TrsnmPQTjqp2O9gvB3j6g==
-X-CSE-MsgGUID: 2uJll4OnStemLa4MCEy/UQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,219,1712646000"; d="scan'208";a="37984374"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2024 07:07:14 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/i915/overlay: convert
- intel_overlay_print_error_state() to drm_printer
-Date: Thu,  6 Jun 2024 17:07:05 +0300
-Message-Id: <20240606140705.3072987-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240606140705.3072987-1-jani.nikula@intel.com>
-References: <20240606140705.3072987-1-jani.nikula@intel.com>
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
+ [46.235.227.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F35610E1C2;
+ Thu,  6 Jun 2024 14:19:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1717683543;
+ bh=Fn85BNJY8o23kIO+1l+XNYU0QSUu0sHvm9EFYZMdX9Q=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=jdiewfDlYSl0qQpB0TUBm24SkPj4ms2S2ZS4PszSay6Omhj/MQoLVJjfPcd7z9YMv
+ lY4lHZXP3IN7zYNnm36BLSkbFZ580E2sVU/U/BP/YwrxYEL1UxDkx+aGDmeA+pfP3F
+ eiSxiJB6xUorsHO9na7XclLNRHb/dtndLSPE1xrProSgiSSx4jTmgNezXlSiEr8/gS
+ 2QG7JNmFT8KHqEieaowotWK+vKi2B+wGtnDx2leWx13iu6b6DIVyFCkqgcFz/QuQh3
+ 7GG6LghaoIgTchP02jUa5OekjhS3e+rkiOVebK74hDZxqYmTJbPrPN4URJn2jTVZX5
+ EmPEEDXWsyL7w==
+Received: from [100.95.196.25] (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: koike)
+ by madrid.collaboradmins.com (Postfix) with ESMTPSA id DC43237821DE;
+ Thu,  6 Jun 2024 14:18:56 +0000 (UTC)
+Message-ID: <28b51ad5-637f-4935-ae20-08ff982a5127@collabora.com>
+Date: Thu, 6 Jun 2024 11:18:54 -0300
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] drm/ci: uprev mesa version
+To: Vignesh Raman <vignesh.raman@collabora.com>,
+ dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, david.heidelberg@collabora.com,
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ dmitry.baryshkov@linaro.org, mcanal@igalia.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+References: <20240529024049.356327-1-vignesh.raman@collabora.com>
+ <20240529024049.356327-2-vignesh.raman@collabora.com>
+Content-Language: en-US
+From: Helen Koike <helen.koike@collabora.com>
+In-Reply-To: <20240529024049.356327-2-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,86 +69,276 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the regular drm printer, so we can drop the i915_error_printf()
-usage.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_overlay.c | 11 +++++------
- drivers/gpu/drm/i915/display/intel_overlay.h |  6 +++---
- drivers/gpu/drm/i915/i915_gpu_error.c        |  2 +-
- 3 files changed, 9 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 1c2099ed5514..b97087f8e311 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -1485,15 +1485,14 @@ intel_overlay_capture_error_state(struct drm_i915_private *dev_priv)
- }
- 
- void
--intel_overlay_print_error_state(struct drm_i915_error_state_buf *m,
-+intel_overlay_print_error_state(struct drm_printer *p,
- 				struct intel_overlay_error_state *error)
- {
--	i915_error_printf(m, "Overlay, status: 0x%08x, interrupt: 0x%08x\n",
--			  error->dovsta, error->isr);
--	i915_error_printf(m, "  Register file at 0x%08lx:\n",
--			  error->base);
-+	drm_printf(p, "Overlay, status: 0x%08x, interrupt: 0x%08x\n",
-+		   error->dovsta, error->isr);
-+	drm_printf(p, "  Register file at 0x%08lx:\n", error->base);
- 
--#define P(x) i915_error_printf(m, "    " #x ":	0x%08x\n", error->regs.x)
-+#define P(x) drm_printf(p, "    " #x ": 0x%08x\n", error->regs.x)
- 	P(OBUF_0Y);
- 	P(OBUF_1Y);
- 	P(OBUF_0U);
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.h b/drivers/gpu/drm/i915/display/intel_overlay.h
-index c3f68fce6f08..f28a09c062d0 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.h
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.h
-@@ -8,8 +8,8 @@
- 
- struct drm_device;
- struct drm_file;
--struct drm_i915_error_state_buf;
- struct drm_i915_private;
-+struct drm_printer;
- struct intel_overlay;
- struct intel_overlay_error_state;
- 
-@@ -24,7 +24,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
- void intel_overlay_reset(struct drm_i915_private *dev_priv);
- struct intel_overlay_error_state *
- intel_overlay_capture_error_state(struct drm_i915_private *dev_priv);
--void intel_overlay_print_error_state(struct drm_i915_error_state_buf *e,
-+void intel_overlay_print_error_state(struct drm_printer *p,
- 				     struct intel_overlay_error_state *error);
- #else
- static inline void intel_overlay_setup(struct drm_i915_private *dev_priv)
-@@ -55,7 +55,7 @@ intel_overlay_capture_error_state(struct drm_i915_private *dev_priv)
- {
- 	return NULL;
- }
--static inline void intel_overlay_print_error_state(struct drm_i915_error_state_buf *e,
-+static inline void intel_overlay_print_error_state(struct drm_printer *p,
- 						   struct intel_overlay_error_state *error)
- {
- }
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 3fee7ad0ec51..96c6cafd5b9e 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -905,7 +905,7 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
- 	}
- 
- 	if (error->overlay)
--		intel_overlay_print_error_state(m, error->overlay);
-+		intel_overlay_print_error_state(&p, error->overlay);
- 
- 	err_print_capabilities(m, error);
- 	err_print_params(m, &error->params);
--- 
-2.39.2
+On 28/05/2024 23:40, Vignesh Raman wrote:
+> zlib.net is not allowing tarball download anymore and results
+> in below error in kernel+rootfs_arm32 container build,
+> urllib.error.HTTPError: HTTP Error 403: Forbidden
+> urllib.error.HTTPError: HTTP Error 415: Unsupported Media Type
+> 
+> Uprev mesa to latest version which includes a fix for this issue.
+> https://gitlab.freedesktop.org/mesa/mesa/-/commit/908f444e
+> 
+> Use id_tokens for JWT authentication. Since s3 bucket is migrated to
+> mesa-rootfs, update the variables accordingly. Also copy helper scripts
+> to install, so that the ci jobs can use these scripts for logging.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 
+Acked-by: Helen Koike <helen.koike@collabora.com>
+
+> ---
+> 
+> v2:
+>    - Uprev to recent version and use id_tokens for JWT authentication
+> 
+> v3:
+>    - Move adding farm variable and updating device type variable to seperate commit
+> 
+> ---
+>   drivers/gpu/drm/ci/build-igt.sh   |  2 +-
+>   drivers/gpu/drm/ci/build.sh       |  6 +++--
+>   drivers/gpu/drm/ci/container.yml  | 12 +++------
+>   drivers/gpu/drm/ci/gitlab-ci.yml  | 44 +++++++++++++++++++++----------
+>   drivers/gpu/drm/ci/image-tags.yml |  2 +-
+>   drivers/gpu/drm/ci/lava-submit.sh |  4 +--
+>   6 files changed, 42 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ci/build-igt.sh b/drivers/gpu/drm/ci/build-igt.sh
+> index 500fa4f5c30a..7859554756c4 100644
+> --- a/drivers/gpu/drm/ci/build-igt.sh
+> +++ b/drivers/gpu/drm/ci/build-igt.sh
+> @@ -32,4 +32,4 @@ tar -cf artifacts/igt.tar /igt
+>   # Pass needed files to the test stage
+>   S3_ARTIFACT_NAME="igt.tar.gz"
+>   gzip -c artifacts/igt.tar > ${S3_ARTIFACT_NAME}
+> -ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${KERNEL_ARCH}/${S3_ARTIFACT_NAME}
+> +ci-fairy s3cp --token-file "${S3_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${KERNEL_ARCH}/${S3_ARTIFACT_NAME}
+> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+> index 106f2d40d222..a67871fdcd3f 100644
+> --- a/drivers/gpu/drm/ci/build.sh
+> +++ b/drivers/gpu/drm/ci/build.sh
+> @@ -128,6 +128,7 @@ fi
+>   # Pass needed files to the test stage
+>   mkdir -p install
+>   cp -rfv .gitlab-ci/* install/.
+> +cp -rfv ci/*  install/.
+>   cp -rfv install/common install/ci-common
+>   cp -rfv drivers/gpu/drm/ci/* install/.
+>   
+> @@ -141,14 +142,15 @@ if [[ "$UPLOAD_TO_MINIO" = "1" ]]; then
+>           FILES_TO_UPLOAD="$FILES_TO_UPLOAD $(basename -a $DEVICE_TREES)"
+>       fi
+>   
+> +    ls -l "${S3_JWT_FILE}"
+>       for f in $FILES_TO_UPLOAD; do
+> -        ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" /lava-files/$f \
+> +        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /lava-files/$f \
+>                   https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/$f
+>       done
+>   
+>       S3_ARTIFACT_NAME="kernel-files.tar.zst"
+>       tar --zstd -cf $S3_ARTIFACT_NAME install
+> -    ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/${S3_ARTIFACT_NAME}
+> +    ci-fairy s3cp --token-file "${S3_JWT_FILE}" ${S3_ARTIFACT_NAME} https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/${S3_ARTIFACT_NAME}
+>   
+>       echo "Download vmlinux.xz from https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/vmlinux.xz"
+>   fi
+> diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/container.yml
+> index 9764e7921a4f..d6edf3635b23 100644
+> --- a/drivers/gpu/drm/ci/container.yml
+> +++ b/drivers/gpu/drm/ci/container.yml
+> @@ -36,15 +36,15 @@ debian/android_build:
+>     rules:
+>       - when: never
+>   
+> -debian/x86_64_test-android:
+> +.debian/x86_64_test-android:
+>     rules:
+>       - when: never
+>   
+> -windows_build_vs2019:
+> +windows_build_msvc:
+>     rules:
+>       - when: never
+>   
+> -windows_test_vs2019:
+> +windows_test_msvc:
+>     rules:
+>       - when: never
+>   
+> @@ -56,10 +56,6 @@ rustfmt:
+>      rules:
+>       - when: never
+>   
+> -windows_vs2019:
+> -   rules:
+> -    - when: never
+> -
+> -clang-format:
+> +windows_msvc:
+>      rules:
+>       - when: never
+> \ No newline at end of file
+> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml
+> index 084e3ff8e3f4..8f32de63d92e 100644
+> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
+> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+> @@ -1,6 +1,6 @@
+>   variables:
+>     DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+> -  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 9d162de9a05155e1c4041857a5848842749164cf
+> +  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha e2b9c5a9e3e4f9b532067af8022eaef8d6fc6c00
+>   
+>     UPSTREAM_REPO: git://anongit.freedesktop.org/drm/drm
+>     TARGET_BRANCH: drm-next
+> @@ -19,33 +19,47 @@ variables:
+>             bash download-git-cache.sh
+>             rm download-git-cache.sh
+>             set +o xtrace
+> +  S3_JWT_FILE: /s3_jwt
+>     S3_HOST: s3.freedesktop.org
+> +  # This bucket is used to fetch the kernel image
+> +  S3_KERNEL_BUCKET: mesa-rootfs
+> +  # Bucket for git cache
+> +  S3_GITCACHE_BUCKET: git-cache
+> +  # Bucket for the pipeline artifacts pushed to S3
+> +  S3_ARTIFACTS_BUCKET: artifacts
+>     # per-pipeline artifact storage on MinIO
+> -  PIPELINE_ARTIFACTS_BASE: ${S3_HOST}/artifacts/${CI_PROJECT_PATH}/${CI_PIPELINE_ID}
+> +  PIPELINE_ARTIFACTS_BASE: ${S3_HOST}/${S3_ARTIFACTS_BUCKET}/${CI_PROJECT_PATH}/${CI_PIPELINE_ID}
+>     # per-job artifact storage on MinIO
+>     JOB_ARTIFACTS_BASE: ${PIPELINE_ARTIFACTS_BASE}/${CI_JOB_ID}
+>     # default kernel for rootfs before injecting the current kernel tree
+>     KERNEL_REPO: "gfx-ci/linux"
+> -  KERNEL_TAG: "v6.6.4-for-mesa-ci-e4f4c500f7fb"
+> -  KERNEL_IMAGE_BASE: https://${S3_HOST}/mesa-lava/${KERNEL_REPO}/${KERNEL_TAG}
+> +  KERNEL_TAG: "v6.6.21-mesa-f8ea"
+> +  KERNEL_IMAGE_BASE: https://${S3_HOST}/${S3_KERNEL_BUCKET}/${KERNEL_REPO}/${KERNEL_TAG}
+> +  PKG_REPO_REV: "3cc12a2a"
+>     LAVA_TAGS: subset-1-gfx
+>     LAVA_JOB_PRIORITY: 30
+> +  ARTIFACTS_BASE_URL: https://${CI_PROJECT_ROOT_NAMESPACE}.${CI_PAGES_DOMAIN}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts
+> +  # Python scripts for structured logger
+> +  PYTHONPATH: "$PYTHONPATH:$CI_PROJECT_DIR/install"
+>   
+>   default:
+> +  id_tokens:
+> +    S3_JWT:
+> +      aud: https://s3.freedesktop.org
+>     before_script:
+>       - export SCRIPTS_DIR=$(mktemp -d)
+>       - curl -L -s --retry 4 -f --retry-all-errors --retry-delay 60 -O --output-dir "${SCRIPTS_DIR}" "${DRM_CI_PROJECT_URL}/-/raw/${DRM_CI_COMMIT_SHA}/.gitlab-ci/setup-test-env.sh"
+>       - source ${SCRIPTS_DIR}/setup-test-env.sh
+>       - echo -e "\e[0Ksection_start:$(date +%s):unset_env_vars_section[collapsed=true]\r\e[0KUnsetting vulnerable environment variables"
+> -    - export CI_JOB_JWT_FILE="${CI_JOB_JWT_FILE:-$(mktemp)}"
+> -    - echo -n "${CI_JOB_JWT}" > "${CI_JOB_JWT_FILE}"
+> -    - unset CI_JOB_JWT
+> +    - echo -n "${S3_JWT}" > "${S3_JWT_FILE}"
+> +    - unset CI_JOB_JWT S3_JWT
+>       - echo -e "\e[0Ksection_end:$(date +%s):unset_env_vars_section\r\e[0K"
+>   
+>       - echo -e "\e[0Ksection_start:$(date +%s):drm_ci_download_section[collapsed=true]\r\e[0KDownloading mesa from $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz"
+>       - cd $CI_PROJECT_DIR
+>       - curl --output - $DRM_CI_PROJECT_URL/-/archive/$DRM_CI_COMMIT_SHA/mesa-$DRM_CI_COMMIT_SHA.tar.gz | tar -xz
+>       - mv mesa-$DRM_CI_COMMIT_SHA/.gitlab-ci* .
+> +    - mv mesa-$DRM_CI_COMMIT_SHA/bin/ci .
+>       - rm -rf mesa-$DRM_CI_COMMIT_SHA/
+>       - echo -e "\e[0Ksection_end:$(date +%s):drm_ci_download_section\r\e[0K"
+>   
+> @@ -53,9 +67,9 @@ default:
+>       - >
+>         set +x
+>   
+> -      test -e "${CI_JOB_JWT_FILE}" &&
+> -      export CI_JOB_JWT="$(<${CI_JOB_JWT_FILE})" &&
+> -      rm "${CI_JOB_JWT_FILE}"
+> +      test -e "${S3_JWT_FILE}" &&
+> +      export S3_JWT="$(<${S3_JWT_FILE})" &&
+> +      rm "${S3_JWT_FILE}"
+>   
+>   include:
+>     - project: 'freedesktop/ci-templates'
+> @@ -87,6 +101,7 @@ include:
+>         - '/src/intel/ci/gitlab-ci-inc.yml'
+>         - '/src/freedreno/ci/gitlab-ci-inc.yml'
+>         - '/src/amd/ci/gitlab-ci-inc.yml'
+> +      - '/src/virtio/ci/gitlab-ci-inc.yml'
+>     - drivers/gpu/drm/ci/image-tags.yml
+>     - drivers/gpu/drm/ci/container.yml
+>     - drivers/gpu/drm/ci/static-checks.yml
+> @@ -98,6 +113,7 @@ include:
+>   stages:
+>     - sanity
+>     - container
+> +  - code-validation
+>     - git-archive
+>     - build
+>     - amdgpu
+> @@ -107,7 +123,6 @@ stages:
+>     - msm
+>     - rockchip
+>     - virtio-gpu
+> -  - lint
+>   
+>   # YAML anchors for rule conditions
+>   # --------------------------------
+> @@ -218,14 +233,15 @@ make git archive:
+>     script:
+>       # Remove drm-ci files we just added
+>       - rm -rf .gitlab-ci.*
+> +    - rm -rf ci
+>   
+>       # Compactify the .git directory
+>       - git gc --aggressive
+>       # compress the current folder
+>       - tar -cvzf ../$CI_PROJECT_NAME.tar.gz .
+>   
+> -    # login with the JWT token file
+> -    - ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" ../$CI_PROJECT_NAME.tar.gz https://$S3_HOST/git-cache/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PROJECT_NAME.tar.gz
+> +    # Use id_tokens for JWT auth
+> +    - ci-fairy s3cp --token-file "${S3_JWT_FILE}" ../$CI_PROJECT_NAME.tar.gz https://$S3_HOST/${S3_GITCACHE_BUCKET}/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$CI_PROJECT_NAME.tar.gz
+>   
+>   
+>   # Sanity checks of MR settings and commit logs
+> @@ -262,4 +278,4 @@ sanity:
+>   
+>   # Jobs that need to pass before spending hardware resources on further testing
+>   .required-for-hardware-jobs:
+> -  needs: []
+> \ No newline at end of file
+> +  needs: []
+> diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml
+> index 7ab4f2514da8..60323ebc7304 100644
+> --- a/drivers/gpu/drm/ci/image-tags.yml
+> +++ b/drivers/gpu/drm/ci/image-tags.yml
+> @@ -1,5 +1,5 @@
+>   variables:
+> -   CONTAINER_TAG: "2023-10-11-mesa-uprev"
+> +   CONTAINER_TAG: "2024-05-09-mesa-uprev"
+>      DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+>      DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+>   
+> diff --git a/drivers/gpu/drm/ci/lava-submit.sh b/drivers/gpu/drm/ci/lava-submit.sh
+> index 3d39b0c916a8..0707fa706a48 100755
+> --- a/drivers/gpu/drm/ci/lava-submit.sh
+> +++ b/drivers/gpu/drm/ci/lava-submit.sh
+> @@ -27,7 +27,7 @@ KERNEL_IMAGE_BASE="https://${BASE_SYSTEM_HOST_PATH}" \
+>   section_end variables
+>   
+>   tar zcf job-rootfs-overlay.tar.gz -C results/job-rootfs-overlay/ .
+> -ci-fairy s3cp --token-file "${CI_JOB_JWT_FILE}" job-rootfs-overlay.tar.gz "https://${JOB_ROOTFS_OVERLAY_PATH}"
+> +ci-fairy s3cp --token-file "${S3_JWT_FILE}" job-rootfs-overlay.tar.gz "https://${JOB_ROOTFS_OVERLAY_PATH}"
+>   
+>   touch results/lava.log
+>   tail -f results/lava.log &
+> @@ -45,7 +45,7 @@ PYTHONPATH=artifacts/ artifacts/lava/lava_job_submitter.py \
+>   	--ci-project-dir "${CI_PROJECT_DIR}" \
+>   	--device-type "${DEVICE_TYPE}" \
+>   	--dtb-filename "${DTB}" \
+> -	--jwt-file "${CI_JOB_JWT_FILE}" \
+> +	--jwt-file "${S3_JWT_FILE}" \
+>   	--kernel-image-name "${KERNEL_IMAGE_NAME}" \
+>   	--kernel-image-type "${KERNEL_IMAGE_TYPE}" \
+>   	--boot-method "${BOOT_METHOD}" \
