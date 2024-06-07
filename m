@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3316900126
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 12:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E70900130
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 12:51:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61A9110E183;
-	Fri,  7 Jun 2024 10:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 359C110EBAE;
+	Fri,  7 Jun 2024 10:51:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BrWh5u5N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z+GOIOoD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B634D10E183
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2024 10:48:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70C3F10EBAE;
+ Fri,  7 Jun 2024 10:51:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717757300; x=1749293300;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=sSP+IGXirqndLVOvr4GqT5GA6k43iXhbXHVuhqxEBh4=;
- b=BrWh5u5No9mpOwaeOY02nGqoN9GGLMuDZl13KD4JdLgKXWICPxTJwGVG
- FYtAa5EcjIaLdMUlnUpI3nbLNi3hha3IR+oFBwSudO9Nl1SPsSpzvuzbb
- Kw7o+T/l8bajOb6egvDKlzKwDRv8RyKZmj7b7znJ63w6WNn07B01BrbR8
- /56VXOicmz2DOJSMJHept4jO0LK50dGd/Wwyy69oHAAZUk/tCUqvbb1AW
- vAtGmYPLTa6owLy3Cos/F6gWJAGxa1RAnkpUhQjyNRJs+jowd2IZPf136
- nHLay7DOCSh9uUMsjffa+ti1ykOK6tyQtgLxCXg17Bplbs4nat+Emeptj g==;
-X-CSE-ConnectionGUID: i6St85ZCSjSgK3rxxfO9OQ==
-X-CSE-MsgGUID: LWICBGkER0eCaf9ixyWf6A==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="11962476"
-X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="11962476"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 03:48:19 -0700
-X-CSE-ConnectionGUID: 84ZH6d1qQw27e0ANJ9Pe0A==
-X-CSE-MsgGUID: LTTCbO9XS2mtWWa2lRlPow==
+ t=1717757497; x=1749293497;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BH6hRJv5Ba1d5urz3wJdcWo9vqB+6wpug+F8X5HRh0s=;
+ b=Z+GOIOoDOlevtyeRZ7Slwjd/tL5YuhJmWByRg2VsFhYyWQDzDVRIcir1
+ 5R/MwYbv3JHoVOrSoiA9VB3c8Q7Tq/U5mWgMM63+SjWgg54yUFMRlhu+O
+ 23L7am5vay86s/NzmdCvLZ3t8DmOJDa7/A25upV0uztD+vFvekriAzyuT
+ uhQd/cuPyOd8+KzUQ+jMIMZmdCxJgymwZ4fcHeCwQL+QGpN03ouNs/oe/
+ +7hHGz5/OhSxBvGkQvX4KxW5h4VbbM5hKo/Ulbq7Gg3MnccrC65ypXm58
+ 2oe9tFlVUEh3kBgOn7UsNuwwUXpNHQ4qYZ0LPju0ev0bLoYtcCmoMYYoP w==;
+X-CSE-ConnectionGUID: uJQ3QBf9TFWZmzaXco/4kA==
+X-CSE-MsgGUID: 5L2uH7UVSLSTngf1wtuKsA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="39873234"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="39873234"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 03:51:36 -0700
+X-CSE-ConnectionGUID: QrOAxlZwS3iJJtckk1/7Ow==
+X-CSE-MsgGUID: 4aY07W8ERNe+twoargHzaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="43225037"
+X-IronPort-AV: E=Sophos;i="6.08,220,1712646000"; d="scan'208";a="38367201"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.72])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 03:48:18 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2024 03:51:33 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Ville Syrjala
- <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 45/65] drm/i915: pass dev_priv explicitly to _DSPBSIZE
-In-Reply-To: <875xulm3n7.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1717514638.git.jani.nikula@intel.com>
- <fae5b3a14efab76ea4a549794512774659c36fc8.1717514638.git.jani.nikula@intel.com>
- <ZmHfRVycFB1rCsQA@intel.com> <875xulm3n7.fsf@intel.com>
-Date: Fri, 07 Jun 2024 13:48:14 +0300
-Message-ID: <8734ppm3kh.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-gvt-dev@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com,
+ jani.nikula@intel.com
+Subject: [PATCH 0/6] drm/i915: gvt register macro cleanups,
+ unused macro removals
+Date: Fri,  7 Jun 2024 13:51:23 +0300
+Message-Id: <cover.1717757337.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,57 +70,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 07 Jun 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Thu, 06 Jun 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->> On Tue, Jun 04, 2024 at 06:26:03PM +0300, Jani Nikula wrote:
->>> Avoid the implicit dev_priv local variable use, and pass dev_priv
->>> explicitly to the _DSPBSIZE register macro.
->>> 
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/i915_reg.h | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>> 
->>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->>> index 38c8b98d95c3..36ed23b93475 100644
->>> --- a/drivers/gpu/drm/i915/i915_reg.h
->>> +++ b/drivers/gpu/drm/i915/i915_reg.h
->>> @@ -2312,7 +2312,7 @@
->>>  #define _DSPBADDR(dev_priv)		(DISPLAY_MMIO_BASE(dev_priv) + 0x71184)
->>>  #define _DSPBSTRIDE(dev_priv)		(DISPLAY_MMIO_BASE(dev_priv) + 0x71188)
->>>  #define _DSPBPOS(dev_priv)		(DISPLAY_MMIO_BASE(dev_priv) + 0x7118C)
->>> -#define _DSPBSIZE		(DISPLAY_MMIO_BASE(dev_priv) + 0x71190)
->>> +#define _DSPBSIZE(dev_priv)		(DISPLAY_MMIO_BASE(dev_priv) + 0x71190)
->>
->> way too many unused cases...
->> we should probably remove them all in one patch and whoever is introducing them
->> later should already introduce with the dev_priv...
->>
->> but again, up to you
->>
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
-> Dropped the changes touching unused macros, and pushed everything else
-> to din. I've got a separate series cleaning up gvt a bit and removing
-> the unused ones.
+Clean up gvt a bit mainly to be able to remove direct _DSPBSURF
+reference, but do some drive-by cleanups on top. And then proceed to
+remove _DSPBSURF and other unused register macros.
 
-PS. Fixed a couple of whitespace issues while pushing.
+BR,
+Jani.
 
->
-> Thanks for the review!
->
-> BR,
-> Jani.
->
->
->>
->>
->>>  #define _DSPBSURF		(DISPLAY_MMIO_BASE(dev_priv) + 0x7119C)
->>>  #define _DSPBTILEOFF		(DISPLAY_MMIO_BASE(dev_priv) + 0x711A4)
->>>  #define _DSPBOFFSET		(DISPLAY_MMIO_BASE(dev_priv) + 0x711A4)
->>> -- 
->>> 2.39.2
->>> 
+Jani Nikula (6):
+  drm/i915/gvt: remove the unused end parameter from calc_index()
+  drm/i915/gvt: use proper i915_reg_t for calc_index() parameters
+  drm/i915/gvt: rename range variable to stride
+  drm/i915/gvt: do not use implict dev_priv in DSPSURF_TO_PIPE()
+  drm/i915: remove unused pipe/plane B register macros
+  drm/i915: remove unused HSW_STEREO_3D_CTL register macros
+
+ drivers/gpu/drm/i915/gvt/handlers.c | 29 +++++++++++++++--------------
+ drivers/gpu/drm/i915/i915_reg.h     | 29 -----------------------------
+ 2 files changed, 15 insertions(+), 43 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
