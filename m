@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7383D900243
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 13:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0AA900251
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 13:38:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C5510E09E;
-	Fri,  7 Jun 2024 11:36:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mGJIy5NC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F54210E03C;
+	Fri,  7 Jun 2024 11:38:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 934E510E00C;
- Fri,  7 Jun 2024 11:35:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717760159; x=1749296159;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JTGhWzxyuF6slKgaavvy59rQlsFQ6DqronJoklS3dmU=;
- b=mGJIy5NCsgRI7uRq52uAREopAwqnKaLdDzMAuxZU6M6NEpf2plUDVX3X
- o8biwrqjGH1aPErh0CA/LTyTRlnwhFP9YlKJruCRHnfIow/JCYgORjBs6
- Dm/FKZErxoAwOI+Qdy+X2NugMhDtp5M4YdqwMLWNRplAgRQmjeqnIsdNI
- UDehSVhQbNCQJ29QLoxYC/4WlP3b/MbbMKcD/uceOkk+KIPs0UJZQqF1U
- 25doP46k0fna0yma181IrZMjqkzJguxkTbCESJ5bOcIXQJjf+/4+JrdHY
- akJbhhmG82jzedn5fURRvvZKptD5Q8oa0mzeWV53pHkavXu1bgrIh06XO A==;
-X-CSE-ConnectionGUID: kEJ8E3SaT0Cge8FkyYBVSA==
-X-CSE-MsgGUID: nSG9M6DQQU6T/sY1DPiDJQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11095"; a="14632846"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14632846"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 04:35:59 -0700
-X-CSE-ConnectionGUID: x+EOyA9sRrS9Z6eyZ4PqVg==
-X-CSE-MsgGUID: 7nS0VE5UR2KHjYOJppIsGQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="38293323"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Jun 2024 04:35:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Jun 2024 14:35:55 +0300
-Date: Fri, 7 Jun 2024 14:35:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- rodrigo.vivi@intel.com
-Subject: Re: [PATCH 6/6] drm/i915: remove unused HSW_STEREO_3D_CTL register
- macros
-Message-ID: <ZmLwmxPly3lKZRhp@intel.com>
-References: <cover.1717757337.git.jani.nikula@intel.com>
- <991806d10ff182220c0b2f4681ee5a76a1b3ef8b.1717757337.git.jani.nikula@intel.com>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB4D10E00C;
+ Fri,  7 Jun 2024 11:38:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <991806d10ff182220c0b2f4681ee5a76a1b3ef8b.1717757337.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Implement_CMRR_Suppo?=
+ =?utf-8?q?rt_=28rev15=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 07 Jun 2024 11:38:09 -0000
+Message-ID: <171776028931.26249.14923218414118534058@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240605170111.494784-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20240605170111.494784-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,41 +37,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 07, 2024 at 01:51:29PM +0300, Jani Nikula wrote:
-> Remove the unused HSW_STEREO_3D_CTL register macros.
+== Series Details ==
 
-I don't enjoy having to trawl the specs to find registers.
-So I prefer to keep everything that isn't actually wrong.
+Series: Implement CMRR Support (rev15)
+URL   : https://patchwork.freedesktop.org/series/126443/
+State : warning
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h | 6 ------
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 2d834c32a3fa..127b113189ef 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3385,12 +3385,6 @@
->  #define ADL_TVIDEO_DIP_AS_SDP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans,\
->  							     _ADL_VIDEO_DIP_AS_DATA_A + (i) * 4)
->  
-> -#define _HSW_STEREO_3D_CTL_A		0x70020
-> -#define   S3D_ENABLE			(1 << 31)
-> -#define _HSW_STEREO_3D_CTL_B		0x71020
-> -
-> -#define HSW_STEREO_3D_CTL(trans)	_MMIO_PIPE2(dev_priv, trans, _HSW_STEREO_3D_CTL_A)
-> -
->  #define _PCH_TRANS_HTOTAL_B          0xe1000
->  #define _PCH_TRANS_HBLANK_B          0xe1004
->  #define _PCH_TRANS_HSYNC_B           0xe1008
-> -- 
-> 2.39.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+Error: dim checkpatch failed
+a94b95950af9 gpu/drm/i915: Update indentation for VRR registers and bits
+-:57: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/i915_reg.h:1164:
++#define	 XELPD_VRR_CTL_VRR_GUARDBAND(x)		REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
+
+total: 0 errors, 1 warnings, 0 checks, 197 lines checked
+dc77f36f8936 drm/i915: Separate VRR related register definitions
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+new file mode 100644
+
+-:53: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_vrr_regs.h:25:
++#define  XELPD_VRR_CTL_VRR_GUARDBAND(x)		REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
+
+total: 0 errors, 2 warnings, 0 checks, 230 lines checked
+5b266ed2d6a6 drm/i915: Define and compute Transcoder CMRR registers
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#58: FILE: drivers/gpu/drm/i915/display/intel_display.c:5088:
++#define PIPE_CONF_CHECK_LLI(name) do { \
++	if (current_config->name != pipe_config->name) { \
++		pipe_config_mismatch(&p, fastset, crtc, __stringify(name), \
++				     "(expected %lli, found %lli)", \
++				     current_config->name, \
++				     pipe_config->name); \
++		ret = false; \
++	} \
++} while (0)
+
+-:58: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'name' may be better as '(name)' to avoid precedence issues
+#58: FILE: drivers/gpu/drm/i915/display/intel_display.c:5088:
++#define PIPE_CONF_CHECK_LLI(name) do { \
++	if (current_config->name != pipe_config->name) { \
++		pipe_config_mismatch(&p, fastset, crtc, __stringify(name), \
++				     "(expected %lli, found %lli)", \
++				     current_config->name, \
++				     pipe_config->name); \
++		ret = false; \
++	} \
++} while (0)
+
+total: 0 errors, 0 warnings, 2 checks, 113 lines checked
+229bc1240452 drm/i915: Update trans_vrr_ctl flag when cmrr is computed
+0c8c4a0a0273 drm/dp: Add refresh rate divider to struct representing AS SDP
+decd179d0ab4 drm/i915/display: Add support for pack and unpack
+d1b357f0c27a drm/i915/display: Compute Adaptive sync SDP params
+864c98591ae3 drm/i915/display: Compute vrr vsync params
+d1040a5c026e drm/i915: Compute CMRR and calculate vtotal
+
+
