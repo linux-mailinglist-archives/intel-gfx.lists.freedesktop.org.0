@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16EDE90057F
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 15:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 257EC900584
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 15:49:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C27710EC65;
-	Fri,  7 Jun 2024 13:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE11510EC66;
+	Fri,  7 Jun 2024 13:49:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BT/O3Ue/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBdXKiVC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79CA110EC63
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2024 13:49:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3499610EC62
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2024 13:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717768180; x=1749304180;
+ t=1717768181; x=1749304181;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9QY4riPRrDVOm6tk3+kZW+qMYyWBgR9IFrT16thdhZI=;
- b=BT/O3Ue/aPkJUfKQRZ9njMaZ5RZ8E106ebSiHfPEkUSnBLJPQNex1klX
- hSGfk5pdc+xq9bL2Ci3w1imFR/je1Y2EbJ5gVwc+n+3xTqK6RWc1sM1W3
- pMKarHE2OxtU/cwNtamHViVP4J8cyX4+KymQmPL0m1NAfStV+Ro+RJ9Kc
- V+L/j0GWAntMGj3EIGMTOktWRicBPELqJA+j5+/EzBQekeNBdrsnfBtJU
- RCFfquVJLJYMVVmz5ucnXw/30fU8noduDIi+RDx9bh0QXQPqlsp46QXJU
- jZYfWC/nxhuS/7g4plBmjONW6idGw+2wc3t8iQap2OycIMZUrpVa8+mc0 A==;
-X-CSE-ConnectionGUID: hT3XRae5TiC2QbBRZww2yg==
-X-CSE-MsgGUID: mIECnsbkQZivoXOxhXDyZA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14331651"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14331651"
+ bh=i8+LuICqY5Lev7F8TrhgmkwCeCyq90siQ631dvayorw=;
+ b=gBdXKiVCwUjZpkTLk+/G+n8XpWu1pl85ceCa/eU0iun1GOzQjV7/lrOb
+ 6UrGV98bX0jYEulWes/xmcDWjigQDnOxArqhLnVU/rN99jej3Ok0wd29P
+ 22My+t7b37SXU18LuFOh+KaK6pFbgaT39q9G3U9WYpgroYN74x3t+6B8s
+ pwuNhAE/PPJEDpS3NQRipb8//Db9xph9Gj15c2TV3squDjjAaY5GekxGI
+ dX0mUhrfQfeSWEt4ux1nVKM5qoMn1CQ/W55h7ejc8l1Og9tX37Prb6/83
+ 5L0ouFjjzWFlLMK5A3jGi908cFdg5ypfGCGjrK1nWVgzOhADlcp3JSXf4 g==;
+X-CSE-ConnectionGUID: GhgBq+JbSHODex56MslaFA==
+X-CSE-MsgGUID: 7clx3BfwR4Wo8fVvTVtJiw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14331652"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14331652"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 06:49:39 -0700
-X-CSE-ConnectionGUID: fIY5jWkMRuK9U5o08eS9PQ==
-X-CSE-MsgGUID: +GfflOvAR7iS1+u7FdFk5w==
+ 07 Jun 2024 06:49:41 -0700
+X-CSE-ConnectionGUID: cBIDXo/DTriYRtKE/9brTQ==
+X-CSE-MsgGUID: ZMfek7SQQ/u1KLBjCYiGbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43458970"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43458980"
 Received: from lhorenst-mobl1.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.213.83])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 06:49:38 -0700
+ 07 Jun 2024 06:49:39 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 06/13] drm/i915/psr: Split enabling sink for PSR and Panel
- Replay
-Date: Fri,  7 Jun 2024 16:49:10 +0300
-Message-Id: <20240607134917.1327574-7-jouni.hogander@intel.com>
+Subject: [PATCH 07/13] drm/i915/alpm: Share alpm support checks with PSR code
+Date: Fri,  7 Jun 2024 16:49:11 +0300
+Message-Id: <20240607134917.1327574-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240607134917.1327574-1-jouni.hogander@intel.com>
 References: <20240607134917.1327574-1-jouni.hogander@intel.com>
@@ -72,134 +71,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Current intel_psr_enable_sink is a mess due to partly reusing PSR bit
-definitions for Panel Replay. Even thought PSR and Panel Replay enable
-registers do have common bits they still have also different bits and same
-bits with different meaning. For sake of clarity split enabling sink to PSR
-and Panel Replay specific parts.
+Convert intel_alpm_aux_wake_supported and
+intel_alpm_aux_less_wake_supported as non-static. Use them in intel_psr.c
+instead of local variables.
 
-Also fix issue caused by using psr->panel_replay_enabled to early.
-
-Fixes: 88ae6c65ecdb ("drm/i915/psr: Unify panel replay enable/disable sink")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 81 +++++++++++++-----------
- 1 file changed, 44 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c |  4 ++--
+ drivers/gpu/drm/i915/display/intel_alpm.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_psr.c  | 14 ++------------
+ 3 files changed, 6 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 18c1c5803670..90072f6e3a33 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -11,12 +11,12 @@
+ #include "intel_dp_aux.h"
+ #include "intel_psr_regs.h"
+ 
+-static bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp)
++bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp)
+ {
+ 	return intel_dp->alpm_dpcd & DP_ALPM_CAP;
+ }
+ 
+-static bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp)
++bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp)
+ {
+ 	return intel_dp->alpm_dpcd & DP_ALPM_AUX_LESS_CAP;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+index c82ecc7b4001..d4fb60393c91 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.h
++++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+@@ -22,4 +22,6 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+ void intel_alpm_configure(struct intel_dp *intel_dp,
+ 			  const struct intel_crtc_state *crtc_state);
+ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
++bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
++bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
+ #endif
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 4a4124a92a0d..3cc38ba2f954 100644
+index 3cc38ba2f954..a3ad4488fcee 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -686,56 +686,62 @@ static bool psr2_su_region_et_valid(struct intel_dp *intel_dp)
- 	return false;
- }
- 
--static unsigned int intel_psr_get_enable_sink_offset(struct intel_dp *intel_dp)
-+static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
-+				     const struct intel_crtc_state *crtc_state)
- {
--	return intel_dp->psr.panel_replay_enabled ?
--		PANEL_REPLAY_CONFIG : DP_PSR_EN_CFG;
-+	u8 val = DP_PANEL_REPLAY_ENABLE |
-+		DP_PANEL_REPLAY_VSC_SDP_CRC_EN |
-+		DP_PANEL_REPLAY_UNRECOVERABLE_ERROR_EN |
-+		DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN |
-+		DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN;
-+
-+	if (crtc_state->has_sel_update)
-+		val |= DP_PANEL_REPLAY_SU_ENABLE;
-+
-+	if (crtc_state->enable_psr2_su_region_et)
-+		val |= DP_PANEL_REPLAY_ENABLE_SU_REGION_ET;
-+
-+	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG, val);
- }
- 
--/*
-- * Note: Most of the bits are same in PANEL_REPLAY_CONFIG and DP_PSR_EN_CFG. We
-- * are relying on PSR definitions on these "common" bits.
-- */
--void intel_psr_enable_sink(struct intel_dp *intel_dp,
--			   const struct intel_crtc_state *crtc_state)
-+static void _psr_enable_sink(struct intel_dp *intel_dp,
-+			    const struct intel_crtc_state *crtc_state)
- {
--	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
--	u8 dpcd_val = DP_PSR_ENABLE;
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	u8 val = DP_PSR_ENABLE;
- 
- 	if (crtc_state->has_sel_update) {
--		/* Enable ALPM at sink for psr2 */
--		if (!crtc_state->has_panel_replay) {
--			drm_dp_dpcd_writeb(&intel_dp->aux,
--					   DP_RECEIVER_ALPM_CONFIG,
--					   DP_ALPM_ENABLE |
--					   DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE);
--
--			if (crtc_state->enable_psr2_su_region_et)
--				dpcd_val |= DP_PSR_ENABLE_SU_REGION_ET;
--		}
--
--		dpcd_val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
-+		val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
- 	} else {
- 		if (intel_dp->psr.link_standby)
--			dpcd_val |= DP_PSR_MAIN_LINK_ACTIVE;
-+			val |= DP_PSR_MAIN_LINK_ACTIVE;
- 
--		if (!crtc_state->has_panel_replay && DISPLAY_VER(dev_priv) >= 8)
--			dpcd_val |= DP_PSR_CRC_VERIFICATION;
-+		if (DISPLAY_VER(i915) >= 8)
-+			val |= DP_PSR_CRC_VERIFICATION;
+@@ -446,16 +446,6 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
  	}
+ }
  
--	if (crtc_state->has_panel_replay)
--		dpcd_val |= DP_PANEL_REPLAY_UNRECOVERABLE_ERROR_EN |
--			DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN;
+-static bool intel_dp_get_alpm_status(struct intel_dp *intel_dp)
+-{
+-	u8 alpm_caps = 0;
 -
--	if (crtc_state->req_psr2_sdp_prior_scanline)
--		dpcd_val |= DP_PSR_SU_REGION_SCANLINE_CAPTURE;
-+	if (crtc_state->enable_psr2_su_region_et)
-+		val |= DP_PANEL_REPLAY_ENABLE_SU_REGION_ET;
+-	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_RECEIVER_ALPM_CAP,
+-			      &alpm_caps) != 1)
+-		return false;
+-	return alpm_caps & DP_ALPM_CAP;
+-}
+-
+ static u8 intel_dp_get_sink_sync_latency(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+@@ -600,7 +590,6 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp)
+ 	    intel_dp->psr_dpcd[0] >= DP_PSR2_WITH_Y_COORD_IS_SUPPORTED) {
+ 		bool y_req = intel_dp->psr_dpcd[1] &
+ 			     DP_PSR2_SU_Y_COORDINATE_REQUIRED;
+-		bool alpm = intel_dp_get_alpm_status(intel_dp);
  
- 	if (intel_dp->psr.entry_setup_frames > 0)
--		dpcd_val |= DP_PSR_FRAME_CAPTURE;
-+		val |= DP_PSR_FRAME_CAPTURE;
- 
--	drm_dp_dpcd_writeb(&intel_dp->aux,
--			   intel_psr_get_enable_sink_offset(intel_dp),
--			   dpcd_val);
-+	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, val);
-+}
-+
-+void intel_psr_enable_sink(struct intel_dp *intel_dp,
-+			   const struct intel_crtc_state *crtc_state)
-+{
-+	/* Enable ALPM at sink for psr2 */
-+	if (!crtc_state->has_panel_replay && crtc_state->has_sel_update)
-+		drm_dp_dpcd_writeb(&intel_dp->aux,
-+				   DP_RECEIVER_ALPM_CONFIG,
-+				   DP_ALPM_ENABLE |
-+				   DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE);
-+
-+	crtc_state->has_panel_replay ?
-+		_panel_replay_enable_sink(intel_dp, crtc_state) :
-+		_psr_enable_sink(intel_dp, crtc_state);
- 
- 	if (intel_dp_is_edp(intel_dp))
- 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, DP_SET_POWER_D0);
-@@ -1920,7 +1926,8 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 
- 	/* Disable PSR on Sink */
- 	drm_dp_dpcd_writeb(&intel_dp->aux,
--			   intel_psr_get_enable_sink_offset(intel_dp), 0);
-+			   intel_dp->psr.panel_replay_enabled ?
-+			   PANEL_REPLAY_CONFIG : DP_PSR_EN_CFG, 0);
- 
- 	if (!intel_dp->psr.panel_replay_enabled &&
- 	    intel_dp->psr.sel_update_enabled)
+ 		/*
+ 		 * All panels that supports PSR version 03h (PSR2 +
+@@ -613,7 +602,8 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp)
+ 		 * Y-coordinate requirement panels we would need to enable
+ 		 * GTC first.
+ 		 */
+-		intel_dp->psr.sink_psr2_support = y_req && alpm;
++		intel_dp->psr.sink_psr2_support = y_req &&
++			intel_alpm_aux_wake_supported(intel_dp);
+ 		drm_dbg_kms(&i915->drm, "PSR2 %ssupported\n",
+ 			    intel_dp->psr.sink_psr2_support ? "" : "not ");
+ 	}
 -- 
 2.34.1
 
