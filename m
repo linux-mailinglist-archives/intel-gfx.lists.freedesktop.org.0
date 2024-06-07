@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 117DC900589
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 15:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF03900588
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2024 15:49:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6158A10EC6A;
-	Fri,  7 Jun 2024 13:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82FF810EC61;
+	Fri,  7 Jun 2024 13:49:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYPIEroc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A5wtcAqI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBA2910EC61
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2024 13:49:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8083010EC71
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2024 13:49:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717768187; x=1749304187;
+ t=1717768189; x=1749304189;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oOxYXTvYLq7SA9aE7KQ+KdkrkC3FoMFjE/hBLtMlbi8=;
- b=mYPIErocdoO+PwBTKLuRn5BzSJsSWtA2+BLQ/OAFv3c8puqiKY/uTSU0
- AGTMWjDg+70GAXaoMmEnUuny0MX6qNTBey6H3h8r/8qzl76JnnbzaCs5Z
- LX3C8kNX+q/zv0vSEhXPMgiXyUNAqQDzPvnOiVhWNYjSbtoEcRtc3cK4h
- iBzBSf0V5IRM+NSuaCcSLwaO3qBnoK1sXwdMBuPRWEHUM4WQ0XobL5fKz
- RIbvqLw50dzQuvYfDSQSWeO/K5VN+C+MXo6L7thVdOc7Ina23z+WbfDBr
- 6b9NhDbFFdMz/iLX3XIqmBjiTWSbzn/9T4wd489OtnW/Q+caIazBw4xY5 Q==;
-X-CSE-ConnectionGUID: 671mFLQQST6phxpsXzt7bg==
-X-CSE-MsgGUID: IPqLuGItSPmDFVgSzVqTZA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14331662"
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14331662"
+ bh=oD0GZaWPp6MU7iYaYLjkrJUMzK/hVhJelVqqMsbnXVM=;
+ b=A5wtcAqIR6ViNlL+JDEUr7PHtYycWnzf51NNsZl3HaG88RxF1Lm9M5vP
+ Uwr7P3vgOU6Vodq2r97WYeumsZvYvdvO82RTas0KIOB5HMF5ocmEy4I99
+ jrWVknVVMP/dW+kOOh3ODYef9yA/ym2OvovjYR6ykQOKA4QMaeWLFhmGv
+ t30KHuRVGNEGr2heMMitGFm5luSxQ1Ub8r6qPRP1jfbn8QXSu9KpN2TaF
+ f6BRw0xMRDMxCCua2GQM37GhcjXJLdkRDCkYdY9WR2+HLIZ4uBahAd6rr
+ tWAFcZzuXF5t7DwnOnG+jThFpDNr669Q3o7rtfmt+qKUcvn3GTo7A2MGq Q==;
+X-CSE-ConnectionGUID: amKYRmA9TjaPt4gb5E6CYA==
+X-CSE-MsgGUID: 1RivfOkpSiO/q2qOEdmtDQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11096"; a="14331663"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="14331663"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 06:49:47 -0700
-X-CSE-ConnectionGUID: gUaGYHqIRnWxHlldkfoK4A==
-X-CSE-MsgGUID: o4+l4XajScmcjBh8MDhwqg==
+ 07 Jun 2024 06:49:49 -0700
+X-CSE-ConnectionGUID: mUirWE4oSg6thsrQiapKrw==
+X-CSE-MsgGUID: V7AVdWhURDuNJ0OXaVOqZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43459016"
+X-IronPort-AV: E=Sophos;i="6.08,221,1712646000"; d="scan'208";a="43459026"
 Received: from lhorenst-mobl1.amr.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.213.83])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2024 06:49:45 -0700
+ 07 Jun 2024 06:49:47 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 10/13] drm/i915/psr: Move vblank length check to separate
- function
-Date: Fri,  7 Jun 2024 16:49:14 +0300
-Message-Id: <20240607134917.1327574-11-jouni.hogander@intel.com>
+Subject: [PATCH 11/13] drm/i915/psr: Take into account SU SDP scanline
+ indication in vblank check
+Date: Fri,  7 Jun 2024 16:49:15 +0300
+Message-Id: <20240607134917.1327574-12-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240607134917.1327574-1-jouni.hogander@intel.com>
 References: <20240607134917.1327574-1-jouni.hogander@intel.com>
@@ -72,51 +72,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are about to add more complexity to vblank length check. It makes sense
-to move it to separate function for sake of clarity.
+SU SDP scanline indication should be taken into account when checking
+vblank length. In Bspec we have:
 
-v2: change name to wake_lines_fit_into_vblank
+PSR2_CTL[ SU SDP scanline indication ] = 0: (TRANS_VBLANK Vertical Blank End- TRANS_VBLANK Vertical Blank Start) > PSR2_CTL Block Count Number value in lines
+PSR2_CTL[ SU SDP scanline indication ] = 1: (TRANS_VBLANK Vertical Blank End- TRANS_VBLANK Vertical Blank Start- 1) > PSR2_CTL Block Count Number value in lines
+
+Bspec: 49274
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index a292c6c5de30..98b0018704f3 100644
+index 98b0018704f3..8ff0729df6a2 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1243,6 +1243,20 @@ static int intel_psr_entry_setup_frames(struct intel_dp *intel_dp,
- 	return entry_setup_frames;
- }
+@@ -1250,6 +1250,9 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
+ 		crtc_state->hw.adjusted_mode.crtc_vblank_start;
+ 	int wake_lines = psr2_block_count_lines(intel_dp);
  
-+static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
-+				       const struct intel_crtc_state *crtc_state)
-+{
-+	int vblank = crtc_state->hw.adjusted_mode.crtc_vblank_end -
-+		crtc_state->hw.adjusted_mode.crtc_vblank_start;
-+	int wake_lines = psr2_block_count_lines(intel_dp);
++	if (crtc_state->req_psr2_sdp_prior_scanline)
++		vblank -= 1;
 +
-+	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
-+	if (vblank < wake_lines)
-+		return false;
-+
-+	return true;
-+}
-+
- static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 				    struct intel_crtc_state *crtc_state)
- {
-@@ -1333,9 +1347,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 	}
- 
  	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
--	if (crtc_state->hw.adjusted_mode.crtc_vblank_end -
--	    crtc_state->hw.adjusted_mode.crtc_vblank_start <
--	    psr2_block_count_lines(intel_dp)) {
-+	if (!wake_lines_fit_into_vblank(intel_dp, crtc_state)) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "PSR2 not enabled, too short vblank time\n");
+ 	if (vblank < wake_lines)
  		return false;
 -- 
 2.34.1
