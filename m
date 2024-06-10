@@ -2,169 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F371901A19
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 06:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D29D901BCF
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 09:21:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 748E610E25E;
-	Mon, 10 Jun 2024 04:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E44B10E30D;
+	Mon, 10 Jun 2024 07:21:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Au1yifBW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GfivvnuG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 554AE10E25E
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 04:54:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B49DE10E33C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 07:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717995265; x=1749531265;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6nWWUiGUqLN7xlF3mMcYnE1T0NPvcdle0SdxN/0Aza0=;
- b=Au1yifBWhpZrQzRrrJJvF66xyUZ9wM1SvrFSaZXcFrpOIKV5o1ya1Lc2
- pykDK8678EIIY1fgyc8SlecKllbeTG1/VrlbKTMBMrYF7by5nRLfKwAhf
- l/5x5O1z2U6zZMXNIKw2MbU/Dtmv8qVLcWNudsGxL7w6/4hwAdcUchFzB
- JPrXiPa7jv6YBxbzsmdEjB7lPTgNKZR9TQCRLztWnTt1dNk+38yQEgL35
- FRERqHTXz++jx0ffPxYMBFkaebZPyMKQ57RX8eCwWuuk+ONrqRoYjEtqS
- 07OREZwDy7FJ6KQjRK1pWuAoGvF5SUCtBnQ6eIqaKjWWCMXPDRVZNEHmF Q==;
-X-CSE-ConnectionGUID: wRIY980VTyCkQx+GSxURgQ==
-X-CSE-MsgGUID: WaK0k93BTvObqehgB4Up7w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14437391"
-X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; d="scan'208";a="14437391"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2024 21:54:25 -0700
-X-CSE-ConnectionGUID: rjDTGrt2QeuGfX0bO5cmRw==
-X-CSE-MsgGUID: dB2iZFh6QFalyzWAGSKfQQ==
+ t=1718004115; x=1749540115;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bEfKe2HaWbg5te6mivkqM4xgvpniGODUQlmmbT1RV14=;
+ b=GfivvnuG2XLFDqPH4iUn0SiWTa2UU1VLsvOzm9T88CFsvomdBtgHQ2zy
+ VxpRmN8BzKVIdMaqn1yx9VinuCAiWtrdpsAjtEgHVhl7JZqNexNUB2+WY
+ ItbNm6k/ZHHpao7yb/8moUk8GJ5I25hY1nxeDA7gulJ6XRAWTDKhk3nOj
+ G5taJlnpa+3zlqZQ9wy32+l8Y++Tr24A+7upj4/fkmQ+b7GqvbP2jj7HQ
+ BxvldinM2Lz93i+6c3TB1xrtNjsBVQr/or53rj66Lems4utgv9yTNP8Kb
+ Z/rV6DnOWT0B9+0C86kYJunyu9DVjZx3qTStp2UGVSDrswQwtXkgbG8q9 A==;
+X-CSE-ConnectionGUID: QjkUkvdzSZ2pFq86mQgfcA==
+X-CSE-MsgGUID: +CVpU/YaR5S7ygPEAs6pHg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="14526396"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="14526396"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2024 00:21:55 -0700
+X-CSE-ConnectionGUID: A9VNsPWqQjyx82sJzvbAYg==
+X-CSE-MsgGUID: u/sdPE7NTOGGH5VNHqcZWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,226,1712646000"; d="scan'208";a="39066657"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Jun 2024 21:54:24 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 9 Jun 2024 21:54:24 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Sun, 9 Jun 2024 21:54:24 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Sun, 9 Jun 2024 21:54:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=acxOjKXJ7Q31dZpVHXtbXsHUyC3RdtIdEPsoFdNco1cHd7R8+9pDy36OCwWXOx7kg8JXYjxkBr4/4Fw7qT+UxvZbobsD1+WVHLJhM332JinkSJS66l/unOOz4FI48y2le6/9XbYjfpPedSW9ywALAr4WgV2rNPK2eUN+Q2yKXrZr8oRJ3YcxtoPTfYmajnPLuVajHy3GGHW01eW6Slc/0sCoWXlbAQ5xgD5/YUQx/3J/VcTkWbjdajjs/p9M8Kzuh7em8fk6ipd5gLtjMbnP7LmzD6gh3ZzVnO41Z/e7vp2McxJ25M40XZ0AZ34wyFgMdfl2O+UX77jz1acUmmkFMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R0mOY3VKgkBC9vei/OsGMzsyXg6jnsceUGm/A8AVx94=;
- b=ke5D5RJkB6IolOyTO5kYJTy2uLIMvZgHopkjHD3bDldIGHqmeUHnI1kWUySowtcTbaNdZWueglYiX3YDVSOnKUW3WAcKSKo9IgnJEN2keIE2/u7PRgrxhII4fxnoOxLqLLDW9mlJYj3DxoYeiiXY4BBf36g3rrmRSy1PMe8o2HhCQNVJ1GUEH72EnZNxJSkkGlU75R4uxQi2hCmMgqP40Ozy3sf7F8gb70JMZ5r/R4Y56jaS4rVvRVfZK8xNRSX2gKgN5XFtOoa6K4icuwlUFjDYJuBbR6dzzF0xeA1I9yExA14T3qFIUNjEzjqm34cukKvMTyDfchSzvjfe6TN3ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by CYYPR11MB8387.namprd11.prod.outlook.com (2603:10b6:930:c8::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.36; Mon, 10 Jun
- 2024 04:54:22 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.7633.036; Mon, 10 Jun 2024
- 04:54:22 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Manna, Animesh" <animesh.manna@intel.com>, "Murthy, Arun R"
- <arun.r.murthy@intel.com>, "Hogander, Jouni" <jouni.hogander@intel.com>
-Subject: RE: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
-Thread-Topic: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
-Thread-Index: AQHat+wX4zuzOwtOwU+RVJNyADWRfLG6lAaAgAXXiAA=
-Date: Mon, 10 Jun 2024 04:54:22 +0000
-Message-ID: <SN7PR11MB6750B964412CEAA41264C6CBE3C62@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20240606082926.1816416-2-suraj.kandpal@intel.com>
- <20240606082926.1816416-4-suraj.kandpal@intel.com> <8734pqba5u.fsf@intel.com>
-In-Reply-To: <8734pqba5u.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CYYPR11MB8387:EE_
-x-ms-office365-filtering-correlation-id: c99c5f24-82ac-416b-4455-08dc8909652d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230031|376005|366007|1800799015|38070700009;
-x-microsoft-antispam-message-info: =?us-ascii?Q?5J9aBfyox/bi+t3J4rTliUBV82JmOgTqEG4PNIKUV3Pcn7AumRe6J/pRLz6R?=
- =?us-ascii?Q?vm+NhNjC5bkgQGugOEjeB6j5Keainkadln+06sM4vVRmTZ7Jto8iQyI58tkt?=
- =?us-ascii?Q?qaFcuz39Qq4ps+7aCcr0cAK9vkeKilE4URVYWNCJQy84fXdwfyyDJnWRovdM?=
- =?us-ascii?Q?xYICny7Nk6gwmQLm4xdbW9YOI1FdgnK7CYyViScF3YeGM7VYdcPTLrcp+Mle?=
- =?us-ascii?Q?+TsuNhpYZvUawZtU3j9RCOmomdUvGQp03ZxfZEIqXIdgMjYyv0AwF3aK8DDH?=
- =?us-ascii?Q?MmsP99cw7rUIbu4ADPb43XwAB/EXcqPZ7jQquoE8uQzvT66tFAQNvkGM8N3f?=
- =?us-ascii?Q?zGW62OTcmKBPkRJiWMNTF+yXe/H6z9Pv1jzr3WYK2c/ST993JUgWyEM7+1wm?=
- =?us-ascii?Q?VlydDGN+7HIRNTeG+uzKalW2msjl98M5Bpv03Gq/m85Yz9XNuCbAM5XLUUF0?=
- =?us-ascii?Q?sFntEVUS3J3Clmioe3LwXBZA5pmXVnGVb8i3GcN1H2z0AnWiEfsUqE+brhda?=
- =?us-ascii?Q?NNYqozge6YkNXZT7UxvnouR2UFqnu4oUOM1Lm8g57eH2QmNcmyDCkgJfyBWi?=
- =?us-ascii?Q?D9iOYM0thSL7mF4mA2ojM+CratzVkQznK755P3MVHZhsOVefEABhY5EG1iii?=
- =?us-ascii?Q?xzO6Opv3hnE2c+oSb9iQkO4k1T1edrgs/PQue5bYpWPFRF7reK7HMEMreJU6?=
- =?us-ascii?Q?z/8JzvwvBYD0UUwwgw9HxoWACkzlhbkcHGNCcqR/pFhedz/6aSolg9B2gAbw?=
- =?us-ascii?Q?7SOgOGgA1GfN2MMzM2l/yiL9juVT7Jmxr3/xMTXhOeD6jjQ3+UEjjV9HxQbs?=
- =?us-ascii?Q?zhCJ/acEiSzUzKUUFb2VGTgfaXXHivrjUDuN4BRXJm4wLGyRzy1nLrlTymre?=
- =?us-ascii?Q?rCj3b+agxbrn31HrRFNFpu/i2lGBzWP9vKz7srHqlci1Ia3+AH+Td+pfJfhO?=
- =?us-ascii?Q?43usdsk4zm8xsSajCvnekdN0djO+aXu7v50N79MDqtxfDv09W4um5nzj/6b6?=
- =?us-ascii?Q?Geq2JO/ZzQ9biS7mUL43iqc8Afh1dMXkpoGCfi4FxoQotPAq3ohn3FATDzEB?=
- =?us-ascii?Q?C6S5dPWtQn3b+QeakacaSVkhA/vN7KntYaiVRq2t7uOqB7mOj5who1lwfo4k?=
- =?us-ascii?Q?WLwjXy3BTTEBn9/IsiAmW7ob/sg40MZVUTvZ/EpFgIQMG42EZaC2JkAGPVmX?=
- =?us-ascii?Q?7jmgDuTvGVCNcezBlLhBlM4myW6KjDYTL9r1K4J55b0zluJ8OGYKn9lHSePn?=
- =?us-ascii?Q?zECi2AXEc4kQTRFKe4p0lyt/FR6lHR+oLn5j/shbL6g+0i+adcWCDDzg1F7S?=
- =?us-ascii?Q?Q0KW1IiXr0EtH3mz3thEWsYjRFO6sId3melFJdGYMuluCUu2PlDmzV8MJS3K?=
- =?us-ascii?Q?J/p61Rg=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376005)(366007)(1800799015)(38070700009); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WjrRM/nEi5mPcNcIi/yIlY/lfcgoTLcJfLkl1RWvr0VFxFfhry7Gehb1htRa?=
- =?us-ascii?Q?rb8C8abyAJjN2jkcrR1gfsZS3ewBMh4RxG8SF9+TuZvZYfvhEabLLZDT8Ven?=
- =?us-ascii?Q?ZlXOtqP+shX3Oxf8556kdAwtHvKtCcKZBQ/iEMMe1WksZCDU/PEEh3bD5DbM?=
- =?us-ascii?Q?5E/drrl79LEAjZv5LFsV3gv/ZcWsiWIhzNBs5eWbL9pB2udMvsv2rzF9+8N7?=
- =?us-ascii?Q?wkqK7xzF5pR0Ub1wMKgBtQ3vUKbnavsOJi6jmgr/74PF9UD1w0/ejX0gcHLz?=
- =?us-ascii?Q?4K9ODaW/62NpRZGv+dfj1Nlm7tTh5Ngt03Q3nb87VRhC3JV8J6lfR2KpZpYT?=
- =?us-ascii?Q?oDYIMjxze58U5nLUdwbnZ+FX9sLW7u+3YzW9jcf32vB24dPd9+3hd/nnewvH?=
- =?us-ascii?Q?ZkVMLkYRxFpEA53Uxr7fjVp9v9uca5zwZCUXGTl0tQEBw9Zq7O0TvSSCxIKY?=
- =?us-ascii?Q?wRQ+ldwLK7/aSRCMrUKiyXq3DdkCtl+6KDt9QW8uUM0SsfDApB692Q+KS5Kc?=
- =?us-ascii?Q?zhwHl32v1A0G0xpwOBxVJFAGbQeNdiiBvYNhgbjiavjcd2bn95WWAHQomPCr?=
- =?us-ascii?Q?eXqdtQzMLKS5Brmj6DRPd4HDy2DrVQnNkG0yc8c8zv67RegNGgTW54uLY1MQ?=
- =?us-ascii?Q?aKidA9YgZrjuwF9CKVsAZNK2kuB4K6BkO6xsg5JgvEJOtMt3n8KntXMP9O6B?=
- =?us-ascii?Q?ztH1ZUhgFmc0HvjMmpXGXfTzH+oTka4ih6YpfCwVG7344cUePieQEXY1w6KK?=
- =?us-ascii?Q?2SIMtTrKwSIkIs3fowwDc9wgXw/0qwWb51tgjZlPWyVqBQC8OP/SoNR1Mplm?=
- =?us-ascii?Q?16XKHvzyvHrMItWGLstajzCnc7udEMA9e5fzvKgmfTaQ+v/xolkgV9WzWM7/?=
- =?us-ascii?Q?AP/TuK4x/r7ORnGEOaZ7iqb+j0GEGBJakkav0XOAj5Abx9/PXz/IJpvOa5bq?=
- =?us-ascii?Q?zZuW6wfMzSwONLVSXUg7x3B6OK5KZN4AoYSY4irNqGUFbzC2Ie2Sxlm1uInZ?=
- =?us-ascii?Q?DZUUcJ6NKK4jHH/N3Ns1a2YSn93X33AzN9FgdKHmhNDNBJ0Jv97FzkjTimfq?=
- =?us-ascii?Q?FRDIkv7/htV8ij8Y7yUJsjz8R+rtOPA8owxCNwzAeO7f+Z8DesBS6z7zUAxs?=
- =?us-ascii?Q?6DQnLrseZikBontmUYnvOvwj7Rt2Ncqs7SHe7p+frUpqMEzAnm6dcpzL+SvT?=
- =?us-ascii?Q?tso+XodHUgZ89VYAX+gVUrNhfDF/vVb3io5RMdDaHzO9GGKhYtn5Z3MzIiW/?=
- =?us-ascii?Q?eZXSsaLJmyt2HxhLzztihLAnjqSP9yZT2AZzYhMIne+7fPuYS2r+JbTuI52M?=
- =?us-ascii?Q?o3hVrv4DYAfKyOQj2hlmPGFV266TBYpWE1I7mrZ7yUDDSEikPnUq0MgeuSbz?=
- =?us-ascii?Q?FHE/YQmv+UAzebwGUiwfHhR1WHs5vKDoHBXMCkX+h+kdWZX49CCBxKfmDFN0?=
- =?us-ascii?Q?9bimOgwTMQElcxPRutxg4zXzDoVPmKIWkHaPtyoMExS3nUxPyF+ZmmoZ/kVX?=
- =?us-ascii?Q?3VWkTb4hT84jJ4FSYuQOVrdpmEPI3/9w2plHEBVDXhuSHuMwMpnTxiiWVAqK?=
- =?us-ascii?Q?mhlYaMti0IawCZwJg3he2ibEcLRT6pngcIUoYnwI?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="43407607"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa003.fm.intel.com with ESMTP; 10 Jun 2024 00:21:54 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com
+Subject: [PATCH v16 0/9] Implement CMRR Support
+Date: Mon, 10 Jun 2024 12:51:53 +0530
+Message-ID: <20240610072203.24956-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c99c5f24-82ac-416b-4455-08dc8909652d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2024 04:54:22.4625 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TL0vAc/ZFziFuLWADpWO3CLas6dBpUe80ryROb/SSPsEjAMjtzP5aeVUkXPCRutN1Hq9/UcY8UAg3ZoqJ3ewcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8387
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,178 +64,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> Subject: Re: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
->=20
-> On Thu, 06 Jun 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > To reach PC10 when PKG_C_LATENCY is configure we must do the following
-> > things
-> > 1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be
-> > entered
-> > 2) Allow PSR2 deep sleep when DC5 can be entered
-> > 3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
-> > eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
-> > not happening.
-> >
-> > WA: 16023497226
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_psr.c | 75
-> > +++++++++++++++++++++++-
-> >  1 file changed, 73 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index 6fc88f6c6b26..b22745c019df 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -811,12 +811,81 @@ static u8 psr_compute_idle_frames(struct
-> intel_dp *intel_dp)
-> >  	return idle_frames;
-> >  }
-> >
-> > +static bool intel_psr_check_delayed_vblank_limit(struct drm_i915_priva=
-te
-> *i915,
-> > +						 enum transcoder
-> cpu_transcoder) {
-> > +	return intel_de_read(i915,
-> > +TRANS_SET_CONTEXT_LATENCY(cpu_transcoder)) >=3D 6;
->=20
-Hi Jani,
-Thanks for the reviews
+CMRR is a display feature that uses adaptive sync
+framework to vary Vtotal slightly to match the
+content rate exactly without frame drops. This
+feature is a variation of VRR where it varies Vtotal
+slightly (between additional 0 and 1 Vtotal scanlines)
+to match content rate exactly without frame drops
+using the adaptive sync framework.
 
-> Please don't use the hardware to preserve the state for you. It will get =
-really
-> complicated to maintain.
->=20
+enable this feature by programing new registers for
+CMRR enable, CMRR_M, CMRR_N, vmin=vmax=flipline.The
+CMRR_M/CMRR_N ratio represents the fractional part
+in (actual refresh rate/target refresh rate) * origVTotal.
 
-Yes wanted to calculate the delayed vblank using the following way
-Adjusted_mode->vblank_start - adjusted_mode->vblank_end
-But I'll need crtc_state for that and I don't see a way of deriving it
-Specially when this function is called from intel_psr_work
-One way could be to have this wa check function be called from=20
-Intel_psr_enable_locked and save the corresponding Booleans in
-Intel_psr or make in  drm_i915_private
-structure and access that when intel_psr_activate is called from
-Intel_psr_resume and intel_psr_work.
-Do you think that could be feasible ?
+--v6:
+- CMRR handling in co-existatnce of LRR and DRRS
+- Correct vtotal paramas accuracy and add 2 digit precision.
 
-> > +}
-> > +
-> > +static bool intel_psr_is_dpkgc_configured(struct drm_i915_private
-> > +*i915) {
-> > +	return intel_de_read(i915, LNL_PKG_C_LATENCY) =3D=3D U32_MAX;
->=20
-> Ditto.
->=20
+--v7:
+- Rebased patches in-accordance to AS SDP merge.
+- Add neccessary gaurd to prevent crtc_state mismatch
+during intel_vrr_get_config.
 
-Similar question as above only place that I can manage a state to see if it=
- is configured or not
-would be in drm_i915_private.
+-v8:
+- Add support for AS SDP for CMRR.
+- update palce holder for CMRR register(Jani).
+- Make CMRR as subset of FAVT, as per comments in patch#3.
 
-> > +}
-> > +
-> > +static bool intel_psr_is_dc5_entry_possible(struct drm_i915_private
-> > +*i915) {
-> > +	struct intel_crtc *intel_crtc;
-> > +	bool ret =3D true;
-> > +
-> > +	for_each_intel_crtc(&i915->drm, intel_crtc) {
-> > +		struct intel_encoder *encoder;
-> > +		struct drm_crtc *crtc =3D &intel_crtc->base;
-> > +		enum pipe pipe =3D intel_crtc->pipe;
-> > +
-> > +		if (!crtc->active)
-> > +			continue;
-> > +
-> > +		if (!(i915->display.irq.de_irq_mask[pipe] &
-> GEN8_PIPE_VBLANK))
->=20
-> You have no business looking directly at that. It's for display irq code =
-*only*.
->=20
+-v9:
+- Add CMRR register definitions to separate intel_vrr_reg.h.
+- Remove cmrr_enabling/disabling, use vrr.enable instead.
+- Update AS SDP pack function to accomodate target_rr_divider.
+- Remove duplicated lines to compute vrr_vsync params.
+- Set cmrr.enable with a separate patch at last.
 
-Is there another way I can ensure if the vblank interrupt for the particula=
-r pipe is disabled?
+-v10:
+- Separate VRR related register definitions.
+- Add dependency header intel_display_reg_defs.h.
+- Rename file name to intel_vrr_regs.h instead of reg.h.
+- Revert removed line.
+- Since vrr.enable and cmrr.enable are not mutually exclusive,
+handle accordingly.
+- is_edp is not required inside is_cmrr_frac_required function.
+- Add video_mode_required flag for future enhancement.
+- Correct cmrr_m/cmrr_n calculation.
+- target_rr_divider is bools so handle accordingly.
 
-> > +			ret =3D false;
-> > +
-> > +		for_each_encoder_on_crtc(&i915->drm, crtc, encoder) {
-> > +			struct intel_dp *intel_dp =3D enc_to_intel_dp(_encoder);
-> > +			struct intel_psr *psr =3D &intel_dp->psr;
-> > +
-> > +			if (!psr->enabled)
-> > +				ret =3D false;
-> > +		}
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static bool wa_16023497226_check(struct intel_dp *intel_dp, bool
-> > +psr1) {
-> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > +	enum transcoder cpu_transcoder =3D intel_dp->psr.transcoder;
-> > +
-> > +	if (DISPLAY_VER(i915) !=3D 20)
-> > +		return true;
-> > +
-> > +	if (is_dpkg_c_configured(i915)) {
-> > +		if (psr1 &&
-> > +		    (intel_psr_check_delayed_vblank_limit(i915,
-> cpu_transcoder) ||
-> > +		     intel_psr_is_dc5_entry_possible(i915)))
-> > +			return true;
-> > +		else if (!psr1 && is_dc5_entry_possible(i915))
-> > +			return true;
-> > +		else
-> > +			return false;
-> > +	}
-> > +
-> > +	return true;
-> > +}
-> > +
-> >  static bool hsw_activate_psr1(struct intel_dp *intel_dp)  {
-> >  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> >  	enum transcoder cpu_transcoder =3D intel_dp->psr.transcoder;
-> >  	u32 max_sleep_time =3D 0x1f;
-> > -	u32 val =3D EDP_PSR_ENABLE;
-> > +	u32 val =3D 0;
-> > +
-> > +	/* WA: 16023497226*/
-> > +	if (wa_16023497226_check(intel_dp, true)) {
-> > +		val =3D EDP_PSR_ENABLE;
-> > +	} else {
-> > +		drm_dbg_kms(&dev_priv->drm, "PSR1 was not activated\n");
->=20
-> Please add reason.
->=20
-> > +		return false;
-> > +	}
->=20
-> Switch the condition around and use early return.
->=20
+-v11:
+- Move VRR related register and bits to separate file
+intel_vrr_regs.h.
+- Correct file header macro to intel_vrr_regs.h.
+- Remove adding CMRR flag to vrr_ctl register during
+set_transcoder_timing.
+- Replace vrr.enable flag to cmrr.enable where added mistakenly.
+- Move cmrr computation patch to last and set other other required
+  params before computing cmrr.enable.
 
-Sure will do.
+-v12:
+- Add patch to fix check patch issues for VRR related registers
+in i915_reg.h then move them to intel_vrr_regs.h with separate
+patch.
 
-Regards,
-Suraj Kandpal
-> >
-> >  	val |=3D EDP_PSR_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
-> >
-> > @@ -910,7 +979,9 @@ static void hsw_activate_psr2(struct intel_dp
-> *intel_dp)
-> >  	u32 val =3D EDP_PSR2_ENABLE;
-> >  	u32 psr_val =3D 0;
-> >
-> > -	val |=3D EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
-> > +	/* WA: 16023497226*/
-> > +	if (wa_16023497226_check(intel_dp, false))
-> > +		val |=3D
-> EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
-> >
-> >  	if (DISPLAY_VER(dev_priv) < 14 && !IS_ALDERLAKE_P(dev_priv))
-> >  		val |=3D EDP_SU_TRACK_ENABLE;
->=20
-> --
-> Jani Nikula, Intel
+-v13:
+- Reverted unrelated patches while rebase.
+
+-v14:
+- Fix all indentations for VRR related registes in Patch#1
+
+-v15:
+- Rebase.
+
+Mitul Golani (9):
+  drm/i915: Update indentation for VRR registers and bits
+  drm/i915: Separate VRR related register definitions
+  drm/i915: Define and compute Transcoder CMRR registers
+  drm/i915: Update trans_vrr_ctl flag when cmrr is computed
+  drm/dp: Add refresh rate divider to struct representing AS SDP
+  drm/i915/display: Add support for pack and unpack
+  drm/i915/display: Compute Adaptive sync SDP params
+  drm/i915/display: Compute vrr vsync params
+  drm/i915: Compute CMRR and calculate vtotal
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  24 +++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  18 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 128 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h | 127 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               | 100 --------------
+ include/drm/display/drm_dp_helper.h           |   1 +
+ 8 files changed, 286 insertions(+), 119 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_vrr_regs.h
+
+-- 
+2.45.2
+
