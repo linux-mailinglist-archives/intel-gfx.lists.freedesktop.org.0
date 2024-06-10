@@ -2,76 +2,138 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBEFA902089
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 13:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA199902133
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 14:05:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69E3E10E20C;
-	Mon, 10 Jun 2024 11:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA9010E316;
+	Mon, 10 Jun 2024 12:05:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="BBUAIxwW";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1eVXBzqU";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xtMyH6CO";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="EZF3g2BO";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bFZeGHXt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
- [209.85.208.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E8810E20C
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 11:42:35 +0000 (UTC)
-Received: by mail-lj1-f180.google.com with SMTP id
- 38308e7fff4ca-2ebeefb9a7fso2670221fa.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 04:42:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718019753; x=1718624553;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=uTu+bAq+6DSbTOKmrHTmCENmmWUt/DoDQafzCFL3Sw8=;
- b=BBUAIxwWq/qhUWguvpWOm8e46nZCyuF1O3crSwjwDYpyeC+UYXagov51vfULL9bWPW
- PKu1ojVwL5z3l6cNM2f2u90V/fg+DD33CcQrNWalLybOSem/cx4rbuF2PNy5u6fKSHqj
- wJUn+Xj+xUszr8hxd3/Dyu4sTG8mLqCYGfHnDoQmklTOTed8Jo057N+1fxlfexLoVOOw
- GPdZNzN8rDFJJxmU0KZJvnM2KdFKA76Z3WsZVZnaIJTJbDvOEeCgfSTnjcbZ39uVo1fr
- b19ZrUwoGxJxaZS7AKoeODpaWLG/plX/a2P9k5rWc8jkKCvDrcbpDoyA/jXMPnxA2Gdz
- baaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718019753; x=1718624553;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=uTu+bAq+6DSbTOKmrHTmCENmmWUt/DoDQafzCFL3Sw8=;
- b=oXQ+7EfC9y8ZP4nX3uloPWQ7VJMXa4xKMruuMULtgpfFNDngOC5A54EDUg3U34s7dj
- PUvHPLR7vokWKJjXNh3Z8NPiyxFHoOUipfFdBf4aq4i6wce5LOfiEs1gv/Axbw0BoCap
- SQJIDB6T8Dx6UfUtmbTYQW8EI1qroNFSSdStyKY2laPTxoMpa1Cqc5PbB3M/4evuuOWq
- tvJsFKoL1oEdrwdcD1rZQemAMCuufpwQRohWBVYe3Gr3/GyIAVZyv1gKZrR+4tsOTX1b
- oDPxKgdFqAnIhfZWCxFwRsYxfROvThY72GXeX+H96ZuD/0lTWcSCYmsOcQRP4dc7JpN1
- 23hA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCULCWRJJM6EvSJBKNFuqFp6AOabFqmzJwLFP7A6vFGIFqoyjsatkoWCNnZ1tYsnX8QaIPoGu4nzBiWKNM7DwdoHr7iWtkoqdhismAnbp/eN
-X-Gm-Message-State: AOJu0YwJ+3uashR6Xrig9L9+Uo5yk5EqkKXoAXdVRbChmpNiABtlOXlM
- qsHDdEy48UqG+6ciQh3qKwIRdcPgIvlLYJOaprbhtW5IPWGl5hJ0dn2s5D2AIiU=
-X-Google-Smtp-Source: AGHT+IHp6sGh1Y6KM30xckWvJTYFPXxr9kAkTsgkTNFrd8I2+KxU/iVTtMQ2niMNPOZhhJtte5xC0g==
-X-Received: by 2002:a2e:bc14:0:b0:2da:a3ff:524e with SMTP id
- 38308e7fff4ca-2eadce208c4mr63120231fa.9.1718019753014; 
- Mon, 10 Jun 2024 04:42:33 -0700 (PDT)
-Received: from [192.168.0.101] ([84.69.19.168])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4215c19e97dsm139380425e9.5.2024.06.10.04.42.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 Jun 2024 04:42:32 -0700 (PDT)
-Message-ID: <ac40fa93-cffc-4fa8-9ee7-2414faac95bf@ursulin.net>
-Date: Mon, 10 Jun 2024 12:42:31 +0100
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7680310E281;
+ Mon, 10 Jun 2024 12:05:03 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 5B3A8219B4;
+ Mon, 10 Jun 2024 12:05:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1718021101; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
+ b=1eVXBzqUbCvThUn1NADY6KW+7Ovx9c3tZN2Dkosgp6fqITCIBIvRDxsS7vgso3NrblPQWm
+ t32LIw3h2rdW8OyYrtv1SHbG9SCmdBKZeRJ1F0WNDqzDJeGy1Zp39kLijWytSVOTMUnROu
+ swy7Qu2P23XkVz4xqBCWDdvadVUXSjU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1718021101;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
+ b=xtMyH6CO02UEpPJfB/xsyeNAo9DJ+2l8E462WRclJKWIn5KJ+s1giPURtUpgCWglEmrllC
+ QBR6lyJbiUBaZlAQ==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=EZF3g2BO;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=bFZeGHXt
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1718021100; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
+ b=EZF3g2BOwRkIe59jltVv040ZmOxgYE0KI6mW1HWJVvzYYjVwjExFnE/QdBzqnoZgfiX/nn
+ vRakybkJM8Hsy1Ki2MyxYXISCaqnCJz65mvioT9vyhHxqsy+/bdRa9e4VfC0xiTdDtBZnC
+ k6Vy+xxFlUhR/3oXYCaQaxk3jeAxnp8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1718021100;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
+ b=bFZeGHXt7c5M58Y19ayhjH9UKw44w0eajPm8OmRkNVbBc/KlbKNzVdj30QzzBOzm1gWSXr
+ rh2vjh0VEqXzp5Cw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 31AF213A7F;
+ Mon, 10 Jun 2024 12:05:00 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id jaHuCuzrZmZPGwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 10 Jun 2024 12:05:00 +0000
+Message-ID: <702b2b68-cfe3-4d66-9818-44fce8935be5@suse.de>
+Date: Mon, 10 Jun 2024 14:04:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gt: Delete the live_hearbeat_fast selftest
-To: "Niemiec, Krzysztof" <krzysztof.niemiec@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: andi.shyti@intel.com, nirmoy.das@intel.com, janusz.krzysztofik@intel.com, 
- chris.p.wilson@intel.com
-References: <fe2vu5h7v7ooxbhwpbfsypxg5mjrnt56gc3cgrqpnhgrgce334@qfrv2skxrp47>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <fe2vu5h7v7ooxbhwpbfsypxg5mjrnt56gc3cgrqpnhgrgce334@qfrv2skxrp47>
+Subject: Re: [PATCH] drm/edid: reduce DisplayID log spamming
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+References: <20240606123503.2825088-1-jani.nikula@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20240606123503.2825088-1-jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Spam-Flag: NO
+X-Spam-Score: -6.50
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 5B3A8219B4
+X-Spam-Level: 
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-6.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ DWL_DNSWL_MED(-2.00)[suse.de:dkim];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; XM_UA_NO_VERSION(0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ MIME_TRACE(0.00)[0:+]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; TO_DN_SOME(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ RCPT_COUNT_THREE(0.00)[3]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email, imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, suse.de:dkim, suse.de:email]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,158 +150,58 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 03/06/2024 17:20, Niemiec, Krzysztof wrote:
-> The test is trying to push the heartbeat frequency to the limit, which
-> might sometimes fail. Such a failure does not provide valuable
-> information, because it does not indicate that there is something
-> necessarily wrong with either the driver or the hardware.
-> 
-> Remove the test to prevent random, unnecessary failures from appearing
-> in CI.
-> 
-> Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
-> Signed-off-by: Niemiec, Krzysztof <krzysztof.niemiec@intel.com>
 
-Just a note in passing that comma in the email display name is I believe 
-not RFC 5322 compliant and there might be tools which barf on it(*). If 
-you can put it in double quotes, it would be advisable.
+Am 06.06.24 um 14:35 schrieb Jani Nikula:
+> Debug printing at DisplayID validation leads to lots of log spamming as
+> it's called at DisplayID iterators during EDID parsing. Remove it, and
+> replace with a less noisy message at connector EDID update.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Regards,
-
-Tvrtko
-
-*) Such as my internal pull request generator which uses CPAN's 
-Email::Address::XS. :)
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 
 > ---
->   .../drm/i915/gt/selftest_engine_heartbeat.c   | 110 ------------------
->   1 file changed, 110 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> index ef014df4c4fc..9e4f0e417b3b 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-> @@ -193,115 +193,6 @@ static int live_idle_pulse(void *arg)
->   	return err;
->   }
+>   drivers/gpu/drm/drm_displayid.c | 3 ---
+>   drivers/gpu/drm/drm_edid.c      | 5 +++++
+>   2 files changed, 5 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displayid.c
+> index 9d01d762801f..b4fd43783c50 100644
+> --- a/drivers/gpu/drm/drm_displayid.c
+> +++ b/drivers/gpu/drm/drm_displayid.c
+> @@ -33,9 +33,6 @@ validate_displayid(const u8 *displayid, int length, int idx)
+>   	if (IS_ERR(base))
+>   		return base;
 >   
-> -static int cmp_u32(const void *_a, const void *_b)
-> -{
-> -	const u32 *a = _a, *b = _b;
+> -	DRM_DEBUG_KMS("base revision 0x%x, length %d, %d %d\n",
+> -		      base->rev, base->bytes, base->prod_id, base->ext_count);
 > -
-> -	return *a - *b;
-> -}
-> -
-> -static int __live_heartbeat_fast(struct intel_engine_cs *engine)
-> -{
-> -	const unsigned int error_threshold = max(20000u, jiffies_to_usecs(6));
-> -	struct intel_context *ce;
-> -	struct i915_request *rq;
-> -	ktime_t t0, t1;
-> -	u32 times[5];
-> -	int err;
-> -	int i;
-> -
-> -	ce = intel_context_create(engine);
-> -	if (IS_ERR(ce))
-> -		return PTR_ERR(ce);
-> -
-> -	intel_engine_pm_get(engine);
-> -
-> -	err = intel_engine_set_heartbeat(engine, 1);
-> -	if (err)
-> -		goto err_pm;
-> -
-> -	for (i = 0; i < ARRAY_SIZE(times); i++) {
-> -		do {
-> -			/* Manufacture a tick */
-> -			intel_engine_park_heartbeat(engine);
-> -			GEM_BUG_ON(engine->heartbeat.systole);
-> -			engine->serial++; /*  pretend we are not idle! */
-> -			intel_engine_unpark_heartbeat(engine);
-> -
-> -			flush_delayed_work(&engine->heartbeat.work);
-> -			if (!delayed_work_pending(&engine->heartbeat.work)) {
-> -				pr_err("%s: heartbeat %d did not start\n",
-> -				       engine->name, i);
-> -				err = -EINVAL;
-> -				goto err_pm;
-> -			}
-> -
-> -			rcu_read_lock();
-> -			rq = READ_ONCE(engine->heartbeat.systole);
-> -			if (rq)
-> -				rq = i915_request_get_rcu(rq);
-> -			rcu_read_unlock();
-> -		} while (!rq);
-> -
-> -		t0 = ktime_get();
-> -		while (rq == READ_ONCE(engine->heartbeat.systole))
-> -			yield(); /* work is on the local cpu! */
-> -		t1 = ktime_get();
-> -
-> -		i915_request_put(rq);
-> -		times[i] = ktime_us_delta(t1, t0);
-> -	}
-> -
-> -	sort(times, ARRAY_SIZE(times), sizeof(times[0]), cmp_u32, NULL);
-> -
-> -	pr_info("%s: Heartbeat delay: %uus [%u, %u]\n",
-> -		engine->name,
-> -		times[ARRAY_SIZE(times) / 2],
-> -		times[0],
-> -		times[ARRAY_SIZE(times) - 1]);
-> -
-> -	/*
-> -	 * Ideally, the upper bound on min work delay would be something like
-> -	 * 2 * 2 (worst), +1 for scheduling, +1 for slack. In practice, we
-> -	 * are, even with system_wq_highpri, at the mercy of the CPU scheduler
-> -	 * and may be stuck behind some slow work for many millisecond. Such
-> -	 * as our very own display workers.
-> -	 */
-> -	if (times[ARRAY_SIZE(times) / 2] > error_threshold) {
-> -		pr_err("%s: Heartbeat delay was %uus, expected less than %dus\n",
-> -		       engine->name,
-> -		       times[ARRAY_SIZE(times) / 2],
-> -		       error_threshold);
-> -		err = -EINVAL;
-> -	}
-> -
-> -	reset_heartbeat(engine);
-> -err_pm:
-> -	intel_engine_pm_put(engine);
-> -	intel_context_put(ce);
-> -	return err;
-> -}
-> -
-> -static int live_heartbeat_fast(void *arg)
-> -{
-> -	struct intel_gt *gt = arg;
-> -	struct intel_engine_cs *engine;
-> -	enum intel_engine_id id;
-> -	int err = 0;
-> -
-> -	/* Check that the heartbeat ticks at the desired rate. */
-> -	if (!CONFIG_DRM_I915_HEARTBEAT_INTERVAL)
-> -		return 0;
-> -
-> -	for_each_engine(engine, gt, id) {
-> -		err = __live_heartbeat_fast(engine);
-> -		if (err)
-> -			break;
-> -	}
-> -
-> -	return err;
-> -}
-> -
->   static int __live_heartbeat_off(struct intel_engine_cs *engine)
->   {
->   	int err;
-> @@ -372,7 +263,6 @@ int intel_heartbeat_live_selftests(struct drm_i915_private *i915)
->   	static const struct i915_subtest tests[] = {
->   		SUBTEST(live_idle_flush),
->   		SUBTEST(live_idle_pulse),
-> -		SUBTEST(live_heartbeat_fast),
->   		SUBTEST(live_heartbeat_off),
->   	};
->   	int saved_hangcheck;
+>   	/* +1 for DispID checksum */
+>   	dispid_length = sizeof(*base) + base->bytes + 1;
+>   	if (dispid_length > length - idx)
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index f68a41eeb1fa..9fc7292f5382 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -6629,6 +6629,11 @@ static void update_displayid_info(struct drm_connector *connector,
+>   
+>   	displayid_iter_edid_begin(drm_edid, &iter);
+>   	displayid_iter_for_each(block, &iter) {
+> +		drm_dbg_kms(connector->dev,
+> +			    "[CONNECTOR:%d:%s] DisplayID extension version 0x%02x, primary use 0x%02x\n",
+> +			    connector->base.id, connector->name,
+> +			    displayid_version(&iter),
+> +			    displayid_primary_use(&iter));
+>   		if (displayid_version(&iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
+>   		    (displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_VR ||
+>   		     displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_AR))
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
