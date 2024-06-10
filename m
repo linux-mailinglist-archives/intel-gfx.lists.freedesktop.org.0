@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B23D902645
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 18:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F97590265E
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 18:13:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 288FF10E1BE;
-	Mon, 10 Jun 2024 16:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06A2B10E1F8;
+	Mon, 10 Jun 2024 16:13:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="C5a4mzS7";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A237010E1BE;
- Mon, 10 Jun 2024 16:06:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5161277949529761981=="
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+ [209.85.208.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25B0610E1F8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 16:13:26 +0000 (UTC)
+Received: by mail-ed1-f41.google.com with SMTP id
+ 4fb4d7f45d1cf-5751bcb3139so7172a12.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 09:13:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1718036004; x=1718640804;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IHrTUon4UB+z5jTaR6PI30Mzqfji7UXu2V4YDVpmxWQ=;
+ b=C5a4mzS7Q+m6EmBVbapi6/bHQFuX4/yE6NcNSPeu5fELL3eWusuaC5xcsovGthI2mc
+ jCSzEqrL2f0ftms55Cw1K45ne3wY/gebBeOwf96oNC+6acjN0mA7z76zNjI+20aNSYhI
+ CH988vYRVwXXYJIRCbuiKVnlmajf2LzHevM8Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1718036004; x=1718640804;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=IHrTUon4UB+z5jTaR6PI30Mzqfji7UXu2V4YDVpmxWQ=;
+ b=u6fwzs8URT2nX1AvClkDtoM5/AmsdZNBsMlc8wSsOv81i7yt9dsZgSMJXD2dcnc+Gs
+ SuRg9NOxJndQ6SjDBodC02XY3vjmiyFLwyH5Wo/2+of8oYO0mq9fFaygdLnYhK61JDyP
+ 9NKJJx3dZVGsYlAZ61KQhw7XUhu5r/9kTm+5Ltsp7gpBXUwDRmHXAQ6AeHP4eCvP9B0c
+ gaVwlXOO5PkssBBZeryDMylgapp7dS+azFAsw+E54jB+uNheoZ5c05uOYqKe9vkEFzux
+ 9bLPFIIhAarwj+3zQKqs01jsZE7REoQZ+MBp5gEWM8IXFpAPqkisr/yMXHlbPnMgROxi
+ BUNA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUdb7JywIS1pDWpVQkSs+f3Flwv6PJTKaF/AvJHZvFuH3RCShQa7b4f82M6Pnxq9b8JDYn0OfXo6lRgeHqOrdf97e3PN7O0Nc09fGFylBut
+X-Gm-Message-State: AOJu0Yz/FV2gJkK8U1a12Z71D6Pts9lfblYjAZQGILmfxc4uZVN21JwK
+ 0G/sco6axzJObqwg8AfcGFBd0d5I619a2f5WUSW6dcJCH8Dzw9+bUQ5TZY8YItQMk3mRpB44AP6
+ XARz6O2v612JEPvTy2P8dF7VO/4hg/C+iNYh0
+X-Google-Smtp-Source: AGHT+IFAGtcIW+PVYTYY6nDMBc8MvKb1wKeEmsF0bcBxfw7dIN5Uo6d1UszHacv0yxO6uqfO3kbfCyjHMtr/rBhZVSU=
+X-Received: by 2002:a50:9eef:0:b0:578:56e1:7ba3 with SMTP id
+ 4fb4d7f45d1cf-57c509a5fb8mr5807982a12.38.1718036004162; Mon, 10 Jun 2024
+ 09:13:24 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm=3A_add_missing_MODULE?=
- =?utf-8?q?=5FDESCRIPTION=28=29_macros?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jeff Johnson" <quic_jjohnson@quicinc.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Jun 2024 16:06:38 -0000
-Message-ID: <171803559865.32193.17540259198607373749@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240609-md-drivers-gpu-drm-v1-1-89e9a316d513@quicinc.com>
-In-Reply-To: <20240609-md-drivers-gpu-drm-v1-1-89e9a316d513@quicinc.com>
+References: <20240520185822.3725844-1-imre.deak@intel.com>
+ <20240520185822.3725844-4-imre.deak@intel.com>
+ <Zk44ChJS3IqC8pcj@intel.com>
+In-Reply-To: <Zk44ChJS3IqC8pcj@intel.com>
+From: Manasi Navare <navaremanasi@chromium.org>
+Date: Mon, 10 Jun 2024 09:13:13 -0700
+Message-ID: <CAE72mN=URSeWMtnuoQp9HCJVBTCpxu3mHGpkYzgg-_odTmfOLA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/21] drm/i915/dp: Move link train fallback to
+ intel_dp_link_training.c
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,255 +76,295 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5161277949529761981==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Looks good to me,
 
-== Series Details ==
+Reviewed-by: Manasi Navare <navaremanasi@chromium.org>
 
-Series: drm: add missing MODULE_DESCRIPTION() macros
-URL   : https://patchwork.freedesktop.org/series/134680/
-State : success
+Manasi
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_14912 -> Patchwork_134680v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/index.html
-
-Participating hosts (33 -> 32)
-------------------------------
-
-  Additional (1): fi-kbl-8809g 
-  Missing    (2): bat-dg2-11 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_134680v1:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hangcheck:
-    - {bat-mtlp-9}:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pm_rpm@basic-rte:
-    - {bat-mtlp-9}:       [PASS][3] -> [CRASH][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_134680v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][6] ([i915#4613]) +3 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] +30 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - {bat-mtlp-9}:       [DMESG-WARN][8] ([i915#11009]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - {bat-mtlp-9}:       [SKIP][10] ([i915#10580]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp6:
-    - {bat-mtlp-9}:       [DMESG-FAIL][12] ([i915#11009]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-dp7:
-    - {bat-mtlp-9}:       [FAIL][14] ([i915#6121]) -> [PASS][15] +6 other tests pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10580]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580
-  [i915#11009]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009
-  [i915#11320]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320
-  [i915#11327]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11327
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#6121]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14912 -> Patchwork_134680v1
-
-  CI-20190529: 20190529
-  CI_DRM_14912: 3d66fb77a4da62a4282f60ddaab2bc5fabfe2fec @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7880: 73618605b4370cf902267aaf1d25666ff5e26112 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_134680v1: 3d66fb77a4da62a4282f60ddaab2bc5fabfe2fec @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/index.html
-
---===============5161277949529761981==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: add missing MODULE_DESCRIPTION() macros</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134680/">https://patchwork.freedesktop.org/series/134680/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14912 -&gt; Patchwork_134680v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/index.html</p>
-<h2>Participating hosts (33 -&gt; 32)</h2>
-<p>Additional (1): fi-kbl-8809g <br />
-  Missing    (2): bat-dg2-11 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_134680v1:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-rte:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_pm_rpm@basic-rte.html">CRASH</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_134680v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009">i915#11009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580">i915#10580</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@a-dp6:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009">i915#11009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@a-dp6.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-dp7:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14912/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134680v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@b-dp7.html">PASS</a> +6 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14912 -&gt; Patchwork_134680v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14912: 3d66fb77a4da62a4282f60ddaab2bc5fabfe2fec @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7880: 73618605b4370cf902267aaf1d25666ff5e26112 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_134680v1: 3d66fb77a4da62a4282f60ddaab2bc5fabfe2fec @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5161277949529761981==--
+On Wed, May 22, 2024 at 11:23=E2=80=AFAM Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Mon, May 20, 2024 at 09:58:01PM +0300, Imre Deak wrote:
+> > Move the functions used to reduce the link parameters during link
+> > training to intel_dp_link_training.c .
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c       | 76 +------------------
+> >  drivers/gpu/drm/i915/display/intel_dp.h       |  4 +-
+> >  .../drm/i915/display/intel_dp_link_training.c | 73 ++++++++++++++++++
+> >  3 files changed, 77 insertions(+), 76 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
+i915/display/intel_dp.c
+> > index ceedd3ef41946..81e620dd33bb7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -329,7 +329,7 @@ static int intel_dp_common_len_rate_limit(const str=
+uct intel_dp *intel_dp,
+> >                                      intel_dp->num_common_rates, max_ra=
+te);
+> >  }
+> >
+> > -static int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+> > +int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
+> >  {
+> >       if (drm_WARN_ON(&dp_to_i915(intel_dp)->drm,
+> >                       index < 0 || index >=3D intel_dp->num_common_rate=
+s))
+> > @@ -604,7 +604,7 @@ static int intersect_rates(const int *source_rates,=
+ int source_len,
+> >  }
+> >
+> >  /* return index of rate in rates array, or -1 if not found */
+> > -static int intel_dp_rate_index(const int *rates, int len, int rate)
+> > +int intel_dp_rate_index(const int *rates, int len, int rate)
+> >  {
+> >       int i;
+> >
+> > @@ -654,78 +654,6 @@ static bool intel_dp_link_params_valid(struct inte=
+l_dp *intel_dp, int link_rate,
+> >       return true;
+> >  }
+> >
+> > -static bool intel_dp_can_link_train_fallback_for_edp(struct intel_dp *=
+intel_dp,
+> > -                                                  int link_rate,
+> > -                                                  u8 lane_count)
+> > -{
+> > -     /* FIXME figure out what we actually want here */
+> > -     const struct drm_display_mode *fixed_mode =3D
+> > -             intel_panel_preferred_fixed_mode(intel_dp->attached_conne=
+ctor);
+> > -     int mode_rate, max_rate;
+> > -
+> > -     mode_rate =3D intel_dp_link_required(fixed_mode->clock, 18);
+> > -     max_rate =3D intel_dp_max_link_data_rate(intel_dp, link_rate, lan=
+e_count);
+> > -     if (mode_rate > max_rate)
+> > -             return false;
+> > -
+> > -     return true;
+> > -}
+> > -
+> > -int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> > -                                         int link_rate, u8 lane_count)
+> > -{
+> > -     struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > -     int index;
+> > -
+> > -     /*
+> > -      * TODO: Enable fallback on MST links once MST link compute can h=
+andle
+> > -      * the fallback params.
+> > -      */
+> > -     if (intel_dp->is_mst) {
+> > -             drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> > -             return -1;
+> > -     }
+> > -
+> > -     if (intel_dp_is_edp(intel_dp) && !intel_dp->use_max_params) {
+> > -             drm_dbg_kms(&i915->drm,
+> > -                         "Retrying Link training for eDP with max para=
+meters\n");
+> > -             intel_dp->use_max_params =3D true;
+> > -             return 0;
+> > -     }
+> > -
+> > -     index =3D intel_dp_rate_index(intel_dp->common_rates,
+> > -                                 intel_dp->num_common_rates,
+> > -                                 link_rate);
+> > -     if (index > 0) {
+> > -             if (intel_dp_is_edp(intel_dp) &&
+> > -                 !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> > -                                                           intel_dp_co=
+mmon_rate(intel_dp, index - 1),
+> > -                                                           lane_count)=
+) {
+> > -                     drm_dbg_kms(&i915->drm,
+> > -                                 "Retrying Link training for eDP with =
+same parameters\n");
+> > -                     return 0;
+> > -             }
+> > -             intel_dp->link.max_rate =3D intel_dp_common_rate(intel_dp=
+, index - 1);
+> > -             intel_dp->link.max_lane_count =3D lane_count;
+> > -     } else if (lane_count > 1) {
+> > -             if (intel_dp_is_edp(intel_dp) &&
+> > -                 !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> > -                                                           intel_dp_ma=
+x_common_rate(intel_dp),
+> > -                                                           lane_count =
+>> 1)) {
+> > -                     drm_dbg_kms(&i915->drm,
+> > -                                 "Retrying Link training for eDP with =
+same parameters\n");
+> > -                     return 0;
+> > -             }
+> > -             intel_dp->link.max_rate =3D intel_dp_max_common_rate(inte=
+l_dp);
+> > -             intel_dp->link.max_lane_count =3D lane_count >> 1;
+> > -     } else {
+> > -             drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> > -             return -1;
+> > -     }
+> > -
+> > -     return 0;
+> > -}
+> > -
+> >  u32 intel_dp_mode_to_fec_clock(u32 mode_clock)
+> >  {
+> >       return div_u64(mul_u32_u32(mode_clock, DP_DSC_FEC_OVERHEAD_FACTOR=
+),
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/=
+i915/display/intel_dp.h
+> > index aad2223df2a35..e7b47e7bcd98b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> > @@ -55,8 +55,6 @@ void intel_dp_connector_sync_state(struct intel_conne=
+ctor *connector,
+> >                                  const struct intel_crtc_state *crtc_st=
+ate);
+> >  void intel_dp_set_link_params(struct intel_dp *intel_dp,
+> >                             int link_rate, int lane_count);
+> > -int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> > -                                         int link_rate, u8 lane_count)=
+;
+> >  int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
+> >                             struct drm_modeset_acquire_ctx *ctx,
+> >                             u8 *pipe_mask);
+> > @@ -107,6 +105,8 @@ int intel_dp_config_required_rate(const struct inte=
+l_crtc_state *crtc_state);
+> >  int intel_dp_rate_select(struct intel_dp *intel_dp, int rate);
+> >  int intel_dp_max_common_rate(struct intel_dp *intel_dp);
+> >  int intel_dp_max_common_lane_count(struct intel_dp *intel_dp);
+> > +int intel_dp_common_rate(struct intel_dp *intel_dp, int index);
+> > +int intel_dp_rate_index(const int *rates, int len, int rate);
+> >  void intel_dp_update_sink_caps(struct intel_dp *intel_dp);
+> >
+> >  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 947575140059d..4db293f256896 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -25,6 +25,7 @@
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_link_training.h"
+> > +#include "intel_panel.h"
+> >
+> >  #define LT_MSG_PREFIX                        "[CONNECTOR:%d:%s][ENCODE=
+R:%d:%s][%s] "
+> >  #define LT_MSG_ARGS(_intel_dp, _dp_phy)      (_intel_dp)->attached_con=
+nector->base.base.id, \
+> > @@ -1091,6 +1092,78 @@ intel_dp_link_train_phy(struct intel_dp *intel_d=
+p,
+> >       return ret;
+> >  }
+> >
+> > +static bool intel_dp_can_link_train_fallback_for_edp(struct intel_dp *=
+intel_dp,
+> > +                                                  int link_rate,
+> > +                                                  u8 lane_count)
+> > +{
+> > +     /* FIXME figure out what we actually want here */
+> > +     const struct drm_display_mode *fixed_mode =3D
+> > +             intel_panel_preferred_fixed_mode(intel_dp->attached_conne=
+ctor);
+> > +     int mode_rate, max_rate;
+> > +
+> > +     mode_rate =3D intel_dp_link_required(fixed_mode->clock, 18);
+> > +     max_rate =3D intel_dp_max_link_data_rate(intel_dp, link_rate, lan=
+e_count);
+> > +     if (mode_rate > max_rate)
+> > +             return false;
+> > +
+> > +     return true;
+> > +}
+> > +
+> > +static int intel_dp_get_link_train_fallback_values(struct intel_dp *in=
+tel_dp,
+> > +                                                int link_rate, u8 lane=
+_count)
+> > +{
+> > +     struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > +     int index;
+> > +
+> > +     /*
+> > +      * TODO: Enable fallback on MST links once MST link compute can h=
+andle
+> > +      * the fallback params.
+> > +      */
+> > +     if (intel_dp->is_mst) {
+> > +             drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> > +             return -1;
+> > +     }
+> > +
+> > +     if (intel_dp_is_edp(intel_dp) && !intel_dp->use_max_params) {
+> > +             drm_dbg_kms(&i915->drm,
+> > +                         "Retrying Link training for eDP with max para=
+meters\n");
+> > +             intel_dp->use_max_params =3D true;
+> > +             return 0;
+> > +     }
+> > +
+> > +     index =3D intel_dp_rate_index(intel_dp->common_rates,
+> > +                                 intel_dp->num_common_rates,
+> > +                                 link_rate);
+> > +     if (index > 0) {
+> > +             if (intel_dp_is_edp(intel_dp) &&
+> > +                 !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> > +                                                           intel_dp_co=
+mmon_rate(intel_dp, index - 1),
+> > +                                                           lane_count)=
+) {
+> > +                     drm_dbg_kms(&i915->drm,
+> > +                                 "Retrying Link training for eDP with =
+same parameters\n");
+> > +                     return 0;
+> > +             }
+> > +             intel_dp->link.max_rate =3D intel_dp_common_rate(intel_dp=
+, index - 1);
+> > +             intel_dp->link.max_lane_count =3D lane_count;
+> > +     } else if (lane_count > 1) {
+> > +             if (intel_dp_is_edp(intel_dp) &&
+> > +                 !intel_dp_can_link_train_fallback_for_edp(intel_dp,
+> > +                                                           intel_dp_ma=
+x_common_rate(intel_dp),
+> > +                                                           lane_count =
+>> 1)) {
+> > +                     drm_dbg_kms(&i915->drm,
+> > +                                 "Retrying Link training for eDP with =
+same parameters\n");
+> > +                     return 0;
+> > +             }
+> > +             intel_dp->link.max_rate =3D intel_dp_max_common_rate(inte=
+l_dp);
+> > +             intel_dp->link.max_lane_count =3D lane_count >> 1;
+> > +     } else {
+> > +             drm_err(&i915->drm, "Link Training Unsuccessful\n");
+> > +             return -1;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  static void intel_dp_schedule_fallback_link_training(struct intel_dp *=
+intel_dp,
+> >                                                    const struct intel_c=
+rtc_state *crtc_state)
+> >  {
+> > --
+> > 2.43.3
+>
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
