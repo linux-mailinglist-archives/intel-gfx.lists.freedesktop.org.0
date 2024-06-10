@@ -2,138 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA199902133
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 14:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B04790214B
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 14:10:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA9010E316;
-	Mon, 10 Jun 2024 12:05:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78C110E439;
+	Mon, 10 Jun 2024 12:10:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1eVXBzqU";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xtMyH6CO";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="EZF3g2BO";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bFZeGHXt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S0PfJnAy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7680310E281;
- Mon, 10 Jun 2024 12:05:03 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 5B3A8219B4;
- Mon, 10 Jun 2024 12:05:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718021101; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
- b=1eVXBzqUbCvThUn1NADY6KW+7Ovx9c3tZN2Dkosgp6fqITCIBIvRDxsS7vgso3NrblPQWm
- t32LIw3h2rdW8OyYrtv1SHbG9SCmdBKZeRJ1F0WNDqzDJeGy1Zp39kLijWytSVOTMUnROu
- swy7Qu2P23XkVz4xqBCWDdvadVUXSjU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718021101;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
- b=xtMyH6CO02UEpPJfB/xsyeNAo9DJ+2l8E462WRclJKWIn5KJ+s1giPURtUpgCWglEmrllC
- QBR6lyJbiUBaZlAQ==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=EZF3g2BO;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=bFZeGHXt
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718021100; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
- b=EZF3g2BOwRkIe59jltVv040ZmOxgYE0KI6mW1HWJVvzYYjVwjExFnE/QdBzqnoZgfiX/nn
- vRakybkJM8Hsy1Ki2MyxYXISCaqnCJz65mvioT9vyhHxqsy+/bdRa9e4VfC0xiTdDtBZnC
- k6Vy+xxFlUhR/3oXYCaQaxk3jeAxnp8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718021100;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=EfBUFM7yqdJiokSHKQ7Eu1ym5fbxTZNBeIZqD/LRUFA=;
- b=bFZeGHXt7c5M58Y19ayhjH9UKw44w0eajPm8OmRkNVbBc/KlbKNzVdj30QzzBOzm1gWSXr
- rh2vjh0VEqXzp5Cw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 31AF213A7F;
- Mon, 10 Jun 2024 12:05:00 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id jaHuCuzrZmZPGwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 10 Jun 2024 12:05:00 +0000
-Message-ID: <702b2b68-cfe3-4d66-9818-44fce8935be5@suse.de>
-Date: Mon, 10 Jun 2024 14:04:59 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21FF710E439;
+ Mon, 10 Jun 2024 12:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718021411; x=1749557411;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=kr85y/BVLUoTNpyKznry9YJ/PyNEjz5/b4JTZEEa2t4=;
+ b=S0PfJnAy2NDC6Vc/N7qdOIrd7RWSgAxwPy1E2q53WG6Bkt1Ky5QyB3/N
+ dSiRb2scrj54ab036NzZcBE/Z8QUt++dvsvXeuwdCuimCUZe5MO+OL7HZ
+ g55SrfkEbKnbMkyBx2wOSwzIdvH8qs4taiSzG9GBNqZK5U9G6eUBdBP0P
+ KOMu1eRHlo+3ljaMlMCfto4bOgB1Al9ZIntZLUV908IfcNoagKDhzaQ7Z
+ qlm/qR9uvxOEZlt2NqIty93J3sDhBku/FUNa1N7bBFd5u6jdk+d5qplB9
+ RoUTUaIdPTHcFuuR7Xi76qcrhHZjt5GLbAsSuTsrkm0y/3sSZOdJPBGg5 g==;
+X-CSE-ConnectionGUID: zH2dNX2BT0mBM7uruLkTXQ==
+X-CSE-MsgGUID: pzENp1V/R7mobaxPtlWQBg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11098"; a="11996878"
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="11996878"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2024 05:10:09 -0700
+X-CSE-ConnectionGUID: NPgIcUpoSROAO8wT5iihhg==
+X-CSE-MsgGUID: eVmkuHp0SkmBDCBAHV7Y1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="76497866"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.193])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2024 05:10:08 -0700
+Date: Mon, 10 Jun 2024 14:10:04 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: "Niemiec, Krzysztof" <krzysztof.niemiec@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ nirmoy.das@intel.com, janusz.krzysztofik@intel.com,
+ chris.p.wilson@intel.com
+Subject: Re: [PATCH] drm/i915/gt: Delete the live_hearbeat_fast selftest
+Message-ID: <ZmbtHOm0oNNFOgrJ@ashyti-mobl2.lan>
+References: <fe2vu5h7v7ooxbhwpbfsypxg5mjrnt56gc3cgrqpnhgrgce334@qfrv2skxrp47>
+ <ac40fa93-cffc-4fa8-9ee7-2414faac95bf@ursulin.net>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/edid: reduce DisplayID log spamming
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-References: <20240606123503.2825088-1-jani.nikula@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20240606123503.2825088-1-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Flag: NO
-X-Spam-Score: -6.50
-X-Rspamd-Action: no action
-X-Rspamd-Queue-Id: 5B3A8219B4
-X-Spam-Level: 
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-6.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; XM_UA_NO_VERSION(0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- MIME_TRACE(0.00)[0:+]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; TO_DN_SOME(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- RCPT_COUNT_THREE(0.00)[3]; RCVD_VIA_SMTP_AUTH(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email, imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.de:dkim, suse.de:email]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ac40fa93-cffc-4fa8-9ee7-2414faac95bf@ursulin.net>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,59 +72,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Tvrtko,
 
+On Mon, Jun 10, 2024 at 12:42:31PM +0100, Tvrtko Ursulin wrote:
+> On 03/06/2024 17:20, Niemiec, Krzysztof wrote:
+> > The test is trying to push the heartbeat frequency to the limit, which
+> > might sometimes fail. Such a failure does not provide valuable
+> > information, because it does not indicate that there is something
+> > necessarily wrong with either the driver or the hardware.
+> > 
+> > Remove the test to prevent random, unnecessary failures from appearing
+> > in CI.
+> > 
+> > Suggested-by: Chris Wilson <chris.p.wilson@intel.com>
+> > Signed-off-by: Niemiec, Krzysztof <krzysztof.niemiec@intel.com>
+> 
+> Just a note in passing that comma in the email display name is I believe not
+> RFC 5322 compliant and there might be tools which barf on it(*). If you can
+> put it in double quotes, it would be advisable.
 
-Am 06.06.24 um 14:35 schrieb Jani Nikula:
-> Debug printing at DisplayID validation leads to lots of log spamming as
-> it's called at DisplayID iterators during EDID parsing. Remove it, and
-> replace with a less noisy message at connector EDID update.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+yes, we discussed it with Krzysztof, I noticed it right after I
+submitted the code.
 
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Regards,
+> 
+> Tvrtko
+> 
+> *) Such as my internal pull request generator which uses CPAN's
+> Email::Address::XS. :)
 
-> ---
->   drivers/gpu/drm/drm_displayid.c | 3 ---
->   drivers/gpu/drm/drm_edid.c      | 5 +++++
->   2 files changed, 5 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displayid.c
-> index 9d01d762801f..b4fd43783c50 100644
-> --- a/drivers/gpu/drm/drm_displayid.c
-> +++ b/drivers/gpu/drm/drm_displayid.c
-> @@ -33,9 +33,6 @@ validate_displayid(const u8 *displayid, int length, int idx)
->   	if (IS_ERR(base))
->   		return base;
->   
-> -	DRM_DEBUG_KMS("base revision 0x%x, length %d, %d %d\n",
-> -		      base->rev, base->bytes, base->prod_id, base->ext_count);
-> -
->   	/* +1 for DispID checksum */
->   	dispid_length = sizeof(*base) + base->bytes + 1;
->   	if (dispid_length > length - idx)
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index f68a41eeb1fa..9fc7292f5382 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6629,6 +6629,11 @@ static void update_displayid_info(struct drm_connector *connector,
->   
->   	displayid_iter_edid_begin(drm_edid, &iter);
->   	displayid_iter_for_each(block, &iter) {
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] DisplayID extension version 0x%02x, primary use 0x%02x\n",
-> +			    connector->base.id, connector->name,
-> +			    displayid_version(&iter),
-> +			    displayid_primary_use(&iter));
->   		if (displayid_version(&iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
->   		    (displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_VR ||
->   		     displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_AR))
+If we are in time, we can fix it as Krzysztof Niemiec <krzysztof.niemiec@intel.com>
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+Sorry about this oversight,
+Andi
