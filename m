@@ -2,89 +2,202 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C659023E1
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 16:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 611A39023E2
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 16:18:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFBFE10E475;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCF7710E189;
 	Mon, 10 Jun 2024 14:18:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="H1HMgaQQ";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Jk2pGreX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4C0510E077;
- Sun,  9 Jun 2024 18:43:03 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 459HhUa5025786;
- Sun, 9 Jun 2024 18:42:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:message-id
- :mime-version:subject:to; s=qcppdkim1; bh=pnCC1eCBgLg/HGu7nVSVY7
- PHMrfKVvumlukAnrs1Wcc=; b=H1HMgaQQQD22P2v0A7+TfbDTGTJd83BtsbMlWb
- xo6cFP+er4wOdzrEGomJxefb1fZrfbo3Vji/GA0hkCOR7iZo8vc+zwzw7Wo9E20o
- 0STMpVXmzBEOkqzDdYKYElNcgfc6lQhuhgf3DxtRd/h5xEFC67MrgMCMBljwAluZ
- JocYrC9c0wQYKhVpVuZP4qVJj9HbRq/l8mF6pAovRpyhW1B0mSS5hdLOp6MkJLvh
- 398EtzKK+pq0w/TrFrBZY66iKBioaQet70xF3253eLJZotRKZPdQP/zETgllbNQQ
- C5FutB8AfLWV4X+Ulekj0m4hasJljASFlNTWDd+Low8uQOiw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ymea6j25x-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sun, 09 Jun 2024 18:42:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
- 459Igslj016770
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sun, 9 Jun 2024 18:42:54 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 9 Jun 2024
- 11:42:53 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Sun, 9 Jun 2024 11:42:53 -0700
-Subject: [PATCH] drm: add missing MODULE_DESCRIPTION() macros
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0027D10E359
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 08:08:14 +0000 (UTC)
+Received: by mail-lf1-f47.google.com with SMTP id
+ 2adb3069b0e04-5295e488248so4550171e87.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 01:08:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1718006893; x=1718611693; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/L5y1Dv6ivY3eszYnYmdXRYc401x9YYY2yBAmmyUG/k=;
+ b=Jk2pGreXJkRau6r88te0sdqz2/QSFFk7lebcZ5AJ3q2j6Wy0eXP2v/GpyxFd6UFjSc
+ dS16pOyB0KAd3EyM72fqbgqvIXhQNwFLOYYlaSjaigs+yOatiq+5m/D418mfqx63MJYD
+ pBJgtVFOsooenCqgZ7Ew01enSj4ZU5+vOX961EraSp/G67ByQq0SOHrbQi7dSm3Ohi6j
+ KdXPjpWqDm7Aewu/QwwxPeIrEcFUeCQFhkWIfAddm8EdAMCTbu3xi1wnpnP9gW1GMKZH
+ hS8gPbmrIpoZbH6mj6bkLS0yU6VnwKuRVtFM+F8NQHyHjxywAIAT0l8WFI+NaD56ByqE
+ KlAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1718006893; x=1718611693;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=/L5y1Dv6ivY3eszYnYmdXRYc401x9YYY2yBAmmyUG/k=;
+ b=TpzZkqfMn7t0xp6eSO4usS+F4VBE/fea1mU35GB0H52Tmie24tO92oie5JvIQWLN6F
+ 7jLZ07ruxtfHISMEmmLV4D9yh3dwUG0YPha1aIkCiobPWV3ucv1jchsKgG0dcSSTtl+E
+ s8/ATMK7UUdQ2YH+HPiMp2G17AwD27Sdez+iZPVrgeVjgD4YybZ/BIaB+Kxy+9t9XY0Y
+ YaPsXVh2dB6QrIwANuVkWyxc1TSJAspfm7zCoWhaQj76cKOAiPEbm+bBMqGziTN4Tz3X
+ u5UNPHL2ZiaWerLqK2zU5JZX65iUKJJN0cJx8n1GwMx7n56rlUVU7lRTbEONr3rfw0jv
+ lCFw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUxB5GMGsndPO9gca4tYYOMq1+6hfYAfdbvYwccsYql9O3+bUeMHLeDpa9dtXmv3X64kuAhGTQAEyuYaIBbAhFAGCISzyO9nFkxTznMgM9X
+X-Gm-Message-State: AOJu0Yxwo0taXosL7JDvCyPDhw9CEYZyo8sDBm8+1sjVTkZ6ARvR2zKS
+ kwWOAFmjyK7umVim+0RUTyAXF4vEbnc46g3LV4KIPa3roS6Kt7hD5VYU3SUVbScfndqb3+zjuO4
+ U1Cyrz7jKLW3zI4tCYZF0CMqOIUfNFZ5AKAPYoQ==
+X-Google-Smtp-Source: AGHT+IEoIIaopVbMhKiBzu+ZFeFG117iZrYhuaSy1PLsnicMvCE0nAaF1iUL9hhnUeVtUHqe9i20V059/u6XmSWe6yI=
+X-Received: by 2002:a05:6512:234d:b0:52b:be9b:cafe with SMTP id
+ 2adb3069b0e04-52bbe9bcbadmr5940256e87.21.1718006892189; Mon, 10 Jun 2024
+ 01:08:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20240609-md-drivers-gpu-drm-v1-1-89e9a316d513@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAKz3ZWYC/x3MQQqDMBCF4avIrDsQYymmVyldxGSqA00qMyqCe
- PdOu3vf4v0HKAmTwr05QGhj5U81tJcG0hTrSMjZDN75q7u5gCVjFt5IFMd5tV3Q5RC6Lqbe9y3
- YcRZ68f6PPp7mISrhILGm6Zd6c113LFEXEjjPL0edEmiDAAAA
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>, Zhenyu Wang
- <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Dave Airlie <airlied@redhat.com>, "Sean Paul" <sean@poorly.run>
-CC: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <intel-gvt-dev@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <kernel-janitors@vger.kernel.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.13.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: vOb4KCfNPRdjiKspCIwi8ZbXRIcn7Qzu
-X-Proofpoint-ORIG-GUID: vOb4KCfNPRdjiKspCIwi8ZbXRIcn7Qzu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-09_14,2024-06-06_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxscore=0
- spamscore=0 phishscore=0 mlxlogscore=999 clxscore=1011 lowpriorityscore=0
- malwarescore=0 suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2406090147
-X-Mailman-Approved-At: Mon, 10 Jun 2024 14:18:33 +0000
+References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+ <87tti9cfry.fsf@intel.com>
+In-Reply-To: <87tti9cfry.fsf@intel.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 10 Jun 2024 10:08:00 +0200
+Message-ID: <CACRpkdZFPG_YLici-BmYfk9HZ36f4WavCN3JNotkk8cPgCODCg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
+ sysfs_match_string()
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Perry Yuan <perry.yuan@amd.com>, 
+ Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Randy Dunlap <rdunlap@infradead.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Lee Jones <lee@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Elad Nachman <enachman@marvell.com>, 
+ Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+ Johannes Berg <johannes.berg@intel.com>, 
+ Gregory Greenman <gregory.greenman@intel.com>,
+ Benjamin Berg <benjamin.berg@intel.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Robert Richter <rrichter@amd.com>,
+ Vinod Koul <vkoul@kernel.org>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Hans de Goede <hdegoede@redhat.com>, 
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Nikita Kravets <teackot@gmail.com>, Jiri Slaby <jirislaby@kernel.org>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
+ Stanley Chang <stanley_chang@realtek.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Abdel Alkuor <abdelalkuor@geotab.com>, 
+ Kent Overstreet <kent.overstreet@linux.dev>, Eric Biggers <ebiggers@google.com>,
+ Kees Cook <keescook@chromium.org>, Ingo Molnar <mingo@kernel.org>, 
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ Daniel Bristot de Oliveira <bristot@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, Hugh Dickins <hughd@google.com>, 
+ Abel Wu <wuyun.abel@bytedance.com>, John Johansen <john.johansen@canonical.com>,
+ Mimi Zohar <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>, 
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Eric Snowberg <eric.snowberg@oracle.com>, 
+ Takashi Iwai <tiwai@suse.de>, Takashi Sakamoto <o-takashi@sakamocchi.jp>, 
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Mark Brown <broonie@kernel.org>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, keyrings@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, linux-acpi@vger.kernel.org, 
+ linux-ide@vger.kernel.org, openipmi-developer@lists.sourceforge.net, 
+ linux-clk@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org, qat-linux@intel.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org, 
+ linux-mtd@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+ linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-staging@lists.linux.dev, linux-usb@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, cgroups@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org, 
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org, 
+ linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>, 
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ "H. Peter Anvin" <hpa@zytor.com>, David Howells <dhowells@redhat.com>, 
+ "David S. Miller" <davem@davemloft.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
+ Sergey Shtylyov <s.shtylyov@omp.ru>, Damien Le Moal <dlemoal@kernel.org>, 
+ Niklas Cassel <cassel@kernel.org>, Daniel Scally <djrscally@gmail.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ Heiko Stuebner <heiko@sntech.de>, 
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Huang Rui <ray.huang@amd.com>, "Gautham R. Shenoy" <gautham.shenoy@amd.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jean Delvare <jdelvare@suse.com>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Tony Lindgren <tony@atomide.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hu Ziji <huziji@marvell.com>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Potnuri Bharat Teja <bharat@chelsio.com>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
+ "Oliver O'Halloran" <oohall@gmail.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ JC Kuo <jckuo@nvidia.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>, 
+ Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>, 
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>, 
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>, 
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>, 
+ Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, 
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ Valentin Schneider <vschneid@redhat.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>, 
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, 
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>, 
+ Clemens Ladisch <clemens@ladisch.de>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 10 Jun 2024 14:18:34 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,100 +213,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On x86, make allmodconfig && make W=1 C=1 reports:
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/gud/gud.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/drm_panel_orientation_quirks.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/drm_mipi_dbi.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/i915/kvmgt.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/udl/udl.o
+On Tue, Jun 4, 2024 at 9:46=E2=80=AFAM Jani Nikula <jani.nikula@linux.intel=
+.com> wrote:
 
-Add the missing invocation of the MODULE_DESCRIPTION() macro to all
-files which have a MODULE_LICENSE().
+[Maybe slightly off-topic, ranty]
 
-For consistency this includes drivers/gpu/drm/drm_simple_kms_helper.c
-since it contains a MODULE_LICENSE() even though it isn't built as a
-separate module -- it is always built as part of drm_kms_helper and
-drm_kms_helper_common.c already provides a MODULE_DESCRIPTION for that
-module.
+> Why do we think it's a good idea to increase and normalize the use of
+> double-underscore function names across the kernel, like
+> __match_string() in this case? It should mean "reserved for the
+> implementation, not to be called directly".
+>
+> If it's to be used directly, it should be named accordingly, right?
 
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
----
-This is the last in a set of patches to drivers/gpu/drm. The
-preceeding patches cleaned up subdirectiries that had more than one
-issue. This patch cleans up the stragglers. Let me know if any of
-these modifications need to segregated into separate patches.
----
- drivers/gpu/drm/drm_mipi_dbi.c                 | 1 +
- drivers/gpu/drm/drm_panel_orientation_quirks.c | 1 +
- drivers/gpu/drm/drm_simple_kms_helper.c        | 1 +
- drivers/gpu/drm/gud/gud_drv.c                  | 1 +
- drivers/gpu/drm/i915/gvt/kvmgt.c               | 1 +
- drivers/gpu/drm/udl/udl_drv.c                  | 1 +
- 6 files changed, 6 insertions(+)
+It's a huge mess. "__" prefix is just so ambiguous I think it just
+shouldn't be used or prolifierated, and it usually breaks Rusty Russells
+API rules times over.
 
-diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
-index daac649aabdb..ee6fa8185b13 100644
---- a/drivers/gpu/drm/drm_mipi_dbi.c
-+++ b/drivers/gpu/drm/drm_mipi_dbi.c
-@@ -1475,4 +1475,5 @@ EXPORT_SYMBOL(mipi_dbi_debugfs_init);
- 
- #endif
- 
-+MODULE_DESCRIPTION("MIPI Display Bus Interface (DBI) LCD controller support");
- MODULE_LICENSE("GPL");
-diff --git a/drivers/gpu/drm/drm_panel_orientation_quirks.c b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-index aa93129c3397..ca5a2222ebc0 100644
---- a/drivers/gpu/drm/drm_panel_orientation_quirks.c
-+++ b/drivers/gpu/drm/drm_panel_orientation_quirks.c
-@@ -501,4 +501,5 @@ EXPORT_SYMBOL(drm_get_panel_orientation_quirk);
- 
- #endif
- 
-+MODULE_DESCRIPTION("Quirks for non-normal panel orientation");
- MODULE_LICENSE("Dual MIT/GPL");
-diff --git a/drivers/gpu/drm/drm_simple_kms_helper.c b/drivers/gpu/drm/drm_simple_kms_helper.c
-index 270523ae36d4..250819fbc5ce 100644
---- a/drivers/gpu/drm/drm_simple_kms_helper.c
-+++ b/drivers/gpu/drm/drm_simple_kms_helper.c
-@@ -453,4 +453,5 @@ int drm_simple_display_pipe_init(struct drm_device *dev,
- }
- EXPORT_SYMBOL(drm_simple_display_pipe_init);
- 
-+MODULE_DESCRIPTION("Helpers for drivers for simple display hardware");
- MODULE_LICENSE("GPL");
-diff --git a/drivers/gpu/drm/gud/gud_drv.c b/drivers/gpu/drm/gud/gud_drv.c
-index 9d7bf8ee45f1..db2b7d2e246f 100644
---- a/drivers/gpu/drm/gud/gud_drv.c
-+++ b/drivers/gpu/drm/gud/gud_drv.c
-@@ -678,4 +678,5 @@ static struct usb_driver gud_usb_driver = {
- module_usb_driver(gud_usb_driver);
- 
- MODULE_AUTHOR("Noralf Trønnes");
-+MODULE_DESCRIPTION("GUD USB Display driver");
- MODULE_LICENSE("Dual MIT/GPL");
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index 4f74d867fe1a..38830818c120 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -1985,5 +1985,6 @@ static void __exit kvmgt_exit(void)
- module_init(kvmgt_init);
- module_exit(kvmgt_exit);
- 
-+MODULE_DESCRIPTION("Intel mediated pass-through framework for KVM");
- MODULE_LICENSE("GPL and additional rights");
- MODULE_AUTHOR("Intel Corporation");
-diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_drv.c
-index 1506094a8009..de78a9b0eed7 100644
---- a/drivers/gpu/drm/udl/udl_drv.c
-+++ b/drivers/gpu/drm/udl/udl_drv.c
-@@ -160,4 +160,5 @@ static struct usb_driver udl_driver = {
- 	.id_table = id_table,
- };
- module_usb_driver(udl_driver);
-+MODULE_DESCRIPTION("KMS driver for the USB displaylink video adapters");
- MODULE_LICENSE("GPL");
+Consider __set_bit() from <linux/bitops.h>, used all over the place,
+in contrast with set_bit() for example, what does "__" represent in
+this context that makes __set_bit() different from set_bit()?
 
----
-base-commit: 19ca0d8a433ff37018f9429f7e7739e9f3d3d2b4
-change-id: 20240609-md-drivers-gpu-drm-0d9933ac8281
+It means "non-atomic"...
 
+How does a random contributor know this?
+
+Yeah, you guess it. By the token of "everybody knows that".
+(Grep, google, repeat for the number of contributors to the kernel.)
+
+I was considering to send a script to Torvalds to just change all
+this to set_bit_nonatomic() (etc) but was hesitating because that
+makes the name unambiguous but long. I think I stayed off it
+because changing stuff like that all over the place creates churn
+and churn is bad.
+
+Yours,
+Linus Walleij
