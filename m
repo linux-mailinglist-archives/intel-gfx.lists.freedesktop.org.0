@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3AC190271A
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 18:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90FD69027EB
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2024 19:43:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD31210E4F2;
-	Mon, 10 Jun 2024 16:49:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R32M5nZC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D94B710E462;
+	Mon, 10 Jun 2024 17:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5458910E4E9
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2024 16:49:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718038192; x=1749574192;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Fc2gqmHKdHzYZsgp/yfhJPQ4hY82VuB4z3qYzw5tsUo=;
- b=R32M5nZCn62kbm0tr2GZw1J+wexbbjfykOyj6g5to2eo3y2QuA32IEFE
- EgY082sAnTj+5ZU7eUh1ummrLnOK3xG+aK7nryp0tzYyKy0UNOwsSRdNA
- 91O6Ka1v06Z3nnGTxjVZxeSYBRAom9MxV999iwKtzYyqUj98PSEDcdyjJ
- g7KY/aK0Vb++ZiSe27WMKuXE98Sm6nDVDioKX3g95OCdOTcZbcgNVzYih
- gT2thL6y9bseJUHIZQnnFPi0q1jDWoexTBK1rjZ2UnmYAeE69nHWZIuP/
- C4Zol1Y7Ul/sl+mOMCa2FphZquyIZGFk8haJBB7uYnkDoEFSJcXze/LVc A==;
-X-CSE-ConnectionGUID: DYYusLIHS1uNDaQfpadCLA==
-X-CSE-MsgGUID: RTApyARCSrCqFWQmschsRA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="18494025"
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="18494025"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 09:49:52 -0700
-X-CSE-ConnectionGUID: na06nDtAQomWZ3IJono2Jg==
-X-CSE-MsgGUID: v3joR2uKTW282C0wrUiDrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,227,1712646000"; d="scan'208";a="39060623"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2024 09:49:51 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 21/21] drm/i915/dp: Add debugfs entry to get the link
- retrain disabled state
-Date: Mon, 10 Jun 2024 19:49:33 +0300
-Message-ID: <20240610164933.2947366-22-imre.deak@intel.com>
-X-Mailer: git-send-email 2.43.3
-In-Reply-To: <20240610164933.2947366-1-imre.deak@intel.com>
-References: <20240610164933.2947366-1-imre.deak@intel.com>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5C410E452;
+ Mon, 10 Jun 2024 17:43:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dp=5Fmst=3A?=
+ =?utf-8?q?_Enable_link_training_fallback_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Jun 2024 17:43:32 -0000
+Message-ID: <171804141238.32787.2278469224580821446@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240610164933.2947366-1-imre.deak@intel.com>
+In-Reply-To: <20240610164933.2947366-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,54 +37,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a connector debugfs entry showing if link retraining is disabled.
+== Series Details ==
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Series: drm/i915/dp_mst: Enable link training fallback (rev4)
+URL   : https://patchwork.freedesktop.org/series/133624/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 4da550d6e0ffc..1bc4ef84ff3bc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1898,6 +1898,25 @@ DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_force_link_retrain_fops,
- 			 i915_dp_force_link_retrain_show,
- 			 i915_dp_force_link_retrain_write, "%llu\n");
- 
-+static int i915_dp_link_retrain_disabled_show(struct seq_file *m, void *data)
-+{
-+	struct intel_connector *connector = to_intel_connector(m->private);
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
-+	int err;
-+
-+	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
-+	if (err)
-+		return err;
-+
-+	seq_printf(m, "%s\n", str_yes_no(intel_dp->link.retrain_disabled));
-+
-+	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(i915_dp_link_retrain_disabled);
-+
- void intel_dp_link_training_debugfs_add(struct intel_connector *connector)
- {
- 	struct dentry *root = connector->base.debugfs_entry;
-@@ -1923,4 +1942,7 @@ void intel_dp_link_training_debugfs_add(struct intel_connector *connector)
- 
- 	debugfs_create_file("i915_dp_force_link_retrain", 0644, root,
- 			    connector, &i915_dp_force_link_retrain_fops);
-+
-+	debugfs_create_file("i915_dp_link_retrain_disabled", 0444, root,
-+			    connector, &i915_dp_link_retrain_disabled_fops);
- }
--- 
-2.43.3
+== Summary ==
+
+Error: dim checkpatch failed
+b20509cd82df drm/i915/dp_mst: Align TUs to avoid splitting symbols across MTPs
+6ec52f74625f drm/i915/dp: Move link train params to a substruct in intel_dp
+26b1ff93c6b8 drm/i915/dp: Move link train fallback to intel_dp_link_training.c
+-:200: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#200: FILE: drivers/gpu/drm/i915/display/intel_dp_link_training.c:1140:
++							      intel_dp_common_rate(intel_dp, index - 1),
+
+total: 0 errors, 1 warnings, 0 checks, 195 lines checked
+bf419787a868 drm/i915/dp: Sanitize intel_dp_get_link_train_fallback_values()
+a245073843af drm/i915: Factor out function to modeset commit a set of pipes
+37bb3aa4e458 drm/i915/dp: Use a commit modeset for link retraining MST links
+daa30b7daaab drm/i915/dp: Recheck link state after modeset
+-:272: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#272: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 256 lines checked
+a1e9f4897e22 drm/i915/dp: Reduce link params only after retrying with unchanged params
+251b84fe5b1b drm/i915/dp: Pass atomic state to link training function
+bd1782197958 drm/i915/dp: Send a link training modeset-retry uevent to all MST connectors
+ebcc72ea9153 drm/i915/dp: Use check link state work in the hotplug handler
+c58ca54c9ff5 drm/i915/dp: Use check link state work in the detect handler
+a96a40b3f5e7 drm/i915/dp: Use check link state work in the HPD IRQ handler
+56492706117c drm/i915/dp: Disable link retraining after the last fallback step
+b2a32d7d67d0 drm/i915/dp_mst: Reset intel_dp->link_trained during disabling
+251e95b962d6 drm/i915/dp_mst: Enable link training fallback for MST
+9f742699a790 drm/i915/dp: Add debugfs entries to force the link rate/lane count
+2f8a4c163e90 drm/i915/dp: Add debugfs entries to get the max link rate/lane count
+31c706b71a56 drm/i915/dp: Add debugfs entry to force link training failure
+8fbbf51385bb drm/i915/dp: Add debugfs entry to force link retrain
+71ddeb63e174 drm/i915/dp: Add debugfs entry to get the link retrain disabled state
+
 
