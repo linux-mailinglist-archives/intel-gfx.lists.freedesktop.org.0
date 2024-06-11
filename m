@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F461903D7C
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:34:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95259903D80
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:34:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2C410E64A;
-	Tue, 11 Jun 2024 13:34:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55EE10E655;
+	Tue, 11 Jun 2024 13:34:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EZkwhZyY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MMJu3mFL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0915710E64E
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:34:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D78A710E64F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:34:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718112849; x=1749648849;
+ t=1718112852; x=1749648852;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=uv7d6NIlyG/bZ1NWHLZM1p8ciHc654xqyKxHUbta82Y=;
- b=EZkwhZyYi6+enmTsXcHpZESQLJl7NrLE2ZAqoFmyTPAxYJCTU5Pu9IKs
- IEWj1pkEqVpO3M4avrb0+A9EoV2thZLmR/8N+PvxYN6O5fxjaC8e83QiO
- phiT5shKNPI0AGjv3W+H5t1Vl+QBykhlS8kujftiu0ZBy3O7Rj8UxsXua
- VcnHks9ZzqS0LhaRyAXAeJfwS1X51eqQ+pX5UetxasgN2a3hU4Y4v76Uu
- oP9Od07Le+v4BpReTuvQl+DFZ0e99EuxNcCAcxhoPKxE1zo2jPl6Fx8/N
- PrV2XfFvr4o7DtDU6goA1mRQD19hXknNbRN+zKKny7qpykNh3eZ0VXAsD A==;
-X-CSE-ConnectionGUID: mgMYCpppTcCJX8bXuhL40w==
-X-CSE-MsgGUID: bMwnXMkwToqP/hmTM86EZA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018241"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018241"
+ bh=EHGWvPDsaZHfyKoOJx1OCv8qft4aNurMkzc+ggF7iEY=;
+ b=MMJu3mFLwT7SlT4EJdktbdUmX1V5l+WTnSKWt1kKFCUmO2GMS20jI4q4
+ CLfidQlsH2tLFIWmBbXyUt8COTiaVOXIBp1AFauDp24X7SRyox/meSnHp
+ hr7eoJb01pDGygBPk01xjxbNoIX9X6zVU6H757k7T5WySRAkjyk8dtjgx
+ b1wYtg2XRxTlw+A1xIWdOz6dRjjNq2/qGcv2790vqUhOojAZSwonrI0Id
+ xRHHte2QZXI36ljghxX9A/posUABdAIt7HbkbDlfdwXQ+IHxvQgSXPf+j
+ y4rvIviDMUUwxCdGXhigoqFW9CafSWLyOIp84zJJ9BlKhd42GnazS3MB3 w==;
+X-CSE-ConnectionGUID: vmGch0L2S4SH9PJg+FudAg==
+X-CSE-MsgGUID: K2jxOvMdQ52NG97X7Rkd4g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018243"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018243"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 06:34:09 -0700
-X-CSE-ConnectionGUID: WuBsZewIQSujsqbh0wkhUA==
-X-CSE-MsgGUID: w2geA1x0TbyWSLc0beaBSg==
+ 11 Jun 2024 06:34:12 -0700
+X-CSE-ConnectionGUID: +iaJo4PMQdKr6xr62rY0ag==
+X-CSE-MsgGUID: 68H9ZKjCQ4WCTqMTshF5zQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421441"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421452"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:34:07 -0700
+ by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:34:10 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Jun 2024 16:34:06 +0300
+ Tue, 11 Jun 2024 16:34:09 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 08/11] drm/i915/dsb: Add i915.enable_dsb module parameter
-Date: Tue, 11 Jun 2024 16:33:41 +0300
-Message-ID: <20240611133344.30673-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/11] drm/i915: Drop useless intel_dsb.h include
+Date: Tue, 11 Jun 2024 16:33:42 +0300
+Message-ID: <20240611133344.30673-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
 References: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
@@ -70,59 +70,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-As we extend the use of DSB for critical pipe/plane register
-programming, it'll be nice to have an escape valve at hand,
-in case things go very poorly. To that end, add a i915.enable_dsb
-modparam by which we can force the driver to take the pure mmio
-path instead.
+intel_crtc.c doens't need intel_dsb.h so don't include it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_params.c | 3 +++
- drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
- drivers/gpu/drm/i915/display/intel_dsb.c            | 3 +++
- 3 files changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index aebdb7b59dbf..449a31767791 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -54,6 +54,9 @@ intel_display_param_named_unsafe(enable_dc, int, 0400,
- intel_display_param_named_unsafe(enable_dpt, bool, 0400,
- 	"Enable display page table (DPT) (default: true)");
- 
-+intel_display_param_named_unsafe(enable_dsb, bool, 0600,
-+	"Enable display state buffer (DSB) (default: true)");
-+
- intel_display_param_named_unsafe(enable_sagv, bool, 0400,
- 	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index 1208a62c16d2..48c29c55c939 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -31,6 +31,7 @@ struct drm_i915_private;
- 	param(int, vbt_sdvo_panel_type, -1, 0400) \
- 	param(int, enable_dc, -1, 0400) \
- 	param(bool, enable_dpt, true, 0400) \
-+	param(bool, enable_dsb, true, 0600) \
- 	param(bool, enable_sagv, true, 0600) \
- 	param(int, disable_power_well, -1, 0400) \
- 	param(bool, enable_ips, true, 0600) \
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index bee48ac419ce..2ab3765f6c06 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -460,6 +460,9 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 	if (!HAS_DSB(i915))
- 		return NULL;
- 
-+	if (!i915->display.params.enable_dsb)
-+		return NULL;
-+
- 	/* TODO: DSB is broken in Xe KMD, so disabling it until fixed */
- 	if (!IS_ENABLED(I915))
- 		return NULL;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 6831060a792a..a2b8953d7283 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -24,7 +24,6 @@
+ #include "intel_display_trace.h"
+ #include "intel_display_types.h"
+ #include "intel_drrs.h"
+-#include "intel_dsb.h"
+ #include "intel_dsi.h"
+ #include "intel_fifo_underrun.h"
+ #include "intel_pipe_crc.h"
 -- 
 2.44.2
 
