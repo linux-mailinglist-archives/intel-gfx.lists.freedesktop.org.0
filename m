@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C109903ED2
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 16:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE71903ED3
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 16:30:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108CA10E04D;
-	Tue, 11 Jun 2024 14:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6A9D10E15D;
+	Tue, 11 Jun 2024 14:30:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ed0fFg0W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0ZhOhiE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B82A10E0BD;
- Tue, 11 Jun 2024 14:30:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA7310E04D;
+ Tue, 11 Jun 2024 14:30:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1718116244; x=1749652244;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NV3ZBcboL58BMtFn5E/N+cU8JxR558q0zAPuujzs4EU=;
- b=Ed0fFg0WCDPkNJ+Cr9A9W/gj1bCcTMrvSoIflNL955QEkXbc04UnvqLk
- BOLhK5hcK0fIUHvtHojRFVR+6PFhG+QR4neBims2xt87ORXg3vUZEMtt4
- IxkCEZUFSKKpFsXmiT9aGIc1i01xrc1K8pEOCVesymsbG18QtN7uW6NCc
- HshR03vI8u15G8PDJpccKAfbOkWJLtG7xmfasUr1pvyYWZxPccBtpU/L4
- sHtpUVfICjzSRCt04jCWCAofaGgDjMC9GsDaHXobamo18cfnJMMliHgqP
- F8I41D5jj/75V/k8wVpnrydB6aBTWPxhwC7N6XkYhnbNpwDDX+QCrKySm Q==;
-X-CSE-ConnectionGUID: f3hEioV4RQez7VuGS/oETg==
-X-CSE-MsgGUID: CvYW7lvsSMapW6YJLol1bA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14957486"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14957486"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ddSmGFrKosmGt07/5iez3l6GA3mrHW6gIlEakO6WlUI=;
+ b=G0ZhOhiEAKJpjcMWaGWVhpGg2aTf9L1Fqekim2zuLgO1oDjqE/Zn2Itq
+ EvoIj8IgPNJTtmBPPM6iD2ooEUfdSAey27XMoUhdqpCzTEUZjdiu/k1FY
+ 678V+3IqudbZ7DrbmLZJuWnaWaXIS019BEc9zhsbfpe+tuLyWq329czEP
+ NafBVsNPs0iItiyxqqDUMCVrKi86lOnjB+PpibhwbGEM4aKAovZhSmoX8
+ IDA1Ge406HCE5DqWh8xwncNMj08LWm3sj2Wh186lqdDsTSd09+tTNhscI
+ x0GdG/jioa1vzYgfPbCHUxgT03jnlOXPUmcHfGuRMtVIOIh5g6vWzL8tR A==;
+X-CSE-ConnectionGUID: K9uSTGVlRKao2C+hyHZcig==
+X-CSE-MsgGUID: urlfCrFfTIiP2xlWq2t9ZA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14957499"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14957499"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:30:39 -0700
-X-CSE-ConnectionGUID: 7Hsjn/34Ts6KfCsy3YQBiQ==
-X-CSE-MsgGUID: MCZIBfZbQdmMASKkV6UxaA==
+ 11 Jun 2024 07:30:41 -0700
+X-CSE-ConnectionGUID: rfWr2sEISQaDdEXze8Vnug==
+X-CSE-MsgGUID: xhP5t7VfSNacShmLsm/JVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44357781"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="44357787"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.94.248.185])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 07:30:37 -0700
+ 11 Jun 2024 07:30:40 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-Subject: [RFC 0/7] Promote GuC ABI headers to shared location
-Date: Tue, 11 Jun 2024 16:30:01 +0200
-Message-Id: <20240611143008.1900-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [RFC 1/7] drm/xe/guc: Promote GuC ABI headers to shared location
+Date: Tue, 11 Jun 2024 16:30:02 +0200
+Message-Id: <20240611143008.1900-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20240611143008.1900-1-michal.wajdeczko@intel.com>
+References: <20240611143008.1900-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,58 +68,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are many GuC ABI definitions named in the same way by the i915
-and Xe drivers, preventing proper generation of the documentation.
+GuC ABI definitions do not have to be the Xe driver specific.
+Move them to shared location for later reuse by the i915 driver.
+While at it, fixup few improper kernel-doc annotations.
 
-Promote GuC ABI definitions to shared location that can be used by
-both drivers and can be included in documentation.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-
-Michal Wajdeczko (7):
-  drm/xe/guc: Promote GuC ABI headers to shared location
-  Documentation/gpu: Separate GuC ABI section
-  Documentation/gpu: Switch to shared GuC ABI definitions
-  drm/intel/guc: Update CTB communication ABI
-  drm/intel/guc: Add new KLV definitions
-  drm/i915: Use shared GuC ABI definitions
-  drm/xe: Promote SR-IOV GuC ABI definitions to shared location
-
- Documentation/gpu/drivers.rst                 |   1 +
- Documentation/gpu/guc.rst                     |  23 ++
- Documentation/gpu/i915.rst                    |   9 -
- drivers/gpu/drm/i915/Makefile                 |   5 +
- .../gt/uc/abi/guc_communication_ctb_abi.h     | 170 -----------
- .../gt/uc/abi/guc_communication_mmio_abi.h    |  49 ----
- drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h | 112 --------
- .../gpu/drm/i915/gt/uc/abi/guc_messages_abi.h | 264 ------------------
- .../guc}/abi/guc_actions_sriov_abi.h          |   0
- .../guc}/abi/guc_communication_ctb_abi.h      |   2 +
- .../guc}/abi/guc_communication_mmio_abi.h     |   0
- .../drm/{xe => intel/guc}/abi/guc_klvs_abi.h  |  18 +-
- .../{xe => intel/guc}/abi/guc_messages_abi.h  |   0
- .../guc}/abi/guc_relay_actions_abi.h          |   0
- .../guc}/abi/guc_relay_communication_abi.h    |   0
- drivers/gpu/drm/xe/Makefile                   |   5 +
- 16 files changed, 49 insertions(+), 609 deletions(-)
- create mode 100644 Documentation/gpu/guc.rst
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
- delete mode 100644 drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_actions_sriov_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_communication_ctb_abi.h (98%)
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ .../{xe => intel/guc}/abi/guc_communication_ctb_abi.h  |  0
+ .../{xe => intel/guc}/abi/guc_communication_mmio_abi.h |  0
+ drivers/gpu/drm/{xe => intel/guc}/abi/guc_klvs_abi.h   | 10 +++++-----
+ .../gpu/drm/{xe => intel/guc}/abi/guc_messages_abi.h   |  0
+ drivers/gpu/drm/xe/Makefile                            |  5 +++++
+ 5 files changed, 10 insertions(+), 5 deletions(-)
+ rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_communication_ctb_abi.h (100%)
  rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_communication_mmio_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_klvs_abi.h (97%)
+ rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_klvs_abi.h (98%)
  rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_messages_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_relay_actions_abi.h (100%)
- rename drivers/gpu/drm/{xe => intel/guc}/abi/guc_relay_communication_abi.h (100%)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/intel/guc/abi/guc_communication_ctb_abi.h
+similarity index 100%
+rename from drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
+rename to drivers/gpu/drm/intel/guc/abi/guc_communication_ctb_abi.h
+diff --git a/drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h b/drivers/gpu/drm/intel/guc/abi/guc_communication_mmio_abi.h
+similarity index 100%
+rename from drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
+rename to drivers/gpu/drm/intel/guc/abi/guc_communication_mmio_abi.h
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
+similarity index 98%
+rename from drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+rename to drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
+index 8f9f60b28306..191995e4cb1d 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/intel/guc/abi/guc_klvs_abi.h
+@@ -66,23 +66,23 @@
+  *      Refers to 64 bit Global Gfx address of H2G `CT Buffer`_.
+  *      Should be above WOPCM address but below APIC base address for native mode.
+  *
+- * _`GUC_KLV_SELF_CFG_H2G_CTB_DESCRIPTOR_ADDR : 0x0903
++ * _`GUC_KLV_SELF_CFG_H2G_CTB_DESCRIPTOR_ADDR` : 0x0903
+  *      Refers to 64 bit Global Gfx address of H2G `CTB Descriptor`_.
+  *      Should be above WOPCM address but below APIC base address for native mode.
+  *
+- * _`GUC_KLV_SELF_CFG_H2G_CTB_SIZE : 0x0904
++ * _`GUC_KLV_SELF_CFG_H2G_CTB_SIZE` : 0x0904
+  *      Refers to size of H2G `CT Buffer`_ in bytes.
+  *      Should be a multiple of 4K.
+  *
+- * _`GUC_KLV_SELF_CFG_G2H_CTB_ADDR : 0x0905
++ * _`GUC_KLV_SELF_CFG_G2H_CTB_ADDR` : 0x0905
+  *      Refers to 64 bit Global Gfx address of G2H `CT Buffer`_.
+  *      Should be above WOPCM address but below APIC base address for native mode.
+  *
+- * _GUC_KLV_SELF_CFG_G2H_CTB_DESCRIPTOR_ADDR : 0x0906
++ * _`GUC_KLV_SELF_CFG_G2H_CTB_DESCRIPTOR_ADDR` : 0x0906
+  *      Refers to 64 bit Global Gfx address of G2H `CTB Descriptor`_.
+  *      Should be above WOPCM address but below APIC base address for native mode.
+  *
+- * _GUC_KLV_SELF_CFG_G2H_CTB_SIZE : 0x0907
++ * _`GUC_KLV_SELF_CFG_G2H_CTB_SIZE` : 0x0907
+  *      Refers to size of G2H `CT Buffer`_ in bytes.
+  *      Should be a multiple of 4K.
+  */
+diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h b/drivers/gpu/drm/intel/guc/abi/guc_messages_abi.h
+similarity index 100%
+rename from drivers/gpu/drm/xe/abi/guc_messages_abi.h
+rename to drivers/gpu/drm/intel/guc/abi/guc_messages_abi.h
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 478acc94a71c..a6325ee08a91 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -35,6 +35,11 @@ uses_generated_oob := \
+ 
+ $(uses_generated_oob): $(generated_oob)
+ 
++# Shared ABI definitions
++subdir-ccflags-y += \
++	-I$(srctree)/drivers/gpu/drm/intel/guc/ \
++	-I$(srctree)/drivers/gpu/drm/intel/guc/abi
++
+ # Please keep these build lists sorted!
+ 
+ # core driver code
 -- 
 2.43.0
 
