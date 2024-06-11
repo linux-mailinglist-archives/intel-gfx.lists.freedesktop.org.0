@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2180904164
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 18:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA09904399
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 20:30:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1019C897F6;
-	Tue, 11 Jun 2024 16:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7800210E05B;
+	Tue, 11 Jun 2024 18:30:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bPVJTlRN";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9239897F6;
- Tue, 11 Jun 2024 16:33:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3310813744801545946=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4AB810E05B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 18:30:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718130644; x=1749666644;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I3yv0xGyB2KNXLiwp+WUyecrnT6vrRPKEUDyYdtR9CQ=;
+ b=bPVJTlRN5G/6cE567MtAefzw2DRHxCzEtBCyOhXdirV/AkzM0QPPeraM
+ 0chA5uCTn2fOVGBJndIBB3/CFKYJMHngx9igyAPxT1Q8wphbWXZXYm4Df
+ xx3PdO0EqM3+MZayXr2bneDOEcWRHvtc65yaraVsBYNHfBheloBV9ny5S
+ vFfvQMbFCu19ZMe1LXtwH90uwSmi3ILZLa8IzkRAcTVIWNX8sEyEA1n4N
+ Z+q4mkDJbaPguyvr2c/dJ2j+PAcPInaNmef3pBoFNMP9hWNmp5X9vLIVL
+ 6uP2rfFp11UdBN/PH/0d0Nvc7LmkQKIcZw/8rARs7Kvw68RAW46wUmpfD g==;
+X-CSE-ConnectionGUID: EwGH0FALQ++tqQHZDbv7oQ==
+X-CSE-MsgGUID: +K+6WV9iR9mMq530O37MYA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11100"; a="26265171"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="26265171"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 11:30:38 -0700
+X-CSE-ConnectionGUID: 3nCO0+4gQj6rYLf89DdvSQ==
+X-CSE-MsgGUID: lhc9wAeYQc2RYASUPcPEiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="70716383"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa001.fm.intel.com with ESMTP; 11 Jun 2024 11:30:37 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [RFC] drm/i915/display: Update vtotal math to address 32b build
+Date: Wed, 12 Jun 2024 00:00:47 +0530
+Message-ID: <20240611183048.159826-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Fmst=3A_Fix_DS?=
- =?utf-8?q?C_input_BPP_computation?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Jun 2024 16:33:49 -0000
-Message-ID: <171812362994.67160.3136651319857950032@a6498e030952>
-X-Patchwork-Hint: ignore
-References: <20240611153351.3013235-1-imre.deak@intel.com>
-In-Reply-To: <20240611153351.3013235-1-imre.deak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,194 +60,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3310813744801545946==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fix few divisions which may not work on 32b builds.
 
-== Series Details ==
+Use DIV_ROUND_UP, with that expecting deviate params
+from +/- 1 accuracy in value.
 
-Series: drm/i915/dp_mst: Fix DSC input BPP computation
-URL   : https://patchwork.freedesktop.org/series/134726/
-State : success
+Fixes: 1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 05f67dc9d98d..5112961f6964 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -122,10 +122,11 @@ is_cmrr_frac_required(struct intel_crtc_state *crtc_state)
+ 
+ 	actual_refresh_k =
+ 		drm_mode_vrefresh(adjusted_mode) * FIXED_POINT_PRECISION;
+-	pixel_clock_per_line =
+-		adjusted_mode->crtc_clock * 1000 / adjusted_mode->crtc_htotal;
++	pixel_clock_per_line = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
++					    adjusted_mode->crtc_htotal);
+ 	calculated_refresh_k =
+-		pixel_clock_per_line * FIXED_POINT_PRECISION / adjusted_mode->crtc_vtotal;
++		DIV_ROUND_UP(pixel_clock_per_line * FIXED_POINT_PRECISION,
++			     adjusted_mode->crtc_vtotal);
+ 
+ 	if ((actual_refresh_k - calculated_refresh_k) < CMRR_PRECISION_TOLERANCE)
+ 		return false;
+@@ -149,7 +150,8 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+ 
+ 	crtc_state->cmrr.cmrr_n =
+ 		desired_refresh_rate * adjusted_mode->crtc_htotal * multiplier_n;
+-	vtotal = (adjusted_mode->crtc_clock * 1000 * multiplier_n) / crtc_state->cmrr.cmrr_n;
++	vtotal = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000 * multiplier_n,
++			      crtc_state->cmrr.cmrr_n);
+ 	adjusted_pixel_rate = adjusted_mode->crtc_clock * 1000 * multiplier_m;
+ 	crtc_state->cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->cmrr.cmrr_n);
+ 
+-- 
+2.45.2
 
-CI Bug Log - changes from CI_DRM_14920 -> Patchwork_134726v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): fi-kbl-7567u bat-adlp-9 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_134726v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {bat-mtlp-9}:       [DMESG-WARN][1] ([i915#11009]) -> [PASS][2] +4 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [ABORT][3] ([i915#10594]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-adln-1:         [INCOMPLETE][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-adln-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_addfb_basic@invalid-get-prop-any:
-    - {bat-apl-1}:        [ABORT][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-apl-1/igt@kms_addfb_basic@invalid-get-prop-any.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-apl-1/igt@kms_addfb_basic@invalid-get-prop-any.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
-    - {bat-mtlp-9}:       [SKIP][9] ([i915#10580]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@d-dp6:
-    - {bat-mtlp-9}:       [FAIL][11] ([i915#6121]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp6.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp6.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10580]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580
-  [i915#10594]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594
-  [i915#11009]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009
-  [i915#11060]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11060
-  [i915#6121]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_14920 -> Patchwork_134726v1
-
-  CI-20190529: 20190529
-  CI_DRM_14920: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7881: 7881
-  Patchwork_134726v1: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/index.html
-
---===============3310813744801545946==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Fix DSC input BPP computation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134726/">https://patchwork.freedesktop.org/series/134726/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_14920 -&gt; Patchwork_134726v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): fi-kbl-7567u bat-adlp-9 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_134726v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009">i915#11009</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html">PASS</a> +4 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/fi-bsw-nick/igt@i915_selftest@live@execlists.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10594">i915#10594</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-adln-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-adln-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@invalid-get-prop-any:</p>
-<ul>
-<li>{bat-apl-1}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-apl-1/igt@kms_addfb_basic@invalid-get-prop-any.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-apl-1/igt@kms_addfb_basic@invalid-get-prop-any.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580">i915#10580</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-mtlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@d-dp6:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14920/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp6.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121">i915#6121</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134726v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-dpms@d-dp6.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_14920 -&gt; Patchwork_134726v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_14920: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7881: 7881<br />
-  Patchwork_134726v1: 950ce28fe0b31a24c5bddcc337aba9554a41cbb3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3310813744801545946==--
