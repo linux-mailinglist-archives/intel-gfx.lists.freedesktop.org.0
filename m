@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E384903BAA
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 14:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF05903BD9
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 14:28:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98E5910E616;
-	Tue, 11 Jun 2024 12:13:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2oAArvK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4735C10E60D;
+	Tue, 11 Jun 2024 12:28:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CEF410E616
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 12:13:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718108014; x=1749644014;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qMnmK9jpBDQtjC7bJlHoi09xzVdVRjp27nUq6y2w9IA=;
- b=h2oAArvKeB2pxtLoiBbHn6gZOZchwxr5jNZmczRftwNLVYbqCMCm0K7q
- 0C2vnI2nC2TCqVw7hkdTBFGB9ZyCPfGuxCzmp3HFF7K4N9NH1hMVx/8KL
- RqEPP2YdUHXHbWQ+84PqcBmYYiWZD6nt1bc55IDytePqAo7sEMNHYeGuA
- y/airAytXIoqgGJIbisi2ikQmH3p62xKGrjwKJdGQS+K10JLn+FRFFiPZ
- 8h53cGpkMct43WV+RLUR/ekoIjqNRJAvebm17giRo5+2iDQbI6SonUr+/
- SHYXYSc9KrZ+Y2lI4zG/eBaRAmtkNFn+pwLyDW8Zh8QvGdFWOLXjDHuOO g==;
-X-CSE-ConnectionGUID: 2MpY3IbyQNaZgVNduGNtEg==
-X-CSE-MsgGUID: bUFmHAmuSAKo4xopkBtTdA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="32296873"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="32296873"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 05:13:34 -0700
-X-CSE-ConnectionGUID: tvI3Z97CSJm7G2szylSnsw==
-X-CSE-MsgGUID: 6yK8c5v2TtuBLtpL+zYG2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="40118824"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.164])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 05:13:31 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: animesh.manna@intel.com, mika.kahola@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v7 18/18] Revert "drm/i915/psr: Disable early transport by
- default"
-Date: Tue, 11 Jun 2024 15:12:43 +0300
-Message-Id: <20240611121243.3366990-19-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240611121243.3366990-1-jouni.hogander@intel.com>
-References: <20240611121243.3366990-1-jouni.hogander@intel.com>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D1210E603;
+ Tue, 11 Jun 2024 12:28:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?Send_vrr_vsync_params_whne_vrr_is_enabled?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Jun 2024 12:28:08 -0000
+Message-ID: <171810888823.67160.11520367117589106799@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240611120151.147778-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20240611120151.147778-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,34 +37,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit f3c2031db7dfdf470a2d9bf3bd1efa6edfa72d8d.
+== Series Details ==
 
-We want to notice possible issues faced with PSR2 Region Early Transport as
-early as possible -> let's revert patch disabling Region Early Transport by
-default. Also eDP 1.5 Panel Replay requires Early Transport.
+Series: drm/i915/display: Send vrr vsync params whne vrr is enabled
+URL   : https://patchwork.freedesktop.org/series/134714/
+State : warning
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
- 1 file changed, 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ac37b2084390..8270fe849cc6 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3213,9 +3213,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 	if (HAS_PSR(dev_priv) && intel_dp_is_edp(intel_dp))
- 		intel_dp->psr.source_support = true;
- 
--	/* Disable early transport for now */
--	intel_dp->psr.debug |= I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
--
- 	/* Set link_standby x link_off defaults */
- 	if (DISPLAY_VER(dev_priv) < 12)
- 		/* For new platforms up to TGL let's respect VBT back again */
--- 
-2.34.1
+Error: dim checkpatch failed
+711332181393 drm/i915/display: Send vrr vsync params whne vrr is enabled
+-:26: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#26: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:236:
++	if (intel_dp_as_sdp_supported(intel_dp) &&
++			crtc_state->vrr.enable) {
+
+total: 0 errors, 0 warnings, 1 checks, 9 lines checked
+
 
