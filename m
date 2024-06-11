@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7336B903B4E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 14:01:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D49A903B72
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 14:05:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2E2F10E5CD;
-	Tue, 11 Jun 2024 12:01:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A09EF10E5FF;
+	Tue, 11 Jun 2024 12:05:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fIAb/7zs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OaXXK8Wv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8EA710E5CD
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 12:01:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59C6710E600
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 12:05:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718107303; x=1749643303;
+ t=1718107529; x=1749643529;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=rBuqlP5eyGPouS0O7CkY4umcamRyxaQEzWKyyjp8fpU=;
- b=fIAb/7zsW8rrnb51R1twpvzzxJsxXQByW1U7NUCqdMQGDfONAsmvWAfw
- SG59wAERpP3dFM8vPiosS6uv1lYaz41lcDp4ODfSFpqL5GB51Qy0Ukycn
- UKzF8l3j7cPc8EQ8zrIE94NPHRHS/6AIdvRPeqRP7Wm1dg238cZIMvLnH
- jWe6lRb7f2fMsSlxIYcTFvbYVq42Mug+GEKKCKXZnQ1UaFIrpz7bC/XKB
- H50+UgP1aEMEtc13jWebPXlxXg7rWiKwPW9xAz7KNB7VB49o0oE4pSVcW
- YpX9hRkHsiphhd8YwGjhPafUvoelKiREmWBRqZgl4bQ+ddioWrGhYa4NC w==;
-X-CSE-ConnectionGUID: WYUQEVPcRUiQHPeiBRkbsg==
-X-CSE-MsgGUID: Tc7WLPWcTKOT0khFvDxV7Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="37333190"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="37333190"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 05:01:42 -0700
-X-CSE-ConnectionGUID: q0smoTbfSZq/hBdiPdOAig==
-X-CSE-MsgGUID: 8b3pimg1QsOkH54XumB+WA==
+ bh=DTMrIgPdMlEMBXYD+V/luChBYFM2NmDJNoOTMOM3VrM=;
+ b=OaXXK8WvVTfTCgXeKqwZMqnqRIjbYS1ac3u81unsH3Y59AaH+8ZIJrKk
+ OQlfNYre/OyDWep6ZOcf/i0z7qO5+/d21hRoFz5vD4uj2Iy9SQiALSJc1
+ hP4Ca4Rvlqx96Y66YevPDfJoL49S8RsjWmGhVef+8Vk3Axw2rhhtl6iF1
+ 6NqUxMzDtMgySfieogdoXp1i0mbEhN6gsLbznUtnsyH6ysgNe1bfoFSXp
+ N3NPO8Ibu4RfSo1wCGRKvkxnB/QMxoL9q6d/skvPCUFlhWIJ/zU3diYYz
+ w5Hmd5Jo+lxzMmv9bSVOyxW4EPEkXsSkrW1ZmfnJ287ZdZ0iXBiAy8XS3 g==;
+X-CSE-ConnectionGUID: 4dA7fmA3SxyakANcq7epog==
+X-CSE-MsgGUID: vaGc/lSnQN6XWhvfU4OQwg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="14606414"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="14606414"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 05:05:16 -0700
+X-CSE-ConnectionGUID: ohc0wSkPSYWzkYwAHMsLZQ==
+X-CSE-MsgGUID: 5AANyzraRgyZND23Cgy4zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39355093"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39493897"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa010.jf.intel.com with ESMTP; 11 Jun 2024 05:01:42 -0700
+ by orviesa009.jf.intel.com with ESMTP; 11 Jun 2024 05:05:15 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com
 Subject: [PATCH] drm/i915/display: Send vrr vsync params whne vrr is enabled
-Date: Tue, 11 Jun 2024 17:31:51 +0530
-Message-ID: <20240611120151.147778-1-mitulkumar.ajitkumar.golani@intel.com>
+Date: Tue, 11 Jun 2024 17:35:24 +0530
+Message-ID: <20240611120525.148042-1-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -78,7 +78,7 @@ Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 05f67dc9d98d..ec3a68577356 100644
+index 05f67dc9d98d..dc9cf7ddafe9 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
 @@ -232,7 +232,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
@@ -87,7 +87,7 @@ index 05f67dc9d98d..ec3a68577356 100644
  
 -	if (intel_dp_as_sdp_supported(intel_dp)) {
 +	if (intel_dp_as_sdp_supported(intel_dp) &&
-+			crtc_state->vrr.enable) {
++	    crtc_state->vrr.enable) {
  		crtc_state->vrr.vsync_start =
  			(crtc_state->hw.adjusted_mode.crtc_vtotal -
  			 crtc_state->hw.adjusted_mode.vsync_start);
