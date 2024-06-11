@@ -2,63 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528FB903DA3
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 980D8903D71
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:33:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABD9610E657;
-	Tue, 11 Jun 2024 13:39:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBAF310E095;
+	Tue, 11 Jun 2024 13:33:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dV2EcTz6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EwFPqmCD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBE2A10E654;
- Tue, 11 Jun 2024 13:39:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB4A810E095
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:33:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718113175; x=1749649175;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=SHwuFHzzuuY/Z4NVxhj+TjLfZsXMqwNT+yZ7Pw0xkQ4=;
- b=dV2EcTz6DqcsDNee0VVXBrYx6rLVDHQUwQTnGQzoH+PEJ7hLMkT4EspP
- j3t8UrdvO1mDIBZ1QESiqH3N2suBLyy1wm3j/GA3oIOKJ7mrdqmuwN94a
- 0l2i3i8VYH+0h47mprdELEEei8lqZzVIDriT0x0hjY+rOUQkX831kAb/4
- FGU4owAs+aqts9L6OgeuyTjV53MpZ+Lt74YYJ0Ba47aA1qmFUkYEq4Z2X
- u8Izjl15tpnlGkWWH3VfeqYBrYPGE0Gu3J4hPi9WqLZceyvEaQ6bnOwWj
- LEEp2UYjQq6qWBwnUBKW1v8gno/MpyIhiUvu69RnjdDonYJ4qYgHucvO+ A==;
-X-CSE-ConnectionGUID: G4Dt85E1Rg+TTkHA9/0mgg==
-X-CSE-MsgGUID: Fz593zY0SrGcx4EUclUtUA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="25495680"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="25495680"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 06:32:04 -0700
-X-CSE-ConnectionGUID: Lo+7YCVNTAWxXNdxeSRLVg==
-X-CSE-MsgGUID: +11mErGHS7aByOpCpVDqtQ==
+ t=1718112828; x=1749648828;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W9AbJ+JD2y1mg915W7spurrhgIv/4oveKHPgx+/jslQ=;
+ b=EwFPqmCDYPNLogmZlaLP+N9tnqjtkg7KDxaquy+/Y9uHE1pEYY2OMmk0
+ Rl6IaLSnt36pV57au+dqeZNC/yrztVjYRgTHDFk7K0o8Ls6TIlczlhbAH
+ Tc15xPCiNht4FkAeDZgPtsit+fD8rJvB0IfkeZ85HadH3FC9vpOuK4adp
+ gECwlkQA4DOBSBKVX/1kP9lK7oGenhvF75dmunzHgcwVKdAw68N8RdsvV
+ nXPa3lSd446KMxCeBJTMHZjI72EdHYEiZYFUEkDKBtirQJ7cyf6RIXyM5
+ /B/Mn4DzS48YnPJGSn0p9Z4DQ8Y2hXe2zegGCUMq87CwWhY8mldUAJ4oo A==;
+X-CSE-ConnectionGUID: KsM2rDWIRUGgUj3Nq6YjKA==
+X-CSE-MsgGUID: 4RofxAuCTECZyaXKZEyxHA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018217"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018217"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2024 06:33:47 -0700
+X-CSE-ConnectionGUID: R/fcB/M6QhqW92iY69Up0Q==
+X-CSE-MsgGUID: mv+o/ddeQTeWHDFjgd/ZYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="76901248"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.250])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 06:32:01 -0700
-Date: Tue, 11 Jun 2024 15:31:57 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- John Harrison <John.C.Harrison@intel.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/gt/uc: Evaluate GuC priority within locks
-Message-ID: <ZmhRzRa9axjlaIl3@ashyti-mobl2.lan>
-References: <20240606001702.59005-1-andi.shyti@linux.intel.com>
- <185a4d70-4f1b-4b95-acc2-d2e26cb0052b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421348"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:33:45 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 11 Jun 2024 16:33:44 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/11] drm/i915/dsb: DSB prep stuff
+Date: Tue, 11 Jun 2024 16:33:33 +0300
+Message-ID: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <185a4d70-4f1b-4b95-acc2-d2e26cb0052b@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,66 +66,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniele,
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-thanks for checking this patch.
+More prep work extracted from my upcoming DSB based plane
+programming series.
 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > index 0eaa1064242c..1181043bc5e9 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > @@ -4267,13 +4267,18 @@ static void guc_bump_inflight_request_prio(struct i915_request *rq,
-> >   	u8 new_guc_prio = map_i915_prio_to_guc_prio(prio);
-> >   	/* Short circuit function */
-> > -	if (prio < I915_PRIORITY_NORMAL ||
-> > -	    rq->guc_prio == GUC_PRIO_FINI ||
-> > -	    (rq->guc_prio != GUC_PRIO_INIT &&
-> > -	     !new_guc_prio_higher(rq->guc_prio, new_guc_prio)))
-> > +	if (prio < I915_PRIORITY_NORMAL)
-> >   		return;
-> 
-> My understanding was that those checks are purposely done outside of the
-> lock to avoid taking it when not needed and that the early exit is not racy.
-> In particular:
-> 
-> - GUC_PRIO_FINI is the end state for the priority, so if we're there that's
-> not changing anymore and therefore the lock is not required.
+Ville Syrjälä (11):
+  drm/i915: Extract intel_crtc_arm_vblank_event()
+  drm/i915: Add async flip tracepoint
+  drm/i915: Add flip done tracepoint
+  drm/i915: Introduce intel_mode_vdisplay()
+  drm/i915: Pass the whole atomic state to intel_color_prepare_commit()
+  drm/i915/dsb: Plumb the whole atomic state into intel_dsb_prepare()
+  drm/i915/dsb: Convert the DSB code to use intel_display rather than
+    i915
+  drm/i915/dsb: Add i915.enable_dsb module parameter
+  drm/i915: Drop useless intel_dsb.h include
+  drm/i915/dsb: Document that the ATS fault bits are for mtl+
+  drm/i915/dsb: Try to document that DSB_STATUS bit 16 is level
+    triggered
 
-yeah... then I thought that the lock should either remove it
-completely or have everything inside the lock.
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 22 +++++--
+ .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++
+ drivers/gpu/drm/i915/display/intel_color.c    | 13 ++--
+ drivers/gpu/drm/i915/display/intel_color.h    |  3 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 30 +++++----
+ drivers/gpu/drm/i915/display/intel_crtc.h     |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 12 ++--
+ .../gpu/drm/i915/display/intel_display_irq.c  |  1 +
+ .../drm/i915/display/intel_display_params.c   |  3 +
+ .../drm/i915/display/intel_display_params.h   |  1 +
+ .../drm/i915/display/intel_display_trace.h    | 50 ++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 66 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_dsb.h      |  4 +-
+ drivers/gpu/drm/i915/display/intel_dsb_regs.h |  6 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 10 +++
+ drivers/gpu/drm/i915/display/intel_vblank.h   |  1 +
+ 16 files changed, 165 insertions(+), 62 deletions(-)
 
-> - the priority only goes up with the bumping, so if new_guc_prio_higher() is
-> false that's not going to be changed by a different thread running at the
-> same time and increasing the priority even more.
-> 
-> I think there is still a possible race is if new_guc_prio_higher() is true
-> when we check it outside the lock but then changes before we execute the
-> protected chunk inside, so a fix would still be required for that.
+-- 
+2.44.2
 
-This is the reason why I made the patch :-)
-
-> All this said, I don't really have anything against moving the whole thing
-> inside the lock since this isn't on a critical path, just wanted to point
-> out that it's not all strictly required.
-> 
-> One nit on the code below.
-> 
-> >   	spin_lock(&ce->guc_state.lock);
-> > +
-> > +	if (rq->guc_prio == GUC_PRIO_FINI)
-> > +		goto exit;
-> > +
-> > +	if (rq->guc_prio != GUC_PRIO_INIT &&
-> > +	    !new_guc_prio_higher(rq->guc_prio, new_guc_prio))
-> > +		goto exit;
-> > +
-> >   	if (rq->guc_prio != GUC_PRIO_FINI) {
-> 
-> You're now checking for rq->guc_prio == GUC_PRIO_FINI inside the lock, so no
-> need to check it again here as it can't have changed.
-
-True, will resend.
-
-Thanks, Daniele!
-
-Andi
