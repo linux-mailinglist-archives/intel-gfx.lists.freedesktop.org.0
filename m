@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29378903D79
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 104F7903D7D
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:34:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 894AB10E652;
-	Tue, 11 Jun 2024 13:34:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8FE10E64E;
+	Tue, 11 Jun 2024 13:34:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y62RxvMm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HrK1DAHa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9145510E64A
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:34:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E77E10E64E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:34:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718112843; x=1749648843;
+ t=1718112846; x=1749648846;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=XCRzM9XPpqi0lw9ACnGdfupNQo+PvjfNToJ58QR2UhU=;
- b=Y62RxvMmxZFJRErZpT0Fi5ch4OK5GzWPxobVKMWh0ErstGSpjlb3NFig
- 0HYSo4ncAkCLbBOSo5wDA2rEi7WzdVOPe7SsIM7uEGI6IxMoHWvBU7DhC
- SzSJj0764lC5kzpHBoc1vve01HdZ4ZpuYRzkk83j6bGDEH/GeA/px1Tki
- QSlurXttK4gHpDvcnTKbb0+NoProxKZEMxv0NVfBJZZwL0d2FRPnrOVPz
- PVN6+d7H+G3Nsx3ZLepT+WUNGDlyGUznNbEq6WMjvZ9v1/L6gsVUCr361
- kMXmSv2KXU83Tg3NFMuon1Rd3Bo6cHTZ1ATaTiIEZbxQim0pZtDqgPWUA Q==;
-X-CSE-ConnectionGUID: jpPM6A5xQXe7/mP0FD2CfA==
-X-CSE-MsgGUID: qPbPik/4Q6G75Lf5q0K78Q==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018239"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018239"
+ bh=mgYBQaCADcjdFslNxW0FRSm8VtNSJZgHVG5AVj5HF/Q=;
+ b=HrK1DAHa3cqd983nn95x5i14MlukUxWbfGMe6omkHDeyG3T70H1nU61s
+ V9mui7lKiB658O08dQEYR1Wu4lEfLKU1CDKkDI9k+lsKU/VtDNDnsnDZ+
+ k58Q+AG2oy4k+Wud8q2KPYYWkVc4JAJotHh8alM/dnDfoT23rjj/lYjgW
+ y1ohHM2OxFnu6qpkpaUImMrTGJHDKHJ+tYib8FO9DKDmqcffZsAJaSEhb
+ n0ONA82ZxlBwa/HO7KzH5J+miGDbS0NYz/895lYtQrH2OBPvNnCcjnuBI
+ KFXGb755/PMK+GIP3kKJeQHLkBbFl5v7FgcRT8u/eN6sm/5xfWRtrP/0c g==;
+X-CSE-ConnectionGUID: XIdYOwMJQfmaJjb5r2o7zg==
+X-CSE-MsgGUID: QflzqKS0RryU+QstJzWgng==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018240"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018240"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 06:34:03 -0700
-X-CSE-ConnectionGUID: rZ/KEXbaQcOjPIexUBg2+w==
-X-CSE-MsgGUID: 3Gf+6Un9SuGoXyYZKEXdIg==
+ 11 Jun 2024 06:34:06 -0700
+X-CSE-ConnectionGUID: byJ3+KSkRGeU3JOqVfw/hA==
+X-CSE-MsgGUID: mDBce+tbRu+1Xe6197kZZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421413"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421426"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:34:01 -0700
+ by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:34:04 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Jun 2024 16:34:00 +0300
+ Tue, 11 Jun 2024 16:34:03 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 06/11] drm/i915/dsb: Plumb the whole atomic state into
- intel_dsb_prepare()
-Date: Tue, 11 Jun 2024 16:33:39 +0300
-Message-ID: <20240611133344.30673-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH 07/11] drm/i915/dsb: Convert the DSB code to use intel_display
+ rather than i915
+Date: Tue, 11 Jun 2024 16:33:40 +0300
+Message-ID: <20240611133344.30673-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
 References: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
@@ -71,84 +71,161 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The DSB code will need to examine both the old and new crtc
-states. Pass in the whole atomic state so we can dig up
-what we need.
+The future direction will be to mainly use intel_display
+rather than i915 in the display code. Start on that path
+for the DSB code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c |  2 +-
- drivers/gpu/drm/i915/display/intel_dsb.c   | 11 +++++++----
- drivers/gpu/drm/i915/display/intel_dsb.h   |  4 +++-
- 3 files changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 52 ++++++++++++------------
+ 1 file changed, 26 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 8cfd497c2a92..7ac50aacec73 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1919,7 +1919,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
- 	if (!crtc_state->pre_csc_lut && !crtc_state->post_csc_lut)
- 		return;
- 
--	crtc_state->dsb = intel_dsb_prepare(crtc_state, INTEL_DSB_0, 1024);
-+	crtc_state->dsb = intel_dsb_prepare(state, crtc, INTEL_DSB_0, 1024);
- 	if (!crtc_state->dsb)
- 		return;
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 5180b9722046..8ae7bcfa8403 100644
+index 8ae7bcfa8403..bee48ac419ce 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -434,7 +434,8 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+@@ -85,10 +85,10 @@ struct intel_dsb {
+ static bool assert_dsb_has_room(struct intel_dsb *dsb)
+ {
+ 	struct intel_crtc *crtc = dsb->crtc;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc->base.dev);
+ 
+ 	/* each instruction is 2 dwords */
+-	return !drm_WARN(&i915->drm, dsb->free_pos > dsb->size - 2,
++	return !drm_WARN(display->drm, dsb->free_pos > dsb->size - 2,
+ 			 "[CRTC:%d:%s] DSB %d buffer overflow\n",
+ 			 crtc->base.base.id, crtc->base.name, dsb->id);
+ }
+@@ -96,25 +96,25 @@ static bool assert_dsb_has_room(struct intel_dsb *dsb)
+ static void intel_dsb_dump(struct intel_dsb *dsb)
+ {
+ 	struct intel_crtc *crtc = dsb->crtc;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc->base.dev);
+ 	int i;
+ 
+-	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] DSB %d commands {\n",
++	drm_dbg_kms(display->drm, "[CRTC:%d:%s] DSB %d commands {\n",
+ 		    crtc->base.base.id, crtc->base.name, dsb->id);
+ 	for (i = 0; i < ALIGN(dsb->free_pos, 64 / 4); i += 4)
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    " 0x%08x: 0x%08x 0x%08x 0x%08x 0x%08x\n", i * 4,
+ 			    intel_dsb_buffer_read(&dsb->dsb_buf, i),
+ 			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 1),
+ 			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 2),
+ 			    intel_dsb_buffer_read(&dsb->dsb_buf, i + 3));
+-	drm_dbg_kms(&i915->drm, "}\n");
++	drm_dbg_kms(display->drm, "}\n");
+ }
+ 
+-static bool is_dsb_busy(struct drm_i915_private *i915, enum pipe pipe,
++static bool is_dsb_busy(struct intel_display *display, enum pipe pipe,
+ 			enum intel_dsb_id dsb_id)
+ {
+-	return intel_de_read_fw(i915, DSB_CTRL(pipe, dsb_id)) & DSB_STATUS_BUSY;
++	return intel_de_read_fw(display, DSB_CTRL(pipe, dsb_id)) & DSB_STATUS_BUSY;
+ }
+ 
+ static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
+@@ -343,27 +343,27 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 			      int dewake_scanline)
+ {
+ 	struct intel_crtc *crtc = dsb->crtc;
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+ 	u32 tail;
+ 
+ 	tail = dsb->free_pos * 4;
+-	if (drm_WARN_ON(&dev_priv->drm, !IS_ALIGNED(tail, CACHELINE_BYTES)))
++	if (drm_WARN_ON(display->drm, !IS_ALIGNED(tail, CACHELINE_BYTES)))
+ 		return;
+ 
+-	if (is_dsb_busy(dev_priv, pipe, dsb->id)) {
+-		drm_err(&dev_priv->drm, "[CRTC:%d:%s] DSB %d is busy\n",
++	if (is_dsb_busy(display, pipe, dsb->id)) {
++		drm_err(display->drm, "[CRTC:%d:%s] DSB %d is busy\n",
+ 			crtc->base.base.id, crtc->base.name, dsb->id);
+ 		return;
+ 	}
+ 
+-	intel_de_write_fw(dev_priv, DSB_CTRL(pipe, dsb->id),
++	intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id),
+ 			  ctrl | DSB_ENABLE);
+ 
+-	intel_de_write_fw(dev_priv, DSB_CHICKEN(pipe, dsb->id),
++	intel_de_write_fw(display, DSB_CHICKEN(pipe, dsb->id),
+ 			  dsb_chicken(crtc));
+ 
+-	intel_de_write_fw(dev_priv, DSB_HEAD(pipe, dsb->id),
++	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
+ 			  intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf));
+ 
+ 	if (dewake_scanline >= 0) {
+@@ -371,7 +371,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 
+ 		hw_dewake_scanline = intel_crtc_scanline_to_hw(crtc, dewake_scanline);
+ 
+-		intel_de_write_fw(dev_priv, DSB_PMCTRL(pipe, dsb->id),
++		intel_de_write_fw(display, DSB_PMCTRL(pipe, dsb->id),
+ 				  DSB_ENABLE_DEWAKE |
+ 				  DSB_SCANLINE_FOR_DEWAKE(hw_dewake_scanline));
+ 
+@@ -380,12 +380,12 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 		 * or close to racing past the target scanline.
+ 		 */
+ 		diff = dewake_scanline - intel_get_crtc_scanline(crtc);
+-		intel_de_write_fw(dev_priv, DSB_PMCTRL_2(pipe, dsb->id),
++		intel_de_write_fw(display, DSB_PMCTRL_2(pipe, dsb->id),
+ 				  (diff >= 0 && diff < 5 ? DSB_FORCE_DEWAKE : 0) |
+ 				  DSB_BLOCK_DEWAKE_EXTENSION);
+ 	}
+ 
+-	intel_de_write_fw(dev_priv, DSB_TAIL(pipe, dsb->id),
++	intel_de_write_fw(display, DSB_TAIL(pipe, dsb->id),
+ 			  intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + tail);
+ }
+ 
+@@ -407,21 +407,21 @@ void intel_dsb_commit(struct intel_dsb *dsb,
+ void intel_dsb_wait(struct intel_dsb *dsb)
+ {
+ 	struct intel_crtc *crtc = dsb->crtc;
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+ 
+-	if (wait_for(!is_dsb_busy(dev_priv, pipe, dsb->id), 1)) {
++	if (wait_for(!is_dsb_busy(display, pipe, dsb->id), 1)) {
+ 		u32 offset = intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf);
+ 
+-		intel_de_write_fw(dev_priv, DSB_CTRL(pipe, dsb->id),
++		intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id),
+ 				  DSB_ENABLE | DSB_HALT);
+ 
+-		drm_err(&dev_priv->drm,
++		drm_err(display->drm,
+ 			"[CRTC:%d:%s] DSB %d timed out waiting for idle (current head=0x%x, head=0x%x, tail=0x%x)\n",
+ 			crtc->base.base.id, crtc->base.name, dsb->id,
+-			intel_de_read_fw(dev_priv, DSB_CURRENT_HEAD(pipe, dsb->id)) - offset,
+-			intel_de_read_fw(dev_priv, DSB_HEAD(pipe, dsb->id)) - offset,
+-			intel_de_read_fw(dev_priv, DSB_TAIL(pipe, dsb->id)) - offset);
++			intel_de_read_fw(display, DSB_CURRENT_HEAD(pipe, dsb->id)) - offset,
++			intel_de_read_fw(display, DSB_HEAD(pipe, dsb->id)) - offset,
++			intel_de_read_fw(display, DSB_TAIL(pipe, dsb->id)) - offset);
+ 
+ 		intel_dsb_dump(dsb);
+ 	}
+@@ -429,7 +429,7 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+ 	/* Attempt to reset it */
+ 	dsb->free_pos = 0;
+ 	dsb->ins_start_offset = 0;
+-	intel_de_write_fw(dev_priv, DSB_CTRL(pipe, dsb->id), 0);
++	intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id), 0);
+ }
  
  /**
-  * intel_dsb_prepare() - Allocate, pin and map the DSB command buffer.
-- * @crtc_state: the CRTC state
-+ * @state: the atomic state
-+ * @crtc: the CRTC
-  * @dsb_id: the DSB engine to use
-  * @max_cmds: number of commands we need to fit into command buffer
-  *
-@@ -444,12 +445,14 @@ void intel_dsb_wait(struct intel_dsb *dsb)
-  * Returns:
-  * DSB context, NULL on failure
-  */
--struct intel_dsb *intel_dsb_prepare(const struct intel_crtc_state *crtc_state,
-+struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
-+				    struct intel_crtc *crtc,
- 				    enum intel_dsb_id dsb_id,
- 				    unsigned int max_cmds)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
- 	intel_wakeref_t wakeref;
- 	struct intel_dsb *dsb;
- 	unsigned int size;
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 36fdb130af6e..bb42749f2ea4 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -10,6 +10,7 @@
- 
- #include "i915_reg_defs.h"
- 
-+struct intel_atomic_state;
- struct intel_crtc;
- struct intel_crtc_state;
- struct intel_dsb;
-@@ -22,7 +23,8 @@ enum intel_dsb_id {
- 	I915_MAX_DSBS,
- };
- 
--struct intel_dsb *intel_dsb_prepare(const struct intel_crtc_state *crtc_state,
-+struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
-+				    struct intel_crtc *crtc,
- 				    enum intel_dsb_id dsb_id,
- 				    unsigned int max_cmds);
- void intel_dsb_finish(struct intel_dsb *dsb);
 -- 
 2.44.2
 
