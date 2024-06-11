@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95259903D80
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE44903D82
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2024 15:34:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55EE10E655;
-	Tue, 11 Jun 2024 13:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE45910E656;
+	Tue, 11 Jun 2024 13:34:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MMJu3mFL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LYbfhGT+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D78A710E64F
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:34:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9892410E64D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Jun 2024 13:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718112852; x=1749648852;
+ t=1718112854; x=1749648854;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=EHGWvPDsaZHfyKoOJx1OCv8qft4aNurMkzc+ggF7iEY=;
- b=MMJu3mFLwT7SlT4EJdktbdUmX1V5l+WTnSKWt1kKFCUmO2GMS20jI4q4
- CLfidQlsH2tLFIWmBbXyUt8COTiaVOXIBp1AFauDp24X7SRyox/meSnHp
- hr7eoJb01pDGygBPk01xjxbNoIX9X6zVU6H757k7T5WySRAkjyk8dtjgx
- b1wYtg2XRxTlw+A1xIWdOz6dRjjNq2/qGcv2790vqUhOojAZSwonrI0Id
- xRHHte2QZXI36ljghxX9A/posUABdAIt7HbkbDlfdwXQ+IHxvQgSXPf+j
- y4rvIviDMUUwxCdGXhigoqFW9CafSWLyOIp84zJJ9BlKhd42GnazS3MB3 w==;
-X-CSE-ConnectionGUID: vmGch0L2S4SH9PJg+FudAg==
-X-CSE-MsgGUID: K2jxOvMdQ52NG97X7Rkd4g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018243"
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018243"
+ bh=ra7aSyiq3clf7at0XaiCmvtZUqIe7t5yZbN2oxGLqHc=;
+ b=LYbfhGT+xzNMhVRsxB+WSpKSCCQEInzXb0qy6YlX5X2MGkAptaOosZAv
+ 5K0/JU0eX8M6eLnuZCkFTAEBI64LQd4je+GH+VUMFnaZyfPx2qOhs9+uX
+ Pm4Rck/Nv83Z4FK2mtEVJhTlnZImpvjZ9V+fGp2Wpl+YELMHK3Qw4GxYH
+ GfYBi9O0C3OpmE/DXY6MXuQ4NZEYq9k/vR4B4S3cocjaQ8BJLOwueVFry
+ foXeNHOCuZ/ON+wqJT4Zu9cSxEd60uIzSemI0w5ySi8GgmJj5bM6oWHkZ
+ cFhLt7tM8YSJv2BaUjqV8ztMBSETm7FHYpw+/WCQE+DbpRdU3l+RbLKoV g==;
+X-CSE-ConnectionGUID: /w9smXOSTPuN9acmqjhUOg==
+X-CSE-MsgGUID: vrfa6IozRdKYSMkRIiJ9Tg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11099"; a="12018244"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="12018244"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2024 06:34:12 -0700
-X-CSE-ConnectionGUID: +iaJo4PMQdKr6xr62rY0ag==
-X-CSE-MsgGUID: 68H9ZKjCQ4WCTqMTshF5zQ==
+ 11 Jun 2024 06:34:14 -0700
+X-CSE-ConnectionGUID: SWZNw52USTiq40e1aUHL0Q==
+X-CSE-MsgGUID: 8wg9skZCRrGoiXgKywIjLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421452"
+X-IronPort-AV: E=Sophos;i="6.08,230,1712646000"; d="scan'208";a="39421460"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:34:10 -0700
+ by fmviesa008.fm.intel.com with SMTP; 11 Jun 2024 06:34:12 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Jun 2024 16:34:09 +0300
+ Tue, 11 Jun 2024 16:34:12 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 09/11] drm/i915: Drop useless intel_dsb.h include
-Date: Tue, 11 Jun 2024 16:33:42 +0300
-Message-ID: <20240611133344.30673-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH 10/11] drm/i915/dsb: Document that the ATS fault bits are for
+ mtl+
+Date: Tue, 11 Jun 2024 16:33:43 +0300
+Message-ID: <20240611133344.30673-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
 References: <20240611133344.30673-1-ville.syrjala@linux.intel.com>
@@ -70,25 +71,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_crtc.c doens't need intel_dsb.h so don't include it.
+The ATS faults have something to do with some new iommu stuff
+on mtl+. Document that the relevant DSB interrupt bits aren't
+valid for earlier platforms.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dsb_regs.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 6831060a792a..a2b8953d7283 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -24,7 +24,6 @@
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
- #include "intel_drrs.h"
--#include "intel_dsb.h"
- #include "intel_dsi.h"
- #include "intel_fifo_underrun.h"
- #include "intel_pipe_crc.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb_regs.h b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
+index 210e2665441d..9c2664ff519a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
+@@ -51,12 +51,12 @@
+ #define   DSB_RESET_SM_STATE_MASK	REG_GENMASK(5, 4)
+ #define   DSB_RUN_SM_STATE_MASK		REG_GENMASK(2, 0)
+ #define DSB_INTERRUPT(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x28)
+-#define   DSB_ATS_FAULT_INT_EN		REG_BIT(20)
++#define   DSB_ATS_FAULT_INT_EN		REG_BIT(20) /* mtl+ */
+ #define   DSB_GTT_FAULT_INT_EN		REG_BIT(19)
+ #define   DSB_RSPTIMEOUT_INT_EN		REG_BIT(18)
+ #define   DSB_POLL_ERR_INT_EN		REG_BIT(17)
+ #define   DSB_PROG_INT_EN		REG_BIT(16)
+-#define   DSB_ATS_FAULT_INT_STATUS	REG_BIT(4)
++#define   DSB_ATS_FAULT_INT_STATUS	REG_BIT(4) /* mtl+ */
+ #define   DSB_GTT_FAULT_INT_STATUS	REG_BIT(3)
+ #define   DSB_RSPTIMEOUT_INT_STATUS	REG_BIT(2)
+ #define   DSB_POLL_ERR_INT_STATUS	REG_BIT(1)
 -- 
 2.44.2
 
