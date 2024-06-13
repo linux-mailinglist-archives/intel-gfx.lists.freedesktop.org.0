@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2809068D2
+	by mail.lfdr.de (Postfix) with ESMTPS id 02F369068D1
 	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 11:33:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8D510E9DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C62210E9D5;
 	Thu, 13 Jun 2024 09:33:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y3vcu2k5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y0S4OQxS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B7CE10E9D6
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jun 2024 09:33:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A848110E9DC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Jun 2024 09:33:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718271183; x=1749807183;
+ t=1718271185; x=1749807185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CWfTgGYrUY/gvlPR6TTlrWUe3EfJ8ujytzl2BlFnBsc=;
- b=Y3vcu2k5BvcjuIB8+Rn85k8uDE52+aUk0Zf6QAvPW0qwJuJThwsCpets
- eek0Jb9KxgSZiuJbblQMPVoBx8jzjIWN7In2scHGQp+q8EitvCH2CFMx5
- K+tmQCllhMb+dCYFKcgfO6p5KQJBE/GGBihcym02kzvJtX17jSYGqwgos
- Lqo/ZWnFSlre8H8XdFR16tf/MLy6JhdNMN+P335XYW0GcMmAXqabr/YNw
- x8XBJ78FvbUwKo7naF8wOYkviM8o/CDF/3o5tau8qJhXzehMx0wo1nsLn
- 4ufah8mJhEXZFNjL1/8i4CCqi3hB1EjysicYP6rt97YGKGAkI104DLpHZ A==;
-X-CSE-ConnectionGUID: 3e1M1IPYSUOX1dHCMALDBg==
-X-CSE-MsgGUID: mRN9IBWyT3iB/VjyoBiQDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14802490"
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14802490"
+ bh=u36BSFAUAVSq6QQ/B/vpNxPi4LsRxYBDeB3RdSW0SX8=;
+ b=Y0S4OQxSuJh0Rfp3jXL/SBlhdYJ+7O4rHW3aicjgLpy/WMMQuWnY7Npy
+ uwfGTwLWUSOtpvnb66fL1RvpjCy455bElPg190xg5CcG40e1t0qaIE6/J
+ dTi/Eb/Vdu6RYc+R4KAx4mvXE15OQyYdm6JHKsYRy5JebsEQUV5Qspehw
+ bCUQZONDzNpgq/dwTP2WPu9jdTpouSZ3HCZDvALaAtnxyH1aOo+Vk7xqW
+ pfIwOasuQ3lJy1gWpIrATtme7SJgeD8hgJDzhR4Xi1bBP0fL4rlT80L7V
+ uaNfLH8OjhT03Ov8RLVkG6bGsq8gdaGbwI/+oolGEfiyaQm4baAu7hRoF g==;
+X-CSE-ConnectionGUID: MrT3Wm7mTZq1oyipYIOZvg==
+X-CSE-MsgGUID: 8HjSEXyyS9Cv1t4xtVsWPA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="14802495"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="14802495"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 02:33:03 -0700
-X-CSE-ConnectionGUID: H9a9SJXPRPisYhvTbj30bw==
-X-CSE-MsgGUID: Ywdx1t2ZT9KF7rQok7nlCA==
+ 13 Jun 2024 02:33:04 -0700
+X-CSE-ConnectionGUID: PZsuU8l8SEyfhG+kbiPW1A==
+X-CSE-MsgGUID: m3pNjXf7RW2UqxUDjhBQVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="44523383"
+X-IronPort-AV: E=Sophos;i="6.08,234,1712646000"; d="scan'208";a="44523387"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.31])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 02:33:01 -0700
+ 13 Jun 2024 02:33:03 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v8 07/20] drm/i915/psr: Disable PSR/Panel Replay on sink side
- for PSR only
-Date: Thu, 13 Jun 2024 12:32:26 +0300
-Message-Id: <20240613093239.1293629-8-jouni.hogander@intel.com>
+Subject: [PATCH v8 08/20] drm/i915/psr: Add new debug bit to disable Panel
+ Replay
+Date: Thu, 13 Jun 2024 12:32:27 +0300
+Message-Id: <20240613093239.1293629-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240613093239.1293629-1-jouni.hogander@intel.com>
 References: <20240613093239.1293629-1-jouni.hogander@intel.com>
@@ -72,39 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enabling/disabling Panel Replay on sink side has to be done before link
-training. We can't disable it in sink side on PSR disable.
+Add new debug bit to be used with i915_edp_psr_debug debugfs
+interface. This can be used to disable Panel Replay.
 
-Fixes: 88ae6c65ecdb ("drm/i915/psr: Unify panel replay enable/disable sink")
+v2: ensure that fastset is performed when the bit changes
+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c           | 11 ++++++++---
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 4ee760bd26f7..b8980e8b4c36 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1697,6 +1697,7 @@ struct intel_psr {
+ #define I915_PSR_DEBUG_ENABLE_SEL_FETCH		0x4
+ #define I915_PSR_DEBUG_IRQ			0x10
+ #define I915_PSR_DEBUG_SU_REGION_ET_DISABLE	0x20
++#define I915_PSR_DEBUG_PANEL_REPLAY_DISABLE	0x40
+ 
+ 	u32 debug;
+ 	bool sink_support;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 27cf330d13e2..7300d04806cd 100644
+index 7300d04806cd..cd77cfeba679 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1974,13 +1974,13 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 	}
+@@ -249,7 +249,8 @@ static bool panel_replay_global_enabled(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
  
- 	/* Disable PSR on Sink */
--	drm_dp_dpcd_writeb(&intel_dp->aux,
--			   intel_dp->psr.panel_replay_enabled ?
--			   PANEL_REPLAY_CONFIG : DP_PSR_EN_CFG, 0);
-+	if (!intel_dp->psr.panel_replay_enabled) {
-+		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
+-	if (i915->display.params.enable_psr != -1)
++	if ((i915->display.params.enable_psr != -1) ||
++	    (intel_dp->psr.debug & I915_PSR_DEBUG_PANEL_REPLAY_DISABLE))
+ 		return false;
+ 	return true;
+ }
+@@ -2788,11 +2789,13 @@ int intel_psr_debug_set(struct intel_dp *intel_dp, u64 val)
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	const u32 mode = val & I915_PSR_DEBUG_MODE_MASK;
+-	const u32 disable_bits = val & I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
++	const u32 disable_bits = val & (I915_PSR_DEBUG_SU_REGION_ET_DISABLE |
++					I915_PSR_DEBUG_PANEL_REPLAY_DISABLE);
+ 	u32 old_mode, old_disable_bits;
+ 	int ret;
  
--	if (!intel_dp->psr.panel_replay_enabled &&
--	    intel_dp->psr.sel_update_enabled)
--		drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, 0);
-+		if (intel_dp->psr.sel_update_enabled)
-+			drm_dp_dpcd_writeb(&intel_dp->aux,
-+					   DP_RECEIVER_ALPM_CONFIG, 0);
-+	}
+ 	if (val & ~(I915_PSR_DEBUG_IRQ | I915_PSR_DEBUG_SU_REGION_ET_DISABLE |
++		    I915_PSR_DEBUG_PANEL_REPLAY_DISABLE |
+ 		    I915_PSR_DEBUG_MODE_MASK) ||
+ 	    mode > I915_PSR_DEBUG_ENABLE_SEL_FETCH) {
+ 		drm_dbg_kms(&dev_priv->drm, "Invalid debug mask %llx\n", val);
+@@ -2805,7 +2808,9 @@ int intel_psr_debug_set(struct intel_dp *intel_dp, u64 val)
  
- 	intel_dp->psr.enabled = false;
- 	intel_dp->psr.panel_replay_enabled = false;
+ 	old_mode = intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK;
+ 	old_disable_bits = intel_dp->psr.debug &
+-		I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
++		(I915_PSR_DEBUG_SU_REGION_ET_DISABLE |
++		 I915_PSR_DEBUG_PANEL_REPLAY_DISABLE);
++
+ 	intel_dp->psr.debug = val;
+ 
+ 	/*
 -- 
 2.34.1
 
