@@ -2,19 +2,19 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD719069F5
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 12:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 798A89069F4
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 12:28:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B4210EA17;
-	Thu, 13 Jun 2024 10:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0850B10EA08;
+	Thu, 13 Jun 2024 10:28:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="r3k1+xJY";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="e0uQweyT";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="clmV4emR";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="KxyzfoQp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5862A10EA11;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA9FA10EA12;
  Thu, 13 Jun 2024 10:28:26 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
@@ -23,21 +23,21 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=r0ec/2247Gx7VIiLEY3/25TsR/Rd3HiyDAk6kFtNqn0=;
- b=r3k1+xJYcFSzvC0HM5DcNgErM9HjAIjEMyddW/PKcCFq6YArpFkruCbpEpamuFtuXaP2p0
- RdKMXwMDWCNwKLskm6X6kI/Ie8hcs+U1NWirFZtn8KoHFmQ5QdQyx+fQIZNrYNfQgfjqDp
- kYr3EJQGCJ+9ocgu9/ayCOQGPgUHvErLxIy3B6PMHsD3zB6jYf/3g/vImsMt5hSzgFddxy
- DPQGYrahfLBmbndc7bSp0/0YpTc5HXQXwHwR+3ngJcd7Y/LQ41wNjVyekpZTIBAhlrVZ/+
- hkT5UcaTxMatj9gXqTxIdsd6uQKPIRoMCvEpdSLVgazUc8K4H+i/bHA/Sn6gZw==
+ bh=oFkT7c54ylLrE7OJgrLojn/6KU06qll74prdvYfGu4w=;
+ b=clmV4emRAwlT4gaLDWpnFx+w1e2iuFgL1JJWVXCR7/t5+UVClwoMNT4kc9tKzmOzorkjoJ
+ sR1nHACMKw1DevHex+jws6suDtJiHXJtVzBTMJGyHZp4y3tHo4MU4fDWL1y5CquJup/Gso
+ LRygIv5GmuHaUqkOcOxP2azeHJOgHLv/EqXfMk3KKQ1eYNa4yBHrpmbccQsAgGj0WVEAj+
+ pPESgTf0IMy5HTebydUdHw/FkqTZgvhlaRBB4eEC09M5y20WzA2F2JK5CPOpmlev8zBPRg
+ GBRQCgLHxyofk7210tMYQq9QwEJngrz9r/Fi3Ow//RCrQAMBEP7NBAqA/topxA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
  s=2020e; t=1718274505;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=r0ec/2247Gx7VIiLEY3/25TsR/Rd3HiyDAk6kFtNqn0=;
- b=e0uQweyTDztP3v9FbxDkJ0NFZbugMgN3wL7qRxBezvCzUCIRSjM6gXz3nDJM0RYe4DQaa5
- 0KpRjqNddOs4uyAg==
+ bh=oFkT7c54ylLrE7OJgrLojn/6KU06qll74prdvYfGu4w=;
+ b=KxyzfoQpifKgh4CR1rbYa0rxZA2I8jhKjK9EkYAlrKoSBdOa/tRumWJD9ThBzGVJoVxnng
+ uawjefY8B+b83ZBw==
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -45,10 +45,11 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Thomas Gleixner <tglx@linutronix.de>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH v2 3/8] drm/i915: Don't check for atomic context on PREEMPT_RT
-Date: Thu, 13 Jun 2024 12:20:20 +0200
-Message-ID: <20240613102818.4056866-4-bigeasy@linutronix.de>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Luca Abeni <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>
+Subject: [PATCH v2 4/8] drm/i915: Disable tracing points on PREEMPT_RT
+Date: Thu, 13 Jun 2024 12:20:21 +0200
+Message-ID: <20240613102818.4056866-5-bigeasy@linutronix.de>
 In-Reply-To: <20240613102818.4056866-1-bigeasy@linutronix.de>
 References: <20240613102818.4056866-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
@@ -68,39 +69,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The !in_atomic() check in _wait_for_atomic() triggers on PREEMPT_RT
-because the uncore::lock is a spinlock_t and does not disable
-preemption or interrupts.
+Luca Abeni reported this:
+| BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
+| CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
+| Call Trace:
+|  rt_spin_lock+0x3f/0x50
+|  gen6_read32+0x45/0x1d0 [i915]
+|  g4x_get_vblank_counter+0x36/0x40 [i915]
+|  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
 
-Changing the uncore:lock to a raw_spinlock_t doubles the worst case
-latency on an otherwise idle testbox during testing. Therefore I'm
-currently unsure about changing this.
+The tracing events use trace_intel_pipe_update_start() among other events
+use functions acquire spinlock_t locks which are transformed into
+sleeping locks on PREEMPT_RT. A few trace points use
+intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
+might acquire a sleeping locks on PREEMPT_RT.
+At the time the arguments are evaluated within trace point, preemption
+is disabled and so the locks must not be acquired on PREEMPT_RT.
 
-Link: https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutroni=
-x.de/
+Based on this I don't see any other way than disable trace points on
+PREMPT_RT.
+
+Reported-by: Luca Abeni <lucabe72@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 ---
- drivers/gpu/drm/i915/i915_utils.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
+ drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_=
-utils.h
-index 06ec6ceb61d57..2ca54bc235925 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -274,7 +274,7 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_=
-jiffies, int to_wait_ms)
- #define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/g=
+pu/drm/i915/display/intel_display_trace.h
+index 49a5e6d9dc0d7..b15c999d91e68 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_trace.h
++++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+@@ -9,6 +9,10 @@
+ #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+ #define __INTEL_DISPLAY_TRACE_H__
 =20
- /* If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false. =
-*/
--#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT)
-+#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT) && !de=
-fined(CONFIG_PREEMPT_RT)
- # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomi=
-c())
- #else
- # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
++#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
++#define NOTRACE
++#endif
++
+ #include <linux/string_helpers.h>
+ #include <linux/types.h>
+ #include <linux/tracepoint.h>
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_=
+trace.h
+index ce1cbee1b39dd..247e7d9448d70 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -6,6 +6,10 @@
+ #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+ #define _I915_TRACE_H_
+=20
++#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
++#define NOTRACE
++#endif
++
+ #include <linux/stringify.h>
+ #include <linux/types.h>
+ #include <linux/tracepoint.h>
 --=20
 2.45.1
 
