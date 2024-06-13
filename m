@@ -2,66 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75EDE906AF5
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 13:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C073906C35
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 13:48:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35CA910EA43;
-	Thu, 13 Jun 2024 11:26:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XasnU4Xg";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C17110EA3F;
+	Thu, 13 Jun 2024 11:48:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1022010EA3F;
- Thu, 13 Jun 2024 11:26:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718277992; x=1749813992;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=DI4xzYNkB0VECoqPzxVIwPHU0XAMRO514hn2ZEc+w/Q=;
- b=XasnU4Xg1gwDGjeIr68ALTICOSJc9sIiZGZ94EA3KqrBhj8+9TDDbotF
- Kp0dExvcw2Fd/X/w1axuJGsM+mBKJyig+3UasuDmLgHXR9F4cxvQc3D3i
- mBJ4rGzPF0yDEbXIvxB18e/K0RxRtI+KBcso05EWJ+TRQJif6oEi42Ial
- JzgpuXpVTyXsI6QbxcltIIrNnPxio3ByAKjmHDyDFet69+793V1DR/cSU
- fEfdIeFi5wbXKvWQ8nwqx+a17V176OKxakbPeaT5XZX5un4mn/RJ02nZN
- ugyH02t23sFsjdIpEx8S1hSVDC/0OtvcmCs6T1NRhnK0RnPagMiFug0MX A==;
-X-CSE-ConnectionGUID: gcAc2RmvT3GPuxET+4YRsA==
-X-CSE-MsgGUID: KZy/Ur9oSAKadM62BACOVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11101"; a="25668319"
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="25668319"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 04:26:31 -0700
-X-CSE-ConnectionGUID: XFcQDc5cQKO/mY4BJwdKPw==
-X-CSE-MsgGUID: 9v8b7O+kQSmyL6eQjEUjxg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,235,1712646000"; d="scan'208";a="40178313"
-Received: from opintica-mobl1 (HELO fedora) ([10.245.244.70])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 04:26:28 -0700
-Date: Thu, 13 Jun 2024 13:26:15 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <ZmrXV0FoBb8M0c6J@fedora>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E02810E07B;
+ Thu, 13 Jun 2024 11:48:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2193703123513927745=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_CMRR_patch_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Jun 2024 11:48:32 -0000
+Message-ID: <171827931257.73458.9492474151471275400@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240613051317.345753-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20240613051317.345753-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,74 +36,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============2193703123513927745==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This week's drm-xe-fixes PR.
+== Series Details ==
 
-Except from the maintainer update, nothing major, really.
-The "drm/xe: move disable_c6 call" required some conflict
-resolution (both visible and silent) which was also
-reflected in a conflict with drm-next when building
-drm-tip.
+Series: CMRR patch fixes
+URL   : https://patchwork.freedesktop.org/series/134801/
+State : success
 
-drm-xe-fixes-2024-06-13:
-Core Changes:
-- Xe Maintainers update to MAINTAINERS file.
+== Summary ==
 
-Driver Changes:
-- Use correct forcewake assertions.
-- Assert that VRAM provisioning is only done on DGFX.
-- Flush render caches before user-fence signalling on all engines.
-- Move the disable_c6 call since it was sometimes never called.
+CI Bug Log - changes from CI_DRM_14932 -> Patchwork_134801v1
+====================================================
 
-Thanks,
-Thomas
+Summary
+-------
 
-The following changes since commit 0698ff57bf327d9a5735a898f78161b8dada160b:
+  **SUCCESS**
 
-  drm/xe/pf: Update the LMTT when freeing VF GT config (2024-06-04 16:31:24 +0200)
+  No regressions found.
 
-are available in the Git repository at:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/index.html
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-06-13
+Participating hosts (43 -> 36)
+------------------------------
 
-for you to fetch changes up to 2470b141bfae2b9695b5b6823e3b978b22d33dde:
+  Additional (2): bat-arlh-2 fi-bsw-n3050 
+  Missing    (9): bat-kbl-2 fi-snb-2520m fi-glk-j4005 fi-kbl-8809g fi-elk-e7500 fi-cfl-8109u bat-jsl-3 bat-jsl-1 bat-arls-2 
 
-  drm/xe: move disable_c6 call (2024-06-13 12:35:13 +0200)
+Known issues
+------------
 
-----------------------------------------------------------------
-Core Changes:
-- Xe Maintainers update to MAINTAINERS file.
+  Here are the changes found in Patchwork_134801v1 that come from known issues:
 
-Driver Changes:
-- Use correct forcewake assertions.
-- Assert that VRAM provisioning is only done on DGFX.
-- Flush render caches before user-fence signalling on all engines.
-- Move the disable_c6 call since it was sometimes never called.
+### IGT changes ###
 
-----------------------------------------------------------------
-Andrzej Hajda (1):
-      drm/xe: flush engine buffers before signalling user fence on all engines
+#### Issues hit ####
 
-Michal Wajdeczko (1):
-      drm/xe/pf: Assert LMEM provisioning is done only on DGFX
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] +19 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
 
-Oded Gabbay (1):
-      MAINTAINERS: update Xe driver maintainers
+  
+#### Possible fixes ####
 
-Riana Tauro (2):
-      drm/xe/xe_gt_idle: use GT forcewake domain assertion
-      drm/xe: move disable_c6 call
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-8:
+    - {bat-mtlp-9}:       [FAIL][2] ([i915#10979]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14932/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-8.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-8.html
 
-Thomas Hellström (1):
-      MAINTAINERS: Update Xe driver maintainers
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
- MAINTAINERS                                |  2 +-
- drivers/gpu/drm/xe/xe_gt_idle.c            |  9 ++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 15 +++++++++++++--
- drivers/gpu/drm/xe/xe_guc_pc.c             |  6 ------
- drivers/gpu/drm/xe/xe_ring_ops.c           | 18 ++++++++++++++++--
- 5 files changed, 38 insertions(+), 12 deletions(-)
+  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
+  [i915#10197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197
+  [i915#10200]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200
+  [i915#10206]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206
+  [i915#10208]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208
+  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
+  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
+  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
+  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
+  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
+  [i915#10979]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10979
+  [i915#11009]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009
+  [i915#11060]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11060
+  [i915#11343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343
+  [i915#11345]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11345
+  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
+  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
+  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
+  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
+  [i915#6121]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121
+  [i915#8585]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8585
+  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_14932 -> Patchwork_134801v1
+
+  CI-20190529: 20190529
+  CI_DRM_14932: dea4e8a3a0889d80afc874513cca0d7f7a25bbcd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7884: 3c02edb64e6feef931f1df9898d129b0a92a39eb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_134801v1: dea4e8a3a0889d80afc874513cca0d7f7a25bbcd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/index.html
+
+--===============2193703123513927745==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>CMRR patch fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134801/">https://patchwork.freedesktop.org/series/134801/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_14932 -&gt; Patchwork_134801v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 36)</h2>
+<p>Additional (2): bat-arlh-2 fi-bsw-n3050 <br />
+  Missing    (9): bat-kbl-2 fi-snb-2520m fi-glk-j4005 fi-kbl-8809g fi-elk-e7500 fi-cfl-8109u bat-jsl-3 bat-jsl-1 bat-arls-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_134801v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@random-engines:<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-8:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14932/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-8.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10979">i915#10979</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134801v1/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-8.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_14932 -&gt; Patchwork_134801v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_14932: dea4e8a3a0889d80afc874513cca0d7f7a25bbcd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7884: 3c02edb64e6feef931f1df9898d129b0a92a39eb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_134801v1: dea4e8a3a0889d80afc874513cca0d7f7a25bbcd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2193703123513927745==--
