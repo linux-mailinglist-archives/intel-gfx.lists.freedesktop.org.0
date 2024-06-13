@@ -2,20 +2,20 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798A89069F4
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 12:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 328539069FA
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2024 12:28:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0850B10EA08;
-	Thu, 13 Jun 2024 10:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA6C10EA1D;
+	Thu, 13 Jun 2024 10:28:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="clmV4emR";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="KxyzfoQp";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="QqbLWHkr";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="myP2UD1Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA9FA10EA12;
- Thu, 13 Jun 2024 10:28:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 541F910EA0C;
+ Thu, 13 Jun 2024 10:28:28 +0000 (UTC)
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
  s=2020; t=1718274505;
@@ -23,21 +23,21 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=oFkT7c54ylLrE7OJgrLojn/6KU06qll74prdvYfGu4w=;
- b=clmV4emRAwlT4gaLDWpnFx+w1e2iuFgL1JJWVXCR7/t5+UVClwoMNT4kc9tKzmOzorkjoJ
- sR1nHACMKw1DevHex+jws6suDtJiHXJtVzBTMJGyHZp4y3tHo4MU4fDWL1y5CquJup/Gso
- LRygIv5GmuHaUqkOcOxP2azeHJOgHLv/EqXfMk3KKQ1eYNa4yBHrpmbccQsAgGj0WVEAj+
- pPESgTf0IMy5HTebydUdHw/FkqTZgvhlaRBB4eEC09M5y20WzA2F2JK5CPOpmlev8zBPRg
- GBRQCgLHxyofk7210tMYQq9QwEJngrz9r/Fi3Ow//RCrQAMBEP7NBAqA/topxA==
+ bh=QUNTO0UfshytQe0+4dGuteCafLmjnva+iste5V2OTf4=;
+ b=QqbLWHkr1BWTqXGIiBPt+yLA8vCXKFgte4XcdwO2UKml4VtY2bjhgMh7a49NCiTLkHdePi
+ Hv9Q8+GV7fj8GuNt//nUVHuKt7gyMnb0v8O4yFNDolTmo9wCRCHPSdWksloON++K84mL6o
+ 4tZwzQzMFK0pwHBdFzAeeqB6bVio2cXipU5qS2KDKkUwFudKMmYc8qxULAlJgxKRuI1X0F
+ oWvfEldCovxUWs62mAPL6HPA3Ffzh32S2sjc84CSqf4Qcql+znS/qotyNYD2X73wWakKju
+ WIzoYcGMF3dWAfL6ZofjdA7aakkn53aIaNxQ4f9qbodSqkiBvbPPScR1kR069Q==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
  s=2020e; t=1718274505;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=oFkT7c54ylLrE7OJgrLojn/6KU06qll74prdvYfGu4w=;
- b=KxyzfoQpifKgh4CR1rbYa0rxZA2I8jhKjK9EkYAlrKoSBdOa/tRumWJD9ThBzGVJoVxnng
- uawjefY8B+b83ZBw==
+ bh=QUNTO0UfshytQe0+4dGuteCafLmjnva+iste5V2OTf4=;
+ b=myP2UD1ZqWtoCezXP9b6/jBpepupf8ZB6So7XzXlGTeY8I9yDsOcP+a7NdK7rmS30wBqhl
+ mP1xeRzwKlIkJmDg==
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -46,10 +46,12 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Thomas Gleixner <tglx@linutronix.de>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Luca Abeni <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>
-Subject: [PATCH v2 4/8] drm/i915: Disable tracing points on PREEMPT_RT
-Date: Thu, 13 Jun 2024 12:20:21 +0200
-Message-ID: <20240613102818.4056866-5-bigeasy@linutronix.de>
+ Clark Williams <williams@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 5/8] drm/i915/gt: Use spin_lock_irq() instead of
+ local_irq_disable() + spin_lock()
+Date: Thu, 13 Jun 2024 12:20:22 +0200
+Message-ID: <20240613102818.4056866-6-bigeasy@linutronix.de>
 In-Reply-To: <20240613102818.4056866-1-bigeasy@linutronix.de>
 References: <20240613102818.4056866-1-bigeasy@linutronix.de>
 MIME-Version: 1.0
@@ -69,66 +71,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Luca Abeni reported this:
-| BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-| CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-| Call Trace:
-|  rt_spin_lock+0x3f/0x50
-|  gen6_read32+0x45/0x1d0 [i915]
-|  g4x_get_vblank_counter+0x36/0x40 [i915]
-|  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
+execlists_dequeue() is invoked from a function which uses
+local_irq_disable() to disable interrupts so the spin_lock() behaves
+like spin_lock_irq().
+This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
+the same as spin_lock_irq().
 
-The tracing events use trace_intel_pipe_update_start() among other events
-use functions acquire spinlock_t locks which are transformed into
-sleeping locks on PREEMPT_RT. A few trace points use
-intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-might acquire a sleeping locks on PREEMPT_RT.
-At the time the arguments are evaluated within trace point, preemption
-is disabled and so the locks must not be acquired on PREEMPT_RT.
+execlists_dequeue_irq() and execlists_dequeue() has each one caller
+only. If intel_engine_cs::active::lock is acquired and released with the
+_irq suffix then it behaves almost as if execlists_dequeue() would be
+invoked with disabled interrupts. The difference is the last part of the
+function which is then invoked with enabled interrupts.
+I can't tell if this makes a difference. From looking at it, it might
+work to move the last unlock at the end of the function as I didn't find
+anything that would acquire the lock again.
 
-Based on this I don't see any other way than disable trace points on
-PREMPT_RT.
-
-Reported-by: Luca Abeni <lucabe72@gmail.com>
-Cc: Steven Rostedt <rostedt@goodmis.org>
+Reported-by: Clark Williams <williams@redhat.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
- drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
- 2 files changed, 8 insertions(+)
+ .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/g=
-pu/drm/i915/display/intel_display_trace.h
-index 49a5e6d9dc0d7..b15c999d91e68 100644
---- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -9,6 +9,10 @@
- #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
- #define __INTEL_DISPLAY_TRACE_H__
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers=
+/gpu/drm/i915/gt/intel_execlists_submission.c
+index 21829439e6867..ed29a2dd6ea0a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1303,7 +1303,7 @@ static void execlists_dequeue(struct intel_engine_cs =
+*engine)
+ 	 * and context switches) submission.
+ 	 */
 =20
-+#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-+#define NOTRACE
-+#endif
-+
- #include <linux/string_helpers.h>
- #include <linux/types.h>
- #include <linux/tracepoint.h>
-diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_=
-trace.h
-index ce1cbee1b39dd..247e7d9448d70 100644
---- a/drivers/gpu/drm/i915/i915_trace.h
-+++ b/drivers/gpu/drm/i915/i915_trace.h
-@@ -6,6 +6,10 @@
- #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
- #define _I915_TRACE_H_
+-	spin_lock(&sched_engine->lock);
++	spin_lock_irq(&sched_engine->lock);
 =20
-+#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-+#define NOTRACE
-+#endif
-+
- #include <linux/stringify.h>
- #include <linux/types.h>
- #include <linux/tracepoint.h>
+ 	/*
+ 	 * If the queue is higher priority than the last
+@@ -1403,7 +1403,7 @@ static void execlists_dequeue(struct intel_engine_cs =
+*engine)
+ 				 * Even if ELSP[1] is occupied and not worthy
+ 				 * of timeslices, our queue might be.
+ 				 */
+-				spin_unlock(&sched_engine->lock);
++				spin_unlock_irq(&sched_engine->lock);
+ 				return;
+ 			}
+ 		}
+@@ -1429,7 +1429,7 @@ static void execlists_dequeue(struct intel_engine_cs =
+*engine)
+=20
+ 		if (last && !can_merge_rq(last, rq)) {
+ 			spin_unlock(&ve->base.sched_engine->lock);
+-			spin_unlock(&engine->sched_engine->lock);
++			spin_unlock_irq(&engine->sched_engine->lock);
+ 			return; /* leave this for another sibling */
+ 		}
+=20
+@@ -1591,7 +1591,7 @@ static void execlists_dequeue(struct intel_engine_cs =
+*engine)
+ 	 */
+ 	sched_engine->queue_priority_hint =3D queue_prio(sched_engine);
+ 	i915_sched_engine_reset_on_empty(sched_engine);
+-	spin_unlock(&sched_engine->lock);
++	spin_unlock_irq(&sched_engine->lock);
+=20
+ 	/*
+ 	 * We can skip poking the HW if we ended up with exactly the same set
+@@ -1617,13 +1617,6 @@ static void execlists_dequeue(struct intel_engine_cs=
+ *engine)
+ 	}
+ }
+=20
+-static void execlists_dequeue_irq(struct intel_engine_cs *engine)
+-{
+-	local_irq_disable(); /* Suspend interrupts across request submission */
+-	execlists_dequeue(engine);
+-	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
+-}
+-
+ static void clear_ports(struct i915_request **ports, int count)
+ {
+ 	memset_p((void **)ports, NULL, count);
+@@ -2478,7 +2471,7 @@ static void execlists_submission_tasklet(struct taskl=
+et_struct *t)
+ 	}
+=20
+ 	if (!engine->execlists.pending[0]) {
+-		execlists_dequeue_irq(engine);
++		execlists_dequeue(engine);
+ 		start_timeslice(engine);
+ 	}
+=20
 --=20
 2.45.1
 
