@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E22908740
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 11:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FC9908741
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 11:23:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB1AF10ECA0;
-	Fri, 14 Jun 2024 09:22:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F6610ECA4;
+	Fri, 14 Jun 2024 09:22:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J+KBgjJV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nKPcjjUq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0391E10ECA0
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2024 09:22:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D820410ECA2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2024 09:22:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718356972; x=1749892972;
+ t=1718356976; x=1749892976;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VFKzk5f9lJmQ3rHyNkzhx0zjZRAvF+FzwRvNgp4z+m0=;
- b=J+KBgjJVNTsgoD/5dJlWB72UmWmq8HVmZ0Fgpd/gl0/cUrpUXt4YsztY
- aZZJhPrKx9TNcJYVhHE94i57OTuk6rZ3j5Iz71VV9AU2Yu2iZDSMySNA7
- rnn4j8qK0lZ5lGThYtqq7SQcfKOd+28lqDm51UQhlBfZwVFF3Ip8aXhzD
- 7nqI1YalNYzRGtS6ZPZBVTmozBAcsw3VXF4w+5KP1nzjs4RRqsIDi7D/T
- AJa0UYJHEkCqYhZkbDSNPIMG49vhlmKXWRglQb27Rmc8bmMMm0v+QnM4F
- Vjnyr5VxKl9eXaqrN65CQ2kkOVT3Js6WpZD+TTxYhMZ2FOIxZFh5fhmvN w==;
-X-CSE-ConnectionGUID: +hVzZGd6Qke08AuIvNCr9Q==
-X-CSE-MsgGUID: AfOxdLfHR0CwZAAvtXzRJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="40651060"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40651060"
+ bh=8/lxolgb09PpCsn4R5BrzZ3bkK0BpPc/QMdYYuBFqcw=;
+ b=nKPcjjUqyyj5odcDEsTYSP4TclOfZss4NVKJJFjXjYGe0dqR/vUUwl2/
+ uyxTzfu43h8xUcAOCRLcln1c3NXshY7WBKTpk3tMyCGOO4vaqFXSNiKXr
+ Cmhbq2vuoLFLX6mOqJlVxekzPQFFsts1Ic4Q1EtkxgCUOiFUAQb/9JvNO
+ GQw2/DdhbeWu9idMELFyLw3vYLllrT4QW9+SalcytPq3Db35Xst4Du7TD
+ U3/91ij0ilMP0rZyDLIBOg4P/CFs1FwXr4q4cHtFBBdlTCpJsfHy20koQ
+ RoYkWlBnHgzQD56SVcWqlG50/6RRdHHYyoICDRT+5GBav6Q28pqOm+v+j w==;
+X-CSE-ConnectionGUID: 3QArW6ngQ7armgOtsl7s2g==
+X-CSE-MsgGUID: ubzH2IlzTnqaIyMqKaPoBg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="40651061"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40651061"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 02:22:51 -0700
-X-CSE-ConnectionGUID: OpDDPJeqSu2t3jg8hi5usQ==
-X-CSE-MsgGUID: rBespoBJRsKTQNAz8Ox2uA==
+ 14 Jun 2024 02:22:56 -0700
+X-CSE-ConnectionGUID: Bf3wwL/+QYiSU6J07mRGlg==
+X-CSE-MsgGUID: taGsbUxXSX+L0VkBFgfvQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="44986794"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="44986809"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.221])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 02:22:49 -0700
+ 14 Jun 2024 02:22:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, jani.nikula@intel.com,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [CI 01/11] drm/i915/wm: rename intel_get_cxsr_latency ->
- pnv_get_cxsr_latency
-Date: Fri, 14 Jun 2024 12:22:29 +0300
-Message-Id: <7d4e3c9a4220ff84af2741e5cd7bb62d1b4f2a44.1718356614.git.jani.nikula@intel.com>
+Cc: ville.syrjala@linux.intel.com,
+	jani.nikula@intel.com
+Subject: [CI 02/11] drm/i915/wm: clarify logging on not finding CxSR latency
+ config
+Date: Fri, 14 Jun 2024 12:22:30 +0300
+Message-Id: <6333cb0675c531e971e829105f1ecfc4d71bdc6b.1718356614.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1718356614.git.jani.nikula@intel.com>
 References: <cover.1718356614.git.jani.nikula@intel.com>
@@ -72,47 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Clarify that the function is specific to PNV, making subsequent changes
-slightly easier to grasp.
+Clarify and unify the logging on not finding PNV CxSR latency
+config.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Just let the i915->fsb_freq == 0 || i915->mem_freq == 0 case go through
+the table instead of checking for it separately.
+
+v2: Do not check for fsb == 0 || mem == 0 separately (Matt)
+
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index a12765d9e9e4..ba4a38be7545 100644
+index ba4a38be7545..f70ac2f06968 100644
 --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
 +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -70,7 +70,7 @@ static const struct cxsr_latency cxsr_latency_table[] = {
- 	{0, 1, 400, 800, 6042, 36042, 6584, 36584},    /* DDR3-800 SC */
- };
- 
--static const struct cxsr_latency *intel_get_cxsr_latency(struct drm_i915_private *i915)
-+static const struct cxsr_latency *pnv_get_cxsr_latency(struct drm_i915_private *i915)
+@@ -74,9 +74,6 @@ static const struct cxsr_latency *pnv_get_cxsr_latency(struct drm_i915_private *
  {
  	int i;
  
-@@ -637,7 +637,7 @@ static void pnv_update_wm(struct drm_i915_private *dev_priv)
- 	u32 reg;
- 	unsigned int wm;
+-	if (i915->fsb_freq == 0 || i915->mem_freq == 0)
+-		return NULL;
+-
+ 	for (i = 0; i < ARRAY_SIZE(cxsr_latency_table); i++) {
+ 		const struct cxsr_latency *latency = &cxsr_latency_table[i];
+ 		bool is_desktop = !IS_MOBILE(i915);
+@@ -88,7 +85,9 @@ static const struct cxsr_latency *pnv_get_cxsr_latency(struct drm_i915_private *
+ 			return latency;
+ 	}
  
--	latency = intel_get_cxsr_latency(dev_priv);
-+	latency = pnv_get_cxsr_latency(dev_priv);
+-	drm_dbg_kms(&i915->drm, "Unknown FSB/MEM found, disable CxSR\n");
++	drm_dbg_kms(&i915->drm,
++		    "Could not find CxSR latency for DDR%s, FSB %u MHz, MEM %u MHz\n",
++		    i915->is_ddr3 ? "3" : "2", i915->fsb_freq, i915->mem_freq);
+ 
+ 	return NULL;
+ }
+@@ -639,8 +638,7 @@ static void pnv_update_wm(struct drm_i915_private *dev_priv)
+ 
+ 	latency = pnv_get_cxsr_latency(dev_priv);
  	if (!latency) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Unknown FSB/MEM found, disable CxSR\n");
-@@ -4029,7 +4029,7 @@ void i9xx_wm_init(struct drm_i915_private *dev_priv)
- 		g4x_setup_wm_latency(dev_priv);
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "Unknown FSB/MEM found, disable CxSR\n");
++		drm_dbg_kms(&dev_priv->drm, "Unknown FSB/MEM, disabling CxSR\n");
+ 		intel_set_memory_cxsr(dev_priv, false);
+ 		return;
+ 	}
+@@ -4030,12 +4028,7 @@ void i9xx_wm_init(struct drm_i915_private *dev_priv)
  		dev_priv->display.funcs.wm = &g4x_wm_funcs;
  	} else if (IS_PINEVIEW(dev_priv)) {
--		if (!intel_get_cxsr_latency(dev_priv)) {
-+		if (!pnv_get_cxsr_latency(dev_priv)) {
- 			drm_info(&dev_priv->drm,
- 				 "failed to find known CxSR latency "
- 				 "(found ddr%s fsb freq %d, mem freq %d), "
+ 		if (!pnv_get_cxsr_latency(dev_priv)) {
+-			drm_info(&dev_priv->drm,
+-				 "failed to find known CxSR latency "
+-				 "(found ddr%s fsb freq %d, mem freq %d), "
+-				 "disabling CxSR\n",
+-				 (dev_priv->is_ddr3 == 1) ? "3" : "2",
+-				 dev_priv->fsb_freq, dev_priv->mem_freq);
++			drm_info(&dev_priv->drm,  "Unknown FSB/MEM, disabling CxSR\n");
+ 			/* Disable CxSR and never update its watermark again */
+ 			intel_set_memory_cxsr(dev_priv, false);
+ 			dev_priv->display.funcs.wm = &nop_funcs;
 -- 
 2.39.2
 
