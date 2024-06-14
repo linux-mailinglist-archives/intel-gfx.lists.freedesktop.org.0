@@ -2,116 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E33F908C93
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 15:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEA7908C9F
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 15:42:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA63E10ED26;
-	Fri, 14 Jun 2024 13:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11FCA10E04E;
+	Fri, 14 Jun 2024 13:42:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="t+3+5ycK";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ryMEyGPY";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="CW8MLZ7F";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Mrb2B2sD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxVb6/sY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 120D210E746;
- Fri, 14 Jun 2024 13:36:04 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 96C9E20542;
- Fri, 14 Jun 2024 13:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718372162; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XFRnd/qhxpPmZMYDORcvPtacx3rDNVTHZIGudbT0oRI=;
- b=t+3+5ycKXBTaVbcfR0TQE40/enH13hPXxkDrXgniq+YvyJsaiTLE6iF6uHOlxNsOaE/5eo
- 2Or5AEZwMkFns80o9ZXs/Gi0uUpnYWBDSWQtJP1eAFd7DwtVW1w++QX7JoalLbfnA9iNPN
- J4z8JPwVDMRmXbhLsc+ONJbcOPn5LvU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718372162;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XFRnd/qhxpPmZMYDORcvPtacx3rDNVTHZIGudbT0oRI=;
- b=ryMEyGPYsDscFnDO6WZCTVfChulzukEDO354XesdUB1Ba7PhwsHxwMMUBeS7dUwAxLU/63
- QqB0EpVprbgY2pAQ==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=CW8MLZ7F;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=Mrb2B2sD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1718372161; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XFRnd/qhxpPmZMYDORcvPtacx3rDNVTHZIGudbT0oRI=;
- b=CW8MLZ7F3RDCLXX4GsI1Jjb/3I/Dc6+v9NLB8ci+JkVmR1Wg7Twezjn/dZakYOFuRq6jw+
- H4/ChZMynxJoETKcIuGAyHA7iceNckvlGIsFvWDB6sgMGpiUClIBLhFfY93SBBooFUliJv
- 4uttpYEMMAp8bVhiaYupXPvN01ksRhQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1718372161;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=XFRnd/qhxpPmZMYDORcvPtacx3rDNVTHZIGudbT0oRI=;
- b=Mrb2B2sD3qoVGMzRwOYOOodGnHneFgSgyCmvwvy0WO/uBeFmBYnT7Xz6gv1vRx0e/VWKMi
- rcZJcxWeh2Q+//Bg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 33D2C13AB1;
- Fri, 14 Jun 2024 13:36:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id GPtPC0FHbGavPwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 14 Jun 2024 13:36:01 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- daniel@ffwll.ch, lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, ray.huang@amd.com, christian.koenig@amd.com,
- kraxel@redhat.com, airlied@redhat.com, suijingfeng@loongson.cn
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 6/6] drm/xe: Replace ttm_bo_kmap() with ttm_bo_vmap()
-Date: Fri, 14 Jun 2024 15:22:00 +0200
-Message-ID: <20240614133556.11378-7-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240614133556.11378-1-tzimmermann@suse.de>
-References: <20240614133556.11378-1-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B024410E027
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2024 13:42:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718372544; x=1749908544;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=5Hxk5LNDTypeDT3fi16gj6HX7UexZJ59z1IABQvihpo=;
+ b=nxVb6/sYisYJhgohcHuKjw2cJGSEtRLyQ+exgXDImQ82EsT8nPb7croG
+ IZmqTD6hKoHWiE7Da/PhkuAlsOhgnsH0McpsN8fqDJrDV5wyGb9I0oxjc
+ nCSyWuQIceL8kIBVfzsslOJhjBbSRbhiB8gd3zKPFBqXuoz9EwlKeZvAB
+ nvGFLYRZB9+/dNxT7ZjHCchC/8dRGHwtVTqUy66syZEOQm2u3AzWqOqh5
+ X6ohWUKEnHrWlr2AL0Q4SR2pjsOrCirCbqGOrG457Xi0JdmcHeR8IboRZ
+ P3SXm++L9jXrtp9QrdXImJdqJYx8qyDe67eIWSU2fDS82A4wuCkdbvWe5 A==;
+X-CSE-ConnectionGUID: Aa3C5OOLTZmuMWQ93bRKDQ==
+X-CSE-MsgGUID: B+HZflSBSFy8VBIWnd710A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="18177894"
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="18177894"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 06:41:54 -0700
+X-CSE-ConnectionGUID: K0w0OFb/TlypmosswSqHig==
+X-CSE-MsgGUID: syLOzVHVROa5My9YS4EZkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40429992"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.221])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2024 06:41:52 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Manna, Animesh" <animesh.manna@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>, "Hogander, Jouni" <jouni.hogander@intel.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: RE: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
+In-Reply-To: <SN7PR11MB6750B964412CEAA41264C6CBE3C62@SN7PR11MB6750.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240606082926.1816416-2-suraj.kandpal@intel.com>
+ <20240606082926.1816416-4-suraj.kandpal@intel.com>
+ <8734pqba5u.fsf@intel.com>
+ <SN7PR11MB6750B964412CEAA41264C6CBE3C62@SN7PR11MB6750.namprd11.prod.outlook.com>
+Date: Fri, 14 Jun 2024 16:41:49 +0300
+Message-ID: <874j9viqua.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 96C9E20542
-X-Spam-Score: -3.01
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCPT_COUNT_TWELVE(0.00)[16];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch,intel.com,amd.com,redhat.com,loongson.cn];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:email,suse.de:dkim];
- DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
- R_RATELIMIT(0.00)[to_ip_from(RLau4tukfh38qp3nirdnk14qe9)];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,121 +74,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the newer ttm_bo_vmap() instead of ttm_bo_kmap(). The new interface
-uses struct iomap_map, which helps with pointer setup and memcpy() ops.
-Removes a TODO item and quite a bit of workarounds from the code.
+On Mon, 10 Jun 2024, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: Re: [PATCH 2/2] drm/i915/psr: Implment WA to help reach PC10
+>> 
+>> On Thu, 06 Jun 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> > To reach PC10 when PKG_C_LATENCY is configure we must do the following
+>> > things
+>> > 1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be
+>> > entered
+>> > 2) Allow PSR2 deep sleep when DC5 can be entered
+>> > 3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
+>> > eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
+>> > not happening.
+>> >
+>> > WA: 16023497226
+>> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_psr.c | 75
+>> > +++++++++++++++++++++++-
+>> >  1 file changed, 73 insertions(+), 2 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> > b/drivers/gpu/drm/i915/display/intel_psr.c
+>> > index 6fc88f6c6b26..b22745c019df 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> > @@ -811,12 +811,81 @@ static u8 psr_compute_idle_frames(struct
+>> intel_dp *intel_dp)
+>> >  	return idle_frames;
+>> >  }
+>> >
+>> > +static bool intel_psr_check_delayed_vblank_limit(struct drm_i915_private
+>> *i915,
+>> > +						 enum transcoder
+>> cpu_transcoder) {
+>> > +	return intel_de_read(i915,
+>> > +TRANS_SET_CONTEXT_LATENCY(cpu_transcoder)) >= 6;
+>> 
+> Hi Jani,
+> Thanks for the reviews
+>
+>> Please don't use the hardware to preserve the state for you. It will get really
+>> complicated to maintain.
+>> 
+>
+> Yes wanted to calculate the delayed vblank using the following way
+> Adjusted_mode->vblank_start - adjusted_mode->vblank_end
+> But I'll need crtc_state for that and I don't see a way of deriving it
+> Specially when this function is called from intel_psr_work
+> One way could be to have this wa check function be called from 
+> Intel_psr_enable_locked and save the corresponding Booleans in
+> Intel_psr or make in  drm_i915_private
+> structure and access that when intel_psr_activate is called from
+> Intel_psr_resume and intel_psr_work.
+> Do you think that could be feasible ?
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- .../compat-i915-headers/gem/i915_gem_object.h | 17 +++-------
- drivers/gpu/drm/xe/xe_bo.c                    | 32 ++++---------------
- drivers/gpu/drm/xe/xe_bo_types.h              |  2 --
- 3 files changed, 10 insertions(+), 41 deletions(-)
+You'll be able to figure out a lot of cases up front at compute config
+time, and disable PSR beforehand.
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-index 777c20ceabab1..25ae56d700431 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-@@ -34,28 +34,19 @@ static inline bool i915_gem_object_is_userptr(const struct xe_bo *bo)
- static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
- 					  u32 ofs, u64 *ptr, u32 size)
- {
--	struct ttm_bo_kmap_obj map;
--	void *src;
--	bool is_iomem;
-+	struct iosys_map src;
- 	int ret;
- 
- 	ret = xe_bo_lock(bo, true);
- 	if (ret)
- 		return ret;
- 
--	ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
-+	ret = ttm_bo_vmap(&bo->ttm, ofs, size, &src);
- 	if (ret)
- 		goto out_unlock;
-+	iosys_map_memcpy_from(ptr, &src, ofs & ~PAGE_MASK, size);
-+	ttm_bo_vunmap(&bo->ttm, &src);
- 
--	ofs &= ~PAGE_MASK;
--	src = ttm_kmap_obj_virtual(&map, &is_iomem);
--	src += ofs;
--	if (is_iomem)
--		memcpy_fromio(ptr, (void __iomem *)src, size);
--	else
--		memcpy(ptr, src, size);
--
--	ttm_bo_kunmap(&map);
- out_unlock:
- 	xe_bo_unlock(bo);
- 	return ret;
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index a98d857ff1e5a..6158e1a959cd4 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1888,10 +1888,6 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
- 
- int xe_bo_vmap(struct xe_bo *bo)
- {
--	void *virtual;
--	bool is_iomem;
--	int ret;
--
- 	xe_bo_assert_held(bo);
- 
- 	if (!(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS))
-@@ -1900,32 +1896,16 @@ int xe_bo_vmap(struct xe_bo *bo)
- 	if (!iosys_map_is_null(&bo->vmap))
- 		return 0;
- 
--	/*
--	 * We use this more or less deprecated interface for now since
--	 * ttm_bo_vmap() doesn't offer the optimization of kmapping
--	 * single page bos, which is done here.
--	 * TODO: Fix up ttm_bo_vmap to do that, or fix up ttm_bo_kmap
--	 * to use struct iosys_map.
--	 */
--	ret = ttm_bo_kmap(&bo->ttm, 0, bo->size >> PAGE_SHIFT, &bo->kmap);
--	if (ret)
--		return ret;
--
--	virtual = ttm_kmap_obj_virtual(&bo->kmap, &is_iomem);
--	if (is_iomem)
--		iosys_map_set_vaddr_iomem(&bo->vmap, (void __iomem *)virtual);
--	else
--		iosys_map_set_vaddr(&bo->vmap, virtual);
--
--	return 0;
-+	return ttm_bo_vmap(&bo->ttm, 0, bo->size, &bo->vmap);
- }
- 
- static void __xe_bo_vunmap(struct xe_bo *bo)
- {
--	if (!iosys_map_is_null(&bo->vmap)) {
--		iosys_map_clear(&bo->vmap);
--		ttm_bo_kunmap(&bo->kmap);
--	}
-+	if (iosys_map_is_null(&bo->vmap))
-+		return;
-+
-+	ttm_bo_vunmap(&bo->ttm, &bo->vmap);
-+	iosys_map_clear(&bo->vmap);
- }
- 
- void xe_bo_vunmap(struct xe_bo *bo)
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 86422e113d396..5cba681ba73c2 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -42,8 +42,6 @@ struct xe_bo {
- 	struct drm_mm_node ggtt_node;
- 	/** @vmap: iosys map of this buffer */
- 	struct iosys_map vmap;
--	/** @ttm_kmap: TTM bo kmap object for internal use only. Keep off. */
--	struct ttm_bo_kmap_obj kmap;
- 	/** @pinned_link: link to present / evicted list of pinned BO */
- 	struct list_head pinned_link;
- #ifdef CONFIG_PROC_FS
+You'll know LNL_PKG_C_LATENCY (we seem to always configure it). You'll
+know TRANS_SET_CONTEXT_LATENCY. You'll know whether all transcoders have
+PSR enabled.
+
+I think you'll need to split the conditions, and disable PSR as early as
+possible when it should not be enabled. Then at actual enabling time,
+you'll know the conditions that already have to hold, and you can check
+fewer things.
+
+This workaround is a bummer because it's permanent. It also means we
+need to do this properly. Can't just poke at random stuff, because it'll
+be painful forever.
+
+BR,
+Jani.
+
+>
+>> > +}
+>> > +
+>> > +static bool intel_psr_is_dpkgc_configured(struct drm_i915_private
+>> > +*i915) {
+>> > +	return intel_de_read(i915, LNL_PKG_C_LATENCY) == U32_MAX;
+>> 
+>> Ditto.
+>> 
+>
+> Similar question as above only place that I can manage a state to see if it is configured or not
+> would be in drm_i915_private.
+>
+>> > +}
+>> > +
+>> > +static bool intel_psr_is_dc5_entry_possible(struct drm_i915_private
+>> > +*i915) {
+>> > +	struct intel_crtc *intel_crtc;
+>> > +	bool ret = true;
+>> > +
+>> > +	for_each_intel_crtc(&i915->drm, intel_crtc) {
+>> > +		struct intel_encoder *encoder;
+>> > +		struct drm_crtc *crtc = &intel_crtc->base;
+>> > +		enum pipe pipe = intel_crtc->pipe;
+>> > +
+>> > +		if (!crtc->active)
+>> > +			continue;
+>> > +
+>> > +		if (!(i915->display.irq.de_irq_mask[pipe] &
+>> GEN8_PIPE_VBLANK))
+>> 
+>> You have no business looking directly at that. It's for display irq code *only*.
+>> 
+>
+> Is there another way I can ensure if the vblank interrupt for the particular pipe is disabled?
+>
+>> > +			ret = false;
+>> > +
+>> > +		for_each_encoder_on_crtc(&i915->drm, crtc, encoder) {
+>> > +			struct intel_dp *intel_dp = enc_to_intel_dp(_encoder);
+>> > +			struct intel_psr *psr = &intel_dp->psr;
+>> > +
+>> > +			if (!psr->enabled)
+>> > +				ret = false;
+>> > +		}
+>> > +	}
+>> > +
+>> > +	return ret;
+>> > +}
+>> > +
+>> > +static bool wa_16023497226_check(struct intel_dp *intel_dp, bool
+>> > +psr1) {
+>> > +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>> > +	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+>> > +
+>> > +	if (DISPLAY_VER(i915) != 20)
+>> > +		return true;
+>> > +
+>> > +	if (is_dpkg_c_configured(i915)) {
+>> > +		if (psr1 &&
+>> > +		    (intel_psr_check_delayed_vblank_limit(i915,
+>> cpu_transcoder) ||
+>> > +		     intel_psr_is_dc5_entry_possible(i915)))
+>> > +			return true;
+>> > +		else if (!psr1 && is_dc5_entry_possible(i915))
+>> > +			return true;
+>> > +		else
+>> > +			return false;
+>> > +	}
+>> > +
+>> > +	return true;
+>> > +}
+>> > +
+>> >  static bool hsw_activate_psr1(struct intel_dp *intel_dp)  {
+>> >  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>> >  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+>> >  	u32 max_sleep_time = 0x1f;
+>> > -	u32 val = EDP_PSR_ENABLE;
+>> > +	u32 val = 0;
+>> > +
+>> > +	/* WA: 16023497226*/
+>> > +	if (wa_16023497226_check(intel_dp, true)) {
+>> > +		val = EDP_PSR_ENABLE;
+>> > +	} else {
+>> > +		drm_dbg_kms(&dev_priv->drm, "PSR1 was not activated\n");
+>> 
+>> Please add reason.
+>> 
+>> > +		return false;
+>> > +	}
+>> 
+>> Switch the condition around and use early return.
+>> 
+>
+> Sure will do.
+>
+> Regards,
+> Suraj Kandpal
+>> >
+>> >  	val |= EDP_PSR_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+>> >
+>> > @@ -910,7 +979,9 @@ static void hsw_activate_psr2(struct intel_dp
+>> *intel_dp)
+>> >  	u32 val = EDP_PSR2_ENABLE;
+>> >  	u32 psr_val = 0;
+>> >
+>> > -	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+>> > +	/* WA: 16023497226*/
+>> > +	if (wa_16023497226_check(intel_dp, false))
+>> > +		val |=
+>> EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+>> >
+>> >  	if (DISPLAY_VER(dev_priv) < 14 && !IS_ALDERLAKE_P(dev_priv))
+>> >  		val |= EDP_SU_TRACK_ENABLE;
+>> 
+>> --
+>> Jani Nikula, Intel
+
 -- 
-2.45.2
-
+Jani Nikula, Intel
