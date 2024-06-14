@@ -2,61 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0F1908B09
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 13:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14572908BA0
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 14:26:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8865C10E1F5;
-	Fri, 14 Jun 2024 11:47:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A8A10E116;
+	Fri, 14 Jun 2024 12:19:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrcrqpB1";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="HlH8RRq8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7957E10E1F5;
- Fri, 14 Jun 2024 11:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718365663; x=1749901663;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=H5Mi9qgCcNghlWVdIuPQa0XYTZLsFWWz5WzkZftH35c=;
- b=TrcrqpB1mkEz8ffdu2/V4XugRC0CA/qhmpg2aoh2qgecpB7iimF0Y9PV
- IeZ8ku+8FS0SCwsZWAZCLzbRoSjZgSltiSbWkAjU8Q8Z6IrR9w1IHRZmo
- 8f4TNA1iDKnotUR6pyYWu63Iepdn+ody+CvAyVmsa1pAe03c7eupYIdFi
- iJuKO37+1VIHeS1xgktlZkBrvEQtkF/i763+J4Hy8ccv/4IIygIyquLCJ
- YFW4II888NJZdDY+WUTMp10HHTD+HFRgrTwbTf6T/O7U5oJRDwscI56i9
- ujuEIdVzfpHrFiv0aIrltrw5hT7dyNrJUFp/5weTL/4J4zddzMn4IrF0j w==;
-X-CSE-ConnectionGUID: 37ZV/rfvQW2yVrmEVX5NTA==
-X-CSE-MsgGUID: X5QncHH7RfKh5aMxONU+Dw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="18167650"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="18167650"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 04:47:42 -0700
-X-CSE-ConnectionGUID: XZTag3ZUS8SqluDD8i2kvg==
-X-CSE-MsgGUID: pLj36tJ2RmaCGLftl292HA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40444148"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 14 Jun 2024 04:47:39 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Jun 2024 14:47:38 +0300
-Date: Fri, 14 Jun 2024 14:47:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/2] drm/i915/dsc: don't mess up splitter state in
- joiner or dsc config
-Message-ID: <Zmwt2l3SFaE1icV8@intel.com>
-References: <cover.1718360103.git.jani.nikula@intel.com>
- <aea210a824084a0644de5a546e7ecb6dfc6bdef9.1718360103.git.jani.nikula@intel.com>
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139AA10E116
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2024 12:19:28 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-421cd1e5f93so15420785e9.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2024 05:19:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718367567; x=1718972367;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=BtOVFjE7gxlKH3/WSl8BYOZN/5omBfi6w3Mm7iSj0co=;
+ b=HlH8RRq8Z8Zf6jNI//D5YCrLvWGtQZP6i9uZHNVZlIOGjUjdQ+qCGdunDi+YRchVJB
+ hyGs/TjFBuPED67z8vt+m0MEv6Bout9UVn54IfxVyaahnvVoZ7c/0I1SRvTza6KaVoq9
+ 2oJWcKElQTFEoJauXN83T1335tlevJFRK5Nlm6juWm8PSLlyNoV8MV+P/n2bkHc5/Vtm
+ iVESiTFSon1ksUnjv98T0Lj5/R2C6QDcmhTGziaJO9Zroq5EeAAYJzNkoSolUrEjwJRf
+ duSrOXiKabuBYiLRzwyRiicf97vees+ZYeLy0AR1FNpxuSyfrJJGh9LFWdoRpfKRX7qo
+ wAPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1718367567; x=1718972367;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BtOVFjE7gxlKH3/WSl8BYOZN/5omBfi6w3Mm7iSj0co=;
+ b=WvnGmhNs8C5aBBpbbO58WLNCDOfzdmB49v+Etp5Ck799mS3ST6wLVMplCLrGB2tDyH
+ qj5CnZ9wznDK0dJbRIqqUGuuQxgkLnsvClOb9j+6vi1w28TtP/StNyVQe5mzCCfSMs2E
+ Iy9pw5oR8UaHx1IK/1tebY7wYiejknnmdzcVvDCO+FAfTvRsj/7N+YdQa/LzNr533g66
+ GdjwbiQvTcaEKesEGJnVjAJNKMq+XAaN8yv0SdvXBxmCr1viY+zpx8uLSVgSuta3l+vn
+ o27+pzM6SXk6oKeI91+wu21jgnmUhp8gBCVGfCP7cU4ta478RKJmdMLU9aPiiIxqsnC/
+ R3Nw==
+X-Gm-Message-State: AOJu0Yz787ZYFrKIOsToxgqZpCNQykfWrOzodtfSWz1jNfbAUM9p8ebe
+ JdlbSEDOgnqSX8fXi2SQmMHTgSYVUyAFYPQCF8HSw06cjHDAVk8dxCBQLIQbwX0=
+X-Google-Smtp-Source: AGHT+IG/ob9iNNkFn0jYXrWVHLMfYh6pM9Z1fdorhs68L3rYxCHUSr8OyvPvv3bb/r59bWIE6wNE7g==
+X-Received: by 2002:adf:f148:0:b0:360:86e3:4cd2 with SMTP id
+ ffacd0b85a97d-36086e34da0mr13262f8f.58.1718367567001; 
+ Fri, 14 Jun 2024 05:19:27 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-36075093531sm4253590f8f.15.2024.06.14.05.19.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 14 Jun 2024 05:19:26 -0700 (PDT)
+Message-ID: <fa38f377-a00a-4e0c-b416-54a1c3f15d4d@ursulin.net>
+Date: Fri, 14 Jun 2024 13:19:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aea210a824084a0644de5a546e7ecb6dfc6bdef9.1718360103.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
+ PREEMPT_RT
+Content-Language: en-GB
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+References: <20240613102818.4056866-1-bigeasy@linutronix.de>
+ <20240613102818.4056866-4-bigeasy@linutronix.de>
+ <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
+ <20240614110548.m3lloBjv@linutronix.de>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20240614110548.m3lloBjv@linutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,104 +90,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 14, 2024 at 01:16:04PM +0300, Jani Nikula wrote:
-> The driver handles splitter (for MSO) and joiner/dsc configuration in
-> different places. Avoid messing up the splitter hardware state when
-> enabling/disabling joiner or dsc. It should not be possible to enable
-> both joiner and splitter at the same time, but add more clarity to the
-> register use overall.
+
+On 14/06/2024 12:05, Sebastian Andrzej Siewior wrote:
+> On 2024-06-14 09:32:07 [+0100], Tvrtko Ursulin wrote:
+>> I think this could be okay-ish in principle, but the commit text is not
+>> entirely accurate because there is no direct coupling between the wait
+>> helpers and the uncore lock. They can be used from any atomic context.
+>>
+>> Okay-ish in principle because there is sufficient testing in Intel's CI on
+>> non-PREEMPT_RT kernels to catch any conceptual misuses.
 > 
-> Note: We should probably handle splitter for MSO as well as dual-link
-> DSI in intel_vdsc.c. Also, we have intel_uncompressed_joiner_enable()
-> but no corresponding disable.
+> You just avoid disabling preemption if you expect to be in atomic
+> context to save a few cycles. It wouldn't hurt to disable it anyway. The
+> only reason you need it is to remain on the same CPU while reading the
+> clock because it is not guaranteed otherwise.
+
+Ah no, that is not why. Reason for conditional disabling of preemption 
+is to have an implementation for very short delays which does not run 
+with preemption permanently disabled. So it is disabled only around time 
+tracking.
+
+> Delays > 50ms are detected at build time.
+
+Right, point of that is to ask the contributor if they are sure this is 
+what they want. Catching misuse of the short delay wait helper step one..
+
+>> But see also the caller in skl_pcode_request. It is a bit harder to hit
+>> since it is the fallback path. Or gen5_rps_enable which nests under a
+>> different lock.
+>>
+>> Hmm would there be a different helper, or combination of helpers, which
+>> could replace in_atomic() which would do the right thing on both kernels?
+>> Something to tell us we are neither under a spin_lock, nor preempt_disable,
+>> nor interrupts disabled, nor bottom-half. On either stock or PREEMPT_RT.
 > 
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c       |  5 ++---
->  drivers/gpu/drm/i915/display/intel_vdsc.c      | 12 +++++++++---
->  drivers/gpu/drm/i915/display/intel_vdsc_regs.h |  1 +
->  3 files changed, 12 insertions(+), 6 deletions(-)
+> There is nothing that you can use to deduct that you are under a
+> spin-lock. preemptible() works only if you have a preemption counter
+> which is not mandatory. It can affect RCU but not in all configurations.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index bb13a3ca8c7c..49509a6599fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2417,9 +2417,8 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
->  			dss1 |= SPLITTER_CONFIGURATION_4_SEGMENT;
->  	}
->  
-> -	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe),
-> -		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
-> -		     OVERLAP_PIXELS_MASK, dss1);
-> +	/* Only touch the splitter */
-> +	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe), SPLITTER_STATE, dss1);
->  }
->  
->  static u8 mtl_get_port_width(u8 lane_count)
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index b9687b7692b8..a8671d3f1d41 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -766,7 +766,9 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
->  		else
->  			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
->  
-> -		intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-> +		/* Avoid touching the splitter */
-> +		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
-> +			     ~SPLITTER_STATE, dss_ctl1_val);
->  	}
->  }
->  
-> @@ -793,7 +795,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
->  		if (!intel_crtc_is_joiner_secondary(crtc_state))
->  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
->  	}
-> -	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-> +	/* Avoid touching the splitter */
-> +	intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
-> +		     ~SPLITTER_STATE, dss_ctl1_val);
->  	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
->  }
->  
-> @@ -805,7 +809,9 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
->  	/* Disable only if either of them is enabled */
->  	if (old_crtc_state->dsc.compression_enable ||
->  	    old_crtc_state->joiner_pipes) {
-> -		intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
-> +		/* Avoid touching the splitter */
-> +		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder),
-> +			     ~SPLITTER_STATE, 0);
->  		intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
->  	}
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> index f921ad67b587..3734cd96f55e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> @@ -37,6 +37,7 @@
->  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
->  #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
->  #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-> +#define  SPLITTER_STATE				(SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK | OVERLAP_PIXELS_MASK)
+>> WARN_ON_ONCE((ATOMIC) && !(!preemptible() || in_hardirq() ||
+>> in_serving_softirq())
+>>
+>> Would this work?
+> 
+> Nope. None of this triggers if you acquire a spinlock_t. And I can't
+> think of something that would always be true.
 
-Not a big fan of this. I'd rather explicicitly list the bits
-we actually want to modify in each call site.
+Bummer.
 
-Also not a big fan of the rmws. I think in the future we might be
-able to adjust some DSC stuff via fastsets, and that means no rmws
-because we then want to do it via DSB. But not sure if the DSS
-registers specifically would be involved in that, and I guess we
-already had some rmws in there so it'll require work anyway. So
-no hard objection to using rmw for now.
+> So the question is why do you need to know if the context is atomic?
+> The only impact is avoiding disabling preemption. Is it that important
+> to avoid it?
+> If so would cant_migrate() work? It requires CONFIG_DEBUG_ATOMIC_SLEEP=y
+> to do the trick.
 
->  #define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
->  #define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
->  
-> -- 
-> 2.39.2
+... catching misuse of atomic wait helpers step 2 - are you calling it 
+from a non-atomic context without the real need. So should use the 
+non-atomic helper instead.
 
--- 
-Ville Syrjälä
-Intel
+When i915 development was very active and with a lot of contributors it 
+was beneficial to catch these things which code review would easily miss.
+
+Now that the pace is much, much slower, it is probably not very 
+important. So this patch is acceptable for what I am concerned and:
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+Actually please also add the PREEMPT_RT angle to the comment above 
+_WAIT_FOR_ATOMIC_CHECK. Sometimes lines change and git blame makes it 
+hard to find the commit text.
+
+Regards,
+
+Tvrtko
+
+> 
+>> Regards,
+>>
+>> Tvrtko
+> 
+> Sebastian
