@@ -2,62 +2,155 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F0EE908D5F
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 16:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0A7908D69
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 16:32:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A82EA10ED73;
-	Fri, 14 Jun 2024 14:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62CF810ED74;
+	Fri, 14 Jun 2024 14:32:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IMX5XVpO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="r5Xb1GJv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A327A10ED73;
- Fri, 14 Jun 2024 14:29:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718375353; x=1749911353;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=eRHCYptJCxaHwMeTcb3wUeY2z7hXU9IELgT+aa7VTpo=;
- b=IMX5XVpOvraRywTs6UcyHwceNQ2stkAtfZ4Fr5Yrk9ePBcO8UX+FePt1
- C+0Eq/bYY24MAymOgOJIdt/NJ2cc3vu5PIHkPgOhUtsj9XdQWiACDEOJ5
- R0SeBOVYFJX3qhpSClHfWH4v5Bp+D4ZYSZMGYr6g3ghvkwoFTQBk7BYIb
- SpAsAadaeb/WrbIJPnZQPmfkvUFYLnFUzD8Nh1D6uXQOVAlevIimfai4e
- +yHBLgtjL0lvZLZYrIZ9IuZUgFBWA+BvbWN4NkTwY/QkhRzU5y7QOn5OC
- 52zyG3z8qcvI28gM7k2iDNWQowiI58NoKsFYEPDTrv2lpyKwVMmZkgUN8 g==;
-X-CSE-ConnectionGUID: 6ougLhpuRyK9UqpZyRyKMg==
-X-CSE-MsgGUID: 1zlvdJQVQn2bMYWH3TmQEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11103"; a="32740956"
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="32740956"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2024 07:29:13 -0700
-X-CSE-ConnectionGUID: mmQG4RMFQlGPR2p8/Rpj5Q==
-X-CSE-MsgGUID: /6sifMcZTYq+91Nn9CrIqA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,237,1712646000"; d="scan'208";a="40476419"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 14 Jun 2024 07:29:09 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Jun 2024 17:29:08 +0300
-Date: Fri, 14 Jun 2024 17:29:08 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/2] drm/i915/dsc: don't mess up splitter state in
- joiner or dsc config
-Message-ID: <ZmxTtASlDdGFUqyw@intel.com>
-References: <cover.1718360103.git.jani.nikula@intel.com>
- <aea210a824084a0644de5a546e7ecb6dfc6bdef9.1718360103.git.jani.nikula@intel.com>
- <Zmwt2l3SFaE1icV8@intel.com> <87y177hals.fsf@intel.com>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2052.outbound.protection.outlook.com [40.107.237.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74C8B10ED6C;
+ Fri, 14 Jun 2024 14:32:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DRfJqqqBY4jVE9zNyFNzMx2mIQZd875fE93mDpLT9qOOeiqbv+I0xA+Pt9LwMmXxqq1WIj+5iQfyvNmuxBxHu31U/jt5+vH6TrNszV3C1DtaSQZQw0dhP8jmtn7Fm9jZdqs2kqxMCNCdDPYWEhXP+7DPnID0+R9WrcwjwQk0ToZzYF52zBdGACaIrlJWk+nUYjq96UHO1Arr/kvKLgYE+cWQSpaP5tFFADz1yl1CKk15UPY3LOQkbJvCHhhRA1ED/vTBK3L+LPj+BDr5LH1FNMos6PBQcMszlOy5FvfH5oQw7MGK5WLtJl+T+059HH9wiruHdfV1YPd/EP82DaRgnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BXCafHjxq0QoKQPr7Xvg/QUZYu01QISc18XJWmigOGk=;
+ b=D5JwxuHfeFoHq/tgC+ta7qv1+5pLEUg94Iyiq4M/xu1W0ve8K+UNFDZ8JMspztHsSHzcSwEHSJoOjdi4NOJmWbawGJXYzJ0G9w/Tr+1MGyVcq4O812kiD44PGK1LnUX1rnsj2mJIOIGU/ai8hAclw+NJR5AZWIcWY3/hiSDqdHBd9ZFjD0Q1pdfD4mR4nX0u3mPCuDMAZt4w5+63Vv8TjCErMBbmHJLI153EAPKTeQiXnjUDsPH8HiLwrxi7Q1Me8+DFamRj7pfZ2we2C9VREjErzFFGo/rlxu5efV4e0wyTdHC8BIVihFNcbO0KCErOohNaTL6zRZ+IwmSFTAH8bw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BXCafHjxq0QoKQPr7Xvg/QUZYu01QISc18XJWmigOGk=;
+ b=r5Xb1GJvGn3R4QFgYBvOyG2aKEBjB9Cgb3e0xx/6sDiOyABHTKU0xjAgfx/SSYZ7gS52SbGt7xNGOCX10Ae45VdCVCuPQM8eE+tw5etp9hpRJUn96bo6IIfZ+0TsWJ9uZ2GEZSCJI5FPuHqhebBJ8TpbQFLMxP5WAwTbDBnhymU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB5673.namprd12.prod.outlook.com (2603:10b6:a03:42b::13)
+ by MN0PR12MB6002.namprd12.prod.outlook.com (2603:10b6:208:37e::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.20; Fri, 14 Jun
+ 2024 14:32:04 +0000
+Received: from SJ0PR12MB5673.namprd12.prod.outlook.com
+ ([fe80::ec7a:dd71:9d6c:3062]) by SJ0PR12MB5673.namprd12.prod.outlook.com
+ ([fe80::ec7a:dd71:9d6c:3062%2]) with mapi id 15.20.7677.024; Fri, 14 Jun 2024
+ 14:32:03 +0000
+Message-ID: <5e770114-2751-414f-af57-de8077f6a6a0@amd.com>
+Date: Fri, 14 Jun 2024 16:31:56 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] drm/ttm: Store the bo_kmap_type in struct iosys_map
+To: Thomas Zimmermann <tzimmermann@suse.de>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ daniel@ffwll.ch, lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, ray.huang@amd.com, kraxel@redhat.com,
+ airlied@redhat.com, suijingfeng@loongson.cn
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20240614133556.11378-1-tzimmermann@suse.de>
+ <20240614133556.11378-3-tzimmermann@suse.de>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20240614133556.11378-3-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0001.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1d::10) To SJ0PR12MB5673.namprd12.prod.outlook.com
+ (2603:10b6:a03:42b::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87y177hals.fsf@intel.com>
-X-Patchwork-Hint: comment
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB5673:EE_|MN0PR12MB6002:EE_
+X-MS-Office365-Filtering-Correlation-Id: a11be9cb-2ac8-46eb-818a-08dc8c7ec28c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230037|366013|376011|7416011|1800799021|921017; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TkpzVmVUb2JVcUlmV0pjNms4azNxMEZ0L1VRRFgyUit6TTAxMERlc0JLeGIv?=
+ =?utf-8?B?NUFGNCt0N3BjMDhDaUg2K01zYTFBbGRoVlgvM0VZbUNxR2ZaOE9RMDlJQVJi?=
+ =?utf-8?B?aFdxcHN4bUtnMURhVEJWc2ZKVlZCeU44UUtqUVhCWGhmSkEwT1hMV3FsVXpI?=
+ =?utf-8?B?amRNdTA0OEFETGR5NzB4d3ppZUpMaFJ4eC9Td2tVbCtZTERaVGYrYTd2T3lH?=
+ =?utf-8?B?UUs2Z052eEdzM2lDSTM2M1p2cjlEdW9od1pYVENkN0JPZytmRzAyVkR3WUJ2?=
+ =?utf-8?B?VlFwTm93MEgvV0R6NzRJYTMwTEU5YXp5eGtCa1BzZFY5ZDVxQStmN2JOSWdI?=
+ =?utf-8?B?UHY3SlB3MDJXSHNlT1pGVDNtQkV2OUVtTWxlOFFxNDNpQnVkUmlEUVF3QUF3?=
+ =?utf-8?B?MUZoTjBoVXcwSkg1TFFBZ2Z2NG9LbXEvNmpoT05QL0JYaWxQV1dkenZkOGxy?=
+ =?utf-8?B?blhZaWVPMzVKTlRndVRDSUM1SUM3MzkxUnRIRW5Dbll1VUlrM3hlOWx3Q2k4?=
+ =?utf-8?B?Z3UvQ3RTUWk1ek9FY0pqdXdRN2g1VE5LWForYXppVFdlTTJFYVRwZjY5Zjda?=
+ =?utf-8?B?elhrc1oreFIvUG9DNXFCSmhTVkNqOW1YV1pEZy9OcExwMDFCbG01akJ4ZUcv?=
+ =?utf-8?B?VkpIYTh6VHVERzlFcStVcUZ6Y3AxQ2ZjZFdSdUNxUnhqdDBRZ2lIYXZzc0xx?=
+ =?utf-8?B?UFI5SjFxeGNETjNydXU4VDM4cyt0a3ZGRmxVLysrRDB1RXpaM29nL2NiU1cz?=
+ =?utf-8?B?M0hyRWJqeGU0Qjk3ZW9OVVZnMGFTdVBqMkdMYW1HWU5XZEVRdjB5eGlWcWNF?=
+ =?utf-8?B?bHp2dDN1UWhYaDhkRGlDNnF2RnJGYlNMMHJ1REdnbEdDVTlpSC9kcjVETUs5?=
+ =?utf-8?B?bnBMTk5PMWFNbGxyc0NIRGh3aklNZS9uZlppL200aTc5NWl2T1pPZmdPM2lx?=
+ =?utf-8?B?dk15VUVzQ1BTTGF4VGJSYk5yRGIvN25aaCtDVnRIVkdPTHhmSEJxQktqRUVj?=
+ =?utf-8?B?dHo4MnBIUDZvNk42QnM4YVBTYVJsUXBHVndDVkhLOWQ3YnhRQ0hGVFk4QjNR?=
+ =?utf-8?B?RzlVS0dLeTFXN3d1YTZlR2dEd3ZRU2FjQTUwdVVXRTBDTUI5QkkrSFhOSVAw?=
+ =?utf-8?B?d0VmcllWMVdKeFRVL1lrTzF2cWR2Y0JpSDc3M1BYWld1MUFiZTUzdkhpTFRP?=
+ =?utf-8?B?bGYzdnJ5Y0J5QmtKT3JSN0lYNjF0VU5kMWZ6SkFUekM1eWRkZCtmZWt0cWht?=
+ =?utf-8?B?akhpSjI3bGRCUU1FbkZrWXc2OHJrSkNjRGZDOWFaY0NCQlkwbkg2NVo5VGtm?=
+ =?utf-8?B?OWJQTFhEekwrWjNQaHNCRC9BeFYyUTQrcnNXdERVMEpwQ2hKTGpycmdnZG1h?=
+ =?utf-8?B?aXpKQ1ZVWFA2Y1Z5S3hJYVZZbnNJZG1iY2NURlFkT1FlblMyR0xnd2JwSHIr?=
+ =?utf-8?B?N1RXQWcrNjBpdHVWbzdwQTYyREZ1TDQwZnRqUXVwZll6Uk94U0JZNVUxaWdC?=
+ =?utf-8?B?QjNOeU5CUzQ5K1FLbUI3dmtjdW96RVFYVTE5S2VIdGx6ekJJeXR2NXpWbXda?=
+ =?utf-8?B?U24xYXJTNnAzNmQ1aVY2Q0pQVWpDU0MzeGNUVGludHRscmYwMVYrQ0o5bm56?=
+ =?utf-8?B?MHphTXRFRnRnbmlxdVhLbjJnWjlkNmJSWnNjV25sd3pQbExEb3FQYkhSTXNI?=
+ =?utf-8?B?K001T3p0Z0ZPMERmSFNCYXZsaVh0RWVUK1gwUm5FdXQxMXNoQWhocGlPK0Qy?=
+ =?utf-8?B?blZMaHBIajFNSFF6cisyQm9GRGxjOGZrU3Y2VXdVZzhBam9zNGsvcGdYRUVl?=
+ =?utf-8?Q?0aA+y6iPXFi5Ende4MY2B+7Pt0JiWRNWh1fgA=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB5673.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230037)(366013)(376011)(7416011)(1800799021)(921017); DIR:OUT; SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2RUSzgvb2dBTERzU1FoSHBQdXdrMW9XS1dLMXkxMFBXNitMR3hGYW9Ua0dJ?=
+ =?utf-8?B?aFFjMlp2Mk84NlZIY09EYnpmNUF3d3FpLzJoWWN6MFhkM3lETDIwakJZM01G?=
+ =?utf-8?B?NW4wRjdjbE9kZU5oK3o0MXFpclN1UWxwNzhUaWNOcWtFaTlnbGN3L2laeGM2?=
+ =?utf-8?B?WGl4V3NIU1dxSkJZU2w5VVIrMVZNc21ramZIdm5raWNPd3l2Q0JRbWw2T0Nw?=
+ =?utf-8?B?dTJ2aW9hU3U2TDMrWkhvR0tmdzRLZHJlUlJzNVVRSU8vYkJUaVJsWHhTYmhu?=
+ =?utf-8?B?NytJVVNnTEFpMGg3Qlp0cTBaV1JGMTVlZGVrdGNaTTlsTzcwVEMzQzNWWWYy?=
+ =?utf-8?B?S080WWdDc3REZTdWQ1YxOWd4VFdkY1RBaTM5ZGtoRzBiWWdCUktYVjgvdEo2?=
+ =?utf-8?B?UXBQQ2VpVStPd1MyQzNWa1ZFVWVIenBYbFJISGZhWDhtR0NkcXg0TEFwRDFD?=
+ =?utf-8?B?a3QvWVVjVDIxK2J0SW55WXN6VGEydnBKSVlQYlJNYVZxYW9Mc2Z0akZrT2JO?=
+ =?utf-8?B?cmpjeWUzbEFzcmltMm1yMG1HaCttUUhOQWxrYXFUUmdRbEtBTEpPZ2NZR01C?=
+ =?utf-8?B?Wi9yZ1dBdDVFek9mL0VaeEhGdnE3dUpvYzRLL0hzbndTTlg0TFNXb2pnc2h6?=
+ =?utf-8?B?c1J3S3lEc3J6dXozUmJGRnMxbDE3MVRJaTh5QVp3bkk5UlN2T2tuczlhVGVP?=
+ =?utf-8?B?ai9zTnFJdTVRcEdPVElHc0J1UVhRTnJydjhoTGc5UU1CUVpuWStNWmxNRHUw?=
+ =?utf-8?B?bW9iSTM0T1kwQkg1cGd5T08xdjhoRTJPNGlpQ3Zva2dWYzc2YUdsNHNSY0hK?=
+ =?utf-8?B?T2JuY3NOUG5JTWV4YWJFVjR3UmdlV1ZiV3pHdXdiRzRRb09ra0xFWmtvWnIw?=
+ =?utf-8?B?TUoxc2Y0ZUl0cHVhUWtINVYyTkhJYXNGRVQxVWpjcEZUbytHV2J0YXF4SXc1?=
+ =?utf-8?B?OC93OWFMSlRNU3lCbWcyWEJaSlB3bURDMmhVZUhCclBIMitnU2lFdzR2d3R4?=
+ =?utf-8?B?anQ0U3ZVZGtOemR5R0tEOXFNNzcyZ3pQYzVSV2JLUitMODBtUDhKREQySUlH?=
+ =?utf-8?B?cTNLNm9tYThLaXdqOEhFTVdkb3Zydk9VNHdRODN2MFhBeUliWGdGTWN3WHdD?=
+ =?utf-8?B?c3RJTXcvRWF3SjBKdEFxU0huSG5UQ2dpUkN0OEVMVnRZaGhvY3hOTVhnRkQw?=
+ =?utf-8?B?ZE0xcmNMbi9QemVieTZkRUlXejh1bWFtcEZmcUZBZzIySnFCV25VY25sbjlV?=
+ =?utf-8?B?UzlzVThyYUhJZ1pTOHMwazRURHB5RUJsQlo5MDVHWEFJL3JaQXhYd1dxVjFj?=
+ =?utf-8?B?OFZacU12QnhYZG1Va24zeVVMVGxtd1Y0bUtxaEluMG1FSmJKRURiaXBxRzRK?=
+ =?utf-8?B?Y2ZidzcwTTl5NFJaN3ZRY0MwWXg2QlA4TEplMUpCeENXT3YyNjNZQit6MzJy?=
+ =?utf-8?B?blNTMEtnSDJxU1JKQjlHekNSSnh6UENtQmZtQi8rVEpDK1piYUxnWEVlTWlU?=
+ =?utf-8?B?Skl6Ky9xYzV5TFVFTk9ZVS9tRUwraTJZWldhd3NTbDVuTFlIVUVGd3l6Mnp2?=
+ =?utf-8?B?dkJtVHVQNzFuQUFFbytQalJlVGdYMGppQXhtVUFEdFNrUHFkSFcwT1ZjKzVX?=
+ =?utf-8?B?QW5aZnIrZ0pNN3VGVS82UmJmN3Z5T0NWbHVjd3dRQzQ0VTg0eGNjQjJzTlBk?=
+ =?utf-8?B?V3dKNFhtbmd0THJTVXRWUkRLWmEwd0xUVjFJTnNEU0xITEt3N3VXN2FEWnM0?=
+ =?utf-8?B?L1hWOHYzbTRVMDBKZnZvMnhCeUVrc0s0Vjl2NldOb0swUGNYbXVRajcxVGJY?=
+ =?utf-8?B?UGFTZ3JVRVFIOVZtTGU1VThQYWdaUHF2QjdzU2RvSGN2U3VmRWhXQWpTb0ZJ?=
+ =?utf-8?B?bmJTN1UxcndJT1B6WkpSYkNROUdyQ3grZG9jd2hmMm1JRDdXZ0I1djhDMlZZ?=
+ =?utf-8?B?dnRkWi9kVUVXTzVmNDUvTmEvRnRtdnBjT2tuNm5BOGdBZDhDWVlMOVFiamd4?=
+ =?utf-8?B?OFBKd2ZKZ1ozMjhadi94SFRhK0M0TldQRTM3TEMrenErTjQ1M3ZTZmlqWXRS?=
+ =?utf-8?B?VlV6SjFzMG90aDArM3JmY0FWRDUyREhBMU9teGo1bmFNOTFqK2Y4MVd3Q3Ni?=
+ =?utf-8?Q?6reFad53NycTnqNBPX1SaklfU?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a11be9cb-2ac8-46eb-818a-08dc8c7ec28c
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5673.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2024 14:32:03.8736 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jw8tsBvMmo6NsbxRsTdR/kpSH5f8uNQI7ng9x6EhADyfJ3dNvBpCeK4OVRQ6ikmx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6002
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,121 +166,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 14, 2024 at 05:17:51PM +0300, Jani Nikula wrote:
-> On Fri, 14 Jun 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> > On Fri, Jun 14, 2024 at 01:16:04PM +0300, Jani Nikula wrote:
-> >> The driver handles splitter (for MSO) and joiner/dsc configuration in
-> >> different places. Avoid messing up the splitter hardware state when
-> >> enabling/disabling joiner or dsc. It should not be possible to enable
-> >> both joiner and splitter at the same time, but add more clarity to the
-> >> register use overall.
-> >> 
-> >> Note: We should probably handle splitter for MSO as well as dual-link
-> >> DSI in intel_vdsc.c. Also, we have intel_uncompressed_joiner_enable()
-> >> but no corresponding disable.
-> >> 
-> >> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_ddi.c       |  5 ++---
-> >>  drivers/gpu/drm/i915/display/intel_vdsc.c      | 12 +++++++++---
-> >>  drivers/gpu/drm/i915/display/intel_vdsc_regs.h |  1 +
-> >>  3 files changed, 12 insertions(+), 6 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> index bb13a3ca8c7c..49509a6599fe 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> @@ -2417,9 +2417,8 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
-> >>  			dss1 |= SPLITTER_CONFIGURATION_4_SEGMENT;
-> >>  	}
-> >>  
-> >> -	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe),
-> >> -		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
-> >> -		     OVERLAP_PIXELS_MASK, dss1);
-> >> +	/* Only touch the splitter */
-> >> +	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe), SPLITTER_STATE, dss1);
-> >>  }
-> >>  
-> >>  static u8 mtl_get_port_width(u8 lane_count)
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> index b9687b7692b8..a8671d3f1d41 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> >> @@ -766,7 +766,9 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
-> >>  		else
-> >>  			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
-> >>  
-> >> -		intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-> >> +		/* Avoid touching the splitter */
-> >> +		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
-> >> +			     ~SPLITTER_STATE, dss_ctl1_val);
-> >>  	}
-> >>  }
-> >>  
-> >> @@ -793,7 +795,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
-> >>  		if (!intel_crtc_is_joiner_secondary(crtc_state))
-> >>  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
-> >>  	}
-> >> -	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-> >> +	/* Avoid touching the splitter */
-> >> +	intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder),
-> >> +		     ~SPLITTER_STATE, dss_ctl1_val);
-> >>  	intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
-> >>  }
-> >>  
-> >> @@ -805,7 +809,9 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
-> >>  	/* Disable only if either of them is enabled */
-> >>  	if (old_crtc_state->dsc.compression_enable ||
-> >>  	    old_crtc_state->joiner_pipes) {
-> >> -		intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
-> >> +		/* Avoid touching the splitter */
-> >> +		intel_de_rmw(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder),
-> >> +			     ~SPLITTER_STATE, 0);
-> >>  		intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
-> >>  	}
-> >>  }
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> >> index f921ad67b587..3734cd96f55e 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> >> @@ -37,6 +37,7 @@
-> >>  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
-> >>  #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
-> >>  #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-> >> +#define  SPLITTER_STATE				(SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK | OVERLAP_PIXELS_MASK)
-> >
-> > Not a big fan of this. I'd rather explicicitly list the bits
-> > we actually want to modify in each call site.
-> >
-> > Also not a big fan of the rmws. I think in the future we might be
-> > able to adjust some DSC stuff via fastsets, and that means no rmws
-> > because we then want to do it via DSB. But not sure if the DSS
-> > registers specifically would be involved in that, and I guess we
-> > already had some rmws in there so it'll require work anyway. So
-> > no hard objection to using rmw for now.
-> 
-> I'm definitely not a fan of the rmws myself. It's just that there's
-> already rmw for splitter in both dual-link DSI and eDP MSO. And I think
-> they're both bust when combined with DSC.
-> 
-> I think the proper fix would be to handle everything related to DSS CTL
-> in the same place, but I'm not even sure the modeset sequences for DSI
-> and MSO are flexible enough for that. I don't know. Maybe the stuff
-> could be written in two places as long as the single point of truth
-> knows what to put there and when. Seems a bit involved right now.
-> 
-> So, uh, is the compromise to drop this SPLITTER_STATE, and have each
-> place rmw into the register just what each place needs?
+Am 14.06.24 um 15:21 schrieb Thomas Zimmermann:
+> For each instances of struct iosys_map set up by ttm_bo_vmap(), store
+> the type of allocation in the instance. Use this information to unmap
+> the memory in ttm_bo_vunmap(). This change simplifies the unmap code
+> and puts the complicated logic entirely into the map code.
 
-I think that's an OK solution for now. Though it might need a bit
-of care to make sure we also clear out all the bits at some point
-if everyone ends up doing rmws.
+I'm not sure that's a good idea.
 
-intel_ddi_mso_configure() (+whatever is the DSI counterpart)
-should perhaps be the thing that always clears everything at the 
-start.
+The mapping information should already be available in the resource and 
+storing it in the iosys_map structures duplicates that information.
 
--- 
-Ville Syrjälä
-Intel
+So we might run into the issue that the resource has changed and so we 
+need a different approach now, but the iosys_map will say that we should 
+unmap things for example.
+
+Regards,
+Christian.
+
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo_util.c | 46 +++++++++++++++++++++----------
+>   1 file changed, 31 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index 0b3f4267130c4..a9df0deff2deb 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -36,6 +36,7 @@
+>   #include <drm/ttm/ttm_tt.h>
+>   
+>   #include <drm/drm_cache.h>
+> +#include <drm/drm_device.h>
+>   
+>   struct ttm_transfer_obj {
+>   	struct ttm_buffer_object base;
+> @@ -479,24 +480,29 @@ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map)
+>   
+>   	if (mem->bus.is_iomem) {
+>   		void __iomem *vaddr_iomem;
+> +		u16 alloc_flags;
+>   
+> -		if (mem->bus.addr)
+> +		if (mem->bus.addr) {
+>   			vaddr_iomem = (void __iomem *)mem->bus.addr;
+> -		else if (mem->bus.caching == ttm_write_combined)
+> -			vaddr_iomem = ioremap_wc(mem->bus.offset,
+> -						 bo->base.size);
+> +			alloc_flags = ttm_bo_map_premapped;
+> +		} else if (mem->bus.caching == ttm_write_combined) {
+> +			vaddr_iomem = ioremap_wc(mem->bus.offset, bo->base.size);
+> +			alloc_flags = ttm_bo_map_iomap;
+>   #ifdef CONFIG_X86
+> -		else if (mem->bus.caching == ttm_cached)
+> -			vaddr_iomem = ioremap_cache(mem->bus.offset,
+> -						  bo->base.size);
+> +		} else if (mem->bus.caching == ttm_cached) {
+> +			vaddr_iomem = ioremap_cache(mem->bus.offset, bo->base.size);
+> +			alloc_flags = ttm_bo_map_iomap;
+>   #endif
+> -		else
+> +		} else {
+>   			vaddr_iomem = ioremap(mem->bus.offset, bo->base.size);
+> +			alloc_flags = ttm_bo_map_iomap;
+> +		}
+>   
+>   		if (!vaddr_iomem)
+>   			return -ENOMEM;
+>   
+>   		iosys_map_set_vaddr_iomem(map, vaddr_iomem);
+> +		map->alloc_flags = alloc_flags;
+>   
+>   	} else {
+>   		struct ttm_operation_ctx ctx = {
+> @@ -506,6 +512,7 @@ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map)
+>   		struct ttm_tt *ttm = bo->ttm;
+>   		pgprot_t prot;
+>   		void *vaddr;
+> +		u16 alloc_flags;
+>   
+>   		ret = ttm_tt_populate(bo->bdev, ttm, &ctx);
+>   		if (ret)
+> @@ -519,8 +526,10 @@ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map)
+>   		vaddr = vmap(ttm->pages, ttm->num_pages, 0, prot);
+>   		if (!vaddr)
+>   			return -ENOMEM;
+> +		alloc_flags = ttm_bo_map_vmap;
+>   
+>   		iosys_map_set_vaddr(map, vaddr);
+> +		map->alloc_flags = alloc_flags;
+>   	}
+>   
+>   	return 0;
+> @@ -537,20 +546,27 @@ EXPORT_SYMBOL(ttm_bo_vmap);
+>    */
+>   void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map)
+>   {
+> -	struct ttm_resource *mem = bo->resource;
+> -
+>   	dma_resv_assert_held(bo->base.resv);
+>   
+>   	if (iosys_map_is_null(map))
+>   		return;
+>   
+> -	if (!map->is_iomem)
+> -		vunmap(map->vaddr);
+> -	else if (!mem->bus.addr)
+> +	switch (map->alloc_flags) {
+> +	case ttm_bo_map_iomap:
+>   		iounmap(map->vaddr_iomem);
+> -	iosys_map_clear(map);
+> -
+> +		break;
+> +	case ttm_bo_map_vmap:
+> +		vunmap(map->vaddr);
+> +		break;
+> +	case ttm_bo_map_premapped:
+> +		break;
+> +	default:
+> +		drm_err(bo->base.dev, "Unsupported alloc_flags 0x%x\n", map->alloc_flags);
+> +		return;
+> +	}
+>   	ttm_mem_io_free(bo->bdev, bo->resource);
+> +
+> +	iosys_map_clear(map);
+>   }
+>   EXPORT_SYMBOL(ttm_bo_vunmap);
+>   
+
