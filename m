@@ -2,56 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75C09082EC
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 06:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A41FF908312
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 06:42:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5656A10EC23;
-	Fri, 14 Jun 2024 04:26:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A6110E0CE;
+	Fri, 14 Jun 2024 04:42:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mLxAbu0S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNlF6QPL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A21C310EC1D;
- Fri, 14 Jun 2024 04:25:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3939210E0CE;
+ Fri, 14 Jun 2024 04:42:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718339156; x=1749875156;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lrgk9n6nepoKyXCF6DFOP2mNFLE1mOcFS0wZHogcQMs=;
- b=mLxAbu0StNuZakrL2PdES8W/DrGDjQwbGyE6+whkizgRbyMC2o6qmN/l
- M3DYYVYJZiLahlrESxpEqVNMMiJ3Qfj0pr0kp6N0olTUNi9Sbu5/H4br1
- 2rnMoSF0h/Vc21RAz+h9Y8OCavMvL/q/N+E1JlxtHsiDWQnigrORBO37T
- 0NpWMODWd5azSxkMv11oZnz/bFHm+9GRitfBz8vdjXifLAyikEPsv+Ash
- 7DuIETxj7baer8qyFkufFfntyLQMd+cPr4D6Sl5AjhUjKqWRBx/ZUn1Ye
- ueE9q4SksiojTyE7cKagkOsqpHjsGvJu4m7pnPteEFq/MUw85TZzBt08P A==;
-X-CSE-ConnectionGUID: hlv7j4BMQ4ilvn7hfkK/Pw==
-X-CSE-MsgGUID: u8GmVvxSSJSPvRoN/iipEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="37731526"
-X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; d="scan'208";a="37731526"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2024 21:25:54 -0700
-X-CSE-ConnectionGUID: hI4hfTIvSCuqj5F8/MTLLQ==
-X-CSE-MsgGUID: 17UBm4znQmm8d9ojk9e2mg==
+ t=1718340123; x=1749876123;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BN2t7hVGUOt+WdRTUMNRrTg6DsemgXOONZ/6ImIgNro=;
+ b=cNlF6QPL3M4Z3mShRRG5c5433eOT9hJZcOLQ0XmIF2qdi9UgJnHy9h6o
+ kBmGp2La0X7socnI5ej/gZkFIMW4hZYBwqPBc6eNbAgdT//NfTjkJrP76
+ 4SqfAg0r1alWhqzqSdqXfx4ScXGGFy3XvZMCsypIP1z175H06iz058hhR
+ QJNWtaQBUcpmnxTeyyY4Q4g6YEYXsQyHwZxqosp6n0mrCivWAzPo3ZYj1
+ T2GxpNgvxSk5Tj/oD7yNvLKxvS2S4AURHvAbBjsMgoTYUZoFW7GSMJ5/a
+ HR3MthfOD3Zpl1TyaoWhRU4z+aR2Jm6IWkx0yb8kASr1CuD5sf+DCsNFn Q==;
+X-CSE-ConnectionGUID: lyotX3ckTHGwh+9QlaXZ9g==
+X-CSE-MsgGUID: Z73f0DTKQ2K771FIw09B3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11102"; a="18994098"
+X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; d="scan'208";a="18994098"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2024 21:42:02 -0700
+X-CSE-ConnectionGUID: bF6XhcIFS7m5AikCkXfs6g==
+X-CSE-MsgGUID: CX3uSRfNSp2kqLUp7G08nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; d="scan'208";a="40343373"
+X-IronPort-AV: E=Sophos;i="6.08,236,1712646000"; d="scan'208";a="44759994"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa008.fm.intel.com with ESMTP; 13 Jun 2024 21:25:51 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 13 Jun 2024 21:42:01 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
- suraj.kandpal@intel.com, jani.nikula@linux.intel.com, sfr@canb.auug.org.au,
- lucas.demarchi@intel.com
-Subject: [PATCH v2 2/2] drm/i915/display: Update calculation to avoid overflow
-Date: Fri, 14 Jun 2024 09:55:58 +0530
-Message-ID: <20240614042558.376983-3-mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH v2] drm/i915/display: Update calculation to avoid overflow
+Date: Fri, 14 Jun 2024 10:12:13 +0530
+Message-ID: <20240614044213.377710-1-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240614042558.376983-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240614042558.376983-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,7 +67,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 Update calculation to avoid overflow.
 
 -v2:
-Remove extra line from commit message.(Lucas)
+Remove extra line between cc and signed-off.
 
 Fixes: 1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
 Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
