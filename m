@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C44908D3A
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 16:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 633F5908D3B
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2024 16:18:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771C110ED5B;
-	Fri, 14 Jun 2024 14:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830FD10ED4A;
+	Fri, 14 Jun 2024 14:18:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E358710ED4A;
- Fri, 14 Jun 2024 14:18:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8486A10ED4A;
+ Fri, 14 Jun 2024 14:18:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/=7Bttm=2Cxe=7D?=
- =?utf-8?q?=3A_Improve_ttm=5Fbo=5Fvmap=28=29_and_update_xe?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/=7Bttm=2Cxe=7D=3A_Im?=
+ =?utf-8?q?prove_ttm=5Fbo=5Fvmap=28=29_and_update_xe?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Thomas Zimmermann" <tzimmermann@suse.de>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Jun 2024 14:18:28 -0000
-Message-ID: <171837470892.77190.16091209774822078497@a6498e030952>
+Date: Fri, 14 Jun 2024 14:18:31 -0000
+Message-ID: <171837471153.77189.6578340228825875469@a6498e030952>
 X-Patchwork-Hint: ignore
 References: <20240614133556.11378-1-tzimmermann@suse.de>
 In-Reply-To: <20240614133556.11378-1-tzimmermann@suse.de>
@@ -49,21 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-9e6b478225b7 iosys-map: Add allocator flags
-77686d1beaaf drm/ttm: Store the bo_kmap_type in struct iosys_map
-f6c08785dc7f drm/ttm: Support partial buffer mappings for ttm_bo_vmap()
-a6e718455990 drm/ttm: Support kmap for single-page mappings in ttm_bo_vmap()
--:53: WARNING:DEPRECATED_API: Deprecated use of 'kmap', prefer 'kmap_local_page' instead
-#53: FILE: drivers/gpu/drm/ttm/ttm_bo_util.c:538:
-+			vaddr = kmap(ttm->pages[start_page]);
-
--:74: WARNING:DEPRECATED_API: Deprecated use of 'kunmap', prefer 'kunmap_local' instead
-#74: FILE: drivers/gpu/drm/ttm/ttm_bo_util.c:583:
-+		kunmap(kmap_to_page(map->vaddr));
-
-total: 0 errors, 2 warnings, 0 checks, 51 lines checked
-0bc209bee997 drm/xe: Remove vunmap calls object-freeing code
-647ef007ceb6 drm/xe: Replace ttm_bo_kmap() with ttm_bo_vmap()
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
