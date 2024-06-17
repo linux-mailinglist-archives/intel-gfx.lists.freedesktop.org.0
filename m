@@ -2,59 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529C490B88B
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2024 19:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D39B90B8B6
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2024 20:00:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B5510E48B;
-	Mon, 17 Jun 2024 17:54:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QGEgGrIU";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75DFD10E3BF;
+	Mon, 17 Jun 2024 17:59:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC1CD10E488;
- Mon, 17 Jun 2024 17:54:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718646847; x=1750182847;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=O14RSZNB9upJMOQSvO1JCVAoV+Ky3yDaohRg7Fd7Iso=;
- b=QGEgGrIUJsBvvAYRMRAUVX54d4nO2+M8gbel0OAD14KOdn96TVgI+8lz
- 9wNFjeAzowRGKXczjwIQz8CxF2q0CB9trrvfuVwtbOVRicOXD9pgsGCWJ
- FsFQ3hOT8fvyyG0RYqb4VjXACNUtjTHuATs/ukq1F1OI0j86CI6zpvMtW
- EESBZOFKgEIg6Sv1K64O0OtI7OMWqd8ox19GTtrR2hL8uo/KRz4umiI7u
- rQcUCpVEqKbey+zB/IqigAqacU72//jjIKyQXao3kq7h0dMmuiYByt0o9
- kmunhblYktr+v5vOxvILGzZyv41pthBdkZmpStM9F/jGyfHs3tvpumKba g==;
-X-CSE-ConnectionGUID: P96t7jJZQt6KoQfydinQcQ==
-X-CSE-MsgGUID: bt2zeh+NSWunBRxGA5xPCA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="26171480"
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="26171480"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 10:54:06 -0700
-X-CSE-ConnectionGUID: jXtEGscRQhOmKxUnMqTL1A==
-X-CSE-MsgGUID: qN9BjmRdQ12h2kCTUY22dQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="41360026"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 10:54:05 -0700
-Date: Mon, 17 Jun 2024 20:54:13 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/3] drm/xe: Use the encoder suspend helper also used by
- the i915 driver
-Message-ID: <ZnB4RcurhbUBUdra@ideak-desk.fi.intel.com>
-References: <20240617170356.4000251-1-imre.deak@intel.com>
- <20240617170356.4000251-3-imre.deak@intel.com>
- <ZnB15p5eH-eVsg1a@intel.com>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 107E310E3BF;
+ Mon, 17 Jun 2024 17:59:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZnB15p5eH-eVsg1a@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_series_starting_with?=
+ =?utf-8?q?_=5B1/3=5D_drm/i915=3A_Move_encoder_suspend/shutdown_helpers_to_i?=
+ =?utf-8?q?ntel=5Fencoder=2Ec?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Jun 2024 17:59:57 -0000
+Message-ID: <171864719706.99140.9081962092950141526@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240617170356.4000251-1-imre.deak@intel.com>
+In-Reply-To: <20240617170356.4000251-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,87 +38,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 17, 2024 at 01:44:06PM -0400, Rodrigo Vivi wrote:
-> On Mon, Jun 17, 2024 at 08:03:56PM +0300, Imre Deak wrote:
-> > Use the suspend encoders helper which is also used by the i915 driver.
-> > This fixes an issue in the xe driver where the encoder
-> > suspend_complete() hook is not called and was an overlook when this hook
-> > was added in
-> 
-> I believe it is okay to stay in the same line and then break the commit
-> subject in the middle for the next line...
+== Series Details ==
 
-Ok, looks like done elsewhere as well, will reformat.
+Series: series starting with [1/3] drm/i915: Move encoder suspend/shutdown helpers to intel_encoder.c
+URL   : https://patchwork.freedesktop.org/series/134966/
+State : warning
 
-> > Commit b61fad5f7e5d ("drm/i915/tc: Call TypeC port flush_work/cleanup without modeset locks held")
-> > 
-> 
-> I wonder if we should have a fixes, but probably okay to skip it.
+== Summary ==
 
-I wasn't sure, since strictly the tree itself at the above commit didn't
-have the issue. I suppose if needed this would need to be sent to 6.9
-stable manually.
+Error: dim checkpatch failed
+f56120af9380 drm/i915: Move encoder suspend/shutdown helpers to intel_encoder.c
+7695c637c337 drm/i915: Pass intel_display to the encoder suspend/shutdown helpers
+a73dcc8a9fb5 drm/xe: Use the encoder suspend helper also used by the i915 driver
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+Commit b61fad5f7e5d ("drm/i915/tc: Call TypeC port flush_work/cleanup without modeset locks held")
 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+total: 0 errors, 1 warnings, 0 checks, 36 lines checked
 
-Thanks.
 
-> 
-> > for i915, but not added to the xe driver (which was still in a separate
-> > source tree at the above point).
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/display/xe_display.c | 18 ++----------------
-> >  1 file changed, 2 insertions(+), 16 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> > index 78cccbe289475..8b83dcff72e17 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_display.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> > @@ -23,6 +23,7 @@
-> >  #include "intel_display_types.h"
-> >  #include "intel_dmc.h"
-> >  #include "intel_dp.h"
-> > +#include "intel_encoder.h"
-> >  #include "intel_fbdev.h"
-> >  #include "intel_hdcp.h"
-> >  #include "intel_hotplug.h"
-> > @@ -270,21 +271,6 @@ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
-> >  		gen11_de_irq_postinstall(xe);
-> >  }
-> >  
-> > -static void intel_suspend_encoders(struct xe_device *xe)
-> > -{
-> > -	struct drm_device *dev = &xe->drm;
-> > -	struct intel_encoder *encoder;
-> > -
-> > -	if (has_display(xe))
-> > -		return;
-> > -
-> > -	drm_modeset_lock_all(dev);
-> > -	for_each_intel_encoder(dev, encoder)
-> > -		if (encoder->suspend)
-> > -			encoder->suspend(encoder);
-> > -	drm_modeset_unlock_all(dev);
-> > -}
-> > -
-> >  static bool suspend_to_idle(void)
-> >  {
-> >  #if IS_ENABLED(CONFIG_ACPI_SLEEP)
-> > @@ -315,7 +301,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
-> >  
-> >  	intel_hpd_cancel_work(xe);
-> >  
-> > -	intel_suspend_encoders(xe);
-> > +	intel_encoder_suspend_all(&xe->display);
-> >  
-> >  	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
-> >  
-> > -- 
-> > 2.43.3
-> > 
