@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37AC90B176
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2024 16:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6751F90B17E
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2024 16:20:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C68E10E3E2;
-	Mon, 17 Jun 2024 14:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B891210E3EB;
+	Mon, 17 Jun 2024 14:19:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LyXjMa2Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3lr9K78";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE8310E3E2;
- Mon, 17 Jun 2024 14:19:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 145ED10E3E7;
+ Mon, 17 Jun 2024 14:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718633976; x=1750169976;
+ t=1718633996; x=1750169996;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0Yn3khoseLunC6aRDinvmUwl8RNSOSrvBcYvLU4D3vc=;
- b=LyXjMa2Z6cdRafn0uoDFJky0g2Ggqx45fVF7Q4O1gpOP6FmvPEuOvs5C
- kDxMmLty+EFI8Ik9jjBn4wdNKCUCWRQoYl4laMk+LeUSmx4fUksEaG7uX
- n1jxZ0zxiJyB7RY1KZt9aVAEeXdPKSqJUQ4jRSx4YL6JoXQDkT2RWjQHq
- nNp/1N9HDtLO4dNMjqH+nmRVU+GO91OESAq1vQ1IZxnFNxLJZ+TIqONWc
- KmomAViTk9EzwyVrlXFt0q+RIVLtubst47sHIROCyUkNZP6gKnLIWFh0g
- +4C8vwEZrlkkEFfsRIp4wJjkB0evBtqCVzVSMG4ftdYYGqyOBToqdbqwx g==;
-X-CSE-ConnectionGUID: CLhXvjX2TqKDzvmgjEye6w==
-X-CSE-MsgGUID: jU4moI3ZRzSkSPTD3gVqyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11105"; a="15593327"
-X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; d="scan'208";a="15593327"
+ bh=R2X5wER3cN2q4cAk64/ig/YgL3IiObrhDUI7MlDeKoY=;
+ b=J3lr9K78T4Gtb+X5ul/YVWHRCn90Cq4bGEyENA5e5wk7yqKrjSrhplIb
+ HbHwhuVav/kpEzZhLiJ8MuUM4NwYsPYXjRu6TcrL7d3v3du3lvYPMJ8W9
+ X8a95BCqTsEhhnDWdUy78YX91KU5vFoDZsD2KpHhl52l2KbyzeOcn8qvR
+ IYUbG3qixqBGVx77RWSb2AsHt5JvU2M3pY9+WdJ7tv/Df0I+sf9DriPm7
+ vosGfM6/VkQKdFfY+RomqMsS4FhEv06HTSIxf/a6zfNGCsBnrOcp0NJi6
+ km2tJq2ZV6FAjCslU2EqWxgUufCbdKCz/XG5Ovq5LByZcbmjeeBMZ8KgW A==;
+X-CSE-ConnectionGUID: PVUlmhGGShSNgRgjRRXGzw==
+X-CSE-MsgGUID: emvS/V5yQvqWXdHrVOZ3TA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11105"; a="15593335"
+X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; d="scan'208";a="15593335"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 07:19:35 -0700
-X-CSE-ConnectionGUID: AaPDnSE2RwGzRDvWCV8CEw==
-X-CSE-MsgGUID: QES4aZV3TrWui6fflAidxQ==
+ 17 Jun 2024 07:19:40 -0700
+X-CSE-ConnectionGUID: rI50lKjfTvCrkzmhjOwQaQ==
+X-CSE-MsgGUID: HCzsTAjtQ1WkgOfA6Sh3aA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; d="scan'208";a="41083544"
+X-IronPort-AV: E=Sophos;i="6.08,244,1712646000"; d="scan'208";a="41083549"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.85])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 07:19:34 -0700
+ 17 Jun 2024 07:19:38 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 4/5] drm/i915/frontbuffer: hide ->write
-Date: Mon, 17 Jun 2024 17:19:01 +0300
-Message-Id: <926007fda6f9d9f57d7c84bdeb891cabf4aafac7.1718633874.git.jani.nikula@intel.com>
+Subject: [PATCH 5/5] drm/i915/frontbuffer: make struct intel_frontbuffer opaque
+Date: Mon, 17 Jun 2024 17:19:02 +0300
+Message-Id: <ba2e3e16b5c47f7e6d434d8fa815e965458a98d5.1718633874.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1718633874.git.jani.nikula@intel.com>
 References: <cover.1718633874.git.jani.nikula@intel.com>
@@ -70,57 +70,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add accessor to frontbuffer ->write to avoid direct access from outside
-of intel_frontbuffer.c in preparation for making struct
-intel_frontbuffer opaque.
+Hide struct intel_frontbuffer implementation details within
+intel_frontbuffer.c.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_frontbuffer.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_frontbuffer.h | 2 ++
- drivers/gpu/drm/i915/i915_vma.c                  | 2 +-
- 3 files changed, 8 insertions(+), 1 deletion(-)
+ .../gpu/drm/i915/display/intel_frontbuffer.c   | 10 ++++++++++
+ .../gpu/drm/i915/display/intel_frontbuffer.h   | 18 ++++--------------
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index 42defe2b7661..dd5fd1e2859e 100644
+index dd5fd1e2859e..53a4cbc43ae3 100644
 --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
 +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -87,6 +87,11 @@ void intel_frontbuffer_get_raw(struct intel_frontbuffer *front)
- 	kref_get(&front->ref);
- }
+@@ -67,6 +67,16 @@
+ #include "intel_psr.h"
+ #include "intel_tdf.h"
  
-+struct i915_active *intel_frontbuffer_active(struct intel_frontbuffer *front)
-+{
-+	return &front->write;
-+}
++struct intel_frontbuffer {
++	struct kref ref;
++	atomic_t bits;
++	struct i915_active write;
++	struct drm_i915_gem_object *obj;
++	struct rcu_head rcu;
 +
- /**
-  * frontbuffer_flush - flush frontbuffer
-  * @i915: i915 device
++	struct work_struct flush_work;
++};
++
+ unsigned int intel_frontbuffer_bits(struct intel_frontbuffer *front)
+ {
+ 	return atomic_read(&front->bits);
 diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-index 221f41096416..62d6e3cedea4 100644
+index 62d6e3cedea4..a6212ee4ed12 100644
 --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
 +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-@@ -134,4 +134,6 @@ void intel_frontbuffer_track(struct intel_frontbuffer *old,
- 			     struct intel_frontbuffer *new,
- 			     unsigned int frontbuffer_bits);
+@@ -24,13 +24,13 @@
+ #ifndef __INTEL_FRONTBUFFER_H__
+ #define __INTEL_FRONTBUFFER_H__
  
-+struct i915_active *intel_frontbuffer_active(struct intel_frontbuffer *front);
-+
- #endif /* __INTEL_FRONTBUFFER_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index d2f064d2525c..2b5cc7af19c5 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1975,7 +1975,7 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
- 		front = i915_gem_object_get_frontbuffer(obj);
- 		if (unlikely(front)) {
- 			if (intel_frontbuffer_invalidate(front, ORIGIN_CS))
--				i915_active_add_request(&front->write, rq);
-+				i915_active_add_request(intel_frontbuffer_active(front), rq);
- 			intel_frontbuffer_put(front);
- 		}
- 	}
+-#include <linux/atomic.h>
+ #include <linux/bits.h>
+-#include <linux/kref.h>
+-
+-#include "i915_active_types.h"
++#include <linux/types.h>
+ 
++struct drm_i915_gem_object;
+ struct drm_i915_private;
++struct i915_active;
++struct intel_frontbuffer;
+ 
+ enum fb_op_origin {
+ 	ORIGIN_CPU = 0,
+@@ -40,16 +40,6 @@ enum fb_op_origin {
+ 	ORIGIN_CURSOR_UPDATE,
+ };
+ 
+-struct intel_frontbuffer {
+-	struct kref ref;
+-	atomic_t bits;
+-	struct i915_active write;
+-	struct drm_i915_gem_object *obj;
+-	struct rcu_head rcu;
+-
+-	struct work_struct flush_work;
+-};
+-
+ /*
+  * Frontbuffer tracking bits. Set in obj->frontbuffer_bits while a gem bo is
+  * considered to be the frontbuffer for the given plane interface-wise. This
 -- 
 2.39.2
 
