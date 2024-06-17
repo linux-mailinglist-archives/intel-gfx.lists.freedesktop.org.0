@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BEB90B754
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2024 19:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF11E90B757
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2024 19:03:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7FD810E46D;
-	Mon, 17 Jun 2024 17:03:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B66FA10E471;
+	Mon, 17 Jun 2024 17:03:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFUadu96";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZO24A1Ti";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF0FA10E132;
- Mon, 17 Jun 2024 17:03:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D516210E471;
+ Mon, 17 Jun 2024 17:03:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718643829; x=1750179829;
+ t=1718643830; x=1750179830;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=X2VJLxzfCWjvSoH1aXqbuwRTQlHK+b7m9DPJ3MrnhkM=;
- b=kFUadu9630QsUoJjgYGISkaDJriFY9R+7YALh8QpVugrqemiZNdbhUfY
- rhvt/hqNif2o1OhtQ6QKVvfVpyVG1VVfuyG4muE5jnFjRXx/wxlAjUa6V
- yP0JxbTnMKrgbE9rUewXRQIIkszkV5jfFvCs1+QQBUx5b4TviqxFjN0DZ
- ev8gNqwpu/PHxIoTFkxFPTKGpDxWqCZgvBBvI4D50/U2V3wM4Zu+WlPaC
- TjRldGOlpNo6qh2SMkAyVc8qb6muDv3+yP+ZhZeiK9njVhSlWs1jPT+Ie
- vFeHwmALsO5FXmAUlQsT4v7f0aTVetqCBUHnlLOBLJy8pHdHfhpO7cbyv w==;
-X-CSE-ConnectionGUID: LyellDxHSaWixzxM7/rlgw==
-X-CSE-MsgGUID: fkWYizeYRKa9o0FgxXdk4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="32951785"
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="32951785"
+ bh=A4bLPR+CpHzChW5Tz87YnQ4c1xt2GXD+ettaLJP5jHI=;
+ b=ZO24A1Ti2ITHKvxpK8GoAbvXUZkDmE/52YGNOYVPCLxpXuRpfjhHYcp9
+ KLMUSLm965mmloTLqvEuyLTeNRy2sYV3Qb2uJZeOas6vslWnFup85oc42
+ h3pLyIdnOXydmV/d0noEeGDP0mwqGILHyPNxCPVBGrYJqF5uECihy6Jrl
+ XEZmbRDZGgWY3M7QBIr8aIxSW71UqMp2meZCBZWDmqEh3NHqrGmpPtjx7
+ XkQF811FwQyhlmsgIKH69Ce2FYbX7m7jVq0Jz73de57ad6XWqalt3tlMk
+ 4lrMlftxztKFl6jmeGD3f4hbN+4gaYJhjqedy6tDCfxKfe6Orq5Xdahs3 w==;
+X-CSE-ConnectionGUID: hbb7fhhkQx+Qgqm7MwCgSA==
+X-CSE-MsgGUID: dZLEDLZFRaa1Brr8WjlUwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="32951786"
+X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="32951786"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 10:03:49 -0700
-X-CSE-ConnectionGUID: GN9Qq/UjSIqx5PIfMZ16RQ==
-X-CSE-MsgGUID: Jw/WGwE6RWCoHaIcCWKAdw==
+ 17 Jun 2024 10:03:50 -0700
+X-CSE-ConnectionGUID: exFwygazS0uKEOQX1JwaZA==
+X-CSE-MsgGUID: Cof/49EsTWO5wys7hN95nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="45690933"
+X-IronPort-AV: E=Sophos;i="6.08,245,1712646000"; d="scan'208";a="45690949"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 10:03:47 -0700
+ 17 Jun 2024 10:03:49 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/i915: Pass intel_display to the encoder
- suspend/shutdown helpers
-Date: Mon, 17 Jun 2024 20:03:55 +0300
-Message-ID: <20240617170356.4000251-2-imre.deak@intel.com>
+Subject: [PATCH 3/3] drm/xe: Use the encoder suspend helper also used by the
+ i915 driver
+Date: Mon, 17 Jun 2024 20:03:56 +0300
+Message-ID: <20240617170356.4000251-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.43.3
 In-Reply-To: <20240617170356.4000251-1-imre.deak@intel.com>
 References: <20240617170356.4000251-1-imre.deak@intel.com>
@@ -68,125 +68,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pass intel_display to the encoder suspend/shutdown helpers instead of
-drm_i915_private for better isolation. This assumes that HAS_DISPLAY()
-will also take an intel_display parameter in the future (or that the
-HAS_DISPLAY() check will be moved to a caller of these functions).
+Use the suspend encoders helper which is also used by the i915 driver.
+This fixes an issue in the xe driver where the encoder
+suspend_complete() hook is not called and was an overlook when this hook
+was added in
+
+Commit b61fad5f7e5d ("drm/i915/tc: Call TypeC port flush_work/cleanup without modeset locks held")
+
+for i915, but not added to the xe driver (which was still in a separate
+source tree at the above point).
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_encoder.c | 22 +++++++++++---------
- drivers/gpu/drm/i915/display/intel_encoder.h |  7 +++----
- drivers/gpu/drm/i915/i915_driver.c           |  6 +++---
- 3 files changed, 18 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 18 ++----------------
+ 1 file changed, 2 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
-index 8a1dccb893a37..8e73d18a522d4 100644
---- a/drivers/gpu/drm/i915/display/intel_encoder.c
-+++ b/drivers/gpu/drm/i915/display/intel_encoder.c
-@@ -38,8 +38,9 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
- 			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 78cccbe289475..8b83dcff72e17 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -23,6 +23,7 @@
+ #include "intel_display_types.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
++#include "intel_encoder.h"
+ #include "intel_fbdev.h"
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
+@@ -270,21 +271,6 @@ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+ 		gen11_de_irq_postinstall(xe);
  }
  
--void intel_encoder_suspend_all(struct drm_i915_private *i915)
-+void intel_encoder_suspend_all(struct intel_display *display)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_encoder *encoder;
- 
- 	if (!HAS_DISPLAY(i915))
-@@ -49,19 +50,20 @@ void intel_encoder_suspend_all(struct drm_i915_private *i915)
- 	 * TODO: check and remove holding the modeset locks if none of
- 	 * the encoders depends on this.
- 	 */
--	drm_modeset_lock_all(&i915->drm);
--	for_each_intel_encoder(&i915->drm, encoder)
-+	drm_modeset_lock_all(display->drm);
-+	for_each_intel_encoder(display->drm, encoder)
- 		if (encoder->suspend)
- 			encoder->suspend(encoder);
--	drm_modeset_unlock_all(&i915->drm);
-+	drm_modeset_unlock_all(display->drm);
- 
--	for_each_intel_encoder(&i915->drm, encoder)
-+	for_each_intel_encoder(display->drm, encoder)
- 		if (encoder->suspend_complete)
- 			encoder->suspend_complete(encoder);
- }
- 
--void intel_encoder_shutdown_all(struct drm_i915_private *i915)
-+void intel_encoder_shutdown_all(struct intel_display *display)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_encoder *encoder;
- 
- 	if (!HAS_DISPLAY(i915))
-@@ -71,13 +73,13 @@ void intel_encoder_shutdown_all(struct drm_i915_private *i915)
- 	 * TODO: check and remove holding the modeset locks if none of
- 	 * the encoders depends on this.
- 	 */
--	drm_modeset_lock_all(&i915->drm);
--	for_each_intel_encoder(&i915->drm, encoder)
-+	drm_modeset_lock_all(display->drm);
-+	for_each_intel_encoder(display->drm, encoder)
- 		if (encoder->shutdown)
- 			encoder->shutdown(encoder);
--	drm_modeset_unlock_all(&i915->drm);
-+	drm_modeset_unlock_all(display->drm);
- 
--	for_each_intel_encoder(&i915->drm, encoder)
-+	for_each_intel_encoder(display->drm, encoder)
- 		if (encoder->shutdown_complete)
- 			encoder->shutdown_complete(encoder);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
-index e6cd74576f78e..3fa5589f0b1ce 100644
---- a/drivers/gpu/drm/i915/display/intel_encoder.h
-+++ b/drivers/gpu/drm/i915/display/intel_encoder.h
-@@ -6,8 +6,7 @@
- #ifndef __INTEL_ENCODER_H__
- #define __INTEL_ENCODER_H__
- 
--struct drm_i915_private;
+-static void intel_suspend_encoders(struct xe_device *xe)
+-{
+-	struct drm_device *dev = &xe->drm;
+-	struct intel_encoder *encoder;
 -
-+struct intel_display;
- struct intel_encoder;
+-	if (has_display(xe))
+-		return;
+-
+-	drm_modeset_lock_all(dev);
+-	for_each_intel_encoder(dev, encoder)
+-		if (encoder->suspend)
+-			encoder->suspend(encoder);
+-	drm_modeset_unlock_all(dev);
+-}
+-
+ static bool suspend_to_idle(void)
+ {
+ #if IS_ENABLED(CONFIG_ACPI_SLEEP)
+@@ -315,7 +301,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
  
- void intel_encoder_link_check_init(struct intel_encoder *encoder,
-@@ -15,7 +14,7 @@ void intel_encoder_link_check_init(struct intel_encoder *encoder,
- void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms);
- void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
+ 	intel_hpd_cancel_work(xe);
  
--void intel_encoder_suspend_all(struct drm_i915_private *i915);
--void intel_encoder_shutdown_all(struct drm_i915_private *i915);
-+void intel_encoder_suspend_all(struct intel_display *display);
-+void intel_encoder_shutdown_all(struct intel_display *display);
+-	intel_suspend_encoders(xe);
++	intel_encoder_suspend_all(&xe->display);
  
- #endif /* __INTEL_ENCODER_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index e9e38ed246f66..fb8e9c2fcea53 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -956,8 +956,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 	if (HAS_DISPLAY(i915))
- 		intel_display_driver_suspend_access(i915);
+ 	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
  
--	intel_encoder_suspend_all(i915);
--	intel_encoder_shutdown_all(i915);
-+	intel_encoder_suspend_all(&i915->display);
-+	intel_encoder_shutdown_all(&i915->display);
- 
- 	intel_dmc_suspend(i915);
- 
-@@ -1040,7 +1040,7 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	if (HAS_DISPLAY(dev_priv))
- 		intel_display_driver_suspend_access(dev_priv);
- 
--	intel_encoder_suspend_all(dev_priv);
-+	intel_encoder_suspend_all(&dev_priv->display);
- 
- 	/* Must be called before GGTT is suspended. */
- 	intel_dpt_suspend(dev_priv);
 -- 
 2.43.3
 
