@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB2990C319
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 07:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B2890C31A
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 07:31:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 947E810E56D;
-	Tue, 18 Jun 2024 05:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54ABC10E571;
+	Tue, 18 Jun 2024 05:31:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AlLQRpSK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JhpfcJhe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1D8010E231
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB54C10E562
  for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2024 05:30:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718688656; x=1750224656;
+ t=1718688657; x=1750224657;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jIj9ij5DrGMykLZzp4Iadi8eXI53kOUQOx55c/XXF1w=;
- b=AlLQRpSKmT9P0jBus/zwCrzedSEr1jrdl/sRaT5ARs8hdFjtF4aMlTpx
- BwB8kiIQsRCa31jGlAgM57O6//I4VEJOUeqXudU9RyhV1IOY7ZQjtGJoU
- 60iSLjsglGmllyC48DftfYWV4EdiY1xEp6FiVY+2YoBSiNzPkeFemDeR0
- W2yRNRAFyxF1lbdjUZdtTeY2/PcSo0OFnIl3CN5Srv0QG8ZPHM8mAXJ/W
- H4NJOPyHSSFK4/mhlT0HTxcF990T1D4Gw47FAymrH0jdl67JPmxB6aduI
- bdQgwle5U+48giqnSzRs3qYE6sF32gbnOV7uCMXkI+NDrmpthI1h0alrN Q==;
-X-CSE-ConnectionGUID: 1bL3OeocTTmO+jZUHSSEaA==
-X-CSE-MsgGUID: 8rekRL99TumhSzqHfWE2wA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="33077719"
-X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="33077719"
+ bh=0GnEG7sLN3HYMVpKQTciJ4TNIJX59NWBFVA+4FUHCFU=;
+ b=JhpfcJhe9ogWwaa80X+JKMGwH8jmKWSNOsQe2xi8FYN27Afte5VA3JtC
+ frDx3uGxSmr2IOGpxFKLRNIwYHDPxvtGCBdA9rMSQQaa8SDHXeRMRXtbz
+ 8g8Cfv4r1kRkCCwWXx666JsBATZ+XChjxlBw58hOj1C6hz1vJjEzVrooZ
+ b5EOC+FJIiqGIo8UdfJofOJlPKqHQ6jwBAJcsBimPcIch2Y8pPI3HYmVD
+ fNHTGthpfLpcYQZANEWurmvovra70/4k7JJVgg5tUfUCmDrCxnVkPXUSX
+ XsnVkyGUokvK27Cmf7LN98LpKlcElMnd1Su5ks95n1wN0CBnV/QwHcFWm w==;
+X-CSE-ConnectionGUID: VjlKfYNCRIWHadIm9fjjkQ==
+X-CSE-MsgGUID: nSMS1BtqR5yWX+CgJJgl1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="33077721"
+X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="33077721"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jun 2024 22:30:56 -0700
-X-CSE-ConnectionGUID: MbzDhq6tTWunZPaxkdoNPw==
-X-CSE-MsgGUID: VS3R6OvlSxOctFlL0ilLTQ==
+X-CSE-ConnectionGUID: A9YAbd1OR7+ipVdUjgVXgg==
+X-CSE-MsgGUID: wqP5QJ9BQIWC20+hUYWzpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="41365156"
+X-IronPort-AV: E=Sophos;i="6.08,246,1712646000"; d="scan'208";a="41365157"
 Received: from opintica-mobl1 (HELO jhogande-mobl1..) ([10.245.245.27])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2024 22:30:50 -0700
+ 17 Jun 2024 22:30:52 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 8/9] Revert "drm/i915/psr: Disable early transport by default"
-Date: Tue, 18 Jun 2024 08:30:25 +0300
-Message-Id: <20240618053026.3268759-9-jouni.hogander@intel.com>
+Subject: [PATCH 9/9] intel_alpm: Fix wrong offset for PORT_ALPM_* registers
+Date: Tue, 18 Jun 2024 08:30:26 +0300
+Message-Id: <20240618053026.3268759-10-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240618053026.3268759-1-jouni.hogander@intel.com>
 References: <20240618053026.3268759-1-jouni.hogander@intel.com>
@@ -70,32 +70,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit f3c2031db7dfdf470a2d9bf3bd1efa6edfa72d8d.
+PORT_ALPM_* registers are using MMIO_TRANS2 macro. This is not correct as
+they are port register. Use _PORT_MMIO instead.
 
-We want to notice possible issues faced with PSR2 Region Early Transport as
-early as possible -> let's revert patch disabling Region Early Transport by
-default. Also eDP 1.5 Panel Replay requires Early Transport.
-
+Fixes: 4ee30a448255 ("drm/i915/alpm: Add ALPM register definitions")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 5 +++--
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 6 ++++--
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index cd76109e928a..a9d9383e4ee5 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3110,9 +3110,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 	else
- 		intel_dp->psr.source_support = true;
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 67848fc1e24d..c7092af7da33 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -310,6 +310,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ {
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	enum port port = dp_to_dig_port(intel_dp)->base.port;
+ 	u32 alpm_ctl;
  
--	/* Disable early transport for now */
--	intel_dp->psr.debug |= I915_PSR_DEBUG_SU_REGION_ET_DISABLE;
--
- 	/* Set link_standby x link_off defaults */
- 	if (DISPLAY_VER(dev_priv) < 12)
- 		/* For new platforms up to TGL let's respect VBT back again */
+ 	if (DISPLAY_VER(dev_priv) < 20 || (!intel_dp->psr.sel_update_enabled &&
+@@ -328,7 +329,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
+ 
+ 		intel_de_write(dev_priv,
+-			       PORT_ALPM_CTL(dev_priv, cpu_transcoder),
++			       PORT_ALPM_CTL(dev_priv, port),
+ 			       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+ 			       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
+ 			       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
+@@ -336,7 +337,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 				       intel_dp->alpm_parameters.silence_period_sym_clocks));
+ 
+ 		intel_de_write(dev_priv,
+-			       PORT_ALPM_LFPS_CTL(dev_priv, cpu_transcoder),
++			       PORT_ALPM_LFPS_CTL(dev_priv, port),
+ 			       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
+ 			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+ 				       intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 1e503209da09..642bb15fb547 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -294,7 +294,8 @@
+ #define  ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES(val)	REG_FIELD_PREP(ALPM_CTL2_NUMBER_AUX_LESS_ML_PHY_SLEEP_SEQUENCES_MASK, val)
+ 
+ #define _PORT_ALPM_CTL_A			0x16fa2c
+-#define PORT_ALPM_CTL(dev_priv, tran)			_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_CTL_A)
++#define _PORT_ALPM_CTL_B			0x16fc2c
++#define PORT_ALPM_CTL(dev_priv, port)		_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
+ #define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	REG_BIT(31)
+ #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
+ #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
+@@ -304,7 +305,8 @@
+ #define  PORT_ALPM_CTL_SILENCE_PERIOD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_SILENCE_PERIOD_MASK, val)
+ 
+ #define _PORT_ALPM_LFPS_CTL_A					0x16fa30
+-#define PORT_ALPM_LFPS_CTL(dev_priv, tran)				_MMIO_TRANS2(dev_priv, tran, _PORT_ALPM_LFPS_CTL_A)
++#define _PORT_ALPM_LFPS_CTL_B					0x16fc30
++#define PORT_ALPM_LFPS_CTL(dev_priv, port)			_MMIO_PORT(port, _PORT_ALPM_LFPS_CTL_A, _PORT_ALPM_LFPS_CTL_B)
+ #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
+ #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
+ #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
 -- 
 2.34.1
 
