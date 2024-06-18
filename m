@@ -2,81 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717DE90C51A
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 11:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0E1390C526
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 11:05:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F00C710E5CA;
-	Tue, 18 Jun 2024 09:00:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05E0E10E5F0;
+	Tue, 18 Jun 2024 09:05:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="KKFq3HlA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XzSRBjyN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
- [209.85.128.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 757DB10E5CA
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2024 09:00:12 +0000 (UTC)
-Received: by mail-wm1-f66.google.com with SMTP id
- 5b1f17b1804b1-421bb51d81aso39439975e9.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2024 02:00:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718701210; x=1719306010;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=QBPYHL5GvhUsB8y5ckGLKMnV4bkwUkDrfTmLnxjG5ws=;
- b=KKFq3HlAiWbWXsFW+WFd7QXC22jAbU7pQShFD8pBT8sZ5RsyjbfqHvtiUEBRwML8RM
- CKhNIZm39HLWLXErAOKscbOsG6ix2JXChOcNzLcOIZvk5iKb3N8GEKKcNbQlpOXAf1zv
- 919TW9J47NpmHDAAXB/5lHEBtL+OPOduGhqG5KlNjNrtr8wlyfZQKkl5sP6EtPix2dSB
- f1TIYBYW6cToywvbONWKGL3faZxbXuBoNodsjCPlVKPToRTOArcfltiYXWgZa3PfbcJA
- xENLN95wJKl33hoyC0fy95fbDRTJTSUs45Q2T9ZCwNnMfWlhzCjaJkwkCfh9v4nZr8bm
- gRVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718701210; x=1719306010;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=QBPYHL5GvhUsB8y5ckGLKMnV4bkwUkDrfTmLnxjG5ws=;
- b=K/Q9S+na5JgAwhFpgsj1aUSpWHXh/glsf0lc85ojWB9lKmH4rIZkAcTacErVhYpsEa
- TMfzczd2lLWnpwOiGuNmgAp0hqhOhm46M39ZmK+kpaeInGsdqPcvzIPraCNfMWLm6Nwt
- YguKBK3JyiFK/J2FYi5HWXpzVsrArK7ixargJnTng1wPeedlPqLRGaf5nRdyDJSSGs9/
- a0kraw0d1aoSgBBpbnK68p6emsvvvYZwr7vNC4hNw5pyl/9tpDpjb8rpm6E5L7hR8Ayk
- edi9y8xdbIDYpND5gCs8//YFj8fKn2Uquelsv4sOPl0VfNFppAUljr2wKDnyHMnvXA2k
- 3CFw==
-X-Gm-Message-State: AOJu0Yw9L+ET+ARMYwh52BGfa2GE27rat+G/JAbaUvZ9gZ2hVS51BZpb
- BP9O1v6sV9ieDb/DWucH0SVc6QEW3ll9vv6xu8sAJ79BHFKJlM5u583LG7dWWJQ=
-X-Google-Smtp-Source: AGHT+IE0SihJzaDVzsIGiNkBMvgPykdCPzAqB3veVcn9Rgv1BJOSXKv2hE2p2k5a0YsXpFUtJzvgOg==
-X-Received: by 2002:a05:600c:2309:b0:421:5609:115d with SMTP id
- 5b1f17b1804b1-42304861637mr88308375e9.41.1718701210355; 
- Tue, 18 Jun 2024 02:00:10 -0700 (PDT)
-Received: from [192.168.0.101] ([84.69.19.168])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-422f602efc4sm183647865e9.15.2024.06.18.02.00.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 18 Jun 2024 02:00:10 -0700 (PDT)
-Message-ID: <b740d56d-a744-4d35-b3f2-1166b8df2aef@ursulin.net>
-Date: Tue, 18 Jun 2024 10:00:09 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0613910E5F0;
+ Tue, 18 Jun 2024 09:05:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718701522; x=1750237522;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=gM+/8ZYNqXOjdO6BaY0hqqFU/V6SHtfjeWBpVs9ay08=;
+ b=XzSRBjyNQePiPQJp9hxnWNCUq+YVBhA5eFjuRfszgMaLGWl/40i0LKOT
+ 0Vy1qC4zj2FDLkIBWAeJhMnEAT9Vh2dN8rMcS/dH8Sf+A6Rng/wszbci0
+ cmYwQunw2Xpw1Vpkh/UBi9tGZ8LfvZgpRGzhf8YHPGg8UeYu0qfHLf3uH
+ 0YvxBNkuMXKJ6piOFJU4VMC14ISc4o7tSC32cp+DoPwmETxvI7yb+444h
+ tXOMwVeBuoQTbWzi+P8Ov+itAZTJoYZ6+6UzM2+qQUoQ9ubKNsjxhknVj
+ 0FiYOjWPDcQ/P/ynMfL9RgfKcHK1Xw82JeraCojtGX2v7ep3NXuLuNvOe A==;
+X-CSE-ConnectionGUID: tUYicXB0Sje21XkajlWqYQ==
+X-CSE-MsgGUID: hymaftbQSSushDnrvfRQeA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="19345515"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="19345515"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 02:05:21 -0700
+X-CSE-ConnectionGUID: aME0NzinTr6XA1QanVlzyw==
+X-CSE-MsgGUID: n/WDWMEuQ3Gs8Edgvm98Eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="42162881"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.176])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 02:05:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] drm/i915: Pass intel_display to the encoder
+ suspend/shutdown helpers
+In-Reply-To: <20240617170356.4000251-2-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240617170356.4000251-1-imre.deak@intel.com>
+ <20240617170356.4000251-2-imre.deak@intel.com>
+Date: Tue, 18 Jun 2024 12:05:16 +0300
+Message-ID: <87frtahb8z.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
- PREEMPT_RT
-Content-Language: en-GB
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
-References: <20240613102818.4056866-1-bigeasy@linutronix.de>
- <20240613102818.4056866-4-bigeasy@linutronix.de>
- <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
- <20240614110548.m3lloBjv@linutronix.de>
- <fa38f377-a00a-4e0c-b416-54a1c3f15d4d@ursulin.net>
- <20240617100752.9XDTS0R5@linutronix.de>
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20240617100752.9XDTS0R5@linutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,92 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 17 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
+> Pass intel_display to the encoder suspend/shutdown helpers instead of
+> drm_i915_private for better isolation. This assumes that HAS_DISPLAY()
+> will also take an intel_display parameter in the future (or that the
+> HAS_DISPLAY() check will be moved to a caller of these functions).
 
-On 17/06/2024 11:07, Sebastian Andrzej Siewior wrote:
-> On 2024-06-14 13:19:25 [+0100], Tvrtko Ursulin wrote:
->>> So the question is why do you need to know if the context is atomic?
->>> The only impact is avoiding disabling preemption. Is it that important
->>> to avoid it?
->>> If so would cant_migrate() work? It requires CONFIG_DEBUG_ATOMIC_SLEEP=y
->>> to do the trick.
->>
->> ... catching misuse of atomic wait helpers step 2 - are you calling it from
->> a non-atomic context without the real need. So should use the non-atomic
->> helper instead.
->>
->> When i915 development was very active and with a lot of contributors it was
->> beneficial to catch these things which code review would easily miss.
->>
->> Now that the pace is much, much slower, it is probably not very important.
->> So this patch is acceptable for what I am concerned and:
->>
->> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Actually please also add the PREEMPT_RT angle to the comment above
->> _WAIT_FOR_ATOMIC_CHECK. Sometimes lines change and git blame makes it hard
->> to find the commit text.
-> 
-> Do you want me the repost the series? Are the bots happy enough?
+You can already do that! HAS_DISPLAY() takes either i915 or display. So
+maybe make that change now.
 
-I did a re-test but am not 100% certain yet. CI looks frustratingly 
-noisy at the moment.
+In the future, only display code should have HAS_DISPLAY() anyway, not
+i915 or xe core. It's not an option that the caller does the checks.
 
-igt@debugfs_test@read_all_entries appears to be a fluke which is not new.
-
-But igt@gem_exec_parallel@engines@basic from the latest run seem new.
-
-So I queued another re-test.
-
-> I have the following as far this patch:
-> 
-> ------->8--------------
-> 
-> The !in_atomic() check in _wait_for_atomic() triggers on PREEMPT_RT
-> because the uncore::lock is a spinlock_t and does not disable
-> preemption or interrupts.
-> 
-> Changing the uncore:lock to a raw_spinlock_t doubles the worst case
-> latency on an otherwise idle testbox during testing.
-> 
-> Ignore _WAIT_FOR_ATOMIC_CHECK() on PREEMPT_RT.
-> 
-> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Link: https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutronix.de/
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_utils.h | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index 06ec6ceb61d57..f0d3c5cdc1b1b 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -273,8 +273,13 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
->   						   (Wmax))
->   #define wait_for(COND, MS)		_wait_for((COND), (MS) * 1000, 10, 1000)
->   
-> -/* If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false. */
-> -#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT)
-> +/*
-> + * If CONFIG_PREEMPT_COUNT is disabled, in_atomic() always reports false.
-> + * On PREEMPT_RT the context isn't becoming atomic because it is used in an
-> + * interrupt handler or because a spinlock_t is acquired. This leads warnings
-> + * which don't occur otherwise and is therefore disabled.
+>  drivers/gpu/drm/i915/display/intel_encoder.c | 22 +++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_encoder.h |  7 +++----
+>  drivers/gpu/drm/i915/i915_driver.c           |  6 +++---
+>  3 files changed, 18 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
+> index 8a1dccb893a37..8e73d18a522d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.c
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
+> @@ -38,8 +38,9 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
+>  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+>  }
+>  
+> -void intel_encoder_suspend_all(struct drm_i915_private *i915)
+> +void intel_encoder_suspend_all(struct intel_display *display)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_encoder *encoder;
+>  
+>  	if (!HAS_DISPLAY(i915))
+> @@ -49,19 +50,20 @@ void intel_encoder_suspend_all(struct drm_i915_private *i915)
+>  	 * TODO: check and remove holding the modeset locks if none of
+>  	 * the encoders depends on this.
+>  	 */
+> -	drm_modeset_lock_all(&i915->drm);
+> -	for_each_intel_encoder(&i915->drm, encoder)
+> +	drm_modeset_lock_all(display->drm);
+> +	for_each_intel_encoder(display->drm, encoder)
+>  		if (encoder->suspend)
+>  			encoder->suspend(encoder);
+> -	drm_modeset_unlock_all(&i915->drm);
+> +	drm_modeset_unlock_all(display->drm);
+>  
+> -	for_each_intel_encoder(&i915->drm, encoder)
+> +	for_each_intel_encoder(display->drm, encoder)
+>  		if (encoder->suspend_complete)
+>  			encoder->suspend_complete(encoder);
+>  }
+>  
+> -void intel_encoder_shutdown_all(struct drm_i915_private *i915)
+> +void intel_encoder_shutdown_all(struct intel_display *display)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_encoder *encoder;
+>  
+>  	if (!HAS_DISPLAY(i915))
+> @@ -71,13 +73,13 @@ void intel_encoder_shutdown_all(struct drm_i915_private *i915)
+>  	 * TODO: check and remove holding the modeset locks if none of
+>  	 * the encoders depends on this.
+>  	 */
+> -	drm_modeset_lock_all(&i915->drm);
+> -	for_each_intel_encoder(&i915->drm, encoder)
+> +	drm_modeset_lock_all(display->drm);
+> +	for_each_intel_encoder(display->drm, encoder)
+>  		if (encoder->shutdown)
+>  			encoder->shutdown(encoder);
+> -	drm_modeset_unlock_all(&i915->drm);
+> +	drm_modeset_unlock_all(display->drm);
+>  
+> -	for_each_intel_encoder(&i915->drm, encoder)
+> +	for_each_intel_encoder(display->drm, encoder)
+>  		if (encoder->shutdown_complete)
+>  			encoder->shutdown_complete(encoder);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
+> index e6cd74576f78e..3fa5589f0b1ce 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.h
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.h
+> @@ -6,8 +6,7 @@
+>  #ifndef __INTEL_ENCODER_H__
+>  #define __INTEL_ENCODER_H__
+>  
+> -struct drm_i915_private;
+> -
 
-Ack, thanks!
+Ah, this is why you missed the superfluous space. ;)
 
-Regards,
+BR,
+Jani.
 
-Tvrtko
+> +struct intel_display;
+>  struct intel_encoder;
+>  
+>  void intel_encoder_link_check_init(struct intel_encoder *encoder,
+> @@ -15,7 +14,7 @@ void intel_encoder_link_check_init(struct intel_encoder *encoder,
+>  void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms);
+>  void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
+>  
+> -void intel_encoder_suspend_all(struct drm_i915_private *i915);
+> -void intel_encoder_shutdown_all(struct drm_i915_private *i915);
+> +void intel_encoder_suspend_all(struct intel_display *display);
+> +void intel_encoder_shutdown_all(struct intel_display *display);
+>  
+>  #endif /* __INTEL_ENCODER_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index e9e38ed246f66..fb8e9c2fcea53 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -956,8 +956,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+>  	if (HAS_DISPLAY(i915))
+>  		intel_display_driver_suspend_access(i915);
+>  
+> -	intel_encoder_suspend_all(i915);
+> -	intel_encoder_shutdown_all(i915);
+> +	intel_encoder_suspend_all(&i915->display);
+> +	intel_encoder_shutdown_all(&i915->display);
+>  
+>  	intel_dmc_suspend(i915);
+>  
+> @@ -1040,7 +1040,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+>  	if (HAS_DISPLAY(dev_priv))
+>  		intel_display_driver_suspend_access(dev_priv);
+>  
+> -	intel_encoder_suspend_all(dev_priv);
+> +	intel_encoder_suspend_all(&dev_priv->display);
+>  
+>  	/* Must be called before GGTT is suspended. */
+>  	intel_dpt_suspend(dev_priv);
 
-> + */
-> +#if defined(CONFIG_DRM_I915_DEBUG) && defined(CONFIG_PREEMPT_COUNT) && !defined(CONFIG_PREEMPT_RT)
->   # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) WARN_ON_ONCE((ATOMIC) && !in_atomic())
->   #else
->   # define _WAIT_FOR_ATOMIC_CHECK(ATOMIC) do { } while (0)
-> 
->> Regards,
->>
->> Tvrtko
-> 
-> Sebastian
+-- 
+Jani Nikula, Intel
