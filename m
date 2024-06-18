@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0E190D494
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 16:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A28790D496
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 16:23:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 646DB10E6A7;
-	Tue, 18 Jun 2024 14:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5B510E6AE;
+	Tue, 18 Jun 2024 14:23:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPiY35GU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FxKN2nUU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6B2510E6A7;
- Tue, 18 Jun 2024 14:23:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C64F10E6AC;
+ Tue, 18 Jun 2024 14:23:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718720584; x=1750256584;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DDNP4QXQZtfYniMBUu0lKauH0P4hOOaP2bIwKgoJFeA=;
- b=fPiY35GUGF3q75csbfp7P6PeUV0IzfpPXGvvA9+RZ4SrDBQdSOEgKBDb
- ii+91KbMQbDO7bSktuYRetbB3R2ueJbpTjqyfRH3cFCV1pgcqECG6VNJE
- 1FC8gnu4LgQ1BX0GEHBmwuW+zlQWiyKJ6Eox/ZQNkAYsqY199fs1FItE9
- GrH2cQfP3IUYoxhD+h4qPZZJHVmegllo30XMpBGU0b9m2T9SAd6E+qQBq
- 9i1rKJ/SRB71kXDad9NzkumdL55CtQIhKZ8uOA9V8cn6inTU4ZqycxV2P
- lrN6rjGYYBdZLcoZBQY0G0MWLoXLuHGDcm8SfsGvi9GHxktvoYvvEvGm/ w==;
-X-CSE-ConnectionGUID: YqyjmcypTHymN2hYTMRlMQ==
-X-CSE-MsgGUID: VlNjfz+IR1mKRVTqN/JFpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15365249"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15365249"
+ t=1718720589; x=1750256589;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KWEGNgh9gFbIFi42tYLXu+xv/HtJHzLfqvYKaYY9HZE=;
+ b=FxKN2nUUqMgwKCzfltu9Fa0ccuIDJlL0CyeUqpER6dc7je2s9MsyOLvq
+ 5bwz0IKo+hqv4gqNOLZEhtuN2xmJWB/IBac6wLTheA6yO+t9OpsAEZxIQ
+ DKdDyQrC2gZUXRi8oId6SBn9An95bspe2MmBlkYWDgmeGHxlZEmwEEmzg
+ lVfxOZ0w7UCEzWeGYPIa2moHfqa6B2ZkC413Qe1Oae/TBahhQzs15ZdyZ
+ 3J1AMfYTa7sCmoypcb94yP12Y0FgwToWYdckBsACgsVXPb8gkIB6M5jHp
+ doccVw9jHG3hIJqGFPNwiqxKfSzhDrAEtHv8cA+n00fB/0fjfECV2+nJd Q==;
+X-CSE-ConnectionGUID: RMBk0M/CSquyOl+FYF9D2Q==
+X-CSE-MsgGUID: Cb21krk4TpKvjnGWjLoQ3A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15365274"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15365274"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 07:23:03 -0700
-X-CSE-ConnectionGUID: jZZ/T5vUS/mE/9+Z6Naubw==
-X-CSE-MsgGUID: 4vTHfwzVS+yI9HHMVjIllA==
+ 18 Jun 2024 07:23:09 -0700
+X-CSE-ConnectionGUID: RPAQU3wqShmgOLSAxfLSyA==
+X-CSE-MsgGUID: xhadKhwTT0u83i04kxwJBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41495443"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41495458"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.176])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 07:23:00 -0700
+ 18 Jun 2024 07:23:06 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
  ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
  lucas.demarchi@intel.com
-Subject: [PATCH 0/6] drm/i915/display: platform identification with
- display->is.<PLATFORM>
-Date: Tue, 18 Jun 2024 17:22:50 +0300
-Message-Id: <cover.1718719962.git.jani.nikula@intel.com>
+Subject: [PATCH 1/6] drm/i915/display: use a macro to initialize subplatforms
+Date: Tue, 18 Jun 2024 17:22:51 +0300
+Message-Id: <03025d8bbb5036abd4c670b052f20a273feac62f.1718719962.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1718719962.git.jani.nikula@intel.com>
+References: <cover.1718719962.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -71,127 +72,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Long story short, we'll need to identify platforms in display code using
-some other way than i915 core IS_<PLATFORM>() macros if we ever want to
-make a strict separation between the display and non-display parts.
+Make it easier to change the underlying structures by using a macro
+similar to PLATFORM() for initialization.
 
-I tossed some ideas around (see the bottom of this mail), Lucas liked
-something similar to what I have here. Essentially with this, you can
-replace platform checks like IS_TIGERLAKE(i915) with
-display->is.TIGERLAKE and subplatform checks like IS_RAPTORLAKE_S(i915)
-with display->is.ALDERLAKE_S_RAPTORLAKE_S.
+The subplatform names in debug logs change slightly as they now reflect
+the enum rather than manually entered names. For example, RAPTORLAKE_S
+rather than RPL-S.
 
-It would be possible to drop the ALDERLAKE_S or "parent" platform part
-there, but I think it's useful in many cases to be explicit it's a
-subplatform we're talking about.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../drm/i915/display/intel_display_device.c   | 44 ++++++++++---------
+ 1 file changed, 24 insertions(+), 20 deletions(-)
 
-It's also possible to convert all of this to lowercase if desired,
-i.e. display->is.tigerlake and display->is.alderlake_s_raptorlake_s.
-
-There's one more wrinkle I didn't address; currently IS_HASWELL_ULT()
-and IS_BROADWELL_ULT() also match the ULX variants. This is not the case
-here yet.
-
-Thoughts?
-
-BR,
-Jani.
-
-
-void foo(void)
-{
-	/*
-	 * Examples with a platform check (Tigerlake) and a subplatform check
-	 * (Alderlake S subplatform Raptorlake S).
-	 */
-
-	/*
-	 * is_<platform>(display). Same as i915 core, but lowercase.
-	 *
-	 * Pros:
-	 * - Easy to convert
-	 * - Short
-	 *
-	 * Cons:
-	 * - Need to keep defining new macros for new platfoms and subplatforms
-	 */
-	if (is_tigerlake(display) || is_alderlake_s_raptorlake_s(display)) {
-	}
-
-	/*
-	 * is_platform(display, <platform>) check.
-	 *
-	 * Alternatively is_plat() or is_display() or something else?
-	 *
-	 * Pros:
-	 * - Can be made to handle both platforms and subplatforms by
-	 *   renumbering subplatforms enum
-	 * - No need to define new macros for new platforms
-	 *
-	 * Cons:
-	 * - A bit long
-	 */
-	if (is_platform(display, INTEL_DISPLAY_TIGERLAKE) ||
-	    is_platform(display, INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S)) {
-	}
-
-	/*
-	 * An is_platform() with a macro wrapper to abbreviate param.
-	 *
-	 * Pros:
-	 * - Shorter
-	 *
-	 * Cons:
-	 * - Throws off cscope and gnu global
-	 */
-	if (is_platform(display, TIGERLAKE) ||
-	    is_platform(display, ALDERLAKE_S_RAPTORLAKE_S)) {
-	}
-
-	/*
-	 * Functions to return platform/subplatforms.
-	 *
-	 * Pros:
-	 * - No need to define new macros for new platforms
-	 *
-	 * Cons:
-	 * - Long
-	 * - Need separate checks for platform/subplatform
-	 */
-	if (intel_platform(display) == INTEL_DISPLAY_TIGERLAKE ||
-	    intel_subplatform(display) == INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S) {
-	}
-
-	/*
-	 * Initialize bitfields in display according to platform/subplatform
-	 *
-	 * Pros:
-	 * - Really short
-	 * - Does not pollute namespace with is_something
-	 *
-	 * Cons:
-	 * - Pollutes top level struct intel_display
-	 * - Kind of belongs in display device or runtime info, but that would
-	 *   again be too long to be helpful
-	 */
-	if (display->is_tigerlake || display->alderlake_s_raptorlake_s) {
-	}
-}
-
-
-Jani Nikula (6):
-  drm/i915/display: use a macro to initialize subplatforms
-  drm/i915/display: use a macro to define platform enumerations
-  drm/i915/display: join the platform and subplatform macros
-  drm/i915/display: add "display is" structure with platform members
-  drm/i915/display: add "is" member to struct intel_display
-  drm/i915/display: remove the display platform enum as unnecessary
-
- .../gpu/drm/i915/display/intel_display_core.h |   3 +
- .../drm/i915/display/intel_display_device.c   |  79 ++++++---
- .../drm/i915/display/intel_display_device.h   | 165 +++++++++---------
- 3 files changed, 136 insertions(+), 111 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index dd7dce4b0e7a..d900c30907ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -26,6 +26,10 @@ struct subplatform_desc {
+ 	const u16 *pciidlist;
+ };
+ 
++#define SUBPLATFORM(_platform, _subplatform)				\
++	.subplatform = (INTEL_DISPLAY_##_platform##_##_subplatform),	\
++	.name = #_subplatform
++
+ struct platform_desc {
+ 	enum intel_display_platform platform;
+ 	const char *name;
+@@ -485,8 +489,8 @@ static const u16 hsw_ulx_ids[] = {
+ static const struct platform_desc hsw_desc = {
+ 	PLATFORM(HASWELL),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_HASWELL_ULT, "ULT", hsw_ult_ids },
+-		{ INTEL_DISPLAY_HASWELL_ULX, "ULX", hsw_ulx_ids },
++		{ SUBPLATFORM(HASWELL, ULT), .pciidlist = hsw_ult_ids },
++		{ SUBPLATFORM(HASWELL, ULX), .pciidlist = hsw_ulx_ids },
+ 		{},
+ 	},
+ 	.info = &(const struct intel_display_device_info) {
+@@ -529,8 +533,8 @@ static const u16 bdw_ulx_ids[] = {
+ static const struct platform_desc bdw_desc = {
+ 	PLATFORM(BROADWELL),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_BROADWELL_ULT, "ULT", bdw_ult_ids },
+-		{ INTEL_DISPLAY_BROADWELL_ULX, "ULX", bdw_ulx_ids },
++		{ SUBPLATFORM(BROADWELL, ULT), .pciidlist = bdw_ult_ids },
++		{ SUBPLATFORM(BROADWELL, ULX), .pciidlist = bdw_ulx_ids },
+ 		{},
+ 	},
+ 	.info = &(const struct intel_display_device_info) {
+@@ -613,8 +617,8 @@ static const u16 skl_ulx_ids[] = {
+ static const struct platform_desc skl_desc = {
+ 	PLATFORM(SKYLAKE),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_SKYLAKE_ULT, "ULT", skl_ult_ids },
+-		{ INTEL_DISPLAY_SKYLAKE_ULX, "ULX", skl_ulx_ids },
++		{ SUBPLATFORM(SKYLAKE, ULT), .pciidlist = skl_ult_ids },
++		{ SUBPLATFORM(SKYLAKE, ULX), .pciidlist = skl_ulx_ids },
+ 		{},
+ 	},
+ 	.info = &skl_display,
+@@ -637,8 +641,8 @@ static const u16 kbl_ulx_ids[] = {
+ static const struct platform_desc kbl_desc = {
+ 	PLATFORM(KABYLAKE),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_KABYLAKE_ULT, "ULT", kbl_ult_ids },
+-		{ INTEL_DISPLAY_KABYLAKE_ULX, "ULX", kbl_ulx_ids },
++		{ SUBPLATFORM(KABYLAKE, ULT), .pciidlist = kbl_ult_ids },
++		{ SUBPLATFORM(KABYLAKE, ULX), .pciidlist = kbl_ulx_ids },
+ 		{},
+ 	},
+ 	.info = &skl_display,
+@@ -661,8 +665,8 @@ static const u16 cfl_ulx_ids[] = {
+ static const struct platform_desc cfl_desc = {
+ 	PLATFORM(COFFEELAKE),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_COFFEELAKE_ULT, "ULT", cfl_ult_ids },
+-		{ INTEL_DISPLAY_COFFEELAKE_ULX, "ULX", cfl_ulx_ids },
++		{ SUBPLATFORM(COFFEELAKE, ULT), .pciidlist = cfl_ult_ids },
++		{ SUBPLATFORM(COFFEELAKE, ULX), .pciidlist = cfl_ulx_ids },
+ 		{},
+ 	},
+ 	.info = &skl_display,
+@@ -677,7 +681,7 @@ static const u16 cml_ult_ids[] = {
+ static const struct platform_desc cml_desc = {
+ 	PLATFORM(COMETLAKE),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_COMETLAKE_ULT, "ULT", cml_ult_ids },
++		{ SUBPLATFORM(COMETLAKE, ULT), .pciidlist = cml_ult_ids },
+ 		{},
+ 	},
+ 	.info = &skl_display,
+@@ -776,7 +780,7 @@ static const u16 icl_port_f_ids[] = {
+ static const struct platform_desc icl_desc = {
+ 	PLATFORM(ICELAKE),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_ICELAKE_PORT_F, "Port F", icl_port_f_ids },
++		{ SUBPLATFORM(ICELAKE, PORT_F), .pciidlist = icl_port_f_ids },
+ 		{},
+ 	},
+ 	.info = &(const struct intel_display_device_info) {
+@@ -853,7 +857,7 @@ static const u16 tgl_uy_ids[] = {
+ static const struct platform_desc tgl_desc = {
+ 	PLATFORM(TIGERLAKE),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_TIGERLAKE_UY, "UY", tgl_uy_ids },
++		{ SUBPLATFORM(TIGERLAKE, UY), .pciidlist = tgl_uy_ids },
+ 		{},
+ 	},
+ 	.info = &(const struct intel_display_device_info) {
+@@ -902,7 +906,7 @@ static const u16 adls_rpls_ids[] = {
+ static const struct platform_desc adl_s_desc = {
+ 	PLATFORM(ALDERLAKE_S),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S, "RPL-S", adls_rpls_ids },
++		{ SUBPLATFORM(ALDERLAKE_S, RAPTORLAKE_S), .pciidlist = adls_rpls_ids },
+ 		{},
+ 	},
+ 	.info = &(const struct intel_display_device_info) {
+@@ -989,9 +993,9 @@ static const u16 adlp_rplp_ids[] = {
+ static const struct platform_desc adl_p_desc = {
+ 	PLATFORM(ALDERLAKE_P),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N, "ADL-N", adlp_adln_ids },
+-		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U, "RPL-U", adlp_rplu_ids },
+-		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P, "RPL-P", adlp_rplp_ids },
++		{ SUBPLATFORM(ALDERLAKE_P, ALDERLAKE_N), .pciidlist = adlp_adln_ids },
++		{ SUBPLATFORM(ALDERLAKE_P, RAPTORLAKE_U), .pciidlist = adlp_rplu_ids },
++		{ SUBPLATFORM(ALDERLAKE_P, RAPTORLAKE_P), .pciidlist = adlp_rplp_ids },
+ 		{},
+ 	},
+ 	.info = &xe_lpd_display,
+@@ -1026,9 +1030,9 @@ static const u16 dg2_g12_ids[] = {
+ static const struct platform_desc dg2_desc = {
+ 	PLATFORM(DG2),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+-		{ INTEL_DISPLAY_DG2_G10, "G10", dg2_g10_ids },
+-		{ INTEL_DISPLAY_DG2_G11, "G11", dg2_g11_ids },
+-		{ INTEL_DISPLAY_DG2_G12, "G12", dg2_g12_ids },
++		{ SUBPLATFORM(DG2, G10), .pciidlist = dg2_g10_ids },
++		{ SUBPLATFORM(DG2, G11), .pciidlist = dg2_g11_ids },
++		{ SUBPLATFORM(DG2, G12), .pciidlist = dg2_g12_ids },
+ 		{},
+ 	},
+ 	.info = &xe_hpd_display,
 -- 
 2.39.2
 
