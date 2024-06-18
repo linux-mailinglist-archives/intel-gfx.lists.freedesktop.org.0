@@ -2,68 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A40790C445
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 09:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98FFA90C4AC
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 10:01:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1ACD10E5AC;
-	Tue, 18 Jun 2024 07:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC5010E5C1;
+	Tue, 18 Jun 2024 08:01:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ec1V/mpb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQtsntHC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C06D110E5AC;
- Tue, 18 Jun 2024 07:27:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1048F10E5BF;
+ Tue, 18 Jun 2024 08:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718695627; x=1750231627;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wLW3c0NdTGBgkd5y16ZE1SNJ1jmPPwr9oxB5go9HzIY=;
- b=Ec1V/mpbOgVeFPING1m1sSNmNgaqM5+ZbfibQ/Yt46/V6E6+Yo7e5sdq
- V38Xxc1d/HegE76cBh2igQL1o9A4pxP0zYy+VRhJbKaPXyc4CXW5gM3dS
- fDwhjQl8T1OLylSRT2uul8EijZ+7nsbxOFINzvR0ksPWLPeOeOxJwCXCZ
- LiMwxGW+q1Efvozw+Lu9EHPagm+a0Rpd92rBRkJOBWywvajtmuIqH/59h
- nKXRRerHz+yHWOpkVMAFr3BtbQVPv0rTol116yt8WXAPH7xiiobPwqXMI
- E3Y/n+1MhdCLKaUwjzNDQcUSARr27s6OxSd89DR+SOCIrmlm+BEMl8tYu A==;
-X-CSE-ConnectionGUID: APuuAezRTteBTXOhtpcFWQ==
-X-CSE-MsgGUID: 3nsOIVkaQoe/ZFGtLHa7cA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="26672942"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="26672942"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 00:27:07 -0700
-X-CSE-ConnectionGUID: KNF3AYvLSoKaGSVrJJz4Vg==
-X-CSE-MsgGUID: +XseIkgtQVSH3P3CQs8q+Q==
+ t=1718697690; x=1750233690;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=dttpAGmFLpVwjsLCVBto1iNCcgIRjB+tBkBw07yMrBA=;
+ b=JQtsntHCuaFYJoaQze6zDZrtSRRjcm5qfnKcHhl/l7lHxQcjQyMNsRSs
+ avm+zsAfrw39XcT+PHMaUJHHX/COMGJqHssFxxnrR2jK3myYACJglgA19
+ eGp16UpAtlWRyzb/zsnFdP7HSsXLrf8/YG6cJODHfz6BhsEOQA8P0EywS
+ r4JfCdeq3xpajIpMfA6muE335kgbvbkpCOELc5gW+fZDqsYnqP/lRY8Fg
+ Fq1npkWAs18+pBLEo3nWgzO6dXF7Wbj+Kwe5kBhFLDnG3BUmVAMNwxSE7
+ ibwOypIeEnycWib8Wcsojkh2T7dvn4wSQwzhDXsT0XyM1NfuOOgF0nLcx A==;
+X-CSE-ConnectionGUID: HqzOcYT1QN6HUJV4Z5e7FA==
+X-CSE-MsgGUID: JrSa9LnVRw2uWDoHHa7Krw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="26141723"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="26141723"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 01:01:23 -0700
+X-CSE-ConnectionGUID: 8NsPZtb2SZi9ahlE7RFAbg==
+X-CSE-MsgGUID: x/fw5BJoQV6DAqAzVfsGpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41323557"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.178])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 00:27:03 -0700
-Date: Tue, 18 Jun 2024 09:26:59 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/gem: Return -EINVAL instead of '0'
-Message-ID: <ZnE2w2nlaG61VFqd@ashyti-mobl2.lan>
-References: <20240616070349.250899-1-andi.shyti@linux.intel.com>
- <20240616070349.250899-2-andi.shyti@linux.intel.com>
- <3fpme67vq7nf3sswznn7un7m7p53bibfbd5ek3uknnlwkogu6a@34oufw2qwtie>
- <ZnBGk9mUq5HImyz9@ashyti-mobl2.lan>
- <hh6i4vsz2ky52hw5g74l5llhjtzuyuebjtnaebqh3dq7svbfnp@zy4cwkqqzszz>
- <ZnCCnEeNCWfyhhY0@ashyti-mobl2.lan>
- <en3word63algrcfec7dp5x455v3oofyfflnsnmtnymoiczhrk7@pm3vgs47xmcr>
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="42167507"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.176])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 01:01:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] drm/i915: Move encoder suspend/shutdown helpers to
+ intel_encoder.c
+In-Reply-To: <20240617170356.4000251-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240617170356.4000251-1-imre.deak@intel.com>
+Date: Tue, 18 Jun 2024 11:01:18 +0300
+Message-ID: <87iky6he7l.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <en3word63algrcfec7dp5x455v3oofyfflnsnmtnymoiczhrk7@pm3vgs47xmcr>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,76 +68,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+On Mon, 17 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
+> Move the encoder suspend/shutdown helpers to intel_encoder.c, this being
+> the logical place for encoder functions.
+>
+> This also allows sharing the above helpers with the xe driver, done in a
+> follow-up patch.
+>
+> While at it rename the functions using the usual intel_encoder prefix
+> and in the functions rename the dev_priv parameter to i915.
 
-On Mon, Jun 17, 2024 at 05:29:24PM -0500, Lucas De Marchi wrote:
-> On Mon, Jun 17, 2024 at 08:38:20PM GMT, Andi Shyti wrote:
-> > On Mon, Jun 17, 2024 at 10:46:07AM -0500, Lucas De Marchi wrote:
-> > > On Mon, Jun 17, 2024 at 04:22:11PM GMT, Andi Shyti wrote:
-> > > > On Mon, Jun 17, 2024 at 07:55:10AM -0500, Lucas De Marchi wrote:
-> > > > > On Sun, Jun 16, 2024 at 09:03:48AM GMT, Andi Shyti wrote:
-> > > > > > Commit 05da7d9f717b ("drm/i915/gem: Downgrade stolen lmem setup
-> > > > > > warning") returns '0' from i915_gem_stolen_lmem_setup(), but it's
-> > > > > > supposed to return a pointer to the intel_memory_region
-> > > > > > structure.
-> > > > > >
-> > > > > > Sparse complains with the following message:
-> > > > > >
-> > > > > > > > drivers/gpu/drm/i915/gem/i915_gem_stolen.c:943:32: sparse: sparse:
-> > > > > >   Using plain integer as NULL pointer
-> > > > > >
-> > > > > > The caller checks for errors, and if no error is returned, it
-> > > > > > stores the address of the stolen memory. Therefore, we can't
-> > > > > > return NULL. Since we are handling a case of out-of-bounds, it's
-> > > > > > appropriate to treat the "lmem_size < dsm_base" case as an error.
-> > > > >
-> > > > > which completely invalidates the point of the commit that introduced this
-> > > > > regression. That was commit was supposed to do "let's continue, just
-> > > > > disabling stolen".
-> > > >
-> > > > Yes, correct, I missed the point while fixing stuff. But patch 2
-> > > > is still valid.
-> > > 
-> > > no, it's not. It's introduced by the same commit. I went to look into
-> > > this exactly because of the second issue: it broke 32b build in xe and
-> > > all the CI.Hooks in xe are failing.
-> > 
-> > yes, it's broken because it's using %lli, right? In 32b it should
-> > be %li.
-> > 
-> > Patch 2 is replacing %lli with %pa which should fix the 32b
-> > build.
-> > 
-> > I'm sending a new series now.
-> 
-> wait... but instead of reverting you are sending a new series changing
-> the first patch to return NULL. However in your commit message you said
-> for this version:
+This is good forward progress, but really i915 should also follow the xe
+pattern of only calling a handful of display functions from top level,
+instead of direct calls from i915_driver.c to a lot of places.
 
-this series of two patches is not making any logical change, it's
-just fixing sparse errors (along with an i386 build warning).
+One nitpick inline that can be fixed while applying, otherwise
 
-> 	The caller checks for errors, and if no error is returned, it
-> 	stores the address of the stolen memory. Therefore, we can't
-> 	return NULL. Since we are handling a case of out-of-bounds, it's
-> 	appropriate to treat the "lmem_size < dsm_base" case as an error.
-> 
-> 	Return -EINVAL embedded in a pointer instead of '0' (or NULL).
-> 
-> 	This way, we avoid a potential NULL pointer dereference.
-> 
-> So... what's it?  Can we return NULL or not? Is this tested on that
-> scenario with with small BAR or does the module
-> just fail to load later and explode?
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Originally the patch just replaced '0' with NULL, but then before
-sending I checked again, misread the code and changed the patch.
-It's perfectly safe to return NULL (as I wrote in the cover
-letter of v2), it just disables the stolen memory.
 
-Jonathan's original patch is right. We also discussed it offline
-with last European night.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_encoder.c | 44 +++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_encoder.h |  5 ++
+>  drivers/gpu/drm/i915/i915_driver.c           | 51 ++------------------
+>  3 files changed, 53 insertions(+), 47 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
+> index dee55f56960fc..8a1dccb893a37 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.c
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
+> @@ -37,3 +37,47 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
+>  	mod_delayed_work(i915->unordered_wq,
+>  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+>  }
+> +
+> +void intel_encoder_suspend_all(struct drm_i915_private *i915)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+> +	/*
+> +	 * TODO: check and remove holding the modeset locks if none of
+> +	 * the encoders depends on this.
+> +	 */
+> +	drm_modeset_lock_all(&i915->drm);
+> +	for_each_intel_encoder(&i915->drm, encoder)
+> +		if (encoder->suspend)
+> +			encoder->suspend(encoder);
+> +	drm_modeset_unlock_all(&i915->drm);
+> +
+> +	for_each_intel_encoder(&i915->drm, encoder)
+> +		if (encoder->suspend_complete)
+> +			encoder->suspend_complete(encoder);
+> +}
+> +
+> +void intel_encoder_shutdown_all(struct drm_i915_private *i915)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+> +	/*
+> +	 * TODO: check and remove holding the modeset locks if none of
+> +	 * the encoders depends on this.
+> +	 */
+> +	drm_modeset_lock_all(&i915->drm);
+> +	for_each_intel_encoder(&i915->drm, encoder)
+> +		if (encoder->shutdown)
+> +			encoder->shutdown(encoder);
+> +	drm_modeset_unlock_all(&i915->drm);
+> +
+> +	for_each_intel_encoder(&i915->drm, encoder)
+> +		if (encoder->shutdown_complete)
+> +			encoder->shutdown_complete(encoder);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
+> index 2cda054e2b152..e6cd74576f78e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.h
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.h
+> @@ -6,6 +6,8 @@
+>  #ifndef __INTEL_ENCODER_H__
+>  #define __INTEL_ENCODER_H__
+>  
+> +struct drm_i915_private;
+> +
 
-Please, then, ignore this v1 and consider only v2.
+Superfluous newline.
 
-Andi
+>  struct intel_encoder;
+>  
+>  void intel_encoder_link_check_init(struct intel_encoder *encoder,
+> @@ -13,4 +15,7 @@ void intel_encoder_link_check_init(struct intel_encoder *encoder,
+>  void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms);
+>  void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
+>  
+> +void intel_encoder_suspend_all(struct drm_i915_private *i915);
+> +void intel_encoder_shutdown_all(struct drm_i915_private *i915);
+> +
+>  #endif /* __INTEL_ENCODER_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 161b21eff6943..e9e38ed246f66 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -53,6 +53,7 @@
+>  #include "display/intel_dmc.h"
+>  #include "display/intel_dp.h"
+>  #include "display/intel_dpt.h"
+> +#include "display/intel_encoder.h"
+>  #include "display/intel_fbdev.h"
+>  #include "display/intel_hotplug.h"
+>  #include "display/intel_overlay.h"
+> @@ -933,50 +934,6 @@ static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+>  	i915_gem_flush_free_objects(to_i915(dev));
+>  }
+>  
+> -static void intel_suspend_encoders(struct drm_i915_private *dev_priv)
+> -{
+> -	struct intel_encoder *encoder;
+> -
+> -	if (!HAS_DISPLAY(dev_priv))
+> -		return;
+> -
+> -	/*
+> -	 * TODO: check and remove holding the modeset locks if none of
+> -	 * the encoders depends on this.
+> -	 */
+> -	drm_modeset_lock_all(&dev_priv->drm);
+> -	for_each_intel_encoder(&dev_priv->drm, encoder)
+> -		if (encoder->suspend)
+> -			encoder->suspend(encoder);
+> -	drm_modeset_unlock_all(&dev_priv->drm);
+> -
+> -	for_each_intel_encoder(&dev_priv->drm, encoder)
+> -		if (encoder->suspend_complete)
+> -			encoder->suspend_complete(encoder);
+> -}
+> -
+> -static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+> -{
+> -	struct intel_encoder *encoder;
+> -
+> -	if (!HAS_DISPLAY(dev_priv))
+> -		return;
+> -
+> -	/*
+> -	 * TODO: check and remove holding the modeset locks if none of
+> -	 * the encoders depends on this.
+> -	 */
+> -	drm_modeset_lock_all(&dev_priv->drm);
+> -	for_each_intel_encoder(&dev_priv->drm, encoder)
+> -		if (encoder->shutdown)
+> -			encoder->shutdown(encoder);
+> -	drm_modeset_unlock_all(&dev_priv->drm);
+> -
+> -	for_each_intel_encoder(&dev_priv->drm, encoder)
+> -		if (encoder->shutdown_complete)
+> -			encoder->shutdown_complete(encoder);
+> -}
+> -
+>  void i915_driver_shutdown(struct drm_i915_private *i915)
+>  {
+>  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+> @@ -999,8 +956,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+>  	if (HAS_DISPLAY(i915))
+>  		intel_display_driver_suspend_access(i915);
+>  
+> -	intel_suspend_encoders(i915);
+> -	intel_shutdown_encoders(i915);
+> +	intel_encoder_suspend_all(i915);
+> +	intel_encoder_shutdown_all(i915);
+>  
+>  	intel_dmc_suspend(i915);
+>  
+> @@ -1083,7 +1040,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+>  	if (HAS_DISPLAY(dev_priv))
+>  		intel_display_driver_suspend_access(dev_priv);
+>  
+> -	intel_suspend_encoders(dev_priv);
+> +	intel_encoder_suspend_all(dev_priv);
+>  
+>  	/* Must be called before GGTT is suspended. */
+>  	intel_dpt_suspend(dev_priv);
+
+-- 
+Jani Nikula, Intel
