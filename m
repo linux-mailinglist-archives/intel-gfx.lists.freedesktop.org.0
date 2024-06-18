@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1946290C8F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 13:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F18690C9CC
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 13:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7238810E63F;
-	Tue, 18 Jun 2024 11:19:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 217FF10E54D;
+	Tue, 18 Jun 2024 11:38:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Da6H7m7O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YwsmlBM8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E16010E630;
- Tue, 18 Jun 2024 11:19:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9E310E64F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2024 11:38:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718709548; x=1750245548;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=A3ytfMRbqVMxH9cTRrdXhMFiiHn/SEwxFjo8jlcslhc=;
- b=Da6H7m7OtjJKY56DPJkgq/w0p2nnKyR7PP3gK9dx5ge2s/t7gL2j+ybS
- dlqdsEONkMlNxn19KnXhQ4BGesEteNklXK/qOCl8Ii0evca3qRav/JkBK
- tGoIB/z8eYlrVtyVaflXu58aI1zjNOkrz6XHwV1aPdm4MPdi4uQGveFfm
- PIXJ2wwTLDwHY9kHMnqZBzSCY9Ul3BR0hcggwci4aZRDzn1sKFRjt3gMe
- GdGY6Jjm8X9QaxwDHy/7XOs3yYodI+gygRpykSl5rCC7GuL+gigUVq4C2
- qNzqGo5e3wK4MVeiKlt3eHndr1XUx/L4FXxfk0grW4ggd/IsGCiM+mMWE A==;
-X-CSE-ConnectionGUID: RQ/xfK7QQYawT7HWuHDP9Q==
-X-CSE-MsgGUID: B4lNEVkfT8aTdSOWTs/oZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="19359346"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="19359346"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 04:19:07 -0700
-X-CSE-ConnectionGUID: tXfD+fY9QUOJ8JauUvnMwg==
-X-CSE-MsgGUID: 1xNxxBigSm6dxl21xC/ITQ==
+ t=1718710736; x=1750246736;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tKtwxMYwQCAlk7o4ObBp3SYTC6SvC6TGk0lR1judbOM=;
+ b=YwsmlBM89Cjh8R5xPdR3+MHnOsvLGDeWSn0HtdHBDDZy36NdA79LFgWu
+ 4uxvYLwbgzim3PMuFJMG99ugPpvRnDcu+HP4LNwk1XrOlc8EGWNEt6coG
+ YnL/HIzf+j4po12Olxf7XqKIGyL5OUdZmdYs1pcOddGRPJa3H0+oOR0lU
+ 95NIN0bRaXjI4CAvezwcD+YoZN3cQRFTqhAUCUjZrJOLSDmd5obJ/BFjd
+ XzTPLibEGoN2vqZyDhHvlVZfPYzQovyHktECKOyzQA8D9g3IbEF9MYRT1
+ ZQN2s8eZyOM3x856IDAqng8/rTB3MdrNCphdrK+Ikk+wfrSO4RmgeS9J2 Q==;
+X-CSE-ConnectionGUID: 542pgcQqSnKBlW9oRaxBTw==
+X-CSE-MsgGUID: qVOsqwNYSUqJgBHBW3XfAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11106"; a="15701655"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15701655"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 04:38:56 -0700
+X-CSE-ConnectionGUID: g2CPga5nTrejwI1VNN14Dw==
+X-CSE-MsgGUID: hZIxzgnDTpG3jzDiuvXZJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="78976332"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 04:19:06 -0700
-Date: Tue, 18 Jun 2024 14:19:15 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915: Pass intel_display to the encoder
- suspend/shutdown helpers
-Message-ID: <ZnFtM5zQuXxw4mTz@ideak-desk.fi.intel.com>
-References: <20240617170356.4000251-1-imre.deak@intel.com>
- <20240617170356.4000251-2-imre.deak@intel.com>
- <87frtahb8z.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="46651876"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orviesa004.jf.intel.com with ESMTP; 18 Jun 2024 04:38:53 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
+ jouni.hogander@intel.com, arun.r.murthy@intel.com,
+ mitulkumar.ajitkumar.golani@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v7] drm/i915/panelreplay: Panel replay workaround with VRR
+Date: Tue, 18 Jun 2024 16:52:15 +0530
+Message-Id: <20240618112215.2892017-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87frtahb8z.fsf@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,147 +64,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 18, 2024 at 12:05:16PM +0300, Jani Nikula wrote:
-> On Mon, 17 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > Pass intel_display to the encoder suspend/shutdown helpers instead of
-> > drm_i915_private for better isolation. This assumes that HAS_DISPLAY()
-> > will also take an intel_display parameter in the future (or that the
-> > HAS_DISPLAY() check will be moved to a caller of these functions).
-> 
-> You can already do that! HAS_DISPLAY() takes either i915 or display. So
-> maybe make that change now.
+Panel Replay VSC SDP not getting sent when VRR is enabled
+and W1 and W2 are 0. So Program Set Context Latency in
+TRANS_SET_CONTEXT_LATENCY register to at least a value of 1.
 
-Ah the _Generic() magic, nice! Will change this.
+HSD: 14015406119
 
-> In the future, only display code should have HAS_DISPLAY() anyway, not
-> i915 or xe core. It's not an option that the caller does the checks.
+v1: Initial version.
+v2: Update timings stored in adjusted_mode struct. [Ville]
+v3: Add WA in compute_config(). [Ville]
+v4:
+- Add DISPLAY_VER() check and improve code comment. [Rodrigo]
+- Introduce centralized intel_crtc_vblank_delay(). [Ville]
+v5: Move to crtc_compute_config(). [Ville]
+v6: Restrict DISPLAY_VER till 14. [Mitul]
+v7:
+- Corrected code-comment. [Mitul]
+- dev_priv local variable removed. [Jani]
 
-Ok.
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h |  1 +
+ 2 files changed, 22 insertions(+)
 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_encoder.c | 22 +++++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_encoder.h |  7 +++----
-> >  drivers/gpu/drm/i915/i915_driver.c           |  6 +++---
-> >  3 files changed, 18 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
-> > index 8a1dccb893a37..8e73d18a522d4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_encoder.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
-> > @@ -38,8 +38,9 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
-> >  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
-> >  }
-> >  
-> > -void intel_encoder_suspend_all(struct drm_i915_private *i915)
-> > +void intel_encoder_suspend_all(struct intel_display *display)
-> >  {
-> > +	struct drm_i915_private *i915 = to_i915(display->drm);
-> >  	struct intel_encoder *encoder;
-> >  
-> >  	if (!HAS_DISPLAY(i915))
-> > @@ -49,19 +50,20 @@ void intel_encoder_suspend_all(struct drm_i915_private *i915)
-> >  	 * TODO: check and remove holding the modeset locks if none of
-> >  	 * the encoders depends on this.
-> >  	 */
-> > -	drm_modeset_lock_all(&i915->drm);
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	drm_modeset_lock_all(display->drm);
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->suspend)
-> >  			encoder->suspend(encoder);
-> > -	drm_modeset_unlock_all(&i915->drm);
-> > +	drm_modeset_unlock_all(display->drm);
-> >  
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->suspend_complete)
-> >  			encoder->suspend_complete(encoder);
-> >  }
-> >  
-> > -void intel_encoder_shutdown_all(struct drm_i915_private *i915)
-> > +void intel_encoder_shutdown_all(struct intel_display *display)
-> >  {
-> > +	struct drm_i915_private *i915 = to_i915(display->drm);
-> >  	struct intel_encoder *encoder;
-> >  
-> >  	if (!HAS_DISPLAY(i915))
-> > @@ -71,13 +73,13 @@ void intel_encoder_shutdown_all(struct drm_i915_private *i915)
-> >  	 * TODO: check and remove holding the modeset locks if none of
-> >  	 * the encoders depends on this.
-> >  	 */
-> > -	drm_modeset_lock_all(&i915->drm);
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	drm_modeset_lock_all(display->drm);
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->shutdown)
-> >  			encoder->shutdown(encoder);
-> > -	drm_modeset_unlock_all(&i915->drm);
-> > +	drm_modeset_unlock_all(display->drm);
-> >  
-> > -	for_each_intel_encoder(&i915->drm, encoder)
-> > +	for_each_intel_encoder(display->drm, encoder)
-> >  		if (encoder->shutdown_complete)
-> >  			encoder->shutdown_complete(encoder);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
-> > index e6cd74576f78e..3fa5589f0b1ce 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_encoder.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_encoder.h
-> > @@ -6,8 +6,7 @@
-> >  #ifndef __INTEL_ENCODER_H__
-> >  #define __INTEL_ENCODER_H__
-> >  
-> > -struct drm_i915_private;
-> > -
-> 
-> Ah, this is why you missed the superfluous space. ;)
-> 
-> BR,
-> Jani.
-> 
-> > +struct intel_display;
-> >  struct intel_encoder;
-> >  
-> >  void intel_encoder_link_check_init(struct intel_encoder *encoder,
-> > @@ -15,7 +14,7 @@ void intel_encoder_link_check_init(struct intel_encoder *encoder,
-> >  void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms);
-> >  void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
-> >  
-> > -void intel_encoder_suspend_all(struct drm_i915_private *i915);
-> > -void intel_encoder_shutdown_all(struct drm_i915_private *i915);
-> > +void intel_encoder_suspend_all(struct intel_display *display);
-> > +void intel_encoder_shutdown_all(struct intel_display *display);
-> >  
-> >  #endif /* __INTEL_ENCODER_H__ */
-> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> > index e9e38ed246f66..fb8e9c2fcea53 100644
-> > --- a/drivers/gpu/drm/i915/i915_driver.c
-> > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> > @@ -956,8 +956,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
-> >  	if (HAS_DISPLAY(i915))
-> >  		intel_display_driver_suspend_access(i915);
-> >  
-> > -	intel_encoder_suspend_all(i915);
-> > -	intel_encoder_shutdown_all(i915);
-> > +	intel_encoder_suspend_all(&i915->display);
-> > +	intel_encoder_shutdown_all(&i915->display);
-> >  
-> >  	intel_dmc_suspend(i915);
-> >  
-> > @@ -1040,7 +1040,7 @@ static int i915_drm_suspend(struct drm_device *dev)
-> >  	if (HAS_DISPLAY(dev_priv))
-> >  		intel_display_driver_suspend_access(dev_priv);
-> >  
-> > -	intel_encoder_suspend_all(dev_priv);
-> > +	intel_encoder_suspend_all(&dev_priv->display);
-> >  
-> >  	/* Must be called before GGTT is suspended. */
-> >  	intel_dpt_suspend(dev_priv);
-> 
-> -- 
-> Jani Nikula, Intel
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7bc4f3de691e..c3ff3a5c5fa3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2515,6 +2515,10 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	int ret;
+ 
++	/* wa_14015401596: display versions 13, 14 */
++	if (IS_DISPLAY_VER(to_i915(crtc->base.dev), 13, 14))
++		intel_crtc_vblank_delay(crtc_state);
++
+ 	ret = intel_dpll_crtc_compute_clock(state, crtc);
+ 	if (ret)
+ 		return ret;
+@@ -3924,6 +3928,23 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
+ 	return true;
+ }
+ 
++void intel_crtc_vblank_delay(struct intel_crtc_state *crtc_state)
++{
++	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++
++	/*
++	 * wa_14015401596 for display versions 13, 14.
++	 * Program Set Context Latency in TRANS_SET_CONTEXT_LATENCY register
++	 * to at least a value of 1 when Panel Replay is enabled with VRR.
++	 * Value for TRANS_SET_CONTEXT_LATENCY is calculated by substracting
++	 * crtc_vdisplay from crtc_vblank_start, so incrementing crtc_vblank_start
++	 * by 1 if both are equal.
++	 */
++	if (crtc_state->vrr.enable && crtc_state->has_panel_replay &&
++	    adjusted_mode->crtc_vblank_start == adjusted_mode->crtc_vdisplay)
++		adjusted_mode->crtc_vblank_start += 1;
++}
++
+ int intel_dotclock_calculate(int link_freq,
+ 			     const struct intel_link_m_n *m_n)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index b0cf6ca70952..f99a24e76608 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -428,6 +428,7 @@ bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
+ u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
+ struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
+ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
++void intel_crtc_vblank_delay(struct intel_crtc_state *crtc_state);
+ bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			       const struct intel_crtc_state *pipe_config,
+ 			       bool fastset);
+-- 
+2.29.0
+
