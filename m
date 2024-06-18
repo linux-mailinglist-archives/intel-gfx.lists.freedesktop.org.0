@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F5690D251
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 15:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF40F90D300
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2024 15:57:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 566FD10E69E;
-	Tue, 18 Jun 2024 13:49:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5830510E691;
+	Tue, 18 Jun 2024 13:57:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HKiQMt2i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bSRboEma";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70CFD10E6A2;
- Tue, 18 Jun 2024 13:49:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C906E10E0C3;
+ Tue, 18 Jun 2024 13:57:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718718560; x=1750254560;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ldu8y7PyV+NSqKBiJbMz2jbn8we3ONeEZPUU7TewjJI=;
- b=HKiQMt2i90P9CL8rt32SlDivt5wbMhqR79bXf5W87oav8gosdcVyQSC0
- VU3xROL2NvMDOCqAmdGnrNnEJCu0YAEmFMcRE4qI1tI8MHF9/14naeNFJ
- jZnJsZdxi/Wc45OL6buqW8iIL8oeCsltq3QTM+CmDu+5WeFePdh35AnbZ
- /zr+o24D5rYWFUyYy1aIogGWC5M4QL4FFZ3IkebJIYejkcf2eiRIlMWKL
- m10O+bOM7davHBr1vD4zsvN4onQvvZqlia7vpmXe78Gv7MyYkVFtL9CKx
- oqFBOpJVvTndzh9d+LlvhQdUlOcbVO9+UtBXpW6zKZiS0NJmrQ3Taf525 w==;
-X-CSE-ConnectionGUID: TKY1YOvwT/2AovNnf49s3A==
-X-CSE-MsgGUID: nZ+gk4rQT7C95W6GqpwTNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26717383"
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="26717383"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 06:49:07 -0700
-X-CSE-ConnectionGUID: +dKoufjVR++lWIp4EXhmew==
-X-CSE-MsgGUID: 7L4pYUGXSrOI+DPxte1qdQ==
+ t=1718719043; x=1750255043;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=kGL6cqW1XyLECKAzCuaV1RFM1aDx1EPrJfGJovKdUB8=;
+ b=bSRboEmabuAnASIsHq7gneTRCSUiykk18Jm/8Ukc9kbdb8ezPMAz5J6T
+ /7cD3eln6YcXcRkQEJe5e3jjoTO4VARi2ZVDy29GzG8OceOdk7RohLIi6
+ NX/s/KRi6BYTJetbz/IQr3adDuy0ytcZwxPp9E/eM/8TWgm1QrPNnziyL
+ o9oBLBKVoS0jLVnJxdg2JjAZeHYb/dIwklUXsJ1Tprd47in9TXdEgtwQB
+ ii7NrBuNtSExsmTPqg8B9MH+00klO2zO9UO4xkwMtF2keVMVB1h/ezTTU
+ WPNsubOkG9uUg2ETpqeAZKRc+lxj12CKgZccLgTUAF5GoxcJhFiD3QklF A==;
+X-CSE-ConnectionGUID: OiCRD6muT3+SJ8+0558m5w==
+X-CSE-MsgGUID: o2x2+cTjR7aRXhH7WLxq6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="15465696"
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="15465696"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 06:57:23 -0700
+X-CSE-ConnectionGUID: pEU4zUA7Ta6fowsL5/84hw==
+X-CSE-MsgGUID: jBmuKBUnRsesW7ZHaum9jQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="41659496"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.176])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 06:49:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 3/3] drm/xe: Use the encoder suspend helper also used
- by the i915 driver
-In-Reply-To: <20240618125255.4080303-3-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.08,247,1712646000"; d="scan'208";a="64799865"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2024 06:57:21 -0700
+Date: Tue, 18 Jun 2024 16:57:30 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: I915-ci-infra@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: =?utf-8?B?4pyXIEZpLkNJLkJBVDogZmFpbHVy?=
+ =?utf-8?Q?e_for_series_starting_with_=5Bv2=2C1=2F3=5D_drm=2Fi915?=
+ =?utf-8?Q?=3A?= Move encoder suspend/shutdown helpers to intel_encoder.c
+Message-ID: <ZnGSSoSG9yXgOBYS@ideak-desk.fi.intel.com>
 References: <20240618125255.4080303-1-imre.deak@intel.com>
- <20240618125255.4080303-3-imre.deak@intel.com>
-Date: Tue, 18 Jun 2024 16:49:00 +0300
-Message-ID: <87tthqfjjn.fsf@intel.com>
+ <171871741487.103671.7361030199944321061@a6498e030952>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <171871741487.103671.7361030199944321061@a6498e030952>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,71 +67,216 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
-> Use the suspend encoders helper which is also used by the i915 driver.
-> This fixes an issue in the xe driver where the encoder
-> suspend_complete() hook is not called and was an overlook when this hook
-> was added in commit b61fad5f7e5d ("drm/i915/tc: Call TypeC port
-> flush_work/cleanup without modeset locks held") for i915, but not added
-> to the xe driver (which was still in a separate source tree at the above
-> point).
->
-> v2: Fix checkpatch warn in commit log. (Rodrigo)
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+Hi CI team,
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+could you check the failure below, it looks unrelated:
 
-> ---
->  drivers/gpu/drm/xe/display/xe_display.c | 18 ++----------------
->  1 file changed, 2 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 78cccbe289475..8b83dcff72e17 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -23,6 +23,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
-> +#include "intel_encoder.h"
->  #include "intel_fbdev.h"
->  #include "intel_hdcp.h"
->  #include "intel_hotplug.h"
-> @@ -270,21 +271,6 @@ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->  		gen11_de_irq_postinstall(xe);
->  }
->  
-> -static void intel_suspend_encoders(struct xe_device *xe)
-> -{
-> -	struct drm_device *dev = &xe->drm;
-> -	struct intel_encoder *encoder;
-> -
-> -	if (has_display(xe))
-> -		return;
-> -
-> -	drm_modeset_lock_all(dev);
-> -	for_each_intel_encoder(dev, encoder)
-> -		if (encoder->suspend)
-> -			encoder->suspend(encoder);
-> -	drm_modeset_unlock_all(dev);
-> -}
-> -
->  static bool suspend_to_idle(void)
->  {
->  #if IS_ENABLED(CONFIG_ACPI_SLEEP)
-> @@ -315,7 +301,7 @@ void xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  
->  	intel_hpd_cancel_work(xe);
->  
-> -	intel_suspend_encoders(xe);
-> +	intel_encoder_suspend_all(&xe->display);
->  
->  	intel_opregion_suspend(xe, s2idle ? PCI_D1 : PCI_D3cold);
+On Tue, Jun 18, 2024 at 01:30:14PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: series starting with [v2,1/3] drm/i915: Move encoder suspend/shutdown helpers to intel_encoder.c
+> URL   : https://patchwork.freedesktop.org/series/135014/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_14963 -> Patchwork_135014v1
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_135014v1 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_135014v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/index.html
+> 
+> Participating hosts (42 -> 41)
+> ------------------------------
+> 
+>   Additional (3): fi-cfl-8109u bat-mtlp-8 fi-elk-e7500 
+>   Missing    (4): bat-kbl-2 bat-jsl-1 fi-snb-2520m fi-kbl-8809g 
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_135014v1:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-1:
+>     - bat-dg2-8:          [PASS][1] -> [FAIL][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14963/bat-dg2-8/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-1.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-dg2-8/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-1.html
 
--- 
-Jani Nikula, Intel
+There wasn't any suspend/resume sequence run on the above machine before
+the failure, so this patch changing only the driver's suspend handler
+shouldn't have an effect. Looks like the problem is:
+
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11359
+
+on a different pipe. Could you please unblock shards testing for this
+patchset?
+
+Thanks,
+Imre
+
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_135014v1 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@debugfs_test@basic-hwmon:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][3] ([i915#9318])
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@debugfs_test@basic-hwmon.html
+> 
+>   * igt@gem_huc_copy@huc-copy:
+>     - fi-cfl-8109u:       NOTRUN -> [SKIP][4] ([i915#2190])
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
+> 
+>   * igt@gem_lmem_swapping@parallel-random-engines:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@gem_lmem_swapping@parallel-random-engines.html
+> 
+>   * igt@gem_lmem_swapping@verify-random:
+>     - fi-cfl-8109u:       NOTRUN -> [SKIP][6] ([i915#4613]) +3 other tests skip
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
+> 
+>   * igt@gem_mmap@basic:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][7] ([i915#4083])
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@gem_mmap@basic.html
+> 
+>   * igt@gem_render_tiled_blits@basic:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][8] ([i915#4079]) +1 other test skip
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@gem_render_tiled_blits@basic.html
+> 
+>   * igt@gem_tiled_fence_blits@basic:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][9] ([i915#4077]) +2 other tests skip
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@gem_tiled_fence_blits@basic.html
+> 
+>   * igt@i915_pm_rps@basic-api:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][10] ([i915#6621])
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@i915_pm_rps@basic-api.html
+> 
+>   * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][11] ([i915#5190])
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+> 
+>   * igt@kms_addfb_basic@basic-y-tiled-legacy:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][12] ([i915#4212]) +8 other tests skip
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+> 
+>   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][13] ([i915#4213]) +1 other test skip
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> 
+>   * igt@kms_dsc@dsc-basic:
+>     - fi-cfl-8109u:       NOTRUN -> [SKIP][14] +11 other tests skip
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/fi-cfl-8109u/igt@kms_dsc@dsc-basic.html
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][15] ([i915#3555] / [i915#3840] / [i915#9159])
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_dsc@dsc-basic.html
+> 
+>   * igt@kms_force_connector_basic@force-load-detect:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][16]
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_force_connector_basic@force-load-detect.html
+> 
+>   * igt@kms_force_connector_basic@prune-stale-modes:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][17] ([i915#5274])
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_force_connector_basic@prune-stale-modes.html
+> 
+>   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:
+>     - fi-elk-e7500:       NOTRUN -> [SKIP][18] +24 other tests skip
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html
+> 
+>   * igt@kms_psr@psr-primary-mmap-gtt@edp-1:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][19] ([i915#4077] / [i915#9688])
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_psr@psr-primary-mmap-gtt@edp-1.html
+> 
+>   * igt@kms_setmode@basic-clone-single-crtc:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][20] ([i915#3555] / [i915#8809])
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@kms_setmode@basic-clone-single-crtc.html
+> 
+>   * igt@prime_vgem@basic-fence-read:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][21] ([i915#3708]) +1 other test skip
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@prime_vgem@basic-fence-read.html
+> 
+>   * igt@prime_vgem@basic-gtt:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][22] ([i915#3708] / [i915#4077]) +1 other test skip
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@prime_vgem@basic-gtt.html
+> 
+>   * igt@prime_vgem@basic-write:
+>     - bat-mtlp-8:         NOTRUN -> [SKIP][23] ([i915#10216] / [i915#3708])
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-8/igt@prime_vgem@basic-write.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@core_hotunplug@unbind-rebind:
+>     - {bat-mtlp-9}:       [DMESG-WARN][24] ([i915#11009]) -> [PASS][25]
+>    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14963/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html
+>    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html
+> 
+>   * igt@gem_lmem_swapping@basic@lmem0:
+>     - bat-dg2-9:          [FAIL][26] ([i915#10378]) -> [PASS][27]
+>    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14963/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+>    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
+>   [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+>   [i915#10580]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10580
+>   [i915#11009]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11009
+>   [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+>   [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+>   [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+>   [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+>   [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
+>   [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
+>   [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
+>   [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
+>   [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
+>   [i915#4212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212
+>   [i915#4213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213
+>   [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+>   [i915#5190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190
+>   [i915#5274]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274
+>   [i915#6121]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6121
+>   [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
+>   [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
+>   [i915#9159]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9159
+>   [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+>   [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * Linux: CI_DRM_14963 -> Patchwork_135014v1
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_14963: 5a093f17293ae50283f19372263a7595ed50bc34 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_7890: a137e386eba9f46f838315f5d93b87561691d45e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_135014v1: 5a093f17293ae50283f19372263a7595ed50bc34 @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135014v1/index.html
