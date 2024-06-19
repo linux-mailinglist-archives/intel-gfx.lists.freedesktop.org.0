@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6597290E680
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 11:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C73390E74E
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 11:51:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF74E10E18A;
-	Wed, 19 Jun 2024 09:06:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB6710E1FE;
+	Wed, 19 Jun 2024 09:51:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LJrMBQRV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QRPFwlDL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9C1D10E18A
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 09:06:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D45210E1FE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 09:51:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718788004; x=1750324004;
+ t=1718790693; x=1750326693;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=37xRqGI0IDiVwYa2A3SIBiRsGxG3RfpQmU8UxEKk+to=;
- b=LJrMBQRV/PtXozQRdxd690l3le/pE/RbU+dck9mglW5HG1rjy98JovGn
- gM0PpyHh2FYDju1VGwX7+6l4JRPIASm8mAM6UUCPMhJEZMohXIXVLKcGA
- ca+xeGL+ABkv1ojTfmKe8G6Cm/596VW3gg22782hWJtz/YXt2whcL6a5u
- Y8v/XPmr4OyQ7O0PmTtAiLUnJY0lnw+9KOr3qc8iAL+IAAUTy2DLomW1Y
- D5FYT9XN0autlW78np8mFiTIDbp/mORaOmlNRi8V9jrjrh7/7x1fMp422
- sDX7GRaG+swKYTti03mkw5hdwceLsr6ca+CrYQhLnqG1zpmzXZ7XbWZ0a w==;
-X-CSE-ConnectionGUID: N/0gTIV4Rl+hy6nkwuyvHw==
-X-CSE-MsgGUID: 3tBT2ng+QUio19X7X4uhJg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27120674"
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="27120674"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 02:06:43 -0700
-X-CSE-ConnectionGUID: tMAUk15GSY2LBhF61ZAcjg==
-X-CSE-MsgGUID: Ho2qPvCHSXOt32ZEj1941g==
+ bh=Pa50Qq7nC8O+kD2DYXJkkSLDai/oClBcTVbx+G1msPo=;
+ b=QRPFwlDLUJ9piiusnvEbofYJf15WBPmFio6HT/G359tM9Zz0cm5n7zcp
+ 1soMzsOrHhYiSljsgXCdkZR9/iJJaCo4ybeR5Ysc33p+DyZMYfYajYcal
+ Ai6a2uYbDZDA/sjK+t7sLhX5d5CLADd1ZKfc9CpcTg4RUgYY8Vyk6H5hJ
+ 6pb9df+owbswT0ZDksWahohG8Q+vF9SaNDOff++sOHarUxnycTK40gdWT
+ p1NtSoC+gG2UoAAHFUH+yyqJ1ZX8ouSDTupOdc9MnSbqtwRKapUlanlyH
+ H576LHLYyJdmjv2OkwEs/VXGy9tPOQOctxKBFO5Mv0nYyCeI/3Wk/gowA g==;
+X-CSE-ConnectionGUID: kKMGHHtGSX6K8X2eMpOVGg==
+X-CSE-MsgGUID: FlFJtCCmSqSYEhHfXdCeFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="27134272"
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="27134272"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 02:51:33 -0700
+X-CSE-ConnectionGUID: xaZVzhhiTk6BkR4HS5GgiQ==
+X-CSE-MsgGUID: EdDwgDVlQRGNgZHhCdLkXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="41757772"
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="79337837"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.249])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 02:06:41 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 02:51:31 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com, Jouni =?utf-8?Q?H?=
  =?utf-8?Q?=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v9 01/11] drm/i915/psr: Check panel ALPM capability for
- eDP Panel Replay
-In-Reply-To: <20240619062131.4021196-2-jouni.hogander@intel.com>
+Subject: Re: [PATCH 2/9] drm/i915/display: Wa 16021440873 is writing wrong
+ register
+In-Reply-To: <20240618053026.3268759-3-jouni.hogander@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240619062131.4021196-1-jouni.hogander@intel.com>
- <20240619062131.4021196-2-jouni.hogander@intel.com>
-Date: Wed, 19 Jun 2024 12:06:37 +0300
-Message-ID: <87le31fgiq.fsf@intel.com>
+References: <20240618053026.3268759-1-jouni.hogander@intel.com>
+ <20240618053026.3268759-3-jouni.hogander@intel.com>
+Date: Wed, 19 Jun 2024 12:51:27 +0300
+Message-ID: <87iky5feg0.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,43 +73,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jun 2024, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Our HW doesn't support Panel Replay without AUX_LESS ALPM on eDP. Check
-> panel support for this and prevent eDP panel replay if it doesn't exits.
+On Tue, 18 Jun 2024, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Wa 16021440873 is writing wrong register. Instead of PIPE_SRCSZ_ERLY_TPT
+> write CURPOS_ERLY_TPT.
+
+I know this is merged already... but the commit message fails to explain
+the changes to psr2_pipe_srcsz_early_tpt_calc().
+
+BR,
+Jani.
+
+
 >
-> Bspec: 68920
+> v2: use right offset as well
 >
-> v2: use intel_alpm_aux_less_wake_supported
->
+> Fixes: 29cdef8539c3 ("drm/i915/display: Implement Wa_16021440873")
 > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_cursor.c |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_psr.c    | 12 +++---------
+>  2 files changed, 5 insertions(+), 11 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/dr=
+m/i915/display/intel_cursor.c
+> index 7f7fc710350c..66436e526021 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -524,8 +524,8 @@ static void wa_16021440873(struct intel_plane *plane,
+>=20=20
+>  	intel_de_write_fw(dev_priv, SEL_FETCH_CUR_CTL(pipe), ctl);
+>=20=20
+> -	intel_de_write(dev_priv, PIPE_SRCSZ_ERLY_TPT(pipe),
+> -		       PIPESRC_HEIGHT(et_y_position));
+> +	intel_de_write(dev_priv, CURPOS_ERLY_TPT(dev_priv, pipe),
+> +		       CURSOR_POS_Y(et_y_position));
+>  }
+>=20=20
+>  static void i9xx_cursor_update_sel_fetch_arm(struct intel_plane *plane,
 > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
 915/display/intel_psr.c
-> index a9d9383e4ee5..20e6717a5215 100644
+> index 3f36b94020ff..2a33e35ceeff 100644
 > --- a/drivers/gpu/drm/i915/display/intel_psr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -571,6 +571,13 @@ static void _panel_replay_init_dpcd(struct intel_dp =
-*intel_dp)
+> @@ -2164,19 +2164,14 @@ static void psr2_man_trk_ctl_calc(struct intel_cr=
+tc_state *crtc_state,
+>  	crtc_state->psr2_man_track_ctl =3D val;
+>  }
+>=20=20
+> -static u32
+> -psr2_pipe_srcsz_early_tpt_calc(struct intel_crtc_state *crtc_state,
+> -			       bool full_update, bool cursor_in_su_area)
+> +static u32 psr2_pipe_srcsz_early_tpt_calc(struct intel_crtc_state *crtc_=
+state,
+> +					  bool full_update)
 >  {
->  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+>  	int width, height;
 >=20=20
-> +	if (intel_dp_is_edp(intel_dp) &&
-> +	    (!intel_alpm_aux_less_wake_supported(intel_dp))) {
-
-Drive-by comment, excessive parens there.
-
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Panel doesn't support AUX-less ALPM, eDP Panel Replay not possib=
-le\n");
-> +		return;
-> +	}
-> +
->  	intel_dp->psr.sink_panel_replay_support =3D true;
+>  	if (!crtc_state->enable_psr2_su_region_et || full_update)
+>  		return 0;
 >=20=20
->  	if (intel_dp->pr_dpcd & DP_PANEL_REPLAY_SU_SUPPORT)
+> -	if (!cursor_in_su_area)
+> -		return PIPESRC_WIDTH(0) |
+> -			PIPESRC_HEIGHT(drm_rect_height(&crtc_state->pipe_src));
+> -
+>  	width =3D drm_rect_width(&crtc_state->psr2_su_area);
+>  	height =3D drm_rect_height(&crtc_state->psr2_su_area);
+>=20=20
+> @@ -2485,8 +2480,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic=
+_state *state,
+>  skip_sel_fetch_set_loop:
+>  	psr2_man_trk_ctl_calc(crtc_state, full_update);
+>  	crtc_state->pipe_srcsz_early_tpt =3D
+> -		psr2_pipe_srcsz_early_tpt_calc(crtc_state, full_update,
+> -					       cursor_in_su_area);
+> +		psr2_pipe_srcsz_early_tpt_calc(crtc_state, full_update);
+>  	return 0;
+>  }
 
 --=20
 Jani Nikula, Intel
