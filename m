@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9173190E359
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 08:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3593F90E35E
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 08:22:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE9BE10E8A4;
-	Wed, 19 Jun 2024 06:22:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D64E710E8EC;
+	Wed, 19 Jun 2024 06:22:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gjS4unfQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D2sGGKxm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7621A10E8A4
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 06:22:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0658810E8B8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 06:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718778131; x=1750314131;
+ t=1718778133; x=1750314133;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2zEBqKSlqtNXEqvES8K4yMOMeEsxr/OQg7rrwQh7ZWg=;
- b=gjS4unfQ76wLWU78uqHSg+GxB/vPOgH8E9M6qTZa1xUvSgvPIt/d7EnJ
- kndvwJUMvwn6FtsAvEfucCA1ZYxk9FNqbRVqr8mCtvAdeKULTlx/GjVH6
- tAxeigD328pHzmVYyfEXN5a8Oh/vIBbcyYjcpsDHUpk9KCTfYcjeGM5Gw
- EQOCGGu3/XiiEgZbfScYeAJ1uLUTtbfKoy/7WRwPk16a5BsRK4Wk516Q2
- QVKeWYJaM/G0AEfXEAov+uJBkpTzww5/7+OLX5kox465US85DlSKvk6UE
- cwfpk1kJct9Tjq+T+ssvNSizQtcmKtnlEzjHvhKjW/vXyqs2ERhZTgRQv Q==;
-X-CSE-ConnectionGUID: hVnchhAQQMu+Yjhejxgi1Q==
-X-CSE-MsgGUID: /943P8KDTpi7KN/KghE89w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26377388"
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="26377388"
+ bh=L5fNonGOY3fzclpT8+RG67cCf4c+iaCqkfONgz8H5Yc=;
+ b=D2sGGKxmldc8Q8ykBh9NhVYp72KrI8pD2VYQ1S6qIo9hVLkvudtJg9WL
+ MNoOqoUHrzibuq8Wt+AM9JQ6DlJCfUmqN52ape//ESl7Q1WQizeuwZTr2
+ HUWHY/IY5/C3pzkL3dwkr0uvL0cMq1RUEaVyiltsoGPwW/F5sfBHaPAWD
+ bCo/DJnIDsRH3QZljCYvCsn884mcwE0ZS4CQ0g0zZ6u/ID4me84JJd3u3
+ zScSvuNNQiKYvzH7tI1qbv9zOzW3Q4W/bcHiWJIU248NFQeIezU12a3fk
+ LbjH/17Ptb0Y2Dko4A8I/TGg3AsxUfLO4zaZvw7/0nUpPogxyLM60Gw+2 A==;
+X-CSE-ConnectionGUID: mwhSFsuPRTmVsrnEQzuPTQ==
+X-CSE-MsgGUID: 3rz6lJrITU+WVNB5xXsXwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26377389"
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="26377389"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 23:22:11 -0700
-X-CSE-ConnectionGUID: IaIv//EiRGyuZMcPKrEjYQ==
-X-CSE-MsgGUID: wvunTHKVQrKXanNAZj2W/Q==
+ 18 Jun 2024 23:22:13 -0700
+X-CSE-ConnectionGUID: Kb5srHanSIyxyeVKt5vvRA==
+X-CSE-MsgGUID: JCGaMWauRxifgMCHqvtrVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="41906009"
+X-IronPort-AV: E=Sophos;i="6.08,249,1712646000"; d="scan'208";a="41906013"
 Received: from unknown (HELO jhogande-mobl1..) ([10.245.245.109])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2024 23:22:10 -0700
+ 18 Jun 2024 23:22:11 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: animesh.manna@intel.com, mika.kahola@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v9 07/11] drm/i915/alpm: Make crtc_state as const in
- intel_alpm_compute_params
-Date: Wed, 19 Jun 2024 09:21:27 +0300
-Message-Id: <20240619062131.4021196-8-jouni.hogander@intel.com>
+Subject: [PATCH v9 08/11] drm/i915/psr: Perform psr2 checks related to ALPM
+ for Panel Replay
+Date: Wed, 19 Jun 2024 09:21:28 +0300
+Message-Id: <20240619062131.4021196-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240619062131.4021196-1-jouni.hogander@intel.com>
 References: <20240619062131.4021196-1-jouni.hogander@intel.com>
@@ -71,62 +71,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Intel_alpm_compute_params doesn't change crtc_state. Let's convert it as
-const.
+eDP1.5 support ALPM with Panel Replay as well. We need to check ALPM
+related things for Panel Replay as well.
 
+Bspec: 68920
+
+v5:
+  - instead of using crtc_state->has_panel_replay provide aux_less flag
+v4:
+  - do not move _compute_psr2_sdp_prior_scanline_indication
+  - move ALPM related checks to separate function
+v3: move vblank check as well
+v2: do not move Vblank >= PSR2_CTL Block Count Number maximum line count
+    check
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 9 +++++----
- drivers/gpu/drm/i915/display/intel_alpm.h | 2 +-
- 2 files changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 41 ++++++++++++++++--------
+ 1 file changed, 28 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index c7092af7da33..866b3b409c4d 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -135,8 +135,9 @@ static int _lnl_compute_aux_less_wake_time(int port_clock)
- 			    t1 + tcds, 1000);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index cd9755b7b550..ae1728d2a15c 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1303,14 +1303,15 @@ static int intel_psr_entry_setup_frames(struct intel_dp *intel_dp,
  }
  
--static int _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
--					     struct intel_crtc_state *crtc_state)
-+static int
-+_lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
-+				  const struct intel_crtc_state *crtc_state)
+ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
+-				       const struct intel_crtc_state *crtc_state)
++				       const struct intel_crtc_state *crtc_state,
++				       bool aux_less)
  {
  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int aux_less_wake_time, aux_less_wake_lines, silence_period,
-@@ -168,7 +169,7 @@ static int _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 	int vblank = crtc_state->hw.adjusted_mode.crtc_vblank_end -
+ 		crtc_state->hw.adjusted_mode.crtc_vblank_start;
+ 	int wake_lines;
+ 
+-	if (crtc_state->has_panel_replay)
++	if (aux_less)
+ 		wake_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
+ 	else
+ 		wake_lines = DISPLAY_VER(i915) < 20 ?
+@@ -1327,6 +1328,27 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
+ 	return true;
  }
  
- static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
--				     struct intel_crtc_state *crtc_state)
-+				     const struct intel_crtc_state *crtc_state)
++static bool alpm_config_valid(struct intel_dp *intel_dp,
++			      const struct intel_crtc_state *crtc_state,
++			      bool aux_less)
++{
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++
++	if (!intel_alpm_compute_params(intel_dp, crtc_state)) {
++		drm_dbg_kms(&i915->drm,
++			    "PSR2/Panel Replay  not enabled, Unable to use long enough wake times\n");
++		return false;
++	}
++
++	if (!wake_lines_fit_into_vblank(intel_dp, crtc_state, aux_less)) {
++		drm_dbg_kms(&i915->drm,
++			    "PSR2/Panel Replay not enabled, too short vblank time\n");
++		return false;
++	}
++
++	return true;
++}
++
+ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
  {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int check_entry_lines;
-@@ -220,7 +221,7 @@ static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
+@@ -1410,18 +1432,8 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
+-	if (!intel_alpm_compute_params(intel_dp, crtc_state)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, Unable to use long enough wake times\n");
++	if (!alpm_config_valid(intel_dp, crtc_state, false))
+ 		return false;
+-	}
+-
+-	/* Vblank >= PSR2_CTL Block Count Number maximum line count */
+-	if (!wake_lines_fit_into_vblank(intel_dp, crtc_state)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "PSR2 not enabled, too short vblank time\n");
+-		return false;
+-	}
+ 
+ 	if (!crtc_state->enable_psr2_sel_fetch &&
+ 	    (crtc_hdisplay > psr_max_h || crtc_vdisplay > psr_max_v)) {
+@@ -1555,6 +1567,9 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
+ 		return false;
+ 	}
+ 
++	if (!alpm_config_valid(intel_dp, crtc_state, true))
++		return false;
++
+ 	return true;
  }
  
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
--				      struct intel_crtc_state *crtc_state)
-+			       const struct intel_crtc_state *crtc_state)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index d4fb60393c91..8c409b10dce6 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -15,7 +15,7 @@ struct intel_connector;
- 
- void intel_alpm_init_dpcd(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
--			       struct intel_crtc_state *crtc_state);
-+			       const struct intel_crtc_state *crtc_state);
- void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 				    struct intel_crtc_state *crtc_state,
- 				    struct drm_connector_state *conn_state);
 -- 
 2.34.1
 
