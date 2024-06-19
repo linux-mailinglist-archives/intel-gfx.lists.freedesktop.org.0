@@ -2,57 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC07990E7E5
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 12:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5CF90E82A
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 12:16:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15C0710EBFF;
-	Wed, 19 Jun 2024 10:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 621A910E119;
+	Wed, 19 Jun 2024 10:16:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NyOHsP8Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hXHVv78t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86FF210EB9D;
- Wed, 19 Jun 2024 10:10:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614EB10E119
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 10:16:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718791814; x=1750327814;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=6HsULT971CnhbER/x6o6Rz2fa4VJ8Fsuq5aHMMj6VAk=;
- b=NyOHsP8YLj0hwTXNU5J5snuqxQ+Cct6zmPP6SKUDeU2K5iwd1OF0jlY+
- i4aD2IOrPd3xKVzgyBb9LIWMtQYixm/BgwjkA+N2AZPzh+LjV3saGz3Xt
- KUi1yhuacAsyHF99fwVfu64vC+PKUsiEu/nlx2MVzjYkCAoc4uQ98lWGa
- jlzqmQd5UdVyoOK00+6MwKuGNpD17xzqXP7JlG3ah4t00re04VX+e55fu
- y+1iu5JkndMKixmcdZG1dIfq0vs7dCvNzTrMQ8w6C5l4a8kpRUXyTe3TP
- yyPwv5CxxJPs+V/JvWm8/0GAURTxPjndViGrfXHq7atpI4vVmyKBRMrTO A==;
-X-CSE-ConnectionGUID: /ekwU32iQlaPibLGgyKBUw==
-X-CSE-MsgGUID: WLeixkYDQhatt4cW0RFPsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="19593037"
-X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="19593037"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 03:10:14 -0700
-X-CSE-ConnectionGUID: qZ4Lxp6kQMq848F9vemRIg==
-X-CSE-MsgGUID: kry7SYqWSV6AMKJC6IAZpA==
+ t=1718792216; x=1750328216;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/vuxvIGCrF5He6mUHeA+UCHkc/wVDAhY0GKkHtGBR+Y=;
+ b=hXHVv78tG08PxreqKO0eao0HFawQvWHYdV4sBvhJwcT1XREjJWEr3lwv
+ XmZzyLlVEMhFBQ0lLx0BZFStIdvCBAhkXIRBbxS1DitjK6C6SVH1mxr2/
+ 6V70j2+1KxPGERm+guX5dA2OAQf31dmx0hrScjmA98OfI819/ELm9CYUT
+ xjbzDIXUl8ov1o/OnAyKosijQAUUYkjD9wFKrX/sJCo0xGa+bi4cYzjT0
+ zUkUbLt8g8ezyLzxVtvciTwXflefHvUbs8c/GeDfqGjvJ+cfL8p1i81iJ
+ w5iWfbbluVOBe2OmoZAg8X4jdWDt2+hGI+5JprSA1RKWDaq2lHRTmMhW+ g==;
+X-CSE-ConnectionGUID: Yf/g4DybRjmVzipcEtdFvw==
+X-CSE-MsgGUID: XWZqCzbVSkupWeya/DVEIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26350561"
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="26350561"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 03:16:56 -0700
+X-CSE-ConnectionGUID: wokHJ3rtRfaBWDPG2j9RDw==
+X-CSE-MsgGUID: Q+s8pJ3oT+a+d7VIN5oldg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="46415663"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.249])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 03:10:12 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/9] drm: Add helpers for x16 fixed point values
-In-Reply-To: <20240614173911.3743172-2-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240614173911.3743172-1-imre.deak@intel.com>
- <20240614173911.3743172-2-imre.deak@intel.com>
-Date: Wed, 19 Jun 2024 13:10:09 +0300
-Message-ID: <87cyodfdku.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="41781094"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa010.jf.intel.com with ESMTP; 19 Jun 2024 03:16:55 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 0/1] drm/i915/display: WA for Re-initialize dispcnlunitt1
+ xosc clock
+Date: Wed, 19 Jun 2024 15:47:10 +0530
+Message-ID: <20240619101711.860988-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,94 +64,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 14 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
-> Add helpers to convert between x16 fixed point and integer/fraction
-> values. Also add the format/argument macros required to printk x16
-> fixed point variables.
->
-> These are needed by later patches dumping the Display Stream Compression
-> configuration in DRM core and in the i915 driver to replace the
-> corresponding bpp_x16 helpers defined locally in the driver.
->
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c |  5 +++--
->  include/drm/drm_fixed.h                 | 23 +++++++++++++++++++++++
->  2 files changed, 26 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 79a615667aab1..806f9c9764995 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -35,6 +35,7 @@
->  #include <drm/display/drm_dp_helper.h>
->  #include <drm/display/drm_dp_mst_helper.h>
->  #include <drm/drm_edid.h>
-> +#include <drm/drm_fixed.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_vblank.h>
->  #include <drm/drm_panel.h>
-> @@ -4151,9 +4152,9 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
->  	int symbol_cycles;
->  
->  	if (lane_count == 0 || hactive == 0 || bpp_x16 == 0) {
-> -		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bpp_x16 %d.%04d\n",
-> +		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bpp_x16 " DRM_X16_FMT "\n",
->  			      lane_count, hactive,
-> -			      bpp_x16 >> 4, (bpp_x16 & 0xf) * 625);
-> +			      DRM_X16_ARGS(bpp_x16));
->  		return 0;
->  	}
->  
-> diff --git a/include/drm/drm_fixed.h b/include/drm/drm_fixed.h
-> index 81572d32db0c2..0fe2a7f50d54e 100644
-> --- a/include/drm/drm_fixed.h
-> +++ b/include/drm/drm_fixed.h
-> @@ -214,4 +214,27 @@ static inline s64 drm_fixp_exp(s64 x)
->  	return sum;
->  }
->  
-> +static inline int drm_x16_from_int(int val_int)
-> +{
-> +	return val_int << 4;
-> +}
-> +
-> +static inline int drm_x16_to_int(int val_x16)
-> +{
-> +	return val_x16 >> 4;
-> +}
-> +
-> +static inline int drm_x16_to_int_roundup(int val_x16)
-> +{
-> +	return (val_x16 + 0xf) >> 4;
-> +}
-> +
-> +static inline int drm_x16_to_frac(int val_x16)
-> +{
-> +	return val_x16 & 0xf;
-> +}
+The dispcnlunit1_cp_xosc_clk should be de-asserted in display off
+and only asserted in display on. But during observation it found
+clk remains active in display OFF. As workaround, Display driver
+shall execute set-reset sequence at the end of the Initialize
+Sequence.
 
-Sad trombone about the completely different naming scheme compared to
-the rest of the file.
+Wa_14020225554
 
-Not saying the existing naming is great, but neither is this. And
-there's no way to unify except by renaming *both* afterwards.
+Mitul Golani (1):
+  drm/i915/display: WA for Re-initialize dispcnlunitt1 xosc clock
 
-We could devise a scheme now that could be used for the existing stuff
-later, without renaming the new stuff.
-
-*shrug*
-
-BR,
-Jani.
-
-
-
-> +
-> +#define DRM_X16_FMT		"%d.%04d"
-> +#define DRM_X16_ARGS(val_x16)	drm_x16_to_int(val_x16), (drm_x16_to_frac(val_x16) * 625)
-> +
->  #endif
+ drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
