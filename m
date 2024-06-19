@@ -2,55 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3528390E82C
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 12:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB3E190E84E
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 12:26:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8268B89C48;
-	Wed, 19 Jun 2024 10:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B729610E068;
+	Wed, 19 Jun 2024 10:26:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SEv9RLbl";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="nCier1c1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1D1F10E119
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 10:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1718792217; x=1750328217;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Ljcogdjfci8NM4lvG924gCJFSRWZ7PvH41G+eonTXbI=;
- b=SEv9RLbllV8AwpgUJEzyh0VkYYHfxZypU5NgKJ2dJbiFIq06jbyOaSak
- BdHSC/3hl8K08V9KEpjGUb/47IGzvg5j6GRPAljlOFeX28JH1SJdyyxAz
- a6LOy2O7gfQT0fqwLB/QmngG1o416hfqdpc0c+Ul3tmgVhyeD4DaqDooX
- BduEOHCJzcg5ZyzuMxx/stw/+siYAu0VASB2dzqYu+73RuEC+05kTJJib
- c/wuSpodM8h1LgejaTB8cM/Ju5ykYprT/C14mEwU4oio1T2hpHzPmXUCq
- NSKGH+oejSbCbk/eqOPcRD9Q58JL4wBSLoJx/GZVHywIqQ6YiYiVb+N+M Q==;
-X-CSE-ConnectionGUID: 72MKQCLaQ/OZRAoKq9vLtQ==
-X-CSE-MsgGUID: 5lcwyukOSoWEiYrl9PIV5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="26350562"
-X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="26350562"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2024 03:16:57 -0700
-X-CSE-ConnectionGUID: lbDPjqroSZq8wwf1DmIJDA==
-X-CSE-MsgGUID: nm/lK0RzQsGOPdygrFkonA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="41781097"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa010.jf.intel.com with ESMTP; 19 Jun 2024 03:16:56 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 1/1] drm/i915/display: WA for Re-initialize dispcnlunitt1
- xosc clock
-Date: Wed, 19 Jun 2024 15:47:11 +0530
-Message-ID: <20240619101711.860988-2-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240619101711.860988-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20240619101711.860988-1-mitulkumar.ajitkumar.golani@intel.com>
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
+ [209.85.208.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEB9310EC10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 10:26:43 +0000 (UTC)
+Received: by mail-lj1-f180.google.com with SMTP id
+ 38308e7fff4ca-2eabd22d3f4so76872721fa.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 03:26:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1718792801; x=1719397601;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=aujn0STKyH/Gfbmg4Qen6h4D0viqZNP8GdxwAghkmtQ=;
+ b=nCier1c1RvnlRL8SceCROjVVTAPUrow8nkU4GTCjNHVvBiq9UHEktHbK8F66QiT0+m
+ pAlq2O+3NaLj/OqOAEzTOBlG8giqu4Hdu0mnYXhcD2O/NllyT6bse3utacAIvaFplTqc
+ nIBSMW8AQ3u3s/tMaRx6kViysHArMeYKV17TvWhi9llziJAYWYCpv4gc4PF0nt46/KaJ
+ 6FA5PIfPuEDijvn4Qocvx+QOrTrIhGnxbzmlEygVzzQacPpy7fCVTMd/53QMT6tokkYJ
+ H5mW0i/23wrwWohpBevWkoAJGPMs7ixioh5N2onycPM9YY58j+YEpTMeEVZKrnvwQLMD
+ XiXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1718792801; x=1719397601;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=aujn0STKyH/Gfbmg4Qen6h4D0viqZNP8GdxwAghkmtQ=;
+ b=r1Ok9DG6FVyIemZdD5r9p//Zf4VhsCL7YuBTavemTHCEQhv2VxoVMMFdaphNSL8tAo
+ sn+Qd/OJoVxxfn0eW9kz2F9auZCdf0lupo/9tyC4VCJLbZHCyRZrQ/IFKivawJUwXDwe
+ dAVL3SdMGsqbL7d/ikYN3kUQ9qyJjS1aNyyfpi8GXWuqvZZUglTlk61qsah3sut+gNtE
+ cSwEjs4hAIwJlXkV7ccZii7of0eflfzoFTdmXwt3LOzElrOchW6cXbufCIhFXR4mqkW1
+ UyTHk85NydDCz6LU33uIrupS3cGxSgJAJC/abnvB64SApe7Ymj5HECs4mFYQhgHKnQ9n
+ pGcA==
+X-Gm-Message-State: AOJu0YzwqlkavlZTJ9D4W0uxi91B7Lmx+Odku6azMNn7cJYqUcL7Ql5P
+ 9Ht1gybfry7eOw7aj5oU9X3lqH2W5ukyHSXDDAPIKH3/nntf2DFvOdBuM7rDAvM=
+X-Google-Smtp-Source: AGHT+IFJvIUTCWkOTgVEeh78ujRc/6KgWIWXZtdrfHkfnFgDGyH7SCoPEEseoQ81ktepTPjKxuGAgA==
+X-Received: by 2002:a2e:7204:0:b0:2eb:e840:4a1b with SMTP id
+ 38308e7fff4ca-2ec3ceb6b72mr12225011fa.7.1718792801425; 
+ Wed, 19 Jun 2024 03:26:41 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-422f6320b11sm224973195e9.29.2024.06.19.03.26.40
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 19 Jun 2024 03:26:41 -0700 (PDT)
+Message-ID: <83958f28-0e27-428a-b0d0-6860b31ae498@ursulin.net>
+Date: Wed, 19 Jun 2024 11:26:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/8] drm/i915: Don't check for atomic context on
+ PREEMPT_RT
+Content-Language: en-GB
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>
+References: <20240613102818.4056866-1-bigeasy@linutronix.de>
+ <20240613102818.4056866-4-bigeasy@linutronix.de>
+ <94423591-adba-46d4-a9ba-f377dfab369f@ursulin.net>
+ <20240614110548.m3lloBjv@linutronix.de>
+ <fa38f377-a00a-4e0c-b416-54a1c3f15d4d@ursulin.net>
+ <20240617100752.9XDTS0R5@linutronix.de>
+ <b740d56d-a744-4d35-b3f2-1166b8df2aef@ursulin.net>
+ <20240618125430.9gWIUg9A@linutronix.de>
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20240618125430.9gWIUg9A@linutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,41 +94,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The dispcnlunit1_cp_xosc_clk should be de-asserted in display off
-and only asserted in display on. But during observation it found
-clk remains active in display OFF. As workaround, Display driver
-shall execute set-reset sequence at the end of the Initialize
-Sequence.
 
-Wa_14020225554
+On 18/06/2024 13:54, Sebastian Andrzej Siewior wrote:
+> On 2024-06-18 10:00:09 [+0100], Tvrtko Ursulin wrote:
+>> I did a re-test but am not 100% certain yet. CI looks frustratingly noisy at
+>> the moment.
+>>
+>> igt@debugfs_test@read_all_entries appears to be a fluke which is not new.
+>>
+>> But igt@gem_exec_parallel@engines@basic from the latest run seem new.
+>>
+>> So I queued another re-test.
+> 
+> Okay. If you want me to repost the whole series or just parts of it,
+> just say so.
 
---v2:
-- Update workaround number in commit message.
+Looks like a green set of results, both BAT and full run.
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Patches 1&2 will need someone from the display side to bless though.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index e288a1b21d7e..0d8875fa5ef2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1704,6 +1704,14 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 	/* Wa_14011503030:xelpd */
- 	if (DISPLAY_VER(dev_priv) == 13)
- 		intel_de_write(dev_priv, XELPD_DISPLAY_ERR_FATAL_MASK, ~0);
-+
-+	/* Wa_14020225554 */
-+	if (DISPLAY_VER(dev_priv) == 20) {
-+		intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D,
-+			       PCH_GMBUSUNIT_CLOCK_GATE_DISABLE);
-+		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
-+			     PCH_GMBUSUNIT_CLOCK_GATE_DISABLE, 0);
-+	}
- }
- 
- static void icl_display_core_uninit(struct drm_i915_private *dev_priv)
--- 
-2.45.2
+Regards,
 
+Tvrtko
