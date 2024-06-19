@@ -2,66 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CDAC90E985
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 13:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4403390E9B6
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2024 13:38:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5670B10EC53;
-	Wed, 19 Jun 2024 11:34:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05A210EC67;
+	Wed, 19 Jun 2024 11:38:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=fooishbar-org.20230601.gappssmtp.com header.i=@fooishbar-org.20230601.gappssmtp.com header.b="uvB2cByh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHF1cEfx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
- [209.85.219.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3278C10EC55
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 11:34:27 +0000 (UTC)
-Received: by mail-qv1-f49.google.com with SMTP id
- 6a1803df08f44-6b5031d696dso3881586d6.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2024 04:34:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20230601.gappssmtp.com; s=20230601; t=1718796866; x=1719401666;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=9fholmAL3OeBvxeRVBum3NdobGbdweLBjTLLtkeRi6k=;
- b=uvB2cByhIWILAebDqs+dXeLMyoOsKUZhJWDB4rOV3uZ4ZqDI3AzkV1LKzrvjHYSB6w
- /BJPBi/wvdgPykmRnDWktbviYqO0GsF3yruJ9M5Ba9kSeeVnbm/dC1+bU+6rsX/VLUe5
- vV93VREeQSCcrmIvwtWW5ALnQLIin2Fv5I/xi2DiOaY8+vqPfW76E83lbHTA9mv5VJ87
- UE52FqyfBZaO0KHd0kfX9VsPIT8DL7ISo6KIm59CljVQFYl7VDkVsAOVD7PFJQ8S0Sem
- eJWra8geQ7v5ailHHV4sACALQOgZ95GrZ4yoPcoJQicmF3v656fUgev09D4xPnCj33gx
- GrhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1718796866; x=1719401666;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=9fholmAL3OeBvxeRVBum3NdobGbdweLBjTLLtkeRi6k=;
- b=JM0GP/+d3/824R4uQGDPuA43hjdrhZ+O/tzhSHYY0raFSA7SiPITDVOiHAe6ADBMck
- 4rMSwusZt9bJA/dccj5Qqk9DwabPdNpCUnmTtZ1vaKIQz9Ls58BCdk7RLHjWFhhPT8FP
- hjTi4GNOcEp2CI1zonTKbnbPbNJyxFeBRMyBzrrLBAyazZH3Wg6o3gzvWPvgwuhg6j5K
- XPoP5aa+nCYjEDPB4hcEFdpGAhczXf+3Xn52V0opazfw+YY0teLKREy6kysPXD9Z0nwO
- PJXPaUXAVwUh6cymsZnzAo8ybRJaUHe8uymY9lKi6r/xTRWwpDmnvpoz2c/h0B7wnpLD
- yGLw==
-X-Gm-Message-State: AOJu0YykcfdfVV+aRt4+cDBDhNV3inCz0YyiJNnmnck5ktRyzW63WYJs
- lZb5JlYhUotCjblo6b5SIrYmTIzI0jJQAgp4SSE0N+eRtu1R2/WpO3jde/U+26/wFpPxjeGUnma
- suLjWYAlrTILkOcP4qD3ld5HuYhZoBIHHCaEsTA==
-X-Google-Smtp-Source: AGHT+IEgSFcwPm82u8gf5stfX15WozNE1lQj0lsTnEb7wbQxmPEfHb+S5KLUJcDiDkb9ApM0vVHMOviDtilCg3GKejo=
-X-Received: by 2002:a0c:e10c:0:b0:6b0:77fb:8f16 with SMTP id
- 6a1803df08f44-6b501e25bf9mr25755236d6.21.1718796866109; Wed, 19 Jun 2024
- 04:34:26 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58C1F10EC5A;
+ Wed, 19 Jun 2024 11:38:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1718797104; x=1750333104;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OzgJd0fZdmopDq1yIr6OCKccv3DQY6JfMSa1OEMY9S4=;
+ b=ZHF1cEfx0HTbiUC5JxpbFPqgnKkiRKRJNwc9k+IjiyTJgfvub+JNCQmr
+ w7lL44xsLnaVn9BG7AFTnJpnOdnSqnv09x8nDWYClhbXIQwO+74i/VTEr
+ GtV4mYNYUNOVHRoixk/3MwAknXMFH0vWPLmE8Fvk6dzQJB9H+9C9OkH1S
+ HxPdeIdA4GNTC+VRoxcOLiFUSCXo3/J4OzrOorEFOTbfHsAw54r7bSWRx
+ xiZZHXV8+scjJYC9zS34S9TgkcwsgIj/QI+Do2X2cvSuBhJTZ0znr3a+d
+ ZLDrFxDu00REaWTg6DeYg5uR2b4zdqvZwW1Gfdmhotq129j4cEFKBL61H g==;
+X-CSE-ConnectionGUID: 3BE5YEL/QDy262ztoyBU6g==
+X-CSE-MsgGUID: 2/IsF4srQiqu08WNtEuITQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11107"; a="33277066"
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="33277066"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2024 04:38:20 -0700
+X-CSE-ConnectionGUID: e8a6O59DSLeNzAV4pCaTSA==
+X-CSE-MsgGUID: 5ngR9g3sQuy56aKBG1PX2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,250,1712646000"; d="scan'208";a="41847286"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 19 Jun 2024 04:38:17 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 19 Jun 2024 14:38:16 +0300
+Date: Wed, 19 Jun 2024 14:38:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v2 0/9] drm/i915: Polish plane surface alignment handling
+Message-ID: <ZnLDKM2I8WWrWwmO@intel.com>
+References: <20240612204712.31404-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-References: <20240612204712.31404-3-ville.syrjala@linux.intel.com>
- <20240619113144.1616-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20240619113144.1616-1-ville.syrjala@linux.intel.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Wed, 19 Jun 2024 12:34:14 +0100
-Message-ID: <CAPj87rPH+Hb49R-ebk=-GavGiRcjef8dkv62-yFy33TXdO5NtA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/9] drm: Export drm_plane_has_format()
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240612204712.31404-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,8 +74,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jun 2024 at 12:31, Ville Syrjala
-<ville.syrjala@linux.intel.com> wrote:
-> Export drm_plane_has_format() so that drivers can use it.
+On Wed, Jun 12, 2024 at 11:47:03PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> intel_surf_alignment() in particular has devolved into
+> a complete mess. Redesign the code so that we can handle
+> alignment restrictions in a nicer. Also adjust alignment
+> for TGL+ to actually match the hardware requirements.
+> 
+> v2: Drop the per-plane vma stuff as it was borked
+>     Don't temporarily remove the 2MiB DPT alignment for UV on TGL
+> 
+> Ville Syrjälä (9):
+>   drm: Rename drm_plane_check_pixel_format() to drm_plane_has_format()
+>   drm: Export drm_plane_has_format()
 
-Acked-by: Daniel Stone <daniels@collabora.com>
+Maarten/Maxime/Thomas, can I get an ack for merging these via
+drm-intel please?
+
+>   drm/i915: Introduce the plane->min_alignment() vfunc
+>   drm/i915: Introduce fb->min_alignment
+>   drm/i915: Split cursor alignment to per-platform vfuncs
+>   drm/i915: Split pre-skl platforms out from intel_surf_alignment()
+>   drm/i915: Move intel_surf_alignment() into skl_univerals_plane.c
+>   drm/i915: Update plane alignment requirements for TGL+
+>   drm/i915: Nuke the TGL+ chroma plane tile row alignment stuff
+> 
+>  drivers/gpu/drm/drm_atomic.c                  |   7 +-
+>  drivers/gpu/drm/drm_crtc.c                    |   6 +-
+>  drivers/gpu/drm/drm_crtc_internal.h           |   2 -
+>  drivers/gpu/drm/drm_plane.c                   |  23 ++-
+>  drivers/gpu/drm/i915/display/i9xx_plane.c     |  75 ++++++++-
+>  drivers/gpu/drm/i915/display/intel_cursor.c   |  38 +++++
+>  .../drm/i915/display/intel_display_types.h    |   5 +
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 151 ++++--------------
+>  drivers/gpu/drm/i915/display/intel_fb.h       |   3 -
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c   |  39 +++--
+>  drivers/gpu/drm/i915/display/intel_fb_pin.h   |   3 +-
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |  26 +++
+>  .../drm/i915/display/skl_universal_plane.c    |  85 +++++++++-
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        |   3 +-
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c |   4 +-
+
+Lucas, can you give me an ack for the merging the xe
+changes via drm-intel?
+
+>  include/drm/drm_plane.h                       |   2 +
+>  17 files changed, 309 insertions(+), 168 deletions(-)
+> 
+> -- 
+> 2.44.2
+
+-- 
+Ville Syrjälä
+Intel
