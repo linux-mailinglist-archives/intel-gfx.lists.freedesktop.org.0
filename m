@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEA5091515A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 17:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C2DB91515B
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 17:05:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D0D810E484;
-	Mon, 24 Jun 2024 15:05:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6F610E4AE;
+	Mon, 24 Jun 2024 15:05:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6WGW0Mz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dxCmRAE0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDB110E4B3
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 15:05:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C69C310E4B1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 15:05:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719241550; x=1750777550;
+ t=1719241553; x=1750777553;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=JBopUyjTDuom9aJUqzZOphPD86GiKwF5JjKHOMJ/j9E=;
- b=D6WGW0MzNex2QpcHSDdg6JYrX3DsVGO4lA1ADifq/3J3aa+FLvRH/L1x
- sPDxbK/XqcK7GBwJTfwWZGnN3BnHimIIVKXz8R/lBbQ57f3u65GwoOk9z
- C8TEb7VTkbdhkY7QK1QnxzBd+LPo3TjVmw/95eOfLeci18aFOKgINGIyp
- vLTfZD87eJD5s2V9a9FWRYqSRSRfBCptsu45VYoRtdQR0b20jA5Qj/Df/
- JewavpRUnZ1ssG5mdGMm76kYyMF1D2kYNFyOYdJzC5kt+cWLyU8OylGE9
- +kVR6SGg7o168WUe4SNZ3PJJnUce/FVv53kf31DbHTQt11knKdwOE1NoG w==;
-X-CSE-ConnectionGUID: MLPPhCSlQdmABQphhKYaOw==
-X-CSE-MsgGUID: ydhiymIORFOChLwmzPWgzw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="19117863"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="19117863"
+ bh=9dBzCql9Rnzt9F6XV+2VE5FZDF/GjyjzaH24ANZjNKw=;
+ b=dxCmRAE0HRYEiGdjLiqUtv+sYdLqetTUAJZYiJLnRa/FEeXOPsjvxqfs
+ 4LGLs0D2z6jJBHBg68f/Hm46Y8cGQm1re9wvyb8Pt0RaxwJDX/GyQdgFy
+ MpPzFd4C38vfCuzwyAueRrxA1W40TqpAeHGf7uZ12u3m0hwt7DJ06fIMW
+ 4j/IECjFX7+hYkA6J7bFsInDn95LpWu/UpMg99bLXv0w21sXlZTEQEvLi
+ /A9qTTCxdbvcyfO/8QBtz/A89gjDiBGHVJ6hAeLrFqdh11xu8p+tu6X6p
+ mU9VAYNbeNc4dXj5pAmj++gdldMI7zdXXbrygiSXx3u7w22olaEiOH6Np g==;
+X-CSE-ConnectionGUID: LVkRQ+TEQO2ygRnWDbsNIA==
+X-CSE-MsgGUID: jJTpTE6ET2WOyFiS5Ux2mA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="19117867"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="19117867"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 08:05:49 -0700
-X-CSE-ConnectionGUID: 810dkiFLQeu+hKAiR2K6Zw==
-X-CSE-MsgGUID: Qh6IOi8FRvKa/IHMlWlieQ==
+ 24 Jun 2024 08:05:52 -0700
+X-CSE-ConnectionGUID: 3/dbK18LTk2eMPHORgJ0jg==
+X-CSE-MsgGUID: obC1vAU4Rxu2B3KB9hPhcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43298658"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43298676"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 24 Jun 2024 08:05:48 -0700
+ by fmviesa008.fm.intel.com with SMTP; 24 Jun 2024 08:05:51 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Jun 2024 18:05:47 +0300
+ Mon, 24 Jun 2024 18:05:50 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/5] drm/i915: Enable 10bpc + CCS on ICL
-Date: Mon, 24 Jun 2024 18:05:36 +0300
-Message-ID: <20240624150538.24102-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/5] drm/i915: Allow async flips with render compression on
+ TGL+
+Date: Mon, 24 Jun 2024 18:05:37 +0300
+Message-ID: <20240624150538.24102-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240624150538.24102-1-ville.syrjala@linux.intel.com>
 References: <20240624150538.24102-1-ville.syrjala@linux.intel.com>
@@ -70,123 +71,119 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-ICL supports 10bpc compressed scanout. Enable it.
+Looks like CCS + async flips has been a thing for a while now.
+Enable this for TGL+ render compression modifiers.
+
+Note that we can't update AUX_DIST during async flips we must
+check to make sure it remains unchanged.
+
+We also can't do clear color. Supposedly there was some attempt
+to make it work, but apparently the issues only got ironed out
+in MTL. For now we'll not worry about it and refuse async flips
+with clear color modifiers.
+
+Bspec claims that media compression doesn't support async flips.
+Based on a quick test it does seem to work to some degree, but
+perhaps it has issues as well. Let's trust the spec here and
+continue to refuse async flips + media compression.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c       |  8 +++
- .../drm/i915/display/skl_universal_plane.c    | 65 +++++++++++++++++++
- 2 files changed, 73 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c    | 14 +++++++++++++-
+ .../gpu/drm/i915/display/skl_universal_plane.c  | 17 ++++++++++-------
+ .../gpu/drm/i915/display/skl_universal_plane.h  |  3 +++
+ 3 files changed, 26 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 43d0574814a6..1376476b7d60 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -44,6 +44,14 @@ static const struct drm_format_info skl_ccs_formats[] = {
- 	  .cpp = { 4, 1, }, .hsub = 8, .vsub = 16, .has_alpha = true, },
- 	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
- 	  .cpp = { 4, 1, }, .hsub = 8, .vsub = 16, .has_alpha = true, },
-+	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
-+	  .cpp = { 4, 1, }, .hsub = 8, .vsub = 16, },
-+	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
-+	  .cpp = { 4, 1, }, .hsub = 8, .vsub = 16, },
-+	{ .format = DRM_FORMAT_ARGB2101010, .depth = 32, .num_planes = 2,
-+	  .cpp = { 4, 1, }, .hsub = 8, .vsub = 16, .has_alpha = true, },
-+	{ .format = DRM_FORMAT_ABGR2101010, .depth = 32, .num_planes = 2,
-+	  .cpp = { 4, 1, }, .hsub = 8, .vsub = 16, .has_alpha = true, },
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c782e65a7123..0b0c5ef1d48e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6248,6 +6248,9 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 		case I915_FORMAT_MOD_Y_TILED:
+ 		case I915_FORMAT_MOD_Yf_TILED:
+ 		case I915_FORMAT_MOD_4_TILED:
++		case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
++		case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
++		case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
+ 			break;
+ 		default:
+ 			drm_dbg_kms(&i915->drm,
+@@ -6257,7 +6260,8 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 			return -EINVAL;
+ 		}
  
- /*
+-		if (new_plane_state->hw.fb->format->num_planes > 1) {
++		if (intel_format_info_is_yuv_semiplanar(new_plane_state->hw.fb->format,
++							new_plane_state->hw.fb->modifier)) {
+ 			drm_dbg_kms(&i915->drm,
+ 				    "[PLANE:%d:%s] Planar formats do not support async flips\n",
+ 				    plane->base.base.id, plane->base.name);
+@@ -6303,6 +6307,14 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 			return -EINVAL;
+ 		}
+ 
++		if (skl_plane_aux_dist(old_plane_state, 0) !=
++		    skl_plane_aux_dist(new_plane_state, 0)) {
++			drm_dbg_kms(&i915->drm,
++				    "[PLANE:%d:%s] AUX_DIST cannot be changed in async flip\n",
++				    plane->base.base.id, plane->base.name);
++			return -EINVAL;
++		}
++
+ 		if (!drm_rect_equals(&old_plane_state->uapi.src, &new_plane_state->uapi.src) ||
+ 		    !drm_rect_equals(&old_plane_state->uapi.dst, &new_plane_state->uapi.dst)) {
+ 			drm_dbg_kms(&i915->drm,
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 92e5db82cbd9..c80a89b71ef7 100644
+index c80a89b71ef7..6f4b3839724d 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2301,6 +2301,60 @@ static bool skl_plane_format_mod_supported(struct drm_plane *_plane,
- 	}
+@@ -528,15 +528,18 @@ static u32 tgl_plane_min_alignment(struct intel_plane *plane,
+ 		if (IS_ALDERLAKE_P(i915) && HAS_ASYNC_FLIPS(i915))
+ 			return mult * 16 * 1024;
+ 		return mult * 4 * 1024;
+-	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+-	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+-	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
+ 	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS:
+-	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
+ 	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS:
+-	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
++		if (IS_ALDERLAKE_P(i915) && HAS_ASYNC_FLIPS(i915))
++			return mult * 16 * 1024;
++		fallthrough;
++	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
++	case I915_FORMAT_MOD_4_TILED_MTL_MC_CCS:
+ 	case I915_FORMAT_MOD_4_TILED_DG2_MC_CCS:
++	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
++	case I915_FORMAT_MOD_4_TILED_MTL_RC_CCS_CC:
++	case I915_FORMAT_MOD_4_TILED_DG2_RC_CCS_CC:
+ 		/*
+ 		 * Align to at least 4x1 main surface
+ 		 * tiles (16K) to match 64B of AUX.
+@@ -1185,8 +1188,8 @@ static u32 skl_plane_surf(const struct intel_plane_state *plane_state,
+ 	return plane_surf;
  }
  
-+static bool icl_plane_format_mod_supported(struct drm_plane *_plane,
-+					   u32 format, u64 modifier)
-+{
-+	struct intel_plane *plane = to_intel_plane(_plane);
-+
-+	if (!intel_fb_plane_supports_modifier(plane, modifier))
-+		return false;
-+
-+	switch (format) {
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_XRGB2101010:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_ARGB2101010:
-+	case DRM_FORMAT_ABGR2101010:
-+		if (intel_fb_is_ccs_modifier(modifier))
-+			return true;
-+		fallthrough;
-+	case DRM_FORMAT_RGB565:
-+	case DRM_FORMAT_YUYV:
-+	case DRM_FORMAT_YVYU:
-+	case DRM_FORMAT_UYVY:
-+	case DRM_FORMAT_VYUY:
-+	case DRM_FORMAT_NV12:
-+	case DRM_FORMAT_XYUV8888:
-+	case DRM_FORMAT_P010:
-+	case DRM_FORMAT_P012:
-+	case DRM_FORMAT_P016:
-+	case DRM_FORMAT_XVYU2101010:
-+		if (modifier == I915_FORMAT_MOD_Yf_TILED)
-+			return true;
-+		fallthrough;
-+	case DRM_FORMAT_C8:
-+	case DRM_FORMAT_XBGR16161616F:
-+	case DRM_FORMAT_ABGR16161616F:
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_ARGB16161616F:
-+	case DRM_FORMAT_Y210:
-+	case DRM_FORMAT_Y212:
-+	case DRM_FORMAT_Y216:
-+	case DRM_FORMAT_XVYU12_16161616:
-+	case DRM_FORMAT_XVYU16161616:
-+		if (modifier == DRM_FORMAT_MOD_LINEAR ||
-+		    modifier == I915_FORMAT_MOD_X_TILED ||
-+		    modifier == I915_FORMAT_MOD_Y_TILED)
-+			return true;
-+		fallthrough;
-+	default:
-+		return false;
-+	}
-+}
-+
- static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
- 					     u32 format, u64 modifier)
+-static u32 skl_plane_aux_dist(const struct intel_plane_state *plane_state,
+-			      int color_plane)
++u32 skl_plane_aux_dist(const struct intel_plane_state *plane_state,
++		       int color_plane)
  {
-@@ -2362,6 +2416,15 @@ static const struct drm_plane_funcs skl_plane_funcs = {
- 	.format_mod_supported = skl_plane_format_mod_supported,
- };
+ 	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.h b/drivers/gpu/drm/i915/display/skl_universal_plane.h
+index 541489479135..18b41d13f0bd 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.h
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.h
+@@ -37,4 +37,7 @@ bool icl_is_nv12_y_plane(struct drm_i915_private *dev_priv,
+ u8 icl_hdr_plane_mask(void);
+ bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id plane_id);
  
-+static const struct drm_plane_funcs icl_plane_funcs = {
-+	.update_plane = drm_atomic_helper_update_plane,
-+	.disable_plane = drm_atomic_helper_disable_plane,
-+	.destroy = intel_plane_destroy,
-+	.atomic_duplicate_state = intel_plane_duplicate_state,
-+	.atomic_destroy_state = intel_plane_destroy_state,
-+	.format_mod_supported = icl_plane_format_mod_supported,
-+};
++u32 skl_plane_aux_dist(const struct intel_plane_state *plane_state,
++		       int color_plane);
 +
- static const struct drm_plane_funcs gen12_plane_funcs = {
- 	.update_plane = drm_atomic_helper_update_plane,
- 	.disable_plane = drm_atomic_helper_disable_plane,
-@@ -2538,6 +2601,8 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		plane_funcs = &gen12_plane_funcs;
-+	else if (DISPLAY_VER(dev_priv) == 11)
-+		plane_funcs = &icl_plane_funcs;
- 	else
- 		plane_funcs = &skl_plane_funcs;
- 
+ #endif
 -- 
 2.44.2
 
