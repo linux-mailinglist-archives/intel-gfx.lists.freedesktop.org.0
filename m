@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D522C91421A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 07:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BDB091421F
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 07:35:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3289F10E350;
-	Mon, 24 Jun 2024 05:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D9AE10E357;
+	Mon, 24 Jun 2024 05:35:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FP73lAoS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HaWqcokX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F083610E350
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 05:35:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2537210E350
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 05:35:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719207353; x=1750743353;
+ t=1719207354; x=1750743354;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bhd+5+rPwN/NlkX1D/SdRWGJ3qhcWoirzRxfZuPbgwc=;
- b=FP73lAoSvPMfXWKShmcrKbFsQbrWH3NgbVQNu37cXZhXaV/Ni895by8E
- U95fwNd++TX9Ucv6jwuIuGZ+Hl4Xg0NGvfNT19K/xwi8yA5kUl+PG/Cod
- tYCFAR6Sj/W1alyR+DnNWEVh0tqhADR/2svnjhJakxLT2W9mkk7OrortZ
- 3VsVoQ+Qmhws3+Ti4HvAYyur3dpwy8KGFgjTcYr7N/TUhKs+/u7SjJ/0i
- kAATNvujJMyQEuLNSO0zUez0wWUe04A1AIZLiy66wubUZPpq9PijXD7wk
- gRZVB7dyFMnwiWw0emjgnAdrjh9t9an11BxN91VKV81Npe3egox+H8DGt g==;
-X-CSE-ConnectionGUID: bJj/qX5LTpqXQUv1J/JWig==
-X-CSE-MsgGUID: y4Z2F6TETZuQYwTNQXGKrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="27567254"
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="27567254"
+ bh=R+ulH2M5Cz80YbdHbEbdwvtghNhrNFOE9Dxf0vPBD1c=;
+ b=HaWqcokXmqN9eGVfJii3v0ZxGYhBKQHGWAMG3peCR/JFXRYm3CTXkcY3
+ ysSBJn8Krgn152HWDc6dBKWRKGW/4GbNB2oRcpwTKiA+8uBPl9we0dqt0
+ GZo2ZxeDzee/pbMZPp0QVD+v0j2fO5aTJXVMqhmlAihpEafUrb8BiWCZA
+ rxt7VtIoum+wh3+HoBbvSg/jdzZTpbv71V/H/KmqUuGQvPg1S/F02lGbu
+ BceEuV8ldVDg9gy2+bJtBlLN3ZnEGFRjGzKE5z5drlOtbgSjRZ7w2WrzN
+ dl1QdhSqYhanY6t7hReVIpBizmOUpHCS1ugC8WoihtZQTRVBI66kOn9cQ A==;
+X-CSE-ConnectionGUID: XseZhlBISWODKtaGySwUVA==
+X-CSE-MsgGUID: dFA6CoAWSt6551nrHpn0sQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11112"; a="27567258"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="27567258"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2024 22:35:52 -0700
-X-CSE-ConnectionGUID: No0qzTX7SB2Y76wYdPsBsw==
-X-CSE-MsgGUID: L5sJ4Ug2QrGdf8n3gOqNYA==
+ 23 Jun 2024 22:35:54 -0700
+X-CSE-ConnectionGUID: Dahxhj5yReqZmZnq+LLelw==
+X-CSE-MsgGUID: 3psAisKZRh+C5G5yV4cQ3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="42994234"
+X-IronPort-AV: E=Sophos;i="6.08,261,1712646000"; d="scan'208";a="42994239"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2024 22:35:50 -0700
+ 23 Jun 2024 22:35:52 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 8/9] drm/i915/hdmi: Use VRR Timing generator for HDMI
-Date: Mon, 24 Jun 2024 11:05:59 +0530
-Message-Id: <20240624053600.3803116-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 9/9] drm/i915/vrr: Use VRR timing generator whenever panel
+ supports VRR
+Date: Mon, 24 Jun 2024 11:06:00 +0530
+Message-Id: <20240624053600.3803116-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240624053600.3803116-1-ankit.k.nautiyal@intel.com>
 References: <20240624053600.3803116-1-ankit.k.nautiyal@intel.com>
@@ -68,34 +69,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for using VRR Timing generator for HDMI panels.
+Currently VRR timing generator is used only when VRR is enabled by
+userspace. From MTL+, gradually move away from older timing
+generator and use VRR timing generator for fixed refresh rate also.
+In such a case, Flipline VMin and VMax all are set to the Vtotal of the
+mode, which effectively makes the VRR timing generator work in
+fixed refresh rate mode.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 59 +++++++++++++++---------
+ 1 file changed, 37 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 19498ee455fa..c8442772bacf 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -59,6 +59,7 @@
- #include "intel_lspcon.h"
- #include "intel_panel.h"
- #include "intel_snps_phy.h"
-+#include "intel_vrr.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 025063098370..913752424adc 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -174,41 +174,56 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+ 		return;
  
- inline struct drm_i915_private *intel_hdmi_to_i915(struct intel_hdmi *intel_hdmi)
- {
-@@ -2366,6 +2367,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		}
- 	}
+-	crtc_state->vrr.in_range =
+-		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+-	if (!crtc_state->vrr.in_range)
+-		return;
+-
+ 	if (HAS_LRR(i915))
+ 		crtc_state->update_lrr = true;
  
-+	intel_vrr_compute_config(pipe_config, conn_state);
+-	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+-			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
+-	vmax = adjusted_mode->crtc_clock * 1000 /
+-		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
++	if (!crtc_state->uapi.vrr_enabled && DISPLAY_VER(i915) >= 14) {
++		/*
++		 * for MTL+ if panel supports VRR and user has not set VRR,
++		 * always go for fixed average Vtotal mode.
++		 */
++		crtc_state->vrr.vmin = adjusted_mode->crtc_vtotal;
++		crtc_state->vrr.vmax = adjusted_mode->crtc_vtotal;
++		crtc_state->vrr.flipline = adjusted_mode->crtc_vtotal;
++		crtc_state->vrr.fixed_rr = true;
++	} else {
+ 
+-	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
+-	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
++		crtc_state->vrr.in_range =
++			intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+ 
+-	if (vmin >= vmax)
+-		return;
++		if (!crtc_state->vrr.in_range)
++			return;
+ 
+-	/*
+-	 * flipline determines the min vblank length the hardware will
+-	 * generate, and flipline>=vmin+1, hence we reduce vmin by one
+-	 * to make sure we can get the actual min vblank length.
+-	 */
+-	crtc_state->vrr.vmin = vmin - 1;
+-	crtc_state->vrr.vmax = vmax;
+ 
+-	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
++		vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
++				    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
++		vmax = adjusted_mode->crtc_clock * 1000 /
++			(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
 +
- 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
- 					 conn_state);
++		vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
++		vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
++
++		if (vmin >= vmax)
++			return;
++
++		/*
++		 * flipline determines the min vblank length the hardware will
++		 * generate, and flipline>=vmin+1, hence we reduce vmin by one
++		 * to make sure we can get the actual min vblank length.
++		 */
++		crtc_state->vrr.vmin = vmin - 1;
++		crtc_state->vrr.vmax = vmax;
++
++		crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
++		crtc_state->vrr.fixed_rr = false;
++	}
  
+ 	/*
+ 	 * When panel is VRR capable and userspace has
+ 	 * not enabled adaptive sync mode then Fixed Average
+ 	 * Vtotal mode should be enabled.
+ 	 */
+-	if (crtc_state->uapi.vrr_enabled) {
++	if (crtc_state->uapi.vrr_enabled || crtc_state->vrr.fixed_rr) {
+ 		crtc_state->vrr.enable = true;
+ 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+ 	} else if (is_cmrr_frac_required(crtc_state) && is_edp) {
 -- 
 2.40.1
 
