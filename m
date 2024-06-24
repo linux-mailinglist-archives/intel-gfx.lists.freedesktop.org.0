@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45F509156FA
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 21:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D807C9156FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 21:11:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F06910E562;
-	Mon, 24 Jun 2024 19:11:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9B510E565;
+	Mon, 24 Jun 2024 19:11:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MMUfCI+3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kWb8jyeJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A25A10E54D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B934210E561
  for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 19:11:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1719256261; x=1750792261;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=0RPY5F20KfoXzQFkiGusMSMUEJTTEnuMF4mf+BkDkg8=;
- b=MMUfCI+3JeEV/25ybN1wMQp9HU4QdOHPI7/Pe+eoQ/ZimoF/MTXp1cn+
- Y2FhFhXTU2lSrxM6rYawurOpicCUm3CaIbTQkDP3QaBg39hsd2pnBJQhb
- +BE/I0Ic9a4sgdFXWLn/GO8PGhcaiS8NROy2MKWh35A1T2BQFGCWnPORz
- g+KTvrtsGuO6GG0jdr9tCvc5hF41QIx0YvAxgrHwI82X1bClRtZryM4no
- epLxdxkIZeFBh67W6wdz7U19ixojEZZcVXPM0vjPDFMHoNaPCoEMcFX/v
- fakgBrh/40CyMQyoOEaBp80g1F0BqkmGMuGvBGYhTxpL7CFKvE52Bq3at Q==;
-X-CSE-ConnectionGUID: r+gallCxTR2HlCEdI6g/lQ==
-X-CSE-MsgGUID: +CLTNl+jSgudbPfLTqpxSQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="16374197"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="16374197"
+ bh=ynqI+z+wdo/aBIaoCKqR1wRelbGjrvD+tuFW0wcPotM=;
+ b=kWb8jyeJiLLVbsS1oQYDfctzl5WaotjK8ICpDALIeppyzQ4x1gIcJcoG
+ SvFC5mVKxt37OTuej0HdC8w5kPKnxLGzSIx6CrqCn2ykGwvJ3Hmv8Q3G+
+ fVIsNBzmscJrrj7kHpzxm+VLI5c1Y1maiZXQO+vDmfvPbh5IXeWW9hUBO
+ dbUWktI70aSwlAEgvNQOv31F4gJIEb22qXeVONOk9YtiF3KSdSKxIIy2P
+ rpKbFMsOeIc8kMHxdODp8w3gfx1onIumyuihSLjkIEwgIOdsisw+1CwAA
+ sTfqtAmihb56AvoUPhZXhKymxKYMlmv3F+oF4MMDXDagbKuJ6+PDT5d/H w==;
+X-CSE-ConnectionGUID: LhWK5L0WRVaMW1uFyhDGlQ==
+X-CSE-MsgGUID: GnevOihOQOCoMl0W9fVMsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="16374206"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="16374206"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 12:10:58 -0700
-X-CSE-ConnectionGUID: 3cT9TZYmTL+oclX84ZQqaA==
-X-CSE-MsgGUID: Wzel9H/MS32FWueH8HEQhQ==
+ 24 Jun 2024 12:11:00 -0700
+X-CSE-ConnectionGUID: pcHIS77JQLqZPFuEH5VFMQ==
+X-CSE-MsgGUID: PyTFROnwQ7mtDOfQE1rLKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43371974"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43371979"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 24 Jun 2024 12:10:56 -0700
+ by fmviesa008.fm.intel.com with SMTP; 24 Jun 2024 12:10:58 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Jun 2024 22:10:55 +0300
+ Mon, 24 Jun 2024 22:10:58 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 08/14] drm/i915/dsb: Precompute DSB_CHICKEN
-Date: Mon, 24 Jun 2024 22:10:26 +0300
-Message-ID: <20240624191032.27333-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/14] drm/i915/dsb: Introduce intel_dsb_wait_scanline_{in,
+ out}()
+Date: Mon, 24 Jun 2024 22:10:27 +0300
+Message-ID: <20240624191032.27333-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240624191032.27333-1-ville.syrjala@linux.intel.com>
 References: <20240624191032.27333-1-ville.syrjala@linux.intel.com>
@@ -70,58 +71,132 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Adjust the code that determines the correct DSB_CHICKEN value
-to be usable for use within DSB commands themselves. Ie.
-precompute it based on our knowledge of what the hardware state
-(VRR vs. not mainly) will be at the time of the commit.
+Add functions to emit a DSB scanline window wait instructions.
+We can either wait for the scanline to be IN the window
+or OUT of the window.
+
+The hardware doesn't handle wraparound so we must manually
+deal with it by swapping the IN range to the inverse OUT
+range, or vice versa.
+
+Also add a bit of paranoia to catch the edge case of waiting
+for the entire frame. That doesn't make sense since an IN
+wait would be a nop, and an OUT wait would imply waiting
+forever. Most of the time this also results in both scanline
+ranges (original and inverted) to have lower=upper+1
+which is nonsense from the hw POV.
+
+For now we are only handling the case where the scanline wait
+happens prior to latching the double buffered registers during
+the commit (which might change the timings due to LRR/VRR/etc.)
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 73 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h |  6 ++
+ 2 files changed, 79 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index b362a3050c7f..81937908c798 100644
+index 81937908c798..092cf082ac39 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -43,6 +43,7 @@ struct intel_dsb {
- 	 */
- 	unsigned int ins_start_offset;
- 
-+	u32 chicken;
- 	int hw_dewake_scanline;
- };
- 
-@@ -149,9 +150,10 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
- 	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
+@@ -362,6 +362,79 @@ void intel_dsb_nonpost_end(struct intel_dsb *dsb)
+ 	intel_dsb_noop(dsb, 4);
  }
  
--static u32 dsb_chicken(struct intel_crtc *crtc)
-+static u32 dsb_chicken(struct intel_atomic_state *state,
-+		       struct intel_crtc *crtc)
++static void intel_dsb_emit_wait_dsl(struct intel_dsb *dsb,
++				    u32 opcode, int lower, int upper)
++{
++	u64 window = ((u64)upper << DSB_SCANLINE_UPPER_SHIFT) |
++		((u64)lower << DSB_SCANLINE_LOWER_SHIFT);
++
++	intel_dsb_emit(dsb, lower_32_bits(window),
++		       (opcode << DSB_OPCODE_SHIFT) |
++		       upper_32_bits(window));
++}
++
++static void intel_dsb_wait_dsl(struct intel_atomic_state *state,
++			       struct intel_dsb *dsb,
++			       int lower_in, int upper_in,
++			       int lower_out, int upper_out)
++{
++	struct intel_crtc *crtc = dsb->crtc;
++
++	lower_in = dsb_scanline_to_hw(state, crtc, lower_in);
++	upper_in = dsb_scanline_to_hw(state, crtc, upper_in);
++
++	lower_out = dsb_scanline_to_hw(state, crtc, lower_out);
++	upper_out = dsb_scanline_to_hw(state, crtc, upper_out);
++
++	if (upper_in >= lower_in)
++		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_IN,
++					lower_in, upper_in);
++	else if (upper_out >= lower_out)
++		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT,
++					lower_out, upper_out);
++	else
++		drm_WARN_ON(crtc->base.dev, 1); /* assert_dsl_ok() should have caught it already */
++}
++
++static void assert_dsl_ok(struct intel_atomic_state *state,
++			  struct intel_dsb *dsb,
++			  int start, int end)
++{
++	struct intel_crtc *crtc = dsb->crtc;
++	int vtotal = dsb_vtotal(state, crtc);
++
++	/*
++	 * Waiting for the entire frame doesn't make sense,
++	 * (IN==don't wait, OUT=wait forever).
++	 */
++	drm_WARN(crtc->base.dev, (end - start + vtotal) % vtotal == vtotal - 1,
++		 "[CRTC:%d:%s] DSB %d bad scanline window wait: %d-%d (vt=%d)\n",
++		 crtc->base.base.id, crtc->base.name, dsb->id,
++		 start, end, vtotal);
++}
++
++void intel_dsb_wait_scanline_in(struct intel_atomic_state *state,
++				struct intel_dsb *dsb,
++				int start, int end)
++{
++	assert_dsl_ok(state, dsb, start, end);
++
++	intel_dsb_wait_dsl(state, dsb,
++			   start, end,
++			   end + 1, start - 1);
++}
++
++void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
++				 struct intel_dsb *dsb,
++				 int start, int end)
++{
++	assert_dsl_ok(state, dsb, start, end);
++
++	intel_dsb_wait_dsl(state, dsb,
++			   end + 1, start - 1,
++			   start, end);
++}
++
+ static void intel_dsb_align_tail(struct intel_dsb *dsb)
  {
--	if (crtc->mode_flags & I915_MODE_FLAG_VRR)
-+	if (pre_commit_is_vrr_active(state, crtc))
- 		return DSB_SKIP_WAITS_EN |
- 			DSB_CTRL_WAIT_SAFE_WINDOW |
- 			DSB_CTRL_NO_WAIT_VBLANK |
-@@ -449,7 +451,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
- 			  ctrl | DSB_ENABLE);
+ 	u32 aligned_tail, tail;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 84fc2f8434d1..d0737cefb393 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -39,6 +39,12 @@ void intel_dsb_reg_write_masked(struct intel_dsb *dsb,
+ void intel_dsb_noop(struct intel_dsb *dsb, int count);
+ void intel_dsb_nonpost_start(struct intel_dsb *dsb);
+ void intel_dsb_nonpost_end(struct intel_dsb *dsb);
++void intel_dsb_wait_scanline_in(struct intel_atomic_state *state,
++				struct intel_dsb *dsb,
++				int lower, int upper);
++void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
++				 struct intel_dsb *dsb,
++				 int lower, int upper);
  
- 	intel_de_write_fw(display, DSB_CHICKEN(pipe, dsb->id),
--			  dsb_chicken(crtc));
-+			  dsb->chicken);
- 
- 	intel_de_write_fw(display, DSB_INTERRUPT(pipe, dsb->id),
- 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS |
-@@ -580,6 +582,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 	dsb->free_pos = 0;
- 	dsb->ins_start_offset = 0;
- 
-+	dsb->chicken = dsb_chicken(state, crtc);
- 	dsb->hw_dewake_scanline =
- 		dsb_scanline_to_hw(state, crtc, dsb_dewake_scanline(state, crtc));
- 
+ void intel_dsb_commit(struct intel_dsb *dsb,
+ 		      bool wait_for_vblank);
 -- 
 2.44.2
 
