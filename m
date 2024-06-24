@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4834F915158
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 17:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45009915159
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2024 17:05:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845D810E47E;
-	Mon, 24 Jun 2024 15:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05F9210E49A;
+	Mon, 24 Jun 2024 15:05:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBW6pwW7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MT+hhdjv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6078310E47E
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 15:05:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 268C310E480
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2024 15:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719241544; x=1750777544;
+ t=1719241547; x=1750777547;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=NbksNlwqLXsM2H+6IUfznJ9kjwU51C9SYh9pnonMJEw=;
- b=VBW6pwW7Abf65i/ZBRyMZ59K+9hIgSoZ2PKuJnwTTjtDPtoq9O2bHISu
- GYEy/EZHCWEhNQo+lJEwQK9leVxQNys/Zmlxfw1n1cWgrAexi3x5/Ckg9
- rOLsTN74k1MGyoGo/IV0j4t+ipUrFPnEI1x3YEYqwhxnIT+mSN4pvmVJL
- oupC6fas9fpqPSi5ZqUjioP6tJfaCt4Pd4J1ykvm1weEVALEMQmZChqTc
- CmahcmX3fRmzweBsLeFjij3PC0kU+8ogbWk1WQKUqOjta1SSgKE7Icgwf
- Kjq7aZFid5vAr5PkeDb9xVQCr8Qhb3Z8BHCssP+jj+oUd6q44obrRkimd w==;
-X-CSE-ConnectionGUID: ydXJ938nR76+5UadbCtBbQ==
-X-CSE-MsgGUID: ErYL1kI+TeWYyNeFAc3BvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="19117846"
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="19117846"
+ bh=ohFsY/cLW7o6pMQ8dwfmL2AJbtHYttGjRGn/JQolYhE=;
+ b=MT+hhdjvjtEAGa4WXOnrcKZZOXnmi7l/Li6mRI+r6rwrrNT8snTrZTkx
+ 4fjBDhAc9fvuXOS6yBzCjyYxjeJ7cAM3IH9GVX0CZwcNhM6eXbE8MYx8d
+ O6cL+Ay8Oo0DMKK8R5vRnoxI2n/On/cRL24tipmNwRrSq6H2RCTZrrAzw
+ qpijrWUTvatKAnGCYPi4t/shFCWUnMDUZumnZTHeVxZgO3QogeQMJGAlk
+ eTYGgcKY564m5ZqaI0cYiG1OM7kxmUV5OOP6bw6W5P4mqG0n6adk3WSPI
+ LbKtV9uOwupLi0Xzw0muXpxod7oK9qQsDt284QdK5XSLpW7L1948YtRjL g==;
+X-CSE-ConnectionGUID: 0kiwh6SYRZin7NFt6H3VlQ==
+X-CSE-MsgGUID: QS3cmweURDqfxt14p4ICCw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11113"; a="19117854"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="19117854"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2024 08:05:44 -0700
-X-CSE-ConnectionGUID: hOSvjx7SRg+p7UtJ8F72dA==
-X-CSE-MsgGUID: EXAGIrKDQ4usCL8M1plAFQ==
+ 24 Jun 2024 08:05:47 -0700
+X-CSE-ConnectionGUID: WKcAuk0fQ8eqBpMC3bXKUw==
+X-CSE-MsgGUID: IC5zy7B8RmSgDY6QAP9Y/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43298503"
+X-IronPort-AV: E=Sophos;i="6.08,262,1712646000"; d="scan'208";a="43298641"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 24 Jun 2024 08:05:42 -0700
+ by fmviesa008.fm.intel.com with SMTP; 24 Jun 2024 08:05:45 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Jun 2024 18:05:41 +0300
+ Mon, 24 Jun 2024 18:05:44 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/5] drm/i915: Disable compression tricks on JSL
-Date: Mon, 24 Jun 2024 18:05:34 +0300
-Message-ID: <20240624150538.24102-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/5] drm/i915: Expose CCS for 10bpc RGB formats on TGL+
+Date: Mon, 24 Jun 2024 18:05:35 +0300
+Message-ID: <20240624150538.24102-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240624150538.24102-1-ville.syrjala@linux.intel.com>
 References: <20240624150538.24102-1-ville.syrjala@linux.intel.com>
@@ -70,52 +70,102 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Bspec asks us to disable some compression trick on JSL. While the
-bspec description is pretty vague it looks like this is some extra
-trick for 10bpc+ CCS which presumably the ICL derived display engine
-doesn't support.
-
-Note that we aren't currently exposing 10bpc CCS scanout support,
-but once that gets added this presumably becomes an issue.
+CCS + 10bpc formats has been a thing for a while now. Expose it
+it on TGL+.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 1 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 +++++++++
- 2 files changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_fb.c       | 36 +++++++++++++++++++
+ .../drm/i915/display/skl_universal_plane.c    |  8 ++---
+ 2 files changed, 40 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index e42b3a5d4e63..af53c40e6c21 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -432,6 +432,7 @@
- #define XEHPG_INSTDONE_GEOM_SVG			MCR_REG(0x666c)
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index f23547a88b1f..43d0574814a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -66,6 +66,18 @@ static const struct drm_format_info gen12_ccs_formats[] = {
+ 	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
+ 	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
+ 	  .hsub = 1, .vsub = 1, .has_alpha = true },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
++	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
++	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 32, .num_planes = 2,
++	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, .has_alpha = true },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 32, .num_planes = 2,
++	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, .has_alpha = true },
+ 	{ .format = DRM_FORMAT_YUYV, .num_planes = 2,
+ 	  .char_per_block = { 2, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
+ 	  .hsub = 2, .vsub = 1, .is_yuv = true },
+@@ -112,6 +124,18 @@ static const struct drm_format_info gen12_ccs_cc_formats[] = {
+ 	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
+ 	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
+ 	  .hsub = 1, .vsub = 1, .has_alpha = true },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 3,
++	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
++	  .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 3,
++	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
++	  .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 32, .num_planes = 3,
++	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
++	  .hsub = 1, .vsub = 1, .has_alpha = true },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 32, .num_planes = 3,
++	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 2 }, .block_h = { 1, 1, 1 },
++	  .hsub = 1, .vsub = 1, .has_alpha = true },
+ };
  
- #define CACHE_MODE_0_GEN7			_MMIO(0x7000) /* IVB+ */
-+#define   DISABLE_REPACKING_FOR_COMPRESSION	REG_BIT(15) /* jsl+ */
- #define   RC_OP_FLUSH_ENABLE			(1 << 0)
- #define   HIZ_RAW_STALL_OPT_DISABLE		(1 << 2)
- #define CACHE_MODE_1				_MMIO(0x7004) /* IVB+ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 09a287c1aedd..a424b442493f 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -2286,6 +2286,15 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
- 	}
+ static const struct drm_format_info gen12_flat_ccs_cc_formats[] = {
+@@ -127,6 +151,18 @@ static const struct drm_format_info gen12_flat_ccs_cc_formats[] = {
+ 	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
+ 	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
+ 	  .hsub = 1, .vsub = 1, .has_alpha = true },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
++	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
++	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 32, .num_planes = 2,
++	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, .has_alpha = true },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 32, .num_planes = 2,
++	  .char_per_block = { 4, 0 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
++	  .hsub = 1, .vsub = 1, .has_alpha = true },
+ };
  
-+	if (IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) {
-+		/*
-+		 * "Disable Repacking for Compression (masked R/W access)
-+		 *  before rendering compressed surfaces for display."
-+		 */
-+		wa_masked_en(wal, CACHE_MODE_0_GEN7,
-+			     DISABLE_REPACKING_FOR_COMPRESSION);
-+	}
-+
- 	if (GRAPHICS_VER(i915) == 11) {
- 		/* This is not an Wa. Enable for better image quality */
- 		wa_masked_en(wal,
+ struct intel_modifier_desc {
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index ba5a628b4757..92e5db82cbd9 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2314,6 +2314,10 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+ 	case DRM_FORMAT_XBGR8888:
+ 	case DRM_FORMAT_ARGB8888:
+ 	case DRM_FORMAT_ABGR8888:
++	case DRM_FORMAT_XRGB2101010:
++	case DRM_FORMAT_XBGR2101010:
++	case DRM_FORMAT_ARGB2101010:
++	case DRM_FORMAT_ABGR2101010:
+ 		if (intel_fb_is_ccs_modifier(modifier))
+ 			return true;
+ 		fallthrough;
+@@ -2330,10 +2334,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
+ 			return true;
+ 		fallthrough;
+ 	case DRM_FORMAT_RGB565:
+-	case DRM_FORMAT_XRGB2101010:
+-	case DRM_FORMAT_XBGR2101010:
+-	case DRM_FORMAT_ARGB2101010:
+-	case DRM_FORMAT_ABGR2101010:
+ 	case DRM_FORMAT_XVYU2101010:
+ 	case DRM_FORMAT_C8:
+ 	case DRM_FORMAT_XBGR16161616F:
 -- 
 2.44.2
 
