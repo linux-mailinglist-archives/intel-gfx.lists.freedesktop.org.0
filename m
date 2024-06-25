@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B7C916DC5
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jun 2024 18:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E72916F2E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jun 2024 19:27:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 876E510E00D;
-	Tue, 25 Jun 2024 16:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8D8B10E2B0;
+	Tue, 25 Jun 2024 17:27:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ly37V8fD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b56tCeIY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D7EB10E00D;
- Tue, 25 Jun 2024 16:07:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46AEC10E2B0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jun 2024 17:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719331674; x=1750867674;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=MDgdxgNl7MSkNCU0L3Dcb/XaLLUfRK22cgDOD/rKEhQ=;
- b=Ly37V8fD2SdvcxQfJaxemoAftkF7L9WXVnQpGaJSj0St0Hs8mgSTJtnK
- Qw8F5oG9za1bIjaG7Cf5dbpt67yEqrtLc5lyajGsAR2UNbzznOLA9CZGx
- 9+t3HTexFBZYQ9P3WYHGfJa2tWi/VhwKTIeRifLl3Mit4i1B+fE2doi6Q
- O8KADrKGxoM0KiHXUSEf6ZHFtC1RzEnOnfA6cIdRNve5B/ayylOtpsKPW
- 6WImfIXUY26ujGOqQqSzxgtUYkYwAm4CKqvlr5XyaPheM+zu1ZTWn9H+4
- ikfT5UWJtaOV5Lvjr65Ra33ju770w+Wl0eWIqmgvpIq6gnHZJsRpxKKMU w==;
-X-CSE-ConnectionGUID: GQp/qJtBTRmc2FZkmwzwlg==
-X-CSE-MsgGUID: BWpAFWtwQWik7sdWpy0Qiw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="16185188"
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="16185188"
+ t=1719336436; x=1750872436;
+ h=date:from:to:subject:message-id:references:mime-version:
+ content-transfer-encoding:in-reply-to;
+ bh=CndZnERGNUv8hYnk5ugoMtOHBIQzsY1OhDry+egi2Us=;
+ b=b56tCeIYouk0dPlnxBmG+nkTzQS9nnRoxkAKOwP8O/az8DwUpOiuYyGu
+ QVgsANdMvQubP0sLTP7F2sqdjpMc647Jb4pZCa4wBySQ4LenDpvQEIT9H
+ VVjklVsLUDXFnSF4jX8sc2pdNio9gWOLx7XT8isvig+osmT+xiNnhSXCw
+ w4NMuattoSkt8k7BSE7ksu/m2pwL2RgRpNLbveCcWU04bWE8sDbtZhRtr
+ 3vNoTJxNBgmlxhmmIamWko9POobrSckgbA+bzl9av2y8n9t92IcIy2rJp
+ 3Dq1qCAGnYVBCtBJG6YJnep5LpFHkby/EaYQcXCVUL6Ou6b1FWVhPp7L2 A==;
+X-CSE-ConnectionGUID: ihH8N2KVSNi7T899yYu65w==
+X-CSE-MsgGUID: fO823O5DR2mz3h7Ywy4W6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11114"; a="27781675"
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="27781675"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 09:07:53 -0700
-X-CSE-ConnectionGUID: IJL50wMzRRy+Q60XcZuVIQ==
-X-CSE-MsgGUID: LseDVwa9SpGVEV4DGfraTQ==
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2024 10:27:10 -0700
+X-CSE-ConnectionGUID: Cu9/3IFqSU2yd6jkOp8zZQ==
+X-CSE-MsgGUID: S3fy3sKqR7WtFJ92B3Th5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="43668969"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2024 09:07:51 -0700
-Date: Tue, 25 Jun 2024 19:08:01 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/9] drm: Add helpers for x16 fixed point values
-Message-ID: <ZnrrYYmjl+ijAFyS@ideak-desk.fi.intel.com>
-References: <20240614173911.3743172-1-imre.deak@intel.com>
- <20240614173911.3743172-2-imre.deak@intel.com>
- <87cyodfdku.fsf@intel.com>
- <ZnLIe+YFkDpMcXF7@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,264,1712646000"; d="scan'208";a="43696084"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 25 Jun 2024 10:27:08 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 25 Jun 2024 20:27:07 +0300
+Date: Tue, 25 Jun 2024 20:27:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: Re: =?utf-8?B?4pyXIEZpLkNJLklHVA==?= =?utf-8?Q?=3A?= failure for
+ drm/i915: Enable CCS+10bpc and CCS+async flips
+Message-ID: <Znr966eE4Sbs3v7n@intel.com>
+References: <20240624150538.24102-1-ville.syrjala@linux.intel.com>
+ <171932433953.154922.2131774021857952184@a6498e030952>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <ZnLIe+YFkDpMcXF7@ideak-desk.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <171932433953.154922.2131774021857952184@a6498e030952>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,112 +68,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 19, 2024 at 03:01:03PM +0300, Imre Deak wrote:
-> On Wed, Jun 19, 2024 at 01:10:09PM +0300, Jani Nikula wrote:
-> > On Fri, 14 Jun 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > > Add helpers to convert between x16 fixed point and integer/fraction
-> > > values. Also add the format/argument macros required to printk x16
-> > > fixed point variables.
-> > >
-> > > These are needed by later patches dumping the Display Stream Compression
-> > > configuration in DRM core and in the i915 driver to replace the
-> > > corresponding bpp_x16 helpers defined locally in the driver.
-> > >
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/display/drm_dp_helper.c |  5 +++--
-> > >  include/drm/drm_fixed.h                 | 23 +++++++++++++++++++++++
-> > >  2 files changed, 26 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> > > index 79a615667aab1..806f9c9764995 100644
-> > > --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> > > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> > > @@ -35,6 +35,7 @@
-> > >  #include <drm/display/drm_dp_helper.h>
-> > >  #include <drm/display/drm_dp_mst_helper.h>
-> > >  #include <drm/drm_edid.h>
-> > > +#include <drm/drm_fixed.h>
-> > >  #include <drm/drm_print.h>
-> > >  #include <drm/drm_vblank.h>
-> > >  #include <drm/drm_panel.h>
-> > > @@ -4151,9 +4152,9 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
-> > >  	int symbol_cycles;
-> > >  
-> > >  	if (lane_count == 0 || hactive == 0 || bpp_x16 == 0) {
-> > > -		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bpp_x16 %d.%04d\n",
-> > > +		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bpp_x16 " DRM_X16_FMT "\n",
-> > >  			      lane_count, hactive,
-> > > -			      bpp_x16 >> 4, (bpp_x16 & 0xf) * 625);
-> > > +			      DRM_X16_ARGS(bpp_x16));
-> > >  		return 0;
-> > >  	}
-> > >  
-> > > diff --git a/include/drm/drm_fixed.h b/include/drm/drm_fixed.h
-> > > index 81572d32db0c2..0fe2a7f50d54e 100644
-> > > --- a/include/drm/drm_fixed.h
-> > > +++ b/include/drm/drm_fixed.h
-> > > @@ -214,4 +214,27 @@ static inline s64 drm_fixp_exp(s64 x)
-> > >  	return sum;
-> > >  }
-> > >  
-> > > +static inline int drm_x16_from_int(int val_int)
-> > > +{
-> > > +	return val_int << 4;
-> > > +}
-> > > +
-> > > +static inline int drm_x16_to_int(int val_x16)
-> > > +{
-> > > +	return val_x16 >> 4;
-> > > +}
-> > > +
-> > > +static inline int drm_x16_to_int_roundup(int val_x16)
-> > > +{
-> > > +	return (val_x16 + 0xf) >> 4;
-> > > +}
-> > > +
-> > > +static inline int drm_x16_to_frac(int val_x16)
-> > > +{
-> > > +	return val_x16 & 0xf;
-> > > +}
-> > 
-> > Sad trombone about the completely different naming scheme compared to
-> > the rest of the file.
-> > 
-> > Not saying the existing naming is great, but neither is this. And
-> > there's no way to unify except by renaming *both* afterwards.
-> > 
-> > We could devise a scheme now that could be used for the existing stuff
-> > later, without renaming the new stuff.
+On Tue, Jun 25, 2024 at 02:05:39PM -0000, Patchwork wrote:
+> == Series Details ==
 > 
-> Based on [1]'s short variant, we could have:
+> Series: drm/i915: Enable CCS+10bpc and CCS+async flips
+> URL   : https://patchwork.freedesktop.org/series/135306/
+> State : failure
 > 
-> dfixed*(fixed20_12 v)  -> drm_uq12*(drm_uq20_12_t v)
-> drm_fixp*(s64 v)       -> drm_q32*(s64 v)
-> drm_x16*(int v)        -> drm_q4*(int v)
+> == Summary ==
 > 
-> Or instead of uq12/q32/q4 using ufp12/fp32/fp4.
+> CI Bug Log - changes from CI_DRM_14995_full -> Patchwork_135306v1_full
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_135306v1_full absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_135306v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135306v1/index.html
+> 
+> Participating hosts (9 -> 9)
+> ------------------------------
+> 
+>   No changes in participating hosts
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_135306v1_full:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_hangman@gt-error-state-capture@ccs0:
+>     - shard-dg2:          [PASS][1] -> [INCOMPLETE][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14995/shard-dg2-10/igt@i915_hangman@gt-error-state-capture@ccs0.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135306v1/shard-dg2-5/igt@i915_hangman@gt-error-state-capture@ccs0.html
+> 
+>   * igt@i915_hangman@gt-error-state-capture@vcs1:
+>     - shard-dg1:          [PASS][3] -> [INCOMPLETE][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_14995/shard-dg1-17/igt@i915_hangman@gt-error-state-capture@vcs1.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135306v1/shard-dg1-13/igt@i915_hangman@gt-error-state-capture@vcs1.html
+> 
+>   * igt@kms_ccs@crc-primary-basic-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-1:
+>     - shard-rkl:          NOTRUN -> [FAIL][5] +1 other test fail
 
-Jani, any objection to using the drm_fp4_from_int() etc. names?
+Hmm. Looks like IGT will need specific handling for 10bpc in order to
+make the clear color work properly.
 
-> [1] https://en.wikipedia.org/wiki/Q_(number_format)
-> 
-> > *shrug*
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > 
-> > > +
-> > > +#define DRM_X16_FMT		"%d.%04d"
-> > > +#define DRM_X16_ARGS(val_x16)	drm_x16_to_int(val_x16), (drm_x16_to_frac(val_x16) * 625)
-> > > +
-> > >  #endif
-> > 
-> > -- 
-> > Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
