@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9A1918E03
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2024 20:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C9C5918E9F
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2024 20:33:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5669710E0B7;
-	Wed, 26 Jun 2024 18:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADCD810E158;
+	Wed, 26 Jun 2024 18:33:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlS91KCt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bGRvj7mX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18CF010E0B6;
- Wed, 26 Jun 2024 18:12:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C0E10E0A2;
+ Wed, 26 Jun 2024 18:33:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719425545; x=1750961545;
- h=date:from:to:cc:subject:message-id:references:
+ t=1719426830; x=1750962830;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=uFcud2CNZ9VgFs2xDvdrQV4qo4b713G5ZCzzQsE/aM0=;
- b=ZlS91KCtvxeWJiiImBegVbcwQXREMv2LOyWQWaf2hiJnrtE7YjO7RJ3O
- B+TluxwSG+qrDiZzAECwpBXuO45Y5VMb10SUwwLlTSGIobMsr5cW/QGpi
- VDLmzMwXSLuyw/z3jMwwhfuPxXWCi4nVlY+YbAQajederWy6WWg0LRFXO
- 3Ojmg/3I4ByJIzOJ7tWkUzoJqRRNYa9ru3GoU2FGtxU1peKu/LwHCrezf
- bJ1XbYOWAdkHHGZWv91fggfs4rd175v4QkhAKxU8uR0533AQqDFn79tzW
- wiPzSJOdZYQFWN3Mf/hYMk/z5LVIZZKDVjsYxeQCnMk6Hvn/GS+St3Onp A==;
-X-CSE-ConnectionGUID: tbLPH3ZLRuSC2FyfCwKPng==
-X-CSE-MsgGUID: C+lbNRTTT0Od5wVRqfqFnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="27915387"
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="27915387"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2024 11:12:24 -0700
-X-CSE-ConnectionGUID: 6M8cDZT6TGiFuEBxvYqhZA==
-X-CSE-MsgGUID: XZGthyPqT7aDqE3H5HnbLA==
+ bh=BQF14uez0/AFqQ40yfO7lJFSMkWbuQKk2NLanjLP/Bc=;
+ b=bGRvj7mXISfauIrRZPi4LxD36N1pBweQ/a/VxHs9Pv/dTZg0vCPTVGUQ
+ XHQE8BQHa2Gplrjydjj8AntglE7Ka4WzEDTyiHT/oL32u1Sq8T5hnU8Xd
+ bt3BAb7mQVoParo+5pDLk0uH7Jz5qPtknjIG9AqsNmg/QQP3Q9OkdBYW+
+ fSiymhAvI6eh6lVX8Hnom71dkIkt77Z+CZUr+b9DnityTaFaOstXCFBKG
+ 86ptQog9JjYlQ0uMZumOTw+yz1luy3YauWqE+1c7bJBkg8GGu2eMdrqTX
+ v3V0GpxGWUbUP5uRntQ1yP0U2k3amkNxJhRHCmJTwV+lAzn2ZoJ11wOxv w==;
+X-CSE-ConnectionGUID: Pj0+snA5R1WkmRJoN70OpA==
+X-CSE-MsgGUID: +CipG/MhTCmEGvaNI7Ryug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="19408948"
+X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="19408948"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 11:33:49 -0700
+X-CSE-ConnectionGUID: coLeZJpUQHq38kv/jx6RDA==
+X-CSE-MsgGUID: 0JLlUAqpSo2zyyReVk40zA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="43970333"
-Received: from lkp-server01.sh.intel.com (HELO 68891e0c336b) ([10.239.97.150])
- by fmviesa007.fm.intel.com with ESMTP; 26 Jun 2024 11:12:22 -0700
-Received: from kbuild by 68891e0c336b with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sMX80-000FTM-1H;
- Wed, 26 Jun 2024 18:12:20 +0000
-Date: Thu, 27 Jun 2024 02:12:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mika.kahola@intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH 1/5] drm/i915/display: Add support for SNPS PHY HDMI PLL
- algorithm for DG2
-Message-ID: <202406270107.cweaZpry-lkp@intel.com>
-References: <20240626050056.3996349-2-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.08,267,1712646000"; d="scan'208";a="67312034"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2024 11:33:47 -0700
+Date: Wed, 26 Jun 2024 21:33:58 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: Skip programming FIA link enable bits for MTL+
+Message-ID: <ZnxfFpm7t8xEhF/c@ideak-desk.fi.intel.com>
+References: <20240625202652.315936-1-gustavo.sousa@intel.com>
+ <ZnxAuOVN+ioKxtIR@ideak-desk.fi.intel.com>
+ <171942310960.2026.11307370502317050527@gjsousa-mobl2>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240626050056.3996349-2-ankit.k.nautiyal@intel.com>
+In-Reply-To: <171942310960.2026.11307370502317050527@gjsousa-mobl2>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,52 +66,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ankit,
+On Wed, Jun 26, 2024 at 02:31:49PM -0300, Gustavo Sousa wrote:
+> Quoting Imre Deak (2024-06-26 13:24:24-03:00)
+> >On Tue, Jun 25, 2024 at 05:26:52PM -0300, Gustavo Sousa wrote:
+> >> Starting with Xe_LPDP, support for Type-C connections is provided by
+> >> PICA and programming PORT_TX_DFLEXDPMLE1(*) registers is not applicable
+> >> anymore. Those registers don't even exist in recent display IPs. As
+> >> such, skip programming them.
+> >> 
+> >> Bspec: 65750, 65448
+> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> >
+> >MTL still has a FIA mux and the DP-alt pin configuration is read out
+> 
+> Yep. Maybe I could rephrase the commit message like below?
+> 
+>   Starting with Xe_LPDP, although FIA is still used to readout Type-C
+>   pin assignment, part of Type-C support is moved to PICA and
+>   programming PORT_TX_DFLEXDPMLE1(*) registers is not applicable
+>   anymore.
 
-kernel test robot noticed the following build errors:
+Ok, maybe worth mentioning how things changed.
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-intel/for-linux-next-fixes drm-tip/drm-tip drm-xe/drm-xe-next linus/master v6.10-rc5 next-20240625]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> >from that, but programming DPMLE1 accordingly doesn't seem to be
+> >required indeed (the register still exists but programming it doesn't
+> >make a difference based on my test):
+> 
+> Well, yes, one of the base offsets (0x16f8c0) does exist on MTL, but it
+> maps to a completely different register (according to the register
+> database).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-i915-display-Add-support-for-SNPS-PHY-HDMI-PLL-algorithm-for-DG2/20240626-131209
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240626050056.3996349-2-ankit.k.nautiyal%40intel.com
-patch subject: [PATCH 1/5] drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2
-config: i386-buildonly-randconfig-006-20240626 (https://download.01.org/0day-ci/archive/20240627/202406270107.cweaZpry-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240627/202406270107.cweaZpry-lkp@intel.com/reproduce)
+0x16f8c0 is in the third FIA instance, which afaics wouldn't be used on
+MTL/ARL with the max 4 TC ports on those. I still assume that the
+registers in the first two FIA instances exist the same way on MTL as on
+earlier platforms, just the DPMLE1 value is not used there.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202406270107.cweaZpry-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o: in function `get_ana_cp_int_prop.constprop.0':
->> intel_pll_algorithm.c:(.text+0x2b): undefined reference to `__divdi3'
->> ld: intel_pll_algorithm.c:(.text+0xc2): undefined reference to `__divdi3'
-   ld: intel_pll_algorithm.c:(.text+0xef): undefined reference to `__divdi3'
-   ld: intel_pll_algorithm.c:(.text+0x153): undefined reference to `__divdi3'
-   ld: intel_pll_algorithm.c:(.text+0x180): undefined reference to `__divdi3'
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o:intel_pll_algorithm.c:(.text+0x235): more undefined references to `__divdi3' follow
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o: in function `get_ana_cp_int_prop.constprop.0':
->> intel_pll_algorithm.c:(.text+0x282): undefined reference to `__udivdi3'
->> ld: intel_pll_algorithm.c:(.text+0x2f2): undefined reference to `__udivdi3'
-   ld: intel_pll_algorithm.c:(.text+0x31b): undefined reference to `__udivdi3'
-   ld: intel_pll_algorithm.c:(.text+0x33e): undefined reference to `__udivdi3'
-   ld: intel_pll_algorithm.c:(.text+0x36c): undefined reference to `__udivdi3'
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o:intel_pll_algorithm.c:(.text+0x384): more undefined references to `__udivdi3' follow
-   ld: drivers/gpu/drm/i915/display/intel_pll_algorithm.o: in function `intel_snps_phy_compute_hdmi_tmds_pll':
->> intel_pll_algorithm.c:(.text+0x602): undefined reference to `__udivmoddi4'
-   ld: intel_pll_algorithm.c:(.text+0x61e): undefined reference to `__udivdi3'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> >Reviewed-by: Imre Deak <imre.deak@intel.com>
+> 
+> Thanks!
+> 
+> Gustavo Sousa
+> 
+> >
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_tc.c | 3 +++
+> >>  1 file changed, 3 insertions(+)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> >> index 9887967b2ca5..6f2ee7dbc43b 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> >> @@ -393,6 +393,9 @@ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
+> >>          bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+> >>          u32 val;
+> >>  
+> >> +        if (DISPLAY_VER(i915) >= 14)
+> >> +                return;
+> >> +
+> >>          drm_WARN_ON(&i915->drm,
+> >>                      lane_reversal && tc->mode != TC_PORT_LEGACY);
+> >>  
+> >> -- 
+> >> 2.45.2
+> >>
