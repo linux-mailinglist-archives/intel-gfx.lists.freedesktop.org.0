@@ -2,183 +2,170 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99DC891A454
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 12:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0E291A7CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 15:27:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F1E610E1D0;
-	Thu, 27 Jun 2024 10:51:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB0EF10E1D5;
+	Thu, 27 Jun 2024 13:27:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RrMb41Ff";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V+AxsEEh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE9F10E1A4;
- Thu, 27 Jun 2024 10:51:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC2910E097;
+ Thu, 27 Jun 2024 13:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719485482; x=1751021482;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=Hqbsuwcco5LBzTFY9k1EHPD6hIe8wU++Gbs4vXVD89Y=;
- b=RrMb41FfFg2ab8MhVKSbPUbPfbFulO2vozBrGZldbGAIIfjNBeH2HS/H
- Uvwtl66IjxLHw+k5iDRRWCS7UevhensMDwdL+e6gn4G6H+50VMojoQbtv
- 7eOCxltCyGiCq4RZUDrVLExoaQoGs8gVs9AMXVIHZ2LBChi0q627B6p1J
- EKjajowHuOpu4XkyUd49oUtTj6TLysUkitpfGEANJ/nEckRwVFxKcDUX5
- R9G0ISFLQSPcM4HzpzoqKK+VODlrmJdHJNf79a2j311Dqve6RyYaDOcaB
- p5y2qA530eO2glRs35MacJ8sZmOJ3pnAJ6npGiOyGawOkWE1VRKfrU3P4 g==;
-X-CSE-ConnectionGUID: 09nB4MpTT9+phXJIIGVeow==
-X-CSE-MsgGUID: ol1Nr6lySmOiBZQ66El/qQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="27741886"
-X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; d="scan'208";a="27741886"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 03:51:22 -0700
-X-CSE-ConnectionGUID: kM/v5u7zTgaIKnMuK2Y43w==
-X-CSE-MsgGUID: Ipdmw5n3TJyfVYau0vaBEQ==
+ t=1719494861; x=1751030861;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=edXXAUuyW2vi5v5+Th0/SBunCdKXls6/MEZOZ14Hpn8=;
+ b=V+AxsEEhT10alnDmZOXZhyBS8IDZEITkq31V1+23yoP1ap0Ji9sXX6/T
+ sjMnbA9eoiemCQY41s+9yAp6qUGjm53ni5Ug4/MqKSsFHNjgTr/hQkqmy
+ 0IzEMQubkDn91ilU/0qy8uzPsgtuta+2ygU4GKiUC7bdvnNkYPlewO+Bt
+ f+LD1oveQUcGWKg4trd07SskyjBqVg4qtDebgnbPzp2rBA7OexV3Ig9KL
+ iIXGukULgw8G0M9u7aJchyRzEeCiEqaCwpOOTMqSwuj5Sc1vrKegF0FB9
+ b8y/QRttsrgC9AtbQZx5m7D6DExr79UKexxm+9HoGMktyFhsKjYYjAVuo A==;
+X-CSE-ConnectionGUID: UfDost+kSuqip4A07xkT7A==
+X-CSE-MsgGUID: tvxqebrLRM2QS27usteTcw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="42037533"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="42037533"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 06:27:40 -0700
+X-CSE-ConnectionGUID: KHM0HibgQr+rb3vdfynDIA==
+X-CSE-MsgGUID: gsOB4YedR+WWIvx8JcxBYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; d="scan'208";a="44457000"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Jun 2024 03:51:15 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="81931161"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Jun 2024 06:27:39 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 27 Jun 2024 03:51:14 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 27 Jun 2024 06:27:39 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 27 Jun 2024 03:51:14 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 27 Jun 2024 06:27:38 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 27 Jun 2024 03:51:14 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 27 Jun 2024 06:27:38 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 27 Jun 2024 03:51:14 -0700
+ 15.1.2507.39; Thu, 27 Jun 2024 06:27:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DDMvMEHgE1FMgqZH4sqHhLcAAYh6jrn6s3kmSY7Ny9o3CJsth9bG1MGf9eITDhpSIJEfWJJq1QsxvVr1dkABwrG/bzuYBd3c9ebFJ9jboJz0K9qMsHUI5WsgUUmhT6fWpOxNA0iqFmyO5/QDKtEd7rCBzpH7nD9oLQjlrY2NOr00wpWxM8uVhofWhlNZ6g98FxiPSk1NSoh0V0u19Fvd00wSrOljXWpzwXaXQHQtXB1sECr65IRYbCQfOhmWZJLIZWx9VBtJ/3yXvF0sIp9OoEdFVS5EFLQfQhCsCWpUW+gP1w5yjX2qVNSJKVs3DNVRYCbQTcM9Dc8kozrkND8JTQ==
+ b=eyH9aSQLazsGhIo56JdxJiH4cOtQewmxNvJ9YTL42aYlm2n2CYJSWlnNysyEY4gjo7UzF/pOQOPGsFsFDewh3WRFSqbCYhldEm/h6V8JPZSJoqEmsGw4I1c544eHXCt3nHfGcHwvmhfWyohrX4SpUeBMYIISlzrVGfkR3QgZxfrf0fqDdny7Ik5jPRDjYywLH6hmzTk306KzxMvIuFEm5csDxYcwWmc9Nn0+nXUXNX8wn020SqpE99m06V1bwPL/BkPP1/+j+ICc3tj8apZ+5Srwgoxees3O87l0M8jZ5t57BU1l+/DBeXLiRiVzUuFv43V+LQ7RDUE6q6vFvHmn6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Co5B3Dto6HX3NTbhUQMBUGRoETJy/h7jsmr8t3JrZDo=;
- b=JKy+iwN3sbHd6VkZSHnu9UwMaYg/ihvl6NfY1nOcvL8VZvwjfJP/Mt/VgBRnLich4WvoAUS/2mELdlESt/d3E+mg+sLoLQ/H2r85l3i/XRWMOH0qH/oBWpDIS41PT5qTQ5Lv2iB+2ziXbsYaJO6XW2HZVqwyAglkyRwIWLAuVGQKQaaanOQpkPrZoWx7Le0fS/veCLUk1K6uHCEfGzfHQqP9/bMcBHSqMsPDIDa7HWdD0CbhY789BnoAuhpDivd+Vx8f5fRQ7QrSZWGFIATkh2Gd/DgD27SDgggGP+KFhGFv9cHwNnBYBYGhR7oUh7q5k0DFjSkz8G46YMQbLqh7dw==
+ bh=edXXAUuyW2vi5v5+Th0/SBunCdKXls6/MEZOZ14Hpn8=;
+ b=ija9iHnHMmpaoMi+B0oiQAyjHidG2b3qiRIybvO6SFNDGAIruDfLLaSJg2F+LXHZvQ3i+4hW3iQa2r+425506xqkmmkGOCPKArd87714kYEoVEilMESZpGVrtK8IU++QI+UjUZXTA5KDdMQkOBGVRD9F5iBfDyRdsYFOjDLJ8Xxjq6PxdfKQXsDgd0vIKuLQx9v50JS513wgTJ7xEahJvKRXKP6Ej08OB/mBk3IRazp8JX+xRttm1GlwBluCkO5z2Y5WTbNdje+sTIv2cpU6/kifLcrqNYtNny7O+/9UbRVxVGz1FeeM2N+H6qK82m93+bYZ8ClKG2aGtzsVnW4qrA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by CO1PR11MB5187.namprd11.prod.outlook.com (2603:10b6:303:94::12)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by IA1PR11MB7727.namprd11.prod.outlook.com (2603:10b6:208:3f1::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.34; Thu, 27 Jun
- 2024 10:51:12 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::13bd:eb49:2046:32a9%7]) with mapi id 15.20.7698.033; Thu, 27 Jun 2024
- 10:51:12 +0000
-Message-ID: <5e4c951f-698a-4e1d-b412-7448a3aafbfc@intel.com>
-Date: Thu, 27 Jun 2024 16:21:04 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH i-g-t] test/xe_gt_freq: Add helper to read RPe freq
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>
-References: <20240621211848.4144314-1-vinay.belgaumkar@intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20240621211848.4144314-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0098.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:af::8) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+ 2024 13:27:33 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7698.025; Thu, 27 Jun 2024
+ 13:27:33 +0000
+Date: Thu, 27 Jun 2024 08:27:30 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+CC: intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel
+ <dri-devel@lists.freedesktop.org>, Jonathan Cavitt
+ <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/i915/gem: Use the correct format specifier
+ for resource_size_t
+Message-ID: <s3f54t57t6t3flobqijfzzfhyal7cb27lag6e7bomfjeroxhi4@o4knlwgpzl6u>
+References: <20240617184243.330231-1-andi.shyti@linux.intel.com>
+ <20240617184243.330231-3-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240617184243.330231-3-andi.shyti@linux.intel.com>
+X-ClientProxiedBy: MW4PR04CA0034.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::9) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|CO1PR11MB5187:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2baf0368-d8d1-4c14-2b80-08dc96970f09
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB7727:EE_
+X-MS-Office365-Filtering-Correlation-Id: 806866f6-3f40-43ff-1879-08dc96ace6bf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cFh6YjNIc0Z1RFlKV2o4VGhmZHYxblFiMkQ0WldCUjZ2S0VFRE9mSHFDV3Bz?=
- =?utf-8?B?Y2Nab0lPMkxlV3kwTmxUa0lENmxaMVdiMGVWeDJGNVFQak1oRTZrNnBFaHVt?=
- =?utf-8?B?ZEp1QzBiYUVTTjZLK3daRnZ6VU13Y1V0b29yNVJEVTFKTzZjS0dLeUpWVlhE?=
- =?utf-8?B?V1JPODd1U3pLaDFuVU95UGwweXp4WGxaMTZmdkJWNm5KRkhtM09RZXQwTHE5?=
- =?utf-8?B?UHBQYUUyZXZuVE1VVUJrZWY3ZnlBSlFndFEyeWN2aVV6QW15RTF1MWtKK0JB?=
- =?utf-8?B?cFlOVEtFU05UMGpqTlVjbFRVYW03UHlnbjBXTWh0eXNGd0JVa3BnZjZHeGRr?=
- =?utf-8?B?NHRUb3QrQWpyNTBsOUpyLzdwaEg4a2Y2SHQ5T1hCVkxUZWJZcWQ4Q3VYeWVa?=
- =?utf-8?B?anNocDN2ZWVVREMwYzZmRGY2OThZUDBzUEpaM3hqbGhXK0ZXLzZXdXpENkw2?=
- =?utf-8?B?QzJIZFpnRTdEWUV5UGgrYWtqUGlCM3dWMWxDWWJ6Z1lkaWxKVjlTUlJEckdj?=
- =?utf-8?B?VVoyRFErRjRuTGlHSnA0cDFEekRuZ2wyOHdmc3hhMmlnOFhNQmVtWjhxVW5F?=
- =?utf-8?B?Q2VZbEJBNGhqWUYwRnJRQ01GVFFKRUYxVUlWakJEdzZ6OEhudkVodXhNbjJm?=
- =?utf-8?B?QndEcTltMVljNmE4dTZROTNtb2piZnE2bDJ5OTQyUWRudEFUSVgweVB2QmZj?=
- =?utf-8?B?Z3Q4d2tOb0wzV1RCM0JzUjg0NnQ5d3d6ajZ0V2puRmZoZnRubTRSK1BRdmJJ?=
- =?utf-8?B?Yk5OR0grbyt6bFY5My9rZVZENlBTRWMza013SjFxQUQrT0VkNHh3SXBlaEM3?=
- =?utf-8?B?Z3NPenc5S25RNDBpYSs1bHBCRExtKytnVDQyMXk3N2Zaa0JDZ2IyOGVwbEcy?=
- =?utf-8?B?NmpERktxODZWL2dvYUF4SXFEVXo3MDlqa1M0d2lOaW1YNjVYNnF5emtVK2pz?=
- =?utf-8?B?K0R0am1ONW1nSVpxeDZnS2ltMDBNR3NJRkhIYm51TTRHazg1T0pSS0lmREdr?=
- =?utf-8?B?RzhrRmNqVzhTVUh0endHN0t3RURSRHE3SjVjNGUwZVdOV0JpVzNZbytkUHNZ?=
- =?utf-8?B?MUFYM3RNR0VoTEVnTitGcXg1RzhLMXVybTBJVVkwc2NiaGI3WDRiS0lBZGN6?=
- =?utf-8?B?RTBtY2ZxODZoV0lUVVZUQVhnQkxpekdCSGdsSCt4cXJUb3c5RUtXOHVFQ2FT?=
- =?utf-8?B?MmxjUVgxTGVqWjdwUXg3OG1CSGtoTDNiMWNtZlRCT2Iyd3FaakRnVDd4Z1hN?=
- =?utf-8?B?UmxRbXczODJ4SVJJZ1VOcEh4MVNtZUhFMTBSdUJTUXpnOGtnZnNsbi9NaldM?=
- =?utf-8?B?MVlxOXozVE13T2ZCMFhPNmhETnkzUFp6d0hwSHR6UEwySzFhWmlBc1JUb2o2?=
- =?utf-8?B?Q0d3cDZaaGphTDg0ZkZ4eHYyS0tmTkphUnVSTDdvNTlZRjlXM1VKLyswTVo4?=
- =?utf-8?B?dEthUjBoSWc0RVBhdGh3TkRJbzFQWUUwZ3lKZkdqbENHWUFOWWZiQTdmVDFx?=
- =?utf-8?B?Mm4vbmNXaHB4Tkh3ZWg4Q2VHOVF4bW9kS0dkekVkVTBqRTVLeDFZQWFlbjlt?=
- =?utf-8?B?bGw3R1J2ZjhKbHBqL3NXTmd0WEYrS044c1RIRDBrbVlldENEeHdQeW5RVWlr?=
- =?utf-8?B?bjhkUDV6b1Vqa2dhMVMxYmo0MVMzVXRLTkdaNm9FZGN1dHhpYlRVeC9iNkdL?=
- =?utf-8?B?OHZOeVFrS0FkSjFIQmJBZ2Z0amx4MGhaRlRhTFZjM1MxODQ2bU9WRHp1bDhM?=
- =?utf-8?Q?MF/bRwSUQxaS5XvsFo=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SksVdCRvDEwKQ76T0ZZOf+sknJDWHUeHrg8GXBxUGgnMk4oDmJJ2fFevkHGM?=
+ =?us-ascii?Q?oD9pQU/cMMv8/g93G/hfw0NC6mzIwRj2H3scRjlP/RmoUarf6UztdIb8E//O?=
+ =?us-ascii?Q?vhK2dncvlvKCy/TeHDxawJhzY8kDluo5U6FP2vmimX/1dntanh5nhqUnS13W?=
+ =?us-ascii?Q?DylTMnL75TrZMhKZ9rMleJ3kMOsDHA77q4Z+PSweke9sC9eGTVA7iV5FlmaR?=
+ =?us-ascii?Q?8OjwmE+ts4D1maO4HmEuhBZknRvT5OQxCuVT1UFjjyMMWVKQn9XC0lGXbyJ4?=
+ =?us-ascii?Q?bsJ5CHZ6HHsJKqOVSC7CYMRjmDkBpsU+CnUNn3o0zHt2EXe9b/dzvkV7O6dd?=
+ =?us-ascii?Q?bCif6KCIV0Lo9ntgthRIJKnXwCkNWUDj13rfAADbVKXETrfyG10pUTHWwau0?=
+ =?us-ascii?Q?6XEwKgZNF8Rhdr9PdemMVG/xfhJNTapYF+xn0E7SIZTXZ/3NbcqySkpnCbxX?=
+ =?us-ascii?Q?grf8Gd+4kXzfVxpPnsNoMcWYjjGSqjbC0ryu/G8+Z7ts1VVR9ccic1MvIetz?=
+ =?us-ascii?Q?Vs7ZkayLqW/7l6eS6dEspHfkM/qYo++bJFqvYnLDa/pZ7hjNodEUPh2TBQWW?=
+ =?us-ascii?Q?FvOL/C2KHnVON7FirlrE+P3lWBzhXyaBhS+wb7sx0lydr0xlrqeH+ghCQLHI?=
+ =?us-ascii?Q?eIQtgbxlCOv+EnEjEzG76NlbEY6q6lcUX4a/XKBZUTKH8VAnpsVMdFQukFDQ?=
+ =?us-ascii?Q?uTLt0ZbTvOrC5QvyBK49edPhAb6t12aOlAh7MlU/XoOdlfX3ZV1sfhA+1R/S?=
+ =?us-ascii?Q?Xzk/6HtQLYvMp47Z8MLLzuYoVDco2ZsvCS9HZ+flzIwy7F7gbALGzduAGj6o?=
+ =?us-ascii?Q?IUgyLcfVqYKBdPZgsPgjuu981seboq7jOiwS7fW4Lk1nZta+AuOegjV6Nfe1?=
+ =?us-ascii?Q?hc2IakJ/xc4eCYaPEhVpaGIeKfuX8Guo6q/08kdQh6g+buVkp8yJPtjri+qG?=
+ =?us-ascii?Q?ykL4KInggYisgkcfZvtCBLW3POQa3+g4dlFux3/EZkeyI50KQbRHwNhx7yHt?=
+ =?us-ascii?Q?JVvXiIMCfY+ZsGLI1qLgKEtVcD4Uw2s0oIJaOBryhWEvyIIWrr9btXgnMxkI?=
+ =?us-ascii?Q?TQcFFFRvlcNUiFPwlnm0LPzCE+RFSUddXo8CfsrgktQYqS72jsSXCA/sLZHG?=
+ =?us-ascii?Q?tGIGrxmQhKAuoV8GyIosrNgpmxngJH458Hm8TAEk8wJ5qSoYK/YKtLTM9mVC?=
+ =?us-ascii?Q?LzSnXvZmcHJnQHaCnPtFMo5p9yTjkFovvOpbyu0JTB+kB8oTPmqCRf3Fp5YH?=
+ =?us-ascii?Q?8PikyL/tLdNlnnIDngXZmUbxzDwZ5wOoCSdisVqI7HyQ9/QyjbrowQ/6lnJu?=
+ =?us-ascii?Q?bcWBIr35LBp0BXTyjHCFebGpmIVeYIioZfE6MZb+Ygxq7w=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGkzYjNiSGdkdytxSzM0VXFkczF5T0YyeVhUL21OSVdvSVhzZnZoNnRrTm9t?=
- =?utf-8?B?RmJLRG9YckRheW5qQUFmUEZCSGtobnVMKzV4V0Fyc1BaMmdiVnJaMS9jZnV4?=
- =?utf-8?B?cEQyUks4RXpuSnZ6RE5aNndwamNTMlNLYUdkSkxyOE56TnVjcDlrK29rMVl6?=
- =?utf-8?B?OXhTTWlaSWJNWUV2VTY0VVpMN2hHZGUzenluMXZYbjYrM0VRc2h2YnFzckQv?=
- =?utf-8?B?eGpuSVlZVDM4S0FhT29CeDk3clo2SzQyczJRS3p6Z2pPbVcyV2lWOVYyLzZI?=
- =?utf-8?B?UHJIVEpCNGRvRmk4ZGYxSTltSWRmRDVlTWsyanZkYjAzdGNrT2hzcFgzbDg4?=
- =?utf-8?B?cDZvQ09aZ3E3aE9OY0JVb3pnN3dVNUdabXMveExMZEhlUlI3WTFpVER6bkpw?=
- =?utf-8?B?TWFHa3FjZUU1cTNBcEpvNVRjYlZaeGlQVSs0M2NGbDJDUUx6bVg1MTBvdmVv?=
- =?utf-8?B?MUhBOGRKUzZLYkQraENOYzByL0o4TnVaMDg1cnFUU2FpRSswM29paEIwTVlq?=
- =?utf-8?B?S09yS0dyTTJNc1AzVm9EYlVPLy9hcDZ6ek9YaUhjQ0VyUXZZcUZ2WEI1Vnhq?=
- =?utf-8?B?SlJ0VFFmdDdpY2o3RDJNV2tic3Z3ckNCS21KUWVOWTU3TlpWR1YxMGJ1bG84?=
- =?utf-8?B?bk5iZnBQWUJkMGZkZi9IeEFNRnVmdEc2MU1GM1cvYXNLTU1UMHQxUzcxdkFh?=
- =?utf-8?B?QXk5eFJ5dGl0OWk4Sm9tT0h3WHdRQXhoU3hYem1wblk4UlFab3NzbGVvY2R3?=
- =?utf-8?B?STdMVDBXNGxxMDYvRFFSbFdVQU9ybUhkN3k0WnAzL2EwUmJvc01FMktrSDVB?=
- =?utf-8?B?YnU1UVhkUWFTZU5haForRWR2STdYWE9IMEo5dnVuaDlhZ3VvWHlOTXNtbzU0?=
- =?utf-8?B?RUhnRlg1SUJXOXVDamVxMk1kUEhvd1g3bWwyS0R4REJGUjVEMk1KaFJ4VWFr?=
- =?utf-8?B?NDcyS0FDY1d4TGw5aXBPZERuL3lYZ0JEbFpOREY4cG5zOWw1TXdaTkpKQ3JG?=
- =?utf-8?B?aWdYelptSjVBMFBkNCtqSUpuMGQzUUlWUFlReWtiYU0rR3JvRkphWnNMdEdW?=
- =?utf-8?B?Njh6WExUTVJ0ZGl6dWw1dUpnYjMySFZmWGN6cWFQZ2RLY3c3MVVpOWxHOFBR?=
- =?utf-8?B?TmxhVVRpeGpUUGUreEhXc1ZVTzhRT1E0R2tnOUFFcG5IU3ZFL0JWQXNmUkhj?=
- =?utf-8?B?RWJBZ29UV2dRdml0REIxc1BNTURNbW0wdGhUekNKWGlEbFh5VG1uNTR4QmZ5?=
- =?utf-8?B?OXRtTllTK1dxcEczN2o0TXhvY1BJTU5sV2diQmQxWGhOeFdvaEJkSk55RjVO?=
- =?utf-8?B?M2dvRVpTaG9SRUF3S0RNUjB3M1liaHZCcE02RkRuM2lJd3dMWDNOQWhwUVk3?=
- =?utf-8?B?QXl1TVFxTW03NGpwTnRaU0lQSzNGR20vM1ZqcXN1RzRRWUNNajRRY2MrU2d5?=
- =?utf-8?B?OHBkNFdGTTZ0czAxWjgrOXBLQkVLSjRqcWdIN0xNL3pTUFhCMFE1YW5qRFdO?=
- =?utf-8?B?WTlpUTl1TlR2NHZrY2FSQlVVMU14bDVjeGZZeEI2YVQvbTlpMkljbW8rdnFv?=
- =?utf-8?B?clZvTmRncjdMQ2h4dGpjRzBOWWc3am9DbU51N1IyVDl6NkxDMTF0MzMwNnZZ?=
- =?utf-8?B?WHdYcnRnUWxUdXhCZnZjRUFPdUlLMXJCTTkvT0xTZi9MT3NqaHpvTkVmcTBV?=
- =?utf-8?B?bVR0ZTIzcTBkQmRyb2ExREtIMGFQOElzN3ZPZWh6YXZqb2R6WDI3WlJQZVR5?=
- =?utf-8?B?UkxKSUJGdzY0OFJVbDhnRlNCWkFnazVZYlE2WXVqOUVWMGhrTVBuMXkzZStC?=
- =?utf-8?B?QUk5TGdsdDdQdHR5K2JDMmlNNXlSY2J1eVE2YzJ2YUVSRzNaYXdWdzl3SjhG?=
- =?utf-8?B?SUxPbHZPWjRYazFQeXVtWDJiQVBJZThSd1hCcFE1bk9kbEduZEtLcDJFWER2?=
- =?utf-8?B?QUtUU0c5SUZleGUwOVNLVFFBYnZTTHlFcExLVk5HR3Fya1Q1ZmRaaTFTVG1j?=
- =?utf-8?B?UFpVSTlranhhbHpKc2E5anIxZEdEMVBJSDFhaDI1VEthVWdjbW9RYnVzOXp5?=
- =?utf-8?B?UksvaEYydWc1QklzRzk2dGl3b1A5MTNyQXFZYSt2QXhuaU8rRGhJTytwSUVw?=
- =?utf-8?Q?tms1A6J+VW3vYOlG9QrM483zm?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2baf0368-d8d1-4c14-2b80-08dc96970f09
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/USnk9cRjqusXuFbnzFkxzSrC/QxeXtQzLLwjGZmSlX9DpOZRpk3Ktl4l6H1?=
+ =?us-ascii?Q?bIZDq/diyLaUEhg8ONrsYMc9WsTcluRblCIJMrcXTQb+vBIlTNCG5Njj4OVF?=
+ =?us-ascii?Q?b1qyknTJ9Y63owvzQ7pdU6VucMDxu6J73UZ4denMeQTai2OES1981PQAsvo+?=
+ =?us-ascii?Q?W4zHxIzGHoqj4NNRFlQD/wS0y7OmxBRVeXktTFhd1ziNvHuRfYX8knmlbKqu?=
+ =?us-ascii?Q?zsVS5SbCbLQd8ORYN/wmTl0bt0Q+NDbEn/AfRCFcBNDl50J2w5EPi3/ISyFz?=
+ =?us-ascii?Q?RG6RNjKSX84dCkodm2pPSR4WhHV2a1rQDPfNo6p6zwGDUM/MZdTxXXeyFCmo?=
+ =?us-ascii?Q?ohZxuoDNYSE+iwRqdJUbxDt7k1h5DRdvvZfi9gvbdIbX1T+jb6WxXkF6p3oG?=
+ =?us-ascii?Q?Fz/Kb0IMvbykPo21XgXSJdYPz30hmVGpNbsVw7/ThxbUnQ7FQppYkuhNbtqX?=
+ =?us-ascii?Q?ocajl3dXLD6RNNY6kFbNSWki014TCj3OfrEfa+8D95wUx6nWSIZX3Icu99CP?=
+ =?us-ascii?Q?FPrukRYbedbMgLtd864y8LstuJqVHh49B5Be2WYr/TMpcJouRHt4EAv17epg?=
+ =?us-ascii?Q?D06LL2pAZHRQCDqX1vyfUAO+r/uITszwzmnStWm96K5/UmCtxeamkNODYbrx?=
+ =?us-ascii?Q?M+5KkW4+UZED0TG3tfkb9NVsP6BvieEVPVXCuKGiHPT6qOgtoVIsizCdligg?=
+ =?us-ascii?Q?2PZa8tpSk5izahbfHZWn7P3pjrfCAIVcB2UVJ4S7qldotj++z2lpDhnGpWYZ?=
+ =?us-ascii?Q?eFzh2bb13k9cEr+JJR/JawO3p+8kNdoHw3cjqg9h2taADPc9wE9FsZ3lmtIX?=
+ =?us-ascii?Q?FYAkC1ctyn7fDwA7BrbqBi6hQA7dqihHHaz9GHxLoFUS8fT69LcYDsxlJAmx?=
+ =?us-ascii?Q?3+6upA7Vk85tFa2I0nmOs5gu54aMyUW4iiIg/hlaIV2GKQlP1vQr0ZVigiep?=
+ =?us-ascii?Q?lOit7WmrvqO/82ki2G6hDYRrKmXX1RKvZFMAP89GJid6/+CFUAIg/KxDpGzv?=
+ =?us-ascii?Q?8v1oWg54Xj9txk97m4f4c/ROXukb9202EYG1Mhd63eLnSVIE3nGZM9LYZiib?=
+ =?us-ascii?Q?WNqhGp5aAQvlNhybwO8wpztWCTBApi5YcZWwIwk93FVA+11Vcx4pdlKa9YUV?=
+ =?us-ascii?Q?0GOfLmvNHH/N2IQs4+Ewlwv9EgHEUqb8QhgMFL2VMyihznB0bnk3SXXiIL2z?=
+ =?us-ascii?Q?xNN6qqdykNo4grXPBLpKIO/N07wDpFOcw3UwB52TZA+WeuWuNg0gl7k7W1In?=
+ =?us-ascii?Q?hu9Drt5eR1kkUZSB34EvU+tDJz90P0tMwNMtOM2zTMc4yz4Mzbx6wP1e0TIM?=
+ =?us-ascii?Q?1dXA0YWITS+GjIvykOlqCD+KrEeYeaKv0NTJW1r0cdPGPor5fUB8cD+PQ0qf?=
+ =?us-ascii?Q?dUEt1h37TXnOXn2WiSo6S59eJvbDRcshJH3WI8k40e/t81CjTD/x+Bliu6LP?=
+ =?us-ascii?Q?dtUpMHTZBzj4Dp9hI1xtveA+aIeKeNCmBp8hqV+D5b4p/vCig4lAUDXo7e75?=
+ =?us-ascii?Q?6DXLRTTzFr77N3DxiXDpqtcw1Vl++yjtf7xchT5NQqgUYxWScpYHqoFLlYe8?=
+ =?us-ascii?Q?5nBwr2sT7/mO7+oIvzrwNIL+jjdefu+8TEqqCXhSmxFHy9P3ZUowzZzi8WcN?=
+ =?us-ascii?Q?BQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 806866f6-3f40-43ff-1879-08dc96ace6bf
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 10:51:11.9717 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 13:27:33.1464 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ptSkw5P9VxL673TMzLkDD8qnjgeNR3CSPCa1/Z/Sra3kL68HwhREDRf094+6/7DPxOT1MLvUVcMqljERj+qrEA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5187
+X-MS-Exchange-CrossTenant-UserPrincipalName: XszFDfmeFbm4B98OOaV17H5//GC3d3PB/c5l+UYWqmpDkPh7lpm4WrOQZ301F5PwCFGUnEH+0IcKjknseG4Glns6cuCohCH7DblyQXpMWqU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7727
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,155 +182,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Jun 17, 2024 at 08:42:43PM GMT, Andi Shyti wrote:
+>Commit 05da7d9f717b ("drm/i915/gem: Downgrade stolen lmem setup
+>warning") adds a debug message where the "lmem_size" and
+>"dsm_base" variables are printed using the %lli identifier.
+>
+>However, these variables are defined as resource_size_t, which
+>are unsigned long for 32-bit machines and unsigned long long for
+>64-bit machines.
+>
+>The documentation (core-api/printk-formats.rst) recommends using
+>the %pa specifier for printing addresses and sizes of resources.
+>
+>Replace %lli with %pa.
+>
+>This patch also mutes the following sparse warning when compiling
+>with:
 
+s/sparse//
 
-On 22-06-2024 02:48, Vinay Belgaumkar wrote:
-> We are seeing a possible switch in RPe right after RC6 wakeup.
-> Ensure we obtain the latest RPe by reading it every time.
-> 
-> Fixes: adcc68266b8e ("tests/intel/xe_gt_freq: Check for RPe freq updates")
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> ---
->   tests/intel/xe_gt_freq.c | 43 ++++++++++++++++++----------------------
->   1 file changed, 19 insertions(+), 24 deletions(-)
-> 
-> diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
-> index d2e4d1a09..65ec3b0c4 100644
-> --- a/tests/intel/xe_gt_freq.c
-> +++ b/tests/intel/xe_gt_freq.c
-> @@ -70,6 +70,11 @@ static uint32_t get_freq(int fd, int gt_id, const char *freq_name)
->   	return freq;
->   }
->   
-> +static uint32_t rpe(int fd, int gt_id)
-> +{
-> +	return get_freq(fd, gt_id, "rpe");
-> +}
-> +
->   static uint32_t get_throttle(int fd, int gt_id, const char *throttle_file)
->   {
->   	uint32_t val;
-> @@ -122,7 +127,6 @@ static void test_throttle_basic_api(int fd, int gt_id)
->   static void test_freq_basic_api(int fd, int gt_id)
->   {
->   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
-> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
->   	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
->   
->   	/*
-> @@ -138,16 +142,16 @@ static void test_freq_basic_api(int fd, int gt_id)
->   	/* Assert min requests are respected from rp0 to rpn */
->   	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
->   	igt_assert(get_freq(fd, gt_id, "min") == rp0);
-> -	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
-> -	igt_assert(get_freq(fd, gt_id, "min") == rpe);
-> +	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
-> +	igt_assert(get_freq(fd, gt_id, "min") == rpe(fd, gt_id));
->   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
->   	igt_assert(get_freq(fd, gt_id, "min") == rpn);
->   
->   	/* Assert max requests are respected from rpn to rp0 */
->   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
->   	igt_assert(get_freq(fd, gt_id, "max") == rpn);
-> -	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
-> -	igt_assert(get_freq(fd, gt_id, "max") == rpe);
-> +	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
-> +	igt_assert(get_freq(fd, gt_id, "max") == rpe(fd, gt_id));
->   	igt_assert(set_freq(fd, gt_id, "max", rp0) > 0);
->   	igt_assert(get_freq(fd, gt_id, "max") == rp0);
->   }
-> @@ -163,7 +167,6 @@ static void test_freq_basic_api(int fd, int gt_id)
->   static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
->   {
->   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
-> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
->   	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
->   
->   	igt_debug("Starting testing fixed request\n");
-> @@ -187,20 +190,17 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
->   		igt_assert(get_freq(fd, gt_id, "act") == rpn);
->   	}
->   
-> -	/* Refresh value of rpe, pcode could have adjusted it */
-> -	rpe = get_freq(fd, gt_id, "rpe");
-> -
-> -	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
-> -	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
-> +	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
-> +	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
->   	usleep(ACT_FREQ_LATENCY_US);
-> -	igt_assert(get_freq(fd, gt_id, "cur") == rpe);
-> +	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
-rpe may change after usleep, will it affect above check?
+I will do that while applying, thanks.
 
-Otherwise this looks good to me. may be we should add Closes: 
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1829 in commit 
-message.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Reviewed-by: badal.nilawar <badal.nilawar@intel.com>
->   
->   	if (gt_idle) {
->   		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
->   			     "GT %d should be in C6\n", gt_id);
->   		igt_assert(get_freq(fd, gt_id, "act") == 0);
->   	} else {
-> -		igt_assert(get_freq(fd, gt_id, "act") == rpe);
-> +		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
->   	}
->   
->   	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
-> @@ -232,16 +232,15 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
->   static void test_freq_range(int fd, int gt_id, bool gt_idle)
->   {
->   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
-> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
->   	uint32_t cur, act;
->   
->   	igt_debug("Starting testing range request\n");
->   
->   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
-> -	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
-> +	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
->   	usleep(ACT_FREQ_LATENCY_US);
->   	cur = get_freq(fd, gt_id, "cur");
-> -	igt_assert(rpn <= cur && cur <= rpe);
-> +	igt_assert(rpn <= cur && cur <= rpe(fd, gt_id));
->   
->   	if (gt_idle) {
->   		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
-> @@ -249,7 +248,7 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
->   		igt_assert(get_freq(fd, gt_id, "act") == 0);
->   	} else {
->   		act = get_freq(fd, gt_id, "act");
-> -		igt_assert(rpn <= act && act <= rpe);
-> +		igt_assert(rpn <= act && act <= rpe(fd, gt_id));
->   	}
->   
->   	igt_debug("Finished testing range request\n");
-> @@ -263,23 +262,19 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
->   static void test_freq_low_max(int fd, int gt_id)
->   {
->   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
-> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
->   
->   	/*
->   	 *  When max request < min request, max is ignored and min works like
->   	 * a fixed one. Let's assert this assumption
->   	 */
-> -	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
-> +	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
->   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
->   	usleep(ACT_FREQ_LATENCY_US);
->   
-> -	/* Refresh value of rpe, pcode could have adjusted it */
-> -	rpe = get_freq(fd, gt_id, "rpe");
-> -
-> -	igt_assert(get_freq(fd, gt_id, "cur") == rpe);
-> +	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
->   
->   	if (!xe_is_gt_in_c6(fd, gt_id))
-> -		igt_assert(get_freq(fd, gt_id, "act") == rpe);
-> +		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
->   }
->   
->   /**
+Lucas De Marchi
