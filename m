@@ -2,77 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62DB91B1AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 23:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E387491B219
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 00:19:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED5110EB73;
-	Thu, 27 Jun 2024 21:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2702310EB7E;
+	Thu, 27 Jun 2024 22:19:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ba2HDsfo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/03Bxvc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD8110EB73;
- Thu, 27 Jun 2024 21:48:51 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-a6fe617966fso587611266b.1; 
- Thu, 27 Jun 2024 14:48:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1719524930; x=1720129730; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qvcWPWbBwqzYeDqIw5utJrffIKs2IFkYEVA8lHtusD8=;
- b=ba2HDsfor0aUXydXU4/AJUpI7MculT/Bfii/+HLJGsnHjqOTRgk1XdnCyZ0KxvsbVI
- +WHmYR+JePj5yxqBL1t9G1OGKSnXFDnJFZBbbLyhfyKPG667JyKXrrTTBHzhmPpDR3+L
- kx9mb8k97GSARSZLeeeettP13TZpCWS4SppOP3kXfI9YqF9gDjGpDCeHBHZzervm/sK5
- XNYza/TOm1LbVj8Jjy9cWvvSgbsFGX4HZoyZfCtVM7i21lMjdnQOYs15RLhK9cWHugqP
- XLJw3fumUFVT3SNL2wG++jTEi+DhXSd7GoDUTk9EfgYAxINkla8RCShFiOCuHF9FjV/l
- tW5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719524930; x=1720129730;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=qvcWPWbBwqzYeDqIw5utJrffIKs2IFkYEVA8lHtusD8=;
- b=c6pJouDoQ7ZEQiioL+7/YhgbN4xLpUa2wPsX4KnaK8yoQLFVKiI36OIQ8tkvMdgp2w
- ZWMT7V9K2H2ltRLiFATTiMAAf/Ig7BLXfpnhFsLq4zLopMan6aIltF2kRQ7cf1RuqSrp
- cKB1C/xiiiYRETdTLJC2+Zc1M1+Y55PdvMLEe3aW6dL3NAGCv7GJ3n5Ysq+D7p7YQXgG
- kEJ6VQ2nutNUhAHChPFA7q173U2Gc5XlcIJDoFfqh6nTuT19bCC9TYQKUA7ja4Y1c3Xd
- UswK9fa+on3YRf3l1iggWb7g1aCiMW8EtWnQIs3R8BEZqzKttK2JGXJLT1m257V5ADGO
- b8bQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXvLu59eWreecYAvvWz+laR8GOI3qAf2i4NTQN2d33uGP8z3Jq2KeW05+0POxiGqsI8BBfMohoGKEA304Hnlnjog51+BMHM81GbfEShu8WtjsYyzw5wS9QxMNSSl5yhu75h76s8QT1eQyEZ1+41GNb3
-X-Gm-Message-State: AOJu0YyeEyYayd6ojy1xD0edcw91vaD/h7hy1oFrwKn+NJ19PHsZyrCi
- qaqvpR0uuUPRtaNduSRmxObc/gl2UTnovm63sxSaHLNsORv/o00TMwZwxa5/2liAdgxhqnJ3mQh
- U/oANuaMW80U3krhe+LdNVWsbBUQ=
-X-Google-Smtp-Source: AGHT+IFpJU8uB/MBlWdlk571JSevPy7jsouP3iTjIUSJXgLnC6XZaJDjXM/sxBFN3lwwss1qcQJg/DUzwF44Pd3Iuks=
-X-Received: by 2002:a17:907:1605:b0:a72:8b89:f879 with SMTP id
- a640c23a62f3a-a728b8a0175mr476175866b.68.1719524929687; Thu, 27 Jun 2024
- 14:48:49 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A5F810E50A;
+ Thu, 27 Jun 2024 22:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719526778; x=1751062778;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LRwGdp+vlZAnXdSa5mR6oIUV69OiCxjwlk74YHWlFN8=;
+ b=c/03BxvcMumDP8ikBtMXQDzMtuAs9ZFQ1k1mqUPG5nM1LegOHQ44Z9Dj
+ Jw5wdDHqA4HtdvXm9NqaV6yu492cFESpJt/9f1vlrGzUUmvc7+V12TL2e
+ 9s+mRpKmqEKPSS/ZQxxURFgBKMHFyunPtZbLYlPFXipsQd3XiQ1MSegFt
+ yf4n0tX2lJB4RZdbhTe9a5wCwFsgA3pVC1VUd8Xo+4kA07gp9I+gieUhI
+ SWUaSHaaSZ0FESPAOCh3gYCugsN1fHaLwSRBuDdaFg1NnRsRa1siuaVCt
+ +QVsZRCb7Cfz8wqWIh3pYcwWEzAt5OIEVoJJxqFAQwTBXTjQpZ1mE9Bn/ g==;
+X-CSE-ConnectionGUID: yX5dRiadSLuG5KwYrxKilg==
+X-CSE-MsgGUID: J4OgsBm7SRyqsKFpEc9PPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="34138986"
+X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; d="scan'208";a="34138986"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 15:19:37 -0700
+X-CSE-ConnectionGUID: 4HDVCdcpTYane0MGJ3lgjw==
+X-CSE-MsgGUID: It+PurJZR/m7qe3Y9g9QMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,167,1716274800"; d="scan'208";a="67726672"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.189])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 15:19:34 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com,
+ maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH 5/6] drm/i915/display: add "is" member to struct
+ intel_display
+In-Reply-To: <t5qanekbmoww5mey7r33yui52bs2xf4oup6vqtmrzobpqh4lrb@lj37d6r55kgk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1718719962.git.jani.nikula@intel.com>
+ <450b5883a7783d0967c3da8ce853af0c2da8082f.1718719962.git.jani.nikula@intel.com>
+ <uulo5ybhcvxbj7orgtovxahieyogz2iw7csn42rcnwsifkdfqr@zxjryherobpp>
+ <87wmmab4ui.fsf@intel.com>
+ <t5qanekbmoww5mey7r33yui52bs2xf4oup6vqtmrzobpqh4lrb@lj37d6r55kgk>
+Date: Fri, 28 Jun 2024 01:19:30 +0300
+Message-ID: <87r0ciav0t.fsf@intel.com>
 MIME-Version: 1.0
-References: <20240612141239.141ce8cc@canb.auug.org.au>
- <ZnCMUEd9dQ6bLNet@intel.com>
-In-Reply-To: <ZnCMUEd9dQ6bLNet@intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Fri, 28 Jun 2024 07:48:38 +1000
-Message-ID: <CAPM=9tyNGA2wEgnsKdSyjHRGVikywZLdueZj=syTMFYEUNzxhw@mail.gmail.com>
-Subject: Re: linux-next: build failure after merge of the drm-intel tree
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, 
- DRI <dri-devel@lists.freedesktop.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,78 +75,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Jun 2024 at 05:26, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+On Thu, 27 Jun 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, Jun 27, 2024 at 09:47:17PM GMT, Jani Nikula wrote:
+>>On Thu, 27 Jun 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> On Tue, Jun 18, 2024 at 05:22:55PM GMT, Jani Nikula wrote:
+>>>>Facilitate using display->is.HASWELL etc. for identifying platforms and
+>>>>subplatforms. Merge platform and subplatform members together.
+>>>>
+>>>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>>---
+>>>> .../gpu/drm/i915/display/intel_display_core.h |  3 +++
+>>>> .../drm/i915/display/intel_display_device.c   | 19 +++++++++++++++++++
+>>>> 2 files changed, 22 insertions(+)
+>>>>
+>>>>diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+>>>>index 7715fc329057..35bea92893af 100644
+>>>>--- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>>>>+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>>>>@@ -286,6 +286,9 @@ struct intel_display {
+>>>> 	/* drm device backpointer */
+>>>> 	struct drm_device *drm;
+>>>>
+>>>>+	/* Platform identification */
+>>>>+	struct intel_display_is is;
+>>>>+
+>>>> 	/* Display functions */
+>>>> 	struct {
+>>>> 		/* Top level crtc-ish functions */
+>>>>diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+>>>>index 0c275d85bd30..954caea38005 100644
+>>>>--- a/drivers/gpu/drm/i915/display/intel_display_device.c
+>>>>+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+>>>>@@ -1269,8 +1269,25 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
+>>>> 	return NULL;
+>>>> }
+>>>>
+>>>>+static void mem_or(void *_dst, const void *_src, size_t size)
+>>>
+>>> why are we not using linux/bitmap.h that has support for bitfields with
+>>> multiple words and instead rolling our own?
+>>
+>>Because this is primarily about named struct members, and the bitfields
+>>and ORing them together is just an implementation detail.
+>>
+>>I could use bitmap_or(), but I'd have to rely on bitmap implementation
+>>details to get it all precisely correct. I would not be able to
+>>trivially use DECLARE_BITMAP() for this.
+>>
+>>Using a union can get tricky:
+>>
+>>struct intel_display_is {
+>>	union {
+>>		struct {
+>>			INTEL_DISPLAY_PLATFORMS(MEMBER);
+>>                };
+>>		DECLARE_BITMAP(raw, NUM_PLATFORMS);
+>>	};	
+>>};
+>>
+>>I don't know if that even works. Can't used named structs, otherwise it
+>>defeats the purpose.
 >
-> On Wed, Jun 12, 2024 at 02:12:39PM +1000, Stephen Rothwell wrote:
-> > Hi all,
-> >
-> > After merging the drm-intel tree, today's linux-next build (i386
-> > defconfig) failed like this:
-> >
-> > x86_64-linux-gnu-ld: drivers/gpu/drm/i915/display/intel_vrr.o: in funct=
-ion `intel_vrr_compute_config':
-> > intel_vrr.c:(.text+0x4e4): undefined reference to `__udivdi3'
-> >
-> > Caused by commit
-> >
-> >   1676ecd303ac ("drm/i915: Compute CMRR and calculate vtotal")
-> >
-> > I have reverted that commit for today.
->
-> the fixes for that is available in drm-intel-next now. you should probabl=
-y
-> remove the revert.
->
-> Thanks for the heads up on that.
+> a union like that seems good to me
 
-In file included from
-/home/airlied/devel/kernel/dim/src/arch/arm/include/asm/div64.h:107,
-                 from /home/airlied/devel/kernel/dim/src/include/linux/math=
-.h:6,
-                 from
-/home/airlied/devel/kernel/dim/src/include/linux/kernel.h:27,
-                 from
-/home/airlied/devel/kernel/dim/src/include/linux/cpumask.h:11,
-                 from /home/airlied/devel/kernel/dim/src/include/linux/smp.=
-h:13,
-                 from
-/home/airlied/devel/kernel/dim/src/include/linux/lockdep.h:14,
-                 from
-/home/airlied/devel/kernel/dim/src/include/linux/spinlock.h:63,
-                 from
-/home/airlied/devel/kernel/dim/src/include/linux/kref.h:16,
-                 from
-/home/airlied/devel/kernel/dim/src/include/drm/drm_device.h:5,
-                 from
-/home/airlied/devel/kernel/dim/src/include/drm/drm_drv.h:35,
-                 from
-/home/airlied/devel/kernel/dim/src/drivers/gpu/drm/xe/compat-i915-headers/i=
-915_drv.h:13,
-                 from
-/home/airlied/devel/kernel/dim/src/drivers/gpu/drm/i915/display/intel_vrr.c=
-:7:
-/home/airlied/devel/kernel/dim/src/drivers/gpu/drm/i915/display/intel_vrr.c=
-:
-In function =E2=80=98cmrr_get_vtotal=E2=80=99:
-/home/airlied/devel/kernel/dim/src/include/asm-generic/div64.h:222:35:
-warning: comparison of distinct pointer types lacks a cast
-  222 |         (void)(((typeof((n)) *)0) =3D=3D ((uint64_t *)0));  \
-      |                                   ^~
-/home/airlied/devel/kernel/dim/src/drivers/gpu/drm/i915/display/intel_vrr.c=
-:155:35:
-note: in expansion of macro =E2=80=98do_div=E2=80=99
-  155 |         crtc_state->cmrr.cmrr_m =3D do_div(adjusted_pixel_rate,
-crtc_state->cmrr.cmrr_n);
-      |                                   ^~~~~~
+With the platform enum removed in patch 6, where do we get the number of
+platforms and subplatforms?
 
-The fixes might need some more fixing, 32-bit arm build.
-
-Dave.
+BR,
+Jani.
 
 >
-> >
-> > --
-> > Cheers,
-> > Stephen Rothwell
+> Lucas De Marchi
 >
 >
+>>
+>>BR,
+>>Jani.
+>>
+>>>
+>>> Lucas De Marchi
+>>>
+>>>>+{
+>>>>+	const u8 *src = _src;
+>>>>+	u8 *dst = _dst;
+>>>>+	size_t i;
+>>>>+
+>>>>+	for (i = 0; i < size; i++)
+>>>>+		dst[i] |= src[i];
+>>>>+}
+>>>>+
+>>>>+static void merge_display_is(struct intel_display_is *dst,
+>>>>+			     const struct intel_display_is *src)
+>>>>+{
+>>>>+	mem_or(dst, src, sizeof(*dst));
+>>>>+}
+>>>>+
+>>>> void intel_display_device_probe(struct drm_i915_private *i915)
+>>>> {
+>>>>+	struct intel_display *display = &i915->display;
+>>>> 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>>>> 	const struct intel_display_device_info *info;
+>>>> 	struct intel_display_ip_ver ip_ver = {};
+>>>>@@ -1308,11 +1325,13 @@ void intel_display_device_probe(struct drm_i915_private *i915)
+>>>>
+>>>> 	drm_WARN_ON(&i915->drm, !desc->platform || !desc->name);
+>>>> 	DISPLAY_RUNTIME_INFO(i915)->platform = desc->platform;
+>>>>+	display->is = desc->is;
+>>>>
+>>>> 	subdesc = find_subplatform_desc(pdev, desc);
+>>>> 	if (subdesc) {
+>>>> 		drm_WARN_ON(&i915->drm, !subdesc->subplatform || !subdesc->name);
+>>>> 		DISPLAY_RUNTIME_INFO(i915)->subplatform = subdesc->subplatform;
+>>>>+		merge_display_is(&display->is, &subdesc->is);
+>>>> 	}
+>>>>
+>>>> 	if (ip_ver.ver || ip_ver.rel || ip_ver.step)
+>>>>--
+>>>>2.39.2
+>>>>
+>>
+>>-- 
+>>Jani Nikula, Intel
+
+-- 
+Jani Nikula, Intel
