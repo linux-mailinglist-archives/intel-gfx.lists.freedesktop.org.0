@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5916791AF17
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 20:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8471391AF43
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 20:47:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9908710E132;
-	Thu, 27 Jun 2024 18:30:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B334210E29A;
+	Thu, 27 Jun 2024 18:47:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aaiyTPly";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cyr5flp6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84CA010E132;
- Thu, 27 Jun 2024 18:30:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0D610E29A;
+ Thu, 27 Jun 2024 18:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719513051; x=1751049051;
+ t=1719514046; x=1751050046;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=g6Ghkty2s2rHU+tKaX4+d+nAU+SizpwAIilUsCM9i+Q=;
- b=aaiyTPlyRgoHjqjs0RFW2EyUiwNizWWVZmvavz4O/ya3DSkEg70HPiim
- yprCD96HNhpDRA6SwVwYT9Zun210i3AKk8sGn6ZaXOVAw/5h/MCZNDZoH
- lNsQydlkcyhwV0JckgHgLCimi9i/Me60cq9H+5//WR9Zy/c7i3tf+vePO
- M7VxSdK5Fsp/OEDMSVfVCW+0/wH5Tur8JFtyNDMK+05TTGYq4jvCh0Pdj
- Qo9sbwEBp4t0fB/6Q+osI8g8iqKq37gq2s1tMjNTUxwEMud8+s51uYNnn
- 0joVKKIwmlM8ivl9/vwr/s27zAo4WeDJdZ244VPYr+V0mjy7h5vpJJ3s9 A==;
-X-CSE-ConnectionGUID: QkFuLfUVRdWSm8yug8b10A==
-X-CSE-MsgGUID: nTc4DLykTfGm7Mvb6vzdNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="20546315"
-X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="20546315"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 11:30:48 -0700
-X-CSE-ConnectionGUID: EbafBetyQ3eof5JmFMkqkg==
-X-CSE-MsgGUID: 1eMqwj3URP6YhIXFuQM/rA==
+ bh=OerfKVxP1EMJfAEn4gw5nBktUpOGqvjkSBERF+scj84=;
+ b=cyr5flp6MKffI13gYorzeTJxbVVjgrwCNcL6EIeXeMEDioXhyJJAMP2y
+ e3kvdJfHD5C7PTxrb5cBaxYwQ5wxl8uIgrTwRL+X3N/0qyO8LmQs+ABKu
+ ltH839vuTNJYxu9Ra0iwOuQsHohI9TMKAsEoTWD5GF72cCjXGZDNP4dnM
+ l0RPOe1gGgFJ+14IN5c1tRP52lFhxWO4vvatQxuzJDelJO8OJSpQRyt3S
+ Z+BM9mW7NHDWhWIGe/0OaHuTVl0G1s9yqJHA72eVsXneOCzWDFd+Vvajn
+ IkiQs0BdVJQmyPcH2RSfhXq1a0ALUwQZQD23nq/jnA/Tv0UI1d+PM4kap w==;
+X-CSE-ConnectionGUID: qL/dOiD2QDKMWgnGucIQrw==
+X-CSE-MsgGUID: szJGgJt/SwqqXn32nMCHQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11116"; a="27256158"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="27256158"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 11:47:23 -0700
+X-CSE-ConnectionGUID: F1Gz1N88TO2mqXi9f/T0EQ==
+X-CSE-MsgGUID: JMYMBoi2QCixrVPZUF4vbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="49398752"
+X-IronPort-AV: E=Sophos;i="6.09,166,1716274800"; d="scan'208";a="49656802"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.189])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2024 11:30:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, mika.kahola@intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH 2/5] drm/i915/snps_phy: Use HDMI PLL algorithm for DG2
-In-Reply-To: <0d2f4cb3-c418-46c6-b0ca-8aa1650aeeff@intel.com>
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 11:47:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com,
+ maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH 5/6] drm/i915/display: add "is" member to struct
+ intel_display
+In-Reply-To: <uulo5ybhcvxbj7orgtovxahieyogz2iw7csn42rcnwsifkdfqr@zxjryherobpp>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240626050056.3996349-1-ankit.k.nautiyal@intel.com>
- <20240626050056.3996349-3-ankit.k.nautiyal@intel.com>
- <87v81wc904.fsf@intel.com>
- <0d2f4cb3-c418-46c6-b0ca-8aa1650aeeff@intel.com>
-Date: Thu, 27 Jun 2024 21:30:41 +0300
-Message-ID: <87zfr6b5m6.fsf@intel.com>
+References: <cover.1718719962.git.jani.nikula@intel.com>
+ <450b5883a7783d0967c3da8ce853af0c2da8082f.1718719962.git.jani.nikula@intel.com>
+ <uulo5ybhcvxbj7orgtovxahieyogz2iw7csn42rcnwsifkdfqr@zxjryherobpp>
+Date: Thu, 27 Jun 2024 21:47:17 +0300
+Message-ID: <87wmmab4ui.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,118 +73,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Jun 2024, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 6/26/2024 3:37 PM, Jani Nikula wrote:
->> On Wed, 26 Jun 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->>> Try SNPS_PHY HDMI tables computed using the algorithm, before using
->>> consolidated tables.
->>>
->>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/display/intel_snps_phy.c | 20 ++++++++-----------
->>>   1 file changed, 8 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
->>> index e6df1f92def5..10fe28af0d11 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
->>> @@ -12,6 +12,7 @@
->>>   #include "intel_display_types.h"
->>>   #include "intel_snps_phy.h"
->>>   #include "intel_snps_phy_regs.h"
->>> +#include "intel_pll_algorithm.h"
->> Keep includes sorted.
-> Noted. Thanks for pointing this out.
+On Thu, 27 Jun 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, Jun 18, 2024 at 05:22:55PM GMT, Jani Nikula wrote:
+>>Facilitate using display->is.HASWELL etc. for identifying platforms and
+>>subplatforms. Merge platform and subplatform members together.
 >>
->>>   
->>>   /**
->>>    * DOC: Synopsis PHY support
->>> @@ -1787,22 +1788,14 @@ intel_mpllb_tables_get(struct intel_crtc_state *crtc_state,
->>>   int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
->>>   			   struct intel_encoder *encoder)
->>>   {
->>> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->>>   	const struct intel_mpllb_state * const *tables;
->>>   	int i;
->>>   
->>>   	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
->>> -		if (intel_snps_phy_check_hdmi_link_rate(crtc_state->port_clock)
->>> -		    != MODE_OK) {
->>> -			/*
->>> -			 * FIXME: Can only support fixed HDMI frequencies
->>> -			 * until we have a proper algorithm under a valid
->>> -			 * license.
->>> -			 */
->>> -			drm_dbg_kms(&i915->drm, "Can't support HDMI link rate %d\n",
->>> -				    crtc_state->port_clock);
->>> -			return -EINVAL;
->>> -		}
->>> +		/* try computed SNPS_PHY HDMI tables before using consolidated tables */
->> Computed tables vs. consolidated tables? Huh?
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>---
+>> .../gpu/drm/i915/display/intel_display_core.h |  3 +++
+>> .../drm/i915/display/intel_display_device.c   | 19 +++++++++++++++++++
+>> 2 files changed, 22 insertions(+)
 >>
->> Anyway, I think we have two choices here:
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+>>index 7715fc329057..35bea92893af 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>>@@ -286,6 +286,9 @@ struct intel_display {
+>> 	/* drm device backpointer */
+>> 	struct drm_device *drm;
 >>
->> - Always use computed values.
+>>+	/* Platform identification */
+>>+	struct intel_display_is is;
+>>+
+>> 	/* Display functions */
+>> 	struct {
+>> 		/* Top level crtc-ish functions */
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+>>index 0c275d85bd30..954caea38005 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_device.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+>>@@ -1269,8 +1269,25 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
+>> 	return NULL;
+>> }
 >>
->> - Prefer fixed tables, fall back to computed values.
->>
->> But we definitely should not try to compute first and fall back to fixed
->> tables.
+>>+static void mem_or(void *_dst, const void *_src, size_t size)
 >
-> Hmm I was not sure if we need the fixed tables after this and whether we 
-> should remove them altogether.
->
-> But it makes more sense to use prefer the fixed tables and fall back to 
-> computed values.
->
-> I'll make the changes in the next version.
->
->
->>
->>> +		if (intel_snps_phy_compute_hdmi_tmds_pll(crtc_state->port_clock,
->>> +							 &crtc_state->dpll_hw_state.mpllb) == 0)
->>> +			return 0;
->>>   	}
->>>   
->>>   	tables = intel_mpllb_tables_get(crtc_state, encoder);
->>> @@ -1991,6 +1984,9 @@ int intel_snps_phy_check_hdmi_link_rate(int clock)
->>>   			return MODE_OK;
->>>   	}
->>>   
->>> +	if (clock >= 25175 && clock <= 594000)
->>> +		return MODE_OK;
->>> +
->> How's this related to the patch at hand?
->
-> Currently we prune the modes if the clock does not match that given in 
-> the table.
->
-> Now that we support all clocks between 25175 and 594000 we need this, 
-> but perhaps will add as a separate patch.
->
-> Perhaps I can remove this function all together and put the condition in 
-> hdmi_port_clock valid, in separate patch.
+> why are we not using linux/bitmap.h that has support for bitfields with
+> multiple words and instead rolling our own?
 
-But we already have intel_hdmi_source_max_tmds_clock(), which also takes
-into account platform specifics. For example the fact that 594000 is not
-the max on all platforms.
+Because this is primarily about named struct members, and the bitfields
+and ORing them together is just an implementation detail.
+
+I could use bitmap_or(), but I'd have to rely on bitmap implementation
+details to get it all precisely correct. I would not be able to
+trivially use DECLARE_BITMAP() for this.
+
+Using a union can get tricky:
+
+struct intel_display_is {
+	union {
+		struct {
+			INTEL_DISPLAY_PLATFORMS(MEMBER);
+                };
+		DECLARE_BITMAP(raw, NUM_PLATFORMS);
+	};	
+};
+
+I don't know if that even works. Can't used named structs, otherwise it
+defeats the purpose.
 
 BR,
 Jani.
 
-
-
-
-
 >
-> Regards,
+> Lucas De Marchi
 >
-> Ankit
->
->
+>>+{
+>>+	const u8 *src = _src;
+>>+	u8 *dst = _dst;
+>>+	size_t i;
+>>+
+>>+	for (i = 0; i < size; i++)
+>>+		dst[i] |= src[i];
+>>+}
+>>+
+>>+static void merge_display_is(struct intel_display_is *dst,
+>>+			     const struct intel_display_is *src)
+>>+{
+>>+	mem_or(dst, src, sizeof(*dst));
+>>+}
+>>+
+>> void intel_display_device_probe(struct drm_i915_private *i915)
+>> {
+>>+	struct intel_display *display = &i915->display;
+>> 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+>> 	const struct intel_display_device_info *info;
+>> 	struct intel_display_ip_ver ip_ver = {};
+>>@@ -1308,11 +1325,13 @@ void intel_display_device_probe(struct drm_i915_private *i915)
 >>
->>>   	return MODE_CLOCK_RANGE;
->>>   }
+>> 	drm_WARN_ON(&i915->drm, !desc->platform || !desc->name);
+>> 	DISPLAY_RUNTIME_INFO(i915)->platform = desc->platform;
+>>+	display->is = desc->is;
+>>
+>> 	subdesc = find_subplatform_desc(pdev, desc);
+>> 	if (subdesc) {
+>> 		drm_WARN_ON(&i915->drm, !subdesc->subplatform || !subdesc->name);
+>> 		DISPLAY_RUNTIME_INFO(i915)->subplatform = subdesc->subplatform;
+>>+		merge_display_is(&display->is, &subdesc->is);
+>> 	}
+>>
+>> 	if (ip_ver.ver || ip_ver.rel || ip_ver.step)
+>>-- 
+>>2.39.2
+>>
 
 -- 
 Jani Nikula, Intel
