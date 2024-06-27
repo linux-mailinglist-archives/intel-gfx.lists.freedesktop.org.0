@@ -2,85 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657BE91A44F
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 12:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99DC891A454
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2024 12:51:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 119FF10E206;
-	Thu, 27 Jun 2024 10:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F1E610E1D0;
+	Thu, 27 Jun 2024 10:51:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="VLuSqluA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RrMb41Ff";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 993C610E1D0
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jun 2024 10:49:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1719485385;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=uwkUQ8X382nc6aCGZmWNHNOiA2cxj/3BMElHL/RIUT0=;
- b=VLuSqluAOBkz6pb/C8GxDxFUX52Va45xFyLNMy/cnyD934OM/XKfGNpYpoMyrbfYxL73/e
- mYze/D5yfB4mqoykfk7v9FyGMJeSEysGrEktRJLTFE96h7g9/hsFXDjls92SfDbhFjfSaK
- o5KZIDrWh34CmDmJZI47ONJV4LPvLP8=
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
- [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-437-RzMCojU9ON2XZrvBgzyNNQ-1; Thu, 27 Jun 2024 06:49:43 -0400
-X-MC-Unique: RzMCojU9ON2XZrvBgzyNNQ-1
-Received: by mail-lj1-f200.google.com with SMTP id
- 38308e7fff4ca-2ee45dea727so14083301fa.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jun 2024 03:49:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719485382; x=1720090182;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=uwkUQ8X382nc6aCGZmWNHNOiA2cxj/3BMElHL/RIUT0=;
- b=iSlG9PR5neEoxAWzx9TeOWoOs3xtUHBQh5f0/1nwdiMpiOg2gcdF3seA5Cf/+5HvEY
- B3NHwRcADK0a3HSPmRb89EW0U0b2VYuO7UtdBTzpOOcXGa4EOAfdRx0PXLlQ/R6UA1BE
- ofqI/tPC0aRNiald6YgnltkQTJA6eFuU8Bpe28VYU5YoDvSCDwROerTc55FtI73kBKoJ
- DlHTMChkNUakH9iyGS/kyEL07Qt6s/1sjTu+C1o0DOU+tv0jlBc7EYcAOy0DY3VYrPzZ
- QpNCy7Z/PBMKRhCH5+ecYEPtR0wo+KhNlD8FFMxCVt/uwZeKvsXrZl37KDsUNnZws48/
- MUDA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWOayX2ZPWQRb1OlAYCBk/sq6Rm3AF/pMHxcdUyOiztLVmSHwlljNa/y+oLwNWH63jAR7l0G7KKvnibDEnAjq6P2Hy7xZ4Sf1IgjKQTyN3H
-X-Gm-Message-State: AOJu0YxD8r6hgJi5VlfeVzO8/bWpD2vaXRGwbgV6LpXUgECHJZjZeqPx
- vbSva/TK65Q3R8p2XMSMlmvWmAB+cTqtPrhAncxgHmy2R+GOHv7c/brkYm+Dlz0x1YKizAH5MrE
- teDE7+3XmzadpT6EzmPQm4J/r92+hn5oRhiU5HZrnDXByi3b+Ejb7A9F4UE8O6PjRZA==
-X-Received: by 2002:a2e:2241:0:b0:2ec:5ff1:226e with SMTP id
- 38308e7fff4ca-2ec5ff12319mr86622171fa.13.1719485382062; 
- Thu, 27 Jun 2024 03:49:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEIbpw9RXcp3ddkE+l37F000LWSd8gh5uPxTZAp1D70rFuZZ2tfO2FcL4T7uNAaVOV7+/DG7Q==
-X-Received: by 2002:a2e:2241:0:b0:2ec:5ff1:226e with SMTP id
- 38308e7fff4ca-2ec5ff12319mr86621921fa.13.1719485381470; 
- Thu, 27 Jun 2024 03:49:41 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-424c825199asm60684835e9.15.2024.06.27.03.49.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Jun 2024 03:49:41 -0700 (PDT)
-Date: Thu, 27 Jun 2024 12:49:40 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20240627-congenial-pistachio-nyala-848cf4@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE9F10E1A4;
+ Thu, 27 Jun 2024 10:51:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1719485482; x=1751021482;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=Hqbsuwcco5LBzTFY9k1EHPD6hIe8wU++Gbs4vXVD89Y=;
+ b=RrMb41FfFg2ab8MhVKSbPUbPfbFulO2vozBrGZldbGAIIfjNBeH2HS/H
+ Uvwtl66IjxLHw+k5iDRRWCS7UevhensMDwdL+e6gn4G6H+50VMojoQbtv
+ 7eOCxltCyGiCq4RZUDrVLExoaQoGs8gVs9AMXVIHZ2LBChi0q627B6p1J
+ EKjajowHuOpu4XkyUd49oUtTj6TLysUkitpfGEANJ/nEckRwVFxKcDUX5
+ R9G0ISFLQSPcM4HzpzoqKK+VODlrmJdHJNf79a2j311Dqve6RyYaDOcaB
+ p5y2qA530eO2glRs35MacJ8sZmOJ3pnAJ6npGiOyGawOkWE1VRKfrU3P4 g==;
+X-CSE-ConnectionGUID: 09nB4MpTT9+phXJIIGVeow==
+X-CSE-MsgGUID: ol1Nr6lySmOiBZQ66El/qQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11115"; a="27741886"
+X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; d="scan'208";a="27741886"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2024 03:51:22 -0700
+X-CSE-ConnectionGUID: kM/v5u7zTgaIKnMuK2Y43w==
+X-CSE-MsgGUID: Ipdmw5n3TJyfVYau0vaBEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,269,1712646000"; d="scan'208";a="44457000"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Jun 2024 03:51:15 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 27 Jun 2024 03:51:14 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 27 Jun 2024 03:51:14 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 27 Jun 2024 03:51:14 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 27 Jun 2024 03:51:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DDMvMEHgE1FMgqZH4sqHhLcAAYh6jrn6s3kmSY7Ny9o3CJsth9bG1MGf9eITDhpSIJEfWJJq1QsxvVr1dkABwrG/bzuYBd3c9ebFJ9jboJz0K9qMsHUI5WsgUUmhT6fWpOxNA0iqFmyO5/QDKtEd7rCBzpH7nD9oLQjlrY2NOr00wpWxM8uVhofWhlNZ6g98FxiPSk1NSoh0V0u19Fvd00wSrOljXWpzwXaXQHQtXB1sECr65IRYbCQfOhmWZJLIZWx9VBtJ/3yXvF0sIp9OoEdFVS5EFLQfQhCsCWpUW+gP1w5yjX2qVNSJKVs3DNVRYCbQTcM9Dc8kozrkND8JTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Co5B3Dto6HX3NTbhUQMBUGRoETJy/h7jsmr8t3JrZDo=;
+ b=JKy+iwN3sbHd6VkZSHnu9UwMaYg/ihvl6NfY1nOcvL8VZvwjfJP/Mt/VgBRnLich4WvoAUS/2mELdlESt/d3E+mg+sLoLQ/H2r85l3i/XRWMOH0qH/oBWpDIS41PT5qTQ5Lv2iB+2ziXbsYaJO6XW2HZVqwyAglkyRwIWLAuVGQKQaaanOQpkPrZoWx7Le0fS/veCLUk1K6uHCEfGzfHQqP9/bMcBHSqMsPDIDa7HWdD0CbhY789BnoAuhpDivd+Vx8f5fRQ7QrSZWGFIATkh2Gd/DgD27SDgggGP+KFhGFv9cHwNnBYBYGhR7oUh7q5k0DFjSkz8G46YMQbLqh7dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by CO1PR11MB5187.namprd11.prod.outlook.com (2603:10b6:303:94::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7698.34; Thu, 27 Jun
+ 2024 10:51:12 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::13bd:eb49:2046:32a9%7]) with mapi id 15.20.7698.033; Thu, 27 Jun 2024
+ 10:51:12 +0000
+Message-ID: <5e4c951f-698a-4e1d-b412-7448a3aafbfc@intel.com>
+Date: Thu, 27 Jun 2024 16:21:04 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH i-g-t] test/xe_gt_freq: Add helper to read RPe freq
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>
+References: <20240621211848.4144314-1-vinay.belgaumkar@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20240621211848.4144314-1-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0098.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:af::8) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="ihjij6443verd3jj"
-Content-Disposition: inline
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|CO1PR11MB5187:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2baf0368-d8d1-4c14-2b80-08dc96970f09
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cFh6YjNIc0Z1RFlKV2o4VGhmZHYxblFiMkQ0WldCUjZ2S0VFRE9mSHFDV3Bz?=
+ =?utf-8?B?Y2Nab0lPMkxlV3kwTmxUa0lENmxaMVdiMGVWeDJGNVFQak1oRTZrNnBFaHVt?=
+ =?utf-8?B?ZEp1QzBiYUVTTjZLK3daRnZ6VU13Y1V0b29yNVJEVTFKTzZjS0dLeUpWVlhE?=
+ =?utf-8?B?V1JPODd1U3pLaDFuVU95UGwweXp4WGxaMTZmdkJWNm5KRkhtM09RZXQwTHE5?=
+ =?utf-8?B?UHBQYUUyZXZuVE1VVUJrZWY3ZnlBSlFndFEyeWN2aVV6QW15RTF1MWtKK0JB?=
+ =?utf-8?B?cFlOVEtFU05UMGpqTlVjbFRVYW03UHlnbjBXTWh0eXNGd0JVa3BnZjZHeGRr?=
+ =?utf-8?B?NHRUb3QrQWpyNTBsOUpyLzdwaEg4a2Y2SHQ5T1hCVkxUZWJZcWQ4Q3VYeWVa?=
+ =?utf-8?B?anNocDN2ZWVVREMwYzZmRGY2OThZUDBzUEpaM3hqbGhXK0ZXLzZXdXpENkw2?=
+ =?utf-8?B?QzJIZFpnRTdEWUV5UGgrYWtqUGlCM3dWMWxDWWJ6Z1lkaWxKVjlTUlJEckdj?=
+ =?utf-8?B?VVoyRFErRjRuTGlHSnA0cDFEekRuZ2wyOHdmc3hhMmlnOFhNQmVtWjhxVW5F?=
+ =?utf-8?B?Q2VZbEJBNGhqWUYwRnJRQ01GVFFKRUYxVUlWakJEdzZ6OEhudkVodXhNbjJm?=
+ =?utf-8?B?QndEcTltMVljNmE4dTZROTNtb2piZnE2bDJ5OTQyUWRudEFUSVgweVB2QmZj?=
+ =?utf-8?B?Z3Q4d2tOb0wzV1RCM0JzUjg0NnQ5d3d6ajZ0V2puRmZoZnRubTRSK1BRdmJJ?=
+ =?utf-8?B?Yk5OR0grbyt6bFY5My9rZVZENlBTRWMza013SjFxQUQrT0VkNHh3SXBlaEM3?=
+ =?utf-8?B?Z3NPenc5S25RNDBpYSs1bHBCRExtKytnVDQyMXk3N2Zaa0JDZ2IyOGVwbEcy?=
+ =?utf-8?B?NmpERktxODZWL2dvYUF4SXFEVXo3MDlqa1M0d2lOaW1YNjVYNnF5emtVK2pz?=
+ =?utf-8?B?K0R0am1ONW1nSVpxeDZnS2ltMDBNR3NJRkhIYm51TTRHazg1T0pSS0lmREdr?=
+ =?utf-8?B?RzhrRmNqVzhTVUh0endHN0t3RURSRHE3SjVjNGUwZVdOV0JpVzNZbytkUHNZ?=
+ =?utf-8?B?MUFYM3RNR0VoTEVnTitGcXg1RzhLMXVybTBJVVkwc2NiaGI3WDRiS0lBZGN6?=
+ =?utf-8?B?RTBtY2ZxODZoV0lUVVZUQVhnQkxpekdCSGdsSCt4cXJUb3c5RUtXOHVFQ2FT?=
+ =?utf-8?B?MmxjUVgxTGVqWjdwUXg3OG1CSGtoTDNiMWNtZlRCT2Iyd3FaakRnVDd4Z1hN?=
+ =?utf-8?B?UmxRbXczODJ4SVJJZ1VOcEh4MVNtZUhFMTBSdUJTUXpnOGtnZnNsbi9NaldM?=
+ =?utf-8?B?MVlxOXozVE13T2ZCMFhPNmhETnkzUFp6d0hwSHR6UEwySzFhWmlBc1JUb2o2?=
+ =?utf-8?B?Q0d3cDZaaGphTDg0ZkZ4eHYyS0tmTkphUnVSTDdvNTlZRjlXM1VKLyswTVo4?=
+ =?utf-8?B?dEthUjBoSWc0RVBhdGh3TkRJbzFQWUUwZ3lKZkdqbENHWUFOWWZiQTdmVDFx?=
+ =?utf-8?B?Mm4vbmNXaHB4Tkh3ZWg4Q2VHOVF4bW9kS0dkekVkVTBqRTVLeDFZQWFlbjlt?=
+ =?utf-8?B?bGw3R1J2ZjhKbHBqL3NXTmd0WEYrS044c1RIRDBrbVlldENEeHdQeW5RVWlr?=
+ =?utf-8?B?bjhkUDV6b1Vqa2dhMVMxYmo0MVMzVXRLTkdaNm9FZGN1dHhpYlRVeC9iNkdL?=
+ =?utf-8?B?OHZOeVFrS0FkSjFIQmJBZ2Z0amx4MGhaRlRhTFZjM1MxODQ2bU9WRHp1bDhM?=
+ =?utf-8?Q?MF/bRwSUQxaS5XvsFo=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGkzYjNiSGdkdytxSzM0VXFkczF5T0YyeVhUL21OSVdvSVhzZnZoNnRrTm9t?=
+ =?utf-8?B?RmJLRG9YckRheW5qQUFmUEZCSGtobnVMKzV4V0Fyc1BaMmdiVnJaMS9jZnV4?=
+ =?utf-8?B?cEQyUks4RXpuSnZ6RE5aNndwamNTMlNLYUdkSkxyOE56TnVjcDlrK29rMVl6?=
+ =?utf-8?B?OXhTTWlaSWJNWUV2VTY0VVpMN2hHZGUzenluMXZYbjYrM0VRc2h2YnFzckQv?=
+ =?utf-8?B?eGpuSVlZVDM4S0FhT29CeDk3clo2SzQyczJRS3p6Z2pPbVcyV2lWOVYyLzZI?=
+ =?utf-8?B?UHJIVEpCNGRvRmk4ZGYxSTltSWRmRDVlTWsyanZkYjAzdGNrT2hzcFgzbDg4?=
+ =?utf-8?B?cDZvQ09aZ3E3aE9OY0JVb3pnN3dVNUdabXMveExMZEhlUlI3WTFpVER6bkpw?=
+ =?utf-8?B?TWFHa3FjZUU1cTNBcEpvNVRjYlZaeGlQVSs0M2NGbDJDUUx6bVg1MTBvdmVv?=
+ =?utf-8?B?MUhBOGRKUzZLYkQraENOYzByL0o4TnVaMDg1cnFUU2FpRSswM29paEIwTVlq?=
+ =?utf-8?B?S09yS0dyTTJNc1AzVm9EYlVPLy9hcDZ6ek9YaUhjQ0VyUXZZcUZ2WEI1Vnhq?=
+ =?utf-8?B?SlJ0VFFmdDdpY2o3RDJNV2tic3Z3ckNCS21KUWVOWTU3TlpWR1YxMGJ1bG84?=
+ =?utf-8?B?bk5iZnBQWUJkMGZkZi9IeEFNRnVmdEc2MU1GM1cvYXNLTU1UMHQxUzcxdkFh?=
+ =?utf-8?B?QXk5eFJ5dGl0OWk4Sm9tT0h3WHdRQXhoU3hYem1wblk4UlFab3NzbGVvY2R3?=
+ =?utf-8?B?STdMVDBXNGxxMDYvRFFSbFdVQU9ybUhkN3k0WnAzL2EwUmJvc01FMktrSDVB?=
+ =?utf-8?B?YnU1UVhkUWFTZU5haForRWR2STdYWE9IMEo5dnVuaDlhZ3VvWHlOTXNtbzU0?=
+ =?utf-8?B?RUhnRlg1SUJXOXVDamVxMk1kUEhvd1g3bWwyS0R4REJGUjVEMk1KaFJ4VWFr?=
+ =?utf-8?B?NDcyS0FDY1d4TGw5aXBPZERuL3lYZ0JEbFpOREY4cG5zOWw1TXdaTkpKQ3JG?=
+ =?utf-8?B?aWdYelptSjVBMFBkNCtqSUpuMGQzUUlWUFlReWtiYU0rR3JvRkphWnNMdEdW?=
+ =?utf-8?B?Njh6WExUTVJ0ZGl6dWw1dUpnYjMySFZmWGN6cWFQZ2RLY3c3MVVpOWxHOFBR?=
+ =?utf-8?B?TmxhVVRpeGpUUGUreEhXc1ZVTzhRT1E0R2tnOUFFcG5IU3ZFL0JWQXNmUkhj?=
+ =?utf-8?B?RWJBZ29UV2dRdml0REIxc1BNTURNbW0wdGhUekNKWGlEbFh5VG1uNTR4QmZ5?=
+ =?utf-8?B?OXRtTllTK1dxcEczN2o0TXhvY1BJTU5sV2diQmQxWGhOeFdvaEJkSk55RjVO?=
+ =?utf-8?B?M2dvRVpTaG9SRUF3S0RNUjB3M1liaHZCcE02RkRuM2lJd3dMWDNOQWhwUVk3?=
+ =?utf-8?B?QXl1TVFxTW03NGpwTnRaU0lQSzNGR20vM1ZqcXN1RzRRWUNNajRRY2MrU2d5?=
+ =?utf-8?B?OHBkNFdGTTZ0czAxWjgrOXBLQkVLSjRqcWdIN0xNL3pTUFhCMFE1YW5qRFdO?=
+ =?utf-8?B?WTlpUTl1TlR2NHZrY2FSQlVVMU14bDVjeGZZeEI2YVQvbTlpMkljbW8rdnFv?=
+ =?utf-8?B?clZvTmRncjdMQ2h4dGpjRzBOWWc3am9DbU51N1IyVDl6NkxDMTF0MzMwNnZZ?=
+ =?utf-8?B?WHdYcnRnUWxUdXhCZnZjRUFPdUlLMXJCTTkvT0xTZi9MT3NqaHpvTkVmcTBV?=
+ =?utf-8?B?bVR0ZTIzcTBkQmRyb2ExREtIMGFQOElzN3ZPZWh6YXZqb2R6WDI3WlJQZVR5?=
+ =?utf-8?B?UkxKSUJGdzY0OFJVbDhnRlNCWkFnazVZYlE2WXVqOUVWMGhrTVBuMXkzZStC?=
+ =?utf-8?B?QUk5TGdsdDdQdHR5K2JDMmlNNXlSY2J1eVE2YzJ2YUVSRzNaYXdWdzl3SjhG?=
+ =?utf-8?B?SUxPbHZPWjRYazFQeXVtWDJiQVBJZThSd1hCcFE1bk9kbEduZEtLcDJFWER2?=
+ =?utf-8?B?QUtUU0c5SUZleGUwOVNLVFFBYnZTTHlFcExLVk5HR3Fya1Q1ZmRaaTFTVG1j?=
+ =?utf-8?B?UFpVSTlranhhbHpKc2E5anIxZEdEMVBJSDFhaDI1VEthVWdjbW9RYnVzOXp5?=
+ =?utf-8?B?UksvaEYydWc1QklzRzk2dGl3b1A5MTNyQXFZYSt2QXhuaU8rRGhJTytwSUVw?=
+ =?utf-8?Q?tms1A6J+VW3vYOlG9QrM483zm?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2baf0368-d8d1-4c14-2b80-08dc96970f09
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2024 10:51:11.9717 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ptSkw5P9VxL673TMzLkDD8qnjgeNR3CSPCa1/Z/Sra3kL68HwhREDRf094+6/7DPxOT1MLvUVcMqljERj+qrEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5187
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,256 +196,154 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---ihjij6443verd3jj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-Hi,
+On 22-06-2024 02:48, Vinay Belgaumkar wrote:
+> We are seeing a possible switch in RPe right after RC6 wakeup.
+> Ensure we obtain the latest RPe by reading it every time.
+> 
+> Fixes: adcc68266b8e ("tests/intel/xe_gt_freq: Check for RPe freq updates")
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+>   tests/intel/xe_gt_freq.c | 43 ++++++++++++++++++----------------------
+>   1 file changed, 19 insertions(+), 24 deletions(-)
+> 
+> diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
+> index d2e4d1a09..65ec3b0c4 100644
+> --- a/tests/intel/xe_gt_freq.c
+> +++ b/tests/intel/xe_gt_freq.c
+> @@ -70,6 +70,11 @@ static uint32_t get_freq(int fd, int gt_id, const char *freq_name)
+>   	return freq;
+>   }
+>   
+> +static uint32_t rpe(int fd, int gt_id)
+> +{
+> +	return get_freq(fd, gt_id, "rpe");
+> +}
+> +
+>   static uint32_t get_throttle(int fd, int gt_id, const char *throttle_file)
+>   {
+>   	uint32_t val;
+> @@ -122,7 +127,6 @@ static void test_throttle_basic_api(int fd, int gt_id)
+>   static void test_freq_basic_api(int fd, int gt_id)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
+>   	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+>   
+>   	/*
+> @@ -138,16 +142,16 @@ static void test_freq_basic_api(int fd, int gt_id)
+>   	/* Assert min requests are respected from rp0 to rpn */
+>   	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "min") == rp0);
+> -	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
+> -	igt_assert(get_freq(fd, gt_id, "min") == rpe);
+> +	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+> +	igt_assert(get_freq(fd, gt_id, "min") == rpe(fd, gt_id));
+>   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "min") == rpn);
+>   
+>   	/* Assert max requests are respected from rpn to rp0 */
+>   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "max") == rpn);
+> -	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
+> -	igt_assert(get_freq(fd, gt_id, "max") == rpe);
+> +	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+> +	igt_assert(get_freq(fd, gt_id, "max") == rpe(fd, gt_id));
+>   	igt_assert(set_freq(fd, gt_id, "max", rp0) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "max") == rp0);
+>   }
+> @@ -163,7 +167,6 @@ static void test_freq_basic_api(int fd, int gt_id)
+>   static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
+>   	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+>   
+>   	igt_debug("Starting testing fixed request\n");
+> @@ -187,20 +190,17 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   		igt_assert(get_freq(fd, gt_id, "act") == rpn);
+>   	}
+>   
+> -	/* Refresh value of rpe, pcode could have adjusted it */
+> -	rpe = get_freq(fd, gt_id, "rpe");
+> -
+> -	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
+> -	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+>   	usleep(ACT_FREQ_LATENCY_US);
+> -	igt_assert(get_freq(fd, gt_id, "cur") == rpe);
+> +	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
+rpe may change after usleep, will it affect above check?
 
-Here's this week drm-misc-next PR.
+Otherwise this looks good to me. may be we should add Closes: 
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/1829 in commit 
+message.
 
-Maxime
-
-drm-misc-next-2024-06-27:
-drm-misc-next for $kernel-version:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - panic: Monochrome logo support, Various fixes
-  - ttm: Improve the number of page faults on some platforms, Fix test
-    build breakage with PREEMPT_RT, more test coverage and various test
-    improvements
-
-Driver Changes:
-  - Add missing MODULE_DESCRIPTION where needed
-  - ipu-v3: Various fixes
-  - vc4: Monochrome TV support
-  - bridge:
-    - analogix_dp: Various improvements and reworks, handle AUX
-      transfers timeout
-    - tc358767: Fix DRM_BRIDGE_ATTACH_NO_CONNECTOR, Fix clock
-      calculations
-  - panels:
-    - More transitions to mipi_dsi wrapped functions
-    - New panels: Lincoln Technologies LCD197, Ortustech COM35H3P70ULC,
-The following changes since commit b9578c49456340ca4d3c7ddbaca054ffc2b51bc1:
-
-  dma-buf/heaps: Correct the types of fd_flags and heap_flags (2024-06-19 20:05:34 +0530)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-06-27
-
-for you to fetch changes up to 61bfcd190820d1dce846e58a4c9ddca8db4751ed:
-
-  drm/bridge: analogix_dp: handle AUX transfer timeouts (2024-06-27 11:52:19 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for $kernel-version:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - panic: Monochrome logo support, Various fixes
-  - ttm: Improve the number of page faults on some platforms, Fix test
-    build breakage with PREEMPT_RT, more test coverage and various test
-    improvements
-
-Driver Changes:
-  - Add missing MODULE_DESCRIPTION where needed
-  - ipu-v3: Various fixes
-  - vc4: Monochrome TV support
-  - bridge:
-    - analogix_dp: Various improvements and reworks, handle AUX
-      transfers timeout
-    - tc358767: Fix DRM_BRIDGE_ATTACH_NO_CONNECTOR, Fix clock
-      calculations
-  - panels:
-    - More transitions to mipi_dsi wrapped functions
-    - New panels: Lincoln Technologies LCD197, Ortustech COM35H3P70ULC,
-
-----------------------------------------------------------------
-Aradhya Bhatia (1):
-      drm/bridge: tc358767: Add format negotiation hooks for DPI/DSI to (e)DP
-
-Chen Ni (1):
-      drm/qxl: Add check for drm_cvt_mode
-
-Chen-Yu Tsai (1):
-      drm/mediatek: select DRM_GEM_DMA_HELPER if DRM_FBDEV_EMULATION=y
-
-Dave Stevenson (4):
-      drm/vc4: Add monochrome mode to the VEC.
-      drm/vc4: vec: Add the margin properties to the connector
-      MAINTAINERS: drm: vc4: Add Raspberry Pi as maintainers
-      MAINTAINERS: drm: vc4: Drop Emma's tree
-
-Dmitry Baryshkov (1):
-      drm/connector: hdmi: shorten too long function name
-
-Geert Uytterhoeven (8):
-      drm/panic: Fix uninitialized drm_scanout_buffer.set_pixel() crash
-      drm/panic: Fix off-by-one logo size checks
-      lib/fonts: Fix visiblity of SUN12x22 and TER16x32 if DRM_PANIC
-      drm/panic: Spelling s/formater/formatter/
-      drm/panic: Rename logo to logo_ascii
-      drm/panic: Add support for drawing a monochrome graphical logo
-      drm/panic: Do not select DRM_KMS_HELPER
-      drm/panic: Restrict graphical logo handling to built-in
-
-Jeff Johnson (2):
-      drm/tests: add drm_hdmi_state_helper_test MODULE_DESCRIPTION()
-      drm/ttm/tests: add missing MODULE_DESCRIPTION() macros
-
-Jerome Brunet (4):
-      dt-bindings: display: meson-dw-hdmi: add missing power-domain
-      dt-bindings: panel-simple-dsi: add lincoln LCD197 panel bindings
-      drm/mipi-dsi: add mipi_dsi_usleep_range helper
-      drm/panel: add lincolntech lcd197 support
-
-Karolina Stolarek (12):
-      drm/ttm/tests: Fix a warning in ttm_bo_unreserve_bulk
-      drm/ttm/tests: Delete unnecessary config option
-      drm/ttm/tests: Set DMA mask in KUnit device
-      drm/ttm/tests: Use an init function from the helpers lib
-      drm/ttm/tests: Test simple BO creation and validation
-      drm/ttm/tests: Add tests with mock resource managers
-      drm/ttm/tests: Add test cases dependent on fence signaling
-      drm/ttm/tests: Add eviction testing
-      drm/ttm/tests: Add tests for ttm_tt_populate
-      drm/ttm/tests: Add TODO file
-      drm/ttm/tests: Correct modules' licenses
-      drm/ttm/tests: Use u32 and u64 over uint*_t types
-
-Lucas Stach (17):
-      gpu: ipu-v3: pre: move state into struct
-      gpu: ipu-v3: pre: add dynamic buffer layout reconfiguration
-      gpu: ipu-v3: pre: don't use fixed timeout when waiting for safe window
-      drm/bridge: analogix_dp: remove unused platform power_on_end callback
-      drm/rockchip: analogix_dp: add runtime PM handling
-      drm/bridge: analogix_dp: register AUX bus after enabling runtime PM
-      drm/bridge: analogix_dp: handle clock via runtime PM
-      drm/bridge: analogix_dp: remove unused analogix_dp_remove
-      drm/bridge: analogix_dp: remove clk handling from analogix_dp_set_bridge
-      drm/bridge: analogix_dp: move platform and PHY power handling into runtime PM
-      drm/bridge: analogix_dp: move basic controller init into runtime PM
-      drm/bridge: analogix_dp: remove PLL lock check from analogix_dp_config_video
-      drm/bridge: analogix_dp: move macro reset after link bandwidth setting
-      drm/bridge: analogix_dp: don't wait for PLL lock too early
-      drm/bridge: analogix_dp: simplify and correct PLL lock checks
-      drm/bridge: analogix_dp: only read AUX status when an error occured
-      drm/bridge: analogix_dp: handle AUX transfer timeouts
-
-Marek Vasut (8):
-      dt-bindings: display: synopsys, dw-hdmi: Document ddc-i2c-bus in core
-      dt-bindings: display: synopsys, dw-hdmi: Mark ddc-i2c-bus as deprecated
-      dt-bindings: display: bridge: tc358767: Keep enum sorted
-      drm/bridge: tc358767: Split tc_pxl_pll_en() into parameter calculation and enablement
-      drm/bridge: tc358767: Use tc_pxl_pll_calc() to correct adjusted_mode clock
-      drm/bridge: tc358767: Drop line_pixel_subtract
-      drm/bridge: tc358767: Set LSCLK divider for SYSCLK to 1
-      Revert "drm/bridge: tc358767: Set default CLRSIPO count"
-
-Michael Walle (2):
-      dt-bindings: display: panel: add Ilitek ili9806e panel controller
-      drm/panel: add Ilitek ILI9806E panel driver
-
-R Sundar (1):
-      gpu: ipu-v3: pre: replace of_node_put() with __free
-
-Sebastian Andrzej Siewior (1):
-      drm/ttm/tests: Let ttm_bo_test consider different ww_mutex implementation.
-
-Tejas Vipin (4):
-      drm/panel: truly-nt35521: transition to mipi_dsi wrapped functions
-      drm/panel: asus-z00t-tm5p5-n35596: transition to mipi_dsi wrapped functions
-      drm/panel: raydium-rm692e5: transition to mipi_dsi wrapped functions
-      drm/panel: sitronix-st7703: transition to mipi_dsi wrapped functions
-
-Thomas Zimmermann (1):
-      drm/ast: Inline drm_simple_encoder_init()
-
-Zhu Lingshan (1):
-      drm/ttm: increase ttm pre-fault value to PMD size
-
- .../bindings/display/amlogic,meson-dw-hdmi.yaml    |    5 +
- .../bindings/display/bridge/synopsys,dw-hdmi.yaml  |   13 +
- .../bindings/display/bridge/toshiba,tc358767.yaml  |    2 +-
- .../bindings/display/imx/fsl,imx6-hdmi.yaml        |    8 -
- .../bindings/display/panel/ilitek,ili9806e.yaml    |   63 +
- .../bindings/display/panel/panel-simple-dsi.yaml   |    2 +
- .../display/rockchip/rockchip,dw-hdmi.yaml         |    8 -
- MAINTAINERS                                        |    8 +-
- drivers/gpu/drm/Kconfig                            |    4 +-
- drivers/gpu/drm/ast/ast_mode.c                     |   45 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |  197 ++--
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.h |    7 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c  |   38 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h  |    9 +
- drivers/gpu/drm/bridge/tc358767.c                  |  112 +-
- drivers/gpu/drm/display/drm_hdmi_state_helper.c    |    6 +-
- drivers/gpu/drm/drm_panic.c                        |   71 +-
- drivers/gpu/drm/exynos/exynos_dp.c                 |    5 +-
- drivers/gpu/drm/mediatek/Kconfig                   |    1 +
- drivers/gpu/drm/panel/Kconfig                      |   20 +
- drivers/gpu/drm/panel/Makefile                     |    2 +
- .../gpu/drm/panel/panel-asus-z00t-tm5p5-n35596.c   |  136 +--
- drivers/gpu/drm/panel/panel-ilitek-ili9806e.c      |  402 +++++++
- drivers/gpu/drm/panel/panel-lincolntech-lcd197.c   |  262 +++++
- drivers/gpu/drm/panel/panel-raydium-rm692e5.c      |  228 ++--
- drivers/gpu/drm/panel/panel-sitronix-st7703.c      |  820 +++++++------
- .../gpu/drm/panel/panel-sony-tulip-truly-nt35521.c |  431 ++++---
- drivers/gpu/drm/qxl/qxl_display.c                  |    3 +
- drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |   26 +-
- drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |    1 +
- drivers/gpu/drm/ttm/tests/.kunitconfig             |    1 -
- drivers/gpu/drm/ttm/tests/Makefile                 |    2 +
- drivers/gpu/drm/ttm/tests/TODO                     |   27 +
- drivers/gpu/drm/ttm/tests/ttm_bo_test.c            |   63 +-
- drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   | 1225 ++++++++++++++++++++
- drivers/gpu/drm/ttm/tests/ttm_device_test.c        |    3 +-
- drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c      |  178 ++-
- drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.h      |   17 +-
- drivers/gpu/drm/ttm/tests/ttm_mock_manager.c       |  234 ++++
- drivers/gpu/drm/ttm/tests/ttm_mock_manager.h       |   30 +
- drivers/gpu/drm/ttm/tests/ttm_pool_test.c          |    9 +-
- drivers/gpu/drm/ttm/tests/ttm_resource_test.c      |   21 +-
- drivers/gpu/drm/ttm/tests/ttm_tt_test.c            |  169 ++-
- drivers/gpu/drm/ttm/ttm_tt.c                       |    3 +
- drivers/gpu/drm/vc4/vc4_vec.c                      |   31 +-
- drivers/gpu/ipu-v3/ipu-pre.c                       |  131 ++-
- drivers/gpu/ipu-v3/ipu-prg.c                       |    2 +-
- drivers/gpu/ipu-v3/ipu-prv.h                       |    2 +-
- drivers/video/logo/Kconfig                         |    2 +
- include/drm/bridge/analogix_dp.h                   |    4 +-
- include/drm/display/drm_hdmi_state_helper.h        |    2 +-
- include/drm/drm_mipi_dsi.h                         |    7 +
- include/drm/ttm/ttm_bo.h                           |    4 +
- lib/fonts/Kconfig                                  |    6 +-
- 54 files changed, 3864 insertions(+), 1244 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9806e.c
- create mode 100644 drivers/gpu/drm/panel/panel-lincolntech-lcd197.c
- create mode 100644 drivers/gpu/drm/ttm/tests/TODO
- create mode 100644 drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
- create mode 100644 drivers/gpu/drm/ttm/tests/ttm_mock_manager.c
- create mode 100644 drivers/gpu/drm/ttm/tests/ttm_mock_manager.h
-
---ihjij6443verd3jj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZn1DxAAKCRDj7w1vZxhR
-xap+AQDnyB744Iy4b9+wCSdiOzbIV3joZ/zwiSmTDyeVVtWNbgD+J6OMUuCY+V94
-8G0Wwsg8tSfQ65W4XxRYeqCwBCtQcA0=
-=56mu
------END PGP SIGNATURE-----
-
---ihjij6443verd3jj--
-
+Reviewed-by: badal.nilawar <badal.nilawar@intel.com>
+>   
+>   	if (gt_idle) {
+>   		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
+>   			     "GT %d should be in C6\n", gt_id);
+>   		igt_assert(get_freq(fd, gt_id, "act") == 0);
+>   	} else {
+> -		igt_assert(get_freq(fd, gt_id, "act") == rpe);
+> +		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
+>   	}
+>   
+>   	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
+> @@ -232,16 +232,15 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
+>   	uint32_t cur, act;
+>   
+>   	igt_debug("Starting testing range request\n");
+>   
+>   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+> -	igt_assert(set_freq(fd, gt_id, "max", rpe) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+>   	usleep(ACT_FREQ_LATENCY_US);
+>   	cur = get_freq(fd, gt_id, "cur");
+> -	igt_assert(rpn <= cur && cur <= rpe);
+> +	igt_assert(rpn <= cur && cur <= rpe(fd, gt_id));
+>   
+>   	if (gt_idle) {
+>   		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
+> @@ -249,7 +248,7 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>   		igt_assert(get_freq(fd, gt_id, "act") == 0);
+>   	} else {
+>   		act = get_freq(fd, gt_id, "act");
+> -		igt_assert(rpn <= act && act <= rpe);
+> +		igt_assert(rpn <= act && act <= rpe(fd, gt_id));
+>   	}
+>   
+>   	igt_debug("Finished testing range request\n");
+> @@ -263,23 +262,19 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>   static void test_freq_low_max(int fd, int gt_id)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rpe = get_freq(fd, gt_id, "rpe");
+>   
+>   	/*
+>   	 *  When max request < min request, max is ignored and min works like
+>   	 * a fixed one. Let's assert this assumption
+>   	 */
+> -	igt_assert(set_freq(fd, gt_id, "min", rpe) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+>   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+>   	usleep(ACT_FREQ_LATENCY_US);
+>   
+> -	/* Refresh value of rpe, pcode could have adjusted it */
+> -	rpe = get_freq(fd, gt_id, "rpe");
+> -
+> -	igt_assert(get_freq(fd, gt_id, "cur") == rpe);
+> +	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
+>   
+>   	if (!xe_is_gt_in_c6(fd, gt_id))
+> -		igt_assert(get_freq(fd, gt_id, "act") == rpe);
+> +		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
+>   }
+>   
+>   /**
