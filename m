@@ -2,72 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3750691C412
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 18:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2413091C4BA
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 19:22:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D277010ECBC;
-	Fri, 28 Jun 2024 16:45:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ObTkFpGz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF20F10ECC5;
+	Fri, 28 Jun 2024 17:22:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42FE710ECBE;
- Fri, 28 Jun 2024 16:45:35 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-1fa2782a8ccso4659025ad.2; 
- Fri, 28 Jun 2024 09:45:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1719593134; x=1720197934; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8tL8aloBlZX0i4tHLHH/ozL0kaAxTfWNWAhQPzgLwdc=;
- b=ObTkFpGzHc0KF9I9Hg3COqBNMWhTm0F1i42Pf9HgngwQcYARHI+A8+vdyzi5tSAvTv
- 1JI5Iae07fdSzUXmbPuzWPXvHemNbD4m/jPDGACfWfBh1U486gNzMlAacXjl3UpPpO72
- tJPtubSZCbxkcQ/jx5Q4yogfbRpFbZNZbkPRSIzPJrizWZGZ7uJXVetJDLXSATDNjGNC
- GRjl8UgCOUFYH07xD5xgsFsjfoIpt79A2st1auYOs+oqSxvk3ZmfFyYPaKuhKIwhAYon
- tsmSFzdA3/2svtxK7oyUog7zK/xBugPGYgOIY3qbE26n3lxiOTzG2G6nmxpVmZJmBdvi
- JumQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719593134; x=1720197934;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=8tL8aloBlZX0i4tHLHH/ozL0kaAxTfWNWAhQPzgLwdc=;
- b=DusM9c/2k5qLJJxMXuMtZLKFmtEUlNo73SYZcvClz1dPVC1KmENdZqsnGYyn1cBM+B
- XM7sgKEymIZE2w5viUacWsfsi6vdA9o8YLVRfIRHcqD5YKRfPJZJ/FNwD9CCAu848jMP
- Z/DaZkHSjoeoovwavfEcRG24lGUv8A/sk2bHTmZUyyb6OdPzJimVX51LHBxWyDK9I2Iy
- 4xlbNE/V+0jiZ71B2b5bbGWPxJSxrcAf/1HjekyIV7oe2MIH/wib+1baztric4NtA/c6
- Cg7yM+dedRAD7VVNr0ui4qrDLXYI2B563NZdzzhJ2G78Fq8DuNR2OMG7pyFmanKGrztv
- OgnQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVPSEz3uyQCHeVjkf0mqyekieEwUU5gD+uGFRqao5mtvFWOPgqUaBAyHy7c0LA8EZ2M+P6Wt0hyUL3VGy8D+Yt4Dw2izxSfWnOv+u6ttoEu
-X-Gm-Message-State: AOJu0Yx2IfjPLSJ2uS+KSIhV7By+94S4NBvkK+aUfzj1bzBY/KnDALsS
- EWUlwypxdyzFiUIiErWBVfcVH99BTkDGidMRuuXmBfYs9nZMS/cjgIdj6BLhU1s=
-X-Google-Smtp-Source: AGHT+IHZuO4HFsfhQAdAxRU1ED6Md3VFv62rsOiKkaYcJhbjF0BzMdP2rntcoUbywi8Ve3/mks1E5A==
-X-Received: by 2002:a17:902:ea08:b0:1f9:f906:9088 with SMTP id
- d9443c01a7336-1fa23ecd142mr168645315ad.22.1719593134372; 
- Fri, 28 Jun 2024 09:45:34 -0700 (PDT)
-Received: from localhost ([192.55.55.46]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1fac1535d1fsm17445595ad.144.2024.06.28.09.45.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Jun 2024 09:45:34 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 1/1] drm/i915/display: On Xe2 platform always require ccs
- alignment on tile4
-Date: Fri, 28 Jun 2024 19:49:00 +0300
-Message-ID: <20240628164900.2737389-2-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240628164900.2737389-1-juhapekka.heikkila@gmail.com>
-References: <20240628164900.2737389-1-juhapekka.heikkila@gmail.com>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D13610ECC5;
+ Fri, 28 Jun 2024 17:22:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Dump_DSC?=
+ =?utf-8?q?_state_to_dmesg/debugfs_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Jun 2024 17:22:48 -0000
+Message-ID: <171959536824.186685.10682706059313670088@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240628164451.1177612-1-imre.deak@intel.com>
+In-Reply-To: <20240628164451.1177612-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,31 +37,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Xe2 platform with tile4 decompression is enabled unconditionally
-hence consider tile4 as ccs modifier
+== Series Details ==
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: drm/i915: Dump DSC state to dmesg/debugfs (rev2)
+URL   : https://patchwork.freedesktop.org/series/134906/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index f23547a88b1f..c36d5a9dc5ac 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -1733,7 +1733,8 @@ intel_fb_stride_alignment(const struct drm_framebuffer *fb, int color_plane)
- 	}
- 
- 	tile_width = intel_tile_width_bytes(fb, color_plane);
--	if (intel_fb_is_ccs_modifier(fb->modifier)) {
-+	if (intel_fb_is_ccs_modifier(fb->modifier) ||
-+	    (GRAPHICS_VER(dev_priv) >= 20 && fb->modifier == I915_FORMAT_MOD_4_TILED)) {
- 		/*
- 		 * On TGL the surface stride must be 4 tile aligned, mapped by
- 		 * one 64 byte cacheline on the CCS AUX surface.
--- 
-2.43.2
+== Summary ==
+
+Error: dim checkpatch failed
+4affbe7acace drm: Add helpers for q4 fixed point values
+-:46: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/display/drm_dp_helper.c:4155:
++		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bpp_x16 " FXP_Q4_FMT "\n",
+
+-:82: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#82: FILE: include/drm/drm_fixed.h:238:
++#define FXP_Q4_ARGS(val_q4)	fxp_q4_to_int(val_q4), (fxp_q4_to_frac(val_q4) * 625)
+
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val_q4' - possible side-effects?
+#82: FILE: include/drm/drm_fixed.h:238:
++#define FXP_Q4_ARGS(val_q4)	fxp_q4_to_int(val_q4), (fxp_q4_to_frac(val_q4) * 625)
+
+total: 1 errors, 1 warnings, 1 checks, 45 lines checked
+36c3d675d384 drm/display/dsc: Add a helper to dump the DSC configuration
+-:11: WARNING:TYPO_SPELLING: 'configration' may be misspelled - perhaps 'configuration'?
+#11: 
+- s/DSC configration/DSC configuration in the function documentation.
+        ^^^^^^^^^^^^
+
+-:39: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1484:
++			  cfg->slice_count, cfg->slice_width, cfg->slice_height, cfg->slice_chunk_size);
+
+-:44: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1489:
++			  str_yes_no(cfg->simple_422), str_yes_no(cfg->native_422), str_yes_no(cfg->native_420));
+
+-:47: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1492:
++			  cfg->bits_per_component, FXP_Q4_ARGS(cfg->bits_per_pixel), cfg->line_buf_depth);
+
+-:58: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1503:
++			  cfg->second_line_bpg_offset, cfg->nsl_bpg_offset, cfg->second_line_offset_adj);
+
+-:62: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1507:
++			  cfg->rc_edge_factor, cfg->rc_quant_incr_limit0, cfg->rc_quant_incr_limit1);
+
+-:65: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1510:
++			  cfg->initial_scale_value, cfg->scale_increment_interval, cfg->scale_decrement_interval);
+
+-:88: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1533:
++			  rp[0].range_min_qp,  rp[1].range_min_qp,  rp[2].range_min_qp,  rp[3].range_min_qp,
+
+-:89: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#89: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1534:
++			  rp[4].range_min_qp,  rp[5].range_min_qp,  rp[6].range_min_qp,  rp[7].range_min_qp,
+
+-:90: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1535:
++			  rp[8].range_min_qp,  rp[9].range_min_qp,  rp[10].range_min_qp, rp[11].range_min_qp,
+
+-:94: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1539:
++			  rp[0].range_max_qp,  rp[1].range_max_qp,  rp[2].range_max_qp,  rp[3].range_max_qp,
+
+-:95: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1540:
++			  rp[4].range_max_qp,  rp[5].range_max_qp,  rp[6].range_max_qp,  rp[7].range_max_qp,
+
+-:96: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1541:
++			  rp[8].range_max_qp,  rp[9].range_max_qp,  rp[10].range_max_qp, rp[11].range_max_qp,
+
+-:100: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#100: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1545:
++			  rp[0].range_bpg_offset,  rp[1].range_bpg_offset,  rp[2].range_bpg_offset,  rp[3].range_bpg_offset,
+
+-:101: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#101: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1546:
++			  rp[4].range_bpg_offset,  rp[5].range_bpg_offset,  rp[6].range_bpg_offset,  rp[7].range_bpg_offset,
+
+-:102: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#102: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1547:
++			  rp[8].range_bpg_offset,  rp[9].range_bpg_offset,  rp[10].range_bpg_offset, rp[11].range_bpg_offset,
+
+-:103: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1548:
++			  rp[12].range_bpg_offset, rp[13].range_bpg_offset, rp[14].range_bpg_offset);
+
+total: 0 errors, 17 warnings, 0 checks, 115 lines checked
+e547afbbbe94 drm/i915: Replace to_bpp_x16() with fxp_q4_from_int()
+1e56c9bd14f8 drm/i915: Replace to_bpp_int() with fxp_q4_to_int()
+-:102: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#102: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2187:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (to_bpp_frac(bpp_x16) * 625)
+
+-:102: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'bpp_x16' - possible side-effects?
+#102: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2187:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (to_bpp_frac(bpp_x16) * 625)
+
+total: 1 errors, 0 warnings, 1 checks, 148 lines checked
+5dd303b640a1 drm/i915: Replace to_bpp_int_roundup() with fxp_q4_to_int_roundup()
+aa103679d5d6 drm/i915: Replace to_bpp_frac() with fxp_q4_to_frac()
+-:28: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#28: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2182:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (fxp_q4_to_frac(bpp_x16) * 625)
+
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'bpp_x16' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2182:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (fxp_q4_to_frac(bpp_x16) * 625)
+
+total: 1 errors, 0 warnings, 1 checks, 38 lines checked
+59b0ce38fefe drm/i915: Replace BPP_X16_FMT()/ARGS() with FXP_Q4_FMT()/ARGS()
+-:76: WARNING:MISSING_SPACE: break quoted strings at a space character
+#76: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2274:
+ 			    "Cannot compute valid DSC parameters for Input Bpp = %d"
++			    "Compressed BPP = " FXP_Q4_FMT "\n",
+
+-:98: WARNING:LONG_LINE: line length of 163 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2337:
++		    "[ENCODER:%d:%s][CRTC:%d:%s] DP link limits: pixel clock %d kHz DSC %s max lanes %d max rate %d max pipe_bpp %d max link_bpp " FXP_Q4_FMT "\n",
+
+total: 0 errors, 2 warnings, 0 checks, 98 lines checked
+7d66cbd5171a drm/i915: Dump DSC state to dmesg and debugfs/i915_display_info
+a7bba197b3cf drm/i915: Remove DSC register dump
+
 
