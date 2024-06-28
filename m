@@ -2,54 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED4B91C40A
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 18:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E85991C411
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 18:45:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC59410ECB8;
-	Fri, 28 Jun 2024 16:44:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3092610EC99;
+	Fri, 28 Jun 2024 16:45:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TAdSg81g";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lUXQ3Cih";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8592510ECB2;
- Fri, 28 Jun 2024 16:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719593097; x=1751129097;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=dUsXL0hYjRno1OpBTKc6F9Myq5yga5cW6QO/+XSToM4=;
- b=TAdSg81gCa8Rbuvtsv/BlULqcOwVFmn//1nLpOlFisP6jxgqhOc2SaEk
- TNJ/Ti4xlXlTtIM+mZC955zfsg761ZhKLhYriffOw/O1XmXR+LuGsM1Cl
- rAqToiNimZ76PJC8aPttXriWM83cTMqG4DcGhw6zkODy4DUXVWu8fN6XV
- 3caNUUHrID7LO0rWZDMmSlNmaaFfe+IZO1jEvG/O33PeffK2GBDHqmG2j
- gBe+/pz5J/PoYsfOlijKoYSn1RC8K2scBgI9ZqbIeUsoSSSVmfv/JQm6q
- +35DFLbSGpWtYdcisQO5GXszerJDfPnjK2aQ7hLPOPUl6MXVShrZjVvVH Q==;
-X-CSE-ConnectionGUID: 6Y06NsfrThikNkxnAedduA==
-X-CSE-MsgGUID: Mn3QEoPHQxGcqphQlKGhgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11117"; a="16620092"
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="16620092"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 09:44:56 -0700
-X-CSE-ConnectionGUID: dWSBtvIITTOuj72WfH9Vrw==
-X-CSE-MsgGUID: 4tR4OXmoRxWvSR+vpR4BTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,169,1716274800"; d="scan'208";a="75519933"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2024 09:44:56 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 9/9] drm/i915: Remove DSC register dump
-Date: Fri, 28 Jun 2024 19:44:50 +0300
-Message-ID: <20240628164451.1177612-10-imre.deak@intel.com>
-X-Mailer: git-send-email 2.43.3
-In-Reply-To: <20240628164451.1177612-1-imre.deak@intel.com>
-References: <20240628164451.1177612-1-imre.deak@intel.com>
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDDA310EC99;
+ Fri, 28 Jun 2024 16:45:31 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-1f4c7b022f8so5522885ad.1; 
+ Fri, 28 Jun 2024 09:45:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1719593131; x=1720197931; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=GFnK18K01jM6ixe3J5Dm4dhRYKCUyzsmvuoIyL/w40s=;
+ b=lUXQ3CihP45Vd+SLMC53SLDSDG2k5lckngoO/z3w8eha5HVzrnSUU7qX0nk2UTcINi
+ T1slQlN166BZ9TuCu2h+JDaHD92OXDCQKX2Z63ga7G3t4ga5QasredP4Nw6ntN+jnEpZ
+ LkMFRrz7G2Nx6Qhkjqci2VMaHGyXVqLZmJegAU03QXtIPmDYn12RKFTrtprAdYKOQIEh
+ g4IlvSZ+N87Q6ae6uqTlQF4Vj7QZ0KNCv0TnuTCxYQiuBBY3XiGmq6Gn+as1yMFR+1ve
+ hc0wXUsYvvgsy+NkoAaYW3+Wrxz3cjGsyvMh20+gsEhVFEfPChePlZdXpkj/TMybrA5E
+ Wmjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1719593131; x=1720197931;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=GFnK18K01jM6ixe3J5Dm4dhRYKCUyzsmvuoIyL/w40s=;
+ b=ic2iQEPGSp39OqW5kbrPsPgGwuT+36edk1JL+L3cw7qXkDIymTg8nEkPOGE+HT+yTJ
+ n0OHrYdixbreQW8TnJdXANjO1x6aOlpJTFdmRkP2RDNhR6qVojZbP1l4EhHSuV4/M19Y
+ G+RR7Pjkx4Yw46XglAXM4bGE3H7Hleaq//CGa0taI2hFsZFC8WdsWIBJdIfE8UulHkCj
+ bKHXIafjyab0M7K9YvJvPzpSrggGRPVuQSC9g89QjIL/cASe0wYDlIWBOJv87bT5bHyJ
+ ohVdfdKNk1dB8jU9XUFIxkhJ+BcVw7X2I+JQyWWLp9QVI4CzUdugSxu41JGNli4SD5RG
+ JnvQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX6B6tkZZKEChj4v48/3KUnxihBz2xDsbos4So8FmyfG46rod3O35UnniMY8h1W/eXVE347XePWqCU5/odf1Mt9RGp37bcgCVkbZ59ELuSw
+X-Gm-Message-State: AOJu0YySbCFg8unTtBVVtuGmrTZiAEQcjJYdzpJklA24wUdwwp+BqkIg
+ cBKvcIhSQGwNL9DnXUcsac1Bw4Id0UH+ULS73cYXWIm+lUwoIGeRoVmEkCc8dHc=
+X-Google-Smtp-Source: AGHT+IFWeDWKq9rE/Dlp5HTlUM0jYl00IsG8vezUlKdoMy33gW5vRIxoWW9PaMbjE2X3yDeUi13BAQ==
+X-Received: by 2002:a17:902:db06:b0:1f9:e5d9:ead5 with SMTP id
+ d9443c01a7336-1fa23eccee5mr185042265ad.33.1719593130931; 
+ Fri, 28 Jun 2024 09:45:30 -0700 (PDT)
+Received: from localhost ([192.55.55.46]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-1fac1569606sm17421725ad.222.2024.06.28.09.45.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 28 Jun 2024 09:45:30 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH 0/1] On Xe2 platform always require ccs alignment on tile4
+Date: Fri, 28 Jun 2024 19:48:59 +0300
+Message-ID: <20240628164900.2737389-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,143 +79,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Display Engine's DSC register values are deducted from the DSC
-configuration stored in intel_crtc_state::dsc. The latter one is
-dumped in a human-readable format, so dumping the register values is
-redundant, remove it.
+There is difference with tile4 on Xe2 platforms vs older platforms where
+for tile4 is always enabled decompression on display when on Xe2. This
+will cause requirement to be aligned for ccs with framebuffer strides
+with tile4. Maybe need to consider new modifier for Xe2 because of this
+requirement. Here is set new alignment requirement for tile4 when on Xe2.
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 24 ++---------------------
- 1 file changed, 2 insertions(+), 22 deletions(-)
+/Juha-Pekka
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 404ed05371cb8..2e849b015e748 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -457,36 +457,30 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 		pps_val |= DSC_PPS0_422_ENABLE;
- 	if (vdsc_cfg->vbr_enable)
- 		pps_val |= DSC_PPS0_VBR_ENABLE;
--	drm_dbg_kms(&dev_priv->drm, "PPS0 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 0, pps_val);
- 
- 	/* PPS 1 */
- 	pps_val = DSC_PPS1_BPP(vdsc_cfg->bits_per_pixel);
--	drm_dbg_kms(&dev_priv->drm, "PPS1 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 1, pps_val);
- 
- 	/* PPS 2 */
- 	pps_val = DSC_PPS2_PIC_HEIGHT(vdsc_cfg->pic_height) |
- 		DSC_PPS2_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
--	drm_dbg_kms(&dev_priv->drm, "PPS2 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 2, pps_val);
- 
- 	/* PPS 3 */
- 	pps_val = DSC_PPS3_SLICE_HEIGHT(vdsc_cfg->slice_height) |
- 		DSC_PPS3_SLICE_WIDTH(vdsc_cfg->slice_width);
--	drm_dbg_kms(&dev_priv->drm, "PPS3 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 3, pps_val);
- 
- 	/* PPS 4 */
- 	pps_val = DSC_PPS4_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
- 		DSC_PPS4_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
--	drm_dbg_kms(&dev_priv->drm, "PPS4 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 4, pps_val);
- 
- 	/* PPS 5 */
- 	pps_val = DSC_PPS5_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
- 		DSC_PPS5_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
--	drm_dbg_kms(&dev_priv->drm, "PPS5 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 5, pps_val);
- 
- 	/* PPS 6 */
-@@ -494,25 +488,21 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 		DSC_PPS6_FIRST_LINE_BPG_OFFSET(vdsc_cfg->first_line_bpg_offset) |
- 		DSC_PPS6_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
- 		DSC_PPS6_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
--	drm_dbg_kms(&dev_priv->drm, "PPS6 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 6, pps_val);
- 
- 	/* PPS 7 */
- 	pps_val = DSC_PPS7_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
- 		DSC_PPS7_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
--	drm_dbg_kms(&dev_priv->drm, "PPS7 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 7, pps_val);
- 
- 	/* PPS 8 */
- 	pps_val = DSC_PPS8_FINAL_OFFSET(vdsc_cfg->final_offset) |
- 		DSC_PPS8_INITIAL_OFFSET(vdsc_cfg->initial_offset);
--	drm_dbg_kms(&dev_priv->drm, "PPS8 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 8, pps_val);
- 
- 	/* PPS 9 */
- 	pps_val = DSC_PPS9_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
- 		DSC_PPS9_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
--	drm_dbg_kms(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 9, pps_val);
- 
- 	/* PPS 10 */
-@@ -520,7 +510,6 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 		DSC_PPS10_RC_QUANT_INC_LIMIT1(vdsc_cfg->rc_quant_incr_limit1) |
- 		DSC_PPS10_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
- 		DSC_PPS10_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
--	drm_dbg_kms(&dev_priv->drm, "PPS10 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 10, pps_val);
- 
- 	/* PPS 16 */
-@@ -529,31 +518,25 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 					 vdsc_cfg->slice_width) |
- 		DSC_PPS16_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
- 					      vdsc_cfg->slice_height);
--	drm_dbg_kms(&dev_priv->drm, "PPS16 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 16, pps_val);
- 
- 	if (DISPLAY_VER(dev_priv) >= 14) {
- 		/* PPS 17 */
- 		pps_val = DSC_PPS17_SL_BPG_OFFSET(vdsc_cfg->second_line_bpg_offset);
--		drm_dbg_kms(&dev_priv->drm, "PPS17 = 0x%08x\n", pps_val);
- 		intel_dsc_pps_write(crtc_state, 17, pps_val);
- 
- 		/* PPS 18 */
- 		pps_val = DSC_PPS18_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
- 			DSC_PPS18_SL_OFFSET_ADJ(vdsc_cfg->second_line_offset_adj);
--		drm_dbg_kms(&dev_priv->drm, "PPS18 = 0x%08x\n", pps_val);
- 		intel_dsc_pps_write(crtc_state, 18, pps_val);
- 	}
- 
- 	/* Populate the RC_BUF_THRESH registers */
- 	memset(rc_buf_thresh_dword, 0, sizeof(rc_buf_thresh_dword));
--	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++) {
-+	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++)
- 		rc_buf_thresh_dword[i / 4] |=
- 			(u32)(vdsc_cfg->rc_buf_thresh[i] <<
- 			      BITS_PER_BYTE * (i % 4));
--		drm_dbg_kms(&dev_priv->drm, "RC_BUF_THRESH_%d = 0x%08x\n", i,
--			    rc_buf_thresh_dword[i / 4]);
--	}
- 	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
- 		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0,
- 			       rc_buf_thresh_dword[0]);
-@@ -600,7 +583,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 
- 	/* Populate the RC_RANGE_PARAMETERS registers */
- 	memset(rc_range_params_dword, 0, sizeof(rc_range_params_dword));
--	for (i = 0; i < DSC_NUM_BUF_RANGES; i++) {
-+	for (i = 0; i < DSC_NUM_BUF_RANGES; i++)
- 		rc_range_params_dword[i / 2] |=
- 			(u32)(((vdsc_cfg->rc_range_params[i].range_bpg_offset <<
- 				RC_BPG_OFFSET_SHIFT) |
-@@ -608,9 +591,6 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 				RC_MAX_QP_SHIFT) |
- 			       (vdsc_cfg->rc_range_params[i].range_min_qp <<
- 				RC_MIN_QP_SHIFT)) << 16 * (i % 2));
--		drm_dbg_kms(&dev_priv->drm, "RC_RANGE_PARAM_%d = 0x%08x\n", i,
--			    rc_range_params_dword[i / 2]);
--	}
- 	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
- 		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0,
- 			       rc_range_params_dword[0]);
+Test-with: 20240628131405.2653544-1-juhapekka.heikkila@gmail.com
+
+Juha-Pekka Heikkila (1):
+  drm/i915/display: On Xe2 platform always require ccs alignment on
+    tile4
+
+ drivers/gpu/drm/i915/display/intel_fb.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
 -- 
-2.43.3
+2.43.2
 
