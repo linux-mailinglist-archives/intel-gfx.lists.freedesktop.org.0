@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C4091BF2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 15:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6594591BF97
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 15:35:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E57E410EC57;
-	Fri, 28 Jun 2024 13:06:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="qhMxQlk+";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="jhZjdyq2";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8259910EC60;
+	Fri, 28 Jun 2024 13:35:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF29310EC48;
- Fri, 28 Jun 2024 13:06:09 +0000 (UTC)
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1719579968;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HGsGwym1/3E6Eo02B1P43v8CIhCKh8E4WzxEDKWbJAQ=;
- b=qhMxQlk+bxQ1lfF9UlJnkt1Ohk4hRU8tenGI+8HNKXYVz0pWu9iOCE/PXUatP1+7CcyWts
- S7YgkMVZrxTdZD/lBcdaNf6fEbSM9eViwzPIWyM7DX7HO6UDWJs9yyIc0LI5LslF4kyGeS
- q9gZTTmSydTiI5I2VHKpexPb+m8969Sq05btPQuVBXan6x/pzFX3+MuanNrXkkf/mJzJxZ
- BM7WTbCCx3OARus8/lXx3YOFTHk/CqRYazCBLvUXRRMrzdI/CqS9cLnIrlzywjI0Tut8/A
- IEg878s3aNg4WsWbNrjAmiPGLWNRwWVEhLfEgigaHSj+A2S62KRJMNAcQq9p0Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1719579968;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HGsGwym1/3E6Eo02B1P43v8CIhCKh8E4WzxEDKWbJAQ=;
- b=jhZjdyq2sXqoYAPfJLYkPcgbvVaN5j4SzyV2HU8+BXPwRXvW3hYq0ExtfDcqvZAfBTIzCu
- BXEqngK1Mg1ikjDA==
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v3 8/8] Revert "drm/i915: Depend on !PREEMPT_RT."
-Date: Fri, 28 Jun 2024 14:58:07 +0200
-Message-ID: <20240628130601.1772849-9-bigeasy@linutronix.de>
-In-Reply-To: <20240628130601.1772849-1-bigeasy@linutronix.de>
-References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+Received: from a6498e030952 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1877310E5E8;
+ Fri, 28 Jun 2024 13:35:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_PREEMPT?=
+ =?utf-8?q?=5FRT_related_fixups=2E_=28rev12=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Jun 2024 13:35:40 -0000
+Message-ID: <171958174009.185636.17656794807702570326@a6498e030952>
+X-Patchwork-Hint: ignore
+References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+In-Reply-To: <20240628130601.1772849-1-bigeasy@linutronix.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,30 +37,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Once the known issues are addressed, it should be safe to enable the
-driver.
+== Series Details ==
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Series: drm/i915: PREEMPT_RT related fixups. (rev12)
+URL   : https://patchwork.freedesktop.org/series/95463/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+4262ab871c62 drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+
+total: 0 errors, 1 warnings, 0 checks, 67 lines checked
+c7ade8db8951 drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
+
+total: 0 errors, 1 warnings, 0 checks, 42 lines checked
+eca7042a432a drm/i915: Don't check for atomic context on PREEMPT_RT
+89e439da009d drm/i915: Disable tracing points on PREEMPT_RT
+-:27: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#27: 
+Reported-by: Luca Abeni <lucabe72@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
+4d47a00f3c89 drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
+-:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#22: 
+Reported-by: Clark Williams <williams@redhat.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
----
- drivers/gpu/drm/i915/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 5932024f8f954..a02162d6b710e 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -3,7 +3,6 @@ config DRM_I915
- 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
- 	depends on DRM
- 	depends on X86 && PCI
--	depends on !PREEMPT_RT
- 	select INTEL_GTT if X86
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
---=20
-2.45.2
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+5a7b403521d4 drm/i915: Drop the irqs_disabled() check
+-:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#16: 
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+7eb47c2ced67 drm/i915/guc: Consider also RCU depth in busy loop.
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+-:26: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#26: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:365:
++	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+7a32e2fb06b0 Revert "drm/i915: Depend on !PREEMPT_RT."
+
 
