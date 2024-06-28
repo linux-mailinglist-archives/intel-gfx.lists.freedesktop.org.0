@@ -2,66 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E85991C411
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 18:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3750691C412
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2024 18:45:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3092610EC99;
-	Fri, 28 Jun 2024 16:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D277010ECBC;
+	Fri, 28 Jun 2024 16:45:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lUXQ3Cih";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ObTkFpGz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDDA310EC99;
- Fri, 28 Jun 2024 16:45:31 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-1f4c7b022f8so5522885ad.1; 
- Fri, 28 Jun 2024 09:45:31 -0700 (PDT)
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42FE710ECBE;
+ Fri, 28 Jun 2024 16:45:35 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-1fa2782a8ccso4659025ad.2; 
+ Fri, 28 Jun 2024 09:45:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1719593131; x=1720197931; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=GFnK18K01jM6ixe3J5Dm4dhRYKCUyzsmvuoIyL/w40s=;
- b=lUXQ3CihP45Vd+SLMC53SLDSDG2k5lckngoO/z3w8eha5HVzrnSUU7qX0nk2UTcINi
- T1slQlN166BZ9TuCu2h+JDaHD92OXDCQKX2Z63ga7G3t4ga5QasredP4Nw6ntN+jnEpZ
- LkMFRrz7G2Nx6Qhkjqci2VMaHGyXVqLZmJegAU03QXtIPmDYn12RKFTrtprAdYKOQIEh
- g4IlvSZ+N87Q6ae6uqTlQF4Vj7QZ0KNCv0TnuTCxYQiuBBY3XiGmq6Gn+as1yMFR+1ve
- hc0wXUsYvvgsy+NkoAaYW3+Wrxz3cjGsyvMh20+gsEhVFEfPChePlZdXpkj/TMybrA5E
- Wmjw==
+ d=gmail.com; s=20230601; t=1719593134; x=1720197934; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8tL8aloBlZX0i4tHLHH/ozL0kaAxTfWNWAhQPzgLwdc=;
+ b=ObTkFpGzHc0KF9I9Hg3COqBNMWhTm0F1i42Pf9HgngwQcYARHI+A8+vdyzi5tSAvTv
+ 1JI5Iae07fdSzUXmbPuzWPXvHemNbD4m/jPDGACfWfBh1U486gNzMlAacXjl3UpPpO72
+ tJPtubSZCbxkcQ/jx5Q4yogfbRpFbZNZbkPRSIzPJrizWZGZ7uJXVetJDLXSATDNjGNC
+ GRjl8UgCOUFYH07xD5xgsFsjfoIpt79A2st1auYOs+oqSxvk3ZmfFyYPaKuhKIwhAYon
+ tsmSFzdA3/2svtxK7oyUog7zK/xBugPGYgOIY3qbE26n3lxiOTzG2G6nmxpVmZJmBdvi
+ JumQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719593131; x=1720197931;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=GFnK18K01jM6ixe3J5Dm4dhRYKCUyzsmvuoIyL/w40s=;
- b=ic2iQEPGSp39OqW5kbrPsPgGwuT+36edk1JL+L3cw7qXkDIymTg8nEkPOGE+HT+yTJ
- n0OHrYdixbreQW8TnJdXANjO1x6aOlpJTFdmRkP2RDNhR6qVojZbP1l4EhHSuV4/M19Y
- G+RR7Pjkx4Yw46XglAXM4bGE3H7Hleaq//CGa0taI2hFsZFC8WdsWIBJdIfE8UulHkCj
- bKHXIafjyab0M7K9YvJvPzpSrggGRPVuQSC9g89QjIL/cASe0wYDlIWBOJv87bT5bHyJ
- ohVdfdKNk1dB8jU9XUFIxkhJ+BcVw7X2I+JQyWWLp9QVI4CzUdugSxu41JGNli4SD5RG
- JnvQ==
+ d=1e100.net; s=20230601; t=1719593134; x=1720197934;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=8tL8aloBlZX0i4tHLHH/ozL0kaAxTfWNWAhQPzgLwdc=;
+ b=DusM9c/2k5qLJJxMXuMtZLKFmtEUlNo73SYZcvClz1dPVC1KmENdZqsnGYyn1cBM+B
+ XM7sgKEymIZE2w5viUacWsfsi6vdA9o8YLVRfIRHcqD5YKRfPJZJ/FNwD9CCAu848jMP
+ Z/DaZkHSjoeoovwavfEcRG24lGUv8A/sk2bHTmZUyyb6OdPzJimVX51LHBxWyDK9I2Iy
+ 4xlbNE/V+0jiZ71B2b5bbGWPxJSxrcAf/1HjekyIV7oe2MIH/wib+1baztric4NtA/c6
+ Cg7yM+dedRAD7VVNr0ui4qrDLXYI2B563NZdzzhJ2G78Fq8DuNR2OMG7pyFmanKGrztv
+ OgnQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX6B6tkZZKEChj4v48/3KUnxihBz2xDsbos4So8FmyfG46rod3O35UnniMY8h1W/eXVE347XePWqCU5/odf1Mt9RGp37bcgCVkbZ59ELuSw
-X-Gm-Message-State: AOJu0YySbCFg8unTtBVVtuGmrTZiAEQcjJYdzpJklA24wUdwwp+BqkIg
- cBKvcIhSQGwNL9DnXUcsac1Bw4Id0UH+ULS73cYXWIm+lUwoIGeRoVmEkCc8dHc=
-X-Google-Smtp-Source: AGHT+IFWeDWKq9rE/Dlp5HTlUM0jYl00IsG8vezUlKdoMy33gW5vRIxoWW9PaMbjE2X3yDeUi13BAQ==
-X-Received: by 2002:a17:902:db06:b0:1f9:e5d9:ead5 with SMTP id
- d9443c01a7336-1fa23eccee5mr185042265ad.33.1719593130931; 
- Fri, 28 Jun 2024 09:45:30 -0700 (PDT)
+ AJvYcCVPSEz3uyQCHeVjkf0mqyekieEwUU5gD+uGFRqao5mtvFWOPgqUaBAyHy7c0LA8EZ2M+P6Wt0hyUL3VGy8D+Yt4Dw2izxSfWnOv+u6ttoEu
+X-Gm-Message-State: AOJu0Yx2IfjPLSJ2uS+KSIhV7By+94S4NBvkK+aUfzj1bzBY/KnDALsS
+ EWUlwypxdyzFiUIiErWBVfcVH99BTkDGidMRuuXmBfYs9nZMS/cjgIdj6BLhU1s=
+X-Google-Smtp-Source: AGHT+IHZuO4HFsfhQAdAxRU1ED6Md3VFv62rsOiKkaYcJhbjF0BzMdP2rntcoUbywi8Ve3/mks1E5A==
+X-Received: by 2002:a17:902:ea08:b0:1f9:f906:9088 with SMTP id
+ d9443c01a7336-1fa23ecd142mr168645315ad.22.1719593134372; 
+ Fri, 28 Jun 2024 09:45:34 -0700 (PDT)
 Received: from localhost ([192.55.55.46]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1fac1569606sm17421725ad.222.2024.06.28.09.45.29
+ d9443c01a7336-1fac1535d1fsm17445595ad.144.2024.06.28.09.45.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Jun 2024 09:45:30 -0700 (PDT)
+ Fri, 28 Jun 2024 09:45:34 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 0/1] On Xe2 platform always require ccs alignment on tile4
-Date: Fri, 28 Jun 2024 19:48:59 +0300
-Message-ID: <20240628164900.2737389-1-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 1/1] drm/i915/display: On Xe2 platform always require ccs
+ alignment on tile4
+Date: Fri, 28 Jun 2024 19:49:00 +0300
+Message-ID: <20240628164900.2737389-2-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240628164900.2737389-1-juhapekka.heikkila@gmail.com>
+References: <20240628164900.2737389-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -79,23 +83,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is difference with tile4 on Xe2 platforms vs older platforms where
-for tile4 is always enabled decompression on display when on Xe2. This
-will cause requirement to be aligned for ccs with framebuffer strides
-with tile4. Maybe need to consider new modifier for Xe2 because of this
-requirement. Here is set new alignment requirement for tile4 when on Xe2.
+On Xe2 platform with tile4 decompression is enabled unconditionally
+hence consider tile4 as ccs modifier
 
-/Juha-Pekka
-
-Test-with: 20240628131405.2653544-1-juhapekka.heikkila@gmail.com
-
-Juha-Pekka Heikkila (1):
-  drm/i915/display: On Xe2 platform always require ccs alignment on
-    tile4
-
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
  drivers/gpu/drm/i915/display/intel_fb.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index f23547a88b1f..c36d5a9dc5ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1733,7 +1733,8 @@ intel_fb_stride_alignment(const struct drm_framebuffer *fb, int color_plane)
+ 	}
+ 
+ 	tile_width = intel_tile_width_bytes(fb, color_plane);
+-	if (intel_fb_is_ccs_modifier(fb->modifier)) {
++	if (intel_fb_is_ccs_modifier(fb->modifier) ||
++	    (GRAPHICS_VER(dev_priv) >= 20 && fb->modifier == I915_FORMAT_MOD_4_TILED)) {
+ 		/*
+ 		 * On TGL the surface stride must be 4 tile aligned, mapped by
+ 		 * one 64 byte cacheline on the CCS AUX surface.
 -- 
 2.43.2
 
