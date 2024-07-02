@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9789292430A
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jul 2024 18:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4649246D7
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jul 2024 20:01:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0B210E0F7;
-	Tue,  2 Jul 2024 16:01:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC0810E12E;
+	Tue,  2 Jul 2024 18:01:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31FFF10E0F7;
- Tue,  2 Jul 2024 16:01:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5655555663188589459=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9E6110E12E;
+ Tue,  2 Jul 2024 18:01:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv3?=
- =?utf-8?q?=2C1/2=5D_drm/xe/bmg=3A_implement_Wa=5F16023588340?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Dump_DSC?=
+ =?utf-8?q?_state_to_dmesg/debugfs_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 02 Jul 2024 16:01:38 -0000
-Message-ID: <171993609819.21588.16805911897852766792@2413ebb6fbb6>
+Date: Tue, 02 Jul 2024 18:01:56 -0000
+Message-ID: <171994331681.21226.2258473648499627192@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240702150609.155245-3-matthew.auld@intel.com>
-In-Reply-To: <20240702150609.155245-3-matthew.auld@intel.com>
+References: <20240628164451.1177612-1-imre.deak@intel.com>
+In-Reply-To: <20240628164451.1177612-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,199 +41,134 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5655555663188589459==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [v3,1/2] drm/xe/bmg: implement Wa_16023588340
-URL   : https://patchwork.freedesktop.org/series/135657/
-State : success
+Series: drm/i915: Dump DSC state to dmesg/debugfs (rev3)
+URL   : https://patchwork.freedesktop.org/series/134906/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15013 -> Patchwork_135657v1
-====================================================
+Error: dim checkpatch failed
+b9136eaedfdc drm: Add helpers for q4 fixed point values
+-:46: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/display/drm_dp_helper.c:4155:
++		DRM_DEBUG_KMS("Invalid BW overhead params: lane_count %d, hactive %d, bpp_x16 " FXP_Q4_FMT "\n",
 
-Summary
--------
+-:82: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#82: FILE: include/drm/drm_fixed.h:238:
++#define FXP_Q4_ARGS(val_q4)	fxp_q4_to_int(val_q4), (fxp_q4_to_frac(val_q4) * 625)
 
-  **SUCCESS**
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val_q4' - possible side-effects?
+#82: FILE: include/drm/drm_fixed.h:238:
++#define FXP_Q4_ARGS(val_q4)	fxp_q4_to_int(val_q4), (fxp_q4_to_frac(val_q4) * 625)
 
-  No regressions found.
+total: 1 errors, 1 warnings, 1 checks, 45 lines checked
+5ac50dd02665 drm/display/dsc: Add a helper to dump the DSC configuration
+-:11: WARNING:TYPO_SPELLING: 'configration' may be misspelled - perhaps 'configuration'?
+#11: 
+- s/DSC configration/DSC configuration in the function documentation.
+        ^^^^^^^^^^^^
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/index.html
+-:39: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1484:
++			  cfg->slice_count, cfg->slice_width, cfg->slice_height, cfg->slice_chunk_size);
 
-Participating hosts (42 -> 40)
-------------------------------
+-:44: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1489:
++			  str_yes_no(cfg->simple_422), str_yes_no(cfg->native_422), str_yes_no(cfg->native_420));
 
-  Additional (1): bat-twl-2 
-  Missing    (3): bat-adln-1 fi-snb-2520m fi-elk-e7500 
+-:47: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1492:
++			  cfg->bits_per_component, FXP_Q4_ARGS(cfg->bits_per_pixel), cfg->line_buf_depth);
 
-Known issues
-------------
+-:58: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1503:
++			  cfg->second_line_bpg_offset, cfg->nsl_bpg_offset, cfg->second_line_offset_adj);
 
-  Here are the changes found in Patchwork_135657v1 that come from known issues:
+-:62: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1507:
++			  cfg->rc_edge_factor, cfg->rc_quant_incr_limit0, cfg->rc_quant_incr_limit1);
 
-### IGT changes ###
+-:65: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1510:
++			  cfg->initial_scale_value, cfg->scale_increment_interval, cfg->scale_decrement_interval);
 
-#### Issues hit ####
+-:88: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#88: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1533:
++			  rp[0].range_min_qp,  rp[1].range_min_qp,  rp[2].range_min_qp,  rp[3].range_min_qp,
 
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#10378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html
+-:89: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#89: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1534:
++			  rp[4].range_min_qp,  rp[5].range_min_qp,  rp[6].range_min_qp,  rp[7].range_min_qp,
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+-:90: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1535:
++			  rp[8].range_min_qp,  rp[9].range_min_qp,  rp[10].range_min_qp, rp[11].range_min_qp,
 
-  * igt@kms_chamelium_edid@dp-edid-read:
-    - bat-dg2-13:         [PASS][5] -> [ABORT][6] ([i915#11552])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
+-:94: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1539:
++			  rp[0].range_max_qp,  rp[1].range_max_qp,  rp[2].range_max_qp,  rp[3].range_max_qp,
 
-  
-#### Possible fixes ####
+-:95: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1540:
++			  rp[4].range_max_qp,  rp[5].range_max_qp,  rp[6].range_max_qp,  rp[7].range_max_qp,
 
-  * igt@i915_selftest@live@gt_engines:
-    - fi-kbl-7567u:       [DMESG-WARN][7] ([i915#11328]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/fi-kbl-7567u/igt@i915_selftest@live@gt_engines.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/fi-kbl-7567u/igt@i915_selftest@live@gt_engines.html
+-:96: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1541:
++			  rp[8].range_max_qp,  rp[9].range_max_qp,  rp[10].range_max_qp, rp[11].range_max_qp,
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [DMESG-FAIL][9] ([i915#9500]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+-:100: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#100: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1545:
++			  rp[0].range_bpg_offset,  rp[1].range_bpg_offset,  rp[2].range_bpg_offset,  rp[3].range_bpg_offset,
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:101: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
+#101: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1546:
++			  rp[4].range_bpg_offset,  rp[5].range_bpg_offset,  rp[6].range_bpg_offset,  rp[7].range_bpg_offset,
 
-  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
-  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
-  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#11030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11030
-  [i915#11031]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11031
-  [i915#11032]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11032
-  [i915#11328]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11328
-  [i915#11552]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11552
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
-  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+-:102: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#102: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1547:
++			  rp[8].range_bpg_offset,  rp[9].range_bpg_offset,  rp[10].range_bpg_offset, rp[11].range_bpg_offset,
 
+-:103: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/display/drm_dsc_helper.c:1548:
++			  rp[12].range_bpg_offset, rp[13].range_bpg_offset, rp[14].range_bpg_offset);
 
-Build changes
--------------
+total: 0 errors, 17 warnings, 0 checks, 115 lines checked
+a4b3091aaa7a drm/i915: Replace to_bpp_x16() with fxp_q4_from_int()
+607f96085bf4 drm/i915: Replace to_bpp_int() with fxp_q4_to_int()
+-:102: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#102: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2187:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (to_bpp_frac(bpp_x16) * 625)
 
-  * Linux: CI_DRM_15013 -> Patchwork_135657v1
+-:102: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'bpp_x16' - possible side-effects?
+#102: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2187:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (to_bpp_frac(bpp_x16) * 625)
 
-  CI-20190529: 20190529
-  CI_DRM_15013: 0318a12ff6fb8c321458aa2b373e9322896ee951 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7906: ae91ba26f657bf11264f64bd2dc21f471a5d18f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_135657v1: 0318a12ff6fb8c321458aa2b373e9322896ee951 @ git://anongit.freedesktop.org/gfx-ci/linux
+total: 1 errors, 0 warnings, 1 checks, 148 lines checked
+d0303e01c3eb drm/i915: Replace to_bpp_int_roundup() with fxp_q4_to_int_roundup()
+b66e5de12aa3 drm/i915: Replace to_bpp_frac() with fxp_q4_to_frac()
+-:28: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#28: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2182:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (fxp_q4_to_frac(bpp_x16) * 625)
 
-== Logs ==
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'bpp_x16' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:2182:
++#define BPP_X16_ARGS(bpp_x16)	fxp_q4_to_int(bpp_x16), (fxp_q4_to_frac(bpp_x16) * 625)
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/index.html
+total: 1 errors, 0 warnings, 1 checks, 38 lines checked
+fca5e0e41a28 drm/i915: Replace BPP_X16_FMT()/ARGS() with FXP_Q4_FMT()/ARGS()
+-:76: WARNING:MISSING_SPACE: break quoted strings at a space character
+#76: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2274:
+ 			    "Cannot compute valid DSC parameters for Input Bpp = %d"
++			    "Compressed BPP = " FXP_Q4_FMT "\n",
 
---===============5655555663188589459==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:98: WARNING:LONG_LINE: line length of 163 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2337:
++		    "[ENCODER:%d:%s][CRTC:%d:%s] DP link limits: pixel clock %d kHz DSC %s max lanes %d max rate %d max pipe_bpp %d max link_bpp " FXP_Q4_FMT "\n",
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/bmg: implement Wa_16023588340</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135657/">https://patchwork.freedesktop.org/series/135657/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 0 checks, 98 lines checked
+492bfa70f748 drm/i915: Dump DSC state to dmesg and debugfs/i915_display_info
+eebfdb38d7ee drm/i915: Remove DSC register dump
 
 
-    <h1>CI Bug Log - changes from CI_DRM_15013 -&gt; Patchwork_135657v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Additional (1): bat-twl-2 <br />
-  Missing    (3): bat-adln-1 fi-snb-2520m fi-elk-e7500 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_135657v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic@lmem0:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/bat-dg2-11/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@dp-edid-read:</p>
-<ul>
-<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11552">i915#11552</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/fi-kbl-7567u/igt@i915_selftest@live@gt_engines.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11328">i915#11328</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/fi-kbl-7567u/igt@i915_selftest@live@gt_engines.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15013/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135657v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15013 -&gt; Patchwork_135657v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15013: 0318a12ff6fb8c321458aa2b373e9322896ee951 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7906: ae91ba26f657bf11264f64bd2dc21f471a5d18f5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_135657v1: 0318a12ff6fb8c321458aa2b373e9322896ee951 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5655555663188589459==--
