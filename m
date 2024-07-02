@@ -2,76 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAFD926269
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jul 2024 15:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD1B92626B
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jul 2024 15:57:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8394910E87F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90BAB10E880;
 	Wed,  3 Jul 2024 13:57:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PGUwxlvs";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iqiM73dq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
- [209.85.166.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5491A10E712;
- Tue,  2 Jul 2024 21:59:40 +0000 (UTC)
-Received: by mail-io1-f50.google.com with SMTP id
- ca18e2360f4ac-7e21dfbc310so177462739f.1; 
- Tue, 02 Jul 2024 14:59:40 -0700 (PDT)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com
+ [209.85.217.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8286F10E6AB;
+ Tue,  2 Jul 2024 22:14:29 +0000 (UTC)
+Received: by mail-vs1-f53.google.com with SMTP id
+ ada2fe7eead31-48fdb1791b6so153768137.3; 
+ Tue, 02 Jul 2024 15:14:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1719957579; x=1720562379; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1719958468; x=1720563268; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ym+La6D/NLLhNjjl/GCbF3WdukVm3ek2K4bqw3UNhOo=;
- b=PGUwxlvsqq4047XSh3EK9Magb8Hsnbmen0wIhfsGeKlMk3THMKrEIj89Xj0BjkqdWj
- yCIiCeApLqj9aqQW/KqfyAmcROpD7+XSoXYH4SKQ8GyjBhRDWYDsppsnHQWHAlcVt1uY
- 1xlOMZMN+aEiR5BjsgFnZfYqO3VrbmK6uh7ge2k8f1NW7rNA3ZLX9tIEbarsEW6Go6zM
- ldJ++ZQjfqn76JI6FUUqC4lsGVgfpvhozIUBrAmzRD8HZ3G14SIRw22vr+fhd7d6qcJL
- 50hgnLxyNJZDihAawCOtIaQhkiRsHDZtd57ilgs4ypMG7goX3BOvj15CR+wt6iYOxg8Q
- uUSw==
+ bh=9sD8orU3RBfAf2hoz6apBJzmcU2qvSOHNCAhe0iXUBY=;
+ b=iqiM73dqlDSWn2me3sgqn8O31YhIEyCiJg9ZC0h1pkTeQhdLqvZBb98AqrqSU5H2un
+ 8NP+Xu4JfxeAPeCX1e0fnNMAPa1ThZtwsmdURs2VX4MyBVQooSAZoxWnJTPHD91j92GU
+ +MyQgnuRhAh8QAbaAQkJpSYKI0VFi3n2pkPrbBBA2M76Wz8GymFySFFUExAh0aE03l1n
+ UgnahQWQbieCpDYaJsaLRUeowvS0rQ+0g6bakv0Q0N3ZMVsYzx0Ox6vW776H8ZQzcKFo
+ 1roGM77dtVFDkO+ATXYLFY7q9OW29+aLm1X/DWWXMUH9dLIlUV6ZGBDl7pWgJx30Nxu6
+ Zvaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1719957579; x=1720562379;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1719958468; x=1720563268;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ym+La6D/NLLhNjjl/GCbF3WdukVm3ek2K4bqw3UNhOo=;
- b=h712AUCv0gm0CRRL3AOIv285hew5GsD/t2NHjFk0Es6CvNSEDK+OJ6Vb3K2rO+IjX0
- DBcf6wwa+zdFFXbDJmbZL5mW5d2Y19zVwiJj2JSmlpA+Okx8SI9/+NiNtvYvzRdZvcHN
- Dq0ke6X3cn98gbyCiv9TqQhVL3+tgtNXAWCOZOjjvpL9R96L2CPpLP3p8VXfjTSnKA3+
- PKNGHbI4DEGtTEbkgMVqWveTQ8/+1J7WcsW0ACO/1wlU84WLqH/TH+FwBvShrws/bRSA
- U0bL111MxQiFVQ4GZCjCHqgv7PHxwJQlR78F9o1PIwh8FQ+bzo3+GCuOIrrl/FU3sR7m
- o4Zw==
+ bh=9sD8orU3RBfAf2hoz6apBJzmcU2qvSOHNCAhe0iXUBY=;
+ b=ME1RqxijJOQK7LKqFHUOtSGUjl6N5fcgfZiem+AUQqfXS7P5yJbXOUbbGyW0E5ixlv
+ sS1lt3G1rfLeaSomgSxvfaftU2Tl2bjh40+4LVhSDZrKiQ5rj/cBFPQ6Wre9kSdtNxW7
+ Cj+ZhI5BXSwJf/lyp3Qm38LaI2Eb7enGPZMhfChps8E2E9buYIHKVEF2T+TRLOptOrWD
+ PEaA4c2V18xng8KItePVkV7/6EVy3PbGUEFPr5WEdcINXZjFZt7iDxulqr724nPBuBG4
+ Ah19QZ37+3i7rdN2E6d5tsAY3MoRgE5SUXljlX4qOqlXBYdoeaf5hRwYfEyiQwdHAOtz
+ 9dxg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXf/EIS3eBItu6udQg/C0bdlkeJaMd3ZTMxfzZJH9pkJkVC5lqgJzQpj/3AdSP52BZ17D5maFw0q57NO8ZMvyq8AjmUfcaXFYz5fXkz39fMG1y6kf4cYVX5OpkcXwvzPENHvBasfkC8rvrv12aimTOy77JAop6Gscs/l9LyN8IBRzrbxh7pbhLR1qB9p3ZHWQi+4u7Ye5XJMrZy6E5Ar8q8SJvawcKcdF2WL5r3xN9GTkRZYxw=
-X-Gm-Message-State: AOJu0Yxjtlb7woOlCr24wq3OKH5/biVjntGtsFnX+36SIee6Da6U3stv
- h+XKq8e6+4TrFzEU50VxX6zEoAqcZDS8JycKSrsfyKofP9SHgDNV
-X-Google-Smtp-Source: AGHT+IHIRUIlmI3WUW2mIpy7hm5XHgMqtIZ7QkWlOh59CvhPr4UBjQt+AtFMIBoct5NjwYy95AHiIg==
-X-Received: by 2002:a5e:d606:0:b0:7f6:1fcc:25c9 with SMTP id
- ca18e2360f4ac-7f62ee19639mr1076084139f.9.1719957579545; 
- Tue, 02 Jul 2024 14:59:39 -0700 (PDT)
-Received: from frodo.. (c-73-78-62-130.hsd1.co.comcast.net. [73.78.62.130])
- by smtp.googlemail.com with ESMTPSA id
- ca18e2360f4ac-7f61d207fcesm279944739f.51.2024.07.02.14.59.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 02 Jul 2024 14:59:38 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com,
- jani.nikula@intel.com, ville.syrjala@linux.intel.com, jbaron@akamai.com,
- gregkh@linuxfoundation.org, ukaszb@chromium.org
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk, joe@perches.com,
- mcgrof@kernel.org, Jim Cromie <jim.cromie@gmail.com>
-Subject: [PATCH v9 53/53] drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
-Date: Tue,  2 Jul 2024 15:58:04 -0600
-Message-ID: <20240702215804.2201271-75-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240702215804.2201271-1-jim.cromie@gmail.com>
-References: <20240702215804.2201271-1-jim.cromie@gmail.com>
+ AJvYcCU3ReOgviUESVnizOffRc2BvpH1QZgvCsroU8XKFCSTQL3iz4ggZyYxh2jc4RKI+FyRJd5DWSk/Z6waGm6MXZ1aXvrU/+rbjDQt8E4Q4VXZqij0VOUkZy5WjKKoiXWe+KToEq+xOfHVWGs6rf9tHIDo7BybVPgBdx0H9hTZ7uyqwTTqxJCRH4gKHhgMWHgXVq9WNKPP1B7u1pIZbdTZsSp6BJJ563gbg6uOhxQG41dCUIAcpzw=
+X-Gm-Message-State: AOJu0YyzSpLYR3Qn5XfA/jqVrWA0/MM3+L0xaMuCKejwlntodLZ08aoJ
+ M/rnJUYailSOCTg8Oa943HPuNzgQcBZLJgcmI5/nKwDr4VSvftP5XVwcDAQfBb2k3SmS3YdRV/E
+ gqpWH+Kc4vQ3e7/NPebVUv/XAEoM=
+X-Google-Smtp-Source: AGHT+IFXhbMOr7DzwzYNNyCsqRINNrgPdR0zpixK3ln2x5FkwZHpp8LDhrs2Je7fcFc10Y+XcQgRdrAqwBXhcj1xmd8=
+X-Received: by 2002:a67:cb16:0:b0:48f:a93b:502 with SMTP id
+ ada2fe7eead31-48faf133971mr11356498137.26.1719958468275; Tue, 02 Jul 2024
+ 15:14:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240702215804.2201271-1-jim.cromie@gmail.com>
+ <ZoR40nWmpEV2Ly_6@bombadil.infradead.org>
+In-Reply-To: <ZoR40nWmpEV2Ly_6@bombadil.infradead.org>
+From: jim.cromie@gmail.com
+Date: Tue, 2 Jul 2024 16:14:01 -0600
+Message-ID: <CAJfuBxyxamRhOyz8WuL+7=eJkEKSw8jnAWjyAuqU2i7gvg-rsQ@mail.gmail.com>
+Subject: Re: [PATCH v9 00/53] fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+To: Luis Chamberlain <mcgrof@kernel.org>
+Cc: daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, 
+ jani.nikula@intel.com, ville.syrjala@linux.intel.com, jbaron@akamai.com, 
+ gregkh@linuxfoundation.org, ukaszb@chromium.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ linux@rasmusvillemoes.dk, joe@perches.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 03 Jul 2024 13:57:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,29 +85,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-end of official submission.
+On Tue, Jul 2, 2024 at 4:01=E2=80=AFPM Luis Chamberlain <mcgrof@kernel.org>=
+ wrote:
+>
+> On Tue, Jul 02, 2024 at 03:56:50PM -0600, Jim Cromie wrote:
+> > This fixes dynamic-debug support for DRM.debug, added via classmaps.
+> > commit bb2ff6c27bc9 (drm: Disable dynamic debug as broken)
+> >
+> > CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy was marked broken because drm.debug=3D=
+val
+> > was applied when drm.ko was modprobed; too early for the yet-to-load
+> > drivers, which thus missed the enablement.  My testing with
+> > /etc/modprobe.d/ entries and modprobes with dyndbg=3D$querycmd options
+> > obscured this omission.
+> >
+> > The fix is to replace invocations of DECLARE_DYNDBG_CLASSMAP with
+> > DYNDBG_CLASSMAP_DEFINE for core, and DYNDBG_CLASSMAP_USE for drivers.
+> > The distinction allows dyndbg to also handle the users properly.
+> >
+> > DRM is the only current classmaps user, and is not really using it,
+> > so if you think DRM could benefit from zero-off-cost debugs based on
+> > static-keys, please test.
+> >
+> > HISTORY
+> >
+> > 9/4/22  - ee879be38bc8..ace7c4bbb240 commited - classmaps-v1 dyndbg par=
+ts
+> > 9/11/22 - 0406faf25fb1..16deeb8e18ca commited - classmaps-v1 drm parts
+> >
+> > https://lore.kernel.org/lkml/Y3XUrOGAV4I7bB3M@kroah.com/
+> > greg k-h says:
+> > This should go through the drm tree now.  The rest probably should also
+> > go that way and not through my tree as well.
+>
+> Can't this just be defined as a coccinelle smpl patch? Must easier
+> to read than 53 patches?
+>
 
-Time for some quality CI
+perhaps it could - Im not sure that would be easier to review
+than a file-scoped struct declaration or reference per driver
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/Kconfig | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Also, I did it hoping to solicit more Tested-by:s with drm.debug=3D0x1ff
 
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 5a0c476361c3..b2ea73ae48f0 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -54,8 +54,7 @@ config DRM_DEBUG_MM
- 
- config DRM_USE_DYNAMIC_DEBUG
- 	bool "use dynamic debug to implement drm.debug"
--	default n
--	depends on BROKEN
-+	default y
- 	depends on DRM
- 	depends on DYNAMIC_DEBUG || DYNAMIC_DEBUG_CORE
- 	depends on JUMP_LABEL
--- 
-2.45.2
+Jim
 
+>   Luis
+>
