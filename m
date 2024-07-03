@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1724D92601B
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jul 2024 14:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 265449260BB
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jul 2024 14:44:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5A4310E1F7;
-	Wed,  3 Jul 2024 12:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA12510E7DC;
+	Wed,  3 Jul 2024 12:44:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XqUKnEL+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hTkWOyK5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 537B410E1F7
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Jul 2024 12:20:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3BB910E7DB;
+ Wed,  3 Jul 2024 12:44:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720009223; x=1751545223;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Bsr8lCeU8BYbWyIBE38F4B3coVdSESHKPgjzhlXC/ig=;
- b=XqUKnEL+AbyTa+9dVkHUQBjMwRsXDXCgF/rfajaTQI+BXbmA9w44wGMW
- JObEBKkh3emqXlkXeRVix+iIUwzQpurqoPc3QhCDzeVlj0LiFjNORdpu4
- wglEq0CbnI7I40B5zbrdT86RRFN6WPS6IUtBFVJMW4ydTxje/EDGkzT7w
- WIyMQzRdDL7G3BjVGQRuwLT30wYxp8SOpSyzBbW3picgpCxFOw5Ujy92u
- 89NpXQ46YjUfzEGwrxoQsMc6TfIuGDLq6+YZrQmq/uOcvngDKb6eKBmhM
- fuhHBYDy+Q7oS9M8M2oJLeGhE9DnCMjZ0yt+KZz2wnAGJMpdzR9+6qLGh Q==;
-X-CSE-ConnectionGUID: +x+b8yKoTQuZR0VrvpHmoA==
-X-CSE-MsgGUID: Vx9dS+NCQLSFipUjwLzFjQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="17070508"
-X-IronPort-AV: E=Sophos;i="6.09,182,1716274800"; d="scan'208";a="17070508"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2024 05:20:23 -0700
-X-CSE-ConnectionGUID: DlIRR+9jTymgvE+EiQucGg==
-X-CSE-MsgGUID: NuqASVkUTHC189cjxxY1nA==
+ t=1720010651; x=1751546651;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MJRP98P6J7GW1Ur07TbIXCckg//1HDG6KXEigj4xaXg=;
+ b=hTkWOyK5O/JGDBjMMNhLPGPGaEZgfWrpFJJbVevIlfpg22J9PaWeEw5t
+ HAE7cPAayC2igDZjhIyUoFwav7WlUqgml1zzN6xLh4cJO0x21thYligbm
+ 3lwEAO+qORMv/EjK7ZWvh/pWDNI5YH/vMZC33TYDYAfED0xq6x5mL/xjs
+ pXwNHmTSxq2s2PBJInhwN7A83Wr1DonRpbuVAN6maW+dBSgilV/7x+Gy7
+ eA3gwpb+VjPgksyygvqyN1OUG1yvMjkI1vwMKe69CZgoyxAWcJc3376CE
+ SBM87iTuvzFmCh3qCnXJRrYaubnl+k+pTOPDJxlP/4UvoLcNEpzxyXxED A==;
+X-CSE-ConnectionGUID: te/IqM/kSZ6ktYzKGXuZ3g==
+X-CSE-MsgGUID: zatWqe0GQaK6b8M/ndL5/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="42664670"
+X-IronPort-AV: E=Sophos;i="6.09,182,1716274800"; d="scan'208";a="42664670"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2024 05:44:11 -0700
+X-CSE-ConnectionGUID: Gv/Bgst4TKSwn1qnMwdp5A==
+X-CSE-MsgGUID: 2Rd1XrU5SrmISKy1ej3fUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,182,1716274800"; d="scan'208";a="46213571"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Jul 2024 05:20:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 03 Jul 2024 15:20:19 +0300
-Date: Wed, 3 Jul 2024 15:20:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 10/14] drm/i915/dsb: Introduce intel_dsb_chain()
-Message-ID: <ZoVCAxHLvC_D9N1M@intel.com>
-References: <20240624191032.27333-1-ville.syrjala@linux.intel.com>
- <20240624191032.27333-11-ville.syrjala@linux.intel.com>
- <PH7PR11MB59816D24912D1E83CC8B4CF6F9DD2@PH7PR11MB5981.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.09,182,1716274800"; d="scan'208";a="50683991"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.224])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2024 05:44:08 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Subject: [CI 1/2] drm/xe/bmg: implement Wa_16023588340
+Date: Wed,  3 Jul 2024 13:43:38 +0100
+Message-ID: <20240703124338.208220-3-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PH7PR11MB59816D24912D1E83CC8B4CF6F9DD2@PH7PR11MB5981.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,121 +70,346 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 03, 2024 at 12:10:38PM +0000, Manna, Animesh wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Tuesday, June 25, 2024 12:40 AM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 10/14] drm/i915/dsb: Introduce intel_dsb_chain()
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > In order to handle the DEwake tricks without involving the CPU we need a
-> > mechanism by which one DSB can start another one. Add a basic function to
-> > do so. We'll extend it later with additional code to actually deal with DEwake.
-> 
-> Is chained DSB concept restricting to only 2 DSB instance or can be extended to available/max DSB instances? 
-> 
-> Are we exposing full chain of DSB to user or can be restrict to primary DSB which will control other instances?
+This involves enabling l2 caching of host side memory access to VRAM
+through the CPU BAR. The main fallout here is with display since VRAM
+writes from CPU can now be cached in GPU l2, and display is never
+coherent with caches, so needs various manual flushing.  In the case of
+fbc we disable it due to complications in getting this to work
+correctly (in a later patch).
 
-You can start any DSB from any other DSB.
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile                |  2 +
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c |  8 ++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 ++
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h       |  8 ++++
+ drivers/gpu/drm/xe/xe_device.c             | 30 ++++++++++++
+ drivers/gpu/drm/xe/xe_device.h             |  1 +
+ drivers/gpu/drm/xe/xe_gt.c                 | 54 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pat.c                | 11 ++++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules         |  1 +
+ 9 files changed, 117 insertions(+), 1 deletion(-)
 
-> > 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dsb.c | 42 ++++++++++++++++++++++++
-> > drivers/gpu/drm/i915/display/intel_dsb.h |  3 ++
-> >  2 files changed, 45 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > index 092cf082ac39..4c0519c41f16 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > @@ -502,6 +502,48 @@ static u32 dsb_error_int_en(struct intel_display
-> > *display)
-> >  	return errors;
-> >  }
-> > 
-> > +static void _intel_dsb_chain(struct intel_atomic_state *state,
-> > +			     struct intel_dsb *dsb,
-> > +			     struct intel_dsb *chained_dsb,
-> > +			     u32 ctrl)
-> 
-> I do not see any usage of ctrl variable in this patch, maybe good to add wherever will be using it.
-
-It's in the next patch.
-
-> 
-> Regards,
-> Animesh
-> > +{
-> > +	struct intel_display *display = to_intel_display(state->base.dev);
-> > +	struct intel_crtc *crtc = dsb->crtc;
-> > +	enum pipe pipe = crtc->pipe;
-> > +	u32 tail;
-> > +
-> > +	if (drm_WARN_ON(display->drm, dsb->id == chained_dsb->id))
-> > +		return;
-> > +
-> > +	tail = chained_dsb->free_pos * 4;
-> > +	if (drm_WARN_ON(display->drm, !IS_ALIGNED(tail,
-> > CACHELINE_BYTES)))
-> > +		return;
-> > +
-> > +	intel_dsb_reg_write(dsb, DSB_CTRL(pipe, chained_dsb->id),
-> > +			    ctrl | DSB_ENABLE);
-> > +
-> > +	intel_dsb_reg_write(dsb, DSB_CHICKEN(pipe, chained_dsb->id),
-> > +			    dsb_chicken(state, crtc));
-> > +
-> > +	intel_dsb_reg_write(dsb, DSB_INTERRUPT(pipe, chained_dsb->id),
-> > +			    dsb_error_int_status(display) |
-> > DSB_PROG_INT_STATUS |
-> > +			    dsb_error_int_en(display));
-> > +
-> > +	intel_dsb_reg_write(dsb, DSB_HEAD(pipe, chained_dsb->id),
-> > +			    intel_dsb_buffer_ggtt_offset(&chained_dsb-
-> > >dsb_buf));
-> > +
-> > +	intel_dsb_reg_write(dsb, DSB_TAIL(pipe, chained_dsb->id),
-> > +			    intel_dsb_buffer_ggtt_offset(&chained_dsb-
-> > >dsb_buf) + tail); }
-> > +
-> > +void intel_dsb_chain(struct intel_atomic_state *state,
-> > +		     struct intel_dsb *dsb,
-> > +		     struct intel_dsb *chained_dsb)
-> > +{
-> > +	_intel_dsb_chain(state, dsb, chained_dsb,
-> > +			 0);
-> > +}
-> > +
-> >  static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
-> >  			      int hw_dewake_scanline)
-> >  {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h
-> > b/drivers/gpu/drm/i915/display/intel_dsb.h
-> > index d0737cefb393..e59fd7da0fc0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dsb.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-> > @@ -45,6 +45,9 @@ void intel_dsb_wait_scanline_in(struct
-> > intel_atomic_state *state,  void intel_dsb_wait_scanline_out(struct
-> > intel_atomic_state *state,
-> >  				 struct intel_dsb *dsb,
-> >  				 int lower, int upper);
-> > +void intel_dsb_chain(struct intel_atomic_state *state,
-> > +		     struct intel_dsb *dsb,
-> > +		     struct intel_dsb *chained_dsb);
-> > 
-> >  void intel_dsb_commit(struct intel_dsb *dsb,
-> >  		      bool wait_for_vblank);
-> > --
-> > 2.44.2
-> 
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index b1e03bfe4a68..970c5c09e20a 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -25,12 +25,14 @@ $(obj)/generated/%_wa_oob.c $(obj)/generated/%_wa_oob.h: $(obj)/xe_gen_wa_oob \
+ 
+ uses_generated_oob := \
+ 	$(obj)/xe_ggtt.o \
++	$(obj)/xe_device.o \
+ 	$(obj)/xe_gsc.o \
+ 	$(obj)/xe_gt.o \
+ 	$(obj)/xe_guc.o \
+ 	$(obj)/xe_guc_ads.o \
+ 	$(obj)/xe_guc_pc.o \
+ 	$(obj)/xe_migrate.o \
++	$(obj)/xe_pat.o \
+ 	$(obj)/xe_ring_ops.o \
+ 	$(obj)/xe_vm.o \
+ 	$(obj)/xe_wa.o \
+diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+index 9e860c61f4b3..ccd0d87d438a 100644
+--- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
++++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+@@ -7,6 +7,8 @@
+ #include "intel_display_types.h"
+ #include "intel_dsb_buffer.h"
+ #include "xe_bo.h"
++#include "xe_device.h"
++#include "xe_device_types.h"
+ #include "xe_gt.h"
+ 
+ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
+@@ -16,7 +18,10 @@ u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
+ 
+ void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
+ {
++	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
++
+ 	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
++	xe_device_l2_flush(xe);
+ }
+ 
+ u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
+@@ -26,9 +31,12 @@ u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
+ 
+ void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
+ {
++	struct xe_device *xe = dsb_buf->vma->bo->tile->xe;
++
+ 	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
+ 
+ 	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
++	xe_device_l2_flush(xe);
+ }
+ 
+ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *dsb_buf, size_t size)
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 423f367c7065..d7db44e79eaf 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -10,6 +10,7 @@
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+ #include "xe_bo.h"
++#include "xe_device.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_pm.h"
+@@ -304,6 +305,8 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err_unpin;
+ 
++	/* Ensure DPT writes are flushed */
++	xe_device_l2_flush(xe);
+ 	return vma;
+ 
+ err_unpin:
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index d44564bad009..fd9d94174efb 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -80,6 +80,9 @@
+ #define   LE_CACHEABILITY_MASK			REG_GENMASK(1, 0)
+ #define   LE_CACHEABILITY(value)		REG_FIELD_PREP(LE_CACHEABILITY_MASK, value)
+ 
++#define XE2_GAMREQSTRM_CTRL			XE_REG(0x4194)
++#define   CG_DIS_CNTLBUS			REG_BIT(6)
++
+ #define CCS_AUX_INV				XE_REG(0x4208)
+ 
+ #define VD0_AUX_INV				XE_REG(0x4218)
+@@ -372,6 +375,11 @@
+ 
+ #define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
+ 
++#define XE2_GLOBAL_INVAL			XE_REG(0xb404)
++
++#define SCRATCH1LPFC				XE_REG(0xb474)
++#define   EN_L3_RW_CCS_CACHE_FLUSH		REG_BIT(0)
++
+ #define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
+ 
+ #define XE2_TDF_CTRL				XE_REG(0xb418)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index cfda7cb5df2c..b0f79ef6bce1 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -54,6 +54,9 @@
+ #include "xe_vm.h"
+ #include "xe_vram.h"
+ #include "xe_wait_user_fence.h"
++#include "xe_wa.h"
++
++#include <generated/xe_wa_oob.h>
+ 
+ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ {
+@@ -779,6 +782,11 @@ void xe_device_td_flush(struct xe_device *xe)
+ 	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
+ 		return;
+ 
++	if (XE_WA(xe_root_mmio_gt(xe), 16023588340)) {
++		xe_device_l2_flush(xe);
++		return;
++	}
++
+ 	for_each_gt(gt, xe, id) {
+ 		if (xe_gt_is_media_type(gt))
+ 			continue;
+@@ -802,6 +810,28 @@ void xe_device_td_flush(struct xe_device *xe)
+ 	}
+ }
+ 
++void xe_device_l2_flush(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	int err;
++
++	gt = xe_root_mmio_gt(xe);
++
++	if (!XE_WA(gt, 16023588340))
++		return;
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (err)
++		return;
++
++	xe_mmio_write32(gt, XE2_GLOBAL_INVAL, 0x1);
++
++	if (xe_mmio_wait32(gt, XE2_GLOBAL_INVAL, 0x1, 0x0, 150, NULL, true))
++		xe_gt_err_once(gt, "Global invalidation timeout\n");
++
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++}
++
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ {
+ 	return xe_device_has_flat_ccs(xe) ?
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index bb07f5669dbb..0a2a3e7fd402 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -162,6 +162,7 @@ u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
+ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
+ 
+ void xe_device_td_flush(struct xe_device *xe);
++void xe_device_l2_flush(struct xe_device *xe);
+ 
+ static inline bool xe_device_wedged(struct xe_device *xe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 0ba2e2d0289b..ce8994b808fe 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -11,6 +11,8 @@
+ #include <drm/xe_drm.h>
+ #include <generated/xe_wa_oob.h>
+ 
++#include <generated/xe_wa_oob.h>
++
+ #include "instructions/xe_gfxpipe_commands.h"
+ #include "instructions/xe_mi_commands.h"
+ #include "regs/xe_gt_regs.h"
+@@ -95,6 +97,51 @@ void xe_gt_sanitize(struct xe_gt *gt)
+ 	gt->uc.guc.submission_state.enabled = false;
+ }
+ 
++static void xe_gt_enable_host_l2_vram(struct xe_gt *gt)
++{
++	u32 reg;
++	int err;
++
++	if (!XE_WA(gt, 16023588340))
++		return;
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (WARN_ON(err))
++		return;
++
++	if (!xe_gt_is_media_type(gt)) {
++		xe_mmio_write32(gt, SCRATCH1LPFC, EN_L3_RW_CCS_CACHE_FLUSH);
++		reg = xe_mmio_read32(gt, XE2_GAMREQSTRM_CTRL);
++		reg |= CG_DIS_CNTLBUS;
++		xe_mmio_write32(gt, XE2_GAMREQSTRM_CTRL, reg);
++	}
++
++	xe_gt_mcr_multicast_write(gt, XEHPC_L3CLOS_MASK(3), 0x3);
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++}
++
++static void xe_gt_disable_host_l2_vram(struct xe_gt *gt)
++{
++	u32 reg;
++	int err;
++
++	if (!XE_WA(gt, 16023588340))
++		return;
++
++	if (xe_gt_is_media_type(gt))
++		return;
++
++	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	if (WARN_ON(err))
++		return;
++
++	reg = xe_mmio_read32(gt, XE2_GAMREQSTRM_CTRL);
++	reg &= ~CG_DIS_CNTLBUS;
++	xe_mmio_write32(gt, XE2_GAMREQSTRM_CTRL, reg);
++
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++}
++
+ /**
+  * xe_gt_remove() - Clean up the GT structures before driver removal
+  * @gt: the GT object
+@@ -111,6 +158,8 @@ void xe_gt_remove(struct xe_gt *gt)
+ 
+ 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+ 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
++
++	xe_gt_disable_host_l2_vram(gt);
+ }
+ 
+ static void gt_reset_worker(struct work_struct *w);
+@@ -508,6 +557,7 @@ int xe_gt_init_hwconfig(struct xe_gt *gt)
+ 
+ 	xe_gt_mcr_init_early(gt);
+ 	xe_pat_init(gt);
++	xe_gt_enable_host_l2_vram(gt);
+ 
+ 	err = xe_uc_init(&gt->uc);
+ 	if (err)
+@@ -643,6 +693,8 @@ static int do_gt_restart(struct xe_gt *gt)
+ 
+ 	xe_pat_init(gt);
+ 
++	xe_gt_enable_host_l2_vram(gt);
++
+ 	xe_gt_mcr_set_implicit_defaults(gt);
+ 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
+ 
+@@ -796,6 +848,8 @@ int xe_gt_suspend(struct xe_gt *gt)
+ 
+ 	xe_gt_idle_disable_pg(gt);
+ 
++	xe_gt_disable_host_l2_vram(gt);
++
+ 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+ 	xe_gt_dbg(gt, "suspended\n");
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 4ee32ee1cc88..722278cc23fc 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -7,6 +7,8 @@
+ 
+ #include <drm/xe_drm.h>
+ 
++#include <generated/xe_wa_oob.h>
++
+ #include "regs/xe_reg_defs.h"
+ #include "xe_assert.h"
+ #include "xe_device.h"
+@@ -15,6 +17,7 @@
+ #include "xe_gt_mcr.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_wa.h"
+ 
+ #define _PAT_ATS				0x47fc
+ #define _PAT_INDEX(index)			_PICK_EVEN_2RANGES(index, 8, \
+@@ -382,7 +385,13 @@ void xe_pat_init_early(struct xe_device *xe)
+ 	if (GRAPHICS_VER(xe) == 20) {
+ 		xe->pat.ops = &xe2_pat_ops;
+ 		xe->pat.table = xe2_pat_table;
+-		xe->pat.n_entries = ARRAY_SIZE(xe2_pat_table);
++
++		/* Wa_16023588340. XXX: Should use XE_WA */
++		if (GRAPHICS_VERx100(xe) == 2001)
++			xe->pat.n_entries = 28; /* Disable CLOS3 */
++		else
++			xe->pat.n_entries = ARRAY_SIZE(xe2_pat_table);
++
+ 		xe->pat.idx[XE_CACHE_NONE] = 3;
+ 		xe->pat.idx[XE_CACHE_WT] = 15;
+ 		xe->pat.idx[XE_CACHE_WB] = 2;
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 26066beb4f6f..08f7336881e3 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -29,3 +29,4 @@
+ 13011645652	GRAPHICS_VERSION(2004)
+ 22019338487	MEDIA_VERSION(2000)
+ 		GRAPHICS_VERSION(2001)
++16023588340	GRAPHICS_VERSION(2001)
 -- 
-Ville Syrjälä
-Intel
+2.45.2
+
