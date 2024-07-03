@@ -2,67 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D7D924C1E
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jul 2024 01:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E10924DEC
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Jul 2024 04:40:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83BF210E2AA;
-	Tue,  2 Jul 2024 23:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF3CB10E53F;
+	Wed,  3 Jul 2024 02:40:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bqdwRuld";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="dNzz6FLA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36D7310E08E;
- Tue,  2 Jul 2024 23:33:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1719963191; x=1751499191;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yzH45tjsH2DZUqSlBKr2pzDg/aEQ+EnDG+CHzo/H0lA=;
- b=bqdwRuldn8lP/r4VbPDQhWaTAvelFNgmFA017mCQ9+heY5ET4ZGFhnSO
- VgZ/BMh+3v3VIyT2lFlHQmO4SOYUZEUNz/bsiFtXv0t/g3EyrrGlM5N2u
- fPelH9Hjg8SgsAS40jA2X9vbFtJz9EJOLaAFs6mITQ+3pwX2XG4w63YV3
- W4LeTlL9NcZwPSjNv4XzkOjOzzUin8Ez5aleU483iyIPLAVWiAMDAMJLw
- 4u1rECvZErjXoKtebtkm1UdK4FSkpSTJ63Rrhr7sTVq77wsuHCooXJbvH
- XwyKWJqIl4H/foEQZepu0NVExI/u6DTzLJILXI6rTDYeOoIKrHe0j+d02 w==;
-X-CSE-ConnectionGUID: nOi6DQbuSYa9P4cl91nN7w==
-X-CSE-MsgGUID: rmzlec3wTmiEWhqkJOlUbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11121"; a="28560118"
-X-IronPort-AV: E=Sophos;i="6.09,180,1716274800"; d="scan'208";a="28560118"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2024 16:33:10 -0700
-X-CSE-ConnectionGUID: wlmUeZSkQiKsUdeM5/hFnA==
-X-CSE-MsgGUID: mtMT8fVyREWBfB1jcOhZ8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,180,1716274800"; d="scan'208";a="46044198"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 02 Jul 2024 16:33:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 03 Jul 2024 02:33:04 +0300
-Date: Wed, 3 Jul 2024 02:33:04 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jim Cromie <jim.cromie@gmail.com>
-Cc: daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com,
- jani.nikula@intel.com, jbaron@akamai.com,
- gregkh@linuxfoundation.org, ukaszb@chromium.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk,
- joe@perches.com, mcgrof@kernel.org
-Subject: Re: [PATCH v9 30/52] drm-dyndbg: adapt drm core to use dyndbg
- classmaps-v2
-Message-ID: <ZoSOMClB0MeWeokU@intel.com>
-References: <20240702215804.2201271-1-jim.cromie@gmail.com>
- <20240702215804.2201271-31-jim.cromie@gmail.com>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83F9110E53F;
+ Wed,  3 Jul 2024 02:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1719974404;
+ bh=/EDCIQAEg/p+MMLYNbszg680nHn24gcRpI+TzuKcU9U=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=dNzz6FLALGPfiBBeUd9mFzjTACHs3c7VtDmmOlzIbDb9ExivdmeboVLwjOCuGmFlX
+ 8JHOe65oS15FjvwbiJsxRawcevEG1qyMNiWHu4rhUkAdKXKI4ccsz71CKZtgOYqjiJ
+ x6yi5mPfvQsy2k5QW7Vr9IalFMl+gdRn5ac+DocdUnKsr/o1OHQXH3WxPnEo8RQYz5
+ tiUcrHAfKmwHbYAC244CfiR60uCmb5gIos3dJDc8X/w58S2UzWg75hlT2QE2gJcaIv
+ aLhoMoSV1rBx1dux0GkzFonVX8vjXHx2xbFOEgvCSMy/ak5/u103SLEmQ9tRgH63pv
+ yA+tiaObozFpw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4WDPBq6FBXz4wcJ;
+ Wed,  3 Jul 2024 12:40:03 +1000 (AEST)
+Date: Wed, 3 Jul 2024 12:40:03 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: DRI <dri-devel@lists.freedesktop.org>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>
+Subject: Re: Comments in Fixes: line (Was: Re: linux-next: Fixes tag needs
+ some work in the drm-intel tree)
+Message-ID: <20240703123930.13edbfa5@canb.auug.org.au>
+In-Reply-To: <155844385673.15761.3434506339174536733@jlahtine-desk.ger.corp.intel.com>
+References: <20190520221526.0e103916@canb.auug.org.au>
+ <155844385673.15761.3434506339174536733@jlahtine-desk.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240702215804.2201271-31-jim.cromie@gmail.com>
-X-Patchwork-Hint: comment
+Content-Type: multipart/signed; boundary="Sig_/iW/ag6FLZSTW2BV7u.6x/zr";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,60 +64,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 02, 2024 at 03:57:20PM -0600, Jim Cromie wrote:
-> dyndbg's CLASSMAP-v1 api was broken; DECLARE_DYNDBG_CLASSMAP tried to
-> do too much.  Its replaced by DRM_CLASSMAP_DEFINE, which creates &
-> EXPORTs the classmap when CONFIG_DRM_USE_DYNAMIC_DEBUG=y, for direct
-> reference by drivers.
-> 
-> The drivers still use DECLARE_DYNDBG_CLASSMAP for now, so they still
-> redundantly re-declare the classmap, but we can convert the drivers
-> later to DYNDBG_CLASSMAP_USE
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> ---
->  drivers/gpu/drm/drm_print.c | 25 +++++++++++++------------
->  include/drm/drm_print.h     |  8 ++++++++
->  2 files changed, 21 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-> index 699b7dbffd7b..4a5f2317229b 100644
-> --- a/drivers/gpu/drm/drm_print.c
-> +++ b/drivers/gpu/drm/drm_print.c
-> @@ -55,18 +55,19 @@ MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug cat
->  #if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
->  module_param_named(debug, __drm_debug, ulong, 0600);
->  #else
-> -/* classnames must match vals of enum drm_debug_category */
-> -DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS, 0,
-> -			"DRM_UT_CORE",
-> -			"DRM_UT_DRIVER",
-> -			"DRM_UT_KMS",
-> -			"DRM_UT_PRIME",
-> -			"DRM_UT_ATOMIC",
-> -			"DRM_UT_VBL",
-> -			"DRM_UT_STATE",
-> -			"DRM_UT_LEASE",
-> -			"DRM_UT_DP",
-> -			"DRM_UT_DRMRES");
-> +/* classnames must match value-symbols of enum drm_debug_category */
-> +DRM_CLASSMAP_DEFINE(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS,
-> +		    DRM_UT_CORE,
-> +		    "DRM_UT_CORE",
-> +		    "DRM_UT_DRIVER",
-> +		    "DRM_UT_KMS",
-> +		    "DRM_UT_PRIME",
-> +		    "DRM_UT_ATOMIC",
-> +		    "DRM_UT_VBL",
-> +		    "DRM_UT_STATE",
-> +		    "DRM_UT_LEASE",
-> +		    "DRM_UT_DP",
-> +		    "DRM_UT_DRMRES");
+--Sig_/iW/ag6FLZSTW2BV7u.6x/zr
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Looks like this stuff just ends up in an array, so presumably
-it should be possible to use designated initializers to make this
-less fragile?
+Hi Joonas,
 
--- 
-Ville Syrjälä
-Intel
+On Tue, 21 May 2019 16:04:16 +0300 Joonas Lahtinen <joonas.lahtinen@linux.i=
+ntel.com> wrote:
+>
+> We also have an incoming patch where the Fixes: line has a comment in
+> it. Does your tooling account for this when checking the Fixes: line?
+
+No, but I will ignore it manually.  The tooling just produces suggested
+notifications - I don't send them all.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/iW/ag6FLZSTW2BV7u.6x/zr
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmaEugMACgkQAVBC80lX
+0Gz4Jgf/UF7YP6SfzyE5+288tj6hS1FY8cZ48ltYoAR9PRxR4qY3m/+2f45akRCU
+F4TmPbvvLVtB0XolGcP6OL7DyPoPp2KXG5yu5DUugxm/jLdZNqKJDM8F65oSc9Cg
+jQdEy+CtBjJOXgSaX2sMP1ITeLa3CIUexX/McpAsRJTJODDEnAkzrDS+wNYGGU5+
+FrF/gwBHi3Nx+ncrAmIh2KLXUS6Jtt2PWVbzbgvrBgbRzsZ0idj5jeC8P2Lcco6J
+ftFxLt7sS2x9wFKTW+L++60F2XJFfdsYYqnTd5280gSrX6RvhihxKD3ShPkb9rW1
+XVorTzC+YUyPO7ImMsStLKC9vsEh0A==
+=vsZB
+-----END PGP SIGNATURE-----
+
+--Sig_/iW/ag6FLZSTW2BV7u.6x/zr--
