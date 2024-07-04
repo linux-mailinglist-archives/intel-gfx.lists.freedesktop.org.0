@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A6B927802
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jul 2024 16:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFAA892791D
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Jul 2024 16:46:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBF2110EB12;
-	Thu,  4 Jul 2024 14:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227A610EB3A;
+	Thu,  4 Jul 2024 14:46:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="EYF4sDUz";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="hetwEk8x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 407BC10EB12
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jul 2024 14:14:59 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-4264c77037cso495455e9.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jul 2024 07:14:59 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B66C10EB3B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jul 2024 14:46:05 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-4264c77037cso535015e9.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 Jul 2024 07:46:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1720102497; x=1720707297; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1720104363; x=1720709163; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=KV8f3urbnL0W4JHhOO4E6PQhgD0QQN8jjx7QzVJNgoc=;
- b=EYF4sDUzSH14CBvn+L0glSRa8pemex+MU9YKaEHqpcT2Gvl42egysvLG7v7X+eTApV
- IXG7JrxdIXb7YQVltJ1vC0JuV66W6lQdNLCivIldi1S8H9lfCMjWlHxk8oUWWs/dROp4
- EXr7OC8bROi9y/Y9kPlh5Dh25+t6wWg014QJ4=
+ bh=wCYmlGQa8y4SoHJ7HcU4A9E7topob9weKZ3eCRaYec0=;
+ b=hetwEk8xmF964Zu3HwwtNF4vIs8O3/6qnNW2rAA06vX+bIARRmtStA8PgwAFNAt4F3
+ Yq90q9lqXXxeTCPWf5axknrLAbd8YrVJjEdMF4GPKKc/xClIH/7KPKsXBVOLjDc5REYH
+ aMcPdjfiY7vMS8rjsHkP1vajir11gaYgt6nIY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720102497; x=1720707297;
+ d=1e100.net; s=20230601; t=1720104363; x=1720709163;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=KV8f3urbnL0W4JHhOO4E6PQhgD0QQN8jjx7QzVJNgoc=;
- b=Y/nDRwNoE+D6xax/cGmpW04UNC6Vq+3xOBzXG5wgc2Goaj1WqnpkEWBqxHRzcBFJlW
- Wx7oNqO7DElMebl8NaAe+HerC2DGX7319+6brjUZMGflk+tZOZFCLzisb1W9zm9E6zN8
- tHvIJ0+EHpDYsEesfMVxqUYzDeD70Nw7UkIYSgarPBGyX9UVslxS/dKlnuTsBkOajtGC
- 3rwOqVKP6UAiOrn2yaQFRgfPLpsCUMZdYXHrI5Eo2oQ4DPxLUky11VjeChao2GQmqXsk
- uc4RCIhuwk1bLSwOfP81rQvkYLNDvLivssWOMSzuwg6AHkC2m8TqmJ87d5iTXfZ41815
- 3ymw==
+ bh=wCYmlGQa8y4SoHJ7HcU4A9E7topob9weKZ3eCRaYec0=;
+ b=HvcgiRJcIpq7HNA3G2VLpsCZJqQpEO+DgomJbR6UZIcHI3WaI1aAwBfH7QvF/0qQv9
+ x6qG+7vxCu03c1edpgIzMB2VQhx6ZvpclMeb7ZNqH+IBqAd61Go7pPxfMLj8piOWeaEG
+ EP+PlCN/eqS6sAwXN1JPT2qgA7alADYn6BpzZo2wZddQQcspRsrQ75Ia00a7vJcSmvJu
+ ZIlQeHbHwKpxTJzEW90rSM3/Jz0au6WYvEA7yIwvRhPO1PN5wt+9NNaQkkYy3Lhi0y80
+ NE67deY5i8SwULCIjwTBNE7sBEPNU+xzxWw1nl8PWSKccCuaZTFk/8QuAHA6M7a8UT3n
+ RTdg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWM+X0j+3Js0lLi6AWoEjPT+FI3dbrJdxWy9qLJNOv5NgpstD/wThVCiWCqGx1k4L1uwCgs3pcummuMpOR0YFBWQEhE29e97Gz/XAF/aDgP
-X-Gm-Message-State: AOJu0YyzcIsCAxpWr9BriWAvEi8ra3M2wvxeMPgXakvamHewiMpf52Ne
- cjiYl30p9VJaI/lgF+j9ChMI8eUNlQlrD9EDHBFEbW4gVE+ukiaCJbICAeY8gUo=
-X-Google-Smtp-Source: AGHT+IFeddE33psL+jiUnEoUFuSjjSFh34e7tWolDnotER37qRWufnHgTc8gmzxdvhHF0k73zVwD1w==
+ AJvYcCUunbXkovtB5Fl4mcW7OS4zyULCVCkgcKibYcYCryi/80fdyMZ/iuZsfNWa2HGpcHbhCFBeGM87S6hneoCxfyY6xnxn14f81vzxSS2JfNUa
+X-Gm-Message-State: AOJu0YxuoQWGqRbvNMH85ygbSUFnS1XbmoC9MlisKQADbNIiEl/pO80z
+ p+C1QU2wS9heUD9c9ED/eHN9Ham11k0wHeznEu3tdySCwlnZd0R3aj7HxeIH30s=
+X-Google-Smtp-Source: AGHT+IGCpONx1dysU29lSGvTPjkrn3zVgFGWLpCN1rconKEXwes7yA2BLuxynXO81Zdb3ug8YNli9w==
 X-Received: by 2002:a05:600c:35d4:b0:426:4920:2846 with SMTP id
- 5b1f17b1804b1-4264a46b0bbmr13426085e9.3.1720102497539; 
- Thu, 04 Jul 2024 07:14:57 -0700 (PDT)
+ 5b1f17b1804b1-4264a46b0bbmr14016985e9.3.1720104363510; 
+ Thu, 04 Jul 2024 07:46:03 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4264aa07a95sm24251965e9.1.2024.07.04.07.14.56
+ 5b1f17b1804b1-4264a1d6677sm27116215e9.17.2024.07.04.07.46.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Jul 2024 07:14:57 -0700 (PDT)
-Date: Thu, 4 Jul 2024 16:14:55 +0200
+ Thu, 04 Jul 2024 07:46:03 -0700 (PDT)
+Date: Thu, 4 Jul 2024 16:46:00 +0200
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
+To: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
 Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -63,18 +63,16 @@ Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-intel-fixes
-Message-ID: <ZoauX9XzpUDpklFu@phenom.ffwll.local>
-References: <87frss9ozs.fsf@intel.com>
+Subject: Re: [PULL] drm-xe-fixes
+Message-ID: <Zoa1qA2h_T5iGsTq@phenom.ffwll.local>
+References: <ZoZ-wD66lgjiNh72@fedora>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87frss9ozs.fsf@intel.com>
+In-Reply-To: <ZoZ-wD66lgjiNh72@fedora>
 X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,18 +89,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 02, 2024 at 11:28:39AM +0300, Jani Nikula wrote:
+On Thu, Jul 04, 2024 at 12:51:44PM +0200, Thomas Hellstrom wrote:
+> Hi Dave and Sima
 > 
-> Hi Dave & Sima -
+> Two small fixes this week.
 > 
-> One early fix this week.
+> Thanks,
+> Thomas
 > 
-> drm-intel-fixes-2024-07-02:
-> drm/i915 fixes for v6.10-rc7:
-> - Skip unnecessary MG programming, avoiding warnings (Imre)
-> 
-> BR,
-> Jani.
+> drm-xe-fixes-2024-07-04:
+> Driver Changes:
+> - One copy/paste mistake fix.
+> - One error path fix causing an error pointer dereference.
 > 
 > The following changes since commit 22a40d14b572deb80c0648557f4bd502d7e83826:
 > 
@@ -110,29 +108,31 @@ On Tue, Jul 02, 2024 at 11:28:39AM +0300, Jani Nikula wrote:
 > 
 > are available in the Git repository at:
 > 
->   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-07-02
+>   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-07-04
 > 
-> for you to fetch changes up to f72383371e8c5d1d108532d7e395ff2c277233e5:
+> for you to fetch changes up to 1f006470284598060ca1307355352934400b37ca:
 > 
->   drm/i915/display: For MTL+ platforms skip mg dp programming (2024-07-01 10:36:12 +0300)
+>   drm/xe/mcr: Avoid clobbering DSS steering (2024-07-04 10:36:30 +0200)
 
 Pulled, thanks.
 -Sima
 
 > 
 > ----------------------------------------------------------------
-> drm/i915 fixes for v6.10-rc7:
-> - Skip unnecessary MG programming, avoiding warnings (Imre)
+> Driver Changes:
+> - One copy/paste mistake fix.
+> - One error path fix causing an error pointer dereference.
 > 
 > ----------------------------------------------------------------
-> Imre Deak (1):
->       drm/i915/display: For MTL+ platforms skip mg dp programming
+> Matt Roper (1):
+>       drm/xe/mcr: Avoid clobbering DSS steering
 > 
->  drivers/gpu/drm/i915/display/intel_ddi.c | 3 +++
->  1 file changed, 3 insertions(+)
+> Matthew Auld (1):
+>       drm/xe: fix error handling in xe_migrate_update_pgtables
 > 
-> -- 
-> Jani Nikula, Intel
+>  drivers/gpu/drm/xe/xe_gt_mcr.c  | 6 +++---
+>  drivers/gpu/drm/xe/xe_migrate.c | 8 ++++----
+>  2 files changed, 7 insertions(+), 7 deletions(-)
 
 -- 
 Daniel Vetter
