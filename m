@@ -2,63 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10127928ACC
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 16:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F34928AE6
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 16:53:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A52A589DA9;
-	Fri,  5 Jul 2024 14:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFFE10E042;
+	Fri,  5 Jul 2024 14:52:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPhzbU/6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D4QJTGqh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABE7289DA9
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2024 14:35:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E941910E042;
+ Fri,  5 Jul 2024 14:52:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720190153; x=1751726153;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kcO98KjtFehMgVeGK0ythw7qt5ISZpzVI9KIUfBCe7w=;
- b=KPhzbU/67hcYo2TuhTWnzAmEh+A/vhAUDME1U6/pAdaTQULSvQnOVUxC
- tRajyw1Nge9zfou7oBWGjpH8RPmnn66A3ybamU2lwMVPitc31yyXD8BD7
- rzJL10APDLSZ7qXcOTkxsy6i2AEyHCSTjpRkI24ggVXpGRV0ubb8nTLlL
- ig3+pkGMnUNZ2PmJPsB3MVqMjBW0cZV0GOfTB7GeI3E/oAQsGFatkmWYW
- 60ouaTmOFRYfkmPN9S7XpvodVA1RgcH5jiq1gMw4KJzW86PYyiiL9wSau
- QsQJkVQnszBbD5Gnx0yIPUf0WaO6ecLh2T1Qn9uaew9GI9SBeMabqIm/G Q==;
-X-CSE-ConnectionGUID: g2y+5A6UTjqFleIVkfPPqA==
-X-CSE-MsgGUID: 3gMgMK9YSNeK/W0ZgNOohA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17203429"
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17203429"
+ t=1720191178; x=1751727178;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+vT0GQKNbUXT4NW3TpDtgoDim95Oi6z6c/7bBNesMCs=;
+ b=D4QJTGqhNwHE75nQ+byd++wJOsQWeITdCvehquEpAWrTwyJs8W2Kps2K
+ P33zwVu80EUpp6SmS79L4nx4vdMsLa1W/ybpnbduJBTTdc+7MclCq6OMC
+ B+WUuU/IUri88OcaFOGmM8uXQXybOGny1wtCEtwVRkQdHbc1+U2BQSz5A
+ slKNe/2PtfFnzHeYvW/3HHELiIjMCp/Xa8gDQgK5YH4JA0MCKteHHi1PK
+ +QSbK4MAzd4VOgG0KOkkhV/gVnxbuHV3uDGO5VUvU93PZgAH6tDp2Zv6i
+ zeAMejwte8Ul4WspO1sgAfeqTvVN067tUvsmPoq3ZgZxOOmQjljWzSy18 w==;
+X-CSE-ConnectionGUID: s40ic4KhRqeG04AgfP8paA==
+X-CSE-MsgGUID: 6t70xB1sS5++5GuOUQeiWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17204719"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17204719"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 07:35:52 -0700
-X-CSE-ConnectionGUID: 8UcW+r0OQbyUu5GCkkdv4w==
-X-CSE-MsgGUID: tFD1KlUSQduRK99SiQHjLg==
+ 05 Jul 2024 07:52:57 -0700
+X-CSE-ConnectionGUID: 2YEO6GGlRyivt0XBhwwQeg==
+X-CSE-MsgGUID: BApmU/U2Twy1qL9hb1Yjfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="46859683"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="46864338"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 05 Jul 2024 07:35:50 -0700
+ by fmviesa008.fm.intel.com with SMTP; 05 Jul 2024 07:52:55 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Jul 2024 17:35:48 +0300
-Date: Fri, 5 Jul 2024 17:35:48 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Melanie Lobo <melanie.lobo@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, juha-pekka.heikkila@intel.com,
- swati2.sharma@intel.com, bhanuprakash.modem@intel.com,
- vidya.srinivas@intel.com,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: Re: [PATCH] drm/i915: Support RGB16161616_64B compressed formats
-Message-ID: <ZogExOljH__JlEGh@intel.com>
-References: <20231011102356.22014-1-melanie.lobo@intel.com>
- <20240605060457.10086-1-melanie.lobo@intel.com>
+ Fri, 05 Jul 2024 17:52:54 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/20] drm/{i915, xe}: FBC cleanups + tweak fbdev stolen usage 
+Date: Fri,  5 Jul 2024 17:52:34 +0300
+Message-ID: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240605060457.10086-1-melanie.lobo@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,95 +67,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 05, 2024 at 11:34:57AM +0530, Melanie Lobo wrote:
-> Add support for a RGB64(FP16) format where each color component is a
-> 16-bit floating point value. FP16 format which is a binary
-> floating-point computer number format that occupies 16 bits in computer
-> memory. Platform shall render compression in display engine to receive
-> FP16 compressed formats.
-> 
-> This kernel change was tested with IGT patch,
-> https://patchwork.freedesktop.org/series/134353/
-> https://lore.kernel.org/all/20240603081607.30930-1-melanie.lobo@intel.com/
-> 
-> Test-with: 20240603081607.30930-1-melanie.lobo@intel.com
-> 
-> Credits: Juha-Pekka <juha-pekka.heikkila@intel.com>
-> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> Cc: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-> Cc: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Melanie Lobo <melanie.lobo@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c            | 5 +++++
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ++--
->  2 files changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index b6638726949d..91f2def14243 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -91,6 +91,11 @@ static const struct drm_format_info gen12_ccs_formats[] = {
->  	{ .format = DRM_FORMAT_P016, .num_planes = 4,
->  	  .char_per_block = { 2, 4, 1, 1 }, .block_w = { 1, 1, 2, 2 }, .block_h = { 1, 1, 1, 1 },
->  	  .hsub = 2, .vsub = 2, .is_yuv = true },
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I'd put the fp16 formats between the other RGB formats and YCbCr
-formats.
+Here's an idea for a slightly better heuristic to answer
+the "should fbdev use stolen or not?" question.
 
-> +	{ .format = DRM_FORMAT_XRGB16161616F, .depth = 64, .num_planes = 2,
+Ended up with a pile of refactoring and cleanups in
+the FBC code as a result.
 
-__drm_format_info() leaves depth==0 for fp16 formats. These should
-do the same.
+Ville Syrjälä (20):
+  drm/i915/fbc: Extract intel_fbc_has_fences()
+  drm/i915/fbc: Convert to intel_display, mostly
+  drm/i915/fbc: s/_intel_fbc_cfb_stride()/intel_fbc_plane_cfb_stride()/
+  drm/i915/fbc: Extract intel_fbc_max_plane_size()
+  drm/i915/fbc: Extract intel_fbc_max_surface_size()
+  drm/i915/fbc:
+    s/intel_fbc_hw_tracking_covers_screen()/intel_fbc_surface_size_ok()/
+  drm/i915/fbc: Adjust g4x+ platform checks
+  drm/i915/fbc: Extract _intel_fbc_cfb_stride()
+  drm/i915/fbc: s/lines/height/
+  drm/i915/fbc: Reoder CFB max height platform checks
+  drm/i915/fbc: Extract intel_fbc_max_cfb_height()
+  drm/i915/fbc: Extract _intel_fbc_cfb_size()
+  drm/i915/fbc: Extract intel_fbc_cfb_cpp()
+  drm/i915/fbc: Introduce intel_fbc_preferred_cfb_size()
+  drm/xe/fbdev: Fix BIOS FB vs.s stolen size checke
+  drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+  drm/xe/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+  drm/xe/fbdev: Use the same logic for fbdev stolen takever and fresh
+    allocation
+  drm/i915/fbdev: Adjust fbdev stolen mem usage heuristic
+  drm/xe/fbdev: Adjust fbdev stolen mem usage heuristic
 
-> +	  .char_per_block = { 8, 1}, .block_w = { 1, 4}, .block_h = { 1, 2}, .hsub = 1, .vsub = 1},
-
-Everyone else wraps the hsub/vsub to the next line. Also you
-consistently leave out the space before '}', unlike every other
-line in this file.
-
-> +	{ .format = DRM_FORMAT_ARGB16161616F, .depth = 64, .num_planes = 2,
-> +	  .char_per_block = { 8, 1}, .block_w = { 1, 4}, .block_h = { 1, 2},
-
-AUX block width should be 1 for these, block height we don't actually use I
-believe, but everone else sets it to one so this should do the same.
-
-> +	  .hsub = 1, .vsub = 1, .has_alpha = true},
-
-You are missing the X/ABGR variants. Also missing the addition of
-these formats to gen12_ccs_cc_formats[] and
-gen12_flat_ccs_cc_formats[].
-
-See my equivalent patch for the 10bpc formats:
-https://patchwork.freedesktop.org/patch/600652/?series=135306&rev=1
-
->  };
->  
->  /*
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 1aa70fc35b9d..7719cb04bdf8 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -2242,6 +2242,8 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
->  	case DRM_FORMAT_XBGR8888:
->  	case DRM_FORMAT_ARGB8888:
->  	case DRM_FORMAT_ABGR8888:
-> +	case DRM_FORMAT_XRGB16161616F:
-> +	case DRM_FORMAT_ARGB16161616F:
->  		if (intel_fb_is_ccs_modifier(modifier))
->  			return true;
->  		fallthrough;
-> @@ -2266,8 +2268,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
->  	case DRM_FORMAT_C8:
->  	case DRM_FORMAT_XBGR16161616F:
->  	case DRM_FORMAT_ABGR16161616F:
-> -	case DRM_FORMAT_XRGB16161616F:
-> -	case DRM_FORMAT_ARGB16161616F:
->  	case DRM_FORMAT_Y210:
->  	case DRM_FORMAT_Y212:
->  	case DRM_FORMAT_Y216:
-> -- 
-> 2.17.1
+ .../drm/i915/display/intel_display_debugfs.c  |   4 +-
+ .../drm/i915/display/intel_display_driver.c   |   4 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 564 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_fbc.h      |  14 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  23 +-
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.h |   5 +-
+ .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   2 +-
+ .../drm/i915/display/intel_plane_initial.c    |  10 +-
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  22 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |   8 +-
+ 11 files changed, 389 insertions(+), 269 deletions(-)
 
 -- 
-Ville Syrj�l�
-Intel
+2.44.2
+
