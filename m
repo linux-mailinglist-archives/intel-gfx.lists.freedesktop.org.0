@@ -2,56 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7452C928661
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 12:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4244928683
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 12:16:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A33010EA0E;
-	Fri,  5 Jul 2024 10:06:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 643CF10E2BE;
+	Fri,  5 Jul 2024 10:16:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZo7RiTf";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="h4ng8XnU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3C1C10EA0B
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2024 10:05:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720173959; x=1751709959;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YxkdHCmiQ+iCi9K3jRnew8QtUJ74iwtbhUWbTbIYnQ0=;
- b=nZo7RiTfqnQzEacU3pJl0RkVySzMzxNc6ldeGeykDkt9Y8FqeqJzdME+
- n18BWZR6J10kV61FOIQwTYUP+qxOQu9enfQzSKcwoHX8QA8ZtAzyKQWMd
- 3NTJqe+6DQ9GoQOh/7tSIvpfb8RkAL1hppiiPra+Y9cU3rFaExVpweuUL
- WqAbEsG4vArrSlQ6wSfUSzPC8NurzYzKXdIPJIGEvD8KAm8wVyROgWIAz
- dPEkKe12TTbLWBtaTuvVpoZg0L2YDGu7JemIGLYVOwo64iRvKG4Lyb6hA
- F/IBQLv6qMFItTVCiSg1MrOSjtPyj8WEd3+bR5HnUV/gKT75CymBfBlU2 g==;
-X-CSE-ConnectionGUID: Nbzp16PwQ4ej7qpw2Feadw==
-X-CSE-MsgGUID: YBoxE7s0QQ2bPtLop1l1Jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="21275206"
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="21275206"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 03:05:59 -0700
-X-CSE-ConnectionGUID: bZiq+E7HTtyGv131JIU9WA==
-X-CSE-MsgGUID: CVTdAY/nTLiSsIbRogRZTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="46839229"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa009.fm.intel.com with ESMTP; 05 Jul 2024 03:05:58 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 5/5] drm/i915/display/histogram: Histogram changes for Display
- LNL+
-Date: Fri,  5 Jul 2024 15:25:51 +0530
-Message-Id: <20240705095551.1244154-6-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240705095551.1244154-1-arun.r.murthy@intel.com>
-References: <20240705095551.1244154-1-arun.r.murthy@intel.com>
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9D1010E2BE
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2024 10:16:03 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-4257480ee5aso1564965e9.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Jul 2024 03:16:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1720174562; x=1720779362; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=e8YpnAFKaUJkZ9e7cjGVcNZMSDBPf7SKXmSIIUefUzk=;
+ b=h4ng8XnUaYeQVnz00y2r9yRG/s0m/giZMe05BBOl+sh09PHXtoYgvKMnx0HxrHEt2w
+ nM4fT+Y188mHaelH+NFh6qICVKERIkBZSkYu3RaSShTXJ2iPilRWxbbTN7YPU53Gm1Kr
+ f/++V5U6HKYexiBD4W01sajyKw7aZmf9ORBAQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720174562; x=1720779362;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=e8YpnAFKaUJkZ9e7cjGVcNZMSDBPf7SKXmSIIUefUzk=;
+ b=NBJDva0ovK5IIinIsEsJzRfbTKcLzdmopA7aTAKpTC4k+C8X9NAjOeuP5bi6BmfnVx
+ K3B8dTsUgJE59Pe3fWqmDe/gJIaFZYEF6q+1LtjLcBlbsFBJIr6fQzCLNiiOCC1rUg8f
+ 0eyXCbK6a1JY5RuCLGsXGS9gVD8bhK62Ab+j51UMN0Tqj9HYpZnclvVRxUgYoyD4UYM/
+ mw/hm+FKQSbvx/erinLvGEyxTascy8SrxJ9fLmXkolzQgSkYqmnZLT6lJNvvIG9z3Efr
+ 9Flx5EOTCejtAZjxc+IrDAOB5qH7Ceam/wLXQAoQLdupzj9Ueox8EJsf+pfhMhGomdFI
+ 71yA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWf4uJAMWSS0hLcasyi1mmslv9NOtjKNev0WtnZTRlwss+61nz9/QWxr6skp1pT/phVRX8nYEIk8bGmRVoqrtaohTAE25UaDD3eNgPrjCyg
+X-Gm-Message-State: AOJu0YywUguxVqDrdIXIcLR7T63lIjwyLDtW8gozRa0KYkxiNtq0dnm/
+ RwpwOyw+duPKdoPrZAKejRrZTerSJ8+eVMqcfpjwVjMx0JyhiuM00oc5dUL7tVk=
+X-Google-Smtp-Source: AGHT+IG5jC8qGYerMEa8mW9vXGn+mmSq/y2dFjrm5VbQTJ28UlrGH1KIdniCNnlSUf5lpbXwmBs8Bw==
+X-Received: by 2002:a05:600c:35d2:b0:425:676f:f946 with SMTP id
+ 5b1f17b1804b1-4264a456e13mr29828265e9.4.1720174562074; 
+ Fri, 05 Jul 2024 03:16:02 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4264a251ef5sm55535215e9.36.2024.07.05.03.16.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Jul 2024 03:16:01 -0700 (PDT)
+Date: Fri, 5 Jul 2024 12:15:58 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Tvrtko Ursulin <tursulin@igalia.com>
+Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-intel-gt-next
+Message-ID: <ZofH3gdKKXdg7TV7@phenom.ffwll.local>
+References: <ZoZP6mUSergfzFMh@linux>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZoZP6mUSergfzFMh@linux>
+X-Operating-System: Linux phenom 6.8.9-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,275 +91,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In LNL+, histogram/IE data and index registers are added which was
-included in the control registers in the legacy platforms. The new
-registers are used for reading histogram and writing the IET LUT data.
+On Thu, Jul 04, 2024 at 07:31:54AM +0000, Tvrtko Ursulin wrote:
+> 
+> Hi Dave, Sima,
+> 
+> The final pull for 6.11 is quite small and only contains a handful of
+> fixes in areas such as stolen memory probing on ATS-M, GuC priority
+> handling, out of memory reporting noise downgrade and fence register
+> hanlding race condition reported by CI.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> drm-intel-gt-next-2024-07-04:
+> Driver Changes:
+> 
+> Fixes/improvements/new stuff:
+> 
+> - Downgrade stolen lmem setup warning [gem] (Jonathan Cavitt)
+> - Evaluate GuC priority within locks [gt/uc] (Andi Shyti)
+> - Fix potential UAF by revoke of fence registers [gt] (Janusz Krzysztofik)
+> - Return NULL instead of '0' [gem] (Andi Shyti)
+> - Use the correct format specifier for resource_size_t [gem] (Andi Shyti)
+> - Suppress oom warning in favour of ENOMEM to userspace [gem] (Nirmoy Das)
+> 
+> Miscellaneous:
+> 
+> - Evaluate forcewake usage within locks [gt] (Andi Shyti)
+> - Fix typo in comment [gt/uc] (Andi Shyti)
+> The following changes since commit 79655e867ad6dfde2734c67c7704c0dd5bf1e777:
+> 
+>   drm/i915/mtl: Update workaround 14018575942 (2024-06-11 16:06:20 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-07-04
+> 
+> for you to fetch changes up to 3b85152cb167bd24fe84ceb91b719b5904ca354f:
+> 
+>   drm/i915/gem: Suppress oom warning in favour of ENOMEM to userspace (2024-06-28 00:11:01 +0200)
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- .../gpu/drm/i915/display/intel_histogram.c    | 174 +++++++++++++-----
- .../gpu/drm/i915/display/intel_histogram.h    |  25 +++
- 2 files changed, 153 insertions(+), 46 deletions(-)
+Pulled, thanks.
+-Sima
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index 61a8cd623f19..46832ca78ee3 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -11,29 +11,47 @@
- #include "intel_de.h"
- #include "intel_histogram.h"
- 
--static void intel_histogram_handle_int_work(struct work_struct *work)
-+static void intel_histogram_read_data(struct intel_histogram *histogram)
- {
--	struct intel_histogram *histogram = container_of(work,
--		struct intel_histogram, handle_histogram_int_work.work);
- 	struct drm_i915_private *i915 = histogram->i915;
--	struct intel_crtc *intel_crtc =
--		to_intel_crtc(drm_crtc_from_index(&i915->drm, histogram->pipe));
--	char *histogram_event[] = {"HISTOGRAM=1", NULL};
- 	u32 dpstbin;
- 	int i, try = 0;
- 
--	/* Wa: 14014889975 */
--	if (IS_DISPLAY_VER(i915, 12, 13))
--		intel_de_rmw(i915, DPST_CTL(histogram->pipe),
--			     DPST_CTL_RESTORE, 0);
-+	/* Set index to zero */
-+	intel_de_rmw(i915, DPST_HIST_INDEX(histogram->pipe),
-+		     DPST_HIST_BIN_INDEX_MASK, DPST_HIST_BIN_INDEX(0));
- 
--	/*
--	 * TODO: PSR to be exited while reading the Histogram data
--	 * Set DPST_CTL Bin Reg function select to TC
--	 * Set DPST_CTL Bin Register Index to 0
--	 */
--	intel_de_rmw(i915, DPST_CTL(histogram->pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
-+	for (i = 0; i < HISTOGRAM_BIN_COUNT; i++) {
-+		dpstbin = intel_de_read(i915, DPST_HIST_BIN(histogram->pipe));
-+		if (dpstbin & DPST_BIN_BUSY) {
-+			/*
-+			 * If DPST_BIN busy bit is set, then set the
-+			 * DPST_CTL bin reg index to 0 and proceed
-+			 * from beginning.
-+			 */
-+			intel_de_rmw(i915, DPST_HIST_INDEX(histogram->pipe),
-+				     DPST_HIST_BIN_INDEX_MASK,
-+				     DPST_HIST_BIN_INDEX(0));
-+			i = 0;
-+			if (try++ == 5) {
-+				drm_err(&i915->drm,
-+					"Histogram block is busy, failed to read\n");
-+				intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-+					     DPST_GUARD_HIST_EVENT_STATUS, 1);
-+				return;
-+			}
-+		}
-+		histogram->bindata[i] = dpstbin & DPST_HIST_BIN_DATA_MASK;
-+		drm_dbg_atomic(&i915->drm, "Histogram[%d]=%x\n",
-+			       i, histogram->bindata[i]);
-+	}
-+}
-+
-+static void intel_histogram_read_data_legacy(struct intel_histogram *histogram)
-+{
-+	struct drm_i915_private *i915 = histogram->i915;
-+	u32 dpstbin;
-+	int i, try = 0;
- 
- 	for (i = 0; i < HISTOGRAM_BIN_COUNT; i++) {
- 		dpstbin = intel_de_read(i915, DPST_BIN(histogram->pipe));
-@@ -58,6 +76,41 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
- 		drm_dbg_atomic(&i915->drm, "Histogram[%d]=%x\n",
- 			       i, histogram->bindata[i]);
- 	}
-+}
-+
-+static void intel_histogram_get_data(struct intel_histogram *histogram)
-+{
-+	struct drm_i915_private *i915 = histogram->i915;
-+
-+	/*
-+	 * TODO: PSR to be exited while reading the Histogram data
-+	 * Set DPST_CTL Bin Reg function select to TC
-+	 * Set DPST_CTL Bin Register Index to 0
-+	 */
-+	if (DISPLAY_VER(i915) >= 20) {
-+		intel_histogram_read_data(histogram);
-+	} else {
-+		intel_de_rmw(i915, DPST_CTL(histogram->pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
-+		intel_histogram_read_data_legacy(histogram);
-+	}
-+}
-+
-+static void intel_histogram_handle_int_work(struct work_struct *work)
-+{
-+	struct intel_histogram *histogram = container_of(work,
-+		struct intel_histogram, handle_histogram_int_work.work);
-+	struct drm_i915_private *i915 = histogram->i915;
-+	struct intel_crtc *intel_crtc =
-+		to_intel_crtc(drm_crtc_from_index(&i915->drm, histogram->pipe));
-+	char *histogram_event[] = {"HISTOGRAM=1", NULL};
-+
-+	/* Wa: 14014889975 */
-+	if (IS_DISPLAY_VER(i915, 12, 13))
-+		intel_de_rmw(i915, DPST_CTL(histogram->pipe),
-+			     DPST_CTL_RESTORE, 0);
-+
-+	intel_histogram_get_data(histogram);
- 
- 	/* Notify user for Histogram rediness */
- 	if (kobject_uevent_env(&i915->drm.primary->kdev->kobj, KOBJ_CHANGE,
-@@ -70,13 +123,16 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
- 		intel_de_write(i915, DPST_CTL(histogram->pipe), intel_de_read(i915,
- 			       DPST_CTL(histogram->pipe)) | DPST_CTL_RESTORE);
- 
--	/* Enable histogram interrupt */
--	intel_de_rmw(i915, DPST_GUARD(histogram->pipe), DPST_GUARD_HIST_INT_EN,
--		     DPST_GUARD_HIST_INT_EN);
-+	if (DISPLAY_VER(i915) <= 14) {
-+		/* Enable histogram interrupt */
-+		intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-+			     DPST_GUARD_HIST_INT_EN,
-+			     DPST_GUARD_HIST_INT_EN);
- 
--	/* Clear histogram interrupt by setting histogram interrupt status bit*/
--	intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
--		     DPST_GUARD_HIST_EVENT_STATUS, 1);
-+		/* Clear histogram interrupt by setting histogram interrupt status bit*/
-+		intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-+			     DPST_GUARD_HIST_EVENT_STATUS, 1);
-+	}
- 
- 	drm_property_replace_global_blob(&i915->drm,
- 			&intel_crtc->config->histogram,
-@@ -148,12 +204,19 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc)
- 	 * enable DPST_CTL Histogram mode
- 	 * Clear DPST_CTL Bin Reg function select to TC
- 	 */
--	intel_de_rmw(i915, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
--		     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT,
--		     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
--		     DPST_CTL_HIST_MODE_HSV |
--		     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC);
-+	if (DISPLAY_VER(i915) >= 20)
-+		intel_de_rmw(i915, DPST_CTL(pipe),
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE,
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE_HSV);
-+	else
-+		intel_de_rmw(i915, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT,
-+			     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE_HSV |
-+			     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC);
- 
- 	/* Re-Visit: check if wait for one vblank is required */
- 	drm_crtc_wait_one_vblank(&intel_crtc->base);
-@@ -233,24 +296,43 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data)
- 	 * Set DPST_CTL Bin Reg function select to IE
- 	 * Set DPST_CTL Bin Register Index to 0
- 	 */
--	intel_de_rmw(i915, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK,
--		     DPST_CTL_BIN_REG_FUNC_IE | DPST_CTL_BIN_REG_CLEAR);
--
--	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
--		intel_de_rmw(i915, DPST_BIN(pipe),
--			     DPST_BIN_DATA_MASK, data[i]);
--		drm_dbg_atomic(&i915->drm, "iet_lut[%d]=%x\n", i, data[i]);
-+	if (DISPLAY_VER(i915) >= 20) {
-+		/* Set index to zero */
-+		intel_de_rmw(i915, DPST_IE_INDEX(histogram->pipe),
-+			     DPST_IE_BIN_INDEX_MASK, DPST_IE_BIN_INDEX(0));
-+		for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-+			intel_de_rmw(i915, DPST_IE_BIN(pipe),
-+				     DPST_IE_BIN_DATA_MASK,
-+				     DPST_IE_BIN_DATA(data[i]));
-+			drm_dbg_atomic(&i915->drm, "iet_lut[%d]=%x\n",
-+				       i, data[i]);
-+		}
-+		intel_de_rmw(i915, DPST_CTL(pipe),
-+			     DPST_CTL_ENHANCEMENT_MODE_MASK |
-+			     DPST_CTL_IE_MODI_TABLE_EN,
-+			     DPST_CTL_EN_MULTIPLICATIVE |
-+			     DPST_CTL_IE_MODI_TABLE_EN);
-+	} else {
-+		intel_de_rmw(i915, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK,
-+			     DPST_CTL_BIN_REG_FUNC_IE | DPST_CTL_BIN_REG_CLEAR);
-+		for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-+			intel_de_rmw(i915, DPST_BIN(pipe),
-+				     DPST_BIN_DATA_MASK, data[i]);
-+			drm_dbg_atomic(&i915->drm, "iet_lut[%d]=%x\n",
-+				       i, data[i]);
-+		}
-+		intel_de_rmw(i915, DPST_CTL(pipe),
-+			     DPST_CTL_ENHANCEMENT_MODE_MASK |
-+			     DPST_CTL_IE_MODI_TABLE_EN,
-+			     DPST_CTL_EN_MULTIPLICATIVE |
-+			     DPST_CTL_IE_MODI_TABLE_EN);
-+
-+		/* Once IE is applied, change DPST CTL to TC */
-+		intel_de_rmw(i915, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL,
-+			     DPST_CTL_BIN_REG_FUNC_TC);
- 	}
--
--	intel_de_rmw(i915, DPST_CTL(pipe),
--		     DPST_CTL_ENHANCEMENT_MODE_MASK | DPST_CTL_IE_MODI_TABLE_EN,
--		     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
--
--	/* Once IE is applied, change DPST CTL to TC */
--	intel_de_rmw(i915, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL, DPST_CTL_BIN_REG_FUNC_TC);
--
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.h b/drivers/gpu/drm/i915/display/intel_histogram.h
-index 88942564fdc0..7583b421164a 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.h
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.h
-@@ -47,8 +47,33 @@
- #define _DPST_BIN_B					0x491C4
- #define DPST_BIN(pipe)					_MMIO_PIPE(pipe, _DPST_BIN_A, _DPST_BIN_B)
- #define DPST_BIN_DATA_MASK				REG_GENMASK(23, 0)
-+#define DPST_BIN_DATA					REG_FIELD_PREP(DPST_BIN_DATA_MASK, val)
- #define DPST_BIN_BUSY					REG_BIT(31)
- 
-+#define _DPST_HIST_INDEX_A				0x490D8
-+#define _DPST_HIST_INDEX_B				0x491D8
-+#define DPST_HIST_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_INDEX_A, _DPST_HIST_INDEX_B)
-+#define DPST_HIST_BIN_INDEX_MASK			REG_GENMASK(4, 0)
-+#define DPST_HIST_BIN_INDEX(val)			REG_FIELD_PREP(DPST_HIST_BIN_INDEX_MASK, val)
-+
-+#define _DPST_HIST_BIN_A				0x490C4
-+#define _DPST_HIST_BIN_B				0x491C4
-+#define DPST_HIST_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_BIN_A, _DPST_HIST_BIN_B)
-+#define DPST_HIST_BIN_BUSY				REG_BIT(31)
-+#define DPST_HIST_BIN_DATA_MASK				REG_GENMASK(30, 0)
-+
-+#define _DPST_IE_BIN_A					0x490CC
-+#define _DPST_IE_BIN_B					0x491CC
-+#define DPST_IE_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_IE_BIN_A, _DPST_IE_BIN_B)
-+#define	DPST_IE_BIN_DATA_MASK				REG_GENMASK(9, 0)
-+#define DPST_IE_BIN_DATA(val)				REG_FIELD_PREP(DPST_IE_BIN_DATA_MASK, val)
-+
-+#define _DPST_IE_INDEX_A				0x490DC
-+#define _DPST_IE_INDEX_B				0x491DC
-+#define DPST_IE_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_IE_INDEX_A, _DPST_IE_INDEX_B)
-+#define DPST_IE_BIN_INDEX_MASK				REG_GENMASK(6, 0)
-+#define DPST_IE_BIN_INDEX(val)				REG_FIELD_PREP(DPST_IE_BIN_INDEX_MASK, val)
-+
- #define INTEL_HISTOGRAM_PIPEA			0x90000000
- #define INTEL_HISTOGRAM_PIPEB			0x90000002
- #define INTEL_HISTOGRAM_EVENT(pipe)		PIPE(pipe, \
+> 
+> ----------------------------------------------------------------
+> Driver Changes:
+> 
+> Fixes/improvements/new stuff:
+> 
+> - Downgrade stolen lmem setup warning [gem] (Jonathan Cavitt)
+> - Evaluate GuC priority within locks [gt/uc] (Andi Shyti)
+> - Fix potential UAF by revoke of fence registers [gt] (Janusz Krzysztofik)
+> - Return NULL instead of '0' [gem] (Andi Shyti)
+> - Use the correct format specifier for resource_size_t [gem] (Andi Shyti)
+> - Suppress oom warning in favour of ENOMEM to userspace [gem] (Nirmoy Das)
+> 
+> Miscellaneous:
+> 
+> - Evaluate forcewake usage within locks [gt] (Andi Shyti)
+> - Fix typo in comment [gt/uc] (Andi Shyti)
+> 
+> ----------------------------------------------------------------
+> Andi Shyti (5):
+>       drm/i915/gt: debugfs: Evaluate forcewake usage within locks
+>       drm/i915/gt/uc: Fix typo in comment
+>       drm/i915/gt/uc: Evaluate GuC priority within locks
+>       drm/i915/gem: Return NULL instead of '0'
+>       drm/i915/gem: Use the correct format specifier for resource_size_t
+> 
+> Janusz Krzysztofik (1):
+>       drm/i915/gt: Fix potential UAF by revoke of fence registers
+> 
+> Jonathan Cavitt (1):
+>       drm/i915/gem: Downgrade stolen lmem setup warning
+> 
+> Nirmoy Das (1):
+>       drm/i915/gem: Suppress oom warning in favour of ENOMEM to userspace
+> 
+>  drivers/gpu/drm/i915/gem/i915_gem_stolen.c        |  8 +++++--
+>  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c      |  1 +
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c     |  4 ++++
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h       |  2 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 27 ++++++++++++++---------
+>  drivers/gpu/drm/i915/i915_scatterlist.c           |  8 +++----
+>  6 files changed, 32 insertions(+), 18 deletions(-)
+
 -- 
-2.25.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
