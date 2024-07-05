@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057A6928B7F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 17:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FBB928BA3
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 17:31:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09AD010E25B;
-	Fri,  5 Jul 2024 15:19:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kxtsEfwX";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4079210E1D2;
+	Fri,  5 Jul 2024 15:31:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8816110E25B
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2024 15:19:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720192741; x=1751728741;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dt1g8r/Cn2uKIn4rHQPc0fCKnyK9xU71Zv8xFqRToWw=;
- b=kxtsEfwXXL/01tfV7LUVqsD0+64yYt1KSg0WHqq+bxEoidLcvW8ukmhd
- AE48IzhzV8hr1cyCNqlJYaRARxfVf7l/W2rBhO6BYCq7ioIXdaiw8M8li
- HJbqg5A2KbJuu0hIvQ5sHKIilMvx7Zk+Res4DvaMtBVDzhxyWTAhDE8uB
- tLS6wk7Qeksaf3J5T6lcSAHkp9X45Ds8z/TVqwG7FtCndOyC23TSA2Mzq
- oON0gi/fPK1f//9ehkm8GHRw/cYhINNjhCf5Nzoqb5f3xsJUK5dMoQKfp
- ungITzeX1Q/h+LiplldNRXux8yAVWCeB0AQopTrV9r3TdZbcQ7WmCyOza g==;
-X-CSE-ConnectionGUID: SaFdVU5gSOuN/ZAA5ZboIw==
-X-CSE-MsgGUID: A0KpN7SIRKST0xRAb8kpNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="28879381"
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="28879381"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 08:19:01 -0700
-X-CSE-ConnectionGUID: HCpl3RfiQ/GckM5c34aytQ==
-X-CSE-MsgGUID: KgabHGsmRvGTg21ytdhPOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="46870590"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 05 Jul 2024 08:18:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Jul 2024 18:18:58 +0300
-Date: Fri, 5 Jul 2024 18:18:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/i915/dp: Dump the LTTPR PHY descriptors
-Message-ID: <ZogO4ijb5t0rRm02@intel.com>
-References: <20240703155937.1674856-1-imre.deak@intel.com>
- <20240703155937.1674856-6-imre.deak@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00BD510E1D2;
+ Fri,  5 Jul 2024 15:31:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240703155937.1674856-6-imre.deak@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/=7Bi915=2C_xe=7D?=
+ =?utf-8?q?=3A_FBC_cleanups_+_tweak_fbdev_stolen_usage?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 05 Jul 2024 15:31:51 -0000
+Message-ID: <172019351199.31462.1687104808057135581@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,65 +37,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 03, 2024 at 06:59:37PM +0300, Imre Deak wrote:
-> Dump the descriptor of the detected LTTPRs in non-transparent mode to
-> help the debugging related to LTTPRs easier.
-> 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_dp_link_training.c | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index 31089f1b316d2..52b149793f3d0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -199,6 +199,24 @@ static int intel_dp_init_lttpr_phys(struct intel_dp *intel_dp, const u8 dpcd[DP_
->  	return 0;
->  }
->  
-> +static void intel_dp_dump_lttpr_phy_desc(struct intel_dp *intel_dp, enum drm_dp_phy dp_phy)
-> +{
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct drm_dp_dpcd_ident ident;
-> +
-> +	if (drm_dp_dpcd_read(&intel_dp->aux, DP_OUI_PHY_REPEATER(dp_phy),
-> +			     &ident, sizeof(ident)) < 0)
-> +		return;
-> +
-> +	drm_dbg_kms(&i915->drm,
-> +		    "%s: %s: OUI %*phD dev-ID %*pE HW-rev %d.%d SW-rev %d.%d\n",
-> +		    intel_dp->aux.name, drm_dp_phy_name(dp_phy),
-> +		    (int)sizeof(ident.oui), ident.oui,
-> +		    (int)strnlen(ident.device_id, sizeof(ident.device_id)), ident.device_id,
-> +		    ident.hw_rev >> 4, ident.hw_rev & 0xf,
-> +		    ident.sw_major_rev, ident.sw_minor_rev);
+== Series Details ==
 
-Dunno if we could share some code with drm_dp_read_desc()...
+Series: drm/{i915, xe}: FBC cleanups + tweak fbdev stolen usage
+URL   : https://patchwork.freedesktop.org/series/135800/
+State : warning
 
-> +}
-> +
->  static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
->  {
->  	int lttpr_count;
-> @@ -206,8 +224,10 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
->  
->  	lttpr_count = intel_dp_init_lttpr_phys(intel_dp, dpcd);
->  
-> -	for (i = 0; i < lttpr_count; i++)
-> +	for (i = 0; i < lttpr_count; i++) {
->  		intel_dp_read_lttpr_phy_caps(intel_dp, dpcd, DP_PHY_LTTPR(i));
-> +		intel_dp_dump_lttpr_phy_desc(intel_dp, DP_PHY_LTTPR(i));
-> +	}
->  
->  	return lttpr_count;
->  }
-> -- 
-> 2.43.3
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+Error: dim checkpatch failed
+1548cd572c1d drm/i915/fbc: Extract intel_fbc_has_fences()
+7aedff05b81d drm/i915/fbc: Convert to intel_display, mostly
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fbc_id' - possible side-effects?
+#72: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:64:
++#define for_each_fbc_id(__display, __fbc_id) \
+ 	for ((__fbc_id) = INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
++		for_each_if(DISPLAY_RUNTIME_INFO(__display)->fbc_mask & BIT(__fbc_id))
+
+-:80: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#80: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:68:
++#define for_each_intel_fbc(__display, __fbc, __fbc_id) \
++	for_each_fbc_id((__display), (__fbc_id)) \
++		for_each_if((__fbc) = (__display)->fbc[(__fbc_id)])
+
+-:80: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#80: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:68:
++#define for_each_intel_fbc(__display, __fbc, __fbc_id) \
++	for_each_fbc_id((__display), (__fbc_id)) \
++		for_each_if((__fbc) = (__display)->fbc[(__fbc_id)])
+
+-:80: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fbc_id' - possible side-effects?
+#80: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:68:
++#define for_each_intel_fbc(__display, __fbc, __fbc_id) \
++	for_each_fbc_id((__display), (__fbc_id)) \
++		for_each_if((__fbc) = (__display)->fbc[(__fbc_id)])
+
+-:679: WARNING:LONG_LINE: line length of 200 exceeds 100 columns
+#679: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:842:
++			      "not enough stolen space for compressed buffer (need %d more bytes), disabling. Hint: you may be able to increase stolen memory size in the BIOS to avoid this.\n", size);
+
+total: 1 errors, 1 warnings, 3 checks, 1268 lines checked
+e2f3b9389a34 drm/i915/fbc: s/_intel_fbc_cfb_stride()/intel_fbc_plane_cfb_stride()/
+c44349a28111 drm/i915/fbc: Extract intel_fbc_max_plane_size()
+17cacd8430ef drm/i915/fbc: Extract intel_fbc_max_surface_size()
+30df06a66ac5 drm/i915/fbc: s/intel_fbc_hw_tracking_covers_screen()/intel_fbc_surface_size_ok()/
+42bd62db5206 drm/i915/fbc: Adjust g4x+ platform checks
+d1483dbe647c drm/i915/fbc: Extract _intel_fbc_cfb_stride()
+18f5e36ac652 drm/i915/fbc: s/lines/height/
+044ee0a89fff drm/i915/fbc: Reoder CFB max height platform checks
+a5e6fc71bbbc drm/i915/fbc: Extract intel_fbc_max_cfb_height()
+4d539cf61e6c drm/i915/fbc: Extract _intel_fbc_cfb_size()
+5b3fefb53338 drm/i915/fbc: Extract intel_fbc_cfb_cpp()
+93866e28ed1b drm/i915/fbc: Introduce intel_fbc_preferred_cfb_size()
+d55ab16969e1 drm/xe/fbdev: Fix BIOS FB vs.s stolen size checke
+cf0af2d009d4 drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+c41f30ea8cf4 drm/xe/fbdev: Extract intel_fbdev_fb_prefer_stolen()
+d41a06193f6d drm/xe/fbdev: Use the same logic for fbdev stolen takever and fresh allocation
+d768e216f464 drm/i915/fbdev: Adjust fbdev stolen mem usage heuristic
+bafb123f903f drm/xe/fbdev: Adjust fbdev stolen mem usage heuristic
+
+
