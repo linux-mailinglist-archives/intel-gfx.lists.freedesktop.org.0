@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F5C92855A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 11:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2EB92865B
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 12:05:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4B310E94A;
-	Fri,  5 Jul 2024 09:43:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 163DF10E9F5;
+	Fri,  5 Jul 2024 10:05:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bgyyyZuQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NA64g/3l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D01810E923
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2024 09:43:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 790E310E9F5
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2024 10:05:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720172627; x=1751708627;
+ t=1720173952; x=1751709952;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=aXBE4IYmubJEyPECsnmlzYy3wh6rMcpPmWvZBdRutk8=;
- b=bgyyyZuQRZhC/1hx9Yu8yAFmnM90BEQCZ+2YeCeiPLqv/6qagEIvn+pP
- 9xYp+gtE0UDKJvMjxhuj5csyu9QpnrZWkLeDTKL/QHRS75Jl0aXIbTuAv
- CJt7xpYEopJROt6RbfMmwVe5eeDDuRwm8OGXV06h6SgSrH9C073VB//5U
- I4V9NDFHfBuuozg8YYW1h1ylGEP7xnqQ4q8DC5IfWPouKm23WuBm2OfQ2
- 335TIYkOnCjF+xRQvxIYAe8PCXQVxCXZ94S2a7HwKIi0EGp5CxDQ8Ih9a
- kTDXjZVv02Uhw2qanrUA5wCw+5NFzR9H3O8Z3+YJLHfrewY1U5hZY6wlA g==;
-X-CSE-ConnectionGUID: VYVpKxbwRJCVjd9rpdXMKg==
-X-CSE-MsgGUID: VcC9753ORUG+94h2vlA+Bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="34903231"
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="34903231"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 02:43:47 -0700
-X-CSE-ConnectionGUID: NxOkR4fXSSGjbGoIaBxQPw==
-X-CSE-MsgGUID: 7OrXxRDBRb2J+gqrIidl4g==
+ bh=+B8SbZJw4JzDftFaShfH8gdLaUZlyXWmDpdHYIxYxGA=;
+ b=NA64g/3lPHWYVBZ8+ZbtY5tLwSSBOtGL36/ntJ8bdEkLBY2t1G6uLJqu
+ UIND0dVSd+r4HLfl8Fs1AV/GUPLemNN1B/CKZo0QxHEQg+JCdyS6qyrUT
+ OnUg1Az75HRN0qduDywlGz2TqYHgszjU8GWWsI7IlBa0XR9Xm05wcqKB4
+ NspSwmwgtteTlmVb4ZRP1KRxksbkY9Nox6pt3PdbXG4dDBFi/75UTFbUr
+ RLo4Wn8G95luMHVfZyMSn/W+FLi6dqXCurhtB+yRJnEo1JBmf9R1GYive
+ zOj20z6v4fEwu9cCL86zscnOJrLzIi2pWAhy8iEI8PodtiTD7ide6oeVi A==;
+X-CSE-ConnectionGUID: Ys6DCQ9IT1aq5BFVFXCLag==
+X-CSE-MsgGUID: Tv19DgBVQkyOPpNcQ0MNfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="21275195"
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="21275195"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jul 2024 03:05:52 -0700
+X-CSE-ConnectionGUID: Q7fIpxG8RPeaoMZ26Kpx3w==
+X-CSE-MsgGUID: 5e9Dfeo4Srm892z2ZDuSpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="52015235"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa004.jf.intel.com with ESMTP; 05 Jul 2024 02:43:45 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,184,1716274800"; d="scan'208";a="46839159"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa009.fm.intel.com with ESMTP; 05 Jul 2024 03:05:51 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH] drm/i915/display: Call panel_fitting function from pipe_config
-Date: Fri,  5 Jul 2024 15:13:08 +0530
-Message-Id: <20240705094308.73498-1-nemesa.garg@intel.com>
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH 0/5] Display Global Histogram
+Date: Fri,  5 Jul 2024 15:25:46 +0530
+Message-Id: <20240705095551.1244154-1-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -64,152 +64,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In panel fitter/pipe scaler scenario the pch_pfit configuration
-currently takes place before we account for bigjoiner.
-So once the calculation for bigjoiner is done, proper values
-of width and height can be used for panel fitting.
+Display histogram is a hardware functionality where a statistics for 'x'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+A library can be developed to take this generated histogram as an
+input and apply some algorithm to generate an Image EnhancemenT(IET).
+This is further fed back to the KMD via crtc property. KMD will use this
+IET as a multiplicand factor to multiply with the incoming pixels at the
+end of the pipe which is then pushed onto the display.
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  | 11 +++++
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  6 +--
- drivers/gpu/drm/i915/display/intel_panel.c    | 42 ++++++++++++++-----
- 4 files changed, 45 insertions(+), 15 deletions(-)
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and applied the algorithm to enhance the density and then
+return the enhanced factor. This library can be located @
+https://github.com/intel/ghe
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c2c388212e2e..182ffd17a365 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4774,6 +4774,17 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
- 		    crtc->base.base.id, crtc->base.name,
- 		    base_bpp, crtc_state->pipe_bpp, crtc_state->dither);
- 
-+	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
-+		if (connector_state->crtc != &crtc->base)
-+			continue;
-+
-+		if (crtc_state->pch_pfit.is_pch_required) {
-+			ret = intel_panel_fitting(crtc_state, connector_state);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8713835e2307..067b123408bf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1251,6 +1251,7 @@ struct intel_crtc_state {
- 		struct drm_rect dst;
- 		bool enabled;
- 		bool force_thru;
-+		bool is_pch_required;
- 	} pch_pfit;
- 
- 	/* FDI configuration, only valid if has_pch_encoder is set. */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3903f6ead6e6..d424a328cfca 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2952,10 +2952,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		return ret;
- 
- 	if ((intel_dp_is_edp(intel_dp) && fixed_mode) ||
--	    pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
--		ret = intel_panel_fitting(pipe_config, conn_state);
--		if (ret)
--			return ret;
-+	     pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+		pipe_config->pch_pfit.is_pch_required = true;
- 	}
- 
- 	pipe_config->limited_color_range =
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 71454ddef20f..69b4c09c634b 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -403,8 +403,11 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	case DRM_MODE_SCALE_CENTER:
- 		width = pipe_src_w;
- 		height = pipe_src_h;
--		x = (adjusted_mode->crtc_hdisplay - width + 1)/2;
--		y = (adjusted_mode->crtc_vdisplay - height + 1)/2;
-+		if (crtc_state->joiner_pipes)
-+			x = (adjusted_mode->crtc_hdisplay / 2 - width + 1) / 2;
-+		else
-+			x = (adjusted_mode->crtc_hdisplay - width + 1) / 2;
-+		y = (adjusted_mode->crtc_vdisplay - height + 1) / 2;
- 		break;
- 
- 	case DRM_MODE_SCALE_ASPECT:
-@@ -412,11 +415,18 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 		{
- 			u32 scaled_width = adjusted_mode->crtc_hdisplay * pipe_src_h;
- 			u32 scaled_height = pipe_src_w * adjusted_mode->crtc_vdisplay;
-+			int adjusted_crtc_hdisplay = adjusted_mode->crtc_hdisplay;
-+
-+			if (crtc_state->joiner_pipes) {
-+				scaled_width = adjusted_mode->crtc_hdisplay / 2 * pipe_src_h;
-+				adjusted_crtc_hdisplay = adjusted_mode->crtc_hdisplay / 2;
-+			}
-+
- 			if (scaled_width > scaled_height) { /* pillar */
- 				width = scaled_height / pipe_src_h;
- 				if (width & 1)
- 					width++;
--				x = (adjusted_mode->crtc_hdisplay - width + 1) / 2;
-+				x = (adjusted_crtc_hdisplay - width + 1) / 2;
- 				y = 0;
- 				height = adjusted_mode->crtc_vdisplay;
- 			} else if (scaled_width < scaled_height) { /* letter */
-@@ -425,25 +435,35 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 				    height++;
- 				y = (adjusted_mode->crtc_vdisplay - height + 1) / 2;
- 				x = 0;
--				width = adjusted_mode->crtc_hdisplay;
-+				width = adjusted_crtc_hdisplay;
- 			} else {
- 				x = y = 0;
--				width = adjusted_mode->crtc_hdisplay;
-+				width = adjusted_crtc_hdisplay;
- 				height = adjusted_mode->crtc_vdisplay;
- 			}
- 		}
- 		break;
- 
- 	case DRM_MODE_SCALE_NONE:
--		WARN_ON(adjusted_mode->crtc_hdisplay != pipe_src_w);
--		WARN_ON(adjusted_mode->crtc_vdisplay != pipe_src_h);
-+		if (crtc_state->joiner_pipes) {
-+			WARN_ON(adjusted_mode->crtc_hdisplay / 2 != pipe_src_w);
-+			WARN_ON(adjusted_mode->crtc_vdisplay != pipe_src_h);
-+		} else {
-+			WARN_ON(adjusted_mode->crtc_hdisplay != pipe_src_w);
-+			WARN_ON(adjusted_mode->crtc_vdisplay != pipe_src_h);
-+		}
- 		fallthrough;
- 	case DRM_MODE_SCALE_FULLSCREEN:
--		x = y = 0;
--		width = adjusted_mode->crtc_hdisplay;
--		height = adjusted_mode->crtc_vdisplay;
-+		if (crtc_state->joiner_pipes) {
-+			x = y = 0;
-+			width = adjusted_mode->crtc_hdisplay / 2;
-+			height = adjusted_mode->crtc_vdisplay;
-+		} else {
-+			x = y = 0;
-+			width = adjusted_mode->crtc_hdisplay;
-+			height = adjusted_mode->crtc_vdisplay;
-+		}
- 		break;
--
- 	default:
- 		MISSING_CASE(conn_state->scaling_mode);
- 		return -EINVAL;
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
+
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
+
+Arun R Murthy (5):
+  drm/i915/display: Add support for histogram
+  drm/i915/display: histogram interrupt handling
+  Add crtc properties for global histogram
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/display/histogram: Histogram changes for Display LNL+
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 202 +++++++++-
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  13 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  20 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 380 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    | 120 ++++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 11 files changed, 754 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+
 -- 
 2.25.1
 
