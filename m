@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A781E928AF7
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 16:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9376928AF9
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2024 16:53:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD6510EBE4;
-	Fri,  5 Jul 2024 14:53:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6114410EBE8;
+	Fri,  5 Jul 2024 14:53:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dtm2Coj/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PVnDS5Cp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A20BE10EBE4;
- Fri,  5 Jul 2024 14:53:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8355110EBE6;
+ Fri,  5 Jul 2024 14:53:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720191207; x=1751727207;
+ t=1720191210; x=1751727210;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ezNYYWOou9W1KQmLYpymreDr59QPWQ8t5sIMxDuvXtA=;
- b=Dtm2Coj/hoLjSXLfM3fVYMEorRQBhdUxB5fs6vhhyGeyRtCkJMejUveE
- rsbHh5UoMyMdJWTo70RFrr8h+XgI8xBFTF4kNvgbq3/XJ7vF49R5/JM6N
- C0wKHt1WVUosgjfuPeoUhuhL2YvduEXxjZ1f/+nt5W82of8g6JqvWad3d
- NZyj/Wze1Z3TrNEeywIz2wGQVFTZ6gKmQ02Y7o/I3gBxHKwqyog2sCB6q
- BEfU2xrs28l6zqwurmBk0bulZA3OdM9KEd23thvFNA0yHwHzjs8KnXRiQ
- NkcOKL+iDdP9ayVbJw8GwHyWN5AyMdOoWyEMD/yWbaOVoicMC40WNSR1P w==;
-X-CSE-ConnectionGUID: Xb6EuPerQmeZwsll0Y1WnA==
-X-CSE-MsgGUID: YTS/0/BDTFWcF0L+t9ZnoQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17204763"
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17204763"
+ bh=/F1PKiF1QVbVqfQeLiegS8qT1tUzRQsHhRosWSIEXrU=;
+ b=PVnDS5CpJac72DVRl4f1+oZBOprwlgswJ2i+TYC30WxKjFNFGUbiCAGr
+ C2EQOno3Z0doI6iZByRRPS0z5aacxSb8Th9O3E2tpKPiKepEwcqwsUudJ
+ ZDSHHP6QfrYklny9jgWYbZ2KzMwNcJT2uBjNt1wTbB76D78gimhvBKu+N
+ r8MmjOzwNrStCLWP5m+dyXq6awehaUfNt4ow22Jz7NlAunDTwlqkcb/i3
+ Yh983enzmXGrTW5QFAhKyTNh8aj39eMA9TVA9jGm3fagiGpLZTfI/dES1
+ fjkRbf6Ntpim1MrldkWcBB25ze+EWc3BEGkStIazbIQC4W2lOxcgredCF A==;
+X-CSE-ConnectionGUID: lV/g814wSRWIcJbzif0xTw==
+X-CSE-MsgGUID: G8mpLcmSSoeJhVwHljU4VA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11123"; a="17204766"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="17204766"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jul 2024 07:53:27 -0700
-X-CSE-ConnectionGUID: 9We7S08tTMWfUaTMk6GAtA==
-X-CSE-MsgGUID: FolQOQYPRLK9o9RZd1DyzQ==
+ 05 Jul 2024 07:53:29 -0700
+X-CSE-ConnectionGUID: H6z6CUocTI+rVCKeab7Ocw==
+X-CSE-MsgGUID: 4kOL0N0VQE2ibDK6/9iiDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="46864447"
+X-IronPort-AV: E=Sophos;i="6.09,185,1716274800"; d="scan'208";a="46864467"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 05 Jul 2024 07:53:24 -0700
+ by fmviesa008.fm.intel.com with SMTP; 05 Jul 2024 07:53:27 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Jul 2024 17:53:23 +0300
+ Fri, 05 Jul 2024 17:53:26 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 10/20] drm/i915/fbc: Reoder CFB max height platform checks
-Date: Fri,  5 Jul 2024 17:52:44 +0300
-Message-ID: <20240705145254.3355-11-ville.syrjala@linux.intel.com>
+Subject: [PATCH 11/20] drm/i915/fbc: Extract intel_fbc_max_cfb_height()
+Date: Fri,  5 Jul 2024 17:52:45 +0300
+Message-ID: <20240705145254.3355-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
 References: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
@@ -71,32 +71,59 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Rearrange the max CFB max height platform into the
-more common "new first, old last" order.
+Pull the code to determine the maximum CFB height
+into a separate function. For pre-HSW the maximum CFB
+height is the same as the maximum plane height (ie. the
+older hardware supposedely doens't have the trick of leaving
+the extra lines uncompressed).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 27 ++++++++++++++++++------
+ 1 file changed, 20 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 4d25ebb5ae9d..cf5750ed4681 100644
+index cf5750ed4681..47b715e5d533 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -206,10 +206,10 @@ static unsigned int intel_fbc_cfb_size(const struct intel_plane_state *plane_sta
- 	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
- 	int height = drm_rect_height(&plane_state->uapi.src) >> 16;
- 
--	if (DISPLAY_VER(display) == 7)
--		height = min(height, 2048);
--	else if (DISPLAY_VER(display) >= 8)
-+	if (DISPLAY_VER(display) >= 8)
- 		height = min(height, 2560);
-+	else if (DISPLAY_VER(display) == 7)
-+		height = min(height, 2048);
- 
- 	return height * intel_fbc_cfb_stride(plane_state);
+@@ -201,17 +201,30 @@ static unsigned int intel_fbc_cfb_stride(const struct intel_plane_state *plane_s
+ 	return _intel_fbc_cfb_stride(display, width, stride);
  }
+ 
+-static unsigned int intel_fbc_cfb_size(const struct intel_plane_state *plane_state)
++/*
++ * Maximum height the hardware will compress, on HSW+
++ * additional lines (up to the actual plane height) will
++ * remain uncompressed.
++ */
++static unsigned int intel_fbc_max_cfb_height(struct intel_display *display)
+ {
+-	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
+-	int height = drm_rect_height(&plane_state->uapi.src) >> 16;
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (DISPLAY_VER(display) >= 8)
+-		height = min(height, 2560);
+-	else if (DISPLAY_VER(display) == 7)
+-		height = min(height, 2048);
++		return 2560;
++	else if (DISPLAY_VER(display) >= 5 || IS_G4X(i915))
++		return 2048;
++	else
++		return 1536;
++}
+ 
+-	return height * intel_fbc_cfb_stride(plane_state);
++static unsigned int intel_fbc_cfb_size(const struct intel_plane_state *plane_state)
++{
++	struct intel_display *display = to_intel_display(plane_state->uapi.plane->dev);
++	unsigned int height = drm_rect_height(&plane_state->uapi.src) >> 16;
++
++	return min(height, intel_fbc_max_cfb_height(display)) *
++		intel_fbc_cfb_stride(plane_state);
+ }
+ 
+ static u16 intel_fbc_override_cfb_stride(const struct intel_plane_state *plane_state)
 -- 
 2.44.2
 
