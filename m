@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73889929E09
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jul 2024 10:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B285B929E51
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Jul 2024 10:32:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A4DA10E29E;
-	Mon,  8 Jul 2024 08:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4488D10E2CA;
+	Mon,  8 Jul 2024 08:32:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHff65RP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ndJSNXzj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE3C110E29E;
- Mon,  8 Jul 2024 08:10:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E7910E2CA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Jul 2024 08:32:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720426213; x=1751962213;
+ t=1720427539; x=1751963539;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N1iFMtFjbkWyie9q+Lmidxs1AorQhE4c23YJBrBR4j0=;
- b=QHff65RP2c1UcwNY9SnQ/FMVz5FKyqBecqCyR/jh8ajz3lIrKhXpPWsI
- 1JOgZx/6Ie4ea0C1tTY92tvY/xTp5pUTjiDhkFSVE0nUtnXPHZUPLCVPq
- 5HsUgiApA5hFE1IKFssJy0VsrXlK6rqESGuoEq5RTSadgLbpsj+n4uJ71
- BXFyw9RReS4jHmEoBlPsK/PuwGulJ4aMYYTiqrydkkANSmxOcFX7aMDOc
- IMBPvkRV/Zn02+qfqO5Z9hxHD+//FHXs0CXRcd/Zbhk58olHtCu/vGdqD
- 2ZgG6dIR3IEpr+vul3jTG7FygZdLGhO+6Do38yDoIJ0NxPn5wtRvYe+Sq A==;
-X-CSE-ConnectionGUID: 1a4Jq/18S6S8KrMypEimeA==
-X-CSE-MsgGUID: 1H+jABjGTASUKjMMEdXCZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11126"; a="17821585"
-X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="17821585"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 01:10:09 -0700
-X-CSE-ConnectionGUID: PtgKeieuQ5i+x+AADe9/mw==
-X-CSE-MsgGUID: abTe38V5RI2O1oG+awspiA==
+ bh=mQufjrgC8v3hsWJtMFfJhbv70iNXfsCez/r4sNRYPXY=;
+ b=ndJSNXzjZVVwkXonA/GGCEMWYQA/PaXi0CQtPb/vm6Sn8+pjwmtsUsk7
+ Iol3LrNeL2HOwBK1GGwNTsKis90tDy/4wDDMNrS5CgpU55EC5bvt1dCPt
+ D6mK7dqfvVd9dBkVZShyvxi3RgypoP3D/egCWnkWNuTEXC+kLOpHonHDF
+ /oQDUfCpIqZyJMwzqlkbhBexlubFcXg1QHyS7F7sLRW4e5LlvzEse5SAl
+ 9pZKYbs+26ote2ZTBTsi7WmYGXNG/EPolpubanSEgCZGutcUkuGRU2azE
+ rTih2wzJ0RDSDXC00wQzsxlqREYGJV7nRnqa6ZTcALeQbKUWQIlIL48qx g==;
+X-CSE-ConnectionGUID: esK5jsKaSqyh2aCdaNV0zA==
+X-CSE-MsgGUID: /YwqG/ZyQ2qoIf+mOM9H8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11126"; a="21384747"
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="21384747"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2024 01:32:19 -0700
+X-CSE-ConnectionGUID: df5TWN6USFSOwCVnb6NnzA==
+X-CSE-MsgGUID: S/vAPZKYSpCnaU3Iat3Vzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="52255912"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa003.jf.intel.com with ESMTP; 08 Jul 2024 01:10:08 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [5/5] drm/i915/display: Load the lut values and enable sharpness
-Date: Mon,  8 Jul 2024 13:39:17 +0530
-Message-Id: <20240708080917.257857-6-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240708080917.257857-1-nemesa.garg@intel.com>
-References: <20240708080917.257857-1-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,191,1716274800"; d="scan'208";a="52378756"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa005.jf.intel.com with ESMTP; 08 Jul 2024 01:32:18 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: 
+Cc: intel-gfx@lists.freedesktop.org, suraj.kandpal@intel.com,
+ nemesa.garg@intel.com, jani.nikula@intel.com
+Subject: [PATCH v5] drm/i915/display: WA for Re-initialize dispcnlunitt1 xosc
+ clock
+Date: Mon,  8 Jul 2024 14:02:46 +0530
+Message-ID: <20240708083247.2611258-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240708050522.2538474-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20240708050522.2538474-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,86 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Load the lut values during pipe enable.
+The dispcnlunit1_cp_xosc_clk should be de-asserted in display off
+and only asserted in display on. As part of this workaround, Display
+driver shall execute set-reset sequence at the end of the initialize
+sequence to ensure clk does not remain active in display OFF.
 
-v2: Add the display version check
+HSD: 15013987218
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+--v2:
+- Rebase.
+--v3:
+- Correct HSD number in commit message.
+--v4:
+- Reformat commit message.
+- Use intel_de_rmw instead of intel_de_write
+--v5:
+- Build Fixes.
+
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c    |  3 +++
- drivers/gpu/drm/i915/display/intel_display.c |  6 ++++++
- drivers/gpu/drm/i915/display/skl_scaler.c    | 13 ++++++++++++-
- 3 files changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 1b578cad2813..a8aaea0d2932 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -379,6 +379,9 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 
- 	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
- 
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		drm_crtc_create_sharpness_strength_property(&crtc->base);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index e288a1b21d7e..0af1e34ef2a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1704,6 +1704,14 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 	/* Wa_14011503030:xelpd */
+ 	if (DISPLAY_VER(dev_priv) == 13)
+ 		intel_de_write(dev_priv, XELPD_DISPLAY_ERR_FATAL_MASK, ~0);
 +
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e0a82ab46d29..7464d5b92b4d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1771,6 +1771,9 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 			intel_crtc_wait_for_next_vblank(wa_crtc);
- 		}
- 	}
-+
-+	if (new_crtc_state->hw.casf_params.strength_changed)
-+		intel_filter_lut_load(crtc, new_crtc_state);
++	/* Wa_15013987218 */
++	if (DISPLAY_VER(dev_priv) == 20) {
++		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
++			     0, PCH_GMBUSUNIT_CLOCK_GATE_DISABLE);
++		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D,
++			     PCH_GMBUSUNIT_CLOCK_GATE_DISABLE, 0);
++	}
  }
  
- void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state)
-@@ -6918,6 +6921,9 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 			intel_vrr_set_transcoder_timings(new_crtc_state);
- 	}
- 
-+	if (intel_sharpness_strength_changed(state))
-+		intel_sharpness_filter_enable(new_crtc_state);
-+
- 	intel_fbc_update(state, crtc);
- 
- 	drm_WARN_ON(&i915->drm, !intel_display_power_is_enabled(i915, POWER_DOMAIN_DC_OFF));
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 9d8bc6c0ab2c..be0ad6ce90b2 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -931,7 +931,7 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 
- 	/* find scaler attached to this pipe */
- 	for (i = 0; i < crtc->num_scalers; i++) {
--		u32 ctl, pos, size;
-+		u32 ctl, pos, size, sharp;
- 
- 		ctl = intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
- 		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
-@@ -939,6 +939,17 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 
- 		id = i;
- 
-+		if (DISPLAY_VER(dev_priv) >= 20) {
-+			sharp = intel_de_read(dev_priv, SHARPNESS_CTL(crtc->pipe));
-+			if (sharp & FILTER_EN) {
-+				crtc_state->hw.casf_params.strength =
-+					REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) - 16;
-+				crtc_state->hw.casf_params.need_scaler = true;
-+				crtc_state->hw.casf_params.win_size =
-+					REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
-+			}
-+		}
-+
- 		if (!crtc_state->hw.casf_params.need_scaler)
- 			crtc_state->pch_pfit.enabled = true;
- 
+ static void icl_display_core_uninit(struct drm_i915_private *dev_priv)
 -- 
-2.25.1
+2.45.2
 
