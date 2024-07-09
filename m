@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9943392AEB2
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jul 2024 05:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD9792AEB3
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jul 2024 05:26:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B2CE10E33A;
-	Tue,  9 Jul 2024 03:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49F7410E3F7;
+	Tue,  9 Jul 2024 03:26:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fo/g7wAj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OhrBC1PF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DBBA10E33A
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jul 2024 03:26:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5E710E479
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jul 2024 03:26:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720495565; x=1752031565;
+ t=1720495567; x=1752031567;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1DWeqDZ21skzl7OMON7e040OWqRJaPSPd9ztXxfl7zY=;
- b=Fo/g7wAjObDosBOwG4mLh2DXNvKgQIMeOYBidEEVM4sKknWOsxHtut7M
- oS8hc7jAgI2CNPwbNEWDgoMYC8T6mH1huSn4vWHkRZYhPVfl1DEGMpdpM
- f8CqWVkhtNFPPKYLZ5678jBadE5cBxJZWhJ+2PDBUqiYYWpHs2d0d0dvV
- hmUU/jaR2Oh5f5VHrujcYwXchRAJmR0iUoerLwJ7A9ZABJija9JiUErtM
- 50i/x2IHc3Dd6VmP3aRuHmbxY02oJ6XoMVPy3do2zqnGccRw1ud2wwB/s
- KTD7CnGxphWPL13qQzNClxIp/qRecUmJ5tDhAWs5Fot6SFVYJalny4jbm Q==;
-X-CSE-ConnectionGUID: OwZHnJjqQnOww/7gm4xXMw==
-X-CSE-MsgGUID: merG/KpiREuMITijJcinqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="21536456"
-X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="21536456"
+ bh=6sjRps4vVBzYzP2x8Sxec4RRjzRmr00cCqQyhB4X6i0=;
+ b=OhrBC1PFNhrbN5lNs4xJ8Fsgm67yxXv4gKOVx9/8ifJjhJGjCP12XSB0
+ 9/HZJPXAegO8IOdIMBx+HeH0RHfykbPxxBkowQLHW6oG2sC84jdz/IiU2
+ QS3kTdyGJ5yyzXFI/JuKi3orRV+JzGVbTwEdD1lL0BXFs1/ED7Zx4C8cv
+ 8qCuQDKt6DxPb0snB5q6Tp3D+4utscC0QfzAuTQbu+0Ze7w/OMuNaiEbK
+ qNZYNZCvuDqsV1sTlR8KDcATqnViKvAQMgW4wTN5hWUqkD3sfhN6Cb7fu
+ RUshxdcThJikR76zSwgVo3tTJ3eUaSLgzOAhUIXif0UOW+8S5TPvqps3p A==;
+X-CSE-ConnectionGUID: jzAqBVB8TZG5kQWegxUX9A==
+X-CSE-MsgGUID: cYCiMZm5SZalQNf/MlGt5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="21536460"
+X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="21536460"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 20:26:05 -0700
-X-CSE-ConnectionGUID: 8mxmXu/mTHuCta3j8RTfyw==
-X-CSE-MsgGUID: mhfc6sfVQtCXGHSClGY56w==
+ 08 Jul 2024 20:26:07 -0700
+X-CSE-ConnectionGUID: 1sxKNdeARv+Z2t447AymKQ==
+X-CSE-MsgGUID: n4VtJ0g8Tnea9ujvftwf9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="48374176"
+X-IronPort-AV: E=Sophos;i="6.09,193,1716274800"; d="scan'208";a="48374182"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2024 20:26:03 -0700
+ 08 Jul 2024 20:26:05 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 03/10] drm/i915/dp: Set FAVT mode in DP SDP with fixed refresh
- rate
-Date: Tue,  9 Jul 2024 08:56:44 +0530
-Message-Id: <20240709032651.1824185-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 04/10] drm/i915/vrr: Compute vrr vsync if platforms support it
+Date: Tue,  9 Jul 2024 08:56:45 +0530
+Message-Id: <20240709032651.1824185-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240709032651.1824185-1-ankit.k.nautiyal@intel.com>
 References: <20240709032651.1824185-1-ankit.k.nautiyal@intel.com>
@@ -69,30 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While running with fixed refresh rate and VRR timing generator set FAVT
-mode (Fixed Vtotal) in DP Adaptive Sync SDP to intimate the panel
-about Fixed refresh rate.
+Previously, TRANS_VRR_VSYNC was exclusively used for panels with
+adaptive-sync SDP support in VRR scenarios. However, to drive fixed refresh
+rates using the VRR Timing generator, we now need to program
+TRANS_VRR_VSYNC regardless of adaptive sync SDP support. Therefore, let's
+remove the adaptive sync SDP check and program TRANS_VRR_VSYNC for
+platforms where VRR timing generator is used.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3f46e13bb7b8..dcb94526cf00 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2642,6 +2642,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
- 		as_sdp->target_rr_divider = true;
- 	} else {
-+		if (crtc_state->vrr.fixed_rr)
-+			as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
-+		else
-+			as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
- 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
- 		as_sdp->vtotal = adjusted_mode->vtotal;
- 		as_sdp->target_rr = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 24568dae717a..43b772f91556 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -233,8 +233,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+ 	}
+ 
+-	if (intel_dp_as_sdp_supported(intel_dp) &&
+-	    crtc_state->vrr.enable) {
++	if (HAS_AS_SDP(i915) && crtc_state->vrr.enable) {
+ 		crtc_state->vrr.vsync_start =
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+ 			 crtc_state->hw.adjusted_mode.vsync_start);
 -- 
 2.40.1
 
