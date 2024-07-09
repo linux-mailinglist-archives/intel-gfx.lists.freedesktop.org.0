@@ -2,29 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F8A92BAE4
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jul 2024 15:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94BC092BC6A
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jul 2024 16:02:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE48110E542;
-	Tue,  9 Jul 2024 13:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361A510E571;
+	Tue,  9 Jul 2024 14:02:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="q79Qd1p6";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE9A10E542;
- Tue,  9 Jul 2024 13:22:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7239462661579081752=="
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 136E810E577
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jul 2024 14:02:54 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-367a2c2e41aso2626049f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 09 Jul 2024 07:02:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1720533772; x=1721138572;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=uu9OJhTofwP0VwGCWg6NqwdVMvMXhiTMagbsBjbyLLo=;
+ b=q79Qd1p6aypvNHL3DoZUopo+PUlpmPUg8hy/8JbS8EEL8he6TwuHfUZkKOJLBbhrrB
+ ApwJAm4xXP3Ltp5hDTpRWdyyEHXklF556RZQWvsHE1oDuvzJzlbvMBO9X0kfxHp1isHy
+ CUXUMKsFw0fR7Pa/LBwyKWRqCjgDaGmEAWP68XM8ITwyD0Cvr65RRM1cbHhJxnsgUgEf
+ XsF8miUxagFLlT+iem/MWoTSJCUwW5h/SGMoTcO5uzi2YndXPCXFlQDJ120Y4+ulg6uo
+ B59OKEGLFRGOcOWZnDjhpMn0ETRvnTS8Eyr1xuh54EZ+aK2Fc5dQdfAry2ZGu6dMYB1u
+ 38+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720533772; x=1721138572;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=uu9OJhTofwP0VwGCWg6NqwdVMvMXhiTMagbsBjbyLLo=;
+ b=F+yBEUrqYqUHeoWV7N0vTrweTPmIXSHRN6rpR5Z/QAQjVG1Y9MvArNacqvZOpp+Dgz
+ cv2p/KWPobssfQ3MTpuxYuSma5iG+OBuhj5CV92Sj6H76SQu2AdR2FyXooeTfYo/Jqu1
+ DA6ehP0cYh8gUYJhgOZC/mpOUeY97v1QkyJ8gQC21XXyH5vpgBCUiNgpusms6aRozgEz
+ bg2BLuwwPtYA0qRIi6ingBTLeoLXfcwS7RMWhzvBXjC7jUgy/ct1DJ0iWbJIU4A5KBf2
+ 9DWBiun3u64ZXv8obm9pdiUC4533dugcjoEblFQf0rTPBpSDxBVzUs5J8a+lkwPYA8eB
+ D5AA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXPxDwlIpHi2VmUz+Fekdh3B/L8DM3F1PgB4SMDk0595hBPU00DHoii8UMmrORw69JozkMOHrwAEalp822aHXaeDwKl/BrJZr3HuJwBd/yR
+X-Gm-Message-State: AOJu0YxAVjfIj3xuMlep/LMZTNryEstQthtHRRIva/ZiODwW62oO/KZG
+ iNvvITeDb6h7RAd8de3HVrPl4b9L7dWhFprrDR7IYAPFcfmJkKV8MEbLSS1fMjo=
+X-Google-Smtp-Source: AGHT+IFtT5ee2t3crvq4ZNBz+KhMcZm7i0t9xadFlUz5eVRkiHO6Bw0KLJ9RPYcYHiCfNac1dtmlnQ==
+X-Received: by 2002:adf:a3d9:0:b0:367:958e:9832 with SMTP id
+ ffacd0b85a97d-367cea46060mr1876324f8f.14.1720533772204; 
+ Tue, 09 Jul 2024 07:02:52 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4264a2fca8bsm209640155e9.47.2024.07.09.07.02.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 09 Jul 2024 07:02:51 -0700 (PDT)
+Message-ID: <51d17145-39bd-4ba5-a703-10725a1d3bc1@ursulin.net>
+Date: Tue, 9 Jul 2024 15:02:50 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Do_not_consi?=
- =?utf-8?q?der_preemption_during_execlists=5Fdequeue_for_gen8?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Jul 2024 13:22:49 -0000
-Message-ID: <172053136905.86477.7750615760327823709@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/gt: Do not consider preemption during
+ execlists_dequeue for gen8
+To: Nitin Gote <nitin.r.gote@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, andi.shyti@intel.com,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com,
+ janusz.krzysztofik@linux.intel.com, stable@vger.kernel.org
 References: <20240709125302.861319-1-nitin.r.gote@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
 In-Reply-To: <20240709125302.861319-1-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,240 +85,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7239462661579081752==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 09/07/2024 13:53, Nitin Gote wrote:
+> We're seeing a GPU HANG issue on a CHV platform, which was caused by
+> bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries for gen8").
+> 
+> Gen8 platform has only timeslice and doesn't support a preemption mechanism
+> as engines do not have a preemption timer and doesn't send an irq if the
+> preemption timeout expires. So, add a fix to not consider preemption
+> during dequeuing for gen8 platforms.
+> 
+> Also move can_preemt() above need_preempt() function to resolve implicit
+> declaration of function ‘can_preempt' error and make can_preempt()
+> function param as const to resolve error: passing argument 1 of
+> ‘can_preempt’ discards ‘const’ qualifier from the pointer target type.
+> 
+> Fixes: bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries for gen8")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11396
+> Suggested-by: Andi Shyti <andi.shyti@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> CC: <stable@vger.kernel.org> # v5.2+
+> ---
+>   .../drm/i915/gt/intel_execlists_submission.c  | 24 ++++++++++++-------
+>   1 file changed, 15 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 21829439e686..30631cc690f2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -294,11 +294,26 @@ static int virtual_prio(const struct intel_engine_execlists *el)
+>   	return rb ? rb_entry(rb, struct ve_node, rb)->prio : INT_MIN;
+>   }
+>   
+> +static bool can_preempt(const struct intel_engine_cs *engine)
+> +{
+> +	if (GRAPHICS_VER(engine->i915) > 8)
+> +		return true;
+> +
+> +	if (IS_CHERRYVIEW(engine->i915) || IS_BROADWELL(engine->i915))
+> +		return false;
+> +
+> +	/* GPGPU on bdw requires extra w/a; not implemented */
+> +	return engine->class != RENDER_CLASS;
 
-Series: drm/i915/gt: Do not consider preemption during execlists_dequeue for gen8
-URL   : https://patchwork.freedesktop.org/series/135901/
-State : success
+Aren't BDW and CHV the only Gen8 platforms, in which case this function 
+can be simplifies as:
 
-== Summary ==
+...
+{
+	return GRAPHICS_VER(engine->i915) > 8;
+}
 
-CI Bug Log - changes from CI_DRM_15048 -> Patchwork_135901v1
-====================================================
+?
 
-Summary
--------
+> +}
+> +
+>   static bool need_preempt(const struct intel_engine_cs *engine,
+>   			 const struct i915_request *rq)
+>   {
+>   	int last_prio;
+>   
+> +	if ((GRAPHICS_VER(engine->i915) <= 8) && can_preempt(engine))
 
-  **SUCCESS**
+The GRAPHICS_VER check here looks redundant with the one inside 
+can_preempt().
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/index.html
+Tvrtko
 
-Participating hosts (39 -> 35)
-------------------------------
-
-  Additional (1): bat-atsm-1 
-  Missing    (5): fi-snb-2520m fi-glk-j4005 bat-dg2-11 bat-arls-1 bat-mtlp-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_135901v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_mmap@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][1] ([i915#4083])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@gem_mmap@basic.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][2] ([i915#4079]) +1 other test skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-atsm-1:         NOTRUN -> [SKIP][3] ([i915#6621])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@i915_pm_rps@basic-api.html
-
-  * igt@kms_addfb_basic@size-max:
-    - bat-atsm-1:         NOTRUN -> [SKIP][4] ([i915#6077]) +37 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_addfb_basic@size-max.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][5] ([i915#6078]) +22 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-atsm-1:         NOTRUN -> [SKIP][6] ([i915#6093]) +4 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-atsm-1:         NOTRUN -> [SKIP][7] ([i915#1836]) +6 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-1:         NOTRUN -> [SKIP][8] ([i915#7357])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_prop_blob@basic.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-atsm-1:         NOTRUN -> [SKIP][9] ([i915#6094])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-atsm-1:         NOTRUN -> [SKIP][10] ([i915#4077]) +4 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-atsm-1:         NOTRUN -> [SKIP][11] +2 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@prime_vgem@basic-write.html
-
-  
-  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
-  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
-  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
-  [i915#6078]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6078
-  [i915#6093]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6093
-  [i915#6094]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6094
-  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
-  [i915#7357]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7357
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15048 -> Patchwork_135901v1
-
-  CI-20190529: 20190529
-  CI_DRM_15048: b517815c3f82589b802e2dccb11c8585fda13979 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7920: 7920
-  Patchwork_135901v1: b517815c3f82589b802e2dccb11c8585fda13979 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/index.html
-
---===============7239462661579081752==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Do not consider preemption during execlists_dequeue for gen8</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135901/">https://patchwork.freedesktop.org/series/135901/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15048 -&gt; Patchwork_135901v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 35)</h2>
-<p>Additional (1): bat-atsm-1 <br />
-  Missing    (5): fi-snb-2520m fi-glk-j4005 bat-dg2-11 bat-arls-1 bat-mtlp-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_135901v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@size-max:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_addfb_basic@size-max.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +37 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6078">i915#6078</a>) +22 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6093">i915#6093</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7357">i915#7357</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6094">i915#6094</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135901v1/bat-atsm-1/igt@prime_vgem@basic-write.html">SKIP</a> +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15048 -&gt; Patchwork_135901v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15048: b517815c3f82589b802e2dccb11c8585fda13979 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7920: 7920<br />
-  Patchwork_135901v1: b517815c3f82589b802e2dccb11c8585fda13979 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7239462661579081752==--
+> +		return false;
+> +
+>   	if (!intel_engine_has_semaphores(engine))
+>   		return false;
+>   
+> @@ -3313,15 +3328,6 @@ static void remove_from_engine(struct i915_request *rq)
+>   	i915_request_notify_execute_cb_imm(rq);
+>   }
+>   
+> -static bool can_preempt(struct intel_engine_cs *engine)
+> -{
+> -	if (GRAPHICS_VER(engine->i915) > 8)
+> -		return true;
+> -
+> -	/* GPGPU on bdw requires extra w/a; not implemented */
+> -	return engine->class != RENDER_CLASS;
+> -}
+> -
+>   static void kick_execlists(const struct i915_request *rq, int prio)
+>   {
+>   	struct intel_engine_cs *engine = rq->engine;
