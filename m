@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C0492B1A7
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jul 2024 09:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B5E92B1C4
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Jul 2024 10:05:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1465510E4A0;
-	Tue,  9 Jul 2024 07:56:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IGl0yokE";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A0910E342;
+	Tue,  9 Jul 2024 08:05:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A51C10E4AF;
- Tue,  9 Jul 2024 07:56:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720511813; x=1752047813;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6ptuGwoZrUxoJAquvrWJdxw46J4xJZQdWCe53L7kfBs=;
- b=IGl0yokEWoFUPu157MRBP89D4bpiKb4S5/TCmWLO5yAdDy94N1UhYcx+
- hi59OkzDcrpoeqZ56daXHDKOU3lUVqOHKEuLhitF5aUO+zjfXQ80VhGXE
- Cmk7j4S735RBk+LnKOd1BgK/uRrjOe8OfViV1vUFfxspuNgtOezrVrY4V
- acrKFHfGZ1gnEPiW14HPCcqf0tmlZZO/rwWejiLDFz5CaguHxnHU1nmhw
- n2+SYBNgHYKbSbk6AOS18MF0Hm1xdHN1CoHRx3he5MkLi8ahWDNVmfaTF
- WRzPevXxznW3kKVHNHtGsfEnQNnE6U6ln+vjoc268z45WQV1neOX8gnmK w==;
-X-CSE-ConnectionGUID: b8SLo2ltQYSiZjttLQUX/Q==
-X-CSE-MsgGUID: YxkbUz7FSOCDP0f8NMJ2qQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11127"; a="21513646"
-X-IronPort-AV: E=Sophos;i="6.09,194,1716274800"; d="scan'208";a="21513646"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2024 00:56:52 -0700
-X-CSE-ConnectionGUID: hWhEzyxxSyyed4YQKgYNyw==
-X-CSE-MsgGUID: M/hdRh+TT8qWLrdYE4pz1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,194,1716274800"; d="scan'208";a="52097278"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa003.fm.intel.com with ESMTP; 09 Jul 2024 00:56:49 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH] RFC: drm/drm_plane: Expose the plane capability and
- interoperability
-Date: Tue,  9 Jul 2024 13:16:56 +0530
-Message-Id: <20240709074656.1389387-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2AF910E342;
+ Tue,  9 Jul 2024 08:05:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_RFC=3A_drm/drm=5Fplane=3A?=
+ =?utf-8?q?_Expose_the_plane_capability_and_interoperability?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 09 Jul 2024 08:05:41 -0000
+Message-ID: <172051234178.85573.14496382634700275105@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240709074656.1389387-1-arun.r.murthy@intel.com>
+In-Reply-To: <20240709074656.1389387-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,124 +37,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Each plane has its own capability or interoperability based on the
-harware restrictions. If this is exposed to the user, then user can read
-it once on boot and store this. Later can be used as a lookup table to
-check a corresponding capability is supported by plane then only go
-ahead with the framebuffer creation/calling atomic_ioctl.
+== Series Details ==
 
-For Ex: There are few restiction as to async flip doesnt support all the
-formats/modifiers. Similar restrictions on scaling. With the
-availabililty of this info to user, failures in atomic_check can be
-avoided as these are more the hardware capabilities.
+Series: RFC: drm/drm_plane: Expose the plane capability and interoperability
+URL   : https://patchwork.freedesktop.org/series/135883/
+State : failure
 
-There are two options on how this can be acheived.
-Option 1:
+== Summary ==
 
-Add a new element to struct drm_mode_get_plane that holds the addr to
-the array of a new struct. This new struct consists of the formats
-supported and the corresponding plane capabilities.
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC      drivers/gpu/drm/drm_atomic_uapi.o
+drivers/gpu/drm/drm_atomic_uapi.c: In function ‘drm_atomic_plane_get_property’:
+drivers/gpu/drm/drm_atomic_uapi.c:634:31: error: ‘struct drm_mode_config’ has no member named ‘prop_plane_caps’
+  634 |  } else if (property == config->prop_plane_caps) {
+      |                               ^~
+make[5]: *** [scripts/Makefile.build:244: drivers/gpu/drm/drm_atomic_uapi.o] Error 1
+make[4]: *** [scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:485: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:485: drivers] Error 2
+make[1]: *** [/home/kbuild/kernel/Makefile:1934: .] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+Build failed, no error log produced
 
-Option 2:
-
-These can be exposed to user as a plane property so that the user can get to
-know the limitation ahead and avoid failures in atomic_check.
-
-Usually atomic_get_property is controlled over the state struct for the
-parameters/elements that can change. But here these capabilities or the
-interoperabilities are rather hardware restrictions and wont change over
-flips. Hence having as a plane_property may not make much sense.
-On the other hand, Option 1 include changes in the uapi struct
-drm_mode_get_plane. Shouldnt have impact on backward compatibility, but
-if userspace has some implementation so as to check the size of the
-struct, then it might a challenge.
-
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/drm_atomic_uapi.c |  3 +++
- include/drm/drm_plane.h           |  8 ++++++++
- include/uapi/drm/drm_mode.h       | 20 ++++++++++++++++++++
- 3 files changed, 31 insertions(+)
-
-=============Option 2========================
-
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 22bbb2d83e30..b46177d5fc8c 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -631,6 +631,9 @@ drm_atomic_plane_get_property(struct drm_plane *plane,
- 		*val = state->hotspot_x;
- 	} else if (property == plane->hotspot_y_property) {
- 		*val = state->hotspot_y;
-+	} else if (property == config->prop_plane_caps) {
-+		*val = (state->plane_caps) ?
-+			state->plane_caps->base.id : 0;
- 	} else {
- 		drm_dbg_atomic(dev,
- 			       "[PLANE:%d:%s] unknown property [PROP:%d:%s]\n",
-diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
-index dd718c62ac31..dfe931677d0a 100644
---- a/include/drm/drm_plane.h
-+++ b/include/drm/drm_plane.h
-@@ -260,6 +260,14 @@ struct drm_plane_state {
- 	 * flow.
- 	 */
- 	bool color_mgmt_changed : 1;
-+
-+	/**
-+	 * @plane_caps:
-+	 *
-+	 * Blob representing plane capcabilites and interoperability.
-+	 * This element is a pointer to the array of struct drm_format_blob.
-+	 */
-+	struct drm_property_blob *plane_caps;
- };
- 
- static inline struct drm_rect
-
-=============Option 1========================
-
-diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-index d390011b89b4..0b5c1b65ef63 100644
---- a/include/uapi/drm/drm_mode.h
-+++ b/include/uapi/drm/drm_mode.h
-@@ -312,6 +312,20 @@ struct drm_mode_set_plane {
- 	__u32 src_w;
- };
- 
-+#define DRM_FORMAT_PLANE_CAP_LINEAR_TILE	BIT(0)
-+#define DRM_FORMAT_PLANE_CAP_X_TILE		BIT(1)
-+#define DRM_FORMAT_PLANE_CAP_Y_TILE		BIT(2)
-+#define DRM_FORMAT_PLANE_CAP_Yf_TILE		BIT(3)
-+#define DRM_FORMAT_PLANE_CAP_ASYNC_FLIP		BIT(4)
-+#define DRM_FORMAT_PLANE_CAP_FBC		BIT(5)
-+#define DRM_FORMAT_PLANE_CAP_RC			BIT(6)
-+
-+struct drm_format_blob {
-+	__u64 modifier;
-+	__u32 plane_caps;
-+
-+};
-+
- /**
-  * struct drm_mode_get_plane - Get plane metadata.
-  *
-@@ -355,6 +369,12 @@ struct drm_mode_get_plane {
- 	 * supported by the plane. These formats do not require modifiers.
- 	 */
- 	__u64 format_type_ptr;
-+	/**
-+	 * @ format_blob_ptr: Pointer to the array of struct drm_format_blob.
-+	 * Specify the plane capabilites/restrictions w.r.t tiling/sync-async
-+	 * flips etc
-+	 */
-+	__u64 format_blob_ptr;
- };
- 
- struct drm_mode_get_plane_res {
--- 
-2.25.1
 
