@@ -2,78 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A6C92CFD2
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2024 12:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A81092D0CB
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2024 13:38:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6433E10E6F1;
-	Wed, 10 Jul 2024 10:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6673610E19E;
+	Wed, 10 Jul 2024 11:38:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="vrnhN/lG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cZcX9lg6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0DC10E2BE
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 10:52:27 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-4266182a9d7so24815325e9.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 03:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1720608745; x=1721213545;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
- :cc:subject:date:message-id:reply-to;
- bh=7OTwFD+y8BLpQUOHFtOxwqpYjiL54IPOC+Fv6GtnwNA=;
- b=vrnhN/lGb2iAoXnFUh/BNlxLQp0O0rRoHIO5ja5mM3wWI4mCPhhpGxxP10xF6ueCVN
- 9Q5TRB1daLm1IWHpW2WJFxjutUmIjaLF+P1g0hxhmt/Yk22mXwCl8LidCvfOp+5PFQs0
- FGOo8F6S60IiC7ZykbGsprDLC0F/U3tOY0KkqqCXMwnvhnLTMnF93L0bBp6eKNQfq91+
- XenkUpvBOjVmNqBWhWl9Ay3xS90gvLUbQCYwYT7GEuxjUlyU34qP30QQyv/N44hYLoAb
- T/8oVHO3wZZI3TiTjk6hTmh9GMHs1Urxi+prfA2wNKD+LkQPyRJiT90nQbEXK+X+cLm6
- NQsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720608745; x=1721213545;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=7OTwFD+y8BLpQUOHFtOxwqpYjiL54IPOC+Fv6GtnwNA=;
- b=QwJVP04GH04m1+XDMyRPQdpZYB0EuUlW/BI1TaeuWQ2U4WGq/bIko/NGfSUYixNZ8z
- 0xh6ynQInXIVVqGD9Vfp7jBMv9RPFHRC1HvKrObqm9roDkk4NQ4FNpeqrA8pMXyW+GTY
- tecVF5rdzfBXw0PK3+kLwwKu+IDfX2omGjMfjN6i70bpaxNXzevIIfOtX/kp0Tb8faZT
- peHhY1UefkZ5BdYzyvxwrpupB38PBKOqSvB/veurFy2PjHPIITg7Ar9mzgBCSfqKFQ+5
- ALtTy6nQogSUgFioUreCXXGse0ZieAIiEPF3UhVX9L81xe9El3vW0wIK/70fGstOAmI4
- npuA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXS6ZxeLLJeUQrE+QXusz0Bk9RqyAUwgHgzFDWsK+sU447Ngr54m43aWpNtMvToDts/4IiygVO0dOkmZ+x94CldD/aqmD9dGto43t2F4PCF
-X-Gm-Message-State: AOJu0YzDmuFu+3l2DcXSekKE9Fp4mwUEPXy9A8JzkRRjwPo5v89ueMVE
- sA2445zbNMa5fJ5UTsRHnjQXY65j41HlcId94gYvn+qZ+gJ3rQdUZB6BlnQy2aU=
-X-Google-Smtp-Source: AGHT+IHLdpVm8qLCHnMBImFFXSR3vZfYQOMKFUuVgSNrJAzj9CMoxZNTowxhQqOFT4crIo5haRW+Bw==
-X-Received: by 2002:a05:600c:22cb:b0:426:6220:cb57 with SMTP id
- 5b1f17b1804b1-426708f1ef6mr35241465e9.25.1720608745401; 
- Wed, 10 Jul 2024 03:52:25 -0700 (PDT)
-Received: from [192.168.0.101] ([84.69.19.168])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4264a2fc9desm247799075e9.45.2024.07.10.03.52.24
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 10 Jul 2024 03:52:25 -0700 (PDT)
-Message-ID: <c0f5c187-38d9-40ce-b5b7-ae466584d24a@ursulin.net>
-Date: Wed, 10 Jul 2024 11:52:24 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AE0410E19E;
+ Wed, 10 Jul 2024 11:38:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720611524; x=1752147524;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=PCQvDnX2bhe1pCmu3mB/ovER9ZpvXqvbBRYqScZ2liM=;
+ b=cZcX9lg6PGM0avAnTiHx0fczij4qiA4bvww2socWcZbuntP9QgAZsh+V
+ fZnPGHI7AloYgMYQxUmoO62vq3F2Ym87kyn8Z4p3pVY5HiJXxLNV24I+z
+ z41rtpJgVvY8rEaXri5MynMSrimDRPioiLQdLgScnSs6bBIZPmqf8fjO4
+ lvROmPx/lkVlTZiMuLUlOAXBY4OodoC6RPTfitLfUKdRFO9PSO2RlbWH+
+ 7QyabyTysMZ/gkWxtRskoV0/XOZd59976lj8ZVwpITlzYXh5CzwRQOU9W
+ hwbn9s5LQeC7llxHjaTo/wuw8F0xYyehZWYEgr5i7dsa7mHspVhwVMEN1 A==;
+X-CSE-ConnectionGUID: Tk897xzaSMCRuCCPlDjeLw==
+X-CSE-MsgGUID: 4oNvKAiwSIakZuJbkIw6tQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11128"; a="21689627"
+X-IronPort-AV: E=Sophos;i="6.09,197,1716274800"; d="scan'208";a="21689627"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2024 04:38:43 -0700
+X-CSE-ConnectionGUID: tONXe3SRSGa5RO1tJjqqSQ==
+X-CSE-MsgGUID: 9ZYTMnmuTJSCj8yEenubjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,197,1716274800"; d="scan'208";a="48170737"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 10 Jul 2024 04:38:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 10 Jul 2024 14:38:38 +0300
+Date: Wed, 10 Jul 2024 14:38:38 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thorsten Blum <thorsten.blum@toblux.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/i915: Explicitly cast divisor to fix Coccinelle
+ warning
+Message-ID: <Zo5yvk69FB-jEgd8@intel.com>
+References: <20240710074650.419902-2-thorsten.blum@toblux.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gt: Do not consider preemption during
- execlists_dequeue for gen8
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-To: Nitin Gote <nitin.r.gote@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, andi.shyti@intel.com,
- chris.p.wilson@linux.intel.com, nirmoy.das@intel.com,
- janusz.krzysztofik@linux.intel.com, stable@vger.kernel.org
-References: <20240709125302.861319-1-nitin.r.gote@intel.com>
- <51d17145-39bd-4ba5-a703-10725a1d3bc1@ursulin.net>
-Content-Language: en-GB
-In-Reply-To: <51d17145-39bd-4ba5-a703-10725a1d3bc1@ursulin.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240710074650.419902-2-thorsten.blum@toblux.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,101 +74,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Jul 10, 2024 at 09:46:51AM +0200, Thorsten Blum wrote:
+> As the comment explains, the if check ensures that the divisor oa_period
+> is a u32. Explicitly cast oa_period to u32 to remove the following
+> Coccinelle/coccicheck warning reported by do_div.cocci:
+> 
+>   WARNING: do_div() does a 64-by-32 division, please consider using div64_u64 instead
+> 
+> Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
+> ---
+>  drivers/gpu/drm/i915/i915_perf.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 0b1cd4c7a525..24722e758aaf 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -4103,7 +4103,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>  			 */
+>  			if (oa_period <= NSEC_PER_SEC) {
+>  				u64 tmp = NSEC_PER_SEC;
+> -				do_div(tmp, oa_period);
+> +				do_div(tmp, (u32)oa_period);
 
-On 09/07/2024 15:02, Tvrtko Ursulin wrote:
-> 
-> On 09/07/2024 13:53, Nitin Gote wrote:
->> We're seeing a GPU HANG issue on a CHV platform, which was caused by
->> bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries 
->> for gen8").
->>
->> Gen8 platform has only timeslice and doesn't support a preemption 
->> mechanism
->> as engines do not have a preemption timer and doesn't send an irq if the
->> preemption timeout expires. So, add a fix to not consider preemption
->> during dequeuing for gen8 platforms.
->>
->> Also move can_preemt() above need_preempt() function to resolve implicit
->> declaration of function ‘can_preempt' error and make can_preempt()
->> function param as const to resolve error: passing argument 1 of
->> ‘can_preempt’ discards ‘const’ qualifier from the pointer target type.
->>
->> Fixes: bac24f59f454 ("drm/i915/execlists: Enable coarse preemption 
->> boundaries for gen8")
->> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11396
->> Suggested-by: Andi Shyti <andi.shyti@intel.com>
->> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
->> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
->> CC: <stable@vger.kernel.org> # v5.2+
->> ---
->>   .../drm/i915/gt/intel_execlists_submission.c  | 24 ++++++++++++-------
->>   1 file changed, 15 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c 
->> b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> index 21829439e686..30631cc690f2 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> @@ -294,11 +294,26 @@ static int virtual_prio(const struct 
->> intel_engine_execlists *el)
->>       return rb ? rb_entry(rb, struct ve_node, rb)->prio : INT_MIN;
->>   }
->> +static bool can_preempt(const struct intel_engine_cs *engine)
->> +{
->> +    if (GRAPHICS_VER(engine->i915) > 8)
->> +        return true;
->> +
->> +    if (IS_CHERRYVIEW(engine->i915) || IS_BROADWELL(engine->i915))
->> +        return false;
->> +
->> +    /* GPGPU on bdw requires extra w/a; not implemented */
->> +    return engine->class != RENDER_CLASS;
-> 
-> Aren't BDW and CHV the only Gen8 platforms, in which case this function 
-> can be simplifies as:
-> 
-> ...
-> {
->      return GRAPHICS_VER(engine->i915) > 8;
-> }
-> 
-> ?
-> 
->> +}
->> +
->>   static bool need_preempt(const struct intel_engine_cs *engine,
->>                const struct i915_request *rq)
->>   {
->>       int last_prio;
->> +    if ((GRAPHICS_VER(engine->i915) <= 8) && can_preempt(engine))
-> 
-> The GRAPHICS_VER check here looks redundant with the one inside 
-> can_preempt().
+Why is this code even using do_div() when it doesn't need the
+remainder?
 
-One more thing - I think gen8_emit_bb_start() becomes dead code after 
-this and can be removed.
+>  				oa_freq_hz = tmp;
+>  			} else
+>  				oa_freq_hz = 0;
+> -- 
+> 2.45.2
 
-Regards,
-
-Tvrtko
-
->> +        return false;
->> +
->>       if (!intel_engine_has_semaphores(engine))
->>           return false;
->> @@ -3313,15 +3328,6 @@ static void remove_from_engine(struct 
->> i915_request *rq)
->>       i915_request_notify_execute_cb_imm(rq);
->>   }
->> -static bool can_preempt(struct intel_engine_cs *engine)
->> -{
->> -    if (GRAPHICS_VER(engine->i915) > 8)
->> -        return true;
->> -
->> -    /* GPGPU on bdw requires extra w/a; not implemented */
->> -    return engine->class != RENDER_CLASS;
->> -}
->> -
->>   static void kick_execlists(const struct i915_request *rq, int prio)
->>   {
->>       struct intel_engine_cs *engine = rq->engine;
+-- 
+Ville Syrj�l�
+Intel
