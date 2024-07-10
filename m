@@ -2,83 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C91192CD34
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2024 10:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD74792CD56
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2024 10:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB6E710E6AD;
-	Wed, 10 Jul 2024 08:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E4310E6B8;
+	Wed, 10 Jul 2024 08:44:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="KxCTiBlu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tqiv7ksV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59C4010E6B2
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 08:37:40 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-426719e2efeso2387405e9.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 01:37:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1720600659; x=1721205459; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=0UYTy7791VpD93HF44CnAyMY65sI1wRnCQ6enS2B9N8=;
- b=KxCTiBlu7+bwDqIQ6LkoQUOQ/+qCc5c+5AyTD077uMBhFI+MJSmdxu25v29tfddmpv
- v+X/PoQwESjVtd0bP0SqnxNpiUeKgLDDexQ/rFPufuN9/tMeoLCsZXEszrcfL3VALQHr
- gHWA55nMLIBD5G8/J0pAuKQcef86hSVXRzigs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1720600659; x=1721205459;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0UYTy7791VpD93HF44CnAyMY65sI1wRnCQ6enS2B9N8=;
- b=Fm3oexeRidIvtSwgkydSqtfwLliNDSWfNZcJl3nEn4AqnYalCgCJNlglE2huryv6O0
- zbk2SbkxN/BZhflNVDlqFJcuhoYUrQyPwfc4DNbM5oZuc3+P7SbqjSidHcb1Y34TIUH/
- 5Uli2K5G4Bc62dIE5jWxG+I77FuVyHF1jdHQPMLXWAGBsdGSxTajnzR0dr+8IocrOZ+8
- kWVRoGcV+iDnoP+VQVHE2GP0x2MP3iSg+XyTE6Xg7PsZolcl9boUUogGjTk55Z17Xlye
- 3gkQ/AhDr47T4/r0ik2xLvzseYlFGfy1dyip5MZMTSuZhI3MyEWcCKdciNSlP+WfhhPR
- HHbA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXw59hmYZ6OnwRAUl0D2IGur5jkV+LvP2U1NLLFuWaIViBpnKIyQb6arORgj2PVwCISly+q739v2tZFDHzilT8x3azhum3pJCwyaRRo8Cou
-X-Gm-Message-State: AOJu0YxkFyTEcOQWDGtN0Cd2Jjr9XMqPVHvS8yEgZ2zLLhW8QcWOX2DG
- 5/dDfTlilmId4/64K6eMB+zqcS5jry428ZY2a/fV0EZCoP1JM3tEkJDZwIGWJe0=
-X-Google-Smtp-Source: AGHT+IGYFzqQ+nqRKk2mJhykuig+tHqK5R2qVD/ZmX8lMFX3rzVw6+TS9LaM1zSabgway2v49/Xarg==
-X-Received: by 2002:a5d:5888:0:b0:35f:2584:76e9 with SMTP id
- ffacd0b85a97d-367cea451f2mr3155067f8f.2.1720600658471; 
- Wed, 10 Jul 2024 01:37:38 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-367cdfab141sm4657740f8f.96.2024.07.10.01.37.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Jul 2024 01:37:37 -0700 (PDT)
-Date: Wed, 10 Jul 2024 10:37:35 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>, Dave Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-intel-next
-Message-ID: <Zo5ITzoxHtYNt_zv@phenom.ffwll.local>
-References: <875xttazx2.fsf@intel.com>
- <Zo2dJlm2pUMyQq0y@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 149E110E6B8;
+ Wed, 10 Jul 2024 08:44:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1720601092; x=1752137092;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=+YaYSxmvp6r450/7pir6+yRLFrh29rTbC0zSKUNWg7A=;
+ b=Tqiv7ksVAfph6Ncs4Y0BGfDVJITsPIGda6NnUJ6D6hIN3lFO2H0ZOScQ
+ rJ63qEiC5OQZA5UwYMdC4Be9pv14yBsyYUQdntM/Xdbt2keGOKrCHafwa
+ OHNgp4pNrmUpJGOoyoKGvBmD/LAoTY3o8efNTtWTLzIypHIoNG7Raduc/
+ mfllyi1ZAXF0KW8QviKrmEd6IuYWuSdnD7FWiOyUh2zLAqUQRe0lFDEJy
+ c7cZbfaz/5X6RcrR1jKoZ5ZB9y/ZYvR/tqVPu+8WyGBwv4flN39nAdznt
+ wh6wXNGp1IB7iOAtUPzIBjGUQ4Ch6z7DY2lN1a1n3xvHB+WLbuSu8ODT/ w==;
+X-CSE-ConnectionGUID: NTIvKWgyRDmBrm6wLKjebA==
+X-CSE-MsgGUID: KhZ6aostQMGlCtZmb9n6AQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11128"; a="35340156"
+X-IronPort-AV: E=Sophos;i="6.09,197,1716274800"; d="scan'208";a="35340156"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2024 01:42:54 -0700
+X-CSE-ConnectionGUID: 5kiip5RDQleqJtggaMVNRA==
+X-CSE-MsgGUID: KlYalFsrRfiqyOce/bRp3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,197,1716274800"; d="scan'208";a="52945819"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Jul 2024 01:42:54 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 10 Jul 2024 01:42:53 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 10 Jul 2024 01:42:53 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 10 Jul 2024 01:42:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e1Ui5xpFPODvp/yiTWBzB6zXjnJoDfzUyAwXkD5n+yFbPUsvJYdXNtMR4ErKUoBmDrFNQEHTjEJYcDDK3l2ipfMEj2MJfipXoAqEJyDvWaQZl3BYwE7EZHT8rVEPVeIFy+cAQgTFTguuZvywr/ceQyn9iDsJcCGcpVzyGiCvc92PE4fm712OcF0IpxEPednbxu8v9uLSdTIA1OJcItXf608VUUt8gwDJ541NdO+ZMxNPab3TloDSnNnaG7Vbdo19dZTa/rCN7E36WPIn9VSkgM4ZmxuM0V5WdOpVcpYk1dJUDwUKby+hl1NE3KUOBcmH7q30C5PckrfEWJVgLN1vFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+YaYSxmvp6r450/7pir6+yRLFrh29rTbC0zSKUNWg7A=;
+ b=Yf/lcTjDa0pZJFvr+OmqULBtKV9hwB+qhQaNe9OjUsPAMU22D62L93QLXatRdsgNG9qaao7iChkD3mGtnhc/jPClqUES9Uc/jUizD09PM4qFWxBtga5Q7Rzl0kGbyKuM5WBmyTLlGiSuhz81EZ6BXgQiNZD64G9jYz0s+5Q/bcWdSNRJArQ9mjgBvkNXOFFFCbl9R4mwNM8Coh9yd410ed9Tnc9L+t/sIWzNg5gMgtQUWY796X/ZUdgHyoaL9acIHERQLZaJuARcXbacxsynPtwbFR+1QwOGSgz6gVSbAq3X4ajr2CsKl95ke6J892XWv8kxxedI/4B3TW5rgz7TpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ SN7PR11MB6993.namprd11.prod.outlook.com (2603:10b6:806:2ac::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.20; Wed, 10 Jul
+ 2024 08:42:51 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::8648:3a6b:af5c:b6e6%5]) with mapi id 15.20.7741.033; Wed, 10 Jul 2024
+ 08:42:51 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 15/20] drm/xe/fbdev: Fix BIOS FB vs.s stolen size checke
+Thread-Topic: [PATCH 15/20] drm/xe/fbdev: Fix BIOS FB vs.s stolen size checke
+Thread-Index: AQHazuspbptWjALzx0aHdl6IQ7mWrbHvq9Vw
+Date: Wed, 10 Jul 2024 08:42:51 +0000
+Message-ID: <DM4PR11MB6360FF26AA56341D6EABBB09F4A42@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
+ <20240705145254.3355-16-ville.syrjala@linux.intel.com>
+In-Reply-To: <20240705145254.3355-16-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|SN7PR11MB6993:EE_
+x-ms-office365-filtering-correlation-id: 0d6ffa11-93ce-4700-4bd5-08dca0bc488b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?N3FVa1p2dUdZUWhWbWo0N3VhTkVWVklmZHVKQngrKzBHTDAzRGluSUxpeStj?=
+ =?utf-8?B?b2NGUG9GS0dTaDBMcCt6VURSU1p4Tk9IVXV6YTdDQ0gxMzNpWWNxSWx6Z3hN?=
+ =?utf-8?B?TXF5a2FpSmpGQXdOWTBZeVZVRXlsZjNWVWUxMDl5eHdyQlpaY3h2WFM1VUYw?=
+ =?utf-8?B?UHozVUphQkFJOWphMmJrWDlaKzYyTEk2RzN2NytPQzQ0c0xQaXRPeFRJcUNC?=
+ =?utf-8?B?YzRRM0lxN094ZEVQTnJXeXRyemNUOVc0VFZQODJMMDdvbEcxMDV1bFNCUmN2?=
+ =?utf-8?B?Mld5NmkvOXFyN1hXNGh2NlVBTkw0TS9RNWVCcDh5bkNldDNSTmVSK1YzcVRW?=
+ =?utf-8?B?QUtyY3kza0lETk9EUzhydklPZmVVSFIzbWZ1ZS8wWnhyamZUNEMzazVxZTJW?=
+ =?utf-8?B?UngxTlZSZGJBWHgvaWx3ZFJLK3g3bjI0TVpneDh4aVBzSmlQTjN2Q0JvMUxo?=
+ =?utf-8?B?Q0xsVDBKVkR4enU2d3JHdUJqWnJZKzBvcE5XWS9CMXdhd2lvaksxZkU5dElQ?=
+ =?utf-8?B?MHZqTDhCZStPbkMvRTMzSGtnTkJpWng0MHMzVU5KWU9WYzFhbGtZZ25vRnRK?=
+ =?utf-8?B?VTc4aWRFa3JHT1NsV1pUZldXRVdIQU5oOXRBenowK0F0ZCs5VjMvUTZrVFJ4?=
+ =?utf-8?B?d3pvSzhNSEtLVEhRMjVYOVBWSHdVSmpXLzZJWTZZZFVkVEV0OEQ1dzA3dFJG?=
+ =?utf-8?B?bWVocjBMTHNVOE9kMGlKYWpBVDNYaUpTalRIRElzZnpEWkFPUWtZd004OUVE?=
+ =?utf-8?B?Z0hiZjFneHZUSXFZQ2Zpc0FNa0pXc2pVQjZNWjUvNzlxdHE5RnRUVHJMM2Jw?=
+ =?utf-8?B?aFFPK0ZWZG52SFgxbEEwSzloU3RiTFB3cEU3Ykw5YTVWU2E1U2xja3JCSUZO?=
+ =?utf-8?B?eVRldFVxa3FMcVF6S0dlMGVYSHgvdnRFcFJKRzhZTWVtaEVuL1NIS3l3QnBi?=
+ =?utf-8?B?RHoyMzRvVkJTcDBrblNFMHhMbnk4Z3d2Kyt1aFBkSW5NSk4yTDBHUUZDOTIw?=
+ =?utf-8?B?V0lvUzAvOTdCS0NWRzhoRUdDcENuUlRPVGFxbXJpekhVRDE1WWVXOTZFZm13?=
+ =?utf-8?B?NnIxRnpYVVpOVlpPV21WOWVuWGlOZUdSWFM3M21MUlhTMnNXYmtmNEV6U1FO?=
+ =?utf-8?B?UnNGQnAwdWx0cnptdVlWcExML21ublExYUpUSG5Lc2ljUHpsZzVCL2R0ZGNq?=
+ =?utf-8?B?Sk9yeVVOazJZNHlOYmIyS3FTdGthU0tTOUJyUWczazArNktwM1Z2eVRJb0V6?=
+ =?utf-8?B?Tk85dUlUNGkrakJadU03NnZROGVhNnFvdlZ2VHFSdUdSRmp3dXg2bFNiMTFC?=
+ =?utf-8?B?U3lISDJuZWhoY296azZ5Vi9tQTdqYnhyL0V2MXBtUXYwNHdzSkIrSEhjSTky?=
+ =?utf-8?B?aXV3L2dWRkE4RnlYZzhMUVV0T1FrTzZudHF4QkdGSjRpamV1Z2YyVnVYOUlp?=
+ =?utf-8?B?WUM4U3I1T1NkK082MDRTK04vUklKNGtyS1h5amxVWUhpNzFobE9TSDN0Njl3?=
+ =?utf-8?B?dkg2V2c4YVpiQ1VFeU9QOGptZ081N3M4ajlJWG5IbXpxSjdqVWhWL04yZXJa?=
+ =?utf-8?B?eXNrbGlBbWZQZUZoVVVOUmVwcnpTNVUxNWFTTzhIT0NnYldKTUR1US9aVDBP?=
+ =?utf-8?B?VFgyeFQ5QTZSN1JNbndXdFpOb1pzSVBGbTNkNmJWQVhwK3NLVjhUaG9nWFhi?=
+ =?utf-8?B?emV4UHR0WXlKL2tYNlFTbmRmcGk5cmNGc2U5TmZwTlVxVE5oY1V1M1lOUW0y?=
+ =?utf-8?B?dVYvUGx5WmdGbTZWN2hMZXhwZ2ozY3dxdW9MREM3S0xkeFZDK1JjOWdFZWtx?=
+ =?utf-8?B?cmRWanBvTkJMcmgydEtNWmZQdDhlK0ZORmRCZG1WbEM4eWEveVVGYlZoOTFN?=
+ =?utf-8?B?bWtRb3VSZENBa0MyUmJSZnJVditPTkJJc001a3A1SWtuN3c9PQ==?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N1I3VUNYNnNuVVF0R1llNzZGRDVVOVJVYmluVUdQNDR5V1p1cldmSDRCWHZn?=
+ =?utf-8?B?RzVYSUdQNWJmUjYzYnpWV2JQOTc0WEN1K0VhTXBZdFdUZG85eUJBai9seTVJ?=
+ =?utf-8?B?T1luWEIralJySW9laVA5MnI5djJsdDRzK0hPOEFwZHZkQzFlVjB5MXN5ZDJz?=
+ =?utf-8?B?T2pjV2MxYnNyMnJVZUZicFgrUWNKbTc2STFIUk9uWndtNVZwVVNvRWhXandM?=
+ =?utf-8?B?QnpsMzhYUVlzaGpzV1lYQjMzUFBYMjM1QzJpaElwanNtT08vMWc2c2dNbkRC?=
+ =?utf-8?B?Rmtqb05vbDRYVDdZY0NVRG9YelowT3pOZzBTRnlJV3AwV1JxOHdDMHFLUStH?=
+ =?utf-8?B?WFQreWNvZVFDMFQ4Ym52MlFjZVc2aFJGNFF3aUdmbVhpb0N2REQ2U3NESlRO?=
+ =?utf-8?B?MFRBMVJnWHhnOTQ1M1YwcUljTGlqQXZBVm83WU92M2J2RXZ6cjZkclhvU3Mr?=
+ =?utf-8?B?SVJITVNPY1pyRzZrUzQ2c3pMNnlYenA2SmIwUWUybDFDQ092SWwwbjJPV0Rl?=
+ =?utf-8?B?a2JYVGxJZTExS1hLVUNGeHhWdjFLcFFTOUZlbXlUSy9nY3lFZGp6Z2ZWWUI1?=
+ =?utf-8?B?cTZzSzdJWnhtRm1lOXB5MmJOVWZ2UkI0NUlJNWp5Sm1TK2xCOEhYSXZBeFZZ?=
+ =?utf-8?B?dENHc0E1bm02c2VOSG1kV1YxYUM3a3ZUTlU4ZDgxNmtzR3RHMGExS2g5Y1dQ?=
+ =?utf-8?B?SzlPL0ZGSDZFalowWUZSZVdmSjJRRkZ6bXNvWmRRNXVHeEluZzRRdDdSbWFV?=
+ =?utf-8?B?T0hEaS9TNkhkanFzUUJKa1hxUmxoTWRiaTVxTzUyNTN1dVFkMjE0Y1NhOVlO?=
+ =?utf-8?B?cWN4ODdNckw0TSt0OFNzWklMZWxPNkgwYTJjRUhsYUlGbWpMalUycTZPOWFt?=
+ =?utf-8?B?S01iVmpsUW43NTA5eERyTUVBVHhqdHVOUitIdGdVWWMwTm8yM3U4REgxN3JH?=
+ =?utf-8?B?SE4rNG1MdjBXTVQwSUVBNGJmNUcwK1JwY2NGTGpmaEFHRW42ZGZvNkRjdjhR?=
+ =?utf-8?B?cHlwUFpOa1lka0lsWnNMTXFESmR0SkxWRk45TEJuUHMyQ3JUN3A5K05vSVpx?=
+ =?utf-8?B?TDRDczE1anNqZW5WQzBlOHdJYUFHemFuMHBBbzhLcGhicXF4cm9IVXBjbkZu?=
+ =?utf-8?B?MEtCUWt0bVhWenZVakhBdGVMUUVpMXM4TDU1QUNvV09MK1ZWZ3BJdFNBZjR6?=
+ =?utf-8?B?VkdaWitvd1k5aUE4Ni8zRndGNFRlQlVzNC91ZTVnMHp3b1FyM3YyQmc3RzBR?=
+ =?utf-8?B?aHpHWVlZRnE0WjRtZk1NS2ZqenhIYnN6c1VXblVLSURBVXA4dFVFSUQ0K1p2?=
+ =?utf-8?B?d245SkxtVDMwSnhtWkJVamhuaEJ6YUxmRElkTklSQUJHcFdycVp2U1pzYndq?=
+ =?utf-8?B?NHc2SHo5VGlJR2NPaVF5cTJPRDVKSzVGRTV0YzNFVmRQMTZTVVNKN3JOQlFi?=
+ =?utf-8?B?blpSL2NwR1hXTk84dFRva1RvaWtWUVhkNzBOK0lTQ2U4c2c0K3RSKzNGazBj?=
+ =?utf-8?B?ekdRNENUS0FUNUxJZVhYcEtqZzVFMEZWWGlGaGdRWDdLSEw0eGE0czZEV3Q5?=
+ =?utf-8?B?eHBhc1lrRWtvTElPaGZxNis4QUlzaC9hbnVGU0dTT1NiUlBGSkQrOFpTZWd2?=
+ =?utf-8?B?cGdacnd4ZElOL0drc2RwWTlGbmlzR2dFbnYyRFFQeEk4K2VlYTBXZnBXL2Jo?=
+ =?utf-8?B?c2tERWtIK2VqMVdlZjZFK3VHWThyS2x0SDRxSDd5YU5FVFNtUkF2T1FKYzg0?=
+ =?utf-8?B?UUpnR2NheCsrYk42RlY1Z09JdCt3VFZaR3JKekpuNHRrdTlxTmRIeVdMcVFj?=
+ =?utf-8?B?d1Z5cGVjN3lETlNOeDJCdUNVNDRuSTFyVDJFZklNMkFnb0djT1BDQlFUNEdw?=
+ =?utf-8?B?TElPZzlGSjdzWVpSclBOT0t2ekJDNnZ6cDB1dGRsaW5WNnI4ZkdvZi93aHBY?=
+ =?utf-8?B?VFUzZmZpV0E1TTBOTXcrdktFT1QzS3d6ZDJlTmh2S3ZpM2hlcVJudm1lemZp?=
+ =?utf-8?B?aHBrYzR2M25HMnlTVktkQlFjVGt3VGh4ZEJPWFNCVmkxUDlSZzlZeCt4bnI5?=
+ =?utf-8?B?ZWMvcmxyWUNoWVhmd3VOSDYyZSszUFNNVnZ5LzJpYk5FWDNMSkNWRG4zT1hD?=
+ =?utf-8?Q?MHH+arRvZHCqOrnnHDw++DwGg?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zo2dJlm2pUMyQq0y@intel.com>
-X-Operating-System: Linux phenom 6.9.7-amd64 
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d6ffa11-93ce-4700-4bd5-08dca0bc488b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2024 08:42:51.0543 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eJeo893Mv9WGi93PheFnKVn42Uey4w2oq1SYMc0zy5orSd9qDxHePchD3y6d1fKaHmX4reFeV8PgT2oJTdkVwg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6993
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,224 +196,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 09, 2024 at 04:27:18PM -0400, Rodrigo Vivi wrote:
-> On Fri, Jun 28, 2024 at 05:46:01PM +0300, Jani Nikula wrote:
-> > 
-> > Hi Dave & Sima -
-> > 
-> > Another feature pull towards v6.11, hopefully last. This should also fix
-> > the 32-bit build issue [1] seen in drm-next.
-> 
-> Sima, Dave,
-> 
-> I just noticed that we don't have this one yet in drm-next.
-> 
-> Anything missing or wrong with this PR?
-
-Nothing, I just made a mess last week processing -next and then lost this
-one.
-
-Pulled into drm-next now, and thanks for the ping.
--Sima
-
-> 
-> Thanks,
-> Rodrigo.
-> 
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > [1] https://lore.kernel.org/r/CAPM=9tyNGA2wEgnsKdSyjHRGVikywZLdueZj=syTMFYEUNzxhw@mail.gmail.com
-> > 
-> > 
-> > drm-intel-next-2024-06-28:
-> > drm/i915 feature pull #2 for v6.11:
-> > 
-> > Features and functionality:
-> > - More eDP Panel Replay enabling (Jouni)
-> > - Add async flip and flip done tracepoints (Ville)
-> > 
-> > Refactoring and cleanups:
-> > - Clean up BDW+ pipe interrupt register definitions (Ville)
-> > - Prep work for DSB based plane programming (Ville)
-> > - Relocate encoder suspend/shutdown helpers (Imre)
-> > - Polish plane surface alignment handling (Ville)
-> > 
-> > Fixes:
-> > - Enable more fault interrupts on TGL+/MTL+ (Ville)
-> > - Fix CMRR 32-bit build (Mitul)
-> > - Fix PSR Selective Update Region Scan Line Capture Indication (Jouni)
-> > - Fix cursor fb unpinning (Maarten, Ville)
-> > - Fix Cx0 PHY PLL state verification in TBT mode (Imre)
-> > - Fix unnecessary MG DP programming on MTL+ Type-C (Imre)
-> > 
-> > DRM changes:
-> > - Rename drm_plane_check_pixel_format() to drm_plane_has_format() and export
-> >   (Ville)
-> > - Add drm_vblank_work_flush_all() (Maarten)
-> > 
-> > Xe driver changes:
-> > - Call encoder .suspend_complete() hook also on Xe (Imre)
-> > 
-> > BR,
-> > Jani.
-> > 
-> > The following changes since commit d754ed2821fd9675d203cb73c4afcd593e28b7d0:
-> > 
-> >   Merge drm/drm-next into drm-intel-next (2024-06-19 11:38:31 +0300)
-> > 
-> > are available in the Git repository at:
-> > 
-> >   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-2024-06-28
-> > 
-> > for you to fetch changes up to 32a120f52a4c0121bca8f2328d4680d283693d60:
-> > 
-> >   drm/i915/mtl: Skip PLL state verification in TBT mode (2024-06-28 12:50:52 +0300)
-> > 
-> > ----------------------------------------------------------------
-> > drm/i915 feature pull #2 for v6.11:
-> > 
-> > Features and functionality:
-> > - More eDP Panel Replay enabling (Jouni)
-> > - Add async flip and flip done tracepoints (Ville)
-> > 
-> > Refactoring and cleanups:
-> > - Clean up BDW+ pipe interrupt register definitions (Ville)
-> > - Prep work for DSB based plane programming (Ville)
-> > - Relocate encoder suspend/shutdown helpers (Imre)
-> > - Polish plane surface alignment handling (Ville)
-> > 
-> > Fixes:
-> > - Enable more fault interrupts on TGL+/MTL+ (Ville)
-> > - Fix CMRR 32-bit build (Mitul)
-> > - Fix PSR Selective Update Region Scan Line Capture Indication (Jouni)
-> > - Fix cursor fb unpinning (Maarten, Ville)
-> > - Fix Cx0 PHY PLL state verification in TBT mode (Imre)
-> > - Fix unnecessary MG DP programming on MTL+ Type-C (Imre)
-> > 
-> > DRM changes:
-> > - Rename drm_plane_check_pixel_format() to drm_plane_has_format() and export
-> >   (Ville)
-> > - Add drm_vblank_work_flush_all() (Maarten)
-> > 
-> > Xe driver changes:
-> > - Call encoder .suspend_complete() hook also on Xe (Imre)
-> > 
-> > ----------------------------------------------------------------
-> > Imre Deak (5):
-> >       drm/i915: Move encoder suspend/shutdown helpers to intel_encoder.c
-> >       drm/i915: Pass intel_display to the encoder suspend/shutdown helpers
-> >       drm/xe: Use the encoder suspend helper also used by the i915 driver
-> >       drm/i915/display: For MTL+ platforms skip mg dp programming
-> >       drm/i915/mtl: Skip PLL state verification in TBT mode
-> > 
-> > Jouni Högander (12):
-> >       drm/i915/psr: Set DP_PSR_SU_REGION_SCANLINE_CAPTURE bit when needed
-> >       drm/i915/psr: Check panel ALPM capability for eDP Panel Replay
-> >       drm/i915/psr: Inform Panel Replay source support on eDP as well
-> >       drm/i915/psr: enable sink for eDP1.5 Panel Replay
-> >       drm/i915/psr: Check panel Early Transport capability for eDP PR
-> >       drm/i915/psr: 128b/132b Panel Replay is not supported on eDP
-> >       drm/i915/psr: HW will not allow PR on eDP when HDCP enabled
-> >       drm/i915/alpm: Make crtc_state as const in intel_alpm_compute_params
-> >       drm/i915/psr: Perform psr2 checks related to ALPM for Panel Replay
-> >       drm/i915/psr: Perform scanline indication check for Panel Replay as well
-> >       drm/i915/psr: Check Early Transport for Panel Replay as well
-> >       drm/i915/psr: Modify dg2_activate_panel_replay to support eDP
-> > 
-> > Maarten Lankhorst (2):
-> >       drm: Add drm_vblank_work_flush_all().
-> >       drm/i915: Use the same vblank worker for atomic unpin
-> > 
-> > Mitul Golani (1):
-> >       drm/i915/display: Consider adjusted_pixel_rate to be u64
-> > 
-> > Ville Syrjälä (28):
-> >       drm/i915: Use REG_BIT() for bdw+ pipe interrupts
-> >       drm/i915: Document bdw+ pipe interrupt bits
-> >       drm/i915: Sort bdw+ pipe interrupt bits
-> >       drm/i915: Extend GEN9_PIPE_PLANE_FLIP_DONE() to cover all universal planes
-> >       drm/i915: Nuke the intermediate pipe fault bitmasks
-> >       drm/i915: Enable pipeDMC fault interrupts on tgl+
-> >       drm/i915: Enable plane/pipeDMC ATS fault interrupts on mtl
-> >       drm/i915: Extract intel_crtc_arm_vblank_event()
-> >       drm/i915: Add async flip tracepoint
-> >       drm/i915: Add flip done tracepoint
-> >       drm/i915: Introduce intel_mode_vdisplay()
-> >       drm/i915: Pass the whole atomic state to intel_color_prepare_commit()
-> >       drm/i915/dsb: Plumb the whole atomic state into intel_dsb_prepare()
-> >       drm/i915/dsb: Convert the DSB code to use intel_display rather than i915
-> >       drm/i915/dsb: Add i915.enable_dsb module parameter
-> >       drm/i915: Drop useless intel_dsb.h include
-> >       drm/i915/dsb: Document that the ATS fault bits are for mtl+
-> >       drm: Rename drm_plane_check_pixel_format() to drm_plane_has_format()
-> >       drm: Export drm_plane_has_format()
-> >       drm/i915: Introduce the plane->min_alignment() vfunc
-> >       drm/i915: Introduce fb->min_alignment
-> >       drm/i915: Split cursor alignment to per-platform vfuncs
-> >       drm/i915: Split pre-skl platforms out from intel_surf_alignment()
-> >       drm/i915: Move intel_surf_alignment() into skl_univerals_plane.c
-> >       drm/i915: Update plane alignment requirements for TGL+
-> >       drm/i915: Nuke the TGL+ chroma plane tile row alignment stuff
-> >       drm/i915: Use vblank worker to unpin old legacy cursor fb safely
-> >       drm/i915/dsb: Try to document that DSB_STATUS bit 16 is level triggered
-> > 
-> >  drivers/gpu/drm/drm_atomic.c                       |   7 +-
-> >  drivers/gpu/drm/drm_crtc.c                         |   6 +-
-> >  drivers/gpu/drm/drm_crtc_internal.h                |   2 -
-> >  drivers/gpu/drm/drm_plane.c                        |  32 ++--
-> >  drivers/gpu/drm/drm_vblank_work.c                  |  22 +++
-> >  drivers/gpu/drm/i915/display/i9xx_plane.c          |  75 +++++++++-
-> >  drivers/gpu/drm/i915/display/intel_alpm.c          |   9 +-
-> >  drivers/gpu/drm/i915/display/intel_alpm.h          |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_atomic_plane.c  |  35 ++++-
-> >  drivers/gpu/drm/i915/display/intel_atomic_plane.h  |   6 +
-> >  drivers/gpu/drm/i915/display/intel_color.c         |  13 +-
-> >  drivers/gpu/drm/i915/display/intel_color.h         |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_crtc.c          |  59 ++++++--
-> >  drivers/gpu/drm/i915/display/intel_crtc.h          |   1 +
-> >  drivers/gpu/drm/i915/display/intel_cursor.c        |  64 +++++++-
-> >  drivers/gpu/drm/i915/display/intel_cursor.h        |   3 +
-> >  drivers/gpu/drm/i915/display/intel_cx0_phy.c       |  11 +-
-> >  drivers/gpu/drm/i915/display/intel_ddi.c           |  11 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c       |  15 +-
-> >  drivers/gpu/drm/i915/display/intel_display_irq.c   |  50 ++++++-
-> >  .../gpu/drm/i915/display/intel_display_params.c    |   3 +
-> >  .../gpu/drm/i915/display/intel_display_params.h    |   1 +
-> >  drivers/gpu/drm/i915/display/intel_display_trace.h |  50 +++++++
-> >  drivers/gpu/drm/i915/display/intel_display_types.h |   8 +
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |   1 +
-> >  drivers/gpu/drm/i915/display/intel_dsb.c           |  66 ++++----
-> >  drivers/gpu/drm/i915/display/intel_dsb.h           |   4 +-
-> >  drivers/gpu/drm/i915/display/intel_dsb_regs.h      |   6 +-
-> >  drivers/gpu/drm/i915/display/intel_encoder.c       |  44 ++++++
-> >  drivers/gpu/drm/i915/display/intel_encoder.h       |   4 +
-> >  drivers/gpu/drm/i915/display/intel_fb.c            | 151 ++++---------------
-> >  drivers/gpu/drm/i915/display/intel_fb.h            |   3 -
-> >  drivers/gpu/drm/i915/display/intel_fb_pin.c        |  39 +++--
-> >  drivers/gpu/drm/i915/display/intel_fb_pin.h        |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_fbdev.c         |   5 +-
-> >  drivers/gpu/drm/i915/display/intel_psr.c           | 166 +++++++++++++++++----
-> >  drivers/gpu/drm/i915/display/intel_sprite.c        |  26 ++++
-> >  drivers/gpu/drm/i915/display/intel_vblank.c        |  10 ++
-> >  drivers/gpu/drm/i915/display/intel_vblank.h        |   1 +
-> >  drivers/gpu/drm/i915/display/intel_vrr.c           |   2 +-
-> >  drivers/gpu/drm/i915/display/skl_universal_plane.c |  85 ++++++++++-
-> >  drivers/gpu/drm/i915/i915_driver.c                 |  51 +------
-> >  drivers/gpu/drm/i915/i915_reg.h                    |  80 +++++-----
-> >  drivers/gpu/drm/xe/display/xe_display.c            |  18 +--
-> >  drivers/gpu/drm/xe/display/xe_fb_pin.c             |   3 +-
-> >  drivers/gpu/drm/xe/display/xe_plane_initial.c      |   4 +-
-> >  include/drm/drm_plane.h                            |   2 +
-> >  include/drm/drm_vblank_work.h                      |   2 +
-> >  48 files changed, 873 insertions(+), 391 deletions(-)
-> > 
-> > -- 
-> > Jani Nikula, Intel
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwteGUgPGludGVs
+LXhlLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgVmlsbGUgU3ly
+amFsYQ0KPiBTZW50OiBGcmlkYXksIEp1bHkgNSwgMjAyNCA4OjIzIFBNDQo+IFRvOiBpbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcNCj4gU3ViamVjdDogW1BBVENIIDE1LzIwXSBkcm0veGUvZmJkZXY6IEZpeCBCSU9TIEZC
+IHZzLnMgc3RvbGVuIHNpemUgY2hlY2tlDQoNCk5pdDogVHlwbyBpbiB2cyBhbmQgY2hlY2sNCg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gTG9va3MgbGlrZSBzdG9sZW4tPnNpemUgaXMgaW4gYnl0ZXMsIG5vdCBwYWdlcy4gUmVt
+b3ZlIHRoZSBib2d1cyBQQUdFX1NISUZUIHN0dWZmLg0KPiANCj4gQWxzbyBmb3Igc29tZSBybmFk
+b20gcmVhc29uIHhlIHJlamVjdHMgdGhlIEZCIGlmIGl0IHRha2VzIHVwIGV4YWN0bHkgaGFsZiBv
+ZiBzdG9sZW4sDQoNClR5cG8gaW4gcmFuZG9tLg0KDQo+IHdoZXJlYXMgaTkxNSBhbGxvd3MgaXQg
+dG8gYmUgdXNlZCBpbiB0aGF0IGNhc2UuIEFkanVzdCB4ZSB0byBmb2xsb3cgdGhlIGk5MTUgcnVs
+ZSBmb3INCj4gY29uc2lzdGVuY3kuDQoNCldpdGggdGhlIHR5cG9zIGZpeGVkLCAgTG9va3MgR29v
+ZCB0byBtZS4NClJldmlld2VkLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29t
+Pg0KDQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3BsYXkveGVfcGxh
+bmVfaW5pdGlhbC5jIHwgMiArLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAx
+IGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3Bs
+YXkveGVfcGxhbmVfaW5pdGlhbC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3BsYXkveGVf
+cGxhbmVfaW5pdGlhbC5jDQo+IGluZGV4IDVlY2NkNmFiYjNlZi4uMjE5NjVjYzhhOWNhIDEwMDY0
+NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUvZGlzcGxheS94ZV9wbGFuZV9pbml0aWFsLmMN
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL2Rpc3BsYXkveGVfcGxhbmVfaW5pdGlhbC5jDQo+
+IEBAIC0xMTAsNyArMTEwLDcgQEAgaW5pdGlhbF9wbGFuZV9ibyhzdHJ1Y3QgeGVfZGV2aWNlICp4
+ZSwNCj4gIAkJICogZmVhdHVyZXMuDQo+ICAJCSAqLw0KPiAgCQlpZiAoSVNfRU5BQkxFRChDT05G
+SUdfRlJBTUVCVUZGRVJfQ09OU09MRSkgJiYNCj4gLQkJICAgIHBsYW5lX2NvbmZpZy0+c2l6ZSAq
+IDIgPj4gUEFHRV9TSElGVCA+PSBzdG9sZW4tPnNpemUpDQo+ICsJCSAgICBwbGFuZV9jb25maWct
+PnNpemUgKiAyID4gc3RvbGVuLT5zaXplKQ0KPiAgCQkJcmV0dXJuIE5VTEw7DQo+ICAJfQ0KPiAN
+Cj4gLS0NCj4gMi40NC4yDQoNCg==
