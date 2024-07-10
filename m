@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697CE932E66
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jul 2024 18:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91891932E62
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jul 2024 18:33:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C7C410E800;
-	Tue, 16 Jul 2024 16:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A6610E2A8;
+	Tue, 16 Jul 2024 16:33:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="vnFhuSC2";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="VKGXipAt";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="TzWt5nXr";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="wQXY9DNN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC63C10E7DC;
- Wed, 10 Jul 2024 14:01:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04C8C10E7EC;
+ Wed, 10 Jul 2024 14:13:55 +0000 (UTC)
 From: John Ogness <john.ogness@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1720620101;
+ s=2020; t=1720620833;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=Et5l8wbkPTW0SmqvPS5ISuDSY1IwQ9qONGjNBZSNKw8=;
- b=vnFhuSC2VBqWV9SCWATEZgz7pyFBe16UTJe9kG87ame65DQs7Cpwzd+Ij9ZbnNVeaR/IiT
- /Oq0DD9eDwsGSTTodj0iebvYq01hcrcMzS8nVuvXWa2Osu3HMINl0QTrsKPNGWxJPKSI5a
- pH76lB8eyILBpE5x6JzJ0/BWYOVSDaQEx5M5bWVhUpa8Yq6nRfv2VzlShVVKdbAzXhmq9J
- tLqBek4Bo2enxYjDG/Znjh2Ezj5psXeH4oHsXNRm6FHrWqTnPAUs8tNyX1EFsJbyLwn//6
- itpGSqTcloqgNM4qAfZTdXuiQKNbjiXc7JZ29RQjAxySdPLvR1duPpzSQolyyA==
+ bh=LYrO5OQB3VkboQ/sNL+F3D+E/WBT/7aRRUdt36KX6Ew=;
+ b=TzWt5nXrBpDWNxyHN/jI2S+nIoIpyTiDtbma0J3o+9Zb+lHqzZnRW/2uMBemZMnmtAgTLi
+ zBl9CImPvIGEspb/4yOvQsGsKQhHjgknJL3TENtQsToxX5Nx7AHQIFGqRXPc95NTki7xEq
+ DRoNbgp4zVzkh0ZaLm2JMnsWblZE+3Xyi6VfIwQw+wjmjtjWoGRj9GrR0m9+Y+CjZ3ZwSV
+ XCZVmveLNjdXsR+JcHiTbWeWDLg6Oq6t+RC3SRwlwTL19sE9vK+kshCzDyf4oktGxHK5Ol
+ 4Gn1r4YV+prjTDOYs66YNYRneQtmp4tW2vCFqNyx6WQKMqaZ9Jp2PbQ8WFQs1w==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1720620101;
+ s=2020e; t=1720620833;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=Et5l8wbkPTW0SmqvPS5ISuDSY1IwQ9qONGjNBZSNKw8=;
- b=VKGXipAtKYmyYCqcpqINqZlTwQXUNbLuV9OyyCIIf1AjQo0+T0C60xxIM+jLY6x5O1tO8z
- bhiXrHPkG722RfDA==
+ bh=LYrO5OQB3VkboQ/sNL+F3D+E/WBT/7aRRUdt36KX6Ew=;
+ b=wQXY9DNN22mwdUOMTtS6evo6EdB2eirpaCjBZFieN7kIKoktDdx0IDqXmPGD6FBl11+t18
+ EPixYszvrf055vDA==
 To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
  <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Daniel
@@ -50,8 +50,8 @@ Subject: Re: [PATCH] bcachefs: no console_lock in bch2_print_string_as_lines
 In-Reply-To: <20240710130335.765885-1-daniel.vetter@ffwll.ch>
 References: <20240710093120.732208-2-daniel.vetter@ffwll.ch>
  <20240710130335.765885-1-daniel.vetter@ffwll.ch>
-Date: Wed, 10 Jul 2024 16:07:40 +0206
-Message-ID: <87o775cpmj.fsf@jogness.linutronix.de>
+Date: Wed, 10 Jul 2024 16:19:53 +0206
+Message-ID: <87jzhtcp26.fsf@jogness.linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Mailman-Approved-At: Tue, 16 Jul 2024 16:33:00 +0000
@@ -90,10 +90,25 @@ On 2024-07-10, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
 > https://lore.kernel.org/lkml/87frsh33xp.fsf@jogness.linutronix.de/
 >
 > Do that.
->
-> Reported-by: syzbot+6cebc1af246fe020a2f0@syzkaller.appspotmail.com
-> References: https://lore.kernel.org/dri-devel/00000000000026c1ff061cd0de12@google.com/
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Fixes: a8f354284304 ("bcachefs: bch2_print_string_as_lines()")
 
-Reviewed-by: John Ogness <john.ogness@linutronix.de>
+Note that there is more of this incorrect usage of console lock in:
+
+fs/bcachefs/debug.c:bch2_btree_verify_replica()
+
+fs/bcachefs/bset.c:bch2_dump_btree_node()
+
+from commit 1c6fdbd8f246("bcachefs: Initial commit")
+
+... and its parent bcache:
+
+drivers/md/bcache/debug.c:bch_btree_verify()
+
+drivers/md/bcache/bset.c:bch_dump_bucket()
+
+from commit cafe56359144("bcache: A block layer cache")
+
+These should also be removed. Although Kent should verify that the
+console lock is not providing some sort of necessary side-effect
+synchronization.
+
+John Ogness
