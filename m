@@ -2,29 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7723392D0FF
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2024 13:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE8192D12A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2024 13:59:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 233A510E75D;
-	Wed, 10 Jul 2024 11:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDEA910E766;
+	Wed, 10 Jul 2024 11:59:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="fpLMKteY";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74CD510E75C;
- Wed, 10 Jul 2024 11:48:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0115927041920658864=="
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
+ [209.85.167.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB6BB10E766
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 11:59:00 +0000 (UTC)
+Received: by mail-oi1-f171.google.com with SMTP id
+ 5614622812f47-3d9dd8bc70dso33169b6e.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2024 04:59:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1720612740; x=1721217540; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8YwSacl49HZikhh7TpAVL5zSZM2Ig9YohILbbUy5PtM=;
+ b=fpLMKteY6RxZH1rFEl6KcgC2Kq0Im+bIrVsNtGsuMUkTVS4jkYkf49DdButUdKnsDu
+ DPwXjZ6mCxOzT39/fR+CJ5FOZkmasASHKl6KAVwPjT8FVH+WnceRaUgHhilgDGP+LXIe
+ +FpeQ7hVxibREY7XVrlTdmnHgMHAQFt5/2Lkw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720612740; x=1721217540;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=8YwSacl49HZikhh7TpAVL5zSZM2Ig9YohILbbUy5PtM=;
+ b=RTSFXOU4ldZ3ZTCuxBKuzd9Db0nkl2qxSqLVMyXXDf7/LntjZcXINGVoq4FpOERYfv
+ 0mIsI64op3UzIF3NB027XDzArgsLiVL6q/qgiyVSBrsHPabFxO0+8ZAh2sZZfFYnyXDN
+ t0Up62Lmi8BKjmG2tnhyRmi7kJBU5zQTh18mFnaV7JNsjxNaHZw/cCmIHjVDDvaWU5rM
+ B3NZ9p3qh0bhAHtCKbV9tf1bnWLmlFodc26Ijgocc6x2ywx3M1wRxfgWc5j+yK9+aLqz
+ Dk5mf/x5W6qccIyWkhbnqJUWed5uiGmx5imuGh/d8dabHHDy3Fg90lUbmksdEr0Hz23s
+ jGwQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWPOSeRlqGAkU2bUhaWDKZaGuuI5+FitDbGr5Hu1koWe/uUkApydR1ZkKKk4q/sRHCnNTFO0jApfChdQP+pRnFLO0eVRkWMvTXFasbCzU6R
+X-Gm-Message-State: AOJu0YwELAxQ/7pPIZnPw+NFcqIYzh0Ocg4qdP4fMsy41YjhdJo1oq0j
+ txjTseMRbWePKaHpnwlhLv0hX3OVnH3AppCkDCwZYDDMG9Y5/AzJKQk/1jMBk8T9B2TZFqoalhE
+ caglzyBkxKeWShZxOwIWrv2C3e7lP7R1JNSRoEg==
+X-Google-Smtp-Source: AGHT+IEDb4E4R4JLvPaGkcDd2e1PnOfOAi8hfE4Q9IQEkktLnUcIxOmoAJGlW/KgY1cJtU5AbP/Am5hiG+biuNY4XSw=
+X-Received: by 2002:a05:6870:82a4:b0:25e:14d9:da27 with SMTP id
+ 586e51a60fabf-25eae2f200fmr5688757fac.0.1720612739640; Wed, 10 Jul 2024
+ 04:58:59 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm=3A_Add_might=5Ffault_to_drm=5Fmodeset=5Flock_priming?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Jul 2024 11:48:17 -0000
-Message-ID: <172061209746.105381.13981552358285217814@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
 References: <20240710093120.732208-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20240710093120.732208-1-daniel.vetter@ffwll.ch>
+ <03f7e2ad-fd5c-4da7-a14c-34c2c158c513@amd.com>
+In-Reply-To: <03f7e2ad-fd5c-4da7-a14c-34c2c158c513@amd.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 10 Jul 2024 13:58:48 +0200
+Message-ID: <CAKMK7uFvCr2qcHun06LC-ON3GBqj8=mCpPGHuAOh9BEyr60fiQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm: Add might_fault to drm_modeset_lock priming
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,182 +80,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0115927041920658864==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 10 Jul 2024 at 13:39, Christian K=C3=B6nig <christian.koenig@amd.co=
+m> wrote:
+>
+> Am 10.07.24 um 11:31 schrieb Daniel Vetter:
+> > We already teach lockdep that dma_resv nests within drm_modeset_lock,
+> > but there's a lot more: All drm kms ioctl rely on being able to
+> > put/get_user while holding modeset locks, so we really need a
+> > might_fault in there too to complete the picture. Add it.
+>
+> Mhm, lockdep should be able to deduce that when there might be faults
+> under the dma_resv lock there might also be faults under the
+> drm_modeset_lock.
 
-== Series Details ==
+You're not allowed to take a fault under dma_resv, because drivers
+might need to take that lock to handle faults. So unfortunately in our
+combined lockdep priming, there really seems to be no chain yet that
+teaches about faults possibly happening while holding
+drm_modeset_lock.
+-Sima
 
-Series: series starting with [1/2] drm: Add might_fault to drm_modeset_lock priming
-URL   : https://patchwork.freedesktop.org/series/135935/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15057 -> Patchwork_135935v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/index.html
-
-Participating hosts (42 -> 34)
-------------------------------
-
-  Missing    (8): fi-kbl-7567u bat-adlp-9 bat-adlp-6 fi-snb-2520m fi-elk-e7500 bat-dg2-14 bat-dg2-11 bat-mtlp-8 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_135935v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-adlp-11:        [PASS][1] -> [INCOMPLETE][2] ([i915#9413])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-adlp-11/igt@i915_selftest@live@gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-adlp-11/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-arls-2:         [PASS][3] -> [DMESG-WARN][4] ([i915#7507])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - bat-arls-1:         [DMESG-WARN][5] ([i915#10341] / [i915#11570]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-arls-1/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-arls-1/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@objects:
-    - bat-arls-1:         [DMESG-FAIL][7] ([i915#10262]) -> [PASS][8] +26 other tests pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-arls-1/igt@i915_selftest@live@objects.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-arls-1/igt@i915_selftest@live@objects.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10062]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062
-  [i915#10262]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#11328]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11328
-  [i915#11570]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11570
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#7507]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7507
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+>
+> >
+> > Motivated by a syzbot report that blew up on bcachefs doing an
+> > unconditional console_lock way deep in the locking hierarchy, and
+> > lockdep only noticing the depency loop in a drm ioctl instead of much
+> > earlier. This annotation will make sure such issues have a much harder
+> > time escaping.
+> >
+> > References: https://lore.kernel.org/dri-devel/00000000000073db8b061cd43=
+496@google.com/
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Sumit Semwal <sumit.semwal@linaro.org>
+> > Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
+> > Cc: linux-media@vger.kernel.org
+> > Cc: linaro-mm-sig@lists.linaro.org
+>
+> On the other hand pointing it out explicitly doesn't hurts us at all, so
+> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>.
+>
+> Regards,
+> Christian.
+>
+> > ---
+> >   drivers/gpu/drm/drm_mode_config.c | 2 ++
+> >   1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mo=
+de_config.c
+> > index 568972258222..37d2e0a4ef4b 100644
+> > --- a/drivers/gpu/drm/drm_mode_config.c
+> > +++ b/drivers/gpu/drm/drm_mode_config.c
+> > @@ -456,6 +456,8 @@ int drmm_mode_config_init(struct drm_device *dev)
+> >               if (ret =3D=3D -EDEADLK)
+> >                       ret =3D drm_modeset_backoff(&modeset_ctx);
+> >
+> > +             might_fault();
+> > +
+> >               ww_acquire_init(&resv_ctx, &reservation_ww_class);
+> >               ret =3D dma_resv_lock(&resv, &resv_ctx);
+> >               if (ret =3D=3D -EDEADLK)
+>
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15057 -> Patchwork_135935v1
-
-  CI-20190529: 20190529
-  CI_DRM_15057: dcbd1ba3189efd3be0e0dacfdc37cada014c38eb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7921: f547de980dca43c6630ced36e98af7f2a9c70ae7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_135935v1: dcbd1ba3189efd3be0e0dacfdc37cada014c38eb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/index.html
-
---===============0115927041920658864==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm: Add might_fault to drm_modeset_lock priming</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135935/">https://patchwork.freedesktop.org/series/135935/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15057 -&gt; Patchwork_135935v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 34)</h2>
-<p>Missing    (8): fi-kbl-7567u bat-adlp-9 bat-adlp-6 fi-snb-2520m fi-elk-e7500 bat-dg2-14 bat-dg2-11 bat-mtlp-8 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_135935v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-adlp-11/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-adlp-11/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7507">i915#7507</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-arls-1/igt@i915_selftest@live@gt_heartbeat.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11570">i915#11570</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-arls-1/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@objects:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15057/bat-arls-1/igt@i915_selftest@live@objects.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262">i915#10262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135935v1/bat-arls-1/igt@i915_selftest@live@objects.html">PASS</a> +26 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15057 -&gt; Patchwork_135935v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15057: dcbd1ba3189efd3be0e0dacfdc37cada014c38eb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7921: f547de980dca43c6630ced36e98af7f2a9c70ae7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_135935v1: dcbd1ba3189efd3be0e0dacfdc37cada014c38eb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0115927041920658864==--
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
