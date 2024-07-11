@@ -2,66 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E8792E3C3
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 11:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E6A92E409
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 12:02:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E91610E9F5;
-	Thu, 11 Jul 2024 09:51:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0B7110E9FA;
+	Thu, 11 Jul 2024 10:02:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkHVihhO";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="RFYScRx9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB87710E9E6;
- Thu, 11 Jul 2024 09:51:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720691513; x=1752227513;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=zk4aDJg6xr1GtYRHJaF39WqhwypP+YR2knZNrnjGJvg=;
- b=RkHVihhO6F5LkdZCfxJzt37/KMZ1mid04x4psVUlksOSRbvM+eGp1q4p
- PMjk4SBCym8ECUbHL2vsVbUwgjreTOY2wrtncayZdEomdFf2ditLB+DUc
- qMypXXWDpRH1cXmzXbnRRTLszzy7ZlhMVBWANE++DJjAerWyCdsGkzjZE
- jfri5bO15WOiiNdZzDM1fySYL4LoIiBTZymfXoKA4/7RCKE1tXER8upwL
- aMuJN4HkH+2tJ82mUZAwGKqNE24aQg6Jyu+I3zxl80Mk0TFw+WtjOvFlN
- SdAKmrHcS25YOOZgEm42nc+4z24ypxOffrSagAzHl9N9VA5OTU4hmG9uo A==;
-X-CSE-ConnectionGUID: xlEgoc/5Saeh75+sTDTJ0A==
-X-CSE-MsgGUID: kRq5CnICTQum3fDdx3sOdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="18194948"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="18194948"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:51:41 -0700
-X-CSE-ConnectionGUID: QpFHjP7MQsShf1VoshUVIA==
-X-CSE-MsgGUID: ymi0An13TOqDlGIStoa9Mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="71727122"
-Received: from carterle-desk.ger.corp.intel.com (HELO [10.245.245.36])
- ([10.245.245.36])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 02:51:37 -0700
-Message-ID: <8abff46f-eae6-4521-8434-7c6240f9091c@linux.intel.com>
-Date: Thu, 11 Jul 2024 11:51:50 +0200
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C59110E9FA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2024 10:02:55 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-36786081ac8so345523f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2024 03:02:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1720692173; x=1721296973;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=boL5i9jzaSfhn+e79C+qpFuft543zvabd4ejo3BmRUY=;
+ b=RFYScRx96wabXFVRWyG0r2m37tYu6hhpf3GqGLsOI2R0h0QbU1cSWne8ZFFy5vXbZ8
+ nljR5JrtjHNwvZSkOb90cooRBnQE/XNenyrf8azmnDYZGno/dhcsc+4H8VRefluveiT5
+ 3SqRmOjd3ntRxnnsWp+UgZ2hLUPtze/SfQ5yT50aCFhQmKrEEtWg4P9HZhk6t86GBZw/
+ 71mdMZ48oTD/Ac+D4UHbZYi6kP3fOaYJ4O2Ph2Y4Edb/u4n43DEeq0VgkJq9I40hMEyB
+ 76WkhoLN2dbc/u+panqBMjvx52b0V3YXz8bAV5kvZ7UIYIBy9kXjGfVJu/ycoIHn7T0S
+ xbHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720692173; x=1721296973;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=boL5i9jzaSfhn+e79C+qpFuft543zvabd4ejo3BmRUY=;
+ b=kuI1Wjc9KIIASUnTxB/WzPhwLwvvnbyo0/j+xANz2OKs23kH3VCuhMxGJUKzAIBAP+
+ fP8DMteeKW+u2TAbi6hcgaWdwdsIAE4O/KAmBJpex+rv7WWKUX+S6SRvTSWGtUTRSvK+
+ CRYpN7e5Zip/5mbgEBJd9c3jdQcn1dp/XQEyrXJ+tpFDHZjyej+4KLaE3sVb/lrY8YgT
+ nC5S42I4lkos+iMLd3qXIGqqcBxNmKhQUvkuu9H7wesOjtLs+QJ8dqJqn5RUaRUdKSo7
+ ycmCU9OaoUlHkmn8BuRYvA6G2AjDuQZ0uRaYXWwwNW83u1riHAyyaG9+8Bf7qTzRyV5A
+ in0w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWHrwzby11+YVIcGXtxGTkxA54LFJaoAGd+X0aRWUTmHIhb6Yx6E6wXVcB3z/K1Zdz9pMe4H1mKCgf8OtaWVM+RrEQnyGy724tIUJdvJLPk
+X-Gm-Message-State: AOJu0Yz9iLzwWmtSlDWdJhUb02ZVPKzT84l31IsM3DAkWAI+0vCfMSgp
+ iRrz+ggGXTtlyb1j5kKkDbKZUSOa2MGZw+tka6PnFNleibwggGCFXyHnzjp3yZY=
+X-Google-Smtp-Source: AGHT+IG5OcW90S+EQ49B/6sG+OFx8XqDMkqaKPG9VOzfnAyynEgdVQ3iZF/lUSXhhCqiXx6+cRr6Mg==
+X-Received: by 2002:a5d:47a9:0:b0:367:8f84:ee1d with SMTP id
+ ffacd0b85a97d-367cea4622cmr7264113f8f.8.1720692173512; 
+ Thu, 11 Jul 2024 03:02:53 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-367cdfa0650sm7360031f8f.69.2024.07.11.03.02.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 11 Jul 2024 03:02:53 -0700 (PDT)
+Message-ID: <89dd0130-562a-4025-968d-d758a26399ec@ursulin.net>
+Date: Thu, 11 Jul 2024 11:02:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] drm/i915/gt: Do not consider preemption during
+ execlists_dequeue for gen8
+To: Nitin Gote <nitin.r.gote@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, andi.shyti@intel.com,
+ chris.p.wilson@linux.intel.com, nirmoy.das@intel.com,
+ janusz.krzysztofik@linux.intel.com, stable@vger.kernel.org
+References: <20240711051215.1143127-1-nitin.r.gote@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20240711051215.1143127-1-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,51 +88,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
 
-Few fixes for v6.10. :)
+On 11/07/2024 06:12, Nitin Gote wrote:
+> We're seeing a GPU HANG issue on a CHV platform, which was caused by
+> bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries for gen8").
+> 
+> Gen8 platform has only timeslice and doesn't support a preemption mechanism
+> as engines do not have a preemption timer and doesn't send an irq if the
+> preemption timeout expires. So, add a fix to not consider preemption
+> during dequeuing for gen8 platforms.
+> 
+> Also move can_preemt() above need_preempt() function to resolve implicit
+> declaration of function ‘can_preempt' error and make can_preempt()
+> function param as const to resolve error: passing argument 1 of
+> ‘can_preempt’ discards ‘const’ qualifier from the pointer target type.
+> 
+> v2: Simplify can_preemt() function (Tvrtko Ursulin)
 
-Cheers,
-~Maarten
+Yeah sorry for that yesterday when I thought gen8 emit bb was dead code, 
+somehow I thought there was a gen9 emit_bb flavour. Looks like I 
+confused it with something else.
 
-drm-misc-fixes-2024-07-11:
-drm-misc-fixes for v6.10:
-- EDID irq fix for bridge/adv7511.
-- gma500 null mode fixes.
-- Cleanup meson binding.
-The following changes since commit 256abd8e550ce977b728be79a74e1729438b4948:
+> 
+> Fixes: bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries for gen8")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11396
+> Suggested-by: Andi Shyti <andi.shyti@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> CC: <stable@vger.kernel.org> # v5.2+
+> ---
+>   .../drm/i915/gt/intel_execlists_submission.c    | 17 ++++++++---------
+>   1 file changed, 8 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 21829439e686..59885d7721e4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -294,11 +294,19 @@ static int virtual_prio(const struct intel_engine_execlists *el)
+>   	return rb ? rb_entry(rb, struct ve_node, rb)->prio : INT_MIN;
+>   }
+>   
+> +static bool can_preempt(const struct intel_engine_cs *engine)
+> +{
+> +	return GRAPHICS_VER(engine->i915) > 8;
+> +}
+> +
+>   static bool need_preempt(const struct intel_engine_cs *engine,
+>   			 const struct i915_request *rq)
+>   {
+>   	int last_prio;
+>   
+> +	if (!can_preempt(engine))
+> +		return false;
+> +
+>   	if (!intel_engine_has_semaphores(engine))
 
-  Linux 6.10-rc7 (2024-07-07 14:23:46 -0700)
+Patch looks clean now. Hmmm one new observation is whether the "has 
+semaphores" check is now redundant? Looks preemption depends on 
+semaphore support in logical_ring_default_vfuncs().
 
-are available in the Git repository at:
+Regards,
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-07-11
+Tvrtko
 
-for you to fetch changes up to cb520c3f366c77e8d69e4e2e2781a8ce48d98e79:
-
-  drm/gma500: fix null pointer dereference in cdv_intel_lvds_get_modes (2024-07-09 20:02:14 +0200)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.10:
-- EDID irq fix for bridge/adv7511.
-- gma500 null mode fixes.
-- Cleanup meson binding.
-
-----------------------------------------------------------------
-Adam Ford (1):
-      drm/bridge: adv7511: Fix Intermittent EDID failures
-
-Ma Ke (2):
-      drm/gma500: fix null pointer dereference in psb_intel_lvds_get_modes
-      drm/gma500: fix null pointer dereference in cdv_intel_lvds_get_modes
-
-Yao Zi (1):
-      drm/meson: fix canvas release in bind function
-
- drivers/gpu/drm/bridge/adv7511/adv7511.h     |  2 +-
- drivers/gpu/drm/bridge/adv7511/adv7511_cec.c | 13 +++++++---
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c | 22 ++++++++++-------
- drivers/gpu/drm/gma500/cdv_intel_lvds.c      |  3 +++
- drivers/gpu/drm/gma500/psb_intel_lvds.c      |  3 +++
- drivers/gpu/drm/meson/meson_drv.c            | 37 ++++++++++++++--------------
- 6 files changed, 47 insertions(+), 33 deletions(-)
+>   		return false;
+>   
+> @@ -3313,15 +3321,6 @@ static void remove_from_engine(struct i915_request *rq)
+>   	i915_request_notify_execute_cb_imm(rq);
+>   }
+>   
+> -static bool can_preempt(struct intel_engine_cs *engine)
+> -{
+> -	if (GRAPHICS_VER(engine->i915) > 8)
+> -		return true;
+> -
+> -	/* GPGPU on bdw requires extra w/a; not implemented */
+> -	return engine->class != RENDER_CLASS;
+> -}
+> -
+>   static void kick_execlists(const struct i915_request *rq, int prio)
+>   {
+>   	struct intel_engine_cs *engine = rq->engine;
