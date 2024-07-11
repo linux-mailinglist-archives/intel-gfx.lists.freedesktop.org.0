@@ -2,178 +2,168 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991E892ECB4
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 18:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7351092ECC2
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 18:32:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A34B10EAEC;
-	Thu, 11 Jul 2024 16:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B1B010EB05;
+	Thu, 11 Jul 2024 16:32:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kPF8E8k7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3hLr8aL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 558B010EAE1;
- Thu, 11 Jul 2024 16:29:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5922A10EAF0;
+ Thu, 11 Jul 2024 16:32:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720715341; x=1752251341;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=S8tgdROi5Ccsij68VEkHHUPt7REf12sI4f4vy1oatRI=;
- b=kPF8E8k7qNEZq/zWZKyHWg+j78o0GjEAKSYk3SKUUxOXyWjwGcRCLdd4
- yf7KC2zvLXBOL2QxvXkXmbYuyKvVxY8MLLA8fVe5T/0pQNZ2IsbyrFYQM
- ug1oeVgJrZOzw9BR9ch6irgg0uOvL3clR4diWYZPhqJ6trgpf8XzI7xVr
- H+5u8DjzPvmxlWFyujkE4Z5ZRACaJFbeE4dlQ77o+H/pavEzWGXz3vDOX
- OLGK+tZvzCaf9sE8vV3B4wR/d2CEeTHzlo6sAX/UVw1kZys3eO1JPjA4S
- 5U5rDZg7X9QMBNLBKFWIAgCeB8H9ZHI9D1zfRXuBs+MtpYn9wQjLzxssG Q==;
-X-CSE-ConnectionGUID: MVe5+YImR3y8rTnMIgYVkQ==
-X-CSE-MsgGUID: e3jAhwypSf+ZvAVKb6fwVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="17984365"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="17984365"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 09:29:01 -0700
-X-CSE-ConnectionGUID: Ep58ZBAqRw6sZ4LNrvjoDw==
-X-CSE-MsgGUID: NDjR77d9QeGJe+Y3XL006A==
+ t=1720715522; x=1752251522;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=8iVr3IMQz+08NvE7N8uKAEN1GIIPI/91gOQyyVtu8AU=;
+ b=k3hLr8aLcrQOWJZosbRvG1MA3yzzEFbznZtbu8JKzSA31Miu/mqQjfSO
+ 3LO4zl+tA6kN2SZQA5e8/N3tWVxqIwSAD3RxkeFykKhFfr4f7k6hYBzq4
+ 7dUI8EVCPRJ6gjFTcvTCLzEP8j9QlU3UBw+8VjFb3Ei6rgivcBChCfRL2
+ zI2zycMDp2MbqDDQiprOVHkkcOdT2rYutRWQ0J8MCsN/Te6+ml9anN7Nn
+ z2p7Hx+gyztF/Dn5iAR5AfFOn77LBZK4NRi3RnIp8nFiictycC973OXq1
+ l9ewsRwrse4e744HBJFvEVrtnbKjwBZLmA1oL+NjcvuAmVc57Ad1UmkT8 g==;
+X-CSE-ConnectionGUID: iZufZ6ivRJS1AMQVwfvECg==
+X-CSE-MsgGUID: yvOa3wi6QyebvhI5UNwL8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11130"; a="28718490"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="28718490"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 09:32:01 -0700
+X-CSE-ConnectionGUID: 5qvJYXXzR3OqdqC6lubsPQ==
+X-CSE-MsgGUID: F1rrRUeWRtCVbEgwoiWzZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="52929711"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Jul 2024 09:29:00 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="48686414"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Jul 2024 09:32:01 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 11 Jul 2024 09:29:00 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 11 Jul 2024 09:32:00 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 11 Jul 2024 09:29:00 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 11 Jul 2024 09:32:00 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 11 Jul 2024 09:29:00 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 11 Jul 2024 09:32:00 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 11 Jul 2024 09:28:59 -0700
+ 15.1.2507.39; Thu, 11 Jul 2024 09:32:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wPgDRSYBNbhQ9VCvPXYQz14IGaOS6iZYWvAdyk/urwhg9aY0nnXZJo5RAbuG/MJ8ObSOv0FvBK1ggVNdJ6Z3S/uMqiDPB0JYYCxF7M9+LAmhT+HuP/7i0xIf5dtLmG0IU5F0jV4XTvO5wLZhtqQcMfQl3XAMXsjWLY3ApFBcNJe9TdVSiuU7tafTxVqp+KqZsPt43xzNAn7huSEmiv8mNLycjZ2PjDgccKMiIKt2FN7bbaz0TaQ9Op5ZcUJ/WVVTBJMLMNV6eaFyh3Nr0vHmeo4rYZea/KM7af94lcH0DEesAO6onLXVFNH6mY0T+Z8in0Sj1fSeNx+ZRpxfgg4+Yg==
+ b=Tw1CxyBnlTCMOt0nqCHVb9UHbTfgd/GAeP5kRGuiKQLkxsf/ZlFFM37D9PSgEdg3bZMFYLXFqbhEIHfrMiXtR/Qv23s/RESJOVFvCPM/n01lmB9JCFc62cxhGdQ51RkMM2GUUftIoufA8vdkuqIsZ0D6IRJVwsjFL4+VRTDjzXMD9VKAqM4EkesOr1O/eO/wHPGMUPk6Kl9nFp8qQp2kvSMiuvj07xLf+xWT2FHXDUcyJs+1LPIN3oik3enBuVlc9DfYy1Sx0WoVqXDmLJs8FmbG7EZitPZYiN8pwrQB+B7w6SjdYOZQHAsti/egFC9LtmIdNI5tGIrcqMKjFcLoJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mXU48xedAnCnNWCeisNi0yhTsPFzGUIwPDRNzK4oSLI=;
- b=jam5YkhY9ftUAgSmcxbQaC4hjwBkpTO1+UBNIOmsNoi6CYu9MH6aiaVLUwhDrCoMZILicAZ28OB6+BsSWZBOXxP4uk7/jx1X+SJ8AnPUe+R8TRDdSKFnI7hIKJwX18ZKTUqntkWkI41vqltkAaW0+6PrsiFwxBKmZsJ1Y/Kn21lH3ra0+mcWXFQNYcexPDlCC92v9TP35ZkVvg8h+VaVtApP0kiIgC7SDhA9H+e088Yp/L6VCtE0b/ckpnceiAeYfZHzRDmj8Wg0nGamE6dIPold8en4IeMvpRMcRIITc1xRaVnuGAEXOUGAP4xu/Hu6FKThisQwR3666hizhMIKdw==
+ bh=e5EX2kWeXHrypZKLpIi1YogEyDh7Q8sBRZldjrBmee8=;
+ b=Nj9TNzOIfA9MSDdZcovBXZzMVUFX0p8EQjfe8qqrTSUX2tlz5CKfijxLrzA5dxERbm1nEZTMEDkZrzWH7mnsxe62jExpOgLdSI5zQi2ve5l9CVu8/nOsWUjLfpPISkMBzOYO6U5v7MarS4ArMw1YtyeIOU8OCgnqG4j1ESu2rA7YDO3CHk+FkycHsKPW7D1xS0gidLK3AUoDhtLU0YXAalRtBT0zLqZWnzqSa716XG91oXm1xHxhf1epS0h4uqldTqvTw9MIe4mTqmeekEDJ4CseFjTrALSXwqgW1abj4d2+Xcy82u2VouFeMmppEKlVvTpNyCdh3Ej1MxTqbmdPTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by SA0PR11MB4720.namprd11.prod.outlook.com (2603:10b6:806:72::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.38; Thu, 11 Jul
- 2024 16:28:53 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace%5]) with mapi id 15.20.7762.020; Thu, 11 Jul 2024
- 16:28:53 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: "Gote, Nitin R" <nitin.r.gote@intel.com>, "Wilson, Chris P"
- <chris.p.wilson@intel.com>, "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Shyti, Andi" <andi.shyti@intel.com>, "Das, Nirmoy" <nirmoy.das@intel.com>,
- "janusz.krzysztofik@linux.intel.com" <janusz.krzysztofik@linux.intel.com>,
- "Gote, Nitin R" <nitin.r.gote@intel.com>, Chris Wilson
- <chris.p.wilson@linux.intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: RE: [PATCH v3] drm/i915/gt: Do not consider preemption during
- execlists_dequeue for gen8
-Thread-Topic: [PATCH v3] drm/i915/gt: Do not consider preemption during
- execlists_dequeue for gen8
-Thread-Index: AQHa062rtWGakUg7CE6gjN+nLFOUfbHxtPfg
-Date: Thu, 11 Jul 2024 16:28:53 +0000
-Message-ID: <CH0PR11MB54443CBE8B4A052419FFFD1BE5A52@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20240711163208.1355736-1-nitin.r.gote@intel.com>
-In-Reply-To: <20240711163208.1355736-1-nitin.r.gote@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|SA0PR11MB4720:EE_
-x-ms-office365-filtering-correlation-id: 2175eb3e-9823-4c0a-e77b-08dca1c68e00
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?1mTFdtWzz8H9lUJ7JzqBOQOB4ktbjWC794RmUYb4A03gCZHIHmYCVkBJak1M?=
- =?us-ascii?Q?FuhrKZ8dYbCEcb6zrLCmUGp+xQhrDxleQUpY89rL+ChqvUKSsROHNSyXkOtB?=
- =?us-ascii?Q?6DpfAlo1ZQgiyvnB67Sy6pIY+56MqmsrdrRx/eqdovlmr6AzpRa1geTXk74t?=
- =?us-ascii?Q?1mMOBLWJFyW1eEWg3MiCibMfruGEK1O1GEWNszpHkzGxWqVEeHBJZeQYfwLO?=
- =?us-ascii?Q?2QrsxCEyfPLZJceSF0v5sPls90ARkMOor2zY56846oLL2o7uRTnWzTC56M1w?=
- =?us-ascii?Q?T3N3Z2ufiGYwWw7zsBNODO2hPWsq/9Vq+3tXw17tfgrWXJIldCLs1x8b+BI6?=
- =?us-ascii?Q?eGGHOD3zkEnCg8nTjATnI8hlbJC4vbsORvQGkZNApCwvc+06E7Hq9tlalkNH?=
- =?us-ascii?Q?NKKtdGD0jHSwbqzleqD8VRcz+q0MiQG6IvYbHDdBRIpwKJUCwpkJtVRpPmj1?=
- =?us-ascii?Q?LXwlhLbcZzhdpTpT70h19FsDIvcc7xM9r6HImCOGx/9GvgJruTIdUVc7HQOL?=
- =?us-ascii?Q?DrtvGwA7zPgD+IS+D7ZEs+galwEg43OmkQaigmg84uGYxwPm26ZKmmyTwLTU?=
- =?us-ascii?Q?NN+ZB8fqC1hIl+6HovUgnEBSFZGaKbEMqvjI15M9KdjXiRYw1atS4bXhfloB?=
- =?us-ascii?Q?OQHGH2Cm22ITqb/w6/zDBJ68AlwDKPWyf1nR+Yf8GmpJNCs39YYEykSb/QKI?=
- =?us-ascii?Q?BUVTa4Awug3kqVdgGWKgdGDgeqA9FhpCjFCJbHurMznyD0p85a1clTL9s8ZA?=
- =?us-ascii?Q?l3jOJX4EnBmt0W9q09NJKOLf8FxwZY+hPDF4bEtCPOi4awo8wML8hFcO6FnE?=
- =?us-ascii?Q?k33rA9C6t1uGHlccbhnKBd1nUztrEVIXRY45ACOO+3PUm/UUhwAv1DOEJQ9y?=
- =?us-ascii?Q?qPbnAZsWoDU3q0OUaAumSg6vEqXZ89nDdgZY3DRDcSD3aAOKt+d9EUGTPVar?=
- =?us-ascii?Q?cn4tJ9elEcHGprmEUUC0pfrdd3Ca4bNE7ATORriMTawXzrPpeJis9C9iNHnP?=
- =?us-ascii?Q?6KKmvfnjQUMtZzv76UltDInNQzVKo+srxaAOJr+h1z9FumRIQPHRv54weO0G?=
- =?us-ascii?Q?1QZ2luMeObxXv11VvlR7jdxSDy7/nFDQqzR1Hhb/pZGNXBiG5sUxSO7Us/iQ?=
- =?us-ascii?Q?8znk+uRB60H8dnp8185enoA7WNikGcyrl1RUT7krUYE+4uFu7nr/J/1eGG/e?=
- =?us-ascii?Q?H8EiWyHNriDUw64wi9isSfGjyIseBzlXwKiO5ZRlY9W/QrqtUgxgfyrfE7c1?=
- =?us-ascii?Q?F9JQXpIvOipV0/Yv4t93jUdZFdLMcKttnz6vmwn8FY+dTVk3wmMuJYvdIEUI?=
- =?us-ascii?Q?5KERJS0+QDqKghlxpFLi501IDKFNXA5x+MXk0FzJ4uHKevxQw9ybH3tyimqq?=
- =?us-ascii?Q?DHoyBAs=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WA2qoH4Vt/w6dJsN0VxBNrLaZA/klaw8qv66V5pG2JC6nEQmZlCykyVCfxJJ?=
- =?us-ascii?Q?ES4X4vyY0akTkyJ/eijLvfeNwzaA5LPJHSulGvfcFYTuj4bQUcqeKBZqOmLb?=
- =?us-ascii?Q?+mP/y1L68wtXPbCWk0+SqnEiekewvKkkfYgK3IdvreT5dF+o1/Nd/SKt3E/P?=
- =?us-ascii?Q?bZ22pLTQeCDZZS65z2I8tZo21agUw/GcQ0c67/ChrkwIE7wYxY6HOQwETLBy?=
- =?us-ascii?Q?jC52Kiven/frl3AaxVZ5gmqHNTMzKGYAiRUwBHfdyOa8xUrygEj4+Nt0QY9f?=
- =?us-ascii?Q?l1czGVzvIyB5iQd6yAF2l0LGV731ZGBbeIIR70oZtrx5YDPtMJnyTOAALzw3?=
- =?us-ascii?Q?Bcs+hoCsDB7h8VnDtDXaN2HOCufZRJ6bxCuh/Qc2k/1CSWl22AlZFXqhZ6wA?=
- =?us-ascii?Q?BVOuSjkHrPDwwP27TzXPtRKgGhJEO9nIndOF+c+5jBSU1WQb+R8ZiNZ3PWtS?=
- =?us-ascii?Q?/T87hNOvHi3Hsz4BltlbthHQjAo45Xrj3gNHjZH6db7qeqVLZ3xWwlBRGGTr?=
- =?us-ascii?Q?Xs1JGv6snDaWYcnMey4+YUEES0o24T/XTx2pCMHrJ32yvNQlrPClys1kLc7h?=
- =?us-ascii?Q?Sb5YnvBGiEWbqAbmGvE0g0pP6l3t4sT2s+P00ZxL6l/MgcLPzseIMKIcuHzC?=
- =?us-ascii?Q?vgZeXcWOKqGNP7vUbpbV0NZ9mq1zUBre7CbSrCQlpr2PVVekH07bDcbk4eJS?=
- =?us-ascii?Q?hgCkSMTPAifEWgzi+qqw5j9M7blXAV86juImpJGyIzBTQZCHWRlF9wzc/+D+?=
- =?us-ascii?Q?EufglMTzl5JkfYpWamsqnD0te/5FJ2hqThy70G5R9cBHqPGZew02BDGPeoNL?=
- =?us-ascii?Q?449ilFNveLbebnYZDXbtMATTOQtGAF/NvboN0O/+dnyhyclJKVcbknpbsQjo?=
- =?us-ascii?Q?YE5GXR+nc+gKJVFsuCvypT3OGXz2WdkuYfen6OhZ2iNkyCnC+vPlwPnREEUJ?=
- =?us-ascii?Q?ld2PSzjYiaXIJLoylhgSP0f11KmjMPxXDMK5NEsE8PShgKbk8bBbOzNjAZ01?=
- =?us-ascii?Q?Om4N+kNPFQ8MRgL1ATfEWG4thEliz3ggSWOoh3VEU73dnSrQBmgHgDQH/DUk?=
- =?us-ascii?Q?Tc6AQu687ArjMgAsHMmCcYaWreX1nI1f2qJ2oD31vOkWK6og09NHkc5Wrp6j?=
- =?us-ascii?Q?ydPFcNrcPKlmFfmF7m9j8lEMjEqVALa1hGuGwlnrgkbE38Y+0KecWGwRS2tb?=
- =?us-ascii?Q?/MXeoFaXvJgUyOboiQ1lXaKFd4faK0ZXxVQES+d5vzXvs4u6dzhZml1NgEuS?=
- =?us-ascii?Q?9l8mUeUsOskdDS6AqossGAmMqgB7Wzv4SGF26MhIsWRVRDePPqVc+JBqrm8z?=
- =?us-ascii?Q?OZSZuWgFC2L9jJRUgEVY42+Ct5Q0q/dZXgwO5U+FMSHjg/HgP82DiTeqDVB0?=
- =?us-ascii?Q?PWWSDvHkg0aY9/jZkrBzsmiXWqWgV49byBTeM1vlOTERhZ81hMJyh4E1wc15?=
- =?us-ascii?Q?I0VkLvBkhlIk5mcDaOilb3s2GpcLIuznbIA5pfdVBeCaC6V4YZTPBHFx+L1x?=
- =?us-ascii?Q?B4L4wG+Shn7SUIOR8YK8vv+iCQ0ozAfPvd7CwXpM6zJRJTZec7QKjmbzXkFX?=
- =?us-ascii?Q?uOpsr71zCnB5sRwWhdIimFPMji/sqlfmXvLSbjjT?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB8124.namprd11.prod.outlook.com (2603:10b6:510:237::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7741.27; Thu, 11 Jul
+ 2024 16:31:57 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.7762.020; Thu, 11 Jul 2024
+ 16:31:57 +0000
+Date: Thu, 11 Jul 2024 11:31:54 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <ville.syrjala@linux.intel.com>, <daniele.ceraolospurio@intel.com>,
+ <vinay.belgaumkar@intel.com>
+Subject: Re: [PATCH] drm/xe/fbdev: Limit the usage of stolen for LNL+
+Message-ID: <phpidsyio6aub43cbfdcll44k7rrh73chqsuktraenzx6575af@645b423aaz6q>
+References: <20240711051339.3289552-1-uma.shankar@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240711051339.3289552-1-uma.shankar@intel.com>
+X-ClientProxiedBy: MW4PR03CA0175.namprd03.prod.outlook.com
+ (2603:10b6:303:8d::30) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB8124:EE_
+X-MS-Office365-Filtering-Correlation-Id: c21a2acb-41ba-483d-ae90-08dca1c6fb75
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Rg69Z3+h779e3SAV555xhCoJIlH7c3rcxOl2uMvH4gJRQW96kzAa2CAhwIaC?=
+ =?us-ascii?Q?tL+0LFSIxKL3is9ERrbYbsLxN2qOJ6w58pyYq6V4TYp+IKnlUHYarFzUxDlJ?=
+ =?us-ascii?Q?QP0okSxwhWCLwvJDw7T4o+ezvSE56WwEbcL4fX2C6MVf9iymYKyIR+1CnJnG?=
+ =?us-ascii?Q?sBwi1/6YVWJJwBUDa/YXDQsQpLCMkqI7ZL9B0GURjgJ7waCkiBe4nqaalBDI?=
+ =?us-ascii?Q?moEzx7ZQ6JeP/WocMHJBfBULQ/2N7wMLSi/ovmP1Bd7cM0L54qCg7sBFOSA1?=
+ =?us-ascii?Q?jLCCCL1WkjLdAWqWPaGfFAVRsqUAdrtpUReVhIJjHcQEMuhGc/rHeayfdzpi?=
+ =?us-ascii?Q?p6p+OJKiJKbyycXs08JFoyw8fldiHV6R0qV6rEMa81QHz/h/r/rrxwqiZmah?=
+ =?us-ascii?Q?RtMjlA/fLo3OxDIFQeNs7pEInANMe3kcpu2OQWUV5rlDJKrkI3q224VcPfdn?=
+ =?us-ascii?Q?4qUBIGtD/3y6drGJTtdwLBGg7iPRvDm/rfYwutWmYmK8V1X3VN1ZNfG2qyeu?=
+ =?us-ascii?Q?bPYHa5SIO76GXRbHq8nYpGuDdQ3goq+5bD0n/FnzHEcNTOc1t63xqYBF/dzJ?=
+ =?us-ascii?Q?DizuYVfyM5X8yft7HHH3xxu1i54RiitjjFSkfOVlGywIPLj8fT0oMVAxS9Nm?=
+ =?us-ascii?Q?aDfJu1vhkVVPdu98wjfmmH8NPvsFsts+OhH356OD1Ludz6quYfMahXgCS0O+?=
+ =?us-ascii?Q?fMoJVu82ugHLCR2NArzIgG27iSTP3KtWEYpa4T/XhFRzjSLXs/CLebuo2nXm?=
+ =?us-ascii?Q?vlXas/WsdDCuS4NdzaZ5RIi/0MyLNmsRJMIHO+tR9AyYGwCmhVDO4otNvYuP?=
+ =?us-ascii?Q?BOR1Te43m5TldC2m2T3sNvKlE7l1V355LeLmiCEXyCCVM0Ajnyp0xLF9H8kN?=
+ =?us-ascii?Q?Zqjgv/PEgvRR8CA0wo5lH0DGFgQGFvacxzVuWF+QtEwUSGE7KK24WmEJPF/t?=
+ =?us-ascii?Q?BXmPAoNxklBWwd2ra+uhI0ZWSy59EMZpIS8jwikCo4/xaaq8B9MvEak7NVY4?=
+ =?us-ascii?Q?3FzOxVbjYWKcNRDvoTRHuWoUPfVowlEmHjjpKvdfv/0mkQNsnXAjlJ1kjyya?=
+ =?us-ascii?Q?Zu6AopxXCBa/rCDyqg+qkdIjMg1DggN+YsBuqiIk26HoIfUDS0rONA1Y97fq?=
+ =?us-ascii?Q?v2GG/gzu5y5n1YFbIfTZ28CvK+z9m07HODtUuuxjVtSAC/BAuGYUXqJ7msAi?=
+ =?us-ascii?Q?7iv6Iqe3ZJzAilQS4BCfJPp3VCg2pj6y8FgLmj4NtgpzyV6pWRpPqjcH62m7?=
+ =?us-ascii?Q?kUgH41HLTDgrNlj9sGrGP9AP54VdsHDZrSkO1Pw7HGAlnJzx205JyCZRRI0t?=
+ =?us-ascii?Q?New3HuOOOaCYhrULYi+aNgLYoQVFAh0OKQ88Ei/uF/G+LQ=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1wm+EdFHnoeOcSidCx2s4vAONmgYM9w3+/3IRc63mcyOC8gw5ocFMOmtLdi1?=
+ =?us-ascii?Q?Mnkxlous/rWBC5oBLRuZEjEQ2+XWsUcJAWewrAk9G7Oz5wlSUS27jdBBtGOz?=
+ =?us-ascii?Q?kg9UivmpAd0z1MFuNbycUJsP/iqq3MmpR/z5d4mFirH276tX8ydPHm+vCl/3?=
+ =?us-ascii?Q?PNaluaZMJgeY7GlzPUFnxkCO2+4B9uisyR5159vb8v141O7OwvQM3YAqydpb?=
+ =?us-ascii?Q?xCVbHOMK24NUh+7dCwO5bJ/i9IWkfmewvBEjk7SAzIWQIM/RBELZ0skBuqJa?=
+ =?us-ascii?Q?B0AD1EdmJQOB9HVYyVoPsLtLZgQIVmytTXSa22v/Rg/TNG+SYNLrcxMm43DG?=
+ =?us-ascii?Q?ixKVZqSeTZROBtMQuepJsv6NNxwo+suBKoRDGe0PCsp3Lk7V0txtKOBP+Byl?=
+ =?us-ascii?Q?AHUYEO5K/F48qV6CQuySQUt9GoN7grZa9EZduO1jDrGptPccb9Pe/lDQ7FUa?=
+ =?us-ascii?Q?+BcdT0//iN0H1QMnbDqjg1BqlWw9QTzPnTOQd4sLIqsYXBMRkFtmqJ/H8H+6?=
+ =?us-ascii?Q?4iVpBSeUsDbmoXgYhgWFHvvrLx+lOSkEAVmo1L7WCXyD9gAaKCdsImVeVZsR?=
+ =?us-ascii?Q?hhFIgUUjW/ov7C+SmwR60n3+oPbsEFJXb/j4GLwVUmjUkAyUZDTYCOS7zRYZ?=
+ =?us-ascii?Q?dFEfAuelHvUoPrq1oKGoGKHQqMSqYffuDTE9du0mIwZEmBYmy4cHyfiuqmd2?=
+ =?us-ascii?Q?pQ0Vjnu+KRiQHoTem2OJROd+tNzFRzLPeXpud1DDcO2kMitT1W2nwPk+b05a?=
+ =?us-ascii?Q?Vz+WksCuBTGXIxAqltuUfvHpdTtCG5nqOBaQMQ3Yi5iTAZKQnmmIO2ohUt1q?=
+ =?us-ascii?Q?p6HB7ylQOiTiFMwuCLwyhXLWIQZBXI5w2L8QbCyIozW4oFXcwALcRjuYfyvv?=
+ =?us-ascii?Q?2l+gGwoR4oELr7UBiV/YovoU/ExNbR46ejSEN/BXX5qd4pmEJQudED0LsiYk?=
+ =?us-ascii?Q?HJ2c/3aq836K9ZH9bzBinzXMR+jqLMGbn/+RfhXcd/okAkWPG6fvLH2CvHmC?=
+ =?us-ascii?Q?5WatErNVFNh0W2mdMBjYvSarUAYI1uyCoZVbfJLZpg5hLs8bwR7sioG1ey/A?=
+ =?us-ascii?Q?a8ssJRhAiUhVrISbFYD8xMz+mokC/BvATKVefwWxDYUzoB1l8PacGHrCNx7m?=
+ =?us-ascii?Q?a7/HOPXqUEg/lGZ74a+li55dwf6wh53X43Ul+U8DHEBeNQ3/2yClvO/J3+4m?=
+ =?us-ascii?Q?E+kfMZu8uwa0Y3UN+QhhbFPGgv6/Dt9KSQgYIcQ9obOrXcJMPaH4Povn0GjU?=
+ =?us-ascii?Q?UVm48WgFEcSbUIRd+ISX4H8aGP5HKlPaqACFPIYoPvPEfD8fdJQjTflCSWoJ?=
+ =?us-ascii?Q?YKU4YYDZT4e9fTWystBwvM7icvcbEIYqVZFi3kL8aqkF5gb5UTqMB48oAMRM?=
+ =?us-ascii?Q?kvw2EbiHmz1fwh+dzibmwrgsd1JnhAvGAbERPAN5q8bYg+kNWJ4SCI6olRJH?=
+ =?us-ascii?Q?2EsxdI29104WF0cQ8zy0/KK67SQNf0SFHWlZWZmenq+SGwmgPu+uQk9brEF5?=
+ =?us-ascii?Q?SK8Jw3pG0ZbaXYAS8AK2LZb0JcZ8q/nraT+wIYZT09eZ/p3g03ZHiofuPl2D?=
+ =?us-ascii?Q?gU3c0lcT/IBl234oJcijqjfLJvrV8hRUdP/Unts51tOemmH2rAmy/B1Q6uEH?=
+ =?us-ascii?Q?2A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c21a2acb-41ba-483d-ae90-08dca1c6fb75
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2175eb3e-9823-4c0a-e77b-08dca1c68e00
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jul 2024 16:28:53.7660 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YYZL0nCsTdaTE+bAUAyUro6T+t41FgFRclnCwhUahzHCkPU3stAzUzWb3inJf/0ohZ5SV+6mdQb0HzvznDH5XNGw2/p42803Kovt6dy0U+E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4720
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2024 16:31:57.6396 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hCFVF/S5k46YObKg/BVVsq32CZwdrHFSIMw4qG7cAshAEpkba5aypZhoddwDc/4keO7zZZKKmhntAbLv5rn/Bln4u6JxVzyKVqxpL3CH44c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8124
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -190,76 +180,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
------Original Message-----
-From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Niti=
-n Gote
-Sent: Thursday, July 11, 2024 9:32 AM
-To: Wilson, Chris P <chris.p.wilson@intel.com>; tursulin@ursulin.net; intel=
--gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org; Shyti, Andi <andi.shyti@intel.com>; Da=
-s, Nirmoy <nirmoy.das@intel.com>; janusz.krzysztofik@linux.intel.com; Gote,=
- Nitin R <nitin.r.gote@intel.com>; Chris Wilson <chris.p.wilson@linux.intel=
-.com>; stable@vger.kernel.org
-Subject: [PATCH v3] drm/i915/gt: Do not consider preemption during execlist=
-s_dequeue for gen8
->=20
-> We're seeing a GPU HANG issue on a CHV platform, which was caused by
-> bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries fo=
-r gen8").
->=20
-> Gen8 platform has only timeslice and doesn't support a preemption mechani=
-sm
-> as engines do not have a preemption timer and doesn't send an irq if the
-> preemption timeout expires.
+On Thu, Jul 11, 2024 at 10:43:39AM GMT, Uma Shankar wrote:
+>As per recommendation in the workarounds:
+>WA_14021987551, Wa_16023588340:
+>
+>There is an issue with accessing Stolen memory pages due a
+>hardware limitation. Limit the usage of stolen memory for
+>fbdev for LNL+. Don't use BIOS FB from stolen on LNL+ and
+>assign the same from system memory.
+>
+>Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+>---
+> drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 10 +++++++++-
+> drivers/gpu/drm/xe/display/xe_plane_initial.c | 10 ++++++++++
+> 2 files changed, 19 insertions(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>index 816ad13821a8..8fda8745ce0a 100644
+>--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>@@ -37,7 +37,14 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+> 	size = PAGE_ALIGN(size);
+> 	obj = ERR_PTR(-ENODEV);
+>
+>-	if (!IS_DGFX(xe)) {
+>+	/*
+>+	 * WA_14021987551, Wa_16023588340:
 
-That seems to mean the original can_preempt function was inaccurately built=
-,
-so fixing it here makes the most sense to me, especially if it's causing pr=
-oblems.
+not the proper way to handle WAs in xe. Please use XE_WA()
 
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
--Jonathan Cavitt
 
-> So, add a fix to not consider preemption
-> during dequeuing for gen8 platforms.
->=20
-> v2: Simplify can_preempt() function (Tvrtko Ursulin)
->=20
-> v3:
->  - Inside need_preempt(), condition of can_preempt() is not required
->    as simplified can_preempt() is enough. (Chris Wilson)
->=20
-> Fixes: bac24f59f454 ("drm/i915/execlists: Enable coarse preemption bounda=
-ries for gen8")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11396
-> Suggested-by: Andi Shyti <andi.shyti@intel.com>
-> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
-> Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> CC: <stable@vger.kernel.org> # v5.2+
-> ---
->  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drive=
-rs/gpu/drm/i915/gt/intel_execlists_submission.c
-> index 21829439e686..72090f52fb85 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -3315,11 +3315,7 @@ static void remove_from_engine(struct i915_request=
- *rq)
-> =20
->  static bool can_preempt(struct intel_engine_cs *engine)
->  {
-> -	if (GRAPHICS_VER(engine->i915) > 8)
-> -		return true;
-> -
-> -	/* GPGPU on bdw requires extra w/a; not implemented */
-> -	return engine->class !=3D RENDER_CLASS;
-> +	return GRAPHICS_VER(engine->i915) > 8;
->  }
-> =20
->  static void kick_execlists(const struct i915_request *rq, int prio)
-> --=20
-> 2.25.1
->=20
->=20
+>+	 * There is an issue with accessing Stolen memory pages
+>+	 * due a hardware limitation. Limit the usage of stolen
+>+	 * memory for fbdev for LNL+. Don't use BIOS FB from
+>+	 * stolen on LNL+ and assign the same from system memory
+
+I wonder if we can't simply set to 0 the available stolen space after the
+places that really need it already had their allocation done.
+
+>+	 */
+>+	if (!IS_DGFX(xe) && (DISPLAY_VER(xe) < 20)) {
+
+extra parenthesis not needed and I think the rule to be added in
+xe_wa_oob.rules would be about GRAPHICS_VERSION(2004) or
+PLATFORM(LUNARLAKE) to avoid this propagating to future platforms.
+
+> 		obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
+> 					   NULL, size,
+> 					   ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
+>@@ -48,6 +55,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+> 		else
+> 			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
+> 	}
+>+
+> 	if (IS_ERR(obj)) {
+> 		obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, size,
+> 					   ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
+>diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+>index 5eccd6abb3ef..80dd6b64c921 100644
+>--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+>+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+>@@ -104,6 +104,16 @@ initial_plane_bo(struct xe_device *xe,
+> 		phys_base = base;
+> 		flags |= XE_BO_FLAG_STOLEN;
+>
+>+		/*
+>+		 * WA_14021987551, Wa_16023588340:
+>+		 * There is an issue with accessing Stolen memory pages
+>+		 * due a hardware limitation. Limit the usage of stolen
+>+		 * memory for fbdev for LNL+. Don't use BIOS FB from
+>+		 * stolen on LNL+ and assign the same from system memory
+>+		 */
+>+		if (DISPLAY_VER(xe) >= 20)
+>+			return NULL;
+
+same as above
+
+Lucas De Marchi
+
+>+
+> 		/*
+> 		 * If the FB is too big, just don't use it since fbdev is not very
+> 		 * important and we should probably use that space with FBC or other
+>-- 
+>2.42.0
+>
