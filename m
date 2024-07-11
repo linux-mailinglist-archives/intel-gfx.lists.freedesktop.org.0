@@ -2,60 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3AAE92E517
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 12:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC3692E672
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 13:24:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B0010E171;
-	Thu, 11 Jul 2024 10:53:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43D2C10EA22;
+	Thu, 11 Jul 2024 11:24:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZP2WCwO2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RhXgsXmc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3776810E171
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2024 10:53:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B9410E136;
+ Thu, 11 Jul 2024 11:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720695191; x=1752231191;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Pg1rHZeElTqwPKKSe0TEhJ4aeaRQ93nVFOmVGHxy0BE=;
- b=ZP2WCwO2tRznYzHl1mDxT7aWgMwb2puIFg4oLqBDaiowPXNrwQXemXNf
- Sd7c8keTbQyqnHV0bhMWsnKZj+0+odJBtJMlDLPJsGG0e9ieasihYUUT5
- XfE5e5881ESDAh/+Ab0LZg1ZJAiOR4Cuz0TAZU+jFY2Wu+gVpSHIbgjzo
- bj6dGC1REVz70oWffO+Jlk+MN8Ucp9JvxxGPOU52k4rlYa+h18YhkHL55
- nFY9Kx46+Qd+osiHsPR/uVXT7Y8k87n2ekQHOQ7rMcBhWwsMqHajrEwAW
- 7O5z+gwk7XkmEwyqhIBqPWEjtXEm9NywcNhUtMW8vYl1ycDhFBg97bz/H w==;
-X-CSE-ConnectionGUID: 6ZjfBVlbQrKsXRBBeXf6eQ==
-X-CSE-MsgGUID: /bHL8WvUS2iBWlRR6maX0Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="28665910"
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="28665910"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 03:53:10 -0700
-X-CSE-ConnectionGUID: tYqLksfcS6qUI1NhiLeX0Q==
-X-CSE-MsgGUID: iOwPUQsHR5+sRzWh0JE2bw==
+ t=1720697061; x=1752233061;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=o/2EvU8Ne6JzHNgJUsH762dUzuzFgrow+gSs4PLwHAA=;
+ b=RhXgsXmcnjKzr6B4rYihs3tmDxiz6p9GyMYYOEhCW4+RZ2y/k+t2FmrO
+ mde0V+TzEc6RdR8uD0UbUnwVcDhpzI1G70rSv+kk4wdw4mi+WkYNt6S+G
+ j1XJVwC46t2C32+OyX4FITIKoiPAyPImD2HkLDNwG8IL5u8YXJN4wh/GH
+ /z5eOs4n1VfxI3BAWj5hO98qfvyMeSgQgultvGfvIlGD1VlCbv5nsMv84
+ xJVJahtl6gkt6dls86A6johukKB4Fw2N5AzS6y56lqz2RfJjIxRArqS0z
+ 2ITiQyA3gtJk9J7vfw8ojTkYdO7HKP7dOChBHvMQWpl9wrRRDigt4Hdx4 w==;
+X-CSE-ConnectionGUID: jySsi8VdR0a8xm+fola80Q==
+X-CSE-MsgGUID: ns454FkgTJCBymfdoKnmMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="40582711"
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="40582711"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 04:24:20 -0700
+X-CSE-ConnectionGUID: VsJm3oa9S3yZ6uUi3Zm8Fw==
+X-CSE-MsgGUID: VrbT04LEQ3+kl1RHWDS/FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,199,1716274800"; d="scan'208";a="48489068"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 03:53:09 -0700
-Date: Thu, 11 Jul 2024 13:53:22 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2 6/6] drm/i915/dp: Dump the LTTPR PHY descriptors
-Message-ID: <Zo-5olm-FxLDRq-K@ideak-desk.fi.intel.com>
-References: <20240708190029.271247-1-imre.deak@intel.com>
- <20240708190029.271247-7-imre.deak@intel.com>
- <676ba993-1800-412f-9120-289ab0545847@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="49178595"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.252])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2024 04:24:12 -0700
+Date: Thu, 11 Jul 2024 13:24:09 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Zhi Wang <zhiwang@kernel.org>
+Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
+Message-ID: <Zo_A2Ykh3-YI7Nff@ashyti-mobl2.lan>
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-4-eahariha@linux.microsoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <676ba993-1800-412f-9120-289ab0545847@intel.com>
+In-Reply-To: <20240711052734.1273652-4-eahariha@linux.microsoft.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,54 +85,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 11, 2024 at 03:20:19PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 7/9/2024 12:30 AM, Imre Deak wrote:
-> > Dump the descriptor of the detected LTTPRs in non-transparent mode to
-> > help the debugging related to LTTPRs easier.
-> > 
-> > v2: Use drm_dp_dump_lttpr_desc() instead of the driver specific
-> >      equivalent.
-> > 
-> > Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> # v1
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_dp_link_training.c | 5 ++++-
-> >   1 file changed, 4 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index af0b71bdf1fcf..ab72aa1d664dc 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -20,6 +20,7 @@
-> >    * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-> >    * IN THE SOFTWARE.
-> >    */
-> > +#include <drm/display/drm_dp_helper.h>
-> 
-> nitpick : I wonder if we should leave a line after the license header.
+Hi Easwar,
 
-Not sure if there is a rule for this, but makes sense, will add it.
-
-> In any case patch looks good to me.
+On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
+> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
+> the approved verbiage exists in the specification.
 > 
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Zhi Wang <zhiwang@kernel.org>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 
-Thanks.
+good job! Thanks for taking care of this!
 
-> 
-> >   #include "i915_drv.h"
-> >   #include "intel_display_types.h"
-> > @@ -206,8 +207,10 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
-> >   	lttpr_count = intel_dp_init_lttpr_phys(intel_dp, dpcd);
-> > -	for (i = 0; i < lttpr_count; i++)
-> > +	for (i = 0; i < lttpr_count; i++) {
-> >   		intel_dp_read_lttpr_phy_caps(intel_dp, dpcd, DP_PHY_LTTPR(i));
-> > +		drm_dp_dump_lttpr_desc(&intel_dp->aux, DP_PHY_LTTPR(i));
-> > +	}
-> >   	return lttpr_count;
-> >   }
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Thanks,
+Andi
