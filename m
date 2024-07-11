@@ -2,77 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC3692E672
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 13:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF2992E74A
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 13:43:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D2C10EA22;
-	Thu, 11 Jul 2024 11:24:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44B2E10EA2C;
+	Thu, 11 Jul 2024 11:43:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RhXgsXmc";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fXzQ0XoC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B9410E136;
- Thu, 11 Jul 2024 11:24:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720697061; x=1752233061;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=o/2EvU8Ne6JzHNgJUsH762dUzuzFgrow+gSs4PLwHAA=;
- b=RhXgsXmcnjKzr6B4rYihs3tmDxiz6p9GyMYYOEhCW4+RZ2y/k+t2FmrO
- mde0V+TzEc6RdR8uD0UbUnwVcDhpzI1G70rSv+kk4wdw4mi+WkYNt6S+G
- j1XJVwC46t2C32+OyX4FITIKoiPAyPImD2HkLDNwG8IL5u8YXJN4wh/GH
- /z5eOs4n1VfxI3BAWj5hO98qfvyMeSgQgultvGfvIlGD1VlCbv5nsMv84
- xJVJahtl6gkt6dls86A6johukKB4Fw2N5AzS6y56lqz2RfJjIxRArqS0z
- 2ITiQyA3gtJk9J7vfw8ojTkYdO7HKP7dOChBHvMQWpl9wrRRDigt4Hdx4 w==;
-X-CSE-ConnectionGUID: jySsi8VdR0a8xm+fola80Q==
-X-CSE-MsgGUID: ns454FkgTJCBymfdoKnmMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11129"; a="40582711"
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="40582711"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 04:24:20 -0700
-X-CSE-ConnectionGUID: VsJm3oa9S3yZ6uUi3Zm8Fw==
-X-CSE-MsgGUID: VrbT04LEQ3+kl1RHWDS/FA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,200,1716274800"; d="scan'208";a="49178595"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.252])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2024 04:24:12 -0700
-Date: Thu, 11 Jul 2024 13:24:09 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415B410EA2D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2024 11:43:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1720698208;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=MofSZeDyVzWkqGzbXdelFG68l2ucBKWV0CSSC6YMCJU=;
+ b=fXzQ0XoCzTQU0YH/pRkrNy1fTRW8bfbiQvI5DMTPnuFFoTO0CcLYzjEmNnsWDTywyeXGWd
+ CN4xtGZ/OU0DQ37LKebIzlgnZzZ72X6QNq8leAN/meu2YpMmocraUcTZ/IUqpnLn/FDO4J
+ 5QU+4h2TOIAFrkvSkpf/fbcMx/7J5OY=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-134-ensAlbx4OUiW3i7gPCaHdQ-1; Thu, 11 Jul 2024 07:43:24 -0400
+X-MC-Unique: ensAlbx4OUiW3i7gPCaHdQ-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-367960f4673so971848f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2024 04:43:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1720698202; x=1721303002;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MofSZeDyVzWkqGzbXdelFG68l2ucBKWV0CSSC6YMCJU=;
+ b=ns04B04vWJD3zGtFNiGhbXqAIqldoaTWN370gtV+wyPjy5JMuGrw8brKuQQ9XCQYmw
+ slS6q2vkurd9uE01N9cFQVP7BOsjAFYtvN4yk46hrOvoiPccay+rjvi3PWpY0dYFxQul
+ I45wzmkUGyO525YQkHfgDujSKCcHzRZkbCmYIk9i9O5Ayc2jvD1h2x+MFUUSQfGOjA8/
+ 9x9knsdBer/4uHed/L1wAcn0NG/A82okv3Zakf/w9tZ6teejRCRq42cYc5k4B6a3iyZn
+ jQGS/igDf9ujUPhlyfJixNQ30qZA9PuA0wu0eFBR8SFhDImE4L45RL2cmG+0tR51lUvq
+ jNUQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWRt22eAR8i5rxUYedOsBhYVtam7fTDaTe5QHFUNteu47gDRwZma9CchkCazt//dcnNrTvEG6o6ZPAYf/bYqq8/A3Q4zNzUzDjjRdTedN9u
+X-Gm-Message-State: AOJu0Yw1GX8zkipYzwYsgDMZzcYzUA4ziMao4Np3IrF1VTQAqZB4P/wy
+ p0F5gN0pdoIFGF5Ym3wItyypknmPIIENI8/yOxgui0RPLRbxI4po1gkzjxFNQdbL7prq2+cPqh2
+ KkDQvdEwPKGIR1IqQxZGx0yZbj+L93uQR9PM1nTOrplEuv48tXGBZf+ieM/w4tvqUTA==
+X-Received: by 2002:a05:6000:e86:b0:367:8e63:4da4 with SMTP id
+ ffacd0b85a97d-367f04ca2d7mr1970140f8f.14.1720698202615; 
+ Thu, 11 Jul 2024 04:43:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEKWwK9mQfjAxuy6d/Q76G5tEr15S1eUj7ecFAczGH+5nB4lofGO2HqY2Y+hF94BBlR5S5EPA==
+X-Received: by 2002:a05:6000:e86:b0:367:8e63:4da4 with SMTP id
+ ffacd0b85a97d-367f04ca2d7mr1970113f8f.14.1720698202132; 
+ Thu, 11 Jul 2024 04:43:22 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4266f737b1bsm116663935e9.32.2024.07.11.04.43.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Jul 2024 04:43:21 -0700 (PDT)
+Date: Thu, 11 Jul 2024 13:43:21 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>, 
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
- <intel-gvt-dev@lists.freedesktop.org>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
- Zhi Wang <zhiwang@kernel.org>
-Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
-Message-ID: <Zo_A2Ykh3-YI7Nff@ashyti-mobl2.lan>
-References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
- <20240711052734.1273652-4-eahariha@linux.microsoft.com>
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20240711-benign-rich-mouflon-2eeafe@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="dzmsejr4sz47r6mw"
 Content-Disposition: inline
-In-Reply-To: <20240711052734.1273652-4-eahariha@linux.microsoft.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,22 +96,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Easwar,
 
-On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
-> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
-> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
-> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
-> the approved verbiage exists in the specification.
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Zhi Wang <zhiwang@kernel.org>
-> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+--dzmsejr4sz47r6mw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-good job! Thanks for taking care of this!
+Hi,
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Here's this week drm-misc-next-fixes PR
 
-Thanks,
-Andi
+Thanks!
+Maxime
+
+drm-misc-next-fixes-2024-07-11:
+A fix for fbdev on big endian systems, a condition fix for a sharp panel
+at removal, and a fix for qxl to prevent unpinned buffer access under
+certain conditions.
+The following changes since commit 896868eded124059023be0af92d68cdaf9b4de70:
+
+  drm/panthor: Record devfreq busy as soon as a job is started (2024-07-04 09:29:55 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-07-11
+
+for you to fetch changes up to c537fb4e3d36e7cd1a0837dd577cd30d3d64f1bc:
+
+  drm/qxl: Pin buffer objects for internal mappings (2024-07-10 09:12:42 +0200)
+
+----------------------------------------------------------------
+A fix for fbdev on big endian systems, a condition fix for a sharp panel
+at removal, and a fix for qxl to prevent unpinned buffer access under
+certain conditions.
+
+----------------------------------------------------------------
+Douglas Anderson (1):
+      drm/panel: sharp-lq101r1sx01: Fixed reversed "if" in remove
+
+Maxime Ripard (1):
+      Merge drm-misc-next-2024-07-04 into drm-misc-next-fixes
+
+Thomas Huth (1):
+      drm/fbdev-dma: Fix framebuffer mode for big endian devices
+
+Thomas Zimmermann (1):
+      drm/qxl: Pin buffer objects for internal mappings
+
+ drivers/gpu/drm/arm/display/komeda/komeda_color_mgmt.c |  5 -----
+ drivers/gpu/drm/drm_fbdev_dma.c                        |  3 ++-
+ drivers/gpu/drm/panel/panel-sharp-lq101r1sx01.c        |  2 +-
+ drivers/gpu/drm/qxl/qxl_display.c                      | 14 +++++++-------
+ drivers/gpu/drm/qxl/qxl_object.c                       | 13 +++++++++++--
+ drivers/gpu/drm/qxl/qxl_object.h                       |  4 ++--
+ 6 files changed, 23 insertions(+), 18 deletions(-)
+
+--dzmsejr4sz47r6mw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZo/FWAAKCRAnX84Zoj2+
+ducuAYCQ2yxTQEAVBbW1pjLEqLM8ZqWbhUe30yZe+1K91x/U9fSYGnmsfeWpJYHh
+VsiVNBgBgMVRP82CcCt7Cp2HFfHXl/enrvZaYvJUDetm3ZbnGwAT5TGqbefXGok6
+phXB4NyL4Q==
+=SiwA
+-----END PGP SIGNATURE-----
+
+--dzmsejr4sz47r6mw--
+
