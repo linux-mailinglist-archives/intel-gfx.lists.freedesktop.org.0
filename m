@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4222892E2D6
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 10:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4242D92E317
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 11:06:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31A9B10E32B;
-	Thu, 11 Jul 2024 08:57:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D928410E9B3;
+	Thu, 11 Jul 2024 09:06:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE63E10E326;
- Thu, 11 Jul 2024 08:57:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8937010E9B3;
+ Thu, 11 Jul 2024 09:06:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8086914127540781129=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Ultrajoiner_basic_fu?=
- =?utf-8?q?nctionality_series_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Ultrajoiner_basic_functiona?=
+ =?utf-8?q?lity_series_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Jul 2024 08:57:41 -0000
-Message-ID: <172068826171.124811.1598500909350803775@2413ebb6fbb6>
+Date: Thu, 11 Jul 2024 09:06:40 -0000
+Message-ID: <172068880055.124811.14487681056174970306@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240711081441.17415-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20240711081441.17415-1-stanislav.lisovskiy@intel.com>
@@ -41,162 +41,154 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============8086914127540781129==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: Ultrajoiner basic functionality series (rev5)
 URL   : https://patchwork.freedesktop.org/series/133800/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-2d669c201834 drm/i915: Add some essential functionality for joiners
--:61: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#61: FILE: drivers/gpu/drm/i915/display/intel_display.c:277:
-+	for (i = lsb; i < msb; i += 4)
-+	{
+CI Bug Log - changes from CI_DRM_15060 -> Patchwork_133800v5
+====================================================
 
-total: 1 errors, 0 warnings, 0 checks, 160 lines checked
-fe13acd29ba0 drm/i915: Split current joiner hw state readout
--:75: CHECK:SPACING: No space is necessary after a cast
-#75: FILE: drivers/gpu/drm/i915/display/intel_display.c:3627:
-+		power_domain = intel_dsc_power_domain(crtc, (enum transcoder) pipe);
+Summary
+-------
 
-total: 0 errors, 0 warnings, 1 checks, 99 lines checked
-c0974ac78b4e drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity checks
-f9f16c82cfe5 drm/i915: Implement hw state readout and checks for ultrajoiner
--:39: CHECK:SPACING: No space is necessary after a cast
-#39: FILE: drivers/gpu/drm/i915/display/intel_display.c:3659:
-+		power_domain = intel_dsc_power_domain(crtc, (enum transcoder) pipe);
+  **SUCCESS**
 
--:142: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
-#142: FILE: drivers/gpu/drm/i915/display/intel_display.c:3751:
-+		return fls(primary_pipes) - 1;
-+	} else {
+  No regressions found.
 
--:168: CHECK:BRACES: braces {} should be used on all arms of this statement
-#168: FILE: drivers/gpu/drm/i915/display/intel_display.c:3769:
-+	if (!ultrajoiner_used) {
-[...]
-+		return secondary_pipes & GENMASK(next_primary_pipe - 1, primary_pipe);
-[...]
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/index.html
 
--:178: CHECK:BRACES: Unbalanced braces around else statement
-#178: FILE: drivers/gpu/drm/i915/display/intel_display.c:3778:
-+	} else
+Participating hosts (41 -> 37)
+------------------------------
 
--:203: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#203: FILE: drivers/gpu/drm/i915/display/intel_display.c:3856:
-+			get_joiner_primary_pipe(crtc->pipe, primary_pipes,
-+					       secondary_pipes, ultrajoiner_used);
+  Additional (1): fi-bsw-nick 
+  Missing    (5): fi-bsw-n3050 fi-snb-2520m fi-cfl-8109u bat-dg2-11 bat-mtlp-8 
 
--:223: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#223: FILE: drivers/gpu/drm/i915/display/intel_display.c:3997:
-+		BIT(get_joiner_primary_pipe(pipe, primary_pipes, secondary_pipes, ultrajoiner_used)) |
+Known issues
+------------
 
-total: 0 errors, 2 warnings, 4 checks, 215 lines checked
-19934be097d6 drm/i915: Compute config and mode valid changes for ultrajoiner
--:66: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#66: FILE: drivers/gpu/drm/i915/display/intel_dp.c:761:
-+	max_bpp_joiner = max_bpp_small_joiner_ram =
+  Here are the changes found in Patchwork_133800v5 that come from known issues:
 
--:213: ERROR:ELSE_AFTER_BRACE: else should follow close brace '}'
-#213: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1271:
-+	}
-+	else if (intel_dp_need_bigjoiner(intel_dp, connector,
+### IGT changes ###
 
--:214: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#214: FILE: drivers/gpu/drm/i915/display/intel_dp.c:1272:
-+	else if (intel_dp_need_bigjoiner(intel_dp, connector,
-+				    mode->hdisplay, target_clock)) {
+#### Issues hit ####
 
--:330: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#330: FILE: drivers/gpu/drm/i915/display/intel_dp.h:124:
-+bool intel_dp_joiner_needs_dsc(struct drm_i915_private *i915, bool use_bigjoiner, bool use_ultrajoiner);
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] +19 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
 
--:388: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#388: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:583:
-+	else if (intel_dp_need_bigjoiner(intel_dp, connector,
-+				    adjusted_mode->crtc_hdisplay,
+  
+#### Possible fixes ####
 
--:503: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#503: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2355:
-+
-+
+  * igt@i915_selftest@live@objects:
+    - bat-arlh-2:         [INCOMPLETE][2] ([i915#11378]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15060/bat-arlh-2/igt@i915_selftest@live@objects.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/bat-arlh-2/igt@i915_selftest@live@objects.html
 
--:559: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
-#559: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:812:
-+			dss_ctl1_val |= PRIMARY_ULTRA_JOINER_ENABLE;;
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-arls-2:         [DMESG-WARN][4] ([i915#7507]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15060/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html
 
-total: 1 errors, 2 warnings, 4 checks, 487 lines checked
-87ebdb522e19 drm/i915: Add new abstraction layer to handle pipe order for different joiners
--:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#7: 
-Ultrajoiner case requires special treatment where both reverse and staight order
-
--:77: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:1724:
- 
-+
-
--:82: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#82: FILE: drivers/gpu/drm/i915/display/intel_display.c:1729:
-+	static const enum pipe ultrajoiner_pipe_order_enable[I915_MAX_PIPES] =
-+		{ PIPE_B, PIPE_D, PIPE_C, PIPE_A };
-
--:84: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#84: FILE: drivers/gpu/drm/i915/display/intel_display.c:1731:
-+	static const enum pipe bigjoiner_pipe_order_enable[I915_MAX_PIPES] =
-+		{ PIPE_B, PIPE_A, PIPE_D, PIPE_C };
-
--:86: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#86: FILE: drivers/gpu/drm/i915/display/intel_display.c:1733:
-+	static const enum pipe nojoiner_pipe_order_enable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_C, PIPE_D };
-
--:98: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#98: FILE: drivers/gpu/drm/i915/display/intel_display.c:1745:
-+	static const enum pipe ultrajoiner_pipe_order_disable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_D, PIPE_C };
-
--:100: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#100: FILE: drivers/gpu/drm/i915/display/intel_display.c:1747:
-+	static const enum pipe bigjoiner_pipe_order_disable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_C, PIPE_D };
-
--:102: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#102: FILE: drivers/gpu/drm/i915/display/intel_display.c:1749:
-+	static const enum pipe nojoiner_pipe_order_disable[I915_MAX_PIPES] =
-+		{ PIPE_A, PIPE_B, PIPE_C, PIPE_D };
-
--:218: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__dev_priv' - possible side-effects?
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__p' - possible side-effects?
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__priolist' - possible side-effects?
-#218: FILE: drivers/gpu/drm/i915/display/intel_display.h:277:
-+#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-+	for_each_pipe(__dev_priv, __p) \
-+		for_each_if((__mask) & BIT(__priolist[__p])) \
-+			for_each_if(intel_crtc = intel_crtc_for_pipe(__dev_priv, __priolist[__p]))
-
-total: 7 errors, 1 warnings, 4 checks, 241 lines checked
+  
+  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
+  [i915#7507]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7507
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_15060 -> Patchwork_133800v5
+
+  CI-20190529: 20190529
+  CI_DRM_15060: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7922: 325d4f4efbf869f93d3b4479046713d0ce7220e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133800v5: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/index.html
+
+--===============8086914127540781129==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Ultrajoiner basic functionality series (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133800/">https://patchwork.freedesktop.org/series/133800/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15060 -&gt; Patchwork_133800v5</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Additional (1): fi-bsw-nick <br />
+  Missing    (5): fi-bsw-n3050 fi-snb-2520m fi-cfl-8109u bat-dg2-11 bat-mtlp-8 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133800v5 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@parallel-random-engines:<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +19 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@objects:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15060/bat-arlh-2/igt@i915_selftest@live@objects.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/bat-arlh-2/igt@i915_selftest@live@objects.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15060/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7507">i915#7507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v5/bat-arls-2/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15060 -&gt; Patchwork_133800v5</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15060: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7922: 325d4f4efbf869f93d3b4479046713d0ce7220e5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133800v5: 36e90f69c967f4cbcdd02c40c9ef25694ffb1a13 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8086914127540781129==--
