@@ -2,47 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78AF92E44B
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 12:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA92492E44C
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2024 12:14:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EF7510EA08;
-	Thu, 11 Jul 2024 10:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5277F10EA15;
+	Thu, 11 Jul 2024 10:14:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=deller@gmx.de header.b="tWm2UZq2";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=deller@gmx.de header.b="cuq8LBOM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 317 seconds by postgrey-1.36 at gabe;
- Thu, 11 Jul 2024 10:14:17 UTC
 Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 911D610EA08;
- Thu, 11 Jul 2024 10:14:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB99210EA15;
+ Thu, 11 Jul 2024 10:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1720692855; x=1721297655; i=deller@gmx.de;
- bh=aeQ7MBI4uXNPRP9dfKZtJzB8V93jNRcQsBz9aaIg6tU=;
+ s=s31663417; t=1720692892; x=1721297692; i=deller@gmx.de;
+ bh=+bMT5NnSxXNV7Rt+gMDNsk011QJNzOVj00VzFIO0UKw=;
  h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
  References:From:In-Reply-To:Content-Type:
  Content-Transfer-Encoding:cc:content-transfer-encoding:
  content-type:date:from:message-id:mime-version:reply-to:subject:
  to;
- b=tWm2UZq2Nhdtp30xatgBWdN2AtRKqZMxTCsawhTKL7TqgwsJg7m7HJtfZRQxgBDo
- f4xkUpeftlAjRenupfwSSbbg4qC63K2h9DhgAHjHX2HV43annw9KvVazNfXlNV4qT
- VAYZjmbt+w9Xwx+UNK8qSI+vsC5CPlOmlmxXKjC8qCYnixFkV3ANEU0ldRYVFrTub
- +x8b/09Vo9YPZrxmiWss+fYMzGthjJx4/IHYzHiijcm5Tf4xkTkBXXeoSVk7upoB4
- YQGzcT6PYsC/jIebLD1mYb/i3qEVw5byU5Nm9WroYa2+dZDdBfn37JLmPk8TvZgn7
- AMxE8vNhcoX92dC4WA==
+ b=cuq8LBOMMH5OH76pCGSvF4MAbCVKmI5kH+wWxaPqT67k4E5DVlJw9fJaEc/CFD0D
+ 7MEYg+inYGljCYbn86OTX8w9828pEyQJFfh1nifAQxldKwSn0a8lB/mqadpnxcM+E
+ CzgtmwqFlz163fUZh95euDcjiVmLcwLH8wF4fASL3tFFTmcKrw2MalXT2xy2zOKFt
+ dNkJGFcfX1O8QEdE0NFhKQ/i7BSJi/c/oHahtFaOjbA5x4BGdS7AEEWyxdlIx77MC
+ wauNB+avJ06AS+lDj/74Z8Epi6fr8up30mkV03ZSbcsk3ENsfUNtWP9a3InJvMUjb
+ n0Wf8LwPxadVY4RVmg==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [10.8.0.6] ([78.94.87.245]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MqJqD-1s4rtz1NtD-00eH7h; Thu, 11
- Jul 2024 12:08:48 +0200
-Message-ID: <4de25766-fe4e-4044-9233-cb54953d6d66@gmx.de>
-Date: Thu, 11 Jul 2024 12:08:46 +0200
+Received: from [10.8.0.6] ([78.94.87.245]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N4hvR-1sH10246rP-016NPq; Thu, 11
+ Jul 2024 12:09:30 +0200
+Message-ID: <f057217d-0427-4f6a-9d46-a14204a70c77@gmx.de>
+Date: Thu, 11 Jul 2024 12:09:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] fbdev/smscufx: Make I2C terminology more inclusive
+Subject: Re: [PATCH v4 6/6] fbdev/viafb: Make I2C terminology more inclusive
 To: Easwar Hariharan <eahariha@linux.microsoft.com>,
- Steve Glendinning <steve.glendinning@shawell.net>,
- "open list:SMSC UFX6000 and UFX7000 USB to VGA DRIVER"
+ Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
+ "open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER DRIVER"
  <linux-fbdev@vger.kernel.org>,
  "open list:FRAMEBUFFER LAYER" <dri-devel@lists.freedesktop.org>,
  open list <linux-kernel@vger.kernel.org>
@@ -56,7 +54,7 @@ Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>
 References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
- <20240711052734.1273652-6-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-7-eahariha@linux.microsoft.com>
 Content-Language: en-US
 From: Helge Deller <deller@gmx.de>
 Autocrypt: addr=deller@gmx.de; keydata=
@@ -102,27 +100,27 @@ Autocrypt: addr=deller@gmx.de; keydata=
  FwRDcGV6nxanxZGKEkSHHOm8jHwvQWvPP73pvuPBEPtKGLzbgd7OOcGZWtq2hNC6cRtsRdDx
  4TAGMCz4j238m+2mdbdhRh3iBnWT5yPFfnv/2IjFAk+sdix1Mrr+LIDF++kiekeq0yUpDdc4
  ExBy2xf6dd+tuFFBp3/VDN4U0UfG4QJ2fg19zE5Z8dS4jGIbLg==
-In-Reply-To: <20240711052734.1273652-6-eahariha@linux.microsoft.com>
+In-Reply-To: <20240711052734.1273652-7-eahariha@linux.microsoft.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:yguAnix3/rhAY9NbLXw9SbRVg0yIKZAv4hBgIl/ZY6P7oPAFvH8
- G67kkYtgZ9IPrLi6H+Z85Bgf3q6F6PdH1MtMx8rTK2+ivnckchJCMoSNXEZIzlCvpbp6Qhq
- 3x7mOjXGWG2ZfdQcqs98NMpDmOhOuBtttJz631cTgBoosv9X+ogefQgFvyrg27xAS/DqG0O
- xLJW75wNO74VckYuzk7WA==
+X-Provags-ID: V03:K1:nTuEi+J0pO0QgpxrgihiAsnCVNswa6CfvW/ncZy/Hs0dN75/QwL
+ 9CJuepXisexVP3qvIR3DTqFij72hsr02Fn6MqPAWfSuv7bdDMiYBUyB9wjrmFpTFhYM+gXw
+ CZQwNY41QL9vKDMxUPnNkP1DpnmXqLiZQ5i3IqDP8opjHDVhMdXuQUB+QX7BTTWOQsXBOCe
+ SJfefIJN1Tu/UviGe40aQ==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:lr0qwJJtLFo=;DKHfQIdaV8fjI4xc2wQzK2QpROx
- KtYwgiTSl4iMaVLCCBnn7sPb8s7VsJ9oDObZtS68+wsjUWEy4V3wM8DQYY52I2Kff3WsFlMCs
- 9GQeSa6VCEC6gNecFITDdHJnw+QdsgzgKzJKKNGjOf7Jgw5PkC5C6Uas7HzxhsyWd+Hzz2E2J
- TYRIgi76wUgcFuFAL77yhvZBbrPYDww1PS/yAf5IqUSV48B1UaOMOledDDbKa/4UtYB64xWRo
- xjxLln0h34RFmCwR/KhnMsNGjIYPMdYX3nLWQurkg961dmy46HQ+yictWMSytmmw0uunD0pYe
- wn9g7wG8G+s8iPf+ePXDsWjmojVzHAhb15LxXRYhpVyYadoahTpPpPYPQVCFaJh15GxfzzAwj
- Os77PB5HYdwGI+HN66wb/Mv46zPHuabmlmh/l9A3GQJXvOVayLprZyI3HILk+XFjh2846ukIZ
- ROgn0tK2pb3KIT7FsFa1yagDMLyO3sUTjzqVDvda2fRgp06ndc/vPxCAaKTPd9gP1IpUbdOZS
- n85w75m1n9BamuNQWNXO/5MxiBE1uaptenPYBJhYvWbIynT0kHxsC7WHfsTMslkLBYXlZ4kEe
- ltpTwVZLJBSy+WQAc0T3apio3JQ8BMMmh2kDvPCh7YqHF2tMHmG+vuN9aleogp6UOPJ1q8H9D
- Uk93R4VfKUKVRBd9aFqYSmMW7vhNrK5rud4oT++bZBWeWkMamCloDsrPWi+iTKX8WLptDx7ak
- fzsRpa5Xgr6X4K+1PAPlGTdo3I9bcflZS4kmLq0Dcj6si2GZtGjsC+9o0D11XkdRt61dQwbNk
- df6bemcTn1Gwaimo4AHIX0/A==
+UI-OutboundReport: notjunk:1;M01:P0:BEXkSxZ1jlw=;dp3dCzGeHgph129AhFxtSNqKljG
+ VL33vKAYV7ke2cBLlNqLKLHVs5QM4BCGq0IlcYM7Y1mTRNB4taC9dhWqOBGBsb9a4qyCVhNek
+ x5WKLpd6MlG27/fvtzQaTmre98jhzsqOAF54UOdblgee6XXDuaM6Qf35eADgcoTFlZfb2GG3t
+ F0SBiLCmxsMv8ezmpp/xE6n7efEjGJHKMIuyIoLbyweh+RlhQRYrIHSP1sYoMRadGxhcQhwLX
+ Mhs0u9XoU8AcRlMl+ZX/u8nDTl/jYwKcdWVcf2+Z1s+5yUoc7zi50RVNE7JKCIb1DZCbHw57Y
+ ev91axsNNFSWcWHjpWtYio/EMGowj21DcH6du25vPvj1s3B1KZs2jrfo0v4M8CcnGCtXZ2E+x
+ JxJQuZNhywnARm32rWGN4Rtkf8TRjkq8YwHBx/uv9B7MQMeXt83G/3lYscE5fwQCsrW2j+Puf
+ ybthtYM2bKsStnOCMNy4NnUaaYugi2vbs2rrYRc6YnvkJ/2AAlf2hzu8IUJktzVS4mSUE1o7a
+ VLOuL/ZpmvuweSe8bay6xGs8CoUlyvx75w3clJtnHICo982db7SxN8/biimkSTQvfCztW+Z0g
+ 2PXK3OMV5muVT84nEKEoGnygM+z6+oazwUD8nZifvGzTFxJnmWpfJ0hGRkj8Mw46kmIh7w6QQ
+ MUpkZXy9cgaGWSgILb9DQPZi9HR1ZeOLL2FMDxOHviuGzDt5kBuRgUF4Cpj8EzNJVYzFcJ/Na
+ H2OnfgLxQlRPw6QkDCovrgIFHys85htu2/jitjB9ORa8++M2fBX5yIpnaGgr2Z6IQiPO8wPx2
+ SitZRwKfn2FQ0GbJsk53lobA==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,11 +148,15 @@ hat
 > Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 > Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 > ---
->   drivers/video/fbdev/smscufx.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   drivers/video/fbdev/via/chip.h    |  8 ++++----
+>   drivers/video/fbdev/via/dvi.c     | 24 ++++++++++++------------
+>   drivers/video/fbdev/via/lcd.c     |  6 +++---
+>   drivers/video/fbdev/via/via_aux.h |  2 +-
+>   drivers/video/fbdev/via/via_i2c.c | 12 ++++++------
+>   drivers/video/fbdev/via/vt1636.c  |  6 +++---
+>   6 files changed, 29 insertions(+), 29 deletions(-)
 
-applied this patch to fbdev git tree.
+This patch was applied to the fbdev git tree.
 
 Thanks!
 Helge
-
