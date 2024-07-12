@@ -2,54 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8C592F535
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2024 07:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3FC592F9A5
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2024 13:41:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14AA810EB27;
-	Fri, 12 Jul 2024 05:52:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="b9+cBwOa";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2148210ECBA;
+	Fri, 12 Jul 2024 11:41:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FEBE10EB27;
- Fri, 12 Jul 2024 05:52:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1720763537;
- bh=hb5c4dOKAmQLW7LLgSL/Gn1wgorD0XBHAWs0v69N5f4=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=b9+cBwOaY0INMU+YQnzx0kOqZDiw1R0BIlAfjjUbQCn7CdDWNODHsfk6XjkcZBrgn
- NvP7TIXt5eHal+Zdyop8oLdBDyaT/s6pU0QvmD2/Lss3Kl7Sm/idU5RTethWwxAXY6
- vq/4YQr9IOpaOXqe0dfp0tTn2D/IBVoOPkTgliU5s6i9IWE4AlRxp3CEhWhQTqXgA4
- EXlxZyXAnohtnLKODFQLrH1Uk3+mtI05Y9IVtfDqMFDM0BfUTxneGHlFXdt5V4R+I3
- APtG33P8dZauTJGr8sjv0edx9NG0AutdcyycU4ebuxbjKR9BDzyGf4JTOayXCamSVJ
- c9th+Sfj8uUYQ==
-Received: from [100.66.96.193] (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5B28F37821F1;
- Fri, 12 Jul 2024 05:52:14 +0000 (UTC)
-Message-ID: <48fb86a9-b863-468e-ae74-35423b22b76d@collabora.com>
-Date: Fri, 12 Jul 2024 11:22:11 +0530
+X-Greylist: delayed 350 seconds by postgrey-1.36 at gabe;
+ Fri, 12 Jul 2024 11:41:23 UTC
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACAEE10ECBD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jul 2024 11:41:23 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH] drm/xe/display: Re-use display vmas when possible
+Date: Fri, 12 Jul 2024 13:35:42 +0200
+Message-ID: <20240712113542.153478-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: drm-ci: flaky tests for i915 driver testing
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, Daniel Stone <daniels@collabora.com>,
- Helen Mae Koike Fornazier <helen.koike@collabora.com>,
- Sergi Blanch Torne <sergi.blanch.torne@collabora.com>,
- Guilherme Alcarde Gallo <guilherme.gallo@collabora.com>
-References: <af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com>
-Content-Language: en-US
-In-Reply-To: <af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,101 +39,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maintainers,
+i915 has this really nice, infrastructure where everything becomes
+complicated, GGTT needs eviction, etc..
 
-On 28/05/24 12:07, Vignesh Raman wrote:
-> Hi Maintainers,
-> 
-> There are some flaky tests reported for i915 driver testing in drm-ci 
-> for the below boards.
-> 
-> *)
-> # Board Name: asus-C523NA-A20057-coral
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> kms_fb_coherency@memset-crc
-> 
-> *)
-> # Board Name: asus-C436FA-Flip-hatch
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> kms_plane_alpha_blend@constant-alpha-min
-> 
-> *)
-> # Board Name: hp-x360-12b-ca0010nr-n4020-octopus
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> core_hotunplug@unplug-rescan
-> kms_fb_coherency@memset-crc
-> 
-> *)
-> # Board Name: hp-x360-14-G1-sona
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> prime_busy@hang
-> 
-> *)
-> # Board Name: dell-latitude-5400-8665U-sarien
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> kms_pm_rpm@modeset-lpsp-stress
-> 
-> *)
-> # Board Name: asus-C433TA-AJ0005-rammus
-> # IGT Version: 1.28-g0df7b9b97
-> # Linux Version: 6.9.0-rc7
-> # Failure Rate: 50
-> i915_hangman@engine-engine-error
-> i915_hangman@gt-engine-hang
-> kms_async_flips@crc
-> kms_universal_plane@cursor-fb-leak
-> 
-> Will add these tests in,
-> drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
-> drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
-> drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
-> drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt
-> drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt
-> drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/gpu/automated_testing.rst#n70
-> 
-> Please could you have a look at these test results and let us know if 
-> you need more information. Thank you.
+Lets not do that, and make the dumbest possible interface instead.
+Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
+fb.
 
-There are some flaky tests reported for i915 driver testing in drm-ci 
-with the recent IGT uprev in drm-ci 
-(https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/0e7f4e6a20d550252c4f355d5a303b1d9c8ff052)
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |  8 ++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 46 +++++++++++++++++--
+ 8 files changed, 64 insertions(+), 8 deletions(-)
 
-*)
-# Board Name: asus-C433TA-AJ0005-rammus
-# Bug Report: 
-https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
-# Failure Rate: 50
-# IGT Version: 1.28-gf13702b8e
-# Linux Version: 6.10.0-rc5
-kms_sysfs_edid_timing
-i915_hangman@engine-engine-hang
-kms_pm_rpm@modeset-lpsp-stress
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index e979786aa5cf..fb1b3b909efd 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1145,7 +1145,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (!obj)
+ 		return 0;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 9ad53e1cbbd0..55a424de90ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -859,7 +859,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	if (ret)
+ 		goto out_free;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index 575b271e012b..6244433ed94b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -250,7 +250,8 @@ intel_plane_fb_min_phys_alignment(const struct intel_plane_state *plane_state)
+ 	return plane->min_alignment(plane, fb, 0);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++int intel_plane_pin_fb(struct intel_plane_state *plane_state,
++		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	const struct intel_framebuffer *fb =
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index ac0319b53af0..0fc6d9044638 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -23,7 +23,8 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 
+ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state);
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 49a1ac4f5491..1b25c7b63b55 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -698,3 +698,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+ 
+ 	return to_intel_framebuffer(fbdev->helper.fb);
+ }
++
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return fbdev ? fbdev->vma : NULL;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index 08de2d5b3433..24a3434558cb 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -17,6 +17,8 @@ struct intel_framebuffer;
+ void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
++
+ #else
+ static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
+ {
+@@ -30,6 +32,12 @@ static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbd
+ {
+ 	return NULL;
+ }
++
++static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return NULL;
++}
++
+ #endif
+ 
+ #endif /* __INTEL_FBDEV_H__ */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index a20d2638ea7a..193382f97823 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -9,6 +9,8 @@
+ #include <uapi/drm/i915_drm.h>
+ #include <drm/drm_mm.h>
+ 
++#include <linux/refcount.h>
++
+ /* We don't want these from i915_drm.h in case of Xe */
+ #undef I915_TILING_X
+ #undef I915_TILING_Y
+@@ -18,6 +20,7 @@
+ struct xe_bo;
+ 
+ struct i915_vma {
++	refcount_t ref;
+ 	struct xe_bo *bo, *dpt;
+ 	struct drm_mm_node node;
+ };
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d7db44e79eaf..04043cc9fc15 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -9,6 +9,7 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
++#include "intel_fbdev.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+@@ -262,6 +263,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (!vma)
+ 		return ERR_PTR(-ENODEV);
+ 
++	refcount_set(&vma->ref, 1);
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+ 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+@@ -323,6 +325,9 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+ 
++	if (!refcount_dec_and_test(&vma->ref))
++		return;
++
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+ 	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+@@ -353,20 +358,53 @@ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+ 	__xe_unpin_fb_vma(vma);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++static bool reuse_vma(struct intel_plane_state *new_plane_state,
++		      const struct intel_plane_state *old_plane_state)
+ {
+-	struct drm_framebuffer *fb = plane_state->hw.fb;
++	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct i915_vma *vma;
++
++	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
++	    !memcmp(&old_plane_state->view.gtt,
++		    &new_plane_state->view.gtt,
++	            sizeof(new_plane_state->view.gtt))) {
++		vma = old_plane_state->ggtt_vma;
++		goto found;
++	}
++
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++		if (vma)
++			goto found;
++	}
++
++	return false;
++
++found:
++	refcount_inc(&vma->ref);
++	new_plane_state->ggtt_vma = vma;
++	return true;
++}
++
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state)
++{
++	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+ 	struct xe_bo *bo = intel_fb_obj(fb);
+ 	struct i915_vma *vma;
+ 
++	if (reuse_vma(new_plane_state, old_plane_state))
++		return 0;
++
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
++	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &new_plane_state->view.gtt);
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+-	plane_state->ggtt_vma = vma;
++	new_plane_state->ggtt_vma = vma;
+ 	return 0;
+ }
+ 
+-- 
+2.45.2
 
-*)
-# Board Name: asus-C436FA-Flip-hatch
-# Bug Report: 
-https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
-# Failure Rate: 50
-# IGT Version: 1.28-gf13702b8e
-# Linux Version: 6.10.0-rc5
-kms_atomic_transition@plane-all-modeset-transition-internal-panels
-
-The expectation files have been updated with these tests,
-https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
-
-https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
-
-Regards,
-Vignesh
