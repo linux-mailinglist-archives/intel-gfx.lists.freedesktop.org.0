@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F479301AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2024 23:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9B19301CC
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2024 23:59:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 978EE10EDAE;
-	Fri, 12 Jul 2024 21:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E653610EDB7;
+	Fri, 12 Jul 2024 21:59:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OnSF4gy1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oIEDA69+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 790B910EDAE;
- Fri, 12 Jul 2024 21:39:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DB1810EDB7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jul 2024 21:59:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720820362; x=1752356362;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LqiOT4yvUeFzDX9fqO96xc8ejuhIg0W/eJbYqKEwV3Q=;
- b=OnSF4gy1fcWgscaOqZWLIHNLzza6MDlrRkZ0f8/+KB/nbJmsBs3RUpCq
- Zy/n+l/o/VftYvHIuJVNKHdbhsUMLZSQabBbw+9jBtGU2ZE9AnxNhBjfO
- gKiKfdHSYpe6bT2Z/n97+auDc9cY4gJC88xYhdzgfVKDft7ZcoppnipSW
- DpPxpiB5BtPSdi/9QPo5xXdlZRm9/OG4T5iuLg4th9FOC4LoFnK+WyWXM
- bBDskckXrmiJ/e0sX7Hy2YIy66V7rvaGV+WIzEwZPjjI/DVPXVtB37r/8
- y8h3gCr7dDSLZfQkCGIKJO3K2QJOG5IZeyhM83cUg+5pED/17OSlh8Wae Q==;
-X-CSE-ConnectionGUID: 4XC88Jp5R9mQ3H/fOzXIRg==
-X-CSE-MsgGUID: 1vLO/2wSQlSdqYAIldjq6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="29671741"
-X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; d="scan'208";a="29671741"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2024 14:39:22 -0700
-X-CSE-ConnectionGUID: lMzUonOfTreDHHo0bnjMkg==
-X-CSE-MsgGUID: 3cP+1PGpTOCqG1ojGCyd/Q==
+ t=1720821571; x=1752357571;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZDSFmsjlGTZDlOy5PlkvnOwK//Qn1bMUa7Yux5C75Qg=;
+ b=oIEDA69+VNi4EZNb9PMiWffAbgeuzS9rqAzhvPVHFSQ5peIUscf5IfyH
+ q+SvkBXqDPrIpe5WSm90no0kMMSuLkBsLwaT2Lev/eD0JgcT32LdcPOAt
+ 4Xawvfdhg1JjEUaTql5VM0ES3BR2wuJyq49TPuKqV65tZThdNdfDqt62c
+ jMfkuVdSO7M7UtyAH2wCS9Shf0Kv/ARCl6mMdE80tcxanNm2lU6OTcdSx
+ g7KbhGC+8lUIctkIUMFj5a3LnFfbvXtq5yohJ/555chMkrZ8y+zHs8evs
+ HLMJwWmzB2gMLeXwuuyCJao2NaA2nH+74rNoOfcmfgkUm8tZZ5WJ+Mu12 Q==;
+X-CSE-ConnectionGUID: sV2iIggQS0KD+/h8kiaviw==
+X-CSE-MsgGUID: ERaOn/iORQOq3PdrSESZnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="18421511"
+X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; d="scan'208";a="18421511"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 14:59:30 -0700
+X-CSE-ConnectionGUID: zbllZh0PQbOPS8RdUCx0lA==
+X-CSE-MsgGUID: fWNPRFz5T6ubiNpIR9/2qQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; d="scan'208";a="48982631"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Jul 2024 14:39:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 13 Jul 2024 00:39:18 +0300
-Date: Sat, 13 Jul 2024 00:39:18 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,204,1716274800"; d="scan'208";a="48782320"
+Received: from dut-internal-9dd7.jf.intel.com ([10.165.125.150])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 14:59:29 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/20] drm/{i915,xe}: FBC cleanups + tweak fbdev stolen
- usage
-Message-ID: <ZpGihkcPfhNmf6Sj@intel.com>
-References: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
+Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com,
+ dan.carpenter@linaro.org, chris.p.wilson@linux.intel.com
+Subject: [PATCH] drm/i915: Allow NULL memory region
+Date: Fri, 12 Jul 2024 14:41:56 -0700
+Message-Id: <20240712214156.3969584-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240705145254.3355-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,62 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 05, 2024 at 05:52:34PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Here's an idea for a slightly better heuristic to answer
-> the "should fbdev use stolen or not?" question.
-> 
-> Ended up with a pile of refactoring and cleanups in
-> the FBC code as a result.
-> 
-> Ville Syrjälä (20):
->   drm/i915/fbc: Extract intel_fbc_has_fences()
->   drm/i915/fbc: Convert to intel_display, mostly
->   drm/i915/fbc: s/_intel_fbc_cfb_stride()/intel_fbc_plane_cfb_stride()/
->   drm/i915/fbc: Extract intel_fbc_max_plane_size()
->   drm/i915/fbc: Extract intel_fbc_max_surface_size()
->   drm/i915/fbc:
->     s/intel_fbc_hw_tracking_covers_screen()/intel_fbc_surface_size_ok()/
->   drm/i915/fbc: Adjust g4x+ platform checks
->   drm/i915/fbc: Extract _intel_fbc_cfb_stride()
->   drm/i915/fbc: s/lines/height/
->   drm/i915/fbc: Reoder CFB max height platform checks
->   drm/i915/fbc: Extract intel_fbc_max_cfb_height()
->   drm/i915/fbc: Extract _intel_fbc_cfb_size()
->   drm/i915/fbc: Extract intel_fbc_cfb_cpp()
+Prevent a NULL pointer access in intel_memory_regions_hw_probe.
 
-Pushed all the FBC code refactoring. Thanks for the reviews.
+Fixes: 05da7d9f717b ("drm/i915/gem: Downgrade stolen lmem setup warning")
+Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/i915/intel_memory_region.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
->   drm/i915/fbc: Introduce intel_fbc_preferred_cfb_size()
->   drm/xe/fbdev: Fix BIOS FB vs.s stolen size checke
->   drm/i915/fbdev: Extract intel_fbdev_fb_prefer_stolen()
->   drm/xe/fbdev: Extract intel_fbdev_fb_prefer_stolen()
->   drm/xe/fbdev: Use the same logic for fbdev stolen takever and fresh
->     allocation
->   drm/i915/fbdev: Adjust fbdev stolen mem usage heuristic
->   drm/xe/fbdev: Adjust fbdev stolen mem usage heuristic
-
-Left out the rest for now. This should go in after the more
-urgent LNL/etc. stolen issues are sorted.
-
-> 
->  .../drm/i915/display/intel_display_debugfs.c  |   4 +-
->  .../drm/i915/display/intel_display_driver.c   |   4 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      | 564 ++++++++++--------
->  drivers/gpu/drm/i915/display/intel_fbc.h      |  14 +-
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  23 +-
->  drivers/gpu/drm/i915/display/intel_fbdev_fb.h |   5 +-
->  .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
->  .../drm/i915/display/intel_modeset_setup.c    |   2 +-
->  .../drm/i915/display/intel_plane_initial.c    |  10 +-
->  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  22 +-
->  drivers/gpu/drm/xe/display/xe_plane_initial.c |   8 +-
->  11 files changed, 389 insertions(+), 269 deletions(-)
-> 
-> -- 
-> 2.44.2
-
+diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+index 172dfa7c3588b..d40ee1b42110a 100644
+--- a/drivers/gpu/drm/i915/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/intel_memory_region.c
+@@ -368,8 +368,10 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+ 			goto out_cleanup;
+ 		}
+ 
+-		mem->id = i;
+-		i915->mm.regions[i] = mem;
++		if (mem) { /* Skip on non-fatal errors */
++			mem->id = i;
++			i915->mm.regions[i] = mem;
++		}
+ 	}
+ 
+ 	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
