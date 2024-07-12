@@ -2,70 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2669792FB90
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2024 15:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CE092FBEF
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2024 15:57:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AAA310ED0F;
-	Fri, 12 Jul 2024 13:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863DC10EACF;
+	Fri, 12 Jul 2024 13:57:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C8G7Ckra";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gTYhzBON";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A949B10ED0D;
- Fri, 12 Jul 2024 13:39:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09E0710EACF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jul 2024 13:57:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1720791585; x=1752327585;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=K3JBCCsidiDsLCQv0D4erX3z+IiavHg3lRrtCpUooUc=;
- b=C8G7Ckra7wQnSX0xPp8yAtyaiXspVpH6f1qHeQztRbE30NJmczzuIRUG
- bjKJ6YSWc8fmBIrvLnON65wlbPC6VZ+Wx8nz0h6i5q0yQ9OgfjLdcin8D
- BGVCpR1dKja6GpIH275Oe+g6ZQSaRWuMrGqsUefpE35ZBid6QuSrWm1nj
- 3Ss8Rjni36MsurD9/ZbjIUlhI1RagGz2JGZSjdeFNzZlmDxf3pP886871
- dGxSbjKXBaWejGgl7/OFZN1spHs9Xi3irhWwJ9Q35tR15j9fZcmuzwRnC
- XSyp8CiECQlUhKy1AmcKX4us9oAKGk26SGjuStoP/+3IYYpL/mo/CSt0L w==;
-X-CSE-ConnectionGUID: JgItzqaqSRCOi61VKdog5w==
-X-CSE-MsgGUID: 8aYNRwxVRLO3Mj5VMoEDtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="40759245"
-X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; d="scan'208";a="40759245"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2024 06:39:45 -0700
-X-CSE-ConnectionGUID: qkBL5bQ5R5GQRii+E3d5MA==
-X-CSE-MsgGUID: FVTRpR0pTK2eRlGt3LzFdQ==
+ t=1720792649; x=1752328649;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=teXB6mI0aVAcID2T4Stcyp12FtXg51MBHBgQDDp3RG0=;
+ b=gTYhzBONF+tvUdmIvXHAO+vwbLQhRtSbaz2DqdNfE+tTh3hPsPUMd6ah
+ Td85cO3/pciKB51ki0hJozeolhvDENEIzuyIv64wzpZ+/b0ft4C0GjgIa
+ v1TY9OrviD4qjky7ZpZJMJffUtN2WCd9+jpdtFXljk+rInlEAu6m+CE0S
+ ztJ4vnbwyFb/e30t+7PfxgXXiiJLtf25d24f+snsz8EJx54hZfWeooOoF
+ 1V183xGQDk+eKh8LU2R3V0CqMoxlzXfnk6hwlYx9lgqhnCR93EaExRb7C
+ fMYwJOePne83MdyFPNMcG3v8T6wLwIXBty1zCuSRXVu6juQFVZ9ZTDHyM g==;
+X-CSE-ConnectionGUID: aXwcbGWMSzOHE2mOASzA5A==
+X-CSE-MsgGUID: rTzZ3f7rT3mZd9pnSRqxfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11131"; a="28823536"
+X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; d="scan'208";a="28823536"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 06:57:13 -0700
+X-CSE-ConnectionGUID: rqA3qIN/SRavn2OU/uXglg==
+X-CSE-MsgGUID: IzWTs2leTKm4EI9xqDMuQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; d="scan'208";a="53210815"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.61])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jul 2024 06:39:41 -0700
-Date: Fri, 12 Jul 2024 15:39:39 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Gote, Nitin R" <nitin.r.gote@intel.com>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "Wilson, Chris P" <chris.p.wilson@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "Das, Nirmoy" <nirmoy.das@intel.com>,
- "janusz.krzysztofik@linux.intel.com" <janusz.krzysztofik@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH v3] drm/i915/gt: Do not consider preemption during
- execlists_dequeue for gen8
-Message-ID: <ZpEyGzBVM2ZaXcWM@ashyti-mobl2.lan>
-References: <20240711163208.1355736-1-nitin.r.gote@intel.com>
- <CH0PR11MB54443CBE8B4A052419FFFD1BE5A52@CH0PR11MB5444.namprd11.prod.outlook.com>
- <ZpAfyzKlqlMrd4nj@intel.com>
- <SJ0PR11MB586743B1AF7DABD0F131E906D0A62@SJ0PR11MB5867.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.09,202,1716274800"; d="scan'208";a="53485084"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jul 2024 06:57:11 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/3] drm/i915/dp: Retrain SST links via a modeset commit
+Date: Fri, 12 Jul 2024 16:57:22 +0300
+Message-ID: <20240712135724.660399-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SJ0PR11MB586743B1AF7DABD0F131E906D0A62@SJ0PR11MB5867.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,88 +67,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nitin,
+Instead of direct calls of the link training functions, use a modeset
+commit to retrain a DP link in SST mode, similarly to how this is done
+in DP-MST mode. Originally the current way was chosen presumedly,
+because there wasn't a well-established way in place for the driver to
+do an internal (vs. userspace/kernel client) commit. Since then such
+internal commits became a common place (initial-, HDMI/TC link reset
+commit), so there is no reason to handle the DP-SST link-retraining case
+differently.
 
-> > > > We're seeing a GPU HANG issue on a CHV platform, which was caused by
-> > > > bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundaries
-> > for gen8").
-> > > >
-> > > > Gen8 platform has only timeslice and doesn't support a preemption
-> > > > mechanism as engines do not have a preemption timer and doesn't send
-> > > > an irq if the preemption timeout expires.
-> > >
-> > > That seems to mean the original can_preempt function was inaccurately
-> > > built, so fixing it here makes the most sense to me, especially if it's causing
-> > problems.
-> > >
-> > > Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com> -Jonathan
-> > > Cavitt
-> > >
-> > > > So, add a fix to not consider preemption during dequeuing for gen8
-> > > > platforms.
-> > > >
-> > > > v2: Simplify can_preempt() function (Tvrtko Ursulin)
-> > > >
-> > > > v3:
-> > > >  - Inside need_preempt(), condition of can_preempt() is not required
-> > > >    as simplified can_preempt() is enough. (Chris Wilson)
-> > > >
-> > > > Fixes: bac24f59f454 ("drm/i915/execlists: Enable coarse preemption
-> > > > boundaries for gen8")
-> > 
-> > Something strange in here...
-> > 
-> > This patch is not using directly or indirectly (I915_ENGINE_HAS_PREEMPTION)
-> > the can_preempt()...
-> >
-> 
-> Thank you Rodrigo for the review comment. Seems like you are right.
-> Fixes: bac24f59f454 is misleading as it's not using can_preempt(). 
-> The bug could be from the commit bac24f59f454 as mentioned in the issue
-> But this change fixes the original implementation of can_preempt()  in below commit.
-> Fixes: 751f82b353a6 ("drm/i915/gt: Only disable preemption on gen8 render engines").
-> 
-> I will update the Fixes in the commit description and will send in v4.
+At the end of the current sequence the HW reported a FIFO underrun -
+without other issues visible to users - because during retraining the
+link's encoder/port was disabled/re-enabled without also
+disabling/re-enabling the corresponding pipe/transcoder (as required by
+the spec); the corresponding underrun error message was suppressed as a
+known issue. Based on Ankit's test on DG2 the underrun error was still
+reported as it got detected with some (vblank) delay wrt. other
+platforms. Switching to a modeset commit resolves these underrun related
+issues.
 
-no need to resend it, I will update it before pushing.
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 67 ++++---------------------
+ 1 file changed, 9 insertions(+), 58 deletions(-)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d4b1b18453dca..f83128ac60756 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5242,8 +5242,6 @@ static int intel_dp_retrain_link(struct intel_encoder *encoder,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	struct intel_crtc *crtc;
+-	bool mst_output = false;
+ 	u8 pipe_mask;
+ 	int ret;
+ 
+@@ -5272,64 +5270,17 @@ static int intel_dp_retrain_link(struct intel_encoder *encoder,
+ 		    encoder->base.base.id, encoder->base.name,
+ 		    str_yes_no(intel_dp->link.force_retrain));
+ 
+-	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask) {
+-		const struct intel_crtc_state *crtc_state =
+-			to_intel_crtc_state(crtc->base.state);
++	ret = intel_modeset_commit_pipes(dev_priv, pipe_mask, ctx);
++	if (ret == -EDEADLK)
++		return ret;
+ 
+-		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
+-			mst_output = true;
+-			break;
+-		}
++	intel_dp->link.force_retrain = false;
+ 
+-		/* Suppress underruns caused by re-training */
+-		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
+-		if (crtc_state->has_pch_encoder)
+-			intel_set_pch_fifo_underrun_reporting(dev_priv,
+-							      intel_crtc_pch_transcoder(crtc), false);
+-	}
+-
+-	/* TODO: use a modeset for SST as well. */
+-	if (mst_output) {
+-		ret = intel_modeset_commit_pipes(dev_priv, pipe_mask, ctx);
+-
+-		if (ret && ret != -EDEADLK)
+-			drm_dbg_kms(&dev_priv->drm,
+-				    "[ENCODER:%d:%s] link retraining failed: %pe\n",
+-				    encoder->base.base.id, encoder->base.name,
+-				    ERR_PTR(ret));
+-
+-		goto out;
+-	}
+-
+-	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask) {
+-		const struct intel_crtc_state *crtc_state =
+-			to_intel_crtc_state(crtc->base.state);
+-
+-		intel_dp->link_trained = false;
+-
+-		intel_dp_check_frl_training(intel_dp);
+-		intel_dp_pcon_dsc_configure(intel_dp, crtc_state);
+-		intel_dp_start_link_train(NULL, intel_dp, crtc_state);
+-		intel_dp_stop_link_train(intel_dp, crtc_state);
+-		break;
+-	}
+-
+-	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc, pipe_mask) {
+-		const struct intel_crtc_state *crtc_state =
+-			to_intel_crtc_state(crtc->base.state);
+-
+-		/* Keep underrun reporting disabled until things are stable */
+-		intel_crtc_wait_for_next_vblank(crtc);
+-
+-		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, true);
+-		if (crtc_state->has_pch_encoder)
+-			intel_set_pch_fifo_underrun_reporting(dev_priv,
+-							      intel_crtc_pch_transcoder(crtc), true);
+-	}
+-
+-out:
+-	if (ret != -EDEADLK)
+-		intel_dp->link.force_retrain = false;
++	if (ret)
++		drm_dbg_kms(&dev_priv->drm,
++			    "[ENCODER:%d:%s] link retraining failed: %pe\n",
++			    encoder->base.base.id, encoder->base.name,
++			    ERR_PTR(ret));
+ 
+ 	return ret;
+ }
+-- 
+2.44.2
 
-I think the first mention in the commit log is correct, though,
-as that's the reason where the issue was generated.
-
-Thanks,
-Andi
-
-> > > > Closes:
-> > > > https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11396
-> > > > Suggested-by: Andi Shyti <andi.shyti@intel.com>
-> > > > Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
-> > > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-> > > > CC: <stable@vger.kernel.org> # v5.2+
-> > > > ---
-> > > >  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 6 +-----
-> > > >  1 file changed, 1 insertion(+), 5 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > index 21829439e686..72090f52fb85 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > > > @@ -3315,11 +3315,7 @@ static void remove_from_engine(struct
-> > > > i915_request *rq)
-> > > >
-> > > >  static bool can_preempt(struct intel_engine_cs *engine)  {
-> > > > -	if (GRAPHICS_VER(engine->i915) > 8)
-> > > > -		return true;
-> > > > -
-> > > > -	/* GPGPU on bdw requires extra w/a; not implemented */
-> > > > -	return engine->class != RENDER_CLASS;
-> > > > +	return GRAPHICS_VER(engine->i915) > 8;
-> > > >  }
-> > > >
-> > > >  static void kick_execlists(const struct i915_request *rq, int prio)
-> > > > --
-> > > > 2.25.1
-> > > >
-> > > >
