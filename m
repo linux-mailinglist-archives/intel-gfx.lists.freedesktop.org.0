@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F21930BBB
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 Jul 2024 23:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC68930C25
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jul 2024 01:12:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D62510E0E6;
-	Sun, 14 Jul 2024 21:23:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2FF10E229;
+	Sun, 14 Jul 2024 23:12:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="tVbdRi2j";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40B5310E0E6;
- Sun, 14 Jul 2024 21:23:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4138991686784876663=="
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C914610E228;
+ Sun, 14 Jul 2024 23:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1720998756;
+ bh=MJhXXOOxb5iG2c/IKqjsVUvP+tkFkr/7jopq7pLfVYc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=tVbdRi2jga93KyEsc04DDTQdCWA4luHJkZD1gzUPXxolt2vnzfBVE27Xtutowt4Wf
+ ixzCv27nTaxMSGT+QubvVokPmBdBfk/WBffbi7gnCbvpQPNCZbV10ORWohDUzNvpnt
+ kcFI6ttWFNmizLWAEo6YwnKm4XG7+TVpb6vNZG7U+H4HpQN1lO/BFU9oSlcX/Zz8X3
+ uB6lLcM6xINaa6b3fTg25Y9joa4kUKMaR5o7b3iBZmhwKU4fuVSm6M5U0maP+hVrc+
+ Iw2ZMEgyRpuvXTHODLdk29EheC80aQvbLKj0eqn1nyQt1Wst47LGfq4VDTLKRfbqfZ
+ mVXzM6p+PIocA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4WMh1v1GsMz4x3c;
+ Mon, 15 Jul 2024 09:12:35 +1000 (AEST)
+Date: Mon, 15 Jul 2024 09:12:34 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>, Suraj Kandpal
+ <suraj.kandpal@intel.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: Re: linux-next: build warning after merge of the drm-intel tree
+Message-ID: <20240715091234.5e8b2701@canb.auug.org.au>
+In-Reply-To: <20240612141110.3aebb166@canb.auug.org.au>
+References: <20240612141110.3aebb166@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe/fbdev=3A_Limit_the_u?=
- =?utf-8?q?sage_of_stolen_for_LNL+_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 14 Jul 2024 21:23:18 -0000
-Message-ID: <172099219825.216134.9621854734905731191@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240714205659.3672665-1-uma.shankar@intel.com>
-In-Reply-To: <20240714205659.3672665-1-uma.shankar@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/ihTLrtED/0T4xy6CeBFtCuA";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,168 +61,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4138991686784876663==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/ihTLrtED/0T4xy6CeBFtCuA
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/xe/fbdev: Limit the usage of stolen for LNL+ (rev2)
-URL   : https://patchwork.freedesktop.org/series/135971/
-State : success
+On Wed, 12 Jun 2024 14:11:10 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>=20
+> After merging the drm-intel tree, today's linux-next build (htmldocs)
+> produced this warning:
+>=20
+> include/drm/display/drm_dp_helper.h:127: warning: Function parameter or s=
+truct member 'target_rr_divider' not described in 'drm_dp_as_sdp'
+>=20
+> Introduced by commit
+>=20
+>   a20c6d954d75 ("drm/dp: Add refresh rate divider to struct representing =
+AS SDP")
 
-== Summary ==
+I am now seeing that warning after the merge of the drm tree.
 
-CI Bug Log - changes from CI_DRM_15075 -> Patchwork_135971v2
-====================================================
+--=20
+Cheers,
+Stephen Rothwell
 
-Summary
--------
+--Sig_/ihTLrtED/0T4xy6CeBFtCuA
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  **SUCCESS**
+-----BEGIN PGP SIGNATURE-----
 
-  No regressions found.
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmaUW2IACgkQAVBC80lX
+0Gz3hAgAk/IRed1RH1ceOygvazeLlaKI8+79+lC23KbXapcEN8h3qTPeqBRYpsku
+HM8DLV3KRhgiAX30q1j9C3Cdz/FO+/l/pAG6Y8vTBqwy98mssBiFYEHf9RuhjRsc
+bE9GRvUS+IkI8IwfqGxbwKShW31cdr6Z4nhaR3OWNAN+W3Gry533BJkgVVCKtwua
+LMXtadpZ7PKpzgZ/YCdCqCt7yJWZ85nR68OI3SBSfPuQMus6uczvuVwGqt5w+NId
+MfffyLHhphOLAMh+YSHQ05RUiOnbm/nrlC8xvT+X53+pMChszp/mL/EAv9M67U+O
+w5wFilSjOjnYxvbd7W81wq22BoHvoQ==
+=Kh74
+-----END PGP SIGNATURE-----
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/index.html
-
-Participating hosts (41 -> 37)
-------------------------------
-
-  Additional (1): fi-kbl-8809g 
-  Missing    (5): fi-snb-2520m bat-atsm-1 bat-adls-6 bat-arls-1 bat-mtlp-8 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_135971v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] +30 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - bat-arlh-2:         [INCOMPLETE][4] ([i915#11378]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15075/bat-arlh-2/igt@i915_selftest@live@sanitycheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/bat-arlh-2/igt@i915_selftest@live@sanitycheck.html
-
-  
-  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15075 -> Patchwork_135971v2
-
-  CI-20190529: 20190529
-  CI_DRM_15075: fc14b61b7bb24e2f2f5e42fd1c4aae66aaba669a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7926: 9c28c27d4d48cecf8b7692a2975bde1cc1632096 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_135971v2: fc14b61b7bb24e2f2f5e42fd1c4aae66aaba669a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/index.html
-
---===============4138991686784876663==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/fbdev: Limit the usage of stolen for LNL+ (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/135971/">https://patchwork.freedesktop.org/series/135971/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15075 -&gt; Patchwork_135971v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 37)</h2>
-<p>Additional (1): fi-kbl-8809g <br />
-  Missing    (5): fi-snb-2520m bat-atsm-1 bat-adls-6 bat-arls-1 bat-mtlp-8 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_135971v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@sanitycheck:<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15075/bat-arlh-2/igt@i915_selftest@live@sanitycheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135971v2/bat-arlh-2/igt@i915_selftest@live@sanitycheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15075 -&gt; Patchwork_135971v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15075: fc14b61b7bb24e2f2f5e42fd1c4aae66aaba669a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7926: 9c28c27d4d48cecf8b7692a2975bde1cc1632096 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_135971v2: fc14b61b7bb24e2f2f5e42fd1c4aae66aaba669a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4138991686784876663==--
+--Sig_/ihTLrtED/0T4xy6CeBFtCuA--
