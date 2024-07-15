@@ -2,91 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF947931054
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jul 2024 10:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 426B99311F4
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jul 2024 12:05:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1F910E30D;
-	Mon, 15 Jul 2024 08:45:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7223610E160;
+	Mon, 15 Jul 2024 10:05:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="Zuh4YkhG";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="FnEVe9/s";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5283010E312
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jul 2024 08:45:12 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-42666a5d33dso3207865e9.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jul 2024 01:45:12 -0700 (PDT)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BEA10E236
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jul 2024 10:05:09 +0000 (UTC)
+Received: by mail-lf1-f41.google.com with SMTP id
+ 2adb3069b0e04-52ea33671ffso4146297e87.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jul 2024 03:05:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1721033110; x=1721637910; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=mPt43vWv7W7uWoCMBzaMsxBX+ZmRLoqnMa3kAMiQQGg=;
- b=Zuh4YkhGanY+eLSssTNeaxx3d2F9/74+poWZu30D/nyPAw5VgF3gaeaa+kjUqz5jyh
- zADcvYHRf+wygpJCszqEFiJ+G7YvHUgFagptsYxkie8dxA2JP+kMjykEMztOLTiTjmkq
- cmGKmECgQ33NB67JAT5k+5BlGR3s67xkVOFCg=
+ d=chromium.org; s=google; t=1721037908; x=1721642708;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fXrhdNRq6oludJZnjz76rz84qmMewPWdtA9STQ5A9L0=;
+ b=FnEVe9/sLPgEINEsGst9ox0IFowzHtbOV1hHXwK+2vE4B70F42sO/pAulE2xZF4yBq
+ T4SkVb7xNGZThBLjsKMldERY9jSwOhSLlroPTXAYbf8CurxU3JXWROZ3ACedbLG85q/R
+ gjnE9eUJyVsLFD6u4TkBQx1bcQn/mNkYBfGSU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721033110; x=1721637910;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=mPt43vWv7W7uWoCMBzaMsxBX+ZmRLoqnMa3kAMiQQGg=;
- b=BrF8vNOHsrNg1xPIzDelGEmYGXEVWdLDN6a8zkV+ToyYq/72voc+LgYyDMwDHOV5pr
- 56lT9j/UpFeb4rM+q1WeOjZTe4sdezjD99bfhf0RJtHZ8OENLW89h5zM684EOk0RMzou
- bgz9v2llpdAGrWcLrsKpwSfK1EsSb+YBgcP3X7ldAlGHYlKPKArqwbQQckcjXoi+fdmW
- TUIssqBaYM1TO5/JViPi1WKBx6JHEhKUv70ppiD1k6loR7eO4XPnQkSW/YWmFaKn2BSm
- M2xX4CLZ6ubLpSDZkrj+VP6IWxFQ/9uRsqOxnrse2zkL57j7LDMgMLT+tyZc4Xb+VbnF
- 085A==
+ d=1e100.net; s=20230601; t=1721037908; x=1721642708;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=fXrhdNRq6oludJZnjz76rz84qmMewPWdtA9STQ5A9L0=;
+ b=de8o2zhofBcTuMujisOk80HNuPls/jB/L+5xu4Zt0WxZ/xZI+NJQodU6TzlAr1WGlf
+ xBWEHTMKiRKCsWfOwZVEQMr9MFhk3PVvWHatr5U4RscWHUrj4CGr06LQA3mBDRG5J8cf
+ B1NaSGEj+6h3YI5Da2zHe0QuDH/tr8LcoFNJ7/TcZJDGe3WTgLDnOJ+Lqm4bv9gCYw3Q
+ 1UhhOZE7ZmHqqLk5dH1jnA3zYyERBRKCFLVAWl4UbMSR5xrA2Ec7ZWrM/zsFH6//k1rX
+ 1yCKpiZx2EfghPNICI2Z7W5fXGfXiGdcQ6cWCpilQ22SCiCZxUYWY1BblqJkOMooO3C6
+ YOHQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUoklshY3NHSiJ4ij0danatptM1K5j3CyZoNXRra3cULxQhGDKDDm9+AyHQs7xYmZv/xjFGRRVwYyrPYBM5DDAQi6b9OWnSFMebwbcUgmod
-X-Gm-Message-State: AOJu0Yz9sYQPUGp+ebjZOw4s2DSUickoXlBrZ/jlQcRjfYcqStjUv+aT
- uZPs0ZtXJwQpRQwM+fR0NAjpcw0ncrGDLUX7Om3bXlLpibGdRT0Op1enAh5AEhc=
-X-Google-Smtp-Source: AGHT+IHkDheiQWPRAvAOHQTkNQHOAUKicTVB0J2JBhxVC1tcwLKXg6dTru289RnVzPDELy4A5wdRbw==
-X-Received: by 2002:a05:6000:2a4:b0:360:872b:7e03 with SMTP id
- ffacd0b85a97d-367f05439c1mr7021710f8f.0.1721033110619; 
- Mon, 15 Jul 2024 01:45:10 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3680daccbd2sm5664721f8f.49.2024.07.15.01.45.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Jul 2024 01:45:10 -0700 (PDT)
-Date: Mon, 15 Jul 2024 10:45:08 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: John Ogness <john.ogness@linutronix.de>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- syzbot+6cebc1af246fe020a2f0@syzkaller.appspotmail.com,
- Daniel Vetter <daniel.vetter@intel.com>, stable@vger.kernel.org,
- Kent Overstreet <kent.overstreet@linux.dev>,
- Brian Foster <bfoster@redhat.com>, linux-bcachefs@vger.kernel.org,
- Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>
-Subject: Re: [PATCH] bcachefs: no console_lock in bch2_print_string_as_lines
-Message-ID: <ZpThlAGUsPXZArvk@phenom.ffwll.local>
-Mail-Followup-To: John Ogness <john.ogness@linutronix.de>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- syzbot+6cebc1af246fe020a2f0@syzkaller.appspotmail.com,
- Daniel Vetter <daniel.vetter@intel.com>, stable@vger.kernel.org,
- Kent Overstreet <kent.overstreet@linux.dev>,
- Brian Foster <bfoster@redhat.com>, linux-bcachefs@vger.kernel.org,
- Petr Mladek <pmladek@suse.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>
-References: <20240710093120.732208-2-daniel.vetter@ffwll.ch>
- <20240710130335.765885-1-daniel.vetter@ffwll.ch>
- <87jzhtcp26.fsf@jogness.linutronix.de>
+ AJvYcCVy0IBWdFgZVlQlgN5y6Lefzb9npB3K38r0NnH0LX5tBoWfc2bHE5taN0sp3G12O+OjsNMh7XABOrlEuBlwTEkR6DW3ZT1CZuDhQxmsKYm6
+X-Gm-Message-State: AOJu0YxC/JO5zznLyS72F9WHCRzSOAXmCu0J6uIFG6wRQRHEl7nxe9O3
+ c7HshecvRx8pU5jAbQMSgaBLRz81z4TFUWRy8DryoM4gI060m8yHh+ygDWxRN2DZ+h73CQ8EF09
+ PocLi5DHnUW31aSJTs//54kqK5PVjf/2HNWM=
+X-Google-Smtp-Source: AGHT+IFR/iC1N3Tb8Jho/ZE42f1MzhOjhl0CAO4hiWmUByPiy1Zd0g36Ny/4VrjQlbpoVgWVwwAvv2WZBTBdvA7v3B4=
+X-Received: by 2002:a05:6512:3b20:b0:52c:c9ce:be8d with SMTP id
+ 2adb3069b0e04-52eb99d6de0mr12891922e87.57.1721037907620; Mon, 15 Jul 2024
+ 03:05:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87jzhtcp26.fsf@jogness.linutronix.de>
-X-Operating-System: Linux phenom 6.9.7-amd64 
+References: <20240702215804.2201271-1-jim.cromie@gmail.com>
+ <ZoR40nWmpEV2Ly_6@bombadil.infradead.org>
+ <CAJfuBxyxamRhOyz8WuL+7=eJkEKSw8jnAWjyAuqU2i7gvg-rsQ@mail.gmail.com>
+ <CALwA+NbUCfEj_DzT5eMQ7_pSNpyp-zBe6PEL2XnMZrb303J4_Q@mail.gmail.com>
+ <CAJfuBxzeYWWV1ikYagFpyFHdAQU4ReYPirksQFHbEzDxhXCfHA@mail.gmail.com>
+In-Reply-To: <CAJfuBxzeYWWV1ikYagFpyFHdAQU4ReYPirksQFHbEzDxhXCfHA@mail.gmail.com>
+From: =?UTF-8?Q?=C5=81ukasz_Bartosik?= <ukaszb@chromium.org>
+Date: Mon, 15 Jul 2024 12:04:56 +0200
+Message-ID: <CALwA+Naec_YHxHoKu8Ba_Bnuq2L3VXw1cT3=Tx3qC3mE5_BG1g@mail.gmail.com>
+Subject: Re: [PATCH v9 00/53] fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+To: jim.cromie@gmail.com
+Cc: Luis Chamberlain <mcgrof@kernel.org>, daniel.vetter@ffwll.ch, 
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com, jbaron@akamai.com, gregkh@linuxfoundation.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, linux@rasmusvillemoes.dk, joe@perches.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,53 +85,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 10, 2024 at 04:19:53PM +0206, John Ogness wrote:
-> On 2024-07-10, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > console_lock is the outermost subsystem lock for a lot of subsystems,
-> > which means get/put_user must nest within. Which means it cannot be
-> > acquired somewhere deeply nested in other locks, and most definitely
-> > not while holding fs locks potentially needed to resolve faults.
+On Sat, Jul 13, 2024 at 11:45=E2=80=AFPM <jim.cromie@gmail.com> wrote:
+>
+> On Fri, Jul 12, 2024 at 9:44=E2=80=AFAM =C5=81ukasz Bartosik <ukaszb@chro=
+mium.org> wrote:
 > >
-> > console_trylock is the best we can do here. But John pointed out on a
-> > previous version that this is futile:
+> > On Wed, Jul 3, 2024 at 12:14=E2=80=AFAM <jim.cromie@gmail.com> wrote:
+> > >
+> > > On Tue, Jul 2, 2024 at 4:01=E2=80=AFPM Luis Chamberlain <mcgrof@kerne=
+l.org> wrote:
+> > > >
+> > > > On Tue, Jul 02, 2024 at 03:56:50PM -0600, Jim Cromie wrote:
+> > > > > This fixes dynamic-debug support for DRM.debug, added via classma=
+ps.
+> > > > > commit bb2ff6c27bc9 (drm: Disable dynamic debug as broken)
+> > > > >
+> > > > > CONFIG_DRM_USE_DYNAMIC_DEBUG=3Dy was marked broken because drm.de=
+bug=3Dval
+> > > > > was applied when drm.ko was modprobed; too early for the yet-to-l=
+oad
+> > > > > drivers, which thus missed the enablement.  My testing with
+> > > > > /etc/modprobe.d/ entries and modprobes with dyndbg=3D$querycmd op=
+tions
+> > > > > obscured this omission.
+> > > > >
+> > > > > The fix is to replace invocations of DECLARE_DYNDBG_CLASSMAP with
+> > > > > DYNDBG_CLASSMAP_DEFINE for core, and DYNDBG_CLASSMAP_USE for driv=
+ers.
+> > > > > The distinction allows dyndbg to also handle the users properly.
+> > > > >
+> > > > > DRM is the only current classmaps user, and is not really using i=
+t,
+> > > > > so if you think DRM could benefit from zero-off-cost debugs based=
+ on
+> > > > > static-keys, please test.
+> > > > >
+> > > > > HISTORY
+> > > > >
+> > > > > 9/4/22  - ee879be38bc8..ace7c4bbb240 commited - classmaps-v1 dynd=
+bg parts
+> > > > > 9/11/22 - 0406faf25fb1..16deeb8e18ca commited - classmaps-v1 drm =
+parts
+> > > > >
+> > > > > https://lore.kernel.org/lkml/Y3XUrOGAV4I7bB3M@kroah.com/
+> > > > > greg k-h says:
+> > > > > This should go through the drm tree now.  The rest probably shoul=
+d also
+> > > > > go that way and not through my tree as well.
+> > > >
+> > > > Can't this just be defined as a coccinelle smpl patch? Must easier
+> > > > to read than 53 patches?
+> > > >
+> > >
+> > > perhaps it could - Im not sure that would be easier to review
+> > > than a file-scoped struct declaration or reference per driver
+> > >
+> > > Also, I did it hoping to solicit more Tested-by:s with drm.debug=3D0x=
+1ff
+> > >
+> > > Jim
+> > >
 > >
-> > "Using the console lock here at all is wrong. The console lock does not
-> > prevent other CPUs from calling printk() and inserting lines in between.
+> > Jim,
 > >
-> > "There is no way to guarantee a contiguous ringbuffer block using
-> > multiple printk() calls.
+> > When testing different combinations of Y/M for TEST_DYNAMIC_DEBUG and
+> > TEST_DYNAMIC_DEBUG_SUBMOD in virtme-ng I spotted test failures:
 > >
-> > "The console_lock usage should be removed."
+> > When the TEST_DYNAMIC_DEBUG=3DM and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+> > BASIC_TESTS, COMMA_TERMINATOR_TESTS, TEST_PERCENT_SPLITTING,
+> > TEST_MOD_SUBMOD selftests passed
+> > When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+> > BASIC_TESTS, COMMA_TERMINATOR_TESTS selftests passed, however
+> > TEST_PERCENT_SPLITTING selftest fails with ": ./dyndbg_selftest.sh:270
+> > check failed expected 1 on =3Dpf, got 0"
+> > When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DY -
+> > BASIC_TESTS, COMMA_TERMINATOR_TESTS selftests passed, however
+> > TEST_PERCENT_SPLITTING selftest fails also with ":
+> > ./dyndbg_selftest.sh:270 check failed expected 1 on =3Dpf, got 0"
 > >
-> > https://lore.kernel.org/lkml/87frsh33xp.fsf@jogness.linutronix.de/
+> > Have I missed something ?
 > >
-> > Do that.
-> 
-> Note that there is more of this incorrect usage of console lock in:
-> 
-> fs/bcachefs/debug.c:bch2_btree_verify_replica()
-> 
-> fs/bcachefs/bset.c:bch2_dump_btree_node()
-> 
-> from commit 1c6fdbd8f246("bcachefs: Initial commit")
-> 
-> ... and its parent bcache:
-> 
-> drivers/md/bcache/debug.c:bch_btree_verify()
-> 
-> drivers/md/bcache/bset.c:bch_dump_bucket()
-> 
-> from commit cafe56359144("bcache: A block layer cache")
-> 
-> These should also be removed. Although Kent should verify that the
-> console lock is not providing some sort of necessary side-effect
-> synchronization.
+>
+> I am not seeing those 2 failures on those 2 configs.
+>
+> most of my recent testing has been on x86-defconfig + minimals,
+> built and run using/inside virtme-ng
+>
+> the last kernel I installed on this hw was june 16, I will repeat that,
+> and report soon if I see the failure outside the vm
+>
+> I'll also send you my script, to maybe speed isolation of the differences=
+.
+>
 
-I'll take a look, at least some of them seem doable to audit without deep
-bcachefs understanding. Thanks for pointing them out, I should have looked
-a bit more at git grep ...
--Sima
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jim,
+
+I know why I saw these failures.
+I ran dyndbg_selftest.sh directly in thw directory
+tools/testing/selftests/dynamic_debug/.
+
+All works as expected when I run it from the top kernel directory.
+Here are the results:
+
+When the TEST_DYNAMIC_DEBUG=3DM and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+BASIC_TESTS, COMMA_TERMINATOR_TESTS, TEST_PERCENT_SPLITTING,
+TEST_MOD_SUBMOD selftests passed
+
+When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DM -
+BASIC_TESTS and COMMA_TERMINATOR_TESTS selftests passed,
+TEST_PERCENT_SPLITTING and TEST_PERCENT_SPLITTING selftests were
+skipped
+
+When the TEST_DYNAMIC_DEBUG=3DY and TEST_DYNAMIC_DEBUG_SUBMOD=3DY -
+BASIC_TESTS and COMMA_TERMINATOR_TESTS selftests passed,
+TEST_PERCENT_SPLITTING and TEST_PERCENT_SPLITTING selftests were
+skipped
+
+Based on that maybe it would be worth it for the script to fail when
+it doesn't find a .config with an error message something like this:
+"Kernel .config not found. Are you running the script from the
+kernel's top directory?"
+
+What do you think ?
+
+Thanks,
+Lukasz
+
+> > Thanks,
+> > Lukasz
+> >
+> > > >   Luis
+> > > >
