@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A785931A4E
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jul 2024 20:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D11E931A4F
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jul 2024 20:30:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01A1A10E4C9;
-	Mon, 15 Jul 2024 18:30:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9724710E4CD;
+	Mon, 15 Jul 2024 18:30:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cRT1fo8N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oIrQYkyX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B345910E4C6;
- Mon, 15 Jul 2024 18:30:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53FAE10E4CB;
+ Mon, 15 Jul 2024 18:30:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721068227; x=1752604227;
+ t=1721068229; x=1752604229;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=a91b1XxOob8ZGPSH/3tb0DMVjT6+lUrIgCuOYrLv5cM=;
- b=cRT1fo8No77130LxDcGzbZ0az7wERyI2ySQ8vBvZvPmCCyK1R1UnctUT
- pwFJl8c7bysFtNDra7d4NIfcYhmL3hsBTZ2Kz0qU9Y/ZB/snt+5u+hrcy
- SmjVBbFq2EjqwTJYD3G7Pb9aFC7qwd1IxV8158pGsw4+9vjB9440hjsWm
- bx+cUrfh5InwlCMM4afhlaxbqh78epBDQ56vV5e9woXeAclw/Y4TlHPW3
- lGiss/iSO5RbmklYyPhp0SnioEL6F5JgT9/IiqroP66REGpNJsHiNkT9C
- V9g3uyJ/AWdeTYMfgSVhKYqDPDLJIEVFI2eryfjlAO7FQUmLW4PL+S4Me A==;
-X-CSE-ConnectionGUID: nxW7rraTTRasvExMysrmeg==
-X-CSE-MsgGUID: f9Kv5Xk2S8eV5W0iUJ/g8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18618862"
-X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="18618862"
+ bh=pJV396RRAwv3xHjezjwP8+GrBzsbtQZ4DA+s/iiJZdE=;
+ b=oIrQYkyXC6/CceXHnvSAJ/nq6HsNPYZlLSaO8zhlhUZgBZ+rNmGXezNT
+ gKL97Bhghs8e3RKAAx3AKazc/NsXEAL8wq7OMbBi28S89CtZBu6MSFTs3
+ Qc9XRr5+rB5ZCILFCl6P33cuv4Agxz1yLA4SqZlZwLQMHFQTJlqN0qwrt
+ 3gSNyxySaH925LsSx1jEvxsXebRx1pvKelKbRM02wSGB3FDdIUlCkGMbw
+ jguRkXUeuNpQ3j+TJYvbSI3FQyopfZqVSWZVC6uuGLJiryHfi33P6eFxD
+ QJD3YZ5Ic0lLBLu4KRegzMReh9/JOXuOtCpEyVEG3+7dKsFPfd1SYbFRR Q==;
+X-CSE-ConnectionGUID: wAhy8+3YQNuDmIYSrp/Q8Q==
+X-CSE-MsgGUID: Eli0Fp/SRsaOyftaKoyybA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18618865"
+X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="18618865"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 11:30:26 -0700
-X-CSE-ConnectionGUID: cS/wmCFgRvWphgctay8TRA==
-X-CSE-MsgGUID: GST/j2UIQZGsIrqHIxJ7fQ==
+ 15 Jul 2024 11:30:29 -0700
+X-CSE-ConnectionGUID: OJCuFSeNTWWs9BHKCO8S6w==
+X-CSE-MsgGUID: JEjFrwF0SjmNXVeyRmTXrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="54886882"
+X-IronPort-AV: E=Sophos;i="6.09,210,1716274800"; d="scan'208";a="54886889"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.26.74])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 11:30:25 -0700
+ 15 Jul 2024 11:30:27 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Kamil Konieczny <kamil.konieczny@linux.intel.com>,
  Chris Wilson <chris.p.wilson@linux.intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v2 4/5] lib/gem_engine_topology: Simplify the method of
- opening a primary
-Date: Mon, 15 Jul 2024 20:27:32 +0200
-Message-ID: <20240715183000.2828719-11-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2 5/5] lib/gem_engine_topology: Fix broken compare of
+ device links
+Date: Mon, 15 Jul 2024 20:27:33 +0200
+Message-ID: <20240715183000.2828719-12-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240715183000.2828719-7-janusz.krzysztofik@linux.intel.com>
 References: <20240715183000.2828719-7-janusz.krzysztofik@linux.intel.com>
@@ -72,48 +72,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When opening a potential primary counterpart of a render device, we first
-open a parent directory of the render node and pass it to openat() that
-can open a path relative to that directory.  But on the other hand, we
-build and pass to that function a path of that primary that is absolute,
-not relative.  While that construct gives the expected result anyway, it
-makes the picture unclear.
+When looking for a primary counterpart of a render device, we compare
+"device" links of both nodes.  If those links point to the same device
+then we know we've found the correct primary node.
 
-Use open() and drop unused code.
+However, readlinkat() function we use doesn't explicitly terminate read in
+strings with null characters, and then the comparison occasionally fails.
 
+Process the second (potential primary counterpart) node only if its
+"device" link is of the same length as that of the render node, and limit
+the number of compared characters to that length.
+
+v2: Fix missing closing parenthesis.
+
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6268
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/i915/gem_engine_topology.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ lib/i915/gem_engine_topology.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
-index 79984421b2..d14190f253 100644
+index d14190f253..617a12ccaf 100644
 --- a/lib/i915/gem_engine_topology.c
 +++ b/lib/i915/gem_engine_topology.c
-@@ -470,14 +470,10 @@ static int __open_primary(int dir)
- 	if (igt_debug_on(readlinkat(dir, "device", target, sizeof(target)) < 0))
+@@ -467,7 +467,8 @@ static int __open_primary(int dir)
+ 	if (minor < 64)
  		return dir;
  
--	fd = openat(dir, "..", O_RDONLY);
--	if (fd < 0)
--		return dir;
--
+-	if (igt_debug_on(readlinkat(dir, "device", target, sizeof(target)) < 0))
++	len = readlinkat(dir, "device", target, sizeof(target));
++	if (igt_debug_on(len <= 0))
+ 		return dir;
+ 
  	close(dir);
- 	for (minor = 0; minor < 64; minor++) {
- 		sprintf(buf, "/sys/dev/char/%d:%d", major, minor);
--		dir = openat(fd, buf, O_RDONLY);
-+		dir = open(buf, O_RDONLY);
+@@ -477,8 +478,8 @@ static int __open_primary(int dir)
  		if (dir < 0)
  			continue;
  
-@@ -488,7 +484,6 @@ static int __open_primary(int dir)
- 		close(dir);
- 		dir = -1;
- 	}
--	close(fd);
+-		if (readlinkat(dir, "device", device, sizeof(device)) > 0 &&
+-		    !strcmp(device, target))
++		if (readlinkat(dir, "device", device, sizeof(device)) == len &&
++		    !strncmp(device, target, len))
+ 			break;
  
- 	return dir;
- }
+ 		close(dir);
 -- 
 2.45.2
 
