@@ -2,100 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD271931F6E
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jul 2024 05:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F21931F82
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jul 2024 06:03:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7FF110E22D;
-	Tue, 16 Jul 2024 03:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56ED510E0CA;
+	Tue, 16 Jul 2024 04:03:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hbI332qB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MWybePkX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB3210E22D;
- Tue, 16 Jul 2024 03:43:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9615610E0CA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jul 2024 04:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721101385; x=1752637385;
+ t=1721102612; x=1752638612;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=WiT8cDNJJqMjKZVXnmweBQewbIZr8V7ITMx/djD7VQ0=;
- b=hbI332qBIJd+fP+xzxcU7D66syJS1ufxuev8QsDSuMVMRfH8VtgzukBK
- ykN41I3srrKmL0OJxi/AYNzQtm4znvMUVUgxMmAIl22rM6275qG1JPaL3
- uO4Ursp1QbRBq5sXPcoXxWtB14UTdCiyieZIYOl66qx6eaSOKhIkfewjW
- OzhaFH1osUPCEK6bGDPzcDz5FzTVFxqrdgETDeeMQU5ObGgGOi87bvKzY
- ZN4JKQetUTisRjl/YUS2WNXzpJqsFalxAO43/488sV0JwKGL3eq1dx48p
- qgDZ8Yq61PRcX37dtBP4943i2wJX4QGxHbxWkHoOxQpWWeNRMcps+nrxg g==;
-X-CSE-ConnectionGUID: NLVvo6wBToSHfcXXcIsPAA==
-X-CSE-MsgGUID: 0IHWweOdSqOkLna+bcV2SQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="29121514"
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="29121514"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2024 20:43:04 -0700
-X-CSE-ConnectionGUID: r8sjHpreSYGkhsFk5f8jTQ==
-X-CSE-MsgGUID: UTeICMKVSLijiwEXHlthxw==
+ bh=UlLDbdfPQDKtaTHHmY9mAKJhFplDM81TlTwRRUpY+HE=;
+ b=MWybePkX/f+1tzAwDnKBDfJOKljVfITMimAfDPnK+sedgQlMVsWUx9Am
+ Bdou6+0fORnAh181Z/UuYzhYhWrPjV8AMR6/1ygXmIWMtvi8yLP6txFnR
+ wBXhZYWhO8C7iNfg8TdpVzWNlKX6SxYV18F3iq8eKA6l5PaGMDUjEeAeL
+ 17zaY9nL5jYTVHr4ryg3FTJEaBeGAEx2gODfa8bSHGIRywXMYS3eIsueq
+ HHBsmWFBJK25KWmz4C/tNHyFh98NZ6DV30K3i5xkkqJiHwz5L6smnVual
+ 03XzuVtab4y2w5yl5Gq4X/k0kQ8H6clGfeSAECP2+eh+2ZjZXaXAColTI w==;
+X-CSE-ConnectionGUID: EGwVRaKIRfmYi6FUS12L+g==
+X-CSE-MsgGUID: UdFWuc4RSmKKifun2RnRfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11134"; a="18630989"
+X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="18630989"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2024 21:03:32 -0700
+X-CSE-ConnectionGUID: ujnU0qmCSIyCcLKU50rQuw==
+X-CSE-MsgGUID: rrKbch1DTduCv9Wi33KISw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="54771766"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Jul 2024 20:43:05 -0700
+X-IronPort-AV: E=Sophos;i="6.09,211,1716274800"; d="scan'208";a="54220434"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Jul 2024 21:03:31 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 15 Jul 2024 20:43:03 -0700
+ 15.1.2507.39; Mon, 15 Jul 2024 21:03:30 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 15 Jul 2024 21:03:30 -0700
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 15 Jul 2024 20:43:03 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 15 Jul 2024 21:03:30 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 15 Jul 2024 20:43:03 -0700
+ 15.1.2507.39; Mon, 15 Jul 2024 21:03:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B9yEgyL8tzfwGTyKk/yUoK1DsM6EqepStRR14OTxuWLhCvbvOI6BX1l9TGh4gUOteXEoYRStqkeGNPEixkebZ+A4vGHjYLstf1LOrnF/ujG3fVZlcG551h12tcWEe/p5FemC5iRypdXzjVCoFthqEH2hbdF/okGM06Fqp9E3QCQ8cJ9lWFJzgQeHx0T0lR6+z4twlO216d7SlJ3pbLMrFoYFdLsDUdNtKWj7iRtWrRzE8XQMsedXS+cqOrEHM9zrpQ5NJzo4okz3bDWNlezg8JbTFxTXRdc2RE6x42OpgQW1PTliRj01SnQv2DYVrhfdoPWEiNVmgz/vTX5ztPAH3Q==
+ b=sjauhx/n+j4gTYKeE9mGG4u2dnNnS84p2143HKRGBOoF6VFTkUF2ZFHQS27dFZ5LxGWN7urnWQX37/YOoIf/n8oLhap4XNJLzjFBW1olQGG2ayu/h1Jvwvh0TbsrDGfZtfqGytW/JvzAdMj11aAYpN/y9SQFwQxlFpM879dibi6lmwJSRML/+rE+Ry1vLWWfQjk5z0CR0VEcRFUyMCQAt2A+FfvwhcXKqF+DqH5rqZE+7Eg6N7ACJy7eLYCTZfi8eVTbgAbSm3YlwkI80cBzQ6/BV5IUqTLE292xErfeJHmU3SGjsl/Hro0WQuRhPJUA7iMGRY7eAwyaRdM2nAtUwA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vgxePO+otvljwzk/eUHG3Mi3Om3hEh9Q9TmQvJX0S+c=;
- b=XUTg3CJssYj5M7TotltF/3Uf/qggFK3pxFAkLU0YqqYUzdqfdFuF2IrEmBXWrbkKQ3ixPlwtaJhNl/smh3Ra9mtlweZpv8fEolqjs2AD3/agoD+gSvNWLVylPYzBVxrfVFJGfQhYAqNIDnFtGhkiTSu8Pqam9MOqBIJIS+be5Kvguae0Tx1aQb49yr0JUZd5+JKbSDQrSY//96/VvlHk/Djj1Kx/AZb+vscXQlZ4vJLimTJUUT3tNjS1rcBcw0RXo/DfBARs3N+fBnqHORbcvBGwhLIIgSU5oGA3Em208w7cj9HHXb7B6CvJXwpmB7LpqGT6eIP20m9VnhrzAux60Q==
+ bh=D78bBSmVG1v1YIhKlWtkYF/P6vlP9RxwHA72H3gWk3s=;
+ b=WzeqJOpbiq01/4gFW4BMpsK31jjcZeqCdIDLLKGtThZSxT3BpdFQMQxX8TVDafhlEmXY5uBNe+b04CwF7DIiyTtLbdi/S/8Cg4GDiOywHE53kWFaovD1kptg4o9R9tQP/G4kxUi3G7nhX5lvv+jpIVztEXS5dD7lnCVuX7EMcpsafRIXPiE//bRl+Q8DZnDble1RVBgd5TeNKMVJ3Bt5CQuuegOGI4M/6xAPj9uTeAoLe1boYus7GhA5i1wyPMau8LAKGABz0GOfum4L7oNUEN2+/IJPJ/X++vInpOXcIbn23yJSBA1aDmFsfQCn0/VysG6Vlf/aj37QihU1rLKIlQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ0PR11MB5867.namprd11.prod.outlook.com (2603:10b6:a03:42a::13)
- by CO1PR11MB5137.namprd11.prod.outlook.com (2603:10b6:303:92::11)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
+ by DS0PR11MB7829.namprd11.prod.outlook.com (2603:10b6:8:f1::20) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.28; Tue, 16 Jul
- 2024 03:43:01 +0000
-Received: from SJ0PR11MB5867.namprd11.prod.outlook.com
- ([fe80::dc4d:b84:3424:b7e0]) by SJ0PR11MB5867.namprd11.prod.outlook.com
- ([fe80::dc4d:b84:3424:b7e0%6]) with mapi id 15.20.7762.025; Tue, 16 Jul 2024
- 03:43:01 +0000
-From: "Gote, Nitin R" <nitin.r.gote@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-CC: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Cavitt, Jonathan"
- <jonathan.cavitt@intel.com>, "Wilson, Chris P" <chris.p.wilson@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Das,
- Nirmoy" <nirmoy.das@intel.com>, "janusz.krzysztofik@linux.intel.com"
- <janusz.krzysztofik@linux.intel.com>, Chris Wilson
- <chris.p.wilson@linux.intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: RE: [PATCH v3] drm/i915/gt: Do not consider preemption during
- execlists_dequeue for gen8
-Thread-Topic: [PATCH v3] drm/i915/gt: Do not consider preemption during
- execlists_dequeue for gen8
-Thread-Index: AQHa062t9b0WHNH5wkOFQB2dDekqobHxt3qAgAAcC4CAATujYIAFUiwAgABZDNA=
-Date: Tue, 16 Jul 2024 03:43:01 +0000
-Message-ID: <SJ0PR11MB58670880B554A7E041F3AD75D0A22@SJ0PR11MB5867.namprd11.prod.outlook.com>
-References: <20240711163208.1355736-1-nitin.r.gote@intel.com>
- <CH0PR11MB54443CBE8B4A052419FFFD1BE5A52@CH0PR11MB5444.namprd11.prod.outlook.com>
- <ZpAfyzKlqlMrd4nj@intel.com>
- <SJ0PR11MB586743B1AF7DABD0F131E906D0A62@SJ0PR11MB5867.namprd11.prod.outlook.com>
- <ZpWfPjVificBZgBD@ashyti-mobl2.lan>
-In-Reply-To: <ZpWfPjVificBZgBD@ashyti-mobl2.lan>
+ 2024 04:03:25 +0000
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52%4]) with mapi id 15.20.7762.024; Tue, 16 Jul 2024
+ 04:03:24 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Subject: RE: [PATCH 02/10] drm/i915/display: Add member fixed_rr to denote
+ Fixed refresh rate with VRRTG
+Thread-Topic: [PATCH 02/10] drm/i915/display: Add member fixed_rr to denote
+ Fixed refresh rate with VRRTG
+Thread-Index: AQHa0a+++XQ1mK5gZ0WP5v7Dayp/ELH4xevQ
+Date: Tue, 16 Jul 2024 04:03:24 +0000
+Message-ID: <IA1PR11MB63485D6582CBC903C5A2085BB2A22@IA1PR11MB6348.namprd11.prod.outlook.com>
+References: <20240709032651.1824185-1-ankit.k.nautiyal@intel.com>
+ <20240709032651.1824185-3-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240709032651.1824185-3-ankit.k.nautiyal@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -103,78 +98,79 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR11MB5867:EE_|CO1PR11MB5137:EE_
-x-ms-office365-filtering-correlation-id: e83222b1-3cf2-4f94-1f73-08dca5496433
+x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|DS0PR11MB7829:EE_
+x-ms-office365-filtering-correlation-id: 43bbc1cf-a057-4dee-acf0-08dca54c3d9c
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?y1NKjDU46EHvp/M7cRNZwPH2KvaTUN+5exPEC9s6sHh8Fb5+ZvNdmdoS0P6Q?=
- =?us-ascii?Q?DfQdffHmepyojOw4r5Iy3eVa7Kn9hdiw52hcgDvD27L1dcD2vEqEFBByuOHz?=
- =?us-ascii?Q?JnaNPDWlIp6oNNKQkdBWtsdsH1P3ILG8+87jQRgxmq3/YBNoUj+OKane5qK0?=
- =?us-ascii?Q?bbPO3Q3/sUjaxeq/SrUoLHFtaZ54j1hzJh95XEonCZymr+S+3BSPeG0OAoWp?=
- =?us-ascii?Q?VEwDKgTRcbgbz7qsWobmssvDQsl0ZHNN9yDp1XEoP3rNzmfjUoIs5MGYKtAM?=
- =?us-ascii?Q?FnS5oT3A/VDZzS/Gue0OsWJFehrSIDCr+FH1EdMG+9JXsc76vNgR7gE3h1Wh?=
- =?us-ascii?Q?Bhkl18D6hnyZ5Z6ae7AOCRAYPNXmUZ0sJnnVcNiDLJQBS7JOn6TB9kMHTPLK?=
- =?us-ascii?Q?64Vx9DNJgmPr0JUY1RrOddgB0cX8eHm2ywuTSfMNGdl9eIanpPE93Z6a84sh?=
- =?us-ascii?Q?CJN2/Yvcnw0FMAXONbHCS92rGn6CuCgAeeAJm1GFAJLugwvL3ippwx1NqP4d?=
- =?us-ascii?Q?d7pRFHUnLrGQWU9DoM1Vwjmu0Cnp5mhmEPmZ58vdGNIouBRdB3i16LeMVeN0?=
- =?us-ascii?Q?8IABoCl+GMreBgmz+XbqHzKJ5YOOBRdpxpd9Y1X/96NgpO4Xklbe7OLfoBn2?=
- =?us-ascii?Q?YM6ETS4M7x4hUJvVPUJTaK87RG7hUtLTJDZRr865g9/ZS0+LAdtDCLGM7V5p?=
- =?us-ascii?Q?DGBO09E16ltJ6oJ/0/YsySbNZuwB3ryrs/ztJGUOZ9nNzVvMXl2EnW21Dcwn?=
- =?us-ascii?Q?RwBup6wzRlhJ0UIm/0TsdRhRhIUx8x2yneR4Krzwj64XaGXyPrgAIyrQedgx?=
- =?us-ascii?Q?1Nt3nZNODrM3jLLZ+RbSVrTwLovg5NTx478mwHyN1c/Fj7gmrxtBJvJKkxqU?=
- =?us-ascii?Q?FeHSla/EFO4oV9gEmAtzIAhrPCAURfGg+EXEMFhDERICETjDngJHYFWYNNO0?=
- =?us-ascii?Q?YPnekm6k6HdQblUAHY+KWR2TnDNNWpiV8k62ScY1+OAycbEHhoKVN6qMA8nH?=
- =?us-ascii?Q?00z5UJFxuf8l4n6faVS/SMWygdsQdz94zP0d+oxr9zctJ69fz4UEUw6aEfcd?=
- =?us-ascii?Q?6jwHQt0cfPZhoZKdBqYyLyid2LUZotFEcG+JyFQ0n4WQ+yQ5cMwWHG1XX1+I?=
- =?us-ascii?Q?mvwIbWuCj6mQK2b9cu2JPajIm3dv+6yFIjKTZ2HfATEg7ivilxSS/fOKyeZL?=
- =?us-ascii?Q?OP9iPKdKH+oMu7hNZjItjfI8c5VLKwm0dkYfL2+pa4l+HV0Czx1cpRopcpFN?=
- =?us-ascii?Q?iHTAVaMXWu1b32d5nqjeIcx8tETbBjnKDiCptholOkDcxafFx6lWD9CT8MOY?=
- =?us-ascii?Q?N/ZrT9j9lelPLJy1vGMUFmvOju/BYqXj14i+L7/Zq5rHsmg4M8/9eC455olb?=
- =?us-ascii?Q?jgtTFifw8r1wfe+u90uWz1OtYP6EJqvQMsjtVIv+LccUGO8J0A=3D=3D?=
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?IqdyyeuXsfCxxByo/TQYaYO1/QHJNLnRUywlqAEEYoZrzfuNdF1qNS6MZKif?=
+ =?us-ascii?Q?Avchc9/7OlBGihyJwES2r++/+12I7eIif+PRZfnPjwIL2gU1BqG2iAecaS0e?=
+ =?us-ascii?Q?LcDVZcWpLeSn0VzB8KqvNubnN2z3CDY3BfQIPFn8dZ/7SPyeVT6ygN2J/1UU?=
+ =?us-ascii?Q?K2EqF8STdKUYbFchzvky4wwpKP3CHrfuX3bjTVITDXPWzQliRDYXHWPro75I?=
+ =?us-ascii?Q?TbJIqmOHKrluQQWHJPlg2jqAWURVVqDse4/9DjIK099zT2UYz9lEjal22V4a?=
+ =?us-ascii?Q?/7vDQ/gXBw4Wo9LOsoH6Hlg/HIc15+xS+cwws/Yn1ZTKIF4y15QjgEl8vMTh?=
+ =?us-ascii?Q?lGVBfSXvPBXqVhKstYUvtsX2CRqUyZjTPns5oavoXRdBVSNzSF8HqbT77fQV?=
+ =?us-ascii?Q?HnxKXcgScNnDBealx85Qfz0eJsBwrZmOFvvqT0avNV9U9/+3uLl2LvUCUDTf?=
+ =?us-ascii?Q?rMUPw6NDshUX1JQVySyNxibL7jvC5/y9Q7PY0mizXiLEUnHzSYQDbtiBOfst?=
+ =?us-ascii?Q?Rl1RVinvyGh8h4hQZbk3mZOCCIDQei0etfAbPUZrhWbS/T7ojxvQG/i1zLvY?=
+ =?us-ascii?Q?AiJOVNv9TibL3z+pW6ODvm3a+z7q91G+BNYbT0fCJcybUIzGgjdS0nGHbSFd?=
+ =?us-ascii?Q?psrxY3GTsQOOLLXPcc2zYsg4yLsm9q3KqJTo0nuu7AKapyhtB1Gug63lw2rI?=
+ =?us-ascii?Q?+1N2dI8yQahfJ2eOrb/MlEAI+4LmbE+K3CwA0B+ftsmXT43ycl325hZ6/bKW?=
+ =?us-ascii?Q?M4/arjc4TF9VLKuqBNiGaek8YqLO7Lg8aZv/lKawbhBLilQWy2IdD79qH0tv?=
+ =?us-ascii?Q?C/enIb1smEFJaHrjmiAGLE16PErTJe6Z37T5pvauiLzbopjR7wf4iVR6IwcY?=
+ =?us-ascii?Q?cn1D/SIy96Xl0tDwlgv0Ng/adBhXHfHoQ6uxcEp2Bm9aHgjjXQPqX8IfXq9K?=
+ =?us-ascii?Q?g5lOdeInQJ/3N15pu7QCmYmHbwioTMxozoP4CT5sVz8u5ICQKqsclAClDEMc?=
+ =?us-ascii?Q?Bzxy73b/D4E4Xw6hpXUMGUYHRXbeVZ7KeiUSFFihfJYBD7ZzlUmHo7Z65O7I?=
+ =?us-ascii?Q?ImcE2HO55b5uVSxHxXBuiYAfoRgJvrxPxCBrfm2aGGUuX8SeAVQrQqrIflIV?=
+ =?us-ascii?Q?/wLUB7hLRUyvy4fSAD6nbs35upEBnjky8iLLB3mUVeLOjPfrPPW8S6HksFJV?=
+ =?us-ascii?Q?CJ9aiw0S4Jlb78a04xTgNE0ff5wegY8ZvsA7coxVQpbiVYa2voYwcR0xQKxf?=
+ =?us-ascii?Q?ZbeO7IdUMTjrzLUV0S55HiDlOk+wwW/SY+4O1xer+Kbpm5QulLEjaPTDxK2B?=
+ =?us-ascii?Q?DVt/v0qbtyD5Xv+e3VhFbgU0OlxxH6mJeE6NqJx/+9TfpY0xcXdqcAIx3fHD?=
+ =?us-ascii?Q?oJiq6y3tvVo4VmKdqI402MG1PDyFa7Xiu5nMBpx1Q72KGkLQeQ=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB5867.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Hf+kGEcacpIEiIlRpynot585TMrqWmEpdrliydKROsQTJ6mBFpkm3L8zzucD?=
- =?us-ascii?Q?EEQoTE9GObEaIgIh6Rg3WLKun2l3zBMtLLhoAHBxEWp62dIk7uhsBzOH5wEr?=
- =?us-ascii?Q?rFK2NLsffILhz8evSClDCVgR6Ttp7OmY60L4P/a1BnNqyJrGEiz+eQ1GBy6A?=
- =?us-ascii?Q?xXFUwq88okKdu09RYNEehCGBuoYg81JuPeSltckevNWgULMJ0VgwXHNseiJq?=
- =?us-ascii?Q?mIiHQqTCc/cQJhYNbPKEp9Pbamzkg+e7wwVuGlkFpF7v8RsTvyfOG3L7Qunw?=
- =?us-ascii?Q?gWjBfvgC/9tvmTb6iT33LQnERoMYJJX9wE/XAY+9nODZTRwAFjdg34z3Jg69?=
- =?us-ascii?Q?d1wiZhSh1tVy3m8dvJUF71W9zb1giOvtbgdl4fsC4IjQbCSGpwTmkvOssj4F?=
- =?us-ascii?Q?Yc9Ga4G/yAhZGo03bgWeW5vUyYXhnZJ3b7uoqabu1pU2KzY+yHL8EV0SMZdG?=
- =?us-ascii?Q?vG61HypJD3/ShoY1smUAvrV6CyM1UJPjTFMGuTyzP/XXhnOqLe2NaqnMazZt?=
- =?us-ascii?Q?FzThzs5aJyD2B3SJn5kDmm3nPmYxoDEzfjWQjqhX6kCQ1D1dRJe57uS5snBQ?=
- =?us-ascii?Q?W2sq4zyvQWhDS4e3vZKN0bwSceGcpuRP3UAkgDBQRWncQpr1+ZxG53GfQXuZ?=
- =?us-ascii?Q?YxjkUdvGug9FxY/kSnpezj5aSweiH/ovSCF0A1WWem1HCYjpy9ftesnfT9E1?=
- =?us-ascii?Q?+hY4eGXfGZmpdRGsnBoQelW7Arw3h+IgH0cA7giX38MwWAnF/Iib3F2XOY5Q?=
- =?us-ascii?Q?GlrvKSs1PWP4dM33ZkTo2EqoMcuRRt+ehKLOluOVJYdBsHfyg8Yhx/uzRXrR?=
- =?us-ascii?Q?qqM7pg7gi17rxyPUge7K87UtY6j5PjgHhFmylyA201umBdNM/IwK/NNHTdCf?=
- =?us-ascii?Q?16ufZfBISVOZvkfqcPGbRNSOIVW2uVPYwK7Lw9gdIRZLt+kcofoVlPCANlH8?=
- =?us-ascii?Q?O4Q6knOw6KpL+zavwHdG4rU2c8IJu3V9P9YmZ56Z1IBKEoJBh2ZgdC1uPUNo?=
- =?us-ascii?Q?DxqG3+6sClCw8mxkQ6FQQGhuZNmz7gmLBpKnfbnpEmChftjMxGbz4ERkqgKq?=
- =?us-ascii?Q?Gece46YcHaayxxvLjK+e9Zitw/Tv3K2rIT2UiRCJkUz/IoNMjbUQmz1Cv6VF?=
- =?us-ascii?Q?+pZTSLNK8rpSqZdLA7WFULAe5zTuHIdh77GCLFJC+B9vCdrHY0zmYUv3XPnv?=
- =?us-ascii?Q?vRtqNhe3C62XCpPE/wbMKqWNKWPB9AbDF269bEB8cY/xaa712PkYTJT+tBOD?=
- =?us-ascii?Q?2o5QX8wcUQpITeN4ivpcPvvrKGX22Qsu0TuyWAnlu0Tmt8GutmrwFDlr05Re?=
- =?us-ascii?Q?SkD21iRjRKK/LUP/7B9UD3GdEhoygS2B8Y790X1HM5xtstAdEsXBTUAmflA8?=
- =?us-ascii?Q?C4AC+Fec/r8aibLTBfu06H/5HShBsL6UkJYB9coubcgrwRivcLEee/U1ofoU?=
- =?us-ascii?Q?KYjUIl6aqN0+IBn318UKf/MpMOdyx6l+nuw7148HrjHtT0ooHcD20a+zDCrR?=
- =?us-ascii?Q?XL75DQKM2RiK+Xq1Csd73LXkk86YxY26nfAC47EX0/CY23r3j+/n4taezGc8?=
- =?us-ascii?Q?aFKpLDItXQYmwq+/iMMgQJ4VSTj8WhFsUoQ+TBbd?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?N/Ui5D+ohOrbT++71rRiyjOoE6Ja3wBhILpueAQgEU4jf+EQ8io07vsu7zd/?=
+ =?us-ascii?Q?S35xWR5nYN616whIn6a3Rho8uhJGTmTCfA8+yCeElwgtoCRwrq5PU9cxCl4z?=
+ =?us-ascii?Q?rDLpOR2TOL3L/CwDM0yhoSSXz3ZHDIsz8DjcRdvhNllZAMPnHSKcoL5qJamh?=
+ =?us-ascii?Q?ZHh1JIOeNSoYsdNxFAGKiI9EZi7q9OBfIFKYDRQXxiURlYppVH/qGbBUwqnD?=
+ =?us-ascii?Q?LRkVg7vjQTZ1/0MWDjxmjIFiqu0tq8BECJ1JZFCVY2WQvVXJidhU1uavf7oB?=
+ =?us-ascii?Q?BoM6+RicHBweN6aAeucuMTXzwOjETl3KrgF8ZTUHByulwawFP1XSLUHaYLT4?=
+ =?us-ascii?Q?A43Tld9I0Ejwa2wruoYyc6J36imwMaEqmT1PZ+T4lu404PfShllRtbt3ilLd?=
+ =?us-ascii?Q?jCap8CBOhSp/7vaQpC+UGZqHTtUcEIPi72j7dw9ysLjPzfiY0lo2ojlD27Lw?=
+ =?us-ascii?Q?taEjXGz9Hq4Uggtn7MZ7IA56Czwud0j4EeU2rs8rFXNYtE+xGrjkNJcet320?=
+ =?us-ascii?Q?D2P8HN/ltoNSDz4P71d9IK5Miql7PnMQfc10S4jTdxyLw28mh9d5I6mf8OXj?=
+ =?us-ascii?Q?e0oquyaHdlLdzFJLTRo6koMUUoWdL2HU2JI5BCGc1ubPyZ0/irNuizsEN5+7?=
+ =?us-ascii?Q?tznF4P9aPNiWg81L3l3/Ipnrcz+S3emZO9plp1oBOwkhFimNYyvWB2xYXwM0?=
+ =?us-ascii?Q?xi5M4ttoaOBSpENgkLx7h8W4p5zr7TTNSfqVbb8o7iBSswO1P6KA+/GktoOE?=
+ =?us-ascii?Q?uFsWhPEql8if7CvhZ21wFOuhZgl0yIEufJaUciEDCQl1MfeFFXHekGlIZp5d?=
+ =?us-ascii?Q?GnjkTMZPuPB2mTgWtyCva+bxEuNX0TZ9PUw+pYHoq6k36gKrL4OmSer2MmoR?=
+ =?us-ascii?Q?UgvCvX8FaXL65ZDQojf9UOjhINVcYajXk9uCQ8w1EMw0Jmx+ueBX+YGoZHGq?=
+ =?us-ascii?Q?NX7fEPNQK8o7+MRmQ5MO3Zda7ELkk7QAMhw+BDc1ZV4jqBW8yH6rtKyKb7D5?=
+ =?us-ascii?Q?wI40YEKmxrYeJUhN8CGiBzR3G5WwQwrWJFUgUGcNLkFaMC2LmAOd7iCKIqDs?=
+ =?us-ascii?Q?lhK+eqYIuTavJDjDzcY1Z1wScTyp3ysUacLdZDs6qsi4pamj3eGyIGFdmq6k?=
+ =?us-ascii?Q?BBBT/BewpHDe5qxF76z6YLfVjbYhOuIRPqpYrKFmxnBOjqoLi7Czi6Olo7Vi?=
+ =?us-ascii?Q?q5eRRUCq6CqTIN9xFGOFmhKuPvUh6Cdf4kd/gQGcMV3QnSLcljTNjsD3eXBp?=
+ =?us-ascii?Q?sXqC6ugJoXUpzSjv7g7BGBeqkciX95z1X5hn05wigYCdEJNBsHPxEPSER+vQ?=
+ =?us-ascii?Q?u62QWylTe7jVX5kKLDnvH29vaRBMM0id9whmlNlqfO4H8R1WBGnkqZbNjMsb?=
+ =?us-ascii?Q?zceiHg5M2ZaB9GKIVIqziuPGenxEbVV9ZR3OdE+zlS0w+9vMgeZc/q5C9DDl?=
+ =?us-ascii?Q?pqJUW2zknZxOF7NMtQq1L67ZupPIMmnm3HjLsH5tVLcEn4rkXvyDDIjttybW?=
+ =?us-ascii?Q?NPY9eXKDQgWxozh+g3U8RvVS0Yg+PaTce4ZJRImjn1rNnvIvUR6QS5q7m6O5?=
+ =?us-ascii?Q?uGtui7kXo2wmvKFuUBTanP5tEUNhbn442V1zzrM0fHY8td4pC5DG0ZndamcN?=
+ =?us-ascii?Q?jDL3lUddvqbwuEhnqqV1NEY=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB5867.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e83222b1-3cf2-4f94-1f73-08dca5496433
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2024 03:43:01.1813 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43bbc1cf-a057-4dee-acf0-08dca54c3d9c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2024 04:03:24.9387 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: chFOKrOVz4B5ypzAZCbeps03Agfvm4nTtTdqaPf8RC0V+7HCiCBieVy7Er49ncbDECwRo47ZdPl2mjSYY6UBIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5137
+X-MS-Exchange-CrossTenant-userprincipalname: aDZi/2+diphDw/sjtby1mnb7mR6NibbGCbS9G5dFDtQFM+d/EtlYzFKaves7gnfmxeZQzup6uptmVrxsPajWKXqVk4fR40Bz7szRDje5+qCEsyGMYeg69zdV2bT865/P
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7829
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -191,137 +187,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+
 
 > -----Original Message-----
-> From: Andi Shyti <andi.shyti@linux.intel.com>
-> Sent: Tuesday, July 16, 2024 3:44 AM
-> To: Gote, Nitin R <nitin.r.gote@intel.com>
-> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Cavitt, Jonathan
-> <jonathan.cavitt@intel.com>; Wilson, Chris P <chris.p.wilson@intel.com>;
-> tursulin@ursulin.net; intel-gfx@lists.freedesktop.org; dri-
-> devel@lists.freedesktop.org; Das, Nirmoy <nirmoy.das@intel.com>;
-> janusz.krzysztofik@linux.intel.com; Chris Wilson
-> <chris.p.wilson@linux.intel.com>; stable@vger.kernel.org
-> Subject: Re: [PATCH v3] drm/i915/gt: Do not consider preemption during
-> execlists_dequeue for gen8
+> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Sent: Tuesday, July 9, 2024 8:57 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: jani.nikula@linux.intel.com; ville.syrjala@linux.intel.com; Golani,
+> Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>
+> Subject: [PATCH 02/10] drm/i915/display: Add member fixed_rr to denote Fi=
+xed
+> refresh rate with VRRTG
 >=20
-> Hi,
+> Add fixed_rr member to struct vrr to represent the case where a fixed ref=
+resh
+> rate with VRR timing generator is required.
 >=20
-> On Fri, Jul 12, 2024 at 03:25:23PM +0200, Gote, Nitin R wrote:
-> > > -----Original Message-----
-> > > From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > Sent: Thursday, July 11, 2024 11:39 PM
-> > > To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
-> > > Cc: Gote, Nitin R <nitin.r.gote@intel.com>; Wilson, Chris P
-> > > <chris.p.wilson@intel.com>; tursulin@ursulin.net; intel-
-> > > gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Shyti,
-> > > Andi <andi.shyti@intel.com>; Das, Nirmoy <nirmoy.das@intel.com>;
-> > > janusz.krzysztofik@linux.intel.com; Chris Wilson
-> > > <chris.p.wilson@linux.intel.com>; stable@vger.kernel.org
-> > > Subject: Re: [PATCH v3] drm/i915/gt: Do not consider preemption
-> > > during execlists_dequeue for gen8
-> > >
-> > > On Thu, Jul 11, 2024 at 04:28:53PM +0000, Cavitt, Jonathan wrote:
-> > > > -----Original Message-----
-> > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On
-> > > > Behalf Of Nitin Gote
-> > > > Sent: Thursday, July 11, 2024 9:32 AM
-> > > > To: Wilson, Chris P <chris.p.wilson@intel.com>;
-> > > > tursulin@ursulin.net; intel-gfx@lists.freedesktop.org
-> > > > Cc: dri-devel@lists.freedesktop.org; Shyti, Andi
-> > > > <andi.shyti@intel.com>; Das, Nirmoy <nirmoy.das@intel.com>;
-> > > > janusz.krzysztofik@linux.intel.com; Gote, Nitin R
-> > > > <nitin.r.gote@intel.com>; Chris Wilson
-> > > > <chris.p.wilson@linux.intel.com>; stable@vger.kernel.org
-> > > > Subject: [PATCH v3] drm/i915/gt: Do not consider preemption during
-> > > > execlists_dequeue for gen8
-> > > > >
-> > > > > We're seeing a GPU HANG issue on a CHV platform, which was
-> > > > > caused by
-> > > > > bac24f59f454 ("drm/i915/execlists: Enable coarse preemption
-> > > > > boundaries
-> > > for gen8").
-> > > > >
-> > > > > Gen8 platform has only timeslice and doesn't support a
-> > > > > preemption mechanism as engines do not have a preemption timer
-> > > > > and doesn't send an irq if the preemption timeout expires.
-> > > >
-> > > > That seems to mean the original can_preempt function was
-> > > > inaccurately built, so fixing it here makes the most sense to me,
-> > > > especially if it's causing
-> > > problems.
-> > > >
-> > > > Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com> -Jonathan
-> > > > Cavitt
-> > > >
-> > > > > So, add a fix to not consider preemption during dequeuing for
-> > > > > gen8 platforms.
-> > > > >
-> > > > > v2: Simplify can_preempt() function (Tvrtko Ursulin)
-> > > > >
-> > > > > v3:
-> > > > >  - Inside need_preempt(), condition of can_preempt() is not requi=
-red
-> > > > >    as simplified can_preempt() is enough. (Chris Wilson)
-> > > > >
-> > > > > Fixes: bac24f59f454 ("drm/i915/execlists: Enable coarse
-> > > > > preemption boundaries for gen8")
-> > >
-> > > Something strange in here...
-> > >
-> > > This patch is not using directly or indirectly
-> > > (I915_ENGINE_HAS_PREEMPTION) the can_preempt()...
-> > >
-> >
-> > Thank you Rodrigo for the review comment. Seems like you are right.
-> > Fixes: bac24f59f454 is misleading as it's not using can_preempt().
-> > The bug could be from the commit bac24f59f454 as mentioned in the
-> > issue But this change fixes the original implementation of can_preempt(=
-)  in
-> below commit.
-> > Fixes: 751f82b353a6 ("drm/i915/gt: Only disable preemption on gen8
-> render engines").
-> >
-> > I will update the Fixes in the commit description and will send in v4.
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c       | 4 +++-
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 2 +-
+>  drivers/gpu/drm/i915/display/intel_vrr.c           | 3 +++
+>  3 files changed, 7 insertions(+), 2 deletions(-)
 >=20
-> Can I reword the commit log to something similar:
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index c2c388212e2e..85695dc2b2e5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1004,7 +1004,8 @@ static bool vrr_params_changed(const struct
+> intel_crtc_state *old_crtc_state,
+>  		old_crtc_state->vrr.vmin !=3D new_crtc_state->vrr.vmin ||
+>  		old_crtc_state->vrr.vmax !=3D new_crtc_state->vrr.vmax ||
+>  		old_crtc_state->vrr.guardband !=3D new_crtc_state-
+> >vrr.guardband ||
+> -		old_crtc_state->vrr.pipeline_full !=3D new_crtc_state-
+> >vrr.pipeline_full;
+> +		old_crtc_state->vrr.pipeline_full !=3D new_crtc_state-
+> >vrr.pipeline_full ||
+> +		old_crtc_state->vrr.fixed_rr !=3D new_crtc_state->vrr.fixed_rr;
+>  }
 >=20
->     drm/i915/gt: Do not consider preemption during execlists_dequeue for
-> gen8
+>  static bool cmrr_params_changed(const struct intel_crtc_state
+> *old_crtc_state, @@ -5469,6 +5470,7 @@ intel_pipe_config_compare(const
+> struct intel_crtc_state *current_config,
 >=20
->     We're seeing a GPU hang issue on a CHV platform, which was caused by
-> commit
->     bac24f59f454 ("drm/i915/execlists: Enable coarse preemption boundarie=
-s
-> for
->     Gen8").
+>  	if (!fastset) {
+>  		PIPE_CONF_CHECK_BOOL(vrr.enable);
+> +		PIPE_CONF_CHECK_BOOL(vrr.fixed_rr);
+>  		PIPE_CONF_CHECK_I(vrr.vmin);
+>  		PIPE_CONF_CHECK_I(vrr.vmax);
+>  		PIPE_CONF_CHECK_I(vrr.flipline);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8713835e2307..875370219892 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1407,7 +1407,7 @@ struct intel_crtc_state {
 >=20
->     The Gen8 platform only supports timeslicing and doesn't have a
-> preemption
->     mechanism, as its engines do not have a preemption timer.
+>  	/* Variable Refresh Rate state */
+>  	struct {
+> -		bool enable, in_range;
+> +		bool enable, in_range, fixed_rr;
+>  		u8 pipeline_full;
+>  		u16 flipline, vmin, vmax, guardband;
+>  		u32 vsync_end, vsync_start;
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c
+> b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 5a0da64c7db3..24568dae717a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -421,6 +421,9 @@ void intel_vrr_get_config(struct intel_crtc_state
+> *crtc_state)
 >=20
->     Commit 751f82b353a6 ("drm/i915/gt: Only disable preemption on Gen8
-> render
->     engines") addressed this issue only for render engines. This patch ex=
-tends
->     that fix by ensuring that preemption is not considered for all engine=
-s on
->     Gen8 platforms.
+> TRANS_VRR_VMAX(dev_priv, cpu_transcoder)) + 1;
+>  		crtc_state->vrr.vmin =3D intel_de_read(dev_priv,
 >=20
->     v4:
->      - Use the correct Fixes tag (Rodrigo Vivi)
->      - Reworded commit log (Andi Shyti)
+> TRANS_VRR_VMIN(dev_priv, cpu_transcoder)) + 1;
+> +		if (crtc_state->vrr.vmax =3D=3D crtc_state->vrr.flipline &&
+> +		    crtc_state->vrr.vmin =3D=3D crtc_state->vrr.flipline)
+> +			crtc_state->vrr.fixed_rr =3D true;
+>  	}
 >=20
->     v3:
->      - Inside need_preempt(), condition of can_preempt() is not required
->        as simplified can_preempt() is enough. (Chris Wilson)
->=20
->     v2: Simplify can_preempt() function (Tvrtko Ursulin)
->=20
-> Andi
+>  	if (crtc_state->vrr.enable) {
+> --
+> 2.40.1
 
-Sure. You can.
+For CMRR case, when vmax=3Dvmin=3Dflipline is there, to avoid any state mis=
+match, should we consider moving this get_config along with compute part ?
 
-Thank you
-- Nitin=20
+Regards,
+Mitul
+
