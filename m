@@ -2,65 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6347933F78
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2024 17:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC11D933F92
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2024 17:26:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77E9C10E12B;
-	Wed, 17 Jul 2024 15:21:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F67E10E15E;
+	Wed, 17 Jul 2024 15:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3ZdQwQx";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="qo8N/G3g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64CDF10E12B
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 15:21:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721229702; x=1752765702;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=araC7rX0JVHNap9TYW59GbLZbTMeExi2x/Z+JzH9bmM=;
- b=H3ZdQwQxxriFlBvubPz7htmA4I0q9vYFhnHXdW4xLcMC7Wws1V8blam1
- FCjHYLyu4IxRJpJoDqVHPCjCpMxCHEL9dDW5YgktTmtj0M9lq+CDDYrk1
- qxJl8hFadX/f9M7pMKACBzYdgE+eJSiaHxNsfsW+EaLvpij4M87yJoY6Z
- ySsjj0Tv9zYtUqCJYXScBkwChwbs4BVmnclJMJ7doZh10qeeCx/6eBt9p
- M3U69pZasCTRs0XVnnwBChIL/q7ZdoCTQDV2Ad9NkLsdM7pDdRNi4H3Dq
- UGXkCq5KUGRvJmiB4nq3wWrns8D7S4xgOdIowcemy1DZIFlfQ6ke8hdyX w==;
-X-CSE-ConnectionGUID: IqydxmoCQsey4uBzvukjIQ==
-X-CSE-MsgGUID: O82PX2PhR0+x+tXeHmzDlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18874127"
-X-IronPort-AV: E=Sophos;i="6.09,215,1716274800"; d="scan'208";a="18874127"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 08:21:42 -0700
-X-CSE-ConnectionGUID: EIZRUoY1ScSUWBHNkPVEbA==
-X-CSE-MsgGUID: jlw2EqTRS3yYanyN8ssr3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,215,1716274800"; d="scan'208";a="50204676"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.246.38.191])
- ([10.246.38.191])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 08:21:40 -0700
-Message-ID: <ebb48611-a250-4f68-9469-f0aa75361b58@linux.intel.com>
-Date: Wed, 17 Jul 2024 17:21:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com
+ [209.85.210.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE8910E15E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 15:25:57 +0000 (UTC)
+Received: by mail-ot1-f54.google.com with SMTP id
+ 46e09a7af769-70211abf4cbso231615a34.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jul 2024 08:25:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1721229956; x=1721834756; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=e2d4cfDq4F4pX91/h+nwZjASDh6ZZ8NGMkrb9ut3S5Y=;
+ b=qo8N/G3gVG9qHy+cdltyQ9HTj8cbnsUAfXNWFmptY4q/uCQ02klDaXjtYBMwhcotSn
+ 4QG9dBMJXlTrJFJO6tRK3ithCTT2lEirlqEjOgw2w6wWDnToMuzNT0gTya/8GnzK8LUo
+ n/T6iga+SC/cZ8vr2pggKlqkBKoaSgQptTkzfG2WqC83aGpnU49WafFOIafF+x8+D13B
+ 2yO50kNPwnLsL3w5RowM2LqY41RVRYyv/ZW+svhv4NGzt2ZXkkROfm7UsdTvwqVBQ9ND
+ naRHtOgP1ZkoFDCDQwXQL0UXLRzpyduMaaOKjY2tisMpdj78+DKkgxwDTMPb9MOn2IAV
+ YYxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721229956; x=1721834756;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=e2d4cfDq4F4pX91/h+nwZjASDh6ZZ8NGMkrb9ut3S5Y=;
+ b=ID4acPNn5GhVEairKWmP5QG6k87K56gtjPIcfrEHT7yfH7wCTfYBfEJrb5yrBCO6z3
+ Ax20EBOWdKSIjKfd4fAYe2bg0TQ4SwmbkT3yaB5xqz9R/Ic3ZBo9/bj5JU3D6okMWK+Y
+ o459vuV6R+ZxyHWkq3Lw7Z2iI8RSW+qOR77RFoz2blTcKUKZOP5wmDRpQNW25iqpRzG+
+ gtFE0pljpxfWumVxgnHjIOGh7OZ5u390x8mDvHd02YVCUzuoTAgxFP5m4bOsuak61wMT
+ mOuoH+hTWQwL0vR34Dnum9t7/CCYSCxY7XPiAOpBA/5doyvdM2t9otPkZCpEMM2dnFLa
+ 1pfg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXaD2OoGdDzZyWBKL1xKk/RcXXsFLfV/bu5YJzMhjp2TBSLOyXGkoj87LspfB6mHzhgZYjxGCQsgVIOQElk4Rmw92XTGmzQ8BBm3FVPbvno
+X-Gm-Message-State: AOJu0YxXGWmv6kRzbuhVTXvtWo5vElJiPkU00UeDbTCCKosyvwaE0uKx
+ kgVmaGcmvuwnOdVgnG2xHrhtLAWcFoAGREO6BAZbNBKN6zY1IEwFNWzZxxDD+18=
+X-Google-Smtp-Source: AGHT+IE6Wwjx5egkj4/x4Bumi0LHlvx9qo0VL/gfH5m9LomAz4m3dvjHFkFSmCCPVoc8Pw/kk4qH4A==
+X-Received: by 2002:a05:6830:650e:b0:703:6e98:f06c with SMTP id
+ 46e09a7af769-708e3776608mr2285563a34.12.1721229956151; 
+ Wed, 17 Jul 2024 08:25:56 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:f90b:a43c:39d1:be63])
+ by smtp.gmail.com with ESMTPSA id
+ 46e09a7af769-708e7817eaesm107614a34.26.2024.07.17.08.25.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jul 2024 08:25:55 -0700 (PDT)
+Date: Wed, 17 Jul 2024 10:25:53 -0500
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Nirmoy Das <nirmoy.das@linux.intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com,
+ chris.p.wilson@linux.intel.com, Andi Shyti <andi.shyti@linux.intel.com>
 Subject: Re: [PATCH] drm/i915: Allow NULL memory region
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Gupta, saurabhg" <saurabhg.gupta@intel.com>,
- "dan.carpenter@linaro.org" <dan.carpenter@linaro.org>,
- "chris.p.wilson@linux.intel.com" <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
+Message-ID: <642adf26-af1c-4c2a-8845-f50dc269a4d5@suswa.mountain>
 References: <20240712214156.3969584-1-jonathan.cavitt@intel.com>
  <e113ec37-3d8e-49fc-b55b-525ef481f540@linux.intel.com>
- <CH0PR11MB5444A0D640A7B0E8C32189A0E5A32@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <CH0PR11MB5444A0D640A7B0E8C32189A0E5A32@CH0PR11MB5444.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e113ec37-3d8e-49fc-b55b-525ef481f540@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,81 +84,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Jul 17, 2024 at 05:05:55PM +0200, Nirmoy Das wrote:
+> 
+> On 7/12/2024 11:41 PM, Jonathan Cavitt wrote:
+> > Prevent a NULL pointer access in intel_memory_regions_hw_probe.
+> > 
+> > Fixes: 05da7d9f717b ("drm/i915/gem: Downgrade stolen lmem setup warning")
+> > Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/intel_memory_region.c | 6 ++++--
+> >   1 file changed, 4 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+> > index 172dfa7c3588b..d40ee1b42110a 100644
+> > --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> > +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> > @@ -368,8 +368,10 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
+> >   			goto out_cleanup;
+> >   		}
+> > -		mem->id = i;
+> > -		i915->mm.regions[i] = mem;
+> 
+> There is a check for mem just before that. You could use IS_ERR_OR_NULL(mem)
+> instead of IS_ERR().
 
-On 7/17/2024 5:11 PM, Cavitt, Jonathan wrote:
-> -----Original Message-----
-> From: Nirmoy Das <nirmoy.das@linux.intel.com>
-> Sent: Wednesday, July 17, 2024 8:06 AM
-> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>; intel-gfx@lists.freedesktop.org
-> Cc: Gupta, saurabhg <saurabhg.gupta@intel.com>; dan.carpenter@linaro.org; chris.p.wilson@linux.intel.com; Andi Shyti <andi.shyti@linux.intel.com>
-> Subject: Re: [PATCH] drm/i915: Allow NULL memory region
->>
->> On 7/12/2024 11:41 PM, Jonathan Cavitt wrote:
->>> Prevent a NULL pointer access in intel_memory_regions_hw_probe.
->>>
->>> Fixes: 05da7d9f717b ("drm/i915/gem: Downgrade stolen lmem setup warning")
->>> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
->>> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/intel_memory_region.c | 6 ++++--
->>>    1 file changed, 4 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
->>> index 172dfa7c3588b..d40ee1b42110a 100644
->>> --- a/drivers/gpu/drm/i915/intel_memory_region.c
->>> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
->>> @@ -368,8 +368,10 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
->>>    			goto out_cleanup;
->>>    		}
->>>    
->>> -		mem->id = i;
->>> -		i915->mm.regions[i] = mem;
->> There is a check for mem just before that. You could use
->> IS_ERR_OR_NULL(mem) instead of IS_ERR().
-> I think you're referring to the "goto out_cleanup" path?
+An error pointer return is normally completely different from a NULL
+return in how it's handled.  Here NULL is a special kind of success.  I
+wrote a blog about this.
 
-Yes.
+https://staticthinking.wordpress.com/2022/08/01/mixing-error-pointers-and-null/
 
->
-> mem being NULL is a valid use case, so we
-> shouldn't take the error path when it's observed.
-Not an error path if you return expected/correct value.
-
-You could do
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index 172dfa7c3588..41ef7fdfa69b 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -362,9 +362,10 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
-
-                 if (IS_ERR(mem)) {
-                         err = PTR_ERR(mem);
--                       drm_err(&i915->drm,
--                               "Failed to setup region(%d) type=%d\n",
--                               err, type);
-+                       if (err)
-+                               drm_err(&i915->drm,
-+                                       "Failed to setup region(%d) type=%d\n",
-+                                       err, type);
-                         goto out_cleanup;
-                 }
-
-PTR_ERR(NULL) should be 0 I think and could even add a info saying skipping setting up that reason.
-
-Regards,
-Nirmoy
-
-> -Jonathan Cavitt
->
->>
->> Regards,
->>
->> Nirmoy
->>
->>> +		if (mem) { /* Skip on non-fatal errors */
->>> +			mem->id = i;
->>> +			i915->mm.regions[i] = mem;
->>> +		}
->>>    	}
->>>    
->>>    	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
+regards,
+dan carpenter
