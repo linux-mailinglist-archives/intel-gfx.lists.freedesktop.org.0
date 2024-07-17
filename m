@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B5E933CF4
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2024 14:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAB3933CF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2024 14:30:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CED210EABE;
-	Wed, 17 Jul 2024 12:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72B8F10EAC4;
+	Wed, 17 Jul 2024 12:30:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YkM/KLgz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QkMnvIJR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1611A10EAAC;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 031A410EAAF;
  Wed, 17 Jul 2024 12:30:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721219439; x=1752755439;
+ t=1721219440; x=1752755440;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OdcC5j5gEsZi6xR3dsc+gT7jIr0rKH50GZpmZ0IzhlA=;
- b=YkM/KLgzGVj/N1tOhrx8OUe/u8a7uHMIw7+f18Pk42kx4YYhkR3pXo51
- dueXk1kRNcy2Mf1f9EESt0+LqT7sC/fYAKyWFlc5DX2BG+EInnp57E4uA
- 4+APtZxFunSsPYnTQmnLY2EbdBVSxz8hOwBviPjOLC43nCt6lFjRwsuA/
- EUOVsqzWKoTIRry7d1ZY15qfUhZtNUgmkMBwNSmPtdJ0y2FDLje7K60G1
- qDG07bN3Izb3Ygo0HAjv+J9EPId1yZxFzK4Z9HX6vLwqVvqoev9EIUwVN
- klq3BkXxh1FehgB9um5S5vbxafMtb3dTtUOMK0kjn9vG/6COiSiiDVakk w==;
-X-CSE-ConnectionGUID: ZxBxogJISEWlXvP3XL7G5g==
-X-CSE-MsgGUID: QoxVnYLcQUK+5VlybXFu4w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="18856393"
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18856393"
+ bh=/9upTfZBfyCVWxddwTR8T4JQoguG6E4SYitnEoZEecc=;
+ b=QkMnvIJRQadpewpkEsuJj5QJ+ExccVVHh26uybyZs0jCHQU0sqo0i7hm
+ zbZsI4RvavkOmo220l3sOHtsT0OCTQT7GZIzbeqWVJ70PrqBGk5HefqkK
+ taLZ0DEDepNz9cYLYBAH4C7JwifpX2XzvB1B/OsTG9IJ932xrLXpBo2Ci
+ 6QuUFBGMOC76Zhib+8s+xWn04G/5UO8LXVazts+fP9/lNRUqNL/VYbQmL
+ JiUtQDxziKl/MpRZ0fKvSlf9hqnFTcsQ305aP2llsYpHo3WypdoMzkgEk
+ tH7rABhrW0c71OrA4CsZ7hOhag9x1SCca6QZ6RMEqEM8GUM//BPR4HbLZ Q==;
+X-CSE-ConnectionGUID: C7t7nu8bTFOoDjk07NNsEA==
+X-CSE-MsgGUID: TIv3y9otTT67sMonB5B/fg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11135"; a="18856396"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="18856396"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  17 Jul 2024 05:30:39 -0700
-X-CSE-ConnectionGUID: ycA2hmpUS0qPLcab/kLCrQ==
-X-CSE-MsgGUID: y7tHvV3CTwKBIA0H3CfXSA==
+X-CSE-ConnectionGUID: FmueBjvcSUGGbuYEPIc8FQ==
+X-CSE-MsgGUID: ZZ4TeipmRMGEkn6WzH0YtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="50165232"
+X-IronPort-AV: E=Sophos;i="6.09,214,1716274800"; d="scan'208";a="50165233"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.26.163])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2024 05:28:59 -0700
+ 17 Jul 2024 05:29:01 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Kamil Konieczny <kamil.konieczny@linux.intel.com>,
  Chris Wilson <chris.p.wilson@linux.intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v3 1/5] tests/gem_ctx_exec: Fail on unsuccessful preempt
- timeout update
-Date: Wed, 17 Jul 2024 14:26:12 +0200
-Message-ID: <20240717122836.3481656-8-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v3 2/5] lib: Add more debug messages to error paths
+Date: Wed, 17 Jul 2024 14:26:13 +0200
+Message-ID: <20240717122836.3481656-9-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240717122836.3481656-7-janusz.krzysztofik@linux.intel.com>
 References: <20240717122836.3481656-7-janusz.krzysztofik@linux.intel.com>
@@ -72,72 +71,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CI reports the following failures from basic-nohangcheck subtest:
-
-(gem_ctx_exec:1115) CRITICAL: Test assertion failure function nohangcheck_hostile, file ../../../usr/src/igt-gpu-tools/tests/intel/gem_ctx_exec.c:374:
-(gem_ctx_exec:1115) CRITICAL: Failed assertion: err == 0
-(gem_ctx_exec:1115) CRITICAL: Last errno: 2, No such file or directory
-(gem_ctx_exec:1115) CRITICAL: Hostile unpreemptable context was not cancelled immediately upon closure
-
-The subtest sets 50 ms preempt timeout on each engine before proceding
-with submission of spins, then it waits up to 1 second for those spins to
-be terminated.  However, dump of engines' debugfs data performed by the
-subtest after the failure shows preempt timeouts still at their default
-values: 7500 ms on rcs0 and 640 ms on other class engines.  Dmesg records
-confirm preemption timeouts triggered on other engines after 640 ms and
-not on rcs0 within the 1 second limit.
-
-As a first step, let the subtest verify return values of function calls
-supposed to update the preempt timeouts with the new values.  If failed
-on any engine then report that at debug level as a useful hint displayed
-when the test times out on waiting for spin termination.
+On an attempt to resolve the issue of mysteriously failing updates of
+sysfs entries representing engine preempt timeout values, add debug
+messages to error paths of involved library functions.
 
 v2: No changes.
-v3: Don't fail on unsuccessful update of preempt_timeout_ms, older
-    platforms don't support it but can still succeed.
+v3: Add still more debug messages.
 
 Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6268
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/intel/gem_ctx_exec.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ lib/i915/gem_engine_topology.c | 19 +++++++++++--------
+ lib/igt_sysfs.c                |  4 ++--
+ 2 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/tests/intel/gem_ctx_exec.c b/tests/intel/gem_ctx_exec.c
-index d6aa8ba0aa..f3e252d10e 100644
---- a/tests/intel/gem_ctx_exec.c
-+++ b/tests/intel/gem_ctx_exec.c
-@@ -308,8 +308,7 @@ static void nohangcheck_hostile(int i915)
- 	igt_hang_t hang;
- 	int fence = -1;
- 	const intel_ctx_t *ctx;
--	int err = 0;
--	int dir;
-+	int dir, err;
- 	uint64_t ahnd;
+diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
+index afb576afb2..3e9bdf2e0a 100644
+--- a/lib/i915/gem_engine_topology.c
++++ b/lib/i915/gem_engine_topology.c
+@@ -454,12 +454,12 @@ static int __open_primary(int dir)
+ 	int len;
  
- 	/*
-@@ -333,8 +332,11 @@ static void nohangcheck_hostile(int i915)
- 		int new;
+ 	fd = openat(dir, "dev", O_RDONLY);
+-	if (fd < 0)
++	if (igt_debug_on(fd < 0))
+ 		return dir;
  
- 		/* Set a fast hang detection for a dead context */
--		gem_engine_property_printf(i915, e->name,
--					   "preempt_timeout_ms", "%d", 50);
-+		err = gem_engine_property_printf(i915, e->name,
-+						 "preempt_timeout_ms", "%d", 50);
-+		igt_debug_on_f(err < 0,
-+			       "%s preempt_timeout_ms update failed: %d\n",
-+			       e->name, err);
+ 	len = read(fd, buf, sizeof(buf) - 1);
+ 	close(fd);
+-	if (len <= 0)
++	if (igt_debug_on(len <= 0))
+ 		return dir;
+ 	buf[len] = '\0';
  
- 		spin = __igt_spin_new(i915,
- 				      .ahnd = ahnd,
-@@ -362,6 +364,7 @@ static void nohangcheck_hostile(int i915)
- 	intel_ctx_destroy(i915, ctx);
- 	igt_assert(fence != -1);
+@@ -467,7 +467,7 @@ static int __open_primary(int dir)
+ 	if (minor < 64)
+ 		return dir;
  
-+	err = 0;
- 	if (sync_fence_wait(fence, MSEC_PER_SEC)) { /* 640ms preempt-timeout */
- 		igt_debugfs_dump(i915, "i915_engine_info");
- 		err = -ETIME;
+-	if (readlinkat(dir, "device", target, sizeof(target)) < 0)
++	if (igt_debug_on(readlinkat(dir, "device", target, sizeof(target)) < 0))
+ 		return dir;
+ 
+ 	fd = openat(dir, "..", O_RDONLY);
+@@ -500,24 +500,27 @@ static FILE *__open_attr(int dir, const char *mode, ...)
+ 	va_list ap;
+ 
+ 	/* The attributes are not to be found on render nodes */
+-	dir = __open_primary(dir);
++	igt_debug_on((dir = __open_primary(dir)) < 0);
+ 
+ 	va_start(ap, mode);
+ 	while (dir >= 0 && (path = va_arg(ap, const char *))) {
+ 		int fd;
+ 
+-		fd = openat(dir, path, O_RDONLY);
++		igt_debug_on_f((fd = openat(dir, path, O_RDONLY)) < 0,
++			       "failed component: %s", path);
+ 		close(dir);
+ 
+ 		dir = fd;
+ 	}
+ 	va_end(ap);
++	if (dir < 0)
++		return NULL;
+ 
+ 	if (*mode != 'r') /* clumsy, but fun */
+-		dir = reopen(dir, O_RDWR);
++		igt_debug_on((dir = reopen(dir, O_RDWR)) < 0);
+ 
+ 	file = fdopen(dir, mode);
+-	if (!file) {
++	if (igt_debug_on(!file)) {
+ 		close(dir);
+ 		return NULL;
+ 	}
+@@ -554,7 +557,7 @@ int gem_engine_property_printf(int i915, const char *engine, const char *attr,
+ 
+ 	file = __open_attr(igt_sysfs_open(i915), "w",
+ 			   "engine", engine, attr, NULL);
+-	if (!file)
++	if (igt_debug_on(!file))
+ 		return -1;
+ 
+ 	va_start(ap, fmt);
+diff --git a/lib/igt_sysfs.c b/lib/igt_sysfs.c
+index 42b2af41ab..550472d819 100644
+--- a/lib/igt_sysfs.c
++++ b/lib/igt_sysfs.c
+@@ -186,7 +186,7 @@ char *igt_sysfs_path(int device, char *path, int pathlen)
+ 	snprintf(path, pathlen, "/sys/dev/char/%d:%d",
+ 		 major(st.st_rdev), minor(st.st_rdev));
+ 
+-	if (access(path, F_OK))
++	if (igt_debug_on(access(path, F_OK)))
+ 		return NULL;
+ 
+ 	return path;
+@@ -206,7 +206,7 @@ int igt_sysfs_open(int device)
+ {
+ 	char path[80];
+ 
+-	if (!igt_sysfs_path(device, path, sizeof(path)))
++	if (igt_debug_on(!igt_sysfs_path(device, path, sizeof(path))))
+ 		return -1;
+ 
+ 	return open(path, O_RDONLY);
 -- 
 2.45.2
 
