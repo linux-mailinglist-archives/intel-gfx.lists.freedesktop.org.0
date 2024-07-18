@@ -2,133 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE80C934BB5
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jul 2024 12:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68EE1934BD7
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jul 2024 12:45:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BEE910E72A;
-	Thu, 18 Jul 2024 10:33:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iVRkA4cQ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4297C10E730;
+	Thu, 18 Jul 2024 10:45:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2067.outbound.protection.outlook.com [40.107.223.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A43FE10E722;
- Thu, 18 Jul 2024 10:33:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YdUMiu9PjdBnI0fBt+KeHOar3i5+rkkf1RYK1kr+JbJCqiHjtDs9IA6So0sBdWA0D5l20hfRSwtGPhdNk6QwPpUk9rTXCE+rAdPQVc4XfTabwprMl0q2lMlYWTpte+UODVXBHGH3i/t1oMqngvkytPCqd9Wv9KdTRhjG09os88A3zwDZyeNBMBwSYolQYt86UHmEwVARPF6mqZ4bX6HKCMW6w7LLUgIeN+Z8fL/XoRHvWKNj4JwSdjo6iQcj1I7NcUMx1d0rvq5Y/OvgMEOPyR2NKyfBBF/p9e20ByOuTpmHlHiy02WzQTliB0LeBSSNJ3zK10NveqvKTH5yRk0Lgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dxrkv1Z2ayVOvAiUIfUH/SV2E19wNBQRuLKDOU3TAGQ=;
- b=wrwBWk/9+niRFC2URMLOwJcVOaPtqiCFs93A163TnnFlAgbkfoQrUYIjsaKUdneuvPVKn5nIP8fhDL4f/qjrx2LHWUROzuerf05Z1MsUNqH0aSZldKBdAizdCqu/OWuPi3nb33J11sKRSNVqqSmseDCVwZunmM4w7KA5gIEfBEI4lv64S6MxYi5axoazENWk6fUfjWZvav4dVVhvA1KPzIUgSxPMWMzGb7O2pjnoLCXLe2jOe1oAP0l2mNKxWhl+QYH77UKfqUfIg9q9ps71LzB/SJKIirJmM7YG5ErJPY61s99e3aLfpYGM/EK9LiDlSCmBOvaUbSiqzmZsvT+7LQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dxrkv1Z2ayVOvAiUIfUH/SV2E19wNBQRuLKDOU3TAGQ=;
- b=iVRkA4cQzQSFMeO/zYz/g0Um+0z7hyRHk3EUTqxsKgvLlrwbeOeOhWcQLWj7rKsW4gSyqGQvBhpig4FCdEqbxTlCdXTa49GQRSUkbNtNYlOFGZjSOttQ9jwuoezh9DUgZJCoAl8m4D1jdRROWBcCvFpYQ/snL0hw8m6pCfLIUr4=
-Received: from SA1P222CA0045.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:2d0::22)
- by PH7PR12MB7794.namprd12.prod.outlook.com (2603:10b6:510:276::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.35; Thu, 18 Jul
- 2024 10:33:03 +0000
-Received: from SA2PEPF00003F62.namprd04.prod.outlook.com
- (2603:10b6:806:2d0:cafe::46) by SA1P222CA0045.outlook.office365.com
- (2603:10b6:806:2d0::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.17 via Frontend
- Transport; Thu, 18 Jul 2024 10:33:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- SA2PEPF00003F62.mail.protection.outlook.com (10.167.248.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7784.11 via Frontend Transport; Thu, 18 Jul 2024 10:33:03 +0000
-Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 18 Jul 2024 05:33:00 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <matthew.auld@intel.com>
-CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
- <frank.min@amd.com>, <marek.olsak@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>, Frank Min <Frank.Min@amd.com>
-Subject: [PATCH v6 2/2] drm/amdgpu: Add address alignment support to DCC
- buffers
-Date: Thu, 18 Jul 2024 16:02:43 +0530
-Message-ID: <20240718103243.1241392-2-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240718103243.1241392-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20240718103243.1241392-1-Arunpravin.PaneerSelvam@amd.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A26110E730;
+ Thu, 18 Jul 2024 10:45:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F62:EE_|PH7PR12MB7794:EE_
-X-MS-Office365-Filtering-Correlation-Id: 638cb41a-4dd1-4d26-c00d-08dca7150127
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UEpmQm1RK0J5WWM2MUdoRHZ2a1dHcVd4Z2pWeU5qNlorNXg3MVFVTWlhelJL?=
- =?utf-8?B?MVpILzZhMXhuZk44THNmZlJGNlN1bHlVY2FPNHJFU1VyZVpXTVVybWpoSGlJ?=
- =?utf-8?B?RnBUaUZWMjM1dlZ0V2dWdGJRdEJIWEJlbStXaWM5dzJwaTJ3OW1xK0x4QlhX?=
- =?utf-8?B?bWxEWVBodHNoTFMvQ3JBejQ4Q1orYUViZC9XZ0RtYWZtWEUyYkRtMjNGNENT?=
- =?utf-8?B?eVpzQ1FPS1F4UmdJL3lBY0ZQMUlUU1hvWlJsdnN1Vm5oeCtaTURUMEtHbHNX?=
- =?utf-8?B?RWhOZU9hZmRnaU1UT0wrcGRUQXlPcUR5K3VvUi92c0JYUS9mTmVuTUhnSHNO?=
- =?utf-8?B?ZWg4VjBiWStJVjhrN3dCOWVzQzhWRlgwRXB5Y2x1anJaWGlNamFBSHVYNTdp?=
- =?utf-8?B?Ri9XNmFqZnNreDdiZUZWR0xOcU1qRnk2bzUvZXl3bE1FWm52cDVVR0tMeWw1?=
- =?utf-8?B?WVNZYVNhR3FrNDNnL1ZwSUVsQm4wLzk4Y1JkcHF0b3pUdHhaeUdKTDV0VWJ3?=
- =?utf-8?B?V0w0N2k4eDBDUGo5eGxQWjRxanV4SUxCSUFRVlRNZlJUcEhmcXpUYVJTOEx2?=
- =?utf-8?B?bU5qWWo0eGVCQXN3SGlhUHlXVEs1bXRGdXpDeGdUeXA5NDZvUGlhZFBQY0tr?=
- =?utf-8?B?a2syMld6bWh5VWZaamFKdUtHb3hvOXlCbk1uNHkwSWFKSmZJbXdSckhzcURH?=
- =?utf-8?B?dGFRWkxVSzRhdkRaOFFieTNnZVZjcWdqcXRiTlJFZXZyWXZLbWRJVUp3SmR0?=
- =?utf-8?B?VDRqTm9RQWs1alROWGIxUnBPQjFFaFRVaE4zUjgzelRidy9lZkR6Nm9KaUpw?=
- =?utf-8?B?Y0dlalNwNytnZytjd0poSURtcGtLaXpNMm1GK1ZpTEdVa0NFVm5LRWRjbHVx?=
- =?utf-8?B?WHRhRXJiY0pXNVA0V2owT1ZJYjBCRGRTRnMwd0w3ejQzZC9zK1Z5Slp2Qzht?=
- =?utf-8?B?RUhSam8xUWg5K3hZTGRnS1dmdnExQ0l4UVZuM0JkUjhSVGdnODRETEhwd3N6?=
- =?utf-8?B?dGpKOENhcWNZVzAyeUYxNjdqYjI3NllESmZmN0xncngzWjhmSThSVHRQMUla?=
- =?utf-8?B?dDlWcm8wbW5KdjB3ai93cEZzQlM4UW1Eck9XQ1NzTXd0aWkxdFJaL1BmL3pt?=
- =?utf-8?B?SW1iMUJRVXZlcmJBbzc2dGxOMHU1dkdhNzhmM0FQdTV5ZU1HdnFJdlkrSjlo?=
- =?utf-8?B?NmhubEV2WmZML201MytBVWtHNXdXbzdncjV6dTBIME9ocE4rOHFqazRkNEU2?=
- =?utf-8?B?YTZ6K0lRTUx5NGdtbVhlWjU4cU5QQlNRTFFRN05pc0VHckhaT2thL1hndTFB?=
- =?utf-8?B?L1l6L056bE9QKzdUTmlNSWk0c0FtUEQyVGo1Vm1rekVTQllLeGNJdnNvMlJO?=
- =?utf-8?B?b3FPVEFRYlVvaUgyWmpwbHdaUDI5TWRGZFRLUlJQZlV6VzI4TkVaOFZtOW5M?=
- =?utf-8?B?aDhzbjJxekV2aVp5ZU1JZGQrbThKSFpIbTd0NHFEeXg1SHNmbUxQV0I0OW1l?=
- =?utf-8?B?OVZ5c1ZpeThiNk0wMGc1ajVJQ1MwYjFLUTdaelFncmJEMXBGNVBORWZIUEd3?=
- =?utf-8?B?VGo4b29qS1ZQaDdQQ1Z2MGcvNDJoSm92VG03ZFNlWlg1WDJsYk1ucGtUTXpP?=
- =?utf-8?B?dFppWWk0d3VYMHh4Qm1qRW40RnNhcWFiT2ZTUHVoWDR3SFFGSW1ReFpTT1Jr?=
- =?utf-8?B?aG9nQzZmNTQxOFkxTER5V0tLQmZ0Y3hOeDNlaWlZM2lqc1EwYkhjd0F5bWVR?=
- =?utf-8?B?QnZGVmtSeVhEK3VHWjRqNHkvaklXcENDak5Bd0NQWlcxSnMxM2pOa2xyTWFK?=
- =?utf-8?B?cVdZR3R4ZTljaFp4dHFsWkJOejRCVnRKNnBCNlhERDZOL0ZkMVc2eHFGVnJN?=
- =?utf-8?B?VnZCV1IvNEhWM1ZNN3BMdVZxcnJoU1c3Y1N4MzhJNkFsREJqVFllb1owNDF1?=
- =?utf-8?Q?I7PpX2Lbos8DN7gT+TEEEhfZEM33FubC?=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2024 10:33:03.4520 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 638cb41a-4dd1-4d26-c00d-08dca7150127
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F62.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7794
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Make_I2C_terminology?=
+ =?utf-8?q?_more_inclusive_for_I2C_Algobit_and_consumers_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Easwar Hariharan" <eahariha@linux.microsoft.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 18 Jul 2024 10:45:07 -0000
+Message-ID: <172129950742.272469.12652110193842279190@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+In-Reply-To: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,172 +37,356 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add address alignment support to the DCC VRAM buffers.
+== Series Details ==
 
-v2:
-  - adjust size based on the max_texture_channel_caches values
-    only for GFX12 DCC buffers.
-  - used AMDGPU_GEM_CREATE_GFX12_DCC flag to apply change only
-    for DCC buffers.
-  - roundup non power of two DCC buffer adjusted size to nearest
-    power of two number as the buddy allocator does not support non
-    power of two alignments. This applies only to the contiguous
-    DCC buffers.
+Series: Make I2C terminology more inclusive for I2C Algobit and consumers (rev7)
+URL   : https://patchwork.freedesktop.org/series/131867/
+State : warning
 
-v3:(Alex)
-  - rewrite the max texture channel caches comparison code in an
-    algorithmic way to determine the alignment size.
+== Summary ==
 
-v4:(Alex)
-  - Move the logic from amdgpu_vram_mgr_dcc_alignment() to gmc_v12_0.c
-    and add a new gmc func callback for dcc alignment. If the callback
-    is non-NULL, call it to get the alignment, otherwise, use the default.
+Error: dim checkpatch failed
+e9e2bb62f49c drm/amdgpu, drm/radeon: Make I2C terminology more inclusive
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
 
-v5:(Alex)
-  - Set the Alignment to a default value if the callback doesn't exist.
-  - Add the callback to amdgpu_gmc_funcs.
+-:107: CHECK:CAMELCASE: Avoid CamelCase: <ucTargetAddr>
+#107: FILE: drivers/gpu/drm/amd/amdgpu/atombios_i2c.c:86:
++	args.ucTargetAddr = target_addr << 1;
 
-v6:
-  - Fix checkpatch warning reported by Intel CI.
+-:116: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#116: FILE: drivers/gpu/drm/amd/amdgpu/atombios_i2c.c:162:
++void amdgpu_atombios_i2c_channel_trans(struct amdgpu_device *adev, u8 target_addr, u8 line_number, u8 offset, u8 data)
 
-v7:(Christian)
-  - remove the AMDGPU_GEM_CREATE_GFX12_DCC flag and keep a flag that
-    checks the BO pinning and for a specific hw generation.
+-:230: CHECK:CAMELCASE: Avoid CamelCase: <ucI2CAddr>
+#230: FILE: drivers/gpu/drm/amd/display/dc/bios/bios_parser.c:1887:
++	info->i2c_target_address = record->ucI2CAddr;
 
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-Acked-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Frank Min <Frank.Min@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h      |  6 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 39 +++++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c       | 15 ++++++++
- 3 files changed, 58 insertions(+), 2 deletions(-)
+-:311: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#311: FILE: drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h:95:
++	uint32_t i2c_target_address;
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index febca3130497..654d0548a3f8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -156,6 +156,8 @@ struct amdgpu_gmc_funcs {
- 				      uint64_t addr, uint64_t *flags);
- 	/* get the amount of memory used by the vbios for pre-OS console */
- 	unsigned int (*get_vbios_fb_size)(struct amdgpu_device *adev);
-+	/* get the DCC buffer alignment */
-+	u64 (*get_dcc_alignment)(struct amdgpu_device *adev);
- 
- 	enum amdgpu_memory_partition (*query_mem_partition_mode)(
- 		struct amdgpu_device *adev);
-@@ -363,6 +365,10 @@ struct amdgpu_gmc {
- 	(adev)->gmc.gmc_funcs->override_vm_pte_flags			\
- 		((adev), (vm), (addr), (pte_flags))
- #define amdgpu_gmc_get_vbios_fb_size(adev) (adev)->gmc.gmc_funcs->get_vbios_fb_size((adev))
-+#define amdgpu_gmc_get_dcc_alignment(_adev) ({			\
-+	typeof(_adev) (adev) = (_adev);				\
-+	((adev)->gmc.gmc_funcs->get_dcc_alignment((adev)));	\
-+})
- 
- /**
-  * amdgpu_gmc_vram_full_visible - Check if full VRAM is visible through the BAR
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index f91cc149d06c..ace9d61fc512 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -512,6 +512,17 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
- 
- 	remaining_size = (u64)vres->base.size;
-+	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-+	    (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-+	     amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1))) {
-+		u64 adjust_size;
-+
-+		if (adev->gmc.gmc_funcs->get_dcc_alignment) {
-+			adjust_size = amdgpu_gmc_get_dcc_alignment(adev);
-+			remaining_size = roundup_pow_of_two(remaining_size + adjust_size);
-+			vres->flags |= DRM_BUDDY_TRIM_DISABLE;
-+		}
-+	}
- 
- 	mutex_lock(&mgr->lock);
- 	while (remaining_size) {
-@@ -521,8 +532,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 			min_block_size = mgr->default_page_size;
- 
- 		size = remaining_size;
--		if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
--		    !(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
-+
-+		if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-+		    (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-+		     amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1)))
-+			min_block_size = size;
-+		else if ((size >= (u64)pages_per_block << PAGE_SHIFT) &&
-+			 !(size & (((u64)pages_per_block << PAGE_SHIFT) - 1)))
- 			min_block_size = (u64)pages_per_block << PAGE_SHIFT;
- 
- 		BUG_ON(min_block_size < mm->chunk_size);
-@@ -553,6 +569,25 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 	}
- 	mutex_unlock(&mgr->lock);
- 
-+	if (bo->flags & AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS &&
-+	    (amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 0) ||
-+	     amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 0, 1))) {
-+		struct drm_buddy_block *dcc_block;
-+		u64 dcc_start, alignment;
-+
-+		dcc_block = amdgpu_vram_mgr_first_block(&vres->blocks);
-+		dcc_start = amdgpu_vram_mgr_block_start(dcc_block);
-+
-+		if (adev->gmc.gmc_funcs->get_dcc_alignment) {
-+			alignment = amdgpu_gmc_get_dcc_alignment(adev);
-+			/* Adjust the start address for DCC buffers only */
-+			dcc_start = roundup(dcc_start, alignment);
-+			drm_buddy_block_trim(mm, &dcc_start,
-+					     (u64)vres->base.size,
-+					     &vres->blocks);
-+		}
-+	}
-+
- 	vres->base.start = 0;
- 	size = max_t(u64, amdgpu_vram_mgr_blocks_size(&vres->blocks),
- 		     vres->base.size);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-index fd3ac483760e..4259edcdec8a 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-@@ -542,6 +542,20 @@ static unsigned gmc_v12_0_get_vbios_fb_size(struct amdgpu_device *adev)
- 	return 0;
- }
- 
-+static u64 gmc_v12_0_get_dcc_alignment(struct amdgpu_device *adev)
-+{
-+	u64 max_tex_channel_caches, alignment;
-+
-+	max_tex_channel_caches = adev->gfx.config.max_texture_channel_caches;
-+	if (is_power_of_2(max_tex_channel_caches))
-+		alignment = (max_tex_channel_caches / SZ_4) * max_tex_channel_caches;
-+	else
-+		alignment = roundup_pow_of_two(max_tex_channel_caches) *
-+				max_tex_channel_caches;
-+
-+	return (u64)alignment * SZ_1K;
-+}
-+
- static const struct amdgpu_gmc_funcs gmc_v12_0_gmc_funcs = {
- 	.flush_gpu_tlb = gmc_v12_0_flush_gpu_tlb,
- 	.flush_gpu_tlb_pasid = gmc_v12_0_flush_gpu_tlb_pasid,
-@@ -551,6 +565,7 @@ static const struct amdgpu_gmc_funcs gmc_v12_0_gmc_funcs = {
- 	.get_vm_pde = gmc_v12_0_get_vm_pde,
- 	.get_vm_pte = gmc_v12_0_get_vm_pte,
- 	.get_vbios_fb_size = gmc_v12_0_get_vbios_fb_size,
-+	.get_dcc_alignment = gmc_v12_0_get_dcc_alignment,
- };
- 
- static void gmc_v12_0_set_gmc_funcs(struct amdgpu_device *adev)
--- 
-2.25.1
+-:324: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#324: FILE: drivers/gpu/drm/amd/include/atombios.h:8506:
++  UCHAR   ucTargetAddr;$
+
+-:337: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#337: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:537:
++  uint8_t  board_i2c_feature_target_addr;$
+
+-:337: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#337: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:537:
++  uint8_t  board_i2c_feature_target_addr;
+
+-:346: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#346: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:565:
++  uint8_t  board_i2c_feature_target_addr;$
+
+-:346: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#346: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:565:
++  uint8_t  board_i2c_feature_target_addr;
+
+-:356: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#356: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:593:
++	uint8_t  board_i2c_feature_target_addr;
+
+-:357: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#357: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:594:
++	uint8_t  ras_rom_i2c_target_addr;
+
+-:367: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#367: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:629:
++  uint8_t  board_i2c_feature_target_addr;$
+
+-:367: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#367: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:629:
++  uint8_t  board_i2c_feature_target_addr;
+
+-:368: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#368: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:630:
++  uint8_t  ras_rom_i2c_target_addr;$
+
+-:368: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#368: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:630:
++  uint8_t  ras_rom_i2c_target_addr;
+
+-:377: WARNING:LONG_LINE_COMMENT: line length of 122 exceeds 100 columns
+#377: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:833:
++  uint8_t i2c_target_addr;                   //The target address, it's 0 when the record is attached to connector for DDC
+
+-:377: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#377: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:833:
++  uint8_t i2c_target_addr;                   //The target address, it's 0 when the record is attached to connector for DDC$
+
+-:377: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#377: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:833:
++  uint8_t i2c_target_addr;                   //The target address, it's 0 when the record is attached to connector for DDC
+
+-:386: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#386: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2072:
++  uint32_t smb_target_address;$
+
+-:386: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#386: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2072:
++  uint32_t smb_target_address;
+
+-:395: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#395: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2129:
++	uint32_t smb_target_address;
+
+-:404: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#404: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2184:
++	uint32_t smb_target_address;
+
+-:413: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#413: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2395:
++  uint32_t  targetaddress;$
+
+-:413: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#413: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:2395:
++  uint32_t  targetaddress;
+
+-:422: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#422: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:3556:
++   uint8_t  i2c_target_addr;$
+
+-:422: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#422: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:3556:
++   uint8_t  i2c_target_addr;
+
+-:431: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#431: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:4198:
++  uint8_t   target_addr;$
+
+-:431: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#431: FILE: drivers/gpu/drm/amd/include/atomfirmware.h:4198:
++  uint8_t   target_addr;
+
+-:445: CHECK:CAMELCASE: Avoid CamelCase: <I2cControllers>
+#445: FILE: drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_processpptables.c:787:
++		ppsmc_pptable->I2cControllers[i].TargetAddress =
+
+-:459: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#459: FILE: drivers/gpu/drm/amd/pm/powerplay/inc/smu11_driver_if.h:290:
++  uint32_t TargetAddress;$
+
+-:459: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#459: FILE: drivers/gpu/drm/amd/pm/powerplay/inc/smu11_driver_if.h:290:
++  uint32_t TargetAddress;
+
+-:472: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#472: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_arcturus.h:266:
++  uint32_t  TargetAddress;$
+
+-:472: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#472: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_arcturus.h:266:
++  uint32_t  TargetAddress;
+
+-:485: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#485: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_navi10.h:270:
++  uint32_t  TargetAddress;$
+
+-:485: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#485: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_navi10.h:270:
++  uint32_t  TargetAddress;
+
+-:498: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#498: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_sienna_cichlid.h:345:
++  uint8_t   TargetAddress;$
+
+-:498: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#498: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu11_driver_if_sienna_cichlid.h:345:
++  uint8_t   TargetAddress;
+
+-:511: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#511: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_aldebaran.h:170:
++  uint8_t   TargetAddress;$
+
+-:511: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#511: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_aldebaran.h:170:
++  uint8_t   TargetAddress;
+
+-:524: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#524: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_0.h:322:
++  uint8_t   TargetAddress;$
+
+-:524: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#524: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_0.h:322:
++  uint8_t   TargetAddress;
+
+-:537: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#537: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_7.h:323:
++  uint8_t   TargetAddress;$
+
+-:537: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#537: FILE: drivers/gpu/drm/amd/pm/swsmu/inc/pmfw_if/smu13_driver_if_v13_0_7.h:323:
++  uint8_t   TargetAddress;
+
+-:552: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#552: FILE: drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c:1960:
++		dev_info(smu->adev->dev, "                   .TargetAddress = 0x%x\n",
++				pptable->I2cControllers[i].TargetAddress);
+
+-:567: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#567: FILE: drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c:2998:
++		dev_info(smu->adev->dev, "                   .TargetAddress = 0x%x\n",
++				pptable->I2cControllers[i].TargetAddress);
+
+-:578: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#578: FILE: drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c:3637:
++		dev_info(smu->adev->dev, "                   .TargetAddress = 0x%x\n",
++				pptable->I2cControllers[i].TargetAddress);
+
+-:591: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#591: FILE: drivers/gpu/drm/radeon/atombios.h:1837:
++  UCHAR     ucTargetAddr;        //Read from which slave$
+
+-:600: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#600: FILE: drivers/gpu/drm/radeon/atombios.h:1861:
++  UCHAR     ucTargetAddr;        //Write to which slave$
+
+-:609: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#609: FILE: drivers/gpu/drm/radeon/atombios.h:1870:
++  UCHAR     ucTargetAddr;        //Write to which slave$
+
+-:618: WARNING:LONG_LINE: line length of 135 exceeds 100 columns
+#618: FILE: drivers/gpu/drm/radeon/atombios.h:4744:
++	UCHAR	ucPwrSensTargetAddr;									// Target address if I2C detect
+
+-:618: CHECK:CAMELCASE: Avoid CamelCase: <ucPwrSensTargetAddr>
+#618: FILE: drivers/gpu/drm/radeon/atombios.h:4744:
++	UCHAR	ucPwrSensTargetAddr;									// Target address if I2C detect
+
+-:627: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
+#627: FILE: drivers/gpu/drm/radeon/atombios.h:5452:
++  UCHAR		                        ucSSChipTargetAddr;      //Target Address to set up this SS chip
+
+-:627: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#627: FILE: drivers/gpu/drm/radeon/atombios.h:5452:
++  UCHAR^I^I                        ucSSChipTargetAddr;      //Target Address to set up this SS chip$
+
+-:627: CHECK:CAMELCASE: Avoid CamelCase: <ucSSChipTargetAddr>
+#627: FILE: drivers/gpu/drm/radeon/atombios.h:5452:
++  UCHAR		                        ucSSChipTargetAddr;      //Target Address to set up this SS chip
+
+-:636: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#636: FILE: drivers/gpu/drm/radeon/atombios.h:7232:
++  UCHAR   ucTargetAddr;$
+
+-:646: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#646: FILE: drivers/gpu/drm/radeon/atombios.h:7602:
++  UCHAR                      ucControllerAddress;    // Address to control Controller xTMDS Chip$
+
+-:646: CHECK:CAMELCASE: Avoid CamelCase: <ucControllerAddress>
+#646: FILE: drivers/gpu/drm/radeon/atombios.h:7602:
++  UCHAR                      ucControllerAddress;    // Address to control Controller xTMDS Chip
+
+-:647: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#647: FILE: drivers/gpu/drm/radeon/atombios.h:7603:
++  UCHAR                      ucTargetAddress;     // Address to control Target xTMDS Chip$
+
+-:647: CHECK:CAMELCASE: Avoid CamelCase: <ucTargetAddress>
+#647: FILE: drivers/gpu/drm/radeon/atombios.h:7603:
++  UCHAR                      ucTargetAddress;     // Address to control Target xTMDS Chip
+
+-:734: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#734: FILE: drivers/gpu/drm/radeon/radeon_combios.c:2890:
++	uint8_t blocks, target_addr, rev;
+
+-:820: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#820: FILE: drivers/gpu/drm/radeon/radeon_mode.h:412:
++	uint8_t target_addr;
+
+total: 0 errors, 29 warnings, 33 checks, 645 lines checked
+4b45b8169b87 drm/gma500: Make I2C terminology more inclusive
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+
+-:49: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#49: FILE: drivers/gpu/drm/gma500/intel_bios.c:361:
++		if (p_child->target_addr != TARGET_ADDR1 &&
++			p_child->target_addr != TARGET_ADDR2) {
+
+-:228: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#228: FILE: drivers/gpu/drm/gma500/psb_intel_sdvo.c:482:
++	msgs[i+1].addr = psb_intel_sdvo->target_addr;
+ 	      ^
+
+-:234: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#234: FILE: drivers/gpu/drm/gma500/psb_intel_sdvo.c:487:
++	msgs[i+2].addr = psb_intel_sdvo->target_addr;
+ 	      ^
+
+total: 0 errors, 1 warnings, 3 checks, 211 lines checked
+63fa71c4d6dc drm/i915: Make I2C terminology more inclusive
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+
+-:333: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#333: FILE: drivers/gpu/drm/i915/display/dvo_sil164.c:157:
++		DRM_DEBUG_KMS("sil164 not detected got %d: from %s Target %d.\n",
++			  ch, adapter->name, dvo->target_addr);
+
+-:344: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#344: FILE: drivers/gpu/drm/i915/display/dvo_sil164.c:166:
++		DRM_DEBUG_KMS("sil164 not detected got %d: from %s Target %d.\n",
++			  ch, adapter->name, dvo->target_addr);
+
+-:736: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#736: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:502:
++	msgs[i+1].addr = intel_sdvo->target_addr;
+ 	      ^
+
+-:742: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#742: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:507:
++	msgs[i+2].addr = intel_sdvo->target_addr;
+ 	      ^
+
+total: 0 errors, 1 warnings, 4 checks, 783 lines checked
+057364ecfcc0 sfc: falcon: Make I2C terminology more inclusive
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+38a0e4c90ddb fbdev/smscufx: Make I2C terminology more inclusive
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+c4cf8fb66680 fbdev/viafb: Make I2C terminology more inclusive
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+
+-:87: CHECK:SPACING: No space is necessary after a cast
+#87: FILE: drivers/video/fbdev/via/dvi.c:147:
++			   (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_target_addr,
+
+-:96: CHECK:SPACING: No space is necessary after a cast
+#96: FILE: drivers/video/fbdev/via/dvi.c:155:
++			    (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_target_addr,
+
+-:174: CHECK:SPACING: No space is necessary after a cast
+#174: FILE: drivers/video/fbdev/via/lcd.c:330:
++			(u8) viaparinfo->chip_info->lvds_chip_info.lvds_chip_target_addr,
+
+-:209: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#209: FILE: drivers/video/fbdev/via/via_i2c.c:118:
++	msgs[0].addr = msgs[1].addr = target_addr / 2;
+
+-:245: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#245: FILE: drivers/video/fbdev/via/via_i2c.c:162:
++	msgs[0].addr = msgs[1].addr = target_addr / 2;
+
+total: 0 errors, 1 warnings, 5 checks, 219 lines checked
+
 
