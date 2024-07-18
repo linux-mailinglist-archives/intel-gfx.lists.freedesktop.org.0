@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E319349A8
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jul 2024 10:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E425A9349AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jul 2024 10:17:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E60F110E5C6;
-	Thu, 18 Jul 2024 08:17:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 493D910E5A7;
+	Thu, 18 Jul 2024 08:17:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8uEAAkh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K7BkPkAS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C2C610E5BF
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jul 2024 08:17:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D57610E5C0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Jul 2024 08:17:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721290630; x=1752826630;
+ t=1721290632; x=1752826632;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kyamOTV6u51F38u710zWKDMw25AcA8PzsuErGul2p1Y=;
- b=Q8uEAAkhL470fc1B7Yw5G+hW+Vd8NRscyUxy4hh/OUNYe2okeSpmjJRz
- R4LCP1ZxqsNL6BR1w42YMxAkDM6XDx01r422vrdnzsCNOobQGl1Hinw3z
- joeexDcE4stCQ+jLAXGCE92eSqSk5kkYrLQGFcbfP+dNMIayT6iqwufjW
- 9PSmvfVJ3rDmvZL75XB9XK/STfaOF4KPgpm9S6nByLKvnVwfAcD4rb9g4
- aUNAVgXFLwp4tMECL1DENb9CYS7dKWLlq4Xu7RJVjAfVIWD7anstzjTd8
- bSvlK3Crq8C5pu6sezH6AbzSfweFxhtseyZyTYfc2TdEc69X/+v8sMw3A Q==;
-X-CSE-ConnectionGUID: w2VJKRGJRZKHLddWkF+5WQ==
-X-CSE-MsgGUID: 77Zu95WyQdad8Fq4NQn28g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18706031"
-X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="18706031"
+ bh=JPXI3V5Ww5uU4nzB4Xz91g7thOaO9H/7YPtEKecxHIo=;
+ b=K7BkPkASuiDrCpl+EwnD2CRV9SRozGj00yQXm3uU8SLZhpBkFq//vkG8
+ /SKsEZkdBAgtM0Gv8Qkmv7yCkXWkvV2dL4lXN/V4oQNcbmGy7RhMrpd8r
+ f47Enuy9RMzjqsdqY84067NA/kLzcYs/8rBA49+1HxQHAUeSsKN4Iq0sl
+ CLkkxLpnW93xdwfvjTtd5DFvCAp/ZePXjNvU2zqBMubVBl65baK/OFEPa
+ 4UWyPzuZKhiT069o6oK9xWxlQGQu/ZLHoR8leqJmXl/EKHsJRT13jDP5B
+ V57lClE9VaLmUMs8dyNPQN7FqAdbognLcnIiK2qf2qqh7ysLZK+KvrVDu g==;
+X-CSE-ConnectionGUID: qgJHiAV1SN6x6vuQgunMcw==
+X-CSE-MsgGUID: WGFdNDOoTQ6yhKSN3S3n0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11136"; a="18706040"
+X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="18706040"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 01:17:10 -0700
-X-CSE-ConnectionGUID: Deftcm4uSqmE4iFqDolQ/g==
-X-CSE-MsgGUID: CKRc/59USq6v5M7BG8VlFg==
+ 18 Jul 2024 01:17:12 -0700
+X-CSE-ConnectionGUID: vcG4YtM7SSSrQtoTfTbFcg==
+X-CSE-MsgGUID: miSBd+wWTECTPiYVTgCgvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="51400589"
+X-IronPort-AV: E=Sophos;i="6.09,217,1716274800"; d="scan'208";a="51400595"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2024 01:17:08 -0700
+ 18 Jul 2024 01:17:10 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: stanislav.lisovskiy@intel.com, jani.saarinen@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 04/12] drm/i915/display: Use joined pipes in dsc helpers for
- slices, bpp
-Date: Thu, 18 Jul 2024 13:47:55 +0530
-Message-ID: <20240718081803.3338564-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/12] drm/i915: Add some essential functionality for joiners
+Date: Thu, 18 Jul 2024 13:47:56 +0530
+Message-ID: <20240718081803.3338564-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240718081803.3338564-1-ankit.k.nautiyal@intel.com>
 References: <20240718081803.3338564-1-ankit.k.nautiyal@intel.com>
@@ -69,225 +68,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation of ultrajoiner, use number of joined pipes in the dsc
-helpers to compute dsc slices and max compressed bpp, instead of using
-the joiner flag.
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
+In most of the cases we now try to avoid mentioning things like
+"bigjoiner" or "ultrajoiner" trying to unify the API and refer
+mostly to all this functionality as "joiner".
+In majority cases that should be way to go.
+However in some cases we still need to distinguish between
+bigjoiner primaries and secondaries(such as DSC register programming).
+
+Create correspondent helper functions and start using them,
+in order be prepared for adding ultrajoiner functionality.
+
+v2: Fixed checkpatch warnings (Ankit)
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 27 +++++++++++----------
- drivers/gpu/drm/i915/display/intel_dp.h     |  4 +--
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 11 +++++----
- 3 files changed, 22 insertions(+), 20 deletions(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 75 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display.h  |  8 +-
+ .../drm/i915/display/intel_modeset_verify.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  4 +-
+ 5 files changed, 76 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 320d8b6d1bce..ff4c123de0ed 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -752,14 +752,14 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
- static
- u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
- 				       u32 mode_clock, u32 mode_hdisplay,
--				       bool bigjoiner)
-+				       enum intel_joiner_pipe_count joined_pipes)
- {
- 	u32 max_bpp_small_joiner_ram;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index e979786aa5cf..9862d0339e6a 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -724,7 +724,7 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
  
- 	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
- 	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) / mode_hdisplay;
+ 	if (new_crtc_state && intel_crtc_is_joiner_secondary(new_crtc_state)) {
+ 		struct intel_crtc *primary_crtc =
+-			intel_primary_crtc(new_crtc_state);
++			intel_joiner_primary_crtc(new_crtc_state);
+ 		struct intel_plane *primary_crtc_plane =
+ 			intel_crtc_get_plane(primary_crtc, plane->id);
  
--	if (bigjoiner) {
-+	if (joined_pipes == INTEL_PIPE_JOINER_BIG) {
- 		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
- 		/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
- 		int ppc = 2;
-@@ -778,7 +778,7 @@ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
- u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 					u32 link_clock, u32 lane_count,
- 					u32 mode_clock, u32 mode_hdisplay,
--					bool bigjoiner,
-+					enum intel_joiner_pipe_count joined_pipes,
- 					enum intel_output_format output_format,
- 					u32 pipe_bpp,
- 					u32 timeslots)
-@@ -824,7 +824,7 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 				intel_dp_mode_to_fec_clock(mode_clock));
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 26e4b0c2e9f7..38e7c6811bf3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -252,6 +252,68 @@ static enum pipe joiner_primary_pipe(const struct intel_crtc_state *crtc_state)
+ 	return ffs(crtc_state->joiner_pipes) - 1;
+ }
  
- 	joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, mode_clock,
--							    mode_hdisplay, bigjoiner);
-+							    mode_hdisplay, joined_pipes);
- 	bits_per_pixel = min(bits_per_pixel, joiner_max_bpp);
- 
- 	bits_per_pixel = intel_dp_dsc_nearest_valid_bpp(i915, bits_per_pixel, pipe_bpp);
-@@ -834,7 +834,7 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 
- u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 				int mode_clock, int mode_hdisplay,
--				bool bigjoiner)
-+				enum intel_joiner_pipe_count joined_pipes)
- {
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	u8 min_slice_count, i;
-@@ -868,14 +868,14 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 
- 	/* Find the closest match to the valid slice count values */
- 	for (i = 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
--		u8 test_slice_count = valid_dsc_slicecount[i] << bigjoiner;
-+		u8 test_slice_count = valid_dsc_slicecount[i] << (joined_pipes / 2);
- 
- 		if (test_slice_count >
- 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
- 			break;
- 
- 		/* big joiner needs small joiner to be enabled */
--		if (bigjoiner && test_slice_count < 4)
-+		if (joined_pipes == INTEL_PIPE_JOINER_BIG && test_slice_count < 4)
- 			continue;
- 
- 		if (min_slice_count <= test_slice_count)
-@@ -1201,7 +1201,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	u16 dsc_max_compressed_bpp = 0;
- 	u8 dsc_slice_count = 0;
- 	enum drm_mode_status status;
--	bool dsc = false, joiner = false;
-+	bool dsc = false;
- 	enum intel_joiner_pipe_count joined_pipes = INTEL_PIPE_JOINER_NONE;
- 
- 	status = intel_cpu_transcoder_mode_valid(dev_priv, mode);
-@@ -1225,7 +1225,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 
- 	if (intel_dp_need_joiner(intel_dp, connector,
- 				 mode->hdisplay, target_clock)) {
--		joiner = true;
- 		joined_pipes = INTEL_PIPE_JOINER_BIG;
- 		max_dotclk *= INTEL_PIPE_JOINER_BIG;
- 	}
-@@ -1272,14 +1271,14 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 								    max_lanes,
- 								    target_clock,
- 								    mode->hdisplay,
--								    joiner,
-+								    joined_pipes,
- 								    output_format,
- 								    pipe_bpp, 64);
- 			dsc_slice_count =
- 				intel_dp_dsc_get_slice_count(connector,
- 							     target_clock,
- 							     mode->hdisplay,
--							     joiner);
-+							     joined_pipes);
- 		}
- 
- 		dsc = dsc_max_compressed_bpp && dsc_slice_count;
-@@ -1995,6 +1994,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
- 	int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
- 	int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
- 	int dsc_joiner_max_bpp;
-+	int joined_pipes = intel_joiner_num_pipes(pipe_config);
- 
- 	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
- 	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
-@@ -2009,7 +2009,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
- 
- 	dsc_joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, adjusted_mode->clock,
- 								adjusted_mode->hdisplay,
--								pipe_config->joiner_pipes);
-+								joined_pipes);
- 	dsc_max_bpp = min(dsc_max_bpp, dsc_joiner_max_bpp);
- 	dsc_max_bpp = min(dsc_max_bpp, to_bpp_int(limits->link.max_bpp_x16));
- 
-@@ -2194,6 +2194,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 		to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode =
- 		&pipe_config->hw.adjusted_mode;
-+	int joined_pipes = intel_joiner_num_pipes(pipe_config);
- 	int ret;
- 
- 	pipe_config->fec_enable = pipe_config->fec_enable ||
-@@ -2243,7 +2244,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 			intel_dp_dsc_get_slice_count(connector,
- 						     adjusted_mode->crtc_clock,
- 						     adjusted_mode->crtc_hdisplay,
--						     pipe_config->joiner_pipes);
-+						     joined_pipes);
- 		if (!dsc_dp_slice_count) {
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "Compressed Slice Count not supported\n");
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index a8116210c618..acd05dc7b8ad 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -142,7 +142,7 @@ int intel_dp_dsc_compute_max_bpp(const struct intel_connector *connector,
- u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
- 					u32 link_clock, u32 lane_count,
- 					u32 mode_clock, u32 mode_hdisplay,
--					bool bigjoiner,
-+					enum intel_joiner_pipe_count joined_pipes,
- 					enum intel_output_format output_format,
- 					u32 pipe_bpp,
- 					u32 timeslots);
-@@ -152,7 +152,7 @@ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector
- 					 int bpc);
- u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 				int mode_clock, int mode_hdisplay,
--				bool bigjoiner);
-+				enum intel_joiner_pipe_count joined_pipes);
- bool intel_dp_need_joiner(struct intel_dp *intel_dp,
- 			  struct intel_connector *connector,
- 			  int hdisplay, int clock);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 3f45ac7ca4d5..31a2acb7fa11 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -101,11 +101,13 @@ static int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
- 	flags |= crtc_state->fec_enable ? DRM_DP_BW_OVERHEAD_FEC : 0;
- 
- 	if (dsc) {
-+		int joined_pipes = intel_joiner_num_pipes(crtc_state);
++int intel_joiner_num_pipes(const struct intel_crtc_state *crtc_state)
++{
++	return hweight8(crtc_state->joiner_pipes);
++}
 +
- 		flags |= DRM_DP_BW_OVERHEAD_DSC;
- 		dsc_slice_count = intel_dp_dsc_get_slice_count(connector,
- 							       adjusted_mode->clock,
- 							       adjusted_mode->hdisplay,
--							       crtc_state->joiner_pipes);
-+							       joined_pipes);
- 	}
++bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state *crtc_state)
++{
++	return intel_joiner_num_pipes(crtc_state) == 4;
++}
++
++static bool intel_is_joiner(const struct intel_crtc_state *crtc_state)
++{
++	return intel_joiner_num_pipes(crtc_state) > 1;
++}
++
++static u8 bigjoiner_primary_pipes(const struct intel_crtc_state *crtc_state)
++{
++	int lsb = ffs(crtc_state->joiner_pipes) - 1;
++	int msb = fls(crtc_state->joiner_pipes) - 1;
++	int i;
++	u8 bigjoiner_primary_mask = 0;
++
++	for (i = lsb; i < msb; i += 4) {
++		/*
++		 * Regardless of how joiner_pipes mask is set, currently
++		 * we always assume, that primary pipe bit goes before secondary
++		 * pipe bit. So in each set of 2 bits, least significant bit is
++		 * bigjoiner primary pipe and most significant bit is secondary pipe.
++		 */
++		bigjoiner_primary_mask |=
++			((BIT(0) | BIT(2)) << i) & crtc_state->joiner_pipes;
++	}
++
++	return bigjoiner_primary_mask;
++}
++
++bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (!intel_is_joiner(crtc_state))
++		return false;
++
++	return BIT(crtc->pipe) & bigjoiner_primary_pipes(crtc_state);
++}
++
++bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state)
++{
++	if (!intel_is_joiner(crtc_state))
++		return false;
++
++	return !intel_crtc_is_bigjoiner_primary(crtc_state);
++}
++
++bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	return intel_crtc_is_ultrajoiner(crtc_state) &&
++		(crtc->pipe == joiner_primary_pipe(crtc_state));
++}
++
+ u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
+ {
+ 	if (crtc_state->joiner_pipes)
+@@ -276,11 +338,6 @@ bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state)
+ 		crtc->pipe == joiner_primary_pipe(crtc_state);
+ }
  
- 	overhead = drm_dp_bw_overhead(crtc_state->lane_count,
-@@ -1393,7 +1395,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 	int max_dotclk = to_i915(connector->dev)->display.cdclk.max_dotclk_freq;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
- 	int ret;
--	bool dsc = false, joiner = false;
-+	bool dsc = false;
- 	u16 dsc_max_compressed_bpp = 0;
- 	u8 dsc_slice_count = 0;
- 	int target_clock = mode->clock;
-@@ -1439,7 +1441,6 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 	 */
- 	if (intel_dp_need_joiner(intel_dp, intel_connector,
- 				 mode->hdisplay, target_clock)) {
--		joiner = true;
- 		joined_pipes = INTEL_PIPE_JOINER_BIG;
- 		max_dotclk *= INTEL_PIPE_JOINER_BIG;
- 	}
-@@ -1468,14 +1469,14 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 								    max_lanes,
- 								    target_clock,
- 								    mode->hdisplay,
--								    joiner,
-+								    joined_pipes,
- 								    INTEL_OUTPUT_FORMAT_RGB,
- 								    pipe_bpp, 64);
- 			dsc_slice_count =
- 				intel_dp_dsc_get_slice_count(intel_connector,
- 							     target_clock,
- 							     mode->hdisplay,
--							     joiner);
-+							     joined_pipes);
- 		}
+-int intel_joiner_num_pipes(const struct intel_crtc_state *crtc_state)
+-{
+-	return hweight8(crtc_state->joiner_pipes);
+-}
+-
+ u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -288,7 +345,7 @@ u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state)
+ 	return BIT(crtc->pipe) | crtc_state->joiner_pipes;
+ }
  
- 		dsc = dsc_max_compressed_bpp && dsc_slice_count;
+-struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state)
++struct intel_crtc *intel_joiner_primary_crtc(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+ 
+@@ -808,7 +865,7 @@ intel_get_crtc_new_encoder(const struct intel_atomic_state *state,
+ 	int num_encoders = 0;
+ 	int i;
+ 
+-	primary_crtc = intel_primary_crtc(crtc_state);
++	primary_crtc = intel_joiner_primary_crtc(crtc_state);
+ 
+ 	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
+ 		if (connector_state->crtc != &primary_crtc->base)
+@@ -4527,7 +4584,7 @@ copy_joiner_crtc_state_nomodeset(struct intel_atomic_state *state,
+ {
+ 	struct intel_crtc_state *secondary_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, secondary_crtc);
+-	struct intel_crtc *primary_crtc = intel_primary_crtc(secondary_crtc_state);
++	struct intel_crtc *primary_crtc = intel_joiner_primary_crtc(secondary_crtc_state);
+ 	const struct intel_crtc_state *primary_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, primary_crtc);
+ 
+@@ -4547,7 +4604,7 @@ copy_joiner_crtc_state_modeset(struct intel_atomic_state *state,
+ {
+ 	struct intel_crtc_state *secondary_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, secondary_crtc);
+-	struct intel_crtc *primary_crtc = intel_primary_crtc(secondary_crtc_state);
++	struct intel_crtc *primary_crtc = intel_joiner_primary_crtc(secondary_crtc_state);
+ 	const struct intel_crtc_state *primary_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, primary_crtc);
+ 	struct intel_crtc_state *saved_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index bf665f947b97..35e68e4cc712 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -424,10 +424,14 @@ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port);
+ bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
+ bool is_trans_port_sync_master(const struct intel_crtc_state *state);
+ u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state);
+-bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
+ bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
++bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
++bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
++bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
++bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state *crtc_state);
++bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state *crtc_state);
+ u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
+-struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
++struct intel_crtc *intel_joiner_primary_crtc(const struct intel_crtc_state *crtc_state);
+ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
+ bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			       const struct intel_crtc_state *pipe_config,
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+index 3491db5cad31..b53b810c6470 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+@@ -193,7 +193,7 @@ verify_crtc_state(struct intel_atomic_state *state,
+ 			"transitional active state does not match atomic hw state (expected %i, found %i)\n",
+ 			sw_crtc_state->hw.active, crtc->active);
+ 
+-	primary_crtc = intel_primary_crtc(sw_crtc_state);
++	primary_crtc = intel_joiner_primary_crtc(sw_crtc_state);
+ 
+ 	for_each_encoder_on_crtc(dev, &primary_crtc->base, encoder) {
+ 		enum pipe pipe;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index b9687b7692b8..11058bb37d5a 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -761,7 +761,7 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+ 	u32 dss_ctl1_val = 0;
+ 
+ 	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable) {
+-		if (intel_crtc_is_joiner_secondary(crtc_state))
++		if (intel_crtc_is_bigjoiner_secondary(crtc_state))
+ 			dss_ctl1_val |= UNCOMPRESSED_JOINER_SECONDARY;
+ 		else
+ 			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
+@@ -790,7 +790,7 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
+ 	}
+ 	if (crtc_state->joiner_pipes) {
+ 		dss_ctl1_val |= BIG_JOINER_ENABLE;
+-		if (!intel_crtc_is_joiner_secondary(crtc_state))
++		if (intel_crtc_is_bigjoiner_primary(crtc_state))
+ 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+ 	}
+ 	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
 -- 
 2.45.2
 
