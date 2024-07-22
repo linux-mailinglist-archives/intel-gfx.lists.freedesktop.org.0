@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13298938B2F
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 10:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F12C938B33
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 10:26:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFFD210E410;
-	Mon, 22 Jul 2024 08:26:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEBC310E407;
+	Mon, 22 Jul 2024 08:26:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LS60c2v4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHDwcwJR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEDFC10E40F
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 08:26:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74CD010E40A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 08:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721636770; x=1753172770;
+ t=1721636772; x=1753172772;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wz1Suvt6U5UlydbtyzxfM1hUp2uSzXgSBvucOp3qjBw=;
- b=LS60c2v4UCL197dYTx6TQT25OSUSv1FNA4NOlOsBjSwL+rk8QnTU2RJQ
- iqklscahX6YG41hnhk9P8CCQFIsoDQu3f9HpuoXZ0xU5qR9iKSbkemPti
- Qv4k1ajhns30fWz0PuiyFr6rC1ZH52hsdPTHKDDc3YW1/TYtfaj6kDCz7
- YmIDdvBDTxGaCBhv4rkw8NQa8Y0vsYIUOYL7KQBFkRPEMRAnvhAfC1KAO
- CTJGWWDSc82J4kFp2TaeBj/BGmfvazOqND04kKtzqckTR5YTZ0VllEjh6
- pXPCCzkvgyVjBGWvZWPRPiCxJCrA44ekf73G40AEGVVmmN4CueQqWIdRQ Q==;
-X-CSE-ConnectionGUID: 1GhjjBHQTTS8b0aCwKPsfA==
-X-CSE-MsgGUID: oK/obCrCTISfehNU/SH1rQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="29806936"
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="29806936"
+ bh=xwZC+8BQx0Ju6kd3npKEUkokpAlKZZoB5HJtWHe8kFc=;
+ b=ZHDwcwJRjKAxGKFEWDp8x8YYLuiT8t50hXOCzLahcKci+WCjwPenBGuW
+ Tbi5h9feefQRCfiWHD37w7xvQs/cw5Q+En1bb5K3B4uUQZsd+HQ8oVWlt
+ Otfg7067aZyeqsGSlCDs/l0LYIejzHCzazw5zxKkH3sQO3xEaUnnAJQuE
+ 0loPHMut9UakgoX/O3uUaf2mVtH3wvxptCP63Mgl31L+RlybNZWmX+FcC
+ xlw9cH8L9A7beMQvq7i94JPtBXudLRISLAIpH4vEJQQe4xJM+Vm5Gs148
+ lqxs9NrL52QzcF94cY0JZAmUEJBWKjk87QKg5BWCF3zf7x9xR1kVxqCJI A==;
+X-CSE-ConnectionGUID: 6pfQHhmZSa2p5St+zALLxQ==
+X-CSE-MsgGUID: /Uf2wMUGSreUBvy0ycuWQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="29806940"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="29806940"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:26:10 -0700
-X-CSE-ConnectionGUID: tSkv3DvmRAGtDl1MB68XGg==
-X-CSE-MsgGUID: dYXnOmwvT7+XIRBuu3t5Pw==
+ 22 Jul 2024 01:26:11 -0700
+X-CSE-ConnectionGUID: CMjzWDZ1TGGXtpMWRf+8Cw==
+X-CSE-MsgGUID: QueJC7mZQ46FFaKV8WDfXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51752897"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51752906"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:26:07 -0700
+ 22 Jul 2024 01:26:09 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 04/10] drm/i915/vrr: Compute vrr vsync if platforms support it
-Date: Mon, 22 Jul 2024 13:56:59 +0530
-Message-ID: <20240722082705.3635041-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/10] drm/i915/hdmi: Use VRR Timing generator for HDMI
+Date: Mon, 22 Jul 2024 13:57:00 +0530
+Message-ID: <20240722082705.3635041-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240722082705.3635041-1-ankit.k.nautiyal@intel.com>
 References: <20240722082705.3635041-1-ankit.k.nautiyal@intel.com>
@@ -68,31 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Previously, TRANS_VRR_VSYNC was exclusively used for panels with
-adaptive-sync SDP support in VRR scenarios. However, to drive fixed refresh
-rates using the VRR Timing generator, we now need to program
-TRANS_VRR_VSYNC regardless of adaptive sync SDP support. Therefore, let's
-remove the adaptive sync SDP check and program TRANS_VRR_VSYNC for
-platforms where VRR timing generator is used.
+Add support for using VRR Timing generator for HDMI panels.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 7e1d9c718214..5a80a8eae087 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -233,7 +233,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 19498ee455fa..c8442772bacf 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -59,6 +59,7 @@
+ #include "intel_lspcon.h"
+ #include "intel_panel.h"
+ #include "intel_snps_phy.h"
++#include "intel_vrr.h"
+ 
+ inline struct drm_i915_private *intel_hdmi_to_i915(struct intel_hdmi *intel_hdmi)
+ {
+@@ -2366,6 +2367,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		}
  	}
  
--	if (intel_dp->as_sdp_supported && crtc_state->vrr.enable) {
-+	if (HAS_AS_SDP(i915) && crtc_state->vrr.enable) {
- 		crtc_state->vrr.vsync_start =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
- 			 crtc_state->hw.adjusted_mode.vsync_start);
++	intel_vrr_compute_config(pipe_config, conn_state);
++
+ 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
+ 					 conn_state);
+ 
 -- 
 2.45.2
 
