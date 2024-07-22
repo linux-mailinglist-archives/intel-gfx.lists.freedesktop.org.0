@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D5893951B
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 23:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E15F939647
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2024 00:10:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3F2A10E321;
-	Mon, 22 Jul 2024 21:07:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gTiyCCZm";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA22310E361;
+	Mon, 22 Jul 2024 22:10:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E92D010E334;
- Mon, 22 Jul 2024 21:07:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721682424; x=1753218424;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=o4lTucE/YybaswT34FevEnarms9wVB2T0SXwubW+jOY=;
- b=gTiyCCZm+EjKLCcscghEJrEVBFxu9Ev15dgZOD3TPQW/qP8Uul19GmzJ
- ddqMchjW8BIUQF72TmaE1uXHoMOo+C1fOk1Ic4Cl/ZiQihuZ1vZLbSYdr
- aP1AazVtO+gg4ajQa71St9ii/vk9QdhMiON4r+AnS+Il3IxCdx/OzsVCH
- KlWLAyyjWDVTQnCkP7gDVHXnJUofwzeE6wEiJaPIBGtfk7r+FnnRmLpzu
- XNbgxT5nZ7cRigE7mPFG5RNpqVM/PWnsNlW6j07syta7F672qeiU2Wb4W
- jTKK+tq6zCmzxQQj1GJmwO4fpGXuCrfKsSzMxykf2ylgNOiepw7tGDZ1W g==;
-X-CSE-ConnectionGUID: l/IcHFuoRXCRE4JqsgdzJA==
-X-CSE-MsgGUID: j3bm0aS0R/GjNfLnrErG5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="30428328"
-X-IronPort-AV: E=Sophos;i="6.09,229,1716274800"; d="scan'208";a="30428328"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 14:07:03 -0700
-X-CSE-ConnectionGUID: 2LXmSF7dQTaMagER66M4bw==
-X-CSE-MsgGUID: WLvDDELxSzq0X9+MrTcTRw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,229,1716274800"; d="scan'208";a="51653313"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 14:07:03 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	linux-perf-users@vger.kernel.org
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 7/7] drm/i915/pmu: Do not set event_init to NULL
-Date: Mon, 22 Jul 2024 14:06:48 -0700
-Message-ID: <20240722210648.80892-8-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240722210648.80892-1-lucas.demarchi@intel.com>
-References: <20240722210648.80892-1-lucas.demarchi@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4166A10E10A;
+ Mon, 22 Jul 2024 22:10:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Fix_i915_pmu_on_bind?=
+ =?utf-8?q?/unbind?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Jul 2024 22:10:25 -0000
+Message-ID: <172168622526.358422.7898132076441976088@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240722210648.80892-1-lucas.demarchi@intel.com>
+In-Reply-To: <20240722210648.80892-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,62 +37,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-event_init is not an optional function pointer from perf events. Now
-that pmu unregister happens only when freeing i915, setting it to NULL
-only protects other functions in i915. Replace that by checking
-pmu->closed.
+== Series Details ==
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_pmu.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Series: Fix i915 pmu on bind/unbind
+URL   : https://patchwork.freedesktop.org/series/136362/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index df53a8fe53ec..c5738035bc2f 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -303,7 +303,7 @@ void i915_pmu_gt_parked(struct intel_gt *gt)
- {
- 	struct i915_pmu *pmu = &gt->i915->pmu;
- 
--	if (!pmu->base.event_init)
-+	if (pmu->closed)
- 		return;
- 
- 	spin_lock_irq(&pmu->lock);
-@@ -325,7 +325,7 @@ void i915_pmu_gt_unparked(struct intel_gt *gt)
- {
- 	struct i915_pmu *pmu = &gt->i915->pmu;
- 
--	if (!pmu->base.event_init)
-+	if (pmu->closed)
- 		return;
- 
- 	spin_lock_irq(&pmu->lock);
-@@ -1325,12 +1325,12 @@ void i915_pmu_register(struct drm_i915_private *i915)
- err_groups:
- 	kfree(pmu->base.attr_groups);
- err_attr:
--	pmu->base.event_init = NULL;
- 	free_event_attributes(pmu);
- err_name:
- 	if (IS_DGFX(i915))
- 		kfree(pmu->name);
- err:
-+	pmu->closed = true;
- 	drm_notice(&i915->drm, "Failed to register PMU!\n");
- }
- 
-@@ -1346,6 +1346,4 @@ void i915_pmu_unregister(struct drm_i915_private *i915)
- 
- 	hrtimer_cancel(&pmu->timer);
- 	i915_pmu_unregister_cpuhp_state(pmu);
--
--	pmu->base.event_init = NULL;
- }
--- 
-2.43.0
+== Summary ==
+
+Error: dim checkpatch failed
+db2b3cfa072e perf/core: Add pmu get/put
+-:30: WARNING:SPACING: Unnecessary space before function pointer arguments
+#30: FILE: include/linux/perf_event.h:544:
++	struct pmu *(*get)		(struct pmu *pmu); /* optional: get a reference */
+
+-:31: WARNING:SPACING: Unnecessary space before function pointer arguments
+#31: FILE: include/linux/perf_event.h:545:
++	void (*put)			(struct pmu *pmu); /* optional: put a reference */
+
+total: 0 errors, 2 warnings, 0 checks, 77 lines checked
+ba821d7898b3 drm/i915/pmu: Fix crash due to use-after-free
+a7e8a324d898 drm/i915/pmu: Use event_to_pmu()
+7f148b052f87 drm/i915/pmu: Drop is_igp()
+1f548ca93dcd drm/i915/pmu: Let resource survive unbind
+f587fb41a28a drm/i915/pmu: Lazy unregister
+c4659678da43 drm/i915/pmu: Do not set event_init to NULL
+
 
