@@ -2,76 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E589C9391EF
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 17:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5030B939263
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 18:15:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC9610E181;
-	Mon, 22 Jul 2024 15:39:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C92D910E1A0;
+	Mon, 22 Jul 2024 16:15:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nj8vvFYH";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="V+Be+luh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
- [209.85.208.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B0B10E176;
- Mon, 22 Jul 2024 15:39:40 +0000 (UTC)
-Received: by mail-lj1-f182.google.com with SMTP id
- 38308e7fff4ca-2ebe40673d8so55069111fa.3; 
- Mon, 22 Jul 2024 08:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1721662779; x=1722267579; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=jALI6UyYbNYiJLxWXhrO5w7i6Qk20r5OJVMCi7IoOuI=;
- b=Nj8vvFYHfO/ZwAXaD88GoAzPgklX84ZzLBzqCei6lz2si+iSx8x2LQcBoHMqZJDuuq
- CRImSrYApbBCLVpl25fB+ZTFbojtAmSrVpekw1fl8alwG4z04duviVROP66nc+Hw78dY
- l7IZahguniO72GKYmDdu0QOSWVti9QsFoCztTorJHZXNfjaRZetBsEIm0OhBnTZuf6ax
- sejKc2GGyCnnY/lL/3Lm7CZHRbIEFwRRgjdHdPbsMPV4OscBZasrOdAbJY0Tbl+qAygm
- P+OuFsHNtldHU8ndkHjUC8hq2M1LzH2abR2FvvcCHVOat6m+y2kDPFKVoaQ8wTBZvcUu
- 8VQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721662779; x=1722267579;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jALI6UyYbNYiJLxWXhrO5w7i6Qk20r5OJVMCi7IoOuI=;
- b=mVp7HuH36AozxQbuGAi6wZR60diRg245JCTuLvnf/95KKcd7OAXDFS4fZeMe8IPJ1t
- uE98Fy8OdLErEcTWuQMiFXieTWWLxP2Ag+kRRsk6aoxd3twxvQP+tkTBQ4YjDzr/U7DV
- ywOyceP3bW8L0SeGsW6KTJ4GZryf4HnA6AD75ylRRHnQ6980C2fmlBpSJZwnk9SH1K8C
- 4ahdVrFHZJWLxEH84MZXQ4gP1E2Re/4lWU4WaOGOkWXlEhpuc1Yz28wqNzF72Xa95eIg
- NFtBR9JzfjYyxtVc7Fc3LmDOJIbj/fPAUaa/WNzNbIGn5O48BgvcR9UL1pKb28mKGQpv
- uhxw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWpYyqIJPgYOUP972oYkdi+WeqgpW5zNQG5g3XoJTpbvNpwBHU9TcCBwte+iqbsWwvujK0stsS3Lv6TiSaixjs4hWz7U07Rt59SMAp3QNfX+nhjE8EE8EMJ1KYbmOhj8Zua8/tXz7IKcI0O3LOGpsCT3T8nA/EgnWPGJSR323A4GMb7anSGyjnO7QQRke+UaGk=
-X-Gm-Message-State: AOJu0YwrZ+bNNjFN8ygJaGWBkf+fmlEIN9tLjf4hXOawQWkC8sgz7OVV
- n+faBWRH9VwE8RdjJBTmQfSjgNACNa1wjmTeRsgDkLpkihY+75R4GDI1nk1P
-X-Google-Smtp-Source: AGHT+IEhKUeP+/D9FQONxFDVZjw8vfePr2AjP+B5tksegFlWs6Qyu1RK+OOhND9kOEGL7YES1M1u1A==
-X-Received: by 2002:a2e:7a04:0:b0:2ef:2eb9:5e55 with SMTP id
- 38308e7fff4ca-2ef2eb95ea2mr24921191fa.13.1721662778449; 
- Mon, 22 Jul 2024 08:39:38 -0700 (PDT)
-Received: from localhost
- (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-427d2920313sm117230425e9.0.2024.07.22.08.39.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Jul 2024 08:39:37 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E36EB10E194;
+ Mon, 22 Jul 2024 16:15:10 +0000 (UTC)
+Received: from [192.168.49.54] (c-73-118-245-227.hsd1.wa.comcast.net
+ [73.118.245.227])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 4184C20B7165;
+ Mon, 22 Jul 2024 09:15:09 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 4184C20B7165
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1721664910;
+ bh=ozaD6a0NowW7U00u2hDPiAL5ijIAeQOS6klyJ53d2c4=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=V+Be+luhiZ8Vm/+HC2PjwH4zOP92nkalDiLRJjrSQvC864P+D/G4vw/lmtCrL7Q8X
+ G7WleFzsAkcxI/PB6XLFlYW+dla75nxrE0O7vv/A33otKhT1NGFd5hIwVDq4yT7bf7
+ yHV3vX0SAFFRgXi8unj18rDH25shXH/3nQiLksGE=
+Message-ID: <24fa9e9b-81a8-4bbe-8d13-4d559ee76a96@linux.microsoft.com>
+Date: Mon, 22 Jul 2024 09:15:08 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: eahariha@linux.microsoft.com, Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/i915/dp: Make read-only array bw_gbps static const
-Date: Mon, 22 Jul 2024 16:39:37 +0100
-Message-Id: <20240722153937.574819-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+ Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.wang.linux@gmail.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Zhi Wang <zhiwang@kernel.org>
+Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-4-eahariha@linux.microsoft.com>
+ <Zp5Vq9JoYC_OrA2C@ashyti-mobl2.lan>
+Content-Language: en-US
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <Zp5Vq9JoYC_OrA2C@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,27 +75,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don't populate the read-only array bw_gbps on the stack at run time,
-instead make it static const.
+On 7/22/2024 5:50 AM, Andi Shyti wrote:
+> Hi Easwar,
+> 
+> merged to drm-intel-next. Thanks!
+> 
+> On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
+>> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
+>> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
+>> the approved verbiage exists in the specification.
+>>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> I realized after pushing that this had the tag:
+> 
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> Not a big deal, but it's still a minor mistake.
+> 
+> Andi
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thank you for the merge, Andi! I'm missing what the mistake is, I added
+the tags as I got them. Was I supposed to drop the R-B when Rodrigo gave
+an A-B?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 59f11af3b0a1..a082ed8f5464 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3434,7 +3434,7 @@ static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
- 
- static int intel_dp_pcon_get_frl_mask(u8 frl_bw_mask)
- {
--	int bw_gbps[] = {9, 18, 24, 32, 40, 48};
-+	static const int bw_gbps[] = {9, 18, 24, 32, 40, 48};
- 	int i;
- 
- 	for (i = ARRAY_SIZE(bw_gbps) - 1; i >= 0; i--) {
--- 
-2.39.2
-
+Thanks,
+Easwar
