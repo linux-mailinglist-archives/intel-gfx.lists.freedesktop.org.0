@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB6B93890E
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 08:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6870493890F
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 08:47:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F37AF10E37C;
-	Mon, 22 Jul 2024 06:47:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A36DD10E397;
+	Mon, 22 Jul 2024 06:47:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RHW+RHx8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k188xSw3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 166B310E377;
- Mon, 22 Jul 2024 06:47:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D98F10E379;
+ Mon, 22 Jul 2024 06:47:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721630840; x=1753166840;
+ t=1721630841; x=1753166841;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5nj+a1tSiQsBdzAxyRX/1/yfha2zxl6FT84/M0QrWbs=;
- b=RHW+RHx8FEaqr/zVnczPGstSvwrAzHYGmsJtTDmzb4Cka33o+Bz5hLls
- Kte1Zftcn08Ww1UAGBNXkxwaWhq6OYikkxK7shvV48B4ffJIw4kKdYDu9
- lVn3/yCHS/3GmMAt9sXL4cmlOyOyjBT36YdpaEEHpUzfpj5TS1bXWFLLx
- roqfTZkNXuMd7YKA6Lk/MDrHENcqHjGwmZubrjJDQfkBVthAnB3zIdGLF
- auWfe7sY10jkD0sJF9vEb4b294kCMX6aDH1hBpMQ0dYzIFphqeA/eHwA7
- +aC6C07r+YXn9QjY12kjT0/51KFNjEvmoltNeHOzlrhaq6nDU/IOSSWGJ A==;
-X-CSE-ConnectionGUID: zgvlg4WnRFWzojCODLzjuQ==
-X-CSE-MsgGUID: IPGoCdaGS0+XLLSkI2M5IA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="18798181"
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="18798181"
+ bh=01Mg8/Ynkf2T10801wGm3d+EGE6OLmpw9AX3TKT08ik=;
+ b=k188xSw3MmV+hIN89OYST3Gdd7JT1sdVAYNuTGFOb6VcMaP22U62iFHR
+ ZxQX/Jbjl8VEEhDxzoSeJZHt/2PZgonD4CyrunZulYpEZsCTvd1ahweYQ
+ OtNk2Tgvmau3cW/IVkJsBsUieSss9XKLEn18uyvbLT37Ti3z00gmizeyN
+ X9crk9lpk9ARybD3eKJlRCM0c5cYX78WOcmoU/GrUn0HtP6vJvDi+T0lW
+ ZhVZVr/kulw6O3B0EhyhyM5+2HxuZW9qjxkwuy2BnkgTEWrd4H7NJUFfI
+ bLNQD4HOcotAh1fEq7dw9sBzvGuOgufhkO+1oD2KAaPFyKqBhBVNKXQIt A==;
+X-CSE-ConnectionGUID: rlEutXhyRum3TPl66mMm6A==
+X-CSE-MsgGUID: dg343oE1TDeUwygy4j9BIg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="18798184"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="18798184"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2024 23:47:20 -0700
-X-CSE-ConnectionGUID: vQRgBcHZTnipxN6B4RDe1A==
-X-CSE-MsgGUID: QHaSgpkySSiq1856GcLo2Q==
+ 21 Jul 2024 23:47:21 -0700
+X-CSE-ConnectionGUID: uYLoxkjnRE6djznEQdzqDQ==
+X-CSE-MsgGUID: AJosCx2tRdCYqC9HVssgHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51670544"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51670553"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa008.fm.intel.com with ESMTP; 21 Jul 2024 23:47:18 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 21 Jul 2024 23:47:20 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 1/3] drm/i915/hdcp: Add encoder check in
- intel_hdcp_get_capability
-Date: Mon, 22 Jul 2024 12:14:49 +0530
-Message-ID: <20240722064451.3610512-2-suraj.kandpal@intel.com>
+Subject: [PATCH 2/3] drm/i915/hdcp: Add encoder check in hdcp2_get_capability
+Date: Mon, 22 Jul 2024 12:14:50 +0530
+Message-ID: <20240722064451.3610512-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240722064451.3610512-1-suraj.kandpal@intel.com>
 References: <20240722064451.3610512-1-suraj.kandpal@intel.com>
@@ -69,37 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sometimes during hotplug scenario or suspend/resume scenario encoder is
-not always initialized when intel_hdcp_get_capability add
-a check to avoid kernel null pointer dereference.
+Add encoder check in intel_hdcp2_get_capability to avoid
+null pointer error.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 3ebe035f382e..05402ae6b569 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -203,11 +203,16 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
- /* Is HDCP1.4 capable on Platform and Sink */
- bool intel_hdcp_get_capability(struct intel_connector *connector)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 2edffe62f360..47f51a5ab493 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -675,8 +675,15 @@ static
+ int intel_dp_hdcp2_get_capability(struct intel_connector *connector,
+ 				  bool *capable)
  {
 -	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+-	struct drm_dp_aux *aux = &dig_port->dp.aux;
 +	struct intel_digital_port *dig_port;
- 	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
- 	bool capable = false;
- 	u8 bksv[5];
- 
++	struct drm_dp_aux *aux;
++
++	*capable = false;
 +	if (!intel_attached_encoder(connector))
-+		return capable;
++		return -EINVAL;
 +
 +	dig_port = intel_attached_dig_port(connector);
-+
- 	if (!shim)
- 		return capable;
++	aux = &dig_port->dp.aux;
  
+ 	return _intel_dp_hdcp2_get_capability(aux, capable);
+ }
 -- 
 2.43.2
 
