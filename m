@@ -2,79 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0BB93927E
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 18:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 214DC9392C2
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 18:54:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8CC10E1BC;
-	Mon, 22 Jul 2024 16:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6B4F10E1D9;
+	Mon, 22 Jul 2024 16:54:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RyD52UR6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V7Xd9tBL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA9AE10E1BB;
- Mon, 22 Jul 2024 16:28:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D47E10E1D4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 16:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721665726; x=1753201726;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=O6PV0z1EQeDCS7838sXriVwFRCvZQyidYdmAWxD6its=;
- b=RyD52UR66Vl2OoG1sGDMvoUc1srtB26z+BWXNRgsl8IoXpayxK5aWx/u
- /PcknlmyKQK7MPMBNdH9hy/tacTiYUctjUD9zSpjNCALxrK2ctBlz7+TP
- n9B9uE6K/H3EMPPnl6u6t4ZTd6LOLtlDFJ9r+L1Z9U8LN2ohin9Nean8I
- ILaIVZ/blsIOKgljwBEnvZdtR5641mwhLvJuSCUWfGFVf4Shu5Rc4uEH4
- 20AtLyGIS5s8DaOntCYHm1uwwlgt3VxE9uxSZWE26fhrnvGaCBBJKEEng
- 2LwopIVH+olUYbGx23gjFwhc4hGg4iyyUSrYJS9KG/nCGLHWfH8PCV3w7 Q==;
-X-CSE-ConnectionGUID: JUowsOtaQNG7oPISsUrAlQ==
-X-CSE-MsgGUID: /l9MD98hQgKDRe1i9lEXNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="18864847"
-X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="18864847"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 09:27:48 -0700
-X-CSE-ConnectionGUID: Tr6MVFI8SpWBPVLz0HFYVg==
-X-CSE-MsgGUID: VKKt6ttPR/STmKV9N+0CoA==
+ t=1721667289; x=1753203289;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9f/Pf4sIc7BcVKbSMPshAR2QCRBmTDpjaSsRrdKsi9Q=;
+ b=V7Xd9tBLa0c4SHHGzYTXIEJgja8SSfislpipsbp+C22xLRQR2YTVSJiF
+ hx9jAMK/JQW3pFljHfzxnbGhjrEdhbzfaNTT3EVjDrLUZjc9wsPgifVK2
+ Wd3X6dCtc0vGl1/zGzGc70E4n36LLiJJAdgnfwWdLWjDK75HIQskJZMwT
+ V5l3LONPXl8LpgIHktP6w+qx3li6ZMdO/X/AUZFY9cGTdmviLvY/T8teJ
+ MMIhi9f98bjoBuajpcPOWAFYTsLunJkJ0IaeulWLdH2V6bDd9Rakt9TIE
+ tzQZl0lwI/QLNQlbbLqzmoPxHG3wrYt0XLM6YJdGrlDCULkmIYtSUtaoW g==;
+X-CSE-ConnectionGUID: kM37WZK+Rz+pFlgQemiXyw==
+X-CSE-MsgGUID: r5iMzWMGSuudRTlMeQr4Ew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="23117290"
+X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="23117290"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2024 09:54:49 -0700
+X-CSE-ConnectionGUID: skucwkk0S/6yQ9XvnEisdg==
+X-CSE-MsgGUID: Bq7DZVqDRlKOvEvRkKT7og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="56765396"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.28])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 09:27:42 -0700
-Date: Mon, 22 Jul 2024 18:27:37 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Easwar Hariharan <eahariha@linux.microsoft.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>, 
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
- <intel-gvt-dev@lists.freedesktop.org>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
- Zhi Wang <zhiwang@kernel.org>
-Subject: Re: [PATCH v4 3/6] drm/i915: Make I2C terminology more inclusive
-Message-ID: <Zp6IeYDbdCSeFmo9@ashyti-mobl2.lan>
-References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
- <20240711052734.1273652-4-eahariha@linux.microsoft.com>
- <Zp5Vq9JoYC_OrA2C@ashyti-mobl2.lan>
- <24fa9e9b-81a8-4bbe-8d13-4d559ee76a96@linux.microsoft.com>
+X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="57056186"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2024 09:54:48 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 00/14] drm/i915/dp_mst: Enable LT fallback for UHBR<->non-UHBR
+ rates
+Date: Mon, 22 Jul 2024 19:54:49 +0300
+Message-ID: <20240722165503.2084999-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <24fa9e9b-81a8-4bbe-8d13-4d559ee76a96@linux.microsoft.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,44 +65,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Easwar,
+This patchset enables the link training fallback on MST links between
+UHBR and non-UHBR link rates. As a dependency it also switches the
+fallback to happen in a link configuration sequence ordered by BW and
+makes sure that the MST BW reported via the ENUM_PATH_RESOURCES message
+is always up-to-date in the MST topology SW state.
 
-On Mon, Jul 22, 2024 at 09:15:08AM -0700, Easwar Hariharan wrote:
-> On 7/22/2024 5:50 AM, Andi Shyti wrote:
-> > Hi Easwar,
-> > 
-> > merged to drm-intel-next. Thanks!
-> > 
-> > On Thu, Jul 11, 2024 at 05:27:31AM +0000, Easwar Hariharan wrote:
-> >> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
-> >> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
-> >> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
-> >> the approved verbiage exists in the specification.
-> >>
-> >> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > 
-> > I realized after pushing that this had the tag:
-> > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > 
-> > Not a big deal, but it's still a minor mistake.
-> > 
-> > Andi
-> 
-> Thank you for the merge, Andi! I'm missing what the mistake is, I added
-> the tags as I got them. Was I supposed to drop the R-B when Rodrigo gave
-> an A-B?
+Imre Deak (14):
+  drm/dp_mst: Factor out function to queue a topology probe work
+  drm/dp_mst: Add a helper to queue a topology probe
+  drm/dp_mst: Simplify the condition when to enumerate path resources
+  drm/i915/ddi: For an active output call the DP encoder sync_state()
+    only for DP
+  drm/i915/dp: Initialize the link parameters during HW readout
+  drm/i915/dp: Send only a single modeset-retry uevent for a commit
+  drm/i915/dp: Add a separate function to reduce the link parameters
+  drm/i915/dp: Add helpers to set link training mode, BW parameters
+  drm/i915/dp_mst: Reduce the link parameters in BW order after LT
+    failures
+  drm/i915/dp_mst: Configure MST after the link parameters are reset
+  drm/i915/dp_mst: Queue modeset-retry after a failed payload BW
+    allocation
+  drm/i915/dp_mst: Reprobe the MST topology after a link parameter
+    change
+  drm/i915/dp_mst: Ensure link parameters are up-to-date for a disabled
+    link
+  drm/i915/dp_mst: Enable LT fallback between UHBR/non-UHBR link rates
 
-Sorry, it's not yours, it's mine. I should have checked more
-carefully the tag section before pushing. You did everything
-right.
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |  55 ++++++--
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
+ .../drm/i915/display/intel_display_types.h    |  21 +++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 131 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ .../drm/i915/display/intel_dp_link_training.c | 107 +++++++++++---
+ .../drm/i915/display/intel_dp_link_training.h |   6 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  74 +++++++++-
+ drivers/gpu/drm/i915/display/intel_dp_mst.h   |   1 +
+ include/drm/display/drm_dp_mst_helper.h       |   2 +
+ 10 files changed, 361 insertions(+), 41 deletions(-)
 
-The dim tool (drm maintianers tool) picked up all the tags added
-and I missed the double tag.
+-- 
+2.44.2
 
-This was more a message for Rodrigo, in case he wanted to fix it,
-but I guess no one will complain about.
-
-Thanks a lot for your work and effort!
-Andi
