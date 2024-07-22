@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10385938B36
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 10:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 068C4938B76
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 10:44:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7998810E417;
-	Mon, 22 Jul 2024 08:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E36810E44D;
+	Mon, 22 Jul 2024 08:44:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rn6ZGvhi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GRwu80Fi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C97F10E411
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 08:26:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1CBE10E448;
+ Mon, 22 Jul 2024 08:44:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721636781; x=1753172781;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xhVNF+b4Tb0wGdM52Jrx4zUqvoR2QqVcMM/zQ5uXZXQ=;
- b=Rn6ZGvhivEDGUp4YyBFcnXSgKOHgF4fGYC+i8us1XC8SHrgH1iBrFbjn
- oQ7AZvB1E4yOQDuz8WVudtNKoEGLTcag1AQ3YItTrm/ScEPp4Iw5x+tJj
- mNJPGWSq+tYQxb9ZyAaJWCVnkaAFWPA/ogw/zwKQDRNhND4jqnqVc0thj
- qkRDOGM7qfC3QHyzfnkKKvbrV9u18Viy5awH1jDw6T1SuV3PfjjqFuGR1
- 2r37YaVK9kAWLmP/fEyCh090cys+MWll912+iRpOzpiZb7KuHmoW+pjA1
- 9BatTVcsGrEt4fCkpyGFmVNRNEz2kFBS/bdr9F2kz5APZr0sB1xvPeJ51 Q==;
-X-CSE-ConnectionGUID: p4flPDH6Tjef3kW+RBwBWw==
-X-CSE-MsgGUID: ++JiOgxASzm9VYKU1r+yNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="29806959"
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="29806959"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:26:21 -0700
-X-CSE-ConnectionGUID: C5kQ/lZKR5iiNxrE/h1EDQ==
-X-CSE-MsgGUID: YaglC5gLRq+QyITX5qFt7A==
+ t=1721637882; x=1753173882;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VNQzkTpINT52FikMT/5ITCnYWcVcNbXqiYJe1zxTMwg=;
+ b=GRwu80FiahPxlKa4tAKAWHirtMm+m1llUp7kLd1UikhgUIAqhEXAWFuh
+ BwUtwDr0jRceVdKEVUCYrDMki1W9sTUNaDdWoM+dIKft2YqIEfv8vfu+G
+ hptjZWO6MCMbqUEn+TJJSgpZw63z2cMvb6XZIMDI3s6uULFjS8JW2TDUT
+ gj4nsbhh95RCJHJXuBbbxjtsV19jywOdK4IceaHDCXmLUQBJlikAv6n82
+ oZRE5niA8NIqafWkQ1LUfuw3Z/mADoAFndwlg0pH/YplFCeexR1cqPBrf
+ RvZ5HiD7G05BlmpiKRWZ4cJF6WPae2j7mh0sPkmvJ4hI2F6bHTofRt4vn g==;
+X-CSE-ConnectionGUID: QVThrW2oTVWfE16R8VIopg==
+X-CSE-MsgGUID: bTsFIFNzS1SkDT+LMnxaQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="23057401"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="23057401"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2024 01:44:41 -0700
+X-CSE-ConnectionGUID: ywzsG4VOTR+Eo7aodb8C/A==
+X-CSE-MsgGUID: WZBRL4J+T/Wbu3/NB+JFTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51752939"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:26:19 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
- mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 10/10] drm/i915/vrr: Always use VRR timing generator for XELPD+
-Date: Mon, 22 Jul 2024 13:57:05 +0530
-Message-ID: <20240722082705.3635041-11-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240722082705.3635041-1-ankit.k.nautiyal@intel.com>
-References: <20240722082705.3635041-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51703296"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.211])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2024 01:44:40 -0700
+Date: Mon, 22 Jul 2024 10:44:36 +0200
+From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Subject: Re: [PATCH i-g-t 1/3] lib/kunit: Fix selective execution of test cases
+Message-ID: <20240722084436.6l67rhjodql5znvk@zkempczy-mobl2>
+References: <20240722080913.74333-5-janusz.krzysztofik@linux.intel.com>
+ <20240722080913.74333-6-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240722080913.74333-6-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,117 +72,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently VRR timing generator is used only when VRR is enabled by
-userspace. From XELPD+, gradually move away from older timing
-generator and use VRR timing generator for fixed refresh rate also.
-In such a case, Flipline VMin and VMax all are set to the Vtotal of the
-mode, which effectively makes the VRR timing generator work in
-fixed refresh rate mode.
+On Mon, Jul 22, 2024 at 10:01:02AM +0200, Janusz Krzysztofik wrote:
+> An issue has been discovered when running an IGT kunit test with a dynamic
+> sub-subtest specified: only the first kunit test case of a test suite can
+> be actually executed.  Selecting a test case other than the first one
+> results in "Unloading test module failed, not executing more selftests."
+> message being displayed and no single test case (dynamic sub-subtest)
+> executed.
+> 
+> To avoid the failure from a consecutive module unload attempt after it has
+> been already unloaded, unload the test module neither after geting a list
+> of test cases, nor after each leaving of igt_dynamic() section, only as a
+> first step of each dynamic sub-subtest body.
+> 
+> Reported-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-v2: Use VRR Timing Generator from XELPD+ instead of MTL as it needs
-Wa_14015406119.
+Works perfect now, thanks for the fix.
 
-v3: Set vrr.fixed during vrr_get_config (Mitul)
+Reviewed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 63 +++++++++++++++---------
- 1 file changed, 41 insertions(+), 22 deletions(-)
+--
+Zbigniew
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 50ac2770a42d..ef965c273a9e 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -174,41 +174,56 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
- 		return;
- 
--	crtc_state->vrr.in_range =
--		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
--	if (!crtc_state->vrr.in_range)
--		return;
--
- 	if (HAS_LRR(i915))
- 		crtc_state->update_lrr = true;
- 
--	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
--			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
--	vmax = adjusted_mode->crtc_clock * 1000 /
--		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
-+	if (!crtc_state->uapi.vrr_enabled && DISPLAY_VER(i915) >= 20) {
-+		/*
-+		 * for XELPD+ always go for VRR timing generator even for
-+		 * fixed refresh rate.
-+		 */
-+		crtc_state->vrr.vmin = adjusted_mode->crtc_vtotal;
-+		crtc_state->vrr.vmax = adjusted_mode->crtc_vtotal;
-+		crtc_state->vrr.flipline = adjusted_mode->crtc_vtotal;
-+		crtc_state->vrr.fixed_rr = true;
-+	} else {
- 
--	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
--	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
-+		crtc_state->vrr.in_range =
-+			intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
- 
--	if (vmin >= vmax)
--		return;
-+		if (!crtc_state->vrr.in_range)
-+			return;
- 
--	/*
--	 * flipline determines the min vblank length the hardware will
--	 * generate, and flipline>=vmin+1, hence we reduce vmin by one
--	 * to make sure we can get the actual min vblank length.
--	 */
--	crtc_state->vrr.vmin = vmin - 1;
--	crtc_state->vrr.vmax = vmax;
- 
--	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
-+		vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
-+				    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
-+		vmax = adjusted_mode->crtc_clock * 1000 /
-+			(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
-+
-+		vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
-+		vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
-+
-+		if (vmin >= vmax)
-+			return;
-+
-+		/*
-+		 * flipline determines the min vblank length the hardware will
-+		 * generate, and flipline>=vmin+1, hence we reduce vmin by one
-+		 * to make sure we can get the actual min vblank length.
-+		 */
-+		crtc_state->vrr.vmin = vmin - 1;
-+		crtc_state->vrr.vmax = vmax;
-+
-+		crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
-+		crtc_state->vrr.fixed_rr = false;
-+	}
- 
- 	/*
- 	 * When panel is VRR capable and userspace has
- 	 * not enabled adaptive sync mode then Fixed Average
- 	 * Vtotal mode should be enabled.
- 	 */
--	if (crtc_state->uapi.vrr_enabled) {
-+	if (crtc_state->uapi.vrr_enabled || crtc_state->vrr.fixed_rr) {
- 		crtc_state->vrr.enable = true;
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- 	} else if (is_cmrr_frac_required(crtc_state) && is_edp) {
-@@ -426,6 +441,10 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 						     TRANS_VRR_VMAX(dev_priv, cpu_transcoder)) + 1;
- 		crtc_state->vrr.vmin = intel_de_read(dev_priv,
- 						     TRANS_VRR_VMIN(dev_priv, cpu_transcoder)) + 1;
-+
-+		if (crtc_state->vrr.vmax == crtc_state->vrr.flipline &&
-+		    crtc_state->vrr.vmin == crtc_state->vrr.flipline)
-+			crtc_state->vrr.fixed_rr = true;
- 	}
- 
- 	if (crtc_state->vrr.enable) {
--- 
-2.45.2
-
+> ---
+>  lib/igt_kmod.c | 10 ++--------
+>  1 file changed, 2 insertions(+), 8 deletions(-)
+> 
+> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> index 33f059199f..5864be29d2 100644
+> --- a/lib/igt_kmod.c
+> +++ b/lib/igt_kmod.c
+> @@ -1328,8 +1328,6 @@ static bool kunit_get_tests(struct igt_list_head *tests,
+>  		igt_require_f(r->code == IGT_EXIT_SKIP,
+>  			      "Unexpected non-SKIP result while listing test cases\n");
+>  
+> -	igt_skip_on(kmod_module_remove_module(tst->kmod, 0));
+> -
+>  	return true;
+>  }
+>  
+> @@ -1356,6 +1354,8 @@ static void __igt_kunit(struct igt_ktest *tst,
+>  			char glob[1024];
+>  			int i;
+>  
+> +			igt_skip_on(kmod_module_remove_module(tst->kmod,
+> +							      KMOD_REMOVE_FORCE));
+>  			igt_skip_on(igt_kernel_tainted(&taints));
+>  
+>  			igt_assert_lt(snprintf(glob, sizeof(glob), "%s.%s",
+> @@ -1412,12 +1412,6 @@ static void __igt_kunit(struct igt_ktest *tst,
+>  			igt_info("Kernel tainted, not executing more selftests.\n");
+>  			break;
+>  		}
+> -
+> -		if (igt_debug_on(kmod_module_remove_module(tst->kmod,
+> -							   KMOD_REMOVE_FORCE))) {
+> -			igt_info("Unloading test module failed, not executing more selftests.\n");
+> -			break;
+> -		}
+>  	}
+>  }
+>  
+> -- 
+> 2.45.2
+> 
