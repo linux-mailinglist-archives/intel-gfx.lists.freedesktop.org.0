@@ -2,45 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7F693914B
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 17:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E589C9391EF
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 17:39:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73FD510E10E;
-	Mon, 22 Jul 2024 15:04:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC9610E181;
+	Mon, 22 Jul 2024 15:39:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="h/8DlGNo";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nj8vvFYH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF80510E10E
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 15:04:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1721660653;
- bh=94V2FOBhQb+tZMxWV3mDiMf6SrdiLsoT8QBihrvghmc=;
- h=Subject:From:To:Date:From;
- b=h/8DlGNoJAvNKTRWeM0RicyfzNnz08wHIsvlCbjG+ZToUhL0upIHYI01g/E44WiFp
- n5nJp86KlKxc4bmhe11B+UCbaVjXDcupNY4aYNTxoOiGI1v5qJ5KgYUMbrNZDb/v4z
- 4HuQ32TUo2MjH1qY85DWGJ6Ff/KZs70/RcLqC6BaGg+W5ZQ2GaOUVma/KNu4dmLVlI
- gROSIS0pH1XNiWnn9zIjhlvBmtG42dP9SMJ5rD/JmfMqWZl6m3WfUoSp9u/hhpW2VW
- VBeg+3Z64D4WTfyCeH/5FkkGbw9QAqnBqpjAX/AOPsEmo5pfj22XbxpPVCWVb9dAd2
- 6pxGNAHCNG2Lg==
-Received: from [100.127.186.53] (cola.collaboradmins.com [195.201.22.229])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: mfilion)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3F02B378001E
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 15:04:13 +0000 (UTC)
-Message-ID: <6bc3252786ce59df933ed85be42bf78bf3556165.camel@collabora.com>
-Subject: Reminder - The Call for Proposals is open for XDC 2024!
-From: Mark Filion <mark.filion@collabora.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Jul 2024 11:04:11 -0400
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3 (3.52.3-1.fc40) 
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+ [209.85.208.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99B0B10E176;
+ Mon, 22 Jul 2024 15:39:40 +0000 (UTC)
+Received: by mail-lj1-f182.google.com with SMTP id
+ 38308e7fff4ca-2ebe40673d8so55069111fa.3; 
+ Mon, 22 Jul 2024 08:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1721662779; x=1722267579; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=jALI6UyYbNYiJLxWXhrO5w7i6Qk20r5OJVMCi7IoOuI=;
+ b=Nj8vvFYHfO/ZwAXaD88GoAzPgklX84ZzLBzqCei6lz2si+iSx8x2LQcBoHMqZJDuuq
+ CRImSrYApbBCLVpl25fB+ZTFbojtAmSrVpekw1fl8alwG4z04duviVROP66nc+Hw78dY
+ l7IZahguniO72GKYmDdu0QOSWVti9QsFoCztTorJHZXNfjaRZetBsEIm0OhBnTZuf6ax
+ sejKc2GGyCnnY/lL/3Lm7CZHRbIEFwRRgjdHdPbsMPV4OscBZasrOdAbJY0Tbl+qAygm
+ P+OuFsHNtldHU8ndkHjUC8hq2M1LzH2abR2FvvcCHVOat6m+y2kDPFKVoaQ8wTBZvcUu
+ 8VQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721662779; x=1722267579;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=jALI6UyYbNYiJLxWXhrO5w7i6Qk20r5OJVMCi7IoOuI=;
+ b=mVp7HuH36AozxQbuGAi6wZR60diRg245JCTuLvnf/95KKcd7OAXDFS4fZeMe8IPJ1t
+ uE98Fy8OdLErEcTWuQMiFXieTWWLxP2Ag+kRRsk6aoxd3twxvQP+tkTBQ4YjDzr/U7DV
+ ywOyceP3bW8L0SeGsW6KTJ4GZryf4HnA6AD75ylRRHnQ6980C2fmlBpSJZwnk9SH1K8C
+ 4ahdVrFHZJWLxEH84MZXQ4gP1E2Re/4lWU4WaOGOkWXlEhpuc1Yz28wqNzF72Xa95eIg
+ NFtBR9JzfjYyxtVc7Fc3LmDOJIbj/fPAUaa/WNzNbIGn5O48BgvcR9UL1pKb28mKGQpv
+ uhxw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWpYyqIJPgYOUP972oYkdi+WeqgpW5zNQG5g3XoJTpbvNpwBHU9TcCBwte+iqbsWwvujK0stsS3Lv6TiSaixjs4hWz7U07Rt59SMAp3QNfX+nhjE8EE8EMJ1KYbmOhj8Zua8/tXz7IKcI0O3LOGpsCT3T8nA/EgnWPGJSR323A4GMb7anSGyjnO7QQRke+UaGk=
+X-Gm-Message-State: AOJu0YwrZ+bNNjFN8ygJaGWBkf+fmlEIN9tLjf4hXOawQWkC8sgz7OVV
+ n+faBWRH9VwE8RdjJBTmQfSjgNACNa1wjmTeRsgDkLpkihY+75R4GDI1nk1P
+X-Google-Smtp-Source: AGHT+IEhKUeP+/D9FQONxFDVZjw8vfePr2AjP+B5tksegFlWs6Qyu1RK+OOhND9kOEGL7YES1M1u1A==
+X-Received: by 2002:a2e:7a04:0:b0:2ef:2eb9:5e55 with SMTP id
+ 38308e7fff4ca-2ef2eb95ea2mr24921191fa.13.1721662778449; 
+ Mon, 22 Jul 2024 08:39:38 -0700 (PDT)
+Received: from localhost
+ (craw-09-b2-v4wan-169726-cust2117.vm24.cable.virginm.net. [92.238.24.70])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-427d2920313sm117230425e9.0.2024.07.22.08.39.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Jul 2024 08:39:37 -0700 (PDT)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH][next] drm/i915/dp: Make read-only array bw_gbps static const
+Date: Mon, 22 Jul 2024 16:39:37 +0100
+Message-Id: <20240722153937.574819-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +87,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello!
+Don't populate the read-only array bw_gbps on the stack at run time,
+instead make it static const.
 
-Reminder -=C2=A0The CfP is now open for talks, workshops=C2=A0and demos at =
-XDC
-2024. The deadline for submissions is Monday, 12 August 2024.
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://indico.freedesktop.org/event/6/abstracts/
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 59f11af3b0a1..a082ed8f5464 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3434,7 +3434,7 @@ static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
+ 
+ static int intel_dp_pcon_get_frl_mask(u8 frl_bw_mask)
+ {
+-	int bw_gbps[] = {9, 18, 24, 32, 40, 48};
++	static const int bw_gbps[] = {9, 18, 24, 32, 40, 48};
+ 	int i;
+ 
+ 	for (i = ARRAY_SIZE(bw_gbps) - 1; i >= 0; i--) {
+-- 
+2.39.2
 
-While any serious proposal will be gratefully=C2=A0considered, topics of
-interest to X.Org and freedesktop.org developers are encouraged. The
-program focus is on new development, ongoing challenges and anything
-else that will spark discussions among attendees in the hallway track.
-
-We are open to talks across all layers of the graphics stack, from the
-kernel to desktop environments / graphical applications and about how
-to make things better for the developers who build them. Head to the
-CfP page to learn more!
-=C2=A0=C2=A0=C2=A0
-As usual, the conference is free of charge and open to the general
-public. If you plan on attending, please make sure to register as early
-as possible!
-
-And don't forget, you can follow us on Mastodon for all the latest
-updates and to stay connected:
-
-=C2=A0=C2=A0=C2=A0=C2=A0https://floss.social/@XOrgDevConf
-
-Best,
-
-Mark
