@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 918839392C9
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 18:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA9D39392C6
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 18:54:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA9A510E1EB;
-	Mon, 22 Jul 2024 16:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9241510E1E0;
+	Mon, 22 Jul 2024 16:54:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KAXg0vds";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a1HdLU7b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA1910E1DB;
- Mon, 22 Jul 2024 16:54:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AED1510E1DB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 16:54:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721667293; x=1753203293;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OV88/kwK4YvT9DlYHmoldMp9mSj0Nsri8FX4J1bLmR4=;
- b=KAXg0vdsW47FXQVDXazRFNErnIyFN7AP7IxJh/dugtYRytTFQeytcpk8
- OAQYQkCD+d7R+0Fv3RpwWtw1CROYkw+a9AFUyjDScVFK6NEyp0MAu6h8C
- aggSR/pen+eEE4eTav8I4E9nQ7LgSxhR10GOsCsHKq9cn4c7c24s9Z8Is
- FIx1vfF7UkY4eDOqSKavxHmjBNDpXO5GgTuZlKtgpEpYow4heACZaiMcf
- VXAVtwITt8CUKL54c68DWlm5O98kGrzuenIrHZqKgg2RSO4zvPqGkVc72
- JAmAnJQVHs4w3OApNXbAiu7/JSTHa6sezd0bSFCuxru4QaBovXCIvE/Iy Q==;
-X-CSE-ConnectionGUID: R6xwfpOGR1yTTzyUVYFqGQ==
-X-CSE-MsgGUID: r9gR8KOdTN65CpJlwfA1cw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="23117303"
-X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="23117303"
+ t=1721667294; x=1753203294;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=JPp8PTP2yChhejhTJdUg2j0WpQ/6Icg/mLo6vixhSBs=;
+ b=a1HdLU7bniCB0Y8QYaLxs4mX3DL9ODy7DBsWgokuEtoqfc22/2s0cav1
+ Mz+5UdJTffmNZaBeE5SuqkhoUuGj5lkvtXRfbX1rNWK37/TkgzCCLrvoW
+ dKtGFChChPKzgwFhHXB7iCZ8uigEBce4JNSFEvRrneATtMs3a6BTjiEG8
+ 4kzpUjqnTE2khDbfO3cu8rklMoHrEjKGilmwoHDnOCfk3xJB0bp0vJrwj
+ I2fbjpo5Jbj2l7qszJT1ca3UH8wTxTa3X22uihN5Wd+l1HAdZTMWiVcuK
+ Ua7i05q2YhM3NNrFOdufhFcLZ8USPzUiE0l4CnfF4hY6cBXxMcbZGjf2R Q==;
+X-CSE-ConnectionGUID: SVwNIyNaQe2RvhxU+hllHw==
+X-CSE-MsgGUID: jHIaxT+RSQKFLWGzp6QWew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="23117306"
+X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="23117306"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 09:54:53 -0700
-X-CSE-ConnectionGUID: ZR4DAZ4wSKGD409R4uptZg==
-X-CSE-MsgGUID: vdheB8qHRrGa85wyeJn3CQ==
+ 22 Jul 2024 09:54:54 -0700
+X-CSE-ConnectionGUID: aAAa8dddQPC7NxrhgaU2Dw==
+X-CSE-MsgGUID: pV1TzoCcQj+VSm+IUeQEUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="57056203"
+X-IronPort-AV: E=Sophos;i="6.09,228,1716274800"; d="scan'208";a="57056209"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 09:54:52 -0700
+ 22 Jul 2024 09:54:53 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Lyude Paul <lyude@redhat.com>,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 03/14] drm/dp_mst: Simplify the condition when to enumerate
- path resources
-Date: Mon, 22 Jul 2024 19:54:52 +0300
-Message-ID: <20240722165503.2084999-4-imre.deak@intel.com>
+Subject: [PATCH 04/14] drm/i915/ddi: For an active output call the DP encoder
+ sync_state() only for DP
+Date: Mon, 22 Jul 2024 19:54:53 +0300
+Message-ID: <20240722165503.2084999-5-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240722165503.2084999-1-imre.deak@intel.com>
 References: <20240722165503.2084999-1-imre.deak@intel.com>
@@ -69,76 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the
-	if (old_ddps != port->ddps || !created)
-		if (port->ddps && !port->input)
-			ret = drm_dp_send_enum_path_resources();
+If the DDI encoder output is enabled in HDMI mode there is no point in
+calling intel_dp_sync_state(), as in that case the DPCD initialization
+will fail - as expected - with AUX timeouts. Prevent calling the hook in
+this case.
 
-sequence the first if's condition is true if the port exists already
-(!created) or the port was created anew (hence old_ddps==0) and it was
-in the plugged state (port->ddps==1). The second if's condition is true
-for output ports in the plugged state. So the function is called for an
-output port in the plugged state, regardless if it already existed or
-not and regardless of the old plugged state. In all other cases
-port->full_pbn can be zeroed as the port is either an input for which
-full_pbn is never set, or an output in the unplugged state for which
-full_pbn was already zeroed previously or the port was just created
-(with port->full_pbn==0).
-
-Simplify the condition, making it clear that the path resources are
-always enumerated for an output port in the plugged state.
-
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 19 ++++++++-----------
- 1 file changed, 8 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index 70e4bfc3532e0..bcc5bbed9bd04 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -2339,7 +2339,7 @@ drm_dp_mst_handle_link_address_port(struct drm_dp_mst_branch *mstb,
- {
- 	struct drm_dp_mst_topology_mgr *mgr = mstb->mgr;
- 	struct drm_dp_mst_port *port;
--	int old_ddps = 0, ret;
-+	int ret;
- 	u8 new_pdt = DP_PEER_DEVICE_NONE;
- 	bool new_mcs = 0;
- 	bool created = false, send_link_addr = false, changed = false;
-@@ -2372,7 +2372,6 @@ drm_dp_mst_handle_link_address_port(struct drm_dp_mst_branch *mstb,
- 		 */
- 		drm_modeset_lock(&mgr->base.lock, NULL);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index a07aca96e5517..11ee4406dce8f 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4172,7 +4172,8 @@ static void intel_ddi_sync_state(struct intel_encoder *encoder,
+ 		intel_tc_port_sanitize_mode(enc_to_dig_port(encoder),
+ 					    crtc_state);
  
--		old_ddps = port->ddps;
- 		changed = port->ddps != port_msg->ddps ||
- 			(port->ddps &&
- 			 (port->ldps != port_msg->legacy_device_plug_status ||
-@@ -2407,15 +2406,13 @@ drm_dp_mst_handle_link_address_port(struct drm_dp_mst_branch *mstb,
- 	 * Reprobe PBN caps on both hotplug, and when re-probing the link
- 	 * for our parent mstb
- 	 */
--	if (old_ddps != port->ddps || !created) {
--		if (port->ddps && !port->input) {
--			ret = drm_dp_send_enum_path_resources(mgr, mstb,
--							      port);
--			if (ret == 1)
--				changed = true;
--		} else {
--			port->full_pbn = 0;
--		}
-+	if (port->ddps && !port->input) {
-+		ret = drm_dp_send_enum_path_resources(mgr, mstb,
-+						      port);
-+		if (ret == 1)
-+			changed = true;
-+	} else {
-+		port->full_pbn = 0;
- 	}
+-	if (intel_encoder_is_dp(encoder))
++	if ((crtc_state && intel_crtc_has_dp_encoder(crtc_state)) ||
++	    (!crtc_state && intel_encoder_is_dp(encoder)))
+ 		intel_dp_sync_state(encoder, crtc_state);
+ }
  
- 	ret = drm_dp_port_set_pdt(port, new_pdt, new_mcs);
 -- 
 2.44.2
 
