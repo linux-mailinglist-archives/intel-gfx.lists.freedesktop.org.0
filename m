@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74842938B2C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 10:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DDA938B2D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jul 2024 10:26:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D04AD10E40B;
-	Mon, 22 Jul 2024 08:26:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC68B10E40C;
+	Mon, 22 Jul 2024 08:26:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q47Hjusz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="egS8/Fhv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE3E010E407
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 08:26:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1B8810E407
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jul 2024 08:26:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721636766; x=1753172766;
+ t=1721636768; x=1753172768;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0HlWX1n165B++Cst2oPrCHg/9cb/97qa8DXda+8pv28=;
- b=Q47Hjusz6rF3N+qcKBPde+vi8zPjmMsm943iLwEUZ2iqcDlZiUvTOhdY
- GMm6iEiXPXcl0i/0X1DnfUreo/z4bVrlVIEttm/YnIT+B42/Tc6jEjFm9
- 1cGCEtdqtfOcBKjokDZKMHckdfP19i3cF2Db9h+VOamJ++mRF4Wv21w56
- BTxRlwafjP1g93eBqPX9stDmhYXraLS49/1AJucM9nlhqK1hgr1VZ5lno
- dAPltwL7mdqgUdqvzhEoBqZpU578DYsTKvwQ0eObmDy3VFwcMrGKeBJ1O
- KH7LoSsjT5Cgi29GwBboD/GKOsMjV/RK/xu6Tl6/hceXWdRxqkzok/xHX g==;
-X-CSE-ConnectionGUID: ofeuvJzaTqSR62onTJssjg==
-X-CSE-MsgGUID: zsS1Xzd7TF6tnQkFw4EpNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="29806927"
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="29806927"
+ bh=96XA+DRg+SSThbpKpA1dJqjJlDkV968mycg+zkjWMZY=;
+ b=egS8/FhvhQuHE2QW/Hl0h0mg8aBFv9LZFoBKJUTlGT3Gin4mKZDi2lo2
+ oi9Q3bfppH852E1bn3aDYNwzXrm9Rwp2qgZQIaeYKi53iZastoQ+5fnVW
+ I71Nu1Ao6TxJ3y+5roqFjju8xCOpp/1YXvAIGYf+c/FJ4gcb80/7dXvMm
+ ckopnaB6Isbn8y7rCj0k/d/E09sv170L+StxvY/2sDEfqPWltl5rH7azx
+ aNbSkTxKHo2XkE6nrg6zZUxReNA3kBGn/5H7sS4CUPgPFhYYY4ejvA5IE
+ fmJbFCIR040Vuek0QjmVD6Ka0EKDx8mqhPhvJ3pWWzHJdNN1u+0afI69w A==;
+X-CSE-ConnectionGUID: KG9HHBzsS66aHLPPpu6A9A==
+X-CSE-MsgGUID: fAMBX2eeRzGKq2tDXxHLYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11140"; a="29806931"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="29806931"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:26:06 -0700
-X-CSE-ConnectionGUID: oXGvt6DtSOqYIyaJ2IrvIg==
-X-CSE-MsgGUID: FK+tF+IkRD+e1a6Vs5rg+w==
+ 22 Jul 2024 01:26:08 -0700
+X-CSE-ConnectionGUID: 6ZnT0dB7TEaMdF9J6w4kiA==
+X-CSE-MsgGUID: LG5A/K3IRIiZ0Ik4cS2dmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51752881"
+X-IronPort-AV: E=Sophos;i="6.09,227,1716274800"; d="scan'208";a="51752890"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2024 01:26:04 -0700
+ 22 Jul 2024 01:26:05 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 02/10] drm/i915/display: Add member fixed_rr to denote Fixed
- refresh rate with VRRTG
-Date: Mon, 22 Jul 2024 13:56:57 +0530
-Message-ID: <20240722082705.3635041-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 03/10] drm/i915/dp: Set FAVT mode in DP SDP with fixed refresh
+ rate
+Date: Mon, 22 Jul 2024 13:56:58 +0530
+Message-ID: <20240722082705.3635041-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240722082705.3635041-1-ankit.k.nautiyal@intel.com>
 References: <20240722082705.3635041-1-ankit.k.nautiyal@intel.com>
@@ -69,52 +69,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add fixed_rr member to struct vrr to represent the case where a
-fixed refresh rate with VRR timing generator is required.
-
-v2: Move get_config change where vrr.fixed is actually set. (Mitul)
+While running with fixed refresh rate and VRR timing generator set FAVT
+mode (Fixed Vtotal) in DP Adaptive Sync SDP to intimate the panel
+about Fixed refresh rate.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c       | 4 +++-
- drivers/gpu/drm/i915/display/intel_display_types.h | 2 +-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 01a5faa3fea5..ecfd77c0b741 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1004,7 +1004,8 @@ static bool vrr_params_changed(const struct intel_crtc_state *old_crtc_state,
- 		old_crtc_state->vrr.vmin != new_crtc_state->vrr.vmin ||
- 		old_crtc_state->vrr.vmax != new_crtc_state->vrr.vmax ||
- 		old_crtc_state->vrr.guardband != new_crtc_state->vrr.guardband ||
--		old_crtc_state->vrr.pipeline_full != new_crtc_state->vrr.pipeline_full;
-+		old_crtc_state->vrr.pipeline_full != new_crtc_state->vrr.pipeline_full ||
-+		old_crtc_state->vrr.fixed_rr != new_crtc_state->vrr.fixed_rr;
- }
- 
- static bool cmrr_params_changed(const struct intel_crtc_state *old_crtc_state,
-@@ -5479,6 +5480,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 
- 	if (!fastset) {
- 		PIPE_CONF_CHECK_BOOL(vrr.enable);
-+		PIPE_CONF_CHECK_BOOL(vrr.fixed_rr);
- 		PIPE_CONF_CHECK_I(vrr.vmin);
- 		PIPE_CONF_CHECK_I(vrr.vmax);
- 		PIPE_CONF_CHECK_I(vrr.flipline);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index a9d2acdc51a4..4c0a18143c23 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1407,7 +1407,7 @@ struct intel_crtc_state {
- 
- 	/* Variable Refresh Rate state */
- 	struct {
--		bool enable, in_range;
-+		bool enable, in_range, fixed_rr;
- 		u8 pipeline_full;
- 		u16 flipline, vmin, vmax, guardband;
- 		u32 vsync_end, vsync_start;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 59fc72b533de..9c632f569f62 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2633,6 +2633,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+ 		as_sdp->target_rr_divider = true;
+ 	} else {
++		if (crtc_state->vrr.fixed_rr)
++			as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
++		else
++			as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+ 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+ 		as_sdp->vtotal = adjusted_mode->vtotal;
+ 		as_sdp->target_rr = 0;
 -- 
 2.45.2
 
