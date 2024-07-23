@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BDB939FB0
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2024 13:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04D6C939FB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2024 13:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 207A310E570;
-	Tue, 23 Jul 2024 11:21:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1630210E57A;
+	Tue, 23 Jul 2024 11:22:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eUWOHN46";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hQC7VA8H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECFD510E575
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 11:21:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C44010E576
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 11:21:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721733708; x=1753269708;
+ t=1721733712; x=1753269712;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9YlkTmjXmS2ih1LWTRbuSVKX879XrjCADknwlyh6fYI=;
- b=eUWOHN460yyoZ63fgnDmxTx4gggp4nvbDKoHWx6ZqTGDW0pH6q2V1IYA
- Jqey5TdYpu85q0VMJWQ0UPSEuKWBPFAHjvKSD8BTut041ml+Y+0r3B0y4
- KLpkUV3095a8IVeGvSH2XpAGLKa8T2qPDNk0fjjPHyHd5Itedr7TNpm+1
- tj9X8pOXZWUssUjCuiwhtCOSAcEyPRcpOdK0dBI0BYLq1CLcD714Arel7
- btMPtprhdLJaE3rakzsJSiBw/t7Yb+ubXfT814iBRuYxWbm3JrTck6Rgq
- doOXWPu6Wtniok5q5vThSl9xL0CSK6aTSQJyYN3cFQZhoOF+2x+gSPVoT Q==;
-X-CSE-ConnectionGUID: FEJfF8mDSym1MnSWierrvw==
-X-CSE-MsgGUID: HxgIfMplQ1KKVzkuAFjNUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="19225420"
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="19225420"
+ bh=92VWHF3jjQ0LOFu8mc0SRcS87YTw7CHWrn3kZhJ5/FA=;
+ b=hQC7VA8HfiWreV/TvPcwikFQ7yLI0YVsWomWLlefzCfYclyhd/MMrKBw
+ gML8FjhDlItJybosLJLc1AMkFTaVHAMqMmsNIOHxvuEJ1DM8Ty1Quy+dM
+ Y8VPdzGUy8KSAePgq9U5uZ5aIyIMo/g1kDASZOiy/5fDMwnQterz/D1tt
+ F2PoYwPgEjTR9v34ePoM7/4wljh/J9JuwIYYj7hivz8HQQTf8pnD0eeRv
+ MKoB92tgYhvn7oYe+AW59YMlBj0hYqTvkKtk2ywAJ7PfZpkBnM0xDqV2Z
+ ZiRuKGftC5KhUVaf6cmGOCuX73kMFjQr4w9aQG4klTIz257WrMOq+CDEp Q==;
+X-CSE-ConnectionGUID: SddrJFpvSP6OxOv9CTTw+A==
+X-CSE-MsgGUID: cenneS2wTMutJGG0ew06/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11141"; a="19225439"
+X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="19225439"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2024 04:21:47 -0700
-X-CSE-ConnectionGUID: k+n9qgwCTCO0b3x65CFsNw==
-X-CSE-MsgGUID: z1O7yDVbS3uAoOp9e7As5g==
+ 23 Jul 2024 04:21:52 -0700
+X-CSE-ConnectionGUID: o7tpuAKQReeoH0HN0VtTGw==
+X-CSE-MsgGUID: j2SHw3xlQyeswae4iyyyUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="52267473"
+X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="52267486"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.245.246.52])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2024 04:21:46 -0700
+ 23 Jul 2024 04:21:51 -0700
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: intel-gfx <intel-gfx@lists.freedesktop.org>
 Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
  Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [RFC PATCH 6/9] drm/i915/gt: Add sysfs cleanup function for engines
-Date: Tue, 23 Jul 2024 13:20:43 +0200
-Message-ID: <20240723112046.123938-7-andi.shyti@linux.intel.com>
+Subject: [RFC PATCH 7/9] drm/i915/gt: Allow the creation of multi-mode CCS
+ masks
+Date: Tue, 23 Jul 2024 13:20:44 +0200
+Message-ID: <20240723112046.123938-8-andi.shyti@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240723112046.123938-1-andi.shyti@linux.intel.com>
 References: <20240723112046.123938-1-andi.shyti@linux.intel.com>
@@ -69,127 +70,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Engines and their properties are exposed in:
+Until now, we have only set CCS mode balancing to 1, which means
+that only one compute engine is exposed to the user. The stream
+of compute commands submitted to that engine is then shared among
+all the dedicated execution units.
 
-/sys/class/drm/cardX/engine/<engine_name>
+This is done by calling the 'intel_gt_apply_ccs_mode(); function.
 
-These files are cleaned up when the driver is removed. However,
-when the presence of engines starts changing dynamically, we need
-a function to clean up the existing ones.
+With this change, the aforementioned function takes an additional
+parameter called 'mode' that specifies the desired mode to be set
+for the CCS engines balancing. The mode parameter can have the
+following values:
 
-Store the engine-related objects (kobj and kobj_defaults) in the
-'intel_engine_cs' structure, and store the main directory's
-object (sysfs_engines) in the 'drm_i915_private' structure.
+ - mode = 0: CCS load balancing mode 1 (1 CCS engine exposed)
+ - mode = 1: CCS load balancing mode 2 (2 CCS engines exposed)
+ - mode = 3: CCS load balancing mode 4 (4 CCS engines exposed)
 
-No functional changes intended at this point, as this function
-does not have users yet.
+This allows us to generate the appropriate register value to be
+written to CCS_MODE, configuring how the exposed engine streams
+will be submitted to the execution units.
+
+No functional changes are intended yet, as no mode higher than
+'0' is currently being set.
 
 Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  2 ++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  3 +++
- drivers/gpu/drm/i915/gt/sysfs_engines.c      | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/gt/sysfs_engines.h      |  1 +
- drivers/gpu/drm/i915/i915_drv.h              |  1 +
- 5 files changed, 25 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 78 ++++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h |  4 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c |  2 +-
+ 3 files changed, 65 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 8011df30023e..92043ad19409 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -716,6 +716,8 @@ void intel_engines_free(struct intel_gt *gt)
- 		kfree(engine);
- 		gt->engine[id] = NULL;
- 	}
-+
-+	memset(gt->engine_class, 0, sizeof(gt->engine_class));
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
+index 8acb9ee5b511..0d733b3e8df3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include "i915_drv.h"
+-#include "intel_gt.h"
+ #include "intel_gt_ccs_mode.h"
+ #include "intel_gt_print.h"
+ #include "intel_gt_regs.h"
+@@ -57,33 +56,80 @@ void intel_gt_ccs_mode_init(struct intel_gt *gt)
+ 	info->engine_mask |= BIT(_CCS(first_ccs));
  }
  
- static
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index ba55c059063d..a0f2f5c08388 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -388,6 +388,9 @@ struct intel_engine_cs {
- 	u32 context_size;
- 	u32 mmio_base;
+-void intel_gt_apply_ccs_mode(struct intel_gt *gt)
++void intel_gt_apply_ccs_mode(struct intel_gt *gt, u32 mode)
+ {
++	unsigned long cslices_mask = gt->ccs.cslice_mask;
++	u32 mode_val = 0;
++	int ccs_id;
+ 	int cslice;
+-	u32 mode = 0;
+-	int first_ccs = __ffs(CCS_MASK(gt));
++	u32 m = mode;
  
-+	struct kobject *kobj;
-+	struct kobject *kobj_defaults;
-+
- 	struct intel_engine_tlb_inv tlb_inv;
+ 	lockdep_assert_held(&gt->ccs.mutex);
  
- 	/*
-diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-index 021f51d9b456..a38c1732848e 100644
---- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-+++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-@@ -479,6 +479,8 @@ static void add_defaults(struct kobj_engine *parent)
- 	if (intel_engine_has_preempt_reset(ke->engine) &&
- 	    sysfs_create_file(&ke->base, &preempt_timeout_def.attr))
- 		return;
-+
-+	parent->engine->kobj_defaults = &ke->base;
- }
- 
- void intel_engines_add_sysfs(struct drm_i915_private *i915)
-@@ -506,6 +508,8 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
- 	if (!dir)
+ 	if (!IS_DG2(gt->i915))
  		return;
  
-+	i915->sysfs_engine = dir;
+-	/* Build the value for the fixed CCS load balancing */
+-	for (cslice = 0; cslice < I915_MAX_CCS; cslice++) {
+-		if (gt->ccs.cslice_mask & BIT(cslice))
+-			/*
+-			 * If available, assign the cslice
+-			 * to the first available engine...
+-			 */
+-			mode |= XEHP_CCS_MODE_CSLICE(cslice, first_ccs);
++	/*
++	 * The mode has two bit dedicated for each engine
++	 * that will be used for the CCS balancing algorithm:
++	 *
++	 *    BIT | CCS slice
++	 *   ------------------
++	 *     0  | CCS slice
++	 *     1  |     0
++	 *   ------------------
++	 *     2  | CCS slice
++	 *     3  |     1
++	 *   ------------------
++	 *     4  | CCS slice
++	 *     5  |     2
++	 *   ------------------
++	 *     6  | CCS slice
++	 *     7  |     3
++	 *   ------------------
++	 *
++	 * When a CCS slice is not available, then we will write 0x7,
++	 * oterwise we will write the user engine id which load will
++	 * be forwarded to that slice.
++	 *
++	 * The possible configurations are:
++	 *
++	 * 1 engine (ccs0):
++	 *   slice 0, 1, 2, 3: ccs0
++	 *
++	 * 2 engines (ccs0, ccs1):
++	 *   slice 0, 2: ccs0
++	 *   slice 1, 3: ccs1
++	 *
++	 * 4 engines (ccs0, ccs1, ccs2, ccs3):
++	 *   slice 0: ccs0
++	 *   slice 1: ccs1
++	 *   slice 2: ccs2
++	 *   slice 3: ccs3
++	 */
++	ccs_id = __ffs(cslices_mask);
+ 
+-		else
++	for (cslice = 0; cslice < I915_MAX_CCS; cslice++) {
++		if (!(cslices_mask & BIT(cslice))) {
+ 			/*
+-			 * ... otherwise, mark the cslice as
+-			 * unavailable if no CCS dispatches here
++			 * If not available, mark the slice as unavailable
++			 * and no task will be dispatched here.
+ 			 */
+-			mode |= XEHP_CCS_MODE_CSLICE(cslice,
++			mode_val |= XEHP_CCS_MODE_CSLICE(cslice,
+ 						     XEHP_CCS_MODE_CSLICE_MASK);
++			continue;
++		}
 +
- 	for_each_uabi_engine(engine, i915) {
- 		struct kobject *kobj;
- 
-@@ -526,6 +530,8 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
- 
- 		add_defaults(container_of(kobj, struct kobj_engine, base));
- 
-+		engine->kobj = kobj;
++		mode_val |= XEHP_CCS_MODE_CSLICE(cslice, ccs_id);
 +
- 		if (0) {
- err_object:
- 			kobject_put(kobj);
-@@ -536,3 +542,15 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
- 		}
++		if (!m) {
++			m = mode;
++			ccs_id = __ffs(cslices_mask);
++			continue;
++		}
++
++		m--;
++		ccs_id = find_next_bit(&cslices_mask, I915_MAX_CCS, ccs_id + 1);
  	}
+ 
+ 	gt->ccs.mode_reg_val = mode;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
+index 5793c4178bd9..c60bfdb54e37 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h
+@@ -6,9 +6,9 @@
+ #ifndef __INTEL_GT_CCS_MODE_H__
+ #define __INTEL_GT_CCS_MODE_H__
+ 
+-struct intel_gt;
++#include "intel_gt.h"
+ 
+-void intel_gt_apply_ccs_mode(struct intel_gt *gt);
++void intel_gt_apply_ccs_mode(struct intel_gt *gt, u32 mode);
+ void intel_gt_sysfs_ccs_init(struct intel_gt *gt);
+ void intel_gt_ccs_mode_init(struct intel_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 379b3dde3bbd..8770bde646eb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2730,7 +2730,7 @@ static void ccs_engine_wa_mode(struct intel_engine_cs *engine, struct i915_wa_li
+ 	 * assign all slices to a single CCS. We will call it CCS mode 1
+ 	 */
+ 	mutex_lock(&gt->ccs.mutex);
+-	intel_gt_apply_ccs_mode(gt);
++	intel_gt_apply_ccs_mode(gt, 0);
+ 	wa_masked_en(wal, XEHP_CCS_MODE, gt->ccs.mode_reg_val);
+ 	mutex_unlock(&gt->ccs.mutex);
  }
-+
-+void intel_engines_remove_sysfs(struct drm_i915_private *i915)
-+{
-+	struct intel_engine_cs *engine;
-+
-+	for_each_uabi_engine(engine, i915) {
-+		kobject_put(engine->kobj_defaults);
-+		kobject_put(engine->kobj);
-+	}
-+
-+	kobject_put(i915->sysfs_engine);
-+}
-diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.h b/drivers/gpu/drm/i915/gt/sysfs_engines.h
-index 9546fffe03a7..09293a010025 100644
---- a/drivers/gpu/drm/i915/gt/sysfs_engines.h
-+++ b/drivers/gpu/drm/i915/gt/sysfs_engines.h
-@@ -9,5 +9,6 @@
- struct drm_i915_private;
- 
- void intel_engines_add_sysfs(struct drm_i915_private *i915);
-+void intel_engines_remove_sysfs(struct drm_i915_private *i915);
- 
- #endif /* INTEL_ENGINE_SYSFS_H */
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index d7723dd11c80..1bdf9a0115c1 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -320,6 +320,7 @@ struct drm_i915_private {
- 	struct intel_gt *gt[I915_MAX_GT];
- 
- 	struct kobject *sysfs_gt;
-+	struct kobject *sysfs_engine;
- 
- 	/* Quick lookup of media GT (current platforms only have one) */
- 	struct intel_gt *media_gt;
 -- 
 2.45.2
 
