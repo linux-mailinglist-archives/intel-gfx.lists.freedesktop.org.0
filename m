@@ -2,176 +2,130 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9755793A0D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2024 15:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B9693A153
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2024 15:26:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F246F10E5BC;
-	Tue, 23 Jul 2024 13:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47D9B10E5CF;
+	Tue, 23 Jul 2024 13:26:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ISpLIIOU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="kDn+Fn5L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DBA210E5BD
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2024 13:05:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721739911; x=1753275911;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=09ZSI15Y5rJq4+BBWvxiCeoV6Ci/b1eqQhoPiH1G5Ec=;
- b=ISpLIIOUkvaJCZnLtDgO0os+hV/1DO20TpkBtWd01EiinkogS4B7eZ7S
- OZTiBQZCXjYpLPFH3duMKvguOGIzpkRM4BBJhqDgn8aJc4IBLnY1snoB0
- dRC0vJ49k4a2+7gwGxv3URhTUQkjVpF7klezEjMT5cZBI6akoSYuNe7yP
- h87r6NJziuhltwVUO7NtaqK2LLYq2GPNEpnmCwmnBDyGOSPc2Ls+bcToh
- xs+5AzC/U9bZFnCmBd1H3Fw5zc0AJ5L3Fp5O0uV6Ug/WQkt+uAeVdiROR
- lfPXSNwhBqgPbK+SoQl8713gkijtLJ4INJTJvlPFZvUIVATpnN7yxfifF A==;
-X-CSE-ConnectionGUID: 4Gb+qWfAR1iXdsQSALICzQ==
-X-CSE-MsgGUID: 29GtqmvGQbmoNj/Zk0VE7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="29953274"
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="29953274"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2024 06:05:11 -0700
-X-CSE-ConnectionGUID: 8isbLT/DQzGwYaTLu0tcLg==
-X-CSE-MsgGUID: vXBqyQgvRemk01LpENvQ8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,230,1716274800"; d="scan'208";a="51939773"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jul 2024 06:05:10 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 23 Jul 2024 06:05:10 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 23 Jul 2024 06:05:10 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 23 Jul 2024 06:05:10 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 23 Jul 2024 06:05:10 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2052.outbound.protection.outlook.com [40.107.96.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0958810E5C5;
+ Tue, 23 Jul 2024 13:25:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZRV12ToU1fqlyHUN+U0Hi3rTTfKZG8+uTtao6UjB+WHO9UG/ZbUm6N2/SkZlKhjyLyP+wmH15q6skQ0EENSCcK7ndwZTPUgSZliUHEhwsLQO1iSJTsGisyy3QSIFT+Irvg/0DaB/+Ea8RyfrKa9BM96rnC2CSkEepQ33OMcf5JWBPsjbVlyrpNn3yw/hJiVn+bgrX0H+qtR80hSVpUMvsxAerbXKFAoq8RHpCZQ8AQGZ+V6h1wRzsYZ2Zlae8XBsiBpUCrTcoMMmeHbWlfN2kRQjXzaSBc+EY5GB5dMATFlpULURhO+WmbCVFt8Tjdcu6cqyr5kG33Z2ZzRm2/xnQw==
+ b=DetdoJ8hnN/5uSR0K86/XCjwdCcr/sf/uU/8UrbSrj1/Obyb/w1A0yM3VXCCuMSXHCt/9nq6R5m9KLuFEyJoWtF9/PEkseWKZC199O8KOxDoB7WIF7wve5hiruClsJdQgyDxv02DZl+p59JxrMxRro8ErsQDwhVdCXYThhMSsWY70H01vsju8INecxx63TvwZXoyH501bs/wjUwy4qddrrtYlMGmwhNsg3b9LJ340egd8XXBezTyZNBVViqIINq95asNuK13OOzlcmXFKdAvXbUY1TA4QYfQ2f8RuFAHoheimWsMfmAV0xG0kgDNrmYfLCnPtitcDBU+i7inQYZsNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O3ehqHIvb+s0erpyNUX4V78nZvksRqxdxfXdrwicYzg=;
- b=h4d+s5dmEyy/LxUofNCkh8f6YKr4dND4I/iduCwTyFJST9g6V3ITNv6IqDWR8Vjul4rV+DdPeQ7qI/wHz8FstXWqm78aXW0+Pv3xLzDwOuR0WoZmf1grVSlnr7k42PFNqcB5qCPnsI6+3ILjl5vvsQGIzCupNB6D6HAP7IJbgppNYhCDXYgXIpgEzJdRQscVrbx+QTW0FytPMr0rzw/3FinhlTZv45A2Yrq59/5e/tYzYaoSBhutpceSFeOCqohPEoh6+9QI4IPX7ummljOvCpnQjQb04d6HQyI/ta4IJwALFlTlM8XEuO3zsXy6frzI1BGbhJKXZBkADYBjDW7ScA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by DM4PR11MB6285.namprd11.prod.outlook.com (2603:10b6:8:a8::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.15; Tue, 23 Jul
- 2024 13:05:07 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.7784.016; Tue, 23 Jul 2024
- 13:05:07 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 05/14] drm/i915/dp: Initialize the link parameters during
- HW readout
-Thread-Topic: [PATCH 05/14] drm/i915/dp: Initialize the link parameters during
- HW readout
-Thread-Index: AQHa3FgHeu4Y5TCCmU+GBSr7ws8+QbID/QdwgAA54oCAABIKsA==
-Date: Tue, 23 Jul 2024 13:05:07 +0000
-Message-ID: <SN7PR11MB6750AA01482E11B2E0DA977DE3A92@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20240722165503.2084999-1-imre.deak@intel.com>
- <20240722165503.2084999-6-imre.deak@intel.com>
- <SN7PR11MB675009A3083E40276CD2BC3DE3A92@SN7PR11MB6750.namprd11.prod.outlook.com>
- <Zp-bLSQb5wr4-uq6@ideak-desk.fi.intel.com>
-In-Reply-To: <Zp-bLSQb5wr4-uq6@ideak-desk.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|DM4PR11MB6285:EE_
-x-ms-office365-filtering-correlation-id: 92be7c5f-b22a-431e-a073-08dcab18136d
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?UUPDxA8LnBKE90keoH1B5uZVQYAPfZaFH3+XFMLcdqQ1gR1UopR8bO4Pt0MG?=
- =?us-ascii?Q?GTquOvc7V/2xz9xHtG8iGV3vRHTsJykmj/5V72ttmUMsf2J31HnjYy/WngNi?=
- =?us-ascii?Q?Ol3frRCRkpXaJ2ZIjKP/jpfqZbscf5OSqrQdQSEP2ZSGz8vKCo6tS3b+6qEw?=
- =?us-ascii?Q?e5xAPjQY6+XvCkCi9fEw7nplIk15ND2A3n6cS51YY6DNIXYINkDaacOKW3Yl?=
- =?us-ascii?Q?CNeJXKmgQL15UWzcWc5htrf41kIt2zLt7IzXXeszT0WFEUyO8+q3k1P9W1Kd?=
- =?us-ascii?Q?tqWbSjBc2GIelCQlsk4ZKHLZbIbTeS+DE1aRdM3H/qqnRoh/TOmRhRsqtwww?=
- =?us-ascii?Q?8+Fe75VMTaDA8H3kAtwTgWK8lN6QQKHFr5VPxdCBmHi8WaL4MXXd/43cl9Bt?=
- =?us-ascii?Q?aiPrKbabkSQPClKv79f9mveuyg7nppB/NEbUy0UBM2e8IGmUqR1NGwZDR4/M?=
- =?us-ascii?Q?jAcDDRJql/JWTat0FDQJzyFvBafH+TjRh6Onjk9Wu1giOlX++Wz0l06pS/Th?=
- =?us-ascii?Q?MIMJ210bbEbduYJA4Zf4T4A0/jSA2G9fjWv1XQTqeSLiPAaO5P6DdOZTVmut?=
- =?us-ascii?Q?IDF1yGqHcSKUgLIUfA3RLGPp3tXhhR9VSNSv67Y0SQvJI5ymN/r1p9JjEhbk?=
- =?us-ascii?Q?vWf9XEv/Jv0Wm51tlMLikoKRE2EGVbFhNwtEXTZYMOEeMdbTZnrpJqznHK8I?=
- =?us-ascii?Q?5WI0m2Uc2WGhXXGxtPZHJVBQ4Moh8sHR9PQDv4icWogDUs8JlTkIPWvYjQyp?=
- =?us-ascii?Q?5u5DIVzhuOqxNPx0BxmxWc+Xxc+Fcnr2Sk7Dr17hGjvosJSXCfdV6BUc4WjK?=
- =?us-ascii?Q?QTfH8TwWTRQ9dQqgjXEBU0UK1s6X5byavhPLLBaEJYRjJPoMtlI+IzYO+7sK?=
- =?us-ascii?Q?2o4VhS11I9QxlqKk8FMx/Fq9iOMv/sSWQ8n7v+g0p8KgAGh/AxhZ3kAlahrH?=
- =?us-ascii?Q?NMUC3zqKWRWWrcOzzUgw0QKpH3L+KisDMy5IS8w05QTHSlRxvbWWWfbX3dFT?=
- =?us-ascii?Q?PF4hVKb/nklmPpTR2uekaBpb1MGzwrHCa3sETrzPo1uYe+NCLqnYqzIbo3VS?=
- =?us-ascii?Q?HbXwojfn1xFsUAwXUnOw8BKIq5Er69Qt+/DR4ywZYwChJTZc2M9rXdg4pOCE?=
- =?us-ascii?Q?+TX7WsMVH+DMmwQtzuc9ZXZQQNnbs7tRRYi+TycVEFP+K8A6GF+Wm6tafgE9?=
- =?us-ascii?Q?Ap87lXFvTxqLPprjQOzuPVokYnoSsUo+6QbFE6S0svAK+6Y8GWG335KaL8WI?=
- =?us-ascii?Q?dGvsZcjHUgg3bOmXM3thBZWfDSOfWO/ZapCQXG8YVidBwfZat3xeD2FVMVzI?=
- =?us-ascii?Q?GF1iI284435djir81hm11vAqpwzfCihRYbufb9WdENGzADMJtHOZ/u9O441a?=
- =?us-ascii?Q?xpBRzXlVz6kKMi6qoHP/E3u0wJG4CpuQNl1w8jTpw3fyubdXJg=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fqQpwmQ1lFbvg9DPAGyT0782NXZfhsjBTwsxtTWd33r89vzm2cHMCHGCbk6s?=
- =?us-ascii?Q?inmq+DoG9UBxtAWkix/Aw2+CWo43/LMXvRCNwnSCLfPFWlYePHjruettnA5p?=
- =?us-ascii?Q?+JqDaactgMzJgLGThXyr0CyZNYkk71PyBV8T9MFs6fvsweko74UntxV8U4EH?=
- =?us-ascii?Q?RqYc+V04m8dHZ6BJQvq7jyhuqSSa44eR/P3BiDmhOPLeuhATVLqaRTj75hrT?=
- =?us-ascii?Q?cYJToKIEipPx1ws2vK2T85Juws07+bihQnDwvqGd8+6FCkhS47GmjnekoZJ1?=
- =?us-ascii?Q?/pu9z7GEiyT1hlTVMX+mieNyKXyRxlL4UnGtP6ch+Xk/qXQ1EXv+1OROJXF3?=
- =?us-ascii?Q?ZxNYghILb2+osCpk3VU6A0vkiTUstUl9aZ3tLqNfoxQdBhAyg7meV35IoPlw?=
- =?us-ascii?Q?CRH7GrKJqA04kB+tO/ING8Hn/SUOHl7mqYeMEpb9ULvOWp9iM1dyOSc18x1d?=
- =?us-ascii?Q?cEDTrWjP+/mKL4vsQG5COfuOwMk+a0E94Dp8Q7LlVB8FfL2N8JXyoV+qV+xb?=
- =?us-ascii?Q?W/yd6hYBA9M0JmCm4hg14Ed/WSSl5RCutLPTTV7nzSGln+hXPAvUlbahkLU7?=
- =?us-ascii?Q?s0DMAs0fyjJCwU6CRGS8Q3OUBuGMjgsv2H1mfnwFWZc8pfq/cED3r+AZhkxA?=
- =?us-ascii?Q?elnoae7Q1r/yLmTFA75lvksEnq7O1dObElJSPiqP9WrsevcVl7CTpL+iOQMg?=
- =?us-ascii?Q?aAGXt3YJ8gEmjJlPOTzedZ5ewQ8aDpWWcNlZk9uFg0s+aghFDLo9TgKzwSVt?=
- =?us-ascii?Q?732lIKUshvt7uG9e/dMF7AZvcR59W28QoheW3j8L5LITGC2a1ji8B7wqjWAO?=
- =?us-ascii?Q?grqW5GuQPLwRcfqtXfTY0ep7EtD5BDxwm0dxhmE/Il+hZuYQ6reG0DUWSoxy?=
- =?us-ascii?Q?EDInFEgabHS/FkodMi0kguqrBxzLVRp4MN4ajHCM9A7lNskFhHdtncSh/PGA?=
- =?us-ascii?Q?Zw+1+8L+7tfa8GOehyZjw+cUx0ZBUOtHo1CpIZThnkvBOeHEV3SAmwC4FKH6?=
- =?us-ascii?Q?+hiL0JEW8r7KwU5hbB9yeQR/UiaUzmKu0HPkApL6FGC7xNbx0T2nDzKIDmol?=
- =?us-ascii?Q?cdidRGT4I/OUQaK/IHWzUN699cm5DNxkJKMXcEBQl4ff634CZ6NLF0ZY1haV?=
- =?us-ascii?Q?wCI7VTvPh96Ws4ab7je4r49Ss22za/TVdTYrMYRjPjj4IMjbI+A/Osbc+Upc?=
- =?us-ascii?Q?REun40/a3f7XoZwGEVPiddxUG/dV4K4bO478oGdm/KHd1Qm+KVa5zdUIB/ym?=
- =?us-ascii?Q?GyIoCSQuzt5BBkC5PUB+OgDO84zT/4cTXyyKej4HTbCs5bN9ssSCotmJDi2R?=
- =?us-ascii?Q?WuU0Gx+Ern9X5L/RVqF+6KBGOICjEDIk40K9UtVtBqWWmnlrZqjAp+hwJaWh?=
- =?us-ascii?Q?nQO/bXYf/Fy21CZFTBr7GWWCR82jUmMfwEqwsAxQuGJ+xeOOoC+VxcGWHI9K?=
- =?us-ascii?Q?XJyFLlKb8PTrVspHpmiHC1immUj2dinzhfsD832niZd1KWr3HR/NeiKXbpMG?=
- =?us-ascii?Q?0wXY05bj8H97gpLR4HUS6Ju66n+Opofwcb8M1EM/H668Ku7M+vEJLNP9Mq+u?=
- =?us-ascii?Q?b6pOH8AV16avF7W0W4rk60Kh46Y+KKb0Eizky41e?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=b6UoF1zGqtVrNRypomsBMEF/otGkLEyqVBmoP+knsu4=;
+ b=CZ/kyJaoiQPQgxPPA/mKoCyT57BBcfXRcXJa95t6iwpfAGtvvW/fwKq17sicx4m7xsCWsEb8KNFphovc3iyk1wM5R7ewWY4ygjQzXPQuQWuCpqDbPD2/uDroBwtNPTBc9mahXkZpH4OB7PrueNMUX9Qgz1nfZmRtXsOPU3txt1tCO26g5FnIy44XyyON3SDFgX5nowmxGwZe81Gh7bBY5HJZXJ14NyqVkM2bsWJiLSubsL9pLe/TVaxYlt1JUZ/Ay2+kem0IP1BozRCTDXTAHfLnLvRSzDGPrPo43NwJYExIVUjFO+F71B6iyJL1w4qVwjLJJ38BFVJ34L2cU90reQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b6UoF1zGqtVrNRypomsBMEF/otGkLEyqVBmoP+knsu4=;
+ b=kDn+Fn5LGAtk4hdiNnbHMurfzUdRrpdd6l0f22LukKSWwD8NWMCs3LnlmqfOcB1JQN33wUwQ53gbcr+++IdihiiVVdER8vbG2yhez0kR0nAnTUumeR+lmf0ift4t7ZJLxosQlD9HP6ZlLxQ5WFZSdQklhdTXVfxOKWAa7r+eGeU=
+Received: from MW3PR05CA0010.namprd05.prod.outlook.com (2603:10b6:303:2b::15)
+ by CH3PR12MB8936.namprd12.prod.outlook.com (2603:10b6:610:179::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.16; Tue, 23 Jul
+ 2024 13:25:45 +0000
+Received: from CO1PEPF000044FC.namprd21.prod.outlook.com
+ (2603:10b6:303:2b:cafe::ed) by MW3PR05CA0010.outlook.office365.com
+ (2603:10b6:303:2b::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.18 via Frontend
+ Transport; Tue, 23 Jul 2024 13:25:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000044FC.mail.protection.outlook.com (10.167.241.202) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7784.5 via Frontend Transport; Tue, 23 Jul 2024 13:25:44 +0000
+Received: from amd-X570-AORUS-ELITE.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 23 Jul 2024 08:25:42 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <matthew.auld@intel.com>
+CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
+ <frank.min@amd.com>, <marek.olsak@amd.com>, Arunpravin Paneer Selvam
+ <Arunpravin.PaneerSelvam@amd.com>
+Subject: [PATCH v7 1/2] drm/buddy: Add start address support to trim function
+Date: Tue, 23 Jul 2024 18:55:24 +0530
+Message-ID: <20240723132525.31294-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92be7c5f-b22a-431e-a073-08dcab18136d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2024 13:05:07.2924 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1oh6a5xUpXZjFo++rTmC2F63iEJw9a7HtT8Jq5J6j0WNpiXQYzHCJLZ19s5HZk4htIXvY4NOob3LPwQOqsGOWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6285
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000044FC:EE_|CH3PR12MB8936:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d81a51e-9ccf-4841-d7f3-08dcab1af53c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VGV0cCtjb0tjY2pPU2luYlRWV0MxdHVaZVRuazJBWWJ4NlFxazJRYWVwdTNt?=
+ =?utf-8?B?YkJ5QnYwZGllNnJYdzlMb3lzVmxXcU1DMG5yMlNlY1hlb016MTdxMFZsc0hK?=
+ =?utf-8?B?cDRlNkNBWWxCUk96N0pENVZqbDFRSlVXWGhKNWpjSURINkFuTHhndmErWHUr?=
+ =?utf-8?B?V0pLMm1IbjNEUkowZGtabk5mcXVEb3Y5UzJ6Rm02S2JheUVFRWhOSGFHakla?=
+ =?utf-8?B?ajZUblZzcmNKU1ZRcjE1Qi9obks1elZqQlJqbWhtWFkxNk9TajNIYXNFaUVO?=
+ =?utf-8?B?d3hZaEVuOWdoVlRuNTQ5YXU4MERxRjkvTEI2TGt5YUZsN2VkYmN5U1lZU2g3?=
+ =?utf-8?B?ZWtHN2xhR01QWG9rRVZYT0IzcnVNZ0ZQbGxoejU3SkR6WVR1czRETU9qcGk5?=
+ =?utf-8?B?VnNtSHRmV3hkaUZaZnBselBWY0RuVlBiYWNoSWpOeW5YaFkzNXBxZk9Dbk5K?=
+ =?utf-8?B?Q1E2NkROd3ovc2lPVjc3K1RKMjQzR2F6aUJ2ajZjY2VYSjZ0akF0YWNlall0?=
+ =?utf-8?B?VEFJSHpvUDRtK3BvLzNERnhGMDZ1b3IrS1FycUdNNWpEaUM5T0d6TjMyUm9T?=
+ =?utf-8?B?ZnlGL1VlMHE3QzB4MGdUZ05Zb2tBS1EvV0dUYW5pMW5SV2hUMFdxdHBVdjZi?=
+ =?utf-8?B?LzdaNHJEMzlYdDlEMlNYUklkQ3FySXAzUFdNMFYzaG1OdlBSeXBzOElEMndX?=
+ =?utf-8?B?a0p4MmRhbU1vSzQwd3NIQ2NpSmJrcGZXaVNaa2JjL3J0d2FtZHZpSnF1bU5S?=
+ =?utf-8?B?b28yK2ZqaVV0ZDNwWVFuZ214aXRSZUNvdGE3ZnhSYThydE9FNmh3WS9seTBJ?=
+ =?utf-8?B?SlJSQnJwSWg3TnBuN2gvVUZZa3B2TGpDaU5Wbng3WEdURjBxQ201YTBPZzNJ?=
+ =?utf-8?B?UFZ4MVdBY1lkSGlRdEZqNHNzSlEvWlZXQkFJSzhQc0ZsOEpzMlNzREpxK2xz?=
+ =?utf-8?B?bDd2WHp1WWhDMVNDVFAzOWtWbHIvRkhsSmdhdWNabzVqaTVaM05rc1MxWDdi?=
+ =?utf-8?B?ZmZEMVZxd2VQdVdEVDI0SDZFM29FSnJHRjJDVlpJeXlpWWF6RWhzbGRmZ0w4?=
+ =?utf-8?B?Sy9PNFVkV0lOeGxwSXRGa2NiK0lHWm56anhLUHdzS0RSemZVMkRoSjlpbSsv?=
+ =?utf-8?B?VzBjUk5JV2VTejJ5T0RTakc5a09iWS9LeFgrTXJpV3lsRVhvSGMyclZMYUxq?=
+ =?utf-8?B?Vk5LdkxSRmRpMjFrWmpPZy9Hc003dUx4VzVyemlnM1RsS1VTZGorOXAyUFpo?=
+ =?utf-8?B?YVN2TnFqRUNwY2lrTFVYZTNXMjBhYVRhKzBFRHJycE1sU3RxQUVoaFllQ2Vi?=
+ =?utf-8?B?OHBGOVJvZWNyWXYxaHVhUEg2V25CdlZmUkF3ZkhvUjY1ZzBWZW4rZUluV2la?=
+ =?utf-8?B?d2dLUDVKZW5pRW05STh3SXlCWlE4UGZtMHl6a0NvRldsajBsS1dqdFJhWTcx?=
+ =?utf-8?B?YkRCMG81d1ZQdnZBUWZnSENTK3JxTW1qb1cxN1dxMTB1TzVDUzRINmJJNjUy?=
+ =?utf-8?B?MGNoYXdxRXIxa2lsYU92NjY4KzNhR01BbnovUnhUWUZ2NmtWdTBUbm9pWGdU?=
+ =?utf-8?B?SGgzajNrRnJZM0pTR25pWjB3cUhOVytHYjhmMjI4NGpWM0k5aUMwNlBGMGI2?=
+ =?utf-8?B?dUxxcVJxOG82ZzNaaUZUNzlwZE9GZVBrbTM0QjlXSml3Q0FyMkhNY2hyeFY1?=
+ =?utf-8?B?Q0luOHZNSGN2MVJ1Q3cvcnh0OFFHbGNJLzExcnMrVHFwWlZLS1VVVDIzdStx?=
+ =?utf-8?B?OWhzZk56cmlnYmJJNEc1Z2pUN2pzRkk3Rjk3THhiNXZsTmJjRWlGb1owMWxt?=
+ =?utf-8?B?VE1Kb0k1cWVMVzRJWmxBYTlveHF3UDUyZHJ4eFlkYkVvN0N0aHgrM1NZYUV5?=
+ =?utf-8?B?MTlVSGpWVlRmc0tSa1orcDROLzExNkhFaVBuRHhnYnhrbVVRSHBxVzUwSmMy?=
+ =?utf-8?Q?vAbC8QuG9JduowyKaR6mRHsqRjFJB74J?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2024 13:25:44.8860 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d81a51e-9ccf-4841-d7f3-08dcab1af53c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000044FC.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8936
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -187,76 +141,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+- Add a new start parameter in trim function to specify exact
+  address from where to start the trimming. This would help us
+  in situations like if drivers would like to do address alignment
+  for specific requirements.
 
+- Add a new flag DRM_BUDDY_TRIM_DISABLE. Drivers can use this
+  flag to disable the allocator trimming part. This patch enables
+  the drivers control trimming and they can do it themselves
+  based on the application requirements.
 
-> -----Original Message-----
-> From: Deak, Imre <imre.deak@intel.com>
-> Sent: Tuesday, July 23, 2024 5:30 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [PATCH 05/14] drm/i915/dp: Initialize the link parameters du=
-ring
-> HW readout
->=20
-> On Tue, Jul 23, 2024 at 11:34:58AM +0300, Kandpal, Suraj wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
-> > > Of Imre Deak
-> > > Sent: Monday, July 22, 2024 10:25 PM
-> > > To: intel-gfx@lists.freedesktop.org
-> > > Subject: [PATCH 05/14] drm/i915/dp: Initialize the link parameters
-> > > during HW readout
-> > >
-> > > Initialize the DP link parameters during HW readout. These need to
-> > > be up- to-date at least for the MST topology probing, which depends
-> > > on the link rate and lane count programmed in DPCD. A follow-up
-> > > patch will program the DPCD values to reflect the maximum link
-> > > parameters before the first MST topology probing, but should do so
-> > > only if the link is disabled (link_trained=3D=3Dfalse).
-> > >
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
-> > >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > index 1e43e32e05199..421e970b3c180 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -3352,8 +3352,11 @@ void intel_dp_sync_state(struct intel_encoder
-> > > *encoder,
-> > >
-> > >       intel_dp_tunnel_resume(intel_dp, crtc_state, dpcd_updated);
-> > >
-> > > -     if (crtc_state)
-> > > +     if (crtc_state) {
-> > >               intel_dp_reset_link_params(intel_dp);
-> > > +             intel_dp_set_link_params(intel_dp,
-> > > + crtc_state->port_clock,
-> > > crtc_state->lane_count);
-> > > +             intel_dp->link_trained =3D true;
-> >
-> > Why are we setting link_trained as true here.
->=20
-> link_trained indicates whether the output is enabled or not, which must b=
-e
-> in sync with crtc_state being NULL (output disabled) or not NULL (output
-> enabled).
+v1:(Matthew)
+  - check new_start alignment with min chunk_size
+  - use range_overflows()
 
-Okay got it=20
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Acked-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/drm_buddy.c          | 25 +++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  2 +-
+ include/drm/drm_buddy.h              |  2 ++
+ 3 files changed, 26 insertions(+), 3 deletions(-)
 
->=20
-> > Regards,
-> > Suraj Kandpal
-> > > +     }
-> > >  }
-> > >
-> > >  bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
-> > > --
-> > > 2.44.2
-> >
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 6a8e45e9d0ec..103c185bb1c8 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -851,6 +851,7 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+  * drm_buddy_block_trim - free unused pages
+  *
+  * @mm: DRM buddy manager
++ * @start: start address to begin the trimming.
+  * @new_size: original size requested
+  * @blocks: Input and output list of allocated blocks.
+  * MUST contain single block as input to be trimmed.
+@@ -866,11 +867,13 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+  * 0 on success, error code on failure.
+  */
+ int drm_buddy_block_trim(struct drm_buddy *mm,
++			 u64 *start,
+ 			 u64 new_size,
+ 			 struct list_head *blocks)
+ {
+ 	struct drm_buddy_block *parent;
+ 	struct drm_buddy_block *block;
++	u64 block_start, block_end;
+ 	LIST_HEAD(dfs);
+ 	u64 new_start;
+ 	int err;
+@@ -882,6 +885,9 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 				 struct drm_buddy_block,
+ 				 link);
+ 
++	block_start = drm_buddy_block_offset(block);
++	block_end = block_start + drm_buddy_block_size(mm, block);
++
+ 	if (WARN_ON(!drm_buddy_block_is_allocated(block)))
+ 		return -EINVAL;
+ 
+@@ -894,6 +900,20 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 	if (new_size == drm_buddy_block_size(mm, block))
+ 		return 0;
+ 
++	new_start = block_start;
++	if (start) {
++		new_start = *start;
++
++		if (new_start < block_start)
++			return -EINVAL;
++
++		if (!IS_ALIGNED(new_start, mm->chunk_size))
++			return -EINVAL;
++
++		if (range_overflows(new_start, new_size, block_end))
++			return -EINVAL;
++	}
++
+ 	list_del(&block->link);
+ 	mark_free(mm, block);
+ 	mm->avail += drm_buddy_block_size(mm, block);
+@@ -904,7 +924,6 @@ int drm_buddy_block_trim(struct drm_buddy *mm,
+ 	parent = block->parent;
+ 	block->parent = NULL;
+ 
+-	new_start = drm_buddy_block_offset(block);
+ 	list_add(&block->tmp_link, &dfs);
+ 	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
+ 	if (err) {
+@@ -1066,7 +1085,8 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 	} while (1);
+ 
+ 	/* Trim the allocated block to the required size */
+-	if (original_size != size) {
++	if (!(flags & DRM_BUDDY_TRIM_DISABLE) &&
++	    original_size != size) {
+ 		struct list_head *trim_list;
+ 		LIST_HEAD(temp);
+ 		u64 trim_size;
+@@ -1083,6 +1103,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 		}
+ 
+ 		drm_buddy_block_trim(mm,
++				     NULL,
+ 				     trim_size,
+ 				     trim_list);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index fe3779fdba2c..423b261ea743 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -150,7 +150,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	} while (remaining_size);
+ 
+ 	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+-		if (!drm_buddy_block_trim(mm, vres->base.size, &vres->blocks))
++		if (!drm_buddy_block_trim(mm, NULL, vres->base.size, &vres->blocks))
+ 			size = vres->base.size;
+ 	}
+ 
+diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
+index 2a74fa9d0ce5..9689a7c5dd36 100644
+--- a/include/drm/drm_buddy.h
++++ b/include/drm/drm_buddy.h
+@@ -27,6 +27,7 @@
+ #define DRM_BUDDY_CONTIGUOUS_ALLOCATION		BIT(2)
+ #define DRM_BUDDY_CLEAR_ALLOCATION		BIT(3)
+ #define DRM_BUDDY_CLEARED			BIT(4)
++#define DRM_BUDDY_TRIM_DISABLE			BIT(5)
+ 
+ struct drm_buddy_block {
+ #define DRM_BUDDY_HEADER_OFFSET GENMASK_ULL(63, 12)
+@@ -155,6 +156,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+ 			   unsigned long flags);
+ 
+ int drm_buddy_block_trim(struct drm_buddy *mm,
++			 u64 *start,
+ 			 u64 new_size,
+ 			 struct list_head *blocks);
+ 
+
+base-commit: b27d70e1042bf6a31ba7e5acf58b61c9cd28f95b
+-- 
+2.25.1
+
