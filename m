@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75BA93B02F
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2024 13:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B3F293B045
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2024 13:19:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF38B10E05A;
-	Wed, 24 Jul 2024 11:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BD3510E680;
+	Wed, 24 Jul 2024 11:19:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CjDQmgVn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n1YRt/oL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0A610E05A
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 11:15:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5CA810E681
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 11:19:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721819757; x=1753355757;
+ t=1721819981; x=1753355981;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=R/RPaEZpF6BJddJvQ8wPnIgCAsttvbiqRFZ/FA/DJYE=;
- b=CjDQmgVnMEQf7MwNd8wYIe6P+VwF8t0OZqOvOpMhqmOsncqi63UoZvCh
- yXOGKHpr9oWliuooHSZNg3lTSUYLy40tSW9whRYjKhnEg8EIX+TBVZshz
- LpQYiLzOPaGKGKXRyl6cRjzq3aeoHa0MzA3cMGNNBgJug/NYhEoP9D6En
- ZIsaCOWuctWb44bq3cZkCkpDTUf4M2Lq4/wFQvQ1tcXN8aX0psus9n5KG
- kiuDzgkMFySDY87FjAjpPV6LrTuFdPOFgHto/VMf+wtIkSS7bWL/afBl7
- Uxyh0fCVX9xjGdeo3ybb0bMJag59mIEIXxNVOjNV8HRnn2qNwOd1J71i7 Q==;
-X-CSE-ConnectionGUID: AkTwnis6RKy25fq8QqzSIA==
-X-CSE-MsgGUID: QL/R7vF1TFGJ+7Ax+lKe7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="36943137"
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="36943137"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 04:15:57 -0700
-X-CSE-ConnectionGUID: zVJtlPfISACOuxQM9kJ4XA==
-X-CSE-MsgGUID: 0cYqFdz/SlSaGJd61j1pyw==
+ bh=VeKZ1uteW9BUJlHD9Dzkw22gc4xDFjsskGGt5tSeLYM=;
+ b=n1YRt/oLaUHBCSYatzNUUlnQOuM00u7jEYvpYchKRalTOI94rXY8h7FZ
+ yAZBuaMMtuP2yXGpU9RSje0qKKfvRLHtiXAIhNY3au1lif+1ag4FMCw0m
+ NRToqnCZ9G3auGtpWh6fvfmHp/0gjOtdK9l+wJRRYfCSldmK55nIxNWO8
+ RoHgcOdoUS09t37Mj/uyGcRv7L9WLboe+UC/bMxNPYSFpHf8CQzcBDFpT
+ u1ZLDDzA3Vjlz78JOlsKnRgQx8Au64J3j/4F/TxlqsaBX5PPQcLm1BsV/
+ 2m0kXIG1idk8dTj+k+/oM8JTsBYiqgcTX2yf2FtDC1vYeT5t0yvYSBSJO g==;
+X-CSE-ConnectionGUID: ZCxXPOuST2mHlJXhpvKDrw==
+X-CSE-MsgGUID: tgIrNI6cSYye81x7AZ8dpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="19629179"
+X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="19629179"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2024 04:19:33 -0700
+X-CSE-ConnectionGUID: w5PFv26pQRa0JPnbx/2piA==
+X-CSE-MsgGUID: PCvsw3tISxaL2xk032D5IQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="52499037"
+X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="57672599"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 04:15:55 -0700
-Date: Wed, 24 Jul 2024 14:16:10 +0300
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2024 04:19:32 -0700
+Date: Wed, 24 Jul 2024 14:19:47 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: "Murthy, Arun R" <arun.r.murthy@intel.com>
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 06/14] drm/i915/dp: Send only a single modeset-retry
- uevent for a commit
-Message-ID: <ZqDiegIe4mPSuZLU@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH 07/14] drm/i915/dp: Add a separate function to reduce the
+ link parameters
+Message-ID: <ZqDjU66_p6yKpxUx@ideak-desk.fi.intel.com>
 References: <20240722165503.2084999-1-imre.deak@intel.com>
- <20240722165503.2084999-7-imre.deak@intel.com>
- <IA0PR11MB730719E68DD305BF254B5F2DBAAA2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <20240722165503.2084999-8-imre.deak@intel.com>
+ <IA0PR11MB730707E45A582AEB695B479ABAAA2@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <IA0PR11MB730719E68DD305BF254B5F2DBAAA2@IA0PR11MB7307.namprd11.prod.outlook.com>
+In-Reply-To: <IA0PR11MB730707E45A582AEB695B479ABAAA2@IA0PR11MB7307.namprd11.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,86 +71,102 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 24, 2024 at 07:29:33AM +0300, Murthy, Arun R wrote:
-> 
+On Wed, Jul 24, 2024 at 07:55:03AM +0300, Murthy, Arun R wrote:
 > > -----Original Message-----
 > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Imre
 > > Deak
 > > Sent: Monday, July 22, 2024 10:25 PM
 > > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 06/14] drm/i915/dp: Send only a single modeset-retry uevent
-> > for a commit
+> > Subject: [PATCH 07/14] drm/i915/dp: Add a separate function to reduce the link
+> > parameters
 > >
-> > There are multiple failure cases a modeset-retry uevent can be sent for a link
-> > (TBT tunnel BW allocation failure, unrecoverable link training failure), a follow-
-> > up patch adding the handling for a new case where the DP MST payload
-> > allocation fails. The uevent is the same in all cases, sent to all the connectors on
-> > the link, so in case of multiple failures there is no point in sending a separate
-> > uevent for each failure; prevent this, sending only a single modeset-retry
-> > uevent for a commit.
+> > A follow-up patch will add an alternative way to reduce the link parameters in
+> > BW order on MST links, prepare for that here.
 > >
-> Is an exit condition required with some 'x' retry so that this retry
-> doesn't end up in an infinite loop.  For link training failure the
-> link rate/lane count is reduced and when it reaches the least can
-> exit, but for BW allocation failures/payload failure this may not be
-> the case.
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_dp_link_training.c | 39 +++++++++++++++----
+> >  1 file changed, 31 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 58dea87a9fa28..57536ae200b77 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -1193,6 +1193,36 @@ static int reduce_lane_count(struct intel_dp
+> > *intel_dp, int current_lane_count)
+> >       return current_lane_count >> 1;
+> >  }
+> >
+> > +static bool reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
+> > +                                               const struct intel_crtc_state
+> > *crtc_state,
+> > +                                               int *new_link_rate, int
+> > *new_lane_count) {
+> > +     int link_rate;
+> > +     int lane_count;
+> > +
+> > +     lane_count = crtc_state->lane_count;
+> > +     link_rate = reduce_link_rate(intel_dp, crtc_state->port_clock);
+> > +     if (link_rate < 0) {
+> > +             lane_count = reduce_lane_count(intel_dp, crtc_state-
+> > >lane_count);
+> > +             link_rate = intel_dp_max_common_rate(intel_dp);
+> > +     }
+> > +
+>
+> On link training failure reducing link rate or lane count is not
+> linear. Sometime we fall from uhbr to hbr and then again with uhbr
+> with lane reduction. So would it be better to have a table/list for
+> the fallback link rate/lane count.
 
-This is an error condition the driver reports (asynchronously) if a
-modeset request by userspace/client failed. It would be incorrect not to
-report this error, leaving the output in a blank, enabled state.
+This patch is meant to to keep the current way of reducing the rate and
+lane count, just preparing for a follow-up change that adds the
+alternetive BW order fallback logic for MST. I think later SST would
+need to be switched to the logic as well, for now I didn't want to
+change this.
 
-I think that userspace/client should handle such failures - in the
-above case a buggy sink - by disabling the output.
-
+> 
 > Thanks and Regards,
 > Arun R Murthy
 > --------------------
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c            | 6 ++++++
-> >  2 files changed, 7 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index a9d2acdc51a4a..3501125c55158 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1754,6 +1754,7 @@ struct intel_dp {
-> >       u8 lane_count;
-> >       u8 sink_count;
-> >       bool link_trained;
-> > +     bool needs_modeset_retry;
-> >       bool use_max_params;
-> >       u8 dpcd[DP_RECEIVER_CAP_SIZE];
-> >       u8 psr_dpcd[EDP_PSR_RECEIVER_CAP_SIZE];
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 421e970b3c180..0882dddd97206 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -2876,6 +2876,11 @@ intel_dp_queue_modeset_retry_for_link(struct
-> > intel_atomic_state *state,
-> >       struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> >       int i;
-> >
-> > +     if (intel_dp->needs_modeset_retry)
-> > +             return;
+> > +     if (lane_count < 0)
+> > +             return false;
 > > +
-> > +     intel_dp->needs_modeset_retry = true;
+> > +     *new_link_rate = link_rate;
+> > +     *new_lane_count = lane_count;
 > > +
-> >       if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST)) {
-> >               intel_dp_queue_modeset_retry_work(intel_dp-
-> > >attached_connector);
+> > +     return true;
+> > +}
+> > +
+> > +static bool reduce_link_params(struct intel_dp *intel_dp, const struct
+> > intel_crtc_state *crtc_state,
+> > +                            int *new_link_rate, int *new_lane_count) {
+> > +     return reduce_link_params_in_rate_lane_order(intel_dp, crtc_state,
+> > +                                                  new_link_rate,
+> > new_lane_count); }
+> > +
+> >  static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> >                                                  const struct intel_crtc_state
+> > *crtc_state)  { @@ -1206,14 +1236,7 @@ static int
+> > intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> >               return 0;
+> >       }
 > >
-> > @@ -3009,6 +3014,7 @@ void intel_dp_set_link_params(struct intel_dp
-> > *intel_dp,  {
-> >       memset(intel_dp->train_set, 0, sizeof(intel_dp->train_set));
-> >       intel_dp->link_trained = false;
-> > +     intel_dp->needs_modeset_retry = false;
-> >       intel_dp->link_rate = link_rate;
-> >       intel_dp->lane_count = lane_count;
-> >  }
+> > -     new_lane_count = crtc_state->lane_count;
+> > -     new_link_rate = reduce_link_rate(intel_dp, crtc_state->port_clock);
+> > -     if (new_link_rate < 0) {
+> > -             new_lane_count = reduce_lane_count(intel_dp, crtc_state-
+> > >lane_count);
+> > -             new_link_rate = intel_dp_max_common_rate(intel_dp);
+> > -     }
+> > -
+> > -     if (new_lane_count < 0)
+> > +     if (!reduce_link_params(intel_dp, crtc_state, &new_link_rate,
+> > +&new_lane_count))
+> >               return -1;
+> >
+> >       if (intel_dp_is_edp(intel_dp) &&
 > > --
 > > 2.44.2
 > 
