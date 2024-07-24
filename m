@@ -2,170 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC9293ACC8
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2024 08:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E88DF93AD65
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2024 09:48:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4256C10E106;
-	Wed, 24 Jul 2024 06:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F1C410E3A3;
+	Wed, 24 Jul 2024 07:48:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCb2eobC";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="2yV0AozY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F62D10E14C
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 06:45:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721803518; x=1753339518;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=rPb4HwoosXwqALwbnVYMZnmWCERxyPgxDD0R4hgEDaE=;
- b=eCb2eobCewYxEcxhQJ5WAnD0qeBVmDfL12RXQAEzAhMI6N7678Z8lAHv
- ck0+ghlXYjgn4QAvPMbpBTcKfjvsr2u1dVFVEX2FxJK3HlSkH/JQt/WhC
- VXMhXtI2I8eA3bG1fe7vxyIfPFT9xWZRgyC5IS9ne9VAKesNnaDp22HoV
- Ll6oroxAg463HZ32dq7ONq0BVtbl3pQ12tEILfPMrlLk0NL8W4iWRrrQz
- WU3yRoN/9TyrmE6cixXkUSnHlMZLbEzXgmzoGqF9iuHA4uod6MBOneruR
- 6oVseQsRQoCuRZnx2xEgvFB/bd5MwOV+P7uYUtPpfPN4r5U2m0ELhlUqL A==;
-X-CSE-ConnectionGUID: cX2uINc4TyaNXHyPkqGEdw==
-X-CSE-MsgGUID: erMhJWvpT/abMpBDkRwsaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11142"; a="23270203"
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="23270203"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2024 23:45:18 -0700
-X-CSE-ConnectionGUID: 6y1A4JkLTruu3O3efwF6gA==
-X-CSE-MsgGUID: 3l3XUYLCTZCvndn/833TAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,232,1716274800"; d="scan'208";a="75700845"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jul 2024 23:45:17 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 23 Jul 2024 23:45:17 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 23 Jul 2024 23:45:17 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 23 Jul 2024 23:45:16 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZmxVtDHdqA3a+1M8Zei4nJPX065876vB9g9PDilDqrfas7WrMcVwIjBQtvjWNgdPAt4iLTvBDQbMYK4JaYDxA8TM9/iQ778tdgVG0MfM7Y/luGFkvQzH+oSGoaiMsEU34oZ2LAc2Fd6W8CqydyN+EgxW12VyDDhgvG3jL7VLrHoVxSovkr6F2BZk3qmQAhjGXlv5MS90WZf0Kb1tvJR35jqR1kY3wZdIuhkRNyMMahn3H0F/KHfLxQDU5gmT0z5qJ4rifpMrDoqOXjGsU0sIrZ/n4k8GFzh5guE4Bqp2kBoHjCHjoSSE0+sR3MPSedhA9vO6b4Q21x6Zevh3mPNHqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZOnfPuNiPtUvYBMbmpu2zIoH0KI4bLAJz60NhgRERTU=;
- b=E/BiEsyQ7FZMu9ScWNWhz5Y05XSls5WFGoY1ShQam9yCYRNkAlkTIvCO6Zen3p2fVxo0D4eil13coNBDjfXF8uHfAr1pUUg4UiXvQ8YWpwExblUShkwg2XL8Hqe7KReH542kHOXl+B0nEuoOGgNvkUTbYATQzr/v6J7I6H9eWqP79cnZln5GYdkn3RIqr6rxZgKJSeVT3dgr13j4fSaqbpB+o7091tcgwQBOtpILwVFDIgs57WV4wbI9M/K5+D2bGzNjaoRIny41Yp8VEq/zuItKYzwNFiZGX720qlzRP4EVypchKV3q7c/j0TWMfceIpu5SdpKyBK8X17NhptBYYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by CH3PR11MB7817.namprd11.prod.outlook.com (2603:10b6:610:123::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.14; Wed, 24 Jul
- 2024 06:45:14 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.7784.016; Wed, 24 Jul 2024
- 06:45:14 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 10/14] drm/i915/dp_mst: Configure MST after the link
- parameters are reset
-Thread-Topic: [PATCH 10/14] drm/i915/dp_mst: Configure MST after the link
- parameters are reset
-Thread-Index: AQHa3FgGpFQxWWqzAUWyxuhRqFkjarIFcS8g
-Date: Wed, 24 Jul 2024 06:45:14 +0000
-Message-ID: <SN7PR11MB67506FA815AB560833297DB3E3AA2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20240722165503.2084999-1-imre.deak@intel.com>
- <20240722165503.2084999-11-imre.deak@intel.com>
-In-Reply-To: <20240722165503.2084999-11-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CH3PR11MB7817:EE_
-x-ms-office365-filtering-correlation-id: ecc41fd1-7f18-4b2c-07cc-08dcabac2c27
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?HB5xSlXSot+1VCXo35NXK2/gtF0XPjVLRld16nS/76D7NWQGCmko/tCaiiJH?=
- =?us-ascii?Q?BvqX9OR9UXSB2SzA52sJJhAEiH3emqE5ddKarWC0BSLU6Lf4GnSMTwru3Jq+?=
- =?us-ascii?Q?SyBDVUkw5KmbTYrQnbTye9z74m/XNHtZB3Iun4ALb703lpl1tmVVyYRQTHR6?=
- =?us-ascii?Q?1xXhOk7iO+R3MMzFukly2aEb8I8Oot2BQijR38Itd2IlMjMj5+V6vKQNUBq7?=
- =?us-ascii?Q?LPTtjYMY/ThNt8U8ekg++17vpHzAmDc3Y2uYwEJ6DWbhcWLP5beh1KG/W7Dk?=
- =?us-ascii?Q?i6296t/fegJ8YFkHMcIH4BWKyDE+7ntZ+wS//UzaxZxU6lHAlzDwqnuA72Qk?=
- =?us-ascii?Q?I2k5JduxGDsmlKY5XFB06uSsfX+rxFrPdPgS2OigDO84X99duJzDwlF2yHld?=
- =?us-ascii?Q?87aUIr2VYlfCQdaIZ+flLW/cg94Cmug65VVV4zWVaII81pMJlsJjcF/6PicM?=
- =?us-ascii?Q?OtLlEQbQpfRlDb7peRIMkQmrdr6H6ezLUfytJ0aTYGmBe/0hKxw15G9X01zc?=
- =?us-ascii?Q?+sm9CV/cQXuQIYzSOH0drqGZdwEzdTgtjUbFlqk62iGiiznKD9FA44fes6Pi?=
- =?us-ascii?Q?LQjap0fGBD/k1mTSONdCXQeZAdMnrGIDQeuqgkiSOphdZ+fsLkkmKC/bi2cE?=
- =?us-ascii?Q?vnIeLWq3WcRsPSuSVp6kQ3qYRmpF3Sh7iEvmAiRRAkUgejRaBLXU7JGpxJ3r?=
- =?us-ascii?Q?3dHt+BLao909xsunmMVizUUgJVj5t7kJdYL/oAHQi1e8s5DMeyC8xdyw4hrY?=
- =?us-ascii?Q?XlaJ1Te8eotVNIZoRPPRzyU+uPzeIud7/PznqyJ5a3jep2Uagie9izjS0vOU?=
- =?us-ascii?Q?UOvGfxt37APHMGOppCgDiwGCDhGE3tNTRnCJQB9c+FGwDxpVodeb2H87a4YE?=
- =?us-ascii?Q?sYep2eYU6MbzAs1zsgFtDjrPQ0VczxXpXrUE98QUdDnGHA0w3R56qA1NAFVJ?=
- =?us-ascii?Q?3ZyepfLN8s+Uohm7Ilm/V15TPBgE0s0Aoocnxql0LvXA1vWUtLOma4B7iCrp?=
- =?us-ascii?Q?gFt9Zy6iWP30JNVsjSDeFoH8L6EW5+lniH8ZWWWCR92DBNmXwjtrHoDG7CmK?=
- =?us-ascii?Q?1tC9kyl/XNZ6Nko/OMxlT/p1N/PiXZdU6a3mdUN1sH71CaQjJ4jSp+wWXWZ3?=
- =?us-ascii?Q?HNUKy3B+qCRRl4oRwUnpYCB5j7y3eWTm4dK6WneQ91p4bNmTeawEvct5YMea?=
- =?us-ascii?Q?BNDPunxHXTffGSTtigVuTVOn1HTgUEjJDsgOMHv2BodgS4SbXv45EMCDnTKR?=
- =?us-ascii?Q?A63sDwQFp88233qJgWBDcdH8k4sHP5jSzr/SHHY7o9slkDENnP4sz/KOIh+r?=
- =?us-ascii?Q?YOFLHuPred2J0S4C8VbKmu7NJ0qA2EgKcAAqy6cUdIad2Nq9DGKB5Z1KIV6e?=
- =?us-ascii?Q?NxUSKW8my8crxRAvnv54fg6d9RC2dysB5qLFKOPIRwgoZPJqAQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1k7dXtXNr2d1miVwl/BajK4duIkiC0rX5XJNW60+37Pv/Gr/KlviLZptn3Y8?=
- =?us-ascii?Q?gJ8B9gJ+z8PogIVoSiD1W4f1PsNBC2utbWP98BFIVWGucCyh4LeLzW7wWqei?=
- =?us-ascii?Q?BvAgGiEZDpuAelEN2LvncqRybRySR1vcDdn0Ju4fL2xjPSXG2hfTOj9jQpXF?=
- =?us-ascii?Q?eQuHSJasmEb3x9zshCVxPTDz/xR5V1NZs8gr/vyth8D/M+auSR1beZ1xFJtl?=
- =?us-ascii?Q?2Q2slZYKABw6+YY2ATbaVZd5EaxYQf1i/hBC1sDfseDFEFpLUrr2i09QI8G0?=
- =?us-ascii?Q?OkovFjcqhQus56zBmgcy+ZiURMD2mH1YHA2TsnLaxQq6AmjNSHI+0s8BjoKj?=
- =?us-ascii?Q?CvV0JgqHu91kAq2oWIu9XG32VNFDKVZTmJML4LyjWrt0GP+jgy9YM5zCtDmZ?=
- =?us-ascii?Q?BDloPIZbmlCIN2ljn3ZLSZo6j14Y2Vr4ElICAL+7ibo/s9jJVb5q0nB+Mekx?=
- =?us-ascii?Q?zsZNlwnASVfaoAxpRyAczvqxC3ESmTx08w7BZOKMxXEmyXKjYyixEgLZvn7O?=
- =?us-ascii?Q?qdjDy4d9PcZOF+NrbxAVla+jO7E/g7/t7HP3b0hhcwAjkV4mD0ACrHmLgQx4?=
- =?us-ascii?Q?ewQBCaViXIZnnYcJTuihQUbO0Rl116iDHFeAYh407BxDXjH4NCucrqcA41HZ?=
- =?us-ascii?Q?7E0O2+5i+IaCPzj4WgS9+L0XvIuBfC3c3KMJN+Xbl1Ukpq4O4JUbOZbrtrw5?=
- =?us-ascii?Q?WE+yJeu60Ur2SXxW3LBAHHUsmCziOaeBsIxuTnRyhm40m3YRl37RzmHOuO5q?=
- =?us-ascii?Q?JTiMIvWI6FNXzU4QcgPeGSLAz5C3wJcHQxihhTG5qXdrgw7zDdiVb9SZfKSR?=
- =?us-ascii?Q?MS0f33UuKfvk/42pkMaS8LzISjE+Af1aqbyHIXi5t2vNVchwMVQbTrmxcg1A?=
- =?us-ascii?Q?RB7PtjxsedHG6JpJXGQoEmRwUelbjTGZ9I3RAhGwK0I3Gc7yjI3W1sqA01x5?=
- =?us-ascii?Q?pdVXvjK0WwUeL3Qluwri6VBxhIRj6bQmTn3TodfWhS7U44T3LsGx3VXloNoN?=
- =?us-ascii?Q?3jVvoMpxUjXZC6YsGxprMA4pfkW1dYBZ2NoVlDwRC1eNHCwB7jRVdilavChp?=
- =?us-ascii?Q?8oKdJKamwlbTMEfnvmMTWJT6QYimzFcSwsQ6OVtrIQxUIlhsHS34iEBPeMV9?=
- =?us-ascii?Q?SWOk5wlq71oC5GRRJnVa84b2dhDZe2JKh2fRuGTJfO62VK3YCSgTtKByoPBR?=
- =?us-ascii?Q?gtJaZADPN2Bzz0Xhj59l8TJPuXq8zKZM9ZnxcI0bWz3UASbyPqcRUi2Ic3dn?=
- =?us-ascii?Q?jqd3Qo7YcI1LbllHdw1Y0X99ufF1ajX5PXgVtgFPj1z9+e8M9gHt3pPnLiCX?=
- =?us-ascii?Q?AnHsoK7uHXy8z+6dv5cP81wUtGix8tEwX6x48LxXtYezgIQ4OfaeOiOwJLA1?=
- =?us-ascii?Q?a/lmE7NzKoPxR8nWii0ETc2/SkDIWc89UYDyXUXrGxvYBtq6VDt4+ZL7iJqu?=
- =?us-ascii?Q?INJpd+ECzn/x1SHhyXl0/m3UAu8muzaOXRxirTU5JG0UrvvsnrenFFqMPoi9?=
- =?us-ascii?Q?3gYHDgUBIaICC45SLcmGxypCER//blvQlNIaJbjLlT8djx3Np2pIqbSVSOAQ?=
- =?us-ascii?Q?Orq6jBCUEpj8DdlQfFvsm1KcuYftan6NeQmQk9VJ?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8B1010E139
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 07:48:21 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-36865a516f1so4808019f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 00:48:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1721807300; x=1722412100;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=krtFy5Mi1BGgzBjcFadwjlZluEt4OAciNF2RWrAZwwg=;
+ b=2yV0AozYAtq2bzU/V5DcjZUwmlIefPN9K7On/mRJiwRzEvk+yyIZEEcQght/XD2LE4
+ 8IQhMf3ngRYa4r2/r3QkN1LYDIJP3KIT51rBm8zhfj5Rqp8Y6nYiz/UtqLoB9MReedlk
+ A9MzSA9fungaygsaOreSi3mjuYEVkcN4poNNF1UoqkQGEyOVeRoAibUe0cbb/PMO6r0x
+ wnMoQISBUqShXtMzKoRiEiVXgA0tgeIdrLHrsJ21EOqvoJUpwPDriFFoIxjaNAM3sM44
+ OlUcYzo+EpLrQwJh6C5DAq0Mm2sa2Sor3yIQfC3f2b6d+uVLXBlmn3LcMkwdASkoWwwd
+ bvEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721807300; x=1722412100;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=krtFy5Mi1BGgzBjcFadwjlZluEt4OAciNF2RWrAZwwg=;
+ b=bvRaDG9NWeqovm4mp4hdTI/r58LHCyoeqbGzUqiZPeX2hKLPc7lwMdEGc3UrGi4d1m
+ 6BrpEPaXGlPPmtobvhlRh0R0U0utHo8stg9WAM9vxkSK+y4L9/DMBq2PgZFwXSuFORPF
+ j3FhQ4ip4wmMt6vlssFb6s7dM2zZj4UMbKky89M8fX0F8dJKCCB72UdC9Iop/NWqcK1H
+ tZXypRAiADlefvtoLCHngvb+olQQ4/ce2O29VRVZkqqLrKVkRWXzVC9XTJhTSgkuBY8K
+ uIpkU4b4iPWVhbfJ2LOboGARDlGmj0RlH4Ryjmgepu3h2u4cr7uTcbMslKOmEl0wHOK5
+ LE4w==
+X-Gm-Message-State: AOJu0YywiwB7GwGVlFVS1ATGHm/m/+Opsb9h5z+3BJDxg2zqrtnPc6lN
+ GimOAIVXKAos8HcErPHBk1UohRGdVc7PuSyIVFj3cQf7D9Ikfg9YBBaJh/xfiHM=
+X-Google-Smtp-Source: AGHT+IHJYQKmvGS93G2a3BT112cIQewhqjoeTVHdu6Fi/DuqndkssZhc6yIX5rxIS/1BJpp+wY8/Zg==
+X-Received: by 2002:a5d:6684:0:b0:368:3ef7:3929 with SMTP id
+ ffacd0b85a97d-369f09bcef7mr1642716f8f.22.1721807299800; 
+ Wed, 24 Jul 2024 00:48:19 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-427f935dd55sm16759555e9.8.2024.07.24.00.48.19
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 24 Jul 2024 00:48:19 -0700 (PDT)
+Message-ID: <4dac0c08-8bd7-44d2-967e-3491d9dd953c@ursulin.net>
+Date: Wed, 24 Jul 2024 08:48:18 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ecc41fd1-7f18-4b2c-07cc-08dcabac2c27
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2024 06:45:14.2631 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yF2v20i+vj3mQfxubux4KfOP2esJbwAxONmDjGpSFXskqoPS4s6GQbQxMR82c0LO48P9kZXKmouMVh9noBAikg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7817
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] drm/i915/pmu: Lazy unregister
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-perf-users@vger.kernel.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ linux-kernel@vger.kernel.org
+References: <20240722210648.80892-1-lucas.demarchi@intel.com>
+ <20240722210648.80892-7-lucas.demarchi@intel.com>
+ <be3871bd-fc25-482e-b4d4-91afc4d5b5a5@ursulin.net>
+ <xsuzfv4rzb4c25sibt5gjskn7xyfwf33wgwaw4nkz5jlnvl2ke@ekur5xvhec3z>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <xsuzfv4rzb4c25sibt5gjskn7xyfwf33wgwaw4nkz5jlnvl2ke@ekur5xvhec3z>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,52 +91,151 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 23/07/2024 16:30, Lucas De Marchi wrote:
+> On Tue, Jul 23, 2024 at 09:03:25AM GMT, Tvrtko Ursulin wrote:
+>>
+>> On 22/07/2024 22:06, Lucas De Marchi wrote:
+>>> Instead of calling perf_pmu_unregister() when unbinding, defer that to
+>>> the destruction of i915 object. Since perf itself holds a reference in
+>>> the event, this only happens when all events are gone, which guarantees
+>>> i915 is not unregistering the pmu with live events.
+>>>
+>>> Previously, running the following sequence would crash the system after
+>>> ~2 tries:
+>>>
+>>>     1) bind device to i915
+>>>     2) wait events to show up on sysfs
+>>>     3) start perf  stat -I 1000 -e i915/rcs0-busy/
+>>>     4) unbind driver
+>>>     5) kill perf
+>>>
+>>> Most of the time this crashes in perf_pmu_disable() while accessing the
+>>> percpu pmu_disable_count. This happens because perf_pmu_unregister()
+>>> destroys it with free_percpu(pmu->pmu_disable_count).
+>>>
+>>> With a lazy unbind, the pmu is only unregistered after (5) as opposed to
+>>> after (4). The downside is that if a new bind operation is attempted for
+>>> the same device/driver without killing the perf process, i915 will fail
+>>> to register the pmu (but still load successfully). This seems better
+>>> than completely crashing the system.
+>>
+>> So effectively allows unbind to succeed without fully unbinding the 
+>> driver from the device? That sounds like a significant drawback and if 
+>> so, I wonder if a more complicated solution wouldn't be better after 
+>> all. Or is there precedence for allowing userspace keeping their paws 
+>> on unbound devices in this way?
+> 
+> keeping the resources alive but "unplunged" while the hardware
+> disappeared is a common thing to do... it's the whole point of the
+> drmm-managed resource for example. If you bind the driver and then
+> unbind it while userspace is holding a ref, next time you try to bind it
+> will come up with a different card number. A similar thing that could be
+> done is to adjust the name of the event - currently we add the mangled
+> pci slot.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Im=
-re
-> Deak
-> Sent: Monday, July 22, 2024 10:25 PM
-> To: intel-gfx@lists.freedesktop.org
-> Subject: [PATCH 10/14] drm/i915/dp_mst: Configure MST after the link
-> parameters are reset
->=20
-> The MST topology probing depends on the maximum link parameters -
-> programmed to DPCD if required by a follow-up patch - so make sure these
-> parameters are up-to-date before configuring and probing the MST topology=
-.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+Yes.. but what my point was this from your commit message:
 
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+"""
+The downside is that if a new bind operation is attempted for
+the same device/driver without killing the perf process, i915 will fail
+to register the pmu (but still load successfully).
+"""
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index d3529c5836393..1c6d1db1d2690 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6025,13 +6025,13 @@ intel_dp_detect(struct drm_connector
-> *connector,
->=20
->  	intel_dp_detect_sdp_caps(intel_dp);
->=20
-> -	intel_dp_mst_configure(intel_dp);
-> -
->  	if (intel_dp->reset_link_params) {
->  		intel_dp_reset_link_params(intel_dp);
->  		intel_dp->reset_link_params =3D false;
->  	}
->=20
-> +	intel_dp_mst_configure(intel_dp);
-> +
->  	intel_dp_print_rates(intel_dp);
->=20
->  	if (intel_dp->is_mst) {
-> --
-> 2.44.2
+So the subsequent bind does not "come up with a different card number". 
+Statement is it will come up with an error if we look at the PMU subset 
+of functionality. I was wondering if there was precedent for that kind 
+of situation.
 
+Mangling the PMU driver name probably also wouldn't be great.
+
+> That said, I agree a better approach would be to allow
+> perf_pmu_unregister() to do its job even when there are open events. On
+> top of that (or as a way to help achieve that), make perf core replace
+> the callbacks with stubs when pmu is unregistered - that would even kill
+> the need for i915's checks on pmu->closed (and fix the lack thereof in
+> other drivers).
+> 
+> It can be a can of worms though and may be pushed back by perf core
+> maintainers, so it'd be good have their feedback.
+
+Yeah definitely would be essential.
+
+Regards,
+
+Tvrtko
+
+>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/i915_pmu.c | 24 +++++++++---------------
+>>>  1 file changed, 9 insertions(+), 15 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c 
+>>> b/drivers/gpu/drm/i915/i915_pmu.c
+>>> index 8708f905f4f4..df53a8fe53ec 100644
+>>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>>> @@ -1158,18 +1158,21 @@ static void free_pmu(struct drm_device *dev, 
+>>> void *res)
+>>>      struct i915_pmu *pmu = res;
+>>>      struct drm_i915_private *i915 = pmu_to_i915(pmu);
+>>> +    perf_pmu_unregister(&pmu->base);
+>>>      free_event_attributes(pmu);
+>>>      kfree(pmu->base.attr_groups);
+>>>      if (IS_DGFX(i915))
+>>>          kfree(pmu->name);
+>>> +
+>>> +    /*
+>>> +     * Make sure all currently running (but shortcut on pmu->closed) 
+>>> are
+>>> +     * gone before proceeding with free'ing the pmu object embedded 
+>>> in i915.
+>>> +     */
+>>> +    synchronize_rcu();
+>>>  }
+>>>  static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node 
+>>> *node)
+>>>  {
+>>> -    struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), 
+>>> cpuhp.node);
+>>> -
+>>> -    GEM_BUG_ON(!pmu->base.event_init);
+>>> -
+>>>      /* Select the first online CPU as a designated reader. */
+>>>      if (cpumask_empty(&i915_pmu_cpumask))
+>>>          cpumask_set_cpu(cpu, &i915_pmu_cpumask);
+>>> @@ -1182,8 +1185,6 @@ static int i915_pmu_cpu_offline(unsigned int 
+>>> cpu, struct hlist_node *node)
+>>>      struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), 
+>>> cpuhp.node);
+>>>      unsigned int target = i915_pmu_target_cpu;
+>>> -    GEM_BUG_ON(!pmu->base.event_init);
+>>> -
+>>>      /*
+>>>       * Unregistering an instance generates a CPU offline event which 
+>>> we must
+>>>       * ignore to avoid incorrectly modifying the shared 
+>>> i915_pmu_cpumask.
+>>> @@ -1337,21 +1338,14 @@ void i915_pmu_unregister(struct 
+>>> drm_i915_private *i915)
+>>>  {
+>>>      struct i915_pmu *pmu = &i915->pmu;
+>>> -    if (!pmu->base.event_init)
+>>> -        return;
+>>> -
+>>>      /*
+>>> -     * "Disconnect" the PMU callbacks - since all are atomic 
+>>> synchronize_rcu
+>>> -     * ensures all currently executing ones will have exited before we
+>>> -     * proceed with unregistration.
+>>> +     * "Disconnect" the PMU callbacks - unregistering the pmu will 
+>>> be done
+>>> +     * later when all currently open events are gone
+>>>       */
+>>>      pmu->closed = true;
+>>> -    synchronize_rcu();
+>>>      hrtimer_cancel(&pmu->timer);
+>>> -
+>>>      i915_pmu_unregister_cpuhp_state(pmu);
+>>> -    perf_pmu_unregister(&pmu->base);
+>>>      pmu->base.event_init = NULL;
+>>>  }
