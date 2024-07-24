@@ -2,59 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9179F93B6ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2024 20:40:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E06C93B712
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2024 20:54:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B35F610E75E;
-	Wed, 24 Jul 2024 18:40:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MC7JfVci";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C79C10E799;
+	Wed, 24 Jul 2024 18:54:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6B010E793
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2024 18:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721846437; x=1753382437;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=Z9EjPpkqU79Y41X2oIp4XdURZhToeEXyAa/zXqOUpwo=;
- b=MC7JfVcicYQjO2l9mU99flqK7j6d/xOfcDZPCDi/D5Mz6HZCOxiJdFL2
- JGHxlZT3kczQLVJMlMGdlmH4RMSUnOIiFOlFPp3j07XMa+05IqLC/6zOd
- +ZbIdVM8+RyFveLUw4LBkpiZm0Sz1f8tKb+0/fNsKvqruk9qSmUeh+NQ4
- A++4WQtu0HML5wKdZ0mOey9Dxz5NnxbhOlJcIFSMCSvBCpDAZGoatxP+S
- bR3Cs3MzMNvjLxgM+PQgyb3hqF3yDEyk1uankTzDf6icn4B5qyer39Iib
- dxKkJ/enx/8jNkKH9KU7t9MPvNLYigcKDTH2iYHHaXDiDhS/R1s43lL8V A==;
-X-CSE-ConnectionGUID: J729ARkMSCKo6BBFWkbd7Q==
-X-CSE-MsgGUID: zkQneuSuQe2N4BE2LL8ltA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="12694344"
-X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="12694344"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 11:40:36 -0700
-X-CSE-ConnectionGUID: stPvlM1uQAqqe19MKXHX2g==
-X-CSE-MsgGUID: qc9h6l4nSAyK++3jdtzGAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,233,1716274800"; d="scan'208";a="53275953"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 11:40:34 -0700
-Date: Wed, 24 Jul 2024 21:40:49 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Francesco Poli <invernomuto@paranoici.org>,
- Intel GFX list <intel-gfx@lists.freedesktop.org>
-Subject: Re: [bug report] adlp_tc_phy_connect [i915] floods logs with
- drm_WARN_ON(tc->mode == TC_PORT_LEGACY) call traces
-Message-ID: <ZqFKsUtHncE6-6GK@ideak-desk.fi.intel.com>
-References: <20240715203543.63b40a68931fdc45332ba9f8@paranoici.org>
- <871q3ikc9k.fsf@intel.com>
+X-Greylist: delayed 329 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Jul 2024 18:54:53 UTC
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79ACF10E799;
+ Wed, 24 Jul 2024 18:54:53 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 24 Jul
+ 2024 21:49:20 +0300
+Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 24 Jul
+ 2024 21:49:20 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?=
+ <ville.syrjala@linux.intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
+ <stable@vger.kernel.org>
+Subject: [PATCH] drm/i915: Fix possible int overflow in
+ skl_ddi_calculate_wrpll()
+Date: Wed, 24 Jul 2024 11:49:11 -0700
+Message-ID: <20240724184911.12250-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <871q3ikc9k.fsf@intel.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.138]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,48 +54,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 24, 2024 at 07:03:51PM +0300, Jani Nikula wrote:
-> [...]
-> Imre, I'm looking at the warnings in intel_tc.c in general, and
-> adlp_tc_phy_connect() in particular, and I think this is too hard to
-> parse:
-> 
-> 	if (!adlp_tc_phy_take_ownership(tc, true) &&
-> 	    !drm_WARN_ON(&i915->drm, tc->mode == TC_PORT_LEGACY)) {
-> 		drm_dbg_kms(&i915->drm, "Port %s: can't take PHY ownership\n",
-> 			    tc->port_name);
-> 		goto out_put_port_power;
-> 	}
-> 
-> 	if (!tc_phy_is_ready(tc) &&
-> 	    !drm_WARN_ON(&i915->drm, tc->mode == TC_PORT_LEGACY)) {
-> 		drm_dbg_kms(&i915->drm, "Port %s: PHY not ready\n",
-> 			    tc->port_name);
-> 		goto out_release_phy;
-> 	}
-> 
-> There are warnings in the logs, but they are for tc->mode ==
-> TC_PORT_LEGACY. Why is that warning duplicated in both if conditions,
-> and negated?! 
+On the off chance that clock value ends up being too high (by means
+of skl_ddi_calculate_wrpll() having benn called with big enough
+value of crtc_state->port_clock * 1000), one possible consequence
+may be that the result will not be able to fit into signed int.
 
-The WARNs' conditions are unexpected on legacy ports, but the connect
-sequence should not be aborted on those (as there is nothing else that
-could use the port/PHY in that case). The debug message could be
-printed for legacy ports as well..
+Fix this, albeit unlikely, issue by first casting one of the operands
+to u32, then to u64, and thus avoid causing an integer overflow.
 
-> Too hard for my poor brain to follow. Don't know which one
-> happened, don't know what's going on.
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
 
-It's the second 'PHY not ready' check based on the WARN's line number /
-kernel version.
+Fixes: fe70b262e781 ("drm/i915: Move a bunch of stuff into rodata from the stack")
+Cc: stable@vger.kernel.org
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+---
+Fixes: tag is not entirely correct, as I can't properly identify the
+origin with all the code movement. I opted out for using the most
+recent topical commit instead.
 
-> BR,
-> Jani.
-> 
-> 
-> -- 
-> Jani Nikula, Intel
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 90998b037349..46d4dac6c491 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+ 	};
+ 	unsigned int dco, d, i;
+ 	unsigned int p0, p1, p2;
+-	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
++	u64 afe_clock = (u64)(u32)clock * 5; /* AFE Clock is 5x Pixel clock */
+ 
+ 	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+ 		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
