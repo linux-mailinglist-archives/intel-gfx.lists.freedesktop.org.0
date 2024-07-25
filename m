@@ -2,47 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465DA93C5A6
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D0893C5D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:59:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E05CD10E83A;
-	Thu, 25 Jul 2024 14:53:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6609B10E83E;
+	Thu, 25 Jul 2024 14:59:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="a1RJkohR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB1A10E263;
- Thu, 25 Jul 2024 14:53:55 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Thu, 25 Jul
- 2024 17:53:53 +0300
-Received: from [192.168.211.130] (10.0.253.138) by Ex16-01.fintech.ru
- (10.0.10.18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 25 Jul
- 2024 17:53:52 +0300
-Message-ID: <e6c131df-64b6-4856-8778-0fa7e8c7c876@fintech.ru>
-Date: Thu, 25 Jul 2024 07:53:49 -0700
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5356F10E83C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 14:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1721919546;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=F5ZoSYsZGaDw2dOGbs0OwYpDKl56Fzks8qZErLXmwLY=;
+ b=a1RJkohRgGCir/1ncOoRNdIawXsDduowBbxzc1bfwjDhJB6gElG2bjQF5j9iuW4LwUVDYV
+ N5Iy52KGTr1iKHTD6c5Rc2zwMIFs8ItuqWxH3VT8HEWvol6s91jhmD16jtXa/GKe7RtcD3
+ TjgEazJGFUQjUvVOZ9LY6qUrlgVuwjg=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-369-T5NvYAKyN1GldvZ3rNDSQg-1; Thu, 25 Jul 2024 10:59:02 -0400
+X-MC-Unique: T5NvYAKyN1GldvZ3rNDSQg-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-36832c7023bso664924f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 07:59:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1721919541; x=1722524341;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=F5ZoSYsZGaDw2dOGbs0OwYpDKl56Fzks8qZErLXmwLY=;
+ b=o5wPDqnoTqyNSfVRj5Sx1slOW7Ix7DiqMnEjY2slcB9eDcy+YLdRHpuoQ6ReuFlFpH
+ KW8BL2fJopyd8OhpvdtidmUop0COI56L7I0paxWoLlr1IVQ73N9G52Hp8eMdySUkwZ0P
+ ydUPPqNxUtHe2lHI7HkvYEurc9qlNhpCAl+1MtQXw7jE/AsmkmeXhj5A5257oL33a+KA
+ K5WHdBOgfqXqgJebvgPlhVtF+Qd0gO+wA21sGR9WSK/it/yuvm16zCZqmN69jH3qHGBM
+ PCRD8qJQiqhmF0IJn3DXo1gZPaJzHMrs73wg3awxN3ke2jZefn6u2wFLY7LkccXBNO3o
+ X0fw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVNaYa7TcmcsS4giFqq/JSA8wgRiA2mruDzO3TCHqAwHmCXRWSEw8SPE+XXwdoxDipKs9IJQs0LnFIb6+4RDUdWZCvTdtdnLlZkGOPKnKs2
+X-Gm-Message-State: AOJu0YzkuSHBhVLQvUaDFbib10G3ErDDGm4P3jWM2Idc8cXwRGff32d8
+ MgSemkuPZXOT/bSGoTHvA5sLkyPJ2pdKHR2xuYS2Hoeymm+fpvWWw/cqEJjVYRtifM+AFZb8e1q
+ 9PwxkugV3/At0XWr62pPi3IrvPwUUnBfJDQvs2UqYPBqw9/9bo7VFMbn92M2S/TdwHA==
+X-Received: by 2002:adf:fc8d:0:b0:367:926a:7413 with SMTP id
+ ffacd0b85a97d-36b3664af5cmr1550886f8f.63.1721919541183; 
+ Thu, 25 Jul 2024 07:59:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF+NVPsJdjWpOoZv9kl75pyyXyS6KI24cjaV3bYhAWPCMWcUU5fAEb2n3xEHhHtR6Unbf0Pjw==
+X-Received: by 2002:adf:fc8d:0:b0:367:926a:7413 with SMTP id
+ ffacd0b85a97d-36b3664af5cmr1550872f8f.63.1721919540858; 
+ Thu, 25 Jul 2024 07:59:00 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-36b36858229sm2511373f8f.82.2024.07.25.07.59.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Jul 2024 07:59:00 -0700 (PDT)
+Date: Thu, 25 Jul 2024 16:59:00 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20240725-frisky-wren-of-tact-f5f504@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: Fix possible int overflow in
- skl_ddi_calculate_wrpll()
-To: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-CC: Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
- <stable@vger.kernel.org>
-References: <20240724184911.12250-1-n.zhandarovich@fintech.ru>
- <87sevxzy0i.fsf@intel.com>
-Content-Language: en-US
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-In-Reply-To: <87sevxzy0i.fsf@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="djddhsk7xnue6mdo"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,90 +96,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+
+--djddhsk7xnue6mdo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
 Hi,
 
-On 7/25/24 01:17, Jani Nikula wrote:
-> On Wed, 24 Jul 2024, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
->> On the off chance that clock value ends up being too high (by means
->> of skl_ddi_calculate_wrpll() having benn called with big enough
->> value of crtc_state->port_clock * 1000), one possible consequence
->> may be that the result will not be able to fit into signed int.
->>
->> Fix this, albeit unlikely, issue by first casting one of the operands
->> to u32, then to u64, and thus avoid causing an integer overflow.
-> 
-> Okay, thanks for the patch, but please let's not do this.
-> 
-> Currently the highest possible port clock is 2000000 kHz, and 1000 times
-> that fits into 31 bits. When we need to support higher clocks, we'll
-> need to handle this. But not like this.
-> 
-> That (u64)(u32) is just too unintuitive, and assumes the caller has
-> already passed in something that has overflown. People are just going to
-> pause there, and wonder what's going on.
-> 
-> If we want to appease the static analyzer, I think a better approach
-> would be to change the parameter to u64 clock_hz, and have the caller
-> do:
-> 
-> 	ret = skl_ddi_calculate_wrpll((u64)crtc_state->port_clock * 1000,
-> 				      i915->display.dpll.ref_clks.nssc, &wrpll_params);
-> 
-> BR,
-> Jani.
-> 
+Here's this week drm-misc-next-fixes PR
 
-First, I agree that using (u64)(u32) is confusing and not intuitive,
-even if there are some similar examples in kernel code.
+Maxime
 
-The reason why I thought I had to opt for it though is the following: I
-was worried that if the int value of 'clock' in
-skl_ddi_calculate_wrpll() is big enough (specifically, high bit is 1),
-then after casting it to long or u64 in this case, the resulting value
-of wider type will have all its ~32 upper bits also set to 1, per rules
-of Integer Promotion. Changing the type from signed to unsigned, then to
-bigger unsigned seems to mitigate *this* particular issue and I can't
-come up with a more elegant solution at the moment. Correct me if I'm
-wrong somewhere.
+drm-misc-next-fixes-2024-07-25:
+A single fix for a panel compatible
+The following changes since commit 1fe1c66274fb80cc1ac42e0d38917d53adc7d7a3:
 
-Also, while port clock may be able to fit its value timed 1000 into 31
-bits, multiplying it by 5 to get AFE Clock value, as far as I can see,
-*will* lead to overflow, as 2,000,000,000 * 5 won't fit into 32 bits.
+  drm/v3d: Fix Indirect Dispatch configuration for V3D 7.1.6 and later (2024-07-15 12:49:52 -0300)
 
-To sum it up, with current max possible port clock values an integer
-overflow can occur and changing 'clock' parameter from int to u64 may
-lead to a different issue. If my understanding about integer promotion
-is flawed, I'll gladly send v2 patch with your solution.
+are available in the Git repository at:
 
-Regards,
-Nikita
-> 
->>
->> Found by Linux Verification Center (linuxtesting.org) with static
->> analysis tool SVACE.
->>
->> Fixes: fe70b262e781 ("drm/i915: Move a bunch of stuff into rodata from the stack")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
->> ---
->> Fixes: tag is not entirely correct, as I can't properly identify the
->> origin with all the code movement. I opted out for using the most
->> recent topical commit instead.
->>
->>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> index 90998b037349..46d4dac6c491 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
->> @@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
->>  	};
->>  	unsigned int dco, d, i;
->>  	unsigned int p0, p1, p2;
->> -	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
->> +	u64 afe_clock = (u64)(u32)clock * 5; /* AFE Clock is 5x Pixel clock */
->>  
->>  	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
->>  		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
-> 
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-07-25
+
+for you to fetch changes up to b6f7d984ebf826069d3dc6fa187b4d1cfb90f965:
+
+  dt-bindings: display: panel: samsung,atna33xc20: Document ATNA45AF01 (2024-07-22 08:40:32 -0700)
+
+----------------------------------------------------------------
+A single fix for a panel compatible
+
+----------------------------------------------------------------
+Stephan Gerhold (1):
+      dt-bindings: display: panel: samsung,atna33xc20: Document ATNA45AF01
+
+ .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml     | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+--djddhsk7xnue6mdo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZqJoMwAKCRAnX84Zoj2+
+dv3wAX9uhXuJHQ99wQ/RUjs48BI39MRvUD2V8xthlvqYprxbUUb3kLaKYAkzaO0q
+/0QTIfMBgIzD+UyFxrDtQgHD6C6XXvUe8D3T8PwK5N1czxywG3y//5cROWj35J+D
+itUZryZOvg==
+=oso5
+-----END PGP SIGNATURE-----
+
+--djddhsk7xnue6mdo--
+
