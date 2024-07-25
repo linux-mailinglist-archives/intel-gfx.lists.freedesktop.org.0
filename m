@@ -2,70 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7642993C3AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F00993C3D0
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:12:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18A6510E82B;
-	Thu, 25 Jul 2024 14:06:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38CE310E82A;
+	Thu, 25 Jul 2024 14:12:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bu/FyJ5H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EElCnYGI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7407B10E82A;
- Thu, 25 Jul 2024 14:06:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9285A10E82A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 14:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721916391; x=1753452391;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LR8NOyGYfjYFMYI7lLxD7ILGJpX9PhePm8zaR8atZYM=;
- b=Bu/FyJ5HBJnt5HM/1wrVvWtg1YWYPYEU0dFtUDqqUv5qgp5RiaVGS6Yl
- 9E16HjavSvKwSANUBzGsVySo4qQSCvM+JNBePbcAOdjORsrSiaE2Y9EzC
- Rv+N4iUxyNdwrj6YhJmakgUVZGU2G2IsiwiYqr9G5SZz8XSh90cJzGqy1
- xo/Ta9Jo7JLZ60+NQ+D2F+ru3nMqTfjcWMA8h8LSz7EguWoA2Ot3jkPNT
- Ugsr1FaVY4+OiU09GFQNcBY8o1YBzIIxwxl9djm3VlSxXBtANHqHodxBN
- m6I1AkV3oNVl0hl2jl6n851/qTyR8n1ejfGj1RseKsdNLmdYslZnSsSkk A==;
-X-CSE-ConnectionGUID: c2xvMvBWTnS9T9VQ8IKN2A==
-X-CSE-MsgGUID: eOFJb/eJRruGoHIIBlHaUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19505015"
-X-IronPort-AV: E=Sophos;i="6.09,236,1716274800"; d="scan'208";a="19505015"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2024 07:06:30 -0700
-X-CSE-ConnectionGUID: RzMkEFj7R9GzcOmJt4JVqA==
-X-CSE-MsgGUID: lUhpWc2WRhKpMM98YD1i5A==
+ t=1721916771; x=1753452771;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=52n7HUZF/LTPxgfVz2UzlAhlQjzmQrEiiM0uMTxbCE0=;
+ b=EElCnYGIrRKgWmJ/QV95VpU8CzaCPdTiedscHN3kC/S2K+IhIeTBjiZY
+ Zt6DuRboFsfO/Fc/mJzPx4Ny4zvfn76VlgNSgc82h+N/SMn742PkjFrFf
+ ZBQC1GHVRQF6QSMbsM7DLFmdbQw4n6kPu6DtgFqapxB4pYLM0Hs952JBM
+ 2lWMDWxBjfwY0sLDdrfBzWocn4b0Kmf/SMH0rAj4Qjrrqod9lHHor/2Ce
+ mTuRmxRzm+9BF/NpFiGD8wPY058V+MEmz7Wj9r/FgnmXYt8gjG2PlUe2D
+ ktb9C9RMbylOtwLH5YojltLPq6jAvcaJgBjY7SLHLzD6X7GiMnNkESwut w==;
+X-CSE-ConnectionGUID: g+/PclRmSH6KG4Ews6CDXQ==
+X-CSE-MsgGUID: J9qgrDNUQ16fzB/5mMZ79w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19835205"
+X-IronPort-AV: E=Sophos;i="6.09,236,1716274800"; d="scan'208";a="19835205"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 07:12:51 -0700
+X-CSE-ConnectionGUID: HhkqxjdqSSWx6EskcWBgmA==
+X-CSE-MsgGUID: RNwHSLjpSy+j3mPMQmcV7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,236,1716274800"; d="scan'208";a="53007895"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2024 07:06:21 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Mark Brown <broonie@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
+X-IronPort-AV: E=Sophos;i="6.09,236,1716274800"; d="scan'208";a="76150893"
+Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.243])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 07:12:49 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 12/12] drm/xe/spi: add support for access mode
-Date: Thu, 25 Jul 2024 16:56:57 +0300
-Message-Id: <20240725135657.1061836-13-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240725135657.1061836-1-alexander.usyskin@intel.com>
-References: <20240725135657.1061836-1-alexander.usyskin@intel.com>
+Cc: ankit.k.nautiyal@intel.com
+Subject: Re: [PATCH] i915/display/dp: Compute AS SDP when vrr is also enabled
+In-Reply-To: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
+Date: Thu, 25 Jul 2024 17:12:44 +0300
+Message-ID: <87jzh9zhk3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,111 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check SPI access mode from GSC FW status registers
-and overwrite access status read from SPI descriptor, if needed.
+On Thu, 25 Jul 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> AS SDP should be computed when VRR timing generator is also enabled.
+> Correct the compute condition to compute params of Adaptive sync SDP
+> when VRR timing genrator is enabled along with sink support indication.
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 5d6568c8e186..dc75d1c14a94 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2617,7 +2617,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+>  
+> -	if (!crtc_state->vrr.enable || intel_dp->as_sdp_supported)
+> +	if (!(crtc_state->vrr.enable && intel_dp->as_sdp_supported))
+>  		return;
 
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gsc_regs.h |  5 ++++
- drivers/gpu/drm/xe/xe_heci_gsc.c      |  5 +---
- drivers/gpu/drm/xe/xe_spi.c           | 33 ++++++++++++++++++++++++++-
- 3 files changed, 38 insertions(+), 5 deletions(-)
+That's the same as
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-index e2a925be137c..28c049e60e66 100644
---- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-@@ -16,6 +16,11 @@
- #define MTL_GSC_HECI1_BASE	0x00116000
- #define MTL_GSC_HECI2_BASE	0x00117000
- 
-+#define DG1_GSC_HECI2_BASE	0x00259000
-+#define PVC_GSC_HECI2_BASE	0x00285000
-+#define DG2_GSC_HECI2_BASE	0x00374000
-+
-+
- #define HECI_H_CSR(base)	XE_REG((base) + 0x4)
- #define   HECI_H_CSR_IE		REG_BIT(0)
- #define   HECI_H_CSR_IS		REG_BIT(1)
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index 65b2e147c4b9..27734085164e 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -11,14 +11,11 @@
- #include "xe_device_types.h"
- #include "xe_drv.h"
- #include "xe_heci_gsc.h"
-+#include "regs/xe_gsc_regs.h"
- #include "xe_platform_types.h"
- 
- #define GSC_BAR_LENGTH  0x00000FFC
- 
--#define DG1_GSC_HECI2_BASE			0x259000
--#define PVC_GSC_HECI2_BASE			0x285000
--#define DG2_GSC_HECI2_BASE			0x374000
--
- static void heci_gsc_irq_mask(struct irq_data *d)
- {
- 	/* generic irq handling */
-diff --git a/drivers/gpu/drm/xe/xe_spi.c b/drivers/gpu/drm/xe/xe_spi.c
-index f8ad060f97f2..9019672bd464 100644
---- a/drivers/gpu/drm/xe/xe_spi.c
-+++ b/drivers/gpu/drm/xe/xe_spi.c
-@@ -5,7 +5,10 @@
- 
- #include <linux/intel_dg_spi_aux.h>
- #include <linux/pci.h>
-+#include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_mmio.h"
-+#include "regs/xe_gsc_regs.h"
- #include "xe_spi.h"
- 
- #define GEN12_GUNIT_SPI_BASE 0x00102040
-@@ -23,6 +26,34 @@ static void xe_spi_release_dev(struct device *dev)
- {
- }
- 
-+static bool xe_spi_writeable_override(struct xe_device *xe)
-+{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	resource_size_t base;
-+	bool writeable_override;
-+
-+	if (xe->info.platform == XE_BATTLEMAGE) {
-+		base = DG2_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_PVC) {
-+		base = PVC_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_DG2) {
-+		base = DG2_GSC_HECI2_BASE;
-+	} else if (xe->info.platform == XE_DG1) {
-+		base = DG1_GSC_HECI2_BASE;
-+	} else {
-+		dev_err(&pdev->dev, "Unknown platform\n");
-+		return true;
-+	}
-+
-+	writeable_override =
-+		!(xe_mmio_read32(gt, HECI_H_GS1(base)) &
-+		  HECI_FW_STATUS_2_SPI_ACCESS_MODE);
-+	if (writeable_override)
-+		dev_info(&pdev->dev, "SPI access overridden by jumper\n");
-+	return writeable_override;
-+}
-+
- void xe_spi_init(struct xe_device *xe)
- {
- 	struct intel_dg_spi_dev *spi = &xe->spi;
-@@ -33,7 +64,7 @@ void xe_spi_init(struct xe_device *xe)
- 	if (!HAS_GSC_SPI(xe))
- 		return;
- 
--	spi->writeable_override = false;
-+	spi->writeable_override = xe_spi_writeable_override(xe);
- 	spi->bar.parent = &pdev->resource[0];
- 	spi->bar.start = GEN12_GUNIT_SPI_BASE + pdev->resource[0].start;
- 	spi->bar.end = spi->bar.start + GEN12_GUNIT_SPI_SIZE - 1;
+	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
+
+BR,
+Jani.
+
+
+>  
+>  	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
