@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D544493C3E3
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 212FE93C44A
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:36:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DAB710E82F;
-	Thu, 25 Jul 2024 14:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 796F610E835;
+	Thu, 25 Jul 2024 14:36:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3431210E82F;
- Thu, 25 Jul 2024 14:17:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1265334669322381565=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D055C10E835;
+ Thu, 25 Jul 2024 14:36:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_i915/display/dp=3A_Compute_?=
- =?utf-8?q?AS_SDP_when_vrr_is_also_enabled?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_spi=3A_add_driver_fo?=
+ =?utf-8?q?r_Intel_discrete_graphics_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 14:17:24 -0000
-Message-ID: <172191704419.381723.4715548048083356459@2413ebb6fbb6>
+Date: Thu, 25 Jul 2024 14:36:02 -0000
+Message-ID: <172191816284.382170.5957617144551875149@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20240725135657.1061836-1-alexander.usyskin@intel.com>
+In-Reply-To: <20240725135657.1061836-1-alexander.usyskin@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,258 +41,64 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1265334669322381565==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: i915/display/dp: Compute AS SDP when vrr is also enabled
-URL   : https://patchwork.freedesktop.org/series/136498/
-State : success
+Series: spi: add driver for Intel discrete graphics (rev3)
+URL   : https://patchwork.freedesktop.org/series/131763/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15131 -> Patchwork_136498v1
-====================================================
+Error: dim checkpatch failed
+a87d20bbf604 spi: add driver for intel graphics on-die spi device
+-:67: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#67: 
+new file mode 100644
 
-Summary
--------
+-:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#111: FILE: drivers/spi/spi-intel-dg.c:40:
++static int intel_dg_spi_probe(struct auxiliary_device *aux_dev,
++			  const struct auxiliary_device_id *aux_dev_id)
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 1 checks, 206 lines checked
+19e973d780cf spi: intel-dg: implement region enumeration
+fddfecf47ca6 spi: intel-dg: implement spi access functions
+-:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#89: FILE: drivers/spi/spi-intel-dg.c:189:
++static ssize_t spi_rewrite_partial(struct intel_dg_spi *spi, loff_t to,
++			       loff_t offset, size_t len, const u32 *newdata)
 
-  No regressions found.
+total: 0 errors, 0 warnings, 1 checks, 224 lines checked
+068ab59c423e spi: intel-dg: spi register with mtd
+-:103: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#103: FILE: drivers/spi/spi-intel-dg.c:478:
++static int intel_dg_spi_init_mtd(struct intel_dg_spi *spi, struct device *device,
++			     unsigned int nparts, bool writeable_override)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/index.html
+total: 0 errors, 0 warnings, 1 checks, 156 lines checked
+3b825b42d547 spi: intel-dg: implement mtd access handlers
+e1a81d2cfb81 spi: intel-dg: align 64bit read and write
+7214ac42a157 spi: intel-dg: wake card on operations
+7e6683d220eb drm/i915/spi: add spi device for discrete graphics
+-:95: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#95: 
+new file mode 100644
 
-Participating hosts (38 -> 39)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 136 lines checked
+e4c780bf1f8e drm/i915/spi: add intel_spi_region map
+10b14b8312ad drm/i915/spi: add support for access mode
+d7c40e1a25ec drm/xe/spi: add on-die spi device
+-:137: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#137: 
+new file mode 100644
 
-  Additional (3): bat-kbl-2 bat-jsl-1 fi-bsw-n3050 
-  Missing    (2): fi-cfl-8109u fi-snb-2520m 
+total: 0 errors, 1 warnings, 0 checks, 183 lines checked
+af82070dad67 drm/xe/spi: add support for access mode
+-:23: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#23: FILE: drivers/gpu/drm/xe/regs/xe_gsc_regs.h:23:
++
++
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_136498v1:
-
-### CI changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * boot:
-    - {bat-arlh-3}:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15131/bat-arlh-3/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-arlh-3/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136498v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#9318])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][4] ([i915#1849])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][6] +39 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][7] +19 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-jsl-1:          NOTRUN -> [SKIP][8] ([i915#4613]) +3 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][9] ([i915#4103]) +1 other test skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][10] ([i915#3555] / [i915#9886])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][11]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][12] ([i915#3555])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+total: 0 errors, 0 warnings, 1 checks, 78 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15131 -> Patchwork_136498v1
-
-  CI-20190529: 20190529
-  CI_DRM_15131: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_136498v1: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/index.html
-
---===============1265334669322381565==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>i915/display/dp: Compute AS SDP when vrr is also enabled</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136498/">https://patchwork.freedesktop.org/series/136498/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15131 -&gt; Patchwork_136498v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 39)</h2>
-<p>Additional (3): bat-kbl-2 bat-jsl-1 fi-bsw-n3050 <br />
-  Missing    (2): fi-cfl-8109u fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_136498v1:</p>
-<h3>CI changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>boot:<ul>
-<li>{bat-arlh-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15131/bat-arlh-3/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-arlh-3/boot.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136498v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136498v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15131 -&gt; Patchwork_136498v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15131: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_136498v1: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1265334669322381565==--
