@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2CA93BC12
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 07:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F72D93BD47
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 09:44:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE77110E729;
-	Thu, 25 Jul 2024 05:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD5710E241;
+	Thu, 25 Jul 2024 07:44:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0GNlzag";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="l6K5Anap";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2CB10E723
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 05:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721885811; x=1753421811;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=P49kyD/SCutTvKuaKIeN9+psil29LoIhcRhOdrpc97o=;
- b=M0GNlzagzej/nAuENUAWyanyBDVwOctn68X44vdw3EtHFfHHlPpcuH7l
- fem9cXy25BgftKIC6fObyLUO9d1AXemF0d45OHmU02/JWe90cvKbI7v+a
- fsg++jx0vh7HcJR/e5ilSb4aU2f251bhB8Q1WLQfaZWhzgFshLEfqjVel
- g1TbM1PkE+gf+c95SXVgRIBepoocuu3HzAtBnfjg5LQMtmUQUq0ltwmfx
- oc5ZzII5IKLT1S95Fr/joyX5keXA1iFFC/fSxfhehBetF5vfOll0rVXyZ
- BREVzfIAjEOihC0ObQFeLRxHDjdy8U2F5LODjITAbpYWPiugZ/Xc+uO8X Q==;
-X-CSE-ConnectionGUID: 4LOMg+ugTfSpAvXrB9YqAQ==
-X-CSE-MsgGUID: WDOi8e9gQ4e8fSmYyuSAtQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="19451140"
-X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="19451140"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2024 22:36:51 -0700
-X-CSE-ConnectionGUID: QbIOacBGRX+BB/fHvjDhng==
-X-CSE-MsgGUID: 4Ar/4i+PSzWy6EQJPmpLWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="52679889"
-Received: from bommu-optiplex-5060.iind.intel.com ([10.145.169.63])
- by fmviesa008.fm.intel.com with ESMTP; 24 Jul 2024 22:36:49 -0700
-From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Emil Velikov <emil.l.velikov@gmail.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH i-g-t] tests/core_setmaster: Change break to continue in
- tweak_perm function
-Date: Thu, 25 Jul 2024 11:07:56 +0530
-Message-Id: <20240725053756.1420109-1-krishnaiah.bommu@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A46A10E13E;
+ Thu, 25 Jul 2024 07:44:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=3amSF8I19BHTxTB8T37Iz1NyyDj9scSeBCJHngA2vGs=; b=l6K5AnapJfPGf2h71KGS+mm6K/
+ cXQHa/m3eVmUcTF+Lpb8gwKUPDztmIk5jzmGVhIbco8IkoaRN5TF7463bSkSuSJgmqAVh/yT8o/uW
+ /H/s+GzrN+ztdAYPLMd7OC+DX5OpNgyxZIt1kTMQIyMCv65e+OPvQW+9C8EfZ5b4IqGSxBaBbzZcx
+ PriLh4gVl/WYBj6/KPMJoreQZz18YmLeCg34EiDUxOoz/+hR7dO2lN9FjJaFIPHZFN8y9dtFXo60c
+ NtDubj4UimetNE+7v3Bhl9kYXr7fBOxa6M1ib27ETwSGPuAvlqEG17yuO5cyJWXQlwDqoThdzbVmm
+ D1oWtEyQ==;
+Received: from [84.69.19.168] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sWt9E-001or2-6R; Thu, 25 Jul 2024 09:44:24 +0200
+Date: Thu, 25 Jul 2024 08:44:23 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
+Message-ID: <ZqICQzyzm/6hDWy4@linux>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,82 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Existing userspace assumes there's no gaps card’s, but I see cards
-are not continues, after running “gta@core_hotunplug I am not seeing card0,
-hence test is failing.
 
-Test result before this changes:
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools#
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools# cat /sys/class/drm/
-card0/      renderD128/ version
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools# ./core_setmaster --r master-drop-set-user
-IGT-Version: 1.28-NO-GIT (x86_64) (Linux: 6.10.0-rc7-xe x86_64)
-Using IGT_SRANDOM=1721882790 for randomisation
-Starting subtest: master-drop-set-user
-Opened device: /dev/dri/card0
-Subtest master-drop-set-user: SUCCESS (0.066s)
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools#
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools# ./core_hotunplug --r hotrebind-lateclose
-IGT-Version: 1.28-NO-GIT (x86_64) (Linux: 6.10.0-rc7-xe x86_64)
-Using IGT_SRANDOM=1721882819 for randomisation
-Opened device: /dev/dri/card0
-Starting subtest: hotrebind-lateclose
-Opened device: /dev/dri/renderD128
-Unloaded audio driver snd_hda_intel
-Realoading snd_hda_intel
-Opened device: /dev/dri/card1
-Opened device: /dev/dri/renderD129
-Subtest hotrebind-lateclose: SUCCESS (2.721s)
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools#
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools#
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools#
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools# cat /sys/class/drm/
-card1/      renderD129/ version
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools# ./core_setmaster --r master-drop-set-user
-IGT-Version: 1.28-NO-GIT (x86_64) (Linux: 6.10.0-rc7-xe x86_64)
-Using IGT_SRANDOM=1721882840 for randomisation
-Starting subtest: master-drop-set-user
-(core_setmaster:4366) CRITICAL: Test assertion failure function check_drop_set, file ../tests/core_setmaster.c:85:
-(core_setmaster:4366) CRITICAL: Failed assertion: master != -1
-(core_setmaster:4366) CRITICAL: Last errno: 2, No such file or directory
-(core_setmaster:4366) CRITICAL: error: -1 == -1
-Stack trace:
-  #0 [__igt_fail_assert+0x10a]
-  #1 [check_drop_set+0x70]
-  #2 [__igt_unique____real_main145+0x355]
-  #3 [main+0x2d]
-  #4 [__libc_init_first+0x90]
-  #5 [__libc_start_main+0x80]
-  #6 [_start+0x2e]
-child 0 failed with exit status 98
-Subtest master-drop-set-user failed.
-No log.
-Subtest master-drop-set-user: FAIL (0.019s)
-root@DUT1523LNL:/usr/local/libexec/igt-gpu-tools#
+Hi Dave, Sima,
 
-Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Cc: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- tests/core_setmaster.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Two fixes for the merge window - turning off preemption on Gen8 since it
+apparently just doesn't work reliably enough and a fix for potential NULL
+pointer dereference when stolen memory probing failed.
 
-diff --git a/tests/core_setmaster.c b/tests/core_setmaster.c
-index 9c2083f66..c02eaf671 100644
---- a/tests/core_setmaster.c
-+++ b/tests/core_setmaster.c
-@@ -116,9 +116,9 @@ static unsigned tweak_perm(uint8_t *saved_perm, unsigned max_perm, bool save)
- 	for (i = 0; i < max_perm; i++) {
- 		snprintf(path, sizeof(path), "/dev/dri/card%u", i);
- 
--		/* Existing userspace assumes there's no gaps, do the same. */
-+		/* Existing userspace assumes there is a gaps, hence continues. */
- 		if (stat(path, &st) != 0)
--			break;
-+			continue;
- 
- 		if (save) {
- 			/* Save and toggle */
--- 
-2.25.1
+Regards,
 
+Tvrtko
+
+drm-intel-next-fixes-2024-07-25:
+- Do not consider preemption during execlists_dequeue for gen8 [gt] (Nitin Gote)
+- Allow NULL memory region (Jonathan Cavitt)
+The following changes since commit 509580fad7323b6a5da27e8365cd488f3b57210e:
+
+  drm/i915/dp: Don't switch the LTTPR mode on an active link (2024-07-16 08:14:29 +0000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2024-07-25
+
+for you to fetch changes up to 26720dd2b5a1d088bff8f7e6355fca021c83718f:
+
+  drm/i915: Allow NULL memory region (2024-07-23 09:34:13 +0000)
+
+----------------------------------------------------------------
+- Do not consider preemption during execlists_dequeue for gen8 [gt] (Nitin Gote)
+- Allow NULL memory region (Jonathan Cavitt)
+
+----------------------------------------------------------------
+Jonathan Cavitt (1):
+      drm/i915: Allow NULL memory region
+
+Nitin Gote (1):
+      drm/i915/gt: Do not consider preemption during execlists_dequeue for gen8
+
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 6 +-----
+ drivers/gpu/drm/i915/intel_memory_region.c           | 6 ++++--
+ 2 files changed, 5 insertions(+), 7 deletions(-)
