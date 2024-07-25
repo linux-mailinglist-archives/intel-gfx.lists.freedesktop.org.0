@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77B593CB39
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 01:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A95C093CB42
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 01:31:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C84EF10E341;
-	Thu, 25 Jul 2024 23:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B1910E34B;
+	Thu, 25 Jul 2024 23:31:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF2E910E32E;
- Thu, 25 Jul 2024 23:24:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF8F10E32E;
+ Thu, 25 Jul 2024 23:31:47 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4473411885012475073=="
+ boundary="===============0371822189503857162=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EIGT=3A_failure_for_drm/i915/dp=3A_Clear_VSC_SD?=
  =?utf-8?q?P_during_post_ddi_disable_routine_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 23:24:58 -0000
-Message-ID: <172194989896.384222.5655287543267423733@2413ebb6fbb6>
+Date: Thu, 25 Jul 2024 23:31:47 -0000
+Message-ID: <172195030756.384222.17037959237975802952@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240723042802.3618046-1-suraj.kandpal@intel.com>
 In-Reply-To: <20240723042802.3618046-1-suraj.kandpal@intel.com>
@@ -41,7 +41,7 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4473411885012475073==
+--===============0371822189503857162==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -71,10 +71,10 @@ Summary
 
   
 
-Participating hosts (10 -> 7)
+Participating hosts (10 -> 9)
 ------------------------------
 
-  Missing    (3): shard-snb-0 shard-dg2-set2 shard-glk-0 
+  Missing    (1): shard-snb-0 
 
 Possible new issues
 -------------------
@@ -1472,7 +1472,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136369v2/index.html
 
---===============4473411885012475073==
+--===============0371822189503857162==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1509,8 +1509,8 @@ Content-Transfer-Encoding: 7bit
 <p>If you think the reported changes have nothing to do with the changes<br />
   introduced in Patchwork_136369v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
   to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (10 -&gt; 7)</h2>
-<p>Missing    (3): shard-snb-0 shard-dg2-set2 shard-glk-0 </p>
+<h2>Participating hosts (10 -&gt; 9)</h2>
+<p>Missing    (1): shard-snb-0 </p>
 <h2>Possible new issues</h2>
 <p>Here are the unknown changes that may have been introduced in Patchwork_136369v2_full:</p>
 <h3>IGT changes</h3>
@@ -3203,4 +3203,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============4473411885012475073==--
+--===============0371822189503857162==--
