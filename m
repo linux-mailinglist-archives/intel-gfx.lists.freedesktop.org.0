@@ -2,73 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C37993C6E4
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 17:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC2F93C6E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 17:59:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3112310E88B;
-	Thu, 25 Jul 2024 15:58:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ePAFCYAa";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C861910E88C;
+	Thu, 25 Jul 2024 15:59:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com
- [209.85.210.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08BB610E88B
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 15:58:11 +0000 (UTC)
-Received: by mail-ot1-f54.google.com with SMTP id
- 46e09a7af769-7044c085338so5464a34.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 08:58:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1721923091; x=1722527891; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=dpgn147gAQlCC9it7mH7Kj/P0ycFxQtD+fSctqinntk=;
- b=ePAFCYAaDRIDOG8M9nIjA3fQ54UdMr06Yb1SCvO2qr7rqZ316J66/Btd20eCZfDvY+
- 5+CEaXkMS/4ks9h5+dWnYl/Iu2fita4dS5bc02lbqSe231mqmkHSYGE374/LLdh2R2Ly
- dygDaXnTuufJfcKseJF3QE4cNfMs0MurdMHqoPfx8jreyogoUQDdqEpU6ghiCh3LSD3L
- N3Yd3gF+cjQZyw7m6PYT/5Ppol7rvi1mlz0RL10bYkhiWGgwOWB+Sz2+IFX1vltmIXRz
- ZD4GgWKbuk+mfberF4tUYIcTXN3NVyxEI1n118RQyr3cNLxMCId8dJTA0/3GWBZ3FH+y
- He4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721923091; x=1722527891;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=dpgn147gAQlCC9it7mH7Kj/P0ycFxQtD+fSctqinntk=;
- b=Q2dn2yAFgq34o6FQilPcuQy2oj+lXRnyFiaPoI0JwczH0o9zy5bunuJfh87RyFcXP3
- EjtVtjhrvpQU+faujICb30iD610jNZf74FgZ6GEJz47BE9oOJgmFPxgN1t+mcN5l6XHT
- bFYCyVdQS1AXV8l3r5zHMCkOUADBM2FZaHKRvWFrs0DA+O+z+CEO7I3LS/8AEKKogJsb
- 1T2WlRz+wUQChtIDWhXZpF1ImzS9IqJZ4B6ZnGNnBDyMmBHxGpF6Ib+2sazGyTsWpT53
- Xm8ODKijdHkLvU/m8QKW/4+udaU1X4zq4hxSqXSNAO4ZuOoX0IMwzedP47LfyR8+nn7l
- zf/w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUXpIJFieixW1bhNGANJj3W8Dhozu1zS4IZdxYQSrm5lQG+GNiRszjVDKGevf0lEY2OQbPVgQhgIDEGU8S04RybHEWQ89DmdxKwy7Ufp9Pv
-X-Gm-Message-State: AOJu0YyngCfefnjV/RPw17cqSf3uqfkVXRLELLHZ+CzOtLBbYK838vyJ
- kTv+GBk4mkT715edvBfsV+RY7cppqhBh8mOl7X4NqlRmG+MCBA/brQIYHyWMrKM=
-X-Google-Smtp-Source: AGHT+IFxJUkfRHLKPH7zdnRP4Bu3LofO4rsPHFS4V7JBQZW33qO7EIwJJbhTgMNB6fvjracolhjDcQ==
-X-Received: by 2002:a05:6830:6283:b0:709:32c3:6901 with SMTP id
- 46e09a7af769-70932c37244mr3051378a34.10.1721923091074; 
- Thu, 25 Jul 2024 08:58:11 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700:6751:f2ec:fdb9:323e])
- by smtp.gmail.com with ESMTPSA id
- 46e09a7af769-70930785c80sm337372a34.66.2024.07.25.08.58.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jul 2024 08:58:10 -0700 (PDT)
-Date: Thu, 25 Jul 2024 10:58:08 -0500
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com,
- chris.p.wilson@linux.intel.com
-Subject: Re: [PATCH] drm/i915: Allow NULL memory region
-Message-ID: <a8d2b873-fc98-4f14-9c64-c0bcc097956b@suswa.mountain>
-References: <20240712214156.3969584-1-jonathan.cavitt@intel.com>
- <401a092f-f431-474d-82c4-48442b3c70e1@ursulin.net>
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 661D910E88C;
+ Thu, 25 Jul 2024 15:59:30 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Thu, 25 Jul
+ 2024 18:59:29 +0300
+Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 25 Jul
+ 2024 18:59:28 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, David Airlie
+ <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
+ <stable@vger.kernel.org>
+Subject: [PATCH] drm/i915/guc: prevent a possible int overflow in wq offsets
+Date: Thu, 25 Jul 2024 08:59:25 -0700
+Message-ID: <20240725155925.14707-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <401a092f-f431-474d-82c4-48442b3c70e1@ursulin.net>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.138]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,39 +53,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 25, 2024 at 08:48:35AM +0100, Tvrtko Ursulin wrote:
-> 
-> Hi,
-> 
-> On 12/07/2024 22:41, Jonathan Cavitt wrote:
-> > Prevent a NULL pointer access in intel_memory_regions_hw_probe.
-> 
-> For future reference please include some impact assessment in patches tagged
-> as fixes. Makes maintainers job, and even anyone's who tries to backport
-> stuff to stable at some future date, much easier if it is known how
-> important is the fix and in what circumstances can the problem it is fixing
-> trigger.
-> 
+It may be possible for the sum of the values derived from
+i915_ggtt_offset() and __get_parent_scratch_offset()/
+i915_ggtt_offset() to go over the u32 limit before being assigned
+to wq offsets of u64 type.
 
-As someone doing backport work, I think this patch is fine.  Everyone
-knows the impact of a NULL dereference in probe().
+Mitigate these issues by expanding one of the right operands
+to u64 to avoid any overflow issues just in case.
 
-I guess with patches that add NULL dereferences, the trick is
-understanding when people are adding NULL checks to make a static
-checker happy or when it's a real bug.  But the fault lies with the
-people adding NULL checks just to make the tools happy.  Some of these
-pointless NULL checks end up in stable, but it's fine, extra NULL checks
-never hurt anyone.  If the maintainer wants to be extra safe by adding
-NULL checks then who are we to say otherwise.
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
 
-In other words normal patches shouldn't have to say. "I'm not lying" at
-the end.  It should be the pointless patches which say, "I'm doing a
-pointless thing.  Don't bother backporting."
+Fixes: 2584b3549f4c ("drm/i915/guc: Update to GuC version 70.1.1")
+Cc: stable@vger.kernel.org
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Most stable patch backports are done automatically and people have
-various tools and scripts to do that.  If the tools don't handle this
-patch automatically then they are defective.
-
-regards,
-dan carpenter
-
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 9400d0eb682b..908ebfa22933 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -2842,9 +2842,9 @@ static void prepare_context_registration_info_v70(struct intel_context *ce,
+ 		ce->parallel.guc.wqi_tail = 0;
+ 		ce->parallel.guc.wqi_head = 0;
+ 
+-		wq_desc_offset = i915_ggtt_offset(ce->state) +
++		wq_desc_offset = (u64)i915_ggtt_offset(ce->state) +
+ 				 __get_parent_scratch_offset(ce);
+-		wq_base_offset = i915_ggtt_offset(ce->state) +
++		wq_base_offset = (u64)i915_ggtt_offset(ce->state) +
+ 				 __get_wq_offset(ce);
+ 		info->wq_desc_lo = lower_32_bits(wq_desc_offset);
+ 		info->wq_desc_hi = upper_32_bits(wq_desc_offset);
