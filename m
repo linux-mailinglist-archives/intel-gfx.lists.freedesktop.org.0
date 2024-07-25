@@ -2,59 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9241093C18C
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 14:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B6C93C288
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 14:56:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F65510E21A;
-	Thu, 25 Jul 2024 12:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF83D10E278;
+	Thu, 25 Jul 2024 12:56:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aCuTtBHK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hGgvo5eV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C6310E21A
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2024 12:15:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 768B310E266;
+ Thu, 25 Jul 2024 12:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721909755; x=1753445755;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=9IYCIJDiloBeP0xAehuYND+tskIEfOtme4IOgHiHXnM=;
- b=aCuTtBHK8QbbaaFkjvudvTQojHndhNDrGZK0pmqVqQcwnhFYOvYJcjeB
- 3mzoj6WqiufUpMEG5zZEHqNIfDK5NeVVA4RnQCWxSanVk+wH2gy9f7kf6
- NKPQUkJDNgdfgiQFfPev+QWYvHywzG43MmbrxMhV8XBKGdkxY0pmbQUwL
- sGxYkDyexV1linzl1/WegprAL03/QAn47i9RAvutAnk3J1I+08tAbIX8t
- nqHqapH1zjHbZoV91mHHjJV8YNrkuQQwissrLuCBPI/zJ2Mv3oKjGoqGO
- 9pNE3Oz575xl1TrvNSCEhZYc3omCQBLdK9KIR7rYaj0d9bM2+LSrNKzwi Q==;
-X-CSE-ConnectionGUID: NSlvw+ZxSV24vfMNPk/dVw==
-X-CSE-MsgGUID: 47OC4gfNR1ywXKLl/Bu0iQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="37160713"
-X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="37160713"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2024 05:15:55 -0700
-X-CSE-ConnectionGUID: 8rwNkHO4RUe7zZoJFWI+Lg==
-X-CSE-MsgGUID: VY6Kk11eT6e/VaejnYG3WQ==
+ t=1721912214; x=1753448214;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IbZlyS8/H0KWbHF8ybUR+8pf4cpL7M8wb6d8x4797ZQ=;
+ b=hGgvo5eVMWY1XgKosToxRlcShxDZ/aAzWGhzWcTNEgYZ8+LJZbMP0RHB
+ SuzSBlk91KT44S4xcvlvYBJfAxubaadBxu2EDKHClYdcBNdssz3wLCDOk
+ fNljgDZYg7CUajOk5GoLVRFXpehER/ohWytPvNh0jlTcXAUamNvjg3ZSj
+ pFX6rCR7IffTgMjOiGrQ5x5tqDL7EgzkRlkN819mgbqyKrhEUTEu/AvM4
+ 0rp0fJgHH412r5uXpSdNBgwJfk8Nh0dSf0sx3XUNKsYDoPkJxbD0Y+qUw
+ mKJmrKNATQLwnFzKi872P00vCsrcFXuJujHUajhZy1sgBvOYvdpeh2ybf Q==;
+X-CSE-ConnectionGUID: +eBvoOGbSuGwG3q5rIrhNQ==
+X-CSE-MsgGUID: 01zrlbv9Q0+6XV0XFsVKbw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11143"; a="30313838"
+X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="30313838"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 05:56:54 -0700
+X-CSE-ConnectionGUID: pc8IbjpeT5aT+j39bcqXNA==
+X-CSE-MsgGUID: rmTfcz07QBiAqMsRLAfi4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="90352547"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2024 05:15:53 -0700
-Date: Thu, 25 Jul 2024 15:16:08 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH 13/14] drm/i915/dp_mst: Ensure link parameters are
- up-to-date for a disabled link
-Message-ID: <ZqJCCL9yBPeaJrHi@ideak-desk.fi.intel.com>
-References: <20240722165503.2084999-1-imre.deak@intel.com>
- <20240722165503.2084999-14-imre.deak@intel.com>
- <SN7PR11MB6750F74D3657EDBD34FA6F57E3AB2@SN7PR11MB6750.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.09,235,1716274800"; d="scan'208";a="57728025"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa003.jf.intel.com with ESMTP; 25 Jul 2024 05:56:53 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/i915/bmg: Read display register timeout
+Date: Thu, 25 Jul 2024 18:27:35 +0530
+Message-ID: <20240725125735.105194-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN7PR11MB6750F74D3657EDBD34FA6F57E3AB2@SN7PR11MB6750.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,125 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 25, 2024 at 08:26:38AM +0300, Kandpal, Suraj wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Imre
-> > Deak
-> > Sent: Monday, July 22, 2024 10:25 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Subject: [PATCH 13/14] drm/i915/dp_mst: Ensure link parameters are up-to-
-> > date for a disabled link
-> >
-> > As explained in the previous patch, the MST link BW reported by branch
-> > devices during topology probing/path resources enumeration depends on
-> > the link parameters programmed to DPCD to be up-to-date. After a sink is
-> 
-> I think you maybe missed a couple of words here maybe fix that
+Log the address of the register that caused the timeout
+interrupt by reading RMTIMEOUTREG_CAPTURE
 
-Not sure, it looks ok to me.
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 7 ++++++-
+ drivers/gpu/drm/i915/i915_reg.h                  | 2 ++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-> Rest LGTM
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> 
-> > plugged this is not ensured, as those DPCD values start out zeroed. The
-> > target link parameters (for a subsequent modeset) are the maximum that is
-> > supported, so make sure these maximum values are programmed before
-> > the topology probing.
-> >
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c     |  3 ++
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 +++++++++++++++++++++
-> > drivers/gpu/drm/i915/display/intel_dp_mst.h |  1 +
-> >  3 files changed, 35 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 0771e4c6357ba..41f5d82ca75d8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -4262,6 +4262,9 @@ intel_dp_mst_configure(struct intel_dp *intel_dp)
-> >
-> >       intel_dp->is_mst = intel_dp->mst_detect != DRM_DP_SST;
-> >
-> > +     if (intel_dp->is_mst)
-> > +             intel_dp_mst_prepare_probe(intel_dp);
-> > +
-> >       drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst_mgr, intel_dp-
-> > >is_mst);
-> >
-> >       /* Avoid stale info on the next detect cycle. */ diff --git
-> > a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 19c8b6878b030..faee7af0a8a48 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -43,6 +43,7 @@
-> >  #include "intel_dp_hdcp.h"
-> >  #include "intel_dp_mst.h"
-> >  #include "intel_dp_tunnel.h"
-> > +#include "intel_dp_link_training.h"
-> >  #include "intel_dpio_phy.h"
-> >  #include "intel_hdcp.h"
-> >  #include "intel_hotplug.h"
-> > @@ -2031,3 +2032,33 @@ bool intel_dp_mst_crtc_needs_modeset(struct
-> > intel_atomic_state *state,
-> >
-> >       return false;
-> >  }
-> > +
-> > +/**
-> > + * intel_dp_mst_prepare_probe - Prepare an MST link for topology
-> > +probing
-> > + * @intel_dp: DP port object
-> > + *
-> > + * Prepare an MST link for topology probing, programming the target
-> > + * link parameters to DPCD. This step is a requirement of the
-> > +enumaration
-> > + * of path resources during probing.
-> > + */
-> > +void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp) {
-> > +     int link_rate = intel_dp_max_link_rate(intel_dp);
-> > +     int lane_count = intel_dp_max_lane_count(intel_dp);
-> > +     u8 rate_select;
-> > +     u8 link_bw;
-> > +
-> > +     if (intel_dp->link_trained)
-> > +             return;
-> > +
-> > +     if (intel_mst_probed_link_params_valid(intel_dp, link_rate,
-> > lane_count))
-> > +             return;
-> > +
-> > +     intel_dp_compute_rate(intel_dp, link_rate, &link_bw, &rate_select);
-> > +
-> > +     intel_dp_link_training_set_mode(intel_dp, link_rate, false);
-> > +     intel_dp_link_training_set_bw(intel_dp, link_bw, rate_select,
-> > lane_count,
-> > +                                   drm_dp_enhanced_frame_cap(intel_dp-
-> > >dpcd));
-> > +
-> > +     intel_mst_set_probed_link_params(intel_dp, link_rate, lane_count);
-> > }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > index 8ca1d599091c6..fba76454fa67f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > @@ -27,5 +27,6 @@ int intel_dp_mst_atomic_check_link(struct
-> > intel_atomic_state *state,
-> >                                  struct intel_link_bw_limits *limits);  bool
-> > intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
-> >                                    struct intel_crtc *crtc);
-> > +void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp);
-> >
-> >  #endif /* __INTEL_DP_MST_H__ */
-> > --
-> > 2.44.2
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 5219ba295c74..8e22f7ac3db0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -905,6 +905,11 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+ 
+ 			intel_pmdemand_irq_handler(dev_priv);
+ 			found = true;
++		} else if (iir & GEN8_DE_RM_TIMEOUT) {
++			u32 val = intel_uncore_read(&dev_priv->uncore,
++						    RMTIMEOUTREG_CAPTURE);
++			drm_warn(&dev_priv->drm, "Register Access Timeout = 0x%x\n", val);
++			found = true;
+ 		}
+ 	} else if (iir & GEN8_DE_MISC_GSE) {
+ 		intel_opregion_asle_intr(dev_priv);
+@@ -1710,7 +1715,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 14) {
+ 		de_misc_masked |= XELPDP_PMDEMAND_RSPTOUT_ERR |
+-				  XELPDP_PMDEMAND_RSP;
++				  XELPDP_PMDEMAND_RSP | GEN8_DE_RM_TIMEOUT;
+ 	} else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		enum port port;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 0e3d79227e3c..858ce8a5d929 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2396,6 +2396,7 @@
+ 
+ /* Display Internal Timeout Register */
+ #define RM_TIMEOUT		_MMIO(0x42060)
++#define RMTIMEOUTREG_CAPTURE	_MMIO(0x420E0)
+ #define  MMIO_TIMEOUT_US(us)	((us) << 0)
+ 
+ /* interrupts */
+@@ -2574,6 +2575,7 @@
+ #define GEN8_DE_MISC_IMR _MMIO(0x44464)
+ #define GEN8_DE_MISC_IIR _MMIO(0x44468)
+ #define GEN8_DE_MISC_IER _MMIO(0x4446c)
++#define  GEN8_DE_RM_TIMEOUT		REG_BIT(29)
+ #define  XELPDP_PMDEMAND_RSPTOUT_ERR	REG_BIT(27)
+ #define  GEN8_DE_MISC_GSE		REG_BIT(27)
+ #define  GEN8_DE_EDP_PSR		REG_BIT(19)
+-- 
+2.45.2
+
