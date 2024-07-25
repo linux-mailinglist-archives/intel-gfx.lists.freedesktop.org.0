@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86F293C34D
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 15:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2C993C37F
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jul 2024 16:05:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D14810E800;
-	Thu, 25 Jul 2024 13:49:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0313610E74F;
+	Thu, 25 Jul 2024 14:05:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M3r1L0Mr";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE8110E7FE;
- Thu, 25 Jul 2024 13:49:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2052846867854928675=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B6A7910E74F;
+ Thu, 25 Jul 2024 14:05:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721916320; x=1753452320;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gED3aOqN/q8cvDC2SzthwKcS2p7mJl+FIYNKfZ2WdBI=;
+ b=M3r1L0Mr02rYbdh5abPKIgc0HzA/GdDkyxlw1/Rnz9jk5nQ4Z3sLobea
+ AN6RR65VRvoa96u90k0glX7RwqD6Xu1WlY1KD+CO+84CI/S8eBUGwr/UC
+ CPUdW2SCs9W/WtExkErEniyq32AWWQqvzSg9KNUoJwPjlJdSIr5lm1gc3
+ G6e7ZTOP0jXOIit1sCJLCn6u2hig6Z65Lx54hmx26ED3F203NX5BiY5u8
+ ubnoWHt4gGLnZNB64U7zyIrpfPz2FoOvlzWy7BlLl2ri64CnoS2QV8cgh
+ 4UIiFFjWq4yzDy8gGUeruxXzs7fvpl3YCxxKfVcsNJkh+lXTRWgsnt8l0 A==;
+X-CSE-ConnectionGUID: rnq7LLcNQ9e5slR7nxYciQ==
+X-CSE-MsgGUID: UYxWDU9/R5WvyzAnHvYe8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19504631"
+X-IronPort-AV: E=Sophos;i="6.09,236,1716274800"; d="scan'208";a="19504631"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 07:05:19 -0700
+X-CSE-ConnectionGUID: sBlQhzjXQcGAEK33hi8Fuw==
+X-CSE-MsgGUID: zj6TEOOuQpWdgpdCefgisw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,236,1716274800"; d="scan'208";a="53007683"
+Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2024 07:05:13 -0700
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+To: Mark Brown <broonie@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Subject: [PATCH v3 00/12] spi: add driver for Intel discrete graphics
+Date: Thu, 25 Jul 2024 16:56:45 +0300
+Message-Id: <20240725135657.1061836-1-alexander.usyskin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/bmg=3A_Read_displa?=
- =?utf-8?q?y_register_timeout?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jul 2024 13:49:09 -0000
-Message-ID: <172191534936.381723.13216810346914087753@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240725125735.105194-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20240725125735.105194-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,237 +76,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2052846867854928675==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add driver for access to Intel discrete graphics card
+internal SPI device.
+Expose device on auxiliary bus by i915 and Xe drivers and
+provide spi driver to register this device with MTD framework.
 
-== Series Details ==
+This is a rewrite of "drm/i915/spi: spi access for discrete graphics"
+series with connection to the Xe driver and splitting
+the spi driver part to separate module in spi subsystem.
 
-Series: drm/i915/bmg: Read display register timeout
-URL   : https://patchwork.freedesktop.org/series/136497/
-State : success
+This series intended to be pushed through drm-xe-next.
 
-== Summary ==
+V3: rebase over drm-xe-next to enable CI run
 
-CI Bug Log - changes from CI_DRM_15131 -> Patchwork_136497v1
-====================================================
+V2: fix review comments
+    fix signatures order
+    depend spi presence in Xe on special flag,
+     as not all new discrete cards have such spi
 
-Summary
--------
+Alexander Usyskin (6):
+  spi: add driver for intel graphics on-die spi device
+  spi: intel-dg: align 64bit read and write
+  spi: intel-dg: wake card on operations
+  drm/i915/spi: add support for access mode
+  drm/xe/spi: add on-die spi device
+  drm/xe/spi: add support for access mode
 
-  **SUCCESS**
+Tomas Winkler (6):
+  spi: intel-dg: implement region enumeration
+  spi: intel-dg: implement spi access functions
+  spi: intel-dg: spi register with mtd
+  spi: intel-dg: implement mtd access handlers
+  drm/i915/spi: add spi device for discrete graphics
+  drm/i915/spi: add intel_spi_region map
 
-  No regressions found.
+ MAINTAINERS                           |   7 +
+ drivers/gpu/drm/i915/Makefile         |   4 +
+ drivers/gpu/drm/i915/i915_driver.c    |   6 +
+ drivers/gpu/drm/i915/i915_drv.h       |   4 +
+ drivers/gpu/drm/i915/i915_reg.h       |   1 +
+ drivers/gpu/drm/i915/spi/intel_spi.c  |  97 +++
+ drivers/gpu/drm/i915/spi/intel_spi.h  |  15 +
+ drivers/gpu/drm/xe/Makefile           |   1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h |   5 +
+ drivers/gpu/drm/xe/xe_device.c        |   3 +
+ drivers/gpu/drm/xe/xe_device_types.h  |   8 +
+ drivers/gpu/drm/xe/xe_heci_gsc.c      |   5 +-
+ drivers/gpu/drm/xe/xe_pci.c           |   5 +
+ drivers/gpu/drm/xe/xe_spi.c           | 104 ++++
+ drivers/gpu/drm/xe/xe_spi.h           |  15 +
+ drivers/spi/Kconfig                   |  11 +
+ drivers/spi/Makefile                  |   1 +
+ drivers/spi/spi-intel-dg.c            | 863 ++++++++++++++++++++++++++
+ include/linux/intel_dg_spi_aux.h      |  27 +
+ 19 files changed, 1178 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.c
+ create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.h
+ create mode 100644 drivers/gpu/drm/xe/xe_spi.c
+ create mode 100644 drivers/gpu/drm/xe/xe_spi.h
+ create mode 100644 drivers/spi/spi-intel-dg.c
+ create mode 100644 include/linux/intel_dg_spi_aux.h
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/index.html
+-- 
+2.34.1
 
-Participating hosts (38 -> 39)
-------------------------------
-
-  Additional (4): bat-kbl-2 fi-elk-e7500 bat-jsl-1 fi-bsw-n3050 
-  Missing    (3): fi-cfl-8109u fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136497v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-jsl-1:          NOTRUN -> [SKIP][1] ([i915#9318])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@info:
-    - bat-kbl-2:          NOTRUN -> [SKIP][2] ([i915#1849])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-kbl-2/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#2190])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-kbl-2:          NOTRUN -> [SKIP][4] +39 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][5] +19 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-jsl-1:          NOTRUN -> [SKIP][6] ([i915#4613]) +3 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#4103]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][8] ([i915#3555] / [i915#9886])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-elk-e7500:       NOTRUN -> [SKIP][10] +24 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][11] ([i915#3555])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15131 -> Patchwork_136497v1
-
-  CI-20190529: 20190529
-  CI_DRM_15131: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_136497v1: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/index.html
-
---===============2052846867854928675==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/bmg: Read display register timeout</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136497/">https://patchwork.freedesktop.org/series/136497/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15131 -&gt; Patchwork_136497v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 39)</h2>
-<p>Additional (4): bat-kbl-2 fi-elk-e7500 bat-jsl-1 fi-bsw-n3050 <br />
-  Missing    (3): fi-cfl-8109u fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136497v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-kbl-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-kbl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-kbl-2/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +39 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136497v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15131 -&gt; Patchwork_136497v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15131: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7937: eba69333dfe8c295d053997367e395d7bde2b4b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_136497v1: e8874cead8c9d93afcd62d5dc7aaf3f28a64c60f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2052846867854928675==--
