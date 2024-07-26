@@ -2,173 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E90EC93CFDB
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:50:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D5B93D064
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 11:26:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92D1B10E2B3;
-	Fri, 26 Jul 2024 08:50:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D409A10E950;
+	Fri, 26 Jul 2024 09:26:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XLn2vNF3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AENbfCkK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DC2A10E2B3
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 08:50:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE03E10E885;
+ Fri, 26 Jul 2024 09:26:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721983851; x=1753519851;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=srj/LvKpqzusolEwPRh/kd0LeXDQ2VXVpEc1PfDY3Ks=;
- b=XLn2vNF3yLs/PRYdfKWEo8JtCvcs9eUSgZFoKHoHAGCLcKdbZfAAbB7V
- 6dtFXMNevruqiaAtbdMbzNUJq7qavBjhHo0CQm9fLGj1qHWc+1HKAqeGI
- RC4JEAlVaFNnbffk6rT3D/g9LWh5v5MKs/0I78a1r5DtJ+Xy8OgmtBVKK
- UcTkH+1EkL6aCrAk1fDhJ17IrNDBVpRI8KJcPPEMnwKly0JdIezOqk/G6
- x3yNyY2ptnNBd5uTE37my012LrUW+zTwAXu/z886RPnyOznEBJxKCUsJD
- Aa0a5hK7g/nnUUdRY8B+9VGF21lx+VgNhbM0dcd+RD88vlCSagd0g5+UA A==;
-X-CSE-ConnectionGUID: Utb7hz9hRD2HEfthlrp3Jw==
-X-CSE-MsgGUID: bJYhU5i1QEm/MdJ6wU5jgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="23566845"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="23566845"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 01:50:51 -0700
-X-CSE-ConnectionGUID: pXuPSCiuSRGNiLbdhxlBKQ==
-X-CSE-MsgGUID: N12CSftYTbSlgOCWbvZMVQ==
+ t=1721985986; x=1753521986;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=BQ4GhWvDEGszw4lnTWN0qHPj27P6TA3C2h9AmB4XPcs=;
+ b=AENbfCkKfolPbCI1Ww7HWKR1kzX5nzQhKuukwn2u6Qy4fuxkM7STeTL1
+ 1rLGLbHoSXesfc/oY7xo7diEIz7ajeYZELFa/jtjYGqNV0Fxa7k7BX11Y
+ P2afI2IfP2cZSBhe5os2IWwdet5uhkdLH3nN8s/jZuNkwipIfoUaWRxkp
+ 6GUhGEpOUwNLPPbBM2h7wqX09EzaiOXd4ZSvdHCHGnDFAaHr40PLMsItR
+ R2KF0pdSdg7EmtfKn0pgqDBy8u4mpsfPSX7StR9hKehZNr28sx9ebO43Y
+ zsAJlKfxdBwo9AqcHA2xRTJGPkLudMErGmObx1f5eSn90kMIVJ2FV90Fb A==;
+X-CSE-ConnectionGUID: itPK7EvwR7a9iXPKdOfLNA==
+X-CSE-MsgGUID: yUw1xOJ9QTe+G6jtSbCKxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="30925144"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="30925144"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 02:26:26 -0700
+X-CSE-ConnectionGUID: mbXn2+yjTcquWSfsPw4mXw==
+X-CSE-MsgGUID: tCZ2w0N8QN+CD/6Nwp2akQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="53803796"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Jul 2024 01:50:50 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 26 Jul 2024 01:50:49 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 26 Jul 2024 01:50:49 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 26 Jul 2024 01:50:49 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 26 Jul 2024 01:50:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NHxYPCnH/TVMWS1e15jwcyzDdkSozCzZ2cv9Eo2CEf8jsEiQzfE9x58WCft/suR18paVb7hnZcDXsnALEb+40V+6kxx5j4jD1w30umUNGsmLlrhXxRAFSsolHDxpit61/0MaF+x0535lzSXLbRaDmrMTa7NiyXmzx0ep5mWzwVCNOWKW1INTrOu7RHXZbYyV5a2lj6bqfNyyBmJ9y50gcuoyrOILXo14ya+oBPpoOITDGgIBojHA/iE54fbA1S6jHgIcJR4vveex+6tfGyLvo8jBk1ztdZi50i8vZ64T5oHFw7nGcoz0YULAunZDz+thpAzQRk83biV2jx8XmEwRqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/p3Jo8hUSifRauGdufSkuGFl8f+HLbusCNU+zBFktQ4=;
- b=E+nMRoK2X0ZWKaqjUl/ulNOqYe1tsyQQ7QxW4vsbI1xgGVudAWMtdPbzemmMOCzVFbDNqjl1YpDqpL6glzW8IBcp6pjoY9z5PCazS6w+/SDYnuK1jL+NnvWkMhhj/w+dNwAcT6jQNSJ60lPJYxA9LBxz2tV2cpT05diwMkMcxZs4Aoc8f0M1ct8An5HzLU9+0D58HdQzTgWQWfydDESZZVsD2t8t7LHgKvDFNJXEcg9Q3Z8pFplYz+MwQhP5aF9+kgMFeV4hqDYL9zJYkiCxMDG0S1i0x+xhFAvOln+uNjJnLQg03mOZuyLtTAP8TfYfbBsSvbUhUmHQ2UXW6Uqzrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
- by CY5PR11MB6090.namprd11.prod.outlook.com (2603:10b6:930:2e::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Fri, 26 Jul
- 2024 08:50:47 +0000
-Received: from IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
- ([fe80::4db5:b0d9:b6b3:bb52%4]) with mapi id 15.20.7762.024; Fri, 26 Jul 2024
- 08:50:46 +0000
-From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH] i915/display/dp: Compute AS SDP when vrr is also enabled
-Thread-Topic: [PATCH] i915/display/dp: Compute AS SDP when vrr is also enabled
-Thread-Index: AQHa3pbqt2VwKlahtE+3xXVk/2n9VbIHfEEAgAE4N3A=
-Date: Fri, 26 Jul 2024 08:50:46 +0000
-Message-ID: <IA1PR11MB6348815F3E5F7D158DE402E9B2B42@IA1PR11MB6348.namprd11.prod.outlook.com>
-References: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
- <87jzh9zhk3.fsf@intel.com>
-In-Reply-To: <87jzh9zhk3.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|CY5PR11MB6090:EE_
-x-ms-office365-filtering-correlation-id: 20a60a86-1de7-4bd3-036d-08dcad500ab4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?kc7mzBiiB4gc4kKzIaTA+/m4DpyB43jvG9nVQbHs++zIE7TWnWGAKoprHWi8?=
- =?us-ascii?Q?XmXjmttZ0fpRAcBvnCOHmgQkkUAiS9suzS1HSHVUuVAZnHpcQclHFQ/ZAOJY?=
- =?us-ascii?Q?5fnr5FKQMHb+IQ+APfFYbL9jvrBwA2ShIXAIztvFTCux9PQUDnkl/uTtVE83?=
- =?us-ascii?Q?1HebQF84vTT8nK078rMtnm9+Qp3WGIMtigRR6ukQiMKp1IEqFdU51Pg4FTjm?=
- =?us-ascii?Q?h6bOdZW/8BKOkIjEGn5jxMin2Fb0MslX8gE39iUcJIFAnLhXqiyJkni8GD3r?=
- =?us-ascii?Q?uSccVbwxaF2ePR9xNx9cDLi8eomEQ0icgXKfoge/jf1kyNvcZJu/vX8684nn?=
- =?us-ascii?Q?PfqFkg+a3ZIo4GIW3Zv8nlZtuqA5pBrQi+l7I7yQ6UFjWZsdC5MNqngfFkA1?=
- =?us-ascii?Q?6r6gNKW4uBmaJnwgAVfjhJUsVa6LhB7S+9uP8TTlIdtatH4+ztYoDsU+S+aE?=
- =?us-ascii?Q?PuGhcU4KQWdUvrvCIzqY8w9oRJpXPM/0nMfOsTXgjvpYih49jxiNQXjjE4Pe?=
- =?us-ascii?Q?eAzGdQj+v+ez+G1kKceye0+2GiDW2EupfGVS2lKlFDrr09ys9Jw3B4n19/pb?=
- =?us-ascii?Q?xaRt/jYgrCkaheQXgp6mIoNvK3hsgm4hc7P9H2pLy/Qo/K9ip0TbnqLvEu/0?=
- =?us-ascii?Q?SeziuuWv1CD7Pp24SbSMY1m4u7obFnvw5jHWr68LoLCFHPyB4+5OIOMe/SFz?=
- =?us-ascii?Q?AwFLV4sBiigbhqLGXm8qnbrfdSbgLrHcHjlMqxTNiNXdet2SVB3UGVk51efH?=
- =?us-ascii?Q?VjGq3iLeg1aHVaew19ad8DXKnR15Gz4GM/k+GDSu6rK0cgzjspK1qJp31csc?=
- =?us-ascii?Q?JYat84TAhF7oTHTiEbYcsZ9Deo3AObW2yWEl1rPG9Hw1cf4ys5/J7pIk1s4n?=
- =?us-ascii?Q?85TjRUIivSDRvSUvV40GkzIvKkOa3T67ow/2EBmgIVdI0g47cheTcOvb8Ul9?=
- =?us-ascii?Q?aijHneI0YrH45RBg0UZJ7MQA1Pz7CxAcX3L5O/+Xsx6TR/motvXsgCmlvf71?=
- =?us-ascii?Q?lmWt2XPKlQlv6QwpVSaVLsSLIQ3fsb2gtcGA4DK5V8RDC+qOj4uVYYzrFCaZ?=
- =?us-ascii?Q?d6NAs2QF4sDLEP2OWPw9uo7x+ixyp5ZRFl6VQgSaOtBqMWbpG+SgMaYhVf8P?=
- =?us-ascii?Q?uPreRXRWzkjxRUSd9wzUE5+SatPYQtOSwHMbkWR5DWQaSzZfGUurg7V+cZls?=
- =?us-ascii?Q?pyjXuMG5+DbEgqWo6RFINPUeu05CMW2swukikLOPD+rpmX9cuyD8B/O3wPh5?=
- =?us-ascii?Q?gMz7FHj3tPAdsEWB0YRDCx8i0f9cPfbEPaKGcO3NI9N1zCZwh8IsHZQnjx8g?=
- =?us-ascii?Q?trU8vjSgd5gkmasp1SGm7MA5Etdpz68yniorIQwFLKA60TuGf3e1OaHDaHRW?=
- =?us-ascii?Q?ZXX9kbDOKVtjfXrAn+zIELTeOpkn9+uMZdkJeYgWkZprRm46HA=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?U2DjmLi+UWA/oZJF7zfmtqXT8I6wr2LvkkWEYgj3NP5nLYMhztBP60UVwOBY?=
- =?us-ascii?Q?cCTrr66h63ria9i3P3fUP1spCRZDw7hRxF7Pv+MqGU0oxZEU57GYDFZa9L2b?=
- =?us-ascii?Q?0rEv/9PL/h/BrN/D2pPMB3W48U/Rpr4x6NPCl4nFCc5AaC9Cu+CxWT9D6gtj?=
- =?us-ascii?Q?7/Y3gfIK5Pq328Lq3cXfPhj7J58v2Ltv8A7vh/0yJuwlJpepbWBHauCM2P72?=
- =?us-ascii?Q?IEZWCxYhSTIcjn0NVnGCyWJSi1Kl+4RccFEM62MZxoAvKHj6Dz+2p3lDP/qy?=
- =?us-ascii?Q?N53rTbXXKdIA69pJ2vonxecSmKUZiftUw/JRQ9VOUuboxur+NMpRwcZwlav4?=
- =?us-ascii?Q?uuCtUYi/s4FbjoNm2hieiJhb/BIOMz/TVC2nb8P9lTQHVnvmV8VOyUhdfqSe?=
- =?us-ascii?Q?4vjAy8GRCJzjNySlcQjP4FazHVSzu1e3qiII4wFEdTq5Ben2UeQIpExHp+w2?=
- =?us-ascii?Q?Adj0GNDU70Oimv9BTffwC3/X3Z7TO3L+wFm6WP0a680gZzdBTjysa9JWVosA?=
- =?us-ascii?Q?ZCnlZLIRqEbHahg98J5cmIcPYl0D+ZzvSjMNqMtBPpSagwNjHkCwvlo91n5I?=
- =?us-ascii?Q?grruO5QLJh8UNUtZEAl3i0nwWgK9mb6akI90ppAq4brbvXd2ldfedz1WvkM8?=
- =?us-ascii?Q?+cbKhc+rzq2JXtFf4hXHkvsSMyiN4RS6i+fQCayU3IZMJVkX1UrqqK0jp8ou?=
- =?us-ascii?Q?bzK4lKbIxf+iURCWkSTjgh4qIaXn4giNbMZLwnfY7ZVrBXLPXe/WiaQ7tB32?=
- =?us-ascii?Q?LbMY9U31kShmB7fztj+Yuiv+XR+D2ZR8QBkFoYRxAm28qhfGu3m8L7JSTJ4q?=
- =?us-ascii?Q?dI+lb4NNoz/3O33gYlPm6Fv8/gh7esp1i4K6Nf/Rt+R2q4DO1HdrxPUEXr/h?=
- =?us-ascii?Q?bpNgsWQXEhqQsoPMalnGVoJ6nQZinFE/Iqq4DusYBwbqzZ3A9Pej6WMzvhxr?=
- =?us-ascii?Q?1Nm2EMc1O5dDVJ2O23d3tzlOgOB/hHrGT/ZNSWMGJVwwh6nqr6TUlZ61CiYH?=
- =?us-ascii?Q?4wDhtEmxlaMsfySg+jK55NjzBfQHVs3DTtyCJ3kwzdEEto+yWerzdZvs78Jc?=
- =?us-ascii?Q?TMcnHrIxw2LOjfxVq0Ec/JNyy7wtUm3bv8Opz0u3z1chCs0AlCiftOw2BQAO?=
- =?us-ascii?Q?/gFFOe8CEzMoYYETkAkvpTBGCMlb0Tb5MUYY9/rEOSqu4lmPKwLOZNFtiGy+?=
- =?us-ascii?Q?Ys81KeNmZHiRhJhYiwK1tBsPRUmPgGNbYGk2de3O5mXhi+4U2zVRNvlpxH3p?=
- =?us-ascii?Q?D3nZ88Vicr66drk3UCTzYOZwXYLf9szfPm2ikFnnVB9vGF2g4vjE+8Kxmcju?=
- =?us-ascii?Q?AF3taUTI+yv1xYVa6EvEhBDVbg/Hw/sQdaZpMljvQzjTCPv8hLdMTb5XPmgZ?=
- =?us-ascii?Q?Or+jHSS/m+q7Kc3yPe1XspT+WKdcs1rVZ7lEMFcKfJdEsx6cJDqszvoCfJST?=
- =?us-ascii?Q?P1CLh9O7fDLKm5qm7fxv0KUWuR45EV7Pun9Rh7B38nh+q8KgQwvL1Sx+6zQa?=
- =?us-ascii?Q?B5USYhU3PHc0AJWGQIn3832bDxTftBStJbd/QZc8232HQe+4Mq+bSsd4q/Qi?=
- =?us-ascii?Q?aS1K+afupjvUIHZSZ4vsWfxAxQD0jq13i9AemLjr73AM1UhaBbHGJQqGrtS2?=
- =?us-ascii?Q?mbbBUZ1Fb7bssEYyXvYTw8U=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="53226183"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 02:26:22 -0700
+Date: Fri, 26 Jul 2024 12:26:18 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ anshuman.gupta@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com,
+ andriy.shevchenko@linux.intel.com
+Subject: Re: [PATCH v1] drm/i915/hwmon: expose fan speed
+Message-ID: <ZqNruj3mCH_EYbUD@black.fi.intel.com>
+References: <20240712122356.360613-1-raag.jadav@intel.com>
+ <84061e47-3e6b-45c4-bc4b-db70da6b67f8@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20a60a86-1de7-4bd3-036d-08dcad500ab4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2024 08:50:46.7928 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: owd6fcJ4RBSRLmP3HVW441te/3kxyJ0Bd4RjezdVgxVkwRs7qr5fUDUnL9gz2mTI4dSyStIj5rMCt4zpbAv8HlW92QYDaSlTRQspDRPLSJJ5Lum4uuwmEd3UFccpyCwv
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6090
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <84061e47-3e6b-45c4-bc4b-db70da6b67f8@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,58 +74,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Thursday, July 25, 2024 7:43 PM
-> To: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>;
-> intel-gfx@lists.freedesktop.org
-> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
-> Subject: Re: [PATCH] i915/display/dp: Compute AS SDP when vrr is also ena=
-bled
->=20
-> On Thu, 25 Jul 2024, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> wrote:
-> > AS SDP should be computed when VRR timing generator is also enabled.
-> > Correct the compute condition to compute params of Adaptive sync SDP
-> > when VRR timing genrator is enabled along with sink support indication.
-> >
-> > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+On Wed, Jul 24, 2024 at 02:11:40PM +0530, Nilawar, Badal wrote:
+> 
+> 
+> On 12-07-2024 17:53, Raag Jadav wrote:
+> > Add hwmon support for fan1_input attribute, which will expose fan speed
+> > in RPM. With this in place we can monitor fan speed using lm-sensors tool.
+> > 
+> > $ sensors
+> > i915-pci-0300
+> > Adapter: PCI adapter
+> > in0:         653.00 mV
+> > fan1:        3833 RPM
+> > power1:           N/A  (max =  43.00 W)
+> > energy1:      32.02 kJ
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 5d6568c8e186..dc75d1c14a94 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -2617,7 +2617,7 @@ static void intel_dp_compute_as_sdp(struct
-> intel_dp *intel_dp,
-> >  	const struct drm_display_mode *adjusted_mode =3D
-> >  		&crtc_state->hw.adjusted_mode;
-> >
-> > -	if (!crtc_state->vrr.enable || intel_dp->as_sdp_supported)
-> > +	if (!(crtc_state->vrr.enable && intel_dp->as_sdp_supported))
-> >  		return;
->=20
-> That's the same as
->=20
-> 	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
->=20
-> BR,
-> Jani.
+> >   drivers/gpu/drm/i915/gt/intel_gt_regs.h |  2 +
+> >   drivers/gpu/drm/i915/i915_hwmon.c       | 71 +++++++++++++++++++++++++
+> >   2 files changed, 73 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> > index e42b3a5d4e63..407d8152755a 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+> > @@ -1553,6 +1553,8 @@
+> >   #define VLV_RENDER_C0_COUNT			_MMIO(0x138118)
+> >   #define VLV_MEDIA_C0_COUNT			_MMIO(0x13811c)
+> > +#define GEN12_PWM_FAN_SPEED			_MMIO(0x138140)
+> > +
+> >   #define GEN12_RPSTAT1				_MMIO(0x1381b4)
+> >   #define   GEN12_VOLTAGE_MASK			REG_GENMASK(10, 0)
+> >   #define   GEN12_CAGF_MASK			REG_GENMASK(19, 11)
+> > diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+> > index 49db3e09826c..f829c7837d83 100644
+> > --- a/drivers/gpu/drm/i915/i915_hwmon.c
+> > +++ b/drivers/gpu/drm/i915/i915_hwmon.c
+> > @@ -36,6 +36,7 @@ struct hwm_reg {
+> >   	i915_reg_t pkg_rapl_limit;
+> >   	i915_reg_t energy_status_all;
+> >   	i915_reg_t energy_status_tile;
+> > +	i915_reg_t fan_speed;
+> >   };
+> >   struct hwm_energy_info {
+> > @@ -43,11 +44,17 @@ struct hwm_energy_info {
+> >   	long accum_energy;			/* Accumulated energy for energy1_input */
+> >   };
+> > +struct hwm_fan_info {
+> > +	u32 reg_val_prev;
+> > +	u32 time_prev;
+> > +};
+> > +
+> >   struct hwm_drvdata {
+> >   	struct i915_hwmon *hwmon;
+> >   	struct intel_uncore *uncore;
+> >   	struct device *hwmon_dev;
+> >   	struct hwm_energy_info ei;		/*  Energy info for energy1_input */
+> > +	struct hwm_fan_info fi;			/*  Fan info for fan1_input */
+> >   	char name[12];
+> >   	int gt_n;
+> >   	bool reset_in_progress;
+> > @@ -276,6 +283,7 @@ static const struct hwmon_channel_info * const hwm_info[] = {
+> >   	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
+> >   	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+> >   	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
+> > +	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
+> >   	NULL
+> >   };
+> > @@ -613,6 +621,55 @@ hwm_curr_write(struct hwm_drvdata *ddat, u32 attr, long val)
+> >   	}
+> >   }
+> > +static umode_t
+> > +hwm_fan_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+> > +{
+> > +	struct i915_hwmon *hwmon = ddat->hwmon;
+> > +
+> > +	switch (attr) {
+> > +	case hwmon_fan_input:
+> > +		return i915_mmio_reg_valid(hwmon->rg.fan_speed) ? 0444 : 0;
+> > +	default:
+> > +		return 0;
+> > +	}
+> > +}
+> > +
+> > +static int
+> > +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> > +{
+> > +	struct i915_hwmon *hwmon = ddat->hwmon;
+> > +	u32 reg_val, rotation, time, time_now;
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	switch (attr) {
+> > +	case hwmon_fan_input:
+> > +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
+> Do we expect fan running when device is in D3? If not then we should use
+> with_intel_runtime_pm_if_active here otherwise report fan speed 0.
 
-Thanks Jani, I have addressed comments.
+Yes, it can be running depending on package temperature.
+So better to rely on hardware value.
 
-Regards,
-Mitul
->=20
->=20
-> >
-> >  	crtc_state->infoframes.enable |=3D
-> > intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
->=20
-> --
-> Jani Nikula, Intel
+Raag
