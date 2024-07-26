@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B6A93D0A5
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 11:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 688F793D0A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 11:54:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FAEE10E7FC;
-	Fri, 26 Jul 2024 09:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E93610E958;
+	Fri, 26 Jul 2024 09:54:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Va8kBKn/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KHYB9NbD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C732B10E7FC
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 09:54:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC39610E958
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 09:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721987665; x=1753523665;
+ t=1721987667; x=1753523667;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DtGXjSsXIt3L0VQCO2tO0jOPQehbPPvwqQneI9BzoXA=;
- b=Va8kBKn/W7cbAzFZ159+w/mjxEUp0vr5b5HgPDGhvWJ0lcCFIEIZUCWa
- MCWN5OKIruWhDDYP4toeSg7oY7N56cdlCkRqnLTT/RXKd0w9J4qB83vVM
- ep7wxHbW0jrI41/+DD1zWG4LxdWK9ZM3Pl+Pht0m19pXykY+cQzA2IDKo
- 46KKo20MwcSwGdK/XXSDqD5zogp9BxmHn/UAo04bRqSkUTF9nwfDqcOQK
- NIgw66pSIoJ3vztef2xcPvJhNCG5lUcq7PP9uf7yuhyCBuDX/a6NuaZdN
- 9+aFDRXA0RwDtd1WWQ3LtHJlvnWyVEq8RvJwf3HYOodMblVkuD93vxNiK g==;
-X-CSE-ConnectionGUID: fgeEqpkhSierbww2Cm7Nyg==
-X-CSE-MsgGUID: rI05G6dbSMmi8NpLIAGkxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="31189395"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="31189395"
+ bh=zUxlFC/el1yz9YxR017CpWChdBknHVuvD/FJPV7v67g=;
+ b=KHYB9NbDKD0I+eaTrckbTQ1O6fskrRHcQsXmljZXN+DjCxtwTwQAi4ce
+ 0QKN4Bxxp3R/xEL0S4xtpkwVn281vU9ft3cpBC7cDuuIhhySpgWctoovm
+ 8GEqOIl9ccvJgVqFGzPB+71OO1AG2FZfsT+VrqMRYqAlULlaEL/oaxCwu
+ Svn20YRex+NA+nCJ2ZIWfx30e9W37EuAsVDQAPO06w3MrL5so+7gyBprS
+ gzJETo4P+Q53Nmu01hdNtaNYfrs3u/PSqiwkt/IeGbCIfuWcMqEZxZrR5
+ yR1jlzolXc1eZz+tSsnvYKmiVuydCtyjHyzmJo564a9/1mFdDIRwuyCYq w==;
+X-CSE-ConnectionGUID: Zo8hfulGTXSmoFb8wWWSsg==
+X-CSE-MsgGUID: bdj+ALM9Q9OlWQTovelbBQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="31189400"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="31189400"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 02:54:25 -0700
-X-CSE-ConnectionGUID: jx7uZW7GSOONxU57IcY0GQ==
-X-CSE-MsgGUID: 7hx+KzRXR9WFQ/ZoE5nfHQ==
+ 26 Jul 2024 02:54:27 -0700
+X-CSE-ConnectionGUID: CFUbJZSeTraK1Ki5E5zHUw==
+X-CSE-MsgGUID: 0eef3UYOR1eCOUdy7RZbrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="53139933"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="53139939"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa010.jf.intel.com with ESMTP; 26 Jul 2024 02:54:25 -0700
+ by orviesa010.jf.intel.com with ESMTP; 26 Jul 2024 02:54:27 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 1/2] drm/i915/display: Refactor pch_panel_fitting to use local
- variables for crtc dimensions
-Date: Fri, 26 Jul 2024 15:23:56 +0530
-Message-Id: <20240726095357.1261804-2-nemesa.garg@intel.com>
+Subject: [PATCH 2/2] drm/i915/display: Call panel_fitting from pipe_config
+Date: Fri, 26 Jul 2024 15:23:57 +0530
+Message-Id: <20240726095357.1261804-3-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240726095357.1261804-1-nemesa.garg@intel.com>
 References: <20240726095357.1261804-1-nemesa.garg@intel.com>
@@ -67,96 +66,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Refactor pch_panel_fitting to use local variables for crtc_hdisplay
-and crtc_vdisplay. This will help to adjust the hdisplay at one place
-when big/ultra joiner is involved. Introduce local variables crtc_hdisplay
-and crtc_vdisplay and update all references to adjusted_mode->crtc_hdisplay
-and adjusted_mode->crtc_vdisplay to use the new local variables.
+In panel fitter/pipe scaler scenario the pch_pfit configuration
+currently takes place before accounting for pipe_src width for
+joiner. This causes issue when pch_pfit and joiner gets
+enabled together.
+
+Introduce a new boolean flag is_required which can be filled
+during dp compute_config and later is used to compute panel_fitting in
+pipe_config. Modify pch_panel_fitting to handle joiner pipes by adjusting
+crtc_hdisplay accordingly.
 
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_panel.c | 34 ++++++++++++----------
- 1 file changed, 18 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c       | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  7 ++-----
+ drivers/gpu/drm/i915/display/intel_panel.c         |  3 +++
+ 4 files changed, 17 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8bbde03f2508..a7194a84b6b8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4796,6 +4796,17 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+ 		return ret;
+ 	}
+ 
++	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
++		if (connector_state->crtc != &crtc->base)
++			continue;
++
++		if (crtc_state->pch_pfit.is_required) {
++			ret = intel_panel_fitting(crtc_state, connector_state);
++			if (ret)
++				return ret;
++		}
++	}
++
+ 	/* Dithering seems to not pass-through bits correctly when it should, so
+ 	 * only enable it on 6bpc panels and when its not a compliance
+ 	 * test requesting 6bpc video pattern.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index a04d52dbf6e1..a4ab26d8fa43 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1258,6 +1258,7 @@ struct intel_crtc_state {
+ 		struct drm_rect dst;
+ 		bool enabled;
+ 		bool force_thru;
++		bool is_required;
+ 	} pch_pfit;
+ 
+ 	/* FDI configuration, only valid if has_pch_encoder is set. */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d0d878da71ee..d892c5a429f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2922,11 +2922,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->has_pch_encoder = true;
+ 
+ 	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
+-	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+-		ret = intel_panel_compute_config(connector, adjusted_mode);
+-		if (ret)
+-			return ret;
+-	}
++	if (intel_dp_is_edp(intel_dp) && fixed_mode)
++		pipe_config->pch_pfit.is_required = true;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
 diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 71454ddef20f..dd18136d1c61 100644
+index dd18136d1c61..0da45c2330d3 100644
 --- a/drivers/gpu/drm/i915/display/intel_panel.c
 +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -392,10 +392,12 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
- 	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
- 	int x, y, width, height;
-+	u16 crtc_hdisplay = adjusted_mode->crtc_hdisplay;
-+	u16 crtc_vdisplay = adjusted_mode->crtc_vdisplay;
+@@ -395,6 +395,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+ 	u16 crtc_hdisplay = adjusted_mode->crtc_hdisplay;
+ 	u16 crtc_vdisplay = adjusted_mode->crtc_vdisplay;
  
++	if (crtc_state->joiner_pipes)
++		crtc_hdisplay = adjusted_mode->crtc_hdisplay / 2;
++
  	/* Native modes don't need fitting */
--	if (adjusted_mode->crtc_hdisplay == pipe_src_w &&
--	    adjusted_mode->crtc_vdisplay == pipe_src_h &&
-+	if (crtc_hdisplay == pipe_src_w &&
-+	    crtc_vdisplay == pipe_src_h &&
- 	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420)
- 		return 0;
- 
-@@ -403,45 +405,45 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	case DRM_MODE_SCALE_CENTER:
- 		width = pipe_src_w;
- 		height = pipe_src_h;
--		x = (adjusted_mode->crtc_hdisplay - width + 1)/2;
--		y = (adjusted_mode->crtc_vdisplay - height + 1)/2;
-+		x = (crtc_hdisplay - width + 1) / 2;
-+		y = (crtc_vdisplay - height + 1) / 2;
- 		break;
- 
- 	case DRM_MODE_SCALE_ASPECT:
- 		/* Scale but preserve the aspect ratio */
- 		{
--			u32 scaled_width = adjusted_mode->crtc_hdisplay * pipe_src_h;
--			u32 scaled_height = pipe_src_w * adjusted_mode->crtc_vdisplay;
-+			u32 scaled_width = crtc_hdisplay * pipe_src_h;
-+			u32 scaled_height = pipe_src_w * crtc_vdisplay;
- 			if (scaled_width > scaled_height) { /* pillar */
- 				width = scaled_height / pipe_src_h;
- 				if (width & 1)
- 					width++;
--				x = (adjusted_mode->crtc_hdisplay - width + 1) / 2;
-+				x = (crtc_hdisplay - width + 1) / 2;
- 				y = 0;
--				height = adjusted_mode->crtc_vdisplay;
-+				height = crtc_vdisplay;
- 			} else if (scaled_width < scaled_height) { /* letter */
- 				height = scaled_width / pipe_src_w;
- 				if (height & 1)
- 				    height++;
--				y = (adjusted_mode->crtc_vdisplay - height + 1) / 2;
-+				y = (crtc_vdisplay - height + 1) / 2;
- 				x = 0;
--				width = adjusted_mode->crtc_hdisplay;
-+				width = crtc_hdisplay;
- 			} else {
- 				x = y = 0;
--				width = adjusted_mode->crtc_hdisplay;
--				height = adjusted_mode->crtc_vdisplay;
-+				width = crtc_hdisplay;
-+				height = crtc_vdisplay;
- 			}
- 		}
- 		break;
- 
- 	case DRM_MODE_SCALE_NONE:
--		WARN_ON(adjusted_mode->crtc_hdisplay != pipe_src_w);
--		WARN_ON(adjusted_mode->crtc_vdisplay != pipe_src_h);
-+		WARN_ON(crtc_hdisplay != pipe_src_w);
-+		WARN_ON(crtc_vdisplay != pipe_src_h);
- 		fallthrough;
- 	case DRM_MODE_SCALE_FULLSCREEN:
- 		x = y = 0;
--		width = adjusted_mode->crtc_hdisplay;
--		height = adjusted_mode->crtc_vdisplay;
-+		width = crtc_hdisplay;
-+		height = crtc_vdisplay;
- 		break;
- 
- 	default:
+ 	if (crtc_hdisplay == pipe_src_w &&
+ 	    crtc_vdisplay == pipe_src_h &&
 -- 
 2.25.1
 
