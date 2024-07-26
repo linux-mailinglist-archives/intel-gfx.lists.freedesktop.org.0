@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A841693CFBD
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD2993CFBE
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:40:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E330D10E2E0;
-	Fri, 26 Jul 2024 08:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB46610E2E2;
+	Fri, 26 Jul 2024 08:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kayzF2FU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RE8Xa3EB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F5710E027;
- Fri, 26 Jul 2024 08:40:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62C4C10E027;
+ Fri, 26 Jul 2024 08:40:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721983255; x=1753519255;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=e5HDWfK75n8ldhnunzYf7ucR+4PZzz48kcl3COq3LGE=;
- b=kayzF2FU+22BMqK/cGuvoGEs4Q56BwrSHrrCAN3tWhQjsywwm02KG4q1
- IoJAZsJksZVUl0PmW+JxoSqRt4h/ZfF0I/UBBxSltMSTVSLHNijZ23u3d
- wbz8zaFuoWI6IIlc7u1QLR7Ekrw4Aigpkuwojtla+RRApFCUNS6VQdNAe
- WRJO8kJbeWwd3PR0TVdFbzXRkBsiKn8fmfICyPOcLpmF6yYSQ0+Br4soc
- MUt8ntSwL+/JBhm2/iTdzxp5+K+oxxYcPsgjmesSqTxZOYm5BqAcOTK9s
- h+uspv4I8DCu8q4BGFBVJDB0IWcilUDgZlmf1jhR0uH+TmiiEshW9c660 A==;
-X-CSE-ConnectionGUID: NOwB17wGQRaEAfP9hPru7Q==
-X-CSE-MsgGUID: ntTBhfw2R5W4iFJI8Fq/fA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19951832"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="19951832"
+ t=1721983256; x=1753519256;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KUIsNVfb3a0rUEWJ95cv4D+/nROly11Sq37YDXprtEY=;
+ b=RE8Xa3EBPRH6fdWTHCGCtj500rotYqlBWA1jhSugHn7v2t/gQ9xk+B7b
+ oo8JxclJchZanyeqN16XmqYyLMFLIHt5TZ02KwKkOBK2/oKhNnanVaHHV
+ SKugC12zXYXgsA/dgLUA3rDS+IQxGWP4DkCLCj+lFncaS2FL6OoIfCw/B
+ /orm34TQVpv0w0tOugO4yd3oCjN5V/epQ31gvZCrwGY96Zfd6ixSlKf1g
+ qYxolnuq2KmEcJbvlYOiUsRj9dgzI24yZpQUge9+scQvykgt9NGx7FCH9
+ OiVsD1WRs83WE48d2gESUZmqZvPzzm/ZvEplpmlYK8mgJsqzxlKUqsksE w==;
+X-CSE-ConnectionGUID: F6THY3M8QFK7N8/BM2ACjQ==
+X-CSE-MsgGUID: tGcE2NCPQ8WjFCoD/GQNSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19951833"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="19951833"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 01:40:54 -0700
-X-CSE-ConnectionGUID: I1qEI4XDQSidtg/F0iYDNw==
-X-CSE-MsgGUID: ZFBO7/a1Ts68ZhG01J/Dow==
+ 26 Jul 2024 01:40:55 -0700
+X-CSE-ConnectionGUID: 04oFdMS0QeGvOCGA1+P41g==
+X-CSE-MsgGUID: vD1jYG2XSW+oErLxAKVuww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57477868"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57477869"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.245.246.60])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 01:40:52 -0700
+ 26 Jul 2024 01:40:53 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Subject: [PATCH i-g-t 0/2] tests/device_reset: Wait for device nodes to
+Subject: [PATCH i-g-t 1/2] tests/device_reset: Wait for device nodes to
  re-appear
-Date: Fri, 26 Jul 2024 10:34:55 +0200
-Message-ID: <20240726084022.356654-4-janusz.krzysztofik@linux.intel.com>
+Date: Fri, 26 Jul 2024 10:34:56 +0200
+Message-ID: <20240726084022.356654-5-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240726084022.356654-4-janusz.krzysztofik@linux.intel.com>
+References: <20240726084022.356654-4-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -88,17 +90,25 @@ by the time we are doing that.
 Introduce a delay to give the kernel a chance to re-create in devtmpfs all
 device nodes we are going to scan for.
 
-While being at it, fix an inline comment above an equivalent solution
-introduced before to core_hotunplug test.
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11626
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ tests/device_reset.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Janusz Krzysztofik (2):
-  tests/device_reset: Wait for device nodes to re-appear
-  tests/core_hotunplug: Fix inline comment on missing device nodes
-
- tests/core_hotunplug.c | 2 +-
- tests/device_reset.c   | 2 ++
- 2 files changed, 3 insertions(+), 1 deletion(-)
-
+diff --git a/tests/device_reset.c b/tests/device_reset.c
+index a669e1224e..8ed3ef5220 100644
+--- a/tests/device_reset.c
++++ b/tests/device_reset.c
+@@ -385,6 +385,8 @@ static bool is_i915_wedged(int i915)
+ static void healthcheck(struct device_fds *dev)
+ {
+ 	if (dev->fds.dev == -1) {
++		/* give the kernel a breath for re-creating device nodes in devtmpfs */
++		sleep(1);
+ 		/* refresh device list */
+ 		igt_devices_scan(true);
+ 		igt_debug("reopen the device\n");
 -- 
 2.45.2
 
