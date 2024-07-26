@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688F793D0A6
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 11:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6449D93D15F
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 12:54:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E93610E958;
-	Fri, 26 Jul 2024 09:54:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KHYB9NbD";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6755510E05D;
+	Fri, 26 Jul 2024 10:54:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC39610E958
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 09:54:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721987667; x=1753523667;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zUxlFC/el1yz9YxR017CpWChdBknHVuvD/FJPV7v67g=;
- b=KHYB9NbDKD0I+eaTrckbTQ1O6fskrRHcQsXmljZXN+DjCxtwTwQAi4ce
- 0QKN4Bxxp3R/xEL0S4xtpkwVn281vU9ft3cpBC7cDuuIhhySpgWctoovm
- 8GEqOIl9ccvJgVqFGzPB+71OO1AG2FZfsT+VrqMRYqAlULlaEL/oaxCwu
- Svn20YRex+NA+nCJ2ZIWfx30e9W37EuAsVDQAPO06w3MrL5so+7gyBprS
- gzJETo4P+Q53Nmu01hdNtaNYfrs3u/PSqiwkt/IeGbCIfuWcMqEZxZrR5
- yR1jlzolXc1eZz+tSsnvYKmiVuydCtyjHyzmJo564a9/1mFdDIRwuyCYq w==;
-X-CSE-ConnectionGUID: Zo8hfulGTXSmoFb8wWWSsg==
-X-CSE-MsgGUID: bdj+ALM9Q9OlWQTovelbBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="31189400"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="31189400"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 02:54:27 -0700
-X-CSE-ConnectionGUID: CFUbJZSeTraK1Ki5E5zHUw==
-X-CSE-MsgGUID: 0eef3UYOR1eCOUdy7RZbrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="53139939"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa010.jf.intel.com with ESMTP; 26 Jul 2024 02:54:27 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 2/2] drm/i915/display: Call panel_fitting from pipe_config
-Date: Fri, 26 Jul 2024 15:23:57 +0530
-Message-Id: <20240726095357.1261804-3-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240726095357.1261804-1-nemesa.garg@intel.com>
-References: <20240726095357.1261804-1-nemesa.garg@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EFA610E05D;
+ Fri, 26 Jul 2024 10:54:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1629780006194198554=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Consider_joiner_calculation?=
+ =?utf-8?q?_for_panel_fitting?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 26 Jul 2024 10:54:45 -0000
+Message-ID: <172199128531.385743.14014027825703782860@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240726095357.1261804-1-nemesa.garg@intel.com>
+In-Reply-To: <20240726095357.1261804-1-nemesa.garg@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,93 +37,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In panel fitter/pipe scaler scenario the pch_pfit configuration
-currently takes place before accounting for pipe_src width for
-joiner. This causes issue when pch_pfit and joiner gets
-enabled together.
+--===============1629780006194198554==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Introduce a new boolean flag is_required which can be filled
-during dp compute_config and later is used to compute panel_fitting in
-pipe_config. Modify pch_panel_fitting to handle joiner pipes by adjusting
-crtc_hdisplay accordingly.
+== Series Details ==
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c       | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c            |  7 ++-----
- drivers/gpu/drm/i915/display/intel_panel.c         |  3 +++
- 4 files changed, 17 insertions(+), 5 deletions(-)
+Series: Consider joiner calculation for panel fitting
+URL   : https://patchwork.freedesktop.org/series/136561/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8bbde03f2508..a7194a84b6b8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4796,6 +4796,17 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
- 		return ret;
- 	}
- 
-+	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
-+		if (connector_state->crtc != &crtc->base)
-+			continue;
-+
-+		if (crtc_state->pch_pfit.is_required) {
-+			ret = intel_panel_fitting(crtc_state, connector_state);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
- 	/* Dithering seems to not pass-through bits correctly when it should, so
- 	 * only enable it on 6bpc panels and when its not a compliance
- 	 * test requesting 6bpc video pattern.
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index a04d52dbf6e1..a4ab26d8fa43 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1258,6 +1258,7 @@ struct intel_crtc_state {
- 		struct drm_rect dst;
- 		bool enabled;
- 		bool force_thru;
-+		bool is_required;
- 	} pch_pfit;
- 
- 	/* FDI configuration, only valid if has_pch_encoder is set. */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d0d878da71ee..d892c5a429f1 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2922,11 +2922,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->has_pch_encoder = true;
- 
- 	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
--	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
--		ret = intel_panel_compute_config(connector, adjusted_mode);
--		if (ret)
--			return ret;
--	}
-+	if (intel_dp_is_edp(intel_dp) && fixed_mode)
-+		pipe_config->pch_pfit.is_required = true;
- 
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index dd18136d1c61..0da45c2330d3 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -395,6 +395,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	u16 crtc_hdisplay = adjusted_mode->crtc_hdisplay;
- 	u16 crtc_vdisplay = adjusted_mode->crtc_vdisplay;
- 
-+	if (crtc_state->joiner_pipes)
-+		crtc_hdisplay = adjusted_mode->crtc_hdisplay / 2;
-+
- 	/* Native modes don't need fitting */
- 	if (crtc_hdisplay == pipe_src_w &&
- 	    crtc_vdisplay == pipe_src_h &&
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_15136 -> Patchwork_136561v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_136561v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_136561v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Additional (2): bat-arlh-3 fi-bsw-n3050 
+  Missing    (3): bat-dg2-11 fi-snb-2520m fi-kbl-8809g 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_136561v1:
+
+### CI changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * boot:
+    - {bat-arlh-3}:       NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-arlh-3/boot.html
+
+  
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-twl-2:          [PASS][2] -> [INCOMPLETE][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/bat-twl-2/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-twl-2/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_136561v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][4] +19 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_auth@basic-auth:
+    - fi-kbl-7567u:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@core_auth@basic-auth.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@core_auth@basic-auth.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-7567u:       [DMESG-WARN][7] ([i915#10062] / [i915#1982]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-7567u:       [DMESG-WARN][9] ([i915#11621]) -> [PASS][10] +31 other tests pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-7567u:       [DMESG-WARN][11] ([i915#10062]) -> [PASS][12] +37 other tests pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10062]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15136 -> Patchwork_136561v1
+
+  CI-20190529: 20190529
+  CI_DRM_15136: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7938: 0471a1097444389a901d78b260c24eaf4fc2d7df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_136561v1: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html
+
+--===============1629780006194198554==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Consider joiner calculation for panel fitting</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136561/">https://patchwork.freedesktop.org/series/136561/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15136 -&gt; Patchwork_136561v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_136561v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_136561v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Additional (2): bat-arlh-3 fi-bsw-n3050 <br />
+  Missing    (3): bat-dg2-11 fi-snb-2520m fi-kbl-8809g </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_136561v1:</p>
+<h3>CI changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>boot:<ul>
+<li>{bat-arlh-3}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-arlh-3/boot.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/bat-twl-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-twl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_136561v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@random-engines:<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@core_auth@basic-auth.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062">i915#10062</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> +31 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062">i915#10062</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +37 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15136 -&gt; Patchwork_136561v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15136: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7938: 0471a1097444389a901d78b260c24eaf4fc2d7df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_136561v1: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1629780006194198554==--
