@@ -2,78 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B57A93CF6D
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6F993CF99
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:26:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4CD410E223;
-	Fri, 26 Jul 2024 08:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 903A810E2CF;
+	Fri, 26 Jul 2024 08:26:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="wdYjZTep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aPxNnRVL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
- [209.85.221.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 225EA10E223
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 08:17:24 +0000 (UTC)
-Received: by mail-wr1-f42.google.com with SMTP id
- ffacd0b85a97d-3687fd09251so1050967f8f.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 01:17:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1721981842; x=1722586642;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=n102ZnsK6d7yNApEk5DSobZbFKpvFDEUOnlKU8XlqwE=;
- b=wdYjZTepO0KYBa5CMKKLc5fvMxJBdgpkUYlofONdAXB26L8NkfTmVCIO1gW5BXcZhm
- 4LutGccKAOv3pLDTmMmE4e0cudMRl90sgoB3DtAuhJ9NpnHvUmBei6IbKM+oc9ErpYsg
- RFtWt0a2W0RzF7uu67sld8VS8z3pkhyl2fQmpqWLtzPNjrbDd92Rn51ztCVax5SkUe3c
- Ad0VTgywxwr9XrNWdFlkcNNSclnzgnERPva9ZF0UwAPp0bwYsUqHAafD3b0QkGaJrpAH
- FL3njPdmr8JsJg87TD0AIH0+U11fNMR8q83ee9+KZ22WvpEFztKBeXVvyWFa+vqORiQf
- 7mMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1721981842; x=1722586642;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=n102ZnsK6d7yNApEk5DSobZbFKpvFDEUOnlKU8XlqwE=;
- b=bx3Ad4t/DQoxHOgzyTinFJK2siK+cN1pS4uzZSI+HVupSQG75EVcsHhTKRnoYr2WTe
- LQfrJ28Nq0HF0LZFzTQE8LqnsvHoEgnsjy/+vwxZXgbnGDWbyV8i2+Q0Ob7TEDjryElm
- 8g8cYYN+lT6c6geAaj/KsYatdncWHTJ6Kds9Leu2loMfrb4FfLwNN1JlCR5MNKiTC6lf
- urkiWodR0MjTHKmVvzotc1Be4rssc5DG4YQpf3zmD9CB7UZ6DxeLgG96IzjaDCfrQuS2
- JZxjFxchkqgIihKo1edJpzDMzvuMsw3BKD5Ti+MDE7vfX2uAek/noBwDT4XCCnsHpA+I
- 6zmQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVQ08QldWgCF3cNRPzsq2UrARl/V6+qtVg6WPwHib0KOrjOIWO+tnnfgtZB3KVJ1VPQ71XG4whXgJq+42U4Snc7frUX9UTogIXJxPwH7Oxw
-X-Gm-Message-State: AOJu0YwpQIl0gIvroR4yATHzmYX2eq0BM5Thh+CJPYCdy5dYOJVGWv9E
- UW4bc3qUrA3gC3W+uEugTb8a1Wr92t9sh9FcCN1VL+KLbm5bpk/GZVUgtY/Pqi4=
-X-Google-Smtp-Source: AGHT+IHd3fUVJ+52M4cwNCWAHtDdQAhU56OBKAI2/damyYld0sNs6oj4WTWjn7qdZT6aPzO3GhzW4A==
-X-Received: by 2002:adf:fe0c:0:b0:368:6596:c60c with SMTP id
- ffacd0b85a97d-36b3639dc76mr3211158f8f.30.1721981842219; 
- Fri, 26 Jul 2024 01:17:22 -0700 (PDT)
-Received: from [192.168.0.101] ([84.69.19.168])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-36b368622c3sm4323923f8f.100.2024.07.26.01.17.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 26 Jul 2024 01:17:21 -0700 (PDT)
-Message-ID: <354eb902-f03a-4046-a957-b41d630b9485@ursulin.net>
-Date: Fri, 26 Jul 2024 09:17:20 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1332F10E103;
+ Fri, 26 Jul 2024 08:26:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1721982363; x=1753518363;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=dzHtMzHbaJ2yE5UIrMONtQRc75u7v0DvZWr8hP/nT0E=;
+ b=aPxNnRVLt9IxWlwV6Nsi4R/LQiMjHXzTsPW86TKAf65YmvaVJdBQRCHq
+ +rGv224vaC1NBmQBQrNvzs0WOdH3/WoGQAGp/WT13lKvQ7RIQISMUA5cV
+ /rM1gIfm+cphCmRcA+YITExTGjpMX6QH8u2Gbri59gaGiOEiABn5kDo4J
+ BJJaDFJavrKYpvJJk+Ojk+LfJ7Y3MSva2Uex19oh+CyGIC+4bavi1/1hv
+ wlPUf6XIyrCdt5hUY1IxDHLykBUDbvrVEVBo84YfqBQH07kstJY9AoZ9u
+ hvmPn4yb61zkLTheUhngToWui36Q5SCn6cYx4bDlbyFjCqI/FZIAAhjrI Q==;
+X-CSE-ConnectionGUID: 0Eg+Xr6cTGyBCSRJVdDwNA==
+X-CSE-MsgGUID: 1hsJV0LjRcG+pPrpBm7xyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19892092"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="19892092"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 01:26:00 -0700
+X-CSE-ConnectionGUID: khyK4IXFRY6UMJBtoOLvfw==
+X-CSE-MsgGUID: lvwBMgd3Tnq2BcaUZpQp0g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="53214226"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.66])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 01:25:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915: Fix possible int overflow in
+ skl_ddi_calculate_wrpll()
+In-Reply-To: <e6c131df-64b6-4856-8778-0fa7e8c7c876@fintech.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240724184911.12250-1-n.zhandarovich@fintech.ru>
+ <87sevxzy0i.fsf@intel.com>
+ <e6c131df-64b6-4856-8778-0fa7e8c7c876@fintech.ru>
+Date: Fri, 26 Jul 2024 11:25:52 +0300
+Message-ID: <87ed7gzhin.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: Allow NULL memory region
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com,
- chris.p.wilson@linux.intel.com
-References: <20240712214156.3969584-1-jonathan.cavitt@intel.com>
- <401a092f-f431-474d-82c4-48442b3c70e1@ursulin.net>
- <a8d2b873-fc98-4f14-9c64-c0bcc097956b@suswa.mountain>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <a8d2b873-fc98-4f14-9c64-c0bcc097956b@suswa.mountain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,58 +77,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 25 Jul 2024, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
+> Hi,
+>
+> On 7/25/24 01:17, Jani Nikula wrote:
+>> On Wed, 24 Jul 2024, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
+>>> On the off chance that clock value ends up being too high (by means
+>>> of skl_ddi_calculate_wrpll() having benn called with big enough
+>>> value of crtc_state->port_clock * 1000), one possible consequence
+>>> may be that the result will not be able to fit into signed int.
+>>>
+>>> Fix this, albeit unlikely, issue by first casting one of the operands
+>>> to u32, then to u64, and thus avoid causing an integer overflow.
+>> 
+>> Okay, thanks for the patch, but please let's not do this.
+>> 
+>> Currently the highest possible port clock is 2000000 kHz, and 1000 times
+>> that fits into 31 bits. When we need to support higher clocks, we'll
+>> need to handle this. But not like this.
+>> 
+>> That (u64)(u32) is just too unintuitive, and assumes the caller has
+>> already passed in something that has overflown. People are just going to
+>> pause there, and wonder what's going on.
+>> 
+>> If we want to appease the static analyzer, I think a better approach
+>> would be to change the parameter to u64 clock_hz, and have the caller
+>> do:
+>> 
+>> 	ret = skl_ddi_calculate_wrpll((u64)crtc_state->port_clock * 1000,
+>> 				      i915->display.dpll.ref_clks.nssc, &wrpll_params);
+>> 
+>> BR,
+>> Jani.
+>> 
+>
+> First, I agree that using (u64)(u32) is confusing and not intuitive,
+> even if there are some similar examples in kernel code.
+>
+> The reason why I thought I had to opt for it though is the following: I
+> was worried that if the int value of 'clock' in
+> skl_ddi_calculate_wrpll() is big enough (specifically, high bit is 1),
+> then after casting it to long or u64 in this case, the resulting value
+> of wider type will have all its ~32 upper bits also set to 1, per rules
+> of Integer Promotion. Changing the type from signed to unsigned, then to
+> bigger unsigned seems to mitigate *this* particular issue and I can't
+> come up with a more elegant solution at the moment. Correct me if I'm
+> wrong somewhere.
+>
+> Also, while port clock may be able to fit its value timed 1000 into 31
+> bits, multiplying it by 5 to get AFE Clock value, as far as I can see,
+> *will* lead to overflow, as 2,000,000,000 * 5 won't fit into 32 bits.
+>
+> To sum it up, with current max possible port clock values an integer
+> overflow can occur and changing 'clock' parameter from int to u64 may
+> lead to a different issue. If my understanding about integer promotion
+> is flawed, I'll gladly send v2 patch with your solution.
 
-On 25/07/2024 16:58, Dan Carpenter wrote:
-> On Thu, Jul 25, 2024 at 08:48:35AM +0100, Tvrtko Ursulin wrote:
->>
->> Hi,
->>
->> On 12/07/2024 22:41, Jonathan Cavitt wrote:
->>> Prevent a NULL pointer access in intel_memory_regions_hw_probe.
->>
->> For future reference please include some impact assessment in patches tagged
->> as fixes. Makes maintainers job, and even anyone's who tries to backport
->> stuff to stable at some future date, much easier if it is known how
->> important is the fix and in what circumstances can the problem it is fixing
->> trigger.
->>
-> 
-> As someone doing backport work, I think this patch is fine.  Everyone
-> knows the impact of a NULL dereference in probe().
-> 
-> I guess with patches that add NULL dereferences, the trick is
-> understanding when people are adding NULL checks to make a static
-> checker happy or when it's a real bug.  But the fault lies with the
-> people adding NULL checks just to make the tools happy.  Some of these
-> pointless NULL checks end up in stable, but it's fine, extra NULL checks
-> never hurt anyone.  If the maintainer wants to be extra safe by adding
-> NULL checks then who are we to say otherwise.
-> 
-> In other words normal patches shouldn't have to say. "I'm not lying" at
-> the end.  It should be the pointless patches which say, "I'm doing a
-> pointless thing.  Don't bother backporting."
-> 
-> Most stable patch backports are done automatically and people have
-> various tools and scripts to do that.  If the tools don't handle this
-> patch automatically then they are defective.
+This is what I'm suggesting. Cast the clock (which is in kHz) to u64
+before multiplication, and avoid overflows.
 
-Right, and every few releases maintainers and authors get a bunch of 
-emails for patches which did not apply to some stable tree.
+Option 1, preferred:
 
-In which case someone has to do manual work and then it is good to know 
-how important it is to backport something. For cases when it is not 
-trivial. It does not apply to this patch, but as a _best practice_ it is 
-good if the commit message explains the impacted platforms and scenarios.
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 90998b037349..292d163036b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -1658,7 +1658,7 @@ static void skl_wrpll_params_populate(struct skl_wrpll_params *params,
+ }
+ 
+ static int
+-skl_ddi_calculate_wrpll(int clock /* in Hz */,
++skl_ddi_calculate_wrpll(int clock,
+ 			int ref_clock,
+ 			struct skl_wrpll_params *wrpll_params)
+ {
+@@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+ 	};
+ 	unsigned int dco, d, i;
+ 	unsigned int p0, p1, p2;
+-	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
++	u64 afe_clock = (u64)clock * 1000 * 5; /* AFE Clock is 5x Pixel clock, in Hz */
+ 
+ 	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+ 		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
+@@ -1808,7 +1808,7 @@ static int skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
+ 	struct skl_wrpll_params wrpll_params = {};
+ 	int ret;
+ 
+-	ret = skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
++	ret = skl_ddi_calculate_wrpll(crtc_state->port_clock,
+ 				      i915->display.dpll.ref_clks.nssc, &wrpll_params);
+ 	if (ret)
+ 		return ret;
 
-In this case I can follow the Fixes: tag and see the fix that this 
-patches fixes is only about ATS-M. Which if it was a more complicated 
-patch might be a reason to not need bother backporting past some kernel 
-version where platform X wasn't even supported.
+Option 2, this is what I suggested earlier:
 
-Therefore I think my point is that best practice is to include this the 
-commit text, so any future maintainer/backporter does not have to re-do 
-detective work, stands.
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 90998b037349..a48a45f30f17 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -1658,7 +1658,7 @@ static void skl_wrpll_params_populate(struct skl_wrpll_params *params,
+ }
+ 
+ static int
+-skl_ddi_calculate_wrpll(int clock /* in Hz */,
++skl_ddi_calculate_wrpll(u64 clock_hz,
+ 			int ref_clock,
+ 			struct skl_wrpll_params *wrpll_params)
+ {
+@@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+ 	};
+ 	unsigned int dco, d, i;
+ 	unsigned int p0, p1, p2;
+-	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
++	u64 afe_clock = clock_hz * 5; /* AFE Clock is 5x Pixel clock */
+ 
+ 	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+ 		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
+@@ -1808,7 +1808,7 @@ static int skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
+ 	struct skl_wrpll_params wrpll_params = {};
+ 	int ret;
+ 
+-	ret = skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
++	ret = skl_ddi_calculate_wrpll((u64)crtc_state->port_clock * 1000,
+ 				      i915->display.dpll.ref_clks.nssc, &wrpll_params);
+ 	if (ret)
+ 		return ret;
 
-Regards,
 
-Tvrtko
+>
+> Regards,
+> Nikita
+>> 
+>>>
+>>> Found by Linux Verification Center (linuxtesting.org) with static
+>>> analysis tool SVACE.
+>>>
+>>> Fixes: fe70b262e781 ("drm/i915: Move a bunch of stuff into rodata from the stack")
+>>> Cc: stable@vger.kernel.org
+>>> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+>>> ---
+>>> Fixes: tag is not entirely correct, as I can't properly identify the
+>>> origin with all the code movement. I opted out for using the most
+>>> recent topical commit instead.
+>>>
+>>>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>>> index 90998b037349..46d4dac6c491 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>>> @@ -1683,7 +1683,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
+>>>  	};
+>>>  	unsigned int dco, d, i;
+>>>  	unsigned int p0, p1, p2;
+>>> -	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
+>>> +	u64 afe_clock = (u64)(u32)clock * 5; /* AFE Clock is 5x Pixel clock */
+>>>  
+>>>  	for (d = 0; d < ARRAY_SIZE(dividers); d++) {
+>>>  		for (dco = 0; dco < ARRAY_SIZE(dco_central_freq); dco++) {
+>> 
+
+-- 
+Jani Nikula, Intel
