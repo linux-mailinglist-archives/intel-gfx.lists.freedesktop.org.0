@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74FB093CFBF
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:41:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88CDA93CFD1
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2024 10:49:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1899B10E949;
-	Fri, 26 Jul 2024 08:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E771010E94B;
+	Fri, 26 Jul 2024 08:49:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PN3S0dEa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VLOpvv6n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2553010E2E2;
- Fri, 26 Jul 2024 08:40:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D5B210E94B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2024 08:49:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1721983257; x=1753519257;
+ t=1721983771; x=1753519771;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8xWWu+PWqebv8qoXzp8Wljp1LNvMa6pBjufA7QTtDlo=;
- b=PN3S0dEaz+ZnihzkrdzWoQrOnj7LcELnZ+5YFsSpiK2T8+VHtGHn4SnG
- 7etN6vqalcjkMM7ZEDrLHlW/ypyRMfCbMpH/pLr105YTe+0HrdV4sKxFH
- zYIk/gthsKF9SEvRTpLBhWYobfFyv4oXUXNlzw6c0lvtkPZ4V7Rx8QFUw
- G8WK3dyFE8xN/1zrV+XtxTID/lU8aJDKz0its32XSvC3nCHq/4s+p/Br3
- 5BlJ1FK7lMsUwFKCq5SqaveMLK5NnP30yeu6CA8rryOBhKBf4sq8S6p2d
- oAOEiDpg1VxRuK9IaWKZbd5MDu+ISVDF+WbWsPSSnL/iNgQOq64ZQtY19 Q==;
-X-CSE-ConnectionGUID: 7MsALi2WSDCnjzMFEFhwGw==
-X-CSE-MsgGUID: sQXwcpXRQvuGB2mFRny+lA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="19951836"
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="19951836"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 01:40:57 -0700
-X-CSE-ConnectionGUID: Z+i8Aqa7RpyAAXwhziDt+w==
-X-CSE-MsgGUID: yiT5TwDVTeuKap8S8TDo0A==
+ bh=0pSF9hw7uXfMJRoW8tL37aXDVB+qPHc4MjxFMqYE7+Q=;
+ b=VLOpvv6nDTHE+wPxJ2RPhP/2PN5258SV4E4Tk9/wA1N4XoycASg9rDP5
+ tXs/PRp5zTKMCA4oxRlZ8oIH1s6Z+ttWCrqhXYVdBk8ulot/4J0Nlp+78
+ vNa0E76qUs6Bl6o1jPVwXz4FzVlezfxZj2yg8RtKY51tjifH/eTHT8yBj
+ O8MBLLdxenNl7x8ZeerA/ZnkOMcXTDXyHupObw9nTXBMFlCyh64CDV5Kw
+ dKgJe7NLm0n5syWKEE1qzcJg4KL6LflMPJIVTe7CXDrp6bQyjZ+KqnlLJ
+ I21000Sapcikn3qbt5H/vyn1y+5Fm6Key8xdIfsw3myC/xOtWMUaOmvfM g==;
+X-CSE-ConnectionGUID: TpOLaRP3QxynaYDetbTP+g==
+X-CSE-MsgGUID: BLEkkt4TRKOkuxnIDxLDVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11144"; a="23525307"
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="23525307"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2024 01:49:31 -0700
+X-CSE-ConnectionGUID: zs9bj6j2QaOWdbRGqxsyxQ==
+X-CSE-MsgGUID: /XDm3l+rQ+O73r9SuaWBmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="57477870"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.intranet) ([10.245.246.60])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2024 01:40:55 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Subject: [PATCH i-g-t 2/2] tests/core_hotunplug: Fix inline comment on missing
- device nodes
-Date: Fri, 26 Jul 2024 10:34:57 +0200
-Message-ID: <20240726084022.356654-6-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,238,1716274800"; d="scan'208";a="58039203"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa003.jf.intel.com with ESMTP; 26 Jul 2024 01:49:29 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: 
+Cc: intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ jani.nikula@intel.com
+Subject: [PATCH v2] i915/display/dp: Compute AS SDP when vrr is also enabled
+Date: Fri, 26 Jul 2024 14:20:10 +0530
+Message-ID: <20240726085012.277687-1-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240726084022.356654-4-janusz.krzysztofik@linux.intel.com>
-References: <20240726084022.356654-4-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20240725133110.112401-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,28 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The comment incorrectly blames udev for being responsible for delays in
-re-creation of device nodes after driver rebind.  While that could be
-true many years ago, nowadays that's the role of kernel devtmpfs.
+AS SDP should be computed when VRR timing generator is also enabled.
+Correct the compute condition to compute params of Adaptive sync SDP
+when VRR timing genrator is enabled along with sink support indication.
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+--v2:
+Modify if condition (Jani).
+
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- tests/core_hotunplug.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
-index db7a5c5e84..145fe141ed 100644
---- a/tests/core_hotunplug.c
-+++ b/tests/core_hotunplug.c
-@@ -480,7 +480,7 @@ static void node_healthcheck(struct hotunplug *priv, unsigned flags)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 5d6568c8e186..86412ae7b48f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2617,7 +2617,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
  
- static bool healthcheck(struct hotunplug *priv, bool recover)
- {
--	/* give udev some time to recreate device nodes before we continue */
-+	/* give devtmpfs some time to recreate device nodes before we continue */
- 	sleep(1);
+-	if (!crtc_state->vrr.enable || intel_dp->as_sdp_supported)
++	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
+ 		return;
  
- 	/* device name may have changed, rebuild IGT device list */
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
 -- 
 2.45.2
 
