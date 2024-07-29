@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71EAE93EFE0
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2024 10:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D9793F02D
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2024 10:51:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF9A810E31D;
-	Mon, 29 Jul 2024 08:27:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2C910E21C;
+	Mon, 29 Jul 2024 08:51:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHJKs+N0";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D35510E31C;
- Mon, 29 Jul 2024 08:27:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5251988933612021653=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 863AF10E21C;
+ Mon, 29 Jul 2024 08:51:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722243112; x=1753779112;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+mpMnKJ8YinzWX+MU7QkIZSHMER2aij/iiX0Pbith30=;
+ b=UHJKs+N07NDd8EeQb2Y8rBgyEb5tLKRQzZRmWmJzNpCCq3zMa2yHPqeI
+ 3Hy8sA0rscGu2tTCavhK831a27mXQn8N2AphmlqO4Siq+mHPoNPigJbcj
+ XFEI9f0veeAEOVJEld887issnVF2EAqpxY1gmnKxCY7AOVEr8CMNBUv2h
+ JK3z4QMv+3gWyyAHQ6gBLFalfC28pBMr6l2cXVvzm5O9pnZsJJci5AKnf
+ pNs6UdSSVugJKqwNCqCjtwdiIBpmTRgokKC9XRnn70AxnQWNfk5+E8d4Z
+ nUlMJ2y4nYs4qU8aUlKch4fJDY598MxHjU3KGTafJVRWzMF6LXKiw/JBu w==;
+X-CSE-ConnectionGUID: gtzvi/6zRHuaI+TiPlaDfQ==
+X-CSE-MsgGUID: th5gtMK/S5y8U8X7OrcmCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11147"; a="20129796"
+X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; d="scan'208";a="20129796"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2024 01:51:51 -0700
+X-CSE-ConnectionGUID: 20w/hUGlSlOivuolmjXNEA==
+X-CSE-MsgGUID: RsHoJI6QTsOmIAUzKucpUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; d="scan'208";a="54708125"
+Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2024 01:51:44 -0700
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+To: Mark Brown <broonie@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-spi@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Subject: [PATCH v5 00/12] spi: add driver for Intel discrete graphics
+Date: Mon, 29 Jul 2024 11:43:14 +0300
+Message-Id: <20240729084326.2278014-1-alexander.usyskin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Consider_joiner_calculation?=
- =?utf-8?q?_for_panel_fitting?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 29 Jul 2024 08:27:03 -0000
-Message-ID: <172224162344.406735.18418001444695803531@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240726095357.1261804-1-nemesa.garg@intel.com>
-In-Reply-To: <20240726095357.1261804-1-nemesa.garg@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,229 +76,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5251988933612021653==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add driver for access to Intel discrete graphics card
+internal SPI device.
+Expose device on auxiliary bus by i915 and Xe drivers and
+provide spi driver to register this device with MTD framework.
 
-== Series Details ==
+This is a rewrite of "drm/i915/spi: spi access for discrete graphics"
+series with connection to the Xe driver and splitting
+the spi driver part to separate module in spi subsystem.
 
-Series: Consider joiner calculation for panel fitting
-URL   : https://patchwork.freedesktop.org/series/136561/
-State : success
+This series intended to be pushed through drm-xe-next.
 
-== Summary ==
+V5: depend solely on AUXILIARY_BUS, not on COMPILE_TEST
+    disable spi driver on virtual function in Xe, no spi device there
 
-CI Bug Log - changes from CI_DRM_15136 -> Patchwork_136561v1
-====================================================
+V4: fix white-spaces
+    add check for discrete graphics missed in i915 intel_spi_fini
 
-Summary
--------
+V3: rebase over drm-xe-next to enable CI run
 
-  **SUCCESS**
+V2: fix review comments
+    fix signatures order
+    depend spi presence in Xe on special flag,
+     as not all new discrete cards have such spi
 
-  No regressions found.
+Alexander Usyskin (6):
+  spi: add driver for intel graphics on-die spi device
+  spi: intel-dg: align 64bit read and write
+  spi: intel-dg: wake card on operations
+  drm/i915/spi: add support for access mode
+  drm/xe/spi: add on-die spi device
+  drm/xe/spi: add support for access mode
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html
+Tomas Winkler (6):
+  spi: intel-dg: implement region enumeration
+  spi: intel-dg: implement spi access functions
+  spi: intel-dg: spi register with mtd
+  spi: intel-dg: implement mtd access handlers
+  drm/i915/spi: add spi device for discrete graphics
+  drm/i915/spi: add intel_spi_region map
 
-Participating hosts (41 -> 40)
-------------------------------
+ MAINTAINERS                           |   7 +
+ drivers/gpu/drm/i915/Makefile         |   4 +
+ drivers/gpu/drm/i915/i915_driver.c    |   6 +
+ drivers/gpu/drm/i915/i915_drv.h       |   4 +
+ drivers/gpu/drm/i915/i915_reg.h       |   1 +
+ drivers/gpu/drm/i915/spi/intel_spi.c  | 101 +++
+ drivers/gpu/drm/i915/spi/intel_spi.h  |  15 +
+ drivers/gpu/drm/xe/Makefile           |   1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h |   4 +
+ drivers/gpu/drm/xe/xe_device.c        |   3 +
+ drivers/gpu/drm/xe/xe_device_types.h  |   8 +
+ drivers/gpu/drm/xe/xe_heci_gsc.c      |   5 +-
+ drivers/gpu/drm/xe/xe_pci.c           |   5 +
+ drivers/gpu/drm/xe/xe_spi.c           | 113 ++++
+ drivers/gpu/drm/xe/xe_spi.h           |  15 +
+ drivers/spi/Kconfig                   |  11 +
+ drivers/spi/Makefile                  |   1 +
+ drivers/spi/spi-intel-dg.c            | 863 ++++++++++++++++++++++++++
+ include/linux/intel_dg_spi_aux.h      |  27 +
+ 19 files changed, 1190 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.c
+ create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.h
+ create mode 100644 drivers/gpu/drm/xe/xe_spi.c
+ create mode 100644 drivers/gpu/drm/xe/xe_spi.h
+ create mode 100644 drivers/spi/spi-intel-dg.c
+ create mode 100644 include/linux/intel_dg_spi_aux.h
 
-  Additional (2): bat-arlh-3 fi-bsw-n3050 
-  Missing    (3): bat-dg2-11 fi-snb-2520m fi-kbl-8809g 
+-- 
+2.34.1
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_136561v1:
-
-### CI changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * boot:
-    - {bat-arlh-3}:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-arlh-3/boot.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136561v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][2] +19 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-twl-2:          [PASS][3] -> [INCOMPLETE][4] ([i915#11780])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/bat-twl-2/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-twl-2/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_auth@basic-auth:
-    - fi-kbl-7567u:       [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@core_auth@basic-auth.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@core_auth@basic-auth.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7567u:       [DMESG-WARN][7] ([i915#10062] / [i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-7567u:       [DMESG-WARN][9] ([i915#11621]) -> [PASS][10] +31 other tests pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [DMESG-WARN][11] ([i915#10062]) -> [PASS][12] +37 other tests pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10062]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#11780]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11780
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15136 -> Patchwork_136561v1
-
-  CI-20190529: 20190529
-  CI_DRM_15136: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7938: 0471a1097444389a901d78b260c24eaf4fc2d7df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_136561v1: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html
-
---===============5251988933612021653==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Consider joiner calculation for panel fitting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136561/">https://patchwork.freedesktop.org/series/136561/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15136 -&gt; Patchwork_136561v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (2): bat-arlh-3 fi-bsw-n3050 <br />
-  Missing    (3): bat-dg2-11 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_136561v1:</p>
-<h3>CI changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>boot:<ul>
-<li>{bat-arlh-3}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-arlh-3/boot.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136561v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/bat-twl-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/bat-twl-2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11780">i915#11780</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@core_auth@basic-auth.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062">i915#10062</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> +31 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15136/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10062">i915#10062</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136561v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +37 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15136 -&gt; Patchwork_136561v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15136: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7938: 0471a1097444389a901d78b260c24eaf4fc2d7df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_136561v1: edd84625d093bb52bfb1c0c6feb12cff308d81b7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5251988933612021653==--
