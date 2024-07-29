@@ -2,54 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289F193EC73
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2024 06:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8351493ECA6
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2024 06:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18EDE10E078;
-	Mon, 29 Jul 2024 04:10:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iDcLZ/wY";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5051710E2EB;
+	Mon, 29 Jul 2024 04:43:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09B6310E078
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jul 2024 04:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722226253; x=1753762253;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+i45swbJuzZwem++SmHDcsDxGTfThYyy3EV1xtd6llA=;
- b=iDcLZ/wYAvhS73hYwDMbqBSSq9lSXYdycS5L4fCFNXPRMHFaxaohQngz
- CL87o/f17ffLk4akz5e7kh3pxh4scXZjfdl3Db7JFjVdrTqtSZytuqkka
- z3eBdubyoHGVOcJhAu/eBrURapwlLpkIS1O6/dl5vU9nljvbsZauNVFuj
- z7EgZc5lYPkcg8hVts25uLHfSNEyx1d2A1IiM4aUlUQ+BQtB3Ir3fcv4/
- DCiAgeNAvG6cKByLvFJsLrrtgepg0i3M21VUV+MxS31YK15GueEP0DgQ/
- b+T/1kmZTAX8WCHQBZj+aNk+X4bVM+KLHNIotsyVOtB+dULcGNCTKBo0J Q==;
-X-CSE-ConnectionGUID: 46iVECAFQH6DD83XpPy9Cg==
-X-CSE-MsgGUID: rtFlAD2KQja/OALgyvmkig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11147"; a="30617085"
-X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; d="scan'208";a="30617085"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2024 21:10:53 -0700
-X-CSE-ConnectionGUID: 8GqM0eTrSWifIgKI2S3A2A==
-X-CSE-MsgGUID: CeTTvUL6S5usy8VH0R5/pw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,245,1716274800"; d="scan'208";a="58432396"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa004.fm.intel.com with ESMTP; 28 Jul 2024 21:10:51 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Fix HDCP2_STREAM_STATUS macro
-Date: Mon, 29 Jul 2024 09:38:28 +0530
-Message-ID: <20240729040829.3753012-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4AF10E060;
+ Mon, 29 Jul 2024 04:43:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3544168071964842698=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/hdcp=3A_Fix_HDCP2?=
+ =?utf-8?q?=5FSTREAM=5FSTATUS_macro?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 29 Jul 2024 04:43:39 -0000
+Message-ID: <172222821976.406302.3100748554086214688@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240729040829.3753012-1-suraj.kandpal@intel.com>
+In-Reply-To: <20240729040829.3753012-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,30 +37,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix HDCP2_STREAM_STATUS macro, it called pipe instead of port never
-threw a compile error as no one used it.
+--===============3544168071964842698==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp_regs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_regs.h b/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-index a568a457e532..f590d7f48ba7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-@@ -251,7 +251,7 @@
- #define HDCP2_STREAM_STATUS(dev_priv, trans, port) \
- 					(TRANS_HDCP(dev_priv) ? \
- 					 TRANS_HDCP2_STREAM_STATUS(trans) : \
--					 PIPE_HDCP2_STREAM_STATUS(pipe))
-+					 PIPE_HDCP2_STREAM_STATUS(port))
- 
- #define _PORTA_HDCP2_AUTH_STREAM		0x66F00
- #define _PORTB_HDCP2_AUTH_STREAM		0x66F04
--- 
-2.43.2
+Series: drm/i915/hdcp: Fix HDCP2_STREAM_STATUS macro
+URL   : https://patchwork.freedesktop.org/series/136597/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15142 -> Patchwork_136597v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/index.html
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Additional (1): fi-elk-e7500 
+  Missing    (5): bat-dg1-7 fi-snb-2520m fi-kbl-8809g bat-dg2-11 bat-arls-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_136597v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@basic@lmem0:
+    - bat-dg2-9:          [PASS][1] -> [FAIL][2] ([i915#10378])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15142/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
+
+  * igt@kms_chamelium_hpd@dp-hpd-fast:
+    - bat-dg2-13:         [PASS][3] -> [SKIP][4] ([Intel XE#484]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15142/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][5] +24 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  
+  [Intel XE#484]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/484
+  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15142 -> Patchwork_136597v1
+
+  CI-20190529: 20190529
+  CI_DRM_15142: e948842a6cba538c9f5f5dc8535a88d82a3fc0fe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_136597v1: e948842a6cba538c9f5f5dc8535a88d82a3fc0fe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/index.html
+
+--===============3544168071964842698==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Fix HDCP2_STREAM_STATUS macro</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136597/">https://patchwork.freedesktop.org/series/136597/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15142 -&gt; Patchwork_136597v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Additional (1): fi-elk-e7500 <br />
+  Missing    (5): bat-dg1-7 fi-snb-2520m fi-kbl-8809g bat-dg2-11 bat-arls-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_136597v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@basic@lmem0:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15142/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
+<ul>
+<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15142/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/bat-dg2-13/igt@kms_chamelium_hpd@dp-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/484">Intel XE#484</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136597v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15142 -&gt; Patchwork_136597v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15142: e948842a6cba538c9f5f5dc8535a88d82a3fc0fe @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7940: 2a73158fa69a2b8e20d5a0bdf773ee194bfe13c2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_136597v1: e948842a6cba538c9f5f5dc8535a88d82a3fc0fe @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3544168071964842698==--
