@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B603940CF5
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2024 11:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFBE940EAA
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2024 12:11:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 964D010E276;
-	Tue, 30 Jul 2024 09:08:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDD510E03F;
+	Tue, 30 Jul 2024 10:11:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="C94Rw9c7";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E23D10E269;
- Tue, 30 Jul 2024 09:08:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0456365383061527532=="
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB8C810E03F;
+ Tue, 30 Jul 2024 10:11:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1722334259;
+ bh=kwKNQoRGs15Za4VXh2kjUQHdxhfWjLaz7h4GWTcgp4Q=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=C94Rw9c72yphekMPRbh9BRcAmXHLMbC0clvUEwMzIMuLov5zfnlWp6D2NbaKrjENj
+ diI9mVB1n3Rfpe7YZ4kp8i9EUFhGfpFV4ENWNpyma+t5YmX/6OT4zBMHicMWCrkFbV
+ 1PnsUaY2gipiuj/Ho34cOrzpXaRE9LJdVJFkSAd97mLbcpmqkYLeoITcEGnVfu0FO7
+ czPlAhxqU3mJq8nVPTXL4s2teD5GhlPBs7nQGtOdFkpalT5yi8c90FDfYCI6/dLka0
+ Tsu8JYztEU+fgPkXj+6/Y9qy7QEtrPjFmlKjNuWqr/zwgS9MPkJKp9PAPA84CdvvGI
+ up/qFIB/4G89g==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4WY9wf25hWz4w2K;
+ Tue, 30 Jul 2024 20:10:58 +1000 (AEST)
+Date: Tue, 30 Jul 2024 20:10:56 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>, "Golani, Mitulkumar
+ Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>
+Subject: Re: linux-next: build warning after merge of the drm-intel tree
+Message-ID: <20240730201056.70f71496@canb.auug.org.au>
+In-Reply-To: <679e9674-9611-48a8-8f94-4285b080d3f6@intel.com>
+References: <20240612141110.3aebb166@canb.auug.org.au>
+ <20240715091234.5e8b2701@canb.auug.org.au>
+ <774fa28d-b196-0030-2fb2-5d5fb8a7d1cc@intel.com>
+ <679e9674-9611-48a8-8f94-4285b080d3f6@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Add_Wa=5F140197?=
- =?utf-8?q?89679_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jul 2024 09:08:05 -0000
-Message-ID: <172233048505.427999.15741502435498222248@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240730075220.3087411-1-nitin.r.gote@intel.com>
-In-Reply-To: <20240730075220.3087411-1-nitin.r.gote@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/=G3dNmxhcEOQZR/IIswhZ6+";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,211 +64,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0456365383061527532==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/=G3dNmxhcEOQZR/IIswhZ6+
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/i915: Add Wa_14019789679 (rev2)
-URL   : https://patchwork.freedesktop.org/series/136659/
-State : failure
+On Mon, 15 Jul 2024 14:13:37 +0200 Maarten Lankhorst <maarten.lankhorst@int=
+el.com> wrote:
+>
+> Den 2024-07-15 kl. 06:21, skrev Golani, Mitulkumar Ajitkumar:
+> >
+> > On 15-07-2024 04:42, Stephen Rothwell wrote: =20
+> >>
+> >> On Wed, 12 Jun 2024 14:11:10 +1000 Stephen Rothwell <sfr@canb.auug.org=
+.au> wrote: =20
+> >>> After merging the drm-intel tree, today's linux-next build (htmldocs)
+> >>> produced this warning:
+> >>>
+> >>> include/drm/display/drm_dp_helper.h:127: warning: Function parameter =
+or struct member 'target_rr_divider' not described in 'drm_dp_as_sdp'
+> >>>
+> >>> Introduced by commit
+> >>>
+> >>> =C2=A0=C2=A0 a20c6d954d75 ("drm/dp: Add refresh rate divider to struc=
+t representing AS SDP") =20
+> >> I am now seeing that warning after the merge of the drm tree. =20
+> > Hi Stephen Rothwell,
+> >
+> > I have already floated changes : https://patchwork.freedesktop.org/patc=
+h/604143/?series=3D136072&rev=3D1
+> >
+> > Need help on Ack from drm-maintainers to merge. =20
+>=20
+> There you go, does it need to go through drm-misc too?
 
-== Summary ==
+I am still seeing these warnings.
 
-CI Bug Log - changes from CI_DRM_15152 -> Patchwork_136659v2
-====================================================
+--=20
+Cheers,
+Stephen Rothwell
 
-Summary
--------
+--Sig_/=G3dNmxhcEOQZR/IIswhZ6+
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  **FAILURE**
+-----BEGIN PGP SIGNATURE-----
 
-  Serious unknown changes coming with Patchwork_136659v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_136659v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmaovDAACgkQAVBC80lX
+0GxhAwf/QRSEG82Aa/sWPYI4rGYGbNFFEXZQyaInF/Azo+K39nV9y47YMdIcWyFx
+MsHH8M6ftbecZO/nb7Kgdux1fM76N/Uuj5X6d+q6OefCVcUdWt6ZFW2qGEIfZGzC
+1XwFhnJCgmJwyofIle5GnozosdJk3sOm1lu8XRVNtuYQTf/xIa6C4VcJIOaasoES
+fa4Oz9JX2LJ6IcUj+2m7Oh6P+8Gh8oAeeksbxsTEldGY8v2owzpPEA7eycC3kYq7
+VxennagkUo91gtE6FnLeIRqux/ZQbHBt4TNPdQMcl21BeWzWRb6W51yQ4mXkC1BB
+L3hiELb8HALzCHTzPNMMfm+lxD9wxg==
+=y++b
+-----END PGP SIGNATURE-----
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/index.html
-
-Participating hosts (40 -> 37)
-------------------------------
-
-  Additional (1): fi-elk-e7500 
-  Missing    (4): bat-dg1-7 bat-arls-1 bat-adlp-6 fi-bsw-n3050 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_136659v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - bat-arlh-2:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arlh-2/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arlh-2/igt@i915_module_load@load.html
-    - bat-dg2-13:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-13/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-13/igt@i915_module_load@load.html
-    - bat-dg2-11:         [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-11/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-11/igt@i915_module_load@load.html
-    - bat-dg2-14:         [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-14/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-14/igt@i915_module_load@load.html
-    - bat-arls-5:         [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arls-5/igt@i915_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arls-5/igt@i915_module_load@load.html
-    - bat-mtlp-6:         [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-mtlp-6/igt@i915_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-mtlp-6/igt@i915_module_load@load.html
-    - bat-dg2-9:          [PASS][13] -> [ABORT][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-9/igt@i915_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-9/igt@i915_module_load@load.html
-    - bat-arls-2:         [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arls-2/igt@i915_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arls-2/igt@i915_module_load@load.html
-    - bat-mtlp-8:         [PASS][17] -> [ABORT][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-mtlp-8/igt@i915_module_load@load.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-mtlp-8/igt@i915_module_load@load.html
-    - bat-dg2-8:          [PASS][19] -> [ABORT][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-8/igt@i915_module_load@load.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-8/igt@i915_module_load@load.html
-
-  * igt@runner@aborted:
-    - fi-elk-e7500:       NOTRUN -> [FAIL][21]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/fi-elk-e7500/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@load:
-    - {bat-arlh-3}:       [PASS][22] -> [ABORT][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arlh-3/igt@i915_module_load@load.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arlh-3/igt@i915_module_load@load.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15152 -> Patchwork_136659v2
-
-  CI-20190529: 20190529
-  CI_DRM_15152: 303cbe59515691a5aef01acdfa94ae996cfa3c98 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7942: 0f02dc176959e6296866b1bafd3982e277a5e44b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_136659v2: 303cbe59515691a5aef01acdfa94ae996cfa3c98 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/index.html
-
---===============0456365383061527532==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add Wa_14019789679 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136659/">https://patchwork.freedesktop.org/series/136659/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15152 -&gt; Patchwork_136659v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_136659v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_136659v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Additional (1): fi-elk-e7500 <br />
-  Missing    (4): bat-dg1-7 bat-arls-1 bat-adlp-6 fi-bsw-n3050 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_136659v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arlh-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arlh-2/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-13/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-13/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-11/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-11/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-14/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-14/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arls-5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arls-5/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-mtlp-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-mtlp-6/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-9/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arls-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arls-2/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-mtlp-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-mtlp-8/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-dg2-8/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-dg2-8/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/fi-elk-e7500/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>{bat-arlh-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15152/bat-arlh-3/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136659v2/bat-arlh-3/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15152 -&gt; Patchwork_136659v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15152: 303cbe59515691a5aef01acdfa94ae996cfa3c98 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7942: 0f02dc176959e6296866b1bafd3982e277a5e44b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_136659v2: 303cbe59515691a5aef01acdfa94ae996cfa3c98 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0456365383061527532==--
+--Sig_/=G3dNmxhcEOQZR/IIswhZ6+--
