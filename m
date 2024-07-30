@@ -2,74 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C099894015E
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2024 00:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E1F9401F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2024 02:19:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B65AF10E12E;
-	Mon, 29 Jul 2024 22:51:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9A110E0F5;
+	Tue, 30 Jul 2024 00:19:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="BE34ulQS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VrPbd0dM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 570D810E12E
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jul 2024 22:51:18 +0000 (UTC)
-Received: by mail-lj1-f181.google.com with SMTP id
- 38308e7fff4ca-2f0271b0ae9so50356091fa.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jul 2024 15:51:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1722293476; x=1722898276; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=AjdbzGzDCJdJVNZYfogce/knOVvuSIpIzGC0C/2/QR0=;
- b=BE34ulQSeFvivdVfraSu3QFHTAEOWKWXojHowDpV7dHtda6pgNW6PV/l603fZ9Vd8s
- CFjEK8OfVAXvtabGDckeM+G3xg/3zHXeBD0OqZDsEFsGmTUPKbADZ5110mbWWPMmNsZu
- 6VIs7lCx/ejjaMu1YpAe9a57bS0rzf0gpSCFQ0GFzuUCAMi2CZvBckbc75SU6yRnpwvz
- /JkqD2YwCgJgP88ELQRF9Um7oO4cgcxqkWSD2H3FcZ6SsN/LxSeszmJlVOMuNsKUSVEJ
- 9MLRQ0S30SwMLLSnsRNlTl0AA3cMhJ4F5hpIQSkSjUz83HVjxqMzu0mLk7ZBcjCF9dUb
- dzQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1722293476; x=1722898276;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=AjdbzGzDCJdJVNZYfogce/knOVvuSIpIzGC0C/2/QR0=;
- b=bsqJWS5ZoYybVHrIjQfcc1hotY9dIqfI5FO2Tr+0pqeVL0vDJRG6tMTm3nIQfl3fdZ
- fN8KcYWLcnfgJJV08MpoBe+vBs0qi3vfOyacbsOq0BLvkeArT2/XKSfNehU3FmJrYdv+
- oexNAYzjd0XnwpjZSTljCru92aoK79CruVAC4+oTd6nMuiek8Z1u1RQcgzNjQwj67UzS
- JwtiY6lZucxmEM4eITZo8iINJZijI2b3yWcn/q/qVxGI8hvCjBG52InZv64tY432aepj
- Xqqb2RPk9xqsk9zUpRpwMykIShjvXtc+AloD3LSTcy22T/SJ3lwMhaIR57MdPC7j02M0
- Y5Kg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXNj6yHDpYmXhCWfJ/88xUar1VKCZEUZgkW9iMxQW7mrNmbO+ggYDNM+rnxADTOoA9jck3XiEM60ZF3Dg4vI2Dnww7ZKGrE18CWF+/625WT
-X-Gm-Message-State: AOJu0YwY6aqQoK3xvFE8GJnum90DHcOMj+9wyfKVO0cqDFiEs0Q2OYMr
- 7BRcSkUf6EYQvhoNhyjH9jjGLHgJRvcrnJyfiyTRqPwkXoKogrY6AtLMPcicVDE=
-X-Google-Smtp-Source: AGHT+IFpl5Th61KnbICmP9Cbe63mTplRtS4QFHIMbdFdHCDDdEydHlmYH13WPg5cKn0n86ISepgtcA==
-X-Received: by 2002:a2e:7006:0:b0:2f0:1c7d:1ee2 with SMTP id
- 38308e7fff4ca-2f12ee2e4a3mr58298871fa.41.1722293475859; 
- Mon, 29 Jul 2024 15:51:15 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (dzdbxzyyyyyyyyyyybrhy-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-2f03cf2e62dsm14466091fa.29.2024.07.29.15.51.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Jul 2024 15:51:15 -0700 (PDT)
-Date: Tue, 30 Jul 2024 01:51:13 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] RFC: drm/drm_plane: Expose the plane capability and
- interoperability
-Message-ID: <jsrh2xyopzcmsi7uardklw2gfzmseq4pldj6bt6ozezhx5qqbs@epk6y7hg6ihv>
-References: <20240709074656.1389387-1-arun.r.murthy@intel.com>
- <IA0PR11MB7307E4F207A125F53A23342BBAB72@IA0PR11MB7307.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BB710E067;
+ Tue, 30 Jul 2024 00:19:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722298750; x=1753834750;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QCJrWKAtrb/0yddZTcGMscPb6slXjsfsafs6ufpw+Bg=;
+ b=VrPbd0dMPECtN6FcaFxmFpcCtFnkY/AzezW6Np7EhBBhDpNJNt+0NgVy
+ ZEp/+OA0crKu6gWGMpF8zZx+Q+NhTG1tU4i0HIJLaeGrqcNAPzihsK99v
+ rwub4F2GfQJ6zJ3Dk4y/F9ARYcwPsjL/A3P8ucTNQpGcSRRWMmMuhUVB9
+ 7S789F6224eVPBYamGmLKonSZMQOacsyFweDGhgIDmSqvSZPRXasqgy5a
+ 7A4QK32pZJ8/5Ik4/SczfYkOnZt79E9wQpkA2KI77fJhzcg3bxLkSqRmk
+ s24RK3WnGTf2hNWqrRaJauNJblk0Zai5lImO94JS75U5tPvl7NE15343h w==;
+X-CSE-ConnectionGUID: WujSJySuQNGxfqv+6RD5Qw==
+X-CSE-MsgGUID: b8UFYpMrQXSSBU6KLWuaXA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="20237670"
+X-IronPort-AV: E=Sophos;i="6.09,247,1716274800"; d="scan'208";a="20237670"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2024 17:19:08 -0700
+X-CSE-ConnectionGUID: 72V6ZxWcTwK/wDCkXS5dSg==
+X-CSE-MsgGUID: Litu0GN0TzKa0bbnnsOhgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,247,1716274800"; d="scan'208";a="54114599"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
+ by fmviesa009.fm.intel.com with ESMTP; 29 Jul 2024 17:19:09 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	igt-dev@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>
+Subject: [PATCH v2 i-g-t] tests/xe_gt_freq: Avoid RPe usage in subtests
+Date: Mon, 29 Jul 2024 17:17:21 -0700
+Message-Id: <20240730001721.2389519-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA0PR11MB7307E4F207A125F53A23342BBAB72@IA0PR11MB7307.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,148 +67,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 29, 2024 at 04:59:14AM GMT, Murthy, Arun R wrote:
-> Gentle Reminder!
-> Any comments?
+We are seeing several instances where the RPe, which can be altered by
+pcode dynamically, is causing subtests to fail randomly. Instead of relying
+on it, we can use a mid frequency value for these subtests and avoid these
+failures.
 
-First of all, the format is underdocumented. Second, there is a usual
-requirement for new uAPI: please provide a pointer to IGT patch and to
-the userspace utilising the property.
+v2: Fix bug in the tolerance function. Remove rpe usage from freq_range*
+as well (Badal). Fix test documentation to reflect change (Riana).
 
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
-> 
-> > -----Original Message-----
-> > From: Murthy, Arun R <arun.r.murthy@intel.com>
-> > Sent: Tuesday, July 9, 2024 1:17 PM
-> > To: dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> > Cc: Murthy, Arun R <arun.r.murthy@intel.com>
-> > Subject: [PATCH] RFC: drm/drm_plane: Expose the plane capability and
-> > interoperability
-> > 
-> > Each plane has its own capability or interoperability based on the harware
-> > restrictions. If this is exposed to the user, then user can read it once on boot
-> > and store this. Later can be used as a lookup table to check a corresponding
-> > capability is supported by plane then only go ahead with the framebuffer
-> > creation/calling atomic_ioctl.
-> > 
-> > For Ex: There are few restiction as to async flip doesnt support all the
-> > formats/modifiers. Similar restrictions on scaling. With the availabililty of this
-> > info to user, failures in atomic_check can be avoided as these are more the
-> > hardware capabilities.
-> > 
-> > There are two options on how this can be acheived.
-> > Option 1:
-> > 
-> > Add a new element to struct drm_mode_get_plane that holds the addr to the
-> > array of a new struct. This new struct consists of the formats supported and the
-> > corresponding plane capabilities.
-> > 
-> > Option 2:
-> > 
-> > These can be exposed to user as a plane property so that the user can get to
-> > know the limitation ahead and avoid failures in atomic_check.
-> > 
-> > Usually atomic_get_property is controlled over the state struct for the
-> > parameters/elements that can change. But here these capabilities or the
-> > interoperabilities are rather hardware restrictions and wont change over flips.
-> > Hence having as a plane_property may not make much sense.
-> > On the other hand, Option 1 include changes in the uapi struct
-> > drm_mode_get_plane. Shouldnt have impact on backward compatibility, but if
-> > userspace has some implementation so as to check the size of the struct, then it
-> > might a challenge.
-> > 
-> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_atomic_uapi.c |  3 +++
-> >  include/drm/drm_plane.h           |  8 ++++++++
-> >  include/uapi/drm/drm_mode.h       | 20 ++++++++++++++++++++
-> >  3 files changed, 31 insertions(+)
-> > 
-> > =============Option 2========================
-> > 
-> > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c
-> > b/drivers/gpu/drm/drm_atomic_uapi.c
-> > index 22bbb2d83e30..b46177d5fc8c 100644
-> > --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> > @@ -631,6 +631,9 @@ drm_atomic_plane_get_property(struct drm_plane
-> > *plane,
-> >  		*val = state->hotspot_x;
-> >  	} else if (property == plane->hotspot_y_property) {
-> >  		*val = state->hotspot_y;
-> > +	} else if (property == config->prop_plane_caps) {
-> > +		*val = (state->plane_caps) ?
-> > +			state->plane_caps->base.id : 0;
-> >  	} else {
-> >  		drm_dbg_atomic(dev,
-> >  			       "[PLANE:%d:%s] unknown property
-> > [PROP:%d:%s]\n", diff --git a/include/drm/drm_plane.h
-> > b/include/drm/drm_plane.h index dd718c62ac31..dfe931677d0a 100644
-> > --- a/include/drm/drm_plane.h
-> > +++ b/include/drm/drm_plane.h
-> > @@ -260,6 +260,14 @@ struct drm_plane_state {
-> >  	 * flow.
-> >  	 */
-> >  	bool color_mgmt_changed : 1;
-> > +
-> > +	/**
-> > +	 * @plane_caps:
-> > +	 *
-> > +	 * Blob representing plane capcabilites and interoperability.
-> > +	 * This element is a pointer to the array of struct drm_format_blob.
-> > +	 */
-> > +	struct drm_property_blob *plane_caps;
-> >  };
-> > 
-> >  static inline struct drm_rect
-> > 
-> > =============Option 1========================
-> > 
-> > diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> > index d390011b89b4..0b5c1b65ef63 100644
-> > --- a/include/uapi/drm/drm_mode.h
-> > +++ b/include/uapi/drm/drm_mode.h
-> > @@ -312,6 +312,20 @@ struct drm_mode_set_plane {
-> >  	__u32 src_w;
-> >  };
-> > 
-> > +#define DRM_FORMAT_PLANE_CAP_LINEAR_TILE	BIT(0)
-> > +#define DRM_FORMAT_PLANE_CAP_X_TILE		BIT(1)
-> > +#define DRM_FORMAT_PLANE_CAP_Y_TILE		BIT(2)
-> > +#define DRM_FORMAT_PLANE_CAP_Yf_TILE		BIT(3)
-> > +#define DRM_FORMAT_PLANE_CAP_ASYNC_FLIP		BIT(4)
-> > +#define DRM_FORMAT_PLANE_CAP_FBC		BIT(5)
-> > +#define DRM_FORMAT_PLANE_CAP_RC			BIT(6)
-> > +
-> > +struct drm_format_blob {
-> > +	__u64 modifier;
-> > +	__u32 plane_caps;
-> > +
-> > +};
-> > +
-> >  /**
-> >   * struct drm_mode_get_plane - Get plane metadata.
-> >   *
-> > @@ -355,6 +369,12 @@ struct drm_mode_get_plane {
-> >  	 * supported by the plane. These formats do not require modifiers.
-> >  	 */
-> >  	__u64 format_type_ptr;
-> > +	/**
-> > +	 * @ format_blob_ptr: Pointer to the array of struct drm_format_blob.
-> > +	 * Specify the plane capabilites/restrictions w.r.t tiling/sync-async
-> > +	 * flips etc
-> > +	 */
-> > +	__u64 format_blob_ptr;
-> >  };
-> > 
-> >  struct drm_mode_get_plane_res {
-> > --
-> > 2.25.1
-> 
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2200
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2196
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2262
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2256
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2203
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2412
 
+Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ tests/intel/xe_gt_freq.c | 53 ++++++++++++++++++++++++++++------------
+ 1 file changed, 37 insertions(+), 16 deletions(-)
+
+diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
+index 93ebb5ed0..1ada37834 100644
+--- a/tests/intel/xe_gt_freq.c
++++ b/tests/intel/xe_gt_freq.c
+@@ -26,6 +26,9 @@
+ #include <sys/time.h>
+ 
+ #define MAX_N_EXEC_QUEUES 16
++#define GT_FREQUENCY_MULTIPLIER	50
++#define GT_FREQUENCY_SCALER	3
++#define FREQ_UNIT_MHZ	 DIV_ROUND_CLOSEST(GT_FREQUENCY_MULTIPLIER, GT_FREQUENCY_SCALER)
+ 
+ /*
+  * Too many intermediate components and steps before freq is adjusted
+@@ -70,9 +73,14 @@ static uint32_t get_freq(int fd, int gt_id, const char *freq_name)
+ 	return freq;
+ }
+ 
+-static uint32_t rpe(int fd, int gt_id)
++static bool within_expected_range(uint32_t freq, uint32_t val)
+ {
+-	return get_freq(fd, gt_id, "rpe");
++	/*
++	 * GT Frequencies are requested at units of 16.66 Mhz, so allow
++	 * that tolerance.
++	 */
++	return (freq <= val + FREQ_UNIT_MHZ) &&
++		(freq >= val - FREQ_UNIT_MHZ);
+ }
+ 
+ static uint32_t get_throttle(int fd, int gt_id, const char *throttle_file)
+@@ -128,6 +136,8 @@ static void test_freq_basic_api(int fd, int gt_id)
+ {
+ 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+ 	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
++	uint32_t rpmid = (rp0 + rpn) / 2;
++	uint32_t min_freq, max_freq;
+ 
+ 	/*
+ 	 * Negative bound tests
+@@ -142,16 +152,18 @@ static void test_freq_basic_api(int fd, int gt_id)
+ 	/* Assert min requests are respected from rp0 to rpn */
+ 	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
+ 	igt_assert(get_freq(fd, gt_id, "min") == rp0);
+-	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+-	igt_assert(get_freq(fd, gt_id, "min") == rpe(fd, gt_id));
++	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
++	min_freq = get_freq(fd, gt_id, "min");
++	igt_assert(within_expected_range(min_freq, rpmid));
+ 	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+ 	igt_assert(get_freq(fd, gt_id, "min") == rpn);
+ 
+ 	/* Assert max requests are respected from rpn to rp0 */
+ 	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+ 	igt_assert(get_freq(fd, gt_id, "max") == rpn);
+-	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+-	igt_assert(get_freq(fd, gt_id, "max") == rpe(fd, gt_id));
++	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
++	max_freq = get_freq(fd, gt_id, "max");
++	igt_assert(within_expected_range(max_freq, rpmid));
+ 	igt_assert(set_freq(fd, gt_id, "max", rp0) > 0);
+ 	igt_assert(get_freq(fd, gt_id, "max") == rp0);
+ }
+@@ -168,13 +180,16 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+ {
+ 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+ 	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
++	uint32_t rpmid = (rp0 + rpn) / 2;
++	uint32_t cur_freq, act_freq;
+ 
+ 	igt_debug("Starting testing fixed request\n");
+ 
+ 	/*
+ 	 * For Fixed freq we need to set both min and max to the desired value
+ 	 * Then we check if hardware is actually operating at the desired freq
+-	 * And let's do this for all the 3 known Render Performance (RP) values.
++	 * And let's do this for all the 2 known Render Performance (RP) values
++	 * RP0 and RPn and something in between.
+ 	 */
+ 	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+ 	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+@@ -190,17 +205,19 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+ 		igt_assert(get_freq(fd, gt_id, "act") == rpn);
+ 	}
+ 
+-	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+-	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
++	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
++	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
+ 	usleep(ACT_FREQ_LATENCY_US);
+-	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
++	cur_freq = get_freq(fd, gt_id, "cur");
++	igt_assert(within_expected_range(cur_freq, rpmid));
+ 
+ 	if (gt_idle) {
+ 		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
+ 			     "GT %d should be in C6\n", gt_id);
+ 		igt_assert(get_freq(fd, gt_id, "act") == 0);
+ 	} else {
+-		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
++		act_freq = get_freq(fd, gt_id, "act");
++		igt_assert(within_expected_range(act_freq, cur_freq));
+ 	}
+ 
+ 	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
+@@ -232,15 +249,17 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+ {
+ 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
++	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
++	uint32_t rpmid = (rp0 + rpn) / 2;
+ 	uint32_t cur, act;
+ 
+ 	igt_debug("Starting testing range request\n");
+ 
+ 	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+-	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
++	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
+ 	usleep(ACT_FREQ_LATENCY_US);
+ 	cur = get_freq(fd, gt_id, "cur");
+-	igt_assert(rpn <= cur && cur <= rpe(fd, gt_id));
++	igt_assert(rpn <= cur && cur <= rpmid + FREQ_UNIT_MHZ);
+ 
+ 	if (gt_idle) {
+ 		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
+@@ -248,7 +267,7 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+ 		igt_assert(get_freq(fd, gt_id, "act") == 0);
+ 	} else {
+ 		act = get_freq(fd, gt_id, "act");
+-		igt_assert(rpn <= act && act <= rpe(fd, gt_id));
++		igt_assert(rpn <= act && within_expected_range(act, cur));
+ 	}
+ 
+ 	igt_debug("Finished testing range request\n");
+@@ -262,17 +281,19 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+ static void test_freq_low_max(int fd, int gt_id)
+ {
+ 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
++	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
++	uint32_t rpmid = (rp0 + rpn) / 2;
+ 
+ 	/*
+ 	 *  When max request < min request, max is ignored and min works like
+ 	 * a fixed one. Let's assert this assumption
+ 	 */
+-	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
++	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
+ 	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+ 	usleep(ACT_FREQ_LATENCY_US);
+ 
+ 	/* Refresh value of rpe, pcode could have adjusted it */
+-	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
++	igt_assert(within_expected_range(get_freq(fd, gt_id, "cur"), rpmid));
+ }
+ 
+ /**
 -- 
-With best wishes
-Dmitry
+2.38.1
+
