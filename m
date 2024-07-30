@@ -2,56 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E1F9401F7
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2024 02:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 107E194040B
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2024 04:03:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9A110E0F5;
-	Tue, 30 Jul 2024 00:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C55110E1C9;
+	Tue, 30 Jul 2024 02:03:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VrPbd0dM";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="neZhOk35";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1BB710E067;
- Tue, 30 Jul 2024 00:19:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722298750; x=1753834750;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QCJrWKAtrb/0yddZTcGMscPb6slXjsfsafs6ufpw+Bg=;
- b=VrPbd0dMPECtN6FcaFxmFpcCtFnkY/AzezW6Np7EhBBhDpNJNt+0NgVy
- ZEp/+OA0crKu6gWGMpF8zZx+Q+NhTG1tU4i0HIJLaeGrqcNAPzihsK99v
- rwub4F2GfQJ6zJ3Dk4y/F9ARYcwPsjL/A3P8ucTNQpGcSRRWMmMuhUVB9
- 7S789F6224eVPBYamGmLKonSZMQOacsyFweDGhgIDmSqvSZPRXasqgy5a
- 7A4QK32pZJ8/5Ik4/SczfYkOnZt79E9wQpkA2KI77fJhzcg3bxLkSqRmk
- s24RK3WnGTf2hNWqrRaJauNJblk0Zai5lImO94JS75U5tPvl7NE15343h w==;
-X-CSE-ConnectionGUID: WujSJySuQNGxfqv+6RD5Qw==
-X-CSE-MsgGUID: b8UFYpMrQXSSBU6KLWuaXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11148"; a="20237670"
-X-IronPort-AV: E=Sophos;i="6.09,247,1716274800"; d="scan'208";a="20237670"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2024 17:19:08 -0700
-X-CSE-ConnectionGUID: 72V6ZxWcTwK/wDCkXS5dSg==
-X-CSE-MsgGUID: Litu0GN0TzKa0bbnnsOhgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,247,1716274800"; d="scan'208";a="54114599"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by fmviesa009.fm.intel.com with ESMTP; 29 Jul 2024 17:19:09 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>
-Subject: [PATCH v2 i-g-t] tests/xe_gt_freq: Avoid RPe usage in subtests
-Date: Mon, 29 Jul 2024 17:17:21 -0700
-Message-Id: <20240730001721.2389519-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B11FD10E1C9;
+ Tue, 30 Jul 2024 02:03:33 +0000 (UTC)
+Received: from [192.168.49.54] (c-73-118-245-227.hsd1.wa.comcast.net
+ [73.118.245.227])
+ by linux.microsoft.com (Postfix) with ESMTPSA id AA20620B7165;
+ Mon, 29 Jul 2024 19:03:31 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com AA20620B7165
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1722305013;
+ bh=T8coAm5q0CSJOJYA2CaVwB4weZg41nUZwF8ur3BSbes=;
+ h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
+ b=neZhOk35gk3ArYbtwdYJiUYeUVpuCtaY75cRf6NPYFuCU9VOeKeGpDeKezrD9B75g
+ knbZhVGSCoxH74cXLYqoX+XaHjuC7NBlApoV0P0k/GaThp9LMi7YNSKLf+QoAv54J7
+ 96LjXOX3kwzeSxTrZgVlYlVUSCcHbvT/YRzfWBpg=
+Message-ID: <c8023385-8fb8-432c-acf6-10e9a2894e2a@linux.microsoft.com>
+Date: Mon, 29 Jul 2024 19:03:28 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Cc: eahariha@linux.microsoft.com,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, Wenjing Liu <wenjing.liu@amd.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, Samson Tam <samson.tam@amd.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ Charlene Liu <charlene.liu@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Bob Zhou <bob.zhou@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Sohaib Nadeem <sohaib.nadeem@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
+ Le Ma <le.ma@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Li Ma <li.ma@amd.com>,
+ Ran Sun <sunran001@208suo.com>, Evan Quan <evan.quan@amd.com>,
+ Candice Li <candice.li@amd.com>, Rodrigo Siqueira
+ <Rodrigo.Siqueira@amd.com>, Dillon Varone <dillon.varone@amd.com>,
+ Ruan Jinjie <ruanjinjie@huawei.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Umio Yasuno <coelacanth_dream@protonmail.com>, Alvin Lee
+ <alvin.lee2@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Darren Powell <darren.powell@amd.com>, Qingqing Zhuo
+ <Qingqing.Zhuo@amd.com>, Tom Chung <chiahsuan.chung@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ George Shen <george.shen@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, Alex Hung
+ <alex.hung@amd.com>, Wayne Lin <wayne.lin@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Likun Gao <Likun.Gao@amd.com>,
+ Alexander Richards <electrodeyt@gmail.com>
+Subject: Re: [PATCH v4 1/6] drm/amdgpu, drm/radeon: Make I2C terminology more
+ inclusive
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Wolfram Sang <wsa@kernel.org>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20240711052734.1273652-1-eahariha@linux.microsoft.com>
+ <20240711052734.1273652-2-eahariha@linux.microsoft.com>
+Content-Language: en-US
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <20240711052734.1273652-2-eahariha@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,184 +94,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are seeing several instances where the RPe, which can be altered by
-pcode dynamically, is causing subtests to fail randomly. Instead of relying
-on it, we can use a mid frequency value for these subtests and avoid these
-failures.
+On 7/10/2024 10:27 PM, Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C 1.1.1 specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by Wolfram's series to fix drivers/i2c/,
+> fix the terminology for users of I2C_ALGOBIT bitbanging interface, now that
+> the approved verbiage exists in the specification.
+> 
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> ---
+>  .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  8 +++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       | 10 +++----
+>  drivers/gpu/drm/amd/amdgpu/atombios_i2c.c     |  8 +++---
+>  drivers/gpu/drm/amd/amdgpu/atombios_i2c.h     |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    | 20 ++++++-------
+>  .../gpu/drm/amd/display/dc/bios/bios_parser.c |  2 +-
+>  .../drm/amd/display/dc/bios/bios_parser2.c    |  2 +-
+>  .../drm/amd/display/dc/core/dc_link_exports.c |  4 +--
+>  drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
+>  drivers/gpu/drm/amd/display/dc/dce/dce_i2c.c  |  4 +--
+>  .../display/include/grph_object_ctrl_defs.h   |  2 +-
+>  drivers/gpu/drm/amd/include/atombios.h        |  2 +-
+>  drivers/gpu/drm/amd/include/atomfirmware.h    | 26 ++++++++---------
+>  .../powerplay/hwmgr/vega20_processpptables.c  |  4 +--
+>  .../amd/pm/powerplay/inc/smu11_driver_if.h    |  2 +-
+>  .../inc/pmfw_if/smu11_driver_if_arcturus.h    |  2 +-
+>  .../inc/pmfw_if/smu11_driver_if_navi10.h      |  2 +-
+>  .../pmfw_if/smu11_driver_if_sienna_cichlid.h  |  2 +-
+>  .../inc/pmfw_if/smu13_driver_if_aldebaran.h   |  2 +-
+>  .../inc/pmfw_if/smu13_driver_if_v13_0_0.h     |  2 +-
+>  .../inc/pmfw_if/smu13_driver_if_v13_0_7.h     |  2 +-
+>  .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c |  4 +--
+>  .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  8 +++---
+>  drivers/gpu/drm/radeon/atombios.h             | 16 +++++------
+>  drivers/gpu/drm/radeon/atombios_i2c.c         |  4 +--
+>  drivers/gpu/drm/radeon/radeon_combios.c       | 28 +++++++++----------
+>  drivers/gpu/drm/radeon/radeon_i2c.c           | 10 +++----
+>  drivers/gpu/drm/radeon/radeon_mode.h          |  6 ++--
+>  28 files changed, 93 insertions(+), 93 deletions(-)
+> 
 
-v2: Fix bug in the tolerance function. Remove rpe usage from freq_range*
-as well (Badal). Fix test documentation to reflect change (Riana).
+Hi Alex, Christian, Xinhui, David, Daniel, others
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2200
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2196
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2262
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2256
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2203
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2412
+This is the only patch in the series not merged into a tree. Is
+something needed from me to move this forward?
 
-Cc: Riana Tauro <riana.tauro@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- tests/intel/xe_gt_freq.c | 53 ++++++++++++++++++++++++++++------------
- 1 file changed, 37 insertions(+), 16 deletions(-)
-
-diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
-index 93ebb5ed0..1ada37834 100644
---- a/tests/intel/xe_gt_freq.c
-+++ b/tests/intel/xe_gt_freq.c
-@@ -26,6 +26,9 @@
- #include <sys/time.h>
- 
- #define MAX_N_EXEC_QUEUES 16
-+#define GT_FREQUENCY_MULTIPLIER	50
-+#define GT_FREQUENCY_SCALER	3
-+#define FREQ_UNIT_MHZ	 DIV_ROUND_CLOSEST(GT_FREQUENCY_MULTIPLIER, GT_FREQUENCY_SCALER)
- 
- /*
-  * Too many intermediate components and steps before freq is adjusted
-@@ -70,9 +73,14 @@ static uint32_t get_freq(int fd, int gt_id, const char *freq_name)
- 	return freq;
- }
- 
--static uint32_t rpe(int fd, int gt_id)
-+static bool within_expected_range(uint32_t freq, uint32_t val)
- {
--	return get_freq(fd, gt_id, "rpe");
-+	/*
-+	 * GT Frequencies are requested at units of 16.66 Mhz, so allow
-+	 * that tolerance.
-+	 */
-+	return (freq <= val + FREQ_UNIT_MHZ) &&
-+		(freq >= val - FREQ_UNIT_MHZ);
- }
- 
- static uint32_t get_throttle(int fd, int gt_id, const char *throttle_file)
-@@ -128,6 +136,8 @@ static void test_freq_basic_api(int fd, int gt_id)
- {
- 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
- 	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
-+	uint32_t rpmid = (rp0 + rpn) / 2;
-+	uint32_t min_freq, max_freq;
- 
- 	/*
- 	 * Negative bound tests
-@@ -142,16 +152,18 @@ static void test_freq_basic_api(int fd, int gt_id)
- 	/* Assert min requests are respected from rp0 to rpn */
- 	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
- 	igt_assert(get_freq(fd, gt_id, "min") == rp0);
--	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
--	igt_assert(get_freq(fd, gt_id, "min") == rpe(fd, gt_id));
-+	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
-+	min_freq = get_freq(fd, gt_id, "min");
-+	igt_assert(within_expected_range(min_freq, rpmid));
- 	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
- 	igt_assert(get_freq(fd, gt_id, "min") == rpn);
- 
- 	/* Assert max requests are respected from rpn to rp0 */
- 	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
- 	igt_assert(get_freq(fd, gt_id, "max") == rpn);
--	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
--	igt_assert(get_freq(fd, gt_id, "max") == rpe(fd, gt_id));
-+	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
-+	max_freq = get_freq(fd, gt_id, "max");
-+	igt_assert(within_expected_range(max_freq, rpmid));
- 	igt_assert(set_freq(fd, gt_id, "max", rp0) > 0);
- 	igt_assert(get_freq(fd, gt_id, "max") == rp0);
- }
-@@ -168,13 +180,16 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
- {
- 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
- 	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
-+	uint32_t rpmid = (rp0 + rpn) / 2;
-+	uint32_t cur_freq, act_freq;
- 
- 	igt_debug("Starting testing fixed request\n");
- 
- 	/*
- 	 * For Fixed freq we need to set both min and max to the desired value
- 	 * Then we check if hardware is actually operating at the desired freq
--	 * And let's do this for all the 3 known Render Performance (RP) values.
-+	 * And let's do this for all the 2 known Render Performance (RP) values
-+	 * RP0 and RPn and something in between.
- 	 */
- 	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
- 	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
-@@ -190,17 +205,19 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
- 		igt_assert(get_freq(fd, gt_id, "act") == rpn);
- 	}
- 
--	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
--	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
-+	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
-+	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
- 	usleep(ACT_FREQ_LATENCY_US);
--	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
-+	cur_freq = get_freq(fd, gt_id, "cur");
-+	igt_assert(within_expected_range(cur_freq, rpmid));
- 
- 	if (gt_idle) {
- 		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
- 			     "GT %d should be in C6\n", gt_id);
- 		igt_assert(get_freq(fd, gt_id, "act") == 0);
- 	} else {
--		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
-+		act_freq = get_freq(fd, gt_id, "act");
-+		igt_assert(within_expected_range(act_freq, cur_freq));
- 	}
- 
- 	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
-@@ -232,15 +249,17 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
- static void test_freq_range(int fd, int gt_id, bool gt_idle)
- {
- 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
-+	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
-+	uint32_t rpmid = (rp0 + rpn) / 2;
- 	uint32_t cur, act;
- 
- 	igt_debug("Starting testing range request\n");
- 
- 	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
--	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
-+	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
- 	usleep(ACT_FREQ_LATENCY_US);
- 	cur = get_freq(fd, gt_id, "cur");
--	igt_assert(rpn <= cur && cur <= rpe(fd, gt_id));
-+	igt_assert(rpn <= cur && cur <= rpmid + FREQ_UNIT_MHZ);
- 
- 	if (gt_idle) {
- 		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
-@@ -248,7 +267,7 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
- 		igt_assert(get_freq(fd, gt_id, "act") == 0);
- 	} else {
- 		act = get_freq(fd, gt_id, "act");
--		igt_assert(rpn <= act && act <= rpe(fd, gt_id));
-+		igt_assert(rpn <= act && within_expected_range(act, cur));
- 	}
- 
- 	igt_debug("Finished testing range request\n");
-@@ -262,17 +281,19 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
- static void test_freq_low_max(int fd, int gt_id)
- {
- 	uint32_t rpn = get_freq(fd, gt_id, "rpn");
-+	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
-+	uint32_t rpmid = (rp0 + rpn) / 2;
- 
- 	/*
- 	 *  When max request < min request, max is ignored and min works like
- 	 * a fixed one. Let's assert this assumption
- 	 */
--	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
-+	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
- 	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
- 	usleep(ACT_FREQ_LATENCY_US);
- 
- 	/* Refresh value of rpe, pcode could have adjusted it */
--	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
-+	igt_assert(within_expected_range(get_freq(fd, gt_id, "cur"), rpmid));
- }
- 
- /**
--- 
-2.38.1
-
+Thanks,
+Easwar
