@@ -2,92 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1E14942799
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jul 2024 09:14:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 875E09427D6
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jul 2024 09:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7500010E344;
-	Wed, 31 Jul 2024 07:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1602C10E0A6;
+	Wed, 31 Jul 2024 07:27:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQoBDFp4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHjxxPDl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680E610E344
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jul 2024 07:14:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D06510E48C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jul 2024 07:27:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722410073; x=1753946073;
+ t=1722410833; x=1753946833;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=JHaRjpr1YxI4xsSNO422SxruUT+LlyJ5BOKP7OSTcSM=;
- b=JQoBDFp4xL3ulcE+n6tSYrIl+UAd+EvbneOfUTmuoZD2ayOVgiYF0TP9
- RGZ3I2FjRDkpOTtr1YAIz722GPna692u+w43mS7Ycv5nUM93u0Whdcx8s
- xugd2h0JW6iLAl6x5kJtjMWShvBGv8CE70TMC9bvydK78Ugl/FhkZE3+K
- Cao4X/3po6afFwTKOsLoZmPSbKRtqev2s7dozVqL0r9avO9OZ+gp0U5mG
- foWkt/28dyUllHhBWFK5YCzKBQODjZ18koziH16/9D6Yp2Z/BGIqHnL/3
- lhF21mC+uqmItdvhrxOcrRjSxvNKs+0ofYV59mXHbMEYUnnRUHl/JmUUx w==;
-X-CSE-ConnectionGUID: s6A/PdrpQ76Sm0ZGe4D6wA==
-X-CSE-MsgGUID: fjFU9sWUR9mrIgfcURq7SA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="45687440"
-X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="45687440"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 00:14:33 -0700
-X-CSE-ConnectionGUID: 2TeRK3oJQLiAfPy8kDDtbg==
-X-CSE-MsgGUID: fER9ByQET3ug+BsHyFTgAA==
+ bh=pePNsPj2/1Fg6iMMW39wpYtcc9C2MtTpn2sqYEaIFiw=;
+ b=ZHjxxPDldNVVfmgbna1vmtuoW7Hxhion1GsgrxjvCY9RbyuBTJte0n68
+ Tgg13kGYW6TsecPyBVuHXyIugrNeQgcXhVB3cWzCvxf0vR0GwDgnK3nqm
+ mGtvfeGVBgnstTIxDcJnuOSm4o1+pPfUrFWJDQ4OLJ0TYEj3S0WIarEju
+ 7ynT0lk4EWVWR3/Ev5bJSM3EFC8w3XUACQ6+sETCi1I9obloti6dn7o6X
+ FxDn8qvRxSRiTaoPck5XmJAdt/MvYboBAf548HjOoqWIhWdTXYFtwgl3z
+ n5s7kWe8Qey3cSgvpVQ1gehNywXtpfYNFf4df6yXh65Yn/ImKLjXhTYbK A==;
+X-CSE-ConnectionGUID: 2YLyQID8QfKKPzlDCoXf9w==
+X-CSE-MsgGUID: wz113BeIQcqPedgy4q4jJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="37743224"
+X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="37743224"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2024 00:27:12 -0700
+X-CSE-ConnectionGUID: T74LG4aPQTaeLUnw6l5g4A==
+X-CSE-MsgGUID: Wo//ZpGKSXy/MDW/WZYjUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="55396363"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Jul 2024 00:14:32 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="85525104"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 31 Jul 2024 00:27:11 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 31 Jul 2024 00:14:32 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 31 Jul 2024 00:27:11 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 31 Jul 2024 00:14:32 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.177)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 31 Jul 2024 00:27:11 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 31 Jul 2024 00:14:32 -0700
+ 15.1.2507.39; Wed, 31 Jul 2024 00:27:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WK6mAv9OjAfWg3cCx+Ou5KEzvZMMxiX7V5dyqDrmkk/mcJWQhE9C6N8QzByPQQxr8LiIE1+aDGhcA1sQN0zdcwqkQ/tPebZKm3HrW73f9vO40dB3QI0FFqgW9W26KrL2mIphfpVZXzM8GA4ttpfbnhDFEaNNlhkKBzfDNPmroxnFTAUKYaBSNhtRo4dKODBWDiKglENaG2WangPycSWXbECulPoTp4wIW9fZrC6OL1u/Rs/iJMu7MVdwDNWHgzM9c3Ni9NYYYyv83rDryaAvud2OTV61H4r0mBiFkg0+qECjmG9GwxQul6yvD2TWMsF36n3UZuuUA+QXtpKgHE+2Xg==
+ b=AccBiqWCHeO5S2jpIMaWXIZbXNm48iIScXZZ+PkwEog/Y9i0/QwMOSE0helbHx5Oi3l9Fvm9+oXxI/CYSQBRdVBeMo9ff9WX6GROOxPfPLbJyIVTylKPVn5fHVHybHfAbmGdkm5YqpUXFEC0hNuNVWUQCvC714kLU862izNBo8tO+J4ZvZbwwuWVPcxIG0KB9Dvza48F6WFcfpFu2XBeQwivwhjUVKVRguZxhU9v2Oa4m+Xo7PrZYtHUkHfCfVwUEKsaxV4q8vX8qZ6Pk7pYxFkAqP04iRV6WfUVs3f7EN5ep2EX+E7OtDMWPyJwftUf7gzPFml0Gyj5jT7oH3qTKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M3VXVQu+PePiltLBmBqPj/qr02jvs56k6FuKD8+564o=;
- b=sc8upcYFJ9kQKlzOsPgqmR1mdJh7Pg07X46if36ZkR58dulpdEI/xqCeG9tsmo7cDUBOYIRpUuQlk/UpOdLmBIXe6+fjaljV/z0smfz4RZzlFbS9MJbzprTfIPYa3m852+GqByGbI6WTj8CmRTh9G4G4e6LLbvnSM4mcHlIBKTJQrmiF9ixRBns1mwelVriWLcYWW/cqjdWxFkOhuDrLSqzHK/EVfRWqAtX0DkBeWF8KxtnErB3Hj8VVBKiWNd9EgmxTiU20rJ1EpUaJfkwfQGrEJyXHNBo+F4E2alcxHPldRRYeWEpQSK+wu3h2IcL6FIgHyVZYqf2XXEdspThGmw==
+ bh=L47AY2BhfGDmLt6IL+r3+cLxMH4n567o5nvQbvWF4eg=;
+ b=YnmS0p4kIG811aJ96i421WhC1ZzoGtuG9voFQ3Lyx3mzQPex2cI09SN8MApp2mZ98SdH+mwAzvr2Sf9X3BYsscKsOVCZ0JhB2EpEj0vBRXbUME0+BuIWHp3WKwt3zJtxf0BnGIoi0JeDDXsHvD3g7Q4mzI29nrTPynZriDNnHlSpzeYVHSVo72rIbeqwOvC9wHRPWPe3m7esw0mE975Eu3i5fR1+eAAetyCaSCcwsE2kAmVbxZqv3evlG4HEdeYs47Vvv/bd5Lb8wEgvkoj0H1UOHse94hirgSixvDuJyufOhe0yQa/wYxzDFOyWYptw+0Ie/EQ+l89cOdXItzEYnA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from MW4PR11MB6761.namprd11.prod.outlook.com (2603:10b6:303:20d::5)
- by SA1PR11MB8350.namprd11.prod.outlook.com (2603:10b6:806:387::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.21; Wed, 31 Jul
- 2024 07:14:29 +0000
+ by DM6PR11MB4643.namprd11.prod.outlook.com (2603:10b6:5:2a6::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Wed, 31 Jul
+ 2024 07:27:09 +0000
 Received: from MW4PR11MB6761.namprd11.prod.outlook.com
  ([fe80::6b8e:aea1:6960:2430]) by MW4PR11MB6761.namprd11.prod.outlook.com
  ([fe80::6b8e:aea1:6960:2430%6]) with mapi id 15.20.7784.020; Wed, 31 Jul 2024
- 07:14:29 +0000
+ 07:27:08 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 CC: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>, "Saarinen, Jani"
  <jani.saarinen@intel.com>, "ville.syrjala@linux.intel.com"
  <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH 05/12] drm/i915: Add some essential functionality for
- joiners
-Thread-Topic: [PATCH 05/12] drm/i915: Add some essential functionality for
- joiners
-Thread-Index: AQHa2Or0NHvHhVCtzka4ibix4o3M9bIQXkrA
-Date: Wed, 31 Jul 2024 07:14:29 +0000
-Message-ID: <MW4PR11MB6761DA81F669B25F97F2AFF5E3B12@MW4PR11MB6761.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 06/12] drm/i915: Split current joiner hw state readout
+Thread-Topic: [PATCH 06/12] drm/i915: Split current joiner hw state readout
+Thread-Index: AQHa2OrwHGKA5lN1fEuKSCe9FqsQPrIQg/yg
+Date: Wed, 31 Jul 2024 07:27:08 +0000
+Message-ID: <MW4PR11MB67611518B31E869FD11C4B5AE3B12@MW4PR11MB6761.namprd11.prod.outlook.com>
 References: <20240718081803.3338564-1-ankit.k.nautiyal@intel.com>
- <20240718081803.3338564-6-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20240718081803.3338564-6-ankit.k.nautiyal@intel.com>
+ <20240718081803.3338564-7-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240718081803.3338564-7-ankit.k.nautiyal@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -95,78 +93,78 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB6761:EE_|SA1PR11MB8350:EE_
-x-ms-office365-filtering-correlation-id: 738cc223-6e61-4c5f-ce8c-08dcb1306b44
+x-ms-traffictypediagnostic: MW4PR11MB6761:EE_|DM6PR11MB4643:EE_
+x-ms-office365-filtering-correlation-id: c7535b22-f160-4a46-6035-08dcb1322fcb
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?8cKC3r7kEQP97CMaA6kLBdaPAWI0RdIu10erJQqa0kSNoZOthUV8hP6W+J6x?=
- =?us-ascii?Q?HK7h9R0MbnfMJG6DoWs+lQWGKjfV6X0KR6Ai2ClCHRcphjYmk4YbH6F+ryc4?=
- =?us-ascii?Q?F3fRbx5saEi77ohpUtZMtm4u8qp57knGMy/jRi3BnxHubiOHaskYpzTgIYFx?=
- =?us-ascii?Q?pRVCH1RarsXiS2HQ8wGYfgg2RWuFQK6XPrB4UoPjiHHscrpibLPRCZwCzUPA?=
- =?us-ascii?Q?63vmZJCLzwbOcMFCCgtX9hftQCKvbn3U9/34Xy9iUsDRE47wgmjiEkrUq9sk?=
- =?us-ascii?Q?O8NUDPKTtBhtgIVLIf/RJRuztU7oMHGsdY9cdtrmwb+NHMqRWU+VH6akTbz7?=
- =?us-ascii?Q?sepfF0nid2V6k/jUR9UmLFxZy94Rwrd3jPUEuLAPeQ0r9kKlqUYjf75Upr+h?=
- =?us-ascii?Q?xmEKtoMiH21NBlzH102jis0f9SaB01CQX7PV05CTU8pwteiEnxIb9oDqpI+z?=
- =?us-ascii?Q?H7UO2FWvRIiA4D6SKTrjhp4kd5+FCDMZVVWiOJ7vO2duYjeGWR3HyH9BN2+E?=
- =?us-ascii?Q?JfNM+HPt9QFxC3o61EnodDlatDHL1fpT11ZqpRgyfBFWPbrquDa7gsA2DZLQ?=
- =?us-ascii?Q?jriMeZGtHdI9c5TSl4Uh4T1nYqAxQXObn1gwYaE+CmRG8vLiKgYAJrlMGspd?=
- =?us-ascii?Q?d2ax5IZ4aYJbyVPjwE/YJAucdVGjb46BnwVJL71Lo3LlACGBLOY4+itbyT1L?=
- =?us-ascii?Q?fILFMVo8/VZih8Ta4pBC9mtzGTj8qAnVUcjzKoGGFbz/TyH5DweqW4h1zxRT?=
- =?us-ascii?Q?SrI2Bhir/BK/GGx8QDAzbWLtO3ecUnW0Zw5RlXjE7KyXZnB7vamJAgG7UsXs?=
- =?us-ascii?Q?fePFmqcQyKDjZyRlvBzAJ2eHHGVvqU8OlRQj1YViITNHkFXrpbAdQN44qhy8?=
- =?us-ascii?Q?u/LkxPvCdKWSU6d3ouGES6iQSLuR8X1023P5vw+G5OzAQlydnhnhPDgFc5yP?=
- =?us-ascii?Q?lRSUDpyUABQE5rSMlnzrQpV5Lsw53w2ZRKQjirSWYjD26ki5OZjejgn0xLBR?=
- =?us-ascii?Q?JKSjklvJmXnTDjDLRYQHdRDiuDim+vPkrytckOD+l0byMngWrE31ntGGtzrA?=
- =?us-ascii?Q?SThku0fy6JV2/0rnSU5vtrNHj2XmOsGGiWDkvEYzDYHcmbtAZ/o/Ko4xTRaV?=
- =?us-ascii?Q?72CaCeGmHrxO84hWYHroQWsWqPpUQz/zFUEKyPI4xbxt+aznSXoSXoY+eCNT?=
- =?us-ascii?Q?xOwQX5vHRRPAhRPqGKlGMt81v6RzX3XRnwj6AQHANYRoBAx3fTOG0DaaDh6B?=
- =?us-ascii?Q?KqtVtBB2OvPNkmGCu/FyDdz0x5hbkCINcnWalc8EwdfQ9uOa0cnQWv8sNVBq?=
- =?us-ascii?Q?DZxpun6LwoPfRnlqGGwnbtbvLLD3OuUa8kuBzsfbwkSHC41VtCMfHnkBek0q?=
- =?us-ascii?Q?18uwkDOYjWJVdzOBYYGQ0vIAwzKGqWNa6Prz146Exx5LeGkJlA=3D=3D?=
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?Kq6qgyVJmRSpnf8qKFictYk0JQYLNBCfLGQKdUV3XcKqE6WJ4n7Bg+aT+oUu?=
+ =?us-ascii?Q?8ZUx2j+Uk4dHx32ZHwUEjk9QNp1CB31Y5UnWkOyCZKd06dBQ8yPysyQ2WIdn?=
+ =?us-ascii?Q?YOCuSgqWvx/tVyEx3pAiy43SmjAzXneAlnsobRDcrtwCQBweSoDQcsUkdxnU?=
+ =?us-ascii?Q?OyjAVOFSjSV7HUROiBd0oqTiHh1Jd12isyMBKMpFonTpw7j7bR21i0pYEm6t?=
+ =?us-ascii?Q?dWn0EVIa7B7XBg+PQS9ULzFr+k/9rtBGpT1weYxbghuDQTZLy9r9Tu9l8+a+?=
+ =?us-ascii?Q?N+6fxz1IZGBa0Z2Fc99Go7xFUkRk32TTt0eJcFr5ItPGXpGx1fiuaXmfMuUx?=
+ =?us-ascii?Q?GI/Odz13J961nA5h6OhrJT1gjeyoDWnrHUqd1TMNzL3qo3NTxQZ+godhM8Qt?=
+ =?us-ascii?Q?v2YBQxIdI6G26C+NRd1K0StZZ9PBYyfSDy3pbNJbdTlXNWZ9IRJRRzD4M9OG?=
+ =?us-ascii?Q?y/Ldi/4xFJz6CH5avM3m8hlkH/BXOYc5yOWrySleJwnHJUzQ3cX2okURpaZI?=
+ =?us-ascii?Q?PV/kytGlaikBt0exgomTqzowK79LYgKmqR9x/UgXIln6oI26jpBT5Es2g9Dt?=
+ =?us-ascii?Q?u2MkOX00AvKtAWul2tevQ0EpBrkLcIAW+BGdDdAgaUK2EJ5QM0suJ+l3m3d7?=
+ =?us-ascii?Q?PyiYhynBDrEV8FBMOUJ8HuPyKzJBfUcIFDuH5tHLlM69JPIFU69Kj6AwVtSc?=
+ =?us-ascii?Q?KF82Zf+BpzGtNABr7Lk4cKn5iNzE9NKVdfg9LeVOVQOi8FWkwh+OPjyMmmhT?=
+ =?us-ascii?Q?/zg/zePKEHMLxhWi7ycH39J5ovuIYvU+Xr0eiMpwO7m1pSV04Qj/wlgJXC6j?=
+ =?us-ascii?Q?a9HfYSpwPqMA/7D/TNVfyni819TqT3FblhD9lnAJPyhBqSnQVwRVcM3rglfN?=
+ =?us-ascii?Q?4FcPKD0ESxLtSasAm+Yp2dENwSHvobRuZZ+nTNRg5/s4qGgnb3vdM+SewS1m?=
+ =?us-ascii?Q?hDNH08Cvyy037gW9uuuNfqOzJT4SAGozyZjMbEaF8iUVo/uoyKjzgXFRx1Gn?=
+ =?us-ascii?Q?kUuBYPXL5wZ69peIRuzg5lAqVUjxSaPjSD3UgkLKe6WOTs36TjJQ9odnk9l2?=
+ =?us-ascii?Q?afdxLkEv403nZRF4FKzOB9pG0ZuGNAytBPu5wACKIZAn2mNFRjVg7XeXdDJH?=
+ =?us-ascii?Q?mGzmsnOY6RQyE7noYnKxU5XPM83HKDuxGB8Av6TijexVmLMmmgxgLgpocdkr?=
+ =?us-ascii?Q?0gXXiFiMMFI3L1ISgX1GcGwEH8kRgSnobd0Tnrt/r4GUvj3A/j/eL8truzvG?=
+ =?us-ascii?Q?HCYJDZ2r31HSQuytY3sZwpRPq1PZH9/mbvJHaE4UTrLsbFBDp+9nvKzZNeC/?=
+ =?us-ascii?Q?emOUZ+mnooreTgZ8CYQC7Z1wpAtRTBkcwt7EKqQPbBJJf7aNgmLOEJxTD295?=
+ =?us-ascii?Q?00nt+hsJn1KT6vneq3eukq/zXKSuYuYNuJWrOCLWVD/suzptOw=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB6761.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?akX/jauLV+v0Ne9QEA11/l+L4MB1EE8w5vJZYTN2GyOymxNqhQhcrSGw4esC?=
- =?us-ascii?Q?LMAVbW2QaElUFP2wid3VGJzf+IJJ065431rt9ZOEMDNLkwpFfZCmLo1EvfHX?=
- =?us-ascii?Q?t4kHiNqgLm0sgHxQ3ddm0lxFJ8ay+TVpEeLRmvRAhQMx8x1TkICu80aMb9Gm?=
- =?us-ascii?Q?4L6QhClw9DX1Jo2bXH1YDUnxamS5XdA7fLDsYjOwt2uASTGE4Si0KJdHzwE/?=
- =?us-ascii?Q?FlCI7x+cGsF6LhOc00CzVA/H51BdxU8zck88L38HAEmRIc/smdhQazLJOERf?=
- =?us-ascii?Q?OO0Zv2px2RN2pE5AfJWosOldCSiapdhypNSlprbl1dvmJveqcgwJ9XzT23XE?=
- =?us-ascii?Q?IsOiitwsMHXCWdlNvHVCayBgyIiELr5sPPFweSYszy/ydGxnuOH8OaEVQhwh?=
- =?us-ascii?Q?IUbMBwspKpd/OwpK/WajEXZ1c7SJ6Ev9Hg1KuZge2S7KRIOOBOXm3sz46S++?=
- =?us-ascii?Q?TbgFUOOhMemYMBtML6QzAWWPfz6B7oA2QcPuzk/UmDi6ZPjmlsfLur3VLioc?=
- =?us-ascii?Q?+gkRuuK3XbYfjtpKTzvL9EzKBgnQZvW5NNULGdxYdj0d7UHUkjZPcWpuxi1b?=
- =?us-ascii?Q?uR634VWcAWZtSErb82N4zVcVRDv2+4qMb38UBTNctHMsFp48rKLp5clTxvub?=
- =?us-ascii?Q?jdFbgDvBIqaIQgznK7apcIRm8DNcIM4hiHwNWAx5fh6gGrwzh1r2lpZhn1S/?=
- =?us-ascii?Q?Lh8Ae21dWmkinufnIpxYsAOXYSYJou9He8DemaoFNoDtSvezCQgkq4A1aBwU?=
- =?us-ascii?Q?vS5sQtayND/NwWj4VFuxT5XyOvw5glvt/5/B8ydcgn0uu0UsVpMhCUmfLVYM?=
- =?us-ascii?Q?FrFByD8t/Yus9lpqIDiLCE86Psg8huDruqoqN0qWQb705vMvJFw8BpBv0fLn?=
- =?us-ascii?Q?OOzsdJZ93J4CTuqr/1C1zFJRB9WpUlTbpQHdtpE/ZT26HoTCLIYmqmNBP6XC?=
- =?us-ascii?Q?6JiyXGP8CHgvzi1tQuDSRvIRUXm7jSXNykvkOSVTuzRPUOUBKT+vvLVl8UE4?=
- =?us-ascii?Q?g4PTyS2wcD81iJ0fq6rk2s8MbEgqm/b/J9/JcqM12XjJD7KKQ/zI5mN/B0yr?=
- =?us-ascii?Q?rRsuXzetM2WXqtIr/7hQT4eu6WEle0vQnFxX1ygtH7BNCJ605cNsbu5DSLpe?=
- =?us-ascii?Q?EXQvsLrvz2nJfaxCyePe+MwlWkQ6wxSLOwKr9mK81PMQF45U1kLZDPl2Wqu0?=
- =?us-ascii?Q?6thYdEFhefRa0rjS/h9mICyd4zgwx8PWhay8b5kcnfuG5EJC7t0W7bdN4HR5?=
- =?us-ascii?Q?uvv9UTL/01XeaGW+kr/TFXg/b22daIITo/7DtWj0QiqIQfP4DLt831nxl8Nh?=
- =?us-ascii?Q?5w6iOex1NTFNwI9oC9YABz0nHw4zO3buEpYdk1wRhNAKyP/WlD1FJlctK94d?=
- =?us-ascii?Q?DO3eVZMNo9uWQ+wmdOzRXitDbHbZJ4B0S+Gb0gKAldXOzofSRulFiDCjuC7M?=
- =?us-ascii?Q?uSJiMdqu7saYdKWAoQoXIZ3gFbMj6UrudSwk2j0UkE4OSSAkxhlcgefnCjRB?=
- =?us-ascii?Q?9QHfJqC8l9ylI38ysc0No3w4HC+Hg+rOm89d2rChfzPD0b7MfSI2vBtQcWVA?=
- =?us-ascii?Q?yHq2w7aWJFpY3gXgDlSvm9Z/jMtjlIXOdadcAIKe?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vlQH68NH86Ff1HJ5KsmflypwsNklS2S8qjZOg2vKQdobxpBXjQRLQ+IBkpNT?=
+ =?us-ascii?Q?9MM9jCAC0edefktIjtmU+LKtgmSnZZ658c2F7z1m/mEfPy0SmNybyiJsCC2n?=
+ =?us-ascii?Q?0CxhPK9EUi76vHRWBx9qtMk82B0tknblcwbwBeqWITuV7or6hT4t8DlCKnB3?=
+ =?us-ascii?Q?zRZmwKM4A4EA6qkpXYVCUYi9gd+7RDKZoZtkEx3pREip/DXHq7aXzzCmHFYw?=
+ =?us-ascii?Q?bFDyucmvq2oQ3l75ZnyvoU+XosE3rFSDSBWIqmXe1tkmc1ZgKxpy2qGuzTV0?=
+ =?us-ascii?Q?cbHXgh65tYI4SpAZFQOtdxN+Wo/8f0qRnjL8wR6BDsBt7HyPAYs7MShPVgA4?=
+ =?us-ascii?Q?VcoSc1lG4ZJWMYZEuEVP+BKOtLCa4mw0fraHvHLaKDVl6SN0HYtmbjOrLAqN?=
+ =?us-ascii?Q?XyvBFsIVg7rsrntcfLl5zFDjEkkLc2R1hupI6qQxX1z51hYaLkSbs7QJ3QlR?=
+ =?us-ascii?Q?I2nWMtbqr/iX3K3lTiYQzLTIa2nrdXlOlvPaDvP6Ih0DYls458F6GSYolYNb?=
+ =?us-ascii?Q?X1MTsuSxLNsOPrBezpuBshgsWfHLXyvg7CGxMyyO5XHtgVnLYLNTPPdSdmT7?=
+ =?us-ascii?Q?2MRVwXAccdXf8zxEQbulFBp2CyNhfXhnVa/hAri9+7PTvlsqsxRBdV4Jd7Lr?=
+ =?us-ascii?Q?fn4I0F+4Lgh34AhEj5oH1HJndRLC2ROiApHCDzEGGEppUfPtBcPF+RYvEYAW?=
+ =?us-ascii?Q?UmzcW3cZWuf1QmQb+mSDDXuVLnNocMzdMdoxk8ITv8N4PLXpbVkQ8M5JFVVj?=
+ =?us-ascii?Q?/Uf2DpaFnKPm/eT1drjO0WLCx+LE7Gk/JUOLlrxFuAAzsbRA39iIby7Vwfqk?=
+ =?us-ascii?Q?qrR1DTp4Jbw0fWtp00LrgUPUtChYnjtoSLjt5RuXGHnYngAtEKGzGr2PVuuP?=
+ =?us-ascii?Q?Eu9/nPaOOaNK5/DT8F6kjUwkKlwte8fc9+LPT2wIPkLs3n34CG/nDXDDp8K2?=
+ =?us-ascii?Q?UdIRu4EdS1e+IgwsLvjPgFzydFthElp1Ddgfgu+k5+Hq5j7Kfjplv+X4e0GL?=
+ =?us-ascii?Q?iXI7b3ezPwBxc2InjAfQ8tTg188Xwh5DxwA0KjoGRHgnqdvo/liNjD90K7wj?=
+ =?us-ascii?Q?/YWwsrFg7UlwOf/j/1gVU7TOD5TxlmbcJ749umOryMQTvT+At07ADzsSYBwH?=
+ =?us-ascii?Q?s0Vk85GZ395J0jVWsJUM8q0dcYhjr7vF2SSeplhPhs2NVoiVMbpTzIZ9Krwg?=
+ =?us-ascii?Q?1DzqB75AkclVp4CKj1IpjKZCQLNubDaPKMQ+MzPvv0tiELE323n2dIytrhXE?=
+ =?us-ascii?Q?I5pvL0WjZ1yxAQN1vIqWxYLUqCjhN8zJbII0EkgXkd3Qv3jDhtpt9mCzYnHL?=
+ =?us-ascii?Q?nYWfj+GCf8XjBNstvem54fhjkyuElmkYpRmbFWfU4yETiYKSawIhEDJYz9l6?=
+ =?us-ascii?Q?i6sZW0UoHO0mW+Pa/0o/JG6fTcJBqO01G4HOokgrz5nnOd5YVCTjOQ3gJRG7?=
+ =?us-ascii?Q?hM9RgTw2WeZvnpFua+9Irvh+F4kdAbdVej3AhbwUhme218Wioh4BzcpgbFC3?=
+ =?us-ascii?Q?wVFUoGNe1twQQ4jTVYhY6vF4dd9QvqlZGGXUh+Q7Bz9k5EKNdLtroL/afBVF?=
+ =?us-ascii?Q?rUd26VNcS6Gc+QeAZyWWma3Ul1I07qaJq06q36M+?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6761.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 738cc223-6e61-4c5f-ce8c-08dcb1306b44
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2024 07:14:29.5530 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7535b22-f160-4a46-6035-08dcb1322fcb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2024 07:27:08.8000 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EX/VNy+sTDF8MUlAFuBB+ppb3YCpLE1iGnqZTu3C/8lzb2yZDCd8+4xf+cWPeCtOw4PUEkeQ/GdyGlSBWvioUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8350
+X-MS-Exchange-CrossTenant-userprincipalname: BJ5PdFsFyy/hshZkxzVK2qoTRNMxZTl3vwTMNVKNi7NYqbBO+IhTn6ShRQ0b8uAXM+kZgkdtbiWFcG6HFpsZHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4643
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -193,273 +191,150 @@ kit
 > To: intel-gfx@lists.freedesktop.org
 > Cc: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>; Saarinen, Jani
 > <jani.saarinen@intel.com>; ville.syrjala@linux.intel.com
-> Subject: [PATCH 05/12] drm/i915: Add some essential functionality for joi=
-ners
+> Subject: [PATCH 06/12] drm/i915: Split current joiner hw state readout
 >=20
 > From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 >=20
-> In most of the cases we now try to avoid mentioning things like "bigjoine=
-r" or
-> "ultrajoiner" trying to unify the API and refer mostly to all this functi=
-onality as
-> "joiner".
-> In majority cases that should be way to go.
-> However in some cases we still need to distinguish between bigjoiner prim=
-aries
-> and secondaries(such as DSC register programming).
->=20
-> Create correspondent helper functions and start using them, in order be
-> prepared for adding ultrajoiner functionality.
+> We need to add a new sanity checks and also do some preparations for addi=
+ng
+> ultrajoiner hw state readout.
+> Lets first split reading of the uncompressed joiner and bigjoiner bit mas=
+ks into
+> separate functions.
 >=20
 > v2: Fixed checkpatch warnings (Ankit)
-
-Use imperatives
-
 >=20
+
+Use imperative here
+Other than that LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
-> drivers/gpu/drm/i915/display/intel_display.c  | 75 ++++++++++++++++---
-> drivers/gpu/drm/i915/display/intel_display.h  |  8 +-
->  .../drm/i915/display/intel_modeset_verify.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_vdsc.c     |  4 +-
->  5 files changed, 76 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index e979786aa5cf..9862d0339e6a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -724,7 +724,7 @@ int intel_plane_atomic_check(struct intel_atomic_stat=
-e
-> *state,
->=20
->  	if (new_crtc_state && intel_crtc_is_joiner_secondary(new_crtc_state)) {
->  		struct intel_crtc *primary_crtc =3D
-> -			intel_primary_crtc(new_crtc_state);
-> +			intel_joiner_primary_crtc(new_crtc_state);
->  		struct intel_plane *primary_crtc_plane =3D
->  			intel_crtc_get_plane(primary_crtc, plane->id);
+>  drivers/gpu/drm/i915/display/intel_display.c | 65 +++++++++++++++-----
+>  1 file changed, 48 insertions(+), 17 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
 > b/drivers/gpu/drm/i915/display/intel_display.c
-> index 26e4b0c2e9f7..38e7c6811bf3 100644
+> index 38e7c6811bf3..4aed8117f614 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -252,6 +252,68 @@ static enum pipe joiner_primary_pipe(const struct
-> intel_crtc_state *crtc_state)
->  	return ffs(crtc_state->joiner_pipes) - 1;  }
+> @@ -3590,51 +3590,82 @@ static bool transcoder_ddi_func_is_enabled(struct
+> drm_i915_private *dev_priv,
+>  	return tmp & TRANS_DDI_FUNC_ENABLE;
+>  }
 >=20
-> +int intel_joiner_num_pipes(const struct intel_crtc_state *crtc_state) {
-> +	return hweight8(crtc_state->joiner_pipes);
-> +}
-
-This function is the same as one introduced in patch 2 its being added back=
- in patch 5
-> +
-> +bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state
-> +*crtc_state) {
-> +	return intel_joiner_num_pipes(crtc_state) =3D=3D 4; }
-> +
-> +static bool intel_is_joiner(const struct intel_crtc_state *crtc_state)
-> +{
-> +	return intel_joiner_num_pipes(crtc_state) > 1; }
-> +
-
-Enums have been defined for no of pipe joiner lets use those and this is ex=
-actly why I wanted Ultra Joiner enum declared earlier to avoid comparison w=
-ith direct numbers.
-
-> +static u8 bigjoiner_primary_pipes(const struct intel_crtc_state
-> +*crtc_state) {
-> +	int lsb =3D ffs(crtc_state->joiner_pipes) - 1;
-> +	int msb =3D fls(crtc_state->joiner_pipes) - 1;
-> +	int i;
-> +	u8 bigjoiner_primary_mask =3D 0;
-> +
-> +	for (i =3D lsb; i < msb; i +=3D 4) {
-> +		/*
-> +		 * Regardless of how joiner_pipes mask is set, currently
-> +		 * we always assume, that primary pipe bit goes before
-> secondary
-> +		 * pipe bit. So in each set of 2 bits, least significant bit is
-> +		 * bigjoiner primary pipe and most significant bit is secondary
-> pipe.
-> +		 */
-> +		bigjoiner_primary_mask |=3D
-> +			((BIT(0) | BIT(2)) << i) & crtc_state->joiner_pipes;
-> +	}
-> +
-> +	return bigjoiner_primary_mask;
-> +}
-> +
-> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state
-> +*crtc_state) {
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +
-> +	if (!intel_is_joiner(crtc_state))
-> +		return false;
-> +
-> +	return BIT(crtc->pipe) & bigjoiner_primary_pipes(crtc_state);
-> +}
-> +
-> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state
-> +*crtc_state) {
-> +	if (!intel_is_joiner(crtc_state))
-> +		return false;
-> +
-> +	return !intel_crtc_is_bigjoiner_primary(crtc_state);
-> +}
-> +
-> +bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state
-> +*crtc_state) {
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +
-> +	return intel_crtc_is_ultrajoiner(crtc_state) &&
-> +		(crtc->pipe =3D=3D joiner_primary_pipe(crtc_state)); }
-> +
->  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc=
-_state)  {
->  	if (crtc_state->joiner_pipes)
-> @@ -276,11 +338,6 @@ bool intel_crtc_is_joiner_primary(const struct
-> intel_crtc_state *crtc_state)
->  		crtc->pipe =3D=3D joiner_primary_pipe(crtc_state);  }
->=20
-> -int intel_joiner_num_pipes(const struct intel_crtc_state *crtc_state) -{
-> -	return hweight8(crtc_state->joiner_pipes);
-> -}
-> -
->  u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state=
-)  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -288,7 +345,7 @@ u8 intel_crtc_joined_pipe_mask(const struct
-> intel_crtc_state *crtc_state)
->  	return BIT(crtc->pipe) | crtc_state->joiner_pipes;  }
->=20
-> -struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crt=
-c_state)
-> +struct intel_crtc *intel_joiner_primary_crtc(const struct
-> +intel_crtc_state *crtc_state)
+> -static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+> -				 u8 *primary_pipes, u8 *secondary_pipes)
+> +static void enabled_uncompressed_joiner_pipes(struct drm_i915_private
+> *dev_priv,
+> +					      u8 *primary_pipes, u8
+> *secondary_pipes)
 >  {
->  	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
+>  	struct intel_crtc *crtc;
 >=20
-> @@ -808,7 +865,7 @@ intel_get_crtc_new_encoder(const struct
-> intel_atomic_state *state,
->  	int num_encoders =3D 0;
->  	int i;
+>  	*primary_pipes =3D 0;
+>  	*secondary_pipes =3D 0;
 >=20
-> -	primary_crtc =3D intel_primary_crtc(crtc_state);
-> +	primary_crtc =3D intel_joiner_primary_crtc(crtc_state);
+> +	if (DISPLAY_VER(dev_priv) < 13)
+> +		return;
+> +
+>  	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc,
+>  					 joiner_pipes(dev_priv)) {
+>  		enum intel_display_power_domain power_domain;
+>  		enum pipe pipe =3D crtc->pipe;
+>  		intel_wakeref_t wakeref;
 >=20
->  	for_each_new_connector_in_state(&state->base, connector,
-> connector_state, i) {
->  		if (connector_state->crtc !=3D &primary_crtc->base) @@ -4527,7
-> +4584,7 @@ copy_joiner_crtc_state_nomodeset(struct intel_atomic_state
-> *state,  {
->  	struct intel_crtc_state *secondary_crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, secondary_crtc);
-> -	struct intel_crtc *primary_crtc =3D
-> intel_primary_crtc(secondary_crtc_state);
-> +	struct intel_crtc *primary_crtc =3D
-> +intel_joiner_primary_crtc(secondary_crtc_state);
->  	const struct intel_crtc_state *primary_crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, primary_crtc);
+> -		power_domain =3D intel_dsc_power_domain(crtc, (enum
+> transcoder) pipe);
+> +		power_domain =3D POWER_DOMAIN_PIPE(pipe);
+>  		with_intel_display_power_if_enabled(dev_priv, power_domain,
+> wakeref) {
+>  			u32 tmp =3D intel_de_read(dev_priv,
+> ICL_PIPE_DSS_CTL1(pipe));
 >=20
-> @@ -4547,7 +4604,7 @@ copy_joiner_crtc_state_modeset(struct
-> intel_atomic_state *state,  {
->  	struct intel_crtc_state *secondary_crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, secondary_crtc);
-> -	struct intel_crtc *primary_crtc =3D
-> intel_primary_crtc(secondary_crtc_state);
-> +	struct intel_crtc *primary_crtc =3D
-> +intel_joiner_primary_crtc(secondary_crtc_state);
->  	const struct intel_crtc_state *primary_crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, primary_crtc);
->  	struct intel_crtc_state *saved_state;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
-> b/drivers/gpu/drm/i915/display/intel_display.h
-> index bf665f947b97..35e68e4cc712 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -424,10 +424,14 @@ enum phy intel_port_to_phy(struct
-> drm_i915_private *i915, enum port port);  bool
-> is_trans_port_sync_mode(const struct intel_crtc_state *state);  bool
-> is_trans_port_sync_master(const struct intel_crtc_state *state);
->  u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state=
-); -bool
-> intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state)=
-;  bool
-> intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
-> +bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state
-> +*crtc_state); bool intel_crtc_is_bigjoiner_primary(const struct
-> +intel_crtc_state *crtc_state); bool
-> +intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state
-> +*crtc_state); bool intel_crtc_is_ultrajoiner(const struct
-> +intel_crtc_state *crtc_state); bool
-> +intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state
-> +*crtc_state);
->  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc=
-_state); -
-> struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc=
-_state);
-> +struct intel_crtc *intel_joiner_primary_crtc(const struct
-> +intel_crtc_state *crtc_state);
-
-I think with all these joiner related functions introduced maybe joiner get=
-s it own file
-Quite a lot of functions including enable disable sequences including the f=
-unctions introduced here can be moved there
-
-Regards,
-Suraj Kandpal
-
->  bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);  b=
-ool
-> intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->  			       const struct intel_crtc_state *pipe_config, diff --git
-> a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> index 3491db5cad31..b53b810c6470 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> @@ -193,7 +193,7 @@ verify_crtc_state(struct intel_atomic_state *state,
->  			"transitional active state does not match atomic hw
-> state (expected %i, found %i)\n",
->  			sw_crtc_state->hw.active, crtc->active);
+> -			if (!(tmp & BIG_JOINER_ENABLE))
+> -				continue;
+> -
+> -			if (tmp & PRIMARY_BIG_JOINER_ENABLE)
+> +			if (tmp & UNCOMPRESSED_JOINER_PRIMARY)
+>  				*primary_pipes |=3D BIT(pipe);
+> -			else
+> +			if (tmp & UNCOMPRESSED_JOINER_SECONDARY)
+>  				*secondary_pipes |=3D BIT(pipe);
+>  		}
+> +	}
+> +}
 >=20
-> -	primary_crtc =3D intel_primary_crtc(sw_crtc_state);
-> +	primary_crtc =3D intel_joiner_primary_crtc(sw_crtc_state);
+> -		if (DISPLAY_VER(dev_priv) < 13)
+> -			continue;
+> +static void enabled_bigjoiner_pipes(struct drm_i915_private *dev_priv,
+> +				    u8 *primary_pipes, u8 *secondary_pipes) {
+> +	struct intel_crtc *crtc;
 >=20
->  	for_each_encoder_on_crtc(dev, &primary_crtc->base, encoder) {
->  		enum pipe pipe;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index b9687b7692b8..11058bb37d5a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -761,7 +761,7 @@ void intel_uncompressed_joiner_enable(const struct
-> intel_crtc_state *crtc_state)
->  	u32 dss_ctl1_val =3D 0;
+> -		power_domain =3D POWER_DOMAIN_PIPE(pipe);
+> +	*primary_pipes =3D 0;
+> +	*secondary_pipes =3D 0;
+> +
+> +	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc,
+> +					 joiner_pipes(dev_priv)) {
+> +		enum intel_display_power_domain power_domain;
+> +		enum pipe pipe =3D crtc->pipe;
+> +		intel_wakeref_t wakeref;
+> +
+> +		power_domain =3D intel_dsc_power_domain(crtc, (enum
+> transcoder)pipe);
+>  		with_intel_display_power_if_enabled(dev_priv, power_domain,
+> wakeref) {
+>  			u32 tmp =3D intel_de_read(dev_priv,
+> ICL_PIPE_DSS_CTL1(pipe));
 >=20
->  	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable) {
-> -		if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		if (intel_crtc_is_bigjoiner_secondary(crtc_state))
->  			dss_ctl1_val |=3D UNCOMPRESSED_JOINER_SECONDARY;
->  		else
->  			dss_ctl1_val |=3D UNCOMPRESSED_JOINER_PRIMARY;
-> @@ -790,7 +790,7 @@ void intel_dsc_enable(const struct intel_crtc_state
-> *crtc_state)
+> -			if (tmp & UNCOMPRESSED_JOINER_PRIMARY)
+> +			if (!(tmp & BIG_JOINER_ENABLE))
+> +				continue;
+> +
+> +			if (tmp & PRIMARY_BIG_JOINER_ENABLE)
+>  				*primary_pipes |=3D BIT(pipe);
+> -			if (tmp & UNCOMPRESSED_JOINER_SECONDARY)
+> +			else
+>  				*secondary_pipes |=3D BIT(pipe);
+>  		}
 >  	}
->  	if (crtc_state->joiner_pipes) {
->  		dss_ctl1_val |=3D BIG_JOINER_ENABLE;
-> -		if (!intel_crtc_is_joiner_secondary(crtc_state))
-> +		if (intel_crtc_is_bigjoiner_primary(crtc_state))
->  			dss_ctl1_val |=3D PRIMARY_BIG_JOINER_ENABLE;
->  	}
->  	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder)=
-,
-> dss_ctl1_val);
+> +}
+> +
+> +static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+> +				 u8 *primary_pipes, u8 *secondary_pipes) {
+> +	u8 primary_uncompressed_joiner_pipes, primary_bigjoiner_pipes;
+> +	u8 secondary_uncompressed_joiner_pipes, secondary_bigjoiner_pipes;
+> +
+> +	enabled_uncompressed_joiner_pipes(dev_priv,
+> &primary_uncompressed_joiner_pipes,
+> +
+> &secondary_uncompressed_joiner_pipes);
+> +
+> +	enabled_bigjoiner_pipes(dev_priv, &primary_bigjoiner_pipes,
+> +				&secondary_bigjoiner_pipes);
+> +
+> +	*primary_pipes =3D 0;
+> +	*secondary_pipes =3D 0;
+> +
+> +	*primary_pipes =3D primary_uncompressed_joiner_pipes |
+> +primary_bigjoiner_pipes;
+>=20
+> -	/* Joiner pipes should always be consecutive primary and secondary */
+> -	drm_WARN(&dev_priv->drm, *secondary_pipes !=3D *primary_pipes <<
+> 1,
+> -		 "Joiner misconfigured (primary pipes 0x%x, secondary pipes
+> 0x%x)\n",
+> -		 *primary_pipes, *secondary_pipes);
+> +	*secondary_pipes =3D secondary_uncompressed_joiner_pipes |
+> +secondary_bigjoiner_pipes;
+>  }
+>=20
+>  static enum pipe get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipe=
+s,
+> u8 secondary_pipes)
 > --
 > 2.45.2
 
