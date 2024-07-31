@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E8E94344A
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jul 2024 18:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E136A94344C
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jul 2024 18:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6813010E68B;
-	Wed, 31 Jul 2024 16:44:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2A010E68C;
+	Wed, 31 Jul 2024 16:44:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OOZ3i2zf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H0eHzOQL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8835D10E688;
- Wed, 31 Jul 2024 16:44:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C18E310E68C;
+ Wed, 31 Jul 2024 16:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722444283; x=1753980283;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=y0quYX3Z1iRa5BLcSytu567fsSmYgVbu1DlP28Jg2FI=;
- b=OOZ3i2zfMeG7yOOrHpKJ48OnIu0aShq4J1/8JGou1kbzTtinkw/n0bX+
- e4+KdEJhBEydKHrtbRIQ7Yn6XaS1yGheueFZqpbtPQrFoVdoaeAS56X6e
- DOLFas05KrHxYAShJEmjZHTYe43tQfPjl5gqEqwK6XzlojWZ+aSMvAlVu
- EymFeZ3vSdefj72rYIFhjKwSpOF7UGuLdsDLRv4XXHVz6H11Sh6OqIgqD
- 38Tm7pAHU4Y+uXXUIVlu2/CBuu3axDWSzhPk2OeeZ6xG2iS8ER34jLyx5
- NYbRBB5vy3Fmuxcb0wR4wxvO0AdAOMeUO+7OpqblsV6fST8N54wvLD/Mw w==;
-X-CSE-ConnectionGUID: +Xbrvm7dSomVzGts1TUXYg==
-X-CSE-MsgGUID: gN7Tw29DQIKlcsQKfE6n9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="45754392"
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="45754392"
+ t=1722444293; x=1753980293;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fDmBUexThFONsoTcN0XpoDU5q+BKJMjb4PHgksClkWI=;
+ b=H0eHzOQLnX0bJT5Wwmv48hQq5lzkENhaFHBx2fGM67ofDzi56b0oDWV2
+ 6oQ+DLPsbzqqTIrcP3J/0eGjhBG/f1Pax2yJlEYjcqvBUZItRx20cLjcP
+ AqkrVM9pKdkPBaIZL3fk54vg/nurctfxlPArVbrbAnWhkD39ETSSfoOue
+ laIJfhYjsfZhSnlhzy9nvvqoT9lxtn6vlh6mvdyUP/Pj/4ym/eje50h0p
+ k2kLGC/WTFZ72E0/6/u+PZki4y40xvQdAW95wgrMDRyPZUKJL58lYfV79
+ BikLDagFck03/J5bAGRcR75Zf+1RLmLbdfabIe/pUxPJSmPa6Oj/770rK A==;
+X-CSE-ConnectionGUID: KgwVJEPPTLKzXOJ+g+tNSQ==
+X-CSE-MsgGUID: yrtkOnn2TvuFXsRYLxyWGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="45754398"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="45754398"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 09:44:42 -0700
-X-CSE-ConnectionGUID: NN0FliDfT82iZYU1cTIZdg==
-X-CSE-MsgGUID: s/fUH/dkRQm5npVEXYSb2g==
+ 31 Jul 2024 09:44:47 -0700
+X-CSE-ConnectionGUID: Jv2iZ/O4TcSzCHZGxmAVfg==
+X-CSE-MsgGUID: mg0kL4iJRvGx9pfMA3Xrtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="54405287"
+X-IronPort-AV: E=Sophos;i="6.09,251,1716274800"; d="scan'208";a="54405292"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.183])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2024 09:44:40 -0700
+ 31 Jul 2024 09:44:45 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 0/4] drm/i915: struct intel_display conversions
-Date: Wed, 31 Jul 2024 19:44:32 +0300
-Message-Id: <cover.1722444150.git.jani.nikula@intel.com>
+Subject: [PATCH 1/4] drm/i915/acpi: convert to struct intel_display
+Date: Wed, 31 Jul 2024 19:44:33 +0300
+Message-Id: <19463fca456a37ef3e6272a23efe13f7f28da7b4.1722444150.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1722444150.git.jani.nikula@intel.com>
+References: <cover.1722444150.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,49 +70,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert some display files to struct intel_display. Some parts are
-scripted, but my cocci is not quite there yet to change interfaces, so a
-lot of this is still manual.q
+Going forward, struct intel_display shall replace struct
+drm_i915_private as the main display device data pointer type. Convert
+intel_acpi.[ch] to struct intel_display.
 
-Some stragglers are left behind, but struct intel_display is preferred
-and i915 pointers are derived locally as needed.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_acpi.c      | 17 ++++++++---------
+ drivers/gpu/drm/i915/display/intel_acpi.h      | 18 +++++++++---------
+ .../drm/i915/display/intel_display_driver.c    |  8 +++++---
+ drivers/gpu/drm/i915/display/intel_opregion.c  | 10 ++++++----
+ 4 files changed, 28 insertions(+), 25 deletions(-)
 
-BR,
-Jani.
-
-
-Jani Nikula (4):
-  drm/i915/acpi: convert to struct intel_display
-  drm/i915/opregion: unify intel_encoder/intel_connector naming
-  drm/i915/opregion: convert to struct intel_display
-  drm/i915/bios: convert to struct intel_display
-
- drivers/gpu/drm/i915/display/g4x_dp.c         |   3 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |   3 +-
- drivers/gpu/drm/i915/display/icl_dsi.c        |   3 +-
- drivers/gpu/drm/i915/display/intel_acpi.c     |  17 +-
- drivers/gpu/drm/i915/display/intel_acpi.h     |  18 +-
- drivers/gpu/drm/i915/display/intel_bios.c     | 846 +++++++++---------
- drivers/gpu/drm/i915/display/intel_bios.h     |  28 +-
- .../gpu/drm/i915/display/intel_combo_phy.c    |   8 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_ddi.h      |   3 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
- .../drm/i915/display/intel_display_debugfs.c  |   7 +-
- .../drm/i915/display/intel_display_device.c   |   8 +-
- .../drm/i915/display/intel_display_driver.c   |  22 +-
- .../gpu/drm/i915/display/intel_display_irq.c  |  27 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   8 +-
- drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
- drivers/gpu/drm/i915/display/intel_opregion.c | 320 +++----
- drivers/gpu/drm/i915/display/intel_opregion.h |  58 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_tv.c       |   3 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   5 +-
- drivers/gpu/drm/i915/i915_driver.c            |  22 +-
- drivers/gpu/drm/xe/display/xe_display.c       |  19 +-
- 24 files changed, 763 insertions(+), 685 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
+index 0aa3999374e2..c3b29a331d72 100644
+--- a/drivers/gpu/drm/i915/display/intel_acpi.c
++++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+@@ -183,9 +183,9 @@ void intel_unregister_dsm_handler(void)
+ {
+ }
+ 
+-void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915)
++void intel_dsm_get_bios_data_funcs_supported(struct intel_display *display)
+ {
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+ 	acpi_handle dhandle;
+ 	union acpi_object *obj;
+ 
+@@ -263,15 +263,14 @@ static u32 acpi_display_type(struct intel_connector *connector)
+ 	return display_type;
+ }
+ 
+-void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
++void intel_acpi_device_id_update(struct intel_display *display)
+ {
+-	struct drm_device *drm_dev = &dev_priv->drm;
+ 	struct intel_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 	u8 display_index[16] = {};
+ 
+ 	/* Populate the ACPI IDs for all connectors for a given drm_device */
+-	drm_connector_list_iter_begin(drm_dev, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+ 		u32 device_id, type;
+ 
+@@ -288,10 +287,10 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
+ }
+ 
+ /* NOTE: The connector order must be final before this is called. */
+-void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915)
++void intel_acpi_assign_connector_fwnodes(struct intel_display *display)
+ {
++	struct drm_device *drm_dev = display->drm;
+ 	struct drm_connector_list_iter conn_iter;
+-	struct drm_device *drm_dev = &i915->drm;
+ 	struct fwnode_handle *fwnode = NULL;
+ 	struct drm_connector *connector;
+ 	struct acpi_device *adev;
+@@ -333,7 +332,7 @@ void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915)
+ 	fwnode_handle_put(fwnode);
+ }
+ 
+-void intel_acpi_video_register(struct drm_i915_private *i915)
++void intel_acpi_video_register(struct intel_display *display)
+ {
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct drm_connector *connector;
+@@ -347,7 +346,7 @@ void intel_acpi_video_register(struct drm_i915_private *i915)
+ 	 * a native backlight later and acpi_video_register_backlight() should
+ 	 * only be called after any native backlights have been registered.
+ 	 */
+-	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	drm_for_each_connector_iter(connector, &conn_iter) {
+ 		struct intel_panel *panel = &to_intel_connector(connector)->panel;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_acpi.h b/drivers/gpu/drm/i915/display/intel_acpi.h
+index 6a0007452f95..788a63071661 100644
+--- a/drivers/gpu/drm/i915/display/intel_acpi.h
++++ b/drivers/gpu/drm/i915/display/intel_acpi.h
+@@ -6,26 +6,26 @@
+ #ifndef __INTEL_ACPI_H__
+ #define __INTEL_ACPI_H__
+ 
+-struct drm_i915_private;
++struct intel_display;
+ 
+ #ifdef CONFIG_ACPI
+ void intel_register_dsm_handler(void);
+ void intel_unregister_dsm_handler(void);
+-void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915);
+-void intel_acpi_device_id_update(struct drm_i915_private *i915);
+-void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915);
+-void intel_acpi_video_register(struct drm_i915_private *i915);
++void intel_dsm_get_bios_data_funcs_supported(struct intel_display *display);
++void intel_acpi_device_id_update(struct intel_display *display);
++void intel_acpi_assign_connector_fwnodes(struct intel_display *display);
++void intel_acpi_video_register(struct intel_display *display);
+ #else
+ static inline void intel_register_dsm_handler(void) { return; }
+ static inline void intel_unregister_dsm_handler(void) { return; }
+ static inline
+-void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915) { return; }
++void intel_dsm_get_bios_data_funcs_supported(struct intel_display *display) { return; }
+ static inline
+-void intel_acpi_device_id_update(struct drm_i915_private *i915) { return; }
++void intel_acpi_device_id_update(struct intel_display *display) { return; }
+ static inline
+-void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915) { return; }
++void intel_acpi_assign_connector_fwnodes(struct intel_display *display) { return; }
+ static inline
+-void intel_acpi_video_register(struct drm_i915_private *i915) { return; }
++void intel_acpi_video_register(struct intel_display *display) { return; }
+ #endif /* CONFIG_ACPI */
+ 
+ #endif /* __INTEL_ACPI_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 13e206ec450f..392c10359a52 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -416,7 +416,8 @@ bool intel_display_driver_check_access(struct drm_i915_private *i915)
+ /* part #2: call after irq install, but before gem init */
+ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+ {
+-	struct drm_device *dev = &i915->drm;
++	struct intel_display *display = &i915->display;
++	struct drm_device *dev = display->drm;
+ 	enum pipe pipe;
+ 	int ret;
+ 
+@@ -466,7 +467,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+ 
+ 	drm_modeset_lock_all(dev);
+ 	intel_modeset_setup_hw_state(i915, dev->mode_config.acquire_ctx);
+-	intel_acpi_assign_connector_fwnodes(i915);
++	intel_acpi_assign_connector_fwnodes(display);
+ 	drm_modeset_unlock_all(dev);
+ 
+ 	intel_initial_plane_config(i915);
+@@ -526,6 +527,7 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
+ 
+ void intel_display_driver_register(struct drm_i915_private *i915)
+ {
++	struct intel_display *display = &i915->display;
+ 	struct drm_printer p = drm_dbg_printer(&i915->drm, DRM_UT_KMS,
+ 					       "i915 display info:");
+ 
+@@ -534,7 +536,7 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+ 
+ 	/* Must be done after probing outputs */
+ 	intel_opregion_register(i915);
+-	intel_acpi_video_register(i915);
++	intel_acpi_video_register(display);
+ 
+ 	intel_audio_init(i915);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index 68bd5101ec89..4ff646a7f05d 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -722,7 +722,8 @@ static void set_did(struct intel_opregion *opregion, int i, u32 val)
+ 
+ static void intel_didl_outputs(struct drm_i915_private *dev_priv)
+ {
+-	struct intel_opregion *opregion = dev_priv->display.opregion;
++	struct intel_display *display = &dev_priv->display;
++	struct intel_opregion *opregion = display->opregion;
+ 	struct intel_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 	int i = 0, max_outputs;
+@@ -737,7 +738,7 @@ static void intel_didl_outputs(struct drm_i915_private *dev_priv)
+ 	max_outputs = ARRAY_SIZE(opregion->acpi->didl) +
+ 		ARRAY_SIZE(opregion->acpi->did2);
+ 
+-	intel_acpi_device_id_update(dev_priv);
++	intel_acpi_device_id_update(display);
+ 
+ 	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+@@ -1189,7 +1190,8 @@ void intel_opregion_register(struct drm_i915_private *i915)
+ 
+ static void intel_opregion_resume_display(struct drm_i915_private *i915)
+ {
+-	struct intel_opregion *opregion = i915->display.opregion;
++	struct intel_display *display = &i915->display;
++	struct intel_opregion *opregion = display->opregion;
+ 
+ 	if (opregion->acpi) {
+ 		intel_didl_outputs(i915);
+@@ -1210,7 +1212,7 @@ static void intel_opregion_resume_display(struct drm_i915_private *i915)
+ 	}
+ 
+ 	/* Some platforms abuse the _DSM to enable MUX */
+-	intel_dsm_get_bios_data_funcs_supported(i915);
++	intel_dsm_get_bios_data_funcs_supported(display);
+ }
+ 
+ void intel_opregion_resume(struct drm_i915_private *i915)
 -- 
 2.39.2
 
