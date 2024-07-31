@@ -2,171 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFC394258B
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jul 2024 06:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7EE9425A0
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Jul 2024 07:07:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F242A10E12F;
-	Wed, 31 Jul 2024 04:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE03F10E28B;
+	Wed, 31 Jul 2024 05:07:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5xDbm2S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3h38WyX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3BF110E12F
- for <intel-gfx@lists.freedesktop.org>; Wed, 31 Jul 2024 04:43:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0262310E263;
+ Wed, 31 Jul 2024 05:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722401026; x=1753937026;
- h=from:to:cc:subject:date:message-id:references:
+ t=1722402452; x=1753938452;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=GIFCt1otNgW4yuLpW9Z6RwplLIw8zSg9qwatzhAUXG4=;
- b=S5xDbm2Sw9qmlvgvLWq3z6z7RGkOyLpRmpQRJ0iUMEw6zKFFYL3HNuD4
- Nv4gUB89ugSV/0NU7e8wuCpSC2k5733S1QeaMfztygZI3/qjOZZIfc4B0
- I0uWzJX+eAACp3ZS94AkSSh+U8zRLKKoIT2PDGS4/90+REnF75g2cYdS7
- n/IqKfncwWzeJ7jDH3Zv3P6oUaJ2Nq62PSK11THr2/fxt+h8ue6jXHL5X
- CKfCk4CJLfC6YtXZUi90B2/ZqCATWvwDfQC945nzo3JrQ8+cXwfnUsKoP
- ZY5yhJOrRks1JqY8hp6zRntTY6kwuzdvp2YizWudC8T6u31kZ5cnbDrqR g==;
-X-CSE-ConnectionGUID: 0ny4+JjDTjWeQocO2pZ6uQ==
-X-CSE-MsgGUID: jetmP5yOQNeTsUcginHYew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="20064240"
-X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="20064240"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2024 21:43:46 -0700
-X-CSE-ConnectionGUID: MjnLBClFQaihwujbhZhjHQ==
-X-CSE-MsgGUID: wh5+RVG+THaAFQ/wwBW8WA==
+ bh=Ybv2F4wrDe9A8FNezg/LNWn23BuF2yO6C30WyJkvQug=;
+ b=n3h38WyX0+KZ9FFGWqqLfzNGVB0yuy5xGa0VQGSpJMk+WAHw8fqUXLwp
+ H6cFwW4s0/FizP9Rq9dtyycSJKMvzQFPxqnqR3VlIHenZQMYVaUGe33oC
+ VRtVE6xT1VfT3/pEDKuj3tc3bv2tY/qCTkObFfvctQt6rqMrs2PPt2gCk
+ w8liUy0iPsMFP/vBgM79WKrnvIJARRnpr5J3MgKi31RuVs8Hi6rRnoTUY
+ NeqVPdFcTbHHxv+AH6z7MfnH6JaD2daDTzl5jN8F+qDhCWgoFpBxCen8R
+ M1d49rA3xNLt6d/AO+7hwpka7XYN/XyS6reLe93wgV6Ol1KVk1rFzqCev w==;
+X-CSE-ConnectionGUID: GYw0YQwrTcuEDE7bn4nbUA==
+X-CSE-MsgGUID: QFEHEkIxRmWbzb+kAoPwWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11149"; a="20143091"
+X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="20143091"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2024 22:07:32 -0700
+X-CSE-ConnectionGUID: aG3YNSwfS1mFtg+SD9W4Xw==
+X-CSE-MsgGUID: ARWaFxoNSJqJ1JdDDk/RAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="54601037"
+X-IronPort-AV: E=Sophos;i="6.09,250,1716274800"; d="scan'208";a="59364318"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Jul 2024 21:43:46 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Jul 2024 22:07:31 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 30 Jul 2024 21:43:45 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.39; Tue, 30 Jul 2024 22:07:30 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 30 Jul 2024 22:07:30 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 21:43:45 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 30 Jul 2024 22:07:30 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 30 Jul 2024 21:43:45 -0700
+ 15.1.2507.39; Tue, 30 Jul 2024 22:07:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GCpCuW9Wgqzb2k2dggwd8KcJpgIw7akT9Qrc4dgD23liZq7oc7BL7ho61TF2x0k2SNlMaml7bafOURwCgyH4MEU3aSN3e5tYiR8TqH+oKZC/PJ6DPOAteY0FZYd22PL9ciQWa5u7EYgBmpjzhypvRBZnynzMt7QM3gxTyHl0fcq8hnjqNxyHyKKU6pFu/MXOxAuDSW47pwfB8SCPCxLULTYAjNGzfR1aHThFxjwnDR9m674pvMRAx5gPeVKNcUxI/kbqGEEAfWTF1UHYY4K11nDVW3+hTrHDReePM1MHlXenZdiTZGhRx5j4eCKL+r3d1ra4E4cV+9d0UaNRV4C9FA==
+ b=j0NEMiHWsiax55wSx8Gi7/eePOfQjkE5PXSPPal6Y/vDUmQcRlBMCTflc8/76KFQ62fNQE2FtFZJGaUTfdLrLd+WeK+yZr7kZwgv1iaz47F+AxyoajnDmYKk5jdVLDxTqL5Fso/nL/R23RgEZmy2CXdjBJXAE5M4JFsSMoDqRE/bjD/8lYuPUZ6O0bcYQNtcNwQqvuo9SmRVITch7iorpPt8He1zGS6h13oMlWsEm51zazIpILPn2zNAtoMl3R7LJxDaeS6r9fIY3fE7YOfeijZ8HUqdc17aXO/HrBgm2kvqi+6ocE3qy2iSTSfNQta3vVHqJz+l/Rng4b7exwlM5g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8eKZnHL3fEj8rVZFcYr9v0/094SfZLpi1z6E+dd/BVI=;
- b=lwhJ+W4XfNuvHZzDbYyHwEsDAf9Q7klfoZ7w5DQuBFGJpCqU9ebdFbHkUm6jXkZGKXZ7lO9s/gIslRbEtkFLTkqOCxqlIQHeAbXSXua9UXB7GA0sLhsiMBsSLimwhVW5gn4+bRlPvxntn1j/azYWtOP/6ImcagCARm3lB5Kgz0qctZXWYkebuD6qTs8toeVrwB3XDGKsMm43GHU6BTXej0zlDxDhchqfZRoHqI8TH9UJidFtTVQAbRxQo2j1dw5LQ5ATLKR1Lvey9pOA/5LPsSAQqQnJn+GROzT55XrpUfsd+D3fJnZnRAEjxeItyb5WPyL5YyYgXRKE5YJOLt37DQ==
+ bh=08sL0rTfT09PEfA5Xp1X4wqcZfOzNWnocOMZIzv9T2Y=;
+ b=UTWztxegwC0DhqLpmSIvyCz8C4ItamLEYCJqadbpjFx1mgNEx8aYB7NNWwnyDbMouY1rI3pGvHVdhiQWy4AMaQF1lkkKnOvLcsk/W36DQdXiqfmIu7Nl8uZ1DxDJM3F5Rmi4/FurWCwJ9d41QympZjt28GmUpBrlNdDwLoIZx2XX5GIrpzWQ3C/ILbW9TzldsXO8WuGSM+/EvQVB2M/Fx0Y+IWXNrxPfW0O9a5vEJWtUjt5GOKsYiQQYbfGzle3G828BGxO9trvvju1PZ5H3F7xsa6K2cmVxnrBNwRHm04hYQAE6Nww0Kh6pKY3aqx1lelIsQn5TLIWIZPHvBiBZjw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB6761.namprd11.prod.outlook.com (2603:10b6:303:20d::5)
- by CY8PR11MB7316.namprd11.prod.outlook.com (2603:10b6:930:9f::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Wed, 31 Jul
- 2024 04:43:38 +0000
-Received: from MW4PR11MB6761.namprd11.prod.outlook.com
- ([fe80::6b8e:aea1:6960:2430]) by MW4PR11MB6761.namprd11.prod.outlook.com
- ([fe80::6b8e:aea1:6960:2430%6]) with mapi id 15.20.7784.020; Wed, 31 Jul 2024
- 04:43:38 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH 03/12] drm/i915/display: Use joined pipes in
- intel_mode_valid_max_plane_size
-Thread-Topic: [PATCH 03/12] drm/i915/display: Use joined pipes in
- intel_mode_valid_max_plane_size
-Thread-Index: AQHa2Or1g7vMYP5tHkyC9MLYG/mkeLIQVl/g
-Date: Wed, 31 Jul 2024 04:43:38 +0000
-Message-ID: <MW4PR11MB6761D9B14B20515E2F8C5BA8E3B12@MW4PR11MB6761.namprd11.prod.outlook.com>
-References: <20240718081803.3338564-1-ankit.k.nautiyal@intel.com>
- <20240718081803.3338564-4-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20240718081803.3338564-4-ankit.k.nautiyal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB6761:EE_|CY8PR11MB7316:EE_
-x-ms-office365-filtering-correlation-id: b4e2181b-bb53-42dc-0ca4-08dcb11b5826
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?pdvRO5vNOXQVkJxr6kOIMYr/wVqUUgYpDuXQAhyT8zhaw6NDLvMjtMmM3h2t?=
- =?us-ascii?Q?8eyAhvZ/yvLB2V+sTabaiRwcifeosxgvSYb/NALAMqTwKbiIX2S6qCjken9G?=
- =?us-ascii?Q?qqlJ3k6Ey0XWI4RHPyBwBK80Aq9Dr4TxcVgN3IURVFIdmQZf3iC8PrJxnBXl?=
- =?us-ascii?Q?4hkftjy4wqjwVinJO6OK33fvKtQURtY5cFnYkO6gS6XBikTIzEfnB5M7A9XT?=
- =?us-ascii?Q?spR7JH0Fzq9WK0xs4wolVq9cLGxEiI35pkVtcJpd+2o5oLZCTzztM2ni+/+g?=
- =?us-ascii?Q?PrZg4/BCwwFRkHyNZb7h6sM4pbjVY6cgWRXNXnxmymUlaNkhFbb0rGsk/kvS?=
- =?us-ascii?Q?Qp4nI7UojFdDoQ9NTpCDKpooWvuq8cP7HEVVhVchFHHN7KOabqDVDPBo/35b?=
- =?us-ascii?Q?O9t64aYiyYTmC6lHw81zaiOwNbt0TzC+4HQZsDQJgBS+2oiSxiMgZ74KbmA4?=
- =?us-ascii?Q?ltyQWAAhfLj34gHCDZsPNRawysHjA3Rt8w9HNvDnWn3ImJ19CsGdOlnG0ssx?=
- =?us-ascii?Q?H+7sFzFfbDTUmz1PMlCbseNV0LcNiFaBMwpdt7qsIfD9Ak0/dYj3vW/GLTWm?=
- =?us-ascii?Q?n1PRb6gIensxA3zC77EB1V8+fAVCDjFJMED9JHedcaAWhCnqiNDmn+ZKat7l?=
- =?us-ascii?Q?wicmGCXUM2xvNGMlQoReCv565IbeAm5dModOVmvYaf1W0kyuMkQtsbVVmXq2?=
- =?us-ascii?Q?8ZT9y8fRMfmep8Otyfgt+YRzz3VkTroQOg99qfbh1sVkPHpeU7Jlog61OeKn?=
- =?us-ascii?Q?K4CTxxBiX9AHdCYATm7ctlwQdSww+5hs/WpTzRgDOFOnN6KQpaPy8q9hWvpt?=
- =?us-ascii?Q?TyFGbgrAXtafR+FFYUmsy9UQRbg728payhkkcIkYZECmIV9YduPVfYR7IuSB?=
- =?us-ascii?Q?9X58ihHpikvKQi5roG3A9iDxdlGbpZXqHoKFQKmNUemK0uErNBJDQbz4PMjg?=
- =?us-ascii?Q?ExO4tLjmYX6YVLA/OK1pF1nByMV98D0h1mUStgCUJTqzNHCa2x+S+CD3AyYJ?=
- =?us-ascii?Q?DTQwrgXsHFPHeGCJm7CQf+KVIH97mpVkTttkjnxowpWmRUerO/6tPhBG9Gjx?=
- =?us-ascii?Q?ujETvn8E5lkaBiTELvNHye30uBeCnFzKEk29Ft2iYYvFpVfAvQvpBlIbOPqk?=
- =?us-ascii?Q?/BrXPIbKhmvZZwyqSDeX7vmwY+9vMj8t9oXxB0w30TvwTj5qeywM3Yy2FHff?=
- =?us-ascii?Q?m5ZSMkFTc3LKofT3VED+wUQLNOGLkGgp+8nQy30Basxxayq8vRhAFrvqXgIf?=
- =?us-ascii?Q?ZtoWdxWi4vaIJcQ6886RJxWU7HsPQV/3LSZmWDDc6Q6eOuiZBmQ1QjSdSJnE?=
- =?us-ascii?Q?xjoXbQUshtc6ZpIz4jOmN28mJ2x3Spl/LFyqoOd0R+O99R64UV5ad43cd9gT?=
- =?us-ascii?Q?H5Z00s7sNSRpOULvqklt7kpi6gdvak8kRfpayFstQZ9o4q6giA=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6761.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pWW8uD+Nq/0mOM9xuSGiJP5gE7J6DIr++V2mroKetyzHvw0xQTdMXpFKSGHP?=
- =?us-ascii?Q?zI3mmpm1lIZT35xzZRRwGMge1+pzW3N6EFCfdzZiXT/N2JKu1OYq2WKPctqK?=
- =?us-ascii?Q?jOTjju6BdTnPQc0PWKC3PEj2VZFAI10ixyP6cO1cQSq16+uA8GdTHgCZ74rc?=
- =?us-ascii?Q?daTTXdX8EpyPKqCpiDJ5FmuR3NjJt+fCMq25NloAwQ9koIarjXFV6hxovBD9?=
- =?us-ascii?Q?AibRXbgWGBMroe95jwtL1mxNbNWNfL/kVgvCpWH/mwUssg1FgirVgxsAO4ZX?=
- =?us-ascii?Q?4H6cLKljBD7bITxYFGHdWrxVT46WgVVyk69mc++nVuGuKOXlgbrIbZ9ccrj1?=
- =?us-ascii?Q?qF/43gqO8ornMi/oJgiXQPcnyRUZWr/m2iqRcwIPSKlTz+uzemjY5VQj0XhR?=
- =?us-ascii?Q?yEiVytZW8lCoBmO0ImW0wKZENchUKAtGGL5acJWLZDFL9qIxbAmdVKtLNSPy?=
- =?us-ascii?Q?Kuv7CfaiAlTKa19DeKdcQc7bzPdvbEM9IBmyqPtSKJQqbr3q1195b9vt7SWo?=
- =?us-ascii?Q?WFUi5Rz/clGBPM2XpVRczmerWsgDaktYnKP35878lyfhy6tkdmN3tqOH0pHE?=
- =?us-ascii?Q?oPs/NciDZo+HFNNWkekd4TSO/VZ/e4lZk9o3gZgf9rSB3suMge10SFdmqaNn?=
- =?us-ascii?Q?aFm09R0MpZyHgpDSxKbsWTWKbiZjHVQgreqxf9ESVuzPBuLfm2hEazB8omPF?=
- =?us-ascii?Q?hHFHpZbLNVDqs/roh9wp6Ecuk3fkhdCcsFAi+Cc1PIgr3R2Io98MmSLkMOyP?=
- =?us-ascii?Q?pECzRy404OWym8UgEVA15I4c8q1eFUfagLy0xVNPkNSiRAIQpdV+H1z9b38w?=
- =?us-ascii?Q?qChaCWm/oF/JpxhQtCYl7YoFmXFa3ADvqFnRW71SXRaPt1Jvvi9u/84s9AIv?=
- =?us-ascii?Q?xXK3dt5KCyEIK2/CTo4bFhtmqLRgMQKnCm0Qh/jL5/quMZGJWu1dDTfvSsdF?=
- =?us-ascii?Q?eUHmnP+UdFlspItp+TKN/8WyuyBc/0vsyRCUdvwzPh/Ol+vRvw7dcc3H8L1M?=
- =?us-ascii?Q?+uZhprb8XSmhloAM99nI8iYuDVrffuLnlVMmAGgHZpm3hePad9c+2lWcdYOz?=
- =?us-ascii?Q?0GigLnYYbSINUkBnZ4GSK20drco4QFfmNLkqsRRHBYgMSisjKXkPulkM7j9f?=
- =?us-ascii?Q?iTkS7m3sZNoFbZLfnIq2qMcnT78Aj6qE+jt6ZLfNJY0dr2ssMw2DICPQyaDN?=
- =?us-ascii?Q?0yQkh3uBRE5wzI83ni4XzMGXnZ3eWm4SfVSUhZN4ov7tZYSpkkRhUaOtIVug?=
- =?us-ascii?Q?0e3thLdPF30EIYxNYGl5QsG8yItzcvi6PnIfH4ABAR4jqQNK+4JWLbssgQ/Q?=
- =?us-ascii?Q?+JcsZMPhWQxuiFbWgo7nORIi87p1xVS25NTFpRvBBqrF0wJ5ExG/0enwiOi0?=
- =?us-ascii?Q?73erXy/VjQYeNGO3mtPjLST8PS3QIx75afaG2wI1jcy8cW7qOCqERmOX9fCZ?=
- =?us-ascii?Q?AatfzTBgFVTcZBBXwvZLNE4sD/AEKUJGvMPtBwmKLmap2l8r/1MvEZhxMjHN?=
- =?us-ascii?Q?uTu0IuDjjjy9GDRx2rtZbOyOENO8R7/Zm7vVa2rWVXTSwE+13t+nJ6Vvbr18?=
- =?us-ascii?Q?B/fo2b1gULP/v/xeAa29HA4ZdqbmeF9dgQvSkS51?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ MW4PR11MB7080.namprd11.prod.outlook.com (2603:10b6:303:21a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.27; Wed, 31 Jul
+ 2024 05:07:22 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::a255:8030:603f:7245]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::a255:8030:603f:7245%5]) with mapi id 15.20.7828.016; Wed, 31 Jul 2024
+ 05:07:22 +0000
+Message-ID: <3d8a5ff9-4d51-4eb9-9622-bd27b3a092de@intel.com>
+Date: Wed, 31 Jul 2024 10:37:13 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 i-g-t] tests/xe_gt_freq: Avoid RPe usage in subtests
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>
+CC: Badal Nilawar <badal.nilawar@intel.com>
+References: <20240730230123.2695162-1-vinay.belgaumkar@intel.com>
+Content-Language: en-US
+From: Riana Tauro <riana.tauro@intel.com>
+In-Reply-To: <20240730230123.2695162-1-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0105.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:af::19) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|MW4PR11MB7080:EE_
+X-MS-Office365-Filtering-Correlation-Id: e635ef0f-b03b-4ebe-8ef6-08dcb11ea8bb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cU1NVmlrOTNiK011MzMyNXNtQ1F0Y05xckZNVVhkVUZEdGwza3g0VW9lUzEz?=
+ =?utf-8?B?elB1Y2ZNblVtU0RXYzhoSUc3U1dKd0UvM3ZvSDNBSi9hR2pYWFg1SHo5ODZF?=
+ =?utf-8?B?Mm9tU3YrZmR0WFBXOSswbXQzbjZ6N1lFUUJScmJDbXNhOEQ0VGVObkFFSkk0?=
+ =?utf-8?B?UVpRM2MvRzlSdWp1MlF5YVFRK2ZjTVpibVlGY2VVT2wwc25aNHJmYk0wOVQ5?=
+ =?utf-8?B?WFRLOWN5VGduU2xqQ2Y4SUpiVGFPcGZXbW94LzMwbTZ0T1ZoZkVjc0ZwaUFG?=
+ =?utf-8?B?RFNrOEdHM1BuZmdIeDlOU3ZETnkydldjUitsK1V2V0tESE1VSkRlNElFYVp4?=
+ =?utf-8?B?R21KRER0VUQwWnBOR2JuTHhxN2UxZXdHNGM0NWYrdWY3eERnTWE2QW5EYWc0?=
+ =?utf-8?B?TmQyTWcyZ2lEcDd2Y2dNMWRXV1cvL3Z6aTF5SG9ubEtReEJCZFlydXZTRGI4?=
+ =?utf-8?B?RXRkWmowcHpIeEtoQ3R2RGJtaUJSdjRvb1lNRTNLdkFIdk1EbjF1d3d5OTRP?=
+ =?utf-8?B?VDlXc0pZZzB0MVJSSDJaNFpjOTZheXJLTVgzbXNaVmh3MEhQQ2JIdVJrVzBr?=
+ =?utf-8?B?V1g1TklId1NURyt2TVozdnk0K2t0RVVKaUY4czJVRHZ6bm1VR2prK29SOVdk?=
+ =?utf-8?B?TmoyVWxHMllUMUxJcEdkbWYxZU5Fak5Ja0d5RVhDL052SW5KMXFBZnhSdG1N?=
+ =?utf-8?B?VXdsWDcxNFFQOXpybHdTczJ0T0pBVkE1enh4M3lmYWQyMldCUzByRUNyZkV5?=
+ =?utf-8?B?OWZ1VjRRWmhqZGkrQ0l5SVVoeTJYY3N5RjVCaGhuUFdWQ2FWL1hxQVoxSk9C?=
+ =?utf-8?B?SXU3ZjR5cm5hTERENnIrQ3A4OWVKaFFRdDUzRE0valQ3Q2M3b1Vtb3BHK2J6?=
+ =?utf-8?B?NUtSNGJkVi9FNWdNZ2RtNHpSblJERm5uaHFQM1ZGMTVHcFIvYlpBc2tOSmIw?=
+ =?utf-8?B?blVZT1BTcFZoZkpQYmVxQWVrbGQyVExGeEtUOFFzNGVGbFB3UFFwWkZxVE4x?=
+ =?utf-8?B?VFRwb1NvUTVTbkkrckhQVUFtMGxIVnJFekJvQ3loVXZXc1NTcEY2MTNYeEgv?=
+ =?utf-8?B?ZGRQdGRzbmh2WjJWV3RlY2hVREZSUWJKNXdRQU1mMG1MR1VIY0dGa1BwYmp0?=
+ =?utf-8?B?V1BubEFWcDJJdk1NVitZemxTL3pyblFVNlNBb2lueWs0eEczRVh0cXB1eW9H?=
+ =?utf-8?B?ZFA2SnppMkNOWTkyMUd3dmQzY0VENDc2WSs3QVRBR0s3bUtVejNBaXBCcnFJ?=
+ =?utf-8?B?amswQms4MkdrTUFLQWUvSjRvQ0crOHBMR3ZDeWZLZ0ZsZjduQW1qN3VJWWx5?=
+ =?utf-8?B?YWJSODJEakRKQ0Y1MklBR2tNSUFGTVZPTmhtZ1pTMEpOU0NSLzV4Y2l3NTFZ?=
+ =?utf-8?B?NkF4eWg5blp4WUpKOU1WS0VDdTcxM1JTejMxeFBLZXJCbWh6dEppT1d2UVNQ?=
+ =?utf-8?B?SEpKTEVhQjRlVGZBcGowUVBSYlFUOGVlaVVHb2V4WWM4Vm51cTVtemNpSWtW?=
+ =?utf-8?B?QU1zNzluZzd0OGs2ZWpZSEo1c0o3MmhxVW1HS01sVjJGdjlHUG5idVNleS9W?=
+ =?utf-8?B?cmdNNW94NWJwVjMzWm5zQUlraE54OERUcmpnL0NnTzFFTTEwS2VQQUdvS2x5?=
+ =?utf-8?B?SldtZzZWMUJCMWozdHQrZk8vTUEwempRWEdXV2VTcnR5Z1dzRmhjS2NBK21R?=
+ =?utf-8?B?K0hFekRNaDJONGp5cmVEcndCT1NmeDVXNGd2UGhnakZCZ29qZDBxSVBHRytB?=
+ =?utf-8?Q?zh3sm+FAu3rZW1Vm5Q=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SDAwTEthakFwQ3VZdmN3alpvMVdZZ0ZsSkdGVFovTlRzMFBPblBwQkhVY2pP?=
+ =?utf-8?B?dFlkRmhXMm1RQkEwTUg5R1NxalcwYnYvVzlVK1lncnBvR2pnY0ZCK2JPaU9v?=
+ =?utf-8?B?Qzd1Q3o4bS9xcmJEdkJrdjdZU2VJR0F1MDFxL1hIUUUvaHM5TEZPSis4ZWJr?=
+ =?utf-8?B?L05leXNiNmVLWXNBUVFld0t3NVVtN3RZQ0JEM253c2JEY052SGgya01yOHlR?=
+ =?utf-8?B?QmdMd0xsMHM3VVdYRm1lczMveWsvejhVWnpBR1VoeW1uaEpXSHZyQWRtcWI3?=
+ =?utf-8?B?QWViTXVFcm9RSHdLTjc4bE9OUWQwOHgxY1NuYW44M0pXZUVWRXZxRmZEdENT?=
+ =?utf-8?B?OERqRXVhc0pxaVBGMnBaM0c1eU1WZDFYVU5IUlRwWkIwNzhhYWtHeXJqSVYx?=
+ =?utf-8?B?b1EybGdZdGRDRE9KUmJ5NDhXTUxxaElJcGhpbWVwdjJXWlpEMDJ3azVuL0JM?=
+ =?utf-8?B?SW9ja3Z4VDR2LzI0ZW5EZ1FVWmp5UUdpSitnd3J4ZnVjbFUwdXY0MHB4dENU?=
+ =?utf-8?B?ZWswQllFMVJsN1lUUWxpR0NzWjVRcEdMb05vaGF3MU8zNzJuaFpYVWhnclA3?=
+ =?utf-8?B?NlZvKzkzSFhHbVBvMXpUZDJzQVdpYmxkN2F4QVdqY0ljb2xnLytRaTlLc05x?=
+ =?utf-8?B?VjEzdkZkbGYxMjhCcHVwSWZFWS81RnhSOUtNcHl6TU4yM296V21DRHVqK3px?=
+ =?utf-8?B?d1FWUlk0ZFdYYUJvYmJra3NTRlZXUUJzeXoyNVh4S2pUeklUdTdqUHRYOUtV?=
+ =?utf-8?B?SWlyejArMUFjQ1FvSFEyWDVEMXZEVUxoWmN1REhxZjlaMEdwb2syZk52WmhI?=
+ =?utf-8?B?WUZabDl6MlRVWUtVdGlQL1NodG5pcGdTN1I1NlRtNTRhTXBxbVk0YVFMVWR6?=
+ =?utf-8?B?c1RxbnB2alFNZTdlQTl5OXFXdlExcG5JdmNxZTZHenV2Nm5SQUJFZUVoWml6?=
+ =?utf-8?B?OFplNGl6eHltNmxSSm9USWVrYm85QmNzYkRFQmVCU1hINVdhc2NlOWlWNUNP?=
+ =?utf-8?B?aXN5L29XRnNYQklxRkJyWlVET0RtSHkrK3pTclpscGYzSG1mSjFTWWxBYVhz?=
+ =?utf-8?B?elo5NmRTMlVoZDZDTENlbHZzNjZiam54bFVwd3E4QVhmdndkMzBJZExja1gx?=
+ =?utf-8?B?M3dmTUJGNE83OXRWMG1TMDhhNlRMaHVKTkJQY3lUNEcreGF1NEJaeGgrbXp4?=
+ =?utf-8?B?ZnBGdlRobnNwdDhpRkdvYUsxVnRUV0xZc1FwejlNZG9vaW1oUUljTUJTckQ3?=
+ =?utf-8?B?UVdNMVRRcDREakx2dmdxQzl5SE5hYkN2TFQ5QzRad2x1NmRXUkkyN2ZNTkxo?=
+ =?utf-8?B?UGY1R0V2NFM2ZU5JZUpFWWpEaTBWN2hrYWJDTExOc1FNRG42SWFFRlJnM3cx?=
+ =?utf-8?B?bDhjMnR4VENoaUZKd1liRmZCOVg4R21QQ0RIa3RjRldUUnZZYnF3QjdoYlNY?=
+ =?utf-8?B?VUg2bUxsS2hzVkFsbUVGNUR4Qzdyb0dDbDM5ZDhOOGs2U3d1a3Y0Tms1SUlk?=
+ =?utf-8?B?QmdVM2JwNEpGV2Zwa1JTZ3h4dUlaQVhXbFkzem9WazdWd3lXQmx1Z3cyTDh1?=
+ =?utf-8?B?aTBQN24xY3hiTTd5bTh3TUZJYytTVnAzSEZRZXB2Q3hSNUh0TzMvdUJmRWZV?=
+ =?utf-8?B?eWlIc2t6UmMxcWNmbFR0cER5SFdPVG5NSTFBeG5BeExoMmI1TnJMRzY4MFA4?=
+ =?utf-8?B?dGtUdGJuQTkxWW9oeHIwRzJKTTEvaCszZ3lsY3pzVEFEakZnR0hNQm5zbXB4?=
+ =?utf-8?B?RTdNUVJaZFNiT3dObHNFUGowYTg0MjBpd2ZjdnhBMzJ0dHNXaWY1MU9Zb1NJ?=
+ =?utf-8?B?Mlhwb21CUWoxM0UxOGlDTEFxeEN6THZ4SFBTUG9BQUw3ZGNSaW1pWTRRSkJN?=
+ =?utf-8?B?QjJxTTF0SGtjRURTU3FnK1crOUlUR1FhWStRNXJhRHdRTTFDZXZKblNWYzFz?=
+ =?utf-8?B?TEFhRURiYS9paC9ZU1g1MGozNWhjMXNkbTlMUFEvQUJDQXI4RThES1NsY0pB?=
+ =?utf-8?B?bm13bmxpTHhnUXlJTC9tSnMwWHF4aUlSVXpibm5GZ0doMHo1VDFNUFJCWHVQ?=
+ =?utf-8?B?N1BQRFo4ZFRScmdpZ2N4bm16ZHhDd2VxT3EwVzhyb203MW9jM0VDemxjdFpw?=
+ =?utf-8?Q?VJp91QHVSX87/Q45dULap0oyr?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e635ef0f-b03b-4ebe-8ef6-08dcb11ea8bb
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6761.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4e2181b-bb53-42dc-0ca4-08dcb11b5826
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2024 04:43:38.0719 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZoEr/2RRiBsHprKf3z6BMu3vLf9crpr3k3L5aU3xFAkBQIPYl5oAQ0qiKTzCPjHzHW6mAE1LVb0eKBYIdZa4IQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7316
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2024 05:07:22.1053 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1HGVvR1e6Nn1N0DE2+z1Y0h5jb+UkPzwCxG6JkWHAe3xRtnKCxecW+Pmj69aaqSimel/46R8IB1lAb50yTCpew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7080
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -183,150 +196,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Vinay
 
-
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of An=
-kit
-> Nautiyal
-> Sent: Thursday, July 18, 2024 1:48 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Lisovskiy, Stanislav <stanislav.lisovskiy@intel.com>; Saarinen, Jani
-> <jani.saarinen@intel.com>; ville.syrjala@linux.intel.com
-> Subject: [PATCH 03/12] drm/i915/display: Use joined pipes in
-> intel_mode_valid_max_plane_size
->=20
-> In preparation of ultrajoiner, use number of joined pipes in the
-> intel_mode_valid_max_plane_size helper, instead of joiner flag.
->=20
-
-Other than the naming convention changes mentioned in previous patches
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On 7/31/2024 4:31 AM, Vinay Belgaumkar wrote:
+> We are seeing several instances where the RPe, which can be altered by
+> pcode dynamically, is causing subtests to fail randomly. Instead of relying
+> on it, we can use a mid frequency value for these subtests and avoid these
+> failures.
+> 
+> v2: Fix bug in the tolerance function. Remove rpe usage from freq_range*
+> as well (Badal). Fix test documentation to reflect change (Riana).
+> 
+> v3: Actual frequency cannot be guaranteed to follow the requested value
+> 
+> v4: Handle cases where RPe can be greater than min/cur freq.
+> 
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2200
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2196
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2262
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2256
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2203
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2412
+Closes?
+> 
+> Cc: Riana Tauro <riana.tauro@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
-> drivers/gpu/drm/i915/display/intel_display.h | 3 ++-
->  drivers/gpu/drm/i915/display/intel_dp.c      | 2 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 2 +-
->  drivers/gpu/drm/i915/display/intel_dsi.c     | 2 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c    | 2 +-
->  6 files changed, 8 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index eab07a5fa377..26e4b0c2e9f7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8081,7 +8081,7 @@ enum drm_mode_status
-> intel_cpu_transcoder_mode_valid(struct drm_i915_private *de  enum
-> drm_mode_status  intel_mode_valid_max_plane_size(struct drm_i915_private
-> *dev_priv,
->  				const struct drm_display_mode *mode,
-> -				bool joiner)
-> +				enum intel_joiner_pipe_count joined_pipes)
->  {
->  	int plane_width_max, plane_height_max;
->=20
-> @@ -8098,7 +8098,7 @@ intel_mode_valid_max_plane_size(struct
-> drm_i915_private *dev_priv,
->  	 * too big for that.
->  	 */
->  	if (DISPLAY_VER(dev_priv) >=3D 11) {
-> -		plane_width_max =3D 5120 << joiner;
-> +		plane_width_max =3D 5120 << joined_pipes / 2;
->  		plane_height_max =3D 4320;
->  	} else {
->  		plane_width_max =3D 5120;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
-> b/drivers/gpu/drm/i915/display/intel_display.h
-> index 0aecc3330a53..bf665f947b97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -31,6 +31,7 @@
->  #include "intel_display_limits.h"
->=20
->  enum drm_scaling_filter;
-> +enum intel_joiner_pipe_count;
->  struct dpll;
->  struct drm_atomic_state;
->  struct drm_connector;
-> @@ -415,7 +416,7 @@ u32 intel_plane_fb_max_stride(struct
-> drm_i915_private *dev_priv,  enum drm_mode_status
-> intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
->  				const struct drm_display_mode *mode,
-> -				bool joiner);
-> +				enum intel_joiner_pipe_count joined_pipes);
->  enum drm_mode_status
->  intel_cpu_transcoder_mode_valid(struct drm_i915_private *i915,
->  				const struct drm_display_mode *mode); diff --
-> git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7d66a969c461..320d8b6d1bce 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1295,7 +1295,7 @@ intel_dp_mode_valid(struct drm_connector
-> *_connector,
->  	if (status !=3D MODE_OK)
->  		return status;
->=20
-> -	return intel_mode_valid_max_plane_size(dev_priv, mode, joiner);
-> +	return intel_mode_valid_max_plane_size(dev_priv, mode,
-> joined_pipes);
->  }
->=20
->  bool intel_dp_source_supports_tps3(struct drm_i915_private *i915) diff -=
--git
-> a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index e5797ee13667..3f45ac7ca4d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1491,7 +1491,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector
-> *connector,
->  		return 0;
->  	}
->=20
-> -	*status =3D intel_mode_valid_max_plane_size(dev_priv, mode, joiner);
-> +	*status =3D intel_mode_valid_max_plane_size(dev_priv, mode,
-> +joined_pipes);
->  	return 0;
->  }
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c
-> b/drivers/gpu/drm/i915/display/intel_dsi.c
-> index bd5888ce4852..acc17546215f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi.c
-> @@ -76,7 +76,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct
-> drm_connector *connector,
->  	if (fixed_mode->clock > max_dotclk)
->  		return MODE_CLOCK_HIGH;
->=20
-> -	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
-> +	return intel_mode_valid_max_plane_size(dev_priv, mode,
-> +INTEL_PIPE_JOINER_NONE);
->  }
->=20
->  struct intel_dsi_host *intel_dsi_host_init(struct intel_dsi *intel_dsi, =
-diff --git
-> a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 19498ee455fa..5aa4a9f0c470 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2048,7 +2048,7 @@ intel_hdmi_mode_valid(struct drm_connector
-> *connector,
->  			return status;
->  	}
->=20
-> -	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
-> +	return intel_mode_valid_max_plane_size(dev_priv, mode,
-> +INTEL_PIPE_JOINER_NONE);
->  }
->=20
->  bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
-> --
-> 2.45.2
+>   tests/intel/xe_gt_freq.c | 57 ++++++++++++++++++++++++++++------------
+>   1 file changed, 40 insertions(+), 17 deletions(-)
+> 
+> diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
+> index 93ebb5ed0..c9d59508b 100644
+> --- a/tests/intel/xe_gt_freq.c
+> +++ b/tests/intel/xe_gt_freq.c
+> @@ -26,6 +26,9 @@
+>   #include <sys/time.h>
+>   
+>   #define MAX_N_EXEC_QUEUES 16
+> +#define GT_FREQUENCY_MULTIPLIER	50
+> +#define GT_FREQUENCY_SCALER	3
+> +#define FREQ_UNIT_MHZ	 DIV_ROUND_CLOSEST(GT_FREQUENCY_MULTIPLIER, GT_FREQUENCY_SCALER)
+>   
+>   /*
+>    * Too many intermediate components and steps before freq is adjusted
+> @@ -70,9 +73,14 @@ static uint32_t get_freq(int fd, int gt_id, const char *freq_name)
+>   	return freq;
+>   }
+>   
+> -static uint32_t rpe(int fd, int gt_id)
+> +static bool within_expected_range(uint32_t freq, uint32_t val)
+>   {
+> -	return get_freq(fd, gt_id, "rpe");
+> +	/*
+> +	 * GT Frequencies are requested at units of 16.66 Mhz, so allow
+> +	 * that tolerance.
+> +	 */
+> +	return (freq <= val + FREQ_UNIT_MHZ) &&
+> +		(freq >= val - FREQ_UNIT_MHZ);
+>   }
+>   
+>   static uint32_t get_throttle(int fd, int gt_id, const char *throttle_file)
+> @@ -128,6 +136,8 @@ static void test_freq_basic_api(int fd, int gt_id)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+>   	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpmid = (rp0 + rpn) / 2;
+> +	uint32_t min_freq, max_freq;
+>   
+>   	/*
+>   	 * Negative bound tests
+> @@ -142,16 +152,19 @@ static void test_freq_basic_api(int fd, int gt_id)
+>   	/* Assert min requests are respected from rp0 to rpn */
+>   	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "min") == rp0);
+> -	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+> -	igt_assert(get_freq(fd, gt_id, "min") == rpe(fd, gt_id));
+> +	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
+> +	min_freq = get_freq(fd, gt_id, "min");
+> +	/* SLPC can set min higher than rpmid - as it follows RPe */
+> +	igt_assert(min_freq >= (rpmid - FREQ_UNIT_MHZ));
+>   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "min") == rpn);
+>   
+>   	/* Assert max requests are respected from rpn to rp0 */
+>   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "max") == rpn);
+> -	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+> -	igt_assert(get_freq(fd, gt_id, "max") == rpe(fd, gt_id));
+> +	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
+> +	max_freq = get_freq(fd, gt_id, "max");
+> +	igt_assert(within_expected_range(max_freq, rpmid));
+>   	igt_assert(set_freq(fd, gt_id, "max", rp0) > 0);
+>   	igt_assert(get_freq(fd, gt_id, "max") == rp0);
+>   }
+> @@ -168,13 +181,16 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+>   	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpmid = (rp0 + rpn) / 2;
+> +	uint32_t cur_freq, act_freq;
+>   
+>   	igt_debug("Starting testing fixed request\n");
+>   
+>   	/*
+>   	 * For Fixed freq we need to set both min and max to the desired value
+>   	 * Then we check if hardware is actually operating at the desired freq
+> -	 * And let's do this for all the 3 known Render Performance (RP) values.
+> +	 * And let's do this for all the 2 known Render Performance (RP) values
+> +	 * RP0 and RPn and something in between.
+>   	 */
+>   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+>   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+> @@ -190,17 +206,20 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   		igt_assert(get_freq(fd, gt_id, "act") == rpn);
+>   	}
+>   
+> -	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+> -	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
+>   	usleep(ACT_FREQ_LATENCY_US);
+> -	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
+> +	cur_freq = get_freq(fd, gt_id, "cur");
+> +	/* If rpmid is around RPe, we could see SLPC follow it */
+> +	igt_assert(cur_freq >= (rpmid - FREQ_UNIT_MHZ));
+>   
+>   	if (gt_idle) {
+>   		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
+>   			     "GT %d should be in C6\n", gt_id);
+>   		igt_assert(get_freq(fd, gt_id, "act") == 0);
+>   	} else {
+> -		igt_assert(get_freq(fd, gt_id, "act") == rpe(fd, gt_id));
+> +		act_freq = get_freq(fd, gt_id, "act");
+> +		igt_assert(act_freq <= cur_freq + FREQ_UNIT_MHZ);
+Can actual frequency be below the expected range of requested?
 
+Thanks,
+Riana
+>   	}
+>   
+>   	igt_assert(set_freq(fd, gt_id, "min", rp0) > 0);
+> @@ -232,15 +251,17 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> +	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpmid = (rp0 + rpn) / 2;
+>   	uint32_t cur, act;
+>   
+>   	igt_debug("Starting testing range request\n");
+>   
+>   	igt_assert(set_freq(fd, gt_id, "min", rpn) > 0);
+> -	igt_assert(set_freq(fd, gt_id, "max", rpe(fd, gt_id)) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "max", rpmid) > 0);
+>   	usleep(ACT_FREQ_LATENCY_US);
+>   	cur = get_freq(fd, gt_id, "cur");
+> -	igt_assert(rpn <= cur && cur <= rpe(fd, gt_id));
+> +	igt_assert(rpn <= cur && cur <= rpmid + FREQ_UNIT_MHZ);
+>   
+>   	if (gt_idle) {
+>   		igt_assert_f(igt_wait(xe_is_gt_in_c6(fd, gt_id), 1000, 10),
+> @@ -248,7 +269,7 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>   		igt_assert(get_freq(fd, gt_id, "act") == 0);
+>   	} else {
+>   		act = get_freq(fd, gt_id, "act");
+> -		igt_assert(rpn <= act && act <= rpe(fd, gt_id));
+> +		igt_assert((rpn <= act) && (act <= cur + FREQ_UNIT_MHZ));
+>   	}
+>   
+>   	igt_debug("Finished testing range request\n");
+> @@ -262,17 +283,19 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>   static void test_freq_low_max(int fd, int gt_id)
+>   {
+>   	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> +	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpmid = (rp0 + rpn) / 2;
+>   
+>   	/*
+>   	 *  When max request < min request, max is ignored and min works like
+>   	 * a fixed one. Let's assert this assumption
+>   	 */
+> -	igt_assert(set_freq(fd, gt_id, "min", rpe(fd, gt_id)) > 0);
+> +	igt_assert(set_freq(fd, gt_id, "min", rpmid) > 0);
+>   	igt_assert(set_freq(fd, gt_id, "max", rpn) > 0);
+>   	usleep(ACT_FREQ_LATENCY_US);
+>   
+> -	/* Refresh value of rpe, pcode could have adjusted it */
+> -	igt_assert(get_freq(fd, gt_id, "cur") == rpe(fd, gt_id));
+> +	/* Cur freq will follow RPe, which could be higher than min freq */
+> +	igt_assert(get_freq(fd, gt_id, "cur") >= (rpmid - FREQ_UNIT_MHZ));
+>   }
+>   
+>   /**
