@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E71944D59
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Aug 2024 15:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DAB0944F93
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Aug 2024 17:46:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC65710E974;
-	Thu,  1 Aug 2024 13:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A39CD10E8D4;
+	Thu,  1 Aug 2024 15:46:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="beq7y3oh";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D75410E924;
- Thu,  1 Aug 2024 13:42:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3538672588796302407=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F59810E8D4;
+ Thu,  1 Aug 2024 15:46:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722527176; x=1754063176;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ecXZBM9gQUmXIk0kNdfTlPVx3YXOkd/Uhs4jiZGk43E=;
+ b=beq7y3ohT5G8UPcJr88Aif6QrFIZKwOLZvUh9rVNVXzb3w9EA/P9k0E1
+ buBPO/UP2LmftzXBYTKD6GpufrSh4CMb1TlLzFAtIUNkpwPEE+MpDO19b
+ /GAQu0H5XTRgb9mCjnHQAbIzhNoCA3hGsV4E20nWw6XgNoFWIp1MTshey
+ 0mRABxCtK7HGm8dL+5/kiVCuKsHSPstJf+kUxhQlWgzKrcBnBYSdjqKj+
+ x64hB8CF+MHl70lJdFZrJbwxd2MubukYlyFOjQTVxRU2Ob8SsjN4sC7L6
+ RNz1Mh9M6tDilH1PkznxldfAPmJBw++KVgFGQe7jHdvmpeXVn5tJg3OWv A==;
+X-CSE-ConnectionGUID: 8W+3ozduRDOVLoazph0ugA==
+X-CSE-MsgGUID: 8il40EfGRb6njB22eomhmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11151"; a="20177029"
+X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="20177029"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2024 08:46:16 -0700
+X-CSE-ConnectionGUID: 867iRaxcTJibeTnlXnTLow==
+X-CSE-MsgGUID: ISht0V63QVu+dtJTyUzb2Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,255,1716274800"; d="scan'208";a="55168231"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.23])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2024 08:46:13 -0700
+From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Subject: [PATCH] drm/i915/gt: Delete sysfs entries for engines on driver unload
+Date: Thu,  1 Aug 2024 17:40:48 +0200
+Message-ID: <20240801154047.115176-2-krzysztof.niemiec@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_correct?=
- =?utf-8?q?_dual_pps_handling_for_MTL=5FPCH+?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 01 Aug 2024 13:42:06 -0000
-Message-ID: <172251972663.488076.7162899933138736723@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240801111141.574854-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20240801111141.574854-1-dnyaneshwar.bhadane@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,142 +68,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3538672588796302407==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+While the sysfs entries for engines are added in intel_engines_init()
+during driver load, the corresponding function intel_engines_release()
+does not correctly get rid of them. This can lead to a UAF if, after
+failed initialization (for example when gt is set wedged on init), we
+try to access the engines.
 
-== Series Details ==
+Empty the engines llist in intel_engines_release().
 
-Series: drm/i915/display: correct dual pps handling for MTL_PCH+
-URL   : https://patchwork.freedesktop.org/series/136796/
-State : success
+Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 3b740ca25000..4d30a86016f2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -693,6 +693,8 @@ void intel_engines_release(struct intel_gt *gt)
+ 
+ 		memset(&engine->reset, 0, sizeof(engine->reset));
+ 	}
++
++	llist_del_all(&gt->i915->uabi_engines_llist);
+ }
+ 
+ void intel_engine_free_request_pool(struct intel_engine_cs *engine)
+-- 
+2.45.2
 
-CI Bug Log - changes from CI_DRM_15168 -> Patchwork_136796v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-glk-j4005 fi-cfl-8109u fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136796v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gem_migrate:
-    - bat-arlh-2:         [PASS][1] -> [INCOMPLETE][2] ([i915#11598])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15168/bat-arlh-2/igt@i915_selftest@live@gem_migrate.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/bat-arlh-2/igt@i915_selftest@live@gem_migrate.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-twl-2:          [PASS][3] -> [INCOMPLETE][4] ([i915#9413])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15168/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
-
-  
-  [i915#11598]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11598
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15168 -> Patchwork_136796v1
-
-  CI-20190529: 20190529
-  CI_DRM_15168: e6b1e3660d0168d9860e7cef487aba2bc21611bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7950: 7950
-  Patchwork_136796v1: e6b1e3660d0168d9860e7cef487aba2bc21611bd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/index.html
-
---===============3538672588796302407==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: correct dual pps handling for MTL_PCH+</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136796/">https://patchwork.freedesktop.org/series/136796/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15168 -&gt; Patchwork_136796v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-glk-j4005 fi-cfl-8109u fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136796v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gem_migrate:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15168/bat-arlh-2/igt@i915_selftest@live@gem_migrate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/bat-arlh-2/igt@i915_selftest@live@gem_migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11598">i915#11598</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15168/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136796v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15168 -&gt; Patchwork_136796v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15168: e6b1e3660d0168d9860e7cef487aba2bc21611bd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7950: 7950<br />
-  Patchwork_136796v1: e6b1e3660d0168d9860e7cef487aba2bc21611bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3538672588796302407==--
