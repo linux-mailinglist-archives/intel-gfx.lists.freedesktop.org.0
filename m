@@ -2,59 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8F89446F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Aug 2024 10:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 613F0944745
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Aug 2024 11:01:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9516910E8C0;
-	Thu,  1 Aug 2024 08:49:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0161610E1E7;
+	Thu,  1 Aug 2024 09:01:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GaPI3YG1";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TJMVW3q+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79CEE10E8C0
- for <intel-gfx@lists.freedesktop.org>; Thu,  1 Aug 2024 08:49:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722502146; x=1754038146;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=LnmEj4God0MuxuGOyigRkNxwW6zblK5NpANKdlzua5I=;
- b=GaPI3YG1kf8VN0Xn0mH4+20YJslvkIN60Xrz2r/SC/fQ+DRfAbjUZTvC
- JWsEXNlA0mHo34irNSlQO/j+pC2gOGUVZN9Igj5CVfaOwzRvPRMePEh6P
- PN8nIMPLoyUCtyu5Iq5EqLvIkmqfTKIDODi4roXqDg+itrvsfl/QWsK/P
- 8wL5D99rgnlKfRF2Dnv1t4osQY/SVfie+QifpEr/xB7g2RfKdHoHeE3Wn
- Pi1BUT54ELmzUtpgRxG6vCXqtodspzRMsXn1e5OEHBPTRdXmEJO1WRbDR
- Hd28WVIK9xPodb7HXAZfqQF5THyq53VhVzxGl7DngKp4WEYwzo3bq0Jmf w==;
-X-CSE-ConnectionGUID: CQd5MtwPTZaVl+dztzSnbw==
-X-CSE-MsgGUID: 5Ady/VGhQMy9qAcMbPAswg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11150"; a="24231158"
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="24231158"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2024 01:49:05 -0700
-X-CSE-ConnectionGUID: /X1P4pgzS0mVlRT/G6dx3Q==
-X-CSE-MsgGUID: MWo5trHiSy2Xogsly/SbgQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,254,1716274800"; d="scan'208";a="54880021"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.228])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2024 01:49:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Saarinen, Jani" <jani.saarinen@intel.com>, "Coelho, Luciano"
- <luciano.coelho@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Subject: RE: [core-for-CI PATCH] scsi: sd: Move sd_read_cpr() out of the
- q->limits_lock region
-In-Reply-To: <SJ0PR11MB56649C5D570B7F7E07F74B67E0B22@SJ0PR11MB5664.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240801082257.506006-1-luciano.coelho@intel.com>
- <SJ0PR11MB56649C5D570B7F7E07F74B67E0B22@SJ0PR11MB5664.namprd11.prod.outlook.com>
-Date: Thu, 01 Aug 2024 11:48:59 +0300
-Message-ID: <87ikwkwrus.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FB7F10E1E7
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Aug 2024 09:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1722502865;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=VVy04qlicabYGwO9E78vZLpSrWOCtQ9jEqVfKoqcSf8=;
+ b=TJMVW3q+DTu1phb2I+K7WltLcD/Eav1B8jx/ZPh3cRrscAzyDSEBixm8qljTaB3UavNY62
+ 7wsb3haQWie5obM3g6ypWQHe2dxsJM3qcW4kf0nx5uHALN9wogmYYEbzUeyuF8c3wPq86n
+ KkgbsqWIU3nL/UA1h4+pBb3hNnt6dPQ=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-79-IV7KLzE3PamNjhpprMQCdw-1; Thu, 01 Aug 2024 05:01:02 -0400
+X-MC-Unique: IV7KLzE3PamNjhpprMQCdw-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-428076fef5dso42029165e9.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 01 Aug 2024 02:01:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1722502861; x=1723107661;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=VVy04qlicabYGwO9E78vZLpSrWOCtQ9jEqVfKoqcSf8=;
+ b=aOP6bBa7lhSaDrXiQPrg99BIHChWfeQCaJUprvhso1jtEzTbNib0/thVTwMldcF7dk
+ /QK9UxwHzQLxYokfHUFTx9EAwDyejKjTTlNYnoIeQPnoTB98RY8KzFyOVPVWWXN69AXo
+ i6Y6mZEUVMij+qyeSJLQR9iHtf5w9zPjzTSG7yvoUfIMuLw+SHaU4Vw1XhFKBsxdt5M4
+ GS169UOotFLlszEuKP9TkLwvMUOXgLnAUJo8lxtjkGo2EI1SfV3XN6nyB64iOjWejP43
+ gKVm9lDObc6lfCUMjeLw8xmflfkW7CeClEfKBEhDpMyB98FoCs5c2Z2HWYNKxAR/JnXs
+ ornA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWa0pSIZqiUjDpQN/DuFQxRDIKj0AT5IcNLkam0C4fKa6Zxzekl9I3NtcaZ8dXNUtgbujwDT83MUutUPJYmMbwDOIyVLHk60mXNBXqcRU1K
+X-Gm-Message-State: AOJu0YwNKdr6B/BQ5OdIdSJK3gSaWhOEcoqCbADMo2YUub0MKU9oEinK
+ GfXpf/G/5pqEDl5FjeC0va0Md+GTEXe2ALxKScbEP0UaWRf8HMU1UplBKH/15mJ9J7UWyshDOM5
+ Ga1bVXi8OLeEsmv2varD+Hs3aZy9PrPngeFENldG+ynaz/0a/zyLQdqsvcawBVhzUOA==
+X-Received: by 2002:a05:600c:4514:b0:428:1c91:bddd with SMTP id
+ 5b1f17b1804b1-428a9bdce8dmr10882215e9.12.1722502861298; 
+ Thu, 01 Aug 2024 02:01:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFOF+RQH/Yfx80fHFFG578G7SW7PC5bILIQjj9sqIa5NcOIdEEPqygjeh3rBRIU/UHPSL0POw==
+X-Received: by 2002:a05:600c:4514:b0:428:1c91:bddd with SMTP id
+ 5b1f17b1804b1-428a9bdce8dmr10882035e9.12.1722502860699; 
+ Thu, 01 Aug 2024 02:01:00 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4282baa9071sm49287965e9.13.2024.08.01.02.01.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 01 Aug 2024 02:01:00 -0700 (PDT)
+Date: Thu, 1 Aug 2024 11:00:59 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20240801-interesting-antique-bat-2fe4c0@houat>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="4x23wimwhbqfwbel"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,96 +96,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 01 Aug 2024, "Saarinen, Jani" <jani.saarinen@intel.com> wrote:
-> These is also this made by Luca https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11813
->
-> @Nikula, Jani , ok to merge. Already tested at trybot https://patchwork.freedesktop.org/series/136776/
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+--4x23wimwhbqfwbel
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The full IGT results aren't in for the trybot submission though.
+Hi Dave, Daniel,
 
->
->> -----Original Message-----
->> From: Coelho, Luciano <luciano.coelho@intel.com>
->> Sent: Thursday, 1 August 2024 11.23
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Saarinen, Jani <jani.saarinen@intel.com>
->> Subject: [core-for-CI PATCH] scsi: sd: Move sd_read_cpr() out of the q-
->> >limits_lock region
->>
->> From: Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>
->>
->> Commit 804e498e0496 ("sd: convert to the atomic queue limits API")
->> introduced pairs of function calls to queue_limits_start_update() and
->> queue_limits_commit_update(). These two functions lock and unlock
->> q->limits_lock. In sd_revalidate_disk(), sd_read_cpr() is called after
->> queue_limits_start_update() call and before
->> queue_limits_commit_update() call. sd_read_cpr() locks q->sysfs_dir_lock
->> and &q->sysfs_lock. Then new lock dependencies were created between
->> q->limits_lock, q->sysfs_dir_lock and q->sysfs_lock, as follows:
->>
->> sd_revalidate_disk
->>   queue_limits_start_update
->>     mutex_lock(&q->limits_lock)
->>   sd_read_cpr
->>     disk_set_independent_access_ranges
->>       mutex_lock(&q->sysfs_dir_lock)
->>       mutex_lock(&q->sysfs_lock)
->>       mutex_unlock(&q->sysfs_lock)
->>       mutex_unlock(&q->sysfs_dir_lock)
->>   queue_limits_commit_update
->>     mutex_unlock(&q->limits_lock)
->>
->> However, the three locks already had reversed dependencies in other places.
->> Then the new dependencies triggered the lockdep WARN "possible circular
->> locking dependency detected" [1]. This WARN was observed by running the
->> blktests test case srp/002.
->>
->> To avoid the WARN, move the sd_read_cpr() call in sd_revalidate_disk() after
->> the queue_limits_commit_update() call. In other words, move the
->> sd_read_cpr() call out of the q->limits_lock region.
->>
->> [1] https://lore.kernel.org/linux-
->> scsi/vlmv53ni3ltwxplig5qnw4xsl2h6ccxijfbqzekx76vxoim5a5@dekv7q3es3tx/
->>
->> Fixes: 804e498e0496 ("sd: convert to the atomic queue limits API")
->> Signed-off-by: Shin'ichiro Kawasaki <shinichiro.kawasaki@wdc.com>
->> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
->> ---
->>  drivers/scsi/sd.c | 9 ++++++++-
->>  1 file changed, 8 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/scsi/sd.c b/drivers/scsi/sd.c index
->> adeaa8ab9951..08cbe3815006 100644
->> --- a/drivers/scsi/sd.c
->> +++ b/drivers/scsi/sd.c
->> @@ -3753,7 +3753,6 @@ static int sd_revalidate_disk(struct gendisk *disk)
->>                       sd_read_block_limits_ext(sdkp);
->>                       sd_read_block_characteristics(sdkp, &lim);
->>                       sd_zbc_read_zones(sdkp, &lim, buffer);
->> -                     sd_read_cpr(sdkp);
->>               }
->>
->>               sd_print_capacity(sdkp, old_capacity); @@ -3808,6 +3807,14
->> @@ static int sd_revalidate_disk(struct gendisk *disk)
->>       if (err)
->>               return err;
->>
->> +     /*
->> +      * Query concurrent positioning ranges after
->> +      * queue_limits_commit_update() unlocked q->limits_lock to avoid
->> +      * deadlock with q->sysfs_dir_lock and q->sysfs_lock.
->> +      */
->> +     if (sdkp->media_present && scsi_device_supports_vpd(sdp))
->> +             sd_read_cpr(sdkp);
->> +
->>       /*
->>        * For a zoned drive, revalidating the zones can be done only once
->>        * the gendisk capacity is set. So if this fails, set back the gendisk
->> --
->> 2.39.2
->
+Here's this week drm-misc-fixes PR
 
--- 
-Jani Nikula, Intel
+Maxime
+
+drm-misc-fixes-2024-08-01:
+A couple drm_panic fixes, several v3d fixes to increase the new timestamp A=
+PI
+safety, several fixes for vmwgfx for various modesetting issues, PM fixes
+for ast, async flips improvements and two fixes for nouveau to fix
+resource refcounting and buffer placement.
+The following changes since commit 8400291e289ee6b2bf9779ff1c83a291501f017b:
+
+  Linux 6.11-rc1 (2024-07-28 14:19:55 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
+24-08-01
+
+for you to fetch changes up to 9c685f61722d30a22d55bb8a48f7a48bb2e19bcc:
+
+  nouveau: set placement to original placement on uvmm validate. (2024-08-0=
+1 01:22:12 +0200)
+
+----------------------------------------------------------------
+A couple drm_panic fixes, several v3d fixes to increase the new timestamp A=
+PI
+safety, several fixes for vmwgfx for various modesetting issues, PM fixes
+for ast, async flips improvements and two fixes for nouveau to fix
+resource refcounting and buffer placement.
+
+----------------------------------------------------------------
+Andr=E9 Almeida (2):
+      drm/atomic: Allow userspace to use explicit sync with atomic async fl=
+ips
+      drm/atomic: Allow userspace to use damage clips with async flips
+
+Dan Carpenter (1):
+      drm/client: Fix error code in drm_client_buffer_vmap_local()
+
+Danilo Krummrich (2):
+      drm/gpuvm: fix missing dependency to DRM_EXEC
+      drm/nouveau: prime: fix refcount underflow
+
+Dave Airlie (1):
+      nouveau: set placement to original placement on uvmm validate.
+
+Dmitry Osipenko (1):
+      drm/virtio: Fix type of dma-fence context variable
+
+Ian Forbes (2):
+      drm/vmwgfx: Fix overlay when using Screen Targets
+      drm/vmwgfx: Trigger a modeset when the screen moves
+
+Jammy Huang (1):
+      drm/ast: Fix black screen after resume
+
+Maxime Ripard (2):
+      Merge drm/drm-fixes into drm-misc-fixes
+      Merge drm-misc/drm-misc-next-fixes into drm-misc-fixes
+
+Philip Mueller (1):
+      drm: panel-orientation-quirks: Add quirk for OrangePi Neo
+
+Qiuxu Zhuo (1):
+      drm/fb-helper: Don't schedule_work() to flush frame buffer during pan=
+ic()
+
+Thomas Zimmermann (1):
+      drm/ast: astdp: Wake up during connector status detection
+
+Tvrtko Ursulin (5):
+      drm/v3d: Prevent out of bounds access in performance query extensions
+      drm/v3d: Fix potential memory leak in the timestamp extension
+      drm/v3d: Fix potential memory leak in the performance extension
+      drm/v3d: Validate passed in drm syncobj handles in the timestamp exte=
+nsion
+      drm/v3d: Validate passed in drm syncobj handles in the performance ex=
+tension
+
+Zack Rusin (4):
+      drm/vmwgfx: Fix a deadlock in dma buf fence polling
+      drm/vmwgfx: Make sure the screen surface is ref counted
+      drm/vmwgfx: Fix handling of dumb buffers
+      drm/vmwgfx: Add basic support for external buffers
+
+Zenghui Yu (1):
+      kselftests: dmabuf-heaps: Ensure the driver name is null-terminated
+
+ drivers/gpu/drm/Kconfig                            |   1 +
+ drivers/gpu/drm/ast/ast_dp.c                       |   7 +
+ drivers/gpu/drm/ast/ast_drv.c                      |   5 +
+ drivers/gpu/drm/ast/ast_drv.h                      |   1 +
+ drivers/gpu/drm/ast/ast_mode.c                     |  29 +-
+ drivers/gpu/drm/drm_atomic_uapi.c                  |   5 +-
+ drivers/gpu/drm/drm_client.c                       |   2 +-
+ drivers/gpu/drm/drm_fb_helper.c                    |  11 +
+ drivers/gpu/drm/drm_panel_orientation_quirks.c     |   6 +
+ drivers/gpu/drm/nouveau/nouveau_prime.c            |   3 +-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c             |   1 +
+ drivers/gpu/drm/v3d/v3d_drv.h                      |   4 +
+ drivers/gpu/drm/v3d/v3d_sched.c                    |  44 +-
+ drivers/gpu/drm/v3d/v3d_submit.c                   | 121 +++--
+ drivers/gpu/drm/virtio/virtgpu_submit.c            |   2 +-
+ drivers/gpu/drm/vmwgfx/vmw_surface_cache.h         |  10 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 | 127 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_bo.h                 |  15 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |  40 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c              |  17 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |  62 ++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                | 504 +++++++++--------=
+----
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |  17 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |  14 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_overlay.c            |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_prime.c              |  32 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_resource.c           |  27 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |  33 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               | 174 ++++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_surface.c            | 280 +++++++++++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c               |  40 +-
+ tools/testing/selftests/dmabuf-heaps/dmabuf-heap.c |   4 +-
+ 32 files changed, 1051 insertions(+), 589 deletions(-)
+
+--4x23wimwhbqfwbel
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZqtOywAKCRAnX84Zoj2+
+dkHiAYCxDpXhwry8GZfYbZBBrEyTlauUpCxBdpk+tJUjtnvbxUFo4LHyqcInQKqA
+jaT0Bq4BfRuplso65coad1/JlMMOyu5PKL2ekOdaNPr8Cjj3E1l6j0hw+krUk0w9
+Rf1rlCbNAA==
+=Z73m
+-----END PGP SIGNATURE-----
+
+--4x23wimwhbqfwbel--
+
