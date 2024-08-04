@@ -2,70 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179FC947E61
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 17:41:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71FB8947E5C
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 17:41:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5962B10E227;
-	Mon,  5 Aug 2024 15:41:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B49F910E16D;
+	Mon,  5 Aug 2024 15:41:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=toblux-com.20230601.gappssmtp.com header.i=@toblux-com.20230601.gappssmtp.com header.b="DWPPxiAD";
+	dkim=fail reason="signature verification failed" (4096-bit key; unprotected) header.d=davidgow.net header.i=@davidgow.net header.b="ASNlvdi/";
+	dkim=fail reason="signature verification failed" (4096-bit key) header.d=davidgow.net header.i=@davidgow.net header.b="QIGm0K3O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
- [209.85.208.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65BBB10E192
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Aug 2024 16:03:57 +0000 (UTC)
-Received: by mail-lj1-f169.google.com with SMTP id
- 38308e7fff4ca-2ef2cce8be8so103283781fa.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 Aug 2024 09:03:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=toblux-com.20230601.gappssmtp.com; s=20230601; t=1722614635; x=1723219435;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=vWX0mheMHoq/ICPp8r+x9QWJESTdzniHyuoFDx+Vayc=;
- b=DWPPxiADVjYWSSHnSQii1tn+4UhE98+Lo/G8vg1tTqwYJ85O8trKymvwyI8Ac8lYNE
- cIg1r8brEcnW0WTY0r9Ggwat1GAhEBA270y/tAjpQ7Tz7UOCkHyQadbEdzjiRiiy6TI3
- NFVdLUPkcG9yAObaUXbNRV7tmYxdQipLqV6AIeroYA4j/qcLSb5c9WXG7V3peMBLsloc
- qc+NCyZ9G+GchSIVaPuKboWeFB8WfoSJOMr/ce65U9wbOv5QAghavFh+I/GTGQpxRZK7
- g+KgCBylOigHwtRvTKTlzVUWJdVCshzhiHYQQleX+XOogBOv/8d/L81ZDASPmVB3saD5
- zwfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1722614635; x=1723219435;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=vWX0mheMHoq/ICPp8r+x9QWJESTdzniHyuoFDx+Vayc=;
- b=nApwOvXbiWHS8whbV9ORAYf2EGY/ZIHs4s+pQ1U1J1ik09svImy3PrYhtrXvQVnBLd
- bVAm/pjk7R29ZTjZEMpMwd//+LerNqD0kxO4enrWqrFTppsMtJKcMR1JUCToybi558zc
- x+I9xZlfFgVhYAURzEuyMqw8NIVeenmIPsLDFuOoyK2VsyJphUvC0+LdJaEapW7XOHfF
- Fx6Zlmu1mQWO8aElsgw2GDanuW/fyatEu8neKmp3+kSchaVbLhLVPol+CkPWSm2yoHIG
- HSX+uRa7BJEYuHgYBACFzb4mx7iSuE5oGs7d1by+lPl+G8zv4HODVnfvtQIxOcaHQ3eo
- hFoQ==
-X-Gm-Message-State: AOJu0Yz/oopmuOUl79O4dNqVfEslzOZZ6xGPxFJelPdOQ5YmsKblRP39
- 57TB6ArJbo/BnWsShNGaOsVE8lqv43LV9Azm/u6N/FRPpk0ul+LzZqyp/7Tvsok=
-X-Google-Smtp-Source: AGHT+IHWMAsctgqofI5c9OnE2DkE2XnE2nCF4IAIqFKxoTDbkmHYkLOn8gZfpr7W3peLpSgzogberA==
-X-Received: by 2002:a2e:2418:0:b0:2ef:3258:4961 with SMTP id
- 38308e7fff4ca-2f15aa9919cmr26771621fa.15.1722614635006; 
- Fri, 02 Aug 2024 09:03:55 -0700 (PDT)
-Received: from fedora.fritz.box (aftr-82-135-80-26.dynamic.mnet-online.de.
- [82.135.80.26]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-428e6cd8d67sm38603285e9.0.2024.08.02.09.03.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 02 Aug 2024 09:03:54 -0700 (PDT)
-From: Thorsten Blum <thorsten.blum@toblux.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Thorsten Blum <thorsten.blum@toblux.com>
-Subject: [PATCH v2] drm/i915: Explicitly cast divisor and use div_u64()
-Date: Fri,  2 Aug 2024 18:03:23 +0200
-Message-ID: <20240802160323.46518-2-thorsten.blum@toblux.com>
-X-Mailer: git-send-email 2.45.2
+Received: from sphereful.davidgow.net (sphereful.davidgow.net [203.29.242.92])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59AAB10E0A5;
+ Sun,  4 Aug 2024 09:19:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=davidgow.net;
+ s=201606; t=1722763152;
+ bh=GTfJG1pVvOlhqeRhPSZ2jJbhnESq6sDdGs2cv+XUfw0=;
+ h=From:To:Cc:Subject:Date:From;
+ b=ASNlvdi/XbEbGIl33NUUJ32FYboHOs1OVRls5DPkp5PIWjTgZhyzQpNtcK67deqWO
+ P5akvYjTEF00zJMFNrtMdkpO6z+TmihIGgfYQJGfFWeULJ1P0t35vy/USl5SJLs+r4
+ xkvl8LH9WDsIsq/qDUiJMfX003vxqb7uBnsh8r1VKZ3E2OV3dL/ogm4uNLzd0gp4bS
+ oc42kIvZhGHAUVriGDkAkTeuAA0o5MoY6Ibz7/SidO8PmCLKeAzSmnr8OsIUyclome
+ mk2NzdpPoxRnE53goq/A/2/K1mTSfbnS3NoQjEb52M9vofO9kTt4Jto3QTuAO77qge
+ 1wkiKceNnwotWfczCvkiFDf7o5xKv8FQ3P9d65HbFb5ll116c8SbcYeQbwuSD0ziqr
+ +mO8V+ns4HMmqFK78cKlzA+mov6AAHx1a46LTdyDqambimmvti+ySKYq89l/fZK5ip
+ Gs7g72kz1l54kAnUzKHPpJJBEqpuTRBuf3omIN7eiayxIJ0+/TEyAx17GAqxoVtfMc
+ KQGig57TZXhk5qDnQgmfLjwpFKtwjQ0ohIMmAdH0xGudUIDUWjL7JDOFnyx0EN16/8
+ OjHvP5rn0l3VXzPz4mJelTlsH9WQy4IUdiBl0LFn8eS5mFBLZBKtAiCsSzcViC7Uho
+ AvKawS5hLieqr8RHLGOHz184=
+Received: by sphereful.davidgow.net (Postfix, from userid 119)
+ id EDE8E1DC09D; Sun,  4 Aug 2024 17:19:12 +0800 (AWST)
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+ sphereful.davidgow.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU autolearn=unavailable autolearn_force=no
+ version=3.4.6
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=davidgow.net;
+ s=201606; t=1722763150;
+ bh=GTfJG1pVvOlhqeRhPSZ2jJbhnESq6sDdGs2cv+XUfw0=;
+ h=From:To:Cc:Subject:Date:From;
+ b=QIGm0K3OkrTWQwqraYIIN9nqs7Lnz2DGGNuMl/TFA3ChCVqYtusuY4ZmiK5pjf8oH
+ xTFfTF4+W4RNaD+v6r8A/6k/ighywGA3tQ3ZPZEauM/nFenOdwfe0sQ4PuIslcL+8Q
+ ZduTawJWwsgZHIMRAQCRYQs/1lP8G3mbex4+XH2Jbf+0ODNa0mKiAq0s5Js02YwonS
+ N83GBCxwjNEh1R+M3Xn0C0Ng/w+CKo46lq/pNf4XWLkUOPhzA4Rf/UWjiH44yaA093
+ a13tS7Nx+pW7zUgLLyOgo8Z62S4/9phl8UDu9hMe05mk6PunmqQNXhXRt93x7x6Cwn
+ fuHWCrKU9pdYqBQnsKJBdOr4CsN8ZB3OVN9dbrFNX3pV/XbSYtqlBikYfZN+ISCdRF
+ EvF5Yy9/6TRev/3Z9hzqoSmAYojVFThuIysFIDlABdCHpE38D7qMIk9ZUXfUgvv53t
+ ZRXRUWMWAPxOiMnBHPHPc99Jxts8GNxPn9SEohomS+jvKesVUbTiPP4bjbYdVnDXPu
+ MDDqZH5+Omb5sq+/+iM1mWYiBnW10RMtWUUSROa4t/0rMbXpWw5hGGtaZPyRTHXnc4
+ mcNbFhrxXeWZovcQaSXn3RQXT5dtFowQDnF0FxMUMSjyXzn4AQ6DJWqnrlsT7l5asO
+ Ky0P7UVv42VcjvcSM5vyfPno=
+Received: from sparky.lan (unknown [IPv6:2001:8003:8824:9e00::bec])
+ by sphereful.davidgow.net (Postfix) with ESMTPSA id 69BD51DC091;
+ Sun,  4 Aug 2024 17:19:10 +0800 (AWST)
+From: David Gow <david@davidgow.net>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Gow <david@ingeniumdigital.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] drm/i915: Fix ttm small BAR placement handling
+Date: Sun,  4 Aug 2024 17:18:46 +0800
+Message-ID: <20240804091851.122186-1-david@davidgow.net>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 05 Aug 2024 15:41:47 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -83,46 +94,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As the comment explains, the if check ensures that the divisor oa_period
-is a u32. Explicitly cast oa_period to u32 to remove the following
-Coccinelle/coccicheck warning reported by do_div.cocci:
+From: David Gow <david@ingeniumdigital.com>
 
-  WARNING: do_div() does a 64-by-32 division, please consider using div64_u64 instead
+As described in [1], there have been a couple of regressions in the TTM
+placement handling for i915, which adversely affect DG2 systems with
+small BAR.  In particular, performance become very poor when eviction
+from the mappable BAR memory is required, as suboptimal placements can
+be preferred, leading to thrashing. This often leads to hangs of >10s,
+during which even the compositor is unusable.
 
-Use the preferred div_u64() function instead of the do_div() macro and
-remove the now unnecessary local variable tmp.
+These regressions were largely introduced during the flag rework in
+commit a78a8da51b36 ("drm/ttm: replace busy placement with flags v6").
 
-Signed-off-by: Thorsten Blum <thorsten.blum@toblux.com>
+The first patch has already been sent out[2]. I'm resending it as part
+of this series which fixes both known regressions.
+
+Thanks to Justin Brewer for bisecting the issue.
+
+Cheers,
+-- David
+
+[1]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11255
+[2]: https://lore.kernel.org/dri-devel/20240722074540.15295-1-david@davidgow.net/
+
 ---
-Changes in v2:
-- Use div_u64() instead of do_div() after feedback from Ville Syrjälä
-- Link to v1: https://lore.kernel.org/linux-kernel/20240710074650.419902-2-thorsten.blum@toblux.com/
----
- drivers/gpu/drm/i915/i915_perf.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 0b1cd4c7a525..f65fbe13ab59 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -4096,15 +4096,13 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 			oa_period = oa_exponent_to_ns(perf, value);
- 
- 			/* This check is primarily to ensure that oa_period <=
--			 * UINT32_MAX (before passing to do_div which only
-+			 * UINT32_MAX (before passing it to div_u64 which only
- 			 * accepts a u32 denominator), but we can also skip
- 			 * checking anything < 1Hz which implicitly can't be
- 			 * limited via an integer oa_max_sample_rate.
- 			 */
- 			if (oa_period <= NSEC_PER_SEC) {
--				u64 tmp = NSEC_PER_SEC;
--				do_div(tmp, oa_period);
--				oa_freq_hz = tmp;
-+				oa_freq_hz = div_u64(NSEC_PER_SEC, (u32)oa_period);
- 			} else
- 				oa_freq_hz = 0;
- 
+David Gow (2):
+  drm/i915: Allow evicting to use the requested placement
+  drm/i915: Attempt to get pages without eviction first
+
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
 -- 
-2.45.2
+2.46.0
 
