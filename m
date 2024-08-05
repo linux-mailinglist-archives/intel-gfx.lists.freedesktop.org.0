@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA613947B35
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 14:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70F2B947B7B
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 15:02:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E441910E1D3;
-	Mon,  5 Aug 2024 12:47:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F22510E1D7;
+	Mon,  5 Aug 2024 13:02:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SrjUehLe";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F60310E1D3;
- Mon,  5 Aug 2024 12:47:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6489280675125792750=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Implement_Dbuf_?=
- =?utf-8?q?overlap_detection_feature_starting_from_LNL?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Aug 2024 12:47:07 -0000
-Message-ID: <172286202731.540085.5989349165362747926@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240805120031.1265-1-stanislav.lisovskiy@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73BA010E1EA
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Aug 2024 13:02:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1722862927; x=1754398927;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=mJxVo/eAOwU8FTfLmOuKJV96AQLTRILdugKOSL9TVTI=;
+ b=SrjUehLecAgP7evXwZO970eo0o5fbd0cqcFFxGS4XkEQ0sqOym2XSI6U
+ 7o7GNd9TGca2DMO+xndqBIFJtPGvXAQ8MvVPD9K/OwTclG0cSfBf29CTe
+ Zz0Ony1Gj879+N+xh6fkp0ljYLCnzZXgmcvXYOMeyTdOduz9vusFMrH2A
+ mRbW86vC5RSB7+De830IKTg+nC+0ioTugqt/odpyMX6k13aswdBh9H5ec
+ U0q3e/h7y1/+zRKyCUw7uroiVdLj0ZUwWDS8SS+aK38WTiQd7Pf99Itai
+ OUcQoCAFMK8pT+2DA0ijLTQP4G2RUFCUqlM3Xb5HSWK8G9mpbCnWHjbZs w==;
+X-CSE-ConnectionGUID: gYZX4UPwTtKtn27Vv3IiJA==
+X-CSE-MsgGUID: /7YoDN+7Tr25++PYxv9ANQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="20968256"
+X-IronPort-AV: E=Sophos;i="6.09,264,1716274800"; d="scan'208";a="20968256"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2024 06:02:03 -0700
+X-CSE-ConnectionGUID: seiAkn0IQcyJFRLetZ92og==
+X-CSE-MsgGUID: 9ZV0/ufSQ4+s2ISA/wIONQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,264,1716274800"; d="scan'208";a="56716655"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.180])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2024 06:02:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: jani.saarinen@intel.com, Stanislav.Lisovskiy@intel.com
+Subject: Re: [PATCH] drm/i915: Implement Dbuf overlap detection feature
+ starting from LNL
 In-Reply-To: <20240805120031.1265-1-stanislav.lisovskiy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240805120031.1265-1-stanislav.lisovskiy@intel.com>
+Date: Mon, 05 Aug 2024 16:01:46 +0300
+Message-ID: <87sevj5dj9.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,200 +67,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6489280675125792750==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 05 Aug 2024, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> From LNL onwards there is a new hardware feature, which
+> allows to detect if the driver wrongly allocated DBuf
+> entries and they happen to overlap. If enabled this will
+> cause a specific interrupt to occur.
+> We now handle it in the driver, by writing correspondent
+> error message to kernel log.
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_device.c | 6 ++++++
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 2 ++
+>  drivers/gpu/drm/i915/display/intel_display_irq.c    | 7 +++++++
+>  drivers/gpu/drm/i915/i915_reg.h                     | 2 ++
+>  4 files changed, 17 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> index dd7dce4b0e7a..b4f979bc59cf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> @@ -1457,6 +1457,12 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i9
+>  		if (IS_DISPLAY_VER(i915, 10, 12) &&
+>  		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
+>  			display_runtime->has_dsc = 0;
+> +
+> +		if (DISPLAY_VER(i915) >= 20 &&
+> +		    !(dfsm & XE2LPD_DFSM_DBUF_OVERLAP_DISABLE))
+> +			display_runtime->has_dbuf_overlap_detection = 1;
+> +		else
+> +			display_runtime->has_dbuf_overlap_detection = 0;
 
-== Series Details ==
+I'd initialize this to true in the __runtime_defaults init for LNL+, and
+only set it to false when dfsm says so. Similar to has_dsc above.
 
-Series: drm/i915: Implement Dbuf overlap detection feature starting from LNL
-URL   : https://patchwork.freedesktop.org/series/136884/
-State : success
+And nitpick, please use true/false not 1/0 to initialize bool
+values. (Even though a bunch of code does use 1/0...)
 
-== Summary ==
+BR,
+Jani.
 
-CI Bug Log - changes from CI_DRM_15179 -> Patchwork_136884v1
-====================================================
+>  	}
+>  
+>  	if (DISPLAY_VER(i915) >= 20) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 13453ea4daea..6b94ccd381bc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -122,6 +122,7 @@ enum intel_display_subplatform {
+>  #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+>  #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
+>  #define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || IS_ALDERLAKE_S(i915))
+> +#define HAS_DBUF_OVERLAP_DETECTION(__i915) (DISPLAY_RUNTIME_INFO(__i915)->has_dbuf_overlap_detection)
+>  #define HAS_DDI(i915)			(DISPLAY_INFO(i915)->has_ddi)
+>  #define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+>  #define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
+> @@ -216,6 +217,7 @@ struct intel_display_runtime_info {
+>  	bool has_hdcp;
+>  	bool has_dmc;
+>  	bool has_dsc;
+> +	bool has_dbuf_overlap_detection;
+>  };
+>  
+>  struct intel_display_device_info {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index 5219ba295c74..e0f1b54d9175 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -896,6 +896,13 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  {
+>  	bool found = false;
+>  
+> +	if (HAS_DBUF_OVERLAP_DETECTION(dev_priv)) {
+> +		if (iir & XE2LPD_DBUF_OVERLAP_DETECTED) {
+> +			drm_warn(&dev_priv->drm,  "DBuf overlap detected\n");
+> +			found = true;
+> +		}
+> +	}
+> +
+>  	if (DISPLAY_VER(dev_priv) >= 14) {
+>  		if (iir & (XELPDP_PMDEMAND_RSP |
+>  			   XELPDP_PMDEMAND_RSPTOUT_ERR)) {
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 0e3d79227e3c..1e8b04d2f728 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2578,6 +2578,7 @@
+>  #define  GEN8_DE_MISC_GSE		REG_BIT(27)
+>  #define  GEN8_DE_EDP_PSR		REG_BIT(19)
+>  #define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
+> +#define  XE2LPD_DBUF_OVERLAP_DETECTED	REG_BIT(1)
+>  
+>  #define GEN8_PCU_ISR _MMIO(0x444e0)
+>  #define GEN8_PCU_IMR _MMIO(0x444e4)
+> @@ -2863,6 +2864,7 @@
+>  #define   SKL_DFSM_PIPE_C_DISABLE	(1 << 28)
+>  #define   TGL_DFSM_PIPE_D_DISABLE	(1 << 22)
+>  #define   GLK_DFSM_DISPLAY_DSC_DISABLE	(1 << 7)
+> +#define   XE2LPD_DFSM_DBUF_OVERLAP_DISABLE	(1 << 3)
+>  
+>  #define XE2LPD_DE_CAP			_MMIO(0x41100)
+>  #define   XE2LPD_DE_CAP_3DLUT_MASK	REG_GENMASK(31, 30)
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/index.html
-
-Participating hosts (40 -> 37)
-------------------------------
-
-  Additional (1): fi-elk-e7500 
-  Missing    (4): bat-mtlp-8 fi-kbl-8809g fi-snb-2520m fi-bsw-n3050 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136884v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-elk-e7500:       NOTRUN -> [SKIP][1] +24 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - bat-arls-2:         [DMESG-FAIL][2] ([i915#10341]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@i915_module_load@reload.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-arls-2:         [SKIP][4] ([i915#11623]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-1:         [DMESG-WARN][6] ([i915#11349] / [i915#11378]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@ring_submission:
-    - bat-arls-2:         [DMESG-FAIL][8] ([i915#10262]) -> [PASS][9] +36 other tests pass
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@i915_selftest@live@ring_submission.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@i915_selftest@live@ring_submission.html
-
-  
-#### Warnings ####
-
-  * igt@gem_lmem_swapping@verify-random:
-    - bat-arls-2:         [SKIP][10] ([i915#9643]) -> [SKIP][11] ([i915#10213]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@gem_lmem_swapping@verify-random.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@gem_lmem_swapping@verify-random.html
-
-  
-  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
-  [i915#10262]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
-  [i915#11623]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11623
-  [i915#9643]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9643
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15179 -> Patchwork_136884v1
-
-  CI-20190529: 20190529
-  CI_DRM_15179: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7955: e12a8eebdc4bc7e073f2bfad88dc627006ac5771 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_136884v1: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/index.html
-
---===============6489280675125792750==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Implement Dbuf overlap detection feature starting from LNL</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136884/">https://patchwork.freedesktop.org/series/136884/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15179 -&gt; Patchwork_136884v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Additional (1): fi-elk-e7500 <br />
-  Missing    (4): bat-mtlp-8 fi-kbl-8809g fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136884v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_pm_rpm@basic-pci-d3-state:<ul>
-<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/fi-elk-e7500/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> +24 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@i915_module_load@reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11623">i915#11623</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@ring_submission:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@i915_selftest@live@ring_submission.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262">i915#10262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@i915_selftest@live@ring_submission.html">PASS</a> +36 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@gem_lmem_swapping@verify-random:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9643">i915#9643</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v1/bat-arls-2/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213">i915#10213</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15179 -&gt; Patchwork_136884v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15179: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7955: e12a8eebdc4bc7e073f2bfad88dc627006ac5771 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_136884v1: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6489280675125792750==--
+-- 
+Jani Nikula, Intel
