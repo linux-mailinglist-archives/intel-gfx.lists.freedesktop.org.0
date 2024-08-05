@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AEC5947A57
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 13:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CF0947A85
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 13:41:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B377B10E1D1;
-	Mon,  5 Aug 2024 11:25:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7542610E012;
+	Mon,  5 Aug 2024 11:41:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bDwdIhSg";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8C4610E1C2;
- Mon,  5 Aug 2024 11:25:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5771975290188570525=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9541510E012;
+ Mon,  5 Aug 2024 11:41:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id E678460C26;
+ Mon,  5 Aug 2024 11:41:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 966ABC32782;
+ Mon,  5 Aug 2024 11:41:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1722858106;
+ bh=E3ahWBviCoqFcVG03W9ZYAdrER7JEEzise/0pd6IbIY=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=bDwdIhSg2Yi5dVI0K0nuVeTu4CcCuBI0xveCvkfIAwoJt7TaAqmR3vJ0GtwjF94fF
+ e55ndhQIdpTDqU7P1zjFVuT+XqhcStQ+/SbHSRmxIvUdWFlVmJaqaK9MSwfBqoxlcY
+ khzrRa7Oyu0pBinmCylZgiy/Nfof1Hwdlh/ANJ8NnynnI17mf96ZosIgdsStEbx4vi
+ ZNGLJNpUjXKJzlB/PdeAYB/xVNDRrgC3p0UqaXEN1MKwcz+/Qzmm6mVBYIJ2CVIKGc
+ 1FQqN1TwUG812bRgK8eBpV16ro2PWnPIpbouW7uo2Ds1g+UD8Ug8XKY5/cHdDmtjWi
+ VFx6IyXSR7ZNQ==
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-65fe1239f12so71360587b3.0; 
+ Mon, 05 Aug 2024 04:41:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUBqCqkWEVDWkslerNMcmoHQsvHyL7uB+ADdjPkYUEr4KKUY7AVf4oRocBWNFehV9XrDKhxGbbdWY9v+JeQd4zmf+IbAMdeaUrL2eY0k+ly30AQgBuSuxLkcNvj0FcwIb9hX5jKZIXG2vMJUKAWQ3w=
+X-Gm-Message-State: AOJu0YwEBkKIVh1GlNW3aNUK4Xz9NDjzZYRo+LgYUgjIZkj4Zf5cFYHO
+ izrIrdLijpgniNwaq+xoUOYFq8APbYloOeeQofkUjsbF+pSuDuvsRvW6olnJNQX3Y+rAQGVhjvI
+ Yapq7f5TgVFCefScF1gIdbjaFMdk=
+X-Google-Smtp-Source: AGHT+IFWxmHCberVsakhXtl8rlWFkBZL9CTdFSK1UpCQUhmmPWa91YPj++pgbzTCIe+8ZK9HsXBnmrRCZHkmSPmjsSU=
+X-Received: by 2002:a0d:c306:0:b0:64a:6eda:fc60 with SMTP id
+ 00721157ae682-6895f9e5e2cmr96108717b3.4.1722858105800; Mon, 05 Aug 2024
+ 04:41:45 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Fix_mmap_memory_boundary_ca?=
- =?utf-8?q?lculation_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 05 Aug 2024 11:25:20 -0000
-Message-ID: <172285712088.540051.11461845050518915295@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240805102554.154464-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240805102554.154464-1-andi.shyti@linux.intel.com>
+References: <20240802175932.784781-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20240802175932.784781-1-daniele.ceraolospurio@intel.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Mon, 5 Aug 2024 07:41:34 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA6T-tJziaykh+Ryin9GVeCmFwEqEDNKOSnad09F3PphOg@mail.gmail.com>
+Message-ID: <CA+5PVA6T-tJziaykh+Ryin9GVeCmFwEqEDNKOSnad09F3PphOg@mail.gmail.com>
+Subject: Re: PR for new i915 and Xe binaries
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: linux-firmware@kernel.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, gustavo.sousa@intel.com, 
+ John.C.Harrison@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,145 +68,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5771975290188570525==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Aug 2, 2024 at 1:59=E2=80=AFPM Daniele Ceraolo Spurio
+<daniele.ceraolospurio@intel.com> wrote:
+>
+> A bulk update of several binaries in the i915 and Xe folders.
+>
+> - GuC:
+>     - All TGL+ binaries updated to v70.29.2
+>     - New binary added for BMG, also v70.29.2
+>
+> - HuC:
+>     - DG2 binary updated to latest rev (v7.10.16)
+>     - New binaries added for LNL (v9.4.13) and BMG (v8.2.10)
+>
+> - GSC:
+>     - MTL binary updated to v102.0.10.1878
+>     - New binary added for LNL, v104.0.0.1161
+>
+> - DMC:
+>     - MTL binary updated to v2.22
+>
+> The following changes since commit 65c5d9b1a4808462f5e885447dae1a133c96ab=
+ec:
+>
+>   Merge branch 'amdgpu-20240726' into 'main' (2024-07-28 14:28:08 +0000)
+>
+> are available in the Git repository at:
+>
+>   https://gitlab.freedesktop.org/drm/firmware.git tags/intel-2024-08-02
 
-== Series Details ==
+Merged and pushed out.
 
-Series: Fix mmap memory boundary calculation (rev2)
-URL   : https://patchwork.freedesktop.org/series/136840/
-State : success
+https://gitlab.com/kernel-firmware/linux-firmware/-/merge_requests/266
 
-== Summary ==
+josh
 
-CI Bug Log - changes from CI_DRM_15179 -> Patchwork_136840v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/index.html
-
-Participating hosts (40 -> 36)
-------------------------------
-
-  Missing    (4): bat-dg1-7 bat-arls-2 fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136840v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@basic@lmem0:
-    - bat-dg2-9:          [PASS][1] -> [FAIL][2] ([i915#10378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-1:         [DMESG-WARN][3] ([i915#11349] / [i915#11378]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#10378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15179 -> Patchwork_136840v2
-
-  CI-20190529: 20190529
-  CI_DRM_15179: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7955: e12a8eebdc4bc7e073f2bfad88dc627006ac5771 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_136840v2: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/index.html
-
---===============5771975290188570525==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix mmap memory boundary calculation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136840/">https://patchwork.freedesktop.org/series/136840/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15179 -&gt; Patchwork_136840v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 36)</h2>
-<p>Missing    (4): bat-dg1-7 bat-arls-2 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136840v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@basic@lmem0:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/bat-dg2-9/igt@gem_lmem_swapping@basic@lmem0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10378">i915#10378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15179/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136840v2/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15179 -&gt; Patchwork_136840v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15179: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7955: e12a8eebdc4bc7e073f2bfad88dc627006ac5771 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_136840v2: a0d88000f0e2352047f037e14fc7f9d1a66a6e2b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5771975290188570525==--
+>
+> for you to fetch changes up to 95c414d44c8e60880be787822d5020a010044a49:
+>
+>   xe: First GuC release v70.29.2 for BMG (2024-08-01 11:11:04 -0700)
+>
+> ----------------------------------------------------------------
+> Daniele Ceraolo Spurio (5):
+>       i915: update DG2 HuC to v7.10.16
+>       xe: Add LNL HuC 9.4.13
+>       xe: Add GSC 104.0.0.1161 for LNL
+>       xe: Add BMG HuC 8.2.10
+>       i915: update MTL GSC to v102.0.10.1878
+>
+> Dnyaneshwar Bhadane (1):
+>       i915: Update MTL DMC v2.22
+>
+> Julia Filipchuk (3):
+>       i915: Add GuC v70.29.2 for ADL-P, DG1, DG2, MTL, and TGL
+>       xe: Add GuC v70.29.2 for LNL
+>       xe: First GuC release v70.29.2 for BMG
+>
+>  WHENCE               |  30 +++++++++++++++++++++---------
+>  i915/adlp_guc_70.bin | Bin 347584 -> 328768 bytes
+>  i915/dg1_guc_70.bin  | Bin 321472 -> 302656 bytes
+>  i915/dg2_guc_70.bin  | Bin 410368 -> 369408 bytes
+>  i915/dg2_huc_gsc.bin | Bin 630784 -> 630784 bytes
+>  i915/mtl_dmc.bin     | Bin 52476 -> 52700 bytes
+>  i915/mtl_gsc_1.bin   | Bin 1142784 -> 1134592 bytes
+>  i915/mtl_guc_70.bin  | Bin 332544 -> 303872 bytes
+>  i915/tgl_guc_70.bin  | Bin 335168 -> 316352 bytes
+>  xe/bmg_guc_70.bin    | Bin 0 -> 406272 bytes
+>  xe/bmg_huc.bin       | Bin 0 -> 585728 bytes
+>  xe/lnl_gsc_1.bin     | Bin 0 -> 1155072 bytes
+>  xe/lnl_guc_70.bin    | Bin 336640 -> 316160 bytes
+>  xe/lnl_huc.bin       | Bin 0 -> 643072 bytes
+>  14 files changed, 21 insertions(+), 9 deletions(-)
+>  create mode 100644 xe/bmg_guc_70.bin
+>  create mode 100644 xe/bmg_huc.bin
+>  create mode 100644 xe/lnl_gsc_1.bin
+>  create mode 100644 xe/lnl_huc.bin
