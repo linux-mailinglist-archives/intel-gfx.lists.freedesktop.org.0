@@ -2,56 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 058EF947DB2
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 17:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3FF947E74
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2024 17:46:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EC8610E21A;
-	Mon,  5 Aug 2024 15:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0C810E236;
+	Mon,  5 Aug 2024 15:46:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VIjH73Yu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSRpMlO4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFD8410E235
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 Aug 2024 15:07:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 948A410E236
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Aug 2024 15:46:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722870477; x=1754406477;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Mqme95LjgJEd0W4w0+YXXIbf4SvMmEWr18Vx0tmvkF0=;
- b=VIjH73YuYNJRek7GMNj8ABSonD/QWv8dgbXov3RBdPNGtFsgwvKuLhBH
- gqxU6UmkCzvHY7gDqebQxCWkVULok1fNAgiCL8M+kgRB6G2BupqPe3hW4
- QZuVRqIRdv8ttZkDjbAjKm5QH97PwMh3oG9dAFmbcYEj9q9uq4Ee7p7Fy
- wOiWZSqGzG3qwxaU3qCCamVw9L2mseISjnneS1LWHxQrWcc17qHI+1F/D
- AU4lgooPVT+TspRLmShviv3e0oI2d+2ajkkQjJ+Ki/4Pgf/xbXjDWj9qu
- zxiGs+Eegw/75kaFaGPHkqcKMfZ6zixJAf86DpmGNtnmR3CpSklfwPYQS g==;
-X-CSE-ConnectionGUID: K+PICSF0SMaQhIaHX32VXQ==
-X-CSE-MsgGUID: OAro7z/bRiKv66U7QXmg7A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="20694459"
-X-IronPort-AV: E=Sophos;i="6.09,264,1716274800"; d="scan'208";a="20694459"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2024 08:07:54 -0700
-X-CSE-ConnectionGUID: o/oKl2kkQVir0LZHQW/pTw==
-X-CSE-MsgGUID: /1sGUn/rQQqGT2TBgcJhhQ==
+ t=1722872784; x=1754408784;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=sFduafZI9Nup0lRONRtNEfJAUAQJg9ZAfBwUeVoNvXI=;
+ b=nSRpMlO49WaxVsGF5keNM04a27NFElQi0EQZF7ywo8FQKjE+O8SBwbcN
+ eZOsvy0SFfAO0oXmUdX0J1/uoxKG9CCkFnCzW61XX1A8zWURh1P3ZK6/3
+ PvXOdTAnyBxU7mRwjYR8SwOrVxXa6qZMaKkJULevHubgu5DX39AwRSulw
+ StVZhw9kDcdo7JdIo6NGyW9n18T8ccR9jyClNi4xG2PqlLAR3Vmez+vfg
+ RO059DKbSmokcimazwfDaCOAGdDaRKYek5EFnJQ78GXg455RfmkcosizW
+ P6u4GQkFr/DtjrmY67UEL/BCq0FBiXVcB7y8NQG1WaOqZI//0Fimah1ll A==;
+X-CSE-ConnectionGUID: h1wCCBaDR62E3gW52BFMcg==
+X-CSE-MsgGUID: XAUpBf93SfKkJwoQ9pAnig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="38352092"
+X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; d="scan'208";a="38352092"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2024 08:46:24 -0700
+X-CSE-ConnectionGUID: 1dC6ifpMR7StqVNfYZR/UA==
+X-CSE-MsgGUID: 3uweDKySTOOww9qQA3hkSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,264,1716274800"; d="scan'208";a="60558911"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2024 08:07:52 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [CI 7/7] drm/i915: Remove DSC register dump
-Date: Mon,  5 Aug 2024 18:07:56 +0300
-Message-ID: <20240805150802.3568970-8-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240805150802.3568970-1-imre.deak@intel.com>
-References: <20240805150802.3568970-1-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; d="scan'208";a="55888105"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Aug 2024 08:46:24 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 5 Aug 2024 08:46:23 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 5 Aug 2024 08:46:22 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 5 Aug 2024 08:46:22 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 5 Aug 2024 08:46:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bCNoj8yEeWzP+CTzb75Ki0fLMyonCEgFcSB8Lp/lsjykjWbtgwWAix9EKgXCZA+s8KqWXbyunNdKXFgukbZ56OeBbiXMrpLvUTuzKRb7uPWtMDJmMFKuNvqj0rMI7nwnOpojABqaAd2cKsMHnNTg4mxdWL+KcFeFQm7GK+e6EJteO1Twydb7i9EA1OrcAfmjZHBnzpluwlj5HtdnJegrTOmBIwx9XstAq3NJ6ff2DkCubGQUb++ePgFQGxY2N9Aw38zRzG7i9RDp+eor50X4e/b9gJQV1f3fNulwJhiA4KeXZF2kGz4ZMk+hkuwQSrcrMBFHqbIVoIjJpZAj0X8lIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L/8RRlAupCeiVGC0N87zwmx21cM1EteKq/tuhBPW98Q=;
+ b=FIBY/XKbeWpMfQpuibgDw5Dd+iiVsGLA7agrX9uu71KqhQhoxLMd+6HfeRp0qj6iaviMJ/YYA62ptRsqRr/mI/65S6oUQuG8XLSAFoFH8T7bFe96HJ5uuj/0I1QvYls+fdalzatAnMlID9GFqjCzvdgGViRh56k20hHBJ10sIbhElqInadwywn5apy/T2wa3QlPLYvqp9mHohuTft8htxtjBCp+zv/Svg+4vWn4hgxHO6rgkPZb1idHbijiV8KbHV5K8bWM0pmcCH1sn0qVeGSoTIOm5kQhiTOJVyRA4GxvyqjseGOLbGWKVYYkjyToGXqd54ge5UQK20r77ZkCtNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8019.namprd11.prod.outlook.com (2603:10b6:8:12e::18)
+ by BY1PR11MB8077.namprd11.prod.outlook.com (2603:10b6:a03:527::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7807.28; Mon, 5 Aug
+ 2024 15:46:17 +0000
+Received: from DS0PR11MB8019.namprd11.prod.outlook.com
+ ([fe80::d2ab:ff8b:3430:b695]) by DS0PR11MB8019.namprd11.prod.outlook.com
+ ([fe80::d2ab:ff8b:3430:b695%4]) with mapi id 15.20.7807.026; Mon, 5 Aug 2024
+ 15:46:17 +0000
+Date: Mon, 5 Aug 2024 17:46:06 +0200
+From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+CC: Andi Shyti <andi.shyti@linux.intel.com>, Krzysztof Niemiec
+ <krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH] drm/i915/gt: Delete sysfs entries for engines on driver
+ unload
+Message-ID: <qx6a6di4z46gnfmi4an3x6io346ujncpoubcodxgs6l25veifc@piwwoizskuly>
+References: <20240801154047.115176-2-krzysztof.niemiec@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20240801154047.115176-2-krzysztof.niemiec@intel.com>
+X-ClientProxiedBy: MI1P293CA0013.ITAP293.PROD.OUTLOOK.COM
+ (2603:10a6:290:2::15) To DS0PR11MB8019.namprd11.prod.outlook.com
+ (2603:10b6:8:12e::18)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8019:EE_|BY1PR11MB8077:EE_
+X-MS-Office365-Filtering-Correlation-Id: 815a4b65-2215-41ac-f66f-08dcb565be54
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|27256017;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZDFiUkVPUHE4MHdzYklDT2JuYm53dUtaL1ZiRm41WjhmUU1yTjFndGcwKzlp?=
+ =?utf-8?B?WHY1cFZKc1NKL3NtZ2V1NGdOYVJFVWo0TjdyRm92M1RLbmxaMU5SNWhOcE5X?=
+ =?utf-8?B?eWs5bmMyeU9Id0x0c1owR0t1VUpxVFhYUk82cnBGUUs0c1RPVk1vRE9BQVZ6?=
+ =?utf-8?B?NkgxbEpzdXJuYjJMd25XekV1SmNEVWpLbGdodEFXclZmLzlaRTFWdDFtd3dm?=
+ =?utf-8?B?NTJtUWRacFl0a0I0SERFMmpScXdZRGF4am82TFh0QUVSTklGTnN2dWx0eUZ2?=
+ =?utf-8?B?T2JpdWVhUFhUQlpFdnZjSEtxc2xiSHZ3VE45bktvVEY0QkhIWG5TamRYSjN2?=
+ =?utf-8?B?TjVGNDZjTEJteHA0Mlp6SURPcTlJa0ZhdkpZSFQxTjBncjU1cHRMYVdjVkpE?=
+ =?utf-8?B?L2M4eFhiVEhDeWlXTkp1eFl1bGhTTjE4OU5JaVRQak5MSWVOaUpZYmlqT1Ay?=
+ =?utf-8?B?R0xQd2JZdzRlSlpzTDVTSEFDQW1XSmFpY05DbFFGZi9LZ1hUaVdLc1BqWGMv?=
+ =?utf-8?B?RUZzcGgrS2lRWFdTZWZrZDdqOHdMYUtna2poNDZVV0pjbzR4cmx5d2VNK0hD?=
+ =?utf-8?B?aXRFSjl2ZzJnaituMEU3SnFUcW80OEs0Z1p4WXNYTUF4M0FpclpxRWNSVkJ6?=
+ =?utf-8?B?RVVDbnIxYlMvTFBQWVg5SFIwaHMwd2N2dm1yRHhpMFV1MGZxMFhObGhYZ3VK?=
+ =?utf-8?B?c1pibC9JQkJHZERGdFMxbW8rWHE2SFVhb2IzUUJTMm5YajJJM05XYitBSEg3?=
+ =?utf-8?B?V3hoUzgwVXhTK1orM2ZLaW5vUERwNXd2UHB4K042TjA5SU1CeG1PejVIQVhI?=
+ =?utf-8?B?VkNBazRNeTRyQVd5ait0eUV5U3QvWktiUU93ZG1zQ054encvMFFnMFY1cWJz?=
+ =?utf-8?B?MG1UVk9peEhZcm9idk8xK2VKQ0pWMjhSN25GT21sZjk4UlJPOWJBVkYwdVM1?=
+ =?utf-8?B?NnM3djdlNjFEQWhmUkYwdFU4Nm1NRUFCTzBTMDYwNFFnVS9UNDFmT3FjRjFj?=
+ =?utf-8?B?VEVJd1NXU3lqRFpySmpzbU8xODZKMFV1dWpSNXhieFN3Nml4U1UreGU5eHp6?=
+ =?utf-8?B?SVVadGw4eGNWNmFISGxnMXVDU003ZHRxRzBkR3lZbzQ3aEliZUo2c0Y2Zzda?=
+ =?utf-8?B?SGcxTUVGUXB0SklmQWhGSFR0ZjNJZXRzVUFIbW94UGtCZmtya28zbC94Qm94?=
+ =?utf-8?B?L2ltanRjV2RyVEp6V1hkdHRrUkp6U3M2TSs4MjE3MWo2Z3dYZzZSNSsrcStL?=
+ =?utf-8?B?bnI4cjBhL05lV050SzRaakZUUkJZWEJJbXI4eldJM3lTeFdRV052b2llT1RS?=
+ =?utf-8?B?OCtFRzlScUl0dmE0M20zYlVpU2Q0bm0wU0J1QTNDM0xZc0RZRXR6ZHhwbTJR?=
+ =?utf-8?B?cnBlRUpNKzkyZUwrdE4zTzIzZzQzWTNrTXJZMXNoNllEZW1ZdXJoVk1xWElr?=
+ =?utf-8?B?TDROSzBzSTluNThxcEVLTEtXNGtVcER3TGVCY3M2T0lKZDh6cjRDTGkzYmoy?=
+ =?utf-8?B?VWw0ajBNV2VERXNmazNCVEpCMkhMdFdnMWl4OWRUSkpBckFEVVR6bGsveGw0?=
+ =?utf-8?B?aUVVZW14aVlxSG11c3Z1YVFsbVhmTjliUTBoajhzZU0wMEloZE1lVlJoL1Zh?=
+ =?utf-8?B?dlVlSDVTZHdLK3JGQTBNWEpWMjdxMVMzc3dvOCtpQ0U5Y1p6NnpHRTNKdlZ2?=
+ =?utf-8?B?bXRnR3NKWmVUdnNjV1FVMXplbkVQa3pRcmhKbEN6UHY5RTdhSzZob08yWUtR?=
+ =?utf-8?B?V3Z6ckpFL3pseTZJNVdsa0tHYUFkMm13dVpZUktscDBVYjVac2lmV2pTVnZ0?=
+ =?utf-8?B?MzM4K28zYUlMbkFGdUxGaXVFbE5nemw0Qkc0NCtTYnhiKzBjWVdLZUhTdTMz?=
+ =?utf-8?Q?2gxYYMXPplaFp?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(27256017); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?akRlV2luTkpDa0FQKzJVbG9acElTMXNqOUVNYXFNOWIvU2dZWUNLYXA4Tzdy?=
+ =?utf-8?B?V2JublgyL2U3L0IrMXRIOW1TMFNoZ3ZBMWRSWURSOWk2N0pKZHNmR3N3SjdI?=
+ =?utf-8?B?M1RjZHRBTkpXaUE2SGYzVW1YaG0vYWNsRVJkaWJHOVRVT3YxRmRXT01oSjNB?=
+ =?utf-8?B?Z1BkVnJNSG91aDljUCtsSTlkQUwxeCtrYUZQUzVLUTUxbHU3Qms4ZnFMWW1s?=
+ =?utf-8?B?QmNWckdyUkt6c04rQW9JV3R1YUhYalNjbklwL2tVdDZMdWF1NXNkd2t0VTM1?=
+ =?utf-8?B?YUNPeTE0Tmh5TFFWRWtaRG9vbXlmNW5tQnpvckZ2WVpFZUpQNjVnZVJtQ1F3?=
+ =?utf-8?B?Z042S1MzR3JPMW1iMkJpU25CT0F0Q1I2VlpScjY4dWIwV0dKMTBzczR6anZZ?=
+ =?utf-8?B?aTlqSkwwMlpKT1dDM1IwOWpPamJTL1BjanRCYjNydUdqSTFKanFmTzYvT01q?=
+ =?utf-8?B?dXJqb1ZUdEpwQlpiNE04OEJ2bHY0bnhtSTRJcHNhSkdlamNPdTlLRDRvR3F6?=
+ =?utf-8?B?cnNDWHh5ZFRzSUg5N3RkSlVqclJJVktqajE4cXNsT3JLRzBVbXlTNGtOYnBy?=
+ =?utf-8?B?UytCYjVueXQrVzltM2ZIakE4c0ZkOWdDRjhscHVMd0Z4c3lMeG1qdXJEWHg3?=
+ =?utf-8?B?QncyS2RNN3FBZHBDc0orcTNRcVJQNGZIelBrZUpjQkxSQVVreFJwUDZac3I0?=
+ =?utf-8?B?VmMxZUVPN1BzZGxZUVNNenRWcDR0akd0WUwwOFN3Z29vRDZMeXFVZEU3SS8w?=
+ =?utf-8?B?aHprUjBFNkRBVjVPK0VoM2dxWSsvcktuTnZ6OGlaTjNVU2p4Q2ppOXFXZ0ZN?=
+ =?utf-8?B?QTFSdjZQZjdXa1A3SUtIb3lpRmhZcitCLzRvWGtzaFhZdlV2R3VzZ0FMcnMz?=
+ =?utf-8?B?bndaQkdDSi9iNHBSbVRMelVqdGQyWlAxWktHWk1rUkorTmdxbzVUWWFtZEFZ?=
+ =?utf-8?B?RXNibll3Q1E5R2FZRGMwcllIeWdhU3BLamN6a1VkRnhZUGduUEdIeVNXRjg2?=
+ =?utf-8?B?WXNETW9IcngyRncwaDJTYWNNRFplVitLczdIc1dtNkpETml2aFVwVnBFektC?=
+ =?utf-8?B?OGl0b3psZHNVcENpdGtGTHhIbFFFZ29FWnlpeVF5WVNCbTZPUWN1amRmR29w?=
+ =?utf-8?B?a0ZUcTVpaGZWUGp3RnZQWHlHUVBkbS8xTGh4bkhMbDV4NG1CaUowQVlXOC9H?=
+ =?utf-8?B?a0dPS054NnBha3JQU2xCZjV1a0lMMDdMUGJyVWtXZXhHelBORGdwTWpnNVVU?=
+ =?utf-8?B?dmNMTTZONlZwN3pnT1UyU1JvQTRJNTh1bndhcjk0ZzNSNnhwMGhUaFhWZWVj?=
+ =?utf-8?B?M0ppQ2lmaHJaWU1abkJLNWtVRVY2T3ZvSEVlbjRuaHBvb05MQ2o1UHFzbVNU?=
+ =?utf-8?B?SEliMDMreVRKK25wcko0Qm9MU3IwcWhvZjV6N1pjL3lIYlJOSVMyc2NLcFI2?=
+ =?utf-8?B?QndrdnMyL1RzUVBVQ2Fra0ZqbEdydEVvMmZYT3lFZUR0RHFFVTNlTmVVQUJU?=
+ =?utf-8?B?OGhhUFo3djZqczhhakpRbjFuc2dFUktROHVjUWorMittY0J5STRaMEpad2VX?=
+ =?utf-8?B?TFE3M0pkM3FoelV0SFJNTG9JdGV1WU1XbElyUEUyMXc3Si9FMDNISXgxbmZZ?=
+ =?utf-8?B?U3BoelFkVjNEWDEvZkM0T0p6VG5GMmhEZU5xT3dhaVArMWZCclVhSjdLVG1h?=
+ =?utf-8?B?QTlsWnMwY25BNjZSeUNmQ2k2Q29UaWhFc0ppWDFCbVp6TCsxdXgxVGJiYXo1?=
+ =?utf-8?B?QkxuKy9QeWc4ZWVRMkxLY0dDcFl6RW4yNHVPOWJWMjY5R3FnazgzcGYxc3Ex?=
+ =?utf-8?B?U0NTSnU3ZVF3UlgzMlk0ZGtRQ3g4b2c4a0pmK3FwRXRXOWs3YUdUemswUVRu?=
+ =?utf-8?B?V0dBNDNCbmZHd3FxNkZqaEFPTVRZNTVWT25wa0xwQ0U0RWlMbFZzcERNdnQ3?=
+ =?utf-8?B?T2s2clZOaEZ0VVF2S09lM1BQY1dhWVlsalFlcjlac2h0bURUbDVGVTd0MStz?=
+ =?utf-8?B?Zy80TlN4OUpreFVJSkE4QmNHRnQzRWtMRytmSnV5L0tOaHFUcTByOG9Eb3Qw?=
+ =?utf-8?B?eHZnVVpQTTBZSUcyOGU1eExLMHJTaXord3g0TVlJS2hsaGsxbVhvczVEUFVW?=
+ =?utf-8?B?MGVIWkhqUlZhcnQrKy9zQ2xmVTRGL1Nmb0dKWGtMTXZYamlMd3R2WVUyby9Z?=
+ =?utf-8?B?aWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 815a4b65-2215-41ac-f66f-08dcb565be54
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 15:46:17.0990 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: s6/YoPt+nqhbi2NcWdtzKxvCuVm0yR0eKkCwzizeV3SaXRtvnyU34gag4VO2rJqVHiMYy2LGDqDaoZSFwp+GY+XaCPiq6OMI5G2qWDYoCcI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8077
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,144 +198,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Display Engine's DSC register values are deducted from the DSC
-configuration stored in intel_crtc_state::dsc. The latter one is
-dumped in a human-readable format, so dumping the register values is
-redundant, remove it.
+On 2024-08-01 at 17:40:48 GMT, Krzysztof Niemiec wrote:
+> While the sysfs entries for engines are added in intel_engines_init()
+> during driver load, the corresponding function intel_engines_release()
+> does not correctly get rid of them. This can lead to a UAF if, after
+> failed initialization (for example when gt is set wedged on init), we
+> try to access the engines.
+> 
+> Empty the engines llist in intel_engines_release().
+> 
+> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
+> Signed-off-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 3b740ca25000..4d30a86016f2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -693,6 +693,8 @@ void intel_engines_release(struct intel_gt *gt)
+>  
+>  		memset(&engine->reset, 0, sizeof(engine->reset));
+>  	}
+> +
+> +	llist_del_all(&gt->i915->uabi_engines_llist);
+>  }
+>  
+>  void intel_engine_free_request_pool(struct intel_engine_cs *engine)
+> -- 
+> 2.45.2
+> 
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vdsc.c | 24 ++---------------------
- 1 file changed, 2 insertions(+), 22 deletions(-)
+I noticed that the commit message isn't totally correct. Code changes
+are correct.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 404ed05371cb8..2e849b015e748 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -457,36 +457,30 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 		pps_val |= DSC_PPS0_422_ENABLE;
- 	if (vdsc_cfg->vbr_enable)
- 		pps_val |= DSC_PPS0_VBR_ENABLE;
--	drm_dbg_kms(&dev_priv->drm, "PPS0 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 0, pps_val);
- 
- 	/* PPS 1 */
- 	pps_val = DSC_PPS1_BPP(vdsc_cfg->bits_per_pixel);
--	drm_dbg_kms(&dev_priv->drm, "PPS1 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 1, pps_val);
- 
- 	/* PPS 2 */
- 	pps_val = DSC_PPS2_PIC_HEIGHT(vdsc_cfg->pic_height) |
- 		DSC_PPS2_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
--	drm_dbg_kms(&dev_priv->drm, "PPS2 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 2, pps_val);
- 
- 	/* PPS 3 */
- 	pps_val = DSC_PPS3_SLICE_HEIGHT(vdsc_cfg->slice_height) |
- 		DSC_PPS3_SLICE_WIDTH(vdsc_cfg->slice_width);
--	drm_dbg_kms(&dev_priv->drm, "PPS3 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 3, pps_val);
- 
- 	/* PPS 4 */
- 	pps_val = DSC_PPS4_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
- 		DSC_PPS4_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
--	drm_dbg_kms(&dev_priv->drm, "PPS4 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 4, pps_val);
- 
- 	/* PPS 5 */
- 	pps_val = DSC_PPS5_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
- 		DSC_PPS5_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
--	drm_dbg_kms(&dev_priv->drm, "PPS5 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 5, pps_val);
- 
- 	/* PPS 6 */
-@@ -494,25 +488,21 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 		DSC_PPS6_FIRST_LINE_BPG_OFFSET(vdsc_cfg->first_line_bpg_offset) |
- 		DSC_PPS6_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
- 		DSC_PPS6_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
--	drm_dbg_kms(&dev_priv->drm, "PPS6 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 6, pps_val);
- 
- 	/* PPS 7 */
- 	pps_val = DSC_PPS7_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
- 		DSC_PPS7_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
--	drm_dbg_kms(&dev_priv->drm, "PPS7 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 7, pps_val);
- 
- 	/* PPS 8 */
- 	pps_val = DSC_PPS8_FINAL_OFFSET(vdsc_cfg->final_offset) |
- 		DSC_PPS8_INITIAL_OFFSET(vdsc_cfg->initial_offset);
--	drm_dbg_kms(&dev_priv->drm, "PPS8 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 8, pps_val);
- 
- 	/* PPS 9 */
- 	pps_val = DSC_PPS9_RC_MODEL_SIZE(vdsc_cfg->rc_model_size) |
- 		DSC_PPS9_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
--	drm_dbg_kms(&dev_priv->drm, "PPS9 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 9, pps_val);
- 
- 	/* PPS 10 */
-@@ -520,7 +510,6 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 		DSC_PPS10_RC_QUANT_INC_LIMIT1(vdsc_cfg->rc_quant_incr_limit1) |
- 		DSC_PPS10_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
- 		DSC_PPS10_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
--	drm_dbg_kms(&dev_priv->drm, "PPS10 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 10, pps_val);
- 
- 	/* PPS 16 */
-@@ -529,31 +518,25 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 					 vdsc_cfg->slice_width) |
- 		DSC_PPS16_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
- 					      vdsc_cfg->slice_height);
--	drm_dbg_kms(&dev_priv->drm, "PPS16 = 0x%08x\n", pps_val);
- 	intel_dsc_pps_write(crtc_state, 16, pps_val);
- 
- 	if (DISPLAY_VER(dev_priv) >= 14) {
- 		/* PPS 17 */
- 		pps_val = DSC_PPS17_SL_BPG_OFFSET(vdsc_cfg->second_line_bpg_offset);
--		drm_dbg_kms(&dev_priv->drm, "PPS17 = 0x%08x\n", pps_val);
- 		intel_dsc_pps_write(crtc_state, 17, pps_val);
- 
- 		/* PPS 18 */
- 		pps_val = DSC_PPS18_NSL_BPG_OFFSET(vdsc_cfg->nsl_bpg_offset) |
- 			DSC_PPS18_SL_OFFSET_ADJ(vdsc_cfg->second_line_offset_adj);
--		drm_dbg_kms(&dev_priv->drm, "PPS18 = 0x%08x\n", pps_val);
- 		intel_dsc_pps_write(crtc_state, 18, pps_val);
- 	}
- 
- 	/* Populate the RC_BUF_THRESH registers */
- 	memset(rc_buf_thresh_dword, 0, sizeof(rc_buf_thresh_dword));
--	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++) {
-+	for (i = 0; i < DSC_NUM_BUF_RANGES - 1; i++)
- 		rc_buf_thresh_dword[i / 4] |=
- 			(u32)(vdsc_cfg->rc_buf_thresh[i] <<
- 			      BITS_PER_BYTE * (i % 4));
--		drm_dbg_kms(&dev_priv->drm, "RC_BUF_THRESH_%d = 0x%08x\n", i,
--			    rc_buf_thresh_dword[i / 4]);
--	}
- 	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
- 		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0,
- 			       rc_buf_thresh_dword[0]);
-@@ -600,7 +583,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 
- 	/* Populate the RC_RANGE_PARAMETERS registers */
- 	memset(rc_range_params_dword, 0, sizeof(rc_range_params_dword));
--	for (i = 0; i < DSC_NUM_BUF_RANGES; i++) {
-+	for (i = 0; i < DSC_NUM_BUF_RANGES; i++)
- 		rc_range_params_dword[i / 2] |=
- 			(u32)(((vdsc_cfg->rc_range_params[i].range_bpg_offset <<
- 				RC_BPG_OFFSET_SHIFT) |
-@@ -608,9 +591,6 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
- 				RC_MAX_QP_SHIFT) |
- 			       (vdsc_cfg->rc_range_params[i].range_min_qp <<
- 				RC_MIN_QP_SHIFT)) << 16 * (i % 2));
--		drm_dbg_kms(&dev_priv->drm, "RC_RANGE_PARAM_%d = 0x%08x\n", i,
--			    rc_range_params_dword[i / 2]);
--	}
- 	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
- 		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0,
- 			       rc_range_params_dword[0]);
--- 
-2.44.2
+The message should be replaced with:
 
+drm/i915/gt: Empty uabi engines list during intel_engines_release()
+
+While the uabi_engines_llist is populated in intel_engines_init() during
+driver load, the corresponding function intel_engines_release() does not
+correctly get rid of it. This can lead to a UAF if, after failed
+initialization (for example when gt is set wedged on init), we try to
+access the engines.
+
+Thanks
+Krzysztof
