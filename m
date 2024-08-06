@@ -2,69 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0B6948E76
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Aug 2024 14:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54B89948E9C
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Aug 2024 14:11:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A53EA10E0A2;
-	Tue,  6 Aug 2024 12:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF0C410E341;
+	Tue,  6 Aug 2024 12:11:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Po++H5LH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MC4j4eSU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2825210E098;
- Tue,  6 Aug 2024 12:08:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D5E210E33E;
+ Tue,  6 Aug 2024 12:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722946130; x=1754482130;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=S1V02nqUaoyjNuEdgxsvZ5kH8wutgTCmsLH6Pey5JAQ=;
- b=Po++H5LH8Ra2cWmojpxy7dOAx5zhOP1yedMIB2kxMZW/M44GbDFhp0y8
- yw7XwjN2E4ho2WcdHpSRQjAgMwUFdIoMwrRjZzIkeIemmv0yfVIdbguzI
- oD5bhzbu4pR/5U1co6g3HeboigZPErX7jQHnFNS8yDwAkcl2ThlOvNalw
- 5s7KrncsMXIAXcMQqW05LmXvSAMwP3Waj/+VLxjqh+TB727ZaBPvUIXS9
- 3RuVw3W8FOmTlsQmSffCeC9RSgE09E4y3BmK2x5UH7b7Mm56pVBt4BMvs
- 0iZ0qCcdhKn4tM+Td9muDCLNS9Cu4KLnUJi/QDU1wIeXCYim7KrkEukg7 w==;
-X-CSE-ConnectionGUID: VKlakmOZTHG1A8VYe4S5Kw==
-X-CSE-MsgGUID: JsPD7OCRTcKfyDZ+DQsHfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="21105904"
-X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="21105904"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 05:08:49 -0700
-X-CSE-ConnectionGUID: jgCaWL5QTJGw+S2JbgoURQ==
-X-CSE-MsgGUID: qCoQW7X2S4ilZiifII0lhQ==
+ t=1722946269; x=1754482269;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=pmSCZC5r0g4KvRmXY24BY9nHK9R0E9mSSLRofabUWTQ=;
+ b=MC4j4eSUkKHZfp2m71O+ZZYoZP7P+WwvndMNa+Mtw96yWvXmbIb7LmTo
+ p4TA42pfHE738IQGcrSvwl9RIspYQ/G8XGmDl+ts8RDtya9fBdlBNUpAm
+ dM/qnJXRi/Y8YOQvE+A1egxzVciid9tRCZr+AckMEiP1DAZega3WFPsGv
+ SMIkX+7lTSoot4cNDG04HsOMvyfHljBoVj/kdMvz3Z1oQzJ5FHMeQRZb5
+ l5DXJ3tP6X23n4+CzZLXZYJwzmtZaAQ528rkxZw9tH9JiJWCWsTL7qgsn
+ GdhKrMcAuzFZkE68WDwW4BVKN5vKsIKcQPvAe4z+KlYAU4OGg50Da0krA Q==;
+X-CSE-ConnectionGUID: 2dlxl4nOTMiVPFNgoYpG7Q==
+X-CSE-MsgGUID: 0cfRVacgQlerEw4W6T9KwA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="38462385"
+X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="38462385"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 05:11:08 -0700
+X-CSE-ConnectionGUID: n6yZA6U/RcSKiyaeKFcmbQ==
+X-CSE-MsgGUID: 1wi0fgk5TgWStyuGLGmZdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="61120786"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.66])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 05:08:45 -0700
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ZrHw3y8QKPT87LxP@ashyti-mobl2.lan>
-References: <20240805102554.154464-1-andi.shyti@linux.intel.com>
- <ZrFMopcHlT6G7p3V@ashyti-mobl2.lan> <2024080640-landfall-doozy-e0d2@gregkh>
- <ZrHw3y8QKPT87LxP@ashyti-mobl2.lan>
-Subject: Re: [PATCH v2 0/2] Fix mmap memory boundary calculation
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Jann Horn <jannh@google.com>, Chris Wilson <chris.p.wilson@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Andi Shyti <andi.shyti@kernel.org>
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="56379719"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.4])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 05:11:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 02/10] drm/xe: add kdev_to_xe_device() helper and use it
+In-Reply-To: <172253051169.5121.1482254642233377824@gjsousa-mobl2>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 06 Aug 2024 15:08:40 +0300
-Message-ID: <172294612086.38654.15621922821489001205@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.10
+References: <cover.1722263308.git.jani.nikula@intel.com>
+ <55d57008c0f9bcfc089cf8b940e531c770f43454.1722263308.git.jani.nikula@intel.com>
+ <172253051169.5121.1482254642233377824@gjsousa-mobl2>
+Date: Tue, 06 Aug 2024 15:10:51 +0300
+Message-ID: <87jzgt6ed0.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,32 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2024-08-06 12:46:07)
-> Hi Greg,
->=20
-> same question without the stable mailing list not to trigger the
-> automatic reply.
->=20
-> > Andi Shyti (2):
-> >   drm/i915/gem: Adjust vma offset for framebuffer mmap offset
-> >   drm/i915/gem: Fix Virtual Memory mapping boundaries calculation
->=20
-> I have forgotten to actually Cc the stable mailing list here.
-> These two patches need to be merged together even if only the
-> second patch has the "Fixes:" tag.
->=20
-> I could have used the "Requires:" tag, but the commit id would
-> change in between merges and rebases.
+On Thu, 01 Aug 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-07-29 11:30:03-03:00)
+>>There are enough users for kernel device to xe device conversion, add a
+>>helper for it.
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>---
+>> drivers/gpu/drm/xe/xe_device.h    | 5 +++++
+>> drivers/gpu/drm/xe/xe_gsc_proxy.c | 9 ++-------
+>> 2 files changed, 7 insertions(+), 7 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+>>index db6cc8d0d6b8..2c96f1b2aafd 100644
+>>--- a/drivers/gpu/drm/xe/xe_device.h
+>>+++ b/drivers/gpu/drm/xe/xe_device.h
+>>@@ -15,6 +15,11 @@ static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+>>         return container_of(dev, struct xe_device, drm);
+>> }
+>> 
+>>+static inline struct xe_device *kdev_to_xe_device(struct device *kdev)
+>
+> Nitpick: Although there are some places that do it differently, it seems
+> it is very common to use "dev" to refer to the generic struct device, so
+> I would s/kdev/dev/ here.
 
-The patches were the top two in drm-intel-gt-next and committed
-only few hours ago so I fixed up the patches adding Cc: stable
-and Requires:
+I think kdev is often used to distinguish from struct drm_device *dev.
 
-Regards, Joonas
+> In any case:
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
->=20
-> Is there anything I should still do here? Do you want me to
-> take care and send the backports for kernels starting from 4.19?
->=20
-> Thanks,
-> Andi
+Thanks,
+Jani.
+
+>
+>>+{
+>>+        return dev_get_drvdata(kdev);
+>>+}
+>>+
+>> static inline struct xe_device *pdev_to_xe_device(struct pci_dev *pdev)
+>> {
+>>         return pci_get_drvdata(pdev);
+>>diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+>>index aa812a2bc3ed..28e6a7a1d282 100644
+>>--- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
+>>+++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
+>>@@ -62,11 +62,6 @@ gsc_to_gt(struct xe_gsc *gsc)
+>>         return container_of(gsc, struct xe_gt, uc.gsc);
+>> }
+>> 
+>>-static inline struct xe_device *kdev_to_xe(struct device *kdev)
+>>-{
+>>-        return dev_get_drvdata(kdev);
+>>-}
+>>-
+>> bool xe_gsc_proxy_init_done(struct xe_gsc *gsc)
+>> {
+>>         struct xe_gt *gt = gsc_to_gt(gsc);
+>>@@ -345,7 +340,7 @@ void xe_gsc_proxy_irq_handler(struct xe_gsc *gsc, u32 iir)
+>> static int xe_gsc_proxy_component_bind(struct device *xe_kdev,
+>>                                        struct device *mei_kdev, void *data)
+>> {
+>>-        struct xe_device *xe = kdev_to_xe(xe_kdev);
+>>+        struct xe_device *xe = kdev_to_xe_device(xe_kdev);
+>>         struct xe_gt *gt = xe->tiles[0].media_gt;
+>>         struct xe_gsc *gsc = &gt->uc.gsc;
+>> 
+>>@@ -360,7 +355,7 @@ static int xe_gsc_proxy_component_bind(struct device *xe_kdev,
+>> static void xe_gsc_proxy_component_unbind(struct device *xe_kdev,
+>>                                           struct device *mei_kdev, void *data)
+>> {
+>>-        struct xe_device *xe = kdev_to_xe(xe_kdev);
+>>+        struct xe_device *xe = kdev_to_xe_device(xe_kdev);
+>>         struct xe_gt *gt = xe->tiles[0].media_gt;
+>>         struct xe_gsc *gsc = &gt->uc.gsc;
+>> 
+>>-- 
+>>2.39.2
+>>
+
+-- 
+Jani Nikula, Intel
