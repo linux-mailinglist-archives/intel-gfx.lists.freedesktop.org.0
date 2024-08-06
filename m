@@ -2,70 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7324A94955A
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Aug 2024 18:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EF3949567
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Aug 2024 18:17:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4CD10E3B4;
-	Tue,  6 Aug 2024 16:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D598F10E3BD;
+	Tue,  6 Aug 2024 16:17:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QmFRYaP2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vst3L9da";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B481C10E3B1;
- Tue,  6 Aug 2024 16:14:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86D4A10E3BD;
+ Tue,  6 Aug 2024 16:17:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722960862; x=1754496862;
+ t=1722961050; x=1754497050;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=mn4bAaKh4OzlNcns15U7R+92M15go6dKF/m0kZ4fJcQ=;
- b=QmFRYaP2cW+DI/ITLIooD7Etq/rLT/nppXY/20oTL56jvLEY8+1WcciI
- xlAAIQKWKFbhNhF/BU3fj+t3GJv7F1VttiGcn+RmNC7tTMwcBUmPyNzz7
- tKwKPp13fTDbgmDB9jcdhsJt2bJT7zNuHZOylaD+jTzWPIc6zG2nT/niZ
- V0q2EUyfNHg2MiS0Yr0e/2CSfgqkvJTHBi5YflBkOOmPlgULse93DuzqH
- JOGvHEfUX6d+sp44kAK06XZtTLREThiEqJLNEMnOz/2YlWr34zCSSDQqk
- BfTO5bfndov0SjEM/zSn7lYrf5PVNP0sWnNoL9AA+yA90qK1lZPG2B/H9 w==;
-X-CSE-ConnectionGUID: uA3rJCzgQuqKyOn+AyHHEw==
-X-CSE-MsgGUID: 06VdL/yQQo23xNlIGHpaEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31566800"
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="31566800"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 09:14:22 -0700
-X-CSE-ConnectionGUID: L+AMiGrRR3SsWknUUVXQcw==
-X-CSE-MsgGUID: F8dxAd+vQJ+Qrr/0i/YGwQ==
+ bh=VBFqMyp0z0Fqbh+LSvutdD5ttwC1ITUFm1aAWojOAzc=;
+ b=Vst3L9daxpaH//bkLdGfPx7xbopY4yyh6FwBnH1GPx//mlNW+1k+lYeZ
+ xu4UCCM38om/qghfRelzw1ik6GGfIfE5Yg0X7mo4JNOhgvZVnVd8id5NQ
+ ysPLoa11+BUy0fTyTUveefTtUOwLuFNf5oB3yUdBFYA6ZqV3x//Vseryl
+ uEUU3Fpk0k9j5ndpFrsxh0zbuGoPuMZvbHHedZtwfY0d5TEePMf/HUdE2
+ 4KR4o/M4NaqQnxKKmppOcsjbwdFMSoBe7344cfIhsS+OmIFZeNxZCvVCm
+ rwCTB9lJsaRHPiE3ySyoQNdfX4Nx/hB9/kjt03STY4pQ+2qrwjg5Q7TUr A==;
+X-CSE-ConnectionGUID: kY6V7tbCRbeq9d+Twrb5ew==
+X-CSE-MsgGUID: AXPDu+IXQrG8G26NC9GQ3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="20842311"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="20842311"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 09:17:29 -0700
+X-CSE-ConnectionGUID: WcThjglDRZqKLy8SIZI5nw==
+X-CSE-MsgGUID: F0d1Qlo2RCSAUEF0jZJj6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="87215097"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO intel.com)
- ([10.245.244.131])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 09:14:15 -0700
-Date: Tue, 6 Aug 2024 17:14:07 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: David Gow <david@davidgow.net>
-Cc: Christian =?iso-8859-15?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Gow <david@ingeniumdigital.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Ville =?iso-8859-15?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] drm/i915: Fix ttm small BAR placement handling
-Message-ID: <ZrJLz9rZLsZh1nWo@ashyti-mobl2.lan>
-References: <20240804091851.122186-1-david@davidgow.net>
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="56264909"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+ by fmviesa007.fm.intel.com with ESMTP; 06 Aug 2024 09:17:27 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sbMsH-0004e6-1b;
+ Tue, 06 Aug 2024 16:17:25 +0000
+Date: Wed, 7 Aug 2024 00:17:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH] drm/xe/pm: Change HPD to polling on runtime suspend
+Message-ID: <202408062332.8Cl1FjhB-lkp@intel.com>
+References: <20240806085513.3051107-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240804091851.122186-1-david@davidgow.net>
+In-Reply-To: <20240806085513.3051107-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,47 +70,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi David,
+Hi Arun,
 
-thanks for the patches and thanks Justin for debugging the issue.
+kernel test robot noticed the following build errors:
 
-I reviewed and merged it into drm-intel-gt-next.
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.11-rc2 next-20240806]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Andi
+url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-xe-pm-Change-HPD-to-polling-on-runtime-suspend/20240806-175155
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20240806085513.3051107-1-arun.r.murthy%40intel.com
+patch subject: [PATCH] drm/xe/pm: Change HPD to polling on runtime suspend
+config: i386-buildonly-randconfig-003-20240806 (https://download.01.org/0day-ci/archive/20240806/202408062332.8Cl1FjhB-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240806/202408062332.8Cl1FjhB-lkp@intel.com/reproduce)
 
-On Sun, Aug 04, 2024 at 05:18:46PM +0800, David Gow wrote:
-> From: David Gow <david@ingeniumdigital.com>
-> 
-> As described in [1], there have been a couple of regressions in the TTM
-> placement handling for i915, which adversely affect DG2 systems with
-> small BAR.  In particular, performance become very poor when eviction
-> from the mappable BAR memory is required, as suboptimal placements can
-> be preferred, leading to thrashing. This often leads to hangs of >10s,
-> during which even the compositor is unusable.
-> 
-> These regressions were largely introduced during the flag rework in
-> commit a78a8da51b36 ("drm/ttm: replace busy placement with flags v6").
-> 
-> The first patch has already been sent out[2]. I'm resending it as part
-> of this series which fixes both known regressions.
-> 
-> Thanks to Justin Brewer for bisecting the issue.
-> 
-> Cheers,
-> -- David
-> 
-> [1]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11255
-> [2]: https://lore.kernel.org/dri-devel/20240722074540.15295-1-david@davidgow.net/
-> 
-> ---
-> 
-> David Gow (2):
->   drm/i915: Allow evicting to use the requested placement
->   drm/i915: Attempt to get pages without eviction first
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.46.0
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408062332.8Cl1FjhB-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/xe/xe_pm.c:25:10: fatal error: intel_hotplug.h: No such file or directory
+      25 | #include "intel_hotplug.h"
+         |          ^~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +25 drivers/gpu/drm/xe/xe_pm.c
+
+    12	
+    13	#include "display/xe_display.h"
+    14	#include "xe_bo.h"
+    15	#include "xe_bo_evict.h"
+    16	#include "xe_device.h"
+    17	#include "xe_device_sysfs.h"
+    18	#include "xe_ggtt.h"
+    19	#include "xe_gt.h"
+    20	#include "xe_guc.h"
+    21	#include "xe_irq.h"
+    22	#include "xe_pcode.h"
+    23	#include "xe_trace.h"
+    24	#include "xe_wa.h"
+  > 25	#include "intel_hotplug.h"
+    26	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
