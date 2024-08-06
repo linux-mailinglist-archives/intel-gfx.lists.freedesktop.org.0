@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DD32949226
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Aug 2024 15:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4ED8949261
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Aug 2024 15:59:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC6F510E37E;
-	Tue,  6 Aug 2024 13:53:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6DE10E37B;
+	Tue,  6 Aug 2024 13:59:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O/y65yxq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrZBDHCA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A806410E375;
- Tue,  6 Aug 2024 13:53:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FE4910E37B;
+ Tue,  6 Aug 2024 13:59:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1722952394; x=1754488394;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=SbmXRq79eckaa4FMBLkgA+KlXFLnMDiZiV9D/k8yQls=;
- b=O/y65yxqnkXpHk8TsznlFIrPMZnlE1SvjwRGONfBS/Mu4DOVV+EISk/g
- 9AlvMNHZhGtIpkJLYMfh4oXUxq06+ZMvxA46sjK01YzH9z8N5QnHsvsw0
- 82QUdStaJr02+mORzd8L48sotirYNUkjgrr0dcy1DfhxSotCh6/lZZIs1
- duLld2KFesRL/YlFHb78ULWrUhO5YjUW5zecNd7LFNSfpKqck/5gzYOb9
- rn3xvdne5oQKsrUTNvPiLJJ03H4xa8XgnTC1cv+AbVDt/5nCrpqG2EV8c
- UD20rbDd8Htu/qAr87hIlDQt4Zgj3E19OPxtMuZTHeEUspKngvYXEzte9 A==;
-X-CSE-ConnectionGUID: eVVG2iu9SGWbjHwzSEdPig==
-X-CSE-MsgGUID: 0aJFLeqSRlKtLEWeyOzmEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="43494468"
-X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="43494468"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 06:53:13 -0700
-X-CSE-ConnectionGUID: hlFegPElSXS8kcCRS4d8qg==
-X-CSE-MsgGUID: //ntiztaSiCh3RoHleyDpw==
+ t=1722952764; x=1754488764;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=i6CRg/G8WNaBedSytWSSmWvg61HbjpWWwVS7urytdmw=;
+ b=TrZBDHCAh+O1aD7zBNYUl17Hmj99dHx3DLZi/lbAzovftv0OkzDews1d
+ XzIoQ/IxU9xWt/zfXTDoPDYn+0oBCzXVLU3Y4OcQtj6wATN61J8nrOMk1
+ akqf0xdsSm2E14/MG/eVdS9ZHzUCy1qDOj64ylEzdFsTYzgx3VySAIkei
+ OVxlL0N992x6/02F/Ag7HTBdMtS7CAPa2KczHZUfo36J7eCcrZUe+N520
+ CP0n/GdmGdNrVNw8bkdFc9WpVjm5YXh/MF5JAne4SIrf2++F/UgkreXNM
+ Udp5s34P9WcmXFNDwDhpWweHUmgjuWEBnSy4lUxEQjBf0IgahAB5lWWzf A==;
+X-CSE-ConnectionGUID: MFcgETZDT5qW1+t1Ez8RtA==
+X-CSE-MsgGUID: k+zKB7uqQw6tUyHGk5BnRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="20821879"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="20821879"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 06:59:23 -0700
+X-CSE-ConnectionGUID: XFyXqsipST2A1z8egBJUJg==
+X-CSE-MsgGUID: EyX+C2b1TmK6iYRlSJi7qg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,267,1716274800"; d="scan'208";a="87461712"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2024 06:53:11 -0700
-Date: Tue, 6 Aug 2024 16:53:29 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] drm/i915/opregion: unify
- intel_encoder/intel_connector naming
-Message-ID: <ZrIq2VfXDcuDWLCS@ideak-desk.fi.intel.com>
-References: <cover.1722444150.git.jani.nikula@intel.com>
- <d573ffe96416121297d9febb92156ea845de2b80.1722444150.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; d="scan'208";a="61387939"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.4])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2024 06:59:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/5] drm/i915/pll_algorithm: Compute C10 HDMI PLLs with
+ algorithm
+In-Reply-To: <20240806125827.2183899-5-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240806125827.2183899-1-ankit.k.nautiyal@intel.com>
+ <20240806125827.2183899-5-ankit.k.nautiyal@intel.com>
+Date: Tue, 06 Aug 2024 16:59:06 +0300
+Message-ID: <87bk2569cl.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d573ffe96416121297d9febb92156ea845de2b80.1722444150.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,125 +66,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 31, 2024 at 07:44:34PM +0300, Jani Nikula wrote:
-> Prefer the short encoder/connector names for struct
-> intel_encoder/intel_connector variables and parameters.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Tue, 06 Aug 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
+> index 9f60bd9bacbe..288289ec593f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
+> @@ -8,8 +8,10 @@
+>  
+>  #include <linux/types.h>
+>  
+> +struct intel_c10pll_state;
+>  struct intel_mpllb_state;
+>  
+>  void intel_snps_phy_compute_hdmi_tmds_pll(struct intel_mpllb_state *pll_state, u64 pixel_clock);
+> +void intel_c10_phy_compute_hdmi_tmds_pll(struct intel_c10pll_state *pll_state, u64 pixel_clock);
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+If you have a file intel_snps_hdmi_pll.[ch], the functions should be
+named intel_snps_hdmi_pll_*().
 
-> ---
->  drivers/gpu/drm/i915/display/intel_opregion.c | 23 +++++++++----------
->  drivers/gpu/drm/i915/display/intel_opregion.h |  4 ++--
->  2 files changed, 13 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index 4ff646a7f05d..4c9b9e7ebc91 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -381,10 +381,10 @@ static int swsci(struct drm_i915_private *dev_priv,
->  #define DISPLAY_TYPE_EXTERNAL_FLAT_PANEL	2
->  #define DISPLAY_TYPE_INTERNAL_FLAT_PANEL	3
+Or you need to rename the file.
+
+BR,
+Jani.
+
 >  
-> -int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
-> +int intel_opregion_notify_encoder(struct intel_encoder *encoder,
->  				  bool enable)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(intel_encoder->base.dev);
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	u32 parm = 0;
->  	u32 type = 0;
->  	u32 port;
-> @@ -399,10 +399,10 @@ int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
->  	if (ret)
->  		return ret;
->  
-> -	if (intel_encoder->type == INTEL_OUTPUT_DSI)
-> +	if (encoder->type == INTEL_OUTPUT_DSI)
->  		port = 0;
->  	else
-> -		port = intel_encoder->port;
-> +		port = encoder->port;
->  
->  	if (port == PORT_E)  {
->  		port = 0;
-> @@ -421,15 +421,15 @@ int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
->  	if (port > 4) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "[ENCODER:%d:%s] port %c (index %u) out of bounds for display power state notification\n",
-> -			    intel_encoder->base.base.id, intel_encoder->base.name,
-> -			    port_name(intel_encoder->port), port);
-> +			    encoder->base.base.id, encoder->base.name,
-> +			    port_name(encoder->port), port);
->  		return -EINVAL;
->  	}
->  
->  	if (!enable)
->  		parm |= 4 << 8;
->  
-> -	switch (intel_encoder->type) {
-> +	switch (encoder->type) {
->  	case INTEL_OUTPUT_ANALOG:
->  		type = DISPLAY_TYPE_CRT;
->  		break;
-> @@ -446,7 +446,7 @@ int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
->  	default:
->  		drm_WARN_ONCE(&dev_priv->drm, 1,
->  			      "unsupported intel_encoder type %d\n",
-> -			      intel_encoder->type);
-> +			      encoder->type);
->  		return -EINVAL;
->  	}
->  
-> @@ -1093,7 +1093,7 @@ intel_opregion_get_panel_type(struct drm_i915_private *dev_priv)
->  
->  /**
->   * intel_opregion_get_edid - Fetch EDID from ACPI OpRegion mailbox #5
-> - * @intel_connector: eDP connector
-> + * @connector: eDP connector
->   *
->   * This reads the ACPI Opregion mailbox #5 to extract the EDID that is passed
->   * to it.
-> @@ -1102,10 +1102,9 @@ intel_opregion_get_panel_type(struct drm_i915_private *dev_priv)
->   * The EDID in the OpRegion, or NULL if there is none or it's invalid.
->   *
->   */
-> -const struct drm_edid *intel_opregion_get_edid(struct intel_connector *intel_connector)
-> +const struct drm_edid *intel_opregion_get_edid(struct intel_connector *connector)
->  {
-> -	struct drm_connector *connector = &intel_connector->base;
-> -	struct drm_i915_private *i915 = to_i915(connector->dev);
-> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_opregion *opregion = i915->display.opregion;
->  	const struct drm_edid *drm_edid;
->  	const void *edid;
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> index 4b2b8e752632..4dcd13c672e4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> @@ -46,7 +46,7 @@ void intel_opregion_suspend(struct drm_i915_private *dev_priv,
->  
->  bool intel_opregion_asle_present(struct drm_i915_private *i915);
->  void intel_opregion_asle_intr(struct drm_i915_private *dev_priv);
-> -int intel_opregion_notify_encoder(struct intel_encoder *intel_encoder,
-> +int intel_opregion_notify_encoder(struct intel_encoder *encoder,
->  				  bool enable);
->  int intel_opregion_notify_adapter(struct drm_i915_private *dev_priv,
->  				  pci_power_t state);
-> @@ -98,7 +98,7 @@ static inline void intel_opregion_asle_intr(struct drm_i915_private *dev_priv)
->  }
->  
->  static inline int
-> -intel_opregion_notify_encoder(struct intel_encoder *intel_encoder, bool enable)
-> +intel_opregion_notify_encoder(struct intel_encoder *encoder, bool enable)
->  {
->  	return 0;
->  }
-> -- 
-> 2.39.2
-> 
+>  #endif /* __INTEL_SNPS_HDMI_PLL_H__ */
+
+-- 
+Jani Nikula, Intel
