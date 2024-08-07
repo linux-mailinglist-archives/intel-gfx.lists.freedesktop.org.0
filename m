@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8421894A4C1
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 11:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D86994A4C7
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 11:55:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 048D510E058;
-	Wed,  7 Aug 2024 09:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F352E10E093;
+	Wed,  7 Aug 2024 09:55:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6TE6CuZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CcQlumit";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD5A510E058
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Aug 2024 09:53:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCC0910E093
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Aug 2024 09:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723024389; x=1754560389;
+ t=1723024524; x=1754560524;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=3WG9kpphrmAOy8LPf4D1CTVtUHRVhSkpudBUHA7oJsg=;
- b=e6TE6CuZbT3fohpR9JAgYR319Zl+uyEP6stbIvb9j9Dc0FGNn50Iw20a
- PoL4Z/18I/Oh06WPFWUyZhWfZ/RxRrVkSa7INrGdFQ7+1YAn8lzc+eOQ4
- Nz/XlMUL/csWEa9gjPLm2Im8FtbfaSJnue/G1wR57NNwko3kF9Uuoc/XI
- 2ePUTPu9cMIDYHVW+7oiArDObRNZoWmHKZxDB5sVbcdKwRZ+t+hQRKI5L
- UId6piPv1Zf60oE+owUrKbN2o4bRPntFhux6qpg+C0wk54e85cUw/803x
- wXEWX4Ri8gZfQOfAzzTPzA21YlrwC1/ZO/+QOriLGQCx5GAKJt58ez4Po g==;
-X-CSE-ConnectionGUID: A6OE6NOIRuC0HWjQ4gCmtw==
-X-CSE-MsgGUID: NdMIJ7p4RECO4M5ltyGyOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="20749483"
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="20749483"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 02:53:08 -0700
-X-CSE-ConnectionGUID: xcannCanRW+wcxVT32Bjwg==
-X-CSE-MsgGUID: dQPRFLBTSiCjVR5SwFpRWg==
+ bh=k7xSnaK4qv28M7lf0tJbdtNEVmbDWghd+YawnOA+U18=;
+ b=CcQlumite7iTYp2o4nNrylvu2S8ZHGzUopA2uMtUJMwOxJLlN/Rd8NQj
+ hhJ1OhHqLIMJXm6OOYMAGeiAsupsNzp/TEhr43IaqX9FpVPqkr4hURd0C
+ LxttBZ5WO+26g0i2frLPj9+T0bGla+yPkLKiJIyRAoYz1OCew9LrZaykk
+ yYxiqGCZvs93+n2A0hHyk3EMv2R9vWz/IrUIixwIArLah4rfNUH5FJ7g8
+ jLMb/U2JHuKsfwBFOCkqeH51tyJemc4zdtCx7i9phejtV08d5taMuZO2O
+ Fjq+oJ00CuGxfBgW8iq4fIlPly163Cv0ANCWyGu7eDeeEQCaVOlM7KMS1 A==;
+X-CSE-ConnectionGUID: okdyGyciQiOijRCgn4OOYw==
+X-CSE-MsgGUID: fWFoQQU9Qrq74BmxzECxnQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="43607646"
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="43607646"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 02:55:23 -0700
+X-CSE-ConnectionGUID: nb7CA/1CSKulWAB0wqhIPg==
+X-CSE-MsgGUID: nFacfogbQLiYlCFETounKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="61736512"
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="80055434"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.85])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 02:53:06 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 02:55:21 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org
 Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH 5/5] drm/i915/display/histogram: Histogram changes for
- Display LNL+
-In-Reply-To: <20240705095551.1244154-6-arun.r.murthy@intel.com>
+Subject: Re: [PATCH 1/5] drm/i915/display: Add support for histogram
+In-Reply-To: <20240705095551.1244154-2-arun.r.murthy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240705095551.1244154-1-arun.r.murthy@intel.com>
- <20240705095551.1244154-6-arun.r.murthy@intel.com>
-Date: Wed, 07 Aug 2024 12:53:03 +0300
-Message-ID: <87ttfw4q2o.fsf@intel.com>
+ <20240705095551.1244154-2-arun.r.murthy@intel.com>
+Date: Wed, 07 Aug 2024 12:55:18 +0300
+Message-ID: <87r0b04pyx.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,279 +70,46 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Fri, 05 Jul 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> In LNL+, histogram/IE data and index registers are added which was
-> included in the control registers in the legacy platforms. The new
-> registers are used for reading histogram and writing the IET LUT data.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_histogram.c    | 174 +++++++++++++-----
->  .../gpu/drm/i915/display/intel_histogram.h    |  25 +++
->  2 files changed, 153 insertions(+), 46 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-> index 61a8cd623f19..46832ca78ee3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_histogram.c
-> +++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-> @@ -11,29 +11,47 @@
->  #include "intel_de.h"
->  #include "intel_histogram.h"
->  
-> -static void intel_histogram_handle_int_work(struct work_struct *work)
-> +static void intel_histogram_read_data(struct intel_histogram *histogram)
->  {
-> -	struct intel_histogram *histogram = container_of(work,
-> -		struct intel_histogram, handle_histogram_int_work.work);
->  	struct drm_i915_private *i915 = histogram->i915;
-> -	struct intel_crtc *intel_crtc =
-> -		to_intel_crtc(drm_crtc_from_index(&i915->drm, histogram->pipe));
-> -	char *histogram_event[] = {"HISTOGRAM=1", NULL};
->  	u32 dpstbin;
->  	int i, try = 0;
->  
-> -	/* Wa: 14014889975 */
-> -	if (IS_DISPLAY_VER(i915, 12, 13))
-> -		intel_de_rmw(i915, DPST_CTL(histogram->pipe),
-> -			     DPST_CTL_RESTORE, 0);
-> +	/* Set index to zero */
-> +	intel_de_rmw(i915, DPST_HIST_INDEX(histogram->pipe),
-> +		     DPST_HIST_BIN_INDEX_MASK, DPST_HIST_BIN_INDEX(0));
->  
-> -	/*
-> -	 * TODO: PSR to be exited while reading the Histogram data
-> -	 * Set DPST_CTL Bin Reg function select to TC
-> -	 * Set DPST_CTL Bin Register Index to 0
-> -	 */
-> -	intel_de_rmw(i915, DPST_CTL(histogram->pipe),
-> -		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
-> +	for (i = 0; i < HISTOGRAM_BIN_COUNT; i++) {
-> +		dpstbin = intel_de_read(i915, DPST_HIST_BIN(histogram->pipe));
-> +		if (dpstbin & DPST_BIN_BUSY) {
-> +			/*
-> +			 * If DPST_BIN busy bit is set, then set the
-> +			 * DPST_CTL bin reg index to 0 and proceed
-> +			 * from beginning.
-> +			 */
-> +			intel_de_rmw(i915, DPST_HIST_INDEX(histogram->pipe),
-> +				     DPST_HIST_BIN_INDEX_MASK,
-> +				     DPST_HIST_BIN_INDEX(0));
-> +			i = 0;
-> +			if (try++ == 5) {
-> +				drm_err(&i915->drm,
-> +					"Histogram block is busy, failed to read\n");
-> +				intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-> +					     DPST_GUARD_HIST_EVENT_STATUS, 1);
-> +				return;
-> +			}
-> +		}
-> +		histogram->bindata[i] = dpstbin & DPST_HIST_BIN_DATA_MASK;
-> +		drm_dbg_atomic(&i915->drm, "Histogram[%d]=%x\n",
-> +			       i, histogram->bindata[i]);
-> +	}
-> +}
+> +/* GLOBAL_HIST related registers */
+> +#define _DPST_CTL_A					0x490C0
+> +#define _DPST_CTL_B					0x491C0
+> +#define DPST_CTL(pipe)					_MMIO_PIPE(pipe, _DPST_CTL_A, _DPST_CTL_B)
+> +#define DPST_CTL_IE_HIST_EN				REG_BIT(31)
+> +#define DPST_CTL_RESTORE				REG_BIT(28)
+> +#define DPST_CTL_IE_MODI_TABLE_EN			REG_BIT(27)
+> +#define DPST_CTL_HIST_MODE				REG_BIT(24)
+> +#define DPST_CTL_ENHANCEMENT_MODE_MASK			REG_GENMASK(14, 13)
+> +#define DPST_CTL_EN_MULTIPLICATIVE			REG_FIELD_PREP(DPST_CTL_ENHANCEMENT_MODE_MASK, 2)
+> +#define DPST_CTL_IE_TABLE_VALUE_FORMAT			REG_BIT(15)
+> +#define DPST_CTL_BIN_REG_FUNC_SEL			REG_BIT(11)
+> +#define DPST_CTL_BIN_REG_FUNC_TC			REG_FIELD_PREP(DPST_CTL_BIN_REG_FUNC_SEL, 0)
+> +#define DPST_CTL_BIN_REG_FUNC_IE			REG_FIELD_PREP(DPST_CTL_BIN_REG_FUNC_SEL, 1)
+> +#define DPST_CTL_BIN_REG_MASK				REG_GENMASK(6, 0)
+> +#define DPST_CTL_BIN_REG_CLEAR				REG_FIELD_PREP(DPST_CTL_BIN_REG_MASK, 0)
+> +#define DPST_CTL_IE_TABLE_VALUE_FORMAT_2INT_8FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 1)
+> +#define DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 0)
+> +#define DPST_CTL_HIST_MODE_YUV				REG_FIELD_PREP(DPST_CTL_HIST_MODE, 0)
+> +#define DPST_CTL_HIST_MODE_HSV				REG_FIELD_PREP(DPST_CTL_HIST_MODE, 1)
+> +
+> +#define _DPST_GUARD_A					0x490C8
+> +#define _DPST_GUARD_B					0x491C8
+> +#define DPST_GUARD(pipe)				_MMIO_PIPE(pipe, _DPST_GUARD_A, _DPST_GUARD_B)
+> +#define DPST_GUARD_HIST_INT_EN				REG_BIT(31)
+> +#define DPST_GUARD_HIST_EVENT_STATUS			REG_BIT(30)
+> +#define DPST_GUARD_INTERRUPT_DELAY_MASK			REG_GENMASK(29, 22)
+> +#define DPST_GUARD_INTERRUPT_DELAY(val)			REG_FIELD_PREP(DPST_GUARD_INTERRUPT_DELAY_MASK, val)
+> +#define DPST_GUARD_THRESHOLD_GB_MASK			REG_GENMASK(21, 0)
+> +#define DPST_GUARD_THRESHOLD_GB(val)			REG_FIELD_PREP(DPST_GUARD_THRESHOLD_GB_MASK, val)
+> +
+> +#define _DPST_BIN_A					0x490C4
+> +#define _DPST_BIN_B					0x491C4
+> +#define DPST_BIN(pipe)					_MMIO_PIPE(pipe, _DPST_BIN_A, _DPST_BIN_B)
+> +#define DPST_BIN_DATA_MASK				REG_GENMASK(23, 0)
+> +#define DPST_BIN_BUSY					REG_BIT(31)
 
-Please figure out a way to not duplicate the logic. Now you have the
-infinite loop in two places.
+PS. The big comment about formatting register definitions at the top of
+i915_reg.h still applies.
 
-> +
-> +static void intel_histogram_read_data_legacy(struct intel_histogram *histogram)
-> +{
-> +	struct drm_i915_private *i915 = histogram->i915;
-> +	u32 dpstbin;
-> +	int i, try = 0;
->  
->  	for (i = 0; i < HISTOGRAM_BIN_COUNT; i++) {
->  		dpstbin = intel_de_read(i915, DPST_BIN(histogram->pipe));
-> @@ -58,6 +76,41 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
->  		drm_dbg_atomic(&i915->drm, "Histogram[%d]=%x\n",
->  			       i, histogram->bindata[i]);
->  	}
-> +}
-> +
-> +static void intel_histogram_get_data(struct intel_histogram *histogram)
-> +{
-> +	struct drm_i915_private *i915 = histogram->i915;
-> +
-> +	/*
-> +	 * TODO: PSR to be exited while reading the Histogram data
-> +	 * Set DPST_CTL Bin Reg function select to TC
-> +	 * Set DPST_CTL Bin Register Index to 0
-> +	 */
-> +	if (DISPLAY_VER(i915) >= 20) {
-> +		intel_histogram_read_data(histogram);
-> +	} else {
-> +		intel_de_rmw(i915, DPST_CTL(histogram->pipe),
-> +			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
-> +		intel_histogram_read_data_legacy(histogram);
-> +	}
-> +}
-> +
-> +static void intel_histogram_handle_int_work(struct work_struct *work)
-> +{
-> +	struct intel_histogram *histogram = container_of(work,
-> +		struct intel_histogram, handle_histogram_int_work.work);
-> +	struct drm_i915_private *i915 = histogram->i915;
-> +	struct intel_crtc *intel_crtc =
-> +		to_intel_crtc(drm_crtc_from_index(&i915->drm, histogram->pipe));
-> +	char *histogram_event[] = {"HISTOGRAM=1", NULL};
-> +
-> +	/* Wa: 14014889975 */
-> +	if (IS_DISPLAY_VER(i915, 12, 13))
-> +		intel_de_rmw(i915, DPST_CTL(histogram->pipe),
-> +			     DPST_CTL_RESTORE, 0);
-> +
-> +	intel_histogram_get_data(histogram);
->  
->  	/* Notify user for Histogram rediness */
->  	if (kobject_uevent_env(&i915->drm.primary->kdev->kobj, KOBJ_CHANGE,
-> @@ -70,13 +123,16 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
->  		intel_de_write(i915, DPST_CTL(histogram->pipe), intel_de_read(i915,
->  			       DPST_CTL(histogram->pipe)) | DPST_CTL_RESTORE);
->  
-> -	/* Enable histogram interrupt */
-> -	intel_de_rmw(i915, DPST_GUARD(histogram->pipe), DPST_GUARD_HIST_INT_EN,
-> -		     DPST_GUARD_HIST_INT_EN);
-> +	if (DISPLAY_VER(i915) <= 14) {
-> +		/* Enable histogram interrupt */
-> +		intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-> +			     DPST_GUARD_HIST_INT_EN,
-> +			     DPST_GUARD_HIST_INT_EN);
->  
-> -	/* Clear histogram interrupt by setting histogram interrupt status bit*/
-> -	intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-> -		     DPST_GUARD_HIST_EVENT_STATUS, 1);
-> +		/* Clear histogram interrupt by setting histogram interrupt status bit*/
-> +		intel_de_rmw(i915, DPST_GUARD(histogram->pipe),
-> +			     DPST_GUARD_HIST_EVENT_STATUS, 1);
-> +	}
->  
->  	drm_property_replace_global_blob(&i915->drm,
->  			&intel_crtc->config->histogram,
-> @@ -148,12 +204,19 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc)
->  	 * enable DPST_CTL Histogram mode
->  	 * Clear DPST_CTL Bin Reg function select to TC
->  	 */
-> -	intel_de_rmw(i915, DPST_CTL(pipe),
-> -		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
-> -		     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT,
-> -		     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
-> -		     DPST_CTL_HIST_MODE_HSV |
-> -		     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC);
-> +	if (DISPLAY_VER(i915) >= 20)
-> +		intel_de_rmw(i915, DPST_CTL(pipe),
-> +			     DPST_CTL_IE_HIST_EN |
-> +			     DPST_CTL_HIST_MODE,
-> +			     DPST_CTL_IE_HIST_EN |
-> +			     DPST_CTL_HIST_MODE_HSV);
-> +	else
-> +		intel_de_rmw(i915, DPST_CTL(pipe),
-> +			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
-> +			     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT,
-> +			     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
-> +			     DPST_CTL_HIST_MODE_HSV |
-> +			     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC);
->  
->  	/* Re-Visit: check if wait for one vblank is required */
->  	drm_crtc_wait_one_vblank(&intel_crtc->base);
-> @@ -233,24 +296,43 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data)
->  	 * Set DPST_CTL Bin Reg function select to IE
->  	 * Set DPST_CTL Bin Register Index to 0
->  	 */
-> -	intel_de_rmw(i915, DPST_CTL(pipe),
-> -		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK,
-> -		     DPST_CTL_BIN_REG_FUNC_IE | DPST_CTL_BIN_REG_CLEAR);
-> -
-> -	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-> -		intel_de_rmw(i915, DPST_BIN(pipe),
-> -			     DPST_BIN_DATA_MASK, data[i]);
-> -		drm_dbg_atomic(&i915->drm, "iet_lut[%d]=%x\n", i, data[i]);
-> +	if (DISPLAY_VER(i915) >= 20) {
-> +		/* Set index to zero */
-> +		intel_de_rmw(i915, DPST_IE_INDEX(histogram->pipe),
-> +			     DPST_IE_BIN_INDEX_MASK, DPST_IE_BIN_INDEX(0));
-> +		for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-> +			intel_de_rmw(i915, DPST_IE_BIN(pipe),
-> +				     DPST_IE_BIN_DATA_MASK,
-> +				     DPST_IE_BIN_DATA(data[i]));
-> +			drm_dbg_atomic(&i915->drm, "iet_lut[%d]=%x\n",
-> +				       i, data[i]);
-> +		}
-> +		intel_de_rmw(i915, DPST_CTL(pipe),
-> +			     DPST_CTL_ENHANCEMENT_MODE_MASK |
-> +			     DPST_CTL_IE_MODI_TABLE_EN,
-> +			     DPST_CTL_EN_MULTIPLICATIVE |
-> +			     DPST_CTL_IE_MODI_TABLE_EN);
-> +	} else {
-> +		intel_de_rmw(i915, DPST_CTL(pipe),
-> +			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK,
-> +			     DPST_CTL_BIN_REG_FUNC_IE | DPST_CTL_BIN_REG_CLEAR);
-> +		for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-> +			intel_de_rmw(i915, DPST_BIN(pipe),
-> +				     DPST_BIN_DATA_MASK, data[i]);
-> +			drm_dbg_atomic(&i915->drm, "iet_lut[%d]=%x\n",
-> +				       i, data[i]);
-> +		}
-> +		intel_de_rmw(i915, DPST_CTL(pipe),
-> +			     DPST_CTL_ENHANCEMENT_MODE_MASK |
-> +			     DPST_CTL_IE_MODI_TABLE_EN,
-> +			     DPST_CTL_EN_MULTIPLICATIVE |
-> +			     DPST_CTL_IE_MODI_TABLE_EN);
-> +
-> +		/* Once IE is applied, change DPST CTL to TC */
-> +		intel_de_rmw(i915, DPST_CTL(pipe),
-> +			     DPST_CTL_BIN_REG_FUNC_SEL,
-> +			     DPST_CTL_BIN_REG_FUNC_TC);
->  	}
-> -
-> -	intel_de_rmw(i915, DPST_CTL(pipe),
-> -		     DPST_CTL_ENHANCEMENT_MODE_MASK | DPST_CTL_IE_MODI_TABLE_EN,
-> -		     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
-> -
-> -	/* Once IE is applied, change DPST CTL to TC */
-> -	intel_de_rmw(i915, DPST_CTL(pipe),
-> -		     DPST_CTL_BIN_REG_FUNC_SEL, DPST_CTL_BIN_REG_FUNC_TC);
-> -
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_histogram.h b/drivers/gpu/drm/i915/display/intel_histogram.h
-> index 88942564fdc0..7583b421164a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_histogram.h
-> +++ b/drivers/gpu/drm/i915/display/intel_histogram.h
-> @@ -47,8 +47,33 @@
->  #define _DPST_BIN_B					0x491C4
->  #define DPST_BIN(pipe)					_MMIO_PIPE(pipe, _DPST_BIN_A, _DPST_BIN_B)
->  #define DPST_BIN_DATA_MASK				REG_GENMASK(23, 0)
-> +#define DPST_BIN_DATA					REG_FIELD_PREP(DPST_BIN_DATA_MASK, val)
->  #define DPST_BIN_BUSY					REG_BIT(31)
->  
-> +#define _DPST_HIST_INDEX_A				0x490D8
-> +#define _DPST_HIST_INDEX_B				0x491D8
-> +#define DPST_HIST_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_INDEX_A, _DPST_HIST_INDEX_B)
-> +#define DPST_HIST_BIN_INDEX_MASK			REG_GENMASK(4, 0)
-> +#define DPST_HIST_BIN_INDEX(val)			REG_FIELD_PREP(DPST_HIST_BIN_INDEX_MASK, val)
-> +
-> +#define _DPST_HIST_BIN_A				0x490C4
-> +#define _DPST_HIST_BIN_B				0x491C4
-> +#define DPST_HIST_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_BIN_A, _DPST_HIST_BIN_B)
-> +#define DPST_HIST_BIN_BUSY				REG_BIT(31)
-> +#define DPST_HIST_BIN_DATA_MASK				REG_GENMASK(30, 0)
-> +
-> +#define _DPST_IE_BIN_A					0x490CC
-> +#define _DPST_IE_BIN_B					0x491CC
-> +#define DPST_IE_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_IE_BIN_A, _DPST_IE_BIN_B)
-> +#define	DPST_IE_BIN_DATA_MASK				REG_GENMASK(9, 0)
-> +#define DPST_IE_BIN_DATA(val)				REG_FIELD_PREP(DPST_IE_BIN_DATA_MASK, val)
-> +
-> +#define _DPST_IE_INDEX_A				0x490DC
-> +#define _DPST_IE_INDEX_B				0x491DC
-> +#define DPST_IE_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_IE_INDEX_A, _DPST_IE_INDEX_B)
-> +#define DPST_IE_BIN_INDEX_MASK				REG_GENMASK(6, 0)
-> +#define DPST_IE_BIN_INDEX(val)				REG_FIELD_PREP(DPST_IE_BIN_INDEX_MASK, val)
-> +
->  #define INTEL_HISTOGRAM_PIPEA			0x90000000
->  #define INTEL_HISTOGRAM_PIPEB			0x90000002
->  #define INTEL_HISTOGRAM_EVENT(pipe)		PIPE(pipe, \
 
 -- 
 Jani Nikula, Intel
