@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC7894A7D6
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 14:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FB0B94A80D
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 14:48:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 755BF10E4EC;
-	Wed,  7 Aug 2024 12:39:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cyH+rSQt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B4D10E0B5;
+	Wed,  7 Aug 2024 12:48:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CABD10E4F2;
- Wed,  7 Aug 2024 12:39:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723034355; x=1754570355;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9xFBAH5m+lS+oUDqWaUxv+FMCE8FUFMjjUn0F0kJniQ=;
- b=cyH+rSQt7FuH8acY9IvJ+21Xh8IhgU+2cLlgXO8/aAjkn9jQFOCpm1lk
- u/SJ+QWzWHtbLwA1YuC5Q9LeZ75U5a0I8OimXOvjO6qZXQBjDm2/qamW2
- qJI272UQ1tVgGE3t4zAuPZmCd9U6rI2lZkWG0dj+kb/LTqDefwOHAWocc
- MRn37E7xiD01iPITNZVO2BUPEOhVBCfm8twM+ghVl7Eki6NcKXKWNl2Dx
- LoHdZSnA1x/f3GbnegkIExSaNnTpguRbfcBWEoGzw+Cnr+rqSqXPtrt2R
- x9k7xCpCG2DtQxQN1C848Jls7kitSCHFopTc3ULVgW3gQEYta5zWN1WPc g==;
-X-CSE-ConnectionGUID: HpcGgMDzT7aRIAhT+qVaTw==
-X-CSE-MsgGUID: JS2nfq/oTyeBSAQsvczVOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="43621686"
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="43621686"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 05:39:14 -0700
-X-CSE-ConnectionGUID: 5YBtmUIOSd+jia7jbGDdsw==
-X-CSE-MsgGUID: nNdBbFW1RyG78omoLzcMdg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="94414600"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.85])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 05:39:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Borah,
- Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Saarinen, Jani" <jani.saarinen@intel.com>
-Subject: Re: [core-for-CI PATCH] usb: typec: ucsi: Fix a potential deadlock
- in ucsi_send_command_common()
-In-Reply-To: <72632805adb3a2dbec4e0e14a7917b1c038add93.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240807062729.3159701-1-chaitanya.kumar.borah@intel.com>
- <72632805adb3a2dbec4e0e14a7917b1c038add93.camel@intel.com>
-Date: Wed, 07 Aug 2024 15:39:09 +0300
-Message-ID: <87ikwc4idu.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F00A910E0B5;
+ Wed,  7 Aug 2024 12:48:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3731015462775981586=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/hwmon=3A_expose_fa?=
+ =?utf-8?q?n_speed_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 07 Aug 2024 12:48:53 -0000
+Message-ID: <172303493397.546579.13812016680164288285@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240807123018.827506-1-raag.jadav@intel.com>
+In-Reply-To: <20240807123018.827506-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,69 +37,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 07 Aug 2024, "Coelho, Luciano" <luciano.coelho@intel.com> wrote:
-> On Wed, 2024-08-07 at 11:57 +0530, Chaitanya Kumar Borah wrote:
->> From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->> 
->> The function returns with the ppm_lock held if there's an
->> error or the PPM reports BUSY condition.
->> 
->> This is a core-for-ci patch for [1]
->> 
->> [1] https://lore.kernel.org/linux-usb/20240806112029.2984319-1-heikki.krogerus@linux.intel.com/
->> 
->> Reported-by: Luciano Coelho <luciano.coelho@intel.com>
->> Fixes: 5e9c1662a89b ("usb: typec: ucsi: rework command execution functions")
->> References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11849
->> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->> ---
->>  drivers/usb/typec/ucsi/ucsi.c | 11 ++++-------
->>  1 file changed, 4 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
->> index dcd3765cc1f5..432a2d6266d7 100644
->> --- a/drivers/usb/typec/ucsi/ucsi.c
->> +++ b/drivers/usb/typec/ucsi/ucsi.c
->> @@ -238,13 +238,10 @@ static int ucsi_send_command_common(struct ucsi *ucsi, u64 cmd,
->>  	mutex_lock(&ucsi->ppm_lock);
->>  
->>  	ret = ucsi_run_command(ucsi, cmd, &cci, data, size, conn_ack);
->> -	if (cci & UCSI_CCI_BUSY) {
->> -		ret = ucsi_run_command(ucsi, UCSI_CANCEL, &cci, NULL, 0, false);
->> -		return ret ? ret : -EBUSY;
->> -	}
->> -
->> -	if (cci & UCSI_CCI_ERROR)
->> -		return ucsi_read_error(ucsi, connector_num);
->> +	if (cci & UCSI_CCI_BUSY)
->> +		ret = ucsi_run_command(ucsi, UCSI_CANCEL, &cci, NULL, 0, false) ?: -EBUSY;
->> +	else if (cci & UCSI_CCI_ERROR)
->> +		ret = ucsi_read_error(ucsi, connector_num);
->>  
->>  	mutex_unlock(&ucsi->ppm_lock);
->>  	return ret;
->
-> This is not the exact patch that was sent upstream, where Heikki
-> changed my Reported-by to Reported-and-Tested-by (at least).  I think
-> the best is to have the patch that was actually sent upstream, because
-> it's easier to match later on, when it gets merged in the mainline.
->
-> In any case, I think this can be merged as is, so:
->
-> Acked-by: Luca Coelho <luciano.coelho@intel.com>
+--===============3731015462775981586==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks, pushed to topic/core-for-CI.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/hwmon: expose fan speed (rev3)
+URL   : https://patchwork.freedesktop.org/series/136036/
+State : success
 
->
-> --
-> Cheers,
-> Luca.
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from CI_DRM_15195 -> Patchwork_136036v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/index.html
+
+Participating hosts (42 -> 36)
+------------------------------
+
+  Missing    (6): fi-kbl-7567u bat-kbl-2 fi-bsw-n3050 fi-snb-2520m fi-kbl-8809g bat-arlh-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_136036v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-2:          [PASS][1] -> [INCOMPLETE][2] ([i915#9413])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-8:          [PASS][3] -> [DMESG-FAIL][4] ([i915#9500])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-dg2-8/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-dg2-8/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-2:         [DMESG-WARN][5] ([i915#11349] / [i915#11378]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-arls-2/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-arls-2/igt@i915_selftest@live@hangcheck.html
+    - bat-arls-1:         [DMESG-WARN][7] ([i915#11349] / [i915#11378]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
+  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15195 -> Patchwork_136036v3
+
+  CI-20190529: 20190529
+  CI_DRM_15195: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7960: 7960
+  Patchwork_136036v3: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/index.html
+
+--===============3731015462775981586==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hwmon: expose fan speed (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136036/">https://patchwork.freedesktop.org/series/136036/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15195 -&gt; Patchwork_136036v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/index.html</p>
+<h2>Participating hosts (42 -&gt; 36)</h2>
+<p>Missing    (6): fi-kbl-7567u bat-kbl-2 fi-bsw-n3050 fi-snb-2520m fi-kbl-8809g bat-arlh-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_136036v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-dg2-8/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-dg2-8/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136036v3/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15195 -&gt; Patchwork_136036v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15195: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7960: 7960<br />
+  Patchwork_136036v3: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3731015462775981586==--
