@@ -2,61 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B58094A508
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 12:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C16B194A56A
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 12:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0A310E481;
-	Wed,  7 Aug 2024 10:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C7510E486;
+	Wed,  7 Aug 2024 10:27:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZ/AdvpJ";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="VV4E1mjb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A451210E481;
- Wed,  7 Aug 2024 10:05:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723025153; x=1754561153;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+Nch4MT1UeHoc7nr+A5ilKRXhbBxbhwsteGiJ2ID8sI=;
- b=GZ/AdvpJw6/O1aud9GYA0TgDE/UodbwtZNzZsJPEXdjb5FK5P8YKN5uu
- pr1qk6Ul7dWmkrjIql8AT827bIRjOeg3wizv8pbEskvdTWYONVQubER0m
- mJ/cma0EMANxj1U+06y1NzUweeW6HwIf5P+pIwc7T+YxsgQ5omfbFzogD
- arH3DSdW4pyl0ByG+zNvx48Ln+l4VZTwy/zKP+9m66d5U32hS4AkVNB0P
- QCiOHlMXVKTFwtqG5S8Lt/Kddjst43Ic7+dw07sUyJGSxR5adnOnXr9oo
- G6UsxUPf/GSAov+pz4QCP0Qijf3PTTIEwBTV9kk0jTZqSH53F9NY3LkLk w==;
-X-CSE-ConnectionGUID: XmZZsu7HS02bPHwNkUnjeQ==
-X-CSE-MsgGUID: x/qDHwQ/Quade+BekkkEsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="31659914"
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="31659914"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 03:05:53 -0700
-X-CSE-ConnectionGUID: Ibcx9w0nQ5uq3l6668f0GQ==
-X-CSE-MsgGUID: 4xDkojKTSPCEq9r3/NoXpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="57495686"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.245.244.245])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 03:05:50 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH 2/2] drm/i915/gem: Calculate object page offset for partial
- memory mapping
-Date: Wed,  7 Aug 2024 11:05:21 +0100
-Message-ID: <20240807100521.478266-3-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240807100521.478266-1-andi.shyti@linux.intel.com>
-References: <20240807100521.478266-1-andi.shyti@linux.intel.com>
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+ [209.85.208.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA5B10E486
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Aug 2024 10:27:25 +0000 (UTC)
+Received: by mail-lj1-f170.google.com with SMTP id
+ 38308e7fff4ca-2f1798eaee6so16753881fa.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 07 Aug 2024 03:27:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1723026443; x=1723631243;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Z/2rKDMb2i//5Hi6/VqzST+M5EiTQzU6MroZh02D+iQ=;
+ b=VV4E1mjblO/krfVnTl86Aermhvta9EhF2OgqITrq/bogyo0JgwroUGvPfhDexA2005
+ h8GX9W2cOPxmWSB0cx3oRJbKL7TztKdzloLpZCietu5K6yF7IBBt+SFP4vK2Wt/aZUsa
+ MyPJbqqaRv4H/fQJ8PzOijoRBOZEQ9neVM1+CeOPBfh/BVP5VZgAgzJFtgfrmW4N9eEm
+ csSIRFdx1dEwU+9gxOgFGGnD/G6/HbZIMU0G23OyBwB65cVHVKzwj58zDTeY9+lrVhym
+ I/4iOLT9Nb3e3jADaUEobzdGYNZIpi+0FPmyOWIFSDf5fz1PxZzsE6gBMDgdq2YJMaSN
+ RRvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723026443; x=1723631243;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z/2rKDMb2i//5Hi6/VqzST+M5EiTQzU6MroZh02D+iQ=;
+ b=sO27wm220MlUaQnmF50xNyQcxEXlweeuZRUMTSpLVrLmDvSdJVQaCSPjkKBI4hoove
+ caP85uBRBNfzmt9Qb6reKwQoY2G7/jtYR4JG1A8SiGitsS6tENBl5rpxwxKP6Bs/W9kL
+ anZNedUxmkxsS2QmDkm5x6mbx9NMDS6/xI7gzuLtzvMRcwKBlffzDHUX0jL9sB89UkBI
+ Xqfb0RoQv24dmvt9nCDuWkvZz94fzXjYQw21S2yfKWKUwp+LpGkkjE8lfKgf62JYYyBg
+ 2MKUu/FPmXfOzIYbUy+cBor9idV9xrJp3vEKdFpUvFcJ+yg4knABL+T4dNwRlFK1I6Fe
+ i6fw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWar2Mbr8a02fFfSVJmuB56vV9sYUEglCReWM0fWcBtPKjLvXG/5QfkjRULWUsz0XjU1FY5P1WIxhIgsvsRWei5vGC2AFCZ+ei4KBWugPo2
+X-Gm-Message-State: AOJu0YxaVwR/yglSp3eJCxASSyodw7zpZLQnSZevz8SH5LEMdGIbKnSP
+ eu6f3SinI/YtBskCF7Rxm99g+ZDgrA2Z1u8Fm576Ty/JQsb1jIIQQ8bzbr1ubZw=
+X-Google-Smtp-Source: AGHT+IFOPRVyMEkPMfHMgZYN/kB4LW5Xx6TaELqsjenMAqc8o9noLqKoBQ/kxEby0UgmKhj3J3z71w==
+X-Received: by 2002:a2e:9a81:0:b0:2f0:2e18:e7d0 with SMTP id
+ 38308e7fff4ca-2f15aab0ad1mr120175251fa.28.1723026443131; 
+ Wed, 07 Aug 2024 03:27:23 -0700 (PDT)
+Received: from [192.168.0.101] ([84.69.19.168])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42905961e9dsm22197605e9.8.2024.08.07.03.27.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 07 Aug 2024 03:27:22 -0700 (PDT)
+Message-ID: <fef2188f-fd25-4f21-a2cf-6d7931b7bc8b@ursulin.net>
+Date: Wed, 7 Aug 2024 11:27:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/i915: remove a few __i915_printk() uses
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+References: <cover.1722951405.git.jani.nikula@intel.com>
+ <82857a0c04d3c11ca6758f05c13a3cec4f1a2f01.1722951405.git.jani.nikula@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <82857a0c04d3c11ca6758f05c13a3cec4f1a2f01.1722951405.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,97 +85,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To enable partial memory mapping of GPU virtual memory, it's
-necessary to introduce an offset to the object's memory
-(obj->mm.pages) scatterlist. This adjustment compensates for
-instances when userspace mappings do not start from the beginning
-of the object.
 
-Based on a patch by Chris Wilson.
+On 06/08/2024 14:38, Jani Nikula wrote:
+> __i915_printk() does nothing for notice/info levels. Just use the
+> regular drm_notice() and drm_info() calls.
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c |  4 +++-
- drivers/gpu/drm/i915/i915_mm.c           | 12 +++++++++++-
- drivers/gpu/drm/i915/i915_mm.h           |  3 ++-
- 3 files changed, 16 insertions(+), 3 deletions(-)
+"does nothing"? You mean does nothing _special_?
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index d3ee8ef7ea2f..bb00af317d59 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -252,6 +252,7 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
- 	struct vm_area_struct *area = vmf->vma;
- 	struct i915_mmap_offset *mmo = area->vm_private_data;
- 	struct drm_i915_gem_object *obj = mmo->obj;
-+	unsigned long obj_offset;
- 	resource_size_t iomap;
- 	int err;
- 
-@@ -273,10 +274,11 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
- 		iomap -= obj->mm.region->region.start;
- 	}
- 
-+	obj_offset = area->vm_pgoff - drm_vma_node_start(&mmo->vma_node);
- 	/* PTEs are revoked in obj->ops->put_pages() */
- 	err = remap_io_sg(area,
- 			  area->vm_start, area->vm_end - area->vm_start,
--			  obj->mm.pages->sgl, iomap);
-+			  obj->mm.pages->sgl, obj_offset, iomap);
- 
- 	if (area->vm_flags & VM_WRITE) {
- 		GEM_BUG_ON(!i915_gem_object_has_pinned_pages(obj));
-diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
-index 7998bc74ab49..f5c97a620962 100644
---- a/drivers/gpu/drm/i915/i915_mm.c
-+++ b/drivers/gpu/drm/i915/i915_mm.c
-@@ -122,13 +122,15 @@ int remap_io_mapping(struct vm_area_struct *vma,
-  * @addr: target user address to start at
-  * @size: size of map area
-  * @sgl: Start sg entry
-+ * @offset: offset from the start of the page
-  * @iobase: Use stored dma address offset by this address or pfn if -1
-  *
-  *  Note: this is only safe if the mm semaphore is held when called.
-  */
- int remap_io_sg(struct vm_area_struct *vma,
- 		unsigned long addr, unsigned long size,
--		struct scatterlist *sgl, resource_size_t iobase)
-+		struct scatterlist *sgl, unsigned long offset,
-+		resource_size_t iobase)
- {
- 	struct remap_pfn r = {
- 		.mm = vma->vm_mm,
-@@ -141,6 +143,14 @@ int remap_io_sg(struct vm_area_struct *vma,
- 	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
- 	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
- 
-+	while (offset >= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT) {
-+		offset -= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT;
-+		r.sgt = __sgt_iter(__sg_next(r.sgt.sgp), use_dma(iobase));
-+		if (!r.sgt.sgp)
-+			return -EINVAL;
-+	}
-+	r.sgt.curr = offset << PAGE_SHIFT;
-+
- 	if (!use_dma(iobase))
- 		flush_cache_range(vma, addr, size);
- 
-diff --git a/drivers/gpu/drm/i915/i915_mm.h b/drivers/gpu/drm/i915/i915_mm.h
-index 04c8974d822b..69f9351b1a1c 100644
---- a/drivers/gpu/drm/i915/i915_mm.h
-+++ b/drivers/gpu/drm/i915/i915_mm.h
-@@ -30,6 +30,7 @@ int remap_io_mapping(struct vm_area_struct *vma,
- 
- int remap_io_sg(struct vm_area_struct *vma,
- 		unsigned long addr, unsigned long size,
--		struct scatterlist *sgl, resource_size_t iobase);
-+		struct scatterlist *sgl, unsigned long offset,
-+		resource_size_t iobase);
- 
- #endif /* __I915_MM_H__ */
--- 
-2.45.2
+The patch itself looks okay.
 
+Regards,
+
+Tvrtko
+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_utils.c | 10 +++++-----
+>   1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+> index 6f9e7b354b54..bee32222f0fd 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.c
+> +++ b/drivers/gpu/drm/i915/i915_utils.c
+> @@ -54,8 +54,8 @@ __i915_printk(struct drm_i915_private *dev_priv, const char *level,
+>   
+>   void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint)
+>   {
+> -	__i915_printk(i915, KERN_NOTICE, "CI tainted:%#x by %pS\n",
+> -		      taint, (void *)_RET_IP_);
+> +	drm_notice(&i915->drm, "CI tainted: %#x by %pS\n",
+> +		   taint, __builtin_return_address(0));
+>   
+>   	/* Failures that occur during fault injection testing are expected */
+>   	if (!i915_error_injected())
+> @@ -74,9 +74,9 @@ int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
+>   	if (++i915_probe_fail_count < i915_modparams.inject_probe_failure)
+>   		return 0;
+>   
+> -	__i915_printk(i915, KERN_INFO,
+> -		      "Injecting failure %d at checkpoint %u [%s:%d]\n",
+> -		      err, i915_modparams.inject_probe_failure, func, line);
+> +	drm_info(&i915->drm, "Injecting failure %d at checkpoint %u [%s:%d]\n",
+> +		 err, i915_modparams.inject_probe_failure, func, line);
+> +
+>   	i915_modparams.inject_probe_failure = 0;
+>   	return err;
+>   }
