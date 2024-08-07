@@ -2,66 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA56E94EEF8
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE7E94EEF7
 	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 15:57:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31CB810E225;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D88B10E224;
 	Mon, 12 Aug 2024 13:57:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=helen.koike@collabora.com header.b="Et73oSQC";
-	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 902 seconds by postgrey-1.36 at gabe;
- Tue, 06 Aug 2024 18:08:50 UTC
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com
- [136.143.188.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A558910E05B;
- Tue,  6 Aug 2024 18:08:50 +0000 (UTC)
-Delivered-To: vignesh.raman@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1722966823; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=RW/feBkNoOFbYSnx+5hvtNPGlVfQQvtVDl9tFw0Fah6EvYgz511EHhEHscHvnaLTtz+zbWIWVt9iNmsGZPMcAn93rgyyDP232uyZNMaa/Bg1IfkOMVe3ytRN+QYjiePZzJo8mWdJMOzqSmvGKC2ngJPbz+nmH1mWK0ps10XTrzI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1722966823;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=vm9Xz4ftCLuaGhJmR6WJfQfgd+gvJMEYvlVmMqFEz7Y=; 
- b=Y57yztyrpnHEgaiI957zxWEVItfIBo3uSQwmXJIlaOCupjy2tykJOAqXy1udOmAIQrO3jg2k4J8K4+y4IPG2ndz994vm7xgyN23ORAJRNksUQQ8fCY3rqI613njLvZ3oySPkg9HjyFw1xNCSSr/7yavdTdYOiM5B4EStqWj0Ydo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=helen.koike@collabora.com;
- dmarc=pass header.from=<helen.koike@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722966823; 
- s=zohomail; d=collabora.com; i=helen.koike@collabora.com;
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=vm9Xz4ftCLuaGhJmR6WJfQfgd+gvJMEYvlVmMqFEz7Y=;
- b=Et73oSQCEDClSg3IU+CRumgmoyIfQI+37BPGnN7QIpXl61qVPOCKlmSpq1bxFUhz
- jXy+QcAU87MjJosY+veiMd0aOmKN/ApQrSGt83IkpJx6jyrbiMdK0CZU27V/BVv6IiO
- OAz03sv/087ek79F/0DHc4WEjP9oTIIAXw/4tg2s=
-Received: by mx.zohomail.com with SMTPS id 1722966822122477.7651221308056;
- Tue, 6 Aug 2024 10:53:42 -0700 (PDT)
-Message-ID: <83921779-808f-487d-a6fc-5a853024791a@collabora.com>
-Date: Tue, 6 Aug 2024 14:53:33 -0300
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 50D4510E0E5
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Aug 2024 07:38:30 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6FBB2FEC;
+ Wed,  7 Aug 2024 00:38:55 -0700 (PDT)
+Received: from [10.57.81.112] (unknown [10.57.81.112])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 687A53F5A1;
+ Wed,  7 Aug 2024 00:38:25 -0700 (PDT)
+Message-ID: <e693ed7a-97bf-486b-84fb-f57e44a399b4@arm.com>
+Date: Wed, 7 Aug 2024 08:38:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/6] drm/ci: Add support for GPU and display testing
-To: Daniel Stone <daniel@fooishbar.org>,
- Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- airlied@gmail.com, daniel@ffwll.ch, robdclark@gmail.com,
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- deborah.brouwer@collabora.com, dmitry.baryshkov@linaro.org,
- mcanal@igalia.com, melissa.srw@gmail.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20240730021545.912271-1-vignesh.raman@collabora.com>
- <CAPj87rOYVCG2A10ruyYan9y6NmMY0fUM6Z5-9ht7dEp_THYmNw@mail.gmail.com>
-Content-Language: en-US
-From: Helen Koike <helen.koike@collabora.com>
-In-Reply-To: <CAPj87rOYVCG2A10ruyYan9y6NmMY0fUM6Z5-9ht7dEp_THYmNw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [linux-next:master] [fs] cdc4ad36a8:
+ kernel_BUG_at_include/linux/page-flags.h
+Content-Language: en-GB
+To: Matthew Wilcox <willy@infradead.org>,
+ kernel test robot <oliver.sang@intel.com>,
+ Christian Brauner <brauner@kernel.org>
+Cc: oe-lkp@lists.linux.dev, lkp@intel.com,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ linux-fsdevel@vger.kernel.org, linux-block@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-bcachefs@vger.kernel.org,
+ ceph-devel@vger.kernel.org, ecryptfs@vger.kernel.org,
+ linux-ext4@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-um@lists.infradead.org, linux-mtd@lists.infradead.org,
+ jfs-discussion@lists.sourceforge.net, linux-nfs@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, ntfs3@lists.linux.dev,
+ ocfs2-devel@lists.linux.dev, linux-karma-devel@lists.sourceforge.net,
+ devel@lists.orangefs.org, reiserfs-devel@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <202408062249.2194d51b-lkp@intel.com>
+ <ZrLuBz1eBdgFzIyC@casper.infradead.org>
+From: Ryan Roberts <ryan.roberts@arm.com>
+In-Reply-To: <ZrLuBz1eBdgFzIyC@casper.infradead.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 12 Aug 2024 13:57:02 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -79,39 +62,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 05/08/2024 10:11, Daniel Stone wrote:
-> Hi Vignesh,
-> 
-> On Tue, 30 Jul 2024 at 03:16, Vignesh Raman <vignesh.raman@collabora.com> wrote:
->> Some ARM SOCs have a separate display controller and GPU, each with
->> different drivers. For mediatek mt8173, the GPU driver is powervr,
->> and the display driver is mediatek. In the case of mediatek mt8183,
->> the GPU driver is panfrost, and the display driver is mediatek.
->> With rockchip rk3288/rk3399, the GPU driver is panfrost, while the
->> display driver is rockchip. For amlogic meson G12B (A311D) SOC, the
->> GPU driver is panfrost, and the display driver is meson.
+On 07/08/2024 04:46, Matthew Wilcox wrote:
+> On Tue, Aug 06, 2024 at 10:26:17PM +0800, kernel test robot wrote:
+>> kernel test robot noticed "kernel_BUG_at_include/linux/page-flags.h" on:
 >>
->> IGT tests run various tests with different xfails and can test both
->> GPU devices and KMS/display devices. Currently, in drm-ci for MediaTek,
->> Rockchip, and Amlogic Meson platforms, only the GPU driver is tested.
->> This leads to incomplete coverage since the display is never tested on
->> these platforms. This commit series adds support in drm-ci to run tests
->> for both GPU and display drivers for MediaTek mt8173/mt8183, Rockchip
->> rk3288/rk3399, and Amlogic Meson G12B (A311D) platforms.
+>> commit: cdc4ad36a871b7ac43fcc6b2891058d332ce60ce ("fs: Convert aops->write_begin to take a folio")
+>> https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git master
 >>
->> Update the expectations file, and skip driver-specific tests and
->> tools_test on non-intel platforms.
+>> [test failed on linux-next/master 1e391b34f6aa043c7afa40a2103163a0ef06d179]
+>>
+>> in testcase: boot
 > 
-> Thanks, series looks sensible and is:
-> Reviewed-by: Daniel Stone <daniels@collabora.com>
+> This patch should fix it.
 > 
-> Cheers,
-> Daniel
+> Christian, can you squash the fix in?
+> 
+> 
+> diff --git a/mm/shmem.c b/mm/shmem.c
+> index 7d28304aea0f..66ff87417090 100644
+> --- a/mm/shmem.c
+> +++ b/mm/shmem.c
+> @@ -2904,7 +2904,8 @@ shmem_write_begin(struct file *file, struct address_space *mapping,
+>  	if (ret)
+>  		return ret;
+>  
+> -	if (folio_test_has_hwpoisoned(folio)) {
+> +	if (folio_test_hwpoison(folio) ||
+> +	    (folio_test_large(folio) && folio_test_has_hwpoisoned(folio))) {
+
+Reviewed-by: Ryan Roberts <ryan.roberts@arm.com>
+Tested-by: Ryan Roberts <ryan.roberts@arm.com>
 
 
-Applied to drm-misc-next
+>  		folio_unlock(folio);
+>  		folio_put(folio);
+>  		return -EIO;
 
-Thanks
-Helen
