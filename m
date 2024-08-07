@@ -2,29 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB2594A615
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 12:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4315294A658
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 12:54:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FB0C10E49F;
-	Wed,  7 Aug 2024 10:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1809410E4A6;
+	Wed,  7 Aug 2024 10:54:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DeuAnBIC";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68B0C10E49F;
- Wed,  7 Aug 2024 10:46:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4881342029225535137=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B5BF10E4A4;
+ Wed,  7 Aug 2024 10:54:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723028049; x=1754564049;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=oR6wjmW0ywkVYXOE/XRfiicEa0/7EYYqE9fCSgJGRow=;
+ b=DeuAnBICKgRP41Go5wGFL9mN1MiZYHhqUz/ubno1Nem+weQdbuTIcu1Q
+ q5lxj/Ls3litsaVQQnG8CMQQwrdrt2yKP1nETadlRWM5LRgAex85EjuwN
+ wAyTfHRsp4Rp0hwCy1wXjdwL/wG+iYqmVwv91OxtfoZ2+9KChgFQceFnc
+ KGwoZ950nk4xBDZEMS2+9KPbo20TDiFvekCu6cjSEs2zcwD+RnTLrpjO+
+ LQGDp0LgusYgt5BUycVB8lQ78AwZokYLuvRrRP+Bdnb8HsUUvOOOBh3o2
+ VsiNaeEiFLnIr/o1cNA+WCeAri9Tp126mUEO78u4VwQvvDLqPQ213lEBu w==;
+X-CSE-ConnectionGUID: wAqYBWe2SPGoXpxYiQMdpw==
+X-CSE-MsgGUID: iDnp7DAzQl+mZquEJTxJig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="32492624"
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="32492624"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 03:54:08 -0700
+X-CSE-ConnectionGUID: EOQGpJa7QFi/xFYryweZMw==
+X-CSE-MsgGUID: Fe7G17owTzesQsqhKQFYrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="56683889"
+Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
+ localhost) ([10.245.244.200])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 03:54:06 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Mark_the_GT_?=
- =?utf-8?q?as_dead_when_mmio_is_unreliable?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 07 Aug 2024 10:46:20 -0000
-Message-ID: <172302758041.545083.17842167850525217609@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240807091014.469992-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240807091014.469992-1-andi.shyti@linux.intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240521101201.18978-1-tursulin@igalia.com>
+References: <20240521101201.18978-1-tursulin@igalia.com>
+Subject: Re: [PATCH] drm/i915: 2 GiB of relocations ought to be enough for
+ anybody*
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ kernel test robot <oliver.sang@intel.com>, Kees Cook <keescook@chromium.org>,
+ Kent Overstreet <kent.overstreet@linux.dev>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tursulin@igalia.com>, intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Wed, 07 Aug 2024 13:54:01 +0300
+Message-ID: <172302804101.35850.2619835281498556916@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,216 +71,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4881342029225535137==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Quoting Tvrtko Ursulin (2024-05-21 13:12:01)
+> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>=20
+> Kernel test robot reports i915 can hit a warn in kvmalloc_node which has
+> a purpose of dissalowing crazy size kernel allocations. This was added in
+> 7661809d493b ("mm: don't allow oversized kvmalloc() calls"):
+>=20
+>        /* Don't even allow crazy sizes */
+>        if (WARN_ON_ONCE(size > INT_MAX))
+>                return NULL;
+>=20
+> This would be kind of okay since i915 at one point dropped the need for
+> making a shadow copy of the relocation list, but then it got re-added in
+> fd1500fcd442 ("Revert "drm/i915/gem: Drop relocation slowpath".") a year
+> after Linus added the above warning.
+>=20
+> It is plausible that the issue was not seen until now because to trigger
+> gem_exec_reloc test requires a combination of an relatively older
+> generation hardware but with at least 8GiB of RAM installed. Probably even
+> more depending on runtime checks.
+>=20
+> Lets cap what we allow userspace to pass in using the matching limit.
+> There should be no issue for real userspace since we are talking about
+> "crazy" number of relocations which have no practical purpose.
+>=20
+> *) Well IGT tests might get upset but they can be easily adjusted.
+>=20
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Reported-by: kernel test robot <oliver.sang@intel.com>
+> Closes: https://lore.kernel.org/oe-lkp/202405151008.6ddd1aaf-oliver.sang@=
+intel.com
+> Cc: Kees Cook <keescook@chromium.org>
+> Cc: Kent Overstreet <kent.overstreet@linux.dev>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu=
+/drm/i915/gem/i915_gem_execbuffer.c
+> index d3a771afb083..4b34bf4fde77 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1533,7 +1533,7 @@ static int eb_relocate_vma(struct i915_execbuffer *=
+eb, struct eb_vma *ev)
+>                 u64_to_user_ptr(entry->relocs_ptr);
+>         unsigned long remain =3D entry->relocation_count;
+> =20
+> -       if (unlikely(remain > N_RELOC(ULONG_MAX)))
+> +       if (unlikely(remain > N_RELOC(INT_MAX)))
+>                 return -EINVAL;
 
-== Series Details ==
+Yeah, nobody will realistically need that many relocations.
 
-Series: drm/i915/gt: Mark the GT as dead when mmio is unreliable
-URL   : https://patchwork.freedesktop.org/series/136975/
-State : success
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-== Summary ==
+Regards, Joonas
 
-CI Bug Log - changes from CI_DRM_15194 -> Patchwork_136975v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/index.html
-
-Participating hosts (38 -> 36)
-------------------------------
-
-  Additional (1): fi-kbl-8809g 
-  Missing    (3): bat-arls-2 fi-snb-2520m fi-bsw-n3050 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136975v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@guc_multi_lrc:
-    - bat-arls-1:         [PASS][3] -> [DMESG-WARN][4] ([i915#10341])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-arls-1/igt@i915_selftest@live@guc_multi_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-arls-1/igt@i915_selftest@live@guc_multi_lrc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-dg2-8:          [PASS][5] -> [DMESG-FAIL][6] ([i915#9500])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-dg2-8/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-dg2-8/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - bat-arls-1:         [PASS][7] -> [DMESG-FAIL][8] ([i915#10262]) +1 other test dmesg-fail
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-arls-1/igt@i915_selftest@live@late_gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-arls-1/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-adlp-6:         [PASS][9] -> [INCOMPLETE][10] ([i915#9413])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-adlp-6/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-adlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][11] +30 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@uncore:
-    - bat-arlh-2:         [INCOMPLETE][12] ([i915#11785]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-arlh-2/igt@i915_selftest@live@uncore.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-arlh-2/igt@i915_selftest@live@uncore.html
-
-  
-  [i915#10262]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#11785]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11785
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15194 -> Patchwork_136975v1
-
-  CI-20190529: 20190529
-  CI_DRM_15194: 5954d143b185800b3909f8583a715f896383ca15 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7960: 7960
-  Patchwork_136975v1: 5954d143b185800b3909f8583a715f896383ca15 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/index.html
-
---===============4881342029225535137==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Mark the GT as dead when mmio is unreliable</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136975/">https://patchwork.freedesktop.org/series/136975/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15194 -&gt; Patchwork_136975v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Additional (1): fi-kbl-8809g <br />
-  Missing    (3): bat-arls-2 fi-snb-2520m fi-bsw-n3050 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136975v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_multi_lrc:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-arls-1/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-arls-1/igt@i915_selftest@live@guc_multi_lrc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-dg2-8/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-dg2-8/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-arls-1/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-arls-1/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262">i915#10262</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-adlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-adlp-6/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@uncore:<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15194/bat-arlh-2/igt@i915_selftest@live@uncore.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11785">i915#11785</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136975v1/bat-arlh-2/igt@i915_selftest@live@uncore.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15194 -&gt; Patchwork_136975v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15194: 5954d143b185800b3909f8583a715f896383ca15 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7960: 7960<br />
-  Patchwork_136975v1: 5954d143b185800b3909f8583a715f896383ca15 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4881342029225535137==--
+> =20
+>         /*
+> @@ -1641,7 +1641,7 @@ static int check_relocations(const struct drm_i915_=
+gem_exec_object2 *entry)
+>         if (size =3D=3D 0)
+>                 return 0;
+> =20
+> -       if (size > N_RELOC(ULONG_MAX))
+> +       if (size > N_RELOC(INT_MAX))
+>                 return -EINVAL;
+> =20
+>         addr =3D u64_to_user_ptr(entry->relocs_ptr);
+> --=20
+> 2.44.0
+>
