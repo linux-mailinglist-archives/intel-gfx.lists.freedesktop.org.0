@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2770794A8AF
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 15:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE4494A8CA
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 15:44:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C16A510E4EF;
-	Wed,  7 Aug 2024 13:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC7F610E51D;
+	Wed,  7 Aug 2024 13:44:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 564C010E4EF;
- Wed,  7 Aug 2024 13:35:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0071810E51A;
+ Wed,  7 Aug 2024 13:44:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Trivial_double_space_sty?=
- =?utf-8?q?le_fix?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/dp=5Fmst=3A_Fix_?=
+ =?utf-8?q?MST_state_after_a_sink_reset_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 07 Aug 2024 13:35:56 -0000
-Message-ID: <172303775634.546499.1114020110720082078@2413ebb6fbb6>
+Date: Wed, 07 Aug 2024 13:44:01 -0000
+Message-ID: <172303824199.546579.13467694260110862788@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240807130516.491053-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240807130516.491053-1-andi.shyti@linux.intel.com>
+References: <20240724161223.2291853-1-imre.deak@intel.com>
+In-Reply-To: <20240724161223.2291853-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,14 +43,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Trivial double space style fix
-URL   : https://patchwork.freedesktop.org/series/136995/
-State : warning
+Series: drm/i915/dp_mst: Fix MST state after a sink reset (rev2)
+URL   : https://patchwork.freedesktop.org/series/136443/
+State : failure
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/136443/revisions/2/mbox/ not applied
+Applying: drm/i915/dp_mst: Fix MST state after a sink reset
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_dp.c
+M	drivers/gpu/drm/i915/display/intel_dp_mst.c
+M	drivers/gpu/drm/i915/display/intel_dp_mst.h
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_dp_mst.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp_mst.h
+Auto-merging drivers/gpu/drm/i915/display/intel_dp_mst.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp_mst.c
+Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/dp_mst: Fix MST state after a sink reset
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
