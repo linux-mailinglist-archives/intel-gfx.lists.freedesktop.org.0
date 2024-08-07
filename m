@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B48794A7B0
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 14:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9011494A77C
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2024 14:07:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83DD710E4E4;
-	Wed,  7 Aug 2024 12:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A17CD10E4D0;
+	Wed,  7 Aug 2024 12:07:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JWH/SOCo";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C15010E4E4;
- Wed,  7 Aug 2024 12:28:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3812797244023408789=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F070510E4D0;
+ Wed,  7 Aug 2024 12:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723032473; x=1754568473;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Yz167uTaMz9q9BuBfAk4wU8AEfX9sRD5xBcmCC5iI9I=;
+ b=JWH/SOCovDv3LW+BvSlf73ltQIna9JVPGk8tXLa+AUOrPyZfR35b8quy
+ yU4ofKkCFqxlzhe9utLMimDbA1Jn6EiXA8MVmEjpwIwDZU7ZpY13t1b82
+ bNJowgVF+qJZZwlOH+e8QLyZPr7J6S3y43/XD7ak/y/dGOlQ1Uz2L7gtj
+ VTwow2Njq73QOuaivqdYByLPESYhS5yUKZVx2eJXdwh7E2SXfLryOKpfn
+ kkSc+UPW+4OaG6y91sLN8CFy5MGz5pqpKxcXpvO1KcaHSth+h5uXNCR2H
+ F3IBeqZ8Umwgn+MwRW0wG/eh+CAiWQrqTqbQ6f+rF12lWChBLIxn/fUzf A==;
+X-CSE-ConnectionGUID: +F5XdEXQSzaAsxg5IGYm1w==
+X-CSE-MsgGUID: ROVxLUJmQtyV+ApRskzQBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="32484019"
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="32484019"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 05:07:52 -0700
+X-CSE-ConnectionGUID: CilM0nwsSue/vyw2croYaQ==
+X-CSE-MsgGUID: 27i/zZk9RiOVZNRwPZXPWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,269,1716274800"; d="scan'208";a="80080475"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by fmviesa002.fm.intel.com with ESMTP; 07 Aug 2024 05:07:46 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, linux@roeck-us.net
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com,
+ andriy.shevchenko@linux.intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v3] drm/i915/hwmon: expose fan speed
+Date: Wed,  7 Aug 2024 18:00:18 +0530
+Message-Id: <20240807123018.827506-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gem=3A_Improve_pfn?=
- =?utf-8?q?_calculation_readability_in_vm=5Ffault=5Fgtt=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 07 Aug 2024 12:28:47 -0000
-Message-ID: <172303372750.546499.4128682556444320511@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240807104553.481763-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240807104553.481763-1-andi.shyti@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,129 +67,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3812797244023408789==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add hwmon support for fan1_input attribute, which will expose fan speed
+in RPM. With this in place we can monitor fan speed using lm-sensors tool.
 
-== Series Details ==
+$ sensors
+i915-pci-0300
+Adapter: PCI adapter
+in0:         653.00 mV
+fan1:        3833 RPM
+power1:           N/A  (max =  43.00 W)
+energy1:      32.02 kJ
 
-Series: drm/i915/gem: Improve pfn calculation readability in vm_fault_gtt()
-URL   : https://patchwork.freedesktop.org/series/136985/
-State : success
+v3:
+- Declare rotations as "long" and drop redundant casting
+- Change date and version in ABI documentation
+- Add commenter name in changelog (Riana)
 
-== Summary ==
+v2:
+- Add mutex protection
+- Handle overflow
+- Add ABI documentation
+- Aesthetic adjustments (Riana)
 
-CI Bug Log - changes from CI_DRM_15195 -> Patchwork_136985v1
-====================================================
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon |  8 ++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  2 +
+ drivers/gpu/drm/i915/i915_hwmon.c             | 88 +++++++++++++++++++
+ 3 files changed, 98 insertions(+)
 
-Summary
--------
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+index 92fe7c5c5ac1..be4141a7522f 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+@@ -75,3 +75,11 @@ Description:	RO. Energy input of device or gt in microjoules.
+ 		for the gt.
+ 
+ 		Only supported for particular Intel i915 graphics platforms.
++
++What:		/sys/bus/pci/drivers/i915/.../hwmon/hwmon<i>/fan1_input
++Date:		November 2024
++KernelVersion:	6.12
++Contact:	intel-gfx@lists.freedesktop.org
++Description:	RO. Fan speed of device in RPM.
++
++		Only supported for particular Intel i915 graphics platforms.
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index e42b3a5d4e63..57a3c83d3655 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1553,6 +1553,8 @@
+ #define VLV_RENDER_C0_COUNT			_MMIO(0x138118)
+ #define VLV_MEDIA_C0_COUNT			_MMIO(0x13811c)
+ 
++#define PCU_PWM_FAN_SPEED			_MMIO(0x138140)
++
+ #define GEN12_RPSTAT1				_MMIO(0x1381b4)
+ #define   GEN12_VOLTAGE_MASK			REG_GENMASK(10, 0)
+ #define   GEN12_CAGF_MASK			REG_GENMASK(19, 11)
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index 49db3e09826c..6b34cb146ea4 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -36,6 +36,7 @@ struct hwm_reg {
+ 	i915_reg_t pkg_rapl_limit;
+ 	i915_reg_t energy_status_all;
+ 	i915_reg_t energy_status_tile;
++	i915_reg_t fan_speed;
+ };
+ 
+ struct hwm_energy_info {
+@@ -43,11 +44,17 @@ struct hwm_energy_info {
+ 	long accum_energy;			/* Accumulated energy for energy1_input */
+ };
+ 
++struct hwm_fan_info {
++	u32 reg_val_prev;
++	u32 time_prev;
++};
++
+ struct hwm_drvdata {
+ 	struct i915_hwmon *hwmon;
+ 	struct intel_uncore *uncore;
+ 	struct device *hwmon_dev;
+ 	struct hwm_energy_info ei;		/*  Energy info for energy1_input */
++	struct hwm_fan_info fi;			/*  Fan info for fan1_input */
+ 	char name[12];
+ 	int gt_n;
+ 	bool reset_in_progress;
+@@ -276,6 +283,7 @@ static const struct hwmon_channel_info * const hwm_info[] = {
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
++	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
+ 	NULL
+ };
+ 
+@@ -613,6 +621,70 @@ hwm_curr_write(struct hwm_drvdata *ddat, u32 attr, long val)
+ 	}
+ }
+ 
++static umode_t
++hwm_fan_is_visible(const struct hwm_drvdata *ddat, u32 attr)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++
++	switch (attr) {
++	case hwmon_fan_input:
++		return i915_mmio_reg_valid(hwmon->rg.fan_speed) ? 0444 : 0;
++	default:
++		return 0;
++	}
++}
++
++static int
++hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++	struct hwm_fan_info *fi = &ddat->fi;
++	u32 reg_val, pulses, time, time_now;
++	intel_wakeref_t wakeref;
++	long rotations;
++	int ret = 0;
++
++	switch (attr) {
++	case hwmon_fan_input:
++		with_intel_runtime_pm(ddat->uncore->rpm, wakeref) {
++			mutex_lock(&hwmon->hwmon_lock);
++
++			reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
++			time_now = jiffies_to_msecs(jiffies);
++
++			/* Handle overflow */
++			if (reg_val >= fi->reg_val_prev)
++				pulses = reg_val - fi->reg_val_prev;
++			else
++				pulses = UINT_MAX - fi->reg_val_prev + reg_val;
++
++			/*
++			 * HW register value is accumulated count of pulses from
++			 * PWM fan with the scale of 2 pulses per rotation.
++			 */
++			rotations = pulses >> 1;
++			time = time_now - fi->time_prev;
++
++			if (unlikely(!time)) {
++				ret = -EAGAIN;
++				mutex_unlock(&hwmon->hwmon_lock);
++				break;
++			}
++
++			/* Convert to minutes for calculating RPM */
++			*val = DIV_ROUND_UP(rotations * (60 * MSEC_PER_SEC), time);
++
++			fi->reg_val_prev = reg_val;
++			fi->time_prev = time_now;
++
++			mutex_unlock(&hwmon->hwmon_lock);
++		}
++		return ret;
++	default:
++		return -EOPNOTSUPP;
++	}
++}
++
+ static umode_t
+ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 	       u32 attr, int channel)
+@@ -628,6 +700,8 @@ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 		return hwm_energy_is_visible(ddat, attr);
+ 	case hwmon_curr:
+ 		return hwm_curr_is_visible(ddat, attr);
++	case hwmon_fan:
++		return hwm_fan_is_visible(ddat, attr);
+ 	default:
+ 		return 0;
+ 	}
+@@ -648,6 +722,8 @@ hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ 		return hwm_energy_read(ddat, attr, val);
+ 	case hwmon_curr:
+ 		return hwm_curr_read(ddat, attr, val);
++	case hwmon_fan:
++		return hwm_fan_read(ddat, attr, val);
+ 	default:
+ 		return -EOPNOTSUPP;
+ 	}
+@@ -739,12 +815,14 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+ 		hwmon->rg.energy_status_all = PCU_PACKAGE_ENERGY_STATUS;
+ 		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
++		hwmon->rg.fan_speed = PCU_PWM_FAN_SPEED;
+ 	} else {
+ 		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+ 		hwmon->rg.energy_status_all = INVALID_MMIO_REG;
+ 		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
++		hwmon->rg.fan_speed = INVALID_MMIO_REG;
+ 	}
+ 
+ 	with_intel_runtime_pm(uncore->rpm, wakeref) {
+@@ -755,6 +833,16 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		if (i915_mmio_reg_valid(hwmon->rg.pkg_power_sku_unit))
+ 			val_sku_unit = intel_uncore_read(uncore,
+ 							 hwmon->rg.pkg_power_sku_unit);
++
++		/*
++		 * Store the initial fan register value, so that we can use it for
++		 * initial fan speed calculation.
++		 */
++		if (i915_mmio_reg_valid(hwmon->rg.fan_speed)) {
++			ddat->fi.reg_val_prev = intel_uncore_read(uncore,
++								  hwmon->rg.fan_speed);
++			ddat->fi.time_prev = jiffies_to_msecs(jiffies);
++		}
+ 	}
+ 
+ 	hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/index.html
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Missing    (5): fi-kbl-7567u bat-kbl-2 fi-bsw-n3050 fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136985v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-1:         [DMESG-WARN][1] ([i915#11349] / [i915#11378]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-
-  
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15195 -> Patchwork_136985v1
-
-  CI-20190529: 20190529
-  CI_DRM_15195: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7960: 7960
-  Patchwork_136985v1: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/index.html
-
---===============3812797244023408789==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: Improve pfn calculation readability in vm_fault_gtt()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136985/">https://patchwork.freedesktop.org/series/136985/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15195 -&gt; Patchwork_136985v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): fi-kbl-7567u bat-kbl-2 fi-bsw-n3050 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136985v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15195/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136985v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15195 -&gt; Patchwork_136985v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15195: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7960: 7960<br />
-  Patchwork_136985v1: 54219da2fda05a4160376dc9aaf0c90f16a3eb90 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3812797244023408789==--
