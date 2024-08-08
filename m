@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A2894BA94
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 12:13:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D29C94BAE8
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 12:28:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8242B10E03A;
-	Thu,  8 Aug 2024 10:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 169CF10E6C3;
+	Thu,  8 Aug 2024 10:28:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLajgr78";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE6A10E6BC;
- Thu,  8 Aug 2024 10:13:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B642F10E6C2;
+ Thu,  8 Aug 2024 10:28:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723112902; x=1754648902;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=/T4zktRCC/tekQe+31IFuekukSVCvT2hCH+cHHbDFVM=;
+ b=jLajgr78G+Lyi4SAs0XdRDQViCdMsJ3V0FApmncgfCARd1cNgDFOsZOk
+ xRW19O1lKOhGKgofJjHkcbDZ6ClPYAlv1L5XGB5weNY0zSI18r0mc9Vt0
+ bgfMrP5iNltT/K3ff0JYVe2+K+HczM9eI6311sY/Htp4X/2g66G7/TERj
+ fsgKTrI4sfWvyARBJQfbYXLpXRC6p+lPLKRkM2AUIdf1LIZHKw5wGJZPE
+ Acr3uF2a+gdZNc9j3PL2t4zhGFHYIVKtlG5KLoQGUb9e//gXX2YWVI+Dj
+ pqiBEF/kSL/MhtKetDWDqKGSkJaYHnV9cDSX95BtuvxqBeXsIvgculs9n w==;
+X-CSE-ConnectionGUID: LytA9aAKQXeTwpFe6pJPWA==
+X-CSE-MsgGUID: 2Y9osqhLTNGcBsROcnNdnw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="21371669"
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="21371669"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 03:28:22 -0700
+X-CSE-ConnectionGUID: Tmv0lIGvShuUtX1wXuFlPg==
+X-CSE-MsgGUID: K/2Ms2XQTEGq/GOZnChtOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="61564684"
+Received: from dneilan-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.245.71])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 03:28:20 -0700
+Date: Thu, 8 Aug 2024 11:28:14 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Jonathan Cavitt <Jonathan.cavitt@intel.com>
+Subject: Re: [PATCH] drm/i915/gem: Improve pfn calculation readability in
+ vm_fault_gtt()
+Message-ID: <ZrSdvj_4-p1dEKxS@ashyti-mobl2.lan>
+References: <20240807104553.481763-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/gt=3A_Mark_the_?=
- =?utf-8?q?GT_as_dead_when_mmio_is_unreliable_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 08 Aug 2024 10:13:57 -0000
-Message-ID: <172311203717.549452.7605893685860788339@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240807091014.469992-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20240807091014.469992-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240807104553.481763-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +69,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: drm/i915/gt: Mark the GT as dead when mmio is unreliable (rev3)
-URL   : https://patchwork.freedesktop.org/series/136975/
-State : warning
+On Wed, Aug 07, 2024 at 11:45:53AM +0100, Andi Shyti wrote:
+> By moving the pfn calculation to the set_address_limits()
+> function we improve code readability. This way,
+> set_address_limits() is responsible for calculating all memory
+> mapping paramenters: "start", "end" and "pfn".
+> 
+> This suggestion from Jonathan was made during the review of
+> commit 8bdd9ef7e9b1 ("drm/i915/gem: Fix Virtual Memory mapping
+> boundaries calculation"), which I liked, but it got lost on the
+> way.
+> 
+> Suggested-by: Jonathan Cavitt <Jonathan.cavitt@intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-== Summary ==
+merged to drm-intel-gt-next.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
-
+Andi
