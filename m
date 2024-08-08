@@ -2,49 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D52394B3FD
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 02:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0881094B439
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 02:30:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D75310E61D;
-	Thu,  8 Aug 2024 00:13:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Mqp6K595";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB1110E622;
+	Thu,  8 Aug 2024 00:30:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E171610E61D;
- Thu,  8 Aug 2024 00:13:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 8AB51CE0B30;
- Thu,  8 Aug 2024 00:13:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D625CC32781;
- Thu,  8 Aug 2024 00:13:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1723075983;
- bh=KLGC7VU7LlmH2ADsLTAQz65NnOT9hUCfF7S/ygvlLFk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Mqp6K595nySnR/dJnmFf9Rlz0UOfVFwpxSbjNxVv5oE+CvYGw7/P9OSl3L32d1kym
- JcDCzk768Sot6aSZGU6d5i9b4WhkBwg0ofEqQO8066mjJIFCKM7ZRrl26uMtgRpSle
- 1l2brOz1MMzmgChs7UBq7OTCaMyCAUV5w285vM+3wnsDXl6I+qmT+N986xrFYcYuWz
- y7T7GglDAOGGidA1O42jhCzhG5m8MSa09Bk5yNadsW762NM0/8ciPTvymONVCjPz3X
- FV4XdezDsy3hN3K2bSUusmpNW9c8qFNyJxP9rUCzjkwqRdJp17rkiLPpt/2F8Q1lPd
- uUqTcIUDrZ7QA==
-Date: Thu, 8 Aug 2024 01:12:58 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Thorsten Blum <thorsten.blum@toblux.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com, 
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, jonathan.cavitt@intel.com, andi.shyti@linux.intel.com,
- intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] drm/i915: Explicitly cast divisor and use div_u64()
-Message-ID: <akqf5n7hzrfr2lvsiyxbnbznzydvplhyi2phaavb3e6ak6z5fp@okyjnsi5xgey>
-References: <20240807202040.54796-2-thorsten.blum@toblux.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BC1F10E624;
+ Thu,  8 Aug 2024 00:30:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240807202040.54796-2-thorsten.blum@toblux.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/gt=3A_Mark_the_?=
+ =?utf-8?q?GT_as_dead_when_mmio_is_unreliable_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 08 Aug 2024 00:30:00 -0000
+Message-ID: <172307700004.547558.3277378222839689274@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240807091014.469992-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240807091014.469992-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,36 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thorsten,
+== Series Details ==
 
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 025a79fe5920..6ff905d2b78f 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -4063,17 +4063,13 @@ static int read_properties_unlocked(struct i915_perf *perf,
->  			oa_period = oa_exponent_to_ns(perf, value);
->  
->  			/* This check is primarily to ensure that oa_period <=
-> -			 * UINT32_MAX (before passing to do_div which only
-> +			 * UINT32_MAX (before passing it to div_u64 which only
->  			 * accepts a u32 denominator), but we can also skip
->  			 * checking anything < 1Hz which implicitly can't be
->  			 * limited via an integer oa_max_sample_rate.
->  			 */
-> -			if (oa_period <= NSEC_PER_SEC) {
-> -				u64 tmp = NSEC_PER_SEC;
-> -				do_div(tmp, oa_period);
-> -				oa_freq_hz = tmp;
-> -			} else
-> -				oa_freq_hz = 0;
-> +			oa_freq_hz = oa_period > NSEC_PER_SEC ? 0 :
-> +				div_u64(NSEC_PER_SEC, (u32)oa_period);
+Series: drm/i915/gt: Mark the GT as dead when mmio is unreliable (rev2)
+URL   : https://patchwork.freedesktop.org/series/136975/
+State : warning
 
-Thanks for the follow up!
+== Summary ==
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-Andi
+
