@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED3E94C471
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 20:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C39094C4C6
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 20:44:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C1ED10E7CC;
-	Thu,  8 Aug 2024 18:36:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31BD110E7DC;
+	Thu,  8 Aug 2024 18:44:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FL3rYNG6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QUtvbo6c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76C2710E7CC;
- Thu,  8 Aug 2024 18:36:03 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FCEC10E7DB;
+ Thu,  8 Aug 2024 18:44:48 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 64268CE13CF;
- Thu,  8 Aug 2024 18:36:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDB20C32782;
- Thu,  8 Aug 2024 18:35:55 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 0DACA6158D;
+ Thu,  8 Aug 2024 18:44:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3FDDC4AF09;
+ Thu,  8 Aug 2024 18:44:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1723142160;
- bh=p66CG2DkhVHXRe+AOWOhuU4du/xEBfkByoCt5XvupgM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=FL3rYNG6KEZrPTZtERio6CcjcPJtI7y45iSEwEAuIgQ+nZRhxkLIqeEAKGuLPMcAT
- 11u/p3Ea6Am27fl2ojZ8DyEWmyVU3Up+Rhs3i/eFztU3qZ9LZz53NcujWg/v7SEepT
- UP3ludFsVjLG72xiFj91rzA0T1xm2O5Xj3aUZ4l7d4KGieny7WLmwcRi1pMP5NlDLr
- 4YGjNzLhqw8r9PiTgRQAzWsHKxay5SXK5wptZJek81ZrtNlKUY/o2eJ3IHtrkPMYzi
- dLC57HYclyYaLAjlgUNZ24Pb+LwaTG0/V0L75shg3m19pr7Ieqe5TcWZQxDlYE5eZX
- d3INHZqT4sqFw==
-Message-ID: <8f7c531a-ecb9-4c30-b4bb-2bdf3056ff34@kernel.org>
-Date: Thu, 8 Aug 2024 20:35:53 +0200
+ s=k20201202; t=1723142687;
+ bh=Knrs0jW3Bfq98YOI2drWH0B/HyxqhTToT9D6D+w8+ic=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=QUtvbo6cxKYwImDUWinNxswEj9R9sq0Nz0LUUQjAsJFG96z+volSYwIQkPTPOiRIL
+ dEpPjuyOTMjzfQfKax3YDI9B0TgaBfiRUqZQwpN73s4FXNvV2VN5HdOTULwFKlZUI1
+ 9rr0+nM1ibYgjyydFL1rR8rGub3wqsWZ18o6DewNHYAS2Msg3cxtNeqgxNF1LTUC+1
+ CxEESqnAgQNcvzgN1POIc9/0NYvH/0uxHHf8n6QpkQc9Ywma+MGl7T6j3LByP7gY46
+ B5z0MLJUOGyKj0tzGpylBcfD5fbdNcqxqp2UehQ44K9XqZKSPaevTxoc3sOMvr8LqG
+ YrESoHAyQ2xhA==
+Message-ID: <3b87c155-f35d-4812-a4b3-ac5e0bfe0c18@kernel.org>
+Date: Thu, 8 Aug 2024 20:44:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PULL] drm-intel-fixes
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Tvrtko Ursulin <tursulin@igalia.com>, Dave Airlie <airlied@gmail.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -49,7 +50,7 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dim-tools@lists.freedesktop.org
 References: <ZrSFpj20b1LbBhCJ@linux>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <8f7c531a-ecb9-4c30-b4bb-2bdf3056ff34@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -94,7 +95,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZrSFpj20b1LbBhCJ@linux>
+In-Reply-To: <8f7c531a-ecb9-4c30-b4bb-2bdf3056ff34@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -112,47 +113,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 08/08/2024 10:45, Tvrtko Ursulin wrote:
+On 08/08/2024 20:35, Krzysztof Kozlowski wrote:
+> On 08/08/2024 10:45, Tvrtko Ursulin wrote:
+>>
+>> Hi Dave, Sima,
+>>
+>> A small bunch of fixes for the weekly cycle:
 > 
-> Hi Dave, Sima,
+> ...
 > 
-> A small bunch of fixes for the weekly cycle:
-
-...
-
+>>
+>> ----------------------------------------------------------------
+>> Andi Shyti (2):
+>>       drm/i915/gem: Adjust vma offset for framebuffer mmap offset
+>>       drm/i915/gem: Fix Virtual Memory mapping boundaries calculation
+>>
+>> David Gow (2):
+>>       drm/i915: Allow evicting to use the requested placement
+>>       drm/i915: Attempt to get pages without eviction first
+>>
+>> Dnyaneshwar Bhadane (1):
+>>       drm/i915/display: correct dual pps handling for MTL_PCH+
 > 
-> ----------------------------------------------------------------
-> Andi Shyti (2):
->       drm/i915/gem: Adjust vma offset for framebuffer mmap offset
->       drm/i915/gem: Fix Virtual Memory mapping boundaries calculation
+> Several commits have issues. Look:
 > 
-> David Gow (2):
->       drm/i915: Allow evicting to use the requested placement
->       drm/i915: Attempt to get pages without eviction first
+>     Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>     Link: https://patchwork.freedesktop.org/patch/msgid ...
+>     (cherry picked from commit 97b6784753da06d9d40232328efc5c5367e53417)
+>     Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 > 
-> Dnyaneshwar Bhadane (1):
->       drm/i915/display: correct dual pps handling for MTL_PCH+
+> 
+> 1. Duplicated committer SoB.
+> You added SoB. No need to add two. It does not get stronger. You do not
+> change the DCO rules by adding two SoBs. You cannot confirm something
+> more or twice. Read DCO one more time...
+> 
+> 2. Useless cherry pick SHA.
+> fatal: bad object 97b6784753da06d9d40232328efc5c5367e53417
+> (Tried with repo having several maintainer repos and the linux-next)
+> 
+> Only you have 97b6784753da06d9d40232328efc5c5367e53417. Maybe few other
+> people as well, but all other do not. This does not bring any useful
+> information, rather obfuscates public git history.
 
-Several commits have issues. Look:
+... and in case you claim that 97b6784753da06d9d40232328efc5c5367e53417
+is in drm-next, then your workflow is broken because:
+1. You will duplicate the same commit. One in drm-fixes and second in
+drm-next. Just use git features, like branches and merges... First you
+apply on fixes, then you merge it to next, for example. Or any other
+sane way.
 
-    Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-    Link: https://patchwork.freedesktop.org/patch/msgid ...
-    (cherry picked from commit 97b6784753da06d9d40232328efc5c5367e53417)
-    Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+2. If you rebase drm-next on top of drm-fixes in some time in the
+future, then that cherry-pick SHA will not work and will be totally useless.
 
-
-1. Duplicated committer SoB.
-You added SoB. No need to add two. It does not get stronger. You do not
-change the DCO rules by adding two SoBs. You cannot confirm something
-more or twice. Read DCO one more time...
-
-2. Useless cherry pick SHA.
-fatal: bad object 97b6784753da06d9d40232328efc5c5367e53417
-(Tried with repo having several maintainer repos and the linux-next)
-
-Only you have 97b6784753da06d9d40232328efc5c5367e53417. Maybe few other
-people as well, but all other do not. This does not bring any useful
-information, rather obfuscates public git history.
+so either you create duplicate commits (that's how Intel gets stats?) or
+you introduce to git history totally bogus SHAs...
 
 Best regards,
 Krzysztof
