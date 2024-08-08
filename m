@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A3F794C010
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 16:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E514D94C0BF
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 17:16:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0485A10E747;
-	Thu,  8 Aug 2024 14:45:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D80C310E750;
+	Thu,  8 Aug 2024 15:16:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gOlehXsd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A1Txta72";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E533E10E747
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Aug 2024 14:45:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A89310E74E;
+ Thu,  8 Aug 2024 15:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723128338; x=1754664338;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=1F25IC4m2+uNAz6ojrWMwTINAb3kK1uD0XL+pUEFE00=;
- b=gOlehXsdnB7ypKRwlUA0c0K0Q0nUjRHI+aRgTujPp7DA14O8Ta8wP6Wl
- aqYBT6tM52tiyoFZS+OOItVv/EXtiqSyA+54/Zm49YRJEYx1EzzHWD3Lj
- Uy9B9QYuTUrZe0CUnT72n2m8NydOdmR4r+oi4RZMHK69lyLj4HIERGRxN
- 7S7f2pKBQ+l2LriGkg5+YMgBbo1NTY9GYbFp+En1M3uTp7G8Qu4s5vfkM
- hou9yjJZjgC7/hyYOrbwYwWjesz4/4ftQape+vjlj/+NSwxHsHmnW7wO5
- g/sLEa9y47akHobdP/daulVz7qccy2AnaN5GhE8zYanWwvAEf9HtZesYC A==;
-X-CSE-ConnectionGUID: 3mgCYdqlT126BZuJGdYWhQ==
-X-CSE-MsgGUID: T4pruOf8RXeZwPnWsxdzaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="32662981"
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="32662981"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 07:45:38 -0700
-X-CSE-ConnectionGUID: raOIoz0BTd+DAMRx4+0tkw==
-X-CSE-MsgGUID: cRbbTxGjTBeOC2K7Zs6bnA==
+ t=1723130163; x=1754666163;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TVwxqcephjV+8seCMXQW6EUL/9DIK75Shi8k2NQPyVI=;
+ b=A1Txta729worzHxbFdm+sLvluKB1eFzeLJYHnVulR1nyE6HY3Qs7ztjh
+ x9oyFqgLC5H6m8sjqL8QxytDM2Pw6M+YoasoPrroYPUWeYGnreEvs1WuR
+ a+qC5tsm4C8sFvesp3cVOqs5Sm6nM+o76wMoTg9gIcJURd7yF0+/G5q77
+ 9qlYU3DtySUfajA4qxDcM6WcD9wWi8FSK+NSoXC0GMQl7v2/iZ8nCGNoW
+ JZ2DKnEReLToMrMNBhgL9HPkBoLMEmtkCniscqMk3wfus6+g7NrCHgqn1
+ s5J1JtOiSxhdF3yv3B1mZm4VCmhspt2PpY4D9wOqffDIqNPYIzfugdrZK A==;
+X-CSE-ConnectionGUID: 84nFE6+PRvCCH3d+cXhH6A==
+X-CSE-MsgGUID: BCbRLpojTgakGV4QoHXpPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21413229"
+X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="21413229"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 08:16:02 -0700
+X-CSE-ConnectionGUID: gG7mET+6RvSTeTNwYWjDUw==
+X-CSE-MsgGUID: wbnvmfxpQEKlCJw31OWz2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="57330294"
+X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="80483382"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 07:45:36 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 08:16:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Andi Shyti <andi.shyti@linux.intel.com>
-Subject: Re: [PATCH 0/3] drm/i915: remove __i915_printk()
-In-Reply-To: <cover.1722951405.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1722951405.git.jani.nikula@intel.com>
-Date: Thu, 08 Aug 2024 17:45:32 +0300
-Message-ID: <871q2z3wfn.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>, lucas.demarchi@intel.com,
+ jani.nikula@intel.com
+Subject: [PATCH v2 00/10] drm/xe & drm/i915: drvdata usage changes
+Date: Thu,  8 Aug 2024 18:15:45 +0300
+Message-Id: <cover.1723129920.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,27 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 06 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> I don't think we need the bug reporting request in the few specific
-> places that lead to __i915_printk(). With them gone, there's really no
-> need for __i915_printk(). Just switch to regular drm logging.
+v2 of https://patchwork.freedesktop.org/series/136621/
 
-Thanks for the reviews and acks, pushed to din with some of the commit
-messages improved.
+Removed "drm/xe/tests: fix drvdata usage" from v1 in favour of
+"drm/xe/tests: remove unused leftover xe_call_for_each_device()" here.
+
+Due to the display dependency, I think it would be best to merge the
+whole thing via drm-intel-next, and do the first drm-intel-next pull
+request and backmerge from drm-next to drm-xe-next in fairly quick
+succession.
 
 BR,
 Jani.
 
->
-> Jani Nikula (3):
->   drm/i915: remove a few __i915_printk() uses
->   drm/i915: remove i915_report_error()
->   drm/i915: remove __i915_printk()
->
->  drivers/gpu/drm/i915/i915_driver.c |  8 ++---
->  drivers/gpu/drm/i915/i915_utils.c  | 51 +++---------------------------
->  drivers/gpu/drm/i915/i915_utils.h  | 16 ++++------
->  3 files changed, 15 insertions(+), 60 deletions(-)
+
+Jani Nikula (10):
+  drm/xe/tests: remove unused leftover xe_call_for_each_device()
+  drm/xe: use pdev_to_xe_device() instead of pci_get_drvdata() directly
+  drm/xe: add kdev_to_xe_device() helper and use it
+  drm/i915: use pdev_to_i915() instead of pci_get_drvdata() directly
+  drm/i915 & drm/xe: save struct drm_device to drvdata
+  drm/i915: support struct device and pci_dev in to_intel_display()
+  drm/i915/audio: migrate away from kdev_to_i915()
+  drm/i915/hdcp: migrate away from kdev_to_i915() in bind/unbind
+  drm/i915/hdcp: migrate away from kdev_to_i915() in GSC messaging
+  drm/xe/display: remove unused compat kdev_to_i915() and pdev_to_i915()
+
+ drivers/gpu/drm/i915/display/intel_audio.c    | 34 ++++++----
+ .../drm/i915/display/intel_display_types.h    |  8 ++-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 10 +--
+ .../drm/i915/display/intel_hdcp_gsc_message.c | 67 +++++++++++++------
+ drivers/gpu/drm/i915/i915_driver.c            |  2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  8 ++-
+ drivers/gpu/drm/i915/i915_pci.c               |  6 +-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  6 --
+ drivers/gpu/drm/xe/tests/xe_pci.c             | 52 --------------
+ drivers/gpu/drm/xe/tests/xe_pci_test.h        |  1 -
+ drivers/gpu/drm/xe/xe_device.h                | 11 ++-
+ drivers/gpu/drm/xe/xe_gsc_proxy.c             |  9 +--
+ drivers/gpu/drm/xe/xe_pci.c                   |  4 +-
+ 14 files changed, 104 insertions(+), 116 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
