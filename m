@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7EB94C0C5
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 17:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E013694C0C6
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 17:16:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A1510E76F;
-	Thu,  8 Aug 2024 15:16:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A05C10E771;
+	Thu,  8 Aug 2024 15:16:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+nQ44LD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A2xaxU3T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCAF010E76E;
- Thu,  8 Aug 2024 15:16:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A58610E771;
+ Thu,  8 Aug 2024 15:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723130184; x=1754666184;
+ t=1723130188; x=1754666188;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eejZY0mpMsQ/55gtN2EVIruioAOBdXZkanYFkfq4WeQ=;
- b=Y+nQ44LD/fvmHW5xbO5xt0p5ft6s1KBzfwr3WM62lsqoZlj8PqaE9wiv
- jRj+UjiLtwdd81au1r2GUUDCCo6IJHG7JZe62awEBz4SihgrceTxEPki7
- 9u/L4jNZrzKgSm4ou73TeegN1f18acGSz2g8Awr1r7rapTkLKcMw9P5A6
- 7bQ83Ve1S0ASLOZpvsI5h55qm62ae/GsghtgRzG41MY3bx2Bjl5arf18y
- Xr5b/CPjOShynA2d31LisTT25QKZZL15keJVOiDHKDrDK7jjrIDSuk1uV
- TsutLriz8MtkvX/lmYnwjF24L1pLxWg/oW3EReUK2TXYjhQFotstkRF3N w==;
-X-CSE-ConnectionGUID: 02cf9zB1Rm+VLPpzumLrpg==
-X-CSE-MsgGUID: 9fhyA3BNRZ+BcEvNI07SfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="46667070"
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="46667070"
+ bh=Ym76z5okO7XFJfalI0fMYf4K3IDPuXXTxc/zwP6CmVg=;
+ b=A2xaxU3TcD1Fa7mzqPOz0TuEXJpitP11BWh0BqmCyvv2lcESxmb3pa8Y
+ 3fcgMcI/DZvuw66Xspe8XzrvMkc5T7Dd5WI2c3e0X1uZHc3GBdzTj8Tra
+ ao6faRgDjkOugF1hV5kQizN92lwTAtT4ldpJMjO7+vK6gUApb7SS3NScH
+ Ug5ZXWeOV91uzpc3b9rO4hqYC77+xOsrTqhXYvDEbL5HducdG71RKS6jV
+ ohbf8Bca5ihbHXPRSHPVooVUs3w1oyPJ3lQR/TAEQ8hzNa/ksGxuLKs0t
+ lo7hCHuosd3OPEBnQNvIdnW1nlYJ1ZrVgRp3jybgGRrBYp18JQtWEx0ni Q==;
+X-CSE-ConnectionGUID: foehoVHFQGijcMJT7/9ZeA==
+X-CSE-MsgGUID: dEuZxMGvQz+s7zekCxMfQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="46667074"
+X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="46667074"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 08:16:23 -0700
-X-CSE-ConnectionGUID: QGiPBBkKSdOemoj+6VOgXQ==
-X-CSE-MsgGUID: gUGrZvK8SDq/aZqHFYn9Aw==
+ 08 Aug 2024 08:16:27 -0700
+X-CSE-ConnectionGUID: LvHt/JRlRh2jd9XzcmFDDg==
+X-CSE-MsgGUID: a7TSlLSlT8yfejZVA4ua1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="56920021"
+X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; d="scan'208";a="56920053"
 Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 08:16:21 -0700
+ 08 Aug 2024 08:16:26 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, lucas.demarchi@intel.com,
  jani.nikula@intel.com
-Subject: [PATCH v2 05/10] drm/i915 & drm/xe: save struct drm_device to drvdata
-Date: Thu,  8 Aug 2024 18:15:50 +0300
-Message-Id: <4c95d75da7e80863940f0187fbb6966522ff55a8.1723129920.git.jani.nikula@intel.com>
+Subject: [PATCH v2 06/10] drm/i915: support struct device and pci_dev in
+ to_intel_display()
+Date: Thu,  8 Aug 2024 18:15:51 +0300
+Message-Id: <4a70189eed5dcc7cb7c6a11d76bc43902f90197d.1723129920.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1723129920.git.jani.nikula@intel.com>
 References: <cover.1723129920.git.jani.nikula@intel.com>
@@ -70,126 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the future, the display code shall not have any idea about struct
-xe_device or struct drm_i915_private, but will need to get at the struct
-drm_device via drvdata. Store the struct drm_device pointer to drvdata
-instead of the driver specific pointer.
+Now that both xe and i915 store struct drm_device in drvdata, we can
+trivially support struct device and struct pci_dev in
+to_intel_display().
 
-Avoid passing NULL to container_of() via to_i915()/to_xe_device(). (It
-does return NULL for NULL pointers when the offset happens to be 0, but
-otherwise returns garbage pointers for NULL.)
+We do need to check for NULL drvdata before converting it into struct
+intel_device pointer, though. Do it in __drm_device_to_intel_display().
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+v2: Add NULL check in __drm_device_to_intel_display() (Gustavo)
+
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com> # v1
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c                | 2 +-
- drivers/gpu/drm/i915/i915_drv.h                   | 8 ++++++--
- drivers/gpu/drm/i915/selftests/mock_gem_device.c  | 2 +-
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 4 +++-
- drivers/gpu/drm/xe/xe_device.h                    | 8 ++++++--
- drivers/gpu/drm/xe/xe_pci.c                       | 2 +-
- 6 files changed, 18 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index fb8e9c2fcea5..176c13c2e191 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -723,7 +723,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (IS_ERR(i915))
- 		return i915;
- 
--	pci_set_drvdata(pdev, i915);
-+	pci_set_drvdata(pdev, &i915->drm);
- 
- 	/* Device parameters start as a copy of module parameters. */
- 	i915_params_copy(&i915->params, &i915_modparams);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 94f7f6cc444c..ce18704f500a 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -365,12 +365,16 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- 
- static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- {
--	return dev_get_drvdata(kdev);
-+	struct drm_device *drm = dev_get_drvdata(kdev);
-+
-+	return drm ? to_i915(drm) : NULL;
- }
- 
- static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
- {
--	return pci_get_drvdata(pdev);
-+	struct drm_device *drm = pci_get_drvdata(pdev);
-+
-+	return drm ? to_i915(drm) : NULL;
- }
- 
- static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 0bd29846873b..91794ca17a58 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -172,7 +172,7 @@ struct drm_i915_private *mock_gem_device(void)
- 		return NULL;
- 	}
- 
--	pci_set_drvdata(pdev, i915);
-+	pci_set_drvdata(pdev, &i915->drm);
- 
- 	/* Device parameters start as a copy of module parameters. */
- 	i915_params_copy(&i915->params, &i915_modparams);
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 2feedddf1e40..766fba88a3c8 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -23,7 +23,9 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- 
- static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- {
--	return dev_get_drvdata(kdev);
-+	struct drm_device *drm = dev_get_drvdata(kdev);
-+
-+	return drm ? to_i915(drm) : NULL;
- }
- 
- #define IS_PLATFORM(xe, x) ((xe)->info.platform == x)
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 2c96f1b2aafd..022876eebfd5 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -17,12 +17,16 @@ static inline struct xe_device *to_xe_device(const struct drm_device *dev)
- 
- static inline struct xe_device *kdev_to_xe_device(struct device *kdev)
- {
--	return dev_get_drvdata(kdev);
-+	struct drm_device *drm = dev_get_drvdata(kdev);
-+
-+	return drm ? to_xe_device(drm) : NULL;
- }
- 
- static inline struct xe_device *pdev_to_xe_device(struct pci_dev *pdev)
- {
--	return pci_get_drvdata(pdev);
-+	struct drm_device *drm = pci_get_drvdata(pdev);
-+
-+	return drm ? to_xe_device(drm) : NULL;
- }
- 
- static inline struct xe_device *xe_device_const_cast(const struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 7bb811b4a057..f861b8cf931a 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -800,7 +800,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (IS_ERR(xe))
- 		return PTR_ERR(xe);
- 
--	pci_set_drvdata(pdev, xe);
-+	pci_set_drvdata(pdev, &xe->drm);
- 
- 	xe_pm_assert_unbounded_bridge(xe);
- 	subplatform_desc = find_subplatform(xe, desc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index ea6548ceab2f..976c85446603 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -2205,7 +2205,11 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
+  * intel_display pointer.
+  */
+ #define __drm_device_to_intel_display(p) \
+-	(&to_i915(p)->display)
++	((p) ? &to_i915(p)->display : NULL)
++#define __device_to_intel_display(p)				\
++	__drm_device_to_intel_display(dev_get_drvdata(p))
++#define __pci_dev_to_intel_display(p)				\
++	__drm_device_to_intel_display(pci_get_drvdata(p))
+ #define __intel_connector_to_intel_display(p)		\
+ 	__drm_device_to_intel_display((p)->base.dev)
+ #define __intel_crtc_to_intel_display(p)		\
+@@ -2229,6 +2233,8 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
+ #define to_intel_display(p)				\
+ 	_Generic(*p,					\
+ 		 __assoc(drm_device, p),		\
++		 __assoc(device, p),			\
++		 __assoc(pci_dev, p),			\
+ 		 __assoc(intel_connector, p),		\
+ 		 __assoc(intel_crtc, p),		\
+ 		 __assoc(intel_crtc_state, p),		\
 -- 
 2.39.2
 
