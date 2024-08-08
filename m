@@ -2,64 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC0D994B5F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 06:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6817894B606
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2024 06:54:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6886910E4D2;
-	Thu,  8 Aug 2024 04:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E7A10E08C;
+	Thu,  8 Aug 2024 04:54:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hje+ZgCy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgTU//ln";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEF5D10E0CC;
- Thu,  8 Aug 2024 04:42:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF0A310E08C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Aug 2024 04:54:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723092179; x=1754628179;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=4syzyV6hdGjV22Hiflj6sEtCj534I2q+jdzZRjAGewU=;
- b=hje+ZgCy0xygrnTQg5A3S9mGBcXKlDF/RvtZfaTlX2XYMShHcwF9Auq8
- IrxiCb18vFcFMQwACv6a2FSnPKIxB7MpVtqxdSsC6mlZJabGZNfck7Mi9
- KAymtDQ7MJ1MSoVGOra4CuhNS2cMcBKjGQxqhoRXW/4hi23wkzmtA6y/R
- z26zetP7rz17qVF99ppS5SlsGbmP2nUiecvGuAl7qRlky7Pj6T+oQsCvw
- VOJIfTy03pBsIk1esd7zTHbWk/1O8pCloVQ/SChgZG6qY1YM+yFTQwToc
- 8ygEKOdkq1MpuHIwrjUDqctkF1ka4JzMiaiVgbOdeRF8XPi8mAj3qnmrz A==;
-X-CSE-ConnectionGUID: ZHlkCxONR5CM2MPm7i0cRw==
-X-CSE-MsgGUID: D1qlO6BXQkOfsm3zhr1/JQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="31867210"
-X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; d="scan'208";a="31867210"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 21:42:57 -0700
-X-CSE-ConnectionGUID: KXtIwPg7SaG4OrINrtmQ+Q==
-X-CSE-MsgGUID: BT2jfhRmQaSIW27BmDM3lg==
+ t=1723092873; x=1754628873;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HtAA8+BceOoPVe5XtY1xtYpr9rMAIcGHM1jXnQlu9LQ=;
+ b=WgTU//ln/vkwTBWArV5Dq2PeIx8vOWRpERZSM5uAq4D4SkkxB4Id8Fti
+ 6LGreodPDxO5peigMrj9ln4mvZIfW0/4ep8W3oNSczzYiPmwbInHhy5RH
+ 7cx73S+03QatWQp7ut5GoPt1UjEpGguqxZK48ltTX+zxpqFS33EkTrplC
+ sTZm8Uy28lfJnD1Dyo5C4ugQLwInipBtGRTAUAEInufr1tgmJRBMOsdpY
+ ba/vl9cqQOOHGRObG9/dGzi81o2+xSIm54hcxdwUdRz0Mt8bepOw/BLZ2
+ Mn3wsIwKyt6sCMTa5+IUg4Ke8jgsKmbR2/n3OJWVzCfvdOSjI798CtZfC A==;
+X-CSE-ConnectionGUID: LgdYcPC4TWO74iOexIjrSA==
+X-CSE-MsgGUID: VsYAnP1aQ66AiFoAccOnJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="25070796"
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; d="scan'208";a="25070796"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2024 21:54:31 -0700
+X-CSE-ConnectionGUID: xlhNx73oRQy9ZQjbskwd8Q==
+X-CSE-MsgGUID: io+BM/JJQo+pwN3DlBNTlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; d="scan'208";a="61203255"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2024 21:42:54 -0700
-Date: Thu, 8 Aug 2024 07:42:51 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, linux@roeck-us.net,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- anshuman.gupta@intel.com, badal.nilawar@intel.com,
- riana.tauro@intel.com, ashutosh.dixit@intel.com,
- karthik.poosa@intel.com, andriy.shevchenko@linux.intel.com
-Subject: Re: [PATCH v3] drm/i915/hwmon: expose fan speed
-Message-ID: <ZrRMyzUfNdjyL1y6@black.fi.intel.com>
-References: <20240807123018.827506-1-raag.jadav@intel.com>
- <ZrN1i2snlz8tSA1M@ashyti-mobl2.lan>
+X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; d="scan'208";a="57016878"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa009.jf.intel.com with ESMTP; 07 Aug 2024 21:54:30 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 2/2] drm/i915/display: Call panel_fitting from pipe_config
+Date: Thu,  8 Aug 2024 10:24:07 +0530
+Message-Id: <20240808045407.2365733-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240805062538.1844291-3-nemesa.garg@intel.com>
+References: <20240805062538.1844291-3-nemesa.garg@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZrN1i2snlz8tSA1M@ashyti-mobl2.lan>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,90 +66,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 07, 2024 at 02:24:27PM +0100, Andi Shyti wrote:
-> Hi Raag,
-> 
-> > +static umode_t
-> > +hwm_fan_is_visible(const struct hwm_drvdata *ddat, u32 attr)
-> > +{
-> > +	struct i915_hwmon *hwmon = ddat->hwmon;
-> > +
-> > +	switch (attr) {
-> > +	case hwmon_fan_input:
-> > +		return i915_mmio_reg_valid(hwmon->rg.fan_speed) ? 0444 : 0;
-> > +	default:
-> > +		return 0;
-> > +	}
-> 
-> Why do we need switch case here?
+In panel fitter/pipe scaler scenario the pch_pfit configuration
+currently takes place before accounting for pipe_src width for
+joiner. This causes issue when pch_pfit and joiner get enabled
+together.
 
-Just following the file conventions.
+Introduce a new boolean flag need_joiner which is set during dp
+compute_config in joiner case and later is used to compute
+panel_fitting in pipe_config. Modify pch_panel_fitting to handle
+joiner pipes by adjusting crtc_hdisplay accordingly.
 
-> Why can't this function become a single "return " line?
-> 
-> > +}
-> > +
-> > +static int
-> > +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
-> > +{
-> > +	struct i915_hwmon *hwmon = ddat->hwmon;
-> > +	struct hwm_fan_info *fi = &ddat->fi;
-> > +	u32 reg_val, pulses, time, time_now;
-> > +	intel_wakeref_t wakeref;
-> > +	long rotations;
-> > +	int ret = 0;
-> > +
-> > +	switch (attr) {
-> > +	case hwmon_fan_input:
-> > +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref) {
-> > +			mutex_lock(&hwmon->hwmon_lock);
-> > +
-> > +			reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
-> > +			time_now = jiffies_to_msecs(jiffies);
-> > +
-> > +			/* Handle overflow */
-> > +			if (reg_val >= fi->reg_val_prev)
-> > +				pulses = reg_val - fi->reg_val_prev;
-> > +			else
-> > +				pulses = UINT_MAX - fi->reg_val_prev + reg_val;
-> > +
-> > +			/*
-> > +			 * HW register value is accumulated count of pulses from
-> > +			 * PWM fan with the scale of 2 pulses per rotation.
-> > +			 */
-> > +			rotations = pulses >> 1;
-> > +			time = time_now - fi->time_prev;
-> > +
-> > +			if (unlikely(!time)) {
-> > +				ret = -EAGAIN;
-> > +				mutex_unlock(&hwmon->hwmon_lock);
-> > +				break;
-> > +			}
-> > +
-> > +			/* Convert to minutes for calculating RPM */
-> > +			*val = DIV_ROUND_UP(rotations * (60 * MSEC_PER_SEC), time);
-> > +
-> > +			fi->reg_val_prev = reg_val;
-> > +			fi->time_prev = time_now;
-> > +
-> > +			mutex_unlock(&hwmon->hwmon_lock);
-> > +		}
-> > +		return ret;
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> 
-> same here, can we make this function:
-> 
-> if (attr != hwmon_fan_input)
-> 	return -EOPNOTSUPP;
-> 
-> and then save all the indentation.
+v2: Address comments (Ankit)
+v3: Change flag name (Ankit)
 
-Makes sense for hwm_fan_read(). Let me try this.
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c       | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            | 11 ++++++++---
+ drivers/gpu/drm/i915/display/intel_panel.c         |  3 +++
+ 4 files changed, 23 insertions(+), 3 deletions(-)
 
-> Are we expecting more cases here?
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8bbde03f2508..82b67c0a90e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4796,6 +4796,17 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
+ 		return ret;
+ 	}
+ 
++	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
++		if (connector_state->crtc != &crtc->base)
++			continue;
++
++		if (crtc_state->pch_pfit.need_joiner) {
++			ret = intel_panel_fitting(crtc_state, connector_state);
++			if (ret)
++				return ret;
++		}
++	}
++
+ 	/* Dithering seems to not pass-through bits correctly when it should, so
+ 	 * only enable it on 6bpc panels and when its not a compliance
+ 	 * test requesting 6bpc video pattern.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index a04d52dbf6e1..eb9713b088c6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1258,6 +1258,7 @@ struct intel_crtc_state {
+ 		struct drm_rect dst;
+ 		bool enabled;
+ 		bool force_thru;
++		bool need_joiner;
+ 	} pch_pfit;
+ 
+ 	/* FDI configuration, only valid if has_pch_encoder is set. */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 65182bf69b62..d5d9d4f21fc7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2953,9 +2953,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 
+ 	if ((intel_dp_is_edp(intel_dp) && fixed_mode) ||
+ 	    pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
+-		ret = intel_panel_fitting(pipe_config, conn_state);
+-		if (ret)
+-			return ret;
++		if (!pipe_config->joiner_pipes) {
++			ret = intel_panel_fitting(pipe_config, conn_state);
++			if (ret)
++				return ret;
++		} else {
++			 /* Incase of joiner panel_fitting is handled during pipe_config */
++			pipe_config->pch_pfit.need_joiner = true;
++		}
+ 	}
+ 
+ 	pipe_config->limited_color_range =
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index dd18136d1c61..0da45c2330d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -395,6 +395,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+ 	u16 crtc_hdisplay = adjusted_mode->crtc_hdisplay;
+ 	u16 crtc_vdisplay = adjusted_mode->crtc_vdisplay;
+ 
++	if (crtc_state->joiner_pipes)
++		crtc_hdisplay = adjusted_mode->crtc_hdisplay / 2;
++
+ 	/* Native modes don't need fitting */
+ 	if (crtc_hdisplay == pipe_src_w &&
+ 	    crtc_vdisplay == pipe_src_h &&
+-- 
+2.25.1
 
-Not for now.
-
-Raag
