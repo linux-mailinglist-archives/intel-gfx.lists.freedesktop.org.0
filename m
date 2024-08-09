@@ -2,70 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF2794CCBE
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 10:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E711C94CCE7
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 11:07:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8421510E885;
-	Fri,  9 Aug 2024 08:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 374E710E88B;
+	Fri,  9 Aug 2024 09:07:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="HMTvyQsH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SJSPDqz7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
- [209.85.208.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E558A10E885
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Aug 2024 08:53:42 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id
- 4fb4d7f45d1cf-5af2329d5e1so147348a12.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 09 Aug 2024 01:53:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1723193621; x=1723798421; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=BrkvZd5Eh5WW5Mf9X1tdL5dePzKmYCNPHweFklCENn4=;
- b=HMTvyQsHTXCUghSWXetDQi/LhWMGKn5F04rOCsJbvaSAAZvjBPvnZi6mhNZPjopm++
- ZpJIlDjquJM1gTpa1oDQ71hwGz60G0e4RNaDZLrZ97TnBlJdXubW0sANGar/vxdmBLbR
- xLEKY1KvCNECazR5GQ5zjdd+vIZE9S2+mYKA8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1723193621; x=1723798421;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BrkvZd5Eh5WW5Mf9X1tdL5dePzKmYCNPHweFklCENn4=;
- b=txFa5XMjsiSpORZkecW00D5WcNw98sUIyFOK4T4fHhxTV1vv/J2CHNd48IymJuVlgc
- rV4e4JpvLADtUrckjmcCGYnFD2NfDa5fxaqFecADmaO7WZp6ARPQ9tFRHwKH5utGPF4a
- pABIIYqdiUc1KKdDMAYnqd6+jYn9X7S5Xhkak2mVTsy7y8IraiNTnBlcQxg/fa5PlXIX
- stHNtcK4OC0oMrIAsNw0/E2SJVnqLPPsccmSyZORmQOIAH3qBzPyKVan8btwNDjrYFlq
- uVbOMjTtuAy+HeJcemUZyWdZFkZhD6JlhktlPZvVyYpkBDxVYmdwdFJ5+Rwt1MzGz3bx
- O0CQ==
-X-Gm-Message-State: AOJu0YyuBLpwihjflwKk/sb60q5OhphxbXlL07iVSUAaDWwqo2sCoIj9
- sdnHLIDQCXsxxqJ0GMQo/3pa2qLXZ3UpBaVQLW8qWxEBnJ+PkXdEIahCtYd2Uho=
-X-Google-Smtp-Source: AGHT+IF1wFtkuWBWCX/59HDf0t+FoPw4pcHDoIYbiO+O8It+DqK3snvT/N1lj43oxLY9+cj8Y9MiNQ==
-X-Received: by 2002:a05:6402:3483:b0:599:b77c:7b5c with SMTP id
- 4fb4d7f45d1cf-5bd0a698894mr351616a12.5.1723193621061; 
- Fri, 09 Aug 2024 01:53:41 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5bbb2bf869dsm1359506a12.1.2024.08.09.01.53.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Aug 2024 01:53:40 -0700 (PDT)
-Date: Fri, 9 Aug 2024 10:53:38 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Subject: Re: [PATCH 0/2] Allow partial memory mapping for cpu memory
-Message-ID: <ZrXZEpplb6YA9T_d@phenom.ffwll.local>
-References: <20240807100521.478266-1-andi.shyti@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EEF810E889;
+ Fri,  9 Aug 2024 09:07:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723194423; x=1754730423;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=rnXYRKywIVZbqZyYCHBzIFhRkyMiTvi411eGe8+Yh5w=;
+ b=SJSPDqz7Fz4AnbupAah/mItS66ZU96T1BoSgYPwI4zsV5ynRUtOswJFx
+ UjU0nTog3lkE3syABdjclphMXtun+8FMt+3KEISoEOaFA5K2bPbrM2I++
+ P+dwNAFU7A8BAv5Wa2lNtw34zqLEtmwz4Vt/I5ms4MJLjyVRPznWpiI4y
+ Oq2Gjb15wQ4D+vX0jg0HOagExfJOA77eUgj3iwKV3BkalD02K+l+uTfSx
+ o5BvTJLpsYzt5+/y65r5u1wF0eKSgehwp0UD1cgSpEFEVhNgi+b+u41k2
+ dTnZdooN5SYqxvqjPAoBkykltBfw6k9BQkflvimqx55rrW4nwHxiVPj5l Q==;
+X-CSE-ConnectionGUID: 8uBQrq9RTmmzV7VEXfB1zg==
+X-CSE-MsgGUID: elDrapJpTlOXWSexXr4Rgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="25155727"
+X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="25155727"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 02:07:02 -0700
+X-CSE-ConnectionGUID: hz64SiO1QcCR6lS/2TrBdw==
+X-CSE-MsgGUID: 9AI0dFStTaGMysoWdyapKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,275,1716274800"; d="scan'208";a="57420279"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 02:07:01 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Gustavo
+ Sousa <gustavo.sousa@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 00/10] drm/xe & drm/i915: drvdata usage changes
+In-Reply-To: <2pep6oj5dd7ocei2a3egnm3agoa46nxad2e6e2riwby66khfpt@22g2ari2u4ps>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1723129920.git.jani.nikula@intel.com>
+ <2pep6oj5dd7ocei2a3egnm3agoa46nxad2e6e2riwby66khfpt@22g2ari2u4ps>
+Date: Fri, 09 Aug 2024 12:06:55 +0300
+Message-ID: <87mslm2hg0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240807100521.478266-1-andi.shyti@linux.intel.com>
-X-Operating-System: Linux phenom 6.9.10-amd64 
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,42 +70,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 07, 2024 at 11:05:19AM +0100, Andi Shyti wrote:
-> Hi,
-> 
-> This patch series concludes on the memory mapping fixes and
-> improvements by allowing partial memory mapping for the cpu
-> memory as well.
-> 
-> The partial memory mapping by adding an object offset was
-> implicitely included in commit 8bdd9ef7e9b1 ("drm/i915/gem: Fix
-> Virtual Memory mapping boundaries calculation") for the gtt
-> memory.
+On Thu, 08 Aug 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, Aug 08, 2024 at 06:15:45PM GMT, Jani Nikula wrote:
+>>v2 of https://patchwork.freedesktop.org/series/136621/
+>>
+>>Removed "drm/xe/tests: fix drvdata usage" from v1 in favour of
+>>"drm/xe/tests: remove unused leftover xe_call_for_each_device()" here.
+>>
+>>Due to the display dependency, I think it would be best to merge the
+>>whole thing via drm-intel-next, and do the first drm-intel-next pull
+>>request and backmerge from drm-next to drm-xe-next in fairly quick
+>>succession.
+>
+> I was waiting the drm-intel-next pull to do a backmerge as we started to
+> have some big divergences. I will try to review the missing patches to
+> expedite that. Are you planning a pull this week?
 
-Does userspace actually care? Do we have a flag or something, so that
-userspace can discover this?
+Rodrigo? I think it's your shift.
 
-Adding complexity of any kind is absolute no-go, unless there's a
-userspace need. This also includes the gtt accidental fix.
--Sima
+BR,
+Jani.
 
-> 
-> Andi
-> 
-> Andi Shyti (2):
->   drm/i915/gem: Do not look for the exact address in node
->   drm/i915/gem: Calculate object page offset for partial memory mapping
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 10 ++++++----
->  drivers/gpu/drm/i915/i915_mm.c           | 12 +++++++++++-
->  drivers/gpu/drm/i915/i915_mm.h           |  3 ++-
->  3 files changed, 19 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.45.2
-> 
+
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel
