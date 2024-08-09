@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45E6794C782
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 02:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F3694C785
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 02:14:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898C110E82E;
-	Fri,  9 Aug 2024 00:06:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YzDFCsel";
-	dkim-atps=neutral
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182C210E82E;
- Fri,  9 Aug 2024 00:06:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723162008; x=1754698008;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sgWT0C1e6mNVgtU6hTXyIuwBguenbIfIqlvhnDxPODU=;
- b=YzDFCseliMmj77rypobv2GFgZCKdlDWD0yGzf61IPITa8AqCCcJX0Bin
- lHavnidoXeJPfOkpBIHkbq/+uyZ1/u5ywUqXcss+ejPqq/h8BkUCvkkhl
- ZgyGTaYBT/hw9K25L66UyZdEKp3ENTuJTgptVAHpG2I384fG41NMz37cL
- xqokDJv1+OB0vxvrIrdL8DjqFhdzXx95+70OXPPxf5eJM9fY+eUaBBhjK
- xPxpCeTIoC0hrIfeXwNEZ2ZMQzgUGjQV4Xg7iOvUf1oyPh+0UE6TLmtNw
- YKNsrzR9DPnoG6anMFd8w7q/kjL1dXmGBsT5CHXI2lxju7OagVvxiOKda g==;
-X-CSE-ConnectionGUID: /S1cB+e0SN6j1voR2HoBDQ==
-X-CSE-MsgGUID: NVjhk1N+Rt2ekdK9JZ/Rfg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="43835806"
-X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; d="scan'208";a="43835806"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2024 17:06:47 -0700
-X-CSE-ConnectionGUID: goIRT5viSOm7yW+dfRsxzg==
-X-CSE-MsgGUID: i7l/YfPDSPKGrGW06rebTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; d="scan'208";a="57348475"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by fmviesa008.fm.intel.com with ESMTP; 08 Aug 2024 17:06:47 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Cc: DRI-Devel@Lists.FreeDesktop.Org, John Harrison <John.C.Harrison@Intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>, Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: [PATCH] drm/i915/guc: Fix missing enable of Wa_14019159160 on ARL
-Date: Thu,  8 Aug 2024 17:06:46 -0700
-Message-ID: <20240809000646.1747507-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.46.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E68110E836;
+	Fri,  9 Aug 2024 00:14:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F090810E836;
+ Fri,  9 Aug 2024 00:14:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/gt=3A_Mark_the_?=
+ =?utf-8?q?GT_as_dead_when_mmio_is_unreliable_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 09 Aug 2024 00:14:26 -0000
+Message-ID: <172316246696.551301.11437575024981840176@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240807091014.469992-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240807091014.469992-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,45 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-The previous update to enable the workaround on ARL only changed two
-out of three places where the w/a needs to be enabled. That meant the
-GuC side was operational but not the KMD side. And as the KMD side is
-the trigger, it meant the w/a was not actually active. So fix that.
+Series: drm/i915/gt: Mark the GT as dead when mmio is unreliable (rev5)
+URL   : https://patchwork.freedesktop.org/series/136975/
+State : warning
 
-Fixes: 104bcfae57d8 ("drm/i915/arl: Enable Wa_14019159160 for ARL")
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 9400d0eb682b2..3e1c3bc56daf2 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -4506,7 +4506,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
- 	/* Wa_16019325821 */
- 	/* Wa_14019159160 */
- 	if ((engine->class == COMPUTE_CLASS || engine->class == RENDER_CLASS) &&
--	    IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 70), IP_VER(12, 71)))
-+	    IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 70), IP_VER(12, 74)))
- 		engine->flags |= I915_ENGINE_USES_WA_HOLD_SWITCHOUT;
- 
- 	/*
--- 
-2.46.0
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
