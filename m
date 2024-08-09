@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D503D94D120
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 15:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D731B94D225
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 16:27:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B086910E903;
-	Fri,  9 Aug 2024 13:23:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC8B610E0AC;
+	Fri,  9 Aug 2024 14:27:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AvPISNak";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+4JYyOS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B57810E904;
- Fri,  9 Aug 2024 13:23:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD7CE10E09D;
+ Fri,  9 Aug 2024 14:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723209835; x=1754745835;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=cIeA1uckDXKatI1RGgFhcMLgMJGFmmmnMArZaO8ynrc=;
- b=AvPISNakFVXcLMdcfl4w/lyAkBxLaNo0JEhxhrW9ZEQUykXVJEg6nkuX
- jETfu/5vUjXSuULh8f4NsPl0XllFwoHeJZN3AwtaEjY1j4NGn1+Ffzmg4
- MYC9sbgs2kyD/OriKYyiJfG5zZVs9SCoalZJyHsMeNZy4ftpyLWHkCzrq
- 9T0klbFJy2ELuDESysyb4yNfw+uQqNt4R5SBOhRNBEyH5DXZ/SD224hEk
- k3rdg572FaJhKs5I/pgSc83CgU96R9NmzCYSDOYUotCju38o1dSz/xYIP
- oJBYW1x4UniMc/1bprPqZWoLJrb8ZZg3Nfn1DV5EkQiDIs8WdDA9ILxPZ A==;
-X-CSE-ConnectionGUID: mZ56ytrzQVa11XEqp5dJMQ==
-X-CSE-MsgGUID: KhAFuNusSqG19hGYyUqCZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21556936"
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="21556936"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 06:23:54 -0700
-X-CSE-ConnectionGUID: p/yHu0F6SDmBmDkvOiAPvg==
-X-CSE-MsgGUID: TzajNxIDSYmw4UIbHYJykg==
+ t=1723213649; x=1754749649;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GYAsRiLMkBnu7D2BFWW53DRRa8F2R2Mh4uB4csl3jY4=;
+ b=Y+4JYyOSbMNj2RmL50HLwMGTViAH216pfC6ih6iR04ulq38JKhgDhWNl
+ jW/Qesxy4iaAPxBoTSth9bQtKdceUTzuF27ahErUH8Fw1KqlwZ8AWXVnz
+ oHPn/9KHjpW7RA9td1tKKkCmszr9OG4KWvhUAYJ0q10Yti/j/TfjPDtEj
+ 33Z+rYLjWEdHvDgbHrQ6i/+Kf+zD42P9bFTI6AZIkF7KIhJaa00GT+TYp
+ G3utnvhYkWNvkNW3/HP0r8t/K3On9mMuEOKPo7tLUrAKF79cgT0+LgWsz
+ wGdkoGdlfeAgN3l1Q3xzCXX7nrwxX5NXcMvHFpQwh/r1k4Y+TL3PanfMZ g==;
+X-CSE-ConnectionGUID: viQ5MmmuSTOshf6eiOwvng==
+X-CSE-MsgGUID: 9vzzNsUQT+6GUqcyc2OrwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="32013700"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="32013700"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 07:27:15 -0700
+X-CSE-ConnectionGUID: ZMWt6KLiRs20TB1xi8QgJA==
+X-CSE-MsgGUID: I6yLeKzzQLyM89Vt/qE+8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="57780086"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; d="scan'208";a="57471438"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.18])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2024 06:23:52 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2024 07:27:12 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Gustavo
- Sousa <gustavo.sousa@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 00/10] drm/xe & drm/i915: drvdata usage changes
-In-Reply-To: <87mslm2hg0.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1723129920.git.jani.nikula@intel.com>
- <2pep6oj5dd7ocei2a3egnm3agoa46nxad2e6e2riwby66khfpt@22g2ari2u4ps>
- <87mslm2hg0.fsf@intel.com>
-Date: Fri, 09 Aug 2024 16:23:47 +0300
-Message-ID: <87jzgp3k4c.fsf@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	imre.deak@intel.com
+Subject: [PATCH v2 0/4] drm/i915: struct intel_display conversions
+Date: Fri,  9 Aug 2024 17:27:02 +0300
+Message-Id: <cover.1723213547.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,33 +69,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 09 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Thu, 08 Aug 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Thu, Aug 08, 2024 at 06:15:45PM GMT, Jani Nikula wrote:
->>>v2 of https://patchwork.freedesktop.org/series/136621/
->>>
->>>Removed "drm/xe/tests: fix drvdata usage" from v1 in favour of
->>>"drm/xe/tests: remove unused leftover xe_call_for_each_device()" here.
->>>
->>>Due to the display dependency, I think it would be best to merge the
->>>whole thing via drm-intel-next, and do the first drm-intel-next pull
->>>request and backmerge from drm-next to drm-xe-next in fairly quick
->>>succession.
->>
->> I was waiting the drm-intel-next pull to do a backmerge as we started to
->> have some big divergences. I will try to review the missing patches to
->> expedite that. Are you planning a pull this week?
->
-> Rodrigo? I think it's your shift.
+v2 of https://lore.kernel.org/r/cover.1722444150.git.jani.nikula@intel.com
 
-In the mean time, ack for merging this via drm-intel-next?
+Cc: Imre Deak <imre.deak@intel.com>
 
-BR,
-Jani.
+Jani Nikula (4):
+  drm/i915/acpi: convert to struct intel_display
+  drm/i915/opregion: unify intel_encoder/intel_connector naming
+  drm/i915/opregion: convert to struct intel_display
+  drm/i915/bios: convert to struct intel_display
 
->
-> BR,
-> Jani.
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   3 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |   3 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   3 +-
+ drivers/gpu/drm/i915/display/intel_acpi.c     |  17 +-
+ drivers/gpu/drm/i915/display/intel_acpi.h     |  18 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     | 846 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_bios.h     |  28 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |   8 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
+ drivers/gpu/drm/i915/display/intel_ddi.h      |   3 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   7 +-
+ .../drm/i915/display/intel_display_device.c   |   8 +-
+ .../drm/i915/display/intel_display_driver.c   |  22 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  27 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   8 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c | 320 +++----
+ drivers/gpu/drm/i915/display/intel_opregion.h |  62 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |   3 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   5 +-
+ drivers/gpu/drm/i915/i915_driver.c            |  22 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |  19 +-
+ 24 files changed, 765 insertions(+), 687 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.2
+
