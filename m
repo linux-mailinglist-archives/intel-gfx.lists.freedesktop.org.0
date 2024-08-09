@@ -2,29 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F340F94C6C4
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 00:08:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45E6794C782
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Aug 2024 02:06:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7DAA10E824;
-	Thu,  8 Aug 2024 22:08:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B6B10E824;
- Thu,  8 Aug 2024 22:08:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5064764228307984615=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 898C110E82E;
+	Fri,  9 Aug 2024 00:06:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YzDFCsel";
+	dkim-atps=neutral
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 182C210E82E;
+ Fri,  9 Aug 2024 00:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723162008; x=1754698008;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sgWT0C1e6mNVgtU6hTXyIuwBguenbIfIqlvhnDxPODU=;
+ b=YzDFCseliMmj77rypobv2GFgZCKdlDWD0yGzf61IPITa8AqCCcJX0Bin
+ lHavnidoXeJPfOkpBIHkbq/+uyZ1/u5ywUqXcss+ejPqq/h8BkUCvkkhl
+ ZgyGTaYBT/hw9K25L66UyZdEKp3ENTuJTgptVAHpG2I384fG41NMz37cL
+ xqokDJv1+OB0vxvrIrdL8DjqFhdzXx95+70OXPPxf5eJM9fY+eUaBBhjK
+ xPxpCeTIoC0hrIfeXwNEZ2ZMQzgUGjQV4Xg7iOvUf1oyPh+0UE6TLmtNw
+ YKNsrzR9DPnoG6anMFd8w7q/kjL1dXmGBsT5CHXI2lxju7OagVvxiOKda g==;
+X-CSE-ConnectionGUID: /S1cB+e0SN6j1voR2HoBDQ==
+X-CSE-MsgGUID: NVjhk1N+Rt2ekdK9JZ/Rfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="43835806"
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; d="scan'208";a="43835806"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2024 17:06:47 -0700
+X-CSE-ConnectionGUID: goIRT5viSOm7yW+dfRsxzg==
+X-CSE-MsgGUID: i7l/YfPDSPKGrGW06rebTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; d="scan'208";a="57348475"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmviesa008.fm.intel.com with ESMTP; 08 Aug 2024 17:06:47 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Cc: DRI-Devel@Lists.FreeDesktop.Org, John Harrison <John.C.Harrison@Intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH] drm/i915/guc: Fix missing enable of Wa_14019159160 on ARL
+Date: Thu,  8 Aug 2024 17:06:46 -0700
+Message-ID: <20240809000646.1747507-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_Change_GEM?=
- =?utf-8?q?=5FWARN=5FON_to_guc=5Ferr_to_prevent_taints_in_CI?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jesus Narvaez" <jesus.narvaez@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 08 Aug 2024 22:08:44 -0000
-Message-ID: <172315492420.551301.2464279284048643461@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240808204943.911727-1-jesus.narvaez@intel.com>
-In-Reply-To: <20240808204943.911727-1-jesus.narvaez@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,144 +71,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5064764228307984615==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: John Harrison <John.C.Harrison@Intel.com>
 
-== Series Details ==
+The previous update to enable the workaround on ARL only changed two
+out of three places where the w/a needs to be enabled. That meant the
+GuC side was operational but not the KMD side. And as the KMD side is
+the trigger, it meant the w/a was not actually active. So fix that.
 
-Series: drm/i915/guc: Change GEM_WARN_ON to guc_err to prevent taints in CI
-URL   : https://patchwork.freedesktop.org/series/137064/
-State : success
+Fixes: 104bcfae57d8 ("drm/i915/arl: Enable Wa_14019159160 for ARL")
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 9400d0eb682b2..3e1c3bc56daf2 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -4506,7 +4506,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 	/* Wa_16019325821 */
+ 	/* Wa_14019159160 */
+ 	if ((engine->class == COMPUTE_CLASS || engine->class == RENDER_CLASS) &&
+-	    IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 70), IP_VER(12, 71)))
++	    IS_GFX_GT_IP_RANGE(engine->gt, IP_VER(12, 70), IP_VER(12, 74)))
+ 		engine->flags |= I915_ENGINE_USES_WA_HOLD_SWITCHOUT;
+ 
+ 	/*
+-- 
+2.46.0
 
-CI Bug Log - changes from CI_DRM_15202 -> Patchwork_137064v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/index.html
-
-Participating hosts (40 -> 38)
-------------------------------
-
-  Missing    (2): fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_137064v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@dmabuf:
-    - bat-arls-5:         [PASS][1] -> [INCOMPLETE][2] ([i915#11378])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15202/bat-arls-5/igt@i915_selftest@live@dmabuf.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/bat-arls-5/igt@i915_selftest@live@dmabuf.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-twl-2:          [INCOMPLETE][3] ([i915#9413]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15202/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
-
-  
-  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15202 -> Patchwork_137064v1
-
-  CI-20190529: 20190529
-  CI_DRM_15202: 26337128da9b0df8c914cb7cd04fb4535e63d6c9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7962: 7962
-  Patchwork_137064v1: 26337128da9b0df8c914cb7cd04fb4535e63d6c9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/index.html
-
---===============5064764228307984615==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Change GEM_WARN_ON to guc_err to prevent taints in CI</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137064/">https://patchwork.freedesktop.org/series/137064/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15202 -&gt; Patchwork_137064v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 38)</h2>
-<p>Missing    (2): fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_137064v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@dmabuf:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15202/bat-arls-5/igt@i915_selftest@live@dmabuf.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/bat-arls-5/igt@i915_selftest@live@dmabuf.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_lrc:<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15202/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137064v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15202 -&gt; Patchwork_137064v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15202: 26337128da9b0df8c914cb7cd04fb4535e63d6c9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7962: 7962<br />
-  Patchwork_137064v1: 26337128da9b0df8c914cb7cd04fb4535e63d6c9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5064764228307984615==--
