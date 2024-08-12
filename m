@@ -2,29 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E4D394EBCA
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 13:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B148894EC1F
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 13:51:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA79710E093;
-	Mon, 12 Aug 2024 11:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 538E210E1B8;
+	Mon, 12 Aug 2024 11:51:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Is+FAHHa";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC3510E093;
- Mon, 12 Aug 2024 11:28:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2838830078902837354=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C89610E1B8;
+ Mon, 12 Aug 2024 11:51:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723463497; x=1754999497;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=JetQAQaJ1I2wNDx3JjQUs3ufydTjZfd8naKWltBwWfQ=;
+ b=Is+FAHHa/Pi8lDK2ZSRrBHgf5hke1sXNkVWHoSjjBOSC19xem3zdz9gE
+ G6L2aKULYx9Rf1tESBFdPTLH3q2KB/ISNrbBwP+OLav0WjE4dPTaIVuvU
+ WfZnQtE5+ohvkpjyRFWK3szGTQevhb1qUUDMmm8paF6f3Y3nNdRxRNzkU
+ 3gfG5+LSODi3yhschsT1gGLcp+7IpNjHsBR2YjlIQYNRbe5NkSx+GR+K9
+ 0NdAiW2DR6ZC+qPWJobm5IOAtdhKxM13iKHwrrZcFPUgq5ntsVKLV2nub
+ 1b7K7VBbMHdmdo2Q4IFN55vpFoCWoPOubep88VkYlarwoLTgZ80o4GoJ7 g==;
+X-CSE-ConnectionGUID: uReeGXhASzu/+mDyiFuXTA==
+X-CSE-MsgGUID: 2YnJ40drSe6pPk9Q9anw+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32244076"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="32244076"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 04:51:37 -0700
+X-CSE-ConnectionGUID: dwpWabwJS6WiECsZ7FX91g==
+X-CSE-MsgGUID: 13NNfiI2Q+G+3x6vih0jWA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="63088883"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.149])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 04:51:35 -0700
+Date: Mon, 12 Aug 2024 13:51:30 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: Re: [PATCH 0/2] Allow partial memory mapping for cpu memory
+Message-ID: <Zrn3QqOvOEW2EYB0@ashyti-mobl2.lan>
+References: <20240807100521.478266-1-andi.shyti@linux.intel.com>
+ <ZrXZEpplb6YA9T_d@phenom.ffwll.local>
+ <ZrXtiBKyCCh0a_ym@ashyti-mobl2.lan>
+ <ZrnRuRGjxHe5zxuf@phenom.ffwll.local>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Preserve_value_?=
- =?utf-8?q?of_fec=5Fenable_calculated_before_DSC_compute_config?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Aug 2024 11:28:01 -0000
-Message-ID: <172346208190.594619.18045585555350174440@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZrnRuRGjxHe5zxuf@phenom.ffwll.local>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,188 +73,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2838830078902837354==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Daniel,
 
-== Series Details ==
+On Mon, Aug 12, 2024 at 11:11:21AM +0200, Daniel Vetter wrote:
+> On Fri, Aug 09, 2024 at 11:20:56AM +0100, Andi Shyti wrote:
+> > On Fri, Aug 09, 2024 at 10:53:38AM +0200, Daniel Vetter wrote:
+> > > On Wed, Aug 07, 2024 at 11:05:19AM +0100, Andi Shyti wrote:
+> > > > This patch series concludes on the memory mapping fixes and
+> > > > improvements by allowing partial memory mapping for the cpu
+> > > > memory as well.
+> > > > 
+> > > > The partial memory mapping by adding an object offset was
+> > > > implicitely included in commit 8bdd9ef7e9b1 ("drm/i915/gem: Fix
+> > > > Virtual Memory mapping boundaries calculation") for the gtt
+> > > > memory.
+> > > 
+> > > Does userspace actually care? Do we have a flag or something, so that
+> > > userspace can discover this?
+> > > 
+> > > Adding complexity of any kind is absolute no-go, unless there's a
+> > > userspace need. This also includes the gtt accidental fix.
+> > 
+> > Actually this missing functionality was initially filed as a bug
+> > by mesa folks. So that this patch was requested by them (Lionel
+> > is Cc'ed).
+> > 
+> > The tests cases that have been sent previously and I'm going to
+> > send again, are directly taken from mesa use cases.
+> 
+> Please add the relevant mesa MR to this patch then, and some relevant
+> explanations for how userspace detects this all and decides to use it.
 
-Series: drm/i915: Preserve value of fec_enable calculated before DSC compute config
-URL   : https://patchwork.freedesktop.org/series/137153/
-State : failure
+AFAIK, there is no Mesa MR. We are adding a feature that was
+missing, but Mesa already supported it (indeed, Nimroy suggested
+adding the Fixes tag for this).
 
-== Summary ==
+Also because, Mesa was receiving an invalid address error and
+asked to support the partial mapping of the memory.
 
-CI Bug Log - changes from CI_DRM_15216 -> Patchwork_137153v1
-====================================================
+> Also, does xe also support this? If we only add this to i915-gem but xe
+> doesn't have it, it doesn't make much sense imo.
 
-Summary
--------
+I don't know about. Lionel, Do you have anything to add here from
+your side?
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_137153v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_137153v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/index.html
-
-Participating hosts (40 -> 37)
-------------------------------
-
-  Missing    (3): bat-arls-1 fi-snb-2520m fi-kbl-8809g 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_137153v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_dsc@dsc-basic@pipe-a-dp-1:
-    - bat-dg2-8:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15216/bat-dg2-8/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/bat-dg2-8/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_137153v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [PASS][3] -> [DMESG-WARN][4] ([i915#11349] / [i915#11378])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15216/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-arls-5:         NOTRUN -> [INCOMPLETE][5] ([i915#11320])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
-  [i915#11320]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320
-  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
-  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#11723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723
-  [i915#11726]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15216 -> Patchwork_137153v1
-
-  CI-20190529: 20190529
-  CI_DRM_15216: 1daf2018001da75c5522669aebdb68ba9a353ea6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_137153v1: 1daf2018001da75c5522669aebdb68ba9a353ea6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/index.html
-
---===============2838830078902837354==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Preserve value of fec_enable calculated before DSC compute config</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137153/">https://patchwork.freedesktop.org/series/137153/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15216 -&gt; Patchwork_137153v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_137153v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_137153v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Missing    (3): bat-arls-1 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_137153v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_dsc@dsc-basic@pipe-a-dp-1:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15216/bat-dg2-8/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/bat-dg2-8/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_137153v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15216/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-arls-5:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137153v1/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320">i915#11320</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15216 -&gt; Patchwork_137153v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15216: 1daf2018001da75c5522669aebdb68ba9a353ea6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7966: f16c5f500adc5fa41bd52a3ef2a84165da4fb596 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_137153v1: 1daf2018001da75c5522669aebdb68ba9a353ea6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2838830078902837354==--
+Thanks,
+Andi
