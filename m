@@ -2,53 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8630894EE79
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 15:38:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E4994EEB6
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 15:51:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54FE910E215;
-	Mon, 12 Aug 2024 13:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 531F910E222;
+	Mon, 12 Aug 2024 13:50:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PTPV7wG7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dd3niisA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84DF510E215
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2024 13:38:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8189210E228;
+ Mon, 12 Aug 2024 13:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723469913; x=1755005913;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zrEvRShVH9N+6AkeZ8Qi3C2qmVyBPa5X3S8NHpNzCBY=;
- b=PTPV7wG7FT4+LknQxUw3u7jnk2yR//R7YyApFZSHslokWPT5yee/lHoP
- 9RgcizjZ1WBNYrgqqVAzX+T7NMMxqZMiIX1dob/kcx+sYjZWvRcVek5IV
- LZZFh+TTcRvuc9cM0w+GJRGWUuAzfusi27WnaLofj+n/v+oPCIfBZ+Bg3
- 0Csc5wEKnWRb+7Rdlm/eI81CG4tA6f5Ko3u/XKvVwLtznVaAunso1fFOH
- 6oYoZol4KTh0WQ47PEeeATI1isJy6/Jeligo2MF88dRerfI/aPRGLnI5Q
- DOVgdC3w7rJxN0RcKSvgmHJh5DuYkCGL/zO7eXnidAOi29oi5aOMinJ5T g==;
-X-CSE-ConnectionGUID: p7KCpF8ZTniwsGTVQoTbDg==
-X-CSE-MsgGUID: nO3XO3KyQlCXGwvyIOzKJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="32257085"
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="32257085"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 06:38:32 -0700
-X-CSE-ConnectionGUID: nfDch5gkSoubvUdEtQR/rw==
-X-CSE-MsgGUID: MaKBC+QFR+StvGxupGwjDQ==
+ t=1723470658; x=1755006658;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=iZp5l59CAGjLpHSJneafAUtnEDyDDH25DA7+A9E6wP8=;
+ b=dd3niisAd0ekOeuqFs9WFTJdztL8Q0aesAkJZTIUY1yrQD8uglqHdMVd
+ ybA/ntgOeJ9oRl7Nm7lSXiGH0YXHxjyzY40oeq6Tx5CCGmYVTXaWGXhHG
+ M2FUMqgzPd3pU3dExgm+GLxSWo7Nb51HkgAIUPH+AD0hK/HaIcs6AWWx/
+ Ukf6bDkyJRdSmlZXW/e0ZVFuark4KCXfXh5XMXmRIHY6Q9iaNifQHvQzv
+ QJ8RuOt1QTeimDItXP7E6K+RjoKkJZshdIt4afyhzzVyIpeKkDadJJ7ML
+ hOwKFIbrwO8Qw2ds3G3qj3hVZf0eQo8wq0JKRQkE3DP3iOYIPYl1cX7wY A==;
+X-CSE-ConnectionGUID: kL3ES5gdQxupLqT+KlyEdw==
+X-CSE-MsgGUID: MdiL5iEyTs2RDl1XKM88Cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="24488317"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="24488317"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 06:50:57 -0700
+X-CSE-ConnectionGUID: yU49dKNsSOSVTrqEuovdIg==
+X-CSE-MsgGUID: C6k8NsNYRsqMqzjvAcWSuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="63100254"
-Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orviesa003.jf.intel.com with ESMTP; 12 Aug 2024 06:38:30 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH] drm/i915/bios: Update new entries in VBT BDB block definations
-Date: Mon, 12 Aug 2024 19:10:47 +0530
-Message-Id: <20240812134047.4042341-1-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="58212835"
+Received: from slindbla-desk.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.165])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 06:50:50 -0700
+Date: Mon, 12 Aug 2024 15:50:47 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, linux@roeck-us.net, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v5] drm/i915/hwmon: expose fan speed
+Message-ID: <ZroTN3UudwvIJ7oR@ashyti-mobl2.lan>
+References: <20240812081538.1457396-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240812081538.1457396-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,80 +75,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-New entries updated in BDB defination from VBT v257- v260.
+Hi Raag,
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 35 ++++++++++++++++---
- 1 file changed, 30 insertions(+), 5 deletions(-)
+> +static int
+> +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> +{
+> +	struct i915_hwmon *hwmon = ddat->hwmon;
+> +	struct hwm_fan_info *fi = &ddat->fi;
+> +	u64 rotations, time_now, time;
+> +	intel_wakeref_t wakeref;
+> +	u32 reg_val, pulses;
+> +	int ret = 0;
+> +
+> +	if (attr != hwmon_fan_input)
+> +		return -EOPNOTSUPP;
+> +
+> +	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
+> +	mutex_lock(&hwmon->hwmon_lock);
+> +
+> +	reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
+> +	time_now = get_jiffies_64();
+> +
+> +	/* Handle HW register overflow */
+> +	if (reg_val >= fi->reg_val_prev)
+> +		pulses = reg_val - fi->reg_val_prev;
+> +	else
+> +		pulses = UINT_MAX - fi->reg_val_prev + reg_val;
+> +
+> +	/*
+> +	 * HW register value is accumulated count of pulses from
+> +	 * PWM fan with the scale of 2 pulses per rotation.
+> +	 */
+> +	rotations = pulses / 2;
+> +
+> +	time = jiffies_delta_to_msecs(time_now - fi->time_prev);
+> +	if (unlikely(!time)) {
+> +		ret = -EAGAIN;
+> +		goto exit;
+> +	}
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index e613288937e4..65342f347bba 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -1080,6 +1080,8 @@ struct bdb_edp {
- 	u16 edp_fast_link_training_rate[16];			/* 224+ */
- 	u16 edp_max_port_link_rate[16];				/* 244+ */
- 	u16 edp_dsc_disable;					/* 251+ */
-+	u16 t16_delay;						/* 260+ */
-+	u16 t16_link_idle_time;					/* 260+ */
- } __packed;
- 
- /*
-@@ -1330,12 +1332,27 @@ struct aggressiveness_profile2_entry {
- 	u8 elp_aggressiveness : 4;
- } __packed;
- 
-+struct aggressiveness_profile3_entry {
-+	u8 adp_aggressiveness:4;
-+	u8 po_aggressiveness:4;
-+} __packed;
-+
-+struct aggressiveness_profile4_entry {
-+	u8 xpst_aggressiveness:4;
-+	u8 tcon_aggressiveness:4;
-+} __packed;
-+
-+struct panel_identification {
-+	u8 panel_type:4;
-+	u8 reserved:4;
-+} __packed;
-+
- struct bdb_lfp_power {
- 	struct lfp_power_features features;				/* ???-227 */
- 	struct als_data_entry als[5];
- 	u8 lace_aggressiveness_profile:3;				/* 210-227 */
- 	u8 reserved1:5;
--	u16 dpst;							/* 228+ */
-+	u16 dpst;							/* 228-256 */
- 	u16 psr;							/* 228+ */
- 	u16 drrs;							/* 228+ */
- 	u16 lace_support;						/* 228+ */
-@@ -1343,12 +1360,20 @@ struct bdb_lfp_power {
- 	u16 dmrrs;							/* 228+ */
- 	u16 adb;							/* 228+ */
- 	u16 lace_enabled_status;					/* 228+ */
--	struct aggressiveness_profile_entry aggressiveness[16];		/* 228+ */
-+	struct aggressiveness_profile_entry aggressiveness[16];		/* 228-256 */
- 	u16 hobl;							/* 232+ */
- 	u16 vrr_feature_enabled;					/* 233+ */
--	u16 elp;							/* 247+ */
--	u16 opst;							/* 247+ */
--	struct aggressiveness_profile2_entry aggressiveness2[16];	/* 247+ */
-+	u16 elp;							/* 247-256 */
-+	u16 opst;							/* 247-256 */
-+	struct aggressiveness_profile2_entry aggressiveness2[16];	/* 247-256 */
-+	u16 adp;							/* 253-256 */
-+	u16 po;								/* 253-256 */
-+	struct aggressiveness_profile3_entry aggressiveness3[16];	/* 253-256 */
-+	struct panel_identification panel_identity[16];			/* 257+ */
-+	u16 xpst;							/* 257+ */
-+	u16 tcon;							/* 257+ */
-+	struct aggressiveness_profile4_entry aggressiveness4[16];	/* 257+ */
-+	u16 tcon_coexist_xpst;						/* 257+ */
- } __packed;
- 
- /*
--- 
-2.34.1
+Can you please add a comment describing how you obtain the speed
+calculation?
 
+Basically at every read you store the values. Is it possible that
+we don't have reads for a long time and the register resets more
+than once?
+
+Thanks,
+Andi
+
+> +	/*
+> +	 * Convert to minutes for calculating RPM.
+> +	 * RPM = number of rotations * msecs per minute / time in msecs
+> +	 */
+> +	*val = DIV_ROUND_UP(rotations * (MSEC_PER_SEC * 60), time);
+> +
+> +	fi->reg_val_prev = reg_val;
+> +	fi->time_prev = time_now;
+> +exit:
+> +	mutex_unlock(&hwmon->hwmon_lock);
+> +	intel_runtime_pm_put(ddat->uncore->rpm, wakeref);
+> +	return ret;
+> +}
