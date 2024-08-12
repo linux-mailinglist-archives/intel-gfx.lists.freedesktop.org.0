@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B5F94EF7F
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 16:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A476094EF81
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 16:28:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86B2610E23B;
-	Mon, 12 Aug 2024 14:27:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D28D10E240;
+	Mon, 12 Aug 2024 14:28:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PeYz/jLD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dIhQ1niQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C17110E23B
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2024 14:27:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D64DA10E23D;
+ Mon, 12 Aug 2024 14:28:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723472870; x=1755008870;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=L8dGpgYnTQM8wFHmwv7h6/4VtAf8S+tKmgrvzh0QZYM=;
- b=PeYz/jLDvQGv3jC75Yr1MCmB47mXHAHkI0to1PzbCS8Ben5OBxDfllEU
- 0AJQ1JQxl04mCrisBMsk/uzcK6NVEsiOutx4dTegf6t/YNHR2wckQzKmW
- 7OGIVjAAIBSJc5rXbnU6WSegzRN6MjYCyz+Le2vbe67TVKAkjongGh1tr
- 1ISKdQsVbJviICJ7jCjbpwf/aRflUKZLwlUpGcWinXvtCCVBfzJkk7Lre
- WHQRxu3xwUaJVYzrOJyBbnQ+jv57BoFXUcMVkWZ1AiBoYmRDZu4IDLwlk
- a504JFMqHUoLtOew0QSYNPwIu2wvLo199HpaIY3FJpo88tHyU1+iFmYNh A==;
-X-CSE-ConnectionGUID: Q7Er9dBlS92QO+J44tq41Q==
-X-CSE-MsgGUID: KVQgl0Y9RN6zUh9Ra0ExOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="32737423"
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="32737423"
+ t=1723472937; x=1755008937;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8Sw9BHCDm18clVr1kpmcqd55zlV5cTU9U5Lb+EunLPg=;
+ b=dIhQ1niQ5szGTpDLW/QO7jrtq/5TxKgdOkJFsWBGSMPvhQIACG/47Ddh
+ /iT25C6EaVqgflxau3eaF6PTJ1EyrLoeNjN5QyC0KqAHBOCwm/BWzwAJr
+ vySFfrcwpiLrX4lMQJVveKDWox+qw5zUQVOavuO/IR77/WtHGH/CUS3ki
+ o60fhZRt80wGvv01wxFcDDce9sh8PxH2fov3r2J5gFjDJxjnJP0QmMcnC
+ TOT7qCdg0pB1zaIN+YMO2jr/b2TmyI9Ce7Oy1NJ0MBTftuXF/P66aY6Jm
+ GJGKIFOFeXFUHWQ0j94Lj47THypkhjmBJrpk+CGuq9/uyKW5V5QyCe1KE Q==;
+X-CSE-ConnectionGUID: Nej5PIWdSK6HUHGJLuUS+A==
+X-CSE-MsgGUID: gN8WLSkyTGOLE6W9EX9r7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="32737593"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="32737593"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 07:27:49 -0700
-X-CSE-ConnectionGUID: KZ8lXlkoRDmc4k2RBIBNOw==
-X-CSE-MsgGUID: +JsilRq9QRy0dPpZODHc3g==
+ 12 Aug 2024 07:28:57 -0700
+X-CSE-ConnectionGUID: UZrmJdAwRHaJdl2DwBpEGQ==
+X-CSE-MsgGUID: 61qaJ062THuNbSQS5Ilv0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="81521103"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="81521670"
 Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.117])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 07:27:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: Re: [PATCH] drm/i915/bios: Update new entries in VBT BDB block
- definations
-In-Reply-To: <20240812134047.4042341-1-dnyaneshwar.bhadane@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240812134047.4042341-1-dnyaneshwar.bhadane@intel.com>
-Date: Mon, 12 Aug 2024 17:27:44 +0300
-Message-ID: <87jzgl24v3.fsf@intel.com>
+ 12 Aug 2024 07:28:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
+ Zhi Wang <zhiwang@kernel.rog>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Zhi Wang <zhi.wang.linux@gmail.com>, intel-gvt-dev@lists.freedesktop.org
+Subject: [RESEND 1/2] drm/i915/gvt: stop using drm_edid_block_valid()
+Date: Mon, 12 Aug 2024 17:28:48 +0300
+Message-Id: <20240812142849.1588006-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,131 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 12 Aug 2024, Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com> wrote:
-> New entries updated in BDB defination from VBT v257- v260.
+We'll want to stop drm_edid_block_valid() usage. KVMGT is the last
+user. Replace with drm_edid_valid(), which unfortunately requires an
+allocated drm_edid. However, on the plus side, this would be required to
+handle the TODO comment about EDID extension block support.
 
-*definition
+Acked-by: Zhi Wang <zhiwang@kernel.rog>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Please explain what you're adding.
+---
 
-Also, the spec never ceases to amaze me. Like here, adding stuff for a
-few revisions, obsoleting and starting over. Ugh.
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Zhi Wang <zhi.wang.linux@gmail.com>
+Cc: intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+---
+ drivers/gpu/drm/i915/gvt/kvmgt.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
-> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 35 ++++++++++++++++---
->  1 file changed, 30 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> index e613288937e4..65342f347bba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -1080,6 +1080,8 @@ struct bdb_edp {
->  	u16 edp_fast_link_training_rate[16];			/* 224+ */
->  	u16 edp_max_port_link_rate[16];				/* 244+ */
->  	u16 edp_dsc_disable;					/* 251+ */
-> +	u16 t16_delay;						/* 260+ */
-
-Please let's follow the spec in member naming where feasible.
-
-This would be t6_delay_support.
-
-> +	u16 t16_link_idle_time;					/* 260+ */
-
-And this would be u16 link_idle_time[16]. The size is 32 bytes, not 2.
-
-(Where does t16 come from?)
-
->  } __packed;
->  
->  /*
-> @@ -1330,12 +1332,27 @@ struct aggressiveness_profile2_entry {
->  	u8 elp_aggressiveness : 4;
->  } __packed;
->  
-> +struct aggressiveness_profile3_entry {
-> +	u8 adp_aggressiveness:4;
-
-apd_aggressiveness
-
-> +	u8 po_aggressiveness:4;
-
-pixoptix_aggressiveness
-
-> +} __packed;
-> +
-> +struct aggressiveness_profile4_entry {
-> +	u8 xpst_aggressiveness:4;
-> +	u8 tcon_aggressiveness:4;
-> +} __packed;
-> +
-> +struct panel_identification {
-> +	u8 panel_type:4;
-
-panel_type is a loaded word in VBT. Let's avoid it. Maybe
-panel_technology or something.
-
-> +	u8 reserved:4;
-> +} __packed;
-> +
->  struct bdb_lfp_power {
->  	struct lfp_power_features features;				/* ???-227 */
->  	struct als_data_entry als[5];
->  	u8 lace_aggressiveness_profile:3;				/* 210-227 */
->  	u8 reserved1:5;
-> -	u16 dpst;							/* 228+ */
-> +	u16 dpst;							/* 228-256 */
->  	u16 psr;							/* 228+ */
->  	u16 drrs;							/* 228+ */
->  	u16 lace_support;						/* 228+ */
-> @@ -1343,12 +1360,20 @@ struct bdb_lfp_power {
->  	u16 dmrrs;							/* 228+ */
->  	u16 adb;							/* 228+ */
->  	u16 lace_enabled_status;					/* 228+ */
-> -	struct aggressiveness_profile_entry aggressiveness[16];		/* 228+ */
-> +	struct aggressiveness_profile_entry aggressiveness[16];		/* 228-256 */
-
-The LACE agressiveness is still valid. Please add the comment to struct
-aggressiveness_profile dpst_aggressiveness member.
-
->  	u16 hobl;							/* 232+ */
->  	u16 vrr_feature_enabled;					/* 233+ */
-> -	u16 elp;							/* 247+ */
-> -	u16 opst;							/* 247+ */
-> -	struct aggressiveness_profile2_entry aggressiveness2[16];	/* 247+ */
-> +	u16 elp;							/* 247-256 */
-> +	u16 opst;							/* 247-256 */
-> +	struct aggressiveness_profile2_entry aggressiveness2[16];	/* 247-256 */
-> +	u16 adp;							/* 253-256 */
-
-apd
-
-> +	u16 po;								/* 253-256 */
-
-pixoptix
-
-> +	struct aggressiveness_profile3_entry aggressiveness3[16];	/* 253-256 */
-> +	struct panel_identification panel_identity[16];			/* 257+ */
-
-panel_identification
-
-> +	u16 xpst;							/* 257+ */
-
-xpst_support
-
-> +	u16 tcon;							/* 257+ */
-
-tcon_based_backlight_optimization
-
-> +	struct aggressiveness_profile4_entry aggressiveness4[16];	/* 257+ */
-> +	u16 tcon_coexist_xpst;						/* 257+ */
-
-Hrmh, this is where the member naming in spec is not feasible. Maybe
-tcon_xpst_coexistence.
-
->  } __packed;
->  
->  /*
-
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index 38830818c120..ca0fb126b02d 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -425,6 +425,18 @@ static const struct intel_vgpu_regops intel_vgpu_regops_opregion = {
+ 	.release = intel_vgpu_reg_release_opregion,
+ };
+ 
++static bool edid_valid(const void *edid, size_t size)
++{
++	const struct drm_edid *drm_edid;
++	bool is_valid;
++
++	drm_edid = drm_edid_alloc(edid, size);
++	is_valid = drm_edid_valid(drm_edid);
++	drm_edid_free(drm_edid);
++
++	return is_valid;
++}
++
+ static int handle_edid_regs(struct intel_vgpu *vgpu,
+ 			struct vfio_edid_region *region, char *buf,
+ 			size_t count, u16 offset, bool is_write)
+@@ -443,11 +455,7 @@ static int handle_edid_regs(struct intel_vgpu *vgpu,
+ 		switch (offset) {
+ 		case offsetof(struct vfio_region_gfx_edid, link_state):
+ 			if (data == VFIO_DEVICE_GFX_LINK_STATE_UP) {
+-				if (!drm_edid_block_valid(
+-					(u8 *)region->edid_blob,
+-					0,
+-					true,
+-					NULL)) {
++				if (!edid_valid(region->edid_blob, EDID_SIZE)) {
+ 					gvt_vgpu_err("invalid EDID blob\n");
+ 					return -EINVAL;
+ 				}
 -- 
-Jani Nikula, Intel
+2.39.2
+
