@@ -2,177 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A6894EDA1
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 15:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B38394EDD2
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 15:15:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 821D210E1FF;
-	Mon, 12 Aug 2024 13:04:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19C9910E1FC;
+	Mon, 12 Aug 2024 13:15:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZNjIB5fc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZKqyhQK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD3FE10E201;
- Mon, 12 Aug 2024 13:04:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2F310E1FC;
+ Mon, 12 Aug 2024 13:15:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723467885; x=1755003885;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=HLuwO5DQTnKUTZLzaOiDAz4yImuJexxD7vC0lCirbWg=;
- b=ZNjIB5fcWOKlc194JCV2ogkP14SXAxUXmv9RR4pljOOeLkvmUR8gvB+h
- mf6NeDze8yYopdu1erbpDXKHl1kcjJkknKWGjlb6wrptpItmUhxTkABtt
- ibrTq4p3pYqZ5yHD3cxZE055FhTwAMk9qEwsfPh7M4+cYVg8MFhf3zV9h
- yDqhyB24L7LVwdV62TXQMkIu37kKqJ7Keq/L8fvJ/2h7exOuEbJ9jj7lO
- /z06a+s57WT2NFc0E4ESnb7+Ige4WOvqE+2jTnPF8hO/UMGlwWLbAeXDx
- 1QHHGLIzXOVGFGspGC6V8TLbgbxDla3pU6NmMs6OWlv+JpzFGoCbdlOCb g==;
-X-CSE-ConnectionGUID: 2ClDN0PpQGGJWWobW92FPQ==
-X-CSE-MsgGUID: tXHQJi1/RHen+r34nlmIcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="21427921"
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="21427921"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 06:03:56 -0700
-X-CSE-ConnectionGUID: wcF/ZL44SgaQxvp9PDgn+g==
-X-CSE-MsgGUID: xtz3d8EUSbi7XgFAdtl/aw==
+ t=1723468521; x=1755004521;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=mw28CMZsCYEDai4Uy7oNYa4fhqfTA0xHHE6WVcjY/I0=;
+ b=XZKqyhQKzwQb0OGAsqb0FUER3Et5BFufCs1OxqoVmAxv8x56fPVLXla4
+ h7dqd/OdV2b2O4tKwzPw1JL64+yooufPJwiSvcay/3a0JdDS8+f/s83kr
+ C48PJhIO8834198GCH7/01t9FAZl2Oyj9nZxKJPk1ESbRE3Nak2AGjb/l
+ 4+8EAF7ifoTCnqz425IjD2R0r1akG+EfqAU9o0bUHVkZg31Zw+womXgQX
+ 4hgXxkSTeHP0rRadGZfjmINyoOp5DryOMLKY5yMi0a+ifCwckfBU37Ijg
+ lKciImPKWhCBz+4d7YDaiffYBqA8g1UbkWkm5CPfnFJ46fLN9tyk1uVg/ w==;
+X-CSE-ConnectionGUID: pXXwfpe6QPyG04ebyES5mQ==
+X-CSE-MsgGUID: U1K3CysRSZu5L2lJsAucVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="12963663"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="12963663"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 06:15:20 -0700
+X-CSE-ConnectionGUID: XLaW1EqfSKeEXNJ7CNVLng==
+X-CSE-MsgGUID: ZxUZsq4MRcKzL5iRWLRWJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="62910154"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Aug 2024 06:03:55 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 12 Aug 2024 06:03:52 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 12 Aug 2024 06:03:48 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 12 Aug 2024 06:03:48 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.42) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 12 Aug 2024 06:03:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PzmLJl+e4Ls6CjkSdhkY0GWpAHedWDv7c5mtfMrXknLwn1EbU8amvGZ8RgZXcz+gfBk369Aj3cXUVqlHdgbo125fy7tapOZ0ZWly/142ueRzmVQ3DlTLXPy0Hpodr8/1bQ++eXkP4dliv1jaa7PaboFIurlkraaattD453/NcXSaqzbBmtReRaWVGNEoK8o8cQY8nok44aikNi999knYiYt09UblmNcfaLyGRc5SouqqXfOr66WmtpG+zjU/rceaGS64fmg2qd9QqcUQ7iNyptWJ4pABimmHh3Pim/R0EzJpDPaZM+GGzyZ8WLcTcHOX87pp1rYbps6rcbLkIJU59A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H1r2VPpk8TJJp7XlJQnWjzMFaPS1KyHdXDf9bRa7YNI=;
- b=D6orkdD4wHrgKZECaq93e7azCQARUaAWIBNbQ6C402NBq4EL1Gh9X9OGbALFb9r1XTiCtSGby/MiFmCk/rs2lduzlmTP6eah85Sw+4m9I8FUs8/YEXcJXmGm7jlP8yqY3UPqzneaMuwaPoC9Cclp3/Pj9aJp88C0qmR9EoD73Duh+AlVpicakCkq6ZnJDanrQQ/uWZ7Kdgims/6CtkvR+LMAfWXb3xVtOy672QVbWVYWNNPwaAJBcbspWQTik3cnlwe9POhmdkeU/3niyT+Q29TZEeubvuXLtBAlaDkclSvWlWANuXrPnyTHOoCWw0geIMpF/YI6o12dRR+3/RxaXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by SA0PR11MB4624.namprd11.prod.outlook.com (2603:10b6:806:98::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.32; Mon, 12 Aug
- 2024 13:03:33 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%7]) with mapi id 15.20.7828.031; Mon, 12 Aug 2024
- 13:03:33 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Deak, Imre" <imre.deak@intel.com>
-Subject: RE: [PATCH] drm/i915: Preserve value of fec_enable calculated before
- DSC compute config
-Thread-Topic: [PATCH] drm/i915: Preserve value of fec_enable calculated before
- DSC compute config
-Thread-Index: AQHa7JHO1UFdJobQlEGSojbUS6g43bIjg2wAgAAScxA=
-Date: Mon, 12 Aug 2024 13:03:33 +0000
-Message-ID: <SJ1PR11MB6129241F0F93400ACB2592FAB9852@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
- <87v8060xfb.fsf@intel.com>
-In-Reply-To: <87v8060xfb.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|SA0PR11MB4624:EE_
-x-ms-office365-filtering-correlation-id: 1f0d6d68-9322-42e2-9588-08dcbacf2bd4
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?rs3RWoSIJNSkKrKKmy/bW0QPd8WmjB769UvoDnz64Hc98kO2yUmq7rXt9Yuy?=
- =?us-ascii?Q?C8FAWp26o9lwVw5WESKz9n43MJm+jR97qyTE0IWDDTdcHdAoOhsd6EdFqzQG?=
- =?us-ascii?Q?4sC+3JzLW0/RijKQ+d8+tNEbwARVC90XmjpWR2Jn6VksTUlcXAF9mAeHtjqQ?=
- =?us-ascii?Q?bcBUmp7cY4ty6gIztruFvCh5XoSfq3HmU1dbsPPuwZc955qCPri83XRRoyGf?=
- =?us-ascii?Q?dJHoJHjRUIkYf0L9Pe3yLlvtjP0TtRUq/6xmarVGnqfyeuq2qnQ9OLZzTRlO?=
- =?us-ascii?Q?vZk/5tjH9kwtau2kpaxErTZaAkDmd8mVy13G2mTXubKUILJizkh9EFi3rSza?=
- =?us-ascii?Q?0r4i1+vYy4lK/IjP2sSXkNbn8zRK5OwM4jkrQJPFy7iYfIx4qKXR3WSM3NnA?=
- =?us-ascii?Q?yi6DZRV9x8MDMIPe74oxBk8rGwysixzCR0AJvR9AXHXnY3A/7Urlq8iCLd0S?=
- =?us-ascii?Q?BvEfEcmCgVuW2s/cZtCHQD3jfJFHjbubwXlO8PzHfCcbMV4k7ug9aU4EonNH?=
- =?us-ascii?Q?zJkEz7cDq7Xr2zXdDXilaiMylGRo1/usqJOYudmuvx+uwV141fgG6FIO4ln6?=
- =?us-ascii?Q?fXyIvA5SNuSBBOuyevYPXnuptRr3pGdgQFuHZqn/5rXOfFkbneogaICtwwpb?=
- =?us-ascii?Q?6+4W7fYxzNjkr1usf1b01jaAdBRaV98KXwws/EX68IjzLiRjEL1QSvUDdxDv?=
- =?us-ascii?Q?OW1R5/LUO6cpH8Zxs8tt9Dvw0/T1/5MsLBfgmoJB24L7edGA07uU7qC4zl4/?=
- =?us-ascii?Q?rkyH7BjFMhoqh6TEYtfApJFBS0SEEiPreYk1XEcdRCDBgXjRZmjsJJ6J8vVp?=
- =?us-ascii?Q?so+2RInjO4sUkiZ2zDNOiQepL5tc7QBD1YqPVEb10BYmBh7UniqTxs8Y0ky1?=
- =?us-ascii?Q?UsfR+drhBDWI4ARiQLzIbp0SB9U1EiQR/9WGLUKap4/ntHno/j5kPxN5J1KX?=
- =?us-ascii?Q?tZbuwYvFOi7X3eP2nbC1EfjKqwoEVsDmlBIKf1JSrQYdVCuK831+P6FOT1zo?=
- =?us-ascii?Q?y21WFpbtfCGANqxT5Dk9pjmSteWjHPkJoNb0a1K8I5mH8jpQSvPGIxxTos22?=
- =?us-ascii?Q?bCQ8iCRsl46EE+A33V8LaK9HoqjAWZtyXlHIQyIothKAuLyZdaytCfjvN26a?=
- =?us-ascii?Q?GGfdbMNlalp1AxaeN1EmxegfTy5E3SgtF7y4dM3OdPN1rprk5LvDcPv/S3Ns?=
- =?us-ascii?Q?qkfEWr+isnEopvIFM6uhaV4wDIuAbT4e4HDCvzFD72UfMyx78rUmP05dQVMg?=
- =?us-ascii?Q?DmMErESMWaKFij2z5OqiIp2PbMPgJgUOfHo0edgghTFJFy6op3KaEfMo0I4F?=
- =?us-ascii?Q?o13xVmqmKpdfsSDyHFQYhphQ137usv99LYdKpGxS9OjxyZi+sOcoWVdgr5Kr?=
- =?us-ascii?Q?k5BSVjgMpq0N2+GjujID/RY7dMConClWk52A8JaPw3fBL/bMcg=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iSTMdVpSzVx06DtdEbOMcSe4087viW8i7ubzDpedsjA6g5PZjjtmAb49U1OQ?=
- =?us-ascii?Q?ycbiJ0nCJvC1XTIXd8fgxiBrDGCG4mtukK8DD7lN9JwOJ5ApaKhrUlxKRTlx?=
- =?us-ascii?Q?OmGMUJVTWuCyN6zG0oBauziBGuxcNGMo+53R+qunBcx0A9evp1IHCVn/IJn4?=
- =?us-ascii?Q?KMGqN8mEkw6WodW6ZZAjW/zPutImjsdlhQI5BPDw2C9G7DSNdlkVLWle5t+g?=
- =?us-ascii?Q?J4CXFxySS+gA5M0cWsuZltsGzXwlnefE9VXbmk5F2AGrASbPDLI8MOMihX0D?=
- =?us-ascii?Q?rcGrwqtJ9o6h2JsMF0YTEN3tgDCXjNHbCp5d7he5s975ulVgZNuNdkyX/CwT?=
- =?us-ascii?Q?WYpmpN7lL+Rb9eLjPHuCiEUiNR90J8Q59Wu2UUrTL0yxWE/ZY3y+gyiXZRTZ?=
- =?us-ascii?Q?Swgow/TmhkUIXRVZLmkpiNGrToK1vh2zOAlDuxX7FUkkNUmqHdF0cwuaesG6?=
- =?us-ascii?Q?l0Y67a6zs6/cnHiDfvJxLpH/D2jAqNWNYfXWJMsTuZCUdMfQvjgHq1i4QXIG?=
- =?us-ascii?Q?T/hKL9yGaTtb4LS4xp3KHSO/hbqjixOR3Y8JVReH34c2Fac7dhMvIshE6iYz?=
- =?us-ascii?Q?66olCB+FH6Daspe5Bf4UWFP18oZNziENvx6tSmMcQBPDOUx6DNNjDodXmSUW?=
- =?us-ascii?Q?ETdlp/X1nDMC/5izJ2om0jz3Cqxm4z4t3arP3tsrYOQIrOVsj0U08oBFYPhv?=
- =?us-ascii?Q?/KNvFEwQdSk+9F99uJb7al/9sODlmN5u50l3WBHURuIA7esxFmD8r8mKs2wd?=
- =?us-ascii?Q?mR9Pbd/ShFFUXFUMcr5XU7jNiHhS35yhp33LqlYAxzKyhQ4cyoaCU6CjU5ca?=
- =?us-ascii?Q?zQUrbhfzZKO22FWQ2kygazsswe4v86cYxDQb1hHz5RzA2iSMnQZHrGQaLpsW?=
- =?us-ascii?Q?ihB+EiWpNOjKnL3x7a7Gxoyd0tvWAtsUuwKNfSiVH5Iw9POLCp0wSH04XpGG?=
- =?us-ascii?Q?eGELwgRHr8ayvj1sLJsE3ZHmWzKBUYSAQi2mwPfmxtmLoy+/z81mQDpJmEiG?=
- =?us-ascii?Q?peXetYJSsM+4RsI04CtBSGS3wpdGqkSTuDq6YvXkIvEsvG+nTIZWws2Nhl38?=
- =?us-ascii?Q?jXQBOarEpr3yEdAQjF8ZesxTFYgP2ODCTjkwGSfl8zk0VBNRvNxcML+8ktSV?=
- =?us-ascii?Q?x+yH7PDHQVuiod8A1rlODcNk+GMyX2jWWUaMqO3w+brLzXvs1NXCuTD0Di4s?=
- =?us-ascii?Q?6Ez1eID+0rP28EaR3950GDP/jdDkxoWJGAbHxIynqrp8Yvti6e3otS8tOClI?=
- =?us-ascii?Q?0e5M+Ll0Lo3fgW8yjwXIDS/r3ZW+TW98ECBCJCfyjdk/JqVMYieeyKG1Vlh1?=
- =?us-ascii?Q?0bQFRgBCL5n8bVSotDVL8Go8mfs1s5gKxZqa2rUk2j1LSm4LV7SRY9AmaSu5?=
- =?us-ascii?Q?Z4rHLeP09q995j/Z+ZUfVfdpKIeuZWWA9ZfJlYSeyqW4txXsDj7QLhAfb9CB?=
- =?us-ascii?Q?mQ3Ma5LVcdsT31IfosMfys36T9Ff08FeTRRcpFbo9MsfuvzjgdRxiD7sj8UX?=
- =?us-ascii?Q?NJt62KmTp07goJwURSH4tj+1k1pUtp3zr8EPMiVk8bvJEBnwIyLRlPYrrfaH?=
- =?us-ascii?Q?W5lFA99RsIA1T1b/8ClpATN9zFTEcGxFnSTFtzKYE6Q0ZXhQK+cBSkjQ3XPm?=
- =?us-ascii?Q?5w=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; d="scan'208";a="62393301"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 06:15:17 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1sdUtG-0000000EM1E-1ASo; Mon, 12 Aug 2024 16:15:14 +0300
+Date: Mon, 12 Aug 2024 16:15:14 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, linux@roeck-us.net, andi.shyti@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, ashutosh.dixit@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v5] drm/i915/hwmon: expose fan speed
+Message-ID: <ZroK4oSAte9qdnA8@smile.fi.intel.com>
+References: <20240812081538.1457396-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f0d6d68-9322-42e2-9588-08dcbacf2bd4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2024 13:03:33.6076 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QwvQ1o1rnN3pPyfVtf1LXx+z3gf2Z1ZjE6BrLTCvguX6QVsioT9DPLHJvhG8LOwOY9mg1XCSpGsSC7yjqyhoSDv/L+J97K9jsNVRnxvc1Qk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4624
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240812081538.1457396-1-raag.jadav@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -188,76 +77,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Aug 12, 2024 at 01:45:38PM +0530, Raag Jadav wrote:
+> Add hwmon support for fan1_input attribute, which will expose fan speed
+> in RPM. With this in place we can monitor fan speed using lm-sensors tool.
+> 
+> $ sensors
+> i915-pci-0300
+> Adapter: PCI adapter
+> in0:         653.00 mV
+> fan1:        3833 RPM
+> power1:           N/A  (max =  43.00 W)
+> energy1:      32.02 kJ
+
+...
+
+> +static int
+> +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> +{
+> +	struct i915_hwmon *hwmon = ddat->hwmon;
+> +	struct hwm_fan_info *fi = &ddat->fi;
+> +	u64 rotations, time_now, time;
+> +	intel_wakeref_t wakeref;
+> +	u32 reg_val, pulses;
+> +	int ret = 0;
+> +
+> +	if (attr != hwmon_fan_input)
+> +		return -EOPNOTSUPP;
+> +
+> +	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
+> +	mutex_lock(&hwmon->hwmon_lock);
+> +
+> +	reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
+> +	time_now = get_jiffies_64();
+
+> +	/* Handle HW register overflow */
+> +	if (reg_val >= fi->reg_val_prev)
+> +		pulses = reg_val - fi->reg_val_prev;
+> +	else
+> +		pulses = UINT_MAX - fi->reg_val_prev + reg_val;
+
+Isn't it the abs_diff() reimplementation?
+
+> +	/*
+> +	 * HW register value is accumulated count of pulses from
+> +	 * PWM fan with the scale of 2 pulses per rotation.
+> +	 */
+> +	rotations = pulses / 2;
+> +
+> +	time = jiffies_delta_to_msecs(time_now - fi->time_prev);
+> +	if (unlikely(!time)) {
+> +		ret = -EAGAIN;
+> +		goto exit;
+> +	}
+> +
+> +	/*
+> +	 * Convert to minutes for calculating RPM.
+> +	 * RPM = number of rotations * msecs per minute / time in msecs
+> +	 */
+> +	*val = DIV_ROUND_UP(rotations * (MSEC_PER_SEC * 60), time);
+> +
+> +	fi->reg_val_prev = reg_val;
+> +	fi->time_prev = time_now;
+> +exit:
+> +	mutex_unlock(&hwmon->hwmon_lock);
+> +	intel_runtime_pm_put(ddat->uncore->rpm, wakeref);
+> +	return ret;
+> +}
 
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Monday, August 12, 2024 5:24 PM
-> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; intel-
-> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Deak, Imre <imre.deak@intel.com>; Borah, Chaitanya Kumar
-> <chaitanya.kumar.borah@intel.com>
-> Subject: Re: [PATCH] drm/i915: Preserve value of fec_enable calculated be=
-fore
-> DSC compute config
->=20
-> On Mon, 12 Aug 2024, Chaitanya Kumar Borah
-> <chaitanya.kumar.borah@intel.com> wrote:
-> > Before DSC compute config, fec_enable value is set in other functions
-> > (e.g. intel_dp_mst_find_vcpi_slots_for_bpp). We are ignoring the value
-> > by OR'ing its value in DSC compute config. One unintended effect of
-> > this is setting fec_enable in UHBR use-cases which is not needed for
-> > Intel hardware. Therefore, change operator to AND.
-> >
-> > While at it, add a comment explaining why we don't enable FEC in eDP v1=
-.5.
-> >
-> > Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 49a37b996530..3fbf9f33c3e4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -2298,7 +2298,12 @@ int intel_dp_dsc_compute_config(struct
-> intel_dp *intel_dp,
-> >  		&pipe_config->hw.adjusted_mode;
-> >  	int ret;
-> >
-> > -	pipe_config->fec_enable =3D pipe_config->fec_enable ||
-> > +	/*
-> > +	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
-> > +	 * Since, FEC is a bandwidth overhead, continue to not enable it for
-> > +	 * eDP. Until, there is a good reason to do so.
-> > +	 */
-> > +	pipe_config->fec_enable =3D pipe_config->fec_enable &&
-> >  		(!intel_dp_is_edp(intel_dp) &&
-> >  		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
->=20
-> With this change, FEC will only be enabled for non-UHBR MST DP and nothin=
-g
-> else. This is the place where SST DP DSC gets FEC enabled.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Thank you Jani for pointing it out.
 
-Something like this should work?
-
-	pipe_config->fec_enable =3D pipe_config->fec_enable ||
-  		(!intel_dp_is_edp(intel_dp) &&
-  		 intel_dp_supports_fec(intel_dp, connector, pipe_config) && !intel_dp_i=
-s_uhbr(pipe_config));
-
-Regards
-
-Chaitanya
-
->=20
-> BR,
-> Jani.
->=20
->=20
-> --
-> Jani Nikula, Intel
