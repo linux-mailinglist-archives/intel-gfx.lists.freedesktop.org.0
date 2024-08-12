@@ -2,149 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F1F94EC74
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 14:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9CBE94ECDA
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 14:23:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1FC510E048;
-	Mon, 12 Aug 2024 12:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C38110E1D2;
+	Mon, 12 Aug 2024 12:23:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="CrGk1beR";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="duEWlaPf";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="CrGk1beR";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="duEWlaPf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MIjbkuLn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2308010E048;
- Mon, 12 Aug 2024 12:10:50 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id B0770220ED;
- Mon, 12 Aug 2024 12:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723464648; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=L678aJLIDdpv71pefhCFeRLsKYztMy3fnGRNVQ4W2bE=;
- b=CrGk1beRAwJslCmJHvxLySk3Zs3iWLdVv+AGtNawYryR5ETM/XzJEim2GvvEEsksYGZYiZ
- tsJe5x2ZdEtbGz0qWdkSgiryhpyKb15mmh08euLso8a5giwr/0YNHZ5Ght35ry6MA5/H/6
- JCziYsZrWdwbhQKYcH6oh3CLBcti4+A=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723464648;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=L678aJLIDdpv71pefhCFeRLsKYztMy3fnGRNVQ4W2bE=;
- b=duEWlaPfLd+6deBJdFwi8CfSFe6Kum+d4KEcPWSlm5LpwF5AxmLUwYGGespZ/E18V40Vgs
- wlrlGLNOLQjytTAg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=CrGk1beR;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=duEWlaPf
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723464648; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=L678aJLIDdpv71pefhCFeRLsKYztMy3fnGRNVQ4W2bE=;
- b=CrGk1beRAwJslCmJHvxLySk3Zs3iWLdVv+AGtNawYryR5ETM/XzJEim2GvvEEsksYGZYiZ
- tsJe5x2ZdEtbGz0qWdkSgiryhpyKb15mmh08euLso8a5giwr/0YNHZ5Ght35ry6MA5/H/6
- JCziYsZrWdwbhQKYcH6oh3CLBcti4+A=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723464648;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=L678aJLIDdpv71pefhCFeRLsKYztMy3fnGRNVQ4W2bE=;
- b=duEWlaPfLd+6deBJdFwi8CfSFe6Kum+d4KEcPWSlm5LpwF5AxmLUwYGGespZ/E18V40Vgs
- wlrlGLNOLQjytTAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6605B13A23;
- Mon, 12 Aug 2024 12:10:48 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 346HF8j7uWa4YgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 12 Aug 2024 12:10:48 +0000
-Message-ID: <1c77f913-4707-4300-b84a-36fcf99942f4@suse.de>
-Date: Mon, 12 Aug 2024 14:10:48 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6DCB10E1D2;
+ Mon, 12 Aug 2024 12:23:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723465400; x=1755001400;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QjXGj1u0Vfo5nk4DDviS+QSyE8fSvaiLRB070JVVSAM=;
+ b=MIjbkuLnr0kXs6q8OKbr52ZoERh5WgEEZmAMDkPYPLpdvtNUgEEMjFX2
+ JdMcDv65go8EPcvcOjAU9bSaop2g13zeTzIi6mn+MBwfu4nCfrhLNUp4k
+ QCa+YT9uTfgQOiExremSZEyNDnQ96l4i9n2roR4VNLG+/It/hK2my25b2
+ fd+76kRbg20U1God2w/zDiMFoGbCWap3JTh0JzwnNYKsxp9Zi5UWvRoA8
+ Ot5mU1WJ9EoBbBPmwEnziKgScWnfbl4fRfUlgc7t07HZs4+I3VnVNoY0W
+ dkdSClkFybaw784vG2DWI2OVjyrtfNzaLvENaM01Kt02e+hTWbZ0zGozo Q==;
+X-CSE-ConnectionGUID: +n+pb5FpR0qkDbSIDaiQAw==
+X-CSE-MsgGUID: nbv3lhhoTZ+6N8nDuBT6cw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="44088424"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="44088424"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 05:23:19 -0700
+X-CSE-ConnectionGUID: vBHYCD7tQE2v0o5TYnpkTQ==
+X-CSE-MsgGUID: EaS7NxlsQHSh1If0cYQSsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="58326977"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.117])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 05:23:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	amd-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	jani.nikula@intel.com
+Subject: [RESEND 1/3] drm/mst: switch to guid_t type for GUID
+Date: Mon, 12 Aug 2024 15:23:10 +0300
+Message-Id: <20240812122312.1567046-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] video/aperture: match the pci device when calling
- sysfb_disable()
-To: kernel test robot <lkp@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
- Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- stable@vger.kernel.org
-References: <20240809150327.2485848-1-alexander.deucher@amd.com>
- <202408101951.tXyqYOzv-lkp@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <202408101951.tXyqYOzv-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -6.50
-X-Rspamd-Queue-Id: B0770220ED
-X-Spamd-Result: default: False [-6.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; XM_UA_NO_VERSION(0.01)[];
- FREEMAIL_ENVRCPT(0.00)[gmx.de];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_CC(0.00)[lists.linux.dev,lists.freedesktop.org,redhat.com,gmx.de,ravnborg.org,ffwll.ch,vger.kernel.org];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- MID_RHS_MATCH_FROM(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- RCPT_COUNT_SEVEN(0.00)[11]; DKIM_TRACE(0.00)[suse.de:+];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email, suse.de:dkim,
- imap1.dmz-prg2.suse.org:rdns, imap1.dmz-prg2.suse.org:helo]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spam-Level: 
-X-Spam-Flag: NO
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,57 +69,284 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+The kernel has a guid_t type for GUIDs. Switch to using it, but avoid
+any functional changes here.
 
-Am 10.08.24 um 13:44 schrieb kernel test robot:
-> Hi Alex,
->
-> kernel test robot noticed the following build errors:
->
-> [auto build test ERROR on drm-misc/drm-misc-next]
-> [also build test ERROR on linus/master v6.11-rc2 next-20240809]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Deucher/video-aperture-match-the-pci-device-when-calling-sysfb_disable/20240810-021357
-> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-> patch link:    https://lore.kernel.org/r/20240809150327.2485848-1-alexander.deucher%40amd.com
-> patch subject: [PATCH] video/aperture: match the pci device when calling sysfb_disable()
-> config: csky-randconfig-001-20240810 (https://download.01.org/0day-ci/archive/20240810/202408101951.tXyqYOzv-lkp@intel.com/config)
-> compiler: csky-linux-gcc (GCC) 14.1.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240810/202408101951.tXyqYOzv-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202408101951.tXyqYOzv-lkp@intel.com/
->
-> All errors (new ones prefixed by >>):
->
->     csky-linux-ld: drivers/video/aperture.o: in function `aperture_remove_conflicting_pci_devices':
->>> aperture.c:(.text+0x222): undefined reference to `screen_info_pci_dev'
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  2 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 67 +++++++++++--------
+ include/drm/display/drm_dp_mst_helper.h       | 12 ++--
+ 3 files changed, 45 insertions(+), 36 deletions(-)
 
-Strange. There's a already placeholder [1] for architectures without 
-PCI. Otherwise the source file is listed at [2].
-
-[1] 
-https://elixir.bootlin.com/linux/v6.10/source/include/linux/screen_info.h#L127
-[2] https://elixir.bootlin.com/linux/v6.10/source/drivers/video/Makefile#L11
-
-Best regards
-Thomas
-
->     csky-linux-ld: drivers/video/aperture.o: in function `devm_aperture_acquire_release':
->>> aperture.c:(.text+0x2c0): undefined reference to `screen_info'
->>> csky-linux-ld: aperture.c:(.text+0x2c4): undefined reference to `screen_info_pci_dev'
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 7e7929f24ae4..72c10fc2c890 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2610,7 +2610,7 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
+ 		}
+ 	}
+ 
+-	memcpy(mgr->mst_primary->guid, guid, 16);
++	import_guid(&mgr->mst_primary->guid, guid);
+ 
+ out_fail:
+ 	mutex_unlock(&mgr->lock);
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index 379a449a28a2..39f1dc45004e 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -89,7 +89,7 @@ static int drm_dp_send_enum_path_resources(struct drm_dp_mst_topology_mgr *mgr,
+ 					   struct drm_dp_mst_branch *mstb,
+ 					   struct drm_dp_mst_port *port);
+ static bool drm_dp_validate_guid(struct drm_dp_mst_topology_mgr *mgr,
+-				 u8 *guid);
++				 guid_t *guid);
+ 
+ static int drm_dp_mst_register_i2c_bus(struct drm_dp_mst_port *port);
+ static void drm_dp_mst_unregister_i2c_bus(struct drm_dp_mst_port *port);
+@@ -801,7 +801,7 @@ static bool drm_dp_sideband_parse_link_address(const struct drm_dp_mst_topology_
+ 	int idx = 1;
+ 	int i;
+ 
+-	memcpy(repmsg->u.link_addr.guid, &raw->msg[idx], 16);
++	import_guid(&repmsg->u.link_addr.guid, &raw->msg[idx]);
+ 	idx += 16;
+ 	repmsg->u.link_addr.nports = raw->msg[idx] & 0xf;
+ 	idx++;
+@@ -829,7 +829,7 @@ static bool drm_dp_sideband_parse_link_address(const struct drm_dp_mst_topology_
+ 			idx++;
+ 			if (idx > raw->curlen)
+ 				goto fail_len;
+-			memcpy(repmsg->u.link_addr.ports[i].peer_guid, &raw->msg[idx], 16);
++			import_guid(&repmsg->u.link_addr.ports[i].peer_guid, &raw->msg[idx]);
+ 			idx += 16;
+ 			if (idx > raw->curlen)
+ 				goto fail_len;
+@@ -1029,7 +1029,7 @@ static bool drm_dp_sideband_parse_reply(const struct drm_dp_mst_topology_mgr *mg
+ 	msg->req_type = (raw->msg[0] & 0x7f);
+ 
+ 	if (msg->reply_type == DP_SIDEBAND_REPLY_NAK) {
+-		memcpy(msg->u.nak.guid, &raw->msg[1], 16);
++		import_guid(&msg->u.nak.guid, &raw->msg[1]);
+ 		msg->u.nak.reason = raw->msg[17];
+ 		msg->u.nak.nak_data = raw->msg[18];
+ 		return false;
+@@ -1078,7 +1078,7 @@ drm_dp_sideband_parse_connection_status_notify(const struct drm_dp_mst_topology_
+ 	if (idx > raw->curlen)
+ 		goto fail_len;
+ 
+-	memcpy(msg->u.conn_stat.guid, &raw->msg[idx], 16);
++	import_guid(&msg->u.conn_stat.guid, &raw->msg[idx]);
+ 	idx += 16;
+ 	if (idx > raw->curlen)
+ 		goto fail_len;
+@@ -1107,7 +1107,7 @@ static bool drm_dp_sideband_parse_resource_status_notify(const struct drm_dp_mst
+ 	if (idx > raw->curlen)
+ 		goto fail_len;
+ 
+-	memcpy(msg->u.resource_stat.guid, &raw->msg[idx], 16);
++	import_guid(&msg->u.resource_stat.guid, &raw->msg[idx]);
+ 	idx += 16;
+ 	if (idx > raw->curlen)
+ 		goto fail_len;
+@@ -2174,20 +2174,24 @@ ssize_t drm_dp_mst_dpcd_write(struct drm_dp_aux *aux,
+ 				      offset, size, buffer);
+ }
+ 
+-static int drm_dp_check_mstb_guid(struct drm_dp_mst_branch *mstb, u8 *guid)
++static int drm_dp_check_mstb_guid(struct drm_dp_mst_branch *mstb, guid_t *guid)
+ {
+ 	int ret = 0;
+ 
+-	memcpy(mstb->guid, guid, 16);
++	guid_copy(&mstb->guid, guid);
++
++	if (!drm_dp_validate_guid(mstb->mgr, &mstb->guid)) {
++		u8 buf[UUID_SIZE];
++
++		export_guid(buf, &mstb->guid);
+ 
+-	if (!drm_dp_validate_guid(mstb->mgr, mstb->guid)) {
+ 		if (mstb->port_parent) {
+ 			ret = drm_dp_send_dpcd_write(mstb->mgr,
+ 						     mstb->port_parent,
+-						     DP_GUID, 16, mstb->guid);
++						     DP_GUID, sizeof(buf), buf);
+ 		} else {
+ 			ret = drm_dp_dpcd_write(mstb->mgr->aux,
+-						DP_GUID, mstb->guid, 16);
++						DP_GUID, buf, sizeof(buf));
+ 		}
+ 	}
+ 
+@@ -2567,9 +2571,9 @@ static struct drm_dp_mst_branch *drm_dp_get_mst_branch_device(struct drm_dp_mst_
+ 	return mstb;
+ }
+ 
+-static struct drm_dp_mst_branch *get_mst_branch_device_by_guid_helper(
+-	struct drm_dp_mst_branch *mstb,
+-	const uint8_t *guid)
++static struct drm_dp_mst_branch *
++get_mst_branch_device_by_guid_helper(struct drm_dp_mst_branch *mstb,
++				     const guid_t *guid)
+ {
+ 	struct drm_dp_mst_branch *found_mstb;
+ 	struct drm_dp_mst_port *port;
+@@ -2577,10 +2581,9 @@ static struct drm_dp_mst_branch *get_mst_branch_device_by_guid_helper(
+ 	if (!mstb)
+ 		return NULL;
+ 
+-	if (memcmp(mstb->guid, guid, 16) == 0)
++	if (guid_equal(&mstb->guid, guid))
+ 		return mstb;
+ 
+-
+ 	list_for_each_entry(port, &mstb->ports, next) {
+ 		found_mstb = get_mst_branch_device_by_guid_helper(port->mstb, guid);
+ 
+@@ -2593,7 +2596,7 @@ static struct drm_dp_mst_branch *get_mst_branch_device_by_guid_helper(
+ 
+ static struct drm_dp_mst_branch *
+ drm_dp_get_mst_branch_device_by_guid(struct drm_dp_mst_topology_mgr *mgr,
+-				     const uint8_t *guid)
++				     const guid_t *guid)
+ {
+ 	struct drm_dp_mst_branch *mstb;
+ 	int ret;
+@@ -2695,17 +2698,20 @@ static void drm_dp_mst_queue_probe_work(struct drm_dp_mst_topology_mgr *mgr)
+ }
+ 
+ static bool drm_dp_validate_guid(struct drm_dp_mst_topology_mgr *mgr,
+-				 u8 *guid)
++				 guid_t *guid)
+ {
+ 	u64 salt;
++	u8 buf[UUID_SIZE];
+ 
+-	if (memchr_inv(guid, 0, 16))
++	if (!guid_is_null(guid))
+ 		return true;
+ 
+ 	salt = get_jiffies_64();
+ 
+-	memcpy(&guid[0], &salt, sizeof(u64));
+-	memcpy(&guid[8], &salt, sizeof(u64));
++	memcpy(&buf[0], &salt, sizeof(u64));
++	memcpy(&buf[8], &salt, sizeof(u64));
++
++	import_guid(guid, buf);
+ 
+ 	return false;
+ }
+@@ -2945,7 +2951,7 @@ static int drm_dp_send_link_address(struct drm_dp_mst_topology_mgr *mgr,
+ 	drm_dbg_kms(mgr->dev, "link address reply: %d\n", reply->nports);
+ 	drm_dp_dump_link_address(mgr, reply);
+ 
+-	ret = drm_dp_check_mstb_guid(mstb, reply->guid);
++	ret = drm_dp_check_mstb_guid(mstb, &reply->guid);
+ 	if (ret) {
+ 		char buf[64];
+ 
+@@ -3799,8 +3805,9 @@ EXPORT_SYMBOL(drm_dp_mst_topology_mgr_suspend);
+ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
+ 				   bool sync)
+ {
++	u8 buf[UUID_SIZE];
++	guid_t guid;
+ 	int ret;
+-	u8 guid[16];
+ 
+ 	mutex_lock(&mgr->lock);
+ 	if (!mgr->mst_primary)
+@@ -3821,13 +3828,15 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_mst_topology_mgr *mgr,
+ 	}
+ 
+ 	/* Some hubs forget their guids after they resume */
+-	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
+-	if (ret != 16) {
++	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
++	if (ret != sizeof(buf)) {
+ 		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
+ 		goto out_fail;
+ 	}
+ 
+-	ret = drm_dp_check_mstb_guid(mgr->mst_primary, guid);
++	import_guid(&guid, buf);
++
++	ret = drm_dp_check_mstb_guid(mgr->mst_primary, &guid);
+ 	if (ret) {
+ 		drm_dbg_kms(mgr->dev, "check mstb failed - undocked during suspend?\n");
+ 		goto out_fail;
+@@ -4005,12 +4014,12 @@ drm_dp_mst_process_up_req(struct drm_dp_mst_topology_mgr *mgr,
+ 	bool hotplug = false, dowork = false;
+ 
+ 	if (hdr->broadcast) {
+-		const u8 *guid = NULL;
++		const guid_t *guid = NULL;
+ 
+ 		if (msg->req_type == DP_CONNECTION_STATUS_NOTIFY)
+-			guid = msg->u.conn_stat.guid;
++			guid = &msg->u.conn_stat.guid;
+ 		else if (msg->req_type == DP_RESOURCE_STATUS_NOTIFY)
+-			guid = msg->u.resource_stat.guid;
++			guid = &msg->u.resource_stat.guid;
+ 
+ 		if (guid)
+ 			mstb = drm_dp_get_mst_branch_device_by_guid(mgr, guid);
+diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
+index 02b037d3a93f..f6a1cbb0f600 100644
+--- a/include/drm/display/drm_dp_mst_helper.h
++++ b/include/drm/display/drm_dp_mst_helper.h
+@@ -244,18 +244,18 @@ struct drm_dp_mst_branch {
+ 	bool link_address_sent;
+ 
+ 	/* global unique identifier to identify branch devices */
+-	u8 guid[16];
++	guid_t guid;
+ };
+ 
+ 
+ struct drm_dp_nak_reply {
+-	u8 guid[16];
++	guid_t guid;
+ 	u8 reason;
+ 	u8 nak_data;
+ };
+ 
+ struct drm_dp_link_address_ack_reply {
+-	u8 guid[16];
++	guid_t guid;
+ 	u8 nports;
+ 	struct drm_dp_link_addr_reply_port {
+ 		bool input_port;
+@@ -265,7 +265,7 @@ struct drm_dp_link_address_ack_reply {
+ 		bool ddps;
+ 		bool legacy_device_plug_status;
+ 		u8 dpcd_revision;
+-		u8 peer_guid[16];
++		guid_t peer_guid;
+ 		u8 num_sdp_streams;
+ 		u8 num_sdp_stream_sinks;
+ 	} ports[16];
+@@ -348,7 +348,7 @@ struct drm_dp_allocate_payload_ack_reply {
+ };
+ 
+ struct drm_dp_connection_status_notify {
+-	u8 guid[16];
++	guid_t guid;
+ 	u8 port_number;
+ 	bool legacy_device_plug_status;
+ 	bool displayport_device_plug_status;
+@@ -425,7 +425,7 @@ struct drm_dp_query_payload {
+ 
+ struct drm_dp_resource_status_notify {
+ 	u8 port_number;
+-	u8 guid[16];
++	guid_t guid;
+ 	u16 available_pbn;
+ };
+ 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.39.2
 
