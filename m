@@ -2,72 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516EB94E98F
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 11:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A559C94EA24
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 11:43:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73DC810E0C0;
-	Mon, 12 Aug 2024 09:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F4610E1A2;
+	Mon, 12 Aug 2024 09:43:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K1Iffsws";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c1j9zWfM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4F910E088;
- Mon, 12 Aug 2024 09:19:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09C9110E18C;
+ Mon, 12 Aug 2024 09:43:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723454346; x=1754990346;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=+41+f5s1jH10I4YSNPeaAGsgnJPW+a7kFpxcNilpth4=;
- b=K1IffswsuBS6MAwerMbN9D00tH790+e1qbQpWX/oQjHB/kYQSQoSFTnU
- jzn+CvHr0XstpuLPZtzimHcKO6p6nYbT60vHYggbUtwyavYKuJdyJLf5E
- lfY3C3je9l+YIuCoHKzc2STixdDEAnoJqP0djv07TFcYqsPQvC3Arp7R2
- 7/2L5TBp6lnk4SE6Hrjr4V8XDbPiKpma8j16O1NfLO/TxnjujMBpHTiBF
- N4EWm3QHUVudFOZ7hcuBUQUirvqL5DyS1kFC/KbreolDaHa00aBMIjw6e
- 8B75Lf179YJXFd6IYwUC2Axz3hhP6soHOPPY0J2TCec/WI7uNUrahEUJI w==;
-X-CSE-ConnectionGUID: vMUOGFTcSCWyLls8/G9ZMA==
-X-CSE-MsgGUID: UntBlBmORm2hirOPCxbkwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21113248"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21113248"
+ t=1723455819; x=1754991819;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=38ybMOSvGEkFjKvu7+v4vrQeJeACKaswKT6ohLCT6q4=;
+ b=c1j9zWfMGh4Y+n9Kp5vApG0gprWe1yjiQkPeKpXL2bgLuzA8ZYQqgrfR
+ Nz/OpB333L/FYkyDxBkyGk7ZqfW3l2LzZldvddp4zlAAit5Wws0mNbqHE
+ BG6oogSTge5wuADqVqIGwPuzRQNOhwOrdcJD0Ic3MlI2jgDl5tJuvTySn
+ tgxAEQXLwBeRj8LEA4qYyDzr6j3KR7xbM2rNAgenQHOeLPC22JTJr+nGd
+ 3KyKAKETPyAPNb9e/SGQmGk1t5vj12xGLeGGdYItgUjJ5JJ0sRrEELDJG
+ pB7upXHeqR4kB4wM5URjb5iYzbNW4CxydipydnD83zftddi8kxwPo8BvL Q==;
+X-CSE-ConnectionGUID: V2gshvXFQ7ynC5HZkWjNqw==
+X-CSE-MsgGUID: cGBJ/7ZjRXe2G+SAP9X0rA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21700992"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21700992"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 02:19:04 -0700
-X-CSE-ConnectionGUID: ClDqEzp4TQW7IVbfEEkYFw==
-X-CSE-MsgGUID: BM9dZOgmRdKKRLFNanmUkA==
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 02:43:38 -0700
+X-CSE-ConnectionGUID: KkC7sES5TCW2ZQPMf/9FWQ==
+X-CSE-MsgGUID: ynn11CQDQNW15RCdgV/eqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="58138159"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.23])
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="58143617"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.117])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 02:19:01 -0700
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAG48ez1PDJKd5gd932K9iknNg+V=mTmK5OMZys3OEXmKUTXxAw@mail.gmail.com>
-References: <20240805102554.154464-1-andi.shyti@linux.intel.com>
- <ZrFMopcHlT6G7p3V@ashyti-mobl2.lan> <2024080640-landfall-doozy-e0d2@gregkh>
- <ZrHw3y8QKPT87LxP@ashyti-mobl2.lan>
- <172294612086.38654.15621922821489001205@jlahtine-mobl.ger.corp.intel.com>
- <CAG48ez0P6juWnVL-m6A33X2GTsrm6CO4okN0s7Y_YT01yTqkrA@mail.gmail.com>
- <CAG48ez1PDJKd5gd932K9iknNg+V=mTmK5OMZys3OEXmKUTXxAw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Fix mmap memory boundary calculation
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Andi Shyti <andi.shyti@kernel.org>
-To: Jann Horn <jannh@google.com>
+ 12 Aug 2024 02:43:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com
+Subject: Re: [PATCH v2 0/4] drm/i915: struct intel_display conversions
+In-Reply-To: <cover.1723213547.git.jani.nikula@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Mon, 12 Aug 2024 12:18:56 +0300
-Message-ID: <172345433630.14739.7181647476623310397@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.10
+References: <cover.1723213547.git.jani.nikula@intel.com>
+Date: Mon, 12 Aug 2024 12:43:34 +0300
+Message-ID: <875xs62i0p.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,43 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jann Horn (2024-08-09 18:40:45)
-> On Fri, Aug 9, 2024 at 4:48=E2=80=AFPM Jann Horn <jannh@google.com> wrote:
-> > On Tue, Aug 6, 2024 at 2:08=E2=80=AFPM Joonas Lahtinen
-> > <joonas.lahtinen@linux.intel.com> wrote:
-> > > Quoting Andi Shyti (2024-08-06 12:46:07)
-> > > > Hi Greg,
-> > > >
-> > > > same question without the stable mailing list not to trigger the
-> > > > automatic reply.
-> > > >
-> > > > > Andi Shyti (2):
-> > > > >   drm/i915/gem: Adjust vma offset for framebuffer mmap offset
-> > > > >   drm/i915/gem: Fix Virtual Memory mapping boundaries calculation
-> > > >
-> > > > I have forgotten to actually Cc the stable mailing list here.
-> > > > These two patches need to be merged together even if only the
-> > > > second patch has the "Fixes:" tag.
-> > > >
-> > > > I could have used the "Requires:" tag, but the commit id would
-> > > > change in between merges and rebases.
-> > >
-> > > The patches were the top two in drm-intel-gt-next and committed
-> > > only few hours ago so I fixed up the patches adding Cc: stable
-> > > and Requires:
-> >
-> > I'm not very familiar with how the DRM trees work - shouldn't fixes in
-> > i915 go on the separate drm-intel-fixes branch so that they don't have
-> > to wait for a merge window?
->=20
-> Ah, nevermind, I see it is already in drm-intel-fixes. Sorry for the nois=
-e.
+On Fri, 09 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> v2 of https://lore.kernel.org/r/cover.1722444150.git.jani.nikula@intel.com
+>
+> Cc: Imre Deak <imre.deak@intel.com>
 
-Yeah, the DRM subsystem has a rather specific process.
+Pushed to din, thanks for the review.
 
-Jann, do you consider the fix released already now that it is in -rc3 or wi=
-ll
-you start the 30 day count from when 6.11 gets released? I hope the latter,
-but just want to make sure there are no surprises.
+BR,
+Jani.
 
-Regards, Joonas
+>
+> Jani Nikula (4):
+>   drm/i915/acpi: convert to struct intel_display
+>   drm/i915/opregion: unify intel_encoder/intel_connector naming
+>   drm/i915/opregion: convert to struct intel_display
+>   drm/i915/bios: convert to struct intel_display
+>
+>  drivers/gpu/drm/i915/display/g4x_dp.c         |   3 +-
+>  drivers/gpu/drm/i915/display/g4x_hdmi.c       |   3 +-
+>  drivers/gpu/drm/i915/display/icl_dsi.c        |   3 +-
+>  drivers/gpu/drm/i915/display/intel_acpi.c     |  17 +-
+>  drivers/gpu/drm/i915/display/intel_acpi.h     |  18 +-
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 846 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_bios.h     |  28 +-
+>  .../gpu/drm/i915/display/intel_combo_phy.c    |   8 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.h      |   3 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  |   9 +-
+>  .../drm/i915/display/intel_display_debugfs.c  |   7 +-
+>  .../drm/i915/display/intel_display_device.c   |   8 +-
+>  .../drm/i915/display/intel_display_driver.c   |  22 +-
+>  .../gpu/drm/i915/display/intel_display_irq.c  |  27 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |   8 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
+>  drivers/gpu/drm/i915/display/intel_opregion.c | 320 +++----
+>  drivers/gpu/drm/i915/display/intel_opregion.h |  62 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
+>  drivers/gpu/drm/i915/display/intel_tv.c       |   3 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |   5 +-
+>  drivers/gpu/drm/i915/i915_driver.c            |  22 +-
+>  drivers/gpu/drm/xe/display/xe_display.c       |  19 +-
+>  24 files changed, 765 insertions(+), 687 deletions(-)
+
+-- 
+Jani Nikula, Intel
