@@ -2,65 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B148894EC1F
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 13:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F6C94EC23
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 13:53:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 538E210E1B8;
-	Mon, 12 Aug 2024 11:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6585410E1BA;
+	Mon, 12 Aug 2024 11:53:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Is+FAHHa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b/OWcX0A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C89610E1B8;
- Mon, 12 Aug 2024 11:51:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD6410E1BA;
+ Mon, 12 Aug 2024 11:53:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723463497; x=1754999497;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=JetQAQaJ1I2wNDx3JjQUs3ufydTjZfd8naKWltBwWfQ=;
- b=Is+FAHHa/Pi8lDK2ZSRrBHgf5hke1sXNkVWHoSjjBOSC19xem3zdz9gE
- G6L2aKULYx9Rf1tESBFdPTLH3q2KB/ISNrbBwP+OLav0WjE4dPTaIVuvU
- WfZnQtE5+ohvkpjyRFWK3szGTQevhb1qUUDMmm8paF6f3Y3nNdRxRNzkU
- 3gfG5+LSODi3yhschsT1gGLcp+7IpNjHsBR2YjlIQYNRbe5NkSx+GR+K9
- 0NdAiW2DR6ZC+qPWJobm5IOAtdhKxM13iKHwrrZcFPUgq5ntsVKLV2nub
- 1b7K7VBbMHdmdo2Q4IFN55vpFoCWoPOubep88VkYlarwoLTgZ80o4GoJ7 g==;
-X-CSE-ConnectionGUID: uReeGXhASzu/+mDyiFuXTA==
-X-CSE-MsgGUID: 2YnJ40drSe6pPk9Q9anw+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32244076"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="32244076"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 04:51:37 -0700
-X-CSE-ConnectionGUID: dwpWabwJS6WiECsZ7FX91g==
-X-CSE-MsgGUID: 13NNfiI2Q+G+3x6vih0jWA==
+ t=1723463633; x=1754999633;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=FU9hApwljTtfL5M1PiZwMlMEA2aDWIFNXYdsPkH7aBY=;
+ b=b/OWcX0ABmBm1DyFdtBa/p4VbbHmu76bonSjzhTTb+k++a6/zdgI/frn
+ p9Zb0Is6XKh45/tiZP9pdVSreU1hz80GUXRjOB+ehTN3Js5ZM1Zw8K7J2
+ y0HxP7qrExBTz9B7Xk1YGqNM3RLhT1j7eKvgrJvLIWLkXXjqvDgmhNsBE
+ 9nOW4ien5snf/plCCZHELt3IXkVC4bWqv4VCPRt/Aoj8HlEyMLNl+6lEk
+ qBJwsxpYo673WkseX2UYbMuXQrF8SJUxG5+cJzlI+KUfdsHSQGVRcRbDy
+ dANnsVUYrCUQBEosxVeA8QwADpzIBKT+R91JOyR1sZmjYMrdJEDMPN6JE Q==;
+X-CSE-ConnectionGUID: IFZbqWt+SwaZb3o5TbM7LQ==
+X-CSE-MsgGUID: rtZyl6NlS+Gloa+dC5BSUA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21698587"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21698587"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 04:53:50 -0700
+X-CSE-ConnectionGUID: xVPaf+AnS1G5LIzPs29R8Q==
+X-CSE-MsgGUID: Z+yeeesKSKS3K+H+zd+yhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="63088883"
-Received: from iklimasz-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.149])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 04:51:35 -0700
-Date: Mon, 12 Aug 2024 13:51:30 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>
-Subject: Re: [PATCH 0/2] Allow partial memory mapping for cpu memory
-Message-ID: <Zrn3QqOvOEW2EYB0@ashyti-mobl2.lan>
-References: <20240807100521.478266-1-andi.shyti@linux.intel.com>
- <ZrXZEpplb6YA9T_d@phenom.ffwll.local>
- <ZrXtiBKyCCh0a_ym@ashyti-mobl2.lan>
- <ZrnRuRGjxHe5zxuf@phenom.ffwll.local>
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="89080962"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.117])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 04:53:48 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, chaitanya.kumar.borah@intel.com
+Subject: Re: [PATCH] drm/i915: Preserve value of fec_enable calculated
+ before DSC compute config
+In-Reply-To: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240812082446.3459081-1-chaitanya.kumar.borah@intel.com>
+Date: Mon, 12 Aug 2024 14:53:44 +0300
+Message-ID: <87v8060xfb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZrnRuRGjxHe5zxuf@phenom.ffwll.local>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,49 +70,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+On Mon, 12 Aug 2024, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Before DSC compute config, fec_enable value is set in other functions
+> (e.g. intel_dp_mst_find_vcpi_slots_for_bpp). We are ignoring the value by
+> OR'ing its value in DSC compute config. One unintended effect of this is
+> setting fec_enable in UHBR use-cases which is not needed for Intel
+> hardware. Therefore, change operator to AND.
+>
+> While at it, add a comment explaining why we don't enable FEC in eDP v1.5.
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 49a37b996530..3fbf9f33c3e4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2298,7 +2298,12 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  		&pipe_config->hw.adjusted_mode;
+>  	int ret;
+>  
+> -	pipe_config->fec_enable = pipe_config->fec_enable ||
+> +	/*
+> +	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
+> +	 * Since, FEC is a bandwidth overhead, continue to not enable it for
+> +	 * eDP. Until, there is a good reason to do so.
+> +	 */
+> +	pipe_config->fec_enable = pipe_config->fec_enable &&
+>  		(!intel_dp_is_edp(intel_dp) &&
+>  		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
 
-On Mon, Aug 12, 2024 at 11:11:21AM +0200, Daniel Vetter wrote:
-> On Fri, Aug 09, 2024 at 11:20:56AM +0100, Andi Shyti wrote:
-> > On Fri, Aug 09, 2024 at 10:53:38AM +0200, Daniel Vetter wrote:
-> > > On Wed, Aug 07, 2024 at 11:05:19AM +0100, Andi Shyti wrote:
-> > > > This patch series concludes on the memory mapping fixes and
-> > > > improvements by allowing partial memory mapping for the cpu
-> > > > memory as well.
-> > > > 
-> > > > The partial memory mapping by adding an object offset was
-> > > > implicitely included in commit 8bdd9ef7e9b1 ("drm/i915/gem: Fix
-> > > > Virtual Memory mapping boundaries calculation") for the gtt
-> > > > memory.
-> > > 
-> > > Does userspace actually care? Do we have a flag or something, so that
-> > > userspace can discover this?
-> > > 
-> > > Adding complexity of any kind is absolute no-go, unless there's a
-> > > userspace need. This also includes the gtt accidental fix.
-> > 
-> > Actually this missing functionality was initially filed as a bug
-> > by mesa folks. So that this patch was requested by them (Lionel
-> > is Cc'ed).
-> > 
-> > The tests cases that have been sent previously and I'm going to
-> > send again, are directly taken from mesa use cases.
-> 
-> Please add the relevant mesa MR to this patch then, and some relevant
-> explanations for how userspace detects this all and decides to use it.
+With this change, FEC will only be enabled for non-UHBR MST DP and
+nothing else. This is the place where SST DP DSC gets FEC enabled.
 
-AFAIK, there is no Mesa MR. We are adding a feature that was
-missing, but Mesa already supported it (indeed, Nimroy suggested
-adding the Fixes tag for this).
+BR,
+Jani.
 
-Also because, Mesa was receiving an invalid address error and
-asked to support the partial mapping of the memory.
 
-> Also, does xe also support this? If we only add this to i915-gem but xe
-> doesn't have it, it doesn't make much sense imo.
-
-I don't know about. Lionel, Do you have anything to add here from
-your side?
-
-Thanks,
-Andi
+-- 
+Jani Nikula, Intel
