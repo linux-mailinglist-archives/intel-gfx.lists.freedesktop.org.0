@@ -2,58 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2DAD94EB37
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 12:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E161C94EB43
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2024 12:36:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64CA310E058;
-	Mon, 12 Aug 2024 10:34:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76BC110E095;
+	Mon, 12 Aug 2024 10:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EA2iIOx2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KphytD+K";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04C0110E058
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2024 10:34:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57DD410E090;
+ Mon, 12 Aug 2024 10:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723458864; x=1754994864;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GWMxi3Lq3/7chQ+YtS08UuiQPvjW2kCz3nRqwQyjZ3s=;
- b=EA2iIOx2yRMJMFIci+cgPiTS6DxGDq6xLPhkIAIlmm4Zqrp+GLndHPw4
- YmitLHPomVesiDoFxCesMbrTOd3ir3s3zHnxOswhMlN9DFmieA+DHua0Q
- dTzK58NCZKPe7pSpUO0YMfhZ9ssZMA2A5evsnNJOXOjSjdxP8NvunOGEa
- MuKHA1b1/m46VEECHv8QRiVXScf5snVzZYqLIefPPzXCsetRLDNstVAJL
- K9COefkaGxyL+6nUv4LTxISRYVHQgcoJplMrnd5x1lkXFT66eK5GNdRPs
- IvyJBoEdgdag4JXfXZvownDSJddJ/ctZYgS/tb9BEBsnRIHbImNdR9m+X w==;
-X-CSE-ConnectionGUID: IQTsuIJASZSVjJN8aMSc7A==
-X-CSE-MsgGUID: kt8bf5xCSPiuL8vrNobTmA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21440235"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21440235"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 03:34:23 -0700
-X-CSE-ConnectionGUID: zD6kX9lYQ5qWyc6HQ01AqA==
-X-CSE-MsgGUID: 8sSGMon/QpKEai2fezTEpg==
+ t=1723458968; x=1754994968;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=nlwqwKsSU6nF0XQXqo5YoLVsRaLBNAM8SineY57qlO8=;
+ b=KphytD+KUZ0xviuADR4sZ4U/tNK6nJXgIKDJjLXraYQVgnawN+eTgkFA
+ LrpF15anh4EYVE8zmfx+Mg9wHVzkrUfJ1wd5X17m+5r5D6cBkmvR7nHgB
+ HuSh+Gc9PM1bkrWzpdyZaWbxQSu307eB4E6oE/BO9r8Q+RAXsLbzTbTn8
+ SoY3lSLrnNbdxb+TTmsdLQmbxEBlGiHVGVMSW5jb1R7K/1sAZ2NN65tmt
+ TXVLAHgr13eUQ91jEA7OoXRMOeLFSkaHqtW7kTQcV++T3XZv1Mw+xnlBP
+ bPcqScJZZckf7BM11S5N5/HzRAKnsiYFbkOJ5RExyv5azbK4GPRpD1Ijl A==;
+X-CSE-ConnectionGUID: zgkJ/QNrRkqFvFvGLbT/wA==
+X-CSE-MsgGUID: ySg3ssOBSJC9lhKDeAF0mQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="44078160"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="44078160"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2024 03:36:07 -0700
+X-CSE-ConnectionGUID: G2PGOnIdT5agY7WBf0dnEw==
+X-CSE-MsgGUID: 3YCv/kmVSumyU4mBfO5cBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="89062145"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="95738700"
 Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.117])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 03:34:22 -0700
+ 12 Aug 2024 03:36:04 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH] drm/i915: use pdev_to_i915() instead of pci_get_drvdata()
- directly
-Date: Mon, 12 Aug 2024 13:34:15 +0300
-Message-Id: <20240812103415.1540096-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Gustavo
+ Sousa <gustavo.sousa@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 00/10] drm/xe & drm/i915: drvdata usage changes
+In-Reply-To: <luk4l4jlidukwvo5y3cxajcvou2s4gxseopifb6fmltbwysode@lfjilqcrjvgj>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1723129920.git.jani.nikula@intel.com>
+ <2pep6oj5dd7ocei2a3egnm3agoa46nxad2e6e2riwby66khfpt@22g2ari2u4ps>
+ <87mslm2hg0.fsf@intel.com> <87jzgp3k4c.fsf@intel.com>
+ <7a6in4kafx2umpil7tmjxpbt55oumgovcgbyjawiihbjz4gm67@vidlbchuk6me>
+ <luk4l4jlidukwvo5y3cxajcvou2s4gxseopifb6fmltbwysode@lfjilqcrjvgj>
+Date: Mon, 12 Aug 2024 13:36:01 +0300
+Message-ID: <8734na2fla.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,47 +73,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We have a helper for converting pci device to i915 device, use it.
+On Fri, 09 Aug 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Fri, Aug 09, 2024 at 10:58:24AM GMT, Lucas De Marchi wrote:
+>>On Fri, Aug 09, 2024 at 04:23:47PM GMT, Jani Nikula wrote:
+>>>On Fri, 09 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+>>>>On Thu, 08 Aug 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>>>>On Thu, Aug 08, 2024 at 06:15:45PM GMT, Jani Nikula wrote:
+>>>>>>v2 of https://patchwork.freedesktop.org/series/136621/
+>>>>>>
+>>>>>>Removed "drm/xe/tests: fix drvdata usage" from v1 in favour of
+>>>>>>"drm/xe/tests: remove unused leftover xe_call_for_each_device()" here.
+>>>>>>
+>>>>>>Due to the display dependency, I think it would be best to merge the
+>>>>>>whole thing via drm-intel-next, and do the first drm-intel-next pull
+>>>>>>request and backmerge from drm-next to drm-xe-next in fairly quick
+>>>>>>succession.
+>>>>>
+>>>>>I was waiting the drm-intel-next pull to do a backmerge as we started to
+>>>>>have some big divergences. I will try to review the missing patches to
+>>>>>expedite that. Are you planning a pull this week?
+>>>>
+>>>>Rodrigo? I think it's your shift.
+>>>
+>>>In the mean time, ack for merging this via drm-intel-next?
+>>
+>>
+>>Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+> oh. wait... but I don't think you will be able to merge the first patch
+> through drm-intel-next.
+>
+> $ git branch --contains 57ecead343e7
+> + drm-tip
+> + drm-xe-next
+> * tip
+> + topic/xe-for-CI
+>
+> Sorry for not noticing that before. Alternatives:
+>
+> 1)
+> merge this patch via drm-xe-next, and possibly (if it unblocks more
+> patches on top), your 'drm/xe/tests: fix drvdata usage" from v1' via
+> drm-intel.
+>
+> 2) do not apply this and patch 10 until we are back in sync.
+>
+> ... something else?
 
-v2: Also convert i915_pci_probe() (Gustavo)
+Yeah, something else. I resent patches 1-3 separately to be merged via
+drm-xe-next [1] and patch 4 to be merged via drm-intel-next [2]. Clean
+and straightforward.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Let's do the rest once we're back in sync.
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index ce4dfd65fafa..94c89ca2ef30 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -880,7 +880,7 @@ static void i915_pci_remove(struct pci_dev *pdev)
- {
- 	struct drm_i915_private *i915;
- 
--	i915 = pci_get_drvdata(pdev);
-+	i915 = pdev_to_i915(pdev);
- 	if (!i915) /* driver load aborted, nothing to cleanup */
- 		return;
- 
-@@ -1003,7 +1003,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (err)
- 		return err;
- 
--	if (i915_inject_probe_failure(pci_get_drvdata(pdev))) {
-+	if (i915_inject_probe_failure(pdev_to_i915(pdev))) {
- 		i915_pci_remove(pdev);
- 		return -ENODEV;
- 	}
-@@ -1025,7 +1025,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- static void i915_pci_shutdown(struct pci_dev *pdev)
- {
--	struct drm_i915_private *i915 = pci_get_drvdata(pdev);
-+	struct drm_i915_private *i915 = pdev_to_i915(pdev);
- 
- 	i915_driver_shutdown(i915);
- }
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/cover.1723458544.git.jani.nikula@intel.com
+[2] https://lore.kernel.org/r/20240812103415.1540096-1-jani.nikula@intel.com
+
+
+
+>
+> I don't have a preference.
+>
+> Lucas De Marchi
+>
+>>
+>>thanks
+>>Lucas De Marchi
+>>
+>>>
+>>>BR,
+>>>Jani.
+>>>
+>>>>
+>>>>BR,
+>>>>Jani.
+>>>
+>>>-- 
+>>>Jani Nikula, Intel
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
