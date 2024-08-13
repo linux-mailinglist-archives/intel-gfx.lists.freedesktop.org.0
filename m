@@ -2,51 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 811BC94FFD0
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2024 10:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7179501E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2024 12:03:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A289910E1CF;
-	Tue, 13 Aug 2024 08:27:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C5F10E2D8;
+	Tue, 13 Aug 2024 10:03:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AABL3Y+g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B9QwbK0V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB9CD10E1BC;
- Tue, 13 Aug 2024 08:27:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02CBD10E2D8;
+ Tue, 13 Aug 2024 10:03:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723537650; x=1755073650;
+ t=1723543390; x=1755079390;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=RyDHZHG1qM+4Ggl8UqXwMYT3dj0QzqQytYDcJf5gWcw=;
- b=AABL3Y+g6WUARhf0QFyO4tiQabJ+vuzdQCFHJa9x63ultWNjVDsysvUq
- JwRK+2kDMcHx1+/ggiZMLDDkSvro9+C9vG8q/FkSutvVI9I+F7hatA3aa
- jP38ftBSAhCIaFHKQ/JGfF0nk7/xn6vlAjnsx/uXIrTSJMmM3RAYHui6S
- FHPJQMsAT5PtcH9V29kbJM3KWZoLKTtlZVnt1M81jPXPAki7rc8RWtA5e
- 5SUZJA+US10ceaaYui5fl4n/WldjWQ6ozetFSFsOcJEnKMiaycS6FMLjP
- SGiyQn1R8Yo3BqYo6Gg7j81+jZrX+6IVABS3g6J8FxPbk2UK+EmJwZGJK g==;
-X-CSE-ConnectionGUID: XMBJhdC9SiSziC2v3qc13A==
-X-CSE-MsgGUID: YHdqdhzISJqcaKbPu6IqWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="44206969"
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="44206969"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 01:27:30 -0700
-X-CSE-ConnectionGUID: V9r30wDxRkWwvgSwb20/Qw==
-X-CSE-MsgGUID: PUr0OWqzQleZMmjieiro2A==
+ bh=uAMAIU2rNUtIJG4IQj+VwcR3lSGm3E5jiddPfvFc3lg=;
+ b=B9QwbK0Vo8H7ah53w8OQshTXjTweVxqVgxO0WyzBRIrJxgRt3eN2hZOm
+ VSb1wfIW8Z68KsJaDwkEQNgtm0gi+E6KHUCAsm6n10MIblvKZ+rBgFGfn
+ qK4V5dedCfzBJo7X22oNbcj4KYe5eE74d0nykpCDJ9cEG37zNrpoiPtCo
+ e5jjnh/2/MmmJ/LGmoez87rJ7jhxt3icXPe0RzmwEG0MTfs1906dH9pAi
+ 52lJrt3xBI5I0U9A9l1MPlYTifnF+3IgMXJkdHpTjcoJjQlC1pkWXrBiW
+ VY78I+k1cRFrZcmcZfkt/MON8RH3/sPExlvVLJTeCeQG83aP5KSIw1EkI Q==;
+X-CSE-ConnectionGUID: rh+DKyHORKGzEoC5HEkxfg==
+X-CSE-MsgGUID: ZmgVLnyMTqinRUyRQjBb/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="32268462"
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="32268462"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 03:03:10 -0700
+X-CSE-ConnectionGUID: iurrRxMEQbK0kZEmRhUkJA==
+X-CSE-MsgGUID: uNIHJ3wGS22d1YRrHibNDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="63432409"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 01:27:26 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1sdmsE-0000000Eeuo-1cOg; Tue, 13 Aug 2024 11:27:22 +0300
-Date: Tue, 13 Aug 2024 11:27:22 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; d="scan'208";a="59184596"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2024 03:03:06 -0700
+Date: Tue, 13 Aug 2024 13:03:01 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
  daniel@ffwll.ch, linux@roeck-us.net, andi.shyti@linux.intel.com,
@@ -55,15 +52,15 @@ Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  anshuman.gupta@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, ashutosh.dixit@intel.com, karthik.poosa@intel.com
 Subject: Re: [PATCH v5] drm/i915/hwmon: expose fan speed
-Message-ID: <ZrsY6tMts81T-uFa@smile.fi.intel.com>
+Message-ID: <ZrsvVSu8rdNYfsSo@black.fi.intel.com>
 References: <20240812081538.1457396-1-raag.jadav@intel.com>
  <ZroK4oSAte9qdnA8@smile.fi.intel.com>
  <Zrry71BfJ31q3iOi@black.fi.intel.com>
+ <ZrsY6tMts81T-uFa@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zrry71BfJ31q3iOi@black.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <ZrsY6tMts81T-uFa@smile.fi.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,55 +76,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 13, 2024 at 08:45:19AM +0300, Raag Jadav wrote:
-> On Mon, Aug 12, 2024 at 04:15:14PM +0300, Andy Shevchenko wrote:
-> > On Mon, Aug 12, 2024 at 01:45:38PM +0530, Raag Jadav wrote:
-
-...
-
-> > > +static int
-> > > +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
-> > > +{
-> > > +	struct i915_hwmon *hwmon = ddat->hwmon;
-> > > +	struct hwm_fan_info *fi = &ddat->fi;
-> > > +	u64 rotations, time_now, time;
-> > > +	intel_wakeref_t wakeref;
-> > > +	u32 reg_val, pulses;
-> > > +	int ret = 0;
-> > > +
-> > > +	if (attr != hwmon_fan_input)
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
-> > > +	mutex_lock(&hwmon->hwmon_lock);
-> > > +
-> > > +	reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
-> > > +	time_now = get_jiffies_64();
-> > 
-> > > +	/* Handle HW register overflow */
-> > > +	if (reg_val >= fi->reg_val_prev)
-> > > +		pulses = reg_val - fi->reg_val_prev;
-> > > +	else
-> > > +		pulses = UINT_MAX - fi->reg_val_prev + reg_val;
-> > 
-> > Isn't it the abs_diff() reimplementation?
+On Tue, Aug 13, 2024 at 11:27:22AM +0300, Andy Shevchenko wrote:
+> On Tue, Aug 13, 2024 at 08:45:19AM +0300, Raag Jadav wrote:
+> > On Mon, Aug 12, 2024 at 04:15:14PM +0300, Andy Shevchenko wrote:
+> > > On Mon, Aug 12, 2024 at 01:45:38PM +0530, Raag Jadav wrote:
 > 
-> Not exactly. This is specific to 32 bit register overflow, so we count
-> from max value.
+> ...
+> 
+> > > > +static int
+> > > > +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> > > > +{
+> > > > +	struct i915_hwmon *hwmon = ddat->hwmon;
+> > > > +	struct hwm_fan_info *fi = &ddat->fi;
+> > > > +	u64 rotations, time_now, time;
+> > > > +	intel_wakeref_t wakeref;
+> > > > +	u32 reg_val, pulses;
+> > > > +	int ret = 0;
+> > > > +
+> > > > +	if (attr != hwmon_fan_input)
+> > > > +		return -EOPNOTSUPP;
+> > > > +
+> > > > +	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
+> > > > +	mutex_lock(&hwmon->hwmon_lock);
+> > > > +
+> > > > +	reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
+> > > > +	time_now = get_jiffies_64();
+> > > 
+> > > > +	/* Handle HW register overflow */
+> > > > +	if (reg_val >= fi->reg_val_prev)
+> > > > +		pulses = reg_val - fi->reg_val_prev;
+> > > > +	else
+> > > > +		pulses = UINT_MAX - fi->reg_val_prev + reg_val;
+> > > 
+> > > Isn't it the abs_diff() reimplementation?
+> > 
+> > Not exactly. This is specific to 32 bit register overflow, so we count
+> > from max value.
+> 
+> I see. But since you have the both variables of u32, why:
+> 1) UINT_MAX?
+> 2) Not simply using
+> 
+> 	pulses = reg_val - fi->reg_val_prev;
+> 
+> which will wrap over correctly?
 
-I see. But since you have the both variables of u32, why:
-1) UINT_MAX?
-2) Not simply using
+Agree. Will update.
 
-	pulses = reg_val - fi->reg_val_prev;
-
-which will wrap over correctly?
-
-Note, in your case (in comparison to the wrap over variant) the off-by-one is
-present. Is it on purpose?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Raag
