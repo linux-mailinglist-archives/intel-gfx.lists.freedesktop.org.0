@@ -2,56 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E7F951AEB
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 14:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8808F951B11
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 14:45:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F01DE10E47E;
-	Wed, 14 Aug 2024 12:34:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB84910E46B;
+	Wed, 14 Aug 2024 12:45:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mh/zk1Tg";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I9YxmqzB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 343AF10E475
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Aug 2024 12:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723638854; x=1755174854;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=1hqu5lE6mNC88WmHFRjO83cYA3vHWWvdq6bWGpZqcNo=;
- b=mh/zk1TgAEmB6OHctbkInpEHSJE3afuE6bTpMqgwfw78xKBx/LS3wELq
- 8RyfVXClAiE2AmhRLKGgYL6SPdnrUQv9F3bIc+kEGNW7ZEj/chN9n1EAg
- PkNWkWwK/f4dX7Zl3ltb6ZN1woz3Ex52cbP+XJ+GOr1NK63V0Jy0QojPc
- a9RK+GRbk+bUYWbJAWVVH3VunhEwaCO+VMriebDl9wKuqAUP+98L/F7mh
- Uat515+F3Nbx2v/uv4iYfMyTmB4SWUxPsDcEaxARF2QxAJCplTuvj18yW
- nBUa/puffK6wzbhfyPxZG5EHmCE5husfPIAw55WCsIc2HrfOZ0CEGaokS A==;
-X-CSE-ConnectionGUID: Xb+f9gGHRueZkhfVf22+Ww==
-X-CSE-MsgGUID: fZH9RlvzQqeHZLeao+iivQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="22018313"
-X-IronPort-AV: E=Sophos;i="6.10,145,1719903600"; d="scan'208";a="22018313"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 05:34:14 -0700
-X-CSE-ConnectionGUID: K1gXwat1TpOWk5r6h3mCvA==
-X-CSE-MsgGUID: 3s5M/xeNTXik+7QpSfV8nw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,145,1719903600"; d="scan'208";a="58884326"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 05:34:12 -0700
-Date: Wed, 14 Aug 2024 15:34:31 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: make __intel_display_power_is_enabled() static
-Message-ID: <ZrykV8TC5w4pmyMR@ideak-desk.fi.intel.com>
-References: <20240813151216.2573845-1-jani.nikula@intel.com>
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
+ [209.85.218.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E87D10E46A;
+ Wed, 14 Aug 2024 12:45:18 +0000 (UTC)
+Received: by mail-ej1-f42.google.com with SMTP id
+ a640c23a62f3a-a7aa212c1c9so784703566b.2; 
+ Wed, 14 Aug 2024 05:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1723639516; x=1724244316; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=gXiJ6h0vBhMAdw5LUn2BvsS0+bvRUr9R1B0J7lshEqk=;
+ b=I9YxmqzBBfpoBkUeMQhThce95XpdUJAp/0pCKHrWJDxshWnBW7xHLr7DB2rBRSdIWY
+ KZXVZCK/Rs6K55/ncEfzLbdhxQXibCYV7nZ/E3xdCoz0iyewA1o5O3tfZQj9Lc74bz8R
+ Crq2DtWpfBP/kX4G1FgtFJerK48cTc1T/tOUeWW3uLrOVILvN5xFZ2zmfY39nW5rBKHv
+ NIzzvuBQh1e0TqM4vAX5CEbXfCR0j+g50g/70XvAFLj6U/dXvqS3XOwhy3kk2ELeZnXF
+ SLYnNAuKhfLOLMoBkFrvEYUNitYwG5SknjLwRx7j8E0zRVruBZM9lWHnLy50DgVXf4gI
+ HDUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1723639516; x=1724244316;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=gXiJ6h0vBhMAdw5LUn2BvsS0+bvRUr9R1B0J7lshEqk=;
+ b=fbMQU1f53M0z4D09YV1Q33CsNhhE90suCv/L0Jeouq4FC5cYveEtxmYE27/3JxuQFY
+ sUhpA53QQAZvcI1YwVWynOJXslwnioGy+Eis+5whxN+9Zsm3gSxYRBlgd9CvcO2gbP7o
+ 3V0bbbSSXh4qibdBacLqklOqwRsxjyYZJNOsduDp+2XDlrgwKmwS2XOxuAHoUSrG/Evc
+ edgHuuA88CgfhNMxZ2AIrTz7d8nbdGU2UaTxLx35NbE3ZHbjz1phXlaswzg7X9GE8Yoj
+ vLgkDZhPSjNLkmJ7D+nVZylO+sBiNHnCUS4i1XvHtOjlIN+6cbY0dPMU9wzEyo61rQT/
+ YaKA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVHmNPeUHaazinjotbKXcamcmAjG1NzuqIkcRPK8oNBon21Eeoi8dfE93iWmnm9kRsOs0WLAPAi4r71Rfib4RTMKS3kKQudnsEN4GzjL0l0Zd2UaHru02Xp3D6Hi4QvdOYCoyQFpYNohWLvup/Mz6+u
+X-Gm-Message-State: AOJu0Yzpf20ru8k/cfO3Bx9sKBjIxFD5QazTQ1N9l2gTUSPQynODlhwt
+ A2UQVx/g3EAxIpsVZA9Z6UsYOt7GdlLvZk+0e7jGD3zfi+bYYSqr31v9BfNDdM+KMBMQFGcmtwM
+ 06LSl5z5m/H9VY2ToV9qUmGVPaCTLf2oF6l4=
+X-Google-Smtp-Source: AGHT+IGZr2QwBx3fGlXSkOaUCnb4hbIxI+4OY6LAlhqkkpfUF/4fww8rKMqhp3vT4LPNsuQUeuvbRSxihSq1GVd5UOU=
+X-Received: by 2002:a17:907:d5a2:b0:a7a:9a78:4b59 with SMTP id
+ a640c23a62f3a-a8366d4146bmr182304366b.23.1723639516109; Wed, 14 Aug 2024
+ 05:45:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240813151216.2573845-1-jani.nikula@intel.com>
+References: <20240814100035.3100852-1-jani.nikula@intel.com>
+In-Reply-To: <20240814100035.3100852-1-jani.nikula@intel.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 14 Aug 2024 15:44:40 +0300
+Message-ID: <CAHp75VciLg3KjeSAeEQyc1xa7o1cjoc5oEjYcGCK_MuSzmAWiw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] string: add mem_is_zero() helper to check if
+ memory area is all zeros
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, Kees Cook <keescook@chromium.org>, 
+ Andy Shevchenko <andy@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,65 +78,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 13, 2024 at 06:12:16PM +0300, Jani Nikula wrote:
-> The function isn't used outside of intel_display_power.c. Make it
-> static.
-> 
+On Wed, Aug 14, 2024 at 1:00=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
+ wrote:
+>
+> Almost two thirds of the memchr_inv() usages check if the memory area is
+> all zeros, with no interest in where in the buffer the first non-zero
+> byte is located. Checking for !memchr_inv(s, 0, n) is also not very
+> intuitive or discoverable. Add an explicit mem_is_zero() helper for this
+> use case.
+>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+...
 
-Same applies to intel_display_power_domain_str().
+>  void *memchr_inv(const void *s, int c, size_t n);
 
-> ---
->  .../gpu/drm/i915/display/intel_display_power.c   | 16 ++--------------
->  .../gpu/drm/i915/display/intel_display_power.h   |  2 --
->  2 files changed, 2 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 0af1e34ef2a7..cf8b38f2ebf5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -198,20 +198,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
->  	}
->  }
->  
-> -/**
-> - * __intel_display_power_is_enabled - unlocked check for a power domain
-> - * @dev_priv: i915 device instance
-> - * @domain: power domain to check
-> - *
-> - * This is the unlocked version of intel_display_power_is_enabled() and should
-> - * only be used from error capture and recovery code where deadlocks are
-> - * possible.
-> - *
-> - * Returns:
-> - * True when the power domain is enabled, false otherwise.
-> - */
-> -bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
-> -				      enum intel_display_power_domain domain)
-> +static bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
-> +					     enum intel_display_power_domain domain)
->  {
->  	struct i915_power_well *power_well;
->  	bool is_enabled;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index d6c2a5846bdc..0962f6aaeee6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -188,8 +188,6 @@ intel_display_power_domain_str(enum intel_display_power_domain domain);
->  
->  bool intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
->  				    enum intel_display_power_domain domain);
-> -bool __intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
-> -				      enum intel_display_power_domain domain);
->  intel_wakeref_t intel_display_power_get(struct drm_i915_private *dev_priv,
->  					enum intel_display_power_domain domain);
->  intel_wakeref_t
-> -- 
-> 2.39.2
-> 
+I would group them here, or move the above.
+
+>  char *strreplace(char *str, char old, char new);
+>
+> +/**
+> + * mem_is_zero - Check if an area of memory is all 0's.
+> + * @s: The memory area
+> + * @n: The size of the area
+> + *
+> + * Return: True if the area of memory is all 0's.
+> + */
+> +static inline bool mem_is_zero(const void *s, size_t n)
+> +{
+> +       return !memchr_inv(s, 0, n);
+> +}
+
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
+
+--=20
+With Best Regards,
+Andy Shevchenko
