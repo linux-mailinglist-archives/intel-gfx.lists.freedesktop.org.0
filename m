@@ -2,62 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA1C951C40
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 15:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A2F3951DAF
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 16:49:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46A7210E494;
-	Wed, 14 Aug 2024 13:52:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pu+KV+uK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A73410E4BC;
+	Wed, 14 Aug 2024 14:49:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6742C10E494;
- Wed, 14 Aug 2024 13:52:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723643544; x=1755179544;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8sELu0ZN8+Jm1Zbq5sAGW9Anpsxmnzfr1mCzydBwHKs=;
- b=Pu+KV+uKHTZ2BNU5PTgZltu4bwfQth4tarQiSKjFr3rq6OQUNH9R0iB8
- kgDQ4vOfZaIMJ4K4RbSOMoZHPJEjO9BYi9GvIweGTv2DCUSLI8QtaeXFS
- eOJKcQzfiGhkqXEv2F+bBRgOmuIteye6HlOCyJZwkOzGN07vOdaIlQQc1
- AeE5/W5qr05Dgp4sWoEQcbvMOfO4rgiywzCy8q4jKQSa6U1WPjIa5V9wO
- lqjQmWp/9fIpoSbYQR12yxIpqBHLkmvEPRKvQ0Y7dZNWqq6gYTsf2E7Rv
- Vza4RdNxDKlDDNMCp/8YD++OZQp35SrA95Xg7ufc3J2bC35o0NY9uOZ8V g==;
-X-CSE-ConnectionGUID: We97PijESnqdzs95Ts68bQ==
-X-CSE-MsgGUID: if+8YSUCSwSSX2ncLh+f8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="21828367"
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="21828367"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 06:52:02 -0700
-X-CSE-ConnectionGUID: mpcN4dZRTpWrmBv66yKqgQ==
-X-CSE-MsgGUID: uCCiYO59S02amEAuvAOByw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="58654011"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.62])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 06:51:55 -0700
-Date: Wed, 14 Aug 2024 15:51:51 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Nirmoy Das <nirmoy.das@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sima <daniel.vetter@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH v2 0/2] Allow partial memory mapping for cpu memory
-Message-ID: <Zry2d2LtQLiPY58x@ashyti-mobl2.lan>
-References: <20240814134837.116498-1-andi.shyti@linux.intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5311710E4BC;
+ Wed, 14 Aug 2024 14:49:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3239653845433668751=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Allow_partial_memory_mappin?=
+ =?utf-8?q?g_for_cpu_memory?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 14 Aug 2024 14:49:53 -0000
+Message-ID: <172364699333.633352.14271144724036708699@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240814134837.116498-1-andi.shyti@linux.intel.com>
 In-Reply-To: <20240814134837.116498-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,68 +37,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Argh... sorry, I messed up with format-patch and send-mail and
-sent it twice.
+--===============3239653845433668751==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Maybe I need to resend it if CI complains.
+== Series Details ==
 
-Andi
+Series: Allow partial memory mapping for cpu memory
+URL   : https://patchwork.freedesktop.org/series/137307/
+State : success
 
-On Wed, Aug 14, 2024 at 03:48:32PM +0200, Andi Shyti wrote:
-> Hi,
-> 
-> I am resending this patch series, not to disregard the previous
-> discussions, but to ensure it gets tested with the IGTs that
-> Krzysztof has provided.
-> 
-> This patch series finalizes the memory mapping fixes and
-> improvements by enabling partial memory mapping for CPU memory as
-> well.
-> 
-> The concept of partial memory mapping, achieved by adding an
-> object offset, was implicitly introduced in commit 8bdd9ef7e9b1
-> ("drm/i915/gem: Fix Virtual Memory mapping boundaries
-> calculation") for GTT memory.
-> 
-> To address a previous discussion with Sima and Matt, this feature
-> is used by Mesa and is required across all platforms utilizing
-> Mesa. Although Nirmoy suggested using the Fixes tag to backport
-> this to previous kernels, I view this as a new feature rather
-> than a fix.
-> 
-> Lionel, please let me know if you have a different perspective
-> and believe this should be treated as a bug fix, requiring it
-> to be backported to stable kernels.
-> 
-> The IGTs have been developed in collaboration with the Mesa team
-> to replicate the exact Mesa use case[*].
-> 
-> Thanks Chris for the support, thanks Krzysztof for taking care of
-> the IGT tests, thanks Nirmoy for your reviews and thanks Sima and
-> Matt for the discussion on this series.
-> 
-> Andi
-> 
-> [*] https://patchwork.freedesktop.org/patch/608232/?series=137303&rev=1
-> 
-> Test-with: 20240814132404.18392-1-krzysztof.niemiec@intel.com
-> 
-> Changelog:
-> ==========
-> v1 -> v2
->  - Added Nirmoy's tags.
-> 
-> Andi Shyti (2):
->   drm/i915/gem: Do not look for the exact address in node
->   drm/i915/gem: Calculate object page offset for partial memory mapping
-> 
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 10 ++++++----
->  drivers/gpu/drm/i915/i915_mm.c           | 12 +++++++++++-
->  drivers/gpu/drm/i915/i915_mm.h           |  3 ++-
->  3 files changed, 19 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.45.2
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15231 -> Patchwork_137307v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Additional (1): fi-kbl-8809g 
+  Missing    (4): bat-mtlp-8 bat-arls-2 fi-snb-2520m bat-mtlp-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137307v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] +30 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-adlp-6:         [INCOMPLETE][4] ([i915#10886]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15231/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-5:         [ABORT][6] -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15231/bat-arls-5/igt@i915_selftest@live@hangcheck.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/bat-arls-5/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#10886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10886
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15231 -> Patchwork_137307v1
+
+  CI-20190529: 20190529
+  CI_DRM_15231: 79d8c33863d99ac1b04afcce123bdc2ad919e993 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7969: 4aa543467adf6e61ed57e2c0a84a0534923aacc6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_137307v1: 79d8c33863d99ac1b04afcce123bdc2ad919e993 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/index.html
+
+--===============3239653845433668751==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Allow partial memory mapping for cpu memory</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137307/">https://patchwork.freedesktop.org/series/137307/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15231 -&gt; Patchwork_137307v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Additional (1): fi-kbl-8809g <br />
+  Missing    (4): bat-mtlp-8 bat-arls-2 fi-snb-2520m bat-mtlp-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137307v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15231/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10886">i915#10886</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/bat-adlp-6/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15231/bat-arls-5/igt@i915_selftest@live@hangcheck.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137307v1/bat-arls-5/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15231 -&gt; Patchwork_137307v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15231: 79d8c33863d99ac1b04afcce123bdc2ad919e993 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7969: 4aa543467adf6e61ed57e2c0a84a0534923aacc6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_137307v1: 79d8c33863d99ac1b04afcce123bdc2ad919e993 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3239653845433668751==--
