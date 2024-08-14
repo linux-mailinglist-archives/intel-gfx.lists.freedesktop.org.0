@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B579951C1D
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 15:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1ABF951C2A
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 15:49:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED7610E48C;
-	Wed, 14 Aug 2024 13:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 823C710E492;
+	Wed, 14 Aug 2024 13:49:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TU9/4sPd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qn71m16w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CACC010E48E;
- Wed, 14 Aug 2024 13:48:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A70610E491;
+ Wed, 14 Aug 2024 13:49:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723643304; x=1755179304;
+ t=1723643357; x=1755179357;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=blm7jAQoSNHeYCs7Wlv7rh0Eni/1qDlqjkgx/wsMrPg=;
- b=TU9/4sPdA3HQkic8Lvw1NfOLWwbBtQ1+Ky2SeVCWm3OgIvUvaUl/OVr2
- tWONOTPTAcWqOy86sVkFGW3vfuGGOKIOTdJBdUQzR+LPHFPshlJ2qq2dp
- tbqKGXSrS3n2wDiwHckOHcOHxfKLTvieEfhw1EchY7mhEOE2hIc++B+6o
- 9kCjICUaGNMxGhe7bS45kKSQr1lye20EwO3AC2SyvDtf6r5xLChtgs3Fj
- DbMvQ6P2X2vHmnl4GeLWVmkLjWGaI5wXmLulIVemPMPCjZdTEKqbqRJ+r
- +BqjURjHwbpSSdYlHMd3QogPpRF3lgTqw53SugRf6rliNvXivZs2JOzRr Q==;
-X-CSE-ConnectionGUID: Hu4D7IF0TR6AmWPZLiNDWQ==
-X-CSE-MsgGUID: 3fpavCQQSxqF7nwHchzzXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="32537544"
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="32537544"
+ b=Qn71m16wBMQfb7mlzeYNhQVr6hv8MKcDCuDbPS9MOADJVXBJTC/RRA5Q
+ cNmAdPwqZiSSvjRvqqdFLqw6LkcCpSMs+lWa2ME9O36Yp5osUQlj/ZGRi
+ gQGpmF6Cl3MEdClDFm7QxCNOwKHjRpzD16FnsE/vGuYS7PB5exYcCS/Rz
+ xgFM5x/wcXGw4nMqAscg/enhTjy2Q8fUH0O92ScolJkAZpB9AjRSt1QD9
+ H3yhmCgLdzpKPy9Q3wLHnqSCpKPRMXC34yQRLfnWnZC9FE+HO/ZbCf473
+ RiYj8ssh1iA+U7QI7OSTNsexZ1ecOuO1VKsNWRd0mAirpcoYyz1OTQvDn w==;
+X-CSE-ConnectionGUID: bLSXicj0Rnugr/sjLQt8rQ==
+X-CSE-MsgGUID: aR/Iu/UWR52K29hWa8+rEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="32537648"
+X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="32537648"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 06:48:24 -0700
-X-CSE-ConnectionGUID: FvU1hJn1SEuVv/XTbdkt9w==
-X-CSE-MsgGUID: /QtCJ8vNS1KKSpQmb7MCoA==
+ 14 Aug 2024 06:49:17 -0700
+X-CSE-ConnectionGUID: kfmi07LgQp+giYTgfQcFcA==
+X-CSE-MsgGUID: Y/UbJFJSSc6dBrpolBLTCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="59153915"
+X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; d="scan'208";a="59154274"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO intel.com)
  ([10.245.246.62])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2024 06:48:21 -0700
+ 14 Aug 2024 06:48:42 -0700
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>
@@ -52,8 +52,8 @@ Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
  Sima <daniel.vetter@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
  Andi Shyti <andi.shyti@linux.intel.com>
 Subject: [PATCH v2 0/2] Allow partial memory mapping for cpu memory
-Date: Wed, 14 Aug 2024 15:47:46 +0200
-Message-ID: <20240814134751.116439-1-andi.shyti@linux.intel.com>
+Date: Wed, 14 Aug 2024 15:48:32 +0200
+Message-ID: <20240814134837.116498-1-andi.shyti@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
