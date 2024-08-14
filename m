@@ -2,60 +2,129 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B737E95131D
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 05:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA6C95136A
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2024 06:17:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0F7D10E38F;
-	Wed, 14 Aug 2024 03:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A73F10E273;
+	Wed, 14 Aug 2024 04:17:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K+nt2jwO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lXFt9dDh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3241810E32E;
- Wed, 14 Aug 2024 03:30:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723606239; x=1755142239;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=IRG2HoilNLCV3MWbYyl9BQgmgBOkKVLTEiD0+Tvq3XQ=;
- b=K+nt2jwOGh+ER9r+00SlgmRzz5dHXreXczZl7QYfeo2qscxNNTTih47E
- XHnL2nBtZG7PEZWejaPt1Qv+YNDeF6QXJdF05/bo9VRRyC4BJUlki1H2C
- ZM5z0DE8+D7c0jzVeQ5o8+tffRGkTZF3uvekFvSRGm6TO61FCQ8h+RTPi
- t/85X8iHmv8rQVvBwNJuY9WkLOdp0eIwraDhZBS9yiJ2AZvNhdiUHwOBU
- 4dkKx8PwQedJIFSamHfjd9joGJNmjAGGN6XHKj77ugBvMtH2pfU1OhnwJ
- 9xXe4kfayxi/yk9kVKJAtEi+eXfHy//1UhzUHxm5DRki12XyQBUYpsrzO g==;
-X-CSE-ConnectionGUID: /7k2PamZTTSaqCJh1bhQNg==
-X-CSE-MsgGUID: 4Fhs9dgzSRq+qN7FrfYlwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="21957709"
-X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; 
- d="asc'?scan'208";a="21957709"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2024 20:30:38 -0700
-X-CSE-ConnectionGUID: FhVFhCKIS7yc54nUYs8z5g==
-X-CSE-MsgGUID: Y78UXkCjS8+6kNzzRVElag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; 
- d="asc'?scan'208";a="58809244"
-Received: from debian-skl.sh.intel.com (HELO debian-skl) ([10.239.160.45])
- by orviesa009.jf.intel.com with ESMTP; 13 Aug 2024 20:30:36 -0700
-Date: Wed, 14 Aug 2024 11:32:13 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Zhi Wang <zhiwang@kernel.rog>, Zhenyu Wang <zhenyuw@linux.intel.com>,
- Zhi Wang <zhi.wang.linux@gmail.com>, intel-gvt-dev@lists.freedesktop.org
-Subject: Re: [RESEND 1/2] drm/i915/gvt: stop using drm_edid_block_valid()
-Message-ID: <ZrwlPUVhp3v59rzS@debian-scheme>
-References: <20240812142849.1588006-1-jani.nikula@intel.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C692710E273;
+ Wed, 14 Aug 2024 04:17:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VOJ+v07MlBRiK/GIKSs6qydpHOpOyx4wotDv0SWjLL36lYzVyt13r1JGB8IL90TcO9aMYqtokPamtyTGxxVCipKjGdznpx5QZ9eSpK//ueypsrDM5XapgnL9kFZuPMWbOJNkn6cLY61MmLVBEfjv+oMW+SGnq31VRBizHweYRAQccGnsdKLVrNWTGI/+DJu15Yq8cWnfUDolumH2MNe5cE8d7NVq27lOo+2r11T+tQxFUBL1u40hop87riH6eX1F71wXu8Lgo1niXjH+Y6bVMiiAVcAqipzgJZhO6qjFoLGfu+Fh+KJ2OoLIYVMHuc+a870+a05S5ztt/VapoJJcvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZVyp/Y2DX2yA1WEESLfQJK6NqR2yrqMV+ZRePUM+UZc=;
+ b=NTAC1lA4fE8fxOFc04k79p2CV2ffDvJnnSYq/u5vxBFx63qFzD7jS/Z2GLgjWFpAVWK9nJb8KaZf1Oiyr6KPoqkMMdj0+mkxTwacLBTqwWXYpmRj65ocNHaVVHs/74PzlbYIf68qUYNRo0csJYePDEBLNQ+IIfMNep6em+J/lsEp+DapK+bejSIQJPFW1ZSyF6s/t9aG/e7gRAVJGYjJ0F5aoZcJoIisiwFMH2Cmnj/r1GQaHpIFNiK1Om9q47Z5ZGDD0O/NYBpUAjYEstt/29bK/3m3wNv5Wh0giFz9zcFT9yy0ojUmnBX4HtRR267RjjQ1sguxjMK2L6Hhli3KAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZVyp/Y2DX2yA1WEESLfQJK6NqR2yrqMV+ZRePUM+UZc=;
+ b=lXFt9dDhQFA+Ajyna3a0ktnmjMamVqKL7L+8Gp46rRrZ/jOXzqcgrdwSt/dtEvgZUr54X9DKpRzCU2BS6arbV4Y3Ockot/cjNU4InGbASGm8MVABPs+CK0qUw6YkTWcFY7WrXlF3nvdk9Z3KfTC2wWf82mJzpcKxa212sl1tW6U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB6760.namprd12.prod.outlook.com (2603:10b6:a03:44c::18)
+ by CH2PR12MB4150.namprd12.prod.outlook.com (2603:10b6:610:a6::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Wed, 14 Aug
+ 2024 04:17:41 +0000
+Received: from SJ0PR12MB6760.namprd12.prod.outlook.com
+ ([fe80::25c8:f399:b2e8:1947]) by SJ0PR12MB6760.namprd12.prod.outlook.com
+ ([fe80::25c8:f399:b2e8:1947%5]) with mapi id 15.20.7849.023; Wed, 14 Aug 2024
+ 04:17:40 +0000
+Content-Type: multipart/alternative;
+ boundary="------------bNofUzotORi7Jxwb7XlLJu3P"
+Message-ID: <adb96f92-ca20-43b5-b94d-085baeac8f83@amd.com>
+Date: Wed, 14 Aug 2024 00:16:54 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/4] drm: Use full allocated minor range for DRM
+To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexdeucher@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ David Airlie <airlied@linux.ie>, Oded Gabbay <ogabbay@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Emil Velikov <emil.l.velikov@gmail.com>,
+ Matthew Wilcox <willy@infradead.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, James Zhu <James.Zhu@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20230724211428.3831636-1-michal.winiarski@intel.com>
+ <CADnq5_NwDn5DXPadzZtegUJ=y=LfVHykO7kG3edmiqRTTCxMNQ@mail.gmail.com>
+ <nqsuaaibncfcnu3d5376ulujxfswbjwq3ptrivh6djpmvcpuih@fepbhcbik272>
+Content-Language: en-US
+From: James Zhu <jamesz@amd.com>
+Organization: AMD RTG
+In-Reply-To: <nqsuaaibncfcnu3d5376ulujxfswbjwq3ptrivh6djpmvcpuih@fepbhcbik272>
+X-ClientProxiedBy: YQZPR01CA0052.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:88::21) To SJ0PR12MB6760.namprd12.prod.outlook.com
+ (2603:10b6:a03:44c::18)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
- protocol="application/pgp-signature"; boundary="DqdRhSWku2VpMsMe"
-Content-Disposition: inline
-In-Reply-To: <20240812142849.1588006-1-jani.nikula@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB6760:EE_|CH2PR12MB4150:EE_
+X-MS-Office365-Filtering-Correlation-Id: 425ea385-ccd9-481f-a8e4-08dcbc18093d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: PomTOQC47km3WP0vldS8OlhRFFK6UAsKq99x4Iir1AjHnDLd8cUh9y09DMtm3LvI+M5BPPEvmda2lVlk1tgleNVchh7jY1jYqrHxZV2wWh7izazjIKCydWvGI5qF4RNlbAIJj/RdfeNZRTMv3yf6ko7XpXNGCEhuJ6FtEonHGj2lgf48oPcnbi6JACo0DNd/ZgXN/LjSLJHbQQdm9vY5t7SP6nLy5qkfrxKkvqXVfmI0TwnuinsT77eczZPpk6DS/D6y/dSUNBUEB0r3AhbRTNK3WePsyo+9dCgiYidUuomsR8XY8xGGJ5w18DGnyWp3eTGMqMRJFmhTU0mbSJWS+VKPp7BN27050mtfIqJLh6LxJ45W+4MwLrVcMcoxajqqGiQXXMxkfHao/S7lSeonqJYi+8Q9afSeT/bbihjAGaMwlkernA8i7y9NczmsG15Obiz1wiTMla3pFReeqxGY7gUKVEgVt8mZwU6bKT7tqyWND0Ft/miCbYBVSCu/7wxo79NSMIefoFt+VDNM7YyIZujkTdNfjl0jrsAuIPk+lIOCG4FiZQjwV2718SaDi9KeonKu7+UTuleHy8pQ4TmkM4dkuVy/Mqu61+l7QvnkyNiuKOs1gMKmFo+xCENGjvJJNc7sAfZk5E9EcZtsHlEyjlFgMp59s4ze4u1aw2slVn0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB6760.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YW5CY0h5NjN6NGRGU0VGTUl1TElzaXdZM21mUDl5LytMemVaczBrbkxGaWcz?=
+ =?utf-8?B?TlkxNmVaY1JRVWJRMjhFNm5ub2xhWkpKU2psZGR1T0ZWYjFjcmJ0czRIcm04?=
+ =?utf-8?B?MExSTWdScksxR2hUNlRUNXpYdnJSWS9HZk1ZTTIreU92ZzVpL3BxOWx1TTRI?=
+ =?utf-8?B?MjdVZWlCbDR0MVVBbHBxMUZPVStYT2ZMcFQ1akpNbzZQM1hnanlEU3JSNmJV?=
+ =?utf-8?B?YWM2OEhZYWdpZFpLUUM1STlBV045REc0eVNhOGlyMUJPTlZLTDArUGxqNzV6?=
+ =?utf-8?B?cWp1dnhhYjBGRHkzZnMybk12RDNNY2RiUWpYMnZWN3h2U2hWaUNKMWxQVmYx?=
+ =?utf-8?B?UStjZzJTNFF4VDNjWnJmZ0Zwd2IwN053cFQ1NHB2TGp3QlRROFN4NFRPOTVo?=
+ =?utf-8?B?d2txSUs0bmJDaXplNFB3dndzcEZnQzdVS1ppTnNsZ2RoQUtxLzJlY1djV3Nw?=
+ =?utf-8?B?akdUc2VNSHhaUzJ6Nk00Y05OK29UaEU1YmZGYUlzeDROQUZDeDdicER6SUoy?=
+ =?utf-8?B?dmxqb1NnZlpxNTFjSGhjNWg5Q3FKcng0VWtBQjF0dW5wRjlReUN5STYrY2Va?=
+ =?utf-8?B?NFExK2R0NTgwTDNXc1FibzVtVWxvby90YTk1QVp5N29CTEZ6anBvd3N5dEtU?=
+ =?utf-8?B?VG0vNTdzbXkzb09PN0lvd2RGd2hQSVpmU2VhTmNSUlJaV21aUHZMeDhnZTRH?=
+ =?utf-8?B?TnRnc1dwNVVuSDE3OUd6dW5VNkFxQTRMdGp2VW1ydGZqaEdOQUNXR0tFdnQ0?=
+ =?utf-8?B?SjNKRER0RGxkSUdERWRrZVROZmQxUm5iTDcwYkR4Y2JYRGlZSXc4UWozV2h1?=
+ =?utf-8?B?L3NCeUl2djEvcVg4UTJFZkVtRllQcmcvZlF4TjZ3OE5IYkFPTlJpdmh4OU13?=
+ =?utf-8?B?dUFtQXhCM0VZdFIzYS92dG1oMlN1WXFQZjdVZkxUcVBFM3ZsTzRBd2VKZVlP?=
+ =?utf-8?B?S0lseVR0WStuM0FiVC9qTXdtNW9SdGtpZXdmZGpDNjdodis1MXlhQTJkZkRl?=
+ =?utf-8?B?cEk4NzkxeHV0YlQvT2Fpa3h3bjVrV3N5SEhLVjU5OGFTaGh2ZmxESWxaQnpB?=
+ =?utf-8?B?bTBuNmptT3Q2NUMwV0NoUVhJL3RUWG0xSzVidXdnMmhFNjZkWVJVZER5aVhY?=
+ =?utf-8?B?eTg3L3YzaWRwYkdSZEJnUzM1VmhQeHkyUXo2SFVaOFc3QVFLeHBBWlhmNjRn?=
+ =?utf-8?B?MG9kaHlIemFWSDFqOGt4cmdkaXZPWk0vVmJselZKK0dIbHpLMG11enFHdmxY?=
+ =?utf-8?B?K1NBSCtISTZWV09tZWdYaWJ3ck9HZExTenFXekQwSE1MQlFhV0lySmMyU1Zl?=
+ =?utf-8?B?d2lYd29hOURhUGo1dEVONm1za084QVJkem8wSUNocFhtcmVKSWFmMGU4eW9O?=
+ =?utf-8?B?bjBqT3I2b1QwUTJIWVYyYkJCTnVibmZGZ3VCenNBWHcvcG1IL2hWbHdNcnhy?=
+ =?utf-8?B?WG5KbDdrOWhtY1p3emVYUndpZmRNMWVpTGxvcFU0Rmsya0pYR3lPOEFESDl2?=
+ =?utf-8?B?UUtpcGo5YXM1bmdaaFZlUjZHWXFIWDJOajkvTE9sU2YrWHdoc2ZMU0podGdj?=
+ =?utf-8?B?bFA4ZmtkbGlqVlhIQXlXSFdmcHU4dzV1OU1uVHJmVGNRQ2dCTGcydXFvempY?=
+ =?utf-8?B?VG1CV0N2RkhlNkxMV3RUWXBXUlRiSnVSOUZwUnhIdjlDeUdka3FnSm5hOEs2?=
+ =?utf-8?B?WDBQdGx5Um9oZ3V1YjZJR0I2YUJYUU54eWtvWXAxNGtKc0lObUtCNVJwb0VU?=
+ =?utf-8?B?SzFrR25CMGoydHEwTmhGbGEvbklyS2IvRldKVWo1U2p4ZjY0TnR2cEtuRGVt?=
+ =?utf-8?B?Qi93RWdHS0htenFGU2NScXJVZDFDa3l0R2lMZmtSbUdaOTVIQUpYbkJYRDFj?=
+ =?utf-8?B?eFFWcVNCNzV3RnRwSUhOdjVNV0pKelZKMm1iZnI2UC9yeWtYMWRaeWQ1WFlv?=
+ =?utf-8?B?RDZDTlRPU2U0TENNbkh1cktkYjdIV2I5Ykw3MG9pcmhXYy9WQjFQN2pxQ0dO?=
+ =?utf-8?B?cWZCamsxbXJPWVVqQkJ3RXQra1RJU0JXSTRJbitwb3A5MklYZkdFSUhXTm5z?=
+ =?utf-8?B?Z3p5aE9uWVBiWnlEUVZYRjZ2d3NZV252WElvQVZVMmdRZVJMejJFcDAyM0RE?=
+ =?utf-8?Q?4nGs=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 425ea385-ccd9-481f-a8e4-08dcbc18093d
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB6760.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2024 04:17:40.1974 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: W6jdqL5lLBi3nB7w0QJqVtac7nsLGHU0I/txwLxJz9Zd26TXwTr9uzYBHjj08qzq
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4150
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,91 +137,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--------------bNofUzotORi7Jxwb7XlLJu3P
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---DqdRhSWku2VpMsMe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Michal
 
-On 2024.08.12 17:28:48 +0300, Jani Nikula wrote:
-> We'll want to stop drm_edid_block_valid() usage. KVMGT is the last
-> user. Replace with drm_edid_valid(), which unfortunately requires an
-> allocated drm_edid. However, on the plus side, this would be required to
-> handle the TODO comment about EDID extension block support.
->=20
-> Acked-by: Zhi Wang <zhiwang@kernel.rog>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+I did give Tested-by before. If you need Acks, Here I can give
+
+Acked-by:JamesZhu<James.Zhu@amd.com>fortheseries
+
+Best Regards!
+
+James
+
+On 2024-08-13 20:18, Michał Winiarski wrote:
+> On Mon, Aug 12, 2024 at 01:38:38PM GMT, Alex Deucher wrote:
+>> Are there any objections to this series?  We have been running into
+>> this limit as a problem for a while now on big servers.
+> I don't think there were any objections, just a general lack of
+> interest - so there are no R-b / Acks.
+> If you're interested to have a go at it - I can resend it.
+> It should still apply on latest drm-tip.
 >
+> -Michał
+>
+>> Alex
+>>
+>> On Mon, Jul 24, 2023 at 5:15 PM Michał Winiarski
+>> <michal.winiarski@intel.com>  wrote:
+>>> 64 DRM device nodes is not enough for everyone.
+>>> Upgrade it to ~512K (which definitely is more than enough).
+>>>
+>>> To allow testing userspace support for >64 devices, add additional DRM
+>>> modparam (force_extended_minors) which causes DRM to skip allocating minors
+>>> in 0-192 range.
+>>> Additionally - convert minors to use XArray instead of IDR to simplify the
+>>> locking.
+>>>
+>>> v1 -> v2:
+>>> Don't touch DRM_MINOR_CONTROL and its range (Simon Ser)
+>>>
+>>> v2 -> v3:
+>>> Don't use legacy scheme for >=192 minor range (Dave Airlie)
+>>> Add modparam for testing (Dave Airlie)
+>>> Add lockdep annotation for IDR (Daniel Vetter)
+>>>
+>>> v3 -> v4:
+>>> Convert from IDR to XArray (Matthew Wilcox)
+>>>
+>>> v4 -> v5:
+>>> Fixup IDR to XArray conversion (Matthew Wilcox)
+>>>
+>>> v5 -> v6:
+>>> Also convert Accel to XArray
+>>> Rename skip_legacy_minors to force_extended_minors
+>>>
+>>> Michał Winiarski (4):
+>>>    drm: Use XArray instead of IDR for minors
+>>>    accel: Use XArray instead of IDR for minors
+>>>    drm: Expand max DRM device number to full MINORBITS
+>>>    drm: Introduce force_extended_minors modparam
+>>>
+>>>   drivers/accel/drm_accel.c      | 110 +++------------------------------
+>>>   drivers/gpu/drm/drm_drv.c      | 105 ++++++++++++++++---------------
+>>>   drivers/gpu/drm/drm_file.c     |   2 +-
+>>>   drivers/gpu/drm/drm_internal.h |   4 --
+>>>   include/drm/drm_accel.h        |  18 +-----
+>>>   include/drm/drm_file.h         |   5 ++
+>>>   6 files changed, 69 insertions(+), 175 deletions(-)
+>>>
+>>> --
+>>> 2.41.0
+>>>
+--------------bNofUzotORi7Jxwb7XlLJu3P
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Looks fine to me. Feel free to merge.
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p>Hi Michal</p>
+    <p>I did give&nbsp;Tested-by before. If you need Acks, Here  I can give </p>
+    Acked-by:<span style=" color:#c0c0c0;"> </span>James<span style=" color:#c0c0c0;"> </span>Zhu<span style=" color:#c0c0c0;">
+    </span><a class="moz-txt-link-rfc2396E" href="mailto:James.Zhu@amd.com">&lt;James.Zhu@amd.com&gt;</a><span style=" color:#c0c0c0;"> </span><span style=" color:#ff9d04;">for</span><span style=" color:#c0c0c0;"> </span>the<span style=" color:#c0c0c0;"> </span>series
+    <p><style type="text/css">p, li { white-space: pre-wrap; }</style></p>
+    <p>Best Regards!</p>
+    <p>James</p>
+    <div class="moz-cite-prefix">On 2024-08-13 20:18, Michał Winiarski
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:nqsuaaibncfcnu3d5376ulujxfswbjwq3ptrivh6djpmvcpuih@fepbhcbik272">
+      <pre class="moz-quote-pre" wrap="">On Mon, Aug 12, 2024 at 01:38:38PM GMT, Alex Deucher wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">Are there any objections to this series?  We have been running into
+this limit as a problem for a while now on big servers.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+I don't think there were any objections, just a general lack of
+interest - so there are no R-b / Acks.
+If you're interested to have a go at it - I can resend it.
+It should still apply on latest drm-tip.
 
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+-Michał
 
-> ---
->=20
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Cc: Zhi Wang <zhi.wang.linux@gmail.com>
-> Cc: intel-gvt-dev@lists.freedesktop.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> ---
->  drivers/gpu/drm/i915/gvt/kvmgt.c | 18 +++++++++++++-----
->  1 file changed, 13 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/=
-kvmgt.c
-> index 38830818c120..ca0fb126b02d 100644
-> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> @@ -425,6 +425,18 @@ static const struct intel_vgpu_regops intel_vgpu_reg=
-ops_opregion =3D {
->  	.release =3D intel_vgpu_reg_release_opregion,
->  };
-> =20
-> +static bool edid_valid(const void *edid, size_t size)
-> +{
-> +	const struct drm_edid *drm_edid;
-> +	bool is_valid;
-> +
-> +	drm_edid =3D drm_edid_alloc(edid, size);
-> +	is_valid =3D drm_edid_valid(drm_edid);
-> +	drm_edid_free(drm_edid);
-> +
-> +	return is_valid;
-> +}
-> +
->  static int handle_edid_regs(struct intel_vgpu *vgpu,
->  			struct vfio_edid_region *region, char *buf,
->  			size_t count, u16 offset, bool is_write)
-> @@ -443,11 +455,7 @@ static int handle_edid_regs(struct intel_vgpu *vgpu,
->  		switch (offset) {
->  		case offsetof(struct vfio_region_gfx_edid, link_state):
->  			if (data =3D=3D VFIO_DEVICE_GFX_LINK_STATE_UP) {
-> -				if (!drm_edid_block_valid(
-> -					(u8 *)region->edid_blob,
-> -					0,
-> -					true,
-> -					NULL)) {
-> +				if (!edid_valid(region->edid_blob, EDID_SIZE)) {
->  					gvt_vgpu_err("invalid EDID blob\n");
->  					return -EINVAL;
->  				}
-> --=20
-> 2.39.2
->=20
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+Alex
 
---DqdRhSWku2VpMsMe
-Content-Type: application/pgp-signature; name="signature.asc"
+On Mon, Jul 24, 2023 at 5:15 PM Michał Winiarski
+<a class="moz-txt-link-rfc2396E" href="mailto:michal.winiarski@intel.com">&lt;michal.winiarski@intel.com&gt;</a> wrote:
+</pre>
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">
+64 DRM device nodes is not enough for everyone.
+Upgrade it to ~512K (which definitely is more than enough).
 
------BEGIN PGP SIGNATURE-----
+To allow testing userspace support for &gt;64 devices, add additional DRM
+modparam (force_extended_minors) which causes DRM to skip allocating minors
+in 0-192 range.
+Additionally - convert minors to use XArray instead of IDR to simplify the
+locking.
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCZrwlOQAKCRCxBBozTXgY
-J07dAJ0ZTZ8Fd/2wGBj8i44MsFb1iOm/XwCeIuq/32BDPLTjDt02E543ifdRqvk=
-=ZrFf
------END PGP SIGNATURE-----
+v1 -&gt; v2:
+Don't touch DRM_MINOR_CONTROL and its range (Simon Ser)
 
---DqdRhSWku2VpMsMe--
+v2 -&gt; v3:
+Don't use legacy scheme for &gt;=192 minor range (Dave Airlie)
+Add modparam for testing (Dave Airlie)
+Add lockdep annotation for IDR (Daniel Vetter)
+
+v3 -&gt; v4:
+Convert from IDR to XArray (Matthew Wilcox)
+
+v4 -&gt; v5:
+Fixup IDR to XArray conversion (Matthew Wilcox)
+
+v5 -&gt; v6:
+Also convert Accel to XArray
+Rename skip_legacy_minors to force_extended_minors
+
+Michał Winiarski (4):
+  drm: Use XArray instead of IDR for minors
+  accel: Use XArray instead of IDR for minors
+  drm: Expand max DRM device number to full MINORBITS
+  drm: Introduce force_extended_minors modparam
+
+ drivers/accel/drm_accel.c      | 110 +++------------------------------
+ drivers/gpu/drm/drm_drv.c      | 105 ++++++++++++++++---------------
+ drivers/gpu/drm/drm_file.c     |   2 +-
+ drivers/gpu/drm/drm_internal.h |   4 --
+ include/drm/drm_accel.h        |  18 +-----
+ include/drm/drm_file.h         |   5 ++
+ 6 files changed, 69 insertions(+), 175 deletions(-)
+
+--
+2.41.0
+
+</pre>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------bNofUzotORi7Jxwb7XlLJu3P--
