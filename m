@@ -2,68 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688A1953ABB
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2024 21:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A7E953ABC
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2024 21:15:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F64210E50F;
-	Thu, 15 Aug 2024 19:15:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D291410E519;
+	Thu, 15 Aug 2024 19:15:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ko0ElNWj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gxB2q1VV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BFA010E50E;
- Thu, 15 Aug 2024 19:15:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B42910E511;
+ Thu, 15 Aug 2024 19:15:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723749312; x=1755285312;
+ t=1723749348; x=1755285348;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=G7dnTV2c9BqSFAU+a8nk0JlXgrBVOgyf4+pCrlrXXhs=;
- b=ko0ElNWjdxYpxduf/Li9ODHNrmKY4+NUDBXg7d8nGRRsS+GkFyYAmK4X
- 2Fl6iDZVfDVIOXJdyVZoRLLOH2WfadKyxSf9gPjvebWWqsvKX972xuF+g
- q4pcGXltUJEMk2hrOaf1wjatpTwF4ljhRQWpfRrsdp9Zk7+SDIh9lrxY2
- d56QwryTKvTuV/rj3t6mrkpX3ypd1DXpqe3YbUK2Lo15ejstBCd16lgO1
- a9PRJIzp1NcdMc/qxlyDVgf8ExOxSEMMS18rp/vm35z/jtM/RrDGTg8av
- pnLuoVQSVcd2tgr9Tl+KBPmubxbu+wEqFEkcvq3e0ZhQ4mI6bnlrmN1Tu w==;
-X-CSE-ConnectionGUID: cnfsPcc2SJ2jStDg4hLcAA==
-X-CSE-MsgGUID: NDsjblkHS6OqvnOGSuxR1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="47432868"
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="47432868"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2024 12:15:03 -0700
-X-CSE-ConnectionGUID: aL02DjsjQ82b6g4Ij6ZuWQ==
-X-CSE-MsgGUID: EpNU79uOT5uG5SbOF0hWMA==
+ bh=UD5a0gWetb4oOfuV+BWyBp3S6a6BaqVg6rAWzUu8yHU=;
+ b=gxB2q1VVBnNDn7awGJ0s330fULqBJ7UJ8bexu4SJFCqfvMf64s1UMMMB
+ jaJmjogc6ptajJn2x9K8sG8sREyQTLACn1rKm7jAZ37+05duUH363vExq
+ PmBmkkPUlsFUJE2wiWoSn/PkCdpJn6vCOkdXewl5ZINe+BiWDNPdU0yEi
+ vuND8rT+JPNdc4zrOVdV31cKoJeLE3qB1JJiJI8K4S9n2E187lftwWk0K
+ zGbXKjbydBRusjWTeDSx2rLYi8XAstgJb2NYY6qfIvoLaoEGVAWvfqP15
+ wjLJ4pKMk20ltsn1D/9SH1xtLoDzSX4CPWoS+A7Sq9pBsXhe1uiAj+LOk A==;
+X-CSE-ConnectionGUID: lu2+2yjpQp+7B0ufmA55jA==
+X-CSE-MsgGUID: bq1ptfl1Qq6SoV9gr3+pYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="21905242"
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="21905242"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 12:15:32 -0700
+X-CSE-ConnectionGUID: zO0DCwVkTz+v93oJSWfBUg==
+X-CSE-MsgGUID: UKHsHMZfQTyDohVgQvn1WQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="64125116"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Aug 2024 12:15:03 -0700
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="59081131"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 15 Aug 2024 12:15:32 -0700
 Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 15 Aug 2024 12:15:02 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ 15.1.2507.39; Thu, 15 Aug 2024 12:15:32 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 15 Aug 2024 12:15:02 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 15 Aug 2024 12:15:31 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 12:15:02 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 15 Aug 2024 12:15:31 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 15 Aug 2024 12:15:02 -0700
+ 15.1.2507.39; Thu, 15 Aug 2024 12:15:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Eea0KWsmxNxjVjVlRdWcgx3PL7aLbKn6qf87yeeIrCERf4H8JcqZy4kzIY5FBIS//A/wBaugrXw2y8pfheMUb9S5pCSP0kjJB1y0CVZ5TYR3h6ZF0opcYjiykR4DczuV6ymbc/my3UI4T8qSzOKKxQQPHGCShfS9R1I3dr1AWarTAt+c4iRr8mf6+08nk8IZPMbSMwtiqcrzwZYlfPqCCszTDdasJVHTrvy1ziLUFQP23QoGMM0FPf9DLhybYoPrM2ol60Gns+PbOFRBWHI0R59uauedVEVp0+9z8uK+KImf5k4tZnwO8gYPW2fj/3rVJItO1979IvTBP+DMsM3U4A==
+ b=J6n2mNgr0wDBKOssqA3iS3EYqKkuiaZZQKkcvDPh/PXnF7U+PkEbOyX/+tmJHTCe3T1y2c38Ldmqg0/jQx/PCzoGOU/1Gw4gnB0movaNyrn1bWYiOvYJF1w8xp457eGG5mFjL6sS9HuBeGxLZemZmSlCegLSFflCnp9crC9+biEQbdf2lF6g79IrGOE28QGaksifENIUa/L+2noAXssqQLNkFSR2njE0N5q9G3apKBkUW0CXTVIjR8+Fd8BupAkuOuVaUG4zdNGvQ4HDkCYiorB9tyeLDgK9FYfc2jq9ePkVUfBmRz2pF/xA6znoSi34qbPf5ZMQnzf4jhH3a0/8MA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1B8JlC6xU8oFVAqEUqI81C5CBvHR94mLYJ86H2zjx2w=;
- b=vo3QAtBJuNswvfVzJnhlcUfUGKUZUdLReEeiYBnb9KsPv0I1UmX2nKb24sdhRw6tEanr1dyfwi/g0zFjlYeENsngj6DHlr+Yhf/+qGE90uHydMFKZLqIdCa9k9nq9pypM7d8myx0UuIwTye7877Xdm5aPnM5W8CucPNgQY/Bb59cbjNjE1Ava35luTjMvhr84OlHglwVXvajwLr/wLirm7TlmkHoE4yNTkeWhcYvIBqkTuvCq3s7VCQmdCnTOeaNkKEeMzw+6KAOwx8eCxK2Sb7rcVfANllcztX0YfoNKX/7+v1F+TGD8oE//FhqvUjdvS4Nl+YfaOCoUNnJDT/n/w==
+ bh=ILLOvdMGwZwSFSy3V0LR2k0k7jZtZYirojT72DvxTXM=;
+ b=PLmA4Svx+u4ZYCTeajec8/nhe8++GtM2SIvLeqFHnn70IaymDPDt9pbfL7xiM5vfgPc1p+VTEvzOyXpLcKIqSC5YTX6R5Jun6PMu1U9LN4IS2p8snZlpSAtUVxD9f1L3MQgxyPXrgp4OdpPehKO2YQ4g/CgaAYU+WU/G8YCPhlK3Eg2pCQMKScm7b9h87c+l5gF2HuX5D9/GR2lKbe2vhXdtYv84HpdBE43Hf4LzN6d+NCOuWnC1wy9fD5NUCffrQd61+qUIu/c0j5N/OMo65cEn8RA8RGJrnOzd2AqCH/DDAwcyZhFTnzcHLP6nJ0DYfZk/+IZtTRKA6su8oT31Hw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,95 +73,95 @@ Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
  by IA1PR11MB6513.namprd11.prod.outlook.com (2603:10b6:208:3a3::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.18; Thu, 15 Aug
- 2024 19:15:00 +0000
+ 2024 19:15:27 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7828.023; Thu, 15 Aug 2024
- 19:15:00 +0000
-Date: Thu, 15 Aug 2024 15:14:57 -0400
+ 19:15:27 +0000
+Date: Thu, 15 Aug 2024 15:15:24 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 4/7] drm/i915/alpm: convert to struct intel_display
-Message-ID: <Zr5TsY4D7dYYgwMP@intel.com>
+Subject: Re: [PATCH 5/7] drm/i915/lspcon: convert to struct intel_display
+Message-ID: <Zr5TzJ9INDC4hm5l@intel.com>
 References: <20240813164123.2674462-1-jani.nikula@intel.com>
- <20240813164123.2674462-4-jani.nikula@intel.com>
+ <20240813164123.2674462-5-jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240813164123.2674462-4-jani.nikula@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0259.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::24) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <20240813164123.2674462-5-jani.nikula@intel.com>
+X-ClientProxiedBy: BYAPR07CA0105.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::46) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|IA1PR11MB6513:EE_
-X-MS-Office365-Filtering-Correlation-Id: c6662426-859a-4429-dc04-08dcbd5e8e9e
+X-MS-Office365-Filtering-Correlation-Id: 66554801-98df-4035-be6d-08dcbd5e9ef7
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?PH5lCebcM4NKuSA+T0x5bMB6FGNdraW/UaSzTjEiR8J6oaSw9wjg3y2/iCLV?=
- =?us-ascii?Q?4vAIShVjAt+7JXElZ7q7dKnpDIiYzdx4tEGUgtqUZJtxrzBRgIjs2vN0C4ED?=
- =?us-ascii?Q?3NsHL/uqBxOjnb9nipuXX0YMqPaEA9gS1wcRYlGHxA+GL5Uh7YTd2f3NrhGO?=
- =?us-ascii?Q?dXHx+LnJDobQfPbkeurSRhEdWiwqvvXE27qoVdCJCJU+s5i2I+jVkkGbF1gq?=
- =?us-ascii?Q?3J2aRTvSQ5VrEteJ628s0cBLl+F4hYiuHuHnAz2dIBQ7er4vy9L39/6f5aSd?=
- =?us-ascii?Q?GzFoqp8MY4dliT3EergQCvQ89TBpPQYsyEPgCDW6OfA7C2nV9gKkexQQL+Mt?=
- =?us-ascii?Q?vz380bC1aVLvvMb+WUxve4VUuINVhRT9X0cI6SJkHNCLPpxbHpFLjaw3emLh?=
- =?us-ascii?Q?6t1/+gspC+UJBNZCqdFIeE5nfBdJtkTybAKEz7in8bPvVJNm5E5LlJG92r7y?=
- =?us-ascii?Q?tFYLFX3FqFkNmME8y7/zp4nDUXQS/bFD+jPx/z3TFOXO41iEl7UGpAHMuF3V?=
- =?us-ascii?Q?9ZdncFmw71PSif6IkSac6VFJeQvfJ84j9hJGNg9Vr2dWdKuNf/WsorFBGZMe?=
- =?us-ascii?Q?Fk8xnAMqKAxhBj+CWeVJtFOw2gncfgrc9vzrygIQwWEI2shuViaz/K10Q5fN?=
- =?us-ascii?Q?eXysuP3Q3v7u6qYWmiGk2b69GVF86qqsZIjgviLGcpxY5fWSpe1AbKSGPcdO?=
- =?us-ascii?Q?rTyUWreadrnsSX2ssdme2bo/Of7PQQW9fdXGRKIHNpEwVnVhM1xyxh3b0UIR?=
- =?us-ascii?Q?XEGEY11AKpDnMTt7Bs6XJ7gHtk09QzqCzLE9X6dN2h9JmcjhaCJA5FFoANMf?=
- =?us-ascii?Q?3b20AWTM3mQ9fLh33aMFVfEskD6b8FJ79VXA23e7f6wLoJ0JwHKnGxS5hShL?=
- =?us-ascii?Q?KhVuNrXtfUy1/6Gl14/WVvJsYgFferaMACFt4TKYn7zqgpOBHAYKXuKxxkG2?=
- =?us-ascii?Q?zbHSQfQtl7Oiz0W45zirc8XSGXEh1X3zqq5KFlTLgy2D8/xFRUJC1KVDR1XC?=
- =?us-ascii?Q?Ado8BpMWmxunb46Ik76KoiVHgnKk5QnCiZ8vA+LmbcPS6zApTeBqEaQywa/5?=
- =?us-ascii?Q?+jmFVrXzaCDJ5nxImBDqDWvhKZTUQtghrb8Pgq4SFuXs7l9measfCgljIscp?=
- =?us-ascii?Q?oG8Zk3GY3TfOCUsUQmlhyGLO76SDruzsU9LoOGulBCY6wub4BraAedV+Iksl?=
- =?us-ascii?Q?AngxQhnrdyxcbVYPygUJRhZuINQnl4WeoNUFdLdhVywCB29EvLp1x8gSmvEC?=
- =?us-ascii?Q?LrnfHrQQjeoiGpJaLU3QSPKcebhWniiCWlI2sFMeWRKZhWDOC/EqM5nghGDD?=
- =?us-ascii?Q?vs+X6UTwatPdCHUjIGmgGYxDlYBLuel355KTKJ2LH5D9hQ=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lnm+tAN60YCqyJ3khpQDafZeYcxtHgq2+wxf53GcWPp/rGKSxEnKeWh4pe4B?=
+ =?us-ascii?Q?s09avTUxhTmgArGVG6pMuBde/E8Dccn7GxuoE9tFinE7fansEO6nkChg9x73?=
+ =?us-ascii?Q?JliIjyyfNnVL26D9QKhc7fOpCIUSKcm5zfXK/KlFPzgIbUOHHL5l6Wv3lF4k?=
+ =?us-ascii?Q?JFX2TIMIi1i1Vt79Inw2JPBDWbLoPUzGVZT6JX3fKt8zo6nGJswAYTm7VwyD?=
+ =?us-ascii?Q?8fc8GqEI9vUrComwK8LR645ywa33WBrxWYKkbZhAMr+D/SZGjbgltXLuXenL?=
+ =?us-ascii?Q?FsaEUQ5Z+uPHVuXxiFSFGwoFjoyP4Ug61rTRLpklrONZk522xfvoXl7xtnnx?=
+ =?us-ascii?Q?VYB4K0xgWPmXWhXs5bRWEFBidfF5A3SPUrp5Q1etFCduLp2u6J5hSeW371jd?=
+ =?us-ascii?Q?pB9qxGQvsJiulxIIp3ta5ZqplyIJr1n/PoVp8rEBGB7toQW+j0eYuL+BCWBv?=
+ =?us-ascii?Q?ck662fgVjBBOlnbap5YQFVp/WF9heOF0yGe9lP5VWPLnqr3I8hLRjx4dsHX9?=
+ =?us-ascii?Q?upqbhqGCb2MEKmvT+etoJdtDf+r9O0+8NBKtRc+VeJNtS0XgcHC9Sqz+14y5?=
+ =?us-ascii?Q?pGJJIm3Acs9gLFMme5ai2BB0yc47ITlB9bEJAzfPRY+yk0cw3vvK+5QgyBKW?=
+ =?us-ascii?Q?bjl2rmpntZfY1H/D4xlEZRB0wqrP1qZrvciPwZUH9cmkDNMvSd0a0mFWhpEN?=
+ =?us-ascii?Q?4dhr0LDLMY8Orh9CkUaR88si4iO9cNAigMEJyIumJqgGOtm/M1d2nBfDxeOb?=
+ =?us-ascii?Q?wjQSnVXe6Kgg4ZU003MkhgLjBuxufUWdz+6T6inyWq+gSPkV+9eOvE3knN+Z?=
+ =?us-ascii?Q?zWPQaoUki2g8GZ1j/iptWVEgfAlIkm9N2zk0hZmz9rRy/AAcDXjETS91rnG/?=
+ =?us-ascii?Q?3UM8DG3XZ8Pe6rDvA7s/WYXalPo7v5kzH8QaF+EcqDZa2a3Q0xCTGBCxjoph?=
+ =?us-ascii?Q?eVe5Xtu6wSswcplScJ3Q9A6hPn9IfBy/lAGjB5ixzeFCs8KYA1lgcZH+vKAY?=
+ =?us-ascii?Q?QjcfhxziBKhNbZo9ZdOm6Ix3HVLxY6f6MCHzNSqFo8ENMZD3drpAu6hQEh3c?=
+ =?us-ascii?Q?llstPPmsUpUoTp1WXw66gNZxuJQmggQykbPhktuSOKFFqaO491N0irf0ZL6w?=
+ =?us-ascii?Q?YYg4cz4YI6ffLNJjq6zO5OFLJ5HXEl35pBtMhtmvYV+WBnAfYNNU4SsHvz5n?=
+ =?us-ascii?Q?8HqEf8o5zwIEUboP3FvEsdHNf1qaBs3f0Y6efUvKlrHd0svUPcQDyN5fV4nC?=
+ =?us-ascii?Q?ef3jkJs6rwJU5hJ8lrwkd0VcEmDKmCT2cKWM2js588VsZw6n4g56J5V/VIPI?=
+ =?us-ascii?Q?YS1gOL4dV0I7pJSI8jPSr/9Bj9Rh/HYs1Y5T4z+5ALl/XQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ohA+sqrvs0c4sHzHMBt7YuURfDdLFKCtsmZajmrc6dCCXqqyfaOmZ8HKY7NO?=
- =?us-ascii?Q?zUd8ppgRkz+VdTuR0VYyks/MsXbA1omj9683JnOS1b889d6l0vqOwV1TYjYg?=
- =?us-ascii?Q?qUG4ZFWW41OpVn4KnajqNFo3sDcek67zf2rAqvrGYtIqVSMjGKqT8NE78MYH?=
- =?us-ascii?Q?iz8Gb0YqxcUdXwErThaZ9iCZQjjh0ujWOX6IZteepXlwt14S/zZ3KrgDvI1U?=
- =?us-ascii?Q?sHjHXqXQxmprhGMQflP6QkVV2Ebf9Pq02YRqbkzY2RBD11a4tmGIJFUpPjjg?=
- =?us-ascii?Q?QVx8et3fJpgosgD0NEGYldTjUbpTXY/ZKMIABSnUZhcfBh9n1jLVENl2SPif?=
- =?us-ascii?Q?oxn41H1zjE+yX790QI4T1IjKgyULXHEXPE5gt0AxpdDiSIAUNN03yezfJnK/?=
- =?us-ascii?Q?My9EIzPKNffhyAFnTzYCwvqhpuPHxCo/xNQS4QpttOXuQlcW1nQ/6puUL1so?=
- =?us-ascii?Q?MwVxXmDJYsdzJ6/buLPyno14D9qaQiQe5ff4MAFtXab1wguAHYfsSKnwd9AQ?=
- =?us-ascii?Q?E0fkasN8BKdc7dDmvOcJm/8rfoe5WB8K+/AF+XTwjnXJd4IZzOofH1TbKkAv?=
- =?us-ascii?Q?t1SzlKxOyY2U8TWfKOGJWwpSqkWF1xtBi/z8Q2yd+S7fbGZoEew6WPGzvAAN?=
- =?us-ascii?Q?rdMfbjctvPnaaOU4nxPpOhlRUhPMcBM4XdzpHFdByiP8IXafbOa/6DgWE1/F?=
- =?us-ascii?Q?H+wqDrzCUD37QnJ+qUfJYRZYuJOR86S5nTfW6a77gCbJP3ycGVZJS6yeYXeF?=
- =?us-ascii?Q?CN/3oEbskUdIumw6KQGKcP0sww/KCil+Vu522EJRUXaZWKNVYZtnsNDY5G2E?=
- =?us-ascii?Q?Aq4nGnm0N7mrsPOFhY8PCLeV9rfsGDIk+LVzhjT0oQy4Nuv/pc1Vf4yh7FSE?=
- =?us-ascii?Q?kYlasPRohbe1BGEwMX5ZwDNyXAzI+tuSrkMy6iOsFQFekLnqRMawCY57pdu1?=
- =?us-ascii?Q?cYjUBsueFV/PElzHCWzsog73/CjtbmQ+8cziqRfKp2KIRrzCzTpa0x4xUg69?=
- =?us-ascii?Q?jKSeOrJ8O2xS98N7ix1ehs3EpdXCpnhk6+SeXZ+SczLZx9GznHqsE12PMXBJ?=
- =?us-ascii?Q?1/H+X0HjPWmgSMI6XJJEep/JgOLTndMHDkYVRo/2wISyoOtLgMXJ+UYX2YuQ?=
- =?us-ascii?Q?zbNhshTcZK9ZJGgQ003FyzjNKlYsfWMUNKnOoTiQvL/cVTtTg86oetJL30IO?=
- =?us-ascii?Q?gxUSz9A6HhUIINmazvzYBTx/XIBFEftsJXXcVYnyzCrSjMChvBWlcxq4JRZr?=
- =?us-ascii?Q?iZJRhs26leMiGYTGhIdOZ+jdpMD3rSewfvdxgWUYPSJApR7KzOrnFDtpLWOi?=
- =?us-ascii?Q?twxI4pKd2Fs7ZuV/eAtxbYa7lxgTwZvzKaJvpseTJTzKJBKq0hEwr0OLkuYi?=
- =?us-ascii?Q?j41KHCadH5VfOTX6GfafZp7kViVR6zcH67OBhKDGnFR02nBfJgRZTlxeGjQA?=
- =?us-ascii?Q?npsw/++bAVm5u7PI4S8XB7GXZKttQfRHin8enwpOXqW0GGj+j96hAUv2xoBT?=
- =?us-ascii?Q?0X3dUIK5YqoIXRZoEmit7HkfoDBALb8uQkTiZgKZzWjj8ztDDXldhXqDLMhB?=
- =?us-ascii?Q?DWbe7OGIKKN/GcCqnLRbT46f4/08EEju2vjuuHsb?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6662426-859a-4429-dc04-08dcbd5e8e9e
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/aRSjRIWF04fVYDD+psi5Xf9hN20BPjAl46Ltr7W+AcgFk0DFzNtBY0Pwbb/?=
+ =?us-ascii?Q?BaKMONNLrs/ifI3AuR3HcuvKyep1k2Dwfbq+Q/Jj7OslhZyWyRiX6H8uPlI8?=
+ =?us-ascii?Q?yWsfe+/hMTekFze7SD09W91FBanxSF9AG/upC8ZsbybyNRWywOutaJcROkuH?=
+ =?us-ascii?Q?RZc5JQmwgCGrxRe9S5yvzs8mhcOZqhsCxgmI8guarzvLhKzbZyhsSlkKbywc?=
+ =?us-ascii?Q?csQmbiLhBzjU7AZwNfSSDxDzUGVOWLNmgYN1hNNOraObfIogj8G+naSdZbM3?=
+ =?us-ascii?Q?q1Al35kuzlKP4+SeXgU/ecJ06f6wa6a184fjysvb950ny+uogftYGx7ygX1s?=
+ =?us-ascii?Q?OFhdq9n1lFRjv9hOUxBRbhc4HoN9JKSihy3iJ5K33651H7dWrgbE0HQz8DFv?=
+ =?us-ascii?Q?VZLb0mKsNROX0MUd8Ou1eTwzpYQI9KD+1uzZcfjfd/ftHZJxALHyVmaE3ETQ?=
+ =?us-ascii?Q?uWgwFKyE1iRUwEkxeXRBBQ89pIhhN7VaKl7lkPN9aAIU5ZrqwBki+6QlRtyv?=
+ =?us-ascii?Q?9s5Lq20cxFjfvrUWfbPx8V5daJ6CG+eZoLuzbREDe7D6KXPjNBgl6OJmfuc5?=
+ =?us-ascii?Q?h58kV4uXhgVtqRZciYZX1xlKosGKTQtgiW+h1GwMbw5z7Zcz0krf2A4Py+3v?=
+ =?us-ascii?Q?AGc7TbO3X4laWUEficc1ZrIZaJ6Kv0WYg5zOw69HlbGw/ZN/ldZT1mdsX8aJ?=
+ =?us-ascii?Q?Nrx72hYz/SMC3MnS8Yo1KnOQTfXH7yiR4wPtWS9zhXaiTSfKQmlkDl6ogMKy?=
+ =?us-ascii?Q?sRfBkoNplD3+jFn7VHp2gPnA4d6bQqHTlUwbsB1qQAYvACvPlPfzd6iCi1Ns?=
+ =?us-ascii?Q?dZ8pqzlrq5gl5qj3j9iNv1kTR7jw90qnZaPEiA+ZJV3qNMxgS7ZXShcD7qAR?=
+ =?us-ascii?Q?6QSljYZ+whBjFpiOt8hGh4L98foXSnvH302WZFHoXwSZrBYWAHb+cSrCnt37?=
+ =?us-ascii?Q?XrNK0XlHNiHzEWi70m/RhIlq2Jn0pKbfqvXZJpRpdqwhEZR5zGYSfIA+2GGk?=
+ =?us-ascii?Q?Xz1rdOfttOP/z/bRxsJ2KTllh6/tZ+vR3MNPgrMLtj0amQuCxs0owlfY7hy+?=
+ =?us-ascii?Q?YfsNS5lw+opthROXhWAfs8n12PAiOhRveasDD6atlClgi2rMi4M1wMfLhWTg?=
+ =?us-ascii?Q?2vqQb4xWM3GeR95cRIsw5tpfKq+jEawaZLYy0gwgs/p1Spz//mc7F8B1iIvc?=
+ =?us-ascii?Q?fHbLDjP4PA1sus8BezBd4T2xtI9x02TtIJK+lahYC+UNhotizDcph+Y5iIHL?=
+ =?us-ascii?Q?eu5xHbFb7BvgEra6mZjkwI2lzpfe6dEIPuhXi2TxDLYynmqDkTZPRalWmr85?=
+ =?us-ascii?Q?LaGQ1Wj31fT2jjb+1Yn6z5K/4DeE69gItpMppbXHdZCQTgO+foplObbFkuTj?=
+ =?us-ascii?Q?pQPlN0VTIhDQYipOven7iKWPGxXca3ZM0o8avBpabBuLVFLngsRrt4pMFosL?=
+ =?us-ascii?Q?8gLh6ysrQPoD6kOzb3G+/ArX7NjcRva7IuPjHHwepninn74oafjwQqvkD1ZO?=
+ =?us-ascii?Q?SvU1jzzYiFrPnSpF6JGzOuebaJ/OkInf/Wo6y60zU4+kTYug0vcO7S4IzBQc?=
+ =?us-ascii?Q?tc2p5j01DX1lcS9vmP9MMPoBu1U3gtID3KYbbeei?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66554801-98df-4035-be6d-08dcbd5e9ef7
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 19:15:00.0089 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 19:15:27.5126 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /QUsExyDOxPHEu+k8lCJ9tB04kw7JmkPOCb4SlQQlLTjPnFa9Me5yTl+RjOUy4rOx0m4cuiTVsCFHLG+p1Xnwg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: f28w3X6cs3CP7BD2kh5gcE9/DPPSTH8UDamRTmgVL8QWJloXFsa461Ts2fZpisQbBSZKV0aw2ruB1Yhk78Eijw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6513
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -179,219 +179,413 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 13, 2024 at 07:41:20PM +0300, Jani Nikula wrote:
+On Tue, Aug 13, 2024 at 07:41:21PM +0300, Jani Nikula wrote:
 > Going forward, struct intel_display shall replace struct
 > drm_i915_private as the main display device data pointer type. Convert
-> intel_alpm.[ch] to struct intel_display.
+> intel_lspcon.[ch] to struct intel_display.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-(twice here actually, but replied to the wrong one :P)
-
 > ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 54 +++++++++++------------
->  1 file changed, 27 insertions(+), 27 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_lspcon.c | 115 ++++++++++----------
+>  1 file changed, 57 insertions(+), 58 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index f4f05a859379..82ee778b2efe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -139,7 +139,7 @@ static int
->  _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
->  				  const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct intel_display *display = to_intel_display(intel_dp);
->  	int aux_less_wake_time, aux_less_wake_lines, silence_period,
->  		lfps_half_cycle;
+> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> index 8b26354d6e53..f9db867fae89 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> @@ -79,33 +79,33 @@ static const char *lspcon_mode_name(enum drm_lspcon_mode mode)
 >  
-> @@ -158,7 +158,7 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
->  	    lfps_half_cycle > PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK)
+>  static bool lspcon_detect_vendor(struct intel_lspcon *lspcon)
+>  {
+> -	struct intel_dp *dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(dp);
+> +	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct drm_dp_dpcd_ident *ident;
+>  	u32 vendor_oui;
+>  
+> -	if (drm_dp_read_desc(&dp->aux, &dp->desc, drm_dp_is_branch(dp->dpcd))) {
+> -		drm_err(&i915->drm, "Can't read description\n");
+> +	if (drm_dp_read_desc(&intel_dp->aux, &intel_dp->desc, drm_dp_is_branch(intel_dp->dpcd))) {
+> +		drm_err(display->drm, "Can't read description\n");
 >  		return false;
+>  	}
 >  
-> -	if (i915->display.params.psr_safest_params)
-> +	if (display->params.psr_safest_params)
->  		aux_less_wake_lines = ALPM_CTL_AUX_LESS_WAKE_TIME_MASK;
+> -	ident = &dp->desc.ident;
+> +	ident = &intel_dp->desc.ident;
+>  	vendor_oui = (ident->oui[0] << 16) | (ident->oui[1] << 8) |
+>  		      ident->oui[2];
 >  
->  	intel_dp->alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
-> @@ -171,10 +171,10 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
->  static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
->  				     const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct intel_display *display = to_intel_display(intel_dp);
->  	int check_entry_lines;
+>  	switch (vendor_oui) {
+>  	case LSPCON_VENDOR_MCA_OUI:
+>  		lspcon->vendor = LSPCON_VENDOR_MCA;
+> -		drm_dbg_kms(&i915->drm, "Vendor: Mega Chips\n");
+> +		drm_dbg_kms(display->drm, "Vendor: Mega Chips\n");
+>  		break;
 >  
-> -	if (DISPLAY_VER(i915) < 20)
-> +	if (DISPLAY_VER(display) < 20)
->  		return true;
+>  	case LSPCON_VENDOR_PARADE_OUI:
+>  		lspcon->vendor = LSPCON_VENDOR_PARADE;
+> -		drm_dbg_kms(&i915->drm, "Vendor: Parade Tech\n");
+> +		drm_dbg_kms(display->drm, "Vendor: Parade Tech\n");
+>  		break;
 >  
->  	/* ALPM Entry Check = 2 + CEILING( 5us /tline ) */
-> @@ -187,7 +187,7 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
->  	if (!_lnl_compute_aux_less_alpm_params(intel_dp, crtc_state))
+>  	default:
+> -		drm_err(&i915->drm, "Invalid/Unknown vendor OUI\n");
+> +		drm_err(display->drm, "Invalid/Unknown vendor OUI\n");
 >  		return false;
+>  	}
 >  
-> -	if (i915->display.params.psr_safest_params)
-> +	if (display->params.psr_safest_params)
->  		check_entry_lines = 15;
->  
->  	intel_dp->alpm_parameters.check_entry_lines = check_entry_lines;
-> @@ -212,9 +212,9 @@ static int tgl_io_buffer_wake_time(void)
->  
->  static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
+> @@ -123,7 +123,7 @@ static u32 get_hdr_status_reg(struct intel_lspcon *lspcon)
+>  void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
 >  {
-> -	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  
-> -	if (DISPLAY_VER(i915) >= 12)
-> +	if (DISPLAY_VER(display) >= 12)
->  		return tgl_io_buffer_wake_time();
->  	else
->  		return skl_io_buffer_wake_time();
-> @@ -223,7 +223,7 @@ static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
->  bool intel_alpm_compute_params(struct intel_dp *intel_dp,
->  			       const struct intel_crtc_state *crtc_state)
->  {
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
 > -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 > +	struct intel_display *display = to_intel_display(intel_dp);
->  	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
->  	int tfw_exit_latency = 20; /* eDP spec */
->  	int phy_wake = 4;	   /* eDP spec */
-> @@ -236,9 +236,9 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
->  	fast_wake_time = precharge + preamble + phy_wake +
->  		tfw_exit_latency;
->  
-> -	if (DISPLAY_VER(i915) >= 20)
-> +	if (DISPLAY_VER(display) >= 20)
->  		max_wake_lines = 68;
-> -	else if (DISPLAY_VER(i915) >= 12)
-> +	else if (DISPLAY_VER(display) >= 12)
->  		max_wake_lines = 12;
->  	else
->  		max_wake_lines = 8;
-> @@ -255,7 +255,7 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
->  	if (!_lnl_compute_alpm_params(intel_dp, crtc_state))
->  		return false;
->  
-> -	if (i915->display.params.psr_safest_params)
-> +	if (display->params.psr_safest_params)
->  		io_wake_lines = fast_wake_lines = max_wake_lines;
->  
->  	/* According to Bspec lower limit should be set as 7 lines. */
-> @@ -269,7 +269,7 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  				    struct intel_crtc_state *crtc_state,
->  				    struct drm_connector_state *conn_state)
->  {
-> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-> +	struct intel_display *display = to_intel_display(intel_dp);
->  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->  	int waketime_in_lines, first_sdp_position;
->  	int context_latency, guardband;
-> @@ -277,7 +277,7 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  	if (!intel_dp_is_edp(intel_dp))
->  		return;
->  
-> -	if (DISPLAY_VER(i915) < 20)
-> +	if (DISPLAY_VER(display) < 20)
->  		return;
->  
->  	if (!intel_dp->as_sdp_supported)
-> @@ -309,13 +309,13 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  static void lnl_alpm_configure(struct intel_dp *intel_dp,
->  			       const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> +	struct intel_display *display = to_intel_display(intel_dp);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  	enum port port = dp_to_dig_port(intel_dp)->base.port;
->  	u32 alpm_ctl;
->  
-> -	if (DISPLAY_VER(dev_priv) < 20 || (!intel_dp->psr.sel_update_enabled &&
-> -					   !intel_dp_is_edp(intel_dp)))
-> +	if (DISPLAY_VER(display) < 20 ||
-> +	    (!intel_dp->psr.sel_update_enabled && !intel_dp_is_edp(intel_dp)))
->  		return;
->  
->  	/*
-> @@ -329,16 +329,16 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
->  			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
->  			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
->  
-> -		intel_de_write(dev_priv,
-> -			       PORT_ALPM_CTL(dev_priv, port),
-> +		intel_de_write(display,
-> +			       PORT_ALPM_CTL(display, port),
->  			       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
->  			       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
->  			       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
->  			       PORT_ALPM_CTL_SILENCE_PERIOD(
->  				       intel_dp->alpm_parameters.silence_period_sym_clocks));
->  
-> -		intel_de_write(dev_priv,
-> -			       PORT_ALPM_LFPS_CTL(dev_priv, port),
-> +		intel_de_write(display,
-> +			       PORT_ALPM_LFPS_CTL(display, port),
->  			       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
->  			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
->  				       intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
-> @@ -356,7 +356,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
->  
->  	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
->  
-> -	intel_de_write(dev_priv, ALPM_CTL(dev_priv, cpu_transcoder), alpm_ctl);
-> +	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
->  }
->  
->  void intel_alpm_configure(struct intel_dp *intel_dp,
-> @@ -368,14 +368,14 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
->  static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
->  {
->  	struct intel_connector *connector = m->private;
-> -	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct drm_crtc *crtc;
->  	struct intel_crtc_state *crtc_state;
->  	enum transcoder cpu_transcoder;
->  	u32 alpm_ctl;
+>  	u8 hdr_caps;
 >  	int ret;
 >  
-> -	ret = drm_modeset_lock_single_interruptible(&dev_priv->drm.mode_config.connection_mutex);
-> +	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
->  	if (ret)
->  		return ret;
+> @@ -131,10 +131,10 @@ void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
+>  			       &hdr_caps, 1);
 >  
-> @@ -387,14 +387,14 @@ static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
->  
->  	crtc_state = to_intel_crtc_state(crtc->state);
->  	cpu_transcoder = crtc_state->cpu_transcoder;
-> -	alpm_ctl = intel_de_read(dev_priv, ALPM_CTL(dev_priv, cpu_transcoder));
-> +	alpm_ctl = intel_de_read(display, ALPM_CTL(display, cpu_transcoder));
->  	seq_printf(m, "LOBF status: %s\n", str_enabled_disabled(alpm_ctl & ALPM_CTL_LOBF_ENABLE));
->  	seq_printf(m, "Aux-wake alpm status: %s\n",
->  		   str_enabled_disabled(!(alpm_ctl & ALPM_CTL_ALPM_AUX_LESS_ENABLE)));
->  	seq_printf(m, "Aux-less alpm status: %s\n",
->  		   str_enabled_disabled(alpm_ctl & ALPM_CTL_ALPM_AUX_LESS_ENABLE));
->  out:
-> -	drm_modeset_unlock(&dev_priv->drm.mode_config.connection_mutex);
-> +	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
->  
->  	return ret;
+>  	if (ret < 0) {
+> -		drm_dbg_kms(&i915->drm, "HDR capability detection failed\n");
+> +		drm_dbg_kms(display->drm, "HDR capability detection failed\n");
+>  		lspcon->hdr_supported = false;
+>  	} else if (hdr_caps & 0x1) {
+> -		drm_dbg_kms(&i915->drm, "LSPCON capable of HDR\n");
+> +		drm_dbg_kms(display->drm, "LSPCON capable of HDR\n");
+>  		lspcon->hdr_supported = true;
+>  	}
 >  }
-> @@ -403,10 +403,10 @@ DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
->  
->  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+> @@ -142,12 +142,12 @@ void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
+>  static enum drm_lspcon_mode lspcon_get_current_mode(struct intel_lspcon *lspcon)
 >  {
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct dentry *root = connector->base.debugfs_entry;
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	enum drm_lspcon_mode current_mode;
+>  	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
 >  
-> -	if (DISPLAY_VER(i915) < 20 ||
-> +	if (DISPLAY_VER(display) < 20 ||
->  	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
+>  	if (drm_lspcon_get_mode(intel_dp->aux.drm_dev, ddc, &current_mode)) {
+> -		drm_dbg_kms(&i915->drm, "Error reading LSPCON mode\n");
+> +		drm_dbg_kms(display->drm, "Error reading LSPCON mode\n");
+>  		return DRM_LSPCON_MODE_INVALID;
+>  	}
+>  	return current_mode;
+> @@ -169,23 +169,23 @@ static enum drm_lspcon_mode lspcon_wait_mode(struct intel_lspcon *lspcon,
+>  					     enum drm_lspcon_mode mode)
+>  {
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	enum drm_lspcon_mode current_mode;
+>  
+>  	current_mode = lspcon_get_current_mode(lspcon);
+>  	if (current_mode == mode)
+>  		goto out;
+>  
+> -	drm_dbg_kms(&i915->drm, "Waiting for LSPCON mode %s to settle\n",
+> +	drm_dbg_kms(display->drm, "Waiting for LSPCON mode %s to settle\n",
+>  		    lspcon_mode_name(mode));
+>  
+>  	wait_for((current_mode = lspcon_get_current_mode(lspcon)) == mode,
+>  		 lspcon_get_mode_settle_timeout(lspcon));
+>  	if (current_mode != mode)
+> -		drm_err(&i915->drm, "LSPCON mode hasn't settled\n");
+> +		drm_err(display->drm, "LSPCON mode hasn't settled\n");
+>  
+>  out:
+> -	drm_dbg_kms(&i915->drm, "Current LSPCON mode %s\n",
+> +	drm_dbg_kms(display->drm, "Current LSPCON mode %s\n",
+>  		    lspcon_mode_name(current_mode));
+>  
+>  	return current_mode;
+> @@ -195,46 +195,46 @@ static int lspcon_change_mode(struct intel_lspcon *lspcon,
+>  			      enum drm_lspcon_mode mode)
+>  {
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	int err;
+>  	enum drm_lspcon_mode current_mode;
+>  	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
+>  
+>  	err = drm_lspcon_get_mode(intel_dp->aux.drm_dev, ddc, &current_mode);
+>  	if (err) {
+> -		drm_err(&i915->drm, "Error reading LSPCON mode\n");
+> +		drm_err(display->drm, "Error reading LSPCON mode\n");
+>  		return err;
+>  	}
+>  
+>  	if (current_mode == mode) {
+> -		drm_dbg_kms(&i915->drm, "Current mode = desired LSPCON mode\n");
+> +		drm_dbg_kms(display->drm, "Current mode = desired LSPCON mode\n");
+>  		return 0;
+>  	}
+>  
+>  	err = drm_lspcon_set_mode(intel_dp->aux.drm_dev, ddc, mode);
+>  	if (err < 0) {
+> -		drm_err(&i915->drm, "LSPCON mode change failed\n");
+> +		drm_err(display->drm, "LSPCON mode change failed\n");
+>  		return err;
+>  	}
+>  
+>  	lspcon->mode = mode;
+> -	drm_dbg_kms(&i915->drm, "LSPCON mode changed done\n");
+> +	drm_dbg_kms(display->drm, "LSPCON mode changed done\n");
+>  	return 0;
+>  }
+>  
+>  static bool lspcon_wake_native_aux_ch(struct intel_lspcon *lspcon)
+>  {
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	u8 rev;
+>  
+>  	if (drm_dp_dpcd_readb(&lspcon_to_intel_dp(lspcon)->aux, DP_DPCD_REV,
+>  			      &rev) != 1) {
+> -		drm_dbg_kms(&i915->drm, "Native AUX CH down\n");
+> +		drm_dbg_kms(display->drm, "Native AUX CH down\n");
+>  		return false;
+>  	}
+>  
+> -	drm_dbg_kms(&i915->drm, "Native AUX CH up, DPCD version: %d.%d\n",
+> +	drm_dbg_kms(display->drm, "Native AUX CH up, DPCD version: %d.%d\n",
+>  		    rev >> 4, rev & 0xf);
+>  
+>  	return true;
+> @@ -242,12 +242,12 @@ static bool lspcon_wake_native_aux_ch(struct intel_lspcon *lspcon)
+>  
+>  static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  {
+> -	int retry;
+> -	enum drm_dp_dual_mode_type adaptor_type;
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct i2c_adapter *ddc = &intel_dp->aux.ddc;
+> +	enum drm_dp_dual_mode_type adaptor_type;
+>  	enum drm_lspcon_mode expected_mode;
+> +	int retry;
+>  
+>  	expected_mode = lspcon_wake_native_aux_ch(lspcon) ?
+>  			DRM_LSPCON_MODE_PCON : DRM_LSPCON_MODE_LS;
+> @@ -263,13 +263,13 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  	}
+>  
+>  	if (adaptor_type != DRM_DP_DUAL_MODE_LSPCON) {
+> -		drm_dbg_kms(&i915->drm, "No LSPCON detected, found %s\n",
+> +		drm_dbg_kms(display->drm, "No LSPCON detected, found %s\n",
+>  			    drm_dp_get_dual_mode_type_name(adaptor_type));
+>  		return false;
+>  	}
+>  
+>  	/* Yay ... got a LSPCON device */
+> -	drm_dbg_kms(&i915->drm, "LSPCON detected\n");
+> +	drm_dbg_kms(display->drm, "LSPCON detected\n");
+>  	lspcon->mode = lspcon_wait_mode(lspcon, expected_mode);
+>  
+>  	/*
+> @@ -279,7 +279,7 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  	 */
+>  	if (lspcon->mode != DRM_LSPCON_MODE_PCON) {
+>  		if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON) < 0) {
+> -			drm_err(&i915->drm, "LSPCON mode change to PCON failed\n");
+> +			drm_err(display->drm, "LSPCON mode change to PCON failed\n");
+>  			return false;
+>  		}
+>  	}
+> @@ -289,13 +289,13 @@ static bool lspcon_probe(struct intel_lspcon *lspcon)
+>  static void lspcon_resume_in_pcon_wa(struct intel_lspcon *lspcon)
+>  {
+>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  	unsigned long start = jiffies;
+>  
+>  	while (1) {
+>  		if (intel_digital_port_connected(&dig_port->base)) {
+> -			drm_dbg_kms(&i915->drm, "LSPCON recovering in PCON mode after %u ms\n",
+> +			drm_dbg_kms(display->drm, "LSPCON recovering in PCON mode after %u ms\n",
+>  				    jiffies_to_msecs(jiffies - start));
+>  			return;
+>  		}
+> @@ -306,7 +306,7 @@ static void lspcon_resume_in_pcon_wa(struct intel_lspcon *lspcon)
+>  		usleep_range(10000, 15000);
+>  	}
+>  
+> -	drm_dbg_kms(&i915->drm, "LSPCON DP descriptor mismatch after resume\n");
+> +	drm_dbg_kms(display->drm, "LSPCON DP descriptor mismatch after resume\n");
+>  }
+>  
+>  static bool lspcon_parade_fw_ready(struct drm_dp_aux *aux)
+> @@ -477,10 +477,10 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
+>  			    unsigned int type,
+>  			    const void *frame, ssize_t len)
+>  {
+> -	bool ret = true;
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
+> +	bool ret = true;
+>  
+>  	switch (type) {
+>  	case HDMI_INFOFRAME_TYPE_AVI:
+> @@ -492,7 +492,7 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
+>  								 frame, len);
+>  		break;
+>  	case HDMI_PACKET_TYPE_GAMUT_METADATA:
+> -		drm_dbg_kms(&i915->drm, "Update HDR metadata for lspcon\n");
+> +		drm_dbg_kms(display->drm, "Update HDR metadata for lspcon\n");
+>  		/* It uses the legacy hsw implementation for the same */
+>  		hsw_write_infoframe(encoder, crtc_state, type, frame, len);
+>  		break;
+> @@ -501,7 +501,7 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
+>  	}
+>  
+>  	if (!ret) {
+> -		drm_err(&i915->drm, "Failed to write infoframes\n");
+> +		drm_err(display->drm, "Failed to write infoframes\n");
+>  		return;
+>  	}
+>  }
+> @@ -522,17 +522,17 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
+>  			   const struct intel_crtc_state *crtc_state,
+>  			   const struct drm_connector_state *conn_state)
+>  {
+> -	ssize_t ret;
+> -	union hdmi_infoframe frame;
+> -	u8 buf[VIDEO_DIP_DATA_SIZE];
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>  	struct intel_lspcon *lspcon = &dig_port->lspcon;
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+> +	union hdmi_infoframe frame;
+> +	u8 buf[VIDEO_DIP_DATA_SIZE];
+> +	ssize_t ret;
+>  
+>  	if (!lspcon->active) {
+> -		drm_err(&i915->drm, "Writing infoframes while LSPCON disabled ?\n");
+> +		drm_err(display->drm, "Writing infoframes while LSPCON disabled ?\n");
+>  		return;
+>  	}
+>  
+> @@ -542,7 +542,7 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
+>  						       conn_state->connector,
+>  						       adjusted_mode);
+>  	if (ret < 0) {
+> -		drm_err(&i915->drm, "couldn't fill AVI infoframe\n");
+> +		drm_err(display->drm, "couldn't fill AVI infoframe\n");
+>  		return;
+>  	}
+>  
+> @@ -583,7 +583,7 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
+>  
+>  	ret = hdmi_infoframe_pack(&frame, buf, sizeof(buf));
+>  	if (ret < 0) {
+> -		drm_err(&i915->drm, "Failed to pack AVI IF\n");
+> +		drm_err(display->drm, "Failed to pack AVI IF\n");
+>  		return;
+>  	}
+>  
+> @@ -624,9 +624,9 @@ static bool _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
+>  u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *pipe_config)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	struct intel_lspcon *lspcon = enc_to_intel_lspcon(encoder);
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	bool infoframes_enabled;
+>  	u32 val = 0;
+>  	u32 mask, tmp;
+> @@ -640,8 +640,8 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
+>  		val |= intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI);
+>  
+>  	if (lspcon->hdr_supported) {
+> -		tmp = intel_de_read(dev_priv,
+> -				    HSW_TVIDEO_DIP_CTL(dev_priv, pipe_config->cpu_transcoder));
+> +		tmp = intel_de_read(display,
+> +				    HSW_TVIDEO_DIP_CTL(display, pipe_config->cpu_transcoder));
+>  		mask = VIDEO_DIP_ENABLE_GMP_HSW;
+>  
+>  		if (tmp & mask)
+> @@ -658,32 +658,32 @@ void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon)
+>  
+>  bool lspcon_init(struct intel_digital_port *dig_port)
+>  {
+> +	struct intel_display *display = to_intel_display(dig_port);
+>  	struct intel_dp *intel_dp = &dig_port->dp;
+>  	struct intel_lspcon *lspcon = &dig_port->lspcon;
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct drm_connector *connector = &intel_dp->attached_connector->base;
+>  
+>  	lspcon->active = false;
+>  	lspcon->mode = DRM_LSPCON_MODE_INVALID;
+>  
+>  	if (!lspcon_probe(lspcon)) {
+> -		drm_err(&i915->drm, "Failed to probe lspcon\n");
+> +		drm_err(display->drm, "Failed to probe lspcon\n");
+>  		return false;
+>  	}
+>  
+>  	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0) {
+> -		drm_err(&i915->drm, "LSPCON DPCD read failed\n");
+> +		drm_err(display->drm, "LSPCON DPCD read failed\n");
+>  		return false;
+>  	}
+>  
+>  	if (!lspcon_detect_vendor(lspcon)) {
+> -		drm_err(&i915->drm, "LSPCON vendor detection failed\n");
+> +		drm_err(display->drm, "LSPCON vendor detection failed\n");
+>  		return false;
+>  	}
+>  
+>  	connector->ycbcr_420_allowed = true;
+>  	lspcon->active = true;
+> -	drm_dbg_kms(&i915->drm, "Success: LSPCON init\n");
+> +	drm_dbg_kms(display->drm, "Success: LSPCON init\n");
+>  	return true;
+>  }
+>  
+> @@ -697,9 +697,8 @@ u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
+>  
+>  void lspcon_resume(struct intel_digital_port *dig_port)
+>  {
+> +	struct intel_display *display = to_intel_display(dig_port);
+>  	struct intel_lspcon *lspcon = &dig_port->lspcon;
+> -	struct drm_device *dev = dig_port->base.base.dev;
+> -	struct drm_i915_private *i915 = to_i915(dev);
+>  	enum drm_lspcon_mode expected_mode;
+>  
+>  	if (!intel_bios_encoder_is_lspcon(dig_port->base.devdata))
+> @@ -707,7 +706,7 @@ void lspcon_resume(struct intel_digital_port *dig_port)
+>  
+>  	if (!lspcon->active) {
+>  		if (!lspcon_init(dig_port)) {
+> -			drm_err(&i915->drm, "LSPCON init failed on port %c\n",
+> +			drm_err(display->drm, "LSPCON init failed on port %c\n",
+>  				port_name(dig_port->base.port));
+>  			return;
+>  		}
+> @@ -724,7 +723,7 @@ void lspcon_resume(struct intel_digital_port *dig_port)
 >  		return;
 >  
+>  	if (lspcon_change_mode(lspcon, DRM_LSPCON_MODE_PCON))
+> -		drm_err(&i915->drm, "LSPCON resume failed\n");
+> +		drm_err(display->drm, "LSPCON resume failed\n");
+>  	else
+> -		drm_dbg_kms(&i915->drm, "LSPCON resume success\n");
+> +		drm_dbg_kms(display->drm, "LSPCON resume success\n");
+>  }
 > -- 
 > 2.39.2
 > 
