@@ -2,108 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2104952EED
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2024 15:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9695795306D
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2024 15:42:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D422210E134;
-	Thu, 15 Aug 2024 13:17:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C95D10E12F;
+	Thu, 15 Aug 2024 13:42:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="mZEBrXLa";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lgE1YEmT";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="mZEBrXLa";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="lgE1YEmT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWH0DONb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B857210E134;
- Thu, 15 Aug 2024 13:17:54 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3FAD4211BB;
- Thu, 15 Aug 2024 13:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723727873; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=LS94qsNam5prkKC5CID4alIhK/BVn36zRi4KUiz9E6E=;
- b=mZEBrXLaac9+yuGlEjZ+8Kv1aGhOsAV0kvrgGMxh3VPnuVkG53nZrNFLnU4Xkp+8ABa4hj
- 5yOkzzMEV+wWh8XfHLBs1OhtAEvaRmKcrL83DCz6ZwUp/bLbSp5r+eLk7UUruF96sOrAPD
- iX9DMh1YHRv15dbvBS2HMuqBPZ6mhis=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723727873;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=LS94qsNam5prkKC5CID4alIhK/BVn36zRi4KUiz9E6E=;
- b=lgE1YEmTBflFxwb+m3COiUr5Sr0aTs4kwc/7GoZr9+6YtWg3DLdhC8qzrQO5daCAseSGeE
- D/ehMgcg9B0tr/Dw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723727873; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=LS94qsNam5prkKC5CID4alIhK/BVn36zRi4KUiz9E6E=;
- b=mZEBrXLaac9+yuGlEjZ+8Kv1aGhOsAV0kvrgGMxh3VPnuVkG53nZrNFLnU4Xkp+8ABa4hj
- 5yOkzzMEV+wWh8XfHLBs1OhtAEvaRmKcrL83DCz6ZwUp/bLbSp5r+eLk7UUruF96sOrAPD
- iX9DMh1YHRv15dbvBS2HMuqBPZ6mhis=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723727873;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=LS94qsNam5prkKC5CID4alIhK/BVn36zRi4KUiz9E6E=;
- b=lgE1YEmTBflFxwb+m3COiUr5Sr0aTs4kwc/7GoZr9+6YtWg3DLdhC8qzrQO5daCAseSGeE
- D/ehMgcg9B0tr/Dw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D199313983;
- Thu, 15 Aug 2024 13:17:52 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id tNvnMQAAvmbaZAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 15 Aug 2024 13:17:52 +0000
-Date: Thu, 15 Aug 2024 15:17:51 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20240815131751.GA151031@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A9010E12F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Aug 2024 13:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1723729368; x=1755265368;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=JGI8QgDNLR7kcRHIW/DTPECOS+jhMCyJIukP8rfuSAU=;
+ b=PWH0DONbmZGK2FXJxklko6hiyLe58av9a2OTlPq3FLIeC/9hrB3QOvoJ
+ OoJ+3RdmBoM3IXjcXxrPBtDtlJuUTkWvD1wKAnNZlo7Hyrt7yM9w0bwJ5
+ Owzty/qbKBq54CpqUH4wqM3qudrUGrtSrrzEK+cE0l0wKUYf4X7W6dbrX
+ t3ZZkjhYG4T8LSKEdFJVo0ZyqHyyxvHGSLXO84tnjiLEVZ5Kqaj1YnT/0
+ eDHuJFr/imdnyqQWOpHnw6B/I8X7VIQCEEjtyniPNndzfWI3iMYTMGe3P
+ Gy8HlFcYnP0ZkHgm3jTzFTzf0lUN2f8KbygffZxcXj55tsTytAuUoxRVm g==;
+X-CSE-ConnectionGUID: mMD1bA6uRh+HLo/81BmEPw==
+X-CSE-MsgGUID: e1FS+f1EQSWb9O/Wr8q/UQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11165"; a="47388669"
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="47388669"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 06:40:54 -0700
+X-CSE-ConnectionGUID: Apv1HlKmRjii7tzTqPuyaw==
+X-CSE-MsgGUID: ECAxS22KQdmoXyoEwYnIvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,149,1719903600"; d="scan'208";a="63777285"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2024 06:40:53 -0700
+Date: Thu, 15 Aug 2024 16:41:12 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: make intel_display_power_domain_str() static
+Message-ID: <Zr4FeLoFySKebKk0@ideak-desk.fi.intel.com>
+References: <20240815120002.3472727-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -4.30
-X-Spam-Flag: NO
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[99.99%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_TLS_ALL(0.00)[];
- MISSING_XM_UA(0.00)[]; FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
-X-Spam-Level: 
+In-Reply-To: <20240815120002.3472727-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,84 +64,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Thu, Aug 15, 2024 at 03:00:02PM +0300, Jani Nikula wrote:
+> The function isn't used outside of intel_display_power.c. Make it
+> static.
+> 
+> Suggested-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-here's the weekly PR for drm-misc-fixes. It resolves an OOB access
-in v3d and a few minor errors.
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Best regards
-Thomas
-
-drm-misc-fixes-2024-08-15:
-Short summary of fixes pull:
-
-panel:
-- dt-bindings style fixes
-
-panel-orientation:
-- add quirk for Any Loki Max
-- add quirk for Any Loki Zero
-
-rockchip:
-- inno-hdmi: fix infoframe upload
-
-v3d:
-- fix OOB access in v3d_csd_job_run()
-The following changes since commit 929725bd7eb4eea1f75197d9847f3f1ea5afdad1:
-
-  drm/atomic: allow no-op FB_ID updates for async flips (2024-08-06 20:16:31 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-08-15
-
-for you to fetch changes up to fd45cc614b8acca5bb435ba37fe9b3f9a17fab84:
-
-  drm/rockchip: inno-hdmi: Fix infoframe upload (2024-08-15 12:31:47 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-panel:
-- dt-bindings style fixes
-
-panel-orientation:
-- add quirk for Any Loki Max
-- add quirk for Any Loki Zero
-
-rockchip:
-- inno-hdmi: fix infoframe upload
-
-v3d:
-- fix OOB access in v3d_csd_job_run()
-
-----------------------------------------------------------------
-Alex Bee (1):
-      drm/rockchip: inno-hdmi: Fix infoframe upload
-
-Bouke Sybren Haarsma (2):
-      drm: panel-orientation-quirks: Add quirk for Ayn Loki Zero
-      drm: panel-orientation-quirks: Add quirk for Ayn Loki Max
-
-Douglas Anderson (1):
-      dt-bindings: display: panel: samsung,atna45dc02: Fix indentation
-
-Maíra Canal (1):
-      drm/v3d: Fix out-of-bounds read in `v3d_csd_job_run()`
-
- .../bindings/display/panel/samsung,atna33xc20.yaml         | 12 ++++++------
- drivers/gpu/drm/drm_panel_orientation_quirks.c             | 12 ++++++++++++
- drivers/gpu/drm/rockchip/inno_hdmi.c                       |  4 +---
- drivers/gpu/drm/v3d/v3d_sched.c                            | 14 +++++++++++---
- 4 files changed, 30 insertions(+), 12 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display_power.h | 3 ---
+>  2 files changed, 1 insertion(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index cf8b38f2ebf5..39ab3117265c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -36,7 +36,7 @@
+>  	for_each_power_well_reverse(__dev_priv, __power_well)		        \
+>  		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
+>  
+> -const char *
+> +static const char *
+>  intel_display_power_domain_str(enum intel_display_power_domain domain)
+>  {
+>  	switch (domain) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index 0962f6aaeee6..425452c5a469 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -183,9 +183,6 @@ void intel_display_power_resume(struct drm_i915_private *i915);
+>  void intel_display_power_set_target_dc_state(struct drm_i915_private *dev_priv,
+>  					     u32 state);
+>  
+> -const char *
+> -intel_display_power_domain_str(enum intel_display_power_domain domain);
+> -
+>  bool intel_display_power_is_enabled(struct drm_i915_private *dev_priv,
+>  				    enum intel_display_power_domain domain);
+>  intel_wakeref_t intel_display_power_get(struct drm_i915_private *dev_priv,
+> -- 
+> 2.39.2
+> 
