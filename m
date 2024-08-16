@@ -2,55 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F0D954BB1
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 16:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58FC7954C13
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 16:15:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC9AE10E7A9;
-	Fri, 16 Aug 2024 14:02:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=sntech.de header.i=@sntech.de header.b="vwlhcw/j";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD8910E7AC;
+	Fri, 16 Aug 2024 14:15:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1678 seconds by postgrey-1.36 at gabe;
- Fri, 16 Aug 2024 14:02:32 UTC
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E29C410E7A0;
- Fri, 16 Aug 2024 14:02:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de; 
- s=gloria202408;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6APiPsl1dk8hQTUQIp5bKhxGcpS03CWAMAQchIn+9+A=; b=vwlhcw/j12UiyS4tp3lQKpH1A3
- KHBdt7G5yTSG50550RFm+BIulA4G2eFh/eA/vcFBbBwmlq+2Kx9Qdl/YsMiR1BkFFvHRDN/kg5YYd
- lBb79ICOHR91T9X/LaVainI0wouXePAU8MpMvozCBFlZK7NZGME5qiLS4fPxEqQSQvEMoDlLruzbq
- cwv4U4c1/FlatNReWkKBlNZqfWIGLPEVUbnPXRC+rxwYo3yMULGkA/MZCYdzVWM/OpP2NN6ZmWtNU
- ZqdtR+PBY72bBd7QcG7NdqUESP49CYleEC6NEWkfr22DJTEOYsWkm1nqiTHOSinq/YLJN8BePuPxc
- jRqRLz0A==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
- by gloria.sntech.de with esmtpsa (TLS1.3) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <heiko@sntech.de>)
- id 1sex67-0002U1-4U; Fri, 16 Aug 2024 15:34:31 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 38/86] drm/rockchip: Run DRM default client setup
-Date: Fri, 16 Aug 2024 15:34:29 +0200
-Message-ID: <2949271.e9J7NaK4W3@diego>
-In-Reply-To: <20240816125408.310253-39-tzimmermann@suse.de>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 77C2B10E7B9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Aug 2024 14:15:30 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C79D143D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Aug 2024 07:15:56 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
+ [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E743E3F73B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Aug 2024 07:15:29 -0700 (PDT)
+Date: Fri, 16 Aug 2024 15:15:21 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
+ javierm@redhat.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH 07/86] drm/arm/komeda: Run DRM default client setup
+Message-ID: <Zr9e-XdYo0fH4dCy@e110455-lin.cambridge.arm.com>
 References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-39-tzimmermann@suse.de>
+ <20240816125408.310253-8-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240816125408.310253-8-tzimmermann@suse.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,59 +50,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am Freitag, 16. August 2024, 14:23:04 CEST schrieb Thomas Zimmermann:
+On Fri, Aug 16, 2024 at 02:22:33PM +0200, Thomas Zimmermann wrote:
 > Call drm_client_setup() to run the kernel's default client setup
 > for DRM. Set fbdev_probe in struct drm_driver, so that the client
 > setup can start the common fbdev client.
->=20
+> 
+> The komeda driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+> 
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: "Heiko St=FCbner" <heiko@sntech.de>
-> Cc: Andy Yan <andy.yan@rock-chips.com>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
 
-I've looked up the whole patchseries and while I can't say overly much
-about the core changes, at least for the Rockchip driver, things look
-like they'll stay the same even after those changes are applied, so
-
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
 
 > ---
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/dr=
-m/rockchip/rockchip_drm_drv.c
-> index 44d769d9234d..83ea6cc8cd21 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> @@ -17,6 +17,7 @@
->  #include <linux/iommu.h>
-> =20
->  #include <drm/drm_aperture.h>
+>  drivers/gpu/drm/arm/display/komeda/komeda_drv.c | 4 ++--
+>  drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 ++
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_drv.c b/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
+> index 55c3773befde..6d475bb34002 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
+> @@ -9,7 +9,7 @@
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> -#include <drm/drm_fbdev_dma.h>
 > +#include <drm/drm_client_setup.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_fbdev_dma.h>
->  #include <drm/drm_gem_dma_helper.h>
-> @@ -191,7 +192,7 @@ static int rockchip_drm_bind(struct device *dev)
->  	if (ret)
->  		goto err_kms_helper_poll_fini;
-> =20
-> -	drm_fbdev_dma_setup(drm_dev, 0);
-> +	drm_client_setup(drm_dev, NULL);
-> =20
+>  #include <drm/drm_module.h>
+>  #include <drm/drm_of.h>
+>  #include "komeda_dev.h"
+> @@ -84,7 +84,7 @@ static int komeda_platform_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	dev_set_drvdata(dev, mdrv);
+> -	drm_fbdev_dma_setup(&mdrv->kms->base, 32);
+> +	drm_client_setup(&mdrv->kms->base, NULL);
+>  
 >  	return 0;
->  err_kms_helper_poll_fini:
-> @@ -226,6 +227,7 @@ static const struct drm_driver rockchip_drm_driver =
-=3D {
->  	.driver_features	=3D DRIVER_MODESET | DRIVER_GEM | DRIVER_ATOMIC,
->  	.dumb_create		=3D rockchip_gem_dumb_create,
->  	.gem_prime_import_sg_table	=3D rockchip_gem_prime_import_sg_table,
+>  
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> index fe46b0ebefea..f3314261925c 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> @@ -9,6 +9,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_drv.h>
+> +#include <drm/drm_fbdev_dma.h>
+>  #include <drm/drm_gem_dma_helper.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+>  #include <drm/drm_managed.h>
+> @@ -58,6 +59,7 @@ static irqreturn_t komeda_kms_irq_handler(int irq, void *data)
+>  static const struct drm_driver komeda_kms_driver = {
+>  	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(komeda_gem_dma_dumb_create),
 > +	DRM_FBDEV_DMA_DRIVER_OPS,
->  	.fops			=3D &rockchip_drm_driver_fops,
->  	.name	=3D DRIVER_NAME,
->  	.desc	=3D DRIVER_DESC,
->=20
+>  	.fops = &komeda_cma_fops,
+>  	.name = "komeda",
+>  	.desc = "Arm Komeda Display Processor driver",
+> -- 
+> 2.46.0
+> 
 
-
-
-
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
