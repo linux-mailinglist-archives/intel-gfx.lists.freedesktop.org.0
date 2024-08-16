@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 923ED954AD1
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 15:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 667F3954AE0
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 15:18:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58BE010E697;
-	Fri, 16 Aug 2024 13:12:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C2C10E6B6;
+	Fri, 16 Aug 2024 13:18:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDajUZ2l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jAmji71X";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3C7810E64B;
- Fri, 16 Aug 2024 13:12:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA20510E6A0;
+ Fri, 16 Aug 2024 13:18:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723813950; x=1755349950;
+ t=1723814319; x=1755350319;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=CSNRPAmNVIQVfSpw7eMIfJxVBuuHOmb1Ba5ZLcKKGME=;
- b=KDajUZ2lBy1xN3d9xQw7V5QE1rRBf1qOVkBScEuOUqqSmd/JzDwvXizP
- nhTRdNQlXzjyTVPDfb/u73vZgPQ9tYbBkq3GrUzBcjRAGKqPU7VlGIOed
- nkc4NzxVNRyEgaZx/uT1B428Fjd1Xc9wj47vSf3Jpt4uyysLOR2yIElDH
- GSWp/aZuFBfzCH0oPq8grq38rFH6tFbB2NcTL0hCo8kodcDnJe4Zc0GX5
- mRdpHGSrolX6bmLXSSVPLNSeH72iJ4A7lBBQ9DdU4WOtC/TL7o1UKuDle
- Uibmqtt3Pp8lx7GP5fscUxTIx6VIXxlwLgwjnE0AnkMWW5FQjJehSr461 g==;
-X-CSE-ConnectionGUID: UcTXLEn7Syyz6cvLlc7cOg==
-X-CSE-MsgGUID: dc6AkX+xTv6X1r9b8eoZbg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="32743501"
-X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="32743501"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 06:12:28 -0700
-X-CSE-ConnectionGUID: 8vH0jRjNQTiHB7BsNgeZUg==
-X-CSE-MsgGUID: bf53aPjkSO+HYej1rgtMEQ==
+ bh=0WXmG62FzuEGQr1rUL+sEKQbL4bo5d7jf/vx3Aamu7M=;
+ b=jAmji71X/E6ac4+LEYitc24novFZNoCkV1Nh2IBwW1cSRTjkIt/Nkd9o
+ hUGJXUtw96zJM4/TnSBtlY2AgfnMC3+gw0gJjeKkKDPrq/ovfyiscX6MA
+ +lqcBhfqABZ1Zb8g5CZF5Wuf5mwL79eX2Hro9xTGZMNyw1Jnym2C2mc5k
+ wrhmlJkUHpLDi1ETHaoqyqe3IaXYicHkqFeFrIx0wLddO6/4ihjyMy2j0
+ M16mpbAcM4wZsg6A9Kc+JVCKIMSmOM8R1WfAPXGP0kvocFE1c/hrANov1
+ 7m5j0JXlyyNQ+HnMaeekJCcyDdmXjbOO+G2+SRGGNc6SEm0lx2QX2rT2a Q==;
+X-CSE-ConnectionGUID: RuyHZdN1Qk2RinW8+rNiLA==
+X-CSE-MsgGUID: JsPcW4rDSvi96OZznieQ+g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="39622178"
+X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="39622178"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 06:18:39 -0700
+X-CSE-ConnectionGUID: B+zdp7TrS1yhC9YXY+JXSA==
+X-CSE-MsgGUID: zcZIEHgWRxis1CNcVRB56Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="64065126"
+X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="60227025"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.214])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 06:12:26 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Kees Cook <kees@kernel.org>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH v2 2/2] drm: use mem_is_zero() instead of !memchr_inv(s,
- 0, n)
-In-Reply-To: <202408150907.5B5C5FCDF@keescook>
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2024 06:18:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr?=
+ =?utf-8?Q?=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH 83/86] drm/{i915,xe}: Run DRM default client setup
+In-Reply-To: <20240816125408.310253-84-tzimmermann@suse.de>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240814100035.3100852-1-jani.nikula@intel.com>
- <20240814100035.3100852-2-jani.nikula@intel.com>
- <202408150907.5B5C5FCDF@keescook>
-Date: Fri, 16 Aug 2024 16:12:20 +0300
-Message-ID: <87ed6o7gsr.fsf@intel.com>
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-84-tzimmermann@suse.de>
+Date: Fri, 16 Aug 2024 16:18:27 +0300
+Message-ID: <87cym87gik.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,39 +76,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Aug 2024, Kees Cook <kees@kernel.org> wrote:
-> On Wed, Aug 14, 2024 at 01:00:35PM +0300, Jani Nikula wrote:
->> Use the mem_is_zero() helper where possible.
->> 
->> Conversion done using cocci:
->> 
->> | @@
->> | expression PTR;
->> | expression SIZE;
->> | @@
->> |
->> |   <...
->> | (
->> | - memchr_inv(PTR, 0, SIZE) == NULL
->> | + mem_is_zero(PTR, SIZE)
->> | |
->> | - !memchr_inv(PTR, 0, SIZE)
->> | + mem_is_zero(PTR, SIZE)
->> | |
->> | - memchr_inv(PTR, 0, SIZE)
->> | + !mem_is_zero(PTR, SIZE)
->> | )
->> |   ...>
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Thanks for these patches! Since drm is the first user, feel free to
-> carry it there unless you'd prefer I carry it in my trees?
->
-> Reviewed-by: Kees Cook <kees@kernel.org>
+On Fri, 16 Aug 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 206328387150..7a28396abb25 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -17,6 +17,8 @@
+>  #include <drm/drm_print.h>
+>  #include <drm/xe_drm.h>
+>  
+> +#include "intel_fbdev.h"
+> +
+>  #include "display/xe_display.h"
+>  #include "instructions/xe_gpu_commands.h"
+>  #include "regs/xe_gt_regs.h"
+> @@ -267,6 +269,7 @@ static struct drm_driver driver = {
+>  
+>  	.dumb_create = xe_bo_dumb_create,
+>  	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
+> +	INTEL_FBDEV_DRIVER_OPS,
+>  #ifdef CONFIG_PROC_FS
+>  	.show_fdinfo = xe_drm_client_fdinfo,
+>  #endif
 
-Thanks for the reviews. I've gone ahead and merged both to
-drm-misc-next, heading for the next merge window.
+Basically xe_device.c should have close to zero idea about display
+details, and should not include intel_fbdev.h directly.
+
+There's a xe_display_driver_set_hooks() call that is the right place to
+set the driver->fbdev_probe hook.
+
+It's a bit of a bummer in the sense that this prevents struct drm_driver
+from being const, but that's how it already is for xe.
+
 
 BR,
 Jani.
