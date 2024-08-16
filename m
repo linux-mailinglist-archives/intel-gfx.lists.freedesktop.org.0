@@ -2,48 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8A4795574F
+	by mail.lfdr.de (Postfix) with ESMTPS id 302BE95574E
 	for <lists+intel-gfx@lfdr.de>; Sat, 17 Aug 2024 12:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A154610E081;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B7ED10E07D;
 	Sat, 17 Aug 2024 10:38:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="b5MlLt8g";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B9IQyqmh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC8F610E153;
- Thu, 15 Aug 2024 16:07:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F6510E783;
+ Fri, 16 Aug 2024 13:59:14 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 2B89F61F14;
- Thu, 15 Aug 2024 16:07:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1469C32786;
- Thu, 15 Aug 2024 16:07:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 2D3AF62122;
+ Fri, 16 Aug 2024 13:59:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E838C32782;
+ Fri, 16 Aug 2024 13:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1723738061;
- bh=CqSRzNnvmk1yA3FnJFDSAd2k79a1u4Xej/LtRM+fVZE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=b5MlLt8g3jMAhQ/uLGUNDskKWbJFqHhk9vAY1Va6OS5YfbJRn4R5N/10EnkQBysQV
- Ix1S8iTh8Wzp3+HNkzlGFUu6RjWGMmpBZaJz1eUK54iuuzAbnvmREFRz8Pf+h9U803
- Zdd5GH6nG8OSzuymth0PAwdU37rXalmn7f3b3IBjcYxZrmw6g94LCtPpZ9Sgr+lEEW
- FWPWQjY1Dc3QPOUr4rRHEjNpgpYl8hpRxq7obQVUIGWXtisyCQNxJTQ/tDVFk4hL8H
- LJYX3+1DHvThJYkak2Z3W9uiHCDVUqhoLY78olT7fJ16LKd2Nm7mYbwJPyk1+ytcJQ
- /ld0wUa8KUyDg==
-Date: Thu, 15 Aug 2024 09:07:41 -0700
-From: Kees Cook <kees@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH v2 2/2] drm: use mem_is_zero() instead of !memchr_inv(s,
- 0, n)
-Message-ID: <202408150907.5B5C5FCDF@keescook>
-References: <20240814100035.3100852-1-jani.nikula@intel.com>
- <20240814100035.3100852-2-jani.nikula@intel.com>
+ s=k20201202; t=1723816752;
+ bh=AYjyt3Zr4yYkK8EpDLsOl7+GIl2rfY/yAMJVs4wWqzE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=B9IQyqmh350p67tFsMJW4RhPtoUf9FqudC5otI9WnV1xa59NqqV1PpqbArYqhOgoj
+ EeBRL4DgY8iAU/sPILsxMfXIHc69OZS+vB7CQuFwufeD/Nr/Ux0keuJJsTQ9XCHarv
+ arUrZfML86yC/GNemrzAFY549WogD5FQU23OjeQGTIBEax6Cjh0gbPS4dIwEek08QI
+ boVM6BlIgQqrHFqLO1oqCXOxxMNRRNk/EzzS23eHD0J2tAJR6HdQxhS9jrAg5uHg24
+ 1ULRAyqkNB4IwvVzBev2Vyh96FicfZIUXAeZs6DXysH5/GPG3jvuYUYgVknbuJqFLa
+ yx5tetp8tG83A==
+Message-ID: <d2d8ccfc-8b41-4051-a2ea-3908aa21daac@kernel.org>
+Date: Fri, 16 Aug 2024 15:59:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240814100035.3100852-2-jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 69/86] drm/nouveau: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
+ javierm@redhat.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-70-tzimmermann@suse.de>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20240816125408.310253-70-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sat, 17 Aug 2024 10:38:10 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,35 +64,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 14, 2024 at 01:00:35PM +0300, Jani Nikula wrote:
-> Use the mem_is_zero() helper where possible.
+On 8/16/24 2:23 PM, Thomas Zimmermann wrote:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
 > 
-> Conversion done using cocci:
+> The nouveau driver specifies a preferred color mode depending on
+> the available video memory, with a default of 32. Adapt this for
+> the new client interface.
 > 
-> | @@
-> | expression PTR;
-> | expression SIZE;
-> | @@
-> |
-> |   <...
-> | (
-> | - memchr_inv(PTR, 0, SIZE) == NULL
-> | + mem_is_zero(PTR, SIZE)
-> | |
-> | - !memchr_inv(PTR, 0, SIZE)
-> | + mem_is_zero(PTR, SIZE)
-> | |
-> | - memchr_inv(PTR, 0, SIZE)
-> | + !mem_is_zero(PTR, SIZE)
-> | )
-> |   ...>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Acked-by: Danilo Krummrich <dakr@kernel.org>
+
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Danilo Krummrich <dakr@redhat.com>
+> ---
+>   drivers/gpu/drm/nouveau/nouveau_drm.c | 7 +++++--
+>   1 file changed, 5 insertions(+), 2 deletions(-)
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Thanks for these patches! Since drm is the first user, feel free to
-carry it there unless you'd prefer I carry it in my trees?
-
-Reviewed-by: Kees Cook <kees@kernel.org>
-
--- 
-Kees Cook
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 4a9a9b9c3935..445ebedf70d6 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -31,6 +31,7 @@
+>   #include <linux/dynamic_debug.h>
+>   
+>   #include <drm/drm_aperture.h>
+> +#include <drm/drm_client_setup.h>
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_fbdev_ttm.h>
+>   #include <drm/drm_gem_ttm_helper.h>
+> @@ -873,9 +874,9 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>   		goto fail_pci;
+>   
+>   	if (drm->client.device.info.ram_size <= 32 * 1024 * 1024)
+> -		drm_fbdev_ttm_setup(drm->dev, 8);
+> +		drm_client_setup(drm->dev, drm_format_info(DRM_FORMAT_C8));
+>   	else
+> -		drm_fbdev_ttm_setup(drm->dev, 32);
+> +		drm_client_setup(drm->dev, NULL);
+>   
+>   	quirk_broken_nv_runpm(pdev);
+>   	return 0;
+> @@ -1317,6 +1318,8 @@ driver_stub = {
+>   	.dumb_create = nouveau_display_dumb_create,
+>   	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
+>   
+> +	DRM_FBDEV_TTM_DRIVER_OPS,
+> +
+>   	.name = DRIVER_NAME,
+>   	.desc = DRIVER_DESC,
+>   #ifdef GIT_REVISION
