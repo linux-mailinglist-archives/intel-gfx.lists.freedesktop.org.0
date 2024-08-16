@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D0A39548EA
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 14:40:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F4FA9548EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 14:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 163D510E010;
-	Fri, 16 Aug 2024 12:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA0F10E4DB;
+	Fri, 16 Aug 2024 12:40:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC0110E010;
- Fri, 16 Aug 2024 12:40:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F31D510E4DB;
+ Fri, 16 Aug 2024 12:40:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Introducing_Xe2_ccs_?=
- =?utf-8?q?modifiers_for_integrated_and_discrete_graphics?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Introducing_Xe2_ccs_modi?=
+ =?utf-8?q?fiers_for_integrated_and_discrete_graphics?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 16 Aug 2024 12:40:51 -0000
-Message-ID: <172381205149.654289.15667555044940930380@2413ebb6fbb6>
+Date: Fri, 16 Aug 2024 12:40:53 -0000
+Message-ID: <172381205399.653293.8509084392988334204@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
@@ -49,14 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-6790912b35b6 drm/i915/display: Don't enable decompression on Xe2 with Tile4
-a1155590cb4f drm/fourcc: define Intel Xe2 related tile4 ccs modifiers
-1a04aa437e93 drm/i915/display: allow creation of Xe2 ccs framebuffers
--:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#6: 
-Add I915_FORMAT_MOD_4_TILED_BMG_CCS and I915_FORMAT_MOD_4_TILED_LNL_CCS to possible
-
-total: 0 errors, 1 warnings, 0 checks, 61 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
