@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E77E954907
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 14:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BE9B954A93
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2024 14:58:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3369B10E518;
-	Fri, 16 Aug 2024 12:44:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YXrCV9Fy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E457E10E64F;
+	Fri, 16 Aug 2024 12:55:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2F6C10E518;
- Fri, 16 Aug 2024 12:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723812297; x=1755348297;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5hhvYxKh/BWJATt7lMINORYJsEBOxQn25RjDu5y93w0=;
- b=YXrCV9Fy0QlDPr/w3+TWuBVcBCmJr8lFH/Et/eWCMMlsZ3AlQ6oAK36p
- ij8B3ol/fsalqQMuu63Feh1ePamV9zaeAfyYIqiKzoE2bx8wVipQuNa5q
- QeailUINJdM4SVSsKS6MZNEpqtR3ss5gfvc8hZ+bczYC2JpDAHXmvfkwi
- 29dovjGqZyd/fmNy1kCPTD6phfXO01vHoeqVg0KVQb9PAc43sDdKulG8z
- 5utJvU4gpd74OgFEN+cIUvgmPi8Lbq3QlJ8kjNb8f+h4wBRQcSIlx4v7Q
- O30dOPJeEZABjxuLJ+7kwBqB/Axe4FGEwpkg1eYka9faQrgoTPgFaKv69 g==;
-X-CSE-ConnectionGUID: 2CFuE0WQSeObq9oiI6ijQQ==
-X-CSE-MsgGUID: 5niL1R5lQWif+3Bsj4lNJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="21919029"
-X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="21919029"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2024 05:44:56 -0700
-X-CSE-ConnectionGUID: KOV7HugPTwejVBHvqNw6HQ==
-X-CSE-MsgGUID: 8WqK5PkWSZG0r/HuKk10Kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; d="scan'208";a="60221339"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 16 Aug 2024 05:44:55 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sewK4-0006QI-1D;
- Fri, 16 Aug 2024 12:44:52 +0000
-Date: Fri, 16 Aug 2024 20:44:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@linux.intel.com
-Subject: Re: [PATCH 1/5] drm/i915/display: Add support for SNPS PHY HDMI PLL
- algorithm for DG2
-Message-ID: <202408162056.qbWTZcLT-lkp@intel.com>
-References: <20240813031941.3553574-2-ankit.k.nautiyal@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E47B10E639;
+ Fri, 16 Aug 2024 12:55:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5116379361291151159=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240813031941.3553574-2-ankit.k.nautiyal@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Introducing_Xe2_ccs_modifie?=
+ =?utf-8?q?rs_for_integrated_and_discrete_graphics?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 16 Aug 2024 12:55:27 -0000
+Message-ID: <172381292750.653293.15979733947615123940@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240816115229.531671-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,121 +37,272 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ankit,
+--===============5116379361291151159==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+== Series Details ==
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-intel/for-linux-next-fixes drm-tip/drm-tip drm-xe/drm-xe-next linus/master v6.11-rc3 next-20240816]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: Introducing Xe2 ccs modifiers for integrated and discrete graphics
+URL   : https://patchwork.freedesktop.org/series/137385/
+State : failure
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-i915-display-Add-support-for-SNPS-PHY-HDMI-PLL-algorithm-for-DG2/20240814-222404
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240813031941.3553574-2-ankit.k.nautiyal%40intel.com
-patch subject: [PATCH 1/5] drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2
-config: i386-randconfig-061-20240816 (https://download.01.org/0day-ci/archive/20240816/202408162056.qbWTZcLT-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240816/202408162056.qbWTZcLT-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408162056.qbWTZcLT-lkp@intel.com/
+CI Bug Log - changes from CI_DRM_15246 -> Patchwork_137385v1
+====================================================
 
-sparse warnings: (new ones prefixed by >>)
-   drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/slab.h, ...):
-   include/linux/page-flags.h:235:46: sparse: sparse: self-comparison always evaluates to false
-   include/linux/page-flags.h:235:46: sparse: sparse: self-comparison always evaluates to false
->> drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c:103:23: sparse: sparse: cast truncates bits from constant value (e8d4a51000 becomes d4a51000)
+Summary
+-------
 
-vim +103 drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+  **FAILURE**
 
-    47	
-    48	static void get_ana_cp_int_prop(u32 vco_clk,
-    49					u32 refclk_postscalar,
-    50					int mpll_ana_v2i,
-    51					int c, int a,
-    52					const u64 curve_freq_hz[2][8],
-    53					const u64 curve_0[2][8],
-    54					const u64 curve_1[2][8],
-    55					const u64 curve_2[2][8],
-    56					u32 *ana_cp_int,
-    57					u32 *ana_cp_prop)
-    58	{
-    59		u64 vco_div_refclk_float;
-    60		u64 curve_0_interpolated;
-    61		u64 curve_2_interpolated;
-    62		u64 curve_1_interpolated;
-    63		u64 curve_2_scaled1;
-    64		u64 curve_2_scaled2;
-    65		u64 adjusted_vco_clk1;
-    66		u64 adjusted_vco_clk2;
-    67		u64 curve_2_scaled_int;
-    68		u64 interpolated_product;
-    69		u64 scaled_interpolated_sqrt;
-    70		u64 scaled_vco_div_refclk1;
-    71		u64 scaled_vco_div_refclk2;
-    72		u64 temp;
-    73	
-    74		vco_div_refclk_float = vco_clk * DIV_ROUND_DOWN_ULL(1000000000000ULL, refclk_postscalar);
-    75	
-    76		/* Interpolate curve values at the target vco_clk frequency */
-    77		curve_0_interpolated = interp(vco_clk, curve_freq_hz[c][a], curve_freq_hz[c][a + 1],
-    78					      curve_0[c][a], curve_0[c][a + 1]);
-    79	
-    80		curve_2_interpolated = interp(vco_clk, curve_freq_hz[c][a], curve_freq_hz[c][a + 1],
-    81					      curve_2[c][a], curve_2[c][a + 1]);
-    82	
-    83		curve_1_interpolated = interp(vco_clk, curve_freq_hz[c][a], curve_freq_hz[c][a + 1],
-    84					      curve_1[c][a], curve_1[c][a + 1]);
-    85	
-    86		curve_1_interpolated = DIV_ROUND_DOWN_ULL(curve_1_interpolated, CURVE1_MULTIPLIER);
-    87	
-    88		/*
-    89		 * Scale curve_2_interpolated based on mpll_ana_v2i, for integer part
-    90		 * ana_cp_int and for the proportional part ana_cp_prop
-    91		 */
-    92		temp = curve_2_interpolated * (4 - mpll_ana_v2i);
-    93		curve_2_scaled1 = DIV_ROUND_DOWN_ULL(temp, 16000);
-    94		curve_2_scaled2 = DIV_ROUND_DOWN_ULL(temp, 160);
-    95	
-    96		/* Scale vco_div_refclk for ana_cp_int */
-    97		scaled_vco_div_refclk1 = 112008301 * DIV_ROUND_DOWN_ULL(vco_div_refclk_float, 100000);
-    98	
-    99		adjusted_vco_clk1 = CURVE2_MULTIPLIER *
-   100				    DIV_ROUND_DOWN_ULL(scaled_vco_div_refclk1, (curve_0_interpolated *
-   101				    DIV_ROUND_DOWN_ULL(curve_1_interpolated, CURVE0_MULTIPLIER)));
-   102	
- > 103		*ana_cp_int = DIV_ROUND_CLOSEST_ULL(DIV_ROUND_DOWN_ULL(adjusted_vco_clk1, curve_2_scaled1),
-   104						    CURVE2_MULTIPLIER);
-   105		*ana_cp_int = max(1, min(*ana_cp_int, 127));
-   106	
-   107		curve_2_scaled_int = curve_2_scaled1 * (*ana_cp_int);
-   108	
-   109		interpolated_product = curve_1_interpolated *
-   110				       (curve_2_scaled_int * DIV_ROUND_DOWN_ULL(curve_0_interpolated,
-   111									      CURVE0_MULTIPLIER));
-   112	
-   113		scaled_interpolated_sqrt =
-   114				int_sqrt(DIV_ROUND_UP_ULL(interpolated_product, vco_div_refclk_float) *
-   115				DIV_ROUND_DOWN_ULL(1000000000000ULL, 55));
-   116	
-   117		/* Scale vco_div_refclk for ana_cp_int */
-   118		scaled_vco_div_refclk2 = DIV_ROUND_UP_ULL(vco_div_refclk_float, 1000000);
-   119		adjusted_vco_clk2 = 1460281 * DIV_ROUND_UP_ULL(scaled_interpolated_sqrt *
-   120							       scaled_vco_div_refclk2,
-   121							       curve_1_interpolated);
-   122	
-   123		*ana_cp_prop = DIV_ROUND_UP_ULL(adjusted_vco_clk2, curve_2_scaled2);
-   124		*ana_cp_prop = max(1, min(*ana_cp_prop, 127));
-   125	}
-   126	
+  Serious unknown changes coming with Patchwork_137385v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_137385v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Additional (1): fi-cfl-8109u 
+  Missing    (3): bat-dg2-11 fi-snb-2520m fi-bsw-n3050 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_137385v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@load:
+    - bat-rpls-4:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-rpls-4/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-rpls-4/igt@i915_module_load@load.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@ring_submission:
+    - {bat-arlh-3}:       NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-arlh-3/igt@i915_selftest@live@ring_submission.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137385v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][4] ([i915#2190])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-cfl-8700k:       [PASS][6] -> [SKIP][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/fi-cfl-8700k/igt@kms_hdmi_inject@inject-audio.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8700k/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][8] +11 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-2:          [INCOMPLETE][9] ([i915#9413]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@migrate:
+    - {bat-arlh-3}:       [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-arlh-3/igt@i915_selftest@live@migrate.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-arlh-3/igt@i915_selftest@live@migrate.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-1:         [DMESG-WARN][13] ([i915#11349] / [i915#11378]) -> [ABORT][14] ([i915#9500])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
+  [i915#11378]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7972 -> IGTPW_11561
+  * Linux: CI_DRM_15246 -> Patchwork_137385v1
+
+  CI-20190529: 20190529
+  CI_DRM_15246: 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_11561: 11561
+  IGT_7972: c34e13f766d0ed48c8b62ad9d8c29f11a8441b8b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_137385v1: 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/index.html
+
+--===============5116379361291151159==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introducing Xe2 ccs modifiers for integrated and discrete graphics</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137385/">https://patchwork.freedesktop.org/series/137385/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15246 -&gt; Patchwork_137385v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_137385v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_137385v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Additional (1): fi-cfl-8109u <br />
+  Missing    (3): bat-dg2-11 fi-snb-2520m fi-bsw-n3050 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_137385v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-rpls-4/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-rpls-4/igt@i915_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@ring_submission:<ul>
+<li>{bat-arlh-3}:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-arlh-3/igt@i915_selftest@live@ring_submission.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137385v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/fi-cfl-8700k/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8700k/igt@kms_hdmi_inject@inject-audio.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> +11 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>{bat-arlh-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-arlh-3/igt@i915_selftest@live@migrate.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-arlh-3/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15246/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11378">i915#11378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137385v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7972 -&gt; IGTPW_11561</li>
+<li>Linux: CI_DRM_15246 -&gt; Patchwork_137385v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15246: 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGTPW_11561: 11561<br />
+  IGT_7972: c34e13f766d0ed48c8b62ad9d8c29f11a8441b8b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_137385v1: 70d6d55dea574b7b78ccf714699cc5d8d62fcc2c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5116379361291151159==--
