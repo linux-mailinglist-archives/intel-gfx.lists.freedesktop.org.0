@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A789559C6
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Aug 2024 23:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6A6955A08
+	for <lists+intel-gfx@lfdr.de>; Sun, 18 Aug 2024 00:35:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 412F210E10F;
-	Sat, 17 Aug 2024 21:01:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="liwhxYAl";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EF0910E08B;
+	Sat, 17 Aug 2024 22:35:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0254410E10C;
- Sat, 17 Aug 2024 21:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723928518; x=1755464518;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wIFId5pp1jNYbY1a9rImTmXAne/K5pRvevxYFOVM2V4=;
- b=liwhxYAl1lh6vIa2cpdhYUogS6XZygxkSuCXdu03AAfR5i4miQsKWVQ4
- fm+yY+f2Y8RGMiKdasOyQYRr1VnJzdJng0oVV4zd91IJMCkrzBkgA9R+r
- rGRg5YD7mUfKOPIVeTfO8Dp0JEYlRgwPP9/RxR0B6lgVdj/mf4EzOrPJc
- 0tf+6C97ZiI/F3IFjuEX7WMf/A94yx5kkIYaZzHXpr8kyYsx6lCkbqaqY
- PAvi6vG7BKVDmzuS2fWnrCyaNeYx15E/x7ldcU2blSt3bdrNWdec0NGAp
- XoYHeXZ8UuuNADTNHX6Ve21KfuqXBnLcCavIqWlqtlTXQkJZ0D85GwYrB Q==;
-X-CSE-ConnectionGUID: eRGrGx45Tn2vyxOe86CY4Q==
-X-CSE-MsgGUID: kL2sT4u7TV+jh3yT4Q7fdw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11167"; a="25997146"
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="25997146"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2024 14:01:57 -0700
-X-CSE-ConnectionGUID: oG3bBlsFQRif2nubi48UFA==
-X-CSE-MsgGUID: JLiBBVSdRbiuegsBLiYCuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="97489209"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.11])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2024 14:01:54 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [RFC PATCH v2 11/11] drm/i915/gt: Allow the user to change the CCS
- mode through sysfs
-Date: Sat, 17 Aug 2024 23:00:26 +0200
-Message-ID: <20240817210026.310645-12-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240817210026.310645-1-andi.shyti@linux.intel.com>
-References: <20240817210026.310645-1-andi.shyti@linux.intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACE0210E08B;
+ Sat, 17 Aug 2024 22:35:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_CCS_static_load_bala?=
+ =?utf-8?q?nce_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 17 Aug 2024 22:35:14 -0000
+Message-ID: <172393411467.676255.5158888327996784708@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240817210026.310645-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240817210026.310645-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,128 +37,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Create the 'ccs_mode' file under
+== Series Details ==
 
-/sys/class/drm/cardX/gt/gt0/ccs_mode
+Series: CCS static load balance (rev2)
+URL   : https://patchwork.freedesktop.org/series/136381/
+State : warning
 
-This file allows the user to read and set the current CCS mode.
+== Summary ==
 
- - Reading: The user can read the current CCS mode, which can be
-   1, 2, or 4. This value is derived from the current engine
-   mask.
+Error: dim checkpatch failed
+84e876cb3a32 drm/i915/gt: Move the CCS mode variable to a global position
+-:113: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#113: FILE: drivers/gpu/drm/i915/gt/intel_gt_types.h:226:
++		struct mutex mutex;
 
- - Writing: The user can set the CCS mode to 1, 2, or 4,
-   depending on the desired number of exposed engines and the
-   required load balancing.
+total: 0 errors, 0 warnings, 1 checks, 95 lines checked
+3b0bf8998852 drm/i915/gt: Allow the creation of multi-mode CCS masks
+0076ce951e97 drm/i915/gt: Refactor uabi engine class/instance list creation
+-:54: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#54: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:233:
++		GEM_BUG_ON(uabi_class >= ARRAY_SIZE(class_instance));
 
-The interface will return -EBUSY if other clients are connected
-to i915, or -EINVAL if an invalid value is set.
+-:70: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#70: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:247:
++		GEM_BUG_ON(uabi_class >=
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 74 +++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+total: 0 errors, 2 warnings, 0 checks, 56 lines checked
+96ff57617c4a drm/i915/gt: Manage CCS engine creation within UABI exposure
+4743af1f0f34 drm/i915/gt: Remove cslices mask value from the CCS structure
+12d784cbbf89 drm/i915/gt: Expose the number of total CCS slices
+09c8acafca2a drm/i915/gt: Store engine-related sysfs kobjects
+e2ea1fbf7f3b drm/i915/gt: Store active CCS mask
+9d3afeca2efa drm/i915/gt: Isolate single sysfs engine file creation
+-:100: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#100: FILE: drivers/gpu/drm/i915/gt/sysfs_engines.c:539:
++	gt_err(engine->gt, "Failed to add sysfs engine '%s'\n",
++		engine->name);
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-index b1c3c9d9bb4f..30393009bc43 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-@@ -5,6 +5,7 @@
- 
- #include "i915_drv.h"
- #include "intel_gt_ccs_mode.h"
-+#include "intel_gt_pm.h"
- #include "intel_gt_print.h"
- #include "intel_gt_regs.h"
- #include "intel_gt_sysfs.h"
-@@ -206,6 +207,68 @@ static ssize_t num_cslices_show(struct device *dev,
- }
- static DEVICE_ATTR_RO(num_cslices);
- 
-+static ssize_t ccs_mode_show(struct device *dev,
-+			     struct device_attribute *attr, char *buff)
-+{
-+	struct intel_gt *gt = kobj_to_gt(&dev->kobj);
-+	u32 ccs_mode;
-+
-+	ccs_mode = hweight32(gt->ccs.ccs_mask);
-+
-+	return sysfs_emit(buff, "%u\n", ccs_mode);
-+}
-+
-+static ssize_t ccs_mode_store(struct device *dev,
-+			      struct device_attribute *attr,
-+			      const char *buff, size_t count)
-+{
-+	struct intel_gt *gt = kobj_to_gt(&dev->kobj);
-+	int num_cslices = hweight32(CCS_MASK(gt));
-+	int ccs_mode = hweight32(gt->ccs.ccs_mask);
-+	ssize_t ret;
-+	u32 val;
-+
-+	ret = kstrtou32(buff, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * As of now possible values to be set are 1, 2, 4,
-+	 * up to the maximum number of available slices
-+	 */
+total: 0 errors, 0 warnings, 1 checks, 115 lines checked
+54a64c3795dd drm/i915/gt: Implement creation and removal routines for CCS engines
+be957e86b979 drm/i915/gt: Allow the user to change the CCS mode through sysfs
+-:71: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around '!val'
+#71: FILE: drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c:239:
 +	if ((!val) || (val > num_cslices) || (num_cslices % val))
-+		return -EINVAL;
-+
-+	/*
-+	 * We don't want to change the CCS
-+	 * mode while someone is using the GT
-+	 */
-+	if (intel_gt_pm_is_awake(gt))
-+		return -EBUSY;
-+
-+	mutex_lock(&gt->wakeref.mutex);
-+	mutex_lock(&gt->ccs.mutex);
-+
-+	/*
-+	 * Nothing to do if the requested setting
-+	 * is the same as the current one
-+	 */
-+	if (val == ccs_mode)
-+		return count;
-+	else if (val > ccs_mode)
-+		add_uabi_ccs_engines(gt, val);
-+	else
-+		remove_uabi_ccs_engines(gt, val);
-+
-+	intel_gt_apply_ccs_mode(gt, val);
-+
-+	mutex_unlock(&gt->ccs.mutex);
-+	mutex_unlock(&gt->wakeref.mutex);
-+
-+	return count;
-+}
-+static DEVICE_ATTR_RW(ccs_mode);
-+
- void intel_gt_sysfs_ccs_init(struct intel_gt *gt)
- {
- 	int err;
-@@ -213,4 +276,15 @@ void intel_gt_sysfs_ccs_init(struct intel_gt *gt)
- 	err = sysfs_create_file(&gt->sysfs_gt, &dev_attr_num_cslices.attr);
- 	if (err)
- 		gt_dbg(gt, "failed to create sysfs num_cslices files\n");
-+
-+	/*
-+	 * Do not create the ccs_mode file for non DG2 platforms
-+	 * because they don't need it as they have only one CCS engine
-+	 */
-+	if (!IS_DG2(gt->i915))
-+		return;
-+
-+	err = sysfs_create_file(&gt->sysfs_gt, &dev_attr_ccs_mode.attr);
-+	if (err)
-+		gt_dbg(gt, "failed to create sysfs ccs_mode files\n");
- }
--- 
-2.45.2
+
+-:71: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val > num_cslices'
+#71: FILE: drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c:239:
++	if ((!val) || (val > num_cslices) || (num_cslices % val))
+
+total: 0 errors, 0 warnings, 2 checks, 90 lines checked
+
 
