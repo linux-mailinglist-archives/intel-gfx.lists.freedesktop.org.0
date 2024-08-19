@@ -2,48 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCEC955EDE
-	for <lists+intel-gfx@lfdr.de>; Sun, 18 Aug 2024 22:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EFF29563F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 08:50:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5FEB10E174;
-	Sun, 18 Aug 2024 20:19:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E638310E1B1;
+	Mon, 19 Aug 2024 06:50:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mI5yFZ8n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TqsNvE5h";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA0D10E177;
- Sun, 18 Aug 2024 20:19:53 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
- [81.175.209.231])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4790C1BA;
- Sun, 18 Aug 2024 22:18:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1724012331;
- bh=XhKYTILEYLK5hnZgppdmA00tGDJpmsrwPWsR1GIB2Eo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=mI5yFZ8nFKdsDUiEJZahI6u8wiKP2UIAgdEmzTJXIciTkRnaNfCUQOrd9UBoEE31i
- 981U6V0Y5Jb4BsZMlfaa3RRaLJPhqBNqAyH6no6rsoy+U4WMqOOTv/uiV4Ewp2rTgg
- br97kp4zVYJdpiPSQKTX+9oLwDH4eyduFcQXSmyM=
-Date: Sun, 18 Aug 2024 23:19:25 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH 48/86] drm/xlnx: Run DRM default client setup
-Message-ID: <20240818201925.GI29465@pendragon.ideasonboard.com>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-49-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 651D410E1B1;
+ Mon, 19 Aug 2024 06:50:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724050238; x=1755586238;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=oj3Y9pH17xNfiWjKVNwaUDErHrAbG48YkAEs7w5hNqE=;
+ b=TqsNvE5hkaDymDqTXH/iBaoCLEg4paEbPvrdjrEd0SZPjWtpfqYPQsd9
+ bA4ALg6Np2iTJQWOrqsj0x/pgtI5eQarDk2o4VaL0vjCUAcxxGCG51lkT
+ xj4dKuaJX5VzEG3nFcTZach62ntiplKTWIxLkNLxvlR1c1gmSeKqcgZC3
+ Ct94ZrIVbCM3V2nlfLmNwPUHU7dVOKo5Ahg1tXzNe/SSLicPfMxCaxEND
+ 5fdZ0WLpk3GQ1c+Jfsz7oWjiGTEe1zKTj5odqmRYtpYknTdEq5IhBhGse
+ RQ/M47KdC1/qR5Xmo5+AgGZ3+PZ0CYPYKZ1Ae2Fas348WdPKu8yAIS9Pe g==;
+X-CSE-ConnectionGUID: qzKzQC63Tqiirf6012OCEQ==
+X-CSE-MsgGUID: xO6EBUvhSwupsWQxzAyoHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="26149682"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="26149682"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2024 23:50:34 -0700
+X-CSE-ConnectionGUID: 0atrH+wPTZeHjmFXJYOQxQ==
+X-CSE-MsgGUID: mC6FAfWsTryxmG5IwJ3sBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="91020759"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2024 23:50:16 -0700
+Date: Mon, 19 Aug 2024 09:50:13 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, linux@roeck-us.net,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ anshuman.gupta@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com,
+ andriy.shevchenko@linux.intel.com
+Subject: Re: [PATCH v4] drm/i915/hwmon: expose fan speed
+Message-ID: <ZsLrJVdBmfZhZaaR@black.fi.intel.com>
+References: <20240809061525.1368153-1-raag.jadav@intel.com>
+ <23dc7824-50cd-4ba3-be5a-df141e8fe69a@intel.com>
+ <ZrXslA1c-BhO6zYr@ashyti-mobl2.lan>
+ <88320f60-d55b-4aa5-881f-530375659c27@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240816125408.310253-49-tzimmermann@suse.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <88320f60-d55b-4aa5-881f-530375659c27@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,64 +79,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Thomas,
-
-Thank you for the patch.
-
-On Fri, Aug 16, 2024 at 02:23:14PM +0200, Thomas Zimmermann wrote:
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
+On Wed, Aug 14, 2024 at 02:07:44PM +0530, Nilawar, Badal wrote:
 > 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Cc: Michal Simek <michal.simek@amd.com>
-> ---
->  drivers/gpu/drm/xlnx/zynqmp_kms.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Hi Andi,
 > 
-> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> index bd1368df7870..f26b119322d5 100644
-> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_blend.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_bridge_connector.h>
-> +#include <drm/drm_client_setup.h>
->  #include <drm/drm_connector.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
-> @@ -402,6 +403,7 @@ static const struct drm_driver zynqmp_dpsub_drm_driver = {
->  					  DRIVER_ATOMIC,
->  
->  	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(zynqmp_dpsub_dumb_create),
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
->  
->  	.fops				= &zynqmp_dpsub_drm_fops,
->  
-> @@ -523,7 +525,7 @@ int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
->  		goto err_poll_fini;
->  
->  	/* Initialize fbdev generic emulation. */
-> -	drm_fbdev_dma_setup(drm, 24);
-> +	drm_client_setup(drm, drm_format_info(DRM_FORMAT_RGB888));
+> On 09-08-2024 15:46, Andi Shyti wrote:
+> > Hi Badal,
+> > 
+> > > > +static int
+> > > > +hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> > > > +{
+> > > > +	struct i915_hwmon *hwmon = ddat->hwmon;
+> > > > +	struct hwm_fan_info *fi = &ddat->fi;
+> > > > +	u32 reg_val, pulses, time, time_now;
+> > > > +	intel_wakeref_t wakeref;
+> > > > +	long rotations;
+> > > > +	int ret = 0;
+> > > > +
+> > > > +	if (attr != hwmon_fan_input)
+> > > > +		return -EOPNOTSUPP;
+> > > Using a switch case in rev3 is more logical here. It will also simplify
+> > > adding more fan attributes in the future. This is why switch cases are used
+> > > in other parts of the file.
+> > 
+> > it was my suggestion and to be honest I would rather prefer it
+> > this way. I can understand it if we were expecting more cases in
+> > the immediate, like it was in your case.
+> > 
+> > But I wouldn't have an ugly and unreadable one-case-switch in the
+> > eventuality that something comes in the future. In that case, we
+> > can always convert it.
+> 
+> My rationale for suggesting a switch case is that in the current alignment
+> hwm_XX_read() function is designed to handle all possible/supported
+> attributes of the XX sensor type.
+> With the proposed change, hwm_fan_read() would only manage the
+> hwmon_fan_input attribute.
+> If a single switch case isn’t preferred, I would recommend creating a helper
+> function dedicated to hwmon_fan_input.
+> 
+> hwm_fan_read()
+> {
+> 	if (attr == hwmon_fan_input)
+> 		return helper(); //hwmon_fan_input_read()
+> 	return -EOPNOTSUPP;
+> }
 
-I know this would be a hassle to change, but do the majority of the
-callers of drm_client_setup() have a drm_format_info * already, or do
-they need to call drm_format_info() on a 4CC ? In the latter case, would
-it be better to pass the 4CC to drm_client_setup() ?
+Hi Andi,
 
-As far as this patch goes,
+If you agree with this, please let me know.
+Will send out a v6 accordingly.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
->  
->  	return 0;
->  
-
--- 
-Regards,
-
-Laurent Pinchart
+Raag
