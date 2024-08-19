@@ -2,151 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 960C6956528
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 10:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF31956622
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 10:58:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE37C10E1E7;
-	Mon, 19 Aug 2024 08:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006CB10E21C;
+	Mon, 19 Aug 2024 08:58:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ll7Qb2Ui";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9udWDGz9";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="EdzuyuQW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3dT3ANge";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="ZPVaB43m";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A79F110E1DF;
- Mon, 19 Aug 2024 08:04:25 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id ED23922990;
- Mon, 19 Aug 2024 08:04:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724054664; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
+ Mon, 19 Aug 2024 08:58:41 UTC
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com
+ [91.218.175.185])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BF7210E21A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 08:58:41 +0000 (UTC)
+Message-ID: <86a55d3c-930d-4b30-9f05-82dd2966df85@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1724057571;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ILJjJMgN/vVG1KF3mgEFsWgeLKvgG5ha1rlaYTvfjfY=;
- b=ll7Qb2UikIV3JfslfL43CffJuCg5S8azRQkFt7+pKJSc1bnqbLHnYn8H74TEHcmwTzA2P6
- mSNfghfY4+vzXBZd2B0FS49xSRcmg5AcJiG9eSHyfn5hYWW7ycCYK4GN9+rJfb+M2dvnRe
- sEtmas8hbfZGzJBSqi9+GYkcVgnufZE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724054664;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ILJjJMgN/vVG1KF3mgEFsWgeLKvgG5ha1rlaYTvfjfY=;
- b=9udWDGz9JNWIHTPO1GWCDyL0L+B6f96+v/MqJfYJ9GPlheGCvSh97kBv1BuQkGiQZ/j4Ui
- YnRLH9Z84kaziHAA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=EdzuyuQW;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=3dT3ANge
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724054662; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ILJjJMgN/vVG1KF3mgEFsWgeLKvgG5ha1rlaYTvfjfY=;
- b=EdzuyuQWN6253r2KEmvZH0p+TmfaRrPZjTQJ4FCrz3e1qndYwyXCkv0m8/REkOuuHHHKve
- /lKAxsVWidXFls5aaaTbKdKmOgsVL2rF2Aq/d0JNcAHVFnVb8mMPdaCc/SE7RBuwfh2Y0h
- b5ekwPZJigTVYnPQbQIjieQS5PkeODk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724054662;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=ILJjJMgN/vVG1KF3mgEFsWgeLKvgG5ha1rlaYTvfjfY=;
- b=3dT3ANgebDVQeZe7yn3zs7di46UaOK5tmoY2v1v8YFw8gteun8uoCSPdPMblB+L1mW7fDr
- ak1m1bPC1xSuqvCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 967B1137C3;
- Mon, 19 Aug 2024 08:04:22 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id oulsI4b8wmZLDQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 19 Aug 2024 08:04:22 +0000
-Message-ID: <8bbf3f92-3719-4ff4-9587-e076635758d1@suse.de>
-Date: Mon, 19 Aug 2024 10:04:22 +0200
+ in-reply-to:in-reply-to:references:references;
+ bh=V8cqVxm0O/kIa74pYimJWPMZdvULp9y/6vbk3iD9gek=;
+ b=ZPVaB43mQJJ/5PRSWOTR4YnXbL01tmuqXlM9fgC6Kj6nZpIFy+De2qRfCuHR1/wYRxzxNb
+ dkFTHUVEt7O5A00cld+p6mz5MOHWznzIUvepKNQZnuksbpqSN2aiV4oYNNrAIcLzl2eJcy
+ wv/aVi5x+HZnypCdcb2d/alZ5huYfaE=
+Date: Mon, 19 Aug 2024 16:52:39 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] video/aperture: match the pci device when calling
- sysfb_disable()
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: kernel test robot <lkp@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org,
- Javier Martinez Canillas <javierm@redhat.com>, Helge Deller <deller@gmx.de>,
- Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- stable@vger.kernel.org
-References: <20240809150327.2485848-1-alexander.deucher@amd.com>
- <202408101951.tXyqYOzv-lkp@intel.com>
- <1c77f913-4707-4300-b84a-36fcf99942f4@suse.de>
- <CADnq5_NjCFyy+bQY+uyijcZwvwXYkvVLLUQdtzN_ODvHAj193Q@mail.gmail.com>
+Subject: Re: [82/86] drm/i915: Move custom hotplug code into separate callback
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+References: <20240816125408.310253-83-tzimmermann@suse.de>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <CADnq5_NjCFyy+bQY+uyijcZwvwXYkvVLLUQdtzN_ODvHAj193Q@mail.gmail.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <20240816125408.310253-83-tzimmermann@suse.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: ED23922990
-X-Spam-Score: -4.51
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- URIBL_BLOCKED(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,intel.com:email,suse.de:dkim,suse.de:mid,suse.de:email,01.org:url];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FREEMAIL_TO(0.00)[gmail.com];
- ARC_NA(0.00)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- RCPT_COUNT_TWELVE(0.00)[12]; MIME_TRACE(0.00)[0:+];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
- FREEMAIL_CC(0.00)[intel.com,amd.com,lists.freedesktop.org,lists.linux.dev,redhat.com,gmx.de,ravnborg.org,ffwll.ch,vger.kernel.org];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email, suse.de:dkim, suse.de:mid,
- suse.de:email]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spam-Flag: NO
-X-Spam-Level: 
+X-Migadu-Flow: FLOW_OUT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,129 +66,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+Hi, Thomas
 
-Am 16.08.24 um 22:57 schrieb Alex Deucher:
-> On Mon, Aug 12, 2024 at 8:10 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Hi
->>
->> Am 10.08.24 um 13:44 schrieb kernel test robot:
->>> Hi Alex,
->>>
->>> kernel test robot noticed the following build errors:
->>>
->>> [auto build test ERROR on drm-misc/drm-misc-next]
->>> [also build test ERROR on linus/master v6.11-rc2 next-20240809]
->>> [If your patch is applied to the wrong git tree, kindly drop us a note.
->>> And when submitting patch, we suggest to use '--base' as documented in
->>> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->>>
->>> url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Deucher/video-aperture-match-the-pci-device-when-calling-sysfb_disable/20240810-021357
->>> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
->>> patch link:    https://lore.kernel.org/r/20240809150327.2485848-1-alexander.deucher%40amd.com
->>> patch subject: [PATCH] video/aperture: match the pci device when calling sysfb_disable()
->>> config: csky-randconfig-001-20240810 (https://download.01.org/0day-ci/archive/20240810/202408101951.tXyqYOzv-lkp@intel.com/config)
->>> compiler: csky-linux-gcc (GCC) 14.1.0
->>> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240810/202408101951.tXyqYOzv-lkp@intel.com/reproduce)
->>>
->>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
->>> the same patch/commit), kindly add following tags
->>> | Reported-by: kernel test robot <lkp@intel.com>
->>> | Closes: https://lore.kernel.org/oe-kbuild-all/202408101951.tXyqYOzv-lkp@intel.com/
->>>
->>> All errors (new ones prefixed by >>):
->>>
->>>      csky-linux-ld: drivers/video/aperture.o: in function `aperture_remove_conflicting_pci_devices':
->>>>> aperture.c:(.text+0x222): undefined reference to `screen_info_pci_dev'
->> Strange. There's a already placeholder [1] for architectures without
->> PCI. Otherwise the source file is listed at [2].
-> So I dug into this, and the problem seems to be that
-> CONFIG_SCREEN_INFO is not defined in that config.  I can't figure out
-> how this should work in that case or why this is not a problem in
-> drivers/firmware/sysfb.c.
+
+I love your patch, yet ...
+
+
+On 2024/8/16 20:23, Thomas Zimmermann wrote:
+> i915's fbdev contains additional code for hotplugging a display that
+> cannot be ported to the common fbdev client. Introduce the callback
+> struct drm_fb_helper.fb_hotplug and implement it for i915. The fbdev
+> helpers invoke the callback before handing the hotplug event.
 >
-> Something like this works:
-> diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-> index 56a5a0bc2b1af..50e98210c9fe5 100644
-> --- a/drivers/video/aperture.c
-> +++ b/drivers/video/aperture.c
-> @@ -347,7 +347,9 @@ EXPORT_SYMBOL(__aperture_remove_legacy_vga_devices);
->    */
->   int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev,
-> const char *name)
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/drm_fb_helper.c            |  6 +++
+>   drivers/gpu/drm/i915/display/intel_fbdev.c | 43 ++++++++++++----------
+>   include/drm/drm_fb_helper.h                | 13 +++++++
+>   3 files changed, 42 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+> index d9e539b0fd1a..92926cb02dfb 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -1938,6 +1938,12 @@ int drm_fb_helper_hotplug_event(struct drm_fb_helper *fb_helper)
+>   	if (!drm_fbdev_emulation || !fb_helper)
+>   		return 0;
+>   
+> +	if (fb_helper->funcs->fb_hotplug) {
+
+We seems need to check the existence on the 'fb_helper->funcs' here,
+
+For example:
+
+
+if (fb_helper->funcs && fb_helper->funcs->fb_hotplug) {
+
+Otherwise, it will de-reference NULL pointer.
+Can be observed on a trivial driver though,
+with no monitor(display) connected.
+
+
+> +		err = fb_helper->funcs->fb_hotplug(fb_helper);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+>   	mutex_lock(&fb_helper->lock);
+>   	if (fb_helper->deferred_setup) {
+>   		err = __drm_fb_helper_initial_config_and_unlock(fb_helper);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index c03fb00002a4..abe77ef0bd84 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -305,10 +305,32 @@ static void intelfb_restore(struct drm_fb_helper *fb_helper)
+>   	intel_fbdev_invalidate(ifbdev);
+>   }
+>   
+> +static int intelfb_hotplug(struct drm_fb_helper *fb_helper)
+> +{
+> +	struct drm_device *dev = fb_helper->client.dev;
+> +	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+> +	bool send_hpd;
+> +
+> +	if (!ifbdev)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&ifbdev->hpd_lock);
+> +	send_hpd = !ifbdev->hpd_suspended;
+> +	ifbdev->hpd_waiting = true;
+> +	mutex_unlock(&ifbdev->hpd_lock);
+> +
+> +	if (!send_hpd || !(ifbdev->vma || dev->fb_helper->deferred_setup))
+> +		return -EAGAIN;
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
+>   	.fb_probe = intelfb_create,
+>   	.fb_dirty = intelfb_dirty,
+>   	.fb_restore = intelfb_restore,
+> +	.fb_hotplug = intelfb_hotplug,
+>   };
+>   
+>   /*
+> @@ -557,25 +579,6 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
+>   	intel_fbdev_hpd_set_suspend(dev_priv, state);
+>   }
+>   
+> -static int intel_fbdev_output_poll_changed(struct drm_device *dev)
+> -{
+> -	struct intel_fbdev *ifbdev = to_i915(dev)->display.fbdev.fbdev;
+> -	bool send_hpd;
+> -
+> -	if (!ifbdev)
+> -		return -EINVAL;
+> -
+> -	mutex_lock(&ifbdev->hpd_lock);
+> -	send_hpd = !ifbdev->hpd_suspended;
+> -	ifbdev->hpd_waiting = true;
+> -	mutex_unlock(&ifbdev->hpd_lock);
+> -
+> -	if (send_hpd && (ifbdev->vma || dev->fb_helper->deferred_setup))
+> -		drm_fb_helper_hotplug_event(dev->fb_helper);
+> -
+> -	return 0;
+> -}
+> -
+>   static int intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
 >   {
-> +#if defined(CONFIG_SCREEN_INFO)
->          struct screen_info *si = &screen_info;
-> +#endif
->          bool primary = false;
->          resource_size_t base, size;
->          int bar, ret = 0;
-> @@ -355,8 +357,10 @@ int
-> aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const
-> char *na
->          if (pdev == vga_default_device())
->                  primary = true;
->
-> +#if defined(CONFIG_SCREEN_INFO)
->          if (pdev == screen_info_pci_dev(si))
->                  sysfb_disable();
-> +#endif
->
->          for (bar = 0; bar < PCI_STD_NUM_BARS; ++bar) {
->                  if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
->
-> But that can't be the right fix...  Any ideas?
-
-Thanks for investigating. I'd say we should pass the device (pdev->dev) 
-to sysfb_disable() and  do the test there. In sysfb.c, next to 
-sysfb_disable(), you'll find sysfb_parent_dev(), which gives the Linux 
-device of the screen_info.
-
-The code then looks something like this:
-
-sysfb_disable(struct device *dev)
-{
-     if (dev && dev == sysfb_parent_dev(screen_info))
-       return
-
-   /* else do the current code */
-}
-
-there's an invocation of sysfb_disable() in drivers/of/platform.c where 
-you can pass NULL.
-
-Best regards
-Thomas
-
->
-> Alex
->
->> [1]
->> https://elixir.bootlin.com/linux/v6.10/source/include/linux/screen_info.h#L127
->> [2] https://elixir.bootlin.com/linux/v6.10/source/drivers/video/Makefile#L11
->>
->> Best regards
->> Thomas
->>
->>>      csky-linux-ld: drivers/video/aperture.o: in function `devm_aperture_acquire_release':
->>>>> aperture.c:(.text+0x2c0): undefined reference to `screen_info'
->>>>> csky-linux-ld: aperture.c:(.text+0x2c4): undefined reference to `screen_info_pci_dev'
->> --
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Frankenstrasse 146, 90461 Nuernberg, Germany
->> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
->> HRB 36809 (AG Nuernberg)
->>
+>   	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+> @@ -637,7 +640,7 @@ static int intel_fbdev_client_hotplug(struct drm_client_dev *client)
+>   	int ret;
+>   
+>   	if (dev->fb_helper)
+> -		return intel_fbdev_output_poll_changed(dev);
+> +		return drm_fb_helper_hotplug_event(fb_helper);
+>   
+>   	ret = drm_fb_helper_init(dev, fb_helper);
+>   	if (ret)
+> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+> index 34eb77c18a13..3dcb9a60e408 100644
+> --- a/include/drm/drm_fb_helper.h
+> +++ b/include/drm/drm_fb_helper.h
+> @@ -112,6 +112,19 @@ struct drm_fb_helper_funcs {
+>   	 * TODO: Fix i915 to not require this callback.
+>   	 */
+>   	void (*fb_restore)(struct drm_fb_helper *helper);
+> +
+> +	/**
+> +	 * @fb_hotplug:
+> +	 *
+> +	 * Driver callback to prepare hotplug event. If set, fbdev
+> +	 * emulation will invoke this callback before sending a hotplug
+> +	 * event.
+> +	 *
+> +	 * Only for i915. Do not use in new code.
+> +	 *
+> +	 * TODO: Fix i915 to not require this callback.
+> +	 */
+> +	int (*fb_hotplug)(struct drm_fb_helper *helper);
+>   };
+>   
+>   /**
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Best regards,
+Sui
 
