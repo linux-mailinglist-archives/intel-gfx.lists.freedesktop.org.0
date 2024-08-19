@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A84956953
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 13:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 451E3956A5B
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 14:06:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81BA910E241;
-	Mon, 19 Aug 2024 11:31:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F6J79/iT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFC610E253;
+	Mon, 19 Aug 2024 12:06:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2150B10E241;
- Mon, 19 Aug 2024 11:31:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724067110; x=1755603110;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=E55Q8rkoxkKXqmmuaayCij8jSVWsSlcpnpstiMukGPs=;
- b=F6J79/iTj8uDEy7QiqK0BZs1x3H+kfIXrQYmQRB+v/vlkcbCM9O3uDu+
- IaEZ68UaC4kxYi50YPUUazrW+Ht6y9JqfBmTTKZzGWj+F9osU13M7bgPP
- Z0f1VG31MFN3aa663fZ7SNJgajpIIxQ1o8Veny/Cy3orRneeCdEcZNl/b
- x1siFFTNuLOdKd/i2ad998pYH8qjr36HPUbO+4FlpKfKtE3O0RGHRBx0X
- +ux/1ZeTW5/89Ugec40P55CC2sOFc8PGEiCfRPksbiJm7PmymdBg16+AF
- txXECyxA9qPad+UcLCOqkYzDY+8OOnDSr5yh3telmn9MmhMiVwH6N4bA0 g==;
-X-CSE-ConnectionGUID: pm9+AC0ARmun/lzD4qDEQg==
-X-CSE-MsgGUID: 6ijsvIa6SBCfpNz609wYPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="26174690"
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="26174690"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 04:31:50 -0700
-X-CSE-ConnectionGUID: Wy+5iHvvQxu0qVRAgdzI6g==
-X-CSE-MsgGUID: TURgVM1NRye/CSdwx4Ot1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; d="scan'208";a="65303851"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.73])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2024 04:31:48 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH] drm/i915/gt: Continue creating engine sysfs files even after
- a failure
-Date: Mon, 19 Aug 2024 13:31:40 +0200
-Message-ID: <20240819113140.325235-1-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF4BF10E253;
+ Mon, 19 Aug 2024 12:06:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8237211770018894037=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Continue_cre?=
+ =?utf-8?q?ating_engine_sysfs_files_even_after_a_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Aug 2024 12:06:25 -0000
+Message-ID: <172406918571.678771.13302149755675077988@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240819113140.325235-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240819113140.325235-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,61 +37,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The i915 driver generates sysfs entries for each engine of the
-GPU in /sys/class/drm/cardX/engines/.
+--===============8237211770018894037==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The process is straightforward: we loop over the UABI engines and
-for each one, we:
+== Series Details ==
 
- - Create the object.
- - Create basic files.
- - If the engine supports timeslicing, create timeslice duration files.
- - If the engine supports preemption, create preemption-related files.
- - Create default value files.
+Series: drm/i915/gt: Continue creating engine sysfs files even after a failure
+URL   : https://patchwork.freedesktop.org/series/137451/
+State : success
 
-Currently, if any of these steps fail, the process stops, and no
-further sysfs files are created.
+== Summary ==
 
-However, it's not necessary to stop the process on failure.
-Instead, we can continue creating the remaining sysfs files for
-the other engines. Even if some files fail to be created, the
-list of engines can still be retrieved by querying i915.
+CI Bug Log - changes from CI_DRM_15255 -> Patchwork_137451v1
+====================================================
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
-Hi,
+Summary
+-------
 
-It might make sense to create an "inv-<engine_name>" if something
-goes wrong, so that the user is aware that the engine exists, but
-the sysfs file is not present.
+  **SUCCESS**
 
-One further improvement would be to provide more information
-about thei failure reason the dev_warn() message.
+  No regressions found.
 
-Andi
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/index.html
 
- drivers/gpu/drm/i915/gt/sysfs_engines.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Participating hosts (41 -> 40)
+------------------------------
 
-diff --git a/drivers/gpu/drm/i915/gt/sysfs_engines.c b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-index 021f51d9b456..aab2759067d2 100644
---- a/drivers/gpu/drm/i915/gt/sysfs_engines.c
-+++ b/drivers/gpu/drm/i915/gt/sysfs_engines.c
-@@ -530,9 +530,8 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
- err_object:
- 			kobject_put(kobj);
- err_engine:
--			dev_err(kdev, "Failed to add sysfs engine '%s'\n",
--				engine->name);
--			break;
-+			dev_warn(kdev, "Failed to add sysfs engine '%s'\n",
-+				 engine->name);
- 		}
- 	}
- }
--- 
-2.45.2
+  Additional (1): fi-kbl-8809g 
+  Missing    (2): fi-snb-2520m fi-bsw-n3050 
 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137451v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@basic:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] +30 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@ring_submission:
+    - fi-cfl-8109u:       [DMESG-WARN][4] ([i915#11621]) -> [PASS][5] +81 other tests pass
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15255/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp2:
+    - fi-cfl-8109u:       [DMESG-WARN][6] ([i915#11621] / [i915#9925]) -> [PASS][7] +37 other tests pass
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15255/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp2.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp2.html
+
+  
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#9925]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15255 -> Patchwork_137451v1
+
+  CI-20190529: 20190529
+  CI_DRM_15255: 02f693a1a747b2784cedbbd7f6cf35be9a652d94 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7975: 7975
+  Patchwork_137451v1: 02f693a1a747b2784cedbbd7f6cf35be9a652d94 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/index.html
+
+--===============8237211770018894037==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Continue creating engine sysfs files even after a failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137451/">https://patchwork.freedesktop.org/series/137451/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15255 -&gt; Patchwork_137451v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Additional (1): fi-kbl-8809g <br />
+  Missing    (2): fi-snb-2520m fi-bsw-n3050 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137451v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@ring_submission:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15255/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-cfl-8109u/igt@i915_selftest@live@ring_submission.html">PASS</a> +81 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp2:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15255/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp2.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137451v1/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp2.html">PASS</a> +37 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15255 -&gt; Patchwork_137451v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15255: 02f693a1a747b2784cedbbd7f6cf35be9a652d94 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7975: 7975<br />
+  Patchwork_137451v1: 02f693a1a747b2784cedbbd7f6cf35be9a652d94 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8237211770018894037==--
