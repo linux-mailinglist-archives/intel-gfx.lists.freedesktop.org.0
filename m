@@ -2,90 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4CFD956C41
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 15:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F628956CF9
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 16:17:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C61D10E274;
-	Mon, 19 Aug 2024 13:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D9C210E28B;
+	Mon, 19 Aug 2024 14:17:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dGEu9kzk";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="h5+DnDzp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC9610E274
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 13:37:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1724074620;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Py1nKUzAfM/OTvIy7L2sYTr0+ohPDjRTycpz1UnhWhw=;
- b=dGEu9kzkC6nhvReK49yhAw2dsZqr9bYjrmvAzU9oJryRmNtra9RwzrwT6tTIHre4Cletk5
- OC6/kN46IZkXuJRyZQ1cE5T2SgNQA6/T11JIH8WVVMghd4d6rg4tSA9iEPRvXgQSuJE/7B
- VSXXUWTpXgOz9D45R4VvFkP/nGztK/M=
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com
- [209.85.167.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-540-WwGKR0IePdSViaCFoS5htA-1; Mon, 19 Aug 2024 09:36:56 -0400
-X-MC-Unique: WwGKR0IePdSViaCFoS5htA-1
-Received: by mail-oi1-f198.google.com with SMTP id
- 5614622812f47-3d929d7a90bso4090255b6e.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 06:36:56 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9CE10E288
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 14:17:05 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-4280ef642fbso4792995e9.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 07:17:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1724077024; x=1724681824; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Z4ne7iS4e3lP7N8/gIX0IRRjTEEjN3UUbyRZ9lwke8E=;
+ b=h5+DnDzpM+XQEZDqZJAUvXuDIHk+6O/rXiMhEml0XrAfzWf2v+CqfNnE+8QL71zEn6
+ 5SWxIUo1fsXE/a9OBVxY00aaIVEZ7z0qQ0VHXvmdLxHx1SZor/X4AmUkvpYPQZKHDKTS
+ mABXa99+RClV2WX5gLX05Q7bY1iVBKu8k+okk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724074615; x=1724679415;
- h=content-transfer-encoding:mime-version:message-id:date:references
- :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=B/iJNM2H0Bn+mH5epT+OXY9z51A/PXnyvIAFT4yJMBs=;
- b=iHUYPWpDsl2P22weoT1qVAqHr1M89HAay3HnQQkoUVkEm/gR5EkWfSif9hXPJJcQSr
- cIrfQE6evNMA5NAJROIMxuNkLfqruc5+26baH3gLKBVpexGhs5buJD+pResSwPhJHTwA
- mV6+Ryb+MDv9MSbzXbI0SX0/mqnKhtKp6HEq85mB4n5LCuGMZJLMo07kSSZm8i8m1ms8
- pK+TMvxlKzWi8Un4AUrRNox3rNz3MefqrNTeQ4I2NwQTCbQzoz4dIRcZonBfgzYfHUBT
- E1wAFLVItlYyJQk3J3gmbyFWzl7XnVamAAaBIqW02BloMcVj5v+cIILSjkPzLFdB5AC4
- RUcw==
+ d=1e100.net; s=20230601; t=1724077024; x=1724681824;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Z4ne7iS4e3lP7N8/gIX0IRRjTEEjN3UUbyRZ9lwke8E=;
+ b=F+jX26PYpKZVCuj8u49L8c6wQyh27Q0NYvUZOez0gmXKC3Y2DRBLYjrXxVuwikkI4C
+ QtDQBpi68eLSKVP6SltQQEY5O0S0eKMBXPw61BprAlxJibEAARK1IUDrezGAc7QuQgtS
+ joudrtjqIclVbnoBH65fvKz5fdD0jJFCjX72i+0gi0tunlpfrKpHisFxRGH0b7seHFYi
+ m6944/VABL57HZ+F+BMyMAlinmRSq6cMooAGAF0FQhot9ogYehtrD15DrD2hp17QsPQa
+ m1sPExKW4f/vMDXF4MMLQRUYNBCuzMUXrmHRt6M4kuXlmz1/2LGvQ2HnpoPEkY1PH2mm
+ TVZg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCULKXhYS7kjaduzXoH2ya5j/GAXIAIQSSD2Uy7NY5qH3K1z4ZLPln1vGk8KIHm2lnx5HDH5ywCHhnnmBHOfesPgrevMUGOrYxjF0T+qTqQp
-X-Gm-Message-State: AOJu0Yz1Da1/cJkJNubi/qyofo4XExhmRq17WpBoUXQtrUPojIedTEv0
- M0pcAEGVAGRnDNMX5jnZzS/7inSvwFp7qV8G4kfZ6PUCA3C0qlJcpzvzkCMTj+K426EIG0NLDjV
- sBPzbklTZT47w+oowQBHgScwGXafcwQmdQ2Uck5QNLHDZ7I3z3TlUE57DViHNteLGyQ==
-X-Received: by 2002:a05:6808:148a:b0:3da:e219:bf with SMTP id
- 5614622812f47-3dd3ae320edmr14893360b6e.43.1724074615349; 
- Mon, 19 Aug 2024 06:36:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEPpaKdjs9uyeLCpbyaYGw5neC/R9XgXicCaeDNO0oBOnU3UKv8pW+3H0tiVsMRwweNVZ2MzA==
-X-Received: by 2002:a05:6808:148a:b0:3da:e219:bf with SMTP id
- 5614622812f47-3dd3ae320edmr14893327b6e.43.1724074614976; 
- Mon, 19 Aug 2024 06:36:54 -0700 (PDT)
-Received: from localhost ([181.120.144.238]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-7c6b61a6dcfsm6585022a12.7.2024.08.19.06.36.53
+ AJvYcCVy1JjjzA8iJygNC3xcJfWbqFzoxTvjygX5/PRzA1QNyQdyPtnnOPh5fuuJbKeosp2AsDp0fEzxcAAFFSQEhe7BVVkKEsukPxO6jAOraRLA
+X-Gm-Message-State: AOJu0YzUUpUi7lBB/qDXQDMiPAYmP9v12LvrOUo8LVj1pW0s4g8+MdPS
+ LYKGkVnY5/HO/p0f+Q9pbftOOiqNS9lDisy4o+iqux/16xh5V2PQ4+Itj7gd1Fs=
+X-Google-Smtp-Source: AGHT+IHuQ2Mz/Nn5LO27wAuNlJK9+z1lnG59qeCKO6vu2gOyveT/fivKPyFoJbvGGgRcLcSnxNu5mw==
+X-Received: by 2002:a05:600c:1d12:b0:427:9f71:16ba with SMTP id
+ 5b1f17b1804b1-429ed7fdbe1mr46309215e9.5.1724077023824; 
+ Mon, 19 Aug 2024 07:17:03 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-429ded2882esm162969555e9.13.2024.08.19.07.17.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Aug 2024 06:36:54 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Alex Deucher
- <alexdeucher@gmail.com>
-Cc: kernel test robot <lkp@intel.com>, Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org, Helge Deller <deller@gmx.de>, Sam
- Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- stable@vger.kernel.org
-Subject: Re: [PATCH] video/aperture: match the pci device when calling
- sysfb_disable()
-In-Reply-To: <8bbf3f92-3719-4ff4-9587-e076635758d1@suse.de>
-References: <20240809150327.2485848-1-alexander.deucher@amd.com>
- <202408101951.tXyqYOzv-lkp@intel.com>
- <1c77f913-4707-4300-b84a-36fcf99942f4@suse.de>
- <CADnq5_NjCFyy+bQY+uyijcZwvwXYkvVLLUQdtzN_ODvHAj193Q@mail.gmail.com>
- <8bbf3f92-3719-4ff4-9587-e076635758d1@suse.de>
-Date: Mon, 19 Aug 2024 15:36:51 +0200
-Message-ID: <87frr0ljm4.fsf@minerva.mail-host-address-is-not-set>
+ Mon, 19 Aug 2024 07:17:03 -0700 (PDT)
+Date: Mon, 19 Aug 2024 16:17:01 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: Re: [PATCH 0/2] Allow partial memory mapping for cpu memory
+Message-ID: <ZsNT3aCHSXoD5N2a@phenom.ffwll.local>
+References: <20240807100521.478266-1-andi.shyti@linux.intel.com>
+ <ZrXZEpplb6YA9T_d@phenom.ffwll.local>
+ <ZrXtiBKyCCh0a_ym@ashyti-mobl2.lan>
+ <ZrnRuRGjxHe5zxuf@phenom.ffwll.local>
+ <Zrn3QqOvOEW2EYB0@ashyti-mobl2.lan>
+ <ZrogDGT326oSUZls@phenom.ffwll.local>
+ <ZrrK5yjirbjJQSFL@DUT025-TGLU.fm.intel.com>
+ <ZrtpM6ILa0laVR1N@phenom.ffwll.local>
+ <ZruvEu0BafdsVjSi@DUT025-TGLU.fm.intel.com>
+ <ZrwRsXT3gu3WgjCe@DUT025-TGLU.fm.intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZrwRsXT3gu3WgjCe@DUT025-TGLU.fm.intel.com>
+X-Operating-System: Linux phenom 6.9.12-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,126 +94,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
+On Wed, Aug 14, 2024 at 02:08:49AM +0000, Matthew Brost wrote:
+> On Tue, Aug 13, 2024 at 07:08:02PM +0000, Matthew Brost wrote:
+> > On Tue, Aug 13, 2024 at 04:09:55PM +0200, Daniel Vetter wrote:
+> > > On Tue, Aug 13, 2024 at 02:54:31AM +0000, Matthew Brost wrote:
+> > > > On Mon, Aug 12, 2024 at 04:45:32PM +0200, Daniel Vetter wrote:
+> > > > > On Mon, Aug 12, 2024 at 01:51:30PM +0200, Andi Shyti wrote:
+> > > > > > Hi Daniel,
+> > > > > > 
+> > > > > > On Mon, Aug 12, 2024 at 11:11:21AM +0200, Daniel Vetter wrote:
+> > > > > > > On Fri, Aug 09, 2024 at 11:20:56AM +0100, Andi Shyti wrote:
+> > > > > > > > On Fri, Aug 09, 2024 at 10:53:38AM +0200, Daniel Vetter wrote:
+> > > > > > > > > On Wed, Aug 07, 2024 at 11:05:19AM +0100, Andi Shyti wrote:
+> > > > > > > > > > This patch series concludes on the memory mapping fixes and
+> > > > > > > > > > improvements by allowing partial memory mapping for the cpu
+> > > > > > > > > > memory as well.
+> > > > > > > > > > 
+> > > > > > > > > > The partial memory mapping by adding an object offset was
+> > > > > > > > > > implicitely included in commit 8bdd9ef7e9b1 ("drm/i915/gem: Fix
+> > > > > > > > > > Virtual Memory mapping boundaries calculation") for the gtt
+> > > > > > > > > > memory.
+> > > > > > > > > 
+> > > > > > > > > Does userspace actually care? Do we have a flag or something, so that
+> > > > > > > > > userspace can discover this?
+> > > > > > > > > 
+> > > > > > > > > Adding complexity of any kind is absolute no-go, unless there's a
+> > > > > > > > > userspace need. This also includes the gtt accidental fix.
+> > > > > > > > 
+> > > > > > > > Actually this missing functionality was initially filed as a bug
+> > > > > > > > by mesa folks. So that this patch was requested by them (Lionel
+> > > > > > > > is Cc'ed).
+> > > > > > > > 
+> > > > > > > > The tests cases that have been sent previously and I'm going to
+> > > > > > > > send again, are directly taken from mesa use cases.
+> > > > > > > 
+> > > > > > > Please add the relevant mesa MR to this patch then, and some relevant
+> > > > > > > explanations for how userspace detects this all and decides to use it.
+> > > > > > 
+> > > > > > AFAIK, there is no Mesa MR. We are adding a feature that was
+> > > > > > missing, but Mesa already supported it (indeed, Nimroy suggested
+> > > > > > adding the Fixes tag for this).
+> > > > > > 
+> > > > > > Also because, Mesa was receiving an invalid address error and
+> > > > > > asked to support the partial mapping of the memory.
+> > > > > 
+> > > > > Uh this sounds a bit too much like just yolo'ing uabi. There's two cases:
+> > > > > 
+> > > > > - Either this is a regression, it worked previously, mesa is now angry.
+> > > > >   Then we absolutely need a Fixes: tag, and we also need that for the
+> > > > >   preceeding work to re-enable this for gtt mappings.
+> > > > > 
+> > > > > - Or mesa is just plain wrong here, which is what my guess is. Because bo
+> > > > >   mappings have always been full-object (except for the old-style shm
+> > > > >   mmaps). In that case mesa needs to be fixed (because we're not going to
+> > > > >   backport old uapi).
+> > > > > 
+> > > > >   Also in that case, _if_ (and that's a really big if) we really want this
+> > > > >   uapi, we need it in xe too, it needs a proper mesa MR to use it, it
+> > > > 
+> > > > I looked at this code from Xe PoV to see if we support this and I think
+> > > > we actually do as our CPU fault handler more or less just calls
+> > > > ttm_bo_vm_fault_reserved which has similar code to this patch. So I
+> > > > think this actually a valid fix. Can't be 100% sure though as I quickly
+> > > > just reversed engineered this code and TTM.
+> > > 
+> > > That's the fault path, which isn't relevant here since you already have
+> > > the vma set up. The relevant path is the mmap path, which is common for
+> > > all gem drivers nowadays and the lookup handled entirely in the core. Well
+> > > except for i915-gem being absolutely massively over the top special in
+> > > everything. i915-gem being extremely special here is also why this patch
+> > > caught my attention, because it just furthers the divergence instead of at
+> > > least stopping. Since we've given up on trying to get i915-gem onto common
+> > > code and patterns that's not an option, and the reason why xe exists ...
+> > > 
+> > > Anyway that common gem bo mmap code code is in drm_gem_mmap and still only
+> > > allows exact matches.
+> > > 
+> > > Unless I'm completely blind, it does happen :-)
+> > > 
+> > 
+> > Not blind.
+> > 
+> > > > We don't have IGT test cases for this in Xe though, we likely should add
+> > > > some if mesa is doing this.
+> > > 
+> > > I'd expect they would fail ...
+> > >
+> > 
+> > Just wrote one, it fails.
+> > 
+> > So agree with everything you are saying. Sorry for the noise. 
+> 
+> To be clear what I agree with:
+> 
+> - Xe doesn't support partial mmaps, if the i915 / Mesa needs to support
+>   partial mmaps Xe needs changed in step with the i915 (it is a 1 line
+>   change in drm_gem_mmap which then will a community ack too)
+> - We need IGTs for partial mmaps in both i915 and Xe
+> - The Mesa use needs to be understood ensuring this isn't a bug on their
+>   end and this actually required
+> - If partial mmaps are actually required, I'd like to see this in 6.12
+>   for Xe as we are about to remove force probe
 
-Hello Alex and Thomas,
+Fwiw I concur on this all. Maybe one thing to add is that if i915/mesa do
+not need partial mmaps, then we should also again removed them for gtt
+mmaps since that patch already slipped in.
 
-> Hi
->
-> Am 16.08.24 um 22:57 schrieb Alex Deucher:
->> On Mon, Aug 12, 2024 at 8:10=E2=80=AFAM Thomas Zimmermann <tzimmermann@s=
-use.de> wrote:
->>> Hi
->>>
->>> Am 10.08.24 um 13:44 schrieb kernel test robot:
->>>> Hi Alex,
->>>>
->>>> kernel test robot noticed the following build errors:
->>>>
->>>> [auto build test ERROR on drm-misc/drm-misc-next]
->>>> [also build test ERROR on linus/master v6.11-rc2 next-20240809]
->>>> [If your patch is applied to the wrong git tree, kindly drop us a note=
-.
->>>> And when submitting patch, we suggest to use '--base' as documented in
->>>> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->>>>
->>>> url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Deucher/vi=
-deo-aperture-match-the-pci-device-when-calling-sysfb_disable/20240810-02135=
-7
->>>> base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
->>>> patch link:    https://lore.kernel.org/r/20240809150327.2485848-1-alex=
-ander.deucher%40amd.com
->>>> patch subject: [PATCH] video/aperture: match the pci device when calli=
-ng sysfb_disable()
->>>> config: csky-randconfig-001-20240810 (https://download.01.org/0day-ci/=
-archive/20240810/202408101951.tXyqYOzv-lkp@intel.com/config)
->>>> compiler: csky-linux-gcc (GCC) 14.1.0
->>>> reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/ar=
-chive/20240810/202408101951.tXyqYOzv-lkp@intel.com/reproduce)
->>>>
->>>> If you fix the issue in a separate patch/commit (i.e. not just a new v=
-ersion of
->>>> the same patch/commit), kindly add following tags
->>>> | Reported-by: kernel test robot <lkp@intel.com>
->>>> | Closes: https://lore.kernel.org/oe-kbuild-all/202408101951.tXyqYOzv-=
-lkp@intel.com/
->>>>
->>>> All errors (new ones prefixed by >>):
->>>>
->>>>      csky-linux-ld: drivers/video/aperture.o: in function `aperture_re=
-move_conflicting_pci_devices':
->>>>>> aperture.c:(.text+0x222): undefined reference to `screen_info_pci_de=
-v'
->>> Strange. There's a already placeholder [1] for architectures without
->>> PCI. Otherwise the source file is listed at [2].
->> So I dug into this, and the problem seems to be that
->> CONFIG_SCREEN_INFO is not defined in that config.  I can't figure out
->> how this should work in that case or why this is not a problem in
->> drivers/firmware/sysfb.c.
->>
->> Something like this works:
->> diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
->> index 56a5a0bc2b1af..50e98210c9fe5 100644
->> --- a/drivers/video/aperture.c
->> +++ b/drivers/video/aperture.c
->> @@ -347,7 +347,9 @@ EXPORT_SYMBOL(__aperture_remove_legacy_vga_devices);
->>    */
->>   int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev,
->> const char *name)
->>   {
->> +#if defined(CONFIG_SCREEN_INFO)
->>          struct screen_info *si =3D &screen_info;
->> +#endif
->>          bool primary =3D false;
->>          resource_size_t base, size;
->>          int bar, ret =3D 0;
->> @@ -355,8 +357,10 @@ int
->> aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const
->> char *na
->>          if (pdev =3D=3D vga_default_device())
->>                  primary =3D true;
->>
->> +#if defined(CONFIG_SCREEN_INFO)
->>          if (pdev =3D=3D screen_info_pci_dev(si))
->>                  sysfb_disable();
->> +#endif
->>
->>          for (bar =3D 0; bar < PCI_STD_NUM_BARS; ++bar) {
->>                  if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
->>
->> But that can't be the right fix...  Any ideas?
->
-> Thanks for investigating. I'd say we should pass the device (pdev->dev)=
-=20
-> to sysfb_disable() and=C2=A0 do the test there. In sysfb.c, next to=20
-> sysfb_disable(), you'll find sysfb_parent_dev(), which gives the Linux=20
-> device of the screen_info.
->
-> The code then looks something like this:
->
-> sysfb_disable(struct device *dev)
-> {
->  =C2=A0=C2=A0=C2=A0 if (dev && dev =3D=3D sysfb_parent_dev(screen_info))
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return
->
->  =C2=A0 /* else do the current code */
-> }
->
-> there's an invocation of sysfb_disable() in drivers/of/platform.c where=
-=20
-> you can pass NULL.
->
-
-Agreed. That sounds like the best approach.
-
-> Best regards
-> Thomas
->
-
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Cheers, Sima
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
