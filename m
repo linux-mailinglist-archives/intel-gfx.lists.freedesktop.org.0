@@ -2,74 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D7395716D
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 19:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24FC95720C
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2024 19:23:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F84A10E30E;
-	Mon, 19 Aug 2024 17:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0922E10E330;
+	Mon, 19 Aug 2024 17:23:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VU3gOX/4";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EJPEMbLM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9D4610E30C;
- Mon, 19 Aug 2024 17:03:52 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-201f7fb09f6so29498785ad.2; 
- Mon, 19 Aug 2024 10:03:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1724087032; x=1724691832; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BmNdRfQwBhxaT1HwilI10sPKkC7lH+s3BpK82jwzrS8=;
- b=VU3gOX/4ZGWMBGvmItVSDqztcU0IbhAc98blGWmNPVBKWD1VrNiARCX4R2V3ZowiyM
- 9Qyg8LvqDyhoe5ttTqNikGVZTFVniNxtA0hTNeh1AvgMpC60hF7Pgflfn+rcpC72nDzQ
- kvfsN9FwrIYTDsWK2Y0uzmZffd9eCgiYd2wbsFz0gzwTOssB39TzZbx6tsSzDwLeumB7
- 617LMiFecVdoZoatpXdt8TZHnyZMcQXQrzSWXB4SBkX3XJJSN2OvXuN7RZe7HbuzA/cq
- 6RJFsagC8a3TjDooRQ/KCPon/bJeIJHFUMQmslK7Z/gzLzEO1/dOOmbmCMMTLsvH3TcP
- 520A==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2E2B10E330
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 17:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1724088219;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=fSh+AKHfROTY2o6Hz6Tk9lBXTICcXCJ9yq1Q239cTB8=;
+ b=EJPEMbLMDI7QT5/fvJDZEI96fhtWPzoKOXzVu5+l8pS6/SNP0cu5rRMLvo4UHbmrNKDM+b
+ JDosMeIdtCM8DTU0oJkOt4ndjMtwfOVL6/lYFJb6KZolk9YVOzhzh2Wa9v9mMDGEFSfflS
+ roN4FRiGTrNXPhYfHdkMFqqo2RWCXi0=
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com
+ [209.85.210.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-681-mY8DEZ9dMemZ4g8gPZIiZg-1; Mon, 19 Aug 2024 13:23:37 -0400
+X-MC-Unique: mY8DEZ9dMemZ4g8gPZIiZg-1
+Received: by mail-pf1-f198.google.com with SMTP id
+ d2e1a72fcca58-70eab26e146so3668033b3a.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2024 10:23:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724087032; x=1724691832;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=BmNdRfQwBhxaT1HwilI10sPKkC7lH+s3BpK82jwzrS8=;
- b=cGmSnXW61AcEv3RaUNM6tqsiXqxWU5U8fCvSWrFccjhclI1Ok+zmO+zlBFhdN4ug8Q
- 2aEIxKqeu1OM3XjoBtNHCdnrc9v4a/FlrSOvsL4ymrmbuct1c2FcNRDV4cfQ936NYxz4
- Ul4VSHJhko/IbTrl3u/2wZkG1RTMjQdxTPu688Drac6PsWuAnjGeELURRCHqPnlvHEwO
- p2CzXlhX4MftIWK6xpCVfExteFdi0yxtaS4djEzSKNR4SdMlHlnlB2Yh6nezTMl9gbax
- vzr66ZPIFl9VxqBKO2ZG2agSym6gWyT1V4dthVMDEuy+EmP1XlXBvPNwn2UXoWTz4Kv4
- 8KWA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUJ8NZr3yfvrqy+mrxUSLKQSWOoSdrQbaHydzKCnF4M25BBZsTbQVCuZDcYGf0u5IGxBfaIjjZy3+rS@lists.freedesktop.org,
- AJvYcCW6R7r+wWaK38P5/1IsdG/k6cDvmaqZvzRtJG600POQ/B+co1De85KG4pjj+yQh4sJq+DHNWRczXfk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+SerVKklKTPG8p8Y6OjuCTTw5JwC+2SFOrmRSxGgCA0p3TpsN
- VAkRx7bZ/g/twES4mR69sMxP72bkcKSjqxt+wjuGl/RfAiE5pGAh7QVjxMK4mVP4TwJQ05UG7Km
- Rc4btCXSIViGbdj7BW0gmi4htJC0=
-X-Google-Smtp-Source: AGHT+IFrRCmM5UI/i4vWXN89LDnPdv0s59wDFaKy0zznINVO0gSqZ6AVSs5aHioOicfupSSEZfWlnPph7E8/q+jTABQ=
-X-Received: by 2002:a17:903:10c:b0:202:2f0:3bb2 with SMTP id
- d9443c01a7336-20204067d8fmr93491475ad.60.1724087032002; Mon, 19 Aug 2024
- 10:03:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20240819165341.799848-1-alexander.deucher@amd.com>
-In-Reply-To: <20240819165341.799848-1-alexander.deucher@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 19 Aug 2024 13:03:37 -0400
-Message-ID: <CADnq5_M5GnsS5dcfrQU7c-B7j3yp=Gq70eZ4XB5Ri1b4M4yO-w@mail.gmail.com>
+ d=1e100.net; s=20230601; t=1724088217; x=1724693017;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=fSh+AKHfROTY2o6Hz6Tk9lBXTICcXCJ9yq1Q239cTB8=;
+ b=qrOdtU00VlJNRWMd+tk+vDTDlzj18Wh5a7QTU6LLO1qUhA681nj/2q0qMSJfI+W1GY
+ OspAne5IYe/DfehJwg3y6z9DFlgryitFpfBVIHYrhMYSa5wzBsLBfA4gNkRP30SBSzYo
+ 9otLAgrdnaSXhe9GvIKYSkw3J1LkRPAPYsDNubNxw63j3vfuXuOvukQFFl+SpOZzT9SL
+ tGf9gIrZ4Bkgus1pyGXZ78BeCI33C47ocZVrp6zowc3sFUMefP/m7ubTAErCZKDw7LHp
+ 3I4ifZD9jIC80+nc4QSQWkcpBC5aHeKS+z66Ho6DjBr33mhzLdm+fTYbkV3rntsI9L6S
+ Bkyg==
+X-Gm-Message-State: AOJu0YyoYlzu8CaD7YBPdhbbd0+H3OPQx53DLY55OUKybYaUif5ty3Nw
+ xGGNXWMtBFiEFffJPo4PonYdCP0vfZpnolCXiiRmcAQB4gGpqcqRUPdodTFZcvqtWyV5tfWSl9c
+ Yy0WnSMMdPTSP6Yu7lAmJEUWnMkPelioKBujmDeKuvz5i4URpZBstPctMPkH+cRgIBg==
+X-Received: by 2002:a05:6a20:9d8f:b0:1c4:b843:fa25 with SMTP id
+ adf61e73a8af0-1c904fb656bmr11943416637.26.1724088216822; 
+ Mon, 19 Aug 2024 10:23:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHSDHyDrjBuGFu+b/kmVXsnPxa87OiRQHTdxkMfzpoHRCn+Sotx/RfRkFNZUyRweZND934hmQ==
+X-Received: by 2002:a05:6a20:9d8f:b0:1c4:b843:fa25 with SMTP id
+ adf61e73a8af0-1c904fb656bmr11943383637.26.1724088216373; 
+ Mon, 19 Aug 2024 10:23:36 -0700 (PDT)
+Received: from localhost ([2803:2a00:8:776f:e199:77:1ec5:b560])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7127aef8996sm6790756b3a.122.2024.08.19.10.23.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 19 Aug 2024 10:23:35 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Alex Deucher
+ <alexander.deucher@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Helge Deller <deller@gmx.de>, Sam
+ Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ stable@vger.kernel.org
 Subject: Re: [PATCH V2] video/aperture: match the pci device when calling
  sysfb_disable()
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, 
- Javier Martinez Canillas <javierm@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Helge Deller <deller@gmx.de>, 
- Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240819165341.799848-1-alexander.deucher@amd.com>
+References: <20240819165341.799848-1-alexander.deucher@amd.com>
+Date: Mon, 19 Aug 2024 19:23:33 +0200
+Message-ID: <87frr0a0kq.fsf@minerva.mail-host-address-is-not-set>
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,16 +92,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I forgot to update the patch title but it should probably be something like=
-:
+Alex Deucher <alexander.deucher@amd.com> writes:
 
-video/aperture: optionally match the device in sysfb_disable()
+Hello Alex,
 
-Alex
-
-On Mon, Aug 19, 2024 at 1:00=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
-.com> wrote:
->
 > In aperture_remove_conflicting_pci_devices(), we currently only
 > call sysfb_disable() on vga class devices.  This leads to the
 > following problem when the pimary device is not VGA compatible:
@@ -113,8 +114,7 @@ On Mon, Aug 19, 2024 at 1:00=E2=80=AFPM Alex Deucher <alexander.deucher@amd=
 >
 > v2: Fix build when CONFIG_SCREEN_INFO is not set
 >
-> Fixes: 5ae3716cfdcd ("video/aperture: Only remove sysfb on the default vg=
-a pci device")
+> Fixes: 5ae3716cfdcd ("video/aperture: Only remove sysfb on the default vga pci device")
 > Cc: Javier Martinez Canillas <javierm@redhat.com>
 > Cc: Thomas Zimmermann <tzimmermann@suse.de>
 > Cc: Helge Deller <deller@gmx.de>
@@ -123,123 +123,71 @@ a pci device")
 > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > Cc: stable@vger.kernel.org
 > ---
->  drivers/firmware/sysfb.c | 11 +++++++++--
->  drivers/of/platform.c    |  2 +-
->  drivers/video/aperture.c |  5 ++---
->  include/linux/sysfb.h    |  4 ++--
->  4 files changed, 14 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/firmware/sysfb.c b/drivers/firmware/sysfb.c
-> index 880ffcb500887..033a044af2646 100644
-> --- a/drivers/firmware/sysfb.c
-> +++ b/drivers/firmware/sysfb.c
-> @@ -39,6 +39,8 @@ static struct platform_device *pd;
->  static DEFINE_MUTEX(disable_lock);
->  static bool disabled;
->
-> +static struct device *sysfb_parent_dev(const struct screen_info *si);
-> +
->  static bool sysfb_unregister(void)
->  {
->         if (IS_ERR_OR_NULL(pd))
-> @@ -52,6 +54,7 @@ static bool sysfb_unregister(void)
->
+
+The patch looks good to me.
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+
+I just have to minor comments below:
+
+...
+
 >  /**
 >   * sysfb_disable() - disable the Generic System Framebuffers support
-> + * @dev:       the device to check if non-NULL
+> + * @dev:	the device to check if non-NULL
 >   *
->   * This disables the registration of system framebuffer devices that mat=
-ch the
->   * generic drivers that make use of the system framebuffer set up by fir=
-mware.
+>   * This disables the registration of system framebuffer devices that match the
+>   * generic drivers that make use of the system framebuffer set up by firmware.
 > @@ -61,8 +64,12 @@ static bool sysfb_unregister(void)
->   * Context: The function can sleep. A @disable_lock mutex is acquired to=
- serialize
->   *          against sysfb_init(), that registers a system framebuffer de=
-vice.
+>   * Context: The function can sleep. A @disable_lock mutex is acquired to serialize
+>   *          against sysfb_init(), that registers a system framebuffer device.
 >   */
 > -void sysfb_disable(void)
 > +void sysfb_disable(struct device *dev)
 >  {
-> +       struct screen_info *si =3D &screen_info;
+> +	struct screen_info *si = &screen_info;
 > +
-> +       if (dev && dev !=3D sysfb_parent_dev(si))
-> +               return;
->         mutex_lock(&disable_lock);
->         sysfb_unregister();
->         disabled =3D true;
-> @@ -93,7 +100,7 @@ static __init bool sysfb_pci_dev_is_enabled(struct pci=
-_dev *pdev)
->  }
->  #endif
+> +	if (dev && dev != sysfb_parent_dev(si))
+> +		return;
+
+Does this need to be protected by the disable_lock mutex? i.e:
+
+        mutex_lock(&disable_lock);
+        if (!dev || dev == sysfb_parent_dev(si) {
+                sysfb_unregister();
+                disabled = true;
+        }
+        mutex_unlock(&disable_lock);
+
+...
+
+> @@ -353,8 +353,7 @@ int aperture_remove_conflicting_pci_devices(struct pci_dev *pdev, const char *na
+>  	if (pdev == vga_default_device())
+>  		primary = true;
 >
-> -static __init struct device *sysfb_parent_dev(const struct screen_info *=
-si)
-> +static struct device *sysfb_parent_dev(const struct screen_info *si)
->  {
->         struct pci_dev *pdev;
+> -	if (primary)
+> -		sysfb_disable();
+> +	sysfb_disable(&pdev->dev);
 >
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 389d4ea6bfc15..ef622d41eb5b2 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -592,7 +592,7 @@ static int __init of_platform_default_populate_init(v=
-oid)
->                          * This can happen for example on DT systems that=
- do EFI
->                          * booting and may provide a GOP handle to the EF=
-I stub.
->                          */
-> -                       sysfb_disable();
-> +                       sysfb_disable(NULL);
->                         of_platform_device_create(node, NULL, NULL);
->                         of_node_put(node);
->                 }
-> diff --git a/drivers/video/aperture.c b/drivers/video/aperture.c
-> index 561be8feca96c..b23d85ceea104 100644
-> --- a/drivers/video/aperture.c
-> +++ b/drivers/video/aperture.c
-> @@ -293,7 +293,7 @@ int aperture_remove_conflicting_devices(resource_size=
-_t base, resource_size_t si
->          * ask for this, so let's assume that a real driver for the displ=
-ay
->          * was already probed and prevent sysfb to register devices later=
-.
->          */
-> -       sysfb_disable();
-> +       sysfb_disable(NULL);
->
->         aperture_detach_devices(base, size);
->
-> @@ -353,8 +353,7 @@ int aperture_remove_conflicting_pci_devices(struct pc=
-i_dev *pdev, const char *na
->         if (pdev =3D=3D vga_default_device())
->                 primary =3D true;
->
-> -       if (primary)
-> -               sysfb_disable();
-> +       sysfb_disable(&pdev->dev);
->
->         for (bar =3D 0; bar < PCI_STD_NUM_BARS; ++bar) {
->                 if (!(pci_resource_flags(pdev, bar) & IORESOURCE_MEM))
-> diff --git a/include/linux/sysfb.h b/include/linux/sysfb.h
-> index c9cb657dad08a..bef5f06a91de6 100644
-> --- a/include/linux/sysfb.h
-> +++ b/include/linux/sysfb.h
-> @@ -58,11 +58,11 @@ struct efifb_dmi_info {
->
->  #ifdef CONFIG_SYSFB
->
-> -void sysfb_disable(void);
-> +void sysfb_disable(struct device *dev);
->
->  #else /* CONFIG_SYSFB */
->
-> -static inline void sysfb_disable(void)
-> +static inline void sysfb_disable(struct device *dev)
->  {
->  }
->
-> --
-> 2.46.0
->
+
+After this change the primary variable is only used to determine whether 
+__aperture_remove_legacy_vga_devices(pdev) should be called or not. So I
+wonder if could just be dropped and instead have:
+
+	/*
+	 * If this is the primary adapter, there could be a VGA device
+	 * that consumes the VGA framebuffer I/O range. Remove this
+	 * device as well.
+	 */
+	if (pdev == vga_default_device())
+		ret = __aperture_remove_legacy_vga_devices(pdev);
+
+
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
