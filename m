@@ -2,70 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD7E9580B3
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 10:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 386459580E1
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 10:27:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27D2910E4F4;
-	Tue, 20 Aug 2024 08:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D12D10E504;
+	Tue, 20 Aug 2024 08:27:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Av3x07uB";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=tronnes.org header.i=@tronnes.org header.b="gLriQE4k";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E58CD10E4F4;
- Tue, 20 Aug 2024 08:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724141918; x=1755677918;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=pARHPjrBcidff86LLgR0vu89T7TtLF/a6H7UzJ/qRNY=;
- b=Av3x07uBJnsH20vSj1c/4f16e8po+HV3jx33Cu5/3EMEyeO1B1a/yZFA
- Wh3Z8hwIs7vmScVDRX/l70z2oC62sxcPAXSZv2TvJCKdXKLaRk4UFvwny
- yukTlLKOogkU3ldhzrsUPqRbQAgYU6kvo9vxQvB2HmCqi932+7YAnvhQD
- GlPsRczRe2mxLX19CfcTwJWDZZ8q54pXw9N3bN8sZAzN1IEWcx/ak5z73
- ZZkC8ahP7aBfdbR7lBQmWl4GS+uL6DSaNFvEj809ZTC/W231VN7weQ9N4
- as6rjydz3si8cwXGb551/71Sy/EbF6Br67A3iBUr2ZYbvg7IBDWaZJUwg A==;
-X-CSE-ConnectionGUID: XGHJdRfyTAyrOL8qCRbn5A==
-X-CSE-MsgGUID: 9Yv9IQRWR6aCgIxcOyvWWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22555153"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22555153"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 01:18:36 -0700
-X-CSE-ConnectionGUID: UUQjDjPmSTyDUWG1JANVaw==
-X-CSE-MsgGUID: /tYdMtLWR4SB6LcqTwV0kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="65473470"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.147])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 01:18:30 -0700
-Date: Tue, 20 Aug 2024 10:18:26 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Yu Jiaoliang <yujiaoliang@vivo.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, opensource.kernel@vivo.com
-Subject: Re: [PATCH v1] drivers:gt:Switch to use kmemdup_array()
-Message-ID: <ZsRRUrNnveqU6bSV@ashyti-mobl2.lan>
-References: <20240820074505.2728118-1-yujiaoliang@vivo.com>
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2C8F10E0A7;
+ Tue, 20 Aug 2024 08:27:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds202312;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:From:Sender:Reply-To:
+ Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=xU9l13/aA5SHhmFyVSJGQyddk2bPNASZGQftMa2HXP0=; b=g
+ LriQE4k8WHcyv8YKGGQd7s9TTH9Yf5CrvOEFALmjXKqFvDFeFo9qpGXMqfYEJMHmM+io0DFLPldlG
+ /svx54JCDjpS0Go9Iylq1ruittcajxmJtHY1EnDjzbtfSTPEDRgVYkvl6ZcP4AjO0lxx17K8Nhp2O
+ WFxHqdn4Ay01Ch0Us7GlGepl7mDLXvkg/1hKtjk4ZJm7c+DZroBFCc/hUlBqdOolp+mfm84W1/1r+
+ cOQUfinj/zaH/4L4FcZOnNhdS79+f258vAwUHnw8rhwEMZAeSkpc+3ki4HalBJcbBGVvHhkuA4Pye
+ 00XD13zIHwEtriiQCobLSSPXKXak7o/lg==;
+Received: from [2a01:799:962:4900:815f:3dd0:60d8:6458] (port=60166)
+ by smtp.domeneshop.no with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <noralf@tronnes.org>) id 1sgKBO-00AwN5-Ql;
+ Tue, 20 Aug 2024 10:25:38 +0200
+Message-ID: <871d7010-39bd-47b1-aea7-b1b6d39b5103@tronnes.org>
+Date: Tue, 20 Aug 2024 10:25:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240820074505.2728118-1-yujiaoliang@vivo.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 28/86] drm/mi0283qt: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, noralf@tronnes.org
+References: <20240816125408.310253-1-tzimmermann@suse.de>
+ <20240816125408.310253-29-tzimmermann@suse.de>
+Content-Language: en-US
+From: =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+In-Reply-To: <20240816125408.310253-29-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,56 +66,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Yi,
 
-Please, next time check with "git drivers/gpu/drm/i915/gt" to
-better understand the patch formatting.
 
-The title should be something like:
-
-   drm/i915/gt: Switch to use kmemdup_array()
-
-But sounds more grammatically correct
-
-   drm/i915/gt: Use kmemdup_array instead of kmemdup for multiple allocation
-
-On Tue, Aug 20, 2024 at 03:45:03PM +0800, Yu Jiaoliang wrote:
-> Let the kememdup_array() take care about multiplication and possible
-> overflows.
-
-Leave one blank line between the commit log and the tag section
-
-> Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+On 8/16/24 14:22, Thomas Zimmermann wrote:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 09a287c1aedd..d90348c56765 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -111,8 +111,8 @@ static void wa_init_finish(struct i915_wa_list *wal)
->  {
->  	/* Trim unused entries. */
->  	if (!IS_ALIGNED(wal->count, WA_LIST_CHUNK)) {
-> -		struct i915_wa *list = kmemdup(wal->list,
-> -					       wal->count * sizeof(*list),
-> +		struct i915_wa *list = kmemdup_array(wal->list,
-> +					       wal->count, sizeof(*list),
->  					       GFP_KERNEL);
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: "Noralf Trønnes" <noralf@tronnes.org>
+> ---
 
-Here you are not aligning correctly. Everything should be aligned
-to one character after the open parenthesis; for example:
-
-		struct i915_wa *list = kmemdup_array(wal->list, wal->count,
-						     sizeof(*list), GFP_KERNEL);
-
-Patch is good, though looking forward to receiving v2.
-
-Thanks,
-Andi
-
->  
->  		if (list) {
-> -- 
-> 2.34.1
+Acked-by: Noralf Trønnes <noralf@tronnes.org>
