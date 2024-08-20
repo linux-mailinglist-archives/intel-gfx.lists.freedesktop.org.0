@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F4C9588AA
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 16:11:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CF1958C03
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 18:14:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94A2A10E3D6;
-	Tue, 20 Aug 2024 14:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35CFE10E44D;
+	Tue, 20 Aug 2024 16:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QCXiF6aJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cB5/Msdk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51BFD10E3D6;
- Tue, 20 Aug 2024 14:11:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A5B10E449
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Aug 2024 16:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724163064; x=1755699064;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KAttQPWRPOjeafHdni97khaXBK26S/shSNwmn8GiIwI=;
- b=QCXiF6aJ+Rlw01FD/v4zgnBBShPTasoshGW4MHv/rV6pJGNQHxoEN6Da
- hgMCumOJWDxc5RUE/d/kkZUYqSjMlnj9LGeB2Msueu+3PqnnvlyzpOaN4
- P7wZTlrhkLBw93pqF70+BBe3k6DrSJMn+ktmjhzYJuRyiUSuS6tTh8AyB
- MwuTVM4qwuVWtUGkbcboGrcHlFbGxlVzTzZnaQfj7rsWqJ/1q6uh10CJQ
- IHMu4tqWlw3rnR5Dnji+UNar93m38T3bVrW2HWCfeyf0zmqdfPjr926Tc
- ATG37EcgfflvyXqRXVhlMAr6R6fwgZO6Yi5IZIIesraMaY2kp7N8b5uc/ Q==;
-X-CSE-ConnectionGUID: mN4wZQwvRaGZiUlAFRoWNA==
-X-CSE-MsgGUID: sEr2ceyyR3yYeD5U4nXQ+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22321181"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="22321181"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 07:11:03 -0700
-X-CSE-ConnectionGUID: xr+4mkOJTcuhd+DqEWDlCQ==
-X-CSE-MsgGUID: u0EMEPU0QTCTClES/GfHfw==
+ t=1724170488; x=1755706488;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vQQGN02WOBpAcC/eD5GEEcFQs1BQXJaB09+xfOuP3bA=;
+ b=cB5/MsdkMkvJvYOzljIfmjp+5/uYgcZIjUwbcJQiP7PzzNrqAOdqEzbV
+ OSNXzXGKLMUJmGwcH1sYK7C1X9+c4ZQaru5A2HkyZsPVumIJAZLjeG4BK
+ QkNl4QyKUxjqKkirVauutnNCpiJg1KtiE+K84/+EzzppU/QcrSwVT0n7I
+ XjPrqHhrx++2g0kl8y7kULYdbyai8igHiWgdlogm5+prVr7c1qbBEvb1z
+ +eSUCDb12HhWOHwM7U1toJ19i0cjbcrPJIwDa2nbsMR8EBhbkP9I4ZSmH
+ XlWOFzb4/2IjYpo2U2PW9RVINETFH8CdRmK1YlnSIsRcKrKH4vszMeQAY g==;
+X-CSE-ConnectionGUID: mFnx5JVXR5O0KY6Pr9rEKA==
+X-CSE-MsgGUID: G+PzSLwsT/qY8SXzcNSH7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22367255"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="22367255"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 09:14:48 -0700
+X-CSE-ConnectionGUID: 6wX8tijDQz+R7t57tv+dIA==
+X-CSE-MsgGUID: 3qYczx6ARYi+3IJgWnRdqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="98212982"
-Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.245.128])
- ([10.245.245.128])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 07:11:02 -0700
-Message-ID: <8a84e375-a015-4da3-aa4c-7aff4c7b6f1d@linux.intel.com>
-Date: Tue, 20 Aug 2024 16:11:01 +0200
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="60622950"
+Received: from fpallare-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.44])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 09:14:47 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jani.nikula@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 0/2] Increase fastwake sync pulse count as a quirk
+Date: Tue, 20 Aug 2024 19:14:27 +0300
+Message-Id: <20240820161429.2213343-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/display: drop unused rawclk_freq and
- RUNTIME_INFO()
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
-References: <cover.1724144570.git.jani.nikula@intel.com>
- <9f09274bddc14f555c0102f37af6df23b4433102.1724144570.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <9f09274bddc14f555c0102f37af6df23b4433102.1724144570.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,47 +69,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Excellent, for both patches:
+Implement mechanism to apply quirk only if certain panel is detected
+on certain setup. Use this new mechanism to increase fastwake sync
+pulse count on certain Dell laptop and only if specific panel is
+installed on that laptop. 
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Jouni Högander (2):
+  drm/i915/display: Add mechanism to use sink model when applying quirk
+  drm/i915/display: Increase Fast Wake Sync length as a quirk
 
-Den 2024-08-20 kl. 11:07, skrev Jani Nikula:
-> With rawclk_freq moved to display runtime info, xe has no users left for
-> them.
-> 
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
->  drivers/gpu/drm/xe/xe_device_types.h              | 6 ------
->  2 files changed, 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> index 2feedddf1e40..182c38905626 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> @@ -116,7 +116,6 @@ struct i915_sched_attr {
->  #define i915_gem_fence_wait_priority(fence, attr) do { (void) attr; } while (0)
->  
->  #define pdev_to_i915 pdev_to_xe_device
-> -#define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
->  
->  #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
->  
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index cb60bc5ec21b..5ed6f5434f42 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -305,12 +305,6 @@ struct xe_device {
->  		u8 has_atomic_enable_pte_bit:1;
->  		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
->  		u8 has_device_atomics_on_smem:1;
-> -
-> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> -		struct {
-> -			u32 rawclk_freq;
-> -		} i915_runtime;
-> -#endif
->  	} info;
->  
->  	/** @irq: device interrupt state */
+ drivers/gpu/drm/i915/display/intel_alpm.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 17 ++--
+ drivers/gpu/drm/i915/display/intel_dp_aux.h |  2 +-
+ drivers/gpu/drm/i915/display/intel_quirks.c | 99 ++++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_quirks.h |  4 +
+ 6 files changed, 98 insertions(+), 31 deletions(-)
+
+-- 
+2.34.1
+
