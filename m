@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832DC958CB5
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 19:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6EAD958CEB
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 19:13:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E2A310E474;
-	Tue, 20 Aug 2024 17:04:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6031610E475;
+	Tue, 20 Aug 2024 17:13:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 876BF10E467;
- Tue, 20 Aug 2024 17:04:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24EE410E475;
+ Tue, 20 Aug 2024 17:13:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3726689984214575177=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Increase_fastwake_sy?=
- =?utf-8?q?nc_pulse_count_as_a_quirk?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Increase_fastwake_sync_puls?=
+ =?utf-8?q?e_count_as_a_quirk?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Aug 2024 17:04:27 -0000
-Message-ID: <172417346754.700411.12343450733244642397@2413ebb6fbb6>
+Date: Tue, 20 Aug 2024 17:13:37 -0000
+Message-ID: <172417401714.715743.3591007269144393989@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240820161429.2213343-1-jouni.hogander@intel.com>
 In-Reply-To: <20240820161429.2213343-1-jouni.hogander@intel.com>
@@ -41,46 +41,167 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3726689984214575177==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: Increase fastwake sync pulse count as a quirk
 URL   : https://patchwork.freedesktop.org/series/137524/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-60c0584e640b drm/i915/display: Add mechanism to use sink model when applying quirk
--:161: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#161: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:203:
-+	{ 0x3185, 0x8086, 0x2072, SINK_OUI_ANY, SINK_DEVICE_ID_ANY, quirk_increase_ddi_disabled_time },
+CI Bug Log - changes from CI_DRM_15264 -> Patchwork_137524v1
+====================================================
 
--:162: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#162: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:204:
-+	{ 0x3184, 0x8086, 0x2072, SINK_OUI_ANY, SINK_DEVICE_ID_ANY, quirk_increase_ddi_disabled_time },
+Summary
+-------
 
--:166: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#166: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:206:
-+	{ 0x3185, 0x1849, 0x2212, SINK_OUI_ANY, SINK_DEVICE_ID_ANY, quirk_increase_ddi_disabled_time },
+  **SUCCESS**
 
--:167: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#167: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:207:
-+	{ 0x3184, 0x1849, 0x2212, SINK_OUI_ANY, SINK_DEVICE_ID_ANY, quirk_increase_ddi_disabled_time },
+  No regressions found.
 
--:171: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#171: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:209:
-+	{ 0x3185, 0x1019, 0xa94d, SINK_OUI_ANY, SINK_DEVICE_ID_ANY, quirk_increase_ddi_disabled_time },
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/index.html
 
--:172: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#172: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:210:
-+	{ 0x3184, 0x1019, 0xa94d, SINK_OUI_ANY, SINK_DEVICE_ID_ANY, quirk_increase_ddi_disabled_time },
+Participating hosts (42 -> 39)
+------------------------------
 
-total: 0 errors, 6 warnings, 0 checks, 202 lines checked
-827a71d6a0ee drm/i915/display: Increase Fast Wake Sync length as a quirk
--:119: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#119: FILE: drivers/gpu/drm/i915/display/intel_quirks.c:206:
-+	{ 0x7d55, 0x1028, 0x0cc7, SINK_OUI(0x38, 0xec, 0x11), SINK_DEVICE_ID_ANY, quirk_fw_sync_len },
+  Missing    (3): fi-kbl-8809g fi-snb-2520m fi-bsw-n3050 
 
-total: 0 errors, 1 warnings, 0 checks, 84 lines checked
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137524v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-2:         [PASS][1] -> [DMESG-WARN][2] ([i915#11349])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-arls-2/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-2:          [INCOMPLETE][3] ([i915#11981] / [i915#9413]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@objects:
+    - bat-arls-1:         [DMESG-FAIL][5] ([i915#10262]) -> [PASS][6] +24 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-arls-1/igt@i915_selftest@live@objects.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-arls-1/igt@i915_selftest@live@objects.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-arls-1:         [DMESG-WARN][7] ([i915#10341]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-arls-1/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-arls-1/igt@i915_selftest@live@requests.html
+
+  
+  [i915#10262]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262
+  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
+  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
+  [i915#11981]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11981
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_15264 -> Patchwork_137524v1
+
+  CI-20190529: 20190529
+  CI_DRM_15264: 5287d615dcd1e37c2f818ad0a5f2cfc3e25710a5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7978: 4083a9d8abc80c8a905ffdc20bc76383b1e07e79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_137524v1: 5287d615dcd1e37c2f818ad0a5f2cfc3e25710a5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/index.html
+
+--===============3726689984214575177==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Increase fastwake sync pulse count as a quirk</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137524/">https://patchwork.freedesktop.org/series/137524/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15264 -&gt; Patchwork_137524v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): fi-kbl-8809g fi-snb-2520m fi-bsw-n3050 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137524v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11981">i915#11981</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-twl-2/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@objects:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-arls-1/igt@i915_selftest@live@objects.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10262">i915#10262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-arls-1/igt@i915_selftest@live@objects.html">PASS</a> +24 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@requests:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15264/bat-arls-1/igt@i915_selftest@live@requests.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v1/bat-arls-1/igt@i915_selftest@live@requests.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15264 -&gt; Patchwork_137524v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15264: 5287d615dcd1e37c2f818ad0a5f2cfc3e25710a5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7978: 4083a9d8abc80c8a905ffdc20bc76383b1e07e79 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_137524v1: 5287d615dcd1e37c2f818ad0a5f2cfc3e25710a5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3726689984214575177==--
