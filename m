@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ABC3958E9C
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C71BE958E9D
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:30:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CE3C10E130;
-	Tue, 20 Aug 2024 19:30:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D71910E156;
+	Tue, 20 Aug 2024 19:30:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6DB10E023;
- Tue, 20 Aug 2024 19:30:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74F8F10E156;
+ Tue, 20 Aug 2024 19:30:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
- =?utf-8?q?identify_display_steppings_in_display_code?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/display=3A_iden?=
+ =?utf-8?q?tify_display_steppings_in_display_code?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 20 Aug 2024 19:30:41 -0000
-Message-ID: <172418224109.716390.15102695756128330738@2413ebb6fbb6>
+Date: Tue, 20 Aug 2024 19:30:43 -0000
+Message-ID: <172418224347.716391.12607994303890809311@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <cover.1724180287.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
@@ -49,71 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-4068a072c61e drm/xe/display: fix compat IS_DISPLAY_STEP() range end
--:20: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#20: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:86:
-+#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
-
--:20: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'first' may be better as '(first)' to avoid precedence issues
-#20: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:86:
-+#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
-
--:20: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'last' may be better as '(last)' to avoid precedence issues
-#20: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:86:
-+#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
-
-total: 0 errors, 1 warnings, 2 checks, 8 lines checked
-6604ed43e8eb drm/xe/display: remove intel_display_step_name() to simplify
-46e4d0a0614d drm/xe/display: remove the unused compat HAS_GMD_ID()
-009ec2ba1dd4 drm/xe/step: define more steppings E-J
-ff0bbce1336d drm/i915/display: rename IS_DISPLAY_IP_RANGE() to IS_DISPLAY_VER_FULL()
--:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
-#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:164:
-+#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
- 	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
- 	(DISPLAY_VER_FULL(__i915) >= (from) && \
- 	 DISPLAY_VER_FULL(__i915) <= (until)))
-
--:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'from' - possible side-effects?
-#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:164:
-+#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
- 	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
- 	(DISPLAY_VER_FULL(__i915) >= (from) && \
- 	 DISPLAY_VER_FULL(__i915) <= (until)))
-
-total: 0 errors, 0 warnings, 2 checks, 24 lines checked
-d23997fc8856 drm/i915/display: rename IS_DISPLAY_IP_STEP() to IS_DISPLAY_VER_STEP()
--:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
-#28: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:184:
-+#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
- 	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
- 	 IS_DISPLAY_STEP((__i915), (from), (until)))
-
--:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ipver' - possible side-effects?
-#28: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:184:
-+#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
- 	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
- 	 IS_DISPLAY_STEP((__i915), (from), (until)))
-
-total: 0 errors, 0 warnings, 2 checks, 78 lines checked
-84d23f7bcce0 drm/i915/display: identify display steppings in display probe
--:38: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_map' - possible side-effects?
-#38: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:29:
-+#define STEP_INFO(_map)				\
-+	.step_info.map = _map,			\
-+	.step_info.size = ARRAY_SIZE(_map)
-
-total: 0 errors, 0 warnings, 1 checks, 415 lines checked
-5505af80a4bb drm/i915/display: switch to display detected steppings
--:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
-#39: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:199:
-+#define IS_DISPLAY_STEP(__i915, since, until) \
-+	(drm_WARN_ON(__to_intel_display(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
-+	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
-
-total: 0 errors, 0 warnings, 1 checks, 53 lines checked
-dab2e3b4af43 drm/i915: remove display stepping handling
-b0eabc5e5736 drm/xe: remove display stepping handling
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
