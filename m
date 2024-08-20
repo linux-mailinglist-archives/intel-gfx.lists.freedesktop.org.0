@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5730958E5E
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3718D958E5F
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:01:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69B0710E859;
-	Tue, 20 Aug 2024 19:01:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D5910E85C;
+	Tue, 20 Aug 2024 19:01:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cbfHCFzZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zx4abPB+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33B3610E851;
- Tue, 20 Aug 2024 19:01:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12DC510E85C;
+ Tue, 20 Aug 2024 19:01:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724180483; x=1755716483;
+ t=1724180495; x=1755716495;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zQOgKlx62S5FuSiQpRHQCfq5ZTL2D5xT+pIteB2yv60=;
- b=cbfHCFzZ0fmTVpMtmVZMpfAinqwezPiVzioU5r0eY8/80YFIftBaQ/r1
- NLhF5jiXAqR44t7VSQ8ZDrBuhSOAZ0BlAI2iAN9dugA6dGcgMrvVaJiTH
- zG4K1RKaLntNwmjtur1MgrhIUSWrAT7WSp1JxEpRI35QSh9BqNpP+JHcp
- C0zGLHAkN/jdJl6MjvLJbjSwhLGajDsoM7chp17XAfb4ipbgqbbnkS70I
- u85+wGvkJPga7zmu67MG+Gn4F0G42RLEQneu5JIDMqAmRz4XDy7tIcjPc
- 9rf3hNj1Ctfc8i8nM6Nwvlc0mGNSCNN6/kZj0GxYvxke0jw33H24Vhs1+ Q==;
-X-CSE-ConnectionGUID: o+5c7v96SiK5B+xvDEbl4A==
-X-CSE-MsgGUID: bF2gz7pVT/yt8upYuJTHLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22035976"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="22035976"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 12:01:23 -0700
-X-CSE-ConnectionGUID: 3zJIAp8OTCClxkVi7dyFKQ==
-X-CSE-MsgGUID: uYDlaA9TQcOW2CsSM/66JQ==
+ bh=ShaYdbPca/POQMAbkAzGUTEz3FBwQX/cWD4DGnb2voo=;
+ b=Zx4abPB+eOMJbZgbqikCCfxlIrwZ0taj5hrc/Y+S1zRJgbrIH6FNmSFk
+ m+b6nenpQWueaMF6G3sVd3vesCtmNMcCOj6BWB3hz/Wd/1hapqwOOnC+M
+ KkK1mLIlgnjPCBETV63uw4q9fK4scYPH2YUA3I8b8HVlM/mECXh0WA7zn
+ Gi2KaRtKs96ye80wmtJIHLiM4O3e89uM2toY3ElmEd2GIjtThvYrC1zzc
+ 854i3nLMqdt4+/Rz7I8mAuypbs5c2SOZYRukP1hmpc1kn8XeCdPFlpHpU
+ 7gnipj9M8qCLNslHRDqX6pkRYMWdUdRb/fUahYdTUUlBQG1zbedTZr5lQ Q==;
+X-CSE-ConnectionGUID: m5MALsPrRMujhKsSX0Fuqw==
+X-CSE-MsgGUID: hp0xTL8DSmauyQwdSV4NvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26258450"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26258450"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 12:01:30 -0700
+X-CSE-ConnectionGUID: eOHovBHdR127+MjhUXtT0w==
+X-CSE-MsgGUID: GbC4euqgToePIPd7kfPq5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65676480"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="61362133"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.184])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 12:01:20 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 12:01:27 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
  matthew.d.roper@intel.com, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 05/10] drm/i915/display: rename IS_DISPLAY_IP_RANGE() to
- IS_DISPLAY_VER_FULL()
-Date: Tue, 20 Aug 2024 22:00:38 +0300
-Message-Id: <adb43f45ad0b1846c2cb9a5861ba1f727c41ae83.1724180287.git.jani.nikula@intel.com>
+Subject: [PATCH 06/10] drm/i915/display: rename IS_DISPLAY_IP_STEP() to
+ IS_DISPLAY_VER_STEP()
+Date: Tue, 20 Aug 2024 22:00:39 +0300
+Message-Id: <6861e02f3adf15d56e89890000eb195070c33c9b.1724180287.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
 References: <cover.1724180287.git.jani.nikula@intel.com>
@@ -72,50 +72,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Unify macro naming. Be more in line with DISPLAY_VER() and
-IS_DISPLAY_VER().
+Unify macro naming on VER.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_power.c  | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 6 +++---
+ drivers/gpu/drm/i915/display/intel_fbc.c            | 2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c           | 6 +++---
+ drivers/gpu/drm/i915/display/intel_pmdemand.c       | 2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c            | 8 ++++----
+ 5 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 13453ea4daea..30c624989902 100644
+index 30c624989902..8bd342658291 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -161,7 +161,7 @@ enum intel_display_subplatform {
- #define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
- 
- /* Check that device has a display IP version within the specific range. */
--#define IS_DISPLAY_IP_RANGE(__i915, from, until) ( \
-+#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
- 	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
- 	(DISPLAY_VER_FULL(__i915) >= (from) && \
- 	 DISPLAY_VER_FULL(__i915) <= (until)))
-@@ -182,7 +182,7 @@ enum intel_display_subplatform {
+@@ -175,13 +175,13 @@ enum intel_display_subplatform {
+  * hardware fix is present and the software workaround is no longer necessary.
+  * E.g.,
+  *
+- *    IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_B2)
+- *    IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_C0, STEP_FOREVER)
++ *    IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_B2)
++ *    IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_C0, STEP_FOREVER)
+  *
+  * "STEP_FOREVER" can be passed as "until" for workarounds that have no upper
   * stepping bound for the specified IP version.
   */
- #define IS_DISPLAY_IP_STEP(__i915, ipver, from, until) \
--	(IS_DISPLAY_IP_RANGE((__i915), (ipver), (ipver)) && \
-+	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
+-#define IS_DISPLAY_IP_STEP(__i915, ipver, from, until) \
++#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
+ 	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
  	 IS_DISPLAY_STEP((__i915), (from), (until)))
  
- #define DISPLAY_INFO(i915)		(__to_intel_display(i915)->info.__device_info)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 39ab3117265c..ef2fdbf97346 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1684,7 +1684,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 		intel_dmc_load_program(dev_priv);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 5eda258616ae..52b79bacef4d 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1346,7 +1346,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
  
- 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p,dg2 */
--	if (IS_DISPLAY_IP_RANGE(dev_priv, IP_VER(12, 0), IP_VER(13, 0)))
-+	if (IS_DISPLAY_VER_FULL(dev_priv, IP_VER(12, 0), IP_VER(13, 0)))
- 		intel_de_rmw(dev_priv, GEN11_CHICKEN_DCPR_2, 0,
- 			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
- 			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
+ 	/* Wa_14016291713 */
+ 	if ((IS_DISPLAY_VER(display, 12, 13) ||
+-	     IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0)) &&
++	     IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0)) &&
+ 	    crtc_state->has_psr && !crtc_state->has_panel_replay) {
+ 		plane_state->no_fbc_reason = "PSR1 enabled (Wa_14016291713)";
+ 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 05402ae6b569..94418f218448 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -42,11 +42,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+ 		return;
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 14) {
+-		if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
++		if (IS_DISPLAY_VER_STEP(dev_priv, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
+ 			intel_de_rmw(dev_priv, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+ 				     0, HDCP_LINE_REKEY_DISABLE);
+-		else if (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
+-			 IS_DISPLAY_IP_STEP(dev_priv, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
++		else if (IS_DISPLAY_VER_STEP(dev_priv, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
++			 IS_DISPLAY_VER_STEP(dev_priv, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
+ 			intel_de_rmw(dev_priv,
+ 				     TRANS_DDI_FUNC_CTL(dev_priv, hdcp->cpu_transcoder),
+ 				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index 9ca981b7a12c..ceaf9e3147da 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -92,7 +92,7 @@ int intel_pmdemand_init(struct drm_i915_private *i915)
+ 				     &pmdemand_state->base,
+ 				     &intel_pmdemand_funcs);
+ 
+-	if (IS_DISPLAY_IP_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0))
++	if (IS_DISPLAY_VER_STEP(i915, IP_VER(14, 0), STEP_A0, STEP_C0))
+ 		/* Wa_14016740474 */
+ 		intel_de_rmw(i915, XELPD_CHICKEN_DCPR_3, 0, DMD_RSP_TIMEOUT_DISABLE);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 9cb1cdaaeefa..dea3694ddc3a 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1862,14 +1862,14 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 		 * cause issues if non-supported panels are used.
+ 		 */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+-		    (IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
++		    (IS_DISPLAY_VER_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
+ 		     IS_ALDERLAKE_P(dev_priv)))
+ 			intel_de_rmw(dev_priv, hsw_chicken_trans_reg(dev_priv, cpu_transcoder),
+ 				     0, ADLP_1_BASED_X_GRANULARITY);
+ 
+ 		/* Wa_16012604467:adlp,mtl[a0,b0] */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+-		    IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
++		    IS_DISPLAY_VER_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
+ 			intel_de_rmw(dev_priv,
+ 				     MTL_CLKGATE_DIS_TRANS(dev_priv, cpu_transcoder),
+ 				     0,
+@@ -2051,7 +2051,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 	if (intel_dp->psr.sel_update_enabled) {
+ 		/* Wa_16012604467:adlp,mtl[a0,b0] */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+-		    IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
++		    IS_DISPLAY_VER_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0))
+ 			intel_de_rmw(dev_priv,
+ 				     MTL_CLKGATE_DIS_TRANS(dev_priv, cpu_transcoder),
+ 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
+@@ -2536,7 +2536,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 
+ 	/* Wa_14014971492 */
+ 	if (!crtc_state->has_panel_replay &&
+-	    ((IS_DISPLAY_IP_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
++	    ((IS_DISPLAY_VER_STEP(dev_priv, IP_VER(14, 0), STEP_A0, STEP_B0) ||
+ 	      IS_ALDERLAKE_P(dev_priv) || IS_TIGERLAKE(dev_priv))) &&
+ 	    crtc_state->splitter.enable)
+ 		crtc_state->psr2_su_area.y1 = 0;
 -- 
 2.39.2
 
