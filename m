@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84FA958E62
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87AB2958E63
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:01:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89D3E10E868;
-	Tue, 20 Aug 2024 19:01:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DDBC10E874;
+	Tue, 20 Aug 2024 19:01:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WeJsscxM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l5yKlRl/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5E8F10E860;
- Tue, 20 Aug 2024 19:01:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD7710E874;
+ Tue, 20 Aug 2024 19:01:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724180499; x=1755716499;
+ t=1724180502; x=1755716502;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xbZCJLVM9GzVuBz0/5ajGrWIqHriVNVP0q9skizek6s=;
- b=WeJsscxM3LEQ91rNKNy2e71HuVogqLMRE7pfJNSLvkLG0QLWRo2fDJnU
- lODfqQMp60gUItkZT1WIC+nmJpo1gTfw3kcIlyZuM8N18UCLCXLUxeyjf
- kJwCuDtxOobzW5e7arqiRMeKRH8uc5ExlB1V038gsjJN6PRJjSqlUPXfq
- x7Lvk5fMPKPlMpbb4USR7n46glzI3Wuy9fEH5qpoB8eTu6Va2IhkcbZKv
- G7prYJJHgWH4grD5mh++eMi9KW1zG3JBCiJX+x5F/fnBpedty8zXKB5Fu
- zoNRfZBs/sAqk/7hyjGbRMMGys2LjUMZ/I1U2Zj5EJ5OoP4NjSU7Y52dB g==;
-X-CSE-ConnectionGUID: UVeBgVGeQzWylIPK+NXSpA==
-X-CSE-MsgGUID: J3pymJqiRaShY+q1hy+gyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26258487"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26258487"
+ bh=dKC8ES1P2a7ZMLpsuSsLnpndl4BssqnMKQb9ayS9OL8=;
+ b=l5yKlRl/EGInaO65Vo6yJjGf9Ea8bOca/k8a01ZP1qAMWroJmaeY7u9i
+ /sDqf9SMURRHVHb2WHi3CzqMIDmhP66kL5Yu+TtvjC3S4yy+k63Ia8iNX
+ pRxmbvPr/xUscKK5S3c2+g/vhUpd4vw1fisohBQNjzTukuh58G9delggc
+ 0qfVqXXXsfimHRLSt9ejsChONO6z0ybSIeGoy4ItZ3KwHPwA5BOK2etvu
+ DFWmOmu3YbKKsCGdU8zWHdCbnIJ2rARjZyfd3OTOBADKuL8xF1jkH0+jI
+ Q4VmhDwyyyclzQxzAxwLA+yDetTYK7hOi5Dj2keSWKrAmQ0vwoe3A4eMc g==;
+X-CSE-ConnectionGUID: trA5QMX1SbiWsJZaStZ/MA==
+X-CSE-MsgGUID: d0xEnIloS3aRGGzvNJ2uUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26258512"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26258512"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 12:01:35 -0700
-X-CSE-ConnectionGUID: sQtA4OJcRkexv9ylPELvTw==
-X-CSE-MsgGUID: p1eH6WBTS0yqcgqNWaUSPw==
+ 20 Aug 2024 12:01:40 -0700
+X-CSE-ConnectionGUID: mreWK0+aSf+gRTe9ETou+g==
+X-CSE-MsgGUID: 0zgptS1vTiCTrM5J8NTB0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="61362199"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="61362253"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.184])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 12:01:32 -0700
+ 20 Aug 2024 12:01:38 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
  matthew.d.roper@intel.com, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 07/10] drm/i915/display: identify display steppings in display
- probe
-Date: Tue, 20 Aug 2024 22:00:40 +0300
-Message-Id: <65e319048c369fbbd5018badfa24e457ca4e956e.1724180287.git.jani.nikula@intel.com>
+Subject: [PATCH 08/10] drm/i915/display: switch to display detected steppings
+Date: Tue, 20 Aug 2024 22:00:41 +0300
+Message-Id: <ce8bb94e1a801d3c345f1810837bdd1964c3af75.1724180287.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
 References: <cover.1724180287.git.jani.nikula@intel.com>
@@ -72,476 +71,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Both i915 and xe have code to identify display steppings. Start
-deduplicating this by, uh, adding a third copy in display code. This is
-not yet used for anything other than debug logging. We'll switch over
-later.
+Move the stepping related macros over to display. We can proceed to
+remove the compat macros from xe.
 
-For platforms before GMD ID, attach the mapping from PCI revision to
-stepping in the platform and subplatform descriptors. This is a
-considerably cleaner approach than having it completely separate.
-
-Also add a separate field for stepping in display runtime info,
-preserving the value from GMD ID.
+Note: Looks like we've failed to actually initialize the display
+stepping for GMD ID based platforms in the xe driver. It does get set in
+display runtime info, but until now the compat macro used
+xe->info.step.display which was not set for GMD ID.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_device.c   | 224 +++++++++++++++++-
- .../drm/i915/display/intel_display_device.h   |   3 +-
- .../drm/xe/compat-i915-headers/intel_step.h   |   1 +
- 3 files changed, 216 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_device.h | 6 ++++++
+ drivers/gpu/drm/i915/i915_drv.h                     | 5 -----
+ drivers/gpu/drm/i915/intel_device_info.c            | 1 -
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 5 -----
+ 5 files changed, 8 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index a31f89df2c0a..1ac3ab3954a1 100644
+index 1ac3ab3954a1..06b55ae38a44 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -16,14 +16,25 @@
- #include "intel_display_power.h"
- #include "intel_display_reg_defs.h"
- #include "intel_fbc.h"
-+#include "intel_step.h"
+@@ -1711,6 +1711,8 @@ void intel_display_device_info_print(const struct intel_display_device_info *inf
+ 		drm_printf(p, "display version: %u\n",
+ 			   runtime->ip.ver);
  
- __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for display info");
- 
-+struct stepping_desc {
-+	const enum intel_step *map; /* revid to step map */
-+	size_t size; /* map size */
-+};
++	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step));
 +
-+#define STEP_INFO(_map)				\
-+	.step_info.map = _map,			\
-+	.step_info.size = ARRAY_SIZE(_map)
-+
- struct subplatform_desc {
- 	enum intel_display_subplatform subplatform;
- 	const char *name;
- 	const u16 *pciidlist;
-+	struct stepping_desc step_info;
- };
- 
- struct platform_desc {
-@@ -31,6 +42,7 @@ struct platform_desc {
- 	const char *name;
- 	const struct subplatform_desc *subplatforms;
- 	const struct intel_display_device_info *info; /* NULL for GMD ID */
-+	struct stepping_desc step_info;
- };
- 
- #define PLATFORM(_platform)			 \
-@@ -610,6 +622,13 @@ static const u16 skl_ulx_ids[] = {
- 	0
- };
- 
-+static const enum intel_step skl_steppings[] = {
-+	[0x6] = STEP_G0,
-+	[0x7] = STEP_H0,
-+	[0x9] = STEP_J0,
-+	[0xA] = STEP_I1,
-+};
-+
- static const struct platform_desc skl_desc = {
- 	PLATFORM(SKYLAKE),
- 	.subplatforms = (const struct subplatform_desc[]) {
-@@ -618,6 +637,7 @@ static const struct platform_desc skl_desc = {
- 		{},
- 	},
- 	.info = &skl_display,
-+	STEP_INFO(skl_steppings),
- };
- 
- static const u16 kbl_ult_ids[] = {
-@@ -634,6 +654,16 @@ static const u16 kbl_ulx_ids[] = {
- 	0
- };
- 
-+static const enum intel_step kbl_steppings[] = {
-+	[1] = STEP_B0,
-+	[2] = STEP_B0,
-+	[3] = STEP_B0,
-+	[4] = STEP_C0,
-+	[5] = STEP_B1,
-+	[6] = STEP_B1,
-+	[7] = STEP_C0,
-+};
-+
- static const struct platform_desc kbl_desc = {
- 	PLATFORM(KABYLAKE),
- 	.subplatforms = (const struct subplatform_desc[]) {
-@@ -642,6 +672,7 @@ static const struct platform_desc kbl_desc = {
- 		{},
- 	},
- 	.info = &skl_display,
-+	STEP_INFO(kbl_steppings),
- };
- 
- static const u16 cfl_ult_ids[] = {
-@@ -706,6 +737,13 @@ static const struct platform_desc cml_desc = {
- 		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
- 	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C)
- 
-+static const enum intel_step bxt_steppings[] = {
-+	[0xA] = STEP_C0,
-+	[0xB] = STEP_C0,
-+	[0xC] = STEP_D0,
-+	[0xD] = STEP_E0,
-+};
-+
- static const struct platform_desc bxt_desc = {
- 	PLATFORM(BROXTON),
- 	.info = &(const struct intel_display_device_info) {
-@@ -714,6 +752,11 @@ static const struct platform_desc bxt_desc = {
- 
- 		.__runtime_defaults.ip.ver = 9,
- 	},
-+	STEP_INFO(bxt_steppings),
-+};
-+
-+static const enum intel_step glk_steppings[] = {
-+	[3] = STEP_B0,
- };
- 
- static const struct platform_desc glk_desc = {
-@@ -725,6 +768,7 @@ static const struct platform_desc glk_desc = {
- 
- 		.__runtime_defaults.ip.ver = 10,
- 	},
-+	STEP_INFO(glk_steppings),
- };
- 
- #define ICL_DISPLAY \
-@@ -773,6 +817,10 @@ static const u16 icl_port_f_ids[] = {
- 	0
- };
- 
-+static const enum intel_step icl_steppings[] = {
-+	[7] = STEP_D0,
-+};
-+
- static const struct platform_desc icl_desc = {
- 	PLATFORM(ICELAKE),
- 	.subplatforms = (const struct subplatform_desc[]) {
-@@ -784,6 +832,7 @@ static const struct platform_desc icl_desc = {
- 
- 		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
- 	},
-+	STEP_INFO(icl_steppings),
- };
- 
- static const struct intel_display_device_info jsl_ehl_display = {
-@@ -792,14 +841,21 @@ static const struct intel_display_device_info jsl_ehl_display = {
- 	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D),
- };
- 
-+static const enum intel_step jsl_ehl_steppings[] = {
-+	[0] = STEP_A0,
-+	[1] = STEP_B0,
-+};
-+
- static const struct platform_desc jsl_desc = {
- 	PLATFORM(JASPERLAKE),
- 	.info = &jsl_ehl_display,
-+	STEP_INFO(jsl_ehl_steppings),
- };
- 
- static const struct platform_desc ehl_desc = {
- 	PLATFORM(ELKHARTLAKE),
- 	.info = &jsl_ehl_display,
-+	STEP_INFO(jsl_ehl_steppings),
- };
- 
- #define XE_D_DISPLAY \
-@@ -850,10 +906,23 @@ static const u16 tgl_uy_ids[] = {
- 	0
- };
- 
-+static const enum intel_step tgl_steppings[] = {
-+	[0] = STEP_B0,
-+	[1] = STEP_D0,
-+};
-+
-+static const enum intel_step tgl_uy_steppings[] = {
-+	[0] = STEP_A0,
-+	[1] = STEP_C0,
-+	[2] = STEP_C0,
-+	[3] = STEP_D0,
-+};
-+
- static const struct platform_desc tgl_desc = {
- 	PLATFORM(TIGERLAKE),
- 	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_TIGERLAKE_UY, "UY", tgl_uy_ids },
-+		{ INTEL_DISPLAY_TIGERLAKE_UY, "UY", tgl_uy_ids,
-+		  STEP_INFO(tgl_uy_steppings) },
- 		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -866,6 +935,12 @@ static const struct platform_desc tgl_desc = {
- 		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
- 		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4) | BIT(PORT_TC5) | BIT(PORT_TC6),
- 	},
-+	STEP_INFO(tgl_steppings),
-+};
-+
-+static const enum intel_step dg1_steppings[] = {
-+	[0] = STEP_A0,
-+	[1] = STEP_B0,
- };
- 
- static const struct platform_desc dg1_desc = {
-@@ -876,6 +951,13 @@ static const struct platform_desc dg1_desc = {
- 		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
- 		BIT(PORT_TC1) | BIT(PORT_TC2),
- 	},
-+	STEP_INFO(dg1_steppings),
-+};
-+
-+static const enum intel_step rkl_steppings[] = {
-+	[0] = STEP_A0,
-+	[1] = STEP_B0,
-+	[4] = STEP_C0,
- };
- 
- static const struct platform_desc rkl_desc = {
-@@ -892,6 +974,7 @@ static const struct platform_desc rkl_desc = {
- 		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
- 		BIT(PORT_TC1) | BIT(PORT_TC2),
- 	},
-+	STEP_INFO(rkl_steppings),
- };
- 
- static const u16 adls_rpls_ids[] = {
-@@ -899,10 +982,24 @@ static const u16 adls_rpls_ids[] = {
- 	0
- };
- 
-+static const enum intel_step adl_s_steppings[] = {
-+	[0x0] = STEP_A0,
-+	[0x1] = STEP_A2,
-+	[0x4] = STEP_B0,
-+	[0x8] = STEP_B0,
-+	[0xC] = STEP_C0,
-+};
-+
-+static const enum intel_step adl_s_rpl_s_steppings[] = {
-+	[0x4] = STEP_D0,
-+	[0xC] = STEP_C0,
-+};
-+
- static const struct platform_desc adl_s_desc = {
- 	PLATFORM(ALDERLAKE_S),
- 	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S, "RPL-S", adls_rpls_ids },
-+		{ INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S, "RPL-S", adls_rpls_ids,
-+		  STEP_INFO(adl_s_rpl_s_steppings) },
- 		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -913,6 +1010,7 @@ static const struct platform_desc adl_s_desc = {
- 		.__runtime_defaults.port_mask = BIT(PORT_A) |
- 		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
- 	},
-+	STEP_INFO(adl_s_steppings),
- };
- 
- #define XE_LPD_FEATURES \
-@@ -986,15 +1084,34 @@ static const u16 adlp_rplp_ids[] = {
- 	0
- };
- 
-+static const enum intel_step adl_p_steppings[] = {
-+	[0x0] = STEP_A0,
-+	[0x4] = STEP_B0,
-+	[0x8] = STEP_C0,
-+	[0xC] = STEP_D0,
-+};
-+
-+static const enum intel_step adl_p_adl_n_steppings[] = {
-+	[0x0] = STEP_D0,
-+};
-+
-+static const enum intel_step adl_p_rpl_pu_steppings[] = {
-+	[0x4] = STEP_E0,
-+};
-+
- static const struct platform_desc adl_p_desc = {
- 	PLATFORM(ALDERLAKE_P),
- 	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N, "ADL-N", adlp_adln_ids },
--		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U, "RPL-U", adlp_rplu_ids },
--		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P, "RPL-P", adlp_rplp_ids },
-+		{ INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N, "ADL-N", adlp_adln_ids,
-+		  STEP_INFO(adl_p_adl_n_steppings) },
-+		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P, "RPL-P", adlp_rplp_ids,
-+		  STEP_INFO(adl_p_rpl_pu_steppings) },
-+		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U, "RPL-U", adlp_rplu_ids,
-+		  STEP_INFO(adl_p_rpl_pu_steppings) },
- 		{},
- 	},
- 	.info = &xe_lpd_display,
-+	STEP_INFO(adl_p_steppings),
- };
- 
- static const struct intel_display_device_info xe_hpd_display = {
-@@ -1023,12 +1140,33 @@ static const u16 dg2_g12_ids[] = {
- 	0
- };
- 
-+static const enum intel_step dg2_g10_steppings[] = {
-+	[0x0] = STEP_A0,
-+	[0x1] = STEP_A0,
-+	[0x4] = STEP_B0,
-+	[0x8] = STEP_C0,
-+};
-+
-+static const enum intel_step dg2_g11_steppings[] = {
-+	[0x0] = STEP_B0,
-+	[0x4] = STEP_C0,
-+	[0x5] = STEP_C0,
-+};
-+
-+static const enum intel_step dg2_g12_steppings[] = {
-+	[0x0] = STEP_C0,
-+	[0x1] = STEP_C0,
-+};
-+
- static const struct platform_desc dg2_desc = {
- 	PLATFORM(DG2),
- 	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_DG2_G10, "G10", dg2_g10_ids },
--		{ INTEL_DISPLAY_DG2_G11, "G11", dg2_g11_ids },
--		{ INTEL_DISPLAY_DG2_G12, "G12", dg2_g12_ids },
-+		{ INTEL_DISPLAY_DG2_G10, "G10", dg2_g10_ids,
-+		  STEP_INFO(dg2_g10_steppings) },
-+		{ INTEL_DISPLAY_DG2_G11, "G11", dg2_g11_ids,
-+		  STEP_INFO(dg2_g11_steppings) },
-+		{ INTEL_DISPLAY_DG2_G12, "G12", dg2_g12_ids,
-+		  STEP_INFO(dg2_g12_steppings) },
- 		{},
- 	},
- 	.info = &xe_hpd_display,
-@@ -1261,13 +1399,66 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
- 	return NULL;
- }
- 
-+static enum intel_step get_pre_gmdid_step(struct intel_display *display,
-+					  const struct stepping_desc *main,
-+					  const struct stepping_desc *sub)
-+{
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-+	const enum intel_step *map = main->map;
-+	int size = main->size;
-+	int revision = pdev->revision;
-+	enum intel_step step;
-+
-+	/* subplatform stepping info trumps main platform info */
-+	if (sub->map && sub->size) {
-+		map = sub->map;
-+		size = sub->size;
-+	}
-+
-+	/* not all platforms define steppings, and it's fine */
-+	if (!map || !size)
-+		return STEP_NONE;
-+
-+	if (revision < size && map[revision] != STEP_NONE) {
-+		step = map[revision];
-+	} else {
-+		drm_warn(display->drm, "Unknown revision 0x%02x\n", revision);
-+
-+		/*
-+		 * If we hit a gap in the revision to step map, use the information
-+		 * for the next revision.
-+		 *
-+		 * This may be wrong in all sorts of ways, especially if the
-+		 * steppings in the array are not monotonically increasing, but
-+		 * it's better than defaulting to 0.
-+		 */
-+		while (revision < size && map[revision] == STEP_NONE)
-+			revision++;
-+
-+		if (revision < size) {
-+			drm_dbg_kms(display->drm, "Using display stepping for revision 0x%02x\n",
-+				    revision);
-+			step = map[revision];
-+		} else {
-+			drm_dbg_kms(display->drm, "Using future display stepping\n");
-+			step = STEP_FUTURE;
-+		}
-+	}
-+
-+	drm_WARN_ON(display->drm, step == STEP_NONE);
-+
-+	return step;
-+}
-+
- void intel_display_device_probe(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	const struct intel_display_device_info *info;
- 	struct intel_display_ip_ver ip_ver = {};
- 	const struct platform_desc *desc;
- 	const struct subplatform_desc *subdesc;
-+	enum intel_step step;
- 
- 	/* Add drm device backpointer as early as possible. */
- 	i915->display.drm = &i915->drm;
-@@ -1307,13 +1498,24 @@ void intel_display_device_probe(struct drm_i915_private *i915)
- 		DISPLAY_RUNTIME_INFO(i915)->subplatform = subdesc->subplatform;
- 	}
- 
--	if (ip_ver.ver || ip_ver.rel || ip_ver.step)
-+	if (ip_ver.ver || ip_ver.rel || ip_ver.step) {
- 		DISPLAY_RUNTIME_INFO(i915)->ip = ip_ver;
-+		step = STEP_A0 + ip_ver.step;
-+		if (step > STEP_FUTURE) {
-+			drm_dbg_kms(display->drm, "Using future display stepping\n");
-+			step = STEP_FUTURE;
-+		}
-+	} else {
-+		step = get_pre_gmdid_step(display, &desc->step_info, &subdesc->step_info);
-+	}
-+
-+	DISPLAY_RUNTIME_INFO(i915)->step = step;
- 
--	drm_info(&i915->drm, "Found %s%s%s (device ID %04x) display version %u.%02u\n",
-+	drm_info(&i915->drm, "Found %s%s%s (device ID %04x) display version %u.%02u stepping %s\n",
- 		 desc->name, subdesc ? "/" : "", subdesc ? subdesc->name : "",
- 		 pdev->device, DISPLAY_RUNTIME_INFO(i915)->ip.ver,
--		 DISPLAY_RUNTIME_INFO(i915)->ip.rel);
-+		 DISPLAY_RUNTIME_INFO(i915)->ip.rel,
-+		 step != STEP_NONE ? intel_step_name(step) : "N/A");
- 
- 	return;
- 
+ #define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->name))
+ 	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
+ #undef PRINT_FLAG
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 8bd342658291..1c75cbd68dea 100644
+index 1c75cbd68dea..611be3fa3af6 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -201,8 +201,9 @@ struct intel_display_runtime_info {
- 	struct intel_display_ip_ver {
- 		u16 ver;
- 		u16 rel;
--		u16 step;
-+		u16 step; /* hardware */
- 	} ip;
-+	int step; /* symbolic */
+@@ -194,6 +194,12 @@ enum intel_display_subplatform {
+ #define IS_DISPLAY_VER(i915, from, until) \
+ 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
  
- 	u8 pipe_mask;
- 	u8 cpu_transcoder_mask;
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-index ee3f45b668b9..2cf13a572ab0 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-@@ -8,6 +8,7 @@
++#define INTEL_DISPLAY_STEP(__i915) (DISPLAY_RUNTIME_INFO(__i915)->step)
++
++#define IS_DISPLAY_STEP(__i915, since, until) \
++	(drm_WARN_ON(__to_intel_display(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
++	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
++
+ struct intel_display_runtime_info {
+ 	enum intel_display_platform platform;
+ 	enum intel_display_subplatform subplatform;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 94f7f6cc444c..3b1b16e71cf9 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -408,15 +408,10 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
  
- #include "xe_step.h"
+ #define INTEL_REVID(i915)	(to_pci_dev((i915)->drm.dev)->revision)
  
-+#define intel_step xe_step
- #define intel_step_name xe_step_name
+-#define INTEL_DISPLAY_STEP(__i915) (RUNTIME_INFO(__i915)->step.display_step)
+ #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics_step)
+ #define INTEL_MEDIA_STEP(__i915) (RUNTIME_INFO(__i915)->step.media_step)
+ #define INTEL_BASEDIE_STEP(__i915) (RUNTIME_INFO(__i915)->step.basedie_step)
  
- #endif /* __INTEL_STEP_H__ */
+-#define IS_DISPLAY_STEP(__i915, since, until) \
+-	(drm_WARN_ON(&(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
+-	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
+-
+ #define IS_GRAPHICS_STEP(__i915, since, until) \
+ 	(drm_WARN_ON(&(__i915)->drm, INTEL_GRAPHICS_STEP(__i915) == STEP_NONE), \
+ 	 INTEL_GRAPHICS_STEP(__i915) >= (since) && INTEL_GRAPHICS_STEP(__i915) < (until))
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index d26de37719a7..8b3e44dd504c 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -108,7 +108,6 @@ void intel_device_info_print(const struct intel_device_info *info,
+ 
+ 	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.graphics_step));
+ 	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.media_step));
+-	drm_printf(p, "display stepping: %s\n", intel_step_name(runtime->step.display_step));
+ 	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.basedie_step));
+ 
+ 	drm_printf(p, "gt: %d\n", info->gt);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 7492979ac3bc..97be452f003b 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -80,11 +80,6 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+ 
+ #define IS_MOBILE(xe) (xe && 0)
+ 
+-#define INTEL_DISPLAY_STEP(xe) ((xe)->info.step.display)
+-
+-/* Workarounds not handled yet */
+-#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
+-
+ #define IS_LP(xe) (0)
+ #define IS_GEN9_LP(xe) (0)
+ #define IS_GEN9_BC(xe) (0)
 -- 
 2.39.2
 
