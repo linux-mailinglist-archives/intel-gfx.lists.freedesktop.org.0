@@ -2,73 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7D7958816
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 15:41:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6915958882
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 16:06:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD6D10E318;
-	Tue, 20 Aug 2024 13:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 267AC10E092;
+	Tue, 20 Aug 2024 14:06:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YXLCgIz9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YJAbToZe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5957710E318;
- Tue, 20 Aug 2024 13:41:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E30A10E092;
+ Tue, 20 Aug 2024 14:06:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724161308; x=1755697308;
+ t=1724162808; x=1755698808;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=opLrROuD54WPY7U6CTrjM/ZqQ/yWDmuZgoY7rYtgdX0=;
- b=YXLCgIz9JGiGXdQwgSzp/yz8aL9CVxB1AgPu4+mxZovFu9iWHcbuC6aQ
- ++t0BC+Asc9xu/yIiEvSdmeHM4f9Q6bi3F/xvnZoiAok/wlQlJEW/1jjq
- mbVJu2P9jpdfr4aj6FVl5cOA0uorp026drtIDqETvP18od1+Nu2s0Q0P3
- VCYKfWycIoLlijYxRbrPpxMqS7TP80g0UnR85TLN2DBmPurWwE50LeA+/
- rMHP6q3NfaiF3Ty5eP4bqxAnoFhoFZkHFD9iImlFa+Nl59QqQAhVbvTNU
- GliNXfqS0pPWy1MZUCrljEdwXnsfgZo0CqYpX+yJZhaCgpICx/QeA/0Nx A==;
-X-CSE-ConnectionGUID: IAGzNvGBQ2KeEnNQ62iXpA==
-X-CSE-MsgGUID: Uvx39XvQR4q0MXus0l9unQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="26331034"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="26331034"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 06:41:47 -0700
-X-CSE-ConnectionGUID: aFf1F+rXTfGlvlVvX2STjg==
-X-CSE-MsgGUID: fwxoflidSHyyNvmP3E+2yQ==
+ bh=MrJaVukCblbAF5beCEIvjekC35gWWd06PuqyDAECCUg=;
+ b=YJAbToZeQOxGr5AWIF5Ht+I8HyBM/z4/JMlE6gzof7R+LrLJcDiAlmB/
+ GJRLirOa3awiUS5PKusrUmVT9j+32sC0b7g0sUpZ4PM7FpYuznoO2E1WQ
+ hWdd6UuD9hzDqxPjit6Wlek3M7B4WBQZICfYNKD0e0QaTd2shhCgCOUog
+ OzW22mCBfBrp+F+Eyd/Y3SqHspWM6k4l5KSWZDa751GJTzXAaJh5o/h2v
+ qRp+iT5LfwdVPY2FLyj3IZQlK0lq7O1aSTXGZVSxlhScvNn00r8mMq+Wc
+ Voug3zgTCrzoPZDQxoHzEwja4tKfG07WvpAAZfSWhoPRQ76+aW53xrBfF A==;
+X-CSE-ConnectionGUID: T7TOmIzER+CWOPhXJhOiIw==
+X-CSE-MsgGUID: s+YCOvn0TtadbaMDtbVD9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22271127"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="22271127"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 07:06:48 -0700
+X-CSE-ConnectionGUID: J7DTI9/XSIq/QAtQsPVswQ==
+X-CSE-MsgGUID: 0ny/ekFmTUmrK9wF7VudZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="60698260"
-Received: from slindbla-desk.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.197])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 06:41:39 -0700
-Date: Tue, 20 Aug 2024 15:41:36 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Yu Jiaoliang <yujiaoliang@vivo.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65610152"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 07:06:43 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1sgPVQ-0000000HKD3-0nFm; Tue, 20 Aug 2024 17:06:40 +0300
+Date: Tue, 20 Aug 2024 17:06:39 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, linux@roeck-us.net, andi.shyti@linux.intel.com,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, opensource.kernel@vivo.com,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v2] drm/i915/gt: Use kmemdup_array instead of kmemdup for
- multiple allocation
-Message-ID: <ZsSdEHxsmkb2B2WS@ashyti-mobl2.lan>
-References: <20240820095304.2746102-1-yujiaoliang@vivo.com>
- <ngzckr4tdknp73oki6ig7drg6vx5hapqz3226ejfuhah5khefh@6gwnuk4q2nlx>
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, ashutosh.dixit@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v6] drm/i915/hwmon: expose fan speed
+Message-ID: <ZsSi73YyfKletmgk@smile.fi.intel.com>
+References: <20240820062010.2000873-1-raag.jadav@intel.com>
+ <ZsRup8uKiqUvADFl@smile.fi.intel.com>
+ <ZsSWTtew8nCYWrxF@black.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ngzckr4tdknp73oki6ig7drg6vx5hapqz3226ejfuhah5khefh@6gwnuk4q2nlx>
+In-Reply-To: <ZsSWTtew8nCYWrxF@black.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,51 +79,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+On Tue, Aug 20, 2024 at 04:12:46PM +0300, Raag Jadav wrote:
+> On Tue, Aug 20, 2024 at 01:23:35PM +0300, Andy Shevchenko wrote:
+> > On Tue, Aug 20, 2024 at 11:50:10AM +0530, Raag Jadav wrote:
 
-On Tue, Aug 20, 2024 at 07:53:10AM -0500, Lucas De Marchi wrote:
-> On Tue, Aug 20, 2024 at 05:53:02PM GMT, Yu Jiaoliang wrote:
-> > Let the kememdup_array() take care about multiplication and possible
-> > overflows.
+...
+
+> > > v6: Drop overflow logic (Andy)
+> > >     Aesthetic adjustments (Badal)
 > > 
-> > v2:
-> > - Change subject
-> > - Leave one blank line between the commit log and the tag section
-> > - Fix code alignment issue
+> > But it still has an issue with 64-bit division on 32-bit platforms, right?
+
+...
+
+> > > +	/*
+> > > +	 * Calculate fan speed in RPM by time averaging two subsequent
+> > > +	 * readings in minutes.
+> > > +	 * RPM = number of rotations * msecs per minute / time in msecs
+> > > +	 */
+> > > +	*val = DIV_ROUND_UP(rotations * (MSEC_PER_SEC * 60), time);
 > > 
-> > Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
-> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > ---
-> > drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 ++---
-> > 1 file changed, 2 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index d90348c56765..0fcfd55c62b4 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -111,9 +111,8 @@ static void wa_init_finish(struct i915_wa_list *wal)
-> > {
-> > 	/* Trim unused entries. */
-> > 	if (!IS_ALIGNED(wal->count, WA_LIST_CHUNK)) {
-> > -		struct i915_wa *list = kmemdup_array(wal->list,
+> > ...somewhere here?
 > 
-> 					^
-> 
-> it was already kmemdup_array, not kmemdup. Am I missing anything?
+> Use div64_u64() instead? Or is there a better alternative?
 
-I see kmemdup() in drm-tip.
+I don't know the code well to offer anything better. Probably for a starter
+you can switch to use DIV_ROUND_UP_ULL().
 
-What Yu has done here is to change kmemdup to kmemdup_array and
-send the patch. Received the reviews and made a new commit on top
-of the previous one; then he sent only this second commit.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Yu needs to make sure that:
 
- 1. the patch applies correctly on a clean drm-tip
- 2. drm-tip + patch compiles
- 3. there are no checkpatch and sparse new errors
-
-We missed point 1 here :-)
-
-Andi
