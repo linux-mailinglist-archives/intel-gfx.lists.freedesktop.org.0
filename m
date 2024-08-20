@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5795958E5B
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9D4958E5C
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 21:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDD910E838;
-	Tue, 20 Aug 2024 19:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF5B10E848;
+	Tue, 20 Aug 2024 19:01:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m83Bc6w9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I9G88zZR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3788E10E838;
- Tue, 20 Aug 2024 19:01:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9032C10E840;
+ Tue, 20 Aug 2024 19:01:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724180465; x=1755716465;
+ t=1724180472; x=1755716472;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TsibsLNQQ8fEXg65tRZtyJEY/C6Rw3aCF1m6WtYxnPE=;
- b=m83Bc6w95zCmL0g8QjvHruWBbh74GMYR5sppVvE7gVB1gh+lHC++uNWJ
- fFV6gjBfWjiSS8wqn3HoNRn81k/69RdWXpbzORLLdVejkFVaYQCoj7msj
- Xu3+PVNGNllKC91q458ypV6gCD0C3v9N/K0VjTnCfJxvFjfiLTG9OPAiE
- 6pUPTAZPXki1OvFxip+r6iM9TzbBa3QTfkMVmGXTVdOTpOdg/IKAn1P0N
- Amk/rzpHVhzoHu+GS94t/MRSuGW2he0n7YnOqv3cn0fJSMrm1n3n41z2u
- 2WeGx/c/hMoBacl5uV1wgbUYTfBX7WlXgt2kVdD+UFkEQhXfwL1JZ5Ln3 Q==;
-X-CSE-ConnectionGUID: qw7gvFvPRWmKvXliTeorQg==
-X-CSE-MsgGUID: /eO2gZlVTfWdJP2/IPfZfA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22035906"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="22035906"
+ bh=/GftmgXu91A8NxwO2KQwtZ1iXybLEjVjguGKiL0oXP4=;
+ b=I9G88zZR+pgCpKHj4G6S+Ai/MqJej9RYEzVv2Zn/u3fNUieCASin8CLp
+ OtPIEEcMa/6XIMkX34sAeWKhBVRSa4L8Vga0lZG1sh6RRehkkCNTFJXct
+ 7MdvriYlyDEbB+OEpcru8KjA19kKIX4p7rwU0qUxJs8PAQPAjkw6IDjRb
+ nxZQig/C9+sT8+2iXyEZtx5T6h6OtWgrebC66DrJykLOCVnq2uJxyY/za
+ +3zDy2OHwYzqiOnheZctPr8m9avmnudpMX717xdebWTK2+xt4Kps+BySr
+ hMG+eNdy+ZdB46aw6fxsubRdclJ+z9pe8Q4yBzTIbT8ggbyMeLYdAgsKz g==;
+X-CSE-ConnectionGUID: 7F7u7BWLSeaywrTHJW+EgA==
+X-CSE-MsgGUID: PeUztC9SR0K/MflnVSn4wA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22035941"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="22035941"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 12:01:05 -0700
-X-CSE-ConnectionGUID: 4Z/bd7jJSAmh6hKJljy/Nw==
-X-CSE-MsgGUID: ogO8O3e1RcaOJf2IDrQekQ==
+ 20 Aug 2024 12:01:11 -0700
+X-CSE-ConnectionGUID: Fuj5qty1S9iOXrF8nvuSBg==
+X-CSE-MsgGUID: oboF1qPMREiYVdPXxDZKrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65676294"
+X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; d="scan'208";a="65676362"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.184])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 12:01:02 -0700
+ 20 Aug 2024 12:01:08 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
  matthew.d.roper@intel.com, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 02/10] drm/xe/display: remove intel_display_step_name() to
- simplify
-Date: Tue, 20 Aug 2024 22:00:35 +0300
-Message-Id: <cbea7def331cc9d2438da49ae344b9987f27cd12.1724180287.git.jani.nikula@intel.com>
+Subject: [PATCH 03/10] drm/xe/display: remove the unused compat HAS_GMD_ID()
+Date: Tue, 20 Aug 2024 22:00:36 +0300
+Message-Id: <67571bb0b10fb5c99dba57757f2213ef39bdedbb.1724180287.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
 References: <cover.1724180287.git.jani.nikula@intel.com>
@@ -72,92 +71,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The intel_display_step_name() is an unnecessary extra
-indirection. Simplify by just adding a macro to map intel_step_name() to
-xe_step_name().
-
-We'll need to temporarily add a compat INTEL_DISPLAY_STEP() for this.
+The display code no longer needs or uses HAS_GMD_ID(). Remove it from
+the compat header.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c            | 2 +-
- drivers/gpu/drm/i915/intel_step.c                   | 5 -----
- drivers/gpu/drm/i915/intel_step.h                   | 1 -
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 2 ++
- drivers/gpu/drm/xe/compat-i915-headers/intel_step.h | 9 +--------
- 5 files changed, 4 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 73977b173898..7c756d5ba2a2 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -391,7 +391,7 @@ static const struct stepping_info *
- intel_get_stepping_info(struct drm_i915_private *i915,
- 			struct stepping_info *si)
- {
--	const char *step_name = intel_display_step_name(i915);
-+	const char *step_name = intel_step_name(INTEL_DISPLAY_STEP(i915));
- 
- 	si->stepping = step_name[0];
- 	si->substepping = step_name[1];
-diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
-index a5adfb5d8fd2..80464e4edcce 100644
---- a/drivers/gpu/drm/i915/intel_step.c
-+++ b/drivers/gpu/drm/i915/intel_step.c
-@@ -275,8 +275,3 @@ const char *intel_step_name(enum intel_step step)
- 		return "**";
- 	}
- }
--
--const char *intel_display_step_name(struct drm_i915_private *i915)
--{
--	return intel_step_name(RUNTIME_INFO(i915)->step.display_step);
--}
-diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
-index b6f43b624774..96dfca4cba73 100644
---- a/drivers/gpu/drm/i915/intel_step.h
-+++ b/drivers/gpu/drm/i915/intel_step.h
-@@ -78,6 +78,5 @@ enum intel_step {
- 
- void intel_step_init(struct drm_i915_private *i915);
- const char *intel_step_name(enum intel_step step);
--const char *intel_display_step_name(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_STEP_H__ */
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 1f1ad4d3ef51..82b934fe230a 100644
+index 82b934fe230a..7492979ac3bc 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -82,6 +82,8 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+@@ -80,8 +80,6 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
  
- #define HAS_GMD_ID(xe) GRAPHICS_VERx100(xe) >= 1270
+ #define IS_MOBILE(xe) (xe && 0)
  
-+#define INTEL_DISPLAY_STEP(xe) ((xe)->info.step.display)
-+
- /* Workarounds not handled yet */
- #define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
- 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-index 0006ef812346..ee3f45b668b9 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-@@ -6,15 +6,8 @@
- #ifndef __INTEL_STEP_H__
- #define __INTEL_STEP_H__
- 
--#include "xe_device_types.h"
- #include "xe_step.h"
- 
--#define intel_display_step_name xe_display_step_name
+-#define HAS_GMD_ID(xe) GRAPHICS_VERx100(xe) >= 1270
 -
--static inline
--const char *xe_display_step_name(struct xe_device *xe)
--{
--	return xe_step_name(xe->info.step.display);
--}
-+#define intel_step_name xe_step_name
+ #define INTEL_DISPLAY_STEP(xe) ((xe)->info.step.display)
  
- #endif /* __INTEL_STEP_H__ */
+ /* Workarounds not handled yet */
 -- 
 2.39.2
 
