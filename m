@@ -2,65 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5582695818F
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 11:00:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 921F695819C
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 11:07:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8241E10E050;
-	Tue, 20 Aug 2024 09:00:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02A7310E52C;
+	Tue, 20 Aug 2024 09:07:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i41hJDdC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YtgdX6gl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E10DC10E050;
- Tue, 20 Aug 2024 09:00:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11A3710E2AD;
+ Tue, 20 Aug 2024 09:07:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724144435; x=1755680435;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=N/2n6+TMCGjpJV1UloCrG/l1ip+b8yTgzRdVJBE9X4U=;
- b=i41hJDdCtKZVo5OnbgpY8SuDwkyxRA2cgfgtsiZAQttX99AwVgpq6IBj
- SK41mEYkAQcS8r32fMs29aQXw+ii6RQmXfO4dd4jPtu6Cg59JEhVDIFKy
- m6AxQLKIqJfeUMWrn1SqS6fvt/+qdBP+yWfdm4fTq9Nl+5BHN5FxX/CCh
- YcAtFiZfNPPJ09dwLEYv/qJ6uUnJCFVdO2Kz7k9y2yM7aAn8RtpySzscm
- BAecrkexoEWDw16Jp/VTdfKYgmmnr1RfEIvAQBmIvbt+ePxG3ITgs2lyz
- TmZ8hKDNZ2CrLtyGBQFXsT4rUStyh7YY4L87GryclcMkBiSoR/k6DZ7fA Q==;
-X-CSE-ConnectionGUID: 73esWyIDToKAcom8G1ypuw==
-X-CSE-MsgGUID: a3nYecMNSJK16IWT7scVfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22595737"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22595737"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ t=1724144855; x=1755680855;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hktA+ztQXCBA2TPbxyOICPn1ybBqP889ZuG8rwrmSDw=;
+ b=YtgdX6glHqkfu3GsgQeOSDg1aByLARcby5+trio3Fma0rAl9cpH1K5JH
+ Km0VhfNtmQupAl0dWhiqsHX86rFGXgbJbx5C6xG4mB2mEBGC+g4k2Pudv
+ V5WG4B6+MhKmWAThJVJRA+xNtdFKpt2Vz2OxYIjwxUA9ccZ4Ig6zVlGzO
+ OAbbkUI0Wn5WeCOYnSmWyqdd0LRY5Y+eHHSf2ruMH3GAIhV3KGBBnxzaT
+ zgTXUcZpqveztF02VrgIl39a+oFIA4fdOZCbeO771l7WixOvKU3XbHdYE
+ yvSt/IUFMVwWKKnPAhFSCavAntbJWsoCTvllaaplcYOmsnxd+2UnYypYX A==;
+X-CSE-ConnectionGUID: IdtyoxkQQaqKsq2+3iB6IQ==
+X-CSE-MsgGUID: DtSxv4bvSPm+KwhEOSh3pg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22596279"
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22596279"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 02:00:34 -0700
-X-CSE-ConnectionGUID: C7avtJ4oRQG7WfUgBXBFQQ==
-X-CSE-MsgGUID: IOrPGsCnQNC6ISeon830uA==
+ 20 Aug 2024 02:07:11 -0700
+X-CSE-ConnectionGUID: jODl1R4MRECpIKpyiX00Pg==
+X-CSE-MsgGUID: xj3V6R6UQkKGWYbI0JazVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="98123500"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 02:00:30 -0700
-Date: Tue, 20 Aug 2024 12:00:27 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, linux@roeck-us.net,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- anshuman.gupta@intel.com, badal.nilawar@intel.com,
- riana.tauro@intel.com, ashutosh.dixit@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v4] drm/i915/hwmon: expose fan speed
-Message-ID: <ZsRbK8TEk5GZDl0C@black.fi.intel.com>
-References: <20240809061525.1368153-1-raag.jadav@intel.com>
- <ZrYB-GI9L2RSc2bt@smile.fi.intel.com>
- <ZrYEQqs0IwDHWkGx@ashyti-mobl2.lan>
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="61424552"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.184])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 02:07:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com,
+ jani.nikula@intel.com
+Subject: [PATCH 0/2] drm/i915 & drm/xe: rawclk freq cleanups
+Date: Tue, 20 Aug 2024 12:07:00 +0300
+Message-Id: <cover.1724144570.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZrYEQqs0IwDHWkGx@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,68 +70,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 09, 2024 at 12:57:54PM +0100, Andi Shyti wrote:
-> On Fri, Aug 09, 2024 at 02:48:08PM +0300, Andy Shevchenko wrote:
-> > On Fri, Aug 09, 2024 at 11:45:25AM +0530, Raag Jadav wrote:
-> > > Add hwmon support for fan1_input attribute, which will expose fan speed
-> > > in RPM. With this in place we can monitor fan speed using lm-sensors tool.
-> > > 
-> > > $ sensors
-> > > i915-pci-0300
-> > > Adapter: PCI adapter
-> > > in0:         653.00 mV
-> > > fan1:        3833 RPM
-> > > power1:           N/A  (max =  43.00 W)
-> > > energy1:      32.02 kJ
-> > 
-> > > v2:
-> > > - Add mutex protection
-> > > - Handle overflow
-> > > - Add ABI documentation
-> > > - Aesthetic adjustments (Riana)
-> > > 
-> > > v3:
-> > > - Declare rotations as "long" and drop redundant casting
-> > > - Change date and version in ABI documentation
-> > > - Add commenter name in changelog (Riana)
-> > > 
-> > > v4:
-> > > - Fix wakeref leak
-> > > - Drop switch case and simplify hwm_fan_xx() (Andi)
-> > 
-> > I do not understand why we pollute Git history with changelogs, but it's
-> > probably the ugly atavism in DRM workflow.
-> 
-> I never liked it! Besides it should even be against the
-> submitting patches recommendation.
-> 
-> I don't understand what interest might have someone in a couple
-> of years, reading this commit, knowing an unintellegible list of
-> differences between v2 and v3.
-> 
-> I consider it a random pollution of the commit log.
+The stragglers from [1], addressing the fact that VLV/CHV need rawclk
+freq quite early for power well [2]. Just move the init from i915
+runtime info init to display info init, and keep it early.
 
-Isn't it already documented?
-Documentation/process/submitting-patches.rst
+BR,
+Jani.
 
-Please put this information **after** the ``---`` line which separates
-the changelog from the rest of the patch. The version information is
-not part of the changelog which gets committed to the git tree. It is
-additional information for the reviewers. If it's placed above the
-commit tags, it needs manual interaction to remove it. If it is below
-the separator line, it gets automatically stripped off when applying the
-patch::
 
-  <commit message>
-  ...
-  Signed-off-by: Author <author@mail>
-  ---
-  V2 -> V3: Removed redundant helper function
-  V1 -> V2: Cleaned up coding style and addressed review comments
+[1] https://patchwork.freedesktop.org/series/134145/
+[2] https://lore.kernel.org/r/ZmLzcsoMkt3cB48m@intel.com
 
-  path/to/file | 5+++--
-  ...
+Jani Nikula (2):
+  drm/i915: move rawclk from runtime to display runtime info
+  drm/xe/display: drop unused rawclk_freq and RUNTIME_INFO()
 
-Raag
-> 
-> Andi
+ drivers/gpu/drm/i915/display/intel_backlight.c         | 10 +++++-----
+ drivers/gpu/drm/i915/display/intel_display_device.c    |  5 +++++
+ drivers/gpu/drm/i915/display/intel_display_device.h    |  2 ++
+ .../gpu/drm/i915/display/intel_display_power_well.c    |  4 ++--
+ drivers/gpu/drm/i915/display/intel_dp_aux.c            |  4 ++--
+ drivers/gpu/drm/i915/display/intel_pps.c               |  2 +-
+ drivers/gpu/drm/i915/intel_device_info.c               |  5 -----
+ drivers/gpu/drm/i915/intel_device_info.h               |  2 --
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h      |  1 -
+ drivers/gpu/drm/xe/xe_device_types.h                   |  6 ------
+ 10 files changed, 17 insertions(+), 24 deletions(-)
+
+-- 
+2.39.2
+
