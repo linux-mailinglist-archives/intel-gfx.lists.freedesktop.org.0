@@ -2,57 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82D7958516
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 12:46:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4021A95856D
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2024 13:08:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C63910E723;
-	Tue, 20 Aug 2024 10:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82A9C10E0D8;
+	Tue, 20 Aug 2024 11:08:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="lhHZx2FI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mPalnoNK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
- Tue, 20 Aug 2024 10:46:31 UTC
-Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com
- [95.215.58.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F9B10E733
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Aug 2024 10:46:31 +0000 (UTC)
-Message-ID: <59e832ae-dd0e-4746-ad9c-327b997e992b@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1724150386;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=+J6AUM5BA0XHMhLLUg9xC6LMZgDMWJLm3dx3v9LVjJE=;
- b=lhHZx2FIP/RCUXZs8p29eG005r9RJMGyeMBgQ8ovBQAz2f8rtIT0wFDvnjR2Flagaf9ZGa
- s29BHqCl/tgoW2VpLdAJfG418mIvnaeszKp4LYCtGHunZrtwlZqsm68QT+G2wpDRaNp9Kx
- Y282my+JYqtSdE0sex8AwzrnZs2qxl8=
-Date: Tue, 20 Aug 2024 18:39:29 +0800
-MIME-Version: 1.0
-Subject: Re: [82/86] drm/i915: Move custom hotplug code into separate callback
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F81910E0D8;
+ Tue, 20 Aug 2024 11:08:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724152113; x=1755688113;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=0ZbqQ99qIrSTiJe0Vj3KSmgFad4MrVhzeua/QS1/da0=;
+ b=mPalnoNKNRLGptLDtEw8RZFrmclo7dreeclNbW+LCsmJejI0ecxcOgaf
+ YBdeH8b+N2Cy8nGuqBDFt8Z/V4EJsx14OW666qV/BBV4Pzr1W13CZ0W0u
+ HxfpaJ4noXTiDN3m7riPSY4ZE4Ifnv6W6G9ZqZBLe7VLW0z2e4h+stxJg
+ IcAANYwKstPVUZ5E7OOwBjJ0VVhjuQgfSFr8i5E+HDTBEDFBZEAzKoNzs
+ ZfX+5f+A0qoss/KD3j5vpZV9LBr94hx8WZ0NSFeZ9eEaszVynNs8GSBBr
+ bReIfYDw4RIGm01LO7P+RkrGe5Z3D282JoUwkvTWAfjVb+rT8515EgUf+ w==;
+X-CSE-ConnectionGUID: PrF3AyAEQZujczsSG6B4qQ==
+X-CSE-MsgGUID: +lAzUEBURuaBoHnAtdIO2A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22623574"
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="22623574"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 04:08:32 -0700
+X-CSE-ConnectionGUID: wo1qZI6rTAqbIWo2cciZVQ==
+X-CSE-MsgGUID: HuB3iPStQiS9fW9N+VlO1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; d="scan'208";a="83902821"
+Received: from slindbla-desk.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.197])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2024 04:08:27 -0700
+Date: Tue, 20 Aug 2024 13:08:24 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Yu Jiaoliang <yujiaoliang@vivo.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20240816125408.310253-83-tzimmermann@suse.de>
- <86a55d3c-930d-4b30-9f05-82dd2966df85@linux.dev>
- <a48a5538-b4a9-4e01-9930-b1538325b9e3@suse.de>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <a48a5538-b4a9-4e01-9930-b1538325b9e3@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
+ Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, opensource.kernel@vivo.com,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v2] drm/i915/gt: Use kmemdup_array instead of kmemdup for
+ multiple allocation
+Message-ID: <ZsR5KPxo-l9_7p0X@ashyti-mobl2.lan>
+References: <20240820095304.2746102-1-yujiaoliang@vivo.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240820095304.2746102-1-yujiaoliang@vivo.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,95 +85,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi,
 
+On Tue, Aug 20, 2024 at 05:53:02PM +0800, Yu Jiaoliang wrote:
+> Let the kememdup_array() take care about multiplication and possible
+> overflows.
+> 
+> v2:
+> - Change subject
+> - Leave one blank line between the commit log and the tag section
+> - Fix code alignment issue
+> 
+> Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-On 2024/8/20 15:39, Thomas Zimmermann wrote:
-> Hi
->
-> Am 19.08.24 um 10:52 schrieb Sui Jingfeng:
->> Hi, Thomas
->>
->>
->> I love your patch, yet ...
->>
->>
->> On 2024/8/16 20:23, Thomas Zimmermann wrote:
->>> i915's fbdev contains additional code for hotplugging a display that
->>> cannot be ported to the common fbdev client. Introduce the callback
->>> struct drm_fb_helper.fb_hotplug and implement it for i915. The fbdev
->>> helpers invoke the callback before handing the hotplug event.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/drm_fb_helper.c            |  6 +++
->>>   drivers/gpu/drm/i915/display/intel_fbdev.c | 43 
->>> ++++++++++++----------
->>>   include/drm/drm_fb_helper.h                | 13 +++++++
->>>   3 files changed, 42 insertions(+), 20 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_fb_helper.c 
->>> b/drivers/gpu/drm/drm_fb_helper.c
->>> index d9e539b0fd1a..92926cb02dfb 100644
->>> --- a/drivers/gpu/drm/drm_fb_helper.c
->>> +++ b/drivers/gpu/drm/drm_fb_helper.c
->>> @@ -1938,6 +1938,12 @@ int drm_fb_helper_hotplug_event(struct 
->>> drm_fb_helper *fb_helper)
->>>       if (!drm_fbdev_emulation || !fb_helper)
->>>           return 0;
->>>   +    if (fb_helper->funcs->fb_hotplug) {
->>
->> We seems need to check the existence on the 'fb_helper->funcs' here,
->>
->> For example:
->>
->>
->> if (fb_helper->funcs && fb_helper->funcs->fb_hotplug) {
->>
->> Otherwise, it will de-reference NULL pointer.
->> Can be observed on a trivial driver though,
->> with no monitor(display) connected.
->
-> Indeed. That needs to be fixed. Thank you for noting.
->
+I didn't give you an explicit R-b, but that's fine, you can keep
+it as I think the patch is fine.
 
-Thanks for you efforts then.
+> -		struct i915_wa *list = kmemdup_array(wal->list,
+> -					       wal->count, sizeof(*list),
+> -					       GFP_KERNEL);
+> +		struct i915_wa *list = kmemdup_array(wal->list, wal->count,
+> +											 sizeof(*list), GFP_KERNEL);
 
+Do you see the indentation is off here? :-)
 
-> To give some context:  I was hoping to remove drm_fb_helper_funcs at 
-> some point. 
+Please, run checkpatch.pl before sending the patch, as well.
 
+Besides, what patch is this? Are you replacing kmemdup_array with
+kmemdup_array? This v2 applies on your v1 while it should apply
+on a clean drm-tip repository.
 
-Yeah, too many helper functions may make peoples daze.
+Thanks,
+Andi
 
-
-> fb_probe is now gone with these patches and fb_dirty can certainly be 
-> replaced as well. (I once had prototype patches to do that). 
-
-
-Well, the grammar of "ret = (*fb_helper->funcs->fb_probe)(fb_helper, &sizes);" looks strange, 
-It's lengthy and I observed you have cleaned it up at the last patch. 
-Which also eliminates one pair "if and else" clause, the codes looks 
-more fluent now.
-
-
-> This leaves the new callbacks for 915, for which I don't have a good 
-> alternative solution. So it seems that drm_fb_helper_funcs will only 
-> be used by i915/xe in the long term.
->
-
-Well, since it is a DRM client now, maybe we could try to drop it into struct drm_driver.
-Just like the '.fbdev_probe' callback, this may help to achieve a 100% DRM-based console/logger IMO.
-
-Besides, a lot of DRM driver instances has the DMA/2D acceleration hardware, promote it
-into drm_driver structure may has the potential to utilize hardware acceleration. Drivers
-will more easily to have custom implementation. I'm not 100% sure if it will only be used
-by i915 in the future.
-
-Best regards,
-Sui
-
+>  
+>  		if (list) {
+>  			kfree(wal->list);
+> -- 
+> 2.34.1
