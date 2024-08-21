@@ -2,60 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A033495F03F
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 13:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A2E95F213
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 14:53:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9564010E199;
-	Mon, 26 Aug 2024 11:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39DBB10E203;
+	Mon, 26 Aug 2024 12:53:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OKiYoWox";
+	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="lgTit2z5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52DB010E199;
- Mon, 26 Aug 2024 11:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724673499; x=1756209499;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BaYrpwabEz1/36/u5deXN/jM/l8uHF2zQnr3KJnrKcQ=;
- b=OKiYoWoxIzqUT2PoLfnx7vEiFVuOO6kuWtV/eYHU8079AHh9Cqny0Gpq
- Vw/VFF+sL+n6ShVzRz3hh+59AgoRIr9RxObhehzY9nGr/OC55ADi/52NM
- NxwDGCMVZHUVXUcW4bjEqD3eH/9sjMLky6YvJStMnBlSk4pHJ8e/P8SP/
- Hd3Kogl+9CdRwwwCnBLRWEdft1fWPPEvh7k0td+BrEIkIQRRKqptHEvm3
- ov6zwRtOjcJngBj67F7jb7xJmIcJSz/7BmzQiTvmoIx3xMedZU6x78Xbe
- vM5WhlXDmWDtSo6gS0hUPJQqHa+oNZ6lOeeCwQ574DHz65GGqpyP7+zQM g==;
-X-CSE-ConnectionGUID: AW+3QkH9Qk2GSETu/jHKaQ==
-X-CSE-MsgGUID: aYdzno9RRLOMs1WB5RyhdA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="33711156"
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="33711156"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 04:58:19 -0700
-X-CSE-ConnectionGUID: 4d5Pf5l5QfqUlLEMP899Ew==
-X-CSE-MsgGUID: +4USCB8FTT+TyBr/b0s06Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="85670649"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.113])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 04:58:16 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 04/12] drm/i915/icl_dsi: Move helpers to configure dsi
- dual link to intel_dss
-In-Reply-To: <20240826111527.1113622-5-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240826111527.1113622-1-ankit.k.nautiyal@intel.com>
- <20240826111527.1113622-5-ankit.k.nautiyal@intel.com>
-Date: Mon, 26 Aug 2024 14:58:03 +0300
-Message-ID: <87wmk31ook.fsf@intel.com>
-MIME-Version: 1.0
+Received: from HK2PR02CU002.outbound.protection.outlook.com
+ (mail-eastasiaazon11010040.outbound.protection.outlook.com [52.101.128.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 456BA10E2AE;
+ Wed, 21 Aug 2024 02:42:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TqrsweLZsxXpCXxR2GoT8BOsZie8sH29/INqhQFEDqdESkhMx4MhhKFkOfAURL0HhjaGZs6WSCsJPnSDRtunBX18aWRRDpk0FBsdEkOeP9HZ5qHKilkT5iK8P9uQsnClyh153EWDnaJW9upApzl3ER6CH5+rIxJbT34US5m24sBbvSeQ8fH1rWBZ3wkehWFnkJcar5e0hbdH4y9w2A+BY3eSyLpl6XBz2m3zI5XjhJfXl1rzL8Gj7ST71uWydIyuI7uvddPT9h3ee8JApEdAtXbtlfjfQEjnFTLpv+b3N9XPkD5N6BXM/HGWWSYV2UigItwCH55jPRfYiBncfoQmNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yZeJZiOJQ38dw74Hnem2BV8612cE8faqk0pm/TFYeKY=;
+ b=i8aacaFsseyboZhTrbtk4Thl40SosVdQAAgG64L7KYNS34aEUj9tkD4e9OHmdMz+m9uZXgIJt4XOOFKwkeMxInP3dMiGMNy+Olee/p17u4AKzHAyHPQG8E42CihRFGFd43R8NwQMEZbbRR+N6SmZtRD0e+0dRhPjm1FQZOZtiG8poL3evbP+OZkzUsoycAy8mG/6BFvSiPZcgxyxiNOaTiKr1sRRKXMoQmI1kxHwFEknH5w2N3Q914ORdUxr+tmGq69xgmVCkBEf7JlRdlMwUpHaJLcB++sC9XSwlXks5uyeujr6l4SDZRnqt2neUytYNDl4VvEF96NWFa3pOYWYYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yZeJZiOJQ38dw74Hnem2BV8612cE8faqk0pm/TFYeKY=;
+ b=lgTit2z58vv1gtS78BvS/sjFTy43qtN1Azen6e+5bB4x6v+YIJg3SMJmq/yXX7fgb9sJ1Yl5gHHRE1J0b4CS5dHaP5Ao2DC0RN9NTKPcS9mbEhSoD3T2FgzyKfJUyJ+tn+3H9Kp6gPz05j9rJOn80LDQuEApL0QjRS/fOWzkAQMOIayakkywrQGqx1FH1PZgMlOVU3imowFs/YfN37LxLhaguwoWCo7wCoX4ntagTqCakbUuNiPkrg897r0OcakObPnq1rv5VWAzgNpMViExKGAqQVveuEgEEAIlr4tu6HSVugqa9UT1BgFIPwlZcaNG9H6qir/q+ilqh5mGY84cWQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from TYZPR06MB4461.apcprd06.prod.outlook.com (2603:1096:400:82::8)
+ by SEZPR06MB7137.apcprd06.prod.outlook.com (2603:1096:101:232::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Wed, 21 Aug
+ 2024 02:42:08 +0000
+Received: from TYZPR06MB4461.apcprd06.prod.outlook.com
+ ([fe80::9c62:d1f5:ede3:1b70]) by TYZPR06MB4461.apcprd06.prod.outlook.com
+ ([fe80::9c62:d1f5:ede3:1b70%6]) with mapi id 15.20.7875.023; Wed, 21 Aug 2024
+ 02:42:08 +0000
+From: Yu Jiaoliang <yujiaoliang@vivo.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: opensource.kernel@vivo.com
+Subject: [PATCH v3] drm/i915/gt: Use kmemdup_array instead of kmemdup for
+ multiple allocation
+Date: Wed, 21 Aug 2024 10:41:27 +0800
+Message-Id: <20240821024145.3775302-1-yujiaoliang@vivo.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-ClientProxiedBy: TYWP286CA0003.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:178::22) To TYZPR06MB4461.apcprd06.prod.outlook.com
+ (2603:1096:400:82::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR06MB4461:EE_|SEZPR06MB7137:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6bca7494-bda4-42ca-9dcd-08dcc18ad9c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|52116014|7416014|376014|366016|921020|38350700014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VxFUgILAz5uicaWDteKvi1RmstyBXzylLHLOkSImz3dMOukwTcbpZ05v2+mw?=
+ =?us-ascii?Q?hQHlrvgpAQK+sVeU2K603Uorz9B/tVYYGTHbUqNumcZMJtIiss/21TO42j3a?=
+ =?us-ascii?Q?hYjYGUkMGMt9iIwg89NtvirQxwrvIjpRuIUjIrz98OnetrE47zLj0BMz4Y5d?=
+ =?us-ascii?Q?UkK51GfarP4J+XrYMd5XbdPuLW8XfTWwpcp0NGp8hH0wZJD+HAwnda3QZyaO?=
+ =?us-ascii?Q?96gAQaH+PI9xzK9xnt2desrBHBtM6CIcmqpTx/Fvct4Gc6zke2Y3xhQGa9rE?=
+ =?us-ascii?Q?JKfBsiO9KC8iaYjQfPrdTZoBiFxuqyiLvrZpv6D+6h54ge736NJDFx7lqJVA?=
+ =?us-ascii?Q?QJ6mqJokZTJmLaPs6nJG7eiBi24wGcj629wNl+LWIZ1Dj+IuNfOq5qi9+gT2?=
+ =?us-ascii?Q?plTR05xLlVb2hihuS+bzSvgOefhINu+QUIeyhpmdanNzvhLgrKaWypOikjwA?=
+ =?us-ascii?Q?w1t6Ttv1qd2oXrCgZp+uzli1j9AsvodaM1amgvuow+miO+ct51nU3hi/PUKw?=
+ =?us-ascii?Q?6xjRv1GdQHLCEeCIvjVLf8CeCUkYadrO38lseCMBkYIwXICcNbxXpSNW+1bY?=
+ =?us-ascii?Q?ghKvtFPTnYCVztv8KJTtE+EsamVv1bLL/PFQ3mJG2fDVvO95pZyOt8xhltpb?=
+ =?us-ascii?Q?bSBEkHKuX+/4KUnImFbFV8BnV1jPFMeYk/nn8GwLgLmmfDka1KZLk2ONKmhN?=
+ =?us-ascii?Q?SSI0DhWY4NB0dEUEwF1rYkJsc9cpBmJVDz5ZHb3gdqH75rWkhmmyu+AR8/PI?=
+ =?us-ascii?Q?9nvLpLO0sfWoEqqbPPZGThXU2qx8AxDAdTMF/6lR878loFITDz7suJlPRw5O?=
+ =?us-ascii?Q?4SGrrx8kt6AurOEJHghHU8DV3nHKCpPDM46rozKYqJ+kJkbLRv7CqhusQNi2?=
+ =?us-ascii?Q?1DHwkqZ9fhjUEheQpvuSN8JhmgTwJbVlY/IeSRmTFD9qvxpgYal9UOT9tEZM?=
+ =?us-ascii?Q?15ahrsjLgF+XMalLR6rWPJ8fNh8npz8qeLX1UzGKJ7Xi5QV1OSNRICZBiL8O?=
+ =?us-ascii?Q?i7Rn4WFCNY+abxROqKo+eFX4hxSKC1ggaz9a1OVZ3qNgI/0ux5295BIAgjL2?=
+ =?us-ascii?Q?EBAiX55T+XvBVUwbWXDdp0F8rtb3ngT1uaCrkDVHtjFNg4qQcXi85Hj1qhXH?=
+ =?us-ascii?Q?YMTiCkXuI135jKopzGosau41QrmIpZs/hl5vxluLOj/LS93r9jcsPakIzTtS?=
+ =?us-ascii?Q?Rtmw68sABxB9MmTX3gsk8eH2XAudIOo15Sd4JhaQUkovS5QZ/mHmP2gpKNpV?=
+ =?us-ascii?Q?kymf30CZnraP3/mTTAOd7NgpryKoGC2nutp+n+E13C947OmiFFiRCIYkN9jB?=
+ =?us-ascii?Q?qTRsbdoA/LL2xU7I5pLBNdRbaZ4r7ipGZgycNa3vdBlZJ5oPHeT/hUyEwJdj?=
+ =?us-ascii?Q?/MZZzBg3yxpeRsXwwO1QPWFIAhTaYx9iP+fBeTHQHLiye1E7Fihuac577pXE?=
+ =?us-ascii?Q?rKPzdXTZhqo=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:TYZPR06MB4461.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(921020)(38350700014);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Pba9cQuyQHyTktCRqO6iNnmNr3FqdjqbXnb/hSVATDb8ZUVvkXYvn7Fm34IE?=
+ =?us-ascii?Q?6+dcT157WkpzKPlPIQ/cH9JuGTZml10FuzpBWIf8XeRbPUHuHntEgK4RDJve?=
+ =?us-ascii?Q?+MxPVsfMoivFr6WGmY7YH1hmhZEATGlVh4yOz6NUjRsH4qj9UP/Z7EFzXc1P?=
+ =?us-ascii?Q?RjLfEGIVQkuTdoUdeUgOta9OKGQ0RYgj7IxfslMUm0gaB/On1kTqDnPbyHae?=
+ =?us-ascii?Q?BnOfTERxTl7o69A90akdq6HHk/leDxN71y/Ul/e+ZQkRxn7fb5vsdkSspoDx?=
+ =?us-ascii?Q?eHECUrCY8N8Sg5fyfR4Vm5v+V69KqM0BXXErVDURa4KRq6um9uO1taLEfG3M?=
+ =?us-ascii?Q?RQK+0szWrDRMT7MQAOKySkWWw7QtXBS6OkHDJSloyURwLkXinateimyTzAyS?=
+ =?us-ascii?Q?JR+nvr0vJK01+Apm5NY8gJyUHj1d21PpeCbsuKZpaBUJNAQHRveS+Ik9+k+X?=
+ =?us-ascii?Q?wTHPVPDPxGgE6PWO66PMn/WizWf85dAdBymsSH1dWWcjRyAyCy7s28PRhVqF?=
+ =?us-ascii?Q?xBFYOf2/o2lt/SMH/MIN/fVvWRkYcK1L+V/SmnqNLTMulDp5R6O811i+M6eG?=
+ =?us-ascii?Q?8U02hxwDJK/hSnklHQej5G76rP6zbGUciP6ZELA00scsqVPGskrtEhFnIsQd?=
+ =?us-ascii?Q?gtfOhac4ydNNJL4WlqYOlaw6pF0SRfDg3C4j5aSkqd0ZtDOpZrq8Ok1nTWEJ?=
+ =?us-ascii?Q?yW/2pMhcGZuHnzbFdkmOE/jxz1wIepQdpmVVhgv661Z9pjYwyQs3qYng34RI?=
+ =?us-ascii?Q?ONbGuF7XL7Vj+A8UY7IoN0BMafuWYIvZ9IB844IH5HWchtsw0pms0BOBFrnl?=
+ =?us-ascii?Q?tVXcd7gHqbYGK0GoVUHzwsZBihoUo/GC91XmegsW2eyDamqtFA3Uy8FE+59N?=
+ =?us-ascii?Q?Jbl+8xVk5CmPOzccr6ZoZcPVtFiqoUgiZmguM2APjj2Y2cN+LcL8R9u7qmIT?=
+ =?us-ascii?Q?xnA2HF32UWXxzeMPXyZhVNgh542wJgBDduth8wopgYoNYrVSiEgHL8bHToLw?=
+ =?us-ascii?Q?LZtT1dJz7Ga0XoeyUYU6mE5YEeQkkybHz4nA1p7USrQPpnRJV3hafwg85xzD?=
+ =?us-ascii?Q?0IiT3yhq+r3aXSZDbTjk9LIK1D6sTQSastP9YNCqgKc6Ed+j1vyzdWqroN6d?=
+ =?us-ascii?Q?y2llQML4/IovSigLdL2ivo09/0P2tPn7K3HKNSa9RNBcMwSrgUvgnW8c3sVo?=
+ =?us-ascii?Q?FnLUShKgjcLoVcWMOyEsp3nVq+Jp15OQVoqhd0Y2jpg4UcTpy1DB5J25PrTB?=
+ =?us-ascii?Q?QsXy284INsHD9LHTwxeTLBRrXtIfJpe3/JabHqMKDSHqC382sVFXbCvvVSMq?=
+ =?us-ascii?Q?poF8S6zA7kGgzF+qaduYmRJR/AkL4MDOWxzkWTDMN6qlmMnO0Rp7y//57XSN?=
+ =?us-ascii?Q?ZpsYHeG6/Ffve7kkE/sjbKE8gfWwvlAkOHnHattIoHqugBechlIeHPq6du/y?=
+ =?us-ascii?Q?uFGYeyGVSNWm1secctcsJLIyVekNPNTGECYu+g+kfkA9Q/4CVs1mnZ5pKNn9?=
+ =?us-ascii?Q?HytZExw02m5ClFxexB8VviojYCM2nOxTHuQgVIF60nsf+UIlioRfuYXWd5uQ?=
+ =?us-ascii?Q?pgDNBd3+ZPD85Z8G6lY0KlwPjje5nGe6J+osLs3W?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bca7494-bda4-42ca-9dcd-08dcc18ad9c6
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB4461.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 02:42:08.4745 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8YYWBEGxX7WHZ2S3pi5Ho9U9ObLpamt6vOjfJPDOywquIvc6Q0pP4U2IAwE8OBe2O5tCVcEPLf3LpubcWHc8mw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7137
+X-Mailman-Approved-At: Mon, 26 Aug 2024 12:53:17 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,191 +156,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 26 Aug 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Move the function to configure dss_ctl for dual_link dsi to intel_dss
-> files. While at it, use struct intel_display wherever possible.
+Let the kememdup_array() take care about multiplication and possible
+overflows.
 
-Also here, I prefer splitting code movement from other changes. It's
-just so much easier to review, and so much easier to figure out what
-went wrong if a bisection ever lands here.
+v2:
+- Change subject
+- Leave one blank line between the commit log and the tag section
+- Fix code alignment issue
 
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c   | 55 ++----------------------
->  drivers/gpu/drm/i915/display/intel_dss.c | 51 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dss.h |  3 ++
->  3 files changed, 58 insertions(+), 51 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 5ad5011e1fee..ab59638a8c6c 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -44,7 +44,7 @@
->  #include "intel_de.h"
->  #include "intel_dsi.h"
->  #include "intel_dsi_vbt.h"
-> -#include "intel_dss_regs.h"
-> +#include "intel_dss.h"
->  #include "intel_panel.h"
->  #include "intel_vdsc.h"
->  #include "skl_scaler.h"
-> @@ -274,55 +274,6 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
->  	}
->  }
->  
-> -static void configure_dual_link_mode(struct intel_encoder *encoder,
-> -				     const struct intel_crtc_state *pipe_config)
-> -{
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> -	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
-> -	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
-> -	u32 dss_ctl1;
-> -
-> -	/* FIXME: Move all DSS handling to intel_vdsc.c */
-> -	if (DISPLAY_VER(dev_priv) >= 12) {
-> -		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-> -
-> -		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
-> -		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
-> -	} else {
-> -		dss_ctl1_reg = DSS_CTL1;
-> -		dss_ctl2_reg = DSS_CTL2;
-> -	}
-> -
-> -	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg);
-> -	dss_ctl1 |= SPLITTER_ENABLE;
-> -	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
-> -	dss_ctl1 |= OVERLAP_PIXELS(intel_dsi->pixel_overlap);
-> -
-> -	if (intel_dsi->dual_link == DSI_DUAL_LINK_FRONT_BACK) {
-> -		const struct drm_display_mode *adjusted_mode =
-> -					&pipe_config->hw.adjusted_mode;
-> -		u16 hactive = adjusted_mode->crtc_hdisplay;
-> -		u16 dl_buffer_depth;
-> -
-> -		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
-> -		dl_buffer_depth = hactive / 2 + intel_dsi->pixel_overlap;
-> -
-> -		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
-> -			drm_err(&dev_priv->drm,
-> -				"DL buffer depth exceed max value\n");
-> -
-> -		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
-> -		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
-> -		intel_de_rmw(dev_priv, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
-> -			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
-> -	} else {
-> -		/* Interleave */
-> -		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
-> -	}
-> -
-> -	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1);
-> -}
-> -
->  /* aka DSI 8X clock */
->  static int afe_clk(struct intel_encoder *encoder,
->  		   const struct intel_crtc_state *crtc_state)
-> @@ -791,7 +742,9 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
->  		}
->  
->  		/* configure stream splitting */
-> -		configure_dual_link_mode(encoder, pipe_config);
-> +		intel_dss_configure_dsi_dual_link_mode(encoder, pipe_config,
-> +						       intel_dsi->dual_link,
-> +						       intel_dsi->pixel_overlap);
->  	}
->  
->  	for_each_dsi_port(port, intel_dsi->ports) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dss.c b/drivers/gpu/drm/i915/display/intel_dss.c
-> index 9cb89fe656cb..f44dcac84aa4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dss.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dss.c
-> @@ -7,6 +7,7 @@
->  #include "i915_reg_defs.h"
->  #include "intel_de.h"
->  #include "intel_display_types.h"
-> +#include "intel_dsi.h"
->  #include "intel_dss.h"
->  #include "intel_dss_regs.h"
->  
-> @@ -85,3 +86,53 @@ void intel_dss_configure_mso(const struct intel_crtc_state *crtc_state)
->  		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
->  		     OVERLAP_PIXELS_MASK, dss1);
->  }
-> +
-> +void intel_dss_configure_dsi_dual_link_mode(struct intel_encoder *encoder,
-> +					    const struct intel_crtc_state *pipe_config,
-> +					    u8 dual_link,
-> +					    u8 pixel_overlap)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
-> +	u32 dss_ctl1;
-> +
-> +	if (DISPLAY_VER(display) >= 12) {
-> +		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-> +
-> +		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
-> +		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
-> +	} else {
-> +		dss_ctl1_reg = DSS_CTL1;
-> +		dss_ctl2_reg = DSS_CTL2;
-> +	}
-> +
-> +	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
-> +	dss_ctl1 |= SPLITTER_ENABLE;
-> +	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
-> +	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
-> +
-> +	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
-> +		struct drm_i915_private *i915 = to_i915(display->drm);
+v3:
+- Fix code alignment
+- Apply the patch on a clean drm-tip
 
-You don't need that.
+Signed-off-by: Yu Jiaoliang <yujiaoliang@vivo.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-> +		const struct drm_display_mode *adjusted_mode =
-> +					&pipe_config->hw.adjusted_mode;
-> +		u16 hactive = adjusted_mode->crtc_hdisplay;
-> +		u16 dl_buffer_depth;
-> +
-> +		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
-> +		dl_buffer_depth = hactive / 2 + pixel_overlap;
-> +
-> +		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
-> +			drm_err(&i915->drm,
-
-display->drm
-
-> +				"DL buffer depth exceed max value\n");
-> +
-> +		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
-> +		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
-> +		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
-> +			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
-> +	} else {
-> +		/* Interleave */
-> +		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
-> +	}
-> +
-> +	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dss.h b/drivers/gpu/drm/i915/display/intel_dss.h
-> index 0571ee2a19f9..0c5d652d46f5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dss.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dss.h
-> @@ -16,6 +16,9 @@ u8 intel_dss_splitter_pipe_mask(struct intel_display *display);
->  void intel_dss_get_mso_config(struct intel_encoder *encoder,
->  			      struct intel_crtc_state *pipe_config);
->  void intel_dss_configure_mso(const struct intel_crtc_state *crtc_state);
-> +void intel_dss_configure_dsi_dual_link_mode(struct intel_encoder *encoder,
-> +					    const struct intel_crtc_state *pipe_config,
-> +					    u8 dual_link, u8 pixel_overlap);
-
-Nitpick, I think I'd name this intel_dss_dsi_dual_link_mode_configure()
-or something.
-
->  
->  #endif /* __INTEL_DSS_H__ */
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 09a287c1aedd..3ac0213c711f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -111,9 +111,8 @@ static void wa_init_finish(struct i915_wa_list *wal)
+ {
+ 	/* Trim unused entries. */
+ 	if (!IS_ALIGNED(wal->count, WA_LIST_CHUNK)) {
+-		struct i915_wa *list = kmemdup(wal->list,
+-					       wal->count * sizeof(*list),
+-					       GFP_KERNEL);
++		struct i915_wa *list = kmemdup_array(wal->list, wal->count,
++						     sizeof(*list), GFP_KERNEL);
+ 
+ 		if (list) {
+ 			kfree(wal->list);
 -- 
-Jani Nikula, Intel
+2.34.1
+
