@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E319597B0
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Aug 2024 12:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDEE59597BA
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Aug 2024 12:38:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B9B10E8C5;
-	Wed, 21 Aug 2024 10:34:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kVmlrccb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBB610E8D1;
+	Wed, 21 Aug 2024 10:38:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B706110E8C5;
- Wed, 21 Aug 2024 10:34:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724236460; x=1755772460;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=BKA/6mhO3EoRYZMvWrkY/tpbpS09jGedFAxJDw3ru7E=;
- b=kVmlrccb4chLLhR+o2HVgsOm3+fqNEbMoB9glOiKoM8jJ12Oeq7mAmln
- MZPOhsoFcRSHDTDzEkXQdGwLGgGVbsS5Tor9mc1j6EC+qBFKcjaCsyVxI
- vhrPN4x5sjRkTEGbkNT7hwEfJ2NBHTBQZZy9g2/dhQ+f7qrn1PFc8B5tD
- byR8XpMV81v9muSs6p71tMmnr2E4igVUVtpDbsyN3HLpmyTPURJWj4jqr
- +dyNYI8+H5ziS1rSHUHPLWC3thQXIC4K9ULFKC+ab9hTiUkidE6k6xvYu
- SbYRirG4l53c9N3XKF8Ix/oJep+TNRRgefyVYa9ZrNI62P0OqBhnamZK1 g==;
-X-CSE-ConnectionGUID: o5cQ0edpQlmquunzvxz1hA==
-X-CSE-MsgGUID: nz1H8ikySIKJ2/1cHUo2Rw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="33972036"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="33972036"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 03:34:19 -0700
-X-CSE-ConnectionGUID: uD4M+Sw3RTWkGIe0RctD3Q==
-X-CSE-MsgGUID: 4KodI9wkTbiE0Fs5d//i2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="61358083"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.24])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 03:34:17 -0700
-Date: Wed, 21 Aug 2024 12:34:13 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/gt: Continue creating engine sysfs files even
- after a failure
-Message-ID: <ZsXCpfLfTRUjlWG0@ashyti-mobl2.lan>
-References: <20240819113140.325235-1-andi.shyti@linux.intel.com>
- <ZsUJIFVKuIX_pbDw@intel.com> <ZsWYIBsuFKAqVpIS@ashyti-mobl2.lan>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0406910E8D1;
+ Wed, 21 Aug 2024 10:38:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZsWYIBsuFKAqVpIS@ashyti-mobl2.lan>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?identify_display_steppings_in_display_code_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Aug 2024 10:38:48 -0000
+Message-ID: <172423672801.717871.14102188934963359276@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1724180287.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,42 +37,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Again, Rodrigo,
+== Series Details ==
 
-...
+Series: drm/i915/display: identify display steppings in display code (rev2)
+URL   : https://patchwork.freedesktop.org/series/137534/
+State : warning
 
-> > Also it looks something is off with the goto paths...
-> > 
-> > That if (0) is also ugly... probably better to use a
-> > kobject_put with continue on every failing point as well...
-> 
-> ehehe... I came to like it, to be honest. Besides I like single
-> exit paths instead of distributed returns. In this particular
-> case we would replcate the same "kobject_put() ... dev_warn()" in
-> several places, so that I'm not sure it's better.
-> 
-> If you like more we could do:
-> 
-> 	for (...) {
-> 		...
-> 		...
-> 		/* everything goes fine */
-> 		continue
-> 
-> err_engine:
-> 		kobject_put(...);
-> 		dev_warn(...);
-> 	}
-> 
-> And we avoid using the "if (0)" that you don't like.
+== Summary ==
 
-BTW, the purpose of the patch is to remove the break and, as I
-was at it, I chhanged dev_err/dev_warn.
+Error: dim checkpatch failed
+6f5838885c18 drm/xe/display: fix compat IS_DISPLAY_STEP() range end
+-:22: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#22: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:86:
++#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
 
-Refactoring the "if (0)" is a bit out of scope. Right?
+-:22: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'first' may be better as '(first)' to avoid precedence issues
+#22: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:86:
++#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
 
-Thanks,
-Andi
+-:22: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'last' may be better as '(last)' to avoid precedence issues
+#22: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:86:
++#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step < last; })
+
+total: 0 errors, 1 warnings, 2 checks, 8 lines checked
+25a08a4fec06 drm/xe/display: remove intel_display_step_name() to simplify
+b34f97ec5e6c drm/xe/display: remove the unused compat HAS_GMD_ID()
+f47d23de224a drm/xe/step: define more steppings E-J
+d4b2b4c419f7 drm/i915/display: rename IS_DISPLAY_IP_RANGE() to IS_DISPLAY_VER_FULL()
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:164:
++#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
+ 	(DISPLAY_VER_FULL(__i915) >= (from) && \
+ 	 DISPLAY_VER_FULL(__i915) <= (until)))
+
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'from' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:164:
++#define IS_DISPLAY_VER_FULL(__i915, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
+ 	(DISPLAY_VER_FULL(__i915) >= (from) && \
+ 	 DISPLAY_VER_FULL(__i915) <= (until)))
+
+total: 0 errors, 0 warnings, 2 checks, 24 lines checked
+9cfa9a66c18c drm/i915/display: rename IS_DISPLAY_IP_STEP() to IS_DISPLAY_VER_STEP()
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:184:
++#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
+ 	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
+ 	 IS_DISPLAY_STEP((__i915), (from), (until)))
+
+-:29: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ipver' - possible side-effects?
+#29: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:184:
++#define IS_DISPLAY_VER_STEP(__i915, ipver, from, until) \
+ 	(IS_DISPLAY_VER_FULL((__i915), (ipver), (ipver)) && \
+ 	 IS_DISPLAY_STEP((__i915), (from), (until)))
+
+total: 0 errors, 0 warnings, 2 checks, 78 lines checked
+1f1eca290f08 drm/i915/display: identify display steppings in display probe
+-:40: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_map' - possible side-effects?
+#40: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:29:
++#define STEP_INFO(_map)				\
++	.step_info.map = _map,			\
++	.step_info.size = ARRAY_SIZE(_map)
+
+total: 0 errors, 0 warnings, 1 checks, 416 lines checked
+8c6ea698523e drm/i915/display: switch to display detected steppings
+-:40: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#40: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:199:
++#define IS_DISPLAY_STEP(__i915, since, until) \
++	(drm_WARN_ON(__to_intel_display(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
++	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
+
+total: 0 errors, 0 warnings, 1 checks, 53 lines checked
+0689379bc8fa drm/i915: remove display stepping handling
+7d56409883ac drm/xe: remove display stepping handling
+
+
