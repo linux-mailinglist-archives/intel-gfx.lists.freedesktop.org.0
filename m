@@ -2,67 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB18959370
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Aug 2024 05:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A79EF959620
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Aug 2024 09:32:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D69510E882;
-	Wed, 21 Aug 2024 03:52:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCF0610E5AD;
+	Wed, 21 Aug 2024 07:32:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ahQ3B0di";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZjMGxQiU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9BB10E882;
- Wed, 21 Aug 2024 03:52:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B56710E52F;
+ Wed, 21 Aug 2024 07:32:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724212338; x=1755748338;
+ t=1724225574; x=1755761574;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=xWGpi3FNTVpDRYtQlGQLl9i3kf/YdCCoa/UwitYL1FE=;
- b=ahQ3B0diDIkYFym1Gg+JYt4hzMsDpbgiUyec5Xz1XnU4JODp615CCYus
- fGJhIP1nq/iiM/S3CTWUYqPpq6ANSxrlYNlQO36dRAzcU2VTBbJ5u+HGO
- IIiiL9UTrqc5upgWkqTeN1BS5MJFjhiSz1kW121KxSp5tn3J5qX4cyQJg
- q5LSMpfTwG3qigtG8wMWwF0BKY9njyP7t+odkSR9i9rlFzHfSbQ6v+nxL
- +A/ByuNqH91g3i0QvEjV2iL2eiB4ckgz5OU+FuVY+/JlsxFWqZTgLc4Pa
- XjX99hMQhj9RiJpttTI2ellPoFUB2L1XAwIMqY/L083Sy+ZvHHbEI2QP7 Q==;
-X-CSE-ConnectionGUID: Eg3CVZknSgWt6gAB/4wvcQ==
-X-CSE-MsgGUID: YSOheMJlS3e+1C0mn3ey2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="33936396"
-X-IronPort-AV: E=Sophos;i="6.10,163,1719903600"; d="scan'208";a="33936396"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 20:52:17 -0700
-X-CSE-ConnectionGUID: Vofor6GeT9arpAjPlJXtmw==
-X-CSE-MsgGUID: H3o51Ve/T16jJIAkXacFSw==
+ bh=zkXMjNqssWc4LDjuvlW7IRqezLfug6anGPQLEoFujuQ=;
+ b=ZjMGxQiUDgBTFaQmX9eaHEs1pB8NclfUOqF7RckpAytHFyzsmiibuMPc
+ mDZHJ8azaD3NeGKGldQ1KiR9zZfue/MXaLkCv/mwLlBKJg3dq4YHcU+ah
+ TeuTFn2gY9Dqqa0IbPvYAB7SteMmHnvQv/Kedddr1mQYqzYHjsan9tQ8s
+ ya5o2pJcee3eABKuAzBzTQprx8cvYFNZYgOwWT3uQhQvPq4saxkSJk6xu
+ bIdeOZUop71lAP1kSZ+tAGaSyJyhuEejcKAYn7z1d5bZTNSblpp+Ouk5h
+ Or63NtLt3hvrzLhcfqzoDLMqpDCKb0k/znwCzUZQaWf7BXGGdU8pM/EZo A==;
+X-CSE-ConnectionGUID: ngKlikFYS/GcsoZxr86wbw==
+X-CSE-MsgGUID: p834aektRautqFvGxTqF5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="13128235"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="13128235"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2024 00:32:53 -0700
+X-CSE-ConnectionGUID: cpfrf5zVRUaLkInS4Ih1DQ==
+X-CSE-MsgGUID: q7EI/KbFTB+iTw34kRSYgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,163,1719903600"; d="scan'208";a="65647472"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2024 20:52:13 -0700
-Date: Wed, 21 Aug 2024 06:52:10 +0300
-From: Raag Jadav <raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; d="scan'208";a="65846606"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.24])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2024 00:32:52 -0700
+Date: Wed, 21 Aug 2024 09:32:48 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, daniel@ffwll.ch,
- linux@roeck-us.net, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- ashutosh.dixit@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v4] drm/i915/hwmon: expose fan speed
-Message-ID: <ZsVkapETDCTtx2_F@black.fi.intel.com>
-References: <20240809061525.1368153-1-raag.jadav@intel.com>
- <ZrYB-GI9L2RSc2bt@smile.fi.intel.com>
- <ZrYEQqs0IwDHWkGx@ashyti-mobl2.lan>
- <ZsRbK8TEk5GZDl0C@black.fi.intel.com> <ZsUPY4zJwEGAf_t_@intel.com>
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/gt: Continue creating engine sysfs files even
+ after a failure
+Message-ID: <ZsWYIBsuFKAqVpIS@ashyti-mobl2.lan>
+References: <20240819113140.325235-1-andi.shyti@linux.intel.com>
+ <ZsUJIFVKuIX_pbDw@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZsUPY4zJwEGAf_t_@intel.com>
+In-Reply-To: <ZsUJIFVKuIX_pbDw@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,91 +74,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 20, 2024 at 05:49:23PM -0400, Rodrigo Vivi wrote:
-> On Tue, Aug 20, 2024 at 12:00:27PM +0300, Raag Jadav wrote:
-> > On Fri, Aug 09, 2024 at 12:57:54PM +0100, Andi Shyti wrote:
-> > > On Fri, Aug 09, 2024 at 02:48:08PM +0300, Andy Shevchenko wrote:
-> > > > On Fri, Aug 09, 2024 at 11:45:25AM +0530, Raag Jadav wrote:
-> > > > > Add hwmon support for fan1_input attribute, which will expose fan speed
-> > > > > in RPM. With this in place we can monitor fan speed using lm-sensors tool.
-> > > > > 
-> > > > > $ sensors
-> > > > > i915-pci-0300
-> > > > > Adapter: PCI adapter
-> > > > > in0:         653.00 mV
-> > > > > fan1:        3833 RPM
-> > > > > power1:           N/A  (max =  43.00 W)
-> > > > > energy1:      32.02 kJ
-> > > > 
-> > > > > v2:
-> > > > > - Add mutex protection
-> > > > > - Handle overflow
-> > > > > - Add ABI documentation
-> > > > > - Aesthetic adjustments (Riana)
-> > > > > 
-> > > > > v3:
-> > > > > - Declare rotations as "long" and drop redundant casting
-> > > > > - Change date and version in ABI documentation
-> > > > > - Add commenter name in changelog (Riana)
-> > > > > 
-> > > > > v4:
-> > > > > - Fix wakeref leak
-> > > > > - Drop switch case and simplify hwm_fan_xx() (Andi)
-> > > > 
-> > > > I do not understand why we pollute Git history with changelogs, but it's
-> > > > probably the ugly atavism in DRM workflow.
-> > > 
-> > > I never liked it! Besides it should even be against the
-> > > submitting patches recommendation.
-> > > 
-> > > I don't understand what interest might have someone in a couple
-> > > of years, reading this commit, knowing an unintellegible list of
-> > > differences between v2 and v3.
-> > > 
-> > > I consider it a random pollution of the commit log.
-> 
-> I agree it is ugly. But I don't agree it is just a 'random polution'.
-> 
-> I consider a valid and very useful information of the patch history.
-> Very useful for a later cross check to know what exactly version
-> of that patch got merged.
-> Useful for distros on backports as well.
+Hi Rodrigo,
 
-Isn't this why we have 'Link' as part of commit which points to
-actual ML submission?
-
+On Tue, Aug 20, 2024 at 05:22:40PM -0400, Rodrigo Vivi wrote:
+> On Mon, Aug 19, 2024 at 01:31:40PM +0200, Andi Shyti wrote:
+> > The i915 driver generates sysfs entries for each engine of the
+> > GPU in /sys/class/drm/cardX/engines/.
 > > 
-> > Isn't it already documented?
-> > Documentation/process/submitting-patches.rst
+> > The process is straightforward: we loop over the UABI engines and
+> > for each one, we:
+> > 
+> >  - Create the object.
+> >  - Create basic files.
+> >  - If the engine supports timeslicing, create timeslice duration files.
+> >  - If the engine supports preemption, create preemption-related files.
+> >  - Create default value files.
+> > 
+> > Currently, if any of these steps fail, the process stops, and no
+> > further sysfs files are created.
+> > 
+> > However, it's not necessary to stop the process on failure.
+> > Instead, we can continue creating the remaining sysfs files for
+> > the other engines. Even if some files fail to be created, the
+> > list of engines can still be retrieved by querying i915.
+> > 
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > ---
+> > Hi,
+> > 
+> > It might make sense to create an "inv-<engine_name>" if something
+> > goes wrong, so that the user is aware that the engine exists, but
+> > the sysfs file is not present.
 > 
-> I think it is:
-> 
-> "Be sure to tell the reviewers what changes you are making and to thank them
->  for their time.  Code review is a tiring and time-consuming process, and
->  reviewers sometimes get grumpy.  Even in that case, though, respond
->  politely and address the problems they have pointed out.  When sending a next
->  version, add a ``patch changelog`` to the cover letter or to individual patches
->  explaining difference against previous submission
-> "
-> 
-> Then:
-> 
-> '''
-> Example of a patch submitted by the From: author::
-> '''
-> 
-> defines 'changelog' as the block above the signatures.
-> 
-> And
-> 
-> 'The canonical patch format'
-> 
-> also tells that anything after '---' marker line is for
-> "Any additional comments not suitable for the changelog."
-> 
-> But well, the important part is to have the version information
-> available for reviewers.
+> well, if the sysfs dir/files creation is failing, then it will
+> probably be unreliable anyway right?
 
-Can still be available below '---' marker.
+Are you suggesting that "inv-<engine_name>" is OK?
 
-Raag
+> > One further improvement would be to provide more information
+> > about thei failure reason the dev_warn() message.
+> 
+> So, perhaps this patch should already go there and remove
+> the dev_err and add individual dev_warn for each failing path?
+
+That's a suggestion, but it doesn't mean that it necessarily
+improves things as it might add some innecessary information.
+Just thinking.
+
+> Also it looks something is off with the goto paths...
+> 
+> That if (0) is also ugly... probably better to use a
+> kobject_put with continue on every failing point as well...
+
+ehehe... I came to like it, to be honest. Besides I like single
+exit paths instead of distributed returns. In this particular
+case we would replcate the same "kobject_put() ... dev_warn()" in
+several places, so that I'm not sure it's better.
+
+If you like more we could do:
+
+	for (...) {
+		...
+		...
+		/* everything goes fine */
+		continue
+
+err_engine:
+		kobject_put(...);
+		dev_warn(...);
+	}
+
+And we avoid using the "if (0)" that you don't like.
+
+Thanks,
+Andi
