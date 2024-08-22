@@ -2,103 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B97C095B94E
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 17:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A6DD95B950
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 17:07:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 569D210EB21;
-	Thu, 22 Aug 2024 15:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2C6C10EB1E;
+	Thu, 22 Aug 2024 15:07:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="btCs/1TE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Kl0XX0Dp";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="btCs/1TE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Kl0XX0Dp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vk+yZCmz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 556D510EB1D;
- Thu, 22 Aug 2024 15:07:13 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id CD3AC201F2;
- Thu, 22 Aug 2024 15:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724339231; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
- b=btCs/1TEttk2DFKq/Sr+s325MJRZ6pX1pIiQATQoV6ipRxZn+U0L/S8XUMWZT9Amg4vrGg
- FOI+pp40wFj6BXCpF7hWKDGLN9PeDJ/yNXi2vXCLWGLyPqSsWaVdD7RiZbTXfLm3ACDyKa
- AWoy7tNkX40Ij2GUttAzvhyPSG+qtYQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724339231;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
- b=Kl0XX0Dpyc2eT0PVX/7NOkfo2zAKuCCF5xdGpb2lmAQk/wYU4Yezs0bokpJVidexlqeBBB
- OnMrTR4MFXfzlHBQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724339231; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
- b=btCs/1TEttk2DFKq/Sr+s325MJRZ6pX1pIiQATQoV6ipRxZn+U0L/S8XUMWZT9Amg4vrGg
- FOI+pp40wFj6BXCpF7hWKDGLN9PeDJ/yNXi2vXCLWGLyPqSsWaVdD7RiZbTXfLm3ACDyKa
- AWoy7tNkX40Ij2GUttAzvhyPSG+qtYQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724339231;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=N7soaIqJ0UF7BVy8scb1hTd6knYlOnvl5Ybg8A8q3O4=;
- b=Kl0XX0Dpyc2eT0PVX/7NOkfo2zAKuCCF5xdGpb2lmAQk/wYU4Yezs0bokpJVidexlqeBBB
- OnMrTR4MFXfzlHBQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 683B513297;
- Thu, 22 Aug 2024 15:07:11 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id cCI5GB9Ux2bbbQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 22 Aug 2024 15:07:11 +0000
-Date: Thu, 22 Aug 2024 17:07:10 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20240822150710.GA243952@localhost.localdomain>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13DE810EB1E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 15:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724339244; x=1755875244;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Ytv1YK+scj7dNHpWbYyJVmd0rl3UKGIT9FeLVUJ6Z8A=;
+ b=Vk+yZCmzfLj9cMiCUKEN7gAhIBV4yBhw9cXIvVVekpdQ1BP5Nwfn8eDx
+ QdsVdQmvCpwPBIMUsQfrpgcIKXt1LDAQhJZn7DRMFqK7bHw3ewWQv8NGd
+ /f0jVxMR23/z/DeySvpHFykkE0xXOjSR0EXjeDVqgX+Avpo+kZa3/cQx5
+ QZ1bVurfEByPHt2YYIMVMbv9ve/fxH6IgZSurt6PwgPSjWsyTObmqpt2L
+ V5NET2XNnwGijfEFCUS67YFJfSpoBVskK2DIOH0fseRT2GiWEErWiYudQ
+ PPFrjvXWeXtiw1voewlijeVWzovawuFmvYk39WU4u+IBT53bOwwNa/rfT g==;
+X-CSE-ConnectionGUID: W5ptLGoWQvmubqn6+DkCBQ==
+X-CSE-MsgGUID: 6Ch+PdN0SUif1vLDTvKFpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22923222"
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="22923222"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 08:07:24 -0700
+X-CSE-ConnectionGUID: gUFcv2XfSxeoX3biw4Id1g==
+X-CSE-MsgGUID: Iuu6d+edRCu6aNYfQdch+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="66306018"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Aug 2024 08:07:24 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 22 Aug 2024 08:07:23 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 22 Aug 2024 08:07:23 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 22 Aug 2024 08:07:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ujh9ySNHfMkO4Att63YiuB0d0nHH7QpxxX3Fh/Ui7mOO9TdkMySHPc8sKZIISlaqc/VKKs7f3hFoSWwBfc1Q34eH9U9rdrqmOEyAQGG/SVPdkkXziC6yoZMf2d4f9XJ/dhc2HoenJYKv7tEebu5e14mc1fGcDDEBUI29y9o9JCXVHpftnyD7gLWboM+uJf0lHmei6vRZtg0OJJeF5as4l6eA/jGgx/TLnpZhT+5JFON7/83hWgh/2C/wWVR+5QuVwiCYNkY89/sG0kN6dhZ3saOHAr1d9Ac5fNyWhWxDEwiDtTgd18bmiJj5YQf7WO+Uf4gMq4EOb4FbDCPeMKdyXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CidNVKO5YQmJSgxOhADetf9MeU2Ige2x5yCIJr3W/XE=;
+ b=ZlQGKjJbTRj3PvV/JTW9ns8U4Tzb2qKdQ4Mibxrf2QDhMWA4qLBFlubYjeasO1N59PqJoMLuh8nzi4AgEqal99uz54n/dm6hc6cpG8djcGZEglJOSX5eRjm4ny77nErYxIpCpZmWK6SNF+TMJeBpShN8IhGnjkUBfZWyJ/ViJ3dVxGcspJphexUUkleXwFWek+WS4lSIReLXcgT2bjmHp+zLFK1E/wUKvv1SmHnh5a7UD3+qJYm+BQLy51Mx5gX5GxZ6mhRPgiwubZROiKRNI6Ii1TQ6DmvrEnigR5tXuA9AYVNH1b4Eb8VfPppwDr5sGKjpVlXxYw+rC72vQP4weg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by PH7PR11MB6329.namprd11.prod.outlook.com (2603:10b6:510:1ff::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Thu, 22 Aug
+ 2024 15:07:20 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.7875.019; Thu, 22 Aug 2024
+ 15:07:20 +0000
+Date: Thu, 22 Aug 2024 08:07:16 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915: remove unused leftover basedie step code
+Message-ID: <20240822150716.GL5774@mdroper-desk1.amr.corp.intel.com>
+References: <20240822143946.2526425-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
-X-Spam-Score: -4.30
-X-Spam-Flag: NO
+In-Reply-To: <20240822143946.2526425-1-jani.nikula@intel.com>
+X-ClientProxiedBy: BYAPR01CA0054.prod.exchangelabs.com (2603:10b6:a03:94::31)
+ To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH7PR11MB6329:EE_
+X-MS-Office365-Filtering-Correlation-Id: 699793fd-b559-4a7b-64a9-08dcc2bc1e70
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xDfeLU1B/I3UeKa0DR7UyjmLAWWQKDIeoFrUdv1MXPkQFCkQQ7/bu3nRAbOu?=
+ =?us-ascii?Q?/NzKttJb0k5d+VyG5VBc6rNKhYiCKnhre8LukZtpgw0J2T2lCmCuJMamyNBn?=
+ =?us-ascii?Q?K9LQSWqrKZWAnKIz79NpTMKimlS8WVzxKdrhpJMudSS3ysa1xltl/oIqxn37?=
+ =?us-ascii?Q?d3tz3iNa7pBcLaIz/Yg+bUFFujFCKAyfsj2VbI3GCabq5ETl20ItkT6HdRc8?=
+ =?us-ascii?Q?uM4dMtencnFiSpI0DYa6ipOZsnYl4cd0Z5TC+crR9HWhj86OxHunlXn2oqh8?=
+ =?us-ascii?Q?5vmGTdm66RbCWCL1QT7HFHNIhm4v6cMHzHoB2rvPZMdQ9W6Mz1F2Y/FHdBIb?=
+ =?us-ascii?Q?TcV86ONi8yFcWUzBZfh8iaKTMnuLQom8MHx2IoRum96o+KzLNykXynGsOAfV?=
+ =?us-ascii?Q?gWeXey1GZO4yzzc5gOGv4zFPzIGgxzibtko3plCOw+VtJLW+XOI4oC4G+HvV?=
+ =?us-ascii?Q?8HRdZpqybf8JE71xpKB73zXVYHudCeUKuqo0LF/JwZwXGVCvWa3EOmlZ7Agu?=
+ =?us-ascii?Q?02zv+Xsdrh9mjJmPUjFmLcUBvxsH/8I25b2yKr9DQ1tZiiF0ndVx05Vzltfz?=
+ =?us-ascii?Q?7GlV3CXKbcZ8McLmY+xvUx+h37EzGLg8ltP6Y4rDHLS2tFFNMbvGtH5yvAXq?=
+ =?us-ascii?Q?F66ScPLQ1ntaK1mkzlcXu01+zL7+L1rbfEnMuUWTQarDx5MYmRVlLDHFjiZn?=
+ =?us-ascii?Q?RLuOHJYqCN8WfVW1+LVSsWgSpAByiIRkPF81q7v2ysQVml4zMkUf+d1UOxxS?=
+ =?us-ascii?Q?PWElgfab06yc7lvl/h2viAiR/rnc0/an/EqipCtRKtLcGmC3sqr/8dJYJVZE?=
+ =?us-ascii?Q?KS3J7rOIdEjH2zz5scNat8Y15R31tPqVoXjcu2V5CBcVRy//krCRuwWFpIVs?=
+ =?us-ascii?Q?OToe3zPFhDqNF8Qmc1aSPoSjDwWZVQ3E8gAM1rUe4yTfE3VQcE1nexdJ7fps?=
+ =?us-ascii?Q?xQBHvwCIAgeJAYHeLNHz5YZZHPEDMkNc4aDpBPUeclWYjx6WXTUAroywCc7w?=
+ =?us-ascii?Q?m8przd5Dij3XdN7CCiX+LNoBJI70iEFJG/hl/R6phCRs+Bdb+tj+lf8Nk4Ab?=
+ =?us-ascii?Q?xMlJWEp0RMW7Mt9JJ6QRr6AAb7BHNKF46RntSm2Cw9z8tJrTnDd9WDFtDIar?=
+ =?us-ascii?Q?s+rKkrEobUwUqHJdSWm7drOQDHycrbHWR8oU1exdy1bvZqbQ+cb5oGZnP31J?=
+ =?us-ascii?Q?YPQ41HlVnEdw4rHrv/SrtRoqW15OwRk+bCP0ihRbZb3k6Tt6dsSd7xqK5wWK?=
+ =?us-ascii?Q?KIXTvyCUBEZrDs/yyvkK5zLB3+BJGTBwQQ6ZwfDaGXzIpn5nF1mpg8M8xU7n?=
+ =?us-ascii?Q?NkfOqoI+eDTNhHOHZgNbCDifw1hh+wnbplFe6ug4SdAQRA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xuGqgq5OmZKKQJIH2OwVbVJWjbk/gfn56i1Q8/v6nROgMQ1nI4ntJvsCT3/B?=
+ =?us-ascii?Q?cIyzclWGc+0fGsWbaAkLx/O/vqvB8ZVnrrhRIFVdb+QT/ZsFl6sX+8n2UXeW?=
+ =?us-ascii?Q?/rwQ9Kgzrief7MbRpXUnCTkhk9ixvYIecUaGNuxTvbx3RvHmcMV+4c0TcJz7?=
+ =?us-ascii?Q?dBduJVP6XLGg1UhkC6w2FO+c4jKpzAeM5jOaJPrMQtKGtlQMpqKEOg8LgqEJ?=
+ =?us-ascii?Q?csZ4fxw4tHoRn4EO/fiwzNmMeVTNspGmLELGAEte4hy4UE/xr68PIWoWZYqK?=
+ =?us-ascii?Q?7aV4wax6vrFOSVNUgSJ0SnaBFkANVbHZUvLi5QDZm00fcZPfuQtl9RCPjOlp?=
+ =?us-ascii?Q?ttqmow7wIqsOFc9Qftw1uYprMWNUNC2ZdVcWXbEzMTQvCAkVCvC7QQDT92vM?=
+ =?us-ascii?Q?0DM544cZ1j6l0mdT5YaeCLf/OMAkv5KgSWD+0rcKkAHoQcqdpu9tEaq6viYq?=
+ =?us-ascii?Q?ka4FM1kXa2UwJvsLpZfIag697wmatxmCviTfZGE3ersrx1/gSOMeCyDJUgJF?=
+ =?us-ascii?Q?jPVEcpsx5Z3wb0otLcH6xGGvLtmflNgAVpTSNFnaEq2uOmgprQ7OwFCzzGk+?=
+ =?us-ascii?Q?mFqAQvW8ntbKdWfGcBZ9eJvXn4lQZ4QnLquCD8dUVZADjmlLIXSpqvjEgeSj?=
+ =?us-ascii?Q?bCuEDrlXwtd1LZiz+QdPAyo0RrNY5sCEl/a0K6KDnk/w2/QRk29o7P/o/xA/?=
+ =?us-ascii?Q?AMJqSmjBK4U+pxHoQo2t4Q2TzZmqfMWkBDvefAGd3B0+08PYkxavOFFDDroH?=
+ =?us-ascii?Q?5/2wr1K/XLHYyj78c0h1odxqwDo0P41Fj7+diE4jCee/ZWwOXRXBNUvakFsl?=
+ =?us-ascii?Q?kYQUZx0sAtLip4WujHETdd322rQ9KfT65kS8GEedOULV3VOqJEMd1uWCC0tk?=
+ =?us-ascii?Q?00o2GVv0BTtGrosY5ebiqOIkh+1oLbnor5LoJiKRTxYhCiKsevlplcnJfmuy?=
+ =?us-ascii?Q?SLZetXX6aQkvmSzRB4Odky4M/z7+yxUr6Sz6KqqJyCiEg60g8ffd3X4M5N/1?=
+ =?us-ascii?Q?bz9/YdIVf4C0U3YsesqUiuq90ohOHnsHE2wGm9hlAlONwh/gpfRMxc3qSlt/?=
+ =?us-ascii?Q?dBP22u0viScdiIJgdqsMfwKL7D82lElqyKSuxIBr6ZfilXTJLZZAzME9hTYy?=
+ =?us-ascii?Q?MGQLevb4RgTXoV4Cfjtk2t1FrhPgcCUSTxqXxHjloM9sie44/uZOYIfst85S?=
+ =?us-ascii?Q?auZatX7a+QdriNWR1MXzg+B2jnAfhga1kIjBV7eEyh8n4IIOikZVGwR/JxT/?=
+ =?us-ascii?Q?tlUe9NLYOFiJSf/DlXuDVSuyjVx1THvYQyD4mNKhOlU9qIc4V8Bkueyvo5bn?=
+ =?us-ascii?Q?eZgpD7GfFvLrnZEdbf9cBHWgHWt8xrIgXJXzAk/Kp/fiF9Zpd5MdRqWsMSoz?=
+ =?us-ascii?Q?KTAwWzgtDLSA/46DOtnrFEEGncf8Gfo6DgVmwy51BVlTsH81In/20bIXR0uI?=
+ =?us-ascii?Q?taKVDy/DBYU217XixcVSN1IajSXrfFcRA0frAS6kcfEbubAWGy9NHzqfgQ4b?=
+ =?us-ascii?Q?RknSVCjqF4BprXKK6rJ0KQje9SRMgBcsrLa87WJyPDl7mi277w5+tDRzcF7M?=
+ =?us-ascii?Q?nboXtQh2/uUGkHd23Np0MWWJ/bsQbYxri/tbDLJLhYRmhLDaZWdyAVj6yTAN?=
+ =?us-ascii?Q?eQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 699793fd-b559-4a7b-64a9-08dcc2bc1e70
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 15:07:20.1440 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3QjKOjwB0yfkLxN4W8/nfFe7GJshtQiiUl8mNjD8d76M107wTgpta5T3Gp7vMLfmKHZ8TfG26NQwCQ1vOF5umy4SjbryZd7k89ZxmRLy2cg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6329
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,228 +175,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Thu, Aug 22, 2024 at 05:39:46PM +0300, Jani Nikula wrote:
+> The basedie step initialization as well as its last users were removed
+> in commit 326e30e4624c ("drm/i915: Drop dead code for pvc"). Follow
+> through with removing the unused macros and struct member and debug
+> logging.
+> 
+> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h          | 5 -----
+>  drivers/gpu/drm/i915/intel_device_info.c | 1 -
+>  drivers/gpu/drm/i915/intel_step.h        | 1 -
+>  3 files changed, 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 3b1b16e71cf9..eb4c33e83c7c 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -410,7 +410,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
+>  
+>  #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics_step)
+>  #define INTEL_MEDIA_STEP(__i915) (RUNTIME_INFO(__i915)->step.media_step)
+> -#define INTEL_BASEDIE_STEP(__i915) (RUNTIME_INFO(__i915)->step.basedie_step)
+>  
+>  #define IS_GRAPHICS_STEP(__i915, since, until) \
+>  	(drm_WARN_ON(&(__i915)->drm, INTEL_GRAPHICS_STEP(__i915) == STEP_NONE), \
+> @@ -420,10 +419,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
+>  	(drm_WARN_ON(&(__i915)->drm, INTEL_MEDIA_STEP(__i915) == STEP_NONE), \
+>  	 INTEL_MEDIA_STEP(__i915) >= (since) && INTEL_MEDIA_STEP(__i915) < (until))
+>  
+> -#define IS_BASEDIE_STEP(__i915, since, until) \
+> -	(drm_WARN_ON(&(__i915)->drm, INTEL_BASEDIE_STEP(__i915) == STEP_NONE), \
+> -	 INTEL_BASEDIE_STEP(__i915) >= (since) && INTEL_BASEDIE_STEP(__i915) < (until))
+> -
+>  static __always_inline unsigned int
+>  __platform_mask_index(const struct intel_runtime_info *info,
+>  		      enum intel_platform p)
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+> index d92b3050ac78..b485e959f064 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -108,7 +108,6 @@ void intel_device_info_print(const struct intel_device_info *info,
+>  
+>  	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.graphics_step));
+>  	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.media_step));
+> -	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.basedie_step));
+>  
+>  	drm_printf(p, "gt: %d\n", info->gt);
+>  	drm_printf(p, "memory-regions: 0x%x\n", info->memory_regions);
+> diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+> index 83bd1190edf5..22f1d6905160 100644
+> --- a/drivers/gpu/drm/i915/intel_step.h
+> +++ b/drivers/gpu/drm/i915/intel_step.h
+> @@ -17,7 +17,6 @@ struct intel_step_info {
+>  	 */
+>  	u8 graphics_step;	/* Represents the compute tile on Xe_HPC */
 
-here's this week's PR for drm-misc-next. It adds support for more
-panels, and easier error handling for DSI code. Ast should finally
-have decent support for BMC output. Plus the usual bug fixes.
+Looks like we should drop the comment on this line too (Xe_HPC is the
+name of PVC's IP)...
 
-In the kernel's string helpers there's the new function mem_is_zero(),
-which the EDID code uses in several places.
 
-Best regards
-Thomas
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-drm-misc-next-2024-08-22:
-drm-misc-next for v6.12:
-
-Cross-subsystem Changes:
-
-string:
-- add mem_is_zero()
-
-Core Changes:
-
-edid:
-- use mem_is_zero()
-
-Driver Changes:
-
-ast:
-- reorganize output code by type (VGA, DP, etc)
-- convert to struct drm_edid
-- fix BMC handling for all outputs
-
-bridge:
-- anx7625: simplify OF array handling
-- dw-hdmi: simplify clock handling
-- lontium-lt8912b: fix mode validation
-- nwl-dsi: fix mode vsync/hsync polarity
-
-panel:
-- ili9341: fix comments
-- jd9365da: fix "exit sleep" commands
-- jdi-fhd-r63452: simplify error handling with DSI multi-style
-  helpers
-- mantix-mlaf057we51: simplify error handling with DSI multi-style
-  helpers
-- simple: support Innolux G070ACE-LH3 plus DT bindings; support
-  On Tat Industrial Company KD50G21-40NT-A1 plus DT bindings
-- st7701: decouple DSI and DRM code; add SPI support; support Anbernic
-  RG28XX plus DT bindings
-
-vc4:
-- fix PM during detect
-- replace DRM_ERROR() with drm_error()
-- v3d: simplify clock retrieval
-The following changes since commit 8befe8fa5a4e4b30787b17e078d9d7b5cb92ea19:
-
-  drm/tilcdc: Use backlight power constants (2024-08-16 09:28:01 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-08-22
-
-for you to fetch changes up to f60ef67ff21ede6f3d27d439a136481446dbd8aa:
-
-  drm/vc4: v3d: simplify clock retrieval (2024-08-22 07:57:44 -0300)
-
-----------------------------------------------------------------
-drm-misc-next for v6.12:
-
-Cross-subsystem Changes:
-
-string:
-- add mem_is_zero()
-
-Core Changes:
-
-edid:
-- use mem_is_zero()
-
-Driver Changes:
-
-ast:
-- reorganize output code by type (VGA, DP, etc)
-- convert to struct drm_edid
-- fix BMC handling for all outputs
-
-bridge:
-- anx7625: simplify OF array handling
-- dw-hdmi: simplify clock handling
-- lontium-lt8912b: fix mode validation
-- nwl-dsi: fix mode vsync/hsync polarity
-
-panel:
-- ili9341: fix comments
-- jd9365da: fix "exit sleep" commands
-- jdi-fhd-r63452: simplify error handling with DSI multi-style
-  helpers
-- mantix-mlaf057we51: simplify error handling with DSI multi-style
-  helpers
-- simple: support Innolux G070ACE-LH3 plus DT bindings; support
-  On Tat Industrial Company KD50G21-40NT-A1 plus DT bindings
-- st7701: decouple DSI and DRM code; add SPI support; support Anbernic
-  RG28XX plus DT bindings
-
-vc4:
-- fix PM during detect
-- replace DRM_ERROR() with drm_error()
-- v3d: simplify clock retrieval
-
-----------------------------------------------------------------
-Abhishek Tamboli (1):
-      drm/panel: ili9341: Add comments for registers in ili9341_config()
-
-Cristian Ciocaltea (1):
-      drm/bridge: dw-hdmi: Simplify clock handling
-
-Esben Haabendal (1):
-      drm/bridge: nwl-dsi: Use vsync/hsync polarity from display mode
-
-Hironori KIKUCHI (5):
-      drm/panel: st7701: Rename macros
-      drm/panel: st7701: Decouple DSI and DRM parts
-      dt-bindings: display: st7701: Add Anbernic RG28XX panel
-      drm/panel: st7701: Add support for SPI for configuration
-      drm/panel: st7701: Add Anbernic RG28XX panel support
-
-Jani Nikula (2):
-      string: add mem_is_zero() helper to check if memory area is all zeros
-      drm: use mem_is_zero() instead of !memchr_inv(s, 0, n)
-
-Jeffrey Hugo (1):
-      MAINTAINERS: qaic: Drop Pranjal as reviewer
-
-Liu Ying (3):
-      drm/bridge: lontium-lt8912b: Validate mode in drm_bridge_funcs::mode_valid()
-      dt-bindings: display: panel-simple: Add On Tat Industrial Company KD50G21-40NT-A1
-      drm/panel: simple: Add ON Tat Industrial Company KD50G21-40NT-A1 panel
-
-Rob Herring (Arm) (1):
-      drm: bridge: anx7625: Use of_property_read_variable_u8_array()
-
-Stefan Wahren (3):
-      drm/vc4: hdmi: Handle error case of pm_runtime_resume_and_get
-      drm/vc4: Get the rid of DRM_ERROR()
-      drm/vc4: v3d: simplify clock retrieval
-
-Steffen Trumtrar (2):
-      dt-bindings: display: simple: Document support for Innolux G070ACE-LH3
-      drm/panel: simple: add Innolux G070ACE-LH3 LVDS display support
-
-Tejas Vipin (4):
-      drm/panel: mantix-mlaf057we51: transition to mipi_dsi wrapped functions
-      drm/panel: mantix-mlaf057we51: write hex in lowercase
-      drm/mipi-dsi: Add mipi_dsi_dcs_set_tear_scanline_multi
-      drm/panel: jdi-fhd-r63452: transition to mipi_dsi wrapped functions
-
-Thomas Zimmermann (11):
-      drm/ast: Move code for physical outputs into separate files
-      drm/ast: Add struct ast_connector
-      drm/ast: astdp: Move locking into EDID helper
-      drm/ast: astdp: Use struct drm_edid and helpers
-      drm/ast: astdp: Simplify power management when detecting display
-      drm/ast: astdp: Transparently handle BMC support
-      drm/ast: dp501: Use struct drm_edid and helpers
-      drm/ast: dp501: Transparently handle BMC support
-      drm/ast: sil164: Transparently handle BMC support
-      drm/ast: vga: Transparently handle BMC support
-      drm/ast: Remove BMC output
-
-Zhaoxiong Lv (2):
-      drm/panel: jd9365da: Move "exit sleep mode" and "set display on" cmds
-      drm/panel: jd9365da: Modify the init code of Melfas
-
- .../bindings/display/panel/panel-simple.yaml       |    4 +
- .../bindings/display/panel/sitronix,st7701.yaml    |   69 +-
- MAINTAINERS                                        |    1 -
- drivers/gpu/drm/ast/Makefile                       |    4 +-
- drivers/gpu/drm/ast/ast_dp.c                       |  242 ++++-
- drivers/gpu/drm/ast/ast_dp501.c                    |  184 +++-
- drivers/gpu/drm/ast/ast_drv.h                      |   42 +-
- drivers/gpu/drm/ast/ast_mode.c                     |  578 ----------
- drivers/gpu/drm/ast/ast_sil164.c                   |  127 +++
- drivers/gpu/drm/ast/ast_vga.c                      |  127 +++
- drivers/gpu/drm/bridge/analogix/anx7625.c          |   22 +-
- drivers/gpu/drm/bridge/lontium-lt8912b.c           |   35 +-
- drivers/gpu/drm/bridge/nwl-dsi.c                   |    8 +-
- drivers/gpu/drm/bridge/nwl-dsi.h                   |    4 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   66 +-
- drivers/gpu/drm/drm_edid.c                         |    2 +-
- drivers/gpu/drm/drm_mipi_dsi.c                     |   31 +
- drivers/gpu/drm/i915/display/intel_dp.c            |    2 +-
- drivers/gpu/drm/i915/display/intel_opregion.c      |    2 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_dmabuf.c   |    2 +-
- drivers/gpu/drm/imagination/pvr_device.h           |    2 +-
- drivers/gpu/drm/panel/Kconfig                      |    3 +-
- drivers/gpu/drm/panel/panel-ilitek-ili9341.c       |   14 +-
- drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   |  137 +--
- drivers/gpu/drm/panel/panel-jdi-fhd-r63452.c       |  149 +--
- drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |   79 +-
- drivers/gpu/drm/panel/panel-simple.c               |   71 ++
- drivers/gpu/drm/panel/panel-sitronix-st7701.c      | 1122 ++++++++++++--------
- drivers/gpu/drm/udl/udl_edid.c                     |    2 +-
- drivers/gpu/drm/vc4/vc4_bo.c                       |   14 +-
- drivers/gpu/drm/vc4/vc4_dpi.c                      |   14 +-
- drivers/gpu/drm/vc4/vc4_dsi.c                      |   32 +-
- drivers/gpu/drm/vc4/vc4_gem.c                      |   11 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c                     |   44 +-
- drivers/gpu/drm/vc4/vc4_hvs.c                      |    4 +-
- drivers/gpu/drm/vc4/vc4_irq.c                      |    2 +-
- drivers/gpu/drm/vc4/vc4_v3d.c                      |   24 +-
- drivers/gpu/drm/vc4/vc4_validate.c                 |    8 +-
- drivers/gpu/drm/vc4/vc4_vec.c                      |   10 +-
- include/drm/drm_mipi_dsi.h                         |    2 +
- include/linux/string.h                             |   12 +
- 41 files changed, 1830 insertions(+), 1478 deletions(-)
- create mode 100644 drivers/gpu/drm/ast/ast_sil164.c
- create mode 100644 drivers/gpu/drm/ast/ast_vga.c
+>  	u8 media_step;
+> -	u8 basedie_step;
+>  };
+>  
+>  #define STEP_ENUM_VAL(name)  STEP_##name,
+> -- 
+> 2.39.2
+> 
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
