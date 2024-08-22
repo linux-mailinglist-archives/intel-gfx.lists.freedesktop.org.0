@@ -2,79 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC71195B002
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 10:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6DCA95B0AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 10:39:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96CF010E0F9;
-	Thu, 22 Aug 2024 08:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7F7110E413;
+	Thu, 22 Aug 2024 08:39:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="DJFcod9q";
+	dkim=pass (2048-bit key; unprotected) header.d=foss.st.com header.i=@foss.st.com header.b="4e5UPVcM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
- [209.85.221.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB5F610E0F9
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 08:15:59 +0000 (UTC)
-Received: by mail-wr1-f45.google.com with SMTP id
- ffacd0b85a97d-3718b5e9c4fso207243f8f.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 01:15:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1724314558; x=1724919358; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=75AbW8YCcPqvwKBFK7/SreyR9quK7zkhy+4xs4mwsXg=;
- b=DJFcod9qejYfSITIPzP1M0gpsQXgFJ9UwbQ4Aa5cUDusHBZiU4W2AYA52RYgYtKFXy
- JnT2NfN7PS5q1/dZr+G8UUFyaqrWUdhVnnMLirguebclDDpCZeu08U0/YXwi+lHaxk7t
- cSVMLdHU4VaJwmOESLvOBZjaZShspV8TCOlvY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724314558; x=1724919358;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=75AbW8YCcPqvwKBFK7/SreyR9quK7zkhy+4xs4mwsXg=;
- b=w1gyLVhSFpkzqokZ/w44kW4j4tAWG4jtUzmYFzwlEXRC0VXpoH0pRYlqZo/a2GBwJA
- n9752xF4G31mQysxcSR6lFUM3MYWmeuGez/g4NI1bZQ6vqEQOEvX3DajcazZkuerZEFo
- I9oLAA/rKzX96lh0s9StEEmoBM5S7mnTxYyemyN7QcP5d7F4qP2FzSPheEhQIakPNH2a
- SKhkqpjjvr4peqQDt7UX759PX1YlsaI3btnxOQdbURAlkp2EA4nrbe2roObnIWVYdxNy
- 7ABFpAmCE+rErbIeD7N5Rg6I4X6KG4lVTBcKaWN68ZoK1cXduYJPspeP2JUsqlq+uGjw
- gGzg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWPAwOTYKA0qO6r1MU1T80SENccQl1ao3fyetVglekYUEfwTFyOXYGzm23G4HSBlkhtesVP0tUu2QM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YytjaT5bqBHY900VQfPB0H5k8U7fA7sUIKV4pxwcusiVaSlZmXj
- 75uf2DuSBMD1iWBhde4r/+GiDPXsmH3oAT5qGnaFO/P6a9fAUbcML8KfBNy1pqs=
-X-Google-Smtp-Source: AGHT+IEEXh+Q/+CkzsVsvEFcQ/I2Vf2dvHt8pCyu+gou90gTZKOWWPrxbLxRN1SPXddLS0cesV12Yw==
-X-Received: by 2002:a5d:59a3:0:b0:368:75:2702 with SMTP id
- ffacd0b85a97d-372fd585cb3mr4553322f8f.13.1724314557765; 
- Thu, 22 Aug 2024 01:15:57 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42abefeaa45sm52420865e9.39.2024.08.22.01.15.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Aug 2024 01:15:57 -0700 (PDT)
-Date: Thu, 22 Aug 2024 10:15:55 +0200
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-misc-next
-Message-ID: <Zsbzu6uDoroaWXUu@phenom.ffwll.local>
-References: <20240816084109.GA229316@localhost.localdomain>
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
+ [185.132.182.106])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDAD110E02B;
+ Thu, 22 Aug 2024 08:38:59 +0000 (UTC)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+ by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47M72FpY027840;
+ Thu, 22 Aug 2024 10:38:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=selector1; bh=
+ /WciXrPWaFlLkyznHTBF6EbYQ81JU4gKjUZCLa5G1Xw=; b=4e5UPVcMImNxHaOg
+ Q4VGUMnQ6HEA5Sewf0+COSBvN0VAZwKAcWTLKMtda1KlgUkj2fD9so2lgCRDC5ln
+ IZe4MRL7wajqCeiIDth3yhHpzW7f3j2qw+LD+Xd0+DXPObyTrM1otCxNBvivhnH3
+ gbxfBUGPyOvNLPyfv8pN/uWOoa86sOJxLWPlw6fIshpWVRmrKPa3a5DAFmLwIpoN
+ lesvnJiJ64ylfPFR9sO0+CwpH9M9J0f4p6grms2ZBlRzRI6m5HdJPx390sheybCe
+ sfhwnukUn0WUCSiYl5weaTLPUdmMXz+wTL/+obBFw74KLX/BONey9aARemTLdplc
+ MjY75Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+ by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4160kc8dfh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 22 Aug 2024 10:38:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+ by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6EEE64002D;
+ Thu, 22 Aug 2024 10:38:50 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+ by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4FE2B24BCC0;
+ Thu, 22 Aug 2024 10:38:08 +0200 (CEST)
+Received: from [10.129.178.17] (10.129.178.17) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 22 Aug
+ 2024 10:38:07 +0200
+Message-ID: <47ff8e8d-b880-45a5-afd4-663df5480c99@foss.st.com>
+Date: Thu, 22 Aug 2024 10:38:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240816084109.GA229316@localhost.localdomain>
-X-Operating-System: Linux phenom 6.9.12-amd64 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 40/86] drm/stm: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, <daniel@ffwll.ch>,
+ <airlied@gmail.com>, <jfalempe@redhat.com>, <javierm@redhat.com>
+CC: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>,
+ Yannick Fertre <yannick.fertre@foss.st.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-41-tzimmermann@suse.de>
+Content-Language: en-US
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20240821130348.73038-41-tzimmermann@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.129.178.17]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-22_03,2024-08-19_03,2024-05-17_01
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,294 +85,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 16, 2024 at 10:41:09AM +0200, Thomas Zimmermann wrote:
-> Hi Dave, Sima,
-> 
-> this is the weekly PR for drm-misc-next. Mostly small cleanups and
-> improvements. Rockchip received support for more modes and displays.
-> 
-> Best regards
-> Thomas
-> 
-> drm-misc-next-2024-08-16:
-> drm-misc-next for v6.12:
-> 
-> Core Changes:
-> 
-> ci:
-> - Update dependencies
-> 
-> docs:
-> - Cleanups
-> 
-> edid:
-> - Improve debug logging
-> - Clean up interface
-> 
-> fbdev emulation:
-> - Remove old fbdev hooks
-> - Update documentation
-> 
-> panic:
-> - Cleanups
-> 
-> Driver Changes:
-> 
-> amdgpu:
-> - Remove usage of old fbdev hooks
-> - Use backlight constants
-> 
-> ast:
-> - Fix timeout loop for DP link training
-> 
-> hisilicon:
-> - hibmc: Cleanups
-> 
-> mipi-dsi:
-> - Improve error handling
-> - startek-kd070fhfid015: Use new error handling
-> 
-> nouveau:
-> - Remove usage of old fbdev hooks
-> 
-> panel:
-> - Use backlight constants
-> 
-> radeon:
-> - Use backlight constants
-> 
-> rockchip:
-> - Improve DP sink-capability reporting
-> - Cleanups
-> - dw_hdmi: Support 4k@60Hz; Cleanups
-> - vop: Support RGB display on Rockchip RK3066; Support 4096px width
-> 
-> tilcdc:
-> - Use backlight constants
-> The following changes since commit 4e996697a443a214887ef81b008c344d183b5659:
-> 
->   Merge tag 'drm-misc-next-2024-08-09' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2024-08-09 10:41:59 +0200)
-> 
-> are available in the Git repository at:
-> 
->   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-08-16
 
-Pulled into drm-next, thanks!
--Sima
-> 
-> for you to fetch changes up to 8befe8fa5a4e4b30787b17e078d9d7b5cb92ea19:
-> 
->   drm/tilcdc: Use backlight power constants (2024-08-16 09:28:01 +0200)
-> 
-> ----------------------------------------------------------------
-> drm-misc-next for v6.12:
-> 
-> Core Changes:
-> 
-> ci:
-> - Update dependencies
-> 
-> docs:
-> - Cleanups
-> 
-> edid:
-> - Improve debug logging
-> - Clean up interface
-> 
-> fbdev emulation:
-> - Remove old fbdev hooks
-> - Update documentation
-> 
-> panic:
-> - Cleanups
-> 
-> Driver Changes:
-> 
-> amdgpu:
-> - Remove usage of old fbdev hooks
-> - Use backlight constants
-> 
-> ast:
-> - Fix timeout loop for DP link training
-> 
-> hisilicon:
-> - hibmc: Cleanups
-> 
-> mipi-dsi:
-> - Improve error handling
-> - startek-kd070fhfid015: Use new error handling
-> 
-> nouveau:
-> - Remove usage of old fbdev hooks
-> 
-> panel:
-> - Use backlight constants
-> 
-> radeon:
-> - Use backlight constants
-> 
-> rockchip:
-> - Improve DP sink-capability reporting
-> - Cleanups
-> - dw_hdmi: Support 4k@60Hz; Cleanups
-> - vop: Support RGB display on Rockchip RK3066; Support 4096px width
-> 
-> tilcdc:
-> - Use backlight constants
-> 
-> ----------------------------------------------------------------
-> Alex Bee (1):
->       drm/rockchip: vop: Allow 4096px width scaling
-> 
-> Andy Shevchenko (1):
->       drm: fixed: Don't use "proxy" headers
-> 
-> Christophe JAILLET (1):
->       drm/rockchip: Constify struct drm_encoder_helper_funcs
-> 
-> Cristian Ciocaltea (5):
->       drm/rockchip: Explicitly include bits header
->       drm/rockchip: dw_hdmi: Use modern drm_device based logging
->       drm/rockchip: dw_hdmi: Simplify clock handling
->       drm/rockchip: dw_hdmi: Use devm_regulator_get_enable()
->       drm/rockchip: dw_hdmi: Drop superfluous assignments of mpll_cfg, cur_ctr and phy_config
-> 
-> Dan Carpenter (1):
->       drm/ast: astdp: fix loop timeout check
-> 
-> Daniel Yang (1):
->       drm/connector: kerneldoc: Fix two missing newlines in drm_connector.c
-> 
-> Dragan Simic (1):
->       drm/rockchip: cdn-dp: Clean up a few logged messages
-> 
-> Jani Nikula (4):
->       drm/edid: reduce DisplayID log spamming
->       drm/rockchip: cdn-dp: get rid of drm_edid_raw()
->       drm/i915/gvt: stop using drm_edid_block_valid()
->       drm/edid: make drm_edid_block_valid() static
-> 
-> Jocelyn Falempe (5):
->       drm/panic: Remove space before "!" in panic message
->       drm/panic: Remove useless export symbols
->       drm/panic: Move drm_panic_register prototype to drm_crtc_internal.h
->       drm/panic: Move copyright notice to the top
->       drm/panic: Add panic description
-> 
-> Jonas Karlman (3):
->       drm/rockchip: dw_hdmi: Fix reading EDID when using a forced mode
->       drm/rockchip: dw_hdmi: Allow High TMDS Bit Rates
->       drm/rockchip: dw_hdmi: Add max_tmds_clock validation
-> 
-> Louis Chauvet (1):
->       drm/vkms: Formatting and typo fix
-> 
-> Mohammed Anees (1):
->       drm: Add missing documentation for struct drm_plane_size_hint
-> 
-> Tejas Vipin (2):
->       drm/mipi-dsi: add more multi functions for better error handling
->       drm/panel: startek-kd070fhfid015: transition to mipi_dsi wrapped functions
-> 
-> Thomas Zimmermann (18):
->       Merge drm/drm-next into drm-misc-next
->       drm: Do delayed switcheroo in drm_lastclose()
->       drm/amdgpu: Do not set struct drm_driver.lastclose
->       drm/nouveau: Do not set struct drm_driver.lastclose
->       drm/nouveau: Do not set struct drm_mode_config_funcs.output_poll_changed
->       drm/nouveau: Implement switcheroo reprobe with drm_client_dev_hotplug()
->       drm/fbdev-helper: Update documentation on obsolete callbacks
->       drm/fbdev-helper: Remove drm_fb_helper_output_poll_changed()
->       drm: Remove struct drm_driver.lastclose
->       drm: Remove struct drm_mode_config_funcs.output_poll_changed
->       drm/amdgpu: Use backlight power constants
->       drm/panel: panel-novatak-nt35510: Use backlight power constants
->       drm/panel: panel-orisetech-otm8009a: Use backlight power constants
->       drm/panel: panel-samsung-s6e63j0x03: Use backlight power constants
->       drm/panel: panel-samsung-s6e3ha2: Use backlight power constants
->       drm/panel: panel-sony-acx565akm: Use backlight power constants
->       drm/radeon: Use backlight power constants
->       drm/tilcdc: Use backlight power constants
-> 
-> Val Packett (2):
->       drm/rockchip: vop: clear DMA stop bit on RK3066
->       drm/rockchip: vop: enable VOP_FEATURE_INTERNAL_RGB on RK3066
-> 
-> Vignesh Raman (1):
->       drm/ci: uprev mesa
-> 
-> WangYuli (1):
->       drm/ci: Upgrade setuptools requirement to 70.0.0
-> 
-> Zhang Zekun (1):
->       drm/hisilicon: Remove unused delarations
-> 
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h                |   1 -
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |   2 -
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |  17 --
->  drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |   2 +-
->  drivers/gpu/drm/ast/ast_dp.c                       |  15 +-
->  drivers/gpu/drm/ci/container.yml                   |   8 +
->  drivers/gpu/drm/ci/gitlab-ci.yml                   |  22 +--
->  drivers/gpu/drm/ci/image-tags.yml                  |   8 +-
->  drivers/gpu/drm/ci/lava-submit.sh                  |   1 +
->  drivers/gpu/drm/ci/test.yml                        |   4 +-
->  drivers/gpu/drm/ci/xfails/requirements.txt         |   2 +-
->  drivers/gpu/drm/drm_connector.c                    |   4 +
->  drivers/gpu/drm/drm_crtc_internal.h                |   4 +
->  drivers/gpu/drm/drm_displayid.c                    |   3 -
->  drivers/gpu/drm/drm_edid.c                         |  22 +--
->  drivers/gpu/drm/drm_fb_helper.c                    |  37 +---
->  drivers/gpu/drm/drm_file.c                         |  32 ++--
->  drivers/gpu/drm/drm_internal.h                     |   1 -
->  drivers/gpu/drm/drm_mipi_dsi.c                     | 194 +++++++++++++++++++++
->  drivers/gpu/drm/drm_panic.c                        |  62 +++++--
->  drivers/gpu/drm/drm_probe_helper.c                 |  10 +-
->  drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h    |   1 -
->  drivers/gpu/drm/i915/gvt/kvmgt.c                   |  18 +-
->  drivers/gpu/drm/nouveau/dispnv50/disp.c            |   1 -
->  drivers/gpu/drm/nouveau/nouveau_display.c          |   1 -
->  drivers/gpu/drm/nouveau/nouveau_drm.c              |   1 -
->  drivers/gpu/drm/nouveau/nouveau_vga.c              |  10 +-
->  drivers/gpu/drm/nouveau/nouveau_vga.h              |   1 -
->  drivers/gpu/drm/panel/panel-novatek-nt35510.c      |   2 +-
->  drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |   4 +-
->  drivers/gpu/drm/panel/panel-samsung-s6e3ha2.c      |  10 +-
->  drivers/gpu/drm/panel/panel-samsung-s6e63j0x03.c   |  10 +-
->  drivers/gpu/drm/panel/panel-sony-acx565akm.c       |   2 +-
->  .../gpu/drm/panel/panel-startek-kd070fhfid015.c    | 115 ++++--------
->  drivers/gpu/drm/radeon/atombios_encoders.c         |   2 +-
->  drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |   2 +-
->  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |   2 +-
->  drivers/gpu/drm/rockchip/cdn-dp-core.c             |  32 ++--
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 107 +++++-------
->  drivers/gpu/drm/rockchip/inno_hdmi.c               |   2 +-
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   3 +-
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |   8 +-
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.h        |   1 +
->  drivers/gpu/drm/rockchip/rockchip_vop_reg.c        |   2 +
->  drivers/gpu/drm/tilcdc/tilcdc_panel.c              |   2 +-
->  drivers/gpu/drm/vkms/vkms_drv.c                    |   6 +-
->  drivers/gpu/vga/vga_switcheroo.c                   |   3 +-
->  include/drm/drm_drv.h                              |  28 ---
->  include/drm/drm_edid.h                             |   2 -
->  include/drm/drm_fb_helper.h                        |   6 -
->  include/drm/drm_fixed.h                            |   3 +-
->  include/drm/drm_mipi_dsi.h                         |  10 ++
->  include/drm/drm_mode_config.h                      |  16 --
->  include/drm/drm_panic.h                            |  21 +--
->  include/uapi/drm/drm_mode.h                        |   2 +
->  55 files changed, 471 insertions(+), 416 deletions(-)
-> 
-> -- 
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstrasse 146, 90461 Nuernberg, Germany
-> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-> HRB 36809 (AG Nuernberg)
+On 8/21/24 14:59, Thomas Zimmermann wrote:
+> Call drm_client_setup_with-fourcc() to run the kernel's default client
+> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> v2:
+> - use drm_client_setup_with_fourcc()
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Yannick Fertre <yannick.fertre@foss.st.com>
+> Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> Cc: Philippe Cornu <philippe.cornu@foss.st.com>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Acked-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Hi Thomas,
+
+Thanks for this work.
+
+Again for v2:
+Acked-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+
+Regards,
+Raphaël
+
