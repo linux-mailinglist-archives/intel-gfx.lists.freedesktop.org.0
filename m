@@ -2,87 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A725395ADB5
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 08:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2F1895AE4C
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 08:58:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D114810E763;
-	Thu, 22 Aug 2024 06:39:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="T6LKT4Hs";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8161910E78E;
+	Thu, 22 Aug 2024 06:58:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CA0C10E763
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 06:39:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1724308743;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=opGg6/BWhtL5WACV1y1lk17vbvidiAf6fU2jwHA8Plc=;
- b=T6LKT4Hsvi81XslR4/8m3WKhfOxPBi0h3HwGRK+dZEl8OHfT/+Qpg2djsr8q5hfnZ8TdDa
- oy7lACuYvAng4SPrTG8lSKDsSA5WrZP3TTXt7SnWEGfStrqt8HgXgcOIfX2xTgFnqGUEzY
- FvaoxpeHK6f1u7IriwyY1e9VBK4hagw=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-358-7x6IIWBEMR2v4_uaI9gXwQ-1; Thu, 22 Aug 2024 02:39:02 -0400
-X-MC-Unique: 7x6IIWBEMR2v4_uaI9gXwQ-1
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-42817980766so3131305e9.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Aug 2024 23:39:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724308741; x=1724913541;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=opGg6/BWhtL5WACV1y1lk17vbvidiAf6fU2jwHA8Plc=;
- b=REEZuoa3CBWgdvRsnbd0jnHt8RuFONSxnPyVjLyHGNH1408SJE/IfIBdX1LpiRe9w6
- zxTZ//fJrOJWiHs1UqZ8TTSYSePd2QDYcv9hfkeFDw1E0PszETk9ivvjPiRIqcbgbFBT
- DneTJrajpPc2Zf1uaj4lDnjRwzZc3HxaeO/oELPxJDJP+ktEegdGtK1fwd+CTAyL9QwX
- E3ecMjJ7+bcBTYAmGW1nWLhPxnS8SI2AkG89lJoBCJXMVu04/sBw9whSN+jlSjSvgV6F
- MCDoeT+jRypQ9YTTSJxvdM6fIyc2nwEDQlT3oZdiFOpVh0XvXkFW+cDSph2PqZJtUJyB
- TccA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVJBG06WoYLlj3YRjXHXF1nWTbH6lRVwMloVMVuZ29xvXMHZJxuDuFguGf6BeWvQyiudftrjGOdimc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyitFrExZ5dr8QCI+Gz95O4fHRJOrpkPGlQ3Xib8IPXMhuUPYlU
- 7WrBWyDHS4Yeqjve6H6iprA8gJmvpwa/HUFYHA75CzGGvyyygb8/L/ydy/w7DF2UdjO4UrKrapV
- OjkiU0dzKQOX7N/IsN+nr6HzEjvY9GLqkB1OCaITu0aWyeSttiLvFREjqfjFlXDbj3w==
-X-Received: by 2002:a05:600c:4445:b0:426:629f:1556 with SMTP id
- 5b1f17b1804b1-42ac564e997mr5432125e9.31.1724308740901; 
- Wed, 21 Aug 2024 23:39:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHNSJ+B67xvaGtjlYSDRu+Bj+yxQk9e7g47HD9d837R1mmSh16JUoPKQQQ2x1Jtyx01W4ZulA==
-X-Received: by 2002:a05:600c:4445:b0:426:629f:1556 with SMTP id
- 5b1f17b1804b1-42ac564e997mr5431995e9.31.1724308740507; 
- Wed, 21 Aug 2024 23:39:00 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
- ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42abed8b8b9sm48526185e9.9.2024.08.21.23.38.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 21 Aug 2024 23:39:00 -0700 (PDT)
-Message-ID: <0b93ac2d-b1dd-4ad4-91a0-0f3c49365190@redhat.com>
-Date: Thu, 22 Aug 2024 08:38:59 +0200
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A741310E78E;
+ Thu, 22 Aug 2024 06:58:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7305451726412215455=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 56/86] drm/mgag200: Run DRM default client setup
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
-References: <20240821130348.73038-1-tzimmermann@suse.de>
- <20240821130348.73038-57-tzimmermann@suse.de>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20240821130348.73038-57-tzimmermann@suse.de>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Do_not_explicil?=
+ =?utf-8?q?ty_enable_FEC_in_DP=5FTP=5FCTL_for_UHBR_rates?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 Aug 2024 06:58:42 -0000
+Message-ID: <172430992267.724138.16509716227760196722@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,74 +37,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21/08/2024 14:59, Thomas Zimmermann wrote:
-> Call drm_client_setup_with_fourcc() to run the kernel's default client
-> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
+--===============7305451726412215455==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for this whole series.
+== Series Details ==
 
-Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+Series: drm/i915: Do not explicilty enable FEC in DP_TP_CTL for UHBR rates
+URL   : https://patchwork.freedesktop.org/series/137611/
+State : success
 
-> 
-> v2:
-> - use drm_client_setup_with_fourcc()
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> ---
->   drivers/gpu/drm/drm_client_setup.c    | 2 +-
->   drivers/gpu/drm/mgag200/mgag200_drv.c | 5 ++++-
->   2 files changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_client_setup.c b/drivers/gpu/drm/drm_client_setup.c
-> index c8ca5afaa47a..5373a892f097 100644
-> --- a/drivers/gpu/drm/drm_client_setup.c
-> +++ b/drivers/gpu/drm/drm_client_setup.c
-> @@ -64,6 +64,6 @@ void drm_client_setup_with_color_mode(struct drm_device *dev, unsigned int color
->   {
->   	u32 fourcc = drm_driver_color_mode_format(dev, color_mode);
->   
-> -	drm_client_setup_with_fourcc(dev, fmt);
-> +	drm_client_setup_with_fourcc(dev, fourcc);
->   }
->   EXPORT_SYMBOL(drm_client_setup_with_color_mode);
-> diff --git a/drivers/gpu/drm/mgag200/mgag200_drv.c b/drivers/gpu/drm/mgag200/mgag200_drv.c
-> index 6623ee4e3277..29087e2398df 100644
-> --- a/drivers/gpu/drm/mgag200/mgag200_drv.c
-> +++ b/drivers/gpu/drm/mgag200/mgag200_drv.c
-> @@ -11,9 +11,11 @@
->   
->   #include <drm/drm_aperture.h>
->   #include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_client_setup.h>
->   #include <drm/drm_drv.h>
->   #include <drm/drm_fbdev_shmem.h>
->   #include <drm/drm_file.h>
-> +#include <drm/drm_fourcc.h>
->   #include <drm/drm_ioctl.h>
->   #include <drm/drm_managed.h>
->   #include <drm/drm_module.h>
-> @@ -129,6 +131,7 @@ static const struct drm_driver mgag200_driver = {
->   	.minor = DRIVER_MINOR,
->   	.patchlevel = DRIVER_PATCHLEVEL,
->   	DRM_GEM_SHMEM_DRIVER_OPS,
-> +	DRM_FBDEV_SHMEM_DRIVER_OPS,
->   };
->   
->   /*
-> @@ -314,7 +317,7 @@ mgag200_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->   	 * FIXME: A 24-bit color depth does not work with 24 bpp on
->   	 * G200ER. Force 32 bpp.
->   	 */
-> -	drm_fbdev_shmem_setup(dev, 32);
-> +	drm_client_setup_with_fourcc(dev, DRM_FORMAT_XRGB8888);
->   
->   	return 0;
->   }
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_15275 -> Patchwork_137611v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/index.html
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Additional (1): fi-cfl-8109u 
+  Missing    (5): fi-bsw-n3050 fi-snb-2520m fi-elk-e7500 fi-kbl-8809g bat-dg2-11 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137611v1 that come from known issues:
+
+### CI changes ###
+
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][1] ([i915#2190])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#180] / [i915#9925])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/fi-kbl-7567u/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-kbl-7567u/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-7567u:       [PASS][5] -> [DMESG-WARN][6] ([i915#11621] / [i915#180] / [i915#1982] / [i915#9925])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-2:         [PASS][7] -> [DMESG-WARN][8] ([i915#11349])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/bat-arls-2/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-kbl-7567u:       [PASS][9] -> [DMESG-WARN][10] ([i915#11621]) +36 other tests dmesg-warn
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - fi-cfl-8109u:       NOTRUN -> [SKIP][11] +11 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#11983]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11983
+  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#9925]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15275 -> Patchwork_137611v1
+
+  CI-20190529: 20190529
+  CI_DRM_15275: 4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7983: b2e17acf37471073210221724a66d164328dee98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_137611v1: 4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/index.html
+
+--===============7305451726412215455==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Do not explicilty enable FEC in DP_TP_CTL for UHBR rates</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137611/">https://patchwork.freedesktop.org/series/137611/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15275 -&gt; Patchwork_137611v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 37)</h2>
+<p>Additional (1): fi-cfl-8109u <br />
+  Missing    (5): fi-bsw-n3050 fi-snb-2520m fi-elk-e7500 fi-kbl-8809g bat-dg2-11 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137611v1 that come from known issues:</p>
+<h3>CI changes</h3>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-cfl-8109u/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/fi-kbl-7567u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-kbl-7567u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15275/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a>) +36 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137611v1/fi-cfl-8109u/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> +11 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15275 -&gt; Patchwork_137611v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15275: 4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7983: b2e17acf37471073210221724a66d164328dee98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_137611v1: 4c294bd7d8c84305dbb1de1aa9e010818e3f4b7e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7305451726412215455==--
