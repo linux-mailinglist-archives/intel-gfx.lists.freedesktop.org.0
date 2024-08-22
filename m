@@ -2,65 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6C195ACF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 07:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2226895AD54
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 08:19:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3A510E717;
-	Thu, 22 Aug 2024 05:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B270710E72F;
+	Thu, 22 Aug 2024 06:19:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jx94o4qO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZXJtcDE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F7610E717;
- Thu, 22 Aug 2024 05:40:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0176A10E72F;
+ Thu, 22 Aug 2024 06:19:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724305210; x=1755841210;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=pMLmIVgRCimaMvw3QQYDT7GtgFDlKAo0xd7BaiYwLcA=;
- b=Jx94o4qO9Dh2C+flNS+MOwFs/gGgFPe+BIsEQWW/d6Sfxl29vC2+ciBd
- XriQtLaIoXRf5C/+0NkVBDmV7VLl+feb4gHnJr6M4uO8YLP1KRpIsNiBH
- ZxUJfOeWy0rDNiSltWKI/mnJX7Ja97v2W1vssC/iYOi1YMRRa/NEPHTzX
- 71GB22PiKyzt9Cdsv9tMti6OENPo17bJ9EsMdMXtZK9FKvIfzBf0ptbLX
- 464Kx5GGfr5BXeSzmkoySaejWwcyEqz3BCVaeydqtHGXcMpNa2/fWzgXK
- CUbm0A6izPLDOSpCWTWzlDbNb0hBZ1JwzS50GV64mOVLdYKU24Zv2cejg g==;
-X-CSE-ConnectionGUID: L+xSZz9kT8+nGteRTi3PZg==
-X-CSE-MsgGUID: lWbB9HEfTem19nD0C7nMLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22568627"
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="22568627"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 22:40:10 -0700
-X-CSE-ConnectionGUID: 0bFdEoI9SFmZ1uUbZEjIHQ==
-X-CSE-MsgGUID: 6NBiHtTWQ8uy9M1v03KP2g==
+ t=1724307583; x=1755843583;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rYrzrc60ImHJhcZlCgQIVRmTeObP1D8MTTzIf7j0FZU=;
+ b=PZXJtcDEljowY10JMjlg3QdnpOzMvSZxWiTq0YyKHgN9Y6s4yGEVnbjl
+ JqsUY2XkN++hxBRdbp0N81W3qUz14ovoLCm4kpEVGIffr57vyrOMFk5u2
+ ICewUn06ovAEPY5szaGuAxZPrvuOTkGMQoBUvq+qk8WTymC7rVnT2e9zb
+ 5ekO+OG3tLgjHSVEa6qr5oMpPhgxyXJh7cDEPA0vwNYnPDUsLkoN7Ym8j
+ vsoArVudMaiF14OMhc5qnX9RYcHf8oKRl3vA/N7sObv8mk+6Og8FChY9l
+ tW8KG63Qxzf/XDPjGZnkiQNVi2eo+1DA094Vnu4ZYO2+gocrpEknxx16V A==;
+X-CSE-ConnectionGUID: V790oDPcTMGvId6LrG2pjw==
+X-CSE-MsgGUID: 0Waf9QGkQHyRDgsZ99Zi7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22871433"
+X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="22871433"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2024 23:19:42 -0700
+X-CSE-ConnectionGUID: LUdOA60AQT6ZrLVZmsVDxg==
+X-CSE-MsgGUID: rAukABtKSuSmSrThtjL0fg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="61314410"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO localhost)
- ([10.245.244.53])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2024 22:40:05 -0700
-Date: Thu, 22 Aug 2024 08:40:02 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <ZsbPMm6XfzimmZW0@jlahtine-mobl.ger.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="61192693"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa010.jf.intel.com with ESMTP; 21 Aug 2024 23:19:40 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, chaitanya.kumar.borah@intel.com, jani.nikula@intel.com
+Subject: [PATCH] drm/i915: Do not explicilty enable FEC in DP_TP_CTL for UHBR
+ rates
+Date: Thu, 22 Aug 2024 11:44:48 +0530
+Message-Id: <20240822061448.4085693-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,38 +66,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+In case of UHBR rates, we do not need to explicitly enable FEC by writing
+to DP_TP_CTL register.
+For MST use-cases, intel_dp_mst_find_vcpi_slots_for_bpp() takes care of
+setting fec_enable to false. However, it gets overwritten in
+intel_dp_dsc_compute_config(). This change keeps fec_enable false across
+MST and SST use-cases for UHBR rates.
 
-Here goes drm-intel-fixes towards v6.11-rc5.
+While at it, add a comment explaining why we don't enable FEC in eDP v1.5.
 
-Just one HDCP timeout fix this week.
+v2: Correct logic to cater to SST use-cases (Jani)
 
-Regards, Joonas
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-***
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 49a37b996530..de30eaacd9b4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2298,9 +2298,15 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 		&pipe_config->hw.adjusted_mode;
+ 	int ret;
+ 
++	/*
++	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
++	 * Since, FEC is a bandwidth overhead, continue to not enable it for
++	 * eDP. Until, there is a good reason to do so.
++	 */
+ 	pipe_config->fec_enable = pipe_config->fec_enable ||
+ 		(!intel_dp_is_edp(intel_dp) &&
+-		 intel_dp_supports_fec(intel_dp, connector, pipe_config));
++		 intel_dp_supports_fec(intel_dp, connector, pipe_config) &&
++		 !intel_dp_is_uhbr(pipe_config));
+ 
+ 	if (!intel_dp_supports_dsc(connector, pipe_config))
+ 		return -EINVAL;
+-- 
+2.25.1
 
-drm-intel-fixes-2024-08-22:
-
-- Fix for HDCP timeouts
-
-The following changes since commit 47ac09b91befbb6a235ab620c32af719f8208399:
-
-  Linux 6.11-rc4 (2024-08-18 13:17:27 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-08-22
-
-for you to fetch changes up to 5d41eeb6725e3e24853629e5d7635e4bc45d736e:
-
-  drm/i915/hdcp: Use correct cp_irq_count (2024-08-19 06:40:57 +0300)
-
-----------------------------------------------------------------
-- Fix for HDCP timeouts
-
-----------------------------------------------------------------
-Suraj Kandpal (1):
-      drm/i915/hdcp: Use correct cp_irq_count
-
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
