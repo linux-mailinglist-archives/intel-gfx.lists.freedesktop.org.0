@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B65095BCE6
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 19:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C977A95BD25
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 19:28:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB3C10E0BF;
-	Thu, 22 Aug 2024 17:14:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D5B10EB86;
+	Thu, 22 Aug 2024 17:28:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bdxMeWbW";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E688410E0BF;
- Thu, 22 Aug 2024 17:14:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2429943687411131819=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B69410EB82;
+ Thu, 22 Aug 2024 17:28:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724347727; x=1755883727;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=13WVoDN3zOhItlMMCyN95HOgXx+zyuwsOHX2lwg/Eec=;
+ b=bdxMeWbWVLexzllKQUZJdlPashBS5P6zdHRI2P9I8bYtqRetbx0Q1dNM
+ J7ExsYIUVtAmORdT245PmhLTaTGiS0dTf9heLnuVtlaQXeA/JB5TU5pZb
+ uhXGLHZ/eo8GXbt9ChrLCACw8t2SwFK9XhJkbReIzQUJmb12mDAp6a/MN
+ VlRpAbhkewg/RuNThgU+ei2HVlka//SCvDbGiYFcdbt669WP3sna42eB5
+ zdaGbaIYJJSWCIVphxwv18gBHBMRh6+FQatnnmdadedTROOPT0DsFo1Vf
+ RNll1nNhmGik/EqwrG89MU3mwanAahSDxF2/RhM7OaxBFKi3vpzrS6fHN g==;
+X-CSE-ConnectionGUID: +Gx/rx4uRgK58CSm2oSdtA==
+X-CSE-MsgGUID: 1FmjxzngQm+iWbeTkQPFTA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33448224"
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="33448224"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 10:28:46 -0700
+X-CSE-ConnectionGUID: bBNv+x7YRkCj69uPaz4Muw==
+X-CSE-MsgGUID: 3jFypfL2Q1GADKRG/tom4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="61500997"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.104])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 10:28:44 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: [PATCH v2 00/15] CCS static load balance
+Date: Thu, 22 Aug 2024 19:28:17 +0200
+Message-ID: <20240822172832.494994-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_convers?=
- =?utf-8?q?ion_to_struct_intel=5Fdisplay?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 22 Aug 2024 17:14:11 -0000
-Message-ID: <172434685193.726611.13082619064827959534@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1724342644.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1724342644.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,195 +66,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2429943687411131819==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+This patch series introduces static load balancing for GPUs with
+multiple compute engines. It's a lengthy series, and some
+challenging aspects still need to be resolved.
 
-Series: drm/i915/display: conversion to struct intel_display
-URL   : https://patchwork.freedesktop.org/series/137654/
-State : success
+I have tried to split the work as much as possible to facilitate
+the review process.
 
-== Summary ==
+To summarize, in patches 1 to 14, no functional changes occur
+except for the addition of the num_cslices interface. The
+significant changes happen in patch 15, which is the core part of
+the CCS mode setting, utilizing the groundwork laid in the
+earlier patches.
 
-CI Bug Log - changes from CI_DRM_15280 -> Patchwork_137654v1
-====================================================
+In this updated approach, the focus is now on managing the UABI
+engine list, which controls the engines exposed to userspace.
+Instead of manipulating phuscal engines and their memory, we now
+handle engine exposure through this list.
 
-Summary
--------
+I would greatly appreciate further input from all reviewers who
+have already assisted with the previous work.
 
-  **SUCCESS**
+IGT tests have also been developed, but I haven't sent them yet.
 
-  No regressions found.
+Thank you Chris for the offline reviews.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/index.html
+Thanks,
+Andi
 
-Participating hosts (39 -> 38)
-------------------------------
+Changelog:
+==========
+PATCHv1 -> PATCHv2
+------------------
+ - Use uabi_mutex to protect the uabi_engines, not the engine
+   itself. Rename it to uabi_engines_mutex.
+ - Use kobject_add/kobject_del for adding and removing
+   interfaces, this way we don't need to destroy and recreate the
+   engines, anymore. Refactor intel_engine_add_single_sysfs() to
+   reflect this scenario.
+ - After adding engines to the rb_tree check that they have been
+   added correctly.
+ - Fix rb_find_add() compare function to take into accoung also
+   the class, not just the instance.
 
-  Additional (2): fi-kbl-8809g fi-bsw-n3050 
-  Missing    (3): fi-glk-j4005 fi-snb-2520m fi-elk-e7500 
+RFCv2 -> PATCHv1
+----------------
+ - Removed gt->ccs.mutex
+ - Rename m -> width, ccs_id -> engine in
+   intel_gt_apply_ccs_mode().
+ - In the CCS register value calculation
+   (intel_gt_apply_ccs_mode()) the engine (ccs_id) needs to move
+   along the ccs_mask (set by the user) instead of the
+   cslice_mask.
+ - Add GEM_BUG_ON after calculating the new ccs_mask
+   (update_ccs_mask()) to make sure all angines have been
+   evaluated (i.e. ccs_mask must be '0' at the end of the
+   algorithm).
+ - move wakeref lock before evaluating intel_gt_pm_is_awake() and
+   fix exit path accordingly.
+ - Use a more compact form in intel_gt_sysfs_ccs_init() and
+   add_uabi_ccs_engines() when evaluating sysfs_create_file(): no
+   need to store the return value to the err variable which is
+   unused. Get rid of err.
+ - Print a warnging instead of a debug message if we fail to
+   create the sysfs files.
+ - If engine files creation fails in
+   intel_engine_add_single_sysfs(), print a warning, not an
+   error.
+ - Rename gt->ccs.ccs_mask to gt->ccs.id_mask and add a comment
+   to explain its purpose.
+ - During uabi engine creation, in
+   intel_engines_driver_register(), the uabi_ccs_instance is
+   redundant because the ccs_instances is already tracked in
+   engine->uabi_instance.
+ - Mark add_uabi_ccs_engines() and remove_uabi_ccs_engines() as
+   __maybe_unused not to break bisectability. They wouldn't
+   compile in their own commit. They will be used in the next
+   patch and the __maybe_unused is removed.
+ - Update engine's workaround every time a new mode is set in
+   update_ccs_mask().
+ - Mark engines as valid or invalid using their status as
+   rb_node. Invalid engines are marked as invalid using
+   RB_CLEAR_NODE(). Execbufs will check for their validity when
+   selecting the engine to be combined to a context.
+ - Create for_each_enabled_engine() which skips the non valid
+   engines and use it in selftests.
 
-Known issues
-------------
+RFCv1 -> RFCv2
+--------------
+Compared to the first version I've taken a completely different
+approach to adding and removing engines. in v1 physical engines
+were directly added and removed, along with the memory allocated
+to them, each time the user changed the CCS mode (from the
+previous cover letter).
 
-  Here are the changes found in Patchwork_137654v1 that come from known issues:
+Andi Shyti (15):
+  drm/i915/gt: Avoid using masked workaround for CCS_MODE setting
+  drm/i915/gt: Move the CCS mode variable to a global position
+  drm/i915/gt: Allow the creation of multi-mode CCS masks
+  drm/i915/gt: Refactor uabi engine class/instance list creation
+  drm/i915/gem: Mark and verify UABI engine validity
+  drm/i915/gt: Introduce for_each_enabled_engine() and apply it in
+    selftests
+  drm/i915/gt: Manage CCS engine creation within UABI exposure
+  drm/i915/gt: Remove cslices mask value from the CCS structure
+  drm/i915/gt: Expose the number of total CCS slices
+  drm/i915/gt: Store engine-related sysfs kobjects
+  drm/i915/gt: Store active CCS mask
+  drm/i915: Protect access to the UABI engines list with a mutex
+  drm/i915/gt: Isolate single sysfs engine file creation
+  drm/i915/gt: Implement creation and removal routines for CCS engines
+  drm/i915/gt: Allow the user to change the CCS mode through sysfs
 
-### IGT changes ###
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |   3 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  28 +-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  23 --
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |   2 +
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |  62 ++-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   3 +
+ drivers/gpu/drm/i915/gt/intel_gt.h            |  12 +
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c   | 352 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.h   |   5 +-
+ drivers/gpu/drm/i915/gt/intel_gt_sysfs.c      |   2 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |  19 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |   8 +-
+ drivers/gpu/drm/i915/gt/selftest_context.c    |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c  |   4 +-
+ .../drm/i915/gt/selftest_engine_heartbeat.c   |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  52 +--
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c      |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  22 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        |  18 +-
+ drivers/gpu/drm/i915/gt/selftest_mocs.c       |   6 +-
+ drivers/gpu/drm/i915/gt/selftest_rc6.c        |   4 +-
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |   8 +-
+ .../drm/i915/gt/selftest_ring_submission.c    |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_rps.c        |  14 +-
+ drivers/gpu/drm/i915/gt/selftest_timeline.c   |  14 +-
+ drivers/gpu/drm/i915/gt/selftest_tlb.c        |   2 +-
+ .../gpu/drm/i915/gt/selftest_workarounds.c    |  14 +-
+ drivers/gpu/drm/i915/gt/sysfs_engines.c       |  79 ++--
+ drivers/gpu/drm/i915/gt/sysfs_engines.h       |   2 +
+ drivers/gpu/drm/i915/i915_cmd_parser.c        |   2 +
+ drivers/gpu/drm/i915/i915_debugfs.c           |   4 +
+ drivers/gpu/drm/i915/i915_drv.h               |   5 +
+ drivers/gpu/drm/i915/i915_gem.c               |   4 +
+ drivers/gpu/drm/i915/i915_perf.c              |   2 +
+ drivers/gpu/drm/i915/i915_pmu.c               |   4 +
+ drivers/gpu/drm/i915/i915_query.c             |   2 +
+ 37 files changed, 620 insertions(+), 183 deletions(-)
 
-#### Issues hit ####
+-- 
+2.45.2
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] +19 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][4] +30 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [DMESG-WARN][5] ([i915#11349]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15280/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
-  [i915#11343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343
-  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11666]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666
-  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#11723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723
-  [i915#11724]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11724
-  [i915#11725]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725
-  [i915#11726]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15280 -> Patchwork_137654v1
-
-  CI-20190529: 20190529
-  CI_DRM_15280: 882c26c7017bdcc4eca493c7bf1ffb034d40be02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7983: b2e17acf37471073210221724a66d164328dee98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_137654v1: 882c26c7017bdcc4eca493c7bf1ffb034d40be02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/index.html
-
---===============2429943687411131819==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: conversion to struct intel_display</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137654/">https://patchwork.freedesktop.org/series/137654/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15280 -&gt; Patchwork_137654v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Additional (2): fi-kbl-8809g fi-bsw-n3050 <br />
-  Missing    (3): fi-glk-j4005 fi-snb-2520m fi-elk-e7500 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_137654v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15280/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137654v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15280 -&gt; Patchwork_137654v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15280: 882c26c7017bdcc4eca493c7bf1ffb034d40be02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7983: b2e17acf37471073210221724a66d164328dee98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_137654v1: 882c26c7017bdcc4eca493c7bf1ffb034d40be02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2429943687411131819==--
