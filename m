@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4234495B29B
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 12:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ACD295B335
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 12:52:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 678BB10E84B;
-	Thu, 22 Aug 2024 10:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 484DF10E84E;
+	Thu, 22 Aug 2024 10:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bc2LMyDR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmaJ1YfG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE39610E86A
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 10:07:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E262B10E84E;
+ Thu, 22 Aug 2024 10:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724321235; x=1755857235;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=+YzNmkCSDdvYV0aOWfn2Y0H4WGiF6rt+KiKLzIruPhI=;
- b=bc2LMyDRTZ7fnRVEc4Rfi98B/DyYBP5bvai3Kt1Mt2A0gPmLZiRsdOS6
- xoz4RDmIuR1ZJtccEEZtnVXGCGT1Z4B8gP8XVQbX+sIalHoFqUigUl9GM
- 69S+BwGg+E8CufrRTOGN6oBB7FkkIA+iqdTLToc1h912b4TzVOFZs1B/W
- peaaD47KKg3C0cK6ZeFcYwGoBCJtm8XN3ybpppLLt8LTF3AH9IFdjWuky
- UBRofrj2nzxf0IlL0zwmVOZKX56LKrXcgel86k6t9j/xK81rjXOVwrWQY
- rjSJo7+wydU5aWZQwBGzsQPL8LlR2+IGh9EE+eQG1NQ1xGPI9VyKKYUNn g==;
-X-CSE-ConnectionGUID: o519chCuQs29qwn6GSHmmg==
-X-CSE-MsgGUID: Ob3rAmgPQcKiOksOgaFgPw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22877985"
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="22877985"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ t=1724323945; x=1755859945;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UbOgD7BtPHsmjwDsx2lC5cPs62Us2y/HV4GX0Wphvj0=;
+ b=VmaJ1YfGE23U5tSmsoTwnV3RXzJORUT46RkusMCAEyHl1MaNgVZzlH7A
+ 6zcf7FmjjatVU1x35U/hiZ4zViF+/2AbR1kYy8sOV9dWbZUzFmBkCEo94
+ n/xF+wn88CukDcqp+Z/sg8MZuS+eHfHpsyABTXfyADGsT2dEt0x9GKEsR
+ w9Hrq8fjRUxuovZqsvJ3KjeLwk5WLzsRU9f2RvDbCAQ/jR3A3W5q0QPol
+ AxTcU2l5wT18xTKKgPAxYplrYW3IFhgFBAEysTkl+pI9GUlvd1Yzn/IUl
+ hQ+CzyGphnyGl/PV5PenLViS5CNq5/BoF5bNUwNmx1VmcaxyvF1KdAYBb A==;
+X-CSE-ConnectionGUID: /SkEjSOXSEKvMzR4iECqQw==
+X-CSE-MsgGUID: wBae4Ay4Q6Gnoz32xBOa7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22881818"
+X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="22881818"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 03:07:15 -0700
-X-CSE-ConnectionGUID: sEYPn8iZTl24o9Fc+V4rNg==
-X-CSE-MsgGUID: oofTQ4FdTi2HasNvgvM9mQ==
+ 22 Aug 2024 03:52:25 -0700
+X-CSE-ConnectionGUID: OFoK22DPQICKIWoKJvFdtw==
+X-CSE-MsgGUID: pvlGgsbpRcOm8zb3JllX8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="92187383"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 03:07:13 -0700
-Date: Thu, 22 Aug 2024 13:07:33 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/dp_mst: Fix MST state after a sink reset
-Message-ID: <ZscN5TlMcAzIcSrS@ideak-desk.fi.intel.com>
-References: <20240724161223.2291853-1-imre.deak@intel.com>
- <87ttfe3qn4.fsf@intel.com>
- <ZsX44RvNJ96cAV0i@ideak-desk.fi.intel.com>
- <87frqw513w.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; d="scan'208";a="66226251"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.121])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 03:52:22 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH 00/10] drm/i915/display: identify display steppings in
+ display code
+In-Reply-To: <cover.1724180287.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1724180287.git.jani.nikula@intel.com>
+Date: Thu, 22 Aug 2024 13:52:18 +0300
+Message-ID: <87cym04yot.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87frqw513w.fsf@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,130 +66,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 22, 2024 at 01:00:03PM +0300, Jani Nikula wrote:
-> On Wed, 21 Aug 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > On Wed, Aug 21, 2024 at 05:19:11PM +0300, Jani Nikula wrote:
-> >> On Wed, 24 Jul 2024, Imre Deak <imre.deak@intel.com> wrote:
-> >> > In some cases the sink can reset itself after it was configured into MST
-> >> > mode, without the driver noticing the disconnected state. For instance
-> >> > the reset may happen in the middle of a modeset, or the (long) HPD pulse
-> >> > generated may be not long enough for the encoder detect handler to
-> >> > observe the HPD's deasserted state. In this case the sink's DPCD
-> >> > register programmed to enable MST will be reset, while the driver still
-> >> > assumes MST is still enabled. Detect this condition, which will tear
-> >> > down and recreate/re-enable the MST topology.
-> >> >
-> >> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11195
-> >> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_dp.c     |  3 +++
-> >> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 30 +++++++++++++++++++++
-> >> >  drivers/gpu/drm/i915/display/intel_dp_mst.h |  1 +
-> >> >  3 files changed, 34 insertions(+)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > index 1e43e32e05199..c621f6daf8235 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> > @@ -5878,6 +5878,9 @@ intel_dp_detect(struct drm_connector *connector,
-> >> >  	else
-> >> >  		status = connector_status_disconnected;
-> >> >  
-> >> > +	if (!intel_dp_mst_verify_dpcd_state(intel_dp))
-> >> > +		status = connector_status_disconnected;
-> >> > +
-> >> 
-> >> So I still don't understand. We've got a detect which we've determined
-> >> is connected. But then we disconnect because the sink state has changed.
-> >> 
-> >> How do we get another connect?
-> >
-> > The detect in this case will be retried with a 1 sec delay, since the
-> > mode changes back to SST and the connector state stays disconnected.
-> 
-> What exactly triggers the retry? I don't see this triggering the
-> INTEL_HOTPLUG_RETRY case.
+On Tue, 20 Aug 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> Use a Single Point of Truth for display stepping detection instead of
+> duplicating in i915 and xe.
 
-drm_connector::status is connector_status_disconnected before the detect
-(as always for an MST root connector) and it stays
-connector_status_disconnected. The connector's mode will also change to
-SST (intel_dp::is_mst from true to false). This condition will lead to
-the detect getting retried.
+Lucas, Rodrigo, ack for merging this via drm-intel-next?
 
-A detect will actually happen in any case, since removing the MST
-connectors results in a (global) hotplug uevent being sent, to which
-userspace should respond with re-probing all connectors.
+BR,
+Jani.
 
-> I'm just trying to understand, please bear with me.
-> 
+
+
+>
 > BR,
 > Jani.
-> 
-> 
-> >
-> >> BR,
-> >> Jani.
-> >> 
-> >> 
-> >> >  	if (status == connector_status_disconnected) {
-> >> >  		memset(&intel_dp->compliance, 0, sizeof(intel_dp->compliance));
-> >> >  		memset(intel_connector->dp.dsc_dpcd, 0, sizeof(intel_connector->dp.dsc_dpcd));
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> > index 27ce5c3f5951e..89b147e37b400 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> >> > @@ -1998,3 +1998,33 @@ bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
-> >> >  
-> >> >  	return false;
-> >> >  }
-> >> > +
-> >> > +/**
-> >> > + * intel_dp_mst_verify_dpcd_state - verify the MST SW enabled state wrt. the DPCD
-> >> > + * @intel_dp: DP port object
-> >> > + *
-> >> > + * Verify if @intel_dp's MST enabled SW state matches the corresponding DPCD
-> >> > + * state. A long HPD pulse -not long enough to be detected as a disconnected
-> >> > + * state - could've reset the DPCD state, which requires tearing
-> >> > + * down/recreating the MST topology.
-> >> > + *
-> >> > + * Returns %true if the SW MST enabled and DPCD states match, %false
-> >> > + * otherwise.
-> >> > + */
-> >> > +bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp)
-> >> > +{
-> >> > +	int ret;
-> >> > +	u8 val;
-> >> > +
-> >> > +	if (!intel_dp->is_mst)
-> >> > +		return true;
-> >> > +
-> >> > +	ret = drm_dp_dpcd_readb(intel_dp->mst_mgr.aux, DP_MSTM_CTRL, &val);
-> >> > +	if (ret < 0)
-> >> > +		return false;
-> >> > +
-> >> > +	if (val != (DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC))
-> >> > +		return false;
-> >> > +
-> >> > +	return true;
-> >> > +}
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> >> > index 8ca1d599091c6..9e4c7679f1c3a 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> >> > @@ -27,5 +27,6 @@ int intel_dp_mst_atomic_check_link(struct intel_atomic_state *state,
-> >> >  				   struct intel_link_bw_limits *limits);
-> >> >  bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
-> >> >  				     struct intel_crtc *crtc);
-> >> > +bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp);
-> >> >  
-> >> >  #endif /* __INTEL_DP_MST_H__ */
-> >> 
-> >> -- 
-> >> Jani Nikula, Intel
-> 
-> -- 
-> Jani Nikula, Intel
+>
+>
+> Jani Nikula (10):
+>   drm/xe/display: fix compat IS_DISPLAY_STEP() range end
+>   drm/xe/display: remove intel_display_step_name() to simplify
+>   drm/xe/display: remove the unused compat HAS_GMD_ID()
+>   drm/xe/step: define more steppings E-J
+>   drm/i915/display: rename IS_DISPLAY_IP_RANGE() to
+>     IS_DISPLAY_VER_FULL()
+>   drm/i915/display: rename IS_DISPLAY_IP_STEP() to IS_DISPLAY_VER_STEP()
+>   drm/i915/display: identify display steppings in display probe
+>   drm/i915/display: switch to display detected steppings
+>   drm/i915: remove display stepping handling
+>   drm/xe: remove display stepping handling
+>
+>  .../drm/i915/display/intel_display_device.c   | 226 +++++++++++++++++-
+>  .../drm/i915/display/intel_display_device.h   |  19 +-
+>  .../drm/i915/display/intel_display_power.c    |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dmc.c      |   2 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     |   6 +-
+>  drivers/gpu/drm/i915/display/intel_pmdemand.c |   2 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      |   8 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |   5 -
+>  drivers/gpu/drm/i915/intel_device_info.c      |   1 -
+>  drivers/gpu/drm/i915/intel_step.c             |  84 +++----
+>  drivers/gpu/drm/i915/intel_step.h             |   2 -
+>  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   5 -
+>  .../drm/xe/compat-i915-headers/intel_step.h   |  10 +-
+>  drivers/gpu/drm/xe/xe_debugfs.c               |   3 +-
+>  drivers/gpu/drm/xe/xe_pci.c                   |   3 +-
+>  drivers/gpu/drm/xe/xe_step.c                  |  57 ++---
+>  drivers/gpu/drm/xe/xe_step_types.h            |  30 ++-
+>  18 files changed, 332 insertions(+), 135 deletions(-)
+
+-- 
+Jani Nikula, Intel
