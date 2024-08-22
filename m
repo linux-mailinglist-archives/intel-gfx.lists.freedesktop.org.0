@@ -2,168 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDB5995BE41
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 20:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65B0295BFFA
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 22:55:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 833A110EBCA;
-	Thu, 22 Aug 2024 18:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04D9510E0E8;
+	Thu, 22 Aug 2024 20:55:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m5J9TO1L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jVSVbHqZ";
 	dkim-atps=neutral
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC08810EBCA;
- Thu, 22 Aug 2024 18:33:18 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 889A510E0E5;
+ Thu, 22 Aug 2024 20:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724351599; x=1755887599;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=hFTHifbcGps0FjdbWWrzMTl9epI4aRzaDMWd6tUTyJY=;
- b=m5J9TO1L7AiCArSsjlcFQo8nSgFvjptfNmxhuIfxenei0wzma3LF7jI9
- 3MmolwSzAQcVVuSPO12cphPXtjRk5X6jiAdLMVcCsDuV6ovUa8ybQ5/Ng
- crn1h+DC3w0Heu9DoZYy3pxlELvAtx5EQGRWvyto9Tbk97/CofLqUSice
- giqJb3ywSqNjFOHp3khU79YktvfiCL6mZkbJsHoBY8ChmLla5zQYpXMXs
- gdQSSdrZuuFKWaNKOkySebCaEeu5hOzSM70sj90mLQZKuO7YhJDq29Ryi
- SczRdP6J4GpzdmdKb9FMA82U3dYgjbAyo3pWB3uTz55D47hCX8nEmGCMj A==;
-X-CSE-ConnectionGUID: x3+ba7BITYuk3FIz+sintA==
-X-CSE-MsgGUID: Kn6X6QEvRv66YOQRBd45lw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33457056"
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="33457056"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 11:33:18 -0700
-X-CSE-ConnectionGUID: H2PVAUPOQGWJlCdmtgf2vQ==
-X-CSE-MsgGUID: aJMfadIoTKGPhsDAlcMAkg==
+ t=1724360137; x=1755896137;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Ha23qJsTLZrMP7+dn/3dh14T2X9tWKl28DOH0QQsNl0=;
+ b=jVSVbHqZI5f83tE9yadSqgGW6DfzoMKyB+icDEj8a4/JfsLNlj1zi1T9
+ SPWWg+WAZSjrLsRyQe5x1nPrlxfdVP1o6xlTBjub1N4c+q7d6uxA+WPvQ
+ 6LvZYXuwvkIa78WlLRvTi6YM24kQUZnAFVsxt+22EumdXq8twjXUaP5rD
+ Qnq+HQ4G0hfWOmwcW/amFQr3zrO7rn08mSAvr5AaHDQb1bofsNiePS6Ux
+ aWSPV4bTakvbSS+kj0SwwVdVSNkOsfFS1GSDkfD5E+wqBZTVBPCxphfXT
+ ZiaOJIQJfFY2bf+ANsO2skNyAEcBFJ2q39zHrJysys3XSbxeVVtRgKjRz w==;
+X-CSE-ConnectionGUID: HAwoLEpLSPCIadW+2Bh4bg==
+X-CSE-MsgGUID: QX+vTr87Tqq9v0lPWM8xsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="45324105"
+X-IronPort-AV: E=Sophos;i="6.10,168,1719903600"; d="scan'208";a="45324105"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 13:55:37 -0700
+X-CSE-ConnectionGUID: 9QcZXcgMRr2PRZuGn5lqCw==
+X-CSE-MsgGUID: rlix0yFZRhemQ4KjaKrAkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="61389404"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Aug 2024 11:33:18 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 Aug 2024 11:33:17 -0700
+X-IronPort-AV: E=Sophos;i="6.10,168,1719903600"; d="scan'208";a="62115534"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Aug 2024 13:55:37 -0700
 Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 Aug 2024 11:33:17 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.39; Thu, 22 Aug 2024 13:55:36 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 22 Aug 2024 11:33:17 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 22 Aug 2024 13:55:36 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.46) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 22 Aug 2024 11:33:16 -0700
+ 15.1.2507.39; Thu, 22 Aug 2024 13:55:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hzadruRjYvedjSS1cFALWRhQFzjObHk6oyWct83ZWAur/kOiy6BGWobIYXKPD8/FYDP87z7lrVxWdi0dYQTDAbvNX9lhR/pvyjZ1DHS8Z15VhMTq7IHAIHn+N8dpUHRPo/ESN/ISS0WzyLXdoixa7gz4LUv/jW4O4udSw/ptyOF3uzf7Mft2t6O2WdnCHkHyxkXuTyyn1YnbFF7wVd2LW8BNI8vnFdcYwbdyEhEimJ2d/WkBAIO2T2UxD2CbONVqDSNvp3qO7itCu11BGjFQ4ht4x1IXkwJpSMPAgT6TB3x9pCzpoHNvMHmapRCCv8kMc6TuCxt8LrlQSLAK8KgE+A==
+ b=xk0sUik2pFR4kGISb6QzPRBiE90A6rOHLairio4pD5Z5tLevHMOg8knK7t1YKOY75lvwdooCKBkCxHL4sgwTWHotSOpIL+gFAFnEOK4YJX6tdmmVVOOGzuLfN2oNlSjX/IgZLkYSKgqyNlPKDzH1DXiODQeersgX2vfKYL07IDR5SJyQsU4hazFPIYGKVzisv+uslUH/vh5/3orkuF+2wo8b5xKLXqkPfcIbcsxCadG23t/NdJgKsDDE6JODrivY2i+9kRpQiqLx9iYRw7BuNhraDjxk57FnpAJnAij5/RNiv6d4vj+Pf6RNN5hGuDJZaerd4a/84lkMuuVkI6/56w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f6VGRQcUQ5qFKXZdmXrgkHNSGFLH1Z+NjiAArkR6zN8=;
- b=UsMK07G/sx9M/YVdTWxegFQroQ1aCrvezfUPJ3GyzcK+ih2q3/OnDj3jAzl19EKcOqNamEVK/iUYjLWtqOnHCvgdD1ACMo/LJpqYhFN6VhOmufNWm8Gl0fqwzdUz8KAolgq8wROtCOr5q5A6doNbAXibVZEnN3SHiG/GMBX46yi9tjne0e+FsK4yd1Ro8lZLc50mVQHsaN2g7T9ZNdoPb6yxF4cjrwq/UnJpHxfkC5PZf/RUatLtXxnR8ERTis6LpXDImzJ76uQFR6D7fsKpxand/UqEjzP7/xWl8Dm/CPo81JT+lQbejbEW6JYBpfe8ddKaqnY/pn5K4/Z278ir2w==
+ bh=h5n65UjYmKSNRrzeEfB5lu1Ovtk/uuUcnY0TZg7kBHg=;
+ b=T8RtER8vIUWRxjheSxN1uyykl2gAHyroih7SEbeNsj6YmpUAGq7KHEaM+xEykVmqBobz6LntmAgob7nB2YtxZA2FICRshaSemSNc8tEjhoj/pFVExQ7mzZVuOPoeukjtGzXGMMxPuHW1NYcAnp0bc5cyc/Z3100UJZyG7sXT01jxDbAqAG0Uk0Py5YrIPpv7prufEmVwqypud+Vvya2JTGwJYwlh9Jeh5aAdhOWFHD055EA8shW4rAFcoGF0KqSMppy6OQme/Ik+geOTMfv0Zn7i/xkadLXrG7zfDDKVSAUP8UvdSLLJ5oi0yt6vPE2EMn4EdGyxHjO6bwWKRrpL0w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by LV3PR11MB8505.namprd11.prod.outlook.com (2603:10b6:408:1b7::21)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB6699.namprd11.prod.outlook.com (2603:10b6:510:1ad::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.18; Thu, 22 Aug
- 2024 18:33:13 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7875.019; Thu, 22 Aug 2024
- 18:33:13 +0000
-Date: Thu, 22 Aug 2024 14:33:09 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-CC: <John.C.Harrison@intel.com>, <Intel-GFX@lists.freedesktop.org>,
- <DRI-Devel@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915: ARL requires a newer GSC firmware
-Message-ID: <ZseEZeJ1_mvPJy0n@intel.com>
-References: <20240802031051.3816392-1-John.C.Harrison@Intel.com>
- <7853e9a0-d2fb-4ce3-b071-2cf8fda45a43@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ 2024 20:55:28 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7875.023; Thu, 22 Aug 2024
+ 20:55:28 +0000
+Date: Thu, 22 Aug 2024 15:55:23 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
+ De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dim-tools@lists.freedesktop.org>
+Subject: [PULL] drm-xe-next
+Message-ID: <hecdxenxufrcps4ktypq64p3r6h5hp77c2sag2mkkvcmjploge@iyixts55vxus>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <7853e9a0-d2fb-4ce3-b071-2cf8fda45a43@intel.com>
-X-ClientProxiedBy: MW3PR05CA0012.namprd05.prod.outlook.com
- (2603:10b6:303:2b::17) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+X-ClientProxiedBy: MW4PR03CA0239.namprd03.prod.outlook.com
+ (2603:10b6:303:b9::34) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|LV3PR11MB8505:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3bec44b3-6467-44a4-b8b7-08dcc2d8e121
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6699:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9549039-cde1-4fa0-cb1a-08dcc2ecc099
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GTyJ324v4W+z+rBQB8k/xoU8JDA4Audm9ZtMEUWywY2yTTpheX7RN7dxVwF9?=
- =?us-ascii?Q?F6rZBnZI1EI58C1PLgiPED6w21goiKQSlG7XyEd3/6RXKuSUDfEBhnqxCQSk?=
- =?us-ascii?Q?zVyx7Q/KHiG5G0f5ulUNwjEm3tpICrHiaStv1RxT/KMDcu8gqFHOM3yEr379?=
- =?us-ascii?Q?CBautbaN4s+AKJtfeBhbuMmxKcnQV3GebcAQuVlVMegE6gvETKiMlph3zMr9?=
- =?us-ascii?Q?gb+7/WpilOPTC6A/R0QK8Y7HJeXYhxe/Gr3bEX9V3jd21QXHLlN4hQp5qZi+?=
- =?us-ascii?Q?s9YfMq6VkVk4e24GDAwYg16DuZC39uYLi6z2YhYtaEntT2YUtVYtpUirdGE1?=
- =?us-ascii?Q?NOO3dXm/na5E5sa0z/y9Mv5y+etiZgZ1DvZoMZQor7XZiPnSumAacDUlAt3A?=
- =?us-ascii?Q?ZEgJvyTvLeu7XiATGRllJL+V4y3ttkeZSQL6OPkMrZ/yE+ZL5mF0xbcyiFoW?=
- =?us-ascii?Q?H9Bkbn/LSU6Xj4WA4FL5WXpGvyiclJVciCHNkNuSDz7YDYO2QcMyp+w7g2NW?=
- =?us-ascii?Q?JCAEQZcCm9HrR/OVVz+2lwGS5J7d2IimkgVB06YrmJv9J7g5TB7msfRE/wjF?=
- =?us-ascii?Q?HkRuxV+wcICmzg207HDBzgA9gJMpwidE4DrgEo7H8VUWyown0rpFYuQFLhnM?=
- =?us-ascii?Q?jQPCeNh5EMxzHyoP2vt/zCp+jPgcowwQsQkXoibuvBqnvHr+5SRl+eIKOg5R?=
- =?us-ascii?Q?UiogikIYjriwYR4PxgG3lOr1JwoRa/H1cjybrL6mLA+VWPmzr6OeevrAtcjk?=
- =?us-ascii?Q?LjvFqCQpGq9ddEzAPsPhUpZow/5mufvZ2hlnFhTOa7Al6ZaFATgHLhxdgts6?=
- =?us-ascii?Q?ivUUbKrHwsYr3iwElrnkuDcdGvJcmlOk/MBddb+kheHUhhpkeEkZOBCMFbRr?=
- =?us-ascii?Q?E2mwUK06lpIclsbi17jv2GRgwMv/uijWvuzNRj1VU5XsQbWfZrtnj1XyGc05?=
- =?us-ascii?Q?uD6riZ2KraaHIp9bJlhau8qYFQ7okps3MgmKAzfm+iIMNLFW+hMPZejpjI94?=
- =?us-ascii?Q?R4+ZP4xDDlbJwlnbDeOHfWmTG9ekCXQtZDTejAzZKKrOGnR7Hp7/vpvjSPdj?=
- =?us-ascii?Q?jHyju8htwMCxjf3L4jV+EhC3hDBxZ1aSSR6jUO55GwtaSIdlAGlQ6htzgXZ5?=
- =?us-ascii?Q?QiZIwL41riJWokrdwqLKRMDeidN+VX3smhuNyR+ts2CtYn0/3xnf79bTOsc9?=
- =?us-ascii?Q?ZTJ1uAJzh/F8anEt+Y/o/IcXgh+wpwu2PsKAScytasdONYkUe1L5nwJpFvBq?=
- =?us-ascii?Q?zMrVqIxhXhh92e4avm6ITi8IlWmUtk//sXUz1KTZQPS1xsik1xD/7fgiw5ko?=
- =?us-ascii?Q?uSj0z+gJ2iOUYZ8GXZf3Z0/bJoqDnWoftKzcpu1vNkUCww=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?sLecF5xl7sZMg7b+FC/QROrLyJhEY+CUcZMQl2HgODJMMJUmnG3oLfZfqyfS?=
+ =?us-ascii?Q?aXJlS5cjobRJeKhErOXH0gcI6G/iHS6GYioVCXpKxMDIUuiQ5l8d1v/fAeLZ?=
+ =?us-ascii?Q?R9KHvCgreKfVFwRJ/RiJ1mKqov7LUjuN+4NlVt5MMPF06e2rY2lqCkfuR5cq?=
+ =?us-ascii?Q?wzjpBRSj5VEo4zGy96a/zlrUDbvh+amAdiJf51h0XnzWDhi1kyYyiPo2wr6Q?=
+ =?us-ascii?Q?2FN91xHKYJQxyUOIvCWBZDcE9cG5R+81FYFbvo7mgaqJyr9fpJABFVWzo3Tl?=
+ =?us-ascii?Q?kFq/VjJ/XOD3l5wfyDn0cIDeoKWGWvVbcWPDdkN+B8oLg4SC4/1c/AQOOfWz?=
+ =?us-ascii?Q?/XK4bgd+YkSZUVGeHYQbOJwRxs+HRULugiAqr3lU/OdD5kF/U983/Kq8dSpc?=
+ =?us-ascii?Q?weTZWzytN5wptY6YL7voXQept7dqfv5IjoFe5c3lzIVAGexljE/dOFeXkMmA?=
+ =?us-ascii?Q?ycWQa7iGcSqMVAetPxKgKe9ut+y1IwS/ngRtUDKdx0Xe0Ws56D/1GeFDfkQC?=
+ =?us-ascii?Q?IjMtt1o8Vo5TNszDza2jrg5cPAl+N8C8Cpi4rIAQ9WcSweJIYMMoDk/hVvk0?=
+ =?us-ascii?Q?FcVYcJid6cdVSRjiHwoJRskuIz3mE51JrrELBgfZBb/98WOuPQThwdRMSVS+?=
+ =?us-ascii?Q?BcEdqfP0tDA46N0IgppcLz5DPH5X1j8jWbBdv6t2kD2uRhzO/DRPH20YphIH?=
+ =?us-ascii?Q?Xtp6Yj+ggXO/JJvul4uotr1vYuGz6makOUgTXD68G8wTfjqLOfsecRkKJTEj?=
+ =?us-ascii?Q?7NWY88E59tTDMPbKwnkIufWMS7Z6NLp5YAPvGcNl5rApFAqNc/FG+eYc2AjD?=
+ =?us-ascii?Q?mB64kx1+IR83zO+wcIpSTU+VhjHVDuS2p4/q9uy6OR5ajFSXBaTo0MJen3Gg?=
+ =?us-ascii?Q?RroPfjMOrzmGJA+uMWP+Qne0WGSyIR7CscYE+q/IufWzBNi4Mq4TMkBVg8u2?=
+ =?us-ascii?Q?IZ9RuuMGENpndb2EHX43EIa10rgM/YzmU+ysjjp+jKBWVY4D8Y5+B+UcyREK?=
+ =?us-ascii?Q?LF32csFOYIKbc2qVvnohuScffx6NbjlQq7ORo1BxyHcOLXDcmUllYFAN8FSH?=
+ =?us-ascii?Q?cXxiHJyIFGRJb2YgdMijHieEEmVsanDfo+R8xbBAYD4DreNW+5WSDF3VoVI6?=
+ =?us-ascii?Q?z8A4uQCzIiBUZ2V2zG3QdUo9bOTqgP1enqRlNZjAyzqJoYxDQCpO9UuxPzQa?=
+ =?us-ascii?Q?MLnxnaa8ARUpj076+EpZkyt9+WPg6uCWR1BTu11HPlaKAZMSYBsIK11AZ1YX?=
+ =?us-ascii?Q?JoxE6BrFCPDOrqtVrVfcN8A9pdAUf+NpjhHrLBJV73MH/ABOeybkW2Y0Lzl8?=
+ =?us-ascii?Q?+NA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4C+4sySC/6GU0OsjleXmbUOI+I2AQBKjFlCOsyT8EUxNfZdepYh/QVH45aSF?=
- =?us-ascii?Q?CLNZn6+q84uQcDvWj7u87X6AMW+TN09Ng+NDWkumXGAB3JFe+KEhvOtJbo6Z?=
- =?us-ascii?Q?plMgQ31/DQEXMLOtcBqiipf3+OCLtkHcobBtqbZCIDUJAoC582ufPgchykdG?=
- =?us-ascii?Q?9BjLME+jHSVBqyOd+0woeq26EDUcGs1JZ5pf86l785xcvOXTLuix51lHyfQa?=
- =?us-ascii?Q?/KKR7neWzC5Z1kabG7Ioqp84cY4+PSxOKqnoy0jFAc7skOhuyHU15qXTUwYj?=
- =?us-ascii?Q?mDEI3t+4AcqKcY0HpGQVPrkU4sN/nrQI4vJdY1oIFfp09qRdxhYNXZHmLo1i?=
- =?us-ascii?Q?s9/av4HtXi3mcaXjqE4qtRvsQC5hWfTEcJqWEVfIybCfnozNbqh0tn5CIFOM?=
- =?us-ascii?Q?AKeX8DATw1p8obkih0ggTk5eyDp9XYHyZSxEis7MXAK4Z3fJ5TFHQAtg8M15?=
- =?us-ascii?Q?UfmVpZkxWzgcm9p9dCwLPKayJtpZ7aC+N3gs4Hhpkfe3cOiHnEtLvzZd6E8b?=
- =?us-ascii?Q?HqMwyy+PkoFpKxo6O69rsMTAMvgQqdNJJSU+0OnYr1XfG5LKSl1MpcSo8wDg?=
- =?us-ascii?Q?BEW7uGsRQiWkjOokbhYOhjFhAVdGkiuK29QQl6phbxx9cR+UuxD9TPeOnSiV?=
- =?us-ascii?Q?tchDOBx66QfNP3uvi8fsNozPboDbBnRLQCRx47WPjn+KDxRcjEcKSA3pHhgC?=
- =?us-ascii?Q?P48tagQH9Uq9KfPXBuYl809RBYIGs62FLAlqnf65IfJ3Ve5vhsGf53/GyPRw?=
- =?us-ascii?Q?6XqBQhcNPSUluxBl1Evh/qM9e6FRTLqpsjwy1lALvGBfPX/78PgaIQteNRHS?=
- =?us-ascii?Q?FpGyNJ1mR2FDGxdvofUd5hCufAawuNgQ0zb7QkCTDg35dWHC2R1YbPuMm9iq?=
- =?us-ascii?Q?2TqbJoe1TYcND7eC8TUv2Jye7gyolNAskcpSiJap1I1fGQgdyGAiR9VfyCZv?=
- =?us-ascii?Q?Q1mAttUOdI7TgaraG8mnhKyc8wgj53ZTQWYFrcwMMs0fM8+P8jMF5xfKiH//?=
- =?us-ascii?Q?BD8ARgk3aQWWRcMNr24dvZ/F3xF5g0BYtFg5DfA85y2XSRGRAhM02xYP4qhA?=
- =?us-ascii?Q?9puPJXl9qy7BVaP657o8eHGzikDMmLgxfzFh3bxo71tzB+UGLPBWK7P+U5e/?=
- =?us-ascii?Q?Ks+OiAXsa4rPtW+FfKH88/rIFTXSnIBmZ81Wu8o+NWxqTw45IFlDUyQ25pRk?=
- =?us-ascii?Q?pSD9otzEGmPf7Z2UVX5jBy8rnY0S8qoxMYOOW6mXzQxBeMOo53YeX16hTgoj?=
- =?us-ascii?Q?orNkpaPFObLpoMhk4ks4fz9J+VrKRip3vs2kg+a3Mn6ZuPdnNihUZ9M3m4SN?=
- =?us-ascii?Q?VAbuoYSKF/2dyJtvCTI4FqZnO+CTubsZAnTBXDjo79LXGq4FnGfQCvu+B5BZ?=
- =?us-ascii?Q?vt2DdD4b9BGTAvgmoxCHFHo4wPFRAxCuc+xMjM22zEB2crU5pt11PZvRFWe4?=
- =?us-ascii?Q?xLPwHszNK8l7vKTTnbjQ4dOr0pgQL+/4Phe6njBJYW0BAVJ2MtFM5f4J6r15?=
- =?us-ascii?Q?/MH2rEdlZtVjSOJmJRyKESGLnP/QyMh4miC1mZlj4OB+8ICmlG6SSg+yJ4ww?=
- =?us-ascii?Q?uNtQsMx67bz8kCTt97gXSk/G5R/zlgMhzwkxTbWMfxwwLVqibkny14TUCOl8?=
- =?us-ascii?Q?6g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3bec44b3-6467-44a4-b8b7-08dcc2d8e121
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7b/glmOBpy/MF46MudtjeFUsQY+RLrwT5PPp4tiZ9g8o6oqDcw9sBjwMe3uT?=
+ =?us-ascii?Q?c/ShHEXJ0oLj/F2KQMagpml8nGX7+a1N66dGL+veAwD9cl8M1RkD1OAZvasJ?=
+ =?us-ascii?Q?rsfa6tskVbwekgrwlBuIxBe3rP7T+tPpfYq9KXdwitMi/GvRuGY52lW8qI7P?=
+ =?us-ascii?Q?GwmLc6p06tUKgCBMAVzuGyIuzTpFFOEifj3/3OydhogxnswqrFLfuWExGXJX?=
+ =?us-ascii?Q?Up7ABJMv0VMnqjHHxeFr+aBvzK49hp2g99Gf2sYHh54NVF7LZboz7cysXCo6?=
+ =?us-ascii?Q?dMzqKOS62NdSk9FKIHwaHLvCWzA6G73C1ElDV/m6g9iQ/MuM/+7lwxeYoAbk?=
+ =?us-ascii?Q?4OChQM0/uhziDNFCTMKIXQ6x3C5bww5zLKpTYdc/6v9MCdB8w9Mi8VxLd4nq?=
+ =?us-ascii?Q?5yizrFlH2T8Yxp4SS23EoyT+8N1jttGWdtAVwvNBvCrfe4UL/oAKZ4xUL1kU?=
+ =?us-ascii?Q?g3sseDyKzaADUHSAGUnUFYQKyT0F2l/zJpamWzyyeI26wbVVLEGB/gAddU3p?=
+ =?us-ascii?Q?Hg9D+Fz7R+Mut52M5EtOav7S+kTvqo8LOd7BVxXE5R7GxDs3srwNhhsUnbTF?=
+ =?us-ascii?Q?jw9XAT/9Xe/86CNO2LBTEyWgVmCz7PTCcBobIN21bx5nleA0IX4jmwXr5OOL?=
+ =?us-ascii?Q?+9UA0+Ej3MQtb+nvdFJlmeY4B2V6I7VC3iKfFYicW2chZmftxK6uH7W42WUx?=
+ =?us-ascii?Q?i3ADOHo32iKr0JxkqtPIs1zgoaGnv/MsT43dcSW5x6PdcFBlAoL4eEawFgnE?=
+ =?us-ascii?Q?0itlA2aw1iuu4l9hyaEuTCC1KsxPaNuAx2J8imhy2Y55rENNClj6EL+6lWzz?=
+ =?us-ascii?Q?tZhcCy6Ry/EMjr+JtC0AI3igxKcG3jJdprHUETU/g+QYAjSnhgZU4j0P0feO?=
+ =?us-ascii?Q?9sbXHqC39eEzt+IX4WWxPDBaaFef/Al9WJVqvabtqEZ8rQPAmgUWoAIDuxei?=
+ =?us-ascii?Q?bMYCTp6MM7IYUe9/hVRT6j7qD9IBFK5FSX7LYiu2I6XlfmK5ebBLxa5feSFD?=
+ =?us-ascii?Q?pgfOUP5g0eO6Lzlrfn7ApcCNM3QCdE4q/8c6iLursHVN+9weMpivyBJK38R7?=
+ =?us-ascii?Q?wOvysfrUigzpRwxDUNbPQzWvCwSW8PZ/802BEM6ZSQotbivzsiRw6a8VI3PW?=
+ =?us-ascii?Q?+L0lDeJHfcbLF9m6tGw7wKA13K7UG9Xv3ZhjQnBOR2DWzod6NJHpjB4RpN3y?=
+ =?us-ascii?Q?VRt9ghKgTY71rOZuu4LRRSsT1QsdYJQNgmR/cpkGB63/qcU3ECLyg/3rghEi?=
+ =?us-ascii?Q?gMPKvbLPhD2kx0g4xxcAydUFdyLMCl7ZR8ViOlFm6Tqu3KA0U815V/kDMu5b?=
+ =?us-ascii?Q?y5l+Y9umfNtd6Ec9Fpvf3xXjF5fevqA51iEu50HfB13xZ3o/yTsm11gdRm52?=
+ =?us-ascii?Q?d1ouHCubCG0aGl+UzvdCc8nbfxAi9fK7yUt26PUyYX2iwrncK+BdpsEs2t9x?=
+ =?us-ascii?Q?NzuMskVAWNhsUrPE3ffcw50tNFh49s5AdRhWCfTTbiKRh3VWShSM+aRCT5wL?=
+ =?us-ascii?Q?lIYHVARhyngvaGrzPwUfAV3VdOxKojWxlz9VezFWdQZfvxKaGzYCZ3ISJkYG?=
+ =?us-ascii?Q?fEjbdOLNzgAEx6ANyyjMxppKFjOLL1sWn1l+ckbXjyomqdciqi8N0F11UiKN?=
+ =?us-ascii?Q?pw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9549039-cde1-4fa0-cb1a-08dcc2ecc099
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 18:33:12.9788 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 20:55:28.1033 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G1h8v+EmwMr7jl4bp1aGOzJdgMu0mq/a6BihoNjSPXEnE3dYkRXlHx99kXFPzuzu0B0sBSpDPaYQWt1ojBkkLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8505
+X-MS-Exchange-CrossTenant-UserPrincipalName: HyMe3lTYjhdHpHgGK4GdKi35PsDa/d9g1GcHvP8FuBm2LO/feCpSGL1th5mbLjyalEMlqT6c0tB6aEO8aamfUBJ5GqmKDfn4wy8o98xj6PM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6699
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,222 +179,319 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 05, 2024 at 02:22:13PM -0700, Daniele Ceraolo Spurio wrote:
-> 
-> 
-> On 8/1/2024 8:10 PM, John.C.Harrison@Intel.com wrote:
-> > From: John Harrison <John.C.Harrison@Intel.com>
-> > 
-> > ARL and MTL share a single GSC firmware blob. However, ARL requires a
-> > newer version of it.
-> > 
-> > So add differentiate of the PCI ids for ARL from MTL and create ARL as
-> > a sub-platform of MTL. That way, all the existing workarounds and such
-> > still treat ARL as MTL exactly as before. However, now the GSC code
-> > can check for ARL and do an extra version check on the firmware before
-> > committing to it.
-> > 
-> > Also, the version extraction code has various ways of failing but the
-> > return code was being ignore and so the firmware load would attempt to
-> > continue anyway. Fix that by propagating the return code to the next
-> > level out.
-> > 
-> > Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> 
-> This needs a fixes tag. AFAICS we already had the ARL-S pci ID in the kernel
-> by the time we removed the MTL force probe, so the best fix tag is probably:
-> 
-> Fixes: 213c43676beb ("drm/i915/mtl: Remove the 'force_probe' requirement for
-> Meteor Lake")
+Hi Dave and Sima,
 
-yes, we do need this Fixes tag.
+Second drm-xe-next pull request for the 6.12 cycle.
 
-Please let's also ensure we propagate that to stable.
+Several fixes here that are also going through drm-xe-fixes. Most of the
+other changes are the missing bits for Xe2 (LNL and BMG) and general
+refactors.
 
-Cc: stable@vger.kernel.org # v6.7+
+The only UAPI change is actually a fix for building with gcc 5.
 
-I even wondered if we should have the removal of the pci id in a separate
-patch that is easily propagated. So, please check this option.
+I left some commits out since they were too fresh and I didn't have core
+CI results for them. Plan is to send the final pull request for 6.12
+next week with those commits.
 
-I mean, if this applies cleanly to 6.7 or if it is easy to backport it
-is okay a single patch..
+thanks
+Lucas De Marchi
 
-> 
-> > ---
-> >   drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 31 +++++++++++++++++++++++
-> >   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 10 ++++++--
-> >   drivers/gpu/drm/i915/i915_drv.h           |  2 ++
-> >   drivers/gpu/drm/i915/intel_device_info.c  |  7 +++++
-> >   drivers/gpu/drm/i915/intel_device_info.h  |  3 +++
-> >   include/drm/intel/i915_pciids.h           | 11 +++++---
-> >   6 files changed, 58 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> > index 3b69bc6616bd3..551b0d7974ff1 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
-> > @@ -212,6 +212,37 @@ int intel_gsc_fw_get_binary_info(struct intel_uc_fw *gsc_fw, const void *data, s
-> >   		}
-> >   	}
-> > +	if (IS_ARROWLAKE(gt->i915)) {
-> > +		bool too_old = false;
-> > +
-> > +		/*
-> > +		 * ARL requires a newer firmware than MTL did (102.0.10.1878) but the
-> > +		 * firmware is actually common. So, need to do an explicit version check
-> > +		 * here rather than using a separate table entry. And if the older
-> > +		 * MTL-only version is found, then just don't use GSC rather than aborting
-> > +		 * the driver load.
-> > +		 */
-> > +		if (gsc->release.major < 102) {
-> > +			too_old = true;
-> 
-> nit: the 102 major number just indicates that it is a MTL/ARL image, so
-> unless the binary is corrupted (which should be caught by the checks higher
-> up this function) it should be guaranteed that this matches. You could
-> probably skip checking for it (below as well).
-> 
-> Apart from this nit the patch LGTM, so with the fixes tag added:
-> 
-> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> 
-> However, given that this is a non-backward compatible change that we'd be
-> propagating as a fix, please get a maintainer ack as well. IMO there should
-> be no problem since this is only breaking for ARL and that platform hasn't
-> been publicly released yet, but I'd still prefer a maintainer to confirm.
+drm-xe-next-2024-08-22:
+UAPI Changes:
+- Fix OA format masks which were breaking build with gcc-5
 
-We really need to be careful with this for the next platforms.
-If we have this risk we need to start splitting better the PCI IDs
-into the different platforms and removing force_probe individually.
+Cross-subsystem Changes:
+- drm/ttm: Add a flag to allow drivers to skip clear-on-free
 
-But for now, let's move with this.
-Not only because the platforms is not at the shelves yet, but because
-it is GSC, not GuC and because it looks like the platform would
-be broken anyway with new firmware. So it is not a regression, but
-a fix really needed for the older platforms.
+Driver Changes:
+- Use dma_fence_chain_free in chain fence unused as a sync (Matthew Brost)
+- Refactor hw engine lookup and mmio access to be used in more places
+   (Dominik, Matt Auld, Mika Kuoppala)
+- Enable priority mem read for Xe2 and later (Pallavi Mishra)
+- Fix PL1 disable flow in xe_hwmon_power_max_write (Karthik)
+- Fix refcount and speedup devcoredump (Matthew Brost)
+- Add performance tuning changes to Xe2 (Akshata, Shekhar)
+- Fix OA sysfs entry (Ashutosh)
+- Add first GuC firmware support for BMG (Julia)
+- Bump minimum GuC firmware for platforms under force_probe to match LNL
+   and BMG (Julia)
+- Fix access check on user fence creation (Nirmoy)
+- Add/document workarounds for Xe2 (Julia, Daniele, John, Tejas)
+- Document workaround and use proper WA infra (Matt Roper)
+- Fix VF configuration on media GT (Michal Wajdeczko)
+- Fix VM dma-resv lock (Matthew Brost)
+- Allow suspend/resume exec queue backend op to be called multiple times
+   (Matthew Brost)
+- Add GT stats to debugfs (Nirmoy)
+- Add hwconfig to debugfs (Matt Roper)
+- Compile out all debugfs code with ONFIG_DEUBG_FS=n (Lucas)
+- Offload system clear page to GPU (Nirmoy)
+- Remove dead kunit code (Jani Nikula)
+- Refactor drvdata storing to help display (Jani Nikula)
+- Cleanup unsused xe parameter in pte handling (Himal)
+- Rename s/enable_display/probe_display/ for clarity (Lucas)
+- Fix missing MCR annotation in couple of registers (Tejas)
+- Fix DGFX display suspend/resume (Maarten)
+- Prepare exec_queue_kill for PXP handling (Daniele)
+- Fix devm/drmm issues (Daniele, Matthew Brost)
+- Fix tile fini sequence (Brost)
+- Fix crashes when probing without firmware in place (Daniele)
+- Use xe_managed for kernel BOs (Daniele, Matthew Brost)
+- Future-proof dss_per_group calculation by using hwconfig (Matt Roper)
+- Use reserved copy engine for user binds on faulting devices
+   (Matthew Brost)
+- Allow mixing dma-fence jobs and long-running faulting jobs (Francois)
+- Cleanup redundant arg when creating use BO (Nirmoy)
+- Prevent UAF around preempt fence (Auld)
+- Fix display suspend/resume (Maarten)
+- Use vma_pages() helper (Thorsten)
+The following changes since commit a809b92ee0f84c3f655b16a8b4d04bc3665d954a:
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+   Merge tag 'drm-intel-next-2024-08-13' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next (2024-08-16 12:56:42 +1000)
 
-> 
-> Daniele
-> 
-> > +		} else if (gsc->release.major == 102) {
-> > +			if (gsc->release.minor == 0) {
-> > +				if (gsc->release.patch < 10) {
-> > +					too_old = true;
-> > +				} else if (gsc->release.patch == 10) {
-> > +					if (gsc->release.build < 1878)
-> > +						too_old = true;
-> > +				}
-> > +			}
-> > +		}
-> > +
-> > +		if (too_old) {
-> > +			gt_info(gt, "GSC firmware too old for ARL, got %d.%d.%d.%d but need at least 102.0.10.1878",
-> > +				gsc->release.major, gsc->release.minor,
-> > +				gsc->release.patch, gsc->release.build);
-> > +			return -EINVAL;
-> > +		}
-> > +	}
-> > +
-> >   	return 0;
-> >   }
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > index d80278eb45d73..ec33ad942115a 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> > @@ -698,12 +698,18 @@ static int check_gsc_manifest(struct intel_gt *gt,
-> >   			      const struct firmware *fw,
-> >   			      struct intel_uc_fw *uc_fw)
-> >   {
-> > +	int ret;
-> > +
-> >   	switch (uc_fw->type) {
-> >   	case INTEL_UC_FW_TYPE_HUC:
-> > -		intel_huc_fw_get_binary_info(uc_fw, fw->data, fw->size);
-> > +		ret = intel_huc_fw_get_binary_info(uc_fw, fw->data, fw->size);
-> > +		if (ret)
-> > +			return ret;
-> >   		break;
-> >   	case INTEL_UC_FW_TYPE_GSC:
-> > -		intel_gsc_fw_get_binary_info(uc_fw, fw->data, fw->size);
-> > +		ret = intel_gsc_fw_get_binary_info(uc_fw, fw->data, fw->size);
-> > +		if (ret)
-> > +			return ret;
-> >   		break;
-> >   	default:
-> >   		MISSING_CASE(uc_fw->type);
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 02f28a6170c39..17561b53648e2 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -546,6 +546,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-> >   #define IS_LUNARLAKE(i915) (0 && i915)
-> >   #define IS_BATTLEMAGE(i915)  (0 && i915)
-> > +#define IS_ARROWLAKE(i915) \
-> > +	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL)
-> >   #define IS_DG2_G10(i915) \
-> >   	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G10)
-> >   #define IS_DG2_G11(i915) \
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> > index d26de37719a72..eede5417cb3fe 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.c
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> > @@ -203,6 +203,10 @@ static const u16 subplatform_g12_ids[] = {
-> >   	INTEL_DG2_G12_IDS(ID),
-> >   };
-> > +static const u16 subplatform_arl_ids[] = {
-> > +	INTEL_ARL_IDS(ID),
-> > +};
-> > +
-> >   static bool find_devid(u16 id, const u16 *p, unsigned int num)
-> >   {
-> >   	for (; num; num--, p++) {
-> > @@ -260,6 +264,9 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
-> >   	} else if (find_devid(devid, subplatform_g12_ids,
-> >   			      ARRAY_SIZE(subplatform_g12_ids))) {
-> >   		mask = BIT(INTEL_SUBPLATFORM_G12);
-> > +	} else if (find_devid(devid, subplatform_arl_ids,
-> > +			      ARRAY_SIZE(subplatform_arl_ids))) {
-> > +		mask = BIT(INTEL_SUBPLATFORM_ARL);
-> >   	}
-> >   	GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> > index d1a2abc7e5139..df73ef94615dd 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > @@ -127,6 +127,9 @@ enum intel_platform {
-> >   #define INTEL_SUBPLATFORM_N    1
-> >   #define INTEL_SUBPLATFORM_RPLU  2
-> > +/* MTL */
-> > +#define INTEL_SUBPLATFORM_ARL	0
-> > +
-> >   enum intel_ppgtt_type {
-> >   	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
-> >   	INTEL_PPGTT_ALIASING = I915_GEM_PPGTT_ALIASING,
-> > diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
-> > index b21374f76df23..2bf03ebfcf73d 100644
-> > --- a/include/drm/intel/i915_pciids.h
-> > +++ b/include/drm/intel/i915_pciids.h
-> > @@ -772,15 +772,18 @@
-> >   	INTEL_ATS_M75_IDS(MACRO__, ## __VA_ARGS__)
-> >   /* MTL */
-> > +#define INTEL_ARL_IDS(MACRO__, ...) \
-> > +	MACRO__(0x7D41, ## __VA_ARGS__), \
-> > +	MACRO__(0x7D51, ## __VA_ARGS__), \
-> > +	MACRO__(0x7D67, ## __VA_ARGS__), \
-> > +	MACRO__(0x7DD1, ## __VA_ARGS__)
-> > +
-> >   #define INTEL_MTL_IDS(MACRO__, ...) \
-> > +	INTEL_ARL_IDS(MACRO__, ## __VA_ARGS__), \
-> >   	MACRO__(0x7D40, ## __VA_ARGS__), \
-> > -	MACRO__(0x7D41, ## __VA_ARGS__), \
-> >   	MACRO__(0x7D45, ## __VA_ARGS__), \
-> > -	MACRO__(0x7D51, ## __VA_ARGS__), \
-> >   	MACRO__(0x7D55, ## __VA_ARGS__), \
-> >   	MACRO__(0x7D60, ## __VA_ARGS__), \
-> > -	MACRO__(0x7D67, ## __VA_ARGS__), \
-> > -	MACRO__(0x7DD1, ## __VA_ARGS__), \
-> >   	MACRO__(0x7DD5, ## __VA_ARGS__)
-> >   /* LNL */
-> 
+are available in the Git repository at:
+
+   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2024-08-22
+
+for you to fetch changes up to 23683061805be368c8d1c7e7ff52abc470cac275:
+
+   drm/xe/lnl: Offload system clear page activity to GPU (2024-08-19 17:49:00 +0200)
+
+----------------------------------------------------------------
+UAPI Changes:
+- Fix OA format masks which were breaking build with gcc-5
+
+Cross-subsystem Changes:
+- drm/ttm: Add a flag to allow drivers to skip clear-on-free
+
+Driver Changes:
+- Use dma_fence_chain_free in chain fence unused as a sync (Matthew Brost)
+- Refactor hw engine lookup and mmio access to be used in more places
+   (Dominik, Matt Auld, Mika Kuoppala)
+- Enable priority mem read for Xe2 and later (Pallavi Mishra)
+- Fix PL1 disable flow in xe_hwmon_power_max_write (Karthik)
+- Fix refcount and speedup devcoredump (Matthew Brost)
+- Add performance tuning changes to Xe2 (Akshata, Shekhar)
+- Fix OA sysfs entry (Ashutosh)
+- Add first GuC firmware support for BMG (Julia)
+- Bump minimum GuC firmware for platforms under force_probe to match LNL
+   and BMG (Julia)
+- Fix access check on user fence creation (Nirmoy)
+- Add/document workarounds for Xe2 (Julia, Daniele, John, Tejas)
+- Document workaround and use proper WA infra (Matt Roper)
+- Fix VF configuration on media GT (Michal Wajdeczko)
+- Fix VM dma-resv lock (Matthew Brost)
+- Allow suspend/resume exec queue backend op to be called multiple times
+   (Matthew Brost)
+- Add GT stats to debugfs (Nirmoy)
+- Add hwconfig to debugfs (Matt Roper)
+- Compile out all debugfs code with ONFIG_DEUBG_FS=n (Lucas)
+- Offload system clear page to GPU (Nirmoy)
+- Remove dead kunit code (Jani Nikula)
+- Refactor drvdata storing to help display (Jani Nikula)
+- Cleanup unsused xe parameter in pte handling (Himal)
+- Rename s/enable_display/probe_display/ for clarity (Lucas)
+- Fix missing MCR annotation in couple of registers (Tejas)
+- Fix DGFX display suspend/resume (Maarten)
+- Prepare exec_queue_kill for PXP handling (Daniele)
+- Fix devm/drmm issues (Daniele, Matthew Brost)
+- Fix tile fini sequence (Brost)
+- Fix crashes when probing without firmware in place (Daniele)
+- Use xe_managed for kernel BOs (Daniele, Matthew Brost)
+- Future-proof dss_per_group calculation by using hwconfig (Matt Roper)
+- Use reserved copy engine for user binds on faulting devices
+   (Matthew Brost)
+- Allow mixing dma-fence jobs and long-running faulting jobs (Francois)
+- Cleanup redundant arg when creating use BO (Nirmoy)
+- Prevent UAF around preempt fence (Auld)
+- Fix display suspend/resume (Maarten)
+- Use vma_pages() helper (Thorsten)
+
+----------------------------------------------------------------
+Akshata Jahagirdar (1):
+       drm/xe/xe2: Introduce performance changes
+
+Ashutosh Dixit (1):
+       drm/xe/observation: Drop empty sysctl table entry
+
+Daniele Ceraolo Spurio (5):
+       drm/xe: fix WA 14018094691
+       drm/xe: Make exec_queue_kill safe to call twice
+       drm/xe: use devm instead of drmm for managed bo
+       drm/xe/uc: Use managed bo for HuC and GSC objects
+       drm/xe/uc: Use devm to register cleanup that includes exec_queues
+
+Dominik Grzegorzek (2):
+       drm/xe: Move and export xe_hw_engine lookup.
+       drm/xe: Export xe_hw_engine's mmio accessors
+
+Francois Dugast (11):
+       drm/xe/hw_engine_group: Introduce xe_hw_engine_group
+       drm/xe/guc_submit: Make suspend_wait interruptible
+       'drm/xe/hw_engine_group: Register hw engine group's exec queues
+       drm/xe/hw_engine_group: Add helper to suspend faulting LR jobs
+       drm/xe/exec_queue: Remove duplicated code
+       drm/xe/exec_queue: Prepare last fence for hw engine group resume context
+       drm/xe/hw_engine_group: Add helper to wait for dma fence jobs
+       drm/xe/hw_engine_group: Ensure safe transition between execution modes
+       drm/xe/exec: Switch hw engine group execution mode upon job submission
+       drm/xe/vm: Remove restriction that all VMs must be faulting if one is
+       drm/xe/device: Remove unused xe_device::usm::num_vm_in_*
+
+Himal Prasad Ghimiray (1):
+       drm/xe: Remove unused xe parameter
+
+Jani Nikula (3):
+       drm/xe/tests: remove unused leftover xe_call_for_each_device()
+       drm/xe: use pdev_to_xe_device() instead of pci_get_drvdata() directly
+       drm/xe: add kdev_to_xe_device() helper and use it
+
+Julia Filipchuk (3):
+       drm/xe/guc: Bump minimum required GuC version to v70.29.2
+       drm/xe/guc: Define GuC version v70.29.2 for BMG
+       drm/xe/guc: Enable w/a 14022293748 and 22019794406
+
+Karthik Poosa (1):
+       drm/xe/hwmon: Fix PL1 disable flow in xe_hwmon_power_max_write
+
+Lucas De Marchi (3):
+       drm/xe: Allow to compile out debugfs
+       drm/xe: Rename enable_display module param
+       Merge drm/drm-next into drm-xe-next
+
+Maarten Lankhorst (2):
+       drm/xe/display: Match i915 driver suspend/resume sequences better
+       drm/xe/display: Make display suspend/resume work on discrete
+
+Matt Roper (3):
+       drm/xe: Name and document Wa_14019789679
+       drm/xe: Add debugfs to dump GuC's hwconfig
+       drm/xe/mcr: Try to derive dss_per_grp from hwconfig attributes
+
+Matthew Auld (2):
+       drm/xe: fix engine_class bounds check again
+       drm/xe: prevent UAF around preempt fence
+
+Matthew Brost (14):
+       drm/xe: Use dma_fence_chain_free in chain fence unused as a sync
+       drm/xe: Take ref to VM in delayed snapshot
+       drm/printer: Allow NULL data in devcoredump printer
+       drm/xe: Faster devcoredump
+       drm/xe: Only check last fence on user binds
+       drm/xe: Move VM dma-resv lock from xe_exec_queue_create to __xe_exec_queue_init
+       drm/xe: Add xe_sched_msg_lock/unlock helper
+       drm/xe: Reinit msg link when processing a message
+       drm/xe: Add xe_sched_add_msg_locked helper
+       drm/xe: Only enable scheduling upon resume if needed
+       drm/xe: Allow suspend / resume to be safely called multiple times
+       drm/xe: Fix tile fini sequence
+       drm/xe: Use for_each_remote_tile rather than manual check
+       drm/xe: Use reserved copy engine for user binds on faulting devices
+
+Michal Wajdeczko (1):
+       drm/xe/pf: Fix VF config validation on multi-GT platforms
+
+Mika Kuoppala (1):
+       drm/xe: Add kernel doc for xe_hw_engine_lookup
+
+Nirmoy Das (7):
+       drm/xe: Fix access_ok check in user_fence_create
+       drm/xe/gt: Add APIs for printing stats over debugfs
+       drm/xe: Add stats for tlb invalidation count
+       drm/xe/migrate: Parameterize ccs and bo data clear in xe_migrate_clear()
+       drm/xe: Remove redundant param from xe_bo_create_user
+       drm/ttm: Add a flag to allow drivers to skip clear-on-free
+       drm/xe/lnl: Offload system clear page activity to GPU
+
+Pallavi Mishra (1):
+       drm/xe/xe2: Enable Priority Mem Read
+
+Shekhar Chauhan (1):
+       drm/xe/xe2: Add performance turning changes
+
+Tejas Upadhyay (4):
+       drm/xe/xe2hpg: Add Wa_14021821874
+       drm/xe: Move enable host l2 VRAM post MCR init
+       drm/xe: Write all slices if its mcr register
+       drm/xe: Define STATELESS_COMPRESSION_CTRL as mcr register
+
+Thorsten Blum (1):
+       drm/xe/oa: Use vma_pages() helper function in xe_oa_mmap()
+
+  drivers/gpu/drm/drm_print.c                   |  13 +-
+  drivers/gpu/drm/ttm/ttm_pool.c                |  18 +-
+  drivers/gpu/drm/xe/Makefile                   |  18 +-
+  drivers/gpu/drm/xe/abi/guc_klvs_abi.h         |   1 +
+  drivers/gpu/drm/xe/display/xe_display.c       |  88 ++++--
+  drivers/gpu/drm/xe/regs/xe_engine_regs.h      |   1 +
+  drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  10 +-
+  drivers/gpu/drm/xe/tests/xe_bo.c              |   8 +-
+  drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   2 +-
+  drivers/gpu/drm/xe/tests/xe_migrate.c         |  24 +-
+  drivers/gpu/drm/xe/tests/xe_pci.c             |  52 ----
+  drivers/gpu/drm/xe/tests/xe_pci_test.h        |   1 -
+  drivers/gpu/drm/xe/xe_bo.c                    |  48 +++-
+  drivers/gpu/drm/xe/xe_bo.h                    |   1 -
+  drivers/gpu/drm/xe/xe_debugfs.h               |   4 +
+  drivers/gpu/drm/xe/xe_devcoredump.c           | 111 +++++---
+  drivers/gpu/drm/xe/xe_devcoredump_types.h     |   8 +
+  drivers/gpu/drm/xe/xe_device.c                |   5 +-
+  drivers/gpu/drm/xe/xe_device.h                |  15 +-
+  drivers/gpu/drm/xe/xe_device_types.h          |  17 +-
+  drivers/gpu/drm/xe/xe_exec.c                  |  20 +-
+  drivers/gpu/drm/xe/xe_exec_queue.c            | 237 ++++++++--------
+  drivers/gpu/drm/xe/xe_exec_queue.h            |   8 +-
+  drivers/gpu/drm/xe/xe_exec_queue_types.h      |   4 +-
+  drivers/gpu/drm/xe/xe_gpu_scheduler.c         |  23 +-
+  drivers/gpu/drm/xe/xe_gpu_scheduler.h         |  12 +
+  drivers/gpu/drm/xe/xe_gsc.c                   |  20 +-
+  drivers/gpu/drm/xe/xe_gsc_proxy.c             |  45 +---
+  drivers/gpu/drm/xe/xe_gt.c                    |  10 +-
+  drivers/gpu/drm/xe/xe_gt_debugfs.c            |  13 +
+  drivers/gpu/drm/xe/xe_gt_mcr.c                |  40 ++-
+  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  11 +-
+  drivers/gpu/drm/xe/xe_gt_stats.c              |  49 ++++
+  drivers/gpu/drm/xe/xe_gt_stats.h              |  29 ++
+  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   |   2 +
+  drivers/gpu/drm/xe/xe_gt_types.h              |  15 ++
+  drivers/gpu/drm/xe/xe_guc.h                   |  10 +
+  drivers/gpu/drm/xe/xe_guc_ads.c               |   6 +
+  drivers/gpu/drm/xe/xe_guc_hwconfig.c          |  97 +++++++
+  drivers/gpu/drm/xe/xe_guc_hwconfig.h          |   3 +
+  drivers/gpu/drm/xe/xe_guc_submit.c            |  62 +++--
+  drivers/gpu/drm/xe/xe_huc.c                   |  19 +-
+  drivers/gpu/drm/xe/xe_hw_engine.c             | 145 +++++++---
+  drivers/gpu/drm/xe/xe_hw_engine.h             |  10 +
+  drivers/gpu/drm/xe/xe_hw_engine_group.c       | 372 ++++++++++++++++++++++++++
+  drivers/gpu/drm/xe/xe_hw_engine_group.h       |  29 ++
+  drivers/gpu/drm/xe/xe_hw_engine_group_types.h |  51 ++++
+  drivers/gpu/drm/xe/xe_hw_engine_types.h       |   2 +
+  drivers/gpu/drm/xe/xe_hwmon.c                 |   3 +-
+  drivers/gpu/drm/xe/xe_lrc.c                   |  50 +++-
+  drivers/gpu/drm/xe/xe_migrate.c               |  29 +-
+  drivers/gpu/drm/xe/xe_migrate.h               |   7 +-
+  drivers/gpu/drm/xe/xe_mmio.c                  |   4 +-
+  drivers/gpu/drm/xe/xe_module.c                |   6 +-
+  drivers/gpu/drm/xe/xe_module.h                |   2 +-
+  drivers/gpu/drm/xe/xe_oa.c                    |   3 +-
+  drivers/gpu/drm/xe/xe_observation.c           |   1 -
+  drivers/gpu/drm/xe/xe_pci.c                   |  10 +-
+  drivers/gpu/drm/xe/xe_pm.c                    |  11 +-
+  drivers/gpu/drm/xe/xe_preempt_fence.c         |   3 +-
+  drivers/gpu/drm/xe/xe_preempt_fence_types.h   |   2 +
+  drivers/gpu/drm/xe/xe_pt.c                    |  10 +-
+  drivers/gpu/drm/xe/xe_sync.c                  |   4 +-
+  drivers/gpu/drm/xe/xe_ttm_sys_mgr.c           |  12 +
+  drivers/gpu/drm/xe/xe_tuning.c                |  13 +-
+  drivers/gpu/drm/xe/xe_uc_fw.c                 |  28 +-
+  drivers/gpu/drm/xe/xe_vm.c                    |  53 +---
+  drivers/gpu/drm/xe/xe_wa.c                    |   4 +
+  drivers/gpu/drm/xe/xe_wa_oob.rules            |   6 +
+  include/drm/drm_print.h                       |  54 +++-
+  include/drm/ttm/ttm_tt.h                      |   6 +-
+  71 files changed, 1585 insertions(+), 525 deletions(-)
+  create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.c
+  create mode 100644 drivers/gpu/drm/xe/xe_gt_stats.h
+  create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group.c
+  create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group.h
+  create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_group_types.h
