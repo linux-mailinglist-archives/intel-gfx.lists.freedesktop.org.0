@@ -2,57 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57E0D95B8B2
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 16:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B822195B90D
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 16:51:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5F8910EAF9;
-	Thu, 22 Aug 2024 14:39:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D54C10EB04;
+	Thu, 22 Aug 2024 14:51:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLccRLBU";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="VrhrU6W2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0FE010EAFA
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 14:39:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724337595; x=1755873595;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LEn2cEH1ztmoYTxVwBdbEWvIr9MtoJ4easKGBEDFwrY=;
- b=YLccRLBUjyBjb3twJ4ZuWsldriK0zKSRwTJUboDYjYcuB6H2nF57O2fN
- V7GB+7iqtXCnFQ09akC+y9wS/8QQ/qB+/DdXPFjmbebWX67IYqUUoFx0i
- MEdgOi1wVuQeC2wVvlA7N42IIkSUdkRNlCxxol9VobOHQuNXKCTt1ic3f
- IZfXKj5HucUySTZbeqcrUq5EQPE0SvPQYrv20ncFi15+fH+vqJXSPTmUL
- NbCj10TqDBvNx2EwSegwG8ud+xtYuIGVwBFlJ3bNzAAYztbDMSZT/N98I
- /vKWqF+GA+51uvOvsZSMfxPkCd18fOcDRPtTKTFP6VvtbNd+q5YEuNsaU A==;
-X-CSE-ConnectionGUID: W/cmATucRFCqYSM+FGLrXw==
-X-CSE-MsgGUID: 1/e43wKmTnmDFl79rRhNIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22938811"
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="22938811"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 07:39:55 -0700
-X-CSE-ConnectionGUID: m3ap3g1LQgeCqqh9j1AtoQ==
-X-CSE-MsgGUID: 0T1EP3mER5WnTtppAd4HwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; d="scan'208";a="65806363"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.121])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 07:39:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/i915: remove unused leftover basedie step code
-Date: Thu, 22 Aug 2024 17:39:46 +0300
-Message-Id: <20240822143946.2526425-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 148C410EB04
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 14:51:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1724338270;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=qI7sIttUlfd6rK+jxE04yL0R9ETbDTbrKGTUq6cowac=;
+ b=VrhrU6W2tJxVE6+ROaYgVEnI6eD8UhT9d8TCGhFp8yvOYk+uuz10MviMzf5yQzMm+AiGxn
+ bk658ALToukv79DDlIMw2WE8d2LgUH0IQkx+JJmBKErcFszA5fHWY+a6OMTpGX61E8X4F7
+ 4B4ZJLEefA8DGR/SZ/K8z6v33X1Us0U=
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
+ [209.85.216.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-622-2PpqXb7ENRC1eLNqf6BNRA-1; Thu, 22 Aug 2024 10:51:08 -0400
+X-MC-Unique: 2PpqXb7ENRC1eLNqf6BNRA-1
+Received: by mail-pj1-f70.google.com with SMTP id
+ 98e67ed59e1d1-2d3baf38457so1850181a91.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 07:51:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724338268; x=1724943068;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=qI7sIttUlfd6rK+jxE04yL0R9ETbDTbrKGTUq6cowac=;
+ b=a3FGQec+4Hi4Hos52hWWtcf6a9W2Uw7JW/1Fcnc/mioSvHH7CDMRLrKivnO+tUXjcu
+ L0UpoZ4W+yTPDFiULbH548l6Axhvz1y8Klh/aow5/VWs/0WEiYbVXwB6l5FYWnbB1w7z
+ hHpLe17oS6ZZ/mpM5FkHFJQoy+Omz6FsUoxgGPXvmmZU4YmuYXegqiaiuvD9ieRwHIFj
+ iWGDBTyKsAY1jZp/CpeZFf/UAq8gS5O1P9GaMKgaK9ALVpIyF/FqBbImRGZilu4JRsUd
+ e+oSm5d9AXc8STZOmwxR7o7Q0EoY0SllTUEHrA5+lgvnOVtMPBKtf1t8Co9gNAzv5BEt
+ L++w==
+X-Gm-Message-State: AOJu0YwSoA1hFM6R7KatyaFkmzh+t/y7sFw0iAA/FxvGm3pFwm/X0UAr
+ Rh6BI28eLJ5EsrgFbyf9NzSvSGvRgY73/KQAsG27mAlrS64GZs1nYaS2oaTc7UbPHq0CTbG9SAM
+ B1v8ouPkvSX4+87+p3k6z8O/W7LQ/UFq0DEFp+b0Jv+ORAhKaJ4zaHjXZUMDhIGZcng==
+X-Received: by 2002:a17:90a:fe01:b0:2c9:63d3:1f20 with SMTP id
+ 98e67ed59e1d1-2d60aa21cdbmr5119814a91.18.1724338267819; 
+ Thu, 22 Aug 2024 07:51:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEkSqoPaYwU/pzTrCfkc680+HlIjlYxmDe4h014NbVi6qWLqici8+WArvm4OgjHVpg5BubFyQ==
+X-Received: by 2002:a17:90a:fe01:b0:2c9:63d3:1f20 with SMTP id
+ 98e67ed59e1d1-2d60aa21cdbmr5119777a91.18.1724338267398; 
+ Thu, 22 Aug 2024 07:51:07 -0700 (PDT)
+Received: from localhost ([181.120.144.238]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2d613af1496sm1921071a91.40.2024.08.22.07.51.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 22 Aug 2024 07:51:07 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Alex Deucher
+ <alexander.deucher@amd.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Helge Deller <deller@gmx.de>, Sam
+ Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ stable@vger.kernel.org
+Subject: Re: [PATCH V3] video/aperture: optionally match the device in
+ sysfb_disable()
+In-Reply-To: <20240821191135.829765-1-alexander.deucher@amd.com>
+References: <20240821191135.829765-1-alexander.deucher@amd.com>
+Date: Thu, 22 Aug 2024 16:51:04 +0200
+Message-ID: <874j7ca9wn.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,66 +91,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The basedie step initialization as well as its last users were removed
-in commit 326e30e4624c ("drm/i915: Drop dead code for pvc"). Follow
-through with removing the unused macros and struct member and debug
-logging.
+Alex Deucher <alexander.deucher@amd.com> writes:
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          | 5 -----
- drivers/gpu/drm/i915/intel_device_info.c | 1 -
- drivers/gpu/drm/i915/intel_step.h        | 1 -
- 3 files changed, 7 deletions(-)
+Hello Alex,
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 3b1b16e71cf9..eb4c33e83c7c 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -410,7 +410,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
- 
- #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics_step)
- #define INTEL_MEDIA_STEP(__i915) (RUNTIME_INFO(__i915)->step.media_step)
--#define INTEL_BASEDIE_STEP(__i915) (RUNTIME_INFO(__i915)->step.basedie_step)
- 
- #define IS_GRAPHICS_STEP(__i915, since, until) \
- 	(drm_WARN_ON(&(__i915)->drm, INTEL_GRAPHICS_STEP(__i915) == STEP_NONE), \
-@@ -420,10 +419,6 @@ static inline struct intel_gt *to_gt(const struct drm_i915_private *i915)
- 	(drm_WARN_ON(&(__i915)->drm, INTEL_MEDIA_STEP(__i915) == STEP_NONE), \
- 	 INTEL_MEDIA_STEP(__i915) >= (since) && INTEL_MEDIA_STEP(__i915) < (until))
- 
--#define IS_BASEDIE_STEP(__i915, since, until) \
--	(drm_WARN_ON(&(__i915)->drm, INTEL_BASEDIE_STEP(__i915) == STEP_NONE), \
--	 INTEL_BASEDIE_STEP(__i915) >= (since) && INTEL_BASEDIE_STEP(__i915) < (until))
--
- static __always_inline unsigned int
- __platform_mask_index(const struct intel_runtime_info *info,
- 		      enum intel_platform p)
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index d92b3050ac78..b485e959f064 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -108,7 +108,6 @@ void intel_device_info_print(const struct intel_device_info *info,
- 
- 	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.graphics_step));
- 	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.media_step));
--	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.basedie_step));
- 
- 	drm_printf(p, "gt: %d\n", info->gt);
- 	drm_printf(p, "memory-regions: 0x%x\n", info->memory_regions);
-diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
-index 83bd1190edf5..22f1d6905160 100644
---- a/drivers/gpu/drm/i915/intel_step.h
-+++ b/drivers/gpu/drm/i915/intel_step.h
-@@ -17,7 +17,6 @@ struct intel_step_info {
- 	 */
- 	u8 graphics_step;	/* Represents the compute tile on Xe_HPC */
- 	u8 media_step;
--	u8 basedie_step;
- };
- 
- #define STEP_ENUM_VAL(name)  STEP_##name,
+> In aperture_remove_conflicting_pci_devices(), we currently only
+> call sysfb_disable() on vga class devices.  This leads to the
+> following problem when the pimary device is not VGA compatible:
+>
+> 1. A PCI device with a non-VGA class is the boot display
+> 2. That device is probed first and it is not a VGA device so
+>    sysfb_disable() is not called, but the device resources
+>    are freed by aperture_detach_platform_device()
+> 3. Non-primary GPU has a VGA class and it ends up calling sysfb_disable()
+> 4. NULL pointer dereference via sysfb_disable() since the resources
+>    have already been freed by aperture_detach_platform_device() when
+>    it was called by the other device.
+>
+> Fix this by passing a device pointer to sysfb_disable() and checking
+> the device to determine if we should execute it or not.
+>
+> v2: Fix build when CONFIG_SCREEN_INFO is not set
+> v3: Move device check into the mutex
+>     Drop primary variable in aperture_remove_conflicting_pci_devices()
+>     Drop __init on pci sysfb_pci_dev_is_enabled()
+>
+> Fixes: 5ae3716cfdcd ("video/aperture: Only remove sysfb on the default vga pci device")
+> Cc: Javier Martinez Canillas <javierm@redhat.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Helge Deller <deller@gmx.de>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> Cc: stable@vger.kernel.org
+> ---
+
+This version looks good to me. Thanks!
+
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+
 -- 
-2.39.2
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
