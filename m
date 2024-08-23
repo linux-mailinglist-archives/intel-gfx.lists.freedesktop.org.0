@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F5D95CD5B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 15:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBAD95CD30
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 15:09:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA5F610E7D4;
-	Fri, 23 Aug 2024 13:10:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBD710E67E;
+	Fri, 23 Aug 2024 13:09:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SkPCeoiJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0uFDNRP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D898E10E7D4;
- Fri, 23 Aug 2024 13:10:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 186F710E67D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 13:09:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724418648; x=1755954648;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cz4MLsNxdEVm31jcygokO3wgjvaSo4pRbLsggfLiaeM=;
- b=SkPCeoiJ+VSVDGNQa/gA693OlJe4EjFKyAOvPNEF1rr2C4fIfGhGAxfZ
- LesKguP63jDFTXpJeaHa9FTEOFl/OMJi01/7vojbP7NNg8ECwSz5Ja9bp
- Zs0DcH1qmPCZV3uJKH6Vs4AoGfJZJrOM8WFfXCmhVr46BKVne8oWMqvWA
- E2xeEVepxIEdP8WVAE2Dd5NWs2+8qgLjx8Z7Er1x9eMZ7gCX2I+jdNfBp
- sxj4Sg8sxhBM2dbLccq02wXoM2xjch0HNKvkY4mwm/IHn3gwkZYJ4qaDx
- VPH53wG+Arig3/akGkYywn7H/m22z4nKotKJtxsfH1VgYS4/tdzQ8uA5N w==;
-X-CSE-ConnectionGUID: cImFXoxTQF2vI/dfgYYu3g==
-X-CSE-MsgGUID: /DwT/F2VTKqqBsp/1LvKbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="23055312"
-X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="23055312"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 06:10:47 -0700
-X-CSE-ConnectionGUID: 7/1CnSf9SjeYgn0q81Qpeg==
-X-CSE-MsgGUID: R1/9VtwKS/iBJIhTU3W1Mg==
+ t=1724418546; x=1755954546;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=78zEJYfrSyfdx6Rx16BBxYJFqnOgKHC4iHHLN4ZrJGo=;
+ b=h0uFDNRPopDJPFfu+/d3dArDu6TuW++7M1bpB2zsktMypTdj2h5rc5jC
+ NFjM7k1qZA8rejLml8PcCyB8ykxoibtJIF/nAIaQgtQlyJgi6Kwq41hF5
+ Z4DR4uZeocbRCBj+TDkmNfpFD0yLcHfqqhEHH3vyhHb+mPtsebLITFDuJ
+ GsL9bIhF4wLXN49CeNkZX42hVKp6/1dUDCujYPy0FOz/kp2UgkB1W1a8f
+ SunCbd5ihyOlAa7EiEwhvMVo8tEKlr0xCrpEUudwP9NFOwc8QkOqlYACY
+ +pl+dheyGvc+PdXrSeJ1y7/LRBbJcBf94CO14boX3C9a+6M2JfeG3ogIv A==;
+X-CSE-ConnectionGUID: oxPiz93+RFuCSALL6/Efow==
+X-CSE-MsgGUID: KfrkgUXGQfaumGJ9HJJ8RQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="48279848"
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="48279848"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 06:09:05 -0700
+X-CSE-ConnectionGUID: dU+ju7RMR86GafTxLK2mTw==
+X-CSE-MsgGUID: XAIcKHPkTPiyA6+KvviUmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="65999459"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.236])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 06:10:45 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH v3 15/15] drm/i915/gt: Allow the user to change the CCS mode
- through sysfs
-Date: Fri, 23 Aug 2024 15:08:55 +0200
-Message-ID: <20240823130855.72436-16-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240823130855.72436-1-andi.shyti@linux.intel.com>
-References: <20240823130855.72436-1-andi.shyti@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="61810551"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 06:09:04 -0700
+Date: Fri, 23 Aug 2024 16:09:25 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/dp_mst: Fix MST state after a sink reset
+Message-ID: <ZsiKBWzcaHei3Y5T@ideak-desk.fi.intel.com>
+References: <20240724161223.2291853-1-imre.deak@intel.com>
+ <87ttfe3qn4.fsf@intel.com>
+ <ZsX44RvNJ96cAV0i@ideak-desk.fi.intel.com>
+ <87frqw513w.fsf@intel.com>
+ <ZscN5TlMcAzIcSrS@ideak-desk.fi.intel.com>
+ <871q2g4nj4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <871q2g4nj4.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,147 +69,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Create the 'ccs_mode' file under
+On Thu, Aug 22, 2024 at 05:53:19PM +0300, Jani Nikula wrote:
+> On Thu, 22 Aug 2024, Imre Deak <imre.deak@intel.com> wrote:
+> > On Thu, Aug 22, 2024 at 01:00:03PM +0300, Jani Nikula wrote:
+> >> On Wed, 21 Aug 2024, Imre Deak <imre.deak@intel.com> wrote:
+> >> > On Wed, Aug 21, 2024 at 05:19:11PM +0300, Jani Nikula wrote:
+> >> >> On Wed, 24 Jul 2024, Imre Deak <imre.deak@intel.com> wrote:
+> >> >> > In some cases the sink can reset itself after it was configured into MST
+> >> >> > mode, without the driver noticing the disconnected state. For instance
+> >> >> > the reset may happen in the middle of a modeset, or the (long) HPD pulse
+> >> >> > generated may be not long enough for the encoder detect handler to
+> >> >> > observe the HPD's deasserted state. In this case the sink's DPCD
+> >> >> > register programmed to enable MST will be reset, while the driver still
+> >> >> > assumes MST is still enabled. Detect this condition, which will tear
+> >> >> > down and recreate/re-enable the MST topology.
+> >> >> >
+> >> >> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11195
+> >> >> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> >> >> > ---
+> >> >> >  drivers/gpu/drm/i915/display/intel_dp.c     |  3 +++
+> >> >> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 30 +++++++++++++++++++++
+> >> >> >  drivers/gpu/drm/i915/display/intel_dp_mst.h |  1 +
+> >> >> >  3 files changed, 34 insertions(+)
+> >> >> >
+> >> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> >> > index 1e43e32e05199..c621f6daf8235 100644
+> >> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> >> > @@ -5878,6 +5878,9 @@ intel_dp_detect(struct drm_connector *connector,
+> >> >> >  	else
+> >> >> >  		status = connector_status_disconnected;
+> >> >> >  
+> >> >> > +	if (!intel_dp_mst_verify_dpcd_state(intel_dp))
+> >> >> > +		status = connector_status_disconnected;
+> >> >> > +
+> >> >> 
+> >> >> So I still don't understand. We've got a detect which we've determined
+> >> >> is connected. But then we disconnect because the sink state has changed.
+> >> >> 
+> >> >> How do we get another connect?
+> >> >
+> >> > The detect in this case will be retried with a 1 sec delay, since the
+> >> > mode changes back to SST and the connector state stays disconnected.
+> >> 
+> >> What exactly triggers the retry? I don't see this triggering the
+> >> INTEL_HOTPLUG_RETRY case.
+> >
+> > drm_connector::status is connector_status_disconnected before the detect
+> > (as always for an MST root connector)
+> 
+> This was one of the missing pieces for me. I just thought we'd get here
+> with connector_status_connected && is_mst == true, which would lead to a
+> change.
 
-/sys/class/drm/cardX/gt/gt0/ccs_mode
+Yes, what the connector status means for an MST root connector is not
+very clear. How the detect will get retried also needs a comment here I
+think, I'll add that.
 
-This file allows the user to read and set the current CCS mode.
+> Very well then. One final nitpick below.
+> 
+> > and it stays
+> > connector_status_disconnected. The connector's mode will also change to
+> > SST (intel_dp::is_mst from true to false). This condition will lead to
+> > the detect getting retried.
+> >
+> > A detect will actually happen in any case, since removing the MST
+> > connectors results in a (global) hotplug uevent being sent, to which
+> > userspace should respond with re-probing all connectors.
+> >
+> >> I'm just trying to understand, please bear with me.
+> >> [...]
+> >> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> >> > index 27ce5c3f5951e..89b147e37b400 100644
+> >> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> >> > @@ -1998,3 +1998,33 @@ bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
+> >> >> >  
+> >> >> >  	return false;
+> >> >> >  }
+> >> >> > +
+> >> >> > +/**
+> >> >> > + * intel_dp_mst_verify_dpcd_state - verify the MST SW enabled state wrt. the DPCD
+> >> >> > + * @intel_dp: DP port object
+> >> >> > + *
+> >> >> > + * Verify if @intel_dp's MST enabled SW state matches the corresponding DPCD
+> >> >> > + * state. A long HPD pulse -not long enough to be detected as a disconnected
+> >> >> > + * state - could've reset the DPCD state, which requires tearing
+> >> >> > + * down/recreating the MST topology.
+> >> >> > + *
+> >> >> > + * Returns %true if the SW MST enabled and DPCD states match, %false
+> >> >> > + * otherwise.
+> >> >> > + */
+> >> >> > +bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp)
+> >> >> > +{
+> >> >> > +	int ret;
+> >> >> > +	u8 val;
+> >> >> > +
+> >> >> > +	if (!intel_dp->is_mst)
+> >> >> > +		return true;
+> >> >> > +
+> >> >> > +	ret = drm_dp_dpcd_readb(intel_dp->mst_mgr.aux, DP_MSTM_CTRL, &val);
+> >> >> > +	if (ret < 0)
+> >> >> > +		return false;
+> >> >> > +
+> >> >> > +	if (val != (DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC))
+> 
+> Maybe let's add drm_dbg_kms() here so we know what's going on?
 
- - Reading: The user can read the current CCS mode, which can be
-   1, 2, or 4. This value is derived from the current engine
-   mask.
+Ok, can add it.
 
- - Writing: The user can set the CCS mode to 1, 2, or 4,
-   depending on the desired number of exposed engines and the
-   required load balancing.
-
-The interface will return -EBUSY if other clients are connected
-to i915, or -EINVAL if an invalid value is set.
-
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 82 ++++++++++++++++++++-
- 1 file changed, 80 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-index cc46ee9dea3f..1ed6153ff8cf 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-@@ -6,6 +6,7 @@
- #include "i915_drv.h"
- #include "intel_engine_user.h"
- #include "intel_gt_ccs_mode.h"
-+#include "intel_gt_pm.h"
- #include "intel_gt_print.h"
- #include "intel_gt_regs.h"
- #include "intel_gt_sysfs.h"
-@@ -172,7 +173,7 @@ static int rb_engine_cmp(struct rb_node *rb_new, const struct rb_node *rb_old)
- 	return new->uabi_class - old->uabi_class;
- }
- 
--static void __maybe_unused add_uabi_ccs_engines(struct intel_gt *gt, u32 ccs_mode)
-+static void add_uabi_ccs_engines(struct intel_gt *gt, u32 ccs_mode)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 	intel_engine_mask_t new_ccs_mask, tmp;
-@@ -230,7 +231,7 @@ static void __maybe_unused add_uabi_ccs_engines(struct intel_gt *gt, u32 ccs_mod
- 	mutex_unlock(&i915->uabi_engines_mutex);
- }
- 
--static void __maybe_unused remove_uabi_ccs_engines(struct intel_gt *gt, u8 ccs_mode)
-+static void remove_uabi_ccs_engines(struct intel_gt *gt, u8 ccs_mode)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 	intel_engine_mask_t new_ccs_mask, tmp;
-@@ -273,8 +274,85 @@ static ssize_t num_cslices_show(struct device *dev,
- }
- static DEVICE_ATTR_RO(num_cslices);
- 
-+static ssize_t ccs_mode_show(struct device *dev,
-+			     struct device_attribute *attr, char *buff)
-+{
-+	struct intel_gt *gt = kobj_to_gt(&dev->kobj);
-+	u32 ccs_mode;
-+
-+	ccs_mode = hweight32(gt->ccs.id_mask);
-+
-+	return sysfs_emit(buff, "%u\n", ccs_mode);
-+}
-+
-+static ssize_t ccs_mode_store(struct device *dev,
-+			      struct device_attribute *attr,
-+			      const char *buff, size_t count)
-+{
-+	struct intel_gt *gt = kobj_to_gt(&dev->kobj);
-+	int num_cslices = hweight32(CCS_MASK(gt));
-+	int ccs_mode = hweight32(gt->ccs.id_mask);
-+	ssize_t ret;
-+	u32 val;
-+
-+	ret = kstrtou32(buff, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * As of now possible values to be set are 1, 2, 4,
-+	 * up to the maximum number of available slices
-+	 */
-+	if (!val || val > num_cslices || (num_cslices % val))
-+		return -EINVAL;
-+
-+	/* Let's wait until the GT is no longer in use */
-+	ret = intel_gt_pm_wait_for_idle(gt);
-+	if (ret)
-+		return ret;
-+
-+	mutex_lock(&gt->wakeref.mutex);
-+
-+	/*
-+	 * Let's check again that the GT is idle,
-+	 * we don't want to change the CCS mode
-+	 * while someone is using the GT
-+	 */
-+	if (intel_gt_pm_is_awake(gt)) {
-+		ret = -EBUSY;
-+		goto out;
-+	}
-+
-+	/*
-+	 * Nothing to do if the requested setting
-+	 * is the same as the current one
-+	 */
-+	if (val == ccs_mode)
-+		goto out;
-+	else if (val > ccs_mode)
-+		add_uabi_ccs_engines(gt, val);
-+	else
-+		remove_uabi_ccs_engines(gt, val);
-+
-+out:
-+	mutex_unlock(&gt->wakeref.mutex);
-+
-+	return ret ?: count;
-+}
-+static DEVICE_ATTR_RW(ccs_mode);
-+
- void intel_gt_sysfs_ccs_init(struct intel_gt *gt)
- {
- 	if (sysfs_create_file(&gt->sysfs_gt, &dev_attr_num_cslices.attr))
- 		gt_warn(gt, "Failed to create sysfs num_cslices files\n");
-+
-+	/*
-+	 * Do not create the ccs_mode file for non DG2 platforms
-+	 * because they don't need it as they have only one CCS engine
-+	 */
-+	if (!IS_DG2(gt->i915))
-+		return;
-+
-+	if (sysfs_create_file(&gt->sysfs_gt, &dev_attr_ccs_mode.attr))
-+		gt_warn(gt, "Failed to create sysfs ccs_mode files\n");
- }
--- 
-2.45.2
-
+> 
+> BR,
+> Jani.
+> 
+> 
+> >> >> > +		return false;
+> >> >> > +
+> >> >> > +	return true;
+> >> >> > +}
+> >> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> >> >> > index 8ca1d599091c6..9e4c7679f1c3a 100644
+> >> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> >> >> > @@ -27,5 +27,6 @@ int intel_dp_mst_atomic_check_link(struct intel_atomic_state *state,
+> >> >> >  				   struct intel_link_bw_limits *limits);
+> >> >> >  bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
+> >> >> >  				     struct intel_crtc *crtc);
+> >> >> > +bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp);
+> >> >> >  
+> >> >> >  #endif /* __INTEL_DP_MST_H__ */
+> >> >> 
+> >> >> -- 
+> >> >> Jani Nikula, Intel
+> >> 
+> >> -- 
+> >> Jani Nikula, Intel
+> 
+> -- 
+> Jani Nikula, Intel
