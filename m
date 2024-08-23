@@ -2,60 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5228E95C9F5
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 12:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44ACB95C9EA
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 12:08:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E83D10E478;
-	Fri, 23 Aug 2024 10:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C083E10E462;
+	Fri, 23 Aug 2024 10:08:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ep1AgF6X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FfcBlbur";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B4010E46D;
- Fri, 23 Aug 2024 10:08:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D04410E462
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 10:08:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724407725; x=1755943725;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=V7igrIBNLGp99+cmdOa/qHmW3cfEEHaBNKafq0ilVaw=;
- b=ep1AgF6X66ua2Y7MbsjJmfJjwTD5hEaYxYG5o0ZX43FmepBIcEHpQBWG
- 90R9OCKD87pWyECg7RH5I0/PLRf2YpkyEc7UE4t1aKC2v0vO5wJB988y2
- Xd/XFHE5CSoq+6EbVPFnu1rX8ZX9fmeJ94ZJpZDM7M/lLipezbl6Giznl
- /AbxDrj5VtJXu0INxeyBARlPQr/DvMjkHDHNgmNmcy2gSN77n8XakwePD
- ERyKYIoPTLDbkq85fsc24bFgKZMeKTxG/LwOBqbr+05o5n5VrvlHndQWQ
- YXHpOgeSbpO+4LzQXBf+oAoXZmkRB3LI2HhCdHEI5bFyH4krm2Z0iPasW g==;
-X-CSE-ConnectionGUID: BHGh8lI2TJSkYlbEC+ZGcA==
-X-CSE-MsgGUID: srw17c/HQeGL67ayp0ZU+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="23052847"
-X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="23052847"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 03:08:36 -0700
-X-CSE-ConnectionGUID: qG3hCfBRQZeBpD83+f/BHg==
-X-CSE-MsgGUID: 9eEagEiyRNK854ztLi2eoA==
+ t=1724407690; x=1755943690;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+dBlLNRUTf3VfyyU925eHbNjJ+HtgqHmFCxf9im50lM=;
+ b=FfcBlburgGirpcn/8XtQiZ+SNINozqFO/WL3M41GF5dpeRsKANgM6qSq
+ x/83+1vVAEmtsdatQdwzPn2LUN09k+UkFNMPmshS2lFFc7ZGjO3XjTWsv
+ lGjP1oJx5g2sq8rDqZt9VMfj4jUOyYS4Jt7QbOwcT6xz6exWtR0vnFWHL
+ Mv4TU05d122TCyDgwT2dQEMbjigNpigoj7pJ9N8S5qoI4t4OJ2cENNkg1
+ ogLV8XFpxtAW+2YPpbPZlLeSPzIX2FRMzpld8iOo0WU7TGze6qV6JcImF
+ sqFlvOkjO+UmFp2toWybPcWHJIiat5STspvXMOcBUS7vy9VbmcYKx+gYM A==;
+X-CSE-ConnectionGUID: aOouJrfAS1WHyjQULyAhvg==
+X-CSE-MsgGUID: YTPtmBrRRiy/7IgQ7mbJTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33491101"
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="33491101"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 03:08:10 -0700
+X-CSE-ConnectionGUID: 6Z2t/vwFR56jb9HMlMfHrA==
+X-CSE-MsgGUID: zSVWR7qJRYyh/pdUUM76mA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="99274059"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.223])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 03:08:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 7/7] drm/i915/display: convert params to struct
- intel_display
-In-Reply-To: <ZseyOw4qC2vfuxa_@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1724342644.git.jani.nikula@intel.com>
- <3e5cc1744eaf4708b08303e3e7e194035d7941cc.1724342644.git.jani.nikula@intel.com>
- <ZseyOw4qC2vfuxa_@intel.com>
-Date: Fri, 23 Aug 2024 13:08:29 +0300
-Message-ID: <87msl3361u.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,170,1719903600"; d="scan'208";a="62054616"
+Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
+ by orviesa006.jf.intel.com with ESMTP; 23 Aug 2024 03:08:08 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH] drm/i915/gt: Disable Redundant HZ Plane expansions for
+ MTL/ARL and DG2
+Date: Fri, 23 Aug 2024 15:40:09 +0530
+Message-Id: <20240823101009.2093667-1-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,182 +65,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 22 Aug 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Aug 22, 2024 at 07:04:55PM +0300, Jani Nikula wrote:
->> Going forward, struct intel_display shall replace struct
->> drm_i915_private as the main display device data pointer type. Convert
->> intel_display_params.[ch] and intel_display_debugfs_params.[ch] to
->> struct intel_display.
->> 
->> Some stragglers	are left behind	where needed.
->
->                  ^ just noticed the extra tab on this, but
-> likely present in the other commit messages where you had
-> left some cases behind...
+Program HZ Plane disable bit to 1 to stop sending the redundant
+plane expansions.
 
-Thanks, fixed while applying.
+Bspec: 68331
 
-BR,
-Jani.
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h     |  5 +++--
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 17 +++++++++++++++--
+ 2 files changed, 18 insertions(+), 4 deletions(-)
 
->
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_debugfs.c      | 2 +-
->>  .../gpu/drm/i915/display/intel_display_debugfs_params.c   | 8 ++++----
->>  .../gpu/drm/i915/display/intel_display_debugfs_params.h   | 4 ++--
->>  drivers/gpu/drm/i915/display/intel_display_params.c       | 6 +++---
->>  drivers/gpu/drm/i915/display/intel_display_params.h       | 4 ++--
->>  drivers/gpu/drm/i915/i915_debugfs.c                       | 3 ++-
->>  drivers/gpu/drm/i915/i915_gpu_error.c                     | 3 ++-
->>  7 files changed, 16 insertions(+), 14 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 0cf0b4223513..74f527647aa9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -1073,7 +1073,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
->>  	intel_opregion_debugfs_register(display);
->>  	intel_psr_debugfs_register(i915);
->>  	intel_wm_debugfs_register(i915);
->> -	intel_display_debugfs_params(i915);
->> +	intel_display_debugfs_params(display);
->>  }
->>  
->>  static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
->> index f35718748555..ec3ed29a83c9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
->> @@ -151,13 +151,13 @@ intel_display_debugfs_create_uint(const char *name, umode_t mode,
->>  	} while (0)
->>  
->>  /* add a subdirectory with files for each intel display param */
->> -void intel_display_debugfs_params(struct drm_i915_private *i915)
->> +void intel_display_debugfs_params(struct intel_display *display)
->>  {
->> -	struct drm_minor *minor = i915->drm.primary;
->> +	struct drm_minor *minor = display->drm->primary;
->>  	struct dentry *dir;
->>  	char dirname[16];
->>  
->> -	snprintf(dirname, sizeof(dirname), "%s_params", i915->drm.driver->name);
->> +	snprintf(dirname, sizeof(dirname), "%s_params", display->drm->driver->name);
->>  	dir = debugfs_lookup(dirname, minor->debugfs_root);
->>  	if (!dir)
->>  		dir = debugfs_create_dir(dirname, minor->debugfs_root);
->> @@ -171,7 +171,7 @@ void intel_display_debugfs_params(struct drm_i915_private *i915)
->>  	 */
->>  
->>  #define REGISTER(T, x, unused, mode, ...) _intel_display_param_create_file( \
->> -		dir, #x, mode, &i915->display.params.x);
->> +		dir, #x, mode, &display->params.x);
->>  	INTEL_DISPLAY_PARAMS_FOR_EACH(REGISTER);
->>  #undef REGISTER
->>  }
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
->> index 1e9945a4044c..a1120915a5a8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.h
->> @@ -6,8 +6,8 @@
->>  #ifndef __INTEL_DISPLAY_DEBUGFS_PARAMS__
->>  #define __INTEL_DISPLAY_DEBUGFS_PARAMS__
->>  
->> -struct drm_i915_private;
->> +struct intel_display;
->>  
->> -void intel_display_debugfs_params(struct drm_i915_private *i915);
->> +void intel_display_debugfs_params(struct intel_display *display);
->>  
->>  #endif /* __INTEL_DISPLAY_DEBUGFS_PARAMS__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->> index e82bd72d32fa..1a45d300b6f0 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->> @@ -173,14 +173,14 @@ static void _param_print_charp(struct drm_printer *p, const char *driver_name,
->>  
->>  /**
->>   * intel_display_params_dump - dump intel display modparams
->> - * @i915: i915 device
->> + * @display: display device
->>   * @p: the &drm_printer
->>   *
->>   * Pretty printer for i915 modparams.
->>   */
->> -void intel_display_params_dump(struct drm_i915_private *i915, struct drm_printer *p)
->> +void intel_display_params_dump(struct intel_display *display, struct drm_printer *p)
->>  {
->> -#define PRINT(T, x, ...) _param_print(p, i915->drm.driver->name, #x, i915->display.params.x);
->> +#define PRINT(T, x, ...) _param_print(p, display->drm->driver->name, #x, display->params.x);
->>  	INTEL_DISPLAY_PARAMS_FOR_EACH(PRINT);
->>  #undef PRINT
->>  }
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->> index 48c29c55c939..da8dc943234b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->> @@ -9,7 +9,7 @@
->>  #include <linux/types.h>
->>  
->>  struct drm_printer;
->> -struct drm_i915_private;
->> +struct intel_display;
->>  
->>  /*
->>   * Invoke param, a function-like macro, for each intel display param, with
->> @@ -56,7 +56,7 @@ struct intel_display_params {
->>  };
->>  #undef MEMBER
->>  
->> -void intel_display_params_dump(struct drm_i915_private *i915,
->> +void intel_display_params_dump(struct intel_display *display,
->>  			       struct drm_printer *p);
->>  void intel_display_params_copy(struct intel_display_params *dest);
->>  void intel_display_params_free(struct intel_display_params *params);
->> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
->> index bc717cf544e4..f969f585d07b 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -66,6 +66,7 @@ static inline struct drm_i915_private *node_to_i915(struct drm_info_node *node)
->>  static int i915_capabilities(struct seq_file *m, void *data)
->>  {
->>  	struct drm_i915_private *i915 = node_to_i915(m->private);
->> +	struct intel_display *display = &i915->display;
->>  	struct drm_printer p = drm_seq_file_printer(m);
->>  
->>  	seq_printf(m, "pch: %d\n", INTEL_PCH_TYPE(i915));
->> @@ -77,7 +78,7 @@ static int i915_capabilities(struct seq_file *m, void *data)
->>  
->>  	kernel_param_lock(THIS_MODULE);
->>  	i915_params_dump(&i915->params, &p);
->> -	intel_display_params_dump(i915, &p);
->> +	intel_display_params_dump(display, &p);
->>  	kernel_param_unlock(THIS_MODULE);
->>  
->>  	return 0;
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
->> index 96c6cafd5b9e..6469b9bcf2ec 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -660,9 +660,10 @@ static void err_print_params(struct drm_i915_error_state_buf *m,
->>  			     const struct i915_params *params)
->>  {
->>  	struct drm_printer p = i915_error_printer(m);
->> +	struct intel_display *display = &m->i915->display;
->>  
->>  	i915_params_dump(params, &p);
->> -	intel_display_params_dump(m->i915, &p);
->> +	intel_display_params_dump(display, &p);
->>  }
->>  
->>  static void err_print_pciid(struct drm_i915_error_state_buf *m,
->> -- 
->> 2.39.2
->> 
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index e42b3a5d4e63..74b633a78eda 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -446,8 +446,9 @@
+ 
+ /* GEN7 chicken */
+ #define GEN7_COMMON_SLICE_CHICKEN1		_MMIO(0x7010)
+-#define   GEN7_CSC1_RHWO_OPT_DISABLE_IN_RCC	(1 << 10)
+-#define   GEN9_RHWO_OPTIMIZATION_DISABLE	(1 << 14)
++#define   GEN9_RHWO_OPTIMIZATION_DISABLE	REG_BIT(14)
++#define   GEN7_CSC1_RHWO_OPT_DISABLE_IN_RCC	REG_BIT(10)
++#define   HIZ_PLANE_OPTIMIZATION_DISABLE	REG_BIT(9)
+ 
+ #define COMMON_SLICE_CHICKEN2			_MMIO(0x7014)
+ #define   GEN9_PBE_COMPRESSED_HASH_SELECTION	(1 << 13)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index bfe6d8fc820f..ff257bb2d15a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1550,6 +1550,13 @@ dg2_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 
+ 	/* Wa_14010648519:dg2 */
+ 	wa_mcr_write_or(wal, XEHP_L3NODEARBCFG, XEHP_LNESPARE);
++
++	/*
++	 * DisableHIZPlaneOptimizationForRedundantZPlaneUnit
++	 * This is not WA,THis is required by recommended tuning setting.
++	 */
++	wa_masked_dis(wal,
++		      GEN7_COMMON_SLICE_CHICKEN1, HIZ_PLANE_OPTIMIZATION_DISABLE);
+ }
+ 
+ static void
+@@ -1570,6 +1577,12 @@ xelpg_gt_workarounds_init(struct intel_gt *gt, struct i915_wa_list *wal)
+ 		/* Wa_14015795083 */
+ 		wa_write_clr(wal, GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE);
+ 	}
++	/*
++	 * DisableHIZPlaneOptimizationForRedundantZPlaneUnit
++	 * This is not WA, This is required by recommended tuning setting.
++	 */
++	wa_masked_dis(wal,
++		      GEN7_COMMON_SLICE_CHICKEN1, HIZ_PLANE_OPTIMIZATION_DISABLE);
+ 
+ 	/*
+ 	 * Unlike older platforms, we no longer setup implicit steering here;
+@@ -2072,7 +2085,7 @@ static void dg2_whitelist_build(struct intel_engine_cs *engine)
+ 	case RENDER_CLASS:
+ 		/* Required by recommended tuning setting (not a workaround) */
+ 		whitelist_mcr_reg(w, XEHP_COMMON_SLICE_CHICKEN3);
+-
++		whitelist_reg(w, GEN7_COMMON_SLICE_CHICKEN1);
+ 		break;
+ 	default:
+ 		break;
+@@ -2087,7 +2100,7 @@ static void xelpg_whitelist_build(struct intel_engine_cs *engine)
+ 	case RENDER_CLASS:
+ 		/* Required by recommended tuning setting (not a workaround) */
+ 		whitelist_mcr_reg(w, XEHP_COMMON_SLICE_CHICKEN3);
+-
++		whitelist_reg(w, GEN7_COMMON_SLICE_CHICKEN1);
+ 		break;
+ 	default:
+ 		break;
 -- 
-Jani Nikula, Intel
+2.34.1
+
