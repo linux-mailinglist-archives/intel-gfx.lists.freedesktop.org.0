@@ -2,173 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A904395C074
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2024 23:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF6495C3AE
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 05:24:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4780C10E119;
-	Thu, 22 Aug 2024 21:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5D7110E8BC;
+	Fri, 23 Aug 2024 03:24:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N5VceGje";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIZtxTiQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA34010E11A
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2024 21:55:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8840810E8BC;
+ Fri, 23 Aug 2024 03:24:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724363754; x=1755899754;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Q63/nodqxSNN1+Anzu01FTrtwY2yEQqFh44BHZIvsuY=;
- b=N5VceGjegUaun6NcqcuwtYCrVjgUHi+7z3OBAxWP8pyQaVJm6mkp+0fG
- g/5HVzpG1+Iz0M7zRfRQfC0c/RGHguvJx1ijXGFE6DRaA/S5FPBgXsE7a
- 1gftXMvKs10U8YQQVseRFPG177mmd0hY0MzIL5evE+/zmaucJw6gE2qC9
- O2lHHWE2pgDuhOkZzka/qhLvkq//JP0s81N2nsBQz5cU7FhaPF9Lg5UQI
- h7VjNsPl5ZQiFZWKzsaWRS9gtDLWqOFiifim0FeE09hsuSAhzZrD8lXTF
- VcLWTP9TaUJnol0Lm1gdGJ/WRZ14mwVLq/dVk30Q6SGT8GX2T8BzIOEQr w==;
-X-CSE-ConnectionGUID: 6e0YODEESXO+FXsj4MHa/A==
-X-CSE-MsgGUID: 9rAVOSPSTG2aJGVl3BmCgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33474059"
-X-IronPort-AV: E=Sophos;i="6.10,168,1719903600"; d="scan'208";a="33474059"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2024 14:55:54 -0700
-X-CSE-ConnectionGUID: MeGj5qFrS3OGJy0vWrZQFQ==
-X-CSE-MsgGUID: 4ftgvjPdRZO6nGrMcR/CXA==
+ t=1724383443; x=1755919443;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RsEApdiPqJlHPsVajV6sVlIGA5tz0Zwr6RoXOpzyLQk=;
+ b=cIZtxTiQ6o7jOBoQbzxcLb14TXpNZszgJp5mDRKcOnu4rJ0VU5i/7wHf
+ ZjHrzxaF+Ons245CzKK87jJU58aJsAWljyh19J+ppwqC4GtawVCnUntEO
+ 7DHB8S6YuspWamqW42u3AA9BojrtPpvhYfiaZnb2XUue41RELil7Xp7gg
+ Ph+Ftjc9XDBtV5blQcHZpJBe2Vq/QjnKsFU2lbVvZP8eEKnmkNUnfbqyA
+ DvyDklAuc4PH59HAVDt7BqOmWwCcXX2De4HRqwQUFmuax1Pnc8xvOGSX/
+ x5fG4UG+iaWvAg5gTjWL2pEv2Cvf3+GR+DpmVMOF6ypYgfC5welte3eat w==;
+X-CSE-ConnectionGUID: CZVmolQtR121zb/jRsQl/w==
+X-CSE-MsgGUID: 8g7I80WARsyowY1RX1S8GA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22699431"
+X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="22699431"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2024 20:24:02 -0700
+X-CSE-ConnectionGUID: 6l9fRQHcS5a5bB/bY8SjSg==
+X-CSE-MsgGUID: HH/WKrTgRGeto4DxpWuMwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,168,1719903600"; d="scan'208";a="61618713"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Aug 2024 14:55:54 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 Aug 2024 14:55:53 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 22 Aug 2024 14:55:53 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 22 Aug 2024 14:55:53 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.43) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 22 Aug 2024 14:55:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=THO4/dCtg/xXawgk9ft3g5V07rXypJwACAbFP3RKS/qZddJjRQIX4kLtaXZC6anWiY+iCfRz9Mdoe7QwjIwbMJsYVQc5Z2dMowOFJ4AZ3Yy27nh/4aoC/ZSmHFNFoKiooKKTRQwrGSE03VVZPgg9jcF7Dz7S1ZHs8Hc4Ca6CTD0W3Mde9EMn0Thgna6Gqym54dez9X5HHbtW+3smvEK3Vi1gFYYM0fzeehG7WFa8r3c89DchTbA5PO/rRdgV/UgsE9TKiSDQvW1z3vKw/Sos5d/5NfiCaaWhffrJPJTo8WvoAwroy1LqM7hhf6e411WUYE5Xu/S9IorvdrAvE2VN4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aYEQfOmGsrNkCps80A/EpVojN6nTiHvw2eYE8UFsq0k=;
- b=REQ04osWvILOMXMSI3c+5HfTHCHIM61T0iB8wBjdX5dPdFlydQDRBOJUVYTrT0V547cFufGrjR9hpCREF2ociMcyk5+fDnd0y/pFF+uLvNeGF3g3tTF2nwrE4ZhAOTGkjQtZF4EPS+8Vj8YCckV/NubRxloD5IliXGbjlV5bdll3XoRy3q+B048vK4i0swbon/VdK+b0Ycw4HanMcUOHDXtDKR7viFZskUhNa/d4P+1HwAh3iQJmdAEvCWV2zxxa+FQK9YY/n5qy9oAozVDVLdjasVhDLECsoUwEYGrvWYedxpGDnh9PSO+wsLJLz+GvoDhS6tV18xfucwdLUlWJEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by SJ0PR11MB6789.namprd11.prod.outlook.com (2603:10b6:a03:47f::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.18; Thu, 22 Aug
- 2024 21:55:48 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5f89:ba81:ff70:bace%6]) with mapi id 15.20.7897.014; Thu, 22 Aug 2024
- 21:55:48 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>, "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH] drm/i915: remove unused leftover basedie step code
-Thread-Topic: [PATCH] drm/i915: remove unused leftover basedie step code
-Thread-Index: AQHa9KEtHK11w/fjLEK7B71T70DFPrIz0qRQ
-Date: Thu, 22 Aug 2024 21:55:48 +0000
-Message-ID: <CH0PR11MB54449E5B506DDAF39AB28D7BE58F2@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20240822143946.2526425-1-jani.nikula@intel.com>
-In-Reply-To: <20240822143946.2526425-1-jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|SJ0PR11MB6789:EE_
-x-ms-office365-filtering-correlation-id: 06aae389-412d-4688-0667-08dcc2f52e89
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?5QNXcdLSQjUB1h8JNBSCAKBIDyVSa3jQApbf2HrQ+VsXmMBGMzjrCc6HnDpj?=
- =?us-ascii?Q?VuKA3bX3TjEyY3cNzMgfONLmIM8C1o/2uOx+A32YHW/1xAEinMuME5KHaRJF?=
- =?us-ascii?Q?rlmNmy4EqkQcX0QZXU3bWaJzrYvrcJ9LhRHzvhLm9abmrotzgxuTLeLTaBmz?=
- =?us-ascii?Q?9EYe3SVwRuLSNhnED2tz5SbG66bfBXmm1hsf8d2afOPAQEAdyOSIRLhi8nYd?=
- =?us-ascii?Q?dQLEJtLR71kOVH/1TF81Q3A9qCZiYJGgVgQ18CBHPfDCCwgfoJxOliT2L+2Z?=
- =?us-ascii?Q?0D4sWiz0+74A3z2oxVKykXZMmlFNW9W8ftO9ParbQ/QZ5V8aeLZxqwJ5bFZK?=
- =?us-ascii?Q?Eg08uOlt2Zcikux/lPgAPSq5D4vgZpK/0Hhsmj6aXyyazM2Zz/VI2Saec5XW?=
- =?us-ascii?Q?P+IRviVHdMxcu4pZQBBysmkFZ5GIShBrakgUAKhXUmGIe9eDCtiavtefmacS?=
- =?us-ascii?Q?e23SAMJOhokkFof+afPCdNKJxL14RlBi1yeBlvuEg1foValDz4pMeODH4qMa?=
- =?us-ascii?Q?n51R1In2NXb1KsiOwdDG/N/93EVwZKoofDQ1JKF2Euu9LR65Iex2T/AlLNf/?=
- =?us-ascii?Q?dFr9ai3wjiJa1VuPSyD6KrJ8FmxTe5/roMdTvVfib5FtetEoy1zkR+xWZDov?=
- =?us-ascii?Q?ACmzOKDYd7Ea3n+CQ30c+dG00Nqpl7u/jTUfOAMF9BujW3gd1j2kkjyrKYR1?=
- =?us-ascii?Q?Vtdy9bmVzIPKo4Ux4ywsmFoBlPWIz01esXh/KfWrFaM6VyjdhiDTss+DVS+h?=
- =?us-ascii?Q?BgVLGrpjEMneqd1WzolE8nQJE9OVJwRuwEnNMOXPwlp011MBhzlL2RBxNKb8?=
- =?us-ascii?Q?EjOJc5nStDyNx91YysyRWeEVVATKXov/jJYpCnfCf9U4CZvnRqWg2UEwgMfF?=
- =?us-ascii?Q?EA7YtXfx8AhYV/7GPoq9fj4fPNx5vXD2tc7U+HRNKslfXiqRYJQmjaCrANKa?=
- =?us-ascii?Q?jwwPfaR/Ox3o2xuTcTmUoHKUd53HIt3sHy9LfnWnG8QlA54eY1XQH00vGF78?=
- =?us-ascii?Q?31RDQh1zqJibh96hbSqYqsqSgqClKZ8rrlMIQD0wu/MOtB0Z186q/IOFXfn+?=
- =?us-ascii?Q?a8pUM6RRHtKwGSREOzvBmuqFmiPgC+JywKKz4cFuluyLagioga7Q30uCfQi+?=
- =?us-ascii?Q?SixID9OSr8GZIcNhM2h/QN77JJde2yRHgudivavFNYjuEVqueax6aPdtQZPT?=
- =?us-ascii?Q?L79u+37o43SKROhL3bAReGfEPiykbTLB+G3dh7M9/E+ZHPDoBnDj2uAFLQbT?=
- =?us-ascii?Q?wJt8fFJ6x+wPESGWDlvgX40RliFc/a9moTDkIMd5ixVf5lGvRzv15dypJ11O?=
- =?us-ascii?Q?UwQBtf7K/0V+3WzT5/v2nPrTmlN/A/RpsFnD6OHIdfLO/bz+qTGT/BDYJl81?=
- =?us-ascii?Q?qYIuo9GTfDNWNJAjrHZCCgS0iA68vYDiaBRh3aQwOVMHLw5vCQ=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3KviRyfzlWIe7k3yFrJPww6+tOiB1SDqlZ/b1+pD1PuhwxOxzFI5VBpTeiPQ?=
- =?us-ascii?Q?4+CnXj+oUM6m41ewSDtgHm/bE+yEE7Bl603ev+4fSpWeK5ATMIPxBMfES//8?=
- =?us-ascii?Q?gN5sLrA6dfheLux8LXyB5evC9xvT+F96+HwnyLzEJzUV+fxkO+H08I/6ZeXW?=
- =?us-ascii?Q?XsiQlQd4K9+FRrtoWgTmTXC9KCzG6PVEtwZbGGOmZJu7uQHLEQcJUMqOPeWm?=
- =?us-ascii?Q?HC2FmwCBBM+TUujbAaTLdm+UIfYFP2XkS4A3F0USd0f7Vfa0dTttO7wGWXvl?=
- =?us-ascii?Q?tdZaXycbP67dbM4SLsXbwlSq2Qd2+CZCydDnor6YDgBUVbGFHLn36UVzgD5x?=
- =?us-ascii?Q?dmAKRt57cdpY8fKe8TFiWnjAihuxc+JjK8CPXuD6m2/XimdYGyD8965RO+Lk?=
- =?us-ascii?Q?+yg2w/+w4jf94ivcUu6YMjWZziBwzTEBdZju80Fqlehq/ZMujX00KoRxEIKt?=
- =?us-ascii?Q?C1LmYet0UgW/UcCm6bJDDqlzrom4PPGJ61eIx5E2/x9vgz4nh5puDZroW8qa?=
- =?us-ascii?Q?UjGwqpo00W5uNA40RqJY3OOAJtyTCuDtAtdqiG3KfcDODXnNvkXo+dA+ddBg?=
- =?us-ascii?Q?GbwrMUsSZb+dBV722fNDYr5f2SiqJcNTe3ngHOQhCdPAYOlQ09dOKMC5wK3I?=
- =?us-ascii?Q?bza/ZAnJ5s/pjpqFtlUD8KVyv6ykdqh7GUziT5WgqttS6dRHR9Q/wcM1EwrC?=
- =?us-ascii?Q?5NPhjT05AmoYcarmIp4IEdB0Fh+KBOYRghiLqZqxJ+HhmpITGlm3KJzYFm9V?=
- =?us-ascii?Q?s1qeaxaSe0d+hD6T5qyUkpBeufa2P+Go3/9sc4zPEqsBBHo0/on8+gSeGEGh?=
- =?us-ascii?Q?pccmjtypQhgXVyk8o/yXHqL341n0hHkzzEvxj0MpXN1x8DpyEtgFlJocAkXA?=
- =?us-ascii?Q?W0R8+IRprYzuZp/i69li6QQYTLLbA+J/SWapWA8XU2NpHLCKWgxJqjzz+T7n?=
- =?us-ascii?Q?kfE7LEnsnwleyTj+vyXRjRq+5dBiWm2CafBL9dWMmCsiQEKrGhxAXNrHxawo?=
- =?us-ascii?Q?HwOlIlV5iK8moWRAJpTFdKpWjjilmc1jeyTMbZghw/2YwPSo3ZuxIzRROnA8?=
- =?us-ascii?Q?njKQQkV6lexkMaZEnfNFSoP9aJcFsNLW0F6j+tbmi9LpWDwHs3qXGe1w7okr?=
- =?us-ascii?Q?Zgr/OMSBh0d5UQodlHLiVDQrkX+DsuT9N+yr/LqrkYmMuS+b4g6a1eGGKrL3?=
- =?us-ascii?Q?Ho/miyvJv0CYZ5znMA9Jt8BS34LC5GdEsJ/fFjo7leJ49vCz2Xg1+hyaqunf?=
- =?us-ascii?Q?CjLG+ovTmfxkdqI6ojuQ6ipLjsrxMwyf+u6q60atzdt2W9FKncywRhSihksf?=
- =?us-ascii?Q?ZRccFTU+WTAEP759TS0sldCz7rC3sKK5vuu0jvUSqG6m555kAR2HYjY0tur/?=
- =?us-ascii?Q?VpRuzVINQWDJoXaKoMEEIp2VC3azgc8b++Wao2dgWqUbIuKmgwZEeWk6NJwk?=
- =?us-ascii?Q?FINeH5jE5D1vv5UHmMzHGkPRp2k9A808nEGdvngRod+51RK1njuBrqq14Kq/?=
- =?us-ascii?Q?boFNrDqsf3++SafL9ek90O4noaHmUCsGjEQHV+P+oxYwH0Rq4uW647bbPQrq?=
- =?us-ascii?Q?9/mvofiJbZ2J7yDhWhGsnlIanIsRGT2Wlt2O8PnD?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="62391739"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by orviesa008.jf.intel.com with ESMTP; 22 Aug 2024 20:23:55 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, linux@roeck-us.net, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v7] drm/i915/hwmon: expose fan speed
+Date: Fri, 23 Aug 2024 09:15:48 +0530
+Message-Id: <20240823034548.2670032-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06aae389-412d-4688-0667-08dcc2f52e89
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2024 21:55:48.3102 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: thJTRpeOPcVgVMxx0YvNhzJEw5p0Xa7sF6t86UhE2SWo4gBab+W8dIQkbDqtEjwP0+tFYCH6HW5z6+AzmpriJ7+moS9os5Z3l+XisPV9E6Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6789
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,97 +71,231 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
------Original Message-----
-From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani=
- Nikula
-Sent: Thursday, August 22, 2024 7:40 AM
-To: intel-gfx@lists.freedesktop.org
-Cc: Nikula, Jani <jani.nikula@intel.com>; Roper, Matthew D <matthew.d.roper=
-@intel.com>
-Subject: [PATCH] drm/i915: remove unused leftover basedie step code
->=20
-> The basedie step initialization as well as its last users were removed
-> in commit 326e30e4624c ("drm/i915: Drop dead code for pvc"). Follow
-> through with removing the unused macros and struct member and debug
-> logging.
->=20
-> Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Add hwmon support for fan1_input attribute, which will expose fan speed
+in RPM. With this in place we can monitor fan speed using lm-sensors tool.
 
-LGTM.
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
--Jonathan Cavitt
+$ sensors
+i915-pci-0300
+Adapter: PCI adapter
+in0:         653.00 mV
+fan1:        3833 RPM
+power1:           N/A  (max =  43.00 W)
+energy1:      32.02 kJ
 
-> ---
->  drivers/gpu/drm/i915/i915_drv.h          | 5 -----
->  drivers/gpu/drm/i915/intel_device_info.c | 1 -
->  drivers/gpu/drm/i915/intel_step.h        | 1 -
->  3 files changed, 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 3b1b16e71cf9..eb4c33e83c7c 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -410,7 +410,6 @@ static inline struct intel_gt *to_gt(const struct drm=
-_i915_private *i915)
-> =20
->  #define INTEL_GRAPHICS_STEP(__i915) (RUNTIME_INFO(__i915)->step.graphics=
-_step)
->  #define INTEL_MEDIA_STEP(__i915) (RUNTIME_INFO(__i915)->step.media_step)
-> -#define INTEL_BASEDIE_STEP(__i915) (RUNTIME_INFO(__i915)->step.basedie_s=
-tep)
-> =20
->  #define IS_GRAPHICS_STEP(__i915, since, until) \
->  	(drm_WARN_ON(&(__i915)->drm, INTEL_GRAPHICS_STEP(__i915) =3D=3D STEP_NO=
-NE), \
-> @@ -420,10 +419,6 @@ static inline struct intel_gt *to_gt(const struct dr=
-m_i915_private *i915)
->  	(drm_WARN_ON(&(__i915)->drm, INTEL_MEDIA_STEP(__i915) =3D=3D STEP_NONE)=
-, \
->  	 INTEL_MEDIA_STEP(__i915) >=3D (since) && INTEL_MEDIA_STEP(__i915) < (u=
-ntil))
-> =20
-> -#define IS_BASEDIE_STEP(__i915, since, until) \
-> -	(drm_WARN_ON(&(__i915)->drm, INTEL_BASEDIE_STEP(__i915) =3D=3D STEP_NON=
-E), \
-> -	 INTEL_BASEDIE_STEP(__i915) >=3D (since) && INTEL_BASEDIE_STEP(__i915) =
-< (until))
-> -
->  static __always_inline unsigned int
->  __platform_mask_index(const struct intel_runtime_info *info,
->  		      enum intel_platform p)
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
-915/intel_device_info.c
-> index d92b3050ac78..b485e959f064 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -108,7 +108,6 @@ void intel_device_info_print(const struct intel_devic=
-e_info *info,
-> =20
->  	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.=
-graphics_step));
->  	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.med=
-ia_step));
-> -	drm_printf(p, "base die stepping: %s\n", intel_step_name(runtime->step.=
-basedie_step));
-> =20
->  	drm_printf(p, "gt: %d\n", info->gt);
->  	drm_printf(p, "memory-regions: 0x%x\n", info->memory_regions);
-> diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/int=
-el_step.h
-> index 83bd1190edf5..22f1d6905160 100644
-> --- a/drivers/gpu/drm/i915/intel_step.h
-> +++ b/drivers/gpu/drm/i915/intel_step.h
-> @@ -17,7 +17,6 @@ struct intel_step_info {
->  	 */
->  	u8 graphics_step;	/* Represents the compute tile on Xe_HPC */
->  	u8 media_step;
-> -	u8 basedie_step;
->  };
-> =20
->  #define STEP_ENUM_VAL(name)  STEP_##name,
-> --=20
-> 2.39.2
->=20
->=20
+v2: Handle overflow, add mutex protection and ABI documentation
+    Aesthetic adjustments (Riana)
+v3: Change rotations data type, ABI date and version
+v4: Fix wakeref leak
+    Drop switch case and simplify hwm_fan_xx() (Andi)
+v5: Rework time calculation, aesthetic adjustments (Andy)
+v6: Drop redundant overflow logic (Andy)
+    Split fan_input_read() into dedicated helper (Badal)
+v7: Fix undefined reference to __udivdi3 for i386 (Andy)
+
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon |  8 ++
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h       |  2 +
+ drivers/gpu/drm/i915/i915_hwmon.c             | 88 +++++++++++++++++++
+ 3 files changed, 98 insertions(+)
+
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+index 92fe7c5c5ac1..be4141a7522f 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+@@ -75,3 +75,11 @@ Description:	RO. Energy input of device or gt in microjoules.
+ 		for the gt.
+ 
+ 		Only supported for particular Intel i915 graphics platforms.
++
++What:		/sys/bus/pci/drivers/i915/.../hwmon/hwmon<i>/fan1_input
++Date:		November 2024
++KernelVersion:	6.12
++Contact:	intel-gfx@lists.freedesktop.org
++Description:	RO. Fan speed of device in RPM.
++
++		Only supported for particular Intel i915 graphics platforms.
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+index e42b3a5d4e63..57a3c83d3655 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+@@ -1553,6 +1553,8 @@
+ #define VLV_RENDER_C0_COUNT			_MMIO(0x138118)
+ #define VLV_MEDIA_C0_COUNT			_MMIO(0x13811c)
+ 
++#define PCU_PWM_FAN_SPEED			_MMIO(0x138140)
++
+ #define GEN12_RPSTAT1				_MMIO(0x1381b4)
+ #define   GEN12_VOLTAGE_MASK			REG_GENMASK(10, 0)
+ #define   GEN12_CAGF_MASK			REG_GENMASK(19, 11)
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index 49db3e09826c..17d30f6b84b0 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/hwmon.h>
+ #include <linux/hwmon-sysfs.h>
++#include <linux/jiffies.h>
+ #include <linux/types.h>
+ 
+ #include "i915_drv.h"
+@@ -36,6 +37,7 @@ struct hwm_reg {
+ 	i915_reg_t pkg_rapl_limit;
+ 	i915_reg_t energy_status_all;
+ 	i915_reg_t energy_status_tile;
++	i915_reg_t fan_speed;
+ };
+ 
+ struct hwm_energy_info {
+@@ -43,11 +45,17 @@ struct hwm_energy_info {
+ 	long accum_energy;			/* Accumulated energy for energy1_input */
+ };
+ 
++struct hwm_fan_info {
++	u32 reg_val_prev;
++	u64 time_prev;
++};
++
+ struct hwm_drvdata {
+ 	struct i915_hwmon *hwmon;
+ 	struct intel_uncore *uncore;
+ 	struct device *hwmon_dev;
+ 	struct hwm_energy_info ei;		/*  Energy info for energy1_input */
++	struct hwm_fan_info fi;			/*  Fan info for fan1_input */
+ 	char name[12];
+ 	int gt_n;
+ 	bool reset_in_progress;
+@@ -276,6 +284,7 @@ static const struct hwmon_channel_info * const hwm_info[] = {
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
++	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT),
+ 	NULL
+ };
+ 
+@@ -613,6 +622,69 @@ hwm_curr_write(struct hwm_drvdata *ddat, u32 attr, long val)
+ 	}
+ }
+ 
++static umode_t
++hwm_fan_is_visible(const struct hwm_drvdata *ddat, u32 attr)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++
++	if (attr == hwmon_fan_input && i915_mmio_reg_valid(hwmon->rg.fan_speed))
++		return 0444;
++
++	return 0;
++}
++
++static int
++hwm_fan_input_read(struct hwm_drvdata *ddat, long *val)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++	struct hwm_fan_info *fi = &ddat->fi;
++	u64 rotations, time_now, time;
++	intel_wakeref_t wakeref;
++	u32 reg_val;
++	int ret = 0;
++
++	wakeref = intel_runtime_pm_get(ddat->uncore->rpm);
++	mutex_lock(&hwmon->hwmon_lock);
++
++	reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.fan_speed);
++	time_now = get_jiffies_64();
++
++	/*
++	 * HW register value is accumulated count of pulses from
++	 * PWM fan with the scale of 2 pulses per rotation.
++	 */
++	rotations = (reg_val - fi->reg_val_prev) / 2;
++
++	time = jiffies_delta_to_msecs(time_now - fi->time_prev);
++	if (unlikely(!time)) {
++		ret = -EAGAIN;
++		goto exit;
++	}
++
++	/*
++	 * Calculate fan speed in RPM by time averaging two subsequent
++	 * readings in minutes.
++	 * RPM = number of rotations * msecs per minute / time in msecs
++	 */
++	*val = DIV_ROUND_UP_ULL(rotations * (MSEC_PER_SEC * 60), time);
++
++	fi->reg_val_prev = reg_val;
++	fi->time_prev = time_now;
++exit:
++	mutex_unlock(&hwmon->hwmon_lock);
++	intel_runtime_pm_put(ddat->uncore->rpm, wakeref);
++	return ret;
++}
++
++static int
++hwm_fan_read(struct hwm_drvdata *ddat, u32 attr, long *val)
++{
++	if (attr == hwmon_fan_input)
++		return hwm_fan_input_read(ddat, val);
++
++	return -EOPNOTSUPP;
++}
++
+ static umode_t
+ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 	       u32 attr, int channel)
+@@ -628,6 +700,8 @@ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 		return hwm_energy_is_visible(ddat, attr);
+ 	case hwmon_curr:
+ 		return hwm_curr_is_visible(ddat, attr);
++	case hwmon_fan:
++		return hwm_fan_is_visible(ddat, attr);
+ 	default:
+ 		return 0;
+ 	}
+@@ -648,6 +722,8 @@ hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ 		return hwm_energy_read(ddat, attr, val);
+ 	case hwmon_curr:
+ 		return hwm_curr_read(ddat, attr, val);
++	case hwmon_fan:
++		return hwm_fan_read(ddat, attr, val);
+ 	default:
+ 		return -EOPNOTSUPP;
+ 	}
+@@ -739,12 +815,14 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+ 		hwmon->rg.energy_status_all = PCU_PACKAGE_ENERGY_STATUS;
+ 		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
++		hwmon->rg.fan_speed = PCU_PWM_FAN_SPEED;
+ 	} else {
+ 		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+ 		hwmon->rg.energy_status_all = INVALID_MMIO_REG;
+ 		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
++		hwmon->rg.fan_speed = INVALID_MMIO_REG;
+ 	}
+ 
+ 	with_intel_runtime_pm(uncore->rpm, wakeref) {
+@@ -755,6 +833,16 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		if (i915_mmio_reg_valid(hwmon->rg.pkg_power_sku_unit))
+ 			val_sku_unit = intel_uncore_read(uncore,
+ 							 hwmon->rg.pkg_power_sku_unit);
++
++		/*
++		 * Store the initial fan register value, so that we can use it for
++		 * initial fan speed calculation.
++		 */
++		if (i915_mmio_reg_valid(hwmon->rg.fan_speed)) {
++			ddat->fi.reg_val_prev = intel_uncore_read(uncore,
++								  hwmon->rg.fan_speed);
++			ddat->fi.time_prev = get_jiffies_64();
++		}
+ 	}
+ 
+ 	hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
+-- 
+2.34.1
+
