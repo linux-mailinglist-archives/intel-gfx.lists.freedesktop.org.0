@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D133395C7EB
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 10:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCBD95C7FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 10:24:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A97D10EC44;
-	Fri, 23 Aug 2024 08:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5AEA10EC49;
+	Fri, 23 Aug 2024 08:24:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J5nAo9UG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="akL0SSKQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABA5F10EC44;
- Fri, 23 Aug 2024 08:22:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2CC10EC49;
+ Fri, 23 Aug 2024 08:24:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724401349; x=1755937349;
+ t=1724401487; x=1755937487;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=vqInzolDIfR++JHzNY92mv2y52OtgQnyWdCY+OLIXBk=;
- b=J5nAo9UGB/Lo+cSAh64dXdNXF+U5OvtIevFQTKbMJbD2AGHBZPWXgOAR
- UWQrmHJdcmr1+qXvbWluQ/FU1GMW914znulZ+gwUyLAO78S4SZs3ON2Wm
- 0TPvWWVWtIJXpHnk9X7SuRqwtIX8pKgRc+KZHtCd1XkiLHCpHf/kG8wA3
- 376qag1XK1w64+2kMkZ25MKqa0/mJOPtA4gs4ZberScC4B+Jo4r61qDFU
- 2d5UBuJyzB7Byt4s3/5hL0PZx14yqOhPUA7CHlYulqVO9Y2CPuLl3Rlmm
- 9jXT+9oeIvu/w3ugHdrtjK9exC9LNsEjrrjd/LdeMb1o162ixBd/YeXfk w==;
-X-CSE-ConnectionGUID: XjiCo8tMSYC4YXIXYzpplw==
-X-CSE-MsgGUID: Y0pObexJRGq5ufatyTnaMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="45377751"
-X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="45377751"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 01:22:29 -0700
-X-CSE-ConnectionGUID: Le6L/Y5CRNW8Dj6u3uoPUg==
-X-CSE-MsgGUID: 34F/XjMcRTWFnDqY721l6g==
+ bh=7gEhOXTRHZaE+9aqx6sV7SuHwRI3hywFQ4vGtE9lh4I=;
+ b=akL0SSKQfhEfsdDw9pYy7csT46psDRnZjwRWLshkNjQFvX4rJF0hFwYP
+ /z613/CR0ZPZOlk2U0+NIK6nXkbFYxoMugAi3sr9RTyQX5vaal41incyN
+ gFxIuA9sCpnKShySJMv8ostRZQx42TUvUUZFmkEZsxSPD1Lo6xZiMhC4X
+ WGLrJa3O3y+cvdcJvN9YyR+gkEhi0HsIeIgDQU+BrRzmeD/NZ6tSQMg/p
+ yqdlOprzXgVw6Ufbzc9oCbLoV5PBMpxikez63clseb9YvENwa1za6LI90
+ kMtIHiPpJS9Lb6KtMGiDfmY6/MvnZoEurOU3tKuXwK/AV3pCEu0gD3VqW g==;
+X-CSE-ConnectionGUID: y6PSEGSuTT2gQ1GBqGQnOg==
+X-CSE-MsgGUID: AKgmc7LIScKiBsAnOWsGcA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="33521807"
+X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="33521807"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 01:24:46 -0700
+X-CSE-ConnectionGUID: ockf3KIFQXGmYDq18RPupw==
+X-CSE-MsgGUID: 9i6pdE+rT+q3tvF0dEwHvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="61745088"
+X-IronPort-AV: E=Sophos;i="6.10,169,1719903600"; d="scan'208";a="92522146"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.223])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2024 01:22:25 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2024 01:24:41 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/dsi: Make Lenovo Yoga Tab 3 X90F DMI match
- less strict
-In-Reply-To: <20240823075055.17198-1-hdegoede@redhat.com>
+To: Yuesong Li <liyuesong@vivo.com>, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ opensource.kernel@vivo.com, Yuesong Li <liyuesong@vivo.com>
+Subject: Re: [PATCH v1] drm/i915/dp: Remove double assignment in
+ intel_dp_compute_as_sdp()
+In-Reply-To: <20240823023612.3027849-1-liyuesong@vivo.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240823075055.17198-1-hdegoede@redhat.com>
-Date: Fri, 23 Aug 2024 11:22:19 +0300
-Message-ID: <87v7zr3ays.fsf@intel.com>
+References: <20240823023612.3027849-1-liyuesong@vivo.com>
+Date: Fri, 23 Aug 2024 11:24:36 +0300
+Message-ID: <87seuv3auz.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,38 +73,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 Aug 2024, Hans de Goede <hdegoede@redhat.com> wrote:
-> There are 2G and 4G RAM versions of the Lenovo Yoga Tab 3 X90F and it
-> turns out that the 2G version has a DMI product name of
-> "CHERRYVIEW D1 PLATFORM" where as the 4G version has
-> "CHERRYVIEW C0 PLATFORM". The sys-vendor + product-version check are
-> unique enough that the product-name check is not necessary.
+On Fri, 23 Aug 2024, Yuesong Li <liyuesong@vivo.com> wrote:
+> cocci report a double assignment warning. 'as_sdp->duration_incr_ms'
+> was assigned twice in intel_dp_compute_as_sdp().
 >
-> Drop the product-name check so that the existing DMI match for the 4G
-> RAM version also matches the 2G RAM version.
->
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Yuesong Li <liyuesong@vivo.com>
 
-I'll take your word for it.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/vlv_dsi.c | 1 -
+>  drivers/gpu/drm/i915/display/intel_dp.c | 1 -
 >  1 file changed, 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index 40b3ffd534d3..6cebcc87ef14 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1874,7 +1874,6 @@ static const struct dmi_system_id vlv_dsi_dmi_quirk_table[] = {
->  		/* Lenovo Yoga Tab 3 Pro YT3-X90F */
->  		.matches = {
->  			DMI_MATCH(DMI_SYS_VENDOR, "Intel Corporation"),
-> -			DMI_MATCH(DMI_PRODUCT_NAME, "CHERRYVIEW D1 PLATFORM"),
->  			DMI_MATCH(DMI_PRODUCT_VERSION, "Blade3-10A-001"),
->  		},
->  		.driver_data = (void *)vlv_dsi_lenovo_yoga_tab3_backlight_fixup,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6a0c7ae654f4..229c87be4402 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2730,7 +2730,6 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+>  	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
+>  	as_sdp->length = 0x9;
+>  	as_sdp->duration_incr_ms = 0;
+> -	as_sdp->duration_incr_ms = 0;
+>  
+>  	if (crtc_state->cmrr.enable) {
+>  		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
 
 -- 
 Jani Nikula, Intel
