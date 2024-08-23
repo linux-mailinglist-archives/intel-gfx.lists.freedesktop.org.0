@@ -2,73 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9DA95D1C2
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 17:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 958FE95D201
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2024 17:48:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAE5410EC51;
-	Fri, 23 Aug 2024 15:40:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="jK/CLqdl";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0335210EC52;
+	Fri, 23 Aug 2024 15:48:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
- [209.85.167.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3DDE10EC4E
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 15:40:47 +0000 (UTC)
-Received: by mail-lf1-f48.google.com with SMTP id
- 2adb3069b0e04-52f04b4abdcso2592188e87.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2024 08:40:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1724427645; x=1725032445; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QwzRr4x14GDGGx/Wa/l1KFYgNdRnrpk92o9I32BcD1M=;
- b=jK/CLqdliq6JD0HiXix1v7SJxNhay59PgU+ENGGzIUpqIVmUChi3LB6xKKlEecVGXt
- G9EU4CFGpxn9Zgy14sGIPIYrf1096DhEgUW4P/Hh4ztGmUrMIOMzB27olEc+dAbZwPGI
- n8ex1k7zyc4Tp18uiwTXm5IrWnt5huTKY0rg4El6AT+CmflavoUj25vG9V81oTU2Dy+q
- 9MhPAKiyaIq4syLeDlIajRhfbEWKBaiKxZ1+7F76rqXnP10bGisa66nJm5smgIZrYnKs
- Ql/EE3yw58ksAwb7Mbatkns8WgidziLdzwQIb22VF5WAi/k6pblLVI9gVcpGL3oBj5fn
- hB+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724427645; x=1725032445;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=QwzRr4x14GDGGx/Wa/l1KFYgNdRnrpk92o9I32BcD1M=;
- b=LtIW7eQ3wvOZO/CJ/57T9WX4YefA328aE+vQjOjV2+A/RMwhecM/OALANa92Wbtzr1
- uDB6W8WTLNueITY4HzpYy2+o+dAiTzLVNZzlPI85rFE7SS+QZRhdT/xz+mB2pEYY1vCu
- emAbwzMc+788yM+3bZQVBIgyq8M0SKd6aAlPG5G45EcqzYG9hIErY+X3P32QssadbVEu
- qsRBCq3QjrHOsPI5cifEXdYOZxgAl+hMhoJqYMqgp41oervJ8qHgmf4FCUsf12c3exqL
- +HfLfkXUWxUIrBldKiuj9IkU/W6dcrAigNvquD9wZ/MfAjyyjpflVKWdDgHditzvvroP
- aOyQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX04eMuO9WBsUrwwp89s2EFkOw5t+VNKX2jsLCgKeAzeUKn/3LVZBOtLPaOnW4U8px/LK/bLcfAUZs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx+JIZrhUra06KlgUEOOT6qHfKkvL9lSdMWc2HnB19AYsGuapxA
- x5kU6ZeeCuaHSJgFgKLir84Kz0vZomUjfuxYnxN68l7O3yCYlFCLbsrXwdpxOKWSDsbkrR8BPaX
- 5yEK55xbXYHLD51TDo9RWbPKGNlPVpANMWJkzzg==
-X-Google-Smtp-Source: AGHT+IEuHaxZyQVY8GiHyyz26//af2rggIRdx0JBwtmCQ2Md+VVAhtl7TbQoqqnfxbLsaA2wMwGIyh7yHw85tqG1pcI=
-X-Received: by 2002:a05:6512:3a8d:b0:52e:76e8:e18e with SMTP id
- 2adb3069b0e04-5343882e2f7mr1898837e87.7.1724427645064; Fri, 23 Aug 2024
- 08:40:45 -0700 (PDT)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C81910EC52;
+ Fri, 23 Aug 2024 15:48:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20240731122311.1143153-1-tzimmermann@suse.de>
- <20240731122311.1143153-4-tzimmermann@suse.de>
-In-Reply-To: <20240731122311.1143153-4-tzimmermann@suse.de>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 23 Aug 2024 17:40:34 +0200
-Message-ID: <CACRpkdbOPGxBFq4FCOPLMfvaEJZiNHCocWQGZwC6fis+FOxjTg@mail.gmail.com>
-Subject: Re: [PATCH 3/9] drm/panel: panel-novatak-nt35510: Use backlight power
- constants
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com, 
- daniel@ffwll.ch, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_CCS_static_load_bala?=
+ =?utf-8?q?nce_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 Aug 2024 15:48:35 -0000
+Message-ID: <172442811517.746762.10832591612735795465@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240823130855.72436-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20240823130855.72436-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,22 +37,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 31, 2024 at 2:23=E2=80=AFPM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
+== Series Details ==
 
-> Replace FB_BLANK_ constants with their counterparts from the
-> backlight subsystem. The values are identical, so there's no
-> change in functionality or semantics.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
+Series: CCS static load balance (rev2)
+URL   : https://patchwork.freedesktop.org/series/137715/
+State : warning
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+== Summary ==
 
-Yours,
-Linus Walleij
+Error: dim checkpatch failed
+6ad023c9bef4 drm/i915/gt: Avoid using masked workaround for CCS_MODE setting
+bde55a5f33ad drm/i915/gt: Move the CCS mode variable to a global position
+03f682af8c44 drm/i915/gt: Allow the creation of multi-mode CCS masks
+19e5972d44a5 drm/i915/gt: Refactor uabi engine class/instance list creation
+-:54: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#54: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:233:
++		GEM_BUG_ON(uabi_class >= ARRAY_SIZE(class_instance));
+
+-:70: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#70: FILE: drivers/gpu/drm/i915/gt/intel_engine_user.c:247:
++		GEM_BUG_ON(uabi_class >=
+
+total: 0 errors, 2 warnings, 0 checks, 56 lines checked
+ef12b46a4464 drm/i915/gem: Mark and verify UABI engine validity
+597c6eb04140 drm/i915/gt: Introduce for_each_enabled_engine() and apply it in selftests
+-:30: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#30: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:196:
++#define for_each_enabled_engine(engine__, gt__, id__) \
++	for ((id__) = 0; \
++	     (id__) < I915_NUM_ENGINES; \
++	     (id__)++) \
++		for_each_if (((engine__) = (gt__)->engine[(id__)]) && \
++			     (!RB_EMPTY_NODE(&(engine__)->uabi_node)))
+
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'engine__' - possible side-effects?
+#30: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:196:
++#define for_each_enabled_engine(engine__, gt__, id__) \
++	for ((id__) = 0; \
++	     (id__) < I915_NUM_ENGINES; \
++	     (id__)++) \
++		for_each_if (((engine__) = (gt__)->engine[(id__)]) && \
++			     (!RB_EMPTY_NODE(&(engine__)->uabi_node)))
+
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id__' - possible side-effects?
+#30: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:196:
++#define for_each_enabled_engine(engine__, gt__, id__) \
++	for ((id__) = 0; \
++	     (id__) < I915_NUM_ENGINES; \
++	     (id__)++) \
++		for_each_if (((engine__) = (gt__)->engine[(id__)]) && \
++			     (!RB_EMPTY_NODE(&(engine__)->uabi_node)))
+
+-:34: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#34: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:200:
++		for_each_if (((engine__) = (gt__)->engine[(id__)]) && \
+
+total: 1 errors, 1 warnings, 2 checks, 738 lines checked
+efaae0b34442 drm/i915/gt: Manage CCS engine creation within UABI exposure
+85128e042d62 drm/i915/gt: Remove cslices mask value from the CCS structure
+c7ed84b770b7 drm/i915/gt: Expose the number of total CCS slices
+1e2eea42edca drm/i915/gt: Store engine-related sysfs kobjects
+56fa96057385 drm/i915/gt: Store active CCS mask
+-:70: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#70: FILE: drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c:120:
++	GEM_BUG_ON(ccs_mode);
+
+total: 0 errors, 1 warnings, 0 checks, 83 lines checked
+d3e1b64e7fe2 drm/i915: Protect access to the UABI engines list with a mutex
+6f7d4157f4f5 drm/i915/gt: Isolate single sysfs engine file creation
+004ebf5460c0 drm/i915/gt: Implement creation and removal routines for CCS engines
+-:119: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#119: FILE: drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c:206:
++		GEM_BUG_ON(rb_find_add(&e->uabi_node,
+
+-:123: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#123: FILE: drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c:210:
++		GEM_BUG_ON(intel_engine_lookup_user(i915, e->uabi_class,
+
+total: 0 errors, 2 warnings, 0 checks, 146 lines checked
+f3f4f5e5fc08 drm/i915/gt: Allow the user to change the CCS mode through sysfs
+
+
