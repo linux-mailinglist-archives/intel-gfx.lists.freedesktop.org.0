@@ -2,29 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B418395E36F
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Aug 2024 14:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE79595E517
+	for <lists+intel-gfx@lfdr.de>; Sun, 25 Aug 2024 22:21:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3480710E093;
-	Sun, 25 Aug 2024 12:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0DC610E112;
+	Sun, 25 Aug 2024 20:20:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibM11TMN";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57AD010E093;
- Sun, 25 Aug 2024 12:57:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5115362102454356867=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E7A10E028;
+ Sun, 25 Aug 2024 20:20:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724617256; x=1756153256;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=VToyjT4OoFC4dS60qEQQiqadSDnhMkvbENO3UZI0d18=;
+ b=ibM11TMNJTssxXZ011MY+gsFQ3fcvRUp3iC7IeDDs+1Up7wjOY0SypIE
+ VCkuqw3oZiYzJ/iIOZgeW7a8aJIsCx+pViw3fP1EhIjA2KAJv7MPDboh5
+ W5zZ7I3LFifMLF1I6G3R/2V9no0fSizbUfUKay7bfgZH4tVKvBkdJ/7d6
+ RPs7Q9RbDQvPcBqJxxfAU8ds0b0Pe2gq5+IfaTKikMmlIc4b0hIof19bj
+ wVna1muuMYafVNr4cE03CbAF9N+BKL7XgR5BPogOu9twBRcnKuKGDp8Gv
+ DYockoMP/vl22RuR5EuiByRm1TtLW+mE7H8p8bcQNoUGJajaGd8Umnn0K g==;
+X-CSE-ConnectionGUID: jfa6q7L0Q7GTc/bjoHIhuQ==
+X-CSE-MsgGUID: HNbslMHJREqC0SkUhnU2GA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="25921311"
+X-IronPort-AV: E=Sophos;i="6.10,175,1719903600"; d="scan'208";a="25921311"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2024 13:20:55 -0700
+X-CSE-ConnectionGUID: pB7ASK6XQKKftgRlJOisnA==
+X-CSE-MsgGUID: xm7w5AE9QZaMP5KcNAaBwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,175,1719903600"; d="scan'208";a="67124979"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+ by orviesa003.jf.intel.com with ESMTP; 25 Aug 2024 13:20:52 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1siJjE-000FQZ-2g;
+ Sun, 25 Aug 2024 20:20:48 +0000
+Date: Mon, 26 Aug 2024 04:20:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, daniel@ffwll.ch,
+ linux@roeck-us.net, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
+Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: Re: [PATCH v6] drm/i915/hwmon: expose fan speed
+Message-ID: <202408260446.0EeOPMO6-lkp@intel.com>
+References: <20240820062010.2000873-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Disable_Redu?=
- =?utf-8?q?ndant_HZ_Plane_expansions_for_MTL/ARL_and_DG2_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 25 Aug 2024 12:57:50 -0000
-Message-ID: <172459067035.765922.14496202337426264012@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240823101009.2093667-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20240823101009.2093667-1-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240820062010.2000873-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,158 +75,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5115362102454356867==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Raag,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: drm/i915/gt: Disable Redundant HZ Plane expansions for MTL/ARL and DG2 (rev2)
-URL   : https://patchwork.freedesktop.org/series/137701/
-State : success
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.11-rc5 next-20240823]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Raag-Jadav/drm-i915-hwmon-expose-fan-speed/20240820-135849
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20240820062010.2000873-1-raag.jadav%40intel.com
+patch subject: [PATCH v6] drm/i915/hwmon: expose fan speed
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20240826/202408260446.0EeOPMO6-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240826/202408260446.0EeOPMO6-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_15288 -> Patchwork_137701v2
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408260446.0EeOPMO6-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>):
 
-  **SUCCESS**
+   ld: drivers/gpu/drm/i915/i915_hwmon.o: in function `hwm_read':
+>> i915_hwmon.c:(.text+0xe36): undefined reference to `__udivdi3'
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/index.html
-
-Participating hosts (38 -> 35)
-------------------------------
-
-  Missing    (3): bat-kbl-2 bat-arlh-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_137701v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-adlp-9:         [PASS][1] -> [INCOMPLETE][2] ([i915#9413])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15288/bat-adlp-9/igt@i915_selftest@live@gt_mocs.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-adlp-9/igt@i915_selftest@live@gt_mocs.html
-    - bat-dg2-9:          [PASS][3] -> [DMESG-FAIL][4] ([i915#9500])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15288/bat-dg2-9/igt@i915_selftest@live@gt_mocs.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-dg2-9/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [PASS][5] -> [DMESG-WARN][6] ([i915#11349])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15288/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         NOTRUN -> [SKIP][7] ([i915#9197]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-  [i915#9500]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15288 -> Patchwork_137701v2
-
-  CI-20190529: 20190529
-  CI_DRM_15288: 5626fe5d6eeb0949727861375b27d67ee71feaa7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7990: 9ca5ff0afa3636478b6ba5a97e5ba440cfb2e55e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_137701v2: 5626fe5d6eeb0949727861375b27d67ee71feaa7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/index.html
-
---===============5115362102454356867==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Disable Redundant HZ Plane expansions for MTL/ARL and DG2 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137701/">https://patchwork.freedesktop.org/series/137701/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15288 -&gt; Patchwork_137701v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 35)</h2>
-<p>Missing    (3): bat-kbl-2 bat-arlh-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_137701v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15288/bat-adlp-9/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-adlp-9/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15288/bat-dg2-9/igt@i915_selftest@live@gt_mocs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-dg2-9/igt@i915_selftest@live@gt_mocs.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9500">i915#9500</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15288/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137701v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15288 -&gt; Patchwork_137701v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15288: 5626fe5d6eeb0949727861375b27d67ee71feaa7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7990: 9ca5ff0afa3636478b6ba5a97e5ba440cfb2e55e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_137701v2: 5626fe5d6eeb0949727861375b27d67ee71feaa7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5115362102454356867==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
