@@ -2,67 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE79595E517
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Aug 2024 22:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E3895E62A
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 03:10:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0DC610E112;
-	Sun, 25 Aug 2024 20:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B4489A1E;
+	Mon, 26 Aug 2024 01:10:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibM11TMN";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="P1Qm8nvh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E7A10E028;
- Sun, 25 Aug 2024 20:20:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724617256; x=1756153256;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=VToyjT4OoFC4dS60qEQQiqadSDnhMkvbENO3UZI0d18=;
- b=ibM11TMNJTssxXZ011MY+gsFQ3fcvRUp3iC7IeDDs+1Up7wjOY0SypIE
- VCkuqw3oZiYzJ/iIOZgeW7a8aJIsCx+pViw3fP1EhIjA2KAJv7MPDboh5
- W5zZ7I3LFifMLF1I6G3R/2V9no0fSizbUfUKay7bfgZH4tVKvBkdJ/7d6
- RPs7Q9RbDQvPcBqJxxfAU8ds0b0Pe2gq5+IfaTKikMmlIc4b0hIof19bj
- wVna1muuMYafVNr4cE03CbAF9N+BKL7XgR5BPogOu9twBRcnKuKGDp8Gv
- DYockoMP/vl22RuR5EuiByRm1TtLW+mE7H8p8bcQNoUGJajaGd8Umnn0K g==;
-X-CSE-ConnectionGUID: jfa6q7L0Q7GTc/bjoHIhuQ==
-X-CSE-MsgGUID: HNbslMHJREqC0SkUhnU2GA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="25921311"
-X-IronPort-AV: E=Sophos;i="6.10,175,1719903600"; d="scan'208";a="25921311"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2024 13:20:55 -0700
-X-CSE-ConnectionGUID: pB7ASK6XQKKftgRlJOisnA==
-X-CSE-MsgGUID: xm7w5AE9QZaMP5KcNAaBwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,175,1719903600"; d="scan'208";a="67124979"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by orviesa003.jf.intel.com with ESMTP; 25 Aug 2024 13:20:52 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1siJjE-000FQZ-2g;
- Sun, 25 Aug 2024 20:20:48 +0000
-Date: Mon, 26 Aug 2024 04:20:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tursulin@ursulin.net, airlied@gmail.com, daniel@ffwll.ch,
- linux@roeck-us.net, andi.shyti@linux.intel.com,
- andriy.shevchenko@linux.intel.com
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- ashutosh.dixit@intel.com, karthik.poosa@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: Re: [PATCH v6] drm/i915/hwmon: expose fan speed
-Message-ID: <202408260446.0EeOPMO6-lkp@intel.com>
-References: <20240820062010.2000873-1-raag.jadav@intel.com>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B34F010E023;
+ Mon, 26 Aug 2024 01:10:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1724634625;
+ bh=QPycLkrrFOAkAi5mF/lXserKCpvEqlB8+bfiPzXrEIo=;
+ h=Date:From:To:Cc:Subject:From;
+ b=P1Qm8nvhiItIUMUpNsrie5KbAuPdm4v1Emffpnx97OTN/YDo7CB7Himblb1LFVVj5
+ 0ZQSEIF1gB4hulqww1dV+ReHM3O6g2Vpi6hkzYWCS+M4vgNNYqg/4aXOHJ5k+NHdtG
+ VcdzPqwtk7zeY3DP3mVX57Uhy7VF8FiaaIkPymZyliNp532sDeMnUUV7pFC3B9WOJ+
+ s2YMNXS4yytd7jsA9cUzdwlS9W97GisPD3DkuaL4flcK2O1WlXlyZ2626r1SY+ksuA
+ soUUlzlO7wUje2NqaeZ2msiXHLMB5wbLxW9toTOLE6/qvB97AGj3lTrMSY9LZrtf/7
+ Z1xg+RzJJ80OA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4WsXfS0JNQz4x6l;
+ Mon, 26 Aug 2024 11:10:24 +1000 (AEST)
+Date: Mon, 26 Aug 2024 11:10:22 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Alex Deucher <alexdeucher@gmail.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Hamza Mahfooz
+ <hamza.mahfooz@amd.com>, Leo Li <sunpeng.li@amd.com>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Rodrigo Siqueira
+ <rodrigo.siqueira@amd.com>
+Subject: linux-next: manual merge of the amdgpu tree with the drm-misc tree
+Message-ID: <20240826111022.41db1e95@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240820062010.2000873-1-raag.jadav@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/CkZ0Ik11NSa4ZMtNQ7xe8Kh";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,34 +61,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Raag,
+--Sig_/CkZ0Ik11NSa4ZMtNQ7xe8Kh
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-kernel test robot noticed the following build errors:
+Hi all,
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.11-rc5 next-20240823]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Today's linux-next merge of the amdgpu tree got a conflict in:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Raag-Jadav/drm-i915-hwmon-expose-fan-speed/20240820-135849
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20240820062010.2000873-1-raag.jadav%40intel.com
-patch subject: [PATCH v6] drm/i915/hwmon: expose fan speed
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20240826/202408260446.0EeOPMO6-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240826/202408260446.0EeOPMO6-lkp@intel.com/reproduce)
+  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408260446.0EeOPMO6-lkp@intel.com/
+between commits:
 
-All errors (new ones prefixed by >>):
+  537ef0f88897 ("drm/amd/display: use new vblank enable policy for DCN35+")
+  e45b6716de4b ("drm/amd/display: use a more lax vblank enable policy for D=
+CN35+")
+  58a261bfc967 ("drm/amd/display: use a more lax vblank enable policy for o=
+lder ASICs")
 
-   ld: drivers/gpu/drm/i915/i915_hwmon.o: in function `hwm_read':
->> i915_hwmon.c:(.text+0xe36): undefined reference to `__udivdi3'
+from the drm-misc tree and commit:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  7fb363c57522 ("drm/amd/display: Let drm_crtc_vblank_on/off manage interru=
+pts")
+
+from the amdgpu tree.
+
+I fixed it up (I think - see below) and can carry the fix as necessary.
+This is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 34872eb4fc84,7d999e352df3..000000000000
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@@ -8229,66 -8248,12 +8242,35 @@@ static int amdgpu_dm_encoder_init(struc
+ =20
+  static void manage_dm_interrupts(struct amdgpu_device *adev,
+  				 struct amdgpu_crtc *acrtc,
+ -				 bool enable)
+ +				 struct dm_crtc_state *acrtc_state)
+  {
+- 	/*
+- 	 * We have no guarantee that the frontend index maps to the same
+- 	 * backend index - some even map to more than one.
+- 	 *
+- 	 * TODO: Use a different interrupt or check DC itself for the mapping.
+- 	 */
+- 	int irq_type =3D
+- 		amdgpu_display_crtc_idx_to_irq_type(
+- 			adev,
+- 			acrtc->crtc_id);
+ -	if (enable)
+ -		drm_crtc_vblank_on(&acrtc->base);
+ -	else
+ +	struct drm_vblank_crtc_config config =3D {0};
+ +	struct dc_crtc_timing *timing;
+ +	int offdelay;
+ +
+ +	if (acrtc_state) {
+ +		if (amdgpu_ip_version(adev, DCE_HWIP, 0) <
+ +		    IP_VERSION(3, 5, 0) ||
+ +		    acrtc_state->stream->link->psr_settings.psr_version <
+ +		    DC_PSR_VERSION_UNSUPPORTED) {
+ +			timing =3D &acrtc_state->stream->timing;
+ +
+ +			/* at least 2 frames */
+ +			offdelay =3D DIV64_U64_ROUND_UP((u64)20 *
+ +						      timing->v_total *
+ +						      timing->h_total,
+ +						      timing->pix_clk_100hz);
+ +
+ +			config.offdelay_ms =3D offdelay ?: 30;
+ +		} else {
+ +			config.disable_immediate =3D true;
+ +		}
+ +
+ +		drm_crtc_vblank_on_config(&acrtc->base,
+ +					  &config);
+-=20
+- 		amdgpu_irq_get(
+- 			adev,
+- 			&adev->pageflip_irq,
+- 			irq_type);
+- #if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
+- 		amdgpu_irq_get(
+- 			adev,
+- 			&adev->vline0_irq,
+- 			irq_type);
+- #endif
+ +	} else {
+- #if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
+- 		amdgpu_irq_put(
+- 			adev,
+- 			&adev->vline0_irq,
+- 			irq_type);
+- #endif
+- 		amdgpu_irq_put(
+- 			adev,
+- 			&adev->pageflip_irq,
+- 			irq_type);
+  		drm_crtc_vblank_off(&acrtc->base);
+ +	}
+  }
+ =20
+  static void dm_update_pflip_irq_state(struct amdgpu_device *adev,
+
+--Sig_/CkZ0Ik11NSa4ZMtNQ7xe8Kh
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmbL1f4ACgkQAVBC80lX
+0Gx8JggAmwErH3gvAScu0SVb4ul2G63cxNpofpaZL6y/Dd+azzrQanpXXlbYEaei
+W7rpsREl1zM0yWA3A7rExSYwz4QMb5StqHoTmY98Pb+3denPm0U64Tnk/aweVGSr
+BQT93MBgZtqj0zqcWmGq0bY1wEJ5um1Q9/pMaUplySslikLdHSqjQ+VZE9MbJO36
+LbJYkrAL1hwYXeROf2+Xr8yEJwFNOSy5tCOd9VhKCSiUdCP5WmTbljsugSZvQpYz
+8rs2vzSq43azJfibPcGuiQLV8nAstDnx1F48NTeazfiK1FgCkqQMtQAs1oxYN0ni
+0f0mEvqNQBPVNbw6wuWKtKxGqRpnOg==
+=IACy
+-----END PGP SIGNATURE-----
+
+--Sig_/CkZ0Ik11NSa4ZMtNQ7xe8Kh--
