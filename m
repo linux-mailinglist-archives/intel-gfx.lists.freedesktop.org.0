@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B3195F9EA
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 21:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 177C695FC6C
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 00:08:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6746810E286;
-	Mon, 26 Aug 2024 19:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8451310E1E6;
+	Mon, 26 Aug 2024 22:08:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nfc27SLy";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACAB10E286;
- Mon, 26 Aug 2024 19:46:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8962144448570971911=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCB110E1A1;
+ Mon, 26 Aug 2024 22:08:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724710113; x=1756246113;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=nBMJSivStADqdTYKhLP6xKINuqRiM9TJ4LxVMkZthDE=;
+ b=Nfc27SLyXhw3tE7iSTW047nZvAIVnmcT3e1aB3xfUsc3Lokh2ugYYM5C
+ a8ARgDkAHZN08Jj4WqDN9fnel/s8UaznAGqJRawxM2Xwj+ENaD0uOh/MU
+ K19lfgbxwFyGSlcoyIXbB1NzwIz50EZvOkg068IUcahZllVyESrWeK7Z/
+ yLPZrocDdGSLkjm+iDARAYFpzuGH1vPdVQnVi7G6OFMb3ViuVsGP93inm
+ eRtbgbZctQssQN0EFFNKmxoqbUs9GQMHaaM2XlFn5J4E5/i5jWleN9Ihw
+ wzKIs9VcNq73yTeFzfspXP2x4KKMcpD9IfWzdBLPwYnXtlYXylNAydsjU Q==;
+X-CSE-ConnectionGUID: bxNA/aHaTrCWkvuunMIz3Q==
+X-CSE-MsgGUID: TzsWjjxRSruu8ZWmCywhSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="26059335"
+X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="26059335"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 15:08:33 -0700
+X-CSE-ConnectionGUID: P8KS2xSYRGCaQd11qHGJOA==
+X-CSE-MsgGUID: mvb4qNPqQJuv4BMkktAhiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,178,1719903600"; d="scan'208";a="62700377"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+ by fmviesa009.fm.intel.com with ESMTP; 26 Aug 2024 15:08:31 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1sihsz-000Hdo-0h;
+ Mon, 26 Aug 2024 22:08:29 +0000
+Date: Tue, 27 Aug 2024 06:07:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: Re: [PATCH v3 14/15] drm/i915/gt: Implement creation and removal
+ routines for CCS engines
+Message-ID: <202408270545.o4dlO6La-lkp@intel.com>
+References: <20240823130855.72436-15-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe=3A_Align_all_VRAM_sc?=
- =?utf-8?q?anout_buffers_to_64k_physical_pages_when_needed=2E_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Aug 2024 19:46:42 -0000
-Message-ID: <172470160210.785606.6770096677557512635@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240826170117.327709-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20240826170117.327709-1-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240823130855.72436-15-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,196 +72,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8962144448570971911==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Andi,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: drm/xe: Align all VRAM scanout buffers to 64k physical pages when needed. (rev2)
-URL   : https://patchwork.freedesktop.org/series/137785/
-State : success
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-intel/for-linux-next-fixes drm-tip/drm-tip drm/drm-next drm-exynos/exynos-drm-next drm-misc/drm-misc-next linus/master v6.11-rc5 next-20240826]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Andi-Shyti/drm-i915-gt-Avoid-using-masked-workaround-for-CCS_MODE-setting/20240826-165045
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240823130855.72436-15-andi.shyti%40linux.intel.com
+patch subject: [PATCH v3 14/15] drm/i915/gt: Implement creation and removal routines for CCS engines
+config: i386-buildonly-randconfig-002-20240827 (https://download.01.org/0day-ci/archive/20240827/202408270545.o4dlO6La-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240827/202408270545.o4dlO6La-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from CI_DRM_15295 -> Patchwork_137785v2
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408270545.o4dlO6La-lkp@intel.com/
 
-Summary
--------
+All warnings (new ones prefixed by >>):
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/index.html
-
-Participating hosts (40 -> 37)
-------------------------------
-
-  Additional (1): fi-kbl-8809g 
-  Missing    (4): bat-kbl-2 bat-dg2-11 fi-snb-2520m fi-elk-e7500 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_137785v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [PASS][3] -> [DMESG-WARN][4] ([i915#11349])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-    - bat-arls-1:         [PASS][5] -> [DMESG-WARN][6] ([i915#11349])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] +30 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-bsw-n3050:       [ABORT][8] -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/fi-bsw-n3050/igt@i915_selftest@live@gt_timelines.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-bsw-n3050/igt@i915_selftest@live@gt_timelines.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][10] -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+>> drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c:164:12: warning: function 'rb_engine_cmp' is not needed and will not be emitted [-Wunneeded-internal-declaration]
+     164 | static int rb_engine_cmp(struct rb_node *rb_new, const struct rb_node *rb_old)
+         |            ^~~~~~~~~~~~~
+   1 warning generated.
 
 
-Build changes
--------------
+vim +/rb_engine_cmp +164 drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
 
-  * Linux: CI_DRM_15295 -> Patchwork_137785v2
+   163	
+ > 164	static int rb_engine_cmp(struct rb_node *rb_new, const struct rb_node *rb_old)
+   165	{
+   166		struct intel_engine_cs *new = rb_to_uabi_engine(rb_new);
+   167		struct intel_engine_cs *old = rb_to_uabi_engine(rb_old);
+   168	
+   169		if (new->uabi_class - old->uabi_class == 0)
+   170			return new->uabi_instance - old->uabi_instance;
+   171	
+   172		return new->uabi_class - old->uabi_class;
+   173	}
+   174	
 
-  CI-20190529: 20190529
-  CI_DRM_15295: a98a350b5396d30458c26b4f31d7c4f4f9b1da90 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7991: e5cbe548dbd6ee44200a83745a605643a1a4c714 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_137785v2: a98a350b5396d30458c26b4f31d7c4f4f9b1da90 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/index.html
-
---===============8962144448570971911==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Align all VRAM scanout buffers to 64k physical pages when needed. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137785/">https://patchwork.freedesktop.org/series/137785/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15295 -&gt; Patchwork_137785v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/index.html</p>
-<h2>Participating hosts (40 -&gt; 37)</h2>
-<p>Additional (1): fi-kbl-8809g <br />
-  Missing    (4): bat-kbl-2 bat-dg2-11 fi-snb-2520m fi-elk-e7500 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_137785v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-kbl-8809g/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +30 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_timelines:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/fi-bsw-n3050/igt@i915_selftest@live@gt_timelines.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/fi-bsw-n3050/igt@i915_selftest@live@gt_timelines.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15295/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137785v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15295 -&gt; Patchwork_137785v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15295: a98a350b5396d30458c26b4f31d7c4f4f9b1da90 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7991: e5cbe548dbd6ee44200a83745a605643a1a4c714 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_137785v2: a98a350b5396d30458c26b4f31d7c4f4f9b1da90 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8962144448570971911==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
