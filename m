@@ -2,150 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1414995EA0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 09:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 998CB95EC29
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 10:38:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2916910E123;
-	Mon, 26 Aug 2024 07:11:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B97910E149;
+	Mon, 26 Aug 2024 08:38:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="yiRsuF6J";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="29qQqnFg";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="yiRsuF6J";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="29qQqnFg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PCEIOXGL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1DE10E117;
- Mon, 26 Aug 2024 07:11:54 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 78B091F843;
- Mon, 26 Aug 2024 07:11:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724656312; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
- b=yiRsuF6JiAtqiOk9gt3PEf2krtfxOQ2u51mW+KGmD+x5s2UFbWxfxyQqJsBihiahItJc/K
- 0kaccrjqshrHp7NYLFAG91Ro93OaSUVUsG9gLEcL1qyXyBN3+dX9KIcKyw71ZuPk12lefk
- fjbAFZPUgKVjR4CtmDPnHBYNmHJL9s0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724656312;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
- b=29qQqnFgDsGd5nkxZ8fQOVtYsaiRcfxdUNwefj13wi4tM7UYuenFuavriwgfSbn/L8ecQy
- gZexfuis3UJGJZCA==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=yiRsuF6J;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=29qQqnFg
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724656312; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
- b=yiRsuF6JiAtqiOk9gt3PEf2krtfxOQ2u51mW+KGmD+x5s2UFbWxfxyQqJsBihiahItJc/K
- 0kaccrjqshrHp7NYLFAG91Ro93OaSUVUsG9gLEcL1qyXyBN3+dX9KIcKyw71ZuPk12lefk
- fjbAFZPUgKVjR4CtmDPnHBYNmHJL9s0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724656312;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=SPGZhv40/HCD6CrWni/Ro0VawjhkfbRkAq/pKepOG04=;
- b=29qQqnFgDsGd5nkxZ8fQOVtYsaiRcfxdUNwefj13wi4tM7UYuenFuavriwgfSbn/L8ecQy
- gZexfuis3UJGJZCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1F6FF1398D;
- Mon, 26 Aug 2024 07:11:52 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id /zNuBrgqzGb1QgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 26 Aug 2024 07:11:52 +0000
-Message-ID: <65faaa8b-72b5-4fa3-9959-8fecba90ad30@suse.de>
-Date: Mon, 26 Aug 2024 09:11:51 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8DE310E149
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Aug 2024 08:38:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724661518; x=1756197518;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=v3Lqqfm30HIFbU7EKaPRT5gOBvmg0i16a/gvgFmPUqM=;
+ b=PCEIOXGLDMTiTHXmiH7u1HottTuSE83CqH+GxLWNEZgDPN71XPJyW9+X
+ JxPyyFIQyHSBqoBuSaUnZsljUX9c7ekbMwyaV/oTJyOqlx0cbVZXEkGHx
+ ymjeBZQmtPPcid9NRjV+PLb51pRDeRfRTpAXRERDP+OYsRKkYHFR10dNM
+ 7/b+tXIAjgPBTNpvFYNHvGzqp3uWPNOMLv5e4wGY44FhZ1ffpBSupxpoS
+ xaGFS+VBXAVoiEMJPMg1ylX9I55qaJfxpkmvkKRh8AS/255B/7Al6u1as
+ F0dw0UdG6XRZvivVLpin3fZv16MtCVbzyvRc0XvuRhbNhwLg5KaNa8lnw g==;
+X-CSE-ConnectionGUID: JnIIIe7jRSqC09LJTHJDyg==
+X-CSE-MsgGUID: 5eyCyqjOTjueqEGb9/mHFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="23198600"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="23198600"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 01:38:38 -0700
+X-CSE-ConnectionGUID: eEfmLueNSFCQkA5YXaznuA==
+X-CSE-MsgGUID: zEbRF86fSVS7EDPcbCdjsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="62275866"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.113])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 01:38:36 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: remove unnecessary display includes
+In-Reply-To: <ZsidVbQKnjuuSgb3@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240823123318.3189503-1-jani.nikula@intel.com>
+ <ZsidVbQKnjuuSgb3@intel.com>
+Date: Mon, 26 Aug 2024 11:38:24 +0300
+Message-ID: <87h6b73chr.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/86] drm/atmel-hdlcd: Run DRM default client setup
-To: Sam Ravnborg <sam@ravnborg.org>
-Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
- javierm@redhat.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Boris Brezillon <bbrezillon@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>
-References: <20240821130348.73038-1-tzimmermann@suse.de>
- <20240821130348.73038-12-tzimmermann@suse.de>
- <20240823185156.GA367392@ravnborg.org>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20240823185156.GA367392@ravnborg.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 78B091F843
-X-Spam-Level: 
-X-Spamd-Result: default: False [-6.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- RCPT_COUNT_TWELVE(0.00)[14]; MIME_TRACE(0.00)[0:+];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,lists.freedesktop.org,kernel.org,microchip.com,bootlin.com,tuxon.dev];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- imap1.dmz-prg2.suse.org:rdns, suse.de:email, suse.de:dkim, suse.de:mid]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -6.51
-X-Spam-Flag: NO
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,70 +69,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sam
+On Fri, 23 Aug 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Fri, Aug 23, 2024 at 03:33:18PM +0300, Jani Nikula wrote:
+>> There are a number of leftover #include "display/..." directives that
+>> are completely unnecessary. Remove them to make it easier to spot the
+>> relevant ones. In one case, switch to a more specific include.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> trusting more the compiler then manual inspection:
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Am 23.08.24 um 20:51 schrieb Sam Ravnborg:
-> On Wed, Aug 21, 2024 at 02:59:08PM +0200, Thomas Zimmermann wrote:
->> Call drm_client_setup_with_fourcc() to run the kernel's default client
->> setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
->> setup can start the common fbdev client.
->>
->> v2:
->> - use drm_client_setup_with_fourcc()
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Sam Ravnborg <sam@ravnborg.org>
->> Cc: Boris Brezillon <bbrezillon@kernel.org>
->> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
->> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
->> Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> Hi Thomas.
+Thanks, pushed to din.
+
+BR,
+Jani.
+
 >
 >> ---
->>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 4 +++-
->>   1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> index 9ce429f889ca..ca5bde8ac300 100644
->> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> @@ -18,8 +18,10 @@
->>   
->>   #include <drm/drm_atomic.h>
->>   #include <drm/drm_atomic_helper.h>
->> +#include <drm/drm_client_setup.h>
->>   #include <drm/drm_drv.h>
->>   #include <drm/drm_fbdev_dma.h>
->> +#include <drm/drm_fourcc.h>
->>   #include <drm/drm_gem_dma_helper.h>
->>   #include <drm/drm_gem_framebuffer_helper.h>
->>   #include <drm/drm_module.h>
->> @@ -865,7 +867,7 @@ static int atmel_hlcdc_dc_drm_probe(struct platform_device *pdev)
->>   	if (ret)
->>   		goto err_unload;
->>   
->> -	drm_fbdev_dma_setup(ddev, 24);
->> +	drm_client_setup_with_fourcc(ddev, DRM_FORMAT_RGB888);
->>   
->>   	return 0;
-> I looks like a patch is missing to add DRM_FBDEV_DMA_DRIVER_OPS to
-> struct drm_driver?
-
-Indeed. Thanks a lot for proof reading. I'll double-check the other 
-patches for the next iteration.
-
-Best regards
-Thomas
-
->
-> 	Sam
+>>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 --
+>>  drivers/gpu/drm/i915/gt/intel_ggtt.c           | 1 -
+>>  drivers/gpu/drm/i915/i915_driver.c             | 4 +---
+>>  drivers/gpu/drm/i915/i915_gem.c                | 2 --
+>>  drivers/gpu/drm/i915/i915_gem_gtt.c            | 1 -
+>>  drivers/gpu/drm/i915/i915_irq.c                | 1 -
+>>  drivers/gpu/drm/i915/i915_pci.c                | 1 -
+>>  7 files changed, 1 insertion(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> index c58290274f97..01b7587dd1f8 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> @@ -12,8 +12,6 @@
+>>  #include <drm/drm_auth.h>
+>>  #include <drm/drm_syncobj.h>
+>>  
+>> -#include "display/intel_frontbuffer.h"
+>> -
+>>  #include "gem/i915_gem_ioctls.h"
+>>  #include "gt/intel_context.h"
+>>  #include "gt/intel_gpu_commands.h"
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> index 206a5e0fedf1..d60a6ca0cae5 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+>> @@ -12,7 +12,6 @@
+>>  #include <drm/intel/i915_drm.h>
+>>  #include <drm/intel/intel-gtt.h>
+>>  
+>> -#include "display/intel_display.h"
+>>  #include "gem/i915_gem_lmem.h"
+>>  
+>>  #include "intel_context.h"
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index e32766286369..ccdd2983cfb5 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -49,7 +49,7 @@
+>>  #include "display/intel_bw.h"
+>>  #include "display/intel_cdclk.h"
+>>  #include "display/intel_display_driver.h"
+>> -#include "display/intel_display_types.h"
+>> +#include "display/intel_display.h"
+>>  #include "display/intel_dmc.h"
+>>  #include "display/intel_dp.h"
+>>  #include "display/intel_dpt.h"
+>> @@ -58,10 +58,8 @@
+>>  #include "display/intel_hotplug.h"
+>>  #include "display/intel_overlay.h"
+>>  #include "display/intel_pch_refclk.h"
+>> -#include "display/intel_pipe_crc.h"
+>>  #include "display/intel_pps.h"
+>>  #include "display/intel_sprite.h"
+>> -#include "display/intel_vga.h"
+>>  #include "display/skl_watermark.h"
+>>  
+>>  #include "gem/i915_gem_context.h"
+>> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+>> index 1391c01d7663..070ab6546987 100644
+>> --- a/drivers/gpu/drm/i915/i915_gem.c
+>> +++ b/drivers/gpu/drm/i915/i915_gem.c
+>> @@ -39,8 +39,6 @@
+>>  #include <drm/drm_cache.h>
+>>  #include <drm/drm_vma_manager.h>
+>>  
+>> -#include "display/intel_display.h"
+>> -
+>>  #include "gem/i915_gem_clflush.h"
+>>  #include "gem/i915_gem_context.h"
+>>  #include "gem/i915_gem_ioctls.h"
+>> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+>> index 7bd1861ddbdf..a9662cc6ed1e 100644
+>> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
+>> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+>> @@ -15,7 +15,6 @@
+>>  #include <asm/set_memory.h>
+>>  #include <asm/smp.h>
+>>  
+>> -#include "display/intel_frontbuffer.h"
+>>  #include "gt/intel_gt.h"
+>>  #include "gt/intel_gt_requests.h"
+>>  
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>> index 8059ac7e15fe..2321de48d169 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -34,7 +34,6 @@
+>>  #include <drm/drm_drv.h>
+>>  
+>>  #include "display/intel_display_irq.h"
+>> -#include "display/intel_display_types.h"
+>>  #include "display/intel_hotplug.h"
+>>  #include "display/intel_hotplug_irq.h"
+>>  #include "display/intel_lpe_audio.h"
+>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+>> index 94c89ca2ef30..d37bb3a704d0 100644
+>> --- a/drivers/gpu/drm/i915/i915_pci.c
+>> +++ b/drivers/gpu/drm/i915/i915_pci.c
+>> @@ -26,7 +26,6 @@
+>>  #include <drm/drm_drv.h>
+>>  #include <drm/intel/i915_pciids.h>
+>>  
+>> -#include "display/intel_display.h"
+>>  #include "display/intel_display_driver.h"
+>>  #include "gt/intel_gt_regs.h"
+>>  #include "gt/intel_sa_media.h"
+>> -- 
+>> 2.39.2
+>> 
 
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+Jani Nikula, Intel
