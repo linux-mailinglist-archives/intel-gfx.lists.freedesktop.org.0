@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044BD95EE5C
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 12:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF9B095EEA9
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 12:41:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D68EB10E187;
-	Mon, 26 Aug 2024 10:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B1210E189;
+	Mon, 26 Aug 2024 10:41:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bGL3OamG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZtEhxA+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46A0A10E187;
- Mon, 26 Aug 2024 10:20:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F2AA10E189
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Aug 2024 10:41:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724667622; x=1756203622;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=WIRbzgRFzegd7jBvkQsNFq2d4n2EVHmRsEJmbaKa90I=;
- b=bGL3OamGAqFw5jpNaFceiYdMpsb0xUhb7E296fea99I04loUaHprYsLw
- JsuMaDfEeIhfrjKfO6np/nYYmJPzQv5ombljCPpWGCrLQHBR8UThl+Y/Z
- zfqdzjNzDGY1Fho0/a1er78bfeT+NGiKybyvk5AZMCp7u3kjlPHy6t6F7
- 1cWW89he2jCYGQs8kYvsoYY47ov1ovHuFqSXPhli3mOhkx7coq9h7auCf
- i9L5+T9yWTrIpYAaZo9lYFbrt3dvE0sIcC1Dmrx2t7VJ8yqpBKRkbxk0Z
- CfGygx0NKFanCA7xY5RDTZjgtoBgozmFNCCBDTgrjcOj0M0dS0sF4Teqv w==;
-X-CSE-ConnectionGUID: ajhPhSr+T/2fPtvhLdFFoQ==
-X-CSE-MsgGUID: 4rZjgNLnTLygIdSIkgmMBw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="26845367"
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="26845367"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 03:20:22 -0700
-X-CSE-ConnectionGUID: sFLx+cFyRY2bEQziG9GNdg==
-X-CSE-MsgGUID: xiEqFIx1Q6OX+68Hv62Vjw==
+ t=1724668906; x=1756204906;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W3rR3Nqj+mnQ7UifQOga7DjN5cjAoXTPErNBkl0Ov2A=;
+ b=VZtEhxA++tEeK7qwRV3k3N67d0h1V2uNDPbr1ljB4q8Z50P56f2ndcrL
+ rioUHS2IBYkF2cfaqrbumvfGOqA9htgg132p6Iul+/4AL2KYY4zTfr7f+
+ a2osJScS2Q/t2BY7PyKpJnSQxrbkxMQbguAR17KknBp+2eKA7kzE8SM41
+ DU2zuQoDfrCS1ojr2gS7UJX6OgNM4VdwTWIR4ho+PqcfLuR2HkbD4c4Y8
+ FYOlD0metFuRGqWIJgGKN6o4NL/YDbg/eMHcRCt00ueJD9/5ABaOpJ4zP
+ rIGsZsedjtdZlIg4H0jkFtfQ7vU4IEQBSfDCIttCFQImishQ959GFAtBs w==;
+X-CSE-ConnectionGUID: VXa6fEutSyi8v8LCOYe7rg==
+X-CSE-MsgGUID: 0dKC4nclTF+cNRbSareVRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="34457418"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="34457418"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 03:41:46 -0700
+X-CSE-ConnectionGUID: V3Z/lOzzQfORuj+7zviqig==
+X-CSE-MsgGUID: JyiVKgvaRIm3F3AXbeeelA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="62984641"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.113])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 03:20:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/ttm: fix kernel-doc typo for @trylock_only
-In-Reply-To: <704af387-a984-4fcb-866a-1e95a22e50b9@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240823141110.3431423-1-jani.nikula@intel.com>
- <704af387-a984-4fcb-866a-1e95a22e50b9@amd.com>
-Date: Mon, 26 Aug 2024 13:20:07 +0300
-Message-ID: <878qwj37s8.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="63190144"
+Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
+ jhogande-mobl1..) ([10.245.245.126])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 03:41:45 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/display: use old bpp as a base when modeset is not
+ allowed
+Date: Mon, 26 Aug 2024 13:41:32 +0300
+Message-Id: <20240826104132.966597-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +70,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 Aug 2024, Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
-> Am 23.08.24 um 16:11 schrieb Jani Nikula:
->> s/tryock_only/trylock_only/
->>
->> Fixes: da966b82bf3d ("drm/ttm: Provide a generic LRU walker helper")
->> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+We are currently observing failure on refresh rate change on VRR setup if
+full modeset is not allowed. This is caused by the mismatch in bpp
+configured by GOP and bpp value calculated by our driver. Changing bpp to
+value calculated by our driver would require full mode set.
 
-Thanks, pushed this one patch to drm-misc-next.
+We don't have mechanism to communicate current bpp to userspace ->
+Userspace can't request to use current bpp. Changing bpp means full
+modeset. This becomes a problem when userspace haven't allowed full mode
+set.
 
-BR,
-Jani.
+Complete solution here would mean adding mechanism to communicate current
+bpp to userspace. User space should use this bpp to avoid changing bpp if
+it wants to avoid full mode set.
 
->
->> ---
->>   include/drm/ttm/ttm_bo.h | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
->> index d1a732d56259..7294dde240fb 100644
->> --- a/include/drm/ttm/ttm_bo.h
->> +++ b/include/drm/ttm/ttm_bo.h
->> @@ -222,7 +222,7 @@ struct ttm_lru_walk {
->>   	struct ttm_operation_ctx *ctx;
->>   	/** @ticket: The struct ww_acquire_ctx if any. */
->>   	struct ww_acquire_ctx *ticket;
->> -	/** @tryock_only: Only use trylock for locking. */
->> +	/** @trylock_only: Only use trylock for locking. */
->>   	bool trylock_only;
->>   };
->>=20=20=20
->
+Tackle this for now in our driver by using existing bpp if full modeset is
+not allowed.
 
---=20
-Jani Nikula, Intel
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 33 ++++++++++++++------
+ 1 file changed, 23 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9049b9a1209d8..7b805998b280a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4385,21 +4385,34 @@ compute_baseline_pipe_bpp(struct intel_atomic_state *state,
+ 			  struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	struct intel_crtc_state *crtc_state =
++	struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
++	struct intel_crtc_state *old_crtc_state =
++		intel_atomic_get_old_crtc_state(state, crtc);
+ 	struct drm_connector *connector;
+ 	struct drm_connector_state *connector_state;
+ 	int bpp, i;
+ 
+-	if ((IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+-	    IS_CHERRYVIEW(dev_priv)))
+-		bpp = 10*3;
+-	else if (DISPLAY_VER(dev_priv) >= 5)
+-		bpp = 12*3;
+-	else
+-		bpp = 8*3;
++	/*
++	 * TODO: We don't have mechanism to communicate current bpp to
++	 * userspace -> Userspace can't request to use current bpp. Changing bpp
++	 * means full modeset. This becomes a problem when userspace wants to
++	 * avoid full modeset. Tackle this on our driver by using existing bpp
++	 * if full modeset is not allowed.
++	 */
++	if (!state->base.allow_modeset) {
++		bpp = old_crtc_state->pipe_bpp;
++	} else {
++		if ((IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
++		     IS_CHERRYVIEW(dev_priv)))
++			bpp = 10 * 3;
++		else if (DISPLAY_VER(dev_priv) >= 5)
++			bpp = 12 * 3;
++		else
++			bpp = 8 * 3;
++	}
+ 
+-	crtc_state->pipe_bpp = bpp;
++	new_crtc_state->pipe_bpp = bpp;
+ 
+ 	/* Clamp display bpp to connector max bpp */
+ 	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
+@@ -4408,7 +4421,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_state *state,
+ 		if (connector_state->crtc != &crtc->base)
+ 			continue;
+ 
+-		ret = compute_sink_pipe_bpp(connector_state, crtc_state);
++		ret = compute_sink_pipe_bpp(connector_state, new_crtc_state);
+ 		if (ret)
+ 			return ret;
+ 	}
+-- 
+2.34.1
+
