@@ -2,45 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E8495EEB7
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 12:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9573195EF85
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2024 13:14:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4E6510E18D;
-	Mon, 26 Aug 2024 10:45:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C49810E1A7;
+	Mon, 26 Aug 2024 11:14:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P6YxSmfp";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1CF510E18D;
- Mon, 26 Aug 2024 10:45:16 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Mon, 26 Aug
- 2024 13:45:13 +0300
-Received: from [192.168.211.130] (10.0.253.138) by Ex16-01.fintech.ru
- (10.0.10.18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 26 Aug
- 2024 13:45:13 +0300
-Message-ID: <56362df7-7502-4b35-81da-f3fe9ff7da47@fintech.ru>
-Date: Mon, 26 Aug 2024 03:45:12 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5894010E1A7;
+ Mon, 26 Aug 2024 11:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724670841; x=1756206841;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+95Av44uviU7r1cfRD58PyuXKS+g/7f7cNIUP7IYUYc=;
+ b=P6YxSmfpZ8XNGJNVhz9BS3/BMXPg/+n6pdhLTUARxE+SL9IwNKGCrs6u
+ 5qkSkvqWxYHOXQFfJeG/7V15ustmIXxXfR1k/AIoYVGzj9v9iEYAEpY20
+ iazYp/TilrmvIHfKaR8QHqpe/t7cOWxie+jqxxlnbBfxw4/N4CWE+5VtF
+ gL5kUUfJYdp3Jitua35FiENME+wDcqqSa72zRHeyB5Z9sI17Zq0HEsOx/
+ cqOGFwQ4RKTvCexRxGiqdj4hD0r+LQQ6jVsQC4+Nf5R4SPtcSf3J7L7jp
+ 21dc9fHZ0KudzzADWVGZ59K/TYk50wD+dWB8yUFy7z5x2Cwp6DnAd/iDH Q==;
+X-CSE-ConnectionGUID: 9SZw9vynSe2WsnY9OKWRMQ==
+X-CSE-MsgGUID: H1StSdiuQIW6ShIGlSBn5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11175"; a="23213525"
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="23213525"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 04:14:01 -0700
+X-CSE-ConnectionGUID: 3iSoKUf0Tsqzf3bABAAoAw==
+X-CSE-MsgGUID: L2dNGWGjQICCz6H1IuxIUg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,177,1719903600"; d="scan'208";a="67291230"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2024 04:14:00 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 00/12] Consolidation of DSS Control in Separate Files
+Date: Mon, 26 Aug 2024 16:45:14 +0530
+Message-ID: <20240826111527.1113622-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/guc: prevent a possible int overflow in wq
- offsets
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-CC: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
- <stable@vger.kernel.org>, <n.zhandarovich@fintech.ru>
-References: <20240725155925.14707-1-n.zhandarovich@fintech.ru>
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-In-Reply-To: <20240725155925.14707-1-n.zhandarovich@fintech.ru>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,45 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Currently, DSS control is configured from various files; this change aims
+to consolidate all DSS-related functionalities, such as display stream
+splitting, joining, MSO configuration, and joining configuration,
+into one place.
 
-On 7/25/24 08:59, Nikita Zhandarovich wrote:
-> It may be possible for the sum of the values derived from
-> i915_ggtt_offset() and __get_parent_scratch_offset()/
-> i915_ggtt_offset() to go over the u32 limit before being assigned
-> to wq offsets of u64 type.
-> 
-> Mitigate these issues by expanding one of the right operands
-> to u64 to avoid any overflow issues just in case.
-> 
-> Found by Linux Verification Center (linuxtesting.org) with static
-> analysis tool SVACE.
-> 
-> Fixes: 2584b3549f4c ("drm/i915/guc: Update to GuC version 70.1.1")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 9400d0eb682b..908ebfa22933 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -2842,9 +2842,9 @@ static void prepare_context_registration_info_v70(struct intel_context *ce,
->  		ce->parallel.guc.wqi_tail = 0;
->  		ce->parallel.guc.wqi_head = 0;
->  
-> -		wq_desc_offset = i915_ggtt_offset(ce->state) +
-> +		wq_desc_offset = (u64)i915_ggtt_offset(ce->state) +
->  				 __get_parent_scratch_offset(ce);
-> -		wq_base_offset = i915_ggtt_offset(ce->state) +
-> +		wq_base_offset = (u64)i915_ggtt_offset(ce->state) +
->  				 __get_wq_offset(ce);
->  		info->wq_desc_lo = lower_32_bits(wq_desc_offset);
->  		info->wq_desc_hi = upper_32_bits(wq_desc_offset);
+A new file, intel_dss_regs.h, will store register information, while the
+helpers to configure DSS and related stuff will be moved to intel_dss.c
+with its corresponding header file intel_dss.h.
+Along with this, the helpers related to retrieve information about the
+pipe joiners are also moved from intel_display.c to intel_dss.
 
-Gentle ping,
+Additionally, wherever possible, the drm_i915_private structure is
+replaced with the new intel_display structure as part of ongoing efforts
+to phase out the old structure.
 
-Regards,
-Nikita
+Ankit Nautiyal (12):
+  drm/i915/display: Move all DSS control registers to a new file
+  drm/i915/ddi: Move all mso related helpers to a new file
+  drm/i915/dss: Move to struct intel_display
+  drm/i915/icl_dsi: Move helpers to configure dsi dual link to intel_dss
+  drm/i915/vdsc: Rename helper to check if the pipe supports dsc
+  drm/i915/vdsc: Move all dss stuff in dss files
+  drm/i915/display: Move dss stuff in intel_dss files
+  drm/i915/display: Move helper to get joined pipe mask to intel_dss
+  drm/i915/display: Move helpers for primary joiner to intel_dss
+  drm/i915/display: Move helper to check for secondary joiner pipe
+  drm/i915/display: Move helper to get all secondary pipes
+  drm/i915/display: Move intel_joiner_num_pipes to intel dss
+
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  55 +---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   3 +-
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  94 +-----
+ drivers/gpu/drm/i915/display/intel_display.c  | 158 +++------
+ drivers/gpu/drm/i915/display/intel_display.h  |   4 -
+ .../drm/i915/display/intel_display_debugfs.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   7 +-
+ drivers/gpu/drm/i915/display/intel_drrs.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_dss.c      | 305 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dss.h      |  46 +++
+ drivers/gpu/drm/i915/display/intel_dss_regs.h |  49 +++
+ .../drm/i915/display/intel_modeset_setup.c    |  15 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  74 +----
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |   2 +-
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  38 ---
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 18 files changed, 497 insertions(+), 368 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dss_regs.h
+
+-- 
+2.45.2
+
