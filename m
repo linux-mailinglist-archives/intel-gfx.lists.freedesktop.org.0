@@ -2,64 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7900960560
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 11:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 574CD96057E
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 11:25:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB6DB10E2BB;
-	Tue, 27 Aug 2024 09:20:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B619510E2C3;
+	Tue, 27 Aug 2024 09:25:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nDLjZyku";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fVO0iAz8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFF7410E2BB;
- Tue, 27 Aug 2024 09:20:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A20C010E2C3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Aug 2024 09:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724750405; x=1756286405;
+ t=1724750748; x=1756286748;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=cIQ5Lx8hu1UIWOCXbxQbBrh8ZnqEEBadqw0L0XigrBE=;
- b=nDLjZykuTtXTfnRU4Cj/C+I9PkQ7F9MDpgZYnqgYIS/sySunujnppSa/
- mXvNELKyLSs9YOwQMsn9VUdRSelhK88YkteClsTdA5u4JMUci5eAmg73E
- SwlQYBsEEr4VuqpYbAlJMyEcQskpcM3rXSKFkD2A1myZh4C7MnQgtUcLk
- qejTn9HpP/28Y6Y3DoKUIP65FoKo9Fwyl09TEAodiN1sk3S1eAk5HmIiQ
- dm2+RlZFvq/I8hO8r6UvOnOHptH0VfQEc4W0JtS6Xc2ScPiLoeryvDgk3
- M5n86ID5/kq3LNiuDOeMyrl1ebvr9V9ywrp1PqcPgzvtKbwlLcXSNLdb0 A==;
-X-CSE-ConnectionGUID: WHGD15W6QLWNfYfaKxkSoA==
-X-CSE-MsgGUID: SoUuzzeFSCuuPqkkhYiK6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="26981150"
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="26981150"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 02:20:04 -0700
-X-CSE-ConnectionGUID: nVbmHnI8QJKLEkpX+9k0lA==
-X-CSE-MsgGUID: Sfkx1TgPQGuIlOReiqqttQ==
+ bh=eAdDcSmFtZ0BMK6j+43tAGHRdqLUWqpyfrY1XTaNHc0=;
+ b=fVO0iAz81IKHs9Rij7/Bs27u1PJ0CPoILhHFrr4cJK2gqGOl/a4/NHUB
+ YdAw1SkcGYz2kz4FgPSqyB01SYV2zf5AqFbGl9MvSoI3NxBefyMDhk2pn
+ YYtI1mVaknvENOThesp7e2PZekjNoDVJ5w+9wom0U8VqEgWOMEAUoCi5u
+ FJptJXk4JX1cumfrInjMNxXyGn4MEAxyiw6nJ5bKz3l64Ipxzw1i5mTcH
+ gqJK3zk5Ou3bpxTiAh5GsG3CnKu4vKcjeki65bbQsbLOPQtbPoxFf9abj
+ 6UPn5/CcXmPNPbvCFmJghmrSDFKspC/9DnlljrkcH01iVSVJ+U3d/o8Jo w==;
+X-CSE-ConnectionGUID: jURZ58u7TkC+sa7/cQzRkw==
+X-CSE-MsgGUID: fsBW/21DT0yWHdCfNK5dxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="34369288"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="34369288"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 02:25:47 -0700
+X-CSE-ConnectionGUID: F22ylfGkSESgfz6/u1fiaQ==
+X-CSE-MsgGUID: p0uG7W1DS5CXRMfukBpSXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="67612392"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="63120644"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.226])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 02:19:58 -0700
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 02:25:45 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Andi Shyti
- <andi.shyti@linux.intel.com>, renjun wang <renjunw0@foxmail.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- airlied@gmail.com, daniel@ffwll.ch, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, lyude@redhat.com,
- imre.deak@intel.com, Wayne.Lin@amd.com, ville.syrjala@linux.intel.com,
- vidya.srinivas@intel.com, jouni.hogander@intel.com,
- janusz.krzysztofik@linux.intel.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm: Fix kerneldoc for "Returns" section
-In-Reply-To: <c9c9e482-f80c-4158-8dc4-695f8e0c62cd@suse.de>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: Re: =?utf-8?Q?=E2=9C=97?= Fi.CI.IGT: failure for drm/i915/display:
+ correct dual pps handling for MTL_PCH+
+In-Reply-To: <20240826170150.GC5091@mdroper-desk1.amr.corp.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <tencent_37A873672B5CD20DECAF99DEDAC5E45C3106@qq.com>
- <Zsz9pwQ3m9zHrjo-@ashyti-mobl2.lan>
- <c9c9e482-f80c-4158-8dc4-695f8e0c62cd@suse.de>
-Date: Tue, 27 Aug 2024 12:19:54 +0300
-Message-ID: <87y14iz5j9.fsf@intel.com>
+References: <20240801111141.574854-1-dnyaneshwar.bhadane@intel.com>
+ <172258287417.502429.17165387604242704891@2413ebb6fbb6>
+ <20240826170007.GB5091@mdroper-desk1.amr.corp.intel.com>
+ <20240826170150.GC5091@mdroper-desk1.amr.corp.intel.com>
+Date: Tue, 27 Aug 2024 12:25:41 +0300
+Message-ID: <87v7zmz59m.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -77,14 +72,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 27 Aug 2024, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> My fault. Apologies if I crossed a line by just merging it into 
-> drm-misc. It's just doc syntax, so I didn't think it was a big deal.
+On Mon, 26 Aug 2024, Matt Roper <matthew.d.roper@intel.com> wrote:
+> On Mon, Aug 26, 2024 at 10:00:10AM -0700, Matt Roper wrote:
+> Oops, I replied on the wrong patch here.  This was meant for
+>
+>         [v2] drm/i915/gt: Whitelist COMMON_SLICE_CHICKEN1 for UMD access.
+>
+> rather than this one.  Sorry for the confusion.
 
-No worries, retrospective ack.
+Hey, thanks for bringing this one up. I ended up double checking, and
+I'd forgotten to close the issue after pushing. :)
 
 BR,
 Jani.
+
 
 -- 
 Jani Nikula, Intel
