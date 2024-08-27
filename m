@@ -2,61 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3E9961803
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 21:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993669619D6
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 00:04:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD9310E412;
-	Tue, 27 Aug 2024 19:29:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDB110E0F1;
+	Tue, 27 Aug 2024 22:04:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TQZlh5z0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NWaQMEFt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54F2E10E40D;
- Tue, 27 Aug 2024 19:29:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724786955; x=1756322955;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=emsCxIFpV4UN/b0W+CDvVIYFdmKpEuUzsu7pFExO/ss=;
- b=TQZlh5z0Yp15CBjBZqwypBXx79U7PFZ8/rLgIfmlnzbVAaXBIHMicJbg
- q9YEV9im7I3Ama7mPWuaO2HOm1WPOF7pwXNRgKJHSFjyVn2ABk1HeDEXS
- 6Zrlhkh+8ShQrYRbmjDZGplI2g3zF06HFcHjJJRHu3TJCjbJ2Ae5Xi6Zq
- 6fBX/CEBxucWd4Wdv6rIOKeNTMirZZUKO22pN1Od58+jtAF83NY+a3U1f
- sVnfFoux3QL4eLJEou/6boCTv6j3kQtPHH9kIIWggFZWNqlRXWxCmBtUl
- 3MMjuSdMmGL/k+yT6OJHReCAC4yvGNjpsb7zMX93OkvsPIp3JlvBIGASY Q==;
-X-CSE-ConnectionGUID: dvMzOgAyTqqsxxOQbVJNIg==
-X-CSE-MsgGUID: szE/kg13RRC1bJZGbQBcKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="33861382"
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="33861382"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 12:29:15 -0700
-X-CSE-ConnectionGUID: PpQhjx2iRMyZiuqrE/zthg==
-X-CSE-MsgGUID: RVp7BojnTmeDqx5r6oF56A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,181,1719903600"; d="scan'208";a="63283881"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by orviesa006.jf.intel.com with ESMTP; 27 Aug 2024 12:29:13 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sj1sL-000K0Q-24;
- Tue, 27 Aug 2024 19:29:09 +0000
-Date: Wed, 28 Aug 2024 03:28:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, jani.nikula@intel.com
-Subject: Re: [PATCH 5/7] drm/i915/display: include media/cec-notifier.h and
- linux/debugfs.h where needed
-Message-ID: <202408280033.x0jpUM2m-lkp@intel.com>
-References: <a9aeb27f0107bdf3d2bd834a48583bc64072447a.1724689818.git.jani.nikula@intel.com>
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3010A10E0F1;
+ Tue, 27 Aug 2024 22:04:56 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-3717ff2358eso3291602f8f.1; 
+ Tue, 27 Aug 2024 15:04:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1724796294; x=1725401094; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=VZgyQZttbFN6Mpv5C6Zqi3PHF1KkrD2jrO7egIws/+I=;
+ b=NWaQMEFtrDynFHJlObHiz9JRKlK1O0/cPLyMvfsoMYuIuknabGefLbhuM+fa5908De
+ 5jT5SbRUWK/uG1fzOEEYS6T5Bo4IYRrZ3cv7nmoycYVAVq/2kYBPkGibIuhgEXwMZhG5
+ 1zG9G0T8CALYyRs6QbKdvuYhsZef5pLIWvL0/vKNKODGnrwE21EBd0UbN4H9FAxnS7uI
+ 4bE+Er8qr3ua6bsFxkyzPNSDpXYyUktXFDfLj91s7xXLDzOtaIuJlr8k5dcimU3HNW/X
+ XWTIAUl4gJaRKvGh4+/+M8Gw1DoC1Np04Qe3i0+0D0z2YCDJesffHWBRN+s+z+nWPPpi
+ rIjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724796294; x=1725401094;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=VZgyQZttbFN6Mpv5C6Zqi3PHF1KkrD2jrO7egIws/+I=;
+ b=X7T5DlKIhK3k++KdAt40W0wyBVe6gkdbad8LCB5iIlMqiQ7uXQtGRoDPV4AoLF6f0n
+ 1NpLPytv/KFxhcWSXCKM/lcUZlTdT/tPx7QIOXcAYuFx/LjIfcR5XOds4T7EDlkJ7kQc
+ ZDJ2YHME2dpZFT5+0getbsW0ZhLuwGr3dkH8elW3G7a1vCeSPaiiKGvc9+n9O8buQGYX
+ 3TlNcOB1VUr8mwyFrC3/volZ+WFtnPCTEjv78ftsA83vie6CF0/KPhLM+gRJsEFS96kW
+ GBqDBCa5cd7jypMISz1OjEv60dhn9fZ94lKTkzcVsd/75rlSEWbYuSFsPNMKF8S0TcFu
+ fjiQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWhMghXHPlnlYS0NLPNp7bcgeWLhYBp2gT0SpsIwthhAADna9rV7FwUENaN/Gt9aVi/4vlAQCC6@lists.freedesktop.org,
+ AJvYcCXjYYILnQVvyORTPFc3ZIe+nhlVTBtFwaEGqPu4tfOJCg0qbbtrMCtHIm54aYalMwa6meX3jjxdc0zO@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzu8V0q1+auabut/7ijdto4ABAm5KAjYk3Nki6iJ7PfnngA6Vit
+ +D9fMzOLIgd8uhl/2UsaoJ3HXkOWu6avts3HDUNOvxHY3h4/koCgwH8R/Vc/yPI15fuQ6hscf7z
+ w0NFufBRxk60h9E7dcucf/8d6BJE=
+X-Google-Smtp-Source: AGHT+IHWk+OQ6gg8FUjgV2v4vECfE0Fa9RJ/6lK2GykuDqzWb1DzW5pw5cVNOpUVhtAQtCWvfc0gKwWGbXHqNy0EXDs=
+X-Received: by 2002:a05:6000:8d:b0:368:747c:5a04 with SMTP id
+ ffacd0b85a97d-3731185ad48mr7748341f8f.25.1724796293984; Tue, 27 Aug 2024
+ 15:04:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a9aeb27f0107bdf3d2bd834a48583bc64072447a.1724689818.git.jani.nikula@intel.com>
+References: <20240820070818.1124403-1-vignesh.raman@collabora.com>
+In-Reply-To: <20240820070818.1124403-1-vignesh.raman@collabora.com>
+From: Rob Clark <robdclark@gmail.com>
+Date: Tue, 27 Aug 2024 15:04:42 -0700
+Message-ID: <CAF6AEGu-T4=3jPRcnq3BFBtfb_yhmWE2b8EgxgTm5Q0bqSv04Q@mail.gmail.com>
+Subject: Re: [PATCH v1] drm/ci: increase timeout for all jobs
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, 
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
+ deborah.brouwer@collabora.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,141 +86,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Tue, Aug 20, 2024 at 12:09=E2=80=AFAM Vignesh Raman
+<vignesh.raman@collabora.com> wrote:
+>
+> Set the timeout of all drm-ci jobs to 1h30m since
+> some jobs takes more than 1 hour to complete.
+>
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 
-kernel test robot noticed the following build errors:
+Acked-by: Rob Clark <robdclark@gmail.com>
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-tip/drm-tip drm-xe/drm-xe-next next-20240827]
-[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.11-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-wm-move-struct-intel_watermark_params-to-i9xx_wm-c/20240827-003437
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/a9aeb27f0107bdf3d2bd834a48583bc64072447a.1724689818.git.jani.nikula%40intel.com
-patch subject: [PATCH 5/7] drm/i915/display: include media/cec-notifier.h and linux/debugfs.h where needed
-config: i386-buildonly-randconfig-001-20240827 (https://download.01.org/0day-ci/archive/20240828/202408280033.x0jpUM2m-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240828/202408280033.x0jpUM2m-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408280033.x0jpUM2m-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/hsw_ips.c:320:58: error: expected ')' before string constant
-     320 |                          hsw_ips_debugfs_false_color_set,
-         |                                                          ^
-         |                                                          )
-     321 |                          "%llu\n");
-         |                          ~~~~~~~~                         
-   drivers/gpu/drm/i915/display/hsw_ips.c: In function 'hsw_ips_crtc_debugfs_add':
->> drivers/gpu/drm/i915/display/hsw_ips.c:355:9: error: implicit declaration of function 'debugfs_create_file'; did you mean 'bus_create_file'? [-Werror=implicit-function-declaration]
-     355 |         debugfs_create_file("i915_ips_false_color", 0644, crtc->base.debugfs_entry,
-         |         ^~~~~~~~~~~~~~~~~~~
-         |         bus_create_file
->> drivers/gpu/drm/i915/display/hsw_ips.c:356:36: error: 'hsw_ips_debugfs_false_color_fops' undeclared (first use in this function); did you mean 'hsw_ips_debugfs_false_color_set'?
-     356 |                             crtc, &hsw_ips_debugfs_false_color_fops);
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                                    hsw_ips_debugfs_false_color_set
-   drivers/gpu/drm/i915/display/hsw_ips.c:356:36: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/gpu/drm/i915/display/hsw_ips.c: At top level:
->> drivers/gpu/drm/i915/display/hsw_ips.c:288:12: warning: 'hsw_ips_debugfs_false_color_set' defined but not used [-Wunused-function]
-     288 | static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/hsw_ips.c:278:12: warning: 'hsw_ips_debugfs_false_color_get' defined but not used [-Wunused-function]
-     278 | static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +320 drivers/gpu/drm/i915/display/hsw_ips.c
-
-bc37c98a3d44f7 Jani Nikula    2023-03-02  277  
-42b4c479025d92 Ville Syrjälä  2023-03-27 @278  static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
-42b4c479025d92 Ville Syrjälä  2023-03-27  279  {
-42b4c479025d92 Ville Syrjälä  2023-03-27  280  	struct intel_crtc *crtc = data;
-42b4c479025d92 Ville Syrjälä  2023-03-27  281  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-42b4c479025d92 Ville Syrjälä  2023-03-27  282  
-42b4c479025d92 Ville Syrjälä  2023-03-27  283  	*val = i915->display.ips.false_color;
-42b4c479025d92 Ville Syrjälä  2023-03-27  284  
-42b4c479025d92 Ville Syrjälä  2023-03-27  285  	return 0;
-42b4c479025d92 Ville Syrjälä  2023-03-27  286  }
-42b4c479025d92 Ville Syrjälä  2023-03-27  287  
-42b4c479025d92 Ville Syrjälä  2023-03-27 @288  static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
-42b4c479025d92 Ville Syrjälä  2023-03-27  289  {
-42b4c479025d92 Ville Syrjälä  2023-03-27  290  	struct intel_crtc *crtc = data;
-42b4c479025d92 Ville Syrjälä  2023-03-27  291  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-42b4c479025d92 Ville Syrjälä  2023-03-27  292  	struct intel_crtc_state *crtc_state;
-42b4c479025d92 Ville Syrjälä  2023-03-27  293  	int ret;
-42b4c479025d92 Ville Syrjälä  2023-03-27  294  
-42b4c479025d92 Ville Syrjälä  2023-03-27  295  	ret = drm_modeset_lock(&crtc->base.mutex, NULL);
-42b4c479025d92 Ville Syrjälä  2023-03-27  296  	if (ret)
-42b4c479025d92 Ville Syrjälä  2023-03-27  297  		return ret;
-42b4c479025d92 Ville Syrjälä  2023-03-27  298  
-42b4c479025d92 Ville Syrjälä  2023-03-27  299  	i915->display.ips.false_color = val;
-42b4c479025d92 Ville Syrjälä  2023-03-27  300  
-42b4c479025d92 Ville Syrjälä  2023-03-27  301  	crtc_state = to_intel_crtc_state(crtc->base.state);
-42b4c479025d92 Ville Syrjälä  2023-03-27  302  
-42b4c479025d92 Ville Syrjälä  2023-03-27  303  	if (!crtc_state->hw.active)
-42b4c479025d92 Ville Syrjälä  2023-03-27  304  		goto unlock;
-42b4c479025d92 Ville Syrjälä  2023-03-27  305  
-42b4c479025d92 Ville Syrjälä  2023-03-27  306  	if (crtc_state->uapi.commit &&
-42b4c479025d92 Ville Syrjälä  2023-03-27  307  	    !try_wait_for_completion(&crtc_state->uapi.commit->hw_done))
-42b4c479025d92 Ville Syrjälä  2023-03-27  308  		goto unlock;
-42b4c479025d92 Ville Syrjälä  2023-03-27  309  
-42b4c479025d92 Ville Syrjälä  2023-03-27  310  	hsw_ips_enable(crtc_state);
-42b4c479025d92 Ville Syrjälä  2023-03-27  311  
-42b4c479025d92 Ville Syrjälä  2023-03-27  312   unlock:
-42b4c479025d92 Ville Syrjälä  2023-03-27  313  	drm_modeset_unlock(&crtc->base.mutex);
-42b4c479025d92 Ville Syrjälä  2023-03-27  314  
-42b4c479025d92 Ville Syrjälä  2023-03-27  315  	return ret;
-42b4c479025d92 Ville Syrjälä  2023-03-27  316  }
-42b4c479025d92 Ville Syrjälä  2023-03-27  317  
-42b4c479025d92 Ville Syrjälä  2023-03-27  318  DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
-42b4c479025d92 Ville Syrjälä  2023-03-27  319  			 hsw_ips_debugfs_false_color_get,
-42b4c479025d92 Ville Syrjälä  2023-03-27 @320  			 hsw_ips_debugfs_false_color_set,
-42b4c479025d92 Ville Syrjälä  2023-03-27  321  			 "%llu\n");
-42b4c479025d92 Ville Syrjälä  2023-03-27  322  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  323  static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
-bc37c98a3d44f7 Jani Nikula    2023-03-02  324  {
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  325  	struct intel_crtc *crtc = m->private;
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  326  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  327  	intel_wakeref_t wakeref;
-bc37c98a3d44f7 Jani Nikula    2023-03-02  328  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  329  	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  330  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  331  	seq_printf(m, "Enabled by kernel parameter: %s\n",
-c39fc2aca32a93 Jouni Högander 2023-10-24  332  		   str_yes_no(i915->display.params.enable_ips));
-bc37c98a3d44f7 Jani Nikula    2023-03-02  333  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  334  	if (DISPLAY_VER(i915) >= 8) {
-bc37c98a3d44f7 Jani Nikula    2023-03-02  335  		seq_puts(m, "Currently: unknown\n");
-bc37c98a3d44f7 Jani Nikula    2023-03-02  336  	} else {
-bc37c98a3d44f7 Jani Nikula    2023-03-02  337  		if (intel_de_read(i915, IPS_CTL) & IPS_ENABLE)
-bc37c98a3d44f7 Jani Nikula    2023-03-02  338  			seq_puts(m, "Currently: enabled\n");
-bc37c98a3d44f7 Jani Nikula    2023-03-02  339  		else
-bc37c98a3d44f7 Jani Nikula    2023-03-02  340  			seq_puts(m, "Currently: disabled\n");
-bc37c98a3d44f7 Jani Nikula    2023-03-02  341  	}
-bc37c98a3d44f7 Jani Nikula    2023-03-02  342  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  343  	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  344  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  345  	return 0;
-bc37c98a3d44f7 Jani Nikula    2023-03-02  346  }
-bc37c98a3d44f7 Jani Nikula    2023-03-02  347  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  348  DEFINE_SHOW_ATTRIBUTE(hsw_ips_debugfs_status);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  349  
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  350  void hsw_ips_crtc_debugfs_add(struct intel_crtc *crtc)
-bc37c98a3d44f7 Jani Nikula    2023-03-02  351  {
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  352  	if (!hsw_crtc_supports_ips(crtc))
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  353  		return;
-bc37c98a3d44f7 Jani Nikula    2023-03-02  354  
-42b4c479025d92 Ville Syrjälä  2023-03-27 @355  	debugfs_create_file("i915_ips_false_color", 0644, crtc->base.debugfs_entry,
-42b4c479025d92 Ville Syrjälä  2023-03-27 @356  			    crtc, &hsw_ips_debugfs_false_color_fops);
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> ---
+>  drivers/gpu/drm/ci/test.yml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+> index b6f428cdaf94..09d8447840e9 100644
+> --- a/drivers/gpu/drm/ci/test.yml
+> +++ b/drivers/gpu/drm/ci/test.yml
+> @@ -10,6 +10,7 @@
+>  .lava-test:
+>    extends:
+>      - .test-rules
+> +  timeout: "1h30m"
+>    script:
+>      # Note: Build dir (and thus install) may be dirty due to GIT_STRATEG=
+Y
+>      - rm -rf install
+> @@ -71,6 +72,7 @@
+>      - .baremetal-test-arm64
+>      - .use-debian/baremetal_arm64_test
+>      - .test-rules
+> +  timeout: "1h30m"
+>    variables:
+>      FDO_CI_CONCURRENT: 10
+>      HWCI_TEST_SCRIPT: "/install/igt_runner.sh"
+> @@ -215,7 +217,6 @@ panfrost:rk3399:
+>    extends:
+>      - .lava-igt:x86_64
+>    stage: i915
+> -  timeout: "1h30m"
+>    variables:
+>      DRIVER_NAME: i915
+>      DTB: ""
+> @@ -414,6 +415,7 @@ panfrost:g12b:
+>
+>  virtio_gpu:none:
+>    stage: software-driver
+> +  timeout: "1h30m"
+>    variables:
+>      CROSVM_GALLIUM_DRIVER: llvmpipe
+>      DRIVER_NAME: virtio_gpu
+> @@ -436,6 +438,7 @@ virtio_gpu:none:
+>
+>  vkms:none:
+>    stage: software-driver
+> +  timeout: "1h30m"
+>    variables:
+>      DRIVER_NAME: vkms
+>      GPU_VERSION: none
+> --
+> 2.43.0
+>
