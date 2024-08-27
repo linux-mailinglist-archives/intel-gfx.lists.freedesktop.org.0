@@ -2,194 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B0496137D
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 18:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D4619613E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 18:23:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95F0C10E36B;
-	Tue, 27 Aug 2024 16:02:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87C1610E37B;
+	Tue, 27 Aug 2024 16:23:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M6XcClgb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RUZxyiDu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 280C510E363;
- Tue, 27 Aug 2024 16:02:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B3D310E21F;
+ Tue, 27 Aug 2024 16:23:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724774556; x=1756310556;
+ t=1724775794; x=1756311794;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=vjcdGa4aU6h8RFzV/hNbDXS2RUY+Q0rt0//xL7uel04=;
- b=M6XcClgbBe+ipgdim0Cv1HbzS201yyC5LTexhrRmtgyLTS7d7iIh2siQ
- IBfG0UvmVs/dahMJKmFi1DHsoTFerWfsFMBzp2/xR8PT84awD0eu516r3
- umE/V/v3ZxAisiF1Lkdrvo8kHEFRuKDbb6PkK0KTc9TvB59c+QRIGxynn
- tbdml7DVTwY3qQuI0YLOjd8di0ywjaCd3Whek+rCk1OYAYg3EOpzBqlye
- pgA/He/elhIzX+CCIg+D4h3WQp6lkRSY9sjwleNggamS1pPxVjzBQS95e
- MF0FaybWd4EyCy3jfwA0GWBsuDM5YZHFlBVOIbGJA/4i5rjV//rFq2DWr Q==;
-X-CSE-ConnectionGUID: xpr6BmMiRaiqN3MCBHfm+w==
-X-CSE-MsgGUID: otj7u9dnQ16+y/kVAu5aNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="26163659"
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="26163659"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 09:02:23 -0700
-X-CSE-ConnectionGUID: SO4WfOwjShC2Lc+DY0nt/Q==
-X-CSE-MsgGUID: /0OSa54aQjCa+evczeEpSA==
+ bh=yYQvdD1PNGcVLEImCwPKrjmCLXjl0X+44NH9H9wUd8Q=;
+ b=RUZxyiDuqsEqzkCc5rolptBtbe7XGdtGsv9FRR+7v6R5CSP9nMvPZIaO
+ VPZKerxDhAlPFjlIK68x/afPqSwkUGFt+9LDEDjeJIg65H8viSRsePjt4
+ l2QpnyP3MwM5eUFJyi9NrM9y7L0KBt4WVdxCXiRFv97fq8FPzZyAjNc5x
+ pg/Xxu7LKy6V7yGaYaZudbAxTFV/6nBR0Al9+fIBdhm84ZjYOk303sfLk
+ 3g871xepwIhEcZgVzq+LvEa3lRjBrBKjVRNJkeJfRO46iLUPd485MHa46
+ Ii6PxJcS9r/tYWo/3uj2t799Z5B/IFw8Uw82EASU6JY3WATHQnEZRuYDz A==;
+X-CSE-ConnectionGUID: a1eh4PMOQOeBIriuH+JEKQ==
+X-CSE-MsgGUID: 4+Rb+mZ+Ste9ekRuXJV91w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11177"; a="48650836"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="48650836"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 09:23:13 -0700
+X-CSE-ConnectionGUID: CV6FoKHySVO0j2s16FJebg==
+X-CSE-MsgGUID: eSgwbmmgQZSwQi3j/B1pxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="67609707"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Aug 2024 09:02:23 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 27 Aug 2024 09:02:23 -0700
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="63420231"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Aug 2024 09:23:13 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 27 Aug 2024 09:02:22 -0700
+ 15.1.2507.39; Tue, 27 Aug 2024 09:23:12 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 27 Aug 2024 09:02:22 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 27 Aug 2024 09:23:12 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 27 Aug 2024 09:02:22 -0700
+ 15.1.2507.39; Tue, 27 Aug 2024 09:23:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KzSo2cGcadfcSnW3RvoFOBXLcu0p/++DU1ySrwgFBlCHcWw6o7y6Zpa2ml5hxGOQNKjbFFgukAVjO3WZrOWx8pgfTZjlfe+O3ooYn0HTi2CMpfFLqGcZnfMKUZADd6eg3b1C6H7PlLRXAhoNzvzBp7o0hkHBXN0DcfaXcXeVppM0jCXXkE48TmhoaUE5kqAAj4GxXF+DEdz35Xf1m4VT3TbjXik9l/zu4n2t7hYPHuW4uSzDZmGQbLBFVgx3lXmw/gS95XcsziirlnIfWx7IoFmdeMkcW1eRhsB0YNaVGO68zNsAvuCp6ih584iNq+QfbheHSZsBmaJlFFMyIoSwBg==
+ b=ehqcmD3CbGqNePOPTIppxK4UP8MJWdioKePRsRLdjjNVMztHCOAbTRf4yr83hyU0lQasQv0TAJaKQZeN5m0sp/yMaTYR/MvWk18TaVEi/OI0JS7VqpuLliVOmnjB82cOF7NjGsSxRu822Xw7eKxYj/GsMlGtz5DjmEgrid5B/dhUlpWvLQjqXI/dDe8iAG++t8mwXtY4eDrw4VcHxQO1zc8zTByKjhk4Fb5A9T9iEf3mrO35CGdWEOEDOyM/FpOxCKN7AMynhDQXwec1iAiUCVkCHCkvTTC1rIZA3QAPsU24oFEugfeNv/0HhbhdawNLS1t6W2+QyMN6KJF5+xoh3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TUJs4OO0KlnoSXZMCn5sEHR1+9+Ss/C0xbBocuz/ves=;
- b=YGRJOeXT4vB0+pen0wkWeCyHb/qaVHYyw+tdPiapvgH9IIqXLFDlDzEQLoK1wAn06F5DOyeY8+hVbTkDB/8tWOT8kziSVnVq06S4afXW4Cvmg6JgajnB3DFP1Xfv8bTF0P5pyepQmA2hN2Y6avzcNUdJU0wmjdDSkBpMsxWUApfuda6KW4hDcaj56w/gCm9GciQ5XQ+3fSTEo547YN2Klfy+p03YTX7NkID+iAb2Qb7J4loyIoz9xY2O/CsxSaRnuhmnq62u3EXbt0Kk2fm3WQeIjUUaF/sasxSvmV/r4GecacQP+tzcIKR/N5v30hKHpkgaI5dJmXSWTBF3p+kDmA==
+ bh=RONrgjCkJwupn7dARWx1BhxzcSFT6xrWOBVH2u9Zhuc=;
+ b=BYQDxrgg6zn88cPnaqZhBYoG9xIbgHtvyNVpfZcJqE/WhAo/R86KCQKOatdOANdrWLC6JvhZiXwPkbHXtlEdfJrKTqhNnbC4QoY0VQvSaXXqdk8UY0J6hL12fM0IfCjN238PIwZSSbNSCycyBFvuRVjsxMMpPqu7SAuagcfX1FSOIcoOkqreyL301sR8koe6Eut8C8XVQ8ye6Wa4od9+TCpN7eP6W6OwU5Td8VHqbwYWmCtfuU8S5dgxKRUCDbZieDxMzOg9b6ceta83HeTEh2IBLI9Qk1SlvDgti/diwH9PTHwLHWgzZx1cMKjj6KKyLx481DmSnjJTofazZxCI7A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH7PR11MB6007.namprd11.prod.outlook.com (2603:10b6:510:1e2::10)
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by SA1PR11MB8593.namprd11.prod.outlook.com (2603:10b6:806:3ab::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.26; Tue, 27 Aug
- 2024 16:02:18 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%6]) with mapi id 15.20.7875.018; Tue, 27 Aug 2024
- 16:02:18 +0000
-Date: Tue, 27 Aug 2024 16:00:59 +0000
-From: Matthew Brost <matthew.brost@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.25; Tue, 27 Aug
+ 2024 16:23:10 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7897.014; Tue, 27 Aug 2024
+ 16:23:10 +0000
+Date: Tue, 27 Aug 2024 12:23:06 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
  Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Juha-Pekka =?iso-8859-1?Q?Heikkil=E4?= <juha-pekka.heikkila@intel.com>
+ Matthew Auld <matthew.auld@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Juha-Pekka =?iso-8859-1?Q?Heikkil=E4?=
+ <juha-pekka.heikkila@intel.com>
 Subject: Re: [PATCH v6 2/2] drm/xe: Align all VRAM scanout buffers to 64k
  physical pages when needed.
-Message-ID: <Zs34Ow2COEoXWMOo@DUT025-TGLU.fm.intel.com>
+Message-ID: <Zs39aiYNqB_Fg9AP@intel.com>
 References: <20240826170117.327709-1-maarten.lankhorst@linux.intel.com>
  <20240826170117.327709-3-maarten.lankhorst@linux.intel.com>
- <ZszXzIwntGCQobwy@DUT025-TGLU.fm.intel.com>
- <361abc93-0246-4f21-b235-4e0699682ef3@linux.intel.com>
- <Zs1D93hrqLRxI9SQ@DUT025-TGLU.fm.intel.com>
- <927bdb3b-8372-4d21-b807-0f051832f6d5@linux.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <927bdb3b-8372-4d21-b807-0f051832f6d5@linux.intel.com>
-X-ClientProxiedBy: BY3PR05CA0025.namprd05.prod.outlook.com
- (2603:10b6:a03:254::30) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <20240826170117.327709-3-maarten.lankhorst@linux.intel.com>
+X-ClientProxiedBy: MW4PR03CA0022.namprd03.prod.outlook.com
+ (2603:10b6:303:8f::27) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB6007:EE_
-X-MS-Office365-Filtering-Correlation-Id: 92d070e3-77eb-4466-e995-08dcc6b1a064
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|SA1PR11MB8593:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36ffc9bc-398f-4e06-250d-08dcc6b48ab5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YjZJMHlxSEoycTJHZ0xRVWpGUnNGUC9vL0Y5T0RrUC9vamw5VWZFQUhxODA4?=
- =?utf-8?B?NGlKNStJRmtudnE5RVVWWW9mdm1lSXU0S0w1Q1YwRWZDOStVb3pjV0NPVnZ5?=
- =?utf-8?B?WDcrUGh5clJhU3lmWlVZbi9mTWNaNjNwRmk4SGRvaFgxVk02ekV1RkI0Rklm?=
- =?utf-8?B?dDRLbGJHTkFLejAxUkFhbVdXQkR4ZmRhcDcrdENWT2UrOHJMSWNsa2t5QjZt?=
- =?utf-8?B?cW1QYzA2dTlDeWkyK2Uxa042UUUvVXduQVJtand6V01YOHVRalJPQVJ6NXpW?=
- =?utf-8?B?UEdjVk1FMm9iUGowZ2Q4OEh6ZkxxR2RaOVFUb3lhNytTdVdhM0RraVZ2UU1B?=
- =?utf-8?B?KzVoQjdPdSt2U1ZNNk53Zm9XSElNVXNtSE5OSGg5Q2tmNTNIaXAzM0NXcDEr?=
- =?utf-8?B?Z0tMMUsrM3d2dGV4Y1JNcWFVYXBNYUhibTc5TTNVSEF2SjFUd1lhOXpUTG9T?=
- =?utf-8?B?SGs1MFFtUGhiVi8wUzNHdXFHeWdPZ0RvaG1PUkZDcjFhaWE3Z2pDbWhzV2Zo?=
- =?utf-8?B?VFlldWtpdFBERlI0L3JxUlpURTF0SlMxVGZKK2VpdTVRVmZIZGVEVVBScTNt?=
- =?utf-8?B?VC9xZU9HQzVKMHJyTEFQbWNYSE5LN2xBUlY2eDBFZHczNWhLTGYySmZBY3lG?=
- =?utf-8?B?UlphRlBmRHY2QjlsYnhjZDhtQmdRczN4Snpha3MyMldseGNlVkFlVW9GOGpq?=
- =?utf-8?B?UUl4T0tMUTBTUVNIVHh3OTRCR1FlNzlaV2U0cEtGSENGcXlLcW5nYnJwdTQ1?=
- =?utf-8?B?bHJhWFJMZm52WEZrMlUvMWV1Qmc4eU5Ua1QvSnVxOEdwU3NtMFlmUXNBWFRz?=
- =?utf-8?B?Ny9HYUVWc1V1anlLUFN2NUFrTEYyeFZzV1NxL0UwdUVRTFBrTm1JbXg4d0xx?=
- =?utf-8?B?QjlqTXJDNjNQZUxHVFFkSGlDS1ZwdnFRRjJIYVkyK2RqVnpDbTJOTzRtaHZO?=
- =?utf-8?B?VTRRK0VKUUNCR2k4WE1YNmZ1N1lUQ0ZxeWlKRnJ4ZGNkU2Vnb0lrRW04NDJ1?=
- =?utf-8?B?RCtMdVVjQWVKUVAxVHNIL1ozZmpDcTgvSHgzeDltOGRiRkRmajNkazNReHBI?=
- =?utf-8?B?Y3pJKzM1RzNIVjVvSFFOVHFyalBRNTNzTXgvMWJZaWVwTDJUdU5yNlFzUFFp?=
- =?utf-8?B?K2tac2tVdDNsc1FPN01JL0dveXJPQWxleXpqZUcyVGMzeE5sTE9WcjVsQ2Va?=
- =?utf-8?B?N2QyVUwxMmp4N2hhOWtscjF6Sm9UNDNIbnVhcUFaR0x3M3lqcURJOEEzZ3JH?=
- =?utf-8?B?WlRBeDgvTFBLS2VJUmtycFNlR3Y5VWtzK3FDa1dGMlVkVXNuelN3UmQwcGhp?=
- =?utf-8?B?ZXhXVEJSU2VzWGhZa2xhWjhmWVI4SjVqV1dyM1Z6MHQxN3JTMW9NelR0N04x?=
- =?utf-8?B?V2l1RzUwZGpGamRqZVBDVXd4QjdKeXJaT0M0SzBJcHZ4NUd5N2FxMjk3ZnM4?=
- =?utf-8?B?WVh4ZEJ6b1JHVjVJMzJtTDNYa0E0Ui81Q3JFR1M2OExPMEFCY1YvVnY1VzVS?=
- =?utf-8?B?ZXRtYXBVMTF1ckFyMzJidHFjRjQrVG1QZnQyeEpZUERTRGpxL0xPZzVPbjE1?=
- =?utf-8?B?aWZZdUsvZnJMejVWMTZDSWVGMEtlalpsOC9VM2tyWGVEQTVodHR4cUZoTU5v?=
- =?utf-8?B?cS9FWlpBZFFGUC9HNVlzTlM1ZEdEeHp5UzV5blBTV214aXVxTVF4UnErclZL?=
- =?utf-8?B?RjJ2cnNYRUZ2eUw5T1htbklISWc0ZXpxK0piY2NrdUxSbHQvR0VJSTdKNEIy?=
- =?utf-8?B?NDUvenhiUzg0cnZpb2FMV2dkTXA1K2pmVGlod0Y1NjJ3cmNrZTVZUzBuV1R0?=
- =?utf-8?B?M0tYZTVrNjZ5a2VYay95Zz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?T3JBQXZUcFJRWUFHTzdXeEpncGEzMkgrdDdvaFNGN0FOQmpSekpDTU16K01X?=
+ =?utf-8?B?OW1xWnh6eWdIRUgwOUtreEZJSUF0Z1Z1MUdnNHM2M3ZxNGdqcGFnNSsycWc3?=
+ =?utf-8?B?STk4c3VieGpPWUhsbERIcHFJbzErNU9DTTF6czFybjl1dE9OaXIrelN2eThl?=
+ =?utf-8?B?S3dwMGhCZlBxZzVSL0Z0eklOYzdnNDJnTUR6TjBtYTBYSE1EQTdoM3BQWEth?=
+ =?utf-8?B?c2d0aTYxWlNzMTk5MGRZLyszWnhoZWlOblhMbXVWQ0FkQy9LbDNQSVFEeUk5?=
+ =?utf-8?B?cVpXWlQyb1psVVNsdE16WGdVMGg0dDJEQUhxZWZTK2swOE1IamtZZXhGdVd1?=
+ =?utf-8?B?dUNLU3FUcDZTZEMwb050bXZ4OENGY0xKSDFBTWlxZVBGaFhFUUNKbkRjcFBp?=
+ =?utf-8?B?RlVWQkF5Z2l4QzdpdndFVkZMZWJHSFZFZ1J6cXZuMUY0V2ordU1Bd0tnTnlp?=
+ =?utf-8?B?Z3NwTDRTbitMQ0hNMnRFNFhxNXI5cEkrUU80ZHJpMFViV2NEZXl0em13WDdz?=
+ =?utf-8?B?SGQvTmM3Skh3WEdxMHRXbmxsNVpOcVRHNTB4T3VFY0pXaGc0c056Rlo0TzNl?=
+ =?utf-8?B?blk2RVcwaCt6UTlIazNya2prb29OQjJKU2wydElJWGJzb1lnb3pzSFRzcnVO?=
+ =?utf-8?B?Z05memo5cThUdWVyWUxBeWY0bjRDS000VnhpWnR6UGxuR0Z2dlhES2sxeXlw?=
+ =?utf-8?B?Tk5rbVhxeHgxRU5vbk1WNW9XaFhIY3pQMDJsb0dOTzltemxobW1BNGhtcTlm?=
+ =?utf-8?B?enJldDZBdVRYbFlNZGJyU0Y5UWlZNFJQU1VKdnBodkQzVW5WdWhYZHVjcXFZ?=
+ =?utf-8?B?SFZINnNFWDlodnMxd0pzZDVSZG9ZdlhWaE5tSHg0Z1ZjR2pqemptVnpQNXFw?=
+ =?utf-8?B?clRuUU80Ri9SQ1QrRkZDOERZUTE0N3Q2Ukh1VjdVUzR4TXltVytIb2pRZUpI?=
+ =?utf-8?B?S1IrcXJFZmE4RnFJTFVlRFovQnU3S2JIeEdVaG1QN21pUDNVQ1l3T3NLcHVB?=
+ =?utf-8?B?VHNpSVNmY1FVNkJKZkV0N0RYUE9nTlVMZGh1SW5wYzhITkJsR1JZSlhMRkhR?=
+ =?utf-8?B?eTQ0Mnczc2RUZ2RtVm9RdDBmK0ZDcjJVS2p6cDlnelBIcXF0U0s3ZFNrN0lE?=
+ =?utf-8?B?VFBWT2ttNVdGN1NNL2pyS2lpaU5rSkdvZGJxWEw2czRraXk5dEZqL1ZZcDFE?=
+ =?utf-8?B?dXcvS2NnM3Q0Nm5NR2kveFFNQXVGOW5XNDc5elJ5dk9mVUY5ZEk3N2JlSEly?=
+ =?utf-8?B?K1ZvSk5KUmFWRG9YL2Vzd3ZudUxjSUNOTVltNzZMdjVJejF1Rk1NTGhIb3lZ?=
+ =?utf-8?B?N3dCWlhPd1h4Q1JHYnlYQTA2TnY3NHJkNHVyL2lDZnEwcCtuK01IRklsZi9H?=
+ =?utf-8?B?NURLeDhtWVRBd0hyNm5FdzRPTjA2K2k5MENVNDZIVUJpQ05pWG9aTE54WmNL?=
+ =?utf-8?B?T1ZWU28zZDJVVXZ3aHlLTVl2N0hHckR4bDhOSVcwZ1dsQXVERVpXTDRHTkhq?=
+ =?utf-8?B?VVVXZW5IYjFqbmc1ZzE5WTRYN0pLWDNEUnFuME1aaFdWWVdhaXZhaWorMFJ5?=
+ =?utf-8?B?SEVCSXpRSWVzSTVnSXUyRFhUU1RqNDQ0S2V4aG42OGNvMmQzL2drRmR3Zk9P?=
+ =?utf-8?B?WkdHdzRQMmszMW41V1BxMGtXbU5EWEZDWnhURnJ3cWJ6VkNQcXVWWTBuNEhQ?=
+ =?utf-8?B?ZHh0d2FheHlZVUo5aFF5RGUyWXVtZHBQblhibm5jblFvclRNVm1leDNnV2hC?=
+ =?utf-8?B?N000ZmZhc0l2L0lONU1ZSlZTQ2lpUnJ5cDdlL3NITHM1TGU1Y0UrYUsvRnZk?=
+ =?utf-8?B?RVcyUi9uNzliUEdQY3hhUT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NEFYcTRoclY0OGQwUk1XWWNGNko2QnFWU1F5R1A3ZWp4WFR0WjFoTWJ6ZFZM?=
- =?utf-8?B?Y2FETk1lWk5RU1FpS3J5U0krQkxJVEw3ck9KSDBEUktZTFVPWjJOT0gzM1ZE?=
- =?utf-8?B?c2hsY3VQckp2eGpRaGQ2UnRPNDBtUmRtZTQ4UG5nbmorODFEZ1lTeHBnUE9t?=
- =?utf-8?B?ZWY3V0dsbzFZSHBYRVo2MkF4SlFBWm9LRWFkb0lwS0NyWm53akZMT2hGeHZQ?=
- =?utf-8?B?UWtmZ09MRW5UVk5uZzRjWVdPR2hzeU1qbkVTeTdoU3lPM2w1bi9yZGkxMFVS?=
- =?utf-8?B?TFlleUc3RUtWempyN09oT2gzZExCdEVBWEhtS1BqcEFKSjBVcXMwRXNUMFFP?=
- =?utf-8?B?TXlielNvNzVIU1pHSVI0RS9lUGxUbDdvWlN6VXpTODVoQlV6cEg2YSsxVVdK?=
- =?utf-8?B?ZEIwb3VtRG1Wa3Fja2lxN28xR2FkOVYvM2dWSG9FVFFwd29DS0JQQzRuNUpt?=
- =?utf-8?B?N1JLYk1Gb25HZjZMVFArKzBnN2k2M1BMMkovQ2p4V3pHQUpkZFRKUXFaUUc0?=
- =?utf-8?B?dXZQVVhKUkZTU0xGaVlncmFwWndiZTFIREdjOFlaeElyd00yQVpNcDBrRDNv?=
- =?utf-8?B?Z3g4NW1HQVliREN4NUZiUjE4b2Z4SE8wOEk3TFAvTVJweGJwSE1PSVY2WUVp?=
- =?utf-8?B?NDdGbDd5MXdFNFdaN3BISWVvMEErZ1dCYzk0R2o1Q3ZKeG9kczFiTGVhZEk2?=
- =?utf-8?B?Z25FWFh6NDRlNTgyQys1YnZma2N3eFdTY2JZcVJ6NDZkS1hkNURKZVVuTmda?=
- =?utf-8?B?c2t0T0lPY1pkQ2dIbGo2dnBNN1c1V3N0T1lkRlJ6VWQ3d0UvZ2E2a2ZjZlRV?=
- =?utf-8?B?NUpQZjNTU0Z0WXJFZTc3MnhGSUlEemFwSG92cElUamE4c2hUdXI2V2s2TnJE?=
- =?utf-8?B?OTlGZkl0S3JjYkhtSTFtZCtVSy9ZUytjcEZtS0NZblJMZ2hKblVQckJBN1F1?=
- =?utf-8?B?dkE3SVlPaWNKVGk0b1paU2FaWnFqSy83YUVHMndsUFlZUjdBZnVTa2F5dWFC?=
- =?utf-8?B?MVZ0ejkwNERWTEFyRGZqWnBnN0hSalJzZUhoeU1pNFZsL3NsRjREcHB5aEFL?=
- =?utf-8?B?NFI2U0lxd2hLejlPeGxoR1UxUlo3ZCtkbm5zWnVCNnpXSnNtOWFTSzFuaGdJ?=
- =?utf-8?B?WnQ5Rm5HYzA0OTl4cDJxMmRlYnJORTRLZ0RNTktVcnB2a0VRK2ZWdWFFeXZt?=
- =?utf-8?B?TEwyT2YweGxuQlVNN215bnQwWFc2TG9vdFVCQjV3c25lZ1l5eWpQY0MzNHZh?=
- =?utf-8?B?ampodU5KT0VRY3BaYW5aaEVaZ0VtRVd4Y3lGNkhPcXVtamFGUmlQSm1lbVN3?=
- =?utf-8?B?WWhoaEY5OWdWeXFaSXZqVkVCYTZEVXlBVmhGZDhVMzZtSTZMQ0pMVHFSWUtB?=
- =?utf-8?B?MFlTbTlhQ3BNVVpzMCt3cTBYOG1TaVZKbFkzNzZsT1VVYml3VW9acmpLamFy?=
- =?utf-8?B?bmIybkhNV29Ka2Z4UXJ3WGQvQnNpejJCYjlrZ3ZZRzRWY2tYRUR4TFREb3M3?=
- =?utf-8?B?cTIxbWhGU2dNVWx4ZHFmd2JnYW40bUJKL2xCTE5GcXdrc1JucHNFQ2htSktZ?=
- =?utf-8?B?eko1WmprZ0dhQ1dmVUhIaUtQMi9GNWVER3l3WjJJVG1KcDczNHcxbkVaclVM?=
- =?utf-8?B?UnJvaHNzaWh1U016azdZZGFqa1dqNCtBbk5aOXh6TGNTY0NsTzN1ajBPbFlG?=
- =?utf-8?B?bXJiU2NZdDFtZHlQd3dDRmNXWnpxNzFtcEdZV0FCbC9nWFRRYmxQelpLTEVq?=
- =?utf-8?B?ZWlxd281WmdZeWc5Rk9pTkIwYTR3aURNczA3YUhaTWpqcnF0dXYwOENGK1dm?=
- =?utf-8?B?R0VpcUhHMlJLMm1XcUtKank2TGN3Mmc0SVl5RlNBSzRrOXErNDlFMHEyR1BM?=
- =?utf-8?B?M3lTdTlER3F1NjlqckZUdEMwa010aEdZczBWRE5seTliUDVZRTB1Q2cwajN4?=
- =?utf-8?B?aWFrZXF6aDg1VVErSTF2NS96TW1kKzcrNlI1QkRqdklPMVArUW5TcmZscEpz?=
- =?utf-8?B?Z3QvUklsc1BMSTloWC9CV0wrekJ3L1JZOXQ0NnZnY2UrSzZXMGh3by94NmdF?=
- =?utf-8?B?UHdhWjB0OGlwK0xLcTNQN3BFbjlGOXhUVmNwZU0rK1g2KzRpRy85b2xZaHcx?=
- =?utf-8?B?cytRQW4rOGtwakdHL2pzc3pKRy9NcXVrOUVsZm9iVTlJRUkrMnpwYkUyV3d5?=
- =?utf-8?B?S1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92d070e3-77eb-4466-e995-08dcc6b1a064
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2FzWitPQ1VCUkhQWUVuOE5jbnVsLzdNSDNHTUd0YU1lMkNRQldNaGkzQ0w5?=
+ =?utf-8?B?UnJ5RjBTeVRvWDFtR1ZpdmJCZEg0RjAyZC84QmNtYXJjN0ZwUHJBaGdPM3cr?=
+ =?utf-8?B?TnlwZDJLSFhsdGkyeW5weEY1bGpHNnVWTnFyYzJIenJCWUVubmx1Wm9iT2c2?=
+ =?utf-8?B?ZGRNZzBzK29yY0o4UUl3aU00ay9ObXJzdWhJS2VGSDRyMHZCZGYvQlJ4c1Bj?=
+ =?utf-8?B?K3BEQVRySEZ6QUI1RkxTd0VpZFlHWnNsSjMrUzQ3QXZJYVgza3BkeFhFVkZ5?=
+ =?utf-8?B?NDVmMXJ1TzFaNTF6Vk9kUm55R09UMzBZWmpGMVBwVUNnSDRCZzJrN2t0VWRi?=
+ =?utf-8?B?S3k2WThjTjkvdnZzaVBnaEp5Rm9qVkpleVB6Wkh1YlNGZ3djZzZZeXdBUTVz?=
+ =?utf-8?B?VmN5UGtZdlJtQWJYZnc1L0JlbWJVa2ZGTFM2ZlJhUkRwUEtjMktmVlhkcXJn?=
+ =?utf-8?B?bE5wb3c5M0pqUXdYc2cvc25odG9qVXZwdm15bG94M3ZHTlZkMkFVaVVOWkly?=
+ =?utf-8?B?dTUyZ21ydDlYbFI2OHdRdkZyT1VBdWVSZHNram5OTnVXWkcydGpjeWo4K1lp?=
+ =?utf-8?B?OUxhNE1wRzFQcTZHMTgzYW9wWlNGSjVZRUFOeHdtaUkvMHFLYVNFemZMaTli?=
+ =?utf-8?B?Wmw1bXQ1WGZzcWdTbTRJMHJSazJreGsvWE12dDNTZzZhM3VHd1hoNXdKdW0v?=
+ =?utf-8?B?SkR4RzlPdFF5VktmTzQ4WVpOK2s4VG80YS9HZ1hQclZ3bTNVdXJ5RllkTjNy?=
+ =?utf-8?B?bSs3YXR0VDZCK1BJYmNLNVRGcmtyZzNyV2xYb01WMGh3RWdCM0dwbUtRbVBB?=
+ =?utf-8?B?UzlsOHhCOHNqN0REQnBGcmlKcUZDZWp4dENUUW1mUE93eGpSVUJFY3NpOFRn?=
+ =?utf-8?B?SHdMZU1yOTdIcHB4cFJjZng2UkR5UHVkenRUaEtlby9aMkYwV0dVemU3UnA5?=
+ =?utf-8?B?THhIaVN5MnVwcEtINkNGNGxXQkwrWmE1R3RDbG15MXR3M2lTeXhwL05kVHAz?=
+ =?utf-8?B?a0x2VXp6UGE5cHNQNTAwaC9pYTdSaExRSWFuS296RG94NzBqeTE2NEtiMDg0?=
+ =?utf-8?B?Zkt0bnFZanpaSDViTDZGc0MxWnpXdTJFQU9jRmJsRHdBVFlNUGYwZWRvT1Bu?=
+ =?utf-8?B?dzZMbDJxYlF1dTgyZlgrUmtpOGZwZEdUOGw3ODgvOU1JWW4rQ20wYjBoeC9Y?=
+ =?utf-8?B?eUViZDI2eHdSbUw3ckw4QkpPamlQbmZpMnl0Y3hhZ3BEaitEY0tsMVdBM3pp?=
+ =?utf-8?B?TDA5NEJZb0NBYm5PMEUwcGNkWGg1WCs3Y1VGRlpOUDNOMGViL0w1RjdUTzdX?=
+ =?utf-8?B?S2Q4NE95c3MzampPQXN6VVFxalpJaXM3dTg2NWc4RGdnRklYajM2TmpCaFNr?=
+ =?utf-8?B?RU11NFNvSFQ0WjYwaHFuOXd3N004ZnpzYTA3aC9SY0JNS2VENExtTzBxeEVR?=
+ =?utf-8?B?NkJpVms5cS9maG8ralJIOE9hUEJTZWR5YTRQU0NuUFFXMWNXUTdvRFZhM1BZ?=
+ =?utf-8?B?NDB1ZmVpeWU2SjZ0WkgxN2FSdEc0MG95OXpHVmprZVYvTVRnVjZIK1JRNkpt?=
+ =?utf-8?B?N2cxN2tzekhFSElvOUVWUzRIUDY5b1UzM1I4V1I2MUI5Zzg1cHc2NGVDcGVY?=
+ =?utf-8?B?TGVXcVV0dkFmQ3lTM1hESytqb3NOejFud3NwYnpIUVhnNXk3QjJXbGtvc3JR?=
+ =?utf-8?B?YkFkZFdWV0gySEY4ODlVWnAvcFRQczhBb29MZlJkc1lRNjJaUmV0SnRtcjNU?=
+ =?utf-8?B?ZW1mNm4xZHJGZ3R0aW5PNkp4TjhWemgySE1weXRkZzdNVXJOVkxqSlNuc01x?=
+ =?utf-8?B?STdyd3FhTENUTUNMR2ZraUtLY1JUL3lzZ0U0d05PR3JGOFlOWTZVaEpaeElE?=
+ =?utf-8?B?eWkxMzEzbnJZYjAyREpOSjRaM1pvcFQvV2lNN1FzZTZLZUQwNWJUdEoxTDZM?=
+ =?utf-8?B?aUNBK1hrcDBkUUJsNTY1RC8yZnBTelg0SzBJcWRXZmpiVlBaUFM3ZFBUdmYz?=
+ =?utf-8?B?eWlqYXRMb0g1SW9qTnc3RWtlZ0pQMWltTjNjdnRCZHBnVDVMK2dQWFBlYVk0?=
+ =?utf-8?B?b2JTY3I5V2dkTDBjc3crdklicTZneUltdG16Tjh3K1lCQlpxR3puT1A1T1p1?=
+ =?utf-8?B?MzgxUkQzbG8za01SOUJ0dnhFM2dhZmd1eTNEN0Zwc0syOHJZd05PNkg5WVVU?=
+ =?utf-8?B?cHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36ffc9bc-398f-4e06-250d-08dcc6b48ab5
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2024 16:02:18.4058 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2024 16:23:10.6786 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XM2k8dGsldxzwS6Gi3o5PBFxbL9iXuQLGeYzFXn1q9HOpGmg68TbA+L4x+8NseZfSkqUmesqs+dZD1ZNAboNaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6007
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9HF0uQ5+H5N2XUEuHvw6xcI20nU8cZe1aMO7gCLPqqsM+MBMZKaO7jr6ad2Rms5MC+b8dH+sVkQ2i7WOgNmlRg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8593
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -206,87 +198,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 27, 2024 at 08:43:36AM +0200, Maarten Lankhorst wrote:
-> Hey,
+On Mon, Aug 26, 2024 at 07:01:16PM +0200, Maarten Lankhorst wrote:
+> For CCS formats on affected platforms, CCS can be used freely, but
+> display engine requires a multiple of 64k physical pages. No other
+> changes are needed.
 > 
-> Den 2024-08-27 kl. 05:11, skrev Matthew Brost:
-> > On Mon, Aug 26, 2024 at 09:42:54PM +0200, Maarten Lankhorst wrote:
-> >> Hey,
-> >>
-> >> Den 2024-08-26 kl. 21:30, skrev Matthew Brost:
-> >>> On Mon, Aug 26, 2024 at 07:01:16PM +0200, Maarten Lankhorst wrote:
-> >>>> For CCS formats on affected platforms, CCS can be used freely, but
-> >>>> display engine requires a multiple of 64k physical pages. No other
-> >>>> changes are needed.
-> >>>>
-> >>>> At the BO creation time we don't know if the BO will be used for CCS
-> >>>> or not. If the scanout flag is set, and the BO is a multiple of 64k,
-> >>>> we take the safe route and force the physical alignment of 64k pages.
-> >>>>
-> >>>> If the BO is not a multiple of 64k, or the scanout flag was not set
-> >>>> at BO creation, we reject it for usage as CCS in display. The physical
-> >>>> pages are likely not aligned correctly, and this will cause corruption
-> >>>> when used as FB.
-> >>>>
-> >>>> The scanout flag and size being a multiple of 64k are used together
-> >>>> to enforce 64k physical placement.
-> >>>>
-> >>>> VM_BIND is completely unaffected, mappings to a VM can still be aligned
-> >>>> to 4k, just like for normal buffers.
-> >>>>
-> >>>> Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-> >>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >>>> Cc: Matthew Auld <matthew.auld@intel.com>
-> >>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> >>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >>>> Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
-> >>>> ---
-> >>>>  drivers/gpu/drm/xe/display/intel_fb_bo.c |  9 +++++++++
-> >>>>  drivers/gpu/drm/xe/xe_bo.c               |  7 +++++++
-> >>>>  drivers/gpu/drm/xe/xe_vm.c               | 11 ++++++++++-
-> >>>>  3 files changed, 26 insertions(+), 1 deletion(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> >>>> index f835492f73fb4..63ce97cc4cfef 100644
-> >>>> --- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> >>>> +++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> >>>> @@ -7,6 +7,7 @@
-> >>>>  #include <drm/ttm/ttm_bo.h>
-> >>>>  
-> >>>>  #include "intel_display_types.h"
-> >>>> +#include "intel_fb.h"
-> >>>>  #include "intel_fb_bo.h"
-> >>>>  #include "xe_bo.h"
-> >>>>  
-> >>>> @@ -28,6 +29,14 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
-> >>>>  	struct xe_device *xe = to_xe_device(bo->ttm.base.dev);
-> >>>>  	int ret;
-> >>>>  
-> >>>> +	/*
-> >>>> +	 * Some modifiers require physical alignment of 64KiB VRAM pages;
-> >>>> +	 * require that the BO in those cases is created correctly.
-> >>>> +	 */
-> >>>> +	if (XE_IOCTL_DBG(xe, intel_fb_needs_64k_phys(mode_cmd->modifier[0]) &&
-> >>>> +			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
-> >>>> +		return -EINVAL;
-> >>>
-> >>> I don't think this is correct use of this macro as XE_BO_FLAG_NEEDS_64K
-> >>> is an internal flag we set and typically this macro is used to santize
-> >>> user input. An assert here or WARN would make more sense.
-> >> Ideally we'd use 'is bo created as scanout', but that flag can be set by fb_init too, so if the BO was used for normal 4-tiled before, then as CCS it would pass when it wouldn't be valid.
-> >>
-> >> I could change it to bo_created_with_scanout_flag_on_64k_platform inline, but I doubt that's more readable. :)
-> >>
-> > 
-> > Not trying to block the patch and really don't know anything about
-> > display but still think XE_IOCTL_DBG should replaced by either an
-> > assert or WARN (or Xe flavor of warn). Kinda pedantic but we really are
-> > trying hard to uniformly use these types of macros and this just doesn't
-> > look correct.
+> At the BO creation time we don't know if the BO will be used for CCS
+> or not. If the scanout flag is set, and the BO is a multiple of 64k,
+> we take the safe route and force the physical alignment of 64k pages.
 > 
-> mode_cmd->modifier[0] is passed from userspace without validation, and this function is called very early on in fb creation. Anything more than XE_IOCTL_DBG would be invalid here.
+> If the BO is not a multiple of 64k, or the scanout flag was not set
+> at BO creation, we reject it for usage as CCS in display. The physical
+> pages are likely not aligned correctly, and this will cause corruption
+> when used as FB.
+> 
+> The scanout flag and size being a multiple of 64k are used together
+> to enforce 64k physical placement.
+> 
+> VM_BIND is completely unaffected, mappings to a VM can still be aligned
+> to 4k, just like for normal buffers.
 
-Ok, that makes this usage more clear then. Fine with it as is then. Sorry for the noise.
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Matt
+> 
+> Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/intel_fb_bo.c |  9 +++++++++
+>  drivers/gpu/drm/xe/xe_bo.c               |  7 +++++++
+>  drivers/gpu/drm/xe/xe_vm.c               | 11 ++++++++++-
+>  3 files changed, 26 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+> index f835492f73fb4..63ce97cc4cfef 100644
+> --- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
+> +++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+> @@ -7,6 +7,7 @@
+>  #include <drm/ttm/ttm_bo.h>
+>  
+>  #include "intel_display_types.h"
+> +#include "intel_fb.h"
+>  #include "intel_fb_bo.h"
+>  #include "xe_bo.h"
+>  
+> @@ -28,6 +29,14 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+>  	struct xe_device *xe = to_xe_device(bo->ttm.base.dev);
+>  	int ret;
+>  
+> +	/*
+> +	 * Some modifiers require physical alignment of 64KiB VRAM pages;
+> +	 * require that the BO in those cases is created correctly.
+> +	 */
+> +	if (XE_IOCTL_DBG(xe, intel_fb_needs_64k_phys(mode_cmd->modifier[0]) &&
+> +			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
+> +		return -EINVAL;
+> +
+>  	xe_bo_get(bo);
+>  
+>  	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index cbe7bf098970f..9d6632f92fa94 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -2019,6 +2019,13 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>  
+>  	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+>  
+> +	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+> +	if ((bo_flags & XE_BO_FLAG_VRAM_MASK) &&
+> +	    (bo_flags & XE_BO_FLAG_SCANOUT) &&
+> +	    !(xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) &&
+> +	    IS_ALIGNED(args->size, SZ_64K))
+> +		bo_flags |= XE_BO_FLAG_NEEDS_64K;
+> +
+>  	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+>  		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_FLAG_VRAM_MASK)))
+>  			return -EINVAL;
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 4cc13eddb6b32..3eb76d874eb28 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2878,7 +2878,16 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+>  		return -EINVAL;
+>  	}
+>  
+> -	if (bo->flags & XE_BO_FLAG_INTERNAL_64K) {
+> +	/*
+> +	 * Some platforms require 64k VM_BIND alignment,
+> +	 * specifically those with XE_VRAM_FLAGS_NEED64K.
+> +	 *
+> +	 * Other platforms may have BO's set to 64k physical placement,
+> +	 * but can be mapped at 4k offsets anyway. This check is only
+> +	 * there for the former case.
+> +	 */
+> +	if ((bo->flags & XE_BO_FLAG_INTERNAL_64K) &&
+> +	    (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)) {
+>  		if (XE_IOCTL_DBG(xe, obj_offset &
+>  				 XE_64K_PAGE_MASK) ||
+>  		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
+> -- 
+> 2.45.2
+> 
