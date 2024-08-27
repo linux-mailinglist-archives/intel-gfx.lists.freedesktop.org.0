@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBA94960762
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 12:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C93960769
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 12:30:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C776210E2D2;
-	Tue, 27 Aug 2024 10:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72F1910E2D4;
+	Tue, 27 Aug 2024 10:30:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fRbq/vIF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Es4aMWWe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37BEB10E2D0;
- Tue, 27 Aug 2024 10:28:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1838310E2D5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Aug 2024 10:30:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724754497; x=1756290497;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=pUy2oyoJrVmMWlijASDITXcHu4JWTvCvhoAajFEhuFw=;
- b=fRbq/vIF74vohjTZEDmMGExMZimJHnwXIHyGAeFnPIIvoNRORXPh3RWF
- PlgDhQH3AcP26/dv/C/Kmosg+/nEWnPcAixkU/IrGxFqqhDs3CTmaN01G
- MYZXCGFoj3t7R6/OcMujMF14cXv/zXg9f2FeP3EaJtKwb+x1vvlZfoHpj
- PN3JFhZJpfSPs1Ljkr+zUbNlnnoCeMzzb5fqZCZ8/ijQJhO7/dSzbVrFO
- LiLOWhaIdBHDf/2xYQqDFPhITHsWau6kgs5TrNJo7Fy2IiczFR/UvrZ34
- DdPGXqP0z7eV04NOqw3hVK6y2AplRvAyim/vL3rgR1pW3rDuxJSv2uB9h w==;
-X-CSE-ConnectionGUID: gdQ0mRoCTC2VnKaXBEfNKw==
-X-CSE-MsgGUID: qR2kx8tfQrefeoRWNK9Qqg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="23375843"
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="23375843"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2024 03:28:17 -0700
-X-CSE-ConnectionGUID: lRAVxdmHQOGvXCcobd+pPw==
-X-CSE-MsgGUID: dERGsDcGS/yCxKtbAjd9TQ==
+ t=1724754602; x=1756290602;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=3nnf7PIaK5kpoRGdvRRFoXFcxrhOzwZV07lvhM+rt+U=;
+ b=Es4aMWWeL4REmcxTY1v2vnbO8E7dCIdVioeEWuq6hj27qHiDK3znGbWS
+ pt1FF2JX9gw0CIA4sHoGoMyVYnGJjmenMipeUfRR/QfgOakoTa6OUyHJq
+ 8P5+eABrbeZiVtHSpkQxrsy9pDh/4F8MgLa24j5863dV5+HggZ+j10x/y
+ WD+nq1U7WHhawTKK+WAbcIgotKI2AuUo7uUQ4Den1EsqOkBFzEsKe4jxH
+ SE4Nrz8pYO550lOipP+MjJ1i/A9uSaHwymupGRbrlp1STKAysvjGBl295
+ GmSU2wW/wtGwVDLvOJ01WgpvL9useJF7YzJja2u/hGt/qStwKRZ/07g+f Q==;
+X-CSE-ConnectionGUID: OC448A2pR2G4jvzfEs1KDw==
+X-CSE-MsgGUID: 47yTmIBNSO+8GStaOSSENg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="23398760"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="23398760"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 03:30:02 -0700
+X-CSE-ConnectionGUID: nF4WG+gqTSydXpbAUN9/Ug==
+X-CSE-MsgGUID: o0drlK5US0SILN8Qx/nR5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="100320793"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 27 Aug 2024 03:28:15 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1sitQr-000IWU-0W;
- Tue, 27 Aug 2024 10:28:13 +0000
-Date: Tue, 27 Aug 2024 18:27:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, jani.nikula@intel.com
-Subject: Re: [PATCH 5/7] drm/i915/display: include media/cec-notifier.h and
- linux/debugfs.h where needed
-Message-ID: <202408271847.dOpt09wa-lkp@intel.com>
-References: <a9aeb27f0107bdf3d2bd834a48583bc64072447a.1724689818.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="62652450"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 03:29:59 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Jouni
+ =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] drm/i915/display: use old bpp as a base when modeset is
+ not allowed
+In-Reply-To: <8e0e10a9-fd2e-4452-8a12-ba68e522a418@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240826104132.966597-1-jouni.hogander@intel.com>
+ <8e0e10a9-fd2e-4452-8a12-ba68e522a418@linux.intel.com>
+Date: Tue, 27 Aug 2024 13:29:55 +0300
+Message-ID: <87mskyz2ak.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a9aeb27f0107bdf3d2bd834a48583bc64072447a.1724689818.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,103 +73,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Tue, 27 Aug 2024, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> =
+wrote:
+> Hey,
+>
+> We shouldn't have code acting differently whether modesets are allowed,
+> I think I'm missing some context here?
 
-kernel test robot noticed the following build errors:
+Yeah. Since GOP is mentioned, is this really about state readout
+instead?
 
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on drm-xe/drm-xe-next next-20240827]
-[cannot apply to linus/master v6.11-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-wm-move-struct-intel_watermark_params-to-i9xx_wm-c/20240827-003437
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/a9aeb27f0107bdf3d2bd834a48583bc64072447a.1724689818.git.jani.nikula%40intel.com
-patch subject: [PATCH 5/7] drm/i915/display: include media/cec-notifier.h and linux/debugfs.h where needed
-config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20240827/202408271847.dOpt09wa-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240827/202408271847.dOpt09wa-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408271847.dOpt09wa-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/i915/display/hsw_ips.c:321:5: error: expected identifier
-     321 |                          "%llu\n");
-         |                          ^
->> drivers/gpu/drm/i915/display/hsw_ips.c:318:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
-     318 | DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
-         | ^
-         | int
->> drivers/gpu/drm/i915/display/hsw_ips.c:318:25: error: a function declaration without a prototype is deprecated in all versions of C [-Werror,-Wstrict-prototypes]
-     318 | DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
-         |                         ^
-     319 |                          hsw_ips_debugfs_false_color_get,
-     320 |                          hsw_ips_debugfs_false_color_set,
-     321 |                          "%llu\n");
-         |                                  
-         |                                  void
->> drivers/gpu/drm/i915/display/hsw_ips.c:355:2: error: call to undeclared function 'debugfs_create_file'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     355 |         debugfs_create_file("i915_ips_false_color", 0644, crtc->base.debugfs_entry,
-         |         ^
-   drivers/gpu/drm/i915/display/hsw_ips.c:355:2: note: did you mean 'bus_create_file'?
-   include/linux/device/bus.h:126:18: note: 'bus_create_file' declared here
-     126 | int __must_check bus_create_file(const struct bus_type *bus, struct bus_attribute *attr);
-         |                  ^
->> drivers/gpu/drm/i915/display/hsw_ips.c:356:15: error: use of undeclared identifier 'hsw_ips_debugfs_false_color_fops'
-     356 |                             crtc, &hsw_ips_debugfs_false_color_fops);
-         |                                    ^
-   5 errors generated.
+BR,
+Jani.
 
 
-vim +321 drivers/gpu/drm/i915/display/hsw_ips.c
+>
+> Cheers,
+> ~Marten
+>
+> Den 2024-08-26 kl. 12:41, skrev Jouni H=C3=B6gander:
+>> We are currently observing failure on refresh rate change on VRR setup if
+>> full modeset is not allowed. This is caused by the mismatch in bpp
+>> configured by GOP and bpp value calculated by our driver. Changing bpp to
+>> value calculated by our driver would require full mode set.
+>>=20
+>> We don't have mechanism to communicate current bpp to userspace ->
+>> Userspace can't request to use current bpp. Changing bpp means full
+>> modeset. This becomes a problem when userspace haven't allowed full mode
+>> set.
+>>=20
+>> Complete solution here would mean adding mechanism to communicate current
+>> bpp to userspace. User space should use this bpp to avoid changing bpp if
+>> it wants to avoid full mode set.
+>>=20
+>> Tackle this for now in our driver by using existing bpp if full modeset =
+is
+>> not allowed.
+>>=20
+>> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.c | 33 ++++++++++++++------
+>>  1 file changed, 23 insertions(+), 10 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
+drm/i915/display/intel_display.c
+>> index 9049b9a1209d8..7b805998b280a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -4385,21 +4385,34 @@ compute_baseline_pipe_bpp(struct intel_atomic_st=
+ate *state,
+>>  			  struct intel_crtc *crtc)
+>>  {
+>>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>> -	struct intel_crtc_state *crtc_state =3D
+>> +	struct intel_crtc_state *new_crtc_state =3D
+>>  		intel_atomic_get_new_crtc_state(state, crtc);
+>> +	struct intel_crtc_state *old_crtc_state =3D
+>> +		intel_atomic_get_old_crtc_state(state, crtc);
+>>  	struct drm_connector *connector;
+>>  	struct drm_connector_state *connector_state;
+>>  	int bpp, i;
+>>=20=20
+>> -	if ((IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+>> -	    IS_CHERRYVIEW(dev_priv)))
+>> -		bpp =3D 10*3;
+>> -	else if (DISPLAY_VER(dev_priv) >=3D 5)
+>> -		bpp =3D 12*3;
+>> -	else
+>> -		bpp =3D 8*3;
+>> +	/*
+>> +	 * TODO: We don't have mechanism to communicate current bpp to
+>> +	 * userspace -> Userspace can't request to use current bpp. Changing b=
+pp
+>> +	 * means full modeset. This becomes a problem when userspace wants to
+>> +	 * avoid full modeset. Tackle this on our driver by using existing bpp
+>> +	 * if full modeset is not allowed.
+>> +	 */
+>> +	if (!state->base.allow_modeset) {
+>> +		bpp =3D old_crtc_state->pipe_bpp;
+>> +	} else {
+>> +		if ((IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+>> +		     IS_CHERRYVIEW(dev_priv)))
+>> +			bpp =3D 10 * 3;
+>> +		else if (DISPLAY_VER(dev_priv) >=3D 5)
+>> +			bpp =3D 12 * 3;
+>> +		else
+>> +			bpp =3D 8 * 3;
+>> +	}
+>>=20=20
+>> -	crtc_state->pipe_bpp =3D bpp;
+>> +	new_crtc_state->pipe_bpp =3D bpp;
+>>=20=20
+>>  	/* Clamp display bpp to connector max bpp */
+>>  	for_each_new_connector_in_state(&state->base, connector, connector_sta=
+te, i) {
+>> @@ -4408,7 +4421,7 @@ compute_baseline_pipe_bpp(struct intel_atomic_stat=
+e *state,
+>>  		if (connector_state->crtc !=3D &crtc->base)
+>>  			continue;
+>>=20=20
+>> -		ret =3D compute_sink_pipe_bpp(connector_state, crtc_state);
+>> +		ret =3D compute_sink_pipe_bpp(connector_state, new_crtc_state);
+>>  		if (ret)
+>>  			return ret;
+>>  	}
+>
 
-42b4c479025d92 Ville Syrjälä  2023-03-27  317  
-42b4c479025d92 Ville Syrjälä  2023-03-27 @318  DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
-42b4c479025d92 Ville Syrjälä  2023-03-27  319  			 hsw_ips_debugfs_false_color_get,
-42b4c479025d92 Ville Syrjälä  2023-03-27  320  			 hsw_ips_debugfs_false_color_set,
-42b4c479025d92 Ville Syrjälä  2023-03-27 @321  			 "%llu\n");
-42b4c479025d92 Ville Syrjälä  2023-03-27  322  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  323  static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
-bc37c98a3d44f7 Jani Nikula    2023-03-02  324  {
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  325  	struct intel_crtc *crtc = m->private;
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  326  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  327  	intel_wakeref_t wakeref;
-bc37c98a3d44f7 Jani Nikula    2023-03-02  328  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  329  	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  330  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  331  	seq_printf(m, "Enabled by kernel parameter: %s\n",
-c39fc2aca32a93 Jouni Högander 2023-10-24  332  		   str_yes_no(i915->display.params.enable_ips));
-bc37c98a3d44f7 Jani Nikula    2023-03-02  333  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  334  	if (DISPLAY_VER(i915) >= 8) {
-bc37c98a3d44f7 Jani Nikula    2023-03-02  335  		seq_puts(m, "Currently: unknown\n");
-bc37c98a3d44f7 Jani Nikula    2023-03-02  336  	} else {
-bc37c98a3d44f7 Jani Nikula    2023-03-02  337  		if (intel_de_read(i915, IPS_CTL) & IPS_ENABLE)
-bc37c98a3d44f7 Jani Nikula    2023-03-02  338  			seq_puts(m, "Currently: enabled\n");
-bc37c98a3d44f7 Jani Nikula    2023-03-02  339  		else
-bc37c98a3d44f7 Jani Nikula    2023-03-02  340  			seq_puts(m, "Currently: disabled\n");
-bc37c98a3d44f7 Jani Nikula    2023-03-02  341  	}
-bc37c98a3d44f7 Jani Nikula    2023-03-02  342  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  343  	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  344  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  345  	return 0;
-bc37c98a3d44f7 Jani Nikula    2023-03-02  346  }
-bc37c98a3d44f7 Jani Nikula    2023-03-02  347  
-bc37c98a3d44f7 Jani Nikula    2023-03-02  348  DEFINE_SHOW_ATTRIBUTE(hsw_ips_debugfs_status);
-bc37c98a3d44f7 Jani Nikula    2023-03-02  349  
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  350  void hsw_ips_crtc_debugfs_add(struct intel_crtc *crtc)
-bc37c98a3d44f7 Jani Nikula    2023-03-02  351  {
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  352  	if (!hsw_crtc_supports_ips(crtc))
-1fb4da5f7858d7 Ville Syrjälä  2023-03-27  353  		return;
-bc37c98a3d44f7 Jani Nikula    2023-03-02  354  
-42b4c479025d92 Ville Syrjälä  2023-03-27 @355  	debugfs_create_file("i915_ips_false_color", 0644, crtc->base.debugfs_entry,
-42b4c479025d92 Ville Syrjälä  2023-03-27 @356  			    crtc, &hsw_ips_debugfs_false_color_fops);
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Jani Nikula, Intel
