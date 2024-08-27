@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351E69603E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 10:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 350BF960403
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 10:09:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D01D810E1C8;
-	Tue, 27 Aug 2024 08:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848F210E295;
+	Tue, 27 Aug 2024 08:09:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SThi+32i";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C98BA10E1C8;
- Tue, 27 Aug 2024 08:04:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6570957031690972429=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_BMG_sup?=
- =?utf-8?q?ports_UHBR13=2E5?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Aug 2024 08:04:34 -0000
-Message-ID: <172474587481.788510.10647492221272261101@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF1910E046;
+ Tue, 27 Aug 2024 08:09:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724746143; x=1756282143;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=IQuUVZp3xuyOx2tR/mw1EV2mnawNe0ve7vsMhh7VYYo=;
+ b=SThi+32iX6RtvLdTEJuu7S1KRv6KFn4AWYGgC83AYNfnM0LfVuwlc4yL
+ /OKbVuilj1mvsvQLJJp/j11HTnZmZewuq4uNaXWNiWNKjempChUJn4RAh
+ TCFSrRO+XVOlcDPNf3VQ5TzEo+KbGJR7qq4Ma7aIkZEuZDcPhvfo9o+1b
+ KIVAbE8gMOyWUkr84BxbV2Ooj49oHy8feCU7Rv6m7hqR+1qBezAfISF4g
+ hvzrf4UkiHQdWPFNIUaG0TmWFCzmIRWJnvoGZO3V3cBS0TJzXjSklg2lb
+ EnhSd9fOe9/dAsQFwW2ZNwkX1jj3vAUORg52VWHKnyVLTeeqgH/k3uffW A==;
+X-CSE-ConnectionGUID: jKebzTSTRz6xxbqSSpnvdw==
+X-CSE-MsgGUID: ctJTEXOdSPW9JrdAVhEOPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="26107339"
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="26107339"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 01:09:03 -0700
+X-CSE-ConnectionGUID: 3yZIFZp9TgCTFxRWLu441Q==
+X-CSE-MsgGUID: fLUQTZtvQKC3Kl+vbN68ZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,180,1719903600"; d="scan'208";a="67119707"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2024 01:09:01 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/display: BMG supports UHBR13.5
+In-Reply-To: <IA0PR11MB7307E3C377E8F3725937B7B2BA942@IA0PR11MB7307.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240827064047.132278-1-arun.r.murthy@intel.com>
-In-Reply-To: <20240827064047.132278-1-arun.r.murthy@intel.com>
+ <87a5gy1ki6.fsf@intel.com>
+ <IA0PR11MB7307E3C377E8F3725937B7B2BA942@IA0PR11MB7307.namprd11.prod.outlook.com>
+Date: Tue, 27 Aug 2024 11:08:58 +0300
+Message-ID: <874j761j6t.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,192 +67,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6570957031690972429==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 27 Aug 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Jani Nikula <jani.nikula@linux.intel.com>
+>> Sent: Tuesday, August 27, 2024 1:11 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>; intel-xe@lists.freedesktop.org;
+>> intel-gfx@lists.freedesktop.org
+>> Cc: Murthy, Arun R <arun.r.murthy@intel.com>
+>> Subject: Re: [PATCH] drm/i915/display: BMG supports UHBR13.5
+>> 
+>> On Tue, 27 Aug 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> > UHBR20 is not supported by battlemage and the maximum link rate
+>> > supported is UHBR13.5
+>> >
+>> > HSD: 16023263677
+>> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++--
+>> >  1 file changed, 11 insertions(+), 2 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>> > b/drivers/gpu/drm/i915/display/intel_dp.c
+>> > index 789c2f78826d..3232ec4b2889 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> > @@ -528,6 +528,10 @@ static void
+>> >  intel_dp_set_source_rates(struct intel_dp *intel_dp)  {
+>> >  	/* The values must be in increasing order */
+>> > +	static const int bmg_rates[] = {
+>> > +		162000, 216000, 243000, 270000, 324000, 432000, 540000,
+>> 675000,
+>> > +		810000,	1000000, 1350000,
+>> > +	};
+>> >  	static const int mtl_rates[] = {
+>> >  		162000, 216000, 243000, 270000, 324000, 432000, 540000,
+>> 675000,
+>> >  		810000,	1000000, 2000000,
+>> > @@ -558,8 +562,13 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+>> >  		    intel_dp->source_rates || intel_dp->num_source_rates);
+>> >
+>> >  	if (DISPLAY_VER(dev_priv) >= 14) {
+>> > -		source_rates = mtl_rates;
+>> > -		size = ARRAY_SIZE(mtl_rates);
+>> > +		if (IS_DGFX(dev_priv)) {
+>> 
+>> Why dgfx instead of bmg? Should be explained in commit message at the very
+>> least.
+>> 
+> Likewise IS_DH2 / IS_MTL we don't have IS_BMG as its Display 14.1. One of the way to differentiate this is DISPLAY < 14 are integrated and this BMG is discrete and hence using IS_DGFX() for identifying BMG platform.
 
-== Series Details ==
+But isn't dgfx completely incidental here?
 
-Series: drm/i915/display: BMG supports UHBR13.5
-URL   : https://patchwork.freedesktop.org/series/137828/
-State : failure
+>
+> Will add this in the commit message if not other comments and get Rb on this patch.
+>
+> Thanks and Regards,
+> Arun R Murthy
+> -------------------
+>
+>> BR,
+>> Jani.
+>> 
+>> > +			source_rates = bmg_rates;
+>> > +			size = ARRAY_SIZE(bmg_rates);
+>> > +		} else {
+>> > +			source_rates = mtl_rates;
+>> > +			size = ARRAY_SIZE(mtl_rates);
+>> > +		}
+>> >  		max_rate = mtl_max_source_rate(intel_dp);
+>> >  	} else if (DISPLAY_VER(dev_priv) >= 11) {
+>> >  		source_rates = icl_rates;
+>> 
+>> --
+>> Jani Nikula, Intel
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15298 -> Patchwork_137828v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_137828v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_137828v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/index.html
-
-Participating hosts (39 -> 34)
-------------------------------
-
-  Missing    (5): bat-arlh-3 fi-bsw-n3050 fi-snb-2520m fi-kbl-8809g bat-dg2-11 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_137828v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@fbdev@info:
-    - bat-arls-1:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-1/igt@fbdev@info.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-1/igt@fbdev@info.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_137828v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-1:         [PASS][3] -> [DMESG-WARN][4] ([i915#11349])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-2:         [PASS][5] -> [ABORT][6] ([i915#12061])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-2/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-2/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@nullptr:
-    - bat-arls-1:         [DMESG-WARN][7] ([i915#9157]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-1/igt@fbdev@nullptr.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-1/igt@fbdev@nullptr.html
-
-  
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15298 -> Patchwork_137828v1
-
-  CI-20190529: 20190529
-  CI_DRM_15298: 0076b250ac2e713d4d91e8beb569a75da5e1f3ca @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_137828v1: 0076b250ac2e713d4d91e8beb569a75da5e1f3ca @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/index.html
-
---===============6570957031690972429==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: BMG supports UHBR13.5</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137828/">https://patchwork.freedesktop.org/series/137828/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15298 -&gt; Patchwork_137828v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_137828v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_137828v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 34)</h2>
-<p>Missing    (5): bat-arlh-3 fi-bsw-n3050 fi-snb-2520m fi-kbl-8809g bat-dg2-11 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_137828v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@fbdev@info:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-1/igt@fbdev@info.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-1/igt@fbdev@info.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_137828v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-2/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@fbdev@nullptr:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15298/bat-arls-1/igt@fbdev@nullptr.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157">i915#9157</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137828v1/bat-arls-1/igt@fbdev@nullptr.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15298 -&gt; Patchwork_137828v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15298: 0076b250ac2e713d4d91e8beb569a75da5e1f3ca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_137828v1: 0076b250ac2e713d4d91e8beb569a75da5e1f3ca @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6570957031690972429==--
+-- 
+Jani Nikula, Intel
