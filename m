@@ -2,69 +2,138 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E0496021B
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 08:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A938F960294
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2024 08:57:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F00FC10E284;
-	Tue, 27 Aug 2024 06:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2D810E2AA;
+	Tue, 27 Aug 2024 06:57:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IPcn35J+";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="vMWSWPjU";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="AJnLOK7P";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vMWSWPjU";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="AJnLOK7P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA9310E280;
- Tue, 27 Aug 2024 06:43:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724741019; x=1756277019;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4vxpAwtvtF5WGuttQiVSNF5ydNiHjjq7NEm3lzbfHWM=;
- b=IPcn35J+/ijADjaTl5QDrYMkS/IE+hId8vcbdQcSduq68IrD0WvlpYb5
- j/Hp6S5ywfeYGPr4makcIBZB8YvRtyIdLROqgTnTC11Q1ga8fqRLVhtQb
- NfLxGIHMczppL2xCYblmAs8ByYeBsJHNcPXPcpEB5mJAEg/8/vMciu5bK
- uXKfw/nxJK+5h9RVqWXhee3aNXPXQsL7xsT1RUB3KrrY5e6mqn+Jvw4xy
- gKFY5gL+RysWzRotkPAPC4X4D46WyPULvqPFZqyzyAvGbz2okYi5waUNT
- URR6qN9Y/S0HaVy3BTgUURHjFhR2YYfKCfzE2JbBbirT7EFOMn7dwYRem Q==;
-X-CSE-ConnectionGUID: naA5teHiSXWmdNa9Df9ryA==
-X-CSE-MsgGUID: 9mj5lkPyT96TLCH8EdKrbw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11176"; a="23324992"
-X-IronPort-AV: E=Sophos;i="6.10,179,1719903600"; d="scan'208";a="23324992"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 23:43:38 -0700
-X-CSE-ConnectionGUID: tG5FDlN0TpWF0qeiWXR+ow==
-X-CSE-MsgGUID: 3lnfmLvxQx+7oqSsl3S+Ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,179,1719903600"; d="scan'208";a="93553520"
-Received: from fpallare-mobl3.ger.corp.intel.com (HELO [10.245.244.6])
- ([10.245.244.6])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2024 23:43:34 -0700
-Message-ID: <927bdb3b-8372-4d21-b807-0f051832f6d5@linux.intel.com>
-Date: Tue, 27 Aug 2024 08:43:36 +0200
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 856B010E2A4;
+ Tue, 27 Aug 2024 06:57:17 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 2F85821AFB;
+ Tue, 27 Aug 2024 06:57:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724741836; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hYBWBuGQGVoIMqDsVDjCgCorhqQl1NYnS/tP5hD7rWo=;
+ b=vMWSWPjUvjGgC2rOZ2synym9zQ+jABAmUnujcYRwm8InRbXrp5dfjFZaNx4gbF3G+7sELU
+ T4faF7f0t9VBsOLBaNVzi5RN3RmzJ54VOaSYFWt1MjcAvFAZTEQgYTiHYYor1VtJxaeSDT
+ PN6HjBzFqFsAhdIW7N5tdv1WuHbzj2U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724741836;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hYBWBuGQGVoIMqDsVDjCgCorhqQl1NYnS/tP5hD7rWo=;
+ b=AJnLOK7P/jbX7yB3Mf2jyP4k37pdU90wmElAGGic9Id0GJ0kEWpq3LPXwNWtIwVP6K/S0U
+ JP0c/t4JPOylTSCw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1724741836; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hYBWBuGQGVoIMqDsVDjCgCorhqQl1NYnS/tP5hD7rWo=;
+ b=vMWSWPjUvjGgC2rOZ2synym9zQ+jABAmUnujcYRwm8InRbXrp5dfjFZaNx4gbF3G+7sELU
+ T4faF7f0t9VBsOLBaNVzi5RN3RmzJ54VOaSYFWt1MjcAvFAZTEQgYTiHYYor1VtJxaeSDT
+ PN6HjBzFqFsAhdIW7N5tdv1WuHbzj2U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1724741836;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=hYBWBuGQGVoIMqDsVDjCgCorhqQl1NYnS/tP5hD7rWo=;
+ b=AJnLOK7P/jbX7yB3Mf2jyP4k37pdU90wmElAGGic9Id0GJ0kEWpq3LPXwNWtIwVP6K/S0U
+ JP0c/t4JPOylTSCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AA81C13724;
+ Tue, 27 Aug 2024 06:57:15 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id cSBYKMt4zWZycAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 27 Aug 2024 06:57:15 +0000
+Message-ID: <c9c9e482-f80c-4158-8dc4-695f8e0c62cd@suse.de>
+Date: Tue, 27 Aug 2024 08:57:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] drm/xe: Align all VRAM scanout buffers to 64k
- physical pages when needed.
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
-References: <20240826170117.327709-1-maarten.lankhorst@linux.intel.com>
- <20240826170117.327709-3-maarten.lankhorst@linux.intel.com>
- <ZszXzIwntGCQobwy@DUT025-TGLU.fm.intel.com>
- <361abc93-0246-4f21-b235-4e0699682ef3@linux.intel.com>
- <Zs1D93hrqLRxI9SQ@DUT025-TGLU.fm.intel.com>
+Subject: Re: [PATCH] drm: Fix kerneldoc for "Returns" section
+To: Andi Shyti <andi.shyti@linux.intel.com>, renjun wang <renjunw0@foxmail.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com, 
+ daniel@ffwll.ch, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, lyude@redhat.com, imre.deak@intel.com,
+ Wayne.Lin@amd.com, ville.syrjala@linux.intel.com, vidya.srinivas@intel.com,
+ jouni.hogander@intel.com, janusz.krzysztofik@linux.intel.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+References: <tencent_37A873672B5CD20DECAF99DEDAC5E45C3106@qq.com>
+ <Zsz9pwQ3m9zHrjo-@ashyti-mobl2.lan>
 Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <Zs1D93hrqLRxI9SQ@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <Zsz9pwQ3m9zHrjo-@ashyti-mobl2.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -4.30
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_TLS_ALL(0.00)[]; ARC_NA(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[foxmail.com,gmail.com];
+ MIME_TRACE(0.00)[0:+]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[20]; TO_DN_SOME(0.00)[];
+ FREEMAIL_TO(0.00)[linux.intel.com,foxmail.com];
+ MID_RHS_MATCH_FROM(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch,intel.com,ursulin.net,redhat.com,amd.com,lists.freedesktop.org,vger.kernel.org];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid]
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,82 +149,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+Hi
 
-Den 2024-08-27 kl. 05:11, skrev Matthew Brost:
-> On Mon, Aug 26, 2024 at 09:42:54PM +0200, Maarten Lankhorst wrote:
->> Hey,
+Am 27.08.24 um 00:11 schrieb Andi Shyti:
+> Hi Renjun,
+>
+> On Sat, Aug 24, 2024 at 04:36:34PM +0800, renjun wang wrote:
+>> The blank line between title "Returns:" and detail description is not
+>> allowed, otherwise the title will goes under the description block in
+>> generated .html file after running `make htmldocs`.
 >>
->> Den 2024-08-26 kl. 21:30, skrev Matthew Brost:
->>> On Mon, Aug 26, 2024 at 07:01:16PM +0200, Maarten Lankhorst wrote:
->>>> For CCS formats on affected platforms, CCS can be used freely, but
->>>> display engine requires a multiple of 64k physical pages. No other
->>>> changes are needed.
->>>>
->>>> At the BO creation time we don't know if the BO will be used for CCS
->>>> or not. If the scanout flag is set, and the BO is a multiple of 64k,
->>>> we take the safe route and force the physical alignment of 64k pages.
->>>>
->>>> If the BO is not a multiple of 64k, or the scanout flag was not set
->>>> at BO creation, we reject it for usage as CCS in display. The physical
->>>> pages are likely not aligned correctly, and this will cause corruption
->>>> when used as FB.
->>>>
->>>> The scanout flag and size being a multiple of 64k are used together
->>>> to enforce 64k physical placement.
->>>>
->>>> VM_BIND is completely unaffected, mappings to a VM can still be aligned
->>>> to 4k, just like for normal buffers.
->>>>
->>>> Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
->>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>> Cc: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
->>>> ---
->>>>  drivers/gpu/drm/xe/display/intel_fb_bo.c |  9 +++++++++
->>>>  drivers/gpu/drm/xe/xe_bo.c               |  7 +++++++
->>>>  drivers/gpu/drm/xe/xe_vm.c               | 11 ++++++++++-
->>>>  3 files changed, 26 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
->>>> index f835492f73fb4..63ce97cc4cfef 100644
->>>> --- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
->>>> +++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
->>>> @@ -7,6 +7,7 @@
->>>>  #include <drm/ttm/ttm_bo.h>
->>>>  
->>>>  #include "intel_display_types.h"
->>>> +#include "intel_fb.h"
->>>>  #include "intel_fb_bo.h"
->>>>  #include "xe_bo.h"
->>>>  
->>>> @@ -28,6 +29,14 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
->>>>  	struct xe_device *xe = to_xe_device(bo->ttm.base.dev);
->>>>  	int ret;
->>>>  
->>>> +	/*
->>>> +	 * Some modifiers require physical alignment of 64KiB VRAM pages;
->>>> +	 * require that the BO in those cases is created correctly.
->>>> +	 */
->>>> +	if (XE_IOCTL_DBG(xe, intel_fb_needs_64k_phys(mode_cmd->modifier[0]) &&
->>>> +			     !(bo->flags & XE_BO_FLAG_NEEDS_64K)))
->>>> +		return -EINVAL;
->>>
->>> I don't think this is correct use of this macro as XE_BO_FLAG_NEEDS_64K
->>> is an internal flag we set and typically this macro is used to santize
->>> user input. An assert here or WARN would make more sense.
->> Ideally we'd use 'is bo created as scanout', but that flag can be set by fb_init too, so if the BO was used for normal 4-tiled before, then as CCS it would pass when it wouldn't be valid.
+>> There are a few examples for current kerneldoc:
+>> https://www.kernel.org/doc/html/latest/gpu/drm-kms.html#c.drm_crtc_commit_wait
+>> https://www.kernel.org/doc/html/latest/gpu/drm-kms.html#c.drm_atomic_get_crtc_state
+>> https://www.kernel.org/doc/html/latest/gpu/i915.html#c.i915_vma_pin_fence
 >>
->> I could change it to bo_created_with_scanout_flag_on_64k_platform inline, but I doubt that's more readable. :)
->>
-> 
-> Not trying to block the patch and really don't know anything about
-> display but still think XE_IOCTL_DBG should replaced by either an
-> assert or WARN (or Xe flavor of warn). Kinda pedantic but we really are
-> trying hard to uniformly use these types of macros and this just doesn't
-> look correct.
+>> Signed-off-by: renjun wang <renjunw0@foxmail.com>
+>> ---
+>>   drivers/gpu/drm/display/drm_dp_mst_topology.c | 4 ----
+>>   drivers/gpu/drm/drm_atomic.c                  | 6 ------
+>>   drivers/gpu/drm/drm_atomic_helper.c           | 2 --
+>>   drivers/gpu/drm/drm_file.c                    | 7 -------
+>>   drivers/gpu/drm/drm_gem.c                     | 7 ++-----
+>>   drivers/gpu/drm/drm_modes.c                   | 1 -
+>>   drivers/gpu/drm/drm_rect.c                    | 1 -
+>>   drivers/gpu/drm/drm_vblank.c                  | 2 --
+>>   drivers/gpu/drm/i915/gem/i915_gem_object.h    | 1 -
+>>   drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  | 1 -
+>>   drivers/gpu/drm/i915/i915_vma.h               | 1 -
+>>   11 files changed, 2 insertions(+), 31 deletions(-)
+> next time, please, split the series so that each component goes
+> to the right branch.
 
-mode_cmd->modifier[0] is passed from userspace without validation, and this function is called very early on in fb creation. Anything more than XE_IOCTL_DBG would be invalid here.
+My fault. Apologies if I crossed a line by just merging it into 
+drm-misc. It's just doc syntax, so I didn't think it was a big deal.
+
+Best regards
+Thomas
+
+>
+> Andi
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
