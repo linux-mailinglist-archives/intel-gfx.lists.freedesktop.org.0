@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2724A96268B
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 14:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3668696268C
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 14:07:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1FCF10E170;
-	Wed, 28 Aug 2024 12:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD05910E462;
+	Wed, 28 Aug 2024 12:06:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8F3810E3F5;
- Wed, 28 Aug 2024 12:06:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21BE410E438;
+ Wed, 28 Aug 2024 12:06:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_warning_for_drm/i915/dsb=3A_Use_chain?=
- =?utf-8?q?ed_DSBs_for_LUT_programming_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dsb=3A_Use_?=
+ =?utf-8?q?chained_DSBs_for_LUT_programming_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Aug 2024 12:06:54 -0000
-Message-ID: <172484681475.810236.17058877606141676976@2413ebb6fbb6>
+Date: Wed, 28 Aug 2024 12:06:57 -0000
+Message-ID: <172484681712.810236.7756816728309260032@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240624191032.27333-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20240624191032.27333-1-ville.syrjala@linux.intel.com>
