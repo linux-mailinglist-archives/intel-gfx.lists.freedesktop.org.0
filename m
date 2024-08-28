@@ -2,66 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4AB4962988
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 15:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0889629B2
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 16:06:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A55710E534;
-	Wed, 28 Aug 2024 13:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D584410E538;
+	Wed, 28 Aug 2024 14:06:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iow7y/OP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+F8NMNv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B92110E52F
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 13:59:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD70710E52F;
+ Wed, 28 Aug 2024 14:06:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724853547; x=1756389547;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kan6d686HRJfbX7VJOr/HJFs2M3D5PnUfEtaJKd2vic=;
- b=iow7y/OPZgoUD77GeGHRsxi1GAUZbUbyNcy4Vp6x9AS1Ll3YcqO5rNNR
- J7aWVPLzihhjFOvm7g5ItvPFPwkHhgsN8nR1Bx9hTuSYEwnQI1kXV9Xhu
- RwZWFbYA9/dwmjfLt3wsHCrtoUORq9PFUu2q2WLBCVMaX5McRASU85wIY
- nDXdLHHShdNqJQgHHb0h6cGMtnPIY+x+3/oolq9HONrvwxvG+OXrUEk78
- 6fvfjGmg0uGtmh1JymxYlEPZLS/RZJu5BwiEYan0FNdsqK4d4zaHmZ7pY
- ukLoLiJD1GcaagOPQ5smOD5p3cI/STQOHc1iLMC3VSmhlzkYE+liFxgGO A==;
-X-CSE-ConnectionGUID: npds19cQTIyjOM0do3VM5Q==
-X-CSE-MsgGUID: GD3MnEEfSCCq/qRhH+IzIQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23544452"
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="23544452"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 06:59:07 -0700
-X-CSE-ConnectionGUID: zU2Nwz+lRBim/X02Z3bLpg==
-X-CSE-MsgGUID: rdXY8NsYT4GzxBBV2Qlb1Q==
+ t=1724853974; x=1756389974;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=IyvuXA/L1erUpNvG4oHV31Z4NUga96Wa1+OQOlp1QLU=;
+ b=h+F8NMNvvUjhc+1C22dnTvAFAm5FmHUBmYSYY6V1JBVf0NzpRxw5AjIM
+ EvaqtLVc5/pXx/T+fXoSr0CTc/vU/zIRkorj5g2N3erjD/BEMB33+WHhj
+ MueJ0R0P0Izqdar8B5WXjUTM92je7Qy+VyD8sR6IK1RQ4OR3FjuYUHqVp
+ cTvNm/CdZJ+Xtnp3BScZNUeYkn5N69OM+U43Bb55F5AGaFQtMXg3G1Kwk
+ iMnNoLSFn51rX8VxXL7vqcdqBZdUskiCWFj5j2iRQDFFWsEbOmpcMaZwp
+ K+nWWGK4OSW4rOel08NXyyV7mLqBtmEDTiWatr1cQmhXpXnnTXen9mpiD Q==;
+X-CSE-ConnectionGUID: A4UVMGmrTdqonCgA+NLk0A==
+X-CSE-MsgGUID: 1Nme9uhXTQ6QT0qCKAAmgg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23269504"
+X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="23269504"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2024 07:06:14 -0700
+X-CSE-ConnectionGUID: SUIPUFEBT9OXKoTSSxE9qw==
+X-CSE-MsgGUID: yeiV1P52TxWqpw4J4FFSWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="68120913"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 06:59:04 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1sjJCP-00000002fGc-0W7N; Wed, 28 Aug 2024 16:59:01 +0300
-Date: Wed, 28 Aug 2024 16:59:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, linux@roeck-us.net,
- andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- ashutosh.dixit@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v1] drm/i915/hwmon: expose package temperature
-Message-ID: <Zs8tJNV8ATILvmmA@smile.fi.intel.com>
-References: <20240828044512.2710381-1-raag.jadav@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240828044512.2710381-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="68084446"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.110])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2024 07:06:11 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Hamza Mahfooz <hamza.mahfooz@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [RESEND 3/3] drm/amd/display: switch to guid_gen() to generate
+ valid GUIDs
+In-Reply-To: <dac8f408-6f13-4ee7-a54c-342d51ba88d1@amd.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240812122312.1567046-1-jani.nikula@intel.com>
+ <20240812122312.1567046-3-jani.nikula@intel.com>
+ <dac8f408-6f13-4ee7-a54c-342d51ba88d1@amd.com>
+Date: Wed, 28 Aug 2024 17:06:06 +0300
+Message-ID: <87mskwyc6p.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,65 +72,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 28, 2024 at 10:15:12AM +0530, Raag Jadav wrote:
-> Add hwmon support for temp1_input attribute, which will expose package
-> temperature in millidegree Celsius. With this in place we can monitor
-> package temperature using lm-sensors tool.
-> 
-> $ sensors
-> i915-pci-0300
-> Adapter: PCI adapter
-> in0:         990.00 mV
-> fan1:        1260 RPM
-> temp1:        +45.0°C
-> power1:           N/A  (max =  35.00 W)
-> energy1:      12.62 kJ
+On Wed, 28 Aug 2024, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
+> On 8/12/24 08:23, Jani Nikula wrote:
+>> Instead of just smashing jiffies into a GUID, use guid_gen() to generate
+>> RFC 4122 compliant GUIDs.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> ---
+>
+> Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+>
+> I would prefer to take this series through the amdgpu tree though,
+> assuming nobody minds.
 
-...
+How long is it going to take for that to get synced back to
+drm-misc-next though?
 
-> +static umode_t
-> +hwm_temp_is_visible(const struct hwm_drvdata *ddat, u32 attr)
-> +{
-> +	struct i915_hwmon *hwmon = ddat->hwmon;
-> +
-> +	if (attr == hwmon_temp_input && i915_mmio_reg_valid(hwmon->rg.pkg_temp))
-> +		return 0444;
-> +
-> +	return 0;
+BR,
+Jani.
 
-Just a question (I'm fine with this implementation): is the style in this file
-to check for correct cases first and return an err/etc at the end?
 
-> +}
-> +
-> +static int
-> +hwm_temp_read(struct hwm_drvdata *ddat, u32 attr, long *val)
-> +{
-> +	struct i915_hwmon *hwmon = ddat->hwmon;
-> +	intel_wakeref_t wakeref;
-> +	u32 reg_val;
-> +
-> +	if (attr == hwmon_temp_input) {
-> +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-> +			reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_temp);
-> +
-> +		/* HW register value is in degrees, convert to millidegrees. */
-> +		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
-> +		return 0;
-> +	}
-
-...because here we may drop an indentation level by doing it opposite
-
-	if (x != y)
-		return -E...;
-
-	...
-
-> +	return -EOPNOTSUPP;
-> +}
+>
+>> 
+>> Side note, it baffles me why amdgpu has a copy of this instead of
+>> plumbing it into drm mst code.
+>> ---
+>>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++---------
+>>   1 file changed, 12 insertions(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index 72c10fc2c890..ce05e7e2a383 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -2568,9 +2568,9 @@ static int dm_late_init(void *handle)
+>>   
+>>   static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
+>>   {
+>> +	u8 buf[UUID_SIZE];
+>> +	guid_t guid;
+>>   	int ret;
+>> -	u8 guid[16];
+>> -	u64 tmp64;
+>>   
+>>   	mutex_lock(&mgr->lock);
+>>   	if (!mgr->mst_primary)
+>> @@ -2591,26 +2591,27 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
+>>   	}
+>>   
+>>   	/* Some hubs forget their guids after they resume */
+>> -	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
+>> -	if (ret != 16) {
+>> +	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
+>> +	if (ret != sizeof(buf)) {
+>>   		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
+>>   		goto out_fail;
+>>   	}
+>>   
+>> -	if (memchr_inv(guid, 0, 16) == NULL) {
+>> -		tmp64 = get_jiffies_64();
+>> -		memcpy(&guid[0], &tmp64, sizeof(u64));
+>> -		memcpy(&guid[8], &tmp64, sizeof(u64));
+>> +	import_guid(&guid, buf);
+>>   
+>> -		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, guid, 16);
+>> +	if (guid_is_null(&guid)) {
+>> +		guid_gen(&guid);
+>> +		export_guid(buf, &guid);
+>>   
+>> -		if (ret != 16) {
+>> +		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, buf, sizeof(buf));
+>> +
+>> +		if (ret != sizeof(buf)) {
+>>   			drm_dbg_kms(mgr->dev, "check mstb guid failed - undocked during suspend?\n");
+>>   			goto out_fail;
+>>   		}
+>>   	}
+>>   
+>> -	import_guid(&mgr->mst_primary->guid, guid);
+>> +	guid_copy(&mgr->mst_primary->guid, &guid);
+>>   
+>>   out_fail:
+>>   	mutex_unlock(&mgr->lock);
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Jani Nikula, Intel
