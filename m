@@ -2,63 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 265A39628E1
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 15:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6329B962932
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 15:47:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01EA210E53C;
-	Wed, 28 Aug 2024 13:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA03D10E50D;
+	Wed, 28 Aug 2024 13:47:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y1ZLDgUD";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="XeCviCSF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9445C10E535;
- Wed, 28 Aug 2024 13:40:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724852442; x=1756388442;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=F2gbc6cimSYl3RObycIzZ9pKaOf5+xDaMzVVQGK+vAA=;
- b=Y1ZLDgUDavEWIuS8RbKDFelyK0Yc+/BXNKA9qG2KtycqHQJdf9ui4h2i
- bnh68AAtH28QGjahK6+9Xm62pV+ENziLb2hYBOvE92j9E77Nr/Fqizqqs
- ysrzWUU1NlSJTqvGljq3n75TOJ5IIQyA6me7mmmKJvFvdEkxb6yf0vBWT
- jIHm44Ub2hpNnfypNS/0A1stxEVMQ+6Kd01TQmTxTluLkSBW7HSCkL5dc
- aYOqySC97ZLDpRTpOopy+EyvX6o2VCoN256U5F8qapxg0l6hXJO/hKUiJ
- kBovnlf0HtIKG0BPuD2qXr5nNNyUv+7XfvzKDrExcf5abZ2pZuX79PcSF Q==;
-X-CSE-ConnectionGUID: +SAgvRonQuCTtyNnth6zUQ==
-X-CSE-MsgGUID: DUi706K5R+CeHGR4QFLdgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23340469"
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="23340469"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 06:40:41 -0700
-X-CSE-ConnectionGUID: y3WGcdZLSAeIFV0S8XaGoQ==
-X-CSE-MsgGUID: ltOoSpggSH2vvP9I7Xp0FQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="68117697"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 06:40:38 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: Re: [RESEND 3/3] drm/amd/display: switch to guid_gen() to generate
- valid GUIDs
-In-Reply-To: <Zs8kJOC2pH7gSfET@phenom.ffwll.local>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240812122312.1567046-1-jani.nikula@intel.com>
- <20240812122312.1567046-3-jani.nikula@intel.com>
- <Zs8kJOC2pH7gSfET@phenom.ffwll.local>
-Date: Wed, 28 Aug 2024 16:40:33 +0300
-Message-ID: <87plpsydda.fsf@intel.com>
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF31C10E51B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 13:47:25 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-428fb103724so3793365e9.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2024 06:47:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1724852844; x=1725457644; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=6CtnrKzfAk9H4YuLRTraUVq3RArxarczw7rPkgsodyo=;
+ b=XeCviCSF8jkkE5X5AZGmoeOlYjUzU67p388wB8aquUVo1O/KC2MBhnk5mzkHCQVz42
+ HXsomIuR/F7BXOqZIRhNAjdXnjK2hnMUzeRRQC/rGmm9IlyK9oV+TlKilFEc2LNJ03QQ
+ Zv9hKSLhsiOp6ujQ21hBqkYAPVYFZxeQ+/eDw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724852844; x=1725457644;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6CtnrKzfAk9H4YuLRTraUVq3RArxarczw7rPkgsodyo=;
+ b=BMJv0jUmw12zfVnRet0/ROJDMAGfa5NRV1dND4B2pyZOnc6uGlIQ+DCXjJIZhDg7F+
+ 8UdS9f/4T9ZKMFAf8+t0ghNNncI36cTWHp6ZRFoKMF/kUildD8Aw+5IlF8KetnMQJF5b
+ nATjvs2LNemPSbq9e6ovLORaqr71piMzIG5OVOSExjRey6A1OvVFVh9t1QB+nsHrpK/o
+ 5d9ftWXD028eZQ76/JmfVagVQf68ObWfhxk7sc0uOlcXP+qK6HdMZrTbrLrQX+rScRtZ
+ RP8U/1qo5PSR+4ckk7PFKujNrmfvLXmTiUZZFa6bZXQ5H/ZRej1gOHtwlSxku0Ypb3a+
+ BMsg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXcdCSJ0cl8kOtdUFNqPTGpeLvAiI8GJQoMoQu79qPwzBVQ6AM1KgDVd4SWfPd3iQ7clAK3B1XlLI4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzprktHwHkzWFZTe+b1VE0eusFWrZdNo46cR5SvVlPiM+6Usg55
+ xzf9JDRJj7zGtOHAHA5Cv9XyheXzYZ2ooQEa8UCWbJdMzhKgjBphGQLmterWdAjPOxuzYtC44mL
+ W
+X-Google-Smtp-Source: AGHT+IEkP1L92PC6Ka92ChqIF8AHe7DGEoFq7U075lkC3lrM96vIVK5Qx05SmJz3Gz+wKfL+QAxNxw==
+X-Received: by 2002:a05:600c:1ca6:b0:424:8dbe:817d with SMTP id
+ 5b1f17b1804b1-42ba56a9afdmr15048625e9.10.1724852843974; 
+ Wed, 28 Aug 2024 06:47:23 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42ba6425a13sm22314635e9.42.2024.08.28.06.47.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 28 Aug 2024 06:47:23 -0700 (PDT)
+Date: Wed, 28 Aug 2024 15:47:21 +0200
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH v3 00/15] CCS static load balance
+Message-ID: <Zs8qaZftGbq7Ls00@phenom.ffwll.local>
+References: <20240823130855.72436-1-andi.shyti@linux.intel.com>
+ <Zs4NaUgcDhcBb4Ok@phenom.ffwll.local>
+ <Zs7dv57piSIj3Og4@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zs7dv57piSIj3Og4@ashyti-mobl2.lan>
+X-Operating-System: Linux phenom 6.9.12-amd64
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,94 +86,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 28 Aug 2024, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> On Mon, Aug 12, 2024 at 03:23:12PM +0300, Jani Nikula wrote:
->> Instead of just smashing jiffies into a GUID, use guid_gen() to generate
->> RFC 4122 compliant GUIDs.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> ---
->> 
->> Side note, it baffles me why amdgpu has a copy of this instead of
->> plumbing it into drm mst code.
->
-> Yeah ec5fa9fcdeca ("drm/amd/display: Adjust the MST resume flow") promised
-> a follow-up, but that seems to have never materialized. Really should
-> materialize though. Patch lgtm
->
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+On Wed, Aug 28, 2024 at 10:20:15AM +0200, Andi Shyti wrote:
+> Hi Sima,
+> 
+> first of all, thanks for looking into this series.
+> 
+> On Tue, Aug 27, 2024 at 07:31:21PM +0200, Daniel Vetter wrote:
+> > On Fri, Aug 23, 2024 at 03:08:40PM +0200, Andi Shyti wrote:
+> > > Hi,
+> > > 
+> > > This patch series introduces static load balancing for GPUs with
+> > > multiple compute engines. It's a lengthy series, and some
+> > > challenging aspects still need to be resolved.
+> > 
+> > Do we have an actual user for this, where just reloading the entire driver
+> > (or well-rebinding, if you only want to change the value for a specific
+> > device) with a new module option isn't enough?
+> 
+> Yes, we have users for this and this has been already agreed with
+> architects and maintainers.
 
-Thanks!
+So my understanding is that for upstream, this only applies to dg2,
+because the other platforms don't have enough CCS engines to make this a
+real issue.
 
-Cc: AMD folks, ack for merging the series via drm-misc-next?
+Do we really have upstream demand for this feature on dg2 only?
 
-BR,
-Jani.
+Also how hard would it be to make these users happy with xe-on-dg2 in
+upstream instead?
 
+> Why are you saying that we are reloading/rebinding the driver?
 
->
->
->> ---
->>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++---------
->>  1 file changed, 12 insertions(+), 11 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> index 72c10fc2c890..ce05e7e2a383 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> @@ -2568,9 +2568,9 @@ static int dm_late_init(void *handle)
->>  
->>  static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
->>  {
->> +	u8 buf[UUID_SIZE];
->> +	guid_t guid;
->>  	int ret;
->> -	u8 guid[16];
->> -	u64 tmp64;
->>  
->>  	mutex_lock(&mgr->lock);
->>  	if (!mgr->mst_primary)
->> @@ -2591,26 +2591,27 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
->>  	}
->>  
->>  	/* Some hubs forget their guids after they resume */
->> -	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
->> -	if (ret != 16) {
->> +	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
->> +	if (ret != sizeof(buf)) {
->>  		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
->>  		goto out_fail;
->>  	}
->>  
->> -	if (memchr_inv(guid, 0, 16) == NULL) {
->> -		tmp64 = get_jiffies_64();
->> -		memcpy(&guid[0], &tmp64, sizeof(u64));
->> -		memcpy(&guid[8], &tmp64, sizeof(u64));
->> +	import_guid(&guid, buf);
->>  
->> -		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, guid, 16);
->> +	if (guid_is_null(&guid)) {
->> +		guid_gen(&guid);
->> +		export_guid(buf, &guid);
->>  
->> -		if (ret != 16) {
->> +		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, buf, sizeof(buf));
->> +
->> +		if (ret != sizeof(buf)) {
->>  			drm_dbg_kms(mgr->dev, "check mstb guid failed - undocked during suspend?\n");
->>  			goto out_fail;
->>  		}
->>  	}
->>  
->> -	import_guid(&mgr->mst_primary->guid, guid);
->> +	guid_copy(&mgr->mst_primary->guid, &guid);
->>  
->>  out_fail:
->>  	mutex_unlock(&mgr->lock);
->> -- 
->> 2.39.2
->> 
+That's the other alternate solution.
 
+> I'm only removing the exposure of user engines, which is
+> basically a flag in the engines data structure.
+> 
+> > There's some really gnarly locking and lifetime fun in there, and it needs
+> > a corresponding justification.
+> 
+> What locking are you referring about?
+> 
+> I only added one single mutex that has a comment and a
+> justification. If you think that's not enough, I can of course
+> improve it (please note that the changes have a good amount of
+> comments and I tried to be aso more descriptive as I could).
+> 
+> When I change the engines configurations only for the compute
+> engines and only for DG2 platforms, I need to make sure that no
+> other user is affected by the change. Thus I need to make sure
+> that access to some of the strucures are properly serialized.
+> 
+> > Which needs to be enormous for this case,
+> > meaning actual customers willing to shout on dri-devel that they really,
+> > absolutely need this, or their machines will go up in flames.
+> > Otherwise this is a nack from me.
+> 
+> Would you please tell me why are you nacking the patch? So that I
+> address your comments for v4?
+
+So for one, this is substantially more flexible than the solution merged
+into xe. And the patch set doesn't explain why (the commit messages
+actualy describe the design xe has).
+
+That does not inspire confidence at all.
+
+Second, I don't think anyone understands the entire engine/ctx locking
+design in i915-gem. And the fix for that was to make as much as absolutely
+possible immutable. Yes the implementation looks correct, but when I
+looked at the much, much simpler xe implementation I'm pretty sure I've
+found an issue there too. Here I can't even tell.
+-Sima
 -- 
-Jani Nikula, Intel
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
