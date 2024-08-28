@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0889629B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 16:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B01E962A0A
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 16:19:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D584410E538;
-	Wed, 28 Aug 2024 14:06:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+F8NMNv";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE7710E049;
+	Wed, 28 Aug 2024 14:19:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD70710E52F;
- Wed, 28 Aug 2024 14:06:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724853974; x=1756389974;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IyvuXA/L1erUpNvG4oHV31Z4NUga96Wa1+OQOlp1QLU=;
- b=h+F8NMNvvUjhc+1C22dnTvAFAm5FmHUBmYSYY6V1JBVf0NzpRxw5AjIM
- EvaqtLVc5/pXx/T+fXoSr0CTc/vU/zIRkorj5g2N3erjD/BEMB33+WHhj
- MueJ0R0P0Izqdar8B5WXjUTM92je7Qy+VyD8sR6IK1RQ4OR3FjuYUHqVp
- cTvNm/CdZJ+Xtnp3BScZNUeYkn5N69OM+U43Bb55F5AGaFQtMXg3G1Kwk
- iMnNoLSFn51rX8VxXL7vqcdqBZdUskiCWFj5j2iRQDFFWsEbOmpcMaZwp
- K+nWWGK4OSW4rOel08NXyyV7mLqBtmEDTiWatr1cQmhXpXnnTXen9mpiD Q==;
-X-CSE-ConnectionGUID: A4UVMGmrTdqonCgA+NLk0A==
-X-CSE-MsgGUID: 1Nme9uhXTQ6QT0qCKAAmgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23269504"
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="23269504"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 07:06:14 -0700
-X-CSE-ConnectionGUID: SUIPUFEBT9OXKoTSSxE9qw==
-X-CSE-MsgGUID: yeiV1P52TxWqpw4J4FFSWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,182,1719903600"; d="scan'208";a="68084446"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2024 07:06:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Hamza Mahfooz <hamza.mahfooz@amd.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [RESEND 3/3] drm/amd/display: switch to guid_gen() to generate
- valid GUIDs
-In-Reply-To: <dac8f408-6f13-4ee7-a54c-342d51ba88d1@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240812122312.1567046-1-jani.nikula@intel.com>
- <20240812122312.1567046-3-jani.nikula@intel.com>
- <dac8f408-6f13-4ee7-a54c-342d51ba88d1@amd.com>
-Date: Wed, 28 Aug 2024 17:06:06 +0300
-Message-ID: <87mskwyc6p.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C26A89A5C;
+ Wed, 28 Aug 2024 14:19:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1992161660910309262=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_nomodeset_and_i?=
+ =?utf-8?q?915=2Emodeset_cleanups_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 28 Aug 2024 14:19:18 -0000
+Message-ID: <172485475830.827467.7681242890043675648@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1724843853.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1724843853.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,91 +37,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 28 Aug 2024, Hamza Mahfooz <hamza.mahfooz@amd.com> wrote:
-> On 8/12/24 08:23, Jani Nikula wrote:
->> Instead of just smashing jiffies into a GUID, use guid_gen() to generate
->> RFC 4122 compliant GUIDs.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> ---
->
-> Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
->
-> I would prefer to take this series through the amdgpu tree though,
-> assuming nobody minds.
+--===============1992161660910309262==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-How long is it going to take for that to get synced back to
-drm-misc-next though?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915: nomodeset and i915.modeset cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/137909/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15308 -> Patchwork_137909v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/index.html
+
+Participating hosts (39 -> 36)
+------------------------------
+
+  Missing    (3): bat-dg2-11 fi-snb-2520m fi-kbl-8809g 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137909v2 that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@fbdev@read:
+    - bat-arls-1:         [DMESG-WARN][1] ([i915#9157]) -> [DMESG-FAIL][2] ([i915#9157])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15308/bat-arls-1/igt@fbdev@read.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/bat-arls-1/igt@fbdev@read.html
+
+  
+  [i915#9157]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157
 
 
->
->> 
->> Side note, it baffles me why amdgpu has a copy of this instead of
->> plumbing it into drm mst code.
->> ---
->>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++---------
->>   1 file changed, 12 insertions(+), 11 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> index 72c10fc2c890..ce05e7e2a383 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> @@ -2568,9 +2568,9 @@ static int dm_late_init(void *handle)
->>   
->>   static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
->>   {
->> +	u8 buf[UUID_SIZE];
->> +	guid_t guid;
->>   	int ret;
->> -	u8 guid[16];
->> -	u64 tmp64;
->>   
->>   	mutex_lock(&mgr->lock);
->>   	if (!mgr->mst_primary)
->> @@ -2591,26 +2591,27 @@ static void resume_mst_branch_status(struct drm_dp_mst_topology_mgr *mgr)
->>   	}
->>   
->>   	/* Some hubs forget their guids after they resume */
->> -	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, guid, 16);
->> -	if (ret != 16) {
->> +	ret = drm_dp_dpcd_read(mgr->aux, DP_GUID, buf, sizeof(buf));
->> +	if (ret != sizeof(buf)) {
->>   		drm_dbg_kms(mgr->dev, "dpcd read failed - undocked during suspend?\n");
->>   		goto out_fail;
->>   	}
->>   
->> -	if (memchr_inv(guid, 0, 16) == NULL) {
->> -		tmp64 = get_jiffies_64();
->> -		memcpy(&guid[0], &tmp64, sizeof(u64));
->> -		memcpy(&guid[8], &tmp64, sizeof(u64));
->> +	import_guid(&guid, buf);
->>   
->> -		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, guid, 16);
->> +	if (guid_is_null(&guid)) {
->> +		guid_gen(&guid);
->> +		export_guid(buf, &guid);
->>   
->> -		if (ret != 16) {
->> +		ret = drm_dp_dpcd_write(mgr->aux, DP_GUID, buf, sizeof(buf));
->> +
->> +		if (ret != sizeof(buf)) {
->>   			drm_dbg_kms(mgr->dev, "check mstb guid failed - undocked during suspend?\n");
->>   			goto out_fail;
->>   		}
->>   	}
->>   
->> -	import_guid(&mgr->mst_primary->guid, guid);
->> +	guid_copy(&mgr->mst_primary->guid, &guid);
->>   
->>   out_fail:
->>   	mutex_unlock(&mgr->lock);
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: CI_DRM_15308 -> Patchwork_137909v2
+
+  CI-20190529: 20190529
+  CI_DRM_15308: 3d18c558b87ad1c2d6d59ea1c56603a01e84ab88 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_137909v2: 3d18c558b87ad1c2d6d59ea1c56603a01e84ab88 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/index.html
+
+--===============1992161660910309262==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: nomodeset and i915.modeset cleanups (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137909/">https://patchwork.freedesktop.org/series/137909/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15308 -&gt; Patchwork_137909v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/index.html</p>
+<h2>Participating hosts (39 -&gt; 36)</h2>
+<p>Missing    (3): bat-dg2-11 fi-snb-2520m fi-kbl-8809g </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137909v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@fbdev@read:<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15308/bat-arls-1/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157">i915#9157</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137909v2/bat-arls-1/igt@fbdev@read.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9157">i915#9157</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15308 -&gt; Patchwork_137909v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15308: 3d18c558b87ad1c2d6d59ea1c56603a01e84ab88 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_7993: 3b6b2d238e864ff1af9e33159d3bbf4b7f01d86d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_137909v2: 3d18c558b87ad1c2d6d59ea1c56603a01e84ab88 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1992161660910309262==--
