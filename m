@@ -2,75 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993669619D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 00:04:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5094961BE2
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2024 04:11:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDB110E0F1;
-	Tue, 27 Aug 2024 22:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 110DB10E433;
+	Wed, 28 Aug 2024 02:11:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NWaQMEFt";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="SN47Jk7h";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3010A10E0F1;
- Tue, 27 Aug 2024 22:04:56 +0000 (UTC)
-Received: by mail-wr1-f47.google.com with SMTP id
- ffacd0b85a97d-3717ff2358eso3291602f8f.1; 
- Tue, 27 Aug 2024 15:04:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1724796294; x=1725401094; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VZgyQZttbFN6Mpv5C6Zqi3PHF1KkrD2jrO7egIws/+I=;
- b=NWaQMEFtrDynFHJlObHiz9JRKlK1O0/cPLyMvfsoMYuIuknabGefLbhuM+fa5908De
- 5jT5SbRUWK/uG1fzOEEYS6T5Bo4IYRrZ3cv7nmoycYVAVq/2kYBPkGibIuhgEXwMZhG5
- 1zG9G0T8CALYyRs6QbKdvuYhsZef5pLIWvL0/vKNKODGnrwE21EBd0UbN4H9FAxnS7uI
- 4bE+Er8qr3ua6bsFxkyzPNSDpXYyUktXFDfLj91s7xXLDzOtaIuJlr8k5dcimU3HNW/X
- XWTIAUl4gJaRKvGh4+/+M8Gw1DoC1Np04Qe3i0+0D0z2YCDJesffHWBRN+s+z+nWPPpi
- rIjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1724796294; x=1725401094;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VZgyQZttbFN6Mpv5C6Zqi3PHF1KkrD2jrO7egIws/+I=;
- b=X7T5DlKIhK3k++KdAt40W0wyBVe6gkdbad8LCB5iIlMqiQ7uXQtGRoDPV4AoLF6f0n
- 1NpLPytv/KFxhcWSXCKM/lcUZlTdT/tPx7QIOXcAYuFx/LjIfcR5XOds4T7EDlkJ7kQc
- ZDJ2YHME2dpZFT5+0getbsW0ZhLuwGr3dkH8elW3G7a1vCeSPaiiKGvc9+n9O8buQGYX
- 3TlNcOB1VUr8mwyFrC3/volZ+WFtnPCTEjv78ftsA83vie6CF0/KPhLM+gRJsEFS96kW
- GBqDBCa5cd7jypMISz1OjEv60dhn9fZ94lKTkzcVsd/75rlSEWbYuSFsPNMKF8S0TcFu
- fjiQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWhMghXHPlnlYS0NLPNp7bcgeWLhYBp2gT0SpsIwthhAADna9rV7FwUENaN/Gt9aVi/4vlAQCC6@lists.freedesktop.org,
- AJvYcCXjYYILnQVvyORTPFc3ZIe+nhlVTBtFwaEGqPu4tfOJCg0qbbtrMCtHIm54aYalMwa6meX3jjxdc0zO@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzu8V0q1+auabut/7ijdto4ABAm5KAjYk3Nki6iJ7PfnngA6Vit
- +D9fMzOLIgd8uhl/2UsaoJ3HXkOWu6avts3HDUNOvxHY3h4/koCgwH8R/Vc/yPI15fuQ6hscf7z
- w0NFufBRxk60h9E7dcucf/8d6BJE=
-X-Google-Smtp-Source: AGHT+IHWk+OQ6gg8FUjgV2v4vECfE0Fa9RJ/6lK2GykuDqzWb1DzW5pw5cVNOpUVhtAQtCWvfc0gKwWGbXHqNy0EXDs=
-X-Received: by 2002:a05:6000:8d:b0:368:747c:5a04 with SMTP id
- ffacd0b85a97d-3731185ad48mr7748341f8f.25.1724796293984; Tue, 27 Aug 2024
- 15:04:53 -0700 (PDT)
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0655110E433;
+ Wed, 28 Aug 2024 02:11:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1724811087;
+ bh=GrnMPzsealqVcmG/cpz0XaAX0puRx4QlSU1EyZW3TVc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=SN47Jk7hrl6yULXmzQpI/AdxR98etvIwKyrOy/q9IfFvesZIdT1A/XPCIpff9faHS
+ uagZNk7NmFPmW1FvpzHGKzmwAAkGKCyN+dxql37k/LBh2/3CpgCtPJKi6LPEQ3I1hs
+ PP+gfUt3YHQq03DWQKE6OuanXP3Mgk2XtJs72IUFSKPhEABLGBNhrzovimfXOTk50o
+ XfC8an27yeEt88Pb21vouA5BqlaH5t2Lfi373LfWtE/p9pMgM9EBUD+o3eG4+20auo
+ PFvAL7p0E0uofKceSjUR0Yinn3POUY+vqtPZSTgvjxxLnJCMtonxWPPqXFmNcF7nQl
+ 6E9LDWi8Dd3xA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Wtnvy1YNqz4x21;
+ Wed, 28 Aug 2024 12:11:26 +1000 (AEST)
+Date: Wed, 28 Aug 2024 12:11:25 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>
+Cc: Alex Deucher <alexdeucher@gmail.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>, Leo Li
+ <sunpeng.li@amd.com>, Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Subject: Re: linux-next: manual merge of the amdgpu tree with the drm-misc tree
+Message-ID: <20240828121125.1d698246@canb.auug.org.au>
+In-Reply-To: <20240826111022.41db1e95@canb.auug.org.au>
+References: <20240826111022.41db1e95@canb.auug.org.au>
 MIME-Version: 1.0
-References: <20240820070818.1124403-1-vignesh.raman@collabora.com>
-In-Reply-To: <20240820070818.1124403-1-vignesh.raman@collabora.com>
-From: Rob Clark <robdclark@gmail.com>
-Date: Tue, 27 Aug 2024 15:04:42 -0700
-Message-ID: <CAF6AEGu-T4=3jPRcnq3BFBtfb_yhmWE2b8EgxgTm5Q0bqSv04Q@mail.gmail.com>
-Subject: Re: [PATCH v1] drm/ci: increase timeout for all jobs
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch, 
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
- deborah.brouwer@collabora.com, linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; boundary="Sig_/B+ciLLBp8C2=DJ/Pi3m_hKM";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,65 +62,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 20, 2024 at 12:09=E2=80=AFAM Vignesh Raman
-<vignesh.raman@collabora.com> wrote:
->
-> Set the timeout of all drm-ci jobs to 1h30m since
-> some jobs takes more than 1 hour to complete.
->
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+--Sig_/B+ciLLBp8C2=DJ/Pi3m_hKM
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Rob Clark <robdclark@gmail.com>
+Hi all,
 
-> ---
->  drivers/gpu/drm/ci/test.yml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+On Mon, 26 Aug 2024 11:10:22 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
 >
-> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-> index b6f428cdaf94..09d8447840e9 100644
-> --- a/drivers/gpu/drm/ci/test.yml
-> +++ b/drivers/gpu/drm/ci/test.yml
-> @@ -10,6 +10,7 @@
->  .lava-test:
->    extends:
->      - .test-rules
-> +  timeout: "1h30m"
->    script:
->      # Note: Build dir (and thus install) may be dirty due to GIT_STRATEG=
-Y
->      - rm -rf install
-> @@ -71,6 +72,7 @@
->      - .baremetal-test-arm64
->      - .use-debian/baremetal_arm64_test
->      - .test-rules
-> +  timeout: "1h30m"
->    variables:
->      FDO_CI_CONCURRENT: 10
->      HWCI_TEST_SCRIPT: "/install/igt_runner.sh"
-> @@ -215,7 +217,6 @@ panfrost:rk3399:
->    extends:
->      - .lava-igt:x86_64
->    stage: i915
-> -  timeout: "1h30m"
->    variables:
->      DRIVER_NAME: i915
->      DTB: ""
-> @@ -414,6 +415,7 @@ panfrost:g12b:
->
->  virtio_gpu:none:
->    stage: software-driver
-> +  timeout: "1h30m"
->    variables:
->      CROSVM_GALLIUM_DRIVER: llvmpipe
->      DRIVER_NAME: virtio_gpu
-> @@ -436,6 +438,7 @@ virtio_gpu:none:
->
->  vkms:none:
->    stage: software-driver
-> +  timeout: "1h30m"
->    variables:
->      DRIVER_NAME: vkms
->      GPU_VERSION: none
-> --
-> 2.43.0
->
+> Today's linux-next merge of the amdgpu tree got a conflict in:
+>=20
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>=20
+> between commits:
+>=20
+>   537ef0f88897 ("drm/amd/display: use new vblank enable policy for DCN35+=
+")
+>   e45b6716de4b ("drm/amd/display: use a more lax vblank enable policy for=
+ DCN35+")
+>   58a261bfc967 ("drm/amd/display: use a more lax vblank enable policy for=
+ older ASICs")
+>=20
+> from the drm-misc tree and commit:
+>=20
+>   7fb363c57522 ("drm/amd/display: Let drm_crtc_vblank_on/off manage inter=
+rupts")
+>=20
+> from the amdgpu tree.
+>=20
+> I fixed it up (I think - see below) and can carry the fix as necessary.
+> This is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+>=20
+>=20
+> diff --cc drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 34872eb4fc84,7d999e352df3..000000000000
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@@ -8229,66 -8248,12 +8242,35 @@@ static int amdgpu_dm_encoder_init(struc
+>  =20
+>   static void manage_dm_interrupts(struct amdgpu_device *adev,
+>   				 struct amdgpu_crtc *acrtc,
+>  -				 bool enable)
+>  +				 struct dm_crtc_state *acrtc_state)
+>   {
+> - 	/*
+> - 	 * We have no guarantee that the frontend index maps to the same
+> - 	 * backend index - some even map to more than one.
+> - 	 *
+> - 	 * TODO: Use a different interrupt or check DC itself for the mapping.
+> - 	 */
+> - 	int irq_type =3D
+> - 		amdgpu_display_crtc_idx_to_irq_type(
+> - 			adev,
+> - 			acrtc->crtc_id);
+>  -	if (enable)
+>  -		drm_crtc_vblank_on(&acrtc->base);
+>  -	else
+>  +	struct drm_vblank_crtc_config config =3D {0};
+>  +	struct dc_crtc_timing *timing;
+>  +	int offdelay;
+>  +
+>  +	if (acrtc_state) {
+>  +		if (amdgpu_ip_version(adev, DCE_HWIP, 0) <
+>  +		    IP_VERSION(3, 5, 0) ||
+>  +		    acrtc_state->stream->link->psr_settings.psr_version <
+>  +		    DC_PSR_VERSION_UNSUPPORTED) {
+>  +			timing =3D &acrtc_state->stream->timing;
+>  +
+>  +			/* at least 2 frames */
+>  +			offdelay =3D DIV64_U64_ROUND_UP((u64)20 *
+>  +						      timing->v_total *
+>  +						      timing->h_total,
+>  +						      timing->pix_clk_100hz);
+>  +
+>  +			config.offdelay_ms =3D offdelay ?: 30;
+>  +		} else {
+>  +			config.disable_immediate =3D true;
+>  +		}
+>  +
+>  +		drm_crtc_vblank_on_config(&acrtc->base,
+>  +					  &config);
+> -=20
+> - 		amdgpu_irq_get(
+> - 			adev,
+> - 			&adev->pageflip_irq,
+> - 			irq_type);
+> - #if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
+> - 		amdgpu_irq_get(
+> - 			adev,
+> - 			&adev->vline0_irq,
+> - 			irq_type);
+> - #endif
+>  +	} else {
+> - #if defined(CONFIG_DRM_AMD_SECURE_DISPLAY)
+> - 		amdgpu_irq_put(
+> - 			adev,
+> - 			&adev->vline0_irq,
+> - 			irq_type);
+> - #endif
+> - 		amdgpu_irq_put(
+> - 			adev,
+> - 			&adev->pageflip_irq,
+> - 			irq_type);
+>   		drm_crtc_vblank_off(&acrtc->base);
+>  +	}
+>   }
+>  =20
+>   static void dm_update_pflip_irq_state(struct amdgpu_device *adev,
+
+This is now a conflict between the drm-misc tree and the drm tree.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/B+ciLLBp8C2=DJ/Pi3m_hKM
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmbOh00ACgkQAVBC80lX
+0Gw7oQf9EzWizfLWzxAPQO3UVYd23Nrjtx9rLzojxorJcPe/F5a95wCFsldGkRIw
+/YHJT5wnZE8HS5uC/8hIv/6nLvjehq3+WgW1l/qKD2KqYzoHkUmFx4SrkotPFogG
+1pZfy0g/HsZzy0t+5j/f0wSXiELg37Vx/z8fJ/BxTAOkMzg26RVf8zIByv0eIw/K
+ZFxXL57WZoubtpPUTlm0WMwj22inPJEqNrr84LvdJPP/kXcLT9xaak9YgVPGAf3M
+KUdVwqaInM/BV1M9mWfwLwy8zA47oaHSFn/w0o/IBRWnFVE/wiSjcUFabY1n7xSh
+idFnFFwCrmdxKO9nSohIT/Tw/RLRJQ==
+=d0Hz
+-----END PGP SIGNATURE-----
+
+--Sig_/B+ciLLBp8C2=DJ/Pi3m_hKM--
