@@ -2,64 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95BC964AD8
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 18:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F21FF964AFA
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 18:05:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12BA010E71B;
-	Thu, 29 Aug 2024 16:00:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E5D10E726;
+	Thu, 29 Aug 2024 16:05:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MO/vLSM1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gPXMWtbx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B64BE10E71B;
- Thu, 29 Aug 2024 16:00:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B44810E720;
+ Thu, 29 Aug 2024 16:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724947201; x=1756483201;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kIbeBcvklRZnAUyEaogr4BsfGsKIwHXOjt9dIl1120s=;
- b=MO/vLSM1Vg/cuxXQt9mmkEwZYQJNqqV63DrZeU/aI+zxp8VMSwPy2OVa
- te4YhR0RmQr0eTPh9O334Ai0mMN5VgFijq3LzAR12WwH8E3yzMdUgKQL0
- Nt5x43NsW2R6UsrGxpiLhc6qJF5FyKu2z/JKDX7Bzv6t28a7ybOJntXDe
- fNh4QYOVTfnNgf/TFBJps5ygHV8ZTMvEOdo9fZ4KOWNdTZKvvDvuqgj01
- hTBS1kmBqYEcQEw2bEH3SKwa/ppIhV7nPoGK9znp0lsNXAzdwRczS4QhE
- f541M8pRZfri6n2rVwGF01FjhV0czSXytXQjA0kMcutQEaN41N+IosEjE Q==;
-X-CSE-ConnectionGUID: UA/qxn23TZiaiinMhj1DZQ==
-X-CSE-MsgGUID: IzPVuKGESWufEmAp0QeWpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="27313790"
-X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="27313790"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 09:00:01 -0700
-X-CSE-ConnectionGUID: U1FTIqQYQ8ujxx5ZZCRvEA==
-X-CSE-MsgGUID: YliLZ7OsQvaylZ8R7B+OmA==
+ t=1724947500; x=1756483500;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VLyOoMcazMV5q4QQix3F7SBU49MYqTGbT4np6PoZGTo=;
+ b=gPXMWtbxqV7fKFCHjVylqZ9les2klzwPQgFHaJUM1+tpT4+QkT5eXEN2
+ 4d17CnOP7pmgT+EHHU4Wqbq2hLmnTdy8DVtqwJ6c8tGxj5fSo1soBpWKs
+ epkwlbMeSab1E+ExnHpxN48UALGnOs1NoZA6rKCRUHOqM3UhINMAZm/OP
+ 7Cy2ZR1fTLdlvN+Z+T818yRagJ6xjyy5/r7G3p/cIq005HpeWlc3PhF3F
+ sSrEARknH2vTBcFtaEe1MuLKmiP2En8wOzTsr1sbBKb8Jluwp2cePcdB2
+ dw6SUnqhbQrUQwxUqLI79j6Xr8l9uBSBUACtO6p0od0JEbmLY+KW43xEp g==;
+X-CSE-ConnectionGUID: MJCVLVZARYKtT6jY+ZTfWw==
+X-CSE-MsgGUID: pbwbmivGTUGUlMB036vmew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="27430580"
+X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="27430580"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 09:03:55 -0700
+X-CSE-ConnectionGUID: luedtuRBSSCucDkydAf1xA==
+X-CSE-MsgGUID: ij9+LiJSSeuTurDkbm7Msw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="63455324"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa010.jf.intel.com with ESMTP; 29 Aug 2024 08:59:58 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id C22D8956; Thu, 29 Aug 2024 18:59:56 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH v1 2/2] drm/i915/fence: Mark debug_fence_free() with
- __maybe_unused
-Date: Thu, 29 Aug 2024 18:58:38 +0300
-Message-ID: <20240829155950.1141978-3-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.43.0.rc1.1336.g36b5255a03ac
-In-Reply-To: <20240829155950.1141978-1-andriy.shevchenko@linux.intel.com>
-References: <20240829155950.1141978-1-andriy.shevchenko@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,186,1719903600"; d="scan'208";a="63611886"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 29 Aug 2024 09:03:53 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 29 Aug 2024 19:03:51 +0300
+Date: Thu, 29 Aug 2024 19:03:51 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, lucas.demarchi@intel.com
+Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
+ display->is.<PLATFORM>
+Message-ID: <ZtCb5yc6KCy1S6bo@intel.com>
+References: <cover.1724092799.git.jani.nikula@intel.com>
+ <Zs-LdJYx_lVDt9PC@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zs-LdJYx_lVDt9PC@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,43 +73,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When debug_fence_free() unused, it
-prevents kernel builds with `make W=1` and CONFIG_WERROR=y:
+On Wed, Aug 28, 2024 at 04:41:24PM -0400, Rodrigo Vivi wrote:
+> On Mon, Aug 19, 2024 at 09:44:27PM +0300, Jani Nikula wrote:
+> > v2 of [1]. Please read the cover letter there.
+> > 
+> > This addresses review comments and adds a few more commits on top, in particular
+> > the last one showcasing the approach.
+> > 
+> > The main question remains, is this what we want?
+> 
+> I don't know why, but the 'is' thing is still strange.
+> 
+> I know I know... I'm bad with naming myself.
+> 
+> I think about 'platform' but that get too big
+> 
+> if (display->platform.BROADWELL)
+> 
+> I think about 'gen' but then it is overloaded....
+> 
+> then I think about 'ip' is worse...
+> 
+> 'version'?
+> 
+> 'name'?
+> 
+> if (display->name.HASWELL)...
+> 
+> ....
+> 
+> But well, I like the overall simplification here in general.
+> Without a better name to suggest, I guess let's just move ahead...
 
-.../i915_sw_fence.c:118:20: error: unused function 'debug_fence_free' [-Werror,-Wunused-function]
-  118 | static inline void debug_fence_free(struct i915_sw_fence *fence)
-      |                    ^~~~~~~~~~~~~~~~
+One slight concern with the is.foo is whether it complicates finding
+things with eg. cscope. But I suppose for platforms that doesn't matter
+all that much. For the has_foo stuff it'd be much more relevant.
 
-Fix this by marking debug_fence_free() with __maybe_unused.
+Anyways, can't think of anything particularly elegant myself either,
+so go ahead I guess.
 
-Fixes: fc1584059d6c ("drm/i915: Integrate i915_sw_fence with debugobjects")
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_sw_fence.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> > 
+> > BR,
+> > Jani.
+> > 
+> > [1] https://lore.kernel.org/r/cover.1718719962.git.jani.nikula@intel.com
+> > 
+> > 
+> > Jani Nikula (9):
+> >   drm/i915/display: use a macro to initialize subplatforms
+> >   drm/i915/display: use a macro to define platform enumerations
+> >   drm/i915/display: join the platform and subplatform enums
+> >   drm/i915/display: add display platforms structure with platform
+> >     members
+> >   drm/i915/display: add platforms "is" member to struct intel_display
+> >   drm/i915/display: remove the display platform enum as unnecessary
+> >   drm/i915/display: consider HSW/BDW ULX to also be ULT
+> >   drm/i915/display: keep subplatforms next to their platforms
+> >   drm/i915/bios: use display->is.PLATFORM instead of IS_PLATFORM()
+> > 
+> >  drivers/gpu/drm/i915/display/intel_bios.c     |  36 ++--
+> >  .../gpu/drm/i915/display/intel_display_core.h |   3 +
+> >  .../drm/i915/display/intel_display_device.c   |  89 ++++++---
+> >  .../drm/i915/display/intel_display_device.h   | 180 ++++++++++--------
+> >  4 files changed, 174 insertions(+), 134 deletions(-)
+> > 
+> > -- 
+> > 2.39.2
+> > 
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index d4020ff3549a..1d4cc91c0e40 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -77,7 +77,7 @@ static inline void debug_fence_destroy(struct i915_sw_fence *fence)
- 	debug_object_destroy(fence, &i915_sw_fence_debug_descr);
- }
- 
--static inline void debug_fence_free(struct i915_sw_fence *fence)
-+static inline __maybe_unused void debug_fence_free(struct i915_sw_fence *fence)
- {
- 	debug_object_free(fence, &i915_sw_fence_debug_descr);
- 	smp_wmb(); /* flush the change in state before reallocation */
-@@ -115,7 +115,7 @@ static inline void debug_fence_destroy(struct i915_sw_fence *fence)
- {
- }
- 
--static inline void debug_fence_free(struct i915_sw_fence *fence)
-+static inline __maybe_unused void debug_fence_free(struct i915_sw_fence *fence)
- {
- }
- 
 -- 
-2.43.0.rc1.1336.g36b5255a03ac
-
+Ville Syrjälä
+Intel
