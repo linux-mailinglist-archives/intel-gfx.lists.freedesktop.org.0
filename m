@@ -2,58 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04BBB96443E
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 14:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7727B964458
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 14:25:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 756D410E65F;
-	Thu, 29 Aug 2024 12:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E7DB10E666;
+	Thu, 29 Aug 2024 12:25:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gRSoCDcZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c4puGOhg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8EF510E65F;
- Thu, 29 Aug 2024 12:19:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724933983; x=1756469983;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=f3tHTTdscgIArj7RHjVMwVZriN/Vg8ErIxclkColSE8=;
- b=gRSoCDcZcYnwZWlGPxiv40s9YLKacZQrZpCXzd/5P9YWs+eswJYulAUC
- ptKFVDiVG8k5W8qYRqA1uys+dqhYb687cuiZ7GHBA1SObDsKQf7+/j0//
- Whq+w0ZhcZJhpSKLpuiAubsRTi7NSCndSEV0FiJoyoO+d0edHBvLSlUv3
- FVEczV7cyjds2QTVj8zkTcJV6fK6eePpngROFoaq7AVcQT137C3bWTJJj
- Ww7ZXjaxJq2EX3jBpoBmWUdKOeJZSFayXNzVCRChKWsUivrOIAmJX0f0b
- EQU5qg+ahXyL1dWj6iDLmDG7hmRLqn080nOs27DzmcoWLWmLI2d71LcEH A==;
-X-CSE-ConnectionGUID: EmG1+vO3QzWYQ6NBEtBzZw==
-X-CSE-MsgGUID: pT9nxyVjRv+mQ6NlTibRuw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="26420756"
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="26420756"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 05:19:43 -0700
-X-CSE-ConnectionGUID: +pwTtlKOSFKJ+H9u3EhMyg==
-X-CSE-MsgGUID: oSC4DvS5T7WNnEVaGscEaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63387002"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.14])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 05:19:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCHv2] drm/i915/display: BMG supports UHBR13.5
-In-Reply-To: <20240827081205.136569-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240827081205.136569-1-arun.r.murthy@intel.com>
-Date: Thu, 29 Aug 2024 15:19:37 +0300
-Message-ID: <87le0fwmg6.fsf@intel.com>
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
+ [209.85.215.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D7B710E668;
+ Thu, 29 Aug 2024 12:25:39 +0000 (UTC)
+Received: by mail-pg1-f173.google.com with SMTP id
+ 41be03b00d2f7-7ae3d7222d4so373593a12.3; 
+ Thu, 29 Aug 2024 05:25:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1724934338; x=1725539138; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=uLgC67of2OxnhEYp7TL7whcXZx4wSiDzOrDfS5iPKRg=;
+ b=c4puGOhgsqrZZR4dIku9OKBMrjOF02XjLxVocRh8EScwH+z5ovgg5QnDqXLNhVQgoU
+ CHhkSzjTud8aqiQlLlN0nudzoE7QSmvbnBVlNfgTH9olOgK+I8lHv8i6DSxWsQDUhseX
+ x+KBYIwdlcJH5szABmimt1w0inOdDhJc0Fup1EGLSeWCi1AHmwOSIcbyitRRWy1DfITa
+ yJoae5cjcYGxruxL7oYfpuQ8PlLO/n/CDf2vIZZ/Clv8FqBtF/a0tuL90NtXYYnV+uZv
+ OTBOydUW16tiq8JYNN+mx+I+1SaPeNXVQH8K+SkbLxceHJGnrO4KRZYGqmh4bLm8xXeF
+ QmpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1724934338; x=1725539138;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=uLgC67of2OxnhEYp7TL7whcXZx4wSiDzOrDfS5iPKRg=;
+ b=BtkYDXcVE2fdwlYgys+qsQdUvxAZKGUp0fyjiin0kzdgnW+3P4UkuymCHF6+jAEud9
+ 7wyPGKu7HDdB/tqfJzUBCOAW/NGuQPBIL5kkFsN0LLo0KP7R0LyLnziHKKON9E108u/R
+ Gw/RyNq9C0FE9dxkrdOv1adaLyJ87twKViMXL3j3Jv1l7OXQixomrKgdwpWE219rf5ED
+ kwbMuOfAntHNpfIKusM45i+QO5/YipRvpIOjoZ5hYfqnViuK/oJEVEFsaxp3tU7h9Cku
+ DK3qNOWlc5NvO8CQZYEwbJYCr8ziZbj7xqjPUn/XlOxyssmFSYDHvVuB6gKLLeLyP25q
+ nwjg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXn1wOd1v+t6nmS7Li0KRDK8Kfnpx9Iy7X+Tp7rKmNplb+rJ2J5298DnMv5ykbaawcLr8JWz4xnAy0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxkcfl+xr5lbTp7DzRCyYSHuCBeioA3MtvsDy+1IjYKvpMDUemo
+ qpZZW61tXuaGz1Ip9ynHF1DDhO9JdIfrlZKscQFgTWLE+9My1f6GRPAcneK98Zk=
+X-Google-Smtp-Source: AGHT+IFbGzECTn5MEDYMOOqPFrq1J4b31a/AJPacwWpDembBEANMFKdhc2RZYfaCqNxBiwi5AAkGqQ==
+X-Received: by 2002:a17:90a:9e9:b0:2d3:ba92:b27c with SMTP id
+ 98e67ed59e1d1-2d85649e7d0mr2458175a91.42.1724934338290; 
+ Thu, 29 Aug 2024 05:25:38 -0700 (PDT)
+Received: from localhost ([134.134.137.72]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-205152cd89bsm10311425ad.68.2024.08.29.05.25.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Aug 2024 05:25:38 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>, imre.deak@intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com
+Subject: [PATCH] drm/i915/display: Fix BMG CCS modifiers
+Date: Thu, 29 Aug 2024 15:29:28 +0300
+Message-ID: <20240829122928.423456-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,62 +80,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 27 Aug 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> UHBR20 is not supported by battlemage and the maximum link rate
-> supported is UHBR13.5
->
-> v2: Replace IS_DGFX with IS_BATTLEMAGE (Jani)
->
-> HSD: 16023263677
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Let I915_FORMAT_MOD_4_TILED_BMG_CCS show up as supported modifier
 
-Also,
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Fixes: 98b1c87a5e51 ("drm/i915/xe2hpd: Set maximum DP rate to UHBR13.5")
-
-because that one doesn't DTRT.
-
-BR,
-Jani.
-
-
-
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 789c2f78826d..99a365a945ae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -528,6 +528,10 @@ static void
->  intel_dp_set_source_rates(struct intel_dp *intel_dp)
->  {
->  	/* The values must be in increasing order */
-> +	static const int bmg_rates[] = {
-> +		162000, 216000, 243000, 270000, 324000, 432000, 540000, 675000,
-> +		810000,	1000000, 1350000,
-> +	};
->  	static const int mtl_rates[] = {
->  		162000, 216000, 243000, 270000, 324000, 432000, 540000, 675000,
->  		810000,	1000000, 2000000,
-> @@ -558,8 +562,13 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
->  		    intel_dp->source_rates || intel_dp->num_source_rates);
->  
->  	if (DISPLAY_VER(dev_priv) >= 14) {
-> -		source_rates = mtl_rates;
-> -		size = ARRAY_SIZE(mtl_rates);
-> +		if (IS_BATTLEMAGE(dev_priv)) {
-> +			source_rates = bmg_rates;
-> +			size = ARRAY_SIZE(bmg_rates);
-> +		} else {
-> +			source_rates = mtl_rates;
-> +			size = ARRAY_SIZE(mtl_rates);
-> +		}
->  		max_rate = mtl_max_source_rate(intel_dp);
->  	} else if (DISPLAY_VER(dev_priv) >= 11) {
->  		source_rates = icl_rates;
-
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 9452cad41d07..d28b98e7cbd7 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2453,6 +2453,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
+ 	if (gen12_plane_has_mc_ccs(i915, plane_id))
+ 		caps |= INTEL_PLANE_CAP_CCS_MC;
+ 
++	if (GRAPHICS_VER(i915) >= 20 && IS_DGFX(i915))
++		caps |= INTEL_PLANE_CAP_NEED64K_PHYS;
++
+ 	return caps;
+ }
+ 
 -- 
-Jani Nikula, Intel
+2.45.2
+
