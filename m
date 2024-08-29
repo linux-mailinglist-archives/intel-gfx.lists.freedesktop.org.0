@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230E496462F
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 15:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F87964630
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 15:17:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C549B10E68D;
-	Thu, 29 Aug 2024 13:17:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAEC810E68F;
+	Thu, 29 Aug 2024 13:17:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OvlFUCSe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NeBy/ME2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3AA10E68B;
- Thu, 29 Aug 2024 13:17:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BCA010E68E;
+ Thu, 29 Aug 2024 13:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724937430; x=1756473430;
+ t=1724937432; x=1756473432;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jeQ63ve7KdsYnhiP1dX+v9zZ8+etWII/T9qrBBDQ7mE=;
- b=OvlFUCSepN+zgI70ux5C4gRUifSItdE99yA7OT2yjY8tjgja3bBJpY/W
- Nd8641e7HVHGmXJtnzq35WEuivIrWZbboQlbdlkWjqscL5pm4zjw7NkaT
- 3eLZq+cEk4u7NxLoVIEO7pp5fg/m+TCoouTzotBIkbB8TYWhRijeeQycI
- 3txiDBXBN3N5BWjrAVzCNO0lit7oFW36MR0jz53dayg/R845JYeZ6j6vM
- ky/4LpULn8uYKnvPmDgA9wpN5Pw3vgS7ezgOc/E9OW1UpmX3+os/aedUc
- wBdmOY7yiesQEWiEl2wdcMLmBlWgct0nOuVLSyrat0tR3Hvz037zAWx35 Q==;
-X-CSE-ConnectionGUID: yygWIlskTE24PFiubimK0w==
-X-CSE-MsgGUID: FuuxANR6RRqs4nLV5h8FDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23667246"
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="23667246"
+ bh=5utVn4c9xPG98n3AX6UDXA6XyN5eH40/lw/NnMMa1bE=;
+ b=NeBy/ME2VOfW0CKZAHN0VuWkiB5Whu5tr9ybmPRdchMQrTw/0Qyls1ah
+ L1uD+JZtGkCbj1D4SMDmss8EMDIpNOujBU2BGJskEW46AmEWYrbrt9Cbb
+ dCKwaCcm4B20ocBwpvLIfkVYOLpmC1z89EipNw+8E0LAerfDx1c1UZsZO
+ uXOCiAW8Uul52Mv1QHIaYqdAD5V7RJsWXxTMugYrqk4BYBEtQWX/0+/xO
+ 6814kUljO8vWfcfQfG2iH8rc+AI1AKuDWOp4xNfnIZKgiNjkwULZbjMm1
+ gozYxFBUtKKlj8cEmc24kRWhACUeCRgI/j9HqfWNX/A4MhCkXG3xi2y/W A==;
+X-CSE-ConnectionGUID: hKxjVTYVSuGMqrmSCNA5qg==
+X-CSE-MsgGUID: vfjg92uFSLeGU8n/DYsGkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23667249"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="23667249"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 06:17:10 -0700
-X-CSE-ConnectionGUID: +oHlQwGxSXGVFiEO8qLTRw==
-X-CSE-MsgGUID: woBBGiAUQY+aRKgJX9uoCA==
+ 29 Aug 2024 06:17:12 -0700
+X-CSE-ConnectionGUID: zKq2fDKsQga0ZBQSt88g1Q==
+X-CSE-MsgGUID: b5kmy6xhQTmFdexU7ynJ4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63261527"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63261537"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 06:17:07 -0700
+ 29 Aug 2024 06:17:09 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 07/19] drm/i915/icl_dsi: Move helpers to configure dsi dual
- link to intel_dss
-Date: Thu, 29 Aug 2024 18:48:15 +0530
-Message-ID: <20240829131828.2350930-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/19] drm/i915/vdsc: Rename helper to check if the pipe
+ supports dsc
+Date: Thu, 29 Aug 2024 18:48:16 +0530
+Message-ID: <20240829131828.2350930-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240829131828.2350930-1-ankit.k.nautiyal@intel.com>
 References: <20240829131828.2350930-1-ankit.k.nautiyal@intel.com>
@@ -70,178 +70,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the function to configure dss_ctl for dual_link dsi to intel_dss
-files. While at it, use struct intel_display wherever possible.
-
-v2: Avoid modifying the code while movement. (Jani)
+Rename the helper is_pipe_dsc to intel_dsc_is_pipe_dsc to prepare for its
+future use across multiple files. This change is a preliminary step towards
+making the function non-static, enhancing its accessibility and
+reusability.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c   | 57 ++----------------------
- drivers/gpu/drm/i915/display/intel_dss.c | 50 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dss.h |  3 ++
- 3 files changed, 57 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 79e149d51cb2..ec880d1cbbee 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -44,7 +44,7 @@
- #include "intel_de.h"
- #include "intel_dsi.h"
- #include "intel_dsi_vbt.h"
--#include "intel_dss_regs.h"
-+#include "intel_dss.h"
- #include "intel_panel.h"
- #include "intel_vdsc.h"
- #include "skl_scaler.h"
-@@ -274,55 +274,6 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 891346f1f09a..6d60b72a9dfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -35,7 +35,7 @@ bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state)
+ 	return true;
  }
  
--static void configure_dual_link_mode(struct intel_encoder *encoder,
--				     const struct intel_crtc_state *pipe_config,
--				     u8 dual_link, u8 pixel_overlap)
--{
--	struct intel_display *display = to_intel_display(encoder);
--	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
--	u32 dss_ctl1;
--
--	/* FIXME: Move all DSS handling to intel_vdsc.c */
--	if (DISPLAY_VER(display) >= 12) {
--		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
--
--		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
--		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
--	} else {
--		dss_ctl1_reg = DSS_CTL1;
--		dss_ctl2_reg = DSS_CTL2;
--	}
--
--	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
--	dss_ctl1 |= SPLITTER_ENABLE;
--	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
--	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
--
--	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
--		const struct drm_display_mode *adjusted_mode =
--					&pipe_config->hw.adjusted_mode;
--		u16 hactive = adjusted_mode->crtc_hdisplay;
--		u16 dl_buffer_depth;
--
--		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
--		dl_buffer_depth = hactive / 2 + pixel_overlap;
--
--		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
--			drm_err(display->drm,
--				"DL buffer depth exceed max value\n");
--
--		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
--		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
--		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
--			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
--	} else {
--		/* Interleave */
--		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
--	}
--
--	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
--}
--
- /* aka DSI 8X clock */
- static int afe_clk(struct intel_encoder *encoder,
- 		   const struct intel_crtc_state *crtc_state)
-@@ -791,9 +742,9 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 		}
+-static bool is_pipe_dsc(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
++static bool intel_dsc_is_dsc_pipe(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
  
- 		/* configure stream splitting */
--		configure_dual_link_mode(encoder, pipe_config,
--					 intel_dsi->dual_link,
--					 intel_dsi->pixel_overlap);
-+		intel_dss_dsi_dual_link_mode_configure(encoder, pipe_config,
-+						       intel_dsi->dual_link,
-+						       intel_dsi->pixel_overlap);
- 	}
+@@ -366,7 +366,7 @@ intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
+ 	 */
+ 	if (DISPLAY_VER(i915) == 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
+ 		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+-	else if (is_pipe_dsc(crtc, cpu_transcoder))
++	else if (intel_dsc_is_dsc_pipe(crtc, cpu_transcoder))
+ 		return POWER_DOMAIN_PIPE(pipe);
+ 	else
+ 		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+@@ -395,7 +395,7 @@ static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int
+ 	enum pipe pipe = crtc->pipe;
+ 	bool pipe_dsc;
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dss.c b/drivers/gpu/drm/i915/display/intel_dss.c
-index 3f7f416eb3fa..969e32143983 100644
---- a/drivers/gpu/drm/i915/display/intel_dss.c
-+++ b/drivers/gpu/drm/i915/display/intel_dss.c
-@@ -7,6 +7,7 @@
- #include "i915_reg_defs.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-+#include "intel_dsi.h"
- #include "intel_dss.h"
- #include "intel_dss_regs.h"
+-	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
++	pipe_dsc = intel_dsc_is_dsc_pipe(crtc, cpu_transcoder);
  
-@@ -87,3 +88,52 @@ void intel_dss_mso_configure(const struct intel_crtc_state *crtc_state)
- 		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
- 		     OVERLAP_PIXELS_MASK, dss1);
+ 	if (dsc_reg_num >= 3)
+ 		MISSING_CASE(dsc_reg_num);
+@@ -538,7 +538,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+ 		rc_buf_thresh_dword[i / 4] |=
+ 			(u32)(vdsc_cfg->rc_buf_thresh[i] <<
+ 			      BITS_PER_BYTE * (i % 4));
+-	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
++	if (!intel_dsc_is_dsc_pipe(crtc, cpu_transcoder)) {
+ 		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0,
+ 			       rc_buf_thresh_dword[0]);
+ 		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0_UDW,
+@@ -592,7 +592,7 @@ static void intel_dsc_pps_configure(const struct intel_crtc_state *crtc_state)
+ 				RC_MAX_QP_SHIFT) |
+ 			       (vdsc_cfg->rc_range_params[i].range_min_qp <<
+ 				RC_MIN_QP_SHIFT)) << 16 * (i % 2));
+-	if (!is_pipe_dsc(crtc, cpu_transcoder)) {
++	if (!intel_dsc_is_dsc_pipe(crtc, cpu_transcoder)) {
+ 		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0,
+ 			       rc_range_params_dword[0]);
+ 		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0_UDW,
+@@ -726,13 +726,13 @@ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
+ 
+ static i915_reg_t dss_ctl1_reg(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
+ {
+-	return is_pipe_dsc(crtc, cpu_transcoder) ?
++	return intel_dsc_is_dsc_pipe(crtc, cpu_transcoder) ?
+ 		ICL_PIPE_DSS_CTL1(crtc->pipe) : DSS_CTL1;
  }
-+
-+void intel_dss_dsi_dual_link_mode_configure(struct intel_encoder *encoder,
-+					    const struct intel_crtc_state *pipe_config,
-+					    u8 dual_link,
-+					    u8 pixel_overlap)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
-+	u32 dss_ctl1;
-+
-+	if (DISPLAY_VER(display) >= 12) {
-+		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
-+
-+		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
-+		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
-+	} else {
-+		dss_ctl1_reg = DSS_CTL1;
-+		dss_ctl2_reg = DSS_CTL2;
-+	}
-+
-+	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
-+	dss_ctl1 |= SPLITTER_ENABLE;
-+	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
-+	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
-+
-+	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
-+		const struct drm_display_mode *adjusted_mode =
-+					&pipe_config->hw.adjusted_mode;
-+		u16 hactive = adjusted_mode->crtc_hdisplay;
-+		u16 dl_buffer_depth;
-+
-+		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
-+		dl_buffer_depth = hactive / 2 + pixel_overlap;
-+
-+		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
-+			drm_err(display->drm,
-+				"DL buffer depth exceed max value\n");
-+
-+		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
-+		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
-+		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
-+			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
-+	} else {
-+		/* Interleave */
-+		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
-+	}
-+
-+	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dss.h b/drivers/gpu/drm/i915/display/intel_dss.h
-index 45d076d1e0d8..91e69f6ab506 100644
---- a/drivers/gpu/drm/i915/display/intel_dss.h
-+++ b/drivers/gpu/drm/i915/display/intel_dss.h
-@@ -16,6 +16,9 @@ u8 intel_dss_mso_pipe_mask(struct intel_display *display);
- void intel_dss_mso_get_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config);
- void intel_dss_mso_configure(const struct intel_crtc_state *crtc_state);
-+void intel_dss_dsi_dual_link_mode_configure(struct intel_encoder *encoder,
-+					    const struct intel_crtc_state *pipe_config,
-+					    u8 dual_link, u8 pixel_overlap);
  
- #endif /* __INTEL_DSS_H__ */
+ static i915_reg_t dss_ctl2_reg(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
+ {
+-	return is_pipe_dsc(crtc, cpu_transcoder) ?
++	return intel_dsc_is_dsc_pipe(crtc, cpu_transcoder) ?
+ 		ICL_PIPE_DSS_CTL2(crtc->pipe) : DSS_CTL2;
+ }
  
 -- 
 2.45.2
