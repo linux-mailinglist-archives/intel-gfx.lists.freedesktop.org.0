@@ -2,65 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C7E0963C2C
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 09:06:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6BE963DA3
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 09:50:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8CA210E4F2;
-	Thu, 29 Aug 2024 07:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3EF110E608;
+	Thu, 29 Aug 2024 07:50:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gB1vSJzm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PGUsnxUq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A3E10E4E4;
- Thu, 29 Aug 2024 07:06:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3353B10E608
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Aug 2024 07:50:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724915193; x=1756451193;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=GJcJH9cdSgbkYZkii0sV7KfcdN5fZp0ou6UuOH8qvjQ=;
- b=gB1vSJzmn8Qabm9u//w001PFwrxPoHokGiiFLd6dlm5XK8f2VSvvMI6h
- mTsc87iRIvQGh9iOKR5ZbwBJzjbMzmJOo4pRAtMTlBk5N6+/g7pD76tDm
- U+euO0Y9cIFSS8gCOY+DeoH41DSfYsNDQjBQpN9ttMV5GcX6kX9XcTXPD
- HFxH2BCHZA8rj629LKCXjLBfq7RU2lhNyngu2Q52AGBK0Ss+Fwk1D5qq0
- hFfS3HaCqpmUT7c1QQK7vMtXa+XYuugZaM7Xhd1pTu+s52s81MlthjSD/
- NVLqwE8b0czogC+Ra/wV/2EFxlA/fgJHoYJ8HNZnIJoXVGkR6JPJmtrx3 g==;
-X-CSE-ConnectionGUID: e5EA3wvQSHCosgFgVP3irg==
-X-CSE-MsgGUID: s7BohXe0S7uLK/mLwPFwLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23631846"
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="23631846"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 00:06:32 -0700
-X-CSE-ConnectionGUID: rvj0sBKMSw+CnhSJvwcB4g==
-X-CSE-MsgGUID: bZqzOS5XRfSccHpfvfDHjA==
+ t=1724917841; x=1756453841;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=xSw+0IHqxIqixKwhMjpYoComC+5WM9Rj+1YdZYTAbkU=;
+ b=PGUsnxUqp9oow3LxibGnOjW5TCxPBfg1ccsYpXPKaZOTO6CpvQFIh/OC
+ KSZjIvAD2XG2DBsviKbWJm5euo29KCL5mMeChBDa4bLiDnN8WhXZF9Wab
+ MIBdex8T4HFJERaEEtyMVB6YcoBiIvJ8LGYmUXi4GlVOm5Mgbaoao6U/B
+ aVaO7dCLUZe/RGDspL2D0I8Oe2FRdDCu2sncdSqhBxXP5qYOucjiOrBJs
+ 7ELiMGqr5Iw3VHWaHD2nydNItsRggJcSofZtgbFk5V5UOahdqhca4emzB
+ hzurzpTpTE/EfZdjWZuv+nv/nMKUx1wF/jcymtMHx2GFsEFar9OsU/3AV w==;
+X-CSE-ConnectionGUID: /0lgkDGdTGqc/qTZRqIDaQ==
+X-CSE-MsgGUID: jSDPwY3yRIW6IzXyVuCa+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="40995302"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="40995302"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 00:50:40 -0700
+X-CSE-ConnectionGUID: x0n2VPApRWK8IafM0nVRZw==
+X-CSE-MsgGUID: VlMBfjLaTmW3/LFlGU/gCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63675182"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.20])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 00:06:28 -0700
-Date: Thu, 29 Aug 2024 10:06:25 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <ZtAd8WTw1xiSu_TS@jlahtine-mobl.ger.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63486314"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 00:50:38 -0700
+Date: Thu, 29 Aug 2024 10:50:35 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, linux@roeck-us.net,
+ andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v1] drm/i915/hwmon: expose package temperature
+Message-ID: <ZtAoSkHLHEgT2Enw@black.fi.intel.com>
+References: <20240828044512.2710381-1-raag.jadav@intel.com>
+ <Zs8tJNV8ATILvmmA@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zs8tJNV8ATILvmmA@smile.fi.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,60 +74,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+On Wed, Aug 28, 2024 at 04:59:00PM +0300, Andy Shevchenko wrote:
+> On Wed, Aug 28, 2024 at 10:15:12AM +0530, Raag Jadav wrote:
+> > Add hwmon support for temp1_input attribute, which will expose package
+> > temperature in millidegree Celsius. With this in place we can monitor
+> > package temperature using lm-sensors tool.
+> > 
+> > $ sensors
+> > i915-pci-0300
+> > Adapter: PCI adapter
+> > in0:         990.00 mV
+> > fan1:        1260 RPM
+> > temp1:        +45.0°C
+> > power1:           N/A  (max =  35.00 W)
+> > energy1:      12.62 kJ
+> 
+> ...
+> 
+> > +static umode_t
+> > +hwm_temp_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+> > +{
+> > +	struct i915_hwmon *hwmon = ddat->hwmon;
+> > +
+> > +	if (attr == hwmon_temp_input && i915_mmio_reg_valid(hwmon->rg.pkg_temp))
+> > +		return 0444;
+> > +
+> > +	return 0;
+> 
+> Just a question (I'm fine with this implementation): is the style in this file
+> to check for correct cases first and return an err/etc at the end?
 
-Here goes drm-intel-fixes towards v6.11-rc6.
+The convention is to use switch case with err being the default, so I'd say yes.
 
-Fix for USB type-C docks, backlight fix for Lenovo Yoga Tab 3 2G version
-and ARL GuC firmware version correction.
+> > +}
+> > +
+> > +static int
+> > +hwm_temp_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> > +{
+> > +	struct i915_hwmon *hwmon = ddat->hwmon;
+> > +	intel_wakeref_t wakeref;
+> > +	u32 reg_val;
+> > +
+> > +	if (attr == hwmon_temp_input) {
+> > +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
+> > +			reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_temp);
+> > +
+> > +		/* HW register value is in degrees, convert to millidegrees. */
+> > +		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+> > +		return 0;
+> > +	}
+> 
+> ...because here we may drop an indentation level by doing it opposite
+> 
+> 	if (x != y)
+> 		return -E...;
+> 
 
-Regards, Joonas
+True, but the idea is to allow more cases in the future with minimal changes.
 
-***
-
-drm-intel-fixes-2024-08-29:
-
-- Fix #11195: The external display connect via USB type-C dock stays blank after re-connect the dock
-- Make DSI backlight work for 2G version of Lenovo Yoga Tab 3 X90F
-. Move ARL GuC firmware to correct version
--
-
-The following changes since commit 5be63fc19fcaa4c236b307420483578a56986a37:
-
-  Linux 6.11-rc5 (2024-08-25 19:07:11 +1200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-08-29
-
-for you to fetch changes up to a2ccc33b88e2953a6bf0b309e7e8849cc5320018:
-
-  drm/i915/dp_mst: Fix MST state after a sink reset (2024-08-28 11:32:25 +0300)
-
-----------------------------------------------------------------
-- Fix #11195: The external display connect via USB type-C dock stays blank after re-connect the dock
-- Make DSI backlight work for 2G version of Lenovo Yoga Tab 3 X90F
-. Move ARL GuC firmware to correct version
--
-
-----------------------------------------------------------------
-Hans de Goede (1):
-      drm/i915/dsi: Make Lenovo Yoga Tab 3 X90F DMI match less strict
-
-Imre Deak (1):
-      drm/i915/dp_mst: Fix MST state after a sink reset
-
-John Harrison (1):
-      drm/i915: ARL requires a newer GSC firmware
-
- drivers/gpu/drm/i915/display/intel_dp.c     | 12 +++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 40 +++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.h |  1 +
- drivers/gpu/drm/i915/display/vlv_dsi.c      |  1 -
- drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c   | 31 ++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 10 ++++++--
- drivers/gpu/drm/i915/i915_drv.h             |  2 ++
- drivers/gpu/drm/i915/intel_device_info.c    |  7 +++++
- drivers/gpu/drm/i915/intel_device_info.h    |  3 +++
- include/drm/intel/i915_pciids.h             | 11 +++++---
- 10 files changed, 111 insertions(+), 7 deletions(-)
+Raag
