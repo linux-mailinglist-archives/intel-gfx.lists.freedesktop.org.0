@@ -2,29 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7669638FC
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 05:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7E0963C2C
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 09:06:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63C9E10E180;
-	Thu, 29 Aug 2024 03:51:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8CA210E4F2;
+	Thu, 29 Aug 2024 07:06:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gB1vSJzm";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AC2810E17E;
- Thu, 29 Aug 2024 03:51:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29A3E10E4E4;
+ Thu, 29 Aug 2024 07:06:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1724915193; x=1756451193;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=GJcJH9cdSgbkYZkii0sV7KfcdN5fZp0ou6UuOH8qvjQ=;
+ b=gB1vSJzmn8Qabm9u//w001PFwrxPoHokGiiFLd6dlm5XK8f2VSvvMI6h
+ mTsc87iRIvQGh9iOKR5ZbwBJzjbMzmJOo4pRAtMTlBk5N6+/g7pD76tDm
+ U+euO0Y9cIFSS8gCOY+DeoH41DSfYsNDQjBQpN9ttMV5GcX6kX9XcTXPD
+ HFxH2BCHZA8rj629LKCXjLBfq7RU2lhNyngu2Q52AGBK0Ss+Fwk1D5qq0
+ hFfS3HaCqpmUT7c1QQK7vMtXa+XYuugZaM7Xhd1pTu+s52s81MlthjSD/
+ NVLqwE8b0czogC+Ra/wV/2EFxlA/fgJHoYJ8HNZnIJoXVGkR6JPJmtrx3 g==;
+X-CSE-ConnectionGUID: e5EA3wvQSHCosgFgVP3irg==
+X-CSE-MsgGUID: s7BohXe0S7uLK/mLwPFwLw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11178"; a="23631846"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="23631846"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 00:06:32 -0700
+X-CSE-ConnectionGUID: rvj0sBKMSw+CnhSJvwcB4g==
+X-CSE-MsgGUID: bZqzOS5XRfSccHpfvfDHjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63675182"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.20])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2024 00:06:28 -0700
+Date: Thu, 29 Aug 2024 10:06:25 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <ZtAd8WTw1xiSu_TS@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_linux-next=3A_build_failu?=
- =?utf-8?q?re_after_merge_of_the_drm-intel_tree_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stephen Rothwell" <sfr@canb.auug.org.au>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Aug 2024 03:51:21 -0000
-Message-ID: <172490348129.829836.3172560580960847456@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240829134638.7f9f1bf5@canb.auug.org.au>
-In-Reply-To: <20240829134638.7f9f1bf5@canb.auug.org.au>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,30 +73,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave & Sima,
 
-Series: linux-next: build failure after merge of the drm-intel tree (rev5)
-URL   : https://patchwork.freedesktop.org/series/42839/
-State : failure
+Here goes drm-intel-fixes towards v6.11-rc6.
 
-== Summary ==
+Fix for USB type-C docks, backlight fix for Lenovo Yoga Tab 3 2G version
+and ARL GuC firmware version correction.
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  MODPOST Module.symvers
-WARNING: modpost: missing MODULE_DESCRIPTION() in lib/asn1_decoder.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_simpleondemand.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_performance.o
-ERROR: modpost: "intel_dp_mst_verify_dpcd_state" [drivers/gpu/drm/i915/i915.ko] undefined!
-make[2]: *** [scripts/Makefile.modpost:145: Module.symvers] Error 1
-make[1]: *** [/home/kbuild/kernel/Makefile:1877: modpost] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-Build failed, no error log produced
+Regards, Joonas
 
+***
 
+drm-intel-fixes-2024-08-29:
+
+- Fix #11195: The external display connect via USB type-C dock stays blank after re-connect the dock
+- Make DSI backlight work for 2G version of Lenovo Yoga Tab 3 X90F
+. Move ARL GuC firmware to correct version
+-
+
+The following changes since commit 5be63fc19fcaa4c236b307420483578a56986a37:
+
+  Linux 6.11-rc5 (2024-08-25 19:07:11 +1200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-08-29
+
+for you to fetch changes up to a2ccc33b88e2953a6bf0b309e7e8849cc5320018:
+
+  drm/i915/dp_mst: Fix MST state after a sink reset (2024-08-28 11:32:25 +0300)
+
+----------------------------------------------------------------
+- Fix #11195: The external display connect via USB type-C dock stays blank after re-connect the dock
+- Make DSI backlight work for 2G version of Lenovo Yoga Tab 3 X90F
+. Move ARL GuC firmware to correct version
+-
+
+----------------------------------------------------------------
+Hans de Goede (1):
+      drm/i915/dsi: Make Lenovo Yoga Tab 3 X90F DMI match less strict
+
+Imre Deak (1):
+      drm/i915/dp_mst: Fix MST state after a sink reset
+
+John Harrison (1):
+      drm/i915: ARL requires a newer GSC firmware
+
+ drivers/gpu/drm/i915/display/intel_dp.c     | 12 +++++++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 40 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.h |  1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c      |  1 -
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c   | 31 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c    | 10 ++++++--
+ drivers/gpu/drm/i915/i915_drv.h             |  2 ++
+ drivers/gpu/drm/i915/intel_device_info.c    |  7 +++++
+ drivers/gpu/drm/i915/intel_device_info.h    |  3 +++
+ include/drm/intel/i915_pciids.h             | 11 +++++---
+ 10 files changed, 111 insertions(+), 7 deletions(-)
