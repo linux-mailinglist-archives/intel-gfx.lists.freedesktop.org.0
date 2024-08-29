@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B716B96489E
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 16:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401689648A3
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2024 16:36:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1761D10E6C0;
-	Thu, 29 Aug 2024 14:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD2CD10E6C1;
+	Thu, 29 Aug 2024 14:36:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VY0mrov+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jhvbLsHE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B1C10E6BF;
- Thu, 29 Aug 2024 14:35:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E556D10E6C1;
+ Thu, 29 Aug 2024 14:36:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724942152; x=1756478152;
+ t=1724942214; x=1756478214;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=zmaOI2DhvFTONo9OabibhQz00amuG/thp3HZ/OjmhSA=;
- b=VY0mrov+DETyt3HYvxrU5pYIi307VtiwunA5Pwa8VkQn/E4FS0QaMasQ
- ZMwSEtgMC9hWBKptxVLPVe95VyBi6JHMLsxz+PN+spv5sRptKAfhYcUez
- N87PCv3/2X62aYz5KNNBJ6SjB7z2fCOcDiITRvTSCvtB6A4WfQmxKEfJs
- olv3CHptNMgkBGdTT/SaEkpwkUUHbxVebN4eC1m/btX+9lPdvdLml5Wne
- ALH1pZx9yMwqZTWOUimGRG1HOx4R9MZ5TcrWrd7fGuAZZh/DWUWqBCkmH
- 6Llc3bSR8i9dr4Bcb6lSJuLoQNun267z67T20dOOkrOt+QvL9hS5/jAkG Q==;
-X-CSE-ConnectionGUID: HdixwOSsRtaKbYGA6u2oPw==
-X-CSE-MsgGUID: 4ErSR28cSQ6nsTOejTGT2Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="34196931"
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="34196931"
+ bh=lAby2oYVv50PYe4i0AeRgvY0ROTEVxa6PvR+Plv3qzY=;
+ b=jhvbLsHE49/6PeC8H2iuoFGoLI1KR0Mo6uLY7dc71/kCnSHIVfcxRSzI
+ aTFfNqIh1dQLaDS+FIfdygzUPibCdxrZ6h1hYZA4BlG12XzSAfchO32n6
+ 1ivlRSP7CjRbY3LZgp/5qKEc9tMXdDb7slfMxzTeE7o9xf0YaObahihyJ
+ 2Pbv57gqFAlxgc4Xvn1VV5mnIrwTpuYr/gbxtmMrjhKM2GOfI2ls4xX4r
+ uDQodINn5Dc9zvqZ8yuC0AUl468R8JkmHcdbXSNQRU86yco7zq5sNgopJ
+ Nl4DavDMFJOD70SZmTl0dD8wi9WDNyJxRMjtvNJRqfdVOYN9JJCV+CrrC A==;
+X-CSE-ConnectionGUID: Z1Xi6lUfQUiDFT6lhtV4vQ==
+X-CSE-MsgGUID: WKaxospSQsyM536YmBQQHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="34197285"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="34197285"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 07:35:11 -0700
-X-CSE-ConnectionGUID: rzXwuD/TRm+sNPLOyZA9hw==
-X-CSE-MsgGUID: csnb3bflQ1e9ZCA04zDUcA==
+ 29 Aug 2024 07:36:54 -0700
+X-CSE-ConnectionGUID: XsOUkyTXShOWE7R5+T+HRQ==
+X-CSE-MsgGUID: OH4j55UHQvyqxqNVUD5GXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63651731"
+X-IronPort-AV: E=Sophos;i="6.10,185,1719903600"; d="scan'208";a="63651790"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.89])
  ([10.245.245.89])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 07:35:09 -0700
-Message-ID: <893d0cb8-c0db-4f90-9d34-c3bd398ca46f@linux.intel.com>
-Date: Thu, 29 Aug 2024 16:35:10 +0200
+ 29 Aug 2024 07:36:51 -0700
+Message-ID: <62a324e0-a52d-4c84-acda-9ef6c45e777e@linux.intel.com>
+Date: Thu, 29 Aug 2024 16:36:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] drm/i915/display: Fix BMG CCS modifiers
@@ -73,14 +73,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
 
-D'oh, serves me right for changing patch around at last moment. :)
-
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-Cheers,
-~Maarten
 
 Den 2024-08-29 kl. 16:29, skrev Rodrigo Vivi:
 > On Thu, Aug 29, 2024 at 03:29:28PM +0300, Juha-Pekka Heikkila wrote:
@@ -110,11 +103,4 @@ Den 2024-08-29 kl. 16:29, skrev Rodrigo Vivi:
 > we should be using display version here, no?!
 > 
 >> +		caps |= INTEL_PLANE_CAP_NEED64K_PHYS;
->> +
->>  	return caps;
->>  }
->>  
->> -- 
->> 2.45.2
->>
-
+Just set it unconditionally if you want to change it IMO, it's a workaround not an actual capability, rest should filter...
