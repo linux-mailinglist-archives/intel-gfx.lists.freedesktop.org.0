@@ -2,79 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01177966087
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 13:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E0C96608E
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 13:25:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1604110EA86;
-	Fri, 30 Aug 2024 11:23:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB8C510EA8C;
+	Fri, 30 Aug 2024 11:25:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OOvSkAL5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIZLMeNJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
- [209.85.218.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D59710EA86;
- Fri, 30 Aug 2024 11:23:43 +0000 (UTC)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-a8692bbec79so201015266b.3; 
- Fri, 30 Aug 2024 04:23:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725017021; x=1725621821; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=LauK8dBdjC36U75LhfYWZk02RyLHMQVOv9d55VK+iOg=;
- b=OOvSkAL5sMAKgtmpYnuxMpjexkJV+zlPJVtpg2YtHmn3gYL+PhNfLY/eiI2TEGIPjc
- Vt7+Om1rlA/ve2lUaFNkgGhKMq7tvlTEzAn7ZglyGmOHO/n7WmhBVq82BzQ9X4oWu8xN
- xmu8Qj9gIZ9j8Y6ghgBjTs6IpNbzQz+aLlLKkeEaaxNrlRtMnceUtDIG2CYUxgdicitd
- QMpK9Vq3wpSGuX+PpZR6YEcA9MtMpNTWkilCVizp3bxrCeJMTFuswA72q0zVeCTsePC3
- NZkibOIfvRKRB3QR2QozgqshPG1jUWKRgZskfCvOtKcVA/jSDrece6u4dIW65DCEv5IB
- SyfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725017021; x=1725621821;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=LauK8dBdjC36U75LhfYWZk02RyLHMQVOv9d55VK+iOg=;
- b=lh33VoGYtbMAseU9ZctVZIkOR7x7JtfJE8t/4GJ/t7rxLEhQxUT60SxfXO+ebzh21h
- zE2Fslnz7BYkJHZrhfJ19QfXEYGdqIZkBa4NDtVhW26MvsmvVD5pQuyV3CWgCHB2u2fw
- Sfj5NnhzkAgQApoWq6O0nJyLIkYmTBcyEFdSUJRpzO1LO04rRCU+rLno6pX5ynf8MiVW
- W3z7deYDoq4U2pGXahWhbXNO0aVP2b3cCMDetbx9u2kl/KV+hzMm3Rk8aZk2vHMxQi4G
- fEzZlnXNT7hI3R7y0NXetibplF/UWeeMwC1T+ajKf3gReCHMKuVHCCwk6taNVWRoW7Up
- mpaQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVVNraVvgI+70PYGNVOqBPf0ozdGVS6uQ/HVo9zPeH6kn3zHMJvwLux54RcCYNpH5rph/41ry86DrQ=@lists.freedesktop.org,
- AJvYcCXjxNnJ0CQEtqN5/rtVH3au1IdJgL/faPYtL/eZRjzVIbxBInmlTyScp2jtMmPIQUGSXOZsMJYdBoA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz4MGk4kIqjbAEkHwq9xcvDW36K6vPBrkL/xnhjfuaIt1fF/Dcn
- iSHAcOt13S3hhSALJTgH1i+RdRFVo0OdXiPQDO9GHQvbUGKXkBLx8Q86f7/CsTY=
-X-Google-Smtp-Source: AGHT+IFEkgYkTrLo79GyxsDMelNWt9Kkvfv43gd7tu3sqpss1MyqBi9cNKxo/xHtrS5y/Nt3KVzSDw==
-X-Received: by 2002:a17:906:6a25:b0:a86:b32f:eee6 with SMTP id
- a640c23a62f3a-a89a3820bd8mr163481166b.54.1725017020964; 
- Fri, 30 Aug 2024 04:23:40 -0700 (PDT)
-Received: from [0.0.0.0] ([134.134.137.78])
- by smtp.googlemail.com with ESMTPSA id
- a640c23a62f3a-a89891db42fsm202885566b.184.2024.08.30.04.23.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 30 Aug 2024 04:23:38 -0700 (PDT)
-Message-ID: <37e416a4-8250-4f38-9dbb-a543324738c8@gmail.com>
-Date: Fri, 30 Aug 2024 14:23:30 +0300
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2553710EA8C;
+ Fri, 30 Aug 2024 11:25:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725017106; x=1756553106;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=R+e0dlZbId3Z5ZIz9n3sLh9pS4JAoIOIE81RNSiz7vg=;
+ b=cIZLMeNJEeCNkmt6WLK1Y/jzj17ICNx5KZ/1yIw2Lrc8Qp2UrABBw6vG
+ 4Wyvpv10NMx2180SRpC5e2CuKiKi3GV5a5WT5tWMTK+YfGo/8c6h8+Rmd
+ zrqwYvtcoWCUjMP3JhaI2Yx8OMTROKc98yf2zinJP2ujA4qtbmbUEm55b
+ 7gBLwA7Jy7E6NJqq9UG/WQ1QaNoeW9QRusa1XfvfEbD9sm0XefGkN+bnx
+ H6OWsFs7He0ShCKsinlYNrcXyfZjUOWc5k8sGB5nWhbXVaw9c7rpmMRiC
+ 5HneZ20RmuSPnBXoblJXWNZqQCKWmwbv+CfBF7Ugyn7WX6I8fv5AxPfl/ g==;
+X-CSE-ConnectionGUID: APUd7UYHRyOOrwNk0mnzzA==
+X-CSE-MsgGUID: HI6v8FcOQkSA3wazb205EQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23812415"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="23812415"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 04:25:06 -0700
+X-CSE-ConnectionGUID: R/apTafVRW6C2p6tIrgO8g==
+X-CSE-MsgGUID: EH72b40jQDmVFVmSOw82fQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="63883145"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 30 Aug 2024 04:25:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 30 Aug 2024 14:25:03 +0300
+Date: Fri, 30 Aug 2024 14:25:03 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, suraj.kandpal@intel.com
+Subject: Re: [PATCH 07/19] drm/i915/icl_dsi: Move helpers to configure dsi
+ dual link to intel_dss
+Message-ID: <ZtGsD-504h1UmRDu@intel.com>
+References: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
+ <20240830050950.2528450-8-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: Fix BMG CCS modifiers
-To: imre.deak@intel.com, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-References: <20240829122928.423456-1-juhapekka.heikkila@gmail.com>
- <ZtCFnopiRIDSbtJp@intel.com>
- <62a324e0-a52d-4c84-acda-9ef6c45e777e@linux.intel.com>
- <ZtCQG4EOrYdUGDLX@ideak-desk.fi.intel.com>
-Content-Language: en-US
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <ZtCQG4EOrYdUGDLX@ideak-desk.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240830050950.2528450-8-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,57 +70,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 29.8.2024 18.13, Imre Deak wrote:
-> On Thu, Aug 29, 2024 at 04:36:52PM +0200, Maarten Lankhorst wrote:
->>
->>
->> Den 2024-08-29 kl. 16:29, skrev Rodrigo Vivi:
->>> On Thu, Aug 29, 2024 at 03:29:28PM +0300, Juha-Pekka Heikkila wrote:
->>>> Let I915_FORMAT_MOD_4_TILED_BMG_CCS show up as supported modifier
->>>>
->>>
->>> doh! I just did the pull-request with that... I guess this is one extra
->>> pull request next week or the first patch of -next-fixes :/
->>>
->>> Fixes: 97c6efb36497 ("drm/i915/display: Plane capability for 64k phys alignment")
->>>
->>>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
->>>>   1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>>> index 9452cad41d07..d28b98e7cbd7 100644
->>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>>> @@ -2453,6 +2453,9 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
->>>>   	if (gen12_plane_has_mc_ccs(i915, plane_id))
->>>>   		caps |= INTEL_PLANE_CAP_CCS_MC;
->>>>   
->>>> +	if (GRAPHICS_VER(i915) >= 20 && IS_DGFX(i915))
->>>
->>> we should be using display version here, no?!
->>>
->>>> +		caps |= INTEL_PLANE_CAP_NEED64K_PHYS;
->>
->> Just set it unconditionally if you want to change it IMO, it's a
->> workaround not an actual capability, rest should filter...
+On Fri, Aug 30, 2024 at 10:39:37AM +0530, Ankit Nautiyal wrote:
+> Move the function to configure dss_ctl for dual_link dsi to intel_dss
+> files. While at it, use struct intel_display wherever possible.
 > 
-> I think it should be set only on platforms that actually require 64K
-> pages. So IIUC simply
->     IS_BATTLEMAGE()
-> or if it's known that future DGFX has this restriction too
->     IS_BATTLEMAGE() || (DISPLAY_VER() >= 20 && IS_DGFX())
-> ? Then the BMG and LNL checks in plane_has_modifier() wouldn't be
-> needed either.
+> v2: Avoid modifying the code while movement. (Jani)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c   | 57 ++----------------------
+>  drivers/gpu/drm/i915/display/intel_dss.c | 50 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dss.h |  3 ++
+>  3 files changed, 57 insertions(+), 53 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 79e149d51cb2..ec880d1cbbee 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -44,7 +44,7 @@
+>  #include "intel_de.h"
+>  #include "intel_dsi.h"
+>  #include "intel_dsi_vbt.h"
+> -#include "intel_dss_regs.h"
+> +#include "intel_dss.h"
+>  #include "intel_panel.h"
+>  #include "intel_vdsc.h"
+>  #include "skl_scaler.h"
+> @@ -274,55 +274,6 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+>  	}
+>  }
+>  
+> -static void configure_dual_link_mode(struct intel_encoder *encoder,
+> -				     const struct intel_crtc_state *pipe_config,
+> -				     u8 dual_link, u8 pixel_overlap)
+> -{
+> -	struct intel_display *display = to_intel_display(encoder);
+> -	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
+> -	u32 dss_ctl1;
+> -
+> -	/* FIXME: Move all DSS handling to intel_vdsc.c */
+> -	if (DISPLAY_VER(display) >= 12) {
+> -		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+> -
+> -		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
+> -		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
+> -	} else {
+> -		dss_ctl1_reg = DSS_CTL1;
+> -		dss_ctl2_reg = DSS_CTL2;
+> -	}
+> -
+> -	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
+> -	dss_ctl1 |= SPLITTER_ENABLE;
+> -	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
+> -	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
+> -
+> -	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+> -		const struct drm_display_mode *adjusted_mode =
+> -					&pipe_config->hw.adjusted_mode;
+> -		u16 hactive = adjusted_mode->crtc_hdisplay;
+> -		u16 dl_buffer_depth;
+> -
+> -		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
+> -		dl_buffer_depth = hactive / 2 + pixel_overlap;
+> -
+> -		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
+> -			drm_err(display->drm,
+> -				"DL buffer depth exceed max value\n");
+> -
+> -		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+> -		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+> -		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+> -			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
+> -	} else {
+> -		/* Interleave */
+> -		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+> -	}
+> -
+> -	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
+> -}
+> -
+>  /* aka DSI 8X clock */
+>  static int afe_clk(struct intel_encoder *encoder,
+>  		   const struct intel_crtc_state *crtc_state)
+> @@ -791,9 +742,9 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  		}
+>  
+>  		/* configure stream splitting */
+> -		configure_dual_link_mode(encoder, pipe_config,
+> -					 intel_dsi->dual_link,
+> -					 intel_dsi->pixel_overlap);
+> +		intel_dss_dsi_dual_link_mode_configure(encoder, pipe_config,
+> +						       intel_dsi->dual_link,
+> +						       intel_dsi->pixel_overlap);
+>  	}
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dss.c b/drivers/gpu/drm/i915/display/intel_dss.c
+> index 3f7f416eb3fa..969e32143983 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dss.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dss.c
+> @@ -7,6 +7,7 @@
+>  #include "i915_reg_defs.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+> +#include "intel_dsi.h"
+>  #include "intel_dss.h"
+>  #include "intel_dss_regs.h"
+>  
+> @@ -87,3 +88,52 @@ void intel_dss_mso_configure(const struct intel_crtc_state *crtc_state)
+>  		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
+>  		     OVERLAP_PIXELS_MASK, dss1);
+>  }
+> +
+> +void intel_dss_dsi_dual_link_mode_configure(struct intel_encoder *encoder,
+> +					    const struct intel_crtc_state *pipe_config,
+> +					    u8 dual_link,
+> +					    u8 pixel_overlap)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
+> +	u32 dss_ctl1;
+> +
+> +	if (DISPLAY_VER(display) >= 12) {
+> +		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+> +
+> +		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
+> +		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
+> +	} else {
+> +		dss_ctl1_reg = DSS_CTL1;
+> +		dss_ctl2_reg = DSS_CTL2;
+> +	}
+> +
+> +	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
+> +	dss_ctl1 |= SPLITTER_ENABLE;
+> +	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
+> +	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
+> +
+> +	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+> +		const struct drm_display_mode *adjusted_mode =
+> +					&pipe_config->hw.adjusted_mode;
+> +		u16 hactive = adjusted_mode->crtc_hdisplay;
+> +		u16 dl_buffer_depth;
+> +
+> +		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
+> +		dl_buffer_depth = hactive / 2 + pixel_overlap;
+> +
+> +		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
+> +			drm_err(display->drm,
+> +				"DL buffer depth exceed max value\n");
+> +
+> +		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+> +		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+> +		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+> +			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
 
-This sound good idea for this case. It's bit of a trick to check with 
-display versions we're on Xe2 which to me is synonym to gfx ver >= 20 
-but I'll make v2 with this change. It is expected future dgfx will have 
-same 64K requirement.
+Leaking the DSI mess outside of the DSI code is not great. The DSI
+code should really just be taught to use the crtc_state properly.
 
-/Juha-Pekka
+> +	} else {
+> +		/* Interleave */
+> +		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+> +	}
+> +
+> +	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dss.h b/drivers/gpu/drm/i915/display/intel_dss.h
+> index d4629052979a..aa8c67c15855 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dss.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dss.h
+> @@ -16,5 +16,8 @@ u8 intel_dss_mso_pipe_mask(struct intel_display *display);
+>  void intel_dss_mso_get_config(struct intel_encoder *encoder,
+>  			      struct intel_crtc_state *pipe_config);
+>  void intel_dss_mso_configure(const struct intel_crtc_state *crtc_state);
+> +void intel_dss_dsi_dual_link_mode_configure(struct intel_encoder *encoder,
+> +					    const struct intel_crtc_state *pipe_config,
+> +					    u8 dual_link, u8 pixel_overlap);
+>  
+>  #endif /* __INTEL_DSS_H__ */
+> -- 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
