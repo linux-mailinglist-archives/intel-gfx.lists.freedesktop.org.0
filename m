@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C01965E67
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 078CA965E65
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:16:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E66D10EA4F;
-	Fri, 30 Aug 2024 10:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC5610EA4C;
+	Fri, 30 Aug 2024 10:16:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lNEhBsUM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZInFOyhu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A72DE10E9F5;
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE9610E9D7;
  Fri, 30 Aug 2024 10:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1725012988; x=1756548988;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QTQ1pjaPAmDASaxhRx/iYYHSR4n9CBCIaXO2tso5eu0=;
- b=lNEhBsUM/xhwtB+EtNM9f3XxwGf505BGw5k3POhoorAJBVmiOZ/AROyM
- 9/PF2maCAyx9JN/vnQFpgmNjEDITm2B/StIAA7EMm03j7fGo//ijFvfLi
- yFLwwXtw5unT5s4P1s2LRyyryYwwplszBr3ORb5kZTXUwyYH+pFst3647
- /9VpBfFdThF3pAOoROYtivugEwat9PAFcNd+1mJ0YfUeYk3/xnWzUNsLI
- QjVrjPrmltOT/Tb+sUROLG+U7Y8xQDIAgNwFChmL6y+WRieOq3Pv3iVLU
- eU9IKoUoKmQt4zaA24muE6LBh2LRNtqN1Dyw/KaOPkP+OVbqxKD03IKKy A==;
-X-CSE-ConnectionGUID: +DGT0J57RbCEHsqjEXmU3Q==
-X-CSE-MsgGUID: niM5ac82SD+IbXGViriphQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23164458"
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="23164458"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 03:16:22 -0700
-X-CSE-ConnectionGUID: LF9FPKH5SReWjLKJHBGjAQ==
-X-CSE-MsgGUID: N/lRiNzSQ4+lTyEaUyIGqw==
+ bh=h9U8O25zxojfHWyAc+QrW6N7pO/taY8CKxpga83CqLw=;
+ b=ZInFOyhuHlzY5ay2MmnqIcEYDJaL89zVO58PZKT5ngRmB7U/1AD6q82W
+ muFOsVQuTf+rk+3rJ1Or6WuOin7fEdMwd7AZWyPWFLa8ZZ1Ujs2+SSdMq
+ gTeMtu/0RkR1FySgaGz52s0SB/bBIh3+NIqWkHqCAoWqaKJ4DK7EpF1Hj
+ x4Lyj55h+dnZJP3S8A6In0+aFdkRPCet8RYrSunnGw+WZv78WWxpCHaVq
+ mBqrhjcseURPTx17syXNL1FhV4RgKTvuSDES3W+YxOBVoAdG1g0r11c25
+ IpnU4YTSsTG47J/H63myDReSmTxPnWrPTsvHTi6eVHlE24BmAqzdMlFpL Q==;
+X-CSE-ConnectionGUID: jxuLorqzQw6tPyckxEMOXg==
+X-CSE-MsgGUID: AiY8+ysWRp+fecwp3iquHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="13295704"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="13295704"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 03:16:27 -0700
+X-CSE-ConnectionGUID: H6zQScgeQDOoyIA9+RO4yA==
+X-CSE-MsgGUID: Ei9Ayg1LSrqTq7kIUYm3nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68252511"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68516165"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.88])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 03:16:20 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 03:16:26 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 05/11] drm/i915/dp: convert intel_dp_aux.[ch] to struct
- intel_display
-Date: Fri, 30 Aug 2024 13:15:42 +0300
-Message-Id: <f295369d573d217323a624fd4b8dc477a6cf183b.1725012870.git.jani.nikula@intel.com>
+Subject: [PATCH 06/11] drm/i915/dp: convert intel_dp_link_training.[ch] to
+ struct intel_display
+Date: Fri, 30 Aug 2024 13:15:43 +0300
+Message-Id: <72b202e75f5a7ecc84a906f1c49d21dbe24fb7c2.1725012870.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725012870.git.jani.nikula@intel.com>
 References: <cover.1725012870.git.jani.nikula@intel.com>
@@ -73,552 +73,417 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display shall replace struct
 drm_i915_private as the main display device data pointer type. Convert
-intel_dp_aux.[ch] to struct intel_display.
+intel_dp_link_training.[ch] to struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  |  13 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c   | 114 +++++++++---------
- drivers/gpu/drm/i915/display/intel_dp_aux.h   |   4 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |   6 +-
- 4 files changed, 73 insertions(+), 64 deletions(-)
+ .../drm/i915/display/intel_dp_link_training.c | 105 +++++++++---------
+ 1 file changed, 55 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index d85c33eabc47..73369847ed66 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -576,6 +576,7 @@ void valleyview_pipestat_irq_handler(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 9c8738295106..40bedc31d6bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -39,13 +39,13 @@
+ 					drm_dp_phy_name(_dp_phy)
  
- static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	enum pipe pipe;
- 	u32 hotplug_trigger = pch_iir & SDE_HOTPLUG_MASK;
+ #define lt_dbg(_intel_dp, _dp_phy, _format, ...) \
+-	drm_dbg_kms(&dp_to_i915(_intel_dp)->drm, \
++	drm_dbg_kms(to_intel_display(_intel_dp)->drm, \
+ 		    LT_MSG_PREFIX _format, \
+ 		    LT_MSG_ARGS(_intel_dp, _dp_phy), ## __VA_ARGS__)
  
-@@ -589,7 +590,7 @@ static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- 	}
+ #define lt_err(_intel_dp, _dp_phy, _format, ...) do { \
+ 	if (intel_digital_port_connected(&dp_to_dig_port(_intel_dp)->base)) \
+-		drm_err(&dp_to_i915(_intel_dp)->drm, \
++		drm_err(to_intel_display(_intel_dp)->drm, \
+ 			LT_MSG_PREFIX _format, \
+ 			LT_MSG_ARGS(_intel_dp, _dp_phy), ## __VA_ARGS__); \
+ 	else \
+@@ -216,7 +216,8 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
  
- 	if (pch_iir & SDE_AUX_MASK)
--		intel_dp_aux_irq_handler(dev_priv);
-+		intel_dp_aux_irq_handler(display);
- 
- 	if (pch_iir & SDE_GMBUS)
- 		intel_gmbus_irq_handler(dev_priv);
-@@ -664,6 +665,7 @@ static void cpt_serr_int_handler(struct drm_i915_private *dev_priv)
- 
- static void cpt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	enum pipe pipe;
- 	u32 hotplug_trigger = pch_iir & SDE_HOTPLUG_MASK_CPT;
- 
-@@ -677,7 +679,7 @@ static void cpt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- 	}
- 
- 	if (pch_iir & SDE_AUX_MASK_CPT)
--		intel_dp_aux_irq_handler(dev_priv);
-+		intel_dp_aux_irq_handler(display);
- 
- 	if (pch_iir & SDE_GMBUS_CPT)
- 		intel_gmbus_irq_handler(dev_priv);
-@@ -709,7 +711,7 @@ void ilk_display_irq_handler(struct drm_i915_private *dev_priv, u32 de_iir)
- 		ilk_hpd_irq_handler(dev_priv, hotplug_trigger);
- 
- 	if (de_iir & DE_AUX_CHANNEL_A)
--		intel_dp_aux_irq_handler(dev_priv);
-+		intel_dp_aux_irq_handler(display);
- 
- 	if (de_iir & DE_GSE)
- 		intel_opregion_asle_intr(display);
-@@ -775,7 +777,7 @@ void ivb_display_irq_handler(struct drm_i915_private *dev_priv, u32 de_iir)
- 	}
- 
- 	if (de_iir & DE_AUX_CHANNEL_A_IVB)
--		intel_dp_aux_irq_handler(dev_priv);
-+		intel_dp_aux_irq_handler(display);
- 
- 	if (de_iir & DE_GSE_IVB)
- 		intel_opregion_asle_intr(display);
-@@ -1065,6 +1067,7 @@ static void gen8_read_and_ack_pch_irqs(struct drm_i915_private *i915, u32 *pch_i
- 
- void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	u32 iir;
- 	enum pipe pipe;
- 
-@@ -1100,7 +1103,7 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
- 			intel_uncore_write(&dev_priv->uncore, GEN8_DE_PORT_IIR, iir);
- 
- 			if (iir & gen8_de_port_aux_mask(dev_priv)) {
--				intel_dp_aux_irq_handler(dev_priv);
-+				intel_dp_aux_irq_handler(display);
- 				found = true;
- 			}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index cbc817bb0cc3..ff3b44b967c8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -17,12 +17,12 @@
- 
- #define AUX_CH_NAME_BUFSIZE	6
- 
--static const char *aux_ch_name(struct drm_i915_private *i915,
-+static const char *aux_ch_name(struct intel_display *display,
- 			       char *buf, int size, enum aux_ch aux_ch)
- {
--	if (DISPLAY_VER(i915) >= 13 && aux_ch >= AUX_CH_D_XELPD)
-+	if (DISPLAY_VER(display) >= 13 && aux_ch >= AUX_CH_D_XELPD)
- 		snprintf(buf, size, "%c", 'A' + aux_ch - AUX_CH_D_XELPD + AUX_CH_D);
--	else if (DISPLAY_VER(i915) >= 12 && aux_ch >= AUX_CH_USBC1)
-+	else if (DISPLAY_VER(display) >= 12 && aux_ch >= AUX_CH_USBC1)
- 		snprintf(buf, size, "USBC%c", '1' + aux_ch - AUX_CH_USBC1);
- 	else
- 		snprintf(buf, size, "%c", 'A' + aux_ch);
-@@ -55,17 +55,18 @@ static void intel_dp_aux_unpack(u32 src, u8 *dst, int dst_bytes)
- static u32
- intel_dp_aux_wait_done(struct intel_dp *intel_dp)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	i915_reg_t ch_ctl = intel_dp->aux_ch_ctl_reg(intel_dp);
- 	const unsigned int timeout_ms = 10;
- 	u32 status;
- 	int ret;
- 
--	ret = intel_de_wait_custom(i915, ch_ctl, DP_AUX_CH_CTL_SEND_BUSY, 0,
-+	ret = intel_de_wait_custom(display, ch_ctl, DP_AUX_CH_CTL_SEND_BUSY,
-+				   0,
- 				   2, timeout_ms, &status);
- 
- 	if (ret == -ETIMEDOUT)
--		drm_err(&i915->drm,
-+		drm_err(display->drm,
- 			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
- 			intel_dp->aux.name, timeout_ms, status);
- 
-@@ -74,7 +75,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
- 
- static u32 g4x_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 
- 	if (index)
- 		return 0;
-@@ -83,12 +84,12 @@ static u32 g4x_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- 	 * The clock divider is based off the hrawclk, and would like to run at
- 	 * 2MHz.  So, take the hrawclk value and divide by 2000 and use that
- 	 */
--	return DIV_ROUND_CLOSEST(DISPLAY_RUNTIME_INFO(i915)->rawclk_freq, 2000);
-+	return DIV_ROUND_CLOSEST(DISPLAY_RUNTIME_INFO(display)->rawclk_freq, 2000);
- }
- 
- static u32 ilk_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	u32 freq;
- 
-@@ -101,15 +102,16 @@ static u32 ilk_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
- 	 * divide by 2000 and use that
- 	 */
- 	if (dig_port->aux_ch == AUX_CH_A)
--		freq = i915->display.cdclk.hw.cdclk;
-+		freq = display->cdclk.hw.cdclk;
- 	else
--		freq = DISPLAY_RUNTIME_INFO(i915)->rawclk_freq;
-+		freq = DISPLAY_RUNTIME_INFO(display)->rawclk_freq;
- 	return DIV_ROUND_CLOSEST(freq, 2000);
- }
- 
- static u32 hsw_get_aux_clock_divider(struct intel_dp *intel_dp, int index)
+ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
  {
 -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 +	struct intel_display *display = to_intel_display(intel_dp);
 +	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
  
- 	if (dig_port->aux_ch != AUX_CH_A && HAS_PCH_LPT_H(i915)) {
-@@ -195,8 +197,8 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *intel_dp,
- 				int send_bytes,
- 				u32 unused)
+ 	if (intel_dp_is_edp(intel_dp))
+ 		return 0;
+@@ -225,7 +226,7 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
+ 	 * Detecting LTTPRs must be avoided on platforms with an AUX timeout
+ 	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
+ 	 */
+-	if (DISPLAY_VER(i915) >= 10 && !IS_GEMINILAKE(i915))
++	if (DISPLAY_VER(display) >= 10 && !IS_GEMINILAKE(i915))
+ 		if (drm_dp_dpcd_probe(&intel_dp->aux,
+ 				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
+ 			return -EIO;
+@@ -256,7 +257,8 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
+  */
+ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
  {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 +	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
--	struct drm_i915_private *i915 =	to_i915(dig_port->base.base.dev);
- 	u32 ret;
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int lttpr_count = 0;
  
  	/*
-@@ -221,7 +223,7 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *intel_dp,
- 	 * Power request bit is already set during aux power well enable.
- 	 * Preserve the bit across aux transactions.
+@@ -264,7 +266,7 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+ 	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
  	 */
--	if (DISPLAY_VER(i915) >= 14)
-+	if (DISPLAY_VER(display) >= 14)
- 		ret |= XELPDP_DP_AUX_CH_CTL_POWER_REQUEST;
+ 	if (!intel_dp_is_edp(intel_dp) &&
+-	    (DISPLAY_VER(i915) >= 10 && !IS_GEMINILAKE(i915))) {
++	    (DISPLAY_VER(display) >= 10 && !IS_GEMINILAKE(i915))) {
+ 		u8 dpcd[DP_RECEIVER_CAP_SIZE];
+ 		int err = intel_dp_read_dprx_caps(intel_dp, dpcd);
  
- 	return ret;
-@@ -233,6 +235,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 		  u8 *recv, int recv_size,
- 		  u32 aux_send_ctl_flags)
- {
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	struct intel_encoder *encoder = &dig_port->base;
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-@@ -291,7 +294,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 
- 	/* Try to wait for any previous AUX channel activity */
- 	for (try = 0; try < 3; try++) {
--		status = intel_de_read_notrace(i915, ch_ctl);
-+		status = intel_de_read_notrace(display, ch_ctl);
- 		if ((status & DP_AUX_CH_CTL_SEND_BUSY) == 0)
- 			break;
- 		msleep(1);
-@@ -300,10 +303,10 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
- 
- 	if (try == 3) {
--		const u32 status = intel_de_read(i915, ch_ctl);
-+		const u32 status = intel_de_read(display, ch_ctl);
- 
- 		if (status != intel_dp->aux_busy_last_status) {
--			drm_WARN(&i915->drm, 1,
-+			drm_WARN(display->drm, 1,
- 				 "%s: not started (status 0x%08x)\n",
- 				 intel_dp->aux.name, status);
- 			intel_dp->aux_busy_last_status = status;
-@@ -314,7 +317,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	}
- 
- 	/* Only 5 data registers! */
--	if (drm_WARN_ON(&i915->drm, send_bytes > 20 || recv_size > 20)) {
-+	if (drm_WARN_ON(display->drm, send_bytes > 20 || recv_size > 20)) {
- 		ret = -E2BIG;
- 		goto out;
- 	}
-@@ -330,17 +333,17 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 		for (try = 0; try < 5; try++) {
- 			/* Load the send data into the aux channel data registers */
- 			for (i = 0; i < send_bytes; i += 4)
--				intel_de_write(i915, ch_data[i >> 2],
-+				intel_de_write(display, ch_data[i >> 2],
- 					       intel_dp_aux_pack(send + i,
- 								 send_bytes - i));
- 
- 			/* Send the command and wait for it to complete */
--			intel_de_write(i915, ch_ctl, send_ctl);
-+			intel_de_write(display, ch_ctl, send_ctl);
- 
- 			status = intel_dp_aux_wait_done(intel_dp);
- 
- 			/* Clear done status and any errors */
--			intel_de_write(i915, ch_ctl,
-+			intel_de_write(display, ch_ctl,
- 				       status | DP_AUX_CH_CTL_DONE |
- 				       DP_AUX_CH_CTL_TIME_OUT_ERROR |
- 				       DP_AUX_CH_CTL_RECEIVE_ERROR);
-@@ -364,7 +367,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	}
- 
- 	if ((status & DP_AUX_CH_CTL_DONE) == 0) {
--		drm_err(&i915->drm, "%s: not done (status 0x%08x)\n",
-+		drm_err(display->drm, "%s: not done (status 0x%08x)\n",
- 			intel_dp->aux.name, status);
- 		ret = -EBUSY;
- 		goto out;
-@@ -376,7 +379,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	 * not connected.
- 	 */
- 	if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
--		drm_err(&i915->drm, "%s: receive error (status 0x%08x)\n",
-+		drm_err(display->drm, "%s: receive error (status 0x%08x)\n",
- 			intel_dp->aux.name, status);
- 		ret = -EIO;
- 		goto out;
-@@ -387,7 +390,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	 * -- don't fill the kernel log with these
- 	 */
- 	if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
--		drm_dbg_kms(&i915->drm, "%s: timeout (status 0x%08x)\n",
-+		drm_dbg_kms(display->drm, "%s: timeout (status 0x%08x)\n",
- 			    intel_dp->aux.name, status);
- 		ret = -ETIMEDOUT;
- 		goto out;
-@@ -402,7 +405,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	 * drm layer takes care for the necessary retries.
- 	 */
- 	if (recv_bytes == 0 || recv_bytes > 20) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "%s: Forbidden recv_bytes = %d on aux transaction\n",
- 			    intel_dp->aux.name, recv_bytes);
- 		ret = -EBUSY;
-@@ -413,7 +416,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 		recv_bytes = recv_size;
- 
- 	for (i = 0; i < recv_bytes; i += 4)
--		intel_dp_aux_unpack(intel_de_read(i915, ch_data[i >> 2]),
-+		intel_dp_aux_unpack(intel_de_read(display, ch_data[i >> 2]),
- 				    recv + i, recv_bytes - i);
- 
- 	ret = recv_bytes;
-@@ -462,7 +465,7 @@ static ssize_t
- intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
- {
- 	struct intel_dp *intel_dp = container_of(aux, struct intel_dp, aux);
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	u8 txbuf[20], rxbuf[20];
- 	size_t txsize, rxsize;
- 	u32 flags = intel_dp_aux_xfer_flags(msg);
-@@ -477,10 +480,10 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
- 		txsize = msg->size ? HEADER_SIZE + msg->size : BARE_ADDRESS_SIZE;
- 		rxsize = 2; /* 0 or 1 data bytes */
- 
--		if (drm_WARN_ON(&i915->drm, txsize > 20))
-+		if (drm_WARN_ON(display->drm, txsize > 20))
- 			return -E2BIG;
- 
--		drm_WARN_ON(&i915->drm, !msg->buffer != !msg->size);
-+		drm_WARN_ON(display->drm, !msg->buffer != !msg->size);
- 
- 		if (msg->buffer)
- 			memcpy(txbuf + HEADER_SIZE, msg->buffer, msg->size);
-@@ -505,7 +508,7 @@ intel_dp_aux_transfer(struct drm_dp_aux *aux, struct drm_dp_aux_msg *msg)
- 		txsize = msg->size ? HEADER_SIZE : BARE_ADDRESS_SIZE;
- 		rxsize = msg->size + 1;
- 
--		if (drm_WARN_ON(&i915->drm, rxsize > 20))
-+		if (drm_WARN_ON(display->drm, rxsize > 20))
- 			return -E2BIG;
- 
- 		ret = intel_dp_aux_xfer(intel_dp, txbuf, txsize,
-@@ -715,7 +718,7 @@ static i915_reg_t tgl_aux_data_reg(struct intel_dp *intel_dp, int index)
- 
- static i915_reg_t xelpdp_aux_ctl_reg(struct intel_dp *intel_dp)
+@@ -327,10 +329,11 @@ static bool
+ intel_dp_phy_is_downstream_of_source(struct intel_dp *intel_dp,
+ 				     enum drm_dp_phy dp_phy)
  {
 -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 +	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	enum aux_ch aux_ch = dig_port->aux_ch;
+ 	int lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
  
-@@ -726,16 +729,16 @@ static i915_reg_t xelpdp_aux_ctl_reg(struct intel_dp *intel_dp)
- 	case AUX_CH_USBC2:
- 	case AUX_CH_USBC3:
- 	case AUX_CH_USBC4:
--		return XELPDP_DP_AUX_CH_CTL(i915, aux_ch);
-+		return XELPDP_DP_AUX_CH_CTL(display, aux_ch);
- 	default:
- 		MISSING_CASE(aux_ch);
--		return XELPDP_DP_AUX_CH_CTL(i915, AUX_CH_A);
-+		return XELPDP_DP_AUX_CH_CTL(display, AUX_CH_A);
- 	}
+-	drm_WARN_ON_ONCE(&i915->drm, lttpr_count <= 0 && dp_phy != DP_PHY_DPRX);
++	drm_WARN_ON_ONCE(display->drm,
++			 lttpr_count <= 0 && dp_phy != DP_PHY_DPRX);
+ 
+ 	return lttpr_count <= 0 || dp_phy == DP_PHY_LTTPR(lttpr_count - 1);
  }
- 
- static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
+@@ -339,7 +342,7 @@ static u8 intel_dp_phy_voltage_max(struct intel_dp *intel_dp,
+ 				   const struct intel_crtc_state *crtc_state,
+ 				   enum drm_dp_phy dp_phy)
  {
 -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 +	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	enum aux_ch aux_ch = dig_port->aux_ch;
+ 	u8 voltage_max;
  
-@@ -746,10 +749,10 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
- 	case AUX_CH_USBC2:
- 	case AUX_CH_USBC3:
- 	case AUX_CH_USBC4:
--		return XELPDP_DP_AUX_CH_DATA(i915, aux_ch, index);
-+		return XELPDP_DP_AUX_CH_DATA(display, aux_ch, index);
- 	default:
- 		MISSING_CASE(aux_ch);
--		return XELPDP_DP_AUX_CH_DATA(i915, AUX_CH_A, index);
-+		return XELPDP_DP_AUX_CH_DATA(display, AUX_CH_A, index);
- 	}
- }
+ 	/*
+@@ -351,7 +354,7 @@ static u8 intel_dp_phy_voltage_max(struct intel_dp *intel_dp,
+ 	else
+ 		voltage_max = intel_dp_lttpr_voltage_max(intel_dp, dp_phy + 1);
  
-@@ -763,19 +766,20 @@ void intel_dp_aux_fini(struct intel_dp *intel_dp)
+-	drm_WARN_ON_ONCE(&i915->drm,
++	drm_WARN_ON_ONCE(display->drm,
+ 			 voltage_max != DP_TRAIN_VOLTAGE_SWING_LEVEL_2 &&
+ 			 voltage_max != DP_TRAIN_VOLTAGE_SWING_LEVEL_3);
  
- void intel_dp_aux_init(struct intel_dp *intel_dp)
+@@ -361,7 +364,7 @@ static u8 intel_dp_phy_voltage_max(struct intel_dp *intel_dp,
+ static u8 intel_dp_phy_preemph_max(struct intel_dp *intel_dp,
+ 				   enum drm_dp_phy dp_phy)
+ {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct intel_display *display = to_intel_display(intel_dp);
+ 	u8 preemph_max;
+ 
+ 	/*
+@@ -373,7 +376,7 @@ static u8 intel_dp_phy_preemph_max(struct intel_dp *intel_dp,
+ 	else
+ 		preemph_max = intel_dp_lttpr_preemph_max(intel_dp, dp_phy + 1);
+ 
+-	drm_WARN_ON_ONCE(&i915->drm,
++	drm_WARN_ON_ONCE(display->drm,
+ 			 preemph_max != DP_TRAIN_PRE_EMPH_LEVEL_2 &&
+ 			 preemph_max != DP_TRAIN_PRE_EMPH_LEVEL_3);
+ 
+@@ -383,10 +386,11 @@ static u8 intel_dp_phy_preemph_max(struct intel_dp *intel_dp,
+ static bool has_per_lane_signal_levels(struct intel_dp *intel_dp,
+ 				       enum drm_dp_phy dp_phy)
  {
 -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 +	struct intel_display *display = to_intel_display(intel_dp);
 +	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	return !intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy) ||
+-		DISPLAY_VER(i915) >= 10 || IS_BROXTON(i915);
++		DISPLAY_VER(display) >= 10 || IS_BROXTON(i915);
+ }
+ 
+ /* 128b/132b */
+@@ -950,7 +954,8 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
+ 				     const struct intel_crtc_state *crtc_state,
+ 				     enum drm_dp_phy dp_phy)
+ {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	bool source_tps3, sink_tps3, source_tps4, sink_tps4;
+ 
+ 	/* UHBR+ use separate 128b/132b TPS2 */
+@@ -1586,7 +1591,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+ 			       struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
++	struct intel_display *display = to_intel_display(state);
  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
  	struct intel_encoder *encoder = &dig_port->base;
- 	enum aux_ch aux_ch = dig_port->aux_ch;
- 	char buf[AUX_CH_NAME_BUFSIZE];
- 
--	if (DISPLAY_VER(i915) >= 14) {
-+	if (DISPLAY_VER(display) >= 14) {
- 		intel_dp->aux_ch_ctl_reg = xelpdp_aux_ctl_reg;
- 		intel_dp->aux_ch_data_reg = xelpdp_aux_data_reg;
--	} else if (DISPLAY_VER(i915) >= 12) {
-+	} else if (DISPLAY_VER(display) >= 12) {
- 		intel_dp->aux_ch_ctl_reg = tgl_aux_ctl_reg;
- 		intel_dp->aux_ch_data_reg = tgl_aux_data_reg;
--	} else if (DISPLAY_VER(i915) >= 9) {
-+	} else if (DISPLAY_VER(display) >= 9) {
- 		intel_dp->aux_ch_ctl_reg = skl_aux_ctl_reg;
- 		intel_dp->aux_ch_data_reg = skl_aux_data_reg;
- 	} else if (HAS_PCH_SPLIT(i915)) {
-@@ -789,7 +793,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
- 		intel_dp->aux_ch_data_reg = g4x_aux_data_reg;
+ 	bool passed;
+@@ -1631,7 +1636,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+ 	 * For test cases which rely on the link training or processing of HPDs
+ 	 * ignore_long_hpd flag can unset from the testcase.
+ 	 */
+-	if (i915->display.hotplug.ignore_long_hpd) {
++	if (display->hotplug.ignore_long_hpd) {
+ 		lt_dbg(intel_dp, DP_PHY_DPRX, "Ignore the link failure\n");
+ 		return;
  	}
- 
--	if (DISPLAY_VER(i915) >= 9)
-+	if (DISPLAY_VER(display) >= 9)
- 		intel_dp->get_aux_clock_divider = skl_get_aux_clock_divider;
- 	else if (IS_BROADWELL(i915) || IS_HASWELL(i915))
- 		intel_dp->get_aux_clock_divider = hsw_get_aux_clock_divider;
-@@ -798,17 +802,17 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
- 	else
- 		intel_dp->get_aux_clock_divider = g4x_get_aux_clock_divider;
- 
--	if (DISPLAY_VER(i915) >= 9)
-+	if (DISPLAY_VER(display) >= 9)
- 		intel_dp->get_aux_send_ctl = skl_get_aux_send_ctl;
- 	else
- 		intel_dp->get_aux_send_ctl = g4x_get_aux_send_ctl;
- 
--	intel_dp->aux.drm_dev = &i915->drm;
-+	intel_dp->aux.drm_dev = display->drm;
- 	drm_dp_aux_init(&intel_dp->aux);
- 
- 	/* Failure to allocate our preferred name is not critical */
- 	intel_dp->aux.name = kasprintf(GFP_KERNEL, "AUX %s/%s",
--				       aux_ch_name(i915, buf, sizeof(buf), aux_ch),
-+				       aux_ch_name(display, buf, sizeof(buf), aux_ch),
- 				       encoder->base.name);
- 
- 	intel_dp->aux.transfer = intel_dp_aux_transfer;
-@@ -817,10 +821,10 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
- 
- static enum aux_ch default_aux_ch(struct intel_encoder *encoder)
+@@ -1683,14 +1688,14 @@ static struct intel_dp *intel_connector_to_intel_dp(struct intel_connector *conn
+ static int i915_dp_force_link_rate_show(struct seq_file *m, void *data)
  {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
+ 	struct intel_connector *connector = to_intel_connector(m->private);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int current_rate = -1;
+ 	int force_rate;
+ 	int err;
+ 	int i;
  
- 	/* SKL has DDI E but no AUX E */
--	if (DISPLAY_VER(i915) == 9 && encoder->port == PORT_E)
-+	if (DISPLAY_VER(display) == 9 && encoder->port == PORT_E)
- 		return AUX_CH_A;
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
  
- 	return (enum aux_ch)encoder->port;
-@@ -830,10 +834,10 @@ static struct intel_encoder *
- get_encoder_by_aux_ch(struct intel_encoder *encoder,
- 		      enum aux_ch aux_ch)
+@@ -1698,7 +1703,7 @@ static int i915_dp_force_link_rate_show(struct seq_file *m, void *data)
+ 		current_rate = intel_dp->link_rate;
+ 	force_rate = intel_dp->link.force_rate;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	seq_printf(m, "%sauto%s",
+ 		   force_rate == 0 ? "[" : "",
+@@ -1754,7 +1759,7 @@ static ssize_t i915_dp_force_link_rate_write(struct file *file,
  {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_encoder *other;
+ 	struct seq_file *m = file->private_data;
+ 	struct intel_connector *connector = to_intel_connector(m->private);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int rate;
+ 	int err;
+@@ -1763,14 +1768,14 @@ static ssize_t i915_dp_force_link_rate_write(struct file *file,
+ 	if (rate < 0)
+ 		return rate;
  
--	for_each_intel_encoder(&i915->drm, other) {
-+	for_each_intel_encoder(display->drm, other) {
- 		if (other == encoder)
- 			continue;
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
  
-@@ -849,7 +853,7 @@ get_encoder_by_aux_ch(struct intel_encoder *encoder,
+ 	intel_dp_reset_link_params(intel_dp);
+ 	intel_dp->link.force_rate = rate;
  
- enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	*offp += len;
+ 
+@@ -1781,14 +1786,14 @@ DEFINE_SHOW_STORE_ATTRIBUTE(i915_dp_force_link_rate);
+ static int i915_dp_force_lane_count_show(struct seq_file *m, void *data)
  {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_encoder *other;
- 	const char *source;
- 	enum aux_ch aux_ch;
-@@ -870,23 +874,23 @@ enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder)
+ 	struct intel_connector *connector = to_intel_connector(m->private);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int current_lane_count = -1;
+ 	int force_lane_count;
+ 	int err;
+ 	int i;
  
- 	other = get_encoder_by_aux_ch(encoder, aux_ch);
- 	if (other) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "[ENCODER:%d:%s] AUX CH %s already claimed by [ENCODER:%d:%s]\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    aux_ch_name(i915, buf, sizeof(buf), aux_ch),
-+			    aux_ch_name(display, buf, sizeof(buf), aux_ch),
- 			    other->base.base.id, other->base.name);
- 		return AUX_CH_NONE;
- 	}
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
  
--	drm_dbg_kms(&i915->drm,
-+	drm_dbg_kms(display->drm,
- 		    "[ENCODER:%d:%s] Using AUX CH %s (%s)\n",
- 		    encoder->base.base.id, encoder->base.name,
--		    aux_ch_name(i915, buf, sizeof(buf), aux_ch), source);
-+		    aux_ch_name(display, buf, sizeof(buf), aux_ch), source);
+@@ -1796,7 +1801,7 @@ static int i915_dp_force_lane_count_show(struct seq_file *m, void *data)
+ 		current_lane_count = intel_dp->lane_count;
+ 	force_lane_count = intel_dp->link.force_lane_count;
  
- 	return aux_ch;
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	seq_printf(m, "%sauto%s",
+ 		   force_lane_count == 0 ? "[" : "",
+@@ -1856,7 +1861,7 @@ static ssize_t i915_dp_force_lane_count_write(struct file *file,
+ {
+ 	struct seq_file *m = file->private_data;
+ 	struct intel_connector *connector = to_intel_connector(m->private);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int lane_count;
+ 	int err;
+@@ -1865,14 +1870,14 @@ static ssize_t i915_dp_force_lane_count_write(struct file *file,
+ 	if (lane_count < 0)
+ 		return lane_count;
+ 
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	intel_dp_reset_link_params(intel_dp);
+ 	intel_dp->link.force_lane_count = lane_count;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	*offp += len;
+ 
+@@ -1883,17 +1888,17 @@ DEFINE_SHOW_STORE_ATTRIBUTE(i915_dp_force_lane_count);
+ static int i915_dp_max_link_rate_show(void *data, u64 *val)
+ {
+ 	struct intel_connector *connector = to_intel_connector(data);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
+ 
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	*val = intel_dp->link.max_rate;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return 0;
  }
- 
--void intel_dp_aux_irq_handler(struct drm_i915_private *i915)
-+void intel_dp_aux_irq_handler(struct intel_display *display)
+@@ -1902,17 +1907,17 @@ DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_max_link_rate_fops, i915_dp_max_link_rate_show,
+ static int i915_dp_max_lane_count_show(void *data, u64 *val)
  {
--	wake_up_all(&i915->display.gmbus.wait_queue);
-+	wake_up_all(&display->gmbus.wait_queue);
+ 	struct intel_connector *connector = to_intel_connector(data);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
+ 
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	*val = intel_dp->link.max_lane_count;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return 0;
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.h b/drivers/gpu/drm/i915/display/intel_dp_aux.h
-index 76d1f2ed7c2f..fad5d9c9402c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.h
-@@ -9,7 +9,7 @@
- #include <linux/types.h>
- 
- enum aux_ch;
--struct drm_i915_private;
-+struct intel_display;
- struct intel_dp;
- struct intel_encoder;
- 
-@@ -18,7 +18,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp);
- 
- enum aux_ch intel_dp_aux_ch(struct intel_encoder *encoder);
- 
--void intel_dp_aux_irq_handler(struct drm_i915_private *i915);
-+void intel_dp_aux_irq_handler(struct intel_display *display);
- u32 intel_dp_aux_pack(const u8 *src, int src_bytes);
- int intel_dp_aux_fw_sync_len(void);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index a1f07ee69a86..2c4e946d5575 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -456,6 +456,7 @@ u32 i9xx_hpd_irq_ack(struct drm_i915_private *dev_priv)
- 
- void i9xx_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 hotplug_status)
+@@ -1921,17 +1926,17 @@ DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_max_lane_count_fops, i915_dp_max_lane_count_sho
+ static int i915_dp_force_link_training_failure_show(void *data, u64 *val)
  {
-+	struct intel_display *display = &dev_priv->display;
- 	u32 pin_mask = 0, long_mask = 0;
- 	u32 hotplug_trigger;
+ 	struct intel_connector *connector = to_intel_connector(data);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
  
-@@ -477,7 +478,7 @@ void i9xx_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 hotplug_status)
- 	if ((IS_G4X(dev_priv) ||
- 	     IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
- 	    hotplug_status & DP_AUX_CHANNEL_MASK_INT_STATUS_G4X)
--		intel_dp_aux_irq_handler(dev_priv);
-+		intel_dp_aux_irq_handler(display);
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	*val = intel_dp->link.force_train_failure;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return 0;
  }
- 
- void ibx_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 hotplug_trigger)
-@@ -513,6 +514,7 @@ void ibx_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 hotplug_trigger)
- 
- void xelpdp_pica_irq_handler(struct drm_i915_private *i915, u32 iir)
+@@ -1939,20 +1944,20 @@ static int i915_dp_force_link_training_failure_show(void *data, u64 *val)
+ static int i915_dp_force_link_training_failure_write(void *data, u64 val)
  {
-+	struct intel_display *display = &i915->display;
- 	enum hpd_pin pin;
- 	u32 hotplug_trigger = iir & (XELPDP_DP_ALT_HOTPLUG_MASK | XELPDP_TBT_HOTPLUG_MASK);
- 	u32 trigger_aux = iir & XELPDP_AUX_TC_MASK;
-@@ -545,7 +547,7 @@ void xelpdp_pica_irq_handler(struct drm_i915_private *i915, u32 iir)
- 	}
+ 	struct intel_connector *connector = to_intel_connector(data);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
  
- 	if (trigger_aux)
--		intel_dp_aux_irq_handler(i915);
-+		intel_dp_aux_irq_handler(display);
+ 	if (val > 2)
+ 		return -EINVAL;
  
- 	if (!pin_mask && !trigger_aux)
- 		drm_err(&i915->drm,
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	intel_dp->link.force_train_failure = val;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return 0;
+ }
+@@ -1963,17 +1968,17 @@ DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_force_link_training_failure_fops,
+ static int i915_dp_force_link_retrain_show(void *data, u64 *val)
+ {
+ 	struct intel_connector *connector = to_intel_connector(data);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
+ 
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	*val = intel_dp->link.force_retrain;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return 0;
+ }
+@@ -1981,17 +1986,17 @@ static int i915_dp_force_link_retrain_show(void *data, u64 *val)
+ static int i915_dp_force_link_retrain_write(void *data, u64 val)
+ {
+ 	struct intel_connector *connector = to_intel_connector(data);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
+ 
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	intel_dp->link.force_retrain = val;
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	intel_hpd_trigger_irq(dp_to_dig_port(intel_dp));
+ 
+@@ -2004,17 +2009,17 @@ DEFINE_DEBUGFS_ATTRIBUTE(i915_dp_force_link_retrain_fops,
+ static int i915_dp_link_retrain_disabled_show(struct seq_file *m, void *data)
+ {
+ 	struct intel_connector *connector = to_intel_connector(m->private);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_dp *intel_dp = intel_connector_to_intel_dp(connector);
+ 	int err;
+ 
+-	err = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (err)
+ 		return err;
+ 
+ 	seq_printf(m, "%s\n", str_yes_no(intel_dp->link.retrain_disabled));
+ 
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return 0;
+ }
 -- 
 2.39.2
 
