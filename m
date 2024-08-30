@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F7E9656AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 07:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E3C9656AD
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 07:08:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA7C10E7D1;
-	Fri, 30 Aug 2024 05:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE06E10E7D7;
+	Fri, 30 Aug 2024 05:08:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bSyAUvcm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+ixio8Y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1434210E7D0;
- Fri, 30 Aug 2024 05:08:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B0D010E7D0;
+ Fri, 30 Aug 2024 05:08:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1724994499; x=1756530499;
+ t=1724994501; x=1756530501;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=arE856SoAQnc2FYXSVwc4yhMyVmfTrSwyFoBvxA+s/Y=;
- b=bSyAUvcmg4GGPeRgi5+kVCj5g+UNEYWcUd3VvvIofAsmOhZe3DfppH9g
- StnGvtPnARGE/+i+tWUIoxG8+kuwuD/uRTEPG3QXPN+CW/2zwRDDuJEHd
- iUmArBRsPzXm2gHdGdcgYtyCSHgGOU357Pnz5YgULB45NKkq1Elr3sJmr
- 9HquFB5HKUH8dPG541BKGEpyOe3l0DurOLkWfzfl3RS7wwzlatqM+Ph3y
- NecwIIB2rzfnwc6Bj3yJ2jyZNcJn7wu78DiqOq16jTCv4QzbYiNFWKMCR
- RhoVm3ZDj20tUDfPL1UL5aZpjM/89KGtrMh7/WEqafzVfQpSrJ2UMj/eb Q==;
-X-CSE-ConnectionGUID: 0wp42fzZSde+6KZOgqnEIQ==
-X-CSE-MsgGUID: oxHwAgNJShmWlOSovIAx1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23421661"
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="23421661"
+ bh=bLgsHe1cR/czH5W9dItRaNRIamDW7jPpteiLzIgebZ4=;
+ b=m+ixio8Y1J3MBgjZB44T4VZUtlnuhhMR0WlnimkuS4JYJLE8LjX+Kevt
+ 3ljWX9H53YqOm0FB1diYj7tGFy1P70yPR0OXTXmhcebYlO4GFIxN+PT8f
+ aSM+aMG3CBPNL0rGKnZFTqblwzic/L7wBFsjQJejX7NU9lWkP36aquuFk
+ AqGI6LtmEOHm9B56hqkR74tgkJKqwbZFdgonn/Nv7rJGxVnoSIXnDb+R3
+ OX6vOlVHgoAa5MS7UMVX12y0gHBp6dJj/MU548O7LZoTweLwZSQQC8I4B
+ ZYuPX7ACPUmFAm2pV6kZ+avZ8hfPUp0x4NfPEtfEzcvSNZCsoJQOrmmNV g==;
+X-CSE-ConnectionGUID: KPJ35PIiSn6G9LxzyC43ZA==
+X-CSE-MsgGUID: yHgvu3e0QqyCuRK67PAr3g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23421662"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="23421662"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 22:08:19 -0700
-X-CSE-ConnectionGUID: 2w5g1ZFfS2CTzck6Q0uOfw==
-X-CSE-MsgGUID: PMLf80M2QEGpeUvtsCh2lQ==
+ 29 Aug 2024 22:08:21 -0700
+X-CSE-ConnectionGUID: /5WtrBXmTrqNkRqu50z5Pw==
+X-CSE-MsgGUID: l9rGRVngQLCj7VpbSNCRBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="94610160"
+X-IronPort-AV: E=Sophos;i="6.10,187,1719903600"; d="scan'208";a="94610167"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2024 22:08:17 -0700
+ 29 Aug 2024 22:08:19 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 01/19] drm/i915/display: Move all DSS control registers to a
- new file
-Date: Fri, 30 Aug 2024 10:39:31 +0530
-Message-ID: <20240830050950.2528450-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/19] drm/i915/dss_regs: Use REG_* macros for the DSS ctl bits
+Date: Fri, 30 Aug 2024 10:39:32 +0530
+Message-ID: <20240830050950.2528450-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
 References: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,192 +69,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move all registers and bits related to dss ctl to a new file.
-
-v2: Move modification to use REG_* macros to a new patch. (Jani)
+Cleanup register definitions for DSS CLT reg bits.
+Replace the hand rolled (1<<n) with the modern REG_BIT().
+Use REG_GENMASK and REG_FIELD_PREP for the bit fields.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_dss_regs.h | 49 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vdsc.c     |  1 +
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 38 --------------
- 6 files changed, 53 insertions(+), 41 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_dss_regs.h
+ drivers/gpu/drm/i915/display/intel_dss_regs.h | 34 ++++++++++---------
+ 1 file changed, 18 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 293efc1f841d..5ad5011e1fee 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -44,9 +44,9 @@
- #include "intel_de.h"
- #include "intel_dsi.h"
- #include "intel_dsi_vbt.h"
-+#include "intel_dss_regs.h"
- #include "intel_panel.h"
- #include "intel_vdsc.h"
--#include "intel_vdsc_regs.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 25ff3ff0ab95..4566a60c981c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -57,6 +57,7 @@
- #include "intel_dp_tunnel.h"
- #include "intel_dpio_phy.h"
- #include "intel_dsi.h"
-+#include "intel_dss_regs.h"
- #include "intel_encoder.h"
- #include "intel_fdi.h"
- #include "intel_fifo_underrun.h"
-@@ -74,7 +75,6 @@
- #include "intel_snps_phy.h"
- #include "intel_tc.h"
- #include "intel_vdsc.h"
--#include "intel_vdsc_regs.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 78ce402a5cd0..3cb960ca6eda 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -87,6 +87,7 @@
- #include "intel_drrs.h"
- #include "intel_dsb.h"
- #include "intel_dsi.h"
-+#include "intel_dss_regs.h"
- #include "intel_dvo.h"
- #include "intel_fb.h"
- #include "intel_fbc.h"
-@@ -118,7 +119,6 @@
- #include "intel_tv.h"
- #include "intel_vblank.h"
- #include "intel_vdsc.h"
--#include "intel_vdsc_regs.h"
- #include "intel_vga.h"
- #include "intel_vrr.h"
- #include "intel_wm.h"
 diff --git a/drivers/gpu/drm/i915/display/intel_dss_regs.h b/drivers/gpu/drm/i915/display/intel_dss_regs.h
-new file mode 100644
-index 000000000000..b1e24ea027c3
---- /dev/null
+index b1e24ea027c3..cfc8ef451917 100644
+--- a/drivers/gpu/drm/i915/display/intel_dss_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_dss_regs.h
-@@ -0,0 +1,49 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_DSS_REGS_H__
-+#define __INTEL_DSS_REGS_H__
-+
-+#include "intel_display_reg_defs.h"
-+
-+/* Display Stream Splitter Control */
-+#define DSS_CTL1				_MMIO(0x67400)
-+#define  SPLITTER_ENABLE			(1 << 31)
-+#define  JOINER_ENABLE				(1 << 30)
-+#define  DUAL_LINK_MODE_INTERLEAVE		(1 << 24)
-+#define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
-+#define  OVERLAP_PIXELS_MASK			(0xf << 16)
-+#define  OVERLAP_PIXELS(pixels)			((pixels) << 16)
-+#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
-+#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
-+#define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
-+
-+#define DSS_CTL2				_MMIO(0x67404)
-+#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
-+#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
-+#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
-+#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
-+
-+#define _ICL_PIPE_DSS_CTL1_PB			0x78200
-+#define _ICL_PIPE_DSS_CTL1_PC			0x78400
-+#define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_PIPE_DSS_CTL1_PB, \
-+							   _ICL_PIPE_DSS_CTL1_PC)
-+#define  BIG_JOINER_ENABLE			(1 << 29)
-+#define  PRIMARY_BIG_JOINER_ENABLE		(1 << 28)
-+#define  VGA_CENTERING_ENABLE			(1 << 27)
-+#define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
-+#define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
-+#define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-+#define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
-+#define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
-+
-+#define _ICL_PIPE_DSS_CTL2_PB			0x78204
-+#define _ICL_PIPE_DSS_CTL2_PC			0x78404
-+#define ICL_PIPE_DSS_CTL2(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
-+							   _ICL_PIPE_DSS_CTL2_PB, \
-+							   _ICL_PIPE_DSS_CTL2_PC)
-+
-+#endif /* __INTEL_DSS_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 2e849b015e74..891346f1f09a 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -15,6 +15,7 @@
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dsi.h"
-+#include "intel_dss_regs.h"
- #include "intel_qp_tables.h"
- #include "intel_vdsc.h"
- #include "intel_vdsc_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index f921ad67b587..27c696e266af 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -8,44 +8,6 @@
+@@ -10,35 +10,37 @@
  
- #include "intel_display_reg_defs.h"
- 
--/* Display Stream Splitter Control */
--#define DSS_CTL1				_MMIO(0x67400)
+ /* Display Stream Splitter Control */
+ #define DSS_CTL1				_MMIO(0x67400)
 -#define  SPLITTER_ENABLE			(1 << 31)
 -#define  JOINER_ENABLE				(1 << 30)
 -#define  DUAL_LINK_MODE_INTERLEAVE		(1 << 24)
--#define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
++#define  SPLITTER_ENABLE			REG_BIT(31)
++#define  JOINER_ENABLE				REG_BIT(30)
++#define  DUAL_LINK_MODE_INTERLEAVE		REG_BIT(24)
+ #define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
 -#define  OVERLAP_PIXELS_MASK			(0xf << 16)
 -#define  OVERLAP_PIXELS(pixels)			((pixels) << 16)
 -#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
 -#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
--#define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
--
--#define DSS_CTL2				_MMIO(0x67404)
++#define  OVERLAP_PIXELS_MASK			REG_GENMASK(19, 16)
++#define  OVERLAP_PIXELS(pixels)			REG_FIELD_PREP(OVERLAP_PIXELS_MASK, pixels)
++#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		REG_GENMASK(11, 0)
++#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	REG_FIELD_PREP(LEFT_DL_BUF_TARGET_DEPTH_MASK, \
++							       pixels)
+ #define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
+ 
+ #define DSS_CTL2				_MMIO(0x67404)
 -#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
 -#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
 -#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
 -#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
--
--#define _ICL_PIPE_DSS_CTL1_PB			0x78200
--#define _ICL_PIPE_DSS_CTL1_PC			0x78400
--#define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_PIPE_DSS_CTL1_PB, \
--							   _ICL_PIPE_DSS_CTL1_PC)
++#define  LEFT_BRANCH_VDSC_ENABLE		REG_BIT(31)
++#define  RIGHT_BRANCH_VDSC_ENABLE		REG_BIT(15)
++#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		REG_GENMASK(11, 0)
++#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	REG_FIELD_PREP(RIGHT_DL_BUF_TARGET_DEPTH_MASK,\
++							       pixels)
+ 
+ #define _ICL_PIPE_DSS_CTL1_PB			0x78200
+ #define _ICL_PIPE_DSS_CTL1_PC			0x78400
+ #define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
+ 							   _ICL_PIPE_DSS_CTL1_PB, \
+ 							   _ICL_PIPE_DSS_CTL1_PC)
 -#define  BIG_JOINER_ENABLE			(1 << 29)
 -#define  PRIMARY_BIG_JOINER_ENABLE		(1 << 28)
 -#define  VGA_CENTERING_ENABLE			(1 << 27)
--#define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
--#define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
--#define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
++#define  BIG_JOINER_ENABLE			REG_BIT(29)
++#define  PRIMARY_BIG_JOINER_ENABLE		REG_BIT(28)
++#define  VGA_CENTERING_ENABLE			REG_BIT(27)
+ #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
+ #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
+ #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
 -#define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
 -#define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
--
--#define _ICL_PIPE_DSS_CTL2_PB			0x78204
--#define _ICL_PIPE_DSS_CTL2_PC			0x78404
--#define ICL_PIPE_DSS_CTL2(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
--							   _ICL_PIPE_DSS_CTL2_PB, \
--							   _ICL_PIPE_DSS_CTL2_PC)
--
- /* Icelake Display Stream Compression Registers */
- #define DSCA_PICTURE_PARAMETER_SET_0		_MMIO(0x6B200)
- #define DSCC_PICTURE_PARAMETER_SET_0		_MMIO(0x6BA00)
++#define  UNCOMPRESSED_JOINER_PRIMARY		REG_BIT(21)
++#define  UNCOMPRESSED_JOINER_SECONDARY		REG_BIT(20)
+ 
+ #define _ICL_PIPE_DSS_CTL2_PB			0x78204
+ #define _ICL_PIPE_DSS_CTL2_PC			0x78404
 -- 
 2.45.2
 
