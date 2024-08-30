@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADEC965FC8
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 13:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57133966079
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 13:19:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09BDD10EA7A;
-	Fri, 30 Aug 2024 11:00:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B31810EA89;
+	Fri, 30 Aug 2024 11:19:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GWL2rgDp";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0C2910EA79;
- Fri, 30 Aug 2024 11:00:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7093978747774235904=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7181D10EA87;
+ Fri, 30 Aug 2024 11:19:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725016785; x=1756552785;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=+nrC46M9xoaScMYbsAfvoH55EzPbA/yuO9JdxSynDTY=;
+ b=GWL2rgDp//os5pBsXADOU1CbJn3wXLi6JTHHeGCGXcAU5YIvKMjlHFP9
+ WlB6b4o8umR161Ct9XOCU4nbFE/rte4LX9FrruYQbT26ndiECHCSSpVkC
+ KWk2sGLzrN6evVDM5E+jYUPP6NjRDn5t2VVAF+2sz30y13eVbjRelRxRC
+ adJHPomS3CmEylEkN23iskIE4reOqZPSdt8pgDyjrGbGwOEjifyk7KR+2
+ TKmci9skHyE5ztKR7guTe7iRcUoT2q29yUk8Pdv6I3UEMR50dY28vAGJL
+ P5u8de6GGPBa4ZWrbZwLHM7UXWIowZhcZXqvyqeWV7caD4cxfJjkI+Fjz w==;
+X-CSE-ConnectionGUID: 4LuJPVAFQuaOT0UcFWWiOA==
+X-CSE-MsgGUID: uWiOZdncQYeo31VqOaIDiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23811974"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="23811974"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 04:19:44 -0700
+X-CSE-ConnectionGUID: spcr7STORXmnwe+nFTPEyw==
+X-CSE-MsgGUID: 6tcxRNLPQb2fujhettsU4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="63880060"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 30 Aug 2024 04:19:41 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 30 Aug 2024 14:19:40 +0300
+Date: Fri, 30 Aug 2024 14:19:40 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, suraj.kandpal@intel.com
+Subject: Re: [PATCH 02/19] drm/i915/dss_regs: Use REG_* macros for the DSS
+ ctl bits
+Message-ID: <ZtGqzFZzkn-HoVC4@intel.com>
+References: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
+ <20240830050950.2528450-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_fbdev=3A_Introduce_devm=5Fr?=
- =?utf-8?q?egister=5Fframebuffer=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 30 Aug 2024 11:00:35 -0000
-Message-ID: <172501563597.854308.6402461382379994254@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240830-fbdev-devm_register_framebuffer-v1-1-6d4186519c68@weissschuh.net>
-In-Reply-To: <20240830-fbdev-devm_register_framebuffer-v1-1-6d4186519c68@weissschuh.net>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240830050950.2528450-3-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,140 +70,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7093978747774235904==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Aug 30, 2024 at 10:39:32AM +0530, Ankit Nautiyal wrote:
+> Cleanup register definitions for DSS CLT reg bits.
 
-== Series Details ==
+DSS_CTL
 
-Series: fbdev: Introduce devm_register_framebuffer()
-URL   : https://patchwork.freedesktop.org/series/138009/
-State : success
+> Replace the hand rolled (1<<n) with the modern REG_BIT().
+> Use REG_GENMASK and REG_FIELD_PREP for the bit fields.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dss_regs.h | 34 ++++++++++---------
+>  1 file changed, 18 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dss_regs.h b/drivers/gpu/drm/i915/display/intel_dss_regs.h
+> index b1e24ea027c3..cfc8ef451917 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dss_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dss_regs.h
+> @@ -10,35 +10,37 @@
+>  
+>  /* Display Stream Splitter Control */
+>  #define DSS_CTL1				_MMIO(0x67400)
+> -#define  SPLITTER_ENABLE			(1 << 31)
+> -#define  JOINER_ENABLE				(1 << 30)
+> -#define  DUAL_LINK_MODE_INTERLEAVE		(1 << 24)
+> +#define  SPLITTER_ENABLE			REG_BIT(31)
+> +#define  JOINER_ENABLE				REG_BIT(30)
+> +#define  DUAL_LINK_MODE_INTERLEAVE		REG_BIT(24)
+>  #define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
 
-== Summary ==
+If we want to keep this then we should define the bit as
+DUAL_LINK_MODE_MASK, and then both values should be defined
+via REG_FIELD_PREP().
 
-CI Bug Log - changes from CI_DRM_15331 -> Patchwork_138009v1
-====================================================
+> -#define  OVERLAP_PIXELS_MASK			(0xf << 16)
+> -#define  OVERLAP_PIXELS(pixels)			((pixels) << 16)
+> -#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
+> -#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
+> +#define  OVERLAP_PIXELS_MASK			REG_GENMASK(19, 16)
+> +#define  OVERLAP_PIXELS(pixels)			REG_FIELD_PREP(OVERLAP_PIXELS_MASK, pixels)
+> +#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		REG_GENMASK(11, 0)
+> +#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	REG_FIELD_PREP(LEFT_DL_BUF_TARGET_DEPTH_MASK, \
+> +							       pixels)
 
-Summary
--------
+Protect with '(pixels)'
 
-  **SUCCESS**
+The extra line wrap seems pointless.
 
-  No regressions found.
+>  #define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
+>  
+>  #define DSS_CTL2				_MMIO(0x67404)
+> -#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
+> -#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
+> -#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
+> -#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
+> +#define  LEFT_BRANCH_VDSC_ENABLE		REG_BIT(31)
+> +#define  RIGHT_BRANCH_VDSC_ENABLE		REG_BIT(15)
+> +#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		REG_GENMASK(11, 0)
+> +#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	REG_FIELD_PREP(RIGHT_DL_BUF_TARGET_DEPTH_MASK,\
+> +							       pixels)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/index.html
+Another unprotected macro argument.
 
-Participating hosts (38 -> 36)
-------------------------------
+>  
+>  #define _ICL_PIPE_DSS_CTL1_PB			0x78200
+>  #define _ICL_PIPE_DSS_CTL1_PC			0x78400
+>  #define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
+>  							   _ICL_PIPE_DSS_CTL1_PB, \
+>  							   _ICL_PIPE_DSS_CTL1_PC)
+> -#define  BIG_JOINER_ENABLE			(1 << 29)
+> -#define  PRIMARY_BIG_JOINER_ENABLE		(1 << 28)
+> -#define  VGA_CENTERING_ENABLE			(1 << 27)
+> +#define  BIG_JOINER_ENABLE			REG_BIT(29)
+> +#define  PRIMARY_BIG_JOINER_ENABLE		REG_BIT(28)
+> +#define  VGA_CENTERING_ENABLE			REG_BIT(27)
+>  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
+>  #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
+>  #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
+> -#define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
+> -#define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
+> +#define  UNCOMPRESSED_JOINER_PRIMARY		REG_BIT(21)
+> +#define  UNCOMPRESSED_JOINER_SECONDARY		REG_BIT(20)
+>  
+>  #define _ICL_PIPE_DSS_CTL2_PB			0x78204
+>  #define _ICL_PIPE_DSS_CTL2_PC			0x78404
+> -- 
+> 2.45.2
 
-  Additional (1): bat-arlh-3 
-  Missing    (3): bat-dg2-11 bat-arls-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_138009v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [DMESG-WARN][1] ([i915#11349]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15331/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
-  [i915#11343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11725]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725
-  [i915#12041]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12041
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15331 -> Patchwork_138009v1
-
-  CI-20190529: 20190529
-  CI_DRM_15331: 2c1b4f4d497c7c28266d94a00170aad1bbaec5e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_7999: a73311079a5d8ac99eb25336a8369a2c3c6b519b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_138009v1: 2c1b4f4d497c7c28266d94a00170aad1bbaec5e3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/index.html
-
---===============7093978747774235904==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fbdev: Introduce devm_register_framebuffer()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138009/">https://patchwork.freedesktop.org/series/138009/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15331 -&gt; Patchwork_138009v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/index.html</p>
-<h2>Participating hosts (38 -&gt; 36)</h2>
-<p>Additional (1): bat-arlh-3 <br />
-  Missing    (3): bat-dg2-11 bat-arls-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_138009v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15331/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138009v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15331 -&gt; Patchwork_138009v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15331: 2c1b4f4d497c7c28266d94a00170aad1bbaec5e3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_7999: a73311079a5d8ac99eb25336a8369a2c3c6b519b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_138009v1: 2c1b4f4d497c7c28266d94a00170aad1bbaec5e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7093978747774235904==--
+-- 
+Ville Syrjälä
+Intel
