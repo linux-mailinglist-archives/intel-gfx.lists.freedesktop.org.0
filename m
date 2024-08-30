@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A084E965E54
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2EB965E57
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:16:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0ED010E03B;
-	Fri, 30 Aug 2024 10:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E922010E98F;
+	Fri, 30 Aug 2024 10:16:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IZ5d7r9Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NXd0KGH6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F41E89349;
- Fri, 30 Aug 2024 10:15:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30E2710E96A;
+ Fri, 30 Aug 2024 10:16:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725012956; x=1756548956;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DT4QGeaUxiB1KbG7WytITzt8iPsan5q1vE/hRn1C0bM=;
- b=IZ5d7r9YSpLIK3LNidc5rgxjsQiNCqADPMaLh5bK/ubeq6L4vAeW4JH4
- W8Hepr90RR2jak9Esa3HjDvcGtJLKJ7DTWef3UzcKgxbCvUPs8sP6vCAN
- ghktSNFMo3CO3aKqlgrkpKrvBjm9pBjWirSWNpbXRkjYJaJFqNP2jV/D+
- b48X0IIFSjABkEfV+p1j05m8v1+xaHrAHBaYHyZxaSc8Eh3zfmuT5F2zz
- kymrJzoGtia3vPvFqGwP+UDxbJNb1/2aaScWdmQwOim7ZfSBuuGyDrypp
- nBT4Hxk2r/faVFK1W1o4bToXCHAvYf8DUG71Ggl1C1BVeJ93gNq711QWE A==;
-X-CSE-ConnectionGUID: N7zMwyW3SSq58yBJ0NC/pg==
-X-CSE-MsgGUID: MvNUA5r1SI+IT9V2sprqiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23164387"
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="23164387"
+ t=1725012961; x=1756548961;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Vnwgi6YCBE/n83PVdIDcr1ofzqQawux/Xb1TvrW5Foc=;
+ b=NXd0KGH6xtpSFQcXawrfWTZ/8zKOzEMkbndHDQfCZNlepiUqy4zaCuYP
+ 5/E/+U8wQgt6d7BhLisMchxCizPT0TGVTgP5SbrhQ7AtFM8Lyv3x2+GX8
+ SdQc1mN14IqHlNBvt4grPCVvnkNFYr8SZcQPUGMQ0efeHpZwspvhFhg/a
+ 0rnnj4Dh3YX09Mx8kx8nhkKpZ3sK0/XVXBzZdIBzJ2Fx2nFhdzlDzKfX0
+ p1AGT/v5IIm5XG4MWdjHBXbqDmG150+AlRcazJuKzR7Vv4GaGKBuBbT33
+ ClEzfjVHIW8CdFu9ni3i6DcT61HOv9E4Je7ASzS9fF97Irxb5hESElBb+ A==;
+X-CSE-ConnectionGUID: 9UDP2a1HSayNlkmotGWdqA==
+X-CSE-MsgGUID: wAsy7CWkT5OiaWFyqhk1gA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23164402"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="23164402"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 03:15:55 -0700
-X-CSE-ConnectionGUID: gFyHBIP8QL+kE/6ew+3ZuQ==
-X-CSE-MsgGUID: qNzwk6orQlGA1fEoPQpWzg==
+ 30 Aug 2024 03:16:01 -0700
+X-CSE-ConnectionGUID: 7enokWSpT5KA0lCoojkpOw==
+X-CSE-MsgGUID: 4sVx5gDFRJe6QNstwznJyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68252412"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68252428"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.88])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 03:15:54 -0700
+ 30 Aug 2024 03:15:59 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 00/11] drm/i915/display: hdmi and dp related struct
- intel_display conversions
-Date: Fri, 30 Aug 2024 13:15:37 +0300
-Message-Id: <cover.1725012870.git.jani.nikula@intel.com>
+Subject: [PATCH 01/11] drm/xe/display: use xe && 0 to avoid warnings about
+ unused variables
+Date: Fri, 30 Aug 2024 13:15:38 +0300
+Message-Id: <2a9960df4d9f6423a2cc6a29a7a7b0c1420690c7.1725012870.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <cover.1725012870.git.jani.nikula@intel.com>
+References: <cover.1725012870.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -69,51 +71,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-More of the same, this time with the goal of hiding dp_to_i915().
+Avoid warnings about unused variables when the IS_LP(), IS_GEN9_LP(),
+and IS_GEN9_BC() macros are the only users of a variable. This is not
+currently the case, but prepare for future changes.
 
-Jani Nikula (11):
-  drm/xe/display: use xe && 0 to avoid warnings about unused variables
-  drm/i915/hdmi: convert to struct intel_display
-  drm/i915/dp: convert g4x_dp.[ch] to struct intel_display
-  drm/i915/dp: convert intel_dp_tunnel.[ch] to struct intel_display
-  drm/i915/dp: convert intel_dp_aux.[ch] to struct intel_display
-  drm/i915/dp: convert intel_dp_link_training.[ch] to struct
-    intel_display
-  drm/i915/pps: pass intel_dp to pps_name()
-  drm/i915/pps: convert intel_pps.[ch] to struct intel_display
-  drm/i915/psr: convert intel_psr.[ch] to struct intel_display
-  drm/i915/ddi: stop using dp_to_i915()
-  drm/i915/dp: hide dp_to_i915() inside intel_dp.c
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
- drivers/gpu/drm/i915/display/g4x_dp.c         | 152 ++--
- drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
- .../drm/i915/display/intel_display_debugfs.c  |   2 +-
- .../drm/i915/display/intel_display_driver.c   |   8 +-
- .../gpu/drm/i915/display/intel_display_irq.c  |  13 +-
- .../i915/display/intel_display_power_well.c   |  15 +-
- .../drm/i915/display/intel_display_reset.c    |   7 +-
- .../drm/i915/display/intel_display_types.h    |   2 -
- drivers/gpu/drm/i915/display/intel_dp.c       |   2 +
- drivers/gpu/drm/i915/display/intel_dp_aux.c   | 114 +--
- drivers/gpu/drm/i915/display/intel_dp_aux.h   |   4 +-
- .../drm/i915/display/intel_dp_link_training.c | 105 +--
- .../gpu/drm/i915/display/intel_dp_tunnel.c    |  77 +-
- .../gpu/drm/i915/display/intel_dp_tunnel.h    |  11 +-
- drivers/gpu/drm/i915/display/intel_dpll.c     |   9 +-
- .../gpu/drm/i915/display/intel_frontbuffer.c  |   7 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 500 ++++++-----
- drivers/gpu/drm/i915/display/intel_hdmi.h     |   1 -
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |   6 +-
- .../gpu/drm/i915/display/intel_pch_display.c  |   3 +-
- drivers/gpu/drm/i915/display/intel_pps.c      | 563 ++++++------
- drivers/gpu/drm/i915/display/intel_pps.h      |  10 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 848 +++++++++---------
- drivers/gpu/drm/i915/display/intel_psr.h      |   8 +-
- drivers/gpu/drm/i915/i915_driver.c            |   2 +-
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   6 +-
- 27 files changed, 1314 insertions(+), 1177 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index b7b12b20e390..7b128abcdb93 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -80,9 +80,9 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+ 
+ #define IS_MOBILE(xe) (xe && 0)
+ 
+-#define IS_LP(xe) (0)
+-#define IS_GEN9_LP(xe) (0)
+-#define IS_GEN9_BC(xe) (0)
++#define IS_LP(xe) ((xe) && 0)
++#define IS_GEN9_LP(xe) ((xe) && 0)
++#define IS_GEN9_BC(xe) ((xe) && 0)
+ 
+ #define IS_TIGERLAKE_UY(xe) (xe && 0)
+ #define IS_COMETLAKE_ULX(xe) (xe && 0)
 -- 
 2.39.2
 
