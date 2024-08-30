@@ -2,29 +2,136 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342F6965F13
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC51965F45
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:30:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36CCF10EA68;
-	Fri, 30 Aug 2024 10:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84FC010EA6B;
+	Fri, 30 Aug 2024 10:30:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="fuLWTUD/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Hh+DxBog";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SkB7zBlt";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="WI3+UTho";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4631B10EA67;
- Fri, 30 Aug 2024 10:27:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998F010EA67;
+ Fri, 30 Aug 2024 10:30:37 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 2E3D11F7C1;
+ Fri, 30 Aug 2024 10:30:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1725013836; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=k937I8cdtbLPG3kT8iCo5l5pl+cGpAGzmDZsqWVWZO0=;
+ b=fuLWTUD/EjH8+QoHAOHp/CgS+86rcCasFit5g3SgPQAqjdUmVuopAJBIpvvDVnuQp5JF3u
+ l/Oy2v7+dLjeBMC7kxIwqbL7Mynt/nbek15NdnsMuOb+DlbbRo0gZoulUhrkwjfjp4C77y
+ 0v///LGo9OqF3OjRE7mP5N/LFB8OQqQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1725013836;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=k937I8cdtbLPG3kT8iCo5l5pl+cGpAGzmDZsqWVWZO0=;
+ b=Hh+DxBogUv2WcU+Rt/JydNfnKNM1luSYod5FQtnsKNaRJ4QoA+4IDv/xRLBebahPdUL1+e
+ qDoPzYxp2TNCRVAw==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1725013835; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=k937I8cdtbLPG3kT8iCo5l5pl+cGpAGzmDZsqWVWZO0=;
+ b=SkB7zBlt4z4gcoYUB5ZR11bEtOwerIAqQ78hfLbTnnzN/xXgrnOxQ/1AWllLLT+8jFQpqs
+ dnnHr95iju4y9B1i/TgCnOXIvV6RTQlcCX1LZHt5dERCFiRiCUbE5GqCV6OjfECO0W/1+1
+ mxTFqo1Rr+03naWwfMygGrhn4sMAxWw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1725013835;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=k937I8cdtbLPG3kT8iCo5l5pl+cGpAGzmDZsqWVWZO0=;
+ b=WI3+UThoegsfIN+lBvSyHIQPIl7SBprNl9Mg2A2Cg9uDOVDGEF401p/LzRLRu54JmwHLPo
+ 4QT5nDeIUSIYpwDg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D83AC13A3D;
+ Fri, 30 Aug 2024 10:30:34 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id bFp3M0qf0WYsHgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 10:30:34 +0000
+Message-ID: <55274d81-d96c-47e7-a200-41636ffe1067@suse.de>
+Date: Fri, 30 Aug 2024 12:30:34 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm=3A_Provide_client_set?=
- =?utf-8?q?up_helper_and_convert_drivers_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 30 Aug 2024 10:27:18 -0000
-Message-ID: <172501363828.854207.14311352555928401429@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/81] drm: Add client-agnostic setup helper
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com,
+ javierm@redhat.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
-In-Reply-To: <20240830084456.77630-1-tzimmermann@suse.de>
+ <20240830084456.77630-5-tzimmermann@suse.de>
+ <6c78eb72-c555-1fa8-18f9-c1e671a8b12@linux-m68k.org>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <6c78eb72-c555-1fa8-18f9-c1e671a8b12@linux-m68k.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -2.80
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ RCPT_COUNT_SEVEN(0.00)[11]; RCVD_TLS_ALL(0.00)[];
+ ARC_NA(0.00)[]; TAGGED_RCPT(0.00)[renesas];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,lists.freedesktop.org,ideasonboard.com];
+ TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email, linux-m68k.org:email,
+ imap1.dmz-prg2.suse.org:helo, suse.de:mid, suse.de:email]
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,113 +144,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi
 
-Series: drm: Provide client setup helper and convert drivers (rev3)
-URL   : https://patchwork.freedesktop.org/series/137389/
-State : failure
+Am 30.08.24 um 11:45 schrieb Geert Uytterhoeven:
+>     Hi Thomas,
+>
+> On Fri, 30 Aug 2024, Thomas Zimmermann wrote:
+>> DRM may support multiple in-kernel clients that run as soon as a DRM
+>> driver has been registered. To select the client(s) in a single place,
+>> introduce drm_client_setup().
+>>
+>> Drivers that call the new helper automatically instantiate the kernel's
+>> configured default clients. Only fbdev emulation is currently supported.
+>> Later versions can add support for DRM-based logging, a boot logo or 
+>> even
+>> a console.
+>>
+>> Some drivers handle the color mode for clients internally. Provide the
+>> helper drm_client_setup_with_color_mode() for them.
+>>
+>> v3:
+>> - fix build error
+>> v2:
+>> - add drm_client_setup_with_fourcc() (Laurent)
+>> - push default-format handling into actual clients
+>>
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>> Reviewed-by: Laurent Pinchart 
+>> <laurent.pinchart+renesas@ideasonboard.com>
+>
+> Thanks for your patch!
+>
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_client_setup.c
+>
+>> +/**
+>> + * drm_client_setup_with_fourcc() - Setup in-kernel DRM clients for 
+>> color mode
+>> + * @dev: DRM device
+>> + * @fourcc: Preferred pixel format as 4CC code for the device
+>> + *
+>> + * This function sets up the in-kernel DRM clients. It is equivalent
+>> + * to drm_client_setup(), but expects a 4CC code as second argument.
+>> + *
+>> + * Do not use this function in new drivers. Prefer 
+>> drm_client_setup() with a
+>> + * format of NULL.
+>
+> Why? To me this looks like the right function to call on hardware
+> that does not support ARGB8888 natively.
 
-== Summary ==
+Sorry, that needs to be fixed. the _fourcc() helper is ok-ish.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/137389/revisions/3/mbox/ not applied
-Applying: drm/fbdev-helper: Move color-mode lookup into 4CC format helper
-Applying: drm/fbdev-helper: Set and clear VGA switcheroo client from fb_info
-Applying: drm/fbdev: Add memory-agnostic fbdev client
-Applying: drm: Add client-agnostic setup helper
-Applying: drm/fbdev-dma: Support struct drm_driver.fbdev_probe
-Applying: drm/arcgpu: Run DRM default client setup
-Applying: drm/arm/komeda: Run DRM default client setup
-Applying: drm/arm/hdlcd: Run DRM default client setup
-Applying: drm/arm/malidp: Run DRM default client setup
-Applying: drm/aspeed: Run DRM default client setup
-Applying: drm/atmel-hdlcd: Run DRM default client setup
-Applying: drm/fsl-dcu: Run DRM default client setup
-Applying: drm/hisilicon/kirin: Run DRM default client setup
-Applying: drm/hx8357d: Run DRM default client setup
-Applying: drm/ili9163: Run DRM default client setup
-Applying: drm/ili9225: Run DRM default client setup
-Applying: drm/ili9341: Run DRM default client setup
-Applying: drm/ili9486: Run DRM default client setup
-Applying: drm/imx/dcss: Run DRM default client setup
-Applying: drm/imx/ipuv3: Run DRM default client setup
-Applying: drm/imx/lcdc: Run DRM default client setup
-Applying: drm/ingenic: Run DRM default client setup
-Applying: drm/kmb: Run DRM default client setup
-Applying: drm/logicvc: Run DRM default client setup
-Applying: drm/mcde: Run DRM default client setup
-Applying: drm/mediatek: Run DRM default client setup
-Applying: drm/meson: Run DRM default client setup
-Applying: drm/mi0283qt: Run DRM default client setup
-Applying: drm/mxsfb/lcdif: Run DRM default client setup
-Applying: drm/mxsfb: Run DRM default client setup
-Applying: drm/panel/ili9341: Run DRM default client setup
-Applying: drm/panel-mipi-dbi: Run DRM default client setup
-Applying: drm/pl111: Run DRM default client setup
-Applying: drm/renesas/rcar-du: Run DRM default client setup
-Applying: drm/renesas/rz-du: Run DRM default client setup
-Applying: drm/renesas/shmobile: Run DRM default client setup
-Applying: drm/repaper: Run DRM default client setup
-Applying: drm/rockchip: Run DRM default client setup
-Applying: drm/sti: Run DRM default client setup
-Applying: drm/stm: Run DRM default client setup
-Applying: drm/sun4i: Run DRM default client setup
-Applying: drm/tidss: Run DRM default client setup
-Applying: drm/tilcdc: Run DRM default client setup
-Applying: drm/st7586: Run DRM default client setup
-Applying: drm/st7735r: Run DRM default client setup
-Applying: drm/tve200: Run DRM default client setup
-Applying: drm/vc4: Run DRM default client setup
-Applying: drm/xlnx: Run DRM default client setup
-Applying: drm/fbdev-dma: Remove obsolete setup function
-Applying: drm/fbdev-shmem: Support struct drm_driver.fbdev_probe
-Applying: drm/ast: Run DRM default client setup
-Applying: drm/cirrus: Run DRM default client setup
-Applying: drm/gm12u320: Run DRM default client setup
-Applying: drm/gud: Run DRM default client setup
-Applying: drm/hyperv_drm: Run DRM default client setup
-Applying: drm/mgag200: Run DRM default client setup
-Applying: drm/ofdrm: Use DRM default client setup
-Applying: drm/simpledrm: Run DRM default client setup
-Applying: drm/solomon: Run DRM default client setup
-Applying: drm/udl: Run DRM default client setup
-Applying: drm/virtgpu: Run DRM default client setup
-Applying: drm/vkms: Run DRM default client setup
-Applying: drm/fbdev-shmem: Remove obsolete setup function
-Applying: drm/fbdev-ttm: Support struct drm_driver.fbdev_probe
-Applying: drm/amdgpu: Run DRM default client setup
-Applying: drm/bochs: Run DRM default client setup
-Applying: drm/hisilicon/hibmc: Run DRM default client setup
-Applying: drm/loongson: Run DRM default client setup
-Applying: drm/nouveau: Run DRM default client setup
-Applying: drm/qxl: Run DRM default client setup
-Applying: drm/vboxvideo: Run DRM default client setup
-Applying: drm/vmwgfx: Run DRM default client setup
-Applying: drm/fbdev-ttm: Remove obsolete setup function
-Applying: drm/armada: Run DRM default client setup
-Applying: drm/exynos-drm: Run DRM default client setup
-Applying: drm/gma500: Run DRM default client setup
-Applying: drm/msm: Run DRM default client setup
-Applying: drm/radeon: Run DRM default client setup
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/radeon/radeon_drv.c
-M	drivers/gpu/drm/radeon/radeon_fbdev.c
-M	drivers/gpu/drm/radeon/radeon_mode.h
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/radeon/radeon_mode.h
-Auto-merging drivers/gpu/drm/radeon/radeon_fbdev.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/radeon/radeon_fbdev.c
-Auto-merging drivers/gpu/drm/radeon/radeon_drv.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/radeon/radeon_drv.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0078 drm/radeon: Run DRM default client setup
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Ideally, the client would select the format automatically. It could also 
+look at the preferred_depth in struct drm_mode_config. But some drivers 
+still want a different format for fbdev emulation. See the _fourcc() 
+helper as a fallback for this scenario.
 
+>
+> BTW, once this series is applied, I plan to check again how to wire up
+> native fbcon support for monochrome (DRM_FORMAT_R1) and grayscale
+> (DRM_FORMAT_R8), as used by the Solomon driver.
+
+The internals of fbdev emulation still use a color-mode value (see 
+drm_fbdev_client_setup()). This would require fixing first. It's 
+probably not hard.
+
+I know that you've been waiting for the format parameter for some time. 
+We're getting there. :)
+
+Best regards
+Thomas
+
+>
+>> + */
+>> +void drm_client_setup_with_fourcc(struct drm_device *dev, u32 fourcc)
+>> +{
+>> +    drm_client_setup(dev, drm_format_info(fourcc));
+>> +}
+>> +EXPORT_SYMBOL(drm_client_setup_with_fourcc);
+>> +
+>> +/**
+>> + * drm_client_setup_with_color_mode() - Setup in-kernel DRM clients 
+>> for color mode
+>> + * @dev: DRM device
+>> + * @color_mode: Preferred color mode for the device
+>> + *
+>> + * This function sets up the in-kernel DRM clients. It is equivalent
+>> + * to drm_client_setup(), but expects a color mode as second argument.
+>> + *
+>> + * Do not use this function in new drivers. Prefer 
+>> drm_client_setup() with a
+>
+>
+> Yeah, this is definitely not to be used in new drivers, as color_mode is
+> ambiguous.
+>
+>> + * format of NULL.
+>
+> or drm_client_setup_with_fourcc().
+>
+>> + */
+>> +void drm_client_setup_with_color_mode(struct drm_device *dev, 
+>> unsigned int color_mode)
+>> +{
+>> +    u32 fourcc = drm_driver_color_mode_format(dev, color_mode);
+>> +
+>> +    drm_client_setup_with_fourcc(dev, fourcc);
+>> +}
+>> +EXPORT_SYMBOL(drm_client_setup_with_color_mode);
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- 
+> geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a 
+> hacker. But
+> when I'm talking to journalists I just say "programmer" or something 
+> like that.
+>                                 -- Linus Torvalds
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
