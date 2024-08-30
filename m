@@ -2,54 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF521965D89
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 11:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A084E965E54
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:15:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B50610EA41;
-	Fri, 30 Aug 2024 09:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0ED010E03B;
+	Fri, 30 Aug 2024 10:15:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="Gv1wHL/D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IZ5d7r9Y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 478 seconds by postgrey-1.36 at gabe;
- Fri, 30 Aug 2024 09:54:09 UTC
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0622D10EA3F
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Aug 2024 09:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1725011169;
- bh=f2u18U78PGc6vCLjwSxdZlzpzyLhmRleTuFw0CDjKSo=;
- h=From:Date:Subject:To:Cc:From;
- b=Gv1wHL/DYorIvqIofEcjqy5UMbyvU+wFcvn0/aUdOjo1Oz0zVX4KaNsfKlAlEGpvv
- jPUneDRnpv3MvpCvBI+NFIhm1DfPkIGmgSoPnoWw/mJxKaj4uWIrnUDTZWdP7DAcv4
- dfXuGaimarSeCtc8IpvAcjEj3i/Vb1g6MHjneSHo=
-From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-Date: Fri, 30 Aug 2024 11:45:57 +0200
-Subject: [PATCH] fbdev: Introduce devm_register_framebuffer()
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F41E89349;
+ Fri, 30 Aug 2024 10:15:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725012956; x=1756548956;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DT4QGeaUxiB1KbG7WytITzt8iPsan5q1vE/hRn1C0bM=;
+ b=IZ5d7r9YSpLIK3LNidc5rgxjsQiNCqADPMaLh5bK/ubeq6L4vAeW4JH4
+ W8Hepr90RR2jak9Esa3HjDvcGtJLKJ7DTWef3UzcKgxbCvUPs8sP6vCAN
+ ghktSNFMo3CO3aKqlgrkpKrvBjm9pBjWirSWNpbXRkjYJaJFqNP2jV/D+
+ b48X0IIFSjABkEfV+p1j05m8v1+xaHrAHBaYHyZxaSc8Eh3zfmuT5F2zz
+ kymrJzoGtia3vPvFqGwP+UDxbJNb1/2aaScWdmQwOim7ZfSBuuGyDrypp
+ nBT4Hxk2r/faVFK1W1o4bToXCHAvYf8DUG71Ggl1C1BVeJ93gNq711QWE A==;
+X-CSE-ConnectionGUID: N7zMwyW3SSq58yBJ0NC/pg==
+X-CSE-MsgGUID: MvNUA5r1SI+IT9V2sprqiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="23164387"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="23164387"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 03:15:55 -0700
+X-CSE-ConnectionGUID: gFyHBIP8QL+kE/6ew+3ZuQ==
+X-CSE-MsgGUID: qNzwk6orQlGA1fEoPQpWzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68252412"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.88])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2024 03:15:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/11] drm/i915/display: hdmi and dp related struct
+ intel_display conversions
+Date: Fri, 30 Aug 2024 13:15:37 +0300
+Message-Id: <cover.1725012870.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240830-fbdev-devm_register_framebuffer-v1-1-6d4186519c68@weissschuh.net>
-X-B4-Tracking: v=1; b=H4sIANSU0WYC/x2NwQqDMBAFf0X2bCBRsdpfkSKJvrV7iJaNlYL47
- w0e5jCXmZMSVJDoWZykOCTJtmZxZUHT268LjMzZqbJVY7vaGg4zDpOJo2KRtENHVh8RvsxQ0zY
- P9JOzdeg95cpHwfK7D8Pruv4uF5RhcQAAAA==
-To: Daniel Vetter <daniel@ffwll.ch>, Helge Deller <deller@gmx.de>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, Bert Karwatzki <spasswolf@web.de>, 
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
- intel-gfx@lists.freedesktop.org, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1725011169; l=3061;
- i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
- bh=f2u18U78PGc6vCLjwSxdZlzpzyLhmRleTuFw0CDjKSo=;
- b=Mz1jJr3pHf9RMWLe6E/G+EHhq5gmfD2w28fH7mzcTv9RaLymYk6C8XPHHMAV96BTAWmMNkwPS
- gjySbQr5RlCB+7Xco6NBHo1jsoIUjMZ884OBXGoj8Ms2QKgTPED8k1F
-X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
- pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,87 +69,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Introduce a device-managed variant of register_framebuffer() which
-automatically unregisters the framebuffer on device destruction.
-This can simplify the error handling and resource management in drivers.
+More of the same, this time with the goal of hiding dp_to_i915().
 
-Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
----
-This is a fixed resend of [0], which was broken.
-Thanks to Bert [1], and Chaitanya Kumar [2]
-for reporting the issue.
+Jani Nikula (11):
+  drm/xe/display: use xe && 0 to avoid warnings about unused variables
+  drm/i915/hdmi: convert to struct intel_display
+  drm/i915/dp: convert g4x_dp.[ch] to struct intel_display
+  drm/i915/dp: convert intel_dp_tunnel.[ch] to struct intel_display
+  drm/i915/dp: convert intel_dp_aux.[ch] to struct intel_display
+  drm/i915/dp: convert intel_dp_link_training.[ch] to struct
+    intel_display
+  drm/i915/pps: pass intel_dp to pps_name()
+  drm/i915/pps: convert intel_pps.[ch] to struct intel_display
+  drm/i915/psr: convert intel_psr.[ch] to struct intel_display
+  drm/i915/ddi: stop using dp_to_i915()
+  drm/i915/dp: hide dp_to_i915() inside intel_dp.c
 
-[0] https://lore.kernel.org/lkml/20240827-efifb-sysfs-v1-3-c9cc3e052180@weissschuh.net/
-[1] https://lore.kernel.org/lkml/20240829224124.2978-1-spasswolf@web.de/
-[2] https://lore.kernel.org/lkml/SJ1PR11MB612925C1C533C09F8F62F7CBB9972@SJ1PR11MB6129.namprd11.prod.outlook.com/
+ drivers/gpu/drm/i915/display/g4x_dp.c         | 152 ++--
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   2 +-
+ .../drm/i915/display/intel_display_driver.c   |   8 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  13 +-
+ .../i915/display/intel_display_power_well.c   |  15 +-
+ .../drm/i915/display/intel_display_reset.c    |   7 +-
+ .../drm/i915/display/intel_display_types.h    |   2 -
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   | 114 +--
+ drivers/gpu/drm/i915/display/intel_dp_aux.h   |   4 +-
+ .../drm/i915/display/intel_dp_link_training.c | 105 +--
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    |  77 +-
+ .../gpu/drm/i915/display/intel_dp_tunnel.h    |  11 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   9 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   7 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 500 ++++++-----
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   1 -
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |   6 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      | 563 ++++++------
+ drivers/gpu/drm/i915/display/intel_pps.h      |  10 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 848 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_psr.h      |   8 +-
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   6 +-
+ 27 files changed, 1314 insertions(+), 1177 deletions(-)
 
-Helge, I didn't document the function devm_unregister_framebuffer() as
-it is only an internal helper and will ever only used by one user,
-similar to other helpers in fbmem.c.
----
- drivers/video/fbdev/core/fbmem.c | 30 ++++++++++++++++++++++++++++++
- include/linux/fb.h               |  1 +
- 2 files changed, 31 insertions(+)
-
-diff --git a/drivers/video/fbdev/core/fbmem.c b/drivers/video/fbdev/core/fbmem.c
-index 4c4ad0a86a50..3c568cff2913 100644
---- a/drivers/video/fbdev/core/fbmem.c
-+++ b/drivers/video/fbdev/core/fbmem.c
-@@ -544,6 +544,36 @@ unregister_framebuffer(struct fb_info *fb_info)
- }
- EXPORT_SYMBOL(unregister_framebuffer);
- 
-+static void devm_unregister_framebuffer(void *data)
-+{
-+	struct fb_info *info = data;
-+
-+	unregister_framebuffer(info);
-+}
-+
-+/**
-+ *	devm_register_framebuffer - resource-managed frame buffer device registration
-+ *	@dev: device the framebuffer belongs to
-+ *	@fb_info: frame buffer info structure
-+ *
-+ *	Registers a frame buffer device @fb_info to device @dev.
-+ *
-+ *	Returns negative errno on error, or zero for success.
-+ *
-+ */
-+int
-+devm_register_framebuffer(struct device *dev, struct fb_info *fb_info)
-+{
-+	int ret;
-+
-+	ret = register_framebuffer(fb_info);
-+	if (ret)
-+		return ret;
-+
-+	return devm_add_action_or_reset(dev, devm_unregister_framebuffer, fb_info);
-+}
-+EXPORT_SYMBOL(devm_register_framebuffer);
-+
- /**
-  *	fb_set_suspend - low level driver signals suspend
-  *	@info: framebuffer affected
-diff --git a/include/linux/fb.h b/include/linux/fb.h
-index db7d97b10964..abf6643ebcaf 100644
---- a/include/linux/fb.h
-+++ b/include/linux/fb.h
-@@ -601,6 +601,7 @@ extern ssize_t fb_sys_write(struct fb_info *info, const char __user *buf,
- /* fbmem.c */
- extern int register_framebuffer(struct fb_info *fb_info);
- extern void unregister_framebuffer(struct fb_info *fb_info);
-+extern int devm_register_framebuffer(struct device *dev, struct fb_info *fb_info);
- extern char* fb_get_buffer_offset(struct fb_info *info, struct fb_pixmap *buf, u32 size);
- extern void fb_pad_unaligned_buffer(u8 *dst, u32 d_pitch, u8 *src, u32 idx,
- 				u32 height, u32 shift_high, u32 shift_low, u32 mod);
-
----
-base-commit: 20371ba120635d9ab7fc7670497105af8f33eb08
-change-id: 20240830-fbdev-devm_register_framebuffer-647e9c103b9a
-
-Best regards,
 -- 
-Thomas Weißschuh <linux@weissschuh.net>
+2.39.2
 
