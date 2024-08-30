@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F4E9965E71
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF66965E72
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Aug 2024 12:16:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F2EE10EA5A;
-	Fri, 30 Aug 2024 10:16:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9DB10EA53;
+	Fri, 30 Aug 2024 10:16:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d70GWKZU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OCTXQWZC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 729D210EA5B;
- Fri, 30 Aug 2024 10:16:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38F0410EA53;
+ Fri, 30 Aug 2024 10:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725013009; x=1756549009;
+ t=1725013014; x=1756549014;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UbGv/jZPH7KFzwDCpW3Tg5AotbHs9Vde1viG88ugrhw=;
- b=d70GWKZUdrhGqyekfe1tFpQb6ZAizqegU/qFbThv3q0Qq8quwSTKUhYj
- uqYeUdR+EMqB4ih63CrnpQZMK6ARSboUVx0xKoV3LFhHjWTyrJeQl0L6C
- c2cjh9ZPehGdqvdzoVsPwztk8VTbeXDLstACwAGNUMFKlkRMDQPjzJLc3
- 389b3YEwuplg7NRBj/u7HrpNHEUHGrW2s9OifpDlwIqIy63m1vupXChKQ
- U3KT71x20odCSaRjg5xB9b2XdQASddmUU68u9JuDtjnsbZ0a/FK8LcewV
- ElvsBaTTzVb3hYIrOuVjroPS2iZYAL6ySws6/D4WFeW6sPOygsbmPmiol w==;
-X-CSE-ConnectionGUID: fJe59ppiRWKRc0+NNanPxQ==
-X-CSE-MsgGUID: rIxFdTDzR+Cf5jN/KlwEKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="13295708"
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="13295708"
+ bh=2QvXn41vq8PKQAW7HiV1WMlR3mDXpvzK107YBVsUFXo=;
+ b=OCTXQWZClcTT7xmRA0tlNQt8LuoifxyBkb80Y/aupGyEtO9qliYjI5tz
+ iKy09F92JlwPagZ+BDnZaWwEqhNsIZiRQpQWw/vpkgcWvxuDeWK0ibfeu
+ fsLD1xUtVb69t8U+wsFYNmbKl488SEDRIuQ+aVRiobO1+ZOTb0O8NYkrQ
+ 3O6pFgHarFT7s7sY0d5wD8jH4C2sspsBaS7dlkGXk5vEo992bF5v4geZp
+ ZD8MdUXd782T5ihKr/wuReLWVD05uVTG5ktrkWpSRgkv9rCKiSjXVcdoM
+ tnoYb0zBhj8o8IqSWrOKLuk15Y+H2vZ8OBEeJoTIr14/WpiYiAPQL124B w==;
+X-CSE-ConnectionGUID: eO+IyXFtQa+BqXfCRnHP4g==
+X-CSE-MsgGUID: r/BDIKcYSTGt2N1l0S+huQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11179"; a="13295710"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="13295710"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 03:16:49 -0700
-X-CSE-ConnectionGUID: eFtL33gUQuyBn8Go5ZR7RA==
-X-CSE-MsgGUID: +lFucT4VQnaNn42YqjtCNQ==
+ 30 Aug 2024 03:16:54 -0700
+X-CSE-ConnectionGUID: nOGRW2IcQ5eLaZob/1t1aQ==
+X-CSE-MsgGUID: iqb9Nb3sQrOuqCISJHhsAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68516205"
+X-IronPort-AV: E=Sophos;i="6.10,188,1719903600"; d="scan'208";a="68516209"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.88])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2024 03:16:48 -0700
+ 30 Aug 2024 03:16:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 10/11] drm/i915/ddi: stop using dp_to_i915()
-Date: Fri, 30 Aug 2024 13:15:47 +0300
-Message-Id: <6557281bc3f8df88931c045deb08cf76b727cda2.1725012870.git.jani.nikula@intel.com>
+Subject: [PATCH 11/11] drm/i915/dp: hide dp_to_i915() inside intel_dp.c
+Date: Fri, 30 Aug 2024 13:15:48 +0300
+Message-Id: <e214aa6991aea4fc878b36dcd3eaece9f1fba592.1725012870.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725012870.git.jani.nikula@intel.com>
 References: <cover.1725012870.git.jani.nikula@intel.com>
@@ -70,77 +70,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch to struct intel_display and to_intel_display() instead of using
-dp_to_i915().
+Now that only intel_dp.c uses dp_to_i915(), hide it there. This removes
+a header dependency on to_i915().
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h | 2 --
+ drivers/gpu/drm/i915/display/intel_dp.c            | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 25ff3ff0ab95..00fbe9f8c03a 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1400,7 +1400,7 @@ static void tgl_dkl_phy_set_signal_levels(struct intel_encoder *encoder,
- static int translate_signal_level(struct intel_dp *intel_dp,
- 				  u8 signal_levels)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(index_to_dp_signal_levels); i++) {
-@@ -1408,7 +1408,7 @@ static int translate_signal_level(struct intel_dp *intel_dp,
- 			return i;
- 	}
- 
--	drm_WARN(&i915->drm, 1,
-+	drm_WARN(display->drm, 1,
- 		 "Unsupported voltage swing/pre-emphasis level: 0x%x\n",
- 		 signal_levels);
- 
-@@ -2211,14 +2211,14 @@ static void intel_dp_sink_set_msa_timing_par_ignore_state(struct intel_dp *intel
- 							  const struct intel_crtc_state *crtc_state,
- 							  bool enable)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
- 			       enable ? DP_MSA_TIMING_PAR_IGNORE_EN : 0) <= 0)
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Failed to %s MSA_TIMING_PAR_IGNORE in the sink\n",
- 			    str_enable_disable(enable));
- }
-@@ -2227,20 +2227,20 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
- 					const struct intel_crtc_state *crtc_state,
- 					bool enable)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	struct intel_display *display = to_intel_display(intel_dp);
- 
- 	if (!crtc_state->fec_enable)
- 		return;
- 
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_FEC_CONFIGURATION,
- 			       enable ? DP_FEC_READY : 0) <= 0)
--		drm_dbg_kms(&i915->drm, "Failed to set FEC_READY to %s in the sink\n",
-+		drm_dbg_kms(display->drm, "Failed to set FEC_READY to %s in the sink\n",
- 			    enable ? "enabled" : "disabled");
- 
- 	if (enable &&
- 	    drm_dp_dpcd_writeb(&intel_dp->aux, DP_FEC_STATUS,
- 			       DP_FEC_DECODE_EN_DETECTED | DP_FEC_DECODE_DIS_DETECTED) <= 0)
--		drm_dbg_kms(&i915->drm, "Failed to clear FEC detected flags\n");
-+		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 868ff8976ed9..9863cbaa663a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -2081,8 +2081,6 @@ dp_to_lspcon(struct intel_dp *intel_dp)
+ 	return &dp_to_dig_port(intel_dp)->lspcon;
  }
  
- static int read_fec_detected_status(struct drm_dp_aux *aux)
+-#define dp_to_i915(__intel_dp) to_i915(dp_to_dig_port(__intel_dp)->base.base.dev)
+-
+ static inline struct intel_digital_port *
+ hdmi_to_dig_port(struct intel_hdmi *intel_hdmi)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 789c2f78826d..090353657125 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -89,6 +89,8 @@
+ #include "intel_vrr.h"
+ #include "intel_crtc_state_dump.h"
+ 
++#define dp_to_i915(__intel_dp) to_i915(dp_to_dig_port(__intel_dp)->base.base.dev)
++
+ /* DP DSC throughput values used for slice count calculations KPixels/s */
+ #define DP_DSC_PEAK_PIXEL_RATE			2720000
+ #define DP_DSC_MAX_ENC_THROUGHPUT_0		340000
 -- 
 2.39.2
 
