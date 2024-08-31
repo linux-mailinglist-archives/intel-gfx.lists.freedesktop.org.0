@@ -2,57 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F3F968157
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 10:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6236969E60
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:52:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC7010E241;
-	Mon,  2 Sep 2024 08:05:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y6lUBAha";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A73110E58C;
+	Tue,  3 Sep 2024 12:52:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA50310E23A
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Sep 2024 08:05:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725264323; x=1756800323;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U2eR3j/PbmtZd7fxfFMb2lsw9WLSelfDM+cNmjcioEw=;
- b=Y6lUBAhaPRFatr3qCKFNSL6g0oSZ9LRf0uGL18778DqEnfoWLT+/wR4f
- D8FGSYnvoAtX2pDhFFk1E/1sy60/65FCxIOVxgof9LOMnU2MvakRKVYEN
- EbOrc25nXObHhxbH9jDTALcTy9Pm4zVOtxuWaGgIPXRAVYTAHrC8BHBAf
- FrfASsed6aQsYPl/wlG7C8WzoVSTC2Rgmi+3ebtlKQZHO3dMe6VYpeiGe
- yOutKMZDJrG538dMFE970sRY2DW+6rwwmET020k9p1Mo4FwPeJaY2TRpf
- HRyt+fk+t/MZ7IIROYYkhxT5VQbpKei9vu199f8+h29GkB1+Mx6nlTSM9 w==;
-X-CSE-ConnectionGUID: MybJ+J3oQ/i1KWoA+DuXtw==
-X-CSE-MsgGUID: 4Ff3YSzRRvqWDA6ZVOcEBA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23967415"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23967415"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 01:05:23 -0700
-X-CSE-ConnectionGUID: uGMwReAlSfK06hgezHKtDA==
-X-CSE-MsgGUID: kn7WqlZnQrS9IQCzMKwOYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="65039963"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 01:05:22 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
- mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 13/13] drm/i915/display: Add fixed_rr to crtc_state_dump
-Date: Mon,  2 Sep 2024 13:36:34 +0530
-Message-ID: <20240902080635.2946858-14-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
-References: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5185A10E0D7;
+ Sat, 31 Aug 2024 09:38:46 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.88.194])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Wwqgz4k5bzyRD7;
+ Sat, 31 Aug 2024 17:38:07 +0800 (CST)
+Received: from dggpeml500022.china.huawei.com (unknown [7.185.36.66])
+ by mail.maildlp.com (Postfix) with ESMTPS id 4367A1400DC;
+ Sat, 31 Aug 2024 17:38:41 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by dggpeml500022.china.huawei.com
+ (7.185.36.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Sat, 31 Aug
+ 2024 17:38:41 +0800
+From: Hongbo Li <lihongbo22@huawei.com>
+To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <tursulin@ursulin.net>, <airlied@gmail.com>,
+ <daniel@ffwll.ch>
+CC: <lihongbo22@huawei.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>
+Subject: [PATCH -next] drm/i915: Remove extra unlikely helper
+Date: Sat, 31 Aug 2024 17:46:55 +0800
+Message-ID: <20240831094655.4153520-1-lihongbo22@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.90.53.73]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpeml500022.china.huawei.com (7.185.36.66)
+X-Mailman-Approved-At: Tue, 03 Sep 2024 12:52:48 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,28 +54,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Print vrr.fixed_rr along with other vrr parameters.
+In IS_ERR, the unlikely is used for the input parameter,
+so these is no need to use it again outside.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Hongbo Li <lihongbo22@huawei.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 705ec5ad385c..55bb1c327fab 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -296,8 +296,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		intel_dump_buffer("ELD: ", pipe_config->eld,
- 				  drm_eld_size(pipe_config->eld));
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 01b7587dd1f8..a3b83cfe1726 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -825,7 +825,7 @@ static int eb_select_context(struct i915_execbuffer *eb)
+ 	struct i915_gem_context *ctx;
  
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
-+	drm_printf(&p, "vrr: %s, fixed_rr: %s vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
-+		   str_yes_no(pipe_config->vrr.fixed_rr),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.flipline,
+ 	ctx = i915_gem_context_lookup(eb->file->driver_priv, eb->args->rsvd1);
+-	if (unlikely(IS_ERR(ctx)))
++	if (IS_ERR(ctx))
+ 		return PTR_ERR(ctx);
+ 
+ 	eb->gem_context = ctx;
 -- 
-2.45.2
+2.34.1
 
