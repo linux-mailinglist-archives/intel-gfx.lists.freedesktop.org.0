@@ -2,63 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC25969E62
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C46F9969E64
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:52:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B887110E58E;
-	Tue,  3 Sep 2024 12:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FF610E590;
+	Tue,  3 Sep 2024 12:52:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LJ93DXy6";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=kapsi.fi header.i=@kapsi.fi header.b="Bid52OYq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
- [209.85.166.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA8FE10E14C
- for <intel-gfx@lists.freedesktop.org>; Sun,  1 Sep 2024 09:56:19 +0000 (UTC)
-Received: by mail-io1-f49.google.com with SMTP id
- ca18e2360f4ac-82a151ac935so135003939f.3
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Sep 2024 02:56:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725184579; x=1725789379; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=dZPIqS3fCXYzyMiSKidYI1vfhTu3J8wlsxhW+eVJooI=;
- b=LJ93DXy6yTbdLjyWukUlLf8A1A1qwkd4r28OwpFpnVd26x0cOZ3pSWC5M+WRBjmEM0
- tQa8KttrTuvN/vyiFsQqoGGeilBfkWdxh4ecx5ymrQgPsqrSUPVMPX4IGoK90zaZIxmj
- LZnxCLYRwYMQH3QhbuLF9bhl5fJWq2+NuWCXKC4Z5X+3+JjnaIvJb9dCh79ShjShhZS6
- ouEruxxZshhxiu6vgteQC4JBmMgRDxsFBhFFOGn+oWi38vzSK2VCuOAqqA3TAYt6l+XL
- c0P6pW48xSYdAZm8QD07wMr3XkOkcMpBXUrCXRfbZ2zCgu+Bf1574ktdg4XtP6LbGkSj
- b4Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725184579; x=1725789379;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=dZPIqS3fCXYzyMiSKidYI1vfhTu3J8wlsxhW+eVJooI=;
- b=LmVUUMyteUIvWabGeUpewAy5iA+HggXlK+zFfc54iaziDgqsOAp2fJn913/xsKntsl
- P5jmKo40kHWZ4bVfk9fHyfHh+xj4VeD4VI0P4ziKM2Hj1xFmgkl/VkWIsMFJLGsLpr+7
- 3XR9nduVBr5Z74wwezzrgX33U3c9oVi5jemwpdSCJ0iAnKVw1YRXYbKYy40dOgTQ6tCp
- qZMj81bDLg9uftdydH+Ws1HwRLISo719SJ6645XN18kcNgpDlENRnFUMnwyVqtU3pZG1
- n687LtpagWF4DAEVaq9ENnwPP6mxZVmDO69QarazuGkgazQnDV3N4Xgf+7cacnkbvm9a
- 3Zzw==
-X-Gm-Message-State: AOJu0Yyw+1o6PqOCnA4716EqzJYb9NQvNcdzROywemDu5KJ7TmpofYgh
- cXFBYUO5tW/pLsKsj4ou4XpFj43gOlFx2FJ6D4xeznRlAXoxKlrqf+FffRpp42hQqLajTUxD6v3
- n3Ot/Oa2pIwa35WELkhdUyZ7D22A=
-X-Google-Smtp-Source: AGHT+IEiQcS4gl4+8PfEhIlB610NOOz/m0FzOErhVPGAr5cO5J0ZfxYvo076ZMN9b5InSlS+PegiBaPh3q8u/dPb2n0=
-X-Received: by 2002:a05:6602:3420:b0:825:2a43:27e7 with SMTP id
- ca18e2360f4ac-82a3730a727mr575254739f.4.1725184578869; Sun, 01 Sep 2024
- 02:56:18 -0700 (PDT)
+Received: from mail.kapsi.fi (mail-auth.kapsi.fi [91.232.154.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0CF010E0C7;
+ Sun,  1 Sep 2024 19:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+ s=20161220; h=References:Cc:To:Subject:Message-ID:From:
+ Content-Transfer-Encoding:Content-Type:Date:MIME-Version:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=spF0Jr7oCMuWWYaBUzIxTaZcwLNlD+eaLp7borKRh1E=; b=Bid52OYqHgAOY7jLDJTSsnohsQ
+ 8HJ/QIhi5h0NUynX9zGzoZSNow4+OW69kkDpBJISynN58L9uchwl5FYnRqu2WkA9jOsBWEU5E/sJN
+ Bm3QNxpGw4AGQRgD1Fw6pxQbxhN8bZTfupp/RVObfDTGovrXqh1egiGL7t3lwNSSiFUUBv9DTTcRi
+ OqzrUfhCzQMVbVax3u5Iv8Kri3uwKiIpA0JR77aSodJFLwvNMw6nl5GNr6Wt6GF8KqIU2k8cQB1En
+ ruC2/k2kcHt2QzK9gnnbQMZ1xNV1QO+Z8CzanFI2jDo9sWOyDvhkJSFw4UBiXrToxNlgtg7Cj1XbF
+ mZJmgTOw==;
+Received: from webng-gw.kapsi.fi ([91.232.154.200] helo=rainloop.kapsi.fi)
+ by mail.kapsi.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
+ (envelope-from <jyri.sarha@iki.fi>) id 1skqFb-00EgmQ-3B;
+ Sun, 01 Sep 2024 22:28:39 +0300
 MIME-Version: 1.0
-From: Andrey Toloknev <andreyhack@gmail.com>
-Date: Sun, 1 Sep 2024 14:56:07 +0500
-Message-ID: <CAK88eJc1R2Tij7dLf_1wFj7XFustFjREYPR3Zrqy9ETx8Oe8UA@mail.gmail.com>
-Subject: i915 | Bug in virtual PCH detection
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="000000000000ff087806210bd5f1"
+Date: Sun, 01 Sep 2024 19:28:37 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+From: jyri.sarha@iki.fi
+Message-ID: <765bab893c9859e4f73af2ea65e943dd913ec7f4@iki.fi>
+Subject: Re: [PATCH v3 43/81] drm/tilcdc: Run DRM default client setup
+To: "Thomas Zimmermann" <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>
+References: undefined <20240830084456.77630-1-tzimmermann@suse.de>
+X-SA-Exim-Connect-IP: 91.232.154.200
+X-SA-Exim-Mail-From: jyri.sarha@iki.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Mailman-Approved-At: Tue, 03 Sep 2024 12:52:48 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,126 +65,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000ff087806210bd5f1
-Content-Type: multipart/alternative; boundary="000000000000ff087606210bd5ef"
+August 30, 2024 at 11:40 AM, "Thomas Zimmermann" <tzimmermann@suse.de mai=
+lto:tzimmermann@suse.de?to=3D%22Thomas%20Zimmermann%22%20%3Ctzimmermann%4=
+0suse.de%3E > wrote:
 
---000000000000ff087606210bd5ef
-Content-Type: text/plain; charset="UTF-8"
+>=20
+>=20Call drm_client_setup_with_color_mode() to run the kernel's default
+> client setup for DRM. Set fbdev_probe in struct drm_driver, so that
+> the client setup can start the common fbdev client.
+>=20
+>=20v3:
+> - add DRM_FBDEV_DMA_DRIVER_OPS macro
+>=20
+>=20Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jyri Sarha <jyri.sarha@iki.fi>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-Hello!
+Acked-by: Jyri Sarha <jyri.sarha@iki.fi>
 
-I have 2 machines with Comet Lake CPUs on Tiger Lake PCH (500 series of
-Intel chipsets).
-For that configuration there was a patch for adding support for Tiger Lake
-PCH with CometLake CPU in 2021 -
-https://patchwork.freedesktop.org/patch/412664/
-This patch made possible correct detection of such chipset and cpu
-configuration for i915 kernel module. Without it there was no output to any
-display (HDMI/DP/DVI, even VGA).
+Thanks,
+Jyri
 
-But this patch doesn't touch intel_virt_detect_pch method, when you
-passthrough iGPU to a virtual machine.
-So, virtual PCH incorrectly detects as Cannon Lake and you have no output
-to a physical display with i915 driver:
-
-[    2.933139] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i915]]
-Assuming PCH ID a300
-[    2.933308] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Found Cannon
-Lake PCH (CNP)
-
-
-The bug is on line 173 in drivers/gpu/drm/i915/soc/intel_pch.c in method
-intel_virt_detect_pch:
-
-else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
-
-id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
-
-It must be:
-
-else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
-IS_GEN9_BC(dev_priv))
-
-id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
-
-
-After that small change you get correct detection of PCH and have output to
-a physical display in VM with passthrough iGPU:
-
-[   16.139809] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i915]]
-Assuming PCH ID a080
-[   16.261151] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Found Tiger
-Lake LP PCH
-
-
-All kernel versions in any distro since 2021 are affected by this small bug.
-The patch for i915 module of the actual kernel version is in attachment.
-
--- 
-Best regards, Andrey Toloknev
-
---000000000000ff087606210bd5ef
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello!<div><br></div><div>I have 2 machines with Comet Lak=
-e CPUs on Tiger Lake PCH (500 series of Intel chipsets).</div><div>For that=
- configuration there was a patch for adding support for Tiger Lake PCH with=
- CometLake CPU in 2021 -=C2=A0<a href=3D"https://patchwork.freedesktop.org/=
-patch/412664/">https://patchwork.freedesktop.org/patch/412664/</a></div><di=
-v>This patch made possible correct detection of such chipset and cpu config=
-uration for i915 kernel module. Without it there was no output to any displ=
-ay (HDMI/DP/DVI, even VGA).=C2=A0</div><div><br></div><div>But this patch d=
-oesn&#39;t touch intel_virt_detect_pch method, when you passthrough iGPU to=
- a virtual machine.=C2=A0</div><div>So, virtual PCH incorrectly detects as =
-Cannon Lake and you have no output to a physical display with i915 driver:=
-=C2=A0</div><blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"=
-><div><div>[ =C2=A0 =C2=A02.933139] i915 0000:00:02.0: [drm:intel_virt_dete=
-ct_pch [i915]] Assuming PCH ID a300</div></div><div><div>[ =C2=A0 =C2=A02.9=
-33308] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Found Cannon Lake PCH=
- (CNP)</div></div></blockquote><div><div><br></div><div>The bug is on line=
-=C2=A0173 in drivers/gpu/drm/i915/soc/intel_pch.c in method intel_virt_dete=
-ct_pch:</div></div><blockquote style=3D"margin:0 0 0 40px;border:none;paddi=
-ng:0px"><div><div>else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv=
-))</div></div></blockquote><blockquote style=3D"margin:0 0 0 40px;border:no=
-ne;padding:0px"><blockquote style=3D"margin:0 0 0 40px;border:none;padding:=
-0px"><div><div>		id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;</div></div></blockquo=
-te></blockquote><div><div>It must be:</div></div><blockquote style=3D"margi=
-n:0 0 0 40px;border:none;padding:0px"><div><div>else if (IS_TIGERLAKE(dev_p=
-riv) || IS_ROCKETLAKE(dev_priv) || IS_GEN9_BC(dev_priv))</div></div></block=
-quote><blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><bloc=
-kquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><div><div>id =3D=
- INTEL_PCH_TGP_DEVICE_ID_TYPE;</div></div></blockquote></blockquote><div><d=
-iv><br></div><div>After that small change you get correct detection of PCH =
-and have output to a physical display in VM with passthrough=C2=A0iGPU:</di=
-v></div><blockquote style=3D"margin:0 0 0 40px;border:none;padding:0px"><di=
-v><div>[ =C2=A0 16.139809] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i=
-915]] Assuming PCH ID a080</div></div><div><div>[ =C2=A0 16.261151] i915 00=
-00:00:02.0: [drm:intel_pch_type [i915]] Found Tiger Lake LP PCH</div></div>=
-</blockquote><div><div><br></div><div>All kernel versions in any distro sin=
-ce 2021 are affected by this small bug.</div><div>The patch for i915 module=
- of the actual kernel version is in attachment.=C2=A0</div><div><br></div><=
-span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=
-=3D"gmail_signature" data-smartmail=3D"gmail_signature">Best regards, Andre=
-y Toloknev</div></div></div>
-
---000000000000ff087606210bd5ef--
-
---000000000000ff087806210bd5f1
-Content-Type: application/octet-stream; name="tgl_vpch_fix.patch"
-Content-Disposition: attachment; filename="tgl_vpch_fix.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_m0jdmb290>
-X-Attachment-Id: f_m0jdmb290
-
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc29jL2ludGVsX3BjaC5jCTIwMjQtMDktMDEgMTQ6
-MjA6NDQuNDcwODQ3MDk4ICswNTAwCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NvYy9pbnRl
-bF9wY2guYwkyMDI0LTA5LTAxIDE0OjI5OjQ2LjY5NTk5ODU4NiArMDUwMApAQCAtMTcwLDcgKzE3
-MCw3IEBACiAKIAlpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpIHx8IElTX0FMREVSTEFLRV9Q
-KGRldl9wcml2KSkKIAkJaWQgPSBJTlRFTF9QQ0hfQURQX0RFVklDRV9JRF9UWVBFOwotCWVsc2Ug
-aWYgKElTX1RJR0VSTEFLRShkZXZfcHJpdikgfHwgSVNfUk9DS0VUTEFLRShkZXZfcHJpdikpCisJ
-ZWxzZSBpZiAoSVNfVElHRVJMQUtFKGRldl9wcml2KSB8fCBJU19ST0NLRVRMQUtFKGRldl9wcml2
-KSB8fCBJU19HRU45X0JDKGRldl9wcml2KSkKIAkJaWQgPSBJTlRFTF9QQ0hfVEdQX0RFVklDRV9J
-RF9UWVBFOwogCWVsc2UgaWYgKElTX0pBU1BFUkxBS0UoZGV2X3ByaXYpIHx8IElTX0VMS0hBUlRM
-QUtFKGRldl9wcml2KSkKIAkJaWQgPSBJTlRFTF9QQ0hfTUNDX0RFVklDRV9JRF9UWVBFOwo=
---000000000000ff087806210bd5f1--
+> ---
+> drivers/gpu/drm/tilcdc/tilcdc_drv.c | 5 ++++-
+> 1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+>=20diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/ti=
+lcdc/tilcdc_drv.c
+> index cd5eefa06060..8c9f3705aa6c 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> @@ -14,6 +14,7 @@
+> #include <linux/pm_runtime.h>
+>=20
+>=20#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+> #include <drm/drm_debugfs.h>
+> #include <drm/drm_drv.h>
+> #include <drm/drm_fbdev_dma.h>
+> @@ -374,7 +375,8 @@ static int tilcdc_init(const struct drm_driver *ddr=
+v, struct device *dev)
+>  goto init_failed;
+>  priv->is_registered =3D true;
+>=20
+>=20- drm_fbdev_dma_setup(ddev, bpp);
+> + drm_client_setup_with_color_mode(ddev, bpp);
+> +
+>  return 0;
+>=20
+>=20init_failed:
+> @@ -472,6 +474,7 @@ DEFINE_DRM_GEM_DMA_FOPS(fops);
+> static const struct drm_driver tilcdc_driver =3D {
+>  .driver_features =3D DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>  DRM_GEM_DMA_DRIVER_OPS,
+> + DRM_FBDEV_DMA_DRIVER_OPS,
+> #ifdef CONFIG_DEBUG_FS
+>  .debugfs_init =3D tilcdc_debugfs_init,
+> #endif
+> --=20
+>=202.46.0
+>
