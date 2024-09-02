@@ -2,189 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B39967E7E
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 06:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4753967E9F
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 06:51:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35AA310E1F2;
-	Mon,  2 Sep 2024 04:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA8610E1F6;
+	Mon,  2 Sep 2024 04:51:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S1S8nLg3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i8sK1F1F";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCB6C10E1F2;
- Mon,  2 Sep 2024 04:37:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5C210E1F5;
+ Mon,  2 Sep 2024 04:51:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725251830; x=1756787830;
+ t=1725252678; x=1756788678;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=4o9KfVPNIYS7q748kunQBww2Kyyx5NZYlg58nrSmans=;
- b=S1S8nLg3OCUxNVHiDlqwNszG/TQK0oa1OH1NlZan7GlTX210HgZsJh47
- VNGmYJPDAzjAp1G99MjE7JXiKULnrp8iexOugqGPOh+Qc/5nB79DSvry1
- q3zRnQDOdUqNEXqvl9hAzpe0kiakoB/C3tG+0ds2iyeUw9fl0JOCv9qy5
- H4ZfE6INvW3BmatYWObEOo3nw+WzCpPSAQ87YLUc3Q6J5MR5t3+XnYso1
- BqUqFewVHfaWfN3sQ1XP/LedfUWyPeHJoJEBuJ1kKs5pTXAPUDClBaXyh
- Tz3f9hnMv3hR0rSUSpYTjN/a51cCgxmqvjEmxVQJ5xxuc3BRG1LEuUxL8 g==;
-X-CSE-ConnectionGUID: UT2CfJ/+QA2hMbEQlAKdAA==
-X-CSE-MsgGUID: dtuvNZHPQT2XA1VuUGa3gA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23937337"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23937337"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2024 21:37:10 -0700
-X-CSE-ConnectionGUID: JbeKNcPqQf6MCOZ2zAE+Bw==
-X-CSE-MsgGUID: QphgIHouQ8eTGaLi8p06Ug==
+ bh=17T2qPOT7O+xcuF/9t8o5VXYdLTa6BigOt+WWaya2v8=;
+ b=i8sK1F1FCOy2IRrPTNVEVIkcDBWR2dXnEt5HiuCTkBIuBm+u2FFh47W5
+ 2YJA9vP4hhC5wZhYOe+uaQg8/3x+6hD+9cqxFQ9JxMg4MqCAJMqXHV8zB
+ QPeECQrZIukDxav+abZtVj+2jMcgkcLz9rjlL0x5rjOkxB7qOyyWAU2Px
+ AKFrUnHYO11m4rC8y2jpF0e1rlt8znshwzFD8blvHIG7NL6rFn1kIQh/f
+ 1e3E2gt1VJ2ZSI+JOkKHkkEW+3QvSUM+NzFQDtsKhAML47ElBVjuq+z0m
+ 8SkThN/+DmJ7XGN0OO1uEI44jATBQ/kELVCtm3BHoUg3eYMafW1YrkA+T w==;
+X-CSE-ConnectionGUID: m1IKP/bfQPqj2DveMF2YWA==
+X-CSE-MsgGUID: IgoYaOiiS/+N679gjmVMzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23625987"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23625987"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2024 21:51:17 -0700
+X-CSE-ConnectionGUID: ou92Z8d1RH2+x/uOOm2Yug==
+X-CSE-MsgGUID: hKWk+/UFT/SI01WUnWFn/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="69286166"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="69378710"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 01 Sep 2024 21:37:09 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 01 Sep 2024 21:51:17 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 1 Sep 2024 21:37:09 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Sun, 1 Sep 2024 21:51:16 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 1 Sep 2024 21:37:08 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Sun, 1 Sep 2024 21:37:08 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Sun, 1 Sep 2024 21:51:16 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Sun, 1 Sep 2024 21:37:08 -0700
+ 15.1.2507.39; Sun, 1 Sep 2024 21:51:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zNRWndzoynMnygwnVmAFTgd3KzMC4EGOZgfByfgSbRsr3JQHQVfyDdcfW/VmW2RqFRFW7IWY/23iGgxOxWenEEp9qdOzt8KSqj+62rjeg+f+Jw4Ty9FsFPfcCkZuPjLyvEx+Fwoy8zFsKh00lPtg+uzkxBkTSqx3Jwq3HYiAK3Q3ccOEuBJB+6E0y7BspvjBabgkGkt9Rp0iQhR3RxYKjhPtN0yDOlArtw2WPo880tZZgbmyjPkbXFv3D6xWUHzXDpwaSt0X+YaNJeOK8q8S3nWzMaO9niY60klwHCptSRWoDpQa9T7FGnoOIOipU8DIN9dXCBGwcNnMOQVZbDmqmA==
+ b=Mk/Q82ws7y9E7frldEUk++pWryknnvZ7E3P7W/lFGQxiIROP8cNWTKzzJaRI5JuPUHbuvw84y/YAANxUXtqKIvYwdQ9ver4a7Ckkd62A28TM9rj9qW69OIHIFtX/xC7cYkD5bPdNhBLElgLUWk4UPtMgxnMDWXbv+008JQ97dGL6u3VcndMwvKJAppC8/SHdg0STUr7jjhJA4d6YKd9pBvExtgDgsdcTbsOX+iCs5xdIqrQGZyLohT1WuVvpKGIzE8HCPDL8iOJZggNovKNiIMt7wC91ZxMul+AUPZX/pUH80TbxCSVTNIVGm0QALjSHpDR7NkpHBwuY3HeC3ZJXGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T93KxSDrj1nXEZwI6t+KnWEwzwmkfvUhgRmmgtdnLw4=;
- b=fof/bkX5j59fD9SFN2GYHXeqS8qjagAdQUAa54LUEXrmN6btFiLjI27WIZ0fPot/KzCVbStX3bKG+XIFR231TrKm3bdJNy2MDRsTilgbWRtwH4VXNNWQ7uwcZU2zpPwWR9CnQljdWvClqmT5WxkQ3CkrPZPd/djif5M0+1NdKEJS9Qp/snaTledCIo+OECdEyWk9SwX4jltcRg4IZKrZ4jSoWDR2y0rFYSv6x1K0sTVad19eRTMURaPiL+rkfi5IGY7Vc0Ih36BSut7dP1bWWJhhkioVOT7p1ihCAqLxY4YB6Cw1tW3PM92IMQYy5qNwFsOJwSz65xC7bSKlqiKRFw==
+ bh=2grRqp0Eezow0b4uiEHMeMtlq98CbbPG5/c2fTQi9j4=;
+ b=ngMRwU0v+7liFkaksQTrWzo58AUsuUytrM8O1I5b3b0EEuE3YdOKCFfXwNp3IaSZ89lANAxTEFZBfBxfDevTY4MLM4kU6/l3ddFsNZxq+AsRVdavVwfAro+3uS/N6JMVY0IGIFrxOtLQwqeLWPaWqI73MeWG1oODcZ2RruojHI5ayeHLzIdDfNAWauJYPvDYASO83f0+A1ZboPIo2K3SRqK0grFz0GiTgSrTTxYtin9x2aJFmYwtKyd1kCUCsC1YIncau0yJzCZQfhZfm3qKS+flEVoYcvSznAj0u4OFOYydcFIbEn3C5jMPQYHcm+rYLEVI1qeATeLiBcn8eVN3pA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DM4PR11MB6095.namprd11.prod.outlook.com (2603:10b6:8:aa::14) with
+ by MN2PR11MB4584.namprd11.prod.outlook.com (2603:10b6:208:264::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.24; Mon, 2 Sep
- 2024 04:37:06 +0000
+ 2024 04:51:13 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.7918.024; Mon, 2 Sep 2024
- 04:37:06 +0000
-Message-ID: <6eb3cb54-a8b8-4035-8070-c2e4a507c0dd@intel.com>
-Date: Mon, 2 Sep 2024 10:06:58 +0530
+ 04:51:13 +0000
+Message-ID: <8475ec64-50a8-4110-b49e-bd1060255b19@intel.com>
+Date: Mon, 2 Sep 2024 10:21:05 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/19] drm/i915/dss_regs: Use REG_* macros for the DSS ctl
- bits
+Subject: Re: [PATCH 07/19] drm/i915/icl_dsi: Move helpers to configure dsi
+ dual link to intel_dss
 To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
  <jani.nikula@linux.intel.com>, <suraj.kandpal@intel.com>
 References: <20240830050950.2528450-1-ankit.k.nautiyal@intel.com>
- <20240830050950.2528450-3-ankit.k.nautiyal@intel.com>
- <ZtGqzFZzkn-HoVC4@intel.com>
+ <20240830050950.2528450-8-ankit.k.nautiyal@intel.com>
+ <ZtGsD-504h1UmRDu@intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <ZtGqzFZzkn-HoVC4@intel.com>
+In-Reply-To: <ZtGsD-504h1UmRDu@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0059.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ac::19) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0PR01CA0121.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::11) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB6095:EE_
-X-MS-Office365-Filtering-Correlation-Id: 720cca7a-a926-4ccb-ae0d-08dccb08e625
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MN2PR11MB4584:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90e2fe1f-6680-479c-53aa-08dccb0adef6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S3BxNURkSWpvT0l0Z0prUlVabithanVlMVZlVS9yTzNmYTI4T0FRMzBGOGc3?=
- =?utf-8?B?KzZIR05RQjdnbFJrVGdpaHdTV09KcjFjRGpoMTJZWW5yaDFqbHNmcG5zaXZQ?=
- =?utf-8?B?VGtxNzhndFJFaU5XekV3eXpoK0NjNlVkanllUHljdmhMbUdyOVhsTE90bG5l?=
- =?utf-8?B?UXhkeXNsVlBLb1dqdkgxdko5Y1k4enFWNzBwakpmN0t2SnNFOE9INGFIR1RD?=
- =?utf-8?B?eHVMRGRkVmdIaHFUTENWdXd2c2E4VkY2QWJiM0tvUThhaEpWQkh6d3A3c3dX?=
- =?utf-8?B?YmN1OWJuRVI2TW5FcUEwUFpORll1a0dQZ2UzbTkrNTF2S3BnY0o1TDdRdFZH?=
- =?utf-8?B?c2pmcXdHT0NDMnhSN3dodTh2TjV2OGhkaDBKa3JPdmhYMEJXdjA5V2hHK2Jn?=
- =?utf-8?B?ZWNab2Vmai9jdUo3RElQRzhVRU96TnpkMzY5Vm9rOGcyVWx4cWh2MlZtVGRG?=
- =?utf-8?B?UzNBOXZSMVdDTHpnaE9vRkhkV0NRdDFWQjhOZUEwcHNscnBzbWtrcHh2d2RS?=
- =?utf-8?B?SFJXcWtINTByc1ZmVkN1Q3MyNldEcVZCL2hySzIwSGRjZUNaWGFxUG83c2Yx?=
- =?utf-8?B?M0JKWCtUb05VR0oxVzF2WTJmdHdickdxSWJsRG8vbEYrNkMvZHQyK01iMjZX?=
- =?utf-8?B?dWFtbDZJdjMxQy9qQjQwYUdSNlJHVFZhaENsRi9SRHluczdIZVBIYys5U0My?=
- =?utf-8?B?WEZxcGNLZG9US21DQVA5WmhaeGFwdXFYTzVjVlZPVkxTWjB2TDFpWGUrMFpa?=
- =?utf-8?B?eVN0SlllMjlpT1hhOHBscC8ycFNFUjdwTTM2UlRPM1J0d0JYSml3dVdLMy96?=
- =?utf-8?B?WGRQQXREZHdweDQ5Z2lMcWlsVTRHajdOeHpJYVZRS1VEODUyWUV1bXJFT2ZO?=
- =?utf-8?B?a05MYUhvdlI3cG1ZSDlwRFNkRml5djI0amcvU3ZQTmpJd1JoZ25CeTgwZEty?=
- =?utf-8?B?NFcrck1uNnd3UHQxbHNRSGF2NmluUHl2b0k4STkvRENib0hqa3FkZk5yQUhF?=
- =?utf-8?B?b2pkMGNNTEdEMUJ6bXo4Rm85ZkUrdTllZ0ZtUlU0QzFsNVZ6dmZFNkl0TkNW?=
- =?utf-8?B?bmlUOHpIVzJuTS9wZk4zQ1ZZbE9lUkpLVFR2aHpBZ0tyN25sd1FoeDkwYkNi?=
- =?utf-8?B?c3I0aDlNbHM5OFRMMStCMU0vZU5DV2Z5OEt3UUF3aDlCMGNEa1NIQlJ4SmFT?=
- =?utf-8?B?MWREODJMVTNnaEhQdDZqa3A3L0YwakdJNVZXcHl1RW8yU2tET05kVmdURFho?=
- =?utf-8?B?aG5sUG8rSmJYdXBGOXBtNHlVblVmQTU0R0oyTFVrWmJmLzRCUFlGeDh6Q1B6?=
- =?utf-8?B?T2tqeEZSZHdMS1FyZXN1eW81eU5IMmVYUEFqSDdnYnRXWDFpcnBLd2UrK0pO?=
- =?utf-8?B?alJuaFUvR05mM2hHVGtrVlJEVkMyTlltVHV5Z3BvdkI1Y3REUmJaVitxbjVr?=
- =?utf-8?B?N2s5MHJMZmRSdGEyR2svZVhZSUl6Mk9xbTQ2aHhqdjc2SzY5VitSeVNSMzc0?=
- =?utf-8?B?VEZWa00rNExOQlZTYXpSY0RRYk9BME1rdDZEQVFCZG5lTTNUNXN4Y0J2aGRD?=
- =?utf-8?B?cHloMERvWTZJdEtuNzBZcGU1WkVHcGJtREk4d1pHR1J3UWhNSzFQUWxuUkdo?=
- =?utf-8?B?SFVYdkxnMFRYUFVRdkM3NzY0WnEwT284ejVpTDRPUi9FbC9aQnFrdmwwSGh0?=
- =?utf-8?B?U3JsK1FvU2x1K21jQy9rd1g1aG9URUFxZDlFNEpSTWpIenRrOGpkOE4ybkdC?=
- =?utf-8?B?R1REWFhVYW1lUDBKUE1iWFg0Q1BFOExPdUlMNldDeXgyd3dvTlV2L2Q1ZnZG?=
- =?utf-8?B?SnZhbFNiRlRsdms0eXZsZz09?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?L3l2eE1Ub0dNTlYwNGRFcytqeC9hWmdkdGJXcGIwUUpuNnJtVkg2T1pWaVhO?=
+ =?utf-8?B?d0pWeExOUkdEb3A2TzE0QmxlMjk2dVZNQ0F0WU9YTkwvc3lib290WGF1elk4?=
+ =?utf-8?B?c2NUUWFIMXlWUjNNa1dwVEZNV2Zmb1hsK2R1aW5sa3h4N0M0Q3Z4R2lEQ0dK?=
+ =?utf-8?B?UkYwdnFkNTBWYkd6UHhPbCtsb3Y4cURNNVdTcE91L0ZTTGo5SFQ2akI4QmYx?=
+ =?utf-8?B?Q1BRVVVwcGV5WHdiQ3hjbEN2WmRkTUJWdmZHbFFHTDNqTTRiTzFZNFN5eERL?=
+ =?utf-8?B?dW9FRTF1aVR3c0NyNTI2VnVNY2Q3R1JXWCtla3pxY0FsRFlQVFJJNzBGUTgr?=
+ =?utf-8?B?Qnp6SkhlTHBaTFMyWGRkNG0zdTJZU01SdHlVbmsrVDAxeVRCaWl2S01RbW92?=
+ =?utf-8?B?c3lZL1ovT1Z6aEdlUHEvbFZuWG9iRHI5aHNSUEl5U0h6Rm5haWJ5aWx4Wk1Q?=
+ =?utf-8?B?V1RqeVNTNXlyVnNJMzJFZFF1WDBzM3Rpbi9FTC9EVFpITkZ3eWZJUGxqcjYx?=
+ =?utf-8?B?MCtWNlVlMDZ1YlhYTHJlWjIyNE43Z3lLZUZ6Sm9IbXZ2MkRML1FtNG9jZ1hL?=
+ =?utf-8?B?L2VsNi9yaDdXc3V2NVV1YXRlRFVjMTQ5eDZwU2hMd3dJZFFVbEd2MURSZitK?=
+ =?utf-8?B?WDhOQVhURGtKZHlML2hYQVI1KzNxenhOMlMva1h3K3pjeWcvdWR4OE5oT0RY?=
+ =?utf-8?B?aENEd29NbkFYa2lWamVldkhGY0RDd3dva001NFIvQXZZaWd4MjVDLzFFbXhC?=
+ =?utf-8?B?eTNhcXB5alJFLzFJKzhMbmkyM1J1eGt5bzBBeWhRUFV3aFp6ZmtWdW93eVAz?=
+ =?utf-8?B?QUpPWHIwWTcyRUFwWjRUbnBKMW40bFFqa0VGZWYzaC9hYkxIRzY2NTdoSW5r?=
+ =?utf-8?B?U01yQXVHZjBtMWx5TDFnQkZPMnBZZjZkcDE0aWtsYTI1VUVjbVIwcTlHQ1l5?=
+ =?utf-8?B?N05lVElRcFFZU2MvSTljVHB0Q0h0eU94ZDBXZzF1N2lIc1g0MDhlSG5XdS9Q?=
+ =?utf-8?B?bWFyRGJvdTVhT1hsMEUrYy9ocUZHVjRJbysyVWJPUlViWmZrRExhZ0dsK05Q?=
+ =?utf-8?B?WFpqb0hlZ0E0dVMwbnB4SkRQUUhOZHVoZ2I3Zm5YTG94cDN3UjJRVnAxL2ZP?=
+ =?utf-8?B?eTZITW9VcEpCVUtLYzF5YStSUlJoYTY5eHBlanpYMzNBK254L04zL1JYMDR2?=
+ =?utf-8?B?c0lxVjIrTDRGUG5OWTdTaWZubFQ0RTY3UXpvaGdxQXlBdzJST3h5ZnI5d1Mv?=
+ =?utf-8?B?Q2hoR0F6T3pWemhpcnlMaWIyUnR3SXpoaTRUY1FQSFRKTWdXUXhVVVVWVFR2?=
+ =?utf-8?B?U3crM2JNd2Vzd0NQMnN5SmdHQW1pMXJodGMvZG5qSjJXTlJGeUVrZzM3Uno0?=
+ =?utf-8?B?N1RWaFcyQzNaUnIxdUtYRnVNMW1nM0NLM2hnNXllSFNTdEJJRVRmQ1pnOWJG?=
+ =?utf-8?B?QmFPUGJQajAvZk8rUVFTQlowdVIvSCtsekVqNTdSRC93SW5UZndtUTc5RTZG?=
+ =?utf-8?B?anZnTVMxWjJKS2tmNWhBU1g2OEV0bjdJK1lsa3VnRkJZOXZlNDhYSzZYZm9m?=
+ =?utf-8?B?Q0JidWVKOWczaDJrYm9KQWNBVTkySlpuUGZmdW9mOWw4UTk3ZjFGQ0FNcWlN?=
+ =?utf-8?B?Wm01T1FDc0JyUVo5Rjl1NjJTM0Z6Z0FFNDNNUkFQL25vUW9ZVGUvUWhDK2Ns?=
+ =?utf-8?B?Wm1ZWVpsQXNwZFEyWDF5NDlDcFVFMERHYkJIRTY3MFBvVjVtZWJsSkdDMGVL?=
+ =?utf-8?B?MGpvTjVqRjJheUJZMU55UzNucVhrT01sUkZvUG1Xb2NiY2xxN05GbDQyQmRY?=
+ =?utf-8?B?RWlMTDJyUTRibkIrLzRUUT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUVPRVVSZzNWOVZmeHpmTHQ0T3pCRGxtUzM4bXRoWDlUNHZCaHp2ajh4czZB?=
- =?utf-8?B?U25mQ3BESmRLdXlWYkhUQ0xQT1dJL1lXclozRHhSZnNpUHdHaDdXSUQ4bVRI?=
- =?utf-8?B?S1hxRUx1Sjd6cjRqTmJpL0JTWndJUXpRRHZoaW5tRlZleU5DN29NLzZ3aUIz?=
- =?utf-8?B?ZDN5Sk5uTDd4cTlCZDdLM1NwSnhpMFUyVjZWT3lEYjZKbUpRVFdLR3RyOERV?=
- =?utf-8?B?QzBtNDhKV241UnhRQkpZc1dqeFNURnluYjk5LzlrczJJZnhFYWdYMjRxdldE?=
- =?utf-8?B?cU5JTk8wcXpZczlGbkJ3bUxnZGQvNGJJbEd0NXRvcTNrYXJhQmFBUlBMbmVS?=
- =?utf-8?B?amdQL2taQ2hhdnhXS1dOcnRUbUFzYmorcXByS3NjUlFmOTBmd2NUbEFnL1VK?=
- =?utf-8?B?anFyblVFZFU5Mlp1QmVHaE5ONEgyb1NiVzVmQmhPaUZKUFdiQ2RXSnd1bFhH?=
- =?utf-8?B?UnZncU9IN1oxdkVPWjBZOWNocm5tQktXNGg5cjc5WWpGNWFFTmJ6VmxqZ01Q?=
- =?utf-8?B?WURKUVU0TWZZSmVYVWNTUTNYaE96TXRudExqaVJMaEFEYy95aGtJc2grM3Vp?=
- =?utf-8?B?V0xRRUhwMm5vTCtuRHNRbzkzajY1WlNwRkZsMUNhUG5BSmFtZWlHRXpjWFpn?=
- =?utf-8?B?VkF3cG1sbDkvcVFOOS9nOU5XUng0OWovYmUwbVhhc1E2TWcweHhRMlYxbGxy?=
- =?utf-8?B?R0dwaGhJQzNNa1FhTDk5TGZreGZza1pjTVltSHpuVTVPb29qV2tjNmEwVVFM?=
- =?utf-8?B?VW5mQUpYMGZPaHlEVnkxbjBxeEJPRXQ0L0dQNDVaRmZsQmtnaXZTV3JRbEE1?=
- =?utf-8?B?eFFITzFxSHNZZ01JVkozS1N3QjU0czI3N1ZVdjNDYTYvQjdkdjc0d3lxOXlB?=
- =?utf-8?B?c1pDL1lSWVp6MjRiVG9rMDZaU0xjTTFzbk5jNWFCcmtVZlM1RWRDUDE2Wmtx?=
- =?utf-8?B?NW5OY3YzS2swMXpDRmJxdDMvbElGVmY3QVZmYlJHNlh6THU0N2hNdzhtSGl5?=
- =?utf-8?B?L2xacnFZcHA1WFBnc29rUzJ0OTk3Ly9xT1h5RlhZSlZyR2p1MlA1akpTSExh?=
- =?utf-8?B?R2hvYzF4VkNlQ3hJR0RMZkRNR0hvU0o0QmVLNzZSUVh3bTFGREEraG1mZGQr?=
- =?utf-8?B?MzdWMWlpVDNoQnpKNzRXdFhCbGNzWlJSK2JwblBBTEhDVUk0R0dvWFdWWDg3?=
- =?utf-8?B?UVpnTFZqUnJ3TGhrOE03V1JvcTlHZUswNklkUy92KzZKM0piWWZiUGptcUlm?=
- =?utf-8?B?anFpak8ybjdyNVBSSkFDYWwveGFyeCtnU2YzcXFGaUNTcVltamdyZUQyMTl5?=
- =?utf-8?B?azZQWVllMENzSE1RM3pMWnBUeW5yRVFBUnRrNm9uQUd3cjEvdDRPVldNQ2xQ?=
- =?utf-8?B?U0dWRnZ1U1FUQTBKVTJGOU1nZ2YwemhrOVFsL2w5VVJzMkZNaUJYTXJzUXdX?=
- =?utf-8?B?MzlLOWd3WjNpVFMwV05mOGZPNmRMNVhtSFJ2UEhBSlBSNXVrRS9WWjBXc3lZ?=
- =?utf-8?B?eEw5bWFtTERKZE0zVGtwaDhuZHhlNlNlbXhZTWk5U0xGL2xiQ3ZocElXMTRE?=
- =?utf-8?B?Ry9jeTdHd1dBclB1WTVXVlRwaThROGNxWkFJR3dVSmUwcGhBcnNPRWJTRkN1?=
- =?utf-8?B?ZzZHdnNCKzR3aWl3QWFZbis2L3grcU9rRGhXd3FveUxka2NXVFV2eFRXMDU0?=
- =?utf-8?B?M0dzU2dtQ2FKZmhJdFZ1WmNNL2J1OUtiYkdBaGZDU2lXRkVwOTRJY2dEcW91?=
- =?utf-8?B?dFl1bzFQMW5icHhkb0ZnNjJ2L2tQbzYyS0g0ZjAwaVo4MG00d2dlbDhXb3hl?=
- =?utf-8?B?V0ZGYVpaV0NZQnJPUjVlaW10cGlDU0ZoVW1KNDhFZXZDV2ZYaHNhNnJVbzNE?=
- =?utf-8?B?aXRtTEtob0hyRVR1d3hlUkJyL0ZVZmF5SmpZQVhxQ2NEYUVzL2VNYXdiSDNU?=
- =?utf-8?B?ZGlCdzFXZU1WK0YwQ2JjVnkvUDJ0NjZhc1BaYkRJUXBlWHBKNDdxYVU3VEZ3?=
- =?utf-8?B?L01zb2RJTmZ4eGxGS0VlY25vR0Nxa3puUDAxaUYyNmd3ZVJLak5uNW94cUE5?=
- =?utf-8?B?VXR5ZUNGZi85RllaTHJlWVFQZzA2dmoycDVhNHZ2OVp6VXRXdmZnNlNNQ1Jm?=
- =?utf-8?B?N3NZU1pWbG9OR3VIQUdQY003WC8vL3I1eVVRM2tRSmEzSGUySUxQbjRCRnR0?=
- =?utf-8?B?b1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 720cca7a-a926-4ccb-ae0d-08dccb08e625
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3JITEt4SW5JQ0lZQjN2Uks0a0NpN2FaYjJ5bUZQeGhKa2RYRFVGZGZVMTc3?=
+ =?utf-8?B?c3lKZTZuVnhGTnVrbW44eVc0SzZtSlZOTkM1Ui8zalZBcUxEWjRWcjlDU1J5?=
+ =?utf-8?B?T2p0dk4zZDFBNVRkM3dhUm55eGN2Y0JYRXYvdXpZRURMUTluU0RZU3UvbHRO?=
+ =?utf-8?B?STdjalNXQ2dtOFA3Q2pGRDBYSVYwOGZ5SmdtWHBrTFY1NnNyTVZVcEhUL2pM?=
+ =?utf-8?B?REwwOUcyUmpoZ01JTVBWelZOZENoYkp6VmRlZVJacW4rcUhPVmNnUXhEelpE?=
+ =?utf-8?B?dXc1WFFBK3NXY0RSeHJicytkM0pqRVJrbHEvckdOTCtRQ3BoL0o0RnpvOENt?=
+ =?utf-8?B?cUd1c3h0cGd1c0d1Yk5PZ3lQb2ZMaTVPUGtNeml0QTIyZEVVRVlMMnNDc2Z6?=
+ =?utf-8?B?SFg2NmtPRk1CQkZpR3JIbnNub0drRU5GdDkxcTBWUURwbXFDc0ozY2hXbzlK?=
+ =?utf-8?B?U3ZuNVlyNWU4ZHlsZXU3N3lwU3FtQ2hZRlVZc3ZrVTRZVWVNY3FrOVhRV0sv?=
+ =?utf-8?B?VC9XOCt2L2JWekl6K3d5Q05LaEJWc2FuNUl5Wjd4NXFpSkxaMTZKTkNDbFhu?=
+ =?utf-8?B?SVdpdWhHaXBIdXo2Z3FzM05yY0JXd1NqeHl4U3ZzMWE4ZmZFcXdnM0NqNWo3?=
+ =?utf-8?B?WjlQUFpscTRjUE5TZ0JvZ2FaTWxZZnh6emF2UDBRZnlyd2V4Wno0SFh5OUNH?=
+ =?utf-8?B?TzlRR3czb0Y2OVBUSEp2ZE4vVXBuYkkzQlRsOVN6WjZnM3BsR1d5L09MRjVR?=
+ =?utf-8?B?TEtocXVaczRjTS9HbWZuMjdUaTlFTHpQUU1KVEtJV1RLWWR1TXljakVKbGJ3?=
+ =?utf-8?B?L1J3OXBoVWhwTXhqRC9KL3VyQUFqYngyQW5GbzBjQUxZQmd5Q0ZBU0EvN3Zt?=
+ =?utf-8?B?OTRrOGp0QXlJTUNWUi9JMWlCTFEyeS9hS2pyQ3BFeHowMjJmOG10bUpSbGJZ?=
+ =?utf-8?B?Q1BhbVFoNkpkaGdJK29QNkdkNTN6dTBuTDg2TmJBTXZLUXd0NjdZbk05ZkFZ?=
+ =?utf-8?B?bGQ3bG9UTlI0ZnV5NHgvbmlBd3pEUEFzZld0cEV5SzhGUldpNVdvcVZqQmx6?=
+ =?utf-8?B?OVYxeUwyc0J1UERSMElYR1hXTU8ycWJWdmg0cEptc1F6VDNZTDRXVWNJZS9B?=
+ =?utf-8?B?SHZYMGhOcm1uQy9tbjVYSzV3Q2Q0UHZGNjcySW5XTzBYWmVXRWtvS0lrN0xk?=
+ =?utf-8?B?ampYdVlsWjZUM0tkZGFZVXB0eE8vSWpRczJCZzJQSTdtaTBMbUt0RlVsV3FQ?=
+ =?utf-8?B?eE15TzlBVTFIdVM2eXRHdjFxd0ZCazJBYVR0ZE8vbCswbENIeWRYUWlaY29C?=
+ =?utf-8?B?WEUxR2pKdzVCcG52SUhoMUtYN0dsUEZzQkkyb2h4UDF1Z1dYMnhjVEhmNTZz?=
+ =?utf-8?B?NmExNk05cVpIWnpoZlQzVGxQdFFILzBXL0dqRWZOV2JhRXYrL1lVRnU3UVpB?=
+ =?utf-8?B?M2V1U2ZJRmtsNVhsZkpVUjdOQ0FQYnVYZ2tmMm1NejF5UGVwbDl2RGZNRTlW?=
+ =?utf-8?B?MG1MUUl0di9wNEJxY3VXS0JKdVJETmJ1TnVXZjIwOHZoMFlQZ2ZyS01sSTRB?=
+ =?utf-8?B?NWVoY1NOcTFaZG9WNkZpek1tQzRmaEUwdThNM01seW9QSlZUZXRtbGRSUUZX?=
+ =?utf-8?B?bUVYamQ5dzd4Mm8wUThPVFhZQ092SDVKZk5aY256V2lveGhqVzlRYk9TNys3?=
+ =?utf-8?B?aHFXbDVRaW9mdGp5OFVLaUNWNWF0YTcwb0dXQmRvelQ5SU5aelpLQjVPeGZv?=
+ =?utf-8?B?bmR5WXl1U3BtK0JkblErbFdXSEpxNUE2TWJkOHpZWVEvdkNMQ3VFVHVHTmNj?=
+ =?utf-8?B?OXBTam11MkxDYjlFdG9SdmMva2dTbzF4WndsYmJQZmdadHBlL0FSekZzUzRx?=
+ =?utf-8?B?QWxKSVlFa0UzMVdQUVVXeVN1UnErODVnUUI4Z1JYM0pWYmQxVmgwMHVqaXQw?=
+ =?utf-8?B?VTZ4SEJobkRpNldidTNmcjZQUDdGOFhnNVdjQ3VPeXpuYmEwUWJPQTN3Wjlz?=
+ =?utf-8?B?VlhJdXVkNy9GMzAwWjJGQUplSnJvTUhoWlZ6aUpBQkIxM2lZZ3p1Sm1jREI5?=
+ =?utf-8?B?SDhKcGhwKzlIWC80Sm5BeHNUdDBiVmFNbmpoM0JoMXNKcWJ0dThrZEZ0eTNN?=
+ =?utf-8?B?MVlWVmJFcHlWVUFSbGY2ZUVtbWthNnVVamRwVGVzYVVxMnMwRFErWm8vQms1?=
+ =?utf-8?B?Mnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90e2fe1f-6680-479c-53aa-08dccb0adef6
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2024 04:37:06.2176 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2024 04:51:13.1515 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dm6HQq8FBAH1gnlRz0cmQpFWJmHpy12LOUN+V5LEHyZDLPELWqmlNMQYqtRH/4YWYcqlL5zB0d7Jfl41A+EEaQ5rLoJHif1HY/Z5Y5zeBhs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6095
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ufo2KOxsd2S1/Vr4UM1IqLtU83KKqnflUdXMpTKyac6WSA8a8GzEhNloN36mEH6LVGK8FbzwkBkjCNDOIoZASt1V2R57KXPDWAlKbC/SWFs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4584
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -201,114 +197,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks Ville for the comments.
 
-Please my response inline:
-
-On 8/30/2024 4:49 PM, Ville Syrjälä wrote:
-> On Fri, Aug 30, 2024 at 10:39:32AM +0530, Ankit Nautiyal wrote:
->> Cleanup register definitions for DSS CLT reg bits.
-> DSS_CTL
-
-Will fix this in next version.
-
-
->
->> Replace the hand rolled (1<<n) with the modern REG_BIT().
->> Use REG_GENMASK and REG_FIELD_PREP for the bit fields.
+On 8/30/2024 4:55 PM, Ville Syrjälä wrote:
+> On Fri, Aug 30, 2024 at 10:39:37AM +0530, Ankit Nautiyal wrote:
+>> Move the function to configure dss_ctl for dual_link dsi to intel_dss
+>> files. While at it, use struct intel_display wherever possible.
+>>
+>> v2: Avoid modifying the code while movement. (Jani)
 >>
 >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/display/intel_dss_regs.h | 34 ++++++++++---------
->>   1 file changed, 18 insertions(+), 16 deletions(-)
+>>   drivers/gpu/drm/i915/display/icl_dsi.c   | 57 ++----------------------
+>>   drivers/gpu/drm/i915/display/intel_dss.c | 50 +++++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_dss.h |  3 ++
+>>   3 files changed, 57 insertions(+), 53 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dss_regs.h b/drivers/gpu/drm/i915/display/intel_dss_regs.h
->> index b1e24ea027c3..cfc8ef451917 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dss_regs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dss_regs.h
->> @@ -10,35 +10,37 @@
+>> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> index 79e149d51cb2..ec880d1cbbee 100644
+>> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> @@ -44,7 +44,7 @@
+>>   #include "intel_de.h"
+>>   #include "intel_dsi.h"
+>>   #include "intel_dsi_vbt.h"
+>> -#include "intel_dss_regs.h"
+>> +#include "intel_dss.h"
+>>   #include "intel_panel.h"
+>>   #include "intel_vdsc.h"
+>>   #include "skl_scaler.h"
+>> @@ -274,55 +274,6 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+>>   	}
+>>   }
 >>   
->>   /* Display Stream Splitter Control */
->>   #define DSS_CTL1				_MMIO(0x67400)
->> -#define  SPLITTER_ENABLE			(1 << 31)
->> -#define  JOINER_ENABLE				(1 << 30)
->> -#define  DUAL_LINK_MODE_INTERLEAVE		(1 << 24)
->> +#define  SPLITTER_ENABLE			REG_BIT(31)
->> +#define  JOINER_ENABLE				REG_BIT(30)
->> +#define  DUAL_LINK_MODE_INTERLEAVE		REG_BIT(24)
->>   #define  DUAL_LINK_MODE_FRONTBACK		(0 << 24)
-> If we want to keep this then we should define the bit as
-> DUAL_LINK_MODE_MASK, and then both values should be defined
-> via REG_FIELD_PREP().
-
-Makes sense. I will add DUAL_LINK_MODE_MASK and prepare value for 
-Interleave and frontback.
-
->
->> -#define  OVERLAP_PIXELS_MASK			(0xf << 16)
->> -#define  OVERLAP_PIXELS(pixels)			((pixels) << 16)
->> -#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
->> -#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
->> +#define  OVERLAP_PIXELS_MASK			REG_GENMASK(19, 16)
->> +#define  OVERLAP_PIXELS(pixels)			REG_FIELD_PREP(OVERLAP_PIXELS_MASK, pixels)
->> +#define  LEFT_DL_BUF_TARGET_DEPTH_MASK		REG_GENMASK(11, 0)
->> +#define  LEFT_DL_BUF_TARGET_DEPTH(pixels)	REG_FIELD_PREP(LEFT_DL_BUF_TARGET_DEPTH_MASK, \
->> +							       pixels)
-> Protect with '(pixels)'
-Will take care of this.
->
-> The extra line wrap seems pointless.
-
-This was just to make checkpatch happy to avoid long line, but if it 
-hampers readability I will do away with this.
-
-
->
->>   #define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
+>> -static void configure_dual_link_mode(struct intel_encoder *encoder,
+>> -				     const struct intel_crtc_state *pipe_config,
+>> -				     u8 dual_link, u8 pixel_overlap)
+>> -{
+>> -	struct intel_display *display = to_intel_display(encoder);
+>> -	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
+>> -	u32 dss_ctl1;
+>> -
+>> -	/* FIXME: Move all DSS handling to intel_vdsc.c */
+>> -	if (DISPLAY_VER(display) >= 12) {
+>> -		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+>> -
+>> -		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
+>> -		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
+>> -	} else {
+>> -		dss_ctl1_reg = DSS_CTL1;
+>> -		dss_ctl2_reg = DSS_CTL2;
+>> -	}
+>> -
+>> -	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
+>> -	dss_ctl1 |= SPLITTER_ENABLE;
+>> -	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
+>> -	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
+>> -
+>> -	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+>> -		const struct drm_display_mode *adjusted_mode =
+>> -					&pipe_config->hw.adjusted_mode;
+>> -		u16 hactive = adjusted_mode->crtc_hdisplay;
+>> -		u16 dl_buffer_depth;
+>> -
+>> -		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
+>> -		dl_buffer_depth = hactive / 2 + pixel_overlap;
+>> -
+>> -		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
+>> -			drm_err(display->drm,
+>> -				"DL buffer depth exceed max value\n");
+>> -
+>> -		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+>> -		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+>> -		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+>> -			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
+>> -	} else {
+>> -		/* Interleave */
+>> -		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+>> -	}
+>> -
+>> -	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
+>> -}
+>> -
+>>   /* aka DSI 8X clock */
+>>   static int afe_clk(struct intel_encoder *encoder,
+>>   		   const struct intel_crtc_state *crtc_state)
+>> @@ -791,9 +742,9 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>>   		}
 >>   
->>   #define DSS_CTL2				_MMIO(0x67404)
->> -#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
->> -#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
->> -#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
->> -#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
->> +#define  LEFT_BRANCH_VDSC_ENABLE		REG_BIT(31)
->> +#define  RIGHT_BRANCH_VDSC_ENABLE		REG_BIT(15)
->> +#define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		REG_GENMASK(11, 0)
->> +#define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	REG_FIELD_PREP(RIGHT_DL_BUF_TARGET_DEPTH_MASK,\
->> +							       pixels)
-> Another unprotected macro argument.
+>>   		/* configure stream splitting */
+>> -		configure_dual_link_mode(encoder, pipe_config,
+>> -					 intel_dsi->dual_link,
+>> -					 intel_dsi->pixel_overlap);
+>> +		intel_dss_dsi_dual_link_mode_configure(encoder, pipe_config,
+>> +						       intel_dsi->dual_link,
+>> +						       intel_dsi->pixel_overlap);
+>>   	}
+>>   
+>>   	for_each_dsi_port(port, intel_dsi->ports) {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dss.c b/drivers/gpu/drm/i915/display/intel_dss.c
+>> index 3f7f416eb3fa..969e32143983 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dss.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dss.c
+>> @@ -7,6 +7,7 @@
+>>   #include "i915_reg_defs.h"
+>>   #include "intel_de.h"
+>>   #include "intel_display_types.h"
+>> +#include "intel_dsi.h"
+>>   #include "intel_dss.h"
+>>   #include "intel_dss_regs.h"
+>>   
+>> @@ -87,3 +88,52 @@ void intel_dss_mso_configure(const struct intel_crtc_state *crtc_state)
+>>   		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
+>>   		     OVERLAP_PIXELS_MASK, dss1);
+>>   }
+>> +
+>> +void intel_dss_dsi_dual_link_mode_configure(struct intel_encoder *encoder,
+>> +					    const struct intel_crtc_state *pipe_config,
+>> +					    u8 dual_link,
+>> +					    u8 pixel_overlap)
+>> +{
+>> +	struct intel_display *display = to_intel_display(encoder);
+>> +	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
+>> +	u32 dss_ctl1;
+>> +
+>> +	if (DISPLAY_VER(display) >= 12) {
+>> +		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+>> +
+>> +		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
+>> +		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(crtc->pipe);
+>> +	} else {
+>> +		dss_ctl1_reg = DSS_CTL1;
+>> +		dss_ctl2_reg = DSS_CTL2;
+>> +	}
+>> +
+>> +	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
+>> +	dss_ctl1 |= SPLITTER_ENABLE;
+>> +	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
+>> +	dss_ctl1 |= OVERLAP_PIXELS(pixel_overlap);
+>> +
+>> +	if (dual_link == DSI_DUAL_LINK_FRONT_BACK) {
+>> +		const struct drm_display_mode *adjusted_mode =
+>> +					&pipe_config->hw.adjusted_mode;
+>> +		u16 hactive = adjusted_mode->crtc_hdisplay;
+>> +		u16 dl_buffer_depth;
+>> +
+>> +		dss_ctl1 &= ~DUAL_LINK_MODE_INTERLEAVE;
+>> +		dl_buffer_depth = hactive / 2 + pixel_overlap;
+>> +
+>> +		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
+>> +			drm_err(display->drm,
+>> +				"DL buffer depth exceed max value\n");
+>> +
+>> +		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+>> +		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+>> +		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+>> +			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
+> Leaking the DSI mess outside of the DSI code is not great. The DSI
+> code should really just be taught to use the crtc_state properly.
 
-Will fix this in the next version.
+I do agree. Perhaps have a separate structure for DSS in 
+intel_crtc_state with relevant bits, which would be computed in 
+compute_config and then we write it one time.
 
-Thanks again for the suggestions/comments. I will take care of these in 
-the next version.
+Can we have a separate patch series to fix this and mso part, and just 
+have DSS, joiner things separated from VDSC as a first step?
 
 Regards,
 
 Ankit
 
+
 >
+>> +	} else {
+>> +		/* Interleave */
+>> +		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+>> +	}
+>> +
+>> +	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dss.h b/drivers/gpu/drm/i915/display/intel_dss.h
+>> index d4629052979a..aa8c67c15855 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dss.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dss.h
+>> @@ -16,5 +16,8 @@ u8 intel_dss_mso_pipe_mask(struct intel_display *display);
+>>   void intel_dss_mso_get_config(struct intel_encoder *encoder,
+>>   			      struct intel_crtc_state *pipe_config);
+>>   void intel_dss_mso_configure(const struct intel_crtc_state *crtc_state);
+>> +void intel_dss_dsi_dual_link_mode_configure(struct intel_encoder *encoder,
+>> +					    const struct intel_crtc_state *pipe_config,
+>> +					    u8 dual_link, u8 pixel_overlap);
 >>   
->>   #define _ICL_PIPE_DSS_CTL1_PB			0x78200
->>   #define _ICL_PIPE_DSS_CTL1_PC			0x78400
->>   #define ICL_PIPE_DSS_CTL1(pipe)			_MMIO_PIPE((pipe) - PIPE_B, \
->>   							   _ICL_PIPE_DSS_CTL1_PB, \
->>   							   _ICL_PIPE_DSS_CTL1_PC)
->> -#define  BIG_JOINER_ENABLE			(1 << 29)
->> -#define  PRIMARY_BIG_JOINER_ENABLE		(1 << 28)
->> -#define  VGA_CENTERING_ENABLE			(1 << 27)
->> +#define  BIG_JOINER_ENABLE			REG_BIT(29)
->> +#define  PRIMARY_BIG_JOINER_ENABLE		REG_BIT(28)
->> +#define  VGA_CENTERING_ENABLE			REG_BIT(27)
->>   #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
->>   #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
->>   #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
->> -#define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
->> -#define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
->> +#define  UNCOMPRESSED_JOINER_PRIMARY		REG_BIT(21)
->> +#define  UNCOMPRESSED_JOINER_SECONDARY		REG_BIT(20)
->>   
->>   #define _ICL_PIPE_DSS_CTL2_PB			0x78204
->>   #define _ICL_PIPE_DSS_CTL2_PC			0x78404
+>>   #endif /* __INTEL_DSS_H__ */
 >> -- 
 >> 2.45.2
