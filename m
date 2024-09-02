@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33453968093
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 09:28:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A6D9680E8
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 09:49:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97EAF10E213;
-	Mon,  2 Sep 2024 07:28:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIaThZOS";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6D1610E22C;
+	Mon,  2 Sep 2024 07:49:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20DB710E210;
- Mon,  2 Sep 2024 07:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725262112; x=1756798112;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sbihx63rRH8gdcp/5yltnhaUOeB9DCjFMU5dJ0lMfjE=;
- b=ZIaThZOSNj0jv2Wc70i+yT2SX9IgjNa+ZZFnAurG+VYxQ4fURNxCNEKZ
- KPBR9y52ZrCWIVB1zV6g1qNqVA2l8NnWULVTD3M6V6dqY2og9tocp0pJs
- SiRifx/Lvo0/Dn1qwET5lYWkRAM5c2tCUKQi+NsB3wHQvlI+Fwn9lqlKx
- 89kyEN5vzlR+aipBS50NxapRE3mo/XFXOLk2NlHnsV88BtDl0PgXH9l5w
- jQD+W3PgjteZiknMFlt5DZbsdIsLPRuF19Gy/tzMB3RQgEUynW8iwGMZK
- ZOodA6tJF+YkLo+n0KuRlogthsDYxgM7IsFT9HpkTKCxipUokkFR7pa3G w==;
-X-CSE-ConnectionGUID: 5oE1r1LMQTKDnaq6iKL2QA==
-X-CSE-MsgGUID: azR6yMElRnqNwUmoUoYiMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23990680"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23990680"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 00:28:32 -0700
-X-CSE-ConnectionGUID: 6lbmkXkGQhCMTQwEgu8Gjw==
-X-CSE-MsgGUID: 69YR4mQrQ32Bp3j6LhUgWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="68922607"
-Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by fmviesa005.fm.intel.com with ESMTP; 02 Sep 2024 00:28:27 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, bellekallu.rajkiran@intel.com,
- saikishore.konda@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 3/3] drm/i915: Use device wedged event
-Date: Mon,  2 Sep 2024 13:18:59 +0530
-Message-Id: <20240902074859.2992849-4-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240902074859.2992849-1-raag.jadav@intel.com>
-References: <20240902074859.2992849-1-raag.jadav@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 380D310E225;
+ Mon,  2 Sep 2024 07:49:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3514681263840533710=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_Increase_fastwake_sync_puls?=
+ =?utf-8?q?e_count_as_a_quirk_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 02 Sep 2024 07:49:16 -0000
+Message-ID: <172526335622.888834.989142770419900755@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240902064241.1020965-1-jouni.hogander@intel.com>
+In-Reply-To: <20240902064241.1020965-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,31 +37,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we have device wedged event supported by DRM core, make use
-of it. With this in place, userspace will be notified of wedged device
-on gt reset failure.
+--===============3514681263840533710==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_reset.c | 2 ++
- 1 file changed, 2 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 735cd23a43c6..60d09ec536c4 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1409,6 +1409,8 @@ static void intel_gt_reset_global(struct intel_gt *gt,
- 
- 	if (!test_bit(I915_WEDGED, &gt->reset.flags))
- 		kobject_uevent_env(kobj, KOBJ_CHANGE, reset_done_event);
-+	else
-+		drm_dev_wedged(&gt->i915->drm);
- }
- 
- /**
--- 
-2.34.1
+Series: Increase fastwake sync pulse count as a quirk (rev3)
+URL   : https://patchwork.freedesktop.org/series/137524/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15338 -> Patchwork_137524v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_137524v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_137524v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/index.html
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Additional (1): bat-arlh-3 
+  Missing    (2): bat-arls-1 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_137524v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_auth@basic-auth:
+    - bat-adlp-9:         [PASS][1] -> [DMESG-WARN][2] +50 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-adlp-9/igt@core_auth@basic-auth.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-adlp-9/igt@core_auth@basic-auth.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_137524v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-8:         [PASS][3] -> [ABORT][4] ([i915#12062])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
+    - bat-adlp-9:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-adlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-adlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+
+  * igt@kms_psr@psr-cursor-plane-move@edp-1:
+    - bat-jsl-1:          [PASS][7] -> [SKIP][8] ([i915#9688]) +3 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#11786]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11786
+  [i915#12062]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12062
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15338 -> Patchwork_137524v3
+
+  CI-20190529: 20190529
+  CI_DRM_15338: c689a348137cb6f8934a9be49438bafe413b97d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8000: fba44baafa5d79b6eed52fa24234781e8e47beb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_137524v3: c689a348137cb6f8934a9be49438bafe413b97d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/index.html
+
+--===============3514681263840533710==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Increase fastwake sync pulse count as a quirk (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/137524/">https://patchwork.freedesktop.org/series/137524/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15338 -&gt; Patchwork_137524v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_137524v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_137524v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/index.html</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Additional (1): bat-arlh-3 <br />
+  Missing    (2): bat-arls-1 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_137524v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_auth@basic-auth:<ul>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-adlp-9/igt@core_auth@basic-auth.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-adlp-9/igt@core_auth@basic-auth.html">DMESG-WARN</a> +50 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_137524v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-mtlp-8/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-mtlp-8/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12062">i915#12062</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:</p>
+<ul>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-adlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-adlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move@edp-1:</p>
+<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15338/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_137524v3/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15338 -&gt; Patchwork_137524v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15338: c689a348137cb6f8934a9be49438bafe413b97d5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8000: fba44baafa5d79b6eed52fa24234781e8e47beb8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_137524v3: c689a348137cb6f8934a9be49438bafe413b97d5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3514681263840533710==--
