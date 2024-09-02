@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89883968936
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 15:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A4F968937
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 15:54:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32AFE10E2F4;
-	Mon,  2 Sep 2024 13:53:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ECD610E2F8;
+	Mon,  2 Sep 2024 13:54:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DZyj2sTL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WWgQWDSP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC1110E2F5
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Sep 2024 13:53:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE2F10E2F7
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Sep 2024 13:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725285238; x=1756821238;
+ t=1725285241; x=1756821241;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=RekUDLpZdv2Tu+ptpcPnFyeZzFedQarnDcbUmi2rp+I=;
- b=DZyj2sTLY9DSEDrqAjXW6YGHK9gvecJQNWTw9k7t97x1yqYk/AT82Tzk
- k9plJV3lJCcGdfIDyIjB7Q5QmYuWNLdQvRxs2tbQLGGHvbw8AoJHkFLLW
- ggFRXc/eX+hLyu/h68m56w4nhXKe0V1BnRcE0bysBaS0l8C9iUcXDjVdW
- Kkd+PRXzJETZsZeqKCXZ0d6nJfDV7tIbb7c2oTM1xSQ+2DtN0L51O0guc
- 3Qy7pKTu/4IXuGOHgO84foz4h9Ya1K41iadMMrQv9vCDtibCuX2xsDFbm
- 1HlQPc4cjkGKUV+ECB7dSON7TGzCkcTX0OHcP+DJfVG+J+yLYzFH3jzuP Q==;
-X-CSE-ConnectionGUID: wTIFBA5OSaCyTW40yqDmYQ==
-X-CSE-MsgGUID: QN39ohJrQKactfqn4tRajw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="41343622"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="41343622"
+ bh=WcsI8RKS6ssc2ikVyPQfy4fhTFR+l2tn8RqSxj4N0X4=;
+ b=WWgQWDSPLHaetTSj32s6NMLH+02j4UW455/i0lomzOnf11/s32187iXV
+ JNArGSKLuyok64uec544Avq2t668ud7WKe0p7hl3xj3dWi0nh3OFPSjE0
+ pqcBAFXIjS7HgglnDWbQF7eSBKG3CxZdNwUdWVxW7qNWa5GH9cqR/pN2I
+ ozt8xB5f2VVJ1S2u9nwQ7cLYq4bGZykVMkM0Xwz1bD8KPrxtqTuI3dcEu
+ PpL3ErOr9NL+v0m1RwUbyO/rGaznEbSFEa6JiGgX8LLw4uffsBB+kotw/
+ Cy/FBktrDFNDkHLY1YG6EIrn3IckQkkhw3HpHJ3THBEJJ4BjjI1AR9Wm6 w==;
+X-CSE-ConnectionGUID: 90ce7mW2TmqfDDYDjavWkA==
+X-CSE-MsgGUID: MYldTkdaRWG3Rr0yMUlYXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="41343628"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="41343628"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 06:53:58 -0700
-X-CSE-ConnectionGUID: QuTF5DfhSWO0Zt+Sfr+G6Q==
-X-CSE-MsgGUID: B3SNees5QbabW58ylglflg==
+ 02 Sep 2024 06:54:01 -0700
+X-CSE-ConnectionGUID: z5uBvsokTH635QU49gA0JQ==
+X-CSE-MsgGUID: 5rvp/e9jSluNIcmHESrwhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="64623867"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="64623874"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 02 Sep 2024 06:53:56 -0700
+ by fmviesa008.fm.intel.com with SMTP; 02 Sep 2024 06:53:59 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 02 Sep 2024 16:53:55 +0300
+ Mon, 02 Sep 2024 16:53:58 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 05/13] drm/i915/dsb: Introduce intel_dsb_vblank_evade()
-Date: Mon,  2 Sep 2024 16:53:34 +0300
-Message-ID: <20240902135342.1050-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/13] drm/i915/dsb: Introduce intel_dsb_wait_usec()
+Date: Mon,  2 Sep 2024 16:53:35 +0300
+Message-ID: <20240902135342.1050-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240902135342.1050-1-ville.syrjala@linux.intel.com>
 References: <20240902135342.1050-1-ville.syrjala@linux.intel.com>
@@ -70,96 +70,48 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a helper for performing vblank evasion on the DSB. DSB based
-plane updates will need this to guarantee all the double buffered
-arming registers will get programmed atomically within the same
-frame.
+Add a function to emit the DSB "wait usecs" instruction.
+This is just a usleep() for the DSB.
 
-With VRR we more or less have two vblanks to worry about:
-- vmax vblank start in case no push was sent
-- vmin vblank start in case a push was already sent during
-  the vertical active. Only a concern for mailbox updates,
-  which I suppose could happen if the legacy cursor updates
-  take the non-fastpath without setting
-  state->legacy_cursor_update to false.
-Since we don't know which case is relevant we'll just evade
-both.
-
-We must also make sure to evade both the delayed vblank
-(for pipe/plane registers) and the undelayed vblank
-(for transcoder registers and chained DSBs w/
-DSB_WAIT_FOR_VBLANK).
-
-TODO: come up with a sensible usec number for the evasion...
+As a lower bound it seems pretty accurate, but the upper bound
+seemed oddly relaxed (ie. sometimes I've seen waits that are
+quite a bit longer than specified, not sure why).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 31 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dsb.h |  2 ++
- 2 files changed, 33 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h | 1 +
+ 2 files changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 6de33c0c16c3..997196ba69ca 100644
+index 997196ba69ca..da5c25f3d01e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -126,6 +126,12 @@ pre_commit_crtc_state(struct intel_atomic_state *state,
- 		return old_crtc_state;
+@@ -391,6 +391,12 @@ void intel_dsb_interrupt(struct intel_dsb *dsb)
+ 		       DSB_OPCODE_INTERRUPT << DSB_OPCODE_SHIFT);
  }
  
-+static int dsb_vblank_delay(const struct intel_crtc_state *crtc_state)
++void intel_dsb_wait_usec(struct intel_dsb *dsb, int count)
 +{
-+	return intel_mode_vblank_start(&crtc_state->hw.adjusted_mode) -
-+		intel_mode_vdisplay(&crtc_state->hw.adjusted_mode);
++	intel_dsb_emit(dsb, count,
++		       DSB_OPCODE_WAIT_USEC << DSB_OPCODE_SHIFT);
 +}
 +
- static int dsb_vtotal(struct intel_atomic_state *state,
- 		      struct intel_crtc *crtc)
+ static void intel_dsb_emit_wait_dsl(struct intel_dsb *dsb,
+ 				    u32 opcode, int lower, int upper)
  {
-@@ -525,6 +531,31 @@ static u32 dsb_error_int_en(struct intel_display *display)
- 	return errors;
- }
- 
-+void intel_dsb_vblank_evade(struct intel_atomic_state *state,
-+			    struct intel_dsb *dsb)
-+{
-+	struct intel_crtc *crtc = dsb->crtc;
-+	const struct intel_crtc_state *crtc_state = pre_commit_crtc_state(state, crtc);
-+	/* FIXME calibrate sensibly */
-+	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, 20);
-+	int vblank_delay = dsb_vblank_delay(crtc_state);
-+	int start, end;
-+
-+	if (pre_commit_is_vrr_active(state, crtc)) {
-+		end = intel_vrr_vmin_vblank_start(crtc_state);
-+		start = end - vblank_delay - latency;
-+		intel_dsb_wait_scanline_out(state, dsb, start, end);
-+
-+		end = intel_vrr_vmax_vblank_start(crtc_state);
-+		start = end - vblank_delay - latency;
-+		intel_dsb_wait_scanline_out(state, dsb, start, end);
-+	} else {
-+		end = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode);
-+		start = end - vblank_delay - latency;
-+		intel_dsb_wait_scanline_out(state, dsb, start, end);
-+	}
-+}
-+
- static void _intel_dsb_chain(struct intel_atomic_state *state,
- 			     struct intel_dsb *dsb,
- 			     struct intel_dsb *chained_dsb,
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index ff3b89dfffc1..cce5cb1c6071 100644
+index cce5cb1c6071..882088f55580 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.h
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -46,6 +46,8 @@ void intel_dsb_wait_scanline_in(struct intel_atomic_state *state,
- void intel_dsb_wait_scanline_out(struct intel_atomic_state *state,
- 				 struct intel_dsb *dsb,
- 				 int lower, int upper);
-+void intel_dsb_vblank_evade(struct intel_atomic_state *state,
-+			    struct intel_dsb *dsb);
- void intel_dsb_chain(struct intel_atomic_state *state,
- 		     struct intel_dsb *dsb,
- 		     struct intel_dsb *chained_dsb,
+@@ -40,6 +40,7 @@ void intel_dsb_noop(struct intel_dsb *dsb, int count);
+ void intel_dsb_nonpost_start(struct intel_dsb *dsb);
+ void intel_dsb_nonpost_end(struct intel_dsb *dsb);
+ void intel_dsb_interrupt(struct intel_dsb *dsb);
++void intel_dsb_wait_usec(struct intel_dsb *dsb, int count);
+ void intel_dsb_wait_scanline_in(struct intel_atomic_state *state,
+ 				struct intel_dsb *dsb,
+ 				int lower, int upper);
 -- 
 2.44.2
 
