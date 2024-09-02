@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6314796814C
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 10:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E55B96814D
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Sep 2024 10:05:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0271E10E23D;
-	Mon,  2 Sep 2024 08:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B6C310E234;
+	Mon,  2 Sep 2024 08:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3VfQnzL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IjLzVhlW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE9710E234
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Sep 2024 08:05:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E25610E23F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Sep 2024 08:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725264307; x=1756800307;
+ t=1725264308; x=1756800308;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wTBGaVE5aLjk8j3sz+2QQw8Ec6X3tTW/0F8/v834ha8=;
- b=R3VfQnzL3U4S46LPexgcDhB6J2tH9L3dgpQqUUN0RdD+spyoWhxx8gZD
- zaZbtg8z1K9QQLIZU00LuwSlDk22IGRCpOTjsU8AHZP7HyK36CEzPLfgt
- jdfqUeVzdTt0KPRfsGuLnUpDfOiHPKJfagEz8jctCpbWOFKPlM+YvQ0q5
- zjXgksqHN2D657KHwrlJcgF44SAMHvb/9es+5xTADc1ojoNCJ5S7UN/cr
- 2weOjkFGIxzkdKFxp2Dn4lXQbZWtIqJ7UoIqtiYGOBCCG2Jn0IQ1I2X6+
- uc3BOz7SZXjkNcaRippYxCOAEt+Z1jNkdhMNjKv/w9lvUA3IXC39v2gB3 Q==;
-X-CSE-ConnectionGUID: js4HFBWQTnGMfKkmJRmf+w==
-X-CSE-MsgGUID: 7XI1K7wgQVW27gQ2/qRmJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23967388"
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23967388"
+ bh=2E+r97iG5vmE1SbrPqUGiu2ZywI5p2va9oQ5DCJChdQ=;
+ b=IjLzVhlWqrKIFS93Jhm7zzvhFwtyjaBANu2yYtrHElwc56iBDn4I/1xT
+ Iq9CkUn4itGA4u+PztIKQ7CVmKyvyBANvpVW7c19dcBCNGYsgl0kC0AVc
+ 9Pn86XvdrY81nABDmmV/DP9fgQN0GEnpWirGcfilg1/VU15RrglV6GtBX
+ XQuxIwb5k0OSTbG2XfC/PrmzsPAzxDvAsjzdrCUmApgi+I7n8IPfT/496
+ cq7VUUruynQ+U5JoIZ3UyieoYCK6ZFyCEpSLNa4uxVHHndPbigJr4AxR2
+ JRws95+LjmRJrFFwKJ3khLMvfWrlaDzOCkxrouETINY7CzR6ANEwYeHJN Q==;
+X-CSE-ConnectionGUID: cVsjizWjR0+QFUTgzBUxiw==
+X-CSE-MsgGUID: xNavGXdxQlSXlXZaB2uhjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11182"; a="23967391"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="23967391"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 01:05:06 -0700
-X-CSE-ConnectionGUID: ix2E5jWkSuOANES2yS3ZIQ==
-X-CSE-MsgGUID: LLJn6rWORHmeCOjomP6tFA==
+ 02 Sep 2024 01:05:08 -0700
+X-CSE-ConnectionGUID: lv4NlcxyQs2eLIHQlP7VaQ==
+X-CSE-MsgGUID: Qkj+dUgQQ+qPo2looKSi7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="65039847"
+X-IronPort-AV: E=Sophos;i="6.10,195,1719903600"; d="scan'208";a="65039860"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2024 01:05:05 -0700
+ 02 Sep 2024 01:05:07 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 04/13] drm/i915/display: Enable MSA Ignore Timing PAR only
- when in not fixed_rr mode
-Date: Mon,  2 Sep 2024 13:36:25 +0530
-Message-ID: <20240902080635.2946858-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/13] drm/i915/dp: Set FAVT mode in DP SDP with fixed refresh
+ rate
+Date: Mon,  2 Sep 2024 13:36:26 +0530
+Message-ID: <20240902080635.2946858-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
 References: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
@@ -69,51 +69,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MSA Ignore Timing PAR enable is set in the DP sink when we enable variable
-refresh rate. When using VRR timing generator for fixed refresh rate
-we do not want to ignore the mode timings, as the refresh rate is still
-fixed. Modify the checks to enable MSA Ignore Timing PAR only when not
-in fixed_rr mode.
+While running with fixed refresh rate and VRR timing generator set FAVT
+mode (Fixed Vtotal) in DP Adaptive Sync SDP to intimate the panel
+about Fixed refresh rate.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c              | 2 +-
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 8 +++++++-
- 2 files changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 25ff3ff0ab95..f6df1de2c6a3 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2213,7 +2213,7 @@ static void intel_dp_sink_set_msa_timing_par_ignore_state(struct intel_dp *intel
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
--	if (!crtc_state->vrr.enable)
-+	if (!crtc_state->vrr.enable || crtc_state->vrr.fixed_rr)
- 		return;
- 
- 	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_DOWNSPREAD_CTRL,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 9c8738295106..4820a4bdbe26 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -718,8 +718,14 @@ void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, b
- static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
- 					    const struct intel_crtc_state *crtc_state)
- {
-+	bool enable_msa_timing_par_ignore;
-+
-+	/* Enable MSA TIMING PAR IGNORE only in non fixed_rr mode */
-+	if (crtc_state->vrr.enable && !crtc_state->vrr.fixed_rr)
-+		enable_msa_timing_par_ignore = true;
-+
- 	intel_dp_link_training_set_mode(intel_dp,
--					crtc_state->port_clock, crtc_state->vrr.flipline);
-+					crtc_state->port_clock, enable_msa_timing_par_ignore);
- }
- 
- void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f733cf61e399..05399f87d7f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2737,6 +2737,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+ 		as_sdp->target_rr_divider = true;
+ 	} else {
++		if (crtc_state->vrr.fixed_rr)
++			as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
++		else
++			as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+ 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+ 		as_sdp->vtotal = adjusted_mode->vtotal;
+ 		as_sdp->target_rr = 0;
 -- 
 2.45.2
 
