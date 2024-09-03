@@ -2,62 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 199ED969F24
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 15:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6ED969FB8
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 16:03:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98B2A10E113;
-	Tue,  3 Sep 2024 13:38:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6953110E5B2;
+	Tue,  3 Sep 2024 14:03:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h5g06i5L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uo4vdzY0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 171DE10E58A
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 13:38:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8FF310E5B2;
+ Tue,  3 Sep 2024 14:03:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725370688; x=1756906688;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=WMDQWVfWFAPEm/gqJNwySAP2G4+AwqXHxyvmUoxKJOk=;
- b=h5g06i5Lfss4yH1H3Cg3AiEmQX2oIoNSOWxPgAD9cZ+YQpOnpWqDwM9+
- 1JjOAHbhiD+FMJGOI42rVfI+tPGRJ/hqpyoT8KRLbyCE57KL01aZvjmnZ
- 6SjQd8DFvalfNX8vqGLtruStL+S/qmTMdEx8Z37qcwHNmlEaLnhsT8ACI
- Ix8fmvkQIiiXtiGDHnr1U7LmUTh87nAckvC2uDToLG2ExQMZfWoxS6SYH
- z/HjA5nTKr9NpW4sOg3JoxrqG30BneKzlSzaTaD8RsNaTxSzwxNDPcypp
- 0qIMSCJKYGZw4faUyKMmWlzJlvmf+z7NcuIU8ypwNxHBp4yD8GY0+BSSi g==;
-X-CSE-ConnectionGUID: g+dzDvhXS5unw3HxFerP4Q==
-X-CSE-MsgGUID: XdiGta+vQb2dFPUz6wewfA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23482492"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="23482492"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 06:38:05 -0700
-X-CSE-ConnectionGUID: eM+4Ai8dTOernp2OCaV3gQ==
-X-CSE-MsgGUID: 1yMzVxNSQDm0tJj8uS7Omg==
+ t=1725372199; x=1756908199;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=L7BHRdsqvdTTit46cv4dy4uC6MJ28i1wbFW/h+5coPQ=;
+ b=Uo4vdzY09odpqzigepi9Qia6gI1gjJWvWaHvxkGrZD2HQb5YJOr14Ddr
+ nALEQMNKO/6Z9xpIm+5n2noAZTkBtxn7Qm687N5Q81so9G2QxXfrld9Cf
+ pO5u5I0xspXbmN71kl/r4gOdqeKbuIJNFjjH/jFKT3xIDBGde8wXCsndh
+ wl28X1hkLzwkvb+5mKkohvNpV1p9giceoRHQ1D3V5N5RRsn4RD/A/MKwZ
+ f8P1Y0ull7ZPX/SzKKALwJ2PsljczCh5dEWAKjc2elSYv2Ut1bFWniU0P
+ f4Lzqig21+Wkouj2jsjkT+FltZ7q+036d+oyoqRUCrST+9ASt6lnxatkG g==;
+X-CSE-ConnectionGUID: BHoPr4U9Rxmnbvayf0aXpg==
+X-CSE-MsgGUID: sggzR+GnRIqgsMTK5efaSw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="35363986"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="35363986"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 07:03:18 -0700
+X-CSE-ConnectionGUID: k0QEfZYES6+6pOyzYuilaA==
+X-CSE-MsgGUID: I39EnarHTnC5QArJ0y8fQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="64931059"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Sep 2024 06:38:02 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Sep 2024 16:38:01 +0300
-Date: Tue, 3 Sep 2024 16:38:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andrey Toloknev <andreyhack@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org
-Subject: Re: i915 | Bug in virtual PCH detection
-Message-ID: <ZtcROWI3qildcflQ@intel.com>
-References: <CAK88eJc1R2Tij7dLf_1wFj7XFustFjREYPR3Zrqy9ETx8Oe8UA@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="88164195"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.148])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 07:03:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/4] drm/i915/display: add snapshot capture/print infra
+Date: Tue,  3 Sep 2024 17:02:56 +0300
+Message-Id: <cover.1725372032.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAK88eJc1R2Tij7dLf_1wFj7XFustFjREYPR3Zrqy9ETx8Oe8UA@mail.gmail.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,63 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Sep 01, 2024 at 02:56:07PM +0500, Andrey Toloknev wrote:
-> Hello!
-> 
-> I have 2 machines with Comet Lake CPUs on Tiger Lake PCH (500 series of
-> Intel chipsets).
-> For that configuration there was a patch for adding support for Tiger Lake
-> PCH with CometLake CPU in 2021 -
-> https://patchwork.freedesktop.org/patch/412664/
-> This patch made possible correct detection of such chipset and cpu
-> configuration for i915 kernel module. Without it there was no output to any
-> display (HDMI/DP/DVI, even VGA).
-> 
-> But this patch doesn't touch intel_virt_detect_pch method, when you
-> passthrough iGPU to a virtual machine.
-> So, virtual PCH incorrectly detects as Cannon Lake and you have no output
-> to a physical display with i915 driver:
-> 
-> [    2.933139] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i915]]
-> Assuming PCH ID a300
-> [    2.933308] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Found Cannon
-> Lake PCH (CNP)
-> 
-> 
-> The bug is on line 173 in drivers/gpu/drm/i915/soc/intel_pch.c in method
-> intel_virt_detect_pch:
-> 
-> else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> 
-> id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
-> 
-> It must be:
-> 
-> else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
-> IS_GEN9_BC(dev_priv))
-> 
-> id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
-> 
-> 
-> After that small change you get correct detection of PCH and have output to
-> a physical display in VM with passthrough iGPU:
-> 
-> [   16.139809] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i915]]
-> Assuming PCH ID a080
-> [   16.261151] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Found Tiger
-> Lake LP PCH
-> 
-> 
-> All kernel versions in any distro since 2021 are affected by this small bug.
-> The patch for i915 module of the actual kernel version is in attachment.
+Add display capture/print infra to abstract it from i915 gpu error state
+capture, and prepare for perhaps bolting it into xe devcoredump in the
+future.
 
-You fix one CPU+PCH combo, but break the other. I don't think there is
-any way to handle this mess in intel_virt_detect_pch(). The best thing
-would be if the virtual machine would advertise the correct ISA/LPC
-bridge, then the heiristic is not even invoked. If that's not possible
-for some reason then I suppose we'd need a modparam/etc. so the user
-can specify the PCH ID by hand.
+BR,
+Jani.
+
+
+Jani Nikula (4):
+  drm/i915: dump display parameters captured in error state, not current
+  drm/i915/display: add intel_display_snapshot abstraction
+  drm/i915/display: move device info and params handling to snapshot
+  drm/i915/display: move dmc snapshotting to new display snapshot
+
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ .../drm/i915/display/intel_display_params.c   |  8 ++-
+ .../drm/i915/display/intel_display_params.h   |  5 +-
+ .../drm/i915/display/intel_display_snapshot.c | 72 +++++++++++++++++++
+ .../drm/i915/display/intel_display_snapshot.h | 16 +++++
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 39 +++++++---
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  7 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  | 16 +++--
+ drivers/gpu/drm/i915/display/intel_overlay.h  | 19 ++---
+ drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         | 25 ++-----
+ drivers/gpu/drm/i915/i915_gpu_error.h         | 11 +--
+ 12 files changed, 162 insertions(+), 59 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_snapshot.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_snapshot.h
 
 -- 
-Ville Syrjälä
-Intel
+2.39.2
+
