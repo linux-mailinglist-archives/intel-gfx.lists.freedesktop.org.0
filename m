@@ -2,71 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56EE3969EAA
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 15:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA00B969EF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 15:25:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3C0910E59B;
-	Tue,  3 Sep 2024 13:08:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7F510E5AA;
+	Tue,  3 Sep 2024 13:25:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="qjjjgddi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ATyZd7Mn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com
- [209.85.166.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD8010E59F
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 13:08:12 +0000 (UTC)
-Received: by mail-il1-f180.google.com with SMTP id
- e9e14a558f8ab-39d30f0f831so18519305ab.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Sep 2024 06:08:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1725368892; x=1725973692; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=ZeRs4z3I8mmDPvKoL9y7zecAhLAZtwSgnEUeAq3N0pw=;
- b=qjjjgddi0YrLsTBZeuzFhaf3NymDMyNbzbONVzU2mJ0vk1k4QVdLyznLHfD9KZODWQ
- xaV+FHRSRA6hbLFGKxR9IIL5CXVnWH5GRSiAtTIhm/JQZasHgjmSHRJ3YzyVs1e3x/tB
- 7Sm/XROWIVTgLPWR+Gw3lx8K0BCCo2MQ44aHfmeYS8ACt8E9R/GUp/6hnwotR84V3sKn
- XC0cciSn+Zmkr7T17wjsHiB0ngbJHQc4azs7jIXazI3rxFZdTLRHvawz7wKgDVDq4Zux
- 76z1VuCzWcwMQQSsdA6gVBSO3KhdyfGHlMViVdYNuEwDFMvW7QwWZhhKoKaBxPEDe7VS
- WNDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725368892; x=1725973692;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ZeRs4z3I8mmDPvKoL9y7zecAhLAZtwSgnEUeAq3N0pw=;
- b=ePZ7r9N5Nw+H750tadJk80utwxtmChm696oyidPhn+YHpDF5Voj7wmCRGKCOtIWTHw
- 4755PpedYktEucP3L0iHUBLx4EJiK9CesDfVaLn2MfI4PhYjxetL2k/YpOZZ+pTi56wq
- nX8CMXSBRT0NxhnHo0wkLZTvsaH9jAPQfGFAkEaHBQISXPHAdu76vl9R+z27EJsGJ2yT
- Y+XZmObq4nPVm+pthZ3zQOhb9cGxErNqwradEfnPeItPctsc+p/4h5UYspXSc4OjmPNr
- jl78vAEXwqPWniwm/6X6c+5SjZED77mqL7GuFGSVYO62fau8c0x2C+swZba6+sqNI1cl
- WbnA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWGdgFNy4KymKx5Oy3Pntarnzh3JD9tyJrlZ98XWpHuFglAVawKWzseuFH3Dp19vBEPRCbJl7PDnwA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxQkaZgNyZPIT9kpIf6L2WYxWsfX3S0onBuIQcNnslhO1TkfLag
- Xv43+jq1353P18ezMJkeqdex/tAI3nzPddb+VE7+/YlFdrjO++nOJkFop9yiN+odIey0w3DtqzS
- kMi3MgzjAWVkygRMEgug7DsOcpEtyRI8ng75ovw==
-X-Google-Smtp-Source: AGHT+IGHAgnSMNvuVful4dbf9WKc4xkX76uqFfFYB8rGHdSebPTzop/+5Lxf4E1tJz0Qa5koqY5wyz6U/9g7ZRt6e8w=
-X-Received: by 2002:a05:6e02:12cf:b0:39b:32f6:5e90 with SMTP id
- e9e14a558f8ab-39f4e0d41e1mr118881735ab.15.1725368891480; Tue, 03 Sep 2024
- 06:08:11 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 051FD10E5AA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 13:25:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725369934; x=1756905934;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=M4S9HLYA5PrVYHPFXBVVDFh+R7WGgIcb+Mqt8LM7Fjo=;
+ b=ATyZd7Mn94DDKS3EhB8VkYNdq4K2219IGFAVftCK4jTpcsbvZYXlbiBD
+ IlZNN50tlCuvctKoRhIyblJkl+xPcgw9+ER80FKWaR7Xc39C6cT5gyC2v
+ J6mE0Txx276O5jJVWC4ukQ7xiqdS+xqBp8bO7E+Rw2KT3/cyzaqpfSd1U
+ Kcap6qKllCL/5/vdJVvDLjbQZFdM/JWDZo37IDulZINLUXEWc13vSip/E
+ +sC6IlSrGiRer0Yt/vAVS70BSZSYfbGJtpB1Pxnwwp+XF7QNatzQSwwCs
+ 65PrLarcmQt6sNNdpdlbPZQLnBF9N4I+F+ZjpeKlhXZ6fQeS33PZVkkqy g==;
+X-CSE-ConnectionGUID: /rANmb8wTEWBDgUZYOSJDQ==
+X-CSE-MsgGUID: e+L+VIhoTd29WRZ5rjWM2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="23842642"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="23842642"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 06:25:33 -0700
+X-CSE-ConnectionGUID: Rw8+dK5lQm2sPvQ8fgf6og==
+X-CSE-MsgGUID: jriYrLLgSWWSofIrb8EIpw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="64926932"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 03 Sep 2024 06:25:31 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 03 Sep 2024 16:25:30 +0300
+Date: Tue, 3 Sep 2024 16:25:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 12/13] drm/i915/vrr: Always use VRR timing generator for
+ XELPD+
+Message-ID: <ZtcOSkceU1iuaATL@intel.com>
+References: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
+ <20240902080635.2946858-13-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-78-tzimmermann@suse.de>
-In-Reply-To: <20240830084456.77630-78-tzimmermann@suse.de>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 3 Sep 2024 16:08:00 +0300
-Message-ID: <CAA8EJpoX3X6+u7Nst4qj5J0hcUCeYQvULW1wMSjwnVyLQeszjA@mail.gmail.com>
-Subject: Re: [PATCH v3 77/81] drm/msm: Run DRM default client setup
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
- javierm@redhat.com, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240902080635.2946858-13-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,35 +73,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 30 Aug 2024 at 11:45, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> Rework fbdev probing to support fbdev_probe in struct drm_driver
-> and remove the old fb_probe callback. Provide an initializer macro
-> for struct drm_driver that sets the callback according to the kernel
-> configuration.
->
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
->
-> The msm driver specifies a preferred color mode of 32. As this
-> is the default if no format has been given, leave it out entirely.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
+On Mon, Sep 02, 2024 at 01:36:33PM +0530, Ankit Nautiyal wrote:
+> Currently VRR timing generator is used only when VRR is enabled by
+> userspace. From XELPD+, gradually move away from older timing
+> generator and use VRR timing generator for fixed refresh rate also.
+> In such a case, Flipline VMin and VMax all are set to the Vtotal of the
+> mode, which effectively makes the VRR timing generator work in
+> fixed refresh rate mode.
+> 
+> v2: Use VRR Timing Generator from XELPD+ instead of MTL as it needs
+> Wa_14015406119.
+> v3: Set vrr.fixed during vrr_get_config (Mitul)
+> v4: Avoid setting vrr.fixed when vrr.cmrr is enabled.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/msm/msm_drv.c   |   4 +-
->  drivers/gpu/drm/msm/msm_drv.h   |  13 ++-
->  drivers/gpu/drm/msm/msm_fbdev.c | 144 ++++++--------------------------
->  3 files changed, 38 insertions(+), 123 deletions(-)
->
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 61 +++++++++++++++---------
+>  1 file changed, 39 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index e01d4b4b8fa7..625728aff5a2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -172,41 +172,54 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+>  		return;
+>  
+> -	crtc_state->vrr.in_range =
+> -		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+> -	if (!crtc_state->vrr.in_range)
+> -		return;
+> -
+>  	if (HAS_LRR(display))
+>  		crtc_state->update_lrr = true;
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+We aren't supposed to do a LRR update unless the refresh rates are
+within the VRR range. So this needs to be moved as well.
+
+>  
+> -	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+> -			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
+> -	vmax = adjusted_mode->crtc_clock * 1000 /
+> -		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
+> +	if (!crtc_state->uapi.vrr_enabled && DISPLAY_VER(display) >= 20) {
+> +		/*
+> +		 * for XELPD+ always go for VRR timing generator even for
+> +		 * fixed refresh rate.
+> +		 */
+> +		crtc_state->vrr.vmin = adjusted_mode->crtc_vtotal;
+> +		crtc_state->vrr.vmax = adjusted_mode->crtc_vtotal;
+> +		crtc_state->vrr.flipline = adjusted_mode->crtc_vtotal;
+
+Has the "flipline can't be below vmin+1" issue been changed in the hardware?
+
+> +		crtc_state->vrr.fixed_rr = true;
+> +	} else {
+> +		crtc_state->vrr.in_range =
+> +			intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+>  
+> -	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
+> -	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
+> +		if (!crtc_state->vrr.in_range)
+> +			return;
+>  
+> -	if (vmin >= vmax)
+> -		return;
+> +		vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+> +				    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
+> +		vmax = adjusted_mode->crtc_clock * 1000 /
+> +			(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
+>  
+> -	/*
+> -	 * flipline determines the min vblank length the hardware will
+> -	 * generate, and flipline>=vmin+1, hence we reduce vmin by one
+> -	 * to make sure we can get the actual min vblank length.
+> -	 */
+> -	crtc_state->vrr.vmin = vmin - 1;
+> -	crtc_state->vrr.vmax = vmax;
+> +		vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
+> +		vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
+> +
+> +		if (vmin >= vmax)
+> +			return;
+> +
+> +		/*
+> +		 * flipline determines the min vblank length the hardware will
+> +		 * generate, and flipline>=vmin+1, hence we reduce vmin by one
+> +		 * to make sure we can get the actual min vblank length.
+> +		 */
+> +		crtc_state->vrr.vmin = vmin - 1;
+> +		crtc_state->vrr.vmax = vmax;
+>  
+> -	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
+> +		crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
+> +		crtc_state->vrr.fixed_rr = false;
+> +	}
+>  
+>  	/*
+>  	 * When panel is VRR capable and userspace has
+>  	 * not enabled adaptive sync mode then Fixed Average
+>  	 * Vtotal mode should be enabled.
+>  	 */
+> -	if (crtc_state->uapi.vrr_enabled) {
+> +	if (crtc_state->uapi.vrr_enabled || crtc_state->vrr.fixed_rr) {
+>  		crtc_state->vrr.enable = true;
+>  		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+
+Hmm. This is now a bit of a mess. We need to come up with a sane way to
+deal with the vblank timestamping code. Dunno if we want to make it so
+that we'd always use VRR timings or the non-VRR timings. Should be
+identical from HW POV so technically might not matter, apart from the
+software state tracking POV. And from that angle it seems to me that
+for the dynamic fixed vs. variable swithcing we might want to keep the
+code using the non-VRR timings for fixed refresh rate.
+
+There seems to other stuff amiss still:
+- We don't enable/disable the VRR timings generator early/late
+  in the modeset sequence?
+- How do we atomically switch between the fixed vs. variable
+  timings since we can't temporarily disable the VRR timing generator?
+
+>  	} else if (is_cmrr_frac_required(crtc_state) && is_edp) {
+> @@ -421,6 +434,10 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>  						     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
+>  		crtc_state->vrr.vmin = intel_de_read(display,
+>  						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
+> +		if (!crtc_state->cmrr.enable &&
+> +		    crtc_state->vrr.vmax == crtc_state->vrr.flipline &&
+> +		    crtc_state->vrr.vmin == crtc_state->vrr.flipline)
+> +			crtc_state->vrr.fixed_rr = true;
+>  	}
+>  
+>  	if (crtc_state->vrr.enable) {
+> -- 
+> 2.45.2
 
 -- 
-With best wishes
-Dmitry
+Ville Syrjälä
+Intel
