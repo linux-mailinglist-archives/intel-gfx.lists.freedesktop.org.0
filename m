@@ -2,61 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76073969EA2
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 15:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EE3969EAA
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 15:08:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120DF10E597;
-	Tue,  3 Sep 2024 13:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C0910E59B;
+	Tue,  3 Sep 2024 13:08:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWpfiSaM";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="qjjjgddi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3374010E598
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 13:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725368664; x=1756904664;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dyokIKVh+8YWaG3K7fr1uEKTK31xqXpkoluUpIE1GM4=;
- b=PWpfiSaMi7uSq9dQmVgTy2LLjbWEcVv+nPMEGi5khbzShww1hZRn5JTd
- 6H7P6CIYqXeQ7Dt09w80ikvSfdWuUN+PUiqOKGA1zghafngxln+mMWt1u
- UViw3s+/+DeK7SvezqwWWQeKYEHgAaNd0GAbyQQcG7YOCJCSke4oq0/mT
- QaVIyIvsTcnpPz5HupLcNYi+xkSGopYG2laGTp2y2oKfec7vgs21aTACl
- PHbTUQC2eijnJ/+JwYWtcyJq7cn2fF85BmJRp7zaDrZAcDbRyI1f1rNx0
- HmXsOZm+JMbVcKHGz78sLV7+EXmCMMYj9VSondi0HCzgdr/KetqfKDEM3 w==;
-X-CSE-ConnectionGUID: zU4L0sAoQTWQBPvoQpzLlQ==
-X-CSE-MsgGUID: KOZqQDtPTXOigc0E8qrCvg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="24082442"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="24082442"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 06:04:24 -0700
-X-CSE-ConnectionGUID: So11W0/xR6agtj3pROvGDA==
-X-CSE-MsgGUID: No01C2aOR02/xk1OmbrIhQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="64922799"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Sep 2024 06:04:20 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Sep 2024 16:04:19 +0300
-Date: Tue, 3 Sep 2024 16:04:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 11/13] drm/i915/vrr: Handle joiner with vrr
-Message-ID: <ZtcJU0VaLeDthGw_@intel.com>
-References: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
- <20240902080635.2946858-12-ankit.k.nautiyal@intel.com>
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com
+ [209.85.166.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD8010E59F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 13:08:12 +0000 (UTC)
+Received: by mail-il1-f180.google.com with SMTP id
+ e9e14a558f8ab-39d30f0f831so18519305ab.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Sep 2024 06:08:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1725368892; x=1725973692; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=ZeRs4z3I8mmDPvKoL9y7zecAhLAZtwSgnEUeAq3N0pw=;
+ b=qjjjgddi0YrLsTBZeuzFhaf3NymDMyNbzbONVzU2mJ0vk1k4QVdLyznLHfD9KZODWQ
+ xaV+FHRSRA6hbLFGKxR9IIL5CXVnWH5GRSiAtTIhm/JQZasHgjmSHRJ3YzyVs1e3x/tB
+ 7Sm/XROWIVTgLPWR+Gw3lx8K0BCCo2MQ44aHfmeYS8ACt8E9R/GUp/6hnwotR84V3sKn
+ XC0cciSn+Zmkr7T17wjsHiB0ngbJHQc4azs7jIXazI3rxFZdTLRHvawz7wKgDVDq4Zux
+ 76z1VuCzWcwMQQSsdA6gVBSO3KhdyfGHlMViVdYNuEwDFMvW7QwWZhhKoKaBxPEDe7VS
+ WNDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725368892; x=1725973692;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ZeRs4z3I8mmDPvKoL9y7zecAhLAZtwSgnEUeAq3N0pw=;
+ b=ePZ7r9N5Nw+H750tadJk80utwxtmChm696oyidPhn+YHpDF5Voj7wmCRGKCOtIWTHw
+ 4755PpedYktEucP3L0iHUBLx4EJiK9CesDfVaLn2MfI4PhYjxetL2k/YpOZZ+pTi56wq
+ nX8CMXSBRT0NxhnHo0wkLZTvsaH9jAPQfGFAkEaHBQISXPHAdu76vl9R+z27EJsGJ2yT
+ Y+XZmObq4nPVm+pthZ3zQOhb9cGxErNqwradEfnPeItPctsc+p/4h5UYspXSc4OjmPNr
+ jl78vAEXwqPWniwm/6X6c+5SjZED77mqL7GuFGSVYO62fau8c0x2C+swZba6+sqNI1cl
+ WbnA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWGdgFNy4KymKx5Oy3Pntarnzh3JD9tyJrlZ98XWpHuFglAVawKWzseuFH3Dp19vBEPRCbJl7PDnwA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxQkaZgNyZPIT9kpIf6L2WYxWsfX3S0onBuIQcNnslhO1TkfLag
+ Xv43+jq1353P18ezMJkeqdex/tAI3nzPddb+VE7+/YlFdrjO++nOJkFop9yiN+odIey0w3DtqzS
+ kMi3MgzjAWVkygRMEgug7DsOcpEtyRI8ng75ovw==
+X-Google-Smtp-Source: AGHT+IGHAgnSMNvuVful4dbf9WKc4xkX76uqFfFYB8rGHdSebPTzop/+5Lxf4E1tJz0Qa5koqY5wyz6U/9g7ZRt6e8w=
+X-Received: by 2002:a05:6e02:12cf:b0:39b:32f6:5e90 with SMTP id
+ e9e14a558f8ab-39f4e0d41e1mr118881735ab.15.1725368891480; Tue, 03 Sep 2024
+ 06:08:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240902080635.2946858-12-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+References: <20240830084456.77630-1-tzimmermann@suse.de>
+ <20240830084456.77630-78-tzimmermann@suse.de>
+In-Reply-To: <20240830084456.77630-78-tzimmermann@suse.de>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 3 Sep 2024 16:08:00 +0300
+Message-ID: <CAA8EJpoX3X6+u7Nst4qj5J0hcUCeYQvULW1wMSjwnVyLQeszjA@mail.gmail.com>
+Subject: Re: [PATCH v3 77/81] drm/msm: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
+ javierm@redhat.com, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,81 +82,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 02, 2024 at 01:36:32PM +0530, Ankit Nautiyal wrote:
-> Do not program transcoder registers for VRR for the secondary pipe of
-> the joiner. Remove check to skip VRR for joiner case.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On Fri, 30 Aug 2024 at 11:45, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+> Rework fbdev probing to support fbdev_probe in struct drm_driver
+> and remove the old fb_probe callback. Provide an initializer macro
+> for struct drm_driver that sets the callback according to the kernel
+> configuration.
+>
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+>
+> The msm driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 5e947465c6e0..e01d4b4b8fa7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -169,13 +169,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	const struct drm_display_info *info = &connector->base.display_info;
->  	int vmin, vmax;
->  
-> -	/*
-> -	 * FIXME all joined pipes share the same transcoder.
-> -	 * Need to account for that during VRR toggle/push/etc.
-> -	 */
-> -	if (crtc_state->joiner_pipes)
-> -		return;
+>  drivers/gpu/drm/msm/msm_drv.c   |   4 +-
+>  drivers/gpu/drm/msm/msm_drv.h   |  13 ++-
+>  drivers/gpu/drm/msm/msm_fbdev.c | 144 ++++++--------------------------
+>  3 files changed, 38 insertions(+), 123 deletions(-)
+>
 
-There's more to this than just sprinkling the secondary checks.
-Namely, we need to make sure the timing changes happen in the
-correct spot in the sequence for both primary and secondary pipes.
-
-> -
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
->  		return;
->  
-> @@ -272,6 +265,9 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
-> +
->  	/*
->  	 * This bit seems to have two meanings depending on the platform:
->  	 * TGL: generate VRR "safe window" for DSB vblank waits
-> @@ -313,6 +309,9 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
-> +
->  	if (!crtc_state->vrr.enable || crtc_state->vrr.fixed_rr)
->  		return;
->  
-> @@ -336,6 +335,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  
-> +	if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		return;
-> +
->  	if (!crtc_state->vrr.enable)
->  		return;
->  
-> @@ -364,6 +366,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
->  	struct intel_display *display = to_intel_display(old_crtc_state);
->  	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
->  
-> +	if (intel_crtc_is_joiner_secondary(old_crtc_state))
-> +		return;
-> +
->  	if (!old_crtc_state->vrr.enable)
->  		return;
->  
-> -- 
-> 2.45.2
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
-Ville Syrjälä
-Intel
+With best wishes
+Dmitry
