@@ -2,82 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF2EC969D69
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3057969DAC
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:33:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AAC10E575;
-	Tue,  3 Sep 2024 12:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4538310E57C;
+	Tue,  3 Sep 2024 12:33:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Q2pCAFLH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f52kvhw7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D464C10E56B
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 12:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1725366165;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=0J18mFtPW85AHtY7ZOej0CYOhen09AyMbJhKjs06Zig=;
- b=Q2pCAFLHurXFyLPk0fEuTirB6wO6idsJ7N4usy3MBL+8BzSAn9BMgSTzAUztUE7NXOeQdW
- WUa7zqL+vGw3RoajSIXeniy16GN3TZuikzZxU+FCRFWJdrewA6N/LbzRcPgip6L5Y6Js2j
- TLMfQryFS6iNzT8dL4OH/8EJkwM+RfE=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-357-RAODiWmDMdG47zBkOLvbbg-1; Tue, 03 Sep 2024 08:22:44 -0400
-X-MC-Unique: RAODiWmDMdG47zBkOLvbbg-1
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-374ba33b2d2so2365419f8f.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Sep 2024 05:22:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725366163; x=1725970963;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0J18mFtPW85AHtY7ZOej0CYOhen09AyMbJhKjs06Zig=;
- b=KzIkuri36o2uflHNkqSE3ekPzgsr1/CHiOribhA69GzTMDlEOT+OFHX0ckCykeTr/6
- CarQalEdBAldcirxdVapjFwVSBN17D9AnfiwBzckIJhdBtFzC7TMcsF3LbQFRsDWGz46
- DpO4Nd7xsrjVzh2a5tH1j5q2cu+PcbTCFQfQ4edLS0jtPNw6erDLGJyLtHwD+FmWaFTy
- 29WMc4QhwKw6sN5hMd/djvRFVwsJHe/dyV1zKebQh5s1ubcDM7h90OB+Ml8l8wLN+wr/
- vWFipJ3qStnzJzt9VbDLfQNsPA1m2pe/qaSMzmBQOKa6Wjtfpxm4MorNqeimWGHbMOYy
- FH4Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU89stCKabIZ/QkaheaJmO3kNpRDjvW6i9CeQ4HbHQRcc8UNm29llEMCDf2rPVwjF0E8E484N2h+Ao=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz58Vqpd1HWkFEwLa9tBoHbOqijB7ZtmrTF8Mhe54tQoplUOBLB
- P4ujSKQm78X+MRYMv/iAtOHcklKk/qwHw9wVoypVSpwP8o0icwexmjC7DWS1Q6JH04JhUCCNpqG
- IYfW8cuQgUbq1zZgmq5rCqhBiHkCdflTordKs78Ffhi+SAJTsEMmVEq3zd50rjBEQ4g==
-X-Received: by 2002:a5d:69d0:0:b0:374:c50e:377b with SMTP id
- ffacd0b85a97d-374fa04bda4mr1738374f8f.57.1725366163025; 
- Tue, 03 Sep 2024 05:22:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE4S4eih2N9VBmWhzMozSzK8e8m/fVAd05vFao5JLuB0ET5xeJ36/8k/lqNYcQmxehh1CNfiA==
-X-Received: by 2002:a5d:69d0:0:b0:374:c50e:377b with SMTP id
- ffacd0b85a97d-374fa04bda4mr1738344f8f.57.1725366162260; 
- Tue, 03 Sep 2024 05:22:42 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42c819e356asm82859735e9.42.2024.09.03.05.22.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 05:22:42 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com, jfalempe@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [PATCH v3 81/81] drm/omapdrm: Run DRM default client setup
-In-Reply-To: <20240830084456.77630-82-tzimmermann@suse.de>
-References: <20240830084456.77630-1-tzimmermann@suse.de>
- <20240830084456.77630-82-tzimmermann@suse.de>
-Date: Tue, 03 Sep 2024 14:22:41 +0200
-Message-ID: <87zfopapv2.fsf@minerva.mail-host-address-is-not-set>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB3E810E57C;
+ Tue,  3 Sep 2024 12:33:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725366830; x=1756902830;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=lJ7+iCT5WCozLR3o1EL7Pjq3WFgavUua7yjvF7JW2Sw=;
+ b=f52kvhw7jrF2BpITGEtCtHnmshlxDT1OOEu7yN+nZWCoWb5TcVeHwREr
+ HRAq/FCpiGqWh4znNSYSR5XaWMqhgWX/KWV/IzuHEgyQL6Mlu0feCqmmH
+ 0dQb2eZm5n93M6r2VQ9JKJ1eIjPaYezu/sapz7fu08Vw5tmvsjBUmNdTy
+ fC0bJ5awB7TcWtaI4TeSos5XbQowgIt+OP7+sFkB3Odgqn+gSc91jXmGL
+ JdRyQJQwe02IMv9GxTT0u/m7qTlZkUJoKHfd32G8AHAeGVkafkcKoTkzD
+ eJm4+UTpGpvOWt4qpDy8gLv8oAuMfbjK5N1jOXUZOv5fIUH3EiOlzLEUE A==;
+X-CSE-ConnectionGUID: q/v3+zX+SAmoK5xS5vWvYQ==
+X-CSE-MsgGUID: foS7v6SrTJK1BbOij/Tkew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="49366443"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="49366443"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 05:33:49 -0700
+X-CSE-ConnectionGUID: 9phsINuPRhCw2OVktW5dFA==
+X-CSE-MsgGUID: WDXWR+7xT86M5IWNHOiiSw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="64917325"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 03 Sep 2024 05:33:46 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 03 Sep 2024 15:33:45 +0300
+Date: Tue, 3 Sep 2024 15:33:45 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 07/11] drm/i915/pps: pass intel_dp to pps_name()
+Message-ID: <ZtcCKQrGqjCMRl62@intel.com>
+References: <cover.1725012870.git.jani.nikula@intel.com>
+ <f2a7fec4a2ff1f09cb73e6734604fae99ab6b11a.1725012870.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f2a7fec4a2ff1f09cb73e6734604fae99ab6b11a.1725012870.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,35 +71,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
-
-> Rework fbdev probing to support fbdev_probe in struct drm_driver
-> and remove the old fb_probe callback. Provide an initializer macro
-> for struct drm_driver that sets the callback according to the kernel
-> configuration.
->
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
->
-> The omapdrm driver specifies a preferred color mode of 32. As this
-> is the default if no format has been given, leave it out entirely.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+On Fri, Aug 30, 2024 at 01:15:44PM +0300, Jani Nikula wrote:
+> Currently all of intel_pps.c passes struct intel_dp around. Do the same
+> with pps_name() instead of passing both struct drm_i915_private and
+> struct intel_pps.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/omapdrm/omap_drv.c   |   1 +
->  drivers/gpu/drm/omapdrm/omap_fbdev.c | 131 ++++++---------------------
->  drivers/gpu/drm/omapdrm/omap_fbdev.h |   8 ++
->  3 files changed, 38 insertions(+), 102 deletions(-)
->
+>  drivers/gpu/drm/i915/display/intel_pps.c | 61 +++++++++++++-----------
+>  1 file changed, 32 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 68141af4da54..1e87ce95c85d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -24,9 +24,12 @@ static void vlv_steal_power_sequencer(struct drm_i915_private *dev_priv,
+>  static void pps_init_delays(struct intel_dp *intel_dp);
+>  static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd);
+>  
+> -static const char *pps_name(struct drm_i915_private *i915,
+> -			    struct intel_pps *pps)
+> +static const char *pps_name(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	struct intel_pps *pps = &intel_dp->pps;
+> +
 
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+I've been thinking that we'd eventually turn intel_pps into some kind of
+proper object with a 1:1 relationship to the corresponding hw block.
+This is sort of going in the opposite direction, but looks trivial
+enough to deal with if/when we get to reworking intel_pps.
+
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Ville Syrjälä
+Intel
