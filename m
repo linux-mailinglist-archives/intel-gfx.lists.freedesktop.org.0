@@ -2,54 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28273969E63
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB5C9691AD
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 05:15:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE6A810E58F;
-	Tue,  3 Sep 2024 12:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA4F10E13D;
+	Tue,  3 Sep 2024 03:15:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mk08CFVA";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 453 seconds by postgrey-1.36 at gabe;
- Tue, 03 Sep 2024 03:04:25 UTC
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2591510E062;
- Tue,  3 Sep 2024 03:04:24 +0000 (UTC)
-Received: from localhost (unknown [124.16.138.129])
- by APP-01 (Coremail) with SMTP id qwCowADXaarvetZm_EK1AA--.36173S2;
- Tue, 03 Sep 2024 10:56:47 +0800 (CST)
-From: Chen Ni <nichen@iscas.ac.cn>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Chen Ni <nichen@iscas.ac.cn>
-Subject: [PATCH] drm/i915: convert comma to semicolon
-Date: Tue,  3 Sep 2024 10:55:58 +0800
-Message-Id: <20240903025558.493977-1-nichen@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E677910E13D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 03:15:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725333340; x=1756869340;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ARVgzjc77gwC4k0HXCvC8mOKt71sAJB8KzGegu4qRJk=;
+ b=Mk08CFVAdq7PFNZS93q36v0DFHV4Di4gkQfa5uoPOX6yPU1l7rl3ztVc
+ uB3Xy0BvNfEnGNUP1SNGtECax9kPuw73aIog3qR989m4Jhe8hcFBbFEpI
+ aaR/P1+P4syDmsh2onUeBVMrqvVgFPKgatYxCkrNPkBJJLnpAn1Fw1EDi
+ wM1etzBv1PvbGqwxTlu+3k5K4scmpwiCFiJCGlGoewD02Zbz8qL7krFUo
+ XLiepfuw8aWckQExA+CR+H3DRXXcAdVEncCmCsVq0yqkckwzOIvufChDp
+ mALWvb+9BZFBqkp3UYqVKhNuzBAHnE2Xwr4oMEPFg23wEbqDSkSqWkmuH w==;
+X-CSE-ConnectionGUID: jfP/rWzcS3aWLk6hsQzOYw==
+X-CSE-MsgGUID: YdaKZnayQM+/sIsXsCRwew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="27664108"
+X-IronPort-AV: E=Sophos;i="6.10,197,1719903600"; d="scan'208";a="27664108"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2024 20:15:38 -0700
+X-CSE-ConnectionGUID: TAo27OybTx2qFDf1mBgO9A==
+X-CSE-MsgGUID: vTjRbZ1jTACniPdDgXUDTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,197,1719903600"; d="scan'208";a="64797274"
+Received: from lkp-server01.sh.intel.com (HELO 9c6b1c7d3b50) ([10.239.97.150])
+ by fmviesa009.fm.intel.com with ESMTP; 02 Sep 2024 20:15:34 -0700
+Received: from kbuild by 9c6b1c7d3b50 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1slK0x-000694-34;
+ Tue, 03 Sep 2024 03:15:31 +0000
+Date: Tue, 3 Sep 2024 11:15:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
+ mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 04/13] drm/i915/display: Enable MSA Ignore Timing PAR
+ only when in not fixed_rr mode
+Message-ID: <202409031027.GftRdwjU-lkp@intel.com>
+References: <20240902080635.2946858-5-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowADXaarvetZm_EK1AA--.36173S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw4UZF15Zr47Grykuw4fGrg_yoW3ZFcEkr
- yrCr4fCFy5CFnFvw17Cr43ur9Ivw4q9F4xW34rt3sIyw17J34UX39ruFy7Z345AF1jyFyD
- Aa18Wr97ZrnrujkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUbTAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
- Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
- I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
- 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
- n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr4
- 1l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK
- 67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI
- 8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAv
- wI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14
- v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfU5hL0DUUUU
-X-Originating-IP: [124.16.138.129]
-X-CM-SenderInfo: xqlfxv3q6l2u1dvotugofq/
-X-Mailman-Approved-At: Tue, 03 Sep 2024 12:52:48 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240902080635.2946858-5-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,28 +73,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace a comma between expression statements by a semicolon.
+Hi Ankit,
 
-Signed-off-by: Chen Ni <nichen@iscas.ac.cn>
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 19498ee455fa..00e98a5ede09 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1313,8 +1313,8 @@ static int intel_hdmi_hdcp_write(struct intel_digital_port *dig_port,
- 	memcpy(&write_buf[1], buffer, size);
- 
- 	msg.addr = DRM_HDCP_DDC_ADDR;
--	msg.flags = 0,
--	msg.len = size + 1,
-+	msg.flags = 0;
-+	msg.len = size + 1;
- 	msg.buf = write_buf;
- 
- 	ret = i2c_transfer(ddc, &msg, 1);
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip next-20240902]
+[cannot apply to drm-intel/for-linux-next-fixes linus/master v6.11-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-i915-dp-Avoid-vrr-compute-config-for-HDMI-sink/20240902-205135
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240902080635.2946858-5-ankit.k.nautiyal%40intel.com
+patch subject: [PATCH 04/13] drm/i915/display: Enable MSA Ignore Timing PAR only when in not fixed_rr mode
+config: x86_64-rhel-8.3-rust (https://download.01.org/0day-ci/archive/20240903/202409031027.GftRdwjU-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240903/202409031027.GftRdwjU-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202409031027.GftRdwjU-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/i915/display/intel_dp_link_training.c:724:6: warning: variable 'enable_msa_timing_par_ignore' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+     724 |         if (crtc_state->vrr.enable && !crtc_state->vrr.fixed_rr)
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:728:30: note: uninitialized use occurs here
+     728 |                                         crtc_state->port_clock, enable_msa_timing_par_ignore);
+         |                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:724:2: note: remove the 'if' if its condition is always true
+     724 |         if (crtc_state->vrr.enable && !crtc_state->vrr.fixed_rr)
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     725 |                 enable_msa_timing_par_ignore = true;
+>> drivers/gpu/drm/i915/display/intel_dp_link_training.c:724:6: warning: variable 'enable_msa_timing_par_ignore' is used uninitialized whenever '&&' condition is false [-Wsometimes-uninitialized]
+     724 |         if (crtc_state->vrr.enable && !crtc_state->vrr.fixed_rr)
+         |             ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:728:30: note: uninitialized use occurs here
+     728 |                                         crtc_state->port_clock, enable_msa_timing_par_ignore);
+         |                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:724:6: note: remove the '&&' if its condition is always true
+     724 |         if (crtc_state->vrr.enable && !crtc_state->vrr.fixed_rr)
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:721:35: note: initialize the variable 'enable_msa_timing_par_ignore' to silence this warning
+     721 |         bool enable_msa_timing_par_ignore;
+         |                                          ^
+         |                                           = 0
+   2 warnings generated.
+
+
+vim +724 drivers/gpu/drm/i915/display/intel_dp_link_training.c
+
+   717	
+   718	static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+   719						    const struct intel_crtc_state *crtc_state)
+   720	{
+   721		bool enable_msa_timing_par_ignore;
+   722	
+   723		/* Enable MSA TIMING PAR IGNORE only in non fixed_rr mode */
+ > 724		if (crtc_state->vrr.enable && !crtc_state->vrr.fixed_rr)
+   725			enable_msa_timing_par_ignore = true;
+   726	
+   727		intel_dp_link_training_set_mode(intel_dp,
+   728						crtc_state->port_clock, enable_msa_timing_par_ignore);
+   729	}
+   730	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
