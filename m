@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3057969DAC
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C95969E15
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 14:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4538310E57C;
-	Tue,  3 Sep 2024 12:33:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8664510E586;
+	Tue,  3 Sep 2024 12:45:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f52kvhw7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BcOg3VoQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB3E810E57C;
- Tue,  3 Sep 2024 12:33:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A0D810E586
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2024 12:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725366830; x=1756902830;
+ t=1725367529; x=1756903529;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=lJ7+iCT5WCozLR3o1EL7Pjq3WFgavUua7yjvF7JW2Sw=;
- b=f52kvhw7jrF2BpITGEtCtHnmshlxDT1OOEu7yN+nZWCoWb5TcVeHwREr
- HRAq/FCpiGqWh4znNSYSR5XaWMqhgWX/KWV/IzuHEgyQL6Mlu0feCqmmH
- 0dQb2eZm5n93M6r2VQ9JKJ1eIjPaYezu/sapz7fu08Vw5tmvsjBUmNdTy
- fC0bJ5awB7TcWtaI4TeSos5XbQowgIt+OP7+sFkB3Odgqn+gSc91jXmGL
- JdRyQJQwe02IMv9GxTT0u/m7qTlZkUJoKHfd32G8AHAeGVkafkcKoTkzD
- eJm4+UTpGpvOWt4qpDy8gLv8oAuMfbjK5N1jOXUZOv5fIUH3EiOlzLEUE A==;
-X-CSE-ConnectionGUID: q/v3+zX+SAmoK5xS5vWvYQ==
-X-CSE-MsgGUID: foS7v6SrTJK1BbOij/Tkew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="49366443"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="49366443"
+ bh=vVTAsFC5ELiN+MLRUnXzghMNwTvg7TbwgNB4QQ6CQms=;
+ b=BcOg3VoQ4FLqwdUjDX/Zs1l8YsOQjap1VwmZqmOmzeCx8VM271fmIYgb
+ NsamAkg+iY8pC6xQtx40h6vuv2QGPh0b9WtuPwH9nnAfEeYFRXbdp1NXx
+ bBksBkHmYM1nGZMByH3ec5Zkyo1GDnUgBMPu/GbF9L8GR3ymd2XJMdWqJ
+ P3jeNXXyDAE4yjZ5NBQ1CzgoRQgpMMUNmOwTmgyEl38LQ5r2+1NcB4zuw
+ g8cwTS/nosSyzBegHP2XvFSppU4/kdIoxgWDhMjL5lVAIES+Zl2xJel+4
+ RQYa81mqszmIL9bZV8xV0E1rnpgLca389G5nG4UPIagEhZcpBdAgzrxnw A==;
+X-CSE-ConnectionGUID: 6qSUnmxERtOX6pgEeyUuvw==
+X-CSE-MsgGUID: 7Zb4SyVRR+qf5JLiQNvchw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11183"; a="24080166"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="24080166"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 05:33:49 -0700
-X-CSE-ConnectionGUID: 9phsINuPRhCw2OVktW5dFA==
-X-CSE-MsgGUID: WDXWR+7xT86M5IWNHOiiSw==
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2024 05:45:28 -0700
+X-CSE-ConnectionGUID: qsjhTmymSuOei5M5zTmlHQ==
+X-CSE-MsgGUID: hNM68HIbT76iDNfovdFJpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="64917325"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="64919731"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Sep 2024 05:33:46 -0700
+ by fmviesa008.fm.intel.com with SMTP; 03 Sep 2024 05:45:25 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Sep 2024 15:33:45 +0300
-Date: Tue, 3 Sep 2024 15:33:45 +0300
+ Tue, 03 Sep 2024 15:45:24 +0300
+Date: Tue, 3 Sep 2024 15:45:24 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 07/11] drm/i915/pps: pass intel_dp to pps_name()
-Message-ID: <ZtcCKQrGqjCMRl62@intel.com>
-References: <cover.1725012870.git.jani.nikula@intel.com>
- <f2a7fec4a2ff1f09cb73e6734604fae99ab6b11a.1725012870.git.jani.nikula@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 06/13] drm/i915/vrr: Compute vrr vsync if platforms
+ support it
+Message-ID: <ZtcE5CS-TwWxcgxV@intel.com>
+References: <20240902080635.2946858-1-ankit.k.nautiyal@intel.com>
+ <20240902080635.2946858-7-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f2a7fec4a2ff1f09cb73e6734604fae99ab6b11a.1725012870.git.jani.nikula@intel.com>
+In-Reply-To: <20240902080635.2946858-7-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,40 +73,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 30, 2024 at 01:15:44PM +0300, Jani Nikula wrote:
-> Currently all of intel_pps.c passes struct intel_dp around. Do the same
-> with pps_name() instead of passing both struct drm_i915_private and
-> struct intel_pps.
+On Mon, Sep 02, 2024 at 01:36:27PM +0530, Ankit Nautiyal wrote:
+> Previously, TRANS_VRR_VSYNC was exclusively used for panels with
+> adaptive-sync SDP support in VRR scenarios. However, to drive fixed refresh
+> rates using the VRR Timing generator, we now need to program
+> TRANS_VRR_VSYNC regardless of adaptive sync SDP support. Therefore, let's
+> remove the adaptive sync SDP check and program TRANS_VRR_VSYNC for
+> platforms where VRR timing generator is used.
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 61 +++++++++++++-----------
->  1 file changed, 32 insertions(+), 29 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 68141af4da54..1e87ce95c85d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -24,9 +24,12 @@ static void vlv_steal_power_sequencer(struct drm_i915_private *dev_priv,
->  static void pps_init_delays(struct intel_dp *intel_dp);
->  static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 9a51f5bac307..03af50b9f9eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -231,7 +231,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+>  	}
 >  
-> -static const char *pps_name(struct drm_i915_private *i915,
-> -			    struct intel_pps *pps)
-> +static const char *pps_name(struct intel_dp *intel_dp)
->  {
-> +	struct intel_display *display = to_intel_display(intel_dp);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	struct intel_pps *pps = &intel_dp->pps;
-> +
+> -	if (intel_dp->as_sdp_supported && crtc_state->vrr.enable) {
+> +	if (HAS_AS_SDP(display) && crtc_state->vrr.enable) {
 
-I've been thinking that we'd eventually turn intel_pps into some kind of
-proper object with a 1:1 relationship to the corresponding hw block.
-This is sort of going in the opposite direction, but looks trivial
-enough to deal with if/when we get to reworking intel_pps.
+That vrr.enable check should be nuked as well. We are supposed to
+compute the full state whether VRR is actually enabled or not.
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>  		crtc_state->vrr.vsync_start =
+>  			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+>  			 crtc_state->hw.adjusted_mode.vsync_start);
+> -- 
+> 2.45.2
 
 -- 
 Ville Syrjälä
