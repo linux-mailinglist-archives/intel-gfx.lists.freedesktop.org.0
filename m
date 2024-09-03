@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85828969FC0
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 16:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07972969FC1
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Sep 2024 16:03:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 281C410E1A9;
-	Tue,  3 Sep 2024 14:03:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95DC610E0C2;
+	Tue,  3 Sep 2024 14:03:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iktyR3Z2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="beJThSlU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01FC510E1A9;
- Tue,  3 Sep 2024 14:03:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D362F10E0C2;
+ Tue,  3 Sep 2024 14:03:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725372213; x=1756908213;
+ t=1725372218; x=1756908218;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZmY6R8vKwrOfx1tVTGH7zwFY/bAKrot6Zc3YsQ4A7Q0=;
- b=iktyR3Z27uHEcSF8rbp+ZOFZuDAk0wQraZ7MDFddoNDztmo82z0LSFKj
- LHr3pC+mmFsGjF0jdAABUkra7uyU18ST1DIn7/IBgk5dZc7bXL03/OBSJ
- b+U8i+8rNyJ1HJI8W8Xmlr4rMtt6sr6tpkD1TbNbwUd/drvw/F8D1vjLq
- raRG6GTagvi23EWPp2gNtuJt5+EpYxBuUOLTw1VcahrlbbL8ekDxo9L+9
- rVCgHZYlHI/Yxs/HHXwdE5SccpnxlU6hWDoFL46BPSfOqosV4ydaGVxUd
- LpKUL4BnWXRQNJmFYgxSOTgsfJwJx7s2ccA0vjruGL3EohzU9a3HLRQi0 A==;
-X-CSE-ConnectionGUID: ma+WfurDQly064qKBZEKyA==
-X-CSE-MsgGUID: kuUuMC1HTgSen+C3ubCxiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="35364137"
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="35364137"
+ bh=+jEdq3CAzdAbs1W6tbeg3zBy5A3htGcjt6pOngiLkfY=;
+ b=beJThSlUI4cXdTE3mm8ufn5O6O7h22dRcyy2uETww5qUdVLQ0eb9YC7Q
+ UNEcJXkIYDZ3hoEGTCdRbtVmbyThJ7E9LSeV2LNLNi4ZWt4PO+vZ5ZbfE
+ RI1SCePb0/GBPTwnFTBzOiC6mYvoBSQwCPsKbnpLJaaKUy8jZ6WeBkgh5
+ N4uCpinJHKXoKuQCL1yHE63T0CoAM9FCXIfwFqsqeXNc2G57Ejm1qiAyL
+ 8/q7cETCP906HXj/C8akQq7B7jj39DMmWcElRHGHuS62hV92oGo97me9O
+ PGxALPU86kPLntsw8Ah1k/Rm1NUQ+89gZ+ETcJm8FDW6p0MzBMy99UO9e g==;
+X-CSE-ConnectionGUID: tBfK+7spRfStJ5RPSuzJng==
+X-CSE-MsgGUID: afw2v8vCSyObnhtc0O4ItA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="35364161"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="35364161"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 07:03:33 -0700
-X-CSE-ConnectionGUID: IPT/NZ6aQ2CVR/iCZ/ibuw==
-X-CSE-MsgGUID: YideaPUDSjuKgtfa1ik18w==
+ 03 Sep 2024 07:03:37 -0700
+X-CSE-ConnectionGUID: N+0aekuiQbKhMxjlRS5yZA==
+X-CSE-MsgGUID: 8CPluew3SEOQcRQHUJs7yA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="88164220"
+X-IronPort-AV: E=Sophos;i="6.10,198,1719903600"; d="scan'208";a="88164227"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.148])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2024 07:03:31 -0700
+ 03 Sep 2024 07:03:36 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 3/4] drm/i915/display: move device info and params handling to
+Subject: [PATCH 4/4] drm/i915/display: move dmc snapshotting to new display
  snapshot
-Date: Tue,  3 Sep 2024 17:02:59 +0300
-Message-Id: <1450de944e897ebe0c7c0cb9a859483df14208bf.1725372032.git.jani.nikula@intel.com>
+Date: Tue,  3 Sep 2024 17:03:00 +0300
+Message-Id: <e6bef9acfb4b146c8763c5b4e319285f96872710.1725372032.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725372032.git.jani.nikula@intel.com>
 References: <cover.1725372032.git.jani.nikula@intel.com>
@@ -71,154 +71,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Snapshot display device and runtime info as well as display parameters
-in display snapshot.
+Convert dmc error state printing to new snapshot capture/print division.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_snapshot.c | 25 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_gpu_error.c         | 10 --------
- drivers/gpu/drm/i915/i915_gpu_error.h         |  5 ----
- 3 files changed, 25 insertions(+), 15 deletions(-)
+ .../drm/i915/display/intel_display_snapshot.c |  5 +++
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 39 +++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  7 +++-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  3 --
+ 4 files changed, 41 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_snapshot.c b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-index 78b019dcd41d..a61ff0f81397 100644
+index a61ff0f81397..030c4f873da1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_snapshot.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-@@ -3,10 +3,18 @@
- 
- #include <linux/slab.h>
- 
-+#include "i915_drv.h"
-+#include "intel_display_device.h"
-+#include "intel_display_params.h"
+@@ -7,6 +7,7 @@
+ #include "intel_display_device.h"
+ #include "intel_display_params.h"
  #include "intel_display_snapshot.h"
++#include "intel_dmc.h"
  #include "intel_overlay.h"
  
  struct intel_display_snapshot {
-+	struct intel_display *display;
-+
-+	struct intel_display_device_info info;
-+	struct intel_display_runtime_info runtime_info;
-+	struct intel_display_params params;
+@@ -16,6 +17,7 @@ struct intel_display_snapshot {
+ 	struct intel_display_runtime_info runtime_info;
+ 	struct intel_display_params params;
  	struct intel_overlay_snapshot *overlay;
++	struct intel_dmc_snapshot *dmc;
  };
  
-@@ -18,6 +26,14 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
- 	if (!snapshot)
- 		return NULL;
+ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_display *display)
+@@ -35,6 +37,7 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
+ 	intel_display_params_copy(&snapshot->params);
  
-+	snapshot->display = display;
-+
-+	memcpy(&snapshot->info, DISPLAY_INFO(display), sizeof(snapshot->info));
-+	memcpy(&snapshot->runtime_info, DISPLAY_RUNTIME_INFO(display),
-+	       sizeof(snapshot->runtime_info));
-+
-+	intel_display_params_copy(&snapshot->params);
-+
  	snapshot->overlay = intel_overlay_snapshot_capture(display);
++	snapshot->dmc = intel_dmc_snapshot_capture(display);
  
  	return snapshot;
-@@ -26,9 +42,16 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
- void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
- 				  struct drm_printer *p)
- {
-+	struct intel_display *display;
-+
- 	if (!snapshot)
- 		return;
+ }
+@@ -53,6 +56,7 @@ void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
+ 	intel_display_params_dump(&snapshot->params, display->drm->driver->name, p);
  
-+	display = snapshot->display;
-+
-+	intel_display_device_info_print(&snapshot->info, &snapshot->runtime_info, p);
-+	intel_display_params_dump(&snapshot->params, display->drm->driver->name, p);
-+
  	intel_overlay_snapshot_print(snapshot->overlay, p);
++	intel_dmc_snapshot_print(snapshot->dmc, p);
  }
  
-@@ -37,6 +60,8 @@ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
- 	if (!snapshot)
- 		return;
+ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
+@@ -63,5 +67,6 @@ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
+ 	intel_display_params_free(&snapshot->params);
  
-+	intel_display_params_free(&snapshot->params);
-+
  	kfree(snapshot->overlay);
++	kfree(snapshot->dmc);
  	kfree(snapshot);
  }
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 7c756d5ba2a2..d2f9684c8b0e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -1184,21 +1184,44 @@ void intel_dmc_fini(struct drm_i915_private *i915)
+ 	}
+ }
+ 
+-void intel_dmc_print_error_state(struct drm_printer *p,
+-				 struct drm_i915_private *i915)
++struct intel_dmc_snapshot {
++	bool initialized;
++	bool loaded;
++	u32 version;
++};
++
++struct intel_dmc_snapshot *intel_dmc_snapshot_capture(struct intel_display *display)
+ {
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_dmc *dmc = i915_to_dmc(i915);
++	struct intel_dmc_snapshot *snapshot;
+ 
+ 	if (!HAS_DMC(i915))
+-		return;
++		return NULL;
+ 
+-	drm_printf(p, "DMC initialized: %s\n", str_yes_no(dmc));
+-	drm_printf(p, "DMC loaded: %s\n",
+-		   str_yes_no(intel_dmc_has_payload(i915)));
++	snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
++	if (!snapshot)
++		return NULL;
++
++	snapshot->initialized = dmc;
++	snapshot->loaded = intel_dmc_has_payload(i915);
+ 	if (dmc)
++		snapshot->version = dmc->version;
++
++	return snapshot;
++}
++
++void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct drm_printer *p)
++{
++	if (!snapshot)
++		return;
++
++	drm_printf(p, "DMC initialized: %s\n", str_yes_no(snapshot->initialized));
++	drm_printf(p, "DMC loaded: %s\n", str_yes_no(snapshot->loaded));
++	if (snapshot->initialized)
+ 		drm_printf(p, "DMC fw version: %d.%d\n",
+-			   DMC_VERSION_MAJOR(dmc->version),
+-			   DMC_VERSION_MINOR(dmc->version));
++			   DMC_VERSION_MAJOR(snapshot->version),
++			   DMC_VERSION_MINOR(snapshot->version));
+ }
+ 
+ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index 54cff6002e31..e2186c900505 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -11,6 +11,8 @@
+ enum pipe;
+ struct drm_i915_private;
+ struct drm_printer;
++struct intel_display;
++struct intel_dmc_snapshot;
+ 
+ void intel_dmc_init(struct drm_i915_private *i915);
+ void intel_dmc_load_program(struct drm_i915_private *i915);
+@@ -22,8 +24,9 @@ void intel_dmc_suspend(struct drm_i915_private *i915);
+ void intel_dmc_resume(struct drm_i915_private *i915);
+ bool intel_dmc_has_payload(struct drm_i915_private *i915);
+ void intel_dmc_debugfs_register(struct drm_i915_private *i915);
+-void intel_dmc_print_error_state(struct drm_printer *p,
+-				 struct drm_i915_private *i915);
++
++struct intel_dmc_snapshot *intel_dmc_snapshot_capture(struct intel_display *display);
++void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct drm_printer *p);
+ 
+ void assert_dmc_loaded(struct drm_i915_private *i915);
+ 
 diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index b047b24a90d5..15d57206b281 100644
+index 15d57206b281..135ded17334e 100644
 --- a/drivers/gpu/drm/i915/i915_gpu_error.c
 +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -651,8 +651,6 @@ static void err_print_capabilities(struct drm_i915_error_state_buf *m,
- 	struct drm_printer p = i915_error_printer(m);
+@@ -41,7 +41,6 @@
+ #include <drm/drm_print.h>
  
- 	intel_device_info_print(&error->device_info, &error->runtime_info, &p);
--	intel_display_device_info_print(&error->display_device_info,
--					&error->display_runtime_info, &p);
- 	intel_driver_caps_print(&error->driver_caps, &p);
- }
+ #include "display/intel_display_snapshot.h"
+-#include "display/intel_dmc.h"
  
-@@ -660,10 +658,8 @@ static void err_print_params(struct drm_i915_error_state_buf *m,
- 			     const struct i915_params *params)
- {
- 	struct drm_printer p = i915_error_printer(m);
--	struct intel_display *display = &m->i915->display;
+ #include "gem/i915_gem_context.h"
+ #include "gem/i915_gem_lmem.h"
+@@ -871,8 +870,6 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
  
- 	i915_params_dump(params, &p);
--	intel_display_params_dump(&display->params, display->drm->driver->name, &p);
- }
+ 	err_printf(m, "IOMMU enabled?: %d\n", error->iommu);
  
- static void err_print_pciid(struct drm_i915_error_state_buf *m,
-@@ -1031,7 +1027,6 @@ static void i915_vma_coredump_free(struct i915_vma_coredump *vma)
- static void cleanup_params(struct i915_gpu_coredump *error)
- {
- 	i915_params_free(&error->params);
--	intel_display_params_free(&error->display_params);
- }
- 
- static void cleanup_uc(struct intel_uc_coredump *uc)
-@@ -1992,17 +1987,12 @@ static void capture_gen(struct i915_gpu_coredump *error)
- 	error->suspend_count = i915->suspend_count;
- 
- 	i915_params_copy(&error->params, &i915->params);
--	intel_display_params_copy(&error->display_params);
- 	memcpy(&error->device_info,
- 	       INTEL_INFO(i915),
- 	       sizeof(error->device_info));
- 	memcpy(&error->runtime_info,
- 	       RUNTIME_INFO(i915),
- 	       sizeof(error->runtime_info));
--	memcpy(&error->display_device_info, DISPLAY_INFO(i915),
--	       sizeof(error->display_device_info));
--	memcpy(&error->display_runtime_info, DISPLAY_RUNTIME_INFO(i915),
--	       sizeof(error->display_runtime_info));
- 	error->driver_caps = i915->caps;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 1a11942d7800..78a8928562a9 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -14,8 +14,6 @@
- 
- #include <drm/drm_mm.h>
- 
--#include "display/intel_display_device.h"
--#include "display/intel_display_params.h"
- #include "gt/intel_engine.h"
- #include "gt/intel_engine_types.h"
- #include "gt/intel_gt_types.h"
-@@ -212,11 +210,8 @@ struct i915_gpu_coredump {
- 
- 	struct intel_device_info device_info;
- 	struct intel_runtime_info runtime_info;
--	struct intel_display_device_info display_device_info;
--	struct intel_display_runtime_info display_runtime_info;
- 	struct intel_driver_caps driver_caps;
- 	struct i915_params params;
--	struct intel_display_params display_params;
- 
- 	struct scatterlist *sgl, *fit;
+-	intel_dmc_print_error_state(&p, m->i915);
+-
+ 	err_printf(m, "RPM wakelock: %s\n", str_yes_no(error->wakelock));
+ 	err_printf(m, "PM suspended: %s\n", str_yes_no(error->suspended));
  
 -- 
 2.39.2
