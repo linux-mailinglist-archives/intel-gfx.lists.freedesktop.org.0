@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B24696B817
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 12:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F6596B818
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 12:18:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8694B10E1DC;
-	Wed,  4 Sep 2024 10:18:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E36E210E4F9;
+	Wed,  4 Sep 2024 10:18:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWNEwPWF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JP0t7HNT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D3DB10E1DC
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Sep 2024 10:18:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4724510E1DC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Sep 2024 10:18:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725445130; x=1756981130;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tTM91MIKEM9+LxFkZamYIM6KiRoTrl5pMebqVO6lF2c=;
- b=PWNEwPWFV7FO6acCFerEaNzj2PYbzhuEblAPcbNuLw0ydEbwb0zoV6Ec
- IE1LQFel/iRBUW7ewHPzeK30MOkib1h1E6SkcAUDgIUvpxcGNp5suc3Mk
- lxN6kZI2Fzvt8WImkbO0c5TRZrQHSA2S2dljdMV260HT5dZh6mlB5mT7q
- 417VSJ1M+sITYhJxHSn6kLVfEPtEiuW/prO0la+Y0a2LFWKEAaT9Yqc4X
- POGxi+wuxglkYC85GgOkolfW1otRwxafvR1Iud15pa5ykevFeNZgGAcF/
- UNypTyzaennz6hKdiKSOQI7c321I3Y/O/qsf5qxsl4zHwGVDF2zgWkYp0 Q==;
-X-CSE-ConnectionGUID: Yuc1z+EtTWma0+IWSmxosw==
-X-CSE-MsgGUID: 8prKyufrSZm48BT7h7tM7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="27982981"
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="27982981"
+ t=1725445131; x=1756981131;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TXiSQWGJPkCj6NOguhDDkKeC2E7yqoNkdLoGHUSdugU=;
+ b=JP0t7HNT5rKswPAP1PrgrCL463Zq2vUU9hvPosSLWDSe+aYVfOaAryOa
+ vKmPG2oYR78TaKE4ot/uR9IT7ca1IUCn1qknHZf+WnkHQ28pWbBbQy8/t
+ kOC/kInJBnkiTY+mn8Cnd/3gEb+C+l+psdNaOgrqmckhipF+IJgxoj9gQ
+ Ls8CsMAlaXJNDtYfkqVLtVcSZNAWb/k0H2I3p/OzYqzphcOzTn/kVmnHV
+ 3o1N+iAi0Io9XEWRbgEbT3FUfTXW8D26EZz/wg0C9OurN0ulhXGnblWQI
+ R2roDREoIUmyzFm/s2HyHUZSngB9j/Wj914nALbOzkIvQzxtWXL5zElio g==;
+X-CSE-ConnectionGUID: xi3m5PvFSCWr+G+dkN48BA==
+X-CSE-MsgGUID: i8KVNpRJRkq6sOuCxJHuew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="27982982"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="27982982"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 03:18:49 -0700
-X-CSE-ConnectionGUID: 3tmCSB/dTAqgSxbJOf8gOw==
-X-CSE-MsgGUID: IC8OeNeBR6+SV5Ho2pogfg==
+ 04 Sep 2024 03:18:51 -0700
+X-CSE-ConnectionGUID: RvdOXNFBR1mgy6BwuqlLfw==
+X-CSE-MsgGUID: vZd1Nr7NSaWX0c/RPNY4SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="69857802"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="69857806"
 Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
  jhogande-mobl1..) ([10.245.245.79])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 03:18:48 -0700
+ 04 Sep 2024 03:18:50 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: imre.deak@intel.com, animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 0/3] DP2.1 Panel Replay Fixes
-Date: Wed,  4 Sep 2024 13:18:31 +0300
-Message-Id: <20240904101834.2415385-1-jouni.hogander@intel.com>
+Subject: [PATCH 1/3] drm/i915/display: Handle MST connector in
+ intel_attached_dp
+Date: Wed,  4 Sep 2024 13:18:32 +0300
+Message-Id: <20240904101834.2415385-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240904101834.2415385-1-jouni.hogander@intel.com>
+References: <20240904101834.2415385-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,20 +72,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch set contains fixes for DP2.1 Panel Replay issues we have
-found while testing the code using DP2.1 emulator. These issues are
-related to DP2.1 monitor always being MST. Also wrong usage of
-SRD_STATUS and PSR2_STATUS registers are fixed.
+Connector->encoder might be null for MST connector. Take this into account
+in intel_attached_dp.
 
-Jouni Högander (3):
-  drm/i915/display: Handle MST connector in intel_attached_dp
-  drm/i915/psr: Add connector debugfs files for MST connector as well
-  drm/i915/psr: Do not wait for PSR being idle on on Panel Replay
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
- .../gpu/drm/i915/display/intel_display_types.h |  5 ++++-
- drivers/gpu/drm/i915/display/intel_psr.c       | 18 ++++--------------
- 2 files changed, 8 insertions(+), 15 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 868ff8976ed93..6327caa1054f2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -2046,7 +2046,10 @@ static inline struct intel_dp *enc_to_intel_dp(struct intel_encoder *encoder)
+ 
+ static inline struct intel_dp *intel_attached_dp(struct intel_connector *connector)
+ {
+-	return enc_to_intel_dp(intel_attached_encoder(connector));
++	if (connector->mst_port)
++		return connector->mst_port;
++	else
++		return enc_to_intel_dp(intel_attached_encoder(connector));
+ }
+ 
+ static inline bool intel_encoder_is_dp(struct intel_encoder *encoder)
 -- 
 2.34.1
 
