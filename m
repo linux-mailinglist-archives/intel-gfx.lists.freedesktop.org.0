@@ -2,48 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C93B96B195
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 08:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B5FA96B2CD
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 09:27:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E200310E144;
-	Wed,  4 Sep 2024 06:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B088110E693;
+	Wed,  4 Sep 2024 07:27:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="MfnFYDnh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aP8OXpTm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2303010E144;
- Wed,  4 Sep 2024 06:30:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1725431419;
- bh=JGgIk/EiekwZAX0A7RvQM/XMomC9Q+y6SpRBDDwzKfY=;
- h=Date:From:To:Cc:Subject:From;
- b=MfnFYDnhyd05wDe6EwHfZN9jS7Zq1GPWTXdYkcxMya6T6D6u4J+pDYc7iVgA9GT+h
- g/iqhjsZNvsbCdt0G4IOuKUPPVLI+USXgTuVhgiwvTWw++e3GHfkrmH/65IlW7HxbA
- OjcgZKFLfXexFwbHCOF+G6/us6n7mE/ibdyJqo2QH3s6UO/ot/tq7PSncahy8DPSfo
- Su5GUwzq6UMzc70cn+CJk7zmfy6+nB18wCmEt4zt+nZD+VwL+c478J+lz3ulkCxdoI
- xW3BjiXx1OOmJAQIEwKhobsOSDUKQmQKl/Bh4VYMjW8/2ty6dgmQvAQ9Hgd2d0kccg
- BqSedoDUU4CPQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4WzCKR2z0zz4wb0;
- Wed,  4 Sep 2024 16:30:19 +1000 (AEST)
-Date: Wed, 4 Sep 2024 16:30:18 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Maxime Ripard
- <mripard@kernel.org>, Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build warning after merge of the drm-misc-fixes tree
-Message-ID: <20240904163018.214efaa7@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 959C010E693;
+ Wed,  4 Sep 2024 07:27:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725434862; x=1756970862;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DMHMjfFvKuBlQGV7XtBnrhEGTwUVYy3hzCcNyfUWvxo=;
+ b=aP8OXpTmXaYL1xKJs3BWs8ojJgyDnkq3vfH8rUdniexlkalfCNyjCqxo
+ XWua7yaLk+K9TJi62d0my6c9U1+RNhYgvUTUL3aWCCCgFYq5B3gtwkkLQ
+ XUBOZ0xj/9XFqye//JvDVHMm26Uc44KPuQVsLQIUGrO/Ty6YhtxpdsIlq
+ MmmDuwC8HYBxbB+nMsnO7NYibD9JG+0VIFqRYyJ7DHEada6X6KQ4Lyz7U
+ E6jX4hIG1Rd6YULESsG/D1gAzGl8UwaxuYWl94QVAyPRYsTHsAJZK9Vl3
+ eiXiTYtoZx4BaE66UkIn+jRN/nIIKT3iV6ZEgKKnmhfUTJdqz/PGNzWvB A==;
+X-CSE-ConnectionGUID: eKCGt37DQdqCkB9PN8DJ1g==
+X-CSE-MsgGUID: ACmtilT8SSWlvcbFcUIvwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="24228434"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="24228434"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 00:27:41 -0700
+X-CSE-ConnectionGUID: CVIMKKknToyxFcF69SN/NA==
+X-CSE-MsgGUID: 4ntoxRIUSk2Q94NcbOiY5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="69569874"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.18])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 00:27:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 2/4] drm/xe/display: Remove i915_drv.h include
+In-Reply-To: <20240903223803.380711-3-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240903223803.380711-1-rodrigo.vivi@intel.com>
+ <20240903223803.380711-3-rodrigo.vivi@intel.com>
+Date: Wed, 04 Sep 2024 10:27:22 +0300
+Message-ID: <87cyljubdx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/5HyTQZioDubndSE4yOjw/8D";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,39 +70,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/5HyTQZioDubndSE4yOjw/8D
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, 03 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> Change HAS_DISPLAY towards intel_display and remove one of the
+> last includes of i915_drv.h in Xe.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Hi all,
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-After merging the drm-misc-fixes tree, today's linux-next build (htmldocs)
-produced this warning:
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index c93b753fc88e..65331bbbc068 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -13,7 +13,6 @@
+>  #include <uapi/drm/xe_drm.h>
+>  
+>  #include "soc/intel_dram.h"
+> -#include "i915_drv.h"		/* FIXME: HAS_DISPLAY() depends on this */
+>  #include "intel_acpi.h"
+>  #include "intel_audio.h"
+>  #include "intel_bw.h"
+> @@ -34,7 +33,7 @@
+>  
+>  static bool has_display(struct xe_device *xe)
+>  {
+> -	return HAS_DISPLAY(xe);
+> +	return HAS_DISPLAY(&xe->display);
+>  }
+>  
+>  /**
 
-Error: Cannot open file drivers/gpu/drm/drm_bridge_connector.c
-
-Introduced by commit
-
-  9da7ec9b19d8 ("drm/bridge-connector: move to DRM_DISPLAY_HELPER module")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/5HyTQZioDubndSE4yOjw/8D
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmbX/noACgkQAVBC80lX
-0Gw71Af/U8tOm4G12SSD3WRwgEEgCXPW8uJN48HMl/i9OgHwzXPXRFp5smIVHpOL
-hKn7n/wB8xbKRe6nGmfENARWh9LHdSDLABrR8DYWUUs3yOLzMSnujpuGz3hIpTjA
-OimdN0/GdmBPQsD/3K02ybAaLI+uDdR1NzOQs6QbfFk0pvvKIM252zq7bsVtlDpx
-KYDAwEGHB0NkujENwrL1gD09kZZDStdx4VVw15RBivi4t5pgE5zC0H4Q3N/5t7jR
-l5luvwacoZDASk4vMeVxKZuHPfULH46kMit2OLVDuAy6UZOmJ6MLd3fF+Ksqn6QJ
-RA0ffY/DwWxB62m29AP7bjWEeJaJDQ==
-=MFbq
------END PGP SIGNATURE-----
-
---Sig_/5HyTQZioDubndSE4yOjw/8D--
+-- 
+Jani Nikula, Intel
