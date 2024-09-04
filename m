@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D7C96B2F6
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 09:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E86A96B608
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 11:08:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8987F10E69C;
-	Wed,  4 Sep 2024 07:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 462E810E70D;
+	Wed,  4 Sep 2024 09:08:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GXwkTzPt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJ/EvJ/i";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8776A10E69B;
- Wed,  4 Sep 2024 07:34:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46ADD10E70D;
+ Wed,  4 Sep 2024 09:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725435260; x=1756971260;
+ t=1725440921; x=1756976921;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=FIsHE38a+le7RS1xXMqAYPLkp2CSgXFvGW2hAvRBUes=;
- b=GXwkTzPtnqfNGgWoi1vWBT32eBjjaLdi4Iqf4I8JxCSXtRTkQrUU40uK
- dxfcxh/5ML5CEfzabIZRIjqmn86KsGtw/6a13mI38o1Zy7kfvPyOMbxaA
- A47M5ZCbu4lRXXFqaKS83jaGJRqIATTivTCivDDqtgUjZjjpCXYx+Fekm
- gIieMa9/+lEa6CoN3sFmJeon/SMH/FnZPskn7rzw/pd8NCZ03QZzmZpDh
- +qeqz7ULLAPZvCJ17AW82w5289xgi2KRB6DcyYiX06y9+DkuBDK9yF7M6
- 8ehXPGxFHF71aywk/zlv0g+e+ti8JdItZ8dEvSfxRR/jPkIminZGMkhUJ w==;
-X-CSE-ConnectionGUID: 0+EqGtLBQR2Onw9b/KzHHw==
-X-CSE-MsgGUID: x82nnB/iRgGLgwXiZrqYtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="27865393"
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="27865393"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 00:34:19 -0700
-X-CSE-ConnectionGUID: J0xrbrs6Qke1fCMiw7ISOA==
-X-CSE-MsgGUID: RM7MiZUTQCCaYpEd3jkIeg==
+ bh=oRcNn07MGqKQ3Ijze6GDosm9q2Rl94y1gGh2jbe57w4=;
+ b=HJ/EvJ/ia5lBEe40YshSHIhXEAfzV+nXYMgcPvx5nASrw0REXwzq8g1f
+ R2cr/Qh1JxT8SraVyj+MXZvYPs1Sh4p2siJykQzr6pS06lbIwgJahXKa7
+ m6ReZJbO/OAcCgmwj4YM/4YElYQFOR+d3+17h2zqKWt1piUA/YloW609g
+ +QaKgDm/0usnEffVoBTS/18KLKSMgPehQgUWmIk261a/GArn5gyAEyJEj
+ 5m4I8xWAJi8dt3Q8ouSbJ3gMFh838rEBkU1tiR8S/6T40XonIxoIRgreS
+ FINqmxiSREB5VqnleY6v9bK/WYaBvVJdhp5VYttrWIoMdRdgYwg23O0Gu Q==;
+X-CSE-ConnectionGUID: fTM4CquoRJ6drf5DG9Gb8w==
+X-CSE-MsgGUID: Fi4Pk8BtTBenT7VmcxWESA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11184"; a="27849259"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="27849259"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 02:02:50 -0700
+X-CSE-ConnectionGUID: +mElQZigS7qIJrTrn9W3Gg==
+X-CSE-MsgGUID: A1X8UGHsSVegs5B0HrwAhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="65216800"
+X-IronPort-AV: E=Sophos;i="6.10,201,1719903600"; d="scan'208";a="70010835"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.18])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 00:34:16 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 02:02:45 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Subject: Re: [PATCH 3/4] drm/xe/display: Kill useless has_display
-In-Reply-To: <20240903223803.380711-4-rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Vinod Govindapillai
+ <vinod.govindapillai@intel.com>, Imre Deak <imre.deak@intel.com>
+Subject: Re: [PATCH 0/4] drm/xe/display: Clean-up PM sequences
+In-Reply-To: <20240903223803.380711-1-rodrigo.vivi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20240903223803.380711-1-rodrigo.vivi@intel.com>
- <20240903223803.380711-4-rodrigo.vivi@intel.com>
-Date: Wed, 04 Sep 2024 10:33:59 +0300
-Message-ID: <87a5gnub2w.fsf@intel.com>
+Date: Wed, 04 Sep 2024 12:02:28 +0300
+Message-ID: <87wmjrssez.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,128 +71,62 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 03 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> When HAS_DISPLAY is false, info.probe_display is set to false.
+> This series aim to bring a bit of clarity in the display PM
+> sequences and start a clean-up around the runtime_pm ones.
+>
+> Specially around D3Cold. There are some ongoing discussions
+> that we wouldn't need all the sequences that we currently have.
+>
+> So, let's at least split them up to separate functions so
+> we can individually scrutinize.
+>
+> For now, I removed what I'm sure that we don't need in a
+> d3cold scenario where we lose power and that I could
+> validate in my DG2. Any other attempt to clean-up further
+> at my end failed badly DG2's d3cold.
+>
+> But again, let's at least bring some clarity on the
+> sequences before we go even further.
 
-Where? xe_display_probe() returns 0 directly when HAS_DISPLAY() is false
-instead of setting info.probe_display.
+Taking a step back, I can't help but feel this is stuff that should
+really happen at i915 display level.
 
-> Hence, all these calls to has_display() are bogus.
+Yes, i915 calls display all over the place in i915_driver.c. Just look
+at the display/ includes there.
 
-Also not quite, as intel_display_device_info_runtime_init() checks fuses
-and could change HAS_DISPLAY() to return false after that, with no
-impact on info.probe_display.
+xe now duplicates that in xe_display.c. It's kind of better, but really
+not.
+
+We should have one clean interface to display probe/cleanup and
+(runtime) suspend/resume used by both drivers, instead of adding
+slightly different glue layers to both, each directly calling various
+parts of display.
+
+I get that this clarifies xe_display.c, but that should also ditch
+almost all of the direct display includes.
+
 
 BR,
 Jani.
 
+
+
 >
-> With only one place left, use the main macro now and entirely
-> kill has_display() local helper.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_display.c | 43 ++++++++-----------------
->  1 file changed, 14 insertions(+), 29 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 65331bbbc068..daf9b9baa88a 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -29,13 +29,6 @@
->  #include "intel_opregion.h"
->  #include "xe_module.h"
->  
-> -/* Xe device functions */
-> -
-> -static bool has_display(struct xe_device *xe)
-> -{
-> -	return HAS_DISPLAY(&xe->display);
-> -}
-> -
->  /**
->   * xe_display_driver_probe_defer - Detect if we need to wait for other drivers
->   *				   early on
-> @@ -336,8 +329,7 @@ static void xe_display_from_d3cold(struct xe_device *xe)
->  
->  	intel_dmc_resume(xe);
->  
-> -	if (has_display(xe))
-> -		drm_mode_config_reset(&xe->drm);
-> +	drm_mode_config_reset(&xe->drm);
->  
->  	intel_display_driver_init_hw(xe);
->  	intel_hpd_init(xe);
-> @@ -388,11 +380,10 @@ void xe_display_pm_suspend(struct xe_device *xe)
->  	 */
->  	intel_power_domains_disable(xe);
->  	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
-> -	if (has_display(xe)) {
-> -		drm_kms_helper_poll_disable(&xe->drm);
-> -		intel_display_driver_disable_user_access(xe);
-> -		intel_display_driver_suspend(xe);
-> -	}
-> +
-> +	drm_kms_helper_poll_disable(&xe->drm);
-> +	intel_display_driver_disable_user_access(xe);
-> +	intel_display_driver_suspend(xe);
->  
->  	xe_display_flush_cleanup_work(xe);
->  
-> @@ -400,10 +391,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
->  
->  	intel_hpd_cancel_work(xe);
->  
-> -	if (has_display(xe)) {
-> -		intel_display_driver_suspend_access(xe);
-> -		intel_encoder_suspend_all(&xe->display);
-> -	}
-> +	intel_display_driver_suspend_access(xe);
-> +	intel_encoder_suspend_all(&xe->display);
->  
->  	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
->  
-> @@ -440,23 +429,19 @@ void xe_display_pm_resume(struct xe_device *xe)
->  
->  	intel_dmc_resume(xe);
->  
-> -	if (has_display(xe))
-> -		drm_mode_config_reset(&xe->drm);
-> +	drm_mode_config_reset(&xe->drm);
->  
->  	intel_display_driver_init_hw(xe);
->  	intel_hpd_init(xe);
->  
-> -	if (has_display(xe))
-> -		intel_display_driver_resume_access(xe);
-> +	intel_display_driver_resume_access(xe);
->  
->  	/* MST sideband requires HPD interrupts enabled */
->  	intel_dp_mst_resume(xe);
-> -	if (has_display(xe)) {
-> -		intel_display_driver_resume(xe);
-> -		drm_kms_helper_poll_enable(&xe->drm);
-> -		intel_display_driver_enable_user_access(xe);
-> -		intel_hpd_poll_disable(xe);
-> -	}
-> +	intel_display_driver_resume(xe);
-> +	drm_kms_helper_poll_enable(&xe->drm);
-> +	intel_display_driver_enable_user_access(xe);
-> +	intel_hpd_poll_disable(xe);
->  
->  	intel_opregion_resume(display);
->  
-> @@ -485,7 +470,7 @@ int xe_display_probe(struct xe_device *xe)
->  	if (err)
->  		return err;
->  
-> -	if (has_display(xe))
-> +	if (HAS_DISPLAY(&xe->display))
->  		return 0;
->  
->  no_display:
+>
+> Rodrigo Vivi (4):
+>   drm/xe/display: Spin-off xe_display runtime/d3cold sequences
+>   drm/xe/display: Remove i915_drv.h include
+>   drm/xe/display: Kill useless has_display
+>   drm/xe/display: Reduce and streamline d3cold display sequence
+>
+>  drivers/gpu/drm/xe/display/xe_display.c | 109 ++++++++++++++----------
+>  drivers/gpu/drm/xe/display/xe_display.h |   8 +-
+>  drivers/gpu/drm/xe/xe_pm.c              |   8 +-
+>  3 files changed, 74 insertions(+), 51 deletions(-)
 
 -- 
 Jani Nikula, Intel
