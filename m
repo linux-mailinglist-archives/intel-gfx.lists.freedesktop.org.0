@@ -2,30 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC3696C029
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 16:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8A296C06B
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2024 16:28:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCC6310E7B6;
-	Wed,  4 Sep 2024 14:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A5CE10E7D3;
+	Wed,  4 Sep 2024 14:28:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SC7BArAO";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62AC110E7A2;
- Wed,  4 Sep 2024 14:23:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1754933319634686361=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 720AA10E7CE
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Sep 2024 14:28:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725460084; x=1756996084;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=AYfcR4A6vdUYLhJkzxRYlqjc2W2/JaaRGKtoiP6UWPA=;
+ b=SC7BArAOOiGGM4ilcH0/abx6Zft/kwEPMrUdW4kemQtTbUBgDwagi0Fv
+ sZqIgz4njCPaVpihin2rTAOFjgWT8Ea32yRPzZROhKrjt5LzZVfMEzuNz
+ vT7/WG+otu0u8gEddyWfbxBHLfHf2OwRkOfdHZ7L6rU0o3votfA/2K2yU
+ bf9P7Dkq27QncyqnOe91YtS5As5ePpIVQwlH33XP5WU0cgO3++GcBxtJE
+ PWjhbTu8ZJ+ghJUN0k9B5fYnQMT7lJ82092QGWCtxNKP/txdS9CvtsvNi
+ K9RVs8tP1ff5aFF2IoDVe09PDcXWHEYSJPIk0uxOAJArM32iQ+l75Dp+t w==;
+X-CSE-ConnectionGUID: OLPVgK5yQgSSp4Lh0qzKig==
+X-CSE-MsgGUID: cJpA/aSkQrK8sWovD1tqgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="49530211"
+X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; d="scan'208";a="49530211"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 07:28:04 -0700
+X-CSE-ConnectionGUID: YLt75cVUSH+rEBhuyJkAAw==
+X-CSE-MsgGUID: 27qOFLvITyeFSDJq94zXOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,202,1719903600"; d="scan'208";a="70166118"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.18])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 07:28:02 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andrey Toloknev <andreyhack@gmail.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: i915 | Bug in virtual PCH detection
+In-Reply-To: <CAK88eJfpNubXatrgMiy48vJJEjj3FB4eXyYZ1b7OAYP6TA7Ozw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <CAK88eJc1R2Tij7dLf_1wFj7XFustFjREYPR3Zrqy9ETx8Oe8UA@mail.gmail.com>
+ <ZtcROWI3qildcflQ@intel.com>
+ <CAK88eJeLhHP+n1870ZAC0BY2OC-UcrU4E0vmkbBm_ndqZsTtNQ@mail.gmail.com>
+ <ZthX_8S1iVjb0xND@intel.com>
+ <CAK88eJdiPp27z1+xR4CnB=VdrvABKo=U=7zB-Oj1atF3KfnmDA@mail.gmail.com>
+ <CAK88eJfpNubXatrgMiy48vJJEjj3FB4eXyYZ1b7OAYP6TA7Ozw@mail.gmail.com>
+Date: Wed, 04 Sep 2024 17:27:43 +0300
+Message-ID: <871q1zsdcw.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/i915/display=3A_pass_display_to_intel=5Fcrtc=5Ffor=5Fpipe?=
- =?utf-8?q?=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 04 Sep 2024 14:23:13 -0000
-Message-ID: <172545979338.933211.12228048347992676616@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240904130633.3831492-1-jani.nikula@intel.com>
-In-Reply-To: <20240904130633.3831492-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,298 +74,218 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1754933319634686361==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 04 Sep 2024, Andrey Toloknev <andreyhack@gmail.com> wrote:
+> Sorry for replying twice.
+>
+> I thought about looking for the real PCH bridge, but I'm sure it will be a
+> real headache in some situations, configurations and virtualizations.
+> So, in my opinion, a better solution, as you noted in your first reply, is
+> modparam.
 
-== Series Details ==
+*If* we were to add a module parameter for this, it should be more
+generic rather than forcing a single case. For example:
 
-Series: series starting with [1/2] drm/i915/display: pass display to intel_crtc_for_pipe()
-URL   : https://patchwork.freedesktop.org/series/138208/
-State : success
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/so=
+c/intel_pch.c
+index 542eea50093c..d76b05545308 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.c
++++ b/drivers/gpu/drm/i915/soc/intel_pch.c
+@@ -168,7 +168,9 @@ intel_virt_detect_pch(const struct drm_i915_private *de=
+v_priv,
+ 	 * make an educated guess as to which PCH is really there.
+ 	 */
+=20
+-	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
++	if (dev_priv->params.virt_pch_id)
++		id =3D dev_priv->params.virt_pch_id;
++	else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
+ 		id =3D INTEL_PCH_ADP_DEVICE_ID_TYPE;
+ 	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+ 		id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
 
-== Summary ==
+That lets you pass in any PCH device id via i915.virt_pch_id=3D<id>, but
+it still checks the value in intel_pch_type(), fails on unknown ones,
+and warns about unexpected combos.
 
-CI Bug Log - changes from CI_DRM_15358 -> Patchwork_138208v1
-====================================================
+See drivers/gpu/drm/i915/soc/intel_pch.h for the
+INTEL_PCH_*_DEVICE_ID_TYPE macros for possible values.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/index.html
-
-Participating hosts (37 -> 37)
-------------------------------
-
-  Additional (3): fi-tgl-1115g4 bat-arlh-3 fi-bsw-n3050 
-  Missing    (3): fi-kbl-7567u fi-snb-2520m fi-elk-e7500 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_138208v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][1] ([i915#9318])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html
-
-  * igt@fbdev@read:
-    - bat-arls-1:         [PASS][2] -> [DMESG-FAIL][3] ([i915#12102])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-arls-1/igt@fbdev@read.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-arls-1/igt@fbdev@read.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][6] +19 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][7] ([i915#4103]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][8] ([i915#3555] / [i915#3840])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][10] ([i915#9812])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][11] ([i915#9732]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-tgl-1115g4:      NOTRUN -> [SKIP][12] ([i915#3555])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@info:
-    - bat-arls-1:         [DMESG-WARN][13] ([i915#12102]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-arls-1/igt@fbdev@info.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-arls-1/igt@fbdev@info.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [DMESG-WARN][15] ([i915#11349]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][17] ([i915#12061]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
-  [i915#11343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343
-  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11666]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666
-  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#11723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723
-  [i915#11724]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11724
-  [i915#11725]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725
-  [i915#11726]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12102]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
-  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
-  [i915#9812]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9812
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+BR,
+Jani.
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_15358 -> Patchwork_138208v1
+>
+> =D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 18:=
+00, Andrey Toloknev <andreyhack@gmail.com>:
+>
+>> Hmm. I wonder how many systems we'd break if we make it look
+>>> through all the bridges for a real match first, and only fall
+>>> back to intel_virt_detect_pch() if nothing was found...
+>>
+>>
+>> Yes, I definitely understand this, that's why I didn't touch this code at
+>> all in the second patch.
+>> I just add bool modparam force_tgp_vpch in i915_params and a bit modify
+>> method intel_virt_detect_pch() in intel_pch.c
+>>
+>>
+>>
+>> =D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 17=
+:52, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com
+>> >:
+>>
+>>> On Wed, Sep 04, 2024 at 05:25:06PM +0500, Andrey Toloknev wrote:
+>>> > Hello!
+>>> >
+>>> > Thanks for your reply, Ville.
+>>> >
+>>> > I looked at the code again and understood you are definitely right ab=
+out
+>>> > breaking other combinations of CPU+PCH with using IS_GEN9_BC in my
+>>> patch.
+>>> >
+>>> > Using libvirt (kvm) I can passthrough ISA/LPC bridge to VM, but the
+>>> problem
+>>> > is connected with method intel_detect_pch(). It searches only for the
+>>> first
+>>> > ISA Bridge.
+>>>
+>>> Hmm. I wonder how many systems we'd break if we make it look
+>>> through all the bridges for a real match first, and only fall
+>>> back to intel_virt_detect_pch() if nothing was found...
+>>>
+>>> > And the virtual ISA/LPC Bridge PCI in libvirt is hardcoded to address
+>>> > 00:01.0 - it's always first.
+>>> > So, method intel_detect_pch() correctly detects that the first bridge=
+ is
+>>> > virtual and then calls method intel_virt_detect_pch(), which just che=
+cks
+>>> > the iGPU platform and doesn't take into account the possible
+>>> combination of
+>>> > Comet Lake CPU and Tiger Lake PCH.
+>>> >
+>>> > Of course, It would be nice if we can have a universal modparam to
+>>> specify
+>>> > PCH id by hand in future.
+>>> > But as a fast fix of that small bug I think one more bool modparam may
+>>> be
+>>> > enough.
+>>> > I wrote the second version of patch which adds that bool modparam -
+>>> > force_tgp_vpch. It's false by default.
+>>> > When this param is true, we also check that the CPU is Comet Lake and
+>>> then
+>>> > set PCH type as Tiger Lake in the method intel_virt_detect_pch().
+>>> >
+>>> > The second version of patch is in attachment.
+>>> >
+>>> >
+>>> > =D0=B2=D1=82, 3 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2=
+ 18:38, Ville Syrj=C3=A4l=C3=A4 <
+>>> ville.syrjala@linux.intel.com>:
+>>> >
+>>> > > On Sun, Sep 01, 2024 at 02:56:07PM +0500, Andrey Toloknev wrote:
+>>> > > > Hello!
+>>> > > >
+>>> > > > I have 2 machines with Comet Lake CPUs on Tiger Lake PCH (500
+>>> series of
+>>> > > > Intel chipsets).
+>>> > > > For that configuration there was a patch for adding support for
+>>> Tiger
+>>> > > Lake
+>>> > > > PCH with CometLake CPU in 2021 -
+>>> > > > https://patchwork.freedesktop.org/patch/412664/
+>>> > > > This patch made possible correct detection of such chipset and cpu
+>>> > > > configuration for i915 kernel module. Without it there was no
+>>> output to
+>>> > > any
+>>> > > > display (HDMI/DP/DVI, even VGA).
+>>> > > >
+>>> > > > But this patch doesn't touch intel_virt_detect_pch method, when y=
+ou
+>>> > > > passthrough iGPU to a virtual machine.
+>>> > > > So, virtual PCH incorrectly detects as Cannon Lake and you have no
+>>> output
+>>> > > > to a physical display with i915 driver:
+>>> > > >
+>>> > > > [    2.933139] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i91=
+5]]
+>>> > > > Assuming PCH ID a300
+>>> > > > [    2.933308] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Fou=
+nd
+>>> > > Cannon
+>>> > > > Lake PCH (CNP)
+>>> > > >
+>>> > > >
+>>> > > > The bug is on line 173 in drivers/gpu/drm/i915/soc/intel_pch.c in
+>>> method
+>>> > > > intel_virt_detect_pch:
+>>> > > >
+>>> > > > else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+>>> > > >
+>>> > > > id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
+>>> > > >
+>>> > > > It must be:
+>>> > > >
+>>> > > > else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
+>>> > > > IS_GEN9_BC(dev_priv))
+>>> > > >
+>>> > > > id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
+>>> > > >
+>>> > > >
+>>> > > > After that small change you get correct detection of PCH and have
+>>> output
+>>> > > to
+>>> > > > a physical display in VM with passthrough iGPU:
+>>> > > >
+>>> > > > [   16.139809] i915 0000:00:02.0: [drm:intel_virt_detect_pch [i91=
+5]]
+>>> > > > Assuming PCH ID a080
+>>> > > > [   16.261151] i915 0000:00:02.0: [drm:intel_pch_type [i915]] Fou=
+nd
+>>> Tiger
+>>> > > > Lake LP PCH
+>>> > > >
+>>> > > >
+>>> > > > All kernel versions in any distro since 2021 are affected by this
+>>> small
+>>> > > bug.
+>>> > > > The patch for i915 module of the actual kernel version is in
+>>> attachment.
+>>> > >
+>>> > > You fix one CPU+PCH combo, but break the other. I don't think there=
+ is
+>>> > > any way to handle this mess in intel_virt_detect_pch(). The best th=
+ing
+>>> > > would be if the virtual machine would advertise the correct ISA/LPC
+>>> > > bridge, then the heiristic is not even invoked. If that's not possi=
+ble
+>>> > > for some reason then I suppose we'd need a modparam/etc. so the user
+>>> > > can specify the PCH ID by hand.
+>>> > >
+>>> > > --
+>>> > > Ville Syrj=C3=A4l=C3=A4
+>>> > > Intel
+>>> > >
+>>> >
+>>> >
+>>> > --
+>>> > Best regards, Andrey Toloknev
+>>>
+>>>
+>>>
+>>> --
+>>> Ville Syrj=C3=A4l=C3=A4
+>>> Intel
+>>>
+>>
+>>
+>> --
+>> Best regards, Andrey Toloknev
+>>
 
-  CI-20190529: 20190529
-  CI_DRM_15358: c72d3ffc0308b71024de6f80c3596668991c67ea @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8004: 0e443bec0ccfb56c2754437b465fc197ee4fd481 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_138208v1: c72d3ffc0308b71024de6f80c3596668991c67ea @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/index.html
-
---===============1754933319634686361==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/display: pass display to intel_crtc_for_pipe()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138208/">https://patchwork.freedesktop.org/series/138208/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15358 -&gt; Patchwork_138208v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/index.html</p>
-<h2>Participating hosts (37 -&gt; 37)</h2>
-<p>Additional (3): fi-tgl-1115g4 bat-arlh-3 fi-bsw-n3050 <br />
-  Missing    (3): fi-kbl-7567u fi-snb-2520m fi-elk-e7500 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_138208v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@read:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-arls-1/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-arls-1/igt@fbdev@read.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102">i915#12102</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9812">i915#9812</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>fi-tgl-1115g4:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/fi-tgl-1115g4/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-arls-1/igt@fbdev@info.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102">i915#12102</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-arls-1/igt@fbdev@info.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15358/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138208v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15358 -&gt; Patchwork_138208v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15358: c72d3ffc0308b71024de6f80c3596668991c67ea @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8004: 0e443bec0ccfb56c2754437b465fc197ee4fd481 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_138208v1: c72d3ffc0308b71024de6f80c3596668991c67ea @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1754933319634686361==--
+--=20
+Jani Nikula, Intel
