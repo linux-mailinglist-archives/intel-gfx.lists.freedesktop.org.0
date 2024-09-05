@@ -2,74 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EAD971991
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E65971970
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9025510E53C;
-	Mon,  9 Sep 2024 12:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36E7E10E514;
+	Mon,  9 Sep 2024 12:36:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GwhOYacl";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=helen.koike@collabora.com header.b="TlCe6lmq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
- [209.85.166.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 517EF10E039
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Sep 2024 04:35:27 +0000 (UTC)
-Received: by mail-il1-f179.google.com with SMTP id
- e9e14a558f8ab-39f54ab8e69so5185875ab.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 04 Sep 2024 21:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725510926; x=1726115726; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Uod7aJ5TmM4+d5yOl25lVd72xaVRSXNRFZY+TLSCUWo=;
- b=GwhOYaclGb9EZsIrMEBusxDA0CXDqoiL84tdAf5NqtEt2p2ZWbq12ADTLH50ZL050P
- No+LLFX8pJoIr13nIH2F9IgxBl2BVNuqaaofHBKNOX5iLsrd/+oLCueC8rhp2UV/xrIH
- rn1Un8X9wbbzcB7EAHYZCgDl1Tl9a/716OBYP5DZf2026ZZnChek2PB0jurTObzCJ23p
- oDKkf/ocJeJkwM7AfM8SJW6JH1RIiTgthTAP9eBoH3WGZkJXAwjntZLUTiMwElFdLZZE
- xnJEgtK+eQCo8rK4wIegfJA+kaYil0na7pzcxa3jhRKIaj3Otvg8/VGWReEDkWKJimyg
- hLQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725510926; x=1726115726;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Uod7aJ5TmM4+d5yOl25lVd72xaVRSXNRFZY+TLSCUWo=;
- b=qyXDvznvpJQSJM7kGvpoxNme/WvJ+Aon4lW4RBmDpuRVwF6Tmh7MIOMfl8B5bc4DH+
- tS4+OCgUEkGA8RZ21KeSIhK8EuJ/c+oK2rK2mfC75ft9Y8xq9h5wcuCjcef2OtwbXjHU
- 0AKt5SavgQFgiCbP2/5XAmjttVp+6FFgJM1gisx0GGPXUq4lvbq7qn/N0p8GHAuSCsfa
- JKf+pMjA+/vKIaewifRw0wtI/2l2GBnJ9x83MmGw2B6YcTw7iNFnRQvC6DwbT2GwHxEJ
- usFBclMj9rX18HZHl9D1vQAl3U7UMyiOuQ+ExZAIWm+DsZxj/U3+P0dSCRzFLZkiNm+L
- C65w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVakQrVMQAHH/iAiO2svcw+umEW9k4FKdOrYW/Pa0H2Kf87UDsCHnuQndZWABUzhgKWc1apl7foCpM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YylsmDPtHfjiwylOSKLdb2N4aCkSB4jyk2BNZlrGSk6YgYg7hSN
- yXjzcwHidJmIoR5+gv+xnQ95NyKlBN60xJk2Y+rY5EhIS+UMGWs9eMBkrx4voK7pI9rjEPPVIL2
- vtjsV5Z9yZw6kmP3BLWp74BCNmPs=
-X-Google-Smtp-Source: AGHT+IFumgExXr4/e/cQw0ZyC3INJD78FHeHcDz2jh/xD3htSgcL9+z+iwRk/MYQ1WrgFLFEfUfpwbqVuXNk5Z48254=
-X-Received: by 2002:a05:6e02:18cc:b0:375:a3eb:bfcd with SMTP id
- e9e14a558f8ab-39f797b23a7mr42467995ab.8.1725510926153; Wed, 04 Sep 2024
- 21:35:26 -0700 (PDT)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 237AC10E069;
+ Thu,  5 Sep 2024 12:09:58 +0000 (UTC)
+Delivered-To: vignesh.raman@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1725538195; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=D/w4JnohcWGuSzvPV1jBss22ym4yH1LY2VklBnK5FQj+CkgjgQWHO2sf9h5PV6daIfJZO7jTkc59bG2KyDbR68f3dJ13kkystVHt7HD4EVMlJFfgLjCP6xj7Wyhv/1ZUqYcnZZyf+KzlTJhoFAsLIZ9hIPhwEgkImVDwjW1yT8c=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1725538195;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=TPz3fkAGX6/kIy/N80kk4GKw6qF7JrznaChVRP0hVtU=; 
+ b=QxJfiIJkBJ4F+H8cWTtMFydhxjqGZE0QVEnqWhuL5vruDzC0hOosHpz4UD9Y+gg/lPHrVTidhn6YMoV18BzM/l9xoShF0LCyeDJWDwquV+uEFQaER+/ewddvKasruWgQ4WZQNR0wxDiVSJYi+WvIrieNClLeJiVHaTjy1qJd32E=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=helen.koike@collabora.com;
+ dmarc=pass header.from=<helen.koike@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725538195; 
+ s=zohomail; d=collabora.com; i=helen.koike@collabora.com;
+ h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=TPz3fkAGX6/kIy/N80kk4GKw6qF7JrznaChVRP0hVtU=;
+ b=TlCe6lmqWvOUOIhGiJLUjaSEvHRfm159BH4l+GPcczitqhlGwMEI01SCi3bnJAuc
+ +Pffe8n/ZMOt1VRlycJkgkPMpZUuflDva3E1RAm3pDdqjmNCas5AA3nwQRoSWEugWP9
+ ydP1u9DYb8WgwNSO9n55M97iH7VBqosgy7uMvHVQ=
+Received: from mail.zoho.com by mx.zohomail.com
+ with SMTP id 1725538193093866.1878987942056;
+ Thu, 5 Sep 2024 05:09:53 -0700 (PDT)
+Date: Thu, 05 Sep 2024 09:09:53 -0300
+From: Helen Mae Koike Fornazier <helen.koike@collabora.com>
+To: "Vignesh Raman" <vignesh.raman@collabora.com>
+Cc: "dri-devel" <dri-devel@lists.freedesktop.org>,
+ "daniels" <daniels@collabora.com>, "airlied" <airlied@gmail.com>,
+ "daniel" <daniel@ffwll.ch>, "robdclark" <robdclark@gmail.com>,
+ "guilherme.gallo" <guilherme.gallo@collabora.com>,
+ "sergi.blanch.torne" <sergi.blanch.torne@collabora.com>,
+ "deborah.brouwer" <deborah.brouwer@collabora.com>,
+ "linux-mediatek" <linux-mediatek@lists.infradead.org>,
+ "linux-amlogic" <linux-amlogic@lists.infradead.org>,
+ "linux-rockchip" <linux-rockchip@lists.infradead.org>,
+ "amd-gfx" <amd-gfx@lists.freedesktop.org>,
+ "linux-arm-msm" <linux-arm-msm@vger.kernel.org>,
+ "intel-gfx" <intel-gfx@lists.freedesktop.org>,
+ "virtualization" <virtualization@lists.linux.dev>,
+ "linux-kernel" <linux-kernel@vger.kernel.org>
+Message-ID: <191c2174ea6.c21ecee31017726.6623374043771391596@collabora.com>
+In-Reply-To: <20240905093935.2780632-1-vignesh.raman@collabora.com>
+References: <20240905093935.2780632-1-vignesh.raman@collabora.com>
+Subject: Re: [PATCH v1] drm/ci: uprev IGT and deqp-runner
 MIME-Version: 1.0
-References: <CAK88eJc1R2Tij7dLf_1wFj7XFustFjREYPR3Zrqy9ETx8Oe8UA@mail.gmail.com>
- <ZtcROWI3qildcflQ@intel.com>
- <CAK88eJeLhHP+n1870ZAC0BY2OC-UcrU4E0vmkbBm_ndqZsTtNQ@mail.gmail.com>
- <ZthX_8S1iVjb0xND@intel.com>
- <CAK88eJdiPp27z1+xR4CnB=VdrvABKo=U=7zB-Oj1atF3KfnmDA@mail.gmail.com>
- <CAK88eJfpNubXatrgMiy48vJJEjj3FB4eXyYZ1b7OAYP6TA7Ozw@mail.gmail.com>
- <871q1zsdcw.fsf@intel.com>
-In-Reply-To: <871q1zsdcw.fsf@intel.com>
-From: Andrey Toloknev <andreyhack@gmail.com>
-Date: Thu, 5 Sep 2024 09:35:15 +0500
-Message-ID: <CAK88eJeFct7U+0W_hsMyu5qxLEK1-BsCHtX-yjzEYRqaLrpWvg@mail.gmail.com>
-Subject: Re: i915 | Bug in virtual PCH detection
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="000000000000cf5a60062157d1d7"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:36:55 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,576 +82,812 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---000000000000cf5a60062157d1d7
-Content-Type: multipart/alternative; boundary="000000000000cf5a60062157d1d5"
-
---000000000000cf5a60062157d1d5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks, that's more universal and works like a charm.
-Rewrite patch again. In attachment.
-Will be nice *if* it will be committed.
-
-=D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 19:28=
-, Jani Nikula <jani.nikula@linux.intel.com>:
-
-> On Wed, 04 Sep 2024, Andrey Toloknev <andreyhack@gmail.com> wrote:
-> > Sorry for replying twice.
-> >
-> > I thought about looking for the real PCH bridge, but I'm sure it will b=
-e
-> a
-> > real headache in some situations, configurations and virtualizations.
-> > So, in my opinion, a better solution, as you noted in your first reply,
-> is
-> > modparam.
->
-> *If* we were to add a module parameter for this, it should be more
-> generic rather than forcing a single case. For example:
->
-> diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c
-> b/drivers/gpu/drm/i915/soc/intel_pch.c
-> index 542eea50093c..d76b05545308 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_pch.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-> @@ -168,7 +168,9 @@ intel_virt_detect_pch(const struct drm_i915_private
-> *dev_priv,
->          * make an educated guess as to which PCH is really there.
->          */
->
-> -       if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
-> +       if (dev_priv->params.virt_pch_id)
-> +               id =3D dev_priv->params.virt_pch_id;
-> +       else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
->                 id =3D INTEL_PCH_ADP_DEVICE_ID_TYPE;
->         else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
->                 id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
->
-> That lets you pass in any PCH device id via i915.virt_pch_id=3D<id>, but
-> it still checks the value in intel_pch_type(), fails on unknown ones,
-> and warns about unexpected combos.
->
-> See drivers/gpu/drm/i915/soc/intel_pch.h for the
-> INTEL_PCH_*_DEVICE_ID_TYPE macros for possible values.
->
-> BR,
-> Jani.
->
->
->
-> >
-> > =D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 1=
-8:00, Andrey Toloknev <andreyhack@gmail.com>:
-> >
-> >> Hmm. I wonder how many systems we'd break if we make it look
-> >>> through all the bridges for a real match first, and only fall
-> >>> back to intel_virt_detect_pch() if nothing was found...
-> >>
-> >>
-> >> Yes, I definitely understand this, that's why I didn't touch this code
-> at
-> >> all in the second patch.
-> >> I just add bool modparam force_tgp_vpch in i915_params and a bit modif=
-y
-> >> method intel_virt_detect_pch() in intel_pch.c
-> >>
-> >>
-> >>
-> >> =D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 =
-17:52, Ville Syrj=C3=A4l=C3=A4 <
-> ville.syrjala@linux.intel.com
-> >> >:
-> >>
-> >>> On Wed, Sep 04, 2024 at 05:25:06PM +0500, Andrey Toloknev wrote:
-> >>> > Hello!
-> >>> >
-> >>> > Thanks for your reply, Ville.
-> >>> >
-> >>> > I looked at the code again and understood you are definitely right
-> about
-> >>> > breaking other combinations of CPU+PCH with using IS_GEN9_BC in my
-> >>> patch.
-> >>> >
-> >>> > Using libvirt (kvm) I can passthrough ISA/LPC bridge to VM, but the
-> >>> problem
-> >>> > is connected with method intel_detect_pch(). It searches only for t=
-he
-> >>> first
-> >>> > ISA Bridge.
-> >>>
-> >>> Hmm. I wonder how many systems we'd break if we make it look
-> >>> through all the bridges for a real match first, and only fall
-> >>> back to intel_virt_detect_pch() if nothing was found...
-> >>>
-> >>> > And the virtual ISA/LPC Bridge PCI in libvirt is hardcoded to addre=
-ss
-> >>> > 00:01.0 - it's always first.
-> >>> > So, method intel_detect_pch() correctly detects that the first
-> bridge is
-> >>> > virtual and then calls method intel_virt_detect_pch(), which just
-> checks
-> >>> > the iGPU platform and doesn't take into account the possible
-> >>> combination of
-> >>> > Comet Lake CPU and Tiger Lake PCH.
-> >>> >
-> >>> > Of course, It would be nice if we can have a universal modparam to
-> >>> specify
-> >>> > PCH id by hand in future.
-> >>> > But as a fast fix of that small bug I think one more bool modparam
-> may
-> >>> be
-> >>> > enough.
-> >>> > I wrote the second version of patch which adds that bool modparam -
-> >>> > force_tgp_vpch. It's false by default.
-> >>> > When this param is true, we also check that the CPU is Comet Lake a=
-nd
-> >>> then
-> >>> > set PCH type as Tiger Lake in the method intel_virt_detect_pch().
-> >>> >
-> >>> > The second version of patch is in attachment.
-> >>> >
-> >>> >
-> >>> > =D0=B2=D1=82, 3 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=
-=B2 18:38, Ville Syrj=C3=A4l=C3=A4 <
-> >>> ville.syrjala@linux.intel.com>:
-> >>> >
-> >>> > > On Sun, Sep 01, 2024 at 02:56:07PM +0500, Andrey Toloknev wrote:
-> >>> > > > Hello!
-> >>> > > >
-> >>> > > > I have 2 machines with Comet Lake CPUs on Tiger Lake PCH (500
-> >>> series of
-> >>> > > > Intel chipsets).
-> >>> > > > For that configuration there was a patch for adding support for
-> >>> Tiger
-> >>> > > Lake
-> >>> > > > PCH with CometLake CPU in 2021 -
-> >>> > > > https://patchwork.freedesktop.org/patch/412664/
-> >>> > > > This patch made possible correct detection of such chipset and
-> cpu
-> >>> > > > configuration for i915 kernel module. Without it there was no
-> >>> output to
-> >>> > > any
-> >>> > > > display (HDMI/DP/DVI, even VGA).
-> >>> > > >
-> >>> > > > But this patch doesn't touch intel_virt_detect_pch method, when
-> you
-> >>> > > > passthrough iGPU to a virtual machine.
-> >>> > > > So, virtual PCH incorrectly detects as Cannon Lake and you have
-> no
-> >>> output
-> >>> > > > to a physical display with i915 driver:
-> >>> > > >
-> >>> > > > [    2.933139] i915 0000:00:02.0: [drm:intel_virt_detect_pch
-> [i915]]
-> >>> > > > Assuming PCH ID a300
-> >>> > > > [    2.933308] i915 0000:00:02.0: [drm:intel_pch_type [i915]]
-> Found
-> >>> > > Cannon
-> >>> > > > Lake PCH (CNP)
-> >>> > > >
-> >>> > > >
-> >>> > > > The bug is on line 173 in drivers/gpu/drm/i915/soc/intel_pch.c =
-in
-> >>> method
-> >>> > > > intel_virt_detect_pch:
-> >>> > > >
-> >>> > > > else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
-> >>> > > >
-> >>> > > > id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
-> >>> > > >
-> >>> > > > It must be:
-> >>> > > >
-> >>> > > > else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
-> >>> > > > IS_GEN9_BC(dev_priv))
-> >>> > > >
-> >>> > > > id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;
-> >>> > > >
-> >>> > > >
-> >>> > > > After that small change you get correct detection of PCH and ha=
-ve
-> >>> output
-> >>> > > to
-> >>> > > > a physical display in VM with passthrough iGPU:
-> >>> > > >
-> >>> > > > [   16.139809] i915 0000:00:02.0: [drm:intel_virt_detect_pch
-> [i915]]
-> >>> > > > Assuming PCH ID a080
-> >>> > > > [   16.261151] i915 0000:00:02.0: [drm:intel_pch_type [i915]]
-> Found
-> >>> Tiger
-> >>> > > > Lake LP PCH
-> >>> > > >
-> >>> > > >
-> >>> > > > All kernel versions in any distro since 2021 are affected by th=
-is
-> >>> small
-> >>> > > bug.
-> >>> > > > The patch for i915 module of the actual kernel version is in
-> >>> attachment.
-> >>> > >
-> >>> > > You fix one CPU+PCH combo, but break the other. I don't think
-> there is
-> >>> > > any way to handle this mess in intel_virt_detect_pch(). The best
-> thing
-> >>> > > would be if the virtual machine would advertise the correct ISA/L=
-PC
-> >>> > > bridge, then the heiristic is not even invoked. If that's not
-> possible
-> >>> > > for some reason then I suppose we'd need a modparam/etc. so the
-> user
-> >>> > > can specify the PCH ID by hand.
-> >>> > >
-> >>> > > --
-> >>> > > Ville Syrj=C3=A4l=C3=A4
-> >>> > > Intel
-> >>> > >
-> >>> >
-> >>> >
-> >>> > --
-> >>> > Best regards, Andrey Toloknev
-> >>>
-> >>>
-> >>>
-> >>> --
-> >>> Ville Syrj=C3=A4l=C3=A4
-> >>> Intel
-> >>>
-> >>
-> >>
-> >> --
-> >> Best regards, Andrey Toloknev
-> >>
->
-> --
-> Jani Nikula, Intel
->
 
 
---=20
-Best regards, Andrey Toloknev
 
---000000000000cf5a60062157d1d5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Thanks, that&#39;s more =
-universal and works like a charm.=C2=A0</div><div dir=3D"ltr">Rewrite patch=
- again. In attachment.<div>Will be nice *if* it will be committed.=C2=A0</d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">=D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 19=
-:28, Jani Nikula &lt;<a href=3D"mailto:jani.nikula@linux.intel.com" target=
-=3D"_blank">jani.nikula@linux.intel.com</a>&gt;:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">On Wed, 04 Sep 2024, Andrey Toloknev &lt;<=
-a href=3D"mailto:andreyhack@gmail.com" target=3D"_blank">andreyhack@gmail.c=
-om</a>&gt; wrote:<br>
-&gt; Sorry for replying twice.<br>
-&gt;<br>
-&gt; I thought about looking for the real PCH bridge, but I&#39;m sure it w=
-ill be a<br>
-&gt; real headache in some situations, configurations and virtualizations.<=
-br>
-&gt; So, in my opinion, a better solution, as you noted in your first reply=
-, is<br>
-&gt; modparam.<br>
-<br>
-*If* we were to add a module parameter for this, it should be more<br>
-generic rather than forcing a single case. For example:<br>
-<br>
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/so=
-c/intel_pch.c<br>
-index 542eea50093c..d76b05545308 100644<br>
---- a/drivers/gpu/drm/i915/soc/intel_pch.c<br>
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c<br>
-@@ -168,7 +168,9 @@ intel_virt_detect_pch(const struct drm_i915_private *de=
-v_priv,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0* make an educated guess as to which PCH =
-is really there.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*/<br>
-<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(=
-dev_priv))<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0if (dev_priv-&gt;params.virt_pch_id)<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0id =3D dev_priv-&gt=
-;params.virt_pch_id;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLA=
-KE_P(dev_priv))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 id =3D INTEL_PCH_AD=
-P_DEVICE_ID_TYPE;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAK=
-E(dev_priv))<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 id =3D INTEL_PCH_TG=
-P_DEVICE_ID_TYPE;<br>
-<br>
-That lets you pass in any PCH device id via i915.virt_pch_id=3D&lt;id&gt;, =
-but<br>
-it still checks the value in intel_pch_type(), fails on unknown ones,<br>
-and warns about unexpected combos.<br>
-<br>
-See drivers/gpu/drm/i915/soc/intel_pch.h for the<br>
-INTEL_PCH_*_DEVICE_ID_TYPE macros for possible values.<br>
-<br>
-BR,<br>
-Jani.<br>
-<br>
-<br>
-<br>
-&gt;<br>
-&gt; =D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 =
-18:00, Andrey Toloknev &lt;<a href=3D"mailto:andreyhack@gmail.com" target=
-=3D"_blank">andreyhack@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt;&gt; Hmm. I wonder how many systems we&#39;d break if we make it look<b=
-r>
-&gt;&gt;&gt; through all the bridges for a real match first, and only fall<=
-br>
-&gt;&gt;&gt; back to intel_virt_detect_pch() if nothing was found...<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Yes, I definitely understand this, that&#39;s why I didn&#39;t tou=
-ch this code at<br>
-&gt;&gt; all in the second patch.<br>
-&gt;&gt; I just add bool modparam force_tgp_vpch in i915_params and a bit m=
-odify<br>
-&gt;&gt; method intel_virt_detect_pch() in intel_pch.c<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; =D1=81=D1=80, 4 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=D0=B3. =D0=
-=B2 17:52, Ville Syrj=C3=A4l=C3=A4 &lt;<a href=3D"mailto:ville.syrjala@linu=
-x.intel.com" target=3D"_blank">ville.syrjala@linux.intel.com</a><br>
-&gt;&gt; &gt;:<br>
-&gt;&gt;<br>
-&gt;&gt;&gt; On Wed, Sep 04, 2024 at 05:25:06PM +0500, Andrey Toloknev wrot=
-e:<br>
-&gt;&gt;&gt; &gt; Hello!<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; Thanks for your reply, Ville.<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; I looked at the code again and understood you are definit=
-ely right about<br>
-&gt;&gt;&gt; &gt; breaking other combinations of CPU+PCH with using IS_GEN9=
-_BC in my<br>
-&gt;&gt;&gt; patch.<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; Using libvirt (kvm) I can passthrough ISA/LPC bridge to V=
-M, but the<br>
-&gt;&gt;&gt; problem<br>
-&gt;&gt;&gt; &gt; is connected with method intel_detect_pch(). It searches =
-only for the<br>
-&gt;&gt;&gt; first<br>
-&gt;&gt;&gt; &gt; ISA Bridge.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Hmm. I wonder how many systems we&#39;d break if we make it lo=
-ok<br>
-&gt;&gt;&gt; through all the bridges for a real match first, and only fall<=
-br>
-&gt;&gt;&gt; back to intel_virt_detect_pch() if nothing was found...<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; &gt; And the virtual ISA/LPC Bridge PCI in libvirt is hardcode=
-d to address<br>
-&gt;&gt;&gt; &gt; 00:01.0 - it&#39;s always first.<br>
-&gt;&gt;&gt; &gt; So, method intel_detect_pch() correctly detects that the =
-first bridge is<br>
-&gt;&gt;&gt; &gt; virtual and then calls method intel_virt_detect_pch(), wh=
-ich just checks<br>
-&gt;&gt;&gt; &gt; the iGPU platform and doesn&#39;t take into account the p=
-ossible<br>
-&gt;&gt;&gt; combination of<br>
-&gt;&gt;&gt; &gt; Comet Lake CPU and Tiger Lake PCH.<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; Of course, It would be nice if we can have a universal mo=
-dparam to<br>
-&gt;&gt;&gt; specify<br>
-&gt;&gt;&gt; &gt; PCH id by hand in future.<br>
-&gt;&gt;&gt; &gt; But as a fast fix of that small bug I think one more bool=
- modparam may<br>
-&gt;&gt;&gt; be<br>
-&gt;&gt;&gt; &gt; enough.<br>
-&gt;&gt;&gt; &gt; I wrote the second version of patch which adds that bool =
-modparam -<br>
-&gt;&gt;&gt; &gt; force_tgp_vpch. It&#39;s false by default.<br>
-&gt;&gt;&gt; &gt; When this param is true, we also check that the CPU is Co=
-met Lake and<br>
-&gt;&gt;&gt; then<br>
-&gt;&gt;&gt; &gt; set PCH type as Tiger Lake in the method intel_virt_detec=
-t_pch().<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; The second version of patch is in attachment.<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; =D0=B2=D1=82, 3 =D1=81=D0=B5=D0=BD=D1=82. 2024=E2=80=AF=
-=D0=B3. =D0=B2 18:38, Ville Syrj=C3=A4l=C3=A4 &lt;<br>
-&gt;&gt;&gt; <a href=3D"mailto:ville.syrjala@linux.intel.com" target=3D"_bl=
-ank">ville.syrjala@linux.intel.com</a>&gt;:<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; On Sun, Sep 01, 2024 at 02:56:07PM +0500, Andrey Tol=
-oknev wrote:<br>
-&gt;&gt;&gt; &gt; &gt; &gt; Hello!<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; I have 2 machines with Comet Lake CPUs on Tiger=
- Lake PCH (500<br>
-&gt;&gt;&gt; series of<br>
-&gt;&gt;&gt; &gt; &gt; &gt; Intel chipsets).<br>
-&gt;&gt;&gt; &gt; &gt; &gt; For that configuration there was a patch for ad=
-ding support for<br>
-&gt;&gt;&gt; Tiger<br>
-&gt;&gt;&gt; &gt; &gt; Lake<br>
-&gt;&gt;&gt; &gt; &gt; &gt; PCH with CometLake CPU in 2021 -<br>
-&gt;&gt;&gt; &gt; &gt; &gt; <a href=3D"https://patchwork.freedesktop.org/pa=
-tch/412664/" rel=3D"noreferrer" target=3D"_blank">https://patchwork.freedes=
-ktop.org/patch/412664/</a><br>
-&gt;&gt;&gt; &gt; &gt; &gt; This patch made possible correct detection of s=
-uch chipset and cpu<br>
-&gt;&gt;&gt; &gt; &gt; &gt; configuration for i915 kernel module. Without i=
-t there was no<br>
-&gt;&gt;&gt; output to<br>
-&gt;&gt;&gt; &gt; &gt; any<br>
-&gt;&gt;&gt; &gt; &gt; &gt; display (HDMI/DP/DVI, even VGA).<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; But this patch doesn&#39;t touch intel_virt_det=
-ect_pch method, when you<br>
-&gt;&gt;&gt; &gt; &gt; &gt; passthrough iGPU to a virtual machine.<br>
-&gt;&gt;&gt; &gt; &gt; &gt; So, virtual PCH incorrectly detects as Cannon L=
-ake and you have no<br>
-&gt;&gt;&gt; output<br>
-&gt;&gt;&gt; &gt; &gt; &gt; to a physical display with i915 driver:<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; [=C2=A0 =C2=A0 2.933139] i915 0000:00:02.0: [dr=
-m:intel_virt_detect_pch [i915]]<br>
-&gt;&gt;&gt; &gt; &gt; &gt; Assuming PCH ID a300<br>
-&gt;&gt;&gt; &gt; &gt; &gt; [=C2=A0 =C2=A0 2.933308] i915 0000:00:02.0: [dr=
-m:intel_pch_type [i915]] Found<br>
-&gt;&gt;&gt; &gt; &gt; Cannon<br>
-&gt;&gt;&gt; &gt; &gt; &gt; Lake PCH (CNP)<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; The bug is on line 173 in drivers/gpu/drm/i915/=
-soc/intel_pch.c in<br>
-&gt;&gt;&gt; method<br>
-&gt;&gt;&gt; &gt; &gt; &gt; intel_virt_detect_pch:<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAK=
-E(dev_priv))<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; It must be:<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAK=
-E(dev_priv) ||<br>
-&gt;&gt;&gt; &gt; &gt; &gt; IS_GEN9_BC(dev_priv))<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; id =3D INTEL_PCH_TGP_DEVICE_ID_TYPE;<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; After that small change you get correct detecti=
-on of PCH and have<br>
-&gt;&gt;&gt; output<br>
-&gt;&gt;&gt; &gt; &gt; to<br>
-&gt;&gt;&gt; &gt; &gt; &gt; a physical display in VM with passthrough iGPU:=
-<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; [=C2=A0 =C2=A016.139809] i915 0000:00:02.0: [dr=
-m:intel_virt_detect_pch [i915]]<br>
-&gt;&gt;&gt; &gt; &gt; &gt; Assuming PCH ID a080<br>
-&gt;&gt;&gt; &gt; &gt; &gt; [=C2=A0 =C2=A016.261151] i915 0000:00:02.0: [dr=
-m:intel_pch_type [i915]] Found<br>
-&gt;&gt;&gt; Tiger<br>
-&gt;&gt;&gt; &gt; &gt; &gt; Lake LP PCH<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; &gt; All kernel versions in any distro since 2021 ar=
-e affected by this<br>
-&gt;&gt;&gt; small<br>
-&gt;&gt;&gt; &gt; &gt; bug.<br>
-&gt;&gt;&gt; &gt; &gt; &gt; The patch for i915 module of the actual kernel =
-version is in<br>
-&gt;&gt;&gt; attachment.<br>
-&gt;&gt;&gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; You fix one CPU+PCH combo, but break the other. I do=
-n&#39;t think there is<br>
-&gt;&gt;&gt; &gt; &gt; any way to handle this mess in intel_virt_detect_pch=
-(). The best thing<br>
-&gt;&gt;&gt; &gt; &gt; would be if the virtual machine would advertise the =
-correct ISA/LPC<br>
-&gt;&gt;&gt; &gt; &gt; bridge, then the heiristic is not even invoked. If t=
-hat&#39;s not possible<br>
-&gt;&gt;&gt; &gt; &gt; for some reason then I suppose we&#39;d need a modpa=
-ram/etc. so the user<br>
-&gt;&gt;&gt; &gt; &gt; can specify the PCH ID by hand.<br>
-&gt;&gt;&gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt; &gt; --<br>
-&gt;&gt;&gt; &gt; &gt; Ville Syrj=C3=A4l=C3=A4<br>
-&gt;&gt;&gt; &gt; &gt; Intel<br>
-&gt;&gt;&gt; &gt; &gt;<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt;<br>
-&gt;&gt;&gt; &gt; --<br>
-&gt;&gt;&gt; &gt; Best regards, Andrey Toloknev<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; --<br>
-&gt;&gt;&gt; Ville Syrj=C3=A4l=C3=A4<br>
-&gt;&gt;&gt; Intel<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; Best regards, Andrey Toloknev<br>
-&gt;&gt;<br>
-<br>
--- <br>
-Jani Nikula, Intel<br>
-</blockquote></div><br clear=3D"all"></div><div><br></div><span class=3D"gm=
-ail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signatu=
-re">Best regards, Andrey Toloknev</div>
-</div>
+---- On Thu, 05 Sep 2024 06:39:32 -0300 Vignesh Raman  wrote ---
 
---000000000000cf5a60062157d1d5--
+ > Uprev IGT to the latest version and deqp-runner 
+ > to v0.20.0. Also update expectation files. 
+ >  
+ > Signed-off-by: Vignesh Raman vignesh.raman@collabora.com> 
+ > --- 
+ >  
+ > v1: 
+ > - Flaky test report will be sent to maintainers after this 
+ >  patch series is reviewed. 
+ >  
+ > --- 
+ >  drivers/gpu/drm/ci/gitlab-ci.yml              |  4 +- 
+ >  drivers/gpu/drm/ci/image-tags.yml             |  2 +- 
+ >  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |  2 +- 
+ >  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |  7 +++ 
+ >  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  2 +- 
+ >  .../gpu/drm/ci/xfails/i915-amly-flakes.txt    |  7 +++ 
+ >  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |  1 - 
+ >  drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt |  7 +++ 
+ >  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  | 10 +--- 
+ >  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt | 14 +++++ 
+ >  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |  1 + 
+ >  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |  2 - 
+ >  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  | 34 +++++++++-- 
+ >  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |  9 ++- 
+ >  .../drm/ci/xfails/mediatek-mt8173-fails.txt   | 11 +--- 
+ >  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |  6 -- 
+ >  .../gpu/drm/ci/xfails/meson-g12b-fails.txt    |  1 - 
+ >  .../gpu/drm/ci/xfails/msm-apq8016-fails.txt   |  5 -- 
+ >  .../gpu/drm/ci/xfails/msm-apq8096-fails.txt   |  5 -- 
+ >  .../msm-sc7180-trogdor-kingoftown-fails.txt   | 27 --------- 
+ >  .../msm-sc7180-trogdor-kingoftown-skips.txt   | 60 +++++++++++++++++++ 
+ >  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt | 27 --------- 
+ >  .../gpu/drm/ci/xfails/msm-sdm845-fails.txt    |  7 +-- 
+ >  .../gpu/drm/ci/xfails/msm-sdm845-flakes.txt   |  7 +++ 
+ >  .../drm/ci/xfails/rockchip-rk3288-fails.txt   | 22 ++++--- 
+ >  .../drm/ci/xfails/rockchip-rk3288-flakes.txt  | 28 +++++++++ 
+ >  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |  5 -- 
+ >  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  7 +++ 
+ >  drivers/gpu/drm/ci/xfails/vkms-none-fails.txt | 21 ------- 
+ >  29 files changed, 196 insertions(+), 145 deletions(-) 
+ >  
+ > diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab-ci.yml 
+ > index eca47d4f816f..eba5aad4a012 100644 
+ > --- a/drivers/gpu/drm/ci/gitlab-ci.yml 
+ > +++ b/drivers/gpu/drm/ci/gitlab-ci.yml 
+ > @@ -5,10 +5,10 @@ variables: 
+ >  UPSTREAM_REPO: https://gitlab.freedesktop.org/drm/kernel.git 
+ >  TARGET_BRANCH: drm-next 
+ >  
+ > -  IGT_VERSION: f13702b8e4e847c56da3ef6f0969065d686049c5 
+ > +  IGT_VERSION: a73311079a5d8ac99eb25336a8369a2c3c6b519b 
+ >  
+ >  DEQP_RUNNER_GIT_URL: https://gitlab.freedesktop.org/mesa/deqp-runner.git 
+ > -  DEQP_RUNNER_GIT_TAG: v0.15.0 
+ > +  DEQP_RUNNER_GIT_TAG: v0.20.0 
+ >  
+ >  FDO_UPSTREAM_REPO: helen.fornazier/linux   # The repo where the git-archive daily runs 
+ >  MESA_TEMPLATES_COMMIT: &ci-templates-commit d5aa3941aa03c2f716595116354fb81eb8012acb 
+ > diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image-tags.yml 
+ > index 2c340d063a96..4825a5cf813b 100644 
+ > --- a/drivers/gpu/drm/ci/image-tags.yml 
+ > +++ b/drivers/gpu/drm/ci/image-tags.yml 
+ > @@ -1,5 +1,5 @@ 
+ >  variables: 
+ > -   CONTAINER_TAG: "2024-08-07-mesa-uprev" 
+ > +   CONTAINER_TAG: "2024-09-04-igt-deqp" 
+ >  DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base" 
+ >  DEBIAN_BASE_TAG: "${CONTAINER_TAG}" 
+ >  
+ > diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt 
+ > index 8e2fed6d76a3..f44dbce3151a 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-fails.txt 
+ > @@ -2,6 +2,7 @@ amdgpu/amd_abm@abm_enabled,Fail 
+ >  amdgpu/amd_abm@abm_gradual,Fail 
+ >  amdgpu/amd_abm@backlight_monotonic_abm,Fail 
+ >  amdgpu/amd_abm@backlight_monotonic_basic,Fail 
+ > +amdgpu/amd_abm@dpms_cycle,Fail 
+ >  amdgpu/amd_assr@assr-links,Fail 
+ >  amdgpu/amd_assr@assr-links-dpms,Fail 
+ >  amdgpu/amd_mall@static-screen,Crash 
+ > @@ -14,7 +15,6 @@ amdgpu/amd_plane@mpo-scale-p010,Fail 
+ >  amdgpu/amd_plane@mpo-scale-rgb,Crash 
+ >  amdgpu/amd_plane@mpo-swizzle-toggle,Fail 
+ >  amdgpu/amd_uvd_dec@amdgpu_uvd_decode,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_addfb_basic@bad-pitch-65536,Fail 
+ >  kms_addfb_basic@bo-too-small,Fail 
+ >  kms_addfb_basic@too-high,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt 
+ > index e4faa96fa000..bcd4e320b1ea 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/amdgpu-stoney-flakes.txt 
+ > @@ -18,3 +18,10 @@ kms_async_flips@crc 
+ >  # IGT Version: 1.28-g0df7b9b97 
+ >  # Linux Version: 6.9.0-rc7 
+ >  kms_plane@pixel-format-source-clamping 
+ > + 
+ > +# Board Name: hp-11A-G6-EE-grunt 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_async_flips@async-flip-with-page-flip-events 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt b/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt 
+ > index 9b84f68a5122..0907cb0f6d9e 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-amly-fails.txt 
+ > @@ -1,3 +1,4 @@ 
+ > +core_setmaster@master-drop-set-shared-fd,Fail 
+ >  core_setmaster@master-drop-set-user,Fail 
+ >  core_setmaster_vs_auth,Fail 
+ >  i915_module_load@load,Fail 
+ > @@ -6,7 +7,6 @@ i915_module_load@reload-no-display,Fail 
+ >  i915_module_load@resize-bar,Fail 
+ >  i915_pm_rpm@gem-execbuf-stress,Timeout 
+ >  i915_pm_rpm@module-reload,Fail 
+ > -kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout 
+ >  kms_cursor_legacy@short-flip-before-cursor-atomic-transitions,Timeout 
+ >  kms_fb_coherency@memset-crc,Crash 
+ >  kms_flip@busy-flip,Timeout 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt 
+ > index 581f0da4d0f2..e4a202630eba 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt 
+ > @@ -46,3 +46,10 @@ i915_hangman@engine-engine-hang 
+ >  # IGT Version: 1.28-gf13702b8e 
+ >  # Linux Version: 6.10.0-rc5 
+ >  kms_pm_rpm@modeset-lpsp-stress 
+ > + 
+ > +# Board Name: asus-C433TA-AJ0005-rammus 
+ > +# Bug Report: 
+ > +# Failure Rate: 50 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_pm_rpm@drm-resources-equal 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt 
+ > index e612281149aa..64772fedaed5 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-apl-fails.txt 
+ > @@ -8,7 +8,6 @@ kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-upscaling,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-downscaling,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-ytile-to-64bpp-ytile-upscaling,Fail 
+ > -kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-downscaling,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling,Fail 
+ >  kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-downscaling,Fail 
+ >  kms_flip_scaled_crc@flip-64bpp-linear-to-16bpp-linear-upscaling,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt 
+ > index 4663d4d13f35..91685b3401be 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt 
+ > @@ -4,3 +4,10 @@ 
+ >  # IGT Version: 1.28-g0df7b9b97 
+ >  # Linux Version: 6.9.0-rc7 
+ >  kms_fb_coherency@memset-crc 
+ > + 
+ > +# Board Name: asus-C523NA-A20057-coral 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_universal_plane@cursor-fb-leak 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt b/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt 
+ > index 2723e2832797..f352b719cf7d 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-cml-fails.txt 
+ > @@ -1,5 +1,5 @@ 
+ > +core_setmaster@master-drop-set-shared-fd,Fail 
+ >  core_setmaster@master-drop-set-user,Fail 
+ > -core_setmaster_vs_auth,Fail 
+ >  i915_module_load@load,Fail 
+ >  i915_module_load@reload,Fail 
+ >  i915_module_load@reload-no-display,Fail 
+ > @@ -9,10 +9,10 @@ i915_pipe_stress@stress-xrgb8888-ytiled,Fail 
+ >  i915_pm_rpm@gem-execbuf-stress,Timeout 
+ >  i915_pm_rpm@module-reload,Fail 
+ >  i915_pm_rpm@system-suspend-execbuf,Timeout 
+ > -kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout 
+ > +i915_pm_rps@engine-order,Fail 
+ > +kms_big_fb@linear-16bpp-rotate-180,Timeout 
+ >  kms_fb_coherency@memset-crc,Crash 
+ >  kms_flip@busy-flip,Timeout 
+ > -kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-downscaling,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-linear-to-64bpp-linear-upscaling,Fail 
+ >  kms_flip_scaled_crc@flip-32bpp-xtile-to-64bpp-xtile-downscaling,Fail 
+ > @@ -40,14 +40,11 @@ kms_plane_alpha_blend@alpha-basic,Fail 
+ >  kms_plane_alpha_blend@alpha-opaque-fb,Fail 
+ >  kms_plane_alpha_blend@alpha-transparent-fb,Fail 
+ >  kms_plane_alpha_blend@constant-alpha-max,Fail 
+ > -kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout 
+ >  kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-5,Timeout 
+ >  kms_pm_rpm@modeset-stress-extra-wait,Timeout 
+ >  kms_pm_rpm@universal-planes,Timeout 
+ >  kms_pm_rpm@universal-planes-dpms,Timeout 
+ > -kms_prop_blob@invalid-set-prop,Fail 
+ >  kms_psr2_sf@cursor-plane-update-sf,Fail 
+ > -kms_psr2_sf@fbc-plane-move-sf-dmg-area,Timeout 
+ >  kms_psr2_sf@overlay-plane-update-continuous-sf,Fail 
+ >  kms_psr2_sf@overlay-plane-update-sf-dmg-area,Fail 
+ >  kms_psr2_sf@overlay-primary-update-sf-dmg-area,Fail 
+ > @@ -55,7 +52,6 @@ kms_psr2_sf@plane-move-sf-dmg-area,Fail 
+ >  kms_psr2_sf@primary-plane-update-sf-dmg-area,Fail 
+ >  kms_psr2_sf@primary-plane-update-sf-dmg-area-big-fb,Fail 
+ >  kms_psr2_su@page_flip-NV12,Fail 
+ > -kms_psr2_su@page_flip-P010,Fail 
+ >  kms_rotation_crc@primary-rotation-180,Timeout 
+ >  kms_setmode@basic,Fail 
+ >  kms_vblank@query-forked-hang,Timeout 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt b/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt 
+ > index 58a6001abb28..9dac2b898f34 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt 
+ > @@ -11,3 +11,17 @@ kms_plane_alpha_blend@constant-alpha-min 
+ >  # IGT Version: 1.28-gf13702b8e 
+ >  # Linux Version: 6.10.0-rc5 
+ >  kms_atomic_transition@plane-all-modeset-transition-internal-panels 
+ > + 
+ > +# Board Name: asus-C436FA-Flip-hatch 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_plane_alpha_blend@constant-alpha-min 
+ > + 
+ > +# Board Name: asus-C436FA-Flip-hatch 
+ > +# Bug Report: 
+ > +# Failure Rate: 50 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_async_flips@crc 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt b/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt 
+ > index 4821c9adefd1..6eb64c672f7d 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-glk-fails.txt 
+ > @@ -63,3 +63,4 @@ xe_module_load@load,Fail 
+ >  xe_module_load@many-reload,Fail 
+ >  xe_module_load@reload,Fail 
+ >  xe_module_load@reload-no-display,Fail 
+ > +core_setmaster@master-drop-set-shared-fd,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt 
+ > index 1de04a3308c4..d4fba4f55ec1 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt 
+ > @@ -17,12 +17,10 @@ perf@i915-ref-count,Fail 
+ >  perf_pmu@busy-accuracy-50,Fail 
+ >  perf_pmu@module-unload,Fail 
+ >  perf_pmu@rc6,Crash 
+ > -prime_busy@after,Fail 
+ >  sysfs_heartbeat_interval@long,Timeout 
+ >  sysfs_heartbeat_interval@off,Timeout 
+ >  sysfs_preempt_timeout@off,Timeout 
+ >  sysfs_timeslice_duration@off,Timeout 
+ > -testdisplay,Timeout 
+ >  xe_module_load@force-load,Fail 
+ >  xe_module_load@load,Fail 
+ >  xe_module_load@many-reload,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt 
+ > index e728ccc62326..461ef69ef08a 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt 
+ > @@ -1,40 +1,64 @@ 
+ > +api_intel_allocator@fork-simple-stress-signal,Timeout 
+ > +api_intel_allocator@open-vm,Timeout 
+ >  api_intel_allocator@simple-allocator,Timeout 
+ > +api_intel_bb@lot-of-buffers,Timeout 
+ >  api_intel_bb@object-reloc-keep-cache,Timeout 
+ >  api_intel_bb@offset-control,Timeout 
+ > -core_auth@getclient-simple,Timeout 
+ > -core_hotunplug@hotunbind-rebind,Timeout 
+ > +api_intel_bb@render-ccs,Timeout 
+ > +api_intel_bb@reset-bb,Timeout 
+ > +core_auth@basic-auth,Timeout 
+ > +core_hotunplug@hotrebind,Timeout 
+ > +core_setmaster@master-drop-set-user,Fail 
+ >  debugfs_test@read_all_entries_display_on,Timeout 
+ > -drm_read@invalid-buffer,Timeout 
+ > -drm_read@short-buffer-nonblock,Timeout 
+ > +drm_read@empty-block,Timeout 
+ > +dumb_buffer@create-clear,Timeout 
+ > +dumb_buffer@invalid-bpp,Timeout 
+ >  gen3_render_tiledx_blits,Timeout 
+ >  gen7_exec_parse@basic-allocation,Timeout 
+ > -gen7_exec_parse@batch-without-end,Timeout 
+ >  gen9_exec_parse@batch-invalid-length,Timeout 
+ >  gen9_exec_parse@bb-secure,Timeout 
+ >  gen9_exec_parse@secure-batches,Timeout 
+ >  gen9_exec_parse@shadow-peek,Timeout 
+ >  gen9_exec_parse@unaligned-jump,Timeout 
+ > +i915_getparams_basic@basic-subslice-total,Timeout 
+ > +i915_hangman@gt-engine-hang,Timeout 
+ >  i915_module_load@load,Fail 
+ >  i915_module_load@reload,Fail 
+ >  i915_module_load@reload-no-display,Fail 
+ >  i915_module_load@resize-bar,Fail 
+ > +i915_pciid,Timeout 
+ > +i915_pipe_stress@stress-xrgb8888-ytiled,Timeout 
+ > +i915_pm_rpm@gem-execbuf-stress,Timeout 
+ > +i915_pm_rps@engine-order,Timeout 
+ > +i915_pm_rps@thresholds-idle-park,Timeout 
+ >  i915_query@engine-info,Timeout 
+ >  i915_query@query-topology-kernel-writes,Timeout 
+ >  i915_query@test-query-geometry-subslices,Timeout 
+ >  kms_lease@lease-uevent,Fail 
+ >  kms_rotation_crc@multiplane-rotation,Fail 
+ >  perf@i915-ref-count,Fail 
+ > +perf_pmu@busy,Timeout 
+ >  perf_pmu@enable-race,Timeout 
+ >  perf_pmu@event-wait,Timeout 
+ > +perf_pmu@faulting-read,Timeout 
+ >  perf_pmu@gt-awake,Timeout 
+ >  perf_pmu@interrupts,Timeout 
+ >  perf_pmu@module-unload,Fail 
+ > +perf_pmu@most-busy-idle-check-all,Timeout 
+ >  perf_pmu@rc6,Crash 
+ > +perf_pmu@render-node-busy-idle,Fail 
+ > +perf_pmu@semaphore-wait-idle,Timeout 
+ > +prime_busy@after,Timeout 
+ > +prime_mmap@test_aperture_limit,Timeout 
+ >  prime_mmap@test_map_unmap,Timeout 
+ >  prime_mmap@test_refcounting,Timeout 
+ >  prime_self_import@basic-with_one_bo,Timeout 
+ > +sriov_basic@enable-vfs-autoprobe-off,Timeout 
+ > +syncobj_basic@bad-destroy,Timeout 
+ >  syncobj_basic@bad-flags-fd-to-handle,Timeout 
+ > +syncobj_basic@create-signaled,Timeout 
+ >  syncobj_eventfd@invalid-bad-pad,Timeout 
+ > +syncobj_eventfd@timeline-wait-before-signal,Timeout 
+ >  syncobj_wait@invalid-multi-wait-unsubmitted-signaled,Timeout 
+ >  syncobj_wait@invalid-signal-illegal-handle,Timeout 
+ >  syncobj_wait@invalid-single-wait-all-unsubmitted,Timeout 
+ > diff --git a/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt b/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt 
+ > index 2adae2175501..0ce240e3aa07 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/i915-whl-fails.txt 
+ > @@ -1,5 +1,5 @@ 
+ > +core_setmaster@master-drop-set-shared-fd,Fail 
+ >  core_setmaster@master-drop-set-user,Fail 
+ > -core_setmaster_vs_auth,Fail 
+ >  i915_module_load@load,Fail 
+ >  i915_module_load@reload,Fail 
+ >  i915_module_load@reload-no-display,Fail 
+ > @@ -7,7 +7,8 @@ i915_module_load@resize-bar,Fail 
+ >  i915_pm_rpm@gem-execbuf-stress,Timeout 
+ >  i915_pm_rpm@module-reload,Fail 
+ >  i915_pm_rpm@system-suspend-execbuf,Timeout 
+ > -kms_ccs@crc-primary-rotation-180-yf-tiled-ccs,Timeout 
+ > +i915_pm_rps@engine-order,Fail 
+ > +kms_big_fb@linear-16bpp-rotate-180,Timeout 
+ >  kms_cursor_legacy@short-flip-before-cursor-atomic-transitions,Timeout 
+ >  kms_dirtyfb@default-dirtyfb-ioctl,Fail 
+ >  kms_dirtyfb@fbc-dirtyfb-ioctl,Fail 
+ > @@ -32,19 +33,17 @@ kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-downscaling,Fail 
+ >  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling,Fail 
+ >  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling,Fail 
+ >  kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytilercccs-downscaling,Fail 
+ > -kms_frontbuffer_tracking@fbc-rgb565-draw-mmap-cpu,Timeout 
+ >  kms_frontbuffer_tracking@fbc-tiling-linear,Fail 
+ > +kms_frontbuffer_tracking@fbc-1p-indfb-fliptrack-mmap-gtt,Timeout 
+ >  kms_lease@lease-uevent,Fail 
+ >  kms_plane_alpha_blend@alpha-basic,Fail 
+ >  kms_plane_alpha_blend@alpha-opaque-fb,Fail 
+ >  kms_plane_alpha_blend@alpha-transparent-fb,Fail 
+ >  kms_plane_alpha_blend@constant-alpha-max,Fail 
+ > -kms_plane_scaling@plane-scaler-with-clipping-clamping-rotation,Timeout 
+ >  kms_plane_scaling@planes-upscale-factor-0-25-downscale-factor-0-5,Timeout 
+ >  kms_pm_rpm@modeset-stress-extra-wait,Timeout 
+ >  kms_pm_rpm@universal-planes,Timeout 
+ >  kms_pm_rpm@universal-planes-dpms,Timeout 
+ > -kms_prop_blob@invalid-set-prop,Fail 
+ >  kms_rotation_crc@primary-rotation-180,Timeout 
+ >  kms_vblank@query-forked-hang,Timeout 
+ >  perf@i915-ref-count,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt 
+ > index a14349a1967f..8e0efc80d510 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8173-fails.txt 
+ > @@ -1,8 +1,3 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  fbdev@eof,Fail 
+ >  fbdev@read,Fail 
+ >  kms_3d,Fail 
+ > @@ -27,10 +22,6 @@ kms_cursor_legacy@cursor-vs-flip-atomic,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-legacy,Fail 
+ >  kms_flip@flip-vs-modeset-vs-hang,Fail 
+ >  kms_flip@flip-vs-panning-vs-hang,Fail 
+ > -kms_flip@flip-vs-suspend,Fail 
+ > -kms_flip@flip-vs-suspend-interruptible,Fail 
+ >  kms_lease@lease-uevent,Fail 
+ > -kms_properties@get_properties-sanity-atomic,Fail 
+ > -kms_properties@plane-properties-atomic,Fail 
+ > -kms_properties@plane-properties-legacy,Fail 
+ >  kms_rmfb@close-fd,Fail 
+ > +kms_flip@flip-vs-suspend-interruptible,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt 
+ > index 8cb2cb67853d..845f852bb4a0 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8183-fails.txt 
+ > @@ -1,10 +1,5 @@ 
+ >  core_setmaster@master-drop-set-shared-fd,Fail 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ >  dumb_buffer@create-clear,Crash 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  fbdev@eof,Fail 
+ >  fbdev@pan,Fail 
+ >  fbdev@read,Fail 
+ > @@ -18,5 +13,4 @@ kms_color@invalid-gamma-lut-sizes,Fail 
+ >  kms_flip@flip-vs-panning-vs-hang,Fail 
+ >  kms_flip@flip-vs-suspend,Fail 
+ >  kms_lease@lease-uevent,Fail 
+ > -kms_properties@plane-properties-atomic,Fail 
+ >  kms_rmfb@close-fd,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt b/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt 
+ > index 328967d3e23d..fc3745180683 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/meson-g12b-fails.txt 
+ > @@ -1,4 +1,3 @@ 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_3d,Fail 
+ >  kms_cursor_legacy@forked-bo,Fail 
+ >  kms_cursor_legacy@forked-move,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt 
+ > index 4ac46168eff3..066d24ee3e08 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-apq8016-fails.txt 
+ > @@ -1,8 +1,3 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_3d,Fail 
+ >  kms_cursor_legacy@torture-bo,Fail 
+ >  kms_force_connector_basic@force-edid,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt 
+ > index bd0653caf7a0..2893f98a6b97 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-apq8096-fails.txt 
+ > @@ -1,7 +1,2 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_3d,Fail 
+ >  kms_lease@lease-uevent,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt 
+ > index d42004cd6977..6dbc2080347d 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt 
+ > @@ -1,8 +1,3 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_color@ctm-0-25,Fail 
+ >  kms_color@ctm-0-50,Fail 
+ >  kms_color@ctm-0-75,Fail 
+ > @@ -11,35 +6,13 @@ kms_color@ctm-green-to-red,Fail 
+ >  kms_color@ctm-negative,Fail 
+ >  kms_color@ctm-red-to-blue,Fail 
+ >  kms_color@ctm-signed,Fail 
+ > -kms_content_protection@atomic,Crash 
+ > -kms_content_protection@atomic-dpms,Crash 
+ > -kms_content_protection@content-type-change,Crash 
+ > -kms_content_protection@lic-type-0,Crash 
+ > -kms_content_protection@lic-type-1,Crash 
+ > -kms_content_protection@srm,Crash 
+ > -kms_content_protection@type1,Crash 
+ > -kms_content_protection@uevent,Crash 
+ > -kms_cursor_legacy@2x-cursor-vs-flip-atomic,Fail 
+ > -kms_cursor_legacy@2x-cursor-vs-flip-legacy,Fail 
+ > -kms_cursor_legacy@2x-flip-vs-cursor-atomic,Fail 
+ > -kms_cursor_legacy@2x-flip-vs-cursor-legacy,Fail 
+ > -kms_cursor_legacy@2x-long-cursor-vs-flip-atomic,Fail 
+ > -kms_cursor_legacy@2x-long-cursor-vs-flip-legacy,Fail 
+ > -kms_cursor_legacy@2x-long-flip-vs-cursor-atomic,Fail 
+ > -kms_cursor_legacy@2x-long-flip-vs-cursor-legacy,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-toggle,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-varying-size,Fail 
+ > -kms_display_modes@extended-mode-basic,Fail 
+ > -kms_flip@2x-flip-vs-modeset-vs-hang,Fail 
+ > -kms_flip@2x-flip-vs-panning-vs-hang,Fail 
+ >  kms_flip@flip-vs-modeset-vs-hang,Fail 
+ >  kms_flip@flip-vs-panning-vs-hang,Fail 
+ >  kms_lease@lease-uevent,Fail 
+ > -kms_multipipe_modeset@basic-max-pipe-crc-check,Fail 
+ >  kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail 
+ >  kms_plane_alpha_blend@alpha-7efc,Fail 
+ >  kms_plane_alpha_blend@coverage-7efc,Fail 
+ >  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail 
+ > -kms_plane_lowres@tiling-none,Fail 
+ >  kms_rmfb@close-fd,Fail 
+ > -kms_vblank@ts-continuation-dpms-rpm,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt 
+ > index c2833eee1c4b..8f8d8da3068c 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-skips.txt 
+ > @@ -23,3 +23,63 @@ kms_flip@2x-wf_vblank-ts-check 
+ >  
+ >  # Hangs the machine 
+ >  kms_cursor_crc@cursor-random-max-size 
+ > + 
+ > +# Kernel panic 
+ > +kms_setmode@invalid-clone-single-crtc-stealing 
+ > +# [IGT] kms_setmode: executing 
+ > +# [IGT] kms_setmode: starting subtest invalid-clone-single-crtc-stealing 
+ > +# [IGT] kms_setmode: starting dynamic subtest pipe-A-eDP-1-DP-1 
+ > +# Unable to handle kernel NULL pointer dereference at virtual address 0000000000000178 
+ > +# Mem abort info: 
+ > +#   ESR = 0x0000000096000004 
+ > +#   EC = 0x25: DABT (current EL), IL = 32 bits 
+ > +#   SET = 0, FnV = 0 
+ > +#   EA = 0, S1PTW = 0 
+ > +#   FSC = 0x04: level 0 translation fault 
+ > +# Data abort info: 
+ > +#   ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000 
+ > +#   CM = 0, WnR = 0, TnD = 0, TagAccess = 0 
+ > +#   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0 
+ > +# user pgtable: 4k pages, 48-bit VAs, pgdp=000000024b2bb000 
+ > +# [0000000000000178] pgd=0000000000000000, p4d=0000000000000000 
+ > +# Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP 
+ > +# Modules linked in: 
+ > +# CPU: 1 UID: 0 PID: 617 Comm: kms_setmode Not tainted 6.11.0-rc2-gee04e3109fb7 #1 
+ > +# Hardware name: Google Kingoftown (DT) 
+ > +# pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--) 
+ > +# pc : drm_mode_is_420_only+0x24/0x40 
+ > +# lr : drm_mode_is_420_only+0x20/0x40 
+ > +# sp : ffff80008730b830 
+ > +# x29: ffff80008730b830 x28: 0000000000000001 x27: ffff70b8c174b8b0 
+ > +# x26: ffffb111a6a5ec60 x25: ffffb111a70ed178 x24: 0000000000000028 
+ > +# x23: ffff70b8c4350480 x22: ffffb111a8e2c000 x21: ffff70b8c36eba80 
+ > +# x20: ffffb111a7ce0e30 x19: 0000000000000178 x18: 0000000000000003 
+ > +# x17: 000000040044ffff x16: 005000f2b5503510 x15: 0000000000000000 
+ > +# x14: 0000000000040000 x13: 0000000000000000 x12: 0000000000000000 
+ > +# x11: 0000000000000078 x10: 0000000000000000 x9 : ffffb111a8a23de8 
+ > +# x8 : ffff80008730b828 x7 : 0000000000000000 x6 : 0000000000244140 
+ > +# x5 : 00000000012e1fc0 x4 : 00000000000003e8 x3 : 0000000000000005 
+ > +# x2 : 0000000000000000 x1 : 0000000000000000 x0 : 0000000000000000 
+ > +# Call trace: 
+ > +#  drm_mode_is_420_only+0x24/0x40 
+ > +#  dpu_encoder_get_drm_fmt+0x20/0x44 
+ > +#  dpu_encoder_phys_vid_enable+0x24/0x1f8 
+ > +#  dpu_encoder_virt_atomic_enable+0xd4/0x234 
+ > +#  drm_atomic_helper_commit_modeset_enables+0x188/0x26c 
+ > +#  msm_atomic_commit_tail+0x1d8/0x688 
+ > +#  commit_tail+0xa0/0x188 
+ > +#  drm_atomic_helper_commit+0x190/0x1a4 
+ > +#  drm_atomic_commit+0xb4/0xec 
+ > +#  drm_atomic_helper_set_config+0xdc/0x114 
+ > +#  drm_mode_setcrtc+0x420/0x808 
+ > +#  drm_ioctl_kernel+0xbc/0x12c 
+ > +#  drm_ioctl+0x230/0x4c0 
+ > +#  __arm64_sys_ioctl+0xac/0xf0 
+ > +#  invoke_syscall+0x48/0x110 
+ > +#  el0_svc_common.constprop.0+0x40/0xe0 
+ > +#  do_el0_svc+0x1c/0x28 
+ > +#  el0_svc+0x4c/0x120 
+ > +#  el0t_64_sync_handler+0x100/0x12c 
+ > +#  el0t_64_sync+0x190/0x194 
+ > +# Code: 91010273 aa0103e0 97ffad23 d3461c01 (f8617a61) 
+ > +# ---[ end trace 0000000000000000 ]--- 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt 
+ > index d42004cd6977..6dbc2080347d 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt 
+ > @@ -1,8 +1,3 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_color@ctm-0-25,Fail 
+ >  kms_color@ctm-0-50,Fail 
+ >  kms_color@ctm-0-75,Fail 
+ > @@ -11,35 +6,13 @@ kms_color@ctm-green-to-red,Fail 
+ >  kms_color@ctm-negative,Fail 
+ >  kms_color@ctm-red-to-blue,Fail 
+ >  kms_color@ctm-signed,Fail 
+ > -kms_content_protection@atomic,Crash 
+ > -kms_content_protection@atomic-dpms,Crash 
+ > -kms_content_protection@content-type-change,Crash 
+ > -kms_content_protection@lic-type-0,Crash 
+ > -kms_content_protection@lic-type-1,Crash 
+ > -kms_content_protection@srm,Crash 
+ > -kms_content_protection@type1,Crash 
+ > -kms_content_protection@uevent,Crash 
+ > -kms_cursor_legacy@2x-cursor-vs-flip-atomic,Fail 
+ > -kms_cursor_legacy@2x-cursor-vs-flip-legacy,Fail 
+ > -kms_cursor_legacy@2x-flip-vs-cursor-atomic,Fail 
+ > -kms_cursor_legacy@2x-flip-vs-cursor-legacy,Fail 
+ > -kms_cursor_legacy@2x-long-cursor-vs-flip-atomic,Fail 
+ > -kms_cursor_legacy@2x-long-cursor-vs-flip-legacy,Fail 
+ > -kms_cursor_legacy@2x-long-flip-vs-cursor-atomic,Fail 
+ > -kms_cursor_legacy@2x-long-flip-vs-cursor-legacy,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-toggle,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-varying-size,Fail 
+ > -kms_display_modes@extended-mode-basic,Fail 
+ > -kms_flip@2x-flip-vs-modeset-vs-hang,Fail 
+ > -kms_flip@2x-flip-vs-panning-vs-hang,Fail 
+ >  kms_flip@flip-vs-modeset-vs-hang,Fail 
+ >  kms_flip@flip-vs-panning-vs-hang,Fail 
+ >  kms_lease@lease-uevent,Fail 
+ > -kms_multipipe_modeset@basic-max-pipe-crc-check,Fail 
+ >  kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail 
+ >  kms_plane_alpha_blend@alpha-7efc,Fail 
+ >  kms_plane_alpha_blend@coverage-7efc,Fail 
+ >  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail 
+ > -kms_plane_lowres@tiling-none,Fail 
+ >  kms_rmfb@close-fd,Fail 
+ > -kms_vblank@ts-continuation-dpms-rpm,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt 
+ > index 770a1c685fde..f7539aef95f2 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-fails.txt 
+ > @@ -1,8 +1,4 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ > +drm_read@invalid-buffer,Fail 
+ >  kms_color@ctm-0-25,Fail 
+ >  kms_color@ctm-0-50,Fail 
+ >  kms_color@ctm-0-75,Fail 
+ > @@ -11,6 +7,7 @@ kms_color@ctm-green-to-red,Fail 
+ >  kms_color@ctm-negative,Fail 
+ >  kms_color@ctm-red-to-blue,Fail 
+ >  kms_color@ctm-signed,Fail 
+ > +kms_content_protection@uevent,Crash 
+ >  kms_cursor_legacy@basic-flip-before-cursor-atomic,Fail 
+ >  kms_cursor_legacy@basic-flip-before-cursor-legacy,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-atomic,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt b/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt 
+ > index 2aa96b1241c3..0052b2535bec 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/msm-sdm845-flakes.txt 
+ > @@ -116,3 +116,10 @@ kms_cursor_legacy@flip-vs-cursor-toggle 
+ >  # IGT Version: 1.28-gf13702b8e 
+ >  # Linux Version: 6.10.0-rc5 
+ >  msm/msm_shrink@copy-mmap-oom-8 
+ > + 
+ > +# Board Name: sdm845-cheza-r3 
+ > +# Bug Report: 
+ > +# Failure Rate: 50 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_lease@page-flip-implicit-plane 
+ > diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt 
+ > index ea7b2ceb95b9..90282dfa19f4 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-fails.txt 
+ > @@ -1,18 +1,24 @@ 
+ > -core_setmaster@master-drop-set-root,Crash 
+ >  core_setmaster@master-drop-set-user,Crash 
+ > -core_setmaster_vs_auth,Crash 
+ > -device_reset@cold-reset-bound,Crash 
+ > -device_reset@reset-bound,Crash 
+ > -device_reset@unbind-cold-reset-rebind,Crash 
+ > -device_reset@unbind-reset-rebind,Crash 
+ >  dumb_buffer@create-clear,Crash 
+ > -dumb_buffer@invalid-bpp,Crash 
+ >  fbdev@pan,Crash 
+ > +kms_bw@linear-tiling-2-displays-1920x1080p,Fail 
+ >  kms_cursor_crc@cursor-onscreen-32x10,Crash 
+ >  kms_cursor_crc@cursor-onscreen-32x32,Crash 
+ > +kms_cursor_crc@cursor-onscreen-64x64,Crash 
+ >  kms_cursor_crc@cursor-random-32x10,Crash 
+ > +kms_cursor_crc@cursor-sliding-32x10,Crash 
+ >  kms_cursor_crc@cursor-sliding-32x32,Crash 
+ > +kms_cursor_crc@cursor-sliding-64x21,Crash 
+ >  kms_cursor_legacy@basic-flip-before-cursor-atomic,Fail 
+ >  kms_cursor_legacy@cursor-vs-flip-legacy,Fail 
+ > +kms_cursor_legacy@flip-vs-cursor-crc-atomic,Crash 
+ > +kms_flip@flip-vs-panning-vs-hang,Crash 
+ > +kms_invalid_mode@int-max-clock,Crash 
+ > +kms_lease@invalid-create-leases,Fail 
+ > +kms_pipe_crc_basic@read-crc-frame-sequence,Crash 
+ > +kms_plane@pixel-format,Crash 
+ > +kms_plane@pixel-format-source-clamping,Crash 
+ >  kms_prop_blob@invalid-set-prop,Crash 
+ > -kms_prop_blob@invalid-set-prop-any,Crash 
+ > +kms_properties@get_properties-sanity-atomic,Crash 
+ > +kms_properties@get_properties-sanity-non-atomic,Crash 
+ > +kms_rmfb@close-fd,Crash 
+ > diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt 
+ > index 7ede273aab20..7f731e4db250 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3288-flakes.txt 
+ > @@ -4,3 +4,31 @@ 
+ >  # IGT Version: 1.28-gf13702b8e 
+ >  # Linux Version: 6.10.0-rc5 
+ >  kms_cursor_legacy@flip-vs-cursor-atomic 
+ > + 
+ > +# Board Name: rk3288-veyron-jaq 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_cursor_crc@cursor-offscreen-32x10 
+ > + 
+ > +# Board Name: rk3288-veyron-jaq 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_cursor_edge_walk@64x64-left-edge 
+ > + 
+ > +# Board Name: rk3288-veyron-jaq 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_flip@plain-flip-ts-check 
+ > + 
+ > +# Board Name: rk3288-veyron-jaq 
+ > +# Bug Report: 
+ > +# Failure Rate: 100 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_cursor_crc@cursor-alpha-opaque 
+ > diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt 
+ > index 9309ff15e23a..10c454e48b8d 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-fails.txt 
+ > @@ -1,9 +1,4 @@ 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ >  dumb_buffer@create-clear,Crash 
+ > -dumb_buffer@invalid-bpp,Fail 
+ >  kms_atomic_transition@modeset-transition,Fail 
+ >  kms_atomic_transition@modeset-transition-fencing,Fail 
+ >  kms_atomic_transition@plane-toggle-modeset-transition,Fail 
+ > diff --git a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt 
+ > index d98f6a17343c..85c18580372f 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/rockchip-rk3399-flakes.txt 
+ > @@ -46,3 +46,10 @@ kms_setmode@basic 
+ >  # IGT Version: 1.28-gf13702b8e 
+ >  # Linux Version: 6.10.0-rc5 
+ >  kms_bw@connected-linear-tiling-1-displays-2560x1440p 
+ > + 
+ > +# Board Name: rk3399-gru-kevin 
+ > +# Bug Report: 
+ > +# Failure Rate: 50 
+ > +# IGT Version: 1.28-ga73311079 
+ > +# Linux Version: 6.11.0-rc2 
+ > +kms_flip@wf_vblank-ts-check 
+ > diff --git a/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt b/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt 
+ > index 5408110f4c60..71c02104a683 100644 
+ > --- a/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt 
+ > +++ b/drivers/gpu/drm/ci/xfails/vkms-none-fails.txt 
+ > @@ -1,24 +1,3 @@ 
+ > -core_hotunplug@hotrebind,Fail 
+ > -core_hotunplug@hotrebind-lateclose,Fail 
+ > -core_hotunplug@hotreplug,Fail 
+ > -core_hotunplug@hotreplug-lateclose,Fail 
+ > -core_hotunplug@hotunbind-rebind,Fail 
+ > -core_hotunplug@hotunplug-rescan,Fail 
+ > -core_hotunplug@unbind-rebind,Fail 
+ > -core_hotunplug@unplug-rescan,Fail 
+ > -device_reset@cold-reset-bound,Fail 
+ > -device_reset@reset-bound,Fail 
+ > -device_reset@unbind-cold-reset-rebind,Fail 
+ > -device_reset@unbind-reset-rebind,Fail 
+ > -dumb_buffer@invalid-bpp,Fail 
+ > -kms_content_protection@atomic,Crash 
+ > -kms_content_protection@atomic-dpms,Crash 
+ > -kms_content_protection@content-type-change,Crash 
+ > -kms_content_protection@lic-type-0,Crash 
+ > -kms_content_protection@lic-type-1,Crash 
+ > -kms_content_protection@srm,Crash 
+ > -kms_content_protection@type1,Crash 
+ > -kms_content_protection@uevent,Crash 
 
---000000000000cf5a60062157d1d7
-Content-Type: application/x-patch; name="tgl_vpch_fix_v3.patch"
-Content-Disposition: attachment; filename="tgl_vpch_fix_v3.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_m0o30ilf0>
-X-Attachment-Id: f_m0o30ilf0
 
-ZGlmZiAtdXIgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuYwotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3BhcmFtcy5jCTIwMjQtMDktMDQgMTM6NTk6MjAuNjI2MzA5NTE1ICswNTAwCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmMJMjAyNC0wOS0wNCAyMToyODoxMi42NTI1Nzk0
-MTUgKzA1MDAKQEAgLTEzNiw2ICsxMzYsOSBAQAogCQkgIkVuYWJsZSBzdXBwb3J0IGZvciB1bnN0
-YWJsZSBkZWJ1ZyBvbmx5IHVzZXJzcGFjZSBBUEkuIChkZWZhdWx0OmZhbHNlKSIpOwogI2VuZGlm
-CiAKK2k5MTVfcGFyYW1fbmFtZWRfdW5zYWZlKHZpcnRfcGNoX2lkLCB1aW50LCAwNDAwLAorICAg
-ICAgICAiTWFudWFsIHNldHRpbmcgb2YgdmlydHVhbCBQQ0ggaWRlbnRpZmllciBmb3IgdmlydHVh
-bGl6ZWQgR1BVIChkZWZhdWx0OiAwKSIpOworCiBzdGF0aWMgdm9pZCBfcGFyYW1fcHJpbnRfYm9v
-bChzdHJ1Y3QgZHJtX3ByaW50ZXIgKnAsIGNvbnN0IGNoYXIgKm5hbWUsCiAJCQkgICAgICBib29s
-IHZhbCkKIHsKZGlmZiAtdXIgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuaAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X3BhcmFtcy5oCTIwMjQtMDktMDQgMTM6NTk6MjkuMDA1MzQ1OTYyICswNTAwCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmgJMjAyNC0wOS0wNCAyMTowOTo0
-OS45OTgzMDUxMDUgKzA1MDAKQEAgLTYwLDYgKzYwLDcgQEAKIAlwYXJhbSh1bnNpZ25lZCBpbnQs
-IHJlcXVlc3RfdGltZW91dF9tcywgQ09ORklHX0RSTV9JOTE1X1JFUVVFU1RfVElNRU9VVCwgQ09O
-RklHX0RSTV9JOTE1X1JFUVVFU1RfVElNRU9VVCA/IDA2MDAgOiAwKSBcCiAJcGFyYW0odW5zaWdu
-ZWQgaW50LCBsbWVtX3NpemUsIDAsIDA0MDApIFwKIAlwYXJhbSh1bnNpZ25lZCBpbnQsIGxtZW1f
-YmFyX3NpemUsIDAsIDA0MDApIFwKKwlwYXJhbSh1bnNpZ25lZCBpbnQsIHZpcnRfcGNoX2lkLCAw
-LCAwNDAwKSBcCiAJLyogbGVhdmUgYm9vbHMgYXQgdGhlIGVuZCB0byBub3QgY3JlYXRlIGhvbGVz
-ICovIFwKIAlwYXJhbShib29sLCBlbmFibGVfaGFuZ2NoZWNrLCB0cnVlLCAwNjAwKSBcCiAJcGFy
-YW0oYm9vbCwgZXJyb3JfY2FwdHVyZSwgdHJ1ZSwgSVNfRU5BQkxFRChDT05GSUdfRFJNX0k5MTVf
-Q0FQVFVSRV9FUlJPUikgPyAwNjAwIDogMCkgXApkaWZmIC11ciBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L3NvYy9pbnRlbF9wY2guYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NvYy9pbnRlbF9wY2gu
-YwotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zb2MvaW50ZWxfcGNoLmMJMjAyNC0wOS0wNCAx
-NDowNzozMC4yNzQ5MDg4ODIgKzA1MDAKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvc29jL2lu
-dGVsX3BjaC5jCTIwMjQtMDktMDQgMjE6MDc6NDkuNTM0MTcxMTMxICswNTAwCkBAIC0xNjgsNyAr
-MTY4LDkgQEAKIAkgKiBtYWtlIGFuIGVkdWNhdGVkIGd1ZXNzIGFzIHRvIHdoaWNoIFBDSCBpcyBy
-ZWFsbHkgdGhlcmUuCiAJICovCiAKLQlpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpIHx8IElT
-X0FMREVSTEFLRV9QKGRldl9wcml2KSkKKwlpZiAoZGV2X3ByaXYtPnBhcmFtcy52aXJ0X3BjaF9p
-ZCkKKwkJaWQgPSBkZXZfcHJpdi0+cGFyYW1zLnZpcnRfcGNoX2lkOworCWVsc2UgaWYgKElTX0FM
-REVSTEFLRV9TKGRldl9wcml2KSB8fCBJU19BTERFUkxBS0VfUChkZXZfcHJpdikpCiAJCWlkID0g
-SU5URUxfUENIX0FEUF9ERVZJQ0VfSURfVFlQRTsKIAllbHNlIGlmIChJU19USUdFUkxBS0UoZGV2
-X3ByaXYpIHx8IElTX1JPQ0tFVExBS0UoZGV2X3ByaXYpKQogCQlpZCA9IElOVEVMX1BDSF9UR1Bf
-REVWSUNFX0lEX1RZUEU7Cg==
---000000000000cf5a60062157d1d7--
+Awesome!
+
+Acked-by: Helen Koike <helen.koike@collabora.com>
+
+Thanks
+Helen
+
+
+ >  kms_cursor_crc@cursor-rapid-movement-128x128,Fail 
+ >  kms_cursor_crc@cursor-rapid-movement-128x42,Fail 
+ >  kms_cursor_crc@cursor-rapid-movement-256x256,Fail 
+ > -- 
+ > 2.43.0 
+ >  
+ > 
