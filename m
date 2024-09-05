@@ -2,29 +2,109 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FAB396D8C6
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 14:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D3396D8DC
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 14:41:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E918B10E140;
-	Thu,  5 Sep 2024 12:39:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3240810E88D;
+	Thu,  5 Sep 2024 12:41:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/944Bw+";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7BA610E140;
- Thu,  5 Sep 2024 12:39:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7987814594679080561=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CD1B10E88C;
+ Thu,  5 Sep 2024 12:41:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725540073; x=1757076073;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Vmi+1f/dZY2VqSgcwNZ8hfyxCiVY3aGx6vrPWR7PizU=;
+ b=Q/944Bw+YX9pvELdh1odWY5fiJLev1bsMsr5+KujuThiTfibEWUO1GSu
+ LV11Co7chIiPv8x4f2duFXm7iNJ7O+gyfL44dahy2Tbrx0hAEhvYDJp6c
+ LXjUf1zvA+m+lcOaGdWSX/Ow59Qiblk09SdbydHhDAK1Wnm4s+om4HY19
+ z+D23z3IlL8x2iaBgq3//QLUreFe+ftcBBA3hIeqL4g1smdef8Jy95aJD
+ 5vIXdnqRCPT33MQAjGRLwlS8IpOS1u7Oly6HkYsbCIuK8y5+DNKgsWcZa
+ w64MjqaUyX6vRJ6pJVRqTCVqYrhweNWG65bfJ7ILK8nIcbJCuCMcXFaqu g==;
+X-CSE-ConnectionGUID: xawctSwkRPC4YKOTaLYPkw==
+X-CSE-MsgGUID: TvdtLINNT+ayC3KfkLvfcA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="34919005"
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="34919005"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 05:41:12 -0700
+X-CSE-ConnectionGUID: g0N9q6twQTC2A0FV6dSL6w==
+X-CSE-MsgGUID: kQc8pjfKTDeNleY3Fp7LKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="65301491"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 05:40:57 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1smBn9-00000005OYX-3K6o; Thu, 05 Sep 2024 15:40:51 +0300
+Date: Thu, 5 Sep 2024 15:40:51 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Uros Bizjak <ubizjak@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Hannes Reinecke <hare@suse.de>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Alexei Starovoitov <ast@kernel.org>,
+ Daniel Borkmann <daniel@iogearbox.net>,
+ John Fastabend <john.fastabend@gmail.com>,
+ Andrii Nakryiko <andrii@kernel.org>,
+ Martin KaFai Lau <martin.lau@linux.dev>,
+ Eduard Zingerman <eddyz87@gmail.com>, Song Liu <song@kernel.org>,
+ Yonghong Song <yonghong.song@linux.dev>,
+ KP Singh <kpsingh@kernel.org>, Stanislav Fomichev <sdf@fomichev.me>,
+ Hao Luo <haoluo@google.com>, Jiri Olsa <jolsa@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Jiri Pirko <jiri@resnulli.us>, Petr Mladek <pmladek@suse.com>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Stephen Hemminger <stephen@networkplumber.org>,
+ Jamal Hadi Salim <jhs@mojatatu.com>, Cong Wang <xiyou.wangcong@gmail.com>,
+ Kent Overstreet <kent.overstreet@linux.dev>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org,
+ bpf@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com
+Subject: Re: [PATCH 00/18] random: Include <linux/percpu.h> and resolve
+ circular include dependency
+Message-ID: <Ztmm00eLBQGtiwRM@smile.fi.intel.com>
+References: <20240905122020.872466-1-ubizjak@gmail.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/ttm=3A_Add_an_option_to?=
- =?utf-8?q?_report_graphics_memory_OOM?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 05 Sep 2024 12:39:01 -0000
-Message-ID: <172553994186.950487.15258430968720454381@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240905093322.29786-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20240905093322.29786-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240905122020.872466-1-ubizjak@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,199 +117,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7987814594679080561==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 05, 2024 at 02:17:08PM +0200, Uros Bizjak wrote:
+> There were several attempts to resolve circular include dependency
+> after the addition of percpu.h: 1c9df907da83 ("random: fix circular
+> include dependency on arm64 after addition of percpu.h"), c0842fbc1b18
+> ("random32: move the pseudo-random 32-bit definitions to prandom.h") and
+> finally d9f29deb7fe8 ("prandom: Remove unused include") that completely
+> removes inclusion of <linux/percpu.h>.
+> 
+> Due to legacy reasons, <linux/random.h> includes <linux/prandom.h>, but
+> with the commit entry remark:
+> 
+> --quote--
+> A further cleanup step would be to remove this from <linux/random.h>
+> entirely, and make people who use the prandom infrastructure include
+> just the new header file.  That's a bit of a churn patch, but grepping
+> for "prandom_" and "next_pseudo_random32" "struct rnd_state" should
+> catch most users.
+> 
+> But it turns out that that nice cleanup step is fairly painful, because
+> a _lot_ of code currently seems to depend on the implicit include of
+> <linux/random.h>, which can currently come in a lot of ways, including
+> such fairly core headfers as <linux/net.h>.
+> 
+> So the "nice cleanup" part may or may never happen.
+> --/quote--
+> 
+> __percpu tag is currently defined in include/linux/compiler_types.h,
+> so there is no direct need for the inclusion of <linux/percpu.h>.
+> However, in [1] we would like to repurpose __percpu tag as a named
+> address space qualifier, where __percpu macro uses defines from
+> <linux/percpu.h>.
+> 
+> This patch series is the "nice cleanup" part, and allows us to finally
+> include <linux/percpu.h> in prandom.h.
+> 
+> The whole series was tested by compiling the kernel for x86_64 allconfig
+> and some popular architectures, namely arm64 defconfig, powerpc defconfig
+> and loongarch defconfig.
 
-== Series Details ==
+Obvious question(s) is(are):
+1) have you seen the Ingo's gigantic patch series towards resolving issues with
+the headers?
+2) if not, please look at the preliminary work and take something from there, I
+believe there are many useful changes already waiting for a couple of years to
+be applied.
 
-Series: drm/ttm: Add an option to report graphics memory OOM
-URL   : https://patchwork.freedesktop.org/series/138247/
-State : success
+Because I haven't found any references nor mentions of that in the cover letter
+here and explanation why it was not taking into consideration.
 
-== Summary ==
+> [1] https://lore.kernel.org/lkml/20240812115945.484051-4-ubizjak@gmail.com/
 
-CI Bug Log - changes from CI_DRM_15364 -> Patchwork_138247v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/index.html
-
-Participating hosts (39 -> 36)
-------------------------------
-
-  Additional (1): fi-pnv-d510 
-  Missing    (4): bat-kbl-2 bat-dg2-11 fi-snb-2520m fi-kbl-8809g 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_138247v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@eof:
-    - bat-arls-1:         [PASS][1] -> [DMESG-WARN][2] ([i915#12102])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-arls-1/igt@fbdev@eof.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-arls-1/igt@fbdev@eof.html
-
-  * igt@gem_lmem_swapping@basic:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][3] +32 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/fi-pnv-d510/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [PASS][4] -> [DMESG-WARN][5] ([i915#11349])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-adlp-9:         [PASS][6] -> [INCOMPLETE][7] ([i915#9413])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-adlp-9/igt@i915_selftest@live@workarounds.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-adlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@read:
-    - bat-arls-1:         [DMESG-FAIL][8] ([i915#12102]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-arls-1/igt@fbdev@read.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-arls-1/igt@fbdev@read.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-7567u:       [DMESG-WARN][10] ([i915#180] / [i915#1982] / [i915#9925]) -> [DMESG-WARN][11] ([i915#180] / [i915#9925]) +1 other test dmesg-warn
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/fi-kbl-7567u/igt@i915_module_load@reload.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/fi-kbl-7567u/igt@i915_module_load@reload.html
-
-  
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#12102]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-  [i915#9925]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15364 -> Patchwork_138247v1
-
-  CI-20190529: 20190529
-  CI_DRM_15364: b9fe1879bf216a835796a599fbc717992ba16e04 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_138247v1: b9fe1879bf216a835796a599fbc717992ba16e04 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/index.html
-
---===============7987814594679080561==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Add an option to report graphics memory OOM</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138247/">https://patchwork.freedesktop.org/series/138247/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15364 -&gt; Patchwork_138247v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/index.html</p>
-<h2>Participating hosts (39 -&gt; 36)</h2>
-<p>Additional (1): fi-pnv-d510 <br />
-  Missing    (4): bat-kbl-2 bat-dg2-11 fi-snb-2520m fi-kbl-8809g </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_138247v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-arls-1/igt@fbdev@eof.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-arls-1/igt@fbdev@eof.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102">i915#12102</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/fi-pnv-d510/igt@gem_lmem_swapping@basic.html">SKIP</a> +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-adlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-adlp-9/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@fbdev@read:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/bat-arls-1/igt@fbdev@read.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102">i915#12102</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/bat-arls-1/igt@fbdev@read.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15364/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138247v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15364 -&gt; Patchwork_138247v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15364: b9fe1879bf216a835796a599fbc717992ba16e04 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_138247v1: b9fe1879bf216a835796a599fbc717992ba16e04 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7987814594679080561==--
