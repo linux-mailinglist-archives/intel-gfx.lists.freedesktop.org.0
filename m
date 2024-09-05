@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44C296CE30
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 06:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C510F96CE59
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 07:18:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD93A10E4DD;
-	Thu,  5 Sep 2024 04:43:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkPRfLS8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B98110E023;
+	Thu,  5 Sep 2024 05:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA61310E41E
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Sep 2024 04:43:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725511408; x=1757047408;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=J7VjU8eZgVtq+vpN2ueb0o4x+0PR/oNVoSYuvrAgSUQ=;
- b=PkPRfLS8EBuZ+R1lCVpjqz4vjYRFdk2QkmRhWigabzJc3WVzFmLElVU8
- 4XSdju1YbnVL7DtBtM3aoYwNUck5KzTfWX+WswXC6E6Etn9LkgdwHVZw5
- PWik6Wh1QbK9cSemQyReeynDo9o3JsPuW0U9pwSOsIbF7B7Cl+l51avEU
- YVHwyT3jdlSA3IW2EtMjgdbq1yV4yWmdQtNRMFyySv756GAF9rmIhyiY4
- V3lXZNrLLJ3amzdbZnIpob6P1loAYkzLXRElFc2X7tt2nqPf67s300mpc
- /2CI49WSaxa9Idr3YZKVV505gAses5pnppSOC5gmOuCQBPh8d2xXykckw g==;
-X-CSE-ConnectionGUID: sAZ3ZGhuQaSqcTMiWfGaqg==
-X-CSE-MsgGUID: 1jE1mZlVQK+kZT6MEf8AiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="24399362"
-X-IronPort-AV: E=Sophos;i="6.10,203,1719903600"; d="scan'208";a="24399362"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2024 21:43:28 -0700
-X-CSE-ConnectionGUID: 3Kc2arKQQ8SwMy/N8DEyUg==
-X-CSE-MsgGUID: S3fd2ny6S6SlXtZx+4qreA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,203,1719903600"; d="scan'208";a="66017902"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa007.jf.intel.com with ESMTP; 04 Sep 2024 21:43:26 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, jouni.hogander@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/psr: Implment WA to help reach PC10
-Date: Thu,  5 Sep 2024 10:11:01 +0530
-Message-ID: <20240905044102.270527-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240903082450.222141-1-suraj.kandpal@intel.com>
-References: <20240903082450.222141-1-suraj.kandpal@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD4810E023;
+ Thu,  5 Sep 2024 05:18:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6870027931286121410=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Implment_WA?=
+ =?utf-8?q?_to_help_reach_PC10_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 05 Sep 2024 05:18:11 -0000
+Message-ID: <172551349194.949402.12761572069755816162@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240902050214.127352-1-suraj.kandpal@intel.com>
+In-Reply-To: <20240902050214.127352-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,229 +37,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To reach PC10 when PKG_C_LATENCY is configure we must do the following
-things
-1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be entered
-2) Allow PSR2 deep sleep when DC5 can be entered
-3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
-eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
-not happening.
+--===============6870027931286121410==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---v2
--Switch condition and do an early return [Jani]
--Do some checks in compute_config [Jani]
--Do not use register reads as a method of checking states for
-DPKGC or delayed vblank [Jani]
--Use another way to see is vblank interrupts are disabled or not [Jani]
+== Series Details ==
 
---v3
--Use has_psr to check if psr can be enabled or not for dc5_entry cond
-[Uma]
--Move the dc5 entry computation to psr_compute_config [Jouni]
--No need to change sequence of enabled and activate,
-so dont make hsw_psr1_activate return anything [Jouni]
--Use has_psr to stop psr1 activation [Jouni]
--Use lineage no. in WA
--Add the display ver restrictions for WA
+Series: drm/i915/psr: Implment WA to help reach PC10 (rev3)
+URL   : https://patchwork.freedesktop.org/series/138065/
+State : success
 
---v4
--use more appropriate name for check_vblank_limit() [Jouni]
--Cover the case for idle frames when dpkgc is not configured [Jouni]
--Check psr only for edp [Jouni]
+== Summary ==
 
---v5
--move psr1 handling to plane update [Jouni]
--add todo for cases when vblank is enabled when psr enabled [Jouni]
--use intel_display instead of drm_i915_private
+CI Bug Log - changes from CI_DRM_15359 -> Patchwork_138065v3
+====================================================
 
-WA: 22019444797
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |   3 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 107 +++++++++++++++++-
- 2 files changed, 109 insertions(+), 1 deletion(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index f29e5dc3db91..368da8778f0b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1714,6 +1714,9 @@ struct intel_psr {
- #define I915_PSR_DEBUG_PANEL_REPLAY_DISABLE	0x40
- 
- 	u32 debug;
-+	bool is_dpkgc_configured;
-+	bool is_dc5_entry_possible;
-+	bool is_wa_delayed_vblank_limit;
- 	bool sink_support;
- 	bool source_support;
- 	bool enabled;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1f83b3b67ea6..111917ff1888 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -872,6 +872,74 @@ static u8 psr_compute_idle_frames(struct intel_dp *intel_dp)
- 	return idle_frames;
- }
- 
-+static bool
-+intel_psr_check_wa_delayed_vblank(const struct drm_display_mode *adjusted_mode)
-+{
-+	return (adjusted_mode->crtc_vblank_start - adjusted_mode->crtc_vdisplay) >= 6;
-+}
-+
-+/*
-+ * PKG_C_LATENCY is configured only when DISPLAY_VER >= 20 and
-+ * VRR is not enabled
-+ */
-+static bool intel_psr_is_dpkgc_configured(struct intel_display *display,
-+					  struct intel_atomic_state *state)
-+{
-+	struct intel_crtc *intel_crtc;
-+	struct intel_crtc_state *crtc_state;
-+	int i;
-+
-+	if (DISPLAY_VER(display) < 20)
-+		return false;
-+
-+	for_each_new_intel_crtc_in_state(state, intel_crtc, crtc_state, i) {
-+		if (!intel_crtc->active)
-+			continue;
-+
-+		if (crtc_state->vrr.enable)
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
-+/*
-+ * DC5 entry is only possible if vblank interrupt is disabled
-+ * and either psr1, psr2, edp 1.5 pr alpm is enabled on all
-+ * enabled encoders.
-+ */
-+static bool
-+intel_psr_is_dc5_entry_possible(struct intel_display *display,
-+				struct intel_atomic_state *state)
-+{
-+	struct intel_crtc *intel_crtc;
-+	struct intel_crtc_state *crtc_state;
-+	int i;
-+
-+	for_each_new_intel_crtc_in_state(state, intel_crtc, crtc_state, i) {
-+		struct drm_crtc *crtc = &intel_crtc->base;
-+		struct drm_vblank_crtc *vblank;
-+		struct intel_encoder *encoder;
-+
-+		if (!intel_crtc->active)
-+			continue;
-+
-+		vblank = drm_crtc_vblank_crtc(crtc);
-+
-+		if (vblank->enabled)
-+			return false;
-+
-+		if (crtc_state->has_psr)
-+			return false;
-+
-+		for_each_encoder_on_crtc(display->drm, crtc, encoder)
-+			if (encoder->type != INTEL_OUTPUT_EDP)
-+				return false;
-+	}
-+
-+	return true;
-+}
-+
- static void hsw_activate_psr1(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-@@ -984,7 +1052,15 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 	u32 val = EDP_PSR2_ENABLE;
- 	u32 psr_val = 0;
- 
--	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
-+	/*
-+	 * Wa_22019444797
-+	 * TODO: Disable idle frames when vblank gets enabled while
-+	 * PSR2 is enabled
-+	 */
-+	if (DISPLAY_VER(dev_priv) != 20 ||
-+	    !intel_dp->psr.is_dpkgc_configured ||
-+	    intel_dp->psr.is_dc5_entry_possible)
-+		val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
- 
- 	if (DISPLAY_VER(display) < 14 && !IS_ALDERLAKE_P(dev_priv))
- 		val |= EDP_SU_TRACK_ENABLE;
-@@ -2665,10 +2741,20 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 	const struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_encoder *encoder;
-+	bool dpkgc_configured = false, dc5_entry_possible = false;
-+	bool wa_delayed_vblank_limit = false;
- 
- 	if (!HAS_PSR(display))
- 		return;
- 
-+	if (DISPLAY_VER(display) == 20) {
-+		dpkgc_configured = intel_psr_is_dpkgc_configured(display, state);
-+		dc5_entry_possible =
-+			intel_psr_is_dc5_entry_possible(display, state);
-+		wa_delayed_vblank_limit =
-+			intel_psr_check_wa_delayed_vblank(&new_crtc_state->hw.adjusted_mode);
-+	}
-+
- 	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
- 					     old_crtc_state->uapi.encoder_mask) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-@@ -2677,6 +2763,12 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 
- 		mutex_lock(&psr->lock);
- 
-+		if (DISPLAY_VER(i915) == 20) {
-+			psr->is_dpkgc_configured = dpkgc_configured;
-+			psr->is_dc5_entry_possible = dc5_entry_possible;
-+			psr->is_wa_delayed_vblank_limit = wa_delayed_vblank_limit;
-+		}
-+
- 		/*
- 		 * Reasons to disable:
- 		 * - PSR disabled in new state
-@@ -2684,6 +2776,7 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 		 * - Changing between PSR versions
- 		 * - Region Early Transport changing
- 		 * - Display WA #1136: skl, bxt
-+		 * - Display WA_22019444797
- 		 */
- 		needs_to_disable |= intel_crtc_needs_modeset(new_crtc_state);
- 		needs_to_disable |= !new_crtc_state->has_psr;
-@@ -2693,6 +2786,10 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 			psr->su_region_et_enabled;
- 		needs_to_disable |= DISPLAY_VER(i915) < 11 &&
- 			new_crtc_state->wm_level_disabled;
-+		/* TODO: Disable PSR1 when vblank gets enabled while PSR1 is enabled */
-+		needs_to_disable |= (DISPLAY_VER(display) != 20 || !dpkgc_configured ||
-+			wa_delayed_vblank_limit || dc5_entry_possible) &&
-+			!(new_crtc_state->has_sel_update || !new_crtc_state->has_panel_replay);
- 
- 		if (psr->enabled && needs_to_disable)
- 			intel_psr_disable_locked(intel_dp);
-@@ -2733,6 +2830,14 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
- 		keep_disabled |= DISPLAY_VER(display) < 11 &&
- 			crtc_state->wm_level_disabled;
- 
-+		/*
-+		 * Wa_22019444797
-+		 * TODO: Disable PSR1 when vblank gets enabled while PSR1 is enabled
-+		 */
-+		keep_disabled |= (DISPLAY_VER(display) != 20 || !psr->is_dpkgc_configured ||
-+			psr->is_wa_delayed_vblank_limit || psr->is_dc5_entry_possible) &&
-+			!(crtc_state->has_sel_update || !crtc_state->has_panel_replay);
-+
- 		if (!psr->enabled && !keep_disabled)
- 			intel_psr_enable_locked(intel_dp, crtc_state);
- 		else if (psr->enabled && !crtc_state->wm_level_disabled)
--- 
-2.43.2
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/index.html
+
+Participating hosts (38 -> 35)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (4): fi-kbl-7567u bat-dg2-11 fi-snb-2520m fi-elk-e7500 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_138065v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@random-engines:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] +19 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@write:
+    - bat-arls-1:         [FAIL][2] ([i915#12030]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15359/bat-arls-1/igt@fbdev@write.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/bat-arls-1/igt@fbdev@write.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-1:         [DMESG-WARN][4] ([i915#11349]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15359/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@fbdev@read:
+    - bat-arls-1:         [FAIL][6] ([i915#12030]) -> [DMESG-WARN][7] ([i915#12102])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15359/bat-arls-1/igt@fbdev@read.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/bat-arls-1/igt@fbdev@read.html
+
+  
+  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
+  [i915#12030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12030
+  [i915#12102]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15359 -> Patchwork_138065v3
+
+  CI-20190529: 20190529
+  CI_DRM_15359: 8b1096500fd6fae573f7d9c4416778d6442e985d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_138065v3: 8b1096500fd6fae573f7d9c4416778d6442e985d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/index.html
+
+--===============6870027931286121410==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Implment WA to help reach PC10 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138065/">https://patchwork.freedesktop.org/series/138065/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15359 -&gt; Patchwork_138065v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/index.html</p>
+<h2>Participating hosts (38 -&gt; 35)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (4): fi-kbl-7567u bat-dg2-11 fi-snb-2520m fi-elk-e7500 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_138065v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_lmem_swapping@random-engines:<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/fi-bsw-n3050/igt@gem_lmem_swapping@random-engines.html">SKIP</a> +19 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15359/bat-arls-1/igt@fbdev@write.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12030">i915#12030</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/bat-arls-1/igt@fbdev@write.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15359/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@fbdev@read:<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15359/bat-arls-1/igt@fbdev@read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12030">i915#12030</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138065v3/bat-arls-1/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102">i915#12102</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15359 -&gt; Patchwork_138065v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15359: 8b1096500fd6fae573f7d9c4416778d6442e985d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8005: fc3113c8c1e99797b2d4769aaf02265be64a7589 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_138065v3: 8b1096500fd6fae573f7d9c4416778d6442e985d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6870027931286121410==--
