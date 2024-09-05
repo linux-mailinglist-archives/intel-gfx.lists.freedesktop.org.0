@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888DA96E176
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 20:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7597396E1A8
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 20:11:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACB5110E922;
-	Thu,  5 Sep 2024 18:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2547C10E91D;
+	Thu,  5 Sep 2024 18:11:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nEdDKwTh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XB2I+kYu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A99BB10E91D;
- Thu,  5 Sep 2024 18:02:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00AAF10E91D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Sep 2024 18:11:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725559377; x=1757095377;
+ t=1725559887; x=1757095887;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qdCDVzTpTnYMe8nawGG1f/KdDnFa54doFuXQ5nMqRJg=;
- b=nEdDKwThNm23+r6WIwDMqrEIZAw4fWYmZ09bOStlplcRb29UcxrOzDOt
- TkPfkkMWZf+MlaxAxO72nePna0dmGBm7NuSBOI6mV9YhkmVzVWAfTfj1u
- X2nPb5JvtzTltJof5NbrFVhUZl4QVvBBPWeGEkvPqwpkb/G14TTBhDYR6
- D+SIHsNBkjI+2YFS/DRYwtWV2FJHgXofSrHLZqTqt4WruNu+4sVN4u8Rc
- zTfGPLwVxOPDYdp6b5+39OvVW2ye1CH6vHv8GuXMcZ1GpHDGPzl8TcVLf
- R5jpynp3tES5+MiGD0geVkkK1CbqjdnXPxQ6GlV+XWQLZ9BrckzMJKzI2 g==;
-X-CSE-ConnectionGUID: SZ2PtQEpSWWMsHHrd+pDHw==
-X-CSE-MsgGUID: yzPY4Rx7TY2AYyRRyReN5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="23800706"
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="23800706"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 11:02:56 -0700
-X-CSE-ConnectionGUID: tZK+RwdCRu++SFjn9lTjyw==
-X-CSE-MsgGUID: dvpn5q25TpuutQKaq+D09w==
+ message-id:mime-version:content-transfer-encoding;
+ bh=UPskwvdmtKVnzZnB6nTG7aS4AHIymiD1KSd2U9mmkiA=;
+ b=XB2I+kYuzdsxzzdoEL/dOANasGIC7kY1YaOz1mSP/gMF1bQjrAB8M1/9
+ x3C102JPQU+I5AIdmI/qR6QgL0R59viUJlgexloczEsFkZH10zvfYUFKd
+ aymRgwV5EsyJ8DTh4rD0TV8Lg82RuXWUsSm4rITeKGIgNesGo3c/6wSKj
+ zSHKzI7b12t3qK+nykfL2PGeZ8u+lQES/Nf1IB9CuhkiU7fyOk4HSTi4R
+ JHUlYSEX96DyW01Leh/1DkQGW0EPonh6Yw1Wx4IN0Wnb3GwOJUX79gDSI
+ MDGjtxQFB+s6/EITuQ3s86gGkTX+7NDvdRSeBENaXngSQtb/OsSI9zXrs Q==;
+X-CSE-ConnectionGUID: OnPnoiPmSm+9XYIuqE+WYw==
+X-CSE-MsgGUID: UHsJ0aNvSKmm/UgJ5IQ+Tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="28183635"
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="28183635"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 11:11:26 -0700
+X-CSE-ConnectionGUID: c+eXzNH9R1GceJWgWwzW0g==
+X-CSE-MsgGUID: p2ws5XdOQ3e50NKH53EXyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="66250076"
+X-IronPort-AV: E=Sophos;i="6.10,205,1719903600"; d="scan'208";a="66438885"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.216])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 11:02:54 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2024 11:11:25 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lucas.demarchi@intel.com
-Subject: Re: [PATCH 1/2] drm/i915/pciids: use designated initializers in
- INTEL_VGA_DEVICE()
-In-Reply-To: <ZtnnDNFjC2WTt5u4@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/display: pass display to
+ intel_crtc_for_pipe()
+In-Reply-To: <Zthj9wYWT5ESIGEX@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725443418.git.jani.nikula@intel.com>
- <ce15f8f2a6b672155f9728c8e6a5f49d33fafd24.1725443418.git.jani.nikula@intel.com>
- <ZtnnDNFjC2WTt5u4@intel.com>
-Date: Thu, 05 Sep 2024 21:02:50 +0300
-Message-ID: <87cyliou5x.fsf@intel.com>
+References: <20240904130633.3831492-1-jani.nikula@intel.com>
+ <Zthj9wYWT5ESIGEX@intel.com>
+Date: Thu, 05 Sep 2024 21:11:20 +0300
+Message-ID: <87a5gmotrr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,93 +71,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 05 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Sep 04, 2024 at 12:51:32PM +0300, Jani Nikula wrote:
->> With IGT no longer using INTEL_VGA_DEVICE(), we can make it kernel
->> specific and use designated initializers. Ditto for
->> INTEL_QUANTA_VGA_DEVICE(). Remove the superfluous comments while at it.
->> 
+On Wed, 04 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Sep 04, 2024 at 04:06:32PM +0300, Jani Nikula wrote:
+>> Convert the intel_crtc_for_pipe() struct drm_i915_private parameter to
+>> struct intel_display.
+>>=20
 >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> 
 >> ---
->> 
->> IGT INTEL_VGA_DEVICE removal:
->> 
->> https://lore.kernel.org/r/20240902134907.2186238-2-jani.nikula@intel.com
+>>  drivers/gpu/drm/i915/display/i9xx_wm.c          | 15 ++++++++++-----
+>>  .../gpu/drm/i915/display/intel_atomic_plane.c   |  4 ++--
+>>  drivers/gpu/drm/i915/display/intel_cdclk.c      |  6 ++++--
+>>  drivers/gpu/drm/i915/display/intel_crt.c        |  3 ++-
+>>  drivers/gpu/drm/i915/display/intel_crtc.c       |  8 +++++---
+>>  drivers/gpu/drm/i915/display/intel_crtc.h       |  3 ++-
+>>  drivers/gpu/drm/i915/display/intel_display.c    | 17 ++++++++++-------
+>>  .../gpu/drm/i915/display/intel_display_driver.c |  3 ++-
+>>  .../gpu/drm/i915/display/intel_display_irq.c    |  9 ++++++---
+>>  .../gpu/drm/i915/display/intel_display_trace.h  | 15 ++++++++++-----
+>>  drivers/gpu/drm/i915/display/intel_dpll.c       |  3 ++-
+>>  drivers/gpu/drm/i915/display/intel_dsb.c        |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_fbc.c        |  3 +--
+>>  drivers/gpu/drm/i915/display/intel_fdi.c        | 10 ++++++----
+>>  .../gpu/drm/i915/display/intel_fifo_underrun.c  | 15 ++++++++++-----
+>>  drivers/gpu/drm/i915/display/intel_link_bw.c    |  3 +--
+>>  .../gpu/drm/i915/display/intel_modeset_setup.c  | 12 ++++++++----
+>>  .../gpu/drm/i915/display/intel_sprite_uapi.c    |  3 ++-
+>>  drivers/gpu/drm/i915/display/skl_watermark.c    |  7 ++++---
+>>  19 files changed, 88 insertions(+), 53 deletions(-)
+>>=20
+> <snip>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm=
+/i915/display/intel_crtc.c
+>> index 1b578cad2813..32e0f2907899 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+>> @@ -48,12 +48,12 @@ struct intel_crtc *intel_first_crtc(struct drm_i915_=
+private *i915)
+>>  	return to_intel_crtc(drm_crtc_from_index(&i915->drm, 0));
+>>  }
+>>=20=20
+>> -struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
+>> +struct intel_crtc *intel_crtc_for_pipe(struct intel_display *display,
+>>  				       enum pipe pipe)
+>>  {
+>>  	struct intel_crtc *crtc;
+>>=20=20
+>> -	for_each_intel_crtc(&i915->drm, crtc) {
+>> +	for_each_intel_crtc(display->drm, crtc) {
+>>  		if (crtc->pipe =3D=3D pipe)
+>>  			return crtc;
+>>  	}
+>> @@ -69,7 +69,9 @@ void intel_crtc_wait_for_next_vblank(struct intel_crtc=
+ *crtc)
+>>  void intel_wait_for_vblank_if_active(struct drm_i915_private *i915,
+>>  				     enum pipe pipe)
+>>  {
+>> -	struct intel_crtc *crtc =3D intel_crtc_for_pipe(i915, pipe);
+>> +	struct intel_display *display =3D &i915->display;
+>> +
 >
->
-> I guess that if someone else is still using this directly like IGT was,
-> then they will have to adjust when the sync with this header like this,
-> so:
+> Stray newline.
 
-Yeah, but I recently did much more invasive changes by converting i915
-pciids to the same style as xe, and nobody complained. (I fixed the IGT
-parts, of course.)
+Whoopsie, fixed while pushing to drm-intel-next.
 
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Thanks, both pushed to din.
-
-BR,
+Thanks,
 Jani.
 
-
 >
->
->> ---
->>  include/drm/intel/i915_pciids.h | 35 +++++++++++++--------------------
->>  1 file changed, 14 insertions(+), 21 deletions(-)
->> 
->> diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
->> index 2bf03ebfcf73..6a78df5687c5 100644
->> --- a/include/drm/intel/i915_pciids.h
->> +++ b/include/drm/intel/i915_pciids.h
->> @@ -25,27 +25,20 @@
->>  #ifndef _I915_PCIIDS_H
->>  #define _I915_PCIIDS_H
->>  
->> -/*
->> - * A pci_device_id struct {
->> - *	__u32 vendor, device;
->> - *      __u32 subvendor, subdevice;
->> - *	__u32 class, class_mask;
->> - *	kernel_ulong_t driver_data;
->> - * };
->> - * Don't use C99 here because "class" is reserved and we want to
->> - * give userspace flexibility.
->> - */
->> -#define INTEL_VGA_DEVICE(id, info) { \
->> -	0x8086,	id, \
->> -	~0, ~0, \
->> -	0x030000, 0xff0000, \
->> -	(unsigned long) info }
->> -
->> -#define INTEL_QUANTA_VGA_DEVICE(info) { \
->> -	0x8086,	0x16a, \
->> -	0x152d,	0x8990, \
->> -	0x030000, 0xff0000, \
->> -	(unsigned long) info }
->> +#ifdef __KERNEL__
->> +#define INTEL_VGA_DEVICE(_id, _info) { \
->> +	PCI_DEVICE(PCI_VENDOR_ID_INTEL, (_id)), \
->> +	.class = PCI_BASE_CLASS_DISPLAY << 16, .class_mask = 0xff << 16, \
->> +	.driver_data = (kernel_ulong_t)(_info), \
->> +}
->> +
->> +#define INTEL_QUANTA_VGA_DEVICE(_info) { \
->> +	.vendor = PCI_VENDOR_ID_INTEL, .device = 0x16a, \
->> +	.subvendor = 0x152d, .subdevice = 0x8990, \
->> +	.class = PCI_BASE_CLASS_DISPLAY << 16, .class_mask = 0xff << 16, \
->> +	.driver_data = (kernel_ulong_t)(_info), \
->> +}
->> +#endif
->>  
->>  #define INTEL_I810_IDS(MACRO__, ...) \
->>  	MACRO__(0x7121, ## __VA_ARGS__), /* I810 */ \
->> -- 
->> 2.39.2
->> 
+>> +	struct intel_crtc *crtc =3D intel_crtc_for_pipe(display, pipe);
+>>=20=20
+>>  	if (crtc->active)
+>>  		intel_crtc_wait_for_next_vblank(crtc);
 
--- 
+--=20
 Jani Nikula, Intel
