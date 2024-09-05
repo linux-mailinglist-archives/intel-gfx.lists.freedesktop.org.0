@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 655B396D7A9
+	by mail.lfdr.de (Postfix) with ESMTPS id 6995B96D7AA
 	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 13:53:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B341D10E878;
-	Thu,  5 Sep 2024 11:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0127610E879;
+	Thu,  5 Sep 2024 11:53:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mi+rZCyV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Unq/nAGL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26F3410E876;
- Thu,  5 Sep 2024 11:53:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C876910E876;
+ Thu,  5 Sep 2024 11:53:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725537212; x=1757073212;
+ t=1725537214; x=1757073214;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DjAzBucOGtdUGlG3WN2yWhPXGbS4T/K+A7wPpeewaO0=;
- b=Mi+rZCyVWNa6XIdMK/BzDCwSfRdI/2m9fRH2oTiDTjTLcraHXYqOUcnj
- zdcfse/emcgEK+IA7phRIV4wd5+DsJ+AFMJWCWZ91S0j0l+rPby4R78+B
- WgHgywjq7oqlDVUVrR85Ns1AZkqqPmh/H1iSBwsULw2BcKjB3s+kUs7e0
- Wbw2Alfw51u/IE2nekQMfJ0xp+r49UKEpU7eGtgF53wt3BnZHCJDCciVI
- dkJf4fbbir3EGzRa+I6j1YOTYP0ar7uV2YbpjCC1PzNHijxdbNC5xmlgP
- 2RuxWFrO9Er11FC84DZmf20fG6W61U8wpFkjvbHqoaDlS7XLUzwJwGHqY Q==;
-X-CSE-ConnectionGUID: JmgoAQQ+R4y5+JwsHQP1rg==
-X-CSE-MsgGUID: 2+B9rT6IQamaJJXvMGxdOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="24406113"
-X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="24406113"
+ bh=PL0ZwFyX4xDR00R4q/1Qj8Lr+ncgc4IhlKs+33EEcBU=;
+ b=Unq/nAGLX9HaCXDtVSCjt+ztHwvVSes6hFpFKRKyjgTITSgMKRkGTlpa
+ P/TPDzIXmaT1fkCeG7fqH84+GHQwUm7byALY1kEmxQj3VhGJCzndKcxgh
+ heVHVKo4+RApQoUtDvrOQtvTILGqirv78/4PWdqGXVJNGA/6TbwUk9urX
+ BzljLUayR7eX9wM/sN/6m/E0A4gkYDcVMfxMgDccOlMgPSYJml/bdBQxF
+ /bPF/AxUT/hkTAd3Q0wc48pgh9YWN/DIjdggR9+hsoXVXfHKCYe+noMoD
+ QmHxuzxmt76U3dtBt48sFZ1+BtAS1zTS/1H3YUy/5DXK+pwdi22ZeWdV0 g==;
+X-CSE-ConnectionGUID: 5CVFx+aqRrmUej4y3JNxeA==
+X-CSE-MsgGUID: qCes0vkJRVe0lJO6giTOqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="24406124"
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="24406124"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 04:53:32 -0700
-X-CSE-ConnectionGUID: 6eMfEI+oQNqnTenAy6clmQ==
-X-CSE-MsgGUID: E34MdBvLQcunpJWf23yCtw==
+ 05 Sep 2024 04:53:34 -0700
+X-CSE-ConnectionGUID: jj810jN4ScCABoA5pSB3GQ==
+X-CSE-MsgGUID: gub1ev0dTx2AMqLyBC/K5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="65918167"
+X-IronPort-AV: E=Sophos;i="6.10,204,1719903600"; d="scan'208";a="65918173"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2024 04:53:31 -0700
+ 05 Sep 2024 04:53:33 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com
-Subject: [PATCH 3/5] drm/i915/display: Add bits for Wa_14021768792 for linkm/n
- ratio > 10
-Date: Thu,  5 Sep 2024 17:25:03 +0530
-Message-ID: <20240905115505.3629087-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/5] drm/i915/display: Implement Wa_14021768792 for BMG DP for
+ link_m/n ratio > 10
+Date: Thu,  5 Sep 2024 17:25:04 +0530
+Message-ID: <20240905115505.3629087-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240905115505.3629087-1-ankit.k.nautiyal@intel.com>
 References: <20240905115505.3629087-1-ankit.k.nautiyal@intel.com>
@@ -69,217 +69,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To support Link M/N ratio between 10.0 and 15.0, for some BMG ultrajoiner
-cases we need Wa_14021768792.
-
-To bypass the hardware limitation within the Timing Generator DDA (TGDDA),
-we need to program the LINKM and LINKN registers as defined in
-the WA. Along with this we also need relvant bits in HDMI_EMP_DATA and
-CHICKEN_TRANS regs.
-
-Add the bits for the WA and a new member 'bmg_bypass_m_n_ratio_limit' to
-track if we need to bypass the Link M/N ratio limit in intel_link_m_n
-structure.
+Handle the bypass logic for the M/N ratio limit for DP.
+Calculate the M/N ratio, check if it can bypass the limit, and set the
+appropriate flags for the workaround.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 79 ++++++++++++++++++-
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/i915_reg.h               |  5 ++
- 3 files changed, 83 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  1 -
+ drivers/gpu/drm/i915/display/intel_display.h |  4 +++
+ drivers/gpu/drm/i915/display/intel_dp.c      | 31 ++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h      |  5 ++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  |  5 +++-
+ 5 files changed, 42 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a28500d5f969..d23f90096b0e 100644
+index d23f90096b0e..f55a85f04ce5 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2683,6 +2683,19 @@ bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
- 	return IS_DISPLAY_VER(dev_priv, 5, 7) || IS_CHERRYVIEW(dev_priv);
+@@ -3430,7 +3430,6 @@ void bmg_bypass_m_n_limit_read(struct intel_crtc *crtc,
+ 		m_n->bypass_m_n_ratio_limit = true;
  }
  
-+static
-+void bmg_bypass_m_n_limit_write(struct intel_crtc *crtc,
-+				enum transcoder transcoder,
-+				const struct intel_link_m_n *m_n)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	int m_n_frac = m_n->link_m % m_n->link_n;
-+	enum pipe pipe = crtc->pipe;
-+
-+	intel_de_rmw(display, MTL_CHICKEN_TRANS(transcoder), 0, BMG_DP_BYPASS_M_N_LIMIT);
-+	intel_de_write(display, HDMI_EMP_DATA(pipe), m_n_frac);
-+}
-+
- void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    const struct intel_link_m_n *m_n)
-@@ -2700,6 +2713,9 @@ void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 		intel_set_m_n(dev_priv, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
-+
-+	if (m_n->bypass_m_n_ratio_limit)
-+		bmg_bypass_m_n_limit_write(crtc, transcoder, m_n);
- }
+-static
+ int bmg_can_bypass_m_n_limit(struct intel_display *display,
+ 			     int m_n_ratio,
+ 			     enum pipe pipe)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 483a8f6cd69b..caf7549a3352 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -589,4 +589,8 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
  
- void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
-@@ -2716,6 +2732,9 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
- 		      PIPE_DATA_N2(dev_priv, transcoder),
- 		      PIPE_LINK_M2(dev_priv, transcoder),
- 		      PIPE_LINK_N2(dev_priv, transcoder));
-+
-+	if (m_n->bypass_m_n_ratio_limit)
-+		bmg_bypass_m_n_limit_write(crtc, transcoder, m_n);
- }
+ bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
  
- static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-@@ -3394,12 +3413,51 @@ void intel_get_m_n(struct drm_i915_private *i915,
- 	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(i915, data_m_reg)) + 1;
- }
- 
-+static
-+void bmg_bypass_m_n_limit_read(struct intel_crtc *crtc,
-+			       enum transcoder transcoder,
-+			       struct intel_link_m_n *m_n)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	enum pipe pipe = crtc->pipe;
-+	u32 chicken_trans, m_n_frac;
-+
-+	chicken_trans = intel_de_read(display, MTL_CHICKEN_TRANS(transcoder));
-+	m_n_frac = intel_de_read(display, HDMI_EMP_DATA(pipe));
-+
-+	if ((chicken_trans & BMG_DP_BYPASS_M_N_LIMIT) &&
-+	    m_n_frac == (m_n->link_m % m_n->link_n))
-+		m_n->bypass_m_n_ratio_limit = true;
-+}
-+
-+static
 +int bmg_can_bypass_m_n_limit(struct intel_display *display,
 +			     int m_n_ratio,
-+			     enum pipe pipe)
++			     enum pipe pipe);
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d0c819807bfc..c741b3409fa6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2847,6 +2847,27 @@ static bool can_enable_drrs(struct intel_connector *connector,
+ 		intel_panel_drrs_type(connector) == DRRS_TYPE_SEAMLESS;
+ }
+ 
++bool
++intel_dp_bmg_bypass_m_n_limit(struct intel_display *display,
++			      struct intel_link_m_n *m_n,
++			      enum pipe pipe)
 +{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
++	int m_n_ratio, m_n_frac;
 +
-+	if (DISPLAY_VER(display) != 14 || !IS_DGFX(i915) ||
-+	    !IS_DISPLAY_STEP(display, STEP_C0, STEP_FOREVER))
++	m_n_ratio = DIV_ROUND_UP(m_n->link_m, m_n->link_n);
++
++	if (!bmg_can_bypass_m_n_limit(display, m_n_ratio, pipe))
 +		return false;
 +
-+	if (pipe != PIPE_A)
-+		return false;
++	m_n_frac = m_n->link_m % m_n->link_n;
 +
-+	if (m_n_ratio > 15)
-+		return false;
++	m_n->link_n_ext = m_n_ratio | (m_n_ratio + (m_n_frac  > 0 ? 1 : 0)) << 4;
++
++	m_n->bypass_m_n_ratio_limit = true;
 +
 +	return true;
 +}
 +
- void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    struct intel_link_m_n *m_n)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
-+	int m_n_ratio;
- 
- 	if (DISPLAY_VER(dev_priv) >= 5)
- 		intel_get_m_n(dev_priv, m_n,
-@@ -3411,6 +3469,11 @@ void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 		intel_get_m_n(dev_priv, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
-+
-+	m_n_ratio = DIV_ROUND_UP(m_n->link_m, m_n->link_n);
-+
-+	if (bmg_can_bypass_m_n_limit(display, m_n_ratio, pipe))
-+		bmg_bypass_m_n_limit_read(crtc, transcoder, m_n);
- }
- 
- void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
-@@ -3418,6 +3481,9 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
+ static int
+ intel_dp_drrs_compute_config(struct intel_connector *connector,
+ 			     struct intel_crtc_state *pipe_config,
+@@ -2856,6 +2877,8 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
+ 	struct intel_display *display = to_intel_display(connector);
+ 	const struct drm_display_mode *downclock_mode =
+ 		intel_panel_downclock_mode(connector, &pipe_config->hw.adjusted_mode);
++	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
 +	enum pipe pipe = crtc->pipe;
-+	int m_n_ratio;
+ 	int pixel_clock;
+ 	int ret;
  
- 	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
- 		return;
-@@ -3427,6 +3493,11 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 		      PIPE_DATA_N2(dev_priv, transcoder),
- 		      PIPE_LINK_M2(dev_priv, transcoder),
- 		      PIPE_LINK_N2(dev_priv, transcoder));
+@@ -2885,7 +2908,8 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
+ 				     pipe_config->port_clock,
+ 				     intel_dp_bw_fec_overhead(pipe_config->fec_enable),
+ 				     &pipe_config->dp_m2_n2);
+-	if (ret)
 +
-+	m_n_ratio = DIV_ROUND_UP(m_n->link_m, m_n->link_n);
++	if (ret && !intel_dp_bmg_bypass_m_n_limit(display, &pipe_config->dp_m2_n2, pipe))
+ 		return ret;
+ 
+ 	/* FIXME: abstract this better */
+@@ -3021,6 +3045,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	const struct drm_display_mode *fixed_mode;
+ 	struct intel_connector *connector = intel_dp->attached_connector;
++	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
++	enum pipe pipe = crtc->pipe;
+ 	int ret = 0, link_bpp_x16;
+ 
+ 	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
+@@ -3103,7 +3129,8 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 				     pipe_config->port_clock,
+ 				     intel_dp_bw_fec_overhead(pipe_config->fec_enable),
+ 				     &pipe_config->dp_m_n);
+-	if (ret)
 +
-+	if (bmg_can_bypass_m_n_limit(display, m_n_ratio, pipe))
-+		bmg_bypass_m_n_limit_read(crtc, transcoder, m_n);
- }
++	if (ret && !intel_dp_bmg_bypass_m_n_limit(display, &pipe_config->dp_m_n, pipe))
+ 		return ret;
  
- static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
-@@ -5175,20 +5246,22 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	if (!intel_compare_link_m_n(&current_config->name, \
- 				    &pipe_config->name)) { \
- 		pipe_config_mismatch(&p, fastset, crtc, __stringify(name), \
--				     "(expected tu %i data %i/%i link %i/%i link_n_ext %i, " \
--				     "found tu %i, data %i/%i link %i/%i link_n_ext %i)", \
-+				     "(expected tu %i data %i/%i link %i/%i link_n_ext %i bypass_m_n_ratio_limit %s, " \
-+				     "found tu %i, data %i/%i link %i/%i link_n_ext %i bypass_m_n_ratio_limit %s)", \
- 				     current_config->name.tu, \
- 				     current_config->name.data_m, \
- 				     current_config->name.data_n, \
- 				     current_config->name.link_m, \
- 				     current_config->name.link_n, \
- 				     current_config->name.link_n_ext, \
-+				     str_yes_no(current_config->name.bypass_m_n_ratio_limit), \
- 				     pipe_config->name.tu, \
- 				     pipe_config->name.data_m, \
- 				     pipe_config->name.data_n, \
- 				     pipe_config->name.link_m, \
- 				     pipe_config->name.link_n, \
--				     pipe_config->name.link_n_ext); \
-+				     pipe_config->name.link_n_ext, \
-+				     str_yes_no(pipe_config->name.bypass_m_n_ratio_limit)); \
- 		ret = false; \
- 	} \
- } while (0)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 1328e2e89786..d7ea7d437a6d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1029,6 +1029,8 @@ struct intel_link_m_n {
- 	u32 link_m;
- 	u32 link_n;
- 	u8 link_n_ext;
-+	/* Wa_14021768792 for linkm/n ratio > 10 */
-+	bool bypass_m_n_ratio_limit;
- };
+ 	/* FIXME: abstract this better */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 1b9aaddd8c35..92acb6a9eb4b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -20,8 +20,10 @@ struct intel_atomic_state;
+ struct intel_connector;
+ struct intel_crtc_state;
+ struct intel_digital_port;
++struct intel_display;
+ struct intel_dp;
+ struct intel_encoder;
++struct intel_link_m_n;
  
- struct intel_csc_matrix {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 941d273dbf8c..4e16a129d891 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1110,6 +1110,10 @@
- #define _TRANS_VSYNCSHIFT_A	0x60028
- #define _TRANS_MULT_A		0x6002c
+ struct link_config_limits {
+ 	int min_rate, max_rate;
+@@ -203,5 +205,8 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
  
-+#define _HDMI_EMP_DATA_A	0x600d8
-+#define _HDMI_EMP_DATA_B	0x610d8
-+#define HDMI_EMP_DATA(pipe)	_MMIO_PIPE(pipe, _HDMI_EMP_DATA_A, _HDMI_EMP_DATA_B)
+ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_connector *connector);
+ bool intel_dp_has_gamut_metadata_dip(struct intel_encoder *encoder);
++bool intel_dp_bmg_bypass_m_n_limit(struct intel_display *display,
++				   struct intel_link_m_n *m_n,
++				   enum pipe pipe);
+ 
+ #endif /* __INTEL_DP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 317eb04bd8c6..817895b427ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -131,6 +131,8 @@ static int intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 	struct intel_display *display = to_intel_display(connector);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	enum pipe pipe = crtc->pipe;
+ 	int ret;
+ 
+ 	/* TODO: Check WA 14013163432 to set data M/N for full BW utilization. */
+@@ -138,7 +140,8 @@ static int intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
+ 				     adjusted_mode->crtc_clock,
+ 				     crtc_state->port_clock,
+ 				     overhead, m_n);
+-	if (ret)
 +
- /* Pipe/transcoder B timing regs */
- #define _TRANS_HTOTAL_B		0x61000
- #define _TRANS_HBLANK_B		0x61004
-@@ -2802,6 +2806,7 @@
- #define   PSR2_ADD_VERTICAL_LINE_COUNT	REG_BIT(15)
- #define   DP_FEC_BS_JITTER_WA		REG_BIT(15)
- #define   PSR2_VSC_ENABLE_PROG_HEADER	REG_BIT(12)
-+#define   BMG_DP_BYPASS_M_N_LIMIT	REG_BIT(11)
- #define   DP_DSC_INSERT_SF_AT_EOL_WA	REG_BIT(4)
- #define   HDCP_LINE_REKEY_DISABLE	REG_BIT(0)
++	if (ret && !intel_dp_bmg_bypass_m_n_limit(display, m_n, pipe))
+ 		return ret;
  
+ 	m_n->tu = DIV_ROUND_UP_ULL(mul_u32_u32(m_n->data_m, 64), m_n->data_n);
 -- 
 2.45.2
 
