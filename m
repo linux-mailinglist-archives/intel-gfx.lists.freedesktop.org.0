@@ -2,46 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EBCF96CA75
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 00:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E44C296CE30
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Sep 2024 06:43:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5134410E034;
-	Wed,  4 Sep 2024 22:30:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD93A10E4DD;
+	Thu,  5 Sep 2024 04:43:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jXAryBFh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkPRfLS8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09CAD10E070;
- Wed,  4 Sep 2024 22:30:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id AFB345C587B;
- Wed,  4 Sep 2024 22:30:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BC8EC4CEC2;
- Wed,  4 Sep 2024 22:30:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1725489032;
- bh=7VZ8dopNb6Xw84A7ZivyftmrGW6ZT1IuRr6IdvMLH0w=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jXAryBFhT3Ki0WRLE2VlwfBA2xoebFISDTyJH+j0nU2iKAMX2/+HNXfPCfuiFNQdS
- 5Fxw1UX+w/IQXdKCznpydfoSVK+zv0OP1HLgGsfKFRqFjGjZPWSuxC2Lg0q6RAx6XE
- OB6G15/pK04eBU2vJpxK5easAvqFKVieoWVPpa4VeEWBcEuuUXxCYHiaQNTABVK0kT
- fhWObQER8fMijWuoij/5+r4wG8N4zp+OkHOI+17U9wIKsQBOJJPYZlVipywuV81vON
- axD78ZETV703r/QoISiFxg+pqoF1Ku1f4rXAkj93zFtT9N8erstfpdF4Sl0kW2jvVT
- yr43q54G0Orlg==
-Date: Wed, 4 Sep 2024 15:30:30 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm: enable warnings on unused static inlines
-Message-ID: <20240904223030.GA1944054@thelio-3990X>
-References: <20240904123819.3784906-1-jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA61310E41E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Sep 2024 04:43:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725511408; x=1757047408;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=J7VjU8eZgVtq+vpN2ueb0o4x+0PR/oNVoSYuvrAgSUQ=;
+ b=PkPRfLS8EBuZ+R1lCVpjqz4vjYRFdk2QkmRhWigabzJc3WVzFmLElVU8
+ 4XSdju1YbnVL7DtBtM3aoYwNUck5KzTfWX+WswXC6E6Etn9LkgdwHVZw5
+ PWik6Wh1QbK9cSemQyReeynDo9o3JsPuW0U9pwSOsIbF7B7Cl+l51avEU
+ YVHwyT3jdlSA3IW2EtMjgdbq1yV4yWmdQtNRMFyySv756GAF9rmIhyiY4
+ V3lXZNrLLJ3amzdbZnIpob6P1loAYkzLXRElFc2X7tt2nqPf67s300mpc
+ /2CI49WSaxa9Idr3YZKVV505gAses5pnppSOC5gmOuCQBPh8d2xXykckw g==;
+X-CSE-ConnectionGUID: sAZ3ZGhuQaSqcTMiWfGaqg==
+X-CSE-MsgGUID: 1jE1mZlVQK+kZT6MEf8AiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11185"; a="24399362"
+X-IronPort-AV: E=Sophos;i="6.10,203,1719903600"; d="scan'208";a="24399362"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2024 21:43:28 -0700
+X-CSE-ConnectionGUID: 3Kc2arKQQ8SwMy/N8DEyUg==
+X-CSE-MsgGUID: S3fd2ny6S6SlXtZx+4qreA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,203,1719903600"; d="scan'208";a="66017902"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by orviesa007.jf.intel.com with ESMTP; 04 Sep 2024 21:43:26 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com, jouni.hogander@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/psr: Implment WA to help reach PC10
+Date: Thu,  5 Sep 2024 10:11:01 +0530
+Message-ID: <20240905044102.270527-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240903082450.222141-1-suraj.kandpal@intel.com>
+References: <20240903082450.222141-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240904123819.3784906-1-jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,114 +67,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+To reach PC10 when PKG_C_LATENCY is configure we must do the following
+things
+1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be entered
+2) Allow PSR2 deep sleep when DC5 can be entered
+3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
+eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
+not happening.
 
-On Wed, Sep 04, 2024 at 03:38:19PM +0300, Jani Nikula wrote:
-> We enable most W=1 warnings by default subsystem wide. Also enable
-> warnings on unused static inlines when building with clang.
-> 
-> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
-> inline functions for W=1 build").
-> 
-> Cc: Nathan Chancellor <nathan@kernel.org>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/Makefile | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 784229d4504d..6bd2cdb08be7 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -19,6 +19,9 @@ subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
->  # FIXME: fix -Wformat-truncation warnings and uncomment
->  #subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
->  subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
-> +
-> +subdir-ccflags-y += -DKBUILD_EXTRA_WARN1
-> +
->  # The following turn off the warnings enabled by -Wextra
->  ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
->  subdir-ccflags-y += -Wno-missing-field-initializers
-> -- 
-> 2.39.2
-> 
+--v2
+-Switch condition and do an early return [Jani]
+-Do some checks in compute_config [Jani]
+-Do not use register reads as a method of checking states for
+DPKGC or delayed vblank [Jani]
+-Use another way to see is vblank interrupts are disabled or not [Jani]
 
-I ran this through my test matrix and this is what it found (across
-various configuration options, I can give specifics as necessary):
+--v3
+-Use has_psr to check if psr can be enabled or not for dc5_entry cond
+[Uma]
+-Move the dc5 entry computation to psr_compute_config [Jouni]
+-No need to change sequence of enabled and activate,
+so dont make hsw_psr1_activate return anything [Jouni]
+-Use has_psr to stop psr1 activation [Jouni]
+-Use lineage no. in WA
+-Add the display ver restrictions for WA
 
-drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c:30:18: warning: unused function 'hdmi_read' [-Wunused-function]
-   30 | static inline u8 hdmi_read(struct dw_hdmi_i2s_audio_data *audio, int offset)
-      |                  ^~~~~~~~~
+--v4
+-use more appropriate name for check_vblank_limit() [Jouni]
+-Cover the case for idle frames when dpkgc is not configured [Jouni]
+-Check psr only for edp [Jouni]
 
-drivers/gpu/drm/bridge/ti-sn65dsi86.c:1638:19: warning: unused function 'ti_sn_pwm_pin_request' [-Wunused-function]
- 1638 | static inline int ti_sn_pwm_pin_request(struct ti_sn65dsi86 *pdata) { return 0; }
-      |                   ^~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/bridge/ti-sn65dsi86.c:1639:20: warning: unused function 'ti_sn_pwm_pin_release' [-Wunused-function]
- 1639 | static inline void ti_sn_pwm_pin_release(struct ti_sn65dsi86 *pdata) {}
-      |                    ^~~~~~~~~~~~~~~~~~~~~
+--v5
+-move psr1 handling to plane update [Jouni]
+-add todo for cases when vblank is enabled when psr enabled [Jouni]
+-use intel_display instead of drm_i915_private
 
-drivers/gpu/drm/drm_mm.c:152:1: warning: unused function 'drm_mm_interval_tree_insert' [-Wunused-function]
-  152 | INTERVAL_TREE_DEFINE(struct drm_mm_node, rb,
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  153 |                      u64, __subtree_last,
-      |                      ~~~~~~~~~~~~~~~~~~~~
-  154 |                      START, LAST, static inline, drm_mm_interval_tree)
-      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-include/linux/interval_tree_generic.h:38:15: note: expanded from macro 'INTERVAL_TREE_DEFINE'
-   38 | ITSTATIC void ITPREFIX ## _insert(ITSTRUCT *node,                             \
-      |               ^~~~~~~~~~~~~~~~~~~
-<scratch space>:38:1: note: expanded from here
-   38 | drm_mm_interval_tree_insert
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/drm_mm.c:152:1: warning: unused function 'drm_mm_interval_tree_iter_next' [-Wunused-function]
-  152 | INTERVAL_TREE_DEFINE(struct drm_mm_node, rb,
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  153 |                      u64, __subtree_last,
-      |                      ~~~~~~~~~~~~~~~~~~~~
-  154 |                      START, LAST, static inline, drm_mm_interval_tree)
-      |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-include/linux/interval_tree_generic.h:151:33: note: expanded from macro 'INTERVAL_TREE_DEFINE'
-  151 | ITSTATIC ITSTRUCT *                                                           \
-      |                                                                               ^
-  152 | ITPREFIX ## _iter_next(ITSTRUCT *node, ITTYPE start, ITTYPE last)             \
-      | ~~~~~~~~~~~~~~~~~~~~~~
-<scratch space>:50:1: note: expanded from here
-   50 | drm_mm_interval_tree_iter_next
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/drm_mm.c:614:20: warning: function 'drm_mm_node_scanned_block' is not needed and will not be emitted [-Wunneeded-internal-declaration]
-  614 | static inline bool drm_mm_node_scanned_block(const struct drm_mm_node *node)
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+WA: 22019444797
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 107 +++++++++++++++++-
+ 2 files changed, 109 insertions(+), 1 deletion(-)
 
-drivers/gpu/drm/i915/i915_sw_fence.c:97:20: error: unused function 'debug_fence_init_onstack' [-Werror,-Wunused-function]
-   97 | static inline void debug_fence_init_onstack(struct i915_sw_fence *fence)
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/i915/i915_sw_fence.c:118:20: error: unused function 'debug_fence_free' [-Werror,-Wunused-function]
-  118 | static inline void debug_fence_free(struct i915_sw_fence *fence)
-      |                    ^~~~~~~~~~~~~~~~
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index f29e5dc3db91..368da8778f0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1714,6 +1714,9 @@ struct intel_psr {
+ #define I915_PSR_DEBUG_PANEL_REPLAY_DISABLE	0x40
+ 
+ 	u32 debug;
++	bool is_dpkgc_configured;
++	bool is_dc5_entry_possible;
++	bool is_wa_delayed_vblank_limit;
+ 	bool sink_support;
+ 	bool source_support;
+ 	bool enabled;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 1f83b3b67ea6..111917ff1888 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -872,6 +872,74 @@ static u8 psr_compute_idle_frames(struct intel_dp *intel_dp)
+ 	return idle_frames;
+ }
+ 
++static bool
++intel_psr_check_wa_delayed_vblank(const struct drm_display_mode *adjusted_mode)
++{
++	return (adjusted_mode->crtc_vblank_start - adjusted_mode->crtc_vdisplay) >= 6;
++}
++
++/*
++ * PKG_C_LATENCY is configured only when DISPLAY_VER >= 20 and
++ * VRR is not enabled
++ */
++static bool intel_psr_is_dpkgc_configured(struct intel_display *display,
++					  struct intel_atomic_state *state)
++{
++	struct intel_crtc *intel_crtc;
++	struct intel_crtc_state *crtc_state;
++	int i;
++
++	if (DISPLAY_VER(display) < 20)
++		return false;
++
++	for_each_new_intel_crtc_in_state(state, intel_crtc, crtc_state, i) {
++		if (!intel_crtc->active)
++			continue;
++
++		if (crtc_state->vrr.enable)
++			return false;
++	}
++
++	return true;
++}
++
++/*
++ * DC5 entry is only possible if vblank interrupt is disabled
++ * and either psr1, psr2, edp 1.5 pr alpm is enabled on all
++ * enabled encoders.
++ */
++static bool
++intel_psr_is_dc5_entry_possible(struct intel_display *display,
++				struct intel_atomic_state *state)
++{
++	struct intel_crtc *intel_crtc;
++	struct intel_crtc_state *crtc_state;
++	int i;
++
++	for_each_new_intel_crtc_in_state(state, intel_crtc, crtc_state, i) {
++		struct drm_crtc *crtc = &intel_crtc->base;
++		struct drm_vblank_crtc *vblank;
++		struct intel_encoder *encoder;
++
++		if (!intel_crtc->active)
++			continue;
++
++		vblank = drm_crtc_vblank_crtc(crtc);
++
++		if (vblank->enabled)
++			return false;
++
++		if (crtc_state->has_psr)
++			return false;
++
++		for_each_encoder_on_crtc(display->drm, crtc, encoder)
++			if (encoder->type != INTEL_OUTPUT_EDP)
++				return false;
++	}
++
++	return true;
++}
++
+ static void hsw_activate_psr1(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+@@ -984,7 +1052,15 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	u32 val = EDP_PSR2_ENABLE;
+ 	u32 psr_val = 0;
+ 
+-	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
++	/*
++	 * Wa_22019444797
++	 * TODO: Disable idle frames when vblank gets enabled while
++	 * PSR2 is enabled
++	 */
++	if (DISPLAY_VER(dev_priv) != 20 ||
++	    !intel_dp->psr.is_dpkgc_configured ||
++	    intel_dp->psr.is_dc5_entry_possible)
++		val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+ 
+ 	if (DISPLAY_VER(display) < 14 && !IS_ALDERLAKE_P(dev_priv))
+ 		val |= EDP_SU_TRACK_ENABLE;
+@@ -2665,10 +2741,20 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct intel_encoder *encoder;
++	bool dpkgc_configured = false, dc5_entry_possible = false;
++	bool wa_delayed_vblank_limit = false;
+ 
+ 	if (!HAS_PSR(display))
+ 		return;
+ 
++	if (DISPLAY_VER(display) == 20) {
++		dpkgc_configured = intel_psr_is_dpkgc_configured(display, state);
++		dc5_entry_possible =
++			intel_psr_is_dc5_entry_possible(display, state);
++		wa_delayed_vblank_limit =
++			intel_psr_check_wa_delayed_vblank(&new_crtc_state->hw.adjusted_mode);
++	}
++
+ 	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+ 					     old_crtc_state->uapi.encoder_mask) {
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+@@ -2677,6 +2763,12 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 
+ 		mutex_lock(&psr->lock);
+ 
++		if (DISPLAY_VER(i915) == 20) {
++			psr->is_dpkgc_configured = dpkgc_configured;
++			psr->is_dc5_entry_possible = dc5_entry_possible;
++			psr->is_wa_delayed_vblank_limit = wa_delayed_vblank_limit;
++		}
++
+ 		/*
+ 		 * Reasons to disable:
+ 		 * - PSR disabled in new state
+@@ -2684,6 +2776,7 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 		 * - Changing between PSR versions
+ 		 * - Region Early Transport changing
+ 		 * - Display WA #1136: skl, bxt
++		 * - Display WA_22019444797
+ 		 */
+ 		needs_to_disable |= intel_crtc_needs_modeset(new_crtc_state);
+ 		needs_to_disable |= !new_crtc_state->has_psr;
+@@ -2693,6 +2786,10 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 			psr->su_region_et_enabled;
+ 		needs_to_disable |= DISPLAY_VER(i915) < 11 &&
+ 			new_crtc_state->wm_level_disabled;
++		/* TODO: Disable PSR1 when vblank gets enabled while PSR1 is enabled */
++		needs_to_disable |= (DISPLAY_VER(display) != 20 || !dpkgc_configured ||
++			wa_delayed_vblank_limit || dc5_entry_possible) &&
++			!(new_crtc_state->has_sel_update || !new_crtc_state->has_panel_replay);
+ 
+ 		if (psr->enabled && needs_to_disable)
+ 			intel_psr_disable_locked(intel_dp);
+@@ -2733,6 +2830,14 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 		keep_disabled |= DISPLAY_VER(display) < 11 &&
+ 			crtc_state->wm_level_disabled;
+ 
++		/*
++		 * Wa_22019444797
++		 * TODO: Disable PSR1 when vblank gets enabled while PSR1 is enabled
++		 */
++		keep_disabled |= (DISPLAY_VER(display) != 20 || !psr->is_dpkgc_configured ||
++			psr->is_wa_delayed_vblank_limit || psr->is_dc5_entry_possible) &&
++			!(crtc_state->has_sel_update || !crtc_state->has_panel_replay);
++
+ 		if (!psr->enabled && !keep_disabled)
+ 			intel_psr_enable_locked(intel_dp, crtc_state);
+ 		else if (psr->enabled && !crtc_state->wm_level_disabled)
+-- 
+2.43.2
 
-drivers/gpu/drm/imagination/pvr_drv.c:224:1: warning: unused function 'pvr_fw_version_packed' [-Wunused-function]
-  224 | pvr_fw_version_packed(u32 major, u32 minor)
-      | ^~~~~~~~~~~~~~~~~~~~~
-
-drivers/gpu/drm/kmb/kmb_dsi.c:822:2: warning: unused function 'set_test_mode_src_osc_freq_target_low_bits' [-Wunused-function]
-  822 |         set_test_mode_src_osc_freq_target_low_bits(struct kmb_dsi *kmb_dsi,
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/kmb/kmb_dsi.c:834:2: warning: unused function 'set_test_mode_src_osc_freq_target_hi_bits' [-Wunused-function]
-  834 |         set_test_mode_src_osc_freq_target_hi_bits(struct kmb_dsi *kmb_dsi,
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-drivers/gpu/drm/meson/meson_dw_hdmi.c:276:20: warning: unused function 'dw_hdmi_dwc_write_bits' [-Wunused-function]
-  276 | static inline void dw_hdmi_dwc_write_bits(struct meson_dw_hdmi *dw_hdmi,
-      |                    ^~~~~~~~~~~~~~~~~~~~~~
-
-drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c:35:19: warning: unused function 'rcar_cmm_read' [-Wunused-function]
-   35 | static inline int rcar_cmm_read(struct rcar_cmm *rcmm, u32 reg)
-      |                   ^~~~~~~~~~~~~
-
-drivers/gpu/drm/stm/ltdc.c:494:35: warning: unused function 'encoder_to_ltdc' [-Wunused-function]
-  494 | static inline struct ltdc_device *encoder_to_ltdc(struct drm_encoder *enc)
-      |                                   ^~~~~~~~~~~~~~~
-
-Cheers,
-Nathan
