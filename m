@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC2F96EED5
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 11:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BD296EF47
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 11:32:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDFBC10E9B6;
-	Fri,  6 Sep 2024 09:12:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF4BC10E0A6;
+	Fri,  6 Sep 2024 09:32:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SlzuUVXl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXs/Lfkt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65A0C10E9B6;
- Fri,  6 Sep 2024 09:12:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 937EF10E0A6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 09:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725613927; x=1757149927;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=U5IXA7TLa3tr1ZQ2/L7uLlALBUEsX0k4Kqo/tQLConc=;
- b=SlzuUVXlLJ7WqYmn++aEbUmhOogjZfQZFZhlNIi9sjHtZqUUgRrnMhOg
- QwhjGkCqcfjJ0AQJxknQwysi14ti4Xbya+UAK1VrgD4l7qJLRddozB2OY
- uD6jAsbzP6llkfyj8u7jFJC3yuJXUzT7va5EzI+0QscKoAlh6vDNCBKe6
- eU4833msS7l2a4AW8tJDWmJyJr/eDrRPWIanqz+jTWdXa9bOxnJqvyZMC
- LOTvWZygEc7DZmjTOg6gbsL5F+vn4wlRRSCmf0/xCqMDxkDQqKzXKeCp3
- a7wn7wDo4R3rDwBD+nzc54DWkp/vVhXEyCpT6xVlMx49oX+ubr+ZoBO4Q w==;
-X-CSE-ConnectionGUID: YIk6OzwbQBCiX28EjT6+dg==
-X-CSE-MsgGUID: nLjdhhRgRfOJfkulSp6ciA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="24166522"
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="24166522"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 02:12:07 -0700
-X-CSE-ConnectionGUID: FusSOyCaRLWyZqZBEcbSAw==
-X-CSE-MsgGUID: EnBK/E64TimtbWmec/aXCQ==
+ t=1725615130; x=1757151130;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=T1XqHgbmnoHBWiEyLqitHRkqV0R16EFfy9o11kGXD7c=;
+ b=SXs/Lfkt5dj33gi2iiS/Uftj34msaFdhJ42lSfwz3lVzIeEjpiRV+457
+ GfJ8+ol94KdpzW5bUCwdckwNYxmOhQ30UmQtqUp7JDAJQYu605OuDrZig
+ cH237z6XLBziRxmWW+pwSpcEXhZelQza/OpP0QUEHDslX/wEExO8pQvcH
+ a3revJA+q8oLloSf/NdJ5M3i8pBCiDjTlzFN0WXznKcvrDFB8WKO/FvTk
+ yLYrjC75sHpIeRaPAyT4Wczadgl0SVZiejcsC8oktdbSuS6kK52Eh0Iqx
+ hnzGmFSLWFFjAanw8zFe7svyF+d24tgL2z/ZVzNwy4yyQJvKuTGfNJeuJ A==;
+X-CSE-ConnectionGUID: ARp9B8nkQcqJ+1nHKpvGMw==
+X-CSE-MsgGUID: dC+GQrDATfSRYm7gYtWl/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="35037447"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="35037447"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 02:32:09 -0700
+X-CSE-ConnectionGUID: N6Rb1lhFRa+Vz+H67Cb0Aw==
+X-CSE-MsgGUID: zkrBcGQcTIKF2a16kYsD2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="70698452"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.27])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 02:12:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-Subject: Re: [PATCH 5/5] drm/i915: Add Wa_14021768792 as per WA framework
-In-Reply-To: <20240905115505.3629087-6-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240905115505.3629087-1-ankit.k.nautiyal@intel.com>
- <20240905115505.3629087-6-ankit.k.nautiyal@intel.com>
-Date: Fri, 06 Sep 2024 12:11:57 +0300
-Message-ID: <877cbpno2q.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="65951556"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by fmviesa008.fm.intel.com with ESMTP; 06 Sep 2024 02:31:50 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, linux@roeck-us.net,
+ andi.shyti@linux.intel.com, andriy.shevchenko@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ ashutosh.dixit@intel.com, karthik.poosa@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2] drm/i915/hwmon: expose package temperature
+Date: Fri,  6 Sep 2024 15:01:18 +0530
+Message-Id: <20240906093118.3068732-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,86 +70,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 05 Sep 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Modify the condition for WA as per Xe WA framework.
+Add hwmon support for temp1_input attribute, which will expose package
+temperature in millidegree Celsius. With this in place we can monitor
+package temperature using lm-sensors tool.
 
-Please don't. This won't work in the future. See [1].
+$ sensors
+i915-pci-0300
+Adapter: PCI adapter
+in0:         990.00 mV
+fan1:        1260 RPM
+temp1:        +45.0°C
+power1:           N/A  (max =  35.00 W)
+energy1:      12.62 kJ
 
-BR,
-Jani.
+v2: Use switch case (Anshuman)
 
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11276
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ .../ABI/testing/sysfs-driver-intel-i915-hwmon |  8 ++++
+ drivers/gpu/drm/i915/i915_hwmon.c             | 40 +++++++++++++++++++
+ drivers/gpu/drm/i915/intel_mchbar_regs.h      |  4 ++
+ 3 files changed, 52 insertions(+)
 
-[1] https://lore.kernel.org/r/87frqdnp09.fsf@intel.com
-
-
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c    | 4 ++--
->  drivers/gpu/drm/i915/display/intel_display_wa.h | 2 ++
->  drivers/gpu/drm/xe/display/xe_display_wa.c      | 5 +++++
->  drivers/gpu/drm/xe/xe_wa_oob.rules              | 1 +
->  4 files changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index f55a85f04ce5..4496ba30d64d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -75,6 +75,7 @@
->  #include "intel_display_driver.h"
->  #include "intel_display_power.h"
->  #include "intel_display_types.h"
-> +#include "intel_display_wa.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
->  #include "intel_dp_link_training.h"
-> @@ -3436,8 +3437,7 @@ int bmg_can_bypass_m_n_limit(struct intel_display *display,
->  {
->  	struct drm_i915_private *i915 = to_i915(display->drm);
->  
-> -	if (DISPLAY_VER(display) != 14 || !IS_DGFX(i915) ||
-> -	    !IS_DISPLAY_STEP(display, STEP_C0, STEP_FOREVER))
-> +	if (!intel_display_needs_wa_14021768792(i915))
->  		return false;
->  
->  	if (pipe != PIPE_A)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index be644ab6ae00..10c1b5787d05 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -14,8 +14,10 @@ void intel_display_wa_apply(struct drm_i915_private *i915);
->  
->  #ifdef I915
->  static inline bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915) { return false; }
-> +static inline bool intel_display_needs_wa_14021768792(struct drm_i915_private *i915) { return false; }
->  #else
->  bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915);
-> +bool intel_display_needs_wa_14021768792(struct drm_i915_private *i915);
->  #endif
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.c b/drivers/gpu/drm/xe/display/xe_display_wa.c
-> index 68e3d1959ad6..c4728e61e190 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display_wa.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display_wa.c
-> @@ -14,3 +14,8 @@ bool intel_display_needs_wa_16023588340(struct drm_i915_private *i915)
->  {
->  	return XE_WA(xe_root_mmio_gt(i915), 16023588340);
->  }
-> +
-> +bool intel_display_needs_wa_14021768792(struct drm_i915_private *i915)
-> +{
-> +	return XE_WA(xe_root_mmio_gt(i915), 14021768792);
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index 920ca5060146..a7cc2c2d98d0 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -37,3 +37,4 @@
->  16023588340	GRAPHICS_VERSION(2001)
->  14019789679	GRAPHICS_VERSION(1255)
->  		GRAPHICS_VERSION_RANGE(1270, 2004)
-> +14021768792	PLATFORM(BATTLEMAGE), GRAPHICS_STEP(C0, FOREVER)
-
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+index be4141a7522f..a885e5316d02 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-i915-hwmon
+@@ -83,3 +83,11 @@ Contact:	intel-gfx@lists.freedesktop.org
+ Description:	RO. Fan speed of device in RPM.
+ 
+ 		Only supported for particular Intel i915 graphics platforms.
++
++What:		/sys/bus/pci/drivers/i915/.../hwmon/hwmon<i>/temp1_input
++Date:		November 2024
++KernelVersion:	6.12
++Contact:	intel-gfx@lists.freedesktop.org
++Description:	RO. GPU package temperature in millidegree Celsius.
++
++		Only supported for particular Intel i915 graphics platforms.
+diff --git a/drivers/gpu/drm/i915/i915_hwmon.c b/drivers/gpu/drm/i915/i915_hwmon.c
+index 17d30f6b84b0..0a9f483b4105 100644
+--- a/drivers/gpu/drm/i915/i915_hwmon.c
++++ b/drivers/gpu/drm/i915/i915_hwmon.c
+@@ -7,6 +7,7 @@
+ #include <linux/hwmon-sysfs.h>
+ #include <linux/jiffies.h>
+ #include <linux/types.h>
++#include <linux/units.h>
+ 
+ #include "i915_drv.h"
+ #include "i915_hwmon.h"
+@@ -32,6 +33,7 @@
+ 
+ struct hwm_reg {
+ 	i915_reg_t gt_perf_status;
++	i915_reg_t pkg_temp;
+ 	i915_reg_t pkg_power_sku_unit;
+ 	i915_reg_t pkg_power_sku;
+ 	i915_reg_t pkg_rapl_limit;
+@@ -280,6 +282,7 @@ static const struct attribute_group *hwm_groups[] = {
+ };
+ 
+ static const struct hwmon_channel_info * const hwm_info[] = {
++	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
+ 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT),
+@@ -310,6 +313,37 @@ static int hwm_pcode_write_i1(struct drm_i915_private *i915, u32 uval)
+ 				  POWER_SETUP_SUBCOMMAND_WRITE_I1, 0, uval);
+ }
+ 
++static umode_t
++hwm_temp_is_visible(const struct hwm_drvdata *ddat, u32 attr)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++
++	if (attr == hwmon_temp_input && i915_mmio_reg_valid(hwmon->rg.pkg_temp))
++		return 0444;
++
++	return 0;
++}
++
++static int
++hwm_temp_read(struct hwm_drvdata *ddat, u32 attr, long *val)
++{
++	struct i915_hwmon *hwmon = ddat->hwmon;
++	intel_wakeref_t wakeref;
++	u32 reg_val;
++
++	switch (attr) {
++	case hwmon_temp_input:
++		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
++			reg_val = intel_uncore_read(ddat->uncore, hwmon->rg.pkg_temp);
++
++		/* HW register value is in degrees, convert to millidegrees. */
++		*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
++		return 0;
++	default:
++		return -EOPNOTSUPP;
++	}
++}
++
+ static umode_t
+ hwm_in_is_visible(const struct hwm_drvdata *ddat, u32 attr)
+ {
+@@ -692,6 +726,8 @@ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+ 	struct hwm_drvdata *ddat = (struct hwm_drvdata *)drvdata;
+ 
+ 	switch (type) {
++	case hwmon_temp:
++		return hwm_temp_is_visible(ddat, attr);
+ 	case hwmon_in:
+ 		return hwm_in_is_visible(ddat, attr);
+ 	case hwmon_power:
+@@ -714,6 +750,8 @@ hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ 	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
+ 
+ 	switch (type) {
++	case hwmon_temp:
++		return hwm_temp_read(ddat, attr, val);
+ 	case hwmon_in:
+ 		return hwm_in_read(ddat, attr, val);
+ 	case hwmon_power:
+@@ -810,6 +848,7 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 	hwmon->rg.gt_perf_status = GEN12_RPSTAT1;
+ 
+ 	if (IS_DG1(i915) || IS_DG2(i915)) {
++		hwmon->rg.pkg_temp = PCU_PACKAGE_TEMPERATURE;
+ 		hwmon->rg.pkg_power_sku_unit = PCU_PACKAGE_POWER_SKU_UNIT;
+ 		hwmon->rg.pkg_power_sku = PCU_PACKAGE_POWER_SKU;
+ 		hwmon->rg.pkg_rapl_limit = PCU_PACKAGE_RAPL_LIMIT;
+@@ -817,6 +856,7 @@ hwm_get_preregistration_info(struct drm_i915_private *i915)
+ 		hwmon->rg.energy_status_tile = INVALID_MMIO_REG;
+ 		hwmon->rg.fan_speed = PCU_PWM_FAN_SPEED;
+ 	} else {
++		hwmon->rg.pkg_temp = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_power_sku_unit = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_power_sku = INVALID_MMIO_REG;
+ 		hwmon->rg.pkg_rapl_limit = INVALID_MMIO_REG;
+diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
+index 73900c098d59..dc2477179c3e 100644
+--- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
++++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
+@@ -207,6 +207,10 @@
+ #define PCU_PACKAGE_ENERGY_STATUS              _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x593c)
+ 
+ #define GEN6_GT_PERF_STATUS			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5948)
++
++#define PCU_PACKAGE_TEMPERATURE			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5978)
++#define   TEMP_MASK				REG_GENMASK(7, 0)
++
+ #define GEN6_RP_STATE_LIMITS			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5994)
+ #define GEN6_RP_STATE_CAP			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
+ #define   RP0_CAP_MASK				REG_GENMASK(7, 0)
 -- 
-Jani Nikula, Intel
+2.34.1
+
