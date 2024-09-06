@@ -2,47 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE64971974
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D45C97198B
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 970EB10E51D;
-	Mon,  9 Sep 2024 12:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D29F810E532;
+	Mon,  9 Sep 2024 12:36:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="Zyb0aQxW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nO4Npbpc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1072C10E8F4;
- Fri,  6 Sep 2024 11:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1725622216;
- bh=Nt1P/gkEwLsevJn4UXiqSp5dbi52ohpe4QVRVvtzDCs=;
- h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=Zyb0aQxWBpYMsvr5OOyA9FrhYoi90LoHqTDaiCqPr0s++MyPC3fmNmjBoftLQOVN4
- bYwWqPavxBmCGKEUkrnMS2btpGPlNcGyHChGlNeNTdyBz6DS4G0iqhkGGKupI0QsjM
- PakadDG7gsdjVfDYjBoi0L2KXCxfdWbS/nkt6rrY=
-X-QQ-mid: bizesmtp91t1725622212tfo7pr4h
-X-QQ-Originating-IP: MoWlbzd9eCSFmT1s3QWXnAyVznxqD3uUvAEsVnaPfGY=
-Received: from localhost.localdomain ( [221.226.144.218])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Fri, 06 Sep 2024 19:30:05 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11505531661423180768
-From: He Lugang <helugang@uniontech.com>
-To: jani.nikula@linux.intel.com,
-	rodrigo.vivi@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- He Lugang <helugang@uniontech.com>
-Subject: [PATCH] [PATCH RESEND] drm/i915:Remove unused parameter in marco.
-Date: Fri,  6 Sep 2024 19:30:01 +0800
-Message-ID: <6B8E60F863EF80E4+20240906113001.1595107-1-helugang@uniontech.com>
-X-Mailer: git-send-email 2.45.2
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
+ [209.85.215.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90B4C10EAB2;
+ Fri,  6 Sep 2024 17:46:11 +0000 (UTC)
+Received: by mail-pg1-f172.google.com with SMTP id
+ 41be03b00d2f7-7c1324be8easo2439435a12.1; 
+ Fri, 06 Sep 2024 10:46:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1725644770; x=1726249570; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=//GMh5wcWPuvbL5byVeOpp7gx8/ceI9tmF4jI5oBjrY=;
+ b=nO4NpbpcTbWi0zmIFsKTd7vsqKyz+dk81jitwd+Xta1JCfYpKg3VeJpA9b+ZrYEznc
+ pHjxNkqbnc2BosjYzfS9D8tU+TZNDb2VF4STbF6xGVstUNeun57PuY/KsGMxX9qSFA6n
+ IcShQC+lONSZC89W/gaUPp+Ai1ot/wgeQ+bS3sZYM7ynAj+NFHZQBrRj+hOs/TQMj3vF
+ uTvFWFJ9HQy77vAPbcI/NCdJPn1tau28HW9UQfXBLdQ1bpiaGef+VsSgWBddkGRWZWQY
+ j2Q/7goeUVZU8qUR8ss7CyZmHHzMySggDiZJ3S9XnCMCpSHNZHvIw8ICtYNkQuBu/M4b
+ hm2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725644770; x=1726249570;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=//GMh5wcWPuvbL5byVeOpp7gx8/ceI9tmF4jI5oBjrY=;
+ b=kfZAvPhVdEXdrzMTTxKoDhr0IDd8EvmRZIs1UEdRQON+zWmpXisCKyK5RFw3b2Lrh2
+ a53TkgsUSUE1Du22TTCjMKXIasG7pL2CIUR8HFnA1RUTbN6fKmg0c7fzO6ElhX56Vw4r
+ EIVPcAiKC2QX9aHgrmMkKMIf60gRNPdMEi5riYtXiLmKL66x00OesXVhbxmq3synKDwG
+ t3luFQHgxRSJKKkElmKSQ/F4ez0SvzFsFSP5ncOPAb0NH8pdWwAHmTHLFiPzv8QUHEWo
+ /jR2yFfc2yrXEJc6PAuS17AccpAEzqf/8LhmBy0Bbn2qACsmq7U8ojFwHA8TNm8uPNG4
+ Lz9w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW/f7ExC6aTILLYvug0S+jRJkeXRmpzL6VeP74eNEMnO13zR5iN+U2l/X5gm+0N8EXNzwtxjFSnG2Y=@lists.freedesktop.org,
+ AJvYcCXn50zW6CeqkcaxYeKNwIQ91NINnaZ9jyGAewcFIPo0sWwRcvFjn1iY4whruotCGPvQA4YKi+GSDMc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyqo3OG2ZOW9YkfA7w2GSw+zdpkXSqiZbNV66Y5Uxn3SGm24wkA
+ tus4Tiklh2yTaIIm9wDqCa2e9B3/loRd2xM79cdN7Pt48l9wX65ZLd5R6Zpi1fNaIQ==
+X-Google-Smtp-Source: AGHT+IHl1QwGj6f27gy0SNNX8R4uHPJcDOIVI4Q+cvPI+qzi59HzqJAavBhcgc+seszYKXg3rYCwsg==
+X-Received: by 2002:a17:90b:4c42:b0:2c9:7343:71f1 with SMTP id
+ 98e67ed59e1d1-2dad511c22fmr5252445a91.14.1725644769664; 
+ Fri, 06 Sep 2024 10:46:09 -0700 (PDT)
+Received: from fedora.. ([2405:201:d007:50c2:4888:86b4:6f32:9ae])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2dab6e5dc04sm1466452a91.1.2024.09.06.10.46.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Sep 2024 10:46:09 -0700 (PDT)
+From: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, skhan@linuxfoundation.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/cx0: Use one lane to set power state to ready in DP
+ alt mode
+Date: Fri,  6 Sep 2024 23:16:01 +0530
+Message-ID: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz7a-0
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:36:55 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,74 +86,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The parameter dev_priv is actually not used in macro PORT_ALPM_CTL
-and PORT_ALPM_LFPS_CTL,so remove it to simplify the code.
+In DP alt mode one lane is owned by display and the other by usb
+intel_cx0pll_enable currently performs a power cycle ready on both
+the lanes in all cases.
 
-Reviewed-by: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: He Lugang <helugang@uniontech.com>
+Address the todo to perfom power state ready only on the display lane
+when DP alt mode is enabled.
+
+Tested on Meteor Lake-P [Intel Arc Graphics] with DP alt mode.
+
+Signed-off-by: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 4 ++--
- drivers/gpu/drm/i915/display/intel_psr.c      | 2 +-
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 4 ++--
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 31c068f393b7..55f3ae1e68c9 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -332,7 +332,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 4a6c3040ca15..47aa0418379c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2949,9 +2949,13 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
  
- 		intel_de_write(display,
--			       PORT_ALPM_CTL(display, port),
-+			       PORT_ALPM_CTL(port),
- 			       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
- 			       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
- 			       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
-@@ -340,7 +340,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 				       intel_dp->alpm_parameters.silence_period_sym_clocks));
+ 	/*
+ 	 * 3. Change Phy power state to Ready.
+-	 * TODO: For DP alt mode use only one lane.
++	 * For DP alt mode use only one lane.
+ 	 */
+-	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
++	if (intel_tc_port_in_dp_alt_mode(dig_port))
++		intel_cx0_powerdown_change_sequence(encoder, maxpclk_lane,
++					    CX0_P2_STATE_READY);
++	else
++		intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
+ 					    CX0_P2_STATE_READY);
  
- 		intel_de_write(display,
--			       PORT_ALPM_LFPS_CTL(display, port),
-+			       PORT_ALPM_LFPS_CTL(port),
- 			       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
- 			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
- 				       intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b30fa067ce6e..55ccdd6171e6 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2097,7 +2097,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 			     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
- 
- 		intel_de_rmw(display,
--			     PORT_ALPM_CTL(display, cpu_transcoder),
-+			     PORT_ALPM_CTL(cpu_transcoder),
- 			     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 642bb15fb547..41f7211d4f45 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -295,7 +295,7 @@
- 
- #define _PORT_ALPM_CTL_A			0x16fa2c
- #define _PORT_ALPM_CTL_B			0x16fc2c
--#define PORT_ALPM_CTL(dev_priv, port)		_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
-+#define PORT_ALPM_CTL(port)		    _MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
- #define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	REG_BIT(31)
- #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
- #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
-@@ -306,7 +306,7 @@
- 
- #define _PORT_ALPM_LFPS_CTL_A					0x16fa30
- #define _PORT_ALPM_LFPS_CTL_B					0x16fc30
--#define PORT_ALPM_LFPS_CTL(dev_priv, port)			_MMIO_PORT(port, _PORT_ALPM_LFPS_CTL_A, _PORT_ALPM_LFPS_CTL_B)
-+#define PORT_ALPM_LFPS_CTL(port)			    _MMIO_PORT(port, _PORT_ALPM_LFPS_CTL_A, _PORT_ALPM_LFPS_CTL_B)
- #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
+ 	/*
+
+base-commit: b831f83e40a24f07c8dcba5be408d93beedc820f
 -- 
-2.45.2
+2.46.0
 
