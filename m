@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E055296EB5B
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 09:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B85596EB5E
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 09:00:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40BF610E813;
-	Fri,  6 Sep 2024 07:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B850010E816;
+	Fri,  6 Sep 2024 07:00:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NpkHNKeB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3bBQlW9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1779A10E806
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 07:00:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B926710E816
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 07:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725606053; x=1757142053;
+ t=1725606054; x=1757142054;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B+AkGGKdBW5AdcphGZh/WYPUVS8UdCB6dHN64Q9NU44=;
- b=NpkHNKeBY1wcdFN7EfFKcVucs1t72siJOwmn7ex3ghTvkYyphXIN7iUb
- nyUxUc5iSERdt/bhMZdDdcvOvWo0wE6d7gM7bX5xC6wynKla6nblDze1a
- RgjdGqECpAB5qkZKtDD5+trA5BRS5sX6d/rTVemsz0APWEGA2e5qctE74
- CD1pAk3eZJfZMTsRQLE5SDeyuE4zLnk7AZYvPjXQOIcA8LCKI/iqAEC/D
- k1wS16yzbQvucN4X29ystDUaCxTs8XMLwMOyYGGrzegm4h4y/dnialrAY
- fyZ+mz8cT/K1KeEfa0lbSYR0RexOYOpM3XAY+4DWFBJh95osyZGyj8hCX g==;
-X-CSE-ConnectionGUID: ByX5J6T6RLyr4v7u9rsrgA==
-X-CSE-MsgGUID: t6YzxIIrQqGL/MHOAa4MSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="28103042"
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="28103042"
+ bh=IDcq4wlscYdL9z9vMeXIpRX5v5qRtnAIAJvXRmHdOBI=;
+ b=R3bBQlW9WGYpLb87oshrQNlcXBsKYb4T/9zmJ+Vk5qxprMM2eWRUjx0M
+ iEAAlElwZmH7EJXJIfkjPeuB+HkKIlvDbdHr+pS0r+rIBzDLsOJ63b3af
+ KptsRBxK2qIShovugTQi2PSmbMjdgx2BenFMBu6WdPBWCoVgFUjOksrPK
+ jgp47cmjVYzYckAfBtLiOVWXoGeUex5awEHAYRc3Vx89k5YMtibYY6QIs
+ DKhSLnQjsaTQr8QA8mCe7n3cCQa9aAHPxeBOaMLp8YiONhsrFiLfaO8Q7
+ JMC+Y7tlrfpqGnN3gCGT2oJ8BISnGLSyDQxG5/dFBQJKwwFWBP5hRC4R7 g==;
+X-CSE-ConnectionGUID: Y6ZvMgGlT8uCzuW1cKmMFw==
+X-CSE-MsgGUID: dmgpiUGYRayUtVFlnzfAtg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11186"; a="28103043"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="28103043"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 00:00:53 -0700
-X-CSE-ConnectionGUID: tQnOKigQTOquuT1r1RClhw==
-X-CSE-MsgGUID: fR6nUPeLRuKNctNfaxmWYQ==
+ 06 Sep 2024 00:00:54 -0700
+X-CSE-ConnectionGUID: 1Szyd7MSSfmK2dafy905zA==
+X-CSE-MsgGUID: FFdcppSoTIKSFt2lTp6kdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="70292518"
+X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="70292523"
 Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
  jhogande-mobl1..) ([10.245.244.116])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 00:00:50 -0700
+ 06 Sep 2024 00:00:52 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: imre.deak@intel.com, animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 3/4] drm/i915/psr: Add connector debugfs files for MST
- connector as well
-Date: Fri,  6 Sep 2024 10:00:32 +0300
-Message-Id: <20240906070033.289015-4-jouni.hogander@intel.com>
+Subject: [PATCH v2 4/4] drm/i915/psr: Do not wait for PSR being idle on on
+ Panel Replay
+Date: Fri,  6 Sep 2024 10:00:33 +0300
+Message-Id: <20240906070033.289015-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240906070033.289015-1-jouni.hogander@intel.com>
 References: <20240906070033.289015-1-jouni.hogander@intel.com>
@@ -72,35 +72,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Connector debugfs files are currently not add for MST connector. We
-can now add them as we have taken into account possibility to have
-NULL in connector->encoder in intel_attached_dp.
+We do not have ALPM on DP Panel Replay. Due to this SRD_STATUS[SRD State]
+doesn't change from SRDENT_ON after Panel Replay is enabled until it gets
+disabled.
 
-v2: remove TODO comment
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+On eDP Panel Replay DEEP_SLEEP is not reached.
+_psr2_ready_for_pipe_update_locked is waiting DEEP_SLEEP bit getting reset.
 
+Take these into account in Panel Replay code by not waiting PSR getting
+idle after enabling VBI.
+
+Fixes: 29fb595d4875 ("drm/i915/psr: Panel replay uses SRD_STATUS to track it's status")
+Cc: Animesh Manna <animesh.manna@intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 13 ++-----------
+ 1 file changed, 2 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b30fa067ce6e3..581c409ce7309 100644
+index 581c409ce7309..1a4ef231a53ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3840,10 +3840,8 @@ void intel_psr_connector_debugfs_add(struct intel_connector *connector)
- 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	struct dentry *root = connector->base.debugfs_entry;
+@@ -2786,13 +2786,6 @@ static int _psr1_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
+ 				       EDP_PSR_STATUS_STATE_MASK, 50);
+ }
  
--	/* TODO: Add support for MST connectors as well. */
--	if ((connector->base.connector_type != DRM_MODE_CONNECTOR_eDP &&
--	     connector->base.connector_type != DRM_MODE_CONNECTOR_DisplayPort) ||
--	    connector->mst_port)
-+	if (connector->base.connector_type != DRM_MODE_CONNECTOR_eDP &&
-+	    connector->base.connector_type != DRM_MODE_CONNECTOR_DisplayPort)
- 		return;
+-static int _panel_replay_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
+-{
+-	return intel_dp_is_edp(intel_dp) ?
+-		_psr2_ready_for_pipe_update_locked(intel_dp) :
+-		_psr1_ready_for_pipe_update_locked(intel_dp);
+-}
+-
+ /**
+  * intel_psr_wait_for_idle_locked - wait for PSR be ready for a pipe update
+  * @new_crtc_state: new CRTC state
+@@ -2815,12 +2808,10 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
  
- 	debugfs_create_file("i915_psr_sink_status", 0444, root,
+ 		lockdep_assert_held(&intel_dp->psr.lock);
+ 
+-		if (!intel_dp->psr.enabled)
++		if (!intel_dp->psr.enabled || intel_dp->psr.panel_replay_enabled)
+ 			continue;
+ 
+-		if (intel_dp->psr.panel_replay_enabled)
+-			ret = _panel_replay_ready_for_pipe_update_locked(intel_dp);
+-		else if (intel_dp->psr.sel_update_enabled)
++		if (intel_dp->psr.sel_update_enabled)
+ 			ret = _psr2_ready_for_pipe_update_locked(intel_dp);
+ 		else
+ 			ret = _psr1_ready_for_pipe_update_locked(intel_dp);
 -- 
 2.34.1
 
