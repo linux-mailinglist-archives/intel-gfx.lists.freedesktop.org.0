@@ -2,170 +2,171 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B468C96F7F2
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 17:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1CA96F7F4
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 17:13:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35C1F10EA93;
-	Fri,  6 Sep 2024 15:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A59C110EA94;
+	Fri,  6 Sep 2024 15:13:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GH1Q/Rxv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ngWgfhq2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26C1D10EA92;
- Fri,  6 Sep 2024 15:13:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E222A10EA8C;
+ Fri,  6 Sep 2024 15:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725635580; x=1757171580;
+ t=1725635618; x=1757171618;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=2wddRGGbRmo6GmA50/ZEX0MlHVX12++6XpAiGHb9dng=;
- b=GH1Q/RxvDA5UMSIdwjBILdaB0kERm9F3UOcL9aihmt/hmr9RRAc4loru
- DbkH6NfzraQOU3MfTHUsjXxzdCwGqfpi9ukv5L4wESguFUMx2td5Qihca
- AejbRrLgS4OVhUaV80IFQ7ljRlQDTmY02yGaG0i9P96+a76xXz88NAdot
- tB0f2IQKIeXg9ORe2u6uK4rREGUXgqG4nrdWw7t85qoaWAgMkbiNO3GlV
- 3EhnIGf4EJDscHdX8nQzq/9vo4sOmtJ+qnFRqnlOfTt+ePDMk3OdSc+hV
- usx7hcbFVJUCdlxkXKal9zBCVrVq8shnF1UHdpWV39tn2z74M2JQgjbll g==;
-X-CSE-ConnectionGUID: Hw7LHN9bR0OFULMQTkyuoA==
-X-CSE-MsgGUID: 469VSWFcTj2FdUPuu78X3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="34995146"
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="34995146"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 08:13:00 -0700
-X-CSE-ConnectionGUID: /GPuDGX0TTakibhqyCqvCA==
-X-CSE-MsgGUID: t/KN+WMIQf+tG2mLGziknQ==
+ bh=4WHO5oHNnu7wnLBIst4wkz+OEhXOR/gWJfLSPS4VkZQ=;
+ b=ngWgfhq20ZfNh7hCtpQTkO4sr8T1OQom1iUlLAl0fw6sUCEchpB6qpKh
+ PcIwl5HtBBGZN2YWvAEUYzMgz3BXs0fO7SnxqVJZp1HAO92yibLszYjg7
+ EGOw/WlqiKvCNo+wIzEU5Ovvd+ktL8bi8+7h0lqk8KawXYSppFAFNheAo
+ x9z4fLrMRwDL3jediMTopjL8g2hT7txqSvRMyElDmiQ/GKbEElqbO8k6S
+ WBZJcuxo5UV2jieisWk77XCGfcGlFJLFuXzbVV4HqIZ+2nlaJwdrtHgRd
+ m61FBsVN4CZrLJAngpWdMp3rkOlfGvcalUoRUQisjWMShB0KeUBCSOx+n Q==;
+X-CSE-ConnectionGUID: DVQ22warT4CtSF1kqVAltQ==
+X-CSE-MsgGUID: T6wD9KGBQn2zi6F5rdvzkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="34972567"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="34972567"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 08:13:38 -0700
+X-CSE-ConnectionGUID: thG9d1/KSJmsUsWiPqSEJg==
+X-CSE-MsgGUID: 3JkWzA61RGW2I6y1yTQycQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="96695462"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Sep 2024 08:13:00 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66013624"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Sep 2024 08:13:37 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 6 Sep 2024 08:12:59 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 6 Sep 2024 08:13:36 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Fri, 6 Sep 2024 08:12:58 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.39; Fri, 6 Sep 2024 08:13:36 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Fri, 6 Sep 2024 08:12:58 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Fri, 6 Sep 2024 08:13:36 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Fri, 6 Sep 2024 08:12:58 -0700
+ 15.1.2507.39; Fri, 6 Sep 2024 08:13:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l5LSx6koTcqkIWzu5wpAXGCYzq8aYRGt3iAEsIU4/t2xz0RzkpWhq6EAjBN1JKdKPs/5BLmfbFHBy+ylfsWkm4zCTQpf6PHFr9MJI6/AlwEzuR5K5+/V+Ye6az+b0Nnth9PEU+XCyjdNqM4vpwf33hQS9IHZwRUocrhiIa8XVXphIS6r3HNuXhdB73qk6qAOp3GVq01aIk6+/5P0ntUvHHh0++jNeeEoZHYIQW4IPPshMyYm09e2RQPdDmF5j0aCNyfNbJaFTKgqIrOj/0M4sCB/n8c5NGdT/58djQ9CNjEVbpLQpyKllttAyM7Hv0KP2xcUjdNUL7M22a6Pvdj7Ow==
+ b=L3Sw8vVr4ow/M6Z6hNALFa55PIYlJuXPQVfvqG7+YUgwIYQbftUKwK4eccCe2g/vAnQcLw0nRL19HR0ELiIxtILlHs+r5/Yu69mS0pLsXhEZIaOb9+4ZlHYyw87HOw1NbKRTClzBDBoT1tehdXnUZ8npSDowGZsuAuquJNY3Zn3PFZw+3onqX4D1vyQvAZhtsW1yJgwkBChdr3lp0+o+S7ninlmkCFnAK9/DMsMj+iMljOAYFqtHqjPsZfLwLb+KcUj8kUWhInvEs+V+YyoRApdeOoXwjYb99YjRv4dGNVb3H+Bnqu0R0F7tHlL6AdbsMywraMubqMT69cG0cYkNsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ylQ8Gyme6miybbwd+5ntQp6D5HN8yOThsHYDc3BrdxM=;
- b=A43aThxrmUcJqvIT5bB/dzQqncCtC/efRPQ+gcbnAR3xvEar/lkkOrCOPteGM9VQbQ/vCm957RtgZAVDxTgM0dGBlcrukSY/YAtLqcNZnQnJF1zX64kAXR63xkUyhcxkltNCkCM7ib2X0LsZ4wPAJMfEjcRCyaY8yJOi/V1mxxbHus1dxFr1709ucazVNKGdJTN5K4J6zRRODSKrw6q8vo8lAM7Va7k4TclBWXTUvv6DAFZgXKVhy1rJTqcbrriMXe99WflT8iIloN37j15olcyET6r5/AgZbat9X/nyeYaR6Kw2rWhCU7zVmHy6BtNPd9y5hwrREVe9cL+v+aAkJg==
+ bh=b00FG2jy2/FFnfTNO3yr5SGncRT84iGApKAgp4/kBJY=;
+ b=RjvAfFN7UTNQX1JGpwLy3JD3jSsNkkyOrqanaz9OFAMllb3M4q2kNleLqlOu69KrlomXhMLVDBCygHtoFi8DANnWmCQX3jTy5dto7Z4UIF0fj6g6nwo+aN1ywDuJNDx6EnIuyK5ciR4SCueXkJH78wYF8PGXE3xl/0BYdLl4mWnU8ljW8ZS43iel6MdgqfUDvDt/B2tRL0HtqhGWf6AQWd5pt+weWhVwpJyPNd5V/GOPeY+XocznfHIEt2tOEAcq8gNRpqeIbnxOT0nuyvFwu+TlrlQ+2gcxobktntotnqtfOI+jXs0F6eZDH52xc3Ox5a/LHXb4+yrQC936ZrQ/AQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by SJ2PR11MB7502.namprd11.prod.outlook.com (2603:10b6:a03:4d3::6)
+ by SA1PR11MB7110.namprd11.prod.outlook.com (2603:10b6:806:2b3::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.25; Fri, 6 Sep
- 2024 15:12:56 +0000
+ 2024 15:13:34 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%5]) with mapi id 15.20.7918.024; Fri, 6 Sep 2024
- 15:12:56 +0000
-Date: Fri, 6 Sep 2024 11:12:52 -0400
+ 15:13:33 +0000
+Date: Fri, 6 Sep 2024 11:13:30 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 4/6] drm/i915/vga: Convert VGA code to intel_display
-Message-ID: <Ztsb9OxzNdULmYn-@intel.com>
+Subject: Re: [PATCH 5/6] drm/i915/power: Convert "i830 power well" code to
+ intel_display
+Message-ID: <ZtscGjH68EuueDMQ@intel.com>
 References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
- <20240906143306.15937-5-ville.syrjala@linux.intel.com>
+ <20240906143306.15937-6-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240906143306.15937-5-ville.syrjala@linux.intel.com>
-X-ClientProxiedBy: MW4PR04CA0308.namprd04.prod.outlook.com
- (2603:10b6:303:82::13) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <20240906143306.15937-6-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: MW4PR03CA0177.namprd03.prod.outlook.com
+ (2603:10b6:303:8d::32) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|SJ2PR11MB7502:EE_
-X-MS-Office365-Filtering-Correlation-Id: 66e5ba77-a0fa-4f52-b700-08dcce8662d0
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|SA1PR11MB7110:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93e20ff7-28ba-415e-959a-08dcce867960
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?i6BzSUr2xYbdVDUs+YlSElKNGORkdva/o/OSxFuw1YAslUuJrjvXhEaIEC?=
- =?iso-8859-1?Q?GDhy8k+L4jg1XTtmuevMQyKx3XZrRHvmDjqWt3D8PMuKbsRADZDnLxhZlx?=
- =?iso-8859-1?Q?Hx2jL8UJ6CPJ0oxsQBbh8PLN3TvvjW7hzHr391stGBdJP0Btfo+ecALAm4?=
- =?iso-8859-1?Q?uNvISDr6gDWiWYnDw5carQ/lBHteVx3zEZUGhO3d4ePnHpUFjBv3sdJjD5?=
- =?iso-8859-1?Q?BuSRd8uceVzGjrIxemCJZ2fMLUQ4gGPo8mQltz7EfNpZcWeQA0w3X3BU5V?=
- =?iso-8859-1?Q?zkGXci0xd4cN4DpkaMS3SL4pVPqYJz8wVrNYYhD4J8ZNjY3j7BxOFAq6hg?=
- =?iso-8859-1?Q?iHNWUgKUwEFinWtgjuqNUp2MaLE+i4QT9oAK2PGjnZSmP3iRzUYIEoySaG?=
- =?iso-8859-1?Q?9kVM8ktuf2XkkNCljm2407vBDj6B6PhEYJIpOT0QoKwM+Gq9/vaPbV+nRS?=
- =?iso-8859-1?Q?3Ss7qErueZYG/teSaLaBt/i5HYOuMjhgzB8KmJmYAI3jcHvg5tX9dog+Jm?=
- =?iso-8859-1?Q?ANKb2ThCL3eSmwAnJYEgnijWXgpA6WrYVXRElQW0MCjSkc7wTKgpghwyiU?=
- =?iso-8859-1?Q?+T7tRmgMSIQcEwj04O7HgHEnTzna5EHEreoSNGYXAa3LJNwXc0LY627374?=
- =?iso-8859-1?Q?CBJsw/UpKs4lh/sYEzWRNY+LAelAqM3I1K8ncXo7e8GQ4VA0v2vOkwrXoU?=
- =?iso-8859-1?Q?W4PkV7yoseMqoh90XM1383Zc4ZTUZAVvB4SUXuKM1FwNcYcgELw8woAPMa?=
- =?iso-8859-1?Q?f2gqjgxhe9XUhR0Iw/hVDpjTcw2SHPy80WrVgm1N0zYNrxBgV8VMegW2+4?=
- =?iso-8859-1?Q?Rp+mvr2LpbW2JBbNCyw5XY+EnJVilvA8PEgPzTYC5njW1gcpoyR7j0o97Z?=
- =?iso-8859-1?Q?Gjk+YuDajPugZDB4c0R1jbhF+4H81SKG6uO9Agpqlei/3HAo3a0mxxPXwW?=
- =?iso-8859-1?Q?GruqaBg9cfUUjjTWfW/xFdH3T2sORSnz+NgHaVOT5TR8tMzVpWAEpxVqJ9?=
- =?iso-8859-1?Q?jOhfKr6v83EZlNlaRJNJZ6pvGloHPpJW9aJJ40YBhK/e3HKg4r0qcjwQuy?=
- =?iso-8859-1?Q?FMZq1nrnONgRDpC6bWCvLrWdUXh38qT26aTgUt9GxMNfOPmFMZ4nNr/Hnc?=
- =?iso-8859-1?Q?UrMEdXLka2cbNKjirM9PJZ0IbUXvtVJP6lSQsPJFqKN95F/Hxiri5RB0nr?=
- =?iso-8859-1?Q?p0xATb/+MW9xlCIKHtd3A2YzY4eXp94wdWF4fGuaNMUGMFIFJAWsbITQNT?=
- =?iso-8859-1?Q?6GD3K4RU4bJcu5oD+2hfMo2tRheRSb7BPiVHXKN3czOZI1aCOkWSRKbNtu?=
- =?iso-8859-1?Q?Jyv8CMcer8HO0t/tzXUxd4fDWZ+S5h9fWR+tIqata9smli9TsBjBYCyhtY?=
- =?iso-8859-1?Q?SkJg2s9dvqD1ZvSf3+QDmwfLpFrmtZgg=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?PISEGrCxZBuRycRfHqjEAwUIfhI9SD15zOV+uNdE4EIPL+CPVgNvvm363E?=
+ =?iso-8859-1?Q?aWu3LMwiQ7Wj2Lw7fPgqTfbmSVKnsDSCLBTsGxLGc1Yq8TPCDAYmCcqJLC?=
+ =?iso-8859-1?Q?2bJnOT0obeT63DviqUHWwxCnq+FHjmunD48YZeRB5O7V7OOS8BcLswl+o6?=
+ =?iso-8859-1?Q?y6fmbPhxRQ9M7zBjl8RdXtcJ8vNomxDV1FVUO50cVKxQPoXIn0aiBdGrFV?=
+ =?iso-8859-1?Q?8TKgILjjkGMLKY9wUwJp84HmMNujpXUUaiQfCz49F2wi+XEQdqpfR2DCtv?=
+ =?iso-8859-1?Q?qCotB8awQOP7FsM+zY7E/53N8Jflpj1feNv1L73nzAac+LwmhcpkmefgZ7?=
+ =?iso-8859-1?Q?jZzEYeWL3bEz0NB+Th1fJ1eObsgTZEEjoEXN35Z8FjRa/16EFwSJ/HojIo?=
+ =?iso-8859-1?Q?mD4qQBfGrHItSO+K/jnC9H7wZxLIb8Emn5dRflfGyDtdBynhRcr0D5eUG4?=
+ =?iso-8859-1?Q?afjPtguncgJ4o2sFhRFa56KTMLx1jnO0KYA+ZZLHIGanngtemf1VnSMGmG?=
+ =?iso-8859-1?Q?36tNFrDDWHyi5vAyBfnKyGhefAHhK2Sh4wtr0uiDimvT1Xs5WrKRkry8SI?=
+ =?iso-8859-1?Q?0DrWhJvo9CAZQu8vipooCf//cCBQTNpnotv8zNnG8jFV89xW+4feZwAAv+?=
+ =?iso-8859-1?Q?aii9YHqHShWhc+4WCvpKXMrNXzwyVaHksUXXeS0R5/KGK3z5JPkbtYl8l9?=
+ =?iso-8859-1?Q?D2qs7l8UaNDpFDT47+cWq8KcjIVBO7EzquISzdtzoQG3F/PV5fnJgZtj+Z?=
+ =?iso-8859-1?Q?ORaZWhMmXEakceRUNenRUUPQXAptZ/RVBmBlqkJM9kRd2pltYoFKPWe+Ss?=
+ =?iso-8859-1?Q?Sex93b86hna9bauUdFrZTtuhFJKUGJJfNsDM6GCzM1C0J2hoXyH09+WGDD?=
+ =?iso-8859-1?Q?ngK+d55uhIJ3BLBlJHxTT7UbInXawoR11rrwbSeb/zznCiWnjolmFXmTy4?=
+ =?iso-8859-1?Q?On52WCHoDQ+qwodmZ5zmIOFx6Svyz5waHaRvOwSYebbB3y/bfn6cNHqTyN?=
+ =?iso-8859-1?Q?lhiqyef2YY0bYodacG0thH2mbsFnlBuzVPKsBwjZZn2Id2ISV5MPdr3aKG?=
+ =?iso-8859-1?Q?rTZM9SBp+o7TSw6tf+zZ4TrtRE4jK+00ln5OufOqP3/UbB2sZjyQa/zvsf?=
+ =?iso-8859-1?Q?Exny5Jn6+sQ7qmX6a2JZg/NxuIVDbdUOwLNHSpcP3vbtiTS5wnD2tLBR3+?=
+ =?iso-8859-1?Q?TQco6GjeCqGL7gyse6nawcUiVEGYMJiA0FpW1yaNAF0bxS2QaXPv9zWPIT?=
+ =?iso-8859-1?Q?HIifumFuW6rt7GQr+UcmpNGnAmDGB7Dv/HULRQH8JCEprBcvwgVmgJtOgl?=
+ =?iso-8859-1?Q?dD+7E1aBtGfQ1P17XzztWkd+jVOyrdxezpojtP6/9M0QRuwoU/bRT9ScLp?=
+ =?iso-8859-1?Q?Rvec4EU0Ekc96i6MQPs3K1Rik5tjaJ7Q=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?vkR1j5ebozH74o2Z5NQgjkSGAYhqLzFgYZ1WeA9zRGe2t1Q3NykemnUkfF?=
- =?iso-8859-1?Q?y33MvySQLFeOieVZYYPsLt72fI0gd7SUEC/y5Jxc7GG81zxuyxGiZPV3L2?=
- =?iso-8859-1?Q?TfhmL3p9a1bsFgureefesPH8VbU8HAuBTnyQcmek0y9U/8fMtdVgFH58Zj?=
- =?iso-8859-1?Q?GoZmX9JA5+KI4osXhLenu5L79u8RZHQlOI/jx4vxjKMfbHgTH2pz6bX4au?=
- =?iso-8859-1?Q?tIc17UyDxIKu113vFCWsiktaUEpmm2XYxmz3qHqVzZcOsyi79MDq2z2RdR?=
- =?iso-8859-1?Q?czPzkBHktJu6xyjkQeTHP1U/fBFFJ2gAhp6f2FMEvacnX/OmvbmTGCj/Os?=
- =?iso-8859-1?Q?it7nCNgmEm+zYtxzzFZKKu6LK0Efng2nZeQMgjzBVP5k8q/H3g0WdbRzYl?=
- =?iso-8859-1?Q?Y1z47ajObF/TpHp+c92EYqeVPUioAfz4y6spQXNekwfeIcwO/l0ukEc6k7?=
- =?iso-8859-1?Q?pinSP55JCtE1Xcfdm7CJOtnWkH7f2j4nxNDNDarBwD60D7+BNUUEEAfuBx?=
- =?iso-8859-1?Q?KklCD6Yohm/AZbOOn1cy2g6HHAK8iO3lHvnR67YuQnshGxXVn7qMB+Kx9v?=
- =?iso-8859-1?Q?UEQ3PpGFnTjyWCuBMwqMa+61bcuo0S8TqtrVyAyb/1e891yxf2fmeSla09?=
- =?iso-8859-1?Q?kkhW+kmz62jkVFQ0QKF1MGfmMRauifnnZX/nq33uPA/QzoJFJpjGEi2G4e?=
- =?iso-8859-1?Q?rDHLfPNypTZolY1hiMXGEiOReAO1FH5etQiyD6z0jYgdN6ygzKcgFXAPME?=
- =?iso-8859-1?Q?l1xZ8PKHaujbvrIB7LIbJFRQb6wkkVEEbfHVbdsGA6zLfdlIWz2E/MXDe7?=
- =?iso-8859-1?Q?5sahGkRwqzNQOsvwpW/ZIlF7XVkKziJIDfPULzwYfxhvOH2pH6xNgLu8YD?=
- =?iso-8859-1?Q?HnujAicxTgKUCN+1wNKmaTEOsq4JyAF2KIuDBXCI4Wed4GupQ5nSqltrSe?=
- =?iso-8859-1?Q?JNcdxgL+NRYYM6wgGMtrTY1WhrTltsUyC5dtpe4B60giVwRsBOgug7enfx?=
- =?iso-8859-1?Q?2hpw0pfiD1jT+V6ZEHHcKFSyO1jGBn91KBg5qiNhpqcyAt5ysuDJzPwaeg?=
- =?iso-8859-1?Q?FIWJ8RzVRQ82jT63dmLns2fclPfqYCNGfZ82bPoCYYfmVLokZyre3SvGiv?=
- =?iso-8859-1?Q?tHR12+lONG0hMLfdy2e3N4VEGFC/VK73yJbFn0/kd21Sgtf9BGEf9Q3tIx?=
- =?iso-8859-1?Q?e6q/ByGp4Ok9QNRGF40neaMAS5Sojz6xH7Afg2kcFOGTI33WSvMInmgwlZ?=
- =?iso-8859-1?Q?BvP+CS0YcOx2CNQU1HGhxBrgTFcaLdLEi/kwXinIarIHqZKSRCB7881NEe?=
- =?iso-8859-1?Q?NzXj1l7phxDhrrC2fwTN3Fc+fx0m3tdltzyOhEhbzvvxipDOT3/Yu3sfts?=
- =?iso-8859-1?Q?pOqPOhwibZRrqIR/+aORa/O6tcwCCg3HFaU+u77NEh73bnZz7qIVCRckBO?=
- =?iso-8859-1?Q?9CYIttp4qvcnnsU1mY1gUVd4DZIlb5h3nEhBJtyLLzWeZy7q6PBHWivwx2?=
- =?iso-8859-1?Q?QBSkVxGfRP0NovH0KEgJl67QXFk2CqXxdVkMZ8rSr7paSZrDG7cFm8gTRh?=
- =?iso-8859-1?Q?UeL2gT2/zSeRV4Mms5e3bU5pfpwF+AljszlHNIb7tMTTfAVhurpFpUqkve?=
- =?iso-8859-1?Q?UNcf+7qfxEGIMA62YoyxWCoq12ae8uXfvZMFuxuWGPqA4ki+kZXq7fbQ?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?HnFeAZaoXwqqL9uwM1LyOsLhQYuzyqn+R14+9kNAN/fQN3tDr4/oSqurQj?=
+ =?iso-8859-1?Q?ecOQSZMyk3Z9rThAXI+RBD1vVqzminsy0+7OkNZqRpmrlOtJuHRF6BACqS?=
+ =?iso-8859-1?Q?yW1pIG3RrUsZoi4Axf7TO8RsTqkPg99fR6TlKwnINDVK1ZXnNwoTOiYm/K?=
+ =?iso-8859-1?Q?BwBlEVVnlWW4qVp13urqcTJesQpdrtLJCNANx1pliHunUQs+TaRkPzwjP5?=
+ =?iso-8859-1?Q?iOoChsGRwLfiGooZe+6LRJUyY0SwOwquGr8W5/A8kzbi76b/mNhCdKF3I8?=
+ =?iso-8859-1?Q?Z6EgpVN+tU7VMLw2yFk3whtyYIcDu8kyNVUyzLqdcnc5PpxW1A8WmHDSXh?=
+ =?iso-8859-1?Q?yIWAY2pg3p0TjrQEQvEyndrsK3SQjjk71ARXIRnspPFNwqwFeQLG4QWglE?=
+ =?iso-8859-1?Q?H8Wer1vTypYI9Lm5JNOE+BnDWtHjJFV4qEYIa+0gpWG+3O7lB43KQyhQt9?=
+ =?iso-8859-1?Q?cN3DzcImWCk6+hggkN2ikEovmi9UN6/Lgx7Aq73QE0ROYB//9KflaQNQ15?=
+ =?iso-8859-1?Q?oUtxcy3INJ4Hcve4mub7oKzIR5Roi0rAMPefavOfgE4UR4+rG/ppLyYfsB?=
+ =?iso-8859-1?Q?q+J/KLFN1JteuKUXXCf/JZvNCwILRXTVfvGw5x6isJhpCCO95jS0yMsAcg?=
+ =?iso-8859-1?Q?cdMYpvw5ywZuuAc2RLkg9OcP92nR6IfzJ6NQEMsZ5Y3pmt6HN8OKfNmS+M?=
+ =?iso-8859-1?Q?iFh6fjVWqxhM9lQ0qsyU/DvnmeVS5yDgH0O43n2tEcmzPWSr62ZtR6Lt4A?=
+ =?iso-8859-1?Q?MaPhAoWqnJ/Foy4AdYlPJgEIE5Z+4pqX8J8GrU+uKOZyrVFXFNlkqeraLv?=
+ =?iso-8859-1?Q?KWdI4d9K9rip8JkXWFwDsDz9ZpRcLLs1ZI96FIUcMtg3w5wvJPxFHI6iih?=
+ =?iso-8859-1?Q?hfO2ZoxJ8PU9LkBV7tIaMIJD5YuA07bsyIc2JqlDIXUhB10hwZAJn45/Me?=
+ =?iso-8859-1?Q?8OXbT1v2XUO7m/+a6SrQs2BmXoPcBGvhnyGqCsFEMuUTgrgNXQNVw/JkwE?=
+ =?iso-8859-1?Q?RqpiIOPJtQM0NozPEXwQJwpgDW/3Xks5sLBX1sfqdc/bwWkgvUx7lFruxa?=
+ =?iso-8859-1?Q?3kq+vg+ilBaS+BoENhjv5viW29CON43w2FKZjCSZ4rSbC6QoH/PDTRE0QC?=
+ =?iso-8859-1?Q?G1Dzb9mJdtVAywvjFEssd2yQUWe5WbYAvKQsekEuDl6DA5d1hyhAoxIow5?=
+ =?iso-8859-1?Q?fXygrX1JqN/tJZieWEnniARhQGMKt1pc2nV0Y3VMD+3RJLg6ZkYcm8Rr8n?=
+ =?iso-8859-1?Q?E5/CxNlDI9ec3OL3sCZVJ+LMFdKWcfD/dTlvhB6AiV8h/QL2R4RPJKv3+i?=
+ =?iso-8859-1?Q?YnMnLacS2GvzJr0LhL24LXwvsk/Gp6FpY2igJG8m57yTs17g0utaGLCBFg?=
+ =?iso-8859-1?Q?+sP/KzkZLsLX0COQGinNqMldq40RS6//c2ywJbhcR0wW437/NVPdWEJNby?=
+ =?iso-8859-1?Q?EVwim8uxNlWJ2H3yRMuWoLXOJ/g3V/UgmOnvMXbnOt+JUCSjGlQmLKkvY+?=
+ =?iso-8859-1?Q?yU2/JNC6ql8PpCky0UAqxsG9Np3hEZOCB5XWOJfsC89pNUfMv6k7Aen7Em?=
+ =?iso-8859-1?Q?wZFmd009W1bBLkMbonrr6CNpafOHJHKJHayw+h/R/FkYW0J2syLrNXJYwe?=
+ =?iso-8859-1?Q?OiIwNSyTXZaWLKbexK7JIBGxZ603iK+GnyyoOa9JS74NZjgHimzEy84g?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66e5ba77-a0fa-4f52-b700-08dcce8662d0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93e20ff7-28ba-415e-959a-08dcce867960
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2024 15:12:56.2608 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2024 15:13:33.9378 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fTheeMKmrP/NaSnkC0NmfZHwdIuwsUvaLF8h9gWj2H/8Pi89I7pZUDz9ocsW9vT6pSACvQu9RNAog7zvoxmpMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7502
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6rBfLlWILCza/zdD8/rPFwKVJvieY4E8SOShEWmIerA3SAVNPCEFXusoWiXeJ7lVKryIXKD918CYORZL9wpVCA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7110
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,272 +183,255 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 06, 2024 at 05:33:04PM +0300, Ville Syrjala wrote:
+On Fri, Sep 06, 2024 at 05:33:05PM +0300, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
 > struct intel_display will replace struct drm_i915_private as
-> the main thing for display code. Convert the VGA code to
-> use it (as much as possible at this stage).
+> the main thing for display code. Convert the "i830 power well"
+> code to use it (as much as possible at this stage).
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  .../drm/i915/display/intel_display_driver.c   | 11 ++---
->  .../i915/display/intel_display_power_well.c   |  6 ++-
->  drivers/gpu/drm/i915/display/intel_vga.c      | 45 ++++++++++---------
->  drivers/gpu/drm/i915/display/intel_vga.h      | 14 +++---
->  drivers/gpu/drm/i915/i915_suspend.c           |  3 +-
->  5 files changed, 43 insertions(+), 36 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 434e52f450ff..f8da72af2107 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -221,7 +221,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
->  
->  	intel_bios_init(display);
->  
-> -	ret = intel_vga_register(i915);
-> +	ret = intel_vga_register(display);
->  	if (ret)
->  		goto cleanup_bios;
->  
-> @@ -275,7 +275,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
->  	intel_dmc_fini(i915);
->  	intel_power_domains_driver_remove(i915);
->  cleanup_vga:
-> -	intel_vga_unregister(i915);
-> +	intel_vga_unregister(display);
->  cleanup_bios:
->  	intel_bios_driver_remove(display);
->  
-> @@ -458,7 +458,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
->  	intel_hti_init(display);
->  
->  	/* Just disable it once at startup */
-> -	intel_vga_disable(i915);
-> +	intel_vga_disable(display);
->  	intel_setup_outputs(i915);
->  
->  	ret = intel_dp_tunnel_mgr_init(display);
-> @@ -625,7 +625,7 @@ void intel_display_driver_remove_nogem(struct drm_i915_private *i915)
->  
->  	intel_power_domains_driver_remove(i915);
->  
-> -	intel_vga_unregister(i915);
-> +	intel_vga_unregister(display);
->  
->  	intel_bios_driver_remove(display);
->  }
-> @@ -683,12 +683,13 @@ __intel_display_driver_resume(struct drm_i915_private *i915,
->  			      struct drm_atomic_state *state,
->  			      struct drm_modeset_acquire_ctx *ctx)
->  {
-> +	struct intel_display *display = &i915->display;
->  	struct drm_crtc_state *crtc_state;
->  	struct drm_crtc *crtc;
->  	int ret, i;
->  
->  	intel_modeset_setup_hw_state(i915, ctx);
-> -	intel_vga_redisable(i915);
-> +	intel_vga_redisable(display);
->  
->  	if (!state)
->  		return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> index 1f0084ca6248..a5d9b17e03a2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -187,8 +187,10 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
->  static void hsw_power_well_post_enable(struct drm_i915_private *dev_priv,
->  				       u8 irq_pipe_mask, bool has_vga)
->  {
-> +	struct intel_display *display = &dev_priv->display;
-
-I was going to say that it would be probably good to replace the function argument..
-
-> +
->  	if (has_vga)
-> -		intel_vga_reset_io_mem(dev_priv);
-> +		intel_vga_reset_io_mem(display);
->  
->  	if (irq_pipe_mask)
->  		gen8_irq_power_well_post_enable(dev_priv, irq_pipe_mask);
-
-but then I noticed it is still used internally...
-
-but anyway, I believe it is already a step towards the right direction and we replace
-the inner cases as we go...
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> @@ -1248,7 +1250,7 @@ static void vlv_display_power_well_init(struct drm_i915_private *dev_priv)
->  			intel_crt_reset(&encoder->base);
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 79 +++++++++----------
+>  drivers/gpu/drm/i915/display/intel_display.h  |  5 +-
+>  .../i915/display/intel_display_power_well.c   | 22 ++++--
+>  3 files changed, 56 insertions(+), 50 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index b4ec9bf12aa7..0ec78b06ca80 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2226,9 +2226,10 @@ static void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+>  static void i9xx_crtc_disable(struct intel_atomic_state *state,
+>  			      struct intel_crtc *crtc)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  	struct intel_crtc_state *old_crtc_state =
+>  		intel_atomic_get_old_crtc_state(state, crtc);
+> -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum pipe pipe = crtc->pipe;
+>  
+>  	/*
+> @@ -2267,7 +2268,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+>  
+>  	/* clock the pipe down to 640x480@60 to potentially save power */
+>  	if (IS_I830(dev_priv))
+> -		i830_enable_pipe(dev_priv, pipe);
+> +		i830_enable_pipe(display, pipe);
+>  }
+>  
+>  void intel_encoder_destroy(struct drm_encoder *encoder)
+> @@ -8257,9 +8258,8 @@ int intel_initial_commit(struct drm_device *dev)
+>  	return ret;
+>  }
+>  
+> -void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+> +void i830_enable_pipe(struct intel_display *display, enum pipe pipe)
+>  {
+> -	struct intel_display *display = &dev_priv->display;
+>  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+>  	enum transcoder cpu_transcoder = (enum transcoder)pipe;
+>  	/* 640x480@60Hz, ~25175 kHz */
+> @@ -8273,10 +8273,10 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  	u32 dpll, fp;
+>  	int i;
+>  
+> -	drm_WARN_ON(&dev_priv->drm,
+> +	drm_WARN_ON(display->drm,
+>  		    i9xx_calc_dpll_params(48000, &clock) != 25154);
+>  
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "enabling pipe %c due to force quirk (vco=%d dot=%d)\n",
+>  		    pipe_name(pipe), clock.vco, clock.dot);
+>  
+> @@ -8288,35 +8288,35 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  		PLL_REF_INPUT_DREFCLK |
+>  		DPLL_VCO_ENABLE;
+>  
+> -	intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, TRANS_HTOTAL(display, cpu_transcoder),
+>  		       HACTIVE(640 - 1) | HTOTAL(800 - 1));
+> -	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, TRANS_HBLANK(display, cpu_transcoder),
+>  		       HBLANK_START(640 - 1) | HBLANK_END(800 - 1));
+> -	intel_de_write(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, TRANS_HSYNC(display, cpu_transcoder),
+>  		       HSYNC_START(656 - 1) | HSYNC_END(752 - 1));
+> -	intel_de_write(dev_priv, TRANS_VTOTAL(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
+>  		       VACTIVE(480 - 1) | VTOTAL(525 - 1));
+> -	intel_de_write(dev_priv, TRANS_VBLANK(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
+>  		       VBLANK_START(480 - 1) | VBLANK_END(525 - 1));
+> -	intel_de_write(dev_priv, TRANS_VSYNC(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, TRANS_VSYNC(display, cpu_transcoder),
+>  		       VSYNC_START(490 - 1) | VSYNC_END(492 - 1));
+> -	intel_de_write(dev_priv, PIPESRC(dev_priv, pipe),
+> +	intel_de_write(display, PIPESRC(display, pipe),
+>  		       PIPESRC_WIDTH(640 - 1) | PIPESRC_HEIGHT(480 - 1));
+>  
+> -	intel_de_write(dev_priv, FP0(pipe), fp);
+> -	intel_de_write(dev_priv, FP1(pipe), fp);
+> +	intel_de_write(display, FP0(pipe), fp);
+> +	intel_de_write(display, FP1(pipe), fp);
+>  
+>  	/*
+>  	 * Apparently we need to have VGA mode enabled prior to changing
+>  	 * the P1/P2 dividers. Otherwise the DPLL will keep using the old
+>  	 * dividers, even though the register value does change.
+>  	 */
+> -	intel_de_write(dev_priv, DPLL(dev_priv, pipe),
+> +	intel_de_write(display, DPLL(display, pipe),
+>  		       dpll & ~DPLL_VGA_MODE_DIS);
+> -	intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+> +	intel_de_write(display, DPLL(display, pipe), dpll);
+>  
+>  	/* Wait for the clocks to stabilize. */
+> -	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+> +	intel_de_posting_read(display, DPLL(display, pipe));
+>  	udelay(150);
+>  
+>  	/* The pixel multiplier can only be updated once the
+> @@ -8324,47 +8324,46 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  	 *
+>  	 * So write it again.
+>  	 */
+> -	intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+> +	intel_de_write(display, DPLL(display, pipe), dpll);
+>  
+>  	/* We do this three times for luck */
+>  	for (i = 0; i < 3 ; i++) {
+> -		intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+> -		intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+> +		intel_de_write(display, DPLL(display, pipe), dpll);
+> +		intel_de_posting_read(display, DPLL(display, pipe));
+>  		udelay(150); /* wait for warmup */
 >  	}
 >  
-> -	intel_vga_redisable_power_on(dev_priv);
-> +	intel_vga_redisable_power_on(display);
+> -	intel_de_write(dev_priv, TRANSCONF(dev_priv, pipe), TRANSCONF_ENABLE);
+> -	intel_de_posting_read(dev_priv, TRANSCONF(dev_priv, pipe));
+> +	intel_de_write(display, TRANSCONF(display, pipe), TRANSCONF_ENABLE);
+> +	intel_de_posting_read(display, TRANSCONF(display, pipe));
 >  
->  	intel_pps_unlock_regs_wa(display);
+>  	intel_wait_for_pipe_scanline_moving(crtc);
 >  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-> index 0b5916c15307..2c76a0176a35 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vga.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> @@ -14,24 +14,26 @@
->  #include "intel_de.h"
->  #include "intel_vga.h"
 >  
-> -static i915_reg_t intel_vga_cntrl_reg(struct drm_i915_private *i915)
-> +static i915_reg_t intel_vga_cntrl_reg(struct intel_display *display)
+> -void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+> +void i830_disable_pipe(struct intel_display *display, enum pipe pipe)
 >  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +
->  	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
->  		return VLV_VGACNTRL;
-> -	else if (DISPLAY_VER(i915) >= 5)
-> +	else if (DISPLAY_VER(display) >= 5)
->  		return CPU_VGACNTRL;
->  	else
->  		return VGACNTRL;
+> -	struct intel_display *display = &dev_priv->display;
+>  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+>  
+> -	drm_dbg_kms(&dev_priv->drm, "disabling pipe %c due to force quirk\n",
+> +	drm_dbg_kms(display->drm, "disabling pipe %c due to force quirk\n",
+>  		    pipe_name(pipe));
+>  
+> -	drm_WARN_ON(&dev_priv->drm,
+> -		    intel_de_read(dev_priv, DSPCNTR(dev_priv, PLANE_A)) & DISP_ENABLE);
+> -	drm_WARN_ON(&dev_priv->drm,
+> -		    intel_de_read(dev_priv, DSPCNTR(dev_priv, PLANE_B)) & DISP_ENABLE);
+> -	drm_WARN_ON(&dev_priv->drm,
+> -		    intel_de_read(dev_priv, DSPCNTR(dev_priv, PLANE_C)) & DISP_ENABLE);
+> -	drm_WARN_ON(&dev_priv->drm,
+> -		    intel_de_read(dev_priv, CURCNTR(dev_priv, PIPE_A)) & MCURSOR_MODE_MASK);
+> -	drm_WARN_ON(&dev_priv->drm,
+> -		    intel_de_read(dev_priv, CURCNTR(dev_priv, PIPE_B)) & MCURSOR_MODE_MASK);
+> +	drm_WARN_ON(display->drm,
+> +		    intel_de_read(display, DSPCNTR(display, PLANE_A)) & DISP_ENABLE);
+> +	drm_WARN_ON(display->drm,
+> +		    intel_de_read(display, DSPCNTR(display, PLANE_B)) & DISP_ENABLE);
+> +	drm_WARN_ON(display->drm,
+> +		    intel_de_read(display, DSPCNTR(display, PLANE_C)) & DISP_ENABLE);
+> +	drm_WARN_ON(display->drm,
+> +		    intel_de_read(display, CURCNTR(display, PIPE_A)) & MCURSOR_MODE_MASK);
+> +	drm_WARN_ON(display->drm,
+> +		    intel_de_read(display, CURCNTR(display, PIPE_B)) & MCURSOR_MODE_MASK);
+>  
+> -	intel_de_write(dev_priv, TRANSCONF(dev_priv, pipe), 0);
+> -	intel_de_posting_read(dev_priv, TRANSCONF(dev_priv, pipe));
+> +	intel_de_write(display, TRANSCONF(display, pipe), 0);
+> +	intel_de_posting_read(display, TRANSCONF(display, pipe));
+>  
+>  	intel_wait_for_pipe_scanline_stopped(crtc);
+>  
+> -	intel_de_write(dev_priv, DPLL(dev_priv, pipe), DPLL_VGA_MODE_DIS);
+> -	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
+> +	intel_de_write(display, DPLL(display, pipe), DPLL_VGA_MODE_DIS);
+> +	intel_de_posting_read(display, DPLL(display, pipe));
 >  }
 >  
->  /* Disable the VGA plane that we never use */
-> -void intel_vga_disable(struct drm_i915_private *dev_priv)
-> +void intel_vga_disable(struct intel_display *display)
->  {
-> -	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
-> -	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
-> +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-> +	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
->  	u8 sr1;
->  
-> -	if (intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)
-> +	if (intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)
->  		return;
->  
->  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
-> @@ -42,23 +44,24 @@ void intel_vga_disable(struct drm_i915_private *dev_priv)
->  	vga_put(pdev, VGA_RSRC_LEGACY_IO);
->  	udelay(300);
->  
-> -	intel_de_write(dev_priv, vga_reg, VGA_DISP_DISABLE);
-> -	intel_de_posting_read(dev_priv, vga_reg);
-> +	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
-> +	intel_de_posting_read(display, vga_reg);
->  }
->  
-> -void intel_vga_redisable_power_on(struct drm_i915_private *dev_priv)
-> +void intel_vga_redisable_power_on(struct intel_display *display)
->  {
-> -	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
-> +	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
->  
-> -	if (!(intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> +	if (!(intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)) {
-> +		drm_dbg_kms(display->drm,
->  			    "Something enabled VGA plane, disabling it\n");
-> -		intel_vga_disable(dev_priv);
-> +		intel_vga_disable(display);
->  	}
->  }
->  
-> -void intel_vga_redisable(struct drm_i915_private *i915)
-> +void intel_vga_redisable(struct intel_display *display)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	intel_wakeref_t wakeref;
->  
->  	/*
-> @@ -74,14 +77,14 @@ void intel_vga_redisable(struct drm_i915_private *i915)
->  	if (!wakeref)
->  		return;
->  
-> -	intel_vga_redisable_power_on(i915);
-> +	intel_vga_redisable_power_on(display);
->  
->  	intel_display_power_put(i915, POWER_DOMAIN_VGA, wakeref);
->  }
->  
-> -void intel_vga_reset_io_mem(struct drm_i915_private *i915)
-> +void intel_vga_reset_io_mem(struct intel_display *display)
->  {
-> -	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
->  
->  	/*
->  	 * After we re-enable the power well, if we touch VGA register 0x3d5
-> @@ -98,10 +101,10 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
->  	vga_put(pdev, VGA_RSRC_LEGACY_IO);
->  }
->  
-> -int intel_vga_register(struct drm_i915_private *i915)
-> +int intel_vga_register(struct intel_display *display)
->  {
->  
-> -	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
->  	int ret;
->  
->  	/*
-> @@ -119,9 +122,9 @@ int intel_vga_register(struct drm_i915_private *i915)
->  	return 0;
->  }
->  
-> -void intel_vga_unregister(struct drm_i915_private *i915)
-> +void intel_vga_unregister(struct intel_display *display)
->  {
-> -	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> +	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
->  
->  	vga_client_unregister(pdev);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_vga.h b/drivers/gpu/drm/i915/display/intel_vga.h
-> index ba5b55b917f0..824dfc32a199 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vga.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vga.h
-> @@ -6,13 +6,13 @@
->  #ifndef __INTEL_VGA_H__
->  #define __INTEL_VGA_H__
->  
-> -struct drm_i915_private;
+>  void intel_hpd_poll_fini(struct drm_i915_private *i915)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index b21d9578d5db..7ca26e5cb20e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -52,6 +52,7 @@ struct intel_atomic_state;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+>  struct intel_digital_port;
 > +struct intel_display;
->  
-> -void intel_vga_reset_io_mem(struct drm_i915_private *i915);
-> -void intel_vga_disable(struct drm_i915_private *i915);
-> -void intel_vga_redisable(struct drm_i915_private *i915);
-> -void intel_vga_redisable_power_on(struct drm_i915_private *i915);
-> -int intel_vga_register(struct drm_i915_private *i915);
-> -void intel_vga_unregister(struct drm_i915_private *i915);
-> +void intel_vga_reset_io_mem(struct intel_display *display);
-> +void intel_vga_disable(struct intel_display *display);
-> +void intel_vga_redisable(struct intel_display *display);
-> +void intel_vga_redisable_power_on(struct intel_display *display);
-> +int intel_vga_register(struct intel_display *display);
-> +void intel_vga_unregister(struct intel_display *display);
->  
->  #endif /* __INTEL_VGA_H__ */
-> diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
-> index f8373a461f17..9d3d9b983032 100644
-> --- a/drivers/gpu/drm/i915/i915_suspend.c
-> +++ b/drivers/gpu/drm/i915/i915_suspend.c
-> @@ -118,6 +118,7 @@ void i915_save_display(struct drm_i915_private *dev_priv)
->  
->  void i915_restore_display(struct drm_i915_private *dev_priv)
+>  struct intel_dp;
+>  struct intel_encoder;
+>  struct intel_initial_plane_config;
+> @@ -437,8 +438,8 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state);
+>  void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state);
+>  void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state);
+>  void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
+> -void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+> -void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+> +void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
+> +void i830_disable_pipe(struct intel_display *display, enum pipe pipe);
+>  int vlv_get_hpll_vco(struct drm_i915_private *dev_priv);
+>  int vlv_get_cck_clock(struct drm_i915_private *dev_priv,
+>  		      const char *name, u32 reg, int ref_freq);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index a5d9b17e03a2..9f275a6674a1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -1066,24 +1066,30 @@ static bool i9xx_always_on_power_well_enabled(struct drm_i915_private *dev_priv,
+>  static void i830_pipes_power_well_enable(struct drm_i915_private *dev_priv,
+>  					 struct i915_power_well *power_well)
 >  {
+> -	if ((intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE) == 0)
+> -		i830_enable_pipe(dev_priv, PIPE_A);
+> -	if ((intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE) == 0)
+> -		i830_enable_pipe(dev_priv, PIPE_B);
 > +	struct intel_display *display = &dev_priv->display;
->  	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
->  
->  	if (!HAS_DISPLAY(dev_priv))
-> @@ -134,7 +135,7 @@ void i915_restore_display(struct drm_i915_private *dev_priv)
->  		intel_de_write(dev_priv, DSPARB(dev_priv),
->  			       dev_priv->regfile.saveDSPARB);
->  
-> -	intel_vga_redisable(dev_priv);
-> +	intel_vga_redisable(display);
->  
->  	intel_gmbus_reset(dev_priv);
+> +
+> +	if ((intel_de_read(display, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE) == 0)
+> +		i830_enable_pipe(display, PIPE_A);
+> +	if ((intel_de_read(display, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE) == 0)
+> +		i830_enable_pipe(display, PIPE_B);
 >  }
+>  
+>  static void i830_pipes_power_well_disable(struct drm_i915_private *dev_priv,
+>  					  struct i915_power_well *power_well)
+>  {
+> -	i830_disable_pipe(dev_priv, PIPE_B);
+> -	i830_disable_pipe(dev_priv, PIPE_A);
+> +	struct intel_display *display = &dev_priv->display;
+> +
+> +	i830_disable_pipe(display, PIPE_B);
+> +	i830_disable_pipe(display, PIPE_A);
+>  }
+>  
+>  static bool i830_pipes_power_well_enabled(struct drm_i915_private *dev_priv,
+>  					  struct i915_power_well *power_well)
+>  {
+> -	return intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE &&
+> -		intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE;
+> +	struct intel_display *display = &dev_priv->display;
+> +
+> +	return intel_de_read(display, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE &&
+> +		intel_de_read(display, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE;
+>  }
+>  
+>  static void i830_pipes_power_well_sync_hw(struct drm_i915_private *dev_priv,
 > -- 
 > 2.44.2
 > 
