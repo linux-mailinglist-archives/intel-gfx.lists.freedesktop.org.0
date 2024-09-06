@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F1D96F6D3
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 16:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E20396F6D4
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 16:33:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771CB10EA5A;
-	Fri,  6 Sep 2024 14:33:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A07610EA62;
+	Fri,  6 Sep 2024 14:33:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oDKxXGbY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aPdshvaT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 911A710EA5A;
- Fri,  6 Sep 2024 14:33:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9556A10EA63;
+ Fri,  6 Sep 2024 14:33:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725633198; x=1757169198;
+ t=1725633201; x=1757169201;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eXorUYslhE1L4WWJE6Vd1fcsYuu1VTXueqsdwc/e4z4=;
- b=oDKxXGbYrF8oMcMl0CFd3LJwst2YyH3AXt1XifVI/aHPpkgpwalHOVAX
- lF00om8V/MDL5n16QtEerI2xJZp4e2QYVVjg4U49rCGF59c5t1hexBoxd
- +IrDfx4DPaS82lFgqy6aXkCCq7WMduWRZVBgGCqFD+/rUvpJB7sE7rnec
- EmeDfjL5osA+ZlrVW0ZSBbZ5aSjqc03GC+eQ9fmQHxT3uboIBvmsVk9H+
- 89er4UzYukkG7qFmBj6VVIb9+t8V+pEJiLufHLAMqvgDF81rlewPc5mZU
- 1nK+zV5jEUEMv88Y9I/StlpJcV8XFpUOgzrCp1J6aG7X2xZFTGGHez6o4 A==;
-X-CSE-ConnectionGUID: cVxvGAP4TA+52QZ6UrXeRA==
-X-CSE-MsgGUID: bA8pBXIlQpqBsSS+/XK8HA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="41903064"
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="41903064"
+ bh=H4yln8+N3jGJiIl9wXPV6sKNvui+sVTE9eUhMPv6ArI=;
+ b=aPdshvaTTsCai/CX7rBJ56yxBV4yaZP0IM7RrBVL6U5rb3TZ6IpRjymH
+ 04pWY2pJFg2sSwEKHwDfjIw4CnphkrkHAtzfd/kRC+Pbjs+pWkkRzHRkW
+ 39ss42mw8faDIJLZoI6anPt/Ji1nd0gNrv9VXSIzQYXFKEjlNHYPV8Ws+
+ ibsempZUXJZSpng17s4jJsnk3MSBSkl+JNkal4cpjRXVUc8Eg4YKsdMU4
+ vlV5uu9wuMYRS7gCsUQMTkmhoHzUbwFheiIUybO0PRT6mUJLxXbizkft7
+ N4SY7K6WN7CGly+AVtcFT/NpCPR3XW0Us7G54jQTMa2xGggEGxXPYo5H8 A==;
+X-CSE-ConnectionGUID: 69j+xBwSSvmhYBcJwTxczQ==
+X-CSE-MsgGUID: dYgvtQ+xSyi2FFh/kRVQzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="41903068"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="41903068"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 07:33:18 -0700
-X-CSE-ConnectionGUID: VCedjKMESOiLLXdvDUKE8Q==
-X-CSE-MsgGUID: mvxlyrDxRtiXil/4zacXFA==
+ 06 Sep 2024 07:33:21 -0700
+X-CSE-ConnectionGUID: xsrC50a9Q/+IBE9edP1t/w==
+X-CSE-MsgGUID: NbBU6yVrRq6YS2PvSKxJlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66003928"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66003948"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 Sep 2024 07:33:16 -0700
+ by fmviesa008.fm.intel.com with SMTP; 06 Sep 2024 07:33:19 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 06 Sep 2024 17:33:15 +0300
+ Fri, 06 Sep 2024 17:33:18 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/6] drm/i915/power: Convert low level DC state code to
- intel_display
-Date: Fri,  6 Sep 2024 17:33:03 +0300
-Message-ID: <20240906143306.15937-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/6] drm/i915/vga: Convert VGA code to intel_display
+Date: Fri,  6 Sep 2024 17:33:04 +0300
+Message-ID: <20240906143306.15937-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
 References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
@@ -73,627 +72,257 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 struct intel_display will replace struct drm_i915_private as
-the main thing for display code. Convert the lower level
-DC state code to use it (as much as possible at this stage).
+the main thing for display code. Convert the VGA code to
+use it (as much as possible at this stage).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_power.c    |  41 ++--
- .../i915/display/intel_display_power_well.c   | 199 ++++++++++--------
- .../i915/display/intel_display_power_well.h   |  15 +-
- 3 files changed, 139 insertions(+), 116 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   | 11 ++---
+ .../i915/display/intel_display_power_well.c   |  6 ++-
+ drivers/gpu/drm/i915/display/intel_vga.c      | 45 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_vga.h      | 14 +++---
+ drivers/gpu/drm/i915/i915_suspend.c           |  3 +-
+ 5 files changed, 43 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index eb3e2a56af1d..86ac494ed33b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1421,7 +1421,7 @@ static void skl_display_core_init(struct drm_i915_private *dev_priv,
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct i915_power_well *well;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 434e52f450ff..f8da72af2107 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -221,7 +221,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
  
--	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
-+	gen9_set_dc_state(display, DC_STATE_DISABLE);
+ 	intel_bios_init(display);
  
- 	/* enable PCH reset handshake */
- 	intel_pch_reset_handshake(dev_priv, !HAS_PCH_NOP(dev_priv));
-@@ -1457,7 +1457,7 @@ static void skl_display_core_uninit(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
+-	ret = intel_vga_register(i915);
++	ret = intel_vga_register(display);
+ 	if (ret)
+ 		goto cleanup_bios;
  
--	gen9_disable_dc_states(dev_priv);
-+	gen9_disable_dc_states(display);
- 	/* TODO: disable DMC program */
+@@ -275,7 +275,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+ 	intel_dmc_fini(i915);
+ 	intel_power_domains_driver_remove(i915);
+ cleanup_vga:
+-	intel_vga_unregister(i915);
++	intel_vga_unregister(display);
+ cleanup_bios:
+ 	intel_bios_driver_remove(display);
  
- 	gen9_dbuf_disable(dev_priv);
-@@ -1489,7 +1489,7 @@ static void bxt_display_core_init(struct drm_i915_private *dev_priv, bool resume
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct i915_power_well *well;
+@@ -458,7 +458,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+ 	intel_hti_init(display);
  
--	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
-+	gen9_set_dc_state(display, DC_STATE_DISABLE);
+ 	/* Just disable it once at startup */
+-	intel_vga_disable(i915);
++	intel_vga_disable(display);
+ 	intel_setup_outputs(i915);
  
- 	/*
- 	 * NDE_RSTWRN_OPT RST PCH Handshake En must always be 0b on BXT
-@@ -1527,7 +1527,7 @@ static void bxt_display_core_uninit(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
+ 	ret = intel_dp_tunnel_mgr_init(display);
+@@ -625,7 +625,7 @@ void intel_display_driver_remove_nogem(struct drm_i915_private *i915)
  
--	gen9_disable_dc_states(dev_priv);
-+	gen9_disable_dc_states(display);
- 	/* TODO: disable DMC program */
+ 	intel_power_domains_driver_remove(i915);
  
- 	gen9_dbuf_disable(dev_priv);
-@@ -1632,7 +1632,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct i915_power_well *well;
+-	intel_vga_unregister(i915);
++	intel_vga_unregister(display);
  
--	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
-+	gen9_set_dc_state(display, DC_STATE_DISABLE);
- 
- 	/* Wa_14011294188:ehl,jsl,tgl,rkl,adl-s */
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP &&
-@@ -1717,7 +1717,7 @@ static void icl_display_core_uninit(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
--	gen9_disable_dc_states(dev_priv);
-+	gen9_disable_dc_states(display);
- 	intel_dmc_disable_program(dev_priv);
- 
- 	/* 1. Disable all display engine functions -> aready done */
-@@ -2232,9 +2232,11 @@ static void intel_power_domains_verify_state(struct drm_i915_private *i915)
- 
- void intel_display_power_suspend_late(struct drm_i915_private *i915)
+ 	intel_bios_driver_remove(display);
+ }
+@@ -683,12 +683,13 @@ __intel_display_driver_resume(struct drm_i915_private *i915,
+ 			      struct drm_atomic_state *state,
+ 			      struct drm_modeset_acquire_ctx *ctx)
  {
 +	struct intel_display *display = &i915->display;
-+
- 	if (DISPLAY_VER(i915) >= 11 || IS_GEMINILAKE(i915) ||
- 	    IS_BROXTON(i915)) {
--		bxt_enable_dc9(i915);
-+		bxt_enable_dc9(display);
- 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		hsw_enable_pc8(i915);
- 	}
-@@ -2246,10 +2248,12 @@ void intel_display_power_suspend_late(struct drm_i915_private *i915)
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_crtc *crtc;
+ 	int ret, i;
  
- void intel_display_power_resume_early(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
-+
- 	if (DISPLAY_VER(i915) >= 11 || IS_GEMINILAKE(i915) ||
- 	    IS_BROXTON(i915)) {
--		gen9_sanitize_dc_state(i915);
--		bxt_disable_dc9(i915);
-+		gen9_sanitize_dc_state(display);
-+		bxt_disable_dc9(display);
- 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		hsw_disable_pc8(i915);
- 	}
-@@ -2261,12 +2265,14 @@ void intel_display_power_resume_early(struct drm_i915_private *i915)
+ 	intel_modeset_setup_hw_state(i915, ctx);
+-	intel_vga_redisable(i915);
++	intel_vga_redisable(display);
  
- void intel_display_power_suspend(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
-+
- 	if (DISPLAY_VER(i915) >= 11) {
- 		icl_display_core_uninit(i915);
--		bxt_enable_dc9(i915);
-+		bxt_enable_dc9(display);
- 	} else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915)) {
- 		bxt_display_core_uninit(i915);
--		bxt_enable_dc9(i915);
-+		bxt_enable_dc9(display);
- 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		hsw_enable_pc8(i915);
- 	}
-@@ -2274,23 +2280,24 @@ void intel_display_power_suspend(struct drm_i915_private *i915)
- 
- void intel_display_power_resume(struct drm_i915_private *i915)
- {
--	struct i915_power_domains *power_domains = &i915->display.power.domains;
-+	struct intel_display *display = &i915->display;
-+	struct i915_power_domains *power_domains = &display->power.domains;
- 
- 	if (DISPLAY_VER(i915) >= 11) {
--		bxt_disable_dc9(i915);
-+		bxt_disable_dc9(display);
- 		icl_display_core_init(i915, true);
- 		if (intel_dmc_has_payload(i915)) {
- 			if (power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC6)
--				skl_enable_dc6(i915);
-+				skl_enable_dc6(display);
- 			else if (power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC5)
--				gen9_enable_dc5(i915);
-+				gen9_enable_dc5(display);
- 		}
- 	} else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915)) {
--		bxt_disable_dc9(i915);
-+		bxt_disable_dc9(display);
- 		bxt_display_core_init(i915, true);
- 		if (intel_dmc_has_payload(i915) &&
- 		    (power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC5))
--			gen9_enable_dc5(i915);
-+			gen9_enable_dc5(display);
- 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
- 		hsw_disable_pc8(i915);
- 	}
+ 	if (!state)
+ 		return 0;
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 7b40a5b88214..1f0084ca6248 100644
+index 1f0084ca6248..a5d9b17e03a2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -601,20 +601,22 @@ static bool hsw_power_well_enabled(struct drm_i915_private *dev_priv,
- 	return (val & mask) == mask;
- }
- 
--static void assert_can_enable_dc9(struct drm_i915_private *dev_priv)
-+static void assert_can_enable_dc9(struct intel_display *display)
+@@ -187,8 +187,10 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
+ static void hsw_power_well_post_enable(struct drm_i915_private *dev_priv,
+ 				       u8 irq_pipe_mask, bool has_vga)
  {
--	drm_WARN_ONCE(&dev_priv->drm,
--		      (intel_de_read(dev_priv, DC_STATE_EN) & DC_STATE_EN_DC9),
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
++	struct intel_display *display = &dev_priv->display;
 +
-+	drm_WARN_ONCE(display->drm,
-+		      (intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_DC9),
- 		      "DC9 already programmed to be enabled.\n");
--	drm_WARN_ONCE(&dev_priv->drm,
--		      intel_de_read(dev_priv, DC_STATE_EN) &
-+	drm_WARN_ONCE(display->drm,
-+		      intel_de_read(display, DC_STATE_EN) &
- 		      DC_STATE_EN_UPTO_DC5,
- 		      "DC5 still not disabled to enable DC9.\n");
--	drm_WARN_ONCE(&dev_priv->drm,
--		      intel_de_read(dev_priv, HSW_PWR_WELL_CTL2) &
-+	drm_WARN_ONCE(display->drm,
-+		      intel_de_read(display, HSW_PWR_WELL_CTL2) &
- 		      HSW_PWR_WELL_CTL_REQ(SKL_PW_CTL_IDX_PW_2),
- 		      "Power well 2 on.\n");
--	drm_WARN_ONCE(&dev_priv->drm, intel_irqs_enabled(dev_priv),
-+	drm_WARN_ONCE(display->drm, intel_irqs_enabled(dev_priv),
- 		      "Interrupts not disabled yet.\n");
+ 	if (has_vga)
+-		intel_vga_reset_io_mem(dev_priv);
++		intel_vga_reset_io_mem(display);
  
- 	 /*
-@@ -626,12 +628,14 @@ static void assert_can_enable_dc9(struct drm_i915_private *dev_priv)
- 	  */
- }
+ 	if (irq_pipe_mask)
+ 		gen8_irq_power_well_post_enable(dev_priv, irq_pipe_mask);
+@@ -1248,7 +1250,7 @@ static void vlv_display_power_well_init(struct drm_i915_private *dev_priv)
+ 			intel_crt_reset(&encoder->base);
+ 	}
  
--static void assert_can_disable_dc9(struct drm_i915_private *dev_priv)
-+static void assert_can_disable_dc9(struct intel_display *display)
- {
--	drm_WARN_ONCE(&dev_priv->drm, intel_irqs_enabled(dev_priv),
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+
-+	drm_WARN_ONCE(display->drm, intel_irqs_enabled(dev_priv),
- 		      "Interrupts not disabled yet.\n");
--	drm_WARN_ONCE(&dev_priv->drm,
--		      intel_de_read(dev_priv, DC_STATE_EN) &
-+	drm_WARN_ONCE(display->drm,
-+		      intel_de_read(display, DC_STATE_EN) &
- 		      DC_STATE_EN_UPTO_DC5,
- 		      "DC5 still not disabled.\n");
- 
-@@ -644,14 +648,14 @@ static void assert_can_disable_dc9(struct drm_i915_private *dev_priv)
- 	  */
- }
- 
--static void gen9_write_dc_state(struct drm_i915_private *dev_priv,
-+static void gen9_write_dc_state(struct intel_display *display,
- 				u32 state)
- {
- 	int rewrites = 0;
- 	int rereads = 0;
- 	u32 v;
- 
--	intel_de_write(dev_priv, DC_STATE_EN, state);
-+	intel_de_write(display, DC_STATE_EN, state);
- 
- 	/* It has been observed that disabling the dc6 state sometimes
- 	 * doesn't stick and dmc keeps returning old value. Make sure
-@@ -659,10 +663,10 @@ static void gen9_write_dc_state(struct drm_i915_private *dev_priv,
- 	 * we are confident that state is exactly what we want.
- 	 */
- 	do  {
--		v = intel_de_read(dev_priv, DC_STATE_EN);
-+		v = intel_de_read(display, DC_STATE_EN);
- 
- 		if (v != state) {
--			intel_de_write(dev_priv, DC_STATE_EN, state);
-+			intel_de_write(display, DC_STATE_EN, state);
- 			rewrites++;
- 			rereads = 0;
- 		} else if (rereads++ > 5) {
-@@ -672,27 +676,28 @@ static void gen9_write_dc_state(struct drm_i915_private *dev_priv,
- 	} while (rewrites < 100);
- 
- 	if (v != state)
--		drm_err(&dev_priv->drm,
-+		drm_err(display->drm,
- 			"Writing dc state to 0x%x failed, now 0x%x\n",
- 			state, v);
- 
- 	/* Most of the times we need one retry, avoid spam */
- 	if (rewrites > 1)
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Rewrote dc state to 0x%x %d times\n",
- 			    state, rewrites);
- }
- 
--static u32 gen9_dc_mask(struct drm_i915_private *dev_priv)
-+static u32 gen9_dc_mask(struct intel_display *display)
- {
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 mask;
- 
- 	mask = DC_STATE_EN_UPTO_DC5;
- 
--	if (DISPLAY_VER(dev_priv) >= 12)
-+	if (DISPLAY_VER(display) >= 12)
- 		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC6
- 					  | DC_STATE_EN_DC9;
--	else if (DISPLAY_VER(dev_priv) == 11)
-+	else if (DISPLAY_VER(display) == 11)
- 		mask |= DC_STATE_EN_UPTO_DC6 | DC_STATE_EN_DC9;
- 	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 		mask |= DC_STATE_EN_DC9;
-@@ -702,17 +707,17 @@ static u32 gen9_dc_mask(struct drm_i915_private *dev_priv)
- 	return mask;
- }
- 
--void gen9_sanitize_dc_state(struct drm_i915_private *i915)
-+void gen9_sanitize_dc_state(struct intel_display *display)
- {
--	struct i915_power_domains *power_domains = &i915->display.power.domains;
-+	struct i915_power_domains *power_domains = &display->power.domains;
- 	u32 val;
- 
--	if (!HAS_DISPLAY(i915))
-+	if (!HAS_DISPLAY(display))
- 		return;
- 
--	val = intel_de_read(i915, DC_STATE_EN) & gen9_dc_mask(i915);
-+	val = intel_de_read(display, DC_STATE_EN) & gen9_dc_mask(display);
- 
--	drm_dbg_kms(&i915->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Resetting DC state tracking from %02x to %02x\n",
- 		    power_domains->dc_state, val);
- 	power_domains->dc_state = val;
-@@ -720,7 +725,7 @@ void gen9_sanitize_dc_state(struct drm_i915_private *i915)
- 
- /**
-  * gen9_set_dc_state - set target display C power state
-- * @dev_priv: i915 device instance
-+ * @display: display instance
-  * @state: target DC power state
-  * - DC_STATE_DISABLE
-  * - DC_STATE_EN_UPTO_DC5
-@@ -741,70 +746,71 @@ void gen9_sanitize_dc_state(struct drm_i915_private *i915)
-  * back on and register state is restored. This is guaranteed by the MMIO write
-  * to DC_STATE_EN blocking until the state is restored.
-  */
--void gen9_set_dc_state(struct drm_i915_private *dev_priv, u32 state)
-+void gen9_set_dc_state(struct intel_display *display, u32 state)
- {
--	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
-+	struct i915_power_domains *power_domains = &display->power.domains;
- 	u32 val;
- 	u32 mask;
- 
--	if (!HAS_DISPLAY(dev_priv))
-+	if (!HAS_DISPLAY(display))
- 		return;
- 
--	if (drm_WARN_ON_ONCE(&dev_priv->drm,
-+	if (drm_WARN_ON_ONCE(display->drm,
- 			     state & ~power_domains->allowed_dc_mask))
- 		state &= power_domains->allowed_dc_mask;
- 
--	val = intel_de_read(dev_priv, DC_STATE_EN);
--	mask = gen9_dc_mask(dev_priv);
--	drm_dbg_kms(&dev_priv->drm, "Setting DC state from %02x to %02x\n",
-+	val = intel_de_read(display, DC_STATE_EN);
-+	mask = gen9_dc_mask(display);
-+	drm_dbg_kms(display->drm, "Setting DC state from %02x to %02x\n",
- 		    val & mask, state);
- 
- 	/* Check if DMC is ignoring our DC state requests */
- 	if ((val & mask) != power_domains->dc_state)
--		drm_err(&dev_priv->drm, "DC state mismatch (0x%x -> 0x%x)\n",
-+		drm_err(display->drm, "DC state mismatch (0x%x -> 0x%x)\n",
- 			power_domains->dc_state, val & mask);
- 
- 	val &= ~mask;
- 	val |= state;
- 
--	gen9_write_dc_state(dev_priv, val);
-+	gen9_write_dc_state(display, val);
- 
- 	power_domains->dc_state = val & mask;
- }
- 
--static void tgl_enable_dc3co(struct drm_i915_private *dev_priv)
-+static void tgl_enable_dc3co(struct intel_display *display)
- {
--	drm_dbg_kms(&dev_priv->drm, "Enabling DC3CO\n");
--	gen9_set_dc_state(dev_priv, DC_STATE_EN_DC3CO);
-+	drm_dbg_kms(display->drm, "Enabling DC3CO\n");
-+	gen9_set_dc_state(display, DC_STATE_EN_DC3CO);
- }
- 
--static void tgl_disable_dc3co(struct drm_i915_private *dev_priv)
-+static void tgl_disable_dc3co(struct intel_display *display)
- {
--	drm_dbg_kms(&dev_priv->drm, "Disabling DC3CO\n");
--	intel_de_rmw(dev_priv, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
--	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
-+	drm_dbg_kms(display->drm, "Disabling DC3CO\n");
-+	intel_de_rmw(display, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
-+	gen9_set_dc_state(display, DC_STATE_DISABLE);
- 	/*
- 	 * Delay of 200us DC3CO Exit time B.Spec 49196
- 	 */
- 	usleep_range(200, 210);
- }
- 
--static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
-+static void assert_can_enable_dc5(struct intel_display *display)
- {
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum i915_power_well_id high_pg;
- 
- 	/* Power wells at this level and above must be disabled for DC5 entry */
--	if (DISPLAY_VER(dev_priv) == 12)
-+	if (DISPLAY_VER(display) == 12)
- 		high_pg = ICL_DISP_PW_3;
- 	else
- 		high_pg = SKL_DISP_PW_2;
- 
--	drm_WARN_ONCE(&dev_priv->drm,
-+	drm_WARN_ONCE(display->drm,
- 		      intel_display_power_well_is_enabled(dev_priv, high_pg),
- 		      "Power wells above platform's DC5 limit still enabled.\n");
- 
--	drm_WARN_ONCE(&dev_priv->drm,
--		      (intel_de_read(dev_priv, DC_STATE_EN) &
-+	drm_WARN_ONCE(display->drm,
-+		      (intel_de_read(display, DC_STATE_EN) &
- 		       DC_STATE_EN_UPTO_DC5),
- 		      "DC5 already programmed to be enabled.\n");
- 	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
-@@ -812,60 +818,66 @@ static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
- 	assert_dmc_loaded(dev_priv);
- }
- 
--void gen9_enable_dc5(struct drm_i915_private *dev_priv)
-+void gen9_enable_dc5(struct intel_display *display)
- {
--	assert_can_enable_dc5(dev_priv);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
--	drm_dbg_kms(&dev_priv->drm, "Enabling DC5\n");
-+	assert_can_enable_dc5(display);
-+
-+	drm_dbg_kms(display->drm, "Enabling DC5\n");
- 
- 	/* Wa Display #1183: skl,kbl,cfl */
--	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
--		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+	if (DISPLAY_VER(display) == 9 && !IS_BROXTON(dev_priv))
-+		intel_de_rmw(display, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
--	intel_dmc_wl_enable(&dev_priv->display);
-+	intel_dmc_wl_enable(display);
- 
--	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC5);
-+	gen9_set_dc_state(display, DC_STATE_EN_UPTO_DC5);
- }
- 
--static void assert_can_enable_dc6(struct drm_i915_private *dev_priv)
-+static void assert_can_enable_dc6(struct intel_display *display)
- {
--	drm_WARN_ONCE(&dev_priv->drm,
--		      (intel_de_read(dev_priv, UTIL_PIN_CTL) &
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+
-+	drm_WARN_ONCE(display->drm,
-+		      (intel_de_read(display, UTIL_PIN_CTL) &
- 		       (UTIL_PIN_ENABLE | UTIL_PIN_MODE_MASK)) ==
- 		      (UTIL_PIN_ENABLE | UTIL_PIN_MODE_PWM),
- 		      "Utility pin enabled in PWM mode\n");
--	drm_WARN_ONCE(&dev_priv->drm,
--		      (intel_de_read(dev_priv, DC_STATE_EN) &
-+	drm_WARN_ONCE(display->drm,
-+		      (intel_de_read(display, DC_STATE_EN) &
- 		       DC_STATE_EN_UPTO_DC6),
- 		      "DC6 already programmed to be enabled.\n");
- 
- 	assert_dmc_loaded(dev_priv);
- }
- 
--void skl_enable_dc6(struct drm_i915_private *dev_priv)
-+void skl_enable_dc6(struct intel_display *display)
- {
--	assert_can_enable_dc6(dev_priv);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
--	drm_dbg_kms(&dev_priv->drm, "Enabling DC6\n");
-+	assert_can_enable_dc6(display);
-+
-+	drm_dbg_kms(display->drm, "Enabling DC6\n");
- 
- 	/* Wa Display #1183: skl,kbl,cfl */
--	if (DISPLAY_VER(dev_priv) == 9 && !IS_BROXTON(dev_priv))
--		intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1,
-+	if (DISPLAY_VER(display) == 9 && !IS_BROXTON(dev_priv))
-+		intel_de_rmw(display, GEN8_CHICKEN_DCPR_1,
- 			     0, SKL_SELECT_ALTERNATE_DC_EXIT);
- 
--	intel_dmc_wl_enable(&dev_priv->display);
-+	intel_dmc_wl_enable(display);
- 
--	gen9_set_dc_state(dev_priv, DC_STATE_EN_UPTO_DC6);
-+	gen9_set_dc_state(display, DC_STATE_EN_UPTO_DC6);
- }
- 
--void bxt_enable_dc9(struct drm_i915_private *dev_priv)
-+void bxt_enable_dc9(struct intel_display *display)
- {
--	struct intel_display *display = &dev_priv->display;
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
--	assert_can_enable_dc9(dev_priv);
-+	assert_can_enable_dc9(display);
- 
--	drm_dbg_kms(&dev_priv->drm, "Enabling DC9\n");
-+	drm_dbg_kms(display->drm, "Enabling DC9\n");
- 	/*
- 	 * Power sequencer reset is not needed on
- 	 * platforms with South Display Engine on PCH,
-@@ -873,18 +885,16 @@ void bxt_enable_dc9(struct drm_i915_private *dev_priv)
- 	 */
- 	if (!HAS_PCH_SPLIT(dev_priv))
- 		intel_pps_reset_all(display);
--	gen9_set_dc_state(dev_priv, DC_STATE_EN_DC9);
-+	gen9_set_dc_state(display, DC_STATE_EN_DC9);
- }
- 
--void bxt_disable_dc9(struct drm_i915_private *dev_priv)
-+void bxt_disable_dc9(struct intel_display *display)
- {
--	struct intel_display *display = &dev_priv->display;
-+	assert_can_disable_dc9(display);
- 
--	assert_can_disable_dc9(dev_priv);
-+	drm_dbg_kms(display->drm, "Disabling DC9\n");
- 
--	drm_dbg_kms(&dev_priv->drm, "Disabling DC9\n");
--
--	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
-+	gen9_set_dc_state(display, DC_STATE_DISABLE);
+-	intel_vga_redisable_power_on(dev_priv);
++	intel_vga_redisable_power_on(display);
  
  	intel_pps_unlock_regs_wa(display);
  }
-@@ -949,8 +959,10 @@ static void bxt_verify_dpio_phy_power_wells(struct drm_i915_private *dev_priv)
- static bool gen9_dc_off_power_well_enabled(struct drm_i915_private *dev_priv,
- 					   struct i915_power_well *power_well)
+diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+index 0b5916c15307..2c76a0176a35 100644
+--- a/drivers/gpu/drm/i915/display/intel_vga.c
++++ b/drivers/gpu/drm/i915/display/intel_vga.c
+@@ -14,24 +14,26 @@
+ #include "intel_de.h"
+ #include "intel_vga.h"
+ 
+-static i915_reg_t intel_vga_cntrl_reg(struct drm_i915_private *i915)
++static i915_reg_t intel_vga_cntrl_reg(struct intel_display *display)
  {
--	return ((intel_de_read(dev_priv, DC_STATE_EN) & DC_STATE_EN_DC3CO) == 0 &&
--		(intel_de_read(dev_priv, DC_STATE_EN) & DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0);
-+	struct intel_display *display = &dev_priv->display;
++	struct drm_i915_private *i915 = to_i915(display->drm);
 +
-+	return ((intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_DC3CO) == 0 &&
-+		(intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0);
+ 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+ 		return VLV_VGACNTRL;
+-	else if (DISPLAY_VER(i915) >= 5)
++	else if (DISPLAY_VER(display) >= 5)
+ 		return CPU_VGACNTRL;
+ 	else
+ 		return VGACNTRL;
  }
  
- static void gen9_assert_dbuf_enabled(struct drm_i915_private *dev_priv)
-@@ -965,23 +977,23 @@ static void gen9_assert_dbuf_enabled(struct drm_i915_private *dev_priv)
- 		 enabled_dbuf_slices);
+ /* Disable the VGA plane that we never use */
+-void intel_vga_disable(struct drm_i915_private *dev_priv)
++void intel_vga_disable(struct intel_display *display)
+ {
+-	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+-	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
++	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
++	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
+ 	u8 sr1;
+ 
+-	if (intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)
++	if (intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)
+ 		return;
+ 
+ 	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
+@@ -42,23 +44,24 @@ void intel_vga_disable(struct drm_i915_private *dev_priv)
+ 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+ 	udelay(300);
+ 
+-	intel_de_write(dev_priv, vga_reg, VGA_DISP_DISABLE);
+-	intel_de_posting_read(dev_priv, vga_reg);
++	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
++	intel_de_posting_read(display, vga_reg);
  }
  
--void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
-+void gen9_disable_dc_states(struct intel_display *display)
+-void intel_vga_redisable_power_on(struct drm_i915_private *dev_priv)
++void intel_vga_redisable_power_on(struct intel_display *display)
  {
--	struct intel_display *display = &dev_priv->display;
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct intel_cdclk_config cdclk_config = {};
+-	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
++	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
  
- 	if (power_domains->target_dc_state == DC_STATE_EN_DC3CO) {
--		tgl_disable_dc3co(dev_priv);
-+		tgl_disable_dc3co(display);
- 		return;
- 	}
- 
--	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
-+	gen9_set_dc_state(display, DC_STATE_DISABLE);
- 
--	if (!HAS_DISPLAY(dev_priv))
-+	if (!HAS_DISPLAY(display))
- 		return;
- 
--	intel_dmc_wl_disable(&dev_priv->display);
-+	intel_dmc_wl_disable(display);
- 
- 	intel_cdclk_get_cdclk(display, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
-@@ -994,7 +1006,7 @@ void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- 	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
- 		bxt_verify_dpio_phy_power_wells(dev_priv);
- 
--	if (DISPLAY_VER(dev_priv) >= 11)
-+	if (DISPLAY_VER(display) >= 11)
- 		/*
- 		 * DMC retains HW context only for port A, the other combo
- 		 * PHY's HW context for port B is lost after DC transitions,
-@@ -1006,26 +1018,29 @@ void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
- static void gen9_dc_off_power_well_enable(struct drm_i915_private *dev_priv,
- 					  struct i915_power_well *power_well)
- {
--	gen9_disable_dc_states(dev_priv);
-+	struct intel_display *display = &dev_priv->display;
-+
-+	gen9_disable_dc_states(display);
- }
- 
- static void gen9_dc_off_power_well_disable(struct drm_i915_private *dev_priv,
- 					   struct i915_power_well *power_well)
- {
--	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
-+	struct intel_display *display = &dev_priv->display;
-+	struct i915_power_domains *power_domains = &display->power.domains;
- 
- 	if (!intel_dmc_has_payload(dev_priv))
- 		return;
- 
- 	switch (power_domains->target_dc_state) {
- 	case DC_STATE_EN_DC3CO:
--		tgl_enable_dc3co(dev_priv);
-+		tgl_enable_dc3co(display);
- 		break;
- 	case DC_STATE_EN_UPTO_DC6:
--		skl_enable_dc6(dev_priv);
-+		skl_enable_dc6(display);
- 		break;
- 	case DC_STATE_EN_UPTO_DC5:
--		gen9_enable_dc5(dev_priv);
-+		gen9_enable_dc5(display);
- 		break;
+-	if (!(intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)) {
+-		drm_dbg_kms(&dev_priv->drm,
++	if (!(intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)) {
++		drm_dbg_kms(display->drm,
+ 			    "Something enabled VGA plane, disabling it\n");
+-		intel_vga_disable(dev_priv);
++		intel_vga_disable(display);
  	}
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-index 9357a9a73c06..93559f7c6100 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
-@@ -12,6 +12,7 @@
  
- struct drm_i915_private;
- struct i915_power_well_ops;
+-void intel_vga_redisable(struct drm_i915_private *i915)
++void intel_vga_redisable(struct intel_display *display)
+ {
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	intel_wakeref_t wakeref;
+ 
+ 	/*
+@@ -74,14 +77,14 @@ void intel_vga_redisable(struct drm_i915_private *i915)
+ 	if (!wakeref)
+ 		return;
+ 
+-	intel_vga_redisable_power_on(i915);
++	intel_vga_redisable_power_on(display);
+ 
+ 	intel_display_power_put(i915, POWER_DOMAIN_VGA, wakeref);
+ }
+ 
+-void intel_vga_reset_io_mem(struct drm_i915_private *i915)
++void intel_vga_reset_io_mem(struct intel_display *display)
+ {
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+ 
+ 	/*
+ 	 * After we re-enable the power well, if we touch VGA register 0x3d5
+@@ -98,10 +101,10 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
+ 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
+ }
+ 
+-int intel_vga_register(struct drm_i915_private *i915)
++int intel_vga_register(struct intel_display *display)
+ {
+ 
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+ 	int ret;
+ 
+ 	/*
+@@ -119,9 +122,9 @@ int intel_vga_register(struct drm_i915_private *i915)
+ 	return 0;
+ }
+ 
+-void intel_vga_unregister(struct drm_i915_private *i915)
++void intel_vga_unregister(struct intel_display *display)
+ {
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+ 
+ 	vga_client_unregister(pdev);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_vga.h b/drivers/gpu/drm/i915/display/intel_vga.h
+index ba5b55b917f0..824dfc32a199 100644
+--- a/drivers/gpu/drm/i915/display/intel_vga.h
++++ b/drivers/gpu/drm/i915/display/intel_vga.h
+@@ -6,13 +6,13 @@
+ #ifndef __INTEL_VGA_H__
+ #define __INTEL_VGA_H__
+ 
+-struct drm_i915_private;
 +struct intel_display;
- struct intel_encoder;
  
- #define for_each_power_well(__dev_priv, __power_well)				\
-@@ -154,13 +155,13 @@ void chv_phy_powergate_lanes(struct intel_encoder *encoder,
- bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- 			  enum dpio_channel ch, bool override);
+-void intel_vga_reset_io_mem(struct drm_i915_private *i915);
+-void intel_vga_disable(struct drm_i915_private *i915);
+-void intel_vga_redisable(struct drm_i915_private *i915);
+-void intel_vga_redisable_power_on(struct drm_i915_private *i915);
+-int intel_vga_register(struct drm_i915_private *i915);
+-void intel_vga_unregister(struct drm_i915_private *i915);
++void intel_vga_reset_io_mem(struct intel_display *display);
++void intel_vga_disable(struct intel_display *display);
++void intel_vga_redisable(struct intel_display *display);
++void intel_vga_redisable_power_on(struct intel_display *display);
++int intel_vga_register(struct intel_display *display);
++void intel_vga_unregister(struct intel_display *display);
  
--void gen9_enable_dc5(struct drm_i915_private *dev_priv);
--void skl_enable_dc6(struct drm_i915_private *dev_priv);
--void gen9_sanitize_dc_state(struct drm_i915_private *dev_priv);
--void gen9_set_dc_state(struct drm_i915_private *dev_priv, u32 state);
--void gen9_disable_dc_states(struct drm_i915_private *dev_priv);
--void bxt_enable_dc9(struct drm_i915_private *dev_priv);
--void bxt_disable_dc9(struct drm_i915_private *dev_priv);
-+void gen9_enable_dc5(struct intel_display *display);
-+void skl_enable_dc6(struct intel_display *display);
-+void gen9_sanitize_dc_state(struct intel_display *display);
-+void gen9_set_dc_state(struct intel_display *display, u32 state);
-+void gen9_disable_dc_states(struct intel_display *display);
-+void bxt_enable_dc9(struct intel_display *display);
-+void bxt_disable_dc9(struct intel_display *display);
+ #endif /* __INTEL_VGA_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
+index f8373a461f17..9d3d9b983032 100644
+--- a/drivers/gpu/drm/i915/i915_suspend.c
++++ b/drivers/gpu/drm/i915/i915_suspend.c
+@@ -118,6 +118,7 @@ void i915_save_display(struct drm_i915_private *dev_priv)
  
- extern const struct i915_power_well_ops i9xx_always_on_power_well_ops;
- extern const struct i915_power_well_ops chv_pipe_power_well_ops;
+ void i915_restore_display(struct drm_i915_private *dev_priv)
+ {
++	struct intel_display *display = &dev_priv->display;
+ 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+ 
+ 	if (!HAS_DISPLAY(dev_priv))
+@@ -134,7 +135,7 @@ void i915_restore_display(struct drm_i915_private *dev_priv)
+ 		intel_de_write(dev_priv, DSPARB(dev_priv),
+ 			       dev_priv->regfile.saveDSPARB);
+ 
+-	intel_vga_redisable(dev_priv);
++	intel_vga_redisable(display);
+ 
+ 	intel_gmbus_reset(dev_priv);
+ }
 -- 
 2.44.2
 
