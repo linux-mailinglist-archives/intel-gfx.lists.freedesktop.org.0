@@ -2,62 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 613E696F975
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 18:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB2796FA06
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 19:40:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 581DA10EA75;
-	Fri,  6 Sep 2024 16:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 833B710E1AD;
+	Fri,  6 Sep 2024 17:40:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BwcEgObV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="buz15/Vl";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCBA10EAA6
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 16:39:37 +0000 (UTC)
+X-Original-To: Intel-GFX@lists.freedesktop.org
+Delivered-To: Intel-GFX@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1113910E1AA;
+ Fri,  6 Sep 2024 17:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725640778; x=1757176778;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3wCHXg6mnfmXLhLjtDBOePkVOQOmcrl8yyqV9BRyfP4=;
- b=BwcEgObVg2zgtRRUYb3VjWAGMDhowMeF4zAGYOIpPuXxDQicvDCaKFPo
- yMKlc7aGgpuSSAzljncW5b5t/7pSDELdH+mK7foMNtdfJO7jmKoX15pbv
- MhX5SZzyW/mnYNBd23eDp5Wqx0sVrEqJb4quVjfnVPMpgRsIn5ZWcoKfd
- 4kzoG+72yja9BDZ/Njr7aRDE+DskjQWVPm74Ap4kLtJOaXzHo/c9RWBmB
- DQIowY5BILuiHPwfmIw+TBUJBS+SwQtMPe+kCFar3HQE/HgxiaE4jso7V
- /5lt/PlGoILTGRXqo4xBomFLysLdZKxqctwJafh1B0SMCIPvWuGs9SjRL A==;
-X-CSE-ConnectionGUID: yRGleCfmQCmTUQPHdrmpvQ==
-X-CSE-MsgGUID: kvVy77fXTMmphJEwO3qLxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="28290001"
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="28290001"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 09:39:37 -0700
-X-CSE-ConnectionGUID: uIplcdBeRg25xgFKvV25dw==
-X-CSE-MsgGUID: h4X4bvP8QVeCGaKTDaAUMw==
+ t=1725644440; x=1757180440;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LdgDGMPmb4eVJNXxRBsfn42gcT1z+9PBTaltaJNrGWY=;
+ b=buz15/Vl5SyJcAOG6IadgByHsLyX/YciKbiT4GRItOD3y8u2fp4suAgC
+ FrCcsFzULew38HZRfdchptBIJ39GdJohUTJnXXMAKR199DLyHX9iftMDa
+ olxvv1jo2d6OKZBo53cpnPT8tVqIkqW4JWVxQPtHtMMYEecOTsDJRPu07
+ 0q2cmn6Qnotf1pb2U2etlDwkw/VIRFr+bPdXupNy4YaI6ZkNZi++7KIiC
+ zWJmdx+SThy0cTxOPzqvM2XwQtXC6+Pde4+U3ZjpfcGRLs64OVmRxaEP8
+ 3gmNlsy6NhUQWAUt1QJmTP5mUmirbHs1BsFYuIa2djKxQus4TpZYfJCo0 A==;
+X-CSE-ConnectionGUID: OQXtHvSqSOOWdzlGdaC5OQ==
+X-CSE-MsgGUID: Zf8YWDmuTpaVU2GawNIicw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24564786"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="24564786"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2024 10:40:39 -0700
+X-CSE-ConnectionGUID: w39dE457SiGBVZHWDuOqtg==
+X-CSE-MsgGUID: THLCuABWRKu05SjFVwd5yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66042657"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 Sep 2024 09:39:34 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 06 Sep 2024 19:39:33 +0300
-Date: Fri, 6 Sep 2024 19:39:33 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com
-Subject: Re: [PATCH 10/14] drm/i915/display/vdsc: Add ultrajoiner support
- with DSC
-Message-ID: <ZtswRWzoCkWptOTG@intel.com>
-References: <20240906125807.3960642-1-ankit.k.nautiyal@intel.com>
- <20240906125807.3960642-11-ankit.k.nautiyal@intel.com>
- <ZtsuGMVpU89ow48_@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66012040"
+Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
+ by fmviesa009.fm.intel.com with ESMTP; 06 Sep 2024 10:40:39 -0700
+From: John.C.Harrison@Intel.com
+To: Intel-GFX@Lists.FreeDesktop.Org
+Cc: DRI-Devel@Lists.FreeDesktop.Org, Juston Li <juston.li@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v2] drm/i915/guc: Enable PXP GuC autoteardown flow
+Date: Fri,  6 Sep 2024 10:40:38 -0700
+Message-ID: <20240906174038.1468026-1-John.C.Harrison@Intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZtsuGMVpU89ow48_@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,94 +67,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 06, 2024 at 07:30:16PM +0300, Ville Syrjälä wrote:
-> On Fri, Sep 06, 2024 at 06:28:03PM +0530, Ankit Nautiyal wrote:
-> > From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > 
-> > Add changes to DSC which are required for Ultrajoiner.
-> > 
-> > v2:
-> > -Use correct helper for setting bits for bigjoiner secondary. (Ankit)
-> > -Use enum for joiner pipe count instead magic numbers. (Suraj)
-> > -Use primary/secondary instead of master/slave. (Suraj)
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_vdsc.c | 26 +++++++++++++++++++++--
-> >  1 file changed, 24 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > index 8158e3702ed5..66e810c8de68 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > @@ -379,9 +379,11 @@ static int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state
-> >  int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	int num_vdsc_instances = intel_dsc_get_vdsc_per_pipe(crtc_state);
-> > +	int joined_pipes = intel_joiner_num_pipes(crtc_state);
-> >  
-> > -	if (crtc_state->joiner_pipes)
-> > -		num_vdsc_instances *= 2;
-> > +	if (joined_pipes == INTEL_BIG_JOINER_PIPES ||
-> > +	    joined_pipes == INTEL_ULTRA_JOINER_PIPES)
-> > +		num_vdsc_instances *= joined_pipes;
-> >  
-> >  	return num_vdsc_instances;
-> >  }
-> > @@ -751,6 +753,14 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
-> >  	}
-> >  }
-> >  
-> > +static bool intel_crtc_ultrajoiner_enable_needed(const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > +
-> > +	return intel_joiner_num_pipes(crtc_state) == INTEL_ULTRA_JOINER_PIPES &&
-> > +	       crtc->pipe != PIPE_D;
-> > +}
-> > +
-> >  void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > @@ -770,7 +780,19 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
-> >  		dss_ctl1_val |= JOINER_ENABLE;
-> >  	}
-> >  	if (crtc_state->joiner_pipes) {
-> > +		/*
-> > +		 * This bit doesn't seem to follow primary/secondary logic or
-> > +		 * any other logic, so lets just add helper function to
-> > +		 * at least hide this hassle..
-> > +		 */
-> > +		if (intel_crtc_ultrajoiner_enable_needed(crtc_state))
-> 
-> What is this crazyness? This would throw a big wrench into
-> the works, eg. the ultrajoiner readout would not work as intended.
+From: Juston Li <juston.li@intel.com>
 
-Hmm. I do see a note to this effect in bspec. But that doesn't make
-any real sense. I would expect that we either enable this for
-everything, or only for pipes A+C (the bigjoiner primaries).
-The latter would seem sensible, but it would also mean that
-we need to rethink the readout as well.
+This feature flag enables GuC autoteardown which allows for a grace
+period before session teardown.
 
-> 
-> > +			dss_ctl1_val |= ULTRA_JOINER_ENABLE;
-> > +
-> > +		if (intel_crtc_is_ultrajoiner_primary(crtc_state))
-> > +			dss_ctl1_val |= PRIMARY_ULTRA_JOINER_ENABLE;
-> > +
-> >  		dss_ctl1_val |= BIG_JOINER_ENABLE;
-> > +
-> >  		if (intel_crtc_is_bigjoiner_primary(crtc_state))
-> >  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
-> >  	}
-> > -- 
-> > 2.45.2
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+Also add a HAS_PXP() helper to share with the other place that wants
+to check.
 
+Signed-off-by: Juston Li <juston.li@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c      | 8 ++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 1 +
+ drivers/gpu/drm/i915/i915_drv.h             | 3 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp.c        | 2 +-
+ 4 files changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 097fc6bd1285e..5949ff0b0161f 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -239,8 +239,16 @@ static u32 guc_ctl_debug_flags(struct intel_guc *guc)
+ 
+ static u32 guc_ctl_feature_flags(struct intel_guc *guc)
+ {
++	struct intel_gt *gt = guc_to_gt(guc);
+ 	u32 flags = 0;
+ 
++	/*
++	 * Enable PXP GuC autoteardown flow.
++	 * NB: MTL does things differently.
++	 */
++	if (HAS_PXP(gt->i915) && !IS_METEORLAKE(gt->i915))
++		flags |= GUC_CTL_ENABLE_GUC_PXP_CTL;
++
+ 	if (!intel_guc_submission_is_used(guc))
+ 		flags |= GUC_CTL_DISABLE_SCHEDULER;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+index 263c9c3f6a034..4ce6e2332a63f 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+@@ -105,6 +105,7 @@
+ #define   GUC_WA_ENABLE_TSC_CHECK_ON_RC6	BIT(22)
+ 
+ #define GUC_CTL_FEATURE			2
++#define   GUC_CTL_ENABLE_GUC_PXP_CTL	BIT(1)
+ #define   GUC_CTL_ENABLE_SLPC		BIT(2)
+ #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 39f6614a0a99a..faeba9732422f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -693,6 +693,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_RPS(i915)	(INTEL_INFO(i915)->has_rps)
+ 
++#define HAS_PXP(i915) \
++	(IS_ENABLED(CONFIG_DRM_I915_PXP) && INTEL_INFO(i915)->has_pxp)
++
+ #define HAS_HECI_PXP(i915) \
+ 	(INTEL_INFO(i915)->has_heci_pxp)
+ 
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+index 75278e78ca90e..5e0bf776aac0f 100644
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+@@ -170,7 +170,7 @@ static struct intel_gt *find_gt_for_required_teelink(struct drm_i915_private *i9
+ 
+ static struct intel_gt *find_gt_for_required_protected_content(struct drm_i915_private *i915)
+ {
+-	if (!IS_ENABLED(CONFIG_DRM_I915_PXP) || !INTEL_INFO(i915)->has_pxp)
++	if (!HAS_PXP(i915))
+ 		return NULL;
+ 
+ 	/*
 -- 
-Ville Syrjälä
-Intel
+2.46.0
+
