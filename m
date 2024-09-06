@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE8996F4D5
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 14:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5FF96F64E
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 16:08:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57FEB10EA4A;
-	Fri,  6 Sep 2024 12:56:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m6Q46C+v";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C1E710E089;
+	Fri,  6 Sep 2024 14:08:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF7B10EA53
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Sep 2024 12:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725627412; x=1757163412;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KQAkrewQIJ3unwEPXxZ4KYc+dCnICQ/TOHzwCAF7HJQ=;
- b=m6Q46C+vjobjdO69LWgHgCmpcScBMwe6cBbMtmF4jpUBFKad9FBlSfvA
- mSX253tX2lCSeYHxUFnbe4iuux4jYMj0CIGyafMDTDDnZgyeRmzR0Cwu+
- QZkYjVfPT3IqIg7GhE/TO1GHlY5L83SNZeAjnGnVsiYkBpZyq9g4hedmt
- aC8n5ZsvGdUZebW5nx/h62KCb3/kq5oPO7il7jsvz4lK/rFAzElZeeTV/
- vHSuc0O5pIJDKNn5I9UOdEZw7JlRGFLpmCf0a1bC60j5OfBUghvzhQRhA
- ivYCiw2VMPM3SREwtCYOyoAyPA/u9SzhjkERXENnPxHxNqWH5KnjuqC6i w==;
-X-CSE-ConnectionGUID: 9Q9lgh0HTSqIrOW4+PX2RA==
-X-CSE-MsgGUID: 5EqivnQwSQepiiTctIKRDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="24257420"
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="24257420"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 05:56:52 -0700
-X-CSE-ConnectionGUID: aufjIS+fQ4Kxb0m8MIssrQ==
-X-CSE-MsgGUID: pazjbMjwR5Gn+/93SrJonA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,207,1719903600"; d="scan'208";a="66691100"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 05:56:50 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.saarinen@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 14/14] drm/i915/intel_dp: Add support for forcing ultrajoiner
-Date: Fri,  6 Sep 2024 18:28:07 +0530
-Message-ID: <20240906125807.3960642-15-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240906125807.3960642-1-ankit.k.nautiyal@intel.com>
-References: <20240906125807.3960642-1-ankit.k.nautiyal@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A12C810E07D;
+ Fri,  6 Sep 2024 14:08:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Ultrajoiner_basic_fu?=
+ =?utf-8?q?nctionality_series_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 06 Sep 2024 14:08:36 -0000
+Message-ID: <172563171665.954738.10663799464812518604@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240906125807.3960642-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240906125807.3960642-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,101 +37,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow forcing ultrajoiner through debugfs.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 11 +++++++----
- drivers/gpu/drm/i915/display/intel_dp.h     |  4 +++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  6 ++++--
- 3 files changed, 14 insertions(+), 7 deletions(-)
+Series: Ultrajoiner basic functionality series (rev7)
+URL   : https://patchwork.freedesktop.org/series/133800/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 79837ba05a14..db2a50678cda 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1308,7 +1308,9 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
- 	return true;
- }
- 
--bool intel_dp_need_ultrajoiner(struct intel_dp *dp, int clock)
-+bool intel_dp_need_ultrajoiner(struct intel_dp *dp,
-+			       struct intel_connector *connector,
-+			       int clock)
- {
- 	const struct intel_encoder *encoder = &dp_to_dig_port(dp)->base;
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-@@ -1317,7 +1319,8 @@ bool intel_dp_need_ultrajoiner(struct intel_dp *dp, int clock)
- 	if (!intel_display_can_use_ultrajoiner(display))
- 		return false;
- 
--	return clock > (i915->display.cdclk.max_dotclk_freq * 2);
-+	return clock > (i915->display.cdclk.max_dotclk_freq * 2) ||
-+	       connector->force_joined_pipes == INTEL_ULTRA_JOINER_PIPES;
- }
- 
- static enum drm_mode_status
-@@ -1356,7 +1359,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 		target_clock = fixed_mode->clock;
- 	}
- 
--	if (intel_dp_need_ultrajoiner(intel_dp, target_clock)) {
-+	if (intel_dp_need_ultrajoiner(intel_dp, connector, target_clock)) {
- 		joined_pipes = INTEL_ULTRA_JOINER_PIPES;
- 		max_dotclk *= INTEL_ULTRA_JOINER_PIPES;
- 	} else if (intel_dp_need_bigjoiner(intel_dp, connector,
-@@ -2566,7 +2569,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 	    !intel_dp_supports_fec(intel_dp, connector, pipe_config))
- 		return -EINVAL;
- 
--	if (intel_dp_need_ultrajoiner(intel_dp, adjusted_mode->crtc_clock))
-+	if (intel_dp_need_ultrajoiner(intel_dp, connector, adjusted_mode->crtc_clock))
- 		pipe_config->joiner_pipes = GENMASK(crtc->pipe + 3, crtc->pipe);
- 	else if (intel_dp_need_bigjoiner(intel_dp, connector,
- 					 adjusted_mode->crtc_hdisplay,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index b413b9f5fdf8..748e1a94afd2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -158,7 +158,9 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- bool intel_dp_need_bigjoiner(struct intel_dp *intel_dp,
- 			     struct intel_connector *connector,
- 			     int hdisplay, int clock);
--bool intel_dp_need_ultrajoiner(struct intel_dp *intel_dp, int clock);
-+bool intel_dp_need_ultrajoiner(struct intel_dp *intel_dp,
-+			       struct intel_connector *connector,
-+			       int clock);
- 
- static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 1f2a6d275114..5e87cdf0be69 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -580,7 +580,8 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return -EINVAL;
- 
--	if (intel_dp_need_ultrajoiner(intel_dp, adjusted_mode->crtc_clock))
-+	if (intel_dp_need_ultrajoiner(intel_dp, connector,
-+				      adjusted_mode->crtc_clock))
- 		pipe_config->joiner_pipes = GENMASK(crtc->pipe + 3, crtc->pipe);
- 	else if (intel_dp_need_bigjoiner(intel_dp, connector,
- 					 adjusted_mode->crtc_hdisplay,
-@@ -1479,7 +1480,8 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 	 *   corresponding link capabilities of the sink) in case the
- 	 *   stream is uncompressed for it by the last branch device.
- 	 */
--	if (intel_dp_need_ultrajoiner(intel_dp, target_clock)) {
-+	if (intel_dp_need_ultrajoiner(intel_dp, intel_connector,
-+				      target_clock)) {
- 		joined_pipes = INTEL_BIG_JOINER_PIPES;
- 		max_dotclk *= INTEL_BIG_JOINER_PIPES;
- 	} else if (intel_dp_need_bigjoiner(intel_dp, intel_connector,
--- 
-2.45.2
+== Summary ==
+
+Error: dim checkpatch failed
+f0319f26329c drm/i915/display: Modify debugfs for joiner to force n pipes
+c990cc40b2c9 drm/i915/display: Use joined pipes in intel_dp_joiner_needs_dsc
+6a7298b1549d drm/i915/display: Use joined pipes in intel_mode_valid_max_plane_size
+997453c80592 drm/i915/display: Use joined pipes in dsc helpers for slices, bpp
+185c7a362580 drm/i915: Add some essential functionality for joiners
+e589900b4e56 drm/i915: Split current joiner hw state readout
+dbc40a7ee871 drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity checks
+aff7471b9657 drm/i915: Implement hw state readout and checks for ultrajoiner
+aa050e4a1a58 drm/i915/display: Add helpers to check for ultrajoiner primary
+13e5f0c73c6e drm/i915/display/vdsc: Add ultrajoiner support with DSC
+87c324295490 drm/i915: Add new abstraction layer to handle pipe order for different joiners
+-:231: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#231: FILE: drivers/gpu/drm/i915/display/intel_display.h:278:
++#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
++	for_each_pipe(__dev_priv, __p) \
++		for_each_if((__mask) & BIT(__priolist[__p])) \
++			for_each_if(intel_crtc = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), __priolist[__p]))
+
+-:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__dev_priv' - possible side-effects?
+#231: FILE: drivers/gpu/drm/i915/display/intel_display.h:278:
++#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
++	for_each_pipe(__dev_priv, __p) \
++		for_each_if((__mask) & BIT(__priolist[__p])) \
++			for_each_if(intel_crtc = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), __priolist[__p]))
+
+-:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__p' - possible side-effects?
+#231: FILE: drivers/gpu/drm/i915/display/intel_display.h:278:
++#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
++	for_each_pipe(__dev_priv, __p) \
++		for_each_if((__mask) & BIT(__priolist[__p])) \
++			for_each_if(intel_crtc = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), __priolist[__p]))
+
+-:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__priolist' - possible side-effects?
+#231: FILE: drivers/gpu/drm/i915/display/intel_display.h:278:
++#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
++	for_each_pipe(__dev_priv, __p) \
++		for_each_if((__mask) & BIT(__priolist[__p])) \
++			for_each_if(intel_crtc = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), __priolist[__p]))
+
+-:234: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#234: FILE: drivers/gpu/drm/i915/display/intel_display.h:281:
++			for_each_if(intel_crtc = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), __priolist[__p]))
+
+total: 1 errors, 1 warnings, 3 checks, 250 lines checked
+408e3cb74a24 drm/i915: Compute config and mode valid changes for ultrajoiner
+12981c443053 drm/i915/display: Consider ultrajoiner for computing maxdotclock
+a4c718aa641a drm/i915/intel_dp: Add support for forcing ultrajoiner
+
 
