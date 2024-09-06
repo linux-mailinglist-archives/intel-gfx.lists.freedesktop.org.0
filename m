@@ -2,113 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC8C97198E
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA4E97196F
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6D0E10E53E;
-	Mon,  9 Sep 2024 12:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E763810E4F2;
+	Mon,  9 Sep 2024 12:36:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IEUBYdIs";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="EIlMwSvh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3223110E89B;
- Thu,  5 Sep 2024 13:03:39 +0000 (UTC)
-Received: by mail-lj1-f171.google.com with SMTP id
- 38308e7fff4ca-2f025b94e07so6765241fa.0; 
- Thu, 05 Sep 2024 06:03:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725541417; x=1726146217; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=J4Ap3iChcCI6LjI4bbXEj5UiVcIZisPfcA3U2HCE+kE=;
- b=IEUBYdIsF1GiML4tzwvs5sD1P3TrgSXM7798ilNc5UCG7c8IHASUvvnBmk8dg0zRll
- SbbqxYbNiPACstyzMyLFTRm2fhjioUDyKM9WNdmsd4wEMyjESE22VJlGJsnwWfYvft0v
- JVRffnrOp8AvlRbnWIssjm0l+60dV4l4ANRF+l0/AWB2BO/Me478bJ2jxBTE0MQ9RQ1b
- QnJtaUrLo2KAWK7VU0JpFTuLGGIM9ixYFUJw8jQlZF4d9U8OpK0Br/df9DNhgqhEdKYJ
- Ssi0snJIvHKj/kjoxIzmAXADLTOIdslXAbIMgQHPeyfviNswxBm7UWhnYUahVjR/YwCu
- IC8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725541417; x=1726146217;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=J4Ap3iChcCI6LjI4bbXEj5UiVcIZisPfcA3U2HCE+kE=;
- b=GHBnZeK/2gzsTApsAuagHIZhnWXzx7NmfqYFeV9WBiaJc7gjWyOPdm6Fr8ETGqnm+L
- W5Rvq7Lh1YE8FdcLhJ9Q6mGSdkikOSx2f1UUggiY8vKnSHmUNWOHrw85EwlnIhWeBzwn
- w+OaGpN3V6qQs66G0DfCmIRXWxak0IR7uZmbeyxRh3Q9V6jPdqIo63a301gxdKgV8RbY
- DXAP/J6ES6pMpVJZtcHcHjtRq7+p8+hc9xZP5V+Sy0zXxrCQSym2oT0O+qjH9/NW+5kR
- KKdRmk8NVR2V0fUG0fZZVO3Djn4ycx2GVS4z4rOBIVvveOsCSxgFj9I5rsT1VpKOodTo
- g/nw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUiGJ5Z+i0et1XnFhKHSeIcQBXWa/uZI2tDufvORfA0i/A7ODzXj5y/c1jIUPaZWyK0yez+kFM7GBnO@lists.freedesktop.org,
- AJvYcCVwKYEo9rQ5zcu4LbQ5FSYe4Ze+7e5/Bc5pFZPgZQ5i/r2SHonTqBaXW2L7HlmEOmh3mDxkuhKkS+Q=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzUp3+AyTi7YBJzZtSNRhTISViNmc3/XLKJ9OizOdUcwAXMR3Tx
- rKhACcQ8zWXls00rV49QsvA9GIbRUn+FYGXjoI2rqEZNb1+tZl+GF3oWNlRCXFCHCURan+AwWj1
- xJOmNHKPg9f1wnr2C4xzvw22wOng=
-X-Google-Smtp-Source: AGHT+IETBLGAu3Qd00jjqcPIw+YbfEw8PL6KVZG3phkN8mEHyaiFDy+b4h0Zi/X597x+B58/kQSA12RjAv0BY7eFUFU=
-X-Received: by 2002:a2e:a54b:0:b0:2ef:2b06:b686 with SMTP id
- 38308e7fff4ca-2f6103a565bmr183794191fa.17.1725541415766; Thu, 05 Sep 2024
- 06:03:35 -0700 (PDT)
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3725710E173;
+ Fri,  6 Sep 2024 06:10:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1725603023;
+ bh=/dtohpd2jYZvgldSPgPUfPVsQXMJ8y7tzwUyHG6SqCY=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From;
+ b=EIlMwSvhq/xTpsgbeu0DmgAdEQrX3FtKro+WVkKt0dchOFoVHKColL59RobV2zdI5
+ d+xDhYPX8nDSRuc762Nu6tcYQECmz7u6EFWcFJOtk3i6D5uE8wBiodEfSsujIGajBJ
+ 4oQCuYiZf/zWpZp4njQU9/njVygyH91OJ8nWiKqM=
+X-QQ-mid: bizesmtp84t1725602801tkd3vxlw
+X-QQ-Originating-IP: WuapCiZjmsXjdr2Bs5465eW0Whoex+fovHxihMr3iZM=
+Received: from [10.4.11.213] ( [221.226.144.218])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Fri, 06 Sep 2024 14:06:31 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 293073832845237998
+Message-ID: <31331B0B65DB108E+082759df-83d7-43ac-a519-853a6e69483d@uniontech.com>
+Date: Fri, 6 Sep 2024 14:06:31 +0800
 MIME-Version: 1.0
-References: <20240905122020.872466-1-ubizjak@gmail.com>
- <Ztmm00eLBQGtiwRM@smile.fi.intel.com>
-In-Reply-To: <Ztmm00eLBQGtiwRM@smile.fi.intel.com>
-From: Uros Bizjak <ubizjak@gmail.com>
-Date: Thu, 5 Sep 2024 15:03:24 +0200
-Message-ID: <CAFULd4bzyNGcJqeg7w2ZQ0Xmw-HsBhczf8yPna7mSgG4NmdcWw@mail.gmail.com>
-Subject: Re: [PATCH 00/18] random: Include <linux/percpu.h> and resolve
- circular include dependency
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: linux-kernel@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>, 
- Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, x86@kernel.org, 
- "H. Peter Anvin" <hpa@zytor.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Hans Verkuil <hverkuil@xs4all.nl>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, Eric Biggers <ebiggers@kernel.org>, 
- "Theodore Y. Ts'o" <tytso@mit.edu>, Jaegeuk Kim <jaegeuk@kernel.org>, 
- "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, 
- Hannes Reinecke <hare@suse.de>, 
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Alexei Starovoitov <ast@kernel.org>, 
- Daniel Borkmann <daniel@iogearbox.net>,
- John Fastabend <john.fastabend@gmail.com>, 
- Andrii Nakryiko <andrii@kernel.org>, Martin KaFai Lau <martin.lau@linux.dev>, 
- Eduard Zingerman <eddyz87@gmail.com>, Song Liu <song@kernel.org>, 
- Yonghong Song <yonghong.song@linux.dev>, KP Singh <kpsingh@kernel.org>, 
- Stanislav Fomichev <sdf@fomichev.me>, Hao Luo <haoluo@google.com>,
- Jiri Olsa <jolsa@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Jiri Pirko <jiri@resnulli.us>, 
- Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>, 
- Stephen Hemminger <stephen@networkplumber.org>,
- Jamal Hadi Salim <jhs@mojatatu.com>, Cong Wang <xiyou.wangcong@gmail.com>,
- Kent Overstreet <kent.overstreet@linux.dev>, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-media@vger.kernel.org, linux-mtd@lists.infradead.org, 
- linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org, 
- bpf@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915:Remove unused parameter in marco.
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com, 
+ daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <F84191BE8AA4A690+20240831135114.497043-1-helugang@uniontech.com>
+ <Ztnkt8guUcY8hg3h@intel.com> <87le06ownz.fsf@intel.com>
+From: HeLuang <helugang@uniontech.com>
+In-Reply-To: <87le06ownz.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz7a-0
 X-Mailman-Approved-At: Mon, 09 Sep 2024 12:36:55 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -125,75 +64,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 5, 2024 at 2:41=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Sep 05, 2024 at 02:17:08PM +0200, Uros Bizjak wrote:
-> > There were several attempts to resolve circular include dependency
-> > after the addition of percpu.h: 1c9df907da83 ("random: fix circular
-> > include dependency on arm64 after addition of percpu.h"), c0842fbc1b18
-> > ("random32: move the pseudo-random 32-bit definitions to prandom.h") an=
-d
-> > finally d9f29deb7fe8 ("prandom: Remove unused include") that completely
-> > removes inclusion of <linux/percpu.h>.
-> >
-> > Due to legacy reasons, <linux/random.h> includes <linux/prandom.h>, but
-> > with the commit entry remark:
-> >
-> > --quote--
-> > A further cleanup step would be to remove this from <linux/random.h>
-> > entirely, and make people who use the prandom infrastructure include
-> > just the new header file.  That's a bit of a churn patch, but grepping
-> > for "prandom_" and "next_pseudo_random32" "struct rnd_state" should
-> > catch most users.
-> >
-> > But it turns out that that nice cleanup step is fairly painful, because
-> > a _lot_ of code currently seems to depend on the implicit include of
-> > <linux/random.h>, which can currently come in a lot of ways, including
-> > such fairly core headfers as <linux/net.h>.
-> >
-> > So the "nice cleanup" part may or may never happen.
-> > --/quote--
-> >
-> > __percpu tag is currently defined in include/linux/compiler_types.h,
-> > so there is no direct need for the inclusion of <linux/percpu.h>.
-> > However, in [1] we would like to repurpose __percpu tag as a named
-> > address space qualifier, where __percpu macro uses defines from
-> > <linux/percpu.h>.
-> >
-> > This patch series is the "nice cleanup" part, and allows us to finally
-> > include <linux/percpu.h> in prandom.h.
-> >
-> > The whole series was tested by compiling the kernel for x86_64 allconfi=
-g
-> > and some popular architectures, namely arm64 defconfig, powerpc defconf=
-ig
-> > and loongarch defconfig.
->
-> Obvious question(s) is(are):
-> 1) have you seen the Ingo's gigantic patch series towards resolving issue=
-s with
-> the headers?
-> 2) if not, please look at the preliminary work and take something from th=
-ere, I
-> believe there are many useful changes already waiting for a couple of yea=
-rs to
-> be applied.
->
-> Because I haven't found any references nor mentions of that in the cover =
-letter
-> here and explanation why it was not taking into consideration.
 
-I am aware of the series, but the patch takes only a small bite of it
-and specifically resolves the inclusion of <linux/prandom.h> from
-linux/random.h. The series fixes the missing inclusion of
-<linux/prandom.h> in files that use pseudo-random function and it was
-not meant to be a general header cleanup. The end goal is to allow us
-to include <linux/percpu.h> in linux/prandom.h - which uses __percpu
-tag without the correct include.
 
-Thus, the patch series is only tangentially connected to Ingo's patch serie=
-s.
-
-Best regards,
-Uros.
+在 2024/9/6 01:08, Jani Nikula 写道:
+> On Thu, 05 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>> On Sat, Aug 31, 2024 at 09:51:14PM +0800, He Lugang wrote:
+>>> The parameter dev_priv is actually not used in macro PORT_ALPM_CTL
+>>> and PORT_ALPM_LFPS_CTL,so remove it to simplify the code.
+>>
+>> It is magically used on our back... hence the build failures that CI got.
+>> Jani is doing a great clean-up work on the display code to get rid
+>> of this 'dev_priv' usages in favor of a better display code separation
+>> and using intel_display struct.
+> 
+> I actually think this should(tm) work. It's just that it needs a rebase.
+> 
+> BR,
+> Jani.
+> 
+OK,thannks for your reply,I'll rebase it.
+>>
+>> But thanks for the patch and the interest to help.
+>>
+Very glad if that will be help!
+>>>
+>>> Signed-off-by: He Lugang <helugang@uniontech.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_alpm.c     | 4 ++--
+>>>   drivers/gpu/drm/i915/display/intel_psr.c      | 2 +-
+>>>   drivers/gpu/drm/i915/display/intel_psr_regs.h | 4 ++--
+>>>   3 files changed, 5 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+>>> index 82ee778b2efe..7a93ba627aa6 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+>>> @@ -330,7 +330,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+>>>   			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
+>>>   
+>>>   		intel_de_write(display,
+>>> -			       PORT_ALPM_CTL(display, port),
+>>> +			       PORT_ALPM_CTL(port),
+>>>   			       PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+>>>   			       PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
+>>>   			       PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
+>>> @@ -338,7 +338,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+>>>   				       intel_dp->alpm_parameters.silence_period_sym_clocks));
+>>>   
+>>>   		intel_de_write(display,
+>>> -			       PORT_ALPM_LFPS_CTL(display, port),
+>>> +			       PORT_ALPM_LFPS_CTL(port),
+>>>   			       PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
+>>>   			       PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
+>>>   				       intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>>> index 257526362b39..d66dbb529e1d 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>>> @@ -2076,7 +2076,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+>>>   			     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+>>>   
+>>>   		intel_de_rmw(dev_priv,
+>>> -			     PORT_ALPM_CTL(dev_priv, cpu_transcoder),
+>>> +			     PORT_ALPM_CTL(cpu_transcoder),
+>>>   			     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+>>>   	}
+>>>   
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+>>> index 642bb15fb547..b4984e589d7e 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+>>> @@ -295,7 +295,7 @@
+>>>   
+>>>   #define _PORT_ALPM_CTL_A			0x16fa2c
+>>>   #define _PORT_ALPM_CTL_B			0x16fc2c
+>>> -#define PORT_ALPM_CTL(dev_priv, port)		_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
+>>> +#define PORT_ALPM_CTL(port)			_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
+>>>   #define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	REG_BIT(31)
+>>>   #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
+>>>   #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
+>>> @@ -306,7 +306,7 @@
+>>>   
+>>>   #define _PORT_ALPM_LFPS_CTL_A					0x16fa30
+>>>   #define _PORT_ALPM_LFPS_CTL_B					0x16fc30
+>>> -#define PORT_ALPM_LFPS_CTL(dev_priv, port)			_MMIO_PORT(port, _PORT_ALPM_LFPS_CTL_A, _PORT_ALPM_LFPS_CTL_B)
+>>> +#define PORT_ALPM_LFPS_CTL(port)				_MMIO_PORT(port, _PORT_ALPM_LFPS_CTL_A, _PORT_ALPM_LFPS_CTL_B)
+>>>   #define  PORT_ALPM_LFPS_CTL_LFPS_START_POLARITY			REG_BIT(31)
+>>>   #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK		REG_GENMASK(27, 24)
+>>>   #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
+>>> -- 
+>>> 2.45.2
+>>>
+> 
