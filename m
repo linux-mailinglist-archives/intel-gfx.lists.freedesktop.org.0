@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E20396F6D4
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 16:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7582496F6D5
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2024 16:33:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A07610EA62;
-	Fri,  6 Sep 2024 14:33:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E692210EA5B;
+	Fri,  6 Sep 2024 14:33:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aPdshvaT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="av866nDp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9556A10EA63;
- Fri,  6 Sep 2024 14:33:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 398A510EA6E;
+ Fri,  6 Sep 2024 14:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725633201; x=1757169201;
+ t=1725633205; x=1757169205;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H4yln8+N3jGJiIl9wXPV6sKNvui+sVTE9eUhMPv6ArI=;
- b=aPdshvaTTsCai/CX7rBJ56yxBV4yaZP0IM7RrBVL6U5rb3TZ6IpRjymH
- 04pWY2pJFg2sSwEKHwDfjIw4CnphkrkHAtzfd/kRC+Pbjs+pWkkRzHRkW
- 39ss42mw8faDIJLZoI6anPt/Ji1nd0gNrv9VXSIzQYXFKEjlNHYPV8Ws+
- ibsempZUXJZSpng17s4jJsnk3MSBSkl+JNkal4cpjRXVUc8Eg4YKsdMU4
- vlV5uu9wuMYRS7gCsUQMTkmhoHzUbwFheiIUybO0PRT6mUJLxXbizkft7
- N4SY7K6WN7CGly+AVtcFT/NpCPR3XW0Us7G54jQTMa2xGggEGxXPYo5H8 A==;
-X-CSE-ConnectionGUID: 69j+xBwSSvmhYBcJwTxczQ==
-X-CSE-MsgGUID: dYgvtQ+xSyi2FFh/kRVQzA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="41903068"
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="41903068"
+ bh=FkLMOPAtrKvLpBRWwSkTepfCgHvLEEy243/iLkswgQg=;
+ b=av866nDp5REvBQCZyfGeTzsKlHnBHVznjTfkjgr70oqEdWvvXT3i3nwi
+ MkTUeFA3VI2/8NoBxMdI5+VjpfP3l1f2I71Pimg/1iu9csmwz5+0Ln4Nh
+ EEc/NOq/xU//pBKArMe3PxmRF2rRGvxnXKqc4CxeHUAPTf/3Te4wqmk6K
+ jghXucj8VYcYHtG9yu6v8MSDBkCvgmLObCsW3nd5S1z/PQ3igt9RnYm0E
+ AF/GMqUHkKJ6w78z0YdR8u6EyVRQXmNNXCcFOF+6FQ8o5znT29iTPqYIH
+ 2LFK99uduTuUr2gcKY8068etmqwOIu/LZzRrrKSDMfdRIkq4xaZP5ErdB g==;
+X-CSE-ConnectionGUID: 6fUsd80fTdmWyq2GUS/9FQ==
+X-CSE-MsgGUID: /ak0dSsjRgCZ+T63d5Sn0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11187"; a="41903104"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="41903104"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2024 07:33:21 -0700
-X-CSE-ConnectionGUID: xsrC50a9Q/+IBE9edP1t/w==
-X-CSE-MsgGUID: NbBU6yVrRq6YS2PvSKxJlQ==
+ 06 Sep 2024 07:33:25 -0700
+X-CSE-ConnectionGUID: MF5BEhNlRdKHiB48KadwOg==
+X-CSE-MsgGUID: Pt/pj8qRRnSFBA8nMz2p0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66003948"
+X-IronPort-AV: E=Sophos;i="6.10,208,1719903600"; d="scan'208";a="66003970"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 Sep 2024 07:33:19 -0700
+ by fmviesa008.fm.intel.com with SMTP; 06 Sep 2024 07:33:22 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 06 Sep 2024 17:33:18 +0300
+ Fri, 06 Sep 2024 17:33:21 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/6] drm/i915/vga: Convert VGA code to intel_display
-Date: Fri,  6 Sep 2024 17:33:04 +0300
-Message-ID: <20240906143306.15937-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/6] drm/i915/power: Convert "i830 power well" code to
+ intel_display
+Date: Fri,  6 Sep 2024 17:33:05 +0300
+Message-ID: <20240906143306.15937-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
 References: <20240906143306.15937-1-ville.syrjala@linux.intel.com>
@@ -72,257 +73,248 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 struct intel_display will replace struct drm_i915_private as
-the main thing for display code. Convert the VGA code to
-use it (as much as possible at this stage).
+the main thing for display code. Convert the "i830 power well"
+code to use it (as much as possible at this stage).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_driver.c   | 11 ++---
- .../i915/display/intel_display_power_well.c   |  6 ++-
- drivers/gpu/drm/i915/display/intel_vga.c      | 45 ++++++++++---------
- drivers/gpu/drm/i915/display/intel_vga.h      | 14 +++---
- drivers/gpu/drm/i915/i915_suspend.c           |  3 +-
- 5 files changed, 43 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 79 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_display.h  |  5 +-
+ .../i915/display/intel_display_power_well.c   | 22 ++++--
+ 3 files changed, 56 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 434e52f450ff..f8da72af2107 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -221,7 +221,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
- 
- 	intel_bios_init(display);
- 
--	ret = intel_vga_register(i915);
-+	ret = intel_vga_register(display);
- 	if (ret)
- 		goto cleanup_bios;
- 
-@@ -275,7 +275,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
- 	intel_dmc_fini(i915);
- 	intel_power_domains_driver_remove(i915);
- cleanup_vga:
--	intel_vga_unregister(i915);
-+	intel_vga_unregister(display);
- cleanup_bios:
- 	intel_bios_driver_remove(display);
- 
-@@ -458,7 +458,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
- 	intel_hti_init(display);
- 
- 	/* Just disable it once at startup */
--	intel_vga_disable(i915);
-+	intel_vga_disable(display);
- 	intel_setup_outputs(i915);
- 
- 	ret = intel_dp_tunnel_mgr_init(display);
-@@ -625,7 +625,7 @@ void intel_display_driver_remove_nogem(struct drm_i915_private *i915)
- 
- 	intel_power_domains_driver_remove(i915);
- 
--	intel_vga_unregister(i915);
-+	intel_vga_unregister(display);
- 
- 	intel_bios_driver_remove(display);
- }
-@@ -683,12 +683,13 @@ __intel_display_driver_resume(struct drm_i915_private *i915,
- 			      struct drm_atomic_state *state,
- 			      struct drm_modeset_acquire_ctx *ctx)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index b4ec9bf12aa7..0ec78b06ca80 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2226,9 +2226,10 @@ static void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+ 			      struct intel_crtc *crtc)
  {
-+	struct intel_display *display = &i915->display;
- 	struct drm_crtc_state *crtc_state;
- 	struct drm_crtc *crtc;
- 	int ret, i;
++	struct intel_display *display = to_intel_display(state);
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_crtc_state *old_crtc_state =
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
  
- 	intel_modeset_setup_hw_state(i915, ctx);
--	intel_vga_redisable(i915);
-+	intel_vga_redisable(display);
+ 	/*
+@@ -2267,7 +2268,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
  
- 	if (!state)
- 		return 0;
+ 	/* clock the pipe down to 640x480@60 to potentially save power */
+ 	if (IS_I830(dev_priv))
+-		i830_enable_pipe(dev_priv, pipe);
++		i830_enable_pipe(display, pipe);
+ }
+ 
+ void intel_encoder_destroy(struct drm_encoder *encoder)
+@@ -8257,9 +8258,8 @@ int intel_initial_commit(struct drm_device *dev)
+ 	return ret;
+ }
+ 
+-void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
++void i830_enable_pipe(struct intel_display *display, enum pipe pipe)
+ {
+-	struct intel_display *display = &dev_priv->display;
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+ 	enum transcoder cpu_transcoder = (enum transcoder)pipe;
+ 	/* 640x480@60Hz, ~25175 kHz */
+@@ -8273,10 +8273,10 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 	u32 dpll, fp;
+ 	int i;
+ 
+-	drm_WARN_ON(&dev_priv->drm,
++	drm_WARN_ON(display->drm,
+ 		    i9xx_calc_dpll_params(48000, &clock) != 25154);
+ 
+-	drm_dbg_kms(&dev_priv->drm,
++	drm_dbg_kms(display->drm,
+ 		    "enabling pipe %c due to force quirk (vco=%d dot=%d)\n",
+ 		    pipe_name(pipe), clock.vco, clock.dot);
+ 
+@@ -8288,35 +8288,35 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 		PLL_REF_INPUT_DREFCLK |
+ 		DPLL_VCO_ENABLE;
+ 
+-	intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder),
++	intel_de_write(display, TRANS_HTOTAL(display, cpu_transcoder),
+ 		       HACTIVE(640 - 1) | HTOTAL(800 - 1));
+-	intel_de_write(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder),
++	intel_de_write(display, TRANS_HBLANK(display, cpu_transcoder),
+ 		       HBLANK_START(640 - 1) | HBLANK_END(800 - 1));
+-	intel_de_write(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder),
++	intel_de_write(display, TRANS_HSYNC(display, cpu_transcoder),
+ 		       HSYNC_START(656 - 1) | HSYNC_END(752 - 1));
+-	intel_de_write(dev_priv, TRANS_VTOTAL(dev_priv, cpu_transcoder),
++	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
+ 		       VACTIVE(480 - 1) | VTOTAL(525 - 1));
+-	intel_de_write(dev_priv, TRANS_VBLANK(dev_priv, cpu_transcoder),
++	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
+ 		       VBLANK_START(480 - 1) | VBLANK_END(525 - 1));
+-	intel_de_write(dev_priv, TRANS_VSYNC(dev_priv, cpu_transcoder),
++	intel_de_write(display, TRANS_VSYNC(display, cpu_transcoder),
+ 		       VSYNC_START(490 - 1) | VSYNC_END(492 - 1));
+-	intel_de_write(dev_priv, PIPESRC(dev_priv, pipe),
++	intel_de_write(display, PIPESRC(display, pipe),
+ 		       PIPESRC_WIDTH(640 - 1) | PIPESRC_HEIGHT(480 - 1));
+ 
+-	intel_de_write(dev_priv, FP0(pipe), fp);
+-	intel_de_write(dev_priv, FP1(pipe), fp);
++	intel_de_write(display, FP0(pipe), fp);
++	intel_de_write(display, FP1(pipe), fp);
+ 
+ 	/*
+ 	 * Apparently we need to have VGA mode enabled prior to changing
+ 	 * the P1/P2 dividers. Otherwise the DPLL will keep using the old
+ 	 * dividers, even though the register value does change.
+ 	 */
+-	intel_de_write(dev_priv, DPLL(dev_priv, pipe),
++	intel_de_write(display, DPLL(display, pipe),
+ 		       dpll & ~DPLL_VGA_MODE_DIS);
+-	intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
++	intel_de_write(display, DPLL(display, pipe), dpll);
+ 
+ 	/* Wait for the clocks to stabilize. */
+-	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
++	intel_de_posting_read(display, DPLL(display, pipe));
+ 	udelay(150);
+ 
+ 	/* The pixel multiplier can only be updated once the
+@@ -8324,47 +8324,46 @@ void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 	 *
+ 	 * So write it again.
+ 	 */
+-	intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
++	intel_de_write(display, DPLL(display, pipe), dpll);
+ 
+ 	/* We do this three times for luck */
+ 	for (i = 0; i < 3 ; i++) {
+-		intel_de_write(dev_priv, DPLL(dev_priv, pipe), dpll);
+-		intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
++		intel_de_write(display, DPLL(display, pipe), dpll);
++		intel_de_posting_read(display, DPLL(display, pipe));
+ 		udelay(150); /* wait for warmup */
+ 	}
+ 
+-	intel_de_write(dev_priv, TRANSCONF(dev_priv, pipe), TRANSCONF_ENABLE);
+-	intel_de_posting_read(dev_priv, TRANSCONF(dev_priv, pipe));
++	intel_de_write(display, TRANSCONF(display, pipe), TRANSCONF_ENABLE);
++	intel_de_posting_read(display, TRANSCONF(display, pipe));
+ 
+ 	intel_wait_for_pipe_scanline_moving(crtc);
+ }
+ 
+-void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
++void i830_disable_pipe(struct intel_display *display, enum pipe pipe)
+ {
+-	struct intel_display *display = &dev_priv->display;
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+ 
+-	drm_dbg_kms(&dev_priv->drm, "disabling pipe %c due to force quirk\n",
++	drm_dbg_kms(display->drm, "disabling pipe %c due to force quirk\n",
+ 		    pipe_name(pipe));
+ 
+-	drm_WARN_ON(&dev_priv->drm,
+-		    intel_de_read(dev_priv, DSPCNTR(dev_priv, PLANE_A)) & DISP_ENABLE);
+-	drm_WARN_ON(&dev_priv->drm,
+-		    intel_de_read(dev_priv, DSPCNTR(dev_priv, PLANE_B)) & DISP_ENABLE);
+-	drm_WARN_ON(&dev_priv->drm,
+-		    intel_de_read(dev_priv, DSPCNTR(dev_priv, PLANE_C)) & DISP_ENABLE);
+-	drm_WARN_ON(&dev_priv->drm,
+-		    intel_de_read(dev_priv, CURCNTR(dev_priv, PIPE_A)) & MCURSOR_MODE_MASK);
+-	drm_WARN_ON(&dev_priv->drm,
+-		    intel_de_read(dev_priv, CURCNTR(dev_priv, PIPE_B)) & MCURSOR_MODE_MASK);
++	drm_WARN_ON(display->drm,
++		    intel_de_read(display, DSPCNTR(display, PLANE_A)) & DISP_ENABLE);
++	drm_WARN_ON(display->drm,
++		    intel_de_read(display, DSPCNTR(display, PLANE_B)) & DISP_ENABLE);
++	drm_WARN_ON(display->drm,
++		    intel_de_read(display, DSPCNTR(display, PLANE_C)) & DISP_ENABLE);
++	drm_WARN_ON(display->drm,
++		    intel_de_read(display, CURCNTR(display, PIPE_A)) & MCURSOR_MODE_MASK);
++	drm_WARN_ON(display->drm,
++		    intel_de_read(display, CURCNTR(display, PIPE_B)) & MCURSOR_MODE_MASK);
+ 
+-	intel_de_write(dev_priv, TRANSCONF(dev_priv, pipe), 0);
+-	intel_de_posting_read(dev_priv, TRANSCONF(dev_priv, pipe));
++	intel_de_write(display, TRANSCONF(display, pipe), 0);
++	intel_de_posting_read(display, TRANSCONF(display, pipe));
+ 
+ 	intel_wait_for_pipe_scanline_stopped(crtc);
+ 
+-	intel_de_write(dev_priv, DPLL(dev_priv, pipe), DPLL_VGA_MODE_DIS);
+-	intel_de_posting_read(dev_priv, DPLL(dev_priv, pipe));
++	intel_de_write(display, DPLL(display, pipe), DPLL_VGA_MODE_DIS);
++	intel_de_posting_read(display, DPLL(display, pipe));
+ }
+ 
+ void intel_hpd_poll_fini(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index b21d9578d5db..7ca26e5cb20e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -52,6 +52,7 @@ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_digital_port;
++struct intel_display;
+ struct intel_dp;
+ struct intel_encoder;
+ struct intel_initial_plane_config;
+@@ -437,8 +438,8 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state);
+ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state);
+ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state);
+ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
+-void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
+-void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe);
++void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
++void i830_disable_pipe(struct intel_display *display, enum pipe pipe);
+ int vlv_get_hpll_vco(struct drm_i915_private *dev_priv);
+ int vlv_get_cck_clock(struct drm_i915_private *dev_priv,
+ 		      const char *name, u32 reg, int ref_freq);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 1f0084ca6248..a5d9b17e03a2 100644
+index a5d9b17e03a2..9f275a6674a1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -187,8 +187,10 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
- static void hsw_power_well_post_enable(struct drm_i915_private *dev_priv,
- 				       u8 irq_pipe_mask, bool has_vga)
+@@ -1066,24 +1066,30 @@ static bool i9xx_always_on_power_well_enabled(struct drm_i915_private *dev_priv,
+ static void i830_pipes_power_well_enable(struct drm_i915_private *dev_priv,
+ 					 struct i915_power_well *power_well)
  {
+-	if ((intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE) == 0)
+-		i830_enable_pipe(dev_priv, PIPE_A);
+-	if ((intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE) == 0)
+-		i830_enable_pipe(dev_priv, PIPE_B);
 +	struct intel_display *display = &dev_priv->display;
 +
- 	if (has_vga)
--		intel_vga_reset_io_mem(dev_priv);
-+		intel_vga_reset_io_mem(display);
- 
- 	if (irq_pipe_mask)
- 		gen8_irq_power_well_post_enable(dev_priv, irq_pipe_mask);
-@@ -1248,7 +1250,7 @@ static void vlv_display_power_well_init(struct drm_i915_private *dev_priv)
- 			intel_crt_reset(&encoder->base);
- 	}
- 
--	intel_vga_redisable_power_on(dev_priv);
-+	intel_vga_redisable_power_on(display);
- 
- 	intel_pps_unlock_regs_wa(display);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 0b5916c15307..2c76a0176a35 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -14,24 +14,26 @@
- #include "intel_de.h"
- #include "intel_vga.h"
- 
--static i915_reg_t intel_vga_cntrl_reg(struct drm_i915_private *i915)
-+static i915_reg_t intel_vga_cntrl_reg(struct intel_display *display)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+
- 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
- 		return VLV_VGACNTRL;
--	else if (DISPLAY_VER(i915) >= 5)
-+	else if (DISPLAY_VER(display) >= 5)
- 		return CPU_VGACNTRL;
- 	else
- 		return VGACNTRL;
++	if ((intel_de_read(display, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE) == 0)
++		i830_enable_pipe(display, PIPE_A);
++	if ((intel_de_read(display, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE) == 0)
++		i830_enable_pipe(display, PIPE_B);
  }
  
- /* Disable the VGA plane that we never use */
--void intel_vga_disable(struct drm_i915_private *dev_priv)
-+void intel_vga_disable(struct intel_display *display)
+ static void i830_pipes_power_well_disable(struct drm_i915_private *dev_priv,
+ 					  struct i915_power_well *power_well)
  {
--	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
--	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-+	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
- 	u8 sr1;
- 
--	if (intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)
-+	if (intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)
- 		return;
- 
- 	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
-@@ -42,23 +44,24 @@ void intel_vga_disable(struct drm_i915_private *dev_priv)
- 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
- 	udelay(300);
- 
--	intel_de_write(dev_priv, vga_reg, VGA_DISP_DISABLE);
--	intel_de_posting_read(dev_priv, vga_reg);
-+	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
-+	intel_de_posting_read(display, vga_reg);
- }
- 
--void intel_vga_redisable_power_on(struct drm_i915_private *dev_priv)
-+void intel_vga_redisable_power_on(struct intel_display *display)
- {
--	i915_reg_t vga_reg = intel_vga_cntrl_reg(dev_priv);
-+	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
- 
--	if (!(intel_de_read(dev_priv, vga_reg) & VGA_DISP_DISABLE)) {
--		drm_dbg_kms(&dev_priv->drm,
-+	if (!(intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)) {
-+		drm_dbg_kms(display->drm,
- 			    "Something enabled VGA plane, disabling it\n");
--		intel_vga_disable(dev_priv);
-+		intel_vga_disable(display);
- 	}
- }
- 
--void intel_vga_redisable(struct drm_i915_private *i915)
-+void intel_vga_redisable(struct intel_display *display)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	intel_wakeref_t wakeref;
- 
- 	/*
-@@ -74,14 +77,14 @@ void intel_vga_redisable(struct drm_i915_private *i915)
- 	if (!wakeref)
- 		return;
- 
--	intel_vga_redisable_power_on(i915);
-+	intel_vga_redisable_power_on(display);
- 
- 	intel_display_power_put(i915, POWER_DOMAIN_VGA, wakeref);
- }
- 
--void intel_vga_reset_io_mem(struct drm_i915_private *i915)
-+void intel_vga_reset_io_mem(struct intel_display *display)
- {
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
- 
- 	/*
- 	 * After we re-enable the power well, if we touch VGA register 0x3d5
-@@ -98,10 +101,10 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
- 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
- }
- 
--int intel_vga_register(struct drm_i915_private *i915)
-+int intel_vga_register(struct intel_display *display)
- {
- 
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
- 	int ret;
- 
- 	/*
-@@ -119,9 +122,9 @@ int intel_vga_register(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--void intel_vga_unregister(struct drm_i915_private *i915)
-+void intel_vga_unregister(struct intel_display *display)
- {
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
- 
- 	vga_client_unregister(pdev);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.h b/drivers/gpu/drm/i915/display/intel_vga.h
-index ba5b55b917f0..824dfc32a199 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.h
-+++ b/drivers/gpu/drm/i915/display/intel_vga.h
-@@ -6,13 +6,13 @@
- #ifndef __INTEL_VGA_H__
- #define __INTEL_VGA_H__
- 
--struct drm_i915_private;
-+struct intel_display;
- 
--void intel_vga_reset_io_mem(struct drm_i915_private *i915);
--void intel_vga_disable(struct drm_i915_private *i915);
--void intel_vga_redisable(struct drm_i915_private *i915);
--void intel_vga_redisable_power_on(struct drm_i915_private *i915);
--int intel_vga_register(struct drm_i915_private *i915);
--void intel_vga_unregister(struct drm_i915_private *i915);
-+void intel_vga_reset_io_mem(struct intel_display *display);
-+void intel_vga_disable(struct intel_display *display);
-+void intel_vga_redisable(struct intel_display *display);
-+void intel_vga_redisable_power_on(struct intel_display *display);
-+int intel_vga_register(struct intel_display *display);
-+void intel_vga_unregister(struct intel_display *display);
- 
- #endif /* __INTEL_VGA_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
-index f8373a461f17..9d3d9b983032 100644
---- a/drivers/gpu/drm/i915/i915_suspend.c
-+++ b/drivers/gpu/drm/i915/i915_suspend.c
-@@ -118,6 +118,7 @@ void i915_save_display(struct drm_i915_private *dev_priv)
- 
- void i915_restore_display(struct drm_i915_private *dev_priv)
- {
+-	i830_disable_pipe(dev_priv, PIPE_B);
+-	i830_disable_pipe(dev_priv, PIPE_A);
 +	struct intel_display *display = &dev_priv->display;
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 
- 	if (!HAS_DISPLAY(dev_priv))
-@@ -134,7 +135,7 @@ void i915_restore_display(struct drm_i915_private *dev_priv)
- 		intel_de_write(dev_priv, DSPARB(dev_priv),
- 			       dev_priv->regfile.saveDSPARB);
- 
--	intel_vga_redisable(dev_priv);
-+	intel_vga_redisable(display);
- 
- 	intel_gmbus_reset(dev_priv);
++
++	i830_disable_pipe(display, PIPE_B);
++	i830_disable_pipe(display, PIPE_A);
  }
+ 
+ static bool i830_pipes_power_well_enabled(struct drm_i915_private *dev_priv,
+ 					  struct i915_power_well *power_well)
+ {
+-	return intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE &&
+-		intel_de_read(dev_priv, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE;
++	struct intel_display *display = &dev_priv->display;
++
++	return intel_de_read(display, TRANSCONF(dev_priv, PIPE_A)) & TRANSCONF_ENABLE &&
++		intel_de_read(display, TRANSCONF(dev_priv, PIPE_B)) & TRANSCONF_ENABLE;
+ }
+ 
+ static void i830_pipes_power_well_sync_hw(struct drm_i915_private *dev_priv,
 -- 
 2.44.2
 
