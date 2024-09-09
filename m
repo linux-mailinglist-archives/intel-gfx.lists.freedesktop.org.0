@@ -2,82 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE7B971A3E
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 15:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF87B971AB5
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 15:20:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A052D10E38D;
-	Mon,  9 Sep 2024 13:02:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7162510E569;
+	Mon,  9 Sep 2024 13:20:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="Z7sCffeO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OdpwyZLB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
- [209.85.218.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 241B110E38D
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 13:02:53 +0000 (UTC)
-Received: by mail-ej1-f52.google.com with SMTP id
- a640c23a62f3a-a8d64b27c45so70267666b.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 09 Sep 2024 06:02:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1725886971; x=1726491771; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=7mMqU87htuX/vKBzsNQkDBJ4RpNR7Zr8uFLI9xAQvGQ=;
- b=Z7sCffeOstMn3E0RvT+bG3AnB0HewPF4ylcheotPD5ccIVHQNOXmrcXxAmeeFkfZwx
- 2sygjNfs9a/zzq7ZN9l9JFCxU2RYJ91vYwV4nLp2NmWaXzgalDg29kEU2SfhPkZb+xAb
- p/uEin+hrP22d2FkFweAYZLPr2IFxLv17Y1jxIpy31qRyfzDzFjz7Et7uWodUzXCPZDB
- hfub65hBeYVzhkdN5zJqECrZ6LPMvSz+T2thK5GeqdtPVlwlnSkItGiPKOAN4KgrBBcv
- IWh9m9daAomaEWV8Uia7BTKDgjQrWgEIUFQdgRLCzmP5ucprm4aC82ayj01bzsglyxM2
- zsQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725886971; x=1726491771;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=7mMqU87htuX/vKBzsNQkDBJ4RpNR7Zr8uFLI9xAQvGQ=;
- b=O2A7Tqg90PORJHOP2lf2GWcmo8FcT1rCfmPwJJ4GkJHgrHlsQbZ7mIyTQcWFZO5Auo
- rFs7gSNmRNRT5GK/4ccqo8FnJbXvLiDZ7yIGIAUGwoGqnn7iBmw+TT/ErNj9OGHW782H
- ypJFx8OT8TpyDeXQR+ljKPOY9aB9aq9XVyy79sS9DXy06NiT+GN/E5CHY5K6N1A8N52O
- lSBsiff7zb1GLeMAzqydbqm+52At+cwJ+pcc0Rz4nhx5OLx3PGo355vFpe3e+zW0Ka2U
- kCKVLGNwFSxZYXq7G+NjT/mvD3F/GjpEsfB3Mzb0EWOOWKqxlWaIxcODOAyOntAGtWRM
- hptQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWgGbTWK9mTSHoZ2ZPKy0lIkML2P47UjKL9HVmmq4Dxo2yCAmxq/qaHfsoKldvEAYa+S+aaFxnLRBA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEwMZI0qoDZfkEXtB02CuT5Zdkm3MVjgtLTuO5aWQJXiaL9Qkl
- YNh3RRufE+Qv52ZWptGiNC8otvri8V2qh6da398+valc/dMDSajVORpHhrWY8Y8=
-X-Google-Smtp-Source: AGHT+IGBCWEcHjOnjDa3tv0OU9sQsIWi0rYKMo1x8pgZwqnvO0g9WWezq8axRIpo3yitGDVIG7HaOA==
-X-Received: by 2002:a17:907:368a:b0:a86:8953:e1fe with SMTP id
- a640c23a62f3a-a8a8884be2cmr906103366b.47.1725886971281; 
- Mon, 09 Sep 2024 06:02:51 -0700 (PDT)
-Received: from pathway.suse.cz ([176.114.240.50])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a8d25d54abbsm337715666b.203.2024.09.09.06.02.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Sep 2024 06:02:51 -0700 (PDT)
-Date: Mon, 9 Sep 2024 15:02:49 +0200
-From: Petr Mladek <pmladek@suse.com>
-To: Uros Bizjak <ubizjak@gmail.com>
-Cc: x86@kernel.org, linux-crypto@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org,
- bpf@vger.kernel.org, linux-kselftest@vger.kernel.org,
- kunit-dev@googlegroups.com, linux-kernel@vger.kernel.org,
- Steven Rostedt <rostedt@goodmis.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH RESEND v2 16/19] lib/test_scanf: Include
- <linux/prandom.h> instead of <linux/random.h>
-Message-ID: <Zt7x-dJF6RzEByBO@pathway.suse.cz>
-References: <20240909075641.258968-1-ubizjak@gmail.com>
- <20240909075641.258968-17-ubizjak@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7095A10E56A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 13:20:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725888020; x=1757424020;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=3SerJGNHyzkoggE/jIXd/rNfgiC6r38fFx+8VRoewPA=;
+ b=OdpwyZLBSiIZVX8TVocXxuaj+JIJVyijyL00RjhQomZYcEocJqv2xrYL
+ YQ83sJjlnFlN6Bvw/Ivb/OjkbAApo8KossUBiUgIKD9//1w22G/nyuTmr
+ HKZGJEXDp3zkFj0WXh9Q7upYR9Zbpou4PvXYL9kaYpvQ9FJVjjJmuTpQl
+ jmMTcP4aKFqcfVXB5Gemi0e05khsdHso0lE2rUM1nMkeeNOSF0ec/kFQ6
+ b7RgzA0cg6Vnt5QsyAIkf8lYUi2LIZxvFu775ZzYpLV6TbvASI5hH/Xr6
+ q5p9E00uQMnVZLFU/bXfreN1ZLV0j5svax1R2lOS3oyhhwoJFoDA48/dd w==;
+X-CSE-ConnectionGUID: zCkfC0T5TWWk3nGQijm51A==
+X-CSE-MsgGUID: O2NSc9VKSZis8vmXMq0obA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="35251257"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="35251257"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 06:20:20 -0700
+X-CSE-ConnectionGUID: eM6H0hJKTnuXSLeGZpPIwg==
+X-CSE-MsgGUID: TqNSW+8vSa6TqiizRKCKPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="71082644"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.176])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 06:20:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Ankit
+ Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [CI] drm/i915/dp: Dump the LTTPR PHY descriptors
+In-Reply-To: <20240909121613.2915283-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240909121613.2915283-1-imre.deak@intel.com>
+Date: Mon, 09 Sep 2024 16:20:15 +0300
+Message-ID: <87r09tklps.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240909075641.258968-17-ubizjak@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,17 +70,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon 2024-09-09 09:53:59, Uros Bizjak wrote:
-> Substitute the inclusion of <linux/random.h> header with
-> <linux/prandom.h> to allow the removal of legacy inclusion
-> of <linux/prandom.h> from <linux/random.h>.
-> 
-> Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
+On Mon, 09 Sep 2024, Imre Deak <imre.deak@intel.com> wrote:
+> Dump the descriptor of the detected LTTPRs in non-transparent mode to
+> help the debugging related to LTTPRs easier.
+>
+> v2: Use drm_dp_dump_lttpr_desc() instead of the driver specific
+>     equivalent.
+> v3: Add empty line between license and header section. (Ankit)
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com> # v1
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>
+> Resending [1] now, after the corresponding DRM core helper is merged to
+> drm-intel-next.
+>
+> [1] https://lore.kernel.org/all/20240708190029.271247-7-imre.deak@intel.c=
+om
+>
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index f45797c1a2051..b7bd8135c1138 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -21,6 +21,8 @@
+>   * IN THE SOFTWARE.
+>   */
+>=20=20
+> +#include <drm/display/drm_dp_helper.h>
+> +
+>  #include <linux/debugfs.h>
+>=20=20
+>  #include <drm/display/drm_dp_helper.h>
 
-I have just acked v1 and missed that there already is v2.
-Just for record:
+It's already here now.
 
-Acked-by: Petr Mladek <pmladek@suse.com>
+BR,
+Jani.
 
-Best Regards,
-Petr
+> @@ -210,8 +212,10 @@ static int intel_dp_init_lttpr(struct intel_dp *inte=
+l_dp, const u8 dpcd[DP_RECEI
+>=20=20
+>  	lttpr_count =3D intel_dp_init_lttpr_phys(intel_dp, dpcd);
+>=20=20
+> -	for (i =3D 0; i < lttpr_count; i++)
+> +	for (i =3D 0; i < lttpr_count; i++) {
+>  		intel_dp_read_lttpr_phy_caps(intel_dp, dpcd, DP_PHY_LTTPR(i));
+> +		drm_dp_dump_lttpr_desc(&intel_dp->aux, DP_PHY_LTTPR(i));
+> +	}
+>=20=20
+>  	return lttpr_count;
+>  }
+
+--=20
+Jani Nikula, Intel
