@@ -2,69 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2008597215A
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 19:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2939721E0
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 20:31:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B62910E61B;
-	Mon,  9 Sep 2024 17:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC1610E2B4;
+	Mon,  9 Sep 2024 18:31:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=broadcom.com header.i=@broadcom.com header.b="Iz966UAV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Op8/GAr4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com
- [209.85.219.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CEDB10E619
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 17:52:21 +0000 (UTC)
-Received: by mail-yb1-f174.google.com with SMTP id
- 3f1490d57ef6-e1cf1a4865aso4425861276.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 09 Sep 2024 10:52:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1725904340; x=1726509140;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ewnn+I0cbL5Fc6YtuZyrPYuNwfjqJiKs03aOOqjG7A8=;
- b=Iz966UAVQ+ytGMStst701K5RZ9nILUemzx3sxR0c+6eCoBh6yjFoDtj1R2Zit/h5Xe
- 2WLOOiE8CoGW1mAn8k15sizt3Rbbqbbi05VAl+/0avgLzySYykwV+snnaFxxgyOLXvbo
- tTmfSQnWzQEeyRUyVVgzMUlYwmKVskP02VcHI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725904340; x=1726509140;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ewnn+I0cbL5Fc6YtuZyrPYuNwfjqJiKs03aOOqjG7A8=;
- b=upuq5//+rc6OT+8TgvQzhhjINjE87PikZqwmsQzaF1KEXROxnqMxT/5ZZk1F2w36by
- fz9ojjAsxSbXarZ2kvWbaC06+27kqzBj5eRnk8ntONJp2OfRZtRi6HntMyCco5KrV1Hl
- Nn6YawJbx1HQAvezUEKGgtwb5AavH952/fJERN/vWmIjo3qbzoM1Kf1iPaTfvIpxYf9h
- am75bxFpEhTNEzj8NDjjNNd6xQ5g0rkrqlJ6ez3v2A0pZ6s+ehBC8sWLn1X5XhSJd09S
- BD9G6+etC1W8btKSu3cXXF9+l2xCsCnJ4y/59VZ065mAL9QRjEZl7u7pHSnfZ3eOQv7k
- AUjg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVNEUhUAabe8QvkonzNfWEI5LQKtXlPEfF2xCI551Ye0aNIXXy9PpwwUnoL/nTEoEkKzaMHE/umNcI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxw/z01E8hmssv7zqoq34A858RT+FKsya6RHwSQIW8ilwZkT9Qg
- NFZzF/4BI/+Ycew3HhnAaS6wkor/vBCgw6gtQEh8KsCI6xkzAZCE2NdAXSCLJikCOYughpPkCoE
- /C71hJKuCdQAyYD78CAaXp61CNSh2nO4rwhkN
-X-Google-Smtp-Source: AGHT+IHDKPPn8dTPuWieyrmVdOyWupTxM3bjm2KyLBaOg4ntadLH/U0C1Wzi1TrHYhzoSYP/p/zfD2Wna/PMSgFmvmQ=
-X-Received: by 2002:a05:6902:1ac1:b0:e13:e674:553c with SMTP id
- 3f1490d57ef6-e1d3486ac3emr13335040276.7.1725904339866; Mon, 09 Sep 2024
- 10:52:19 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 755A610E2B4;
+ Mon,  9 Sep 2024 18:31:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725906674; x=1757442674;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=E0xV4qxOXPs6v+Fi5/5NNI1gIcv85clfhV8pvoOXgJI=;
+ b=Op8/GAr4rTc17gcdmXVzUMzX5tc7vHkxoPBLBcGTxnrJ2N+dxF+lg0pC
+ r4rQe26n0alD4nzBzQVMmbBnQq2dQadBoFsfBSHpzEPqq4DCEOT67ndZk
+ L7iViG8G84IhaxOToKxqh3xOAA3Olm4s6fMQVUP5jvZKbUksYGxTeW0WV
+ dsEkdoYn5ZZec3p/oA7g7J47gS5lnxRwUtnsKCKRdGM/H91V7ADLCEuh4
+ 58qe/OYyTYxb/86Z3STSkOYaDut6R6pkS7DJwHbNUnoFmI3RAuiKu9dQE
+ 3MbQx8AdZwmaUNdZPLa0Tinh9ZkvP5mIWzhAWjsJZ7bGZQpGZGNUC9rXK Q==;
+X-CSE-ConnectionGUID: oJb5aqJGStCVMFbK+lzE/Q==
+X-CSE-MsgGUID: Icdnz+++Sj+QoqUre2FaIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="28401212"
+X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="28401212"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 11:31:13 -0700
+X-CSE-ConnectionGUID: a/xnDMcLTj2u7ExKfxkkgQ==
+X-CSE-MsgGUID: 7STH72A6QBerMQsDDsT5IA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="71732477"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.176])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 11:31:12 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/8] drm/i915/pps: only touch the vlv_ members on
+ VLV/CHV
+In-Reply-To: <Zt8EWvR4lkkNphHG@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1725883885.git.jani.nikula@intel.com>
+ <8e2c63ae4a69f7ea8ca33ef500818f4ca680b468.1725883885.git.jani.nikula@intel.com>
+ <Zt8EWvR4lkkNphHG@intel.com>
+Date: Mon, 09 Sep 2024 21:31:08 +0300
+Message-ID: <87mskgllw3.fsf@intel.com>
 MIME-Version: 1.0
-References: <20240909113633.595465-1-tzimmermann@suse.de>
- <20240909113633.595465-72-tzimmermann@suse.de>
-In-Reply-To: <20240909113633.595465-72-tzimmermann@suse.de>
-From: Zack Rusin <zack.rusin@broadcom.com>
-Date: Mon, 9 Sep 2024 13:52:09 -0400
-Message-ID: <CABQX2QP705HDDUNFCQ0SNkq2-_SaXPGG4KZOw5EhZU68Yu_nZQ@mail.gmail.com>
-Subject: Re: [PATCH v4 71/80] drm/vmwgfx: Run DRM default client setup
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: simona@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, 
- javierm@redhat.com, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,22 +72,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 9, 2024 at 7:37=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse.=
-de> wrote:
+On Mon, 09 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Mon, Sep 09, 2024 at 03:15:37PM +0300, Jani Nikula wrote:
+>> While the struct intel_pps vlv_pps_pipe and vlv_active_pipe members are
+>> only relevant for VLV/CHV, we still initialize them on all platforms and
+>> check them on BXT/GLK. Wrap all access inside VLV/CHV checks for
+>> consistency.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c  |  6 +++---
+>>  drivers/gpu/drm/i915/display/intel_pps.c | 11 ++++++-----
+>>  2 files changed, 9 insertions(+), 8 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i=
+915/display/intel_dp.c
+>> index bc1ec9440a4d..7e36a7820fec 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -6843,8 +6843,6 @@ intel_dp_init_connector(struct intel_digital_port =
+*dig_port,
+>>  		return false;
+>>=20=20
+>>  	intel_dp->reset_link_params =3D true;
+>> -	intel_dp->pps.vlv_pps_pipe =3D INVALID_PIPE;
+>> -	intel_dp->pps.vlv_active_pipe =3D INVALID_PIPE;
+>>=20=20
+>>  	/* Preserve the current hw state. */
+>>  	intel_dp->DP =3D intel_de_read(dev_priv, intel_dp->output_reg);
+>> @@ -6871,8 +6869,10 @@ intel_dp_init_connector(struct intel_digital_port=
+ *dig_port,
+>>  	intel_dp_set_default_sink_rates(intel_dp);
+>>  	intel_dp_set_default_max_sink_lane_count(intel_dp);
+>>=20=20
+>> -	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+>> +		intel_dp->pps.vlv_pps_pipe =3D INVALID_PIPE;
+>>  		intel_dp->pps.vlv_active_pipe =3D vlv_active_pipe(intel_dp);
+>> +	}
+>>=20=20
+>>  	intel_dp_aux_init(intel_dp);
+>>  	intel_connector->dp.dsc_decompression_aux =3D &intel_dp->aux;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/=
+i915/display/intel_pps.c
+>> index b7c73842ea16..2fb32ac1b7cf 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+>> @@ -472,16 +472,17 @@ void intel_pps_reset_all(struct intel_display *dis=
+play)
+>>  	for_each_intel_dp(display->drm, encoder) {
+>>  		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>>=20=20
+>> -		drm_WARN_ON(display->drm,
+>> -			    intel_dp->pps.vlv_active_pipe !=3D INVALID_PIPE);
+>> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>> +			drm_WARN_ON(display->drm,
+>> +				    intel_dp->pps.vlv_active_pipe !=3D INVALID_PIPE);
+>>=20=20
+>>  		if (encoder->type !=3D INTEL_OUTPUT_EDP)
+>>  			continue;
+>>=20=20
+>> -		if (DISPLAY_VER(display) >=3D 9)
+>> -			intel_dp->pps.pps_reset =3D true;
+>> -		else
+>> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>>  			intel_dp->pps.vlv_pps_pipe =3D INVALID_PIPE;
+>> +		else
+>> +			intel_dp->pps.pps_reset =3D true;
 >
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
+> You are now setting that for all pre-skl except vlv/chv.
+
+Above context in intel_pps_reset_all():
+
+	if (drm_WARN_ON(display->drm, !IS_LP(dev_priv)))
+
+i.e. VLV/CHV/BXT/GLK only.
+
+BR,
+Jani.
+
 >
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
-> Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadc=
-om.com>
-> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+>>  	}
+>>  }
+>>=20=20
+>> --=20
+>> 2.39.2
 
-Quick note: I love what you did with drm client and drm fbdev. Thanks
-a lot for that work!
-
-Reviewed-by: Zack Rusin <zack.rusin@broadcom.com>
-
-z
+--=20
+Jani Nikula, Intel
