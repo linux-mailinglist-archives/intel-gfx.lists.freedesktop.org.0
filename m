@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F7197191B
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50EDA971920
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:16:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C575510E4EC;
-	Mon,  9 Sep 2024 12:16:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D21E010E4F5;
+	Mon,  9 Sep 2024 12:16:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VQj+aXe4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nGLv2Whk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6561310E4B2;
- Mon,  9 Sep 2024 12:16:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC4710E4A7;
+ Mon,  9 Sep 2024 12:16:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725884185; x=1757420185;
+ t=1725884190; x=1757420190;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YdXEn9DEtbBTIISR3SJsZDp/BPWLCN4ZWX+GK/WLABU=;
- b=VQj+aXe40YMH3lxGj/UJOIx+TDVNk7LHY6Mc1/v6lkQQkT+Sd2GfJx/O
- ovMIK4+bFcoOGV8mhswmgJfh7bBPjuNZRBzj39uBiwg4vnYK4bL4ZoGC0
- M8NJ8ByAfia77M9Hl9Yftv6I5q6ikSopfSsbgFPkuyQaWGIRA7lZ9YzYJ
- iL4kAWFkNoU0XzYERNZzeDyb4xlryF9YsVsHHo7x05ldaEpsCCHYSvvw1
- legMVVJzIbGVq7gMZ3mt6q+xncLS6NZi3ToaLfvaTR697sWmDh/zH/htK
- EGorpibprdFQnRDA3hFnocygncZ7a5yAc+UU8KISgS7H6RZVnCgAd2aun g==;
-X-CSE-ConnectionGUID: JG/GFKeSQimnlw28w1gm+A==
-X-CSE-MsgGUID: F3hZmGLxRAGI153EkZhpPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="35719391"
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="35719391"
+ bh=WrWZc3cnk/4CpP0inKrjykAPx3eGjiRR8tdRZIHPCto=;
+ b=nGLv2Whk0mwcpQZ7qb/WB0k3DhVc4vMy37QplTQRkXGW+4F91LWKSMJ9
+ FxlVcGr9OQuvtwPeWlP8NBnBt2U5jv3bo7QpOOneKx59lpTB7+BKZmWfi
+ NP79G6HFJIoguHZ+dxpdcSAcGO+wz7mLTd2qWY+4KilyTiq7Nsl4juXMk
+ MWmQX28HFc/CT7pSbmbmctnkE0zhCqMAI47KYVdMh/YxP04iTJ+D5jW8x
+ vrvkPwCEQwx4S/RE6RYKQ1ak5aug2kNAScGl333XnQVL7ueGe8aqs1Sq+
+ 60uJeoDz9MmFlNU6PQLhvhGmOcnyqdhpo7+yoOV7io5UWHrk8zbt0X5X7 Q==;
+X-CSE-ConnectionGUID: TMDl+8B8TdefkkR5/xBd+Q==
+X-CSE-MsgGUID: mbbqqsKdRzS7qVnk7ui2ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="35719399"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="35719399"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 05:16:25 -0700
-X-CSE-ConnectionGUID: TB4mVxr1Ql+nxW4MDuUd7A==
-X-CSE-MsgGUID: XDfJsWeSSzmwoFgH/n5gYw==
+ 09 Sep 2024 05:16:30 -0700
+X-CSE-ConnectionGUID: kzVlDKRQQnWHwO/FYTWCNw==
+X-CSE-MsgGUID: GCmMtQGsSxCm+K8/XORdVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="89942938"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="89942964"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.176])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 05:16:23 -0700
+ 09 Sep 2024 05:16:28 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 7/8] drm/i915/pps: add vlv_pps_backlight_initial_pipe()
-Date: Mon,  9 Sep 2024 15:15:42 +0300
-Message-Id: <0bccf9b5062e42834d5ba1d0efcd34d711d8f7c7.1725883885.git.jani.nikula@intel.com>
+Subject: [PATCH v2 8/8] drm/i915/pps: move vlv_active_pipe() to intel_pps.c
+Date: Mon,  9 Sep 2024 15:15:43 +0300
+Message-Id: <0375672599e532984889a9b35bfd67849ca40fad.1725883885.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725883885.git.jani.nikula@intel.com>
 References: <cover.1725883885.git.jani.nikula@intel.com>
@@ -71,86 +71,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add vlv_pps_backlight_initial_pipe() and move the VLV/CHV initial
-backlight pipe logic there, hiding the PPS pipe details inside PPS code.
+All the users for vlv_active_pipe() are within intel_pps.c now, and
+there are already uses of g4x_dp_port_enabled() and intel_dp->output_reg
+in there, so seems fine to reduce interfaces and move vlv_active_pipe()
+to intel_pps.c too.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c  | 16 ++--------------
- drivers/gpu/drm/i915/display/intel_pps.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_pps.h |  1 +
- 3 files changed, 23 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_dp.c    | 14 --------------
+ drivers/gpu/drm/i915/display/g4x_dp.h    |  5 -----
+ drivers/gpu/drm/i915/display/intel_pps.c | 14 ++++++++++++++
+ 3 files changed, 14 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f0866ddc707e..e0f093ebcb3d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6605,20 +6605,8 @@ static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	enum pipe pipe = INVALID_PIPE;
- 
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
--		/*
--		 * Figure out the current pipe for the initial backlight setup.
--		 * If the current pipe isn't valid, try the PPS pipe, and if that
--		 * fails just assume pipe A.
--		 */
--		pipe = vlv_active_pipe(intel_dp);
--
--		if (pipe != PIPE_A && pipe != PIPE_B)
--			pipe = intel_dp->pps.vlv_pps_pipe;
--
--		if (pipe != PIPE_A && pipe != PIPE_B)
--			pipe = PIPE_A;
--	}
-+	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-+		pipe = vlv_pps_backlight_initial_pipe(intel_dp);
- 
- 	intel_backlight_setup(connector, pipe);
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 796ec2244a4d..14bd23c89742 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -1245,20 +1245,6 @@ static void intel_dp_encoder_destroy(struct drm_encoder *encoder)
+ 	kfree(enc_to_dig_port(to_intel_encoder(encoder)));
  }
+ 
+-enum pipe vlv_active_pipe(struct intel_dp *intel_dp)
+-{
+-	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+-	enum pipe pipe;
+-
+-	if (g4x_dp_port_enabled(dev_priv, intel_dp->output_reg,
+-				encoder->port, &pipe))
+-		return pipe;
+-
+-	return INVALID_PIPE;
+-}
+-
+ static void intel_dp_encoder_reset(struct drm_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder->dev);
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.h b/drivers/gpu/drm/i915/display/g4x_dp.h
+index a10638ab749c..c75e64ae79b7 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.h
++++ b/drivers/gpu/drm/i915/display/g4x_dp.h
+@@ -19,7 +19,6 @@ struct intel_encoder;
+ 
+ #ifdef I915
+ const struct dpll *vlv_get_dpll(struct drm_i915_private *i915);
+-enum pipe vlv_active_pipe(struct intel_dp *intel_dp);
+ void g4x_dp_set_clock(struct intel_encoder *encoder,
+ 		      struct intel_crtc_state *pipe_config);
+ bool g4x_dp_port_enabled(struct drm_i915_private *dev_priv,
+@@ -32,10 +31,6 @@ static inline const struct dpll *vlv_get_dpll(struct drm_i915_private *i915)
+ {
+ 	return NULL;
+ }
+-static inline int vlv_active_pipe(struct intel_dp *intel_dp)
+-{
+-	return 0;
+-}
+ static inline void g4x_dp_set_clock(struct intel_encoder *encoder,
+ 				    struct intel_crtc_state *pipe_config)
+ {
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index c91d14face20..2fe23238c8a3 100644
+index 2fe23238c8a3..b8612a3cb5cc 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.c
 +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1227,6 +1227,26 @@ void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
- 		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+@@ -1211,6 +1211,20 @@ static void vlv_steal_power_sequencer(struct intel_display *display,
+ 	}
  }
  
-+enum pipe vlv_pps_backlight_initial_pipe(struct intel_dp *intel_dp)
++static enum pipe vlv_active_pipe(struct intel_dp *intel_dp)
 +{
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
 +	enum pipe pipe;
 +
-+	/*
-+	 * Figure out the current pipe for the initial backlight setup. If the
-+	 * current pipe isn't valid, try the PPS pipe, and if that fails just
-+	 * assume pipe A.
-+	 */
-+	pipe = vlv_active_pipe(intel_dp);
++	if (g4x_dp_port_enabled(dev_priv, intel_dp->output_reg,
++				encoder->port, &pipe))
++		return pipe;
 +
-+	if (pipe != PIPE_A && pipe != PIPE_B)
-+		pipe = intel_dp->pps.vlv_pps_pipe;
-+
-+	if (pipe != PIPE_A && pipe != PIPE_B)
-+		pipe = PIPE_A;
-+
-+	return pipe;
++	return INVALID_PIPE;
 +}
 +
  /* Call on all DP, not just eDP */
- void vlv_pps_port_enable(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index b57a0c448e6c..24fc47ff9951 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.h
-+++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -48,6 +48,7 @@ void intel_pps_reset_all(struct intel_display *display);
- 
- void vlv_pps_pipe_init(struct intel_dp *intel_dp);
- void vlv_pps_pipe_reset(struct intel_dp *intel_dp);
-+enum pipe vlv_pps_backlight_initial_pipe(struct intel_dp *intel_dp);
- void vlv_pps_port_enable(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *crtc_state);
- void vlv_pps_port_disable(struct intel_encoder *encoder,
+ void vlv_pps_pipe_init(struct intel_dp *intel_dp)
+ {
 -- 
 2.39.2
 
