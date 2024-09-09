@@ -2,73 +2,189 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC9E971148
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 10:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CAA8971227
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 10:33:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09FE710E2B7;
-	Mon,  9 Sep 2024 08:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E124210E329;
+	Mon,  9 Sep 2024 08:33:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="jkMqUL2p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LKM0EaGw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 514 seconds by postgrey-1.36 at gabe;
- Mon, 09 Sep 2024 08:11:08 UTC
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E3C10E2B7
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 08:11:08 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id D4C8240E0284; 
- Mon,  9 Sep 2024 08:02:30 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id BubQY1UG0zYB; Mon,  9 Sep 2024 08:02:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1725868944; bh=z3avvgf0RPSwKTwCWWF/4sM2ZNrDEy7cyjOWOIK1NG4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jkMqUL2pn4sM+04ZqI3ZX+K3H4IbKgDImk8IaBVMxdfs1ph0JbWJjmMf+yJD+yVkY
- l7D5eR9HZ7shm5PvrcEYD6B4IAOytj0Pj0P185GbFKZ2hZTCu0+bQfrO23Y6rbtVKl
- u08GNg4Svn5rvW+aYu0YaCpfAdyouCjrhswZVdVXfTRrHvdczKZFxnNuvGXssW0mDs
- 5g9yncujn+Jc0lMStaSszMnJhost3vk8JTDz3sLgh2JFJMOfoGv4EtsIk5U6LinwoN
- LhuOKXQ/dswn2JJDj74FSRMpn0hJiEJqYjiZ/0S02GvADaMVFWtWgnV7jVxWpvAsyD
- 3+2POqtkrNrZbFD8URiG4rmQup37zReSD+X76JagfDh9Xj7UayKPK24rHqPK8mERvB
- 54bA16wXWuuHiF0KFgbco8sH1eR4Olrizzs7fM1rCKdI28U57NdMfCCEy9Lorwdh7Y
- P1UHdZEE0WcAVK5NkPpyQQvbzWgjiDuyqWPnbsfl2BVOrtZPtfAaNLY9DzOwbj3R1n
- 0R7BKj1k+HPQoePR/XQk7iwjHV0wK2pjKz+VZQxnvbMuVWQDEKXt2A01x/lZlL1YL7
- QPMiqH0wFcw2t7bT0/Pb2dw6LIB0zDXl/ntNDGkKl1dks217ueT6KarHPxI/ROGK6i
- +1XN6NhXhT7RLo3NxaFQtmgM=
-Received: from zn.tnic (p5de8e8eb.dip0.t-ipconnect.de [93.232.232.235])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 9D80F40E0198;
- Mon,  9 Sep 2024 08:02:07 +0000 (UTC)
-Date: Mon, 9 Sep 2024 10:02:00 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Hugues Bruant <hugues.bruant@gmail.com>
-Cc: stable@vger.kernel.org, regressions@lists.linux.dev,
- linux-kernel@vger.kernel.org, Fenghua Yu <fenghua.yu@intel.com>,
- Reinette Chatre <reinette.chatre@intel.com>,
- Tony Luck <tony.luck@intel.com>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Brian Norris <briannorris@chromium.org>,
- Julius Werner <jwerner@chromium.org>, chrome-platform@lists.linux.dev,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [REGRESSION] soft lockup on boot starting with kernel 6.10 /
- commit 5186ba33234c9a90833f7c93ce7de80e25fac6f5
-Message-ID: <20240909080200.GAZt6reI9c98c9S_Xc@fat_crate.local>
-References: <CALvjV29jozswRtmYxDur2TuEQ=1JSDrM+uWVHmghW3hG5Y9F+w@mail.gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFAEA10E329
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Sep 2024 08:33:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1725870790; x=1757406790;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=D/NH3fXGgizN694UvzGjxq+394ua7B76+4CbyS8mhMo=;
+ b=LKM0EaGw/ybTjQoTU2w2s1cxuwEZzE+CwQLRMDnECwuj+72OHgxug57S
+ F/X2uWX1i6VcunFOyMVMUnE3KuZ3Pezbd6G34KKMqQ5tVxnt0g0cFXqNF
+ 3am6BcQwPxX7EhK/zidm0uaD+WPrdVwy0ljcZSntoYAe8DQlIx4HGvRBH
+ HwkvMbOok4TvOgiLNs+AITk+Y9yt0ngF/siutcApGlvyrnF0otljw5UYG
+ 0ybrE1alvWMKrzaGLKQj5G6BV1aWjmb9GXH6D16pM0415loRnCMHLQ8B3
+ 3yCX1ARLThFFrLpwOhtva48P2x5ncBAXaPJz6gm9RJ9zlBxizSw8bYyI+ w==;
+X-CSE-ConnectionGUID: QOMg49TzQbKyhSY4s2blPw==
+X-CSE-MsgGUID: DjP8vFlORuqYBtQBNmETjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="35219012"
+X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; d="scan'208";a="35219012"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 01:31:48 -0700
+X-CSE-ConnectionGUID: PyRhkeNgR8uDf7xTnOQsSA==
+X-CSE-MsgGUID: fWi2YaJKRV+fqKRczxrh+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,213,1719903600"; d="scan'208";a="66227889"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 09 Sep 2024 01:31:47 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 9 Sep 2024 01:31:46 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 9 Sep 2024 01:31:46 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 9 Sep 2024 01:31:46 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 9 Sep 2024 01:31:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Roi47YXUXBn4NkEpRDjtQfK2qv/vRKQSoeMk/H8oRHn1bbUQETyYVVIQVQpGKc0vHa0HpWTaIA8OzUtDUayvG1HYnjyWQPb9UXQ1QG9C6hgIAnaH3TEM82jptLrwOFmm+L+j2qz5AsO889cVIJ2IvdGOIkKM/dDjlVe16OEgTSSnsmeHlhUIveXMRp14E1g33TIKpp1eCh6DCLH3TNu34HSjJT8vGLfKi/i7eusiTiPqu/g/aICZKS1z/yF0cAF8lB9EjQOy6yGmJSF9oOr2xJuGATD6hZJJ4qKHeKmOvhZ8ZLWsGR9ONbC6dD3s8mfFCsvLYgDHZTbW+YB9Bu+1yQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MfoKRfL275+i5TbK4ZbNj0+OEwStS6SQOLGEzcs61zg=;
+ b=ZbvOR6aOv5WWbhOr5FPIAnabwD2yLc1rJcBDv1bcn+KyQKjAqkXdFBQPB+xCKnlSCoySoaRtCqkQcOmkQ2I/ocvehzgwa8PxEoMC/QRfEwjfo5P+5J/ezQrQYzUWOC3FDjCaZDjUXvHtCw2yrbiRLOsgrvT4SnEUDEBZg7FbghWzghNsGwbxjArw0kQTioeubw49ednGcLL0QHgtudwkdtfS8WvujZjuUnSq2iDAMK4Dr5m58b1rIF5uXrex5IeSBElj2Z3RQD8ssvPfN6KiI2E9PpvFNLB47v8dDhYKXK5xYmPm4ZrxTGzfVqVEdzO+iPOYK/q1lmZwAwBgh3STUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by DS0PR11MB7927.namprd11.prod.outlook.com (2603:10b6:8:fd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Mon, 9 Sep
+ 2024 08:31:43 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.7918.024; Mon, 9 Sep 2024
+ 08:31:43 +0000
+Message-ID: <fa3186d3-a275-4475-9f02-e219503f954e@intel.com>
+Date: Mon, 9 Sep 2024 14:01:35 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/14] drm/i915: Add bigjoiner and uncompressed joiner hw
+ readout sanity checks
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <jani.saarinen@intel.com>
+References: <20240906125807.3960642-1-ankit.k.nautiyal@intel.com>
+ <20240906125807.3960642-8-ankit.k.nautiyal@intel.com>
+ <ZtsiFvgj6_GAu26S@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <ZtsiFvgj6_GAu26S@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN0PR01CA0044.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:49::19) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CALvjV29jozswRtmYxDur2TuEQ=1JSDrM+uWVHmghW3hG5Y9F+w@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS0PR11MB7927:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8da4d5ee-fba8-4407-47bf-08dcd0a9d58c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZElUdG4wWjNrcnpQdjNlWlFoazM5NkdwMXk4cWVJcHF2NlVzTjhyckJ4TUpV?=
+ =?utf-8?B?VnU2eWlnOW5ENWd3Zmt3ekdjMzltR3FrK2x5YW9NY1JTSUw0VFhWUFhTRWlv?=
+ =?utf-8?B?K2Z5VklvT05tajZUZVRQOHVVbnN6NUUybW9ITUJ1RTlCYjhra0grdmFNQksv?=
+ =?utf-8?B?d0dPRmdqWXhUcTIxME5teVNXMXZRRDJCR0l0eW9MOTc1aHJSZ3dEOW53bG45?=
+ =?utf-8?B?Tm9pMnJrdDYrcCt6bG5EeHFnNlRnVjBXYW9RQ01FZ09qZ2hYSjRpMFdiZVZk?=
+ =?utf-8?B?aE5IV1drN2FBcWI5dm9nVW0xUUV0aDM1OWZLaklwYy9PMlluMUFPMld4VGhY?=
+ =?utf-8?B?YVZSaG5qNk8vN0h2RFN4TnNKV3MyNmI2bTgzSk9uRmxtM0hhZkJFQXFBbGlY?=
+ =?utf-8?B?YnFNTjlhMTBaVFdTOFNMaWg1ZnVwbExyZkNmUmJxZitsYkFVNEIydmhVWTNk?=
+ =?utf-8?B?Tk5zYU5WbVFoK2dxYzgwT2JrM0pURHgzMG5DdlMyR0xPWms1c2NNZnhTVTd0?=
+ =?utf-8?B?Y2JrR1JxRnNHVGIxVktEZzhBd2Jpc2FlbkNFanlJOUdTVzNXcURpblkzS3Nn?=
+ =?utf-8?B?cGNKS0FxaUw3NkNWb01WRm4rL2JMU3BoUWhQSzFybGpYQ1BSUVROalRpbnlv?=
+ =?utf-8?B?dCtTa0RPTGprd3R3b21pUFA1Y2hKUmhsOVl0UUdzUXFFMythTGpqODhDUzc4?=
+ =?utf-8?B?d213ZGdmTWV6dnBOZUdySmV5dTU3d1IrZ2owZ0dQZlRic2ZyekxEK2l1YTZR?=
+ =?utf-8?B?K1F1MWx0WmJpZ0gzWW5ONjRBU0tWT1NFVHdqSUk2LzFtRE9GRFdUaURCYnN4?=
+ =?utf-8?B?UGo1Z05vaEVUQXdNTkEyR3phNEEzbmt4WTlteGt6ZEpSTlkvZG5zc1c1a3F0?=
+ =?utf-8?B?T2VqazNHTXBOdHJMZ0Y1TkZhSmdPRElobldJOWs0S3JWZHBFV1ZTcWVneUxI?=
+ =?utf-8?B?OGdmUk5jTnd4RUdYMEpOMkhNMlNacTVMeHR0cVlwcldNOUlSak9QcTZHcHFK?=
+ =?utf-8?B?Wk9reWJ5UDZwSFVmWWRDSDY2eE9hQXM2aWtjWG4wN1pkeTVONW1GSi8rQ1VK?=
+ =?utf-8?B?cmRiamVOdXNsejlEL1ppVWxvYUZmN1A0UEhFemVxdzJjdTZqenlydFBtQzN0?=
+ =?utf-8?B?Q0tHQkt5SWMyWEpRR1NEalJZQi9IbzJsUi9DNHFiby83dFlzWXczTzRXcUxY?=
+ =?utf-8?B?VEFuWHd4eloyWEtUM0VhVWg5ZWxaZVg2eGRiZytoUnI5TDk3eVdIMWV5YW9i?=
+ =?utf-8?B?bXoxelUvM0JTK0M1UTdDazgvYkRoL3paTEdUQVhXc0pManNDZHJoMFJRQ2hL?=
+ =?utf-8?B?c0NoOGI0WnlycitEYWwzejEwRUgzL1ZkKzYydVdsSHNmOFlBS1lwQ2E0dG5W?=
+ =?utf-8?B?Wmd5SUJ2Q0thZjBjclR0ZHUyWWkrZ2RMV0JEdHFYWS8wZW9FUGNJUVZidTZF?=
+ =?utf-8?B?ZExOdm1wcUp3Y2p0TkVqOE9BMjl1Y0RRMnVIRktuUVRrRjBTMTRxYlMxekRX?=
+ =?utf-8?B?TEZNZ1lKTXZnUTFVVHBTN0NMb2QwRnJLQzM1RHpRc2tsTTl6dUxVbHhUM0Ry?=
+ =?utf-8?B?dzBhV09iYm5qTGErREErcnRoSExYUm56YTJkamdKVTJBMndRL0l1V3lJbFU5?=
+ =?utf-8?B?YzB4bkFhVVN6TkpjaHhVMGt4SFdnUC9Lc2VxT3gwNjR4eWNxc2crZ1gxNWQ2?=
+ =?utf-8?B?VG9Ld3cyNHhjb3NYV2twVTRaMTgyNHdFWGJSTnQrNk92M3oxWmVmaXhnNHE2?=
+ =?utf-8?B?MFBFdW44M0JLdDJyV2FDMU9KeTg1UklyUG5xTDhSeVlRK3dIRTJkT1FKbEtq?=
+ =?utf-8?B?M0RzT1dHTmQ0STUwcFhuZz09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHpQUjRRSDNlS3IxT0tKZzcvUjNMcDhlb2lSblpJcDc2ci9hRXg0cG1WbHdt?=
+ =?utf-8?B?ODM4cVZkQ2hxVHVaQXVCajk1UGs1eXIwaWs1aFdNOVU4Qjk0cGlaeVAxQWJK?=
+ =?utf-8?B?cVoxQWFCcjRiN0svS3JyekEwcXMyQUN1aDd4Qm5LQTB6WjV5ZHdTek1PYTN0?=
+ =?utf-8?B?VW9KSXRvSEVDT0RYTkVFd3RGcm5ZUDBPNGMxMG5jNU5hQ1RRRlY0aFhOdzN3?=
+ =?utf-8?B?SFJVNFRDNW1yZ3VPOHA0R0pmUm9QamxTSGw0NnFsMU8renBJcUhUTGlxUkd6?=
+ =?utf-8?B?R2tFQXhTOGt4Q0h2WmtjV0JVMGZvSkZZNy9JZ3hnRUpIQXowY0FsUGpSYlZo?=
+ =?utf-8?B?cnFWeGJWcDkwbklLeFpkTERMUk1kdHg1RTU0MTUrOHZVZjZzTWpLT1RVZlI1?=
+ =?utf-8?B?cmFycHhjU0krRUFPdWo2ZkJMS2VRcjdZSWE2RklhbXVhc2tsMmpaQ3IyWjZl?=
+ =?utf-8?B?VUk1OFF1RTZnd1BuV09zYStKcDZONGVaaEJSVGpTcHErMm9weVlveXptTVpj?=
+ =?utf-8?B?VWVHcjhuOTNCSVVSTlAreC9QVEoySXJYanNONmRjTjJQaHdPanN4V0tUMlVt?=
+ =?utf-8?B?ZitDeE9SUU9ZbDRCQ2xZeWd4MDE5OEVQVVVBRDY0ZGFoNy90UVgwT2haM25J?=
+ =?utf-8?B?V3crMGdDR0xlVkhMamhjQmxsblh1NjBVWVh2SlFvdjkyaGtyS0VCREtYVXY1?=
+ =?utf-8?B?a001N3IvTURyY0dHN3pUazRNR2JKZ0NPR3hIT0FmRlBEclozMzhKOVJyS2pY?=
+ =?utf-8?B?U3dXcStZTm9zZFpiTUdKUVN3VVp0d0hOc0tvVTArWFBwOGZKcEN1aWZ0UDBa?=
+ =?utf-8?B?Y0RySEw3RUxwT0libDQrWGJFdHI2cnVIbGlEamQ4OGNSRFhCdDFrNVl4Yy9m?=
+ =?utf-8?B?UDRTN3hvdjExV2RwRGlGNkpKMURqQmZRd0YrL3JoVXh0bmxoU3NTSEk2bnUw?=
+ =?utf-8?B?L0FqdnB4OU1LcjluaTNJZUVqdk1KcHQ4Z1Y0YWFqV2s3d3N1VmZzUnZZMFow?=
+ =?utf-8?B?Ujd5d3p6UzhCelc3eTJrYkVzSkZQNlJVZDYrbzBEY2NxZlNwNzQ1U3pPUmhz?=
+ =?utf-8?B?UnhUZE1kR2oxcm9RanRzNDRMeTlLYWlzWXdIQy9ySEVFL0pyb2JvNXJ4UmpF?=
+ =?utf-8?B?TUcwQVNYUnFhMGN4SEh6WmNRUStCeUZKbTlYVitEUWVuR3ZlWHNVUnM5N0hZ?=
+ =?utf-8?B?SFF4UGNVRVhwcGoxZ0NzVW91THA4M0tsdVRLY3piaXkrNytKTFhyVW1LbmEw?=
+ =?utf-8?B?VXJpbUI4VFNtSUx4cW5vN2VFd3gwZis3WSt3dnNIUFlZZnJLcnJSSC9HaHQ2?=
+ =?utf-8?B?ZXFDQ3JIWjloanV5dlNnNVA5OHFkZU1uTGJ0endJQ01MWW9nUmxIUGhOTmJl?=
+ =?utf-8?B?ckhtek5HZzVPYzJGUld0ZCtpRG9ZdElsTHpVTE1MK0ZPbUxkaGNPcVppenNl?=
+ =?utf-8?B?OG1aNFlIQVdzNDVncVltZzVYU2p1cUxlcmFlUkRwd3RZRzRKU29pZ1dPNzRj?=
+ =?utf-8?B?SjlIQkVQWVlnUnRJOFcrM3ZRM2pDTTkvcGZzQzFpYllYdzEzWFV2bUVBVHdH?=
+ =?utf-8?B?a1J0MjVvbHl2VnZYUTdUZzRSSUpPWGh2MGF5M3ZUT1lWTkI5YzBjOUR0VDF3?=
+ =?utf-8?B?YkNaVldMVGlaUjIxM2plQkUxbXRseWwyWjNDa2ZtZ2VmZFdvSFk0d0pYL2l3?=
+ =?utf-8?B?aEw0YjZYQXVQdUxueEdhckRVdzl0WTRjeno1YXFNN0w4ZDhEM0NXV01TM2hj?=
+ =?utf-8?B?Qk1JV0ZLRUdFbFZ0RTQ1VGE3WHNPSTRPazk0VXBqVFJROUg2eDk5MzZEZEkz?=
+ =?utf-8?B?NmF4Rm9EdTJoUVlOSGR6bklYUnI3OStrTTJhdG5ITjJ5VjhpSHhKYzRVdnlD?=
+ =?utf-8?B?cEJUcldmaGFhN0xlcnRud3J4ZHM3dW92OXBBY0NmOXpLZ3FzQVNHZVpBS0pH?=
+ =?utf-8?B?L2RNTlgyT0dpOVcvZUpoSzNwSlZGV2o4R0lzbDB2TFFBTzZCaDA3MEU3cCtO?=
+ =?utf-8?B?RzhnaDd2THRoWkpuZVdqc1hLbXZaNmg4b0hZWkJHcFYxK21kN3RZeVVVM0J3?=
+ =?utf-8?B?dEE4ODNZVzJydWtsNWhEV2pTQVlXUkNReFMrQk01UkNOSEZpR0hqblZna1Vr?=
+ =?utf-8?B?RDRvRWZtaUNGc01XQkZieW1zd2xWSllwbFc4Tks4bmFLZ3ZPbkRzTnlXdStt?=
+ =?utf-8?B?UHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8da4d5ee-fba8-4407-47bf-08dcd0a9d58c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2024 08:31:43.1617 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vxwkPEsfL2aRpXL7i6m3idd+RA8kiwrO83GSQaOcfl7WB3kauOgEIybHC6ESJIhQVRkP7Cqq2cCdpDq+G4pmhdJSqFtHeZL7x1GaEZXHvho=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7927
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,211 +200,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Sep 08, 2024 at 11:53:56PM -0700, Hugues Bruant wrote:
-> Hi,
->=20
-> I have discovered a 100% reliable soft lockup on boot on my laptop:
-> Purism Librem 14, Intel Core i7-10710U, 48Gb RAM, Samsung Evo Plus 970
-> SSD, CoreBoot BIOS, grub bootloader, Arch Linux.
->=20
-> The last working release is kernel 6.9.10, every release from 6.10
-> onwards reliably exhibit the issue, which, based on journalctl logs,
-> seems to be triggered somewhere in systemd-udev:
-> https://gitlab.archlinux.org/-/project/42594/uploads/04583baf22189a0a8bb2=
-f8773096e013/lockup.log
->=20
-> Bisect points to commit 5186ba33234c9a90833f7c93ce7de80e25fac6f5
 
-That's a merge commit. Meaning, the bisection likely went into the wrong
-direction.
+On 9/6/2024 9:09 PM, Ville Syrjälä wrote:
+> On Fri, Sep 06, 2024 at 06:28:00PM +0530, Ankit Nautiyal wrote:
+>> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>>
+>> Adding sanity checks for primary and secondary bigjoiner/uncompressed
+>> bitmasks, should make it easier to spot possible issues.
+>>
+>> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+>> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 24 ++++++++++++++++++++
+>>   1 file changed, 24 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index cdc7531311fc..6f098383479f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -3638,11 +3638,17 @@ static void enabled_bigjoiner_pipes(struct drm_i915_private *dev_priv,
+>>   	}
+>>   }
+>>   
+>> +static u8 expected_secondary_pipes(u8 primary_pipes)
+>> +{
+>> +	return primary_pipes << 1;
+>> +}
+> Extracting this should be a separate patch really since it
+> was already in the code until the previous patch erroneously
+> removed it.
 
-Looking at your log, the first warn is in framebuffer_coreboot. Some mess in
-the sysfs platform devices registration.
+Sure, will move this to another patch.
 
-Adding the relevant people for that:
 
-Aug 20 20:29:36 luna kernel: sysfs: cannot create duplicate filename '/bus/=
-platform/devices/simple-framebuffer.0'
-Aug 20 20:29:36 luna kernel: CPU: 5 PID: 571 Comm: (udev-worker) Tainted: G=
-           OE      6.10.6-arch1-1 #1 703d152c24f1971e36f16e505405e456fc9e23=
-f8
-Aug 20 20:29:36 luna kernel: Hardware name: Purism Librem 14/Librem 14, BIO=
-S 4.14-Purism-1 06/18/2021
-Aug 20 20:29:36 luna kernel: Call Trace:
-Aug 20 20:29:36 luna kernel:  <TASK>
-Aug 20 20:29:36 luna kernel:  dump_stack_lvl+0x5d/0x80
-Aug 20 20:29:36 luna kernel:  sysfs_warn_dup.cold+0x17/0x23
-Aug 20 20:29:36 luna kernel:  sysfs_do_create_link_sd+0xcf/0xe0
-Aug 20 20:29:36 luna kernel:  bus_add_device+0x6b/0x130
-Aug 20 20:29:36 luna kernel:  device_add+0x3b3/0x870
-Aug 20 20:29:36 luna kernel:  platform_device_add+0xed/0x250
-Aug 20 20:29:36 luna kernel:  platform_device_register_full+0xbb/0x140
-Aug 20 20:29:36 luna kernel:  platform_device_register_resndata.constprop.0=
-+0x54/0x80 [framebuffer_coreboot a587d2fc243ebaa0205c3badd33442a004d284e0]
-Aug 20 20:29:36 luna kernel:  framebuffer_probe+0x165/0x1b0 [framebuffer_co=
-reboot a587d2fc243ebaa0205c3badd33442a004d284e0]
-Aug 20 20:29:36 luna kernel:  really_probe+0xdb/0x340
-Aug 20 20:29:36 luna kernel:  ? pm_runtime_barrier+0x54/0x90
-Aug 20 20:29:36 luna kernel:  ? __pfx___driver_attach+0x10/0x10
-Aug 20 20:29:36 luna kernel:  __driver_probe_device+0x78/0x110
-Aug 20 20:29:36 luna kernel:  driver_probe_device+0x1f/0xa0
-Aug 20 20:29:36 luna kernel:  __driver_attach+0xba/0x1c0
-Aug 20 20:29:36 luna kernel:  bus_for_each_dev+0x8c/0xe0
-Aug 20 20:29:36 luna kernel:  bus_add_driver+0x112/0x1f0
-Aug 20 20:29:36 luna kernel:  driver_register+0x72/0xd0
-Aug 20 20:29:36 luna kernel:  ? __pfx_framebuffer_driver_init+0x10/0x10 [fr=
-amebuffer_coreboot a587d2fc243ebaa0205c3badd33442a004d284e0]
-Aug 20 20:29:36 luna kernel:  do_one_initcall+0x58/0x310
-Aug 20 20:29:36 luna kernel:  do_init_module+0x60/0x220
-Aug 20 20:29:36 luna kernel:  init_module_from_file+0x89/0xe0
-Aug 20 20:29:36 luna kernel:  idempotent_init_module+0x121/0x320
-Aug 20 20:29:36 luna kernel:  __x64_sys_finit_module+0x5e/0xb0
-Aug 20 20:29:36 luna kernel:  do_syscall_64+0x82/0x190
-Aug 20 20:29:36 luna kernel:  ? __do_sys_newfstatat+0x3c/0x80
-Aug 20 20:29:36 luna kernel:  ? syscall_exit_to_user_mode+0x72/0x200
-Aug 20 20:29:36 luna kernel:  ? do_syscall_64+0x8e/0x190
-Aug 20 20:29:36 luna kernel:  ? do_sys_openat2+0x9c/0xe0
-Aug 20 20:29:36 luna kernel:  ? syscall_exit_to_user_mode+0x72/0x200
-Aug 20 20:29:36 luna kernel:  ? do_syscall_64+0x8e/0x190
-Aug 20 20:29:36 luna kernel:  ? clear_bhb_loop+0x25/0x80
-Aug 20 20:29:36 luna kernel:  ? clear_bhb_loop+0x25/0x80
-Aug 20 20:29:36 luna kernel:  ? clear_bhb_loop+0x25/0x80
-Aug 20 20:29:36 luna kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-Aug 20 20:29:36 luna kernel: RIP: 0033:0x7b1bee2f81fd
+>
+>> +
+>>   static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+>>   				 u8 *primary_pipes, u8 *secondary_pipes)
+>>   {
+>>   	u8 primary_uncompressed_joiner_pipes, primary_bigjoiner_pipes;
+>>   	u8 secondary_uncompressed_joiner_pipes, secondary_bigjoiner_pipes;
+>> +	u8 uncompressed_joiner_pipes, bigjoiner_pipes;
+>>   
+>>   	enabled_uncompressed_joiner_pipes(dev_priv, &primary_uncompressed_joiner_pipes,
+>>   					  &secondary_uncompressed_joiner_pipes);
+>> @@ -3650,6 +3656,24 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+>>   	enabled_bigjoiner_pipes(dev_priv, &primary_bigjoiner_pipes,
+>>   				&secondary_bigjoiner_pipes);
+>>   
+>> +	uncompressed_joiner_pipes = primary_uncompressed_joiner_pipes |
+>> +				    secondary_uncompressed_joiner_pipes;
+>> +	bigjoiner_pipes = primary_bigjoiner_pipes | secondary_bigjoiner_pipes;
+>> +
+>> +	drm_WARN(&dev_priv->drm, (uncompressed_joiner_pipes & bigjoiner_pipes) != 0,
+>> +		 "Uncomressed joiner pipes(%x) and bigjoiner pipes(%x) can't intersect\n",
+>> +		 uncompressed_joiner_pipes, bigjoiner_pipes);
+> Please use 0x%x for printing hex numbers
+>
+> Side note: maybe we should switch to the standard %#x instead?
+> Though we'd need to double check whether prink() follows the
+> idiotic C standard or not:
+>   printf("%#x", 1) -> 0x1, for any non-zero value
+>   bs.
+>   printf("%#x", 0) -> 0 (sigh)
+>
+> If printk() behaves the same way then I want to see %#x anywhere
+> (pretty sure we do use it in a few places already though).
 
-The real issue is in i915 however.
+I will check how %#x behaves with 0 with printk, accordingly will use 
+0x%x or %x#x, (we do use it in some places).
 
-However, you have out-of-tree modules. Try reproducing it without them.
+Regards,
 
-Adding i915 people too.
+Ankit
 
-Aug 20 20:29:37 luna kernel: resource: Trying to free nonexistent resource =
-<0x00000000a0000000-0x00000000a0257fff>
-Aug 20 20:29:37 luna kernel: BUG: unable to handle page fault for address: =
-0000000300000031
-Aug 20 20:29:37 luna kernel: #PF: supervisor read access in kernel mode
-Aug 20 20:29:37 luna kernel: #PF: error_code(0x0000) - not-present page
-Aug 20 20:29:37 luna kernel: PGD 0 P4D 0=20
-Aug 20 20:29:37 luna kernel: Oops: Oops: 0000 [#1] PREEMPT SMP NOPTI
-Aug 20 20:29:37 luna kernel: CPU: 9 PID: 552 Comm: (udev-worker) Tainted: G=
-           OE      6.10.6-arch1-1 #1 703d152c24f1971e36f16e505405e456fc9e23=
-f8
-Aug 20 20:29:37 luna kernel: Hardware name: Purism Librem 14/Librem 14, BIO=
-S 4.14-Purism-1 06/18/2021
-Aug 20 20:29:37 luna kernel: RIP: 0010:__release_resource+0x34/0xb0
-Aug 20 20:29:37 luna kernel: Code: 8d 50 38 48 8b 40 38 48 85 c0 75 27 eb 6=
-a 66 66 2e 0f 1f 84 00 00 00 00 00 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 4=
-8 8d 50 30 <48> 8b 40 30 48 85 c0 74 45 48 39 c7 75 ee 40 84 f6 75 45 48 8b=
- 4f
-Aug 20 20:29:37 luna kernel: RSP: 0018:ffffb30dc207f930 EFLAGS: 00010296
-Aug 20 20:29:37 luna kernel: RAX: 0000000300000001 RBX: ffff8fa34616e900 RC=
-X: ffff8fa3424aac50
-Aug 20 20:29:37 luna kernel: RDX: 0000000300000031 RSI: 0000000000000001 RD=
-I: ffff8fa34616e900
-Aug 20 20:29:37 luna kernel: RBP: ffff8fa3460e1400 R08: ffff8fa3424a97b8 R0=
-9: 0000000000000000
-Aug 20 20:29:37 luna kernel: R10: 0000000000000000 R11: 0000000000000000 R1=
-2: ffff8fa341671000
-Aug 20 20:29:37 luna kernel: R13: 0000000000000000 R14: ffff8fa3416710c8 R1=
-5: ffff8fa341671000
-Aug 20 20:29:37 luna kernel: FS:  00007b1bee0eb880(0000) GS:ffff8fae6e48000=
-0(0000) knlGS:0000000000000000
-Aug 20 20:29:37 luna kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050=
-033
-Aug 20 20:29:37 luna kernel: CR2: 0000000300000031 CR3: 0000000103924002 CR=
-4: 00000000003706f0
-Aug 20 20:29:37 luna kernel: Call Trace:
-Aug 20 20:29:37 luna kernel:  <TASK>
-Aug 20 20:29:37 luna kernel:  ? __die_body.cold+0x19/0x27
-Aug 20 20:29:37 luna kernel:  ? page_fault_oops+0x15a/0x2d0
-Aug 20 20:29:37 luna kernel:  ? exc_page_fault+0x81/0x190
-Aug 20 20:29:37 luna kernel:  ? asm_exc_page_fault+0x26/0x30
-Aug 20 20:29:37 luna kernel:  ? __release_resource+0x34/0xb0
-Aug 20 20:29:37 luna kernel:  release_resource+0x26/0x40
-Aug 20 20:29:37 luna kernel:  platform_device_del+0x51/0x90
-Aug 20 20:29:37 luna kernel:  platform_device_unregister+0x12/0x30
-Aug 20 20:29:37 luna kernel:  sysfb_disable+0x2f/0x80
-Aug 20 20:29:37 luna kernel:  aperture_remove_conflicting_pci_devices+0x8c/=
-0xa0
-Aug 20 20:29:37 luna kernel:  i915_driver_probe+0x7c8/0xac0 [i915 6caac5d02=
-e3122d822ca0c852e7e5ed826a3aaea]
-Aug 20 20:29:37 luna kernel:  local_pci_probe+0x42/0x90
-Aug 20 20:29:37 luna kernel:  pci_device_probe+0xbd/0x290
-Aug 20 20:29:37 luna kernel:  ? sysfs_do_create_link_sd+0x6e/0xe0
-Aug 20 20:29:37 luna kernel:  really_probe+0xdb/0x340
-Aug 20 20:29:37 luna kernel:  ? pm_runtime_barrier+0x54/0x90
-Aug 20 20:29:37 luna kernel:  ? __pfx___driver_attach+0x10/0x10
-Aug 20 20:29:37 luna kernel:  __driver_probe_device+0x78/0x110
-Aug 20 20:29:37 luna kernel:  driver_probe_device+0x1f/0xa0
-Aug 20 20:29:37 luna kernel:  __driver_attach+0xba/0x1c0
-Aug 20 20:29:37 luna kernel:  bus_for_each_dev+0x8c/0xe0
-Aug 20 20:29:37 luna kernel:  bus_add_driver+0x112/0x1f0
-Aug 20 20:29:37 luna kernel:  driver_register+0x72/0xd0
-Aug 20 20:29:37 luna kernel:  i915_init+0x23/0x90 [i915 6caac5d02e3122d822c=
-a0c852e7e5ed826a3aaea]
-Aug 20 20:29:37 luna kernel:  ? __pfx_i915_init+0x10/0x10 [i915 6caac5d02e3=
-122d822ca0c852e7e5ed826a3aaea]
-Aug 20 20:29:37 luna kernel:  do_one_initcall+0x58/0x310
-Aug 20 20:29:37 luna kernel:  do_init_module+0x60/0x220
-Aug 20 20:29:37 luna kernel:  init_module_from_file+0x89/0xe0
-Aug 20 20:29:37 luna kernel:  idempotent_init_module+0x121/0x320
-Aug 20 20:29:37 luna kernel:  __x64_sys_finit_module+0x5e/0xb0
-Aug 20 20:29:37 luna kernel:  do_syscall_64+0x82/0x190
-Aug 20 20:29:37 luna kernel:  ? switch_fpu_return+0x4e/0xd0
-Aug 20 20:29:37 luna kernel:  ? syscall_exit_to_user_mode+0x72/0x200
-Aug 20 20:29:37 luna kernel:  ? do_syscall_64+0x8e/0x190
-Aug 20 20:29:37 luna kernel:  ? syscall_exit_to_user_mode+0x72/0x200
-Aug 20 20:29:37 luna kernel:  ? do_syscall_64+0x8e/0x190
-Aug 20 20:29:37 luna kernel:  ? clear_bhb_loop+0x25/0x80
-Aug 20 20:29:37 luna kernel:  ? clear_bhb_loop+0x25/0x80
-Aug 20 20:29:37 luna kernel:  ? clear_bhb_loop+0x25/0x80
-Aug 20 20:29:37 luna kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-Aug 20 20:29:37 luna kernel: RIP: 0033:0x7b1bee2f81fd
-Aug 20 20:29:37 luna kernel: Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f=
-3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 2=
-4 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d e3 fa 0c 00 f7 d8 64 89 01=
- 48
-Aug 20 20:29:37 luna kernel: RSP: 002b:00007ffe062c2ac8 EFLAGS: 00000246 OR=
-IG_RAX: 0000000000000139
-Aug 20 20:29:37 luna kernel: RAX: ffffffffffffffda RBX: 000056171c8d0a00 RC=
-X: 00007b1bee2f81fd
-Aug 20 20:29:37 luna kernel: RDX: 0000000000000004 RSI: 00007b1bee0e5061 RD=
-I: 0000000000000026
-Aug 20 20:29:37 luna kernel: RBP: 00007ffe062c2b80 R08: 0000000000000001 R0=
-9: 00007ffe062c2b10
-Aug 20 20:29:37 luna kernel: R10: 0000000000000040 R11: 0000000000000246 R1=
-2: 00007b1bee0e5061
-Aug 20 20:29:37 luna kernel: R13: 0000000000020000 R14: 000056171c8d18c0 R1=
-5: 000056171c8d31e0
-Aug 20 20:29:37 luna kernel:  </TASK>
-Aug 20 20:29:37 luna kernel: Modules linked in: intel_powerclamp ath9k(+) s=
-nd_compress coretemp ac97_bus ath9k_common snd_pcm_dmaengine kvm_intel snd_=
-hda_intel ath9k_hw joydev snd_intel_dspcfg mousedev ath snd_intel_sdw_acpi =
-i915(+) kvm snd_hda_codec iTCO_wdt mac80211 snd_hda_core processor_thermal_=
-device_pci_legacy intel_pmc_bxt snd_hwdep processor_thermal_device hid_mult=
-itouch ee1004 iTCO_vendor_support processor_thermal_wt_hint drm_buddy snd_p=
-cm rapl processor_thermal_rfim hid_generic spi_nor r8169 i2c_i801 i2c_algo_=
-bit libarc4 memconsole_coreboot processor_thermal_rapl snd_timer intel_csta=
-te intel_rapl_msr framebuffer_coreboot memconsole cbmem intel_uncore snd in=
-tel_rapl_common realtek ttm i2c_smbus cfg80211 mtd processor_thermal_wt_req=
- psmouse mdio_devres pcspkr soundcore i2c_mux processor_thermal_power_floor=
- drm_display_helper intel_lpss_pci libphy processor_thermal_mbox intel_lpss=
- cec rfkill int340x_thermal_zone intel_pmc_core i2c_hid_acpi idma64 intel_g=
-tt intel_soc_dts_iosf intel_pch_thermal i2c_hid intel_vsec intel_hid video
-Aug 20 20:29:37 luna kernel:  pmt_telemetry pmt_class pinctrl_cannonlake wm=
-i sparse_keymap coreboot_table mac_hid pkcs8_key_parser crypto_user loop ac=
-pi_call(OE) nfnetlink ip_tables x_tables ext4 crc32c_generic crc16 mbcache =
-jbd2 uas usb_storage dm_crypt cbc encrypted_keys trusted asn1_encoder tee d=
-m_mod crct10dif_pclmul crc32_pclmul crc32c_intel polyval_clmulni polyval_ge=
-neric gf128mul ghash_clmulni_intel serio_raw sha512_ssse3 atkbd sha256_ssse=
-3 sha1_ssse3 libps2 aesni_intel vivaldi_fmap nvme crypto_simd nvme_core spi=
-_intel_pci cryptd xhci_pci spi_intel i8042 nvme_auth xhci_pci_renesas serio=
- librem_ec_acpi(OE)
-Aug 20 20:29:37 luna kernel: CR2: 0000000300000031
-Aug 20 20:29:37 luna kernel: ---[ end trace 0000000000000000 ]---
-
---=20
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+>
+>
+>> +	drm_WARN(&dev_priv->drm, secondary_bigjoiner_pipes !=
+>> +		 expected_secondary_pipes(primary_bigjoiner_pipes),
+>> +		 "Wrong secondary bigjoiner pipes(expected %x, current %x)\n",
+>> +		 expected_secondary_pipes(primary_bigjoiner_pipes),
+>> +		 secondary_bigjoiner_pipes);
+>> +	drm_WARN(&dev_priv->drm, secondary_uncompressed_joiner_pipes !=
+>> +		 expected_secondary_pipes(primary_uncompressed_joiner_pipes),
+>> +		 "Wrong secondary uncompressed joiner pipes(expected %x, current %x)\n",
+>> +		 expected_secondary_pipes(primary_uncompressed_joiner_pipes),
+>> +		 secondary_uncompressed_joiner_pipes);
+>> +
+>>   	*primary_pipes = 0;
+>>   	*secondary_pipes = 0;
+>>   
+>> -- 
+>> 2.45.2
