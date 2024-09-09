@@ -2,71 +2,113 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D45C97198B
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BC2971988
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:37:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D29F810E532;
-	Mon,  9 Sep 2024 12:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D54E310E53F;
+	Mon,  9 Sep 2024 12:36:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nO4Npbpc";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VddFcR4g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
- [209.85.215.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90B4C10EAB2;
- Fri,  6 Sep 2024 17:46:11 +0000 (UTC)
-Received: by mail-pg1-f172.google.com with SMTP id
- 41be03b00d2f7-7c1324be8easo2439435a12.1; 
- Fri, 06 Sep 2024 10:46:11 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
+ [209.85.221.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA1010E2DE;
+ Mon,  9 Sep 2024 07:08:18 +0000 (UTC)
+Received: by mail-wr1-f53.google.com with SMTP id
+ ffacd0b85a97d-374bfc395a5so2253369f8f.0; 
+ Mon, 09 Sep 2024 00:08:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1725644770; x=1726249570; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1725865697; x=1726470497; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=//GMh5wcWPuvbL5byVeOpp7gx8/ceI9tmF4jI5oBjrY=;
- b=nO4NpbpcTbWi0zmIFsKTd7vsqKyz+dk81jitwd+Xta1JCfYpKg3VeJpA9b+ZrYEznc
- pHjxNkqbnc2BosjYzfS9D8tU+TZNDb2VF4STbF6xGVstUNeun57PuY/KsGMxX9qSFA6n
- IcShQC+lONSZC89W/gaUPp+Ai1ot/wgeQ+bS3sZYM7ynAj+NFHZQBrRj+hOs/TQMj3vF
- uTvFWFJ9HQy77vAPbcI/NCdJPn1tau28HW9UQfXBLdQ1bpiaGef+VsSgWBddkGRWZWQY
- j2Q/7goeUVZU8qUR8ss7CyZmHHzMySggDiZJ3S9XnCMCpSHNZHvIw8ICtYNkQuBu/M4b
- hm2Q==
+ bh=miIa0uylE1UFUz+fjwRH8q3H5W2F4hzW6ItDHV+UbYY=;
+ b=VddFcR4gQFKd4nBk6ZeE+dBo/WueZFdgzalDFXNjjzYWV9UD9cTDGEfRM/4QLULU0r
+ J6x7A45hW6JRcviP7Ghj6+vqXiAQ1fDcQIKAv2CQDehNETRzIruoo5xi2QXHTvXw/leI
+ eJIKETdPKNMSqavQy8P6RdujMalkCKYZp9wzDtAoziu7BNgzBzpGzKWr88zQLQSuJxH6
+ EVvDPiWamlROHo5xcwyG0mCup2LzNvXfGkJKtaHB15qdsd543FYYQfLO1lkCKu1mLkFf
+ weVj7NVSSdqoFkpzzCyldF7qqvpYDsWZlxaSRGiUM8kJJBXWhzbSRLJO97txetrfhUYo
+ HYBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725644770; x=1726249570;
+ d=1e100.net; s=20230601; t=1725865697; x=1726470497;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=//GMh5wcWPuvbL5byVeOpp7gx8/ceI9tmF4jI5oBjrY=;
- b=kfZAvPhVdEXdrzMTTxKoDhr0IDd8EvmRZIs1UEdRQON+zWmpXisCKyK5RFw3b2Lrh2
- a53TkgsUSUE1Du22TTCjMKXIasG7pL2CIUR8HFnA1RUTbN6fKmg0c7fzO6ElhX56Vw4r
- EIVPcAiKC2QX9aHgrmMkKMIf60gRNPdMEi5riYtXiLmKL66x00OesXVhbxmq3synKDwG
- t3luFQHgxRSJKKkElmKSQ/F4ez0SvzFsFSP5ncOPAb0NH8pdWwAHmTHLFiPzv8QUHEWo
- /jR2yFfc2yrXEJc6PAuS17AccpAEzqf/8LhmBy0Bbn2qACsmq7U8ojFwHA8TNm8uPNG4
- Lz9w==
+ bh=miIa0uylE1UFUz+fjwRH8q3H5W2F4hzW6ItDHV+UbYY=;
+ b=wzQWRw5HGt+WRKwG0f7dkGY0IllGZHtQyjmehyU0lDYhwBvL41CZu4c3WwSwTRbkzm
+ GgIMWS7v5dLJzdA7NU+6lH2lVLYCgCC0zOrmNCLWQk2UuAsiBGL3WP+sCO/DTKMYOWwy
+ NaaZ72XUBNTdCAzPvZRPbqwAWrcQ/uCWknwzLQpSv6VphKqTeW8bLWLew7q5F3aPmqYa
+ 4l1oX6y8aM6MCS67i6aPz9KtNGWkSVzJeiMVtQBQhtdTSglVxbjkJ0HRee5CiwZSf+DL
+ 37Mk5CKgo5OIMizIvf59Pz1T8wTpZ+6YleoollYaZKIwissQIPKImkJ9JjMq5UUHeU2O
+ MVyw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW/f7ExC6aTILLYvug0S+jRJkeXRmpzL6VeP74eNEMnO13zR5iN+U2l/X5gm+0N8EXNzwtxjFSnG2Y=@lists.freedesktop.org,
- AJvYcCXn50zW6CeqkcaxYeKNwIQ91NINnaZ9jyGAewcFIPo0sWwRcvFjn1iY4whruotCGPvQA4YKi+GSDMc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyqo3OG2ZOW9YkfA7w2GSw+zdpkXSqiZbNV66Y5Uxn3SGm24wkA
- tus4Tiklh2yTaIIm9wDqCa2e9B3/loRd2xM79cdN7Pt48l9wX65ZLd5R6Zpi1fNaIQ==
-X-Google-Smtp-Source: AGHT+IHl1QwGj6f27gy0SNNX8R4uHPJcDOIVI4Q+cvPI+qzi59HzqJAavBhcgc+seszYKXg3rYCwsg==
-X-Received: by 2002:a17:90b:4c42:b0:2c9:7343:71f1 with SMTP id
- 98e67ed59e1d1-2dad511c22fmr5252445a91.14.1725644769664; 
- Fri, 06 Sep 2024 10:46:09 -0700 (PDT)
-Received: from fedora.. ([2405:201:d007:50c2:4888:86b4:6f32:9ae])
+ AJvYcCU2O1MgS2lVktIh726wt3kPg2eFs759RqB7MRV10RvPMJnG+2K6n6WOSneCZC6jjQSMp2GVNods+zs=@lists.freedesktop.org,
+ AJvYcCVDe8q3G7Ah8ddKiEdolWJHu3dlxCPD3AqlNoJ883F5VYO1PRzE3YpF3s/NYE+tBvFEf3xUdeSj/a3J@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyGKA9bVrlwyzsLAmSPzvnPhoYkLk/0kVi8hWSLUDqW3NzT6IVU
+ Ue+/tyk0ulk4kfAwffxis8wW5Z6lT8J00d2BZHO3q4QCn/1LqR63
+X-Google-Smtp-Source: AGHT+IF7PvU559w9RG/+WWePAWHfln7qrp/xZmFruXqBgk/EtXWofmJCF9Gu7pllhU4Q5vs+uudvoA==
+X-Received: by 2002:a5d:4146:0:b0:367:938f:550 with SMTP id
+ ffacd0b85a97d-3779bb2e591mr10665534f8f.25.1725865696041; 
+ Mon, 09 Sep 2024 00:08:16 -0700 (PDT)
+Received: from fedora.iskraemeco.si ([193.77.86.250])
  by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2dab6e5dc04sm1466452a91.1.2024.09.06.10.46.05
+ ffacd0b85a97d-378956d375asm5178754f8f.66.2024.09.09.00.08.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Sep 2024 10:46:09 -0700 (PDT)
-From: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- daniel@ffwll.ch, skhan@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/cx0: Use one lane to set power state to ready in DP
- alt mode
-Date: Fri,  6 Sep 2024 23:16:01 +0530
-Message-ID: <20240906174601.9271-1-vamsikrishna.brahmajosyula@gmail.com>
+ Mon, 09 Sep 2024 00:08:15 -0700 (PDT)
+From: Uros Bizjak <ubizjak@gmail.com>
+To: x86@kernel.org, linux-crypto@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org,
+ bpf@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com
+Cc: Uros Bizjak <ubizjak@gmail.com>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
+ Jaegeuk Kim <jaegeuk@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Hannes Reinecke <hare@suse.de>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Alexei Starovoitov <ast@kernel.org>,
+ Daniel Borkmann <daniel@iogearbox.net>,
+ John Fastabend <john.fastabend@gmail.com>,
+ Andrii Nakryiko <andrii@kernel.org>,
+ Martin KaFai Lau <martin.lau@linux.dev>,
+ Eduard Zingerman <eddyz87@gmail.com>, Song Liu <song@kernel.org>,
+ Yonghong Song <yonghong.song@linux.dev>, KP Singh <kpsingh@kernel.org>,
+ Stanislav Fomichev <sdf@fomichev.me>, Hao Luo <haoluo@google.com>,
+ Jiri Olsa <jolsa@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Jiri Pirko <jiri@resnulli.us>,
+ Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Stephen Hemminger <stephen@networkplumber.org>,
+ Jamal Hadi Salim <jhs@mojatatu.com>, Cong Wang <xiyou.wangcong@gmail.com>,
+ Kent Overstreet <kent.overstreet@linux.dev>
+Subject: [PATCH v2 00/19] random: Resolve circular include dependency and
+ include <linux/percpu.h>
+Date: Mon,  9 Sep 2024 09:05:14 +0200
+Message-ID: <20240909070742.75425-1-ubizjak@gmail.com>
 X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -86,42 +128,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In DP alt mode one lane is owned by display and the other by usb
-intel_cx0pll_enable currently performs a power cycle ready on both
-the lanes in all cases.
+There were several attempts to resolve circular include dependency
+after the addition of percpu.h: 1c9df907da83 ("random: fix circular
+include dependency on arm64 after addition of percpu.h"), c0842fbc1b18
+("random32: move the pseudo-random 32-bit definitions to prandom.h") and
+finally d9f29deb7fe8 ("prandom: Remove unused include") that completely
+removes the inclusion of <linux/percpu.h>.
 
-Address the todo to perfom power state ready only on the display lane
-when DP alt mode is enabled.
+Due to legacy reasons, <linux/random.h> includes <linux/prandom.h>, but
+with the commit entry remark:
 
-Tested on Meteor Lake-P [Intel Arc Graphics] with DP alt mode.
+--quote--
+A further cleanup step would be to remove this from <linux/random.h>
+entirely, and make people who use the prandom infrastructure include
+just the new header file.  That's a bit of a churn patch, but grepping
+for "prandom_" and "next_pseudo_random32" "struct rnd_state" should
+catch most users.
 
-Signed-off-by: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
+But it turns out that that nice cleanup step is fairly painful, because
+a _lot_ of code currently seems to depend on the implicit include of
+<linux/random.h>, which can currently come in a lot of ways, including
+such fairly core headfers as <linux/net.h>.
+
+So the "nice cleanup" part may or may never happen.
+--/quote--
+
+We would like to include <linux/percpu.h> in <linux/prandom.h>.
+In [1] we would like to repurpose __percpu tag as a named address space
+qualifier, where __percpu macro uses defines from <linux/percpu.h>.
+
+The major roadblock to inclusion of <linux/percpu.h> is the above
+mentioned legacy inclusion of <linux/prandom.h> in <linux/random.h> that
+causes circular include dependency that prevents <linux/percpu.h>
+inclusion.
+
+This patch series is the "nice cleanup" part that:
+
+a) Substitutes the inclusion of <linux/random.h> with the
+inclusion of <linux/prandom.h> where needed (patches 1 - 17).
+
+b) Removes legacy inclusion of <linux/prandom.h> from
+<linux/random.h> (patch 18).
+
+c) Includes <linux/percpu.h> in <linux/prandom.h> (patch 19).
+
+The whole series was tested by compiling the kernel for x86_64 allconfig
+and some popular architectures, namely arm64 defconfig, powerpc defconfig
+and loongarch defconfig.
+
+[1] https://lore.kernel.org/lkml/20240812115945.484051-4-ubizjak@gmail.com/
+
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Andy Lutomirski <luto@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Hans Verkuil <hverkuil@xs4all.nl>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Eric Biggers <ebiggers@kernel.org>
+Cc: "Theodore Y. Ts'o" <tytso@mit.edu>
+Cc: Jaegeuk Kim <jaegeuk@kernel.org>
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Hannes Reinecke <hare@suse.de>
+Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
+Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: Alexei Starovoitov <ast@kernel.org>
+Cc: Daniel Borkmann <daniel@iogearbox.net>
+Cc: John Fastabend <john.fastabend@gmail.com>
+Cc: Andrii Nakryiko <andrii@kernel.org>
+Cc: Martin KaFai Lau <martin.lau@linux.dev>
+Cc: Eduard Zingerman <eddyz87@gmail.com>
+Cc: Song Liu <song@kernel.org>
+Cc: Yonghong Song <yonghong.song@linux.dev>
+Cc: KP Singh <kpsingh@kernel.org>
+Cc: Stanislav Fomichev <sdf@fomichev.me>
+Cc: Hao Luo <haoluo@google.com>
+Cc: Jiri Olsa <jolsa@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Brendan Higgins <brendan.higgins@linux.dev>
+Cc: David Gow <davidgow@google.com>
+Cc: Rae Moar <rmoar@google.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Jiri Pirko <jiri@resnulli.us>
+Cc: Petr Mladek <pmladek@suse.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
+Cc: Stephen Hemminger <stephen@networkplumber.org>
+Cc: Jamal Hadi Salim <jhs@mojatatu.com>
+Cc: Cong Wang <xiyou.wangcong@gmail.com>
+Cc: Kent Overstreet <kent.overstreet@linux.dev>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+v2: - Reword commit messages to mention the removal of legacy inclusion
+    of <linux/prandom.h> from <linux/random.h>
+    - Add missing substitution in crypto/testmgr.c
+    (reported by kernel test robot)
+    - Add Acked-by:.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4a6c3040ca15..47aa0418379c 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2949,9 +2949,13 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 
- 	/*
- 	 * 3. Change Phy power state to Ready.
--	 * TODO: For DP alt mode use only one lane.
-+	 * For DP alt mode use only one lane.
- 	 */
--	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
-+	if (intel_tc_port_in_dp_alt_mode(dig_port))
-+		intel_cx0_powerdown_change_sequence(encoder, maxpclk_lane,
-+					    CX0_P2_STATE_READY);
-+	else
-+		intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
- 					    CX0_P2_STATE_READY);
- 
- 	/*
+Uros Bizjak (19):
+  x86/kaslr: Include <linux/prandom.h> instead of <linux/random.h>
+  crypto: testmgr: Include <linux/prandom.h> instead of <linux/random.h>
+  drm/i915/selftests: Include <linux/prandom.h> instead of
+    <linux/random.h>
+  drm/lib: Include <linux/prandom.h> instead of <linux/random.h>
+  media: vivid: Include <linux/prandom.h> in vivid-vid-cap.c
+  mtd: tests: Include <linux/prandom.h> instead of <linux/random.h>
+  fscrypt: Include <linux/once.h> in fs/crypto/keyring.c
+  scsi: libfcoe: Include <linux/prandom.h> instead of <linux/random.h>
+  bpf: Include <linux/prandom.h> instead of <linux/random.h>
+  lib/interval_tree_test.c: Include <linux/prandom.h> instead of
+    <linux/random.h>
+  kunit: string-stream-test: Include <linux/prandom.h> instead of
+    <linux/random.h>
+  random32: Include <linux/prandom.h> instead of <linux/random.h>
+  lib/rbtree-test: Include <linux/prandom.h> instead of <linux/random.h>
+  bpf/tests: Include <linux/prandom.h> instead of <linux/random.h>
+  lib/test_parman: Include <linux/prandom.h> instead of <linux/random.h>
+  lib/test_scanf: Include <linux/prandom.h> instead of <linux/random.h>
+  netem: Include <linux/prandom.h> in sch_netem.c
+  random: Do not include <linux/prandom.h> in <linux/random.h>
+  prandom: Include <linux/percpu.h> in <linux/prandom.h>
 
-base-commit: b831f83e40a24f07c8dcba5be408d93beedc820f
+ arch/x86/mm/kaslr.c                              | 2 +-
+ crypto/testmgr.c                                 | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c        | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_random.h     | 2 +-
+ drivers/gpu/drm/i915/selftests/scatterlist.c     | 2 +-
+ drivers/gpu/drm/lib/drm_random.h                 | 2 +-
+ drivers/media/test-drivers/vivid/vivid-vid-cap.c | 1 +
+ drivers/mtd/tests/oobtest.c                      | 2 +-
+ drivers/mtd/tests/pagetest.c                     | 2 +-
+ drivers/mtd/tests/subpagetest.c                  | 2 +-
+ fs/crypto/keyring.c                              | 1 +
+ include/linux/prandom.h                          | 1 +
+ include/linux/random.h                           | 7 -------
+ include/scsi/libfcoe.h                           | 2 +-
+ kernel/bpf/core.c                                | 2 +-
+ lib/interval_tree_test.c                         | 2 +-
+ lib/kunit/string-stream-test.c                   | 1 +
+ lib/random32.c                                   | 2 +-
+ lib/rbtree_test.c                                | 2 +-
+ lib/test_bpf.c                                   | 2 +-
+ lib/test_parman.c                                | 2 +-
+ lib/test_scanf.c                                 | 2 +-
+ net/sched/sch_netem.c                            | 1 +
+ 23 files changed, 22 insertions(+), 24 deletions(-)
+
 -- 
 2.46.0
 
