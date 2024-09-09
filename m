@@ -2,61 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970E5971C82
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 16:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E728971CFE
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 16:46:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4010A10E0A5;
-	Mon,  9 Sep 2024 14:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADBD110E3AE;
+	Mon,  9 Sep 2024 14:46:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWg7fEuH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qz5KutUY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C132A10E0A5;
- Mon,  9 Sep 2024 14:28:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81F5A10E3AE;
+ Mon,  9 Sep 2024 14:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725892099; x=1757428099;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=cl6CidzYDscG4gBTl6dlkFZo/FJboto+uOZIB8bLZbw=;
- b=EWg7fEuHWZmccPVPuXKdO1m+OG//w1J/NYEC55qACfaC3VTQ8Wr87fux
- VTJNN2Iu0M9mu+iMu85OOEXbmbZPF01cfY3H3ZM2gam//EBVG00wW6qex
- FN6W32HVYZp+ZvFSiW+oYb8/GUIsHuGSu7bd9o8pEXWz+b10ysqtk+7rO
- h+GuFnfovBSl1ap+Cevpdrw4OHmY0BH4p4nwB5irpAasf8AFo2swxLYUo
- xFUtW6Bx5oTfxTYH0dbsMUSWxdFRGDvi5jBPMcliiB+tDyC/YbaWIxTF4
- 3SOzCFUF/J1cKtr7rNIj189PTmFutk4AlrnvGrzvXq50Jj2/7tniHASEa Q==;
-X-CSE-ConnectionGUID: w51OLoV7TVWy7e49PYy+Yw==
-X-CSE-MsgGUID: CrKGkZZzSvOePKDJCL/YrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24742765"
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="24742765"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 07:27:47 -0700
-X-CSE-ConnectionGUID: /B9cWlkuSIK5vsmUYIFqCQ==
-X-CSE-MsgGUID: Zn1kXiQWTEKdyK/lRYop/A==
+ t=1725893188; x=1757429188;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cgF9oSQeLyPiU8t6rpcfi9t/dGWgkEeYsf1tSU7qppA=;
+ b=Qz5KutUYF0I7RS3Mg/2P9IEOs1Cx7g36XvLuLkzL5k1GAfk22kaBMrvB
+ 6RJ3+W1WdXVw3ySagSKNNvT+MWkw7iMk1zMkSpu5saUwDNXlxpV8OMtbn
+ QTO8lsy90X+jeWpJ3+TGHfJpmpQbq+HJv+gdKvDuIBsdU6qtzQI79ZVYb
+ P0idtsD11U/lTx9Ioq+Qcz5j/Zc8ywo3P+Ps755OxX+VGdjfS4q0JTzNB
+ bzWZF4AMqIUn5GMAmYg4EahTAxEBLx2Ce4dmSNV2tz+r0RFLFVw9nlltM
+ 1lO3X5gE/BeWKC1UhXtt3onKvmVDbuqALoKegx1SAo/M8GprlI165L21a A==;
+X-CSE-ConnectionGUID: k+B5O/4rRmuGLsHY4CLZnQ==
+X-CSE-MsgGUID: amu7DY1fTbiigTpgAbvJCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24738118"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="24738118"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 07:46:27 -0700
+X-CSE-ConnectionGUID: nTlM4mL9RXSwKNKlTHp6/w==
+X-CSE-MsgGUID: dQKltezgTRyzrnx0NIQpPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="66743586"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 09 Sep 2024 07:27:44 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Sep 2024 17:27:44 +0300
-Date: Mon, 9 Sep 2024 17:27:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 6/8] drm/i915/pps: rename vlv_pps_init() to
- vlv_pps_port_enable()
-Message-ID: <Zt8F4D_exqURrQXS@intel.com>
-References: <cover.1725883885.git.jani.nikula@intel.com>
- <6123d8aa71f352cfe58cf2285c0bb19d58d999e0.1725883885.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="66325002"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2024 07:46:26 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH] drm/dp_mst: Fix DSC decompression detection in Synaptics
+ branch devices
+Date: Mon,  9 Sep 2024 17:46:50 +0300
+Message-ID: <20240909144650.2931258-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6123d8aa71f352cfe58cf2285c0bb19d58d999e0.1725883885.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,67 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 09, 2024 at 03:15:41PM +0300, Jani Nikula wrote:
-> Follow the naming for vlv_pps_port_disable(), as these are counterparts.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/g4x_dp.c    | 2 +-
->  drivers/gpu/drm/i915/display/intel_pps.c | 5 +++--
->  drivers/gpu/drm/i915/display/intel_pps.h | 4 ++--
->  3 files changed, 6 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-> index e3db1cba11c9..796ec2244a4d 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -690,7 +690,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
->  
->  	with_intel_pps_lock(intel_dp, wakeref) {
->  		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> -			vlv_pps_init(encoder, pipe_config);
-> +			vlv_pps_port_enable(encoder, pipe_config);
+Atm it's assumed that all Synaptics MST branch devices support DSC,
+which is not exposed via a DP-to-DP peer device, rather a control flag
+in the branch device's UFP DPCD applying to all the streams going
+through it. This isn't true for all adapters with this branch device
+though (for instance the Cakitte USBC->2xHDMI adapter reported in the
+Closes link below doesn't support DSC).
 
-The disable counterpart has the lock on the inside, so this could
-do with an _unlocked() suffix to make the situation a bit clearer.
+Fix the above by advertising the DSC decompression support only if the
+capability flag for this in the UFP DPCD is actually set.
 
->  
->  		intel_dp_enable_port(intel_dp, pipe_config);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index 33fae565588a..c91d14face20 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -1227,8 +1227,9 @@ void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
->  		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
->  }
->  
-> -void vlv_pps_init(struct intel_encoder *encoder,
-> -		  const struct intel_crtc_state *crtc_state)
-> +/* Call on all DP, not just eDP */
-> +void vlv_pps_port_enable(struct intel_encoder *encoder,
-> +			 const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(encoder);
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-> index 58df4cd3addd..b57a0c448e6c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.h
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-> @@ -48,8 +48,8 @@ void intel_pps_reset_all(struct intel_display *display);
->  
->  void vlv_pps_pipe_init(struct intel_dp *intel_dp);
->  void vlv_pps_pipe_reset(struct intel_dp *intel_dp);
-> -void vlv_pps_init(struct intel_encoder *encoder,
-> -		  const struct intel_crtc_state *crtc_state);
-> +void vlv_pps_port_enable(struct intel_encoder *encoder,
-> +			 const struct intel_crtc_state *crtc_state);
->  void vlv_pps_port_disable(struct intel_encoder *encoder,
->  			  const struct intel_crtc_state *crtc_state);
->  
-> -- 
-> 2.39.2
+Cc: Lyude Paul <lyude@redhat.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12047
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index a040d7dfced17..ac90118b9e7a8 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -6083,6 +6083,7 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
+ 	struct drm_dp_aux *immediate_upstream_aux;
+ 	struct drm_dp_mst_port *fec_port;
+ 	struct drm_dp_desc desc = {};
++	u8 upstream_dsc;
+ 	u8 endpoint_fec;
+ 	u8 endpoint_dsc;
+ 
+@@ -6109,8 +6110,6 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
+ 
+ 	/* DP-to-DP peer device */
+ 	if (drm_dp_mst_is_virtual_dpcd(immediate_upstream_port)) {
+-		u8 upstream_dsc;
+-
+ 		if (drm_dp_dpcd_read(&port->aux,
+ 				     DP_DSC_SUPPORT, &endpoint_dsc, 1) != 1)
+ 			return NULL;
+@@ -6156,6 +6155,13 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
+ 	if (drm_dp_has_quirk(&desc, DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD)) {
+ 		u8 dpcd_ext[DP_RECEIVER_CAP_SIZE];
+ 
++		if (drm_dp_dpcd_read(immediate_upstream_aux,
++				     DP_DSC_SUPPORT, &upstream_dsc, 1) != 1)
++			return NULL;
++
++		if (!(upstream_dsc & DP_DSC_DECOMPRESSION_IS_SUPPORTED))
++			return NULL;
++
+ 		if (drm_dp_read_dpcd_caps(immediate_upstream_aux, dpcd_ext) < 0)
+ 			return NULL;
+ 
 -- 
-Ville Syrjälä
-Intel
+2.44.2
+
