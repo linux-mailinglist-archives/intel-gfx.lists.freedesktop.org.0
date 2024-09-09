@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D33972234
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 20:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6243972235
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 20:59:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0401610E65B;
-	Mon,  9 Sep 2024 18:59:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E7F110E65D;
+	Mon,  9 Sep 2024 18:59:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W209Zzvb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LLADZorP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8258110E655;
- Mon,  9 Sep 2024 18:59:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C91D10E65C;
+ Mon,  9 Sep 2024 18:59:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725908392; x=1757444392;
+ t=1725908397; x=1757444397;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lZEaCLBhQYFdm/sy4Wc2G+ZKbAox3lo3TdYmWZZ0d4Q=;
- b=W209Zzvb/LhA2WAHkB+x7xFNIAvD7euYUn4FI6iEv1ASiC13Dr3Wj63c
- SxIZ2+qpLpCxcguDpmuHQXEekdMz/dGszcVk5Gg4aAIQbVLYdlsiVpxte
- 3m3A1qOZWKQFiShppnHnhqmw18/TGcIVTj7ugTesC0ZhjiwJy9qjVJU/O
- Ae0PwVaTWYgTQikuXmiT2YSZetfZ1aQZ5LAd4HuHHlHfkjFWgDJdjDyKM
- 7DqcxCh62qTYXuRboO/16B85/NY8C/fqGTtW6HYGmA5HIV+HWIBllPmyU
- hjmOm+BHf19eBFpUYS73ym/PKps+2olC6eRH06eTKUY5y4UC+9nCVZ+0P w==;
-X-CSE-ConnectionGUID: RNPG8ZSiSgCUZNGP+GK75Q==
-X-CSE-MsgGUID: mLCnvi0hTam94O/eXA0nWQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24170807"
-X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="24170807"
+ bh=GGR2WD8db9JTLmez34uNZnxqpZRku97WHPZ0DI+d69Q=;
+ b=LLADZorPHxdBDFkWgq9moRKylTkx28grCjxYuC2DjefDvGEgR0EC1ofv
+ Gw+1orA8Y9BdiBGjRnfnLdljYQqObe22DkJnNTNpCMOMq95O/QyVE9MuX
+ 1cP1hSeIHqLXe+SpqMGYB+mXlBM420MMWu9QaMrM4N7Ypz6LH//KrYgjT
+ o0J/bz9MIyzhJX2l4VDMFT5EM/w0goAL4voi9UCTK2yfAHAYRlzzJdbLv
+ kyDQZq9GsTbM+khaQSxwO017lsjT353cmFsVBwkRXhNZO8WiM8Uevc84Z
+ JAGtGT17OuzfuXy1f94/eqEHIUdlGMEg7WAS13E3CW9bNivD/z6RtOUmI Q==;
+X-CSE-ConnectionGUID: ffHRYgvCRHKJ8iq+KLzPkA==
+X-CSE-MsgGUID: hRYOzyyKRU62lUxWFgp3Vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24170812"
+X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="24170812"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 11:59:51 -0700
-X-CSE-ConnectionGUID: ++S2KuFQQJCw36VBlU/x+w==
-X-CSE-MsgGUID: KKRjHxknT7Gald22pDJq9w==
+ 09 Sep 2024 11:59:56 -0700
+X-CSE-ConnectionGUID: h6wUOsmISb6JIMHNrCaLLw==
+X-CSE-MsgGUID: QzGWXmmgT92Oo4XzIMieJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="67030743"
+X-IronPort-AV: E=Sophos;i="6.10,215,1719903600"; d="scan'208";a="67030758"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.176])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 11:59:49 -0700
+ 09 Sep 2024 11:59:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 09/11] drm/i915/reg: remove unused DSI register macros
-Date: Mon,  9 Sep 2024 21:59:00 +0300
-Message-Id: <b78f3fe8fe20cb1568aafa8938710289e607690d.1725908152.git.jani.nikula@intel.com>
+Subject: [PATCH 10/11] drm/i915/reg: remove superfluous whitespace
+Date: Mon,  9 Sep 2024 21:59:01 +0300
+Message-Id: <d606b395411f324c2628550c9cc24710c301810c.1725908152.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725908151.git.jani.nikula@intel.com>
 References: <cover.1725908151.git.jani.nikula@intel.com>
@@ -70,50 +70,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Not needed. Remove.
+Clean up some whitespace.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 19 -------------------
- 1 file changed, 19 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 5 -----
+ 1 file changed, 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 993623710700..f626d79bc3c0 100644
+index f626d79bc3c0..3f4cfafd050f 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1138,20 +1138,6 @@
- #define _TRANS_MULT_B		0x6102c
- #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
- 
--/* DSI 0 timing regs */
--#define _TRANS_HTOTAL_DSI0	0x6b000
--#define _TRANS_HSYNC_DSI0	0x6b008
--#define _TRANS_VTOTAL_DSI0	0x6b00c
--#define _TRANS_VSYNC_DSI0	0x6b014
--#define _TRANS_VSYNCSHIFT_DSI0	0x6b028
--
--/* DSI 1 timing regs */
--#define _TRANS_HTOTAL_DSI1	0x6b800
--#define _TRANS_HSYNC_DSI1	0x6b808
--#define _TRANS_VTOTAL_DSI1	0x6b80c
--#define _TRANS_VSYNC_DSI1	0x6b814
--#define _TRANS_VSYNCSHIFT_DSI1	0x6b828
--
- /* VGA port control */
+@@ -1142,7 +1142,6 @@
  #define ADPA			_MMIO(0x61100)
  #define PCH_ADPA                _MMIO(0xe1100)
-@@ -2118,11 +2104,6 @@
- #define SWF3(dev_priv, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x72414 + (i) * 4)
- #define SWF_ILK(i)	_MMIO(0x4F000 + (i) * 4)
+ #define VLV_ADPA		_MMIO(VLV_DISPLAY_BASE + 0x61100)
+-
+ #define   ADPA_DAC_ENABLE	(1 << 31)
+ #define   ADPA_DAC_DISABLE	0
+ #define   ADPA_PIPE_SEL_SHIFT		30
+@@ -1186,7 +1185,6 @@
+ #define   ADPA_DPMS_STANDBY	(2 << 10)
+ #define   ADPA_DPMS_OFF		(3 << 10)
  
--/* ICL DSI 0 and 1 */
--#define _PIPEDSI0CONF		0x7b008
--#define _PIPEDSI1CONF		0x7b808
 -
+ /* Hotplug control (945+ only) */
+ #define PORT_HOTPLUG_EN(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61110)
+ #define   PORTB_HOTPLUG_INT_EN			(1 << 29)
+@@ -1437,11 +1435,9 @@
+ #define DP_B			_MMIO(0x64100)
+ #define DP_C			_MMIO(0x64200)
+ #define DP_D			_MMIO(0x64300)
 -
- /* VBIOS regs */
- #define VGACNTRL		_MMIO(0x71400)
- # define VGA_DISP_DISABLE			(1 << 31)
+ #define VLV_DP_B		_MMIO(VLV_DISPLAY_BASE + 0x64100)
+ #define VLV_DP_C		_MMIO(VLV_DISPLAY_BASE + 0x64200)
+ #define CHV_DP_D		_MMIO(VLV_DISPLAY_BASE + 0x64300)
+-
+ #define   DP_PORT_EN			(1 << 31)
+ #define   DP_PIPE_SEL_SHIFT		30
+ #define   DP_PIPE_SEL_MASK		(1 << 30)
+@@ -4250,7 +4246,6 @@ enum skl_power_gate {
+ /* ADL-P Type C PLL */
+ #define PORTTC1_PLL_ENABLE	0x46038
+ #define PORTTC2_PLL_ENABLE	0x46040
+-
+ #define ADLP_PORTTC_PLL_ENABLE(tc_port)		_MMIO_PORT((tc_port), \
+ 							    PORTTC1_PLL_ENABLE, \
+ 							    PORTTC2_PLL_ENABLE)
 -- 
 2.39.2
 
