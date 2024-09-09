@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 536E697191A
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F7197191B
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Sep 2024 14:16:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5E4410E4E9;
-	Mon,  9 Sep 2024 12:16:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C575510E4EC;
+	Mon,  9 Sep 2024 12:16:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGj5MphJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VQj+aXe4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D327C10E4E7;
- Mon,  9 Sep 2024 12:16:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6561310E4B2;
+ Mon,  9 Sep 2024 12:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725884181; x=1757420181;
+ t=1725884185; x=1757420185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1wUgmu1YITJrHDb4/yTsP2GcsJc8nz3BqNGqGZyzfo8=;
- b=AGj5MphJ2MU0rt7ubiu8mtVeFbKKAE0H9pWUvY7Oq/rUCPB5Kdx5nsi1
- VuuOSHa1Ppk5wKGkJwUnvyZ9jbqkLxEO9jx/Yhs/YKKBSbsNRjc/YBln7
- gH6nS3fFCAp3aiHDASZoxM7g3pYdKQLky1F2po/KT3yGpkjPMqh/dQ8fX
- BKP8rHJWMbdZ67jkg5PgKPasBgkG6cDobO2zbN+v6agwLOYTBv70pIn7S
- UE5QkQ7tDJOgOc1OEpDYaeFbIp+qwbqDswtd6JHz2RS8yj5jPuCVgb2Q0
- 2o2zOacezIPmQzDDjCD63Y09QZc4jlZs1TIQZUGPmQ22bjAz3omxJJd7v Q==;
-X-CSE-ConnectionGUID: 5rI2LXTyRpeC+CR8h1ZKZQ==
-X-CSE-MsgGUID: TegvJHdTTaS7w1cUgk+eSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="35719383"
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="35719383"
+ bh=YdXEn9DEtbBTIISR3SJsZDp/BPWLCN4ZWX+GK/WLABU=;
+ b=VQj+aXe40YMH3lxGj/UJOIx+TDVNk7LHY6Mc1/v6lkQQkT+Sd2GfJx/O
+ ovMIK4+bFcoOGV8mhswmgJfh7bBPjuNZRBzj39uBiwg4vnYK4bL4ZoGC0
+ M8NJ8ByAfia77M9Hl9Yftv6I5q6ikSopfSsbgFPkuyQaWGIRA7lZ9YzYJ
+ iL4kAWFkNoU0XzYERNZzeDyb4xlryF9YsVsHHo7x05ldaEpsCCHYSvvw1
+ legMVVJzIbGVq7gMZ3mt6q+xncLS6NZi3ToaLfvaTR697sWmDh/zH/htK
+ EGorpibprdFQnRDA3hFnocygncZ7a5yAc+UU8KISgS7H6RZVnCgAd2aun g==;
+X-CSE-ConnectionGUID: JG/GFKeSQimnlw28w1gm+A==
+X-CSE-MsgGUID: F3hZmGLxRAGI153EkZhpPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11189"; a="35719391"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="35719391"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 05:16:20 -0700
-X-CSE-ConnectionGUID: 0RDDG2z1QOmjL1tfeKo6ag==
-X-CSE-MsgGUID: HNKPtERnTmqtBxWJVYh9bA==
+ 09 Sep 2024 05:16:25 -0700
+X-CSE-ConnectionGUID: TB4mVxr1Ql+nxW4MDuUd7A==
+X-CSE-MsgGUID: XDfJsWeSSzmwoFgH/n5gYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="89942924"
+X-IronPort-AV: E=Sophos;i="6.10,214,1719903600"; d="scan'208";a="89942938"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.176])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2024 05:16:18 -0700
+ 09 Sep 2024 05:16:23 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 6/8] drm/i915/pps: rename vlv_pps_init() to
- vlv_pps_port_enable()
-Date: Mon,  9 Sep 2024 15:15:41 +0300
-Message-Id: <6123d8aa71f352cfe58cf2285c0bb19d58d999e0.1725883885.git.jani.nikula@intel.com>
+Subject: [PATCH v2 7/8] drm/i915/pps: add vlv_pps_backlight_initial_pipe()
+Date: Mon,  9 Sep 2024 15:15:42 +0300
+Message-Id: <0bccf9b5062e42834d5ba1d0efcd34d711d8f7c7.1725883885.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725883885.git.jani.nikula@intel.com>
 References: <cover.1725883885.git.jani.nikula@intel.com>
@@ -72,59 +71,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the naming for vlv_pps_port_disable(), as these are counterparts.
+Add vlv_pps_backlight_initial_pipe() and move the VLV/CHV initial
+backlight pipe logic there, hiding the PPS pipe details inside PPS code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c    | 2 +-
- drivers/gpu/drm/i915/display/intel_pps.c | 5 +++--
- drivers/gpu/drm/i915/display/intel_pps.h | 4 ++--
- 3 files changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c  | 16 ++--------------
+ drivers/gpu/drm/i915/display/intel_pps.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_pps.h |  1 +
+ 3 files changed, 23 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index e3db1cba11c9..796ec2244a4d 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -690,7 +690,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f0866ddc707e..e0f093ebcb3d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6605,20 +6605,8 @@ static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	enum pipe pipe = INVALID_PIPE;
  
- 	with_intel_pps_lock(intel_dp, wakeref) {
- 		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
--			vlv_pps_init(encoder, pipe_config);
-+			vlv_pps_port_enable(encoder, pipe_config);
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+-		/*
+-		 * Figure out the current pipe for the initial backlight setup.
+-		 * If the current pipe isn't valid, try the PPS pipe, and if that
+-		 * fails just assume pipe A.
+-		 */
+-		pipe = vlv_active_pipe(intel_dp);
+-
+-		if (pipe != PIPE_A && pipe != PIPE_B)
+-			pipe = intel_dp->pps.vlv_pps_pipe;
+-
+-		if (pipe != PIPE_A && pipe != PIPE_B)
+-			pipe = PIPE_A;
+-	}
++	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++		pipe = vlv_pps_backlight_initial_pipe(intel_dp);
  
- 		intel_dp_enable_port(intel_dp, pipe_config);
- 
+ 	intel_backlight_setup(connector, pipe);
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 33fae565588a..c91d14face20 100644
+index c91d14face20..2fe23238c8a3 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.c
 +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1227,8 +1227,9 @@ void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
+@@ -1227,6 +1227,26 @@ void vlv_pps_pipe_reset(struct intel_dp *intel_dp)
  		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
  }
  
--void vlv_pps_init(struct intel_encoder *encoder,
--		  const struct intel_crtc_state *crtc_state)
-+/* Call on all DP, not just eDP */
-+void vlv_pps_port_enable(struct intel_encoder *encoder,
-+			 const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++enum pipe vlv_pps_backlight_initial_pipe(struct intel_dp *intel_dp)
++{
++	enum pipe pipe;
++
++	/*
++	 * Figure out the current pipe for the initial backlight setup. If the
++	 * current pipe isn't valid, try the PPS pipe, and if that fails just
++	 * assume pipe A.
++	 */
++	pipe = vlv_active_pipe(intel_dp);
++
++	if (pipe != PIPE_A && pipe != PIPE_B)
++		pipe = intel_dp->pps.vlv_pps_pipe;
++
++	if (pipe != PIPE_A && pipe != PIPE_B)
++		pipe = PIPE_A;
++
++	return pipe;
++}
++
+ /* Call on all DP, not just eDP */
+ void vlv_pps_port_enable(struct intel_encoder *encoder,
+ 			 const struct intel_crtc_state *crtc_state)
 diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index 58df4cd3addd..b57a0c448e6c 100644
+index b57a0c448e6c..24fc47ff9951 100644
 --- a/drivers/gpu/drm/i915/display/intel_pps.h
 +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -48,8 +48,8 @@ void intel_pps_reset_all(struct intel_display *display);
+@@ -48,6 +48,7 @@ void intel_pps_reset_all(struct intel_display *display);
  
  void vlv_pps_pipe_init(struct intel_dp *intel_dp);
  void vlv_pps_pipe_reset(struct intel_dp *intel_dp);
--void vlv_pps_init(struct intel_encoder *encoder,
--		  const struct intel_crtc_state *crtc_state);
-+void vlv_pps_port_enable(struct intel_encoder *encoder,
-+			 const struct intel_crtc_state *crtc_state);
++enum pipe vlv_pps_backlight_initial_pipe(struct intel_dp *intel_dp);
+ void vlv_pps_port_enable(struct intel_encoder *encoder,
+ 			 const struct intel_crtc_state *crtc_state);
  void vlv_pps_port_disable(struct intel_encoder *encoder,
- 			  const struct intel_crtc_state *crtc_state);
- 
 -- 
 2.39.2
 
