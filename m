@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35BDC973CB2
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 17:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CBB973CC1
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 17:53:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 875AA10E866;
-	Tue, 10 Sep 2024 15:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF5B210E870;
+	Tue, 10 Sep 2024 15:53:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZ2Dfh7u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nnejubvT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCC810E0FA;
- Tue, 10 Sep 2024 15:49:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F80710E86D;
+ Tue, 10 Sep 2024 15:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725983353; x=1757519353;
+ t=1725983606; x=1757519606;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=tXfZjIelOoATVNRuNd2M0e7G5jk07wceckIyCC+aQBQ=;
- b=KZ2Dfh7uJh0ET76KFTLpB5Ls4gMQT6Dfj5fIcdUDf5lqmlvf2AALfjP6
- xP+A+4CFPZxXkNxFgPcMHhEK49zBG1Jk9ASYZnHVH8tc6jaRokvU5Rh5v
- /XsP7DAVvpWqFR4GEG3bFAPsshrJBSOWYlr3KQFvRpkU77rWIp0oWSgek
- WfAHHz2QITV01R1kuvHLHehSowGkRdCydIzHdwtDKLNEyFrglt1TB9QM4
- hN+4G8k9T/LsvzrasyaiRHYCUoHQO8jDbaWy5H4pGE6Ercd1RNRYyCRlP
- YdULvGfhVfLDHnHgBhs4yezbeXbSYYVILVMYf7z11PwUhaeAK23IBxnap w==;
-X-CSE-ConnectionGUID: rB3xF2XiQxiw8A0xqNKoZA==
-X-CSE-MsgGUID: TycIBNApTb+c+TE3OoCoRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24882976"
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="24882976"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 08:49:08 -0700
-X-CSE-ConnectionGUID: H7SzwbTlRCOeZTMc2fExpw==
-X-CSE-MsgGUID: lIwTWrPDT3+N2TflfhFYPQ==
+ bh=8A0sImRzGqYtKcvvYf4KPHb7ANZNl5JY3dQAxnuE3e0=;
+ b=nnejubvT/D3MnRIyorg4B5QE19JA13IYhzh1y+Mh4qU8GrqN6D0F7vNB
+ 5n/kAkjh1c7qAWb86xPDeMSWXuRsiRot/37mcdgoyalgeyU15S/5mEy+o
+ 5lNcWel4sCXtqhTYKTWT+pvs0uXpJSNHzPjB1qnkH7L6HAsDHJhKs4wOY
+ lU8xJgOhhCmQaji7Szxr/RXoH7en3GGSp+o+pHcDrIdA2o7omVDNIyEUC
+ hikSGIoMWkqlDLvCtyAhJmBvgo4s4ftolnJ4qkrWectXhoptwrNVVBkRw
+ +C5dVbBvHsP6CXqqM4j3E0EIrdlTEw90FJ15klQ6xAqUdbAXQng8Oe8hE Q==;
+X-CSE-ConnectionGUID: fpCNPlnjTKKKV0MRnm5utQ==
+X-CSE-MsgGUID: 8nvRVBZPTvKWFsNqT3I+2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24616902"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="24616902"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 08:53:25 -0700
+X-CSE-ConnectionGUID: QDcrU6nDQhiTcBfA1nBe0w==
+X-CSE-MsgGUID: CuemNpeITxu2h4/8xT6hbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="71860233"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="66699035"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 08:49:04 -0700
-Date: Tue, 10 Sep 2024 18:49:00 +0300
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 08:53:22 -0700
+Date: Tue, 10 Sep 2024 18:53:19 +0300
 From: Raag Jadav <raag.jadav@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Asahi Lina <lina@asahilina.net>, airlied@gmail.com, daniel@ffwll.ch,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  tursulin@ursulin.net, intel-xe@lists.freedesktop.org,
@@ -52,14 +52,17 @@ Cc: airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
  himal.prasad.ghimiray@intel.com, francois.dugast@intel.com,
  aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com
 Subject: Re: [PATCH v4 1/3] drm: Introduce device wedged event
-Message-ID: <ZuBqbFA8_d0khPCY@black.fi.intel.com>
+Message-ID: <ZuBrb0KTIxHtio7Z@black.fi.intel.com>
 References: <20240906094225.3082162-1-raag.jadav@intel.com>
  <20240906094225.3082162-2-raag.jadav@intel.com>
- <20240909215323.GC5774@mdroper-desk1.amr.corp.intel.com>
+ <7ca931aa-986d-48d4-bcee-37c3badd91c8@asahilina.net>
+ <x5kvnv6cdo6d2wdcsokvvsedzpr5crcncmmiqnkyomf4nez4mk@er3axfov44fc>
+ <4c9ce216-9762-4dfd-80c7-fe285cae05c2@asahilina.net>
+ <dk67ybpmfdx5dabrcsu4ueesk4prcrifhwcvoo73epskyimyfa@x54wxfe6lagf>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240909215323.GC5774@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <dk67ybpmfdx5dabrcsu4ueesk4prcrifhwcvoo73epskyimyfa@x54wxfe6lagf>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,67 +78,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 09, 2024 at 02:53:23PM -0700, Matt Roper wrote:
-> On Fri, Sep 06, 2024 at 03:12:23PM +0530, Raag Jadav wrote:
-> > Introduce device wedged event, which will notify userspace of wedged
-> > (hanged/unusable) state of the DRM device through a uevent. This is
-> > useful especially in cases where the device is in unrecoverable state
-> > and requires userspace intervention for recovery.
+On Mon, Sep 09, 2024 at 03:01:50PM -0500, Lucas De Marchi wrote:
+> On Sun, Sep 08, 2024 at 11:08:39PM GMT, Asahi Lina wrote:
+> > On 9/8/24 12:07 AM, Lucas De Marchi wrote:
+> > > On Sat, Sep 07, 2024 at 08:38:30PM GMT, Asahi Lina wrote:
+> > > > On 9/6/24 6:42 PM, Raag Jadav wrote:
+> > > > > Introduce device wedged event, which will notify userspace of wedged
+> > > > > (hanged/unusable) state of the DRM device through a uevent. This is
+> > > > > useful especially in cases where the device is in unrecoverable state
+> > > > > and requires userspace intervention for recovery.
+> > > > > 
+> > > > > Purpose of this implementation is to be vendor agnostic. Userspace
+> > > > > consumers (sysadmin) can define udev rules to parse this event and
+> > > > > take respective action to recover the device.
+> > > > > 
+> > > > > Consumer expectations:
+> > > > > ----------------------
+> > > > > 1) Unbind driver
+> > > > > 2) Reset bus device
+> > > > > 3) Re-bind driver
+> > > > 
+> > > > Is this supposed to be normative? For drm/asahi we have a "wedged"
+> > > > concept (firmware crashed), but the only possible recovery action is a
+> > > > full system reboot (which might still be desirable to allow userspace to
+> > > > trigger automatically in some scenarios) since there is no bus-level
+> > > > reset and no firmware reload possible.
+> > > 
+> > > maybe let drivers hint possible/supported recovery mechanisms and then
+> > > sysadmin chooses what to do?
 > > 
-> > Purpose of this implementation is to be vendor agnostic. Userspace
-> > consumers (sysadmin) can define udev rules to parse this event and
-> > take respective action to recover the device.
-> > 
-> > Consumer expectations:
-> > ----------------------
-> > 1) Unbind driver
-> > 2) Reset bus device
-> > 3) Re-bind driver
-> > 
-> > v4: s/drm_dev_wedged/drm_dev_wedged_event
-> >     Use drm_info() (Jani)
-> >     Kernel doc adjustment (Aravind)
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_drv.c | 20 ++++++++++++++++++++
-> >  include/drm/drm_drv.h     |  1 +
-> >  2 files changed, 21 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 93543071a500..cca5d8295eb7 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -499,6 +499,26 @@ void drm_dev_unplug(struct drm_device *dev)
-> >  }
-> >  EXPORT_SYMBOL(drm_dev_unplug);
-> >  
-> > +/**
-> > + * drm_dev_wedged_event - generate a device wedged uevent
-> > + * @dev: DRM device
-> > + *
-> > + * This generates a device wedged uevent for the DRM device specified by @dev,
-> > + * on the basis of which, userspace may take respective action to recover the
-> > + * device. Currently we only set WEDGED=1 in the uevent environment, but this
-> > + * can be expanded in the future.
+> > How would we do this? A textual value for the event or something like
+> > that? ("WEDGED=bus-reset" vs "WEDGED=reboot"?)
 > 
-> Just to clarify, is "wedged" intended to always mean "the entire device
-> is unusable" or are there cases where it would also get sent if only
-> part of the device is in a bad state?  For example, using i915/Xe
-> terminology, maybe the GT is dead but display is still working.  Or one
-> GT is dead, but another is still alive.
+> If there's a need for more than one, than I think exposing the supported
+> ones sorted by "side effect" in sysfs would be good. Something like:
+> 
+> 	$ cat /sys/class/drm/card0/device/wedge_recover
+> 	rebind
+> 	bus-reset
+> 	reboot
 
-The idea is to provide drivers a way to recover through userspace intervention.
-It is upto the drivers to decide when they see the need for recovery and how
-they want to recover.
-
-> Basically, is this event intended as a signal that userspace should stop
-> trying to do _anything_ with the device, or just that the device has
-> degraded functionality in some way (and maybe userspace can still do
-> something useful if it's lucky)?  It would be good to clarify that in
-> the docs here in case different drivers have different ideas about how
-> this is expected to work.
-
-And hence the open discussion. Improvements are welcome :)
+How do we expect the drivers to flag supported ones? Extra hooks?
 
 Raag
