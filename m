@@ -2,103 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31375972635
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 02:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9AD69726E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 04:03:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10F8010E33A;
-	Tue, 10 Sep 2024 00:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA2B10E63D;
+	Tue, 10 Sep 2024 02:03:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b="ZKwT+fr4";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=vignesh.raman@collabora.com header.b="PRrhm0nW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDAA10E36A;
- Tue, 10 Sep 2024 00:37:59 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 0D5DEA43FFD;
- Tue, 10 Sep 2024 00:37:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51DC3C4CEC5;
- Tue, 10 Sep 2024 00:37:50 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="ZKwT+fr4"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1725928668;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=OQLtanPdpI6IiO92yLD4QK+WpMduqZbfYjfvTA4Wjlg=;
- b=ZKwT+fr48l6iq8LtejYrRYTAB9HVjSoYl2w9SIS8taTr8eJGaMN+UnDXFn2Y+3WPqB/R/F
- rRaSffSolaALbBnXYJobLzN3VpV4Ezx51BMaa/1NhCLY3oqj42i7Mx1nH5OoYZ9G42zSuF
- N4doRAUS+Xs6qZlnbpNizLgjSg5FNi8=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 9dac766c
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Tue, 10 Sep 2024 00:37:47 +0000 (UTC)
-Date: Tue, 10 Sep 2024 02:37:38 +0200
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: Uros Bizjak <ubizjak@gmail.com>
-Cc: x86@kernel.org, linux-crypto@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org,
- bpf@vger.kernel.org, linux-kselftest@vger.kernel.org,
- kunit-dev@googlegroups.com, linux-kernel@vger.kernel.org,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- "H. Peter Anvin" <hpa@zytor.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Hans Verkuil <hverkuil@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Eric Biggers <ebiggers@kernel.org>, "Theodore Y. Ts'o" <tytso@mit.edu>,
- Jaegeuk Kim <jaegeuk@kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Hannes Reinecke <hare@suse.de>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Alexei Starovoitov <ast@kernel.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- John Fastabend <john.fastabend@gmail.com>,
- Andrii Nakryiko <andrii@kernel.org>,
- Martin KaFai Lau <martin.lau@linux.dev>,
- Eduard Zingerman <eddyz87@gmail.com>, Song Liu <song@kernel.org>,
- Yonghong Song <yonghong.song@linux.dev>,
- KP Singh <kpsingh@kernel.org>, Stanislav Fomichev <sdf@fomichev.me>,
- Hao Luo <haoluo@google.com>, Jiri Olsa <jolsa@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Jiri Pirko <jiri@resnulli.us>, Petr Mladek <pmladek@suse.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Stephen Hemminger <stephen@networkplumber.org>,
- Jamal Hadi Salim <jhs@mojatatu.com>, Cong Wang <xiyou.wangcong@gmail.com>,
- Kent Overstreet <kent.overstreet@linux.dev>
-Subject: Re: [PATCH RESEND v2 00/19] random: Resolve circular include
- dependency and include <linux/percpu.h>
-Message-ID: <Zt-U0opo2EW8LSRJ@zx2c4.com>
-References: <20240909075641.258968-1-ubizjak@gmail.com>
- <Zt8a6_RwLG2pEnZ6@zx2c4.com>
- <CAFULd4ak3n1x0tGrqiNoxvDBRw6AWgchfBO_k4aKps34DomPvA@mail.gmail.com>
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A02D310E63D;
+ Tue, 10 Sep 2024 02:03:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1725933784; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=TXoxNiVPbDk4lbhMZrPXg+RshK8/GZdnXhkENKA/uhQ22/CEzDGehM+2+JmxxqLnM0z3NhjGjQspNNg+vwZhqnfcjVB+tj+idQ8oMZNC/l91JGFHZ9He5LU1ryls+2NOkpztZSJxGpO6NIS0sypm3RUd+bbu7Ge2yGhD/5kmYNw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1725933784;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=h3TZMUaQoLyvj/KrL3jJOf4MzV2N0Ix68cPt3cEiC7s=; 
+ b=HS5QUVRQWlXPlpMHykzGi7Fjk+QFxZCOvS3NY3ABXuUqbTMPA6VNuf9LdWi5DX4OIFxisy6RSIFM0E0Oy7rFAloWP4sar84i9DVaEYoEHa0210n3ePk1IMa7dfyjyvcHdO9ZSRX4zEA/BdWDecvbze88gN4nAfHWAVV/c7/sVyI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=vignesh.raman@collabora.com;
+ dmarc=pass header.from=<vignesh.raman@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1725933784; 
+ s=zohomail; d=collabora.com; i=vignesh.raman@collabora.com;
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:From:From:To:To:Cc:Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=h3TZMUaQoLyvj/KrL3jJOf4MzV2N0Ix68cPt3cEiC7s=;
+ b=PRrhm0nW7I14wI6+t25DV6+iTO0FdQa6Dk71QdMnZQZq+ZfG9jGlOqWuSQk1iYZA
+ fE4Vt1C6F+mTgHElHZBgGXpGHEszJWLh5y8Myk5q+ztfNk1d2aVN12ZbAlNXR5w2NrZ
+ cs82R6TNqpYBmGOK2I7YRdFSMFa538bz0q8ctsoU=
+Received: by mx.zohomail.com with SMTPS id 1725933783082952.7598237383282;
+ Mon, 9 Sep 2024 19:03:03 -0700 (PDT)
+Message-ID: <61f62c86-3e82-4eff-bd3c-8123fa0ca332@collabora.com>
+Date: Tue, 10 Sep 2024 07:32:56 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAFULd4ak3n1x0tGrqiNoxvDBRw6AWgchfBO_k4aKps34DomPvA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: drm-ci: flaky tests for i915 driver testing
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, Daniel Stone <daniels@collabora.com>,
+ Helen Mae Koike Fornazier <helen.koike@collabora.com>,
+ Sergi Blanch Torne <sergi.blanch.torne@collabora.com>,
+ Guilherme Alcarde Gallo <guilherme.gallo@collabora.com>
+References: <af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com>
+ <48fb86a9-b863-468e-ae74-35423b22b76d@collabora.com>
+Content-Language: en-US
+In-Reply-To: <48fb86a9-b863-468e-ae74-35423b22b76d@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,48 +72,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Uros,
+Hi Maintainers,
 
-On Mon, Sep 09, 2024 at 09:30:06PM +0200, Uros Bizjak wrote:
-> Besides GCC, clang can define various named address space via
-> address_space attribute:
+On 12/07/24 11:22, Vignesh Raman wrote:
+> Hi Maintainers,
 > 
-> --cut here--
-> #define __as(N) __attribute__((address_space(N)))
+> On 28/05/24 12:07, Vignesh Raman wrote:
+>> Hi Maintainers,
+>>
+>> There are some flaky tests reported for i915 driver testing in drm-ci 
+>> for the below boards.
+>>
+>> *)
+>> # Board Name: asus-C523NA-A20057-coral
+>> # IGT Version: 1.28-g0df7b9b97
+>> # Linux Version: 6.9.0-rc7
+>> # Failure Rate: 50
+>> kms_fb_coherency@memset-crc
+>>
+>> *)
+>> # Board Name: asus-C436FA-Flip-hatch
+>> # IGT Version: 1.28-g0df7b9b97
+>> # Linux Version: 6.9.0-rc7
+>> # Failure Rate: 50
+>> kms_plane_alpha_blend@constant-alpha-min
+>>
+>> *)
+>> # Board Name: hp-x360-12b-ca0010nr-n4020-octopus
+>> # IGT Version: 1.28-g0df7b9b97
+>> # Linux Version: 6.9.0-rc7
+>> # Failure Rate: 50
+>> core_hotunplug@unplug-rescan
+>> kms_fb_coherency@memset-crc
+>>
+>> *)
+>> # Board Name: hp-x360-14-G1-sona
+>> # IGT Version: 1.28-g0df7b9b97
+>> # Linux Version: 6.9.0-rc7
+>> # Failure Rate: 50
+>> prime_busy@hang
+>>
+>> *)
+>> # Board Name: dell-latitude-5400-8665U-sarien
+>> # IGT Version: 1.28-g0df7b9b97
+>> # Linux Version: 6.9.0-rc7
+>> # Failure Rate: 50
+>> kms_pm_rpm@modeset-lpsp-stress
+>>
+>> *)
+>> # Board Name: asus-C433TA-AJ0005-rammus
+>> # IGT Version: 1.28-g0df7b9b97
+>> # Linux Version: 6.9.0-rc7
+>> # Failure Rate: 50
+>> i915_hangman@engine-engine-error
+>> i915_hangman@gt-engine-hang
+>> kms_async_flips@crc
+>> kms_universal_plane@cursor-fb-leak
+>>
+>> Will add these tests in,
+>> drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+>> drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+>> drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+>> drivers/gpu/drm/ci/xfails/i915-glk-flakes.txt
+>> drivers/gpu/drm/ci/xfails/i915-kbl-flakes.txt
+>> drivers/gpu/drm/ci/xfails/i915-whl-flakes.txt
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/gpu/automated_testing.rst#n70
+>>
+>> Please could you have a look at these test results and let us know if 
+>> you need more information. Thank you.
 > 
-> void *foo(void __as(1) *x) { return x; }         // error
+> There are some flaky tests reported for i915 driver testing in drm-ci 
+> with the recent IGT uprev in drm-ci 
+> (https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/0e7f4e6a20d550252c4f355d5a303b1d9c8ff052)
 > 
-> void *bar(void __as(1) *x) { return (void *)x; } // fine
-> --cut here--
+> *)
+> # Board Name: asus-C433TA-AJ0005-rammus
+> # Bug Report: 
+> https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> # Failure Rate: 50
+> # IGT Version: 1.28-gf13702b8e
+> # Linux Version: 6.10.0-rc5
+> kms_sysfs_edid_timing
+> i915_hangman@engine-engine-hang
+> kms_pm_rpm@modeset-lpsp-stress
 > 
-> When compiling this, the compiler returns:
+> *)
+> # Board Name: asus-C436FA-Flip-hatch
+> # Bug Report: 
+> https://lore.kernel.org/intel-gfx/af4ca4df-a3ef-4943-bdbf-4c3af2c333af@collabora.com/T/#u
+> # Failure Rate: 50
+> # IGT Version: 1.28-gf13702b8e
+> # Linux Version: 6.10.0-rc5
+> kms_atomic_transition@plane-all-modeset-transition-internal-panels
 > 
-> clang-as.c:3:37: error: returning '__as(1) void *' from a function
-> with result type 'void *' changes address space of pointer
+> The expectation files have been updated with these tests,
+> https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+> 
+> https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
 
-Super cool. Looking forward to having it all wired up and the bugs we'll
-find with it. 
+There are some flaky tests reported for i915 driver testing in drm-ci 
+with the recent IGT uprev in drm-ci.
 
-> I think that the best approach is to target this patchset for linux
-> 6.13 via random.git tree. I will prepare a v3 after 6.12rc1, so when
-> committed to random.git, the patchset will be able to spend some time
-> in linux-next. This way, there will be plenty of time for CI robots to
-> do additional checks also for some less popular targets (although
-> individual patches are dead simple, removing these kinds of "legacy"
-> includes can be tricky), and I will also be able to collect Acked-by:s
-> in the meantime.
-> 
-> While the patchset is an improvement by itself, its inclusion is not
-> time sensitive. The follow up percpu named address checking
-> functionality requires a very recent feature (__typeof_unqual__
-> keyword), which is only supported in recent compilers (gcc-14 and
-> clang-20). Besides compiler support, sparse doesn't know about
-> __typeof_unqual__, resulting in broken type tracing and hundreds of
-> sparse errors with C=1 due to unknown keyword.
-> 
-> So, I think we are not in a hurry and can take the slow and safe path.
+*)
+# Board Name: asus-C433TA-AJ0005-rammus
+# Failure Rate: 50
+# IGT Version: 1.28-ga73311079
+# Linux Version: 6.11.0-rc2
+kms_pm_rpm@drm-resources-equal
 
-Okay, sure, that sounds good to me. I'll keep my eyes open for v3
-in a few weeks then.
+*)
+# Board Name: asus-C523NA-A20057-coral
+# Failure Rate: 100
+# IGT Version: 1.28-ga73311079
+# Linux Version: 6.11.0-rc2
+kms_universal_plane@cursor-fb-leak
 
-Jason
+*)
+# Board Name: asus-C436FA-Flip-hatch
+# Failure Rate: 100
+# IGT Version: 1.28-ga73311079
+# Linux Version: 6.11.0-rc2
+kms_plane_alpha_blend@constant-alpha-min
+
+# Board Name: asus-C436FA-Flip-hatch
+# Failure Rate: 50
+# IGT Version: 1.28-ga73311079
+# Linux Version: 6.11.0-rc2
+kms_async_flips@crc
+
+The expectation files have been updated with these tests,
+https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-amly-flakes.txt
+
+https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-apl-flakes.txt
+
+https://gitlab.freedesktop.org/drm/misc/kernel/-/blob/drm-misc-next/drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt
+
+Please could you have a look at these test results and let us know if 
+you need more information. Thank you.
+
+Regards,
+Vignesh
