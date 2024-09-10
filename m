@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8A89738DD
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 15:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9529738DE
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 15:42:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01C6710E7F8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 622AD10E7F4;
 	Tue, 10 Sep 2024 13:42:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RX5OuFh+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cSUd1Geb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6414F10E7F4;
- Tue, 10 Sep 2024 13:42:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF00210E7F4;
+ Tue, 10 Sep 2024 13:42:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725975753; x=1757511753;
+ t=1725975754; x=1757511754;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LdPGmz4oXSn3F3dqHG3aXywifXUv0cbdvaztTNgVRpE=;
- b=RX5OuFh+U4GPO29tC1Sny+tewvs36wRlP4vaYuefcIDLl/RU+Yt3TlGK
- wtuvT9+Z21Ao4GEtHLHIiH/scX1WewveeC7jX+th7uMeL/074nwQvJmpr
- d/xMfhyRltGx0/hSgXgOO6BDu0WxjiTDd+5tJIcjiVoIeWxGi6+Aa8rSS
- 92ygdlZCMmIeeDeFQH7J9Gj5kW8d/x7of5YYtMRONnF0cDFzbkHKp4vVP
- 6K7Eqbfj6LMhNMKJLc9A5u2hbE41x1pzLOQBlvhAW/XVU5S/GeU3ZuWE1
- O0zrK5+73ZutWfRowmtZsICmtiuEiLXZ44E1I8+Wnb9bMJfwakvB0cPvN Q==;
-X-CSE-ConnectionGUID: 1h2m7GTQTDe/CRAlvM+KLA==
-X-CSE-MsgGUID: umiycBUsRrm7XGBZrLYBvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="35861240"
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="35861240"
+ bh=QWXekUZ6f972PjoHVcQeqHMb7+LOGTHyo63uvzdIs94=;
+ b=cSUd1GebFYAGj6dNSzhxWb0Ggxkha9OyODJKelk2dbT0EuEfaIJKzPEW
+ V6UjOTY8HjI6aZPHs/DiUKaAW+Gxixh9eiBa56N6MgFRaTPrYkOQKqaJ9
+ xlh1OufxMDEAiqlrcbweKW1tijAPQlT6lp5mthCs/NktrGAA8b2QMxAzm
+ 6y0sC7Xts8OEdUT5pfkHGPlEtTACASm5xv2aUy+lcYVyzZ3NLzM4YK51T
+ ti8rrMD2FGpjLtS7EgCCD/PNu1y8wof+XGqmoNjraRp2Xxd1PZc2FmFK9
+ 4Tm4N4wcUS3uk3GTj+TdWoeNqaIi2SNak+qhQxgZfKNdQOP6Nn8MBi9Cp Q==;
+X-CSE-ConnectionGUID: VtcjI3MqQK22ZbYktLLjPQ==
+X-CSE-MsgGUID: 4dBU229jS2qBu/cv9Ctkyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="35861250"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="35861250"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:42:31 -0700
-X-CSE-ConnectionGUID: FJ7EGAM5TZKG87nPJr3WrQ==
-X-CSE-MsgGUID: xO5WaYs9Ramdlko4U1SQVw==
+ 10 Sep 2024 06:42:34 -0700
+X-CSE-ConnectionGUID: 2pGKHZhzT5CLPfcUz0umnw==
+X-CSE-MsgGUID: uBvYoAOBTzaWZ1v8NVhU4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="67081305"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="67081319"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 Sep 2024 06:42:28 -0700
+ by fmviesa008.fm.intel.com with SMTP; 10 Sep 2024 06:42:31 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Sep 2024 16:42:27 +0300
+ Tue, 10 Sep 2024 16:42:30 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/5] drm/i915/bios: Extract intel_spi_read16()
-Date: Tue, 10 Sep 2024 16:42:17 +0300
-Message-ID: <20240910134219.28479-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/5] drm/i915/bios: Extract vbt_signature[]
+Date: Tue, 10 Sep 2024 16:42:18 +0300
+Message-ID: <20240910134219.28479-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240910134219.28479-1-ville.syrjala@linux.intel.com>
 References: <20240910134219.28479-1-ville.syrjala@linux.intel.com>
@@ -71,71 +71,62 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The SPI VBT codepath only knows how to read 4 bytes at a time.
-So to read the 2 byte vbt_size it masks out the unwanted msbs.
-Hide that little implementation detail inside a new intel_spi_read16()
-helper. Alse rename the existing intel_spi_read() to intel_spi_read32()
-to make it clear what it does.
+Replace the three hand rolled "$VBT"s with a vbt_signature[]
+to avoid accidents.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index cc4a4cc2bf3e..cbbda94c3dab 100644
+index cbbda94c3dab..0b92b494117f 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3053,13 +3053,18 @@ static struct vbt_header *firmware_get_vbt(struct intel_display *display,
- 	return vbt;
+@@ -2964,6 +2964,8 @@ static const struct bdb_header *get_bdb_header(const struct vbt_header *vbt)
+ 	return _vbt + vbt->bdb_offset;
  }
  
--static u32 intel_spi_read(struct intel_uncore *uncore, u32 offset)
-+static u32 intel_spi_read32(struct intel_uncore *uncore, u32 offset)
- {
- 	intel_uncore_write(uncore, PRIMARY_SPI_ADDRESS, offset);
- 
- 	return intel_uncore_read(uncore, PRIMARY_SPI_TRIGGER);
- }
- 
-+static u16 intel_spi_read16(struct intel_uncore *uncore, u32 offset)
-+{
-+	return intel_spi_read32(uncore, offset) & 0xffff;
-+}
++static const char vbt_signature[4] = "$VBT";
 +
- static struct vbt_header *spi_oprom_get_vbt(struct intel_display *display,
- 					    size_t *size)
- {
-@@ -3078,7 +3083,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct intel_display *display,
- 	oprom_offset &= OROM_OFFSET_MASK;
- 
- 	for (count = 0; count < oprom_size; count += 4) {
--		data = intel_spi_read(&i915->uncore, oprom_offset + count);
-+		data = intel_spi_read32(&i915->uncore, oprom_offset + count);
- 		if (data == *((const u32 *)"$VBT")) {
- 			found = oprom_offset + count;
- 			break;
-@@ -3094,9 +3099,8 @@ static struct vbt_header *spi_oprom_get_vbt(struct intel_display *display,
+ /**
+  * intel_bios_is_valid_vbt - does the given buffer contain a valid VBT
+  * @display:	display device
+@@ -2986,7 +2988,7 @@ bool intel_bios_is_valid_vbt(struct intel_display *display,
+ 		return false;
  	}
  
- 	/* Get VBT size and allocate space for the VBT */
--	vbt_size = intel_spi_read(&i915->uncore,
--				  found + offsetof(struct vbt_header, vbt_size));
--	vbt_size &= 0xffff;
-+	vbt_size = intel_spi_read16(&i915->uncore,
-+				    found + offsetof(struct vbt_header, vbt_size));
+-	if (memcmp(vbt->signature, "$VBT", 4)) {
++	if (memcmp(vbt->signature, vbt_signature, sizeof(vbt_signature))) {
+ 		drm_dbg_kms(display->drm, "VBT invalid signature\n");
+ 		return false;
+ 	}
+@@ -3082,9 +3084,11 @@ static struct vbt_header *spi_oprom_get_vbt(struct intel_display *display,
+ 	oprom_offset = intel_uncore_read(&i915->uncore, OROM_OFFSET);
+ 	oprom_offset &= OROM_OFFSET_MASK;
  
- 	if (vbt_size > oprom_size - count) {
- 		drm_dbg(display->drm,
-@@ -3109,7 +3113,7 @@ static struct vbt_header *spi_oprom_get_vbt(struct intel_display *display,
- 		goto err_not_found;
++	BUILD_BUG_ON(sizeof(vbt_signature) != sizeof(u32));
++
+ 	for (count = 0; count < oprom_size; count += 4) {
+ 		data = intel_spi_read32(&i915->uncore, oprom_offset + count);
+-		if (data == *((const u32 *)"$VBT")) {
++		if (data == *((const u32 *)vbt_signature)) {
+ 			found = oprom_offset + count;
+ 			break;
+ 		}
+@@ -3144,9 +3148,11 @@ static struct vbt_header *oprom_get_vbt(struct intel_display *display,
+ 	if (!oprom)
+ 		return NULL;
  
- 	for (count = 0; count < vbt_size; count += 4)
--		*(vbt + store++) = intel_spi_read(&i915->uncore, found + count);
-+		*(vbt + store++) = intel_spi_read32(&i915->uncore, found + count);
++	BUILD_BUG_ON(sizeof(vbt_signature) != sizeof(u32));
++
+ 	/* Scour memory looking for the VBT signature. */
+ 	for (i = 0; i + 4 < size; i += 4) {
+-		if (ioread32(oprom + i) != *((const u32 *)"$VBT"))
++		if (ioread32(oprom + i) != *((const u32 *)vbt_signature))
+ 			continue;
  
- 	if (!intel_bios_is_valid_vbt(display, vbt, vbt_size))
- 		goto err_free_vbt;
+ 		p = oprom + i;
 -- 
 2.44.2
 
