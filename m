@@ -2,73 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24BDC9735C3
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 12:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9267D97360D
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 13:18:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B307B10E78C;
-	Tue, 10 Sep 2024 10:58:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B2310E794;
+	Tue, 10 Sep 2024 11:18:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dnair0wS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dapvYQaC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0453010E78C
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 10:58:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3A3710E79E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 11:18:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725965916; x=1757501916;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=2vp3hZ/483ZIG9nlQ0zkgFLC8GVhRNfXJUZH+Fv506g=;
- b=Dnair0wSAAjxzwV3XUCuRuaEtizHmg5OQ3eR+7WLnKvdmXQVVyFnC5Zy
- 3o+75lU6Mxf8a70vJO54dWLwsjl8x9si8ErBpSKhCx65dEPAMjX7OmGm2
- dSMOXaOesV/MuV1nfQ2RafxIKKKraRiZCTS2rr71aD97qIuWolCr5YDyZ
- 8c4+hDEeEZGMs5rORfbj03oSRvUliqF6C7qm/tMJ0BKCR0asOjCxHCTSx
- 0IDj91zMHky5sANOt+LWxGOdXyLR0KrF8hP9Sm0ZYyMBXG8YUzLpZJ9up
- 666RST+KO5Ki05IzxuE5H5OZMrkE129zxslE8dRKmSTrADwQrtxbtvUgv Q==;
-X-CSE-ConnectionGUID: pvvDc+KjQy+S/CshS44OCw==
-X-CSE-MsgGUID: tWuay0XaTAW+4CdGEXe1Ow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="27625190"
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="27625190"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 03:58:35 -0700
-X-CSE-ConnectionGUID: fCpixvamRxayDv+eBQ1vSw==
-X-CSE-MsgGUID: PReIQrhyTkGTXOyppFO2vA==
+ t=1725967107; x=1757503107;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sUOqrZzaH7lr+Hco5FTKjisUERsAJj1B7leZ7rikHz0=;
+ b=dapvYQaC9ylsrOaeQXvD7jUjP6752holdnwcYk8YUEi5f19JD1qI7/Ka
+ XBrGwXN6vSNtN0ZwLqfvJXvg/6LgHtkDyEy+qJncmDoQdFQdhD63Fhe0Q
+ M9MDhyWeXeBQg+RdhWTv8qrWPv+TkC2ZHDjxuh5VU+KrwMpmnpPACtsPi
+ lvkSwe/6cGGEs6RAIRhfoR/qet10fP0mMsnhjlZe9rxlIOX068t6YJ0XS
+ SkuZ7j4/Mf0qsNvU+fKq2o782bENfEtPgug5dVXxaSwZiSrfpTvDSDmHW
+ opW0CVifIkJxmRUnrZ8ok8Mb7ZcId6jzkrArywGlHrgOTb/tDEURBR8MR A==;
+X-CSE-ConnectionGUID: hprZ+Ku3SfCBZypKuLrqDQ==
+X-CSE-MsgGUID: nF1ix4DGQvGfLUE4Y9eoqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24865469"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="24865469"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 04:18:26 -0700
+X-CSE-ConnectionGUID: r26PmfjjRMez94cU1+JZcQ==
+X-CSE-MsgGUID: BE39S6NuQgSkjc/pUVHQpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="67038049"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 03:58:32 -0700
-Date: Tue, 10 Sep 2024 13:58:29 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "linux@roeck-us.net" <linux@roeck-us.net>,
- "andi.shyti@linux.intel.com" <andi.shyti@linux.intel.com>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "Tauro, Riana" <riana.tauro@intel.com>,
- "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- "Poosa, Karthik" <karthik.poosa@intel.com>
-Subject: Re: [PATCH v2] drm/i915/hwmon: expose package temperature
-Message-ID: <ZuAmVaPoDS4xH6Le@black.fi.intel.com>
-References: <20240906093118.3068732-1-raag.jadav@intel.com>
- <sd5g4sj6t373wu5jfdfaujh73t4uehcri4aqtu7dln4p4huyoh@sa4nivkflc47>
- <CY5PR11MB6211D25D522F6044554B84F7959A2@CY5PR11MB6211.namprd11.prod.outlook.com>
- <6683448a-aeb4-4ab1-9520-c83f70100583@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="97695041"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 04:18:25 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH] drm/i915/dp: Fix AUX IO power enabling for eDP PSR
+Date: Tue, 10 Sep 2024 14:18:47 +0300
+Message-ID: <20240910111847.2995725-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6683448a-aeb4-4ab1-9520-c83f70100583@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,38 +65,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 10, 2024 at 11:57:20AM +0530, Nilawar, Badal wrote:
-> On 10-09-2024 10:07, Gupta, Anshuman wrote:
-> > > 
-> > > ...
-> > > 
-> > > > +static int
-> > > > +hwm_temp_read(struct hwm_drvdata *ddat, u32 attr, long *val) {
-> > > > +	struct i915_hwmon *hwmon = ddat->hwmon;
-> > > > +	intel_wakeref_t wakeref;
-> > > > +	u32 reg_val;
-> > > > +
-> > > > +	switch (attr) {
-> > > > +	case hwmon_temp_input:
-> > > > +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-> > > > +			reg_val = intel_uncore_read(ddat->uncore, hwmon-
-> > > > rg.pkg_temp);
-> > > > +
-> > > > +		/* HW register value is in degrees, convert to millidegrees. */
-> > > > +		*val = REG_FIELD_GET(TEMP_MASK, reg_val) *
-> > > MILLIDEGREE_PER_DEGREE;
-> > > > +		return 0;
-> > > > +	default:
-> > > > +		return -EOPNOTSUPP;
-> > > > +	}
-> > > 
-> > > I don't understand this love for single case switches.
-> > IMHO this is kept to keep symmetry in this file to make it more readable.
-> > Also it readable to return error using default case, which is followed in this entire file.
-> I agree on this. Let’s stick to file-wide approach and ensure it is applied
-> to the fan_input attribute as well.
+Panel Self Refresh on eDP requires the AUX IO power to be enabled
+whenever the output (main link) is enabled. This is required by the
+AUX_PHY_WAKE/ML_PHY_LOCK signaling initiated by the HW automatically to
+re-enable the main link after it got disabled in power saving states
+(see eDP v1.4b, sections 5.1, 6.1.3.3.1.1).
 
-Since fan patch is already on its way to drm-next, you can submit a fix if you wish.
-Although I don't agree with it, I have no objections.
+The Panel Replay mode on non-eDP outputs on the other hand is only
+supported by keeping the main link active, thus not requiring the above
+AUX_PHY_WAKE/ML_PHY_LOCK signaling (eDP v1.4b, section 6.1.3.3.1.2).
+Thus enabling the AUX IO power for this case is not required either.
 
-Raag
+Based on the above enable the AUX IO power only for eDP/PSR outputs.
+
+Bspec: 49274, 53370
+
+Cc: Animesh Manna <animesh.manna@intel.com>
+Fixes: b8cf5b5d266e ("drm/i915/panelreplay: Initializaton and compute config for panel replay")
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.h |  2 ++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 00fbe9f8c03a9..b1c294236cc87 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -916,7 +916,7 @@ intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
+ 	 * instead of a specific AUX_IO_<port> reference without powering up any
+ 	 * extra wells.
+ 	 */
+-	if (intel_encoder_can_psr(&dig_port->base))
++	if (intel_psr_needs_aux_io_power(&dig_port->base, crtc_state))
+ 		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
+ 	else if (DISPLAY_VER(i915) < 14 &&
+ 		 (intel_crtc_has_dp_encoder(crtc_state) ||
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b30fa067ce6e3..f2991dc4a04ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -205,6 +205,19 @@ bool intel_encoder_can_psr(struct intel_encoder *encoder)
+ 		return false;
+ }
+ 
++bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state)
++{
++	/*
++	 * For PSR/PR modes only eDP requires the AUX IO power to be enabled whenever
++	 * the output is enabled. For non-eDP outputs the main link is always
++	 * on, hence it doesn't require the HW initiated AUX wake-up signaling used
++	 * for eDP.
++	 */
++	return intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
++	       intel_encoder_can_psr(encoder);
++}
++
+ static bool psr_global_enabled(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 4e09c10908e4c..6eb5f15f674fa 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -25,6 +25,8 @@ struct intel_plane_state;
+ 				    (intel_dp)->psr.source_panel_replay_support)
+ 
+ bool intel_encoder_can_psr(struct intel_encoder *encoder);
++bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
++				  const struct intel_crtc_state *crtc_state);
+ void intel_psr_init_dpcd(struct intel_dp *intel_dp);
+ void intel_psr_enable_sink(struct intel_dp *intel_dp,
+ 			   const struct intel_crtc_state *crtc_state);
+-- 
+2.44.2
+
