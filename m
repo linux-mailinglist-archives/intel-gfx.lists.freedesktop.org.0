@@ -2,52 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE74978A51
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 23:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AAA1978A52
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 23:02:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F36EF10ED96;
-	Fri, 13 Sep 2024 21:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D6C10ED98;
+	Fri, 13 Sep 2024 21:01:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="ThXfbiuT";
+	dkim=pass (2048-bit key; unprotected) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="NjoyDP3E";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 903 seconds by postgrey-1.36 at gabe;
- Tue, 10 Sep 2024 14:25:33 UTC
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
- by gabe.freedesktop.org (Postfix) with ESMTP id C364810E825;
- Tue, 10 Sep 2024 14:25:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
- Message-ID; bh=rHHxa53jnkhjtd37FzahttNapP2RZOmkSFY37zgUFPs=; b=T
- hXfbiuTIV+cBYLSoIelXDS+q3sG2kWK4DSHJ8WbD2YjvF9d53LCIkh3G31+at+fh
- HI8le8CIbU3PAqfGnWgSyka16WU+5a+9x7fHl8YT0wKeMPMV7fAmP+m4G2PH7h47
- Ccwo9gbcQ+BKFSs4vAfHdhUtlY8gQqFcmWaHcNzcZw=
-Received: from zhanghe9702$163.com ( [183.14.214.29] ) by
- ajax-webmail-wmsvr-40-130 (Coremail) ; Tue, 10 Sep 2024 22:10:04 +0800
- (CST)
-X-Originating-IP: [183.14.214.29]
-Date: Tue, 10 Sep 2024 22:10:04 +0800 (CST)
-From: =?GBK?B?1cW60w==?= <zhanghe9702@163.com>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: trivial@kernel.org, intel-gfx <intel-gfx@lists.freedesktop.org>, 
- dri-devel <dri-devel@lists.freedesktop.org>
-Subject: Re:Re: [PATCH] drm/i915/gt: Fixed an typo
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2024 www.mailtech.cn 163com
-In-Reply-To: <ZuAQUGMTa4btT-ga@ashyti-mobl2.lan>
-References: <20240907092443.81661-1-zhanghe9702@163.com>
- <ZuAQUGMTa4btT-ga@ashyti-mobl2.lan>
-X-NTES-SC: AL_Qu2ZB/WcuEwr4ieYZekXnk4bgeY3XMS5sv4k34FUOZE0mCX13joKQ2B5DGXa7vujOSumrweXeQVp0tZ3Y5tEZLKczuAmEGEXsbrKNGFQLG11
-Content-Type: multipart/alternative; 
- boundary="----=_Part_182745_367905845.1725977404708"
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9CF10E873
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 15:54:48 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-42bbffe38e6so44091785e9.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 08:54:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1725983687; x=1726588487;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=6PxrvNA8ZTQVOz0CWahQR48w5Gv7e/oF6A+jLaE/Ydo=;
+ b=NjoyDP3EIoblnuYOdQC3VqYc0lgMLO1ESkcJa4AzAM9f+39RlOp6mznehS5Qh1vq2A
+ LDK4vkr4GX5KD7fYMk9wzkPVt6zPp1YRKk1k8Mx6hOP5oO/XgrnBGQvpAAnCdMe8E/G7
+ NCAugbkN+BjU9CUCwxkbYbSn4dNGoQ3rvmnGUP3aYg8sbvoB4sObRY58yFbZCZVlg6eW
+ RHfxQ8M+l67kD89ikqYNbsPUZDhCJ750ZyM2X6tHqgaKP3v5jiFDchc8RYYVrRVe/zd/
+ mp5xiSm1x+nL8hX5UHArdM6A5CxfyQGuc5NrWGzznrt0DzyGR8cRVSzwRLCpq11h5ivp
+ /6bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725983687; x=1726588487;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=6PxrvNA8ZTQVOz0CWahQR48w5Gv7e/oF6A+jLaE/Ydo=;
+ b=qMOczlaJd72+k0dKuFwaF7EysE5yA+9X7EI8q0Q/a0Umw/fHR0Q+PPMl6AyY45LEzc
+ hT12bqBiwuTwcpIxQ7Pp72xkXyKrMNNvvNcgVbearP3dhMyQqMsw/KTl/39jKunnFrLy
+ ksi6Bo7OYgyxANyQbqqH/UIQfWpjwH/OqqpVagtlnftmmzVvAg454Dg+t3dMk45tZQY+
+ 6naUOoPe1UlzfDO9Ox0NLLiUeCTnzpGxQA7N9jsKpY4oHtpami17IEXN/7T3lRxYTvcy
+ E8Ji99q/xVjQByNTjiwytmnAksSbVlCWiLWFl/5No1g8jNYfd8957OXi/dcz7jaw8wPJ
+ 3HKg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUhqBjuA5DSsuCCp/mb/TcrJFnoLS595W4aZQC+8BjhUlj6qD+0Rjn4EnV00Pvwtyt8gzDJP2uouGc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzqleCT5LHytyiunYqSAfFEF0pDspBObbw/ntb+0LAdPS6K6hLv
+ X2jK8XA2MPaUly9/P0mLtafkH+pWK7+8hPPCSc+u0/FCzxXJpHvaJi25FbJmfeg=
+X-Google-Smtp-Source: AGHT+IEb0qA5EpGtNaNVZJscuK0KLM4oa8DNMmxJuy4xu6oN9fz+YV9+rQWeonEJ5VU15eSCcYGm4A==
+X-Received: by 2002:a05:600c:3d11:b0:426:5e91:3920 with SMTP id
+ 5b1f17b1804b1-42cad87f264mr87685255e9.29.1725983686172; 
+ Tue, 10 Sep 2024 08:54:46 -0700 (PDT)
+Received: from [192.168.108.50] (freebox.vlq16.iliad.fr. [213.36.7.13])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42cc1375c6esm20178245e9.1.2024.09.10.08.54.45
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 10 Sep 2024 08:54:45 -0700 (PDT)
+Message-ID: <19ac4e25-7609-4d92-8687-585c6ea00c79@freebox.fr>
+Date: Tue, 10 Sep 2024 17:54:44 +0200
 MIME-Version: 1.0
-Message-ID: <21386152.c170.191dc452525.Coremail.zhanghe9702@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: _____wD3X7M_U+BmaaN0AA--.5335W
-X-CM-SenderInfo: x2kd0wlkhzliqs6rljoofrz/1tbiDxxWamVOGkupSQAEsx
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/8] drm/msmi: annotate pll_cmp_to_fdata() with
+ __maybe_unused
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jani Nikula <jani.nikula@intel.com>, Arnaud Vrac <avrac@freebox.fr>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org
+References: <cover.1725962479.git.jani.nikula@intel.com>
+ <3553b1db35665e6ff08592e35eb438a574d1ad65.1725962479.git.jani.nikula@intel.com>
+ <4ag2efwiizn5bnskauekqwfhgl4gioafcvetpvsmbdgg37bdja@3g6tt4rlfwcb>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <4ag2efwiizn5bnskauekqwfhgl4gioafcvetpvsmbdgg37bdja@3g6tt4rlfwcb>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 13 Sep 2024 21:01:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,82 +94,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-------=_Part_182745_367905845.1725977404708
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+On 10/09/2024 16:51, Dmitry Baryshkov wrote:
 
-OiksIGkgdGhpbmsgeW91IG1lYW4gc2hvdWxkIHVzZSBDUFUgY29sdW1uIGhlYWQ/IGJlY2F1c2Ug
-dGhlIHJlZyB2YWx1ZSBqdXN0IHJlZmxlY3QgQ1BVIHJlbGF0ZWQgaW5mb3JtYXRpb24KCgoKCgoK
-CgoKCgoKCgoKCgpBdCAyMDI0LTA5LTEwIDE3OjI0OjMyLCAiQW5kaSBTaHl0aSIgPGFuZGkuc2h5
-dGlAbGludXguaW50ZWwuY29tPiB3cm90ZToKPkhpIFpoYW5naGUsCj4KPlRoYW5rcyBmb3IgeW91
-ciBwYXRjaC4gUGxlYXNlIG5leHQgdGltZSBjaGVjayBmcm9tCj5nZXRfbWFpbnRhaW5lcnMucGwg
-dGhlIG1haWxpbmcgbGlzdHMgdGhhdCBuZWVkIHRvIGJlIGluY2x1ZGVkIGluCj55b3VyIHBhdGNo
-ZXMuCj4KPkluIHRoaXMgY2FzZSB5b3Ugc2hvdWxkIGhhdmUgaW5jbHVkZWQgYXQgbGVhc3QgdGhl
-Cj5pbnRlbC1nZnggPGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+IGFuZCB0aGUKPmRy
-aS1kZXZlbCA8ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gbWFpbGluZyBsaXN0cy4K
-Pgo+T24gU2F0LCBTZXAgMDcsIDIwMjQgYXQgMDU6MjQ6NDNQTSArMDgwMCwgemhhbmdoZTk3MDIg
-d3JvdGU6Cj4+IGNvbHVtbiBoZWFkZXIgc2hvdWxkIGJlIEdQVSwgbm90IENQVQo+PiAKPj4gU2ln
-bmVkLW9mZi1ieTogemhhbmdoZTk3MDIgPHpoYW5naGU5NzAyQDE2My5jb20+Cj4KPkRvIHlvdSBy
-ZWFsbHkgd2FudCB5b3VyIG5hbWUgdG8gYXBwZWFyIGFzIHpoYW5naGU5NzAyPyBJZiB5b3UgZ2l0
-Cj5sb2cgdGhlIGxpbnV4IGRpcmVjdG9yeSB5b3Ugd2lsbCBzZSB0aGF0IHBlb3BsZSBub3JtYWxs
-eSB1c2UKPnRoZSAiTmFtZSBTdXJuYW1lIDxlbWFpbD4iIHN0eWxlLiBBcyB5b3Ugd2lzaC4KPgo+
-PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlYnVnZnMuYyB8
-IDIgKy0KPj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+
-PiAKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2Rl
-YnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlYnVnZnMuYwo+
-PiBpbmRleCA4ZDA4YjM4ODc0ZWYuLmI2MzVhYTI4MjBkOSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcG1fZGVidWdmcy5jCj4+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlYnVnZnMuYwo+PiBAQCAtNDMxLDcgKzQzMSw3
-IEBAIHN0YXRpYyBpbnQgbGxjX3Nob3coc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQo+
-PiAgCQltYXhfZ3B1X2ZyZXEgLz0gR0VOOV9GUkVRX1NDQUxFUjsKPj4gIAl9Cj4+ICAKPj4gLQlz
-ZXFfcHV0cyhtLCAiR1BVIGZyZXEgKE1IeilcdEVmZmVjdGl2ZSBDUFUgZnJlcSAoTUh6KVx0RWZm
-ZWN0aXZlIFJpbmcgZnJlcSAoTUh6KVxuIik7Cj4+ICsJc2VxX3B1dHMobSwgIkdQVSBmcmVxIChN
-SHopXHRFZmZlY3RpdmUgR1BVIGZyZXEgKE1IeilcdEVmZmVjdGl2ZSBSaW5nIGZyZXEgKE1Ieilc
-biIpOwo+Cj5UaGlzIGlzIGNvcnJlY3Q6Cj4KPlJldmlld2VkLWJ5OiBBbmRpIFNoeXRpIDxhbmRp
-LnNoeXRpQGxpbnV4LmludGVsLmNvbT4KPgo+VGhhbmtzLAo+QW5kaQo=
-------=_Part_182745_367905845.1725977404708
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
+> On Tue, Sep 10, 2024 at 01:03:43PM GMT, Jani Nikula wrote:
+>
+>> Building with clang and and W=1 leads to warning about unused
+>> pll_cmp_to_fdata(). Fix by annotating it with __maybe_unused.
+>>
+>> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
+>> inline functions for W=1 build").
+>>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> I think this function can be dropped. Marc, your call, as an author of
+> the patch?
 
-PGRpdiBkYXRhLW50ZXM9Im50ZXNfbWFpbF9ib2R5X3Jvb3QiIHN0eWxlPSJsaW5lLWhlaWdodDox
-Ljc7Y29sb3I6IzAwMDAwMDtmb250LXNpemU6MTRweDtmb250LWZhbWlseTpBcmlhbCI+PGRpdiBp
-ZD0ic3BuRWRpdG9yQ29udGVudCI+PHAgc3R5bGU9Im1hcmdpbjogMDsiPjopLCBpIHRoaW5rIHlv
-dSBtZWFuIHNob3VsZCB1c2UgQ1BVIGNvbHVtbiBoZWFkPyBiZWNhdXNlIHRoZSByZWcgdmFsdWUg
-anVzdCByZWZsZWN0IENQVSByZWxhdGVkIGluZm9ybWF0aW9uPC9wPjxwIHN0eWxlPSJtYXJnaW46
-IDA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46IDA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJn
-aW46IDA7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46IDA7Ij48YnI+PC9wPjwvZGl2PjxkaXYg
-c3R5bGU9InBvc2l0aW9uOnJlbGF0aXZlO3pvb206MSI+PC9kaXY+PGRpdiBpZD0iZGl2TmV0ZWFz
-ZU1haWxDYXJkIj48L2Rpdj48cCBzdHlsZT0ibWFyZ2luOiAwOyI+PGJyPjwvcD48cHJlPjxicj5B
-dCAyMDI0LTA5LTEwIDE3OjI0OjMyLCAiQW5kaSBTaHl0aSIgJmx0O2FuZGkuc2h5dGlAbGludXgu
-aW50ZWwuY29tJmd0OyB3cm90ZToKJmd0O0hpIFpoYW5naGUsCiZndDsKJmd0O1RoYW5rcyBmb3Ig
-eW91ciBwYXRjaC4gUGxlYXNlIG5leHQgdGltZSBjaGVjayBmcm9tCiZndDtnZXRfbWFpbnRhaW5l
-cnMucGwgdGhlIG1haWxpbmcgbGlzdHMgdGhhdCBuZWVkIHRvIGJlIGluY2x1ZGVkIGluCiZndDt5
-b3VyIHBhdGNoZXMuCiZndDsKJmd0O0luIHRoaXMgY2FzZSB5b3Ugc2hvdWxkIGhhdmUgaW5jbHVk
-ZWQgYXQgbGVhc3QgdGhlCiZndDtpbnRlbC1nZnggJmx0O2ludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcmZ3Q7IGFuZCB0aGUKJmd0O2RyaS1kZXZlbCAmbHQ7ZHJpLWRldmVsQGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZyZndDsgbWFpbGluZyBsaXN0cy4KJmd0OwomZ3Q7T24gU2F0LCBTZXAgMDcs
-IDIwMjQgYXQgMDU6MjQ6NDNQTSArMDgwMCwgemhhbmdoZTk3MDIgd3JvdGU6CiZndDsmZ3Q7IGNv
-bHVtbiBoZWFkZXIgc2hvdWxkIGJlIEdQVSwgbm90IENQVQomZ3Q7Jmd0OyAKJmd0OyZndDsgU2ln
-bmVkLW9mZi1ieTogemhhbmdoZTk3MDIgJmx0O3poYW5naGU5NzAyQDE2My5jb20mZ3Q7CiZndDsK
-Jmd0O0RvIHlvdSByZWFsbHkgd2FudCB5b3VyIG5hbWUgdG8gYXBwZWFyIGFzIHpoYW5naGU5NzAy
-PyBJZiB5b3UgZ2l0CiZndDtsb2cgdGhlIGxpbnV4IGRpcmVjdG9yeSB5b3Ugd2lsbCBzZSB0aGF0
-IHBlb3BsZSBub3JtYWxseSB1c2UKJmd0O3RoZSAiTmFtZSBTdXJuYW1lICZsdDtlbWFpbCZndDsi
-IHN0eWxlLiBBcyB5b3Ugd2lzaC4KJmd0OwomZ3Q7Jmd0OyAtLS0KJmd0OyZndDsgIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlYnVnZnMuYyB8IDIgKy0KJmd0OyZndDsgIDEg
-ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQomZ3Q7Jmd0OyAKJmd0
-OyZndDsgZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2Rl
-YnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlYnVnZnMuYwom
-Z3Q7Jmd0OyBpbmRleCA4ZDA4YjM4ODc0ZWYuLmI2MzVhYTI4MjBkOSAxMDA2NDQKJmd0OyZndDsg
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcG1fZGVidWdmcy5jCiZndDsm
-Z3Q7ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlYnVnZnMuYwom
-Z3Q7Jmd0OyBAQCAtNDMxLDcgKzQzMSw3IEBAIHN0YXRpYyBpbnQgbGxjX3Nob3coc3RydWN0IHNl
-cV9maWxlICptLCB2b2lkICpkYXRhKQomZ3Q7Jmd0OyAgCQltYXhfZ3B1X2ZyZXEgLz0gR0VOOV9G
-UkVRX1NDQUxFUjsKJmd0OyZndDsgIAl9CiZndDsmZ3Q7ICAKJmd0OyZndDsgLQlzZXFfcHV0cyht
-LCAiR1BVIGZyZXEgKE1IeilcdEVmZmVjdGl2ZSBDUFUgZnJlcSAoTUh6KVx0RWZmZWN0aXZlIFJp
-bmcgZnJlcSAoTUh6KVxuIik7CiZndDsmZ3Q7ICsJc2VxX3B1dHMobSwgIkdQVSBmcmVxIChNSHop
-XHRFZmZlY3RpdmUgR1BVIGZyZXEgKE1IeilcdEVmZmVjdGl2ZSBSaW5nIGZyZXEgKE1IeilcbiIp
-OwomZ3Q7CiZndDtUaGlzIGlzIGNvcnJlY3Q6CiZndDsKJmd0O1Jldmlld2VkLWJ5OiBBbmRpIFNo
-eXRpICZsdDthbmRpLnNoeXRpQGxpbnV4LmludGVsLmNvbSZndDsKJmd0OwomZ3Q7VGhhbmtzLAom
-Z3Q7QW5kaQo8L3ByZT48L2Rpdj4=
-------=_Part_182745_367905845.1725977404708--
+( Why is the patch prefixed "drm/msmi", is "msmi" a typo? )
+
+-> For the record, Arnaud is the driver's author.
+
+pll_cmp_to_fdata() was used in hdmi_8998_pll_recalc_rate()
+in a commented code block which was later removed.
+
+Thus, yes, it is safe to completely delete the unused function.
+I'm surprised gcc didn't catch that...
+
+Regards
+
+
+>> ---
+>>  drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
+>> index 0e3a2b16a2ce..c0bf1f35539e 100644
+>> --- a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
+>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
+>> @@ -153,7 +153,7 @@ static inline u32 pll_get_pll_cmp(u64 fdata, unsigned long ref_clk)
+>>  	return dividend - 1;
+>>  }
+>>  
+>> -static inline u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
+>> +static inline __maybe_unused u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
+>>  {
+>>  	u64 fdata = ((u64)pll_cmp) * ref_clk * 10;
+>>  
+>> -- 
+>> 2.39.2
+
 
