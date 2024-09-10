@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1BE9730D5
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 12:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9AC29730F9
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 12:05:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9B5310E76C;
-	Tue, 10 Sep 2024 10:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0523F10E76E;
+	Tue, 10 Sep 2024 10:05:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ewinmAtF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pg2baB2p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB8010E769;
- Tue, 10 Sep 2024 10:04:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A527F10E76E;
+ Tue, 10 Sep 2024 10:05:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725962682; x=1757498682;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=tsX9iiu7a1iRHbQnQfzIPVe0jF08WTSnlBhwJ8VkEy4=;
- b=ewinmAtF4rDcdaMR97KeTimtTWKwtBUScQMT0Sv0XibQcJVGrF19PlE5
- eCCgQT81OfU/+NurLaM5HXGwFjoUQ6diztFX9JAgnPdQ4F7eQEy2/ePMy
- ULxUiJf1UoaoGulLY+EgWZtOMSjiLUMt8MDo0QoEK6WXYUt+gs7dfSD8d
- GV4UdSj9jxLtjkfjO1TunPb3IYZPYk561f0Vv+5u+v4rVtImFMlwSk1HQ
- p73sOYBeKEJBNIIV9nDgH/1qy502LZW7oc0p49sPB0uL/WHKRZfEuH16j
- 5/KOhmUU6tsIqDNo4hjHAUBCTHWI87FoQ3Dw0UacjSKuEWxs+YvX0WErd A==;
-X-CSE-ConnectionGUID: CMmfkMMsSM2SGFluWks1+g==
-X-CSE-MsgGUID: ld81lLbaSdO79xDkIZ1QHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="50112916"
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="50112916"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 03:04:42 -0700
-X-CSE-ConnectionGUID: dYInDUlURXWdVW3Ugf7Nrw==
-X-CSE-MsgGUID: pF6bdDlbS+6j+ixV0Cioug==
+ t=1725962756; x=1757498756;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=lksaFRNSnbAobheIMXfnXmU79Kn4ZJJEOMJn5NfKkbc=;
+ b=Pg2baB2pCnBpyiZjDGemH0D948WQ0JSwJZR2Jlnjpqs7xvHRoIX7M8bL
+ HQIGmZ6QI8nHQ/rnFDB8MsjIo5DX3AI6boZ+EzbSAG9yN1j0C6y8gKKJw
+ 8Nvi58qYTz/GNIGvdiQxDrEJxhawqOJA5Q1QumrqhESWL3vKNiZRpLjLM
+ qwaoUHqr+X1UjA+pw1S4pdjHt55LMIfaxs8uP5IMY/9rSZcbblQhw6igb
+ mfjTss2qo2DyJciCytSjxoiEDts6cjLDOjwfwVqjj6xOSoxjO4moNHH9X
+ /wSO3a6h3hEl2EDEU7lxzPOK5IDHEE8iDHdBhOeCo8/PR8EEsYzIfe+fw w==;
+X-CSE-ConnectionGUID: LE6qFt/6SaKlvIFkCtw1DQ==
+X-CSE-MsgGUID: Wi28quijS3ij/kgchCAeQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24514424"
+X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="24514424"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 03:05:56 -0700
+X-CSE-ConnectionGUID: fDU1dbVuQlGC0o8RX9j80Q==
+X-CSE-MsgGUID: cd6ttgs0Ri2ShMxZ8ulRDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="71762397"
+X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="71951966"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.43])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 03:04:39 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 03:05:53 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@intel.com, Nathan Chancellor <nathan@kernel.org>
-Subject: [PATCH 8/8] drm: enable warnings on unused static inlines
-Date: Tue, 10 Sep 2024 13:03:44 +0300
-Message-Id: <5b07f7bb06467539e63f32aef56362c836aba7b5.1725962479.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1725962479.git.jani.nikula@intel.com>
-References: <cover.1725962479.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm: enable warnings on unused static inlines
+In-Reply-To: <87seuer1we.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20240904123819.3784906-1-jani.nikula@intel.com>
+ <20240904223030.GA1944054@thelio-3990X> <87seuer1we.fsf@intel.com>
+Date: Tue, 10 Sep 2024 13:05:50 +0300
+Message-ID: <87zfofkem9.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,32 +70,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We enable most W=1 warnings by default subsystem wide. Also enable
-warnings on unused static inlines when building with clang.
+On Thu, 05 Sep 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Wed, 04 Sep 2024, Nathan Chancellor <nathan@kernel.org> wrote:
+>> I ran this through my test matrix and this is what it found (across
+>> various configuration options, I can give specifics as necessary):
+>
+> Thanks, I didn't really expect this would not catch anything. :)
+>
+> We've already fixed some in drm-misc-next and drm-intel-next, see
+> below. Will need to fix more before merging, obviously.
 
-See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
-inline functions for W=1 build").
+New try with fixes at [1]. Fingers crossed.
 
-Cc: Nathan Chancellor <nathan@kernel.org>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/Makefile | 3 +++
- 1 file changed, 3 insertions(+)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 784229d4504d..6bd2cdb08be7 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -19,6 +19,9 @@ subdir-ccflags-y += $(call cc-option, -Wformat-overflow)
- # FIXME: fix -Wformat-truncation warnings and uncomment
- #subdir-ccflags-y += $(call cc-option, -Wformat-truncation)
- subdir-ccflags-y += $(call cc-option, -Wstringop-truncation)
-+
-+subdir-ccflags-y += -DKBUILD_EXTRA_WARN1
-+
- # The following turn off the warnings enabled by -Wextra
- ifeq ($(findstring 2, $(KBUILD_EXTRA_WARN)),)
- subdir-ccflags-y += -Wno-missing-field-initializers
+
+[1] https://lore.kernel.org/r/cover.1725962479.git.jani.nikula@intel.com
+
 -- 
-2.39.2
-
+Jani Nikula, Intel
