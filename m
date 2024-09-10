@@ -2,65 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D209738B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 15:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C5B9738C8
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 15:39:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD02D10E7F3;
-	Tue, 10 Sep 2024 13:36:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9452710E7E7;
+	Tue, 10 Sep 2024 13:39:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iwV2qZmF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLDHGmxU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7444410E7C6;
- Tue, 10 Sep 2024 13:36:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56B2B10E7E7;
+ Tue, 10 Sep 2024 13:39:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725975368; x=1757511368;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=bWD+o8KR69qXBUVSFXEAR0R1mo4D5zSs0Cl53nCCUp4=;
- b=iwV2qZmFBcdBj2dZ4BS9veSSEQWNhQB04k+P+/3XzNAQ1F1WRjLBr88g
- z0qafE3Hi0yPeK43KbB/6hj8lanuUoCdlpmlIkVPtm9Ap2/5HjtrWu3dS
- SY0rVfOR4RRJak9KmdTCwMOI/EEsh0S9IG2FCt0PhRfOjB/AL1fQK7bFB
- fHYMxJSN53s60TgSjxmZwLmkKSB+EBUjjzfmWcB7Qnp2obKhlvc6Q2VYE
- RfWZ7kJ9+PHB1wjHGk5uOkVWf9iYA0nE0GYXdaqYl//J8FtQH31Efv6Op
- 0ji/Vx3FY9AHZRjQz81tFeLM/qxnVICS/vjojuZ2H1lcWlLyzx/3zjF7q Q==;
-X-CSE-ConnectionGUID: d1xTW1EJRaSLBcg/AG7uAQ==
-X-CSE-MsgGUID: ifbWFApLQ8qgIEiHwIDnsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="28501156"
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="28501156"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:36:07 -0700
-X-CSE-ConnectionGUID: ZbmI76sOT6q2eUd+7Tv9gA==
-X-CSE-MsgGUID: GamQzzQKQ8isLVFasF1m1g==
+ t=1725975572; x=1757511572;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QK1WLiu4fbDJAApuYR1GC2fwwwE5yApmN14Jq25+LXw=;
+ b=MLDHGmxUlYYln2AzfxlM5UL4fOuSU2jW/M81TUfufL2rbk45Ej4MBB8J
+ UImJ4UOtnU3kQUrIzc1Maia2xOSwsO0Ic1tPqKD3WiRcDP0lbTcrj8VMs
+ mEFjlepzFO3BHL+n/N2NQK3RDgwgxifdWfhMWIt5l6YVuH/YvgsaYOR+3
+ hb4KtgexvMCst1FHZaWcLB3N2vUJMYOsTjKtoKw7OlQKZ0MmAOg/Ocopu
+ kPTwuMbFwLIhngQ/KHg4o68zu8C6FwxHHENSF2SspIDx8/FdoJrgeSz21
+ vfurbFjBSvDsZXskCZgIaa49/+K1Bt/83ZVx40vSeJnAvR7saiLuwapoj Q==;
+X-CSE-ConnectionGUID: u1v3smXJRQibsNFGCQjiHQ==
+X-CSE-MsgGUID: 8bpRVmK0RDGmrrMwpxYqOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="35860663"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="35860663"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 06:39:31 -0700
+X-CSE-ConnectionGUID: KKEr/k2eRHWvgaVZ3isZgQ==
+X-CSE-MsgGUID: lDjyTWjpTa2/HFkwSuBmlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="71624320"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.43])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:36:04 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Kieran Bingham
- <kieran.bingham+renesas@ideasonboard.com>,
- linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/8] drm: renesas: rcar-du: annotate rcar_cmm_read()
- with __maybe_unused
-In-Reply-To: <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <f2b721e28b9ee2711d7848abf1774ecb8ce8e5e2.1725962479.git.jani.nikula@intel.com>
- <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
-Date: Tue, 10 Sep 2024 16:36:01 +0300
-Message-ID: <87jzfjk4vy.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="67081029"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 10 Sep 2024 06:39:29 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 10 Sep 2024 16:39:28 +0300
+Date: Tue, 10 Sep 2024 16:39:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 06/11] drm/i915/reg: fix PCH transcoder timing
+ indentation
+Message-ID: <ZuBMEGcugO7mN5q1@intel.com>
+References: <cover.1725974820.git.jani.nikula@intel.com>
+ <f56e48a927692cec382e292602e0fa68e37f3b93.1725974820.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f56e48a927692cec382e292602e0fa68e37f3b93.1725974820.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,48 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Sep 2024, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> Hi Jani,
->
-> On Tue, Sep 10, 2024 at 12:06=E2=80=AFPM Jani Nikula <jani.nikula@intel.c=
-om> wrote:
->> Building with clang and and W=3D1 leads to warning about unused
->> rcar_cmm_read(). Fix by annotating it with __maybe_unused.
->>
->> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
->> inline functions for W=3D1 build").
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Thanks for your patch!
->
->> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c
->> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c
->> @@ -32,7 +32,7 @@ struct rcar_cmm {
->>         } lut;
->>  };
->>
->> -static inline int rcar_cmm_read(struct rcar_cmm *rcmm, u32 reg)
->> +static inline __maybe_unused int rcar_cmm_read(struct rcar_cmm *rcmm, u=
-32 reg)
->>  {
->>         return ioread32(rcmm->base + reg);
->>  }
->
-> This function was never used. Why not remove it instead?
+On Tue, Sep 10, 2024 at 04:28:50PM +0300, Jani Nikula wrote:
+> Adhere to the style described at the top of i915_reg.h.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Can do if that's what the maintainers desire. It's just that sometimes
-it's better to have the implementation reviewed and ready waiting for
-the users than requiring the first user to add the implementation. I
-opted for __maybe_unused across the series.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-BR,
-Jani.
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 2f09145b9791..1eede96a5415 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -3292,13 +3292,13 @@
+>  
+>  #define HSW_STEREO_3D_CTL(dev_priv, trans)	_MMIO_PIPE2(dev_priv, trans, _HSW_STEREO_3D_CTL_A)
+>  
+> -#define _PCH_TRANS_HTOTAL_B          0xe1000
+> -#define _PCH_TRANS_HBLANK_B          0xe1004
+> -#define _PCH_TRANS_HSYNC_B           0xe1008
+> -#define _PCH_TRANS_VTOTAL_B          0xe100c
+> -#define _PCH_TRANS_VBLANK_B          0xe1010
+> -#define _PCH_TRANS_VSYNC_B           0xe1014
+> -#define _PCH_TRANS_VSYNCSHIFT_B 0xe1028
+> +#define _PCH_TRANS_HTOTAL_B		0xe1000
+> +#define _PCH_TRANS_HBLANK_B		0xe1004
+> +#define _PCH_TRANS_HSYNC_B		0xe1008
+> +#define _PCH_TRANS_VTOTAL_B		0xe100c
+> +#define _PCH_TRANS_VBLANK_B		0xe1010
+> +#define _PCH_TRANS_VSYNC_B		0xe1014
+> +#define _PCH_TRANS_VSYNCSHIFT_B		0xe1028
+>  
+>  #define PCH_TRANS_HTOTAL(pipe)		_MMIO_PIPE(pipe, _PCH_TRANS_HTOTAL_A, _PCH_TRANS_HTOTAL_B)
+>  #define PCH_TRANS_HBLANK(pipe)		_MMIO_PIPE(pipe, _PCH_TRANS_HBLANK_A, _PCH_TRANS_HBLANK_B)
+> -- 
+> 2.39.2
 
->
-> Gr{oetje,eeting}s,
->
->                         Geert
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
