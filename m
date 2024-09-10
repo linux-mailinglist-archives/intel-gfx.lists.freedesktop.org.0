@@ -2,63 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEE097378C
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 14:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E9E9737AF
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 14:40:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8284710E7B1;
-	Tue, 10 Sep 2024 12:37:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pgpk73oT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3198510E673;
+	Tue, 10 Sep 2024 12:40:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C985310E7B1
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 12:37:02 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id A070B5C0401;
- Tue, 10 Sep 2024 12:36:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A990C4CEC3;
- Tue, 10 Sep 2024 12:37:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1725971821;
- bh=RTSBoiPRQXPoI3kVGe9NWujK0qMWrGrb1NR1jR9djVs=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pgpk73oTE6UJZYwQgnNgmsQsqYRCD4WzQlG+9hVnRF8jdowVaZXKqVKqUh/c22Y7V
- L7qRbvz5DF8n2abNEeitgzbADBjhW/jqIc5Kj0Fe83hsU8ZY/bzMwNXKduISGZ9uJa
- Qcf08ZQWaQdTGVmLxJdjidHv8Vk1FuIziUSEe54Hs0yS1Qk+Zqmx51MqLm3l6smAN+
- w5uuhH1XY1swMuRiZ8SycxxyB0OE9YfaZpZNMgDD6Ih/UM90Xjp1QHedxL9PSMiZSF
- NN7Zk0YrNtp4/IzRsYgvDtVmF4GNcUq+tBASZDk9yU4RzVMgbGbtjIo3RTqwG962SU
- NhXN9uGiDdENQ==
-Date: Tue, 10 Sep 2024 14:36:57 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: "Nilawar, Badal" <badal.nilawar@intel.com>, 
- "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, 
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, 
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "linux@roeck-us.net" <linux@roeck-us.net>, 
- "andi.shyti@linux.intel.com" <andi.shyti@linux.intel.com>, 
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, 
- "Tauro, Riana" <riana.tauro@intel.com>, "Dixit,
- Ashutosh" <ashutosh.dixit@intel.com>, 
- "Poosa, Karthik" <karthik.poosa@intel.com>
-Subject: Re: [PATCH v2] drm/i915/hwmon: expose package temperature
-Message-ID: <oyhouriyywh3fk4y7mbiju7jpjvvtugbtjhryulfbqm4wjkfvb@lisygj6jly37>
-References: <20240906093118.3068732-1-raag.jadav@intel.com>
- <sd5g4sj6t373wu5jfdfaujh73t4uehcri4aqtu7dln4p4huyoh@sa4nivkflc47>
- <CY5PR11MB6211D25D522F6044554B84F7959A2@CY5PR11MB6211.namprd11.prod.outlook.com>
- <6683448a-aeb4-4ab1-9520-c83f70100583@intel.com>
- <ZuAmVaPoDS4xH6Le@black.fi.intel.com>
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
+ [209.85.219.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A1710E673;
+ Tue, 10 Sep 2024 12:40:15 +0000 (UTC)
+Received: by mail-yb1-f180.google.com with SMTP id
+ 3f1490d57ef6-e116d2f5f7fso5148690276.1; 
+ Tue, 10 Sep 2024 05:40:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725972014; x=1726576814;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rxkC6elmujDdAfnsTNRTMrFadUmhU0gDj/DcldHNh9Q=;
+ b=f6U1TIy91UPxqzcucePpSsY51OHp2Fgn5SxRj1hg9AGF02eEcrLwB2D9mSKhgh3s1X
+ rQIhWh+hvQdGYlfvGVozW6qbxK+Jx2gk9KWbJYWX3J96g7WPb7Pn+xW2P6bA8dbqonDg
+ CT3sFGfaLSR+12Lma5lGIajXSWQhfoelhPb2fKRh6GT8+oMVCDXbsSIUu8SbH7IifByt
+ Q33+ZIEOBYP455u/K4Gj5v2xDvrrLMLwWJgSWBt9Sf9Z1eMTwUaGm3W1TuJk4xsV6eDz
+ E3zpc7r+leouyCEQ7XKnRoz1Ad26NuiAjkKj/1K2qH4mECk9WE19cMw/Z12tAbfXHdla
+ OaMw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX3x4DQ1FoJ+ZacDu916Kcyt7ltqpHmP+l9pImn8mSM1Z5zcb8wO0Vx/RDfQLAc+kiB1K3bT6LZ5mE=@lists.freedesktop.org,
+ AJvYcCXwx4692JcfHna67Qnu8o/mWpLtpFcDyE1twczSj+KUZTD3clRJRoDILBK2eaDXm1nIiFSPl9f0GAk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxsaRmrqxXtImQcH/R0/3FI2rSYFq9ZYk6hav+gyG8t2dkaTrkk
+ z2XR1Mjw4XGjJWXo7sDHRh2lxE3PSRMbQcO+UTBV2pzFbxamSFcVeh1cZNLQ
+X-Google-Smtp-Source: AGHT+IFmVAP5rOEd9M5gL23YDPikZl+RDcuMvj39376pdfajUicgricvrRgbGrJI5DpQlRVOm5oCuQ==
+X-Received: by 2002:a05:6902:287:b0:e1c:ff8a:68f9 with SMTP id
+ 3f1490d57ef6-e1d79e74167mr2475640276.11.1725972013535; 
+ Tue, 10 Sep 2024 05:40:13 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com.
+ [209.85.128.176]) by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-6db9652d8fasm2763667b3.142.2024.09.10.05.40.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 10 Sep 2024 05:40:12 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id
+ 00721157ae682-6cdae28014dso40793517b3.1; 
+ Tue, 10 Sep 2024 05:40:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXkV/b2s679LCkUBLcLtXZq/+6c+5mzLTO20/0sypWoFaUuRXWEedyOzsE15DotjUvNZ54xj+J/wvA=@lists.freedesktop.org,
+ AJvYcCXug2mUjyNo9M5SaNwCfKYDs065WXORJsDHtvjlviGFg+vvzBKhuCvZZ6OchbPEaM6McFL5Kd+9bOk=@lists.freedesktop.org
+X-Received: by 2002:a05:690c:25c4:b0:664:74cd:5548 with SMTP id
+ 00721157ae682-6db95311ca7mr24962807b3.1.1725972012286; Tue, 10 Sep 2024
+ 05:40:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZuAmVaPoDS4xH6Le@black.fi.intel.com>
+References: <cover.1725962479.git.jani.nikula@intel.com>
+ <f2b721e28b9ee2711d7848abf1774ecb8ce8e5e2.1725962479.git.jani.nikula@intel.com>
+In-Reply-To: <f2b721e28b9ee2711d7848abf1774ecb8ce8e5e2.1725962479.git.jani.nikula@intel.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Sep 2024 14:39:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
+Message-ID: <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
+Subject: Re: [PATCH 2/8] drm: renesas: rcar-du: annotate rcar_cmm_read() with
+ __maybe_unused
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,46 +84,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 10, 2024 at 01:58:29PM GMT, Raag Jadav wrote:
-> On Tue, Sep 10, 2024 at 11:57:20AM +0530, Nilawar, Badal wrote:
-> > On 10-09-2024 10:07, Gupta, Anshuman wrote:
-> > > > 
-> > > > ...
-> > > > 
-> > > > > +static int
-> > > > > +hwm_temp_read(struct hwm_drvdata *ddat, u32 attr, long *val) {
-> > > > > +	struct i915_hwmon *hwmon = ddat->hwmon;
-> > > > > +	intel_wakeref_t wakeref;
-> > > > > +	u32 reg_val;
-> > > > > +
-> > > > > +	switch (attr) {
-> > > > > +	case hwmon_temp_input:
-> > > > > +		with_intel_runtime_pm(ddat->uncore->rpm, wakeref)
-> > > > > +			reg_val = intel_uncore_read(ddat->uncore, hwmon-
-> > > > > rg.pkg_temp);
-> > > > > +
-> > > > > +		/* HW register value is in degrees, convert to millidegrees. */
-> > > > > +		*val = REG_FIELD_GET(TEMP_MASK, reg_val) *
-> > > > MILLIDEGREE_PER_DEGREE;
-> > > > > +		return 0;
-> > > > > +	default:
-> > > > > +		return -EOPNOTSUPP;
-> > > > > +	}
-> > > > 
-> > > > I don't understand this love for single case switches.
-> > > IMHO this is kept to keep symmetry in this file to make it more readable.
-> > > Also it readable to return error using default case, which is followed in this entire file.
-> > I agree on this. Let’s stick to file-wide approach and ensure it is applied
-> > to the fan_input attribute as well.
-> 
-> Since fan patch is already on its way to drm-next, you can submit a fix if you wish.
-> Although I don't agree with it, I have no objections.
+Hi Jani,
 
-nack! :-)
+On Tue, Sep 10, 2024 at 12:06=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
+> wrote:
+> Building with clang and and W=3D1 leads to warning about unused
+> rcar_cmm_read(). Fix by annotating it with __maybe_unused.
+>
+> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
+> inline functions for W=3D1 build").
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-It doesn't make much sense to send a controvertial patch that
-refactors good working code to other good (some would say worse)
-working code without any functional change.
+Thanks for your patch!
 
-Thanks,
-Andi
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c
+> @@ -32,7 +32,7 @@ struct rcar_cmm {
+>         } lut;
+>  };
+>
+> -static inline int rcar_cmm_read(struct rcar_cmm *rcmm, u32 reg)
+> +static inline __maybe_unused int rcar_cmm_read(struct rcar_cmm *rcmm, u3=
+2 reg)
+>  {
+>         return ioread32(rcmm->base + reg);
+>  }
+
+This function was never used. Why not remove it instead?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
