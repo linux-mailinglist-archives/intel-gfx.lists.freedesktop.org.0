@@ -2,70 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16881978A50
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 23:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D5B978A53
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 23:02:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E400210ED94;
-	Fri, 13 Sep 2024 21:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC6610ED99;
+	Fri, 13 Sep 2024 21:01:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=acm.org header.i=@acm.org header.b="MYo1X4XB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RS6VGqhT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 419 seconds by postgrey-1.36 at gabe;
- Tue, 10 Sep 2024 17:20:25 UTC
-Received: from 008.lax.mailroute.net (008.lax.mailroute.net [199.89.1.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F210010E7C5;
- Tue, 10 Sep 2024 17:20:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by 008.lax.mailroute.net (Postfix) with ESMTP id 4X39Jk3hpPz6ClY9D;
- Tue, 10 Sep 2024 17:13:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
- content-transfer-encoding:content-type:content-type:in-reply-to
- :from:from:content-language:references:subject:subject
- :user-agent:mime-version:date:date:message-id:received:received;
- s=mr01; t=1725988399; x=1728580400; bh=VhmV9oFSRsxf1YqVbemrPn92
- eKvNnqMS4KCaVT2K6OM=; b=MYo1X4XBYoXLUfKyol0i8lFTKOk2NaIWDRTxGCNG
- uKoOnMI5w0U/6b5FFZd7UDUCiRVlwq3oiJI1zW7xRRP9uh6nBg+9sKN2B77TnJlD
- bK/HawOGs8m00YgCnYQArT/y/BXi0U3IF9GyHWceEUD4s7nvcfCoTduzTohYzQd1
- T5zxUZJzoANEJAm5mOx4eOC1GzXwU2EPY/98crXPajt9SMVhFG6BlrjSLBNXDaBL
- fQB2LsOA4sytKDzRLjEV2g0NCquB8k+r9wdP1omWTldl+WHfRRwrP7Snlo6Cfdoc
- jD3Yx88NwPaTj5WXKdkwZwp7VMrPnTzVXqyqTshgUDsmaQ==
-X-Virus-Scanned: by MailRoute
-Received: from 008.lax.mailroute.net ([127.0.0.1])
- by localhost (008.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id tJodp6nfa-sQ; Tue, 10 Sep 2024 17:13:19 +0000 (UTC)
-Received: from [100.66.154.22] (unknown [104.135.204.82])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: bvanassche@acm.org)
- by 008.lax.mailroute.net (Postfix) with ESMTPSA id 4X39JZ1wvqz6ClY97;
- Tue, 10 Sep 2024 17:13:18 +0000 (UTC)
-Message-ID: <7ea6ad5b-a569-4f0a-8fc2-fd66bff19387@acm.org>
-Date: Tue, 10 Sep 2024 10:13:17 -0700
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com
+ [209.85.128.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8ABF10E8F2;
+ Tue, 10 Sep 2024 18:48:27 +0000 (UTC)
+Received: by mail-yw1-f174.google.com with SMTP id
+ 00721157ae682-6d49cec2a5dso54860657b3.3; 
+ Tue, 10 Sep 2024 11:48:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1725994107; x=1726598907; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=d/xjSlwYNHaCmAEJ52/LetuJr/79SrxTHSb7l1iYHbQ=;
+ b=RS6VGqhT7OoLet7ZDMgI6UkUMV9+VZOOJWa/A/Rt+80sSPdfbENqvArTmxJebbIjur
+ sgDPle1JEB6dHL5CI62C7o+zXDuGHuWi5El5NHf2F5n+DqgbrDKqg4pHxCiteOe28lRp
+ xIXrKti362s0YwurE97q3alPcA3AQGWLm9PrJCSYwoj2iQlTVFuPcZHrYn/LzDu27qEj
+ +jah11ZXATynkbOXSR/RnSp5Y2pHsSI9F89H5J7CE+2go0cp8oWgdD9m0axMX1Ot6Yc7
+ plgvKu+VMAFGYfriSECFMnIds5KR3rKV6H5hpLruMJwbn77FMffst7U0+V6DUc758HjP
+ InzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1725994107; x=1726598907;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=d/xjSlwYNHaCmAEJ52/LetuJr/79SrxTHSb7l1iYHbQ=;
+ b=LAsDqzJLEXoxIS0pTxzDOjOTd7dj9ZQwaeTBD1CYoRQThNMqAgbX2T8vW+D7SO0Q7P
+ uvVF6JWGHpnd2UIzC121/5L/ZNWAbaBFO7sMdYim3H3a1hzXzvAy1qyF6XGmhg3tlAQZ
+ 2l1N101a+cjG+sa2+jc8zrNJucB43QPD9DegCd3habnhDktJdb6Fnz8O/YKF67BIt3Hm
+ wo01tJc8f1DXmukpKbpUloUZzQSIyz2GkdpW45dIfLdV/GykEFGrA0NTbR6TOjKqaD4X
+ j6d7VUcQV/HjksGskTImTc3dYQkZQm9UTNKK11XQ/++yv+aqQMcQn6wPOLEhtJDdMSQx
+ lOdA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWVazwLyZJntowGFpnLHxCQz8r0RBebX10vDNpsP9rKsWn7NJOfe2rV3EJ/53vHqlGJKLvrvmKHIW4=@lists.freedesktop.org,
+ AJvYcCX6Q5N40CpYEw80DgF5xQlpCS/HZ/dJJUm2VQDbNnJst9ln9+jJwop6vZyi+RzTKyjllNxrMfQoPEdq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzrmGc90DeaCdmW6sM6fJUdZEKEsgMwVyDdumdICtlWiCB0QNY/
+ z0d+XsKmIQ5rtmI6jGlET72r7b6fEiK33satl2+RI6ifCE9eZKJxeLuv+IDLGMX++VGehdt0qn3
+ Q6mjkeaVCbJ1C3jpmWxuGcJB8Iyw=
+X-Google-Smtp-Source: AGHT+IFAr+8UZL5HRuL9rkDVnK7n4fTwY7nIMZfqU/kfjldcZ7+fHI5Jwzd1hLqSNjwRpN6xh0YAP7kz2ZQjZ4kX+4A=
+X-Received: by 2002:a05:690c:dc6:b0:6b0:52a6:6515 with SMTP id
+ 00721157ae682-6db44d6c4a8mr192458857b3.6.1725994106631; Tue, 10 Sep 2024
+ 11:48:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 08/19] scsi: libfcoe: Include <linux/prandom.h>
- instead of <linux/random.h>
-To: Uros Bizjak <ubizjak@gmail.com>, x86@kernel.org,
- linux-crypto@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-fscrypt@vger.kernel.org,
- linux-scsi@vger.kernel.org, bpf@vger.kernel.org,
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
- linux-kernel@vger.kernel.org
-Cc: Hannes Reinecke <hare@suse.de>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>
-References: <20240909075641.258968-1-ubizjak@gmail.com>
- <20240909075641.258968-9-ubizjak@gmail.com>
-Content-Language: en-US
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <20240909075641.258968-9-ubizjak@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 13 Sep 2024 21:01:53 +0000
+References: <CALvjV29jozswRtmYxDur2TuEQ=1JSDrM+uWVHmghW3hG5Y9F+w@mail.gmail.com>
+ <20240909080200.GAZt6reI9c98c9S_Xc@fat_crate.local>
+ <SJ1PR11MB60831AF34B75030EBA3D5721FC992@SJ1PR11MB6083.namprd11.prod.outlook.com>
+In-Reply-To: <SJ1PR11MB60831AF34B75030EBA3D5721FC992@SJ1PR11MB6083.namprd11.prod.outlook.com>
+From: Hugues Bruant <hugues.bruant@gmail.com>
+Date: Tue, 10 Sep 2024 11:48:15 -0700
+Message-ID: <CALvjV28edz1zzFeduytOMoVDyeXOKoxPiwcFp6Mbxz1ODSq17g@mail.gmail.com>
+Subject: Re: [REGRESSION] soft lockup on boot starting with kernel 6.10 /
+ commit 5186ba33234c9a90833f7c93ce7de80e25fac6f5
+To: "Luck, Tony" <tony.luck@intel.com>
+Cc: Borislav Petkov <bp@alien8.de>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>, 
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Yu,
+ Fenghua" <fenghua.yu@intel.com>, 
+ "Chatre, Reinette" <reinette.chatre@intel.com>,
+ Tzung-Bi Shih <tzungbi@kernel.org>, 
+ Brian Norris <briannorris@chromium.org>, Julius Werner <jwerner@chromium.org>, 
+ "chrome-platform@lists.linux.dev" <chrome-platform@lists.linux.dev>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 13 Sep 2024 21:01:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,31 +96,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/9/24 12:53 AM, Uros Bizjak wrote:
-> Substitute the inclusion of <linux/random.h> header with
-> <linux/prandom.h> to allow the removal of legacy inclusion
-> of <linux/prandom.h> from <linux/random.h>.
-> 
-> Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
-> Cc: Hannes Reinecke <hare@suse.de>
-> Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
-> Cc: "Martin K. Petersen" <martin.petersen@oracle.com>
-> ---
->   include/scsi/libfcoe.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/include/scsi/libfcoe.h b/include/scsi/libfcoe.h
-> index 3c5899290aed..6616348e59b9 100644
-> --- a/include/scsi/libfcoe.h
-> +++ b/include/scsi/libfcoe.h
-> @@ -15,7 +15,7 @@
->   #include <linux/skbuff.h>
->   #include <linux/workqueue.h>
->   #include <linux/local_lock.h>
-> -#include <linux/random.h>
-> +#include <linux/prandom.h>
->   #include <scsi/fc/fc_fcoe.h>
->   #include <scsi/libfc.h>
->   #include <scsi/fcoe_sysfs.h>
-
-Reviewed-by: Bart Van Assche <bvanassche@acm.org>
+On Mon, Sep 9, 2024 at 9:10=E2=80=AFAM Luck, Tony <tony.luck@intel.com> wro=
+te:
+>
+> > I have discovered a 100% reliable soft lockup on boot on my laptop:
+> > Purism Librem 14, Intel Core i7-10710U, 48Gb RAM, Samsung Evo Plus 970
+> > SSD, CoreBoot BIOS, grub bootloader, Arch Linux.
+> >
+> > The last working release is kernel 6.9.10, every release from 6.10
+> > onwards reliably exhibit the issue, which, based on journalctl logs,
+> > seems to be triggered somewhere in systemd-udev:
+> > https://gitlab.archlinux.org/-/project/42594/uploads/04583baf22189a0a8b=
+b2f8773096e013/lockup.log
+> >
+> > Bisect points to commit 5186ba33234c9a90833f7c93ce7de80e25fac6f5
+>
+> Does that Intel Core i7-10710U even execute the RDT code? Most client par=
+ts
+> don't support RDT. You can check if yours does by looking for "rdt_a" in
+> /proc/cpuinfo.
+Thanks for the suggestion. You're right, I do not see `rdt_a` in `/proc/cpu=
+info`
