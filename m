@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA439738A7
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 15:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA889738A9
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 15:29:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADB7310E7D8;
-	Tue, 10 Sep 2024 13:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E45E010E7DF;
+	Tue, 10 Sep 2024 13:29:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SxqGmNdm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cGZxUkq9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C80110E7D9;
- Tue, 10 Sep 2024 13:29:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99F0710E7DB;
+ Tue, 10 Sep 2024 13:29:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725974982; x=1757510982;
+ t=1725974988; x=1757510988;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EOVYsF6TgPPSr7GlaRSBS+cNWC0Y5XEmlQcBzvaHsk4=;
- b=SxqGmNdm3z2KdBbgSVmBt27/Kv3eT32ID+4FoBVMGfuYyWOesqKMOofq
- Gsa6VZm90C3qEDc7luLwpU6H8KAHWeAQz+yFBQ8VjOIfWgm5TfmAE9oNX
- jj1XcdqpDmovdEUe7ea8ph00KTRHeUPbOA3tONZn3VybLyduLlWVUulnA
- 431ZA/FBxwfliPhYtFT5DjB6T6uXLXTUAJQINDjXh4HxQuEnMNArdLQhf
- sz3qxz2nqOxI29X3IRihF7pBzZSoXI3aSo80npzJBw2HJO6PDsAZxuEhn
- vLe20i/xdB29Ubj3cLodAmE4J11OrHR4ROHZUYYm9gyH9rarvhlTlxjgJ A==;
-X-CSE-ConnectionGUID: e8uKC3ZOQYCjb7QXjmZ4Sg==
-X-CSE-MsgGUID: DULeJuDIRL+tjZ92Pc8ehw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24870367"
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="24870367"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:29:42 -0700
-X-CSE-ConnectionGUID: AS+P6JrqRxGM0t8tEFMUVg==
-X-CSE-MsgGUID: w9AQM5wtTDqM5kAgg9dasA==
+ bh=IV0cple4VL6zAKab7N2QK511Trxh3G0YBFwog2xPNIQ=;
+ b=cGZxUkq9atiTYb4yGqBMXlqzuvWhCXsdTZQ8beRd5j3G6ewADu1QaDNo
+ p6938OyRfFCdnf7o5/VHiyfqXm1ozIGz2+dLRa872ac+MMg85kp6jkcZW
+ 2XTPFrS+8GzV2imJnGB87TOCi+0BzUypExeKsh5d8S2p9lOaNp4VKgT07
+ XA44h05nomCV4/a5TEJIwBdu5O3wfSAOeUCqHPdCeJrsE6E6lDMZTTL1c
+ 7fNfUdTPBBkkalb9ENRjNQVgOP7FuD5oQ2XPjH9SPEblykUI7mVPZ2Ute
+ eAHu/dxqevLgewrUlDFIbJE+4q25xHS6BgZYTD9pyx7g569qlPFOq8Fp1 w==;
+X-CSE-ConnectionGUID: lgxnolLdT+6s5lj1wR7afw==
+X-CSE-MsgGUID: T/FebxcASk+TOgxu/hxeaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="28500459"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="28500459"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 06:29:47 -0700
+X-CSE-ConnectionGUID: Q9HkXo0wR2OYy3JBDNJxlw==
+X-CSE-MsgGUID: VEzIyNGsRIqvu4yRhuh6lw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="67796258"
+X-IronPort-AV: E=Sophos;i="6.10,217,1719903600"; d="scan'208";a="71623403"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.43])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 06:29:40 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 06:29:45 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 08/11] drm/i915/reg: fix DIP CTL register style
-Date: Tue, 10 Sep 2024 16:28:52 +0300
-Message-Id: <fdc607b716cf86b8bc88c15a43bc7088c5aab05f.1725974820.git.jani.nikula@intel.com>
+Subject: [PATCH v2 09/11] drm/i915/reg: fix small register style issues here
+ and there
+Date: Tue, 10 Sep 2024 16:28:53 +0300
+Message-Id: <0bbb79008bb83bc56669a1e969978769539d6c62.1725974820.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1725974820.git.jani.nikula@intel.com>
 References: <cover.1725974820.git.jani.nikula@intel.com>
@@ -77,144 +78,97 @@ Adhere to the style described at the top of i915_reg.h.
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 82 ++++++++++++++++++---------------
- 1 file changed, 44 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b617de6b6928..489a88b133d6 100644
+index 489a88b133d6..70864cf96102 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3233,20 +3233,20 @@
- 
- /* Per-transcoder DIP controls (PCH) */
- #define _VIDEO_DIP_CTL_A         0xe0200
-+#define _VIDEO_DIP_CTL_B         0xe1200
-+#define TVIDEO_DIP_CTL(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_CTL_A, _VIDEO_DIP_CTL_B)
+@@ -2195,6 +2195,7 @@
+ /* IVB+ has 3 fitters, 0 is 7x5 capable, the other two only 3x3 */
+ #define _PFA_CTL_1		0x68080
+ #define _PFB_CTL_1		0x68880
++#define PF_CTL(pipe)		_MMIO_PIPE(pipe, _PFA_CTL_1, _PFB_CTL_1)
+ #define   PF_ENABLE			REG_BIT(31)
+ #define   PF_PIPE_SEL_MASK_IVB		REG_GENMASK(30, 29) /* ivb/hsw */
+ #define   PF_PIPE_SEL_IVB(pipe)		REG_FIELD_PREP(PF_PIPE_SEL_MASK_IVB, (pipe))
+@@ -2203,27 +2204,29 @@
+ #define   PF_FILTER_MED_3x3		REG_FIELD_PREP(PF_FILTER_MASK, 1)
+ #define   PF_FILTER_EDGE_ENHANCE	REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 2)
+ #define   PF_FILTER_EDGE_SOFTEN		REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 3)
 +
- #define _VIDEO_DIP_DATA_A        0xe0208
-+#define _VIDEO_DIP_DATA_B        0xe1208
-+#define TVIDEO_DIP_DATA(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_DATA_A, _VIDEO_DIP_DATA_B)
+ #define _PFA_WIN_SZ		0x68074
+ #define _PFB_WIN_SZ		0x68874
++#define PF_WIN_SZ(pipe)		_MMIO_PIPE(pipe, _PFA_WIN_SZ, _PFB_WIN_SZ)
+ #define   PF_WIN_XSIZE_MASK	REG_GENMASK(31, 16)
+ #define   PF_WIN_XSIZE(w)	REG_FIELD_PREP(PF_WIN_XSIZE_MASK, (w))
+ #define   PF_WIN_YSIZE_MASK	REG_GENMASK(15, 0)
+ #define   PF_WIN_YSIZE(h)	REG_FIELD_PREP(PF_WIN_YSIZE_MASK, (h))
 +
- #define _VIDEO_DIP_GCP_A         0xe0210
-+#define _VIDEO_DIP_GCP_B         0xe1210
-+#define TVIDEO_DIP_GCP(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_GCP_A, _VIDEO_DIP_GCP_B)
- #define  GCP_COLOR_INDICATION		(1 << 2)
- #define  GCP_DEFAULT_PHASE_ENABLE	(1 << 1)
- #define  GCP_AV_MUTE			(1 << 0)
- 
--#define _VIDEO_DIP_CTL_B         0xe1200
--#define _VIDEO_DIP_DATA_B        0xe1208
--#define _VIDEO_DIP_GCP_B         0xe1210
+ #define _PFA_WIN_POS		0x68070
+ #define _PFB_WIN_POS		0x68870
++#define PF_WIN_POS(pipe)	_MMIO_PIPE(pipe, _PFA_WIN_POS, _PFB_WIN_POS)
+ #define   PF_WIN_XPOS_MASK	REG_GENMASK(31, 16)
+ #define   PF_WIN_XPOS(x)	REG_FIELD_PREP(PF_WIN_XPOS_MASK, (x))
+ #define   PF_WIN_YPOS_MASK	REG_GENMASK(15, 0)
+ #define   PF_WIN_YPOS(y)	REG_FIELD_PREP(PF_WIN_YPOS_MASK, (y))
++
+ #define _PFA_VSCALE		0x68084
+ #define _PFB_VSCALE		0x68884
++#define PF_VSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_VSCALE, _PFB_VSCALE)
++
+ #define _PFA_HSCALE		0x68090
+ #define _PFB_HSCALE		0x68890
 -
--#define TVIDEO_DIP_CTL(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_CTL_A, _VIDEO_DIP_CTL_B)
--#define TVIDEO_DIP_DATA(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_DATA_A, _VIDEO_DIP_DATA_B)
--#define TVIDEO_DIP_GCP(pipe) _MMIO_PIPE(pipe, _VIDEO_DIP_GCP_A, _VIDEO_DIP_GCP_B)
--
- /* Per-transcoder DIP controls (VLV) */
- #define _VLV_VIDEO_DIP_CTL_A		0x60200
- #define _VLV_VIDEO_DIP_CTL_B		0x61170
-@@ -3273,36 +3273,54 @@
- 							 _CHV_VIDEO_DIP_GDCP_PAYLOAD_C)
+-#define PF_CTL(pipe)		_MMIO_PIPE(pipe, _PFA_CTL_1, _PFB_CTL_1)
+-#define PF_WIN_SZ(pipe)		_MMIO_PIPE(pipe, _PFA_WIN_SZ, _PFB_WIN_SZ)
+-#define PF_WIN_POS(pipe)	_MMIO_PIPE(pipe, _PFA_WIN_POS, _PFB_WIN_POS)
+-#define PF_VSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_VSCALE, _PFB_VSCALE)
+ #define PF_HSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_HSCALE, _PFB_HSCALE)
  
- /* Haswell DIP controls */
--
- #define _HSW_VIDEO_DIP_CTL_A		0x60200
--#define _HSW_VIDEO_DIP_AVI_DATA_A	0x60220
--#define _HSW_VIDEO_DIP_VS_DATA_A	0x60260
--#define _HSW_VIDEO_DIP_SPD_DATA_A	0x602A0
--#define _HSW_VIDEO_DIP_GMP_DATA_A	0x602E0
--#define _HSW_VIDEO_DIP_VSC_DATA_A	0x60320
--#define	_ADL_VIDEO_DIP_AS_DATA_A	0x60484
--#define _GLK_VIDEO_DIP_DRM_DATA_A	0x60440
--#define _HSW_VIDEO_DIP_AVI_ECC_A	0x60240
--#define _HSW_VIDEO_DIP_VS_ECC_A		0x60280
--#define _HSW_VIDEO_DIP_SPD_ECC_A	0x602C0
--#define _HSW_VIDEO_DIP_GMP_ECC_A	0x60300
--#define _HSW_VIDEO_DIP_VSC_ECC_A	0x60344
--#define _HSW_VIDEO_DIP_GCP_A		0x60210
--
- #define _HSW_VIDEO_DIP_CTL_B		0x61200
-+#define HSW_TVIDEO_DIP_CTL(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_CTL_A)
-+
-+#define _HSW_VIDEO_DIP_AVI_DATA_A	0x60220
- #define _HSW_VIDEO_DIP_AVI_DATA_B	0x61220
-+#define HSW_TVIDEO_DIP_AVI_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
-+
-+#define _HSW_VIDEO_DIP_VS_DATA_A	0x60260
- #define _HSW_VIDEO_DIP_VS_DATA_B	0x61260
-+#define HSW_TVIDEO_DIP_VS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
-+
-+#define _HSW_VIDEO_DIP_SPD_DATA_A	0x602A0
- #define _HSW_VIDEO_DIP_SPD_DATA_B	0x612A0
-+#define HSW_TVIDEO_DIP_SPD_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
-+
-+#define _HSW_VIDEO_DIP_GMP_DATA_A	0x602E0
- #define _HSW_VIDEO_DIP_GMP_DATA_B	0x612E0
-+#define HSW_TVIDEO_DIP_GMP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
-+
-+#define _HSW_VIDEO_DIP_VSC_DATA_A	0x60320
- #define _HSW_VIDEO_DIP_VSC_DATA_B	0x61320
-+#define HSW_TVIDEO_DIP_VSC_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
-+
-+/*ADLP and later: */
-+#define	_ADL_VIDEO_DIP_AS_DATA_A	0x60484
- #define _ADL_VIDEO_DIP_AS_DATA_B	0x61484
-+#define ADL_TVIDEO_DIP_AS_SDP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans,\
-+							     _ADL_VIDEO_DIP_AS_DATA_A + (i) * 4)
-+
-+#define _GLK_VIDEO_DIP_DRM_DATA_A	0x60440
- #define _GLK_VIDEO_DIP_DRM_DATA_B	0x61440
-+#define GLK_TVIDEO_DIP_DRM_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
-+
-+#define _HSW_VIDEO_DIP_AVI_ECC_A	0x60240
- #define _HSW_VIDEO_DIP_BVI_ECC_B	0x61240
-+#define _HSW_VIDEO_DIP_VS_ECC_A		0x60280
- #define _HSW_VIDEO_DIP_VS_ECC_B		0x61280
-+#define _HSW_VIDEO_DIP_SPD_ECC_A	0x602C0
- #define _HSW_VIDEO_DIP_SPD_ECC_B	0x612C0
-+#define _HSW_VIDEO_DIP_GMP_ECC_A	0x60300
- #define _HSW_VIDEO_DIP_GMP_ECC_B	0x61300
-+#define _HSW_VIDEO_DIP_VSC_ECC_A	0x60344
- #define _HSW_VIDEO_DIP_VSC_ECC_B	0x61344
-+
-+#define _HSW_VIDEO_DIP_GCP_A		0x60210
- #define _HSW_VIDEO_DIP_GCP_B		0x61210
-+#define HSW_TVIDEO_DIP_GCP(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GCP_A)
+ /*
+@@ -3103,11 +3106,12 @@
+ #define PCH_DPLL(pll) _MMIO((pll) == 0 ? _PCH_DPLL_A : _PCH_DPLL_B)
  
- /* Icelake PPS_DATA and _ECC DIP Registers.
-  * These are available for transcoders B,C and eDP.
-@@ -3312,28 +3330,16 @@
- 
- #define _ICL_VIDEO_DIP_PPS_DATA_A	0x60350
- #define _ICL_VIDEO_DIP_PPS_DATA_B	0x61350
-+#define ICL_VIDEO_DIP_PPS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
+ #define _PCH_FPA0                0xc6040
++#define _PCH_FPB0                0xc6048
++#define PCH_FP0(pll) _MMIO((pll) == 0 ? _PCH_FPA0 : _PCH_FPB0)
+ #define  FP_CB_TUNE		(0x3 << 22)
 +
- #define _ICL_VIDEO_DIP_PPS_ECC_A	0x603D4
- #define _ICL_VIDEO_DIP_PPS_ECC_B	0x613D4
--
--#define HSW_TVIDEO_DIP_CTL(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_CTL_A)
--#define HSW_TVIDEO_DIP_GCP(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GCP_A)
--#define HSW_TVIDEO_DIP_AVI_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
--#define HSW_TVIDEO_DIP_VS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
--#define HSW_TVIDEO_DIP_SPD_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
--#define HSW_TVIDEO_DIP_GMP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
--#define HSW_TVIDEO_DIP_VSC_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
--#define GLK_TVIDEO_DIP_DRM_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
--#define ICL_VIDEO_DIP_PPS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
- #define ICL_VIDEO_DIP_PPS_ECC(dev_priv, trans, i)		_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_ECC_A + (i) * 4)
--/*ADLP and later: */
--#define ADL_TVIDEO_DIP_AS_SDP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans,\
--							     _ADL_VIDEO_DIP_AS_DATA_A + (i) * 4)
+ #define _PCH_FPA1                0xc6044
+-#define _PCH_FPB0                0xc6048
+ #define _PCH_FPB1                0xc604c
+-#define PCH_FP0(pll) _MMIO((pll) == 0 ? _PCH_FPA0 : _PCH_FPB0)
+ #define PCH_FP1(pll) _MMIO((pll) == 0 ? _PCH_FPA1 : _PCH_FPB1)
  
- #define _HSW_STEREO_3D_CTL_A		0x70020
--#define   S3D_ENABLE			(1 << 31)
- #define _HSW_STEREO_3D_CTL_B		0x71020
--
- #define HSW_STEREO_3D_CTL(dev_priv, trans)	_MMIO_PIPE2(dev_priv, trans, _HSW_STEREO_3D_CTL_A)
-+#define   S3D_ENABLE			(1 << 31)
+ #define PCH_DPLL_TEST           _MMIO(0xc606c)
+@@ -4145,6 +4149,7 @@ enum skl_power_gate {
+ #define _DPLL1_CFGCR1	0x6C040
+ #define _DPLL2_CFGCR1	0x6C048
+ #define _DPLL3_CFGCR1	0x6C050
++#define DPLL_CFGCR1(id)	_MMIO_PIPE((id) - SKL_DPLL1, _DPLL1_CFGCR1, _DPLL2_CFGCR1)
+ #define  DPLL_CFGCR1_FREQ_ENABLE	(1 << 31)
+ #define  DPLL_CFGCR1_DCO_FRACTION_MASK	(0x7fff << 9)
+ #define  DPLL_CFGCR1_DCO_FRACTION(x)	((x) << 9)
+@@ -4153,6 +4158,7 @@ enum skl_power_gate {
+ #define _DPLL1_CFGCR2	0x6C044
+ #define _DPLL2_CFGCR2	0x6C04C
+ #define _DPLL3_CFGCR2	0x6C054
++#define DPLL_CFGCR2(id)	_MMIO_PIPE((id) - SKL_DPLL1, _DPLL1_CFGCR2, _DPLL2_CFGCR2)
+ #define  DPLL_CFGCR2_QDIV_RATIO_MASK	(0xff << 8)
+ #define  DPLL_CFGCR2_QDIV_RATIO(x)	((x) << 8)
+ #define  DPLL_CFGCR2_QDIV_MODE(x)	((x) << 7)
+@@ -4171,9 +4177,6 @@ enum skl_power_gate {
+ #define  DPLL_CFGCR2_PDIV_7_INVALID	(5 << 2)
+ #define  DPLL_CFGCR2_CENTRAL_FREQ_MASK	(3)
  
- #define _PCH_TRANSACONF              0xf0008
- #define _PCH_TRANSBCONF              0xf1008
+-#define DPLL_CFGCR1(id)	_MMIO_PIPE((id) - SKL_DPLL1, _DPLL1_CFGCR1, _DPLL2_CFGCR1)
+-#define DPLL_CFGCR2(id)	_MMIO_PIPE((id) - SKL_DPLL1, _DPLL1_CFGCR2, _DPLL2_CFGCR2)
+-
+ /* ICL Clocks */
+ #define ICL_DPCLKA_CFGCR0			_MMIO(0x164280)
+ #define  ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)	(1 << _PICK(phy, 10, 11, 24, 4, 5))
 -- 
 2.39.2
 
