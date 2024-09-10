@@ -2,57 +2,182 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30AE8972B2E
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 09:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A29972B53
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2024 10:00:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F46610E734;
-	Tue, 10 Sep 2024 07:50:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7354F10E737;
+	Tue, 10 Sep 2024 08:00:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mXEhQeV+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jrzFqXJk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3BF810E736;
- Tue, 10 Sep 2024 07:49:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D335B10E737
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2024 08:00:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1725954599; x=1757490599;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6VjlLb5keYwwArSsmVnEZ1mSDcgh4bRhJwpeTiNzQm8=;
- b=mXEhQeV+C9SbIzaRkhgziuU4piSJdtvv9t/5g3CYV5e2qy3jAbgTl8p5
- KRxYt7hBExETLHPcZnM82xmQoAvhyXj+AH6nKxevrcQfl7PmRUHOBYoFf
- 740y0XBVL7avZkU0nhTB+Odx7QK+ogqWDm3fuF/HEFKSmY7oD8Z17ZN9f
- eo+d3xC4eBIeJYQzuMqujaHUBYCZsuBUsq+ii48ArYiUzQ08xroSJAH6O
- 0zWXfHgMDhO5RmrICA9TTaw4JRlV20mBayLx+Df08IpvFy0xksE25RXRh
- FfjiXBSbL8q2BSc1xHHNWSx0AjNZ0bDoo5wLfu2/x4y3HVG/deCa6p1LM A==;
-X-CSE-ConnectionGUID: 7irHpv8aT+SrKXhTsSsAog==
-X-CSE-MsgGUID: JdkF/ID3R/eO5ZpTvNOANw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="24230992"
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="24230992"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2024 00:49:59 -0700
-X-CSE-ConnectionGUID: IgrlrXQmRvWmVsKicAOD2g==
-X-CSE-MsgGUID: 5yTQijUCRAO3BB8uV/w9Rw==
+ t=1725955202; x=1757491202;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=pirQ/1XuCj/CzJ04rtl6hdwRpJnBDqiRGynt9MFa/Vs=;
+ b=jrzFqXJktscXF99QpWhxQZX+yWt3sDGv4TQ7hlS4mQTI0wic2+9VPhBZ
+ Kzk4TpyAURMBasu+iFfS6sWH8e8r5NNczmLdObsfpZYy4pV4AFdmtaNUz
+ RCrFYGc8vekiZKcrWq/pOpb030frmZnZ/7DUs4Hpu8QE9lwCMJ53tRXWP
+ +fgfwzOsrgS+m16WtzF+5iyumPS7Uf9JY5ChPsWpa+n1REf1CeSyjs4FE
+ J8UP90KtL3Kk68YPwj54cidQT7+TYlnAuTaoE1Cn3zY6SfqwHKWAsp6/r
+ z/f4fsn9tz7mlmEpeC4DC1wNoUJqB+O3eGjIg6XfXTNpHhE29tf5VHGaw Q==;
+X-CSE-ConnectionGUID: +IvbbhUvTBaVo7uZfhyVhg==
+X-CSE-MsgGUID: nDuoUf4OStyyhxZHIjtEgg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11190"; a="28464811"
+X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="28464811"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2024 01:00:01 -0700
+X-CSE-ConnectionGUID: 2bVcw4QJSnGzKswuR49PNQ==
+X-CSE-MsgGUID: ek72gl0EQJqfsOxvHCSn6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="66571817"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa006.fm.intel.com with ESMTP; 10 Sep 2024 00:49:56 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/hdcp: Use intel_display in hdcp_gsc
-Date: Tue, 10 Sep 2024 13:17:11 +0530
-Message-ID: <20240910074712.544007-3-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240910074712.544007-1-suraj.kandpal@intel.com>
-References: <20240910074712.544007-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,216,1719903600"; d="scan'208";a="71068446"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Sep 2024 00:59:58 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 10 Sep 2024 00:59:58 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 10 Sep 2024 00:59:58 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 10 Sep 2024 00:59:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YNaK/L0WmdcD+rWId5adX6MeKknJQt/ksqtsroyOCfXMk5swhfvQeTGQKS8iy3+4hA8xZM1p0zZvoT9jGTA/i71ojOCvnN9F+KZxzqkcyFfDUYVIHoZFHT6wUo4WUtRPPWk/PJDt9gy1KD1cNLrQeH2CXLohfl7RkFwEKUZclYbLnrvwcGznP5cLKhfZpi3wSVQ+HQLgpTwj+irt396GPZO1bRjYaCEGIEAd+T/TxhRYnZdSjZYd3q4JusmS37ihfUf+9bWiNWQOaPnuX0eZB6+aTz/Y6+399qiGLKyPepOHn6GlFrW6V5tEQS+ZNvfyoowuADEoKPQ5S+qeLbQZDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SVoMEv6ToArp3MsRFBCSyz+z5iMWXBvSRNIooKsjnlc=;
+ b=ZVaefXRf0qsM4kiJQeJwC8X+qDjwSHhjVTqk3h1dpI+VLH4/V6lcEMp0AKw3AErxG1HhASooChCFbWQVTi2S+VEZCTuM8tW8j8AX4FxU42haueXw5Zz0IMbtqASGG9nJgZTpw3gCYFVONj/oZU5DwLlkPH3/OpnKDXsR1NteHI9WrnKkW8cgsfXYij7TwUxzvqdAlUFqTC4mvxfi5WtEf3WOVFiatCwMxT2GLTG9Iltr8obTkgzgAGUEAgZMx+0kDuRnY1NXMH8uAa7vOzEypODxLJSCu+XgisRR+cqDHpb6nnjvgN3LjDiVq4hJh5Y020nneQYSq9bYU9kl2uRTxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB3238.namprd11.prod.outlook.com (2603:10b6:a03:7e::30)
+ by CH3PR11MB8518.namprd11.prod.outlook.com (2603:10b6:610:1b8::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.24; Tue, 10 Sep
+ 2024 07:59:27 +0000
+Received: from BYAPR11MB3238.namprd11.prod.outlook.com
+ ([fe80::ba3:e9e3:27c2:bd03]) by BYAPR11MB3238.namprd11.prod.outlook.com
+ ([fe80::ba3:e9e3:27c2:bd03%7]) with mapi id 15.20.7939.022; Tue, 10 Sep 2024
+ 07:59:27 +0000
+Message-ID: <8f854bba-c78e-4c81-a78d-04b385ff4641@intel.com>
+Date: Tue, 10 Sep 2024 13:29:20 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/pciid: Add new PCI id for ARL
+To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+References: <20240910062301.2006782-1-dnyaneshwar.bhadane@intel.com>
+Content-Language: en-US
+From: "Pottumuttu, Sai Teja" <sai.teja.pottumuttu@intel.com>
+In-Reply-To: <20240910062301.2006782-1-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0094.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:af::20) To BYAPR11MB3238.namprd11.prod.outlook.com
+ (2603:10b6:a03:7e::30)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB3238:EE_|CH3PR11MB8518:EE_
+X-MS-Office365-Filtering-Correlation-Id: fec00c17-f57c-450d-a0c0-08dcd16e7e20
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RFFleVhxWDZEUzZVa1BGN2lwQmZYb3k1WGQ2bmtMQ09nQ1FEcUNTM2Z0VnJ4?=
+ =?utf-8?B?ODNZNUViK2NsVlZwTWhGVmp1ZXJSaERmYzBKQXFyNzNjYWFiTGdjZmoyaWll?=
+ =?utf-8?B?QTBadnRCNDlyQnUzYjdFc2h2Q3dWMEZ0SnFtOXpTaDduU09EZzZoR2ZpWTJK?=
+ =?utf-8?B?RXErN1hFSWo4MkpPc0NybmpTcmNBWEU1Wm9EazlZV25Ld3R1cFlQMGVhd3Bv?=
+ =?utf-8?B?SjBQT0FYSTNqc0MxV2kvTWFwY3Y5MjA0NFM4OVBrVVFNcHhzSm11K09KUzFz?=
+ =?utf-8?B?MEI1NFRjQnJYR3QwNGpzUjZTRlp2U21kTVNGeTlZeFN1R3NSSWdERFowK2hq?=
+ =?utf-8?B?MmN4TTNOTkdBSWdqSnBVWklYUTZjTFpUS3Rna3dSWDNOVlhLdE8rbW5hSEFs?=
+ =?utf-8?B?QzQ5SDF2RE44QTF3Q2xueGczTU9tWGttdEtOd3J4dGNNVXNCeDl5ZUpZcFJ2?=
+ =?utf-8?B?KzJkb2ZvbXR1cXpxRDZzV3pVOE9mWHdxa3BKa2hSSXF2TlQvSkJBTGVmZFhK?=
+ =?utf-8?B?SHNucU5jZHFTNDYyYkthZ1o0RS9CNGQyQXhiYTIvYlRQQXBoUGZqbmlsYWhm?=
+ =?utf-8?B?VVFNek01QThqVUdSZTN3WHdvalIwRHRnVDRnYy9DbVRTamxaZnhtSkphZW9a?=
+ =?utf-8?B?VWtPNzVCN3gzU1kyNUxTYXQvNUtOeitzOER2YS9YQzRuWHJubURSZmFBNGFv?=
+ =?utf-8?B?clhETHV1M0JHSDA2NzFGUENSb1hMQi8zNFhBbXo4K3VVSUpUdmQ1WUFEMFRY?=
+ =?utf-8?B?bFJJN1B2aXY3dGpRdE5LOTg1TGdhbGpIRll3WFEydksyam9xUzRzRzlBTnVV?=
+ =?utf-8?B?NDQyb3gyRGJSSFRNVml4emtkbWFKWUdaMmhONVhNc2lPbnJNMDdFWmhER2FQ?=
+ =?utf-8?B?UENmRDJFd3VhSUgvTWVSTFA3amFONC9hV3dTM3RUSTdpWC9obkZZZ29EdE9V?=
+ =?utf-8?B?b21FWXZsZmIrZVhvNHc2d2E2WEZwWjNYQVNqRGh2cSs3SGtZM2IySFhtU3oy?=
+ =?utf-8?B?cUhIc0lkQm55WFhtejY2MHc0aXFQM2duV2d5d1NDcEVSdnJ0RzNTdGx6Zkth?=
+ =?utf-8?B?UjFjRnkrRkdSRkRxVWovWkJ3NVc0R0Z4ZHNzSGY2eU9RY2t4UlZOelVYYlc5?=
+ =?utf-8?B?dFJyOUpxVjAzbnZjem0vcGtGM2tYbFVUcmhWUXVCNFdNT3hFdzFJZnJ0VSs2?=
+ =?utf-8?B?c09JUGtaYkVoRTd2ZU5LTTE2MG1nMlZqNWVrNkNJWEFSd1BiTVJEa3pydVVZ?=
+ =?utf-8?B?VzVHRlBrMDhaelpHaUJZSTEvdzVZQldoNHk5TldWQ3VWQTVsNzIwSjQ3K2Yv?=
+ =?utf-8?B?b3d1T0dqc2wvQzlzditOWWtURWcyNFUwRUFldDNVL2IzbG5QSW9lQzBJay8y?=
+ =?utf-8?B?ZkxqNG1icGZMQzhoeWIra2ozQjNIWlJia0xCV0U3TVdiK1ovVzRDOStpUFpD?=
+ =?utf-8?B?YmpmSFppWGxydWlqR1pnbDZMMEF5T3pxTWRRdmJIR0orTSs0RFc2LzJaVjIr?=
+ =?utf-8?B?ejRIMTlMZUZHWkRUWDVFT0pLdnZ1ZSt4ZUc4WHBwK3BHZlc1dTRGSnlmSkxY?=
+ =?utf-8?B?clNucG1OVTVuanF3WUVUdFpSZGRCUGJ6TjRRMGRLcW9jbTNrV2NXcm54Y3ZF?=
+ =?utf-8?B?OGo0djBoanQ2U201WFRPdkRCTWxGQm00UzI3M3J3cGM0RnYxREU5REMzbkk0?=
+ =?utf-8?B?OWhUNzdWRW1pd2JBdW5BTk1MZWs1WEppbVBRcWNlQ0crTERSeXBNMlczQnU3?=
+ =?utf-8?B?ZVd2NWNyaEptSEgvVUF0SGtxREdqRTZzTTlkdUw4ZnBCUGdPZjNyL1ZnbXFn?=
+ =?utf-8?B?VWVjdW5BRGJyeW1GS3hDQT09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB3238.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c3hsdFVJYzA2NzVSeVJic3I5Q1pSWmhXMzkvc1ZxRFVaY1FLUVhwMjg4NDJL?=
+ =?utf-8?B?cEw1QjR5M0tTdWJERndhcTFaNHpQT0NPSzJORERLbmROZlVrRDdlU2JCOGg2?=
+ =?utf-8?B?MnBiZldhNVl0bVdyeWgvSXdUT2Z1ZmlJNkx5ZHpqTE41MWRPZWkxVVorOU5I?=
+ =?utf-8?B?SHk3TklLRlNDZEtLc1VBOW9PNm1aUWl1S0EwbWpTU1RFM0hvWTI5WllRK3Y2?=
+ =?utf-8?B?QVhpcWk2RXdRd0Z6T0JTTHoySGZxbVdQMU9ZT0VTc0dUYkVvQ1V5aVdmQ1dH?=
+ =?utf-8?B?OWlWTWRGNW9ZOThpeDBKczRCRDBuMmVja1VGUVQ5TklJVlJhbDlHVkFPNWUv?=
+ =?utf-8?B?dEt3R21LMTI0aUNjRFkvWUFEalU2MlhlWG9yLzYrOFNjL01zM0pUc3gvWUFF?=
+ =?utf-8?B?Z2tkYXU2MW5vT0J3VitjMlgxM3pudDE5K211T2NMSmU4ZEJSUE1TWHJGS3lT?=
+ =?utf-8?B?eDE0eE1NdnhPSHVqeHhDQmhVVTJZQTg4WXl6ejFtTDhJNHZZa1BxSzVKWTRv?=
+ =?utf-8?B?VFNjSlNJRmpXSzg0ZEdaVGpSeWR1MUpPbkpBTmlRV3pjVitQUG5hTlZvZmt0?=
+ =?utf-8?B?bUtsN0swZVBjKzJ0Zjk1Zm5ZZUpIajdhT25pck84QmNVZm5xZkQzRDhDLytx?=
+ =?utf-8?B?RFB1WEdxMFdITGE3Nk1qRmp0WTQvdFhlbGdTQWZVd2g2cXd6ZmRMZFdzQVFK?=
+ =?utf-8?B?a2tNK1hpM2IvQUhxaE9EcS9DZ0tGMWMvMWk3bVQxV08wNTZEQW1FeEVuUmFO?=
+ =?utf-8?B?dkdEdnNqT0d3ZS9kcGJrTlEzeUcrdTU0aEFLbzJkQlBzOFlMSDV4TVZTTUMy?=
+ =?utf-8?B?RktVOWZJWXgvL1hCVnJVZ21xanh5QSsvZU9YanRIRHczbXlYa1Q4L1Z2cDF3?=
+ =?utf-8?B?YkMwMzZhVzZ2cTJHSG1RV0xjeXZoZjE3WVFBajJNYUM3RDhHNlVPZjUxZXZU?=
+ =?utf-8?B?N0hZczdzcSszWnpSUkJFZ2VzZDVFT1B1RzlXeTlQSTJEZGhKanFOenlrMmk0?=
+ =?utf-8?B?ZXVqMVJKaDBoWlBBNjhzcFE1NFdoLzlqdVcvdVV6MnJkMFdadDdlMVBoWFF0?=
+ =?utf-8?B?Qk1YN0xmeUdVeFpVK1B2MDBXc05tdmtoaDM0K21rbVNJYVJFNGhXYW5JZ2JN?=
+ =?utf-8?B?THM0NTM2aml2V3FKTTIwaWRJTGkyTkdscWxWaUh6WE05K2Nab0h1N2FOMHQw?=
+ =?utf-8?B?SDZBbHAzVzlibm5PZkFPMEJ6TGdPc0Z6UVM4dk93NHhFMmxPUmQxQ3k1ei9i?=
+ =?utf-8?B?ODlUOFVJZTJ0alVSWUU3ZXZXRXNFeTUxa2J2MTFEYzNxVHF1UEpTY3FGbmdw?=
+ =?utf-8?B?WG1PNkFkMnJucjFwRHVVbVhzWiszNk1GL3BGTDdEVG5rRWlYc2F5VnlReDVp?=
+ =?utf-8?B?WFlseEhMWHo0YVlKdUh3MW81dUNqNjdHd3JzaUJhYkJWVXNpVkFPMXV2cE5j?=
+ =?utf-8?B?cXFmd0RpU3VOVDhtVG0rVDl0dEJ1enRxdTMwK2J5NGZnYUcxR0NsQWp0MkRK?=
+ =?utf-8?B?WUVNOHlvWThWMVNIOXNSQU9TYUEvek5VK21qK2ErTDFvRmhIcFI2RDhZNjN1?=
+ =?utf-8?B?RFZDMFY0dWRwTnlGVXRoNVpHUFRvcE5YL3Zjbm9GK3dhRUZ6a3JqLzJQMFZR?=
+ =?utf-8?B?NEdEK3ZvWWR3Y0d3Q0QrczViT2dJc2kwaThySVRHUllmWFRtRTRCZkRrdkdO?=
+ =?utf-8?B?RHRmb0EwZms2eGJCMm5ici9RME51bjhUcFNyNG42cnJ0L1BkTnppZ1FxV0xh?=
+ =?utf-8?B?R0FsYW5ZZlQ2M0xkeC83akJFV2Yxc0F5QWs5SEIycG1kVTkzV0orL0pIYzZI?=
+ =?utf-8?B?ckxhaTd6UmtveTFXT2RiVXoxVzUzQmtMb1cwOGhWZTdNM2Y4THF6a0cyVGhV?=
+ =?utf-8?B?OENSSmhvOFhtZHlFZTdnczJpK2RON3UvVnBHeTk1dURKWDdSeUZlcWRvL2Rs?=
+ =?utf-8?B?VlozaTlORjBwbDFpZFhlcTlHRUNBOE9vRmRUM21YWmNJMFhvLzFBQ1lldENt?=
+ =?utf-8?B?K0lCVk41SS83ajQwYTFYN2lBRTFGdFh6NjR3WHNjU3k4MEFzYmxYcGFLU015?=
+ =?utf-8?B?b0ZVWTQzYmM3STFWOXVKeFZzWlBXUUx0dE1XczJJNkM1ck5CM1EwODFyTVNY?=
+ =?utf-8?B?ZWxTQlErT0VJUGQ3SU5RMnpWc1diN1V4aG10T1hjUmpLYTVTRC9QYWJaUjgz?=
+ =?utf-8?B?Zmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fec00c17-f57c-450d-a0c0-08dcd16e7e20
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3238.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 07:59:27.3516 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RXAylFDxP09azewBoD3SVoRCbcEadDSioLYXqq1L00L3FDgjmCH5YXv3K6SD5AL3S4lHRvMBQPf74vq0Ve2IMvjvWW6cpPUO7NEPGsPKG8g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8518
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,361 +193,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use intel_display structure instead of drm_i915_private wherever
-possible in hdcp_gsc related files.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c     |  4 +-
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 31 ++++++-------
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  4 +-
- .../drm/i915/display/intel_hdcp_gsc_message.c | 44 +++++++++----------
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 23 +++++-----
- 5 files changed, 54 insertions(+), 52 deletions(-)
+On 10-09-2024 11:53, Dnyaneshwar Bhadane wrote:
+> Add new PCI id for ARL platform.
+>
+> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 964372f4343b..efc62711274f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2306,7 +2306,7 @@ void intel_hdcp_component_init(struct drm_i915_private *i915)
- 	display->hdcp.comp_added = true;
- 	mutex_unlock(&display->hdcp.hdcp_mutex);
- 	if (intel_hdcp_gsc_cs_required(display))
--		ret = intel_hdcp_gsc_init(i915);
-+		ret = intel_hdcp_gsc_init(display);
- 	else
- 		ret = component_add_typed(display->drm->dev, &i915_hdcp_ops,
- 					  I915_COMPONENT_HDCP);
-@@ -2569,7 +2569,7 @@ void intel_hdcp_component_fini(struct drm_i915_private *i915)
- 	mutex_unlock(&display->hdcp.hdcp_mutex);
- 
- 	if (intel_hdcp_gsc_cs_required(display))
--		intel_hdcp_gsc_fini(i915);
-+		intel_hdcp_gsc_fini(display);
- 	else
- 		component_del(display->drm->dev, &i915_hdcp_ops);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-index dc5cc1d54c85..55965844d829 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-@@ -107,8 +107,9 @@ static const struct i915_hdcp_ops gsc_hdcp_ops = {
- 	.close_hdcp_session = intel_hdcp_gsc_close_session,
- };
- 
--static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
-+static int intel_hdcp_gsc_hdcp2_init(struct intel_display *display)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_hdcp_gsc_message *hdcp_message;
- 	int ret;
- 
-@@ -121,19 +122,19 @@ static int intel_hdcp_gsc_hdcp2_init(struct drm_i915_private *i915)
- 	 * NOTE: No need to lock the comp mutex here as it is already
- 	 * going to be taken before this function called
- 	 */
--	i915->display.hdcp.hdcp_message = hdcp_message;
-+	display->hdcp.hdcp_message = hdcp_message;
- 	ret = intel_hdcp_gsc_initialize_message(i915, hdcp_message);
- 
- 	if (ret)
--		drm_err(&i915->drm, "Could not initialize hdcp_message\n");
-+		drm_err(display->drm, "Could not initialize hdcp_message\n");
- 
- 	return ret;
- }
- 
--static void intel_hdcp_gsc_free_message(struct drm_i915_private *i915)
-+static void intel_hdcp_gsc_free_message(struct intel_display *display)
- {
- 	struct intel_hdcp_gsc_message *hdcp_message =
--					i915->display.hdcp.hdcp_message;
-+					display->hdcp.hdcp_message;
- 
- 	hdcp_message->hdcp_cmd_in = NULL;
- 	hdcp_message->hdcp_cmd_out = NULL;
-@@ -141,7 +142,7 @@ static void intel_hdcp_gsc_free_message(struct drm_i915_private *i915)
- 	kfree(hdcp_message);
- }
- 
--int intel_hdcp_gsc_init(struct drm_i915_private *i915)
-+int intel_hdcp_gsc_init(struct intel_display *display)
- {
- 	struct i915_hdcp_arbiter *data;
- 	int ret;
-@@ -150,20 +151,20 @@ int intel_hdcp_gsc_init(struct drm_i915_private *i915)
- 	if (!data)
- 		return -ENOMEM;
- 
--	mutex_lock(&i915->display.hdcp.hdcp_mutex);
--	i915->display.hdcp.arbiter = data;
--	i915->display.hdcp.arbiter->hdcp_dev = i915->drm.dev;
--	i915->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
--	ret = intel_hdcp_gsc_hdcp2_init(i915);
--	mutex_unlock(&i915->display.hdcp.hdcp_mutex);
-+	mutex_lock(&display->hdcp.hdcp_mutex);
-+	display->hdcp.arbiter = data;
-+	display->hdcp.arbiter->hdcp_dev = display->drm->dev;
-+	display->hdcp.arbiter->ops = &gsc_hdcp_ops;
-+	ret = intel_hdcp_gsc_hdcp2_init(display);
-+	mutex_unlock(&display->hdcp.hdcp_mutex);
- 
- 	return ret;
- }
- 
--void intel_hdcp_gsc_fini(struct drm_i915_private *i915)
-+void intel_hdcp_gsc_fini(struct intel_display *display)
- {
--	intel_hdcp_gsc_free_message(i915);
--	kfree(i915->display.hdcp.arbiter);
-+	intel_hdcp_gsc_free_message(display);
-+	kfree(display->hdcp.arbiter);
- }
- 
- static int intel_gsc_send_sync(struct drm_i915_private *i915,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-index b6aabd855478..5695a5e4f609 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-@@ -17,8 +17,8 @@ bool intel_hdcp_gsc_cs_required(struct intel_display *display);
- ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
- 				size_t msg_in_len, u8 *msg_out,
- 				size_t msg_out_len);
--int intel_hdcp_gsc_init(struct drm_i915_private *i915);
--void intel_hdcp_gsc_fini(struct drm_i915_private *i915);
-+int intel_hdcp_gsc_init(struct intel_display *display);
-+void intel_hdcp_gsc_fini(struct intel_display *display);
- bool intel_hdcp_gsc_check_status(struct intel_display *display);
- 
- #endif /* __INTEL_HDCP_GCS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-index 35bdb532bbb3..129104fa9b16 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-@@ -46,12 +46,12 @@ intel_hdcp_gsc_initiate_session(struct device *dev, struct hdcp_port_data *data,
- 				       (u8 *)&session_init_out,
- 				       sizeof(session_init_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (session_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
- 			    WIRED_INITIATE_HDCP2_SESSION,
- 			    session_init_out.header.status);
- 		return -EIO;
-@@ -108,12 +108,12 @@ intel_hdcp_gsc_verify_receiver_cert_prepare_km(struct device *dev,
- 				       (u8 *)&verify_rxcert_out,
- 				       sizeof(verify_rxcert_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed: %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed: %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (verify_rxcert_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
- 			    WIRED_VERIFY_RECEIVER_CERT,
- 			    verify_rxcert_out.header.status);
- 		return -EIO;
-@@ -171,12 +171,12 @@ intel_hdcp_gsc_verify_hprime(struct device *dev, struct hdcp_port_data *data,
- 				       (u8 *)&send_hprime_out,
- 				       sizeof(send_hprime_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (send_hprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. Status: 0x%X\n",
- 			    WIRED_AKE_SEND_HPRIME, send_hprime_out.header.status);
- 		return -EIO;
- 	}
-@@ -222,12 +222,12 @@ intel_hdcp_gsc_store_pairing_info(struct device *dev, struct hdcp_port_data *dat
- 				       (u8 *)&pairing_info_out,
- 				       sizeof(pairing_info_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (pairing_info_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. Status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. Status: 0x%X\n",
- 			    WIRED_AKE_SEND_PAIRING_INFO,
- 			    pairing_info_out.header.status);
- 		return -EIO;
-@@ -269,12 +269,12 @@ intel_hdcp_gsc_initiate_locality_check(struct device *dev,
- 	byte = intel_hdcp_gsc_msg_send(i915, (u8 *)&lc_init_in, sizeof(lc_init_in),
- 				       (u8 *)&lc_init_out, sizeof(lc_init_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (lc_init_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X Failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X Failed. status: 0x%X\n",
- 			    WIRED_INIT_LOCALITY_CHECK, lc_init_out.header.status);
- 		return -EIO;
- 	}
-@@ -323,12 +323,12 @@ intel_hdcp_gsc_verify_lprime(struct device *dev, struct hdcp_port_data *data,
- 				       (u8 *)&verify_lprime_out,
- 				       sizeof(verify_lprime_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (verify_lprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
- 			    WIRED_VALIDATE_LOCALITY,
- 			    verify_lprime_out.header.status);
- 		return -EIO;
-@@ -369,12 +369,12 @@ int intel_hdcp_gsc_get_session_key(struct device *dev,
- 	byte = intel_hdcp_gsc_msg_send(i915, (u8 *)&get_skey_in, sizeof(get_skey_in),
- 				       (u8 *)&get_skey_out, sizeof(get_skey_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (get_skey_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
- 			    WIRED_GET_SESSION_KEY, get_skey_out.header.status);
- 		return -EIO;
- 	}
-@@ -435,12 +435,12 @@ intel_hdcp_gsc_repeater_check_flow_prepare_ack(struct device *dev,
- 				       (u8 *)&verify_repeater_out,
- 				       sizeof(verify_repeater_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (verify_repeater_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
- 			    WIRED_VERIFY_REPEATER,
- 			    verify_repeater_out.header.status);
- 		return -EIO;
-@@ -504,12 +504,12 @@ int intel_hdcp_gsc_verify_mprime(struct device *dev,
- 				       sizeof(verify_mprime_out));
- 	kfree(verify_mprime_in);
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (verify_mprime_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
- 			    WIRED_REPEATER_AUTH_STREAM_REQ,
- 			    verify_mprime_out.header.status);
- 		return -EIO;
-@@ -552,12 +552,12 @@ int intel_hdcp_gsc_enable_authentication(struct device *dev,
- 				       (u8 *)&enable_auth_out,
- 				       sizeof(enable_auth_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (enable_auth_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "FW cmd 0x%08X failed. status: 0x%X\n",
- 			    WIRED_ENABLE_AUTH, enable_auth_out.header.status);
- 		return -EIO;
- 	}
-@@ -599,12 +599,12 @@ intel_hdcp_gsc_close_session(struct device *dev, struct hdcp_port_data *data)
- 				       (u8 *)&session_close_out,
- 				       sizeof(session_close_out));
- 	if (byte < 0) {
--		drm_dbg_kms(&i915->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-+		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
- 	}
- 
- 	if (session_close_out.header.status != FW_HDCP_STATUS_SUCCESS) {
--		drm_dbg_kms(&i915->drm, "Session Close Failed. status: 0x%X\n",
-+		drm_dbg_kms(display->drm, "Session Close Failed. status: 0x%X\n",
- 			    session_close_out.header.status);
- 		return -EIO;
- 	}
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 5badf90b26de..437839b8c847 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -138,42 +138,43 @@ static const struct i915_hdcp_ops gsc_hdcp_ops = {
- 	.close_hdcp_session = intel_hdcp_gsc_close_session,
- };
- 
--int intel_hdcp_gsc_init(struct xe_device *xe)
-+int intel_hdcp_gsc_init(struct intel_display *display)
- {
- 	struct i915_hdcp_arbiter *data;
-+	struct xe_device *xe = to_xe_device(display->drm);
- 	int ret;
- 
- 	data = kzalloc(sizeof(*data), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
- 
--	mutex_lock(&xe->display.hdcp.hdcp_mutex);
--	xe->display.hdcp.arbiter = data;
--	xe->display.hdcp.arbiter->hdcp_dev = xe->drm.dev;
--	xe->display.hdcp.arbiter->ops = &gsc_hdcp_ops;
-+	mutex_lock(&display->hdcp.hdcp_mutex);
-+	display->hdcp.arbiter = data;
-+	display->hdcp.arbiter->hdcp_dev = display->drm->dev;
-+	display->hdcp.arbiter->ops = &gsc_hdcp_ops;
- 	ret = intel_hdcp_gsc_hdcp2_init(xe);
- 	if (ret)
- 		kfree(data);
- 
--	mutex_unlock(&xe->display.hdcp.hdcp_mutex);
-+	mutex_unlock(&display->hdcp.hdcp_mutex);
- 
- 	return ret;
- }
- 
--void intel_hdcp_gsc_fini(struct xe_device *xe)
-+void intel_hdcp_gsc_fini(struct intel_display *display)
- {
- 	struct intel_hdcp_gsc_message *hdcp_message =
--					xe->display.hdcp.hdcp_message;
--	struct i915_hdcp_arbiter *arb = xe->display.hdcp.arbiter;
-+					display->hdcp.hdcp_message;
-+	struct i915_hdcp_arbiter *arb = display->hdcp.arbiter;
- 
- 	if (hdcp_message) {
- 		xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
- 		kfree(hdcp_message);
--		xe->display.hdcp.hdcp_message = NULL;
-+		display->hdcp.hdcp_message = NULL;
- 	}
- 
- 	kfree(arb);
--	xe->display.hdcp.arbiter = NULL;
-+	display->hdcp.arbiter = NULL;
- }
- 
- static int xe_gsc_send_sync(struct xe_device *xe,
--- 
-2.43.2
+I assume that you would send another patch to sync this PCI ID addition 
+in xe_pciids.h as well
 
+With that,
+
+Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+
+> ---
+>   include/drm/intel/i915_pciids.h | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
+> index cbb12fdbcb7f..02156c6f79b6 100644
+> --- a/include/drm/intel/i915_pciids.h
+> +++ b/include/drm/intel/i915_pciids.h
+> @@ -769,7 +769,8 @@
+>   	MACRO__(0x7D41, ## __VA_ARGS__), \
+>   	MACRO__(0x7D51, ## __VA_ARGS__), \
+>   	MACRO__(0x7D67, ## __VA_ARGS__), \
+> -	MACRO__(0x7DD1, ## __VA_ARGS__)
+> +	MACRO__(0x7DD1, ## __VA_ARGS__), \
+> +	MACRO__(0xB640, ## __VA_ARGS__)
+>   
+>   /* MTL */
+>   #define INTEL_MTL_IDS(MACRO__, ...) \
