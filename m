@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C52974F8D
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 12:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6C5974FA8
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 12:23:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9171910E075;
-	Wed, 11 Sep 2024 10:21:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C321A10E7A3;
+	Wed, 11 Sep 2024 10:23:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BmPMCvBq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MdEdfs44";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E711110E035;
- Wed, 11 Sep 2024 10:21:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B99EF10E749;
+ Wed, 11 Sep 2024 10:23:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726050097; x=1757586097;
+ t=1726050212; x=1757586212;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=ybypotxL6xwRDLFzYoQz+aSH4RrX5xRB2iJEAbEekKA=;
- b=BmPMCvBqIlc/AZGcuG0jJvDkCv8AG50P5fSDb5jvFDEi0OWFOb/wmvv9
- nHXhPbt/SPnM3FUszrFZ+eAf8rpJum2LpaJU/eyC1QqzGKTEQ8Jri+S1H
- 2BWyjoO7K16PjluH6hA2FgxVroLqwGwJXJkP+AnFloA2P4CBmCRlXe9S/
- bRDm1oEMWN/v++QC0fqvrtVcSTNVhjTlr4uJVbYf7+WfBh5GcDMiLNlmu
- rrQGIrX6lLiivNUxBQLitZj+f8EZVBmIawdrgJ3s7ssl0zIWfQonfSbBw
- ECW6RX0GjUL32D4NnaFrUlFo8xygvATqsO3gKeQoFqqF1JVD+7L9y6j+g w==;
-X-CSE-ConnectionGUID: LbfU0yeORyKQXbbF+VeI7A==
-X-CSE-MsgGUID: 3hvXvyHzTvSFHsE2HElSIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24986772"
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="24986772"
+ bh=5K4tAcFBHvPTFN8Wakkvp/Wjtxx7ZDotyHbB7iJQI5E=;
+ b=MdEdfs44InGSpskK7hkFDw3HvkRymI0F6yDIg03t6B1+2eE267Jt1Ev6
+ rKg/izDhq5ObJsnbdvQVLvCtmL6kEv/ThZWzc8z0byYZGhoebw1V8hFuS
+ liTexmSJpTloEViBPTQSnRVC39qsblh0FqmSvH9+9rtlcrz5WYxni4fqU
+ CYxU5feW0IJGdBgZi52HHZ+0gJVKkdTdLc+3hQocmNLtYL9kazSI/w3gL
+ RoBS1AmkEB0tvVlKo6iVcuUM/X+A7AdyQF8V38id7nOxeYN2Ay6cKn7tK
+ Kt+S5csxXWNY1lbCASTQWbqR5VdhK0yEtJrGdoOLOYXYdavHrZhIj2i9P g==;
+X-CSE-ConnectionGUID: as9V3/LhQwyAsFKbyVSYIA==
+X-CSE-MsgGUID: QI7lxJ8eTMaFQBKsLhmXpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="24986952"
+X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="24986952"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 03:21:36 -0700
-X-CSE-ConnectionGUID: wZAUmiH8TCy8CYjUfZOLWA==
-X-CSE-MsgGUID: /776MYdhSHyv+rpwdDzXxA==
+ 11 Sep 2024 03:23:32 -0700
+X-CSE-ConnectionGUID: CK2HXmxAT3KuAAFMtdSU6w==
+X-CSE-MsgGUID: 2zqkdFhVQKGTCdjHtZvtsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="104780772"
+X-IronPort-AV: E=Sophos;i="6.10,219,1719903600"; d="scan'208";a="104781745"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 03:21:32 -0700
+ 11 Sep 2024 03:23:27 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/8] drm: renesas: rcar-du: annotate rcar_cmm_read()
- with __maybe_unused
-In-Reply-To: <20240911095113.GB4470@pendragon.ideasonboard.com>
+To: Marc Gonzalez <mgonzalez@freebox.fr>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Arnaud Vrac <avrac@freebox.fr>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, Rob
+ Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 7/8] drm/msmi: annotate pll_cmp_to_fdata() with
+ __maybe_unused
+In-Reply-To: <19ac4e25-7609-4d92-8687-585c6ea00c79@freebox.fr>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1725962479.git.jani.nikula@intel.com>
- <f2b721e28b9ee2711d7848abf1774ecb8ce8e5e2.1725962479.git.jani.nikula@intel.com>
- <CAMuHMdWJDKO-0o9GiGzuZ=yuYpZ1myB+A00zYwNj=+6baAq3Rw@mail.gmail.com>
- <87jzfjk4vy.fsf@intel.com>
- <20240911095113.GB4470@pendragon.ideasonboard.com>
-Date: Wed, 11 Sep 2024 13:21:27 +0300
-Message-ID: <87bk0ujxso.fsf@intel.com>
+ <3553b1db35665e6ff08592e35eb438a574d1ad65.1725962479.git.jani.nikula@intel.com>
+ <4ag2efwiizn5bnskauekqwfhgl4gioafcvetpvsmbdgg37bdja@3g6tt4rlfwcb>
+ <19ac4e25-7609-4d92-8687-585c6ea00c79@freebox.fr>
+Date: Wed, 11 Sep 2024 13:23:23 +0300
+Message-ID: <878qvyjxpg.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -77,14 +77,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 11 Sep 2024, Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
-> Jiapeng Chong has sent a patch to drop the function, and I've reviewed
-> it. See https://lore.kernel.org/r/20240619075436.86407-1-jiapeng.chong@linux.alibaba.com
+On Tue, 10 Sep 2024, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+> On 10/09/2024 16:51, Dmitry Baryshkov wrote:
+>
+>> On Tue, Sep 10, 2024 at 01:03:43PM GMT, Jani Nikula wrote:
+>>
+>>> Building with clang and and W=1 leads to warning about unused
+>>> pll_cmp_to_fdata(). Fix by annotating it with __maybe_unused.
+>>>
+>>> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
+>>> inline functions for W=1 build").
+>>>
+>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> 
+>> I think this function can be dropped. Marc, your call, as an author of
+>> the patch?
+>
+> ( Why is the patch prefixed "drm/msmi", is "msmi" a typo? )
 
-Even better, thanks!
+Whoops, a typo.
+
+>
+> -> For the record, Arnaud is the driver's author.
+>
+> pll_cmp_to_fdata() was used in hdmi_8998_pll_recalc_rate()
+> in a commented code block which was later removed.
+>
+> Thus, yes, it is safe to completely delete the unused function.
+> I'm surprised gcc didn't catch that...
+
+Thanks, I'll change this to drop the function.
+
+GCC doesn't catch unused static inlines, while Clang does.
 
 BR,
 Jani.
+
+
+>
+> Regards
+>
+>
+>>> ---
+>>>  drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
+>>> index 0e3a2b16a2ce..c0bf1f35539e 100644
+>>> --- a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
+>>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8998.c
+>>> @@ -153,7 +153,7 @@ static inline u32 pll_get_pll_cmp(u64 fdata, unsigned long ref_clk)
+>>>  	return dividend - 1;
+>>>  }
+>>>  
+>>> -static inline u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
+>>> +static inline __maybe_unused u64 pll_cmp_to_fdata(u32 pll_cmp, unsigned long ref_clk)
+>>>  {
+>>>  	u64 fdata = ((u64)pll_cmp) * ref_clk * 10;
+>>>  
+>>> -- 
+>>> 2.39.2
+>
+>
 
 -- 
 Jani Nikula, Intel
