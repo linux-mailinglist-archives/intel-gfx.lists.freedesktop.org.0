@@ -2,62 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22863975B37
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 22:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F153975B5A
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 22:08:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51C6E10E9B1;
-	Wed, 11 Sep 2024 20:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEA4B10E9EB;
+	Wed, 11 Sep 2024 20:08:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XIfIESMI";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="FWmKulFv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B52E710E9B1
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 20:01:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726084862; x=1757620862;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=2L2rctikpKnaoy5AYOMPhiATHBiNocfrXLLmb83/zpA=;
- b=XIfIESMI8gS/lNgku6nmAkjz1PSoc7mm+G8Exgjr+pLl6nq331JmG8IZ
- rabg2SCX4wU+DS6bvucxiDJoAwI6xQ/UqJRivEEgp5AMqxNOe1mudQuQs
- t0vSYc7jXsXMbcW042CcHFFEfGLRlneEKZW9iWUmT6S9PnA+5k2ntTE4C
- Y07FnhtapgIbYgA41oyl1l5oZtdH+XudoUwOvr1spcxEk66lFQhQTi6c+
- DGPU1pHBqrzy6WCCc9dm4iwiRUuXKleCqpzDXNi05SvtVKuBD/Q9i74jE
- G+YqxKsGruVv7DxKN6Hx+XE5haRA4R4QqqEUBSq6IA608nee4k4z3XFyj Q==;
-X-CSE-ConnectionGUID: cihh5rghRxWnGA+nrN07HQ==
-X-CSE-MsgGUID: IItPAdPgTWadrWdr1+/mUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="42426793"
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="42426793"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 13:01:01 -0700
-X-CSE-ConnectionGUID: vq0vvOLRRsWUN+ozyhiZ0g==
-X-CSE-MsgGUID: Nnn1VgFVRdCMJatEK1u54w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="67534345"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Sep 2024 13:00:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Sep 2024 23:00:58 +0300
-Date: Wed, 11 Sep 2024 23:00:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, suraj.kandpal@intel.com,
- jani.saarinen@intel.com
-Subject: Re: [PATCH 03/19] drm/i915/display_debugfs: Allow force joiner only
- if supported
-Message-ID: <ZuH2-tjGzURPYwvV@intel.com>
-References: <20240911131349.933814-1-ankit.k.nautiyal@intel.com>
- <20240911131349.933814-4-ankit.k.nautiyal@intel.com>
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
+ [209.85.219.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5950F10E9EB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 20:08:00 +0000 (UTC)
+Received: by mail-qv1-f42.google.com with SMTP id
+ 6a1803df08f44-6c35357cdacso1324126d6.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 13:08:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1726085278; x=1726690078;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/UenxOqMB8aSc4sONnJe1Vz69L/1xBEXPOvkJcAvqc4=;
+ b=FWmKulFvIRkv1A06cAhP+u+gkok19jH7tcjGM6jiUXm+V2II+T7xWh1akKxMZuRFB4
+ HQ4l2d9LDF3w6I07yVou/+kSOAR5sNISklW/XYr3Gt8+RIa9oP+tvED2rATCYV6AAiy3
+ ZRBqhrHwJk81+XEJdnAaZ1cuql1OpLcHTsRsc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726085278; x=1726690078;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=/UenxOqMB8aSc4sONnJe1Vz69L/1xBEXPOvkJcAvqc4=;
+ b=ZQyEkUSg9EIcgLjRuqHnpQeIraGSR0AR51L3lktxx91BLTcQtstmINSEwKp/iwfm9h
+ fr+MOxzhTbpntuMXN9+zERvMdWqrnaJ5zfg7IDiFuZQLNLKBwZfXVb2J/VZGXEtlcZxf
+ mUFkJod8k62Widexcxv0v4pXlwdUdRqkt05BdYHNF+KtbOxu97ThcsnqhtCbWq3lRuVd
+ Ph8GZv7vfVQXs1BNOsFp/33AS0ZgtT+mLrOSG4hRoQx07sXqdMfawaC/AehsTi21kBCG
+ XTFuWd49Ti1uwjBMnBSShlagmzUCoCmV+8QtgKx7AhmTzmH90Bp+rR7JMGNjiwxmSABp
+ g9Gg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX+pWbwIFBVmuFXcSoq7eNCBYUvwwo+0YGH3peFMI0SrP162TBoCs6N4dbvQK9DA5VObnlDx+QL/Xw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzwsLk8BJ0WxjWwlNj95554w/0kQ3B6OOZAGkxG8suv99EjwI1R
+ 8eEIZ26CSMBuCbRNX4pcbWJCWqfn661xq5g5SbHrNKSCg93dWi0yf3O2pozumHR9udBICZnhnzs
+ =
+X-Google-Smtp-Source: AGHT+IGwEHIsXyxtVlUh5nG50eCzEpwQidVignyXwdFuYxEeJaO1AnTo6GqBTbQSg1NUx82+bvZDvA==
+X-Received: by 2002:a05:6214:5b87:b0:6c3:5db2:d99d with SMTP id
+ 6a1803df08f44-6c57355a340mr11189126d6.21.1726085278262; 
+ Wed, 11 Sep 2024 13:07:58 -0700 (PDT)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com.
+ [209.85.219.49]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-6c53433c37bsm45415786d6.34.2024.09.11.13.07.57
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 11 Sep 2024 13:07:57 -0700 (PDT)
+Received: by mail-qv1-f49.google.com with SMTP id
+ 6a1803df08f44-6c35357cdacso1323886d6.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 13:07:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVdSpNyooKTUphB9dkSxihANG2XRQkdnBwllxb5WYkqjvqSu8EDWuzTdNMU6zJTEaVVusmAnPVRPoQ=@lists.freedesktop.org
+X-Received: by 2002:a05:6214:5984:b0:6c3:5dcf:bf5a with SMTP id
+ 6a1803df08f44-6c5735940b9mr13497026d6.37.1726085276966; Wed, 11 Sep 2024
+ 13:07:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240911131349.933814-4-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+References: <cover.1725962479.git.jani.nikula@intel.com>
+ <136ecd978aedd7df39d1b1c37b70596027ff0a3e.1725962479.git.jani.nikula@intel.com>
+ <CAD=FV=XgddDYmOiX1ouQo2ayhJn4GVQrErj-XBy3og5eJ0uBOA@mail.gmail.com>
+ <87h6amk49e.fsf@intel.com>
+In-Reply-To: <87h6amk49e.fsf@intel.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 11 Sep 2024 13:07:45 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Vi58YipOuyy9uhU=ps=tUW8h33znpjfJW9VigJ-b8nHA@mail.gmail.com>
+Message-ID: <CAD=FV=Vi58YipOuyy9uhU=ps=tUW8h33znpjfJW9VigJ-b8nHA@mail.gmail.com>
+Subject: Re: [PATCH 4/8] drm/bridge: ti-sn65dsi86: annotate
+ ti_sn_pwm_pin_{request, release} with __maybe_unused
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,74 +101,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 11, 2024 at 06:43:33PM +0530, Ankit Nautiyal wrote:
-> Currently joiner is only supported for DP encoder.
-> Allow force joiner only for DP for supported platforms.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 20 ++++++++++++++++---
->  1 file changed, 17 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index d7651f6f80e1..7ceaf01a884a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -1520,6 +1520,9 @@ static ssize_t i915_joiner_write(struct file *file,
->  	struct seq_file *m = file->private_data;
->  	struct intel_connector *connector = m->private;
->  	struct intel_display *display = to_intel_display(connector);
-> +	struct intel_encoder *intel_encoder = intel_attached_encoder(connector);
+Hi,
 
-That won't work for MST. You'll want to use intel_attached_dp().
+On Wed, Sep 11, 2024 at 1:02=E2=80=AFAM Jani Nikula <jani.nikula@intel.com>=
+ wrote:
+>
+> On Tue, 10 Sep 2024, Doug Anderson <dianders@chromium.org> wrote:
+> > Hi,
+> >
+> > On Tue, Sep 10, 2024 at 3:04=E2=80=AFAM Jani Nikula <jani.nikula@intel.=
+com> wrote:
+> >>
+> >> Building with clang, W=3D1, CONFIG_PM=3Dn and CONFIG_OF_GPIO=3Dn leads=
+ to
+> >> warning about unused ti_sn_pwm_pin_request() and
+> >> ti_sn_pwm_pin_release(). Fix by annotating them with __maybe_unused.
+> >>
+> >> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused stat=
+ic
+> >> inline functions for W=3D1 build").
+> >>
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >>
+> >> ---
+> >>
+> >> Cc: Douglas Anderson <dianders@chromium.org>
+> >> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> >> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> >> Cc: Robert Foss <rfoss@kernel.org>
+> >> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> >> Cc: Jonas Karlman <jonas@kwiboo.se>
+> >> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> >> Cc: Nathan Chancellor <nathan@kernel.org>
+> >> ---
+> >>  drivers/gpu/drm/bridge/ti-sn65dsi86.c | 4 ++--
+> >>  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> >
+> > I'm happy to land this in drm-misc-next unless there are any extra
+> > dependencies. Let me know. In some sense I guess this could even be
+> > considered a "Fix", though I guess given the history of the compiler
+> > options that might be a bit of a stretch.
+>
+> drm-misc-next is fine. Agree on not considering this a fix.
 
-> +	struct intel_dp *intel_dp;
-> +	int connector_type = connector->base.connector_type;
->  	int force_join_pipes = 0;
->  	int ret;
->  
-> @@ -1530,16 +1533,27 @@ static ssize_t i915_joiner_write(struct file *file,
->  	if (ret < 0)
->  		return ret;
->  
-> +	/* Currently joiner is only supported for eDP/DP */
-> +	if (connector_type != DRM_MODE_CONNECTOR_DisplayPort &&
-> +	    connector_type != DRM_MODE_CONNECTOR_eDP)
-> +		return 0;
+It's only been on the list a day but it's simple so I just landed it
+to drm-misc-next:
 
-We shouldn't be adding the debugfs file to a non-DP connector so this
-seems redundant.
-
-> +
-> +	intel_dp = enc_to_intel_dp(intel_encoder);
-> +
-> +	connector->force_joined_pipes = 0;
-> +
->  	switch (force_join_pipes) {
->  	case 0:
-> -		fallthrough;
-> +		break;
->  	case 2:
-> -		connector->force_joined_pipes = force_join_pipes;
-> +		if (intel_dp_has_joiner(intel_dp))
-> +			connector->force_joined_pipes = force_join_pipes;
-> +		else
-> +			drm_dbg(display->drm, "Force joiner not supported for the config\n");
-
-That should return an error. Hmm, or perhaps even better to not
-even create the debugfs file in the first place?
-
->  		break;
->  	default:
->  		drm_dbg(display->drm, "Ignoring Invalid num of pipes %d for force joining\n",
->  			force_join_pipes);
-> -		connector->force_joined_pipes = 0;
->  	}
->  
->  	*offp += len;
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+[4/8] drm/bridge: ti-sn65dsi86: annotate ti_sn_pwm_pin_{request,
+release} with __maybe_unused
+      commit: 868cd000c19f77e4c25ce87c47b6f951facf4394
