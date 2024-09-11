@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917FE975531
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 16:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 582239755B2
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 16:38:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 967C588FAE;
-	Wed, 11 Sep 2024 14:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCB5B10E0D0;
+	Wed, 11 Sep 2024 14:38:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7/oqyPa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TV8Uq2AT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E5B588FAE
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 14:23:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A6810E083;
+ Wed, 11 Sep 2024 14:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726064620; x=1757600620;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Zf/JAmzixnEt0Djrax46m9GRs7gTKCb9VVsx/3j7om4=;
- b=A7/oqyPayqhvYSANSwgM3rqKtijxyF1LsVO6T+2GPgGE+BoJRph5uFrg
- gQbvpSfIyI1ZKnOJamJtCesJQ9JrWPEj2GqMNyX9x85n/X6sQivhErAIU
- FaoYXxJ93XOX7SKclDa6BZ2htOGHDho+kV+08N+5d6pvYTMKFVPqHTNHe
- gOIdEAprZ25UxPhNHACbTVFQjEssKSrl4nEnMQJXgT/nlLAelVCnNT9zu
- q6FSOjBZ5a6Tq7vz0gS/hz2aZtomnRV4kYjWjz7L2uu9TcncGDwUXzA0q
- zdKl35wGe57LwCJrYQ3mcHkXKvu1y60j/gDq5OkJfE+EdODxlXQx0eZ1U A==;
-X-CSE-ConnectionGUID: H8bck/h9RjiyZ5IEEvXWYA==
-X-CSE-MsgGUID: QvLudT+oQzeKhEgSrlRALw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="24743058"
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="24743058"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 07:23:39 -0700
-X-CSE-ConnectionGUID: DFLIl1XTTqGXXkbYpBmJHA==
-X-CSE-MsgGUID: dDsPERNNTwKVTGNK5TIVpA==
+ t=1726065519; x=1757601519;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=dHBwtr8Rw0+D/8i0BMJPQkk77B7HnY9vfYhfZuSCAMQ=;
+ b=TV8Uq2AT2gosQ9bcT+r2DLLS9g8Inz4bYekuWr7w/NiIgC+KQGIJUI8f
+ smknx85WkteV6l58LgToksqHzf5s3+0ABNGtQ1ecSGkpas45Ks2ZzmD0C
+ eUX8vmDiWslVPRfKZzvb04mz0336NFKIzAYkhZRV6HyJeZHnLz4TPjuAa
+ zWKogNrqca9XG641S98psCSkrykmeZ6HAhqtOLALEdiwKJxYcrOCslW99
+ YCT+T6FA17d2l8bzRbPABUbtSt8yWvpY0H37OJqsCP9nnNULTIlPadWtj
+ 5Oe/jeCpXTksf64+ZK/ZbBJCmMl83E2UBIOJo+6CWSk2u5NmbGanHzCi5 Q==;
+X-CSE-ConnectionGUID: 0DvA5ifhRiOl3GdT9LH0pw==
+X-CSE-MsgGUID: SvC04JqaQPC710m2zsUaYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="28757587"
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="28757587"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2024 07:38:39 -0700
+X-CSE-ConnectionGUID: Ad4ld/hXQjaOg19h6+8vFA==
+X-CSE-MsgGUID: leq5+hTySyWaiEJo+dwsUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="67453556"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Sep 2024 07:23:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Sep 2024 17:23:34 +0300
-Date: Wed, 11 Sep 2024 17:23:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915/display: Prevent DC6 while vblank is enabled
- for Panel Replay
-Message-ID: <ZuGn5l9oLy_gk_Il@intel.com>
-References: <20240911124015.1420976-1-jouni.hogander@intel.com>
- <ZuGUbvpnba19oGRo@intel.com>
- <8c3320cd5be33a6b9d92231758ae0e0a712d9eb9.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="98095875"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.188])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2024 07:38:37 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 06/11] drm/i915/reg: fix PCH transcoder timing
+ indentation
+In-Reply-To: <ZuBMEGcugO7mN5q1@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1725974820.git.jani.nikula@intel.com>
+ <f56e48a927692cec382e292602e0fa68e37f3b93.1725974820.git.jani.nikula@intel.com>
+ <ZuBMEGcugO7mN5q1@intel.com>
+Date: Wed, 11 Sep 2024 17:38:33 +0300
+Message-ID: <871q1qjlw6.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8c3320cd5be33a6b9d92231758ae0e0a712d9eb9.camel@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,48 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 11, 2024 at 01:14:33PM +0000, Hogander, Jouni wrote:
-> On Wed, 2024-09-11 at 16:00 +0300, Ville Syrjälä wrote:
-> > On Wed, Sep 11, 2024 at 03:40:15PM +0300, Jouni Högander wrote:
-> > > We need to block DC6 entry in case of Panel Replay as enabling VBI
-> > > doesn't
-> > > prevent DC6 in case of Panel Replay.
-> > 
-> > This doesn't make sense to me. I *think* we are currently
-> > supposed to always operate in the "main link on" mode for panel
-> > replay.
-> 
-> This is not true. Check bspec 68920:
-> 
-> "When performing PR on an eDP port the Source will allow advanced link
-> power management (ALPM) to turn the Main Link OFF when not sending an
-> SDP or update region."
+On Tue, 10 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Tue, Sep 10, 2024 at 04:28:50PM +0300, Jani Nikula wrote:
+>> Adhere to the style described at the top of i915_reg.h.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Right, it seems to be a thing for eDP only.
+Thanks, pushed the series to din. Feel free to do your stuff now.
 
-> 
-> And if you check block_dc6_needed in my patch that is checking eDP.
-> 
-> I was originally planning to handle this by preventing PR entry when
-> VBLANK is enabled, but that would be more expensive from power
-> managements point of view -> decided to go with blocking DC6.
+BR,
+Jani.
 
-None of this explains how DC6 vs. DC5 is somehow different.
-DC5 should already turn of all the clocks/etc so nothing real
-can actually happen anymore. The only thing DC6 adds on top
-of DC5 is turning off some extra power wells.
 
-Hmm. So get_allowed_dc_mask() seems to be telling me that new
-platforms only have DC6 but no DC5. Is that correct or not?
-No idea. But that means we are in fact disabling all DC states
-and that at least explains how something might happen due to
-this patch.
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_reg.h | 14 +++++++-------
+>>  1 file changed, 7 insertions(+), 7 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915=
+_reg.h
+>> index 2f09145b9791..1eede96a5415 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -3292,13 +3292,13 @@
+>>=20=20
+>>  #define HSW_STEREO_3D_CTL(dev_priv, trans)	_MMIO_PIPE2(dev_priv, trans,=
+ _HSW_STEREO_3D_CTL_A)
+>>=20=20
+>> -#define _PCH_TRANS_HTOTAL_B          0xe1000
+>> -#define _PCH_TRANS_HBLANK_B          0xe1004
+>> -#define _PCH_TRANS_HSYNC_B           0xe1008
+>> -#define _PCH_TRANS_VTOTAL_B          0xe100c
+>> -#define _PCH_TRANS_VBLANK_B          0xe1010
+>> -#define _PCH_TRANS_VSYNC_B           0xe1014
+>> -#define _PCH_TRANS_VSYNCSHIFT_B 0xe1028
+>> +#define _PCH_TRANS_HTOTAL_B		0xe1000
+>> +#define _PCH_TRANS_HBLANK_B		0xe1004
+>> +#define _PCH_TRANS_HSYNC_B		0xe1008
+>> +#define _PCH_TRANS_VTOTAL_B		0xe100c
+>> +#define _PCH_TRANS_VBLANK_B		0xe1010
+>> +#define _PCH_TRANS_VSYNC_B		0xe1014
+>> +#define _PCH_TRANS_VSYNCSHIFT_B		0xe1028
+>>=20=20
+>>  #define PCH_TRANS_HTOTAL(pipe)		_MMIO_PIPE(pipe, _PCH_TRANS_HTOTAL_A, _=
+PCH_TRANS_HTOTAL_B)
+>>  #define PCH_TRANS_HBLANK(pipe)		_MMIO_PIPE(pipe, _PCH_TRANS_HBLANK_A, _=
+PCH_TRANS_HBLANK_B)
+>> --=20
+>> 2.39.2
 
-The one thing that still doesn't quite make sense is that I would
-assume that the main link would get turned off regardless of DC6
-or not, which I would think causes the timing generator to stop
-anyway and should still give us no vblanks...
-
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel
