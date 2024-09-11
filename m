@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331E6975318
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 15:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70E67975346
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Sep 2024 15:12:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B863B10E9FD;
-	Wed, 11 Sep 2024 13:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25C6210EA0E;
+	Wed, 11 Sep 2024 13:12:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KFO7Nxg2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDQqSqZO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D08C910E9FD
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 13:00:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBFD10EA0E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2024 13:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726059649; x=1757595649;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fg+x/h9ZB9Ab7jBhYO8yA1noXh+TD+an6RhD6p6uQ8c=;
- b=KFO7Nxg2Tid0b00W37gxS2OiQH9iJ71h0wCZuG0AM2qaXosvhA5mprp0
- VC7MNY/s2f1ncUG7Eo+35iF8xYG+Vjr+p4PMdKGbTiT9nR4RPpJykIMz4
- fYxcRvgYCjm1NYTD+G5im9V7swd78Rk9x2Jd4lgH1nJMfgc//M+PWYuAC
- 3Ch0Z+USeZr2BvgMtHdBr0/OPTj+QvdcJQyZvLtQuqEp4ydNMcZWJZ0oj
- dP2hCEW797OKbc67HZRWGB5uXfuIBUU4/L60xncjG3YVw69Pii5otlJhW
- luAFxvDK+XJ7UTLcQ39Ak4PqXvQpql6CVgf15b89Bqt3z3qZ7qfhz+EP6 Q==;
-X-CSE-ConnectionGUID: c5+71TRSQi6ng5ocSgc28Q==
-X-CSE-MsgGUID: B8fklkxBROSWnmL84wpBhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="47373961"
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="47373961"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 06:00:34 -0700
-X-CSE-ConnectionGUID: pNO6XO1ATOCQOgo4D14GUg==
-X-CSE-MsgGUID: BhL80qwESv6fAU9HgZI3jA==
+ t=1726060327; x=1757596327;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pMoOKfDlULpIv2gYjjK8WMRTEOvUFYFPAIUTviazIdk=;
+ b=GDQqSqZOok0LafUkvdxGyU3wyzyDjK9+ODdYBPl9RnQEOK3VImdxgQPD
+ 946zK5RzC0vb1xVbPa+XfONncO5JhJkO2WbLfim7Uh44CfinRSMIKyWb+
+ 1ftpD5WF31jLUwMztQxpRXaEScmjOZH1WL+0tzL0f4hVVa2PjarZWKGqb
+ o/jDoWSCP4Ym3a+JPQuKhdMW1MDgFNx1P1Hn8YKGGQTidctFkmMK8MG2M
+ JmQZQaWtQvMg25RfI/eesTZCEJY21kas/GQBEbg93TNu/gqegDWHeqSYd
+ SVV9MlFa/1Fk7+J07OtU+AqtpjEP0KYuL0P2+5duRb5D+71B13k1T6bnI Q==;
+X-CSE-ConnectionGUID: g/3hW4LeQMCHdQ0S1CUcSQ==
+X-CSE-MsgGUID: /YaOy17jQIikXEzep3c51w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11191"; a="36244312"
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="36244312"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2024 06:12:07 -0700
+X-CSE-ConnectionGUID: SoroAC4GTPqOriMmUfxihA==
+X-CSE-MsgGUID: A/peqGU1RIWaf1wpV4lH3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="67423292"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Sep 2024 06:00:32 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Sep 2024 16:00:30 +0300
-Date: Wed, 11 Sep 2024 16:00:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Prevent DC6 while vblank is enabled
- for Panel Replay
-Message-ID: <ZuGUbvpnba19oGRo@intel.com>
-References: <20240911124015.1420976-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,220,1719903600"; d="scan'208";a="67380771"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2024 06:12:05 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, jani.saarinen@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 00/19] Ultrajoiner basic functionality series
+Date: Wed, 11 Sep 2024 18:43:30 +0530
+Message-ID: <20240911131349.933814-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240911124015.1420976-1-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,140 +66,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 11, 2024 at 03:40:15PM +0300, Jouni Högander wrote:
-> We need to block DC6 entry in case of Panel Replay as enabling VBI doesn't
-> prevent DC6 in case of Panel Replay.
+This patch series attempts to implement basic support
+for Ultrajoiner functionality.
 
-This doesn't make sense to me. I *think* we are currently
-supposed to always operate in the "main link on" mode for panel replay.
-But if we enter DC6 then for sure the main link will be turned off.
-Also DC6 is a superset of DC5, so how can we enter DC6 if we can't
-even enter DC5?
+Rev6:
+-Upgrade the debugfs functionality to enable the joining of a
+specified number of pipes.
+-Modify the display helpers reliant on the pipe joiner mechanism
+to use number of pipes joined, instead of joiner flag.
+-Checkpatch fixes.
 
-> This causes problems if user-space is
-> polling for vblank events.
-> 
-> Fix this by setting target DC state as DC_STATE_EN_UPTO_DC5 when both
-> source and sink are supporting eDP Panel Replay and VBI is enabled.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2296
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_core.h |  2 +
->  .../gpu/drm/i915/display/intel_display_irq.c  | 48 +++++++++++++++++++
->  2 files changed, 50 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 0a711114ff2b4..0707bc2047931 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -457,6 +457,8 @@ struct intel_display {
->  		/* For i915gm/i945gm vblank irq workaround */
->  		u8 vblank_enabled;
->  
-> +		struct work_struct vblank_work;
-> +
->  		u32 de_irq_mask[I915_MAX_PIPES];
->  		u32 pipestat_irq_mask[I915_MAX_PIPES];
->  	} irq;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 8f13f148c73e3..96abfb356349e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -15,6 +15,7 @@
->  #include "intel_display_irq.h"
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
-> +#include "intel_dp.h"
->  #include "intel_dp_aux.h"
->  #include "intel_dsb.h"
->  #include "intel_fdi_regs.h"
-> @@ -1361,9 +1362,47 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
->  	return true;
->  }
->  
-> +static void intel_display_vblank_work(struct work_struct *work)
-> +{
-> +	struct intel_display *display =
-> +		container_of(work, typeof(*display), irq.vblank_work);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +
-> +	/*
-> +	 * NOTE: intel_display_power_set_target_dc_state is used only by PSR
-> +	 * code for DC3CO handling. DC3CO target states is currently disabled in
-> +	 * PSR code. If DC3CO is taken into use we need take that into account
-> +	 * here as well.
-> +	 */
-> +	intel_display_power_set_target_dc_state(i915, display->irq.vblank_enabled ?
-> +						DC_STATE_EN_UPTO_DC5 : DC_STATE_EN_UPTO_DC6);
-> +}
-> +
-> +/*
-> + * We need to block DC6 entry in case of Panel Replay as enabling VBI doesn't
-> + * prevent DC6 in case of Panel Replay. This causes problems if user-space is
-> + * polling for vblank events.
-> + */
-> +static bool block_dc6_needed(struct intel_display *display)
-> +{
-> +	struct intel_encoder *encoder;
-> +
-> +	for_each_intel_encoder_with_psr(display->drm, encoder) {
-> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +
-> +		if (!intel_dp_is_edp(intel_dp))
-> +			continue;
-> +
-> +		if (CAN_PANEL_REPLAY(intel_dp))
-> +			return true;
-> +	}
-> +	return false;
-> +}
-> +
->  int bdw_enable_vblank(struct drm_crtc *_crtc)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned long irqflags;
-> @@ -1371,6 +1410,9 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
->  	if (gen11_dsi_configure_te(crtc, true))
->  		return 0;
->  
-> +	if (block_dc6_needed(display) && display->irq.vblank_enabled++ == 0)
-> +		schedule_work(&display->irq.vblank_work);
-> +
->  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
->  	bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
->  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
-> @@ -1436,6 +1478,7 @@ void ilk_disable_vblank(struct drm_crtc *crtc)
->  void bdw_disable_vblank(struct drm_crtc *_crtc)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned long irqflags;
-> @@ -1446,6 +1489,9 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
->  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
->  	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
->  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
-> +
-> +	if (block_dc6_needed(display) && --display->irq.vblank_enabled == 0)
-> +		schedule_work(&display->irq.vblank_work);
->  }
->  
->  void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
-> @@ -1871,4 +1917,6 @@ void intel_display_irq_init(struct drm_i915_private *i915)
->  		i915->display.irq.display_irqs_enabled = false;
->  
->  	intel_hotplug_irq_init(i915);
-> +
-> +	INIT_WORK(&i915->display.irq.vblank_work, intel_display_vblank_work);
->  }
-> -- 
-> 2.34.1
+Rev7:
+-Use struct intel_display, minor refactoring, and rebase.
+
+Rev8:
+-Address comments from Ville.
+-Simplified debugfs for forcing joiner, and added option to disable
+joiner.
+-Modified the ultra/bigjoiner helpers as suggested by Ville. 
+-Split few of the bigger patches as suggested.
+
+Test-with: 20240911072204.22825-1-karthik.b.s@intel.com
+
+Ankit Nautiyal (11):
+  drm/i915/display: Check whether platform supports joiner
+  drm/i915/display: Modify debugfs for joiner to force n pipes
+  drm/i915/display_debugfs: Allow force joiner only if supported
+  drm/i915/dp: Add helper to compute num pipes joined
+  drm/i915/display: Add debugfs support to avoid joiner
+  drm/i915/display: Simplify intel_joiner_num_pipes and its usage
+  drm/i915/display: Use joined pipes in intel_dp_joiner_needs_dsc
+  drm/i915/display: Use joined pipes in intel_mode_valid_max_plane_size
+  drm/i915/display: Use joined pipes in dsc helpers for slices, bpp
+  drm/i915/display: Consider ultrajoiner for computing maxdotclock
+  drm/i915/intel_dp: Add support for forcing ultrajoiner
+
+Stanislav Lisovskiy (8):
+  drm/i915: Add some essential functionality for joiners
+  drm/i915: Split current joiner hw state readout
+  drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity
+    checks
+  drm/i915: Implement hw state readout and checks for ultrajoiner
+  drm/i915/display: Percolate ultrajoiner info to get_joiner_config
+  drm/i915/display/vdsc: Add ultrajoiner support with DSC
+  drm/i915: Add new abstraction layer to handle pipe order for different
+    joiners
+  drm/i915: Compute config and mode valid changes for ultrajoiner
+
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  19 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 423 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_display.h  |  17 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  84 +++-
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 138 ++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |  14 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  54 ++-
+ drivers/gpu/drm/i915/display/intel_dsi.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  30 +-
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |   3 +
+ 12 files changed, 646 insertions(+), 142 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.45.2
+
