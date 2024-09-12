@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A10975DD1
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 02:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F253C975DD3
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 02:10:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08B4810E905;
-	Thu, 12 Sep 2024 00:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0AB10E966;
+	Thu, 12 Sep 2024 00:10:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8906Nve";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P392eciN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41B8810E905
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 00:09:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58CE710E966
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 00:10:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726099794; x=1757635794;
+ t=1726099832; x=1757635832;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=sEocxFvI5hlQP6kWSDQRyjKdUniTN1bh3fKIk/iMhbo=;
- b=m8906NveYnq33lmir3SBVjYx8+S1+QVMhzlqPm8cqts6K0JOTiCed7VR
- FUEhHWdETpDxZRfxx/ZsGqPz+32t4nU+V1XqodvkzTj/3/nE9JqAr9ZKd
- lyaZrTVOdfL9thLX5j24ZTuH6AO/jtaWoRB5Jka8H8T+/NcbrbUiy/VwB
- sRuTEHUUwjHcHFttCk2Snlw1B8h+dei4hhiBUa7qx/hfa7Ft0GOuX5cqw
- uFSj1BMBqSsneGMQ6j34S7jctUYybb5Lcid/K5A7uClkIIAxjEtu8i17g
- mo1FSjYlRmdgBEnEFX8aYbfUEfa2gNfTjtIbQ7hsNShzUuDWQc/c+OGhp g==;
-X-CSE-ConnectionGUID: JE1q/cvTQ366kkpBFSOM/g==
-X-CSE-MsgGUID: ieGxkte/TSS0CfNS5jMxTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="36068731"
-X-IronPort-AV: E=Sophos;i="6.10,221,1719903600"; d="scan'208";a="36068731"
+ bh=FGtFsEWV1zVU8+qFaPIAFD+gHdmbzWIgJWdwvnqNsgo=;
+ b=P392eciNt/wjbG0XuWN5A13QzNqcx47igTUGBmrnTleqBo/S8hl5UHsg
+ A5Eh/xcCTNQEEJ0Ly9eTiu3hM4Z7sk3RgB9FsdZ2gfIGaDla94j0G3f7r
+ 0L1/sSF59F5ZIhoc1pJyuDaTqPH05jhBKk2QSfyW3N8ELvaZQu0eXcoD1
+ YcE+bzZYhl+v7GXNgcY3cAEluTzQ9atZg8plydvjIzt8pFYufMsZuv8ko
+ /4oZMJOdSZ9K3AV4lhCPwPw39pTJ/WixYuOxgDj0jWrAi2pu0r/ERdZU7
+ w+IPUK/iTIFKVAeXWUuhZh2BOB8XRH9kYfga0ZEOEIE8nqAARs9dfhEj4 A==;
+X-CSE-ConnectionGUID: ILu8SoLHQRSgW/g5En0pkQ==
+X-CSE-MsgGUID: fUHLM7rmTii5099H4+OLDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="36068771"
+X-IronPort-AV: E=Sophos;i="6.10,221,1719903600"; d="scan'208";a="36068771"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2024 17:09:54 -0700
-X-CSE-ConnectionGUID: rYKQeha2Th+2MZqY4f2iZw==
-X-CSE-MsgGUID: FyYa72MPRzq9HHLKDoHQcg==
+ 11 Sep 2024 17:10:32 -0700
+X-CSE-ConnectionGUID: ewBnN8XOQjGbeHu72A78nw==
+X-CSE-MsgGUID: cOPEGvpDRjqN9jIonTDtvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,221,1719903600"; d="scan'208";a="67589692"
+X-IronPort-AV: E=Sophos;i="6.10,221,1719903600"; d="scan'208";a="67589934"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Sep 2024 17:09:51 -0700
+ by fmviesa008.fm.intel.com with SMTP; 11 Sep 2024 17:10:29 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Sep 2024 03:09:50 +0300
-Date: Thu, 12 Sep 2024 03:09:50 +0300
+ Thu, 12 Sep 2024 03:10:28 +0300
+Date: Thu, 12 Sep 2024 03:10:28 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Animesh Manna <animesh.manna@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
  jouni.hogander@intel.com, arun.r.murthy@intel.com,
  ankit.k.nautiyal@intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH v10 2/4] drm/i915/lobf: Move Lobf compute config after
- vblank adjustement
-Message-ID: <ZuIxTlhkjCNNtlDW@intel.com>
+Subject: Re: [PATCH v10 3/4] drm/i915/vrr: Split vrr-compute-config in two
+ phases
+Message-ID: <ZuIxdIP6P437YvOH@intel.com>
 References: <20240905051841.3012729-1-animesh.manna@intel.com>
- <20240905051841.3012729-3-animesh.manna@intel.com>
+ <20240905051841.3012729-4-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240905051841.3012729-3-animesh.manna@intel.com>
+In-Reply-To: <20240905051841.3012729-4-animesh.manna@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,101 +74,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 05, 2024 at 10:48:39AM +0530, Animesh Manna wrote:
-> As lobf compute config is depends upon delayed vbalnk so moved
-
-Actually no.
-
-The code is as follows:
- guardband = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay - context_latency;
-
-Add context_latency to both sides:
- context_latency + guardband = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vdisplay;
-
-Substitute into:
- crtc_state->has_lobf = (context_latency + guardband) >
-	                (first_sdp_position + waketime_in_lines);
-
-and you have no vblank delay anywhere.
-
-
-Someone should just rewrite that to use that simple formula.
-
-Now, that code is using the non-VRR timings for all this computation
-so technically it might not even be computing the correct thing when
-using VRR, but I guess that's more of a problem for the "let's use
-the VRR timing generator fixed refersh stuff" because we really
-should match the non-VRR timings there...
-
-> lobf compute config in encoder late config(). Lobf is only
-> for edp connector so introduced intel_dp_late_compute_config().
+On Thu, Sep 05, 2024 at 10:48:40AM +0530, Animesh Manna wrote:
+> As vrr guardband calculation is dependent on modified
+> vblank start so better to compute late after all
+> vblank adjustement.
 > 
 > v1: Initial version.
-> v2: Function name modified. [Jani]
+> v2: Split in a separate patch from panel-replay workaround. [Ankit]
 > 
 > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 5 +++++
->  drivers/gpu/drm/i915/display/intel_dp.c  | 9 ++++++++-
->  drivers/gpu/drm/i915/display/intel_dp.h  | 2 ++
->  3 files changed, 15 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 16 ++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.c     | 13 -------------
+>  2 files changed, 16 insertions(+), 13 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 00fbe9f8c03a..0d12c94793bf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4367,6 +4367,11 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
->  			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
->  	}
->  
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) ||
-> +	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
-> +		intel_dp_compute_config_late(encoder, crtc_state);
-> +	}
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 86bc6d79279f..bc0042a1bc3a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3107,7 +3107,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  	intel_vrr_compute_config(pipe_config, conn_state);
->  	intel_dp_compute_as_sdp(intel_dp, pipe_config);
->  	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
-> -	intel_alpm_lobf_compute_config(intel_dp, pipe_config);
->  	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
->  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
->  	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-> @@ -3116,6 +3115,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->  							pipe_config);
->  }
->  
-> +void intel_dp_compute_config_late(struct intel_encoder *encoder,
-> +				  struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +
-> +	intel_alpm_lobf_compute_config(intel_dp, crtc_state);
-> +}
-> +
->  void intel_dp_set_link_params(struct intel_dp *intel_dp,
->  			      int link_rate, int lane_count)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index b4ef4d59da1a..7fb3d35f7124 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4794,10 +4794,26 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
 >  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index 1b9aaddd8c35..411feece9acb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -74,6 +74,8 @@ void intel_dp_encoder_flush_work(struct drm_encoder *encoder);
->  int intel_dp_compute_config(struct intel_encoder *encoder,
->  			    struct intel_crtc_state *pipe_config,
->  			    struct drm_connector_state *conn_state);
-> +void intel_dp_compute_config_late(struct intel_encoder *encoder,
-> +				  struct intel_crtc_state *crtc_state);
->  int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  				struct intel_crtc_state *pipe_config,
->  				struct drm_connector_state *conn_state,
+>  	struct intel_crtc_state *crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+>  	struct drm_connector_state *conn_state;
+>  	struct drm_connector *connector;
+>  	int i;
+>  
+> +	if (crtc_state->vrr.enable) {
+> +		/*
+> +		 * For XE_LPD+, we use guardband and pipeline override
+> +		 * is deprecated.
+> +		 */
+> +		if (DISPLAY_VER(to_i915(crtc->base.dev)) >= 13) {
+> +			crtc_state->vrr.guardband =
+> +				crtc_state->vrr.vmin + 1 - adjusted_mode->crtc_vblank_start;
+> +		} else {
+> +			crtc_state->vrr.pipeline_full =
+> +				min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start -
+> +				crtc_state->framestart_delay - 1);
+> +		}
+> +	}
+
+Pretty sure I asked that to be a proper function in some earlier reply.
+
+> +
+>  	for_each_new_connector_in_state(&state->base, connector,
+>  					conn_state, i) {
+>  		struct intel_encoder *encoder =
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 9a51f5bac307..de17a8ae831b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -239,19 +239,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+>  			 crtc_state->hw.adjusted_mode.vsync_end);
+>  	}
+> -
+> -	/*
+> -	 * For XE_LPD+, we use guardband and pipeline override
+> -	 * is deprecated.
+> -	 */
+> -	if (DISPLAY_VER(display) >= 13) {
+> -		crtc_state->vrr.guardband =
+> -			crtc_state->vrr.vmin + 1 - adjusted_mode->crtc_vblank_start;
+> -	} else {
+> -		crtc_state->vrr.pipeline_full =
+> -			min(255, crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start -
+> -			    crtc_state->framestart_delay - 1);
+> -	}
+>  }
+>  
+>  static u32 trans_vrr_ctl(const struct intel_crtc_state *crtc_state)
 > -- 
 > 2.29.0
 
