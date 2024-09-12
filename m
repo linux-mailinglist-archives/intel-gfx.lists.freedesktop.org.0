@@ -2,91 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7EA976ECD
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 18:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58DA6976F67
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 19:14:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9E8710EBE5;
-	Thu, 12 Sep 2024 16:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9331D10EBEB;
+	Thu, 12 Sep 2024 17:14:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TceoDpSi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKjIJvRl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA4A310EBE1
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 16:34:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1726158842;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=EOmdO+b7gYLR4VAcBUs89Ub1sXD9TFu8fmoSrmDCcEU=;
- b=TceoDpSiGASN80LPe4ID8lJoqlTaIyQjlLcfs7VOp3MuUJp+PsfV/kLj6QS1O4zDot4o5m
- WYfuZ42oKEBxazpp90c0/AHprNGGZ2+DjxDfcgqdqSIK9ATlcD/xZqIjviEvwqHFqRI5xo
- 3/sn3T3YsayXh6yuMuYvGGp4o9E2oT8=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-507-wVCik5aAOYKRhiM0t217Zw-1; Thu, 12 Sep 2024 12:34:01 -0400
-X-MC-Unique: wVCik5aAOYKRhiM0t217Zw-1
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-374c90d24e3so12198f8f.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 09:34:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726158840; x=1726763640;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=EOmdO+b7gYLR4VAcBUs89Ub1sXD9TFu8fmoSrmDCcEU=;
- b=kX3TG7Ye7rlf+xv0uNH9iBIAIfJB7dMpZqJrC6sqUYuS8x6o4WVYFg7dm/DgEwY8Ng
- WQlxLH6rSWCTbRfBtsHXPs/nhjn0G73XjDuLBO/6kiarD/M1q/gLw0fqCbB989UbtqAq
- 4IaPyNgDvq+xmjCXx31bg9pPRu2JxiEnk9Vew5CDSjgs79+KTGc9ZXV6/mPQiXfhzkBQ
- QzMXWAZgfCP2FYT6l/GMdm4csK1eyCAxM3bZv7eHSSVl7/bv1dEyamxx+AUYFIH6t6HK
- OzVVB7pEV00BXKJ8wz+T4m8Gik7qJ6TDo7KCk4qQE5ITGLWiIV+kiElSJglqrct2Uq4L
- tF7A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXAAbw66StBQKj8bfY3OWKZTSuQhsd8ipDPRt02NwJsROke6QCj8iLcc/pEAHKM2TCuQEISzgPnWdw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywej9bmdvEAMoqnvxFYqaaqMUtgC/XxzHktdR9Gy5K+aEIAzNcq
- w+plircTLjgGYOgw7f2LH/B/cIONk7EQZBBdazSDHfyVytbMa8wraFmRdlUrbgWGZzqhHydxV0V
- ubTY0SZPGxE4yvHvK0DIqaLdPrVGYlQUuB+afJO95kVi7MQqBUXRzcNC5+aoyo3o/Aw==
-X-Received: by 2002:a05:6000:c81:b0:374:bde8:66af with SMTP id
- ffacd0b85a97d-378c2d581camr2869435f8f.57.1726158840265; 
- Thu, 12 Sep 2024 09:34:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHykV9DHzv3qV6R6EuPD0pzt9S/Yjo+tEE1Jd7G9+MiD3zDj61TCo7+RJHhLaEraT38VncGGg==
-X-Received: by 2002:a05:6000:c81:b0:374:bde8:66af with SMTP id
- ffacd0b85a97d-378c2d581camr2869405f8f.57.1726158839736; 
- Thu, 12 Sep 2024 09:33:59 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-378956653f9sm14798656f8f.31.2024.09.12.09.33.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Sep 2024 09:33:59 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Julius Werner <jwerner@chromium.org>
-Cc: Brian Norris <briannorris@chromium.org>, Borislav Petkov <bp@alien8.de>,
- Hugues Bruant <hugues.bruant@gmail.com>, stable@vger.kernel.org,
- regressions@lists.linux.dev, linux-kernel@vger.kernel.org, Fenghua Yu
- <fenghua.yu@intel.com>, Reinette Chatre <reinette.chatre@intel.com>, Tony
- Luck <tony.luck@intel.com>, Tzung-Bi Shih <tzungbi@kernel.org>, Julius
- Werner <jwerner@chromium.org>, chrome-platform@lists.linux.dev, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [NOT A REGRESSION] firmware: framebuffer-coreboot: duplicate
- device name "simple-framebuffer.0"
-In-Reply-To: <CAODwPW8P+jcF0erUph5XyWoyQgLFbZWxEM6Ygi_LFCCTLmH89Q@mail.gmail.com>
-References: <CALvjV29jozswRtmYxDur2TuEQ=1JSDrM+uWVHmghW3hG5Y9F+w@mail.gmail.com>
- <20240909080200.GAZt6reI9c98c9S_Xc@fat_crate.local>
- <ZuCGkjoxKxpnhEh6@google.com>
- <87jzfhayul.fsf@minerva.mail-host-address-is-not-set>
- <CAODwPW8P+jcF0erUph5XyWoyQgLFbZWxEM6Ygi_LFCCTLmH89Q@mail.gmail.com>
-Date: Thu, 12 Sep 2024 18:33:58 +0200
-Message-ID: <87mskczv9l.fsf@minerva.mail-host-address-is-not-set>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA8AC10EBEB;
+ Thu, 12 Sep 2024 17:14:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726161277; x=1757697277;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=8C2p3GfUAttmpqu6/k45DLYTeUkcclMvW2QfL+KOKO0=;
+ b=PKjIJvRltOux/EQoT3vToH7lU8k9qh24Jps7UeqQ6XHzeGjaXYdeqbUH
+ oTI3DP/10JEGXOlOW3ze3GHv+elNgD8n07r7w2Ki12HxQPQI1VeX2g4sr
+ HNQNL3v1ppEWY+dJGCBGDTasmRgPM9Dob+Rxm/0IOoIB/ipd1R6jx4PSi
+ ay85A8/AP7voJOPQ8LkJ4X7nfFMAU/ZHdZR8sca4Va0cC5Pr/ZaGS+guy
+ rhsA1RfMbUTHr2mkO/YK433Pyk5XymqLYNdMiFbsEaCH3vdCKF8VpfbP1
+ 3Lnm1lPzHp9NhqoSzC+Ea3Ssw8X2nanlNxnd2rUqQrRRu445fA2zMUSlZ w==;
+X-CSE-ConnectionGUID: e/6/XrXqSOCNcxymYLB3PA==
+X-CSE-MsgGUID: zSmiAY8uQ0Owj6rknzz0Mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25161257"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25161257"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 10:14:37 -0700
+X-CSE-ConnectionGUID: C8+WmZ2sTlG/9KwCOByhFg==
+X-CSE-MsgGUID: bHr/6N2bTTGvkA/8CP7vHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="72587503"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Sep 2024 10:14:36 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 12 Sep 2024 10:14:35 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 12 Sep 2024 10:14:35 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 12 Sep 2024 10:14:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kkavGfqqRlcJ9TagVGVpwnooMY24wyrnbiWL0TFagZ4tY1r/VKzarDERek+w0OSpdTYa4KTMIW8kYMRtnsgru2BzCfToqOftBGpAZeJej86qwsiPWG6e2VinKjtbeRazJOkKyE8QMZxOFF5bR9fXfTp/1hCKeMiTl73nGpLXWXD6fEr8vGMDZ2nQKAUikfH90LV9UlajAjqkdHJ5MFHkSeaN3rKerVZtdAei7woSt5YODUL2mdk+/MWITa2Ed09ABWjZxGi/wJ6MblxCx3mVQtePK+qogKlMAcJvc6chzPWjykwcv9JCVkMgLcfI8maNQ/v/MN8W/QMOv9grFG5eWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7+j2RkDWhnb/d7kOiEKbKSUjqtXOOU4GZX6WydE1Y+M=;
+ b=ZjvQ9vsDF3sQ4Pi2G6QkdKnUzhyHC0DRokX5Ypf5U1U81Fh+iSBCBbNm71r5bqhraUkFWJDUqIqDjniyLp1YDeH5ebXlZJr9usi7C4vRt/xvM2RlQXQ5NX1nICleruboVR0MW0Lun0XxHAGP2Mi2EFf3ytES/T0HMXIzjUQKWWQQo7qZaEEEOqAOAaQyCkltk935uAbkma6yXslRowJHQ/j6Yb23gVz/wmx3rTaUtBAMhxx12ohmDIsXG9QeTjdWZN+SS8qoRWIw5IfjNQ6eDt8+t6SknI+v9pulv+1zpZR0FtUIY3ZYVe5BeoRQGVBPiQrOVyY411XOQwoG70beCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB5768.namprd11.prod.outlook.com (2603:10b6:510:131::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.24; Thu, 12 Sep
+ 2024 17:14:28 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%7]) with mapi id 15.20.7962.017; Thu, 12 Sep 2024
+ 17:14:28 +0000
+Date: Thu, 12 Sep 2024 12:14:26 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do
+ hflip on Xe2
+Message-ID: <wo5js5qkjy35yx6smin5yel3cute2tox65y7dxtdvnmo3bdkgy@sdv7uq5nfjdr>
+References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0007.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::12) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB5768:EE_
+X-MS-Office365-Filtering-Correlation-Id: bca3e4d7-7005-491c-4fe5-08dcd34e5c14
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?luAjFG3bSuKh25pAnQ+8O7JZe4mjLAaMiFd/TUVxObkLTD5K71CwNhqUktlU?=
+ =?us-ascii?Q?aWRuypyrTEO4XDhS1m36wpY1+s49MX4ZBusmR9n/hiOTnApN655EzrX/uCSM?=
+ =?us-ascii?Q?RpOOwuIh2MaYYM7oW9mM/+TOsPdpiN+m3Q9cbvFnFyPzBgktl7CN5Azbv7S6?=
+ =?us-ascii?Q?abSNdvVbDnKpC1ugOchuPgFn3+IT2GcxJjdNzwJCa6Yb6v+pkIK0eO/McH3z?=
+ =?us-ascii?Q?4Z0fxqIJGT/++0rr1Azhik+9Cig9emGUqgQGyqxv8Tzk9xvAJn4+Fn8/JNFl?=
+ =?us-ascii?Q?kCswrI0ODFwe2A3Eqz8GwPXe3i2Vh4T/VG+krz/MT8KhsjQ7NY3Fm6b6nToB?=
+ =?us-ascii?Q?ipKZ1uTwH9YMOgMybgXpnBYxe7TUacS5cbifQRxK060njiLIP2CCFSmrTU5E?=
+ =?us-ascii?Q?R+O4ypQidfKUv1Z3zQuwY4x/4YfCsLd1XfGKXnzan2WeXqL9LvIGcRtMPZdZ?=
+ =?us-ascii?Q?uRo6A9B9RmNcaFNjJ+OgqY5WtUYkJGVnn9MAPDq+3z+znHmL2q5kbnJjfMf4?=
+ =?us-ascii?Q?HNgOOay9JpaKx1tLIiTq7gR4XQprkdwLWBTWPETRv1bGr9kOaI8uFV1UubWn?=
+ =?us-ascii?Q?nsjS7czpY53eMSzWwfSbnniFGWi9lvKhQpjR68Kr5v5SpN+3H6WYMwWZls8h?=
+ =?us-ascii?Q?TcB0hGxG1IrA3QWsz8aZP4tRm9zFE/88LcVbfltWV1reBsDl43by06yfxUrv?=
+ =?us-ascii?Q?spS/X2Y2VwWE9M4M836csIK0ZURJssnHeMs8/imb+606fHkuLskQ/2pB/RLr?=
+ =?us-ascii?Q?gC8u9VLRpmhv4ZlQFM/E9FIuWZRqoBY2ugLnVZy3hqQ2Mi578vo0G0qE6QoQ?=
+ =?us-ascii?Q?hzcCmV4odSVELXerNjo5PYG+pH5N5G0PbQwE38/9PElpaO2N+3uuhgl/KZo5?=
+ =?us-ascii?Q?CBl1R+EPo4EG3+ijp/rY0ib3EKwB20ENG9AOHNRLl3QVduw8XY28R5VPGYyx?=
+ =?us-ascii?Q?5CRN7yTmwhIvSc2WOO5suaUjyI78snYVNYmsyPpGC9M60y7JCyb/YSEPjn8C?=
+ =?us-ascii?Q?s6yphKItIWdKXZYb4mkSwoJJw81sBhdcxGkX+EZHUHjmkocBBIPRC5iLA5NS?=
+ =?us-ascii?Q?piUSutivftKAxqSGDBvESKah4xV56CT63xCoFpXi9zfT/xaOZpqUYKdbYZRE?=
+ =?us-ascii?Q?JKuVKJK0OjMHP/33vbbcOQc0+gI6V2mpGKxd+YVnCLkYeSRdS3TN41+t+gh2?=
+ =?us-ascii?Q?FFml04ciGMFc6/Ak7VI6rcPVPL6B2I/FGzjgmjXVWoKzoYkRU32um9fwgZA8?=
+ =?us-ascii?Q?exOmtakrCoAZOmtAimMsdNblunUvxYG22wUwHJzP731qF9dGbx57lZCc2V3K?=
+ =?us-ascii?Q?Zu+v2zLqGhEmO3k5memIFAEWyI7Xzgdjq7qD2YQ5k/xPkg=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?D2vdfO8/raAGwbAIow7Q99slQ94+cSLOkwSrfU2aII6uvPEytcTbdzyrBo5e?=
+ =?us-ascii?Q?ViW8mv2gT6JcAj0W4LZhWhWlQ/fAWraIS4XsoxX1ER0G0hGb+iVhx1tQOQHJ?=
+ =?us-ascii?Q?Z8xULN73lXoQ9jHQ+Pye0ZIEbG28zTiMREw23QgAQ306E9iOe50O+7g5IydE?=
+ =?us-ascii?Q?aQjlos4pvYvfArMQYbS8JU0qNw+0U6H2qelLi33ksAtu0aLVysjfQxUQMRTr?=
+ =?us-ascii?Q?7sx4VGgVrrujiW78D5vS7tVGJA6pr3k94MOZJ6fGBT4pqAq2aJY/m1L2ZFg7?=
+ =?us-ascii?Q?teM7PcxM576L4AcKGWZD0Kjm06li9wuo0SsnK47hz//qshwxh2Q64OV/EBM+?=
+ =?us-ascii?Q?bgdDFd4LuYDhgRt1cNdnYBhRVJnT5rRRdxCiADaVxuYBHObKYVPf6wYCtqIi?=
+ =?us-ascii?Q?DbA36aTPgPvM2DbLXnL2d0Ys0rmT10sJzOqFcPsIwYqNE2S25a9xhtRoFXSz?=
+ =?us-ascii?Q?taW39nX2e5Yh5UmvomxoC/c2O4RvgTelDZAguZPDEjnVBHFxeKx1z9OQvo0s?=
+ =?us-ascii?Q?YafPxrAJy+YELYIO8rbyvg26YiHKc9TnBOwfpEJBLqXQyB5xxq+sKR6OvPk+?=
+ =?us-ascii?Q?1GtI2tSIsOzih30W52nxeRsuBZnQwJanns2wMsWZgmewzxZq2gjo6HAfAGeB?=
+ =?us-ascii?Q?P2x9b2oxIu0dUuHTnJf9g3x7/UIi5l01KCCI58EvX1NZwfqSsIRToaQWcvh6?=
+ =?us-ascii?Q?AImBxB0OZMe0+fLTwa3WiGyYqzLXUny7rKpT30B+NejnAaHuBF9y8at+GjGk?=
+ =?us-ascii?Q?St0FdTeXBR5ksdojhFHR6qZRkw1kEyu+RpvGccwEOlQhXjn9V0I5br+4IhDf?=
+ =?us-ascii?Q?MCcYLzelJxwX2zMbvh5SU1Q6OhKpYLFZSv+qFwT1YMiWhGZ35C2hzKn8LzKj?=
+ =?us-ascii?Q?+6juCAzphLii1PYey6G1L/Tp8H6z4Ef5uLCSrP7AMIBo/mRS7WhSkEDZ8uTo?=
+ =?us-ascii?Q?o7+BSDik7nznL2FhbPjlQmoOQSeLwahx0Kp5lBaL79yEiVzf6SfWO+0CS8/a?=
+ =?us-ascii?Q?d+0Unraw5LjjFgVjcvtinALjc+f+z1fYfUkcQe2wt1yUucJ5HmR/WxAmprKu?=
+ =?us-ascii?Q?3PBzE1oO6ooQ3andfCMNhN0eyyghLkGESqybaW/0UW0CDoPML5Q7jm9ovlXp?=
+ =?us-ascii?Q?eeoxydbiiXsJG82dri5QVs5pveXK2l1Fz0et+35BE7/KRakvipeZocvTZ9NA?=
+ =?us-ascii?Q?3kJs3G9KdfbwJ04OpzaomcgONsliUXuDQ2HSJhsReZVkimCkiiPWa+JLek4J?=
+ =?us-ascii?Q?6FZDL5hyx2uP9nirPCKH615idS7G0Qwjiz0mvq8n5s0kWuDsDKsERumZdYVg?=
+ =?us-ascii?Q?BlOXUPpmmcjA3+rCFpFWZ3sliN7fXvDTp4V+ziiJ+tZfmXKmOGaW++A4mYuG?=
+ =?us-ascii?Q?+6mgNGKiacmQk0EJ/vrQYR+ou89WtsrrW+5ty8hlkmQx4cYtqLGoKBTudk8J?=
+ =?us-ascii?Q?DBXhBtfK2Ohl9kHgD1I9jrW/YHAXTASzhjYntVf8uVVJSXz8FJWjASterBNE?=
+ =?us-ascii?Q?z83A379VunqDarQF6hgHpmM4GJtXPWPKhc+GnGvc0ASOrAl78NcIvny8ewzi?=
+ =?us-ascii?Q?BOM1bR5TO5lNDR8PEjRZgb/BpUw4ZsgkBwrZrOejDFTE8k/4CnBsW4tDrpZs?=
+ =?us-ascii?Q?Yg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bca3e4d7-7005-491c-4fe5-08dcd34e5c14
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2024 17:14:28.7131 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NoVWXFBdjsIfP55r/WoeWQ2Ow+yoFeNM+78lDfJCGefIPiSsuX/HXdLBRY3NtASzF7mP08Q55RjPepgVkhvZqj0vxuWU45rZu17IyYdKMbg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5768
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,123 +175,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Julius Werner <jwerner@chromium.org> writes:
-
-Hello Julius,
-
->> On Coreboot platforms, a system framebuffer may be provided to the Linux
->> kernel by filling a LB_TAG_FRAMEBUFFER entry in the Coreboot table. But
->> it seems SeaBIOS payload can also provide a VGA mode in the boot params.
->>
->> [...]
->>
->> To prevent the issue, make the framebuffer_core driver to disable sysfb
->> if there is system framebuffer data in the Coreboot table. That way only
->> this driver will register a device and sysfb would not attempt to do it
->> (or remove its registered device if was already executed before).
+On Thu, Sep 12, 2024 at 05:46:06PM GMT, Juha-Pekka Heikkila wrote:
+>On Intel Xe2 hw tile4 is not supported with horizontal flip
 >
-> I wonder if the priority should be the other way around? coreboot's
-> framebuffer is generally only valid when coreboot exits to the payload
-> (e.g. SeaBIOS). Only if the payload doesn't touch the display
-> controller or if there is no payload and coreboot directly hands off
-> to a kernel does the kernel driver for LB_TAG_FRAMEBUFFER make sense.
-> But if there is some other framebuffer information passed to the
-> kernel from a firmware component running after coreboot, most likely
-> that one is more up to date and the framebuffer described by the
-> coreboot table doesn't work anymore (because the payload usually
-> doesn't modify the coreboot tables again, even if it changes hardware
-> state). So if there are two drivers fighting over which firmware
-> framebuffer description is the correct one, the coreboot driver should
-> probably give way.
+>bspec 69853
+
+Usual spelling is: "Bspec: 69853" and as part of the trailers below.
+
 >
+>Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>---
+> drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
+> drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
+> drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
+> 3 files changed, 26 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+>index d2ff21e98545..c9038d239eb2 100644
+>--- a/drivers/gpu/drm/i915/display/intel_fb.c
+>+++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>@@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
+> 				      INTEL_PLANE_CAP_NEED64K_PHYS);
+> }
+>
+>+/**
+>+ * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
+>+ * @modifier: Modifier to check
+>+ *
+>+ * Returns:
+>+ * Returns %true if @modifier is a tile4 modifier.
 
-That's a very good point. I'm actually not familiar with Coreboot and I
-used an educated guess (in the case of DT for example, that's the main
-source of truth and I didn't know if a Core table was in a similar vein).
+double Returns
 
-Maybe something like the following (untested) patch then?
+>+ */
+>+bool intel_fb_is_tile4_modifier(u64 modifier)
+>+{
+>+	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
+>+				      INTEL_PLANE_CAP_TILING_4);
+>+}
+>+
+> static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+> 					     u8 display_ver_from, u8 display_ver_until)
+> {
+>diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+>index 068f3aee99aa..bff87994cf2c 100644
+>--- a/drivers/gpu/drm/i915/display/intel_fb.h
+>+++ b/drivers/gpu/drm/i915/display/intel_fb.h
+>@@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
+> bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+> bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+> bool intel_fb_needs_64k_phys(u64 modifier);
+>+bool intel_fb_is_tile4_modifier(u64 modifier);
+>
+> bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
+> int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
+>diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>index 17d4c880ecc4..4de41ab5060a 100644
+>--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>@@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+> 		return -EINVAL;
+> 	}
+>
+>+	/*
+>+	 * Starting with LNL and BMG tile4 hflip is not supported
+>+	 */
+>+	if (rotation & DRM_MODE_REFLECT_X &&
+>+	    intel_fb_is_tile4_modifier(fb->modifier) &&
+>+	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
+>+	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
 
-From de1c32017006f4671d91b695f4d6b4e99c073ab2 Mon Sep 17 00:00:00 2001
-From: Javier Martinez Canillas <javierm@redhat.com>
-Date: Thu, 12 Sep 2024 18:31:55 +0200
-Subject: [PATCH] firmware: coreboot: Don't register a pdev if screen_info data
- is available
+the correct bspec for BMG is 50387 where the only documented restriction is
+on linear surface formats. This can rather be simplified with:
 
-On Coreboot platforms, a system framebuffer may be provided to the Linux
-kernel by filling a LB_TAG_FRAMEBUFFER entry in the Coreboot table. But
-a Coreboot payload (e.g: SeaBIOS) could also provide this information to
-the Linux kernel.
+	if (rotation & DRM_MODE_REFLECT_X &&
+	    intel_fb_is_tile4_modifier(fb->modifier) &&
+	    DISPLAY_VER(dev_priv) >= 20)
 
-If that the case, early arch x86 boot code will fill the global struct
-screen_info data and that data used by the Generic System Framebuffers
-(sysfb) framework to add a platform device with platform data about the
-system framebuffer.
+Lucas De Marchi
 
-But later then the framebuffer_coreboot driver will try to do the same
-framebuffer (using the information from the Coreboot table), which will
-lead to an error due a simple-framebuffer.0 device already registered:
-
-    sysfs: cannot create duplicate filename '/bus/platform/devices/simple-framebuffer.0'
-    ...
-    coreboot: could not register framebuffer
-    framebuffer coreboot8: probe with driver framebuffer failed with error -17
-
-To prevent the issue, make the framebuffer_core driver to not register a
-platform device if the global struct screen_info data has been filled.
-
-Reported-by: Brian Norris <briannorris@chromium.org>
-Link: https://lore.kernel.org/all/ZuCG-DggNThuF4pj@b20ea791c01f/T/#ma7fb65acbc1a56042258adac910992bb225a20d2
-Suggested-by: Julius Werner <jwerner@chromium.org>
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
- drivers/firmware/google/framebuffer-coreboot.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/firmware/google/framebuffer-coreboot.c b/drivers/firmware/google/framebuffer-coreboot.c
-index daadd71d8ddd..4e50da17cd7e 100644
---- a/drivers/firmware/google/framebuffer-coreboot.c
-+++ b/drivers/firmware/google/framebuffer-coreboot.c
-@@ -15,6 +15,7 @@
- #include <linux/module.h>
- #include <linux/platform_data/simplefb.h>
- #include <linux/platform_device.h>
-+#include <linux/screen_info.h>
- 
- #include "coreboot_table.h"
- 
-@@ -27,6 +28,7 @@ static int framebuffer_probe(struct coreboot_device *dev)
- 	int i;
- 	u32 length;
- 	struct lb_framebuffer *fb = &dev->framebuffer;
-+	struct screen_info *si = &screen_info;
- 	struct platform_device *pdev;
- 	struct resource res;
- 	struct simplefb_platform_data pdata = {
-@@ -36,6 +38,20 @@ static int framebuffer_probe(struct coreboot_device *dev)
- 		.format = NULL,
- 	};
- 
-+	/*
-+	 * If the global screen_info data has been filled, the Generic
-+	 * System Framebuffers (sysfb) will already register a platform
-+	 * and pass the screen_info as platform_data to a driver that
-+	 * could scan-out using the system provided framebuffer.
-+	 *
-+	 * On Coreboot systems, the advertise LB_TAG_FRAMEBUFFER entry
-+	 * in the Coreboot table should only be used if the payload did
-+	 * not set video mode info and passed it to the Linux kernel.
-+	 */
-+	if (si->orig_video_isVGA == VIDEO_TYPE_VLFB ||
-+            si->orig_video_isVGA == VIDEO_TYPE_EFI)
-+		return -EINVAL;
-+
- 	if (!fb->physical_address)
- 		return -ENODEV;
- 
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+>+		drm_dbg_kms(&dev_priv->drm,
+>+			    "horizontal flip is not supported with tile4 surface formats\n");
+>+		return -EINVAL;
+>+	}
+>+
+> 	if (drm_rotation_90_or_270(rotation)) {
+> 		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
+> 			drm_dbg_kms(&dev_priv->drm,
+>-- 
+>2.45.2
+>
