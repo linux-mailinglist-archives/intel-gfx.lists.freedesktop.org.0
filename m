@@ -2,52 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B1C9764DD
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 10:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A708976513
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 10:59:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F89A10EB13;
-	Thu, 12 Sep 2024 08:49:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D103110E1FC;
+	Thu, 12 Sep 2024 08:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="un8LgfJa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ea+5GTNs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F39A10EB12;
- Thu, 12 Sep 2024 08:49:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id E96DF5C5A39;
- Thu, 12 Sep 2024 08:49:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD668C4CECC;
- Thu, 12 Sep 2024 08:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726130994;
- bh=Jd9v01cP4HdcHyXeVriWTfvX5JxQB/gQYf+5wrKHZvk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=un8LgfJaMwc0B1O2hFKyekGcrGhOjrTXLUZ0mz5WjIQzOnecq1fVTjIapH6l3kzUl
- wD3xsqShyM91POfJcZInF7K/Oahh7mS4zFJD9nHtP4Ecq3qD5+190JxV8KJHFRFr9Q
- M2HHC+OF+jjYKsjNxNo4NuRYaVKUSvF/qsfocQOq6pSO77887TYid49iXso9DBD/+l
- 9XeiZYEYV3ZTI3lI5wLawQKZMPYTN6YvHP2v1H0zyYSBxTxegG4wk0/75omO7x7fhg
- Qscv42alQRqm9djGzGxW/w+H3Ki2MmFwLU4ZLbAHp0YWVFdKcln+9dZZYmmrdYIHME
- A93kD2miphCUw==
-Date: Thu, 12 Sep 2024 10:49:51 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, 
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Subject: Re: linux-next: build warning after merge of the drm-misc-fixes tree
-Message-ID: <20240912-attentive-brown-crab-cefccb@houat>
-References: <20240904163018.214efaa7@canb.auug.org.au>
- <20240911180741.45311006@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA51110E1FC;
+ Thu, 12 Sep 2024 08:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726131587; x=1757667587;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=uh1L0wSedYTH7RKuGQiuUkOpE00TbwqtpAb0xo6E62A=;
+ b=Ea+5GTNsEyHKy1ZYnwFDY40u2zwt7SLqUKwvOclwkCuh+kkjmIIIs0+B
+ CU1iWg21Pc/BQkM4ylZplBlzh57GJ1a0wCDYKAo+SnRuoh/MZinzvp1U1
+ uWjj5GyE0B2wMOKdr0wmbVNUh1KIuWdWRQxzL0MORGX9M3WENAty1lem2
+ J0iINbAFwy+EL9FvjQ89JrVSP6aUPfoL749wcy5ChOTrKMSKRur5eiqwP
+ yakI0xFXPYj0h0LC4Lje2T4SQSPvHZVk3lgpwErCSdM0K87WqO2YD2xpF
+ AWh00niBCKZkwNO3K4qgmVBJ31Utd5HXVnX/Y55Wttzi0c2QC6Zlm5FtY A==;
+X-CSE-ConnectionGUID: WnYcMNoTT1KMZyUa+lDzAg==
+X-CSE-MsgGUID: fX2WxFI0SySgTMAaqzlSiw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="50386796"
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="50386796"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 01:59:47 -0700
+X-CSE-ConnectionGUID: 2vwUt4+2TA+cYcV/lfNx4A==
+X-CSE-MsgGUID: xxn/L8G6QPaKR1MRyHwXXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="72231785"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.222])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 01:59:43 -0700
+Date: Thu, 12 Sep 2024 11:59:40 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
+Message-ID: <ZuKtfPJZ7vp79lWN@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="nok3d3zohz5eelhj"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240911180741.45311006@canb.auug.org.au>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +76,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Dave & Sima,
 
---nok3d3zohz5eelhj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Just two fixes this week in drm-intel-next-fixes towards v6.12-rc1.
 
-Hi,
+CI baseline is bit upset afted drm-next, but not getting worse with the
+two patches at least.
 
-On Wed, Sep 11, 2024 at 06:07:41PM GMT, Stephen Rothwell wrote:
-> Hi all,
->=20
-> On Wed, 4 Sep 2024 16:30:18 +1000 Stephen Rothwell <sfr@canb.auug.org.au>=
- wrote:
-> >
-> > After merging the drm-misc-fixes tree, today's linux-next build (htmldo=
-cs)
-> > produced this warning:
-> >=20
-> > Error: Cannot open file drivers/gpu/drm/drm_bridge_connector.c
-> >=20
-> > Introduced by commit
-> >=20
-> >   9da7ec9b19d8 ("drm/bridge-connector: move to DRM_DISPLAY_HELPER modul=
-e")
->=20
-> That commit is now in Linus' tree, but I am still getting the warning.
+Regards, Joonas
 
-I just sent a fix for it
+***
 
-Maxime
+drm-intel-next-fixes-2024-09-12:
 
---nok3d3zohz5eelhj
-Content-Type: application/pgp-signature; name="signature.asc"
+- Add missing I915_FORMAT_MOD_4_TILED_BMG_CCS modifier for BMG
+- Printk formatting fix
 
------BEGIN PGP SIGNATURE-----
+The following changes since commit 741d73f587d5cc86db5e65cc107e031263302616:
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZuKrLgAKCRAnX84Zoj2+
-druDAX4mW7CyP7Cq/p7kOEhweCTJHolFMFcZqkHJ31gsMZ2X6hw11IwTrq5Za58w
-ANO3ZtsBewdb/gOa642wDfucqt8bKuS7BtvSoPvY7gZvT1iIWB6LUQ462j+g07/H
-CoSKQerTHg==
-=786n
------END PGP SIGNATURE-----
+  Merge tag 'amd-drm-next-6.12-2024-09-06' of https://gitlab.freedesktop.org/agd5f/linux into drm-next (2024-09-11 11:22:47 +1000)
 
---nok3d3zohz5eelhj--
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2024-09-12
+
+for you to fetch changes up to 0289507609dcb7690e45e79fbcc3680d9298ec77:
+
+  drm/i915/bios: fix printk format width (2024-09-11 11:01:00 +0300)
+
+----------------------------------------------------------------
+- Add missing I915_FORMAT_MOD_4_TILED_BMG_CCS modifier for BMG
+- Printk formatting fix
+
+----------------------------------------------------------------
+Jani Nikula (1):
+      drm/i915/bios: fix printk format width
+
+Juha-Pekka Heikkila (1):
+      drm/i915/display: Fix BMG CCS modifiers
+
+ drivers/gpu/drm/i915/display/intel_bios.c          | 2 +-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 +++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
