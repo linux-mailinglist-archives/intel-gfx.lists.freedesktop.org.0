@@ -2,88 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48809767FA
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 13:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 499CF97680C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 13:42:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D708810EB50;
-	Thu, 12 Sep 2024 11:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDB8C10EB54;
+	Thu, 12 Sep 2024 11:42:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RbV6sVf+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mttPCVmV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5787D10EB4F
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 11:35:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1726140951;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=IYaaq+dX0/7DEojW1l9AFpFIChJdEY2bBK1F9k5BgD0=;
- b=RbV6sVf+4F8Jb9xKXS6d/m0T6SHPJdHYQdrCtvekXILAZl1B70+DB6QY6CjOBYeUxb715C
- EOE8xgStkUjCl0Dk+Z1M4GR7AnhpwdKZDAecashU64gi1ocQtUoEflCbTaeQL97vezv8SM
- 5ZkY465XuG1j4Pf+l47A5q2rSRe986c=
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
- [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-531-11D1buh5O9CxaFmeyrH9pw-1; Thu, 12 Sep 2024 07:35:50 -0400
-X-MC-Unique: 11D1buh5O9CxaFmeyrH9pw-1
-Received: by mail-lf1-f69.google.com with SMTP id
- 2adb3069b0e04-5334aba4422so481228e87.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 04:35:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726140949; x=1726745749;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=IYaaq+dX0/7DEojW1l9AFpFIChJdEY2bBK1F9k5BgD0=;
- b=ZJdn7d3dYXtfQ4A83R2q4T7WAK+E7lk4ijm1cU6z15VWCHpbd3ahLvDXtBc/8+44Xb
- GTPMpT4VehleWI6ZQWIsojvTm+rNo++UEF3HqQaQ7XVmic3L3A4Hr1DMnQPlf95fn5kN
- 0BqS0CUOIGAnYJdCJIHeKUTAxjcVuhDwHObXsCSaq9zCL+K+RDCE/MVSGX5N0a6gnfw9
- 0xPz/6H7gQfxPlGczVHsuxxYzTQ4PMkXiuxULmxSkfZxHREPJ03vhrDdZHeyCeCJqyFI
- W1bsIVpKmNOrgXDVEpAIANf7Lwca+6KzKMnIqw4e/KwAbTIrLm4vpJLe7LcVFDdgmOvG
- RhqQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWuwKyOHM0X9tOhK5IWMJyubtLdDLtxxzIaPKnaTjLcqcLg61cgZrR2cWyWWYgVHRVmTcY+hnlmTMQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywco4S1xbYFf4C3pz2oHLRXREKDJwFMamX8itHcMXlnM1u7o5ag
- vc0N56GMw9D4E2Mq5k0VAKuP3eODa4dFo+pNk+MIzNjOUucf3LObHj2z0To4xRJs2Ek7J5UlZOk
- ZUKGtEeydH9NGwyfjZtjgt7ZWnpTevnqUxy3PIrVmoPwEjag2RdOmpUlDhyzwA7j16Q==
-X-Received: by 2002:a05:6512:4017:b0:533:4785:82a7 with SMTP id
- 2adb3069b0e04-53678fc8586mr1605069e87.28.1726140948559; 
- Thu, 12 Sep 2024 04:35:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEBna+5EinCwR/Lij9CpfGsghHsYmmA3HZg2qxflQ5JJykqP5bH1I+Yy9IcXwnu0/KGf+lDXw==
-X-Received: by 2002:a05:6512:4017:b0:533:4785:82a7 with SMTP id
- 2adb3069b0e04-53678fc8586mr1605032e87.28.1726140947816; 
- Thu, 12 Sep 2024 04:35:47 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42cb179f8e3sm162451165e9.43.2024.09.12.04.35.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Sep 2024 04:35:47 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Brian Norris <briannorris@chromium.org>, Borislav Petkov <bp@alien8.de>
-Cc: Hugues Bruant <hugues.bruant@gmail.com>, stable@vger.kernel.org,
- regressions@lists.linux.dev, linux-kernel@vger.kernel.org, Fenghua Yu
- <fenghua.yu@intel.com>, Reinette Chatre <reinette.chatre@intel.com>, Tony
- Luck <tony.luck@intel.com>, Tzung-Bi Shih <tzungbi@kernel.org>, Julius
- Werner <jwerner@chromium.org>, chrome-platform@lists.linux.dev, Jani
- Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [NOT A REGRESSION] firmware: framebuffer-coreboot: duplicate
- device name "simple-framebuffer.0"
-In-Reply-To: <ZuCGkjoxKxpnhEh6@google.com>
-References: <CALvjV29jozswRtmYxDur2TuEQ=1JSDrM+uWVHmghW3hG5Y9F+w@mail.gmail.com>
- <20240909080200.GAZt6reI9c98c9S_Xc@fat_crate.local>
- <ZuCGkjoxKxpnhEh6@google.com>
-Date: Thu, 12 Sep 2024 13:35:46 +0200
-Message-ID: <87jzfhayul.fsf@minerva.mail-host-address-is-not-set>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40EAA10E059
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 11:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726141320; x=1757677320;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ydfhDr8Y+0JHEhVL+JDzD4UhGoHDLAHdrNdUJK6iUh0=;
+ b=mttPCVmVd8PNSNmE1vcvHNlJB5Vp1fugUKBviiK/V+Zh3BLXeJg4Z24R
+ ou4gpVmhvYd0/UxvwwYLFtqYVyMLpO5ZC3LGOxgMvyOwIQR2wuitNfMgz
+ Pt7qVehrNkDGv6ozkP+bQ4iU9TzuRQ0K00Kd0at7op2ZktHY4oHfm6dST
+ /jOiIvffitbJUezloW3KX/UM7i50x8Uf/+ruHJsPZNg/lvTMSplkYo37v
+ gmKBnl05RQgCdQhaMK0E/jZVA2q6Lse2ROvK4D32XswChHxec8uB6Llpi
+ S5jcQjSi5byUWEbihSwJsyzIf04HEheRTUL7eZq6JX6lQDVpaIpFU8kSX Q==;
+X-CSE-ConnectionGUID: utT5MYEDR3qhaIJKSgjFZw==
+X-CSE-MsgGUID: qjhchFuZS5S01oeGV7e1jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="25089221"
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="25089221"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 04:42:00 -0700
+X-CSE-ConnectionGUID: T7JyOtlWTLO6EHraP0HFuQ==
+X-CSE-MsgGUID: 4ZcbsWDmQ7uj64aV28HWTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="67675418"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 04:41:50 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, jani.saarinen@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 0/4] Use num of pipes in joiner helpers
+Date: Thu, 12 Sep 2024 17:13:26 +0530
+Message-ID: <20240912114330.1244982-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,160 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Brian Norris <briannorris@chromium.org> writes:
+Currently few joiner helpers pass joiner flag to represent if bigjoiner
+is used. To scale this for ultrajoiner, enhance these helpers to use num
+of pipes instead of joiner flag. This new approach is adaptable to various
+joiner configurations with 1 (no joiner), 2 (big joiner) and forthcoming 4
+(ultrajoiner) pipes.
 
-Hello Brian,
+This patch series is a spin off from original series for ultrajoiner
+basic functionality [1]. Few of the preparatory patches are taken here for
+review and merge before the other core patches of the series.
 
-> (Tweaking subject; this indeed isn't related to the regression at all)
->
-> Hi,
->
-> On Mon, Sep 09, 2024 at 10:02:00AM +0200, Borislav Petkov wrote:
->> Looking at your log, the first warn is in framebuffer_coreboot. Some mess in
->> the sysfs platform devices registration.
->> 
->> Adding the relevant people for that:
->> 
->> Aug 20 20:29:36 luna kernel: sysfs: cannot create duplicate filename '/bus/platform/devices/simple-framebuffer.0'
->> Aug 20 20:29:36 luna kernel: CPU: 5 PID: 571 Comm: (udev-worker) Tainted: G           OE      6.10.6-arch1-1 #1 703d152c24f1971e36f16e505405e456fc9e23f8
->> Aug 20 20:29:36 luna kernel: Hardware name: Purism Librem 14/Librem 14, BIOS 4.14-Purism-1 06/18/2021
->> Aug 20 20:29:36 luna kernel: Call Trace:
->> Aug 20 20:29:36 luna kernel:  <TASK>
->> Aug 20 20:29:36 luna kernel:  dump_stack_lvl+0x5d/0x80
->> Aug 20 20:29:36 luna kernel:  sysfs_warn_dup.cold+0x17/0x23
->> Aug 20 20:29:36 luna kernel:  sysfs_do_create_link_sd+0xcf/0xe0
->> Aug 20 20:29:36 luna kernel:  bus_add_device+0x6b/0x130
->> Aug 20 20:29:36 luna kernel:  device_add+0x3b3/0x870
->> Aug 20 20:29:36 luna kernel:  platform_device_add+0xed/0x250
->> Aug 20 20:29:36 luna kernel:  platform_device_register_full+0xbb/0x140
->> Aug 20 20:29:36 luna kernel:  platform_device_register_resndata.constprop.0+0x54/0x80 [framebuffer_coreboot a587d2fc243ebaa0205c3badd33442a004d284e0]
->> Aug 20 20:29:36 luna kernel:  framebuffer_probe+0x165/0x1b0 [framebuffer_coreboot a587d2fc243ebaa0205c3badd33442a004d284e0]
->> Aug 20 20:29:36 luna kernel:  really_probe+0xdb/0x340
->> Aug 20 20:29:36 luna kernel:  ? pm_runtime_barrier+0x54/0x90
->> Aug 20 20:29:36 luna kernel:  ? __pfx___driver_attach+0x10/0x10
->> Aug 20 20:29:36 luna kernel:  __driver_probe_device+0x78/0x110
->> Aug 20 20:29:36 luna kernel:  driver_probe_device+0x1f/0xa0
->> Aug 20 20:29:36 luna kernel:  __driver_attach+0xba/0x1c0
->> Aug 20 20:29:36 luna kernel:  bus_for_each_dev+0x8c/0xe0
->> Aug 20 20:29:36 luna kernel:  bus_add_driver+0x112/0x1f0
->> Aug 20 20:29:36 luna kernel:  driver_register+0x72/0xd0
->> Aug 20 20:29:36 luna kernel:  ? __pfx_framebuffer_driver_init+0x10/0x10 [framebuffer_coreboot a587d2fc243ebaa0205c3badd33442a004d284e0]
->> Aug 20 20:29:36 luna kernel:  do_one_initcall+0x58/0x310
->> Aug 20 20:29:36 luna kernel:  do_init_module+0x60/0x220
->> Aug 20 20:29:36 luna kernel:  init_module_from_file+0x89/0xe0
->> Aug 20 20:29:36 luna kernel:  idempotent_init_module+0x121/0x320
->> Aug 20 20:29:36 luna kernel:  __x64_sys_finit_module+0x5e/0xb0
->> Aug 20 20:29:36 luna kernel:  do_syscall_64+0x82/0x190
->> Aug 20 20:29:36 luna kernel:  ? __do_sys_newfstatat+0x3c/0x80
->> Aug 20 20:29:36 luna kernel:  ? syscall_exit_to_user_mode+0x72/0x200
->> Aug 20 20:29:36 luna kernel:  ? do_syscall_64+0x8e/0x190
->> Aug 20 20:29:36 luna kernel:  ? do_sys_openat2+0x9c/0xe0
->> Aug 20 20:29:36 luna kernel:  ? syscall_exit_to_user_mode+0x72/0x200
->> Aug 20 20:29:36 luna kernel:  ? do_syscall_64+0x8e/0x190
->> Aug 20 20:29:36 luna kernel:  ? clear_bhb_loop+0x25/0x80
->> Aug 20 20:29:36 luna kernel:  ? clear_bhb_loop+0x25/0x80
->> Aug 20 20:29:36 luna kernel:  ? clear_bhb_loop+0x25/0x80
->> Aug 20 20:29:36 luna kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
->> Aug 20 20:29:36 luna kernel: RIP: 0033:0x7b1bee2f81fd
->
-> Looks like it might be a conflict with
-> drivers/firmware/sysfb_simplefb.c, which also uses the
-> "simple-framebuffer" name with a constant ID of 0. It's possible both
-> drivers should be switched to use PLATFORM_DEVID_AUTO? Or at least one
-> of them. Or they should use different base names.
->
+[1] https://patchwork.freedesktop.org/series/133800/
 
-I'm unsure about PLATFORM_DEVID_AUTO because I don't know if there are
-user-space programs that assume this to always be "simple-framebuffer.0".
+Ankit Nautiyal (4):
+  drm/i915/display: Simplify intel_joiner_num_pipes and its usage
+  drm/i915/display: Use joined pipes in intel_dp_joiner_needs_dsc
+  drm/i915/display: Use joined pipes in intel_mode_valid_max_plane_size
+  drm/i915/display: Use joined pipes in dsc helpers for slices, bpp
 
-> I'm not really sure what the best option is (does anyone rely on or care
-> about the device naming?), and I don't actually use this driver. But
-> here's an untested diff to try if you'd really like. If you test it,
-> feel free to submit as a proper patch with my:
->
+ drivers/gpu/drm/i915/display/intel_display.c | 22 +++++-----
+ drivers/gpu/drm/i915/display/intel_display.h |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp.c      | 42 ++++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp.h      |  7 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 20 +++++++---
+ drivers/gpu/drm/i915/display/intel_dsi.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c    |  2 +-
+ 7 files changed, 59 insertions(+), 39 deletions(-)
 
-
-I've discussed this with Thomas Zimmermann (simpledrm maintainer) and
-he suggests that the problem is the system framebuffer information to
-be provided in both Coreboot table entry (AFAIU is LB_TAG_FRAMEBUFFER)
-and in the boot_params, which leads to struct screen_info to be filled.
-
-We had the same problem for EFI systems that passed DTB to the kernel
-instead of ACPI, in those cases both a "simple-framebuffer" DT node and
-an EFI-GOP table could be provided.
-
-Commit 3310288f6135 "(of/platform: Disable sysfb if a simple-framebuffer
-node is found") solved that issue. I've typed the same for Coreboot to
-handle in the same way. Please let me know what you think:
-
-From 6955149fb13af1c0cba2e5c1fbb1ac9367a09ae2 Mon Sep 17 00:00:00 2001
-From: Javier Martinez Canillas <javierm@redhat.com>
-Date: Thu, 12 Sep 2024 12:55:29 +0200
-Subject: [RFC PATCH] firmware: coreboot: Disable sysfb if Coreboot already
- provides a FB
-
-On Coreboot platforms, a system framebuffer may be provided to the Linux
-kernel by filling a LB_TAG_FRAMEBUFFER entry in the Coreboot table. But
-it seems SeaBIOS payload can also provide a VGA mode in the boot params.
-
-If that the case, early arch x86 boot code will fill the global struct
-screen_info data.
-
-The data is used by the Generic System Framebuffers (sysfb) framework to
-add a platform device with platform data about the system framebuffer.
-
-But if there is information about the system framebuffer in the Coreboot
-table as well, the framebuffer_coreboot driver will also try to do the
-same and add another device for the system framebuffer. This will fail
-though because there's already a simple-framebuffer.0 device registered:
-
-    sysfs: cannot create duplicate filename '/bus/platform/devices/simple-framebuffer.0'
-    ...
-    coreboot: could not register framebuffer
-    framebuffer coreboot8: probe with driver framebuffer failed with error -17
-
-To prevent the issue, make the framebuffer_core driver to disable sysfb
-if there is system framebuffer data in the Coreboot table. That way only
-this driver will register a device and sysfb would not attempt to do it
-(or remove its registered device if was already executed before).
-
-Reported-by: Brian Norris <briannorris@chromium.org>
-Link: https://lore.kernel.org/all/ZuCG-DggNThuF4pj@b20ea791c01f/T/#ma7fb65acbc1a56042258adac910992bb225a20d2
-Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
- drivers/firmware/google/framebuffer-coreboot.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/drivers/firmware/google/framebuffer-coreboot.c b/drivers/firmware/google/framebuffer-coreboot.c
-index daadd71d8ddd..0a28aa5b17dc 100644
---- a/drivers/firmware/google/framebuffer-coreboot.c
-+++ b/drivers/firmware/google/framebuffer-coreboot.c
-@@ -61,6 +61,19 @@ static int framebuffer_probe(struct coreboot_device *dev)
- 	if (res.end <= res.start)
- 		return -EINVAL;
- 
-+	/*
-+	 * Since a "simple-framebuffer" device is already added
-+	 * here, disable the Generic System Framebuffers (sysfb)
-+	 * to prevent it from registering another device for the
-+	 * system framebuffer later (e.g: using the screen_info
-+	 * data that may had been filled as well).
-+	 *
-+	 * This can happen for example on Coreboot systems, that
-+	 * advertise a LB_TAG_FRAMEBUFFER entry in their Coreboot
-+	 * table and also a VESA mode by the BIOS used as payload.
-+	 */
-+	sysfb_disable();
-+
- 	pdev = platform_device_register_resndata(&dev->dev,
- 						 "simple-framebuffer", 0,
- 						 &res, 1, &pdata,
 -- 
- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.45.2
 
