@@ -2,60 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C07976E97
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 18:22:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7EA976ECD
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 18:34:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84A5110EBD9;
-	Thu, 12 Sep 2024 16:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9E8710EBE5;
+	Thu, 12 Sep 2024 16:34:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iWgZ0gUv";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TceoDpSi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E38ED10EBD9;
- Thu, 12 Sep 2024 16:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726158138; x=1757694138;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fq+dk9/OVpecXphfjVmVkYo0CrNOC5IunjqHpRGc1i0=;
- b=iWgZ0gUvLw6KTTLWeBAYWgmf+/TNJy33urpuTQ8FJ2e6TotOZQU8Qcbv
- L9Hv0Xu8IF4tWwF99ICIkWxi/OLhTob5ZPKD9NdxSfyw8XYrFUKYtWTjh
- 0bc+a7TPw0ViPIOYCYjz3sZkpJdLWyPTFYB+V7CxbWQnXaWDP07O6d2dF
- GioWM0ZwWKJ/nJMeuNG1MuXhkjlOXOaQQlXu43X/APivRp2Uyp8xZKsL9
- un/wTjqajth1yuAuOV+5EZfkJYMN6B3kXzvXnPNYYuNrFqrv5PXTbQJBS
- H9uGCBu7Vev55zAYjzxMmtCZ6wDx7JCpk98OMd8ewS54gjzKfO/l+2xVK A==;
-X-CSE-ConnectionGUID: L6NVpLivSx6TsZ5G41qLkw==
-X-CSE-MsgGUID: mfxa/HqCT+WPX6FtqwhJGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25175099"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25175099"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 09:22:19 -0700
-X-CSE-ConnectionGUID: lC5hSzl5QrKkpCM6jDVKtg==
-X-CSE-MsgGUID: sj9uw+sQTrOWvtwp8EQDgQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="67848279"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Sep 2024 09:22:16 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Sep 2024 19:22:15 +0300
-Date: Thu, 12 Sep 2024 19:22:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do
- hflip on Xe2
-Message-ID: <ZuMVN5mQ4aZpF1vm@intel.com>
-References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA4A310EBE1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 16:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1726158842;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=EOmdO+b7gYLR4VAcBUs89Ub1sXD9TFu8fmoSrmDCcEU=;
+ b=TceoDpSiGASN80LPe4ID8lJoqlTaIyQjlLcfs7VOp3MuUJp+PsfV/kLj6QS1O4zDot4o5m
+ WYfuZ42oKEBxazpp90c0/AHprNGGZ2+DjxDfcgqdqSIK9ATlcD/xZqIjviEvwqHFqRI5xo
+ 3/sn3T3YsayXh6yuMuYvGGp4o9E2oT8=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-507-wVCik5aAOYKRhiM0t217Zw-1; Thu, 12 Sep 2024 12:34:01 -0400
+X-MC-Unique: wVCik5aAOYKRhiM0t217Zw-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-374c90d24e3so12198f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 09:34:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726158840; x=1726763640;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=EOmdO+b7gYLR4VAcBUs89Ub1sXD9TFu8fmoSrmDCcEU=;
+ b=kX3TG7Ye7rlf+xv0uNH9iBIAIfJB7dMpZqJrC6sqUYuS8x6o4WVYFg7dm/DgEwY8Ng
+ WQlxLH6rSWCTbRfBtsHXPs/nhjn0G73XjDuLBO/6kiarD/M1q/gLw0fqCbB989UbtqAq
+ 4IaPyNgDvq+xmjCXx31bg9pPRu2JxiEnk9Vew5CDSjgs79+KTGc9ZXV6/mPQiXfhzkBQ
+ QzMXWAZgfCP2FYT6l/GMdm4csK1eyCAxM3bZv7eHSSVl7/bv1dEyamxx+AUYFIH6t6HK
+ OzVVB7pEV00BXKJ8wz+T4m8Gik7qJ6TDo7KCk4qQE5ITGLWiIV+kiElSJglqrct2Uq4L
+ tF7A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXAAbw66StBQKj8bfY3OWKZTSuQhsd8ipDPRt02NwJsROke6QCj8iLcc/pEAHKM2TCuQEISzgPnWdw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywej9bmdvEAMoqnvxFYqaaqMUtgC/XxzHktdR9Gy5K+aEIAzNcq
+ w+plircTLjgGYOgw7f2LH/B/cIONk7EQZBBdazSDHfyVytbMa8wraFmRdlUrbgWGZzqhHydxV0V
+ ubTY0SZPGxE4yvHvK0DIqaLdPrVGYlQUuB+afJO95kVi7MQqBUXRzcNC5+aoyo3o/Aw==
+X-Received: by 2002:a05:6000:c81:b0:374:bde8:66af with SMTP id
+ ffacd0b85a97d-378c2d581camr2869435f8f.57.1726158840265; 
+ Thu, 12 Sep 2024 09:34:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHykV9DHzv3qV6R6EuPD0pzt9S/Yjo+tEE1Jd7G9+MiD3zDj61TCo7+RJHhLaEraT38VncGGg==
+X-Received: by 2002:a05:6000:c81:b0:374:bde8:66af with SMTP id
+ ffacd0b85a97d-378c2d581camr2869405f8f.57.1726158839736; 
+ Thu, 12 Sep 2024 09:33:59 -0700 (PDT)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-378956653f9sm14798656f8f.31.2024.09.12.09.33.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Sep 2024 09:33:59 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Julius Werner <jwerner@chromium.org>
+Cc: Brian Norris <briannorris@chromium.org>, Borislav Petkov <bp@alien8.de>,
+ Hugues Bruant <hugues.bruant@gmail.com>, stable@vger.kernel.org,
+ regressions@lists.linux.dev, linux-kernel@vger.kernel.org, Fenghua Yu
+ <fenghua.yu@intel.com>, Reinette Chatre <reinette.chatre@intel.com>, Tony
+ Luck <tony.luck@intel.com>, Tzung-Bi Shih <tzungbi@kernel.org>, Julius
+ Werner <jwerner@chromium.org>, chrome-platform@lists.linux.dev, Jani
+ Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [NOT A REGRESSION] firmware: framebuffer-coreboot: duplicate
+ device name "simple-framebuffer.0"
+In-Reply-To: <CAODwPW8P+jcF0erUph5XyWoyQgLFbZWxEM6Ygi_LFCCTLmH89Q@mail.gmail.com>
+References: <CALvjV29jozswRtmYxDur2TuEQ=1JSDrM+uWVHmghW3hG5Y9F+w@mail.gmail.com>
+ <20240909080200.GAZt6reI9c98c9S_Xc@fat_crate.local>
+ <ZuCGkjoxKxpnhEh6@google.com>
+ <87jzfhayul.fsf@minerva.mail-host-address-is-not-set>
+ <CAODwPW8P+jcF0erUph5XyWoyQgLFbZWxEM6Ygi_LFCCTLmH89Q@mail.gmail.com>
+Date: Thu, 12 Sep 2024 18:33:58 +0200
+Message-ID: <87mskczv9l.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
-X-Patchwork-Hint: comment
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,85 +102,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 12, 2024 at 05:46:06PM +0300, Juha-Pekka Heikkila wrote:
-> On Intel Xe2 hw tile4 is not supported with horizontal flip
-> 
-> bspec 69853
+Julius Werner <jwerner@chromium.org> writes:
 
-That only seems to apply to LNL, I see no defeature noted for BMG.
+Hello Julius,
 
-Curiously they also seem to have added linear+hflip support for LNL...
+>> On Coreboot platforms, a system framebuffer may be provided to the Linux
+>> kernel by filling a LB_TAG_FRAMEBUFFER entry in the Coreboot table. But
+>> it seems SeaBIOS payload can also provide a VGA mode in the boot params.
+>>
+>> [...]
+>>
+>> To prevent the issue, make the framebuffer_core driver to disable sysfb
+>> if there is system framebuffer data in the Coreboot table. That way only
+>> this driver will register a device and sysfb would not attempt to do it
+>> (or remove its registered device if was already executed before).
+>
+> I wonder if the priority should be the other way around? coreboot's
+> framebuffer is generally only valid when coreboot exits to the payload
+> (e.g. SeaBIOS). Only if the payload doesn't touch the display
+> controller or if there is no payload and coreboot directly hands off
+> to a kernel does the kernel driver for LB_TAG_FRAMEBUFFER make sense.
+> But if there is some other framebuffer information passed to the
+> kernel from a firmware component running after coreboot, most likely
+> that one is more up to date and the framebuffer described by the
+> coreboot table doesn't work anymore (because the payload usually
+> doesn't modify the coreboot tables again, even if it changes hardware
+> state). So if there are two drivers fighting over which firmware
+> framebuffer description is the correct one, the coreboot driver should
+> probably give way.
+>
 
-> 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
->  drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
->  3 files changed, 26 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index d2ff21e98545..c9038d239eb2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
->  				      INTEL_PLANE_CAP_NEED64K_PHYS);
->  }
->  
-> +/**
-> + * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
-> + * @modifier: Modifier to check
-> + *
-> + * Returns:
-> + * Returns %true if @modifier is a tile4 modifier.
-> + */
-> +bool intel_fb_is_tile4_modifier(u64 modifier)
-> +{
-> +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
-> +				      INTEL_PLANE_CAP_TILING_4);
-> +}
-> +
->  static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
->  					     u8 display_ver_from, u8 display_ver_until)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-> index 068f3aee99aa..bff87994cf2c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> @@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
->  bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
->  bool intel_fb_is_mc_ccs_modifier(u64 modifier);
->  bool intel_fb_needs_64k_phys(u64 modifier);
-> +bool intel_fb_is_tile4_modifier(u64 modifier);
->  
->  bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
->  int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 17d4c880ecc4..4de41ab5060a 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
->  		return -EINVAL;
->  	}
->  
-> +	/*
-> +	 * Starting with LNL and BMG tile4 hflip is not supported
-> +	 */
-> +	if (rotation & DRM_MODE_REFLECT_X &&
-> +	    intel_fb_is_tile4_modifier(fb->modifier) &&
-> +	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
-> +	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "horizontal flip is not supported with tile4 surface formats\n");
-> +		return -EINVAL;
-> +	}
-> +
->  	if (drm_rotation_90_or_270(rotation)) {
->  		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
->  			drm_dbg_kms(&dev_priv->drm,
-> -- 
-> 2.45.2
+That's a very good point. I'm actually not familiar with Coreboot and I
+used an educated guess (in the case of DT for example, that's the main
+source of truth and I didn't know if a Core table was in a similar vein).
 
+Maybe something like the following (untested) patch then?
+
+From de1c32017006f4671d91b695f4d6b4e99c073ab2 Mon Sep 17 00:00:00 2001
+From: Javier Martinez Canillas <javierm@redhat.com>
+Date: Thu, 12 Sep 2024 18:31:55 +0200
+Subject: [PATCH] firmware: coreboot: Don't register a pdev if screen_info data
+ is available
+
+On Coreboot platforms, a system framebuffer may be provided to the Linux
+kernel by filling a LB_TAG_FRAMEBUFFER entry in the Coreboot table. But
+a Coreboot payload (e.g: SeaBIOS) could also provide this information to
+the Linux kernel.
+
+If that the case, early arch x86 boot code will fill the global struct
+screen_info data and that data used by the Generic System Framebuffers
+(sysfb) framework to add a platform device with platform data about the
+system framebuffer.
+
+But later then the framebuffer_coreboot driver will try to do the same
+framebuffer (using the information from the Coreboot table), which will
+lead to an error due a simple-framebuffer.0 device already registered:
+
+    sysfs: cannot create duplicate filename '/bus/platform/devices/simple-framebuffer.0'
+    ...
+    coreboot: could not register framebuffer
+    framebuffer coreboot8: probe with driver framebuffer failed with error -17
+
+To prevent the issue, make the framebuffer_core driver to not register a
+platform device if the global struct screen_info data has been filled.
+
+Reported-by: Brian Norris <briannorris@chromium.org>
+Link: https://lore.kernel.org/all/ZuCG-DggNThuF4pj@b20ea791c01f/T/#ma7fb65acbc1a56042258adac910992bb225a20d2
+Suggested-by: Julius Werner <jwerner@chromium.org>
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+---
+ drivers/firmware/google/framebuffer-coreboot.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/firmware/google/framebuffer-coreboot.c b/drivers/firmware/google/framebuffer-coreboot.c
+index daadd71d8ddd..4e50da17cd7e 100644
+--- a/drivers/firmware/google/framebuffer-coreboot.c
++++ b/drivers/firmware/google/framebuffer-coreboot.c
+@@ -15,6 +15,7 @@
+ #include <linux/module.h>
+ #include <linux/platform_data/simplefb.h>
+ #include <linux/platform_device.h>
++#include <linux/screen_info.h>
+ 
+ #include "coreboot_table.h"
+ 
+@@ -27,6 +28,7 @@ static int framebuffer_probe(struct coreboot_device *dev)
+ 	int i;
+ 	u32 length;
+ 	struct lb_framebuffer *fb = &dev->framebuffer;
++	struct screen_info *si = &screen_info;
+ 	struct platform_device *pdev;
+ 	struct resource res;
+ 	struct simplefb_platform_data pdata = {
+@@ -36,6 +38,20 @@ static int framebuffer_probe(struct coreboot_device *dev)
+ 		.format = NULL,
+ 	};
+ 
++	/*
++	 * If the global screen_info data has been filled, the Generic
++	 * System Framebuffers (sysfb) will already register a platform
++	 * and pass the screen_info as platform_data to a driver that
++	 * could scan-out using the system provided framebuffer.
++	 *
++	 * On Coreboot systems, the advertise LB_TAG_FRAMEBUFFER entry
++	 * in the Coreboot table should only be used if the payload did
++	 * not set video mode info and passed it to the Linux kernel.
++	 */
++	if (si->orig_video_isVGA == VIDEO_TYPE_VLFB ||
++            si->orig_video_isVGA == VIDEO_TYPE_EFI)
++		return -EINVAL;
++
+ 	if (!fb->physical_address)
+ 		return -ENODEV;
+ 
 -- 
-Ville Syrjälä
-Intel
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
