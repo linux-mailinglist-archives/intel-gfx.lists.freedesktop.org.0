@@ -2,70 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3DC976D9C
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 17:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D92B2976DDB
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 17:36:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06B2610EBCB;
-	Thu, 12 Sep 2024 15:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEEF610EBD4;
+	Thu, 12 Sep 2024 15:36:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Cvdf9F1J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WEbotmpm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF5210EBCB;
- Thu, 12 Sep 2024 15:20:38 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-2d889ba25f7so795084a91.0; 
- Thu, 12 Sep 2024 08:20:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1726154437; x=1726759237; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=guiPbpA479gchtYZdTS0jDkkC/aFTJY0a5H8LICYsz4=;
- b=Cvdf9F1JbvamLAhhk2JEkjJ1eXUFuhIZAryoM10bMDkYwvmSpeGmfhomNAqdFKPkCB
- /dLIPvgClqZUENZS1jB4Y8VB3GWhB+z5OBAPIzaFIxLDJndA6/40sVeHND/s0wwkN3HR
- bAK26DAtvzh3wLiOj7RRRJd0JCvk1vfe1jtfLdQeKwiUaP/pNBZQNABWFeS4gxA/792n
- j2WOifWPAZ0mXfHnlr4lgmsgF07YQQ7nbMuoxjP9FjRDX3op5Sz7HGq+i7sROo5ku665
- zTm7jDkhtAiPCEoUv+QbPZP8kEi+xTJfE52zAIi8ZX5F//BQ65dUO8kA8QExUsLd15rw
- 7XNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726154437; x=1726759237;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=guiPbpA479gchtYZdTS0jDkkC/aFTJY0a5H8LICYsz4=;
- b=o/BqOoPdx+2I2mHNDkcTzE0oAbSKWA0SHYhDmVMb51xssFNBX8Acb3OHbHAXkBnJfG
- j8l5qXC9mL2dlrjODKNKQDTJjl2ozcyBX79iCoShwnqVfA7BfdEgvG0lTgejrE9Y8Sh5
- TsT92lQbIq198tVMgDZf6i0BjJftcuid8xm2ikRm7znIY7ffryXp1rQOJX/hXLwAhCAc
- PLn165QqsCj8htG5Srjz/s6BGMGdxjq6qwlo1pljKwMJRR7UjnpctMfTa+5H4UjYDOjh
- nXQcajNRP4Wh4ZbttFwtkSx9f5lsRYfw6zFzYoTZDuqbIMBWwp+rC4+jm2jJ4BaKA/Ie
- IjSA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWccHlGzbS2oGQBUmo8BoaKa04ONngNs6ZwG6VbmAl/B5rKsUC+XR3wju08dtJVIJEY2lwGq0vwmzA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxb0fhZKlVyBnBrOiypFaHeaAS4MNy6ppTTM9tQgwH7eKucL6T/
- iwxHwsR7wtJAoJK3KeSHFyVQiH3EBnIsBJ1T7q6DH3m0agolQvPzQVsmCIv4
-X-Google-Smtp-Source: AGHT+IHz8VqhG0IwUTAVw0xyb/IpaHcfe6aCbMpVGgDm+e0v/WC/dudE1fI0dgIsxJXuTYAwg/VPhQ==
-X-Received: by 2002:a17:90a:12c1:b0:2d8:7307:3f74 with SMTP id
- 98e67ed59e1d1-2dba0063e53mr3839679a91.27.1726154437264; 
- Thu, 12 Sep 2024 08:20:37 -0700 (PDT)
-Received: from localhost ([134.134.137.72]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-2dadbfe46ecsm12879852a91.2.2024.09.12.08.20.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Sep 2024 08:20:36 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Imre Deak <imre.deak@intel.com>
-Subject: [PATCH] drm/i915/display: On plane capability check rely on display
- version
-Date: Thu, 12 Sep 2024 18:24:32 +0300
-Message-ID: <20240912152432.867593-1-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.45.2
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 592BC10EBD9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 15:36:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726155398; x=1757691398;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=cNFc+eIBBpx0snqVnL0lqC4c2Z5vaxw3kI1/Bx25t2k=;
+ b=WEbotmpmMK7w+FIidMsmBsCvCzlrRFqLUdRRMIt2JMiypRTe67p+RHRo
+ pu7QH4WTZV6FSWk16DYoa9AZWX8VqMLwJQJQNIHYYU54OAyRf5ChnUrMz
+ 4GWseWMVEaKYSG/xFBn2szcqqQjU2uhn/Lsng1fwFfDvPFumk9UQAF5eO
+ +2jbKY11HiZrXa3ITX6jcugdXnUjEEEPcrRHJ3+YNtmZ2knEVo4Dayqdh
+ WsBb0JYPuhmBf5qwxOdMmyAqPrvS/c/r3dOZ3w0qzuv5v4gq8S8OcG/y4
+ zfPlw/+jDBxce/I0Vm1GCIka2pjJ8uzOlniLde1aa4TqUfqLu+mKpBGkr Q==;
+X-CSE-ConnectionGUID: nHIYDlaLROWQl0LRC2xNjA==
+X-CSE-MsgGUID: /ZwOJiAdQ+Om+g4vBPVKJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="50435863"
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="50435863"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 08:36:38 -0700
+X-CSE-ConnectionGUID: Yt43Iat6StCLCUN9h+bLWw==
+X-CSE-MsgGUID: RKpyED/ET5Ky8p9B0IfBYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="98440486"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2024 08:36:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] drm/i915/display: Check whether platform supports joiner
+In-Reply-To: <87h6alf0w7.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240912132931.1320686-1-ankit.k.nautiyal@intel.com>
+ <87h6alf0w7.fsf@intel.com>
+Date: Thu, 12 Sep 2024 18:36:31 +0300
+Message-ID: <875xr0g9z4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,33 +69,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When check in display code for Xe2 ccs modifiers rely on display version
-along with separation of dgpu and igpu
+On Thu, 12 Sep 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Thu, 12 Sep 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>> Add macros to check if platform supports bigjoiner/uncompressed joiner.
+>> Replace the existing DISPLAY_VER checks with these.
+>> Additionally use it before readout for joiner stuff, where its missing.
+>
+> Please split this to two, adding the macros and then adding the new
+> place.
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+On second thoughts, it's small enough. Just merge after you get CI
+results.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index c9038d239eb2..25de4ce356bb 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -477,12 +477,10 @@ static bool plane_has_modifier(struct drm_i915_private *i915,
- 	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
- 		return false;
- 
--	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
--	    (GRAPHICS_VER(i915) < 20 || !IS_DGFX(i915)))
-+	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS && !IS_DGFX(i915))
- 		return false;
- 
--	if (md->modifier == I915_FORMAT_MOD_4_TILED_LNL_CCS &&
--	    (GRAPHICS_VER(i915) < 20 || IS_DGFX(i915)))
-+	if (md->modifier == I915_FORMAT_MOD_4_TILED_LNL_CCS && IS_DGFX(i915))
- 		return false;
- 
- 	return true;
+>
+> BR,
+> Jani.
+>
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.c         | 9 ++++++---
+>>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 +-
+>>  drivers/gpu/drm/i915/display/intel_display_device.h  | 2 ++
+>>  drivers/gpu/drm/i915/display/intel_dp.c              | 2 +-
+>>  4 files changed, 10 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index fdf244a32b24..d4a371edfcdd 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -1712,7 +1712,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+>>  
+>>  		intel_dsc_enable(pipe_crtc_state);
+>>  
+>> -		if (DISPLAY_VER(dev_priv) >= 13)
+>> +		if (HAS_UNCOMPRESSED_JOINER(dev_priv))
+>>  			intel_uncompressed_joiner_enable(pipe_crtc_state);
+>>  
+>>  		intel_set_pipe_src_size(pipe_crtc_state);
+>> @@ -3546,6 +3546,9 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+>>  	*primary_pipes = 0;
+>>  	*secondary_pipes = 0;
+>>  
+>> +	if (!HAS_BIGJOINER(dev_priv))
+>> +		return;
+>> +
+>>  	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc,
+>>  					 joiner_pipes(dev_priv)) {
+>>  		enum intel_display_power_domain power_domain;
+>> @@ -3565,7 +3568,7 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+>>  				*secondary_pipes |= BIT(pipe);
+>>  		}
+>>  
+>> -		if (DISPLAY_VER(dev_priv) < 13)
+>> +		if (!HAS_UNCOMPRESSED_JOINER(dev_priv))
+>>  			continue;
+>>  
+>>  		power_domain = POWER_DOMAIN_PIPE(pipe);
+>> @@ -7966,7 +7969,7 @@ static int max_dotclock(struct drm_i915_private *i915)
+>>  	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
+>>  
+>>  	/* icl+ might use joiner */
+>> -	if (DISPLAY_VER(i915) >= 11)
+>> +	if (HAS_BIGJOINER(i915))
+>>  		max_dotclock *= 2;
+>>  
+>>  	return max_dotclock;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index b75361e95e97..8caacdd624bd 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -1550,7 +1550,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>>  				    connector, &i915_dsc_fractional_bpp_fops);
+>>  	}
+>>  
+>> -	if (DISPLAY_VER(i915) >= 11 &&
+>> +	if (HAS_BIGJOINER(i915) &&
+>>  	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+>>  	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
+>>  		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+>> index dfb0c8bf5ca2..5306bbd13e59 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+>> @@ -118,6 +118,7 @@ enum intel_display_subplatform {
+>>  
+>>  #define HAS_4TILE(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+>>  #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+>> +#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11)
+>>  #define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
+>>  #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+>>  #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
+>> @@ -152,6 +153,7 @@ enum intel_display_subplatform {
+>>  #define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
+>>  #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+>>  					  BIT(trans)) != 0)
+>> +#define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
+>>  #define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
+>>  #define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >= 13)
+>>  #define HAS_CMRR(i915)			(DISPLAY_VER(i915) >= 20)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index cb0f6db5f8e7..c53eb8e165de 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -2520,7 +2520,7 @@ bool intel_dp_joiner_needs_dsc(struct drm_i915_private *i915, bool use_joiner)
+>>  	 * limitation. DG2 onwards pipe joiner can be enabled without
+>>  	 * compression.
+>>  	 */
+>> -	return DISPLAY_VER(i915) < 13 && use_joiner;
+>> +	return !HAS_UNCOMPRESSED_JOINER(i915) && use_joiner;
+>>  }
+>>  
+>>  static int
+
 -- 
-2.45.2
-
+Jani Nikula, Intel
