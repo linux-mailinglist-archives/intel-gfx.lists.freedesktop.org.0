@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBB5197680D
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 13:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C35F976809
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 13:42:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A7110EB53;
-	Thu, 12 Sep 2024 11:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81B4410E059;
+	Thu, 12 Sep 2024 11:42:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bdXz9f6/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KlO0AA0/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A598A10E059
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3BB110EB4F
  for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2024 11:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1726141321; x=1757677321;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dtVPsQ52EP1r2Q9Ry76ZsaJ7Kc6fTIWD0mDv86yB+/A=;
- b=bdXz9f6/Dldz4Z9KT5CvUOlqspFE+W40gE5FO8h1Lxu9A/wA9ViEZSd4
- O10B2SuG+7OZ8xrV9Ak8W1jLpQMCHXjf+B6VNxIfZnYIodIx8Hz1GffOz
- nuYf1RBZcxywV+zUCXich2YyZAJ1LD3eEWLz5HJGuy+iBw/BcjaTCNK/T
- 0zznLO8eZ7dYdejfdc5Pv3GbuBhEiJMLOR2sdRP20qyQ6BopT5EJhvcm+
- mwVFi588wOB1Ew46BDK+COp4KJMF2agxa0pJaArqKraXCCRTqRR+U5vF3
- 36e64/mTXt2SHSx+NIo6BYQYEorDYC2U6Vpzd42QUDOoep961mme7puFA w==;
-X-CSE-ConnectionGUID: HgnUo6wCT3yuXhGbK17CGA==
-X-CSE-MsgGUID: 9kh3w+LZQz+NfxOilHEhQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="25089224"
-X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="25089224"
+ bh=RZ3PRcd3I3g84O+D67Kqzzkkf2szX0nDePaXI7ERpNY=;
+ b=KlO0AA0/gKEmJN7g12YzHcM7qbZ0bBC7B8/XYBDAJGhdU/K1bxntQCxZ
+ RpurFmEwYO1kapFPLwvgoAfa0jNJCd3OgsyOXOToruDwtkRQHmP0QrRzz
+ Le6dAe3EfF5oAqsB98tscti1vyonICkE/BHRe2r+Z8bYxaJ43NK/d+ifv
+ z8PrqYmW1C2dhbOOswANQb4IZgBwXoomcDRTJeSNG/fOHcHcsOdvw63dA
+ o9wwigguJxTooSfxbDTfzJeVDP6Hwi1Lkr0jLyg82D0CU45WR/Ej48r6L
+ VzxC1eeUIqSkFM+2tKPmIPdcIt4KjZ1a0b3zl0gbHWCctvzlFeP6FORry g==;
+X-CSE-ConnectionGUID: rIxYjyZfTFuotxbl7y5tiQ==
+X-CSE-MsgGUID: FNy60uhKSESLauu9M3xgRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11192"; a="25089225"
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="25089225"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Sep 2024 04:42:01 -0700
-X-CSE-ConnectionGUID: 1t5ZyLdhQ6yLjKmszjNNVg==
-X-CSE-MsgGUID: p0Ch6Hv8TEOb/n+lfgWNWA==
+X-CSE-ConnectionGUID: B4xHGruLQt+9cDiE1VZBYw==
+X-CSE-MsgGUID: oEMX3w+OQzCC1L2dsbn1VA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="67675448"
+X-IronPort-AV: E=Sophos;i="6.10,222,1719903600"; d="scan'208";a="67675451"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 04:41:55 -0700
+ 12 Sep 2024 04:41:57 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: suraj.kandpal@intel.com, jani.saarinen@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 3/4] drm/i915/display: Use joined pipes in
- intel_mode_valid_max_plane_size
-Date: Thu, 12 Sep 2024 17:13:29 +0530
-Message-ID: <20240912114330.1244982-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/4] drm/i915/display: Use joined pipes in dsc helpers for
+ slices, bpp
+Date: Thu, 12 Sep 2024 17:13:30 +0530
+Message-ID: <20240912114330.1244982-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240912114330.1244982-1-ankit.k.nautiyal@intel.com>
 References: <20240912114330.1244982-1-ankit.k.nautiyal@intel.com>
@@ -69,109 +69,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation of ultrajoiner, use number of pipes in the
-intel_mode_valid_max_plane_size helper, instead of joiner flag.
+In preparation of ultrajoiner, use number of joined pipes in the dsc
+helpers to compute dsc slices and max compressed bpp, instead of using
+the joiner flag.
 
-v2: Use num_joined_pipes 1 where there are no joined pipes (Ville)
+v2: Adjust the formulae to use num of pipes as 1 (no joiner) or 2
+(bigjoiner). (Ankit)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com> (v1)
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_display.h | 2 +-
- drivers/gpu/drm/i915/display/intel_dp.c      | 2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c  | 2 +-
- drivers/gpu/drm/i915/display/intel_dsi.c     | 2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c    | 2 +-
- 6 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.h |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c      | 24 +++++++++++---------
+ drivers/gpu/drm/i915/display/intel_dp.h      |  4 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  |  8 ++++---
+ 5 files changed, 22 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1d10fc998566..1e07780c3510 100644
+index 1e07780c3510..9e323221cb1c 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8090,7 +8090,7 @@ enum drm_mode_status intel_cpu_transcoder_mode_valid(struct drm_i915_private *de
- enum drm_mode_status
- intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
- 				const struct drm_display_mode *mode,
--				bool joiner)
-+				int num_joined_pipes)
- {
- 	int plane_width_max, plane_height_max;
+@@ -278,7 +278,7 @@ bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state)
+ 		crtc->pipe == joiner_primary_pipe(crtc_state);
+ }
  
-@@ -8107,7 +8107,7 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
- 	 * too big for that.
- 	 */
- 	if (DISPLAY_VER(dev_priv) >= 11) {
--		plane_width_max = 5120 << joiner;
-+		plane_width_max = 5120 * num_joined_pipes;
- 		plane_height_max = 4320;
- 	} else {
- 		plane_width_max = 5120;
+-static int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state)
++int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state)
+ {
+ 	return hweight8(intel_crtc_joined_pipe_mask(crtc_state));
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 7ca26e5cb20e..e136814e0f92 100644
+index e136814e0f92..df3bd9350aaa 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -416,7 +416,7 @@ u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
- enum drm_mode_status
- intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
- 				const struct drm_display_mode *mode,
--				bool joiner);
-+				int num_joined_pipes);
- enum drm_mode_status
- intel_cpu_transcoder_mode_valid(struct drm_i915_private *i915,
- 				const struct drm_display_mode *mode);
+@@ -587,5 +587,6 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
+ })
+ 
+ bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
++int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f6900f1ff36f..3646890693c4 100644
+index 3646890693c4..24524d2158a7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1413,7 +1413,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	if (status != MODE_OK)
- 		return status;
+@@ -868,14 +868,14 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
+ static
+ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+ 				       u32 mode_clock, u32 mode_hdisplay,
+-				       bool bigjoiner)
++				       int num_joined_pipes)
+ {
+ 	u32 max_bpp_small_joiner_ram;
  
--	return intel_mode_valid_max_plane_size(dev_priv, mode, joiner);
-+	return intel_mode_valid_max_plane_size(dev_priv, mode, num_joined_pipes);
- }
+ 	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+ 	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) / mode_hdisplay;
  
- bool intel_dp_source_supports_tps3(struct drm_i915_private *i915)
+-	if (bigjoiner) {
++	if (num_joined_pipes == 2) {
+ 		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
+ 		/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+ 		int ppc = 2;
+@@ -894,7 +894,7 @@ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+ 					u32 link_clock, u32 lane_count,
+ 					u32 mode_clock, u32 mode_hdisplay,
+-					bool bigjoiner,
++					int num_joined_pipes,
+ 					enum intel_output_format output_format,
+ 					u32 pipe_bpp,
+ 					u32 timeslots)
+@@ -940,7 +940,7 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+ 				intel_dp_mode_to_fec_clock(mode_clock));
+ 
+ 	joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, mode_clock,
+-							    mode_hdisplay, bigjoiner);
++							    mode_hdisplay, num_joined_pipes);
+ 	bits_per_pixel = min(bits_per_pixel, joiner_max_bpp);
+ 
+ 	bits_per_pixel = intel_dp_dsc_nearest_valid_bpp(i915, bits_per_pixel, pipe_bpp);
+@@ -950,7 +950,7 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+ 
+ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 				int mode_clock, int mode_hdisplay,
+-				bool bigjoiner)
++				int num_joined_pipes)
+ {
+ 	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	u8 min_slice_count, i;
+@@ -984,14 +984,14 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 
+ 	/* Find the closest match to the valid slice count values */
+ 	for (i = 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
+-		u8 test_slice_count = valid_dsc_slicecount[i] << bigjoiner;
++		u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
+ 
+ 		if (test_slice_count >
+ 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
+ 			break;
+ 
+ 		/* big joiner needs small joiner to be enabled */
+-		if (bigjoiner && test_slice_count < 4)
++		if (num_joined_pipes == 2 && test_slice_count < 4)
+ 			continue;
+ 
+ 		if (min_slice_count <= test_slice_count)
+@@ -1390,14 +1390,14 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 								    max_lanes,
+ 								    target_clock,
+ 								    mode->hdisplay,
+-								    joiner,
++								    num_joined_pipes,
+ 								    output_format,
+ 								    pipe_bpp, 64);
+ 			dsc_slice_count =
+ 				intel_dp_dsc_get_slice_count(connector,
+ 							     target_clock,
+ 							     mode->hdisplay,
+-							     joiner);
++							     num_joined_pipes);
+ 		}
+ 
+ 		dsc = dsc_max_compressed_bpp && dsc_slice_count;
+@@ -2113,6 +2113,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+ 	int dsc_src_min_bpp, dsc_sink_min_bpp, dsc_min_bpp;
+ 	int dsc_src_max_bpp, dsc_sink_max_bpp, dsc_max_bpp;
+ 	int dsc_joiner_max_bpp;
++	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
+ 
+ 	dsc_src_min_bpp = dsc_src_min_compressed_bpp();
+ 	dsc_sink_min_bpp = intel_dp_dsc_sink_min_compressed_bpp(pipe_config);
+@@ -2127,7 +2128,7 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
+ 
+ 	dsc_joiner_max_bpp = get_max_compressed_bpp_with_joiner(i915, adjusted_mode->clock,
+ 								adjusted_mode->hdisplay,
+-								pipe_config->joiner_pipes);
++								num_joined_pipes);
+ 	dsc_max_bpp = min(dsc_max_bpp, dsc_joiner_max_bpp);
+ 	dsc_max_bpp = min(dsc_max_bpp, fxp_q4_to_int(limits->link.max_bpp_x16));
+ 
+@@ -2312,6 +2313,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 		to_intel_connector(conn_state->connector);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&pipe_config->hw.adjusted_mode;
++	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
+ 	int ret;
+ 
+ 	/*
+@@ -2367,7 +2369,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 			intel_dp_dsc_get_slice_count(connector,
+ 						     adjusted_mode->crtc_clock,
+ 						     adjusted_mode->crtc_hdisplay,
+-						     pipe_config->joiner_pipes);
++						     num_joined_pipes);
+ 		if (!dsc_dp_slice_count) {
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "Compressed Slice Count not supported\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 3aef57dd463a..a0a31fb64716 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -143,7 +143,7 @@ int intel_dp_dsc_compute_max_bpp(const struct intel_connector *connector,
+ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+ 					u32 link_clock, u32 lane_count,
+ 					u32 mode_clock, u32 mode_hdisplay,
+-					bool bigjoiner,
++					int num_joined_pipes,
+ 					enum intel_output_format output_format,
+ 					u32 pipe_bpp,
+ 					u32 timeslots);
+@@ -153,7 +153,7 @@ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector
+ 					 int bpc);
+ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 				int mode_clock, int mode_hdisplay,
+-				bool bigjoiner);
++				int num_joined_pipes);
+ bool intel_dp_need_joiner(struct intel_dp *intel_dp,
+ 			  struct intel_connector *connector,
+ 			  int hdisplay, int clock);
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 1868747cfb12..51dded1f7e8a 100644
+index 51dded1f7e8a..fb59e28c3f17 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1524,7 +1524,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
- 		return 0;
+@@ -102,11 +102,13 @@ static int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
+ 	flags |= crtc_state->fec_enable ? DRM_DP_BW_OVERHEAD_FEC : 0;
+ 
+ 	if (dsc) {
++		int num_joined_pipes = intel_crtc_num_joined_pipes(crtc_state);
++
+ 		flags |= DRM_DP_BW_OVERHEAD_DSC;
+ 		dsc_slice_count = intel_dp_dsc_get_slice_count(connector,
+ 							       adjusted_mode->clock,
+ 							       adjusted_mode->hdisplay,
+-							       crtc_state->joiner_pipes);
++							       num_joined_pipes);
  	}
  
--	*status = intel_mode_valid_max_plane_size(dev_priv, mode, joiner);
-+	*status = intel_mode_valid_max_plane_size(dev_priv, mode, num_joined_pipes);
- 	return 0;
- }
+ 	overhead = drm_dp_bw_overhead(crtc_state->lane_count,
+@@ -1501,14 +1503,14 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+ 								    max_lanes,
+ 								    target_clock,
+ 								    mode->hdisplay,
+-								    joiner,
++								    num_joined_pipes,
+ 								    INTEL_OUTPUT_FORMAT_RGB,
+ 								    pipe_bpp, 64);
+ 			dsc_slice_count =
+ 				intel_dp_dsc_get_slice_count(intel_connector,
+ 							     target_clock,
+ 							     mode->hdisplay,
+-							     joiner);
++							     num_joined_pipes);
+ 		}
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c b/drivers/gpu/drm/i915/display/intel_dsi.c
-index bd5888ce4852..0be46c6c9611 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.c
-@@ -76,7 +76,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct drm_connector *connector,
- 	if (fixed_mode->clock > max_dotclk)
- 		return MODE_CLOCK_HIGH;
- 
--	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
-+	return intel_mode_valid_max_plane_size(dev_priv, mode, 1);
- }
- 
- struct intel_dsi_host *intel_dsi_host_init(struct intel_dsi *intel_dsi,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 869fa00f7ef2..72ac910bf6ec 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2057,7 +2057,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 			return status;
- 	}
- 
--	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
-+	return intel_mode_valid_max_plane_size(dev_priv, mode, 1);
- }
- 
- bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+ 		dsc = dsc_max_compressed_bpp && dsc_slice_count;
 -- 
 2.45.2
 
