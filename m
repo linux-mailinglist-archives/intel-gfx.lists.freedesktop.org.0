@@ -2,59 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1523F976C3D
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 16:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 508FA976C54
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2024 16:42:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6E510EBA7;
-	Thu, 12 Sep 2024 14:34:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44A3D10EBAD;
+	Thu, 12 Sep 2024 14:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKfZZmd7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kfXa8cA2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDFD310EBA7;
- Thu, 12 Sep 2024 14:34:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726151681; x=1757687681;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jnqnQuBT5oRo258joOl0WrfbkK2BgSgTYxsQA2C0MCA=;
- b=mKfZZmd7DriyuAo19RoMcFhU54icReqW2qfsjQNUeAA85GpuzcwuOfry
- jokJk6IsUYalNYKwJgplLKi2tQlDKj2Ou386pmpuAU58Hl49vmvgbD9aF
- Ik5RiiE9zzgckhfturZYuBT66FY3rmlPqmkhi1XdJ6kX05TjW5tFkjyI9
- YMbbSDx3IJ4KMjw6bFUkSJJWmb3kEhLT+DhcHpsFgCqoCS9CEaaG3g7Vt
- yOvrjCiAVplXgwvpMYh2v0xH2vMnc+0lBb1vSa6x3zTnyyHhayd3WTsGM
- lmR2mijBexH3hjiS2Ewp45rgvzxqJivRmUZ5hOuYBcuzEfbPFJ9Q0eBNh Q==;
-X-CSE-ConnectionGUID: wD1DJlTmR92jsmOs03xTAg==
-X-CSE-MsgGUID: N30JQ/alT/+3jH2j6aI4Fg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25108967"
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="25108967"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 07:34:41 -0700
-X-CSE-ConnectionGUID: mX9BxMSvRISweVAGW16KBw==
-X-CSE-MsgGUID: piQY3WKNRXeVoOWmi6Dt6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,223,1719903600"; d="scan'208";a="72514969"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.160])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2024 07:34:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	rodrigo.vivi@intel.com
-Subject: [PATCH v3 4/4] drm/i915/display: move dmc snapshotting to new display
- snapshot
-Date: Thu, 12 Sep 2024 17:34:14 +0300
-Message-Id: <9116319e7faceeed7695ee35e56fe001ddf94e11.1726151571.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1726151571.git.jani.nikula@intel.com>
-References: <cover.1726151571.git.jani.nikula@intel.com>
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC39C10EBAC;
+ Thu, 12 Sep 2024 14:42:14 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id
+ d9443c01a7336-2053a0bd0a6so11264845ad.3; 
+ Thu, 12 Sep 2024 07:42:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1726152134; x=1726756934; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=LzTz3r8DjtWisgRztqwcbHcF11uyio6OOK+ChyJCaqE=;
+ b=kfXa8cA2QC/vKEXJvs91WtH3NIwykTyN4Ft30uz2/dplW7H8YfM6UnfNxrKAojrUlv
+ bkMydGCYrvUZcaoxWgzn3CLGya5Cwj5Pm1O+/jk4Sw3tJvYlf+ZNDFXuk/HXY5PGzyyc
+ 21jB6BlY62UMT9ITXJ99j5SB8QOUK60FVyzCDPnCaEKvEamYm79cefd/l95Yul6W3pXS
+ zbJ8oLU35ovxlkga8OBm7lTPxXd6bwUbjcl8WnyoKkn3KLMJakHWg7/lUHmZHV0zSUJd
+ rbR6YVaLEsEotSHAluYchehKnJeaIGEeJFP+dcB2NnCpPXu7YgZjJEkk7RNBEBlqilim
+ A8xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726152134; x=1726756934;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=LzTz3r8DjtWisgRztqwcbHcF11uyio6OOK+ChyJCaqE=;
+ b=vhi3WY41/bmwQWYts9fKGh5CennuUtWl3hsM8z5AUtTIFj/obb+EKQxynSWg7yD9O5
+ dRuOhBzzmmHJdlqDLc88dDslDT7DRo2OrlydZz+85SQ/yWUoDa4sPG76w1iqJypaL/id
+ ZBQSSbBFGIWrbs4hLdabSkBAarLiIucivHD9Ibp8B6+LC8XyfLAqSD8MuEkWkSDOlxto
+ 7ysqzyBInVDD8UheSvYgui0Wwy2i/wU012+muEntVFiqyWXYPgxxWJ+bw2f3IM4GDdjo
+ /VHzuNYLf46vc4doIYZKqJLq1wOX/qE72jyeBmdYhqgxtXabXt9yfCGN1cL6jfphmYBj
+ DZWw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVgzH0Sz4eXw9xiU6Cc1M8qxZW1rQPIK5PL7Q5gf5rvHnL+m0Hl2rdnY0B08u07+7/DCS4cvqkLEnw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxXMbyT5oAqjpYUqZJwEu7XdSeCfDSmlnt5LeKJVfUEJulOTRjb
+ ZkcywYGQirfNBesLsgbtPHlZqQp5T9PNZZ5xOoD7pag2m7N4cFRRSiLeoD7/
+X-Google-Smtp-Source: AGHT+IG2czfrZk63PR324c0o1dJuGMltKbRDKNWucClb9QarB0YsosRmKCFcpFktU2ZibTiyo3kMgA==
+X-Received: by 2002:a17:902:c405:b0:206:928c:bfda with SMTP id
+ d9443c01a7336-2076e44de6emr36660985ad.56.1726152133791; 
+ Thu, 12 Sep 2024 07:42:13 -0700 (PDT)
+Received: from localhost ([134.134.137.76]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2076af44f91sm15031575ad.63.2024.09.12.07.42.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Sep 2024 07:42:13 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do hflip
+ on Xe2
+Date: Thu, 12 Sep 2024 17:46:06 +0300
+Message-ID: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,163 +80,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert dmc error state printing to new snapshot capture/print division.
+On Intel Xe2 hw tile4 is not supported with horizontal flip
 
-v2: Rebase
+bspec 69853
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- .../drm/i915/display/intel_display_snapshot.c |  5 +++
- drivers/gpu/drm/i915/display/intel_dmc.c      | 38 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dmc.h      |  6 ++-
- drivers/gpu/drm/i915/i915_gpu_error.c         |  3 --
- 4 files changed, 39 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
+ 3 files changed, 26 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_snapshot.c b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-index a61ff0f81397..030c4f873da1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-@@ -7,6 +7,7 @@
- #include "intel_display_device.h"
- #include "intel_display_params.h"
- #include "intel_display_snapshot.h"
-+#include "intel_dmc.h"
- #include "intel_overlay.h"
- 
- struct intel_display_snapshot {
-@@ -16,6 +17,7 @@ struct intel_display_snapshot {
- 	struct intel_display_runtime_info runtime_info;
- 	struct intel_display_params params;
- 	struct intel_overlay_snapshot *overlay;
-+	struct intel_dmc_snapshot *dmc;
- };
- 
- struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_display *display)
-@@ -35,6 +37,7 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
- 	intel_display_params_copy(&snapshot->params);
- 
- 	snapshot->overlay = intel_overlay_snapshot_capture(display);
-+	snapshot->dmc = intel_dmc_snapshot_capture(display);
- 
- 	return snapshot;
- }
-@@ -53,6 +56,7 @@ void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
- 	intel_display_params_dump(&snapshot->params, display->drm->driver->name, p);
- 
- 	intel_overlay_snapshot_print(snapshot->overlay, p);
-+	intel_dmc_snapshot_print(snapshot->dmc, p);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index d2ff21e98545..c9038d239eb2 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
+ 				      INTEL_PLANE_CAP_NEED64K_PHYS);
  }
  
- void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
-@@ -63,5 +67,6 @@ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
- 	intel_display_params_free(&snapshot->params);
- 
- 	kfree(snapshot->overlay);
-+	kfree(snapshot->dmc);
- 	kfree(snapshot);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index bbac6bfd1752..48bbbf8f312c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1194,21 +1194,43 @@ void intel_dmc_fini(struct intel_display *display)
- 	}
- }
- 
--void intel_dmc_print_error_state(struct drm_printer *p,
--				 struct intel_display *display)
-+struct intel_dmc_snapshot {
-+	bool initialized;
-+	bool loaded;
-+	u32 version;
-+};
-+
-+struct intel_dmc_snapshot *intel_dmc_snapshot_capture(struct intel_display *display)
- {
- 	struct intel_dmc *dmc = display_to_dmc(display);
-+	struct intel_dmc_snapshot *snapshot;
- 
- 	if (!HAS_DMC(display))
--		return;
-+		return NULL;
- 
--	drm_printf(p, "DMC initialized: %s\n", str_yes_no(dmc));
--	drm_printf(p, "DMC loaded: %s\n",
--		   str_yes_no(intel_dmc_has_payload(display)));
-+	snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
-+	if (!snapshot)
-+		return NULL;
-+
-+	snapshot->initialized = dmc;
-+	snapshot->loaded = intel_dmc_has_payload(display);
- 	if (dmc)
-+		snapshot->version = dmc->version;
-+
-+	return snapshot;
++/**
++ * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
++ * @modifier: Modifier to check
++ *
++ * Returns:
++ * Returns %true if @modifier is a tile4 modifier.
++ */
++bool intel_fb_is_tile4_modifier(u64 modifier)
++{
++	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
++				      INTEL_PLANE_CAP_TILING_4);
 +}
 +
-+void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct drm_printer *p)
-+{
-+	if (!snapshot)
-+		return;
+ static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+ 					     u8 display_ver_from, u8 display_ver_until)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index 068f3aee99aa..bff87994cf2c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
+ bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+ bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+ bool intel_fb_needs_64k_phys(u64 modifier);
++bool intel_fb_is_tile4_modifier(u64 modifier);
+ 
+ bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
+ int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 17d4c880ecc4..4de41ab5060a 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+ 		return -EINVAL;
+ 	}
+ 
++	/*
++	 * Starting with LNL and BMG tile4 hflip is not supported
++	 */
++	if (rotation & DRM_MODE_REFLECT_X &&
++	    intel_fb_is_tile4_modifier(fb->modifier) &&
++	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
++	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
++		drm_dbg_kms(&dev_priv->drm,
++			    "horizontal flip is not supported with tile4 surface formats\n");
++		return -EINVAL;
++	}
 +
-+	drm_printf(p, "DMC initialized: %s\n", str_yes_no(snapshot->initialized));
-+	drm_printf(p, "DMC loaded: %s\n", str_yes_no(snapshot->loaded));
-+	if (snapshot->initialized)
- 		drm_printf(p, "DMC fw version: %d.%d\n",
--			   DMC_VERSION_MAJOR(dmc->version),
--			   DMC_VERSION_MINOR(dmc->version));
-+			   DMC_VERSION_MAJOR(snapshot->version),
-+			   DMC_VERSION_MINOR(snapshot->version));
- }
- 
- static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index 2ead2ec1f820..44cecef98e73 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -11,6 +11,7 @@
- enum pipe;
- struct drm_printer;
- struct intel_display;
-+struct intel_dmc_snapshot;
- 
- void intel_dmc_init(struct intel_display *display);
- void intel_dmc_load_program(struct intel_display *display);
-@@ -22,8 +23,9 @@ void intel_dmc_suspend(struct intel_display *display);
- void intel_dmc_resume(struct intel_display *display);
- bool intel_dmc_has_payload(struct intel_display *display);
- void intel_dmc_debugfs_register(struct intel_display *display);
--void intel_dmc_print_error_state(struct drm_printer *p,
--				 struct intel_display *display);
-+
-+struct intel_dmc_snapshot *intel_dmc_snapshot_capture(struct intel_display *display);
-+void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct drm_printer *p);
- 
- void assert_dmc_loaded(struct intel_display *display);
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index a84d2fa735b0..135ded17334e 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -41,7 +41,6 @@
- #include <drm/drm_print.h>
- 
- #include "display/intel_display_snapshot.h"
--#include "display/intel_dmc.h"
- 
- #include "gem/i915_gem_context.h"
- #include "gem/i915_gem_lmem.h"
-@@ -871,8 +870,6 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
- 
- 	err_printf(m, "IOMMU enabled?: %d\n", error->iommu);
- 
--	intel_dmc_print_error_state(&p, &m->i915->display);
--
- 	err_printf(m, "RPM wakelock: %s\n", str_yes_no(error->wakelock));
- 	err_printf(m, "PM suspended: %s\n", str_yes_no(error->suspended));
- 
+ 	if (drm_rotation_90_or_270(rotation)) {
+ 		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
+ 			drm_dbg_kms(&dev_priv->drm,
 -- 
-2.39.2
+2.45.2
 
