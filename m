@@ -2,63 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D20977ECE
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 13:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ACF0977ED0
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 13:47:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 960D210ECEA;
-	Fri, 13 Sep 2024 11:47:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anzhaZUb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 093C410ECE7;
+	Fri, 13 Sep 2024 11:47:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2E4010ECEA;
- Fri, 13 Sep 2024 11:47:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726228033; x=1757764033;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9Kb5uQFj2rlWuIItuuA0YD6oucyhftnZoRXdtQ3VhFk=;
- b=anzhaZUbIHast6c1ZhqBy0dC3TSVt4j2DqsCwxYOw+KzVR3EWHhcE9N9
- ol6Pb91amemIZaSEeH6OC/iAXql/TgRJuBpg8Pjfl6v6/pQ+8ZI0OUMUm
- vuLaQcVbgKhid8swFXbICoHL2iOT29TjeJEIGMW0McBXlrcN3XSh/NGCi
- DP6d8NggbJ7cBVl/DhtbPtsaMIj+H75iOfZun/DtiXD6hVCb2rj0QiuIn
- SlIBjqRGoyzJylfoX8eTLiuAOr3809TD0KLbHzyueUX9jvKGJnSftzRoH
- SdoD9XKovbE1HRB70B795y3YaqZ5n9o1hXYH00sSLVagfLZMKyUDgL3j0 g==;
-X-CSE-ConnectionGUID: 6FyUdglbS8+G8Qr7o5jKEw==
-X-CSE-MsgGUID: M5sLBk5XR86vZbqw6e/eXg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="25251277"
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="25251277"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 04:47:12 -0700
-X-CSE-ConnectionGUID: aramv6uoRkexLjnYATkw7A==
-X-CSE-MsgGUID: mVxZi3mdQfCEnKS6S/CKbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="67969687"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.64])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 04:47:10 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Coster <Matt.Coster@imgtec.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Nathan
- Chancellor <nathan@kernel.org>, Frank Binns <Frank.Binns@imgtec.com>
-Subject: Re: [PATCH 5/8] drm/imagination: annotate pvr_fw_version_packed()
- with __maybe_unused
-In-Reply-To: <8c97287c-732d-475a-83d6-1c470ad68109@imgtec.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <190e4eefef6c5e62052a01af0084c69361e216ef.1725962479.git.jani.nikula@intel.com>
- <8c97287c-732d-475a-83d6-1c470ad68109@imgtec.com>
-Date: Fri, 13 Sep 2024 14:47:05 +0300
-Message-ID: <87bk0repxi.fsf@intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD1C010ECEF;
+ Fri, 13 Sep 2024 11:47:49 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 0/2] drm/xe: Re-enable DSB.
+Date: Fri, 13 Sep 2024 13:47:52 +0200
+Message-ID: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,24 +37,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Sep 2024, Matt Coster <Matt.Coster@imgtec.com> wrote:
-> On 10/09/2024 11:03, Jani Nikula wrote:
->> Building with clang and and W=1 leads to warning about unused
->> pvr_fw_version_packed(). Fix by annotating it with __maybe_unused.
->> 
->> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
->> inline functions for W=1 build").
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> I've been meaning to do something about this for a while, thanks!
->
-> Reviewed-by: Matt Coster <matt.coster@imgtec.com>
+Fix coherency issues with DSB, and then try enabling DSB again.
 
-Thanks, pushed to drm-misc-next.
+Animesh Manna (1):
+  drm/xe: Revert "drm/i915: Disable DSB in Xe KMD"
 
-BR,
-Jani.
+Maarten Lankhorst (1):
+  drm/xe: Fix DSB buffer coherency
+
+ drivers/gpu/drm/i915/display/intel_dsb.c   | 4 ----
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
+ 2 files changed, 3 insertions(+), 6 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
