@@ -2,46 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC66978513
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 17:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A864978675
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 19:12:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 865DA10ED3B;
-	Fri, 13 Sep 2024 15:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DC110E28D;
+	Fri, 13 Sep 2024 17:12:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="npIhw3Eu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="go/HW/My";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F9EC10ED2B;
- Fri, 13 Sep 2024 15:46:04 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 67FEF5C54DA;
- Fri, 13 Sep 2024 15:45:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9D6CC4CEC0;
- Fri, 13 Sep 2024 15:46:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726242362;
- bh=CoOuK7krvKIeQUu+iqlSYlfh3CNg7MNe6jTVkIfT7x8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=npIhw3EuXXWC6iFHR2cjhe9ush3VPlf84CDuPd6IaZnIlFOA2rPREJHHtogvfNcZu
- w3sBMSUHYTUuQjVh3/GNmK1/20AHIj4NoEUV3ipGNEQXqmh3Q50PeYl/PKfMebiYDZ
- AE1aJq+2i62jKE8qz+SuyDz0y6T94fA2C6F7zLeLLDmkIp8Ryxt/X+vsTA+7e+Niig
- Pytvi3kDAvKjnRYX5wUO22Z8McUvvX0NgEA4VEu7NOjIhK1YUPTI3RJnz4SYGdV/Iy
- 5gKO5+WkXLkxq7qzbnrBKDSekamM4QKfcPgNv/EyYoSuNXsNaqRnFIZQcSj3OEGpbt
- +se8f3VXVy4Tg==
-Date: Fri, 13 Sep 2024 17:45:58 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Zhang He <zhanghe9702@163.com>
-Cc: andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, trivial@kernel.org
-Subject: Re: [PATCH] drm/i915/gt: Fixed an typo
-Message-ID: <pqfaborarj4ox3q6bhvjohycxlyzkqbs2yrqqjh6qadlve7zai@xekrpdovhuzy>
-References: <20240913140721.31165-1-zhanghe9702@163.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8781710E28D;
+ Fri, 13 Sep 2024 17:12:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726247573; x=1757783573;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9LchBqf6k/tNCJWHz96riOHuR9lD+rEQIppqxed0cdc=;
+ b=go/HW/MyoMCQ+XdYxF5R2pLSw3zq6RiAx93MZeRTE6OeoTUkhHgPUJNa
+ byjiOmrcpYlHSIfhyePBbMBUuwRWq6Qa1e6QigB4acgtRqwvK6MSxCaCS
+ XyGqmzk6qIsdN4xq1/q27BBKmG+o6Z5BOBfQ7KvOAyeYC1hWbHQkRwd9V
+ hVU0mfDZqCUXOgi6Ue6sSjEwlg23wpUTo9dPnYo3ml0jY7WS4sPUCc8nb
+ XF00GwV/kDs3O4mHuGrJHb4ndFXCOz8CDgsUkPqQueDRrZ+WXULR7yoMn
+ zGgCZYbDDBaTuqOyMc7cPQfRuzidoCEPQtvTPemN2shmX0uqzJ/L2n1eo w==;
+X-CSE-ConnectionGUID: QJfxHgKARQ2xRajO3QOkzQ==
+X-CSE-MsgGUID: 19z0dY7pQTSd0LHEkyrx6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="24981070"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="24981070"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 10:12:53 -0700
+X-CSE-ConnectionGUID: uYvanj2QQ+Cfu2dHQnFA6A==
+X-CSE-MsgGUID: lMnD5RTDRhOkh6DDKml4sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="68229664"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 13 Sep 2024 10:12:50 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Sep 2024 20:12:49 +0300
+Date: Fri, 13 Sep 2024 20:12:49 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
+Message-ID: <ZuRykc_etbea6063@intel.com>
+References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+ <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240913140721.31165-1-zhanghe9702@163.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,53 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhang,
-
-On Fri, Sep 13, 2024 at 10:07:21PM GMT, Zhang He wrote:
-> column header should be GPU, not CPU
+On Fri, Sep 13, 2024 at 01:47:53PM +0200, Maarten Lankhorst wrote:
+> Add the scanout flag to force WC caching, and add the memory barrier
+> where needed.
 > 
-> Signed-off-by: Zhang He <zhanghe9702@163.com>
-
-Thanks for having fixed the issues I pointed out. Said that, for
-the next patches:
-
-1. Add a versioning. This is version number 2, so that yo uneed
-   to do "git format patch -v 2...."
-2. Add the changelog: you need to list the differences between
-   the two versions, so that people are aware of what changes to
-   look for. You can do it after the "---' section in this patch.
-   For this patch the difference would be the use of your correct
-   name as Author and as Signer.
-3. Add the tags that you collected in the previous version of the
-   patch. I did review your change, so that you should have added
-   my:
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-For now it's OK, your patch is accepted, I will merge it and then
-I will notify you.
-
-Thanks for having sent your change and for following up on the
-review,
-Andi
-
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> index 8d08b38874ef..b635aa2820d9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> @@ -431,7 +431,7 @@ static int llc_show(struct seq_file *m, void *data)
->  		max_gpu_freq /= GEN9_FREQ_SCALER;
->  	}
+> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> index f99d901a3214f..f7949bf5426af 100644
+> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> @@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
+>  	if (!vma)
+>  		return false;
 >  
-> -	seq_puts(m, "GPU freq (MHz)\tEffective CPU freq (MHz)\tEffective Ring freq (MHz)\n");
-> +	seq_puts(m, "GPU freq (MHz)\tEffective GPU freq (MHz)\tEffective Ring freq (MHz)\n");
+> +	/* Set scanout flag for WC mapping */
+>  	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
+>  				   NULL, PAGE_ALIGN(size),
+>  				   ttm_bo_type_kernel,
+>  				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+> -				   XE_BO_FLAG_GGTT);
+> +				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
+>  	if (IS_ERR(obj)) {
+>  		kfree(vma);
+>  		return false;
+> @@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
 >  
->  	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
->  	for (gpu_freq = min_gpu_freq; gpu_freq <= max_gpu_freq; gpu_freq++) {
+>  void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+>  {
+> -	/* TODO: add xe specific flush_map() for dsb buffer object. */
+> +	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
+
+MMIO itself should be sufficient to flush the WC buffer.
+But I guess no real harm in hammering it a bit harder.
+
+>  }
 > -- 
-> 2.34.1
-> 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
