@@ -2,61 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7537977E6C
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 13:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 667CD977EA2
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 13:40:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE92D10E148;
-	Fri, 13 Sep 2024 11:22:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0D7B10E237;
+	Fri, 13 Sep 2024 11:40:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EiO07y8n";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PS2kigIZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFDC10E148
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 11:22:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726226558; x=1757762558;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OUN4LBzEIfGaH1PtStlYnvLJI9xZ2t+nbiLdGDiYZUU=;
- b=EiO07y8nLZ0QN9Rx75Gln/LWjmkZz2HKdyZpOprC6kzhzAl38gErTqLi
- TW33jvyhPc2u+Ma7OcCwYp5oUOJ631qFN+topH9PRbuFCsMmDBqNs4Puz
- 7/ZXgHfEJQLj9OAqKA1D9xkFMsInYIfSwVVcvXWRbTKwJlMuANIOkNcqn
- bzozkLkJpny45AowqdY19EWp+o/isytEpRY/AfJNZlg8UX2Sz2Q+S1Pvk
- BzKMUjrNjiEeYtgz382k/uQUAcygaG9XvqGx20K7XIceOxFXiON+OAt9y
- ccVzAdyHLpOUyk2qoqo15LG6uReLItfQHlci839jwDMcoJBvQ8EKpHibJ Q==;
-X-CSE-ConnectionGUID: myN2ajQyTtW9uBywkYcgoQ==
-X-CSE-MsgGUID: TrVGIfWLQ2uAil3gSI374Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11193"; a="13511175"
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="13511175"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 04:22:38 -0700
-X-CSE-ConnectionGUID: HjImVrn7Q4OWOOJ4/JsWdw==
-X-CSE-MsgGUID: UOk0vLMPTXCepimeLr7H5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,225,1719903600"; d="scan'208";a="68112730"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 13 Sep 2024 04:22:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Sep 2024 14:22:34 +0300
-Date: Fri, 13 Sep 2024 14:22:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jesse Barnes <jbarnes@virtuousgeek.org>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Convert i915_suspend into
- i9xx_display_sr
-Message-ID: <ZuQgetl8IlS4MQ28@intel.com>
-References: <20240912174534.425015-1-rodrigo.vivi@intel.com>
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8E7610E14A;
+ Fri, 13 Sep 2024 11:40:47 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-a86e9db75b9so290356766b.1; 
+ Fri, 13 Sep 2024 04:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1726227646; x=1726832446; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:reply-to:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=PsmzJiZpgu/V4zwLxzLuozkXG0kgNcMeiAbXKqeCLwM=;
+ b=PS2kigIZw3YJa5E5iD4fkCQLPBEHnbnN7d7D3xB71143IzcboGlKysiFyF05zFZcrN
+ kMf21zDrG4BDiuKxLIhXmv4sOTTDdqvjtfGHwH+H2+Hiu3t2BzXlL6hyW+01KoPTeYwQ
+ M8PNNRHQKULDXB8UDWO8mdxuF2JGMxnLHYIWmIENeh0IpzyzDDny85GC+RgKkiUXPxxr
+ em5VL0CydF3dEi3Fgt2cDRRvtG51jLGC6hWux4YPertmQxiyDgdk90YlK34ynh/oIvE5
+ 4ZZlO2bvZx1s1k93aEkYJx1/EWxwI30ztHsVQxKIgUhp228oeU7NfDRsDSG+AHgiTBMc
+ gaAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726227646; x=1726832446;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:reply-to:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=PsmzJiZpgu/V4zwLxzLuozkXG0kgNcMeiAbXKqeCLwM=;
+ b=U7w+eC9A6J9v4rx+Ft9IIKT+Fyr2WDqbZR6cw/+vrr7jFDnccQDUj3FHSsf058Z9Ew
+ eC+YvuTj/jJsX89+AWY2qHMojs46gOu1UuG9fkD6HLE9TQoU222bjEOPDtTYZveZD/60
+ /tLVR4QyfzNACkmStfBddrsVU7d5DqFFoqtz3yu3FJZ4cCyYDMrdlae/YX1OUBWzIcfE
+ 6A00j8OI/KjLQVYsD2GWzcAJOoubw1MX3u9klfENu1olBxDAKW+i/QbgrnsfiuQff72L
+ JKp5RpBzO5HaXSkY+dBCXe3mN9BAY2D80MkSG67FSpoLk2+T7pJOfoVkFNYaWQqvqvu5
+ GMRQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWqxW+kOuyyiBNDsAQV+d9jkPzp4qnzvo6LINs86P0gyy6zPjdKmlJjuakZasKRSG7EjrRO8LLGj/s=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyX7r+d0ewj6Kr7F9AK/dQ0QLSXMy4djJIL8NS3FwGEiH+oxT9J
+ sBR5ROqvs6OE2SQJ7MryquQcMWq1mQMvJB9SQShcPzSXX+mFJqc2
+X-Google-Smtp-Source: AGHT+IFKp1Bb2EQHR+KGOXE9B/ZyvauB6ECboSoX2Mpq3jFFIIB9V3WH/JGQJxLIgw+3kfrp+0ujJg==
+X-Received: by 2002:a17:907:e64e:b0:a86:7d62:4c28 with SMTP id
+ a640c23a62f3a-a90295a6016mr591075066b.30.1726227645468; 
+ Fri, 13 Sep 2024 04:40:45 -0700 (PDT)
+Received: from [0.0.0.0] ([134.134.139.77])
+ by smtp.googlemail.com with ESMTPSA id
+ a640c23a62f3a-a8d259528ecsm862175966b.67.2024.09.13.04.40.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 13 Sep 2024 04:40:45 -0700 (PDT)
+Message-ID: <8fb2f095-2a05-4f2a-ac15-f366829aa665@gmail.com>
+Date: Fri, 13 Sep 2024 14:40:36 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240912174534.425015-1-rodrigo.vivi@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/display: Don't allow tile4 framebuffer to do
+ hflip on Xe2
+To: Matt Roper <matthew.d.roper@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20240912144606.862307-1-juhapekka.heikkila@gmail.com>
+ <20240912195022.GJ5774@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+In-Reply-To: <20240912195022.GJ5774@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,197 +86,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 12, 2024 at 01:45:34PM -0400, Rodrigo Vivi wrote:
-> These save & restore functions inside i915_suspend are old display
-> functions to save and restore a bunch of display related registers.
+On 12.9.2024 22.50, Matt Roper wrote:
+> On Thu, Sep 12, 2024 at 05:46:06PM +0300, Juha-Pekka Heikkila wrote:
+>> On Intel Xe2 hw tile4 is not supported with horizontal flip
+>>
+>> bspec 69853
 > 
-> Move it under display and rename accordantly. Just don't move it
-> entirely towards intel_display struct yet because it depends
-> on drm_i915_private for the IS_MOBILE.
+> The notes on this page seem to say that, but there's also bspec 68904
+> which seems to have two two conflicting statements that apply to Xe2:
 > 
-> While doing this conversion also update the MIT header using
-> the new SPDX ones.
+>          "Horizontal flip (mirror the image from right to left) supported
+>          with tile modes other than linear."
 > 
-> Cc: Jesse Barnes <jbarnes@virtuousgeek.org>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                 |   2 +-
->  .../gpu/drm/i915/display/i9xx_display_sr.c    | 119 +++++++++++++++
->  .../gpu/drm/i915/display/i9xx_display_sr.h    |  14 ++
->  drivers/gpu/drm/i915/i915_driver.c            |   6 +-
->  drivers/gpu/drm/i915/i915_suspend.c           | 141 ------------------
->  drivers/gpu/drm/i915/i915_suspend.h           |  14 --
->  6 files changed, 137 insertions(+), 159 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/i9xx_display_sr.c
->  create mode 100644 drivers/gpu/drm/i915/display/i9xx_display_sr.h
->  delete mode 100644 drivers/gpu/drm/i915/i915_suspend.c
->  delete mode 100644 drivers/gpu/drm/i915/i915_suspend.h
+> implies this _is_ supported for Tile4 (and TileX), but immediately below
+> that,
 > 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index c63fa2133ccb..89f04bdbc27f 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -30,7 +30,6 @@ i915-y += \
->  	i915_params.o \
->  	i915_pci.o \
->  	i915_scatterlist.o \
-> -	i915_suspend.o \
->  	i915_switcheroo.o \
->  	i915_sysfs.o \
->  	i915_utils.o \
-> @@ -219,6 +218,7 @@ i915-$(CONFIG_HWMON) += \
->  i915-y += \
->  	display/hsw_ips.o \
->  	display/i9xx_plane.o \
-> +	display/i9xx_suspend.o \
->  	display/i9xx_wm.o \
->  	display/intel_alpm.o \
->  	display/intel_atomic.o \
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.c b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-> new file mode 100644
-> index 000000000000..211cf41119ad
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#include "i915_drv.h"
-> +#include "i915_reg.h"
-> +#include "i9xx_suspend.h"
-> +#include "intel_de.h"
-> +#include "intel_gmbus.h"
-> +#include "intel_vga.h"
-> +#include "intel_pci_config.h"
-> +
-> +static void intel_save_swf(struct drm_i915_private *i915)
-> +{
-> +	int i;
-> +
-> +	/* Scratch space */
-> +	if (DISPLAY_VER(i915) == 2 && IS_MOBILE(i915)) {
-> +		for (i = 0; i < 7; i++) {
-> +			i915->regfile.saveSWF0[i] = intel_de_read(i915,
-> +								      SWF0(i915, i));
-> +			i915->regfile.saveSWF1[i] = intel_de_read(i915,
-> +								      SWF1(i915, i));
-> +		}
-> +		for (i = 0; i < 3; i++)
-> +			i915->regfile.saveSWF3[i] = intel_de_read(i915,
-> +								      SWF3(i915, i));
-> +	} else if (DISPLAY_VER(i915) == 2) {
-> +		for (i = 0; i < 7; i++)
-> +			i915->regfile.saveSWF1[i] = intel_de_read(i915,
-> +								      SWF1(i915, i));
-> +	} else if (HAS_GMCH(i915)) {
-> +		for (i = 0; i < 16; i++) {
-> +			i915->regfile.saveSWF0[i] = intel_de_read(i915,
-> +								      SWF0(i915, i));
-> +			i915->regfile.saveSWF1[i] = intel_de_read(i915,
-> +								      SWF1(i915, i));
-> +		}
-> +		for (i = 0; i < 3; i++)
-> +			i915->regfile.saveSWF3[i] = intel_de_read(i915,
-> +								      SWF3(i915, i));
-> +	}
-> +}
-> +
-> +static void intel_restore_swf(struct drm_i915_private *i915)
-> +{
-> +	int i;
-> +
-> +	/* Scratch space */
-> +	if (DISPLAY_VER(i915) == 2 && IS_MOBILE(i915)) {
-> +		for (i = 0; i < 7; i++) {
-> +			intel_de_write(i915, SWF0(i915, i),
-> +				       i915->regfile.saveSWF0[i]);
-> +			intel_de_write(i915, SWF1(i915, i),
-> +				       i915->regfile.saveSWF1[i]);
-> +		}
-> +		for (i = 0; i < 3; i++)
-> +			intel_de_write(i915, SWF3(i915, i),
-> +				       i915->regfile.saveSWF3[i]);
-> +	} else if (DISPLAY_VER(i915) == 2) {
-> +		for (i = 0; i < 7; i++)
-> +			intel_de_write(i915, SWF1(i915, i),
-> +				       i915->regfile.saveSWF1[i]);
-> +	} else if (HAS_GMCH(i915)) {
-> +		for (i = 0; i < 16; i++) {
-> +			intel_de_write(i915, SWF0(i915, i),
-> +				       i915->regfile.saveSWF0[i]);
-> +			intel_de_write(i915, SWF1(i915, i),
-> +				       i915->regfile.saveSWF1[i]);
-> +		}
-> +		for (i = 0; i < 3; i++)
-> +			intel_de_write(i915, SWF3(i915, i),
-> +				       i915->regfile.saveSWF3[i]);
-> +	}
-> +}
-> +
-> +void i9xx_display_sr_save(struct drm_i915_private *i915)
-> +{
-> +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> +
-> +	if (!HAS_DISPLAY(i915))
-> +		return;
-> +
-> +	/* Display arbitration control */
-> +	if (DISPLAY_VER(i915) <= 4)
-> +		i915->regfile.saveDSPARB = intel_de_read(i915,
-> +							     DSPARB(i915));
-> +
-> +	if (DISPLAY_VER(i915) == 4)
-> +		pci_read_config_word(pdev, GCDGMBUS,
-> +				     &i915->regfile.saveGCDGMBUS);
-> +
-> +	intel_save_swf(i915);
-> +}
-> +
-> +void i9xx_display_sr_restore(struct drm_i915_private *i915)
-> +{
-> +	struct intel_display *display = &i915->display;
-> +	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> +
-> +	if (!HAS_DISPLAY(i915))
-> +		return;
-> +
-> +	intel_restore_swf(i915);
-> +
-> +	if (DISPLAY_VER(i915) == 4)
-> +		pci_write_config_word(pdev, GCDGMBUS,
-> +				      i915->regfile.saveGCDGMBUS);
-> +
-> +	/* Display arbitration */
-> +	if (DISPLAY_VER(i915) <= 4)
-> +		intel_de_write(i915, DSPARB(i915),
-> +			       i915->regfile.saveDSPARB);
-> +
-> +	intel_vga_redisable(display);
-> +
-> +	intel_gmbus_reset(i915);
+>          "Horizontal flip (mirror the image from right to left) is not
+>          supported with tile mode of Tile4.  Horizontal flip (mirror the
+>          image from right to left) is supported with tile mode of
+>          linear."
+> 
+> says pretty much the opposite for Tile4 and linear.
+> 
+> It might be worth explicitly confirming this with the hardware guys and
+> getting them to re-visit the tagging of these bspec pages to avoid the
+> conflicting information.
+> 
 
-The last two are for all platforms, so the function name is a bit
-misleading now.
+Thanks Matt, I think I'll need to start to bother hw guys with this 
+issue to get clarity. Lucas also pointed this is not a limitation on BMG 
+but I see LNL and BMG failing same way even if one is display 20 and 
+other is display 14 .. and MTL display 14 does work with hflip + tile4.
 
-Also we might want to do the SWF save/restore for all platforms
-as well, because technically we should be reading one of those
-to determine the maximum CDCLK for the system (if the BIOS
-has chosen a limit other than the platform default). We could
-get into trouble there if the driver is reloaded after S3,
-assuming S3 clobbers the SWF registers (which I'm not 100%
-sure it does, would need to confirm it).
+/Juha-Pekka
 
-I have an old branch that does the SWF read for BDW only
-'https://github.com/vsyrjala/linux.git bdw_vbios_cdclk_limit'
-but last I looked Windows was still doing this for all
-platforms, so we should probably we doing the same.
+> 
+>>
+>> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_fb.c            | 13 +++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_fb.h            |  1 +
+>>   drivers/gpu/drm/i915/display/skl_universal_plane.c | 12 ++++++++++++
+>>   3 files changed, 26 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+>> index d2ff21e98545..c9038d239eb2 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+>> @@ -439,6 +439,19 @@ bool intel_fb_needs_64k_phys(u64 modifier)
+>>   				      INTEL_PLANE_CAP_NEED64K_PHYS);
+>>   }
+>>   
+>> +/**
+>> + * intel_fb_is_tile4_modifier: Check if a modifier is a tile4 modifier type
+>> + * @modifier: Modifier to check
+>> + *
+>> + * Returns:
+>> + * Returns %true if @modifier is a tile4 modifier.
+>> + */
+>> +bool intel_fb_is_tile4_modifier(u64 modifier)
+>> +{
+>> +	return plane_caps_contain_any(lookup_modifier(modifier)->plane_caps,
+>> +				      INTEL_PLANE_CAP_TILING_4);
+>> +}
+>> +
+>>   static bool check_modifier_display_ver_range(const struct intel_modifier_desc *md,
+>>   					     u8 display_ver_from, u8 display_ver_until)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+>> index 068f3aee99aa..bff87994cf2c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+>> @@ -35,6 +35,7 @@ bool intel_fb_is_ccs_modifier(u64 modifier);
+>>   bool intel_fb_is_rc_ccs_cc_modifier(u64 modifier);
+>>   bool intel_fb_is_mc_ccs_modifier(u64 modifier);
+>>   bool intel_fb_needs_64k_phys(u64 modifier);
+>> +bool intel_fb_is_tile4_modifier(u64 modifier);
+>>   
+>>   bool intel_fb_is_ccs_aux_plane(const struct drm_framebuffer *fb, int color_plane);
+>>   int intel_fb_rc_ccs_cc_plane(const struct drm_framebuffer *fb);
+>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> index 17d4c880ecc4..4de41ab5060a 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> @@ -1591,6 +1591,18 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+>>   		return -EINVAL;
+>>   	}
+>>   
+>> +	/*
+>> +	 * Starting with LNL and BMG tile4 hflip is not supported
+>> +	 */
+>> +	if (rotation & DRM_MODE_REFLECT_X &&
+>> +	    intel_fb_is_tile4_modifier(fb->modifier) &&
+>> +	    ((DISPLAY_VER(dev_priv) >= 14 && IS_DGFX(dev_priv)) ||
+>> +	     (DISPLAY_VER(dev_priv) >= 20 && !IS_DGFX(dev_priv)))) {
+>> +		drm_dbg_kms(&dev_priv->drm,
+>> +			    "horizontal flip is not supported with tile4 surface formats\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>>   	if (drm_rotation_90_or_270(rotation)) {
+>>   		if (!intel_fb_supports_90_270_rotation(to_intel_framebuffer(fb))) {
+>>   			drm_dbg_kms(&dev_priv->drm,
+>> -- 
+>> 2.45.2
+>>
+> 
 
--- 
-Ville Syrjälä
-Intel
