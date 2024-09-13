@@ -2,69 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8DD978A69
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 23:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C94DF978A9C
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 23:32:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C5510EBD5;
-	Fri, 13 Sep 2024 21:05:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E6A10EDB3;
+	Fri, 13 Sep 2024 21:32:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="LcXvpDa5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TZr0OfXt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
- [209.85.160.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1F310EDAA
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 21:05:12 +0000 (UTC)
-Received: by mail-qt1-f174.google.com with SMTP id
- d75a77b69052e-4582fa01090so77761cf.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 14:05:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1726261511; x=1726866311;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=1BcM4lFpbGajeTbbT/mhOoL1c44seTsAjZcdL46W1OY=;
- b=LcXvpDa5M1MhA5uzajnpf5Uu9urBo5YSQ/ZS84X1hyA1mpssukTBo1rksHBFVoFY/L
- PO0RNjQFPuTRLddiytPMTONtoMrHPgTNYK7wobtbHNB8qSXfLRvhBm9AfGUfeyzamKUc
- au/2C+Ap8j1I6sV5sw8gCGXSGDZ8/yeGDD75o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726261511; x=1726866311;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=1BcM4lFpbGajeTbbT/mhOoL1c44seTsAjZcdL46W1OY=;
- b=cbOWIVy/jLzKZ9N79dOCW5lUTiCAwryCjppjCUjq/w1+S8QXvYdhJRYVKcvQdxPxEp
- dAanGT/RXoNTYkogCA3vIRHVaq8/2hVDoMYC3UqdmPnHSEcHdtGW1JBZJqbVWO8dSfg8
- 2XsG5SPEN58iT0Bd9x5ztNWiBYiS9+ggzBoMfh/lSUujJThiFhBbkhzHsqQhfJ3qYmLn
- Sfhsv/GuzKjdkpKJ2xLIibq51ZvSxf8AtnepEzpBtoHlHJEUMz/VcOTZDIU8rw6AHTjg
- ulDDvEp0Ms8C1qp+IGlfahxjE5sMy7PmuhZGbDEn9Q8SF+9YyLMHoHDIMxGKwdt4ySK/
- CHMg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWkeVU4nrThm//LF086xw1RwNkVapl6yyYbyuVk5GvyMklWLtKtY0y3XUtSghVVTMmRww20hHQLsHw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxH4uGesVHIRpOFMJYMdjxcLPr5KiwTcumDMrSDmttPG7ETb14p
- xe6hHKwrSF1X1KyrfRG6fq0I2oIj/YX44bXa0sglrZ1RK5aDuX/mecmvgpr4zAAKRokbgDdxRMw
- udV+drxiYkxufyjnZtEdho08Qdh5jtnrVJic0
-X-Google-Smtp-Source: AGHT+IFNRp9kjdF5lPJBN4P/u35hlTu6w+0QAcj6x9ZSyI0WuN2oPGU/zG4A4BHZew+CcsGHtVNi4SatFGwQfWsqIMc=
-X-Received: by 2002:ac8:7e8f:0:b0:453:56d3:d155 with SMTP id
- d75a77b69052e-4586079ad25mr7773551cf.8.1726261511093; Fri, 13 Sep 2024
- 14:05:11 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DFBE10EDB3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 21:32:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726263138; x=1757799138;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8tg8u7ziE8Yep5kKGdXUcG/RJyLK1xhjfb2ZY1f9lEo=;
+ b=TZr0OfXtQNP+zxBE9tYlsS2DK4ognpN3NK64Kz4PQYZrkjWbAJ+QtWjL
+ fPbrrMo4s0zfJ62b3E65F6Ab8bwTyJugdSPTxqNTshd1EXV1u25Lzq0LP
+ xx9LAkXyJRAknpeeWP1pFQl2W62/qm+p21Ul2i9lrfL9GuxBakCykUthp
+ UzYSjgr+uIo0w04HGt6EJ9VuH4aY6aCh0gPNb7NKEPZIg1im3Il1vTiMv
+ 6sHa8eixQLOAeGTRz1dauUrSNfglHiHom/17bhzO93tPOICdn7/7BhMoV
+ bDOrbnxc1Zk3Mm1Q9ZXbzbE5z3AkfcGO9JUvPaZTvA/kgMPuem4ubvlaT g==;
+X-CSE-ConnectionGUID: mK8ox3qERPiMNJ2QhLoisw==
+X-CSE-MsgGUID: /ncRrld2QTGxxu134nd3zQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="50593390"
+X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; d="scan'208";a="50593390"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 14:32:18 -0700
+X-CSE-ConnectionGUID: wZq1/cegSpyjaYG/KQum3A==
+X-CSE-MsgGUID: Bd0quYDFQBCIb1VKwvcPRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,227,1719903600"; d="scan'208";a="68983426"
+Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.153])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2024 14:32:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915/display: move enum i9xx_plane_id to
+ intel_display_limits.h
+In-Reply-To: <ZuSmylwGgvOPi1W7@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1726235647.git.jani.nikula@intel.com>
+ <1e8f9768f2d638dfa1fc72f80f0d7391c4a48bbb.1726235647.git.jani.nikula@intel.com>
+ <ZuSmylwGgvOPi1W7@intel.com>
+Date: Sat, 14 Sep 2024 00:32:13 +0300
+Message-ID: <8734m3dyua.fsf@intel.com>
 MIME-Version: 1.0
-References: <20240913191428.1539653-1-javierm@redhat.com>
-In-Reply-To: <20240913191428.1539653-1-javierm@redhat.com>
-From: Julius Werner <jwerner@chromium.org>
-Date: Fri, 13 Sep 2024 14:04:55 -0700
-Message-ID: <CAODwPW8nEkc=x+BeSajfMVjXzET_0G3h-xFMnbUaE8Lgi-173Q@mail.gmail.com>
-Subject: Re: [PATCH v2] firmware: coreboot: Don't register a pdev if
- screen_info data is present
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Hugues Bruant <hugues.bruant@gmail.com>, Julius Werner <jwerner@chromium.org>, 
- Brian Norris <briannorris@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Borislav Petkov <bp@alien8.de>, Tzung-Bi Shih <tzungbi@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,12 +71,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> +       /*
-> +        * On Coreboot systems, the advertised LB_TAG_FRAMEBUFFER entry
-> +        * in the Coreboot table should only be used if the payload did
-> +        * not pass a framebuffer information to the Linux kernel.
+On Fri, 13 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Fri, Sep 13, 2024 at 04:54:39PM +0300, Jani Nikula wrote:
+>> Move enum i9xx_plane_id from intel_display.h to intel_display_limits.h
+>> to be able to reduce dependencies on intel_display.h.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.h        | 10 ----------
+>>  drivers/gpu/drm/i915/display/intel_display_limits.h | 10 ++++++++++
+>>  drivers/gpu/drm/i915/gvt/cmd_parser.c               |  1 -
+>>  3 files changed, 10 insertions(+), 11 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+>> index d10608526eee..4bdb48084cab 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -95,16 +95,6 @@ static inline bool transcoder_is_dsi(enum transcoder transcoder)
+>>  	return transcoder == TRANSCODER_DSI_A || transcoder == TRANSCODER_DSI_C;
+>>  }
+>>  
+>> -/*
+>> - * Global legacy plane identifier. Valid only for primary/sprite
+>> - * planes on pre-g4x, and only for primary planes on g4x-bdw.
+>> - */
+>> -enum i9xx_plane_id {
+>> -	PLANE_A,
+>> -	PLANE_B,
+>> -	PLANE_C,
+>> -};
+>> -
+>>  #define plane_name(p) ((p) + 'A')
+>>  
+>>  #define for_each_plane_id_on_crtc(__crtc, __p) \
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/drivers/gpu/drm/i915/display/intel_display_limits.h
+>> index c4775c99dc83..f0fa27e365ab 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_limits.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
+>
+> why here and not in somewhere like:
+> drivers/gpu/drm/i915/display/i9xx_plane.h
+> ?
 
-nit: The official brand spelling is "coreboot", always lowercase (even
-at the start of a sentence). Not a big deal though.
+Here it's next to enum plane_id. This entire file exists to provide a
+minimal header for the enums.
 
-Reviewed-by: Julius Werner <jwerner@chromium.org>
+I'm not sure what the right thing is, but putting this to i9xx_plane.h
+means including that file in more places, just for this thing, while
+they have no use at all for the interfaces provided by i9xx_plane.h.
+
+BR,
+Jani.
+
+
+
+>
+>> @@ -49,6 +49,16 @@ enum transcoder {
+>>  	I915_MAX_TRANSCODERS
+>>  };
+>>  
+>> +/*
+>> + * Global legacy plane identifier. Valid only for primary/sprite
+>> + * planes on pre-g4x, and only for primary planes on g4x-bdw.
+>> + */
+>> +enum i9xx_plane_id {
+>> +	PLANE_A,
+>> +	PLANE_B,
+>> +	PLANE_C,
+>> +};
+>> +
+>>  /*
+>>   * Per-pipe plane identifier.
+>>   * I915_MAX_PLANES in the enum below is the maximum (across all platforms)
+>> diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+>> index 2f4c9c66b40b..81d67a46cd9e 100644
+>> --- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
+>> +++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+>> @@ -50,7 +50,6 @@
+>>  #include "trace.h"
+>>  
+>>  #include "display/i9xx_plane_regs.h"
+>> -#include "display/intel_display.h"
+>>  #include "display/intel_sprite_regs.h"
+>>  #include "gem/i915_gem_context.h"
+>>  #include "gem/i915_gem_pm.h"
+>> -- 
+>> 2.39.2
+>> 
+
+-- 
+Jani Nikula, Intel
