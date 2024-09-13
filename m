@@ -2,46 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B65977BD7
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 11:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A75A977C83
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 11:46:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB34610ECCD;
-	Fri, 13 Sep 2024 09:07:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B57BF10ECD7;
+	Fri, 13 Sep 2024 09:46:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="T9bxSaS6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Sc0KWXyC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D39210ECCD
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 09:07:38 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E33310ECD7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 09:46:16 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id F28305C5C5E;
- Fri, 13 Sep 2024 09:07:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9750C4CEC0;
- Fri, 13 Sep 2024 09:07:36 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id C814CA45C10;
+ Fri, 13 Sep 2024 09:46:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C2B1C4CEC0;
+ Fri, 13 Sep 2024 09:46:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726218457;
- bh=7brhamL/uQvbURtzuhiqi1K/e2r9ubXQp6Uk3jeCSls=;
+ s=k20201202; t=1726220775;
+ bh=ISwSCHYkXDb6Th83WAS8dgoZ4YDbI4MwUzDiPaxo5qc=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=T9bxSaS6yW2GhGrjhGBxfXzqHm8qSpyzRiE4PIg60Lj+a8p5Q02XwgolB7p825nrz
- MEhsKzDByp0fT5dO0H0hxWszP92KPtkRr1k6ulSv++NHyOkE04Ie0lKL/Jn1Mwsnr9
- GYp2G6ho49GteVAFEM2DNkEQfUhdHdTP+TvmCCMWnNvqKU5PC/pWGL8EovqQvhU112
- I9kQZEIicM5a9uesAx30cIUu3TmUWUvf78JNj2ANTWvwOONw/D7dO9G7+flggmCaeg
- SZ2hn8MWG4km31qMBj//wVT3oqYxtEwxPoYnxwRJiAuQhGKJLRMJkPyJyFnF4Kz2Ld
- 5XFvy/7/472xg==
-Date: Fri, 13 Sep 2024 11:07:33 +0200
+ b=Sc0KWXyCvO/dVw9q7eg7H3BtMnOLa9t+tfrduo72dHbiVjdOdmmIpEHtAzMr3gzqV
+ bmpLuTm3wAAxbHzF98UHTRcnjpQjIPhpKGXr3kWqZJ5tQjkoyolpDmbvffrvi64ECN
+ +HL3QZSrifPQVrozSs71gNxkCVxlFudkS/YEkKRhuGtbBsEA4jXlvuf2hwcFqe2oZB
+ DJupsqIomQTzlcdLFP52WtJG/BYjQQeBH04t3KiXV6rk4oNrEfAPcg9tHYpBkQMkqo
+ oHMq03C5KRyPye/wAYHVCogAQW0Z6XTNaCkNiB1qJxk3S86XtRgozInnooVXf/m82w
+ ornCqAyh/1lPw==
+Date: Fri, 13 Sep 2024 11:46:10 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/3] drm/i915/irq: Rename suspend/resume funcitons
-Message-ID: <rrd65omm4ldoimnilv4kcsyvjxc6rtgeiybjnh4mfl2b3lkt63@3wb3s5qpwm6k>
-References: <20240912172539.418957-1-rodrigo.vivi@intel.com>
- <20240912172539.418957-3-rodrigo.vivi@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>, andi.shyti@linux.intel.com, 
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, 
+ tursulin@ursulin.net, linux@roeck-us.net, andriy.shevchenko@linux.intel.com, 
+ intel-gfx@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ anshuman.gupta@intel.com, 
+ badal.nilawar@intel.com, ashutosh.dixit@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v3] drm/i915/hwmon: expose package temperature
+Message-ID: <go5gwihnfslcmcxpqiajxg35pniov4pjlpkkb33bp5o3wftk7s@6kodd3ugl7wc>
+References: <20240910105242.3357276-1-raag.jadav@intel.com>
+ <b0eb87b5-e42d-4ab0-9d48-7ca07ef80708@intel.com>
+ <ZuP9Cvd_LfJS_Yir@black.fi.intel.com>
+ <htzuvg2nupr6glndudxywz7uzbbjmgpecge4krll4fz2e35bdq@c7ague67qzx6>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <20240912172539.418957-3-rodrigo.vivi@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <htzuvg2nupr6glndudxywz7uzbbjmgpecge4krll4fz2e35bdq@c7ague67qzx6>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,19 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+Hi Raag,
 
-On Thu, Sep 12, 2024 at 01:25:39PM GMT, Rodrigo Vivi wrote:
-> Although these functions are used in runtime_pm, they are not
-> exclusively used there, so remove the misleading prefix.
+On Fri, Sep 13, 2024 at 10:57:00AM GMT, Andi Shyti wrote:
+> On Fri, Sep 13, 2024 at 11:51:22AM GMT, Raag Jadav wrote:
+> > On Fri, Sep 13, 2024 at 11:14:22AM +0530, Riana Tauro wrote:
+> > > On 9/10/2024 4:22 PM, Raag Jadav wrote:
+> > > > Add hwmon support for temp1_input attribute, which will expose package
+> > > > temperature in millidegree Celsius. With this in place we can monitor
+> > > > package temperature using lm-sensors tool.
+> > > > 
+> > > > $ sensors
+> > > > i915-pci-0300
+> > > > Adapter: PCI adapter
+> > > > in0:         990.00 mV
+> > > > fan1:        1260 RPM
+> > > > temp1:        +45.0°C
+> > > > power1:           N/A  (max =  35.00 W)
+> > > > energy1:      12.62 kJ
+> > > > 
+> > > > v2: Use switch case (Anshuman)
+> > > > v3: Comment adjustment (Riana)
+> > > > 
+> > > > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11276
+> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > > Looks good to me
+> > > Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+> > 
+> > Thank you :)
+> > 
+> > Andi, can you pick this one up? Anshuman's machine is down.
 > 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Sure!
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-A general note, please add a cover letter even if the series
-looks trivial. It's important to have an overview of what the
-series does.
+merged to drm-intel-next.
 
 Thanks,
 Andi
