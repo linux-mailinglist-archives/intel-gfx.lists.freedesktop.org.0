@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC16977BC7
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 11:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84258977BD1
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 11:05:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CC310E17F;
-	Fri, 13 Sep 2024 09:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E16110ECCB;
+	Fri, 13 Sep 2024 09:05:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bOGz9jF+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LqYA54m3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 012ED10E17F
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 09:01:47 +0000 (UTC)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4445010ECCB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 09:05:20 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id D55375C5A26;
- Fri, 13 Sep 2024 09:01:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 961ECC4CEC0;
- Fri, 13 Sep 2024 09:01:46 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 946CFA45BC7;
+ Fri, 13 Sep 2024 09:05:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74476C4CEC0;
+ Fri, 13 Sep 2024 09:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726218107;
- bh=ne3/lPb5s73DtAdItEMZbVACQRuOOjemRJnEAZRzmfg=;
+ s=k20201202; t=1726218318;
+ bh=i+jkLvsxOa+k81l+UvNJdIdHEWPOrhM5S7XYqspA9e0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=bOGz9jF+dRedtjIJYQrM9/nNjSLzrnbez9jHkryepaMj0FlbPihpqxJH9WGWc9EQ+
- BQGnTGF7CBuvETXPCa0Hs9x+CDmm44J3hK4eRLbSqsb0RXmBpqvei509xcapmXDkav
- n8zepfNbOCjyx0Dx0tbJ7Hmk0pilfAZwX9EN/ZvgeZxf9NGjOpxYyDbdP0OGD9bJuj
- 89krw1c7FdqBykh4JF80sh3e0JmShXhrbf8paCxLs9V9IJKNUghtYTH11uHy6aCZ47
- NPzPpf7eG/IhC7YuYn4O3B7Mz9WIGiLM2dYQ2r0gwqPFaJi/3B0/SG+ikhvBja87Nq
- rGZ8bMAkDzc2Q==
-Date: Fri, 13 Sep 2024 11:01:43 +0200
+ b=LqYA54m3DctvFOa+f0Em5pKis7Kwo/wQqPRV7WsVKvHoyhw/HnMPbVevTF7dt0RM1
+ qdYUi1yZFzvbHV5hc522OxWcBwNWCaqhXFzc7jaERCidZcJ5VOqTOaYcfexBKZwGfQ
+ AbDKbpqj4XGd00n0tfiZITl2FOBp5TbVY6Z3Ad6LzAarcD3eqhBpPAFJ/J3yTwBE2O
+ tUT37iMfeo6R486wjLrzXFNIxnu+aYlWpFV5cY+VNE26E5gZRwMOZV4zfQf+xBC/kT
+ a6rq/rSjJ92Lg4j6lksC0aHH5kQZXA/hyDdUFqIS/Z/p3cenhjLs4s89mSkaUqsxlt
+ MHP2YCcbSJ/GA==
+Date: Fri, 13 Sep 2024 11:05:15 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/irq: Remove duplicated irq_enabled variable
-Message-ID: <i46x7jl6pa4yuugrur3irchdafg2h4lbxs3avfx7lgo7wwa4dd@fjtli3ngwkca>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] drm/i915/irq: Move irqs_enabled out of runtime_pm
+Message-ID: <zmbzkbvt7kchriak2bmdhbg34ppmnbxqqhhdi6vcob4ioab5sn@jg2c63usr4ie>
 References: <20240912172539.418957-1-rodrigo.vivi@intel.com>
+ <20240912172539.418957-2-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240912172539.418957-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20240912172539.418957-2-rodrigo.vivi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,22 +59,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Rodrigo,
 
-On Thu, Sep 12, 2024 at 01:25:37PM GMT, Rodrigo Vivi wrote:
-> Let's kill this legacy iand almost unused rq_enabled version
-> in favor of the real one that is checked at
-> intel_irqs_enabled().
+On Thu, Sep 12, 2024 at 01:25:38PM GMT, Rodrigo Vivi wrote:
+> This information is used in many places and it doesn't have
+> anything to do with runtime_pm directly. Let's move it to
+> the driver, where it belongs.
 > 
-> The commit 'ac1723c16b66 ("drm/i915: Track IRQ state
-> in local device state")' shows that this was a legacy
-> DRM level irq_enabled information that got removed.
-> 
-> But the driver one already existed under a different
-
-But the driver has already one under a different name (and
-perhaps specify which one and which location :-))
-
-I don't think you need to send a v2 for commit log changes.
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
+Thanks,
 Andi
