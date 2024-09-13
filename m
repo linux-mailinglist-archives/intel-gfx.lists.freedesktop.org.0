@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93C0797819E
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 15:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 913849781A0
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 15:55:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B9B210ED1B;
-	Fri, 13 Sep 2024 13:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32E5810E278;
+	Fri, 13 Sep 2024 13:55:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E7K2y4bt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cWMv2E3X";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D34410E278
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 13:54:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFEA210E278
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2024 13:54:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726235690; x=1757771690;
+ t=1726235700; x=1757771700;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=izlOGzt1ly1R63u3bAtVtufgwhCbqfYBmTQxqmCEdBg=;
- b=E7K2y4btsTub1WPmpuLnXnNCjt+gzeesZ4EVXPl1CFgmM0Vo/uka2B4J
- onjxh+eL7Z8BKpAD5H0acQrY6hazj9B8OdGYx2ruH95I8iDqI0ctRtvrJ
- NdA2ibusirHqUyTtirmYQpAYdPYttu2LeUa+tfGs/0BddKCg/qo+A7+i/
- i7hzeuAIhgDS/zZdjpJGeXvmEWPIkuLDC2en8C56ZRV2QYNtRyticbUHY
- BSx/YOq03T7cnVoZWghAwAPU5zmRRUrJ6Z8YKw+SO+pVkEIT3uOq8nvng
- lDYCbh4l3hhD83GiL5abWNrnkkZB474Skcwut9gttAW8tNFqNLWP2sFrA g==;
-X-CSE-ConnectionGUID: oDMvxwNhQ2q5YDIMzLwmtw==
-X-CSE-MsgGUID: Gvt13Z2GT/+zogBl1Ds9VA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="42612209"
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="42612209"
+ bh=STfhJR+r4js0oy+9BZm+bDnzdCQcacfFVkYAeJgQ9XM=;
+ b=cWMv2E3XF5Pvc07YYqsqV8rHSDtD0K1GJygsdvZzBTQzEH8Ovd54G59q
+ yjjBlSEgNndqEYxkMotnR0OYQyjyimNGZuFRH6YfBW18vt9AnZ9wLVhNU
+ I3vL2kHF2uwqx9HFGHnwSTgx3zAtHTZ3mbjvwbsyhYaVelNsYzfpqb+eW
+ A1Zj4uBfVbdHi1FX9JoSGXAooJUx4bT4gsf8G7rRvWS8PqmW85UuQOXYl
+ oyKckHGjzJEh66f7BBTTlyW9eU9e3IKpGYKCOzn4P6jhSfPTTo1RmFn3H
+ q0Y14zzTeTXTSG8YMeI3F6eE+PG2Gu3H38ZtwAvGV5oJXYUMq1w0JGMOJ Q==;
+X-CSE-ConnectionGUID: j36P90BnTtWYFvelo2Dk2g==
+X-CSE-MsgGUID: DP/fmbOlSh2Y2kleSawk5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11194"; a="42612229"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="42612229"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 06:54:50 -0700
-X-CSE-ConnectionGUID: DK0jIUatS0+tG5ibYA+NUA==
-X-CSE-MsgGUID: XMNNqftZSn67x5QgM5zSlg==
+ 13 Sep 2024 06:55:00 -0700
+X-CSE-ConnectionGUID: qdiKEB1hTEiy6YyFXpIo/Q==
+X-CSE-MsgGUID: 4GcuCsMHSa2Hf9d2XUcWtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="72872248"
+X-IronPort-AV: E=Sophos;i="6.10,226,1719903600"; d="scan'208";a="72872275"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.64])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2024 06:54:50 -0700
+ 13 Sep 2024 06:54:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/2] drm/i915: move intel_get_pipe_from_crtc_id_ioctl to
- intel_crtc.c
-Date: Fri, 13 Sep 2024 16:54:38 +0300
-Message-Id: <edcf4477e6f38cc1f36a8afc0d09fd98544803ab.1726235647.git.jani.nikula@intel.com>
+Subject: [PATCH 2/2] drm/i915/display: move enum i9xx_plane_id to
+ intel_display_limits.h
+Date: Fri, 13 Sep 2024 16:54:39 +0300
+Message-Id: <1e8f9768f2d638dfa1fc72f80f0d7391c4a48bbb.1726235647.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1726235647.git.jani.nikula@intel.com>
 References: <cover.1726235647.git.jani.nikula@intel.com>
@@ -70,135 +70,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reduce the size of and dependencies on intel_display.[ch], and move
-intel_get_pipe_from_crtc_id_ioctl() to intel_crtc.[ch]. Rename to
-intel_crtc_get_pipe_from_crtc_id_ioctl() while at it.
+Move enum i9xx_plane_id from intel_display.h to intel_display_limits.h
+to be able to reduce dependencies on intel_display.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c    | 17 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_crtc.h    |  4 ++++
- drivers/gpu/drm/i915/display/intel_display.c | 17 -----------------
- drivers/gpu/drm/i915/display/intel_display.h |  3 ---
- drivers/gpu/drm/i915/i915_driver.c           |  4 ++--
- 5 files changed, 23 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.h        | 10 ----------
+ drivers/gpu/drm/i915/display/intel_display_limits.h | 10 ++++++++++
+ drivers/gpu/drm/i915/gvt/cmd_parser.c               |  1 -
+ 3 files changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index aed3853952be..f95d169fc324 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -389,6 +389,23 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	return ret;
- }
- 
-+int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
-+					   struct drm_file *file)
-+{
-+	struct drm_i915_get_pipe_from_crtc_id *pipe_from_crtc_id = data;
-+	struct drm_crtc *drm_crtc;
-+	struct intel_crtc *crtc;
-+
-+	drm_crtc = drm_crtc_find(dev, file, pipe_from_crtc_id->crtc_id);
-+	if (!drm_crtc)
-+		return -ENOENT;
-+
-+	crtc = to_intel_crtc(drm_crtc);
-+	pipe_from_crtc_id->pipe = crtc->pipe;
-+
-+	return 0;
-+}
-+
- static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->hw.active &&
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-index 0de8c772df2e..a58ecd11bba2 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-@@ -10,7 +10,9 @@
- 
- enum i9xx_plane_id;
- enum pipe;
-+struct drm_device;
- struct drm_display_mode;
-+struct drm_file;
- struct drm_i915_private;
- struct intel_atomic_state;
- struct intel_crtc;
-@@ -32,6 +34,8 @@ int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
- void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state);
- u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state);
- int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe);
-+int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
-+					   struct drm_file *file_priv);
- struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc);
- void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
- 			    struct intel_crtc *crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index fdf244a32b24..7bba54a31eda 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7706,23 +7706,6 @@ void intel_plane_destroy(struct drm_plane *plane)
- 	kfree(to_intel_plane(plane));
- }
- 
--int intel_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
--				      struct drm_file *file)
--{
--	struct drm_i915_get_pipe_from_crtc_id *pipe_from_crtc_id = data;
--	struct drm_crtc *drmmode_crtc;
--	struct intel_crtc *crtc;
--
--	drmmode_crtc = drm_crtc_find(dev, file, pipe_from_crtc_id->crtc_id);
--	if (!drmmode_crtc)
--		return -ENOENT;
--
--	crtc = to_intel_crtc(drmmode_crtc);
--	pipe_from_crtc_id->pipe = crtc->pipe;
--
--	return 0;
--}
--
- static u32 intel_encoder_possible_clones(struct intel_encoder *encoder)
- {
- 	struct drm_device *dev = encoder->base.dev;
 diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 7ca26e5cb20e..d10608526eee 100644
+index d10608526eee..4bdb48084cab 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -471,9 +471,6 @@ bool intel_encoder_is_snps(struct intel_encoder *encoder);
- bool intel_encoder_is_tc(struct intel_encoder *encoder);
- enum tc_port intel_encoder_to_tc(struct intel_encoder *encoder);
+@@ -95,16 +95,6 @@ static inline bool transcoder_is_dsi(enum transcoder transcoder)
+ 	return transcoder == TRANSCODER_DSI_A || transcoder == TRANSCODER_DSI_C;
+ }
  
--int intel_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
--				      struct drm_file *file_priv);
+-/*
+- * Global legacy plane identifier. Valid only for primary/sprite
+- * planes on pre-g4x, and only for primary planes on g4x-bdw.
+- */
+-enum i9xx_plane_id {
+-	PLANE_A,
+-	PLANE_B,
+-	PLANE_C,
+-};
 -
- int ilk_get_lanes_required(int target_clock, int link_bw, int bpp);
- void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
- 			 struct intel_digital_port *dig_port,
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 943e938040c0..7f98f2dbd881 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -48,8 +48,8 @@
- #include "display/intel_acpi.h"
- #include "display/intel_bw.h"
- #include "display/intel_cdclk.h"
-+#include "display/intel_crtc.h"
- #include "display/intel_display_driver.h"
+ #define plane_name(p) ((p) + 'A')
+ 
+ #define for_each_plane_id_on_crtc(__crtc, __p) \
+diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h b/drivers/gpu/drm/i915/display/intel_display_limits.h
+index c4775c99dc83..f0fa27e365ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_limits.h
++++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
+@@ -49,6 +49,16 @@ enum transcoder {
+ 	I915_MAX_TRANSCODERS
+ };
+ 
++/*
++ * Global legacy plane identifier. Valid only for primary/sprite
++ * planes on pre-g4x, and only for primary planes on g4x-bdw.
++ */
++enum i9xx_plane_id {
++	PLANE_A,
++	PLANE_B,
++	PLANE_C,
++};
++
+ /*
+  * Per-pipe plane identifier.
+  * I915_MAX_PLANES in the enum below is the maximum (across all platforms)
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index 2f4c9c66b40b..81d67a46cd9e 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -50,7 +50,6 @@
+ #include "trace.h"
+ 
+ #include "display/i9xx_plane_regs.h"
 -#include "display/intel_display.h"
- #include "display/intel_dmc.h"
- #include "display/intel_dp.h"
- #include "display/intel_dpt.h"
-@@ -1724,7 +1724,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(I915_GEM_SET_TILING, i915_gem_set_tiling_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_GET_TILING, i915_gem_get_tiling_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_GET_APERTURE, i915_gem_get_aperture_ioctl, DRM_RENDER_ALLOW),
--	DRM_IOCTL_DEF_DRV(I915_GET_PIPE_FROM_CRTC_ID, intel_get_pipe_from_crtc_id_ioctl, 0),
-+	DRM_IOCTL_DEF_DRV(I915_GET_PIPE_FROM_CRTC_ID, intel_crtc_get_pipe_from_crtc_id_ioctl, 0),
- 	DRM_IOCTL_DEF_DRV(I915_GEM_MADVISE, i915_gem_madvise_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(I915_OVERLAY_PUT_IMAGE, intel_overlay_put_image_ioctl, DRM_MASTER),
- 	DRM_IOCTL_DEF_DRV(I915_OVERLAY_ATTRS, intel_overlay_attrs_ioctl, DRM_MASTER),
+ #include "display/intel_sprite_regs.h"
+ #include "gem/i915_gem_context.h"
+ #include "gem/i915_gem_pm.h"
 -- 
 2.39.2
 
