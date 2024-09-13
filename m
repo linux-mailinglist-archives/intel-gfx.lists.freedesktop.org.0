@@ -2,23 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB50977ED1
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 13:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1587977ED2
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Sep 2024 13:47:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E6C310ECEF;
-	Fri, 13 Sep 2024 11:47:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64F8710ECF6;
+	Fri, 13 Sep 2024 11:47:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCBE010ECE7;
- Fri, 13 Sep 2024 11:47:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCF910ECF0;
+ Fri, 13 Sep 2024 11:47:50 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
+Cc: intel-gfx@lists.freedesktop.org, Animesh Manna <animesh.manna@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
-Date: Fri, 13 Sep 2024 13:47:53 +0200
-Message-ID: <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 2/2] drm/xe: Revert "drm/i915: Disable DSB in Xe KMD"
+Date: Fri, 13 Sep 2024 13:47:54 +0200
+Message-ID: <20240913114754.7956-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
 References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
@@ -39,39 +39,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the scanout flag to force WC caching, and add the memory barrier
-where needed.
+From: Animesh Manna <animesh.manna@intel.com>
 
+This reverts commit c27f010aa1884276ee5dae72034d84987060c769.
+
+After fix from [1] dsb timeout issue is not reproducible on local testing
+with xe driver. Checking CI result to confirm and not for review.
+
+[1] https://patchwork.freedesktop.org/series/130783/
+
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240708055630.4058818-1-animesh.manna@intel.com
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-index f99d901a3214f..f7949bf5426af 100644
---- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-+++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-@@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
- 	if (!vma)
- 		return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index c39bae1be89e3..0f1de1b6747e5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -706,10 +706,6 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 	if (!i915->display.params.enable_dsb)
+ 		return NULL;
  
-+	/* Set scanout flag for WC mapping */
- 	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
- 				   NULL, PAGE_ALIGN(size),
- 				   ttm_bo_type_kernel,
- 				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
--				   XE_BO_FLAG_GGTT);
-+				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
- 	if (IS_ERR(obj)) {
- 		kfree(vma);
- 		return false;
-@@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
- 
- void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
- {
--	/* TODO: add xe specific flush_map() for dsb buffer object. */
-+	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
- }
+-	/* TODO: DSB is broken in Xe KMD, so disabling it until fixed */
+-	if (!IS_ENABLED(I915))
+-		return NULL;
+-
+ 	dsb = kzalloc(sizeof(*dsb), GFP_KERNEL);
+ 	if (!dsb)
+ 		goto out;
 -- 
 2.45.2
 
