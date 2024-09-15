@@ -2,67 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC30997950E
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Sep 2024 09:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB08C97A27E
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 14:46:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405A610E094;
-	Sun, 15 Sep 2024 07:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798E110E354;
+	Mon, 16 Sep 2024 12:46:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dR7kp/XO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q0HLDVFp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A026810E094;
- Sun, 15 Sep 2024 07:45:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726386340; x=1757922340;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ln6JdQKZxPzLOTZu5d6+cUSDJEZvAnaWQJ5mqRPyLOk=;
- b=dR7kp/XOb4BgFhuLNQXfCyqdd6TKCMzU213A1dv4ROIvPes67mHdx/9R
- HCkvj8cNH4GWVIVJEW/gJlVQsBaffouLdXayXccyeHndrxovSCG2IPJ/W
- H1+ZNmpTigpFvtJ1pC5jnrmcZ2VfbLsqNt+yM1eos3azgDldseleiEzqX
- W+ex2FrFnRgzm5qK1wpk5fH0J/V6ldk6JLoWrLaNTA8fxFjd/J/2Bl898
- 4i4FVL3RqoI081P+3J4nCCxwNHN+PIMeTAu2EXHOPZcfczDu5CCAREew4
- tmQhna137y35NN6kMZIA26Kh+iFN2lUWRN7DuHD5z89aKSmViSkdKsmut Q==;
-X-CSE-ConnectionGUID: nhXtf9NsQ6a8vLIytAWBmg==
-X-CSE-MsgGUID: 4fde59WHQYiluPMhCo/83A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11195"; a="25070283"
-X-IronPort-AV: E=Sophos;i="6.10,230,1719903600"; d="scan'208";a="25070283"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2024 00:45:39 -0700
-X-CSE-ConnectionGUID: 8SqHzLf2TnmkpkuZpV8jEQ==
-X-CSE-MsgGUID: f5XJnoTnTueAo3BE2Fgj4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,230,1719903600"; d="scan'208";a="68799103"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
- by fmviesa010.fm.intel.com with ESMTP; 15 Sep 2024 00:45:36 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1spjwr-0008V4-2W;
- Sun, 15 Sep 2024 07:45:33 +0000
-Date: Sun, 15 Sep 2024 15:44:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Julius Werner <jwerner@chromium.org>,
- Hugues Bruant <hugues.bruant@gmail.com>, intel-gfx@lists.freedesktop.org,
- Brian Norris <briannorris@chromium.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org, Borislav Petkov <bp@alien8.de>,
- chrome-platform@lists.linux.dev,
- Javier Martinez Canillas <javierm@redhat.com>,
- Tzung-Bi Shih <tzungbi@kernel.org>
-Subject: Re: [PATCH v3] firmware: coreboot: Don't register a pdev if
- screen_info data is present
-Message-ID: <202409151528.CIWZRPBq-lkp@intel.com>
-References: <20240913213246.1549213-1-javierm@redhat.com>
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F27CB10E09B;
+ Sun, 15 Sep 2024 12:02:15 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-42cb58d810eso28480165e9.0; 
+ Sun, 15 Sep 2024 05:02:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1726401734; x=1727006534; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=P40wET+w71UJyEkZ9BoZfs/VvG0c/BBfUWCIfkdVP7I=;
+ b=Q0HLDVFpHzkHyP67ws8Fsgok/VbJtFGAG0IIqrz2MkHBJFWY6NtrPWsokn+4om3tWI
+ ecqYu5ulFSupo96DXbcJ/R64Sajv0mFYVkqonCBzEZj6hs5tNAeHQD48dsUR9sq2RRi0
+ 38PM8XNl+lDZ3j56ERqlgolcZb8N09tyQ5XwrTN3V1ujfP0H3Ncf7Nh1tgbmU8Ez2SQt
+ N8qt+ljn9oANRSRnn9LH/90BtueKp9Iv0JgomGwRme3H8rpHsU/ERCFrBTKJU4qfQ+dg
+ mRe+LaumH8DIWdN80qMA0GYdTZ6TQF+7EOWNTs1bok7U7ZlTdUlPdfNQIUX80+HlzE1P
+ 4Aug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726401734; x=1727006534;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=P40wET+w71UJyEkZ9BoZfs/VvG0c/BBfUWCIfkdVP7I=;
+ b=mp60SN/7r7jsF3t8WzlKgA2SaKjW88w0BOjk0Tvo0Vmi4O2puPUB6yi5C1rzZAYKl3
+ sS89xWEia/cijvuXR7VhtBuhRA8oK0pZL7VVXh6ANRnxNm/9M5DJgmKeJm9L/FI5d8FN
+ Isn6FfFgeV5YsspbfMqs4Iqk8DxZmOQGD5pKC4+E4qQhR4ft5vzFm6QrH5HSk0z+vHGs
+ N5zLioLhjGwisE/wy+pKVUbX/qWAOd08WG5MYgblEbBopvgX1gM2bze4VCtDaX2yB++t
+ TntKG4qNwBaiS7KXjtsRfcrWlp77urI8x6aibCeLQWZmTbKmHuV3cNjYwBxSo44s5h3i
+ zesw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXkFGwR7hMBuJecgx3Yd+jEqsSkGjwrt3FTKHr7IBeDuBeY7HnwLBH3r4sbDAht3HLytQvIq/P+Bnc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyM5QkssWb2wg1TFdD79hZzuKy9VTsLFzbmQOPU8T+fv92SBAj1
+ bGh8E4sT7/i2Vt5Wj4jtVd/NZ0EI1xv+Z6XMNML1zFV0myQ7D+1F
+X-Google-Smtp-Source: AGHT+IEMZq4/JjBZ/u6UVGa7+slA/nrX41Tt9k6PRPk4mhaKvy6qtno+rb2b7xGKC7WriVIwr6K5xA==
+X-Received: by 2002:a5d:5745:0:b0:374:ca0c:51b0 with SMTP id
+ ffacd0b85a97d-378c27a8a55mr7714570f8f.12.1726401734007; 
+ Sun, 15 Sep 2024 05:02:14 -0700 (PDT)
+Received: from void.void ([141.226.169.213]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-378e78054b6sm4497832f8f.107.2024.09.15.05.02.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 15 Sep 2024 05:02:13 -0700 (PDT)
+From: Andrew Kreimer <algonell@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Andrew Kreimer <algonell@gmail.com>, Matthew Wilcox <willy@infradead.org>
+Subject: [PATCH] drm/i915: Fix typos
+Date: Sun, 15 Sep 2024 15:01:55 +0300
+Message-Id: <20240915120155.101395-1-algonell@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240913213246.1549213-1-javierm@redhat.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 16 Sep 2024 12:46:50 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,37 +85,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Javier,
+Fix typos in documentation.
 
-kernel test robot noticed the following build errors:
+Reported-by: Matthew Wilcox <willy@infradead.org>
+Signed-off-by: Andrew Kreimer <algonell@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
+ drivers/gpu/drm/i915/gt/shaders/README   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-[auto build test ERROR on chrome-platform/for-next]
-[also build test ERROR on chrome-platform/for-firmware-next linus/master v6.11-rc7 next-20240913]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Javier-Martinez-Canillas/firmware-coreboot-Don-t-register-a-pdev-if-screen_info-data-is-present/20240914-053323
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240913213246.1549213-1-javierm%40redhat.com
-patch subject: [PATCH v3] firmware: coreboot: Don't register a pdev if screen_info data is present
-config: riscv-randconfig-001-20240915 (https://download.01.org/0day-ci/archive/20240915/202409151528.CIWZRPBq-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240915/202409151528.CIWZRPBq-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409151528.CIWZRPBq-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> ld.lld: error: undefined symbol: screen_info
-   >>> referenced by framebuffer-coreboot.c:27 (drivers/firmware/google/framebuffer-coreboot.c:27)
-   >>>               drivers/firmware/google/framebuffer-coreboot.o:(framebuffer_probe) in archive vmlinux.a
-   >>> referenced by framebuffer-coreboot.c:27 (drivers/firmware/google/framebuffer-coreboot.c:27)
-   >>>               drivers/firmware/google/framebuffer-coreboot.o:(framebuffer_probe) in archive vmlinux.a
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 1f83b3b67ea6..062e61cf70a0 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1017,7 +1017,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 		};
+ 		/*
+ 		 * Still using the default IO_BUFFER_WAKE and FAST_WAKE, see
+-		 * comments bellow for more information
++		 * comments below for more information
+ 		 */
+ 		int tmp;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/shaders/README b/drivers/gpu/drm/i915/gt/shaders/README
+index e7e96d7073c7..4f5dab3fdcca 100644
+--- a/drivers/gpu/drm/i915/gt/shaders/README
++++ b/drivers/gpu/drm/i915/gt/shaders/README
+@@ -24,7 +24,7 @@ on building.
+ Please make sure your Mesa tool is compiled with "-Dtools=intel" and
+ "-Ddri-drivers=i965", and run this script from IGT source root directory"
+ 
+-The instructions bellow assume:
++The instructions below assume:
+     *  IGT gpu tools source code is located on your home directory (~) as ~/igt
+     *  Mesa source code is located on your home directory (~) as ~/mesa
+        and built under the ~/mesa/build directory
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.5
+
