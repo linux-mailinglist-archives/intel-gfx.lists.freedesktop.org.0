@@ -2,74 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB08C97A27E
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 14:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2628B979695
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Sep 2024 14:21:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 798E110E354;
-	Mon, 16 Sep 2024 12:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 174BF10E0D3;
+	Sun, 15 Sep 2024 12:21:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q0HLDVFp";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="elnYi4MX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F27CB10E09B;
- Sun, 15 Sep 2024 12:02:15 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-42cb58d810eso28480165e9.0; 
- Sun, 15 Sep 2024 05:02:15 -0700 (PDT)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CAC810E0D3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Sep 2024 12:21:03 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-42cb1758e41so19152315e9.1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Sep 2024 05:21:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1726401734; x=1727006534; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=P40wET+w71UJyEkZ9BoZfs/VvG0c/BBfUWCIfkdVP7I=;
- b=Q0HLDVFpHzkHyP67ws8Fsgok/VbJtFGAG0IIqrz2MkHBJFWY6NtrPWsokn+4om3tWI
- ecqYu5ulFSupo96DXbcJ/R64Sajv0mFYVkqonCBzEZj6hs5tNAeHQD48dsUR9sq2RRi0
- 38PM8XNl+lDZ3j56ERqlgolcZb8N09tyQ5XwrTN3V1ujfP0H3Ncf7Nh1tgbmU8Ez2SQt
- N8qt+ljn9oANRSRnn9LH/90BtueKp9Iv0JgomGwRme3H8rpHsU/ERCFrBTKJU4qfQ+dg
- mRe+LaumH8DIWdN80qMA0GYdTZ6TQF+7EOWNTs1bok7U7ZlTdUlPdfNQIUX80+HlzE1P
- 4Aug==
+ d=linaro.org; s=google; t=1726402862; x=1727007662; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=f/cChD3RtsO+wRk6LOTLwGyXke8XHaeDLPwpHkMkngQ=;
+ b=elnYi4MXqG2RwsY+VrlUKVebbpCuggEajl3VFF3wIpVN+9zqECYioJCegpb8vfznfI
+ ouG4txi62pslBDKsfGMaNrBjESsTMXBptISQF3lD8BdfJp3Yu+G8uvuuoVS6dGpryzjL
+ Zt7TdEeLEfqIPnswYugbQl5YfGMx4Ojo+72VENKiMuAwt8oLgZePp87Z0gs2CAo3cTTQ
+ h+Crp0sV+xnVv3czjQp/NB1JuigEAvQE4Cb+flln0TPxDquQhzfXzuefUu1wujTHPKf4
+ BULJGtUiSjgA4BYg1suDq8p+WdUaHzE/sRabUkDAotm0JnbKW2B4mAYzR4ey7+P6wIk6
+ udRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726401734; x=1727006534;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=P40wET+w71UJyEkZ9BoZfs/VvG0c/BBfUWCIfkdVP7I=;
- b=mp60SN/7r7jsF3t8WzlKgA2SaKjW88w0BOjk0Tvo0Vmi4O2puPUB6yi5C1rzZAYKl3
- sS89xWEia/cijvuXR7VhtBuhRA8oK0pZL7VVXh6ANRnxNm/9M5DJgmKeJm9L/FI5d8FN
- Isn6FfFgeV5YsspbfMqs4Iqk8DxZmOQGD5pKC4+E4qQhR4ft5vzFm6QrH5HSk0z+vHGs
- N5zLioLhjGwisE/wy+pKVUbX/qWAOd08WG5MYgblEbBopvgX1gM2bze4VCtDaX2yB++t
- TntKG4qNwBaiS7KXjtsRfcrWlp77urI8x6aibCeLQWZmTbKmHuV3cNjYwBxSo44s5h3i
- zesw==
+ d=1e100.net; s=20230601; t=1726402862; x=1727007662;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:message-id:subject:cc:to:from:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=f/cChD3RtsO+wRk6LOTLwGyXke8XHaeDLPwpHkMkngQ=;
+ b=JxH6T9E9e9OI41ecrhdbaAG4YNCBhjVhwVYwcl5AqClP/BfM+Jo7eLH1LwiNc5HyB3
+ oA9CHgNLSFL9BvQGVtzI3NxJN2TfEfxN4XX+37TkvPhMvvKn4OUjXDepR9knZ/aZ/PUZ
+ fAp5l5IM8NJkNFmDVaj9a6f4i61hbCszaZjmI3jo2AK4powlTgK0D6P896nPqW61vycV
+ ccFLCfsuSYfGWnablyhMaZJT83/3VBpOPAC9NZ/ozBUX2f/4cJytD5+0aUkm++woCxOC
+ Gh5CGQFEmkwCiCty4hb2P2seRI6NMRv1KCRUCPqfegRcBnP8EeaIqqihQEoYozkNI7k9
+ XezQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXkFGwR7hMBuJecgx3Yd+jEqsSkGjwrt3FTKHr7IBeDuBeY7HnwLBH3r4sbDAht3HLytQvIq/P+Bnc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyM5QkssWb2wg1TFdD79hZzuKy9VTsLFzbmQOPU8T+fv92SBAj1
- bGh8E4sT7/i2Vt5Wj4jtVd/NZ0EI1xv+Z6XMNML1zFV0myQ7D+1F
-X-Google-Smtp-Source: AGHT+IEMZq4/JjBZ/u6UVGa7+slA/nrX41Tt9k6PRPk4mhaKvy6qtno+rb2b7xGKC7WriVIwr6K5xA==
-X-Received: by 2002:a5d:5745:0:b0:374:ca0c:51b0 with SMTP id
- ffacd0b85a97d-378c27a8a55mr7714570f8f.12.1726401734007; 
- Sun, 15 Sep 2024 05:02:14 -0700 (PDT)
-Received: from void.void ([141.226.169.213]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-378e78054b6sm4497832f8f.107.2024.09.15.05.02.12
+ AJvYcCVELVmqX9gF244Rbdo85Y2IvoDejXbWc0g5y4H9B0ze4qbTQVLtustudahkdq9W3HT8IzkK54z5INw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwdvfEX3w5gH1Y42Q/tw3CSKyNfTBa4dvOOslnt3tn5ENeVNz6T
+ cFqgkJDFiPIdsOriJnGhaCg8XcYLEL1/w6f+SQBTzx866uPLFAETtJlfDA1mqHc=
+X-Google-Smtp-Source: AGHT+IG0JI7Qbv956I1/ozTovHJY3uhyPV9YHjYZxyeYtvP3yP60B0OsrIPBqDf5KkpdB9zTYToXWg==
+X-Received: by 2002:a05:600c:3492:b0:42c:ad30:678 with SMTP id
+ 5b1f17b1804b1-42d964d8446mr62309105e9.28.1726402861736; 
+ Sun, 15 Sep 2024 05:21:01 -0700 (PDT)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42d9b1949c3sm81624155e9.46.2024.09.15.05.21.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 15 Sep 2024 05:02:13 -0700 (PDT)
-From: Andrew Kreimer <algonell@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- Andrew Kreimer <algonell@gmail.com>, Matthew Wilcox <willy@infradead.org>
-Subject: [PATCH] drm/i915: Fix typos
-Date: Sun, 15 Sep 2024 15:01:55 +0300
-Message-Id: <20240915120155.101395-1-algonell@gmail.com>
-X-Mailer: git-send-email 2.39.5
+ Sun, 15 Sep 2024 05:21:01 -0700 (PDT)
+Date: Sun, 15 Sep 2024 15:20:57 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Nemesa Garg <nemesa.garg@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Workaround for odd panning for planar
+ yuv
+Message-ID: <ec32680f-fa31-445b-83f5-022e2af7a86d@stanley.mountain>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 16 Sep 2024 12:46:50 +0000
+In-Reply-To: <20240910143619.143514-1-nemesa.garg@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,41 +84,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix typos in documentation.
+Hi Nemesa,
 
-Reported-by: Matthew Wilcox <willy@infradead.org>
-Signed-off-by: Andrew Kreimer <algonell@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
- drivers/gpu/drm/i915/gt/shaders/README   | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1f83b3b67ea6..062e61cf70a0 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1017,7 +1017,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 		};
- 		/*
- 		 * Still using the default IO_BUFFER_WAKE and FAST_WAKE, see
--		 * comments bellow for more information
-+		 * comments below for more information
- 		 */
- 		int tmp;
- 
-diff --git a/drivers/gpu/drm/i915/gt/shaders/README b/drivers/gpu/drm/i915/gt/shaders/README
-index e7e96d7073c7..4f5dab3fdcca 100644
---- a/drivers/gpu/drm/i915/gt/shaders/README
-+++ b/drivers/gpu/drm/i915/gt/shaders/README
-@@ -24,7 +24,7 @@ on building.
- Please make sure your Mesa tool is compiled with "-Dtools=intel" and
- "-Ddri-drivers=i965", and run this script from IGT source root directory"
- 
--The instructions bellow assume:
-+The instructions below assume:
-     *  IGT gpu tools source code is located on your home directory (~) as ~/igt
-     *  Mesa source code is located on your home directory (~) as ~/mesa
-        and built under the ~/mesa/build directory
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Nemesa-Garg/drm-i915-display-Workaround-for-odd-panning-for-planar-yuv/20240910-223820
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link:    https://lore.kernel.org/r/20240910143619.143514-1-nemesa.garg%40intel.com
+patch subject: [PATCH] drm/i915/display: Workaround for odd panning for planar yuv
+config: x86_64-randconfig-161-20240915 (https://download.01.org/0day-ci/archive/20240915/202409151558.ETIW5UMU-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202409151558.ETIW5UMU-lkp@intel.com/
+
+New smatch warnings:
+drivers/gpu/drm/i915/display/intel_atomic_plane.c:1045 intel_plane_check_src_coordinates() error: uninitialized symbol 'hsub'.
+
+vim +/hsub +1045 drivers/gpu/drm/i915/display/intel_atomic_plane.c
+
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   991  int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   992  {
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   993  	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   994  	const struct drm_framebuffer *fb = plane_state->hw.fb;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   995  	struct drm_rect *src = &plane_state->uapi.src;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   996  	u32 src_x, src_y, src_w, src_h, hsub, vsub;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   997  	bool rotated = drm_rotation_90_or_270(plane_state->hw.rotation);
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   998  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14   999  	/*
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1000  	 * FIXME hsub/vsub vs. block size is a mess. Pre-tgl CCS
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1001  	 * abuses hsub/vsub so we can't use them here. But as they
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1002  	 * are limited to 32bpp RGB formats we don't actually need
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1003  	 * to check anything.
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1004  	 */
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1005  	if (fb->modifier == I915_FORMAT_MOD_Y_TILED_CCS ||
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1006  	    fb->modifier == I915_FORMAT_MOD_Yf_TILED_CCS)
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1007  		return 0;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1008  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1009  	/*
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1010  	 * Hardware doesn't handle subpixel coordinates.
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1011  	 * Adjust to (macro)pixel boundary, but be careful not to
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1012  	 * increase the source viewport size, because that could
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1013  	 * push the downscaling factor out of bounds.
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1014  	 */
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1015  	src_x = src->x1 >> 16;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1016  	src_w = drm_rect_width(src) >> 16;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1017  	src_y = src->y1 >> 16;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1018  	src_h = drm_rect_height(src) >> 16;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1019  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1020  	drm_rect_init(src, src_x << 16, src_y << 16,
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1021  		      src_w << 16, src_h << 16);
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1022  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1023  	if (fb->format->format == DRM_FORMAT_RGB565 && rotated) {
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1024  		hsub = 2;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1025  		vsub = 2;
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1026  	} else if (DISPLAY_VER(i915) >= 20 &&
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1027  		   intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1028  		/*
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1029  		 * This allows NV12 and P0xx formats to have odd size and/or odd
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1030  		 * source coordinates on DISPLAY_VER(i915) >= 20
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1031  		 */
+533a7836d39f1a Juha-Pekka Heikkilä 2023-09-19  1032  		vsub = 1;
+68f459ad919373 Nemesa Garg         2024-09-10  1033  		/*
+68f459ad919373 Nemesa Garg         2024-09-10  1034  		 * Wa_16023981245 for display version 20.
+68f459ad919373 Nemesa Garg         2024-09-10  1035  		 * Do not support odd x-panning for NV12.
+68f459ad919373 Nemesa Garg         2024-09-10  1036  		 */
+68f459ad919373 Nemesa Garg         2024-09-10  1037  		if (IS_LUNARLAKE(i915) && fb->format->format != DRM_FORMAT_NV12)
+68f459ad919373 Nemesa Garg         2024-09-10  1038  			hsub = 1;
+
+husb needs to be initialized on the else path.
+
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1039  	} else {
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1040  		hsub = fb->format->hsub;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1041  		vsub = fb->format->vsub;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1042  	}
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1043  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1044  	if (rotated)
+0ec2a5b291af32 Ville Syrjälä       2023-03-14 @1045  		hsub = vsub = max(hsub, vsub);
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1046  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1047  	if (src_x % hsub || src_w % hsub) {
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1048  		drm_dbg_kms(&i915->drm, "src x/w (%u, %u) must be a multiple of %u (rotated: %s)\n",
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1049  			    src_x, src_w, hsub, str_yes_no(rotated));
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1050  		return -EINVAL;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1051  	}
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1052  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1053  	if (src_y % vsub || src_h % vsub) {
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1054  		drm_dbg_kms(&i915->drm, "src y/h (%u, %u) must be a multiple of %u (rotated: %s)\n",
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1055  			    src_y, src_h, vsub, str_yes_no(rotated));
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1056  		return -EINVAL;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1057  	}
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1058  
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1059  	return 0;
+0ec2a5b291af32 Ville Syrjälä       2023-03-14  1060  }
+
 -- 
-2.39.5
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
