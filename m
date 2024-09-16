@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B120397A4CC
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 17:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6391897A515
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 17:16:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 850F210E3A4;
-	Mon, 16 Sep 2024 15:07:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TC0q9gfb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 172B910E3AE;
+	Mon, 16 Sep 2024 15:16:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 307AA10E0D0
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 15:07:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726499223; x=1758035223;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=v3zSYuqOyweKr9LFLlMuClPzeUoYgV82gv5P66oCMMc=;
- b=TC0q9gfb5xrIUFYmAr1OuPcsfgb1c7WTLedXLGIQPen09jYuGO6FvkoR
- 44cH76H0z/34Kfg2tMEjdfoSImLkAZe9NNHOJa6Rk76XnLxKtjGMuVtxF
- 747rr41JSosNsffhVk9HRN2tIzUIWB8Ll/Ow+lW/vDv/JkoiqLzBnDnnA
- Xq7SMm1hveOFVRSh9iqeHxBvMHo2fKrZveAv5XxV0CvXCYn3tgphQQRBB
- tiyTfk5doeHN9y5/yMByueUufVcs2oTwnmBMLAPqbEnfO1UYMbAHl5HSd
- GP07h7JXOxU8yNo+SSFfFcYCbUXoj+M2jOiv25JScYjZIxCyIfnjYBpVc g==;
-X-CSE-ConnectionGUID: 6gFTR+ZCSXyS5cUI8NHQYQ==
-X-CSE-MsgGUID: mtLpX1pGTJakNtMvTpG1sg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="28240185"
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="28240185"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2024 08:07:01 -0700
-X-CSE-ConnectionGUID: ZcE1/8KnQB6DU+IV/R4VVA==
-X-CSE-MsgGUID: kbX8RupnTU6R7IPFP+ZNBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,233,1719903600"; d="scan'208";a="69004393"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Sep 2024 08:06:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 16 Sep 2024 18:06:58 +0300
-Date: Mon, 16 Sep 2024 18:06:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, suraj.kandpal@intel.com,
- jani.saarinen@intel.com
-Subject: Re: [PATCH 16/19] drm/i915: Add new abstraction layer to handle pipe
- order for different joiners
-Message-ID: <ZuhJkgLlYc7Dj9oB@intel.com>
-References: <20240911131349.933814-1-ankit.k.nautiyal@intel.com>
- <20240911131349.933814-17-ankit.k.nautiyal@intel.com>
- <ZuIb3D1GrjwFBIuU@intel.com>
- <fab2d890-e3a3-4157-adda-92b9a195e7be@intel.com>
- <ZuhGlIPAk_Pxk47z@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E971B10E089;
+ Mon, 16 Sep 2024 15:16:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1729770503024769575=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZuhGlIPAk_Pxk47z@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_firmware=3A_Avoid_coreboot_?=
+ =?utf-8?q?and_sysfb_to_register_a_pdev_for_same_framebuffer?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Javier Martinez Canillas" <javierm@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Sep 2024 15:16:53 -0000
+Message-ID: <172649981394.1018997.288774460789510078@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240916110040.1688511-1-javierm@redhat.com>
+In-Reply-To: <20240916110040.1688511-1-javierm@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,246 +37,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 16, 2024 at 05:54:12PM +0300, Ville Syrjälä wrote:
-> On Mon, Sep 16, 2024 at 01:09:42PM +0530, Nautiyal, Ankit K wrote:
-> > 
-> > On 9/12/2024 4:08 AM, Ville Syrjälä wrote:
-> > > On Wed, Sep 11, 2024 at 06:43:46PM +0530, Ankit Nautiyal wrote:
-> > >> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > >>
-> > >> Ultrajoiner case requires special treatment where both reverse and
-> > >> staight order iteration doesn't work(for instance disabling case requires
-> > >> order to be: primary master, slaves, secondary master).
-> > >>
-> > >> Lets unify our approach by using not only pipe masks for iterating required
-> > >> pipes based on joiner type used, but also using different "priority" arrays
-> > >> for each of those.
-> > >>
-> > >> v2: Fix checkpatch warnings. (Ankit)
-> > >>
-> > >> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > >> ---
-> > >>   drivers/gpu/drm/i915/display/intel_ddi.c     | 19 +++--
-> > >>   drivers/gpu/drm/i915/display/intel_display.c | 83 ++++++++++++++++----
-> > >>   drivers/gpu/drm/i915/display/intel_display.h |  7 ++
-> > >>   drivers/gpu/drm/i915/display/intel_dp_mst.c  | 18 +++--
-> > >>   4 files changed, 96 insertions(+), 31 deletions(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> index 00fbe9f8c03a..2c064b6c6d01 100644
-> > >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > >> @@ -3116,10 +3116,11 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
-> > >>   					       const struct drm_connector_state *old_conn_state)
-> > >>   {
-> > >>   	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> > >> -	struct intel_crtc *pipe_crtc;
-> > >> +	struct intel_crtc *pipe_crtc; enum pipe pipe;
-> > >>   
-> > >> -	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, pipe_crtc,
-> > >> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
-> > >> +	for_each_intel_crtc_in_mask_priority(dev_priv, pipe_crtc, pipe,
-> > >> +					     intel_crtc_joined_pipe_mask(old_crtc_state),
-> > >> +					     intel_get_pipe_order_disable(old_crtc_state)) {
-> > >>   		const struct intel_crtc_state *old_pipe_crtc_state =
-> > >>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
-> > >>   
-> > >> @@ -3130,8 +3131,9 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
-> > >>   
-> > >>   	intel_ddi_disable_transcoder_func(old_crtc_state);
-> > >>   
-> > >> -	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, pipe_crtc,
-> > >> -					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
-> > >> +	for_each_intel_crtc_in_mask_priority(dev_priv, pipe_crtc, pipe,
-> > >> +					     intel_crtc_joined_pipe_mask(old_crtc_state),
-> > >> +					     intel_get_pipe_order_disable(old_crtc_state)) {
-> > >>   		const struct intel_crtc_state *old_pipe_crtc_state =
-> > >>   			intel_atomic_get_old_crtc_state(state, pipe_crtc);
-> > >>   
-> > >> @@ -3383,7 +3385,7 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
-> > >>   			     const struct drm_connector_state *conn_state)
-> > >>   {
-> > >>   	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> > >> -	struct intel_crtc *pipe_crtc;
-> > >> +	struct intel_crtc *pipe_crtc; enum pipe pipe;
-> > >>   
-> > >>   	intel_ddi_enable_transcoder_func(encoder, crtc_state);
-> > >>   
-> > >> @@ -3394,8 +3396,9 @@ static void intel_enable_ddi(struct intel_atomic_state *state,
-> > >>   
-> > >>   	intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
-> > >>   
-> > >> -	for_each_intel_crtc_in_pipe_mask_reverse(&i915->drm, pipe_crtc,
-> > >> -						 intel_crtc_joined_pipe_mask(crtc_state)) {
-> > >> +	for_each_intel_crtc_in_mask_priority(i915, pipe_crtc, pipe,
-> > >> +					     intel_crtc_joined_pipe_mask(crtc_state),
-> > >> +					     intel_get_pipe_order_enable(crtc_state)) {
-> > >>   		const struct intel_crtc_state *pipe_crtc_state =
-> > >>   			intel_atomic_get_new_crtc_state(state, pipe_crtc);
-> > >>   
-> > >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > >> index db27850b2c36..27622d51a473 100644
-> > >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > >> @@ -1737,6 +1737,50 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
-> > >>   	hsw_set_transconf(crtc_state);
-> > >>   }
-> > >>   
-> > >> +static
-> > >> +bool intel_crtc_is_bigjoiner(const struct intel_crtc_state *pipe_config)
-> > >> +{
-> > >> +	return hweight8(pipe_config->joiner_pipes) == 2;
-> > >> +}
-> > >> +
-> > >> +const enum pipe *intel_get_pipe_order_enable(const struct intel_crtc_state *crtc_state)
-> > >> +{
-> > >> +	static const enum pipe ultrajoiner_pipe_order_enable[I915_MAX_PIPES] = {
-> > >> +		PIPE_B, PIPE_D, PIPE_C, PIPE_A
-> > >> +	};
-> > >> +	static const enum pipe bigjoiner_pipe_order_enable[I915_MAX_PIPES] = {
-> > >> +		PIPE_B, PIPE_A, PIPE_D, PIPE_C
-> > >> +	};
-> > >> +	static const enum pipe nojoiner_pipe_order_enable[I915_MAX_PIPES] = {
-> > >> +		PIPE_A, PIPE_B, PIPE_C, PIPE_D
-> > >> +	};
-> > >> +
-> > >> +	if (intel_crtc_is_ultrajoiner(crtc_state))
-> > >> +		return ultrajoiner_pipe_order_enable;
-> > >> +	else if (intel_crtc_is_bigjoiner(crtc_state))
-> > >> +		return bigjoiner_pipe_order_enable;
-> > >> +	return nojoiner_pipe_order_enable;
-> > >> +}
-> > >> +
-> > >> +const enum pipe *intel_get_pipe_order_disable(const struct intel_crtc_state *crtc_state)
-> > >> +{
-> > >> +	static const enum pipe ultrajoiner_pipe_order_disable[I915_MAX_PIPES] = {
-> > >> +		PIPE_A, PIPE_B, PIPE_D, PIPE_C
-> > >> +	};
-> > >> +	static const enum pipe bigjoiner_pipe_order_disable[I915_MAX_PIPES] = {
-> > >> +		PIPE_A, PIPE_B, PIPE_C, PIPE_D
-> > >> +	};
-> > >> +	static const enum pipe nojoiner_pipe_order_disable[I915_MAX_PIPES] = {
-> > >> +		PIPE_A, PIPE_B, PIPE_C, PIPE_D
-> > >> +	};
-> > >> +
-> > >> +	if (intel_crtc_is_ultrajoiner(crtc_state))
-> > >> +		return ultrajoiner_pipe_order_disable;
-> > >> +	else if (intel_crtc_is_bigjoiner(crtc_state))
-> > >> +		return bigjoiner_pipe_order_disable;
-> > >> +	return nojoiner_pipe_order_disable;
-> > > I don't think we should need all those diffrent order array. Technically
-> > > one should do. Though having two might make sense.
-> > >
-> > > Another problem is the hardcoded pipes. If we eg. get hardware that
-> > > would support ultrajoiner on pipes B-E in the future this would no
-> > > longer  work.
-> > >
-> > >> +}
-> > > <snip>
-> > >> +#define for_each_intel_crtc_in_mask_priority(__dev_priv, intel_crtc, __p, __mask, __priolist) \
-> > >> +	for_each_pipe(__dev_priv, __p) \
-> > >> +		for_each_if((__mask) & BIT(__priolist[__p])) \
-> > >> +			for_each_if(intel_crtc = intel_crtc_for_pipe(to_intel_display(&__dev_priv->drm), __priolist[__p]))
-> > >
-> > > I think something like:
-> > >
-> > > const u8 intel_pipe_order_enable[4] = {
-> > >          3, 1, 2, 0,
-> > > };
-> > >
-> > > const u8 intel_pipe_order_disable[4] = {
-> > >          0, 2, 1, 3,
-> > > };
-> > >
-> > > #define for_each_intel_crtc_in_pipe_mask_ordered(crtc, pipe_masks, order, i) \
-> > >          for ((i) = 0; \
-> > >               (i) < ARRAY_SIZE(order) && \
-> > >               ((crtc) = intel_crtc_for_pipe(joiner_primary_pipe(pipe_mask) + (order)[(i)]), 1); \
-> > >               (i)++) \
-> > >                  for_each_if((crtc) && (pipe_mask) & BIT((crtc)->pipe))
-> > >
-> > > would let us avoid that hardcoded pipe stuff, and everything is
-> > > just based on the relative order between the pipes. The same orders
-> > > also work for bigjoiner and non-joined cases (it just skips the pipes
-> > > that are't in the mask).
-> > >
-> > >
-> > > The alternative would be to just use the bigjoiner primary+secondary masks
-> > > and come up with a a way to iterate two bitmask in either forward or reverse
-> > > order. Hmm, I suppose one might just combine the bigjoiner primary and
-> > > secondary masks into one, with one of them shifted up to some high bits,
-> > > and then iterate the combined bitmask either forward or backward.
-> > >
-> > > Something like this should work:
-> > > #define for_each_crtc_in_masks(crtc, first_pipes, second_pipes, pipes, i) \
-> > >          for ((i) = 0, (pipes) = (second_pipes) << 16 | (first_pipes); \
-> > >               (i) < 32 && ((crtc) = intel_crtc_for_pipe((i) & 15), 1); \
-> > >               (i)++) \
-> > >                  for_each_if((crtc) && (pipes) & BIT(i))
-> > >
-> > > #define for_each_crtc_in_masks_reverse(crtc, first_pipes, second_pipes, pipes, i) \
-> > >          for ((i) = 31, (pipes) = (first_pipes) << 16 | (second_pipes); \
-> > >               (i) >= 0 && ((crtc) = intel_crtc_for_pipe((i) & 15), 1); \
-> > >               (i)--) \
-> > >                  for_each_if((crtc) && (pipes) & BIT(i))
-> > >
-> > > (could reduce the constants a bit given we don't have 16 pipes).
-> > 
-> > This looks good to me. changed for 4 pipes, as below:
-> > 
-> > 
-> > #define for_each_crtc_in_masks(crtc, first_pipes, second_pipes, pipes, i) \
-> >          for ((i) = 0, (pipes) = (first_pipes) | ((second_pipes) << 4); \
-> >               (i) < 8 && ((crtc) = intel_crtc_for_pipe((i & 3)), 1); \
-> 
-> We could probably use a single internal define for the magic
-> number to avoid things going out of sync by accident.
-> 
-> Hmm, maybe even define it as something like
-> #define _INTEL_MAX_PIPES_POT roundup_power_of_two(I915_MAX_PIPES)
-> ?
-> 
-> O, I suppose we don't really need it to be POT, so we could
-> just replace the '&' with '%', and then we can just use
-> I915_MAX_PIPES directly.
-> 
-> >               (i)++) \
-> >                  for_each_if((crtc) && (pipes) & BIT(i))
-> > 
-> > #define for_each_crtc_in_masks_reverse(crtc, first_pipes, second_pipes, 
-> > pipes, i) \
-> >          for ((i) = 7, (pipes) = (first_pipes) | ((second_pipes) << 4); \
-> >               (i) >= 0 && ((crtc) = intel_crtc_for_pipe((i & 3)), 1); \
-> >               (i)--) \
-> >                  for_each_if((crtc) && (pipes) & BIT(i))
-> > 
-> > But, for non joiner case, when the bigjoiner_primary/secondary_pipes are 
-> > 0 so pipes will be 0.
-> 
-> Hmm. I think we just need to make bigjoiner_primary_pipes()
-> return BIT(crtc->pipe) for the non-joiner cases.
-> 
-> Maybe we should rename these to something like
-> _modeset_{primary,secondary}_pipes() so that people
-> don't get tempted to use them for anything else?
-> 
-> And then we could hide all this into something like
-> #define for_each_pipe_crtc_modeset_disable(...) \ 
-> 	for_each_crtc_in_masks(..., _modeset_primary_pipes(), \
-> 			       _modeset_secondary_pipes(), ...)
-> #define for_each_pipe_crtc_modeset_enable(...) \ 
-> 	for_each_crtc_in_masks_reverse(..., _modeset_secondary_pipes(), \
-> 				      _modeset_primary_pipes(), ...)
+--===============1729770503024769575==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-These last two macros you could already implement right
-now using the current code, and then we can replace them
-with the ultrajoiner capable stuff in another patch and
-not touch any of the actual modeset code anymore.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: firmware: Avoid coreboot and sysfb to register a pdev for same framebuffer
+URL   : https://patchwork.freedesktop.org/series/138709/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15423 -> Patchwork_138709v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/index.html
+
+Participating hosts (39 -> 40)
+------------------------------
+
+  Additional (2): bat-jsl-1 fi-elk-e7500 
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_138709v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - bat-jsl-1:          NOTRUN -> [SKIP][1] ([i915#9318])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - bat-jsl-1:          NOTRUN -> [SKIP][2] ([i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-jsl-1:          NOTRUN -> [SKIP][4] ([i915#4103]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#3555] / [i915#9886])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-jsl-1:          NOTRUN -> [SKIP][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:
+    - fi-elk-e7500:       NOTRUN -> [SKIP][7] +25 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-arls-5:         [PASS][8] -> [INCOMPLETE][9] ([i915#11320])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15423/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-jsl-1:          NOTRUN -> [SKIP][10] ([i915#3555])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-2:         [INCOMPLETE][11] ([i915#10341] / [i915#12133]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15423/bat-arlh-2/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@slpc:
+    - bat-arlh-2:         [INCOMPLETE][13] ([i915#11981]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15423/bat-arlh-2/igt@i915_selftest@live@slpc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-arlh-2/igt@i915_selftest@live@slpc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
+  [i915#11320]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320
+  [i915#11981]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11981
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15423 -> Patchwork_138709v1
+
+  CI-20190529: 20190529
+  CI_DRM_15423: cb4252b3107f36d565422099fdde8d7e34ffbf1d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8020: 7860f9a9394da0a18fc0bf0223a79b533e569f95 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_138709v1: cb4252b3107f36d565422099fdde8d7e34ffbf1d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/index.html
+
+--===============1729770503024769575==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>firmware: Avoid coreboot and sysfb to register a pdev for same framebuffer</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138709/">https://patchwork.freedesktop.org/series/138709/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15423 -&gt; Patchwork_138709v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/index.html</p>
+<h2>Participating hosts (39 -&gt; 40)</h2>
+<p>Additional (2): bat-jsl-1 fi-elk-e7500 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_138709v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318">i915#9318</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1:</p>
+<ul>
+<li>fi-elk-e7500:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-1.html">SKIP</a> +25 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15423/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320">i915#11320</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15423/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@slpc:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15423/bat-arlh-2/igt@i915_selftest@live@slpc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11981">i915#11981</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138709v1/bat-arlh-2/igt@i915_selftest@live@slpc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15423 -&gt; Patchwork_138709v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15423: cb4252b3107f36d565422099fdde8d7e34ffbf1d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8020: 7860f9a9394da0a18fc0bf0223a79b533e569f95 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_138709v1: cb4252b3107f36d565422099fdde8d7e34ffbf1d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1729770503024769575==--
