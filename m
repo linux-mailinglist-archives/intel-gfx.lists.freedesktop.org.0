@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BE99979E76
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 11:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D0F979E7B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 11:28:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3DD310E32B;
-	Mon, 16 Sep 2024 09:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25EC910E325;
+	Mon, 16 Sep 2024 09:28:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RHTFTBB1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="o2V+2BTJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76ED510E32A;
- Mon, 16 Sep 2024 09:28:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D65610E324;
+ Mon, 16 Sep 2024 09:28:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 343705C05FE;
- Mon, 16 Sep 2024 09:28:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 906D3C4CEC4;
- Mon, 16 Sep 2024 09:28:13 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id C1F7C5C461D;
+ Mon, 16 Sep 2024 09:28:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E4BC4CECD;
+ Mon, 16 Sep 2024 09:28:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726478894;
- bh=cgZc/BgRQ3td5Yw9a3GeSiVF4W9kLwymE9bQrLcXTyE=;
+ s=k20201202; t=1726478924;
+ bh=HHUgW1boYFxsRq7ez/mJftbzVuWDocQVG+uAfB4jUpg=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=RHTFTBB1RHQJECTBzjgnzq2ap9XivxUqLWC4wACIymL4WcOZKTDaxHezZYV5RLOs+
- DBNEfT5PLDn2XPt4fVogxMNjh39foO/BvZtKATlRkFzRPW3OVBe5atD9zI5ZtZGDHs
- Vg/BWQRV3GdtzISpskZb6KEsU6KzLjZ9HpjqKt/rp4UcDftWcqxWGKpM9HqqmXzyl7
- HIjusTfLhY2ifMvDwemxW18I1/5ONSS0yp5XVGlhdtV58Q6dj40VqA/f6OxPiKm+85
- zNuSdA8VP+1KRwFts+nKlHnE2XtfeJHI9pcm82CkNoZP3kmL8HZbBg5ZFCcJVTIb3A
- WoqlXYlvbX3Bw==
-Date: Mon, 16 Sep 2024 11:28:07 +0200
+ b=o2V+2BTJYV3NhsJTPZR0edYF0TIE5JqINAzERFaJWLuAbj1GVVCzzHgW7e21Bs9MS
+ MW50QT88ifdVFoDKkDgEH9ksLco0WTiM4uXWVwcvwjQlFRf4vVfeni/ijF2pPjjo0B
+ H6Rtu4Ew0GRAGsYxfjfKkhg5IcNXOb0t4GXDKXiUMt6ABfQNHtdo9tSIZso3qNt9dn
+ zPsFgF5uqq9JeCnvPlDjCBHuurszTYKSljTOwWbeEjpse9OsONC+gigw+HlPqElOB4
+ 1nLnTj912VaGn0jHMUqvY3NyuBL+iF4W9LAWvOU4RdwnUsCW8Cl8I+87Nl+tlr7UOQ
+ mus1sRdlVEwww==
+Date: Mon, 16 Sep 2024 11:28:38 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Shen Lichuan <shenlichuan@vivo.com>
-Cc: zhenyuw@linux.intel.com, zhi.wang.linux@gmail.com, 
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, 
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, 
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, opensource.kernel@vivo.com
-Subject: Re: [PATCH v1] drm/i915/gvt: Correct multiple typos in comments
-Message-ID: <hph6vzdz54megzoqwiqnozddog5oqzwn5oz3j4hcrevjav5q3n@r4cz7eq3buic>
-References: <20240913021612.41948-1-shenlichuan@vivo.com>
+To: Yan Zhen <yanzhen@vivo.com>
+Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, 
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ opensource.kernel@vivo.com, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v1] drm/i915/display: fix typo in the comment
+Message-ID: <hl7izclcyvkwi3z42iud3fv6aolzrmvilcd6gt4f2uyf7cefdz@2wswztqazz3g>
+References: <20240913061727.170198-1-yanzhen@vivo.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240913021612.41948-1-shenlichuan@vivo.com>
+In-Reply-To: <20240913061727.170198-1-yanzhen@vivo.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,18 +61,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Shen,
+Hi Yan,
 
-On Fri, Sep 13, 2024 at 10:16:12AM GMT, Shen Lichuan wrote:
-> Fixed some spelling errors, the details are as follows:
+On Fri, Sep 13, 2024 at 02:17:27PM GMT, Yan Zhen wrote:
+> Correctly spelled comments make it easier for the reader to understand
+> the code.
 > 
-> -in the code comments:
-> 	addess->address
-> 	trasitions->transitions
-> 	furture->future
-> 	unsubmited->unsubmitted
+> Replace 'platformas' with 'platforms' in the comment &
+> replace 'prefere' with 'prefer' in the comment &
+> replace 'corresponsding' with 'corresponding' in the comment &
+> replace 'harizontal' with 'horizontal' in the comment.
 > 
-> Signed-off-by: Shen Lichuan <shenlichuan@vivo.com>
+> Signed-off-by: Yan Zhen <yanzhen@vivo.com>
 
 reviewed and merged to drm-intel-next.
 
